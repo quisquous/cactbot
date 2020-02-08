@@ -4,8 +4,8 @@
 # Last Updated: 08/01/2017
 
 #############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from 
-########the beginning of the following lines to prevent 
+########CUSTOMIZE your timeline. Remove the hashtag from
+########the beginning of the following lines to prevent
 ########them from appearing on your timeline.
 
 #hideall "--Reset--"
@@ -37,7 +37,7 @@
 
 
 ######Phase 1
-13	"Dualcast"	sync /uses Dualcast/ window 20,0
+13	"Dualcast"	sync /:Exdeath:23F4:/ window 20,0
 16	"Blizzard III"
 19	"Blizzard III"
 24	"Dualcast"
@@ -91,7 +91,7 @@
 
 ######################################################
 ######Neo Phase 1
-507	"Almagest"	sync /uses Almagest/ window 520,0	#AoE + 15s DoT
+507	"Almagest"	sync /:Neo Exdeath:2418:/ window 520,0	#AoE + 15s DoT
 516	"Aero III"  # Tank buster
 527	"Delta Attack"	#Blizzard III (Healers & DPS) + Fire III (DPS)
 530	"Delta Attack 2"	#Blizzard III (Healers & DPS) + Fire III (Tanks & Healers)
@@ -106,7 +106,7 @@
 574	"Double Attack"	#Boss jumps to target, knockback target, jumps back
 
 ######Neo Phase 2
-588	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+588	"Emptiness"	sync /:Neo Exdeath:2420:/ window 20	#Linearly propagating circle AoEs
 593	"Flood of Naught"	#1 of 4 Flood of Naught variants
 604	"Aero III"  # Tank buster
 619	"Grand Cross Delta"	#AOE + Debuffs (8s Forked Lightning x2, 7s Cursed Shriek x2, 8s Compressed Water x1, something else)
@@ -117,7 +117,7 @@
 652	"Aero III"  # Tank buster
 662	"Earth Shaker"	#On Tanks
 667	"Vacuum Wave"	#Vacuum Wave
-684	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+684	"Emptiness"	sync /:Neo Exdeath:2420:/ window 20	#Linearly propagating circle AoEs
 688	"Light and Darkness"	#Flare Markers Out (DPS, Healer, Tank) & Stack Inidicator (Healer)
 695	"Flare + Holy"
 701	"Flood of Naught"	#1 of 4 Flood of Naught variants
@@ -129,7 +129,7 @@
 765	"Almagest"	#AoE + 15s DoT
 771	"Vacuum Wave"	#Vacuum Wave
 778	"Aero III"  # Tank buster
-785	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+785	"Emptiness"	sync /:Neo Exdeath:2420:/ window 20	#Linearly propagating circle AoEs
 793	"Grand Cross Alpha"	#AoE + Debuffs (Hysteria, White/Black Wound, 16s Allagan Field, 15s Acceleration Bomb)
 795	"--Boss Untargetable--"
 798	"--Boss Targetable--"
@@ -155,7 +155,7 @@
 896	"Almagest"	#AoE + 15s DoT
 
 ######Neo Phase 4 (Loop of Neo P2)
-906	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+906	"Emptiness"	sync /:Neo Exdeath:2420:/ window 20	#Linearly propagating circle AoEs
 911	"Flood of Naught"	#1 of 4 Flood of Naught variants
 922	"Aero III"  # Tank buster
 937	"Grand Cross Delta"	#AOE + Debuffs (8s Forked Lightning x2, 7s Cursed Shriek x2, 8s Compressed Water x1, something else)
@@ -166,7 +166,7 @@
 970	"Aero III"  # Tank buster
 980	"Earth Shaker"	#On Tanks
 985	"Vacuum Wave"
-1002	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+1002	"Emptiness"	sync /:Neo Exdeath:2420:/ window 20	#Linearly propagating circle AoEs
 1007	"Light and Darkness"	#Flare Markers Out (DPS, Healer, Tank) & Stack Inidicator (Healer)
 1013	"Flare + Holy"
 1019	"Flood of Naught"	#1 of 4 Flood of Naught variants
@@ -178,7 +178,7 @@
 1083	"Almagest"	#AoE + 15s DoT
 1089	"Vacuum Wave"
 1096	"Aero III"  # Tank buster
-1103	"Emptiness"	sync /uses Emptiness/ window 20	#Linearly propagating circle AoEs
+1103	"Emptiness"	sync /:Neo Exdeath:2420:/ window 20	#Linearly propagating circle AoEs
 1111	"Grand Cross Alpha"	#AoE + Debuffs (Hysteria, White/Black Wound, 16s Allagan Field, 15s Acceleration Bomb)
 1113	"--Boss Untargetable--"
 1116	"--Boss Targetable--"

@@ -1076,107 +1076,473 @@
   ],
   timelineReplace: [
     {
-      'locale': 'cn',
+      'locale': 'de',
       'replaceSync': {
-        'The Shin-Zantetsuken Containment Unit will be sealed off': '距真·斩铁剑封印区被封锁还有',
-        'The Lance of Virtue Containment Unit will be sealed off': '距美德之枪封印区被封锁还有',
-        'The Proto Ozma Containment Unit will be sealed off': '距奥兹玛原型封印区被封锁还有',
-        'Art': '亚特',
-        'Owain': '欧文',
-        'Arsenal Centaur': '兵武半人马',
-        'Raiden': '莱丁',
-        'Absolute Virtue': '绝对的美德',
-        'Relative Virtue': '相对的美德',
-        'Proto Ozma': '奥兹玛原型',
-        'Orlasrach': '烈焰金枪',
-        'Ivory Palm': '白手',
-        'Ball Lightning': '雷球',
-        'Streak Lightning': '雷枪',
-        'Ozmashade': '奥兹玛之影',
-        'Ozma': '奥兹玛原型',
-        'Shadow': '奥兹玛原型之影',
-        'Cloudlarker': '翻云狮鹫',
-        'is no longer sealed': '的封锁解除了',
+        'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
+        'Arsenal Centaur': 'Arsenal-Zentaur',
+        'Art': 'Art',
+        'Ball Lightning': 'Elektrosphäre',
+        'Cloudlarker': 'Wolkenlauerer',
+        'Ivory Palm': 'weiß(?:e|er|es|en) Hand',
+        'Orlasrach': 'Orlasrach',
+        'Owain': 'Owain',
+        '(?<! )Ozma(?!\\w)': 'Yadis',
+        'Ozmashade': 'Yadis-Schatten',
+        'Proto Ozma': 'Proto-Yadis',
+        'Raiden': 'Raiden',
+        'Relative Virtue': 'Relativ(?:e|er|es|en) Tugend',
+        'Shadow': 'Proto-Yadis-Schatten',
+        'Streak Lightning': 'Blitzladung',
+        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
+        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
+        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        'Mythcall': '幻枪招来',
-        'Thricecull': '三连枪',
-        'Legendcarver': '妖枪振',
-        'Legendspinner': '妖枪振',
+        '--sync--': '--sync--',
+        '--targetable--': '--anvisierbar--',
+        '--untargetable--': '--nich anvisierbar--',
+        'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
+        'Acceleration Bomb': 'Beschleunigungsbombe',
+        'Adds': 'Adds', // FIXME
+        'Ame-no-Sakahoko': 'Himmelsriposte',
+        'Astral Essence': 'Arm des Lichts',
+        'Auroral Wind': 'Aurorawind',
+        'Berserk': 'Berserker',
+        'Bitter Barbs': 'Dornige Schuld',
+        'Black Hole': 'Schwarzes Loch',
+        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Booming Lament': 'Donnerschlag der Trauer',
+        'Call Wyvern': 'Wyvernruf',
+        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Cloud to Ground': 'Sturmkonzentration',
+        'Cube Form': 'Cube Form', // FIXME
+        'Eidos': 'Sarva',
+        'Elemental Magicks': 'Elementmagie',
+        'Elemental Shift': 'Elementwechsel',
+        'Execration': 'Exsekration',
+        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosive Impulse': 'Explosiver Impuls',
+        'Flare Star': 'Flare-Stern',
+        'For Honor': 'Hieb der Gefallenen',
+        'Holy': 'Sanctus',
+        'Hostile Aspect': 'Polarisierte Welle',
+        'Impact Stream': 'Durchschlagsstrom',
+        'Ivory Palm': 'weiß(?:e|er|es|en) Hand',
+        'Lancing Bolt': 'Donnerlanze',
+        'Lateral Zantetsuken': 'Kata-Zantetsuken',
+        'Legendary Geas': 'Legendenhieb',
+        'Legendary Imbas': 'Legendäre Boshaftigkeit',
+        'Legendcarver': 'Legendenschnitzer',
+        'Legendspinner': 'Legendenspinner',
+        'Levinwhorl': 'Wirbelsturm',
+        'Medusa Javelin': 'Medusenspeer',
+        'Meteor': 'Meteo',
+        'Mourning Star': 'Morgenstern',
+        'Mythcall': 'Mythenruf',
+        'Orb x5': 'Orb x5', // FIXME
+        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Piercing Dark': 'Lanze der Finsternis',
+        'Piercing Light': 'Lanze des Lichts',
+        'Pitfall': 'Berstender Boden',
+        'Pyramid Form': 'Pyramid Form', // FIXME
+        'Random Form': 'Random Form', // FIXME
+        'Random Shade': 'Random Shade', // FIXME
+        'Shade Ability': 'Shade Ability', // FIXME
+        'Shingan': 'Betäubungsschlag',
+        'Shooting Star': 'Sternschnuppe',
+        'Soak Attack': 'Soak Attack', // FIXME
+        'Spear Copy': 'Spear Copy', // FIXME
+        'Spear Shade': 'Spear Shade', // FIXME
+        'Sphere Form': 'Sphere Form', // FIXME
+        'Spiritcull': 'Kettendämon',
+        'Spirits of the Fallen': 'Heroische Seele',
+        'Stack': 'Stack', // FIXME
+        'Star Form': 'Star Form', // FIXME
+        'Streak Lightning': 'Blitzladung',
+        'Thricecull': 'Dreifachlanze',
+        'Thundercall': 'Donnerruf',
+        'Turbulent Aether': 'Äthersturm',
+        'Ultimate Zantetsuken': 'Goku-Zantetsuken',
+        'Umbral Essence': 'Arm der Dunkelheit',
+        'Whirling Zantetsuken': 'Sen-Zantetsuken',
+        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Absolute Virtue': 'Vertu absolue',
+        'Arsenal Centaur': 'centaure de l\'Arsenal',
+        'Art': 'Art',
+        'Ball Lightning': 'orbe de foudre',
+        'Cloudlarker': 'rôdeur des nuages',
+        'Ivory Palm': 'paume d\'ivoire',
+        'Orlasrach': 'Orlasrach',
+        'Owain': 'Owain',
+        '(?<! )Ozma(?!\\w)': 'Ozma',
+        'Ozmashade': 'ombre d\'Ozma',
+        'Proto Ozma': 'Proto-Ozma',
+        'Raiden': 'Raiden',
+        'Relative Virtue': 'Vertu relative',
+        'Shadow': 'ombre de Proto-Ozma',
+        'Streak Lightning': 'Éclair chargeant',
+        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
+        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
+        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--sync--': '--Synchronisation--',
+        '--targetable--': '--Ciblable--',
+        '--untargetable--': '--Impossible à cibler--',
+        'Acallam Na Senorach': 'Spirale sépulcrale',
+        'Acceleration Bomb': 'Bombe accélératrice',
+        'Adds': 'Adds', // FIXME
+        'Ame-no-Sakahoko': 'Ama-no-sakahoko',
+        'Astral Essence': 'Bras de Lumière',
+        'Auroral Wind': 'Vent d\'aurore',
+        'Berserk': 'Furie',
+        'Bitter Barbs': 'Ronce du péché',
+        'Black Hole': 'Trou noir',
+        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Booming Lament': 'Tonnerre du regret',
+        'Call Wyvern': 'Appel de wyverne',
+        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Cloud to Ground': 'Attaque fulminante',
+        'Cube Form': 'Cube Form', // FIXME
+        'Eidos': 'Sarva',
+        'Elemental Magicks': 'Magie élémentaire',
+        'Elemental Shift': 'Changement d\'élément',
+        'Execration': 'Exécration',
+        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosive Impulse': 'Impulsion explosive',
+        'Flare Star': 'Astre flamboyant',
+        'For Honor': 'Carnage martial',
+        'Holy': 'Miracle',
+        'Hostile Aspect': 'Onde polarisée',
+        'Impact Stream': 'Courant d\'impact',
+        'Ivory Palm': 'paume d\'ivoire',
+        'Lancing Bolt': 'Lance fulminante',
+        'Lateral Zantetsuken': 'Hen Zantetsuken',
+        'Legendary Geas': 'Tuerie spectrale',
+        'Legendary Imbas': 'Fiel spectral',
+        'Legendcarver': 'Taillade spectrale',
+        'Legendspinner': 'Spirale spectrale',
+        'Levinwhorl': 'Vortex de foudre',
+        'Medusa Javelin': 'Javelot de Méduse',
+        'Meteor': 'Météore',
+        'Mourning Star': 'Étoile du matin',
+        'Mythcall': 'Invitation fantasmagorique',
+        'Orb x5': 'Orb x5', // FIXME
+        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Piercing Dark': 'Lance des ténèbres',
+        'Piercing Light': 'Lance de lumière',
+        'Pitfall': 'Embûche',
+        'Pyramid Form': 'Pyramid Form', // FIXME
+        'Random Form': 'Random Form', // FIXME
+        'Random Shade': 'Random Shade', // FIXME
+        'Shade Ability': 'Shade Ability', // FIXME
+        'Shingan': 'Impact oculaire',
+        'Shooting Star': 'Étoile filante',
+        'Soak Attack': 'Soak Attack', // FIXME
+        'Spear Copy': 'Spear Copy', // FIXME
+        'Spear Shade': 'Spear Shade', // FIXME
+        'Sphere Form': 'Sphere Form', // FIXME
+        'Spiritcull': 'Salve magique',
+        'Spirits of the Fallen': 'Âme héroïque',
+        'Stack': 'Stack', // FIXME
+        'Star Form': 'Star Form', // FIXME
+        'Streak Lightning': 'Éclair chargeant',
+        'Thricecull': 'Triple perforation',
+        'Thundercall': 'Drain fulminant',
+        'Turbulent Aether': 'Turbulence éthérée',
+        'Ultimate Zantetsuken': 'Goku Zantetsuken',
+        'Umbral Essence': 'Bras de Ténèbres',
+        'Whirling Zantetsuken': 'Sen Zantetsuken',
+        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Absolute Virtue': 'アブソリュートヴァーチュー',
+        'Arsenal Centaur': 'アーセナル・セントール',
+        'Art': 'アルト',
+        'Ball Lightning': '雷球',
+        'Cloudlarker': 'クラウドラーカー',
+        'Ivory Palm': '白き手',
+        'Orlasrach': 'オールラスラッハ',
+        'Owain': 'オーウェン',
+        '(?<! )Ozma(?!\\w)': 'オズマ',
+        'Ozmashade': 'オズマの影',
+        'Proto Ozma': 'プロトオズマ',
+        'Raiden': 'ライディーン',
+        'Relative Virtue': 'レラティブヴァーチュー',
+        'Shadow': 'プロトオズマの影',
+        'Streak Lightning': 'ストリークライトニング',
+        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
+        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
+        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--sync--': '--sync--',
+        '--targetable--': '--targetable--',
+        '--untargetable--': '--untargetable--',
+        'Acallam Na Senorach': '真妖槍旋',
+        'Acceleration Bomb': '加速度爆弾',
+        'Adds': 'Adds', // FIXME
+        'Ame-no-Sakahoko': '天逆鉾',
+        'Astral Essence': '光の腕',
+        'Auroral Wind': 'オーロラルウィンド',
+        'Berserk': 'ベルセルク',
+        'Bitter Barbs': '罪の荊棘',
+        'Black Hole': 'ブラックホール',
+        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Booming Lament': '哀惜の雷鳴',
+        'Call Wyvern': 'コールワイバーン',
+        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Cloud to Ground': '襲雷',
+        'Cube Form': 'Cube Form', // FIXME
+        'Eidos': '変異',
+        'Elemental Magicks': 'エレメンタルマジック',
+        'Elemental Shift': 'エレメントスイッチ',
+        'Execration': 'エクセクレイション',
+        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosive Impulse': 'エクスプロシブインパルス',
+        'Flare Star': 'フレアスター',
+        'For Honor': '戦死撃',
+        'Holy': 'ホーリー',
+        'Hostile Aspect': '極性波動',
+        'Impact Stream': 'インパクトストリーム',
+        'Ivory Palm': '白き手',
+        'Lancing Bolt': '雷槍',
+        'Lateral Zantetsuken': '片・斬鉄剣',
+        'Legendary Geas': '妖槍乱撃',
+        'Legendary Imbas': '妖槍邪念',
+        'Legendcarver': '妖槍振',
+        'Legendspinner': '妖槍旋',
+        'Levinwhorl': '渦雷',
+        'Medusa Javelin': 'メデューサジャベリン',
+        'Meteor': 'メテオ',
+        'Mourning Star': 'モーニングスター',
+        'Mythcall': '幻槍招来',
+        'Orb x5': 'Orb x5', // FIXME
+        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Piercing Dark': '闇の槍',
+        'Piercing Light': '光の槍',
+        'Pitfall': '強襲',
+        'Pyramid Form': 'Pyramid Form', // FIXME
+        'Random Form': 'Random Form', // FIXME
+        'Random Shade': 'Random Shade', // FIXME
+        'Shade Ability': 'Shade Ability', // FIXME
+        'Shingan': '真眼撃',
+        'Shooting Star': 'シューティングスター',
+        'Soak Attack': 'Soak Attack', // FIXME
+        'Spear Copy': 'Spear Copy', // FIXME
+        'Spear Shade': 'Spear Shade', // FIXME
+        'Sphere Form': 'Sphere Form', // FIXME
+        'Spiritcull': '連装魔',
+        'Spirits of the Fallen': '英霊魂',
+        'Stack': 'Stack', // FIXME
+        'Star Form': 'Star Form', // FIXME
+        'Streak Lightning': 'ストリークライトニング',
+        'Thricecull': '三連槍',
+        'Thundercall': '招雷',
+        'Turbulent Aether': 'エーテル乱流',
+        'Ultimate Zantetsuken': '極・斬鉄剣',
+        'Umbral Essence': '闇の腕',
+        'Whirling Zantetsuken': '旋・斬鉄剣',
+        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Absolute Virtue': '绝对的美德',
+        'Arsenal Centaur': '兵武半人马',
+        'Art': '亚特',
+        'Ball Lightning': '闪电球',
+        'Cloudlarker': '翻云狮鹫',
         'Ivory Palm': '白手',
-        'Pitfall': '强袭',
-        'Shingan': '真眼击',
-        'Berserk': '狂暴',
-        'Whirling Zantetsuken': '旋·斩铁剑',
-        'For Honor': '战死击',
-        'Lateral Zantetsuken': '片·斩铁剑',
+        'Orlasrach': '烈焰金枪',
+        'Owain': '欧文',
+        '(?<! )Ozma(?!\\w)': '奥兹玛',
+        'Ozmashade': '奥兹玛之影',
+        'Proto Ozma': '奥兹玛原型',
+        'Raiden': '莱丁',
+        'Relative Virtue': '相对的美德',
+        'Shadow': '奥兹玛原型之影',
+        'Streak Lightning': '强袭雷光',
+        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
+        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
+        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--sync--': '--sync--', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Acallam Na Senorach': '真妖枪旋',
+        'Acceleration Bomb': '加速度炸弹',
+        'Adds': 'Adds', // FIXME
+        'Ame-no-Sakahoko': '天逆矛',
+        'Astral Essence': '光之腕',
         'Auroral Wind': '极光之风',
+        'Berserk': '狂暴',
+        'Bitter Barbs': '罪恶荆棘',
+        'Black Hole': '黑洞',
+        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Booming Lament': '哀痛雷鸣',
+        'Call Wyvern': '召唤飞龙',
+        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Cloud to Ground': '袭雷',
+        'Cube Form': 'Cube Form', // FIXME
         'Eidos': '变异',
+        'Elemental Magicks': '元素魔法',
+        'Elemental Shift': '元素开关',
+        'Execration': '缩小射线',
+        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosive Impulse': '爆炸性冲击',
+        'Flare Star': '耀星',
+        'For Honor': '战死击',
+        'Holy': '神圣',
         'Hostile Aspect': '极性波动',
         'Impact Stream': '冲击流',
-        //  WEST BRANCH / ART:
-        'Astral Essence': '光之腕',
-        'Umbral Essence': '暗之腕',
-        'Acallam Na Senorach': '真妖枪旋',
-        'Carver/Spinner': '妖枪振/妖枪振',
-        'Spear Copy': '枪复制',
-        'Legendary Geas': '妖枪乱击',
-        '--untargetable--': '--不可选中--',
-        'Orb x5': '连线 x5',
-        '--targetable--': '--可选中--',
-        'Piercing Dark': '暗之枪',
-        'Spear Shade': '枪形状',
-        //  EAST BRANCH / OWAIN:
-        'Elemental Shift': '元素开关',
-        'Elemental Magicks': '元素魔法',
-        'Spiritcull': '连装魔',
-        'Legendary Imbas': '妖枪邪念',
-        'Piercing Light': '光之枪',
-        'Explosion Enrage': '爆炸狂暴',
-        //  Raiden:
-        'Thundercall': '招雷',
-        'Ame-no-Sakahoko': '天逆矛',
-        'Spirits of the Fallen': '英灵魂',
+        'Ivory Palm': '白手',
         'Lancing Bolt': '雷枪',
-        'Streak Lightning': '雷枪',
-        'Ultimate Zantetsuken': '极·斩铁剑',
-        'Booming Lament': '哀痛雷鸣',
-        'Cloud to Ground': '袭雷',
-        'Bitter Barbs': '罪恶荆棘',
+        'Lateral Zantetsuken': '片·斩铁剑',
+        'Legendary Geas': '妖枪乱击',
+        'Legendary Imbas': '妖枪邪念',
+        'Legendcarver': '妖枪振',
+        'Legendspinner': '妖枪振',
         'Levinwhorl': '涡雷',
-        //  Absolute Virtue:
-        'Meteor': '陨石',
         'Medusa Javelin': '美杜莎投枪',
-        'Turbulent Aether': '以太乱流',
-        'Explosive Impulse': '爆炸性冲击',
-        'Call Wyvern': '召唤飞龙',
-        'Wyvern Explosion': '飞龙爆炸',
-        //  Proto Ozma:
-        //   Initial Star Form (no meteor)
-        'Star Form': '圣晶石',
+        'Meteor': '陨石',
         'Mourning Star': '启明星',
-        'Soak Attack': '浸泡攻击',
+        'Mythcall': '幻枪招来',
+        'Orb x5': 'Orb x5', // FIXME
+        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Piercing Dark': '暗之枪',
+        'Piercing Light': '光之枪',
+        'Pitfall': '强袭',
+        'Pyramid Form': 'Pyramid Form', // FIXME
+        'Random Form': 'Random Form', // FIXME
+        'Random Shade': 'Random Shade', // FIXME
+        'Shade Ability': 'Shade Ability', // FIXME
+        'Shingan': '真眼击',
         'Shooting Star': '流星',
-        'Sphere Form': '球形',
-        'Black Hole': '黑洞',
-        'Random Shade': '随机形状',
-        'Shade Ability': '影子技能',
-        //  fake loop:
-        'Random Form': '随机形式',
-        'Ozma Ability': '奥兹玛技能',
-        'Acceleration Bomb': '加速度炸弹',
-        'Bleed Attack': '出血攻击',
-        'Stack': '集合',
-        'Adds': '小怪',
-        'Holy': '神圣',
-        //   Pyramid Phase:
-        'Pyramid Form': '金字塔',
-        'Execration': '缩小射线',
-        //   Cube Form:
-        'Cube Form': '立方体',
-        'Flare Star': '耀星',
+        'Soak Attack': 'Soak Attack', // FIXME
+        'Spear Copy': 'Spear Copy', // FIXME
+        'Spear Shade': 'Spear Shade', // FIXME
+        'Sphere Form': 'Sphere Form', // FIXME
+        'Spiritcull': '连装魔',
+        'Spirits of the Fallen': '英灵魂',
+        'Stack': 'Stack', // FIXME
+        'Star Form': 'Star Form', // FIXME
+        'Streak Lightning': '强袭雷光',
+        'Thricecull': '三连枪',
+        'Thundercall': '招雷',
+        'Turbulent Aether': '以太乱流',
+        'Ultimate Zantetsuken': '极·斩铁剑',
+        'Umbral Essence': '暗之腕',
+        'Whirling Zantetsuken': '旋·斩铁剑',
+        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
       },
-      '~effectNames': {
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Absolute Virtue': '절대미덕',
+        'Arsenal Centaur': '무기고 켄타우로스',
+        'Art': '아르트',
+        'Ball Lightning': '전기 구체',
+        'Cloudlarker': '구름 잠복자',
+        'Ivory Palm': '하얀 손',
+        'Orlasrach': '오를라스라흐',
+        'Owain': '오와인',
+        '(?<! )Ozma(?!\\w)': '오즈마',
+        'Ozmashade': '오즈마의 그림자',
+        'Proto Ozma': '프로토 오즈마',
+        'Raiden': '라이딘',
+        'Relative Virtue': '상대미덕',
+        'Shadow': '프로토 오즈마의 그림자',
+        'Streak Lightning': '연쇄 번개',
+        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
+        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
+        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--sync--': '--sync--', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Acallam Na Senorach': '피어너의 창',
+        'Acceleration Bomb': '가속도 폭탄',
+        'Adds': 'Adds', // FIXME
+        'Ame-no-Sakahoko': '아메노사카호코',
+        'Astral Essence': '빛의 팔',
+        'Auroral Wind': '오로라 바람',
+        'Berserk': '광포',
+        'Bitter Barbs': '죄의 가시',
+        'Black Hole': '블랙홀',
+        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Booming Lament': '애도의 뇌명',
+        'Call Wyvern': '와이번 소환',
+        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Cloud to Ground': '습뢰',
+        'Cube Form': 'Cube Form', // FIXME
+        'Eidos': '변이',
+        'Elemental Magicks': '엘리멘탈 마법',
+        'Elemental Shift': '엘리멘탈 변환',
+        'Execration': '혐오의 저주',
+        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosive Impulse': '폭발적 추진력',
+        'Flare Star': '타오르는 별',
+        'For Honor': '전사격',
+        'Holy': '홀리',
+        'Hostile Aspect': '극성 파동',
+        'Impact Stream': '충격 기류',
+        'Ivory Palm': '하얀 손',
+        'Lancing Bolt': '뇌창',
+        'Lateral Zantetsuken': '편 참철검',
+        'Legendary Geas': '요창난격',
+        'Legendary Imbas': '요창의 사념',
+        'Legendcarver': '요창 떨치기',
+        'Legendspinner': '요창 후리기',
+        'Levinwhorl': '와뢰',
+        'Medusa Javelin': '메두사의 투창',
+        'Meteor': '메테오',
+        'Mourning Star': '샛별',
+        'Mythcall': '환창 소환',
+        'Orb x5': 'Orb x5', // FIXME
+        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Piercing Dark': '어둠의 창',
+        'Piercing Light': '빛의 창',
+        'Pitfall': '강습',
+        'Pyramid Form': 'Pyramid Form', // FIXME
+        'Random Form': 'Random Form', // FIXME
+        'Random Shade': 'Random Shade', // FIXME
+        'Shade Ability': 'Shade Ability', // FIXME
+        'Shingan': '진안격',
+        'Shooting Star': '유성',
+        'Soak Attack': 'Soak Attack', // FIXME
+        'Spear Copy': 'Spear Copy', // FIXME
+        'Spear Shade': 'Spear Shade', // FIXME
+        'Sphere Form': 'Sphere Form', // FIXME
+        'Spiritcull': '마법 연발',
+        'Spirits of the Fallen': '영령혼',
+        'Stack': 'Stack', // FIXME
+        'Star Form': 'Star Form', // FIXME
+        'Streak Lightning': '연쇄 번개',
+        'Thricecull': '삼연창',
+        'Thundercall': '초뢰',
+        'Turbulent Aether': '에테르 난류',
+        'Ultimate Zantetsuken': '극 참철검',
+        'Umbral Essence': '어둠의 팔',
+        'Whirling Zantetsuken': '선 참철검',
+        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
       },
     },
   ],

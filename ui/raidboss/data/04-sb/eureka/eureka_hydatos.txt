@@ -143,7 +143,7 @@ hideall "--sync--"
 3247.7 "Levinwhorl" sync /:Raiden:386E:/
 3247.7 "--sync--" sync /:Raiden:386F:/
 3266.3 "Ame-no-Sakahoko" sync /:Raiden:3868:/
-3269.3 "-sync--" sync /:Raiden:3869:/
+3269.3 "--sync--" sync /:Raiden:3869:/
 3275.9 "Whirling Zantetsuken" sync /:Raiden:386A:/
 3283.1 "Booming Lament" sync /:Raiden:387D:/
 3293.2 "Spirits of the Fallen" sync /:Raiden:387A:/
