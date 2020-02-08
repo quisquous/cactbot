@@ -53,9 +53,6 @@ class CactbotLanguageEn extends CactbotLanguage {
       Troubadour: 'Troubadour',
       ShieldSamba: 'Shield Samba',
       Tactician: 'Tactician',
-      Reprisal: 'Reprisal',
-      Addle: 'Addle',
-      Feint: 'Feint',
 
       Paralysis: 'Paralysis',
       Petrification: 'Petrification',

@@ -729,7 +729,8 @@ class BuffTracker {
         cooldown: 120,
       },
       troubadour: {
-        useAbility: gLang.kAbility.Troubadour,
+        gainEffect: gLang.kEffect.Troubadour,
+        loseEffect: gLang.kEffect.Troubadour,
         durationSeconds: 15,
         icon: '../../resources/icon/status/troubadour.png',
         // Light Green.
@@ -739,7 +740,8 @@ class BuffTracker {
         defensive: true,
       },
       shieldSamba: {
-        useAbility: gLang.kAbility.ShieldSamba,
+        gainEffect: gLang.kEffect.ShieldSamba,
+        loseEffect: gLang.kEffect.ShieldSamba,
         durationSeconds: 15,
         icon: '../../resources/icon/status/shield-samba.png',
         // Red.
@@ -749,7 +751,8 @@ class BuffTracker {
         defensive: true,
       },
       tactician: {
-        useAbility: gLang.kAbility.Tactician,
+        gainEffect: gLang.kEffect.Tactician,
+        loseEffect: gLang.kEffect.Tactician,
         durationSeconds: 15,
         icon: '../../resources/icon/status/tactician.png',
         // Yellow.

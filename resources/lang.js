@@ -95,6 +95,9 @@ class CactbotLanguage {
       Thunder3: '99',
       Thunder4: '1CFC',
       Divination: '40A8',
+      Reprisal: '1D6F',
+      Addle: '1D88',
+      Feint: '1D7A',
 
       // Susano Ex
       ChurningDeep: '203F',
