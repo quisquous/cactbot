@@ -606,6 +606,8 @@ class PopupText {
         ttsText = ttsText.replace('/', ' ');
         // * arrows helping visually simple to understand e.g. ↖ Front left / Back right ↘
         ttsText = ttsText.replace('[↖-↙]', '');
+        // * Korean TTS reads wrong with '1번째'
+        ttsText = ttsText.replace('1번째', '첫번째');
         // * arrows at the front or the end are directions, e.g. "east =>"
         ttsText = ttsText.replace(/[-=]>\s*$/, '');
         ttsText = ttsText.replace(/^\s*<[-=]/, '');
