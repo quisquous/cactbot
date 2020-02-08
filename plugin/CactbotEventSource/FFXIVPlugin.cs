@@ -32,7 +32,7 @@ namespace Cactbot {
       IActPluginV1 ffxiv_plugin = null;
       foreach (var plugin in ActGlobals.oFormActMain.ActPlugins) {
         var file = plugin.pluginFile.Name;
-        if (file == "FFXIV_ACT_Plugin.dll" || file == "FFXIV_ACT_Plugin_Korean.dll") {
+        if (file == "FFXIV_ACT_Plugin.dll") {
           if (ffxiv_plugin != null) {
             logger_.LogWarning("Multiple FFXIV_ACT_Plugin.dll plugins loaded");
           }

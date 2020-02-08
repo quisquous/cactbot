@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Alphascape V3.0 \(Savage\)$/,
     cn: /^欧米茄零式时空狭缝 \(阿尔法幻境3\)$/,
+    ko: /^차원의 틈 오메가: 알파편\(영웅\) \(3\)$/,
   },
   timelineFile: 'o11s.txt',
   triggers: [
@@ -23,6 +24,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -31,6 +33,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: data.ShortName(matches.target) + '吃死刑',
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -42,6 +45,7 @@
             fr: 'tankbuster',
             ja: 'バスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -84,6 +88,7 @@
         fr: 'Gauche',
         ja: '左',
         cn: '左',
+        ko: '왼쪽으로',
       },
       run: function(data) {
         data.lastWasStarboard = true;
@@ -106,6 +111,7 @@
         fr: 'Droite',
         ja: '右',
         cn: '右',
+        ko: '오른쪽으로',
       },
       run: function(data) {
         data.lastWasStarboard = false;
@@ -130,6 +136,7 @@
             fr: 'Bougez (Gauche)',
             ja: '反対へ (左)',
             cn: '移动 (左)',
+            ko: '오른쪽으로',
           };
         }
         return {
@@ -138,6 +145,7 @@
           fr: 'Restez ici (Gauche)',
           ja: 'そのまま (左)',
           cn: '不动 (左)',
+          ko: '대기 (오른쪽)',
         };
       },
     },
@@ -160,6 +168,7 @@
             fr: 'Restez ici (Droite)',
             ja: 'そのまま (右)',
             cn: '不动 (右)',
+            ko: '대기 (왼쪽)',
           };
         }
         return {
@@ -168,6 +177,7 @@
           fr: 'Bougez (Droite)',
           ja: '反対へ (右)',
           cn: '移动 (右)',
+          ko: '왼쪽으로',
         };
       },
     },
@@ -185,6 +195,7 @@
         fr: 'Gauche (puis Droite)',
         ja: '左 (零式)',
         cn: '左 (零式)',
+        ko: '왼쪽으로 (바로 반대로)',
       },
     },
     {
@@ -201,6 +212,7 @@
         fr: 'Droite (puis Gauche)',
         ja: '右 (零式)',
         cn: '右 (零式)',
+        ko: '오른쪽으로 (바로 반대로)',
       },
     },
     {
@@ -218,6 +230,7 @@
         fr: 'Côté opposé (Gauche)',
         ja: '反対へ (左)',
         cn: '对面 (左)',
+        ko: '오른쪽으로',
       },
     },
     {
@@ -235,6 +248,7 @@
         fr: 'Côté opposé (Droite)',
         ja: '反対へ (右)',
         cn: '对面 (右)',
+        ko: '왼쪽으로',
       },
     },
   ],
@@ -541,8 +555,8 @@
         'Rocket Punch': '로켓 주먹',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
+        '--targetable--': '--타겟불가능--',
+        '--untargetable--': '--타겟가능--',
         'Afterburner': '재연소 장치',
         'Atomic Ray': '원자 파동',
         'Ballistic Impact': '미사일 착탄',
@@ -559,7 +573,7 @@
         'Executable': '프로그램 실행',
         '(?<! )Explosion': '폭발',
         'Ferrofluid': '자석',
-        'Flamethrower': '화염 방사',
+        'Flamethrower': '화염방사',
         'Force Quit': '강제 종료',
         'Guided Missile Kyrios': '유도 미사일 P',
         'Iron Kiss': '착탄',
@@ -579,8 +593,8 @@
         'Rush': '돌진',
         'Starboard Wave Cannon(?! )': '우현 사격: 파동포',
         'Starboard Wave Cannon Surge': '우현 사격: 0식 파동포',
-        'Starboard/Larboard Cannon': 'Starboard/Larboard Cannon', // FIXME
-        'Starboard/Larboard Surge': 'Starboard/Larboard Surge', // FIXME
+        'Starboard/Larboard Cannon': '좌/우현 파동포',
+        'Starboard/Larboard Surge': '좌/우현 0식 파동포',
         '(?<! )Storage Violation': '기억 오염 제거 S',
         'Unmitigated Explosion': '대폭발',
         'Update Program': '프로그램 업데이트',
