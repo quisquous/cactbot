@@ -8,7 +8,6 @@ user/
 !user/README.txt
 plugin/**/*.csproj.user
 
-!plugin/ThirdParty/*/dummy.txt
 plugin/ThirdParty/
 publish/
 __pycache__

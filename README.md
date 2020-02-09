@@ -104,16 +104,53 @@ For more instructions about adding and configuring cactbot overlays, see the [Ad
 ## Building from source
 
 Follow all the steps above for installing cactbot first.
+To install dependencies there are 2 methods: **per script** and **manualy**
 
-##### Precondition:
+##### Dependancies: Script Method
 1. `curl` MUST be installed (this is used to download dependencies)
-
-##### Steps
 1. Execute the `./tools/fetch_deps.py` script
-  - In case of an error do following:
-  - Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/ACT](plugin/ThirdParty/ACT).
-  - Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/FFXIV_ACT](plugin/ThirdParty/FFXIV_ACT).
-  - Follow the instructions in the **dummy.txt** file in [plugin/ThirdParty/OverlayPlugin](plugin/ThirdParty/OverlayPlugin).
+1. Continue with **Steps to build**
+
+##### Dependancies: Manual Method
+1. Please download the latest Zip file from https://github.com/EQAditu/AdvancedCombatTracker/releases/download/
+1. Extract the `Advanced Combat Tracker.exe` to `cactbot/plugin/ThirdParty/ACT/`
+1. Please download the latest SDK Zip file from https://github.com/ravahn/FFXIV_ACT_Plugin/ (make sure the file says SDK in its name)
+1. Extract the `SDK folder` as well as the `FFXIV_ACT_Plugin.dll` to `cactbot/plugin/ThirdParty/FFXIV_ACT/`
+1. Please download the latest Zip file from https://github.com/ngld/OverlayPlugin/releases/download/
+1. Extract the `libs folder` as well as the `OverlayPlugin.dll` to `cactbot/plugin/ThirdParty/OverlayPlugin/`
+1. Continue with **Steps to build**
+
+The folder should look something like this (keep in mind files can change with updates in the future):
+```
+ThirdParty
+|- ACT
+|  |- Advanced Combat Tracker.exe
+|- FFXIV_ACT
+|  |- SDK
+|  |  |- FFXIV_ACT_Plugin.Common.dll
+|  |  |- FFXIV_ACT_Plugin.Config.dll
+|  |  |- FFXIV_ACT_Plugin.LogFile.dll
+|  |  |- FFXIV_ACT_Plugin.Memory.dll
+|  |  |- FFXIV_ACT_Plugin.Network.dll
+|  |  |- FFXIV_ACT_Plugin.Overlay.dll
+|  |  |- FFXIV_ACT_Plugin.Parse.dll
+|  |  |- FFXIV_ACT_Plugin.Resource.dll
+|  |- FFXIV_ACT_Plugin.dll
+|- OverlayPlugin
+   |- libs
+   |  |- HtmlRenderer.dll
+   |  |- Markdig.Signed.dll
+   |  |- Newtonsoft.Json.dll
+   |  |- OverlayPlugin.Common.dll
+   |  |- OverlayPlugin.Core.dll
+   |  |- OverlayPlugin.Updater.dll
+   |  |- SharpCompress.dll
+   |  |- System.ValueTuple.dll
+   |  |- websocket-sharp.dll
+   |- OverlayPlugin.dll
+```
+
+##### Steps to build
 1. Open the solution in Visual Studio (tested with Visual Studio 2017).
 1. Build for "Release" and "x64".
 1. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.
