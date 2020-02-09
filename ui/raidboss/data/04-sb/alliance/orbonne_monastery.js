@@ -5,7 +5,10 @@
 // This is not true for Mustadio's Maintenance.
 
 [{
-  zoneRegex: /^The Orbonne Monastery$/,
+  zoneRegex: {
+    en: /^The Orbonne Monastery$/,
+    ko: /^오본느 수도원$/,
+  },
   timelineFile: 'orbonne_monastery.txt',
   timelineTriggers: [
     {
@@ -19,6 +22,7 @@
         en: 'Get to your pads',
         de: 'Geh auf Dein Feld',
         fr: 'Allez sur votre tour',
+        ko: '패드 밟기',
       },
     },
     {
@@ -31,6 +35,7 @@
         en: 'Pick up tether',
         de: 'Verbindung abnehmen',
         fr: 'Prenez le lien',
+        ko: '선 가져오기',
       },
     },
   ],
@@ -48,6 +53,7 @@
         en: 'Look Away',
         de: 'Wegschauen',
         fr: 'Regardez ailleurs',
+        ko: '주위 확인',
       },
     },
     {
@@ -62,6 +68,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'A gauche',
+        ko: '왼쪽',
       },
     },
     {
@@ -76,6 +83,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'A droite',
+        ko: '오른쪽',
       },
     },
     {
@@ -89,6 +97,7 @@
       alertText: {
         en: 'Point opening at Mustadio',
         fr: 'Orientez l\'ouverture vers le boss',
+        ko: 'Point opening at 무스타디오',
       },
     },
     {
@@ -105,6 +114,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -114,6 +124,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -128,6 +139,7 @@
         en: 'Searchlight on YOU',
         de: 'Suchscheinwerfer auf DIR',
         fr: 'Repérage sur VOUS',
+        ko: '탐조등 대상자',
       },
     },
     {
@@ -140,6 +152,7 @@
         en: 'Spread Marker',
         de: 'Verteilen-Marker',
         fr: 'Ecartez-vous',
+        ko: '산개 징',
       },
     },
     {
@@ -156,6 +169,7 @@
             en: 'Tank Cleave on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -165,6 +179,7 @@
             en: 'Tank Cleave',
             de: 'Tank Cleave',
             fr: 'Tank Cleave',
+            ko: '탱버',
           };
         }
       },
@@ -210,6 +225,7 @@
         en: 'Pick up swords',
         de: 'Schwerter aufnehmen',
         fr: 'Prenez les épées',
+        ko: '검 들기',
       },
     },
     {
@@ -241,6 +257,7 @@
           en: 'Use Swords On Jails',
           de: 'Kristalle mit Schwert zerschlagen',
           fr: 'Libérez les prisonniers avec les épées',
+          ko: '감옥에 검 사용하기',
         };
       },
     },
@@ -254,6 +271,7 @@
         en: 'Go To Center',
         de: 'In die Mitte gehen',
         fr: 'Allez au centre',
+        ko: '중앙으로 이동',
       },
     },
     {
@@ -268,6 +286,7 @@
         en: 'Get Shield',
         de: 'Schild nehmen',
         fr: 'Prenez un bouclier',
+        ko: '방패 들기',
       },
     },
     {
@@ -283,6 +302,7 @@
         en: 'Use Shield, Face Knights',
         de: 'Schild benutzen, Ritter anschauen',
         fr: 'Bouclier, face au chevaliers',
+        ko: '방패 사용하고, 기사 바라보기',
       },
     },
     {
@@ -298,6 +318,7 @@
         en: 'Kill shields with sword',
         de: 'Schilde mit Schwert zerstören',
         fr: 'Détruisez les boucliers avec les épées',
+        ko: '방패에 검 사용하기',
       },
     },
     {
@@ -312,6 +333,7 @@
         en: 'Use shield, face boss',
         de: 'Schild benutzen, Boss anschauen',
         fr: 'Bouclier, face au boss',
+        ko: '방패 사용하고, 보스 바라보기',
       },
     },
     {
@@ -326,6 +348,7 @@
         en: 'Use shield if tethered',
         de: 'Schild benutzen, wenn verbunden',
         fr: 'Bouclier si lié',
+        ko: '선 연결되면 방패 사용하기',
       },
     },
     {
@@ -343,6 +366,7 @@
         en: 'Tank Buster',
         de: 'Tankbuster',
         fr: 'Tankbuster',
+        ko: '탱버',
       },
     },
     {
@@ -360,6 +384,7 @@
         en: 'Feint Tank Buster',
         de: 'Tankbuster Zermürben',
         fr: 'Evitez Tank Buster',
+        ko: '성천폭격타 탱버',
       },
     },
     {
@@ -377,6 +402,7 @@
         en: 'Tank Buster on YOU',
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
+        ko: '탱버 대상자',
       },
     },
     {
@@ -394,6 +420,7 @@
         en: 'Give Tether Away',
         de: 'Verbindung abgeben',
         fr: 'Donnez le lien',
+        ko: '선 가져오기',
       },
     },
     {
@@ -411,6 +438,7 @@
         en: 'Give Tether Away',
         de: 'Verbindung abgeben',
         fr: 'Donnez le lien',
+        ko: '장 바깥으로 빼기',
       },
     },
     {
@@ -424,6 +452,7 @@
       alertText: {
         en: 'Kill Icewolf Adds',
         fr: 'Tuez les Grêlons de glace',
+        ko: '얼음 부수기',
       },
     },
     {
@@ -442,6 +471,7 @@
         en: 'Heal To Full',
         de: 'Vollheilen',
         fr: 'Full life',
+        ko: '체력 풀피로',
       },
     },
     {
@@ -456,6 +486,7 @@
         en: 'Stand on Pads',
         de: 'Auf Felder stellen',
         fr: 'Restez sur le pad',
+        ko: '패드 밟기',
       },
     },
     {
@@ -468,6 +499,7 @@
         en: 'Drop Bubble In Back',
         de: 'Blase hinten ablegen',
         fr: 'Déposez bulles derrière',
+        ko: '징 뒤에 깔기',
       },
     },
     {
@@ -480,6 +512,7 @@
         en: 'Bolt on YOU',
         de: 'Blitz auf DIR',
         fr: 'Eclair sur VOUS',
+        ko: '번개 대상자',
       },
     },
     {
@@ -492,6 +525,7 @@
         en: 'GTFO',
         de: 'VERZIEH DICH',
         fr: 'Sortez',
+        ko: '멀리 떨어지기',
       },
     },
     {
@@ -502,6 +536,7 @@
         en: 'Stack',
         de: 'Stacken',
         fr: 'Packez-vous',
+        ko: '모이기',
       },
     },
     {
@@ -514,6 +549,7 @@
         en: 'Point Line Outside',
         de: 'Linie nach Außen',
         fr: 'Ligne vers l\'extérieur',
+        ko: '성광폭렬파 바깥으로 빼기',
       },
     },
     {
@@ -528,6 +564,7 @@
         en: 'Get In',
         de: 'Rein da',
         fr: 'Près du boss',
+        ko: '안으로',
       },
     },
     {
@@ -542,6 +579,7 @@
         en: 'Get Out',
         de: 'Raus da',
         fr: 'Loin du boss',
+        ko: '바깥으로',
       },
     },
     {
@@ -556,6 +594,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
+        ko: '왼쪽으로',
       },
     },
     {
@@ -570,6 +609,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
+        ko: '오른쪽으로',
       },
     },
     {
@@ -585,6 +625,7 @@
         en: 'Rotate right',
         de: 'Im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens anti-horaire',
+        ko: '오른쪽으로 돌기',
       },
     },
     {
@@ -600,6 +641,7 @@
         en: 'Rotate left',
         de: 'Schwertern im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens horaire',
+        ko: '왼쪽으로 돌기',
       },
     },
     {
@@ -616,6 +658,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -625,6 +668,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -639,6 +683,7 @@
         en: 'Dorito Stack',
         de: 'Stacken',
         fr: 'Packez-vous',
+        ko: '모이기',
       },
     },
     {
@@ -651,6 +696,7 @@
         en: 'Eruption on YOU',
         de: 'Eruption auf DIR',
         fr: 'Éruption sur vous',
+        ko: '불기둥 대상자',
       },
     },
     {
@@ -663,6 +709,7 @@
         en: 'GTFO',
         de: 'VERZIEH DICH',
         fr: 'Sortez',
+        ko: '멀리 떨어지기',
       },
     },
     {
@@ -677,6 +724,7 @@
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
         fr: 'Placez-vous sur une horloge lente',
+        ko: '느린 시계 위로',
       },
     },
     {
@@ -691,6 +739,7 @@
         en: 'Look for Hashmal dash',
         de: 'Nach Hashmal-Dash ausschau halten',
         fr: 'Attention au dash',
+        ko: '하쉬말 돌진 확인',
       },
     },
     {
@@ -708,6 +757,7 @@
         en: 'Heal Like Whoa',
         de: 'Heilen was das Zeug hält',
         fr: 'Mass heal',
+        ko: '계속 힐 돌리기',
       },
     },
     {
@@ -727,6 +777,7 @@
         en: 'Kill Ruination!',
         de: 'Zerstörung vernichten',
         fr: 'Tuez la Marque des déchus',
+        ko: '타락의 증거 죽이기',
       },
     },
     {
@@ -747,6 +798,7 @@
         en: 'stop',
         de: 'Stopp',
         fr: 'Stop',
+        ko: '가만히',
       },
     },
   ],
@@ -1322,7 +1374,7 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        '..is no longer sealed': '..is no longer sealed', // FIXME
+        '..is no longer sealed': '봉쇄가 해제되었습니다',
         'Agrias': '성기사 아그리아스',
         'Aspersory': '성운의 물병',
         'Auracite Shard': '성석 덩어리',
@@ -1337,7 +1389,7 @@
         'Ephemeral Knight': '환영 기사',
         'Halidom': '모조 성역',
         'Harpy': '하피',
-        'I see it now': 'I see it now', // FIXME
+        'I see it now': '물병이여,  곧장 진격하여',
         'Icewolf': '빙랑',
         'Iron Construct': '노동형 철거인',
         'Mustadio': '기공사 무스타디오',
@@ -1345,17 +1397,17 @@
         'Ruination': '루인 계열 취약',
         'Shield Knight': '방패의 기사',
         'Sword Knight': '검의 기사',
-        'The Crystalline Gaol will be sealed off': 'The Crystalline Gaol will be sealed off', // FIXME
-        'The Realm of the Machinists will be sealed off': 'The Realm of the Machinists will be sealed off', // FIXME
-        'The Realm of the Templars will be sealed off': 'The Realm of the Templars will be sealed off', // FIXME
-        'The Realm of the Thunder God will be sealed off': 'The Realm of the Thunder God will be sealed off', // FIXME
+        'The Crystalline Gaol will be sealed off': '수정 감옥이 봉쇄됩니다.',
+        'The Realm of the Machinists will be sealed off': '기공사의 영역이 봉쇄됩니다.',
+        'The Realm of the Templars will be sealed off': '성기사의 영역이 봉쇄됩니다.',
+        'The Realm of the Thunder God will be sealed off': '뇌신의 영역이 봉쇄됩니다.',
         '(?<! )The Thunder God': '뇌신 시드',
-        'The lifeless alley will be sealed off': 'The lifeless alley will be sealed off', // FIXME
+        'The lifeless alley will be sealed off': '생명 없는 길이 봉쇄됩니다.',
         'Ultima, the High Seraph': '성천사 알테마',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
+        '--targetable--': '--타겟 가능--',
+        '--untargetable--': '--타겟 불가능--',
         'Analysis': '분석',
         'Arm Shot': '팔 조준',
         'Auralight': '성석광',
@@ -1389,7 +1441,7 @@
         'Divine Ruination': '성광폭렬파',
         'Duskblade': '암흑의 검',
         'Earth Hammer': '대지의 망치',
-        'East/West March': 'East/West March', // FIXME
+        'East/West March': '동/서 행진',
         'Eastward March': '동쪽 행진',
         'Embrace': '공격',
         'Energy Burst': '에너지 폭발',
@@ -1404,7 +1456,7 @@
         'Holy IV': '홀리쟈',
         'Infernal Wave': '지옥의 파동',
         'Judgment Blade': '부동무명검',
-        'L/R Handgonne': 'L/R Handgonne', // FIXME
+        'L/R Handgonne': '좌/우현 소사',
         'Last Testament': '최후의 증명',
         'Left Handgonne': '좌현 소사',
         'Leg Shot': '다리 조준',
@@ -1425,19 +1477,19 @@
         'Searchlight': '탐조등',
         'Shadowblade': '어둠의 검',
         'Shockwave': '충격파',
-        'Stack': 'Stack', // FIXME
-        'Sword In/Out': 'Sword In/Out', // FIXME
-        'Sword L/R': 'Sword L/R', // FIXME
-        'Sword Out/In': 'Sword Out/In', // FIXME
-        'Sword Three In A Row': 'Sword Three In A Row', // FIXME
+        'Stack': '모이기',
+        'Sword In/Out': '검 안/밖',
+        'Sword L/R': '검 좌/우',
+        'Sword Out/In': '검 밖/안',
+        'Sword Three In A Row': '3연속 검',
         'T.G. Holy Sword': '뇌신 성검기',
         'Thunder Slash': '뇌명검',
         'Time Eruption': '시간의 불기둥',
         'Towerfall': '무너지는 탑',
         'Ultimate Illusion': '궁극의 환상',
         'attack(?!\\w)': '공격',
-        'crystal stun': 'crystal stun', // FIXME
-        'ghost stun': 'ghost stun', // FIXME
+        'crystal stun': '크리스탈 스턴',
+        'ghost stun': '유령 스턴',
       },
       '~effectNames': {
         'Acceleration Bomb': '가속도 폭탄',

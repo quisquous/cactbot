@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Ridorana Lighthouse$/,
+  zoneRegex: {
+    en: /^The Ridorana Lighthouse$/,
+    ko: /^대등대 리도르아나$/,
+  },
   timelineFile: 'ridorana_lighthouse.txt',
   timelineTriggers: [
     {
@@ -12,6 +15,7 @@
         en: 'Get Behind',
         de: 'Hinter ihn laufen',
         fr: 'Allez derrière',
+        ko: '',
       },
     },
   ],
@@ -30,6 +34,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tank Buster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -41,6 +46,7 @@
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
       tts: function(data, matches) {
@@ -49,6 +55,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -66,11 +73,13 @@
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
+        ko: '대해일 확인',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
+        ko: '대해일',
       },
     },
     {
@@ -86,11 +95,13 @@
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
+        ko: '대해일 확인',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
+        ko: '대해일',
       },
     },
     {
@@ -106,11 +117,13 @@
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
+        ko: '대해일 확인',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
+        ko: '대해일',
       },
     },
     {
@@ -123,6 +136,7 @@
         en: 'Dorito Stack',
         de: 'Stacken',
         fr: 'Stack',
+        ko: '모이기',
       },
     },
     {
@@ -135,6 +149,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Ecartez-vous',
+        ko: '산개',
       },
     },
     {
@@ -150,11 +165,13 @@
         en: 'Kill Adds',
         de: 'Adds',
         fr: 'Adds',
+        ko: '쫄 죽이기',
       },
       tts: {
         en: 'Adds',
         de: 'etz',
         fr: 'Adds',
+        ko: '쫄 추가',
       },
     },
     {
@@ -171,6 +188,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -182,6 +200,7 @@
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
       tts: function(data, matches) {
@@ -190,6 +209,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -206,6 +226,7 @@
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
         fr: 'Placez-vous sur une horloge lente',
+        ko: '느린 시계 위로',
       },
     },
     {
@@ -223,6 +244,7 @@
         en: 'Stretch Tether Outside',
         de: 'Verbindung nach außen strecken',
         fr: 'Lien vers l\'exterieur',
+        ko: '줄 바깥으로 늘이기',
       },
     },
     {
@@ -237,6 +259,7 @@
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
         fr: 'Arrêtez horloge',
+        ko: '시간 폭탄',
       },
     },
     {
@@ -252,6 +275,7 @@
         en: 'Kill Adds',
         de: 'Adds',
         fr: 'Adds',
+        ko: '쫄 죽이기',
       },
     },
     {
@@ -268,6 +292,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -279,6 +304,7 @@
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
       tts: function(data, matches) {
@@ -287,6 +313,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -304,6 +331,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Ecartez-vous',
+        ko: '산개',
       },
     },
     {
@@ -317,12 +345,14 @@
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Stack auf ' + data.ShortName(matches.target),
           fr: 'Stack sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
         };
       },
       tts: {
         en: 'Stack',
         de: 'Stek en',
         fr: 'Stack',
+        ko: '모이기',
       },
     },
     {
@@ -359,26 +389,31 @@
               en: 'Stay out',
               de: 'Draußen stehen',
               fr: 'Restez dehors',
+              ko: '바깥에 있기',
             },
             {
               en: 'Stand in 1',
               de: 'In 1 stehen',
               fr: 'Allez sur le 1',
+              ko: '답: 1',
             },
             {
               en: 'Stand in 2',
               de: 'In 2 stehen',
               fr: 'Allez sur le 2',
+              ko: '답: 2',
             },
             {
               en: 'Stand in 3',
               de: 'In 3 stehen',
               fr: 'Allez sur le 3',
+              ko: '답: 3',
             },
             {
               en: 'Stand in 4',
               de: 'In 4 stehen',
               fr: 'Allez sur le 4',
+              ko: '답: 4',
             },
           ][this.correctMath[data.mathBaseValue]];
         };
@@ -492,6 +527,7 @@
         en: 'Get Out',
         de: 'Raus da',
         fr: 'Eloignez-vous',
+        ko: '바깥으로',
       },
     },
     {
@@ -506,6 +542,7 @@
         en: 'Get Behind',
         de: 'Boss von hinten umkreisen',
         fr: 'Allez derrière le boss',
+        ko: 'Get Behind', // FiX ME
       },
     },
     {
@@ -524,6 +561,7 @@
         en: 'Stop',
         de: 'Stopp',
         fr: 'Stop',
+        ko: '가만히',
       },
     },
     {
@@ -540,6 +578,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -551,6 +590,7 @@
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
       tts: function(data, matches) {
@@ -559,6 +599,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -578,6 +619,7 @@
         en: 'Out of Front',
         de: 'Vorm Boss weg',
         fr: 'Ne restez pas devant',
+        ko: '보스 정면 피하기',
       },
     },
     {
@@ -592,6 +634,7 @@
         en: 'Get Under',
         de: 'Reingehen',
         fr: 'Allez sous le boss',
+        ko: '보스 아래로',
       },
     },
     {
@@ -609,6 +652,7 @@
         en: 'Move to Postive',
         de: 'Ins Positive laufen',
         fr: 'Allez sur le plus',
+        ko: '+전하 쪽으로',
       },
     },
     {
@@ -626,6 +670,7 @@
         en: 'Move to Negative',
         de: 'Ins Negative laufen',
         fr: 'Allez sur le moins',
+        ko: '-전하 쪽으로',
       },
     },
     {
@@ -641,6 +686,7 @@
         en: 'Kill Adds',
         de: 'Adds',
         fr: 'Adds',
+        ko: '쫄 처리',
       },
       tts: {
         en: 'Adds',
@@ -661,6 +707,7 @@
         en: 'Kill Heart',
         de: 'Herz',
         fr: 'Tuer le cœur',
+        ko: '심핵 처리',
       },
       tts: {
         en: 'Heart',
@@ -1178,27 +1225,27 @@
         'Construct 7': '노동 7호',
         'Construct 7.1': '개량형 노동 7호',
         'Dark Rain': '암운의 빗물',
-        'Echoes from Time\'s Garden will be sealed off': 'Echoes from Time\'s Garden will be sealed off', // FIXME
+        'Echoes from Time\'s Garden will be sealed off': '아득한 시간의 정원이 봉쇄됩니다.',
         'Engage!': '전투 시작!',
         'Famfrit, The Darkening Cloud': '암흑의 구름 팜프리트',
         '(?<! )Gigas': '마인병',
         'Heart of the Dragon': '야즈마트의 심핵',
         'Missile': '미사일',
-        'The Cleft of Profaning Wind will be sealed off': 'The Cleft of Profaning Wind will be sealed off', // FIXME
-        'The Clockwork Coliseum will be sealed off': 'The Clockwork Coliseum will be sealed off', // FIXME
-        'The Spire\'s Bounds will be sealed off': 'The Spire\'s Bounds will be sealed off', // FIXME
+        'The Cleft of Profaning Wind will be sealed off': '다른 바람이 부는 하얀 전장이 봉쇄됩니다.',
+        'The Clockwork Coliseum will be sealed off': '거그 투기장이 봉쇄됩니다.',
+        'The Spire\'s Bounds will be sealed off': '정점의 봉인 영역이 봉쇄됩니다.',
         'Wind Azer': '바람 원소',
         'Yiazmat': '귀룡 야즈마트',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
+        '--targetable--': '--타겟 가능--',
+        '--untargetable--': '--타겟 불가능--',
         'Accelerate': '관통',
         'Acceleration Bomb': '가속도 폭탄',
         'Ancient Aero': '에인션트 에어로',
         'Annihilation Mode': '제노사이드 칩',
-        'Archaeodemon spawn': 'Archaeodemon spawn', // FIXME
-        'Area Lockdown': 'Area Lockdown', // FIXME
+        'Archaeodemon spawn': '원시 악마 생성',
+        'Area Lockdown': '지역 봉쇄',
         'Ballistic Missile': '미사일 발사',
         'Briny Cannonade': '푸른 포격',
         'Compress': '압축',
@@ -1216,18 +1263,18 @@
         'Divide By Five': '5배수 계산',
         'Divide By Four': '4배수 계산',
         'Divide By Three': '3배수 계산',
-        'Division': 'Division', // FIXME
+        'Division': '나눗셈',
         'Dust Storm': '먼지 폭풍',
         'Enrage': '전멸기',
         '(?<![\\w| ])Eruption': '용암 분출',
         'Explosion': '폭발',
         'Face Off': '경기 시작',
-        'Fast Hands': 'Fast Hands', // FIXME
+        'Fast Hands': '빠른 시계 터짐',
         'Ferrofluid': '자석',
         '(?<!\\w)Fire(?! )': '파이어',
         'Fire IV': '파이쟈',
         'Gale Gaol': '바람 감옥',
-        'Gigas spawns': 'Gigas spawns', // FIXME
+        'Gigas spawns': '마인병 생성',
         'Growing Threat': '경이',
         'Gust Front': '돌풍전선',
         'Hellfire': '지옥의 화염',
@@ -1243,7 +1290,7 @@
         'Materialize': '실체화',
         'Pulverize': '분쇄',
         '(?<!\\w)Rake': '할퀴기',
-        'Slow Hands': 'Slow Hands', // FIXME
+        'Slow Hands': '느린 시계 터짐',
         'Solar Storm': '태양 폭풍',
         'Stone Breath': '석화 숨결',
         'Subtract': '뺄셈',
@@ -1262,6 +1309,12 @@
         'Ventilate': '냉각',
         'Water IV': '워터쟈',
         'White Breath': '하얀 숨결',
+        'cross': '지나감',
+        'orbit': '떠있음',
+        'close': '가까이',
+        'far': '멀리',
+        'combo': '콤보',
+        'single': '1회',
       },
       '~effectNames': {
         'Acceleration Bomb': '가속도 폭탄',
