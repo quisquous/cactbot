@@ -2378,7 +2378,7 @@
         'Twintania': '트윈타니아',
       },
       'replaceText': {
-        '--push--': '--다음 페이즈--',
+        '--push--': '--중간 전멸기--',
         '--targetable--': '--타겟 가능--',
         '--untargetable--': '--타겟 불가--',
         'Aetheric Profusion': '에테르 홍수',
