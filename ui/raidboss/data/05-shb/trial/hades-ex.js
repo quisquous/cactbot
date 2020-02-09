@@ -307,7 +307,7 @@
         de: 'Schatten auseinander ziehen',
         fr: 'Ecartez les spectres',
         cn: '拉开无影',
-        ko: 'Shades(그림자?) 서로 떨어뜨리기',
+        ko: '분신 서로 떨어뜨리기',
       },
     },
     {
