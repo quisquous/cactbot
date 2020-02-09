@@ -10,6 +10,7 @@
   zoneRegex: {
     en: /^The Copied Factory$/,
     cn: /^复制工厂废墟$/,
+    ko: /\(700\)/,
   },
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [
@@ -28,6 +29,7 @@
           de: 'sei in der Nähe des Bosses',
           fr: 'Près du boss',
           cn: '靠近Boss',
+          ko: '보스 근처로',
         };
       },
     },
@@ -40,6 +42,7 @@
         de: 'zur südlichen Kante',
         fr: 'Allez au Sud',
         cn: '前往南侧边缘',
+        ko: '남쪽 구석으로',
       },
     },
   ],
@@ -59,6 +62,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -73,6 +77,7 @@
         de: 'Hinter Ihn',
         fr: 'Derrière le boss',
         cn: '背面',
+        ko: '뒤에 숨기',
       },
     },
     {
@@ -88,6 +93,7 @@
         de: 'Pass auf die Laser auf',
         fr: 'Attention aux lasers',
         cn: '小心激光',
+        ko: '레이저 확인',
       },
     },
     {
@@ -104,6 +110,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -116,6 +123,7 @@
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           cn: '死刑点 ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
     },
@@ -131,6 +139,7 @@
         de: 'Geh zu den Seiten',
         fr: 'Sur les côtés',
         cn: '两侧躲避',
+        ko: '양옆으로 이동',
       },
     },
     {
@@ -145,6 +154,7 @@
         de: 'Geh nach Vorne/ Hinten',
         fr: 'Devant/Derrière',
         cn: '去前/后',
+        ko: '앞/뒤로 이동',
       },
     },
     {
@@ -159,6 +169,7 @@
         de: 'Rückstoß',
         fr: 'Poussée',
         cn: '击退',
+        ko: '넉백',
       },
     },
     {
@@ -176,6 +187,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -193,6 +205,7 @@
         de: 'Bewegenden Kreisen ausweichen',
         fr: 'Evitez les cercles mouvants',
         cn: '躲避移动圆圈',
+        ko: '움직이는 동그라미 피하기',
       },
     },
     {
@@ -210,6 +223,7 @@
         de: 'Flammenwerfer hinter dir',
         fr: 'Regardez derrière (lance-flammes)',
         cn: '观察后方放火',
+        ko: 'Flamethrower 확인하기',
       },
     },
     {
@@ -228,6 +242,7 @@
         de: 'Raus',
         fr: 'Dehors',
         cn: '远离',
+        ko: '밖으로',
       },
     },
     {
@@ -243,6 +258,7 @@
         de: 'Den fallenden Wände asuweichen',
         fr: 'Eviter les murs tombants',
         cn: '躲避倒塌墙壁',
+        ko: '넘어지는 벽 피하기',
       },
     },
     {
@@ -258,6 +274,7 @@
         de: 'Verbindungen Verteilen',
         fr: 'Ecartez les liens',
         cn: '散开扯断连线',
+        ko: '산개 선',
       },
     },
     {
@@ -271,6 +288,7 @@
         de: 'Verteilen',
         fr: 'Dispertion',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -285,6 +303,7 @@
         de: 'Sammeln',
         fr: 'Package',
         cn: '集合',
+        ko: '모이기',
       },
     },
     {
@@ -301,6 +320,7 @@
         de: 'Elektrischem Boden ausweichen',
         fr: 'Evitez le sol électrifié',
         cn: '躲避带电地板',
+        ko: '전기 장판 피하기',
       },
     },
     {
@@ -315,6 +335,7 @@
         de: 'Förderbänder',
         fr: 'Tapis roulant',
         cn: '输送带',
+        ko: '컨베이어 벨트',
       },
     },
     {
@@ -331,6 +352,7 @@
         de: 'Ölbehälter',
         fr: 'Cuves à huile',
         cn: '油桶',
+        ko: '기름 탱크',
       },
     },
     {
@@ -348,6 +370,7 @@
         de: 'Ölbehälter',
         fr: 'Cuves à huile',
         cn: '油桶',
+        ko: '기름 탱크',
       },
     },
     {
@@ -365,6 +388,7 @@
         de: 'Explosion auf DIR',
         fr: 'Explosion sur VOUS',
         cn: '自爆点名',
+        ko: '폭발 징',
       },
     },
     {
@@ -382,6 +406,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -395,6 +420,7 @@
         de: 'Verteilen',
         fr: 'Dispertion',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -409,6 +435,7 @@
         de: 'Rechts',
         fr: 'Droite',
         cn: '右',
+        ko: '오른쪽',
       },
     },
     {
@@ -423,6 +450,7 @@
         de: 'Links',
         fr: 'Gauche',
         cn: '左',
+        ko: '왼쪽',
       },
     },
     {
@@ -437,6 +465,7 @@
         de: 'Vorne und Mitte',
         fr: 'Devant et au centre',
         cn: '前方中间',
+        ko: '앞 중앙',
       },
     },
     {
@@ -451,6 +480,7 @@
         de: 'Hinten und Seiten',
         fr: 'Arrière et côtés',
         cn: '后方两侧',
+        ko: '뒤 양옆',
       },
     },
     {
@@ -465,6 +495,7 @@
         de: 'Klauen töten',
         fr: 'Tuez les pinces',
         cn: '杀掉爪子',
+        ko: '톱 죽이기',
       },
     },
     {
@@ -478,6 +509,7 @@
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
         cn: '死刑点名',
+        ko: '탱버 대상자',
       },
     },
     {
@@ -495,6 +527,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -512,6 +545,7 @@
         de: 'Zu den Seiten (Nahe der Front)',
         fr: 'Allez sur les côtés (vers l\'avant)',
         cn: '两侧（靠近前方）',
+        ko: '양옆으로 (앞 근처)',
       },
     },
     {
@@ -527,6 +561,7 @@
         de: 'Türme nehmen',
         fr: 'Prenez les tours',
         cn: '踩塔',
+        ko: '장판 하나씩 들어가기',
       },
     },
     {
@@ -539,6 +574,7 @@
             de: 'Fläsche auf dir',
             fr: 'Flaques sur VOUS',
             cn: '水圈点名',
+            ko: '징 대상자',
           };
         }
       },
@@ -553,6 +589,7 @@
             de: 'Geh Raus + Zielsuch-AoE ausweichen',
             fr: 'Dehors + Evitez l\'AoE',
             cn: '远离 + 躲避弹幕',
+            ko: '바깥으로 + 장판 피하기',
           };
         }
       },
@@ -570,6 +607,7 @@
         de: 'Adds (kleine ignorieren)',
         fr: 'Adds (ignorez les petits)',
         cn: '小怪（忽略小的）',
+        ko: '쫄 (작은건 무시)',
       },
     },
     {
@@ -584,6 +622,7 @@
         de: 'Vorne und Mitte',
         fr: 'Devant et au centre',
         cn: '前方中间',
+        ko: '앞 중앙',
       },
     },
     {
@@ -599,6 +638,7 @@
         de: 'Halt nach den kleinen Sägen ausschau',
         fr: 'Repérez les scies',
         cn: '观察墙壁',
+        ko: '양옆 톱 확인',
       },
     },
     {
@@ -618,6 +658,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -628,6 +669,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: '死刑点 ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -647,6 +689,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -661,6 +704,7 @@
         de: 'Weg von Vorne',
         fr: 'Eloignez vous de l\'avant',
         cn: '远离前方',
+        ko: '앞 피하기',
       },
     },
     {
@@ -674,6 +718,7 @@
         de: 'Verteilen',
         fr: 'Dispertion',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -687,6 +732,7 @@
         de: 'Laser Tankbuster auf DIR',
         fr: 'Laser Tankbuster sur VOUS',
         cn: '激光点名',
+        ko: '레이저 탱버 대상자',
       },
     },
     {
@@ -700,6 +746,7 @@
         de: 'Zu den Seiten',
         fr: 'Sur les côtés',
         cn: '两侧',
+        ko: '양옆으로',
       },
     },
     {
@@ -714,6 +761,7 @@
         de: 'Geh nach Vorne / Hinten',
         fr: 'Allez devant / derrière',
         cn: '前往前/后',
+        ko: '앞/뒤로 이동',
       },
     },
     {
@@ -729,6 +777,7 @@
         de: 'Sägen über dem Kopf ausweichen',
         fr: 'Evitez la scie au-dessus de vous',
         cn: '躲避头顶锯',
+        ko: 'Overhead 톱 피하기',
       },
     },
     {
@@ -745,6 +794,7 @@
         de: 'Adds',
         fr: 'Adds',
         cn: '小怪',
+        ko: '쫄',
       },
     },
     {
@@ -759,6 +809,7 @@
         de: 'Adds',
         fr: 'Adds',
         cn: '小怪',
+        ko: '탱크 쫄',
       },
     },
     {
@@ -773,6 +824,7 @@
         de: 'Hinter den nicht verbundenen Panzer gehen',
         fr: 'Derrière le tank non-lié',
         cn: '没连线的坦克后躲避',
+        ko: '연결되지 않은 탱크 뒤로 숨기',
       },
     },
     {
@@ -788,6 +840,7 @@
         de: 'Sammeln',
         fr: 'Package',
         cn: '集合',
+        ko: '모이기',
       },
     },
     {
@@ -803,6 +856,7 @@
         de: 'Geh in die Kuppel',
         fr: 'Allez dans les bulles',
         cn: '进入圈圈',
+        ko: '물방울 안에 들어가기 (?)',
       },
     },
   ],

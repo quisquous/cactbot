@@ -9,6 +9,7 @@
   zoneRegex: {
     en: /^The Minstrel's Ballad: Hades's Elegy$/,
     cn: /^哈迪斯孤念歼灭战$/,
+    ko: /^극 하데스 토벌전$/,
   },
   timelineFile: 'hades-ex.txt',
   timelineTriggers: [
@@ -23,6 +24,7 @@
         en: 'Comet Towers',
         fr: 'Tours',
         cn: '踩塔',
+        ko: '혜성 기둥',
       },
     },
   ],
@@ -41,6 +43,7 @@
         fr: 'Position',
         ja: '散開',
         cn: '散开',
+        ko: '위치 산개',
       },
     },
     {
@@ -56,6 +59,7 @@
         en: 'Move',
         fr: 'Esquivez',
         cn: '移动',
+        ko: '이동',
       },
     },
     {
@@ -73,6 +77,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -81,6 +86,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: '死刑点 ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -93,6 +99,7 @@
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           cn: '死刑点 ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
     },
@@ -109,6 +116,7 @@
         de: 'Links',
         fr: 'Gauche',
         cn: '左',
+        ko: '왼쪽',
       },
     },
     {
@@ -125,6 +133,7 @@
         de: 'Dann Rechts',
         fr: 'Droite',
         cn: '然后右',
+        ko: '다음 오른쪽',
       },
     },
     {
@@ -140,6 +149,7 @@
         de: 'Rechts',
         fr: 'Droite',
         cn: '右',
+        ko: '오른쪽',
       },
     },
     {
@@ -156,6 +166,7 @@
         de: 'Dann Links',
         fr: 'Gauche',
         cn: '然后左',
+        ko: '다음 왼쪽',
       },
     },
     {
@@ -172,6 +183,7 @@
         de: 'Geh zur sicheren Stelle',
         fr: 'Allez dans la zone sûre',
         cn: '前往安全区域',
+        ko: '안전 지대로 이동',
       },
     },
     {
@@ -188,6 +200,7 @@
         de: 'Hinter der Tür verstecken',
         fr: 'Cachez-vous derrière le mirroir',
         cn: '镜子后躲避',
+        ko: '문 뒤에 숨기',
       },
     },
     {
@@ -205,6 +218,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -223,6 +237,7 @@
         de: 'Verbindung nach draußen richten',
         fr: 'Liens vers l\'extérieur',
         cn: '连线',
+        ko: '선 연결 바깥으로 빼기',
       },
     },
     {
@@ -236,6 +251,7 @@
         de: 'Bei dem Heiler sammeln',
         fr: 'Package sur les heals',
         cn: '治疗集合',
+        ko: '힐러 모이기',
       },
       run: function(data) {
         data.waterDarkMarker = true;
@@ -252,6 +268,7 @@
         de: 'Tanks verteilen',
         fr: 'Tanks : dispersion',
         cn: '坦克散开',
+        ko: '탱 산개',
       },
       run: function(data) {
         data.waterDarkMarker = true;
@@ -270,6 +287,7 @@
           de: 'Bei den Heilern sammeln',
           fr: 'Package sur les heals',
           cn: '治疗集合',
+          ko: '힐러 모이기',
         };
       },
     },
@@ -289,6 +307,7 @@
         de: 'Schatten auseinander ziehen',
         fr: 'Ecartez les spectres',
         cn: '拉开无影',
+        ko: '분신 서로 떨어뜨리기',
       },
     },
     {
@@ -309,6 +328,7 @@
           de: 'Gleich: Tank swap',
           fr: 'Tank swap bientôt',
           cn: '坦克即将换T',
+          ko: '곧 탱교대',
         };
       },
       run: function(data) {
@@ -330,6 +350,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -347,6 +368,7 @@
         de: 'Igeyorhm angreifen',
         fr: 'Attaquez Igeyorhm',
         cn: '攻击以格约姆',
+        ko: 'Igeyorhm 공격',
       },
       run: function(data) {
         data.brand = 'fire';
@@ -367,6 +389,7 @@
         de: 'Lahabrea angreifen',
         fr: 'Attaquez Lahabrea',
         cn: '攻击拉哈布雷亚',
+        ko: '라하브레아 공격',
       },
       run: function(data) {
         data.brand = 'ice';
@@ -387,6 +410,7 @@
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
         cn: '死刑点名',
+        ko: '탱버 대상자',
       },
     },
     {
@@ -404,6 +428,7 @@
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
         cn: '死刑点名',
+        ko: '탱버 대상자',
       },
     },
     {
@@ -422,6 +447,7 @@
         de: 'Tankbuster',
         fr: 'Tankbuster',
         cn: '坦克死刑',
+        ko: '탱버',
       },
     },
     {
@@ -441,6 +467,7 @@
         de: 'Heile T/H voll',
         fr: 'T/H full vie',
         cn: '奶满T奶',
+        ko: '탱/힐 풀피로 만들기',
       },
     },
     {
@@ -460,6 +487,7 @@
         de: 'Weg schauen',
         fr: 'Regardez vers l\'extérieur',
         cn: '背对',
+        ko: '바라보지 말기',
       },
     },
     {
@@ -479,6 +507,7 @@
         de: 'Stirb',
         fr: 'Mourrez',
         cn: '自杀',
+        ko: '죽을 정도로 맞기',
       },
     },
     {
@@ -499,6 +528,7 @@
         de: 'Donut auf DIR',
         fr: 'Donut sur VOUS',
         cn: '月环点名',
+        ko: '도넛 징 대상자',
       },
     },
     {
@@ -520,6 +550,7 @@
         de: 'Draußen stehen',
         fr: 'Restez éloigné',
         cn: '外侧放雷',
+        ko: '바깥에 있기',
       },
     },
     {
@@ -538,6 +569,7 @@
         de: 'AoE + Blutung',
         fr: 'Dégâts de zone + saignement',
         cn: 'AOE + 流血',
+        ko: '전체 공격 + 출혈',
       },
     },
     {
@@ -554,6 +586,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -562,12 +595,14 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: '死刑点 ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
         return {
           en: 'Away from ' + data.ShortName(matches.target),
           fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
           cn: '远离 ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
     },
@@ -584,6 +619,7 @@
         de: 'Bei den Heilern sammeln',
         fr: 'Package sur les heals',
         cn: '治疗集合',
+        ko: '힐러 모이기',
       },
     },
     {
@@ -601,6 +637,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -614,6 +651,7 @@
         de: 'Raus gehen',
         fr: 'Sortez',
         cn: '远离',
+        ko: '바깥에 있기',
       },
     },
     {
@@ -629,6 +667,7 @@
         de: 'Zerstöre Ätherkerker',
         fr: 'Détruisez la Geôle éthérée',
         cn: '打破牢狱',
+        ko: '에테르 감옥 부수기',
       },
     },
     {
@@ -645,6 +684,7 @@
         de: 'Rückstoß + sammeln beim DIR',
         fr: 'Poussée + package sur VOUS',
         cn: '击退 + 集合 点名',
+        ko: '넉백 + 쉐어징 대상자',
       },
     },
     {
@@ -661,6 +701,7 @@
         de: 'Rückstoß + Eis auf DIR',
         fr: 'Poussée + Glace sur VOUS',
         cn: '击退 + 冰 点名',
+        ko: '넉백 + 얼음징 대상자',
       },
     },
     {
@@ -678,6 +719,7 @@
             de: 'Rückstoß + sammeln beim Partner',
             fr: 'Poussée + package avec votre partenaire',
             cn: '与伙伴 击退 + 集合',
+            ko: '넉백 + 파트너랑 모이기',
           };
         }
       },
@@ -696,6 +738,7 @@
         de: 'Fläsche auf YOU',
         fr: 'Puddle sur VOUS',
         cn: '水圈点名',
+        ko: '징 대상자',
       },
     },
     {
@@ -714,6 +757,7 @@
         de: 'Bei dem Heiler sammeln',
         fr: 'Package sur les heals',
         cn: '治疗集合',
+        ko: '힐러 모이기',
       },
     },
     {
@@ -729,6 +773,7 @@
         de: 'Zu den Seiten gehen',
         fr: 'Allez sur les côtés',
         cn: '去两侧',
+        ko: '양옆으로 이동',
       },
     },
     {
@@ -744,6 +789,7 @@
         de: 'Vorne und Mitte',
         fr: 'Devant et au centre',
         cn: '中间前方',
+        ko: '앞 중앙으로',
       },
     },
     {
@@ -761,6 +807,7 @@
         de: 'Exa-Flares',
         fr: 'Exaflares',
         cn: '地火',
+        ko: '엑소플레어',
       },
     },
     {
@@ -779,6 +826,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -797,6 +845,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
@@ -818,6 +867,7 @@
             de: 'Türme nehmen',
             fr: 'Dans les tours',
             cn: '踩塔',
+            ko: '기둥 들어가기',
           };
         }
       },
@@ -828,6 +878,7 @@
             de: 'Tank buster',
             fr: 'Tank busters',
             cn: '坦克死刑',
+            ko: '탱버',
           };
         }
       },
@@ -850,6 +901,7 @@
         de: 'AoE + Blutung',
         fr: 'Dégâts de zone + saignement',
         cn: 'AOE + 流血',
+        ko: '전체 공격 + 출혈',
       },
     },
     {
@@ -865,6 +917,7 @@
         de: 'Finalangriff',
         fr: 'Enrage',
         cn: '狂暴',
+        ko: '전멸기',
       },
     },
   ],
