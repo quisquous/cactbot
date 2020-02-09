@@ -1374,7 +1374,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        '..is no longer sealed': '봉쇄가 해제되었습니다',
         'Agrias': '성기사 아그리아스',
         'Aspersory': '성운의 물병',
         'Auracite Shard': '성석 덩어리',
@@ -1397,12 +1396,12 @@
         'Ruination': '루인 계열 취약',
         'Shield Knight': '방패의 기사',
         'Sword Knight': '검의 기사',
-        'The Crystalline Gaol will be sealed off': '수정 감옥이 봉쇄됩니다.',
-        'The Realm of the Machinists will be sealed off': '기공사의 영역이 봉쇄됩니다.',
-        'The Realm of the Templars will be sealed off': '성기사의 영역이 봉쇄됩니다.',
-        'The Realm of the Thunder God will be sealed off': '뇌신의 영역이 봉쇄됩니다.',
+        'The Crystalline Gaol': '수정 감옥',
+        'The Realm of the Machinists': '기공사의 영역',
+        'The Realm of the Templars': '성기사의 영역',
+        'The Realm of the Thunder God': '뇌신의 영역',
         '(?<! )The Thunder God': '뇌신 시드',
-        'The lifeless alley will be sealed off': '생명 없는 길이 봉쇄됩니다.',
+        'The lifeless alley': '생명 없는 길',
         'Ultima, the High Seraph': '성천사 알테마',
       },
       'replaceText': {
