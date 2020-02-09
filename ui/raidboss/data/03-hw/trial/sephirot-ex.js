@@ -9,10 +9,9 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Added new combatant Cochma': 'Added new combatant Cochma', // FIXME
+        'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': 'En Sof Or',
-        'Removing combatant Sephirot': 'Removing combatant Sephirot', // FIXME
-        'uses Triple Trial': 'uses Triple Trial', // FIXME
+        'Sephirot': 'Sephirot', // FIXME
       },
       'replaceText': {
         '-Phase 2-': '-Phase 2-', // FIXME
@@ -50,10 +49,9 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Added new combatant Cochma': 'Added new combatant Cochma', // FIXME
+        'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': 'Ein Sof Ohr',
-        'Removing combatant Sephirot': 'Removing combatant Sephirot', // FIXME
-        'uses Triple Trial': 'uses Triple Trial', // FIXME
+        'Sephirot': 'Sephirot', // FIXME
       },
       'replaceText': {
         '-Phase 2-': '-Phase 2-', // FIXME
@@ -91,10 +89,9 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Added new combatant Cochma': 'Added new combatant Cochma', // FIXME
+        'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': 'アイン・ソフ・オウル',
-        'Removing combatant Sephirot': 'Removing combatant Sephirot', // FIXME
-        'uses Triple Trial': 'uses Triple Trial', // FIXME
+        'Sephirot': 'Sephirot', // FIXME
       },
       'replaceText': {
         '-Phase 2-': '-Phase 2-', // FIXME
@@ -132,10 +129,9 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Added new combatant Cochma': 'Added new combatant Cochma', // FIXME
+        'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': '无限光',
-        'Removing combatant Sephirot': 'Removing combatant Sephirot', // FIXME
-        'uses Triple Trial': 'uses Triple Trial', // FIXME
+        'Sephirot': 'Sephirot', // FIXME
       },
       'replaceText': {
         '-Phase 2-': '-Phase 2-', // FIXME
@@ -173,10 +169,9 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Added new combatant Cochma': 'Added new combatant Cochma', // FIXME
+        'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': '아인 소프 오르',
-        'Removing combatant Sephirot': 'Removing combatant Sephirot', // FIXME
-        'uses Triple Trial': 'uses Triple Trial', // FIXME
+        'Sephirot': 'Sephirot', // FIXME
       },
       'replaceText': {
         '-Phase 2-': '-Phase 2-', // FIXME

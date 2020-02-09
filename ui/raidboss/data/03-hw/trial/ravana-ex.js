@@ -10,24 +10,6 @@
       'locale': 'de',
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
-        'Ravana readies The Seeing': 'Ravana readies The Seeing', // FIXME
-        'Ravana starts using Bloody Fuller on Ravana': 'Ravana starts using Bloody Fuller on Ravana', // FIXME
-        'Ravana starts using Final Liberation on Ravana': 'Ravana starts using Final Liberation on Ravana', // FIXME
-        'Ravana starts using Liberation on Ravana': 'Ravana starts using Liberation on Ravana', // FIXME
-        'Ravana starts using Pillars Of Heaven on Ravana': 'Ravana starts using Pillars Of Heaven on Ravana', // FIXME
-        'Ravana starts using Prelude To Liberation on Ravana': 'Ravana starts using Prelude To Liberation on Ravana', // FIXME
-        'Ravana starts using Swift Liberation on Ravana': 'Ravana starts using Swift Liberation on Ravana', // FIXME
-        'Ravana uses Atma-Linga': 'Ravana uses Atma-Linga', // FIXME
-        'Ravana uses Beetle Avatar': 'Ravana uses Beetle Avatar', // FIXME
-        'Ravana uses Blades of Carnage and Liberation': 'Ravana uses Blades of Carnage and Liberation', // FIXME
-        'Ravana uses Blinding Blade': 'Ravana uses Blinding Blade', // FIXME
-        'Ravana uses Dragonfly Avatar': 'Ravana uses Dragonfly Avatar', // FIXME
-        'Ravana uses Final Liberation': 'Ravana uses Final Liberation', // FIXME
-        'Ravana uses Laughing Rose': 'Ravana uses Laughing Rose', // FIXME
-        'Ravana uses Scorpion Avatar': 'Ravana uses Scorpion Avatar', // FIXME
-        'Ravana uses Surpanakha': 'Ravana uses Surpanakha', // FIXME
-        'Ravana uses Tapasya': 'Ravana uses Tapasya', // FIXME
-        'Ravana uses Warlord Shell': 'Ravana uses Warlord Shell', // FIXME
       },
       'replaceText': {
         '1st Double Prey': '1st Double Prey', // FIXME
@@ -57,24 +39,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
-        'Ravana readies The Seeing': 'Ravana readies The Seeing', // FIXME
-        'Ravana starts using Bloody Fuller on Ravana': 'Ravana starts using Bloody Fuller on Ravana', // FIXME
-        'Ravana starts using Final Liberation on Ravana': 'Ravana starts using Final Liberation on Ravana', // FIXME
-        'Ravana starts using Liberation on Ravana': 'Ravana starts using Liberation on Ravana', // FIXME
-        'Ravana starts using Pillars Of Heaven on Ravana': 'Ravana starts using Pillars Of Heaven on Ravana', // FIXME
-        'Ravana starts using Prelude To Liberation on Ravana': 'Ravana starts using Prelude To Liberation on Ravana', // FIXME
-        'Ravana starts using Swift Liberation on Ravana': 'Ravana starts using Swift Liberation on Ravana', // FIXME
-        'Ravana uses Atma-Linga': 'Ravana uses Atma-Linga', // FIXME
-        'Ravana uses Beetle Avatar': 'Ravana uses Beetle Avatar', // FIXME
-        'Ravana uses Blades of Carnage and Liberation': 'Ravana uses Blades of Carnage and Liberation', // FIXME
-        'Ravana uses Blinding Blade': 'Ravana uses Blinding Blade', // FIXME
-        'Ravana uses Dragonfly Avatar': 'Ravana uses Dragonfly Avatar', // FIXME
-        'Ravana uses Final Liberation': 'Ravana uses Final Liberation', // FIXME
-        'Ravana uses Laughing Rose': 'Ravana uses Laughing Rose', // FIXME
-        'Ravana uses Scorpion Avatar': 'Ravana uses Scorpion Avatar', // FIXME
-        'Ravana uses Surpanakha': 'Ravana uses Surpanakha', // FIXME
-        'Ravana uses Tapasya': 'Ravana uses Tapasya', // FIXME
-        'Ravana uses Warlord Shell': 'Ravana uses Warlord Shell', // FIXME
       },
       'replaceText': {
         '1st Double Prey': '1st Double Prey', // FIXME
@@ -104,24 +68,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
-        'Ravana readies The Seeing': 'Ravana readies The Seeing', // FIXME
-        'Ravana starts using Bloody Fuller on Ravana': 'Ravana starts using Bloody Fuller on Ravana', // FIXME
-        'Ravana starts using Final Liberation on Ravana': 'Ravana starts using Final Liberation on Ravana', // FIXME
-        'Ravana starts using Liberation on Ravana': 'Ravana starts using Liberation on Ravana', // FIXME
-        'Ravana starts using Pillars Of Heaven on Ravana': 'Ravana starts using Pillars Of Heaven on Ravana', // FIXME
-        'Ravana starts using Prelude To Liberation on Ravana': 'Ravana starts using Prelude To Liberation on Ravana', // FIXME
-        'Ravana starts using Swift Liberation on Ravana': 'Ravana starts using Swift Liberation on Ravana', // FIXME
-        'Ravana uses Atma-Linga': 'Ravana uses Atma-Linga', // FIXME
-        'Ravana uses Beetle Avatar': 'Ravana uses Beetle Avatar', // FIXME
-        'Ravana uses Blades of Carnage and Liberation': 'Ravana uses Blades of Carnage and Liberation', // FIXME
-        'Ravana uses Blinding Blade': 'Ravana uses Blinding Blade', // FIXME
-        'Ravana uses Dragonfly Avatar': 'Ravana uses Dragonfly Avatar', // FIXME
-        'Ravana uses Final Liberation': 'Ravana uses Final Liberation', // FIXME
-        'Ravana uses Laughing Rose': 'Ravana uses Laughing Rose', // FIXME
-        'Ravana uses Scorpion Avatar': 'Ravana uses Scorpion Avatar', // FIXME
-        'Ravana uses Surpanakha': 'Ravana uses Surpanakha', // FIXME
-        'Ravana uses Tapasya': 'Ravana uses Tapasya', // FIXME
-        'Ravana uses Warlord Shell': 'Ravana uses Warlord Shell', // FIXME
       },
       'replaceText': {
         '1st Double Prey': '1st Double Prey', // FIXME
@@ -151,24 +97,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
-        'Ravana readies The Seeing': 'Ravana readies The Seeing', // FIXME
-        'Ravana starts using Bloody Fuller on Ravana': 'Ravana starts using Bloody Fuller on Ravana', // FIXME
-        'Ravana starts using Final Liberation on Ravana': 'Ravana starts using Final Liberation on Ravana', // FIXME
-        'Ravana starts using Liberation on Ravana': 'Ravana starts using Liberation on Ravana', // FIXME
-        'Ravana starts using Pillars Of Heaven on Ravana': 'Ravana starts using Pillars Of Heaven on Ravana', // FIXME
-        'Ravana starts using Prelude To Liberation on Ravana': 'Ravana starts using Prelude To Liberation on Ravana', // FIXME
-        'Ravana starts using Swift Liberation on Ravana': 'Ravana starts using Swift Liberation on Ravana', // FIXME
-        'Ravana uses Atma-Linga': 'Ravana uses Atma-Linga', // FIXME
-        'Ravana uses Beetle Avatar': 'Ravana uses Beetle Avatar', // FIXME
-        'Ravana uses Blades of Carnage and Liberation': 'Ravana uses Blades of Carnage and Liberation', // FIXME
-        'Ravana uses Blinding Blade': 'Ravana uses Blinding Blade', // FIXME
-        'Ravana uses Dragonfly Avatar': 'Ravana uses Dragonfly Avatar', // FIXME
-        'Ravana uses Final Liberation': 'Ravana uses Final Liberation', // FIXME
-        'Ravana uses Laughing Rose': 'Ravana uses Laughing Rose', // FIXME
-        'Ravana uses Scorpion Avatar': 'Ravana uses Scorpion Avatar', // FIXME
-        'Ravana uses Surpanakha': 'Ravana uses Surpanakha', // FIXME
-        'Ravana uses Tapasya': 'Ravana uses Tapasya', // FIXME
-        'Ravana uses Warlord Shell': 'Ravana uses Warlord Shell', // FIXME
       },
       'replaceText': {
         '1st Double Prey': '1st Double Prey', // FIXME
@@ -198,24 +126,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
-        'Ravana readies The Seeing': 'Ravana readies The Seeing', // FIXME
-        'Ravana starts using Bloody Fuller on Ravana': 'Ravana starts using Bloody Fuller on Ravana', // FIXME
-        'Ravana starts using Final Liberation on Ravana': 'Ravana starts using Final Liberation on Ravana', // FIXME
-        'Ravana starts using Liberation on Ravana': 'Ravana starts using Liberation on Ravana', // FIXME
-        'Ravana starts using Pillars Of Heaven on Ravana': 'Ravana starts using Pillars Of Heaven on Ravana', // FIXME
-        'Ravana starts using Prelude To Liberation on Ravana': 'Ravana starts using Prelude To Liberation on Ravana', // FIXME
-        'Ravana starts using Swift Liberation on Ravana': 'Ravana starts using Swift Liberation on Ravana', // FIXME
-        'Ravana uses Atma-Linga': 'Ravana uses Atma-Linga', // FIXME
-        'Ravana uses Beetle Avatar': 'Ravana uses Beetle Avatar', // FIXME
-        'Ravana uses Blades of Carnage and Liberation': 'Ravana uses Blades of Carnage and Liberation', // FIXME
-        'Ravana uses Blinding Blade': 'Ravana uses Blinding Blade', // FIXME
-        'Ravana uses Dragonfly Avatar': 'Ravana uses Dragonfly Avatar', // FIXME
-        'Ravana uses Final Liberation': 'Ravana uses Final Liberation', // FIXME
-        'Ravana uses Laughing Rose': 'Ravana uses Laughing Rose', // FIXME
-        'Ravana uses Scorpion Avatar': 'Ravana uses Scorpion Avatar', // FIXME
-        'Ravana uses Surpanakha': 'Ravana uses Surpanakha', // FIXME
-        'Ravana uses Tapasya': 'Ravana uses Tapasya', // FIXME
-        'Ravana uses Warlord Shell': 'Ravana uses Warlord Shell', // FIXME
       },
       'replaceText': {
         '1st Double Prey': '1st Double Prey', // FIXME

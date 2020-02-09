@@ -9,14 +9,9 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Added new combatant Aion Teleos': 'Added new combatant Aion Teleos', // FIXME
-        'Added new combatant The Second Demiurge': 'Added new combatant The Second Demiurge', // FIXME
-        'Removing combatant Sophia': 'Removing combatant Sophia', // FIXME
-        'Sophia readies Thunder': 'Sophia readies Thunder', // FIXME
-        'Sophia uses Onrush': 'Sophia uses Onrush', // FIXME
-        'Sophia uses The Scales of Wisdom': 'Sophia uses The Scales of Wisdom', // FIXME
-        'Sophia uses Thunder II': 'Sophia uses Thunder II', // FIXME
-        'The aion teleos readies Duplicate': 'The aion teleos readies Duplicate', // FIXME
+        'Aion Teleos': 'Aion Teleos', // FIXME
+        'The Second Demiurge': 'The Second Demiurge', // FIXME
+        'Sophia': 'Sophia', // FIXME
       },
       'replaceText': {
         'Add Tethers': 'Add Tethers', // FIXME
@@ -46,14 +41,9 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Added new combatant Aion Teleos': 'Added new combatant Aion Teleos', // FIXME
-        'Added new combatant The Second Demiurge': 'Added new combatant The Second Demiurge', // FIXME
-        'Removing combatant Sophia': 'Removing combatant Sophia', // FIXME
-        'Sophia readies Thunder': 'Sophia readies Thunder', // FIXME
-        'Sophia uses Onrush': 'Sophia uses Onrush', // FIXME
-        'Sophia uses The Scales of Wisdom': 'Sophia uses The Scales of Wisdom', // FIXME
-        'Sophia uses Thunder II': 'Sophia uses Thunder II', // FIXME
-        'The aion teleos readies Duplicate': 'The aion teleos readies Duplicate', // FIXME
+        'Aion Teleos': 'Aion Teleos', // FIXME
+        'The Second Demiurge': 'The Second Demiurge', // FIXME
+        'Sophia': 'Sophia', // FIXME
       },
       'replaceText': {
         'Add Tethers': 'Add Tethers', // FIXME
@@ -83,14 +73,9 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Added new combatant Aion Teleos': 'Added new combatant Aion Teleos', // FIXME
-        'Added new combatant The Second Demiurge': 'Added new combatant The Second Demiurge', // FIXME
-        'Removing combatant Sophia': 'Removing combatant Sophia', // FIXME
-        'Sophia readies Thunder': 'Sophia readies Thunder', // FIXME
-        'Sophia uses Onrush': 'Sophia uses Onrush', // FIXME
-        'Sophia uses The Scales of Wisdom': 'Sophia uses The Scales of Wisdom', // FIXME
-        'Sophia uses Thunder II': 'Sophia uses Thunder II', // FIXME
-        'The aion teleos readies Duplicate': 'The aion teleos readies Duplicate', // FIXME
+        'Aion Teleos': 'Aion Teleos', // FIXME
+        'The Second Demiurge': 'The Second Demiurge', // FIXME
+        'Sophia': 'Sophia', // FIXME
       },
       'replaceText': {
         'Add Tethers': 'Add Tethers', // FIXME
@@ -120,14 +105,9 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Added new combatant Aion Teleos': 'Added new combatant Aion Teleos', // FIXME
-        'Added new combatant The Second Demiurge': 'Added new combatant The Second Demiurge', // FIXME
-        'Removing combatant Sophia': 'Removing combatant Sophia', // FIXME
-        'Sophia readies Thunder': 'Sophia readies Thunder', // FIXME
-        'Sophia uses Onrush': 'Sophia uses Onrush', // FIXME
-        'Sophia uses The Scales of Wisdom': 'Sophia uses The Scales of Wisdom', // FIXME
-        'Sophia uses Thunder II': 'Sophia uses Thunder II', // FIXME
-        'The aion teleos readies Duplicate': 'The aion teleos readies Duplicate', // FIXME
+        'Aion Teleos': 'Aion Teleos', // FIXME
+        'The Second Demiurge': 'The Second Demiurge', // FIXME
+        'Sophia': 'Sophia', // FIXME
       },
       'replaceText': {
         'Add Tethers': 'Add Tethers', // FIXME
@@ -157,14 +137,9 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Added new combatant Aion Teleos': 'Added new combatant Aion Teleos', // FIXME
-        'Added new combatant The Second Demiurge': 'Added new combatant The Second Demiurge', // FIXME
-        'Removing combatant Sophia': 'Removing combatant Sophia', // FIXME
-        'Sophia readies Thunder': 'Sophia readies Thunder', // FIXME
-        'Sophia uses Onrush': 'Sophia uses Onrush', // FIXME
-        'Sophia uses The Scales of Wisdom': 'Sophia uses The Scales of Wisdom', // FIXME
-        'Sophia uses Thunder II': 'Sophia uses Thunder II', // FIXME
-        'The aion teleos readies Duplicate': 'The aion teleos readies Duplicate', // FIXME
+        'Aion Teleos': 'Aion Teleos', // FIXME
+        'The Second Demiurge': 'The Second Demiurge', // FIXME
+        'Sophia': 'Sophia', // FIXME
       },
       'replaceText': {
         'Add Tethers': 'Add Tethers', // FIXME

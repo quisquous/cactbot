@@ -259,9 +259,6 @@
         'The Astrology and Astromancy Camera': 'Astrologisches und Astronomisches Gewölbe',
         'The Hall of Magicks': 'Halle der Magie',
         'The Rare Tomes Room': 'Abteilung für seltene Schriften',
-        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
-        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
-        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
         'Top Shelf Tome': 'Prachtband',
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
@@ -304,9 +301,6 @@
         'The Astrology and Astromancy Camera': 'Dôme d\'astrologie et d\'astromancie',
         'The Hall of Magicks': 'Puits des magies',
         'The Rare Tomes Room': 'Dôme des manuscrits rares',
-        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
-        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
-        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
         'Top Shelf Tome': 'livre relié',
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
@@ -349,9 +343,6 @@
         'The Astrology and Astromancy Camera': '占星学研究室',
         'The Hall of Magicks': '魔書の翼廊',
         'The Rare Tomes Room': '思想稀覯書庫',
-        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
-        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
-        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
         'Top Shelf Tome': '上製本',
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
@@ -394,9 +385,6 @@
         'The Astrology and Astromancy Camera': '占星学研究室',
         'The Hall of Magicks': '魔书翼廊',
         'The Rare Tomes Room': '思想珍秘书库',
-        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
-        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
-        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
         'Top Shelf Tome': '精装本',
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
@@ -439,9 +427,6 @@
         'The Astrology and Astromancy Camera': '점성학 연구실',
         'The Hall of Magicks': '악마서 복도',
         'The Rare Tomes Room': '사상희귀서고',
-        'The liquid flame gains the effect of Anemomorph': 'The liquid flame gains the effect of Anemomorph', // FIXME
-        'The liquid flame gains the effect of Anthropomorph': 'The liquid flame gains the effect of Anthropomorph', // FIXME
-        'The liquid flame gains the effect of Chiromorph': 'The liquid flame gains the effect of Chiromorph', // FIXME
         'Top Shelf Tome': '양장본',
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
