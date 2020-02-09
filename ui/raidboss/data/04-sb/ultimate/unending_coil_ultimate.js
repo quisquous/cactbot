@@ -2378,7 +2378,7 @@
         'Twintania': '트윈타니아',
       },
       'replaceText': {
-        '--push--': '--밀기--',
+        '--push--': '--다음 페이즈--',
         '--targetable--': '--타겟 가능--',
         '--untargetable--': '--타겟 불가--',
         'Aetheric Profusion': '에테르 홍수',
@@ -2405,7 +2405,7 @@
         'Exaflare': '엑사플레어',
         'Fellruin Trio': '재앙의 3중주',
         'Fireball(?! Soak)': '화염구',
-        'Fireball Soak': 'Fireball Soak', // FIXME
+        'Fireball Soak': '화염구 쉐어',
         'Flames Of Rebirth': '윤회의 불꽃',
         'Flare Breath': '타오르는 숨결',
         'Flatten': '짓뭉개기',
