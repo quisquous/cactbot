@@ -112,9 +112,9 @@ def main(update_hashes=False):
                         rep_map[meta['hash'][1]] = meta['hash'][1] = h.hexdigest()
 
                     elif h.hexdigest() != meta['hash'][1]:
-                        print(h.hexdigest())
-                        print(meta['hash'][1])
                         print('ERROR: %s failed the hash check.' % key)
+                        print("Expected hash: %s" % meta['hash'][1])
+                        print("Actual hash: %s" % h.hexdigest())
                         break
 
                 if os.path.isdir(dest):
