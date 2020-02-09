@@ -326,7 +326,7 @@ class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 'any';
-    input.value = this.getOption(group, opt.id, opt.default);
+    input.value = this.getOption(group, opt.id, parseFloat(opt.default));
     let setFunc = () => this.setOption(group, opt.id, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;
@@ -344,7 +344,7 @@ class CactbotConfigurator {
     div.appendChild(input);
     input.type = 'text';
     input.step = 1;
-    input.value = this.getOption(group, opt.id, opt.default);
+    input.value = this.getOption(group, opt.id, parseInt(opt.default));
     let setFunc = () => this.setOption(group, opt.id, input.value);
     input.onchange = setFunc;
     input.oninput = setFunc;

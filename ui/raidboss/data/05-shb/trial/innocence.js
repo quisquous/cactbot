@@ -155,6 +155,7 @@
       infoText: {
         en: 'Rotate Right',
         de: 'Rechts rum rotieren',
+        fr: 'Rotation vers la droite',
       },
     },
   ],

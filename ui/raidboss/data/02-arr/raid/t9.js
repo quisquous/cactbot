@@ -13,6 +13,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Tankbuster',
+        fr: 'TankBuster',
       },
     },
     {
@@ -21,6 +22,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Dive on Main Tank',
+        fr: 'Plongeon sur le main tank',
       },
     },
     {
@@ -29,6 +31,7 @@
       beforeSeconds: 4,
       infoText: {
         en: 'Bait Super Novas Outside',
+        fr: 'Attirer super novas à l\'extérieur',
       },
     },
   ],
@@ -50,6 +53,7 @@
       durationSeconds: 5,
       alarmText: {
         en: 'Blight on YOU',
+        fr: 'Bile sur VOUS',
       },
     },
     {
@@ -70,6 +74,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Blight on ' + data.ShortName(matches.target),
+          fr: 'Bile sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -81,6 +86,7 @@
       },
       alertText: {
         en: 'Meteor on YOU',
+        fr: 'Météore sur VOUS',
       },
     },
     {
@@ -91,6 +97,7 @@
       },
       infoText: {
         en: 'Spread (Meteor Stream)',
+        fr: 'Ecartez-vous (météore)',
       },
     },
     {
@@ -100,10 +107,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Thermo on YOU',
+            fr: 'Thermo sur VOUS',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
+          fr: 'Package sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -130,6 +139,7 @@
       },
       alertText: {
         en: 'Silence Blue Golem',
+        fr: 'Silence le Golem bleu',
       },
     },
     {
@@ -142,6 +152,7 @@
       regexKo: Regexes.startsUsing({ id: '83B', source: '넬 데우스 다르누스', capture: false }),
       alertText: {
         en: 'Heavensfall',
+        fr: 'Chutes du ciel',
       },
     },
     {
@@ -157,6 +168,7 @@
       },
       infoText: {
         en: 'Garotte on YOU',
+        fr: 'Sangle sur VOUS',
       },
       run: function(data) {
         data.garotte = true;
@@ -175,6 +187,7 @@
       },
       alarmText: {
         en: 'Cleanse Garotte',
+        fr: 'Guerrisez Sangle',
       },
     },
     {
@@ -305,6 +318,7 @@
         if (data.me == matches.target) {
           return {
             en: data.tetherDir + ' (on YOU)',
+            fr: data.tetherDir + ' (sur VOUS)',
           };
         }
       },
@@ -312,6 +326,7 @@
         if (data.me != matches.target) {
           return {
             en: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
+            fr: data.tetherDir + ' (sur ' + data.ShortName(matches.target) + ')',
           };
         }
       },
@@ -432,7 +447,7 @@
       'replaceSync': {
         'Astral Debris': 'Débris astral',
         'Dalamud Fragment': 'Débris de Dalamud',
-        'Engage!': 'À l\'attaque !',
+        'Engage!': 'À l\'attaque',
         'Firehorn': 'Corne-de-feu',
         'Iceclaw': 'Griffe-de-glace',
         'Nael Geminus': 'Nael Geminus',
@@ -513,6 +528,94 @@
         'Stardust': 'スターダスト',
         'Super Nova': 'スーパーノヴァ',
         'Thermionic Beam': 'サーミオニックビーム',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Astral Debris': '星极岩屑',
+        'Dalamud Fragment': '卫月岩屑',
+        'Engage!': '战斗开始！',
+        'Firehorn': '火角',
+        'Iceclaw': '冰爪',
+        'Nael Geminus': '奈尔双生子',
+        'Nael deus Darnus': '奈尔·神·达纳斯',
+        'Ragnarok': '诸神黄昏',
+        'Thunderwing': '雷翼',
+        'Umbral Debris': '灵极岩屑',
+      },
+      'replaceText': {
+        '(In)': '(In)', // FIXME
+        '(Out)': '(Out)', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Bahamut\'s Claw': '巴哈姆特之爪',
+        'Bahamut\'s Favor': '龙神的加护',
+        'Binding Coil': '拘束圈',
+        'Cauterize': '低温俯冲',
+        'Chain Lightning': '雷光链',
+        'Dalamud Dive': '月华冲',
+        'Divebomb': '爆破俯冲',
+        'Enrage': 'Enrage', // FIXME
+        'Fireball': '火球',
+        'Ghost': '幽灵',
+        'Golem Meteors': 'Golem Meteors', // FIXME
+        'Heavensfall': '惊天动地',
+        'Iron Chariot': '钢铁战车',
+        'Lunar Dynamo': '月流电圈',
+        'Megaflare': '百万核爆',
+        'Meteor': '陨石',
+        'Meteor Stream': '陨石流',
+        'Raven Dive': '凶鸟冲',
+        'Ravensbeak': '凶鸟尖喙',
+        'Ravensclaw': '凶鸟利爪',
+        'Stardust': '星尘',
+        'Super Nova': '超新星',
+        'Thermionic Beam': '热离子光束',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Astral Debris': '천상의 잔해',
+        'Dalamud Fragment': '달라가브의 잔해',
+        'Engage!': '전투 시작!',
+        'Firehorn': '화염뿔',
+        'Iceclaw': '얼음발톱',
+        'Nael Geminus': '넬 게미누스',
+        'Nael deus Darnus': '넬 데우스 다르누스',
+        'Ragnarok': '라그나로크',
+        'Thunderwing': '번개날개',
+        'Umbral Debris': '저승의 잔해',
+      },
+      'replaceText': {
+        '(In)': '(In)', // FIXME
+        '(Out)': '(Out)', // FIXME
+        '--targetable--': '--targetable--', // FIXME
+        '--untargetable--': '--untargetable--', // FIXME
+        'Bahamut\'s Claw': '바하무트의 발톱',
+        'Bahamut\'s Favor': '용신의 가호',
+        'Binding Coil': '구속의 고리',
+        'Cauterize': '인두질',
+        'Chain Lightning': '번개 사슬',
+        'Dalamud Dive': '달라가브 강하',
+        'Divebomb': '급강하 폭격',
+        'Enrage': 'Enrage', // FIXME
+        'Fireball': '화염구',
+        'Ghost': '유령',
+        'Golem Meteors': 'Golem Meteors', // FIXME
+        'Heavensfall': '천지 붕괴',
+        'Iron Chariot': '강철 전차',
+        'Lunar Dynamo': '달의 원동력',
+        'Megaflare': '메가플레어',
+        'Meteor': '메테오',
+        'Meteor Stream': '유성 폭풍',
+        'Raven Dive': '흉조의 강하',
+        'Ravensbeak': '흉조의 부리',
+        'Ravensclaw': '흉조의 발톱',
+        'Stardust': '별조각',
+        'Super Nova': '초신성',
+        'Thermionic Beam': '열전자 광선',
       },
     },
   ],

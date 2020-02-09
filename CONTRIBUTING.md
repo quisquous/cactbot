@@ -37,10 +37,49 @@ If you want to make large mechanical changes to parts of the code,
 for example you're irritated at some style usage and want to make everything consistent,
 it's especially best to put that in a separate pull request.
 
+Generally, changes will be squashed and rebased together.
+If you want your changes to be in separate commits.
+
+### Development Workflow
+
+If you haven't used git before,
+it is recommended that you do your work inside of feature branches.
+This will let you keep your master branch cleanly tracking the upstream cactbot remote.
+All of your local changes (and possibly fixup commits, etc)
+can live inside your feature branch,
+which you can delete after the feature has landed.
+
+Here's two resources that explain how this "feature branch workflow" can work:
+
+* <https://medium.com/@s.kang919/my-git-feature-branch-workflow-a4b9647ea459>
+* <https://gist.github.com/vlandham/3b2b79c40bc7353ae95a>
+
+If you do all of your work on the master branch
+and then merge in the upstream cactbot changes,
+this will cause pull requests to become harder to read.
+git will think there are many different commits to merge in
+even though the files on disk are the same.
+
+Additionally, doing work in feature branches
+allows you to do two parallel pull requests at the same time,
+without entangling them together in the same commits and pull.
+
+### Code Review Culture
+
+Ideally, all changes should get code review.
+Currently, since there's a shortage of people reviewing code.
+@quisquous just commits smaller changes directly,
+but this is not an ideal situation,
+especially since they make a lot of mistakes (sorry).
+Please feel free to leave comments about any of these commits
+or ask for more things to become pull requests.
+
 Any contributor to cactbot should feel welcome to chime in on any pull request,
 if you have ideas about how to make the code better
 (even if it's not part of the code you feel like you are an expert in).
 Pull requests are a collaborative effort!
+There's a lack of good code reviewers at the moment,
+so feel encouraged to chip in as you have time and opinions.
 
 The Chromium project has excellent resources on good pull requests and code reviews.
 Some of it doesn't apply, but much of the philosophy does.
@@ -111,6 +150,9 @@ This design choice isn't for everybody, especially those used to tts (which is a
 However, text triggers will always be the default.
 Give it a try.
 
+As it's easier to disable triggers than to write triggers,
+cactbot also tends to be slightly noisier than most people prefer.
+
 ### Trigger Severity
 
 Here's the general guidelines for how cactbot has triggers.
@@ -150,8 +192,6 @@ This is especially true for simultaneous alerts.
 Here's some general guidelines for the text in triggers.
 The goal for trigger text is to mimic what a human raidcaller would say.
 It should minimize the amount of that the player has to think to do a mechanic.
-As it's easier to disable triggers than to write triggers,
-cactbot tends to be slightly noisier on average than most people prefer.
 
 * Be concise.  Text should be as short as possible, like lalafells.
 * Tell the player what to do rather than the mechanic name, i.e. prefer `Get Out` vs `Iron Chariot`

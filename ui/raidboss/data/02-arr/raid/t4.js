@@ -103,5 +103,41 @@
         'Soldier': 'Soldier', // FIXME
       },
     },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Clockwork Bug': '亚拉戈发条虫',
+        'Clockwork Dreadnaught': '恐慌装甲',
+        'Clockwork Knight': '亚拉戈发条骑士',
+        'Drive Cylinder': '隔离壁',
+        'Spinner-rook': '转盘堡',
+      },
+      'replaceText': {
+        'Bug': '故障虫',
+        'Dreadnaught': 'Dreadnaught', // FIXME
+        'Emergency Override': '紧急超驰控制',
+        'Knight': 'Knight', // FIXME
+        'Rook': 'Rook', // FIXME
+        'Soldier': 'Soldier', // FIXME
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Clockwork Bug': '알라그 태엽벌레',
+        'Clockwork Dreadnaught': '드레드노트',
+        'Clockwork Knight': '알라그 태엽기사',
+        'Drive Cylinder': '가동격벽',
+        'Spinner-rook': '보루형 회전전차',
+      },
+      'replaceText': {
+        'Bug': '버그',
+        'Dreadnaught': 'Dreadnaught', // FIXME
+        'Emergency Override': '긴급 체제 변환',
+        'Knight': 'Knight', // FIXME
+        'Rook': 'Rook', // FIXME
+        'Soldier': 'Soldier', // FIXME
+      },
+    },
   ],
 }];

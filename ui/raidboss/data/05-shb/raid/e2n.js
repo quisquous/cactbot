@@ -38,7 +38,7 @@
         de: 'Tankbuster auf DIR',
         fr: 'Tankbuster sur VOUS',
         cn: '死刑点名',
-        ko: '탱크버스터 on YOU',
+        ko: '나에게 탱버',
       },
     },
     {
@@ -77,7 +77,7 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
-        ko: 'AOE',
+        ko: '전체공격',
       },
     },
     {
@@ -149,7 +149,7 @@
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
             cn: '集合',
-            ko: '집합 -> YOU',
+            ko: '나에게 쉐어',
           };
         }
         return {
@@ -157,7 +157,7 @@
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur '+ data.ShortName(matches.target),
           cn: '集合 -> ' + data.ShortName(matches.target),
-          ko: '집합 -> ' + data.ShortName(matches.target),
+          ko: '쉐어 -> ' + data.ShortName(matches.target),
         };
       },
     },
@@ -193,7 +193,7 @@
         de: 'Verzögertes Feuer',
         fr: 'Feu retardé',
         cn: '延迟火',
-        ko: '지연술:파이어',
+        ko: '지연술 파이가',
       },
     },
     {
@@ -209,7 +209,7 @@
             de: 'Verteilen (nicht zusammen stehen)',
             fr: 'Dispersez-vous', // FIXME
             cn: '分散',
-            ko: '산개 (모이지말것)',
+            ko: '산개 (쉐어 맞으면 안됨)',
           };
         }
         return {
@@ -240,7 +240,7 @@
         de: 'Verzögertes sammeln',
         fr: 'Package retardé',
         cn: '延迟集合',
-        ko: '지연술:쉐어징',
+        ko: '지연술 쉐어징',
       },
     },
     {
@@ -260,7 +260,7 @@
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
             cn: '集合',
-            ko: '집합 on YOU',
+            ko: '나에게 쉐어',
           };
         }
         return {
@@ -268,7 +268,7 @@
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Package sur ' + data.ShortName(matches.target),
           cn: '集合 -> ' + data.ShortName(matches.target),
-          ko: '집합 -> ' + data.ShortName(matches.target),
+          ko: '쉐어 -> ' + data.ShortName(matches.target),
         };
       },
     },
@@ -291,7 +291,7 @@
         de: 'Verzögertes Schattenauge',
         fr: 'Œil de l\'ombre retardé',
         cn: '延迟石化眼',
-        ko: '지연술:그림자시선',
+        ko: '지연술 그림자시선',
       },
     },
     {
@@ -308,7 +308,7 @@
             de: 'Von ' + data.ShortName(matches.target) + ' weg schauen',
             fr: 'Ne regardez pas ' + data.ShortName(matches.target),
             cn: '背对 ' + data.ShortName(matches.target),
-            ko: '보지마 -> ' + data.ShortName(matches.target),
+            ko: '보지마세요 -> ' + data.ShortName(matches.target),
           };
         }
       },
@@ -319,7 +319,7 @@
             de: 'Auge auf DIR',
             fr: 'Œil de l\'ombre sur VOUS',
             cn: '石化眼点名',
-            ko: '시선 대상자 -> YOU',
+            ko: '나에게 시선징',
           };
         }
       },

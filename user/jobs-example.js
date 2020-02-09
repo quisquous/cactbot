@@ -30,6 +30,11 @@ Options.PldLowMPThreshold = 2880;
 // on black mage.
 Options.BlmLowMPThreshold = 2400;
 
+let kRed = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAySURBVEhL7c0xEQAgDAAxhHSsf2d4QMJPbLnLnnNnvxIkQRIkQRIkQRIkQRIkQfoczD4cGLQ9QOmZGwAAAABJRU5ErkJggg==';
+
+// Remove these /* and */ comment lines to enable the example code below.
+/*
+
 // Overrides for all of the "big buffs" that appear to the left or right
 // of the hp/mp bars.  This is stuff like trick/embolden/devotion/etc.
 Options.PerBuffOptions = {
@@ -47,7 +52,7 @@ Options.PerBuffOptions = {
 
     // The icon to use.  This is a url or a data url like this.  This
     // example sets trick to use a bright red icon instead.
-    icon: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAAySURBVEhL7c0xEQAgDAAxhHSsf2d4QMJPbLnLnnNnvxIkQRIkQRIkQRIkQRIkQfoczD4cGLQ9QOmZGwAAAABJRU5ErkJggg==',
+    icon: kRed,
 
     // If true (instead of false here), this will hide the buff and
     // prevent it from being shown.
@@ -61,3 +66,5 @@ Options.PerBuffOptions = {
     sortKey: 1000,
   },
 };
+
+*/

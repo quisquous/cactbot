@@ -11,6 +11,8 @@ let Options = {
   LongSound: '../../resources/sounds/BigWigs/Long.ogg',
   PullSound: '../../resources/sounds/PowerAuras/sonar.ogg',
 
+  audioAllowed: true,
+
   DisabledTriggers: {},
 
   PerTriggerOptions: {},
@@ -41,6 +43,14 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
     Options.TimelineEnabled = !!parseInt(timeline);
     if (!previous && Options.TimelineEnabled)
       console.log('Enabling timeline via query parameter');
+  }
+  let audio = params.get('audio');
+  if (audio !== null) {
+    let previous = Options.audioAllowed;
+    Options.audioAllowed = !!parseInt(audio);
+    console.log('audioAllowed = ' + Options.audioAllowed);
+    if (!previous && Options.audioAllowed)
+      console.log('Enabling audio via query parameter');
   }
 
   let container = document.getElementById('container');
