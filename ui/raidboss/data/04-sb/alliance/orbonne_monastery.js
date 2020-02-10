@@ -1403,6 +1403,7 @@
         '(?<! )The Thunder God': '뇌신 시드',
         'The lifeless alley': '생명 없는 길',
         'Ultima, the High Seraph': '성천사 알테마',
+        ' will be sealed off': '(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
         '--targetable--': '--타겟 가능--',

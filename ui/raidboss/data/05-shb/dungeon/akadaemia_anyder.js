@@ -512,6 +512,7 @@
         'Ichthyology': '수생 생물 창조장',
         'Phytobiology': '초목 생물 창조장',
         'Phantomology': '환상 생물 창조장',
+        ' will be sealed off': '(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
         'attack': '공격',
@@ -548,6 +549,7 @@
         'Acrid Stream': '매캐한 냇물',
         '--untargetable--': '--타겟 불가능--',
         '--targetable--': '--타겟 가능--',
+        'x targetable--': '마리 타겟 가능--',
         'Carcharian Verve': '상어의 기백',
       },
       '~effectNames': {

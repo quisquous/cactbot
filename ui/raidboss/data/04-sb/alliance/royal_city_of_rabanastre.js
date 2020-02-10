@@ -645,6 +645,7 @@
         'The Lesalia Temple Ruins': '르잘리아 신전 옛터',
         'The Palace Square': '왕궁 광장',
         'The heavens tremble in my wake': '이것이 바로 빛나는 \'성석\'의 힘이다!',
+        ' will be sealed off': '(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
         '--enrage--': '--전멸기--',

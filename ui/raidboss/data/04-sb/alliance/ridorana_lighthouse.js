@@ -1236,6 +1236,7 @@
         'The Spire\'s Bounds': '정점의 봉인 영역',
         'Wind Azer': '바람 원소',
         'Yiazmat': '귀룡 야즈마트',
+        ' will be sealed off': '(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
         '--targetable--': '--타겟 가능--',
