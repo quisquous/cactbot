@@ -8,6 +8,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': 'En Sof Or',
@@ -48,6 +49,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': 'Ein Sof Ohr',
@@ -88,6 +90,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': 'アイン・ソフ・オウル',
@@ -128,6 +131,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': '无限光',
@@ -168,6 +172,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Cochma': 'Cochma', // FIXME
         'Ein Sof Ohr': '아인 소프 오르',

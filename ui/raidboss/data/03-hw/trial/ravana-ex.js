@@ -8,6 +8,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
       },
@@ -37,6 +38,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
       },
@@ -66,6 +68,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
       },
@@ -95,6 +98,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
       },
@@ -124,6 +128,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
       },
