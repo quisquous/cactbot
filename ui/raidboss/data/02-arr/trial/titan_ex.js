@@ -33,10 +33,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        fr: 'Dégats de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'TitanEx Gaoler Adds',

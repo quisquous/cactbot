@@ -8,19 +8,13 @@
       id: 'IfritNM Inner',
       regex: /Radiant Plume \(inner\)/,
       beforeSeconds: 3.5,
-      infoText: {
-        en: 'Get Out',
-        fr: 'A l\'extérieur',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'IfritNM Outer',
       regex: /Radiant Plume \(outer\)/,
       beforeSeconds: 3.5,
-      infoText: {
-        en: 'Get In',
-        fr: 'A l\'intérieur',
-      },
+      response: Responses.getIn(),
     },
     {
       id: 'IfritNM Nail Add',

@@ -84,10 +84,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Meteor on YOU',
-        fr: 'Météore sur VOUS',
-      },
+      response: Responses.meteorOnYou(),
     },
     {
       id: 'T9 Meteor Stream',
@@ -95,10 +92,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread (Meteor Stream)',
-        fr: 'Ecartez-vous (météore)',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'T9 Stack',

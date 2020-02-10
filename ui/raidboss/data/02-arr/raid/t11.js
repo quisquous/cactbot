@@ -69,14 +69,7 @@
       regexJa: Regexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
       regexCn: Regexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
       regexKo: Regexes.ability({ id: 'B76', source: '칼리야', capture: false }),
-      infoText: function(data) {
-        if (!data.firstSeed)
-          return;
-        return {
-          en: 'Stack',
-          fr: 'Packé',
-        };
-      },
+      response: Responses.stack(),
       run: function(data) {
         delete data.firstSeed;
       },
@@ -89,14 +82,7 @@
       regexJa: Regexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
       regexCn: Regexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
       regexKo: Regexes.ability({ id: 'B77', source: '칼리야', capture: false }),
-      infoText: function(data) {
-        if (!data.firstSeed)
-          return;
-        return {
-          en: 'Spread',
-          fr: 'Ecarté',
-        };
-      },
+      response: Responses.spread(),
       run: function(data) {
         delete data.firstSeed;
       },
@@ -110,10 +96,7 @@
       regexCn: Regexes.hasHP({ name: '卡利亚', hp: '60', capture: false }),
       regexKo: Regexes.hasHP({ name: '칼리야', hp: '60', capture: false }),
       sound: 'Long',
-      infoText: {
-        en: 'Out of Middle',
-        fr: 'En dehors du centre',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'T11 Forked Lightning',

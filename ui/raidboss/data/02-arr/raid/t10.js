@@ -22,10 +22,7 @@
       regexJa: Regexes.startsUsing({ id: 'B5F', source: 'イムドゥグド', capture: false }),
       regexCn: Regexes.startsUsing({ id: 'B5F', source: '伊姆都古德', capture: false }),
       regexKo: Regexes.startsUsing({ id: 'B5F', source: '임두구드', capture: false }),
-      alertText: {
-        en: 'Spread',
-        fr: 'Ecartez-vous',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'T10 Wild Charge',
