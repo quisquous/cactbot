@@ -88,7 +88,7 @@
     },
     {
       id: 'The Vault Execution',
-      regex: Regexes.headMarker({ id: '0020' }),
+      regex: Regexes.headMarker({ id: '0020', capture: false }),
       response: Responses.spread(),
     },
     {
