@@ -97,7 +97,7 @@
       alertText: {
         en: 'Point opening at Mustadio',
         fr: 'Orientez l\'ouverture vers le boss',
-        ko: 'Point opening at 무스타디오',
+        ko: '문양이 빈 쪽을 무스타디오쪽으로 향하게 하기',
       },
     },
     {
