@@ -97,6 +97,7 @@
         type: 'warn',
         text: {
           en: 'Bosses Too Close',
+          cn: 'BOSS靠太近了',
         },
       },
     },
