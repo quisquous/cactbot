@@ -555,7 +555,7 @@
         'The Cornice': '개조 작업 거점',
         'Aetherial Observation': '에테르 관측대',
         'Repurposing': '차원 잠행 장치 중추',
-        ' will be sealed off': '(이|가) 봉쇄됩니다\.',
+        ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
         'attack': '공격',
