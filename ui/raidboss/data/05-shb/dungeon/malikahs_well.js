@@ -21,7 +21,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -29,7 +29,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            ko: data.ShortName(matches.target) + '에게 탱버',
           };
         }
       },
@@ -42,13 +42,13 @@
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
-            ko: '나에게 모이기',
+            ko: '나에게 쉐어징',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          ko: data.ShortName(matches.target) + '에게 모이기',
+          ko: data.ShortName(matches.target) + '에게 쉐어징',
         };
       },
     },
@@ -81,7 +81,7 @@
         en: 'Silence Add',
         de: 'Add stummen',
         fr: 'Silence Add',
-        ko: '방해하기 → 추가 쫄',
+        ko: '쫄 시전 끊기',
       },
     },
     {
@@ -98,7 +98,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱크버스터',
+            ko: '나에게 탱버',
           };
         }
         if (data.role == 'healer') {
@@ -106,7 +106,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            ko: data.ShortName(matches.target) + '에게 탱버',
           };
         }
       },
@@ -136,7 +136,7 @@
       infoText: {
         en: 'Get Behind',
         de: 'Hinter ihn',
-        ko: '보스 뒷쪽으로',
+        ko: '보스 뒤로',
       },
     },
     {
@@ -162,13 +162,14 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Terminus': 'Drehscheibe',
+        'Terminus will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Drehscheibe schließt',
+        'Malikah\'s Gift will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Malikahs Quelle schließt',
+        'Unquestioned Acceptance will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Residenz der Großherzigkeit schließt',
+        'is no longer sealed': 'öffnet sich erneut',
         'Greater Armadillo': 'Riesengürteltier',
-        'Malikah\'s Gift': 'Malikahs Quelle',
         'Amphibious Talos': 'Wasserträger-Talos',
-        'Unquestioned Acceptance': 'Residenz der Großherzigkeit',
         'Storge': 'Storge',
-        'Rhapsodic': 'Keil der Liebe',
+        'Rhapsodic Nail': 'Keil der Liebe',
       },
       'replaceText': {
         'Stone Flail': 'Steindresche',
@@ -187,6 +188,37 @@
         'Crystal Nail': 'Kristallnagel',
         'Censure': 'Tadel',
         'Armadillo': 'Armadillo',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Terminus will be sealed off': '15초 후에 광차 종점이 봉쇄됩니다',
+        'Malikah\'s Gift will be sealed off': '15초 후에 말리카의 수원이 봉쇄됩니다',
+        'Unquestioned Acceptance will be sealed off': '15초 후에 시민 별장이 봉쇄됩니다',
+        'is no longer sealed': '의 봉쇄가 해제되었습니다',
+        'Greater Armadillo': '거대 아르마딜로',
+        'Amphibious Talos': '수력 탈로스',
+        'Storge': '스토르게',
+        'Rhapsodic Nail': '사랑의 말뚝',
+      },
+      'replaceText': {
+        'Stone Flail': '바위 타작',
+        'Head Toss': '머리 겨냥',
+        'Right Round': '대회전',
+        'Flail Smash': '타작 충돌',
+        'Earthshake': '지반 진동',
+        'Efface': '파괴',
+        'Wellbore': '우물 파기',
+        'Geyser Eruption': '간헐천',
+        'High Pressure': '고압',
+        'Swift Spill': '강제 급수',
+        'Intestinal Crank': '창자 비틀기',
+        'Heretic\'s Fork': '이단자의 창',
+        'Breaking Wheel': '파괴의 바퀴',
+        'Crystal Nail': '말뚝박기',
+        'Censure': '집행',
+        '2x Pack Armadillo': '쫄 2마리 소환',
       },
     },
   ],
