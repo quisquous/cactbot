@@ -720,6 +720,10 @@
         '--untargetable--': '--타겟 불가능--',
         '--targetable--': '--타겟 가능--',
         '--jump--': '--보스이동--',
+        ' Avoid': ' (피하기)',
+        ' Explode': ' (터뜨리기)',
+        ' Charge': ' (돌진)',
+        ' Final': ' (마지막)',
       },
       '~effectNames': {
         'Physical Vulnerability Up': '받는 물리 피해량 증가',

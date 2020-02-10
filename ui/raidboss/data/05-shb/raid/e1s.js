@@ -828,11 +828,8 @@
         '--center--': '--중앙--',
         '--untargetable--': '--타겟불가능--',
         '--targetable--': '--타겟가능--',
-        '(T)': '(탱)',
-        '(D)': '(딜)',
-        '(H)': '(힐)',
-        '(Cross)': '(십자)',
-        '(Donut)': '(도넛)',
+        'Cross': '십자',
+        'Donut': '중앙',
       },
       '~effectNames': {
         'Slippery Prey': '표식 대상 제외',

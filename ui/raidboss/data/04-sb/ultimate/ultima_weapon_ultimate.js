@@ -819,8 +819,8 @@
         'Ultimaplasm': '알테마 폭뢰',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
+        '--targetable--': '--타겟 가능--',
+        '--untargetable--': '--타겟 불가--',
         'Aerial Blast': '대기 폭발',
         'Aetheric Boom': '에테르 파동',
         'Aetherochemical Laser': '마과학 레이저',

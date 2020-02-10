@@ -787,6 +787,9 @@
         '--untargetable--': '--타겟 불가능--',
         '--targetable--': '--타겟 가능--',
         '--center--': '--중앙--',
+        ' Out': ' (바깥)',
+        ' In': ' (안쪽)',
+        ' Middle': ' (중앙)',
       },
       '~effectNames': {
         'Thorny Vine': '가시덩굴',
