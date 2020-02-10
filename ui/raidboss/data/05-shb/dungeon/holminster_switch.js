@@ -255,11 +255,13 @@
     {
       'locale': 'de',
       'replaceSync': {
-        '00:0839:The Wound will be sealed off': 'Sekunden bis sich der Zugang zu Lavendellichtung schließt',
+        'The Wound will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Lavendellichtung schließt',
+        'The Auction will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Viehmarkt schließt',
+        'The manor house courtyard will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Garten des Herrenhauses schließt',
         'Forgiven Dissonance': 'Geläuterter Widerspruch',
-        '00:0839:The Auction will be sealed off': 'Sekunden bis sich der Zugang zu Viehmarkt schließt',
+
         'Tesleen, the Forgiven': 'Tesleen die Bekehrte',
-        '00:0839:The manor house courtyard will be sealed off': 'Sekunden bis sich der Zugang zu Garten des Herrenhauses schließt',
+
         'Philia': 'Philia',
         'is no longer sealed': 'öffnet sich erneut',
       },
@@ -334,9 +336,9 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        '00:0839:The Wound will be sealed off': '초 후에 검보라 틈이 봉쇄됩니다',
-        '00:0839:The Auction will be sealed off': '초 후에 가축 시장이 봉쇄됩니다',
-        '00:0839:The manor house courtyard will be sealed off': '초 후에 저택 앞뜰이 봉쇄됩니다',
+        'The Wound will be sealed off': '15초 후에 검보라 틈이 봉쇄됩니다',
+        'The Auction will be sealed off': '15초 후에 가축 시장이 봉쇄됩니다',
+        'The manor house courtyard will be sealed off': '15초 후에 저택 앞뜰이 봉쇄됩니다',
         'is no longer sealed': '의 봉쇄가 해제되었습니다',
         'Forgiven Dissonance': '면죄된 불화',
         'Tesleen, the Forgiven': '면죄된 테슬린',

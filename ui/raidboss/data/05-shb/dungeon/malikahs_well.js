@@ -162,9 +162,9 @@
     {
       'locale': 'de',
       'replaceSync': {
-        '00:0839:Terminus will be sealed off': 'Sekunden bis sich der Zugang zu Drehscheibe schließt',
-        '00:0839:Malikah\'s Gift will be sealed off': 'Sekunden bis sich der Zugang zu Malikahs Quelle schließt',
-        '00:0839:Unquestioned Acceptance will be sealed off': 'Sekunden bis sich der Zugang zu Residenz der Großherzigkeit schließt',
+        'Terminus will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Drehscheibe schließt',
+        'Malikah\'s Gift will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Malikahs Quelle schließt',
+        'Unquestioned Acceptance will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Residenz der Großherzigkeit schließt',
         'is no longer sealed': 'öffnet sich erneut',
         'Greater Armadillo': 'Riesengürteltier',
         'Amphibious Talos': 'Wasserträger-Talos',
@@ -193,9 +193,9 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        '00:0839:Terminus will be sealed off': 'Drehscheibe',
-        '00:0839:Malikah\'s Gift will be sealed off': 'Malikahs Quelle',
-        '00:0839:Unquestioned Acceptance will be sealed off': 'Residenz der Großherzigkeit',
+        'Terminus will be sealed off': '15초 후에 광차 종점이 봉쇄됩니다',
+        'Malikah\'s Gift will be sealed off': '15초 후에 말리카의 수원이 봉쇄됩니다',
+        'Unquestioned Acceptance will be sealed off': '15초 후에 시민 별장이 봉쇄됩니다',
         'is no longer sealed': '의 봉쇄가 해제되었습니다',
         'Greater Armadillo': '거대 아르마딜로',
         'Amphibious Talos': '수력 탈로스',
