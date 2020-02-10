@@ -2,11 +2,16 @@
 
 // Test mistake triggers.
 [{
-  zoneRegex: /^Middle La Noscea$/,
+  zoneRegex: {
+    en: /^Middle La Noscea$/,
+    cn: /^中拉诺西亚$/,
+    ko: /^중부 라노시아$/,
+  },
   triggers: [
     {
       id: 'Test Bow',
       regex: /:You bow courteously to the striking dummy/,
+      regexKo: /:.*나무인형에게 공손하게 인사합니다/,
       mistake: function(e, data) {
         return {
           type: 'pull',
@@ -14,6 +19,7 @@
           fullText: {
             en: 'Bow',
             de: 'Bogen',
+            ko: '인사',
           },
         };
       },
@@ -21,6 +27,7 @@
     {
       id: 'Test Wipe',
       regex: /:You bid farewell to the striking dummy/,
+      regexKo: /:.*나무인형에게 작별 인사를 합니다/,
       mistake: function(e, data) {
         return {
           type: 'wipe',
@@ -28,6 +35,7 @@
           fullText: {
             en: 'Party Wipe',
             de: 'Gruppenwipe',
+            ko: '파티 전멸',
           },
         };
       },
@@ -40,6 +48,7 @@
           return false;
         let strikingDummyNames = [
           'Striking Dummy',
+          '나무인형',
           // FIXME: add other languages here
         ];
         return strikingDummyNames.indexOf(e.targetName) >= 0;
@@ -61,6 +70,7 @@
     {
       id: 'Test Poke',
       regex: /:You poke the striking dummy/,
+      regexKo: /:.*나무인형을 쿡쿡 찌릅니다/,
       collectSeconds: 5,
       mistake: function(events, data) {
         // When runOnce is specified, events are passed as an array.
@@ -73,6 +83,7 @@
         let text = {
           en: 'Too many pokes (' + pokes + ')',
           de: 'Zu viele Piekser (' + pokes + ')',
+          ko: '너무 많이 찌름 (' + pokes + '번)',
         };
         return { type: 'fail', blame: data.me, text: text };
       },

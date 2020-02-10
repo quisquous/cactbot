@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Malikah\'s Well$/,
+  zoneRegex: {
+    en: /^Malikah's Well$/,
+    ko: /^말리카 큰우물$/,
+  },
   damageWarn: {
     'Malikah Falling Rock': '3CEA',
     'Malikah Wellbore': '3CED',

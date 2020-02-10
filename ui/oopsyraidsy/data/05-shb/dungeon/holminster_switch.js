@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Holminster Switch$/,
+  zoneRegex: {
+    en: /^Holminster Switch$/,
+    ko: /^홀민스터$/,
+  },
   damageWarn: {
     'Holminster Thumbscrew': '3DC6',
     'Holminster Wooden horse': '3DC7',
