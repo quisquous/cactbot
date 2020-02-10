@@ -8,7 +8,6 @@ user/
 !user/README.txt
 plugin/**/*.csproj.user
 
-!plugin/ThirdParty/*/dummy.txt
 plugin/ThirdParty/
 publish/
 __pycache__
@@ -19,3 +18,4 @@ package-lock.json
 *.iml
 *.swp
 .DS_Store
+util/DEPS.cache
