@@ -68,9 +68,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Shield Bash',
@@ -91,16 +89,7 @@
     {
       id: 'The Vault Execution',
       regex: Regexes.headMarker({ id: '0020' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Spread marker on YOU',
-          };
-        }
-        return {
-          en: 'Avoid ' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.spread(),
     },
     {
       id: 'The Vault Black Nebula',
@@ -125,9 +114,7 @@
       regexJa: Regexes.startsUsing({ id: '1027', source: '聖騎士グリノー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1027', source: '圣骑士格里诺', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1027', source: '성기사 그리노', capture: false }),
-      infoText: {
-        en: 'Knockback',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'The Vault Dimensional Torsion',
@@ -156,9 +143,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'AoE',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Chains',

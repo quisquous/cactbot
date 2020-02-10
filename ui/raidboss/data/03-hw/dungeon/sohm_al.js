@@ -31,25 +31,7 @@
     {
       id: 'Sohm Al Myath Spread',
       regex: Regexes.headMarker({ id: '00AE' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Move away from others',
-            de: 'Weg von den anderen',
-            fr: 'Eloignez-vous des autres',
-          };
-        }
-        return {
-          en: 'Move away from ' + matches.target,
-          de: 'Weg von ' + matches.target,
-          fr: 'Eloignez-vous de ' + matches.target,
-        };
-      },
-      tts: {
-        en: 'don\'t stack',
-        de: 'nicht stek en',
-        fr: 'ne restez pas packé',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Sohm Al Myath Chyme',
@@ -73,24 +55,7 @@
     {
       id: 'Sohm Al Tioman Meteor',
       regex: Regexes.headMarker({ id: '0007' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'place meteor on edge',
-            de: 'Meteor an Kante ablegen',
-            fr: 'Météore à placer sur le côté',
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'meteor',
-            de: 'meteor',
-            fr: 'météore',
-          };
-        }
-      },
+      response: Responses.meteorOnYou(),
     },
   ],
 }];

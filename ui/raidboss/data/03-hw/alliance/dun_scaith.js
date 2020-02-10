@@ -283,10 +283,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'Raid Damage',
-        fr: 'Raid buster',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Dun Scaith Prey Markers',
@@ -398,10 +395,7 @@
       regexCn: Regexes.ability({ id: '1D[12]B', source: '斯卡哈', capture: false }),
       regexKo: Regexes.ability({ id: '1D[12]B', source: '스카하크', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Out of melee',
-        fr: 'Sortez du CaC',
-      },
+      response: Responses.outOfMelee(),
     },
     {
       id: 'Dun Scaith Thirty Arrows',
@@ -427,10 +421,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'Raid damage',
-        fr: 'Raid buster',
-      },
+      response: Responses.aoe(),
     },
     {
       // Ordinarily we wouldn't use a game log line for this.
@@ -441,11 +432,7 @@
       regexFr: Regexes.message({ line: 'Le pouvoir des ombres se concentre sur le sol', capture: false }),
       regexJa: Regexes.message({ line: '床に影の力が集束していく', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Stop moving',
-        de: 'Nicht bewegen!',
-        fr: 'Ne bougez plus !',
-      },
+      response: Responses.stopMoving(),
     },
     {
       id: 'Dun Scaith Shadow Limb Spawn',
@@ -496,10 +483,7 @@
       regexJa: Regexes.startsUsing({ id: ['1D23', '1C1A'], source: ['スカアハ', 'ディアボロス・ホロー'], capture: false }),
       regexCn: Regexes.startsUsing({ id: ['1D23', '1C1A'], source: ['斯卡哈', '虚空迪亚波罗斯'], capture: false }),
       regexKo: Regexes.startsUsing({ id: ['1D23', '1C1A'], source: ['스카하크', '공허의 디아볼로스'], capture: false }),
-      infoText: {
-        en: 'Away from front',
-        fr: 'Ne restez pas devant',
-      },
+      response: Responses.awayFromFront(),
     },
     // DIABOLOS
     {
@@ -510,10 +494,7 @@
       regexJa: Regexes.startsUsing({ id: '1C12', source: 'ディアボロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1C12', source: '迪亚波罗斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1C12', source: '디아볼로스', capture: false }),
-      infoText: {
-        en: 'Get in',
-        fr: 'Allez au CaC',
-      },
+      response: Responses.getIn(),
     },
     {
       id: 'Dun Scaith Nightmare',
@@ -523,10 +504,7 @@
       regexJa: Regexes.startsUsing({ id: ['1C0E', '1C20'], capture: false }),
       regexCn: Regexes.startsUsing({ id: ['1C0E', '1C20'], capture: false }),
       regexKo: Regexes.startsUsing({ id: ['1C0E', '1C20'], capture: false }),
-      alertText: {
-        en: 'Look away',
-        fr: 'Regardez ailleurs',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'Dun Scaith Noctoshield',
@@ -557,10 +535,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'Raid damage incoming',
-        fr: 'Dommages de raid en approche',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Dun Scaith Deathgates',
@@ -629,10 +604,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'Extreme raid damage!',
-        fr: 'Dommages de raid extrêmes !',
-      },
+      response: Responses.aoe(),
     },
     {
       // This is the tank version of the stack marker. It has minimal circular bordering

@@ -71,11 +71,7 @@
       regexJa: Regexes.startsUsing({ id: '10EB', source: 'ハルマキス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '10EB', source: '赫鲁玛奇斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '10EB', source: '하르마키스', capture: false }),
-      infoText: {
-        en: 'Look away',
-        de: 'Wegschauen!',
-        fr: 'Ne regardez pas',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'Facility Inertia Stream',
@@ -133,10 +129,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Facility Annihilation',
@@ -149,10 +142,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Facility Universal Manipulation',

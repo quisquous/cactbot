@@ -59,10 +59,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Gubal Hard Ferrofluid',
@@ -210,10 +207,7 @@
       regexJa: Regexes.startsUsing({ id: '195A', source: 'ストリックス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '195A', source: '博学林鸮', capture: false }),
       regexKo: Regexes.startsUsing({ id: '195A', source: '스트릭스', capture: false }),
-      infoText: {
-        en: 'Spread',
-        fr: 'Dispersez-vous',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Gubal Hard Properties of Darkness II',
@@ -226,10 +220,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Gubal Hard Ecliptic Meteor',

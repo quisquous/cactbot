@@ -12,9 +12,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Fractal Sanctification',
@@ -38,9 +36,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-      },
+      response: Responses.aoe(),
     },
   ],
   triggers: [
@@ -73,9 +69,7 @@
       regexJa: Regexes.startsUsing({ id: 'F83', source: 'ミノタウロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: 'F83', source: '弥诺陶洛斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: 'F83', source: '미노타우로스', capture: false }),
-      infoText: {
-        en: 'Out of front',
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Swipe',
@@ -85,9 +79,7 @@
       regexJa: Regexes.startsUsing({ id: 'F81', source: 'ミノタウロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: 'F81', source: '弥诺陶洛斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: 'F81', source: '미노타우로스', capture: false }),
-      infoText: {
-        en: 'Out of front',
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Small Swing',
@@ -97,9 +89,7 @@
       regexJa: Regexes.startsUsing({ id: 'F82', source: 'ミノタウロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: 'F82', source: '弥诺陶洛斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: 'F82', source: '미노타우로스', capture: false }),
-      infoText: {
-        en: 'Get out',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Fractal Big Swing',
@@ -137,9 +127,7 @@
       regexCn: Regexes.addedCombatant({ name: '发条报警虫', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '알라그 태엽경보장치', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Kill adds',
-      },
+      response: Responses.killAdds(),
     },
   ],
   timelineReplace: [
