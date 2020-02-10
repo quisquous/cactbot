@@ -126,7 +126,7 @@ const kPartyWipeText = {
   de: 'Party Wipe',
   fr: 'Party Wipe',
   ja: 'Party Wipe',
-  cn: 'Party Wipe',
+  cn: '团灭',
   ko: '파티 전멸',
 };
 
