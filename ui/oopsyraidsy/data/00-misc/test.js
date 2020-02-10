@@ -29,7 +29,7 @@
           fullText: {
             en: 'Party Wipe',
             de: 'Gruppenwipe',
-            cn: '清除',
+            cn: '清除小队',
           },
         };
       },
