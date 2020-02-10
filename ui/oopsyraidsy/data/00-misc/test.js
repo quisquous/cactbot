@@ -14,6 +14,7 @@
           fullText: {
             en: 'Bow',
             de: 'Bogen',
+            cn: '鞠躬',
           },
         };
       },
@@ -28,6 +29,7 @@
           fullText: {
             en: 'Party Wipe',
             de: 'Gruppenwipe',
+            cn: '清除',
           },
         };
       },
@@ -73,6 +75,7 @@
         let text = {
           en: 'Too many pokes (' + pokes + ')',
           de: 'Zu viele Piekser (' + pokes + ')',
+          cn: '戳太多下啦 (' + pokes + ')',
         };
         return { type: 'fail', blame: data.me, text: text };
       },
