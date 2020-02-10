@@ -146,102 +146,166 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Phantom Ray': 'Phantomschimmer',
+        'Exhibit level III will be sealed off': 'bis sich der Zugang zu[rm]? Ausstellungssektor III schließt',
         'Minotaur': 'Minotaurus',
+        'Phantom Ray': 'Phantomschimmer',
+        'Repository Node': 'Verwahrungsknoten',
         'The Curator': 'Kurator',
-
-        'Exhibit level III will be sealed off': 'Ausstellungssektor III schließt',
         'The high-level incubation bay will be sealed off': 'Inkubationskammer schließt',
         'The reality augmentation bay will be sealed off': 'Dilatationskammer schließt',
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        'Rapid Sever': 'Radikale Abtrennung',
-        'Atmospheric Displacement': 'Schnitttest',
-        'Double Sever': 'Zweifachabtrennung',
-        'Damage Up': 'Schaden +',
-        'Atmospheric Compression': 'Schnittdruck',
-
+        '--reset--': '--reset--', // FIXME
+        '10-Tonze Slash': '11-Tonzen-Schlag',
         '11-Tonze Swipe': '11-Tonzen-Hieb',
-        '111-Tonze Swing': '111-Tonzen-Schwung',
-        'Disorienting Groan': 'Kampfgebrüll',
-        'Zoom': 'Heranholen',
-        '10-Tonze Slash': '11-Tonzen-Schlag', // FIXME: Check XIVAPI's correctness on this one
+        '(?<!1)111-Tonze Swing': '111-Tonzen-Schwung',
         '1111-Tonze Swing': '1111-Tonzen-Schwung',
-        'Feast': 'Festmahl',
-
-        'Sanctification': 'Sanktifikation',
-        'Unholy': 'Unheilig',
         'Aetherochemical Explosive': 'Ätherochemisches Explosivum',
-        'The Educator': 'Zuchtmeister',
         'Aetherochemical Mine': 'Ätherochemische Mine',
+        'Atmospheric Compression': 'Schnittdruck',
+        'Atmospheric Displacement': 'Schnitttest',
+        'Damage Up': 'ダメージ上昇',
+        'Disorienting Groan': 'Kampfgebrüll',
+        'Double Sever': 'Zweifachabtrennung',
+        'Feast': 'Festmahl',
+        'Rapid Sever': 'Radikale Abtrennung',
+        'Sanctification': 'Sanktifikation',
+        'The Educator': 'Zuchtmeister',
+        'Unholy': 'Unheilig',
+        'Zoom': 'Heranholen',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Phantom Ray': 'Rayon Fantomatique',
-        'Minotaur': 'Minotaure',
+        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
+        'Minotaur': 'minotaure',
+        'Phantom Ray': 'rayon fantomatique',
+        'Repository Node': 'sphère de dépôt',
         'The Curator': 'Conservateur',
-
-        // FIXME
-        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off',
-        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off',
-        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off',
+        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
+        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        'Rapid Sever': 'Tranchage rapide',
-        'Atmospheric Displacement': 'Moulinet infernal',
-        'Double Sever': 'Double tranchage',
-        'Damage Up': 'Bonus de dégâts physiques',
-        'Atmospheric Compression': 'Écrasement',
-
-        '11-Tonze Swipe': 'Fauche de 11 tonz',
-        '111-Tonze Swing': 'Swing de 111 tonz',
-        'Disorienting Groan': 'Cri désorientant',
-        'Zoom': 'Charge',
+        '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': 'Taillade de 10 tonz',
+        '11-Tonze Swipe': 'Fauche de 11 tonz',
+        '(?<!1)111-Tonze Swing': 'Swing de 111 tonz',
         '1111-Tonze Swing': 'Swing de 1111 tonz',
-        'Feast': 'Festin',
-
-        'Sanctification': 'Sanctification',
-        'Unholy': 'Sombre miracle',
         'Aetherochemical Explosive': 'Bombe magismologique',
-        'The Educator': 'Disciplinaire',
         'Aetherochemical Mine': 'Mine magismologique',
+        'Atmospheric Compression': 'Écrasement',
+        'Atmospheric Displacement': 'Moulinet infernal',
+        'Damage Up': 'ダメージ上昇',
+        'Disorienting Groan': 'Cri désorientant',
+        'Double Sever': 'Double tranchage',
+        'Feast': 'Festin',
+        'Rapid Sever': 'Tranchage rapide',
+        'Sanctification': 'Sanctification',
+        'The Educator': 'Disciplinaire',
+        'Unholy': 'Sombre miracle',
+        'Zoom': 'Charge',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
-        'Phantom Ray': 'ファントムレイ',
+        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
         'Minotaur': 'ミノタウロス',
+        'Phantom Ray': 'ファントムレイ',
+        'Repository Node': '収蔵システム',
         'The Curator': 'キュレーター',
-
-        // FIXME
-        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off',
-        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off',
-        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off',
+        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
+        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        'Rapid Sever': '滅多斬り',
-        'Atmospheric Displacement': '剣風',
-        'Double Sever': '多重斬り',
-        'Damage Up': 'ダメージ上昇',
-        'Atmospheric Compression': '剣圧',
-
-        '11-Tonze Swipe': '11トンズ・スワイプ',
-        '111-Tonze Swing': '111トンズ・スイング',
-        'Disorienting Groan': '雄叫び',
-        'Zoom': 'ズームイン',
+        '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '10トンズ・スラッシュ',
+        '11-Tonze Swipe': '11トンズ・スワイプ',
+        '(?<!1)111-Tonze Swing': '111トンズ・スイング',
         '1111-Tonze Swing': '1111トンズ・スイング',
-        'Feast': 'フィースト',
-
-        'Sanctification': '聖別の光',
-        'Unholy': 'アンホーリー',
         'Aetherochemical Explosive': '魔科学爆弾',
-        'The Educator': 'エデュケーター',
         'Aetherochemical Mine': '魔科学地雷',
+        'Atmospheric Compression': '剣圧',
+        'Atmospheric Displacement': '剣風',
+        'Damage Up': 'ダメージ上昇',
+        'Disorienting Groan': '雄叫び',
+        'Double Sever': '多重斬り',
+        'Feast': 'フィースト',
+        'Rapid Sever': '滅多斬り',
+        'Sanctification': '聖別の光',
+        'The Educator': 'エデュケーター',
+        'Unholy': 'アンホーリー',
+        'Zoom': 'ズームイン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
+        'Minotaur': '弥诺陶洛斯',
+        'Phantom Ray': '幻影光',
+        'Repository Node': '收藏系统',
+        'The Curator': '博物总管',
+        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
+        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--reset--': '--reset--', // FIXME
+        '10-Tonze Slash': '十吨挥打',
+        '11-Tonze Swipe': '十一吨横扫',
+        '(?<!1)111-Tonze Swing': '百十一吨回转',
+        '1111-Tonze Swing': '千百十一吨回转',
+        'Aetherochemical Explosive': '魔科学炸弹',
+        'Aetherochemical Mine': '魔科学地雷',
+        'Atmospheric Compression': '剑压',
+        'Atmospheric Displacement': '剑风',
+        'Damage Up': 'ダメージ上昇',
+        'Disorienting Groan': '吼叫',
+        'Double Sever': '多重斩击',
+        'Feast': '飨宴',
+        'Rapid Sever': '急促斩击',
+        'Sanctification': '祝圣之光',
+        'The Educator': '管教',
+        'Unholy': '邪圣',
+        'Zoom': '放大',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
+        'Minotaur': '미노타우로스',
+        'Phantom Ray': '환영 광선',
+        'Repository Node': '소장 시스템',
+        'The Curator': '전시 책임자',
+        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
+        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
+        'is no longer sealed': 'is no longer sealed', // FIXME
+      },
+      'replaceText': {
+        '--reset--': '--reset--', // FIXME
+        '10-Tonze Slash': '10톤즈 베기',
+        '11-Tonze Swipe': '11톤즈 후려치기',
+        '(?<!1)111-Tonze Swing': '111톤즈 휘두르기',
+        '1111-Tonze Swing': '1111톤즈 휘두르기',
+        'Aetherochemical Explosive': '마과학 폭탄',
+        'Aetherochemical Mine': '마과학 지뢰',
+        'Atmospheric Compression': '검압',
+        'Atmospheric Displacement': '칼바람',
+        'Damage Up': 'ダメージ上昇',
+        'Disorienting Groan': '우렁찬 외침',
+        'Double Sever': '다중 베기',
+        'Feast': '사육제',
+        'Rapid Sever': '마구 베기',
+        'Sanctification': '축성의 빛',
+        'The Educator': '교육자',
+        'Unholy': '부정함',
+        'Zoom': '확대',
       },
     },
   ],
