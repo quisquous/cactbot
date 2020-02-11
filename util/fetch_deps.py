@@ -77,7 +77,11 @@ def main(update_hashes=False):
     for key, meta in deps.items():
         if not os.path.isdir(os.path.join(base, meta['dest'])):
             missing.add(key)
-        elif 'hash' in meta and key in old and cache[key].get('hash', (None, None))[1] != meta['hash'][1]:
+        elif (
+            'hash' in meta
+            and key in old
+            and cache[key].get('hash', (None, None))[1] != meta['hash'][1]
+        ):
             outdated.add(key)
 
     if os.path.isdir(dl_path):
@@ -143,7 +147,7 @@ def main(update_hashes=False):
                         if len(outpath) <= meta['strip']:
                             continue
 
-                        outpath = '/'.join(outpath[meta['strip']:])
+                        outpath = '/'.join(outpath[meta['strip'] :])
 
                     outpath = os.path.join(dest, outpath)
                     os.makedirs(os.path.dirname(outpath), exist_ok=True)
