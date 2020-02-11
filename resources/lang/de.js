@@ -79,10 +79,10 @@ class CactbotLanguageDe extends CactbotLanguage {
       return /:(\y{Name}) hat den Countdown abgebrochen/;
     };
     this.areaSealRegex = function() {
-      return /:Noch (\y{float}) Sekunden bis sich der Zugang zu (.*) schließt/;
+      return /:Noch (\y{float}) Sekunden, bis sich (.*) schließt/;
     };
     this.areaUnsealRegex = function() {
-      return /:Der Zugang zu (.*) öffnet sich erneut/;
+      return /:(.*) öffnet sich erneut/;
     };
   }
 }
