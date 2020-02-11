@@ -516,6 +516,7 @@
         'Ichthyology': '수생 생물 창조장',
         'Phytobiology': '초목 생물 창조장',
         'Phantomology': '환상 생물 창조장',
+        ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
         'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
