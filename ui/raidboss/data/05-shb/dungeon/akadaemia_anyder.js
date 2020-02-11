@@ -18,7 +18,7 @@
       infoText: {
         en: 'Mini Buster',
         de: 'Kleiner Tankbuster',
-        ko: '미니 버스터',
+        ko: '탱버',
       },
     },
     {
@@ -29,7 +29,7 @@
         en: 'Out of Front',
         de: 'Weg von Vorne',
         fr: 'Ne restez pas devant',
-        ko: '정면 회피',
+        ko: '정면 피하기',
       },
     },
   ],
@@ -269,6 +269,8 @@
         'Ichthyology': 'Ichthyologie',
         'Phytobiology': 'Phytobiologie',
         'Phantomology': 'Phantomologie',
+        ':(.*) will be sealed off': ':Noch 15 Sekunden, bis sich (der|die|das)( Zugang zu[rm])? $1 schließt',
+        'is no longer sealed': ' öffnet sich erneut',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -424,6 +426,8 @@
         'Ichthyology': '水棲生物創造場',
         'Phytobiology': '草木生物創造場',
         'Phantomology': '幻想生物創造場',
+        ':(.*) will be sealed off': ':$1の封鎖まであと',
+        'is no longer sealed': 'の封鎖が解かれた',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -512,6 +516,7 @@
         'Ichthyology': '수생 생물 창조장',
         'Phytobiology': '초목 생물 창조장',
         'Phantomology': '환상 생물 창조장',
+        'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         'attack': '공격',
