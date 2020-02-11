@@ -4,7 +4,9 @@ def _fetch(api_url, options):
     try:
         import requests
     except ImportError:
-        raise ImportError("FFlogs parsing requires the Requests module for python. Run the following to install it:\npython -m pip install requests")
+        raise ImportError(
+            "FFlogs parsing requires the Requests module for python. Run the following to install it:\npython -m pip install requests"
+        )
 
     response = requests.get(api_url, params=options)
 

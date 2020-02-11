@@ -21,7 +21,7 @@ def parse_event_time(event):
     """Parses the line's timestamp into a datetime object"""
     if isinstance(event, str):
         # TCPDecoder errors have a 251 at the start instead of a single hex byte
-	# But most just have two digits.
+        # But most just have two digits.
         if event[3] == '|':
             time = parse_time(event[4:23])
             time = time.replace(microsecond=int(event[24:30]))
@@ -106,7 +106,10 @@ def find_fights_in_file(file):
 
         # Build start/end time groupings
         if is_zone_seal(line_fields):
-            encounter_start_staging = [parse_event_time(line), line_fields[4].split(' will be sealed off')[0]]
+            encounter_start_staging = [
+                parse_event_time(line),
+                line_fields[4].split(' will be sealed off')[0],
+            ]
             encounter_in_progress = True
             continue
         elif not encounter_in_progress and is_line_attack(line_fields):
@@ -147,7 +150,9 @@ def choose_fight_times(args, encounters):
 
 # Timeline test/translate functions
 def clean_and_split_tl_line(line):
-    return re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split('#')[0])
+    return re.search(
+        r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split('#')[0]
+    )
 
 
 def is_tl_line_syncmatch(line):

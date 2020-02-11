@@ -199,9 +199,11 @@ def main(args):
             continue
 
         # Ignore lines by arguments
-        if (entry['ability_name'] in args.ignore_ability or
-                entry['ability_id'] in args.ignore_id or
-                entry['combatant'] in args.ignore_combatant):
+        if (
+            entry['ability_name'] in args.ignore_ability
+            or entry['ability_id'] in args.ignore_id
+            or entry['combatant'] in args.ignore_combatant
+        ):
             continue
 
         # Ignore aoe spam
@@ -251,7 +253,9 @@ def main(args):
         entry['position'] = timeline_position
 
         # Write the line
-        output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(**entry)
+        output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
+            **entry
+        )
 
         output.append(output_entry.encode('ascii', 'ignore').decode('utf8', 'ignore'))
 
@@ -272,30 +276,85 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Creates a timeline from a logged encounter",
         epilog=example_usage,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
 
     # Add main input vector, fflogs report or network log file
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-r', '--report', help="The ID of an FFLogs report")
-    group.add_argument('-f', '--file', type=argparse.FileType('r', encoding="utf8"), help="The path of the log file")
+    group.add_argument(
+        '-f',
+        '--file',
+        type=argparse.FileType('r', encoding="utf8"),
+        help="The path of the log file",
+    )
 
     # Report arguments
-    parser.add_argument('-k', '--key', help="The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser")
-    parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
+    parser.add_argument(
+        '-k',
+        '--key',
+        help="The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser",
+    )
+    parser.add_argument(
+        '-rf',
+        '--fight',
+        type=int,
+        help="Fight ID of the report to use. Defaults to longest in the report",
+    )
 
     # Log file arguments
-    parser.add_argument('-s', '--start', type=e_tools.timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
-    parser.add_argument('-e', '--end', type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
-    parser.add_argument('-lf', '--search_fights', nargs='?', const=-1, type=int, help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.")
+    parser.add_argument(
+        '-s',
+        '--start',
+        type=e_tools.timestamp_type,
+        help="Timestamp of the start, e.g. '12:34:56.789",
+    )
+    parser.add_argument(
+        '-e', '--end', type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789"
+    )
+    parser.add_argument(
+        '-lf',
+        '--search_fights',
+        nargs='?',
+        const=-1,
+        type=int,
+        help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.",
+    )
 
     # Filtering arguments
-    parser.add_argument('-ii', '--ignore-id', nargs='*', default=[], help="Ability IDs to ignore, e.g. 27EF")
-    parser.add_argument('-ia', '--ignore-ability', nargs='*', default=[], help="Ability names to ignore, e.g. Attack")
-    parser.add_argument('-ic', '--ignore-combatant', nargs='*', default=[], help="Combatant names to ignore, e.g. Aratama Soul")
-    parser.add_argument('-p', '--phase', nargs='*', default=[], help="Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000")
+    parser.add_argument(
+        '-ii', '--ignore-id', nargs='*', default=[], help="Ability IDs to ignore, e.g. 27EF"
+    )
+    parser.add_argument(
+        '-ia',
+        '--ignore-ability',
+        nargs='*',
+        default=[],
+        help="Ability names to ignore, e.g. Attack",
+    )
+    parser.add_argument(
+        '-ic',
+        '--ignore-combatant',
+        nargs='*',
+        default=[],
+        help="Combatant names to ignore, e.g. Aratama Soul",
+    )
+    parser.add_argument(
+        '-p',
+        '--phase',
+        nargs='*',
+        default=[],
+        help="Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000",
+    )
 
     # Aggregate arguments
-    parser.add_argument('-at', '--aggregate-threshold', type=float, default=2.0, help="Threshold to average events from multiple reports by")
+    parser.add_argument(
+        '-at',
+        '--aggregate-threshold',
+        type=float,
+        default=2.0,
+        help="Threshold to average events from multiple reports by",
+    )
 
     args = parser.parse_args()
 
@@ -305,7 +364,9 @@ if __name__ == "__main__":
     if args.file and not ((args.start and args.end) or args.search_fights):
         raise parser.error("Log file input requires start and end timestamps")
     if args.report and not args.key:
-        raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key")
+        raise parser.error(
+            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key"
+        )
 
     # Actually call the script
     if not args.report or len(args.report.split(',')) == 1:

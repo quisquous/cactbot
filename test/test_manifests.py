@@ -29,14 +29,18 @@ def main():
 
         # Error on any unlisted data files
         for file in [_ for _ in data_files if _ not in manifest_entries]:
-            print(f'Error: Found unlisted file {file} in directory {data_directory} that does not '
-                  f'exist within manifest.')
+            print(
+                f'Error: Found unlisted file {file} in directory {data_directory} that does not '
+                f'exist within manifest.'
+            )
             exit_status = 1
 
         # Error on any missing data files
         for file in [_ for _ in manifest_entries if _ not in data_files]:
-            print(f'Error: Entry for {file} found within manifest, but no corresponding file '
-                  f'found within directory {data_directory}.')
+            print(
+                f'Error: Entry for {file} found within manifest, but no corresponding file found '
+                f'within directory {data_directory}.'
+            )
             exit_status = 1
 
     return exit_status

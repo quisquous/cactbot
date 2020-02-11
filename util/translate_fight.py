@@ -197,17 +197,19 @@ def main(args):
     for lang in languages:
         if lang == default_language:
             continue
-        timeline_replace.append({
-            'locale': lang,
-            'replaceSync': dict(sorted(mob_replace[lang].items(), reverse=True)),
-            'replaceText': dict(sorted(ability_replace[lang].items(), reverse=True)),
-            # sort this last <_<
-            '~effectNames': dict(sorted(effect_replace[lang].items(), reverse=True)),
-        })
+        timeline_replace.append(
+            {
+                'locale': lang,
+                'replaceSync': dict(sorted(mob_replace[lang].items(), reverse=True)),
+                'replaceText': dict(sorted(ability_replace[lang].items(), reverse=True)),
+                # sort this last <_<
+                '~effectNames': dict(sorted(effect_replace[lang].items(), reverse=True)),
+            }
+        )
     output = {'timelineReplace': timeline_replace}
     output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=False)
     output_str = format_output_str(output_str)
-    
+
     # Write that out to the user.
     if args.output_file:
         with open(args.output_file, 'w', encoding='utf-8') as fp:
@@ -231,13 +233,23 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Creates a translation from an fflogs report",
         epilog=example_usage,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
 
     parser.add_argument('-r', '--report', help="The ID of an FFLogs report")
     parser.add_argument('-of', '--output-file', help="The file to write output in")
 
-    parser.add_argument('-k', '--key', help="The FFLogs API key (public) to use, from https://www.fflogs.com/accounts/changeuser")
-    parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
+    parser.add_argument(
+        '-k',
+        '--key',
+        help="The FFLogs API key (public) to use, from https://www.fflogs.com/accounts/changeuser",
+    )
+    parser.add_argument(
+        '-rf',
+        '--fight',
+        type=int,
+        help="Fight ID of the report to use. Defaults to longest in the report",
+    )
 
     args = parser.parse_args()
 
@@ -246,6 +258,8 @@ if __name__ == "__main__":
         sys.exit(0)
 
     if args.report and not args.key:
-        raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key")
+        raise parser.error(
+            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key"
+        )
 
     main(args)

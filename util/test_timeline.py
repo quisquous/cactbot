@@ -194,14 +194,21 @@ def get_type(event):
 
 def test_match(event, entry):
     # Normal case. Exclude begincast to avoid false positive match with cast events
-    if 'regex' in entry and re.search(entry['regex'], get_regex(event)) and not entry['special_type'] and get_type(event) != 'begincast':
+    if (
+        'regex' in entry
+        and re.search(entry['regex'], get_regex(event))
+        and not entry['special_type']
+        and get_type(event) != 'begincast'
+    ):
         return True
 
     # File parsing cases
     if isinstance(event, str) and entry['special_type']:
         # Begincast case
         if entry['special_type'] == 'begincast' and event.startswith(entry['special_line']):
-            begincast_match = re.search('\|{}\|{}\|'.format(entry['caster_name'], entry['cast_id']), event)
+            begincast_match = re.search(
+                '\|{}\|{}\|'.format(entry['caster_name'], entry['cast_id']), event
+            )
             if begincast_match:
                 return True
             else:
@@ -211,7 +218,9 @@ def test_match(event, entry):
         elif entry['special_type'] == 'applydebuff' and event.startswith(entry['special_line']):
             # Matching this format generically:
             # |Dadaluma Simulation|0.00|E0000000||4000AE96|Guardian
-            buff_match = re.search('\|{}\|([^\|]*\|){{4}}{}'.format(entry['buff_name'], entry['buff_target']), event)
+            buff_match = re.search(
+                '\|{}\|([^\|]*\|){{4}}{}'.format(entry['buff_name'], entry['buff_target']), event
+            )
             if buff_match:
                 return True
             else:
@@ -221,7 +230,9 @@ def test_match(event, entry):
         elif entry['special_type'] == 'battlelog' and event.startswith(entry['special_line']):
             # Matching this format generically:
             # 00|2019-01-12T18:08:14.0000000-05:00|0839||The Realm of the Machinists will be sealed off in 15 seconds!|
-            log_match = re.search('^00\|[^\|]*\|{}\|[^\|]*\|{}'.format(entry['logid'], entry['line']), event)
+            log_match = re.search(
+                '^00\|[^\|]*\|{}\|[^\|]*\|{}'.format(entry['logid'], entry['line']), event
+            )
             if log_match:
                 return True
             else:
@@ -241,14 +252,18 @@ def test_match(event, entry):
     elif isinstance(event, dict) and entry['special_type'] == event['type']:
         # Begincast case
         if event['type'] == 'begincast':
-            if re.search(entry['cast_id'], event['ability_id']) and re.search(entry['caster_name'], event['combatant']):
+            if re.search(entry['cast_id'], event['ability_id']) and re.search(
+                entry['caster_name'], event['combatant']
+            ):
                 return True
             else:
                 return False
 
         # Buff case
         elif event['type'] == 'applydebuff':
-            if re.search(entry['buff_target'], event['combatant']) and re.search(entry['buff_name'], event['ability_name']):
+            if re.search(entry['buff_target'], event['combatant']) and re.search(
+                entry['buff_name'], event['ability_name']
+            ):
                 return True
             else:
                 return False
@@ -264,12 +279,14 @@ def check_event(event, timelist, state):
     else:
         event_time = e_tools.parse_event_time(event)
         if event_time > state['last_sync_timestamp']:
-             time_progress_delta = e_tools.parse_event_time(event) - state['last_sync_timestamp']
-             time_progress_seconds = time_progress_delta.seconds + time_progress_delta.microseconds / 1000000
+            time_progress_delta = e_tools.parse_event_time(event) - state['last_sync_timestamp']
+            time_progress_seconds = (
+                time_progress_delta.seconds + time_progress_delta.microseconds / 1000000
+            )
         else:
-             # battle logs have out of order parsed times because their
-             # microseconds are zero.  Just pretend this is 0.
-             time_progress_seconds = 0
+            # battle logs have out of order parsed times because their
+            # microseconds are zero.  Just pretend this is 0.
+            time_progress_seconds = 0
 
     # Get where the timeline would be at this time
     timeline_position = state['last_sync_position'] + time_progress_seconds
@@ -277,11 +294,7 @@ def check_event(event, timelist, state):
     # Search timelist for matches
     for entry in timelist:
         match = test_match(event, entry)
-        if (
-                match and
-                timeline_position >= entry['start'] and
-                timeline_position <= entry['end']
-        ):
+        if match and timeline_position >= entry['start'] and timeline_position <= entry['end']:
             # Flag with current branch
             if state['last_entry'] == entry and time_progress_seconds < 2.5:
                 continue
@@ -291,7 +304,11 @@ def check_event(event, timelist, state):
 
             # Check the timeline drift for anomolous timings
             drift = entry['time'] - timeline_position
-            print("{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(timeline_position, entry['time'], entry['label'], drift))
+            print(
+                "{:.3f}: Matched entry: {} {} ({:+.3f}s)".format(
+                    timeline_position, entry['time'], entry['label'], drift
+                )
+            )
 
             if time_progress_seconds > 30:
                 print("    Warning: {:.3f}s since last sync".format(time_progress_seconds))
@@ -300,15 +317,23 @@ def check_event(event, timelist, state):
             if not state['timeline_stopped']:
                 for other_entry in timelist:
                     if (
-                            'regex' in other_entry and
-                            other_entry['time'] > state['last_jump'] and
-                            other_entry['time'] < entry['time'] and
-                            other_entry['branch'] < entry['branch']
+                        'regex' in other_entry
+                        and other_entry['time'] > state['last_jump']
+                        and other_entry['time'] < entry['time']
+                        and other_entry['branch'] < entry['branch']
                     ):
                         if 'last' in other_entry and drift < 999:
-                            print("    Missed sync: {} at {} (last seen at {})".format(other_entry['label'], other_entry['time'], other_entry['last']))
+                            print(
+                                "    Missed sync: {} at {} (last seen at {})".format(
+                                    other_entry['label'], other_entry['time'], other_entry['last']
+                                )
+                            )
                         elif drift < 999:
-                            print("    Missed sync: {} at {}".format(other_entry['label'], other_entry['time']))
+                            print(
+                                "    Missed sync: {} at {}".format(
+                                    other_entry['label'], other_entry['time']
+                                )
+                            )
                         # If this is a sync from a large window, ignore missed syncs
                         other_entry['branch'] = state['branch']
 
@@ -427,12 +452,12 @@ def timeline_file(filename):
     # Allow for just specifying the base filename, e.g. "o12s.txt" or "o12s"
     if not os.path.exists(filename):
         for root, _, files in os.walk(data_path):
-          if filename in files:
-            filename = os.path.join(root, filename)
-            break
-          if '%s.txt' % filename in files:
-            filename = os.path.join(root, '%s.txt' % filename)
-            break
+            if filename in files:
+                filename = os.path.join(root, filename)
+                break
+            if '%s.txt' % filename in files:
+                filename = os.path.join(root, '%s.txt' % filename)
+                break
 
     path = Path(filename)
     if not path.exists():
@@ -453,24 +478,58 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Creates a timeline from a logged encounter",
         epilog=example_usage,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
 
     # Add main input vector, fflogs report or network log file
     group = parser.add_mutually_exclusive_group(required=True)
     group.add_argument('-r', '--report', help="The ID of an FFLogs report")
-    group.add_argument('-f', '--file', type=argparse.FileType('r', encoding="utf8"), help="The path of the log file")
+    group.add_argument(
+        '-f',
+        '--file',
+        type=argparse.FileType('r', encoding="utf8"),
+        help="The path of the log file",
+    )
 
     # Report arguments
-    parser.add_argument('-k', '--key', help="The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser")
-    parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
+    parser.add_argument(
+        '-k',
+        '--key',
+        help="The FFLogs API key to use, from https://www.fflogs.com/accounts/changeuser",
+    )
+    parser.add_argument(
+        '-rf',
+        '--fight',
+        type=int,
+        help="Fight ID of the report to use. Defaults to longest in the report",
+    )
 
     # Log file arguments
-    parser.add_argument('-s', '--start', type=e_tools.timestamp_type, help="Timestamp of the start, e.g. '12:34:56.789")
-    parser.add_argument('-e', '--end', type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789")
-    parser.add_argument('-lf', '--search_fights', nargs='?', const=-1, type=int, help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.")
+    parser.add_argument(
+        '-s',
+        '--start',
+        type=e_tools.timestamp_type,
+        help="Timestamp of the start, e.g. '12:34:56.789",
+    )
+    parser.add_argument(
+        '-e', '--end', type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789"
+    )
+    parser.add_argument(
+        '-lf',
+        '--search_fights',
+        nargs='?',
+        const=-1,
+        type=int,
+        help="Encounter in log to use, e.g. '1'. If no number is specified, returns a list of encounters.",
+    )
 
     # Filtering arguments
-    parser.add_argument('-t', '--timeline', type=timeline_file, help="The filename of the timeline to test against, e.g. ultima_weapon_ultimate")
+    parser.add_argument(
+        '-t',
+        '--timeline',
+        type=timeline_file,
+        help="The filename of the timeline to test against, e.g. ultima_weapon_ultimate",
+    )
 
     args = parser.parse_args()
 
@@ -482,7 +541,9 @@ if __name__ == "__main__":
         raise parser.error("Log file input requires start and end timestamps")
 
     if args.report and not args.key:
-        raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the Public key")
+        raise parser.error(
+            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/profile and use the Public key"
+        )
 
     # Actually call the script
     if args.search_fights and args.search_fights == -1:
