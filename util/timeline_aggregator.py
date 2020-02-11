@@ -31,7 +31,7 @@ def parse_timeline_events(timeline):
             continue
 
         # Remove trailing comment, if any
-        clean_line = line.split('#')[0]
+        clean_line = line.split("#")[0]
 
         # Split the line into sections
         match = re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>.+)"\s+(?P<options>.+)', clean_line)
@@ -56,7 +56,7 @@ def output_to_timeline(timeline_event_map):
     timeline_events = set()
     for key, values in timeline_event_map.items():
         for value in values:
-            timeline_events.add('{time} {event}'.format(time=value, event=key))
+            timeline_events.add("{time} {event}".format(time=value, event=key))
     return sorted(list(timeline_events), key=lambda s: float(s.split()[0]))
 
 

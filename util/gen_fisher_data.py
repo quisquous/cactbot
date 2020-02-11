@@ -9,11 +9,11 @@ import requests
 import sys
 import argparse
 
-locales = ['de', 'en', 'fr', 'ja']
+locales = ["de", "en", "fr", "ja"]
 tackle_id = 30
-base = 'https://xivapi.com/'
+base = "https://xivapi.com/"
 fishTrackerBase = (
-    'https://raw.githubusercontent.com/icykoneko/ff14-fish-tracker-app/master/private/fishData.yaml'
+    "https://raw.githubusercontent.com/icykoneko/ff14-fish-tracker-app/master/private/fishData.yaml"
 )
 
 # First argument is the API key
@@ -24,59 +24,59 @@ else:
 
 
 def cleanup_german(word):
-    word = word.replace('[A]', 'er')
-    word = word.replace('[p]', '')
-    word = word.replace('[t]', 'der')
+    word = word.replace("[A]", "er")
+    word = word.replace("[p]", "")
+    word = word.replace("[t]", "der")
 
-    if word.find('[a]') == -1:
+    if word.find("[a]") == -1:
         return [word]
 
     # [a] is complicated, and can mean different things in different contexts.
     # Just cover all our bases here.
-    endings = ['e', 'en', 'es', 'er']
-    return list(map(lambda x: word.replace('[a]', x), endings))
+    endings = ["e", "en", "es", "er"]
+    return list(map(lambda x: word.replace("[a]", x), endings))
 
 
 def xivapi(content, filters={}):
     """Fetches content columns from XIVAPI"""
     page = 1
-    url = f'{base}{content}'
+    url = f"{base}{content}"
     by_id = False
 
     # IDs are just part of the url path
-    if 'id' in filters:
-        url += '/' + str(filters['id'])
+    if "id" in filters:
+        url += "/" + str(filters["id"])
         by_id = True
-        del filters['id']
+        del filters["id"]
 
     # Add the key
-    url += '?'
+    url += "?"
     if xivapi_key:
-        url += f'key={xivapi_key}'
+        url += f"key={xivapi_key}"
 
     # Filters are added onto the URL as a query string
     if len(filters):
         for key, value in filters.items():
-            url += '&'
+            url += "&"
 
             if type(value) is list:
                 # Collapse lists into comma-seperated strings
                 url += f'{key}={",".join(str(x) for x in value)}'
             else:
-                url += f'{key}={value}'
+                url += f"{key}={value}"
 
-    response = requests.get(f'{url}&page={page}').json()
+    response = requests.get(f"{url}&page={page}").json()
 
     if not by_id:
-        results = response['Results']
+        results = response["Results"]
     else:
         # Searches by ID do not have pagination separate from results
         results = response
 
     # Loop requests until the page is over
-    while not by_id and response['Pagination']['Page'] != response['Pagination']['PageTotal']:
+    while not by_id and response["Pagination"]["Page"] != response["Pagination"]["PageTotal"]:
         page += 1
-        response = requests.get(f'{url}&page={page}')
+        response = requests.get(f"{url}&page={page}")
         if response.status_code != 200:
             print(response.status_code)
             print(response.headers)
@@ -85,7 +85,7 @@ def xivapi(content, filters={}):
 
         response = response.json()
 
-        results += response['Results']
+        results += response["Results"]
 
     return results
 
@@ -104,19 +104,19 @@ def fish_tracker():
 def get_fish_data():
     """Returns dictionaries for places, fish, and place->fish mapping"""
     # Generate the columns needed
-    columns = ['ID', 'PlaceName.ID']
+    columns = ["ID", "PlaceName.ID"]
 
     for locale in locales:
-        columns.append(f'PlaceName.Name_{locale}')
-        columns.append(f'PlaceName.NameNoArticle_{locale}')
+        columns.append(f"PlaceName.Name_{locale}")
+        columns.append(f"PlaceName.NameNoArticle_{locale}")
 
     for i in range(10):
         for locale in locales:
-            columns.append(f'Item{i}.ID')
-            columns.append(f'Item{i}.Singular_{locale}')
-            columns.append(f'Item{i}.Plural_{locale}')
+            columns.append(f"Item{i}.ID")
+            columns.append(f"Item{i}.Singular_{locale}")
+            columns.append(f"Item{i}.Plural_{locale}")
 
-    results = xivapi('FishingSpot', {'columns': columns})
+    results = xivapi("FishingSpot", {"columns": columns})
 
     # Build the data dicts from results
     places = {}
@@ -129,35 +129,35 @@ def get_fish_data():
 
     for result in results:
         # Skip spots without place names
-        if not result['PlaceName']['Name_en']:
+        if not result["PlaceName"]["Name_en"]:
             continue
 
         for locale in locales:
             # Occasionally, PlaceName data will have null or empty strings in the NameNoArticle field
             # In these instances, I believe it simply defaults to the Name attribute
             name = (
-                result['PlaceName'][f'NameNoArticle_{locale}']
-                or result['PlaceName'][f'Name_{locale}']
+                result["PlaceName"][f"NameNoArticle_{locale}"]
+                or result["PlaceName"][f"Name_{locale}"]
             )
-            place_id = result['PlaceName']['ID']
+            place_id = result["PlaceName"]["ID"]
             places[locale][place_id] = name
 
             id_list = []
 
             for item in range(10):
-                fish = result[f'Item{item}']
+                fish = result[f"Item{item}"]
 
                 # Skip if no name
-                if not fish[f'Singular_{locale}']:
+                if not fish[f"Singular_{locale}"]:
                     continue
 
-                if locale == 'de':
-                    fish['Singular_de'] = cleanup_german(fish['Singular_de'])
-                    fish['Plural_de'] = cleanup_german(fish['Plural_de'])
-                    flist = fish['Singular_de']
-                    flist.extend(fish['Plural_de'])
+                if locale == "de":
+                    fish["Singular_de"] = cleanup_german(fish["Singular_de"])
+                    fish["Plural_de"] = cleanup_german(fish["Plural_de"])
+                    flist = fish["Singular_de"]
+                    flist.extend(fish["Plural_de"])
                 else:
-                    flist = [fish[f'Singular_{locale}'], fish[f'Plural_{locale}']]
+                    flist = [fish[f"Singular_{locale}"], fish[f"Plural_{locale}"]]
 
                 # uniq
                 flist = [x for idx, x in enumerate(flist) if idx == flist.index(x) and x]
@@ -165,10 +165,10 @@ def get_fish_data():
                 if len(flist) == 1:
                     flist = flist[0]
 
-                fishes[locale][fish['ID']] = flist
+                fishes[locale][fish["ID"]] = flist
 
                 # Add fish to id list
-                id_list.append(fish['ID'])
+                id_list.append(fish["ID"])
 
             # Set IDs to the place ID if it's new or bigger
             if (place_id not in placefish and len(id_list)) or (
@@ -182,14 +182,14 @@ def get_fish_data():
 def get_tackle():
     # Also get fishing tackle
     response = xivapi(
-        'ItemSearchCategory',
-        {'id': tackle_id, 'columns': ['GameContentLinks.Item.ItemSearchCategory']},
+        "ItemSearchCategory",
+        {"id": tackle_id, "columns": ["GameContentLinks.Item.ItemSearchCategory"]},
     )
 
-    item_ids = response['GameContentLinks']['Item']['ItemSearchCategory']
-    columns = ['ID'] + [f'Singular_{locale}' for locale in locales]
+    item_ids = response["GameContentLinks"]["Item"]["ItemSearchCategory"]
+    columns = ["ID"] + [f"Singular_{locale}" for locale in locales]
 
-    results = xivapi('Item', {'columns': columns, 'ids': item_ids})
+    results = xivapi("Item", {"columns": columns, "ids": item_ids})
 
     tackle = {}
 
@@ -197,9 +197,9 @@ def get_tackle():
         locale_tackle = {}
 
         for result in results:
-            if locale == 'de':
-                result['Singular_de'] = cleanup_german(result['Singular_de'])
-            locale_tackle[result['ID']] = result[f'Singular_{locale}']
+            if locale == "de":
+                result["Singular_de"] = cleanup_german(result["Singular_de"])
+            locale_tackle[result["ID"]] = result[f"Singular_{locale}"]
 
         tackle[locale] = locale_tackle
 
@@ -207,7 +207,7 @@ def get_tackle():
 
 
 def find_fish_by_name(fishes, name):
-    for id, value in fishes['en'].items():
+    for id, value in fishes["en"].items():
         if type(value) is list:
             for actualName in value:
                 if actualName == name:
@@ -221,16 +221,16 @@ def get_tugs(fishes):
     tugs = {}
     data = fish_tracker()
     for fish in data:
-        if 'tug' in fish and fish['tug']:
-            id = find_fish_by_name(fishes, fish['name'].lower())
+        if "tug" in fish and fish["tug"]:
+            id = find_fish_by_name(fishes, fish["name"].lower())
             tug = None
-            tug_name = fish['tug'].casefold()
+            tug_name = fish["tug"].casefold()
 
-            if tug_name == 'light':
+            if tug_name == "light":
                 tug = 1
-            elif tug_name == 'medium':
+            elif tug_name == "medium":
                 tug = 2
-            elif tug_name == 'heavy' or tug_name == 'legendary':
+            elif tug_name == "heavy" or tug_name == "legendary":
                 tug = 3
             else:
                 print("unknown tug type: " + tug_name)
@@ -243,10 +243,10 @@ def get_tugs(fishes):
 
 def append_special_place_names(places):
     # handle special german casting names
-    fishing_places = places['de'].keys()
+    fishing_places = places["de"].keys()
 
     coin = coinach.CoinachReader()
-    reader = csv.reader(coin.exd('PlaceName', lang='de'))
+    reader = csv.reader(coin.exd("PlaceName", lang="de"))
     next(reader)
     next(reader)
     next(reader)
@@ -260,20 +260,20 @@ def append_special_place_names(places):
             continue
         if place not in fishing_places:
             continue
-        m = re.search(r'<Case\(2\)>([^<]*)<\/Case>', row[xml_idx])
+        m = re.search(r"<Case\(2\)>([^<]*)<\/Case>", row[xml_idx])
         if not m:
             continue
 
-        if isinstance(places['de'][place], list):
-            places['de'][place].append(m.group(1))
+        if isinstance(places["de"][place], list):
+            places["de"][place].append(m.group(1))
         else:
-            places['de'][place] = [places['de'][place], m.group(1)]
+            places["de"][place] = [places["de"][place], m.group(1)]
 
 
 def get_cn_data():
     global locales, base
 
-    locales = ['chs', 'en']
+    locales = ["chs", "en"]
     base = "https://cafemaker.wakingsands.com/"
 
     places, fishes, _ = get_fish_data()
@@ -302,13 +302,13 @@ if __name__ == "__main__":
     fishes.update({"cn": cn_fishes["chs"]})
 
     data = {
-        'tackle': tackle,
-        'places': places,
-        'fish': fishes,
-        'placefish': placefish,
-        'tugs': tugs,
+        "tackle": tackle,
+        "places": places,
+        "fish": fishes,
+        "placefish": placefish,
+        "tugs": tugs,
     }
 
-    filename = Path(__file__).resolve().parent.parent / 'ui' / 'fisher' / 'static-data.js'
+    filename = Path(__file__).resolve().parent.parent / "ui" / "fisher" / "static-data.js"
     writer = coinach.CoinachWriter()
-    writer.write(filename, os.path.basename(os.path.abspath(__file__)), 'gFisherData', data)
+    writer.write(filename, os.path.basename(os.path.abspath(__file__)), "gFisherData", data)
