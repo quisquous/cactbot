@@ -61,6 +61,7 @@ hideall "--sync--"
 # -p 3E16:508.5 -ii 3E11 3E14
 500.0 "--sync--" sync /00:0839:Phytobiology will be sealed off/ window 500,0
 505.0 "--sync--" sync /:Marquis Morbol:3E14:/ window 505,5
+508.0 "--sync--" sync /:Marquis Morbol:3E16:/ window 508,5
 508.5 "Lash" sync /:Marquis Morbol:3E16:/
 516.1 "Sap Shower" sync /:Marquis Morbol:3E15:/
 524.7 "Arbor Storm" sync /:Marquis Morbol:3E17:/
