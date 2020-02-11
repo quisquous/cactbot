@@ -14,6 +14,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -24,10 +25,12 @@
         if (data.role == 'tank') {
           return {
             en: 'Tank cleave on YOU',
+            fr: 'Tank cleave sur VOUS',
           };
         }
         return {
           en: 'Avoid tank cleave',
+          fr: 'Evitez le cleave sur le tank',
         };
       },
     },
@@ -40,6 +43,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
   ],
@@ -56,11 +60,13 @@
         if (data.me == matches.target) {
           return {
             en: 'Tank buster on YOU',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.shortName(matches.target),
+            fr: 'Tankbuster sur ' + data.shortName(matches.target),
           };
         }
       },
@@ -75,6 +81,7 @@
       regexKo: Regexes.startsUsing({ id: 'F83', source: '미노타우로스', capture: false }),
       infoText: {
         en: 'Out of front',
+        fr: 'Ne restez pas devant',
       },
     },
     {
@@ -87,6 +94,7 @@
       regexKo: Regexes.startsUsing({ id: 'F81', source: '미노타우로스', capture: false }),
       infoText: {
         en: 'Out of front',
+        fr: 'Ne restez pas devant',
       },
     },
     {
@@ -99,6 +107,7 @@
       regexKo: Regexes.startsUsing({ id: 'F82', source: '미노타우로스', capture: false }),
       infoText: {
         en: 'Get out',
+        fr: 'Ecartez vous du CaC',
       },
     },
     {
@@ -111,6 +120,7 @@
       regexKo: Regexes.startsUsing({ id: 'F87', source: '미노타우로스', capture: false }),
       alertText: {
         en: 'Use a cage',
+        fr: 'Utilisez une cage',
       },
     },
     {
@@ -126,6 +136,7 @@
       },
       infoText: {
         en: 'Cleanse bomb',
+        fr: 'Guérissez la bombe',
       },
     },
     {
@@ -139,6 +150,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Kill adds',
+        fr: 'Tuez les adds',
       },
     },
   ],
@@ -179,17 +191,17 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
+        'Exhibit level III will be sealed off': 'Fermeture du secteur d\'exposition III',
         'Minotaur': 'minotaure',
         'Phantom Ray': 'rayon fantomatique',
         'Repository Node': 'sphère de dépôt',
         'The Curator': 'Conservateur',
-        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
-        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'The high-level incubation bay will be sealed off': 'Fermeture de la chambre d\'incubation chimérique',
+        'The reality augmentation bay will be sealed off': 'fermeture de la salle de distorsion de la réalité',
+        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
+        '--reset--': '-- Reset --',
         '10-Tonze Slash': 'Taillade de 10 tonz',
         '11-Tonze Swipe': 'Fauche de 11 tonz',
         '(?<!1)111-Tonze Swing': 'Swing de 111 tonz',

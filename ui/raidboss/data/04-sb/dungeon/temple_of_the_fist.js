@@ -14,6 +14,7 @@
       },
       infoText: {
         en: 'Tank buster',
+        fr: 'Tank buster',
       },
     },
     {
@@ -25,6 +26,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
   ],
@@ -42,6 +44,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -57,6 +60,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -71,11 +75,13 @@
         if (data.me == matches.target) {
           return {
             en: 'Tank buster on YOU',
+            fr: 'Tankbuster sur VOUS',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Tank buster on ' + data.shortName(matches.target),
+            fr: 'Tankbuster sur ' + data.shortName(matches.target),
           };
         }
       },
@@ -88,6 +94,7 @@
       },
       infoText: {
         en: 'Stand in blue',
+        fr: 'Allez dans le bleu',
       },
     },
     {
@@ -98,6 +105,7 @@
       },
       infoText: {
         en: 'Stand in red',
+        fr: 'Allez dans le rouge',
       },
     },
     {
@@ -165,6 +173,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -181,6 +190,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Heal ' + data.shortName(matches.target) + ' soon',
+          fr: 'Soignez ' + data.shortName(matches.target) + ' bientôt',
         };
       },
     },
@@ -194,6 +204,7 @@
       regexKo: Regexes.ability({ id: '1FE9', source: '쌍표범 이본', capture: false }),
       infoText: {
         en: 'Avoid floating heads',
+        fr: 'Evitez les têtes',
       },
     },
     {
@@ -206,6 +217,7 @@
       regexKo: Regexes.startsUsing({ id: '1FED', source: '쌍표범 이본', capture: false }),
       infoText: {
         en: 'Away from marker',
+        fr: 'Loin de la marque',
       },
     },
     {
@@ -220,10 +232,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Stack marker on YOU',
+            fr: 'Package sur VOUS',
           };
         }
         return {
-          en: 'Stack on ' +data.shortName(matches.target),
+          en: 'Stack on ' + data.shortName(matches.target),
+          fr: 'Package sur ' + data.shortName(matches.target),
         };
       },
     },
@@ -270,22 +284,22 @@
       'locale': 'fr',
       'replaceSync': {
         'Arbuda': 'Arbuda',
-        'Coeurl Smriti': 'coeurl smriti',
-        'Coeurl Sruti': 'coeurl sruti',
-        'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
-        'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
+        'Coeurl Smriti': 'Coeurl smriti',
+        'Coeurl Sruti': 'Coeurl sruti',
+        'Guidance will be sealed off': 'Fermeture de la Conduite',
+        'Harmony will be sealed off': 'Fermeture de l\'Harmonie',
         'Ivon Coeurlfist': 'Ivon le Coeurl',
-        'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'Tourmaline Pond will be sealed off': 'Fermeture de l\'étang de Tourmaline',
+        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
-        '--Smriti Appears--': '--Smriti Appears--', // FIXME
+        '--Smriti Appears--': '-- Apparition de Smriti --',
         'Basic Instinct': 'Instinct profond',
         'Cardinal Shift': 'Rotation cardinale',
         'Coeurl Whisper': 'Murmure du Coeurl',
         'Electric Burst': 'Salve électrique',
         'Fourfold Shear': 'Quadruple cisaille',
-        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
+        'Front/Back\\?Sides\\?': 'Devant/Derrière\\?Côtés\\?',
         'Furious Fists': 'Poings furieux',
         'Heat Lightning': 'Éclair de chaleur',
         'Hellseal': 'Sceau infernal',
