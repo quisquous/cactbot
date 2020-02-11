@@ -12,9 +12,9 @@ def adjust_lines(lines, adjust):
         match = re.match(time_re, line)
         if match:
             time = float(match.group(1)) + adjust
-            print(re.sub(first_num_re, "%.1f" % time, line, 1), end='')
+            print(re.sub(first_num_re, "%.1f" % time, line, 1), end="")
         else:
-            print(line, end='')
+            print(line, end="")
 
 
 def main():
@@ -22,13 +22,13 @@ def main():
         description="A utility to uniformly adjust times in an act timeline file"
     )
     parser.add_argument(
-        '--file',
+        "--file",
         required=True,
-        type=argparse.FileType('r', encoding="utf8"),
+        type=argparse.FileType("r", encoding="utf8"),
         help="The timeline file to adjust times in",
     )
     parser.add_argument(
-        '--adjust', required=True, type=float, help="The amount of time to adjust each entry by"
+        "--adjust", required=True, type=float, help="The amount of time to adjust each entry by"
     )
 
     args = parser.parse_args()

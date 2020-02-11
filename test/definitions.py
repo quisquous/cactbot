@@ -7,10 +7,10 @@ from pathlib import Path
 PROJECT_ROOT_DIRECTORY = Path(__file__).parent.parent
 
 # Filesystem variables
-DATA_DIRECTORY = 'data'
-TEST_DIRECTORY = 'test'
-UI_DIRECTORY = 'ui'
-MANIFEST_FILENAME = 'manifest.txt'
+DATA_DIRECTORY = "data"
+TEST_DIRECTORY = "test"
+UI_DIRECTORY = "ui"
+MANIFEST_FILENAME = "manifest.txt"
 
 
 class CactbotModule(Enum):

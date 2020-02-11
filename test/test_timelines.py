@@ -6,7 +6,7 @@ import subprocess
 import sys
 from definitions import CactbotModule, DATA_DIRECTORY, PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
 
-TIMELINE_DIRECTORY = 'timeline'
+TIMELINE_DIRECTORY = "timeline"
 
 TIMELINE_TEST_DIRECTORY = Path(PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY, TIMELINE_DIRECTORY)
 
@@ -23,17 +23,17 @@ def main():
     """
     exit_status = 0
 
-    for filepath in Path(CactbotModule.RAIDBOSS.directory(), DATA_DIRECTORY).glob('**/*.txt'):
+    for filepath in Path(CactbotModule.RAIDBOSS.directory(), DATA_DIRECTORY).glob("**/*.txt"):
         # Filter manifest or README files from the result set
-        if filepath.stem in ['manifest', 'README']:
+        if filepath.stem in ["manifest", "README"]:
             continue
 
-        regex = re.compile(r'^  timelineFile: \'(?P<timelineFile>.*)\',$')
+        regex = re.compile(r"^  timelineFile: \'(?P<timelineFile>.*)\',$")
 
         # Take the existing .txt file and inspect the corresponding .js file with the same name
         try:
-            trigger_filename = filepath.with_suffix('.js')
-            for line in Path(trigger_filename).read_text(encoding='utf-8').splitlines():
+            trigger_filename = filepath.with_suffix(".js")
+            for line in Path(trigger_filename).read_text(encoding="utf-8").splitlines():
                 match = regex.search(line)
                 if match:
                     break
@@ -41,14 +41,14 @@ def main():
             # No timelineFile attribute found within trigger file
             if not match:
                 print(
-                    f'Error: Trigger file {trigger_filename} has no timelineFile attribute '
-                    f'defined.'
+                    f"Error: Trigger file {trigger_filename} has no timelineFile attribute "
+                    f"defined."
                 )
                 exit_status = 1
                 continue
 
             # Found an unexpected timelineFile in the trigger file definition
-            if match['timelineFile'] != filepath.name:
+            if match["timelineFile"] != filepath.name:
                 print(
                     f"Error: Trigger file {trigger_filename} has `triggerFile: '{match[1]}'`, but "
                     f"was expecting `triggerFile: '{filepath.name}'`."
@@ -57,16 +57,16 @@ def main():
 
         # Timeline file has no trigger file equivalent
         except FileNotFoundError:
-            print(f'Error: Timeline file {filepath} found without matching trigger file.')
+            print(f"Error: Timeline file {filepath} found without matching trigger file.")
             exit_status = 1
 
         # Run individual timeline tests
         for test_file in TIMELINE_TEST_DIRECTORY.iterdir():
-            exit_status |= subprocess.call(['node', str(test_file), str(filepath)])
+            exit_status |= subprocess.call(["node", str(test_file), str(filepath)])
 
     return exit_status
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     EXIT_STATUS = main()
     sys.exit(EXIT_STATUS)

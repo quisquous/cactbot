@@ -7,14 +7,14 @@ import argparse
 
 def timestamp_type(arg):
     """Defines the timestamp input format"""
-    if arg and re.match(r'\d{2}:\d{2}:\d{2}\.\d{3}', arg) is None:
+    if arg and re.match(r"\d{2}:\d{2}:\d{2}\.\d{3}", arg) is None:
         raise argparse.ArgumentTypeError("Invalid timestamp format. Use the format 12:34:56.789")
     return arg
 
 
 def parse_time(timestamp):
     """Parses a timestamp into a datetime object"""
-    return datetime.strptime(timestamp, '%Y-%m-%dT%H:%M:%S')
+    return datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S")
 
 
 def parse_event_time(event):
@@ -22,7 +22,7 @@ def parse_event_time(event):
     if isinstance(event, str):
         # TCPDecoder errors have a 251 at the start instead of a single hex byte
         # But most just have two digits.
-        if event[3] == '|':
+        if event[3] == "|":
             time = parse_time(event[4:23])
             time = time.replace(microsecond=int(event[24:30]))
         else:
@@ -30,14 +30,14 @@ def parse_event_time(event):
             time = time.replace(microsecond=int(event[23:29]))
         return time
     elif isinstance(event, dict):
-        return event['time']
+        return event["time"]
 
 
 def str_time(timestamp):
     """
     Parses a datetime object into a string for log comparisons.
     Trims microseconds to milliseconds."""
-    return timestamp.strftime('%H:%M:%S.%f')[:-3]
+    return timestamp.strftime("%H:%M:%S.%f")[:-3]
 
 
 def is_line_end(line_fields):
@@ -47,34 +47,34 @@ def is_line_end(line_fields):
 
 
 def is_zone_seal(line_fields):
-    return line_fields[4].endswith('sealed off in 15 seconds!')
+    return line_fields[4].endswith("sealed off in 15 seconds!")
 
 
 def is_zone_unseal(line_fields):
-    return line_fields[4].endswith('no longer sealed!')
+    return line_fields[4].endswith("no longer sealed!")
 
 
 def is_line_attack(line_fields):
     # We want only situations where a friendly attacks an enemy
-    return line_fields[0] in ('21', '22') and line_fields[6].startswith('4')
+    return line_fields[0] in ("21", "22") and line_fields[6].startswith("4")
 
 
 def is_limit_reset(line_fields):
-    return line_fields[4] == 'The limit gauge resets!'
+    return line_fields[4] == "The limit gauge resets!"
 
 
 def is_instance_begun(line_fields):
-    return line_fields[4].endswith('has begun.')
+    return line_fields[4].endswith("has begun.")
 
 
 def is_instance_ended(line_fields):
-    return line_fields[4].endswith('has ended.')
+    return line_fields[4].endswith("has ended.")
 
 
 def is_encounter_end_code(line_fields):
-    if not line_fields[0] == '33':
+    if not line_fields[0] == "33":
         return False
-    return line_fields[3] in ('40000010', '40000003')
+    return line_fields[3] in ("40000010", "40000003")
 
 
 def find_fights_in_file(file):
@@ -86,14 +86,14 @@ def find_fights_in_file(file):
     encounter_sets = []
     for line in file:
         # Ignore log lines that aren't game status info
-        if line[37:41] != '0839' and line[0:2] not in ['00', '01', '21', '22', '33']:
+        if line[37:41] != "0839" and line[0:2] not in ["00", "01", "21", "22", "33"]:
             continue
-        line_fields = line.split('|')
+        line_fields = line.split("|")
 
         # Update current instance for returning alongside timestamps
         # Don't update if we're not entering a combat instance
         if is_instance_begun(line_fields):
-            current_instance = line_fields[4].split(' has begun')[0]
+            current_instance = line_fields[4].split(" has begun")[0]
             continue
         if is_instance_ended(line_fields):
             current_instance = None
@@ -108,7 +108,7 @@ def find_fights_in_file(file):
         if is_zone_seal(line_fields):
             encounter_start_staging = [
                 parse_event_time(line),
-                line_fields[4].split(' will be sealed off')[0],
+                line_fields[4].split(" will be sealed off")[0],
             ]
             encounter_in_progress = True
             continue
@@ -151,29 +151,29 @@ def choose_fight_times(args, encounters):
 # Timeline test/translate functions
 def clean_and_split_tl_line(line):
     return re.search(
-        r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split('#')[0]
+        r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split("#")[0]
     )
 
 
 def is_tl_line_syncmatch(line):
-    return re.search(r'sync /([^/]+)/', line.group('options'))
+    return re.search(r"sync /([^/]+)/", line.group("options"))
 
 
 def is_tl_line_begincast(poss_match):
-    return re.search(r'^:([0-9A-F\(\)\|]+):([^:]+)', poss_match)
+    return re.search(r"^:([0-9A-F\(\)\|]+):([^:]+)", poss_match)
 
 
 def is_tl_line_buff(poss_match):
-    return re.search(r'1A:.......:(.+) gains the effect of (.+)( from)?', poss_match)
+    return re.search(r"1A:.......:(.+) gains the effect of (.+)( from)?", poss_match)
 
 
 def is_tl_line_cast(poss_match):
-    return re.search(r'^:([^:]+):([0-9A-F\(\)\|]+)', poss_match)
+    return re.search(r"^:([^:]+):([0-9A-F\(\)\|]+)", poss_match)
 
 
 def is_tl_line_log(poss_match):
-    return re.search(r'^\s*00:([0-9]*):(.*$)', poss_match)
+    return re.search(r"^\s*00:([0-9]*):(.*$)", poss_match)
 
 
 def is_tl_line_adds(poss_match):
-    return re.search(r'Added new combatant (.*$)', poss_match)
+    return re.search(r"Added new combatant (.*$)", poss_match)
