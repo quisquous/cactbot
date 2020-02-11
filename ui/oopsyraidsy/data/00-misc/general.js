@@ -29,6 +29,7 @@
             en: 'lost food buff',
             de: 'Nahrungsbuff verloren',
             ko: '음식 버프 해제',
+            cn: '失去食物BUFF',
           },
         };
       },
@@ -57,6 +58,7 @@
             fr: e.abilityName,
             ja: e.abilityName,
             ko: '토끼',
+            cn: '兔子',
           },
         };
       },

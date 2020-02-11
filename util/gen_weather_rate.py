@@ -2,7 +2,7 @@ import csv
 import coinach
 import os
 
-_OUTPUT_FILE = 'weather_rate.js'
+_OUTPUT_FILE = "weather_rate.js"
 
 
 def parse_data(csvfile):
@@ -26,20 +26,21 @@ def parse_data(csvfile):
             rates.append(sum)
         # add leading zeroes so they sort properly.
         all_rates["%04d" % int(row[0])] = {
-            'weathers': weathers,
-            'rates': rates,
+            "weathers": weathers,
+            "rates": rates,
         }
     return all_rates
 
 
 def update(reader, writer):
-    data = reader.exd('WeatherRate')
+    data = reader.exd("WeatherRate")
     all_rates = parse_data(data)
     writer.write(
-        os.path.join('resources', _OUTPUT_FILE),
+        os.path.join("resources", _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        'gWeatherRates',
-        all_rates)
+        "gWeatherRates",
+        all_rates,
+    )
 
 
 if __name__ == "__main__":

@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Royal City Of Rabanastre$/,
+  zoneRegex: {
+    en: /^The Royal City Of Rabanastre$/,
+    ko: /^왕도 라바나스터$/,
+  },
   timelineFile: 'royal_city_of_rabanastre.txt',
   triggers: [
     {
@@ -17,11 +20,13 @@
         en: 'Kill Aqua Spheres',
         de: 'Wasserkugeln zerstören',
         fr: 'Détruire les bulles d\'eau',
+        ko: '물 구체 죽이기',
       },
       tts: {
         en: 'adds',
         de: 'etz',
         fr: 'adds',
+        ko: '쫄 추가',
       },
     },
     {
@@ -41,6 +46,7 @@
             en: 'Breathless: ' + (data.breathless + 1),
             de: 'Atemnot: ' + (data.breathless + 1),
             fr: 'Suffocation :' + (data.breathless + 1),
+            ko: '호흡곤란: ' + (data.breathless + 1),
           };
         }
       },
@@ -50,6 +56,7 @@
             en: 'Get In Bubble',
             de: 'Geh in die Blase',
             fr: 'Allez dans une bulle',
+            ko: '물방울 안으로',
           };
         }
       },
@@ -59,6 +66,7 @@
             en: 'bubble',
             de: 'blase',
             fr: 'bulle',
+            ko: '숨쉬어!',
           };
         }
       },
@@ -94,11 +102,13 @@
         en: 'Move To Safe Spot',
         de: 'Zur sicheren Zone',
         fr: 'Allez en zone sûre',
+        ko: '안전 지대로 이동',
       },
       tts: {
         en: 'move away',
         de: 'weck da',
         fr: 'Zone sure',
+        ko: '안전 지대로',
       },
     },
     {
@@ -113,6 +123,7 @@
         en: 'Tank Cleave',
         de: 'Tank Cleave',
         fr: 'Tank Cleave',
+        ko: '탱버',
       },
       tts: {
         en: 'tank cleave',
@@ -132,6 +143,7 @@
         en: 'Move Away',
         de: 'Weg da',
         fr: 'Eloignez-vous',
+        ko: '피하기',
       },
       tts: {
         en: 'move away',
@@ -152,11 +164,13 @@
         en: 'Kill Golems',
         de: 'Golems töten',
         fr: 'Détruisez les golems',
+        ko: '골렘 죽이기',
       },
       tts: {
         en: 'adds',
         de: 'etz',
         fr: 'adds',
+        ko: '쫄 추가',
       },
     },
     {
@@ -171,11 +185,13 @@
         en: 'Dragon Voice: Move In',
         de: 'Stimme Des Drachen: Rein',
         fr: 'Voix Du Dragon : Packez-vous',
+        ko: '뇌전 포효: 안으로',
       },
       tts: {
         en: 'dragon voice',
         de: 'Stimme des Drachen',
         fr: 'Voix Du Dragon',
+        ko: '번개 안으로',
       },
     },
     {
@@ -190,11 +206,13 @@
         en: 'Ram Voice: Move Out',
         de: 'Stimme Des Widders: Raus',
         fr: 'Voix Du Bélier : Eloignez-vous',
+        ko: '빙결 포효: 바깥으로',
       },
       tts: {
         en: 'rams voice',
         de: 'Stimme des Widders',
         fr: 'Voix Du Bélier',
+        ko: '빙결 바깥으로',
       },
     },
     {
@@ -207,11 +225,13 @@
         en: 'Move In (Chariot)',
         de: 'Raus da (Streitwagen)',
         fr: 'Allez dedans (Chariot)',
+        ko: '안으로 (전차)',
       },
       tts: {
         en: 'chariot',
         de: 'Streitwagen',
         fr: 'chariot',
+        ko: '전차',
       },
     },
     {
@@ -226,6 +246,7 @@
         en: 'Trample',
         de: 'Zertrampeln',
         fr: 'Fauchage',
+        ko: '유린',
       },
     },
     {
@@ -262,12 +283,14 @@
             en: 'Move',
             de: 'Bewegen',
             fr: 'Bougez',
+            ko: '움직이기',
           };
         }
         return {
           en: 'Stop',
           de: 'Stopp',
           fr: 'Stop',
+          ko: '멈추기',
         };
       },
     },
@@ -283,12 +306,14 @@
             en: 'Look Away',
             de: 'Wegschauen',
             fr: 'Regardez ailleurs',
+            ko: '바라보기',
           };
         }
         return {
           en: 'Look Towards',
           de: 'Anschauen',
           fr: 'Regardez le boss',
+          ko: '바라보지 말기',
         };
       },
     },
@@ -608,34 +633,33 @@
         'Archaeodemon': '원시 악마',
         'command tower': '지배의 탑',
         'Frostwave': '얼어붙은 파동',
-        'I am Revelation': 'I am Revelation', // FIXME
-        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
-        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
+        'I am Revelation': '신벌을 받아라',
+        'I am the truth from which you run': '가면의 계시에 따라라',
+        'I am the lies upon which you sup': '계시를 내리겠다',
         'Mateus, The Corrupt': '배덕의 황제 마티우스',
         'Argath Thadalfus': '냉혈검 아르가스',
         'Hashmal, Bringer Of Order': '통제자 하쉬말림',
         'Rofocale': '인마왕 로포칼레',
-        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
-        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
-        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
-        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
-        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
+        'The Crumbling Bridge': '무너진 다리',
+        'The Lesalia Garden Ruins': '르잘리아 정원 옛터',
+        'The Lesalia Temple Ruins': '르잘리아 신전 옛터',
+        'The Palace Square': '왕궁 광장',
+        'The heavens tremble in my wake': '이것이 바로 빛나는 \'성석\'의 힘이다!',
+        ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
-        '--enrage--': '--enrage--', // FIXME
-        '--face--': '--face--', // FIXME
-        '--ice disappears--': '--ice disappears--', // FIXME
-        '--invulnerable--': '--invulnerable--', // FIXME
-        '--knockback--': '--knockback--', // FIXME
-        '--lock out--': '--lock out--', // FIXME
-        '--meteors--': '--meteors--', // FIXME
-        '--reset--': '--reset--', // FIXME
-        '--start--': '--start--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
-        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
-        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
-        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
+        '--enrage--': '--전멸기--',
+        '--face--': '--얼굴--',
+        '--ice disappears--': '--얼음 사라짐--',
+        '--invulnerable--': '--무적--',
+        '--knockback--': '--넉백--',
+        '--lock out--': '--지역 분리--',
+        '--meteors--': '--메테오--',
+        '--targetable--': '--타겟 가능--',
+        '--untargetable--': '--타겟 불가능--',
+        'Aqua Sphere Adds': '물 구체 생성',
+        'Archaeodemon Adds': '원시 악마 생성',
+        'Azure Guard Adds': '푸른 파수꾼 생성',
         'Blade, or putt putt': 'Blade, or putt putt', // FIXME
         'Blizzard IV': '블리자쟈',
         'Chariot': '인마전차',
@@ -651,27 +675,27 @@
         'Embrace': '공격',
         'Extreme Edge': '돌격하는 칼날',
         'Fire IV': '파이쟈',
-        'Frog Phase': 'Frog Phase', // FIXME
+        'Frog Phase': '개구리 페이즈',
         'Frostwave': '얼어붙은 파동',
         'Gnawing Dread': '상실의 공포',
-        'Golem Adds': 'Golem Adds', // FIXME
+        'Golem Adds': '골렘 생성',
         'Heavenly Subjugation': '천장패도격',
         'Hole In One': 'Hole In One', // FIXME
-        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
+        'Ice Cone Phase': 'Ice Cone 페이즈', // FIXME
         'Judgment': '심판의 날',
         'Landwaster': '대지 황폐화',
-        'Line AOEs': 'Line AOEs', // FIXME
+        'Line AOEs': '직선 장판',
         'Maverick': '독립독행',
         'Pomp and Circumstance': '위풍당당',
         'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
         'Quake IV': '퀘이쟈',
         'Rock Cutter': '바위 가르기',
         'Royal Blood': '고귀한 혈통',
-        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
-        'Shades Appear': 'Shades Appear', // FIXME
-        'Shard Adds': 'Shard Adds', // FIXME
+        'Sand Sphere Adds': '모래공 생성',
+        'Shades Appear': '분신 생성',
+        'Shard Adds': '허무의 결정 생성',
         'Soulfix': '저주창 내리꽂기',
-        'Stack Damage': 'Stack Damage', // FIXME
+        'Stack Damage': '쉐어뎀',
         'Submission Tower': '복종의 탑',
         'Trample': '짓밟기',
         'Trepidation': '여우 닭 쥐',

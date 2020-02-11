@@ -2,7 +2,11 @@
 
 // Hades Normal
 [{
-  zoneRegex: /^The Dying Gasp$/,
+  zoneRegex: {
+    en: /^The Dying Gasp$/,
+    cn: /^哈迪斯歼灭战$/,
+    ko: /^하데스 토벌전$/,
+  },
   damageWarn: {
     'Hades Bad Faith 1': '414B',
     'Hades Bad Faith 2': '414C',

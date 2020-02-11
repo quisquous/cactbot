@@ -4,7 +4,11 @@
 // TODO: could track non-tanks getting hit by tankbusters, megaliths
 // TODO: could track non-target getting hit by tankbuster
 [{
-  zoneRegex: /^Eden's Gate: Sepulture \(Savage\)$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Sepulture \(Savage\)$/,
+    cn: /^伊甸零式希望乐园 \(觉醒之章4\)$/,
+    ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(4\)$/,
+  },
   damageWarn: {
     'E4S Weight of the Land': '4108',
     'E4S Evil Earth': '410C',
@@ -28,7 +32,10 @@
   triggers: [
     {
       id: 'E4S Fault Line Collect',
-      regex: /14:411E:Titan starts using Fault Line on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '411E', source: 'Titan' }),
+      regexJa: Regexes.startsUsing({ id: '411E', source: 'タイタン' }),
+      regexCn: Regexes.startsUsing({ id: '411E', source: '泰坦' }),
+      regexKo: Regexes.startsUsing({ id: '411E', source: '타이탄' }),
       run: function(e, data, matches) {
         data.faultLineTarget = matches[1];
       },
@@ -49,6 +56,7 @@
             fr: e.abilityName,
             cn: e.abilityName,
             ja: e.abilityName,
+            ko: e.abilityName,
           },
         };
       },

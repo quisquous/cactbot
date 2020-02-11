@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Twinning$/,
+  zoneRegex: {
+    en: /^The Twinning$/,
+    ko: /^쌍둥이 시르쿠스$/,
+  },
   damageWarn: {
     'Twinning Auto Cannons': '43A9',
     'Twinning Heave': '3DB9',

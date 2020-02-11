@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Dancing Plague$/,
+  zoneRegex: {
+    en: /^The Dancing Plague$/,
+    ko: /^티타니아 토벌전$/,
+  },
   damageWarn: {
     'Titania Wood\'s Embrace': '3D50',
     // 'Titania Frost Rune': '3D4E',

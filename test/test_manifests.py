@@ -29,14 +29,18 @@ def main():
 
         # Error on any unlisted data files
         for file in [_ for _ in data_files if _ not in manifest_entries]:
-            print(f'Error: Found unlisted file {file} in directory {data_directory} that does not '
-                  f'exist within manifest.')
+            print(
+                f"Error: Found unlisted file {file} in directory {data_directory} that does not "
+                f"exist within manifest."
+            )
             exit_status = 1
 
         # Error on any missing data files
         for file in [_ for _ in manifest_entries if _ not in data_files]:
-            print(f'Error: Entry for {file} found within manifest, but no corresponding file '
-                  f'found within directory {data_directory}.')
+            print(
+                f"Error: Entry for {file} found within manifest, but no corresponding file found "
+                f"within directory {data_directory}."
+            )
             exit_status = 1
 
     return exit_status
@@ -80,10 +84,10 @@ def get_data_directory_files(root_directory):
     data_files = []
 
     # Manifest files only contain .js or .txt files
-    for extension in ['js', 'txt']:
-        for file in root_directory.glob(f'**/*.{extension}'):
+    for extension in ["js", "txt"]:
+        for file in root_directory.glob(f"**/*.{extension}"):
             # Filter manifest or README files from the result set
-            if not file.stem or file.stem in ['manifest', 'README']:
+            if not file.stem or file.stem in ["manifest", "README"]:
                 continue
             # Match the expected file format listed within the manifest
             data_files.append(str(file.relative_to(root_directory)))
@@ -91,6 +95,6 @@ def get_data_directory_files(root_directory):
     return data_files
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     EXIT_STATUS = main()
     sys.exit(EXIT_STATUS)

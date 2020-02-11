@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Akadaemia Anyder$/,
+  zoneRegex: {
+    en: /^Akadaemia Anyder$/,
+    ko: /^애나이더 아카데미아$/,
+  },
   damageWarn: {
     'Anyder Acrid Stream': '4304',
     'Anyder Waterspout': '4306',

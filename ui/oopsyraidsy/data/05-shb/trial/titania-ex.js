@@ -1,7 +1,11 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Dancing Plague \(Extreme\)$/,
+  zoneRegex: {
+    en: /^The Dancing Plague \(Extreme\)$/,
+    cn: /^缇坦妮雅歼殛战$/,
+    ko: /^극 티타니아 토벌전$/,
+  },
   damageWarn: {
     'TitaniaEx Wood\'s Embrace': '3D2F',
     // 'TitaniaEx Frost Rune': '3D2B',
