@@ -189,7 +189,7 @@
         'Bury': 'Begraben',
         'Earthen Fury': 'Gaias Zorn',
         'Stonecrusher': 'Felsbrecher',
-        'Landslide': 'Bergsturz',
+        '(?<! )Landslide': 'Bergsturz',
       },
       '~effectNames': {
         'Brink of Death': 'Sterbenselend',
@@ -199,6 +199,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': 'À l\'attaque',
         'Titan': 'Titan',
@@ -233,7 +234,7 @@
         'Bury': 'Ensevelissement',
         'Earthen Fury': 'Fureur tellurique',
         'Stonecrusher': 'Éruption tellurique',
-        'Landslide': 'Glissement de terrain',
+        '(?<! )Landslide': 'Glissement de terrain',
       },
       '~effectNames': {
         'Brink of Death': 'Mourant',
@@ -243,6 +244,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': '戦闘開始！',
         'Titan': 'タイタン',
@@ -272,7 +274,7 @@
         'Cobalt Bomb': 'コバルトボム',
         'Bury': '衝撃',
         'Stonecrusher': 'ロッククラッシュ',
-        'Landslide': 'ランドスライド',
+        '(?<! )Landslide': 'ランドスライド',
       },
       '~effectNames': {
         'Dropsy': '水毒',
@@ -313,7 +315,7 @@
         'Cobalt Bomb': '钴弹',
         'Bury': '塌方',
         'Stonecrusher': '崩岩',
-        'Landslide': '地裂',
+        '(?<! )Landslide': '地裂',
       },
       '~effectNames': {
         'Dropsy': '水毒',
@@ -354,7 +356,7 @@
         'Cobalt Bomb': '코발트 폭탄',
         'Bury': '충격',
         'Stonecrusher': '암석 붕괴',
-        'Landslide': '산사태',
+        '(?<! )Landslide': '산사태',
       },
       '~effectNames': {
         'Dropsy': '물독',

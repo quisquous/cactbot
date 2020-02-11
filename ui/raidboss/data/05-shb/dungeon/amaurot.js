@@ -179,6 +179,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'The First Beast': 'Annélide de l\'apocalypse',
         'The Face of the Beast': 'Visages de la Bête',
@@ -255,6 +256,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'The First Beast': 'ファースト・ビースト',
         'The Face of the Beast': 'フェイス・オブ・ビースト',
@@ -326,6 +328,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'ヴォイドウォーカー': 'ヴォイドウォーカー',
         'Engage!': '战斗开始！',

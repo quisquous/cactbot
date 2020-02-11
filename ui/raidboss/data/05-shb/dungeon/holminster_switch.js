@@ -293,6 +293,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         '00:0839:The Wound will be sealed off': 'Fermeture de La Talure',
         '00:0839:The Auction will be sealed off': 'Fermeture de la place du Cheptel',

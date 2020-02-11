@@ -806,7 +806,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        '..is no longer sealed': '.*öffnet sich wieder',
+        ':..is no longer sealed': ':.*öffnet sich wieder',
         'Agrias': 'Agrias',
         'Aspersory': 'Aspersorium',
         'Auracite Shard': 'Auracitenscherbe',
@@ -1404,6 +1404,7 @@
         'The lifeless alley': '생명 없는 길',
         'Ultima, the High Seraph': '성천사 알테마',
         ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
+        ':..is no longer sealed': ':.*의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         '--targetable--': '--타겟 가능--',

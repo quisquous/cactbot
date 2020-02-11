@@ -168,7 +168,6 @@
         'Engage!': 'Start!',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Winged Reprobation': 'Schwinge des Urteils',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth': 'Sternengeburt',
@@ -177,7 +176,7 @@
         'Scold\'s Bridle': 'Schandmal',
         'Rightful Reprobation': 'Rechtmäßige Verurteilung',
         'Righteous Bolt': 'Blitz der Gerechtigkeit',
-        'Reprobation': 'Verurteilung',
+        '(?<! )Reprobation': 'Verurteilung',
         'Light Pillar': 'Lichtsäule',
         'Holy Trinity': 'Heilige Dreifaltigkeit',
         'Holy Sword': 'Heiliges Schwert',
@@ -217,6 +216,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Sword Of Condemnation': 'Épée De Condamnation',
         'Forgiven Venery': 'Débauche Pardonnée',
@@ -225,7 +225,6 @@
         'Engage!': 'À l\'attaque',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Winged Reprobation': 'Réprobation ailée',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth': 'Accouchement stellaire',
@@ -234,7 +233,7 @@
         'Scold\'s Bridle': 'Bride-bavarde',
         'Rightful Reprobation': 'Réprobation légitime',
         'Righteous Bolt': 'Éclair vertueux',
-        'Reprobation': 'Réprobation',
+        '(?<! )Reprobation': 'Réprobation',
         'Light Pillar': 'Pilier de lumière',
         'Holy Trinity': 'Sainte Trinité',
         'Holy Sword': 'Épée sacrée',
@@ -263,14 +262,13 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'イノセンス',
         'Engage!': '戦闘開始！',
       },
       'replaceText': {
-        '断罪': '断罪',
-        'attack': '攻撃',
         'Winged Reprobation': '断罪の飛翔',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth': 'スターバース',
@@ -279,7 +277,7 @@
         'Scold\'s Bridle': 'スコルドブライダル',
         'Rightful Reprobation': '断罪の旋回',
         'Righteous Bolt': 'ジャッジボルト',
-        'Reprobation': '断罪',
+        '(?<! )Reprobation': '断罪',
         'Light Pillar': 'ライトピラー',
         'Holy Trinity': 'ホーリートリニティー',
         'Holy Sword': 'ホーリーソード',
@@ -303,14 +301,13 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': '',
         'Engage!': '战斗开始！',
       },
       'replaceText': {
-        '断罪': '',
-        'attack': '',
         'Winged Reprobation': '',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth': '',
@@ -319,7 +316,7 @@
         'Scold\'s Bridle': '',
         'Rightful Reprobation': '',
         'Righteous Bolt': '',
-        'Reprobation': '',
+        '(?<! )Reprobation': '',
         'Light Pillar': '',
         'Holy Trinity': '',
         'Holy Sword': '',

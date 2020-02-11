@@ -553,7 +553,6 @@
         'Guardian of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Vice of Vanity': 'Laster der Eitelkeit',
         'Vice of Thievery': 'Laster der Habgier',
         'Vice of Sloth': 'Laster der Faulheit',
@@ -607,13 +606,13 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': 'À l\'attaque',
         'Eden Prime': 'Primo-Éden',
         'Arcane Sphere': 'Sphère Arcanique',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Vice of Vanity': 'Péché de vanité',
         'Vice of Thievery': 'Péché de larcin',
         'Vice of Sloth': 'Péché de paresse',
@@ -667,6 +666,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Guardian of Paradise': 'エデン・ガーデナー',
         'Engage!': '戦闘開始！',
@@ -674,7 +674,6 @@
         'Arcane Sphere': '立体魔法陣',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Vice of Vanity': 'ヴァイス・オブ・ヴァニティー',
         'Vice of Thievery': 'ヴァイス・オブ・シーヴァリィ',
         'Vice of Sloth': 'ヴァイス・オブ・スロース',
@@ -766,7 +765,6 @@
         'Delta Attack (Cross)': '三角攻击(角落)',
         'Delta Attack (Donut)': '三角攻击(月环)',
         'Delta Attack': '三角攻击',
-        'attack': '攻击',
         '--corner--': '--角落--',
         '--center--': '--中央--',
         '--untargetable--': '--无法选中--',

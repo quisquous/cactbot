@@ -2736,7 +2736,7 @@
         'Hand of Prayer': 'Betende Hand',
         'Hawk Blaster': 'Jagdfalke',
         'Hidden Minefield': 'Getarntes Minenfeld',
-        'Inception': 'Raumzeit-Eingriff',
+        'Inception(?! )': 'Raumzeit-Eingriff',
         'Inception Formation': 'Raumzeit-Eingriffsformation',
         'Incinerating Heat': 'Sengende Hitze',
         'Individual Reprobation': 'Einzelstrafe',
@@ -2765,7 +2765,7 @@
         'Protean Wave': 'Proteische Welle',
         'Punishing Wave': 'Strafende Welle',
         'Rage Wave': 'Rage Wave', // FIXME
-        'Repentance': 'Reue',
+        '(?<! )Repentance': 'Reue',
         'Sacrament': 'Sakrament',
         'Severity': 'Erschwertes',
         'Sluice': 'Schleusenöffnung',
@@ -2877,7 +2877,7 @@
         'Hand of Prayer': 'Main de prière',
         'Hawk Blaster': 'Canon faucon',
         'Hidden Minefield': 'Champ de mines caché',
-        'Inception': 'Commencement',
+        'Inception(?! )': 'Commencement',
         'Inception Formation': 'Marche du commencement',
         'Incinerating Heat': 'Chaleur purifiante',
         'Individual Reprobation': 'Réprobation individuelle',
@@ -2906,7 +2906,7 @@
         'Protean Wave': 'Vague inconstante',
         'Punishing Wave': 'Vague punitive',
         'Rage Wave': 'Rage Wave', // FIXME
-        'Repentance': 'Repentir',
+        '(?<! )Repentance': 'Repentir',
         'Sacrament': 'Sacrement',
         'Severity': 'Severity', // FIXME
         'Sluice': 'Éclusage',
@@ -3018,7 +3018,7 @@
         'Hand of Prayer': 'ハンド・オブ・プレイヤー',
         'Hawk Blaster': 'ホークブラスター',
         'Hidden Minefield': 'ステルス地雷散布',
-        'Inception': '時空潜行',
+        'Inception(?! )': '時空潜行',
         'Inception Formation': '時空潜行のマーチ',
         'Incinerating Heat': '浄化の熱線',
         'Individual Reprobation': '個の断罪',
@@ -3047,7 +3047,7 @@
         'Protean Wave': 'プロティアンウェイブ',
         'Punishing Wave': 'パニッシュウェーブ',
         'Rage Wave': 'Rage Wave', // FIXME
-        'Repentance': '罪の意識',
+        '(?<! )Repentance': '罪の意識',
         'Sacrament': '十字の秘蹟',
         'Severity': 'Severity', // FIXME
         'Sluice': 'スルース',

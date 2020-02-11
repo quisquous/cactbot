@@ -370,6 +370,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Voidwalker': 'Marcheuse du néant',
         'Engage!': 'À l\'attaque',
@@ -405,6 +406,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Engage!': '戦闘開始！',
       },

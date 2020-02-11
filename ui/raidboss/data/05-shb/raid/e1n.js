@@ -178,12 +178,11 @@
       'locale': 'de',
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
-        'Eden': 'Eden',
+        'Eden(?! )': 'Eden',
         'Engage!': 'Start!',
         'Guardian of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Vice Of Vanity': 'Laster der Eitelkeit',
         'Vice Of Apathy': 'Laster der Apathie',
         'Vice And Virtue': 'Laster und Tugend',
@@ -223,12 +222,12 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': 'Primo-Éden',
         'Engage!': 'À l\'attaque',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Spear Of Paradise': 'Lance du paradis',
         'Vice of Vanity': 'Péché de vanité',
         'Vice of Apathy': 'Péché d\'apathie',
@@ -271,12 +270,12 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
         'Engage!': '戦闘開始！',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Vice of Vanity': 'ヴァイス・オブ・ヴァニティー',
         'Vice of Apathy': 'ヴァイス・オブ・アパシー',
         'Vice and Virtue': 'ヴァイス・アンド・ヴァーチュー',
@@ -313,12 +312,11 @@
       'locale': 'cn',
       'replaceSync': {
         'Eden Prime': '至尊伊甸',
-        'Eden': '伊甸',
+        'Eden(?! )': '伊甸',
         'Guardian of Paradise': '伊甸守护者',
         'Engage!': '战斗开始！',
       },
       'replaceText': {
-        'attack': '攻击',
         'Vice [oO]f Vanity': '虚荣之恶',
         'Vice [oO]f Apathy': '冷漠之恶',
         'Vice [aA]nd Virtue': '恶习与美德',
@@ -358,7 +356,7 @@
       'locale': 'ko',
       'replaceSync': {
         'Eden Prime': '에덴 프라임',
-        'Eden': '에덴',
+        'Eden(?! )': '에덴',
         'Guardian of Paradise': '에덴의 수호자',
         'Engage!': '전투 시작!',
       },

@@ -306,7 +306,7 @@
         'Aqua Spear': 'Wasserspeer',
         'Acrid Stream': 'Ätzende Strömung',
         '--untargetable--': '--nich anvisierbar--',
-        'targetable--': 'anvisierbar--',
+        '(?<!un)targetable--': 'anvisierbar--',
         'Carcharian Verve': 'Haifischschwung',
       },
       '~effectNames': {
@@ -381,7 +381,7 @@
         'Aqua Spear': 'Épieu aquatique',
         'Acrid Stream': 'Projection âcre',
         '--untargetable--': '--Impossible à cibler--',
-        'targetable--': 'Ciblable--',
+        '(?<!un)targetable--': 'Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
         'Carcharian Verve': 'Verve carcharienne',
@@ -393,6 +393,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'marquis morbol': 'マーカス・モルボル',
         'laboratory tomato': 'ラボラトリー・トマト',
@@ -470,6 +471,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Voidwalker': 'Voidwalker',
         'Titan': '泰坦',
