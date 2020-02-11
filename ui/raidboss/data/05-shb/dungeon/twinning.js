@@ -561,6 +561,7 @@
         'The Cornice': '개조 작업 거점',
         'Aetherial Observation': '에테르 관측대',
         'Repurposing': '차원 잠행 장치 중추',
+        'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         'attack': '공격',
