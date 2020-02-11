@@ -362,6 +362,7 @@
         'The First Doom': '이것이 첫 번째 재앙이다',
         'The Second Doom': '이것이 두 번째 재앙이다',
         'The Third Doom': '이것이 세 번째 재앙이다',
+        ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
         'attack': '공격',
