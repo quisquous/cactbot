@@ -306,6 +306,8 @@
         'Aetherial Observation': 'Ätherobservationsdeck',
         'Repurposing': 'Umrüstanlage',
         'Cladoselache': 'Cladoselache',
+        ':(.*) will be sealed off': ':Noch 15 Sekunden, bis sich (der|die|das)( Zugang zu[rm])? $1 schließt',
+        'is no longer sealed': ' öffnet sich erneut',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -385,6 +387,8 @@
         'Aetherial Observation': 'Observatoire des flux éthérés',
         'Repurposing': 'Atelier d\'opti-rénovation',
         'Cladoselache': 'Cladoselache',
+        ':(.*) will be sealed off': ':Fermeture $1 dans ',
+        'is no longer sealed': 'Ouverture ',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -464,6 +468,8 @@
         'Aetherial Observation': 'エーテル観測台',
         'Repurposing': '改装作業拠点',
         'Cladoselache': 'クラドセラケ',
+        ':(.*) will be sealed off': ':$1の封鎖まであと',
+        'is no longer sealed': 'の封鎖が解かれた',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -556,6 +562,7 @@
         'Aetherial Observation': '에테르 관측대',
         'Repurposing': '차원 잠행 장치 중추',
         ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
+        'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         'attack': '공격',
