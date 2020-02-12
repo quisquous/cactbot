@@ -13,10 +13,12 @@
         if (data.role == 'tank') {
           return {
             en: 'Tank cleave',
+            fr: 'Tank cleave',
           };
         }
         return {
           en: 'Avoid tank cleave',
+          fr: 'Evitez le cleave sur le tank',
         };
       },
     },
@@ -27,6 +29,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Avoid dashes',
+        fr: 'Evitez les dash',
       },
     },
     {
@@ -37,10 +40,12 @@
         if (data.role == 'tank') {
           return {
             en: 'Tank cleave',
+            fr: 'Tank cleave',
           };
         }
         return {
           en: 'Avoid tank cleave',
+          fr: 'Evitez le cleave sur le tank',
         };
       },
     },
@@ -53,6 +58,7 @@
       },
       alertText: {
         en: 'Tank buster',
+        fr: 'Tankbuster',
       },
     },
   ],
@@ -70,6 +76,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -84,6 +91,7 @@
         if (data.role == 'healer') {
           return {
             en: 'Heal + shield ' + data.ShortName(matches.target),
+            fr: 'Heal + boucliers ' + data.ShortName(matches.target),
           };
         }
       },
@@ -95,10 +103,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Spread marker on YOU',
+            fr: 'Marqueur de séparation sur VOUS',
           };
         }
         return {
           en: 'Avoid ' + data.ShortName(matches.target),
+          fr: 'Evitez ' + data.ShortName(matches.target),
         };
       },
     },
@@ -115,6 +125,7 @@
       },
       infoText: {
         en: 'Interrupt the Knight',
+        fr: 'Interrompez le chevalier',
       },
     },
     {
@@ -127,6 +138,7 @@
       regexKo: Regexes.startsUsing({ id: '1027', source: '성기사 그리노', capture: false }),
       infoText: {
         en: 'Knockback',
+        fr: 'Poussée',
       },
     },
     {
@@ -143,6 +155,7 @@
       },
       alarmText: {
         en: 'Away from rifts',
+        fr: 'Eloignez-vous des déchirures',
       },
     },
     {
@@ -158,6 +171,7 @@
       },
       alertText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -168,6 +182,7 @@
       },
       alertText: {
         en: 'Break chains',
+        fr: 'Cassez les chaines',
       },
     },
     {
@@ -181,6 +196,7 @@
       suppressSeconds: 4,
       infoText: {
         en: 'Evade marching knights',
+        fr: 'Esquivez les chevaliers',
       },
     },
   ],
@@ -245,12 +261,12 @@
         'The Chancel': 'Salle de prière du sanctuaire de l\'Azur',
         'The Quire': 'Chœur',
         'The chapter house': 'Kiosque du patio',
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
-        '--Untargetable--': '--Untargetable--', // FIXME
-        '--reset--': '--reset--', // FIXME
+        '--Targetable--': '-- Ciblable --',
+        '--Untargetable--': '-- Impossible à cibler --',
+        '--reset--': '-- Reset --',
         'Advent': 'Avènement',
         'Altar Candle': 'Cierge funéraire',
         'Altar Pyre': 'Bûcher funéraire',
@@ -268,7 +284,7 @@
         'Holy Chain': 'Chaîne sacrée',
         'Holy Shield Bash': 'Coup de bouclier saint',
         'Hyperdimensional Slash': 'Lacération hyperdimensionnelle',
-        'Knights Appear': 'Knights Appear', // FIXME
+        'Knights Appear': 'Apparition des chevaliers',
         'Overpower': 'Domination',
         'Pure Of Heart': 'Pureté du cœur',
         'Retreat': 'Retraite',

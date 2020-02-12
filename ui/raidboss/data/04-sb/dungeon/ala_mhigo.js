@@ -12,10 +12,12 @@
         if (data.role == 'tank') {
           return {
             en: 'Tank cleave on YOU',
+            fr: 'Tank cleave sur VOUS',
           };
         }
         return {
           en: 'Avoid tank cleave',
+          fr: 'Evitez le cleave sur le tank',
         };
       },
     },
@@ -34,6 +36,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -49,6 +52,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -61,6 +65,7 @@
       regexKo: Regexes.startsUsing({ id: '205D', source: '아울루스 말 아시나', capture: false }),
       infoText: {
         en: 'Spread',
+        fr: 'Ecartez-vous',
       },
     },
     {
@@ -73,6 +78,7 @@
       regexKo: Regexes.startsUsing({ id: ['2066', '2587'], source: '제노스 예 갈부스', capture: false }),
       infoText: {
         en: 'Out of blue circle',
+        fr: 'Hors du cercle bleu',
       },
     },
     {
@@ -85,6 +91,7 @@
       regexKo: Regexes.startsUsing({ id: ['2065', '2586'], source: '제노스 예 갈부스', capture: false }),
       infoText: {
         en: 'Knockback',
+        fr: 'Poussée',
       },
     },
     {
@@ -97,6 +104,7 @@
       regexKo: Regexes.startsUsing({ id: ['2068', '2588'], source: '제노스 예 갈부스', capture: false }),
       alertText: {
         en: 'Protean',
+        fr: 'Changement',
       },
     },
     {
@@ -112,6 +120,7 @@
       },
       alertText: {
         en: 'Face tether out',
+        fr: 'Lien vers l\'extérieur',
       },
     },
     {
@@ -127,6 +136,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
   ],
@@ -176,14 +186,14 @@
       'locale': 'fr',
       'replaceSync': {
         'Aulus Mal Asina': 'Aulus mal Asina',
-        'Magitek Scorpion': 'scorpion magitek',
-        'Prototype Bit': 'drone prototype',
+        'Magitek Scorpion': 'Scorpion magitek',
+        'Prototype Bit': 'Drone prototype',
         'Rhalgr\'s Gate': 'Porte de Rhalgr',
         'The Chamber of Knowledge': 'Chambre du Savoir',
         'The Hall of the Griffin': 'Salle du Griffon',
         'The Storm': 'Spirale du chaos',
         'Zenos Yae Galvus': 'Zenos yae Galvus',
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Grenade magitek',
@@ -203,9 +213,9 @@
         'Order To Charge': 'Ordre d\'attaquer',
         'Order To Fire': 'Ordre d\'attaquer',
         'Storm, Swell, Sword': 'Tempête, orage, épée',
-        'Storm\\?/Swell\\?(?!/Sword)': 'Tempête?/orage?',
-        'Storm\\?/Swell\\?/Sword\\?': 'Tempête?/orage?/épée?',
-        'Swell/Sword': 'Swell/Sword', // FIXME
+        'Storm\\?/Swell\\?(?!/Sword)': 'Tempête?/Orage?',
+        'Storm\\?/Swell\\?/Sword\\?': 'Tempête?/Orage?/Epée?',
+        'Swell/Sword': 'Orage/Epée',
         'Tail Laser': 'Laser caudal',
         'Target Search': 'Recherche de cible',
         'Unknown_206E': 'Unknown_206E', // FIXME

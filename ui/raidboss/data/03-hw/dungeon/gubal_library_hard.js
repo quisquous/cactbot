@@ -302,18 +302,18 @@
         'The Hall of Magicks': 'Puits des magies',
         'The Rare Tomes Room': 'Dôme des manuscrits rares',
         'Top Shelf Tome': 'livre relié',
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
         'Bibliocide': 'Bibliocide',
-        'Book Drop': 'Book Drop', // FIXME
+        'Book Drop': 'Laché de livre',
         'Check Out': 'Anthologie',
         'Discontinue': 'Arrêt de publication',
         'Ecliptic Meteor': 'Météore écliptique',
         'Folio': 'Réimpression',
         'Form Shift': 'Glissement de posture',
         'Frightful Roar': 'Rugissement effroyable',
-        'Hand/Tornado': 'Hand/Tornado', // FIXME
+        'Hand/Tornado': 'Main/Tornade',
         'Issue': 'Publication',
         'Magnetism': 'Magnétisme',
         'Meteor Impact': 'Impact de météore',
@@ -322,7 +322,7 @@
         'Properties Of Quakes': 'Des propriétés de Méga Séisme',
         'Properties Of Thunder III': 'Des propriétés de Méga Foudre',
         'Properties Of Tornados': 'Des propriétés de Tornade',
-        'Quakes/Tornados': 'Quakes/Tornados', // FIXME
+        'Quakes/Tornados': 'Séismes/Tornades',
         'Repel': 'Répulsion',
         'Sea Of Flames': 'Mer de flammes',
         'Seal Of Night And Day': 'Gravure',
