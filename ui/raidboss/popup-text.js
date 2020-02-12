@@ -222,7 +222,7 @@ class PopupText {
         timelines,
         replacements,
         timelineTriggers,
-        timelineStyles
+        timelineStyles,
     );
   }
 
@@ -481,7 +481,7 @@ class PopupText {
           addText.bind(that)(holder, div);
           window.setTimeout(
               removeText.bind(that, holder, div),
-              (duration.fromTrigger || duration.alarmText) * 1000
+              (duration.fromTrigger || duration.alarmText) * 1000,
           );
 
           if (!soundUrl) {
@@ -502,7 +502,7 @@ class PopupText {
           addText.bind(that)(holder, div);
           window.setTimeout(
               removeText.bind(that, holder, div),
-              (duration.fromTrigger || duration.alertText) * 1000
+              (duration.fromTrigger || duration.alertText) * 1000,
           );
 
           if (!soundUrl) {
@@ -522,7 +522,7 @@ class PopupText {
           addText.bind(that)(holder, div);
           window.setTimeout(
               removeText.bind(that, holder, div),
-              (duration.fromTrigger || duration.infoText) * 1000
+              (duration.fromTrigger || duration.infoText) * 1000,
           );
 
           if (!soundUrl) {

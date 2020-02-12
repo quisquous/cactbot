@@ -825,7 +825,7 @@ class TimelineLoader {
         timelines,
         replacements,
         triggers,
-        styles
+        styles,
     );
   }
 

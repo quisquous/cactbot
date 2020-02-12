@@ -982,8 +982,8 @@
         'Titanomachy(?! )': 'Titanomachie',
         'Universal Manipulation': 'Umwertung aller Werte',
         'Wail Of The Lost': 'Wehklagen der Verlorenen',
-        '^Comet': 'Komet',
-        '^Quadrastrike': 'Quadraschlag',
+        'Comet': 'Komet',
+        'Quadrastrike(?! [^0-9])': 'Quadraschlag',
       },
     },
     {
@@ -1046,8 +1046,8 @@
         'Titanomachy(?! )': 'Titanomachie',
         'Universal Manipulation': 'Manipulation universelle',
         'Wail Of The Lost': 'Lamentation des disparus',
-        '^Comet': 'Comète',
-        '^Quadrastrike': 'Frappe quadruplée',
+        'Comet': 'Comète',
+        'Quadrastrike(?! [^0-9])': 'Frappe quadruplée',
       },
     },
     {
@@ -1110,8 +1110,8 @@
         'Titanomachy(?! )': 'ティタノマキア',
         'Universal Manipulation': '法則改変',
         'Wail Of The Lost': 'ウエイル・オブ・ザ・ロスト',
-        '^Comet': 'コメット',
-        '^Quadrastrike': 'クアドラストライク',
+        'Comet': 'コメット',
+        'Quadrastrike(?! [^0-9])': 'クアドラストライク',
       },
     },
     {

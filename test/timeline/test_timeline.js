@@ -194,6 +194,42 @@ let tests = {
       }
     }
   },
+  badCharacters: () => {
+    let translations = triggers.timelineReplace;
+    if (!translations)
+      return;
+
+    for (let trans of translations) {
+      let locale = trans.locale;
+      if (!locale)
+        continue;
+
+      let testCases = [
+        {
+          type: 'replaceSync',
+          replace: trans.replaceSync,
+        },
+        {
+          type: 'replaceText',
+          replace: trans.replaceText,
+        },
+      ];
+
+      // Text should not include ^ or $, unless preceeded by \ or [
+      let badRegex = [
+        /(?<![\\[])[\^\$]/,
+      ].map((x) => Regexes.parse(x));
+
+      for (let testCase of testCases) {
+        for (let regex in testCase.replace) {
+          for (let bad of badRegex) {
+            if (Regexes.parse(regex).source.match(bad))
+              errorFunc(`${triggersFile}:locale ${locale}:invalid character in ${testCase.type} '${regex}'`);
+          }
+        }
+      }
+    }
+  },
 };
 
 for (let name in tests)
