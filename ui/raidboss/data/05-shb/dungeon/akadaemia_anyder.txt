@@ -61,13 +61,12 @@ hideall "--sync--"
 # -p 3E16:508.5 -ii 3E11 3E14
 500.0 "--sync--" sync /00:0839:Phytobiology will be sealed off/ window 500,0
 505.0 "--sync--" sync /:Marquis Morbol:3E14:/ window 505,5
-508.0 "--sync--" sync /:Marquis Morbol:3E16:/ window 508,5
 508.5 "Lash" sync /:Marquis Morbol:3E16:/
 516.1 "Sap Shower" sync /:Marquis Morbol:3E15:/
 524.7 "Arbor Storm" sync /:Marquis Morbol:3E17:/
 
 # extensible tendrils appears to have some variation on start time
-532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
+532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 30,10
 537.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
 564.7 "Putrid Breath" sync /:Marquis Morbol:3E12:/
 569.0 "Lash" #sync /:Marquis Morbol:3E16:/
