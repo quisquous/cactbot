@@ -77,7 +77,7 @@
         de: 'Hinter Ihn',
         fr: 'Derrière le boss',
         cn: '背面',
-        ko: '뒤에 숨기',
+        ko: '보스 뒤로',
       },
     },
     {
@@ -223,7 +223,7 @@
         de: 'Flammenwerfer hinter dir',
         fr: 'Regardez derrière (lance-flammes)',
         cn: '观察后方放火',
-        ko: 'Flamethrower 확인하기',
+        ko: '불 나오는 곳 확인하기',
       },
     },
     {
@@ -274,7 +274,7 @@
         de: 'Verbindungen Verteilen',
         fr: 'Ecartez les liens',
         cn: '散开扯断连线',
-        ko: '산개 선',
+        ko: '산개 선 (탱 무적처리도 가능)',
       },
     },
     {
@@ -352,7 +352,7 @@
         de: 'Ölbehälter',
         fr: 'Cuves à huile',
         cn: '油桶',
-        ko: '기름 탱크',
+        ko: '뚫린 바닥 피하기',
       },
     },
     {
@@ -370,7 +370,7 @@
         de: 'Ölbehälter',
         fr: 'Cuves à huile',
         cn: '油桶',
-        ko: '기름 탱크',
+        ko: '뚫린 바닥 피하기',
       },
     },
     {
@@ -607,7 +607,7 @@
         de: 'Adds (kleine ignorieren)',
         fr: 'Adds (ignorez les petits)',
         cn: '小怪（忽略小的）',
-        ko: '쫄 (작은건 무시)',
+        ko: '쫄 나옴 (작은건 무시)',
       },
     },
     {
@@ -732,7 +732,7 @@
         de: 'Laser Tankbuster auf DIR',
         fr: 'Laser Tankbuster sur VOUS',
         cn: '激光点名',
-        ko: '레이저 탱버 대상자',
+        ko: '레이저 대상자',
       },
     },
     {
@@ -777,7 +777,7 @@
         de: 'Sägen über dem Kopf ausweichen',
         fr: 'Evitez la scie au-dessus de vous',
         cn: '躲避头顶锯',
-        ko: 'Overhead 톱 피하기',
+        ko: '톱 없는 쪽으로 피하기',
       },
     },
     {
@@ -856,7 +856,7 @@
         de: 'Geh in die Kuppel',
         fr: 'Allez dans les bulles',
         cn: '进入圈圈',
-        ko: '물방울 안에 들어가기 (?)',
+        ko: '안전지대 안에 들어가기',
       },
     },
   ],
