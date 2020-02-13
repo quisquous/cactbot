@@ -296,7 +296,7 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
-        ko: '산개',
+        ko: '십자 장판 징: 산개',
       },
     },
     {
@@ -323,7 +323,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
-        ko: '왼쪽',
+        ko: '왼쪽 공격',
       },
     },
     {
@@ -336,7 +336,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
-        ko: '오른쪽',
+        ko: '오른쪽 공격',
       },
     },
     {
@@ -354,7 +354,7 @@
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
             fr: 'Placez le liens loin des décors',
-            ko: '십자 장판 징: 가구에 닿지 말기',
+            ko: '가구에서 떨어지기',
           };
         }
         return {
