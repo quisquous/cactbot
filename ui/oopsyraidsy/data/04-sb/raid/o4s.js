@@ -2,7 +2,10 @@
 
 // O4S - Deltascape 4.0 Savage
 [{
-  zoneRegex: /^Deltascape V4\.0 \(Savage\)$/,
+  zoneRegex: {
+    en: /^Deltascape V4\.0 \(Savage\)$/,
+    ko: /^차원의 틈 오메가: 델타편\(영웅\) \(4\)$/,
+  },
   triggers: [
     {
       abilityRegex: gLang.kAbility.DecisiveBattle,

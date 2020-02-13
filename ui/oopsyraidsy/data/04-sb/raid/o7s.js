@@ -2,7 +2,10 @@
 
 // O7S - Sigmascape 3.0 Savage
 [{
-  zoneRegex: /^Sigmascape V3\.0 \(Savage\)$/,
+  zoneRegex: {
+    en: /^Sigmascape V3\.0 \(Savage\)$/,
+    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(3\)$/,
+  },
   triggers: [
     {
       id: 'O7S Missile',
@@ -19,6 +22,7 @@
             de: 'Rakete',
             fr: e.abilityName,
             ja: e.abilityName,
+            ko: e.abilityName,
           },
         };
       },
@@ -43,6 +47,7 @@
           text: {
             en: 'hit by wind',
             de: 'von Versengen getroffen',
+            ko: e.abilityName,
           },
         };
       },
