@@ -65,6 +65,18 @@ class Timeline {
     return this.GetReplacedHelper(sync, 'replaceSync');
   }
 
+  GetMissingTranslationsToIgnore() {
+    return [
+      '--Reset--',
+      '--sync--',
+      'Start',
+      '^ ?21:',
+      '^ ?1B:',
+      '^::\\y{AbilityCode}:$',
+      '^\\.\\*$',
+    ].map((x) => Regexes.parse(x));
+  }
+
   LoadFile(text, triggers, styles) {
     this.events = [];
     this.syncStarts = [];
@@ -75,6 +87,7 @@ class Timeline {
 
     let lines = text.split('\n');
     for (let i = 0; i < lines.length; ++i) {
+      let lineNumber = i + 1;
       let line = lines[i];
       line = line.trim();
       // Drop comments and empty lines.
@@ -122,7 +135,7 @@ class Timeline {
       match = line.match(/^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/);
       if (match == null) {
         this.errors.push({
-          lineNumber: i,
+          lineNumber: lineNumber,
           line: originalLine,
           error: 'Invalid format',
         });
@@ -142,6 +155,7 @@ class Timeline {
         // The text to display.  Not used for any logic.
         text: this.GetReplacedText(match[3]),
         activeTime: 0,
+        lineNumber: lineNumber,
       };
       if (line) {
         let commandMatch = line.match(/(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/);
@@ -158,6 +172,7 @@ class Timeline {
             start: seconds - 2.5,
             end: seconds + 2.5,
             time: seconds,
+            lineNumber: lineNumber,
           };
           if (commandMatch[3]) {
             let argMatch = commandMatch[3].match(/(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/);
@@ -185,7 +200,7 @@ class Timeline {
       if (line && !line.match(/^\s*#/)) {
         console.log('Unknown content \'' + line + '\' in timeline: ' + originalLine);
         this.errors.push({
-          lineNumber: i,
+          lineNumber: lineNumber,
           line: originalLine,
           error: 'Extra text',
         });

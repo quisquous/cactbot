@@ -1,12 +1,15 @@
 import argparse
+import io
 import os
 import re
+import subprocess
 
 # Directory names to ignore when looking for JavaScript files.
 ignore_dirs = [
     ".git",
     "publish",
     "ThirdParty",
+    "node_modules",
 ]
 
 # All valid two letter locale names.
@@ -89,6 +92,18 @@ def parse_javascript_file(file, locales):
                 keys.append(key_match.group(1))
 
 
+def parse_trigger_file_for_timelines(file, locale):
+    find_missing_timeline_js = os.path.join(
+        os.path.dirname(__file__), "find_missing_timeline_translations.js"
+    )
+
+    # Process stdout ourselves so that it interleaves incorrectly.
+    cmd = ["node", find_missing_timeline_js, str(file), locale]
+    proc = subprocess.Popen(cmd, stdout=subprocess.PIPE)
+    for line in io.TextIOWrapper(proc.stdout, encoding="utf-8"):
+        print(line.rstrip().encode("ascii", "backslashreplace").decode())
+
+
 if __name__ == "__main__":
     example_usage = ""
 
@@ -103,11 +118,12 @@ if __name__ == "__main__":
     )
     args = parser.parse_args()
 
-    locales = all_locales
-    if args.locale:
-        if not args.locale in all_locales:
-            raise parser.error("Invalid locale: " + args.locale)
-        locales = [args.locale]
+    if not args.locale:
+        raise parser.error("Missing required locale.")
+    if not args.locale in all_locales:
+        raise parser.error("Invalid locale: " + args.locale)
+    locales = [args.locale]
 
     for file in find_all_javascript_files():
+        parse_trigger_file_for_timelines(file, args.locale)
         parse_javascript_file(file, locales)

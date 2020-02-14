@@ -160,15 +160,7 @@ let tests = {
         },
       ];
 
-      let ignore = [
-        '--Reset--',
-        '--sync--',
-        'Start',
-        '^ ?21:',
-        '^ ?1B:',
-        '^::\\y{AbilityCode}:$',
-        '^\\.\\*$',
-      ].map((x) => Regexes.parse(x));
+      let ignore = timeline.GetMissingTranslationsToIgnore();
       let isIgnored = (x) => {
         for (let ig of ignore) {
           if (x.match(ig))
