@@ -2,7 +2,10 @@
 
 // Susano Extreme
 [{
-  zoneRegex: /^The Pool Of Tribute \(Extreme\)$/,
+  zoneRegex: {
+    en: /^The Pool Of Tribute \(Extreme\)$/,
+    ko: /^극 스사노오 토벌전$/,
+  },
   triggers: [
     {
       id: 'SusEx Churning',

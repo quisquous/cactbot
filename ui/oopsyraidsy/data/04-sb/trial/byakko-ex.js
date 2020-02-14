@@ -2,7 +2,10 @@
 
 // Byakko Extreme
 [{
-  zoneRegex: /^The Jade Stoa \(Extreme\)$/,
+  zoneRegex: {
+    en: /^The Jade Stoa \(Extreme\)$/,
+    ko: /^극 백호 토벌전$/,
+  },
   triggers: [
     {
       id: 'ByaEx Sweep The Leg',
@@ -47,6 +50,7 @@
           text: {
             en: 'popped aratama',
             de: 'Einschlag ausgelöst',
+            ko: '구슬 맞음',
           },
         };
       },
@@ -64,6 +68,7 @@
           text: {
             en: 'stepped in orb',
             de: 'in Kugel reingelaufen',
+            ko: '장판 안에 들어감',
           },
         };
       },
@@ -91,6 +96,7 @@
           text: {
             en: 'bubble collision',
             de: 'Blasen sind zusammengestoßen',
+            ko: '장판 겹쳐서 터짐',
           },
         };
       },
@@ -108,6 +114,7 @@
           text: {
             en: 'thunder',
             de: 'Blitz',
+            ko: '번개 장판',
           },
         };
       },
@@ -125,6 +132,7 @@
           text: {
             en: 'thunder',
             de: 'Blitz',
+            ko: '번개 장판',
           },
         };
       },

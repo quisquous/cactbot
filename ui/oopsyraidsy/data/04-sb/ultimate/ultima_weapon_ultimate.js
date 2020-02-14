@@ -2,7 +2,10 @@
 
 // Ultima Weapon Ultimate
 [{
-  zoneRegex: /^The Weapon's Refrain \(Ultimate\)$/,
+  zoneRegex: {
+    en: /^The Weapon's Refrain \(Ultimate\)$/,
+    ko: /^절 알테마 웨폰 파괴작전$/,
+  },
   triggers: [
     {
       id: 'UWU Great Whirlwind',
