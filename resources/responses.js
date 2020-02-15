@@ -210,7 +210,7 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Extreme raid damage!',
-      en: 'Großer Raid Schaden!',
+      de: 'Großer Raid Schaden!',
       fr: 'Dommages de raid extrêmes !',
     };
     return obj;
@@ -526,7 +526,7 @@ let Responses = {
     };
     return obj;
   },
-  // .killExtraAdd() is used for adds that will only be available if a mechanic was not played correctly
+  // .killExtraAdd() is used for adds that appear if a mechanic was not played correctly
   killExtraAdd: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
