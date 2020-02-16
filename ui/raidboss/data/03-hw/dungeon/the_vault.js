@@ -217,7 +217,6 @@
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
         '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': 'Wiederkunft',
@@ -264,7 +263,6 @@
         'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
-        '--Targetable--': '-- Ciblable --',
         '--Untargetable--': '-- Impossible à cibler --',
         '--reset--': '-- Reset --',
         'Advent': 'Avènement',
@@ -311,7 +309,6 @@
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
         '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '降臨',
@@ -358,7 +355,6 @@
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
         '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '降临',
@@ -405,7 +401,6 @@
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
         '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '강림',

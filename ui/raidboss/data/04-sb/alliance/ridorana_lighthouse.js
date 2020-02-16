@@ -739,7 +739,6 @@
         'Yiazmat': 'Yiasmat',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Accelerate': 'Beschleunigen',
         'Acceleration Bomb': 'Beschleunigungsbombe',
@@ -862,7 +861,6 @@
         'Yiazmat': 'Yiazmat',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Accelerate': 'Aplatir',
         'Acceleration Bomb': 'Bombe accélératrice',
@@ -985,7 +983,6 @@
         'Yiazmat': '鬼龍ヤズマット',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Accelerate': '突貫する',
         'Acceleration Bomb': '加速度爆弾',
@@ -1108,7 +1105,6 @@
         'Yiazmat': '鬼龙雅兹玛特',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
         '--untargetable--': '--不可选中--',
         'Accelerate': '执行贯穿',
         'Acceleration Bomb': '加速度炸弹',
@@ -1232,7 +1228,6 @@
         ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
-        '--targetable--': '--타겟 가능--',
         '--untargetable--': '--타겟 불가능--',
         'Accelerate': '관통',
         'Acceleration Bomb': '가속도 폭탄',

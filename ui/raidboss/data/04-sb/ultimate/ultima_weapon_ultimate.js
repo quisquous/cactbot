@@ -392,7 +392,6 @@
         'Ultimaplasm': 'Ultimaplasma',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Aerial Blast': 'Windschlag',
         'Aetheric Boom': 'Ätherknall',
@@ -497,7 +496,6 @@
         'Ultimaplasm': 'ultimaplasme',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Aerial Blast': 'Rafale aérienne',
         'Aetheric Boom': 'Onde d\'éther',
@@ -602,7 +600,6 @@
         'Ultimaplasm': 'アルテマ爆雷',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Aerial Blast': 'エリアルブラスト',
         'Aetheric Boom': 'エーテル波動',
@@ -707,7 +704,6 @@
         'Ultimaplasm': '究极炸弹',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
         '--untargetable--': '--不可选中--',
         'Aerial Blast': '大气爆发',
         'Aetheric Boom': '以太波动',
@@ -812,7 +808,6 @@
         'Ultimaplasm': '알테마 폭뢰',
       },
       'replaceText': {
-        '--targetable--': '--타겟 가능--',
         '--untargetable--': '--타겟 불가--',
         'Aerial Blast': '대기 폭발',
         'Aetheric Boom': '에테르 파동',

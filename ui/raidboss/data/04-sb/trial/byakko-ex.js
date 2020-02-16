@@ -397,7 +397,6 @@
         'There is no turning back!': 'Mein Jagdtrieb ist erwacht!',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Answer On High': 'Himmlische Antwort',
         'Aratama': 'Einschlag',
@@ -457,7 +456,6 @@
         'There is no turning back!': 'Grrraaaah ! ... Trop tard pour les regrets !',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Answer On High': 'Foudre céleste',
         'Aratama': 'Aratama',
@@ -517,7 +515,6 @@
         'There is no turning back!': 'オオオオオ……この衝動、もはや止められん！',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Answer On High': '天つ雷',
         'Aratama': '着弾',
@@ -577,7 +574,6 @@
         'There is no turning back!': '我体内的冲动已无法抑制！',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
         '--untargetable--': '--不可选中--',
         'Answer On High': '天雷',
         'Aratama': '荒弹',
@@ -637,7 +633,6 @@
         'There is no turning back!': 'There is no turning back!', // FIXME
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
         '--untargetable--': '--대상 지정 불가--',
         'Answer On High': '하늘의 번개',
         'Aratama': '아라미타마 탄환',

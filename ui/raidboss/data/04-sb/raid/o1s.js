@@ -127,7 +127,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Black Hole': 'Schwarzes Loch',
         'Black Spark': 'Schwarzer Funke',
@@ -180,7 +179,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Black Hole': 'Trou noir',
         'Black Spark': 'Étincelle noire',
@@ -233,7 +231,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Black Hole': 'ブラックホール',
         'Black Spark': 'ブラックスパーク',
@@ -286,7 +283,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Black Hole': '黑洞',
         'Black Spark': '黑洞',
@@ -339,7 +335,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Black Hole': '블랙홀',
         'Black Spark': '검은 불꽃',

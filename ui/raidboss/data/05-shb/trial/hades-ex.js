@@ -989,7 +989,6 @@
       },
       'replaceText': {
         '--sync--': '--sync--',
-        '--targetable--': '--anvisierbar--',
         'Again The Abyssal Celebrant': 'Erinnerung an den Abgrund',
         'Again The Majestic': 'Erinnerung an den Erhabenen',
         'Again The Martyr': 'Erinnerung an die Märtyrer',
@@ -1052,7 +1051,6 @@
       },
       'replaceText': {
         '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
         'Again The Abyssal Celebrant': 'Mémoire d\'un contemplateur de l\'abysse',
         'Again The Majestic': 'Mémoire d\'un souverain',
         'Again The Martyr': 'Mémoire d\'un martyre',
@@ -1115,7 +1113,6 @@
       },
       'replaceText': {
         '--sync--': '--sync--',
-        '--targetable--': '--targetable--',
         'Again The Abyssal Celebrant': '深淵の記憶',
         'Again The Majestic': '尊厳王の記憶',
         'Again The Martyr': '殉教者の記憶',
@@ -1176,7 +1173,6 @@
         'Shadow of the Ancients': '古代人之影',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
         'Again The Abyssal Celebrant': '深渊祭司的记忆',
         'Again The Majestic': '尊严王的记忆',
         'Again The Martyr': '殉教者的记忆',

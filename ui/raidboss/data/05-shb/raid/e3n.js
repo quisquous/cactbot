@@ -268,7 +268,6 @@
         'Monster Wave': 'Monsterwelle',
         'Tidal Roar': 'Schrei der Gezeiten',
         'Smothering Tsunami': 'Ertränkende Sturzflut',
-        '--targetable--': '--anvisierbar--',
         'Splashing Tsunami': 'Stürmende Sturzflut',
         'Undersea Quake': 'Unterwasserbeben',
         'Swirling Tsunami': 'Wirbelnde Sturzflut',
@@ -301,7 +300,6 @@
         '--sync--': '--Synchronisation--',
         'Rip Current': 'Courant d\'arrachement',
         'Undersea Quake': 'Séisme sous-marin',
-        '--targetable--': '--Ciblable--',
         'Spinning Dive': 'Piqué tournant',
         'Killer Wave': 'Vague meutrière',
         'Temporary Current': 'Courant évanescent',
@@ -384,7 +382,6 @@
         'Drenching Pulse': '猛烈波动',
         'Surging Tsunami': '强压大海啸',
         '--untargetable--': '--无法选中--',
-        '--targetable--': '--可选中--',
       },
       '~effectNames': {
         'Dropsy': '水毒',
@@ -418,7 +415,6 @@
         'Surging Tsunami': '강압의 대해일',
         '(?<! )Tsunami': '대해일',
         '--untargetable--': '--타겟불가능--',
-        '--targetable--': '--타겟가능--',
       },
       '~effectNames': {
         'Dropsy': '물독',

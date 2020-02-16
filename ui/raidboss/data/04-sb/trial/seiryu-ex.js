@@ -444,7 +444,6 @@
       'replaceText': {
         '--jump--': '--Sprung--',
         '--rotate--': '--rotate--', // FIXME
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         '100-tonze Swing': '100-Tonzen-Schwung',
         'Blazing Aramitama': 'Flammende Aramitama',
@@ -501,7 +500,6 @@
       'replaceText': {
         '--jump--': '--jump--',
         '--rotate--': '--rotate--', // FIXME
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         '100-tonze Swing': 'Swing de 100 tonz',
         'Blazing Aramitama': 'Aramitama incandescent',
@@ -558,7 +556,6 @@
       'replaceText': {
         '--jump--': '--jump--',
         '--rotate--': '--rotate--', // FIXME
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         '100-tonze Swing': '100トンズ・スイング',
         'Blazing Aramitama': '荒魂燃焼',
@@ -615,7 +612,6 @@
       'replaceText': {
         '--jump--': '--龙大跳--',
         '--rotate--': '--龙回转--',
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         '100-tonze Swing': '百吨回转',
         'Blazing Aramitama': '荒魂燃烧',
@@ -672,7 +668,6 @@
       'replaceText': {
         '--jump--': '--jump--', // FIXME
         '--rotate--': '--rotate--', // FIXME
-        '--targetable--': '--대상 지정 가능--',
         '--untargetable--': '--대상 지정 불가--',
         '100-tonze Swing': '100톤즈 휘두르기',
         'Blazing Aramitama': '아라미타마 연소',

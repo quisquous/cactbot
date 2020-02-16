@@ -71,7 +71,6 @@
         '(all)': '(alle)',
         '(clock)': '(Uhrzeiger)',
         '(one side)': '(eine Seite)',
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Burst': 'Einschlag',
         'Bury': 'Begraben',
@@ -100,7 +99,6 @@
         '(all)': '(tous)',
         '(clock)': '(horloge)',
         '(one side)': '(un côté)',
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Burst': 'Explosion',
         'Bury': 'Ensevelissement',
@@ -129,7 +127,6 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Burst': '大爆発',
         'Bury': '衝撃',
@@ -158,7 +155,6 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Burst': '爆炸',
         'Bury': '塌方',
@@ -187,7 +183,6 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Burst': '대폭발',
         'Bury': '충격',

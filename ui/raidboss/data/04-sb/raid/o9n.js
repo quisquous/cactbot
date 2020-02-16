@@ -67,7 +67,6 @@
         'dark crystal': 'dunkl(?:e|er|es|en) Kristall',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Big Bang': 'Quantengravitation',
         'Blaze': 'Flamme',
@@ -114,7 +113,6 @@
         'dark crystal': 'cristal noir',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Big Bang': 'Saillie',
         'Blaze': 'Fournaise',
@@ -161,7 +159,6 @@
         'dark crystal': '黒水晶',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Big Bang': '突出',
         'Blaze': 'ほのお',
@@ -208,7 +205,6 @@
         'dark crystal': '黑水晶',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Big Bang': '돌출',
         'Blaze': '炎爆',
@@ -255,7 +251,6 @@
         'dark crystal': '흑수정',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Big Bang': '顶起',
         'Blaze': '화염',

@@ -672,7 +672,6 @@
         'Bomb Boulders': 'Tumulus',
         'Aftershock': 'Nachbeben',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Summon Order III': 'Egi-Attacke III',
@@ -731,7 +730,6 @@
         'Bomb Boulders': 'Bombo rocher',
         'Aftershock': 'Répercussion',
         '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
       },
@@ -853,7 +851,6 @@
         'Bury': '塌方',
         'Bomb Boulders': '爆破岩石',
         'Aftershock': '余波',
-        '--targetable--': '--可选中--',
         '--untargetable--': '--无法选中--',
       },
       '~effectNames': {
@@ -913,7 +910,6 @@
         'Bomb Boulders': '바위폭탄',
         'Aftershock': '여파',
         '--untargetable--': '--타겟불가능--',
-        '--targetable--': '--타겟가능--',
       },
       '~effectNames': {
         'Summon Order III': '기술 실행 대기 3',

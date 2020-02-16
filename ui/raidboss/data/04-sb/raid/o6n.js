@@ -73,7 +73,6 @@
         'The Storm\'s Grip': 'Sturmgebiet',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Demonic Howl': 'Dämonisches Heulen',
         'Demonic Pain': 'Dämonischer Schmerz',
@@ -131,7 +130,6 @@
         'The Storm\'s Grip': 'Emprise de la tempête',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Demonic Howl': 'Hurlement démoniaque',
         'Demonic Pain': 'Douleur démoniaque',
@@ -189,7 +187,6 @@
         'The Storm\'s Grip': '暴風域',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Demonic Howl': 'デモニックハウル',
         'Demonic Pain': 'デモニックペイン',
@@ -247,7 +244,6 @@
         'The Storm\'s Grip': '暴风域',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Demonic Howl': '恶魔啸',
         'Demonic Pain': '恶魔痛',
@@ -305,7 +301,6 @@
         'The Storm\'s Grip': '폭풍 영역',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Demonic Howl': '악령의 외침',
         'Demonic Pain': '악령의 고통',

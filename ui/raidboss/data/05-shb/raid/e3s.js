@@ -691,7 +691,6 @@
         'Black Smokers': 'Schwarzer Raucher',
         'Backbreaking Wave': 'Verwüstende Welle',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Swirling Waters': 'Omen des Wasserwirbels',
@@ -744,7 +743,6 @@
         'Black Smokers': 'Fumeurs noirs',
         'Backbreaking Wave': 'Vague dévastatrice',
         '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
       },
@@ -849,7 +847,6 @@
         '(?<!\\w)Breaking Wave': '破碎波',
         'Black Smokers': '黑色烟柱',
         'Backbreaking Wave': '返破碎波',
-        '--targetable--': '--可选中--',
         '--untargetable--': '--无法选中--',
       },
       '~effectNames': {
@@ -902,7 +899,6 @@
         '(?<!\\w)Breaking Wave': '파괴의 물결',
         'Black Smokers': '해저 간헐천',
         '--untargetable--': '--타겟불가능--',
-        '--targetable--': '--타겟가능--',
       },
       '~effectNames': {
         'Swirling Waters': '소용돌이의 징조',

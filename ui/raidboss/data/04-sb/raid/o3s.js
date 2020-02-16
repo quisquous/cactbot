@@ -389,7 +389,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Blizzard': 'Eis',
         'Critical Hit': 'Kritischer Treffer',
@@ -464,7 +463,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Blizzard': 'Glace',
         'Critical Hit': 'Attaque critique',
@@ -539,7 +537,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Blizzard': 'ブリザド',
         'Critical Hit': 'クリティカル',
@@ -614,7 +611,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Blizzard': '冰结',
         'Critical Hit': '暴击',
@@ -689,7 +685,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Blizzard': '블리자드',
         'Critical Hit': '극대화',

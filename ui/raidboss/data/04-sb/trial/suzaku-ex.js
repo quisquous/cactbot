@@ -129,7 +129,6 @@
         'Western Pyre': 'Westflamme',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Burn': 'Verbrennung',
         'Close-Quarter Crescendo': 'Puppencrescendo',
@@ -187,7 +186,6 @@
         'Western Pyre': 'flamme occidentale',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Burn': 'Combustion',
         'Close-Quarter Crescendo': 'Mélopée fantoche',
@@ -245,7 +243,6 @@
         'Western Pyre': '西炎',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Burn': '燃焼',
         'Close-Quarter Crescendo': '傀儡の調べ',
@@ -303,7 +300,6 @@
         'Western Pyre': '西炎',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
         '--untargetable--': '--不可选中--',
         'Burn': '燃烧',
         'Close-Quarter Crescendo': '傀儡旋律',
@@ -361,7 +357,6 @@
         'Western Pyre': '서염',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
         '--untargetable--': '--대상 지정 불가--',
         'Burn': '연소',
         'Close-Quarter Crescendo': '꼭두각시의 음률',

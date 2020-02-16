@@ -120,7 +120,6 @@
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
@@ -178,7 +177,6 @@
       },
       'replaceText': {
         'ready': 'prêt',
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
@@ -236,7 +234,6 @@
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Akh Morn': 'アク・モーン',
         'Akh Rhai': 'アク・ラーイ',
@@ -294,7 +291,6 @@
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
@@ -352,7 +348,6 @@
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',

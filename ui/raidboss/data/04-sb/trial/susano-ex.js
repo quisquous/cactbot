@@ -241,7 +241,6 @@
         'Thunderhead': 'Donnerhall',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Ame No Murakumo': 'Ame No Murakumo',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
@@ -295,7 +294,6 @@
         'Thunderhead': 'Pointe d\'éclair',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Ame No Murakumo': 'Ame No Murakumo',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
@@ -349,7 +347,6 @@
         'Thunderhead': 'サンダーヘッド',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Ame No Murakumo': 'アメノムラクモ',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
@@ -403,7 +400,6 @@
         'Thunderhead': '雷暴云砧',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Ame No Murakumo': 'Ame No Murakumo', // FIXME
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
@@ -457,7 +453,6 @@
         'Thunderhead': '번개 머리',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
         '--untargetable--': '--대상 지정 불가--',
         'Ame No Murakumo': 'Ame No Murakumo', // FIXME
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
