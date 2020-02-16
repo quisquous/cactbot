@@ -21,13 +21,6 @@ let commonReplacement = {
     cn: '战斗开始！',
     ko: '전투 시작!',
   },
-  'attack': {
-    de: 'Attacke',
-    fr: 'Attaque',
-    ja: '攻撃',
-    cn: '攻击',
-    ko: '공격',
-  },
   'Enrage': {
     de: 'Finalangriff',
     fr: 'Enrage',

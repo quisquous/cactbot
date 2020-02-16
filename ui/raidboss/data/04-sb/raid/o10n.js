@@ -154,7 +154,6 @@
         'Thunderstorm': 'Gewitter',
         'Time Immemorial': 'Urknall',
         'Touchdown': 'Himmelssturz',
-        'attack': 'Attacke',
       },
       '~effectNames': {
         'Arcane Bulwark': 'Magische Barriere',
@@ -210,7 +209,6 @@
         'Thunderstorm': 'Tempête de foudre',
         'Time Immemorial': 'Big bang',
         'Touchdown': 'Atterrissage',
-        'attack': 'Attaque',
       },
       '~effectNames': {
         'Arcane Bulwark': 'Barrière magique',
@@ -266,7 +264,6 @@
         'Thunderstorm': 'サンダーストーム',
         'Time Immemorial': '天地開闢',
         'Touchdown': 'タッチダウン',
-        'attack': '攻撃',
       },
       '~effectNames': {
         'Arcane Bulwark': '魔法障壁',
@@ -322,7 +319,6 @@
         'Thunderstorm': '闪雷风暴',
         'Time Immemorial': '开天辟地',
         'Touchdown': '空降',
-        'attack': '攻击',
       },
       '~effectNames': {
         'Arcane Bulwark': '魔法障壁',
@@ -378,7 +374,6 @@
         'Thunderstorm': '번개 폭풍',
         'Time Immemorial': '천지개벽',
         'Touchdown': '착지',
-        'attack': '공격',
       },
       '~effectNames': {
         'Arcane Bulwark': '마법 장벽',

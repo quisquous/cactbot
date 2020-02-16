@@ -140,7 +140,6 @@
         'The Falling Sky': 'Unheilvoller Himmel',
         'The Burning Sky': 'Brennender Himmel',
         'The Black Death': 'Schwarzer Tod',
-        'attack': 'Attacke',
         'Whack': 'Wildes Schlagen',
         'Venomous Breath': 'Giftatem',
         'Turnabout': 'Umdrehung',
@@ -211,7 +210,6 @@
         'The Falling Sky': 'Étoile de la calamité',
         'The Burning Sky': 'Étoile du désastre',
         'The Black Death': 'Souffle de mort noire',
-        'attack': 'Attaque',
         'Whack': 'Tannée',
         'Venomous Breath': 'Souffle venimeux',
         'Turnabout': 'Rotation',
@@ -284,7 +282,6 @@
         'The Falling Sky': '厄災の流星',
         'The Burning Sky': '変災の流星',
         'The Black Death': '黒死の吐息',
-        'attack': '攻撃',
         'Whack': '乱打',
         'Venomous Breath': 'ベノムブレス',
         'Turnabout': '旋回',
@@ -324,7 +321,6 @@
         'ヴォイドウォーカー': 'ヴォイドウォーカー',
       },
       'replaceText': {
-        'attack': '攻击',
       },
       '~effectNames': {
         'Healing Magic Down': '治疗魔法效果降低',
@@ -364,7 +360,6 @@
         'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
-        'attack': '공격',
         'Adds': '쫄들',
         'The Final Sky': '종말의 유성',
         'The Falling Sky': '재앙의 유성',

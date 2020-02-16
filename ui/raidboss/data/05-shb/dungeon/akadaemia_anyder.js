@@ -272,7 +272,6 @@
         'is no longer sealed': ' öffnet sich erneut',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Worse Breath': 'Schlimmer Atem ',
         'Winding Current': 'Spulenstrom',
         'Waterspout': 'Wasserrinne',
@@ -344,7 +343,6 @@
         'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Worse Breath': 'Haleine pestilentielle',
         'Winding Current': 'Volte-courant',
         'Waterspout': 'Jet d\'eau',
@@ -424,7 +422,6 @@
         'is no longer sealed': 'の封鎖が解かれた',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Worse Breath': '悪臭い息',
         'Winding Current': 'ループカレント',
         'Waterspout': 'ウォータースパウト',
@@ -472,7 +469,6 @@
         'Eden Prime': 'Eden Prime',
       },
       'replaceText': {
-        'attack': '攻击',
       },
       '~effectNames': {
         'Stun': '眩晕',
@@ -513,7 +509,6 @@
         'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
-        'attack': '공격',
         'Worse Breath': '악취 숨결',
         'Winding Current': '원형전류',
         'Waterspout': '물 분출',

@@ -309,7 +309,6 @@
         'is no longer sealed': ' öffnet sich erneut',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Wind Spout': 'Windstreich',
         'Vorpal Blade': 'Vorpalklinge',
         'Thunder Beam': 'Gewitterstrahl',
@@ -387,7 +386,6 @@
         'is no longer sealed': 'Ouverture ',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Wind Spout': 'Jet de vent',
         'Vorpal Blade': 'Lame vorpale',
         'Thunder Beam': 'Rayon de foudre',
@@ -465,7 +463,6 @@
         'is no longer sealed': 'の封鎖が解かれた',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Wind Spout': 'ウィンドスパウト',
         'Vorpal Blade': 'ボーパルブレード',
         'Thunder Beam': 'サンダービーム',
@@ -519,7 +516,6 @@
         'Leviathan': '利维亚桑',
       },
       'replaceText': {
-        'attack': '攻击',
         'Unknown Ability': 'Unknown Ability',
         'Aetherochemical Amplification': '魔科学激光',
       },
@@ -557,7 +553,6 @@
         'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
-        'attack': '공격',
         'Wind Spout': '바람 분출',
         'Vorpal Blade': '치명적인 칼날',
         'Thunder Beam': '번개 광선',
