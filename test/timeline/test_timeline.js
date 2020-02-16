@@ -14,6 +14,7 @@ let Conditions = require('../../resources/conditions.js');
 let responseModule = require('../../resources/responses.js');
 let Responses = responseModule.responses;
 let Timeline = require('../../ui/raidboss/timeline.js');
+let commonReplacement = require('../../ui/raidboss/common_replacement.js');
 
 let exitCode = 0;
 
@@ -34,6 +35,39 @@ if (triggerSet.length != 1) {
   errorFunc(triggersFile + ':Break out multiple trigger sets into multiple files');
 }
 let triggers = triggerSet[0];
+
+function getTestCases(trans) {
+  let testCases = [
+    {
+      type: 'replaceSync',
+      items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
+      replace: Object.assign({}, trans.replaceSync),
+    },
+    {
+      type: 'replaceText',
+      items: new Set(timeline.events.map((x) => x.text)),
+      replace: Object.assign({}, trans.replaceText),
+    },
+  ];
+
+  // Add all common replacements, so they can be checked for collisions as well.
+  // As of now they apply to both replaceSync and replaceText, so add them to both.
+  for (let testCase of testCases) {
+    for (let key in commonReplacement) {
+      if (!commonReplacement[key][trans.locale]) {
+        // To avoid throwing a "missing translation" error for
+        // every single common translation, automatically add noops.
+        testCase.replace[key] = key;
+        continue;
+      }
+      if (key in testCase.replace)
+        errorFunc(`${triggersFile}:locale ${trans.locale}:common replacement '${key}' found in ${testCase.type}`);
+      testCase.replace[key] = commonReplacement[key][trans.locale];
+    }
+  }
+
+  return testCases;
+}
 
 let tests = {
   // This test loads an individual raidboss timeline and makes sure
@@ -57,19 +91,7 @@ let tests = {
       }
 
       // Note: even if translations are missing, they should not have conflicts.
-
-      let testCases = [
-        {
-          type: 'replaceSync',
-          items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
-          replace: trans.replaceSync,
-        },
-        {
-          type: 'replaceText',
-          items: new Set(timeline.events.map((x) => x.text)),
-          replace: trans.replaceText,
-        },
-      ];
+      let testCases = getTestCases(trans);
 
       // For both texts and syncs...
       for (let testCase of testCases) {
@@ -154,18 +176,7 @@ let tests = {
       if (trans.missingTranslations)
         continue;
 
-      let testCases = [
-        {
-          type: 'replaceSync',
-          items: new Set(timeline.syncStarts.map((x) => x.regex.source)),
-          replace: trans.replaceSync,
-        },
-        {
-          type: 'replaceText',
-          items: new Set(timeline.events.map((x) => x.text)),
-          replace: trans.replaceText,
-        },
-      ];
+      let testCases = getTestCases(trans);
 
       let ignore = timeline.GetMissingTranslationsToIgnore();
       let isIgnored = (x) => {
@@ -203,16 +214,7 @@ let tests = {
       if (!locale)
         continue;
 
-      let testCases = [
-        {
-          type: 'replaceSync',
-          replace: trans.replaceSync,
-        },
-        {
-          type: 'replaceText',
-          replace: trans.replaceText,
-        },
-      ];
+      let testCases = getTestCases(trans);
 
       // Text should not include ^ or $, unless preceeded by \ or [
       let badRegex = [
