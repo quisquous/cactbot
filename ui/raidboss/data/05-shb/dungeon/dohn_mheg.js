@@ -252,9 +252,9 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Teag Gye will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Taeg Gye schließt',
-        'The Atelier will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Griaules Revier schließt',
-        'The throne room will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Garten des Kronsaal schließt',
+        'Teag Gye': 'Taeg Gye',
+        'The Atelier': 'Griaules Revier',
+        'The throne room': 'Garten des Kronsaal',
         'Aenc Thon, Lord of the Lingering Gaze': 'Aenc Thon der Glupschäugige',
         'Griaule': 'Griaule',
         'Painted Sapling': 'Griaules Sämling',
@@ -289,9 +289,9 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Teag Gye will be sealed off': '15초 후에 선잠의 샘이 봉쇄됩니다',
-        'The Atelier will be sealed off': '15초 후에 그리올의 침상이 봉쇄됩니다',
-        'The throne room will be sealed off': '15초 후에 왕관의 방이 봉쇄됩니다',
+        'Teag Gye': '선잠의 샘',
+        'The Atelier': '그리올의 침상',
+        'The throne room': '왕관의 방',
         'Aenc Thon, Lord of the Lingering Gaze': '눈이 예쁜 잉크 돈',
         'Griaule': '그리올',
         'Painted Sapling': '그리올 묘목',

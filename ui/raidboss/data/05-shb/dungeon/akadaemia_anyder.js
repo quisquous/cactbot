@@ -268,7 +268,6 @@
         'Ichthyology': 'Ichthyologie',
         'Phytobiology': 'Phytobiologie',
         'Phantomology': 'Phantomologie',
-        ':(.*) will be sealed off': ':Noch 15 Sekunden, bis sich (der|die|das)( Zugang zu[rm])? $1 schließt',
       },
       'replaceText': {
         'Worse Breath': 'Schlimmer Atem ',
@@ -336,9 +335,9 @@
         'Quetzalcoatl': 'Quetzalcóatl',
         'Doliodus': 'Doliodus',
         'Cladoselache': 'Cladoselache',
-        'Ichthyology will be sealed off': 'Fermeture du département d\'ichtyogénie!',
-        'Phytobiology will be sealed off': 'Fermeture du département de phytogénie!',
-        'Phantomology will be sealed off': 'Fermeture du département de phantasmagénie!',
+        'Ichthyology': 'département d\'ichtyogénie!',
+        'Phytobiology': 'département de phytogénie!',
+        'Phantomology': 'département de phantasmagénie!',
       },
       'replaceText': {
         'Worse Breath': 'Haleine pestilentielle',
@@ -416,7 +415,6 @@
         'Ichthyology': '水棲生物創造場',
         'Phytobiology': '草木生物創造場',
         'Phantomology': '幻想生物創造場',
-        ':(.*) will be sealed off': ':$1の封鎖まであと',
       },
       'replaceText': {
         'Worse Breath': '悪臭い息',
@@ -502,7 +500,6 @@
         'Ichthyology': '수생 생물 창조장',
         'Phytobiology': '초목 생물 창조장',
         'Phantomology': '환상 생물 창조장',
-        ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
         'Worse Breath': '악취 숨결',

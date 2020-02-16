@@ -42,11 +42,8 @@
 
 ##############################################################
 ########Boss 1
-0 "--Reset--" sync /Machinery Bay 67 is no longer sealed/ window 10000 jump 0 #Detect reset from boss 1
-0 "--Reset--" sync /Machinery Bay 68 is no longer sealed/ window 10000 jump 0 #Detect reset from boss 2
-0 "--Reset--" sync /Machinery Bay 69 is no longer sealed/ window 10000 jump 0 #Detect reset from boss 3
-0 "--Reset--" sync /Machinery Bay 70 is no longer sealed/ window 10000 jump 0 #Detect reset from boss 4
-0 "--Start--" sync /Machinery Bay 67 will be sealed off in 15 seconds/ window 10000 #Detect start Boss 1
+0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0 #Detect reset from boss 1
+0 "--Start--" sync / 00:0839:Machinery Bay 67 will be sealed off in 15 seconds/ window 10000 #Detect start Boss 1
 7 "Magic Vuln"
 11 "Mind Blast" #Should be silenced
 16 "Mines"
@@ -69,7 +66,7 @@
 143 "Magic Vuln"
 
 ########Boss 2
-300 "--Start--" sync /Machinery Bay 68 will be sealed off in 15 seconds/ window 10000 #Detect start Boss 2
+300 "--Start--" sync / 00:0839:Machinery Bay 68 will be sealed off in 15 seconds/ window 10000 #Detect start Boss 2
 309 "Magic Vuln" #AKA Magicked Mark
 311 "Attachment" #7s telegraph for next ability
 323 "Magic Vuln" #AKA Magicked Mark
@@ -101,7 +98,7 @@
 507 "Attachment"
 
 ########Boss 3
-530 "--Start--"	sync /Machinery Bay 69 will be sealed off in 15 seconds/ window 10000	#Detect start Boss 3
+530 "--Start--"	sync / 00:0839:Machinery Bay 69 will be sealed off in 15 seconds/ window 10000	#Detect start Boss 3
 545 "Stacks + Height"
 559 "AoE"
 560 "Adds Spawn" sync /Added combatant Midan Hardhelm/ window 30,0	#12 adds
@@ -115,7 +112,7 @@
 639 "AoE"
 
 ########Boss 4
-750 "--Start--" sync /Machinery Bay 70 will be sealed off in 15 seconds/ window 10000	#Detect start Boss 4
+750 "--Start--" sync / 00:0839:Machinery Bay 70 will be sealed off in 15 seconds/ window 10000	#Detect start Boss 4
 757 "Brute Force" #Physical Vuln, phase start
 766 "Elemental Jammer" sync /uses Elemental Jammer/ window 16,40
 767 "Fire Stack" duration 5 #Drop AoEs

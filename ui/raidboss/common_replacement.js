@@ -3,8 +3,9 @@
 // TODO: maybe this should be structured identically to a timelineReplace section.
 let commonReplacement = {
   ':([0-9]{4}):(.*) will be sealed off': {
-    de: ':$1:Noch 15 Sekunden bis sich der Zugang zu $2 schließt',
-    fr: ':$1:Fermeture $2 dans',
+    de: ':$1:Noch 15 Sekunden bis sich (?:das|die|der Zugang zu[rm]?) $2 schließt',
+    cn: ':$1:距$2被封锁还有',
+    fr: ':$1:Fermeture d(?:e|u|es) $2 dans',
     ja: '$1:$2の封鎖まであと',
     ko: ':$1:15초 후에 $2(이|가) 봉쇄됩니다',
   },

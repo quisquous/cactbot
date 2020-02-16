@@ -98,7 +98,7 @@
       'locale': 'de',
       'replaceSync': {
         'Imdugud': 'Imdugud',
-        'The Alpha Concourse will be sealed off': 'bis sich der Zugang zur Alpha-Emergenzzone schließt',
+        'The Alpha Concourse': 'Alpha-Emergenzzone',
       },
       'replaceText': {
         'Crackle Hiss': 'Knisterndes Fauchen',
@@ -118,7 +118,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Imdugud': 'Imdugud',
-        'The Alpha Concourse will be sealed off': 'Fermeture du secteur des croyants',
+        'The Alpha Concourse': 'secteur des croyants',
       },
       'replaceText': {
         'Crackle Hiss': 'Crachat crépitant',
@@ -138,7 +138,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Imdugud': 'イムドゥグド',
-        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
       'replaceText': {
         'Crackle Hiss': 'クラックルヒス',
@@ -158,7 +157,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Imdugud': '伊姆都古德',
-        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
       'replaceText': {
         'Crackle Hiss': '雷光电闪',
@@ -178,7 +176,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Imdugud': '임두구드',
-        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
       'replaceText': {
         'Crackle Hiss': '파직파직 번개',

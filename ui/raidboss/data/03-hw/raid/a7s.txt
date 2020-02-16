@@ -47,8 +47,8 @@
 
 ##############################################################
 ################# Intro 
-0 "--Reset--" sync /electrocution gallery is no longer sealed/ window 10000 jump 0
-0 "--Start--" sync /electrocution gallery will be sealed off in 15 seconds/ window 10000
+0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
+0 "--Start--" sync / 00:0839:electrocution gallery will be sealed off in 15 seconds/ window 10000
 8 "Hammertime x2"
 21 "Sizzlebeam"
 31 "Sizzlespark"

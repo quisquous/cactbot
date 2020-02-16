@@ -21,10 +21,10 @@
 #alertall "Hypercompressed Plasma" before 3 speak "voice" "tank buster"
 #alertall "Liftoff" before 7 speak "voice" "jump in six"
 
-0 "--Stop--" sync /Hangar 8 is no longer sealed/ window 10000 jump 0
+0 "--Stop--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 # Phase 1 
-0 "--Phase 1--" sync /Hangar 8 will be sealed off in 15 seconds/ window 100000
+0 "--Phase 1--" sync / 00:0839:Hangar 8 will be sealed off in 15 seconds/ window 100000
 7 "Royal Fount"
 11 "Gunnery Pod"
 19 "Gunnery Pod"

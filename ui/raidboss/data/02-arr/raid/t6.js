@@ -224,8 +224,7 @@
       'locale': 'de',
       'replaceSync': {
         'Rafflesia': 'Rafflesia',
-        'Scar\'s Edge is no longer sealed': 'Der Zugang zum Narbenrand öffnet sich wieder',
-        'Scar\'s Edge will be sealed off': 'bis sich der Zugang zum Narbenrand schließt',
+        'Scar\'s Edge': 'Narbenrand',
       },
       'replaceText': {
         'Acid Rain': 'Säureregen',
@@ -246,8 +245,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Rafflesia': 'Rafflesia',
-        'Scar\'s Edge is no longer sealed': 'Ouverture du Huis de la Marque',
-        'Scar\'s Edge will be sealed off': 'Fermeture du Huis de la Marque',
+        'Scar\'s Edge': 'Huis de la Marque',
       },
       'replaceText': {
         'Acid Rain': 'Pluie acide',
@@ -268,8 +266,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Rafflesia': 'ラフレシア',
-        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
-        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
       },
       'replaceText': {
         'Acid Rain': '酸性雨',
@@ -290,8 +286,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Rafflesia': '大王花',
-        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
-        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
       },
       'replaceText': {
         'Acid Rain': '酸雨',
@@ -312,8 +306,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Rafflesia': '라플레시아',
-        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
-        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
       },
       'replaceText': {
         'Acid Rain': '산성비',
