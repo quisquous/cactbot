@@ -504,7 +504,6 @@
         'Forgiven Shame': 'Geläuterte Schande',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Winged Reprobation': 'Schwinge des Urteils',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth(?! )': 'Sternengeburt',
@@ -549,7 +548,6 @@
         'Innocence': 'Innocence',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Winged Reprobation': 'Réprobation ailée',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth(?! )': 'Accouchement stellaire',
@@ -591,7 +589,6 @@
       },
       'replaceText': {
         '断罪': '断罪',
-        'attack': '攻撃',
         'Winged Reprobation': '断罪の飛翔',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth(?! )': 'スターバース',
@@ -679,7 +676,6 @@
         'Forgiven Shame': '면죄된 수치',
       },
       'replaceText': {
-        'attack': '공격',
         'Winged Reprobation': '단죄의 비상',
         'Winged Rep Trident': '단죄의 비상 직선장판',
         'Winged Rep Rotate': '단죄의 비상 회전',

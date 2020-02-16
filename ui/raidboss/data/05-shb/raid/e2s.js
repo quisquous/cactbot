@@ -676,7 +676,6 @@
         'Voidwalker': 'Nichtswandler',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Unknown Ability': 'Unknown Ability',
         'Unholy Darkness': 'Unheiliges Dunkel',
         'Spell-In-Waiting': 'Verzögerung',
@@ -723,7 +722,6 @@
         'Voidwalker': 'Marcheuse Du Néant',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Unknown Ability': 'Unknown Ability',
         'Unholy Darkness': 'Miracle sombre',
         'Spell-In-Waiting': 'Déphasage incantatoire',
@@ -773,7 +771,6 @@
         'Voidwalker': 'ヴォイドウォーカー',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Unknown Ability': 'Unknown Ability',
         'Unholy Darkness': 'ダークホーリー',
         'Spell-In-Waiting': 'ディレイスペル',
@@ -816,7 +813,6 @@
         'Voidwalker': '虚无行者',
       },
       'replaceText': {
-        'attack': '攻击',
         'Unholy Darkness': '黑暗神圣',
         'Spell-In-Waiting': '延迟咏唱',
         'Shadowflame': '暗影炎',
@@ -855,7 +851,6 @@
         'Voidwalker': '보이드워커',
       },
       'replaceText': {
-        'attack': '공격',
         'Unholy Darkness': '다크 홀리',
         'Spell-In-Waiting': '지연술',
         'Shadowflame': '그림자 불꽃',

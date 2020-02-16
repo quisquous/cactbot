@@ -523,7 +523,6 @@
         'Mustardseed': 'Senfsamen',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Wood\'s Embrace': 'Umarmung des Waldes',
         'Whispering Wind': 'Flüsternde Winde',
         'War and Pease': 'Bohnenkrieg',
@@ -578,7 +577,6 @@
         'Innocence': 'Innocence',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Wood\'s Embrace': 'Étreinte de la nature',
         'Whispering Wind': 'Vent susurrant',
         'War and Pease': 'La fin des haricots',
@@ -633,7 +631,6 @@
         'Innocence': 'イノセンス',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Wood\'s Embrace': '絡みつき',
         'Whispering Wind': 'ウィスパリング・ウィンド',
         'War and Pease': '大豆爆発',
@@ -687,7 +684,6 @@
         'Innocence': '无瑕灵君',
       },
       'replaceText': {
-        'attack': '攻击',
         'Wood\'s Embrace': '缠绕',
         'Whispering Wind': '细语微风',
         'War And Pease': '豌豆大爆炸',
@@ -744,7 +740,6 @@
         'Mustardseed': '겨자씨',
       },
       'replaceText': {
-        'attack': '공격',
         'Wood\'s Embrace': '휘감기',
         'Whispering Wind': '속삭이는 바람',
         'War and Pease': '큰콩 폭발',

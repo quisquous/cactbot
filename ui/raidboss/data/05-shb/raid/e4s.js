@@ -637,7 +637,6 @@
       },
       'replaceText': {
         'Dual Earthen Fists': 'Gaias Hammerfaust',
-        'attack': 'Attacke',
         'Weight of the World': 'Schwere der Erde',
         'Weight of the Land': 'Gaias Gewicht',
         'Voice of the Land': 'Aufschrei der Erde',
@@ -693,7 +692,6 @@
         'Bomb Boulder': 'Bombo Rocher',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Weight of the World': 'Poids du monde',
         'Weight of the Land': 'Poids de la terre',
         'Voice of the Land': 'Hurlement tellurique',
@@ -754,7 +752,6 @@
         'Titan Maximum': 'マキシタイタン',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Weight of the World': '大陸の重み',
         'Weight of the Land': '大地の重み',
         'Voice of the Land': '大地の叫び',
@@ -811,7 +808,6 @@
         'Bomb Boulder': '爆破岩石',
       },
       'replaceText': {
-        'attack': '攻击',
         'Weight of the World': '铁球',
         'Weight [Oo]f [Tt]he Land': '大地之重',
         'Weight of the Land': '大地之重',
@@ -872,7 +868,6 @@
       },
       'replaceText': {
         'Dual Earthen Fists': '대지의 두 주먹',
-        'attack': '공격',
         'Weight of the World': '대륙의 무게',
         'Weight of the Land': '대지의 무게',
         'Voice of the Land': '대지의 외침',
