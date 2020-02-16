@@ -54,11 +54,7 @@ class Timeline {
       for (let j = 0; j < keys.length; ++j)
         text = text.replace(Regexes.parse(keys[j]), r[replaceKey][keys[j]]);
     }
-    return text;
-  }
-
-  GetReplacedCommon(text) {
-    let locale = this.options.Language || 'en';
+    // Common Replacements
     let keys = Object.keys(commonReplacement);
     for (let j = 0; j < keys.length; ++j) {
       let re = new RegExp(keys[j], 'gi');
@@ -68,11 +64,11 @@ class Timeline {
   }
 
   GetReplacedText(text) {
-    return this.GetReplacedCommon(this.GetReplacedHelper(text, 'replaceText'));
+    return this.GetReplacedHelper(text, 'replaceText');
   }
 
   GetReplacedSync(sync) {
-    return this.GetReplacedCommon(this.GetReplacedHelper(sync, 'replaceSync'));
+    return this.GetReplacedHelper(sync, 'replaceSync');
   }
 
   GetMissingTranslationsToIgnore() {
