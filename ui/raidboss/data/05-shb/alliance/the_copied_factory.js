@@ -890,7 +890,6 @@
       },
       'replaceText': {
         '--jump--': '--Sprung--',
-        '--untargetable--': '--nich anvisierbar--',
         '360-Degree Bombing Maneuver': 'Offensive: Raketenring',
         'Adds': 'Adds',
         'Anti-Personnel Missile': 'Antipersonenrakete',
@@ -979,7 +978,6 @@
       },
       'replaceText': {
         '--jump--': '--Saut--',
-        '--untargetable--': '--Impossible à cibler--',
         '360-Degree Bombing Maneuver': 'Attaque : tir de missiles circulaire',
         'Adds': 'Adds',
         'Anti-Personnel Missile': 'Pluie de missiles antipersonnel',
@@ -1068,7 +1066,6 @@
       },
       'replaceText': {
         '--jump--': '--jump--', // FIXME
-        '--untargetable--': '--untargetable--',
         '360-Degree Bombing Maneuver': '攻撃：ミサイル円射',
         'Adds': 'Adds', // FIXME
         'Anti-Personnel Missile': '対人ミサイル乱射',
@@ -1159,7 +1156,6 @@
       },
       'replaceText': {
         '--jump--': '--大跳--',
-        '--untargetable--': '--不可选中--',
         '360-Degree Bombing Maneuver': '攻击：周边导弹轰炸',
         'Anti-Personnel Missile': '对人导弹乱射',
         'Area Bombardment': '导弹乱射',

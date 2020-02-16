@@ -63,7 +63,6 @@
       'replaceText': {
         '--Reset--': '--Reset--',
         '--sync--': '--sync--',
-        '--untargetable--': '--nich anvisierbar--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'Klingenschimmer',
@@ -98,7 +97,6 @@
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
-        '--untargetable--': '--Impossible à cibler--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'Éradication',
@@ -133,7 +131,6 @@
       'replaceText': {
         '--Reset--': '--Reset--',
         '--sync--': '--sync--',
-        '--untargetable--': '--untargetable--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'ヒット・ジ・エンド',
@@ -168,7 +165,6 @@
       'replaceText': {
         '--Reset--': '--Reset--', // FIXME
         '--sync--': '--sync--', // FIXME
-        '--untargetable--': '--不可选中--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': '命尽于此',
@@ -203,7 +199,6 @@
       'replaceText': {
         '--Reset--': '--Reset--', // FIXME
         '--sync--': '--sync--', // FIXME
-        '--untargetable--': '--대상 지정 불가--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': '끝장타',

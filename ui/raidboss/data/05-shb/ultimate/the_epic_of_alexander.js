@@ -2704,7 +2704,6 @@
         '--Cruise Chaser Invincible--': '--Chaser-Mecha unverwundbar--',
         '--adds targetable--': '--adds anvisierbar--',
         '--alex untargetable--': '--alex nich anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Aetheroplasm': 'Ätheroplasma',
         'Almighty Judgment': 'Göttliches Letzturteil',
         'Alpha Sword': 'Alpha-Schwert',
@@ -2837,7 +2836,6 @@
         '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
         '--adds targetable--': '--adds targetable--', // FIXME
         '--alex untargetable--': '--alex untargetable--', // FIXME
-        '--untargetable--': '--Impossible à cibler--',
         'Aetheroplasm': 'Éthéroplasma',
         'Almighty Judgment': 'Sentence divine',
         'Alpha Sword': 'Épée alpha',
@@ -2976,7 +2974,6 @@
         '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
         '--adds targetable--': '--adds targetable--', // FIXME
         '--alex untargetable--': '--alex untargetable--', // FIXME
-        '--untargetable--': '--untargetable--',
         'Aetheroplasm': 'エーテル爆雷',
         'Almighty Judgment': '聖なる大審判',
         'Alpha Sword': 'アルファソード',

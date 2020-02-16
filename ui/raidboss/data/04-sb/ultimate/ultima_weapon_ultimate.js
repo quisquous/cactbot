@@ -392,7 +392,6 @@
         'Ultimaplasm': 'Ultimaplasma',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Aerial Blast': 'Windschlag',
         'Aetheric Boom': 'Ätherknall',
         'Aetherochemical Laser': 'Ätherochemischer Laser',
@@ -496,7 +495,6 @@
         'Ultimaplasm': 'ultimaplasme',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Aerial Blast': 'Rafale aérienne',
         'Aetheric Boom': 'Onde d\'éther',
         'Aetherochemical Laser': 'Laser magismologique',
@@ -600,7 +598,6 @@
         'Ultimaplasm': 'アルテマ爆雷',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Aerial Blast': 'エリアルブラスト',
         'Aetheric Boom': 'エーテル波動',
         'Aetherochemical Laser': '魔科学レーザー',
@@ -704,7 +701,6 @@
         'Ultimaplasm': '究极炸弹',
       },
       'replaceText': {
-        '--untargetable--': '--不可选中--',
         'Aerial Blast': '大气爆发',
         'Aetheric Boom': '以太波动',
         'Aetherochemical Laser': '魔科学激光',
@@ -808,7 +804,6 @@
         'Ultimaplasm': '알테마 폭뢰',
       },
       'replaceText': {
-        '--untargetable--': '--타겟 불가--',
         'Aerial Blast': '대기 폭발',
         'Aetheric Boom': '에테르 파동',
         'Aetherochemical Laser': '마과학 레이저',

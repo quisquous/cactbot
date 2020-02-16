@@ -790,7 +790,6 @@
         'Right Arm Unit': 'recht(?:e|er|es|en) Arm',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Advanced Optical Laser': 'Optischer Laser S',
         'Advanced Suppression': 'Hilfsprogramm S',
         '(?<! )Archive All': 'Alles archivieren',
@@ -876,7 +875,6 @@
         'Right Arm Unit': 'unité bras droit',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Advanced Optical Laser': 'Laser optique S',
         'Advanced Suppression': 'Programme d\'assistance S',
         '(?<! )Archive All': 'Archivage intégral',
@@ -962,7 +960,6 @@
         'Right Arm Unit': 'ライトアームユニット',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Advanced Optical Laser': 'オプチカルレーザーS',
         'Advanced Suppression': '援護プログラムS',
         '(?<! )Archive All': 'アーカイブオール',
@@ -1048,7 +1045,6 @@
         'Right Arm Unit': '右臂组',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Advanced Optical Laser': '光学射线S',
         'Advanced Suppression': '援护程序S',
         '(?<! )Archive All': '全归档',
@@ -1134,7 +1130,6 @@
         'Right Arm Unit': '오른팔 유닛',
       },
       'replaceText': {
-        '--untargetable--': '--타겟불가능--',
         'Advanced Optical Laser': '광학 레이저 S',
         'Advanced Suppression': '지원 프로그램 S',
         '(?<! )Archive All': '전체 기록 보존',

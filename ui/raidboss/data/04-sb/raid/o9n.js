@@ -67,7 +67,6 @@
         'dark crystal': 'dunkl(?:e|er|es|en) Kristall',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Big Bang': 'Quantengravitation',
         'Blaze': 'Flamme',
         'Bowels of Agony': 'Quälende Eingeweide',
@@ -113,7 +112,6 @@
         'dark crystal': 'cristal noir',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Big Bang': 'Saillie',
         'Blaze': 'Fournaise',
         'Bowels of Agony': 'Entrailles de l\'agonie',
@@ -159,7 +157,6 @@
         'dark crystal': '黒水晶',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Big Bang': '突出',
         'Blaze': 'ほのお',
         'Bowels of Agony': 'バウル・オブ・アゴニー',
@@ -205,7 +202,6 @@
         'dark crystal': '黑水晶',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Big Bang': '돌출',
         'Blaze': '炎爆',
         'Bowels of Agony': '深层痛楚',
@@ -251,7 +247,6 @@
         'dark crystal': '흑수정',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Big Bang': '顶起',
         'Blaze': '화염',
         'Bowels of Agony': '고통의 심핵',

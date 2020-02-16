@@ -288,7 +288,6 @@
         'Puck\'s Caprice': 'Pucks Laune',
         'Puck\'s Rebuke': 'Pucks Tadel',
         'Pummel': 'Deftige Dachtel',
-        '--untargetable--': '--nicht anvisierbar--',
         'Uplift': 'Feenring',
         'War And Pease': 'Böhnchen und Tönchen',
       },

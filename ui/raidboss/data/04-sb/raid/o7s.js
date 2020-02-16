@@ -487,7 +487,6 @@
         'WEAPON SYSTEMS ONLINE': 'Feuerkontrollsystem aktiviert',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Aether Rot': 'Ätherfäule',
         'Arm And Hammer': 'Arm-Hammer',
         'Atomic Ray': 'Atomstrahlung',
@@ -570,7 +569,6 @@
         'WEAPON SYSTEMS ONLINE': 'Démarrage du système de contrôle... Activation du programme initial... Gardien, au combat',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Aether Rot': 'Pourriture éthéréenne',
         'Arm And Hammer': 'Marteau stratégique',
         'Atomic Ray': 'Rayon atomique',
@@ -653,7 +651,6 @@
         'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Aether Rot': 'エーテルロット',
         'Arm And Hammer': 'アームハンマー',
         'Atomic Ray': 'アトミックレイ',
@@ -736,7 +733,6 @@
         'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Aether Rot': '以太病毒',
         'Arm And Hammer': '臂锤',
         'Atomic Ray': '原子射线',
@@ -819,7 +815,6 @@
         'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
-        '--untargetable--': '--대상 지정 불가--',
         'Aether Rot': '에테르 부패',
         'Arm And Hammer': '양팔 내리치기',
         'Atomic Ray': '원자 파동',

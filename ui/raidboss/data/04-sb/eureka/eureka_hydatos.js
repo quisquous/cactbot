@@ -1100,7 +1100,6 @@
       },
       'replaceText': {
         '--sync--': '--sync--',
-        '--untargetable--': '--nich anvisierbar--',
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
         'Acceleration Bomb': 'Beschleunigungsbombe',
         'Adds': 'Adds', // FIXME
@@ -1193,7 +1192,6 @@
       },
       'replaceText': {
         '--sync--': '--Synchronisation--',
-        '--untargetable--': '--Impossible à cibler--',
         'Acallam Na Senorach': 'Spirale sépulcrale',
         'Acceleration Bomb': 'Bombe accélératrice',
         'Adds': 'Adds', // FIXME
@@ -1286,7 +1284,6 @@
       },
       'replaceText': {
         '--sync--': '--sync--',
-        '--untargetable--': '--untargetable--',
         'Acallam Na Senorach': '真妖槍旋',
         'Acceleration Bomb': '加速度爆弾',
         'Adds': 'Adds', // FIXME
@@ -1379,7 +1376,6 @@
       },
       'replaceText': {
         '--sync--': '--sync--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Acallam Na Senorach': '真妖枪旋',
         'Acceleration Bomb': '加速度炸弹',
         'Adds': 'Adds', // FIXME
@@ -1472,7 +1468,6 @@
       },
       'replaceText': {
         '--sync--': '--sync--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Acallam Na Senorach': '피어너의 창',
         'Acceleration Bomb': '가속도 폭탄',
         'Adds': 'Adds', // FIXME

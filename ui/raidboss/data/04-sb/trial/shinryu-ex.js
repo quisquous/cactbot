@@ -653,7 +653,6 @@
         'The Worm\'s Heart': 'Shinryus Herz',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Aerial Blast': 'Windschlag',
         'Aetherial Ray': 'Ätherstrahl',
         'Akh Morn': 'Akh Morn',
@@ -734,7 +733,6 @@
         'The Worm\'s Heart': 'cœur du dragon',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Aerial Blast': 'Rafale aérienne',
         'Aetherial Ray': 'Rayon éthéré',
         'Akh Morn': 'Akh Morn',
@@ -815,7 +813,6 @@
         'The Worm\'s Heart': '神龍の心核',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Aerial Blast': 'エリアルブラスト',
         'Aetherial Ray': 'エーテルレイ',
         'Akh Morn': 'アク・モーン',
@@ -896,7 +893,6 @@
         'The Worm\'s Heart': '神龙的核心',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Aerial Blast': '大气爆发',
         'Aetherial Ray': '以太射线',
         'Akh Morn': '死亡轮回',
@@ -977,7 +973,6 @@
         'The Worm\'s Heart': '신룡의 심핵',
       },
       'replaceText': {
-        '--untargetable--': '--대상 지정 불가--',
         'Aerial Blast': '대기 폭발',
         'Aetherial Ray': '에테르 광선',
         'Akh Morn': '아크 몬',

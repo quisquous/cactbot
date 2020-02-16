@@ -263,7 +263,6 @@
       'replaceText': {
         'Freak Wave': 'Gigantische Welle',
         'Killer Wave': 'Tödliche Welle',
-        '--untargetable--': '--nich anvisierbar--',
         'Maelstrom': 'Mahlstrom',
         'Monster Wave': 'Monsterwelle',
         'Tidal Roar': 'Schrei der Gezeiten',
@@ -306,7 +305,6 @@
         'Crashing Pulse': 'Pulsation déchaînée',
         'Surging Tsunami': 'Tsunami écrasant',
         '--Reset--': '--Réinitialisation--',
-        '--untargetable--': '--Impossible à cibler--',
         'Monster Wave': 'Vague monstrueuse',
         'Tidal Roar': 'Vague rugissante',
         'Smothering Tsunami': 'Tsunami submergeant',
@@ -381,7 +379,6 @@
         'Crashing Pulse': '激烈波动',
         'Drenching Pulse': '猛烈波动',
         'Surging Tsunami': '强压大海啸',
-        '--untargetable--': '--无法选中--',
       },
       '~effectNames': {
         'Dropsy': '水毒',
@@ -414,7 +411,6 @@
         'Drenching Pulse': '맹렬한 파동',
         'Surging Tsunami': '강압의 대해일',
         '(?<! )Tsunami': '대해일',
-        '--untargetable--': '--타겟불가능--',
       },
       '~effectNames': {
         'Dropsy': '물독',

@@ -241,7 +241,6 @@
         'Thunderhead': 'Donnerhall',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Ame No Murakumo': 'Ame No Murakumo',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': 'Schwere Attacke',
@@ -294,7 +293,6 @@
         'Thunderhead': 'Pointe d\'éclair',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Ame No Murakumo': 'Ame No Murakumo',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': 'Assaut',
@@ -347,7 +345,6 @@
         'Thunderhead': 'サンダーヘッド',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Ame No Murakumo': 'アメノムラクモ',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': '強撃',
@@ -400,7 +397,6 @@
         'Thunderhead': '雷暴云砧',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Ame No Murakumo': 'Ame No Murakumo', // FIXME
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': '强击',
@@ -453,7 +449,6 @@
         'Thunderhead': '번개 머리',
       },
       'replaceText': {
-        '--untargetable--': '--대상 지정 불가--',
         'Ame No Murakumo': 'Ame No Murakumo', // FIXME
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': '강력 공격',

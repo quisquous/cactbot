@@ -46,7 +46,6 @@
       'replaceText': {
         '(inner)': '(innen)',
         '(outer)': '(außen)',
-        '--untargetable--': '--nich anvisierbar--',
         'Eruption': 'Eruption',
         'Hellfire': 'Höllenfeuer',
         'Incinerate': 'Einäschern',
@@ -66,7 +65,6 @@
       'replaceText': {
         '(inner)': '(intérieur)',
         '(outer)': '(extérieur)',
-        '--untargetable--': '--Impossible à cibler--',
         'Eruption': 'Éruption',
         'Hellfire': 'Flammes de l\'enfer',
         'Incinerate': 'Incinération',
@@ -86,7 +84,6 @@
       'replaceText': {
         '(inner)': '(inner)', // FIXME
         '(outer)': '(outer)', // FIXME
-        '--untargetable--': '--untargetable--',
         'Eruption': 'エラプション',
         'Hellfire': '地獄の火炎',
         'Incinerate': 'インシネレート',
@@ -106,7 +103,6 @@
       'replaceText': {
         '(inner)': '(inner)', // FIXME
         '(outer)': '(outer)', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Eruption': '地火喷发',
         'Hellfire': '地狱之火炎',
         'Incinerate': '烈焰焚烧',
@@ -126,7 +122,6 @@
       'replaceText': {
         '(inner)': '(inner)', // FIXME
         '(outer)': '(outer)', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Eruption': '용암 분출',
         'Hellfire': '지옥의 화염',
         'Incinerate': '소각',

@@ -739,7 +739,6 @@
         'Yiazmat': 'Yiasmat',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Accelerate': 'Beschleunigen',
         'Acceleration Bomb': 'Beschleunigungsbombe',
         'Ancient Aero': 'Antiker Wind',
@@ -861,7 +860,6 @@
         'Yiazmat': 'Yiazmat',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Accelerate': 'Aplatir',
         'Acceleration Bomb': 'Bombe accélératrice',
         'Ancient Aero': 'Vent ancien',
@@ -983,7 +981,6 @@
         'Yiazmat': '鬼龍ヤズマット',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Accelerate': '突貫する',
         'Acceleration Bomb': '加速度爆弾',
         'Ancient Aero': 'エンシェントエアロ',
@@ -1105,7 +1102,6 @@
         'Yiazmat': '鬼龙雅兹玛特',
       },
       'replaceText': {
-        '--untargetable--': '--不可选中--',
         'Accelerate': '执行贯穿',
         'Acceleration Bomb': '加速度炸弹',
         'Ancient Aero': '古代疾风',
@@ -1228,7 +1224,6 @@
         ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
-        '--untargetable--': '--타겟 불가능--',
         'Accelerate': '관통',
         'Acceleration Bomb': '가속도 폭탄',
         'Ancient Aero': '에인션트 에어로',

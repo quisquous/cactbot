@@ -167,7 +167,6 @@
         'Burst': 'Explosion',
         'Apokalypsis': 'Apokalypse',
         'Aetherspike': 'Ätherstachel',
-        '--untargetable--': '--nich anvisierbar--',
       },
       '~effectNames': {
         'Healing Magic Down': 'Heilmagie -',
@@ -239,7 +238,6 @@
         'Burst': 'Explosion',
         'Apokalypsis': 'Apokalypsis',
         'Aetherspike': 'Pic d\'éther',
-        '--untargetable--': '--Impossible à cibler--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
       },
@@ -398,7 +396,6 @@
         'Burst': '대폭발',
         'Apokalypsis': '묵시록',
         'Aetherspike': '에테르 강타',
-        '--untargetable--': '--타겟 불가능--',
       },
       '~effectNames': {
         'Healing Magic Down': '회복마법 효과 감소',

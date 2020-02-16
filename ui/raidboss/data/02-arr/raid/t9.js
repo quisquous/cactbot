@@ -414,7 +414,6 @@
       'replaceText': {
         '\\(In\\)': '(Rein)',
         '\\(Out\\)': '(Raus)',
-        '--untargetable--': '--nich anvisierbar--',
         'Bahamut\'s Claw': 'Klauen Bahamuts',
         'Bahamut\'s Favor': 'Bahamuts Segen',
         'Binding Coil': 'Verschlungene Schatten',
@@ -455,7 +454,6 @@
       'replaceText': {
         '\\(In\\)': '(Dedans)',
         '\\(Out\\)': '(Dehors)',
-        '--untargetable--': '--Impossible à cibler--',
         'Bahamut\'s Claw': 'Griffe de Bahamut',
         'Bahamut\'s Favor': 'Auspice du dragon',
         'Binding Coil': 'Écheveau entravant',
@@ -496,7 +494,6 @@
       'replaceText': {
         '\\(In\\)': '(In)',
         '\\(Out\\)': '(Out)',
-        '--untargetable--': '--untargetable--',
         'Bahamut\'s Claw': 'バハムートクロウ',
         'Bahamut\'s Favor': '龍神の加護',
         'Binding Coil': 'バインディングコイル',
@@ -537,7 +534,6 @@
       'replaceText': {
         '\\(In\\)': '(In)', // FIXME
         '\\(Out\\)': '(Out)', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Bahamut\'s Claw': '巴哈姆特之爪',
         'Bahamut\'s Favor': '龙神的加护',
         'Binding Coil': '拘束圈',
@@ -578,7 +574,6 @@
       'replaceText': {
         '\\(In\\)': '(In)', // FIXME
         '\\(Out\\)': '(Out)', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Bahamut\'s Claw': '바하무트의 발톱',
         'Bahamut\'s Favor': '용신의 가호',
         'Binding Coil': '구속의 고리',

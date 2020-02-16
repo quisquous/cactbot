@@ -310,7 +310,6 @@
         'The Mad Head': 'verrückt(?:e|er|es|en) Kopf',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Aero Assault': 'Wallendes Windga',
         'Aero/Ruin': 'Wind/Ruin',
         'All Things Ending': 'Ende aller Dinge',
@@ -370,7 +369,6 @@
         'The Mad Head': 'visage de la folie',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Aero Assault': 'Méga Vent véhément',
         'Aero/Ruin': 'Vent/Ruine',
         'All Things Ending': 'Fin de toutes choses',
@@ -430,7 +428,6 @@
         'The Mad Head': 'マッドヘッド',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Aero Assault': 'ずんずんエアロガ',
         'Aero/Ruin': 'Aero/Ruin', // FIXME
         'All Things Ending': '消滅の脚',
@@ -490,7 +487,6 @@
         'The Mad Head': '妖首',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Aero Assault': '疼飕飕暴风',
         'Aero/Ruin': 'Aero/Ruin', // FIXME
         'All Things Ending': '消灭之脚',
@@ -550,7 +546,6 @@
         'The Mad Head': '광인의 머리',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Aero Assault': '갈기갈기 에어로가',
         'Aero/Ruin': 'Aero/Ruin', // FIXME
         'All Things Ending': '소멸의 발차기',
