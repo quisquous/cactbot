@@ -521,7 +521,6 @@
         'Puck': 'Puck',
         'Peaseblossom': 'Bohnenblüte',
         'Mustardseed': 'Senfsamen',
-        'Engage!': 'Start!',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -580,7 +579,6 @@
         'Peaseblossom': 'Fleur-de-pois',
         'Mustardseed': 'Pousse-de-moutarde',
         'Innocence': 'Innocence',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -639,7 +637,6 @@
         'Peaseblossom': 'ピーズブロッサム',
         'Mustardseed': 'マスタードシード',
         'Innocence': 'イノセンス',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -694,7 +691,6 @@
         'Peaseblossom': '豌豆花',
         'Mustardseed': '芥子',
         'Innocence': '无瑕灵君',
-        'Engage!': '战斗开始！',
       },
       'replaceText': {
         'attack': '攻击',
@@ -754,7 +750,6 @@
         'Puck': '요정의 권속',
         'Peaseblossom': '콩나무',
         'Mustardseed': '겨자씨',
-        'Engage!': '전투 시작!',
       },
       'replaceText': {
         'attack': '공격',

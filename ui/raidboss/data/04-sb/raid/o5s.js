@@ -150,7 +150,6 @@
       'replaceSync': {
         'Agony': 'Gequälter Geist',
         'Doom Chimney': 'unheilvoll(?:e|er|es|en) Schornstein',
-        'Engage!': 'Start!',
         'Malice': 'Boshaftigkeit',
         'Phantom Train': 'Phantomzug',
         'Putrid Passenger': 'faulig(?:e|er|es|en) Fahrgast',
@@ -172,7 +171,6 @@
         'Diabolic Wind': 'Diabolischer Wind',
         'Doom Strike': 'Vernichtungsschlag',
         'Encumber': 'Wegsperrung',
-        'Engage!': 'Start!',
         'Enrage': 'Finalangriff',
         'Ghosts spawn': 'Geister erscheinen',
         'Head On': 'Frontalangriff',
@@ -193,7 +191,6 @@
       'replaceSync': {
         'Agony': 'Fantôme Souffrant',
         'Doom Chimney': 'cheminée maléfique',
-        'Engage!': 'À l\'attaque',
         'Malice': 'Malveillance',
         'Phantom Train': 'train fantôme',
         'Putrid Passenger': 'passager putride',
@@ -215,7 +212,6 @@
         'Diabolic Wind': 'Vent diabolique',
         'Doom Strike': 'Frappe létale',
         'Encumber': 'Encombrement',
-        'Engage!': 'À l\'attaque',
         'Enrage': 'Enrage',
         'Ghosts spawn': 'Pop des Fantômes',
         'Head On': 'Plein fouet',
@@ -236,7 +232,6 @@
       'replaceSync': {
         'Agony': '苦悶のゴースト',
         'Doom Chimney': '魔煙突',
-        'Engage!': '戦闘開始！',
         'Malice': '怨念',
         'Phantom Train': '魔列車',
         'Putrid Passenger': 'ゾンビー・パッセンジャー',
@@ -258,7 +253,6 @@
         'Diabolic Wind': '魔界の風',
         'Doom Strike': '魔霊撃',
         'Encumber': '進路妨害',
-        'Engage!': '戦闘開始！',
         'Enrage': 'Enrage',
         'Ghosts spawn': 'Ghosts spawn', // FIXME
         'Head On': '追突',
@@ -279,7 +273,6 @@
       'replaceSync': {
         'Agony': '苦闷幽灵',
         'Doom Chimney': '魔烟囱',
-        'Engage!': '战斗开始！',
         'Malice': '怨念',
         'Phantom Train': '魔列车',
         'Putrid Passenger': '僵尸乘客',
@@ -301,7 +294,6 @@
         'Diabolic Wind': '魔界风',
         'Doom Strike': '魔灵击',
         'Encumber': '挡路',
-        'Engage!': '战斗开始！',
         'Enrage': 'Enrage', // FIXME
         'Ghosts spawn': 'Ghosts spawn', // FIXME
         'Head On': '追尾',
@@ -322,7 +314,6 @@
       'replaceSync': {
         'Agony': '고뇌하는 유령',
         'Doom Chimney': '마열차 굴뚝',
-        'Engage!': '전투 시작!',
         'Malice': '원한',
         'Phantom Train': '마열차',
         'Putrid Passenger': '좀비 승객',
@@ -344,7 +335,6 @@
         'Diabolic Wind': '마계의 바람',
         'Doom Strike': '마령격',
         'Encumber': '진로 방해',
-        'Engage!': '전투 시작!',
         'Enrage': 'Enrage', // FIXME
         'Ghosts spawn': 'Ghosts spawn', // FIXME
         'Head On': '추돌',

@@ -781,7 +781,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Left Arm Unit': 'link(?:e|er|es|en) Arm',
         'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
@@ -870,7 +869,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Left Arm Unit': 'unité bras gauche',
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
@@ -959,7 +957,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Left Arm Unit': 'レフトアームユニット',
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
@@ -1048,7 +1045,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Left Arm Unit': '左臂组',
         'Omega(?!-)': '欧米茄',
         'Omega-F': '欧米茄F',
@@ -1137,7 +1133,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Left Arm Unit': '왼팔 유닛',
         'Omega(?!-)': '오메가',
         'Omega-F': '오메가 F',

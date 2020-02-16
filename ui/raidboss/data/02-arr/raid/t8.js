@@ -138,7 +138,6 @@
       'locale': 'de',
       'replaceSync': {
         'Allagan Field': 'Allagisches Feld',
-        'Engage!': 'Start!',
         'The Avatar': 'Avatar',
         'The central bow is no longer sealed': 'Der Zugang zum Rumpf-Zentralsektor öffnet sich wieder',
         'The central bow will be sealed off': 'bis sich der Zugang zum Rumpf-Zentralsektor schließt',
@@ -159,7 +158,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
-        'Engage!': 'À l\'attaque',
         'The Avatar': 'Bio-tréant',
         'The central bow is no longer sealed': 'Ouverture de l\'axe central',
         'The central bow will be sealed off': 'Fermeture de l\'axe central',
@@ -180,7 +178,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Allagan Field': 'アラガンフィールド',
-        'Engage!': '戦闘開始！',
         'The Avatar': 'アバター',
         'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
         'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
@@ -201,7 +198,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Allagan Field': '亚拉戈领域',
-        'Engage!': '战斗开始！',
         'The Avatar': '降世化身',
         'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
         'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
@@ -222,7 +218,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Allagan Field': '알라그 필드',
-        'Engage!': '전투 시작!',
         'The Avatar': '아바타',
         'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
         'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME

@@ -724,7 +724,6 @@
       'replaceSync': {
         'Chaos': 'Chaos',
         'Chaosphere': 'Chaossphäre',
-        'Engage!': 'Start!',
         'dark crystal': 'dunkl(?:e|er|es|en) Kristall',
       },
       'replaceText': {
@@ -772,7 +771,6 @@
       'replaceSync': {
         'Chaos': 'Chaos',
         'Chaosphere': 'Sphère de chaos',
-        'Engage!': 'À l\'attaque',
         'dark crystal': 'cristal noir',
       },
       'replaceText': {
@@ -820,7 +818,6 @@
       'replaceSync': {
         'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',
-        'Engage!': '戦闘開始！',
         'dark crystal': '黒水晶',
       },
       'replaceText': {
@@ -868,7 +865,6 @@
       'replaceSync': {
         'Chaos': '卡奥斯',
         'Chaosphere': '混沌晶球',
-        'Engage!': '战斗开始！',
         'dark crystal': '黑水晶',
       },
       'replaceText': {
@@ -916,7 +912,6 @@
       'replaceSync': {
         'Chaos': '카오스',
         'Chaosphere': '혼돈의 구체',
-        'Engage!': '전투 시작!',
         'dark crystal': '흑수정',
       },
       'replaceText': {

@@ -265,7 +265,6 @@
         'Spirit of Flame': 'Feuerfee',
         'Peaseblossom': 'Bohnenblüte',
         'Mustardseed': 'Senfsamen',
-        'Engage!': 'Start!',
       },
       'replaceText': {
         'Being Mortal': 'Sterblichkeit',

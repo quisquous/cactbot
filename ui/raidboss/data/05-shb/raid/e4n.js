@@ -157,7 +157,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Titan': 'Titan',
         'Bomb Boulder': 'Bomber-Brocken',
         'Massive Boulder': 'Riesiger Felsen',
@@ -201,7 +200,6 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Titan': 'Titan',
         'Bomb Boulder': 'Bombo Rocher',
       },
@@ -246,7 +244,6 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Titan': 'タイタン',
         'Bomb Boulder': 'ボムボルダー',
       },
@@ -286,7 +283,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Titan': '泰坦',
         'Bomb Boulder': '爆破岩石',
         'Massive Boulder': '巨大岩石',
@@ -327,7 +323,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Titan': '타이탄',
         'Bomb Boulder': '바위폭탄',
         'Massive Boulder': '거대 바위',

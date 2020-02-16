@@ -115,7 +115,6 @@
       'replaceSync': {
         ':Tenzen': ':Tenzen',
         'Eastern Pyre': 'Ostflamme',
-        'Engage!': 'Start!',
         'Northern Pyre': 'Nordflamme',
         'Rapturous Echo': 'Klang der Liebe',
         'Scarlet Lady': 'Flammenvogel',
@@ -175,7 +174,6 @@
       'replaceSync': {
         ':Tenzen': ':Tenzen',
         'Eastern Pyre': 'flamme orientale',
-        'Engage!': 'À l\'attaque',
         'Northern Pyre': 'flamme boréale',
         'Rapturous Echo': 'chant d\'amour',
         'Scarlet Lady': 'oiseau de feu',
@@ -235,7 +233,6 @@
       'replaceSync': {
         ':Tenzen': ':テンゼン',
         'Eastern Pyre': '東炎',
-        'Engage!': '戦闘開始！',
         'Northern Pyre': '北炎',
         'Rapturous Echo': '愛の音色',
         'Scarlet Lady': '火焔鳥',
@@ -295,7 +292,6 @@
       'replaceSync': {
         ':Tenzen': ':典膳',
         'Eastern Pyre': '东炎',
-        'Engage!': '战斗开始！',
         'Northern Pyre': '北炎',
         'Rapturous Echo': '爱之音',
         'Scarlet Lady': '火焰鸟',
@@ -355,7 +351,6 @@
       'replaceSync': {
         ':Tenzen': ':텐젠',
         'Eastern Pyre': '동염',
-        'Engage!': '전투 시작!',
         'Northern Pyre': '북염',
         'Rapturous Echo': '사랑의 음색',
         'Scarlet Lady': '화염조',

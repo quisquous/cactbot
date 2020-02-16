@@ -1938,7 +1938,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
-        'Engage!': 'Start!',
         'Fang of Light': 'Lichtklaue',
         'Firehorn': 'Feuerhorn',
         'Iceclaw': 'Eisklaue',
@@ -1973,7 +1972,6 @@
         'Doom': 'Verhängnis',
         'Dynamo . Beam/Chariot': 'Dynamo + Strahl/Streitwagen',
         'Earth Shaker': 'Erdstoß',
-        'Engage!': 'Start!',
         'Enrage': 'Finalangriff',
         'Exaflare': 'Exaflare',
         'Fellruin Trio': 'Untergangs-Trio',
@@ -2048,7 +2046,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Engage!': 'À l\'attaque',
         'Fang of Light': 'croc de lumière',
         'Firehorn': 'corne-de-feu',
         'Iceclaw': 'griffe-de-glace',
@@ -2083,7 +2080,6 @@
         'Doom': 'Glas',
         'Dynamo . Beam/Chariot': 'Dynamo + Rayon/Char',
         'Earth Shaker': 'Secousse',
-        'Engage!': 'À l\'attaque',
         'Enrage': 'Enrage',
         'Exaflare': 'ExaBrasier',
         'Fellruin Trio': 'Trio du désastre',
@@ -2158,7 +2154,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
-        'Engage!': '戦闘開始！',
         'Fang of Light': 'ライトファング',
         'Firehorn': 'ファイアホーン',
         'Iceclaw': 'アイスクロウ',
@@ -2193,7 +2188,6 @@
         'Doom': '死の宣告',
         'Dynamo . Beam/Chariot': 'Dynamo . Beam/Chariot', // FIXME
         'Earth Shaker': 'アースシェイカー',
-        'Engage!': '戦闘開始！',
         'Enrage': 'Enrage',
         'Exaflare': 'エクサフレア',
         'Fellruin Trio': '厄災の三重奏',
@@ -2268,7 +2262,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Bahamut Prime': '至尊巴哈姆特',
-        'Engage!': '战斗开始！',
         'Fang of Light': '光牙',
         'Firehorn': '火角',
         'Iceclaw': '冰爪',
@@ -2303,7 +2296,6 @@
         'Doom': '死亡宣告',
         'Dynamo . Beam/Chariot': '月环 + 光束/钢铁',
         'Earth Shaker': '大地摇动',
-        'Engage!': '战斗开始！',
         'Enrage': '战斗开始',
         'Exaflare': '百京核爆',
         'Fellruin Trio': '灾厄的三重奏',
@@ -2378,7 +2370,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
-        'Engage!': '전투 시작!',
         'Fang of Light': '빛의 송곳니',
         'Firehorn': '화염뿔',
         'Iceclaw': '얼음발톱',
@@ -2413,7 +2404,6 @@
         'Doom': '죽음의 선고',
         'Dynamo . Beam/Chariot': '달 + 광선/강철',
         'Earth Shaker': '요동치는 대지',
-        'Engage!': '전투 시작!',
         'Enrage': '전멸기',
         'Exaflare': '엑사플레어',
         'Fellruin Trio': '재앙의 3중주',

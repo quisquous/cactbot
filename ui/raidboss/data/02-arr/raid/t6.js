@@ -223,7 +223,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Rafflesia': 'Rafflesia',
         'Scar\'s Edge is no longer sealed': 'Der Zugang zum Narbenrand öffnet sich wieder',
         'Scar\'s Edge will be sealed off': 'bis sich der Zugang zum Narbenrand schließt',
@@ -246,7 +245,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Rafflesia': 'Rafflesia',
         'Scar\'s Edge is no longer sealed': 'Ouverture du Huis de la Marque',
         'Scar\'s Edge will be sealed off': 'Fermeture du Huis de la Marque',
@@ -269,7 +267,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Rafflesia': 'ラフレシア',
         'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
         'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
@@ -292,7 +289,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Rafflesia': '大王花',
         'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
         'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
@@ -315,7 +311,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Rafflesia': '라플레시아',
         'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
         'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME

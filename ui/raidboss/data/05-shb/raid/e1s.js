@@ -547,7 +547,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Eden Prime': 'Prim-Eden',
         'Arcane Sphere': 'Arkane Sphäre',
         'Guardian of Paradise': 'Hüter von Eden',
@@ -608,7 +607,6 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Eden Prime': 'Primo-Éden',
         'Arcane Sphere': 'Sphère Arcanique',
       },
@@ -669,7 +667,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Guardian of Paradise': 'エデン・ガーデナー',
-        'Engage!': '戦闘開始！',
         'Eden Prime': 'エデン・プライム',
         'Arcane Sphere': '立体魔法陣',
       },
@@ -721,7 +718,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Eden Prime': '至尊伊甸',
         'Arcane Sphere': '立体魔法阵',
         'Guardian of Paradise': '伊甸守护者',
@@ -785,7 +781,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Eden Prime': '에덴 프라임',
         'Arcane Sphere': '입체 마법진',
         'Guardian of Paradise': '에덴의 수호자',

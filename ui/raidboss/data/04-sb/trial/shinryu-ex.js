@@ -644,7 +644,6 @@
       'locale': 'de',
       'replaceSync': {
         'Cocoon': 'Lichtsphäre',
-        'Engage!': 'Start!',
         'Ginryu': 'Ginryu',
         'Hakkinryu': 'Hakkinryu',
         'Left Wing': 'link(?:e|er|es|en) Schwinge',
@@ -728,7 +727,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Cocoon': 'cocon de lumière',
-        'Engage!': 'À l\'attaque',
         'Ginryu': 'ginryu',
         'Hakkinryu': 'hakkinryu',
         'Left Wing': 'aile gauche',
@@ -812,7 +810,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Cocoon': '光の繭',
-        'Engage!': '戦闘開始！',
         'Ginryu': '銀龍',
         'Hakkinryu': '白金龍',
         'Left Wing': 'レフトウィング',
@@ -896,7 +893,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Cocoon': '光茧',
-        'Engage!': '战斗开始！',
         'Ginryu': '银龙',
         'Hakkinryu': '白金龙',
         'Left Wing': '左翼',
@@ -980,7 +976,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Cocoon': '빛의 고치',
-        'Engage!': '전투 시작!',
         'Ginryu': '은룡',
         'Hakkinryu': '백금룡',
         'Left Wing': '왼쪽 날개',

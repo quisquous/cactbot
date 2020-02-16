@@ -171,7 +171,6 @@
       'locale': 'de',
       'replaceSync': {
         'Augmented Rocket Punch': 'verstärkt(?:e|er|es|en) Raketenschlag',
-        'Engage!': 'Start!',
         'Engaging Delta Attack protocol': 'Reinitialisiere Deltaprotokoll',
         'Level Checker': 'Monitor',
         'Omega': 'Omega',
@@ -245,7 +244,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Augmented Rocket Punch': 'astéropoing renforcé',
-        'Engage!': 'À l\'attaque',
         'Engaging Delta Attack protocol': 'Nécessité d\'utiliser l\'attaque Delta',
         'Level Checker': 'vérifiniveau',
         'Omega': 'Oméga',
@@ -319,7 +317,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Augmented Rocket Punch': '強化型ロケットパンチ',
-        'Engage!': '戦闘開始！',
         'Engaging Delta Attack protocol': 'デルタアタックの必要性を認定します',
         'Level Checker': 'レベルチェッカー',
         'Omega': 'オメガ',
@@ -393,7 +390,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Augmented Rocket Punch': '强化型火箭飞拳',
-        'Engage!': '战斗开始！',
         'Engaging Delta Attack protocol': '认定有必要使用三角攻击。',
         'Level Checker': '等级检测仪',
         'Omega': '欧米茄',
@@ -467,7 +463,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Augmented Rocket Punch': '강화형 로켓 주먹',
-        'Engage!': '전투 시작!',
         'Engaging Delta Attack protocol': '델타 공격의 필요성을 인정합니다',
         'Level Checker': '레벨 측정기',
         'Omega': '오메가',

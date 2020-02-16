@@ -64,7 +64,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bomb Boulder': 'Bomber-Brocken',
-        'Engage!': 'Start!',
         'Granite Gaoler': 'graniten(?:e|er|es|en) Kerkermeister',
         'Titan': 'Titan',
       },
@@ -95,7 +94,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Bomb Boulder': 'bombo rocher',
-        'Engage!': 'À l\'attaque !',
         'Granite Gaoler': 'Geôlier de granite',
         'Titan': 'Titan',
       },
@@ -126,7 +124,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
-        'Engage!': '戦闘開始！',
         'Granite Gaoler': 'グラナイト・ジェイラー',
         'Titan': 'タイタン',
       },
@@ -157,7 +154,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Bomb Boulder': '爆破岩石',
-        'Engage!': '战斗开始！',
         'Granite Gaoler': '花岗石卫',
         'Titan': '泰坦',
       },
@@ -188,7 +184,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Bomb Boulder': '바위폭탄',
-        'Engage!': '전투 시작!',
         'Granite Gaoler': '화강암 감옥',
         'Titan': '타이탄',
       },

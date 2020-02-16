@@ -120,7 +120,6 @@
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
         'Black Hole': 'Schwarzes Loch',
-        'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
         'Wyrm Tail': 'Antiker Drachenschweif',
       },
@@ -175,7 +174,6 @@
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
         'Black Hole': 'Trou noir',
-        'Engage!': 'À l\'attaque',
         'Exdeath': 'Exdeath',
         'Wyrm Tail': 'Queue du dragon ancestral',
       },
@@ -230,7 +228,6 @@
       'replaceSync': {
         'Alte Roite': 'アルテ・ロイテ',
         'Black Hole': 'ブラックホール',
-        'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
         'Wyrm Tail': '太古の龍尾',
       },
@@ -285,7 +282,6 @@
       'replaceSync': {
         'Alte Roite': '老者',
         'Black Hole': '黑洞',
-        'Engage!': '战斗开始！',
         'Exdeath': '艾克斯迪司',
         'Wyrm Tail': '太古龙尾',
       },
@@ -340,7 +336,6 @@
       'replaceSync': {
         'Alte Roite': '알테 로이테',
         'Black Hole': '블랙홀',
-        'Engage!': '전투 시작!',
         'Exdeath': '엑스데스',
         'Wyrm Tail': '태고의 용 꼬리',
       },

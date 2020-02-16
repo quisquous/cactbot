@@ -257,7 +257,6 @@
       'locale': 'de',
       'replaceSync': {
         'Augmented Rocket Punch': 'verstärkt(?:e|er|es|en) Raketenschlag',
-        'Engage!': 'Start!',
         'Level Checker': 'Monitor',
         'Omega': 'Omega',
         'Rocket Punch': 'Raketenschlag',
@@ -330,7 +329,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Augmented Rocket Punch': 'astéropoing renforcé',
-        'Engage!': 'À l\'attaque',
         'Level Checker': 'vérifiniveau',
         'Omega': 'Oméga',
         'Rocket Punch': 'Astéropoing',
@@ -403,7 +401,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Augmented Rocket Punch': '強化型ロケットパンチ',
-        'Engage!': '戦闘開始！',
         'Level Checker': 'レベルチェッカー',
         'Omega': 'オメガ',
         'Rocket Punch': 'ロケットパンチ',
@@ -476,7 +473,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Augmented Rocket Punch': '强化型火箭飞拳',
-        'Engage!': '战斗开始！',
         'Level Checker': '等级检测仪',
         'Omega': '欧米茄',
         'Rocket Punch': '火箭飞拳',
@@ -549,7 +545,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Augmented Rocket Punch': '강화형 로켓 주먹',
-        'Engage!': '전투 시작!',
         'Level Checker': '레벨 측정기',
         'Omega': '오메가',
         'Rocket Punch': '로켓 주먹',

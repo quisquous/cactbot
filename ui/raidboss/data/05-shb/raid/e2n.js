@@ -337,7 +337,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Voidwalker': 'Nichtswandler',
         'The Hand of Erebos': 'Arm des Erebos',
       },
@@ -373,7 +372,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Voidwalker': 'Marcheuse du néant',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'Spell-in-Waiting': 'Déphasage incantatoire',
@@ -408,7 +406,6 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'Spell-in-Waiting': 'ディレイスペル',
@@ -437,7 +434,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Voidwalker': '虚无行者',
         'The Hand of Erebos': '厄瑞玻斯的巨腕',
       },
@@ -468,7 +464,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Voidwalker': '보이드워커',
         'The Hand of Erebos': '에레보스의 팔',
       },

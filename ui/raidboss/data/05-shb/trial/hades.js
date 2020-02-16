@@ -406,7 +406,6 @@
       'locale': 'de',
       'replaceSync': {
         'Hades': 'Hades',
-        'Engage!': 'Start!',
         'Shadow .f .he Ancients': 'Schatten der Alten',
       },
       'replaceText': {
@@ -447,7 +446,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Hades': '哈迪斯',
-        'Engage!': '战斗开始！',
         'Shadow .f .he Ancients': '古代人之影',
       },
       'replaceText': {
@@ -488,7 +486,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Hades': '하데스',
-        'Engage!': '전투 시작!',
         'Shadow .f .he Ancients': '고대인의 그림자',
       },
       'replaceText': {

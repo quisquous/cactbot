@@ -656,7 +656,6 @@
       'locale': 'de',
       'replaceSync': {
         'Leviathan': 'Leviathan',
-        'Engage!': 'Start!',
       },
       'replaceText': {
         'Unknown Ability': 'Unknown Ability',
@@ -711,7 +710,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Leviathan': 'Léviathan',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'Unknown Ability': 'Unknown Ability',
@@ -769,7 +767,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Leviathan': 'リヴァイアサン',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'Unknown Ability': 'Unknown Ability',
@@ -821,7 +818,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Leviathan': '利维亚桑',
-        'Engage!': '战斗开始！',
       },
       'replaceText': {
         'Undersea Quake': '海底地震',
@@ -874,7 +870,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Leviathan': '리바이어선',
-        'Engage!': '전투 시작!',
       },
       'replaceText': {
         'Undersea Quake': '해저 지진',
