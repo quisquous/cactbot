@@ -76,7 +76,6 @@
         'Burst': 'Einschlag',
         'Bury': 'Begraben',
         'Earthen Fury': 'Gaias Zorn',
-        'Enrage': 'Finalangriff',
         'Gaoler Adds': 'Gaoler Adds', // FIXME
         'Gaoler Landslide': 'Gaoler Landslide', // FIXME
         'Gaoler Tumult': 'Gaoler Tumult', // FIXME
@@ -106,7 +105,6 @@
         'Burst': 'Explosion',
         'Bury': 'Ensevelissement',
         'Earthen Fury': 'Fureur tellurique',
-        'Enrage': 'Enrage',
         'Gaoler Adds': 'Adds geôlier',
         'Gaoler Landslide': 'Geôlier glissement',
         'Gaoler Tumult': 'Geôlier tumulte',
@@ -136,7 +134,6 @@
         'Burst': '大爆発',
         'Bury': '衝撃',
         'Earthen Fury': '大地の怒り',
-        'Enrage': 'Enrage',
         'Gaoler Adds': 'Gaoler Adds', // FIXME
         'Gaoler Landslide': 'Gaoler Landslide', // FIXME
         'Gaoler Tumult': 'Gaoler Tumult', // FIXME
@@ -166,7 +163,6 @@
         'Burst': '爆炸',
         'Bury': '塌方',
         'Earthen Fury': '大地之怒',
-        'Enrage': 'Enrage', // FIXME
         'Gaoler Adds': 'Gaoler Adds', // FIXME
         'Gaoler Landslide': 'Gaoler Landslide', // FIXME
         'Gaoler Tumult': 'Gaoler Tumult', // FIXME
@@ -196,7 +192,6 @@
         'Burst': '대폭발',
         'Bury': '충격',
         'Earthen Fury': '대지의 분노',
-        'Enrage': 'Enrage', // FIXME
         'Gaoler Adds': 'Gaoler Adds', // FIXME
         'Gaoler Landslide': 'Gaoler Landslide', // FIXME
         'Gaoler Tumult': 'Gaoler Tumult', // FIXME

@@ -349,7 +349,6 @@
         'Dark Blade': 'Dunkle Klinge',
         'Dispersivity': 'Dispersivität',
         'Empire adds .SW->NW.': 'Garlear Adds (SW->NW)',
-        'Enrage': 'Finalangriff',
         'Hagetsu': 'Hagetsu',
         'Homeland adds .E->W.': 'Domaner Adds (O->W)',
         'Lead Of The Underworld': 'Blei der Unterwelt',
@@ -420,7 +419,6 @@
         'Dark Blade': 'Lame ténébreuse',
         'Dispersivity': 'Onde Kenki',
         'Empire adds .SW->NW.': 'Soldats Impériaux (SO->NO)',
-        'Enrage': 'Enrage',
         'Hagetsu': 'Pulvérisation lunaire',
         'Homeland adds .E->W.': 'Soldats Domiens (E->O)',
         'Lead Of The Underworld': 'Tir de l\'au-delà',
@@ -491,7 +489,6 @@
         'Dark Blade': '月刀右近',
         'Dispersivity': '剣気波動',
         'Empire adds .SW->NW.': 'Empire adds .SW->NW.', // FIXME
-        'Enrage': 'Enrage',
         'Hagetsu': '破月',
         'Homeland adds .E->W.': 'Homeland adds .E->W.', // FIXME
         'Lead Of The Underworld': '黄泉の銃弾',
@@ -562,7 +559,6 @@
         'Dark Blade': '月刀右斩',
         'Dispersivity': '剑气波动',
         'Empire adds .SW->NW.': '帝国幻影(西南->西北)',
-        'Enrage': '战斗开始',
         'Hagetsu': '破月',
         'Homeland adds .E->W.': '家人幻影(东->西)',
         'Lead Of The Underworld': '黄泉之弹',
@@ -633,7 +629,6 @@
         'Dark Blade': '상현달 베기',
         'Dispersivity': '검기 파동',
         'Empire adds .SW->NW.': 'Empire adds .SW->NW.', // FIXME
-        'Enrage': '전멸기',
         'Hagetsu': '파월',
         'Homeland adds .E->W.': 'Homeland adds .E->W.', // FIXME
         'Lead Of The Underworld': '황천의 총탄',

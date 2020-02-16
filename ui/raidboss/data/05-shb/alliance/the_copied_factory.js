@@ -912,7 +912,6 @@
         'Energy Ring': 'Omnidirektionalenergie',
         'Engage Goliath Tank Support': 'Verstärkung: Goliath-Panzer',
         'Engage Marx Support': 'Verstärkung: Marx',
-        'Enrage': 'Finalangriff',
         'Exploding Tethers': 'Explodierende Verbindungen',
         'Floor': 'Boden',
         'Forceful Impact': 'Heftiges Beben',
@@ -1003,7 +1002,6 @@
         'Energy Ring': 'Tirs multidirectionnels',
         'Engage Goliath Tank Support': 'Appel de renfort : char Goliath',
         'Engage Marx Support': 'Appel de renforts : Marx',
-        'Enrage': 'Enrage',
         'Exploding Tethers': 'Liens explosifs',
         'Floor': 'Sol',
         'Forceful Impact': 'Forte secousse',
@@ -1094,7 +1092,6 @@
         'Energy Ring': '全方位エネルギー弾',
         'Engage Goliath Tank Support': '支援要請：大型戦車',
         'Engage Marx Support': '支援要請：マルクス',
-        'Enrage': 'Enrage',
         'Exploding Tethers': 'Exploding Tethers', // FIXME
         'Floor': 'Floor', // FIXME
         'Forceful Impact': '大震動',
@@ -1190,7 +1187,6 @@
         'Energy Ring': '全方位能量弹',
         'Engage Goliath Tank Support': '请求支援：大型战车',
         'Engage Marx Support': '请求支援：麦喀士',
-        'Enrage': '狂暴',
         'Exploding Tethers': '爆炸连线',
         'Floor': '地板',
         'Forceful Impact': '大震动',

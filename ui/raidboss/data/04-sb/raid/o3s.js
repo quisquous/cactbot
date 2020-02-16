@@ -398,7 +398,6 @@
         'Dimensional Wave': 'Dimensionswelle',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': 'Tanz der Erde',
-        'Enrage': 'Finalangriff',
         'Fire': 'Feuer',
         'Folio': 'Foliant',
         'Frost Breath': 'Frostiger Atem',
@@ -474,7 +473,6 @@
         'Dimensional Wave': 'Onde dimensionnelle',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': 'Danse de la terre',
-        'Enrage': 'Enrage',
         'Fire': 'Feu',
         'Folio': 'Réimpression',
         'Frost Breath': 'Souffle glacé',
@@ -550,7 +548,6 @@
         'Dimensional Wave': '次元波動',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': '大地の舞い',
-        'Enrage': 'Enrage',
         'Fire': 'ファイア',
         'Folio': '重版',
         'Frost Breath': 'フロストブレス',
@@ -626,7 +623,6 @@
         'Dimensional Wave': '次元波动',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': '大地之舞',
-        'Enrage': 'Enrage', // FIXME
         'Fire': '火炎',
         'Folio': '再版',
         'Frost Breath': '寒霜吐息',
@@ -702,7 +698,6 @@
         'Dimensional Wave': '차원 파동',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': '대지의 춤',
-        'Enrage': 'Enrage', // FIXME
         'Fire': '파이어',
         'Folio': '증쇄',
         'Frost Breath': '서리 숨결',

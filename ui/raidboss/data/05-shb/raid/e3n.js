@@ -271,7 +271,6 @@
         '--targetable--': '--anvisierbar--',
         'Splashing Tsunami': 'Stürmende Sturzflut',
         'Undersea Quake': 'Unterwasserbeben',
-        'Enrage': 'Finalangriff',
         'Swirling Tsunami': 'Wirbelnde Sturzflut',
         'Unknown Ability': 'Unknown Ability',
         'Tidal Wave': 'Flutwelle',
@@ -298,7 +297,6 @@
       },
       'replaceText': {
         'Freak Wave': 'Vague gigantesque',
-        'Enrage': 'Enrage',
         'Maelstrom': 'Maelström',
         '--sync--': '--Synchronisation--',
         'Rip Current': 'Courant d\'arrachement',

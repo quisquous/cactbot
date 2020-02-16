@@ -306,7 +306,6 @@
         '--sync--': '--Synchronisation--',
         '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
-        'Enrage': 'Enrage',
         'The Path Of Light': 'Voie de lumière',
         'Brazen Bull': 'Taureau d\'airain',
         'Gibbet Cage': 'Gibet de fer',

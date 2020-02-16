@@ -766,7 +766,6 @@
         'Divide By Three': 'Arithmetik: Durch 3 teilbar',
         'Division': 'Division',
         'Dust Storm': 'Staubsturm',
-        'Enrage': 'Finalangriff',
         '(?<![\\w| ])Eruption': 'Eruption',
         'Explosion': 'Explosion',
         'Face Off': 'Unbeugsamkeit',
@@ -890,7 +889,6 @@
         'Divide By Three': 'Arithmétique : multiples de 3',
         'Division': 'Division',
         'Dust Storm': 'Tempête de poussière',
-        'Enrage': 'Enrage',
         '(?<![\\w| ])Eruption': 'Éruption',
         'Explosion': 'Explosion',
         'Face Off': 'Défiguration',
@@ -1014,7 +1012,6 @@
         'Divide By Three': '算術：3倍数',
         'Division': 'Division', // FIXME
         'Dust Storm': 'ダストストーム',
-        'Enrage': 'Enrage',
         '(?<![\\w| ])Eruption': 'エラプション',
         'Explosion': '爆発',
         'Face Off': 'フェイスオフ',
@@ -1138,7 +1135,6 @@
         'Divide By Three': '算术：3的倍数',
         'Division': 'Division', // FIXME
         'Dust Storm': '尘暴',
-        'Enrage': 'Enrage', // FIXME
         '(?<![\\w| ])Eruption': '地火喷发',
         'Explosion': '爆炸',
         'Face Off': '对决',
@@ -1263,7 +1259,6 @@
         'Divide By Three': '3배수 계산',
         'Division': '나눗셈',
         'Dust Storm': '먼지 폭풍',
-        'Enrage': '전멸기',
         '(?<![\\w| ])Eruption': '용암 분출',
         'Explosion': '폭발',
         'Face Off': '경기 시작',

@@ -769,7 +769,6 @@
         'Blizzard III': 'Eisga',
         'Blizzard\\+Thunder': 'Eis+Blitz',
         'Celestriad': 'Dreigestirn',
-        'Enrage': 'Finalangriff',
         'Explosion': 'Explosion',
         'Fire III': 'Feuga',
         'Flagrant Fire': 'Flammendes Feuga',
@@ -837,7 +836,6 @@
         'Blizzard III': 'Méga Glace',
         'Blizzard\\+Thunder': 'Méga Glace + Méga Foudre',
         'Celestriad': 'Tristella',
-        'Enrage': 'Enrage',
         'Explosion': 'Explosion',
         'Fire III': 'Méga Feu',
         'Flagrant Fire': 'Méga Feu faufilant',
@@ -905,7 +903,6 @@
         'Blizzard III': 'ブリザガ',
         'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
         'Celestriad': 'スリースターズ',
-        'Enrage': 'Enrage',
         'Explosion': '爆発',
         'Fire III': 'ファイガ',
         'Flagrant Fire': 'めらめらファイガ',
@@ -973,7 +970,6 @@
         'Blizzard III': '冰封',
         'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
         'Celestriad': '三星',
-        'Enrage': 'Enrage', // FIXME
         'Explosion': '爆炸',
         'Fire III': '爆炎',
         'Flagrant Fire': '呼啦啦爆炎',
@@ -1041,7 +1037,6 @@
         'Blizzard III': '블리자가',
         'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
         'Celestriad': '세 개의 별',
-        'Enrage': 'Enrage', // FIXME
         'Explosion': '폭발',
         'Fire III': '파이가',
         'Flagrant Fire': '이글이글 파이가',

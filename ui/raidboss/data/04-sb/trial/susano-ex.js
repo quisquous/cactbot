@@ -251,7 +251,6 @@
         'Churning Deep': 'Schäumen',
         'Dark Levin': 'violett(?:e|er|es|en) Blitz',
         'Electrocution': 'Stromschlag',
-        'Enrage': 'Finalangriff',
         'Knockback': 'Rückstoß',
         'Levinbolt': 'Keraunisches Feld',
         'Phase': 'Phase',
@@ -306,7 +305,6 @@
         'Churning Deep': 'Agitation profonde',
         'Dark Levin': 'foudre violette',
         'Electrocution': 'Électrocution',
-        'Enrage': 'Enrage',
         'Knockback': 'Knockback', // FIXME
         'Levinbolt': 'Fulguration',
         'Phase': 'Phase', // FIXME
@@ -361,7 +359,6 @@
         'Churning Deep': '禍泡',
         'Dark Levin': '紫電',
         'Electrocution': '感電',
-        'Enrage': 'Enrage',
         'Knockback': 'Knockback', // FIXME
         'Levinbolt': '稲妻',
         'Phase': 'Phase', // FIXME
@@ -416,7 +413,6 @@
         'Churning Deep': '祸泡',
         'Dark Levin': '紫电',
         'Electrocution': '感电',
-        'Enrage': 'Enrage', // FIXME
         'Knockback': 'Knockback', // FIXME
         'Levinbolt': '闪电',
         'Phase': 'Phase', // FIXME
@@ -471,7 +467,6 @@
         'Churning Deep': '재앙거품',
         'Dark Levin': '번갯불',
         'Electrocution': '감전',
-        'Enrage': '전멸기',
         'Knockback': 'Knockback', // FIXME
         'Levinbolt': '우레',
         'Phase': 'Phase', // FIXME
