@@ -310,7 +310,6 @@
         'The Mad Head': 'verrückt(?:e|er|es|en) Kopf',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Aero Assault': 'Wallendes Windga',
         'Aero/Ruin': 'Wind/Ruin',
@@ -371,7 +370,6 @@
         'The Mad Head': 'visage de la folie',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Aero Assault': 'Méga Vent véhément',
         'Aero/Ruin': 'Vent/Ruine',
@@ -432,7 +430,6 @@
         'The Mad Head': 'マッドヘッド',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Aero Assault': 'ずんずんエアロガ',
         'Aero/Ruin': 'Aero/Ruin', // FIXME
@@ -493,7 +490,6 @@
         'The Mad Head': '妖首',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Aero Assault': '疼飕飕暴风',
         'Aero/Ruin': 'Aero/Ruin', // FIXME
@@ -554,7 +550,6 @@
         'The Mad Head': '광인의 머리',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Aero Assault': '갈기갈기 에어로가',
         'Aero/Ruin': 'Aero/Ruin', // FIXME

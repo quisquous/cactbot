@@ -304,7 +304,6 @@
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'The Path Of Light': 'Voie de lumière',
         'Brazen Bull': 'Taureau d\'airain',

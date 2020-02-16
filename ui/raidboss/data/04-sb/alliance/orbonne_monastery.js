@@ -837,7 +837,6 @@
         'Ultima, the High Seraph': 'Cherub Ultima',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Analysis': 'Analyse',
         'Arm Shot': 'Armschuss',
@@ -977,7 +976,6 @@
         'Ultima, the High Seraph': 'Ultima la Grande Séraphine',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Analysis': 'Analyse',
         'Arm Shot': 'Visée des bras',
@@ -1117,7 +1115,6 @@
         'Ultima, the High Seraph': '聖天使アルテマ',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Analysis': 'アナライズ',
         'Arm Shot': '腕を狙う',
@@ -1257,7 +1254,6 @@
         'Ultima, the High Seraph': '圣天使阿尔蒂玛',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Analysis': '分析',
         'Arm Shot': '击腕',
@@ -1398,7 +1394,6 @@
         ':..is no longer sealed': ':.*의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
-        '--targetable--': '--타겟 가능--',
         '--untargetable--': '--타겟 불가능--',
         'Analysis': '분석',
         'Arm Shot': '팔 조준',

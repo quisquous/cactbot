@@ -653,7 +653,6 @@
         'The Worm\'s Heart': 'Shinryus Herz',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Aerial Blast': 'Windschlag',
         'Aetherial Ray': 'Ätherstrahl',
@@ -735,7 +734,6 @@
         'The Worm\'s Heart': 'cœur du dragon',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Aerial Blast': 'Rafale aérienne',
         'Aetherial Ray': 'Rayon éthéré',
@@ -817,7 +815,6 @@
         'The Worm\'s Heart': '神龍の心核',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Aerial Blast': 'エリアルブラスト',
         'Aetherial Ray': 'エーテルレイ',
@@ -899,7 +896,6 @@
         'The Worm\'s Heart': '神龙的核心',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Aerial Blast': '大气爆发',
         'Aetherial Ray': '以太射线',
@@ -981,7 +977,6 @@
         'The Worm\'s Heart': '신룡의 심핵',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
         '--untargetable--': '--대상 지정 불가--',
         'Aerial Blast': '대기 폭발',
         'Aetherial Ray': '에테르 광선',

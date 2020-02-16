@@ -226,7 +226,6 @@
         'Twintania': 'Twintania',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         'Aetheric Profusion': 'Ätherische Profusion',
         'Asclepius': 'Asclepius',
         'Death Sentence': 'Todesurteil',
@@ -249,7 +248,6 @@
         'Twintania': 'Gémellia',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         'Aetheric Profusion': 'Excès d\'éther',
         'Asclepius': 'Asclépios',
         'Death Sentence': 'Peine de mort',
@@ -272,7 +270,6 @@
         'Twintania': 'ツインタニア',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         'Aetheric Profusion': 'エーテリックプロフュージョン',
         'Asclepius': 'アスクレピオス',
         'Death Sentence': 'デスセンテンス',
@@ -295,7 +292,6 @@
         'Twintania': '双塔尼亚',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         'Aetheric Profusion': '以太失控',
         'Asclepius': '阿斯克勒庇俄斯',
         'Death Sentence': '死刑',
@@ -318,7 +314,6 @@
         'Twintania': '트윈타니아',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         'Aetheric Profusion': '에테르 홍수',
         'Asclepius': '아스클레피오스',
         'Death Sentence': '사형 선고',

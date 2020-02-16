@@ -63,7 +63,6 @@
       'replaceText': {
         '--Reset--': '--Reset--',
         '--sync--': '--sync--',
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
@@ -99,7 +98,6 @@
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
@@ -135,7 +133,6 @@
       'replaceText': {
         '--Reset--': '--Reset--',
         '--sync--': '--sync--',
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
@@ -171,7 +168,6 @@
       'replaceText': {
         '--Reset--': '--Reset--', // FIXME
         '--sync--': '--sync--', // FIXME
-        '--targetable--': '--可选中--',
         '--untargetable--': '--不可选中--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
@@ -207,7 +203,6 @@
       'replaceText': {
         '--Reset--': '--Reset--', // FIXME
         '--sync--': '--sync--', // FIXME
-        '--targetable--': '--대상 지정 가능--',
         '--untargetable--': '--대상 지정 불가--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME

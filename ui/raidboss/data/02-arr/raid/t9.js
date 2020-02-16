@@ -414,7 +414,6 @@
       'replaceText': {
         '\\(In\\)': '(Rein)',
         '\\(Out\\)': '(Raus)',
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Bahamut\'s Claw': 'Klauen Bahamuts',
         'Bahamut\'s Favor': 'Bahamuts Segen',
@@ -456,7 +455,6 @@
       'replaceText': {
         '\\(In\\)': '(Dedans)',
         '\\(Out\\)': '(Dehors)',
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Bahamut\'s Claw': 'Griffe de Bahamut',
         'Bahamut\'s Favor': 'Auspice du dragon',
@@ -498,7 +496,6 @@
       'replaceText': {
         '\\(In\\)': '(In)',
         '\\(Out\\)': '(Out)',
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Bahamut\'s Claw': 'バハムートクロウ',
         'Bahamut\'s Favor': '龍神の加護',
@@ -540,7 +537,6 @@
       'replaceText': {
         '\\(In\\)': '(In)', // FIXME
         '\\(Out\\)': '(Out)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Bahamut\'s Claw': '巴哈姆特之爪',
         'Bahamut\'s Favor': '龙神的加护',
@@ -582,7 +578,6 @@
       'replaceText': {
         '\\(In\\)': '(In)', // FIXME
         '\\(Out\\)': '(Out)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Bahamut\'s Claw': '바하무트의 발톱',
         'Bahamut\'s Favor': '용신의 가호',

@@ -1070,7 +1070,6 @@
         '--Boss Targetable--': '--Boss Targetable--', // FIXME
         '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
         '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Aero III': 'Windga',
         'Almagest': 'Almagest',
@@ -1134,7 +1133,6 @@
         '--Boss Targetable--': '--Boss Targetable--', // FIXME
         '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
         '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Aero III': 'Méga Vent',
         'Almagest': 'Almageste',
@@ -1198,7 +1196,6 @@
         '--Boss Targetable--': '--Boss Targetable--', // FIXME
         '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
         '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Aero III': 'エアロガ',
         'Almagest': 'アルマゲスト',
@@ -1262,7 +1259,6 @@
         '--Boss Targetable--': '--Boss Targetable--', // FIXME
         '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
         '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Aero III': '暴风',
         'Almagest': '至高无上',
@@ -1326,7 +1322,6 @@
         '--Boss Targetable--': '--Boss Targetable--', // FIXME
         '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
         '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Aero III': '에어로가',
         'Almagest': '알마게스트',

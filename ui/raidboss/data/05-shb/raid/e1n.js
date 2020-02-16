@@ -207,7 +207,6 @@
         'Dimensional Shift': 'Dimensionsverschiebung',
         'Delta Attack': 'Delta-Attacke',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
         '--corner--': '--ecke--',
         '--center--': '..mitte--',
       },
@@ -251,7 +250,6 @@
         'Dimensional Shift': 'Translation dimensionnelle',
         'Delta Attack': 'Attaque Delta',
         '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
         '--corner--': '--Coin--',
@@ -337,7 +335,6 @@
         '--corner--': '--角落--',
         '--center--': '--中央--',
         '--untargetable--': '--无法选中--',
-        '--targetable--': '--可选中--',
       },
       '~effectNames': {
         'Summon Order': '发动技能待命I',
@@ -380,7 +377,6 @@
         '--corner--': '--모서리--',
         '--center--': '--중앙--',
         '--untargetable--': '--타겟불가능--',
-        '--targetable--': '--타겟가능--',
       },
       '~effectNames': {
         'Summon Order': 'Summon Order',

@@ -306,7 +306,6 @@
         'Fleshy Member': 'Tentakel',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         '-100 Gs': 'Minus 100 G',
         '(?<!-)100 Gs': '100 G',
@@ -350,7 +349,6 @@
         'Fleshy Member': 'tentacule',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         '-100 Gs': 'Gravité -100',
         '(?<!-)100 Gs': 'Gravité 100',
@@ -394,7 +392,6 @@
         'Fleshy Member': '触手',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         '-100 Gs': '重力マイナス100',
         '(?<!-)100 Gs': '重力100',
@@ -438,7 +435,6 @@
         'Fleshy Member': '触手',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         '-100 Gs': '重力-100',
         '(?<!-)100 Gs': '重力100',
@@ -482,7 +478,6 @@
         'Fleshy Member': '촉수',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         '-100 Gs': '중력 -100',
         '(?<!-)100 Gs': '중력 100',

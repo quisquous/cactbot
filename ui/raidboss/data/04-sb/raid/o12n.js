@@ -191,7 +191,6 @@
         'Progress to party combat': 'Initiiere Gruppenkampf',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Beyond Strength': 'Schildkombo G',
         'Cosmo Memory': 'Kosmospeicher',
@@ -239,7 +238,6 @@
         'Progress to party combat': 'Limites du combat en solitaire atteintes',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Beyond Strength': 'Combo bouclier G',
         'Cosmo Memory': 'Cosmomémoire',
@@ -287,7 +285,6 @@
         'Progress to party combat': '単独戦闘による限界を確認',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Beyond Strength': 'シールドコンボG',
         'Cosmo Memory': 'コスモメモリー',
@@ -335,7 +332,6 @@
         'Progress to party combat': '确认到单独战斗的极限',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Beyond Strength': '盾连击G',
         'Cosmo Memory': '宇宙记忆',
@@ -383,7 +379,6 @@
         'Progress to party combat': '단독 전투 한계 확인',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Beyond Strength': '방패 연격 G',
         'Cosmo Memory': '세계의 기억',

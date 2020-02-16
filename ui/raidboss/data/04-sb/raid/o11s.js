@@ -262,7 +262,6 @@
         'Rocket Punch': 'Raketenschlag',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Afterburner': 'Nachbrenner',
         'Atomic Ray': 'Atomstrahlung',
@@ -333,7 +332,6 @@
         'Rocket Punch': 'Astéropoing',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Afterburner': 'Postcombustion',
         'Atomic Ray': 'Rayon atomique',
@@ -404,7 +402,6 @@
         'Rocket Punch': 'ロケットパンチ',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Afterburner': 'アフターバーナー',
         'Atomic Ray': 'アトミックレイ',
@@ -475,7 +472,6 @@
         'Rocket Punch': '火箭飞拳',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Afterburner': '燃烧室排热',
         'Atomic Ray': '原子射线',
@@ -546,7 +542,6 @@
         'Rocket Punch': '로켓 주먹',
       },
       'replaceText': {
-        '--targetable--': '--타겟불가능--',
         '--untargetable--': '--타겟가능--',
         'Afterburner': '재연소 장치',
         'Atomic Ray': '원자 파동',

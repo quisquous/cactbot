@@ -702,7 +702,6 @@
         'Guillotine/Cleaver': 'Fallbeil/Schlachter',
         'Cycle Of ?': '? Chaos',
         '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
       },
       '~effectNames': {
         'Stone Curse': 'Steinfluch',
@@ -746,7 +745,6 @@
         'Cycle of Retribution': 'Multi-taillade vengeresse',
         'Cycle of Chaos': 'Multi-taillade chaotique',
         '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
         'Slicer/Guillotine': 'Entaille/Guillotine',
@@ -884,7 +882,6 @@
         'Guillotine/Cleaver': '절단/살육',
         'Cycle Of ?': '? 연속검',
         '--untargetable--': '--타겟불가능--',
-        '--targetable--': '--타겟가능--',
       },
       '~effectNames': {
         'Stone Curse': '석화의 저주',

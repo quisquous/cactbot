@@ -547,7 +547,6 @@
         'Aqua Spear': '물의 창',
         'Acrid Stream': '매캐한 냇물',
         '--untargetable--': '--타겟 불가능--',
-        '--targetable--': '--타겟 가능--',
         'x targetable--': '마리 타겟 가능--',
         'Carcharian Verve': '상어의 기백',
       },

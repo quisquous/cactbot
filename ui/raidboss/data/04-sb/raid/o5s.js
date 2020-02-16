@@ -158,7 +158,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Geister',
-        '--targetable--': '--anvisierbar--',
         '--untargetable--': '--nich anvisierbar--',
         'Acid Rain': 'Säureregen',
         'Add Wave': 'Add Welle',
@@ -198,7 +197,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Fantômes',
-        '--targetable--': '--Ciblable--',
         '--untargetable--': '--Impossible à cibler--',
         'Acid Rain': 'Pluie acide',
         'Add Wave': 'Vague d\'Adds',
@@ -238,7 +236,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Ghosts', // FIXME
-        '--targetable--': '--targetable--',
         '--untargetable--': '--untargetable--',
         'Acid Rain': '酸性雨',
         'Add Wave': 'Add Wave', // FIXME
@@ -278,7 +275,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Ghosts', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Acid Rain': '酸雨',
         'Add Wave': 'Add Wave', // FIXME
@@ -318,7 +314,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Ghosts', // FIXME
-        '--targetable--': '--targetable--', // FIXME
         '--untargetable--': '--untargetable--', // FIXME
         'Acid Rain': '산성비',
         'Add Wave': 'Add Wave', // FIXME
