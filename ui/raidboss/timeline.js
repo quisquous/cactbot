@@ -60,9 +60,9 @@ class Timeline {
   GetReplacedCommon(text) {
     let locale = this.options.Language || 'en';
     let keys = Object.keys(commonReplacement);
-    for (let j = 0; j < keys.length; ++j){
-        let re = new RegExp(keys[j],"gi");
-        text = text.replace(re, commonReplacement[keys[j]][locale])
+    for (let j = 0; j < keys.length; ++j) {
+      let re = new RegExp(keys[j], 'gi');
+      text = text.replace(re, commonReplacement[keys[j]][locale]);
     }
     return text;
   }
