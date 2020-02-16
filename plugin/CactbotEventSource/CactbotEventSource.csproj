@@ -64,6 +64,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ThirdParty\OverlayPlugin\libs\HtmlRenderer.dll</HintPath>
     </Reference>
+    <Reference Include="Machina, Version=2.1.1.2, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ThirdParty\Machina.FFXIV\Machina.dll</HintPath>
+    </Reference>
+    <Reference Include="Machina.FFXIV, Version=2.1.3.10, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>ThirdParty\Machina.FFXIV\Machina.FFXIV.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\ThirdParty\OverlayPlugin\libs\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -93,6 +101,7 @@
   <ItemGroup>
     <Compile Include="CactbotEventSource.cs" />
     <Compile Include="CactbotEventSourceConfig.cs" />
+    <Compile Include="FateWatcher.cs" />
     <Compile Include="FFXIVPlugin.cs" />
     <Compile Include="VersionChecker.cs" />
     <Compile Include="FFXIVProcess.cs" />

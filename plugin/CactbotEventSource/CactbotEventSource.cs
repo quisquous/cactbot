@@ -82,9 +82,17 @@ namespace Cactbot {
 
     public delegate void PartyWipeHandler(JSEvents.PartyWipeEvent e);
     public event PartyWipeHandler OnPartyWipe;
+
+    public delegate void FateEventHandler(JSEvents.FateEvent e);
+    public event FateEventHandler OnFateEvent;
+
     public void Wipe() {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
       OnPartyWipe(new JSEvents.PartyWipeEvent());
+    }
+
+    public void DoFateEvent(JSEvents.FateEvent e) {
+      OnFateEvent(e);
     }
 
     public CactbotEventSource(RainbowMage.OverlayPlugin.ILogger logger)
@@ -273,6 +281,7 @@ namespace Cactbot {
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
+      OnFateEvent += (e) => DispatchToJS(e);
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
