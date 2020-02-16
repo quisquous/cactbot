@@ -293,7 +293,6 @@
         'The Winding Flare will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Die Strahlenden Stufen schließt',
         'The White Gate will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Die Weiße Pforte schließt',
         'The Perished Path will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Pfad ohne Halt schließt',
-        'is no longer sealed': 'öffnet sich erneut',
       },
       'replaceText': {
         'Lumen Infinitum': 'Lumen Infinitem',
@@ -330,7 +329,6 @@
         'The Winding Flare will be sealed off': '15초 후에 광망의 계단이 봉쇄됩니다',
         'The White Gate will be sealed off': '15초 후에 순백의 문이 봉쇄됩니다',
         'The Perished Path will be sealed off': '15초 후에 무너진 산길이 봉쇄됩니다',
-        'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         'Lumen Infinitum': '무한 섬광',

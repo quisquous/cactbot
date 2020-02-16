@@ -306,7 +306,6 @@
         'Repurposing': 'Umrüstanlage',
         'Cladoselache': 'Cladoselache',
         ':(.*) will be sealed off': ':Noch 15 Sekunden, bis sich (der|die|das)( Zugang zu[rm])? $1 schließt',
-        'is no longer sealed': ' öffnet sich erneut',
       },
       'replaceText': {
         'Wind Spout': 'Windstreich',
@@ -383,7 +382,6 @@
         'Repurposing': 'Atelier d\'opti-rénovation',
         'Cladoselache': 'Cladoselache',
         ':(.*) will be sealed off': ':Fermeture $1 dans ',
-        'is no longer sealed': 'Ouverture ',
       },
       'replaceText': {
         'Wind Spout': 'Jet de vent',
@@ -460,7 +458,6 @@
         'Repurposing': '改装作業拠点',
         'Cladoselache': 'クラドセラケ',
         ':(.*) will be sealed off': ':$1の封鎖まであと',
-        'is no longer sealed': 'の封鎖が解かれた',
       },
       'replaceText': {
         'Wind Spout': 'ウィンドスパウト',
@@ -550,7 +547,6 @@
         'Aetherial Observation': '에테르 관측대',
         'Repurposing': '차원 잠행 장치 중추',
         ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
-        'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         'Wind Spout': '바람 분출',

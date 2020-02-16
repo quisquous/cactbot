@@ -886,7 +886,6 @@
         'Warehouse A will be sealed off': 'Noch 15 Sekunden, bis sich das Warenlager A schließt',
         'Warehouse B will be sealed off': 'Noch 15 Sekunden, bis sich das Warenlager B schließt',
         'Warehouse C will be sealed off': 'Noch 15 Sekunden, bis sich das Warenlager C schließt',
-        'is no longer sealed': 'öffnet sich wieder',
       },
       'replaceText': {
         '--jump--': '--Sprung--',
@@ -974,7 +973,6 @@
         'Warehouse A will be sealed off': 'Fermeture de l\'entrepôt A',
         'Warehouse B will be sealed off': 'Fermeture de l\'entrepôt B',
         'Warehouse C will be sealed off': 'Fermeture de l\'entrepôt C',
-        'is no longer sealed': 'Ouverture ',
       },
       'replaceText': {
         '--jump--': '--Saut--',
@@ -1062,7 +1060,6 @@
         'Warehouse A will be sealed off': 'Warehouse A will be sealed off', // FIXME
         'Warehouse B will be sealed off': 'Warehouse B will be sealed off', // FIXME
         'Warehouse C will be sealed off': 'Warehouse C will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--jump--': '--jump--', // FIXME
@@ -1152,7 +1149,6 @@
         'Warehouse A will be sealed off': '距仓库A被封锁还有',
         'Warehouse B will be sealed off': '距仓库B被封锁还有',
         'Warehouse C will be sealed off': '距仓库C被封锁还有',
-        'is no longer sealed': '的封锁解除了',
       },
       'replaceText': {
         '--jump--': '--大跳--',

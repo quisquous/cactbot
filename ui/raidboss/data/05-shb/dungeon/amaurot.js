@@ -132,7 +132,6 @@
         'The Second Doom': 'Zweites Unheil',
         'The Third Doom': 'Drittes Unheil',
         ':(.*) will be sealed off': ':Noch 15 Sekunden, bis sich (der|die|das)( Zugang zu[rm])? $1 schließt',
-        'is no longer sealed': ' öffnet sich erneut',
       },
       'replaceText': {
         'Adds': 'Adds',
@@ -203,7 +202,6 @@
         'The Second Doom': 'La deuxième Calamité',
         'The Third Doom': 'La troisième Calamité',
         ':(.*) will be sealed off': ':Fermeture $1 dans ',
-        'is no longer sealed': 'Ouverture ',
       },
       'replaceText': {
         'The Final Sky': 'Étoile de la ruine',
@@ -275,7 +273,6 @@
         'The Second Doom': '第二の災い',
         'The Third Doom': '第三の災い',
         ':(.*) will be sealed off': ':$1の封鎖まであと',
-        'is no longer sealed': 'の封鎖が解かれた',
       },
       'replaceText': {
         'The Final Sky': '終末の流星',
@@ -357,7 +354,6 @@
         'The Second Doom': '두 번째 재앙',
         'The Third Doom': '세 번째 재앙',
         ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
-        'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         'Adds': '쫄들',

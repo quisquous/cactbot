@@ -165,7 +165,6 @@
         'The Curator': 'Kurator',
         'The high-level incubation bay will be sealed off': 'Inkubationskammer schließt',
         'The reality augmentation bay will be sealed off': 'Dilatationskammer schließt',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -198,7 +197,6 @@
         'The Curator': 'Conservateur',
         'The high-level incubation bay will be sealed off': 'Fermeture de la chambre d\'incubation chimérique',
         'The reality augmentation bay will be sealed off': 'fermeture de la salle de distorsion de la réalité',
-        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
         '--reset--': '-- Reset --',
@@ -231,7 +229,6 @@
         'The Curator': 'キュレーター',
         'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
         'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -264,7 +261,6 @@
         'The Curator': '博物总管',
         'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
         'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -297,7 +293,6 @@
         'The Curator': '전시 책임자',
         'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
         'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
