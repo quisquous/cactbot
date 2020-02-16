@@ -214,7 +214,6 @@
         'The Chancel': 'Bekenntnis des Glaubens',
         'The Quire': 'Chorempore',
         'The chapter house': 'Himmelsgewölbe',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -259,7 +258,6 @@
         'The Chancel': 'Salle de prière du sanctuaire de l\'Azur',
         'The Quire': 'Chœur',
         'The chapter house': 'Kiosque du patio',
-        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
         '--reset--': '-- Reset --',
@@ -304,7 +302,6 @@
         'The Chancel': '氷天宮礼拝堂',
         'The Quire': '聖歌隊席',
         'The chapter house': '庭園の小ホール',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -349,7 +346,6 @@
         'The Chancel': '冰天宫礼拜堂',
         'The Quire': '圣歌队席',
         'The chapter house': '庭园小厅',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -394,7 +390,6 @@
         'The Chancel': '빙천궁 예배당',
         'The Quire': '성가대석',
         'The chapter house': '기사단 강당',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME

@@ -253,7 +253,6 @@
         'Harmony will be sealed off': 'bis sich der Zugang zu[rm]? Harmonie schließt',
         'Ivon Coeurlfist': 'Ivon Coeurlfaust',
         'Tourmaline Pond will be sealed off': 'bis sich der Zugang zu[rm]? Turmalinteich schließt',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--Smriti Appears--': '--Smriti Appears--', // FIXME
@@ -290,7 +289,6 @@
         'Harmony will be sealed off': 'Fermeture de l\'Harmonie',
         'Ivon Coeurlfist': 'Ivon le Coeurl',
         'Tourmaline Pond will be sealed off': 'Fermeture de l\'étang de Tourmaline',
-        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
         '--Smriti Appears--': '-- Apparition de Smriti --',
@@ -327,7 +325,6 @@
         'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
         'Ivon Coeurlfist': '双豹のイヴォン',
         'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--Smriti Appears--': '--Smriti Appears--', // FIXME
@@ -364,7 +361,6 @@
         'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
         'Ivon Coeurlfist': '双豹伊沃恩',
         'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--Smriti Appears--': '--Smriti Appears--', // FIXME
@@ -401,7 +397,6 @@
         'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
         'Ivon Coeurlfist': '쌍표범 이본',
         'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--Smriti Appears--': '--Smriti Appears--', // FIXME

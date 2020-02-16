@@ -287,7 +287,6 @@
         'The Divine Threshold will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Götterpforte schließt',
         'Shadowed Hollow will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Bildnishalle schließt',
         'The Song of Ox\'Gatorl will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Altar des Ox\'Gatorl schließt',
-        'is no longer sealed': 'öffnet sich erneut',
       },
       'replaceText': {
         'Confession Of Faith': 'Glaubensbekenntnis',
@@ -319,7 +318,6 @@
         'The Divine Threshold will be sealed off': '15초 후에 신에게 가는 문이 봉쇄됩니다',
         'Shadowed Hollow will be sealed off': '15초 후에 신 그림자 공터가 봉쇄됩니다',
         'The Song of Ox\'Gatorl will be sealed off': '15초 후에 가톨 신의 제단이 봉쇄됩니다',
-        'is no longer sealed': '의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         'Confession Of Faith': '신앙 고백',

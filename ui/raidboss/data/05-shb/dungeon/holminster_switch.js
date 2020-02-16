@@ -263,7 +263,6 @@
         'Tesleen, the Forgiven': 'Tesleen die Bekehrte',
 
         'Philia': 'Philia',
-        'is no longer sealed': 'öffnet sich erneut',
       },
       'replaceText': {
         'Aethersup': 'Ätherfresser',
@@ -298,7 +297,6 @@
         '00:0839:The Wound will be sealed off': 'Fermeture de La Talure',
         '00:0839:The Auction will be sealed off': 'Fermeture de la place du Cheptel',
         '00:0839:The manor house courtyard will be sealed off': 'Fermeture de l\'esplanade du Manoir',
-        'is no longer sealed': 'Ouverture de',
         'Tesleen, the Forgiven': 'Tesleen pardonnée',
       },
       'replaceText': {
@@ -336,7 +334,6 @@
         'The Wound will be sealed off': '15초 후에 검보라 틈이 봉쇄됩니다',
         'The Auction will be sealed off': '15초 후에 가축 시장이 봉쇄됩니다',
         'The manor house courtyard will be sealed off': '15초 후에 저택 앞뜰이 봉쇄됩니다',
-        'is no longer sealed': '의 봉쇄가 해제되었습니다',
         'Forgiven Dissonance': '면죄된 불화',
         'Tesleen, the Forgiven': '면죄된 테슬린',
         'Philia': '필리아',

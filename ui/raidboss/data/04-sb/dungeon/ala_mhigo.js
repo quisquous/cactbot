@@ -152,7 +152,6 @@
         'The Hall of the Griffin': 'Halle des Greifen',
         'The Storm': 'Durch den Mahlstrom',
         'Zenos Yae Galvus': 'Zenos yae Galvus',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Magitek-Granate',
@@ -193,7 +192,6 @@
         'The Hall of the Griffin': 'Salle du Griffon',
         'The Storm': 'Spirale du chaos',
         'Zenos Yae Galvus': 'Zenos yae Galvus',
-        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Grenade magitek',
@@ -234,7 +232,6 @@
         'The Hall of the Griffin': '鷲獅子の間',
         'The Storm': '混沌の渦動',
         'Zenos Yae Galvus': 'ゼノス・イェー・ガルヴァス',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '魔導榴弾',
@@ -275,7 +272,6 @@
         'The Hall of the Griffin': '狮鹫之间',
         'The Storm': '混沌波动',
         'Zenos Yae Galvus': '芝诺斯·耶·加尔乌斯',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '魔导榴弹',
@@ -316,7 +312,6 @@
         'The Hall of the Griffin': '그리핀 전당',
         'The Storm': '', // FIXME
         'Zenos Yae Galvus': '제노스 예 갈부스',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '마도 유탄',

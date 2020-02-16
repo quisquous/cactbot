@@ -208,7 +208,6 @@
         'Magitek Turret II': 'Magitek-Geschütz II',
         'Neurolink Nacelle': 'Neurolink-Zelle',
         'Regula van Hydrus': 'Regula van Hydrus',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Magitek-Granate',
@@ -264,7 +263,6 @@
         'Magitek Turret II': 'Tourelle magitek TM-II',
         'Neurolink Nacelle': 'Nacelle neurolien',
         'Regula van Hydrus': 'Regula van Hydrus',
-        'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Grenade magitek',
@@ -320,7 +318,6 @@
         'Magitek Turret II': '魔導タレットII',
         'Neurolink Nacelle': 'ニューロリンク・ナセル',
         'Regula van Hydrus': 'レグラ・ヴァン・ヒュドルス',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '魔導榴弾',
@@ -376,7 +373,6 @@
         'Magitek Turret II': '魔导炮塔II',
         'Neurolink Nacelle': '拘束仓',
         'Regula van Hydrus': '雷古拉·范·休著斯',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '魔导榴弹',
@@ -432,7 +428,6 @@
         'Magitek Turret II': '마도 포탑 II',
         'Neurolink Nacelle': '신경연결기관',
         'Regula van Hydrus': '레굴라 반 히드루스',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '마도 유탄',
