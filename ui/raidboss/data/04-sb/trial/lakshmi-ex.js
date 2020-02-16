@@ -267,7 +267,6 @@
         'Divine Denial': 'Göttliche Leugnung',
         'Divine Desire': 'Göttliche Lockung',
         'Divine Doubt': 'Göttliche Bestürzung',
-        'Enrage': 'Finalangriff',
         'Hand Of Beauty': 'Hand der Schönheit',
         'Hand Of Grace': 'Hand der Anmut',
         'Hands Of Grace/Beauty': 'Hand Der Anmut/Schönheit',
@@ -315,7 +314,6 @@
         'Divine Denial': 'Refus divin',
         'Divine Desire': 'Désir divin',
         'Divine Doubt': 'Doute divin',
-        'Enrage': 'Enrage',
         'Hand Of Beauty': 'Main de la beauté',
         'Hand Of Grace': 'Main de la grâce',
         'Hands Of Grace/Beauty': 'Main De La Grâce/Beauté',
@@ -363,7 +361,6 @@
         'Divine Denial': '完全なる拒絶',
         'Divine Desire': '完全なる誘引',
         'Divine Doubt': '完全なる惑乱',
-        'Enrage': 'Enrage',
         'Hand Of Beauty': '優美なる左手',
         'Hand Of Grace': '優雅なる右手',
         'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME
@@ -411,7 +408,6 @@
         'Divine Denial': '完全拒绝',
         'Divine Desire': '完全引诱',
         'Divine Doubt': '完全惑乱',
-        'Enrage': 'Enrage', // FIXME
         'Hand Of Beauty': '优美的左手',
         'Hand Of Grace': '优雅的右手',
         'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME
@@ -459,7 +455,6 @@
         'Divine Denial': '완전한 거절',
         'Divine Desire': '완전한 유인',
         'Divine Doubt': '완전한 혼란',
-        'Enrage': '전멸기',
         'Hand Of Beauty': '아름다운 왼손',
         'Hand Of Grace': '우아한 오른손',
         'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME

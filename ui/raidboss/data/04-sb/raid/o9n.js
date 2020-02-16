@@ -77,7 +77,6 @@
         'Cyclone': 'Tornado',
         'Damning Edict': 'Verdammendes Edikt',
         'Earthquake': 'Erdbeben',
-        'Enrage': 'Finalangriff',
         'Fiendish Orbs': 'Höllenkugeln',
         'Knock Down': 'Niederschmettern',
         'Knock(?! )': 'Einschlag',
@@ -125,7 +124,6 @@
         'Cyclone': 'Tornade',
         'Damning Edict': 'Décret accablant',
         'Earthquake': 'Grand séisme',
-        'Enrage': 'Enrage',
         'Fiendish Orbs': 'Ordre de poursuite',
         'Knock Down': 'Ordre d\'impact',
         'Knock(?! )': 'Impact',
@@ -173,7 +171,6 @@
         'Cyclone': 'たつまき',
         'Damning Edict': 'ダミングイーディクト',
         'Earthquake': 'じしん',
-        'Enrage': 'Enrage',
         'Fiendish Orbs': '追尾せよ',
         'Knock Down': '着弾せよ',
         'Knock(?! )': '着弾',
@@ -221,7 +218,6 @@
         'Cyclone': '龙卷风',
         'Damning Edict': '诅咒敕令',
         'Earthquake': '大地震',
-        'Enrage': 'Enrage', // FIXME
         'Fiendish Orbs': '追踪',
         'Knock Down': '中弹',
         'Knock(?! )': 'Knock', // FIXME
@@ -269,7 +265,6 @@
         'Cyclone': '회오리',
         'Damning Edict': '파멸 포고',
         'Earthquake': '대지진',
-        'Enrage': 'Enrage', // FIXME
         'Fiendish Orbs': '추격하라',
         'Knock Down': '착탄하라',
         'Knock(?! )': 'Knock', // FIXME

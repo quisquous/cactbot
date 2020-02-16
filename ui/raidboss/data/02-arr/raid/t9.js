@@ -423,7 +423,6 @@
         'Chain Lightning': 'Kettenblitz',
         'Dalamud Dive': 'Dalamud-Sturzflug',
         'Divebomb': 'Sturzbombe',
-        'Enrage': 'Finalangriff',
         'Fireball': 'Feuerball',
         'Ghost': 'Geist',
         'Golem Meteors': 'Golem Meteore',
@@ -466,7 +465,6 @@
         'Chain Lightning': 'Chaîne d\'éclairs',
         'Dalamud Dive': 'Chute de Dalamud',
         'Divebomb': 'Bombe plongeante',
-        'Enrage': 'Enrage',
         'Fireball': 'Boule de feu',
         'Ghost': 'fantôme',
         'Golem Meteors': 'Golem de Dalamud',
@@ -509,7 +507,6 @@
         'Chain Lightning': 'チェインライトニング',
         'Dalamud Dive': 'ダラガブダイブ',
         'Divebomb': 'ダイブボム',
-        'Enrage': 'Enrage',
         'Fireball': 'ファイアボール',
         'Ghost': 'ゴースト',
         'Golem Meteors': 'Golem Meteors', // FIXME
@@ -552,7 +549,6 @@
         'Chain Lightning': '雷光链',
         'Dalamud Dive': '月华冲',
         'Divebomb': '爆破俯冲',
-        'Enrage': 'Enrage', // FIXME
         'Fireball': '火球',
         'Ghost': '幽灵',
         'Golem Meteors': 'Golem Meteors', // FIXME
@@ -595,7 +591,6 @@
         'Chain Lightning': '번개 사슬',
         'Dalamud Dive': '달라가브 강하',
         'Divebomb': '급강하 폭격',
-        'Enrage': 'Enrage', // FIXME
         'Fireball': '화염구',
         'Ghost': '유령',
         'Golem Meteors': 'Golem Meteors', // FIXME

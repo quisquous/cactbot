@@ -406,7 +406,6 @@
         'Dance Of The Incomplete': 'Tanz der zwei Gesichter',
         'Distant Clap': 'Donnergrollen',
         'Donut AOE': 'Donut AoE',
-        'Enrage': 'Finalangriff',
         'Fell Swoop': 'Auf einen Streich',
         'Fire And Lightning': 'Feuer und Blitz',
         'Gale Force': 'Orkan',
@@ -467,7 +466,6 @@
         'Dance Of The Incomplete': 'Danse semi-bestiale',
         'Distant Clap': 'Tonnerre lointain',
         'Donut AOE': 'Donut AOE', // FIXME
-        'Enrage': 'Enrage',
         'Fell Swoop': 'Éléments déchaînés',
         'Fire And Lightning': 'Feu et foudre',
         'Gale Force': 'Coup de rafale',
@@ -528,7 +526,6 @@
         'Dance Of The Incomplete': '半獣舞踏',
         'Distant Clap': '遠雷',
         'Donut AOE': 'Donut AOE', // FIXME
-        'Enrage': 'Enrage',
         'Fell Swoop': '迅雷風烈波',
         'Fire And Lightning': '雷火一閃',
         'Gale Force': '暴風',
@@ -589,7 +586,6 @@
         'Dance Of The Incomplete': '半兽舞蹈',
         'Distant Clap': '远雷',
         'Donut AOE': '月环',
-        'Enrage': '战斗开始',
         'Fell Swoop': '迅雷风烈波',
         'Fire And Lightning': '雷火一闪',
         'Gale Force': '暴风',
@@ -650,7 +646,6 @@
         'Dance Of The Incomplete': '반수의 춤',
         'Distant Clap': '원뢰',
         'Donut AOE': 'Donut AOE', // FIXME
-        'Enrage': '전멸기',
         'Fell Swoop': '신뢰풍렬파',
         'Fire And Lightning': '뇌화일섬',
         'Gale Force': '폭풍',

@@ -169,7 +169,6 @@
         'Dull Pain': 'Dumpfer Schmerz',
         'Earthquake': 'Erdbeben',
         'Easterlies': 'Ostwinde',
-        'Enrage': 'Finalangriff',
         'Featherlance': 'Federlanze',
         'Flash Fire': 'Blitzfeuer',
         'Flash Flood': 'Blitzregen',
@@ -229,7 +228,6 @@
         'Dull Pain': 'Douleur sourde',
         'Earthquake': 'Grand séisme',
         'Easterlies': 'Rafale Ultim',
-        'Enrage': 'Enrage',
         'Featherlance': 'Lance de plume',
         'Flash Fire': 'Flammes subites',
         'Flash Flood': 'Pluie subite',
@@ -289,7 +287,6 @@
         'Dull Pain': 'ダルペイン',
         'Earthquake': '大地震',
         'Easterlies': '極風',
-        'Enrage': 'Enrage',
         'Featherlance': 'フェザーランス',
         'Flash Fire': 'フラッシュファイア',
         'Flash Flood': 'フラッシュレイン',
@@ -349,7 +346,6 @@
         'Dull Pain': '钝痛',
         'Earthquake': '大地震',
         'Easterlies': 'Easterlies', // FIXME
-        'Enrage': 'Enrage', // FIXME
         'Featherlance': '羽枪',
         'Flash Fire': '闪光炎',
         'Flash Flood': '闪光雨',
@@ -409,7 +405,6 @@
         'Dull Pain': '약한 고통',
         'Earthquake': '대지진',
         'Easterlies': 'Easterlies', // FIXME
-        'Enrage': 'Enrage', // FIXME
         'Featherlance': '깃털창',
         'Flash Fire': '불바다',
         'Flash Flood': '급류',

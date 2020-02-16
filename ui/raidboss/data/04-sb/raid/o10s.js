@@ -255,7 +255,6 @@
         'Dark Wave': 'Dunkle Welle',
         'Dry Ice': 'Trockeneis',
         'Earth Shaker': 'Erdstoß',
-        'Enrage': 'Finalangriff',
         'Exaflare': 'Exaflare',
         'Flame Blast': 'Flammenhölle',
         'Flip': 'Rolle',
@@ -313,7 +312,6 @@
         'Dark Wave': 'Vague de ténèbres',
         'Dry Ice': 'Poussière glaçante',
         'Earth Shaker': 'Secousse',
-        'Enrage': 'Enrage',
         'Exaflare': 'ExaBrasier',
         'Flame Blast': 'Fournaise',
         'Flip': 'Tour vertical',
@@ -371,7 +369,6 @@
         'Dark Wave': 'ダークウェーブ',
         'Dry Ice': 'フリージングダスト',
         'Earth Shaker': 'アースシェイカー',
-        'Enrage': 'Enrage',
         'Exaflare': 'エクサフレア',
         'Flame Blast': 'フレイムブラスト',
         'Flip': 'Flip', // FIXME
@@ -429,7 +426,6 @@
         'Dark Wave': '黑暗波动',
         'Dry Ice': '冰尘',
         'Earth Shaker': '大地摇动',
-        'Enrage': 'Enrage', // FIXME
         'Exaflare': '百京核爆',
         'Flame Blast': '烈焰十字爆',
         'Flip': 'Flip', // FIXME
@@ -487,7 +483,6 @@
         'Dark Wave': '어둠의 파동',
         'Dry Ice': '지면 동결',
         'Earth Shaker': '요동치는 대지',
-        'Enrage': 'Enrage', // FIXME
         'Exaflare': '엑사플레어',
         'Flame Blast': '화염 작렬',
         'Flip': '앞회전',
