@@ -57,12 +57,22 @@ class Timeline {
     return text;
   }
 
+  GetReplacedCommon(text) {
+    let locale = this.options.Language || 'en';
+    let keys = Object.keys(commonReplacement);
+    for (let j = 0; j < keys.length; ++j){
+        let re = new RegExp(keys[j],"gi");
+        text = text.replace(re, commonReplacement[keys[j]][locale])
+    }
+    return text;
+  }
+
   GetReplacedText(text) {
-    return this.GetReplacedHelper(text, 'replaceText');
+    return this.GetReplacedCommon(this.GetReplacedHelper(text, 'replaceText'));
   }
 
   GetReplacedSync(sync) {
-    return this.GetReplacedHelper(sync, 'replaceSync');
+    return this.GetReplacedCommon(this.GetReplacedHelper(sync, 'replaceSync'));
   }
 
   GetMissingTranslationsToIgnore() {
