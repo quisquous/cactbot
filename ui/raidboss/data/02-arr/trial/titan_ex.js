@@ -71,7 +71,6 @@
         '(all)': '(alle)',
         '(clock)': '(Uhrzeiger)',
         '(one side)': '(eine Seite)',
-        '--untargetable--': '--nich anvisierbar--',
         'Burst': 'Einschlag',
         'Bury': 'Begraben',
         'Earthen Fury': 'Gaias Zorn',
@@ -99,7 +98,6 @@
         '(all)': '(tous)',
         '(clock)': '(horloge)',
         '(one side)': '(un côté)',
-        '--untargetable--': '--Impossible à cibler--',
         'Burst': 'Explosion',
         'Bury': 'Ensevelissement',
         'Earthen Fury': 'Fureur tellurique',
@@ -127,7 +125,6 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--untargetable--': '--untargetable--',
         'Burst': '大爆発',
         'Bury': '衝撃',
         'Earthen Fury': '大地の怒り',
@@ -155,7 +152,6 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Burst': '爆炸',
         'Bury': '塌方',
         'Earthen Fury': '大地之怒',
@@ -183,7 +179,6 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Burst': '대폭발',
         'Bury': '충격',
         'Earthen Fury': '대지의 분노',

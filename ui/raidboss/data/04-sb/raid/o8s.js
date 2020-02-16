@@ -761,7 +761,6 @@
         'The limit gauge resets!': 'Der Limitrausch-Balken wurde geleert.',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Aero Assault': 'Wallendes Windga',
         'All Things Ending': 'Ende aller Dinge',
         'Blizzard Blitz': 'Erstarrendes Eisga',
@@ -827,7 +826,6 @@
         'The limit gauge resets!': 'La jauge de Transcendance a été réinitialisée.',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Aero Assault': 'Méga Vent véhément',
         'All Things Ending': 'Fin de toutes choses',
         'Blizzard Blitz': 'Méga Glace glissante',
@@ -893,7 +891,6 @@
         'The limit gauge resets!': 'リミットゲージがリセットされた……',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Aero Assault': 'ずんずんエアロガ',
         'All Things Ending': '消滅の脚',
         'Blizzard Blitz': 'ぐるぐるブリザガ',
@@ -959,7 +956,6 @@
         'The limit gauge resets!': '极限槽被清零了……',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Aero Assault': '疼飕飕暴风',
         'All Things Ending': '消灭之脚',
         'Blizzard Blitz': '滴溜溜冰封',
@@ -1025,7 +1021,6 @@
         'The limit gauge resets!': '리미트 게이지가 초기화되었습니다…….',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Aero Assault': '갈기갈기 에어로가',
         'All Things Ending': '소멸의 발차기',
         'Blizzard Blitz': '빙글빙글 블리자가',

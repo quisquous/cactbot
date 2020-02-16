@@ -240,7 +240,6 @@
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--untargetable--': '--nich anvisierbar--',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Azurschwingen',
@@ -296,7 +295,6 @@
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--untargetable--': '--Impossible à cibler--',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Ailes azur',
@@ -352,7 +350,6 @@
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--untargetable--': '--untargetable--',
         'Akh Morn': 'アク・モーン',
         'Akh Rhai': 'アク・ラーイ',
         'Azure Wings': '蒼翼の焔',
@@ -408,7 +405,6 @@
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
         'Azure Wings': '苍翼之焰', // FIXME
@@ -464,7 +460,6 @@
       },
       'replaceText': {
         ' ready': ' 준비 완료',
-        '--untargetable--': '--타겟불가능--',
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',
         'Azure Wings': '창익의 불꽃',

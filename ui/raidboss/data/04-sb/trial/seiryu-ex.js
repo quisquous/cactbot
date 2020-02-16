@@ -444,7 +444,6 @@
       'replaceText': {
         '--jump--': '--Sprung--',
         '--rotate--': '--rotate--', // FIXME
-        '--untargetable--': '--nich anvisierbar--',
         '100-tonze Swing': '100-Tonzen-Schwung',
         'Blazing Aramitama': 'Flammende Aramitama',
         'Blue Bolt': 'Blauer Blitz',
@@ -500,7 +499,6 @@
       'replaceText': {
         '--jump--': '--jump--',
         '--rotate--': '--rotate--', // FIXME
-        '--untargetable--': '--Impossible à cibler--',
         '100-tonze Swing': 'Swing de 100 tonz',
         'Blazing Aramitama': 'Aramitama incandescent',
         'Blue Bolt': 'Percée bleue',
@@ -556,7 +554,6 @@
       'replaceText': {
         '--jump--': '--jump--',
         '--rotate--': '--rotate--', // FIXME
-        '--untargetable--': '--untargetable--',
         '100-tonze Swing': '100トンズ・スイング',
         'Blazing Aramitama': '荒魂燃焼',
         'Blue Bolt': '青の突進',
@@ -612,7 +609,6 @@
       'replaceText': {
         '--jump--': '--龙大跳--',
         '--rotate--': '--龙回转--',
-        '--untargetable--': '--untargetable--', // FIXME
         '100-tonze Swing': '百吨回转',
         'Blazing Aramitama': '荒魂燃烧',
         'Blue Bolt': '青突进',
@@ -668,7 +664,6 @@
       'replaceText': {
         '--jump--': '--jump--', // FIXME
         '--rotate--': '--rotate--', // FIXME
-        '--untargetable--': '--대상 지정 불가--',
         '100-tonze Swing': '100톤즈 휘두르기',
         'Blazing Aramitama': '아라미타마 연소',
         'Blue Bolt': '푸른 돌진',

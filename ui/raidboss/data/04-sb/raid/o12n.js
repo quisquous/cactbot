@@ -191,7 +191,6 @@
         'Progress to party combat': 'Initiiere Gruppenkampf',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Beyond Strength': 'Schildkombo G',
         'Cosmo Memory': 'Kosmospeicher',
         'Discharger': 'Entlader',
@@ -238,7 +237,6 @@
         'Progress to party combat': 'Limites du combat en solitaire atteintes',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Beyond Strength': 'Combo bouclier G',
         'Cosmo Memory': 'Cosmomémoire',
         'Discharger': 'Déchargeur',
@@ -285,7 +283,6 @@
         'Progress to party combat': '単独戦闘による限界を確認',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Beyond Strength': 'シールドコンボG',
         'Cosmo Memory': 'コスモメモリー',
         'Discharger': 'ディスチャージャー',
@@ -332,7 +329,6 @@
         'Progress to party combat': '确认到单独战斗的极限',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Beyond Strength': '盾连击G',
         'Cosmo Memory': '宇宙记忆',
         'Discharger': '能量放出',
@@ -379,7 +375,6 @@
         'Progress to party combat': '단독 전투 한계 확인',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Beyond Strength': '방패 연격 G',
         'Cosmo Memory': '세계의 기억',
         'Discharger': '방출',

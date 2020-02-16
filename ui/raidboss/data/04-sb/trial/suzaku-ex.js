@@ -129,7 +129,6 @@
         'Western Pyre': 'Westflamme',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Burn': 'Verbrennung',
         'Close-Quarter Crescendo': 'Puppencrescendo',
         'Cremate': 'Einäschern',
@@ -186,7 +185,6 @@
         'Western Pyre': 'flamme occidentale',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Burn': 'Combustion',
         'Close-Quarter Crescendo': 'Mélopée fantoche',
         'Cremate': 'Crématorium',
@@ -243,7 +241,6 @@
         'Western Pyre': '西炎',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Burn': '燃焼',
         'Close-Quarter Crescendo': '傀儡の調べ',
         'Cremate': '赤熱撃',
@@ -300,7 +297,6 @@
         'Western Pyre': '西炎',
       },
       'replaceText': {
-        '--untargetable--': '--不可选中--',
         'Burn': '燃烧',
         'Close-Quarter Crescendo': '傀儡旋律',
         'Cremate': '赤热击',
@@ -357,7 +353,6 @@
         'Western Pyre': '서염',
       },
       'replaceText': {
-        '--untargetable--': '--대상 지정 불가--',
         'Burn': '연소',
         'Close-Quarter Crescendo': '꼭두각시의 음률',
         'Cremate': '적열격',

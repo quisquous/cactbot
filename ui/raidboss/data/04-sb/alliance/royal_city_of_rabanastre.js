@@ -349,7 +349,6 @@
         '--meteors--': '--meteors--', // FIXME
         '--reset--': '--reset--', // FIXME
         '--start--': '--start--', // FIXME
-        '--untargetable--': '--nich anvisierbar--',
         'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
         'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
         'Azure Guard Adds': 'Azure Guard Adds', // FIXME
@@ -424,7 +423,6 @@
         '--meteors--': '--meteors--', // FIXME
         '--reset--': '--reset--', // FIXME
         '--start--': '--start--', // FIXME
-        '--untargetable--': '--Impossible à cibler--',
         'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
         'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
         'Azure Guard Adds': 'Azure Guard Adds', // FIXME
@@ -499,7 +497,6 @@
         '--meteors--': '--meteors--', // FIXME
         '--reset--': '--reset--', // FIXME
         '--start--': '--start--', // FIXME
-        '--untargetable--': '--untargetable--',
         'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
         'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
         'Azure Guard Adds': 'Azure Guard Adds', // FIXME
@@ -574,7 +571,6 @@
         '--meteors--': '--meteors--', // FIXME
         '--reset--': '--reset--', // FIXME
         '--start--': '--start--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
         'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
         'Azure Guard Adds': 'Azure Guard Adds', // FIXME
@@ -648,7 +644,6 @@
         '--knockback--': '--넉백--',
         '--lock out--': '--지역 분리--',
         '--meteors--': '--메테오--',
-        '--untargetable--': '--타겟 불가능--',
         'Aqua Sphere Adds': '물 구체 생성',
         'Archaeodemon Adds': '원시 악마 생성',
         'Azure Guard Adds': '푸른 파수꾼 생성',

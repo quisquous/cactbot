@@ -124,7 +124,6 @@
         'Wroth Ghost': 'erzürnt(?:e|er|es|en) Geist',
       },
       'replaceText': {
-        '--untargetable--': '--nich anvisierbar--',
         'Acid Rain': 'Säureregen',
         'Add Wave': 'Add Welle',
         'All In The Mind': 'Psychokinese',
@@ -162,7 +161,6 @@
         'Wroth Ghost': 'fantôme furieux',
       },
       'replaceText': {
-        '--untargetable--': '--Impossible à cibler--',
         'Acid Rain': 'Pluie acide',
         'Add Wave': 'Vague d\'Adds',
         'All In The Mind': 'Force de volonté',
@@ -200,7 +198,6 @@
         'Wroth Ghost': 'ロスゴースト',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--',
         'Acid Rain': '酸性雨',
         'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '念力',
@@ -238,7 +235,6 @@
         'Wroth Ghost': '怒灵',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Acid Rain': '酸雨',
         'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '念力',
@@ -276,7 +272,6 @@
         'Wroth Ghost': '격노하는 유령',
       },
       'replaceText': {
-        '--untargetable--': '--untargetable--', // FIXME
         'Acid Rain': '산성비',
         'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '염력',

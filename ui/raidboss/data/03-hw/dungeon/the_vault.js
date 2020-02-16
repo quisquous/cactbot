@@ -217,7 +217,6 @@
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': 'Wiederkunft',
         'Altar Candle': 'Altarkerze',
@@ -263,7 +262,6 @@
         'is no longer sealed': 'Ouverture',
       },
       'replaceText': {
-        '--Untargetable--': '-- Impossible à cibler --',
         '--reset--': '-- Reset --',
         'Advent': 'Avènement',
         'Altar Candle': 'Cierge funéraire',
@@ -309,7 +307,6 @@
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '降臨',
         'Altar Candle': 'アルターキャンドル',
@@ -355,7 +352,6 @@
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '降临',
         'Altar Candle': '圣坛蜡烛',
@@ -401,7 +397,6 @@
         'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '강림',
         'Altar Candle': '제단의 초',

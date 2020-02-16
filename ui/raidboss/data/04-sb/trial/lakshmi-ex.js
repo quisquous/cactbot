@@ -253,7 +253,6 @@
       },
       'replaceText': {
         '/dance': '/tanz',
-        '--untargetable--': '--nich anvisierbar--',
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'Ätherabsorption',
         'Alluring Arm': 'Anziehender Arm',
@@ -299,7 +298,6 @@
       },
       'replaceText': {
         '/dance': '/danser',
-        '--untargetable--': '--Impossible à cibler--',
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'Absorption d\'éther',
         'Alluring Arm': 'Bras séduisants',
@@ -345,7 +343,6 @@
       },
       'replaceText': {
         '/dance': '/dance', // FIXME
-        '--untargetable--': '--untargetable--',
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '魅惑の腕',
@@ -391,7 +388,6 @@
       },
       'replaceText': {
         '/dance': '/跳舞',
-        '--untargetable--': '--untargetable--', // FIXME
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '魅惑之臂',
@@ -437,7 +433,6 @@
       },
       'replaceText': {
         '/dance': '/춤',
-        '--untargetable--': '--대상 지정 불가--',
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '매혹적인 팔',

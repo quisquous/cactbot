@@ -701,7 +701,6 @@
         'Slicer/Guillotine': 'Sense/Fallbeil',
         'Guillotine/Cleaver': 'Fallbeil/Schlachter',
         'Cycle Of ?': '? Chaos',
-        '--untargetable--': '--nich anvisierbar--',
       },
       '~effectNames': {
         'Stone Curse': 'Steinfluch',
@@ -744,7 +743,6 @@
         'Dark Fire III': 'Méga Feu ténébreux',
         'Cycle of Retribution': 'Multi-taillade vengeresse',
         'Cycle of Chaos': 'Multi-taillade chaotique',
-        '--untargetable--': '--Impossible à cibler--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
         'Slicer/Guillotine': 'Entaille/Guillotine',
@@ -881,7 +879,6 @@
         'Slicer/Guillotine': '베기/절단',
         'Guillotine/Cleaver': '절단/살육',
         'Cycle Of ?': '? 연속검',
-        '--untargetable--': '--타겟불가능--',
       },
       '~effectNames': {
         'Stone Curse': '석화의 저주',

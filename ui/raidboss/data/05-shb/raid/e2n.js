@@ -352,7 +352,6 @@
         'Empty Hate': 'Gähnender Abgrund',
         'Shadoweye': 'Schattenauge',
         'Entropy': 'Entropie',
-        '--untargetable--': '--nich anvisierbar--',
       },
       '~effectNames': {
         'Spell-in-Waiting: Shadoweye': 'Verzögerung: Schattenauge',
@@ -385,7 +384,6 @@
         'Empty Hate': 'Vaine malice',
         'Shadoweye': 'Œil de l\'ombre',
         'Entropy': 'Entropie',
-        '--untargetable--': '--Impossible à cibler--',
       },
       '~effectNames': {
         'Spell-in-Waiting: Shadoweye': 'Sort déphasé: Œil de l\'ombre',
