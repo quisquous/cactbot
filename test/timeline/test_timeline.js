@@ -1,5 +1,12 @@
 'use strict';
 
+// TODO: right now, all of the common replacements are considered as having a
+// translation and will never be considered missing.  This means that because
+// the "will be sealed" has a translation (that doesn't include the zone name),
+// then the zone name will never be considered missing when running this test,
+// because the sync "has" a translation.  We need to specially ignore the zone
+// name.
+
 let fs = require('fs');
 let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
