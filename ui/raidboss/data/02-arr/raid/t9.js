@@ -403,7 +403,6 @@
       'replaceSync': {
         'Astral Debris': 'Lichtgestein',
         'Dalamud Fragment': 'Dalamud-Bruchstück',
-        'Engage!': 'Start!',
         'Firehorn': 'Feuerhorn',
         'Iceclaw': 'Eisklaue',
         'Nael Geminus': 'Nael Geminus',
@@ -447,7 +446,6 @@
       'replaceSync': {
         'Astral Debris': 'Débris astral',
         'Dalamud Fragment': 'Débris de Dalamud',
-        'Engage!': 'À l\'attaque',
         'Firehorn': 'Corne-de-feu',
         'Iceclaw': 'Griffe-de-glace',
         'Nael Geminus': 'Nael Geminus',
@@ -491,7 +489,6 @@
       'replaceSync': {
         'Astral Debris': 'アストラルデブリ',
         'Dalamud Fragment': 'ダラガブデブリ',
-        'Engage!': '戦闘開始！',
         'Firehorn': 'ファイアホーン',
         'Iceclaw': 'アイスクロウ',
         'Nael Geminus': 'ネール・ジェミナス',
@@ -535,7 +532,6 @@
       'replaceSync': {
         'Astral Debris': '星极岩屑',
         'Dalamud Fragment': '卫月岩屑',
-        'Engage!': '战斗开始！',
         'Firehorn': '火角',
         'Iceclaw': '冰爪',
         'Nael Geminus': '奈尔双生子',
@@ -579,7 +575,6 @@
       'replaceSync': {
         'Astral Debris': '천상의 잔해',
         'Dalamud Fragment': '달라가브의 잔해',
-        'Engage!': '전투 시작!',
         'Firehorn': '화염뿔',
         'Iceclaw': '얼음발톱',
         'Nael Geminus': '넬 게미누스',

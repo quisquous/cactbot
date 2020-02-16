@@ -239,7 +239,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Kaliya': 'Kaliya',
         'The Core Override is no longer sealed': 'Der Zugang zur Kern-Steuereinheit öffnet sich wieder',
         'The Core Override will be sealed off': 'bis sich der Zugang zur Kern-Steuereinheit schließt',
@@ -262,7 +261,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Kaliya': 'Kaliya',
         'The Core Override is no longer sealed': 'Ouverture de l\'unité de contrôle du Cœur',
         'The Core Override will be sealed off': 'Fermeture de l\'unité de contrôle du Cœur',
@@ -285,7 +283,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Kaliya': 'カーリア',
         'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
         'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
@@ -308,7 +305,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Kaliya': '卡利亚',
         'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
         'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
@@ -331,7 +327,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Kaliya': '칼리야',
         'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
         'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME

@@ -379,7 +379,6 @@
       'replaceSync': {
         'Ancient Tome': 'uralt(?:e|er|es|en) Foliant',
         'Apanda': 'Apanda',
-        'Engage!': 'Start!',
         'Great Dragon': 'Riesendrache',
         'Halicarnassus': 'Halikarnassos',
         'Soul Reaper': 'Seelenschnitter',
@@ -456,7 +455,6 @@
       'replaceSync': {
         'Ancient Tome': 'volume ancien',
         'Apanda': 'apanda',
-        'Engage!': 'À l\'attaque',
         'Great Dragon': 'dragon suprême',
         'Halicarnassus': 'Halicarnasse',
         'Soul Reaper': 'faucheur d\'âmes',
@@ -533,7 +531,6 @@
       'replaceSync': {
         'Ancient Tome': '古代書',
         'Apanda': 'アパンダ',
-        'Engage!': '戦闘開始！',
         'Great Dragon': 'ドラゴングレイト',
         'Halicarnassus': 'ハリカルナッソス',
         'Soul Reaper': 'ソウルリーパー',
@@ -610,7 +607,6 @@
       'replaceSync': {
         'Ancient Tome': '古代书',
         'Apanda': '阿班达',
-        'Engage!': '战斗开始！',
         'Great Dragon': '巨龙',
         'Halicarnassus': '哈利卡纳苏斯',
         'Soul Reaper': '灵魂收割者',
@@ -687,7 +683,6 @@
       'replaceSync': {
         'Ancient Tome': '고대의 책',
         'Apanda': '아판다',
-        'Engage!': '전투 시작!',
         'Great Dragon': '거대 드래곤',
         'Halicarnassus': '할리카르나소스',
         'Soul Reaper': '영혼 수확자',

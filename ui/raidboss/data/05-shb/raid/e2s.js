@@ -674,7 +674,6 @@
       'locale': 'de',
       'replaceSync': {
         'Voidwalker': 'Nichtswandler',
-        'Engage!': 'Start!',
       },
       'replaceText': {
         'attack': 'Attacke',
@@ -725,7 +724,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Voidwalker': 'Marcheuse Du Néant',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -779,7 +777,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Voidwalker': 'ヴォイドウォーカー',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'attack': '攻撃',
@@ -823,7 +820,6 @@
       'replaceSync': {
         'The Hand Of Erebos': '厄瑞玻斯的巨腕',
         'Voidwalker': '虚无行者',
-        'Engage!': '战斗开始！',
       },
       'replaceText': {
         'attack': '攻击',
@@ -863,7 +859,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Voidwalker': '보이드워커',
-        'Engage!': '전투 시작!',
       },
       'replaceText': {
         'attack': '공격',

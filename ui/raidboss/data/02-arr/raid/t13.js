@@ -137,7 +137,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
-        'Engage!': 'Start!',
         'The Storm of Meracydia': 'Sturm von Meracydia',
       },
       'replaceText': {
@@ -170,7 +169,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Engage!': 'À l\'attaque',
         'The Storm of Meracydia': 'Tempête de Méracydia',
       },
       'replaceText': {
@@ -203,7 +201,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
-        'Engage!': '戦闘開始！',
         'The Storm of Meracydia': 'メラシディアン・ストーム',
       },
       'replaceText': {
@@ -236,7 +233,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Bahamut Prime': '至尊巴哈姆特',
-        'Engage!': '战斗开始！',
         'The Storm of Meracydia': '美拉西迪亚的怒雨',
       },
       'replaceText': {
@@ -269,7 +265,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
-        'Engage!': '전투 시작!',
         'The Storm of Meracydia': '메라시디아의 폭풍',
       },
       'replaceText': {

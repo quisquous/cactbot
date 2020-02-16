@@ -1062,7 +1062,6 @@
       'locale': 'de',
       'replaceSync': {
         'Black Hole': 'Schwarzes Loch',
-        'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
       },
       'replaceText': {
@@ -1128,7 +1127,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Black Hole': 'Trou noir',
-        'Engage!': 'À l\'attaque',
         'Exdeath': 'Exdeath',
       },
       'replaceText': {
@@ -1194,7 +1192,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Black Hole': 'ブラックホール',
-        'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
       },
       'replaceText': {
@@ -1260,7 +1257,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Black Hole': '黑洞',
-        'Engage!': '战斗开始！',
         'Exdeath': '艾克斯迪司',
       },
       'replaceText': {
@@ -1326,7 +1322,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Black Hole': '블랙홀',
-        'Engage!': '전투 시작!',
         'Exdeath': '엑스데스',
       },
       'replaceText': {

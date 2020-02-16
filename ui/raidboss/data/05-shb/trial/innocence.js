@@ -165,7 +165,6 @@
       'replaceSync': {
         'Sword of Condemnation': 'Schwert des Urteils',
         'Innocence': 'Innozenz',
-        'Engage!': 'Start!',
       },
       'replaceText': {
         'Winged Reprobation': 'Schwinge des Urteils',
@@ -222,7 +221,6 @@
         'Forgiven Venery': 'Débauche Pardonnée',
         'Forgiven Shame': 'Déshonneur Pardonné',
         'Innocence': 'Innocence',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'Winged Reprobation': 'Réprobation ailée',
@@ -266,7 +264,6 @@
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'イノセンス',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'Winged Reprobation': '断罪の飛翔',
@@ -305,7 +302,6 @@
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': '',
-        'Engage!': '战斗开始！',
       },
       'replaceText': {
         'Winged Reprobation': '',

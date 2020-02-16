@@ -221,7 +221,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
         'The Right Hand of Bahamut will be sealed off': 'bis sich der Zugang zu[rm]? Rechte Hand von Bahamut schließt',
         'Twintania': 'Twintania',
@@ -245,7 +244,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque !',
         'The Right Hand of Bahamut is no longer sealed': 'Ouverture de la Serre droite de Bahamut',
         'The Right Hand of Bahamut will be sealed off': 'Fermeture de la Serre droite de Bahamut',
         'Twintania': 'Gémellia',
@@ -269,7 +267,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
         'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': 'ツインタニア',
@@ -293,7 +290,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
         'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': '双塔尼亚',
@@ -317,7 +313,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
         'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': '트윈타니아',

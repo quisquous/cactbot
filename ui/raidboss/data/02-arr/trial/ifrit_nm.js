@@ -39,7 +39,6 @@
       'locale': 'de',
       'replaceSync': {
         '--sync--': '--sync--',
-        'Engage!': 'Start!',
         'Ifrit': 'Ifrit',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
@@ -61,7 +60,6 @@
       'locale': 'fr',
       'replaceSync': {
         '--sync--': '--Synchronisation--',
-        'Engage!': 'À l\'attaque',
         'Ifrit': 'Ifrit',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
@@ -83,7 +81,6 @@
       'locale': 'ja',
       'replaceSync': {
         '--sync--': '--sync--',
-        'Engage!': '戦闘開始！',
         'Ifrit': 'イフリート',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
@@ -105,7 +102,6 @@
       'locale': 'cn',
       'replaceSync': {
         '--sync--': '--sync--', // FIXME
-        'Engage!': '战斗开始！',
         'Ifrit': '伊弗利特',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
@@ -127,7 +123,6 @@
       'locale': 'ko',
       'replaceSync': {
         '--sync--': '--sync--', // FIXME
-        'Engage!': '전투 시작!',
         'Ifrit': '이프리트',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME

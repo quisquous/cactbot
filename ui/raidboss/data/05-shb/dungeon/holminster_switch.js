@@ -302,7 +302,6 @@
         'Tesleen, the Forgiven': 'Tesleen pardonnée',
       },
       'replaceText': {
-        'Engage!': 'À l\'attaque',
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
         '--targetable--': '--Ciblable--',

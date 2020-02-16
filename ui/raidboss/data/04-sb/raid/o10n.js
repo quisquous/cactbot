@@ -115,7 +115,6 @@
       'locale': 'de',
       'replaceSync': {
         'Ancient Dragon': 'antik(?:e|er|es|en) Drache',
-        'Engage!': 'Start!',
         'Immortal Key': 'unsterblich(?:e|er|es|en) Schlüssel',
         'Midgardsormr': 'Midgardsormr',
       },
@@ -175,7 +174,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Ancient Dragon': 'dragon ancien',
-        'Engage!': 'À l\'attaque',
         'Immortal Key': 'clef immortelle',
         'Midgardsormr': 'Midgardsormr',
       },
@@ -235,7 +233,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Ancient Dragon': 'エンシェントドラゴン',
-        'Engage!': '戦闘開始！',
         'Immortal Key': '竜の楔',
         'Midgardsormr': 'ミドガルズオルム',
       },
@@ -295,7 +292,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Ancient Dragon': '远古之龙',
-        'Engage!': '战斗开始！',
         'Immortal Key': '龙之楔',
         'Midgardsormr': '尘世幻龙',
       },
@@ -355,7 +351,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Ancient Dragon': '고룡',
-        'Engage!': '전투 시작!',
         'Immortal Key': '용의 말뚝',
         'Midgardsormr': '미드가르드오름',
       },

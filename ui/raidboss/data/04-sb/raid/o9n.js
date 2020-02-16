@@ -63,7 +63,6 @@
       'replaceSync': {
         'Chaos': 'Chaos',
         'Chaosphere': 'Chaossphäre',
-        'Engage!': 'Start!',
         'YOU DARE!': 'Wie könnt ihr es wagen?!',
         'dark crystal': 'dunkl(?:e|er|es|en) Kristall',
       },
@@ -112,7 +111,6 @@
       'replaceSync': {
         'Chaos': 'Chaos',
         'Chaosphere': 'Sphère de chaos',
-        'Engage!': 'À l\'attaque',
         'YOU DARE!': '... Mon cristal !? Impossible !',
         'dark crystal': 'cristal noir',
       },
@@ -161,7 +159,6 @@
       'replaceSync': {
         'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',
-        'Engage!': '戦闘開始！',
         'YOU DARE!': 'YOU DARE!', // FIXME
         'dark crystal': '黒水晶',
       },
@@ -210,7 +207,6 @@
       'replaceSync': {
         'Chaos': '混沌',
         'Chaosphere': '混沌晶球',
-        'Engage!': '战斗开始！',
         'YOU DARE!': 'YOU DARE!', // FIXME
         'dark crystal': '黑水晶',
       },
@@ -259,7 +255,6 @@
       'replaceSync': {
         'Chaos': '혼돈',
         'Chaosphere': '혼돈의 구체',
-        'Engage!': '전투 시작!',
         'YOU DARE!': 'YOU DARE!', // FIXME
         'dark crystal': '흑수정',
       },

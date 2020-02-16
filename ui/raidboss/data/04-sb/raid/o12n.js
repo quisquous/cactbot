@@ -184,7 +184,6 @@
       'locale': 'de',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': 'Start!',
         'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
@@ -234,7 +233,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': 'À l\'attaque',
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
@@ -284,7 +282,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': '戦闘開始！',
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
@@ -334,7 +331,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': '战斗开始！',
         'Omega(?!-)': '欧米茄',
         'Omega-F': '欧米茄F',
         'Omega-M': '欧米茄M',
@@ -384,7 +380,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': '전투 시작!',
         'Omega(?!-)': '오메가',
         'Omega-F': '오메가 F',
         'Omega-M': '오메가 M',

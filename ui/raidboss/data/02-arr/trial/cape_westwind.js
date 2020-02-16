@@ -10,7 +10,6 @@
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': 'Start!',
         'My shields are impregnable': 'Spür das Schild des Kaisers',
         'Rhitahtyn sas Arvina': 'Rhitahtyn sas Arvina',
         'Your defeat will bring': 'Du wirst nicht entkommen',
@@ -29,7 +28,6 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': 'À l\'attaque !',
         'My shields are impregnable': 'Mes boucliers sont impénétrables',
         'Rhitahtyn sas Arvina': 'Rhitahtyn sas Arvina',
         'Your defeat will bring': 'Avec ta défaite, le général',
@@ -48,7 +46,6 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'My shields are impregnable': '反逆者は、我が盾',
         'Rhitahtyn sas Arvina': 'リットアティン・サス・アルヴィナ',
         'Your defeat will bring': '逃がさん……',
@@ -67,7 +64,6 @@
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'My shields are impregnable': '在我的冥狱枪盾面前',
         'Rhitahtyn sas Arvina': '里塔提恩·萨斯·阿维纳',
         'Your defeat will bring': '你们的尸体只',
@@ -86,7 +82,6 @@
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'My shields are impregnable': '반역자여, 나의 방패',
         'Rhitahtyn sas Arvina': '리트아틴 사스 아르비나',
         'Your defeat will bring': '놓치지 않겠다……',

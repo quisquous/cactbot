@@ -633,7 +633,6 @@
       'replaceSync': {
         'Titan': 'Titan',
         'Granite Gaol': 'Granitgefängnis',
-        'Engage!': 'Start!',
         'Bomb Boulder': 'Bomber-Brocken',
       },
       'replaceText': {
@@ -694,7 +693,6 @@
       'replaceSync': {
         'Titan(?! )': 'Titan',
         'Granite Gaol': 'Geôle De Granite',
-        'Engage!': 'À l\'attaque',
         'Bomb Boulder': 'Bombo Rocher',
       },
       'replaceText': {
@@ -758,7 +756,6 @@
         'ジャイアントボルダー': 'ジャイアントボルダー',
         'Titan(?! )': 'タイタン',
         'Granite Gaol': 'グラナイト・ジェイル',
-        'Engage!': '戦闘開始！',
         'Bomb Boulder': 'ボムボルダー',
         'Titan Maximum': 'マキシタイタン',
       },
@@ -817,7 +814,6 @@
         'Titan Maximum': '极大泰坦',
         'Titan(?! )': '泰坦',
         'Granite Gaol': '花岗石牢',
-        'Engage!': '战斗开始！',
         'Bomb Boulder': '爆破岩石',
       },
       'replaceText': {
@@ -880,7 +876,6 @@
         'Titan(?! )': '타이탄',
         'Titan Maximum': '거대 타이탄',
         'Granite Gaol': '화강암 감옥',
-        'Engage!': '전투 시작!',
         'Bomb Boulder': '바위폭탄',
       },
       'replaceText': {

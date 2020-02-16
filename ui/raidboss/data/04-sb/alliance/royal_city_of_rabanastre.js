@@ -341,7 +341,6 @@
         'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
       },
       'replaceText': {
-        '--enrage--': '--enrage--', // FIXME
         '--face--': '--face--', // FIXME
         '--ice disappears--': '--ice disappears--', // FIXME
         '--invulnerable--': '--invulnerable--', // FIXME
@@ -418,7 +417,6 @@
         'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
       },
       'replaceText': {
-        '--enrage--': '--enrage--', // FIXME
         '--face--': '--face--', // FIXME
         '--ice disappears--': '--ice disappears--', // FIXME
         '--invulnerable--': '--invulnerable--', // FIXME
@@ -495,7 +493,6 @@
         'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
       },
       'replaceText': {
-        '--enrage--': '--enrage--', // FIXME
         '--face--': '--face--', // FIXME
         '--ice disappears--': '--ice disappears--', // FIXME
         '--invulnerable--': '--invulnerable--', // FIXME
@@ -572,7 +569,6 @@
         'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
       },
       'replaceText': {
-        '--enrage--': '--enrage--', // FIXME
         '--face--': '--face--', // FIXME
         '--ice disappears--': '--ice disappears--', // FIXME
         '--invulnerable--': '--invulnerable--', // FIXME
@@ -650,7 +646,6 @@
         ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
-        '--enrage--': '--전멸기--',
         '--face--': '--얼굴--',
         '--ice disappears--': '--얼음 사라짐--',
         '--invulnerable--': '--무적--',

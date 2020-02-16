@@ -258,7 +258,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Leviathan': 'Leviathan',
       },
       'replaceText': {
@@ -295,7 +294,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Leviathan': 'Léviathan',
       },
       'replaceText': {
@@ -334,7 +332,6 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Leviathan': 'リヴァイアサン',
       },
       'replaceText': {
@@ -368,7 +365,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Leviathan': '利维亚桑',
       },
       'replaceText': {
@@ -403,7 +399,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Leviathan': '리바이어선',
       },
       'replaceText': {

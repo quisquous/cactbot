@@ -56,7 +56,6 @@
       'replaceSync': {
         'Electrogenetic Force': 'Elektro-Kraft',
         'Embodiment': 'Gilgamesch-Doppelgänger',
-        'Engage!': 'Start!',
         'Gilgamesh': 'Gilgamesch',
         'Inoshikacho': 'Ino-shika-cho',
         'Yojimbo': 'Yojinbo',
@@ -93,7 +92,6 @@
       'replaceSync': {
         'Electrogenetic Force': 'Force électrogénétique',
         'Embodiment': 'double de Gilgamesh',
-        'Engage!': 'À l\'attaque',
         'Gilgamesh': 'Gilgamesh',
         'Inoshikacho': 'Ino-shika-cho',
         'Yojimbo': 'Yojimbo',
@@ -130,7 +128,6 @@
       'replaceSync': {
         'Electrogenetic Force': '電撃',
         'Embodiment': 'ギルガメッシュの分身',
-        'Engage!': '戦闘開始！',
         'Gilgamesh': 'ギルガメッシュ',
         'Inoshikacho': '猪鹿蝶',
         'Yojimbo': 'ヨウジンボウ',
@@ -167,7 +164,6 @@
       'replaceSync': {
         'Electrogenetic Force': '电击',
         'Embodiment': '吉尔伽美什的分身',
-        'Engage!': '战斗开始！',
         'Gilgamesh': '吉尔伽美什',
         'Inoshikacho': '猪鹿蝶',
         'Yojimbo': '保镖',
@@ -204,7 +200,6 @@
       'replaceSync': {
         'Electrogenetic Force': '전류',
         'Embodiment': '길가메시의 분신',
-        'Engage!': '전투 시작!',
         'Gilgamesh': '길가메시',
         'Inoshikacho': '멧돼지사슴나비',
         'Yojimbo': '요우진보',

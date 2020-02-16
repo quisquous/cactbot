@@ -169,7 +169,6 @@
         'Dull Pain': 'Dumpfer Schmerz',
         'Earthquake': 'Erdbeben',
         'Easterlies': 'Ostwinde',
-        'Engage!': 'Start!',
         'Enrage': 'Finalangriff',
         'Featherlance': 'Federlanze',
         'Flash Fire': 'Blitzfeuer',
@@ -230,7 +229,6 @@
         'Dull Pain': 'Douleur sourde',
         'Earthquake': 'Grand séisme',
         'Easterlies': 'Rafale Ultim',
-        'Engage!': 'À l\'attaque',
         'Enrage': 'Enrage',
         'Featherlance': 'Lance de plume',
         'Flash Fire': 'Flammes subites',
@@ -291,7 +289,6 @@
         'Dull Pain': 'ダルペイン',
         'Earthquake': '大地震',
         'Easterlies': '極風',
-        'Engage!': '戦闘開始！',
         'Enrage': 'Enrage',
         'Featherlance': 'フェザーランス',
         'Flash Fire': 'フラッシュファイア',
@@ -352,7 +349,6 @@
         'Dull Pain': '钝痛',
         'Earthquake': '大地震',
         'Easterlies': 'Easterlies', // FIXME
-        'Engage!': '战斗开始！',
         'Enrage': 'Enrage', // FIXME
         'Featherlance': '羽枪',
         'Flash Fire': '闪光炎',
@@ -413,7 +409,6 @@
         'Dull Pain': '약한 고통',
         'Earthquake': '대지진',
         'Easterlies': 'Easterlies', // FIXME
-        'Engage!': '전투 시작!',
         'Enrage': 'Enrage', // FIXME
         'Featherlance': '깃털창',
         'Flash Fire': '불바다',

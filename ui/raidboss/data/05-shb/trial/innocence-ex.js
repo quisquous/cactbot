@@ -498,7 +498,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Innocence': 'Innozenz',
-        'Engage!': 'Start!',
         'Nail of Condemnation': 'Nagel des Urteils',
         'Sword of Condemnation': 'Schwert des Urteils',
         'Forgiven Venery': 'Geläuterte Wollust',
@@ -551,7 +550,6 @@
         'Forgiven Venery': 'Débauche Pardonnée',
         'Forgiven Shame': 'Déshonneur Pardonné',
         'Innocence': 'Innocence',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'attack': 'Attaque',
@@ -596,7 +594,6 @@
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'イノセンス',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         '断罪': '断罪',
@@ -637,7 +634,6 @@
       'replaceSync': {
         'Sword of Condemnation': '断罪之剑',
         'Innocence': '无瑕灵君',
-        'Engage!': '战斗开始！',
         'Nail of Condemnation': '断罪之桩',
         'Forgiven Shame': '得到宽恕的耻辱',
         'Forgiven Venery': '得到宽恕的情欲',
@@ -686,7 +682,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Innocence': '이노센스',
-        'Engage!': '전투 시작!',
         'Nail of Condemnation': '단죄의 말뚝',
         'Sword of Condemnation': '단죄의 검',
         'Forgiven Venery': '면죄된 정욕',

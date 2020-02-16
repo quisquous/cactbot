@@ -179,7 +179,6 @@
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
         'Eden(?! )': 'Eden',
-        'Engage!': 'Start!',
         'Guardian of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
@@ -225,7 +224,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': 'Primo-Éden',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'Spear Of Paradise': 'Lance du paradis',
@@ -273,7 +271,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'Vice of Vanity': 'ヴァイス・オブ・ヴァニティー',
@@ -314,7 +311,6 @@
         'Eden Prime': '至尊伊甸',
         'Eden(?! )': '伊甸',
         'Guardian of Paradise': '伊甸守护者',
-        'Engage!': '战斗开始！',
       },
       'replaceText': {
         'Vice [oO]f Vanity': '虚荣之恶',
@@ -358,7 +354,6 @@
         'Eden Prime': '에덴 프라임',
         'Eden(?! )': '에덴',
         'Guardian of Paradise': '에덴의 수호자',
-        'Engage!': '전투 시작!',
       },
       'replaceText': {
         'Vice [oO]f Vanity': '허영의 악덕',

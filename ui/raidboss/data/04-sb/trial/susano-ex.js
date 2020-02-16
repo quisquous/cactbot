@@ -234,7 +234,6 @@
         'Ama-No-Iwato': 'Ama no Iwato',
         'Ame-No-Murakumo': 'Ame no Murakumo',
         'Dark Levin': 'violett(?:e|er|es|en) Blitz',
-        'Engage!': 'Start!',
         'How our hearts sing in the chaos': 'Jahaha! Weiter so!',
         'Let the revels begin': 'Kommt, lasst uns singen und tanzen!',
         'REJOICE!': 'Uohhh!',
@@ -290,7 +289,6 @@
         'Ama-No-Iwato': 'ama no iwato',
         'Ame-No-Murakumo': 'Ame no Murakumo',
         'Dark Levin': 'foudre violette',
-        'Engage!': 'À l\'attaque',
         'How our hearts sing in the chaos': 'HA HA, HA ! Je m\'amuse comme un fou !',
         'Let the revels begin': 'Dansez maintenant... La fête commence !  ',
         'REJOICE!': 'MOUAAAAAAH !',
@@ -346,7 +344,6 @@
         'Ama-No-Iwato': '天岩戸',
         'Ame-No-Murakumo': 'アメノムラクモ',
         'Dark Levin': '紫電',
-        'Engage!': '戦闘開始！',
         'How our hearts sing in the chaos': 'カッカッカッ、興が乗ったわ！ アメノムラクモの真なる姿、見せてくれよう！',
         'Let the revels begin': 'いざ舞え、踊れ！　祭りである！ 神前たれども無礼を許す……武器を取れい！',
         'REJOICE!': 'フンヌアァァァァ！',
@@ -402,7 +399,6 @@
         'Ama-No-Iwato': '天之岩户',
         'Ame-No-Murakumo': '天之丛云',
         'Dark Levin': '紫电',
-        'Engage!': '战斗开始！',
         'How our hearts sing in the chaos': 'How our hearts sing in the chaos', // FIXME
         'Let the revels begin': 'Let the revels begin', // FIXME
         'REJOICE!': 'REJOICE!', // FIXME
@@ -458,7 +454,6 @@
         'Ama-No-Iwato': '신의 바위',
         'Ame-No-Murakumo': '아메노무라쿠모',
         'Dark Levin': '번갯불',
-        'Engage!': '전투 시작!',
         'How our hearts sing in the chaos': 'How our hearts sing in the chaos', // FIXME
         'Let the revels begin': 'Let the revels begin', // FIXME
         'REJOICE!': 'REJOICE!', // FIXME

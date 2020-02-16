@@ -97,7 +97,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Imdugud': 'Imdugud',
         'The Alpha Concourse will be sealed off': 'bis sich der Zugang zur Alpha-Emergenzzone schließt',
       },
@@ -118,7 +117,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Imdugud': 'Imdugud',
         'The Alpha Concourse will be sealed off': 'Fermeture du secteur des croyants',
       },
@@ -139,7 +137,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Imdugud': 'イムドゥグド',
         'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
@@ -160,7 +157,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Imdugud': '伊姆都古德',
         'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
@@ -181,7 +177,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Imdugud': '임두구드',
         'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
