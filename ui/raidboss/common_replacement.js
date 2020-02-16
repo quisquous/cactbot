@@ -1,5 +1,6 @@
 'use strict';
 
+// TODO: maybe this should be structured identically to a timelineReplace section.
 let commonReplacement = {
   ':([0-9]{4}):(.*) will be sealed off': {
     de: ':$1:Noch 15 Sekunden bis sich der Zugang zu $2 schließt',
@@ -46,3 +47,6 @@ let commonReplacement = {
     ko: '--타겟 가능--',
   },
 };
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = commonReplacement;
