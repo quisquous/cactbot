@@ -44,21 +44,21 @@ class Timeline {
 
     let orig = text;
     let locale = this.options.Language || 'en';
-    for (let i = 0; i < this.replacements.length; ++i) {
-      let r = this.replacements[i];
+    for (let r of this.replacements) {
       if (r.locale && r.locale != locale)
         continue;
       if (!r[replaceKey])
         continue;
       let keys = Object.keys(r[replaceKey]);
-      for (let j = 0; j < keys.length; ++j)
-        text = text.replace(Regexes.parse(keys[j]), r[replaceKey][keys[j]]);
+      for (let key of keys)
+        text = text.replace(Regexes.parse(key), r[replaceKey][key]);
     }
     // Common Replacements
-    let keys = Object.keys(commonReplacement);
-    for (let j = 0; j < keys.length; ++j) {
-      let re = new RegExp(keys[j], 'gi');
-      text = text.replace(re, commonReplacement[keys[j]][locale]);
+    for (let key in commonReplacement) {
+      let repl = commonReplacement[key][locale];
+      if (!repl)
+        continue;
+      text = text.replace(Regexes.parse(key), repl);
     }
     return text;
   }
