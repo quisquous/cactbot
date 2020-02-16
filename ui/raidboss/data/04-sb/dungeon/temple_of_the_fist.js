@@ -249,10 +249,10 @@
         'Arbuda': 'Arbuda',
         'Coeurl Smriti': 'Coeurl Smriti',
         'Coeurl Sruti': 'Coeurl Sruti',
-        'Guidance will be sealed off': 'bis sich der Zugang zu[rm]? Unterweisung schließt',
-        'Harmony will be sealed off': 'bis sich der Zugang zu[rm]? Harmonie schließt',
+        'Guidance': 'Unterweisung',
+        'Harmony': 'Harmonie',
         'Ivon Coeurlfist': 'Ivon Coeurlfaust',
-        'Tourmaline Pond will be sealed off': 'bis sich der Zugang zu[rm]? Turmalinteich schließt',
+        'Tourmaline Pond': 'Turmalinteich',
       },
       'replaceText': {
         '--Smriti Appears--': '--Smriti Appears--', // FIXME
@@ -285,10 +285,10 @@
         'Arbuda': 'Arbuda',
         'Coeurl Smriti': 'Coeurl smriti',
         'Coeurl Sruti': 'Coeurl sruti',
-        'Guidance will be sealed off': 'Fermeture de la Conduite',
-        'Harmony will be sealed off': 'Fermeture de l\'Harmonie',
+        'Guidance': 'la Conduite',
+        'Harmony': 'l\'Harmonie',
         'Ivon Coeurlfist': 'Ivon le Coeurl',
-        'Tourmaline Pond will be sealed off': 'Fermeture de l\'étang de Tourmaline',
+        'Tourmaline Pond': 'l\'étang de Tourmaline',
       },
       'replaceText': {
         '--Smriti Appears--': '-- Apparition de Smriti --',
@@ -321,10 +321,7 @@
         'Arbuda': 'アブダ',
         'Coeurl Smriti': 'クァール・スムリティ',
         'Coeurl Sruti': 'クァール・シュルティ',
-        'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
-        'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
         'Ivon Coeurlfist': '双豹のイヴォン',
-        'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
       },
       'replaceText': {
         '--Smriti Appears--': '--Smriti Appears--', // FIXME
@@ -357,10 +354,7 @@
         'Arbuda': '额部陀',
         'Coeurl Smriti': '凶豹所忆',
         'Coeurl Sruti': '凶豹所闻',
-        'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
-        'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
         'Ivon Coeurlfist': '双豹伊沃恩',
-        'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
       },
       'replaceText': {
         '--Smriti Appears--': '--Smriti Appears--', // FIXME
@@ -393,10 +387,7 @@
         'Arbuda': '아부다',
         'Coeurl Smriti': '커얼 스므리티',
         'Coeurl Sruti': '커얼 슈루티',
-        'Guidance will be sealed off': 'Guidance will be sealed off', // FIXME
-        'Harmony will be sealed off': 'Harmony will be sealed off', // FIXME
         'Ivon Coeurlfist': '쌍표범 이본',
-        'Tourmaline Pond will be sealed off': 'Tourmaline Pond will be sealed off', // FIXME
       },
       'replaceText': {
         '--Smriti Appears--': '--Smriti Appears--', // FIXME

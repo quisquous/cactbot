@@ -2,10 +2,10 @@
 # Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
 # Shasta's reddit: /u/shastaxc
 
-0 "--STOP--" sync /Hangar 12 is no longer sealed/ window 10000 jump 0
+0 "--STOP--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 # Wave 1 - Soldier x2
-0 "--Phase 1--" sync /Hangar 12 will be sealed off in 15 seconds/ window 100000
+0 "--Phase 1--" sync / 00:0839:Hangar 12 will be sealed off in 15 seconds/ window 100000
 
 
 # Wave 2 - Soldier x2, Sniper x1, Hardmind x1

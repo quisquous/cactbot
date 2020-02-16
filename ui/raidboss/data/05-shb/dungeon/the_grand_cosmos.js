@@ -374,9 +374,9 @@
         'Leannan Sith': 'Leanan Sidhe',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Einsiedler',
-        'The Chamber of Celestial Song will be sealed off': 'bis sich der Zugang zu[rm]? den Großen Vergnügungen schließt',
-        'The Font of Quintessence will be sealed off': 'bis sich der Zugang zu[rm]? Broderieparterre schließt',
-        'The Martial Court will be sealed off': 'bis sich der Zugang zu[rm]? Kleine Stufenarkade schließt',
+        'The Chamber of Celestial Song': 'den Großen Vergnügungen',
+        'The Font of Quintessence': 'Broderieparterre',
+        'The Martial Court': 'Kleine Stufenarkade',
       },
       'replaceText': {
         'Black Flame': 'Finsterer Flammenwind',
@@ -412,9 +412,9 @@
         'Leannan Sith': 'Leannan Sith',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Ermite du Palais',
-        'The Martial Court will be sealed off': 'Fermeture de La Cour martiale',
-        'The Font of Quintessence will be sealed off': 'Fermeture de La Source de Quintessence',
-        'The Chamber of Celestial Song will be sealed off': 'Fermeture du Chœur céleste',
+        'The Martial Court': 'La Cour martiale',
+        'The Font of Quintessence': 'La Source de Quintessence',
+        'The Chamber of Celestial Song': 'Chœur céleste',
       },
       'replaceText': {
         'Black Flame': 'Torrent fuligineux',
@@ -450,9 +450,6 @@
         'Leannan Sith': 'リャナンシー',
         'Lugus': 'ルゴス',
         'Seeker of Solitude': '宮殿の隠者',
-        'The Chamber of Celestial Song will be sealed off': 'The Chamber of Celestial Song will be sealed off', // FIXME
-        'The Font of Quintessence will be sealed off': 'The Font of Quintessence will be sealed off', // FIXME
-        'The Martial Court will be sealed off': 'The Martial Court will be sealed off', // FIXME
       },
       'replaceText': {
         'Black Flame': '黒炎流',

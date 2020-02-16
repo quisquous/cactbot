@@ -806,7 +806,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        ':..is no longer sealed': ':.*öffnet sich wieder',
         'Agrias': 'Agrias',
         'Aspersory': 'Aspersorium',
         'Auracite Shard': 'Auracitenscherbe',
@@ -828,12 +827,12 @@
         'Ruination': 'Ruinierung',
         'Shield Knight': 'Schildritter',
         'Sword Knight': 'Schwertritter',
-        'The Crystalline Gaol will be sealed off': '.*Kristallkerker schließt',
-        'The Realm of the Machinists will be sealed off': '.*Reich der Maschinisten schließt',
-        'The Realm of the Templars will be sealed off': '.*Reich der Tempelritter schließt',
-        'The Realm of the Thunder God will be sealed off': '.*Reich des Donnergottes schließt',
+        'The Crystalline Gaol': 'Kristallkerker',
+        'The Realm of the Machinists': 'Reich der Maschinisten',
+        'The Realm of the Templars': 'Reich der Tempelritter',
+        'The Realm of the Thunder God': '.*Reich des Donnergottes',
         '(?<! )The Thunder God': 'Cidolfus',
-        'The lifeless alley will be sealed off': '.*Leblosen Pfad schließt',
+        'The lifeless alley': 'Leblosen Pfad',
         'Ultima, the High Seraph': 'Cherub Ultima',
       },
       'replaceText': {
@@ -944,7 +943,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        '..is no longer sealed': 'Ouverture du',
         'Agrias': 'Agrias',
         'Aspersory': 'aiguière bénie',
         'Auracite Shard': 'concrétion d\'auralithe',
@@ -966,12 +964,12 @@
         'Ruination': 'Ruinance',
         'Shield Knight': 'chevalier au bouclier',
         'Sword Knight': 'chevalier à l\'épée',
-        'The Crystalline Gaol will be sealed off': 'Fermeture de la Geôle cristalline',
-        'The Realm of the Machinists will be sealed off': 'Fermeture du cloître de l\'ingénieur',
-        'The Realm of the Templars will be sealed off': 'Fermeture du cloître de la chevalière sacrée',
-        'The Realm of the Thunder God will be sealed off': 'Fermeture du cloître du Dieu de la Foudre',
+        'The Crystalline Gaol': 'la Geôle cristalline',
+        'The Realm of the Machinists': 'cloître de l\'ingénieur',
+        'The Realm of the Templars': 'cloître de la chevalière sacrée',
+        'The Realm of the Thunder God': 'cloître du Dieu de la Foudre',
         '(?<! )The Thunder God': 'Cid le Dieu de la Foudre',
-        'The lifeless alley will be sealed off': 'Fermeture des corridors silencieux',
+        'The lifeless alley': 'corridors silencieux',
         'Ultima, the High Seraph': 'Ultima la Grande Séraphine',
       },
       'replaceText': {
@@ -1082,7 +1080,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        '..is no longer sealed': '..is no longer sealed', // FIXME
         'Agrias': '聖騎士アグリアス',
         'Aspersory': '聖雲の水瓶',
         'Auracite Shard': '聖石塊',
@@ -1104,12 +1101,7 @@
         'Ruination': 'ルイネーション',
         'Shield Knight': '盾の騎士',
         'Sword Knight': '剣の騎士',
-        'The Crystalline Gaol will be sealed off': 'The Crystalline Gaol will be sealed off', // FIXME
-        'The Realm of the Machinists will be sealed off': 'The Realm of the Machinists will be sealed off', // FIXME
-        'The Realm of the Templars will be sealed off': 'The Realm of the Templars will be sealed off', // FIXME
-        'The Realm of the Thunder God will be sealed off': 'The Realm of the Thunder God will be sealed off', // FIXME
         '(?<! )The Thunder God': '雷神シド',
-        'The lifeless alley will be sealed off': 'The lifeless alley will be sealed off', // FIXME
         'Ultima, the High Seraph': '聖天使アルテマ',
       },
       'replaceText': {
@@ -1220,7 +1212,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        '..is no longer sealed': '..is no longer sealed', // FIXME
         'Agrias': '圣骑士阿格莉亚丝',
         'Aspersory': '圣云水瓶',
         'Auracite Shard': '圣石块',
@@ -1242,12 +1233,7 @@
         'Ruination': '衰败',
         'Shield Knight': '盾之骑士',
         'Sword Knight': '剑之骑士',
-        'The Crystalline Gaol will be sealed off': 'The Crystalline Gaol will be sealed off', // FIXME
-        'The Realm of the Machinists will be sealed off': 'The Realm of the Machinists will be sealed off', // FIXME
-        'The Realm of the Templars will be sealed off': 'The Realm of the Templars will be sealed off', // FIXME
-        'The Realm of the Thunder God will be sealed off': 'The Realm of the Thunder God will be sealed off', // FIXME
         '(?<! )The Thunder God': '雷神西德',
-        'The lifeless alley will be sealed off': 'The lifeless alley will be sealed off', // FIXME
         'Ultima, the High Seraph': '圣天使阿尔蒂玛',
       },
       'replaceText': {
@@ -1386,8 +1372,6 @@
         '(?<! )The Thunder God': '뇌신 시드',
         'The lifeless alley': '생명 없는 길',
         'Ultima, the High Seraph': '성천사 알테마',
-        ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
-        ':..is no longer sealed': ':.*의 봉쇄가 해제되었습니다',
       },
       'replaceText': {
         'Analysis': '분석',

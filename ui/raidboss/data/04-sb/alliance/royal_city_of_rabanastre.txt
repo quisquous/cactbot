@@ -12,7 +12,7 @@ hideall "--start--"
 
 
 ### Mateus
-0.0 "--start--" sync /:The Crumbling Bridge will be sealed off/ window 0,1
+0.0 "--start--" sync / 00:0839:The Crumbling Bridge will be sealed off/ window 0,1
 23.0 "Unbind" sync /:2633:Mateus, The Corrupt/ window 23,10 # start of cast
 35.0 "Aqua Sphere Adds" # adds appearing
 110.0 "--sync--" sync /:2635:Mateus, The Corrupt/ window 85,10
@@ -30,7 +30,7 @@ hideall "--start--"
 
 
 ### Hashmal
-1000.0 "--start--" sync /:The Palace Square will be sealed off/ window 2000,0
+1000.0 "--start--" sync / 00:0839:The Palace Square will be sealed off/ window 2000,0
 1013.5 "Quake IV" # end of cast
 1032.0 "Control Tower" duration 13.5 sync /:25C1:Hashmal, Bringer Of Order/ window 20,20 # start of cast -> tower fall
 1044.5 "--untargetable--"
@@ -79,7 +79,7 @@ hideall "--start--"
 
 
 ### Rofocale
-2000.0 "--start--" sync /:The Lesalia Garden Ruins will be sealed off/ window 3000,0
+2000.0 "--start--" sync / 00:0839:The Lesalia Garden Ruins will be sealed off/ window 3000,0
 2019.5 "Crush Helm" sync /:Rofocale:2682:/
 2034.5 "Chariot" # end of cast
 2036.8 "Cry of Victory" duration 2.7 # start -> end of cast
@@ -148,7 +148,7 @@ hideall "--start--"
 
 ### Argath
 ## Phase 1
-3000.0 "--start--" sync /:The Lesalia Temple Ruins will be sealed off/ window 4000,1
+3000.0 "--start--" sync / 00:0839:The Lesalia Temple Ruins will be sealed off/ window 4000,1
 3008.5 "Crippling Blow" # end of cast
 3017.0 "Crush Weapon" # end of cast
 3023.0 "Soulfix" # end of cast

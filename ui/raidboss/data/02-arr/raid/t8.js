@@ -139,8 +139,7 @@
       'replaceSync': {
         'Allagan Field': 'Allagisches Feld',
         'The Avatar': 'Avatar',
-        'The central bow is no longer sealed': 'Der Zugang zum Rumpf-Zentralsektor öffnet sich wieder',
-        'The central bow will be sealed off': 'bis sich der Zugang zum Rumpf-Zentralsektor schließt',
+        'The central bow': 'Rumpf-Zentralsektor',
       },
       'replaceText': {
         'Allagan Field': 'Allagisches Feld',
@@ -159,8 +158,7 @@
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
         'The Avatar': 'Bio-tréant',
-        'The central bow is no longer sealed': 'Ouverture de l\'axe central',
-        'The central bow will be sealed off': 'Fermeture de l\'axe central',
+        'The central bow': 'l\'axe central',
       },
       'replaceText': {
         'Allagan Field': 'Champ allagois',
@@ -179,8 +177,6 @@
       'replaceSync': {
         'Allagan Field': 'アラガンフィールド',
         'The Avatar': 'アバター',
-        'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
-        'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
       },
       'replaceText': {
         'Allagan Field': 'アラガンフィールド',
@@ -199,8 +195,6 @@
       'replaceSync': {
         'Allagan Field': '亚拉戈领域',
         'The Avatar': '降世化身',
-        'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
-        'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
       },
       'replaceText': {
         'Allagan Field': '亚拉戈领域',
@@ -219,8 +213,6 @@
       'replaceSync': {
         'Allagan Field': '알라그 필드',
         'The Avatar': '아바타',
-        'The central bow is no longer sealed': 'The central bow is no longer sealed', // FIXME
-        'The central bow will be sealed off': 'The central bow will be sealed off', // FIXME
       },
       'replaceText': {
         'Allagan Field': '알라그 필드',

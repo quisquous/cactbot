@@ -221,8 +221,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
-        'The Right Hand of Bahamut will be sealed off': 'bis sich der Zugang zu[rm]? Rechte Hand von Bahamut schließt',
+        'The Right Hand of Bahamut': 'Rechte Hand von Bahamut',
         'Twintania': 'Twintania',
       },
       'replaceText': {
@@ -243,8 +242,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'The Right Hand of Bahamut is no longer sealed': 'Ouverture de la Serre droite de Bahamut',
-        'The Right Hand of Bahamut will be sealed off': 'Fermeture de la Serre droite de Bahamut',
+        'The Right Hand of Bahamut': 'la Serre droite de Bahamut',
         'Twintania': 'Gémellia',
       },
       'replaceText': {
@@ -265,8 +263,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
-        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': 'ツインタニア',
       },
       'replaceText': {
@@ -287,8 +283,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
-        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': '双塔尼亚',
       },
       'replaceText': {
@@ -309,8 +303,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
-        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': '트윈타니아',
       },
       'replaceText': {

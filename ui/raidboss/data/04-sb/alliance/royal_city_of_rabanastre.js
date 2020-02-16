@@ -323,6 +323,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': 'Archaeodämon',
         'command tower': 'Kommandoturm',
@@ -334,11 +335,6 @@
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmallim der Einiger',
         'Rofocale': 'Rofocale',
-        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
-        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
-        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
-        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
-        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
       },
       'replaceText': {
         '--face--': '--face--', // FIXME
@@ -397,6 +393,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': 'archéodémon',
         'command tower': 'tour de commandement',
@@ -408,11 +405,6 @@
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmal le Grand Ordonnateur',
         'Rofocale': 'Rofocale le Roi centaure',
-        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
-        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
-        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
-        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
-        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
       },
       'replaceText': {
         '--face--': '--face--', // FIXME
@@ -482,10 +474,6 @@
         'Argath Thadalfus': '冷血剣アルガス',
         'Hashmal, Bringer Of Order': '統制者ハシュマリム ',
         'Rofocale': '人馬王ロフォカレ',
-        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
-        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
-        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
-        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
         'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
       },
       'replaceText': {
@@ -556,10 +544,6 @@
         'Argath Thadalfus': '冷血剑阿加斯',
         'Hashmal, Bringer Of Order': '统治者哈修马利姆',
         'Rofocale': '人马王洛弗卡勒',
-        'The Crumbling Bridge will be sealed off': 'The Crumbling Bridge will be sealed off', // FIXME
-        'The Lesalia Garden Ruins will be sealed off': 'The Lesalia Garden Ruins will be sealed off', // FIXME
-        'The Lesalia Temple Ruins will be sealed off': 'The Lesalia Temple Ruins will be sealed off', // FIXME
-        'The Palace Square will be sealed off': 'The Palace Square will be sealed off', // FIXME
         'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
       },
       'replaceText': {
@@ -635,7 +619,6 @@
         'The Lesalia Temple Ruins': '르잘리아 신전 옛터',
         'The Palace Square': '왕궁 광장',
         'The heavens tremble in my wake': '이것이 바로 빛나는 \'성석\'의 힘이다!',
-        ':([0-9]{1,4}):(.*) will be sealed off': ':$1:15초 후에 $2(이|가) 봉쇄됩니다\.',
       },
       'replaceText': {
         '--face--': '--얼굴--',

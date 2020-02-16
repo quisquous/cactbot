@@ -240,8 +240,7 @@
       'locale': 'de',
       'replaceSync': {
         'Kaliya': 'Kaliya',
-        'The Core Override is no longer sealed': 'Der Zugang zur Kern-Steuereinheit öffnet sich wieder',
-        'The Core Override will be sealed off': 'bis sich der Zugang zur Kern-Steuereinheit schließt',
+        'The Core Override': 'Kern-Steuereinheit',
       },
       'replaceText': {
         'Barofield': 'Baro-Feld',
@@ -261,8 +260,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Kaliya': 'Kaliya',
-        'The Core Override is no longer sealed': 'Ouverture de l\'unité de contrôle du Cœur',
-        'The Core Override will be sealed off': 'Fermeture de l\'unité de contrôle du Cœur',
+        'The Core Override': 'l\'unité de contrôle du Cœur',
       },
       'replaceText': {
         'Barofield': 'Barotraumatisme',
@@ -282,8 +280,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Kaliya': 'カーリア',
-        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
-        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
       },
       'replaceText': {
         'Barofield': 'バロフィールド',
@@ -303,8 +299,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Kaliya': '卡利亚',
-        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
-        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
       },
       'replaceText': {
         'Barofield': '气压领域',
@@ -324,8 +318,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Kaliya': '칼리야',
-        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
-        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
       },
       'replaceText': {
         'Barofield': '압력 필드',

@@ -69,8 +69,8 @@
 #alertall "Refresh Debuff" before 0 speak "voice" "Refresh Debuff"
 
 ##############################################################
-0 "--Reset--" sync /Advanced Clevering is no longer sealed/ window 10000 jump 0 #Detect reset
-0 "--Start--" sync /Advanced Clevering will be sealed off in 15 seconds/ window 10000 #Detect start
+0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0 #Detect reset
+0 "--Start--" sync / 00:0839:Advanced Clevering will be sealed off in 15 seconds/ window 10000 #Detect start
 5 "Goes Big" #Takes less damage
 8 "Gobjab" #Applies Headache stack
 12 "Gobjab" #Applies Headache stack
