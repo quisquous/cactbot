@@ -39,6 +39,7 @@ def find_all_javascript_files():
 
 
 # Print missing translations in |file| for |locales|
+# TODO: should this just be in javascript with the rest of the tests?
 def parse_javascript_file(file, locales):
     locales = set(locales)
 
