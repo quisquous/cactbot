@@ -250,6 +250,7 @@
       },
     },
     {
+      id: 'Rab Argath Mask of Truth',
       regex: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
       regexDe: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
       regexFr: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
@@ -261,6 +262,7 @@
       },
     },
     {
+      id: 'Rab Argath Mask of Lies',
       regex: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
       regexDe: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
       regexFr: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),

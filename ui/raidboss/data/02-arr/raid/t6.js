@@ -5,7 +5,7 @@
   timelineFile: 't6.txt',
   triggers: [
     {
-      id: 'T6 Thorn Whip',
+      id: 'T6 Thorn Whip Collect',
       regex: Regexes.tether({ id: '0012' }),
       regexDe: Regexes.tether({ id: '0012' }),
       regexFr: Regexes.tether({ id: '0012' }),
@@ -162,7 +162,7 @@
       },
     },
     {
-      id: 'T6 Swarm',
+      id: 'T6 Swarm Stack',
       regex: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       regexDe: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       regexFr: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),

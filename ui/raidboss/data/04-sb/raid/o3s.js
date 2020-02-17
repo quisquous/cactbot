@@ -21,7 +21,7 @@
     {
       // Look for spellblade holy so that the last noisy waltz
       // books message in the library phase can be ignored.
-      id: 'Spellblade holy counter',
+      id: 'O3S Spellblade Holy Counter',
       regex: Regexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
       regexDe: Regexes.ability({ id: '22EF', source: 'Halikarnassos', capture: false }),
       regexFr: Regexes.ability({ id: '22EF', source: 'Halicarnasse', capture: false }),

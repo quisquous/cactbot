@@ -19,6 +19,7 @@
   ],
   triggers: [
     {
+      id: 'Lakshmi Chanchala Gain',
       regex: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
@@ -30,6 +31,7 @@
       },
     },
     {
+      id: 'Lakshmi Chanchala Lose',
       regex: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
       regexDe: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
       regexFr: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),

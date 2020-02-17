@@ -143,7 +143,7 @@
       },
     },
     {
-      id: 'Copied Serial Centrifugal Spin',
+      id: 'Copied Serial Sidestriking Spin',
       regex: Regexes.startsUsing({ id: '48CA', source: 'Serial-Jointed Command Model', capture: false }),
       regexCn: Regexes.startsUsing({ id: '48CA', source: '多关节型：司令机', capture: false }),
       regexDe: Regexes.startsUsing({ id: '48CA', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
@@ -736,6 +736,7 @@
       },
     },
     {
+      id: 'Copied 9S Fore-Hind Cannons',
       regex: Regexes.startsUsing({ id: '48DF', source: '9S-Operated Walking Fortress', capture: false }),
       regexCn: Regexes.startsUsing({ id: '48DF', source: '9S：接入多脚战车', capture: false }),
       regexDe: Regexes.startsUsing({ id: '48DF', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),

@@ -475,7 +475,7 @@
       },
     },
     {
-      id: 'Orbonne Cid Shadowblade Bubble',
+      id: 'Orbonne Cid Shadowblade Pads',
       regex: Regexes.startsUsing({ id: '3761', source: 'The Thunder God', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3761', source: 'Cidolfus', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3761', source: 'Cid Le Dieu De La Foudre', capture: false }),

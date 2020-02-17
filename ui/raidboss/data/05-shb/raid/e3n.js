@@ -115,7 +115,7 @@
       },
     },
     {
-      id: 'E3N Undersea Quake Outside',
+      id: 'E3N Undersea Quake Inside',
       regex: Regexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3FCF', source: 'Léviathan', capture: false }),

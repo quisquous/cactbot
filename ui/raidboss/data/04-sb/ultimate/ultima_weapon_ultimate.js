@@ -26,6 +26,7 @@
   triggers: [
     // Phases
     {
+      id: 'UWU Suppression Phase',
       regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
       regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
       regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
@@ -38,6 +39,7 @@
     },
     {
       // Wait after suppression for primal triggers at the end.
+      id: 'UWU Finale Phase',
       regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
       regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
       regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
@@ -274,7 +276,7 @@
       },
     },
     {
-      // Cleanup
+      id: 'UWU Gaol Cleanup',
       regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
       regexCn: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'], capture: false }),
       regexDe: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),

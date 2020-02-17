@@ -6,7 +6,7 @@
   timelineFile: 'o4s.txt',
   timelineTriggers: [
     {
-      id: 'O4S Vacuum Wave',
+      id: 'O4S Neo Vacuum Wave',
       regex: /Vacuum Wave/,
       beforeSeconds: 8,
       alertText: {
@@ -16,7 +16,9 @@
   ],
   triggers: [
     // Part 1
-    { // Phase Tracker: Thunder III not after Decisive Battle.
+    {
+      // Phase Tracker: Thunder III not after Decisive Battle.
+      id: 'O4S Exdeath Thunder III Counter',
       regex: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
@@ -27,8 +29,9 @@
         data.thunderCount = (data.thunderCount || 0) + 1;
       },
     },
-    { // Fire III not after Decisive Battle.
-      id: 'O4S1 Fire III',
+    {
+      // Fire III not after Decisive Battle.
+      id: 'O4S Exdeath Fire III Counter',
       regex: Regexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
@@ -40,8 +43,9 @@
         de: 'Feuga',
       },
     },
-    { // Blizzard III not after Decisive Battle.
-      id: 'O4S1 Blizzard III',
+    {
+      // Blizzard III not after Decisive Battle.
+      id: 'O4S Exdeath Blizzard III',
       regex: Regexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
@@ -53,8 +57,9 @@
         de: 'Eisga',
       },
     },
-    { // Thunder III not after Decisive Battle.
-      id: 'O4S1 Thunder III',
+    {
+      // Thunder III not after Decisive Battle.
+      id: 'O4S Exdeath Thunder III',
       regex: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
@@ -87,8 +92,9 @@
         }
       },
     },
-    { // Fire III after Decisive Battle.
-      id: 'O4S1 Ultimate Fire III',
+    {
+      // Fire III after Decisive Battle.
+      id: 'O4S Exdeath Ultimate Fire III',
       regex: Regexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
@@ -104,8 +110,9 @@
         de: 'feuga stehenbleiben',
       },
     },
-    { // Blizzard III after Decisive Battle.
-      id: 'O4S1 Ultimate Blizzard III',
+    {
+      // Blizzard III after Decisive Battle.
+      id: 'O4S Exdeath Ultimate Blizzard III',
       regex: Regexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
@@ -121,8 +128,9 @@
         de: 'eisga bewegen',
       },
     },
-    { // Thunder III after Decisive Battle.
-      id: 'O4S1 Ultimate Thunder III',
+    {
+      // Thunder III after Decisive Battle.
+      id: 'O4S Exdeath Ultimate Thunder III',
       regex: Regexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
@@ -138,8 +146,9 @@
         de: 'blitzga raus da',
       },
     },
-    { // Flare
-      id: 'O4S1 Flare',
+    {
+      // Flare
+      id: 'O4S Exdeath Flare',
       regex: Regexes.startsUsing({ id: '2401', source: 'Exdeath' }),
       regexDe: Regexes.startsUsing({ id: '2401', source: 'Exdeath' }),
       regexFr: Regexes.startsUsing({ id: '2401', source: 'Exdeath' }),
@@ -165,7 +174,8 @@
     },
 
     // Part 2
-    { // Phase Tracker: Grand Cross Alpha.
+    {
+      id: 'O4S Neo Grand Cross Alpha Tracker',
       regex: Regexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '242B', source: 'Néo-Exdeath', capture: false }),
@@ -194,7 +204,8 @@
         };
       },
     },
-    { // Phase Tracker: Grand Cross Delta.
+    {
+      id: 'O4S Neo Grand Cross Delta Tracker',
       regex: Regexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '242C', source: 'Néo-Exdeath', capture: false }),
@@ -206,7 +217,8 @@
         data.waterHealer = null;
       },
     },
-    { // Phase Tracker: Grand Cross Omega.
+    {
+      id: 'O4S Neo Grand Cross Omega Tracker',
       regex: Regexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '242D', source: 'Néo-Exdeath', capture: false }),
@@ -219,7 +231,8 @@
         data.omegaLaserCount = 1;
       },
     },
-    { // Phase Tracker: Neverwhere.
+    {
+      id: 'O4S Neo Neverwhere Tracker',
       regex: Regexes.startsUsing({ id: '2426', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2426', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2426', source: 'Néo-Exdeath', capture: false }),
@@ -230,7 +243,8 @@
         data.finalphase = true;
       },
     },
-    { // White Wound tracking true
+    {
+      id: 'O4S Neo White Wound Gain',
       regex: Regexes.gainsEffect({ effect: 'White Wound' }),
       regexDe: Regexes.gainsEffect({ effect: 'Wunde Des Lebenden' }),
       regexFr: Regexes.gainsEffect({ effect: 'Lésion Du Vivant' }),
@@ -244,7 +258,8 @@
         data.whiteWound = true;
       },
     },
-    { // White Wound tracking false
+    {
+      id: 'O4S Neo White Wound Lost',
       regex: Regexes.losesEffect({ effect: 'White Wound' }),
       regexDe: Regexes.losesEffect({ effect: 'Wunde Des Lebenden' }),
       regexFr: Regexes.losesEffect({ effect: 'Lésion Du Vivant' }),
@@ -258,7 +273,8 @@
         data.whiteWound = false;
       },
     },
-    { // Black Wound tracking true
+    {
+      id: 'O4S Neo Black Wound Gain',
       regex: Regexes.gainsEffect({ effect: 'Black Wound' }),
       regexDe: Regexes.gainsEffect({ effect: 'Wunde Des Toten' }),
       regexFr: Regexes.gainsEffect({ effect: 'Lésion Du Défunt' }),
@@ -272,7 +288,8 @@
         data.blackWound = true;
       },
     },
-    { // Black Wound tracking false
+    {
+      id: 'O4S Neo Black Wound Lost',
       regex: Regexes.losesEffect({ effect: 'Black Wound' }),
       regexDe: Regexes.losesEffect({ effect: 'Wunde Des Toten' }),
       regexFr: Regexes.losesEffect({ effect: 'Lésion Du Défunt' }),
@@ -286,7 +303,8 @@
         data.blackWound = false;
       },
     },
-    { // Beyond death tracking true
+    {
+      id: 'O4S Neo Beyond Death Gain',
       regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
       regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
       regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
@@ -300,7 +318,8 @@
         data.beyondDeath = true;
       },
     },
-    { // Beyond death tracking false
+    {
+      id: 'O4S Neo Beyond Death Lost',
       regex: Regexes.losesEffect({ effect: 'Beyond Death' }),
       regexDe: Regexes.losesEffect({ effect: 'Jenseits Des Jenseits' }),
       regexFr: Regexes.losesEffect({ effect: 'Outre-Mort' }),
@@ -314,7 +333,8 @@
         data.beyondDeath = false;
       },
     },
-    { // Allagan field tracking true
+    {
+      id: 'O4S Neo Allagan Field Gain',
       regex: Regexes.gainsEffect({ effect: 'Allagan Field' }),
       regexDe: Regexes.gainsEffect({ effect: 'Allagisches Feld' }),
       regexFr: Regexes.gainsEffect({ effect: 'Champ Allagois' }),
@@ -328,7 +348,8 @@
         data.allaganField = true;
       },
     },
-    { // Allagan field tracking false
+    {
+      id: 'O4S Neo Allagan Field Lost',
       regex: Regexes.losesEffect({ effect: 'Allagan Field' }),
       regexDe: Regexes.losesEffect({ effect: 'Allagisches Feld' }),
       regexFr: Regexes.losesEffect({ effect: 'Champ Allagois' }),
@@ -342,8 +363,8 @@
         data.allaganField = false;
       },
     },
-    { // Inner Flood (move out).
-      id: 'O4S2 Flood of Naught: Inside',
+    {
+      id: 'O4S Neo Flood of Naught: Inside',
       regex: Regexes.startsUsing({ id: '240E', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '240E', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '240E', source: 'Néo-Exdeath', capture: false }),
@@ -384,8 +405,8 @@
         };
       },
     },
-    { // Outer Flood (move in).
-      id: 'O4S2 Flood of Naught: Outside',
+    {
+      id: 'O4S Neo Flood of Naught: Outside',
       regex: Regexes.startsUsing({ id: '240F', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '240F', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '240F', source: 'Néo-Exdeath', capture: false }),
@@ -426,8 +447,8 @@
         };
       },
     },
-    { // Purple/Blue Flood.
-      id: 'O4S2 Flood of Naught: Colors Purple Blue',
+    {
+      id: 'O4S Neo Flood of Naught: Colors Purple Blue',
       regex: Regexes.startsUsing({ id: '2411', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2411', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2411', source: 'Néo-Exdeath', capture: false }),
@@ -484,8 +505,8 @@
         de: 'Farben',
       },
     },
-    { // Blue/Purple Flood.
-      id: 'O4S2 Flood of Naught: Colors Blue Purple',
+    {
+      id: 'O4S Neo Flood of Naught: Colors Blue Purple',
       regex: Regexes.startsUsing({ id: '2412', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2412', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2412', source: 'Néo-Exdeath', capture: false }),
@@ -542,7 +563,8 @@
         de: 'farben',
       },
     },
-    { // Laser counter.
+    {
+      id: 'O4S Neo Laser Counter',
       regex: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Néo-Exdeath', capture: false }),
@@ -565,8 +587,8 @@
         data.omegaLaserCount++;
       },
     },
-    { // Charge Flood.
-      id: 'O4S2 Flood of Naught: Charge',
+    {
+      id: 'O4S Neo Flood of Naught: Charge',
       regex: Regexes.startsUsing({ id: '2416', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2416', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2416', source: 'Néo-Exdeath', capture: false }),
@@ -602,8 +624,8 @@
         de: 'aufladung',
       },
     },
-    { // Double attack.
-      id: 'O4S2 Double Attack',
+    {
+      id: 'O4S Neo Double Attack',
       regex: Regexes.startsUsing({ id: '241C', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '241C', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '241C', source: 'Néo-Exdeath', capture: false }),
@@ -628,7 +650,7 @@
       },
     },
     { // Grand Cross Alpha.
-      id: 'O4S2 Grand Cross Alpha',
+      id: 'O4S Neo Grand Cross Alpha',
       regex: Regexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '242B', source: 'Néo-Exdeath', capture: false }),
@@ -644,8 +666,8 @@
         de: 'In die Mitte',
       },
     },
-    { // Grand Cross Delta.
-      id: 'O4S2 Grand Cross Delta',
+    {
+      id: 'O4S Neo Grand Cross Delta',
       regex: Regexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '242C', source: 'Néo-Exdeath', capture: false }),
@@ -689,8 +711,8 @@
         };
       },
     },
-    { // Grand Cross Omega.
-      id: 'O4S2 Grand Cross Omega',
+    {
+      id: 'O4S Neo Grand Cross Omega',
       regex: Regexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '242D', source: 'Néo-Exdeath', capture: false }),
@@ -706,8 +728,8 @@
         de: 'in die Mitte',
       },
     },
-    { // Forked Lightning - Don't Stack.
-      id: 'O4S2 Forked Lightning',
+    {
+      id: 'O4S Neo Forked Lightning',
       regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
       regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz' }),
       regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié' }),
@@ -727,8 +749,8 @@
         de: 'blitz raus da',
       },
     },
-    { // Acceleration Bomb
-      id: 'O4S2 Acceleration Bomb',
+    {
+      id: 'O4S Neo Acceleration Bomb',
       regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
       regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
@@ -755,7 +777,7 @@
       },
     },
     {
-      id: 'O4S2 Acceleration Bomb Delta',
+      id: 'O4S Neo Acceleration Bomb Delta',
       regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
       regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
@@ -774,8 +796,8 @@
         de: 'bombe',
       },
     },
-    { // Shriek (Omega)
-      id: 'O4S2 Omega Shriek',
+    {
+      id: 'O4S Neo Omega Shriek',
       regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
       regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
       regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
@@ -797,8 +819,8 @@
         de: 'schrei',
       },
     },
-    { // Water Tracking (Delta/Omega)
-      id: 'O4S2 Water',
+    {
+      id: 'O4S Neo Water Tracker',
       regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
@@ -809,8 +831,9 @@
         data.waterHealer = matches.target;
       },
     },
-    { // Water Me (Delta/Omega)
-      id: 'O4S2 Water Me',
+    {
+      // Water Me (Delta/Omega)
+      id: 'O4S Neo Water Me',
       regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
@@ -840,8 +863,9 @@
         de: 'Wasser stek',
       },
     },
-    { // Beyond Death Tank (Delta)
-      id: 'O4S2 Beyond Death Delta Tank',
+    {
+      // Beyond Death Tank (Delta)
+      id: 'O4S Neo Beyond Death Delta Tank',
       regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
       regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
       regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
@@ -871,8 +895,9 @@
         de: 'wasser stek',
       },
     },
-    { // Beyond Death (Delta)
-      id: 'O4S2 Beyond Death Delta Initial',
+    {
+      // Beyond Death (Delta)
+      id: 'O4S Neo Beyond Death Delta Initial',
       regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
       regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
       regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
@@ -891,8 +916,9 @@
         de: 'tod',
       },
     },
-    { // Off Balance (Omega)
-      id: 'O4S2 Off Balance Omega',
+    {
+      // Off Balance (Omega)
+      id: 'O4S Neo Off Balance Omega',
       regex: Regexes.gainsEffect({ effect: 'Off-Balance' }),
       regexDe: Regexes.gainsEffect({ effect: 'Gleichgewichtsverlust' }),
       regexFr: Regexes.gainsEffect({ effect: 'Perte D\'Équilibre' }),
@@ -921,8 +947,8 @@
         de: 'Wasser stek',
       },
     },
-    { // Earthshaker
-      id: 'O4S2 Earthshaker',
+    {
+      id: 'O4S Neo Earthshaker',
       regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
         return matches.target == data.me;
@@ -948,8 +974,8 @@
         de: 'erstoß',
       },
     },
-    { // Delta Attack
-      id: 'O4S2 Delta Attack',
+    {
+      id: 'O4S Neo Delta Attack',
       regex: Regexes.startsUsing({ id: '241E', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '241E', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '241E', source: 'Néo-Exdeath', capture: false }),
@@ -965,8 +991,8 @@
         de: 'für delta stek en',
       },
     },
-    { // Almagest
-      id: 'O4S2 Almagest',
+    {
+      id: 'O4S Neo Almagest',
       regex: Regexes.startsUsing({ id: '2417', source: 'Neo Exdeath', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2417', source: 'Neo Exdeath', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2417', source: 'Néo-Exdeath', capture: false }),
@@ -985,8 +1011,8 @@
         data.almagestCount = (data.almagestCount || 0) + 1;
       },
     },
-    { // Flare
-      id: 'O4S2 Flare',
+    {
+      id: 'O4S Neo Flare',
       regex: Regexes.startsUsing({ id: '2401', source: 'Neo Exdeath' }),
       regexDe: Regexes.startsUsing({ id: '2401', source: 'Neo Exdeath' }),
       regexFr: Regexes.startsUsing({ id: '2401', source: 'Néo-Exdeath' }),

@@ -460,7 +460,7 @@
       },
     },
     {
-      id: 'InnoEx Rood',
+      id: 'InnoEx Rood Left',
       regex: Regexes.startsUsing({ id: '3ED3', source: 'Innocence', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3ED3', source: 'Innozenz', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3ED3', source: 'Innocence', capture: false }),
@@ -476,7 +476,7 @@
       },
     },
     {
-      id: 'InnoEx Rood',
+      id: 'InnoEx Rood Right',
       regex: Regexes.startsUsing({ id: '3ED5', source: 'Innocence', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3ED5', source: 'Innozenz', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3ED5', source: 'Innocence', capture: false }),

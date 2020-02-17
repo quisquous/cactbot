@@ -15,7 +15,8 @@
     },
   ],
   triggers: [
-    { // Thundercloud tracker
+    {
+      id: 'SusEx Thundercloud Tracker',
       regex: Regexes.addedCombatant({ name: 'Thunderhead', capture: false }),
       regexDe: Regexes.addedCombatant({ name: 'Gewitterwolke', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Nuage Orageux', capture: false }),
@@ -26,11 +27,12 @@
         data.cloud = true;
       },
     },
-    { // Thundercloud tracker
+    {
       // Stop tracking the cloud after it casts lightning instead of
       // when it disappears.  This is because there are several
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
+      id: 'SusEx Thundercloud Cleanup',
       regex: Regexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2041', source: 'Gewitterwolke', target: 'Gewitterwolke', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2041', source: 'Nuage Orageux', target: 'Nuage Orageux', capture: false }),
@@ -41,7 +43,8 @@
         data.cloud = false;
       },
     },
-    { // Churning tracker
+    {
+      id: 'SusEx Churning Gain',
       regex: Regexes.gainsEffect({ effect: 'Churning', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Schäumend', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Agitation', capture: false }),
@@ -55,10 +58,11 @@
         data.churning = true;
       },
     },
-    { // Churning tracker
+    {
       // We could track the number of people with churning here, but
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
+      id: 'SusEx Churning Lose',
       regex: Regexes.losesEffect({ effect: 'Churning', capture: false }),
       regexDe: Regexes.losesEffect({ effect: 'Schäumend', capture: false }),
       regexFr: Regexes.losesEffect({ effect: 'Agitation', capture: false }),
@@ -108,7 +112,8 @@
         }
       },
     },
-    { // Red knockback marker indicator
+    {
+      // Red knockback marker indicator
       id: 'SusEx Knockback',
       regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
@@ -149,7 +154,7 @@
         };
       },
     },
-    { // Levinbolt indicator
+    {
       id: 'SusEx Levinbolt',
       regex: Regexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
@@ -180,7 +185,7 @@
         };
       },
     },
-    { // Levinbolt indicator debug
+    {
       id: 'SusEx Levinbolt Debug',
       regex: Regexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
@@ -188,7 +193,7 @@
         return (matches.target != data.me);
       },
     },
-    { // Stunning levinbolt indicator
+    {
       id: 'SusEx Levinbolt Stun',
       regex: Regexes.headMarker({ id: '006F' }),
       infoText: function(data, matches) {
@@ -202,7 +207,7 @@
         }
       },
     },
-    { // Churning (dice)
+    {
       id: 'SusEx Churning',
       regex: Regexes.gainsEffect({ effect: 'Churning', capture: true }),
       regexDe: Regexes.gainsEffect({ effect: 'Schäumend', capture: true }),

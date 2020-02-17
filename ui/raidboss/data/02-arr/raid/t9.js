@@ -57,7 +57,7 @@
       },
     },
     {
-      id: 'T9 Raven Blight You',
+      id: 'T9 Raven Blight Not You',
       regex: Regexes.gainsEffect({ effect: 'Raven Blight' }),
       regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge' }),
       regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace' }),
@@ -79,7 +79,7 @@
       },
     },
     {
-      id: 'T9 Meteor Stream',
+      id: 'T9 Meteor',
       regex: Regexes.headMarker({ id: '000[7A9]' }),
       condition: function(data, matches) {
         return data.me == matches.target;

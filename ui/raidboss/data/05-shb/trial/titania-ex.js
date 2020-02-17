@@ -29,6 +29,7 @@
       },
     },
     {
+      id: 'TitaniaEx Phantom Out',
       regex: Regexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),

@@ -59,7 +59,7 @@
       // For the cannons, match #1 and #2 for the first one.  This is so
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
-      // Starboard/Larboard Cannon cleanup.
+      id: 'O11S Cannon Cleanup',
       regex: Regexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
       regexDe: Regexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
       regexFr: Regexes.startsUsing({ id: '326[24]', source: 'Oméga', capture: false }),

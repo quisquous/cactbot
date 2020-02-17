@@ -61,7 +61,7 @@
       },
     },
     {
-      id: 'Ridorana Famfrit Tsunami',
+      id: 'Ridorana Famfrit Tsunami 1',
       regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
@@ -83,7 +83,7 @@
       },
     },
     {
-      id: 'Ridorana Famfrit Tsunami',
+      id: 'Ridorana Famfrit Tsunami 2',
       regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
@@ -105,7 +105,7 @@
       },
     },
     {
-      id: 'Ridorana Famfrit Tsunami',
+      id: 'Ridorana Famfrit Tsunami 3',
       regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
@@ -356,7 +356,7 @@
       },
     },
     {
-      // Accelerate cleanup
+      id: 'Ridorana Construct Accelerate Cleanup',
       regex: Regexes.startsUsing({ id: '2C65', source: 'Construct 7', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C65', source: 'Automat Nr\\. 7', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C65', source: 'Bâtisseur N°7', capture: false }),
@@ -368,7 +368,7 @@
       },
     },
     {
-      // TODO: need an "always run this trigger when starting zone" option
+      id: 'Ridorana Construct Math Setup',
       regex: Regexes.startsUsing({ id: '2C6C', source: 'Construct 7', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C6C', source: 'Automat Nr\\. 7', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C6C', source: 'Bâtisseur N°7', capture: false }),
@@ -420,6 +420,7 @@
       },
     },
     {
+      id: 'Ridorana Construct Math HP Check 1',
       regex: Regexes.gainsEffect({ effect: 'Hp Penalty' }),
       regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus' }),
       regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits' }),
@@ -439,6 +440,7 @@
       // trigger happens.  However, by t=1 second in testing, standing a circle
       // will apply.  So, hope for the best by testing at t=0.5 as well, but not
       // overwriting any results from t=0 if that was valid.
+      id: 'Ridorana Construct Math HP Check 2',
       regex: Regexes.gainsEffect({ effect: 'Hp Penalty' }),
       regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus' }),
       regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits' }),

@@ -173,7 +173,7 @@
       },
     },
     {
-      id: 'E3S Undersea Quake Outside',
+      id: 'E3S Undersea Quake Inside',
       regex: Regexes.startsUsing({ id: '3FEE', source: 'Leviathan', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3FEE', source: 'Leviathan', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3FEE', source: 'Léviathan', capture: false }),
@@ -337,7 +337,7 @@
       },
     },
     {
-      id: 'E3S Hydrothermal Vent Collect',
+      id: 'E3S Hydrothermal Vent',
       regex: Regexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
       regexDe: Regexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
       regexFr: Regexes.tether({ id: '005A', target: 'Léviathan', capture: false }),
@@ -428,7 +428,7 @@
     },
     {
       // 29 seconds
-      id: 'E3S Scouring Waters',
+      id: 'E3S Scouring Waters Defamation',
       regex: Regexes.gainsEffect({ effect: 'Scouring Waters' }),
       regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen' }),
       regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices' }),
@@ -448,7 +448,7 @@
       },
     },
     {
-      id: 'E3S Scouring Waters',
+      id: 'E3S Scouring Waters Avoid Knockback',
       regex: Regexes.gainsEffect({ effect: 'Scouring Waters' }),
       regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen' }),
       regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices' }),
@@ -517,7 +517,7 @@
       },
     },
     {
-      id: 'E3S Sweeping Waters',
+      id: 'E3S Sweeping Waters Gain',
       regex: Regexes.gainsEffect({ effect: 'Sweeping Waters' }),
       regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung' }),
       regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes' }),

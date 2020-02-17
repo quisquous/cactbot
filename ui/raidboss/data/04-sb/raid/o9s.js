@@ -605,7 +605,7 @@
       },
     },
     {
-      // Primordial Crust Cleanup
+      id: 'O9S Primordial Crust Cleanup',
       regex: Regexes.gainsEffect({ effect: 'Primordial Crust' }),
       regexDe: Regexes.gainsEffect({ effect: 'Chaoserde' }),
       regexFr: Regexes.gainsEffect({ effect: 'Terre Du Chaos' }),

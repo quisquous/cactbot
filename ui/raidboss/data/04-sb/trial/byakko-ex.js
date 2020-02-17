@@ -197,6 +197,7 @@
       },
     },
     {
+      id: 'ByaEx Roar Counter',
       regex: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
       regexDe: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
       regexFr: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
@@ -341,6 +342,7 @@
       },
     },
     {
+      id: 'ByaEx Stake Counter',
       regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
@@ -353,6 +355,7 @@
       },
     },
     {
+      id: 'ByaEx Stake Counter Cleanup',
       regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),

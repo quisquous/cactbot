@@ -60,7 +60,7 @@
   ],
   triggers: [
     {
-      id: 'Eureka Hydatos Falling Asleep',
+      id: 'BA Falling Asleep',
       regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity.', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen.', capture: false }),
       regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes', capture: false }),
@@ -73,7 +73,7 @@
       },
     },
     {
-      id: 'Eureka Saved By Rememberance',
+      id: 'BA Saved By Rememberance',
       regex: Regexes.gameLog({ line: 'The memories of heroes past live on again', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf', capture: false }),
       regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来', capture: false }),

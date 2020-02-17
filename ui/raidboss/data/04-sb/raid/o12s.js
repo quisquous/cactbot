@@ -11,7 +11,7 @@
   timelineFile: 'o12s.txt',
   triggers: [
     {
-      // Track Omega MF vs Final Omega phase.
+      id: 'O12S Phase Init',
       regex: Regexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3357', source: 'Oméga', capture: false }),
@@ -603,7 +603,7 @@
       },
     },
     {
-      // Archive All Marker Tracking
+      id: 'O12S Archive All Marker Tracking',
       regex: Regexes.headMarker({ id: ['003E', '0060'] }),
       condition: function(data) {
         return data.isFinalOmega;
@@ -701,7 +701,7 @@
       },
     },
     {
-      // Archive Peripheral Tracking.
+      id: 'O12S Archive  Peripheral Tracking',
       regex: Regexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'] }),
       regexDe: Regexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'] }),
       regexFr: Regexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'] }),

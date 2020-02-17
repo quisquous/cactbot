@@ -256,7 +256,7 @@
       // 3D78: tank2
       // 44F0: healer1
       // 3D7D: healer2
-      id: 'E1S Vice and Virtue DPS 1',
+      id: 'E1S Vice and Virtue Tracker',
       regex: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Eden Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Prim-Eden', capture: false }),
       regexFr: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Primo-Éden', capture: false }),
@@ -288,7 +288,7 @@
       },
     },
     {
-      id: 'E1S Vice and Virtue DPS 2',
+      id: 'E1S Vice and Virtue DPS 2 Tracker',
       regex: Regexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3D7A', source: 'Prim-Eden', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3D7A', source: 'Primo-Éden', capture: false }),

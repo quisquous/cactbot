@@ -11,6 +11,7 @@
   triggers: [
     // --- State ---
     {
+      id: 'UCU Firescorched Gain',
       regex: Regexes.gainsEffect({ effect: 'Firescorched' }),
       regexDe: Regexes.gainsEffect({ effect: 'Feuerhorn' }),
       regexFr: Regexes.gainsEffect({ effect: 'Corne-De-Feu' }),
@@ -25,6 +26,7 @@
       },
     },
     {
+      id: 'UCU Firescorched Lose',
       regex: Regexes.losesEffect({ effect: 'Firescorched' }),
       regexDe: Regexes.losesEffect({ effect: 'Feuerhorn' }),
       regexFr: Regexes.losesEffect({ effect: 'Corne-De-Feu' }),
@@ -39,6 +41,7 @@
       },
     },
     {
+      id: 'UCU Icebitten Gain',
       regex: Regexes.gainsEffect({ effect: 'Icebitten' }),
       regexDe: Regexes.gainsEffect({ effect: 'Eisklaue' }),
       regexFr: Regexes.gainsEffect({ effect: 'Griffe-De-Glace' }),
@@ -53,6 +56,7 @@
       },
     },
     {
+      id: 'UCU Icebitten Lose',
       regex: Regexes.losesEffect({ effect: 'Icebitten' }),
       regexDe: Regexes.losesEffect({ effect: 'Eisklaue' }),
       regexFr: Regexes.losesEffect({ effect: 'Griffe-De-Glace' }),
@@ -67,6 +71,7 @@
       },
     },
     {
+      id: 'UCU Fireball Counter',
       regex: Regexes.ability({ id: '26C5', source: 'Firehorn' }),
       regexDe: Regexes.ability({ id: '26C5', source: 'Feuerhorn' }),
       regexFr: Regexes.ability({ id: '26C5', source: 'Corne-De-Feu' }),
@@ -78,6 +83,7 @@
       },
     },
     {
+      id: 'UCU Quickmarch Phase',
       regex: Regexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E2', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E2', source: 'Primo-Bahamut', capture: false }),
@@ -89,6 +95,7 @@
       },
     },
     {
+      id: 'UCU Blackfire Phase',
       regex: Regexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E3', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E3', source: 'Primo-Bahamut', capture: false }),
@@ -100,6 +107,7 @@
       },
     },
     {
+      id: 'UCU Fellruin Phase',
       regex: Regexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E4', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E4', source: 'Primo-Bahamut', capture: false }),
@@ -111,6 +119,7 @@
       },
     },
     {
+      id: 'UCU Heavensfall Phase',
       regex: Regexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E5', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E5', source: 'Primo-Bahamut', capture: false }),
@@ -122,6 +131,7 @@
       },
     },
     {
+      id: 'UCU Tenstrike Phase',
       regex: Regexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E6', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E6', source: 'Primo-Bahamut', capture: false }),
@@ -133,6 +143,7 @@
       },
     },
     {
+      id: 'UCU Octet Phase',
       regex: Regexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E7', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E7', source: 'Primo-Bahamut', capture: false }),
@@ -144,6 +155,7 @@
       },
     },
     {
+      id: 'UCU Ragnarok Party Tracker',
       regex: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
       regexDe: Regexes.ability({ id: '26B8', source: 'Ragnarök' }),
       regexFr: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
@@ -219,7 +231,7 @@
       },
     },
     {
-      // Hatch Collect
+      id: 'UCU Hatch Collect',
       regex: Regexes.headMarker({ id: '0076' }),
       run: function(data, matches) {
         data.hatch = data.hatch || [];
@@ -271,7 +283,7 @@
       },
     },
     {
-      // Hatch Cleanup
+      id: 'UCU Hatch Cleanup',
       regex: Regexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
       run: function(data) {
@@ -794,7 +806,7 @@
       },
     },
     {
-      // Doom tracking init.
+      id: 'UCU Doom Init',
       regex: Regexes.gainsEffect({ effect: 'Doom' }),
       regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
       regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
@@ -823,7 +835,7 @@
       },
     },
     {
-      // Doom tracking cleanup.
+      id: 'UCU Doom Cleanup',
       regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
@@ -1091,7 +1103,7 @@
       },
     },
     {
-      // TODO: this should really use the new added combatant line with positions.
+      id: 'UCU Dragon Tracker',
       regex: Regexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       regexDe: Regexes.abilityFull({ source: ['Eisklaue', 'Donnerschwinge', 'Lichtklaue', 'Dunkelschweif', 'Feuerhorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       regexFr: Regexes.abilityFull({ source: ['Griffe-De-Glace', 'Aile-De-Foudre', 'Croc De Lumière', 'Queue De Ténèbres', 'Corne-De-Feu'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
@@ -1233,6 +1245,7 @@
     },
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
+      id: 'UCU Octet Marker Tracking',
       regex: Regexes.headMarker({ id: ['0077', '0014', '0029'] }),
       condition: function(data) {
         return data.trio == 'octet';
@@ -1455,7 +1468,7 @@
       },
     },
     {
-      // Megaflare stack tracking
+      id: 'UCU Megaflare Stack Tracking',
       regex: Regexes.headMarker({ id: '0027' }),
       run: function(data, matches) {
         data.megaStack.push(matches.target);
@@ -1567,7 +1580,7 @@
       },
     },
     {
-      // Earthshaker tracking
+      id: 'UCU Earthshaker Tracking',
       regex: Regexes.headMarker({ id: '0028' }),
       run: function(data, matches) {
         data.shakers.push(matches.target);

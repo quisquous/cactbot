@@ -7,6 +7,7 @@
   resetWhenOutOfCombat: false,
   triggers: [
     {
+      id: 'O5N Stop Combat',
       regex: Regexes.removingCombatant({ name: 'Phantom Train', capture: false }),
       regexDe: Regexes.removingCombatant({ name: 'Phantomzug', capture: false }),
       regexFr: Regexes.removingCombatant({ name: 'Train Fantôme', capture: false }),

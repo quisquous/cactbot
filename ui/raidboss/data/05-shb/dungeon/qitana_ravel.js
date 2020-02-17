@@ -86,7 +86,7 @@
       },
     },
     {
-      id: 'Qitana Heat Up Right',
+      id: 'Qitana Heat Up Left',
       regex: Regexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),

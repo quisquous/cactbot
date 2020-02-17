@@ -11,6 +11,7 @@
   triggers: [
     // State
     {
+      id: 'O7S Aether Rot Gain',
       regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
       regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
       regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
@@ -25,6 +26,7 @@
       },
     },
     {
+      id: 'O7S Aether Rot Lose',
       regex: Regexes.losesEffect({ effect: 'Aether Rot' }),
       regexDe: Regexes.losesEffect({ effect: 'Ätherfäule' }),
       regexFr: Regexes.losesEffect({ effect: 'Pourriture Éthéréenne' }),
@@ -39,6 +41,7 @@
       },
     },
     {
+      id: 'O7S Dadaluma Simulation',
       regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Dadaluma Simulation', capture: false }),
       regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Dadarma-Kampfprogramm', capture: false }),
       regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Dadaluma', capture: false }),
@@ -56,6 +59,7 @@
       },
     },
     {
+      id: 'O7S Bibliotaph Simulation',
       regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Bibliotaph Simulation', capture: false }),
       regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Bibliotaph-Kampfprogramm', capture: false }),
       regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Bibliotaphe', capture: false }),
@@ -73,6 +77,7 @@
       },
     },
     {
+      id: 'O7S Virus Tracker',
       regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Virus', capture: false }),
       regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Virus', capture: false }),
       regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Virus', capture: false }),

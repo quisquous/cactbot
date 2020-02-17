@@ -29,7 +29,7 @@
       },
     },
     {
-      id: 'Euereka Sabotender Stack Marker',
+      id: 'Eureka Sabotender Stack Marker',
       regex: Regexes.startsUsing({ id: '29EB', source: 'Sabotender Corrido' }),
       regexDe: Regexes.startsUsing({ id: '29EB', source: 'Sabotender Corrido' }),
       regexFr: Regexes.startsUsing({ id: '29EB', source: 'Pampa Corrido' }),
@@ -157,7 +157,7 @@
       },
     },
     {
-      id: 'Fafnir Terror',
+      id: 'Eureka Fafnir Terror',
       regex: Regexes.startsUsing({ id: '29B7', source: 'Fafnir', capture: false }),
       regexDe: Regexes.startsUsing({ id: '29B7', source: 'Fafnir', capture: false }),
       regexFr: Regexes.startsUsing({ id: '29B7', source: 'Fafnir', capture: false }),

@@ -6,6 +6,7 @@
   timelineFile: 'shinryu-ex.txt',
   triggers: [
     {
+      id: 'ShinryuEx Heart Cleanup',
       regex: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
       regexDe: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
       regexFr: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
@@ -18,6 +19,7 @@
       },
     },
     {
+      id: 'ShinryuEx Phase 1',
       regex: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
       regexDe: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
       regexFr: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
@@ -29,6 +31,7 @@
       },
     },
     {
+      id: 'ShinryuEx Phase 2',
       regex: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
       regexDe: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
       regexFr: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
@@ -40,6 +43,7 @@
       },
     },
     {
+      id: 'ShinryuEx Phase 3',
       regex: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
       regexDe: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
       regexFr: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
@@ -51,6 +55,7 @@
       },
     },
     {
+      id: 'ShinryuEx Phase 4',
       regex: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       regexDe: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       regexFr: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),

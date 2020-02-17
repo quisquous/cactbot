@@ -16,7 +16,8 @@
     },
   ],
   triggers: [
-    { // Phase Tracker: Maniacal Probe.
+    {
+      id: 'O2S Phase Probe Tracker',
       regex: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
       regexDe: Regexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
       regexFr: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
@@ -30,7 +31,7 @@
       },
     },
     {
-      id: 'O2S Levitation',
+      id: 'O2S Levitation Gain',
       regex: Regexes.gainsEffect({ effect: 'Levitation' }),
       regexDe: Regexes.gainsEffect({ effect: 'Levitation' }),
       regexFr: Regexes.gainsEffect({ effect: 'Lévitation' }),
@@ -45,7 +46,7 @@
       },
     },
     {
-      id: 'O2S Levitation',
+      id: 'O2S Levitation Lose',
       regex: Regexes.losesEffect({ effect: 'Levitation' }),
       regexDe: Regexes.losesEffect({ effect: 'Levitation' }),
       regexFr: Regexes.losesEffect({ effect: 'Lévitation' }),
@@ -246,7 +247,7 @@
       },
     },
     {
-      id: 'O2S 6 Fulms Under',
+      id: 'O2S 6 Fulms Under Gain',
       regex: Regexes.gainsEffect({ effect: '6 Fulms Under' }),
       regexDe: Regexes.gainsEffect({ effect: 'Versinkend' }),
       regexFr: Regexes.gainsEffect({ effect: 'Enfoncement' }),
@@ -282,7 +283,7 @@
       },
     },
     {
-      id: 'O2S 6 Fulms Under',
+      id: 'O2S 6 Fulms Under Lose',
       regex: Regexes.losesEffect({ effect: '6 Fulms Under' }),
       regexDe: Regexes.losesEffect({ effect: 'Versinkend' }),
       regexFr: Regexes.losesEffect({ effect: 'Enfoncement' }),

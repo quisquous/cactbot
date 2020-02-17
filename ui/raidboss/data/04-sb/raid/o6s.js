@@ -82,6 +82,7 @@
       },
     },
     {
+      id: 'O6S Last Kiss Tracker',
       regex: Regexes.headMarker({ id: '0017' }),
       run: function(data, matches) {
         data.lastKiss = matches.target;

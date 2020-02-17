@@ -126,7 +126,7 @@
       },
     },
     {
-      id: 'O10N Horizontal Spin 1',
+      id: 'O10S Horizontal Spin 1',
       regex: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
       regexDe: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
       regexFr: Regexes.ability({ id: '31AC', source: 'Midgardsormr', capture: false }),
@@ -146,7 +146,7 @@
       },
     },
     {
-      id: 'O10N Vertical Spin 1',
+      id: 'O10S Vertical Spin 1',
       regex: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
       regexDe: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
       regexFr: Regexes.ability({ id: '31AD', source: 'Midgardsormr', capture: false }),
@@ -166,7 +166,7 @@
       },
     },
     {
-      id: 'O10N Horizontal Spin 2',
+      id: 'O10S Horizontal Spin 2',
       regex: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
       regexDe: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
       regexFr: Regexes.ability({ id: '31AE', source: 'Midgardsormr', capture: false }),
@@ -198,7 +198,7 @@
       },
     },
     {
-      id: 'O10N Vertical Spin 2',
+      id: 'O10S Vertical Spin 2',
       regex: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
       regexDe: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
       regexFr: Regexes.ability({ id: '31B0', source: 'Midgardsormr', capture: false }),
