@@ -174,6 +174,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Allagan Field': 'アラガンフィールド',
         'The Avatar': 'アバター',
@@ -192,6 +193,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Allagan Field': '亚拉戈领域',
         'The Avatar': '降世化身',
@@ -210,6 +212,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Allagan Field': '알라그 필드',
         'The Avatar': '아바타',

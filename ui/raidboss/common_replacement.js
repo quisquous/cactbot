@@ -42,5 +42,17 @@ let commonReplacement = {
   },
 };
 
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = commonReplacement;
+// Keys into commonReplacement objects that represent "partial" translations,
+// in the sense that even if it applies, there still needs to be another
+// translation for it to be complete.
+let partialCommonReplacementKeys = [
+  // Because the zone name needs to be translated here, this is partial.
+  ':([0-9]{4}):(.*) will be sealed off',
+];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    commonReplacement: commonReplacement,
+    partialCommonReplacementKeys: partialCommonReplacementKeys,
+  };
+}

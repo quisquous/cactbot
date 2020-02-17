@@ -317,6 +317,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Arbuda': 'アブダ',
         'Coeurl Smriti': 'クァール・スムリティ',
@@ -350,6 +351,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Arbuda': '额部陀',
         'Coeurl Smriti': '凶豹所忆',
@@ -383,6 +385,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Arbuda': '아부다',
         'Coeurl Smriti': '커얼 스므리티',

@@ -1038,6 +1038,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         '9S-operated Flight Unit': '９Ｓ：飛行ユニット装備',
         '9S-Operated Walking Fortress': '９Ｓ：多脚戦車従属',

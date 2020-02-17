@@ -278,6 +278,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Kaliya': 'カーリア',
       },
@@ -297,6 +298,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Kaliya': '卡利亚',
       },
@@ -316,6 +318,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Kaliya': '칼리야',
       },

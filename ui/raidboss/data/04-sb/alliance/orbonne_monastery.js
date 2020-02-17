@@ -1079,6 +1079,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '聖騎士アグリアス',
         'Aspersory': '聖雲の水瓶',
@@ -1211,6 +1212,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '圣骑士阿格莉亚丝',
         'Aspersory': '圣云水瓶',
@@ -1343,6 +1345,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '성기사 아그리아스',
         'Aspersory': '성운의 물병',

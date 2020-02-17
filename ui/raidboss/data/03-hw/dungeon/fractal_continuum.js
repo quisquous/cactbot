@@ -221,6 +221,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Minotaur': 'ミノタウロス',
         'Phantom Ray': 'ファントムレイ',
@@ -250,6 +251,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Minotaur': '弥诺陶洛斯',
         'Phantom Ray': '幻影光',
@@ -279,6 +281,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Minotaur': '미노타우로스',
         'Phantom Ray': '환영 광선',

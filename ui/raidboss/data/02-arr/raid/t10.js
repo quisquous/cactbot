@@ -136,6 +136,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': 'イムドゥグド',
       },
@@ -155,6 +156,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': '伊姆都古德',
       },
@@ -174,6 +176,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': '임두구드',
       },

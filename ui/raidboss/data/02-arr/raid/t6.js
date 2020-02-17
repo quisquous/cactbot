@@ -264,6 +264,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Rafflesia': 'ラフレシア',
       },
@@ -284,6 +285,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Rafflesia': '大王花',
       },
@@ -304,6 +306,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Rafflesia': '라플레시아',
       },

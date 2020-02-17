@@ -262,6 +262,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Twintania': 'ツインタニア',
       },
@@ -282,6 +283,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Twintania': '双塔尼亚',
       },
@@ -302,6 +304,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Twintania': '트윈타니아',
       },
