@@ -2,12 +2,12 @@
 
 // TODO: maybe this should be structured identically to a timelineReplace section.
 let commonReplacement = {
-  ':([0-9]{4}):(.*) will be sealed off': {
-    de: ':$1:Noch 15 Sekunden bis sich (?:das|die|der Zugang zu[rm]?) $2 schließt',
-    cn: ':$1:距$2被封锁还有',
-    fr: ':$1:Fermeture d(?:e|u|es) $2 dans',
-    ja: '$1:$2の封鎖まであと',
-    ko: ':$1:15초 후에 $2(이|가) 봉쇄됩니다',
+  '(?<=00:0839:)(.*) will be sealed off': {
+    de: 'Noch 15 Sekunden bis sich (?:das|die|der Zugang zu[rm]?) $1 schließt',
+    cn: '距$1被封锁还有',
+    fr: 'Fermeture d(?:e|u|es) $1 dans',
+    ja: '$1の封鎖まであと',
+    ko: '15초 후에 $1(이|가) 봉쇄됩니다',
   },
   'is no longer sealed': {
     de: 'öffnet sich erneut',
