@@ -21,7 +21,7 @@
       },
     },
     {
-      id: 'SeiryuEx Stack',
+      id: 'SeiryuEx Line Stack',
       regex: /Forbidden Arts$/,
       beforeSeconds: 1,
       suppressSeconds: 10,

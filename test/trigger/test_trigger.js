@@ -208,43 +208,47 @@ let testValidIds = function(file, contents) {
   let brokenPrefixes = false;
   let ids = new Set();
 
-  for (let trigger of json[0].triggers) {
-    if (!trigger.id) {
-      console.error(`${file}: Missing id field in trigger ${trigger.regex}`);
-      exitCode = 1;
+  for (let set of [json[0].triggers, json[0].timelineTriggers]) {
+    if (!set)
       continue;
-    }
+    for (let trigger of set) {
+      if (!trigger.id) {
+        console.error(`${file}: Missing id field in trigger ${trigger.regex}`);
+        exitCode = 1;
+        continue;
+      }
 
-    // Triggers must be unique.
-    if (ids.has(trigger.id)) {
-      console.error(`${file}: duplicate id: '${trigger.id}`);
-      exitCode = 1;
-    }
-    ids.add(trigger.id);
+      // Triggers must be unique.
+      if (ids.has(trigger.id)) {
+        console.error(`${file}: duplicate id: '${trigger.id}`);
+        exitCode = 1;
+      }
+      ids.add(trigger.id);
 
-    // Only show one broken prefix per file.
-    if (brokenPrefixes)
-      continue;
+      // Only show one broken prefix per file.
+      if (brokenPrefixes)
+        continue;
 
-    if (prefix === null) {
-      prefix = trigger.id;
-      continue;
-    }
+      if (prefix === null) {
+        prefix = trigger.id;
+        continue;
+      }
 
-    // Find common prefix.
-    let idx = 0;
-    let len = Math.min(prefix.length, trigger.id.length);
-    for (idx = 0; idx < len; ++idx) {
-      if (prefix[idx] != trigger.id[idx])
-        break;
+      // Find common prefix.
+      let idx = 0;
+      let len = Math.min(prefix.length, trigger.id.length);
+      for (idx = 0; idx < len; ++idx) {
+        if (prefix[idx] != trigger.id[idx])
+          break;
+      }
+      if (idx == 0) {
+        console.error(`${file}: No common id prefix in '${prefix}' and '${trigger.id}'`);
+        exitCode = 1;
+        brokenPrefixes = true;
+        continue;
+      }
+      prefix = prefix.substr(0, idx);
     }
-    if (idx == 0) {
-      console.error(`${file}: No common id prefix in '${prefix}' and '${trigger.id}'`);
-      exitCode = 1;
-      brokenPrefixes = true;
-      continue;
-    }
-    prefix = prefix.substr(0, idx);
   }
 
   // If there's at least two ids, then the prefix must be a full word.

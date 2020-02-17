@@ -192,7 +192,7 @@
       },
     },
     { // Offtank cleave
-      id: 'Lakshmi Path of Light',
+      id: 'Lakshmi Path of Light Marker',
       regex: Regexes.headMarker({ id: '000E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
