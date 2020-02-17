@@ -1,20 +1,15 @@
 'use strict';
 
-// TODO: right now, all of the common replacements are considered as having a
-// translation and will never be considered missing.  This means that because
-// the "will be sealed" has a translation (that doesn't include the zone name),
-// then the zone name will never be considered missing when running this test,
-// because the sync "has" a translation.  We need to specially ignore the zone
-// name.
-
 let fs = require('fs');
 let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
 let Conditions = require('../../resources/conditions.js');
-let responseModule = require('../../resources/responses.js');
-let Responses = responseModule.responses;
+let responseExports = require('../../resources/responses.js');
+let Responses = responseExports.responses;
 let Timeline = require('../../ui/raidboss/timeline.js');
-let commonReplacement = require('../../ui/raidboss/common_replacement.js');
+let commonReplacementExports = require('../../ui/raidboss/common_replacement.js');
+let commonReplacement = commonReplacementExports.commonReplacement;
+let partialCommonReplacementKeys = commonReplacementExports.partialCommonReplacementKeys;
 
 let exitCode = 0;
 
@@ -36,7 +31,7 @@ if (triggerSet.length != 1) {
 }
 let triggers = triggerSet[0];
 
-function getTestCases(trans) {
+function getTestCases(trans, skipPartialCommon) {
   let testCases = [
     {
       type: 'replaceSync',
@@ -54,6 +49,8 @@ function getTestCases(trans) {
   // As of now they apply to both replaceSync and replaceText, so add them to both.
   for (let testCase of testCases) {
     for (let key in commonReplacement) {
+      if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
+        continue;
       if (!commonReplacement[key][trans.locale]) {
         // To avoid throwing a "missing translation" error for
         // every single common translation, automatically add noops.
@@ -67,6 +64,10 @@ function getTestCases(trans) {
   }
 
   return testCases;
+}
+
+function getTestCasesWithoutPartialCommon(trans) {
+  return getTestCases(trans, true);
 }
 
 let tests = {
@@ -176,7 +177,9 @@ let tests = {
       if (trans.missingTranslations)
         continue;
 
-      let testCases = getTestCases(trans);
+      // Ignore partial common translations here, as they don't
+      // count towards completing missing translations.
+      let testCases = getTestCasesWithoutPartialCommon(trans);
 
       let ignore = timeline.GetMissingTranslationsToIgnore();
       let isIgnored = (x) => {

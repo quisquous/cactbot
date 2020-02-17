@@ -963,6 +963,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': 'アルケオデーモン',
         'Belias, The Gigas': '魔人ベリアス',
@@ -1080,6 +1081,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'Belias, The Gigas': '魔人贝利亚斯',
@@ -1197,6 +1199,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '원시 악마',
         'Belias, The Gigas': '마인 벨리아스',

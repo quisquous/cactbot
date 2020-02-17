@@ -10,6 +10,9 @@ let Conditions = require('../resources/conditions.js');
 let responseModule = require('../resources/responses.js');
 let Responses = responseModule.responses;
 let Timeline = require('../ui/raidboss/timeline.js');
+let commonReplacementExports = require('../ui/raidboss/common_replacement.js');
+let commonReplacement = commonReplacementExports.commonReplacement;
+let partialCommonReplacementKeys = commonReplacementExports.partialCommonReplacementKeys;
 
 // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
 let timelineFile = triggersFile.replace(/\.js$/, '.txt');
@@ -129,6 +132,7 @@ function findMissingRegex() {
 }
 
 function findMissingTimeline() {
+  // TODO: merge this with test_timeline.js??
   let testCases = [
     {
       type: 'replaceSync',
@@ -144,6 +148,27 @@ function findMissingTimeline() {
       label: 'text',
     },
   ];
+
+  const skipPartialCommon = true;
+
+  // Add all common replacements, so they can be checked for collisions as well.
+  // As of now they apply to both replaceSync and replaceText, so add them to both.
+  for (let testCase of testCases) {
+    for (let key in commonReplacement) {
+      if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
+        continue;
+      if (!commonReplacement[key][trans.locale]) {
+        // To avoid throwing a "missing translation" error for
+        // every single common translation, automatically add noops.
+        testCase.replace[key] = key;
+        continue;
+      }
+      // This shouldn't happen.
+      if (key in testCase.replace)
+        continue;
+      testCase.replace[key] = commonReplacement[key][trans.locale];
+    }
+  }
 
   let ignore = timeline.GetMissingTranslationsToIgnore();
   let isIgnored = (x) => {
