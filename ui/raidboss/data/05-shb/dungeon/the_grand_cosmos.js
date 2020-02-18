@@ -187,7 +187,7 @@
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
         fr: 'Placez les graines sur la terre',
-        ko: '씨앗 흙 위에 놓기',
+        ko: '씨앗 자라지 못하게 하기',
       },
     },
     {
@@ -267,7 +267,7 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
-        ko: '산개',
+        ko: '산개 A',
       },
     },
     {
@@ -281,7 +281,7 @@
         en: 'Dodge Crosses',
         de: 'Den Kreuzen ausweichen',
         fr: 'Evitez les croix',
-        ko: '십자 장판 서로 산개',
+        ko: '십자 장판 피하기',
       },
     },
     {
@@ -296,7 +296,7 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
-        ko: '십자 장판 징: 산개',
+        ko: '산개 B',
       },
     },
     {
