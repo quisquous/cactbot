@@ -1,4 +1,4 @@
-### Eden 5 (Savage)
+### Eden 6 (Savage)
 # Eden's Verse: Furor
 
 hideall "--Reset--"
