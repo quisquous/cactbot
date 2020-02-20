@@ -51,9 +51,9 @@ namespace Cactbot {
     private IntPtr bait_addr_ = IntPtr.Zero;
 
     // A piece of code that reads the pointer to the list of all entities, that we
-    // refer to as the charmap. The pointer is the first ????????.
-    private static String kCharmapSignature = "488B1D????????488BFA33D2488BCF";
-    private static int kCharmapSignatureOffset = -12;
+    // refer to as the charmap. The pointer is the 4 byte ?????????.
+    private static String kCharmapSignature = "574883EC??488B1D????????488BF233D2";
+    private static int kCharmapSignatureOffset = -9;
     // The signature finds a pointer in the executable code which uses RIP addressing.
     private static bool kCharmapSignatureRIP = true;
     // The pointer is to a structure as:
