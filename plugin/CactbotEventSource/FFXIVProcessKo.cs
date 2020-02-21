@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
 
@@ -82,6 +83,111 @@ namespace Cactbot {
       public short shieldPercentage;
     }
     public FFXIVProcessKo(ILogger logger) : base(logger) { }
+
+    // TODO: all of this could be refactored into structures of some sort
+    // instead of just being loose variables everywhere.
+
+    // A piece of code that reads the pointer to the list of all entities, that we
+    // refer to as the charmap. The pointer is the 4 byte ?????????.
+    private static String kCharmapSignature = "574883EC??488B1D????????488BF233D2";
+    private static int kCharmapSignatureOffset = -9;
+    // The signature finds a pointer in the executable code which uses RIP addressing.
+    private static bool kCharmapSignatureRIP = true;
+    // The pointer is to a structure as:
+    //
+    // CharmapStruct* outer;  // The pointer found from the signature.
+    // CharmapStruct {
+    //   EntityStruct* player;
+    // }
+    private static int kCharmapStructOffsetPlayer = 0;
+
+    // A piece of code that reads the pointer to the target entity structure.
+    // The pointer is the second ???????? in the signature. At address
+    // ffxiv_dx11.exe+59AFB9 in August 3, 2017 version.
+    private static String kTargetSignature = "483935????????7520483935????????7517";
+    private static int kTargetSignatureOffset = -6;
+    // The signature finds a pointer in the executable code which uses RIP addressing.
+    private static bool kTargetSignatureRIP = true;
+    // The pointer is to an entity structure:
+    //
+    // TargetStruct* outer;  // This pointer found from the signature.
+    // TargetStruct {
+    //   0x00 bytes in: EntityStruct* target;
+    //   ...
+    //   0x78 bytes in: EntityStruct* focus;
+    // }
+    private static int kTargetStructOffsetTarget = 0;
+    private static int kTargetStructOffsetFocus = 0x78;
+
+    // In combat boolean.
+    // Variable is set at 83FA587D70534883EC204863C2410FB6D8381C08744E (offset=0)
+    // via a mov [rax+rcx],bl line.
+    // This sig below finds the calling function that sets rax(offset) and rcx(base address).
+    private static String kInCombatSignature = "84C07425450FB6C7488D0D";
+    private static int kInCombatBaseOffset = 0;
+    private static bool kInCombatBaseRIP = true;
+    private static int kInCombatOffsetOffset = 5;
+    private static bool kInCombatOffsetRIP = false;
+
+    // Bait integer.
+    // Variable is accessed via a cmp eax,[...] line at offset=0.
+    private static String kBaitSignature = "4883C4305BC3498BC8E8????????3B05";
+    private static int kBaitBaseOffset = 0;
+    private static bool kBaitBaseRIP = true;
+
+    // A piece of code that reads the job data.
+    // The pointer of interest is the first ???????? in the signature.
+    private static String kJobDataSignature = "488B0D????????4885C90F84????????488B05????????3C03";
+    private static int kJobDataSignatureOffset = -22;
+    // The signature finds a pointer in the executable code which uses RIP addressing.
+    private static bool kJobDataSignatureRIP = true;
+
+    internal override void ReadSignatures() {
+      List<IntPtr> p = SigScan(kCharmapSignature, kCharmapSignatureOffset, kCharmapSignatureRIP);
+      if (p.Count != 1) {
+        logger_.LogError("Charmap signature found " + p.Count + " matches");
+      } else {
+        player_ptr_addr_ = IntPtr.Add(p[0], kCharmapStructOffsetPlayer);
+      }
+
+      p = SigScan(kTargetSignature, kTargetSignatureOffset, kTargetSignatureRIP);
+      if (p.Count != 1) {
+        logger_.LogError("Target signature found " + p.Count + " matches");
+      } else {
+        target_ptr_addr_ = IntPtr.Add(p[0], kTargetStructOffsetTarget);
+        focus_ptr_addr_ = IntPtr.Add(p[0], kTargetStructOffsetFocus);
+      }
+
+      p = SigScan(kJobDataSignature, kJobDataSignatureOffset, kJobDataSignatureRIP);
+      if (p.Count != 1) {
+        logger_.LogError("Job signature found " + p.Count + " matches");
+      } else {
+        job_data_outer_addr_ = IntPtr.Add(p[0], kJobDataOuterStructOffset);
+      }
+
+      p = SigScan(kInCombatSignature, kInCombatBaseOffset, kInCombatBaseRIP);
+      if (p.Count != 1) {
+        logger_.LogError("In combat signature found " + p.Count + " matches");
+      } else {
+        var baseAddress = p[0];
+        p = SigScan(kInCombatSignature, kInCombatOffsetOffset, kInCombatOffsetRIP);
+        if (p.Count != 1) {
+          logger_.LogError("In combat offset signature found " + p.Count + " matches");
+        } else {
+          // Abuse sigscan here to return 64-bit "pointer" which we will mask into the 32-bit immediate integer we need.
+          // TODO: maybe sigscan should be able to return different types?
+          int offset = (int)(((UInt64)p[0]) & 0xFFFFFFFF);
+          in_combat_addr_ = IntPtr.Add(baseAddress, offset);
+        }
+      }
+
+      p = SigScan(kBaitSignature, kBaitBaseOffset, kBaitBaseRIP);
+      if (p.Count != 1) {
+        logger_.LogError("Bait signature found " + p.Count + " matches");
+      } else {
+        bait_addr_ = p[0];
+      }
+    }
 
     public unsafe override EntityData GetEntityDataFromByteArray(byte[] source) {
       fixed (byte* p = source) {
