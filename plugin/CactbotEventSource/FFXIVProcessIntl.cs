@@ -54,9 +54,6 @@ namespace Cactbot {
       [FieldOffset(0x08)]
       public int mp;
 
-      [FieldOffset(0x0C)]
-      public int max_mp;
-
       [FieldOffset(0x12)]
       public short gp;
 
@@ -209,7 +206,9 @@ namespace Cactbot {
           entity.hp = mem.charDetails.hp;
           entity.max_hp = mem.charDetails.max_hp;
           entity.mp = mem.charDetails.mp;
-          entity.max_mp = mem.charDetails.max_mp;
+          // This doesn't exist in memory, so just send the right value.
+          // As there are other versions that still have it, don't change the event.
+          entity.max_mp = 10000;
           entity.shield_value = mem.charDetails.shieldPercentage * entity.max_hp / 100;
 
           if (IsGatherer(entity.job)) {
