@@ -615,10 +615,10 @@ class PopupText {
         let lang = this.options.AlertsLanguage || this.options.Language || 'en';
         let arrowReplacement = {
           en: ' then ',
-          cn: ' 然后 ',
+          cn: '然后',
           de: ' dann ',
           fr: ' puis ',
-          ja: ' ', // FIXME
+          ja: 'や',
           ko: ' 그리고 ',
         };
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
