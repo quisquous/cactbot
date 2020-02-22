@@ -188,14 +188,6 @@
         cn: '大龙卷',
         ko: '회오리',
       },
-      tts: {
-        en: 'twisters',
-        fr: 'Tornades',
-        de: 'Wirbelstürme',
-        ja: '大竜巻',
-        cn: '大龙卷',
-        ko: '회오리',
-      },
     },
     {
       id: 'UCU Death Sentence',
@@ -346,14 +338,6 @@
         ko: '산개 => 안으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'spread then in',
-        fr: 'Se dispercer, puis dedans',
-        de: 'verteilen, dann rein',
-        ja: '散開や密着',
-        cn: '分散后靠近',
-        ko: '산개 다음 안으로',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6496?pretty=true
@@ -373,14 +357,6 @@
         ko: '산개 => 밖으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'spread then out',
-        fr: 'Se dispercer, puis dehors',
-        de: 'verteilen, dann raus',
-        ja: '散開や離れる',
-        cn: '分散后远离',
-        ko: '산개 다음 밖으로',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6495?pretty=true
@@ -400,14 +376,6 @@
         ko: '쉐어 => 안으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'stack then in',
-        fr: 'Se rassembler, puis dedans',
-        de: 'stek dann rein',
-        ja: '頭割りや密着',
-        cn: '集合后靠近',
-        ko: '쉐어 다음 안으로',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6494?pretty=true
@@ -425,15 +393,6 @@
         ja: '頭割り => 離れる',
         cn: '集合 => 远离',
         ko: '쉐어 => 밖으로',
-      },
-      durationSeconds: 6,
-      tts: {
-        en: 'stack then out',
-        fr: 'Se rassembler, puis dehors',
-        de: 'stek dann raus',
-        ja: '頭割りや離れる',
-        cn: '集合后远离',
-        ko: '쉐어 다음 밖으로',
       },
     },
     {
@@ -453,15 +412,6 @@
         cn: '靠近 => 集合',
         ko: '안으로 => 쉐어',
       },
-      durationSeconds: 6,
-      tts: {
-        en: 'in then stack',
-        fr: 'Dedans, puis se rassembler',
-        de: 'rein dann stek',
-        ja: '密着や頭割り',
-        cn: '靠近后集合',
-        ko: '안으로 다음 쉐어',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6492?pretty=true
@@ -479,15 +429,6 @@
         ja: '密着 => 離れる',
         cn: '靠近 => 远离',
         ko: '안으로 => 밖으로',
-      },
-      durationSeconds: 6,
-      tts: {
-        en: 'in then out',
-        fr: 'Dedans, puis dehors',
-        de: 'rein dann raus',
-        ja: '密着や離れる',
-        cn: '靠近后远离',
-        ko: '안으로 다음 밖으로',
       },
     },
     {
@@ -509,14 +450,6 @@
       },
       durationSeconds: 6,
       delaySeconds: 4,
-      tts: {
-        en: 'away from tank then stack',
-        fr: 'S\'éloigner du tank, puis se rassembler',
-        de: 'weck vom tenk dann stek',
-        ja: 'タンクから離れるや頭割り',
-        cn: '远离坦克后集合',
-        ko: '탱커 피하기 다음 쉐어',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6500?pretty=true
@@ -537,14 +470,6 @@
       },
       durationSeconds: 6,
       delaySeconds: 4,
-      tts: {
-        en: 'spread then away from tank',
-        fr: 'Se dispercer, puis s\'éloigner du tank',
-        de: 'verteilen dann weck vom tenk',
-        ja: '散開やタンクから離れる',
-        cn: '分散后远离坦克',
-        ko: '산개 다음 탱커 피하기',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6502?pretty=true
@@ -563,14 +488,6 @@
         ja: '散開 => 密着',
         cn: '分散 => 靠近',
         ko: '산개 => 안으로',
-      },
-      tts: {
-        en: 'spread then in',
-        fr: 'Se dispercer, puis dedans',
-        de: 'verteilen dann rein',
-        ja: '散開や密着',
-        cn: '分散后靠近',
-        ko: '산개 다음 안으로',
       },
     },
     {
@@ -591,14 +508,6 @@
         cn: '靠近 => 分散',
         ko: '안으로 => 산개',
       },
-      tts: {
-        en: 'in then spread',
-        fr: 'Dedans, puis se dispercer',
-        de: 'rein dann verteilen',
-        ja: '密着や散開',
-        cn: '靠近后分散',
-        ko: '안으로 다음 산개',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6507?pretty=true
@@ -617,14 +526,6 @@
         ja: '密着 => 離れる => 散開',
         cn: '靠近 => 远离 => 分散',
         ko: '안으로 => 밖으로 => 산개',
-      },
-      tts: {
-        en: 'in then out then spread',
-        fr: 'Dedans, puis dehors, puis se dispercer',
-        de: 'rein dann raus dann verteilen',
-        ja: '密着や離れるや散開',
-        cn: '靠近后远离最后分散',
-        ko: '안으로 다음 밖으로 다음 산개',
       },
     },
     {
@@ -645,14 +546,6 @@
         cn: '靠近 => 分散 => 集合',
         ko: '안으로 => 산개 => 쉐어',
       },
-      tts: {
-        en: 'in then spread then stack',
-        fr: 'Dedans, puis se dispercer, puis se rassembler',
-        de: 'rein dann verteilen dann stek',
-        ja: '密着や散開や頭割り',
-        cn: '靠近后分散最后集合',
-        ko: '안으로 다음 산개 다음 쉐어',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6504?pretty=true
@@ -672,14 +565,6 @@
         cn: '远离 => 集合 => 分散',
         ko: '밖으로 => 쉐어 => 산개',
       },
-      tts: {
-        en: 'out then stack then spread',
-        fr: 'Dehors, puis se rassembler, puis se dispercer',
-        de: 'raus dann stek dann verteilen',
-        ja: '離れるや頭割りや散開',
-        cn: '远离后集合最后分散',
-        ko: '밖으로 다음 쉐어 다음 산개',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6505?pretty=true
@@ -698,14 +583,6 @@
         ja: '離れる => 散開 => 頭割り',
         cn: '远离 => 分散 => 集合',
         ko: '밖으로 => 산개 => 쉐어',
-      },
-      tts: {
-        en: 'out then spread then stack',
-        fr: 'Dehors, puis se dispercer, puis se rassembler',
-        de: 'Raus dann verteilen dann stek',
-        ja: '離れるや散開や頭割り',
-        cn: '远离后分散最后集合',
-        ko: '밖으로 다음 산개 다음 쉐어',
       },
     },
     {
@@ -897,8 +774,6 @@
         fr: 'Feu en dedans',
         de: 'Feuer innen',
         ja: 'ファイアボール密着',
-        cn: '火进',
-        ko: '불 같이맞기',
       },
       run: function(data) {
         data.naelFireballCount = 1;
@@ -1769,7 +1644,6 @@
           de: 'Exafleer '+ data.exaflareCount,
           ja: 'エクサフレア' + data.exaflareCount,
           cn: '百京核爆 ' + data.exaflareCount,
-          ko: '엑사플레어 ' + data.exaflareCount,
         };
       },
     },
