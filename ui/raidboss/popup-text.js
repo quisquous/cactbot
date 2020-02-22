@@ -601,16 +601,16 @@ class PopupText {
       if (ttsText && playSpeech) {
         // Heuristics for auto tts.
         // * Remove a bunch of chars.
-        ttsText = ttsText.replace(/[#!]/, '');
+        ttsText = ttsText.replace(/[#!]/g, '');
         // * slashes between mechanics
         ttsText = ttsText.replace('/', ' ');
         // * arrows helping visually simple to understand e.g. ↖ Front left / Back right ↘
-        ttsText = ttsText.replace(/[↖-↙]/, '');
+        ttsText = ttsText.replace(/[↖-↙]/g, '');
         // * Korean TTS reads wrong with '1번째'
         ttsText = ttsText.replace('1번째', '첫번째');
         // * arrows at the front or the end are directions, e.g. "east =>"
-        ttsText = ttsText.replace(/[-=]>\s*$/, '');
-        ttsText = ttsText.replace(/^\s*<[-=]/, '');
+        ttsText = ttsText.replace(/[-=]>\s*$/g, '');
+        ttsText = ttsText.replace(/^\s*<[-=]/g, '');
         // * arrows in the middle are a sequence, e.g. "in => out => spread"
         let lang = this.options.AlertsLanguage || this.options.Language || 'en';
         let arrowReplacement = {
