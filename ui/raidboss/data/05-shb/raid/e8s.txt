@@ -1,7 +1,68 @@
 ### Eden 8 (Savage)
 # Eden's Verse: Refulgence
+# -p 4DCC:16 -ii 4DA8 4D9C 4D95
 
 hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+
+### Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.5 "--sync--" sync /:Shiva:4D59:/ window 2,0
+16.0 "Absolute Zero" sync /:Shiva:4DCC:/ window 17,5
+27.2 "Mirror, Mirror" sync /:Shiva:4D5A:/
+39.3 "Biting/Driving Frost" sync /:Shiva:4D6[67]:/
+44.4 "Reflected Frost" sync /:Frozen Mirror:4DB[78]:/
+49.4 "Reflected Frost" sync /:Frozen Mirror:4DC[34]:/
+57.5 "--sync--" sync /:Shiva:4D58:/
+63.7 "Diamond Frost" sync /:Shiva:4D6C:/
+71.9 "Frigid Stone" sync /:Shiva:4D9B:/
+74.9 "Icicle Impact" sync /:Shiva:4DA0:/
+76.9 "Heavenly Strike" sync /:Shiva:4D61:/
+78.9 "Icicle Impact" sync /:Shiva:4DA0:/
+80.9 "Frigid Needle" sync /:Shiva:4D9D:/
+80.9 "Frigid Water" sync /:Shiva:4D9E:/
+82.9 "Icicle Impact" sync /:Shiva:4DA0:/
+83.9 "Frigid Eruption 1" #sync /:Shiva:4D9F:/
+85.9 "Frigid Eruption 2" #sync /:Shiva:4D9F:/
+87.9 "Frigid Eruption 3" #sync /:Shiva:4D9F:/
+92.9 "Biting/Driving Frost" sync /:Shiva:4D6[67]:/
+101.7 "Double Slap" sync /:Shiva:4D65:/
+115.0 "Shining Armor" sync /:Shiva:4DD1:/
+123.0 "Axe/Scythe Kick" sync /:Shiva:4D6[DE]:/
+
+### Phase 2
+131.2 "--sync--" sync /:Shiva:4D58:/
+137.4 "Light Rampant" sync /:Shiva:4D73:/ window 150,10
+148.6 "Bright Hunger" sync /:Shiva:4DA2:/
+148.6 "The Path Of Light" sync /:Shiva:4D63:/
+156.6 "Bright Hunger" sync /:Shiva:4DA2:/
+159.8 "The Path Of Light" sync /:Shiva:4D63:/
+164.7 "Bright Hunger" sync /:Shiva:4DA2:/
+173.0 "Mirror, Mirror" sync /:Shiva:4D5A:/
+185.2 "Axe/Scythe Kick" sync /:Shiva:4D6[DE]:/
+190.2 "Reflected Kick" sync /:Frozen Mirror:4DB[9A]:/
+193.3 "Banish III" sync /:Shiva:4D80:/
+193.4 "Banish III" sync /:Shiva:4DA8:/
+
+### Phase 3
+201.5 "--sync--" sync /:Shiva:4D58:/
+212.8 "Shattered World" sync /:Shiva:4D74:/ window 250,10
+213.9 "Shattered World" sync /:Shiva:4DCD:/
+229.0 "Heart Asunder" sync /:Mothercrystal:4DAC:/
+233.7 "Shock Spikes" sync /:Electric Aether:4D84:/
+237.7 "Stoneskin" sync /:Earthen Aether:4D85:/
+238.7 "Rush 1" sync /:Luminous Aether:4D86:/
+238.8 "Rush 2" sync /:Luminous Aether:4E19:/
+243.0 "Heart Asunder" sync /:Mothercrystal:4DAC:/
+247.7 "Shock Spikes" sync /:Electric Aether:4D84:/
+252.7 "Rush 3" sync /:Luminous Aether:4D86:/
+252.8 "--sync--" sync /:Luminous Aether:4E5E:/
+252.8 "Rush 4" sync /:Luminous Aether:4E19:/
+257.0 "Heart Asunder" sync /:Mothercrystal:4DAC:/
+257.8 "--sync--" sync /:Aqueous Aether:4E7B:/
+260.2 "--sync--" sync /:Electric Aether:4E7B:/
+260.5 "--sync--" sync /:Electric Aether:4E7B:/
+261.0 "Skyfall" sync /:Shiva:4DAE:/
+261.7 "Shock Spikes" sync /:Electric Aether:4D84:/
