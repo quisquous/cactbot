@@ -87,7 +87,7 @@ let Responses = {
           fr: 'Tankbuster sur VOUS',
           ja: '自分にタンクバスター',
           cn: '死刑点名',
-          ko: '나에게 탱버',
+          ko: '탱버 대상자',
         };
       }
       return {
@@ -96,7 +96,7 @@ let Responses = {
         fr: 'Tankbuster sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にタンクバスター',
         cn: '死刑 -> ' + data.ShortName(target),
-        ko: '탱버 → ' + data.ShortName(target),
+        ko: '"' + data.ShortName(target) + '" 탱버',
       };
     };
     return obj;
@@ -125,7 +125,7 @@ let Responses = {
           fr: 'Tankbuster sur VOUS',
           ja: '自分にタンクバスター',
           cn: '死刑点名',
-          ko: '나에게 탱버',
+          ko: '탱버 대상자',
         };
       }
       return {
@@ -202,7 +202,7 @@ let Responses = {
       fr: 'AoE',
       ja: 'AoE',
       cn: 'AOE',
-      ko: '전체공격',
+      ko: '전체 공격',
     };
     return obj;
   },
@@ -211,6 +211,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'big aoe!',
       de: 'Große AoE!',
+      ko: '강한 전체 공격!',
     };
     return obj;
   },
@@ -249,7 +250,7 @@ let Responses = {
           fr: 'Package sur VOUS',
           ja: '自分にスタック',
           cn: '集合点名',
-          ko: '나에게 쉐어',
+          ko: '쉐어징 대상자',
         };
       }
       return {
@@ -258,7 +259,7 @@ let Responses = {
         fr: 'Package sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にスタック',
         cn: '靠近 ' + data.ShortName(target) + '集合',
-        ko: '쉐어 → ' + data.ShortName(target),
+        ko: '쉐어징 → ' + data.ShortName(target),
       };
     };
     return obj;
@@ -268,6 +269,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Stack in middle',
       de: 'In der Mitte sammeln',
+      ko: '중앙에서 모이기',
     };
     return obj;
   },
@@ -315,14 +317,14 @@ let Responses = {
           en: 'Knockback on YOU',
           de: 'Rückstoß auf DIR',
           fr: 'Poussée sur VOUS',
-          ko: '나에게 넉백',
+          ko: '나에게 넉백징',
         };
       }
       return {
         en: 'Knockback on ' + data.ShortName(target),
         de: 'Rückstoß auf ' + data.ShortName(target),
         fr: 'Poussée sur ' + data.ShortName(target),
-        ko: '넉백 → ' + data.ShortName(target),
+        ko: '넉백징 → ' + data.ShortName(target),
       };
     };
     return obj;
@@ -380,7 +382,7 @@ let Responses = {
       de: 'Unter ihn',
       fr: 'Intérieur',
       ja: '中へ',
-      ko: '보스 밑으로',
+      ko: '보스 아래로',
     };
     return obj;
   },
@@ -429,7 +431,7 @@ let Responses = {
       fr: 'Dedans, puis dehors',
       ja: '中から外',
       cn: '先靠近，再远离',
-      ko: '안으로 그리고 밖으로',
+      ko: '안으로 => 밖으로',
     };
     return obj;
   },
@@ -441,7 +443,7 @@ let Responses = {
       fr: 'Dehors, puis dedans',
       ja: '外から中',
       cn: '先远离，再靠近',
-      ko: '밖으로 그리고 안으로',
+      ko: '밖으로 => 안으로',
     };
     return obj;
   },
@@ -506,7 +508,7 @@ let Responses = {
       de: 'Seiten',
       fr: 'Côtés',
       ja: '横へ',
-      ko: '옆으로',
+      ko: '양옆으로',
     };
     return obj;
   },
@@ -573,6 +575,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'interupt',
       de: 'unterbrechen',
+      ko: '기술 시전 끊기',
     };
     return obj;
   },
@@ -585,7 +588,7 @@ let Responses = {
           en: 'Prey on YOU',
           de: 'Marker auf DIR',
           fr: 'Marquage sur VOUS',
-          ko: '나에게 빨간징',
+          ko: '홍옥징 대상자',
           ja: 'マーカー on YOU',
         };
       }
@@ -593,7 +596,7 @@ let Responses = {
         en: 'Prey on ' + data.ShortName(target),
         de: 'Marker auf ' + data.ShortName(target),
         fr: 'Marquage sur ' + data.ShortName(target),
-        ko: '빨간징 → ' + data.ShortName(target),
+        ko: '홍옥징 → ' + data.ShortName(target),
         ja: 'マーカー on ' + data.ShortName(target),
       };
     };
@@ -637,7 +640,7 @@ let Responses = {
       de: 'Bewegen',
       fr: 'Bougez',
       ja: 'フェザーレイン',
-      ko: '이동',
+      ko: '움직이기!',
     };
     return obj;
   },
@@ -647,6 +650,7 @@ let Responses = {
       en: 'Break chains',
       de: 'Kette zerbrechen',
       fr: 'Cassez les chaines',
+      ko: '선 끊기',
     };
     return obj;
   },
@@ -655,6 +659,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Move chains together',
       de: 'Ketten zusammen bewegen',
+      ko: '선 붙어서 같이 움직이기',
     };
     return obj;
   },
@@ -668,6 +673,7 @@ let Responses = {
         en: 'Earth Shaker on YOU',
         de: 'Erdstoß auf DIR',
         fr: 'Marque de terre sur VOUS',
+        ko: '어스징 대상자',
       };
     };
     return obj;
