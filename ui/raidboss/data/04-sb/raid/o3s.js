@@ -7,10 +7,12 @@
   triggers: [
     {
       id: 'O3S Phase Counter',
-      regex: / 14:2304:Halicarnassus starts using Panel Swap/,
-      regexDe: / 14:2304:Halikarnassos starts using Neuaufstellung/,
-      regexFr: / 14:2304:Halicarnasse starts using Remplacement Des Cases/,
-      regexJa: / 14:2304:ハリカルナッソス starts using パネルシャッフル/,
+      regex: Regexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2304', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2304', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
       run: function(data) {
         data.phase = (data.phase || 0) + 1;
         delete data.seenHolyThisPhase;
@@ -19,11 +21,13 @@
     {
       // Look for spellblade holy so that the last noisy waltz
       // books message in the library phase can be ignored.
-      id: 'Spellblade holy counter',
-      regex: / 15:\y{ObjectId}:Halicarnassus:22EF:Spellblade Holy:/,
-      regexDe: / 15:\y{ObjectId}:Halikarnassos:22EF:Magieklinge Sanctus:/,
-      regexFr: / 15:\y{ObjectId}:Halicarnasse:22EF:Magilame Miracle:/,
-      regexJa: / 15:\y{ObjectId}:ハリカルナッソス:22EF:魔法剣ホーリー:/,
+      id: 'O3S Spellblade Holy Counter',
+      regex: Regexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.ability({ id: '22EF', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.ability({ id: '22EF', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.ability({ id: '22EF', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.ability({ id: '22EF', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.ability({ id: '22EF', source: '할리카르나소스', capture: false }),
       run: function(data) {
         // In case something went awry, clean up any holy targets
         // so the next spellblade holy can start afresh.
@@ -41,11 +45,10 @@
       //   (4) prey marker (tethered to #3)
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:006[45]:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0064', '0065'] }),
       alarmText: function(data) {
         if (data.holyTargets[1] != data.me)
           return '';
-
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
@@ -84,7 +87,7 @@
           return false;
 
         data.holyTargets = data.holyTargets || [];
-        data.holyTargets.push(matches[1]);
+        data.holyTargets.push(matches.target);
         return data.holyTargets.length == 4;
       },
       tts: function(data) {
@@ -114,7 +117,7 @@
     {
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:(006[45]):0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: ['0064', '0065'] }),
       alertText: function(data) {
         if (data.librarySpellbladePrinted)
           return;
@@ -142,15 +145,15 @@
       // anything is on you.  The 6 triggers will all have condition=true
       // and run, but only the first one will print.
       delaySeconds: function(data, matches) {
-        return matches[1] == data.me ? 0 : 0.5;
+        return matches.target == data.me ? 0 : 0.5;
       },
       condition: function(data, matches) {
         // This is only for library phase.
         if (data.phase != 3)
           return false;
 
-        if (matches[1] == data.me)
-          data.librarySpellbladeMe = matches[2];
+        if (matches.target == data.me)
+          data.librarySpellbladeMe = matches.id;
 
         return true;
       },
@@ -179,12 +182,14 @@
     },
     {
       id: 'O3S Right Face',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Right Face from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Rechts from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Virage À Droite from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：右 from/,
+      regex: Regexes.gainsEffect({ effect: 'Right Face' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rechts' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Droite' }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：右' }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：右' }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 우' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       durationSeconds: 8,
       infoText: {
@@ -194,12 +199,14 @@
     },
     {
       id: 'O3S Forward March',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Forward March from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Vorwärts from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Avancer from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：前 from/,
+      regex: Regexes.gainsEffect({ effect: 'Forward March' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Vorwärts' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Avancer' }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：前' }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：前' }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 전' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       durationSeconds: 8,
       infoText: {
@@ -209,12 +216,14 @@
     },
     {
       id: 'O3S Left Face',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Left Face from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Links from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Virage À Gauche from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：左 from/,
+      regex: Regexes.gainsEffect({ effect: 'Left Face' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Links' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Gauche' }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：左' }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：左' }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 좌' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       durationSeconds: 8,
       infoText: {
@@ -224,12 +233,14 @@
     },
     {
       id: 'O3S About Face',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of About Face from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Geistlenkung Rückwärts from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Piratage Mental : Reculer from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 移動命令：後 from/,
+      regex: Regexes.gainsEffect({ effect: 'About Face' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rückwärts' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Reculer' }),
+      regexJa: Regexes.gainsEffect({ effect: '移動命令：後' }),
+      regexCn: Regexes.gainsEffect({ effect: '移动命令：后' }),
+      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 후' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       durationSeconds: 8,
       infoText: {
@@ -239,10 +250,12 @@
     },
     {
       id: 'O3S Ribbit',
-      regex: / 14:22F7:Halicarnassus starts using Ribbit/,
-      regexDe: / 14:22F7:Halikarnassos starts using Quaaak/,
-      regexFr: / 14:22F7:Halicarnasse starts using Coâââ/,
-      regexJa: / 14:22F7:ハリカルナッソス starts using クルルルル！/,
+      regex: Regexes.startsUsing({ id: '22F7', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '22F7', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '22F7', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '22F7', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '22F7', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '22F7', source: '할리카르나소스', capture: false }),
       alertText: {
         en: 'Ribbit: Get behind',
         de: 'Quaaak: Hinter sie',
@@ -254,10 +267,12 @@
     },
     {
       id: 'O3S Oink',
-      regex: / 14:22F9:Halicarnassus starts using Oink/,
-      regexDe: / 14:22F9:Halikarnassos starts using Quiiiek/,
-      regexFr: / 14:22F9:Halicarnasse starts using Abracadabri/,
-      regexJa: / 14:22F9:ハリカルナッソス starts using ポルルルル！/,
+      regex: Regexes.startsUsing({ id: '22F9', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '22F9', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '22F9', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '22F9', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '22F9', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '22F9', source: '할리카르나소스', capture: false }),
       infoText: {
         en: 'Oink: Stack',
         de: 'Quiiiek: Stack',
@@ -269,10 +284,12 @@
     },
     {
       id: 'O3S Squelch',
-      regex: / 14:22F8:Halicarnassus starts using Squelch/,
-      regexDe: / 14:22F8:Halikarnassos starts using Gurrr/,
-      regexFr: / 14:22F8:Halicarnasse starts using Abracadabra/,
-      regexJa: / 14:22F8:ハリカルナッソス starts using カルルルル！/,
+      regex: Regexes.startsUsing({ id: '22F8', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '22F8', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '22F8', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '22F8', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '22F8', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '22F8', source: '할리카르나소스', capture: false }),
       alarmText: {
         en: 'Squelch: Look away',
         de: 'Gurrr: Wegschauen',
@@ -284,10 +301,12 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',
-      regex: / 14:230E:Halicarnassus starts using The Queen's Waltz/,
-      regexDe: / 14:230E:Halikarnassos starts using Tanz Der Königin/,
-      regexFr: / 14:230E:Halicarnasse starts using Danse De La Reine/,
-      regexJa: / 14:230E:ハリカルナッソス starts using 女王の舞い/,
+      regex: Regexes.startsUsing({ id: '230E', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '230E', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '230E', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '230E', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '230E', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '230E', source: '할리카르나소스', capture: false }),
       condition: function(data) {
         // Deliberately skip printing the waltz message for the
         // spellblade holy -> waltz that ends the library phase.
@@ -304,10 +323,12 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Clock',
-      regex: / 14:2306:Halicarnassus starts using The Queen's Waltz/,
-      regexDe: / 14:2306:Halikarnassos starts using Tanz Der Königin/,
-      regexFr: / 14:2306:Halicarnasse starts using Danse De La Reine/,
-      regexJa: / 14:2306:ハリカルナッソス starts using 女王の舞い/,
+      regex: Regexes.startsUsing({ id: '2306', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2306', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2306', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2306', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2306', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2306', source: '할리카르나소스', capture: false }),
       infoText: {
         en: 'The Queen\'s Waltz: Clock',
         de: 'Tanz der Königin: Uhr',
@@ -319,10 +340,12 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Crystal Square',
-      regex: / 14:230A:Halicarnassus starts using The Queen's Waltz/,
-      regexDe: / 14:230A:Halikarnassos starts using Tanz Der Königin/,
-      regexFr: / 14:230A:Halicarnasse starts using Danse De La Reine/,
-      regexJa: / 14:230A:ハリカルナッソス starts using 女王の舞い/,
+      regex: Regexes.startsUsing({ id: '230A', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '230A', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '230A', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '230A', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '230A', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '230A', source: '할리카르나소스', capture: false }),
       infoText: {
         en: 'The Queen\'s Waltz: Crystal Square',
         de: 'Tanz der Königin: Kristallfeld',
@@ -334,10 +357,12 @@
     },
     {
       id: 'O3S The Queen\'s Waltz: Tethers',
-      regex: / 14:2308:Halicarnassus starts using The Queen's Waltz/,
-      regexDe: / 14:2308:Halikarnassos starts using Tanz Der Königin/,
-      regexFr: / 14:2308:Halicarnasse starts using Danse De La Reine/,
-      regexJa: / 14:2308:ハリカルナッソス starts using 女王の舞い/,
+      regex: Regexes.startsUsing({ id: '2308', source: 'Halicarnassus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2308', source: 'Halikarnassos', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2308', source: 'Halicarnasse', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2308', source: 'ハリカルナッソス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2308', source: '哈利卡纳苏斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2308', source: '할리카르나소스', capture: false }),
       infoText: {
         en: 'The Queen\'s Waltz: Tethers',
         de: 'Tanz der Königin: Ranken',
@@ -352,26 +377,31 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Ancient Tome': 'Uralt[a] Foliant',
+        'Ancient Tome': 'uralt(?:e|er|es|en) Foliant',
         'Apanda': 'Apanda',
-        'Engage!': 'Start!',
         'Great Dragon': 'Riesendrache',
         'Halicarnassus': 'Halikarnassos',
         'Soul Reaper': 'Seelenschnitter',
-        'White Flame': 'Weiß[a] Flamme',
+        'White Flame': 'weiß(?:e|er|es|en) Flamme',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
+        '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
+        '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
+        'Blizzard': 'Eis',
         'Critical Hit': 'Kritischer Treffer',
         'Cross Reaper': 'Sensenschwung',
+        'DPS Morph': 'DPS Morph', // FIXME
         'Dimensional Wave': 'Dimensionswelle',
-        'Earthly Dance': 'Tanz Der Erde',
-        'Enrage': 'Finalangriff',
+        'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
+        'Earthly Dance': 'Tanz der Erde',
+        'Fire': 'Feuer',
         'Folio': 'Foliant',
         'Frost Breath': 'Frostiger Atem',
         'Gusting Gouge': 'Meißelstoß',
         'Haste': 'Hast',
+        'Healers Morph': 'Healers Morph', // FIXME
         'Holy Blur': 'Heiliger Nebel',
         'Holy Edge': 'Heiliger Grat',
         'Magic Hammer': 'Zauberhammer',
@@ -382,6 +412,8 @@
         'Place Token': 'Spielstein',
         'Pole Shift': 'Umpolung',
         'Pummel': 'Deftige Dachtel',
+        'Queen\'s Waltz': 'Queen\'s Waltz', // FIXME
+        'Random Elemental': 'Random Elemental', // FIXME
         'Ray Of White': 'Weißer Strahl',
         'Ribbit': 'Quaaak',
         'Saber Dance': 'Schwerttanz',
@@ -390,23 +422,26 @@
         'Spellblade Holy': 'Magieklinge Sanctus',
         'Spellblade Thunder III': 'Magieklinge Blitzga',
         'Squelch': 'Gurrr',
-        'Stench Of Death': 'Gestank Des Todes',
+        'Stench Of Death': 'Gestank des Todes',
+        'Tanks Morph': 'Tanks Morph', // FIXME
+        'Tethers': 'Tethers', // FIXME
         'The Game': 'Spielbeginn',
         'The Playing Field': 'Spielfeld',
-        'The Queen\'s Waltz': 'Tanz Der Königin',
+        'The Queen\'s Waltz': 'Tanz der Königin',
+        'Thunder': 'Blitz',
         'Uplift': 'Erhöhung',
         'White Wind': 'Weißer Wind',
       },
       '~effectNames': {
-        'About Face': 'Geistlenkung Rückwärts',
+        'About Face': 'Geistlenkung rückwärts',
         'Briar': 'Dorngestrüpp',
         'Forced March': 'Zwangsmarsch',
-        'Forward March': 'Geistlenkung Vorwärts',
+        'Forward March': 'Geistlenkung vorwärts',
         'Imp': 'Flusskobold',
-        'Left Face': 'Geistlenkung Links',
+        'Left Face': 'Geistlenkung links',
         'Out Of The Action': 'Außer Gefecht',
         'Piggy': 'Schweinchen',
-        'Right Face': 'Geistlenkung Rechts',
+        'Right Face': 'Geistlenkung rechts',
         'Stun': 'Betäubung',
         'Thorny Vine': 'Dornenranken',
         'Toad': 'Frosch',
@@ -415,65 +450,73 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Ancient Tome': 'Volume Ancien',
-        'Apanda': 'Apanda',
-        'Engage!': 'À l\'attaque',
-        'Great Dragon': 'Dragon Suprême',
+        'Ancient Tome': 'volume ancien',
+        'Apanda': 'apanda',
+        'Great Dragon': 'dragon suprême',
         'Halicarnassus': 'Halicarnasse',
-        'Soul Reaper': 'Faucheur D\'âmes',
-        'White Flame': 'Flamme Blanche',
+        'Soul Reaper': 'faucheur d\'âmes',
+        'White Flame': 'flamme blanche',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
-        'Critical Hit': 'Attaque Critique',
+        '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
+        '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
+        'Blizzard': 'Glace',
+        'Critical Hit': 'Attaque critique',
         'Cross Reaper': 'Fauchaison',
-        'Dimensional Wave': 'Onde Dimensionnelle',
-        'Earthly Dance': 'Danse De La Terre',
-        'Enrage': 'Enrage',
+        'DPS Morph': 'DPS Morph', // FIXME
+        'Dimensional Wave': 'Onde dimensionnelle',
+        'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
+        'Earthly Dance': 'Danse de la terre',
+        'Fire': 'Feu',
         'Folio': 'Réimpression',
-        'Frost Breath': 'Souffle Glacé',
-        'Gusting Gouge': 'Gouge Cisaillante',
+        'Frost Breath': 'Souffle glacé',
+        'Gusting Gouge': 'Gouge cisaillante',
         'Haste': 'Hâte',
-        'Holy Blur': 'Brume Sacrée',
-        'Holy Edge': 'Taille Sacrée',
-        'Magic Hammer': 'Marteau Magique',
-        'Mindjack': 'Piratage Mental',
+        'Healers Morph': 'Healers Morph', // FIXME
+        'Holy Blur': 'Brume sacrée',
+        'Holy Edge': 'Taille sacrée',
+        'Magic Hammer': 'Marteau magique',
+        'Mindjack': 'Contrainte mentale',
         'Oink': 'Abracadabri',
-        'Panel Swap': 'Remplacement Des Cases',
-        'Place Dark Token': 'Pions Obscurs En Jeu',
-        'Place Token': 'Pion En Jeu',
-        'Pole Shift': 'Inversion Des Pôles',
+        'Panel Swap': 'Remplacement des cases',
+        'Place Dark Token': 'Pions obscurs en jeu',
+        'Place Token': 'Pion en jeu',
+        'Pole Shift': 'Inversion des pôles',
         'Pummel': 'Torgnole',
-        'Ray Of White': 'Tir Blanc',
+        'Queen\'s Waltz': 'Queen\'s Waltz', // FIXME
+        'Random Elemental': 'Random Elemental', // FIXME
+        'Ray Of White': 'Tir blanc',
         'Ribbit': 'Coâââ',
-        'Saber Dance': 'Danse Du Sabre',
+        'Saber Dance': 'Danse du sabre',
         'Spellblade Blizzard III': 'Magilame Méga Glace',
         'Spellblade Fire III': 'Magilame Méga Feu',
         'Spellblade Holy': 'Magilame Miracle',
         'Spellblade Thunder III': 'Magilame Méga Foudre',
         'Squelch': 'Abracadabra',
-        'Stench Of Death': 'Parfum De Mort',
-        'The Game': 'Début De Partie',
-        'The Playing Field': 'Plateau De Jeu',
-        'The Queen\'s Waltz': 'Danse De La Reine',
+        'Stench Of Death': 'Parfum de mort',
+        'Tanks Morph': 'Tanks Morph', // FIXME
+        'Tethers': 'Tethers', // FIXME
+        'The Game': 'Début de partie',
+        'The Playing Field': 'Plateau de jeu',
+        'The Queen\'s Waltz': 'Danse de la reine',
+        'Thunder': 'Foudre',
         'Uplift': 'Exhaussement',
-        'White Wind': 'Mistral',
+        'White Wind': 'Vent blanc',
       },
       '~effectNames': {
-        'About Face': 'Piratage Mental: Reculer',
-        'Briar': 'Ronces Sauvages',
-        'Forced March': 'Marche Forcée',
-        'Forward March': 'Piratage Mental: Avancer',
+        'About Face': 'Contrainte mentale: reculer',
+        'Briar': 'Ronces sauvages',
+        'Forced March': 'Marche forcée',
+        'Forward March': 'Contrainte mentale: avancer',
         'Imp': 'Kappa',
-        'Left Face': 'Piratage Mental: Virage à Gauche',
-        'Out Of The Action': 'Actions Bloquées',
+        'Left Face': 'Contrainte mentale: virage à gauche',
+        'Out Of The Action': 'Actions bloquées',
         'Piggy': 'Porcelet',
-        'Right Face': 'Piratage Mental: Virage à Droite',
+        'Right Face': 'Contrainte mentale: virage à droite',
         'Stun': 'Étourdissement',
-        'Thorny Vine': 'Sarment De Ronces',
+        'Thorny Vine': 'Sarment de ronces',
         'Toad': 'Crapaud',
       },
     },
@@ -482,21 +525,29 @@
       'replaceSync': {
         'Ancient Tome': '古代書',
         'Apanda': 'アパンダ',
-        'Engage!': '戦闘開始！',
         'Great Dragon': 'ドラゴングレイト',
         'Halicarnassus': 'ハリカルナッソス',
         'Soul Reaper': 'ソウルリーパー',
         'White Flame': 'ホワイトフレイム',
       },
       'replaceText': {
+        '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
+        '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
+        'Blizzard': 'ブリザド',
         'Critical Hit': 'クリティカル',
         'Cross Reaper': 'クロスリーパー',
+        'DPS Morph': 'DPS Morph', // FIXME
         'Dimensional Wave': '次元波動',
+        'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': '大地の舞い',
+        'Fire': 'ファイア',
         'Folio': '重版',
         'Frost Breath': 'フロストブレス',
         'Gusting Gouge': 'ガスティンググージ',
         'Haste': 'ヘイスト',
+        'Healers Morph': 'Healers Morph', // FIXME
         'Holy Blur': 'ホーリーミスト',
         'Holy Edge': 'ホーリーエッジ',
         'Magic Hammer': 'マジックハンマー',
@@ -507,6 +558,8 @@
         'Place Token': 'サモントークン',
         'Pole Shift': '磁場転換',
         'Pummel': '殴打',
+        'Queen\'s Waltz': 'Queen\'s Waltz', // FIXME
+        'Random Elemental': 'Random Elemental', // FIXME
         'Ray Of White': 'ホワイトショット',
         'Ribbit': 'クルルルル！',
         'Saber Dance': '剣の舞い',
@@ -516,11 +569,14 @@
         'Spellblade Thunder III': '魔法剣サンダガ',
         'Squelch': 'カルルルル！',
         'Stench Of Death': '死の気配',
+        'Tanks Morph': 'Tanks Morph', // FIXME
+        'Tethers': 'Tethers', // FIXME
         'The Game': 'ゲームスタート',
         'The Playing Field': 'ゲームボード',
         'The Queen\'s Waltz': '女王の舞い',
+        'Thunder': 'サンダー',
         'Uplift': '隆起',
-        'White Wind': 'ホワイトウインド',
+        'White Wind': 'ホワイトウィンド',
       },
       '~effectNames': {
         'About Face': '移動命令：後',
@@ -535,6 +591,152 @@
         'Stun': 'スタン',
         'Thorny Vine': '茨の蔓',
         'Toad': 'トード',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Ancient Tome': '古代书',
+        'Apanda': '阿班达',
+        'Great Dragon': '巨龙',
+        'Halicarnassus': '哈利卡纳苏斯',
+        'Soul Reaper': '灵魂收割者',
+        'White Flame': '白焰',
+      },
+      'replaceText': {
+        '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
+        '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
+        'Blizzard': '冰结',
+        'Critical Hit': '暴击',
+        'Cross Reaper': '交叉斩击',
+        'DPS Morph': 'DPS Morph', // FIXME
+        'Dimensional Wave': '次元波动',
+        'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
+        'Earthly Dance': '大地之舞',
+        'Fire': '火炎',
+        'Folio': '再版',
+        'Frost Breath': '寒霜吐息',
+        'Gusting Gouge': '削风',
+        'Haste': '加速',
+        'Healers Morph': 'Healers Morph', // FIXME
+        'Holy Blur': '神圣雾',
+        'Holy Edge': '神圣刃',
+        'Magic Hammer': '魔法锤',
+        'Mindjack': '精神控制',
+        'Oink': '哼哼哼哼哼！',
+        'Panel Swap': '刷新盘面',
+        'Place Dark Token': '召唤死形',
+        'Place Token': '召唤魔形',
+        'Pole Shift': '磁场转换',
+        'Pummel': '殴打',
+        'Queen\'s Waltz': 'Queen\'s Waltz', // FIXME
+        'Random Elemental': 'Random Elemental', // FIXME
+        'Ray Of White': '苍白射击',
+        'Ribbit': '呱呱呱呱呱！',
+        'Saber Dance': '剑舞',
+        'Spellblade Blizzard III': '魔法剑·冰封',
+        'Spellblade Fire III': '魔法剑·爆炎',
+        'Spellblade Holy': '魔法剑·神圣',
+        'Spellblade Thunder III': '魔法剑·暴雷',
+        'Squelch': '喀喀喀喀喀！',
+        'Stench Of Death': '死亡气息',
+        'Tanks Morph': 'Tanks Morph', // FIXME
+        'Tethers': 'Tethers', // FIXME
+        'The Game': '游戏开始',
+        'The Playing Field': '游戏盘面',
+        'The Queen\'s Waltz': '女王之舞',
+        'Thunder': '闪雷',
+        'Uplift': '隆起',
+        'White Wind': '白风',
+      },
+      '~effectNames': {
+        'About Face': '移动命令：后',
+        'Briar': '荆棘',
+        'Forced March': '强制移动',
+        'Forward March': '移动命令：前',
+        'Imp': '河童',
+        'Left Face': '移动命令：左',
+        'Out Of The Action': '无法发动技能',
+        'Piggy': '波奇',
+        'Right Face': '移动命令：右',
+        'Stun': '眩晕',
+        'Thorny Vine': '荆棘丛生',
+        'Toad': '蛙变',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Ancient Tome': '고대의 책',
+        'Apanda': '아판다',
+        'Great Dragon': '거대 드래곤',
+        'Halicarnassus': '할리카르나소스',
+        'Soul Reaper': '영혼 수확자',
+        'White Flame': '하얀 불꽃',
+      },
+      'replaceText': {
+        '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
+        '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
+        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
+        '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
+        'Blizzard': '블리자드',
+        'Critical Hit': '극대화',
+        'Cross Reaper': '사신의 낫',
+        'DPS Morph': 'DPS Morph', // FIXME
+        'Dimensional Wave': '차원 파동',
+        'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
+        'Earthly Dance': '대지의 춤',
+        'Fire': '파이어',
+        'Folio': '증쇄',
+        'Frost Breath': '서리 숨결',
+        'Gusting Gouge': '칼날 돌풍',
+        'Haste': '헤이스트',
+        'Healers Morph': 'Healers Morph', // FIXME
+        'Holy Blur': '성스러운 안개',
+        'Holy Edge': '성스러운 칼날',
+        'Magic Hammer': '마법 망치',
+        'Mindjack': '정신 장악',
+        'Oink': '꿀꿀꿀꿀!',
+        'Panel Swap': '판 바꾸기',
+        'Place Dark Token': '죽음의 토큰 소환',
+        'Place Token': '토큰 소환',
+        'Pole Shift': '자기장 전환',
+        'Pummel': '구타',
+        'Queen\'s Waltz': 'Queen\'s Waltz', // FIXME
+        'Random Elemental': 'Random Elemental', // FIXME
+        'Ray Of White': '하얀 사격',
+        'Ribbit': '개굴개굴!',
+        'Saber Dance': '검무',
+        'Spellblade Blizzard III': '마법검 블리자가',
+        'Spellblade Fire III': '마법검 파이가',
+        'Spellblade Holy': '마법검 홀리',
+        'Spellblade Thunder III': '마법검 선더가',
+        'Squelch': '보글보글!',
+        'Stench Of Death': '죽음의 기척',
+        'Tanks Morph': 'Tanks Morph', // FIXME
+        'Tethers': 'Tethers', // FIXME
+        'The Game': '게임 시작',
+        'The Playing Field': '게임판',
+        'The Queen\'s Waltz': '여왕의 춤',
+        'Thunder': '선더',
+        'Uplift': '융기',
+        'White Wind': '하얀 바람',
+      },
+      '~effectNames': {
+        'About Face': '이동 명령: 후',
+        'Briar': '가시밭',
+        'Forced March': '강제 이동',
+        'Forward March': '이동 명령: 전',
+        'Imp': '물요정',
+        'Left Face': '이동 명령: 좌',
+        'Out Of The Action': '기술 실행 불가',
+        'Piggy': '아기 돼지',
+        'Right Face': '이동 명령: 우',
+        'Stun': '기절',
+        'Thorny Vine': '가시덩굴',
+        'Toad': '두꺼비',
       },
     },
   ],

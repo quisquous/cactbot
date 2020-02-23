@@ -2,7 +2,10 @@
 
 // Titan Extreme
 [{
-  zoneRegex: /^The Navel \(Extreme\)$/,
+  zoneRegex: {
+    en: /^The Navel \(Extreme\)$/,
+    ko: /^극 타이탄 토벌전$/,
+  },
   damageWarn: {
     'TitanEx Landslide': '5BB',
     'TitanEx Weight Of The Land': '5BE',

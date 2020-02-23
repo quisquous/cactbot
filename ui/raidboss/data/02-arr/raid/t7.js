@@ -6,157 +6,204 @@
   triggers: [
     {
       id: 'T7 Ram',
-      regex: / 14:860:Proto-Chimera starts using The Ram's Voice/,
-      regexDe: / 14:860:Proto-Chimära starts using Stimme Des Widders/,
-      regexFr: / 14:860:Protochimère starts using Voix Du Bélier/,
-      regexJa: / 14:860:プロトキマイラ starts using 氷結の咆哮/,
+      regex: Regexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '860', source: 'Proto-Chimära', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '860', source: 'Protochimère', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '860', source: 'プロトキマイラ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '860', source: '原型奇美拉', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '860', source: '프로토 키마이라', capture: false }),
       condition: function(data) {
         // TODO: is this silenceable in 5.0?
         return data.CanStun() || data.CanSilence();
       },
       infoText: {
         en: 'Silence Ram\'s Voice',
+        fr: 'Silence Voix du bélier',
       },
     },
     {
       id: 'T7 Dragon',
-      regex: / 14:861:Proto-Chimera starts using The Dragon's Voice/,
-      regexDe: / 14:861:Proto-Chimära starts using Stimme Des Drachen/,
-      regexFr: / 14:861:Protochimère starts using Voix Du Dragon/,
-      regexJa: / 14:861:プロトキマイラ starts using 雷電の咆哮/,
+      regex: Regexes.startsUsing({ id: '861', source: 'Proto-Chimera', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '861', source: 'Proto-Chimära', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '861', source: 'Protochimère', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '861', source: 'プロトキマイラ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '861', source: '原型奇美拉', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '861', source: '프로토 키마이라', capture: false }),
       condition: function(data) {
         // TODO: is this silenceable in 5.0?
         return data.CanStun() || data.CanSilence();
       },
       infoText: {
         en: 'Silence Dragon\'s Voice',
+        fr: 'Silence Voix du dragon',
       },
     },
     {
       id: 'T7 Tail Slap',
-      regex: / 1[56]:\y{ObjectId}:Melusine:7A8:Tail Slap:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Melusine:7A8:Schweifklapser:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Mélusine:7A8:Gifle caudale:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:メリュジーヌ:7A8:テールスラップ:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '7A8', source: 'Melusine' }),
+      regexDe: Regexes.ability({ id: '7A8', source: 'Melusine' }),
+      regexFr: Regexes.ability({ id: '7A8', source: 'Mélusine' }),
+      regexJa: Regexes.ability({ id: '7A8', source: 'メリュジーヌ' }),
+      regexCn: Regexes.ability({ id: '7A8', source: '美瑠姬奴' }),
+      regexKo: Regexes.ability({ id: '7A8', source: '멜뤼진' }),
       condition: function(data, matches) {
-        return data.me == matches[1] && data.job == 'BLU';
+        return data.me == matches.target && data.job == 'BLU';
       },
       delaySeconds: 6,
       suppressSeconds: 5,
       infoText: {
         en: 'Tail Slap in 10',
+        fr: 'Gifle caudale dans 10',
       },
     },
     {
       id: 'T7 Renaud',
-      regex: / 03:\y{ObjectId}:Added new combatant Renaud\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Renaud\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Renaud\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant ルノー\./,
+      regex: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ルノー', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '雷诺', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '르노', capture: false }),
       infoText: {
         en: 'Renaud Add',
+        fr: 'Add Renaud',
       },
     },
     {
       id: 'T7 Voice',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Voice from .* for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Stimme Der Verwünschung from .* for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Voix Du Maléfice from .* for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の声 from .* for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Voice' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Stimme Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Voix Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之声' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 목소리' }),
       delaySeconds: function(data, matches) {
-        return matches[2] - 3;
+        return matches.duration - 3;
       },
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Voice Soon',
+        fr: 'Voix bientôt',
       },
     },
     {
       id: 'T7 Shriek',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cri Du Maléfice/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の叫声/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
       durationSeconds: 3,
       alarmText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Shriek on YOU',
+            fr: 'Cri sur VOUS',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.me != matches[1]) {
+        if (data.me != matches.target) {
           return {
-            en: 'Shriek on ' + data.ShortName(matches[1]),
+            en: 'Shriek on ' + data.ShortName(matches.target),
+            fr: 'Cri sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'T7 Shriek Reminder',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cursed Shriek/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schrei Der Verwünschung/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Cri Du Maléfice/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 呪詛の叫声/,
+      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
+      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
+      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
+      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Shriek Soon',
+            fr: 'Cri bientôt',
           };
         }
         return {
           en: 'Dodge Shriek',
+          fr: 'Esquivez le cri',
         };
       },
     },
     {
       id: 'T7 Phase 2',
-      regex: /:Melusine HP at 79%/,
+      regex: Regexes.hasHP({ name: 'Melusine', hp: '79', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Melusine', hp: '79', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Mélusine', hp: '79', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'メリュジーヌ', hp: '79', capture: false }),
+      regexCn: Regexes.hasHP({ name: '美瑠姬奴', hp: '79', capture: false }),
+      regexKo: Regexes.hasHP({ name: '멜뤼진', hp: '79', capture: false }),
       sound: 'Long',
     },
     {
       id: 'T7 Phase 3',
-      regex: /:Melusine HP at 59%/,
+      regex: Regexes.hasHP({ name: 'Melusine', hp: '59', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Melusine', hp: '59', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Mélusine', hp: '59', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'メリュジーヌ', hp: '59', capture: false }),
+      regexCn: Regexes.hasHP({ name: '美瑠姬奴', hp: '59', capture: false }),
+      regexKo: Regexes.hasHP({ name: '멜뤼진', hp: '59', capture: false }),
       sound: 'Long',
     },
     {
       id: 'T7 Phase 4',
-      regex: /:Melusine HP at 34%/,
+      regex: Regexes.hasHP({ name: 'Melusine', hp: '34', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Melusine', hp: '34', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Mélusine', hp: '34', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'メリュジーヌ', hp: '34', capture: false }),
+      regexCn: Regexes.hasHP({ name: '美瑠姬奴', hp: '34', capture: false }),
+      regexKo: Regexes.hasHP({ name: '멜뤼진', hp: '34', capture: false }),
       sound: 'Long',
     },
     {
       id: 'T7 Petrifaction 1',
-      regex: / 14:7BB:Lamia Prosector starts using Petrifaction/,
-      regexDe: / 14:7BB:Lamia-Prosektorin starts using Versteinerung/,
-      regexFr: / 14:7BB:Lamia Dissectrice starts using Pétrification/,
-      regexJa: / 14:7BB:ラミア・プロセクター starts using ペトリファクション/,
+      regex: Regexes.startsUsing({ id: '7BB', source: 'Lamia Prosector', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7BB', source: 'Lamia-Prosektorin', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7BB', source: 'Lamia Dissectrice', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7BB', source: 'ラミア・プロセクター', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7BB', source: '拉米亚解剖女王', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7BB', source: '라미아 시체해부자', capture: false }),
       alertText: {
         en: 'Look Away!',
+        fr: 'Regardez ailleurs !',
       },
     },
     {
       id: 'T7 Petrifaction 2',
-      regex: / 14:7B1:Melusine starts using Petrifaction/,
-      regexDe: / 14:7B1:Melusine starts using Versteinerung/,
-      regexFr: / 14:7B1:Mélusine starts using Pétrification/,
-      regexJa: / 14:7B1:メリュジーヌ starts using ペトリファクション/,
+      regex: Regexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7B1', source: 'Mélusine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7B1', source: 'メリュジーヌ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7B1', source: '美瑠姬奴', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7B1', source: '멜뤼진', capture: false }),
       alertText: {
         en: 'Look Away!',
+        fr: 'Regardez ailleurs !',
       },
     },
     {
       id: 'T7 Tail',
-      regex: / 14:7B2:Melusine starts using Venomous Tail/,
-      regexDe: / 14:7B2:Melusine starts using Venomschweif/,
-      regexFr: / 14:7B2:Mélusine starts using Queue Venimeuse/,
-      regexJa: / 14:7B2:メリュジーヌ starts using ベノモステール/,
+      regex: Regexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '7B2', source: 'Mélusine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '7B2', source: 'メリュジーヌ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '7B2', source: '美瑠姬奴', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '7B2', source: '멜뤼진', capture: false }),
       alertText: {
         en: 'Venomous Tail',
+        fr: 'Queue venimeuse',
       },
     },
   ],
@@ -164,9 +211,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Das Biowaffen-Magazin öffnet sich erneut',
-        'Bioweapon Storage will be sealed off': 'bis sich das Biowaffen-Magazin schließt',
-        'Engage!': 'Start!',
+        'Bioweapon Storage': 'Biowaffen-Magazin',
         'Lamia Prosector': 'Lamia-Prosektorin',
         'Melusine': 'Melusine',
       },
@@ -187,9 +232,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Ouverture de l\Entrepôt d\'armes biologiques',
-        'Bioweapon Storage will be sealed off': 'Fermeture de l\Entrepôt d\'armes biologiques',
-        'Engage!': 'À l\'attaque !',
+        'Bioweapon Storage': 'l\'Entrepôt d\'armes biologiques',
         'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
       },
@@ -209,10 +252,8 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Bioweapon Storage is no longer sealed', // FIXME
-        'Bioweapon Storage will be sealed off': 'Bioweapon Storage will be sealed off', // FIXME
-        'Engage!': '戦闘開始！',
         'Lamia Prosector': 'ラミア・プロセクター',
         'Melusine': 'メリュジーヌ',
       },
@@ -221,13 +262,55 @@
         'Circle Of Flames': 'サークル・オブ・フレイム',
         'Cursed Shriek': '呪詛の叫声',
         'Cursed Voice': '呪詛の声',
-        'Deathdancer': 'Deathdancer', // FIXME
+        'Deathdancer': 'デスダンサー',
         'Frenzy': '熱狂',
         'Petrifaction': 'ペトリファクション',
         'Red Lotus Blade': 'レッドロータス',
         'Sacrifice': '生贄',
         'Tail Slap': 'テールスラップ',
         'Venomous Tail': 'ベノモステール',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Lamia Prosector': '拉米亚解剖女王',
+        'Melusine': '美瑠姬奴',
+      },
+      'replaceText': {
+        'Circle Blade': '回旋斩',
+        'Circle Of Flames': '地层断裂',
+        'Cursed Shriek': '诅咒之嚎',
+        'Cursed Voice': '诅咒之声',
+        'Deathdancer': '死亡舞师',
+        'Frenzy': '狂热',
+        'Petrifaction': '石化',
+        'Red Lotus Blade': '红莲',
+        'Sacrifice': '献祭',
+        'Tail Slap': '尾部猛击',
+        'Venomous Tail': '猛毒之尾',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Lamia Prosector': '라미아 시체해부자',
+        'Melusine': '멜뤼진',
+      },
+      'replaceText': {
+        'Circle Blade': '회전 베기',
+        'Circle Of Flames': '화염의 원',
+        'Cursed Shriek': '저주의 외침',
+        'Cursed Voice': '저주의 목소리',
+        'Deathdancer': '죽음무용수',
+        'Frenzy': '열광',
+        'Petrifaction': '석화',
+        'Red Lotus Blade': '홍련의 칼날',
+        'Sacrifice': '제물',
+        'Tail Slap': '꼬리치기',
+        'Venomous Tail': '맹독 꼬리',
       },
     },
   ],

@@ -1,0 +1,264 @@
+body,
+html {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+  overflow-y: scroll;
+  background-color: white;
+  font-family: Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+}
+
+#container {
+  margin: 12px;
+}
+
+#butter-margin {
+  position: relative;
+  margin: 60px;
+}
+
+#butter-margin.hidden {
+  display: none;
+}
+
+#butter-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 12px;
+  padding-right: 12px;
+  width: calc(100% - 24px);
+  border-bottom: 1px solid black;
+  height: 50px;
+  background-color: #fff37b;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(1, auto auto);
+  grid-gap: 12px;
+}
+
+.reload-text {
+  align-self: center;
+  justify-self: start;
+}
+
+.reload-button {
+  padding: 8px;
+  align-self: center;
+  justify-self: end;
+}
+
+.overlay-container {
+  margin-bottom: 20px;
+}
+
+.collapsed > div:not(:first-child) {
+  display: none;
+}
+
+.overlay-header {
+  background-color: lightblue;
+  padding: 12px;
+  text-transform: uppercase;
+  border: 1px solid black;
+  cursor: pointer;
+  font-size: 18px;
+
+  /* use grid to vertically center */
+  display: grid;
+  grid-template-columns: repeat(1, auto 1fr);
+  justify-items: left;
+  align-items: center;
+}
+
+.overlay-header::before {
+  content: '';
+  box-sizing: border-box;
+  margin-right: 5px;
+  width: 10px;
+  height: 10px;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-top: 10px solid black;
+}
+
+.collapsed .overlay-header::before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 10px solid black;
+  border-right: none;
+}
+
+.overlay-options {
+  display: grid;
+  margin: 12px 0 12px 12px;
+  margin-left: 20px;
+  grid-template-columns: repeat(1, auto 1fr);
+  grid-gap: 12px;
+}
+
+/* vertically center option names */
+.option-name {
+  display: grid;
+  align-items: center;
+}
+
+.option-input-container {
+  display: grid;
+  align-items: center;
+}
+
+.trigger-expansion-container {
+  margin-bottom: 8px;
+  grid-column-end: span 2;
+}
+
+.trigger-expansion-header {
+  background-color: #c9cde2;
+  padding: 8px;
+  border: 1px solid black;
+  cursor: pointer;
+
+  /* use grid to vertically center */
+  display: grid;
+  grid-template-columns: repeat(1, auto 1fr);
+  justify-items: left;
+  align-items: center;
+}
+
+.trigger-expansion-header::before {
+  content: '';
+  box-sizing: border-box;
+  margin-right: 5px;
+  width: 6px;
+  height: 6px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 6px solid black;
+}
+
+.collapsed .trigger-expansion-header::before {
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 6px solid black;
+  border-right: none;
+}
+
+.trigger-file-container {
+  margin: 12px 0 12px 12px;
+  grid-column-end: span 2;
+}
+
+.trigger-file-header {
+  background-color: wheat;
+  padding: 8px;
+  border: 1px solid black;
+  cursor: pointer;
+  display: grid;
+  grid-template-columns: repeat(1, auto auto 1fr auto);
+  justify-items: right;
+  align-items: center;
+}
+
+.trigger-file-header::before {
+  content: '';
+  box-sizing: border-box;
+  margin-right: 5px;
+  width: 6px;
+  height: 6px;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 6px solid black;
+}
+
+.collapsed .trigger-file-header::before {
+  border-top: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-left: 6px solid black;
+  border-right: none;
+}
+
+.trigger-file-header-part {
+  /* pretending not to have a grid gap on the left */
+  margin-right: 20px;
+}
+
+.trigger-file-options {
+  display: grid;
+  margin: 12px;
+  grid-template-columns: repeat(1, auto 1fr);
+  grid-gap: 20px;
+}
+
+.trigger.disabled {
+  text-decoration: line-through;
+  color: grey;
+}
+
+.trigger-options {
+  grid-column-end: span 2;
+}
+
+.trigger-details {
+  display: grid;
+  grid-template-columns: repeat(1, auto 1fr);
+  grid-column-gap: 10px;
+}
+
+.trigger-label {
+  display: inline;
+}
+
+.trigger-detail {
+  display: inline;
+}
+
+.alarm-text {
+  color: #f30;
+}
+
+.alert-text {
+  color: #fb0;
+}
+
+.info-text {
+  color: #2b2;
+}
+
+.regex-text {
+  color: black;
+}
+
+.sound-text {
+  color: blue;
+}
+
+.function-text {
+  color: grey;
+}
+
+.input-dir-container {
+  display: grid;
+  grid-template-columns: repeat(1, auto 1fr);
+  grid-gap: 10px;
+  align-items: center;
+}
+
+input[type=text] {
+  padding: 3px;
+  width: 40px;
+  text-align: right;
+}
+
+input[type=submit] {
+  padding: 3px;
+}
+
+select {
+  padding: 3px;
+  width: fit-content;
+}

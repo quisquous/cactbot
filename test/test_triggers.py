@@ -5,7 +5,7 @@ import subprocess
 import sys
 from definitions import CactbotModule, DATA_DIRECTORY, PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY
 
-TRIGGER_DIRECTORY = 'trigger'
+TRIGGER_DIRECTORY = "trigger"
 
 TRIGGER_TEST_DIRECTORY = Path(PROJECT_ROOT_DIRECTORY, TEST_DIRECTORY, TRIGGER_DIRECTORY)
 
@@ -20,14 +20,14 @@ def main():
     """
     exit_status = 0
 
-    for filepath in Path(CactbotModule.RAIDBOSS.directory(), DATA_DIRECTORY).glob('**/*.js'):
+    for filepath in Path(CactbotModule.RAIDBOSS.directory(), DATA_DIRECTORY).glob("**/*.js"):
         # Run individual trigger tests
         for test_file in TRIGGER_TEST_DIRECTORY.iterdir():
-            exit_status |= subprocess.call(['node', str(test_file), str(filepath)])
+            exit_status |= subprocess.call(["node", str(test_file), str(filepath)])
 
     return exit_status
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     EXIT_STATUS = main()
     sys.exit(EXIT_STATUS)

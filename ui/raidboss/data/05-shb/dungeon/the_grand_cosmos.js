@@ -3,62 +3,71 @@
 // The Grand Cosmos
 
 [{
-  zoneRegex: /^The Grand Cosmos$/,
+  zoneRegex: {
+    en: /^The Grand Cosmos$/,
+    ko: /\(692\)/,
+  },
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [
     {
       id: 'Cosmos Shadowbolt',
-      regex: / 14:4769:Seeker Of Solitude starts using Shadowbolt on (\y{Name})/,
-      regexFr: / 14:4769:Ermite du palais starts using Éclair Ombreux on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '4769', source: 'Seeker Of Solitude' }),
+      regexDe: Regexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
+      regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
+      regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
+            cn: '死刑 -> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
     },
     {
       id: 'Cosmos Dark Pulse',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E:/,
+      regex: Regexes.headMarker({ id: '003E' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             cn: '集合点名',
+            ko: '쉐어징 대상자',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          cn: '靠近 ' + data.ShortName(matches[1]) + '集合',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
+          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
         };
       },
     },
     {
       id: 'Cosmos Dark Well Far Winds',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0060:/,
+      regex: Regexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -66,12 +75,15 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
       id: 'Cosmos Immortal Anathema',
-      regex: / 14:49A3:Seeker Of Solitude starts using Immortal Anathema/,
-      regexFr: / 14:49A3:Ermite du palais starts using Anathème Immortel/,
+      regex: Regexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '49A3', source: 'Einsiedler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '49A3', source: 'Ermite Du Palais', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -81,50 +93,60 @@
         ja: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
       id: 'Cosmos Tribulation',
-      regex: / 14:476B:Seeker Of Solitude starts using Tribulation/,
-      regexFr: / 14:476B:Ermite du palais starts using Tribulation/,
+      regex: Regexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '476B', source: 'Einsiedler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '476B', source: 'Ermite Du Palais', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '476B', source: '宮殿の隠者', capture: false }),
       delaySeconds: 8,
       alertText: {
         en: 'Avoid Brooms',
         de: 'Besen ausweichen',
         fr: 'Evitez les balais',
+        ko: '빗자루 피하기',
       },
     },
     {
       id: 'Cosmos Storm of Color',
-      regex: / 14:471B:Leannan Sith starts using Storm Of Color on (\y{Name})/,
-      regexFr: / 14:471B:Leannan Sith starts using Orage De Printemps on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      regexDe: Regexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
+      regexFr: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      regexJa: Regexes.startsUsing({ id: '471B', source: 'リャナンシー' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
+            cn: '死刑 -> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
     },
     {
       id: 'Cosmos Ode To Lost Love',
-      regex: / 14:471C:Leannan Sith starts using Ode To Lost Love/,
-      regexFr: / 14:471C:Leannan Sith starts using Rhapsodie De L'amour Fou/,
+      regex: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '471C', source: 'Leanan Sidhe', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -134,14 +156,17 @@
         ja: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
       // Can't use added combatant here as all these adds exist.
       // So, just trigger on first auto.
       id: 'Cosmos Direct Seeding Mistake',
-      regex: / 15:\y{ObjectId}:Lover's Ring:368:/,
-      regexFr: / 15:\y{ObjectId}:Bague de l'amoureux:368:/,
+      regex: Regexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
+      regexDe: Regexes.ability({ id: '368', source: 'Keim Des Geliebten', capture: false }),
+      regexFr: Regexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
+      regexJa: Regexes.ability({ id: '368', source: 'ラヴァーズリング', capture: false }),
       suppressSeconds: 60,
       infoText: {
         en: 'Kill Extra Add',
@@ -149,22 +174,28 @@
         ja: '水の精倒して',
         fr: 'Tuez l\'add',
         cn: '击杀小怪',
+        ko: '쫄 처리',
       },
     },
     {
       id: 'Cosmos Gardener\'s Hymn',
-      regex: / 14:471E:Leannan Sith starts using Gardener's Hymn/,
-      regexFr: / 14:471E:Leannan Sith starts using Ballade Du Bourgeonnement/,
+      regex: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '471E', source: 'Leanan Sidhe', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
       infoText: {
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
         fr: 'Placez les graines sur la terre',
+        ko: '씨앗 흙 위에 놓기',
       },
     },
     {
       id: 'Cosmos Ronkan Cure II',
-      regex: / 14:4931:Ser Hamonth starts using Ronkan Cure II/,
-      regexFr: / 14:4931:Ser Hamonth starts using Extra Soin Ronka/,
+      regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス', capture: false }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -172,39 +203,46 @@
         en: 'Stun Hamonth',
         de: 'Sir Hamonth unterbrechen',
         fr: 'Etoudissez Hamonth',
+        ko: 'Hamonth 기절시키기',
       },
     },
     {
       id: 'Cosmos Captive Bolt',
-      regex: / 14:4764:Lugus starts using Captive Bolt on (\y{Name})/,
-      regexFr: / 14:4764:Lugus starts using Lame Pulvérisante on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      regexDe: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      regexFr: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      regexJa: Regexes.startsUsing({ id: '4764', source: 'ルゴス' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
+            ko: '탱버 대상자',
           };
         }
       },
       infoText: function(data, matches) {
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
+            cn: '死刑 -> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
     },
     {
       id: 'Cosmos Culling Blade',
-      regex: / 14:4765:Lugus starts using Culling Blade/,
-      regexFr: / 14:4765:Lugus starts using Lame Percutante/,
+      regex: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -214,13 +252,14 @@
         ja: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
       id: 'Cosmos Black Flame 1',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0019:/,
+      regex: Regexes.headMarker({ id: '0019' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -228,26 +267,28 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
       id: 'Cosmos Black Flame 2',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0019:/,
+      regex: Regexes.headMarker({ id: '0019' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 4,
       infoText: {
         en: 'Dodge Crosses',
         de: 'Den Kreuzen ausweichen',
         fr: 'Evitez les croix',
+        ko: '십자 장판 서로 산개',
       },
     },
     {
       id: 'Cosmos Mortal Flame 1',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C3:/,
+      regex: Regexes.headMarker({ id: '00C3' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -255,46 +296,54 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
       id: 'Cosmos Mortal Flame 2',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00C3:/,
+      regex: Regexes.headMarker({ id: '00C3' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       delaySeconds: 5.5,
       infoText: {
         en: 'Touch Furniture',
         de: 'Einrichtung berühren',
         fr: 'Touchez un élément de décor',
+        ko: '가구에 불 옮기기',
       },
     },
     {
       id: 'Cosmos Scorching Left',
-      regex: / 14:4763:Lugus starts using Scorching Left/,
-      regexFr: / 14:4763:Lugus starts using Scrutement Senestre/,
+      regex: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
       infoText: {
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
+        ko: '왼쪽',
       },
     },
     {
       id: 'Cosmos Scorching Right',
-      regex: / 14:4762:Lugus starts using Scorching Right/,
-      regexFr: / 14:4762:Lugus starts using Scrutement Dextre/,
+      regex: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
       infoText: {
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
+        ko: '오른쪽',
       },
     },
     {
       id: 'Cosmos Fire\'s Domain',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003[2345]:/,
+      regex: Regexes.headMarker({ id: '003[2345]' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       preRun: function(data) {
         data.firesDomain = (data.firesDomain || 0) + 1;
@@ -305,12 +354,14 @@
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
             fr: 'Placez le liens loin des décors',
+            ko: '십자 장판 징: 가구에 닿지 말기',
           };
         }
         return {
           en: 'Tether on YOU',
           de: 'Verbindung auf DIR',
           fr: 'Lien sur vous',
+          ko: '징 대상자',
         };
       },
     },
@@ -323,10 +374,9 @@
         'Leannan Sith': 'Leanan Sidhe',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Einsiedler',
-        'The Chamber of Celestial Song will be sealed off': 'bis sich der Zugang zu[rm]? den Großen Vergnügungen schließt',
-        'The Font of Quintessence will be sealed off': 'bis sich der Zugang zu[rm]? Broderieparterre schließt',
-        'The Martial Court will be sealed off': 'bis sich der Zugang zu[rm]? Kleine Stufenarkade schließt',
-        'is no longer sealed': 'öffnet sich wieder',
+        'The Chamber of Celestial Song': 'den Großen Vergnügungen',
+        'The Font of Quintessence': 'Broderieparterre',
+        'The Martial Court': 'Kleine Stufenarkade',
       },
       'replaceText': {
         'Black Flame': 'Finsterer Flammenwind',
@@ -336,7 +386,7 @@
         'Dark Shock': 'Angriff aus dem Dunkeln',
         'Dark Well': 'Dunkles Bersten',
         'Direct Seeding': 'Bedecktbesamung',
-        'Far Wind': 'Heller Sturm',
+        '(?<! )Far Wind': 'Heller Sturm',
         'Fire\'s Domain': 'Heißer Höllensturm',
         'Fire\'s Ire': 'Holistisches Höllenfeuer',
         'Gardener\'s Hymn': 'Wiegenlied der Sprösslinge',
@@ -362,10 +412,9 @@
         'Leannan Sith': 'Leannan Sith',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Ermite du Palais',
-        'is no longer sealed': 'Ouverture ',
-        'The Martial Court will be sealed off': 'Fermeture de La Cour martiale',
-        'The Font of Quintessence will be sealed off': 'Fermeture de La Source de Quintessence',
-        'The Chamber of Celestial Song will be sealed off': 'Fermeture du Chœur céleste',
+        'The Martial Court': 'La Cour martiale',
+        'The Font of Quintessence': 'La Source de Quintessence',
+        'The Chamber of Celestial Song': 'Chœur céleste',
       },
       'replaceText': {
         'Black Flame': 'Torrent fuligineux',
@@ -375,7 +424,7 @@
         'Dark Shock': 'Onde ténébreuse',
         'Dark Well': 'Déflagration ténébreuse',
         'Direct Seeding': 'Semis direct',
-        'Far Wind': 'Claire tempête',
+        '(?<! )Far Wind': 'Claire tempête',
         'Fire\'s Domain': 'Fournaise infernale',
         'Fire\'s Ire': 'Étincelle infernale',
         'Gardener\'s Hymn': 'Ballade du bourgeonnement',
@@ -396,15 +445,12 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Enslaved Love': 'エンスレイブド・ラヴ',
         'Leannan Sith': 'リャナンシー',
         'Lugus': 'ルゴス',
         'Seeker of Solitude': '宮殿の隠者',
-        'The Chamber of Celestial Song will be sealed off': 'The Chamber of Celestial Song will be sealed off', // FIXME
-        'The Font of Quintessence will be sealed off': 'The Font of Quintessence will be sealed off', // FIXME
-        'The Martial Court will be sealed off': 'The Martial Court will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Black Flame': '黒炎流',
@@ -414,7 +460,7 @@
         'Dark Shock': '黒の衝撃',
         'Dark Well': '黒の爆砕',
         'Direct Seeding': 'ダイレクトシーディング',
-        'Far Wind': '晴嵐',
+        '(?<! )Far Wind': '晴嵐',
         'Fire\'s Domain': '炎獄殺',
         'Fire\'s Ire': '炎獄閃',
         'Gardener\'s Hymn': '萌芽への謡',

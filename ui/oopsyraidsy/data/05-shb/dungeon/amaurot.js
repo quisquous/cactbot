@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Amaurot$/,
+  zoneRegex: {
+    en: /^Amaurot$/,
+    ko: /^아모로트$/,
+  },
   damageWarn: {
     'Amaurot Burning Sky': '354A',
     'Amaurot Whack': '353C',

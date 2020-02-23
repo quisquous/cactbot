@@ -19,16 +19,18 @@
   triggers: [
     {
       id: 'O12N Solar Ray',
-      regex: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using Solar Ray on (\y{Name})/,
-      regexDe: / 14:(?:330F|3310):(?:Omega|Omega-M) starts using Sonnenstrahl on (\y{Name})/,
-      regexFr: / 14:(?:330F|3310):(?:Oméga|Oméga-M) starts using Rayon Solaire on (\y{Name})/,
-      regexJa: / 14:(?:330F|3310):(?:オメガ|オメガM) starts using ソーラレイ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['330F', '3310'], source: ['Omega', 'Omega-M'] }),
+      regexDe: Regexes.startsUsing({ id: ['330F', '3310'], source: ['Omega', 'Omega-M'] }),
+      regexFr: Regexes.startsUsing({ id: ['330F', '3310'], source: ['Oméga', 'Oméga-M'] }),
+      regexJa: Regexes.startsUsing({ id: ['330F', '3310'], source: ['オメガ', 'オメガM'] }),
+      regexCn: Regexes.startsUsing({ id: ['330F', '3310'], source: ['欧米茄', '欧米茄M'] }),
+      regexKo: Regexes.startsUsing({ id: ['330F', '3310'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer';
+        return data.me == matches.target || data.role == 'healer';
       },
       suppressSeconds: 1,
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -44,7 +46,7 @@
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -55,16 +57,18 @@
     },
     {
       id: 'O12N Optimized Blade Dance',
-      regex: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using Optimized Bladedance on (\y{Name})/,
-      regexDe: / 14:(?:3321|3322):(?:Omega|Omega-M) starts using Omega-Schwertertanz on (\y{Name})/,
-      regexFr: / 14:(?:3321|3322):(?:Oméga|Oméga-M) starts using Danse De La Lame Oméga on (\y{Name})/,
-      regexJa: / 14:(?:3321|3322):(?:オメガ|オメガM) starts using ブレードダンス・オメガ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['3321', '3322'], source: ['Omega', 'Omega-M'] }),
+      regexDe: Regexes.startsUsing({ id: ['3321', '3322'], source: ['Omega', 'Omega-M'] }),
+      regexFr: Regexes.startsUsing({ id: ['3321', '3322'], source: ['Oméga', 'Oméga-M'] }),
+      regexJa: Regexes.startsUsing({ id: ['3321', '3322'], source: ['オメガ', 'オメガM'] }),
+      regexCn: Regexes.startsUsing({ id: ['3321', '3322'], source: ['欧米茄', '欧米茄M'] }),
+      regexKo: Regexes.startsUsing({ id: ['3321', '3322'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer';
+        return data.me == matches.target || data.role == 'healer';
       },
       suppressSeconds: 1,
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -80,7 +84,7 @@
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -91,10 +95,12 @@
     },
     {
       id: 'O12N Local Resonance',
-      regex: / 1A:\y{ObjectId}:Omega gains the effect of Local Resonance from/,
-      regexDe: / 1A:\y{ObjectId}:Omega gains the effect of Resonanzprogramm: Nah from/,
-      regexFr: / 1A:\y{ObjectId}:Oméga gains the effect of Programme De Résonance : Proximité from/,
-      regexJa: / 1A:\y{ObjectId}:オメガ gains the effect of レゾナンスプログラム：ニアー from/,
+      regex: Regexes.gainsEffect({ target: 'Omega', effect: 'Local Resonance', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Omega', effect: 'Resonanzprogramm: Nah', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Oméga', effect: 'Programme De Résonance: Proximité', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'オメガ', effect: 'レゾナンスプログラム：ニアー', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '欧米茄', effect: '共鸣程序：近', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '오메가', effect: '공명 프로그램: 근거리', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -106,9 +112,9 @@
     },
     {
       id: 'O12N Optimized Meteor',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Meteor on YOU',
@@ -118,9 +124,9 @@
     },
     {
       id: 'O12N Stack Spread Markers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       alertText: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
         return {
           en: 'Get Out',
@@ -129,7 +135,7 @@
         };
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches.target)
           return;
         return {
           en: 'Stack',
@@ -140,12 +146,14 @@
     },
     {
       id: 'O12N Packet Filter F',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Packet Filter F from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem W from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur F from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムF from/,
+      regex: Regexes.gainsEffect({ effect: 'Packet Filter F' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem W' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur F' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムF' }),
+      regexCn: Regexes.gainsEffect({ effect: '防护程序F' }),
+      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 F' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Attack Omega-M',
@@ -155,12 +163,14 @@
     },
     {
       id: 'O12N Packet Filter M',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Packet Filter M from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Sicherungssystem M from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Programme Protecteur M from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ガードプログラムM from/,
+      regex: Regexes.gainsEffect({ effect: 'Packet Filter M' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem M' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur M' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムM' }),
+      regexCn: Regexes.gainsEffect({ effect: '防护程序M' }),
+      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 M' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Attack Omega-F',
@@ -173,22 +183,19 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
-        'Omega': 'Omega',
+        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
         'Progress to party combat': 'Initiiere Gruppenkampf',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Beyond Strength': 'Schildkombo G',
         'Cosmo Memory': 'Kosmospeicher',
         'Discharger': 'Entlader',
         'Efficient Bladework': 'Effiziente Klingenführung',
         'Electric Slide': 'Elektrosturz',
-        'Enrage': 'Finalangriff',
         'Firewall': 'Sicherungssystem',
         'Floodlight': 'Flutlicht',
         'Ground Zero': 'Explosionszentrum',
@@ -204,7 +211,7 @@
         'Resonance': 'Resonanz',
         'Solar Ray': 'Sonnenstrahl',
         'Spotlight': 'Scheinwerfer',
-        'Subject Simulation F': 'Transformation F',
+        'Subject Simulation F': 'Transformation W',
         'Subject Simulation M': 'Transformation M',
         'Superliminal Steel': 'Klingenkombo B',
         'Suppression': 'Hilfsprogramm F',
@@ -215,31 +222,26 @@
         'Invincibility': 'Unverwundbar',
         'Local Resonance': 'Resonanzprogramm: Nah',
         'Omega': 'Omega',
-        'Packet Filter F': 'Sicherungssystem F',
+        'Packet Filter F': 'Sicherungssystem W',
         'Packet Filter M': 'Sicherungssystem M',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
-        'Omega': 'Oméga',
+        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
-        'Optical Unit': 'Unité optique',
+        'Optical Unit': 'unité optique',
         'Progress to party combat': 'Limites du combat en solitaire atteintes',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Beyond Strength': 'Combo bouclier G',
         'Cosmo Memory': 'Cosmomémoire',
         'Discharger': 'Déchargeur',
         'Efficient Bladework': 'Lame active',
         'Electric Slide': 'Glissement Oméga',
-        'Enrage': 'Enrage',
         'Firewall': 'Programme protecteur',
         'Floodlight': 'Projecteur',
         'Ground Zero': 'Ruée féroce',
@@ -273,14 +275,12 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Engage!': '戦闘開始！',
-        'Omega': 'オメガ',
+        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
-
-        // FIXME
-        'Progress to party combat': 'Progress to party combat',
+        'Progress to party combat': '単独戦闘による限界を確認',
       },
       'replaceText': {
         'Beyond Strength': 'シールドコンボG',
@@ -316,6 +316,98 @@
         'Omega': 'オメガ',
         'Packet Filter F': 'ガードプログラムF',
         'Packet Filter M': 'ガードプログラムM',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Omega(?!-)': '欧米茄',
+        'Omega-F': '欧米茄F',
+        'Omega-M': '欧米茄M',
+        'Optical Unit': '视觉组',
+        'Progress to party combat': '确认到单独战斗的极限',
+      },
+      'replaceText': {
+        'Beyond Strength': '盾连击G',
+        'Cosmo Memory': '宇宙记忆',
+        'Discharger': '能量放出',
+        'Efficient Bladework': '剑击',
+        'Electric Slide': '欧米茄滑跃',
+        'Firewall': '防御程序',
+        'Floodlight': '泛光灯',
+        'Ground Zero': '急袭',
+        'Laser Shower': '激光骤雨',
+        'Optical Laser': '光学射线F',
+        'Optimized Blade Dance': '欧米茄刀光剑舞',
+        'Optimized Blizzard III': '欧米茄冰封',
+        'Optimized Fire III': '欧米茄烈炎',
+        'Optimized Meteor': '欧米茄陨石流星',
+        'Optimized Passage of Arms': '欧米茄通道',
+        'Optimized Sagittarius Arrow': '欧米茄射手天箭',
+        'Program Alpha': '程序·阿尔法',
+        'Resonance': '共鸣',
+        'Solar Ray': '太阳射线',
+        'Spotlight': '聚光灯',
+        'Subject Simulation F': '变形F',
+        'Subject Simulation M': '变形M',
+        'Superliminal Steel': '剑连击B',
+        'Suppression': '援护程序F',
+        'Synthetic Blades': '合成剑',
+        'Synthetic Shield': '合成盾',
+      },
+      '~effectNames': {
+        'Invincibility': '无敌',
+        'Local Resonance': '共鸣程序：近',
+        'Omega': '欧米茄',
+        'Packet Filter F': '防护程序F',
+        'Packet Filter M': '防护程序M',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Omega(?!-)': '오메가',
+        'Omega-F': '오메가 F',
+        'Omega-M': '오메가 M',
+        'Optical Unit': '광학 유닛',
+        'Progress to party combat': '단독 전투 한계 확인',
+      },
+      'replaceText': {
+        'Beyond Strength': '방패 연격 G',
+        'Cosmo Memory': '세계의 기억',
+        'Discharger': '방출',
+        'Efficient Bladework': '검격',
+        'Electric Slide': '오메가 슬라이드',
+        'Firewall': '방어 프로그램',
+        'Floodlight': '투광 조명',
+        'Ground Zero': '급습',
+        'Laser Shower': '레이저 세례',
+        'Optical Laser': '광학 레이저 F',
+        'Optimized Blade Dance': '쾌검난무: 오메가',
+        'Optimized Blizzard III': '블리자가: 오메가',
+        'Optimized Fire III': '파이라: 오메가',
+        'Optimized Meteor': '메테오: 오메가',
+        'Optimized Passage of Arms': '오메가의 결의',
+        'Optimized Sagittarius Arrow': '궁수자리 화살: 오메가',
+        'Program Alpha': '프로그램 알파',
+        'Resonance': '공명',
+        'Solar Ray': '태양 광선',
+        'Spotlight': '집중 조명',
+        'Subject Simulation F': '형태 변경 F',
+        'Subject Simulation M': '형태 변경 M',
+        'Superliminal Steel': '칼날 연격 B',
+        'Suppression': '지원 프로그램 F',
+        'Synthetic Blades': '칼날 장착',
+        'Synthetic Shield': '방패 장착',
+      },
+      '~effectNames': {
+        'Invincibility': '무적',
+        'Local Resonance': '공명 프로그램: 근거리',
+        'Omega': '오메가',
+        'Packet Filter F': '방어 프로그램 F',
+        'Packet Filter M': '방어 프로그램 M',
       },
     },
   ],

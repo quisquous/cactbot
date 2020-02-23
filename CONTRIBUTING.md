@@ -22,7 +22,7 @@ The code of conduct for cactbot can be found here:
 
 Please file all issues with cactbot on github,
 via this url:
-[https://github.com/quisquous/cactbot/issues/new](https://github.com/quisquous/cactbot/issues/new)
+<https://github.com/quisquous/cactbot/issues/new/choose>
 
 ## Pull Requests
 
@@ -37,10 +37,49 @@ If you want to make large mechanical changes to parts of the code,
 for example you're irritated at some style usage and want to make everything consistent,
 it's especially best to put that in a separate pull request.
 
+Generally, changes will be squashed and rebased together.
+If you want your changes to be in separate commits.
+
+### Development Workflow
+
+If you haven't used git before,
+it is recommended that you do your work inside of feature branches.
+This will let you keep your master branch cleanly tracking the upstream cactbot remote.
+All of your local changes (and possibly fixup commits, etc)
+can live inside your feature branch,
+which you can delete after the feature has landed.
+
+Here's two resources that explain how this "feature branch workflow" can work:
+
+* <https://medium.com/@s.kang919/my-git-feature-branch-workflow-a4b9647ea459>
+* <https://gist.github.com/vlandham/3b2b79c40bc7353ae95a>
+
+If you do all of your work on the master branch
+and then merge in the upstream cactbot changes,
+this will cause pull requests to become harder to read.
+git will think there are many different commits to merge in
+even though the files on disk are the same.
+
+Additionally, doing work in feature branches
+allows you to do two parallel pull requests at the same time,
+without entangling them together in the same commits and pull.
+
+### Code Review Culture
+
+Ideally, all changes should get code review.
+Currently, since there's a shortage of people reviewing code.
+@quisquous just commits smaller changes directly,
+but this is not an ideal situation,
+especially since they make a lot of mistakes (sorry).
+Please feel free to leave comments about any of these commits
+or ask for more things to become pull requests.
+
 Any contributor to cactbot should feel welcome to chime in on any pull request,
 if you have ideas about how to make the code better
 (even if it's not part of the code you feel like you are an expert in).
 Pull requests are a collaborative effort!
+There's a lack of good code reviewers at the moment,
+so feel encouraged to chip in as you have time and opinions.
 
 The Chromium project has excellent resources on good pull requests and code reviews.
 Some of it doesn't apply, but much of the philosophy does.
@@ -63,9 +102,33 @@ The primary rule for pull request style is to be consistent with the surrounding
 If you have strong feelings about style and want to add more linting or more rules,
 this is highly encouraged but you should likely have a conversation about these rules first.
 
-Lots of people get hassled by the continuous integration bot,
-so you may want to run `npm run test` and `npm run lint` or `npm run lintfix` locally
-before a pull request.
+### Build Problems
+
+cactbot has a number of strict linting rules
+in order to make code be consistent and to make code review be an easier process.
+
+Before sending your pull request,
+you want to run `npm run test` and `npm run lint` locally to catch any errors.
+Running `npm run lintfix` will fix many of them automatically
+and will help you not get hassled by the continuous integration travis bot.
+
+When a build fails,
+you will get a red X by a commit in your pull request.
+It's a little bit confusing to find these errors,
+as you have to navigate through several pages to find them.
+Click the details link after the
+"Travis CI - Pull Request Failing after 45s — Build Failed"
+text to get to the details page.
+From there, scroll to the "Jobs and Stages" section.
+Click on any jobs with an X by them,
+and this will bring you to a page with the actual errors on them.
+If you search for the word "error" in that page,
+it will bring you to the problems themselves.
+
+cactbot files should all be in UTF-8.
+If you get a BOM error,
+this is likely because your editor has saved a file with a different unicode encoding.
+For an example of how to remove this, see: <https://notepadunix2dos.info/removebom.html>
 
 ## Desired Features
 
@@ -86,6 +149,9 @@ This separation is easier to process than mixing the audio of voice comms and tt
 This design choice isn't for everybody, especially those used to tts (which is an option).
 However, text triggers will always be the default.
 Give it a try.
+
+As it's easier to disable triggers than to write triggers,
+cactbot also tends to be slightly noisier than most people prefer.
 
 ### Trigger Severity
 
@@ -126,8 +192,6 @@ This is especially true for simultaneous alerts.
 Here's some general guidelines for the text in triggers.
 The goal for trigger text is to mimic what a human raidcaller would say.
 It should minimize the amount of that the player has to think to do a mechanic.
-As it's easier to disable triggers than to write triggers,
-cactbot tends to be slightly noisier on average than most people prefer.
 
 * Be concise.  Text should be as short as possible, like lalafells.
 * Tell the player what to do rather than the mechanic name, i.e. prefer `Get Out` vs `Iron Chariot`

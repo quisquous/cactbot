@@ -6,12 +6,14 @@
   triggers: [
     {
       id: 'T4 Gravity Thrust',
-      regex: / 14:4D4:Spinner-Rook starts using Gravity Thrust on (\y{Name})\./,
-      regexDe: / 14:4D4:Drehturm starts using Gravitationsschlag on (\y{Name})\./,
-      regexFr: / 14:4D4:Drone-Drille starts using Percée Gravitationnelle on (\y{Name})\./,
-      regexJa: / 14:4D4:ルークスピナー starts using グラビデカノン on (\y{Name})\./,
+      regex: Regexes.startsUsing({ source: 'Spinner-Rook', id: '4D4' }),
+      regexDe: Regexes.startsUsing({ source: 'Drehturm', id: '4D4' }),
+      regexFr: Regexes.startsUsing({ source: 'Drone-Drille', id: '4D4' }),
+      regexJa: Regexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
+      regexCn: Regexes.startsUsing({ source: '转盘堡', id: '4D4' }),
+      regexKo: Regexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'LOS Thrust',
@@ -19,12 +21,14 @@
     },
     {
       id: 'T4 Pox',
-      regex: / 14:4D5:Spinner-Rook starts using Pox on (\y{Name})\./,
-      regexDe: / 14:4D5:Drehturm starts using Pocken on (\y{Name})\./,
-      regexFr: / 14:4D5:Drone-Drille starts using Vérole on (\y{Name})\./,
-      regexJa: / 14:4D5:ルークスピナー starts using ポックス on (\y{Name})\./,
+      regex: Regexes.startsUsing({ source: 'Spinner-Rook', id: '4D5' }),
+      regexDe: Regexes.startsUsing({ source: 'Drehturm', id: '4D5' }),
+      regexFr: Regexes.startsUsing({ source: 'Drone-Drille', id: '4D5' }),
+      regexJa: Regexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
+      regexCn: Regexes.startsUsing({ source: '转盘堡', id: '4D5' }),
+      regexKo: Regexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'LOS Pox',
@@ -32,10 +36,12 @@
     },
     {
       id: 'T4 Reminder',
-      regex: / 03:\y{ObjectId}:Added new combatant Clockwork Knight\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Uhrwerk-Ritter\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Chevalier Mécanique\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant アラガンワーク・ナイト\./,
+      regex: Regexes.addedCombatant({ name: 'Clockwork Knight', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Uhrwerk-Ritter', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Chevalier Mécanique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'アラガンワーク・ナイト', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '亚拉戈发条骑士', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '알라그 태엽기사', capture: false }),
       suppressSeconds: 100000,
       infoText: {
         en: 'Magic on Soldier, Physical on Knights',
@@ -92,6 +98,42 @@
         'Bug': 'Bug', // FIXME
         'Dreadnaught': 'Dreadnaught', // FIXME
         'Emergency Override': 'エマージェンシー・オーバーライド',
+        'Knight': 'Knight', // FIXME
+        'Rook': 'Rook', // FIXME
+        'Soldier': 'Soldier', // FIXME
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Clockwork Bug': '亚拉戈发条虫',
+        'Clockwork Dreadnaught': '恐慌装甲',
+        'Clockwork Knight': '亚拉戈发条骑士',
+        'Drive Cylinder': '隔离壁',
+        'Spinner-rook': '转盘堡',
+      },
+      'replaceText': {
+        'Bug': '故障虫',
+        'Dreadnaught': 'Dreadnaught', // FIXME
+        'Emergency Override': '紧急超驰控制',
+        'Knight': 'Knight', // FIXME
+        'Rook': 'Rook', // FIXME
+        'Soldier': 'Soldier', // FIXME
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Clockwork Bug': '알라그 태엽벌레',
+        'Clockwork Dreadnaught': '드레드노트',
+        'Clockwork Knight': '알라그 태엽기사',
+        'Drive Cylinder': '가동격벽',
+        'Spinner-rook': '보루형 회전전차',
+      },
+      'replaceText': {
+        'Bug': '버그',
+        'Dreadnaught': 'Dreadnaught', // FIXME
+        'Emergency Override': '긴급 체제 변환',
         'Knight': 'Knight', // FIXME
         'Rook': 'Rook', // FIXME
         'Soldier': 'Soldier', // FIXME

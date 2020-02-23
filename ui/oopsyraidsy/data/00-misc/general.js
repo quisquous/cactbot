@@ -27,7 +27,10 @@
           blame: e.targetName,
           text: {
             en: 'lost food buff',
+            fr: 'Buff nourriture terminée',
             de: 'Nahrungsbuff verloren',
+            ko: '음식 버프 해제',
+            cn: '失去食物BUFF',
           },
         };
       },
@@ -55,6 +58,8 @@
             de: 'Hase',
             fr: e.abilityName,
             ja: e.abilityName,
+            ko: '토끼',
+            cn: '兔子',
           },
         };
       },

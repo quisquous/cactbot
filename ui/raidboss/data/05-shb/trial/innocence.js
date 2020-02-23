@@ -7,10 +7,12 @@
   triggers: [
     {
       id: 'Inno Realmrazer',
-      regex: / 14:3E9A:Innocence starts using Realmrazer/,
-      regexDe: / 14:3E9A:Innozenz starts using Weltenzerstörer/,
-      regexFr: / 14:3E9A:Innocence starts using Raye-royaume/,
-      regexJa: / 14:3E9A:イノセンス starts using レルムレイザー/,
+      regex: Regexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E9A', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E9A', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E9A', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E9A', source: '이노센스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -23,10 +25,12 @@
     },
     {
       id: 'Inno Enthrall',
-      regex: / 14:3E99:Innocence starts using Enthrall/,
-      regexDe: / 14:3E99:Innozenz starts using Bezaubern/,
-      regexFr: / 14:3E99:Innocence starts using Œil captivant/,
-      regexJa: / 14:3E99:イノセンス starts using インスロール・アイ/,
+      regex: Regexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E99', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E99', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E99', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E99', source: '이노센스', capture: false }),
       alertText: {
         en: 'Look Away, Get Towers',
         de: 'Weg schauen, Türme nehmen',
@@ -34,10 +38,12 @@
     },
     {
       id: 'Inno Reprobation Swords 2',
-      regex: / 14:3EDC:Innocence starts using Rightful Reprobation/,
-      regexDe: / 14:3EDC:Innozenz starts using Rechtmäßige Verurteilung/,
-      regexFr: / 14:3EDC:Innocence starts using Réprobation légitime/,
-      regexJa: / 14:3EDC:イノセンス starts using 断罪の旋回/,
+      regex: Regexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EDC', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EDC', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EDC', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
       // 3 seconds cast time + 9.5 seconds until next sword.
       delaySeconds: 9.5,
       infoText: {
@@ -50,10 +56,12 @@
 
     {
       id: 'Inno Shadowreaver',
-      regex: / 14:3EEA:Innocence starts using Shadowreaver/,
-      regexDe: / 14:3EEA:Innozenz starts using Schattenplünderer/,
-      regexFr: / 14:3EEA:Innocence starts using Pilleur/,
-      regexJa: / 14:3EEA:イノセンス starts using シャドウリーヴァー/,
+      regex: Regexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -66,12 +74,14 @@
     },
     {
       id: 'Inno Righteous Bolt',
-      regex: / 14:3EA3:Innocence starts using Righteous Bolt on (\y{Name})/,
-      regexDe: / 14:3EA3:Innozenz starts using Blitz der Gerechtigkeit on (\y{Name})/,
-      regexFr: / 14:3EA3:Innocence starts using Éclair [vV]ertueux on (\y{Name})/,
-      regexJa: / 14:3EA3:イノセンス starts using ジャッジボルト on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
+      regexDe: Regexes.startsUsing({ id: '3EA3', source: 'Innozenz' }),
+      regexFr: Regexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
+      regexJa: Regexes.startsUsing({ id: '3EA3', source: 'イノセンス' }),
+      regexCn: Regexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
+      regexKo: Regexes.startsUsing({ id: '3EA3', source: '이노센스' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -81,20 +91,22 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
           };
         }
       },
     },
     {
       id: 'Inno Charge',
-      regex: / 14:3EC7:Innocence starts using Beatific Vision/,
-      regexDe: / 14:3EC7:Innozenz starts using Seligmachende Schau/,
-      regexFr: / 14:3EC7:Innocence starts using Vision [bB]éatifique/,
-      regexJa: / 14:3EC7:イノセンス starts using ビーティフィックビジョン/,
+      regex: Regexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EC7', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EC7', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EC7', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EC7', source: '이노센스', capture: false }),
       alertText: {
         en: 'Avoid Charge',
         de: 'ausweichen',
@@ -104,10 +116,12 @@
     },
     {
       id: 'Inno Light Pillar',
-      regex: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:\y{Name}:/,
-      regexDe: / 15:\y{ObjectId}:Innozenz:38FC:[^:]*:\y{ObjectId}:\y{Name}:/,
-      regexFr: / 15:\y{ObjectId}:Innocence:38FC:[^:]*:\y{ObjectId}:\y{Name}:/,
-      regexJa: / 15:\y{ObjectId}:イノセンス:38FC:[^:]*:\y{ObjectId}:\y{Name}:/,
+      regex: Regexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
+      regexDe: Regexes.ability({ id: '38FC', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
+      regexJa: Regexes.ability({ id: '38FC', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.ability({ id: '38FC', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.ability({ id: '38FC', source: '이노센스', capture: false }),
       infoText: {
         en: 'Line Stack',
         de: 'In einer Linie sammeln',
@@ -117,9 +131,9 @@
     },
     {
       id: 'Inno Winged Drop Of Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008A:/,
+      regex: Regexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Circle on YOU',
@@ -131,14 +145,17 @@
     {
       // TODO: is there a left, or do all normal modes rotate right??
       id: 'Inno Soul And Body Right',
-      regex: / 14:3EB1:Innocence starts using Soul and Body/,
-      regexDe: / 14:3EB1:Innozenz starts using Seele und Körper/,
-      regexFr: / 14:3EB1:Innocence starts using Âme et corps/,
-      regexJa: / 14:3EB1:イノセンス starts using ソウル・アンド・ボディー/,
+      regex: Regexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3EB1', source: 'Innozenz', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3EB1', source: 'イノセンス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3EB1', source: '无瑕灵君', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3EB1', source: '이노센스', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Right',
         de: 'Rechts rum rotieren',
+        fr: 'Rotation vers la droite',
       },
     },
   ],
@@ -148,10 +165,8 @@
       'replaceSync': {
         'Sword of Condemnation': 'Schwert des Urteils',
         'Innocence': 'Innozenz',
-        'Engage!': 'Start!',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Winged Reprobation': 'Schwinge des Urteils',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth': 'Sternengeburt',
@@ -160,7 +175,7 @@
         'Scold\'s Bridle': 'Schandmal',
         'Rightful Reprobation': 'Rechtmäßige Verurteilung',
         'Righteous Bolt': 'Blitz der Gerechtigkeit',
-        'Reprobation': 'Verurteilung',
+        '(?<! )Reprobation': 'Verurteilung',
         'Light Pillar': 'Lichtsäule',
         'Holy Trinity': 'Heilige Dreifaltigkeit',
         'Holy Sword': 'Heiliges Schwert',
@@ -168,15 +183,12 @@
         'God Ray': 'Göttlicher Strahl',
         'Flaming Sword': 'Flammenschwert',
         'Explosion': 'Explosion',
-        'Enrage': 'Finalangriff',
         'Duel Descent': 'Doppelter Sinkflug',
         'Drop of Light': 'Lichtabfall',
         'Dream of the Rood': 'Traum des Kreuzes',
         'Beatific Vision': 'Seligmachende Schau',
         'Forgiven venery': 'Geläuterte Wollust',
         'Forgiven shame': 'Geläuterte Schande',
-        '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
         'Realmrazer': 'Weltenzerstörer',
         'Heavenly Host': 'Machtwort',
         'Daybreak': 'Morgengrauen',
@@ -200,15 +212,14 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Sword Of Condemnation': 'Épée De Condamnation',
         'Forgiven Venery': 'Débauche Pardonnée',
         'Forgiven Shame': 'Déshonneur Pardonné',
         'Innocence': 'Innocence',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Winged Reprobation': 'Réprobation ailée',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth': 'Accouchement stellaire',
@@ -217,7 +228,7 @@
         'Scold\'s Bridle': 'Bride-bavarde',
         'Rightful Reprobation': 'Réprobation légitime',
         'Righteous Bolt': 'Éclair vertueux',
-        'Reprobation': 'Réprobation',
+        '(?<! )Reprobation': 'Réprobation',
         'Light Pillar': 'Pilier de lumière',
         'Holy Trinity': 'Sainte Trinité',
         'Holy Sword': 'Épée sacrée',
@@ -225,15 +236,12 @@
         'God Ray': 'Rayon divin',
         'Flaming Sword': 'Épée du feu des cieux',
         'Explosion': 'Explosion',
-        'Enrage': 'Enrage',
         'Duel Descent': 'Double plongeon',
         'Drop of Light': 'Goutte de lumière',
         'Dream of the Rood': 'Le Rêve de la Croix',
         'Beatific Vision': 'Vision béatifique',
         'Forgiven venery': 'débauche pardonnée',
         'Forgiven shame': 'déshonneur pardonné',
-        '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
       },
@@ -246,14 +254,12 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': 'イノセンス',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
-        '断罪': '断罪',
-        'attack': '攻撃',
         'Winged Reprobation': '断罪の飛翔',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth': 'スターバース',
@@ -262,7 +268,7 @@
         'Scold\'s Bridle': 'スコルドブライダル',
         'Rightful Reprobation': '断罪の旋回',
         'Righteous Bolt': 'ジャッジボルト',
-        'Reprobation': '断罪',
+        '(?<! )Reprobation': '断罪',
         'Light Pillar': 'ライトピラー',
         'Holy Trinity': 'ホーリートリニティー',
         'Holy Sword': 'ホーリーソード',
@@ -286,14 +292,12 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Schwert des Urteils': '',
         'Innocence': '',
-        'Engage!': '战斗开始！',
       },
       'replaceText': {
-        '断罪': '',
-        'attack': '',
         'Winged Reprobation': '',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth': '',
@@ -302,7 +306,7 @@
         'Scold\'s Bridle': '',
         'Rightful Reprobation': '',
         'Righteous Bolt': '',
-        'Reprobation': '',
+        '(?<! )Reprobation': '',
         'Light Pillar': '',
         'Holy Trinity': '',
         'Holy Sword': '',

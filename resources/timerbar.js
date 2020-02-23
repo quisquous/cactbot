@@ -266,6 +266,14 @@ class TimerBar extends HTMLElement {
         :host-context(.just-a-number) .timerbar-fg {
           display: none;
         }
+        /* Korean better visibility CSS */
+        :host-context(.lang-ko) .text-container {
+          top: calc(50% - 1.5ex);
+          height: calc(100% + 0.3ex);
+        }
+        :host-context(.lang-ko) .timerbar-righttext {
+          top: 0.3ex;
+        }
       </style>
       <div id="root" class="timerbar-root">
         <div id="bg" class="timerbar-bg"></div>

@@ -5,10 +5,12 @@
   triggers: [
     {
       id: 'Hrodric Tank',
-      regex: / 14:2661:Hrodric Poisontongue starts using Rusting Claw/,
-      regexDe: / 14:2661:Hrodric Giftzunge starts using Rostklaue/,
-      regexFr: / 14:2661:Hrodric Le Médisant starts using Griffes De Ruine/,
-      regexJa: / 14:2661:直言のフロドリック starts using ラスティクロウ/,
+      regex: Regexes.startsUsing({ id: '2661', source: 'Hrodric Poisontongue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2661', source: 'Hrodric Giftzunge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2661', source: 'Hrodric Le Médisant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2661', source: '直言のフロドリック', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2661', source: '直言不讳 赫罗德里克', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2661', source: '입바른 흐로드릭', capture: false }),
       infoText: function(data) {
         return data.role != 'tank' ? 'tank cleave' : '';
       },
@@ -23,10 +25,12 @@
     },
     {
       id: 'Hrodric Tail',
-      regex: / 14:2663:Hrodric Poisontongue starts using Tail Drive/,
-      regexDe: / 14:2663:Hrodric Giftzunge starts using Schwanzfetzer/,
-      regexFr: / 14:2663:Hrodric Le Médisant starts using Coup De Queue/,
-      regexJa: / 14:2663:直言のフロドリック starts using テイルドライブ/,
+      regex: Regexes.startsUsing({ id: '2663', source: 'Hrodric Poisontongue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2663', source: 'Hrodric Giftzunge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2663', source: 'Hrodric Le Médisant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2663', source: '直言のフロドリック', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2663', source: '直言不讳 赫罗德里克', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2663', source: '입바른 흐로드릭', capture: false }),
       infoText: function(data) {
         return data.role == 'tank' ? 'tail cleave' : '';
       },
@@ -41,10 +45,12 @@
     },
     {
       id: 'Hrodric Eye',
-      regex: / 14:2665:Hrodric Poisontongue starts using Eye Of The Fire/,
-      regexDe: / 14:2665:Hrodric Giftzunge starts using Feuerauge/,
-      regexFr: / 14:2665:Hrodric Le Médisant starts using Œil Des Flammes/,
-      regexJa: / 14:2665:直言のフロドリック starts using フィアーアイ/,
+      regex: Regexes.startsUsing({ id: '2665', source: 'Hrodric Poisontongue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2665', source: 'Hrodric Giftzunge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2665', source: 'Hrodric Le Médisant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2665', source: '直言のフロドリック', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2665', source: '直言不讳 赫罗德里克', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2665', source: '입바른 흐로드릭', capture: false }),
       alertText: {
         en: 'look away',
         de: 'wegschauen',
@@ -53,10 +59,12 @@
     },
     {
       id: 'Hrodric Words',
-      regex: / 14:2662:Hrodric Poisontongue starts using Words Of Woe/,
-      regexDe: / 14:2662:Hrodric Giftzunge starts using Wehklagende Worte/,
-      regexFr: / 14:2662:Hrodric Le Médisant starts using Mots De Malheur/,
-      regexJa: / 14:2662:直言のフロドリック starts using ワード・オブ・ウー/,
+      regex: Regexes.startsUsing({ id: '2662', source: 'Hrodric Poisontongue', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2662', source: 'Hrodric Giftzunge', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2662', source: 'Hrodric Le Médisant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2662', source: '直言のフロドリック', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2662', source: '直言不讳 赫罗德里克', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2662', source: '입바른 흐로드릭', capture: false }),
       infoText: {
         en: 'avoid eye lasers',
         de: 'Augenlaser ausweichen',

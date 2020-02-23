@@ -2,7 +2,7 @@ import coinach
 import csv
 import os
 
-_OUTPUT_FILE = 'territory_type.js'
+_OUTPUT_FILE = "territory_type.js"
 
 
 def parse_data(csvfile):
@@ -12,17 +12,17 @@ def parse_data(csvfile):
     keys = next(reader)
     next(reader)
 
-    place_idx = keys.index('PlaceName')
-    rate_idx = keys.index('WeatherRate')
+    place_idx = keys.index("PlaceName")
+    rate_idx = keys.index("WeatherRate")
 
     # TODO: verify which of these they should be
     known_conflicts = {
-      # Mist is 14/32
-      'Mist': 14,
-      # Diadem is 60/61/62/71
-      'The Diadem': 60,
-      # The Howling Eye is 26/101 (101 probably ff15 content)
-      'The Howling Eye': 26,
+        # Mist is 14/32
+        "Mist": 14,
+        # Diadem is 60/61/62/71
+        "The Diadem": 60,
+        # The Howling Eye is 26/101 (101 probably ff15 content)
+        "The Howling Eye": 26,
     }
 
     row_idx = 3
@@ -57,22 +57,24 @@ def parse_data(csvfile):
 
         if place in all_rates:
             if all_rates[place] != rate:
-                print('Discrepancy for ' + place + ', had: ' +
-                      str(all_rates[place]) + ', found: ' + str(rate) + ', row: ' + str(row_idx))
+                print(
+                    f"Discrepancy for {place}, had: {all_rates[place]}, found: {rate}, "
+                    f"row: {row_idx}"
+                )
             continue
         all_rates[place] = rate
     return all_rates
 
 
-
 def update(reader, writer):
-    data = reader.exd('TerritoryType')
+    data = reader.exd("TerritoryType")
     all_rates = parse_data(data)
     writer.write(
-        os.path.join('resources', _OUTPUT_FILE),
+        os.path.join("resources", _OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
-        'gTerritoryWeather',
-        all_rates)
+        "gTerritoryWeather",
+        all_rates,
+    )
 
 
 if __name__ == "__main__":

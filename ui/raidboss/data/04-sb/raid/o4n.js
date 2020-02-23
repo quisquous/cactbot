@@ -9,10 +9,12 @@
   triggers: [
     {
       id: 'O4N Doom',
-      regex: / 14:24B7:Exdeath starts using Doom/,
-      regexDe: / 14:24B7:Exdeath starts using Verhängnis/,
-      regexFr: / 14:24B7:Exdeath starts using Glas/,
-      regexJa: / 14:24B7:エクスデス starts using 死の宣告/,
+      regex: Regexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24B7', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24B7', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24B7', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24B7', source: '엑스데스', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
@@ -22,10 +24,12 @@
     },
     {
       id: 'O4N Standard Thunder',
-      regex: / 14:24BD:Exdeath starts using Thunder III/,
-      regexDe: / 14:24BD:Exdeath starts using Blitzga/,
-      regexFr: / 14:24BD:Exdeath starts using Méga Foudre/,
-      regexJa: / 14:24BD:エクスデス starts using サンダガ/,
+      regex: Regexes.startsUsing({ id: '24BD', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24BD', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24BD', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24BD', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24BD', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24BD', source: '엑스데스', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -39,10 +43,12 @@
     },
     {
       id: 'O4N Standard Fire',
-      regex: / 14:24BA:Exdeath starts using Fire III on (\y{Name})/,
-      regexDe: / 14:24BA:Exdeath starts using Feuga on (\y{Name})/,
-      regexFr: / 14:24BA:Exdeath starts using Méga Feu on (\y{Name})/,
-      regexJa: / 14:24BA:エクスデス starts using ファイガ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '24BA', source: 'Exdeath' }),
+      regexDe: Regexes.startsUsing({ id: '24BA', source: 'Exdeath' }),
+      regexFr: Regexes.startsUsing({ id: '24BA', source: 'Exdeath' }),
+      regexJa: Regexes.startsUsing({ id: '24BA', source: 'エクスデス' }),
+      regexCn: Regexes.startsUsing({ id: '24BA', source: '艾克斯迪司' }),
+      regexKo: Regexes.startsUsing({ id: '24BA', source: '엑스데스' }),
       alertText: function(data, matches) {
         if (data.me == matches[1]) {
           return {
@@ -53,40 +59,48 @@
     },
     {
       id: 'O4N Empowered Blizzard',
-      regex: / 14:24C0:Exdeath starts using Blizzard III/,
-      regexDe: / 14:24C0:Exdeath starts using Eisga/,
-      regexFr: / 14:24C0:Exdeath starts using Méga Glace/,
-      regexJa: / 14:24C0:エクスデス starts using ブリザガ/,
+      regex: Regexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24C0', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24C0', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24C0', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24C0', source: '엑스데스', capture: false }),
       infoText: {
         en: 'Move around',
       },
     },
     {
       id: 'O4N Empowered Fire',
-      regex: / 14:24BF:Exdeath starts using Fire III/,
-      regexDe: / 14:24BF:Exdeath starts using Feuga/,
-      regexFr: / 14:24BF:Exdeath starts using Méga Feu/,
-      regexJa: / 14:24BF:エクスデス starts using ファイガ/,
+      regex: Regexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24BF', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24BF', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24BF', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24BF', source: '엑스데스', capture: false }),
       infoText: {
         en: 'Stop everything',
       },
     },
     {
       id: 'O4N Empowered Thunder',
-      regex: / 14:24C1:Exdeath starts using Thunder III/,
-      regexDe: / 14:24C1:Exdeath starts using Blitzga/,
-      regexFr: / 14:24C1:Exdeath starts using Méga Foudre/,
-      regexJa: / 14:24C1:エクスデス starts using サンダガ/,
+      regex: Regexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24C1', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24C1', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24C1', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24C1', source: '엑스데스', capture: false }),
       alertText: {
         en: 'Get out',
       },
     },
     {
       id: 'O4N Decisive Battle ',
-      regex: / 14:2408:Exdeath starts using The Decisive Battle/,
-      regexDe: / 14:2408:Exdeath starts using Entscheidungsschlacht/,
-      regexFr: / 14:2408:Exdeath starts using Combat Décisif/,
-      regexJa: / 14:2408:エクスデス starts using 決戦/,
+      regex: Regexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2408', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2408', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2408', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2408', source: '엑스데스', capture: false }),
       delaySeconds: 6,
       infoText: {
         en: 'Stand in the gap',
@@ -94,10 +108,12 @@
     },
     {
       id: 'O4N Zombie Breath',
-      regex: / 14:240A:Exdeath starts using /,
-      regexDe: / 14:240A:Exdeath starts using /,
-      regexFr: / 14:240A:Exdeath starts using /,
-      regexJa: / 14:240A:エクスデス starts using /,
+      regex: Regexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '240A', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '240A', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '240A', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '240A', source: '엑스데스', capture: false }),
       delaySeconds: 6,
       infoText: {
         en: 'Behind head--Avoid zombie breath',
@@ -105,29 +121,33 @@
     },
     {
       id: 'O4N Black Hole',
-      regex: / 14:24C8:Exdeath starts using Black Hole on Exdeath/,
-      regexDe: / 14:24C8:Exdeath starts using Schwarzes Loch on Exdeath/,
-      regexFr: / 14:24C8:Exdeath starts using Trou Noir on Exdeath/,
-      regexJa: / 14:24C8:エクスデス starts using ブラックホール on エクスデス/,
+      regex: Regexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24C8', source: 'Exdeath', target: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24C8', source: 'エクスデス', target: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24C8', source: '艾克斯迪司', target: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24C8', source: '엑스데스', target: '엑스데스', capture: false }),
       infoText: {
         en: 'Avoid black holes',
       },
     },
     {
       id: 'O4N Vacuum Wave',
-      regex: / 14:24B8:Exdeath starts using Vacuum Wave on Exdeath/,
-      regexDe: / 14:24B8:Exdeath starts using Vakuumwelle on Exdeath/,
-      regexFr: / 14:24B8:Exdeath starts using Vacuum on Exdeath/,
-      regexJa: / 14:24B8:エクスデス starts using 真空波 on エクスデス/,
+      regex: Regexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24B8', source: 'Exdeath', target: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24B8', source: 'エクスデス', target: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24B8', source: '艾克斯迪司', target: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24B8', source: '엑스데스', target: '엑스데스', capture: false }),
       alertText: {
         en: 'Knockback',
       },
     },
     {
       id: 'O4N Flare',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Flare on YOU',
@@ -135,24 +155,26 @@
     },
     {
       id: 'O4N Holy',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:003E/,
+      regex: Regexes.headMarker({ id: '003E' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
+          en: 'Stack on ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'O4N Meteor',
-      regex: / 14:24C6:Exdeath starts using Meteor/,
-      regexDe: / 14:24C6:Exdeath starts using Meteor/,
-      regexFr: / 14:24C6:Exdeath starts using Météore/,
-      regexJa: / 14:24C6:エクスデス starts using メテオ/,
+      regex: Regexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24C6', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24C6', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24C6', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24C6', source: '엑스데스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },

@@ -6,6 +6,7 @@
 .map-padding {
   width: 90%;
   height: 90%;
+
   /* Leave extra room for long labels on the edge */
   padding: 5%;
 }
@@ -14,28 +15,28 @@
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(950%/13);
+  padding-bottom: calc(950% / 13);
 }
 
 .aspect-ratio-pagos {
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(950%/15);
+  padding-bottom: calc(950% / 15);
 }
 
 .aspect-ratio-pyros {
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(1450%/13.5);
+  padding-bottom: calc(1450% / 13.5);
 }
 
 .aspect-ratio-hydatos {
   width: 100%;
   height: 0;
   position: relative;
-  padding-bottom: calc(800%/15);
+  padding-bottom: calc(800% / 15);
 }
 
 .inner-container {
@@ -52,17 +53,16 @@
   opacity: 0.5;
 }
 
-#nm-labels {
-}
-
 .flag {
   position: absolute;
   transform: translate(0, -100%);
 }
-.flag-icon:before {
+
+.flag-icon::before {
   color: red;
   content: '\1F6A9';
 }
+
 .flag-name.text {
   font-size: 10px;
   color: red;
@@ -74,42 +74,6 @@
   position: absolute;
   font-size: 12px;
   transform: translate(-50%, -40%);
-}
-
-.nm-down .nm-name {
-  font-size: 10px;
-  color: #D25454;
-}
-
-.nm-down .nm-time {
-  font-size: 10px;
-  color: #D25454;
-}
-
-@keyframes pulse {
-  0% {
-    transform: scale(1);
-  }
-  100% {
-   transform: scale(1.2);
-  }
-}
-
-.nm-pop .nm-name {
-  color: #8686FF;
-  font-size: 18;
-  animation: pulse 1s infinite alternate;
-}
-
-.nm-pop .nm-time {
-  display: none;
-}
-.nm-pop .nm-icon {
-  display: none;
-}
-
-.nm-icon {
-
 }
 
 .nm-name {
@@ -125,6 +89,40 @@
   min-width: 100px;
 }
 
+.nm-down .nm-name {
+  font-size: 10px;
+  color: #d25454;
+}
+
+.nm-down .nm-time {
+  font-size: 10px;
+  color: #d25454;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+.nm-pop .nm-name {
+  color: #8686ff;
+  font-size: 18;
+  animation: pulse 1s infinite alternate;
+}
+
+.nm-pop .nm-time {
+  display: none;
+}
+
+.nm-pop .nm-icon {
+  display: none;
+}
+
 .player {
   position: absolute;
   display: block;
@@ -132,13 +130,13 @@
   height: 12px;
   width: 12px;
   margin: 0;
-  background-image: radial-gradient(circle, #3CF5D3, #05121B);
+  background-image: radial-gradient(circle, #3cf5d3, #05121b);
   transform: translate(-50%, -50%);
 }
 
 #label-container {
   position: absolute;
-  left: 0px;
+  left: 0;
   font-size: 16px;
   font-weight: normal;
   padding: 5px;
@@ -164,6 +162,7 @@
 .resize-helper {
   display: none;
 }
+
 .resizeHandle .resize-helper {
   display: inline-block;
 }

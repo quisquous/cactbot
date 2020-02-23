@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Mt\. Gulg$/,
+  zoneRegex: {
+    en: /^Mt\. Gulg$/,
+    ko: /^굴그 화산$/,
+  },
   damageWarn: {
     'Gulg Immolation': '41AA',
     'Gulg Tail Smash': '41AB',

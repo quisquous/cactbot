@@ -11,12 +11,15 @@ matrix:
       - npm install
     script:
       - npm run lint
+      - npm run stylelint
+      - npm run markdownlint
       - npm test
 
   - language: python
     python:
       - 3.6
     install:
-      - pip install pylint==2.2.3 requests==2.22.0 PyYAML==5.1.2
+      - pip install pylint==2.2.3 requests==2.22.0 PyYAML==5.1.2 black==19.10b0
     script:
       - pylint **/*.py --errors-only
+      - black **/*.py --line-length 100 --diff

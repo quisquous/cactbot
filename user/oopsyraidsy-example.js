@@ -2,23 +2,6 @@
 
 // Rename this file to `oopsyraidsy.js` then edit to change the oopsyraidsy ui.
 
-
-// Language to use for parsing oopsy raidsy.
-Options.Language = 'en';
-
-
-// Number of items in the live list to show during combat.  After combat
-// is over, the list will be maximized to the overlay size (with a
-// scrollbar if necessary).  When combat starts again it will shrink.
-Options.NumLiveListItemsInCombat = 5;
-
-
-// Minimum time (in seconds) before showing a "mistake" for a pull.
-// This prevent showing "early pull (0.1s)" sorts of messages which
-// aren't that useful.
-Options.MinimumTimeForPullMistake = 0.4;
-
-
 // A set of triggers to be ignored. The key is the 'id' of the trigger, and
 // the value should be true if the trigger is to be ignored, whereas false
 // will have no effect.  The trigger ids can be found in the trigger files for

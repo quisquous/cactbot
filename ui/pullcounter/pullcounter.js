@@ -14,6 +14,8 @@ class PullCounter {
     this.party = [];
     this.bosses = [];
 
+    this.resetRegex = Regexes.echo({ line: 'pullcounter reset' });
+
     callOverlayHandler({
       call: 'cactbotLoadData',
       overlay: 'pullcounter',
@@ -26,9 +28,16 @@ class PullCounter {
     this.pullCounts[boss.id] = (this.pullCounts[boss.id] || 0) + 1;
     this.bossStarted = true;
 
-    this.element.innerText = this.pullCounts[boss.id];
-    this.element.classList.remove('wipe');
+    this.ShowElementFor(boss.id);
+    this.SaveData();
+  }
 
+  ShowElementFor(id) {
+    this.element.innerText = this.pullCounts[id];
+    this.element.classList.remove('wipe');
+  }
+
+  SaveData() {
     callOverlayHandler({
       call: 'cactbotSaveData',
       overlay: 'pullcounter',
@@ -41,6 +50,8 @@ class PullCounter {
       return;
     for (let i = 0; i < e.detail.logs.length; ++i) {
       let log = e.detail.logs[i];
+      if (log.match(this.resetRegex))
+        this.ResetPullCounter();
       if (log.match(gLang.countdownEngageRegex())) {
         if (this.countdownBoss)
           this.OnFightStart(this.countdownBoss);
@@ -62,6 +73,23 @@ class PullCounter {
     this.element.innerText = '';
     this.zone = e.detail.zoneName;
     this.ReloadTriggers();
+  }
+
+  ResetPullCounter() {
+    if (this.bosses.length > 0) {
+      for (let i = 0; i < this.bosses.length; ++i) {
+        let id = this.bosses[i].id;
+        this.pullCounts[id] = 0;
+        console.log('resetting pull count of: ' + id);
+        this.ShowElementFor(id);
+      }
+    } else {
+      let id = this.zone;
+      console.log('resetting pull count of: ' + id);
+      this.ShowElementFor(id);
+    }
+
+    this.SaveData();
   }
 
   ReloadTriggers() {

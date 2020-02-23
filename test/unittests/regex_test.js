@@ -86,8 +86,18 @@ let tests = {
       '[12:05:12.479] 15:4007CA96:Graffias:366:Attack:106E8400:Tako Yaki:710003:3F0000:0:0:0:0:0:0:0:0:0:0:0:0:0:0:967:1107:10000:10000:0:1000:223.4988:-147.7532:-39.29175:-3.109571:1604:10948:0:0:0:1000:225.452:-145.6169:-39.29175:-3.013695:0000B2D4',
       '[12:48:31.881] 16:4004D36E:Necropsyche:46A8:Neuro Squama:4004D3F1:Lefse:750003:74E0000:1C:46A88000:0:0:0:0:0:0:0:0:0:0:0:0:46373:48662:7000:7000:0:1000:-528.4657:387.2892:45.88464:0.6611078:2074788:4874688:10000:10000:0:1000:-525.4445:391.1954:46.67033:-1.60059:005286B5',
     ];
+
+    let testBadMatch = '[20:29:39.392] 15:107B9AC8:Tako Yaki:07:Attack:40017D58:Daxio:710003:DC0000:1E:50000:1C:1B60000:550003:2CA000:0:0:0:0:0:0:0:0:8207:24837:7230:7230:0:1000:527.5806:-362.7833:-19.61513:2.898741:8998:8998:10000:10000:0:1000:528.6487:-365.8656:-22.08109:-0.3377206:000AD7BF';
+    // Bad match is an ability line too.
+    lines.push(testBadMatch);
+
     regexCaptureTest(Regexes.ability, lines);
     regexCaptureTest(Regexes.abilityFull, lines);
+
+    // Tests a bug where a :1E: later in the line would be caught by overzealous
+    // matchers on source names.
+    let abilityHallowed = Regexes.ability({ id: '1E' });
+    assert.isNull(testBadMatch.match(abilityHallowed));
   },
   headMarker: () => {
     let lines = [
@@ -156,6 +166,14 @@ let tests = {
       '[19:39:36.673] 19:Potato Chippy was defeated by Tater Tot.',
     ];
     regexCaptureTest(Regexes.wasDefeated, lines);
+  },
+  hasHP: () => {
+    let lines = [
+      '[21:14:50.793] 0D:Tini Poutini HP at 96%.',
+      '[21:16:25.491] 0D:Potato Chippy HP at 64%.',
+      '[00:17:27.689] 0D:French Fry HP at 100%.',
+    ];
+    regexCaptureTest(Regexes.hasHP, lines);
   },
   gameLog: () => {
     let echoLines = [

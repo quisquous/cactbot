@@ -2,18 +2,22 @@
 
 // Byakko Extreme
 [{
-  zoneRegex: /^(The Jade Stoa \(Extreme\)|白虎诗魂战)$/,
+  zoneRegex: {
+    en: /^The Jade Stoa \(Extreme\)$/,
+    cn: /^白虎诗魂战$/,
+  },
   timelineFile: 'byakko-ex.txt',
   triggers: [
     {
       id: 'ByaEx Heavenly Strike',
-      regex: / 14:27DA:Byakko starts using Heavenly Strike on (\y{Name})/,
-      regexCn: / 14:27DA:白虎 starts using 天雷掌 on (\y{Name})/,
-      regexDe: / 14:27DA:Byakko starts using Himmlischer Schlag on (\y{Name})/,
-      regexFr: / 14:27DA:Byakko starts using Frappe Céleste on (\y{Name})/,
-      regexJa: / 14:27DA:白虎 starts using 天雷掌 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      regexDe: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      regexFr: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      regexJa: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
+      regexCn: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
+      regexKo: Regexes.startsUsing({ id: '27DA', source: '백호' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
@@ -24,16 +28,16 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ja: 'タンク即死級に' + data.ShortName(matches[1]),
-            cn: '死刑->' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: 'タンク即死級に' + data.ShortName(matches.target),
+            cn: '死刑->' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -46,11 +50,12 @@
     },
     {
       id: 'ByaEx Flying Donut',
-      regex: / 14:27F4:Byakko starts using Sweep The Leg/,
-      regexCn: / 14:27F4:白虎 starts using 旋体脚/,
-      regexDe: / 14:27F4:Byakko starts using Vertikalität/,
-      regexFr: / 14:27F4:Byakko starts using Verticalité/,
-      regexJa: / 14:27F4:白虎 starts using 旋体脚/,
+      regex: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27F4', source: '백호', capture: false }),
       alertText: {
         en: 'Get Inside',
         de: 'Reingehen',
@@ -68,11 +73,12 @@
     },
     {
       id: 'ByaEx Sweep The Leg',
-      regex: / 14:27DB:Byakko starts using Sweep The Leg/,
-      regexCn: / 14:27DB:白虎 starts using 旋体脚/,
-      regexDe: / 14:27DB:Byakko starts using Vertikalität/,
-      regexFr: / 14:27DB:Byakko starts using Verticalité/,
-      regexJa: / 14:27DB:白虎 starts using 旋体脚/,
+      regex: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27DB', source: '백호', capture: false }),
       alertText: {
         en: 'Get Behind',
         de: 'Hinter ihn laufen',
@@ -90,11 +96,12 @@
     },
     {
       id: 'ByaEx Storm Pulse',
-      regex: / 14:27DC:Byakko starts using Storm Pulse/,
-      regexCn: / 14:27DC:白虎 starts using 风雷波动/,
-      regexDe: / 14:27DC:Byakko starts using Gewitterwelle/,
-      regexFr: / 14:27DC:Byakko starts using Pulsion De Tempête/,
-      regexJa: / 14:27DC:白虎 starts using 風雷波動/,
+      regex: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27DC', source: '백호', capture: false }),
       infoText: function(data) {
         if (data.role == 'healer') {
           return {
@@ -115,11 +122,12 @@
     },
     {
       id: 'ByaEx Distant Clap',
-      regex: / 14:27DD:Byakko starts using Distant Clap on Byakko/,
-      regexCn: / 14:27DD:白虎 starts using 远雷 on 白虎/,
-      regexDe: / 14:27DD:Byakko starts using Donnergrollen on Byakko/,
-      regexFr: / 14:27DD:Byakko starts using Tonnerre Lointain on Byakko/,
-      regexJa: / 14:27DD:白虎 starts using 遠雷 on 白虎/,
+      regex: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27DD', source: '백호', target: '백호', capture: false }),
       alertText: {
         en: 'Distant Clap',
         de: 'Donnergrollen',
@@ -137,13 +145,14 @@
     },
     {
       id: 'ByaEx State Of Shock Tank 1',
-      regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
-      regexCn: / 14:27E0:白虎 starts using 咒缚雷 on (\y{Name})/,
-      regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
-      regexFr: / 14:27E0:Byakko starts using État De Choc on (\y{Name})/,
-      regexJa: / 14:27E0:白虎 starts using 呪縛雷 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexDe: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexFr: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexJa: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
+      regexCn: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
+      regexKo: Regexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: function(data, matches) {
-        return data.role == 'tank' && matches[1] != data.me;
+        return data.role == 'tank' && matches.target != data.me;
       },
       alertText: {
         en: 'Provoke Boss',
@@ -162,14 +171,15 @@
     },
     {
       id: 'ByaEx State Of Shock Tank 2',
-      regex: / 14:27E0:Byakko starts using State Of Shock on (\y{Name})/,
-      regexCn: / 14:27E0:白虎 starts using 咒缚雷 on (\y{Name})/,
-      regexDe: / 14:27E0:Byakko starts using Bannblitze on (\y{Name})/,
-      regexFr: / 14:27E0:Byakko starts using État De Choc on (\y{Name})/,
-      regexJa: / 14:27E0:白虎 starts using 呪縛雷 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexDe: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexFr: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      regexJa: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
+      regexCn: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
+      regexKo: Regexes.startsUsing({ id: '27E0', source: '백호' }),
       delaySeconds: 12,
       condition: function(data, matches) {
-        return data.role == 'tank' && matches[1] == data.me;
+        return data.role == 'tank' && matches.target == data.me;
       },
       alertText: {
         en: 'Provoke Boss',
@@ -187,11 +197,13 @@
       },
     },
     {
-      regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
-      regexCn: / 14:27F9:白帝 starts using 雷轰/,
-      regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
-      regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
-      regexJa: / 14:27F9:白帝 starts using 雷轟/,
+      id: 'ByaEx Roar Counter',
+      regex: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       run: function(data) {
         data.roarCount = data.roarCount || 0;
         data.roarCount += 1;
@@ -199,11 +211,12 @@
     },
     {
       id: 'ByaEx Roar of Thunder',
-      regex: / 14:27F9:Hakutei starts using The Roar Of Thunder/,
-      regexCn: / 14:27F9:白帝 starts using 雷轰/,
-      regexDe: / 14:27F9:Hakutei starts using Brüllen Des Donners/,
-      regexFr: / 14:27F9:Hakutei starts using Rugissement Du Tonnerre/,
-      regexJa: / 14:27F9:白帝 starts using 雷轟/,
+      regex: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       delaySeconds: 14,
       alarmText: function(data) {
         if (data.roarCount != 2)
@@ -222,9 +235,9 @@
     },
     {
       id: 'ByaEx Bubble',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0065:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0065' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Drop bubble outside',
@@ -243,13 +256,14 @@
     },
     {
       id: 'ByaEx Ominous Wind',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ominous Wind/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Unheilvoller Wind/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Vent Mauvais/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 祟り風/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 妖风/,
+      regex: Regexes.gainsEffect({ effect: 'Ominous Wind' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Unheilvoller Wind' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Vent Mauvais' }),
+      regexJa: Regexes.gainsEffect({ effect: '祟り風' }),
+      regexCn: Regexes.gainsEffect({ effect: '妖风' }),
+      regexKo: Regexes.gainsEffect({ effect: '불길한 바람' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Pink bubble',
@@ -268,9 +282,9 @@
     },
     {
       id: 'ByaEx Puddle Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0004:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0004' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'Puddles on YOU',
@@ -289,9 +303,9 @@
     },
     {
       id: 'ByaEx G100',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0057:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Get away',
@@ -310,11 +324,11 @@
     },
     {
       id: 'ByaEx Tiger Add',
-      regex: / 00:0044:[^:]*:Twofold is my wrath, twice-cursed my foes!/,
-      regexCn: / 00:0044:[^:]*:半身分离，助我杀敌！向胆敢抵抗的家伙们露出你的爪牙！/,
-      regexDe: / 00:0044:[^:]*:Stürmt los, meine zwei Gesichter!/,
-      regexFr: / 00:0044:[^:]*:Ma colère devient double.*?!/,
-      regexJa: / 00:0044:[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！/,
+      regex: Regexes.dialog({ line: '[^:]*:Twofold is my wrath, twice-cursed my foes!', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:半身分离，助我杀敌！向胆敢抵抗的家伙们露出你的爪牙！', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Stürmt los, meine zwei Gesichter!', capture: false }),
+      regexFr: Regexes.dialog({ line: '[^:]*:Ma colère devient double.*?!', capture: false }),
+      regexJa: Regexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -328,22 +342,26 @@
       },
     },
     {
-      regex: / 14:27E2:Byakko starts using Highest Stakes/,
-      regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
-      regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
-      regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
+      id: 'ByaEx Stake Counter',
+      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       run: function(data) {
         data.stakeCount = data.stakeCount || 0;
         data.stakeCount += 1;
       },
     },
     {
-      regex: / 14:27E2:Byakko starts using Highest Stakes/,
-      regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
-      regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
-      regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
+      id: 'ByaEx Stake Counter Cleanup',
+      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       delaySeconds: 20,
       run: function(data) {
         delete data.stakeCount;
@@ -351,11 +369,12 @@
     },
     {
       id: 'ByaEx Highest Stakes',
-      regex: / 14:27E2:Byakko starts using Highest Stakes/,
-      regexCn: / 14:27E2:白虎 starts using 乾坤一掷/,
-      regexDe: / 14:27E2:Byakko starts using Höchstes Risiko/,
-      regexFr: / 14:27E2:Byakko starts using Tout Pour Le Tout/,
-      regexJa: / 14:27E2:白虎 starts using 乾坤一擲/,
+      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       infoText: function(data) {
         return {
           en: 'Stack #' + data.stakeCount,
@@ -370,53 +389,49 @@
     {
       'locale': 'de',
       'replaceSync': {
+        'All creation trembles before my might!': 'Himmel und Erde, erzittert!',
         'Aratama Force': 'Aratama-Kraft',
         'Aratama Soul': 'Aratama-Seele',
         'Byakko': 'Byakko',
-        'Engage!': 'Start!',
         'Hakutei': 'Hakutei',
         'There is no turning back!': 'Mein Jagdtrieb ist erwacht!',
-        'All creation trembles before my might!': 'Himmel und Erde, erzittert!',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Answer On High': 'Himmlische Antwort',
         'Aratama': 'Einschlag',
         'Bombogenesis': 'Plötzliches Orkantief',
         'Clutch': 'Umklammerung',
-        'Dance Of The Incomplete': 'Tanz Der Zwei Gesichter',
+        'Dance Of The Incomplete': 'Tanz der zwei Gesichter',
         'Distant Clap': 'Donnergrollen',
-        'Enrage': 'Finalangriff',
-        'Fell Swoop': 'Auf Einen Streich',
-        'Fire And Lightning': 'Feuer Und Blitz',
+        'Donut AOE': 'Donut AoE',
+        'Fell Swoop': 'Auf einen Streich',
+        'Fire And Lightning': 'Feuer und Blitz',
         'Gale Force': 'Orkan',
+        'Hakutei Add': 'Hakutei Add',
         'Heavenly Strike': 'Himmlischer Schlag',
         'Highest Stakes': 'Höchstes Risiko',
         'Hundredfold Havoc': 'Hundertfache Verwüstung',
         'Imperial Guard': 'Herbststurm',
+        'Line AOE': 'Linien AoE',
         'Ominous Wind': 'Unheilvoller Wind',
+        'Orb Marker': 'Orb Marker',
+        'Puddle Markers': 'Flächen Marker',
+        'Roar Of Thunder': 'Brüllen Des Donners',
         'State Of Shock': 'Bannblitze',
         'Steel Claw': 'Stahlklaue',
         'Storm Pulse': 'Gewitterwelle',
         'Sweep The Leg': 'Vertikalität',
-        'The Roar Of Thunder': 'Brüllen Des Donners',
-        'The Voice Of Thunder': 'Stimme Des Donners',
+        'TP Orbs': 'TP Orbs',
+        'The Roar Of Thunder': 'Brüllen des Donners',
+        'The Voice Of Thunder': 'Stimme des Donners',
+        'Tiger Cleave': 'Tiger Cleave',
         'Unrelenting Anguish': 'Pandämonium',
         'Vacuum Claw': 'Vakuumklaue',
         'White Herald': 'Herbstböe',
-        'Hakutei Add': 'Hakutei Add',
-        'Puddle Markers': 'Flächen Marker',
-        'tiger untargetable': 'Tiger nicht anvisierbar',
-        'tiger lands': 'Tiger landet',
-        'Roar Of Thunder': 'Brüllen Des Donners',
-        'Tiger Cleave': 'Tiger Cleave',
-        'Donut AOE': 'Donut AoE',
-        'Line AOE': 'Linien AoE',
-        'Orb Marker': 'Orb Marker',
-        'leap north': 'Sprung nach Norden',
-        'TP Orbs': 'TP Orbs',
         'leap middle': 'Sprung in die Mitte',
+        'leap north': 'Sprung nach Norden',
+        'tiger lands': 'Tiger landet',
+        'tiger untargetable': 'Tiger nicht anvisierbar',
       },
       '~effectNames': {
         'Area Of Influence Up': 'Erweiterter Radius',
@@ -425,64 +440,56 @@
         'Fetters': 'Gefesselt',
         'Ominous Wind': 'Unheilvoller Wind',
         'Paralysis': 'Paralyse',
-        'Physical Vulnerability Up': 'Erhöhte Physische Verwundbarkeit',
+        'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
         'Stun': 'Betäubung',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Aratama Force': 'Aramitama',
+        'All creation trembles before my might!': 'Tremblez devant mon pouvoir !',
+        'Aratama Force': 'aramitama',
         'Aratama Soul': 'Aramitama',
         'Byakko': 'Byakko',
-        'Engage!': 'À l\'attaque',
-        'Hakutei': 'Byakko',
+        'Hakutei': 'Hakutei',
         'There is no turning back!': 'Grrraaaah ! ... Trop tard pour les regrets !',
-        'All creation trembles before my might!': 'Tremblez devant mon pouvoir !',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
-        'Answer On High': 'Foudre Céleste',
+        'Answer On High': 'Foudre céleste',
         'Aratama': 'Aratama',
         'Bombogenesis': 'Bombogénèse',
         'Clutch': 'Empoignement',
-        'Dance Of The Incomplete': 'Danse Semi-bestiale',
-        'Distant Clap': 'Tonnerre Lointain',
-        'Enrage': 'Enrage',
-        'Fell Swoop': 'Éléments Déchaînés',
-        'Fire And Lightning': 'Feu Et Foudre',
-        'Gale Force': 'Coup De Rafale',
-        'Heavenly Strike': 'Frappe Céleste',
-        'Highest Stakes': 'Tout Pour Le Tout',
-        'Hundredfold Havoc': 'Ravages Centuples',
-        'Imperial Guard': 'Garde Impériale',
-        'Ominous Wind': 'Vent Mauvais',
-        'State Of Shock': 'État De Choc',
-        'Steel Claw': 'Griffe D\'acier',
-        'Storm Pulse': 'Pulsion De Tempête',
+        'Dance Of The Incomplete': 'Danse semi-bestiale',
+        'Distant Clap': 'Tonnerre lointain',
+        'Donut AOE': 'Donut AOE', // FIXME
+        'Fell Swoop': 'Éléments déchaînés',
+        'Fire And Lightning': 'Feu et foudre',
+        'Gale Force': 'Coup de rafale',
+        'Hakutei Add': 'Hakutei Add', // FIXME
+        'Heavenly Strike': 'Frappe céleste',
+        'Highest Stakes': 'Tout pour le tout',
+        'Hundredfold Havoc': 'Ravages centuples',
+        'Imperial Guard': 'Garde impériale',
+        'Line AOE': 'Line AOE', // FIXME
+        'Ominous Wind': 'Vent mauvais',
+        'Orb Marker': 'Orb Marker', // FIXME
+        'Puddle Markers': 'Puddle Markers', // FIXME
+        'Roar Of Thunder': 'Roar Of Thunder', // FIXME
+        'State Of Shock': 'Foudroiement brutal',
+        'Steel Claw': 'Griffe d\'acier',
+        'Storm Pulse': 'Pulsion de tempête',
         'Sweep The Leg': 'Verticalité',
-        'The Roar Of Thunder': 'Rugissement Du Tonnerre',
-        'The Voice Of Thunder': 'Voix Du Tonnerre',
-        'Unrelenting Anguish': 'Douleur Continuelle',
-        'Vacuum Claw': 'Griffe De Vide',
-        'White Herald': 'Héraut Blanc',
-
-        // FIXME
-        'leap north': 'leap north',
-        'Puddle Markers': 'Puddle Markers',
-        'Hakutei Add': 'Hakutei Add',
-        'Tiger Cleave': 'Tiger Cleave',
-        'tiger untargetable': 'tiger untargetable',
-        'tiger lands': 'tiger lands',
-        'TP Orbs': 'TP Orbs',
-        'Roar Of Thunder': 'Brüllen Des Donners',
-        'Donut AOE': 'Donut AOE',
-        'Line AOE': 'Line AOE',
-        'Orb Marker': 'Orb Marker',
-        'leap middle': 'leap middle',
+        'TP Orbs': 'TP Orbs', // FIXME
+        'The Roar Of Thunder': 'Rugissement du tonnerre',
+        'The Voice Of Thunder': 'Voix du tonnerre',
+        'Tiger Cleave': 'Tiger Cleave', // FIXME
+        'Unrelenting Anguish': 'Douleur continuelle',
+        'Vacuum Claw': 'Griffe de vide',
+        'White Herald': 'Héraut blanc',
+        'leap middle': 'leap middle', // FIXME
+        'leap north': 'leap north', // FIXME
+        'tiger lands': 'tiger lands', // FIXME
+        'tiger untargetable': 'tiger untargetable', // FIXME
       },
       '~effectNames': {
         'Area Of Influence Up': 'Aire D\'effet Augmentée',
@@ -498,13 +505,12 @@
     {
       'locale': 'ja',
       'replaceSync': {
+        'All creation trembles before my might!': '震天動地の力を、見せてやろうッ！',
         'Aratama Force': '荒弾',
         'Aratama Soul': '荒魂',
         'Byakko': '白虎',
-        'Engage!': '戦闘開始！',
         'Hakutei': '白帝',
         'There is no turning back!': 'オオオオオ……この衝動、もはや止められん！',
-        'All creation trembles before my might!': '震天動地の力を、見せてやろうッ！',
       },
       'replaceText': {
         'Answer On High': '天つ雷',
@@ -513,37 +519,35 @@
         'Clutch': '掌握',
         'Dance Of The Incomplete': '半獣舞踏',
         'Distant Clap': '遠雷',
+        'Donut AOE': 'Donut AOE', // FIXME
         'Fell Swoop': '迅雷風烈波',
         'Fire And Lightning': '雷火一閃',
         'Gale Force': '暴風',
+        'Hakutei Add': 'Hakutei Add', // FIXME
         'Heavenly Strike': '天雷掌',
         'Highest Stakes': '乾坤一擲',
         'Hundredfold Havoc': '百雷繚乱',
         'Imperial Guard': '白帝一陣',
+        'Line AOE': 'Line AOE', // FIXME
         'Ominous Wind': '祟り風',
+        'Orb Marker': 'Orb Marker', // FIXME
+        'Puddle Markers': 'Puddle Markers', // FIXME
+        'Roar Of Thunder': 'Roar Of Thunder', // FIXME
         'State Of Shock': '呪縛雷',
         'Steel Claw': '鉄爪斬',
         'Storm Pulse': '風雷波動',
         'Sweep The Leg': '旋体脚',
+        'TP Orbs': 'TP Orbs', // FIXME
         'The Roar Of Thunder': '雷轟',
         'The Voice Of Thunder': '雷声',
+        'Tiger Cleave': 'Tiger Cleave', // FIXME
         'Unrelenting Anguish': '無間地獄',
         'Vacuum Claw': '真空爪',
         'White Herald': '白帝衝',
-
-        // FIXME
-        'leap north': 'leap north',
-        'Puddle Markers': 'Puddle Markers',
-        'Hakutei Add': '白帝 Add',
-        'Tiger Cleave': 'Tiger Cleave',
-        'tiger untargetable': 'tiger untargetable',
-        'tiger lands': 'tiger lands',
-        'TP Orbs': 'TP Orbs',
-        'Roar Of Thunder': 'Brüllen Des Donners',
-        'Donut AOE': 'Donut AOE',
-        'Line AOE': 'Line AOE',
-        'Orb Marker': 'Orb Marker',
-        'leap middle': 'leap middle',
+        'leap middle': 'leap middle', // FIXME
+        'leap north': 'leap north', // FIXME
+        'tiger lands': 'tiger lands', // FIXME
+        'tiger untargetable': 'tiger untargetable', // FIXME
       },
       '~effectNames': {
         'Area Of Influence Up': 'アクション効果範囲拡大',
@@ -559,69 +563,117 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Hakutei': '白帝',
-        'Engage!': '战斗开始！',
-        'Byakko': '白虎',
-        'Aratama Soul': '荒魂',
-        'Aratama Force': '荒弹',
-        'There is no turning back!': '我体内的冲动已无法抑制！',
         'All creation trembles before my might!': '世间万物皆因天惊地动而颤抖！',
-        'Distant Clap': '远雷',
-        'Unrelenting Anguish': '无间地狱',
-        'Fire And Lightning': '雷火一闪',
+        'Aratama Force': '荒弹',
+        'Aratama Soul': '荒魂',
+        'Byakko': '白虎',
+        'Hakutei': '白帝',
+        'There is no turning back!': '我体内的冲动已无法抑制！',
       },
       'replaceText': {
-        'White Herald': '白帝冲',
-        'Vacuum Claw': '真空爪',
-        'Vacuum Blade': '真空刃',
-        'Unrelenting Anguish': '无间地狱',
-        'Unknown Ability': 'Unknown Ability',
-        'The Voice Of Thunder': '雷声',
-        'The Roar Of Thunder': '雷轰',
-        'Sweep The Leg': '旋体脚',
-        'Storm Pulse': '风雷波动',
-        'Steel Claw': '铁爪斩',
-        'State Of Shock': '咒缚雷',
-        'Ominous Wind': '妖风',
-        'Imperial Guard': '白帝降临',
-        'Hundredfold Havoc': '百雷缭乱',
-        'Highest Stakes': '乾坤一掷',
-        'Heavenly Strike': '天雷掌',
-        'Gale Force': '暴风',
-        'Fire And Lightning': '雷火一闪',
-        'Fell Swoop': '迅雷风烈波',
-        'Enrage': '战斗开始',
-        'Distant Clap': '远雷',
-        'Dance Of The Incomplete': '半兽舞蹈',
-        'Clutch': '掌握',
-        'Bombogenesis': '炸弹低气压',
-        'Aratama': '中弹',
         'Answer On High': '天雷',
-        '--untargetable--': '--不可选中--',
-        '--targetable--': '--可选中--',
-        'leap north': '跳北',
-        'Puddle Markers': '点名',
-        'Hakutei Add': '白帝出现',
-        'Tiger Cleave': '白帝爪',
-        'tiger untargetable': '白帝无法选中',
-        'tiger lands': '白帝落地',
-        'TP Orbs': '撞球',
-        'Roar Of Thunder': '雷轰',
+        'Aratama': '荒弹',
+        'Bombogenesis': '炸弹低气压',
+        'Clutch': '紧握',
+        'Dance Of The Incomplete': '半兽舞蹈',
+        'Distant Clap': '远雷',
         'Donut AOE': '月环',
+        'Fell Swoop': '迅雷风烈波',
+        'Fire And Lightning': '雷火一闪',
+        'Gale Force': '暴风',
+        'Hakutei Add': '白帝出现',
+        'Heavenly Strike': '天雷掌',
+        'Highest Stakes': '乾坤一掷',
+        'Hundredfold Havoc': '百雷缭乱',
+        'Imperial Guard': '白帝降临',
         'Line AOE': '直线AOE',
+        'Ominous Wind': '妖风',
         'Orb Marker': '点名',
+        'Puddle Markers': '点名',
+        'Roar Of Thunder': '雷轰',
+        'State Of Shock': '咒缚雷',
+        'Steel Claw': '铁爪斩',
+        'Storm Pulse': '风雷波动',
+        'Sweep The Leg': '旋体脚',
+        'TP Orbs': '撞球',
+        'The Roar Of Thunder': '雷轰',
+        'The Voice Of Thunder': '雷声',
+        'Tiger Cleave': '白帝爪',
+        'Unrelenting Anguish': '无间地狱',
+        'Vacuum Claw': '真空爪',
+        'White Herald': '白帝冲',
         'leap middle': '跳中间',
+        'leap north': '跳北',
+        'tiger lands': '白帝落地',
+        'tiger untargetable': '白帝无法选中',
       },
       '~effectNames': {
-        'Stun': '眩晕',
-        'Physical Vulnerability Up': '物理受伤加重',
-        'Paralysis': '麻痹',
-        'Ominous Wind': '妖风',
-        'Fetters': '拘束',
-        'Falling': '自由落体',
-        'Down For The Count': '击倒',
-        'Bleeding': '出血',
         'Area Of Influence Up': '扩大技能效果范围',
+        'Down For The Count': '击倒',
+        'Falling': '自由落体',
+        'Fetters': '拘束',
+        'Ominous Wind': '妖风',
+        'Paralysis': '麻痹',
+        'Physical Vulnerability Up': '物理受伤加重',
+        'Stun': '眩晕',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'All creation trembles before my might!': 'All creation trembles before my might!', // FIXME
+        'Aratama Force': '아라미타마 탄환',
+        'Aratama Soul': 'Aratama Soul', // FIXME
+        'Byakko': '백호',
+        'Hakutei': '하얀 제왕',
+        'There is no turning back!': 'There is no turning back!', // FIXME
+      },
+      'replaceText': {
+        'Answer On High': '하늘의 번개',
+        'Aratama': '아라미타마 탄환',
+        'Bombogenesis': '폭탄 저기압',
+        'Clutch': '장악',
+        'Dance Of The Incomplete': '반수의 춤',
+        'Distant Clap': '원뢰',
+        'Donut AOE': 'Donut AOE', // FIXME
+        'Fell Swoop': '신뢰풍렬파',
+        'Fire And Lightning': '뇌화일섬',
+        'Gale Force': '폭풍',
+        'Hakutei Add': 'Hakutei Add', // FIXME
+        'Heavenly Strike': '천뢰장',
+        'Highest Stakes': '건곤일척',
+        'Hundredfold Havoc': '백뢰요란',
+        'Imperial Guard': '제왕의 진격',
+        'Line AOE': 'Line AOE', // FIXME
+        'Ominous Wind': '불길한 바람',
+        'Orb Marker': 'Orb Marker', // FIXME
+        'Puddle Markers': 'Puddle Markers', // FIXME
+        'Roar Of Thunder': 'Roar Of Thunder', // FIXME
+        'State Of Shock': '주박뢰',
+        'Steel Claw': '강철 발톱',
+        'Storm Pulse': '풍뢰파동',
+        'Sweep The Leg': '돌려차기',
+        'TP Orbs': 'TP Orbs', // FIXME
+        'The Roar Of Thunder': '뇌굉',
+        'The Voice Of Thunder': '뇌성',
+        'Tiger Cleave': 'Tiger Cleave', // FIXME
+        'Unrelenting Anguish': '무간지옥',
+        'Vacuum Claw': '진공 할퀴기',
+        'White Herald': '제왕의 충격',
+        'leap middle': 'leap middle', // FIXME
+        'leap north': 'leap north', // FIXME
+        'tiger lands': 'tiger lands', // FIXME
+        'tiger untargetable': 'tiger untargetable', // FIXME
+      },
+      '~effectNames': {
+        'Area Of Influence Up': '기술 범위 확대',
+        'Down For The Count': '넉다운',
+        'Falling': '자유 낙하',
+        'Fetters': '구속',
+        'Ominous Wind': '불길한 바람',
+        'Paralysis': '마비',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Stun': '기절',
       },
     },
   ],

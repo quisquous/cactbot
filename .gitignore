@@ -6,10 +6,9 @@ packages/
 user/
 
 !user/README.txt
-CactbotOverlay/CactbotOverlay.csproj.user
+plugin/**/*.csproj.user
 
-!CactbotOverlay/ThirdParty/*/dummy.txt
-CactbotOverlay/ThirdParty/
+plugin/ThirdParty/
 publish/
 __pycache__
 node_modules
@@ -17,4 +16,6 @@ package-lock.json
 .idea/*
 .idea/
 *.iml
+*.swp
 .DS_Store
+util/DEPS.cache

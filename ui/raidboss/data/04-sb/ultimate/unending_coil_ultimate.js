@@ -1,182 +1,202 @@
 'use strict';
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)
-// localization:
-//   de: partial timeline, partial triggers
-//   fr: partial timeline, partial triggers
-//   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /^(The Unending Coil Of Bahamut \(Ultimate\)|巴哈姆特绝境战)$/,
+  zoneRegex: {
+    en: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
+    cn: /^巴哈姆特绝境战$/,
+    ko: /^절 바하무트 토벌전$/,
+  },
   timelineFile: 'unending_coil_ultimate.txt',
   triggers: [
     // --- State ---
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Firescorched/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 火角/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Feuerhorn/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Corne-de-feu/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of ファイアホーン/,
+      id: 'UCU Firescorched Gain',
+      regex: Regexes.gainsEffect({ effect: 'Firescorched' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Feuerhorn' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Corne-De-Feu' }),
+      regexJa: Regexes.gainsEffect({ effect: 'ファイアホーン' }),
+      regexCn: Regexes.gainsEffect({ effect: '火角' }),
+      regexKo: Regexes.gainsEffect({ effect: '화염뿔' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.fireDebuff = true;
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Firescorched/,
-      regexCn: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 火角/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Feuerhorn/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Corne-de-feu/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of ファイアホーン/,
+      id: 'UCU Firescorched Lose',
+      regex: Regexes.losesEffect({ effect: 'Firescorched' }),
+      regexDe: Regexes.losesEffect({ effect: 'Feuerhorn' }),
+      regexFr: Regexes.losesEffect({ effect: 'Corne-De-Feu' }),
+      regexJa: Regexes.losesEffect({ effect: 'ファイアホーン' }),
+      regexCn: Regexes.losesEffect({ effect: '火角' }),
+      regexKo: Regexes.losesEffect({ effect: '화염뿔' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.fireDebuff = false;
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Icebitten/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 冰爪/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Eisklaue/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Griffe-de-glace/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of アイスクロウ/,
+      id: 'UCU Icebitten Gain',
+      regex: Regexes.gainsEffect({ effect: 'Icebitten' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Eisklaue' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Griffe-De-Glace' }),
+      regexJa: Regexes.gainsEffect({ effect: 'アイスクロウ' }),
+      regexCn: Regexes.gainsEffect({ effect: '冰爪' }),
+      regexKo: Regexes.gainsEffect({ effect: '얼음발톱' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.iceDebuff = true;
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Icebitten/,
-      regexCn: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 冰爪/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Eisklaue/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Griffe-de-glace/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of アイスクロウ/,
+      id: 'UCU Icebitten Lose',
+      regex: Regexes.losesEffect({ effect: 'Icebitten' }),
+      regexDe: Regexes.losesEffect({ effect: 'Eisklaue' }),
+      regexFr: Regexes.losesEffect({ effect: 'Griffe-De-Glace' }),
+      regexJa: Regexes.losesEffect({ effect: 'アイスクロウ' }),
+      regexCn: Regexes.losesEffect({ effect: '冰爪' }),
+      regexKo: Regexes.losesEffect({ effect: '얼음발톱' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.iceDebuff = false;
       },
     },
     {
-      regex: / 1[56]:\y{ObjectId}:Firehorn:26C5:Fireball:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 1[56]:\y{ObjectId}:火角:26C5:火球:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Feuerhorn:26C5:Feuerball:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Corne-de-feu:26C5:Boule De Feu:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:ファイアホーン:26C5:ファイアボール:\y{ObjectId}:(\y{Name}):/,
+      id: 'UCU Fireball Counter',
+      regex: Regexes.ability({ id: '26C5', source: 'Firehorn' }),
+      regexDe: Regexes.ability({ id: '26C5', source: 'Feuerhorn' }),
+      regexFr: Regexes.ability({ id: '26C5', source: 'Corne-De-Feu' }),
+      regexJa: Regexes.ability({ id: '26C5', source: 'ファイアホーン' }),
+      regexCn: Regexes.ability({ id: '26C5', source: '火角' }),
+      regexKo: Regexes.ability({ id: '26C5', source: '화염뿔' }),
       run: function(data, matches) {
-        data.fireballs[data.naelFireballCount].push(matches[1]);
+        data.fireballs[data.naelFireballCount].push(matches.target);
       },
     },
     {
-      regex: / 14:26E2:Bahamut Prime starts using Quickmarch Trio/,
-      regexCn: / 14:26E2:至尊巴哈姆特 starts using 进军的三重奏/,
-      regexDe: / 14:26E2:Prim-Bahamut starts using Todesmarsch-Trio/,
-      regexFr: / 14:26E2:Primo-Bahamut starts using Trio De La Marche Militaire/,
-      regexJa: / 14:26E2:バハムート・プライム starts using 進軍の三重奏/,
+      id: 'UCU Quickmarch Phase',
+      regex: Regexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E2', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E2', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E2', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E2', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E2', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('quickmarch');
       },
     },
     {
-      regex: / 14:26E3:Bahamut Prime starts using Blackfire Trio/,
-      regexCn: / 14:26E3:至尊巴哈姆特 starts using 黑炎的三重奏/,
-      regexDe: / 14:26E3:Prim-Bahamut starts using Schwarzfeuer-Trio/,
-      regexFr: / 14:26E3:Primo-Bahamut starts using Trio Des Flammes Noires/,
-      regexJa: / 14:26E3:バハムート・プライム starts using 黒炎の三重奏/,
+      id: 'UCU Blackfire Phase',
+      regex: Regexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E3', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E3', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E3', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E3', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E3', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('blackfire');
       },
     },
     {
-      regex: / 14:26E4:Bahamut Prime starts using Fellruin Trio/,
-      regexCn: / 14:26E4:至尊巴哈姆特 starts using 灾厄的三重奏/,
-      regexDe: / 14:26E4:Prim-Bahamut starts using Untergangs-Trio/,
-      regexFr: / 14:26E4:Primo-Bahamut starts using Trio Du Désastre/,
-      regexJa: / 14:26E4:バハムート・プライム starts using 厄災の三重奏/,
+      id: 'UCU Fellruin Phase',
+      regex: Regexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E4', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E4', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E4', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E4', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E4', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('fellruin');
       },
     },
     {
-      regex: / 14:26E5:Bahamut Prime starts using Heavensfall Trio/,
-      regexCn: / 14:26E5:至尊巴哈姆特 starts using 天地的三重奏/,
-      regexDe: / 14:26E5:Prim-Bahamut starts using Himmelssturz Trio/,
-      regexFr: / 14:26E5:Primo-Bahamut starts using Trio De L'univers/,
-      regexJa: / 14:26E5:バハムート・プライム starts using 天地の三重奏/,
+      id: 'UCU Heavensfall Phase',
+      regex: Regexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E5', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E5', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E5', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E5', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E5', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('heavensfall');
       },
     },
     {
-      regex: / 14:26E6:Bahamut Prime starts using Tenstrike Trio/,
-      regexCn: / 14:26E6:至尊巴哈姆特 starts using 连击的三重奏/,
-      regexDe: / 14:26E6:Prim-Bahamut starts using Zehnschlag-Trio/,
-      regexFr: / 14:26E6:Primo-Bahamut starts using Trio Des Attaques/,
-      regexJa: / 14:26E6:バハムート・プライム starts using 連撃の三重奏/,
+      id: 'UCU Tenstrike Phase',
+      regex: Regexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E6', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E6', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E6', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E6', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E6', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('tenstrike');
       },
     },
     {
-      regex: / 14:26E7:Bahamut Prime starts using Grand Octet/,
-      regexCn: / 14:26E7:至尊巴哈姆特 starts using 群龙的八重奏/,
-      regexDe: / 14:26E7:Prim-Bahamut starts using Großes Oktett/,
-      regexFr: / 14:26E7:Primo-Bahamut starts using Octuors Des Dragons/,
-      regexJa: / 14:26E7:バハムート・プライム starts using 群竜の八重奏/,
+      id: 'UCU Octet Phase',
+      regex: Regexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26E7', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26E7', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26E7', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26E7', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26E7', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('octet');
       },
     },
     {
-      regex: / 16:\y{ObjectId}:Ragnarok:26B8:Heavensfall:\y{ObjectId}:(\y{Name}):/,
-      regexCn: / 16:\y{ObjectId}:诸神黄昏:26B8:天崩地裂:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 16:\y{ObjectId}:Ragnarök:26B8:Himmelssturz:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 16:\y{ObjectId}:Ragnarok:26B8:Destruction Universelle:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 16:\y{ObjectId}:ラグナロク:26B8:天地崩壊:\y{ObjectId}:(\y{Name}):/,
+      id: 'UCU Ragnarok Party Tracker',
+      regex: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      regexDe: Regexes.ability({ id: '26B8', source: 'Ragnarök' }),
+      regexFr: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      regexJa: Regexes.ability({ id: '26B8', source: 'ラグナロク' }),
+      regexCn: Regexes.ability({ id: '26B8', source: '诸神黄昏' }),
+      regexKo: Regexes.ability({ id: '26B8', source: '라그나로크' }),
       run: function(data, matches) {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
         // people by the time you get to octet.
         data.partyList = data.partyList || {};
-        data.partyList[matches[1]] = true;
+        data.partyList[matches.target] = true;
       },
     },
 
     // --- Twintania ---
     {
       id: 'UCU Twisters',
-      regex: / 14:26AA:Twintania starts using/,
-      regexCn: / 14:26AA:双塔尼亚 starts using/,
-      regexDe: / 14:26AA:Twintania starts using/,
-      regexFr: / 14:26AA:Gémellia starts using/,
-      regexJa: / 14:26AA:ツインタニア starts using/,
+      regex: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
         de: 'Wirbelstürme',
         ja: '大竜巻',
         cn: '大龙卷',
-      },
-      tts: {
-        en: 'twisters',
-        fr: 'Tornades',
-        de: 'Wirbelstürme',
-        ja: '大竜巻',
-        cn: '大龙卷',
+        ko: '회오리',
       },
     },
     {
       id: 'UCU Death Sentence',
-      regex: / 14:26A9:Twintania starts using Death Sentence/,
-      regexCn: / 14:26A9:双塔尼亚 starts using 死刑/,
-      regexDe: / 14:26A9:Twintania starts using Todesurteil/,
-      regexFr: / 14:26A9:Gémellia starts using Peine De Mort/,
-      regexJa: / 14:26A9:ツインタニア starts using デスセンテンス/,
+      regex: Regexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26A9', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26A9', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26A9', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26A9', source: '트윈타니아', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -185,6 +205,7 @@
             de: 'Todesurteil',
             ja: 'デスセンテンス',
             cn: '死刑',
+            ko: '사형 선고',
           };
         }
       },
@@ -196,23 +217,24 @@
             de: 'basta',
             ja: 'タンク即死級',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
     },
     {
-      // Hatch Collect
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      id: 'UCU Hatch Collect',
+      regex: Regexes.headMarker({ id: '0076' }),
       run: function(data, matches) {
         data.hatch = data.hatch || [];
-        data.hatch.push(matches[1]);
+        data.hatch.push(matches.target);
       },
     },
     {
       id: 'UCU Hatch Marker YOU',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Hatch on YOU',
@@ -220,6 +242,7 @@
         de: 'Ausbrüten auf DIR',
         ja: '自分に魔力爆散',
         cn: '点名魔力爆散',
+        ko: '나에게 마력연성',
       },
       tts: {
         en: 'hatch',
@@ -227,11 +250,12 @@
         de: 'ausbrüten',
         ja: '魔力爆散',
         cn: '魔力爆散',
+        ko: '마력연성',
       },
     },
     {
       id: 'UCU Hatch Callouts',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0076:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 0.25,
       infoText: function(data) {
         if (!data.hatch)
@@ -246,12 +270,13 @@
           de: 'Ausbrüten: ' + hatches,
           ja: '魔力爆散' + hatches,
           cn: '魔力爆散' + hatches,
+          ko: '마력연성: ' + hatches,
         };
       },
     },
     {
-      // Hatch Cleanup
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0076:0000:0000:0000:/,
+      id: 'UCU Hatch Cleanup',
+      regex: Regexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
       run: function(data) {
         delete data.hatch;
@@ -259,11 +284,12 @@
     },
     {
       id: 'UCU Twintania P2',
-      regex: /:Twintania HP at 75%/,
-      regexCn: /:双塔尼亚 HP at 75%/,
-      regexDe: /:Twintania HP at 75%/,
-      regexFr: /:Gémellia HP at 75%/,
-      regexJa: /:ツインタニア HP at 75%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '75', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '75', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '75', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '75', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '75', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '75', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Phase 2 Push',
@@ -271,15 +297,17 @@
         de: 'Phase 2 Stoß',
         ja: 'フェーズ2',
         cn: 'P2准备',
+        ko: '트윈 페이즈2',
       },
     },
     {
       id: 'UCU Twintania P3',
-      regex: /:Twintania HP at 45%/,
-      regexCn: /:双塔尼亚 HP at 45%/,
-      regexDe: /:Twintania HP at 45%/,
-      regexFr: /:Gémellia HP at 45%/,
-      regexJa: /:ツインタニア HP at 45%/,
+      regex: Regexes.hasHP({ name: 'Twintania', hp: '45', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Twintania', hp: '45', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Gémellia', hp: '45', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ツインタニア', hp: '45', capture: false }),
+      regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '45', capture: false }),
+      regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '45', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Phase 3 Push',
@@ -287,6 +315,7 @@
         de: 'Phase 3 Stoß',
         ja: 'フェーズ3',
         cn: 'P3准备',
+        ko: '트윈 페이즈3',
       },
     },
 
@@ -299,21 +328,16 @@
       regexFr: /Des cieux je vais descendre et révérer la lune/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u6708\u3092\u4ef0\u304c\u3093\uff01/,
       regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5bf9\u6708\u957f\u5578\uff01/,
+      regexKo: /흉조가 내려와 달을 올려다보리라!/,
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
         de: 'Verteilen => Rein',
         ja: '散開 => 密着',
         cn: '分散 => 靠近',
+        ko: '산개 => 안으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'spread then in',
-        fr: 'Se dispercer, puis dedans',
-        de: 'verteilen, dann rein',
-        ja: '散開や密着',
-        cn: '分散后靠近',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6496?pretty=true
@@ -323,21 +347,16 @@
       regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01/,
       regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5f81\u6218\u94c1\u8840\u9738\u9053\uff01/,
+      regexKo: /흉조가 내려와 강철의 패도를 걸으리라!/,
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
         de: 'Verteilen => Raus',
         ja: '散開 => 離れる',
         cn: '分散 => 远离',
+        ko: '산개 => 밖으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'spread then out',
-        fr: 'Se dispercer, puis dehors',
-        de: 'verteilen, dann raus',
-        ja: '散開や離れる',
-        cn: '分散后远离',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6495?pretty=true
@@ -347,21 +366,16 @@
       regexFr: /Baignez dans la bénédiction de la lune incandescente/,
       regexJa: /\u8d64\u71b1\u305b\u3057\s*\u6708\u306e\u795d\u798f\u3092\uff01/,
       regexCn: /\u70bd\u70ed\u71c3\u70e7\uff01\s*\u7ed9\u4e88\u6211\u6708\u4eae\u7684\u795d\u798f\uff01/,
+      regexKo: /붉게 타오른 달의 축복을!/,
       infoText: {
         en: 'Stack => In',
         fr: 'Se rassembler => Dedans',
         de: 'Stack => Rein',
         ja: '頭割り => 密着',
         cn: '集合 => 靠近',
+        ko: '쉐어 => 안으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'stack then in',
-        fr: 'Se rassembler, puis dedans',
-        de: 'stek dann rein',
-        ja: '頭割りや密着',
-        cn: '集合后靠近',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6494?pretty=true
@@ -371,20 +385,14 @@
       regexFr: /La voie marquée par l'incandescence mène à la domination/,
       regexJa: /\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\s*\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01/,
       regexCn: /\u88ab\u70bd\u70ed\u707c\u70e7\u8fc7\u7684\u8f68\u8ff9\s*\u4e43\u6210\u94c1\u8840\u9738\u9053\uff01/,
+      regexKo: /붉게 타오른 길을 강철의 패도로 만들겠노라!/,
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
         de: 'Stack => Raus',
         ja: '頭割り => 離れる',
         cn: '集合 => 远离',
-      },
-      durationSeconds: 6,
-      tts: {
-        en: 'stack then out',
-        fr: 'Se rassembler, puis dehors',
-        de: 'stek dann raus',
-        ja: '頭割りや離れる',
-        cn: '集合后远离',
+        ko: '쉐어 => 밖으로',
       },
     },
     {
@@ -395,20 +403,14 @@
       regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
       regexJa: /\u6708\u3088\uff01\s*\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01/,
       regexCn: /\u6708\u5149\u554a\uff01\s*\u7528\u4f60\u7684\u70bd\u70ed\u70e7\u5c3d\u654c\u4eba\uff01/,
+      regexKo: /달이여! 붉게 타올라 신의 적을 태워버려라!/,
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
         de: 'Rein => Stack',
         ja: '密着 => 頭割り',
         cn: '靠近 => 集合',
-      },
-      durationSeconds: 6,
-      tts: {
-        en: 'in then stack',
-        fr: 'Dedans, puis se rassembler',
-        de: 'rein dann stek',
-        ja: '密着や頭割り',
-        cn: '靠近后集合',
+        ko: '안으로 => 쉐어',
       },
     },
     {
@@ -419,20 +421,14 @@
       regexFr: /Ô lune! Éclaire la voie de la domination/,
       regexJa: /\u6708\u3088\uff01\s*\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01/,
       regexCn: /\u6708\u5149\u554a\uff01\s*\u7167\u4eae\u94c1\u8840\u9738\u9053\uff01/,
+      regexKo: /달이여! 강철의 패도를 비춰라!/,
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
         de: 'Rein => Raus',
         ja: '密着 => 離れる',
         cn: '靠近 => 远离',
-      },
-      durationSeconds: 6,
-      tts: {
-        en: 'in then out',
-        fr: 'Dedans, puis dehors',
-        de: 'rein dann raus',
-        ja: '密着や離れる',
-        cn: '靠近后远离',
+        ko: '안으로 => 밖으로',
       },
     },
     {
@@ -443,22 +439,17 @@
       regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01/,
       regexCn: /\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u7167\u4eae\u7ea2\u6708\u4e0b\u70bd\u70ed\u4e4b\u5730\uff01/,
+      regexKo: /초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!/,
       infoText: {
         en: 'Away from Tank => Stack',
         fr: 'S\'éloigner du tank => Se rassembler',
         de: 'Weg vom Tank => Stack',
         ja: 'タンクから離れる => 頭割り',
         cn: '远离坦克 => 集合',
+        ko: '탱커 피하기 => 쉐어',
       },
       durationSeconds: 6,
       delaySeconds: 4,
-      tts: {
-        en: 'away from tank then stack',
-        fr: 'S\'éloigner du tank, puis se rassembler',
-        de: 'weck vom tenk dann stek',
-        ja: 'タンクから離れるや頭割り',
-        cn: '远离坦克后集合',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6500?pretty=true
@@ -468,22 +459,17 @@
       regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01/,
       regexCn: /\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u5728\u661f\u964d\u4e4b\u591c\uff0c\u79f0\u8d5e\u7ea2\u6708\uff01/,
+      regexKo: /초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!/,
       infoText: {
         en: 'Spread => Away from Tank',
         fr: 'Se dispercer => S\'éloigner du Tank',
         de: 'Verteilen => Weg vom Tank',
         ja: '散開 => タンクから離れる',
         cn: '分散 => 远离坦克',
+        ko: '산개 => 탱커 피하기',
       },
       durationSeconds: 6,
       delaySeconds: 4,
-      tts: {
-        en: 'spread then away from tank',
-        fr: 'Se dispercer, puis s\'éloigner du tank',
-        de: 'verteilen dann weck vom tenk',
-        ja: '散開やタンクから離れる',
-        cn: '分散后远离坦克',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6502?pretty=true
@@ -493,6 +479,7 @@
       regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01/,
       regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\u5bf9\u6708\u957f\u5578\uff01\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01/,
+      regexKo: /흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!/,
       durationSeconds: 9,
       infoText: {
         en: 'Spread => In',
@@ -500,13 +487,7 @@
         de: 'Verteilen => Rein',
         ja: '散開 => 密着',
         cn: '分散 => 靠近',
-      },
-      tts: {
-        en: 'spread then in',
-        fr: 'Se dispercer, puis dedans',
-        de: 'verteilen dann rein',
-        ja: '散開や密着',
-        cn: '分散后靠近',
+        ko: '산개 => 안으로',
       },
     },
     {
@@ -515,8 +496,9 @@
       regex: /From hallowed moon I descend, a rain of stars to bring/,
       regexDe: /O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich/,
       regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
-      regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff0/,
+      regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01/,
       regexCn: /\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01/,
+      regexKo: /달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread',
@@ -524,13 +506,7 @@
         de: 'Rein => Verteilen',
         ja: '密着 => 散開',
         cn: '靠近 => 分散',
-      },
-      tts: {
-        en: 'in then spread',
-        fr: 'Dedans, puis se dispercer',
-        de: 'rein dann verteilen',
-        ja: '密着や散開',
-        cn: '靠近后分散',
+        ko: '안으로 => 산개',
       },
     },
     {
@@ -541,6 +517,7 @@
       regexFr: /De la lune je m'arme d'acier et descends/,
       regexJa: /\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\s*\u821e\u3044\u964d\u308a\u3093\uff01/,
       regexCn: /\u6211\u81ea\u6708\u800c\u6765\u643a\u94a2\u94c1\u964d\u4e34\u4e8e\u6b64\uff01/,
+      regexKo: /달로부터 강철의 패도를 거쳐 흉조가 내려오리라!/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Out => Spread',
@@ -548,13 +525,7 @@
         de: 'Rein => Raus => Verteilen',
         ja: '密着 => 離れる => 散開',
         cn: '靠近 => 远离 => 分散',
-      },
-      tts: {
-        en: 'in then out then spread',
-        fr: 'Dedans, puis dehors, puis se dispercer',
-        de: 'rein dann raus dann verteilen',
-        ja: '密着や離れるや散開',
-        cn: '靠近后远离最后分散',
+        ko: '안으로 => 밖으로 => 산개',
       },
     },
     {
@@ -565,6 +536,7 @@
       regexFr: /De la lune, je descends et marche sur la terre ardente/,
       regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01/,
       regexCn: /\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u8e0f\u8fc7\u70bd\u70ed\u4e4b\u5730\uff01/,
+      regexKo: /달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!/,
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread => Stack',
@@ -572,13 +544,7 @@
         de: 'Rein => Verteilen => Stack',
         ja: '密着 => 散開 => 頭割り',
         cn: '靠近 => 分散 => 集合',
-      },
-      tts: {
-        en: 'in then spread then stack',
-        fr: 'Dedans, puis se dispercer, puis se rassembler',
-        de: 'rein dann raus dann stek',
-        ja: '密着や散開や頭割り',
-        cn: '靠近后分散最后集合',
+        ko: '안으로 => 산개 => 쉐어',
       },
     },
     {
@@ -589,6 +555,7 @@
       regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
       regexJa: /\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\s*\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01/,
       regexCn: /\u94a2\u94c1\u71c3\u70e7\u5427\uff01\s*\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u5200\u5251\u5427\uff01/,
+      regexKo: /강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Stack => Spread',
@@ -596,23 +563,18 @@
         de: 'Raus => Stack => Verteilen',
         ja: '離れる => 頭割り => 散開',
         cn: '远离 => 集合 => 分散',
-      },
-      tts: {
-        en: 'out then stack then spread',
-        fr: 'Dehors, puis se rassembler, puis se dispercer',
-        de: 'rein dann raus dann verteilen',
-        ja: '離れるや頭割りや散開',
-        cn: '远离后集合最后分散',
+        ko: '밖으로 => 쉐어 => 산개',
       },
     },
     {
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
       regex: /Unbending iron, descend with fiery edge/,
-      regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfadt/,
+      regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfad/,
       regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
       regexJa: /\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01/,
       regexCn: /\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01/,
+      regexKo: /강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!/,
       durationSeconds: 9,
       infoText: {
         en: 'Out => Spread => Stack',
@@ -620,26 +582,21 @@
         de: 'Raus => Verteilen => Stack',
         ja: '離れる => 散開 => 頭割り',
         cn: '远离 => 分散 => 集合',
-      },
-      tts: {
-        en: 'out then spread then stack',
-        fr: 'Dehors, puis se dispercer, puis se rassembler',
-        de: 'Raus dann rein dann stek',
-        ja: '離れるや散開や頭割り',
-        cn: '远离后分散最后集合',
+        ko: '밖으로 => 산개 => 쉐어',
       },
     },
     {
       id: 'UCU Nael Thunderstruck',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      regex: /:Thunderwing:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexCn: /:雷翼:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexDe: /:Donnerschwinge:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexFr: /:Aile-de-foudre:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
-      regexJa: /:サンダーウィング:26C7:.*?:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ source: 'Thunderwing', id: '26C7' }),
+      regexDe: Regexes.ability({ source: 'Donnerschwinge', id: '26C7' }),
+      regexFr: Regexes.ability({ source: 'Aile-De-Foudre', id: '26C7' }),
+      regexJa: Regexes.ability({ source: 'サンダーウィング', id: '26C7' }),
+      regexCn: Regexes.ability({ source: '雷翼', id: '26C7' }),
+      regexKo: Regexes.ability({ source: '번개날개', id: '26C7' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Thunder on YOU',
@@ -647,6 +604,7 @@
         de: 'Blitz auf DIR',
         ja: '自分にサンダー',
         cn: '雷点名',
+        ko: '나에게 번개',
       },
       tts: {
         en: 'thunder',
@@ -654,51 +612,55 @@
         de: 'blitz',
         ja: 'サンダー',
         cn: '雷点名',
+        ko: '번개',
       },
     },
     {
       id: 'UCU Nael Your Doom',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死亡宣告 from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      regex: Regexes.gainsEffect({ effect: 'Doom' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
         if (matches[2] > 1000)
           return false;
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       // FIXME: temporary workaround for multiple gains effects messages.
       // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
       suppressSeconds: 20,
       durationSeconds: function(data, matches) {
-        if (parseFloat(matches[2]) <= 6)
+        if (parseFloat(matches.duration) <= 6)
           return 3;
 
-        if (parseFloat(matches[2]) <= 10)
+        if (parseFloat(matches.duration) <= 10)
           return 6;
 
         return 9;
       },
       alarmText: function(data, matches) {
-        if (parseFloat(matches[2]) <= 6) {
+        if (parseFloat(matches.duration) <= 6) {
           return {
             en: 'Doom #1 on YOU',
             fr: 'Glas #1 sur VOUS',
             de: 'Verhängnis #1 auf DIR',
             ja: '自分に一番目死の宣告',
             cn: '死宣一号点名',
+            ko: '죽음의 선고 1번',
           };
         }
-        if (parseFloat(matches[2]) <= 10) {
+        if (parseFloat(matches.duration) <= 10) {
           return {
             en: 'Doom #2 on YOU',
             fr: 'Glas #2 sur VOUS',
             de: 'Verhängnis #2 auf DIR',
             ja: '自分に二番目死の宣告',
             cn: '死宣二号点名',
+            ko: '죽음의 선고 2번',
           };
         }
         return {
@@ -707,36 +669,38 @@
           de: 'Verhängnis #3 auf DIR',
           ja: '自分に三番目死の宣告',
           cn: '死宣三号点名',
+          ko: '죽음의 선고 3번',
         };
       },
       tts: function(data, matches) {
-        if (parseFloat(matches[2]) <= 6)
+        if (parseFloat(matches.duration) <= 6)
           return '1';
 
-        if (parseFloat(matches[2]) <= 10)
+        if (parseFloat(matches.duration) <= 10)
           return '2';
 
         return '3';
       },
     },
     {
-      // Doom tracking init.
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Doom from .*? for (\y{Float}) Seconds/,
-      regexCn: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死亡宣告 from .*? for (\y{Float}) Seconds/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verhängnis from .*? for (\y{Float}) Seconds/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Glas from .*? for (\y{Float}) Seconds/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 死の宣告 from .*? for (\y{Float}) Seconds/,
+      id: 'UCU Doom Init',
+      regex: Regexes.gainsEffect({ effect: 'Doom' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
-        return matches[2] < 1000;
+        return matches.duration < 1000;
       },
       run: function(data, matches) {
         data.dooms = data.dooms || [null, null, null];
         let order = null;
-        if (parseFloat(matches[2]) < 9)
+        if (parseFloat(matches.duration) < 9)
           order = 0;
-        else if (parseFloat(matches[2]) < 14)
+        else if (parseFloat(matches.duration) < 14)
           order = 1;
         else
           order = 2;
@@ -744,16 +708,17 @@
         // FIXME: temporary workaround for multiple gains effects messages.
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
         if (order !== null && data.dooms[order] === null)
-          data.dooms[order] = matches[1];
+          data.dooms[order] = matches.target;
       },
     },
     {
-      // Doom tracking cleanup.
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Doom/,
-      regexCn: / 1A:\y{ObjectId}:\y{Name} gains the effect of 死亡宣告/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Verhängnis/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Glas/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 死の宣告/,
+      id: 'UCU Doom Cleanup',
+      regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
@@ -762,11 +727,12 @@
     },
     {
       id: 'UCU Nael Cleanse Callout',
-      regex: /:Fang [Oo]f Light:26CA:/,
-      regexDe: /:Lichtklaue:26CA:/,
-      regexFr: /:Croc de lumière:26CA:/,
-      regexJa: /:ライトファング:26CA:/,
-      regexCn: /:光牙:26CA:/,
+      regex: Regexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
+      regexDe: Regexes.ability({ source: 'Lichtklaue', id: '26CA', capture: false }),
+      regexFr: Regexes.ability({ source: 'Croc De Lumière', id: '26CA', capture: false }),
+      regexJa: Regexes.ability({ source: 'ライトファング', id: '26CA', capture: false }),
+      regexCn: Regexes.ability({ source: '光牙', id: '26CA', capture: false }),
+      regexKo: Regexes.ability({ source: '빛의 송곳니', id: '26CA', capture: false }),
       infoText: function(data) {
         data.doomCount = data.doomCount || 0;
         let name;
@@ -780,17 +746,19 @@
             de: 'Medica #' + data.doomCount + ': ' + data.ShortName(name),
             ja: '解除に番目' + data.doomCount + ': ' + data.ShortName(name),
             cn: '解除死宣 #' + data.doomCount + ': ' + data.ShortName(name),
+            ko: '선고 해제 ' + data.doomCount + ': ' + data.ShortName(name),
           };
         }
       },
     },
     {
       id: 'UCU Nael Fireball 1',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: {
@@ -799,13 +767,13 @@
         de: 'Feuer INNEN',
         ja: 'ファイアボールは密着',
         cn: '火进',
+        ko: '불 같이맞기',
       },
       tts: {
         en: 'fire in',
         fr: 'Feu en dedans',
         de: 'Feuer innen',
         ja: 'ファイアボール密着',
-        cn: '火进',
       },
       run: function(data) {
         data.naelFireballCount = 1;
@@ -813,11 +781,12 @@
     },
     {
       id: 'UCU Nael Fireball 2',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 51,
       suppressSeconds: 99999,
       infoText: function(data) {
@@ -828,6 +797,7 @@
             de: 'Feuer AUßEN',
             ja: 'ファイアボールは離れる',
             cn: '火出',
+            ko: '불 대상자 밖으로',
           };
         }
       },
@@ -844,6 +814,7 @@
             de: 'Feuer AUßEN: Drin sein',
             ja: 'ファイアボールは離れる: 自分に密着',
             cn: '火出，踩火',
+            ko: '불 대상자 밖으로: 나는 같이 맞기',
           };
         }
       },
@@ -855,6 +826,7 @@
             de: 'feuer außen; mitgehen',
             ja: 'ファイアボール離れる: 自分に密着',
             cn: '火出，分摊',
+            ko: '밖에서 불 같이 맞기',
           };
         }
         return {
@@ -863,6 +835,7 @@
           de: 'feuer außen',
           ja: 'ファイアボール離れる',
           cn: '火出',
+          ko: '불 대상자 밖으로',
         };
       },
 
@@ -872,11 +845,12 @@
     },
     {
       id: 'UCU Nael Fireball 3',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 77,
       suppressSeconds: 99999,
       infoText: function(data) {
@@ -904,6 +878,7 @@
           de: 'Feuer INNEN',
           ja: 'ファイアボールは密着',
           cn: '火进',
+          ko: '불 같이맞기',
         };
       },
       alertText: function(data) {
@@ -916,6 +891,7 @@
             de: 'Feuer INNEN: AUSWEICHEN!',
             ja: 'ファイアボールは密着: 自分に離れる',
             cn: '火进：躲避！',
+            ko: '불 같이맞기: 나는 피하기',
           };
         }
       },
@@ -927,6 +903,7 @@
             de: 'feuer innen ausweichen',
             ja: 'ファイアボール密着: 自分に離れる',
             cn: '躲避火进',
+            ko: '불 같이맞으면 안됨',
           };
         }
         return {
@@ -935,6 +912,7 @@
           de: 'feuer innen',
           ja: 'ファイアボール密着',
           cn: '火进',
+          ko: '불 같이맞기',
         };
       },
       run: function(data) {
@@ -943,11 +921,12 @@
     },
     {
       id: 'UCU Nael Fireball 4',
-      regex: /:Ragnarok:26B8:/,
-      regexCn: /:诸神黄昏:26B8:/,
-      regexDe: /:Ragnarök:26B8:/,
-      regexFr: /:Ragnarok:26B8:/,
-      regexJa: /:ラグナロク:26B8:/,
+      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 98,
       suppressSeconds: 99999,
       preRun: function(data) {
@@ -967,6 +946,7 @@
             de: 'Feuer INNEN',
             ja: 'ファイアボール密着',
             cn: '火进',
+            ko: '불 같이맞기',
           };
         }
       },
@@ -981,6 +961,7 @@
             de: 'Feuer INNEN: AUSWEICHEN!',
             ja: 'ファイアボールは密着: 自分に離れる',
             cn: '火进：躲避！',
+            ko: '불 같이맞기: 나는 피하기',
           };
         }
       },
@@ -990,28 +971,30 @@
         de: 'feuer innen',
         ja: 'ファイアボール密着',
         cn: '火进',
+        ko: '불 같이맞기',
       },
       run: function(data) {
         data.naelFireballCount = 4;
       },
     },
     {
-      // TODO: this should really use the new added combatant line with positions.
-      regex: /:(Iceclaw:26C6|Thunderwing:26C7|Fang [Oo]f Light:26CA|Tail [Oo]f Darkness:26C9|Firehorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexCn: /:(冰爪:26C6|雷翼:26C7|Fang [Oo]f Light:26CA|Tail [Oo]f Darkness:26C9|火角:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexDe: /:(Eisklaue:26C6|Donnerschwinge:26C7|Lichtklaue:26CA|Dunkelschweif:26C9|Feuerhorn:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexFr: /:(Griffe-de-glace:26C6|Aile-de-foudre:26C7|Croc de lumière:26CA|Queue de ténèbres:26C9|Corne-de-feu:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
-      regexJa: /:(アイスクロウ:26C6|サンダーウィング:26C7|ライトファング:26CA|ダークテイル:26C9|ファイアホーン:26C5):.*:(\y{Float}):(\y{Float}):\y{Float}:\y{Float}:[^:]*:?$/,
+      id: 'UCU Dragon Tracker',
+      regex: Regexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexDe: Regexes.abilityFull({ source: ['Eisklaue', 'Donnerschwinge', 'Lichtklaue', 'Dunkelschweif', 'Feuerhorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexFr: Regexes.abilityFull({ source: ['Griffe-De-Glace', 'Aile-De-Foudre', 'Croc De Lumière', 'Queue De Ténèbres', 'Corne-De-Feu'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexJa: Regexes.abilityFull({ source: ['アイスクロウ', 'サンダーウィング', 'ライトファング', 'ダークテイル', 'ファイアホーン'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexCn: Regexes.abilityFull({ source: ['冰爪', '雷翼', '光牙', '暗尾', '火角'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      regexKo: Regexes.abilityFull({ source: ['얼음발톱', '번개날개', '빛의 송곳니', '어둠의 꼬리', '화염뿔'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       condition: function(data, matches) {
-        return !data.seenDragon || !(matches[1] in data.seenDragon);
+        return !data.seenDragon || !(matches.source in data.seenDragon);
       },
       run: function(data, matches) {
         // seenDragon[dragon name] => boolean
         data.seenDragon = data.seenDragon || [];
-        data.seenDragon[matches[1]] = true;
+        data.seenDragon[matches.source] = true;
 
-        let x = parseFloat(matches[2]);
-        let y = parseFloat(matches[3]);
+        let x = parseFloat(matches.x);
+        let y = parseFloat(matches.y);
         // Positions are the 8 cardinals + numerical slop on a radius=24 circle.
         // N = (0, -24), E = (24, 0), S = (0, 24), W = (-24, 0)
         // Map N = 0, NE = 1, ..., NW = 7
@@ -1030,6 +1013,8 @@
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
         else if (data.lang == 'de')
           dir_names = ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'];
+        else if (data.lang == 'ko')
+          dir_names = ['12시', '1시', '3시', '5시', '6시', '7시', '9시', '11시'];
         else
           dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
         data.naelMarks = output.marks.map(function(i) {
@@ -1045,15 +1030,16 @@
     },
     {
       id: 'UCU Nael Dragon Placement',
-      regex: /:Iceclaw:26C6/,
-      regexCn: /:冰爪:26C6/,
-      regexDe: /:Eisklaue:26C6/,
-      regexFr: /:Griffe-de-glace:26C6/,
-      regexJa: /:アイスクロウ:26C6/,
+      regex: Regexes.ability({ source: 'Iceclaw', id: '26C6', capture: false }),
+      regexDe: Regexes.ability({ source: 'Eisklaue', id: '26C6', capture: false }),
+      regexFr: Regexes.ability({ source: 'Griffe-De-Glace', id: '26C6', capture: false }),
+      regexJa: Regexes.ability({ source: 'アイスクロウ', id: '26C6', capture: false }),
+      regexCn: Regexes.ability({ source: '冰爪', id: '26C6', capture: false }),
+      regexKo: Regexes.ability({ source: '얼음발톱', id: '26C6', capture: false }),
       condition: function(data) {
         return data.naelMarks && !data.calledNaelDragons;
       },
-      durationSeconds: 12,
+      durationSeconds: 20,
       infoText: function(data) {
         data.calledNaelDragons = true;
         return {
@@ -1062,18 +1048,19 @@
           de: 'Markierungen : ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (GROß)' : ''),
           ja: 'マーカー: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (広)' : ''),
           cn: '标记: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (大)' : ''),
+          ko: '징: ' + data.naelMarks.join(', ') + (data.wideThirdDive ? ' (넓음)' : ''),
         };
       },
     },
     {
       id: 'UCU Nael Dragon Dive Marker Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return !data.trio;
       },
       alarmText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         let marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
         let dir = data.naelMarks[data.naelDiveMarkerCount];
@@ -1083,11 +1070,12 @@
           de: 'Gehe zu ' + marker + ' (im ' + dir + ')',
           ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
           cn: '冲向' + marker + ' (剩余 ' + dir + '秒)',
+          ko: marker + '로 이동' + ' (그리고 ' + dir + '로)',
         };
       },
       tts: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
         return {
           en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
@@ -1095,32 +1083,34 @@
           de: 'Gehe zu ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
           cn: '前往 ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+          ko: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '로 이동',
         };
       },
     },
     {
       id: 'UCU Nael Dragon Dive Marker Others',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return !data.trio;
       },
       infoText: function(data, matches) {
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
         let num = data.naelDiveMarkerCount + 1;
         return {
-          en: 'Dive #' + num + ': ' + data.ShortName(matches[1]),
-          fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches[1]),
-          de: 'Sturz #' + num + ' : ' + data.ShortName(matches[1]),
-          ja: 'ダイブ' + num + '番目:' + data.ShortName(matches[1]),
-          cn: '冲 #' + num + ': ' + data.ShortName(matches[1]),
+          en: 'Dive #' + num + ': ' + data.ShortName(matches.target),
+          fr: 'Bombardement #' + num + ' : ' + data.ShortName(matches.target),
+          de: 'Sturz #' + num + ' : ' + data.ShortName(matches.target),
+          ja: 'ダイブ' + num + '番目:' + data.ShortName(matches.target),
+          cn: '冲 #' + num + ': ' + data.ShortName(matches.target),
+          ko: '카탈 ' + num + ': ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014', capture: false }),
       condition: function(data) {
         return !data.trio;
       },
@@ -1130,13 +1120,14 @@
     },
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00(?:77|14|29):0000:0000:0000:/,
+      id: 'UCU Octet Marker Tracking',
+      regex: Regexes.headMarker({ id: ['0077', '0014', '0029'] }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       run: function(data, matches) {
         data.octetMarker = data.octetMarker || [];
-        data.octetMarker.push(matches[1]);
+        data.octetMarker.push(matches.target);
         if (data.octetMarker.length != 7)
           return;
 
@@ -1175,53 +1166,56 @@
     },
     {
       id: 'UCU Octet Nael Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0077:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0077' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (nael)',
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (nael)',
-          ja: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (ネール)',
-          cn: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (奈尔)',
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (nael)',
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target) + ' (nael)',
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (nael)',
+          ja: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (ネール)',
+          cn: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (奈尔)',
+          ko: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (넬)',
         };
       },
     },
     {
       id: 'UCU Octet Dragon Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0014:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]),
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]),
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target),
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target),
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target),
+          ko: data.octetMarker.length + ': ' + data.ShortName(matches.target),
         };
       },
     },
     {
       id: 'UCU Octet Baha Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0029:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0029' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
       infoText: function(data, matches) {
         return {
-          en: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
-          fr: data.octetMarker.length + ' : ' + data.ShortName(matches[1]) + ' (baha)',
-          de: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (baha)',
-          ja: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (バハ)',
-          cn: data.octetMarker.length + ': ' + data.ShortName(matches[1]) + ' (巴哈)',
+          en: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (baha)',
+          fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target) + ' (baha)',
+          de: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (baha)',
+          ja: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (バハ)',
+          cn: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (巴哈)',
+          ko: data.octetMarker.length + ': ' + data.ShortName(matches.target) + ' (바하)',
         };
       },
     },
     {
       id: 'UCU Octet Twin Marker',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0029:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0029', capture: false }),
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1234,6 +1228,7 @@
             de: 'DU stackst für Twintania',
             ja: '自分にタニアには頭割り',
             cn: '双塔集合',
+            ko: '내가 트윈징 대상자',
           };
         }
       },
@@ -1245,6 +1240,7 @@
             de: '8: ??? (Twintania)',
             ja: '8: ??? (ツインタニア)',
             cn: '8: ??? (双塔)',
+            ko: '8: ??? (트윈타니아)',
           };
         }
         // If this person is not alive, then everybody should stack,
@@ -1256,6 +1252,7 @@
             de: '8: ' + data.ShortName(data.lastOctetMarker) + ' (Twintania)',
             ja: '8: ' + data.ShortName(data.lastOctetMarker) + ' (ツインタニア)',
             cn: '8: ' + data.ShortName(data.lastOctetMarker) + ' (双塔)',
+            ko: '8: ' + data.ShortName(data.lastOctetMarker) + ' (트윈타니아)',
           };
         }
       },
@@ -1267,23 +1264,26 @@
             de: 'stek für twintania',
             ja: '頭割り',
             cn: '双塔集合',
+            ko: '트윈타니아 옆에 서기',
           };
         }
       },
     },
     {
       id: 'UCU Twister Dives',
-      regex: /:Twintania:26B2:Twisting Dive:/,
-      regexCn: /:双塔尼亚:26B2:旋风冲:/,
-      regexDe: /:Twintania:26B2:Spiralschwinge:/,
-      regexFr: /:Gémellia:26B2:Plongeon-trombe:/,
-      regexJa: /:ツインタニア:26B2:ツイスターダイブ:/,
+      regex: Regexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Gémellia', id: '26B2', capture: false }),
+      regexJa: Regexes.ability({ source: 'ツインタニア', id: '26B2', capture: false }),
+      regexCn: Regexes.ability({ source: '双塔尼亚', id: '26B2', capture: false }),
+      regexKo: Regexes.ability({ source: '트윈타니아', id: '26B2', capture: false }),
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
         de: 'Wirbelstürme',
         ja: 'ツイスター',
         cn: '旋风冲',
+        ko: '회오리',
       },
       tts: {
         en: 'twisters',
@@ -1291,21 +1291,24 @@
         de: 'Wirbelstürme',
         ja: 'ツイスター',
         cn: '旋风冲',
+        ko: '회오리',
       },
     },
     {
       id: 'UCU Bahamut Gigaflare',
-      regex: / 14:26D6:Bahamut Prime starts using Gigaflare/,
-      regexCn: / 14:26D6:至尊巴哈姆特 starts using 十亿核爆/,
-      regexDe: / 14:26D6:Prim-Bahamut starts using Gigaflare/,
-      regexFr: / 14:26D6:Primo-Bahamut starts using GigaBrasier/,
-      regexJa: / 14:26D6:バハムート・プライム starts using ギガフレア/,
+      regex: Regexes.startsUsing({ id: '26D6', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26D6', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26D6', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26D6', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26D6', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26D6', source: '바하무트 프라임', capture: false }),
       alertText: {
         en: 'Gigaflare',
         fr: 'GigaBrasier',
         de: 'Gigaflare',
         ja: 'ギガフレア',
         cn: '十亿核爆',
+        ko: '기가플레어',
       },
       tts: {
         en: 'gigaflare',
@@ -1313,13 +1316,14 @@
         de: 'Gigafleer',
         ja: 'ギガフレア',
         cn: '十亿核爆',
+        ko: '기가플레어',
       },
     },
     {
       id: 'UCU Megaflare Stack Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Megaflare Stack',
@@ -1327,6 +1331,7 @@
         de: 'Megaflare Stack',
         ja: 'メガフレア頭割り',
         cn: '百万核爆集合',
+        ko: '기가플레어 쉐어',
       },
       tts: {
         en: 'stack',
@@ -1334,18 +1339,19 @@
         de: 'stek',
         ja: '頭割り',
         cn: '集合',
+        ko: '쉐어',
       },
     },
     {
-      // Megaflare stack tracking
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:0000:0000:0000:/,
+      id: 'UCU Megaflare Stack Tracking',
+      regex: Regexes.headMarker({ id: '0027' }),
       run: function(data, matches) {
-        data.megaStack.push(matches[1]);
+        data.megaStack.push(matches.target);
       },
     },
     {
       id: 'UCU Megaflare Tower',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027', capture: false }),
       infoText: function(data) {
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
@@ -1360,6 +1366,7 @@
             de: 'Turm, Hypernova ködern',
             ja: 'タワーやスーパーノヴァ',
             cn: '踩塔, 引导超新星',
+            ko: '초신성 피하고 기둥 밟기',
           };
         }
         if (!data.lastOctetMarker || data.lastOctetMarker == data.me) {
@@ -1369,6 +1376,7 @@
             de: 'Twintania in Turm locken',
             ja: 'タニアダイブやタワー',
             cn: '引导双塔, 踩塔',
+            ko: '트윈타니아 유도 후 기둥 밟기',
           };
         }
         return {
@@ -1377,6 +1385,7 @@
           de: 'Geh in entfernten Turm',
           ja: '遠いタワー',
           cn: '踩远塔',
+          ko: '기둥 밟기',
         };
       },
       tts: function(data) {
@@ -1390,13 +1399,14 @@
             de: 'Turm',
             ja: 'タワー',
             cn: '塔',
+            ko: '기둥',
           };
         }
       },
     },
     {
       id: 'UCU Megaflare Twin Tower',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0027:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0027', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: function(data) {
@@ -1410,20 +1420,22 @@
           return {
             en: twin + ' (twin) has megaflare',
             cn: twin + ' (双塔) 带百万核爆',
+            ko: twin + ' (트윈 징 대상자) => 쉐어',
           };
         }
         return {
           en: twin + ' (twin) needs tower',
           cn: twin + ' (双塔) 需要踩塔',
+          ko: twin + ' (트윈 징 대상자) => 기둥',
         };
       },
       tts: null,
     },
     {
       id: 'UCU Earthshaker Me',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Earthshaker on YOU',
@@ -1431,6 +1443,7 @@
         de: 'Erdstoß auf Dir',
         ja: '自分にアースシェイカー',
         cn: '地震点名',
+        ko: '나에게 어스징',
       },
       tts: {
         en: 'shaker',
@@ -1438,18 +1451,19 @@
         de: 'Erdstoß',
         ja: 'アースシェイカー',
         cn: '地震',
+        ko: '어스',
       },
     },
     {
-      // Earthshaker tracking
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:0000:0000:0000:/,
+      id: 'UCU Earthshaker Tracking',
+      regex: Regexes.headMarker({ id: '0028' }),
       run: function(data, matches) {
-        data.shakers.push(matches[1]);
+        data.shakers.push(matches.target);
       },
     },
     {
       id: 'UCU Earthshaker Not Me',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:0028:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0028', capture: false }),
       alertText: function(data) {
         if (data.trio == 'quickmarch') {
           if (data.shakers.length != 3)
@@ -1461,6 +1475,7 @@
               de: 'Verbindung holen',
               ja: 'テンペストウィング線',
               cn: '接线',
+              ko: '줄 가로채기',
             };
           }
         }
@@ -1477,6 +1492,7 @@
               de: 'Kein Erdstoß; im süden sammeln',
               ja: 'シェイカーない；頭割りで南',
               cn: '不地震，南侧集合',
+              ko: '징 없음, 모여서 쉐어',
             };
           }
         } else if (data.trio == 'tenstrike') {
@@ -1488,6 +1504,7 @@
                 de: 'In Sicherheit steken',
                 ja: '頭割りで安全',
                 cn: '安全点集合',
+                ko: '안전장소에 모이기',
               };
             }
           }
@@ -1504,6 +1521,7 @@
               de: 'Verbindung',
               ja: '線',
               cn: '线',
+              ko: '줄',
             };
           }
           if (data.shakers.indexOf(data.me) == -1) {
@@ -1513,6 +1531,7 @@
               de: 'stek im süden',
               ja: '頭割りで南',
               cn: '南侧集合',
+              ko: '모여서 쉐어',
             };
           }
         } else if (data.trio == 'tenstrike') {
@@ -1524,6 +1543,7 @@
                 de: 'in sicherheit',
                 ja: '安全',
                 cn: '安全点',
+                ko: '안전장소로',
               };
             }
           }
@@ -1536,42 +1556,53 @@
     },
     {
       id: 'UCU Morn Afah',
-      regex: / 14:26EC:Bahamut Prime starts using Morn Afah on (\y{Name})/,
-      regexCn: / 14:26EC:至尊巴哈姆特 starts using 无尽顿悟 on (\y{Name})/,
-      regexDe: / 14:26EC:Prim-Bahamut starts using Morn Afah on (\y{Name})/,
-      regexFr: / 14:26EC:Primo-Bahamut starts using Morn Afah on (\y{Name})/,
-      regexJa: / 14:26EC:バハムート・プライム starts using モーン・アファー on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '26EC', source: 'Bahamut Prime' }),
+      regexDe: Regexes.startsUsing({ id: '26EC', source: 'Prim-Bahamut' }),
+      regexFr: Regexes.startsUsing({ id: '26EC', source: 'Primo-Bahamut' }),
+      regexJa: Regexes.startsUsing({ id: '26EC', source: 'バハムート・プライム' }),
+      regexCn: Regexes.startsUsing({ id: '26EC', source: '至尊巴哈姆特' }),
+      regexKo: Regexes.startsUsing({ id: '26EC', source: '바하무트 프라임' }),
       preRun: function(data) {
         data.mornAfahCount = data.mornAfahCount || 0;
         data.mornAfahCount++;
       },
       alertText: function(data, matches) {
         let str = 'Morn Afah #' + data.mornAfahCount;
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: str + ' (YOU)',
             fr: str + ' (VOUS)',
             de: str + ' (DU)',
             ja: 'モーン・アファー' + data.mornAfahCount + '回' + ' (自分)',
             cn: '无尽顿悟 #' + data.mornAfahCount,
+            ko: '몬 아파 ' + data.mornAfahCount + ' (나에게)',
           };
         }
-        return str + ' (' + data.ShortName(matches[1]) + ')';
+        return {
+          en: str + ' (' + data.ShortName(matches.target) + ')',
+          fr: str + ' (' + data.ShortName(matches.target) + ')',
+          de: str + ' (' + data.ShortName(matches.target) + ')',
+          ja: 'モーン・アファー' + data.mornAfahCount + '回' + ' (' + data.ShortName(matches.target) + ')',
+          cn: '无尽顿悟 #' + data.mornAfahCount,
+          ko: '몬 아파 ' + data.mornAfahCount + ' (' + data.ShortName(matches.target) + ')',
+        };
       },
       tts: function(data, matches) {
         return {
-          en: 'morn afah ' + data.ShortName(matches[1]),
-          cn: '无尽顿悟 ' + data.ShortName(matches[1]),
+          en: 'morn afah ' + data.ShortName(matches.target),
+          cn: '无尽顿悟 ' + data.ShortName(matches.target),
+          ko: '몬 아파 ' + data.mornAfahCount,
         };
       },
     },
     {
       id: 'UCU Akh Morn',
-      regex: / 14:26EA:Bahamut Prime starts using Akh Morn on \y{Name}/,
-      regexCn: / 14:26EA:至尊巴哈姆特 starts using 死亡轮回 on \y{Name}/,
-      regexDe: / 14:26EA:Prim-Bahamut starts using Akh Morn on \y{Name}/,
-      regexFr: / 14:26EA:Primo-Bahamut starts using Akh Morn on \y{Name}/,
-      regexJa: / 14:26EA:バハムート・プライム starts using アク・モーン on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '26EA', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26EA', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26EA', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26EA', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26EA', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26EA', source: '바하무트 프라임', capture: false }),
       preRun: function(data) {
         data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;
@@ -1580,16 +1611,18 @@
         return {
           en: 'Akh Morn #' + data.akhMornCount,
           cn: '死亡轮回 #' + data.akhMornCount,
+          ko: '아크 몬 ' + data.akhMornCount,
         };
       },
     },
     {
       id: 'UCU Exaflare',
-      regex: / 14:26EF:Bahamut Prime starts using Exaflare/,
-      regexCn: / 14:26EF:至尊巴哈姆特 starts using 百京核爆/,
-      regexDe: / 14:26EF:Prim-Bahamut starts using Exaflare/,
-      regexFr: / 14:26EF:Primo-Bahamut starts using ExaBrasier/,
-      regexJa: / 14:26EF:バハムート・プライム starts using エクサフレア/,
+      regex: Regexes.startsUsing({ id: '26EF', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26EF', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26EF', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26EF', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26EF', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26EF', source: '바하무트 프라임', capture: false }),
       preRun: function(data) {
         data.exaflareCount = data.exaflareCount || 0;
         data.exaflareCount++;
@@ -1600,7 +1633,8 @@
           fr: 'ExaBrasier #' + data.exaflareCount,
           de: 'Exaflare #' + data.exaflareCount,
           ja: 'エクサフレア' + data.exaflareCount + '回',
-          cn: '百京核爆 #' + data.akhMornCount,
+          cn: '百京核爆 #' + data.exaflareCount,
+          ko: '엑사플레어 ' + data.exaflareCount,
         };
       },
       tts: function(data) {
@@ -1609,18 +1643,19 @@
           fr: 'Exabrasier '+ data.exaflareCount,
           de: 'Exafleer '+ data.exaflareCount,
           ja: 'エクサフレア' + data.exaflareCount,
-          cn: '百京核爆 ' + data.akhMornCount,
+          cn: '百京核爆 ' + data.exaflareCount,
         };
       },
     },
     {
       // One time setup.
       id: 'UCU Initial Setup',
-      regex: / 14:26AA:Twintania starts using/,
-      regexCn: / 14:26AA:双塔尼亚 starts using/,
-      regexDe: / 14:26AA:Twintania starts using/,
-      regexFr: / 14:26AA:Gémellia starts using/,
-      regexJa: / 14:26AA:ツインタニア starts using/,
+      regex: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       suppressSeconds: 99999,
       run: function(data) {
         // TODO: a late white puddle can cause dragons to get seen for the next
@@ -1777,23 +1812,22 @@
       'locale': 'de',
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
+        'Fang of Light': 'Lichtklaue',
         'Firehorn': 'Feuerhorn',
         'Iceclaw': 'Eisklaue',
-        'Nael Deus Darnus': 'Nael Deus Darnus',
+        'Nael Deus Darnus': 'Nael deus Darnus',
         'Nael Geminus': 'Nael Geminus',
         'Oviform': 'Magiekompressor',
         'Ragnarok': 'Ragnarök',
+        'Tail of Darkness': 'Dunkelschweif',
         'Thunderwing': 'Donnerschwinge',
         'Twintania': 'Twintania',
-        'Tail of Darkness': 'Dunkelschweif',
-        'Fang of Light': 'Lichtklaue',
-        'Engage!': 'Start!',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
+        '--push--': '--stoß--',
         'Aetheric Profusion': 'Ätherische Profusion',
         'Akh Morn': 'Akh Morn',
+        'Bahamut Marker': 'Bahamut Marker',
         'Bahamut\'s Claw': 'Klauen Bahamuts',
         'Bahamut\'s Favor': 'Bahamuts Segen',
         'Blackfire Trio': 'Schwarzfeuer-Trio',
@@ -1804,71 +1838,65 @@
         'Dalamud Dive': 'Dalamud-Sturzflug',
         'Death Sentence': 'Todesurteil',
         'Deathstorm': 'Todessturm',
+        'Dive . Dynamo/Chariot': 'Sturzflug + Dynamo/Streitwagen',
+        'Dive Dynamo Combo': 'Sturzflug Dynamo Kombo',
+        'Divebomb': 'Sturzbombe',
+        'Doom': 'Verhängnis',
+        'Dynamo . Beam/Chariot': 'Dynamo + Strahl/Streitwagen',
         'Earth Shaker': 'Erdstoß',
-        'Engage!': 'Start!',
-        'Enrage': 'Finalangriff',
         'Exaflare': 'Exaflare',
         'Fellruin Trio': 'Untergangs-Trio',
-        'Fireball': 'Feuerball',
-        'Flames Of Rebirth': 'Flammen Der Wiedergeburt',
+        'Fireball(?! Soak)': 'Feuerball',
+        'Fireball Soak': 'Feuerball aufsaugen',
+        'Flames Of Rebirth': 'Flammen der Wiedergeburt',
         'Flare Breath': 'Flare-Atem',
         'Flatten': 'Einebnen',
         'Generate': 'Formung',
         'Gigaflare': 'Gigaflare',
         'Grand Octet': 'Großes Oktett',
         'Hatch': 'Austritt',
-        'Heavensfall(?! )': 'Himmelssturz',
         'Heavensfall Trio': 'Himmelssturz-Trio',
+        'Heavensfall(?! )': 'Himmelssturz',
         'Hypernova': 'Supernova',
         'Iceball': 'Eisball',
         'Iron Chariot': 'Eiserner Streitwagen',
         'Liquid Hell': 'Höllenschmelze',
         'Lunar Dive': 'Lunarer Sturz',
         'Lunar Dynamo': 'Lunarer Dynamo',
+        '(?<! )Marker(?!\\w)': 'Marker',
+        'Markers appear': 'Marker escheinen',
         'Megaflare': 'Megaflare',
         'Megaflare Dive': 'Megaflare-Sturz',
         'Meteor Stream': 'Meteorflug',
+        'Meteor/Dive or Dive/Beam': 'Meteor/Sturzflug oder Sturzflug/Strahl',
         'Morn Afah': 'Morn Afah',
-        'Plummet': 'Herabstürzen',
+        'Nael Dive': 'Nael Sturzflug',
+        'Nael Marker': 'Nael Marker',
+        'Pepperoni': 'Pepperoni', // FIXME
+        'Plummet(?!\/)': 'Herabstürzen',
+        'Plummet/Claw': 'Herabstürzen/Klaue',
         'Quickmarch Trio': 'Todesmarsch-Trio',
+        'Random Combo Attack': 'Zufälliger Komboangriff',
         'Raven Dive': 'Bahamuts Schwinge',
-        'Ravensbeak': 'Bradamante',
-        'Seventh Umbral Era': 'Siebte Ära Des Schattens',
+        '(?<!\/)Ravensbeak': 'Bradamante',
+        'Sentence/Ravensbeak': 'Urteil/Bradamante',
+        'Seventh Umbral Era': 'Siebte Ära des Schattens',
+        'Stack': 'Sammeln',
+        'Targeted Fire': 'Feuer auf Ziel',
         'Tempest Wing': 'Sturm-Schwinge',
         'Tenstrike Trio': 'Zehnschlag-Trio',
         'Teraflare': 'Teraflare',
+        'Thermionic . Dynamo/Chariot': 'Thermo + Dynamo/Streitwagen',
         'Thermionic Beam': 'Thermionischer Strahl',
         'Thermionic Burst': 'Thermionische Eruption',
+        'Thunderstruck': 'Donnerschwinge',
+        'Towers': 'Türme',
+        'Triple Nael Quote': 'Drei Nael Zitate',
+        'Twin Marker': 'Twin Marker',
         'Twister': 'Wirbelsturm',
         'Twisting Dive': 'Spiralschwinge',
         'White Fury': 'Naels Zorn',
         'Wings of Salvation': 'Rettende Schwinge',
-
-        'Doom': 'Verhängnis',
-        'Thunderstruck': 'Donnerschwinge',
-
-        '--push--': '--stoß--',
-        'Targeted Fire': 'Feuer auf Ziel',
-        'Marker': 'Marker',
-        'Divebomb': 'Divebomb',
-        'Meteor/Dive or Dive/Beam': 'Meteor/Sturzflug oder Sturzflug/Strahl',
-        'Random Combo Attack': 'Zufälliger Komboangriff',
-        'Stack': 'Stack',
-        'Towers': 'Türme',
-        'Dive Dynamo Combo': 'Sturzflug Dynamo Kombo',
-        'Markers appear': 'Marker escheinen',
-        'Fireball Soak': 'Feuerball aufsaugen',
-        'Nael Marker': 'Nael Marker',
-        'Nael Dive': 'Nael Sturzflug',
-        'Bahamut Marker': 'Bahamut Marker',
-        'Twin Marker': 'Twin Marker',
-        'Plummet/Claw': 'Herabstürzen/Klaue',
-        'Triple Nael Quote': 'Drei Nael Zitate',
-        'Sentence/Ravensbeak': 'Urteil/Bradamante',
-        'Pepperoni': 'Pepperoni',
-        'Dynamo . Beam/Chariot': 'Dynamo + Strahl/Streitwagen',
-        'Thermionic . Dynamo/Chariot': 'Thermo + Dynamo/Streitwagen',
-        'Dive . Dynamo/Chariot': 'Sturzflug + Dynamo/Streitwagen',
       },
       '~effectNames': {
         'Doom': 'Verhängnis',
@@ -1879,7 +1907,7 @@
         'Lohs Daih': 'Lohs Daih',
         'Mana Hypersensitivity': 'Magieempfindlichkeit',
         'Neurolink': 'Neurolink',
-        'Phoenix\'s Blessing': 'Stärke Des Phönix',
+        'Phoenix\'s Blessing': 'Stärke des Phönix',
         'Piercing Resistance Down II': 'Stichresistenz - (stark)',
         'Slashing Resistance Down II': 'Hiebresistenz - (stark)',
         'Thunderstruck': 'Donnerschwinge',
@@ -1889,116 +1917,104 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Fang of Light': 'Croc de lumière',
-        'Firehorn': 'Corne-de-feu',
-        'Iceclaw': 'Griffe-de-glace',
-        'Nael Deus Darnus': 'Nael Deus Darnus',
+        'Fang of Light': 'croc de lumière',
+        'Firehorn': 'corne-de-feu',
+        'Iceclaw': 'griffe-de-glace',
+        'Nael Deus Darnus': 'Nael deus Darnus',
         'Nael Geminus': 'Nael Geminus',
-        'Oviform': 'Oviforme',
+        'Oviform': 'oviforme',
         'Ragnarok': 'Ragnarok',
-        'Tail of Darkness': 'Queue de ténèbres',
-        'Thunderwing': 'Aile-de-foudre',
+        'Tail of Darkness': 'queue de ténèbres',
+        'Thunderwing': 'aile-de-foudre',
         'Twintania': 'Gémellia',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
         '--push--': '--Poussé(e)--',
-        '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
-
-        'Targeted Fire': 'Feu ciblé',
-        'Enrage': 'Enrage',
-        'Dynamo . Beam/Chariot': 'Dynamo + Rayon/Char',
-        'Thermionic . Dynamo/Chariot': 'Rayon + Dynamo/Char',
-        'Dive . Dynamo/Chariot': 'Plongeon + Dynamo/Char',
-        'Marker': 'Marqueur',
-        'Divebomb': 'Bombardement',
-        'Meteor/Dive or Dive/Beam': 'Météore/Plongeon ou Plongeon/Rayon',
-        'Random Combo Attack': 'Attaque combo aléatoire',
-        'Stack': 'Se rassembler',
-        'Towers': 'Tours',
-        'Dive Dynamo Combo': 'Plongeon Dynamo Combo',
-        'Markers appear': 'Apparition des marqueurs',
-        'Fireball Soak': 'Absorption Boule De Feu',
-        'Nael Marker': 'Marqueur de Nael',
-        'Nael Dive': 'Plongeon de Nael',
-        'Bahamut Marker': 'Marqueur de Bahamut',
-        'Twin Marker': 'Marqueur de Gémellia',
-        'Plummet/Claw': 'Piqué/Griffe',
-        'Triple Nael Quote': 'Triple citation de Nael',
-        'Sentence/Ravensbeak': 'Peine De Mort/Bec Du Rapace',
-
-        'Aetheric Profusion': 'Excès D\'éther',
+        'Aetheric Profusion': 'Excès d\'éther',
         'Akh Morn': 'Akh Morn',
-        'Bahamut\'s Claw': 'Griffe De Bahamut',
-        'Bahamut\'s Favor': 'Auspice Du Dragon',
-        'Blackfire Trio': 'Trio Des Flammes Noires',
-        'Calamitous Blaze': 'Brasier Du Fléau',
-        'Calamitous Flame': 'Flammes Du Fléau',
+        'Bahamut Marker': 'Marqueur de Bahamut',
+        'Bahamut\'s Claw': 'Griffe de Bahamut',
+        'Bahamut\'s Favor': 'Auspice du dragon',
+        'Blackfire Trio': 'Trio des flammes noires',
+        'Calamitous Blaze': 'Brasier du Fléau',
+        'Calamitous Flame': 'Flammes du Fléau',
         'Cauterize': 'Cautérisation',
-        'Chain Lightning': 'Chaîne D\'éclairs',
-        'Dalamud Dive': 'Chute De Dalamud',
-        'Death Sentence': 'Peine De Mort',
-        'Deathstorm': 'Tempête De La Mort',
+        'Chain Lightning': 'Chaîne d\'éclairs',
+        'Dalamud Dive': 'Chute de Dalamud',
+        'Death Sentence': 'Peine de mort',
+        'Deathstorm': 'Tempête de la mort',
+        'Dive . Dynamo/Chariot': 'Plongeon + Dynamo/Char',
+        'Dive Dynamo Combo': 'Plongeon Dynamo Combo',
+        'Divebomb': 'Bombe plongeante',
+        'Doom': 'Glas',
+        'Dynamo . Beam/Chariot': 'Dynamo + Rayon/Char',
         'Earth Shaker': 'Secousse',
-        'Engage!': 'À l\'attaque',
         'Exaflare': 'ExaBrasier',
-        'Fellruin Trio': 'Trio Du Désastre',
-        'Fireball': 'Boule De Feu',
-        'Flames Of Rebirth': 'Feu Résurrecteur',
-        'Flare Breath': 'Souffle Brasier',
+        'Fellruin Trio': 'Trio du désastre',
+        'Fireball(?! Soak)': 'Boule de feu',
+        'Fireball Soak': 'Absorption Boule De Feu',
+        'Flames Of Rebirth': 'Feu résurrecteur',
+        'Flare Breath': 'Souffle brasier',
         'Flatten': 'Compression',
-        'Generate': 'Synthèse De Mana',
+        'Generate': 'Synthèse de mana',
         'Gigaflare': 'GigaBrasier',
-        'Grand Octet': 'Octuors Des Dragons',
-        'Hatch': 'Explosion De Mana',
+        'Grand Octet': 'Octuors des dragons',
+        'Hatch': 'Éclosion',
+        'Heavensfall Trio': 'Trio de l\'univers',
         'Heavensfall(?! )': 'Destruction Universelle',
-        'Heavensfall Trio': 'Trio De L\'univers',
-        'Hypernova': 'Supernova',
-        'Iceball': 'Orbe De Glace',
-        'Iron Chariot': 'Char De Fer',
-        'Liquid Hell': 'Enfer Liquide',
-        'Lunar Dive': 'Plongeon Lunaire',
-        'Lunar Dynamo': 'Dynamo Lunaire',
+        'Hypernova': 'Hypernova',
+        'Iceball': 'Orbe de glace',
+        'Iron Chariot': 'Char de fer',
+        'Liquid Hell': 'Enfer liquide',
+        'Lunar Dive': 'Plongeon lunaire',
+        'Lunar Dynamo': 'Dynamo lunaire',
+        '(?<! )Marker(?!\\w)': 'Marqueur',
+        'Markers appear': 'Apparition des marqueurs',
         'Megaflare': 'MégaBrasier',
         'Megaflare Dive': 'Plongeon MégaBrasier',
-        'Meteor Stream': 'Rayon Météore',
+        'Meteor Stream': 'Rayon météore',
+        'Meteor/Dive or Dive/Beam': 'Météore/Plongeon ou Plongeon/Rayon',
         'Morn Afah': 'Morn Afah',
-        'Plummet': 'Piqué',
-        'Quickmarch Trio': 'Trio De La Marche Militaire',
-        'Raven Dive': 'Fonte Du Rapace',
-        'Ravensbeak': 'Bec Du Rapace',
-        'Seventh Umbral Era': '7e Fléau',
-        'Tempest Wing': 'Aile De Tempête',
-        'Tenstrike Trio': 'Trio Des Attaques',
+        'Nael Dive': 'Plongeon de Nael',
+        'Nael Marker': 'Marqueur de Nael',
+        'Pepperoni': 'Pepperoni', // FIXME
+        'Plummet(?!\/)': 'Piqué',
+        'Plummet/Claw': 'Piqué/Griffe',
+        'Quickmarch Trio': 'Trio de la marche militaire',
+        'Random Combo Attack': 'Attaque combo aléatoire',
+        'Raven Dive': 'Fonte du rapace',
+        '(?<!\/)Ravensbeak': 'Bec du rapace',
+        'Sentence/Ravensbeak': 'Peine De Mort/Bec Du Rapace',
+        'Seventh Umbral Era': '7e fléau',
+        'Stack': 'Se rassembler',
+        'Targeted Fire': 'Feu ciblé',
+        'Tempest Wing': 'Aile de tempête',
+        'Tenstrike Trio': 'Trio des attaques',
         'Teraflare': 'TéraBrasier',
-        'Thermionic Beam': 'Rayon Thermoïonique',
-        'Thermionic Burst': 'Rafale Thermoïonique',
-        'Twister': 'Grande Trombe',
-        'Twisting Dive': 'Plongeon-trombe',
-        'White Fury': 'Colère De Nael',
-        'Wings of Salvation': 'Aile De La Salvation',
-
+        'Thermionic . Dynamo/Chariot': 'Rayon + Dynamo/Char',
+        'Thermionic Beam': 'Rayon thermoïonique',
+        'Thermionic Burst': 'Rafale thermoïonique',
         'Thunderstruck': 'Aile-de-foudre',
-        'Doom': 'Glas',
-
-        // FIXME:
-        'Pepperoni': 'Pepperoni',
+        'Towers': 'Tours',
+        'Triple Nael Quote': 'Triple citation de Nael',
+        'Twin Marker': 'Marqueur de Gémellia',
+        'Twister': 'Grande trombe',
+        'Twisting Dive': 'Plongeon-trombe',
+        'White Fury': 'Colère de Nael',
+        'Wings of Salvation': 'Aile de la salvation',
       },
       '~effectNames': {
         'Doom': 'Glas',
-        'Down For The Count': 'Au Tapis',
-        'Earth Resistance Down II': 'Résistance à La Terre Réduite+',
+        'Down For The Count': 'Au tapis',
+        'Earth Resistance Down II': 'Résistance à la terre réduite+',
         'Firescorched': 'Corne-de-feu',
         'Icebitten': 'Griffe-de-glace',
         'Lohs Daih': 'Lohs Daih',
-        'Mana Hypersensitivity': 'Hypersensibilité à La Mana',
+        'Mana Hypersensitivity': 'Hypersensibilité à la mana',
         'Neurolink': 'Neurolien',
-        'Phoenix\'s Blessing': 'Protection De Phénix',
-        'Piercing Resistance Down II': 'Résistance Au Perforant Réduite+',
-        'Slashing Resistance Down II': 'Résistance Au Tranchant Réduite+',
+        'Phoenix\'s Blessing': 'Protection de Phénix',
+        'Piercing Resistance Down II': 'Résistance au perforant réduite+',
+        'Slashing Resistance Down II': 'Résistance au tranchant réduite+',
         'Thunderstruck': 'Aile-de-foudre',
       },
     },
@@ -2006,21 +2022,22 @@
       'locale': 'ja',
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
+        'Fang of Light': 'ライトファング',
         'Firehorn': 'ファイアホーン',
         'Iceclaw': 'アイスクロウ',
         'Nael Deus Darnus': 'ネール・デウス・ダーナス',
         'Nael Geminus': 'ネール・ジェミナス',
         'Oviform': '魔力圧縮体',
         'Ragnarok': 'ラグナロク',
+        'Tail of Darkness': 'ダークテイル',
         'Thunderwing': 'サンダーウィング',
         'Twintania': 'ツインタニア',
-        // FIXME:
-        'Tail of Darkness': 'Tail of Darkness',
-        'Fang of Light': 'Fang of Light',
       },
       'replaceText': {
+        '--push--': '--push--', // FIXME
         'Aetheric Profusion': 'エーテリックプロフュージョン',
         'Akh Morn': 'アク・モーン',
+        'Bahamut Marker': 'Bahamut Marker', // FIXME
         'Bahamut\'s Claw': 'バハムートクロウ',
         'Bahamut\'s Favor': '龍神の加護',
         'Blackfire Trio': '黒炎の三重奏',
@@ -2031,11 +2048,16 @@
         'Dalamud Dive': 'ダラガブダイブ',
         'Death Sentence': 'デスセンテンス',
         'Deathstorm': 'デスストーム',
+        'Dive . Dynamo/Chariot': 'Dive . Dynamo/Chariot', // FIXME
+        'Dive Dynamo Combo': 'Dive Dynamo Combo', // FIXME
+        'Divebomb': 'ダイブボム',
+        'Doom': '死の宣告',
+        'Dynamo . Beam/Chariot': 'Dynamo . Beam/Chariot', // FIXME
         'Earth Shaker': 'アースシェイカー',
-        'Engage!': '戦闘開始！',
         'Exaflare': 'エクサフレア',
         'Fellruin Trio': '厄災の三重奏',
-        'Fireball': 'ファイアボール',
+        'Fireball(?! Soak)': 'ファイアボール',
+        'Fireball Soak': 'Fireball Soak', // FIXME
         'Flames Of Rebirth': '転生の炎',
         'Flare Breath': 'フレアブレス',
         'Flatten': 'フラッテン',
@@ -2043,28 +2065,44 @@
         'Gigaflare': 'ギガフレア',
         'Grand Octet': '群竜の八重奏',
         'Hatch': '魔力爆散',
-        'Heavensfall(?! )': '天地崩壊',
         'Heavensfall Trio': '天地の三重奏',
+        'Heavensfall(?! )': '天地崩壊',
         'Hypernova': 'スーパーノヴァ',
         'Iceball': 'アイスボール',
         'Iron Chariot': 'アイアンチャリオット',
         'Liquid Hell': 'ヘルリキッド',
         'Lunar Dive': 'ルナダイブ',
         'Lunar Dynamo': 'ルナダイナモ',
+        '(?<! )Marker(?!\\w)': 'Marker', // FIXME
+        'Markers appear': 'Markers appear', // FIXME
         'Megaflare': 'メガフレア',
         'Megaflare Dive': 'メガフレアダイブ',
         'Meteor Stream': 'メテオストリーム',
+        'Meteor/Dive or Dive/Beam': 'Meteor/Dive or Dive/Beam', // FIXME
         'Morn Afah': 'モーン・アファー',
-        'Plummet': 'プラメット',
+        'Nael Dive': 'Nael Dive', // FIXME
+        'Nael Marker': 'Nael Marker', // FIXME
+        'Pepperoni': 'Pepperoni', // FIXME
+        'Plummet(?!\/)': 'プラメット',
+        'Plummet/Claw': 'Plummet/Claw', // FIXME
         'Quickmarch Trio': '進軍の三重奏',
+        'Random Combo Attack': 'Random Combo Attack', // FIXME
         'Raven Dive': 'レイヴンダイブ',
-        'Ravensbeak': 'レイヴェンズビーク',
+        '(?<!\/)Ravensbeak': 'レイヴェンズビーク',
+        'Sentence/Ravensbeak': 'Sentence/Ravensbeak', // FIXME
         'Seventh Umbral Era': '第七霊災',
+        'Stack': 'Stack', // FIXME
+        'Targeted Fire': 'Targeted Fire', // FIXME
         'Tempest Wing': 'テンペストウィング',
         'Tenstrike Trio': '連撃の三重奏',
         'Teraflare': 'テラフレア',
+        'Thermionic . Dynamo/Chariot': 'Thermionic . Dynamo/Chariot', // FIXME
         'Thermionic Beam': 'サーミオニックビーム',
         'Thermionic Burst': 'サーミオニックバースト',
+        'Thunderstruck': 'サンダーウィング',
+        'Towers': 'Towers', // FIXME
+        'Triple Nael Quote': 'Triple Nael Quote', // FIXME
+        'Twin Marker': 'Twin Marker', // FIXME
         'Twister': 'ツイスター',
         'Twisting Dive': 'ツイスターダイブ',
         'White Fury': 'ネールの憤怒',
@@ -2088,110 +2126,211 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Twintania': '双塔尼亚',
-        'Thunderwing': '雷翼',
-        'Ragnarok': '诸神黄昏',
-        'Oviform': '魔力压缩体',
-        'Nael Geminus': '奈尔双生子',
-        'Nael Deus Darnus': '奈尔·神·达纳斯',
-        'Iceclaw': '冰爪',
-        'Firehorn': '火角',
-        'Engage!': '战斗开始！',
         'Bahamut Prime': '至尊巴哈姆特',
-        'Tail of Darkness': '暗尾',
         'Fang of Light': '光牙',
+        'Firehorn': '火角',
+        'Iceclaw': '冰爪',
+        'Nael Deus Darnus': '奈尔·神·达纳斯',
+        'Nael Geminus': '奈尔双生子',
+        'Oviform': '魔力压缩体',
+        'Ragnarok': '诸神黄昏',
+        'Tail of Darkness': '暗尾',
+        'Thunderwing': '雷翼',
+        'Twintania': '双塔尼亚',
       },
       'replaceText': {
-        'Wings of Salvation': '救世之翼',
-        'White Fury': '奈尔之怒',
-        'Twisting Dive': '旋风冲',
-        'Twister Dive': '旋风冲',
-        'Twister': '旋风',
-        'Thermionic Burst': '热离子爆发',
-        'Thermionic Beam': '热离子光束',
-        'Teraflare': '万亿核爆',
-        'Tenstrike Trio': '连击的三重奏',
-        'Tempest Wing': '风暴之翼',
-        'Seventh Umbral Era': '第七灵灾',
-        'Sentence/Ravensbeak': '死刑/凶鸟尖喙',
-        'Ravensbeak': '凶鸟尖喙',
-        'Raven Dive': '凶鸟冲',
-        'Quickmarch Trio': '进军的三重奏',
-        'Plummet/Claw': '垂直下落/爪',
-        'Plummet': '垂直下落',
-        'Morn Afah Enrage': '无尽顿悟 狂暴',
-        'Morn Afah': '无尽顿悟',
-        'Meteor Stream': '陨石流',
-        'Megaflare Dive': '百万核爆冲',
-        'Megaflare': '百万核爆',
-        'Lunar Dynamo': '月流电圈',
-        'Lunar Dive': '月流冲',
-        'Liquid Hell': '液体地狱',
-        'Iron Chariot': '钢铁战车',
-        'Iceball': '寒冰球',
-        'Hypernova': '超新星',
-        'Heavensfall Trio': '天地的三重奏',
-        'Heavensfall': '天崩地裂',
-        'Hatch': '魔力爆散',
-        'Grand Octet': '群龙的八重奏',
-        'Gigaflare': '十亿核爆',
-        'Generate': '魔力炼成',
-        'Flatten': '平击',
-        'Flare Breath': '核爆吐息',
-        'Flames of Rebirth': '转生之炎',
-        'Fireball Soak': '火球分摊',
-        'Fireball': '火球',
-        'Divebomb': '爆破俯冲',
-        'Fellruin Trio': '灾厄的三重奏',
-        'Exaflare': '百京核爆',
-        'Earth Shaker': '大地摇动',
-        'Deathstorm': '死亡风暴',
-        'Death Sentence': '死刑',
-        'Dalamud Dive': '月华冲',
-        'Chain Lightning': '雷光链',
-        'Cauterize': '低温俯冲',
-        'Calamitous Flame': '灵灾之炎',
-        'Calamitous Blaze': '灵灾之焰',
-        'Blackfire Trio': '黑炎的三重奏',
-        'Bahamut\'s Favor': '龙神的加护',
-        'Bahamut\'s Claw': '巴哈姆特之爪',
-        'Akh Morn': '死亡轮回',
+        '--push--': '--push--', // FIXME
         'Aetheric Profusion': '以太失控',
-        // More timeline text
-        'Targeted Fire': '火球点名',
-        'Thunderstruck': '雷翼',
-        'Doom': '死亡宣告',
-        'Random Combo Attack': '随机连招',
-        'Dive Dynamo Combo': '冲月环连招',
-        'Dynamo . Beam/Chariot': '月环 + 光束/钢铁',
-        'Dive . Dynamo/Chariot': '冲 + 月环/钢铁',
-        'Thermionic . Dynamo/Chariot': '离子 + 月环/钢铁',
-        'Meteor/Dive or Dive/Beam': '陨石/冲 或 冲/光束',
-        'Triple Nael Quote': '三黑球',
-        'Stack': '集合',
-        'Markers appear': '标记出现',
-        'Nael Marker': '奈尔标记',
-        'Nael Dive': '奈尔冲',
+        'Akh Morn': '死亡轮回',
         'Bahamut Marker': '巴哈标记',
-        'Twin Marker': '双塔标记',
-        'Marker': '标记',
-        'Towers': '塔',
-        'Enrage': '狂暴',
+        'Bahamut\'s Claw': '巴哈姆特之爪',
+        'Bahamut\'s Favor': '龙神的加护',
+        'Blackfire Trio': '黑炎的三重奏',
+        'Calamitous Blaze': '灵灾之焰',
+        'Calamitous Flame': '灵灾之炎',
+        'Cauterize': '低温俯冲',
+        'Chain Lightning': '雷光链',
+        'Dalamud Dive': '月华冲',
+        'Death Sentence': '死刑',
+        'Deathstorm': '死亡风暴',
+        'Dive . Dynamo/Chariot': '冲 + 月环/钢铁',
+        'Dive Dynamo Combo': '冲月环连招',
+        'Divebomb': '爆破俯冲',
+        'Doom': '死亡宣告',
+        'Dynamo . Beam/Chariot': '月环 + 光束/钢铁',
+        'Earth Shaker': '大地摇动',
+        'Exaflare': '百京核爆',
+        'Fellruin Trio': '灾厄的三重奏',
+        'Fireball(?! Soak)': '火球',
+        'Fireball Soak': '火球分摊',
+        'Flames Of Rebirth': '转生之炎',
+        'Flare Breath': '核爆吐息',
+        'Flatten': '平击',
+        'Generate': '魔力炼成',
+        'Gigaflare': '十亿核爆',
+        'Grand Octet': '群龙的八重奏',
+        'Hatch': '魔力爆散',
+        'Heavensfall Trio': '天地的三重奏',
+        'Heavensfall(?! )': '天崩地裂',
+        'Hypernova': '超新星',
+        'Iceball': '寒冰球',
+        'Iron Chariot': '钢铁战车',
+        'Liquid Hell': '液体地狱',
+        'Lunar Dive': '月流冲',
+        'Lunar Dynamo': '月流电圈',
+        '(?<! )Marker(?!\\w)': '标记',
+        'Markers appear': '标记出现',
+        'Megaflare': '百万核爆',
+        'Megaflare Dive': '百万核爆冲',
+        'Meteor Stream': '陨石流',
+        'Meteor/Dive or Dive/Beam': '陨石/冲 或 冲/光束',
+        'Morn Afah': '无尽顿悟',
+        'Nael Dive': '奈尔冲',
+        'Nael Marker': '奈尔标记',
         'Pepperoni': '大圈',
+        'Plummet(?!\/)': '垂直下落',
+        'Plummet/Claw': '垂直下落/爪',
+        'Quickmarch Trio': '进军的三重奏',
+        'Random Combo Attack': '随机连招',
+        'Raven Dive': '凶鸟冲',
+        '(?<!\/)Ravensbeak': '凶鸟尖喙',
+        'Sentence/Ravensbeak': '死刑/凶鸟尖喙',
+        'Seventh Umbral Era': '第七灵灾',
+        'Stack': '集合',
+        'Targeted Fire': '火球点名',
+        'Tempest Wing': '风暴之翼',
+        'Tenstrike Trio': '连击的三重奏',
+        'Teraflare': '万亿核爆',
+        'Thermionic . Dynamo/Chariot': '离子 + 月环/钢铁',
+        'Thermionic Beam': '热离子光束',
+        'Thermionic Burst': '热离子爆发',
+        'Thunderstruck': '雷翼',
+        'Towers': '塔',
+        'Triple Nael Quote': '三黑球',
+        'Twin Marker': '双塔标记',
+        'Twister': '旋风',
+        'Twisting Dive': '旋风冲',
+        'White Fury': '奈尔之怒',
+        'Wings of Salvation': '救世之翼',
       },
       '~effectNames': {
-        'Thunderstruck': '雷翼',
-        'Slashing Resistance Down II': '斩击耐性大幅降低',
-        'Piercing Resistance Down II': '突刺耐性大幅降低',
-        'Phoenix\'s Blessing': '不死鸟的加护',
-        'Neurolink': '拘束装置',
-        'Mana Hypersensitivity': '魔力过敏',
-        'Lohs Daih': '真力解放',
-        'Icebitten': '冰爪',
-        'Firescorched': '火角',
-        'Earth Resistance Down II': '土属性耐性大幅降低',
-        'Down for the Count': '击倒',
         'Doom': '死亡宣告',
+        'Down For The Count': '击倒',
+        'Earth Resistance Down II': '土属性耐性大幅降低',
+        'Firescorched': '火角',
+        'Icebitten': '冰爪',
+        'Lohs Daih': '真力解放',
+        'Mana Hypersensitivity': '魔力过敏',
+        'Neurolink': '拘束装置',
+        'Phoenix\'s Blessing': '不死鸟的加护',
+        'Piercing Resistance Down II': '突刺耐性大幅降低',
+        'Slashing Resistance Down II': '斩击耐性大幅降低',
+        'Thunderstruck': '雷翼',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Bahamut Prime': '바하무트 프라임',
+        'Fang of Light': '빛의 송곳니',
+        'Firehorn': '화염뿔',
+        'Iceclaw': '얼음발톱',
+        'Nael Deus Darnus': '넬 데우스 다르누스',
+        'Nael Geminus': '넬 게미누스',
+        'Oviform': '마력 압축체',
+        'Ragnarok': '라그나로크',
+        'Tail of Darkness': '어둠의 꼬리',
+        'Thunderwing': '번개날개',
+        'Twintania': '트윈타니아',
+      },
+      'replaceText': {
+        '--push--': '--최소 RDPS컷--',
+        'Aetheric Profusion': '에테르 홍수',
+        'Akh Morn': '아크 몬',
+        'Bahamut Marker': '바하무트 징',
+        'Bahamut\'s Claw': '바하무트의 발톱',
+        'Bahamut\'s Favor': '용신의 가호',
+        'Blackfire Trio': '흑염의 3중주',
+        'Calamitous Blaze': '재앙의 화염',
+        'Calamitous Flame': '재앙의 불꽃',
+        'Cauterize': '인두질',
+        'Chain Lightning': '번개 사슬',
+        'Dalamud Dive': '달라가브 강하',
+        'Death Sentence': '사형 선고',
+        'Deathstorm': '죽음의 폭풍',
+        'Dive . Dynamo/Chariot': '강하 + 달/강철',
+        'Dive Dynamo Combo': '강하 달 콤보',
+        'Divebomb': '급강하 폭격',
+        'Doom': '죽음의 선고',
+        'Dynamo . Beam/Chariot': '달 + 광선/강철',
+        'Earth Shaker': '요동치는 대지',
+        'Exaflare': '엑사플레어',
+        'Fellruin Trio': '재앙의 3중주',
+        'Fireball(?! Soak)': '화염구',
+        'Fireball Soak': '화염구 쉐어',
+        'Flames Of Rebirth': '윤회의 불꽃',
+        'Flare Breath': '타오르는 숨결',
+        'Flatten': '짓뭉개기',
+        'Generate': '마력 연성',
+        'Gigaflare': '기가플레어',
+        'Grand Octet': '용들의 8중주',
+        'Hatch': '마력 방출',
+        'Heavensfall Trio': '천지의 3중주',
+        'Heavensfall(?! )': '천지붕괴(?! )',
+        'Hypernova': '초신성',
+        'Iceball': '얼음구',
+        'Iron Chariot': '강철 전차',
+        'Liquid Hell': '지옥의 늪',
+        'Lunar Dive': '달 강하',
+        'Lunar Dynamo': '달의 원동력',
+        '(?<! )Marker(?!\\w)': '징',
+        'Markers appear': '징 표시',
+        'Megaflare': '메가플레어',
+        'Megaflare Dive': '메가플레어 다이브',
+        'Meteor Stream': '유성 폭풍',
+        'Meteor/Dive or Dive/Beam': '유성/강하 or 강하/광선',
+        'Morn Afah': '몬 아파',
+        'Nael Dive': '넬 강하',
+        'Nael Marker': '넬 징',
+        'Pepperoni': '메가플레어 장판',
+        'Plummet(?!\/)': '곤두박질',
+        'Plummet/Claw': '곤두박질/발톱',
+        'Quickmarch Trio': '진군의 3중주',
+        'Random Combo Attack': '랜덤 콤보 공격',
+        'Raven Dive': '흉조의 강하',
+        '(?<!\/)Ravensbeak': '흉조의 부리',
+        'Sentence/Ravensbeak': '선고/부리',
+        'Seventh Umbral Era': '제7재해',
+        'Stack': '모이기',
+        'Targeted Fire': '대상자 화염구',
+        'Tempest Wing': '폭풍우 날개',
+        'Tenstrike Trio': '연격의 3중주',
+        'Teraflare': '테라플레어',
+        'Thermionic . Dynamo/Chariot': '열전자 + 달/강철',
+        'Thermionic Beam': '열전자 광선',
+        'Thermionic Burst': '열전자 폭발',
+        'Thunderstruck': '번개날개',
+        'Towers': '기둥',
+        'Triple Nael Quote': '넬 3회 대사',
+        'Twin Marker': '트윈 징',
+        'Twister': '회오리',
+        'Twisting Dive': '회오리 강하',
+        'White Fury': '넬의 분노',
+        'Wings of Salvation': '구원의 날개',
+      },
+      '~effectNames': {
+        'Doom': '죽음의 선고',
+        'Down For The Count': '넉다운',
+        'Earth Resistance Down II': '땅속성 저항 감소[강]',
+        'Firescorched': '화염뿔',
+        'Icebitten': '얼음발톱',
+        'Lohs Daih': '로스 다이',
+        'Mana Hypersensitivity': '마력 과민증',
+        'Neurolink': '구속 장치',
+        'Phoenix\'s Blessing': '피닉스의 가호',
+        'Piercing Resistance Down II': '찌르기 저항 감소[강]',
+        'Slashing Resistance Down II': '베기 저항 감소[강]',
+        'Thunderstruck': '번개날개',
       },
     },
   ],

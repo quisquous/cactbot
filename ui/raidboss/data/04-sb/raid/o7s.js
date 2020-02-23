@@ -11,37 +11,43 @@
   triggers: [
     // State
     {
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Aether Rot from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ätherfäule from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エーテルロット from/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 에테르 부패 from/,
+      id: 'O7S Aether Rot Gain',
+      regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット' }),
+      regexCn: Regexes.gainsEffect({ effect: '以太病毒' }),
+      regexKo: Regexes.gainsEffect({ effect: '에테르 부패' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.rot = true;
       },
     },
     {
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Aether Rot from/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Ätherfäule from/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Pourriture éthéréenne from/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of エーテルロット from/,
-      regexKo: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 에테르 부패 from/,
+      id: 'O7S Aether Rot Lose',
+      regex: Regexes.losesEffect({ effect: 'Aether Rot' }),
+      regexDe: Regexes.losesEffect({ effect: 'Ätherfäule' }),
+      regexFr: Regexes.losesEffect({ effect: 'Pourriture Éthéréenne' }),
+      regexJa: Regexes.losesEffect({ effect: 'エーテルロット' }),
+      regexCn: Regexes.losesEffect({ effect: '以太病毒' }),
+      regexKo: Regexes.losesEffect({ effect: '에테르 부패' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.rot = false;
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Dadaluma Simulation/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Dadarma-Kampfprogramm/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Dadaluma/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ダダルマー・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 다다루마 프로그램/,
+      id: 'O7S Dadaluma Simulation',
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Dadaluma Simulation', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Dadarma-Kampfprogramm', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Dadaluma', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ダダルマー・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '达达鲁玛模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '다다루마 프로그램', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -53,11 +59,13 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Bibliotaph Simulation/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Bibliotaph-Kampfprogramm/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Bibliotaphe/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ビブリオタフ・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 비블리오타프 프로그램/,
+      id: 'O7S Bibliotaph Simulation',
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Bibliotaph Simulation', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Bibliotaph-Kampfprogramm', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Bibliotaphe', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ビブリオタフ・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '永世珍本模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '비블리오타프 프로그램', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -69,24 +77,25 @@
       },
     },
     {
-      regex: / 1A:\y{ObjectId}:Guardian gains the effect of Virus/,
-      regexDe: / 1A:\y{ObjectId}:Wächter gains the effect of Virus/,
-      regexFr: / 1A:\y{ObjectId}:Gardien gains the effect of Programme Virus/,
-      regexJa: / 1A:\y{ObjectId}:ガーディアン gains the effect of ウィルス・プログラム/,
-      regexKo: / 1A:\y{ObjectId}:가디언 gains the effect of 바이러스 프로그램/,
+      id: 'O7S Virus Tracker',
+      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Virus', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Virus', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Virus', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ウィルス・プログラム', capture: false }),
+      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '病毒模拟程序', capture: false }),
+      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '바이러스 프로그램', capture: false }),
       run: function(data) {
         data.seenVirus = true;
       },
     },
-
-
     {
       id: 'O7S Magitek Ray',
-      regex: / 14:2788:Guardian starts using Magitek Ray/,
-      regexDe: / 14:2788:Wächter starts using Magitek-Laser/,
-      regexFr: / 14:2788:Gardien starts using Rayon Magitek/,
-      regexJa: / 14:2788:ガーディアン starts using 魔導レーザー/,
-      regexKo: / 14:2788:가디언 starts using 마도 레이저/,
+      regex: Regexes.startsUsing({ id: '2788', source: 'Guardian', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2788', source: 'Wächter', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2788', source: 'Gardien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2788', source: 'ガーディアン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2788', source: '守护者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2788', source: '가디언', capture: false }),
       alertText: {
         en: 'Magitek Ray',
         de: 'Magitek-Laser',
@@ -104,13 +113,14 @@
     },
     {
       id: 'O7S Arm And Hammer',
-      regex: / 14:2789:Guardian starts using Arm And Hammer on (\y{Name})/,
-      regexDe: / 14:2789:Wächter starts using Arm-Hammer on (\y{Name})/,
-      regexFr: / 14:2789:Gardien starts using Marteau Stratégique on (\y{Name})/,
-      regexJa: / 14:2789:ガーディアン starts using アームハンマー on (\y{Name})/,
-      regexKo: / 14:2789:가디언 starts using 양팔 내리치기 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2789', source: 'Guardian' }),
+      regexDe: Regexes.startsUsing({ id: '2789', source: 'Wächter' }),
+      regexFr: Regexes.startsUsing({ id: '2789', source: 'Gardien' }),
+      regexJa: Regexes.startsUsing({ id: '2789', source: 'ガーディアン' }),
+      regexCn: Regexes.startsUsing({ id: '2789', source: '守护者' }),
+      regexKo: Regexes.startsUsing({ id: '2789', source: '가디언' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tenkbuster auf DIR',
@@ -120,15 +130,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tenkbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: '탱버 → ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tenkbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: '탱버 → ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -141,9 +151,9 @@
     },
     {
       id: 'O7S Orb Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0017:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alertText: {
         en: 'Orb Marker',
@@ -162,11 +172,10 @@
     },
     {
       id: 'O7S Blue Marker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '000E' }),
       alarmText: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
-
         return {
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
@@ -176,21 +185,19 @@
         };
       },
       infoText: function(data, matches) {
-        if (data.me == matches[1])
+        if (data.me == matches.target)
           return;
-
         return {
-          en: 'Blue Marker on ' + data.ShortName(matches[1]),
-          de: 'Aura-Kanone auf ' + data.ShortName(matches[1]),
-          fr: 'Marque Bleue sur ' + data.ShortName(matches[1]),
-          ko: '파란징 → ' + data.ShortName(matches[1]),
-          ja: '青玉 on ' + data.ShortName(matches[1]),
+          en: 'Blue Marker on ' + data.ShortName(matches.target),
+          de: 'Aura-Kanone auf ' + data.ShortName(matches.target),
+          fr: 'Marque Bleue sur ' + data.ShortName(matches.target),
+          ko: '파란징 → ' + data.ShortName(matches.target),
+          ja: '青玉 on ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
-
         return {
           en: 'blue marker',
           de: 'aura-kanone',
@@ -202,9 +209,9 @@
     },
     {
       id: 'O7S Prey',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:001E:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '001E' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Prey on YOU',
             de: 'Rakete auf DIR',
@@ -214,17 +221,16 @@
           };
         }
         return {
-          en: 'Prey on ' + data.ShortName(matches[1]),
-          de: 'Beute auf ' + data.ShortName(matches[1]),
-          fr: 'Marquage sur ' + data.ShortName(matches[1]),
-          ko: '빨간징 → ' + data.ShortName(matches[1]),
-          ja: 'マーカー on ' + data.ShortName(matches[1]),
+          en: 'Prey on ' + data.ShortName(matches.target),
+          de: 'Beute auf ' + data.ShortName(matches.target),
+          fr: 'Marquage sur ' + data.ShortName(matches.target),
+          ko: '빨간징 → ' + data.ShortName(matches.target),
+          ja: 'マーカー on ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
-
         return {
           en: 'prey',
           de: 'beute',
@@ -236,13 +242,14 @@
     },
     {
       id: 'O7S Searing Wind',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Searing Wind/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gluthitze/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Fournaise/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 灼熱/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 작열/,
+      regex: Regexes.gainsEffect({ effect: 'Searing Wind' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Gluthitze' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Fournaise' }),
+      regexJa: Regexes.gainsEffect({ effect: '灼熱' }),
+      regexCn: Regexes.gainsEffect({ effect: '灼热' }),
+      regexKo: Regexes.gainsEffect({ effect: '작열' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Searing Wind: go outside',
@@ -261,13 +268,14 @@
     },
     {
       id: 'O7S Abandonment',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Abandonment/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Verlassen/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Isolement/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 孤独感/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 고독감/,
+      regex: Regexes.gainsEffect({ effect: 'Abandonment' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Verlassen' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Isolement' }),
+      regexJa: Regexes.gainsEffect({ effect: '孤独感' }),
+      regexCn: Regexes.gainsEffect({ effect: '孤独感' }),
+      regexKo: Regexes.gainsEffect({ effect: '고독감' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Abandonment: stay middle',
@@ -286,13 +294,14 @@
     },
     {
       id: 'O7S Rot',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Aether Rot from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Ätherfäule from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Pourriture éthéréenne from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of エーテルロット from/,
-      regexKo: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 에테르 부패 from/,
+      regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
+      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット' }),
+      regexCn: Regexes.gainsEffect({ effect: '以太病毒' }),
+      regexKo: Regexes.gainsEffect({ effect: '에테르 부패' }),
       infoText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Rot on you',
             de: 'Fäule auf DIR',
@@ -302,15 +311,15 @@
           };
         }
         return {
-          en: 'Rot on ' + data.ShortName(matches[1]),
-          de: 'Fäule auf ' + data.ShortName(matches[1]),
-          fr: 'Pourriture sur ' + data.ShortName(matches[1]),
-          ko: '에테르 → ' + data.ShortName(matches[1]),
-          ja: 'ロット on ' + data.ShortName(matches[1]),
+          en: 'Rot on ' + data.ShortName(matches.target),
+          de: 'Fäule auf ' + data.ShortName(matches.target),
+          fr: 'Pourriture sur ' + data.ShortName(matches.target),
+          ko: '에테르 → ' + data.ShortName(matches.target),
+          ja: 'ロット on ' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
-        if (data.me != matches[1])
+        if (data.me != matches.target)
           return;
 
         return {
@@ -323,11 +332,12 @@
     },
     {
       id: 'O7S Stoneskin',
-      regex: / 14:2AB5:Ultros starts using Stoneskin/,
-      regexDe: / 14:2AB5:Ultros starts using Steinhaut/,
-      regexFr: / 14:2AB5:Orthros starts using Cuirasse/,
-      regexJa: / 14:2AB5:オルトロス starts using ストンスキン/,
-      regexKo: / 14:2AB5:오르트로스 starts using 스톤스킨/,
+      regex: Regexes.startsUsing({ id: '2AB5', source: 'Ultros', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2AB5', source: 'Ultros', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2AB5', source: 'Orthros', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2AB5', source: 'オルトロス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2AB5', source: '오르트로스', capture: false }),
       alarmText: function(data) {
         if (data.CanSilence()) {
           return {
@@ -357,11 +367,12 @@
       // Skip: 2773
       // Retrieve: 2774
       // Paste: 2776
-      regex: / 14:(?:275C|2773|2774|2776):Guardian starts using (?:Load|Skip Program|Retrieve Program|Paste Program)/,
-      regexDe: / 14:(?:275C|2773|2774|2776):Wächter starts using (?:Laden|Programm überspringen|Programm wiederherstellen|Programm einfügen)/,
-      regexFr: / 14:(?:275C|2773|2774|2776):Gardien starts using (?:Chargement|Saut de programme|Programme précédent|Collage de programme)/,
-      regexJa: / 14:(?:275C|2773|2774|2776):ガーディアン starts using (?:ローディング|スキップ・ローディング|リバース・ローディング|プログラム・ペースト)/,
-      regexKo: / 14:(?:275C|2773|2774|2776):가디언 starts using/,
+      regex: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Guardian', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Wächter', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Gardien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'ガーディアン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
       preRun: function(data) {
         data.loadCount = ++data.loadCount || 1;
         data.thisLoad = undefined;
@@ -400,7 +411,7 @@
           'dada': 'Dada: Knockback',
           'ships': 'Ships: Out of Melee',
           'ultros': 'Ultros: Ink Spread',
-          'virus': 'VIRUS',
+          '(?<!\\w)virus': 'VIRUS',
         })[data.thisLoad];
 
         data.thisLoadTTS = ({
@@ -409,7 +420,7 @@
           'dada': 'knockback',
           'ships': 'get out',
           'ultros': 'ink ink ink',
-          'virus': 'virus',
+          '(?<!\\w)virus': 'virus',
         })[data.thisLoad];
       },
       alertText: function(data) {
@@ -421,11 +432,12 @@
     },
     {
       id: 'O7S Run',
-      regex: / 14:276F:Guardian starts using Run Program/,
-      regexDe: / 14:276F:Wächter starts using Programm Starten/,
-      regexFr: / 14:276F:Gardien starts using Programme De Matérialisation/,
-      regexJa: / 14:276F:ガーディアン starts using 実体化プログラム/,
-      regexKo: / 14:276F:가디언 starts using 실체화 프로그램/,
+      regex: Regexes.startsUsing({ id: '276F', source: 'Guardian', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '276F', source: 'Wächter', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '276F', source: 'Gardien', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '276F', source: 'ガーディアン', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
       preRun: function(data) {
         data.runCount = ++data.runCount || 1;
         data.thisRunText = undefined;
@@ -470,65 +482,58 @@
         'Dadaluma': 'Dadarma',
         'Fire Control System': 'Feuerleitsystem',
         'Guardian': 'Wächter',
-        'Interdimensional Bomb': 'Interdimensional[a] Bombe',
+        'Interdimensional Bomb': 'interdimensional(?:e|er|es|en) Bombe',
         'Ultros': 'Ultros',
         'WEAPON SYSTEMS ONLINE': 'Feuerkontrollsystem aktiviert',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
-        'Engage!': 'Start!',
-        'Enrage': 'Finalangriff',
-
+        'Aether Rot': 'Ätherfäule',
         'Arm And Hammer': 'Arm-Hammer',
         'Atomic Ray': 'Atomstrahlung',
         'Aura Cannon': 'Aura-Kanone',
+        'Biblio': 'Bibliotaph',
         'Bomb Deployment': 'Bombeneinsatz',
         'Chain Cannon': 'Kettenkanone',
         'Chakra Burst': 'Chakra-Ausbruch',
-        'Copy Program': 'Programm Kopieren',
+        'Copy Program': 'Programm kopieren',
+        'Copy(?! Program)': 'Kopieren',
+        'Dada': 'Dadarma',
         'Demon Simulation': 'Dämonensimulation',
         'Diffractive Laser': 'Diffraktiver Laser',
         'Diffractive Plasma': 'Diffusionsplasma',
         'Electric Pulse': 'Elektrischer Impuls',
         'Explosion': 'Explosion',
         'Ink': 'Tinte',
+        'Interrupt Stoneskin': 'Steinhaut unterbrechen',
         'Light Blast': 'Lichtschwall',
         'Load': 'Laden',
         'Magitek Ray': 'Magitek-Laser',
         'Magnetism': 'Magnetismus',
         'Main Cannon': 'Hauptkanone',
-        'Missile': 'Rakete',
         'Missile Simulation': 'Raketensimulation',
-        'Paste Program': 'Programm Einfügen',
+        'Missile(?![ |\\w])': 'Rakete',
+        'Paste Program': 'Programm einfügen',
+        'Paste(?! Program)': 'Einfügen',
+        'Plane Laser': 'Luftwaffe Add Laser',
+        'Prey': 'Beute',
+        'Radar': 'Radar',
         'Repel': 'Abstoßung',
-        'Retrieve Program': 'Programm Wiederherstellen',
-        'Run Program': 'Programm Starten',
+        'Retrieve Air Force': 'Luftwaffe Wiederherstellen',
+        'Retrieve Program': 'Programm wiederherstellen',
+        'Retrieve Ultros': 'Ultros Wiederherstellen',
+        'Run Program': 'Programm starten',
+        'Run(?! Program)': 'Start',
         'Shockwave': 'Schockwelle',
         'Skip Program': 'Programm überspringen',
-        'Stoneskin': 'Steinhaut',
-        'Tentacle': 'Tentakel',
+        'Skip(?! Program)': 'Überspringen',
+        '(?<! )Stoneskin': 'Steinhaut',
+        'Temporary Misdirection': 'Plötzliche Panik',
+        'Tentacle(?! )': 'Tentakel',
         'Tentacle Simulation': 'Tentakelsimulation',
         'The Heat': 'Heißluft',
         'Viral Weapon': 'Panikvirus',
-        'Wallop': 'Tentakel',
-
-        'Aether Rot': 'Ätherfäule',
-        'Copy': 'Kopieren',
-        'Skip': 'Überspringen',
-        'Dada': 'Dadarma',
-        'Run': 'Start',
-        'Interrupt Stoneskin': 'Steinhaut unterbrechen',
-        'Magnetism/Repel': 'Magnetismus',
-        'Prey': 'Markiert',
-        'Temporary Misdirection': 'Plötzliche Panik',
-        'Radar': 'Radar',
-        'Paste': 'Einfügen',
-        'Biblio': 'Bibliotaph',
-        'Plane Laser': 'Luftwaffe Add Laser',
-        'Virus': 'Virus',
-        'Retrieve Ultros': 'Ultros Wiederherstellen',
-        'Retrieve Air Force': 'Luftwaffe Wiederherstellen',
+        '(?<!\\w)Virus': 'Virus',
+        'Wallop': 'Tentakelklatsche',
       },
       '~effectNames': {
         'Abandonment': 'Verlassen',
@@ -544,101 +549,94 @@
         'Negative Charge': 'Negative Ladung',
         'Paralysis': 'Paralyse',
         'Positive Charge': 'Positive Ladung',
-        'Prey': 'Markiert',
-        'Searing Wind': 'Gluthitze',
+        'Prey': 'Beute',
+        'Searing Wind': 'Versengen',
         'Stun': 'Betäubung',
         'Temporary Misdirection': 'Plötzliche Panik',
         'Ultros Simulation': 'Ultros-Kampfprogramm',
-        'Virus': 'Virus',
+        '(?<!\\w)Virus': 'Virus',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Dadaluma Simulation': 'Programme Dadaluma',
-        'Bibliotaph Simulation': 'Programme Bibliotaphe',
-        'Air Force': 'Force Aérienne',
+        'Air Force': 'force aérienne',
         'Dadaluma': 'Dadaluma',
-        'Fire Control System': 'Système De Contrôle',
-        'Guardian': 'Gardien',
-        'Interdimensional Bomb': 'Bombe Dimensionnelle',
+        'Fire Control System': 'système de contrôle',
+        'Guardian': 'gardien',
+        'Interdimensional Bomb': 'bombe dimensionnelle',
         'Ultros': 'Orthros',
         'WEAPON SYSTEMS ONLINE': 'Démarrage du système de contrôle... Activation du programme initial... Gardien, au combat',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
-        'Arm And Hammer': 'Marteau Stratégique',
-        'Atomic Ray': 'Rayon Atomique',
-        'Aura Cannon': 'Rayon D\'aura',
-        'Bomb Deployment': 'Déploiement De Bombes',
-        'Chain Cannon': 'Canon Automatique',
-        'Chakra Burst': 'Explosion De Chakra',
-        'Copy Program': 'Copie De Programme',
-        'Demon Simulation': 'Chargement : Démon',
-        'Diffractive Laser': 'Laser Diffracteur',
-        'Diffractive Plasma': 'Plasma Diffracteur',
+        'Aether Rot': 'Pourriture éthéréenne',
+        'Arm And Hammer': 'Marteau stratégique',
+        'Atomic Ray': 'Rayon atomique',
+        'Aura Cannon': 'Rayon d\'aura',
+        'Biblio': 'Bibliotaphe',
+        'Bomb Deployment': 'Déploiement de bombes',
+        'Chain Cannon': 'Canon automatique',
+        'Chakra Burst': 'Explosion d\'aura',
+        'Copy Program': 'Copie de programme',
+        'Copy(?! Program)': 'Copie',
+        'Dada': 'Dadaluma',
+        'Demon Simulation': 'Chargement : démon',
+        'Diffractive Laser': 'Laser diffracteur',
+        'Diffractive Plasma': 'Plasma diffracteur',
         'Electric Pulse': 'Impulsion électrique',
-        'Engage!': 'À l\'attaque',
         'Explosion': 'Explosion',
         'Ink': 'Encre',
-        'Light Blast': 'Déflagration Légère',
-        'Load': 'Chargement',
-        'Magitek Ray': 'Rayon Magitek',
-        'Magnetism': 'Magnétisme',
-        'Main Cannon': 'Canon Principal',
-        'Missile': 'Missile',
-        'Missile Simulation': 'Chargement : Missiles',
-        'Paste Program': 'Collage De Programme',
-        'Repel': 'Répulsion',
-        'Retrieve Program': 'Programme Précédent',
-        'Run Program': 'Programme De Matérialisation',
-        'Shockwave': 'Onde De Choc',
-        'Skip Program': 'Saut De Programme',
-        'Stoneskin': 'Cuirasse',
-        'Tentacle': 'Tentacule',
-        'Tentacle Simulation': 'Chargement : Tentacule',
-        'The Heat': 'Carbonisation',
-        'Viral Weapon': 'Arme Virologique',
-        'Wallop': 'Taloche Tentaculaire',
-        'Prey': 'Marquage',
-        'Aether Rot': 'Pourriture éthéréenne',
-        'Copy': 'Copie',
-        'Skip': 'Saut De Programme',
-        'Dada': 'Dadaluma',
-        'Run': 'Programme',
         'Interrupt Stoneskin': 'Interrompre Cuirasse',
-        'Magnetism/Repel': 'Magnétisme/Répulsion',
-        'Temporary Misdirection': 'Démence',
-        'Radar': 'Radar',
-        'Paste': 'Collage',
-        'Biblio': 'Bibliotaphe',
+        'Light Blast': 'Déflagration légère',
+        'Load': 'Chargement',
+        'Magitek Ray': 'Rayon magitek',
+        'Magnetism': 'Magnétisme',
+        'Main Cannon': 'Canon principal',
+        'Missile Simulation': 'Chargement : missiles',
+        'Missile(?![ |\\w])': 'Missile',
+        'Paste Program': 'Collage de programme',
+        'Paste(?! Program)': 'Collage',
         'Plane Laser': 'Laser force aérienne',
-        'Virus': 'Virus',
-        'Enrage': 'Enrage',
-        'Retrieve Ultros': 'Programme Précédent Orthros',
+        'Prey': 'Proie',
+        'Radar': 'Radar',
+        'Repel': 'Répulsion',
         'Retrieve Air Force': 'Programme Précédent Force Aérienne',
+        'Retrieve Program': 'Programme précédent',
+        'Retrieve Ultros': 'Programme Précédent Orthros',
+        'Run Program': 'Programme de matérialisation',
+        'Run(?! Program)': 'Programme',
+        'Shockwave': 'Onde de choc',
+        'Skip Program': 'Saut de programme',
+        'Skip(?! Program)': 'Saut De Programme',
+        '(?<! )Stoneskin': 'Cuirasse',
+        'Temporary Misdirection': 'Démence',
+        'Tentacle(?! )': 'Tentacule',
+        'Tentacle Simulation': 'Chargement : tentacule',
+        'The Heat': 'Carbonisation',
+        'Viral Weapon': 'Arme virologique',
+        '(?<!\\w)Virus': 'Virus',
+        'Wallop': 'Taloche tentaculaire',
       },
       '~effectNames': {
         'Abandonment': 'Isolement',
         'Aether Rot': 'Pourriture éthéréenne',
         'Aether Rot Immunity': 'Anticorps éthéréen',
-        'Air Force Simulation': 'Programme Force Aérienne',
-        'Bibliotaph Simulation': 'Programme Bibliotaphe',
-        'Bleeding': 'Saignant',
+        'Air Force Simulation': 'Programme force aérienne',
+        'Bibliotaph Simulation': 'Programme bibliotaphe',
+        'Bleeding': 'Saignement',
         'Burns': 'Brûlure',
         'Dadaluma Simulation': 'Programme Dadaluma',
-        'Fire Resistance Down II': 'Résistance Au Feu Réduite+',
+        'Fire Resistance Down II': 'Résistance au feu réduite+',
         'Hover': 'Élévation',
-        'Negative Charge': 'Charge Négative',
+        'Negative Charge': 'Charge négative',
         'Paralysis': 'Paralysie',
-        'Positive Charge': 'Charge Positive',
-        'Prey': 'Marquage',
-        'Searing Wind': 'Fournaise',
+        'Positive Charge': 'Charge positive',
+        'Prey': 'Proie',
+        'Searing Wind': 'Carbonisation',
         'Stun': 'Étourdissement',
         'Temporary Misdirection': 'Démence',
         'Ultros Simulation': 'Programme Orthros',
-        'Virus': 'Programme Virus',
+        '(?<!\\w)Virus': 'Virus',
       },
     },
     {
@@ -650,57 +648,56 @@
         'Guardian': 'ガーディアン',
         'Interdimensional Bomb': '次元爆弾',
         'Ultros': 'オルトロス',
+        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
+        'Aether Rot': 'エーテルロット',
         'Arm And Hammer': 'アームハンマー',
         'Atomic Ray': 'アトミックレイ',
         'Aura Cannon': 'オーラキャノン',
+        'Biblio': 'Biblio', // FIXME
         'Bomb Deployment': '爆弾設置',
         'Chain Cannon': 'チェーンガン',
         'Chakra Burst': 'チャクラバースト',
         'Copy Program': 'プログラム・コピー',
+        'Copy(?! Program)': 'Copy', // FIXME
+        'Dada': 'Dada', // FIXME
         'Demon Simulation': 'ローディング：デーモン',
         'Diffractive Laser': '拡散レーザー',
         'Diffractive Plasma': '拡散プラズマ',
         'Electric Pulse': 'エレクトリックパルス',
-        'Engage!': '戦闘開始！',
         'Explosion': '爆発',
         'Ink': '墨',
+        'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
         'Light Blast': '小規模爆発',
         'Load': 'ローディング',
         'Magitek Ray': '魔導レーザー',
         'Magnetism': '磁力',
         'Main Cannon': 'メインカノン',
-        'Missile': 'ミサイル',
         'Missile Simulation': 'ローディング：ミサイル',
+        'Missile(?![ |\\w])': 'ミサイル',
         'Paste Program': 'プログラム・ペースト',
+        'Paste(?! Program)': 'Paste', // FIXME
+        'Plane Laser': 'Plane Laser', // FIXME
+        'Prey': 'プレイ',
+        'Radar': 'Radar', // FIXME
         'Repel': '反発',
+        'Retrieve Air Force': 'Retrieve Air Force', // FIXME
         'Retrieve Program': 'リバース・ローディング',
+        'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '実体化プログラム',
+        'Run(?! Program)': 'Run', // FIXME
         'Shockwave': '衝撃波',
         'Skip Program': 'スキップ・ローディング',
-        'Stoneskin': 'ストンスキン',
-        'Tentacle': 'たこあし',
+        'Skip(?! Program)': 'Skip', // FIXME
+        '(?<! )Stoneskin': 'ストンスキン',
+        'Temporary Misdirection': '心神喪失',
+        'Tentacle(?! )': 'たこあし',
         'Tentacle Simulation': 'ローディング：たこあし',
         'The Heat': '熱風',
         'Viral Weapon': 'ウィルス兵器',
+        '(?<!\\w)Virus': 'ウイルス',
         'Wallop': '叩きつけ',
-
-        // FIXME:
-        'Aether Rot': 'Aether Rot',
-        'Copy': 'Copy',
-        'Skip': 'Skip',
-        'Dada': 'Dada',
-        'Run': 'Run',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin',
-        'Magnetism/Repel': 'Magnetism/Repel',
-        'Temporary Misdirection': 'Temporary Misdirection',
-        'Radar': 'Radar',
-        'Paste': 'Paste',
-        'Biblio': 'Biblio',
-        'Plane Laser': 'Plane Laser',
-        'Virus': 'Virus',
-        'Enrage': 'Enrage',
       },
       '~effectNames': {
         'Abandonment': '孤独感',
@@ -716,12 +713,94 @@
         'Negative Charge': '磁力【－】',
         'Paralysis': '麻痺',
         'Positive Charge': '磁力【＋】',
-        'Prey': 'マーキング',
-        'Searing Wind': '灼熱',
+        'Prey': 'プレイ',
+        'Searing Wind': '熱風',
         'Stun': 'スタン',
         'Temporary Misdirection': '心神喪失',
         'Ultros Simulation': 'オルトロス・プログラム',
-        'Virus': 'ウィルス・プログラム',
+        '(?<!\\w)Virus': 'ウイルス',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Air Force': '空军装甲',
+        'Dadaluma': '达达鲁玛',
+        'Fire Control System': '武器火控系统',
+        'Guardian': '守护者',
+        'Interdimensional Bomb': '次元炸弹',
+        'Ultros': '奥尔特罗斯',
+        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
+      },
+      'replaceText': {
+        'Aether Rot': '以太病毒',
+        'Arm And Hammer': '臂锤',
+        'Atomic Ray': '原子射线',
+        'Aura Cannon': '斗气炮',
+        'Biblio': 'Biblio', // FIXME
+        'Bomb Deployment': '设置炸弹',
+        'Chain Cannon': '链式机关炮',
+        'Chakra Burst': '脉轮爆发',
+        'Copy Program': '复制程序',
+        'Copy(?! Program)': 'Copy', // FIXME
+        'Dada': 'Dada', // FIXME
+        'Demon Simulation': '加载恶魔模拟程序',
+        'Diffractive Laser': '扩散射线',
+        'Diffractive Plasma': '扩散离子',
+        'Electric Pulse': '电磁脉冲',
+        'Explosion': '爆炸',
+        'Ink': '墨汁',
+        'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
+        'Light Blast': '小规模爆炸',
+        'Load': '加载',
+        'Magitek Ray': '魔导激光',
+        'Magnetism': '磁力',
+        'Main Cannon': '主加农炮',
+        'Missile Simulation': '加载导弹模拟程序',
+        'Missile(?![ |\\w])': '导弹',
+        'Paste Program': '粘贴程序',
+        'Paste(?! Program)': 'Paste', // FIXME
+        'Plane Laser': 'Plane Laser', // FIXME
+        'Prey': 'プレイ',
+        'Radar': 'Radar', // FIXME
+        'Repel': '相斥',
+        'Retrieve Air Force': 'Retrieve Air Force', // FIXME
+        'Retrieve Program': '反向加载',
+        'Retrieve Ultros': 'Retrieve Ultros', // FIXME
+        'Run Program': '实体化程序',
+        'Run(?! Program)': 'Run', // FIXME
+        'Shockwave': '冲击波',
+        'Skip Program': '跳跃加载',
+        'Skip(?! Program)': 'Skip', // FIXME
+        '(?<! )Stoneskin': '石肤',
+        'Temporary Misdirection': '精神失常',
+        'Tentacle(?! )': '腕足',
+        'Tentacle Simulation': '加载腕足模拟程序',
+        'The Heat': '热风',
+        'Viral Weapon': '病毒兵器',
+        '(?<!\\w)Virus': '病毒',
+        'Wallop': '敲击',
+      },
+      '~effectNames': {
+        'Abandonment': '孤独感',
+        'Aether Rot': '以太病毒',
+        'Aether Rot Immunity': '以太病毒抗体',
+        'Air Force Simulation': '空军装甲模拟程序',
+        'Bibliotaph Simulation': '永世珍本模拟程序',
+        'Bleeding': '出血',
+        'Burns': '火伤',
+        'Dadaluma Simulation': '达达鲁玛模拟程序',
+        'Fire Resistance Down II': '火属性耐性大幅降低',
+        'Hover': '滞空',
+        'Negative Charge': '磁力（-）',
+        'Paralysis': '麻痹',
+        'Positive Charge': '磁力（+）',
+        'Prey': 'プレイ',
+        'Searing Wind': '热风',
+        'Stun': '眩晕',
+        'Temporary Misdirection': '精神失常',
+        'Ultros Simulation': '奥尔特罗斯模拟程序',
+        '(?<!\\w)Virus': '病毒',
       },
     },
     {
@@ -733,58 +812,56 @@
         'Guardian': '가디언',
         'Interdimensional Bomb': '차원 폭탄',
         'Ultros': '오르트로스',
+        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
+        'Aether Rot': '에테르 부패',
         'Arm And Hammer': '양팔 내리치기',
         'Atomic Ray': '원자 파동',
         'Aura Cannon': '오라 포격',
+        'Biblio': '비블리오',
         'Bomb Deployment': '폭탄 설치',
         'Chain Cannon': '기관총',
         'Chakra Burst': '차크라 폭발',
         'Copy Program': '프로그램 복사',
+        'Copy(?! Program)': '복사',
+        'Dada': '다다',
         'Demon Simulation': '불러오기: 악마',
         'Diffractive Laser': '확산 레이저',
         'Diffractive Plasma': '확산 플라스마',
         'Electric Pulse': '전기 충격',
-        'Engage!': '전투 시작!',
         'Explosion': '폭발',
         'Ink': '먹물',
+        'Interrupt Stoneskin': '스톤스킨 취소됨',
         'Light Blast': '소규모 폭발',
         'Load': '불러오기',
         'Magitek Ray': '마도 레이저',
         'Magnetism': '자력',
         'Main Cannon': '주포',
-        'Missile': '미사일',
         'Missile Simulation': '불러오기: 미사일',
+        'Missile(?![ |\\w])': '미사일',
         'Paste Program': '프로그램 붙여넣기',
+        'Paste(?! Program)': '붙여넣기',
+        'Plane Laser': '에어포스 레이저',
+        'Prey': 'プレイ',
+        'Radar': '레이더',
         'Repel': '반발',
+        'Retrieve Air Force': 'Retrieve Air Force', // FIXME
         'Retrieve Program': '역순 불러오기',
+        'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '실체화 프로그램',
+        'Run(?! Program)': '실체화',
         'Shockwave': '충격파',
         'Skip Program': '건너뛰기',
-        'Stoneskin': '스톤스킨',
-        'Tentacle': '문어발',
-        'Tentacle Simulation': '불러오기: 문어발',
-        'The Heat': '작열',
-        'Viral Weapon': '바이러스 병기',
-        'Wallop': '매질',
-
-        'Aether Rot': '에테르 부패',
-        'Copy': '복사',
-        'Skip': '건너뛰기',
-        'Dada': '다다',
-        'Run': '실체화',
-        'Interrupt Stoneskin': '스톤스킨 취소됨',
-        'Magnetism/Repel': '자력/반발',
+        'Skip(?! Program)': '건너뛰기',
+        '(?<! )Stoneskin': '스톤스킨',
         'Temporary Misdirection': '심신상실',
-        'Radar': '레이더',
-        'Paste': '붙여넣기',
-        'Biblio': '비블리오',
-        'Plane Laser': '에어포스 레이저',
-        'Virus': '바이러스',
-        'Enrage': '전멸기',
+        'Tentacle(?! )': '문어발',
+        'Tentacle Simulation': '불러오기: 문어발',
+        'The Heat': '열풍',
+        'Viral Weapon': '바이러스 병기',
+        '(?<!\\w)Virus': '바이러스',
+        'Wallop': '매질',
       },
       '~effectNames': {
         'Abandonment': '고독감',
@@ -805,7 +882,7 @@
         'Stun': '기절',
         'Temporary Misdirection': '심신상실',
         'Ultros Simulation': '오르트로스 프로그램',
-        'Virus': '바이러스 프로그램',
+        '(?<!\\w)Virus': '바이러스 프로그램',
       },
     },
   ],

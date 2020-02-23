@@ -2,16 +2,21 @@
 
 // Titania Extreme
 [{
-  zoneRegex: /^(The Dancing Plague \(Extreme\)|缇坦妮雅歼殛战)$/,
+  zoneRegex: {
+    en: /^The Dancing Plague \(Extreme\)$/,
+    cn: /^缇坦妮雅歼殛战$/,
+    ko: /^극 티타니아 토벌전$/,
+  },
   timelineFile: 'titania-ex.txt',
   triggers: [
     {
       id: 'TitaniaEx Bright Sabbath',
-      regex: / 14:3D4B:Titania starts using Bright Sabbath/,
-      regexCn: / 14:3D4B:缇坦妮雅 starts using 欢快的安息日/,
-      regexDe: / 14:3D4B:Titania starts using Leuchtender Sabbat/,
-      regexFr: / 14:3D4B:Titania starts using Sabbat En Plein Jour/,
-      regexJa: / 14:3D4B:ティターニア starts using ブライトサバト/,
+      regex: Regexes.startsUsing({ id: '3D4B', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D4B', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D4B', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D4B', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D4B', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D4B', source: '티타니아', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -20,60 +25,68 @@
         de: 'AoE',
         fr: 'Dégâts de zone',
         cn: 'AOE',
+        ko: '전체 공격',
       },
     },
     {
       id: 'TitaniaEx Phantom Out',
-      regex: / 14:3D4C:Titania starts using Phantom Rune/,
-      regexCn: / 14:3D4C:缇坦妮雅 starts using 幻之符文/,
-      regexDe: / 14:3D4C:Titania starts using Phantomrune/,
-      regexFr: / 14:3D4C:Titania starts using Rune D'illusion/,
-      regexJa: / 14:3D4C:ティターニア starts using 幻のルーン/,
+      regex: Regexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D4C', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D4C', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D4C', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D4C', source: '티타니아', capture: false }),
       alertText: {
         en: 'Out',
         de: 'Raus',
         ja: '外へ',
         fr: 'Dehors',
         cn: '远离',
+        ko: '밖으로',
       },
     },
     {
       id: 'TitaniaEx Phantom In',
-      regex: / 14:3D4D:Titania starts using Phantom Rune/,
-      regexCn: / 14:3D4D:缇坦妮雅 starts using 幻之符文/,
-      regexDe: / 14:3D4D:Titania starts using Phantomrune/,
-      regexFr: / 14:3D4D:Titania starts using Rune D'illusion/,
-      regexJa: / 14:3D4D:ティターニア starts using 幻のルーン/,
+      regex: Regexes.startsUsing({ id: '3D4D', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D4D', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D4D', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D4D', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D4D', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D4D', source: '티타니아', capture: false }),
       alertText: {
         en: 'In',
         de: 'Rein',
         ja: '中へ',
         fr: 'Dedans',
         cn: '靠近',
+        ko: '안으로',
       },
     },
     {
       id: 'TitaniaEx Mist Failure',
-      regex: / 03:\y{ObjectId}:Added new combatant Spirit Of Dew\./,
-      regexCn: / 03:\y{ObjectId}:Added new combatant 水精\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Wasserfee\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Esprit Des Rosées\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 水の精\./,
+      regex: Regexes.addedCombatant({ name: 'Spirit Of Dew', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Wasserfee', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Esprit Des Rosées', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '水の精', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '水精', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '물의 정령', capture: false }),
       infoText: {
         en: 'Kill Extra Add',
         de: 'Add angreifen',
         ja: '水の精倒して',
         fr: 'Tuez l\'add',
         cn: '击杀小怪',
+        ko: '쫄 나온거부터 처리',
       },
     },
     {
       id: 'TitaniaEx Mist',
-      regex: / 14:3D45:Titania starts using Mist Rune/,
-      regexCn: / 14:3D45:缇坦妮雅 starts using 水之符文/,
-      regexDe: / 14:3D45:Titania starts using Nebelrune/,
-      regexFr: / 14:3D45:Titania starts using Rune D'eau/,
-      regexJa: / 14:3D45:ティターニア starts using 水のルーン/,
+      regex: Regexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D45', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D45', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D45', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D45', source: '티타니아', capture: false }),
       infoText: function(data) {
         if (data.seenMistRune) {
           return {
@@ -82,6 +95,7 @@
             ja: '中/外避けてポジションへ',
             fr: 'Dedans/Dehors puis position pour l\'eau',
             cn: '靠近/远离, 水圈站位',
+            ko: '안/밖 -> 물 장판 위치',
           };
         }
         return {
@@ -90,6 +104,7 @@
           ja: 'ポジションへ',
           fr: 'Position pour l\'eau',
           cn: '水圈站位',
+          ko: '물 장판',
         };
       },
       run: function(data) {
@@ -98,11 +113,12 @@
     },
     {
       id: 'TitaniaEx Flame',
-      regex: / 14:3D47:Titania starts using Flame Rune/,
-      regexCn: / 14:3D47:缇坦妮雅 starts using 火之符文/,
-      regexDe: / 14:3D47:Titania starts using Flammenrune/,
-      regexFr: / 14:3D47:Titania starts using Rune De Feu/,
-      regexJa: / 14:3D47:ティターニア starts using 火のルーン/,
+      regex: Regexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D47', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D47', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D47', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D47', source: '티타니아', capture: false }),
       // You have 16.5 seconds until the first stack damage.
       delaySeconds: 8.5,
       alertText: function(data) {
@@ -113,6 +129,7 @@
             ja: 'シェア (多分時計回り?)',
             fr: 'Packez-vous (rotation ?)',
             cn: '左右集合 (可能旋转?)',
+            ko: '쉐어징 모이기',
           };
         }
         return {
@@ -121,6 +138,7 @@
           ja: 'シェア',
           fr: 'Packez-vous',
           cn: '左右集合',
+          ko: '쉐어징 모이기',
         };
       },
       run: function(data) {
@@ -129,56 +147,62 @@
     },
     {
       id: 'TitaniaEx Divination',
-      regex: / 14:3D4A:Titania starts using Divination Rune on (\y{Name})/,
-      regexCn: / 14:3D4A:缇坦妮雅 starts using 魔之符文 on (\y{Name})/,
-      regexDe: / 14:3D4A:Titania starts using Prophezeiungsrune on (\y{Name})/,
-      regexFr: / 14:3D4A:Titania starts using Rune De Malice on (\y{Name})/,
-      regexJa: / 14:3D4A:ティターニア starts using 魔のルーン on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3D4A', source: 'Titania' }),
+      regexDe: Regexes.startsUsing({ id: '3D4A', source: 'Titania' }),
+      regexFr: Regexes.startsUsing({ id: '3D4A', source: 'Titania' }),
+      regexJa: Regexes.startsUsing({ id: '3D4A', source: 'ティターニア' }),
+      regexCn: Regexes.startsUsing({ id: '3D4A', source: '缇坦妮雅' }),
+      regexKo: Regexes.startsUsing({ id: '3D4A', source: '티타니아' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Cleave on YOU',
             de: 'Tank Cleave auf DIR',
             ja: '自分にタンクバスター',
             fr: 'Tank cleave sur vous',
             cn: '坦克顺劈点名',
+            ko: '탱버 대상자',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches.target != data.me) {
           return {
-            en: 'Tank Cleave on ' + data.ShortName(matches[1]),
-            de: 'Tank Cleave auf ' + data.ShortName(matches[1]),
-            ja: data.ShortName(matches[1]) + 'にタンクバスター',
-            fr: 'Tank cleave sur ' + data.ShortName(matches[1]),
-            cn: '坦克顺劈 -> ' + data.ShortName(matches[1]),
+            en: 'Tank Cleave on ' + data.ShortName(matches.target),
+            de: 'Tank Cleave auf ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
+            fr: 'Tank cleave sur ' + data.ShortName(matches.target),
+            cn: '坦克顺劈 -> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
     },
     {
       id: 'TitaniaEx Bramble 1',
-      regex: / 14:42D7:Titania starts using Chain Of Brambles/,
-      regexCn: / 14:42D7:缇坦妮雅 starts using 荆棘链/,
-      regexDe: / 14:42D7:Titania starts using Dornenfessel/,
-      regexFr: / 14:42D7:Titania starts using Chaînes De Ronces/,
-      regexJa: / 14:42D7:ティターニア starts using ブランブルチェーン/,
+      regex: Regexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '42D7', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
       infoText: {
         en: 'Wait For Tethers In Center',
         de: 'Auf die Verbindung in der Mitte warten',
         ja: '中央で待機',
         fr: 'Attente des liens au centre',
         cn: '中间集合等待荆棘',
+        ko: '가시 연결되기 전에 중앙으로',
       },
     },
     {
       id: 'TitaniaEx Bramble 2',
-      regex: / 14:42D7:Titania starts using Chain Of Brambles/,
-      regexCn: / 14:42D7:缇坦妮雅 starts using 荆棘链/,
-      regexDe: / 14:42D7:Titania starts using Dornenfessel/,
-      regexFr: / 14:42D7:Titania starts using Chaînes De Ronces/,
-      regexJa: / 14:42D7:ティターニア starts using ブランブルチェーン/,
+      regex: Regexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '42D7', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '42D7', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
       delaySeconds: 3,
       alertText: {
         en: 'Run!',
@@ -186,30 +210,34 @@
         ja: '走れ！',
         fr: 'Courez !',
         cn: '跑！',
+        ko: '달려!',
       },
     },
     {
       id: 'TitaniaEx Bramble Knockback',
-      regex: / 15:\y{ObjectId}:Puck:3D42:Puck's Rebuke:/,
-      regexCn: / 15:\y{ObjectId}:帕克:3D42:帕克的指责:/,
-      regexDe: / 15:\y{ObjectId}:Puck:3D42:Pucks Tadel:/,
-      regexFr: / 15:\y{ObjectId}:Puck:3D42:Réprimande De Puck:/,
-      regexJa: / 15:\y{ObjectId}:パック:3D42:パックレビューク:/,
+      regex: Regexes.ability({ id: '3D42', source: 'Puck', capture: false }),
+      regexDe: Regexes.ability({ id: '3D42', source: 'Puck', capture: false }),
+      regexFr: Regexes.ability({ id: '3D42', source: 'Puck', capture: false }),
+      regexJa: Regexes.ability({ id: '3D42', source: 'パック', capture: false }),
+      regexCn: Regexes.ability({ id: '3D42', source: '帕克', capture: false }),
+      regexKo: Regexes.ability({ id: '3D42', source: '요정의 권속', capture: false }),
       alertText: {
         en: 'Diagonal Knockback Soon',
         de: 'diagonaler Knockback bald',
         ja: '対角に飛ぶ',
         fr: 'Poussée en diagonale bientôt',
         cn: '对角击退准备',
+        ko: '곧 대각선 넉백',
       },
     },
     {
       id: 'TitaniaEx Fae Light',
-      regex: / 14:3D2C:Titania starts using Fae Light/,
-      regexCn: / 14:3D2C:缇坦妮雅 starts using 妖灵光/,
-      regexDe: / 14:3D2C:Titania starts using Feenlicht/,
-      regexFr: / 14:3D2C:Titania starts using Lueur Féérique/,
-      regexJa: / 14:3D2C:ティターニア starts using 妖精光/,
+      regex: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -218,6 +246,7 @@
             fr: 'Tankbuster',
             ja: 'タンクバスター',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -229,32 +258,36 @@
             ja: 'タンクバスター',
             fr: 'Tank cleave',
             cn: '坦克顺劈',
+            ko: '탱버',
           };
         }
       },
     },
     {
       id: 'TitaniaEx Frost Rune 1',
-      regex: / 14:3D2A:Titania starts using Frost Rune/,
-      regexCn: / 14:3D2A:缇坦妮雅 starts using 冰之符文/,
-      regexDe: / 14:3D2A:Titania starts using Frostrune/,
-      regexFr: / 14:3D2A:Titania starts using Rune De Gel/,
-      regexJa: / 14:3D2A:ティターニア starts using 氷のルーン/,
+      regex: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
       infoText: {
         en: 'Get Middle, Shiva Circles',
         de: 'In die Mitte, Shiva Kreise',
         ja: 'シヴァの輪っか',
         fr: 'Allez au milieu, comme sur Shiva',
         cn: '中间集合, 九连环',
+        ko: '시바 얼음 장판',
       },
     },
     {
       id: 'TitaniaEx Frost Rune 2',
-      regex: / 14:3D2A:Titania starts using Frost Rune/,
-      regexCn: / 14:3D2A:缇坦妮雅 starts using 冰之符文/,
-      regexDe: / 14:3D2A:Titania starts using Frostrune/,
-      regexFr: / 14:3D2A:Titania starts using Rune De Gel/,
-      regexJa: / 14:3D2A:ティターニア starts using 氷のルーン/,
+      regex: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D2A', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
       delaySeconds: 6.5,
       infoText: {
         en: 'Run Out',
@@ -262,15 +295,17 @@
         ja: '外へ',
         fr: 'Allez à l\'extérieur',
         cn: '远离',
+        ko: '장판 피하기',
       },
     },
     {
       id: 'TitaniaEx Frost Rune 3',
-      regex: / 1[56]:\y{ObjectId}:Titania:3D2B:Frost Rune:/,
-      regexCn: / 1[56]:\y{ObjectId}:缇坦妮雅:3D2B:冰之符文:/,
-      regexDe: / 1[56]:\y{ObjectId}:Titania:3D2B:Frostrune:/,
-      regexFr: / 1[56]:\y{ObjectId}:Titania:3D2B:Rune De Gel:/,
-      regexJa: / 1[56]:\y{ObjectId}:ティターニア:3D2B:氷のルーン:/,
+      regex: Regexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
+      regexDe: Regexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
+      regexFr: Regexes.ability({ id: '3D2B', source: 'Titania', capture: false }),
+      regexJa: Regexes.ability({ id: '3D2B', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.ability({ id: '3D2B', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.ability({ id: '3D2B', source: '티타니아', capture: false }),
       suppressSeconds: 60,
       infoText: {
         en: 'Run In',
@@ -278,28 +313,31 @@
         ja: '中へ',
         fr: 'Allez au centre',
         cn: '靠近',
+        ko: '중앙으로',
       },
     },
     {
       id: 'TitaniaEx Growth Rune',
-      regex: / 14:3D2E:Titania starts using Growth Rune/,
-      regexCn: / 14:3D2E:缇坦妮雅 starts using 根之符文/,
-      regexDe: / 14:3D2E:Titania starts using Wachstumsrune/,
-      regexFr: / 14:3D2E:Titania starts using Rune De Racine/,
-      regexJa: / 14:3D2E:ティターニア starts using 根のルーン/,
+      regex: Regexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D2E', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D2E', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D2E', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D2E', source: '티타니아', capture: false }),
       infoText: {
         en: 'Roots',
         de: 'Ranken',
         ja: '根のルーン',
         fr: 'Racines',
         cn: '根系生长',
+        ko: '뿌리 나옴',
       },
     },
     {
       id: 'TitaniaEx Uplift Markers',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:008B:/,
+      regex: Regexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -307,17 +345,19 @@
         ja: '散開',
         fr: 'Dispersez-vous',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
       id: 'TitaniaEx Hard Swipe',
-      regex: / 14:3D36:Peaseblossom starts using Hard Swipe on (\y{Name})/,
-      regexCn: / 14:3D36:豌豆花 starts using 强烈重击 on (\y{Name})/,
-      regexDe: / 14:3D36:Bohnenblüte starts using Harter Hieb on (\y{Name})/,
-      regexFr: / 14:3D36:Fleur-De-Pois starts using Fauchage Brutal on (\y{Name})/,
-      regexJa: / 14:3D36:ピーズブロッサム starts using ハードスワイプ on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '3D36', source: 'Peaseblossom' }),
+      regexDe: Regexes.startsUsing({ id: '3D36', source: 'Bohnenblüte' }),
+      regexFr: Regexes.startsUsing({ id: '3D36', source: 'Fleur-De-Pois' }),
+      regexJa: Regexes.startsUsing({ id: '3D36', source: 'ピーズブロッサム' }),
+      regexCn: Regexes.startsUsing({ id: '3D36', source: '豌豆花' }),
+      regexKo: Regexes.startsUsing({ id: '3D36', source: '콩나무' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Tank Buster',
@@ -325,15 +365,17 @@
         fr: 'Tankbuster',
         ja: 'タンクバスター',
         cn: '死刑',
+        ko: '탱버',
       },
     },
     {
       id: 'TitaniaEx Pummel',
-      regex: / 14:3D37:Puck starts using Pummel on \y{Name}/,
-      regexCn: / 14:3D37:帕克 starts using 殴打 on \y{Name}/,
-      regexDe: / 14:3D37:Puck starts using Deftige Dachtel on \y{Name}/,
-      regexFr: / 14:3D37:Puck starts using Torgnole on \y{Name}/,
-      regexJa: / 14:3D37:パック starts using 殴打 on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '3D37', source: 'Puck', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D37', source: 'Puck', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D37', source: 'Puck', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D37', source: 'パック', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D37', source: '帕克', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D37', source: '요정의 권속', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -348,14 +390,15 @@
           ja: '殴打 ' + data.pummelCount,
           fr: 'Torgnole ' + data.pummelCount,
           cn: '殴打 ' + data.pummelCount,
+          ko: '구타 ' + data.pummelCount,
         };
       },
     },
     {
       id: 'TitaniaEx Peasebomb',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00BD:/,
+      regex: Regexes.headMarker({ id: '008D' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: {
         en: 'Spread',
@@ -363,6 +406,7 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
+        ko: '산개',
       },
       run: function(data) {
         data.bomb = data.bomb || {};
@@ -371,27 +415,29 @@
     },
     {
       id: 'TitaniaEx Peasebomb Use',
-      regex: / 1[56]:\y{ObjectId}:Peaseblossom:3D3F:Peasebomb:/,
-      regexCn: / 1[56]:\y{ObjectId}:豌豆花:3D3F:豌豆炸弹:/,
-      regexDe: / 1[56]:\y{ObjectId}:Bohnenblüte:3D3F:Bohnenbombe:/,
-      regexFr: / 1[56]:\y{ObjectId}:Fleur-de-pois:3D3F:Haricot Explosif:/,
-      regexJa: / 1[56]:\y{ObjectId}:ピーズブロッサム:3D3F:ビーズボム:/,
+      regex: Regexes.ability({ id: '3D3F', source: 'Peaseblossom', capture: false }),
+      regexDe: Regexes.ability({ id: '3D3F', source: 'Bohnenblüte', capture: false }),
+      regexFr: Regexes.ability({ id: '3D3F', source: 'Fleur-De-Pois', capture: false }),
+      regexJa: Regexes.ability({ id: '3D3F', source: 'ピーズブロッサム', capture: false }),
+      regexCn: Regexes.ability({ id: '3D3F', source: '豌豆花', capture: false }),
+      regexKo: Regexes.ability({ id: '3D3F', source: '콩나무', capture: false }),
       run: function(data) {
         delete data.bomb;
       },
     },
     {
       id: 'TitaniaEx Adds Stack',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A1:/,
+      regex: Regexes.headMarker({ id: '00A1' }),
       delaySeconds: 0.25,
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             cn: '集合点名',
+            ko: '쉐어징 대상자',
           };
         }
 
@@ -399,20 +445,22 @@
           return;
 
         return {
-          en: 'Stack on ' + data.ShortName(matches[1]),
-          de: 'Auf ' + data.ShortName(matches[1]) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches[1]),
-          cn: '靠近 ' + data.ShortName(matches[1]) + '集合',
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
         };
       },
     },
     {
       id: 'TitaniaEx Thunder Tether',
-      regex: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexCn: / 23:\y{ObjectId}:缇坦妮雅:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexDe: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexFr: / 23:\y{ObjectId}:Titania:\y{ObjectId}:\y{Name}:....:....:0054:/,
-      regexJa: / 23:\y{ObjectId}:ティターニア:\y{ObjectId}:\y{Name}:....:....:0054:/,
+      regex: Regexes.tether({ id: '0054', source: 'Titania', capture: false }),
+      regexDe: Regexes.tether({ id: '0054', source: 'Titania', capture: false }),
+      regexFr: Regexes.tether({ id: '0054', source: 'Titania', capture: false }),
+      regexJa: Regexes.tether({ id: '0054', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.tether({ id: '0054', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.tether({ id: '0054', source: '티타니아', capture: false }),
       suppressSeconds: 60,
       alertText: {
         en: 'Initial Thunder Tether',
@@ -420,15 +468,17 @@
         ja: '線一人目',
         fr: 'Lien de foudre initial',
         cn: '初始雷连线',
+        ko: '첫 번개 징 대상자',
       },
     },
     {
       id: 'TitaniaEx Thunder Rune',
-      regex: / 1[56]:\y{ObjectId}:Titania:3D29:Thunder Rune:/,
-      regexCn: / 1[56]:\y{ObjectId}:缇坦妮雅:3D29:雷之符文:/,
-      regexDe: / 1[56]:\y{ObjectId}:Titania:3D29:Donnerrune:/,
-      regexFr: / 1[56]:\y{ObjectId}:Titania:3D29:Rune De Foudre:/,
-      regexJa: / 1[56]:\y{ObjectId}:ティターニア:3D29:雷のルーン:/,
+      regex: Regexes.ability({ id: '3D29', source: 'Titania', capture: false }),
+      regexDe: Regexes.ability({ id: '3D29', source: 'Titania', capture: false }),
+      regexFr: Regexes.ability({ id: '3D29', source: 'Titania', capture: false }),
+      regexJa: Regexes.ability({ id: '3D29', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.ability({ id: '3D29', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.ability({ id: '3D29', source: '티타니아', capture: false }),
       preRun: function(data) {
         data.thunderCount = data.thunderCount || 1;
       },
@@ -440,6 +490,7 @@
           ja: '線' + data.thunderCount + '人目',
           fr: 'Foudre ' + data.thunderCount,
           cn: '雷连线 #' + data.thunderCount,
+          ko: data.thunderCount + '번째 번개',
         };
       },
       run: function(data) {
@@ -448,11 +499,12 @@
     },
     {
       id: 'TitaniaEx Thunder Cleanup',
-      regex: / 14:3D32:Titania starts using Being Mortal/,
-      regexCn: / 14:3D32:缇坦妮雅 starts using 终有一死/,
-      regexDe: / 14:3D32:Titania starts using Sterblichkeit/,
-      regexFr: / 14:3D32:Titania starts using Deuil Des Vivants/,
-      regexJa: / 14:3D32:ティターニア starts using 死すべき定め/,
+      regex: Regexes.startsUsing({ id: '3D32', source: 'Titania', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3D32', source: 'Titania', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3D32', source: 'Titania', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3D32', source: 'ティターニア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3D32', source: '缇坦妮雅', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3D32', source: '티타니아', capture: false }),
       run: function(data) {
         delete data.thunderCount;
       },
@@ -461,6 +513,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Spirit of Flame': 'Feuerfee',
         'Spirit of Wood': 'Holzfee',
@@ -468,10 +521,8 @@
         'Puck': 'Puck',
         'Peaseblossom': 'Bohnenblüte',
         'Mustardseed': 'Senfsamen',
-        'Engage!': 'Start!',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Wood\'s Embrace': 'Umarmung des Waldes',
         'Whispering Wind': 'Flüsternde Winde',
         'War and Pease': 'Bohnenkrieg',
@@ -483,9 +534,9 @@
         'Puck\'s Rebuke': 'Pucks Tadel',
         'Puck\'s Caprice': 'Pucks Laune',
         'Puck\'s Breath': 'Pucks Atem',
-        'Phantom Rune': 'Phantomrune',
+        'Phantom Rune(?! )': 'Phantomrune',
         'Peasebomb': 'Bohnenbombe',
-        'Pease': 'Bohne',
+        '(?<! )Pease(?!\\w)': 'Bohne',
         'Mist Rune': 'Nebelrune',
         'Midsummer Night\'s Dream': 'Mittsommernachtstraum',
         'Love-in-Idleness': 'Liebevoller Müßiggang',
@@ -497,13 +548,10 @@
         'Flame Rune': 'Flammenrune',
         'Flame Hammer': 'Flammenhammer',
         'Fae Light': 'Feenlicht',
-        'Enrage': 'Finalangriff',
         'Divination Rune': 'Prophezeiungsrune',
         'Chain Of Brambles': 'Dornenfessel',
         'Bright Sabbath': 'Leuchtender Sabbat',
         'Being Mortal': 'Sterblichkeit',
-        '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
         '--center--': '--Mitte--',
         'Love-In-Idleness': 'Liebevoller Müßiggang',
       },
@@ -519,6 +567,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'spirit of flame': 'Esprit Des Flammes',
         'Titania': 'Titania',
@@ -526,10 +575,8 @@
         'Peaseblossom': 'Fleur-de-pois',
         'Mustardseed': 'Pousse-de-moutarde',
         'Innocence': 'Innocence',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Wood\'s Embrace': 'Étreinte de la nature',
         'Whispering Wind': 'Vent susurrant',
         'War and Pease': 'La fin des haricots',
@@ -541,9 +588,9 @@
         'Puck\'s Rebuke': 'Réprimande de Puck',
         'Puck\'s Caprice': 'Toquade de Puck',
         'Puck\'s Breath': 'Haleine de Puck',
-        'Phantom Rune': 'Rune d\'illusion',
+        'Phantom Rune(?! )': 'Rune d\'illusion',
         'Peasebomb': 'Haricot explosif',
-        'Pease': 'Explosion de haricot',
+        '(?<! )Pease(?!\\w)': 'Explosion de haricot',
         'Mist Rune': 'Rune d\'eau',
         'Midsummer Night\'s Dream': 'Songe d\'une nuit d\'été',
         'Love-in-Idleness': 'Pensées sauvages',
@@ -555,13 +602,10 @@
         'Flame Rune': 'Rune de feu',
         'Flame Hammer': 'Marteau de feu',
         'Fae Light': 'Lueur féérique',
-        'Enrage': 'Enrage',
         'Divination Rune': 'Rune de malice',
         'Chain Of Brambles': 'Chaînes de ronces',
         'Bright Sabbath': 'Sabbat en plein jour',
         'Being Mortal': 'Deuil des vivants',
-        '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
       },
@@ -577,6 +621,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'spirit of flame': '火の精',
         'Titania': 'ティターニア',
@@ -584,10 +629,8 @@
         'Peaseblossom': 'ピーズブロッサム',
         'Mustardseed': 'マスタードシード',
         'Innocence': 'イノセンス',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Wood\'s Embrace': '絡みつき',
         'Whispering Wind': 'ウィスパリング・ウィンド',
         'War and Pease': '大豆爆発',
@@ -599,9 +642,9 @@
         'Puck\'s Rebuke': 'パックレビューク',
         'Puck\'s Caprice': 'パック・カプリース',
         'Puck\'s Breath': 'パック・ブレス',
-        'Phantom Rune': '幻のルーン',
+        'Phantom Rune(?! )': '幻のルーン',
         'Peasebomb': 'ビーズボム',
-        'Pease': '豆爆発',
+        '(?<! )Pease(?!\\w)': '豆爆発',
         'Mist Rune': '水のルーン',
         'Midsummer Night\'s Dream': 'ミッドサマー・ナイツドリーム',
         'Love-in-Idleness': 'ラブ・イン・アイドルネス',
@@ -639,10 +682,8 @@
         'Peaseblossom': '豌豆花',
         'Mustardseed': '芥子',
         'Innocence': '无瑕灵君',
-        'Engage!': '战斗开始！',
       },
       'replaceText': {
-        'attack': '攻击',
         'Wood\'s Embrace': '缠绕',
         'Whispering Wind': '细语微风',
         'War And Pease': '豌豆大爆炸',
@@ -656,9 +697,9 @@
         'Puck\'s Breath': '帕克的吐息',
         'Phantom Rune In': '幻之符文靠近',
         'Phantom Rune Out': '幻之符文远离',
-        'Phantom Rune': '幻之符文',
+        'Phantom Rune(?! )': '幻之符文',
         'Peasebomb': '豌豆炸弹',
-        'Pease': '豌豆爆炸',
+        '(?<! )Pease(?!\\w)': '豌豆爆炸',
         'Mist Rune': '水之符文',
         'Midsummer Night\'s Dream': '仲夏夜之梦',
         'Love-in-Idleness': '爱懒花',
@@ -673,12 +714,9 @@
         'Fae Light': '妖灵光',
         'Divination Rune': '魔之符文',
         'Chain Of Brambles': '荆棘链',
-        'Bright Sabbath Enrage': '欢快的安息日 狂暴',
         'Bright Sabbath': '欢快的安息日',
         'Being Mortal': '终有一死',
         '--center--': '--中场集合--',
-        '--untargetable--': '--无法选中--',
-        '--targetable--': '--可选中--',
       },
       '~effectNames': {
         'Thorny Vine': '荆棘丛生',
@@ -688,6 +726,60 @@
         'Fire Resistance Down II': '火属性耐性大幅降低',
         'Embolden': '鼓励',
         'Blunt Resistance Down': '打击耐性降低',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Spirit of Flame': '불의 정령',
+        'Titania': '티타니아',
+        'Puck': '요정의 권속',
+        'Peaseblossom': '콩나무',
+        'Mustardseed': '겨자씨',
+      },
+      'replaceText': {
+        'Wood\'s Embrace': '휘감기',
+        'Whispering Wind': '속삭이는 바람',
+        'War and Pease': '큰콩 폭발',
+        'Wallop': '매질',
+        'Uplift': '융기',
+        'Thunder Rune': '번개의 룬',
+        'Pummel': '구타',
+        'Puck\'s Rebuke': '요정의 꾸지람',
+        'Puck\'s Caprice': '요정의 변덕',
+        'Puck\'s Breath': '요정의 숨결',
+        'Phantom Rune(?! )': '환상의 룬',
+        'Phantom Rune In': '환상의 룬 안으로',
+        'Phantom Rune Out': '환상의 룬 밖으로',
+        'Peasebomb': '콩폭탄',
+        '(?<! )Pease(?!\\w)': '콩 폭발',
+        'Mist Rune': '물의 룬',
+        'Midsummer Night\'s Dream': '한여름 밤의 꿈',
+        'Love-in-Idleness': '삼색제비꽃',
+        'Leafstorm': '잎사귀 폭풍',
+        'Hard Swipe': '강력한 후려치기',
+        'Growth Rune': '뿌리의 룬',
+        'Gentle Breeze': '윗바람',
+        'Frost Rune': '얼음의 룬',
+        'Flame Rune': '불의 룬',
+        'Flame Hammer': '불꽃 망치',
+        'Fae Light': '요정광',
+        'Divination Rune': '마법의 룬',
+        'Chain Of Brambles': '나무딸기 사슬',
+        'Bright Sabbath': '빛나는 안식',
+        'Being Mortal': '죽어야 할 운명',
+        '--center--': '--중앙--',
+        ' Middle': ' (중앙)',
+      },
+      '~effectNames': {
+        'Thorny Vine': '가시덩굴',
+        'Summon Order': '기술 실행 대기 1',
+        'Lightning Resistance Down II': '번개속성 저항 감소[강]',
+        'Fire Resistance Up': '불속성 저항 상승',
+        'Fire Resistance Down II': '불속성 저항 감소[강]',
+        'Embolden': '성원',
+        'Blunt Resistance Down': '타격 저항 감소',
       },
     },
   ],

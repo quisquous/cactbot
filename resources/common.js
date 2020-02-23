@@ -1,17 +1,17 @@
 'use strict';
 
 let kCasterJobs = ['BLU', 'RDM', 'BLM', 'WHM', 'SCH', 'SMN', 'ACN', 'AST', 'CNJ', 'THM'];
-let kRangedDpsJobs = ['BRD', 'DNC', 'MCH'];
+let kRangedDpsJobs = ['ARC', 'BRD', 'DNC', 'MCH'];
 let kTankJobs = ['GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
 let kHealerJobs = ['CNJ', 'WHM', 'SCH', 'AST'];
 let kCraftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
 let kGatheringJobs = ['MIN', 'BTN', 'FSH'];
 
 let kStunJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL', 'WAR', 'MRD', 'PLD', 'GLA', 'DRK', 'GNB'];
-let kSilenceJobs = ['MCH', 'BRD', 'ARC', 'DNC', 'BLU', 'GNB', 'GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
+let kSilenceJobs = ['MCH', 'BRD', 'ARC', 'DNC', 'BLU', 'GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
 let kSleepJobs = ['BLM', 'WHM'];
 let kFeintJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL'];
-let kAddleJobs = ['BLU', 'RDM', 'BLM', 'SMN', 'ACN', 'CNJ', 'THM'];
+let kAddleJobs = ['BLU', 'RDM', 'SMN', 'ACN', 'BLM', 'THM'];
 let kCleanseJobs = ['AST', 'BRD', 'CNJ', 'SCH', 'WHM'];
 let kAllRoles = ['tank', 'healer', 'dps', 'crafter', 'gatherer'];
 

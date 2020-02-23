@@ -31,7 +31,7 @@ def parse_timeline_events(timeline):
             continue
 
         # Remove trailing comment, if any
-        clean_line = line.split('#')[0]
+        clean_line = line.split("#")[0]
 
         # Split the line into sections
         match = re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>.+)"\s+(?P<options>.+)', clean_line)
@@ -56,7 +56,7 @@ def output_to_timeline(timeline_event_map):
     timeline_events = set()
     for key, values in timeline_event_map.items():
         for value in values:
-            timeline_events.add('{time} {event}'.format(time=value, event=key))
+            timeline_events.add("{time} {event}".format(time=value, event=key))
     return sorted(list(timeline_events), key=lambda s: float(s.split()[0]))
 
 
@@ -68,6 +68,7 @@ def create_averaging_function(threshold):
     of similar event times.
     """
     key = None
+
     def averaging_function(event_time):
         """Averages event time values based on a threshold.
 
@@ -80,6 +81,7 @@ def create_averaging_function(threshold):
         elif event_time >= key:
             key = event_time + threshold
         return key
+
     return averaging_function
 
 
@@ -95,15 +97,15 @@ def average_similar_events(values, threshold):
     return list(round(mean(group), 1) for _, group in grouped_values)
 
 
-class TimelineAggregator():
+class TimelineAggregator:
     """Aggregates timelines and averages their event times.
 
     Takes an input of N timelines and attempts to smooth their event times to
     find the line of best fit when determining when events occur.
     """
+
     def __init__(self, timelines):
         self.timelines = timelines
-
 
     def aggregate(self, averaging_threshold=2.0):
         """Aggregates timelines and returns a list of their events.

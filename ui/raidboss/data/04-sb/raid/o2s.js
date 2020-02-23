@@ -16,11 +16,14 @@
     },
   ],
   triggers: [
-    { // Phase Tracker: Maniacal Probe.
-      regex: / 14:235A:Catastrophe starts using Maniacal Probe/,
-      regexDe: / 14:235A:Katastroph starts using Tentakeltanz/,
-      regexFr: / 14:235A:Catastrophe starts using Farandole De Tentacules/,
-      regexJa: / 14:235A:カタストロフィー starts using 触手乱舞/,
+    {
+      id: 'O2S Phase Probe Tracker',
+      regex: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       run: function(data) {
         data.probeCount = (data.probeCount || 0) + 1;
         data.dpsProbe = data.probeCount == 2 || data.probeCount == 4;
@@ -28,26 +31,30 @@
       },
     },
     {
-      id: 'O2S Levitation',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Levitation from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Levitation from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Lévitation from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of レビテト from/,
+      id: 'O2S Levitation Gain',
+      regex: Regexes.gainsEffect({ effect: 'Levitation' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Levitation' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Lévitation' }),
+      regexJa: Regexes.gainsEffect({ effect: 'レビテト' }),
+      regexCn: Regexes.gainsEffect({ effect: '浮空' }),
+      regexKo: Regexes.gainsEffect({ effect: '레비테트' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.levitating = true;
       },
     },
     {
-      id: 'O2S Levitation',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Levitation/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Lévitation/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of レビテト/,
+      id: 'O2S Levitation Lose',
+      regex: Regexes.losesEffect({ effect: 'Levitation' }),
+      regexDe: Regexes.losesEffect({ effect: 'Levitation' }),
+      regexFr: Regexes.losesEffect({ effect: 'Lévitation' }),
+      regexJa: Regexes.losesEffect({ effect: 'レビテト' }),
+      regexCn: Regexes.losesEffect({ effect: '浮空' }),
+      regexKo: Regexes.losesEffect({ effect: '레비테트' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.levitating = false;
@@ -55,10 +62,12 @@
     },
     {
       id: 'O2S -100Gs',
-      regex: / 14:235E:Catastrophe starts using -100 Gs/,
-      regexDe: / 14:235E:Katastroph starts using Minus 100 G/,
-      regexFr: / 14:235E:Catastrophe starts using Gravité -100/,
-      regexJa: / 14:235E:カタストロフィー starts using 重力マイナス100/,
+      regex: Regexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '235E', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '235E', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '235E', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '235E', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '235E', source: '카타스트로피', capture: false }),
       infoText: {
         en: '-100 Gs: Go north/south and look away',
         de: '-100G: Nach Norden/Süden und wegschauen',
@@ -70,10 +79,12 @@
     },
     {
       id: 'O2S Death\'s Gaze',
-      regex: / 14:236F:Catastrophe starts using Death's Gaze/,
-      regexDe: / 14:236F:Katastroph starts using Todesblick/,
-      regexFr: / 14:236F:Catastrophe starts using Œil De La Mort/,
-      regexJa: / 14:236F:カタストロフィー starts using 死神の瞳/,
+      regex: Regexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '236F', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '236F', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '236F', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '236F', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '236F', source: '카타스트로피', capture: false }),
       alarmText: {
         en: 'Death\'s Gaze: Look away',
         de: 'Todesblick: Wegschauen',
@@ -85,10 +96,12 @@
     },
     {
       id: 'O2S Earthquake',
-      regex: / 14:2374:Catastrophe starts using Earthquake/,
-      regexDe: / 14:2374:Katastroph starts using Erdbeben/,
-      regexFr: / 14:2374:Catastrophe starts using Grand Séisme/,
-      regexJa: / 14:2374:カタストロフィー starts using 大地震/,
+      regex: Regexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2374', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2374', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2374', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2374', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2374', source: '카타스트로피', capture: false }),
       infoText: function(data) {
         if (data.levitating) {
           return {
@@ -116,10 +129,12 @@
     },
     {
       id: 'O2S Elevated',
-      regex: / 1A:\y{ObjectId}:\y{Name} gains the effect of Elevated from/,
-      regexDe: / 1A:\y{ObjectId}:\y{Name} gains the effect of Erhöht from/,
-      regexFr: / 1A:\y{ObjectId}:\y{Name} gains the effect of Élévation from/,
-      regexJa: / 1A:\y{ObjectId}:\y{Name} gains the effect of 高度固定：高 from/,
+      regex: Regexes.gainsEffect({ effect: 'Elevated', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Erhöht', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Élévation', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '高度固定：高', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '固定高位', capture: false }),
+      regexKo: Regexes.gainsEffect({ effect: '고도 고정: 위', capture: false }),
       infoText: function(data) {
         if (!data.role.startsWith('dps')) {
           return {
@@ -143,10 +158,12 @@
     },
     {
       id: 'O2S Gravitational Wave',
-      regex: / 14:2372:Catastrophe starts using Gravitational Wave/,
-      regexDe: / 14:2372:Katastroph starts using Gravitationswelle/,
-      regexFr: / 14:2372:Catastrophe starts using Onde Gravitationnelle/,
-      regexJa: / 14:2372:カタストロフィー starts using 重力波/,
+      regex: Regexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2372', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2372', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2372', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2372', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2372', source: '카타스트로피', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -161,10 +178,12 @@
     },
     {
       id: 'O2S Maniacal Probe',
-      regex: / 14:235A:Catastrophe starts using Maniacal Probe/,
-      regexDe: / 14:235A:Katastroph starts using Tentakeltanz/,
-      regexFr: / 14:235A:Catastrophe starts using Farandole De Tentacules/,
-      regexJa: / 14:235A:カタストロフィー starts using 触手乱舞/,
+      regex: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
       infoText: function(data) {
         if (!data.myProbe) {
           if (!data.dpsProbe) {
@@ -208,13 +227,15 @@
     },
     {
       id: 'O2S Unstable Gravity',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Unstable Gravity from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Schwerkraftschwankung from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Gravité Instable from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of グラビティバースト from/,
+      regex: Regexes.gainsEffect({ effect: 'Unstable Gravity' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Schwerkraftschwankung' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Gravité Instable' }),
+      regexJa: Regexes.gainsEffect({ effect: 'グラビティバースト' }),
+      regexCn: Regexes.gainsEffect({ effect: '重力爆发' }),
+      regexKo: Regexes.gainsEffect({ effect: '중력 폭발' }),
       delaySeconds: 9,
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       alarmText: {
         en: 'Unstable Gravity: Elevate and outside stack',
@@ -226,11 +247,13 @@
       },
     },
     {
-      id: 'O2S 6 Fulms Under',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 6 Fulms Under from/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Versinkend from/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Enfoncement from/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 沈下 from/,
+      id: 'O2S 6 Fulms Under Gain',
+      regex: Regexes.gainsEffect({ effect: '6 Fulms Under' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Versinkend' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Enfoncement' }),
+      regexJa: Regexes.gainsEffect({ effect: '沈下' }),
+      regexCn: Regexes.gainsEffect({ effect: '下陷' }),
+      regexKo: Regexes.gainsEffect({ effect: '침하' }),
       delaySeconds: 5,
       infoText: function(data) {
         if (data.levitating) {
@@ -249,7 +272,7 @@
         }
       },
       condition: function(data, matches) {
-        return !data.under && matches[1] == data.me;
+        return !data.under && matches.target == data.me;
       },
       tts: {
         en: 'float',
@@ -260,13 +283,15 @@
       },
     },
     {
-      id: 'O2S 6 Fulms Under',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 6 Fulms Under from/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Versinkend from/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Enfoncement from/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 沈下 from/,
+      id: 'O2S 6 Fulms Under Lose',
+      regex: Regexes.losesEffect({ effect: '6 Fulms Under' }),
+      regexDe: Regexes.losesEffect({ effect: 'Versinkend' }),
+      regexFr: Regexes.losesEffect({ effect: 'Enfoncement' }),
+      regexJa: Regexes.losesEffect({ effect: '沈下' }),
+      regexCn: Regexes.losesEffect({ effect: '下陷' }),
+      regexKo: Regexes.losesEffect({ effect: '침하' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       run: function(data) {
         data.under = false;
@@ -278,21 +303,18 @@
       'locale': 'de',
       'replaceSync': {
         'Catastrophe': 'Katastroph',
-        'Engage!': 'Start!',
         'Fleshy Member': 'Tentakel',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         '-100 Gs': 'Minus 100 G',
-        '100 Gs': '100 G',
+        '(?<!-)100 Gs': '100 G',
         'Antilight': 'Dunkellicht',
         'Death\'s Gaze': 'Todesblick',
+        'Double Stack': 'Double Stack', // FIXME
         'Earthquake': 'Erdbeben',
-        'Enrage': 'Finalangriff',
         'Epicenter': 'Epizentrum',
         'Erosion': 'Erosion',
-        'Evilsphere': 'Sphäre Des Bösen',
+        'Evilsphere': 'Sphäre des Bösen',
         'Explosion': 'Explosion',
         'Fourfold Sacrifice': 'Vier Heldenopfer',
         'Gravitational Collapse': 'Gravitationseinbruch',
@@ -304,8 +326,9 @@
         'Main Quake': 'Hauptbeben',
         'Maniacal Probe': 'Tentakeltanz',
         'Paranormal Wave': 'Paranormale Welle',
+        'Probes': 'Probes', // FIXME
         'Tremblor': 'Erschütterung',
-        'Unknown Ability': 'Unknown Ability',
+        'Unstable Gravity': 'Schwerkraftschwankung',
         'Weighted Wing': 'Schwere Schwinge',
       },
       '~effectNames': {
@@ -322,60 +345,56 @@
       'locale': 'fr',
       'replaceSync': {
         'Catastrophe': 'Catastrophe',
-        'Engage!': 'À l\'attaque',
-        'Fleshy Member': 'Tentacule',
+        'Fleshy Member': 'tentacule',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         '-100 Gs': 'Gravité -100',
-        '100 Gs': 'Gravité 100',
-        'Antilight': 'Lumière Obscure',
-        'Death\'s Gaze': 'Œil De La Mort',
-        'Earthquake': 'Grand Séisme',
-        'Enrage': 'Enrage',
+        '(?<!-)100 Gs': 'Gravité 100',
+        'Antilight': 'Lumière obscure',
+        'Death\'s Gaze': 'Œil de la Mort',
+        'Double Stack': 'Double Stack', // FIXME
+        'Earthquake': 'Grand séisme',
         'Epicenter': 'Épicentre',
         'Erosion': 'Érosion',
-        'Evilsphere': 'Sphère Démoniaque',
+        'Evilsphere': 'Sphère démoniaque',
         'Explosion': 'Explosion',
-        'Fourfold Sacrifice': 'Quatre Martyrs',
-        'Gravitational Collapse': 'Effondrement Gravitationnel',
-        'Gravitational Distortion': 'Distorsion Gravitationnelle',
-        'Gravitational Explosion': 'Explosion Gravitationnelle',
-        'Gravitational Manipulation': 'Manipulation Gravitationnelle',
-        'Gravitational Wave': 'Onde Gravitationnelle',
-        'Long Drop': 'Chute Ininterrompue',
-        'Main Quake': 'Secousse Principale',
-        'Maniacal Probe': 'Farandole De Tentacules',
-        'Paranormal Wave': 'Onde Maudite',
-        'Tremblor': 'Tremblement De Terre',
-        'Unknown Ability': 'Unknown Ability',
-        'Weighted Wing': 'Ailes Antigravitationnelles',
+        'Fourfold Sacrifice': 'Quatre martyrs',
+        'Gravitational Collapse': 'Effondrement gravitationnel',
+        'Gravitational Distortion': 'Distorsion gravitationnelle',
+        'Gravitational Explosion': 'Explosion gravitationnelle',
+        'Gravitational Manipulation': 'Manipulation gravitationnelle',
+        'Gravitational Wave': 'Onde gravitationnelle',
+        'Long Drop': 'Chute ininterrompue',
+        'Main Quake': 'Secousse principale',
+        'Maniacal Probe': 'Farandole de tentacules',
+        'Paranormal Wave': 'Onde maudite',
+        'Probes': 'Probes', // FIXME
+        'Tremblor': 'Tremblement de terre',
+        'Unstable Gravity': 'Gravité instable',
+        'Weighted Wing': 'Ailes antigravitationnelles',
       },
       '~effectNames': {
         '6 Fulms Under': 'Enfoncement',
         'Elevated': 'Élévation',
-        'Gradual Petrification': 'Pétrification Graduelle',
-        'Gravity Flip': 'Inversion De Gravité',
+        'Gradual Petrification': 'Pétrification graduelle',
+        'Gravity Flip': 'Inversion de gravité',
         'Grounded': 'Abaissement',
-        'Stone Curse': 'Piège De Pierre',
-        'Unstable Gravity': 'Gravité Instable',
+        'Stone Curse': 'Piège de pierre',
+        'Unstable Gravity': 'Gravité instable',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'Catastrophe': 'カタストロフィー',
-        'Engage!': '戦闘開始！',
         'Fleshy Member': '触手',
       },
       'replaceText': {
         '-100 Gs': '重力マイナス100',
-        '100 Gs': '重力100',
+        '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黒光',
         'Death\'s Gaze': '死神の瞳',
+        'Double Stack': 'Double Stack', // FIXME
         'Earthquake': '大地震',
         'Epicenter': '震源生成',
         'Erosion': '浸食',
@@ -391,8 +410,9 @@
         'Main Quake': '本震',
         'Maniacal Probe': '触手乱舞',
         'Paranormal Wave': '呪詛波',
+        'Probes': 'Probes', // FIXME
         'Tremblor': '地震',
-        'Unknown Ability': 'Unknown Ability',
+        'Unstable Gravity': 'グラビティバースト',
         'Weighted Wing': 'グラビティウィング',
       },
       '~effectNames': {
@@ -403,6 +423,90 @@
         'Grounded': '高度固定：低',
         'Stone Curse': '石化の呪い',
         'Unstable Gravity': 'グラビティバースト',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Catastrophe': '灾变者',
+        'Fleshy Member': '触手',
+      },
+      'replaceText': {
+        '-100 Gs': '重力-100',
+        '(?<!-)100 Gs': '重力100',
+        'Antilight': '暗黑光',
+        'Death\'s Gaze': '死神之瞳',
+        'Double Stack': 'Double Stack', // FIXME
+        'Earthquake': '大地震',
+        'Epicenter': '震源制造',
+        'Erosion': '侵入',
+        'Evilsphere': '邪球',
+        'Explosion': '爆炸',
+        'Fourfold Sacrifice': '牺牲之四战士',
+        'Gravitational Collapse': '重力崩坏',
+        'Gravitational Distortion': '重力扭曲',
+        'Gravitational Explosion': '重力爆发',
+        'Gravitational Manipulation': '重力操纵',
+        'Gravitational Wave': '重力波',
+        'Long Drop': '自由落体',
+        'Main Quake': '主震',
+        'Maniacal Probe': '触手乱舞',
+        'Paranormal Wave': '诅咒波',
+        'Probes': 'Probes', // FIXME
+        'Tremblor': '地震',
+        'Unstable Gravity': '重力爆发',
+        'Weighted Wing': '重力之翼',
+      },
+      '~effectNames': {
+        '6 Fulms Under': '下陷',
+        'Elevated': '固定高位',
+        'Gradual Petrification': '渐渐石化',
+        'Gravity Flip': '重力反转',
+        'Grounded': '固定低位',
+        'Stone Curse': '石化的诅咒',
+        'Unstable Gravity': '重力爆发',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Catastrophe': '카타스트로피',
+        'Fleshy Member': '촉수',
+      },
+      'replaceText': {
+        '-100 Gs': '중력 -100',
+        '(?<!-)100 Gs': '중력 100',
+        'Antilight': '암흑광',
+        'Death\'s Gaze': '사신의 눈동자',
+        'Double Stack': 'Double Stack', // FIXME
+        'Earthquake': '대지진',
+        'Epicenter': '진원 생성',
+        'Erosion': '침식',
+        'Evilsphere': '악의 세력권',
+        'Explosion': '폭발',
+        'Fourfold Sacrifice': '네 전사의 희생',
+        'Gravitational Collapse': '중력 붕괴',
+        'Gravitational Distortion': '중력 왜곡',
+        'Gravitational Explosion': '중력 폭발',
+        'Gravitational Manipulation': '중력 조작',
+        'Gravitational Wave': '중력파',
+        'Long Drop': '자유낙하',
+        'Main Quake': '본진',
+        'Maniacal Probe': '촉수 난무',
+        'Paranormal Wave': '저주 파동',
+        'Probes': 'Probes', // FIXME
+        'Tremblor': '지진',
+        'Unstable Gravity': '중력 폭발',
+        'Weighted Wing': '중력 날개',
+      },
+      '~effectNames': {
+        '6 Fulms Under': '침하',
+        'Elevated': '고도 고정: 위',
+        'Gradual Petrification': '서서히 석화',
+        'Gravity Flip': '중력 반전',
+        'Grounded': '고도 고정: 아래',
+        'Stone Curse': '석화의 저주',
+        'Unstable Gravity': '중력 폭발',
       },
     },
   ],

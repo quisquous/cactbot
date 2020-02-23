@@ -1,11 +1,37 @@
 'use strict';
 
 let UserConfig = {
+  optionTemplates: {},
+  savedConfig: null,
+  registerOptions: function(overlayName, optionTemplates) {
+    this.optionTemplates[overlayName] = optionTemplates;
+  },
+
   getUserConfigLocation: function(overlayName, callback) {
+    let currentlyReloading = false;
+    let reloadOnce = () => {
+      if (currentlyReloading)
+        return;
+      currentlyReloading = true;
+      window.location.reload();
+    };
+
+    window.addOverlayListener('onUserFileChanged', () => {
+      reloadOnce();
+    });
+    window.addOverlayListener('onForceReload', () => {
+      reloadOnce();
+    });
+
+    let readOptions = callOverlayHandler({
+      call: 'cactbotLoadData',
+      overlay: 'options',
+    });
+
     callOverlayHandler({
       call: 'cactbotLoadUser',
       source: location.href,
-    }).then((e) => {
+    }).then(async (e) => {
       let localFiles = e.detail.localUserFiles;
       let basePath = e.detail.userLocation;
       let jsFile = overlayName + '.js';
@@ -16,12 +42,29 @@ let UserConfig = {
       if (e.detail.language)
         Options.Language = e.detail.language;
 
+      // Handle processOptions after default language selection above,
+      // but before css below which may load skin files.
+      // processOptions needs to be called whether or not there are
+      // any userOptions saved, as it sets up the defaults.
+      let userOptions = await readOptions || {};
+      this.savedConfig = userOptions.data || {};
+      this.processOptions(
+          Options,
+          this.savedConfig[overlayName] || {},
+          this.optionTemplates[overlayName],
+      );
+
+      // If the overlay has a "Debug" setting, set to true via the config tool,
+      // then also print out user files that have been loaded.
+      let printUserFile = Options.Debug ? (x) => console.log(x) : (x) => {};
+
       // In cases where the user files are local but the overlay url
       // is remote, local files needed to be read by the plugin and
       // passed to Javascript for Chrome security reasons.
       if (localFiles) {
         if (jsFile in localFiles) {
           try {
+            printUserFile('local user file: ' + basePath + '\\' + jsFile);
             eval(localFiles[jsFile]);
           } catch (e) {
             // Be very visible for users.
@@ -36,6 +79,7 @@ let UserConfig = {
         this.handleSkin(Options.Skin);
 
         if (cssFile in localFiles) {
+          printUserFile('local user file: ' + basePath + '\\' + cssFile);
           let userCssText = document.createElement('style');
           userCssText.innerText = localFiles[cssFile];
           document.getElementsByTagName('head')[0].appendChild(userCssText);
@@ -43,12 +87,16 @@ let UserConfig = {
       } else if (basePath) {
         if (basePath.slice(-1) != '/')
           basePath += '/';
-        this.appendJSLink(basePath + jsFile);
+        let jsUrl = basePath + jsFile;
+        printUserFile('remote user file: ' + jsUrl);
+        this.appendJSLink(jsUrl);
 
         // See note above in localFiles case about skin load ordering.
         this.handleSkin(Options.Skin);
 
-        this.appendCSSLink(basePath + cssFile);
+        let cssUrl = basePath + cssFile;
+        printUserFile('remote user file: ' + cssUrl);
+        this.appendCSSLink(cssUrl);
       }
 
       // Post this callback so that the js and css can be executed first.
@@ -90,5 +138,45 @@ let UserConfig = {
     userCSS.setAttribute('type', 'text/css');
     userCSS.setAttribute('href', href);
     document.getElementsByTagName('head')[0].appendChild(userCSS);
+  },
+  processOptions: function(options, savedConfig, template) {
+    // Take options from the template, find them in savedConfig,
+    // and apply them to options. This also handles setting
+    // defaults for anything in the template, even if it does not
+    // exist in savedConfig.
+    if (Array.isArray(template)) {
+      for (let i = 0; i < template.length; ++i)
+        this.processOptions(options, savedConfig, template[i]);
+      return;
+    }
+
+    // Not all overlays have option templates.
+    if (!template)
+      return;
+
+    let templateOptions = template.options || [];
+    for (let i = 0; i < templateOptions.length; ++i) {
+      let opt = templateOptions[i];
+
+      // Grab the saved value or the default to set in options.
+      let value = opt.id in savedConfig ? savedConfig[opt.id] : opt.default;
+
+      // Options can provide custom logic to turn a value into options settings.
+      // If this doesn't exist, just set the value directly.
+      // Option template ids are identical to field names on Options.
+      if (opt.setterFunc)
+        opt.setterFunc(options, value);
+      else if (opt.type === 'integer')
+        options[opt.id] = parseInt(value);
+      else if (opt.type === 'float')
+        options[opt.id] = parseFloat(value);
+      else
+        options[opt.id] = value;
+    }
+
+    // For things like raidboss that build extra UI, also give them a chance
+    // to handle anything that has been set on that UI.
+    if (template.processExtraOptions)
+      template.processExtraOptions(options, savedConfig);
   },
 };

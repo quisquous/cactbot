@@ -11,8 +11,10 @@
 .info-text {
   color: rgba(255, 255, 255, 1);
   text-shadow:
-    -1px 0 rgb(117, 153, 87), 0 -1px rgb(117, 153, 87),
-    1px 0 rgb(117, 153, 87), 0 1px rgb(117, 153, 87),
+    -1px 0 rgb(117, 153, 87),
+    0 -1px rgb(117, 153, 87),
+    1px 0 rgb(117, 153, 87),
+    0 1px rgb(117, 153, 87),
     0 0 10px rgb(117, 153, 87);
   font-size: 140%;
   will-change: transform;
@@ -21,8 +23,10 @@
 .alert-text {
   color: rgba(255, 255, 255, 1);
   text-shadow:
-    -1px 0 rgb(170, 110, 3), 0 -1px rgb(170, 110, 3),
-    1px 0 rgb(170, 110, 3), 0 1px rgb(170, 110, 3),
+    -1px 0 rgb(170, 110, 3),
+    0 -1px rgb(170, 110, 3),
+    1px 0 rgb(170, 110, 3),
+    0 1px rgb(170, 110, 3),
     0 0 10px rgb(170, 110, 3);
   font-size: 170%;
   will-change: transform;
@@ -32,8 +36,10 @@
 .alarm-text {
   color: rgba(255, 255, 255, 1);
   text-shadow:
-    -1px 0 rgb(247, 120, 120), 0 -1px rgb(247, 120, 120),
-    1px 0 rgb(247, 120, 120), 0 1px rgb(247, 120, 120),
+    -1px 0 rgb(247, 120, 120),
+    0 -1px rgb(247, 120, 120),
+    1px 0 rgb(247, 120, 120),
+    0 1px rgb(247, 120, 120),
     0 0 10px rgb(247, 120, 120);
   font-size: 230%;
   will-change: transform;

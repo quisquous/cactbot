@@ -8,6 +8,18 @@ function triggerUpperCase(str) {
   return str.replace(/\w/g, (x) => x.toUpperCase());
 }
 
+function onTriggerException(trigger, e) {
+  let str = 'Error in trigger: ' + (trigger.id ? trigger.id : '[unknown trigger id]');
+
+  if (trigger.filename)
+    str += ' (' + trigger.filename + ')';
+  console.error(str);
+
+  let lines = e.stack.split('\n');
+  for (let i = 0; i < lines.length; ++i)
+    console.error(lines[i]);
+}
+
 class PopupText {
   constructor(options) {
     this.options = options;
@@ -130,9 +142,36 @@ class PopupText {
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
-      if (this.zoneName.search(set.zoneRegex) >= 0) {
-        if (this.options.Debug)
-          console.log('Loading ' + set.filename);
+
+      // zoneRegex can be either a regular expression
+      let zoneRegex = set.zoneRegex;
+      if (typeof zoneRegex !== 'object') {
+        console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
+        continue;
+      } else if (!(zoneRegex instanceof RegExp)) {
+        let locale = this.options.Language || 'en';
+        if (locale in zoneRegex) {
+          zoneRegex = zoneRegex[locale];
+        } else if ('en' in zoneRegex) {
+          zoneRegex = zoneRegex['en'];
+        } else {
+          console.error('unknown zoneRegex locale: ' + JSON.stringify(set.zoneRegex));
+          continue;
+        }
+
+        if (!(zoneRegex instanceof RegExp)) {
+          console.error('zoneRegex must be regexp: ' + JSON.stringify(set.zoneRegex));
+          continue;
+        }
+      }
+
+      if (this.zoneName.search(zoneRegex) >= 0) {
+        if (this.options.Debug) {
+          if (set.filename)
+            console.log('Loading ' + set.filename);
+          else
+            console.log('Loading user triggers for zone');
+        }
         // Adjust triggers for the locale.
         if (set.triggers) {
           for (let j = 0; j < set.triggers.length; ++j) {
@@ -140,6 +179,7 @@ class PopupText {
             // time later.  This will clobber each time we
             // load this, but that's ok.
             let trigger = set.triggers[j];
+            trigger.filename = set.filename;
 
             if (!trigger.regex)
               console.error('Trigger ' + trigger.id + ': has no regex property specified');
@@ -182,7 +222,7 @@ class PopupText {
         timelines,
         replacements,
         timelineTriggers,
-        timelineStyles
+        timelineStyles,
     );
   }
 
@@ -194,20 +234,21 @@ class PopupText {
   }
 
   OnInCombatChange(inCombat) {
+    if (this.inCombat == inCombat)
+      return;
+
     if (inCombat || this.resetWhenOutOfCombat)
       this.SetInCombat(inCombat);
   }
 
   SetInCombat(inCombat) {
+    if (this.inCombat == inCombat)
+      return;
+
     // Stop timers when stopping combat to stop any active timers that
     // are delayed.  However, also reset when starting combat.
     // This prevents late attacks from affecting |data| which
     // throws off the next run, potentially.
-    if (!inCombat)
-      this.timelineLoader.StopCombat();
-
-    if (this.inCombat == inCombat)
-      return;
     this.inCombat = inCombat;
     if (!this.inCombat) {
       this.StopTimers();
@@ -280,6 +321,14 @@ class PopupText {
   }
 
   OnTrigger(trigger, matches) {
+    try {
+      this.OnTriggerInternal(trigger, matches);
+    } catch (e) {
+      onTriggerException(trigger, e);
+    }
+  }
+
+  OnTriggerInternal(trigger, matches) {
     if (!this.options.AlertsEnabled)
       return;
     if ('disabled' in trigger && trigger.disabled)
@@ -299,6 +348,7 @@ class PopupText {
     }
 
     let triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
+    let triggerAutoConfig = trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {};
 
     let condition = triggerOptions.Condition || trigger.condition;
     if (condition) {
@@ -345,6 +395,19 @@ class PopupText {
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
 
+    // FIXME: this is quite gross that PerTriggerOptions does not use the same fields as
+    // options.  Ideally we should smush everything down into a single trigger object.
+    // Auto config here has a separate property mostly as a convenience to users who
+    // most likely will redefine it, clobbering settings from the config tool.
+    // Ideally, these would be the same.
+    if (triggerAutoConfig) {
+      if ('SpokenAlertsEnabled' in triggerAutoConfig)
+        playSpeech = triggerAutoConfig.SpokenAlertsEnabled;
+      if ('SoundAlertsEnabled' in triggerAutoConfig)
+        playSounds = triggerAutoConfig.SoundAlertsEnabled;
+      if ('TextAlertsEnabled' in triggerAutoConfig)
+        showText = triggerAutoConfig.TextAlertsEnabled;
+    }
 
     if (triggerOptions) {
       if ('GroupSpeechAlert' in triggerOptions)
@@ -362,6 +425,11 @@ class PopupText {
       playGroupSpeech = false;
       playSounds = false;
       showText = false;
+    }
+    if (!this.options.audioAllowed) {
+      playSpeech = false;
+      playGroupSpeech = false;
+      playSounds = false;
     }
 
     let f = () => {
@@ -404,15 +472,16 @@ class PopupText {
 
       let alarmText = triggerOptions.AlarmText || trigger.alarmText || response.alarmText;
       if (alarmText) {
-        let text = triggerUpperCase(ValueOrFunction(alarmText));
+        let text = ValueOrFunction(alarmText);
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
+          text = triggerUpperCase(text);
           let holder = that.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
           addText.bind(that)(holder, div);
           window.setTimeout(
               removeText.bind(that, holder, div),
-              (duration.fromTrigger || duration.alarmText) * 1000
+              (duration.fromTrigger || duration.alarmText) * 1000,
           );
 
           if (!soundUrl) {
@@ -424,15 +493,16 @@ class PopupText {
 
       let alertText = triggerOptions.AlertText || trigger.alertText || response.alertText;
       if (alertText) {
-        let text = triggerUpperCase(ValueOrFunction(alertText));
+        let text = ValueOrFunction(alertText);
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
+          text = triggerUpperCase(text);
           let holder = that.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
           addText.bind(that)(holder, div);
           window.setTimeout(
               removeText.bind(that, holder, div),
-              (duration.fromTrigger || duration.alertText) * 1000
+              (duration.fromTrigger || duration.alertText) * 1000,
           );
 
           if (!soundUrl) {
@@ -452,7 +522,7 @@ class PopupText {
           addText.bind(that)(holder, div);
           window.setTimeout(
               removeText.bind(that, holder, div),
-              (duration.fromTrigger || duration.infoText) * 1000
+              (duration.fromTrigger || duration.infoText) * 1000,
           );
 
           if (!soundUrl) {
@@ -502,7 +572,7 @@ class PopupText {
           ttsText = ValueOrFunction(triggerOptions.TTSText);
         else if ('tts' in trigger)
           ttsText = ValueOrFunction(trigger.tts);
-        if ('tts' in response)
+        else if ('tts' in response)
           ttsText = ValueOrFunction(response.TTSText);
         else
           ttsText = defaultTTSText;
@@ -531,14 +601,27 @@ class PopupText {
       if (ttsText && playSpeech) {
         // Heuristics for auto tts.
         // * Remove a bunch of chars.
-        ttsText = ttsText.replace(/[#!]/, '');
+        ttsText = ttsText.replace(/[#!]/g, '');
         // * slashes between mechanics
         ttsText = ttsText.replace('/', ' ');
+        // * arrows helping visually simple to understand e.g. ↖ Front left / Back right ↘
+        ttsText = ttsText.replace(/[↖-↙]/g, '');
+        // * Korean TTS reads wrong with '1번째'
+        ttsText = ttsText.replace('1번째', '첫번째');
         // * arrows at the front or the end are directions, e.g. "east =>"
-        ttsText = ttsText.replace(/[-=]>\s*$/, '');
-        ttsText = ttsText.replace(/^\s*<[-=]/, '');
+        ttsText = ttsText.replace(/[-=]>\s*$/g, '');
+        ttsText = ttsText.replace(/^\s*<[-=]/g, '');
         // * arrows in the middle are a sequence, e.g. "in => out => spread"
-        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, ' then ');
+        let lang = this.options.AlertsLanguage || this.options.Language || 'en';
+        let arrowReplacement = {
+          en: ' then ',
+          cn: '然后',
+          de: ' dann ',
+          fr: ' puis ',
+          ja: 'や',
+          ko: ' 그리고 ',
+        };
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
         let cmd = { 'call': 'cactbotSay', 'text': ttsText };
         window.callOverlayHandler(cmd);
       } else if (soundUrl && playSounds) {
@@ -550,10 +633,20 @@ class PopupText {
       if ('run' in trigger)
         trigger.run(that.data, matches);
     };
-    if (!delay)
+
+    // Run immediately?
+    if (!delay) {
       f();
-    else
-      this.timers.push(window.setTimeout(f, delay * 1000));
+      return;
+    }
+
+    this.timers.push(window.setTimeout(() => {
+      try {
+        f();
+      } catch (e) {
+        onTriggerException(trigger, e);
+      }
+    }, delay * 1000));
   }
 
   Test(zone, log) {

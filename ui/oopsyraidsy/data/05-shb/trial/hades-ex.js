@@ -2,7 +2,11 @@
 
 // Hades Ex
 [{
-  zoneRegex: /^The Minstrel's Ballad: Hades's Elegy$/,
+  zoneRegex: {
+    en: /^The Minstrel's Ballad: Hades's Elegy$/,
+    cn: /^哈迪斯孤念歼灭战$/,
+    ko: /^극 하데스 토벌전$/,
+  },
   damageWarn: {
     'HadesEx Shadow Spread 2': '47AA',
     'HadesEx Shadow Spread 3': '47E4',
@@ -97,6 +101,8 @@
         type: 'warn',
         text: {
           en: 'Bosses Too Close',
+          cn: 'BOSS靠太近了',
+          ko: '쫄들이 너무 가까움',
         },
       },
     },

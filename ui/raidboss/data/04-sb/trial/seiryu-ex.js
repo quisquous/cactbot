@@ -2,7 +2,10 @@
 
 // Seiryu Extreme
 [{
-  zoneRegex: /^(The Wreath Of Snakes \(Extreme\)|青龙诗魂战)$/,
+  zoneRegex: {
+    en: /^The Wreath Of Snakes \(Extreme\)$/,
+    cn: /^青龙诗魂战$/,
+  },
   timelineFile: 'seiryu-ex.txt',
   timelineTriggers: [
     {
@@ -18,7 +21,7 @@
       },
     },
     {
-      id: 'SeiryuEx Stack',
+      id: 'SeiryuEx Line Stack',
       regex: /Forbidden Arts$/,
       beforeSeconds: 1,
       suppressSeconds: 10,
@@ -49,24 +52,26 @@
   triggers: [
     {
       id: 'SeiryuEx Aramitama Tracking',
-      regex: / 14:37E4:Seiryu starts using Blazing Aramitama/,
-      regexDe: / 14:37E4:Seiryu starts using Flammende Aramitama/,
-      regexFr: / 14:37E4:Seiryû starts using Aramitama Incandescent/,
-      regexJa: / 14:37E4:青龍 starts using 荒魂燃焼/,
-      regexCn: / 14:37E4:青龙 starts using 荒魂燃烧/,
+      regex: Regexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37E4', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37E4', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37E4', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37E4', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37E4', source: '청룡', capture: false }),
       run: function(data) {
         data.blazing = true;
       },
     },
     {
       id: 'SeiryuEx Cursekeeper',
-      regex: / 14:37D2:Seiryu starts using Cursekeeper on (\y{Name})/,
-      regexDe: / 14:37D2:Seiryu starts using Wächter des Fluchs on (\y{Name})/,
-      regexFr: / 14:37D2:Seiryû starts using Katashiro on (\y{Name})/,
-      regexJa: / 14:37D2:青龍 starts using 呪怨の形代 on (\y{Name})/,
-      regexCn: / 14:37D2:青龙 starts using 咒怨的替身 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
+      regexDe: Regexes.startsUsing({ id: '37D2', source: 'Seiryu' }),
+      regexFr: Regexes.startsUsing({ id: '37D2', source: 'Seiryû' }),
+      regexJa: Regexes.startsUsing({ id: '37D2', source: '青龍' }),
+      regexCn: Regexes.startsUsing({ id: '37D2', source: '青龙' }),
+      regexKo: Regexes.startsUsing({ id: '37D2', source: '청룡' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Swap',
             de: 'Tankwechsel',
@@ -88,11 +93,12 @@
     },
     {
       id: 'SeiryuEx Infirm Soul',
-      regex: / 14:37D2:Seiryu starts using Cursekeeper on \y{Name}/,
-      regexDe: / 14:37D2:Seiryu starts using Wächter des Fluchs on \y{Name}/,
-      regexFr: / 14:37D2:Seiryû starts using Katashiro on \y{Name}/,
-      regexJa: / 14:37D2:青龍 starts using 呪怨の形代 on \y{Name}/,
-      regexCn: / 14:37D2:青龙 starts using 咒怨的替身 on \y{Name}/,
+      regex: Regexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37D2', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37D2', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37D2', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37D2', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37D2', source: '청룡', capture: false }),
       condition: function(data) {
         // TODO: it'd be nice to figure out who the tanks are so this
         // could also apply to the person Cursekeeper was on.
@@ -109,22 +115,24 @@
     },
     {
       id: 'SeiryuEx Ascending Tracking',
-      regex: / 14:3C25:Seiryu starts using Serpent Ascending/,
-      regexDe: / 14:3C25:Seiryu starts using Aufstieg der Schlange/,
-      regexFr: / 14:3C25:Seiryû starts using Dragon Levant/,
-      regexJa: / 14:3C25:青龍 starts using 登り龍/,
-      regexCn: / 14:3C25:青龙 starts using 升龙/,
+      regex: Regexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3C25', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3C25', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3C25', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3C25', source: '청룡', capture: false }),
       run: function(data) {
         data.markers = [];
       },
     },
     {
       id: 'SeiryuEx Ascending Stack',
-      regex: / 14:3C25:Seiryu starts using Serpent Ascending/,
-      regexDe: / 14:3C25:Seiryu starts using Aufstieg der Schlange/,
-      regexFr: / 14:3C25:Seiryû starts using Dragon Levant/,
-      regexJa: / 14:3C25:青龍 starts using 登り龍/,
-      regexCn: / 14:3C25:青龙 starts using 升龙/,
+      regex: Regexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3C25', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3C25', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3C25', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3C25', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3C25', source: '청룡', capture: false }),
       delaySeconds: 1,
       infoText: {
         en: 'Stack for Puddle AOEs',
@@ -136,19 +144,19 @@
     },
     {
       id: 'SeiryuEx Ascending Marker Tracking',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9' }),
       condition: function(data) {
         return data.blazing;
       },
       run: function(data, matches) {
-        data.markers.push(matches[1]);
+        data.markers.push(matches.target);
       },
     },
     {
       id: 'SeiryuEx Ascending Marker You',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9' }),
       condition: function(data, matches) {
-        return data.blazing && matches[1] == data.me;
+        return data.blazing && matches.target == data.me;
       },
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
@@ -171,7 +179,7 @@
     },
     {
       id: 'SeiryuEx Ascending Tower You',
-      regex: / 1B:\y{ObjectId}:\y{Name}:....:....:00A9:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '00A9', capture: false }),
       condition: function(data) {
         if (!data.blazing || data.markers.length != 4)
           return false;
@@ -198,11 +206,12 @@
     },
     {
       id: 'SeiryuEx Handprint East',
-      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E5:Handprint:/,
-      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E5:Handabdruck:/,
-      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E5:Main Lourde:/,
-      regexJa: / 15:\y{ObjectId}:山の式鬼:37E5:圧殺掌:/,
-      regexCn: / 15:\y{ObjectId}:山之式鬼:37E5:压杀掌:/,
+      regex: Regexes.ability({ id: '37E5', source: 'Yama-No-Shiki', capture: false }),
+      regexDe: Regexes.ability({ id: '37E5', source: 'Yama No Shiki', capture: false }),
+      regexFr: Regexes.ability({ id: '37E5', source: 'Shiki Montagneux', capture: false }),
+      regexJa: Regexes.ability({ id: '37E5', source: '山の式鬼', capture: false }),
+      regexCn: Regexes.ability({ id: '37E5', source: '山之式鬼', capture: false }),
+      regexKo: Regexes.ability({ id: '37E5', source: '산 사역귀', capture: false }),
       infoText: {
         en: 'East =>',
         de: 'Osten =>',
@@ -220,11 +229,12 @@
     },
     {
       id: 'SeiryuEx Handprint West',
-      regex: / 15:\y{ObjectId}:Yama-no-shiki:37E6:Handprint:/,
-      regexDe: / 15:\y{ObjectId}:Yama no Shiki:37E6:Handabdruck:/,
-      regexFr: / 15:\y{ObjectId}:Shiki montagneux:37E6:Main Lourde:/,
-      regexJa: / 15:\y{ObjectId}:山の式鬼:37E6:圧殺掌:/,
-      regexCn: / 15:\y{ObjectId}:山之式鬼:37E6:压杀掌:/,
+      regex: Regexes.ability({ id: '37E6', source: 'Yama-No-Shiki', capture: false }),
+      regexDe: Regexes.ability({ id: '37E6', source: 'Yama No Shiki', capture: false }),
+      regexFr: Regexes.ability({ id: '37E6', source: 'Shiki Montagneux', capture: false }),
+      regexJa: Regexes.ability({ id: '37E6', source: '山の式鬼', capture: false }),
+      regexCn: Regexes.ability({ id: '37E6', source: '山之式鬼', capture: false }),
+      regexKo: Regexes.ability({ id: '37E6', source: '산 사역귀', capture: false }),
       infoText: {
         en: '<= West',
         de: '<= Westen',
@@ -242,11 +252,12 @@
     },
     {
       id: 'SeiryuEx Find Sneks',
-      regex: / 14:37F7:Seiryu starts using Coursing River/,
-      regexDe: / 14:37F7:Seiryu starts using Woge der Schlange/,
-      regexFr: / 14:37F7:Seiryû starts using Vague De Serpents/,
-      regexJa: / 14:37F7:青龍 starts using 蛇崩/,
-      regexCn: / 14:37F7:青龙 starts using 蛇崩/,
+      regex: Regexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37F7', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37F7', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37F7', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37F7', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37F7', source: '청룡', capture: false }),
       alarmText: function(data) {
         if (data.withForce === undefined) {
           return {
@@ -271,11 +282,12 @@
     },
     {
       id: 'SeiryuEx Silence',
-      regex: / 14:37F4:Numa-No-Shiki starts using Stoneskin/,
-      regexDe: / 14:37F4:Numa no Shiki starts using Steinhaut/,
-      regexFr: / 14:37F4:Shiki uligineux starts using Cuirasse/,
-      regexJa: / 14:37F4:沼の式鬼 starts using ストンスキン/,
-      regexCn: / 14:37F4:沼之式鬼 starts using 石肤/,
+      regex: Regexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37F4', source: 'Numa No Shiki', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37F4', source: 'Shiki Uligineux', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37F4', source: '沼の式鬼', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37F4', source: '沼之式鬼', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37F4', source: '늪 사역귀', capture: false }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -289,11 +301,12 @@
     },
     {
       id: 'SeiryuEx Stack',
-      regex: / 03:\y{ObjectId}:Added new combatant Ao-No-Shiki\./,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Ao no Shiki\./,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Shiki céruléen\./,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 蒼の式鬼\./,
-      regexCn: / 03:\y{ObjectId}:Added new combatant 苍之式鬼\./,
+      regex: Regexes.addedCombatant({ name: 'Ao-No-Shiki', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Ao No Shiki', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Shiki Céruléen', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '蒼の式鬼', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '苍之式鬼', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '푸른 사역귀', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -317,11 +330,12 @@
       // This comes a good bit after the symbol on screen,
       // but it's still 2.5s of warning if you've fallen asleep.
       id: 'SeiryuEx Sigil Single Out',
-      regex: / 14:3A01:Seiryu starts using Onmyo Sigil/,
-      regexDe: / 14:3A01:Seiryu starts using Onmyo-Siegel/,
-      regexFr: / 14:3A01:Seiryû starts using Onmyo/,
-      regexJa: / 14:3A01:青龍 starts using 陰陽の印/,
-      regexCn: / 14:3A01:青龙 starts using 阴阳之印/,
+      regex: Regexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A01', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A01', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A01', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A01', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A01', source: '청룡', capture: false }),
       infoText: {
         en: 'Out',
         de: 'Raus',
@@ -332,11 +346,12 @@
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
-      regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
-      regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
-      regexJa: / 14:3A05:青龍 starts using 蛇眼の印/,
-      regexCn: / 14:3A05:青龙 starts using 蛇眼之印/,
+      regex: Regexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A05', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A05', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
       infoText: {
         en: 'In, then out',
         de: 'Rein, dann raus',
@@ -347,11 +362,12 @@
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
-      regex: / 14:3A05:Seiryu starts using Serpent-Eye Sigil/,
-      regexDe: / 14:3A05:Seiryu starts using Siegel des Schlangenauges/,
-      regexFr: / 14:3A05:Seiryû starts using Œil De Serpent/,
-      regexJa: / 14:3A05:青龍 starts using 蛇眼の印/,
-      regexCn: / 14:3A05:青龙 starts using 蛇眼之印/,
+      regex: Regexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A05', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A05', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A05', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
       delaySeconds: 2.7,
       infoText: {
         en: 'Out',
@@ -363,11 +379,12 @@
     },
     {
       id: 'SeiryuEx Sigil Out In 1',
-      regex: / 14:3A03:Seiryu starts using Onmyo Sigil/,
-      regexDe: / 14:3A03:Seiryu starts using Onmyo-Siegel/,
-      regexFr: / 14:3A03:Seiryû starts using Onmyo/,
-      regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
-      regexCn: / 14:3A03:青龙 starts using 阴阳之印/,
+      regex: Regexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A03', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A03', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
       infoText: {
         en: 'Out, then in',
         de: 'Raus, dann rein',
@@ -378,11 +395,12 @@
     },
     {
       id: 'SeiryuEx Sigil Out In 2',
-      regex: / 14:3A03:Seiryu starts using Onmyo Sigil/,
-      regexDe: / 14:3A03:Seiryu starts using Onmyo-Siegel/,
-      regexFr: / 14:3A03:Seiryû starts using Onmyo/,
-      regexJa: / 14:3A03:青龍 starts using 陰陽の印/,
-      regexCn: / 14:3A03:青龙 starts using 阴阳之印/,
+      regex: Regexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3A03', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3A03', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3A03', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
       delaySeconds: 2.7,
       infoText: {
         en: 'In',
@@ -394,11 +412,12 @@
     },
     {
       id: 'SeiryuEx Swim Lessons',
-      regex: / 14:37CB:Seiryu starts using Dragon's Wake/,
-      regexDe: / 14:37CB:Seiryu starts using Erwachen des Drachen/,
-      regexFr: / 14:37CB:Seiryû starts using Ascension Draconique/,
-      regexJa: / 14:37CB:青龍 starts using 雲蒸龍変/,
-      regexCn: / 14:37CB:青龙 starts using 云蒸龙变/,
+      regex: Regexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '37CB', source: 'Seiryu', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '37CB', source: 'Seiryû', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '37CB', source: '青龍', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '37CB', source: '青龙', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '37CB', source: '청룡', capture: false }),
       delaySeconds: 28,
       alertText: {
         en: 'Pop Sprint',
@@ -413,22 +432,18 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
-        'Seiryu': 'Seiryu',
         'Aka-no-shiki': 'Aka no Shiki',
-        'Aka-No-Shiki': 'Aka no Shiki',
         'Ao-no-shiki': 'Ao no Shiki',
-        'Ao-No-Shiki': 'Ao no Shiki',
-        'Blue Orochi': 'blau[a] Orochi',
+        'Blue Orochi': 'blau(?:e|er|es|en) Orochi',
         'Doro-no-shiki': 'Doro no Shiki',
         'Iwa-no-shiki': 'Iwa no Shiki',
         'Numa-no-shiki': 'Numa no Shiki',
-        'Numa-No-Shiki': 'Numa no Shiki',
+        'Seiryu': 'Seiryu',
         'Yama-no-shiki': 'Yama no Shiki',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
+        '--jump--': '--Sprung--',
+        '--rotate--': '--rotate--', // FIXME
         '100-tonze Swing': '100-Tonzen-Schwung',
         'Blazing Aramitama': 'Flammende Aramitama',
         'Blue Bolt': 'Blauer Blitz',
@@ -436,7 +451,6 @@
         'Coursing River': 'Woge der Schlange',
         'Cursekeeper': 'Wächter des Fluchs',
         'Dragon\'s Wake': 'Erwachen des Drachen',
-        'Enrage': 'Finalangriff',
         'Explosion': 'Explosion',
         'Fifth Element': 'Fünftes Element',
         'Forbidden Arts': 'Verbotene Künste',
@@ -444,11 +458,13 @@
         'Fortune-blade Sigil': 'Glücksklingen-Siegel',
         'Great Typhoon': 'Große Welle',
         'Handprint': 'Handabdruck',
+        'In/Out': 'Rein/Raus',
         'Infirm Soul': 'Kraftlose Seele',
         'Kanabo': 'Kanabo',
         'Karmic Curse': 'Karmafluch',
         'Kuji-kiri': 'Kuji-kiri',
         'Onmyo Sigil': 'Onmyo-Siegel',
+        'Out/In': 'Raus/Rein',
         'Red Rush': 'Roter Ansturm',
         'Serpent Ascending': 'Aufstieg der Schlange',
         'Serpent Descending': 'Niedergang der Schlange',
@@ -458,16 +474,12 @@
         'Strength of Spirit': 'Stärke des Geistes',
         'Summon Shiki': 'Shiki-Beschwörung ',
         'Yama-kagura': 'Yamakagura',
-        '--rotate--': '--rotieren--',
-        '--jump--': '--Sprung--',
-        'In/Out': 'Rein/Raus',
-        'Out/In': 'Raus/Rein',
       },
       '~effectNames': {
         'Being dragged under by the current. Unable to move or execute actions.': 'Wie von den Fluten verschluckt. Bewegungsunfähig, Kommandos können nicht ausgeführt werden.',
         'Blunt Resistance Down': 'Schlagresistenz -',
-        'Cursekeeper': 'Fluchträger',
-        'Fetters': 'Seelenfessel',
+        'Cursekeeper': 'Wächter des Fluchs',
+        'Fetters': 'Fesselung',
         'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
         'Water Resistance Down II': 'Wasserresistenz - (stark)',
       },
@@ -475,24 +487,18 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
+        'Aka-no-shiki': 'shiki écarlate',
+        'Ao-no-shiki': 'shiki céruléen',
+        'Blue Orochi': 'orochi azur',
+        'Doro-no-shiki': 'shiki fangeux',
+        'Iwa-no-shiki': 'shiki rocailleux',
+        'Numa-no-shiki': 'shiki uligineux',
         'Seiryu': 'Seiryû',
-        'Aka-no-shiki': 'Shiki écarlate',
-        'Aka-No-Shiki': 'Shiki écarlate',
-        'Ao-no-shiki': 'Shiki céruléen',
-        'Ao-No-Shiki': 'Shiki céruléen',
-        'Blue orochi': 'Orochi azur',
-        'Doro-no-shiki': 'Shiki fangeux',
-        'Iwa-no-shiki': 'Shiki rocailleux',
-        'Numa-no-shiki': 'Shiki uligineux',
-        'Numa-No-Shiki': 'Shiki uligineux',
-        'Yama-no-shiki': 'Shiki montagneux',
+        'Yama-no-shiki': 'shiki montagneux',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
+        '--jump--': '--jump--',
+        '--rotate--': '--rotate--', // FIXME
         '100-tonze Swing': 'Swing de 100 tonz',
         'Blazing Aramitama': 'Aramitama incandescent',
         'Blue Bolt': 'Percée bleue',
@@ -500,7 +506,6 @@
         'Coursing River': 'Vague de serpents',
         'Cursekeeper': 'Katashiro',
         'Dragon\'s Wake': 'Ascension draconique',
-        'Enrage': 'Enrage',
         'Explosion': 'Explosion',
         'Fifth Element': 'Cinq éléments',
         'Forbidden Arts': 'Lame interdite',
@@ -508,13 +513,15 @@
         'Fortune-blade Sigil': 'Lame solaire',
         'Great Typhoon': 'Flots tumultueux',
         'Handprint': 'Main lourde',
+        'In/Out': 'Dedans/Dehors',
         'Infirm Soul': 'Onde d\'amertume',
         'Kanabo': 'Massue démoniaque',
         'Karmic Curse': 'Noroi-gaeshi',
         'Kuji-kiri': 'Kuji-kiri',
         'Onmyo Sigil': 'Onmyo',
+        'Out/In': 'Dehors/Dedans',
         'Red Rush': 'Percée rouge',
-        'Serpent Ascending': 'Dragon levant',
+        'Serpent Ascending': 'Serpent levant',
         'Serpent Descending': 'Serpent couchant',
         'Serpent\'s Fang': 'Dent de serpent',
         'Serpent-eye Sigil': 'Œil de serpent',
@@ -522,39 +529,31 @@
         'Strength of Spirit': 'Chakra',
         'Summon Shiki': 'Invocation de shiki',
         'Yama-kagura': 'Yama-kagura',
-        '--rotate--': '--Tourne--',
-        '--jump--': '--Saut--',
-        'In/Out': 'Dedans/Dehors',
-        'Out/In': 'Dehors/Dedans',
       },
       '~effectNames': {
         'Being dragged under by the current. Unable to move or execute actions.': 'Impossible d\'utiliser des actions ou de se déplacer.',
         'Blunt Resistance Down': 'Résistance au contondant réduite',
         'Cursekeeper': 'Katashiro',
         'Fetters': 'Attache',
-        'Magic Vulnerability Up': 'Vulnérabilité Magique Augmentée',
-        'Water Resistance Down II': 'Résistance à L\'eau Réduite+',
+        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
+        'Water Resistance Down II': 'Résistance à l\'eau réduite+',
       },
     },
     {
       'locale': 'ja',
       'replaceSync': {
-        'Engage!': '戦闘開始！',
-        'Seiryu': '青龍',
         'Aka-no-shiki': '紅の式鬼',
-        'Aka-No-Shiki': '紅の式鬼',
         'Ao-no-shiki': '蒼の式鬼',
-        'Ao-No-Shiki': '蒼の式鬼',
-        'Blue orochi': '青のオロチ',
+        'Blue Orochi': '青のオロチ',
         'Doro-no-shiki': '泥の式鬼',
         'Iwa-no-shiki': '岩の式鬼',
         'Numa-no-shiki': '沼の式鬼',
-        'Numa-No-Shiki': '沼の式鬼',
-
-        // FIXME:
-        'Yama-no-shiki': 'Yama-no-shiki',
+        'Seiryu': '青龍',
+        'Yama-no-shiki': '山の式鬼',
       },
       'replaceText': {
+        '--jump--': '--jump--',
+        '--rotate--': '--rotate--', // FIXME
         '100-tonze Swing': '100トンズ・スイング',
         'Blazing Aramitama': '荒魂燃焼',
         'Blue Bolt': '青の突進',
@@ -569,11 +568,13 @@
         'Fortune-blade Sigil': '陽の刀印',
         'Great Typhoon': '荒波',
         'Handprint': '圧殺掌',
+        'In/Out': 'In/Out', // FIXME
         'Infirm Soul': '虚証弾',
         'Kanabo': '鬼に金棒',
         'Karmic Curse': '呪い返し',
         'Kuji-kiri': '九字切り',
         'Onmyo Sigil': '陰陽の印',
+        'Out/In': 'Out/In', // FIXME
         'Red Rush': '赤の突進',
         'Serpent Ascending': '登り龍',
         'Serpent Descending': '降り蛇',
@@ -583,12 +584,6 @@
         'Strength of Spirit': '霊気',
         'Summon Shiki': '式鬼召喚',
         'Yama-kagura': '山神楽',
-
-        // FIXME:
-        '--rotate--': '--rotate--',
-        '--jump--': '--jump--',
-        'In/Out': 'In/Out',
-        'Out/In': 'Out/In',
       },
       '~effectNames': {
         'Being dragged under by the current. Unable to move or execute actions.': '溺れている状態。移動およびアクション実行不可。',
@@ -602,22 +597,18 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
-        'Seiryu': '青龙',
         'Aka-no-shiki': '红之式鬼',
-        'Aka-No-Shiki': '红之式鬼',
         'Ao-no-shiki': '苍之式鬼',
-        'Ao-No-Shiki': '苍之式鬼',
-        'Blue orochi': '青之大蛇',
+        'Blue Orochi': '青之大蛇',
         'Doro-no-shiki': '泥之式鬼',
         'Iwa-no-shiki': '岩之式鬼',
         'Numa-no-shiki': '沼之式鬼',
-        'Numa-No-Shiki': '沼之式鬼',
-
-        // FIXME:
+        'Seiryu': '青龙',
         'Yama-no-shiki': '山之式鬼',
       },
       'replaceText': {
+        '--jump--': '--龙大跳--',
+        '--rotate--': '--龙回转--',
         '100-tonze Swing': '百吨回转',
         'Blazing Aramitama': '荒魂燃烧',
         'Blue Bolt': '青突进',
@@ -632,11 +623,13 @@
         'Fortune-blade Sigil': '阳之刀印',
         'Great Typhoon': '荒波',
         'Handprint': '压杀掌',
+        'In/Out': '靠近/远离',
         'Infirm Soul': '虚证弹',
         'Kanabo': '如虎添翼',
         'Karmic Curse': '诅咒返还',
         'Kuji-kiri': '九字切',
         'Onmyo Sigil': '阴阳之印',
+        'Out/In': '远离/靠近',
         'Red Rush': '赤突进',
         'Serpent Ascending': '升龙',
         'Serpent Descending': '降蛇',
@@ -646,12 +639,6 @@
         'Strength of Spirit': '灵气',
         'Summon Shiki': '式鬼召唤',
         'Yama-kagura': '山神乐',
-
-        // FIXME:
-        '--rotate--': '--龙回转--',
-        '--jump--': '--龙大跳--',
-        'In/Out': '靠近远离',
-        'Out/In': '远离靠近',
       },
       '~effectNames': {
         'Being dragged under by the current. Unable to move or execute actions.': '被淹没，无法移动，无法使用技能',
@@ -660,6 +647,61 @@
         'Fetters': '拘束',
         'Magic Vulnerability Up': '魔法受伤加重',
         'Water Resistance Down II': '水属性耐性大幅降低',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Aka-no-shiki': '붉은 사역귀',
+        'Ao-no-shiki': '푸른 사역귀',
+        'Blue Orochi': '푸른 이무기',
+        'Doro-no-shiki': '진흙 사역귀',
+        'Iwa-no-shiki': '바위 사역귀',
+        'Numa-no-shiki': '늪 사역귀',
+        'Seiryu': '청룡',
+        'Yama-no-shiki': '산 사역귀',
+      },
+      'replaceText': {
+        '--jump--': '--jump--', // FIXME
+        '--rotate--': '--rotate--', // FIXME
+        '100-tonze Swing': '100톤즈 휘두르기',
+        'Blazing Aramitama': '아라미타마 연소',
+        'Blue Bolt': '푸른 돌진',
+        'Calamity-blade Sigil': '음의 칼',
+        'Coursing River': '뱀의 행진',
+        'Cursekeeper': '저주 인형',
+        'Dragon\'s Wake': '운증용변',
+        'Explosion': '폭발',
+        'Fifth Element': '음양오행',
+        'Forbidden Arts': '금단의 주술검',
+        'Force of Nature': '대압살',
+        'Fortune-blade Sigil': '양의 칼',
+        'Great Typhoon': '성난 파도',
+        'Handprint': '압살장',
+        'In/Out': 'In/Out', // FIXME
+        'Infirm Soul': '허증탄',
+        'Kanabo': '도깨비 방망이',
+        'Karmic Curse': '저주 되돌리기',
+        'Kuji-kiri': '구자호신법',
+        'Onmyo Sigil': '음양의 인',
+        'Out/In': 'Out/In', // FIXME
+        'Red Rush': '붉은 돌진',
+        'Serpent Ascending': '승천하는 뱀',
+        'Serpent Descending': '강림하는 뱀',
+        'Serpent\'s Fang': '뱀송곳니',
+        'Serpent-eye Sigil': '뱀눈의 인',
+        'Stoneskin': '스톤스킨',
+        'Strength of Spirit': '영기',
+        'Summon Shiki': '사역귀 소환',
+        'Yama-kagura': '산타령',
+      },
+      '~effectNames': {
+        'Being dragged under by the current. Unable to move or execute actions.': 'Being dragged under by the current. Unable to move or execute actions.', // FIXME
+        'Blunt Resistance Down': '타격 저항 감소',
+        'Cursekeeper': '저주 인형',
+        'Fetters': '구속',
+        'Magic Vulnerability Up': '받는 마법 피해량 증가',
+        'Water Resistance Down II': '물속성 저항 감소[강]',
       },
     },
   ],

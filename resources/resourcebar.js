@@ -379,6 +379,8 @@ class ResourceBar extends HTMLElement {
 
     let extra_over_percent =
       Math.max(this._extra_value + this._value - this._maxvalue, 0) / this._maxvalue;
+    if (!this._maxvalue)
+      extra_over_percent = 0;
     this.extraOverElement.style.transform = 'scale(' + extra_over_percent + ',1)';
 
     // Text.

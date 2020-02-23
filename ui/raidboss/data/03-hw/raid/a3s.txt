@@ -2,10 +2,10 @@
 # Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
 # Shasta's reddit: /u/shastaxc
 
-0 "--Stop--" sync /Condensate Demineralizer .9 is no longer sealed/ window 10000 jump 0
+0 "--Stop--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 # Phase 1 - Living Liquid (man) - First Protean Wave
-0 "--Phase 1--" sync /Condensate Demineralizer .9 will be sealed off in/ window 10000
+0 "--Phase 1--" sync / 00:0839:Condensate Demineralizer .9 will be sealed off in/ window 10000
 7 "Fluid Swing"
 12 "Protean Wave 1" duration 3
 17 "Protean Wave 2"

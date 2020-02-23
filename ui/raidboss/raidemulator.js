@@ -33,6 +33,7 @@ class LogCollector {
       de: / 00:0039:Start!/,
       fr: / 00:0039:À l'attaque !/,
       cn: / 00:0039:战斗开始！/,
+      ko: / 00:0039:전투 시작!/,
     };
   }
 
@@ -470,7 +471,7 @@ class LogPlayer {
 class EmulatorView {
   constructor(
       fightListElement, timerElements, elapsedElement, infoElement,
-      partyElement, currentPlayerElement, triggerInfoElement
+      partyElement, currentPlayerElement, triggerInfoElement,
   ) {
     this.fightListElement = fightListElement;
     this.timerElements = timerElements;
@@ -737,11 +738,11 @@ class EmulatorView {
   AnalyzeFight(role) {
     let triggers = gPopupText.triggers;
     // This needs to match the data construction from popup.
-    // TODO: add partyTracker here.
     let data = {
       lang: gPopupText.data.lang,
       currentHP: 0,
       options: gPopupText.options,
+      party: new PartyTracker(),
       StopCombat: () => {},
       ParseLocaleFloat: parseFloat,
       CanStun: () => Util.canStun(this.job),
@@ -979,7 +980,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   gEmulatorView = new EmulatorView(
       fightListElement, timerElements, elapsedElement, infoElement,
-      partyElement, currentPlayerElement, triggerInfoElement
+      partyElement, currentPlayerElement, triggerInfoElement,
   );
   gLogCollector = new LogCollector(gEmulatorView.AddFight.bind(gEmulatorView));
 

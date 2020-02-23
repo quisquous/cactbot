@@ -5,47 +5,55 @@
   timelineFile: 't6.txt',
   triggers: [
     {
-      id: 'T6 Thorn Whip',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:(\y{Name}):....:....:0012:/,
+      id: 'T6 Thorn Whip Collect',
+      regex: Regexes.tether({ id: '0012' }),
+      regexDe: Regexes.tether({ id: '0012' }),
+      regexFr: Regexes.tether({ id: '0012' }),
+      regexJa: Regexes.tether({ id: '0012' }),
+      regexCn: Regexes.tether({ id: '0012' }),
+      regexKo: Regexes.tether({ id: '0012' }),
       run: function(data, matches) {
         data.thornMap = data.thornMap || {};
-        data.thornMap[matches[1]] = data.thornMap[matches[1]] || [];
-        data.thornMap[matches[1]].push(matches[2]);
-        data.thornMap[matches[2]] = data.thornMap[matches[2]] || [];
-        data.thornMap[matches[2]].push(matches[1]);
+        data.thornMap[matches.source] = data.thornMap[matches.source] || [];
+        data.thornMap[matches.source].push(matches.target);
+        data.thornMap[matches.target] = data.thornMap[matches.target] || [];
+        data.thornMap[matches.target].push(matches.source);
       },
     },
     {
       id: 'T6 Thorn Whip',
-      regex: / 1[56]:\y{ObjectId}:Rafflesia:879:Thorn Whip:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 1[56]:\y{ObjectId}:Rafflesia:879:Dornenpeitsche:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 1[56]:\y{ObjectId}:Rafflesia:879:Fouet de ronces:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 1[56]:\y{ObjectId}:ラフレシア:879:ソーンウィップ:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '879', source: 'Rafflesia' }),
+      regexDe: Regexes.ability({ id: '879', source: 'Rafflesia' }),
+      regexFr: Regexes.ability({ id: '879', source: 'Rafflesia' }),
+      regexJa: Regexes.ability({ id: '879', source: 'ラフレシア' }),
+      regexCn: Regexes.ability({ id: '879', source: '大王花' }),
+      regexKo: Regexes.ability({ id: '879', source: '라플레시아' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       infoText: function(data) {
         let partners = data.thornMap[data.me];
         if (!partners) {
           return {
             en: 'Thorns on YOU',
+            fr: 'Ronces sur VOUS',
           };
         }
         if (partners.length == 1) {
           return {
             en: 'Thorns w/ (' + data.ShortName(partners[0]) + ')',
+            fr: 'Ronces avec (' + data.ShortName(partners[0]) + ')',
           };
         }
         if (partners.length == 2) {
           return {
             en: 'Thorns w/ (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
+            fr: 'Ronces avec (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
           };
         }
         return {
           en: 'Thorns (' + partners.length + ' people)',
+          fr: 'Ronces (' + partners.length + ' personne)',
         };
       },
       run: function(data) {
@@ -54,12 +62,14 @@
     },
     {
       id: 'T6 Honey On',
-      regex: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Honey-Glazed/,
-      regexDe: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Honigsüß/,
-      regexFr: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of Mielleux/,
-      regexJa: / 1A:\y{ObjectId}:(\y{Name}) gains the effect of 蜂蜜/,
+      regex: Regexes.gainsEffect({ effect: 'Honey-Glazed' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Honigsüß' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Mielleux' }),
+      regexJa: Regexes.gainsEffect({ effect: '蜂蜜' }),
+      regexCn: Regexes.gainsEffect({ effect: '蜂蜜' }),
+      regexKo: Regexes.gainsEffect({ effect: '벌꿀' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         data.honey = true;
@@ -67,12 +77,14 @@
     },
     {
       id: 'T6 Honey Off',
-      regex: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Honey-Glazed/,
-      regexDe: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Honigsüß/,
-      regexFr: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of Mielleux/,
-      regexJa: / 1E:\y{ObjectId}:(\y{Name}) loses the effect of 蜂蜜/,
+      regex: Regexes.losesEffect({ effect: 'Honey-Glazed' }),
+      regexDe: Regexes.losesEffect({ effect: 'Honigsüß' }),
+      regexFr: Regexes.losesEffect({ effect: 'Mielleux' }),
+      regexJa: Regexes.losesEffect({ effect: '蜂蜜' }),
+      regexCn: Regexes.losesEffect({ effect: '蜂蜜' }),
+      regexKo: Regexes.losesEffect({ effect: '벌꿀' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       run: function(data) {
         delete data.honey;
@@ -80,11 +92,12 @@
     },
     {
       id: 'T6 Flower',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000D:/,
+      regex: Regexes.headMarker({ id: '000D' }),
       alarmText: function(data) {
         if (data.honey) {
           return {
             en: 'Devour: Get Eaten',
+            fr: 'Dévoration : Faites vous manger',
           };
         }
       },
@@ -92,42 +105,54 @@
         if (data.honey)
           return;
 
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Devour: Jump In New Thorns',
+            fr: 'Dévoration : Sautez dans les ronces',
           };
         }
       },
       infoText: function(data, matches) {
-        if (data.honey || data.me == matches[1])
+        if (data.honey || data.me == matches.target)
           return;
 
         return {
           en: 'Avoid Devour',
+          fr: 'Evitez dévoration',
         };
       },
     },
     {
       id: 'T6 Phase 2',
-      regex: / 0D:Rafflesia HP at 70%/,
+      regex: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
+      regexDe: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
+      regexFr: Regexes.hasHP({ name: 'Rafflesia', hp: '70', capture: false }),
+      regexJa: Regexes.hasHP({ name: 'ラフレシア', hp: '70', capture: false }),
+      regexCn: Regexes.hasHP({ name: '大王花', hp: '70', capture: false }),
+      regexKo: Regexes.hasHP({ name: '라플레시아', hp: '70', capture: false }),
       sound: 'Long',
     },
     {
       id: 'T6 Blighted',
-      regex: / 14:79D:Rafflesia starts using Blighted Bouquet/,
-      regexDe: / 14:79D:Rafflesia starts using Mehltau-Bouquet/,
-      regexFr: / 14:79D:Rafflesia starts using Bouquet Mildiousé/,
-      regexJa: / 14:79D:ラフレシア starts using ブライテッドブーケ/,
+      regex: Regexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '79D', source: 'ラフレシア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '79D', source: '大王花', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
       alarmText: {
         en: 'STOP',
+        fr: 'STOP',
       },
     },
     {
       id: 'T6 Phase 3',
-      regex: / 14:79E:Rafflesia starts using Leafstorm/,
-      regexDe: / 14:79E:Rafflesia starts using Blättersturm/,
-      regexFr: / 14:79E:Rafflesia starts using Tempête De Feuilles/,
-      regexJa: / 14:79E:ラフレシア starts using リーフストーム/,
+      regex: Regexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '79E', source: 'ラフレシア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '79E', source: '大王花', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '79E', source: '라플레시아', capture: false }),
       condition: function(data) {
         return !data.seenLeafstorm;
       },
@@ -137,50 +162,59 @@
       },
     },
     {
-      id: 'T6 Swarm',
-      regex: / 14:86C:Rafflesia starts using Acid Rain/,
-      regexDe: / 14:86C:Rafflesia starts using Säureregen/,
-      regexFr: / 14:86C:Rafflesia starts using Pluie Acide/,
-      regexJa: / 14:86C:ラフレシア starts using アシッドレイン/,
+      id: 'T6 Swarm Stack',
+      regex: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
       infoText: {
         en: 'Stack for Acid',
+        fr: 'Packez vous pour Acide',
       },
     },
     {
       id: 'T6 Swarm',
-      regex: / 15:\y{ObjectId}:Rafflesia:7A0:Swarm:\y{ObjectId}:(\y{Name}):/,
-      regexDe: / 15:\y{ObjectId}:Rafflesia:7A0:Fähenfurz:\y{ObjectId}:(\y{Name}):/,
-      regexFr: / 15:\y{ObjectId}:Rafflesia:7A0:Nuée:\y{ObjectId}:(\y{Name}):/,
-      regexJa: / 15:\y{ObjectId}:ラフレシア:7A0:スウォーム:\y{ObjectId}:(\y{Name}):/,
+      regex: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      regexDe: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      regexFr: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      regexJa: Regexes.ability({ id: '7A0', source: 'ラフレシア' }),
+      regexCn: Regexes.ability({ id: '7A0', source: '大王花' }),
+      regexKo: Regexes.ability({ id: '7A0', source: '라플레시아' }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer' || data.job == 'BLU';
+        return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
       },
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Swarm on YOU',
+            fr: 'Nuée sur VOUS',
           };
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches.target != data.me) {
           return {
-            en: 'Swarm on ' + data.ShortName(matches[1]),
+            en: 'Swarm on ' + data.ShortName(matches.target),
+            fr: 'Nuée sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'T6 Rotten Stench',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:000E:/,
+      regex: Regexes.headMarker({ id: '000E' }),
       alertText: function(data, matches) {
-        if (data.me == matches[1]) {
+        if (data.me == matches.target) {
           return {
             en: 'Share Laser (on YOU)',
+            fr: 'Partage de laser (sur VOUS)',
           };
         }
         return {
-          en: 'Share Laser (on ' + data.ShortName(matches[1]) + ')',
+          en: 'Share Laser (on ' + data.ShortName(matches.target) + ')',
+          fr: 'Partage de laser (sur ' + data.ShortName(matches.target) + ')',
         };
       },
     },
@@ -189,10 +223,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Rafflesia': 'Rafflesia',
-        'Scar\'s Edge is no longer sealed': 'Der Zugang zum Narbenrand öffnet sich wieder',
-        'Scar\'s Edge will be sealed off': 'bis sich der Zugang zum Narbenrand schließt',
+        'Scar\'s Edge': 'Narbenrand',
       },
       'replaceText': {
         'Acid Rain': 'Säureregen',
@@ -212,10 +244,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque !',
         'Rafflesia': 'Rafflesia',
-        'Scar\'s Edge is no longer sealed': 'Ouverture du Huis de la Marque',
-        'Scar\'s Edge will be sealed off': 'Fermeture du Huis de la Marque',
+        'Scar\'s Edge': 'Huis de la Marque',
       },
       'replaceText': {
         'Acid Rain': 'Pluie acide',
@@ -234,11 +264,9 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Rafflesia': 'ラフレシア',
-        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
-        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
       },
       'replaceText': {
         'Acid Rain': '酸性雨',
@@ -253,6 +281,48 @@
         'Swarm': 'スウォーム',
         'Thorn Whip': 'ソーンウィップ',
         'Viscid Emission': 'ヴィシドエミッション',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Rafflesia': '大王花',
+      },
+      'replaceText': {
+        'Acid Rain': '酸雨',
+        'Blighted Bouquet': '凋零的花香',
+        'Bloody Caress': '血腥的爱抚',
+        'Briary Growth': '荆棘丛生',
+        'Devour': '捕食',
+        'Floral Trap': '鲜花陷阱',
+        'Leafstorm': '绿叶风暴',
+        'Rotten Stench': '腐烂恶臭',
+        'Spit': '呕吐',
+        'Swarm': '招蜂香气',
+        'Thorn Whip': '荆棘鞭',
+        'Viscid Emission': '胶质排放物',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Rafflesia': '라플레시아',
+      },
+      'replaceText': {
+        'Acid Rain': '산성비',
+        'Blighted Bouquet': '시든 꽃다발',
+        'Bloody Caress': '피의 애무',
+        'Briary Growth': '자라는 가시나무',
+        'Devour': '포식',
+        'Floral Trap': '향기의 덫',
+        'Leafstorm': '잎사귀 폭풍',
+        'Rotten Stench': '썩은 냄새',
+        'Spit': '뱉기',
+        'Swarm': '벌레 떼',
+        'Thorn Whip': '가시채찍',
+        'Viscid Emission': '점액 배출',
       },
     },
   ],

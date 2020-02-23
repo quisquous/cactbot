@@ -6,16 +6,20 @@
 //   fr: partial timeline, partial triggers
 //   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /^Sigmascape V4\.0 \(Savage\)$/,
+  zoneRegex: {
+    en: /^Sigmascape V4\.0 \(Savage\)$/,
+    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(4\)$/,
+  },
   timelineFile: 'o8s.txt',
   triggers: [
     {
       id: 'O8S Shockwave',
-      regex: / 14:28DB:Graven Image starts using Shockwave/,
-      regexDe: / 14:28DB:Helige Statue starts using Schockwelle/,
-      regexFr: / 14:28DB:Statue Divine starts using Onde De Choc/,
-      regexJa: / 14:28DB:神々の像 starts using 衝撃波/,
-      regexKo: / 14:28DB:신들의 상 starts using 충격파/,
+      regex: Regexes.startsUsing({ id: '28DB', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28DB', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28DB', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28DB', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28DB', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28DB', source: '신들의 상', capture: false }),
       delaySeconds: 5,
       alertText: {
         en: 'Look for Knockback',
@@ -34,11 +38,12 @@
     },
     {
       id: 'O8S Indolent Will',
-      regex: / 14:28E4:Graven Image starts using Indolent Will/,
-      regexDe: / 14:28E4:Helige Statue starts using Träger Wille/,
-      regexFr: / 14:28E4:Statue Divine starts using Volonté Indolente/,
-      regexJa: / 14:28E4:神々の像 starts using 惰眠の神気/,
-      regexKo: / 14:28E4:신들의 상 starts using 태만의 신기/,
+      regex: Regexes.startsUsing({ id: '28E4', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28E4', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28E4', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28E4', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28E4', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28E4', source: '신들의 상', capture: false }),
       alertText: {
         en: 'Look Away From Statue',
         fr: 'Ne regardez pas la statue',
@@ -56,11 +61,12 @@
     },
     {
       id: 'O8S Intemperate Will',
-      regex: / 14:28DF:Graven Image starts using Intemperate Will/,
-      regexDe: / 14:28DF:Helige Statue starts using Unmäßiger Wille/,
-      regexFr: / 14:28DF:Statue Divine starts using Volonté Intempérante/,
-      regexJa: / 14:28DF:神々の像 starts using 撲殺の神気/,
-      regexKo: / 14:28DF:신들의 상 starts using 박살의 신기/,
+      regex: Regexes.startsUsing({ id: '28DF', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28DF', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28DF', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28DF', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28DF', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28DF', source: '신들의 상', capture: false }),
       alertText: {
         en: '<= Get Left/West',
         fr: '<= Allez à Gauche/Ouest',
@@ -78,11 +84,12 @@
     },
     {
       id: 'O8S Gravitational Wave',
-      regex: / 14:28DE:Graven Image starts using Gravitational Wave/,
-      regexDe: / 14:28DE:Helige Statue starts using Gravitationswelle/,
-      regexFr: / 14:28DE:Statue Divine starts using Onde Gravitationnelle/,
-      regexJa: / 14:28DE:神々の像 starts using 重力波/,
-      regexKo: / 14:28DE:신들의 상 starts using 중력파/,
+      regex: Regexes.startsUsing({ id: '28DE', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28DE', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28DE', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28DE', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28DE', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28DE', source: '신들의 상', capture: false }),
       alertText: {
         en: 'Get Right/East =>',
         fr: 'Allez à Droite/Est =>',
@@ -100,11 +107,12 @@
     },
     {
       id: 'O8S Ave Maria',
-      regex: / 14:28E3:Graven Image starts using Ave Maria/,
-      regexDe: / 14:28E3:Helige Statue starts using Ave Maria/,
-      regexFr: / 14:28E3:Statue Divine starts using Ave Maria/,
-      regexJa: / 14:28E3:神々の像 starts using アヴェ・マリア/,
-      regexKo: / 14:28E3:신들의 상 starts using 아베 마리아/,
+      regex: Regexes.startsUsing({ id: '28E3', source: 'Graven Image', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28E3', source: 'Heilig(?:e|er|es|en) Statue', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28E3', source: 'Statue Divine', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28E3', source: '神々の像', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28E3', source: '众神之像', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28E3', source: '신들의 상', capture: false }),
       alertText: {
         en: 'Look At Statue',
         fr: 'Regardez la statue',
@@ -122,11 +130,12 @@
     },
     {
       id: 'O8S Pasts Forgotten',
-      regex: / 14:28F1:Kefka starts using Pasts Forgotten/,
-      regexDe: / 14:28F1:Kefka starts using Vernichtung Der Vergangenheit/,
-      regexFr: / 14:28F1:Kefka starts using Ruine Du Passé/,
-      regexJa: / 14:28F1:ケフカ starts using 過去の破滅/,
-      regexKo: / 14:28F1:케프카 starts using 과거의 파멸/,
+      regex: Regexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28F1', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28F1', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28F1', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28F1', source: '케프카', capture: false }),
       alertText: {
         en: 'Past: Stack and Stay',
         fr: 'Passé : Stack et ne bougez plus',
@@ -144,11 +153,12 @@
     },
     {
       id: 'O8S Futures Numbered',
-      regex: / 14:28EF:Kefka starts using Futures Numbered/,
-      regexDe: / 14:28EF:Kefka starts using Vernichtung Der Zukunft/,
-      regexFr: / 14:28EF:Kefka starts using Ruine Du Futur/,
-      regexJa: / 14:28EF:ケフカ starts using 未来の破滅/,
-      regexKo: / 14:28EF:케프카 starts using 미래의 파멸/,
+      regex: Regexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28EF', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28EF', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28EF', source: '케프카', capture: false }),
       alertText: {
         en: 'Future: Stack and Through',
         fr: 'Futur : Stack et traversez',
@@ -167,11 +177,12 @@
     {
       // TODO: not sure if this cast is 7 or 8.
       id: 'O8S Past\'s End',
-      regex: / 14:28F[78]:Kefka starts using Past's End/,
-      regexDe: / 14:28F[78]:Kefka starts using Ende Der Vergangenheit/,
-      regexFr: / 14:28F[78]:Kefka starts using Fin Du Passé/,
-      regexJa: / 14:28F[78]:ケフカ starts using 過去の終焉/,
-      regexKo: / 14:28F[78]:케프카 starts using 과거의 종언/,
+      regex: Regexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28F[78]', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28F[78]', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28F[78]', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28F[78]', source: '케프카', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -193,11 +204,12 @@
     {
       // TODO: not sure if this cast is 4 or 5.
       id: 'O8S Future\'s End',
-      regex: / 14:28F[45]:Kefka starts using Future's End/,
-      regexDe: / 14:28F[45]:Kefka starts using Ende Der Zukunft/,
-      regexFr: / 14:28F[45]:Kefka starts using Fin Du Futur/,
-      regexJa: / 14:28F[45]:ケフカ starts using 未来の終焉/,
-      regexKo: / 14:28F[45]:케프카 starts using 미래의 종언/,
+      regex: Regexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28F[45]', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28F[45]', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28F[45]', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28F[45]', source: '케프카', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -218,13 +230,14 @@
     },
     {
       id: 'O8S Pulse Wave You',
-      regex: / 14:28DD:Graven Image starts using Pulse Wave on (\y{Name})/,
-      regexDe: / 14:28DD:Helige Statue starts using Pulswelle on (\y{Name})/,
-      regexFr: / 14:28DD:Statue Divine starts using Pulsation Spirituelle on (\y{Name})/,
-      regexJa: / 14:28DD:神々の像 starts using 波動弾 on (\y{Name})/,
-      regexKo: / 14:28DD:신들의 상 starts using 파동탄 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '28DD', source: 'Graven Image' }),
+      regexDe: Regexes.startsUsing({ id: '28DD', source: 'Heilig(?:e|er|es|en) Statue' }),
+      regexFr: Regexes.startsUsing({ id: '28DD', source: 'Statue Divine' }),
+      regexJa: Regexes.startsUsing({ id: '28DD', source: '神々の像' }),
+      regexCn: Regexes.startsUsing({ id: '28DD', source: '众神之像' }),
+      regexKo: Regexes.startsUsing({ id: '28DD', source: '신들의 상' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Knockback on YOU',
@@ -243,11 +256,12 @@
     },
     {
       id: 'O8S Wings of Destruction',
-      regex: / 14:2900:Kefka starts using Wings Of Destruction/,
-      regexDe: / 14:2900:Kefka starts using Vernichtungsschwinge/,
-      regexFr: / 14:2900:Kefka starts using Aile De La Destruction/,
-      regexJa: / 14:2900:ケフカ starts using 破壊の翼/,
-      regexKo: / 14:2900:케프카 starts using 파괴의 날개/,
+      regex: Regexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '2900', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '2900', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '2900', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
       alarmText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -291,11 +305,12 @@
     },
     {
       id: 'O8S Single Wing of Destruction',
-      regex: / 14:28F[EF]:Kefka starts using Wings Of Destruction/,
-      regexDe: / 14:28F[EF]:Kefka starts using Vernichtungsschwinge/,
-      regexFr: / 14:28F[EF]:Kefka starts using Aile De La Destruction/,
-      regexJa: / 14:28F[EF]:ケフカ starts using 破壊の翼/,
-      regexKo: / 14:28F[EF]:케프카 starts using 파괴의 날개/,
+      regex: Regexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28F[EF]', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28F[EF]', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28F[EF]', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28F[EF]', source: '케프카', capture: false }),
       infoText: {
         en: 'Single Wing',
         fr: 'Aile unique',
@@ -306,13 +321,14 @@
     },
     {
       id: 'O8S Ultimate Embrace',
-      regex: / 14:2910:Kefka starts using Ultimate Embrace on (\y{Name})/,
-      regexDe: / 14:2910:Kefka starts using Ultima-Umarmung on (\y{Name})/,
-      regexFr: / 14:2910:Kefka starts using Étreinte Fatidique on (\y{Name})/,
-      regexJa: / 14:2910:ケフカ starts using 終末の双腕 on (\y{Name})/,
-      regexKo: / 14:2910:케프카 starts using 종말의 포옹 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '2910', source: 'Kefka' }),
+      regexDe: Regexes.startsUsing({ id: '2910', source: 'Kefka' }),
+      regexFr: Regexes.startsUsing({ id: '2910', source: 'Kefka' }),
+      regexJa: Regexes.startsUsing({ id: '2910', source: 'ケフカ' }),
+      regexCn: Regexes.startsUsing({ id: '2910', source: '凯夫卡' }),
+      regexKo: Regexes.startsUsing({ id: '2910', source: '케프카' }),
       alertText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
 
         return {
@@ -324,21 +340,21 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
 
         if (data.role == 'healer' || data.role == 'tank') {
           return {
-            en: 'Embrace on ' + data.ShortName(matches[1]),
-            fr: 'Étreinte sur ' + data.ShortName(matches[1]),
-            de: 'Umarmung auf ' + data.ShortName(matches[1]),
-            ko: '종말의 포옹 → ' + data.ShortName(matches[1]),
-            ja: '双腕 on ' + data.ShortName(matches[1]),
+            en: 'Embrace on ' + data.ShortName(matches.target),
+            fr: 'Étreinte sur ' + data.ShortName(matches.target),
+            de: 'Umarmung auf ' + data.ShortName(matches.target),
+            ko: '종말의 포옹 → ' + data.ShortName(matches.target),
+            ja: '双腕 on ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank') {
+        if (matches.target == data.me || data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'embrace',
             fr: 'Étreinte',
@@ -352,13 +368,14 @@
     {
       // 28E8: clown hyperdrive, 2912: god hyperdrive
       id: 'O8S Hyperdrive',
-      regex: / 14:(?:28E8|2912):Kefka starts using Hyperdrive on (\y{Name})/,
-      regexDe: / 14:(?:28E8|2912):Kefka starts using Hyperantrieb on (\y{Name})/,
-      regexFr: / 14:(?:28E8|2912):Kefka starts using Colonne De Feu on (\y{Name})/,
-      regexJa: / 14:(?:28E8|2912):ケフカ starts using ハイパードライブ on (\y{Name})/,
-      regexKo: / 14:(?:28E8|2912):케프카 starts using 하이퍼드라이브 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
+      regexDe: Regexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
+      regexFr: Regexes.startsUsing({ id: ['28E8', '2912'], source: 'Kefka' }),
+      regexJa: Regexes.startsUsing({ id: ['28E8', '2912'], source: 'ケフカ' }),
+      regexCn: Regexes.startsUsing({ id: ['28E8', '2912'], source: '凯夫卡' }),
+      regexKo: Regexes.startsUsing({ id: ['28E8', '2912'], source: '케프카' }),
       alertText: function(data, matches) {
-        if (matches[1] != data.me)
+        if (matches.target != data.me)
           return;
 
         return {
@@ -370,21 +387,21 @@
         };
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
 
         if (data.role == 'healer' || data.role == 'tank') {
           return {
-            en: 'Hyperdrive on ' + data.ShortName(matches[1]),
-            fr: 'Colonne de feu sur ' + data.ShortName(matches[1]),
-            de: 'Hyperantrieb auf ' + data.ShortName(matches[1]),
-            ko: '하이퍼드라이브 → ' + data.ShortName(matches[1]),
-            ja: 'ハイパードライブ on ' + data.ShortName(matches[1]),
+            en: 'Hyperdrive on ' + data.ShortName(matches.target),
+            fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
+            de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
+            ko: '하이퍼드라이브 → ' + data.ShortName(matches.target),
+            ja: 'ハイパードライブ on ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me || data.role == 'healer' || data.role == 'tank') {
+        if (matches.target == data.me || data.role == 'healer' || data.role == 'tank') {
           return {
             en: 'hyperdrive',
             fr: 'Colonne de feu',
@@ -397,13 +414,14 @@
     },
     {
       id: 'O8S Indulgent Will',
-      regex: / 14:28E5:Graven Image starts using Indulgent Will on (\y{Name})/,
-      regexDe: / 14:28E5:Helige Statue starts using Nachsichtiger Wille on (\y{Name})/,
-      regexFr: / 14:28E5:Statue Divine starts using Volonté Indulgente on (\y{Name})/,
-      regexJa: / 14:28E5:神々の像 starts using 聖母の神気 on (\y{Name})/,
-      regexKo: / 14:28E5:신들의 상 starts using 성모의 신기 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '28E5', source: 'Graven Image' }),
+      regexDe: Regexes.startsUsing({ id: '28E5', source: 'Heilig(?:e|er|es|en) Statue' }),
+      regexFr: Regexes.startsUsing({ id: '28E5', source: 'Statue Divine' }),
+      regexJa: Regexes.startsUsing({ id: '28E5', source: '神々の像' }),
+      regexCn: Regexes.startsUsing({ id: '28E5', source: '众神之像' }),
+      regexKo: Regexes.startsUsing({ id: '28E5', source: '신들의 상' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Confusion: Go Outside',
@@ -422,13 +440,14 @@
     },
     {
       id: 'O8S Idyllic Will',
-      regex: / 14:28E6:Graven Image starts using Idyllic Will on (\y{Name})/,
-      regexDe: / 14:28E6:Helige Statue starts using Idyllischer Wille on (\y{Name})/,
-      regexFr: / 14:28E6:Statue Divine starts using Volonté Idyllique on (\y{Name})/,
-      regexJa: / 14:28E6:神々の像 starts using 睡魔の神気 on (\y{Name})/,
-      regexKo: / 14:28E6:신들의 상 starts using 수마의 신기 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '28E6', source: 'Graven Image' }),
+      regexDe: Regexes.startsUsing({ id: '28E6', source: 'Heilig(?:e|er|es|en) Statue' }),
+      regexFr: Regexes.startsUsing({ id: '28E6', source: 'Statue Divine' }),
+      regexJa: Regexes.startsUsing({ id: '28E6', source: '神々の像' }),
+      regexCn: Regexes.startsUsing({ id: '28E6', source: '众神之像' }),
+      regexKo: Regexes.startsUsing({ id: '28E6', source: '신들의 상' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alarmText: {
         en: 'Sleep: Go Inside',
@@ -447,11 +466,12 @@
     },
     {
       id: 'O8S Mana Charge',
-      regex: / 14:28D1:Kefka starts using Mana Charge/,
-      regexDe: / 14:28D1:Kefka starts using Mana-Aufladung/,
-      regexFr: / 14:28D1:Kefka starts using Concentration De Mana/,
-      regexJa: / 14:28D1:ケフカ starts using マジックチャージ/,
-      regexKo: / 14:28D1:케프카 starts using 마력 충전/,
+      regex: Regexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28D1', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28D1', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28D1', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28D1', source: '케프카', capture: false }),
       run: function(data) {
         delete data.lastFire;
         delete data.lastThunder;
@@ -462,11 +482,12 @@
     },
     {
       id: 'O8S Mana Release',
-      regex: / 14:28D2:Kefka starts using Mana Release/,
-      regexDe: / 14:28D2:Kefka starts using Mana-Entladung/,
-      regexFr: / 14:28D2:Kefka starts using Décharge De Mana/,
-      regexJa: / 14:28D2:ケフカ starts using マジックアウト/,
-      regexKo: / 14:28D2:케프카 starts using 마력 방출/,
+      regex: Regexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28D2', source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28D2', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28D2', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28D2', source: '케프카', capture: false }),
       preRun: function(data) {
         if (data.lastFire) {
           data.manaReleaseText = data.lastFire;
@@ -493,11 +514,12 @@
       // 28CF: damage from mana charge
       // 2B32: damage from mana release
       id: 'O8S Fire Spread',
-      regex: / 1[56]:\y{ObjectId}:Kefka:28CF:Flagrant Fire:/,
-      regexDe: / 1[56]:\y{ObjectId}:Kefka:28CF:Flammendes Feuga:/,
-      regexFr: / 1[56]:\y{ObjectId}:Kefka:28CF:Méga Feu Faufilant:/,
-      regexJa: / 1[56]:\y{ObjectId}:ケフカ:28CF:めらめらファイガ:/,
-      regexKo: / 1[56]:\y{ObjectId}:케프카:28CF:이글이글 파이가:/,
+      regex: Regexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
+      regexDe: Regexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
+      regexFr: Regexes.ability({ id: '28CF', source: 'Kefka', capture: false }),
+      regexJa: Regexes.ability({ id: '28CF', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.ability({ id: '28CF', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.ability({ id: '28CF', source: '케프카', capture: false }),
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
@@ -514,11 +536,12 @@
       // 28D0: damage from mana charge
       // 2B33: damage from mana release
       id: 'O8S Fire Stack',
-      regex: / 1[56]:\y{ObjectId}:Kefka:28D0:Flagrant Fire:/,
-      regexDe: / 1[56]:\y{ObjectId}:Kefka:28D0:Flammendes Feuga:/,
-      regexFr: / 1[56]:\y{ObjectId}:Kefka:28D0:Méga Feu Faufilant:/,
-      regexJa: / 1[56]:\y{ObjectId}:ケフカ:28D0:めらめらファイガ:/,
-      regexKo: / 1[56]:\y{ObjectId}:케프카:28D0:이글이글 파이가:/,
+      regex: Regexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
+      regexDe: Regexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
+      regexFr: Regexes.ability({ id: '28D0', source: 'Kefka', capture: false }),
+      regexJa: Regexes.ability({ id: '28D0', source: 'ケフカ', capture: false }),
+      regexCn: Regexes.ability({ id: '28D0', source: '凯夫卡', capture: false }),
+      regexKo: Regexes.ability({ id: '28D0', source: '케프카', capture: false }),
       suppressSeconds: 40,
       run: function(data) {
         data.lastFire = {
@@ -535,11 +558,12 @@
       // 28CD: mana charge
       // 2B31: mana release
       id: 'O8S Thrumming Thunder Real',
-      regex: / 14:(?:28CD|2B31):Kefka starts using Thrumming Thunder/,
-      regexDe: / 14:(?:28CD|2B31):Kefka starts using Brachiales Blitzga/,
-      regexFr: / 14:(?:28CD|2B31):Kefka starts using Méga Foudre Fourmillante/,
-      regexJa: / 14:(?:28CD|2B31):ケフカ starts using もりもりサンダガ/,
-      regexKo: / 14:(?:28CD|2B31):케프카 starts using 찌릿찌릿 선더가/,
+      regex: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28CD', '2B31'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28CD', '2B31'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
@@ -562,11 +586,12 @@
       // 28CB, 28CC: mana charge
       // 2B2F, 2B30: mana release
       id: 'O8S Thrumming Thunder Fake',
-      regex: / 14:(?:28CC|2B30):Kefka starts using Thrumming Thunder/,
-      regexDe: / 14:(?:28CC|2B30):Kefka starts using Brachiales Blitzga/,
-      regexFr: / 14:(?:28CC|2B30):Kefka starts using Méga Foudre Fourmillante/,
-      regexJa: / 14:(?:28CC|2B30):ケフカ starts using もりもりサンダガ/,
-      regexKo: / 14:(?:28CC|2B30):케프카 starts using 찌릿찌릿 선더가/,
+      regex: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28CC', '2B30'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28CC', '2B30'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
@@ -589,11 +614,12 @@
       // 28C5, 28C6: mana charge
       // 2B2B, 2B2E: mana release
       id: 'O8S Blizzard Fake Donut',
-      regex: / 14:(?:28C5|2B2B):Kefka starts using Blizzard Blitz/,
-      regexDe: / 14:(?:28C5|2B2B):Kefka starts using Erstarrendes Eisga/,
-      regexFr: / 14:(?:28C5|2B2B):Kefka starts using Méga Glace Glissante/,
-      regexJa: / 14:(?:28C5|2B2B):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C5|2B2B):케프카 starts using 빙글빙글 블리자가/,
+      regex: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -623,11 +649,12 @@
       // 28C9: mana charge
       // 2B2E: mana release
       id: 'O8S Blizzard True Donut',
-      regex: / 14:(?:28C9|2B2E):Kefka starts using Blizzard Blitz/,
-      regexDe: / 14:(?:28C9|2B2E):Kefka starts using Erstarrendes Eisga/,
-      regexFr: / 14:(?:28C9|2B2E):Kefka starts using Méga Glace Glissante/,
-      regexJa: / 14:(?:28C9|2B2E):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C9|2B2E):케프카 starts using 빙글빙글 블리자가/,
+      regex: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -657,11 +684,12 @@
       // 28C3, 28C4: mana charge
       // 2B29, 2B2A: mana release
       id: 'O8S Blizzard Fake Near',
-      regex: / 14:(?:28C4|2B2A):Kefka starts using Blizzard Blitz/,
-      regexDe: / 14:(?:28C4|2B2A):Kefka starts using Erstarrendes Eisga/,
-      regexFr: / 14:(?:28C4|2B2A):Kefka starts using Méga Glace Glissante/,
-      regexJa: / 14:(?:28C4|2B2A):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C4|2B2A):ケフカ starts using 빙글빙글 블리자가/,
+      regex: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -691,11 +719,12 @@
       // 28C8: mana charge
       // 2B2D: mana release
       id: 'O8S Blizzard True Near',
-      regex: / 14:(?:28C8|2B2D):Kefka starts using Blizzard Blitz/,
-      regexDe: / 14:(?:28C8|2B2D):Kefka starts using Erstarrendes Eisga/,
-      regexFr: / 14:(?:28C8|2B2D):Kefka starts using Méga Glace Glissante/,
-      regexJa: / 14:(?:28C8|2B2D):ケフカ starts using ぐるぐるブリザガ/,
-      regexKo: / 14:(?:28C8|2B2D):케프카 starts using 빙글빙글 블리자가/,
+      regex: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'Kefka', capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'ケフカ', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: '凯夫卡', capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: '케프카', capture: false }),
       suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
@@ -723,25 +752,33 @@
   ],
   timelineReplace: [
     {
-      locale: 'de',
-      replaceSync: {
-        'Graven Image': 'Heilige Statue',
+      'locale': 'de',
+      'replaceSync': {
+        'Graven Image': 'heilig(?:e|er|es|en) Statue',
         'Kefka': 'Kefka',
-        'Light Of Consecration': 'Licht Der Weihe',
-        'The Mad Head': 'Verrückter Kopf',
+        'Light Of Consecration': 'Licht der Weihe',
+        'The Mad Head': 'verrückt(?:e|er|es|en) Kopf',
         'The limit gauge resets!': 'Der Limitrausch-Balken wurde geleert.',
       },
-      replaceText: {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
-        'Engage!': 'Start!',
-        'Enrage': 'Finalangriff',
-
+      'replaceText': {
         'Aero Assault': 'Wallendes Windga',
+        'All Things Ending': 'Ende aller Dinge',
         'Blizzard Blitz': 'Erstarrendes Eisga',
+        'Blizzard III': 'Eisga',
+        'Blizzard\\+Thunder': 'Eis+Blitz',
+        'Celestriad': 'Dreigestirn',
+        'Explosion': 'Explosion',
+        'Fire III': 'Feuga',
         'Flagrant Fire': 'Flammendes Feuga',
+        'Forsaken': 'Verloren',
+        'Future\'s End': 'Ende der Zukunft',
+        'Futures Numbered': 'Vernichtung der Zukunft',
         'Graven Image': 'Göttliche Statue',
         'Gravitas': 'Gravitas',
+        'Gravitational Wave': 'Gravitationswelle',
+        'Half Arena': 'Halbe Arena',
+        'Heartless Angel': 'Herzloser Engel',
+        'Heartless Archangel': 'Herzloser Erzengel',
         'Holy Ascent': 'Heiliger Aufstieg',
         'Hyperdrive': 'Hyperantrieb',
         'Idyllic Will': 'Idyllischer Wille',
@@ -750,142 +787,128 @@
         'Indulgent Will': 'Nachsichtiger Wille',
         'Inexorable Will': 'Unerbittlicher Wille',
         'Intemperate Will': 'Unmäßiger Wille',
-        'Light Of Judgment': 'Licht Des Urteils',
+        'Knockback Tethers': 'Rückstoß Verbindungen',
+        'Light Of Judgment': 'Licht des Urteils',
         'Mana Charge': 'Mana-Aufladung',
         'Mana Release': 'Mana-Entladung',
+        'Meteor': 'Meteor',
+        'Past/Future(?! )': 'Vergangenheit/Zukunft',
+        'Past/Future End': 'Vergangenheit/Zukunft Ende',
+        'Pasts Forgotten': 'Vernichtung der Vergangenheit',
         'Pulse Wave': 'Pulswelle',
         'Revolting Ruin': 'Revoltierendes Ruinga',
         'Shockwave': 'Schockwelle',
+        'Sleep/Confuse Tethers': 'Schlaf/Konfusion Verbindungen',
+        'Soak': 'Aufsaugen',
+        'Starstrafe': 'Sternentanz',
+        'Statue Gaze': 'Statuenblick',
+        'Statue Half Cleave': 'Statue Halber Cleave',
+        'The Path Of Light': 'Pfad des Lichts',
         'Thrumming Thunder': 'Brachiales Blitzga',
+        'Thunder III': 'Blitzga',
         'Timely Teleport': 'Turbulenter Teleport',
+        'Trine': 'Trine',
         'Ultima Upsurge': 'Ultima-Wallung',
+        'Ultimate Embrace': 'Ultima-Umarmung',
+        'Ultima(?![ |\\w])': 'Ultima',
         'Vitrophyre': 'Vitrophyr',
         'Wave Cannon': 'Wellenkanone',
-
-        'All Things Ending': 'Ende Aller Dinge',
-        'Blizzard III': 'Eisga',
-        'Celestriad': 'Dreigestirn',
-        'Explosion': 'Explosion',
-        'Fire III': 'Feuga',
-        'Forsaken': 'Verloren',
-        'Future\'s End': 'Ende Der Zukunft',
-        'Futures Numbered': 'Vernichtung Der Zukunft',
-        'Gravitational Wave': 'Gravitationswelle',
-        'Heartless Angel': 'Herzloser Engel',
-        'Heartless Archangel': 'Herzloser Erzengel',
-        'Meteor': 'Meteo',
-        'Pasts Forgotten': 'Vernichtung Der Vergangenheit',
-        'Starstrafe': 'Sternentanz',
-        'The Path Of Light': 'Pfad Des Lichts',
-        'Thunder III': 'Blitzga',
-        'Trine': 'Trine',
-        'Ultima': 'Ultima',
-        'Ultimate Embrace': 'Ultima-Umarmung',
         'Wings Of Destruction': 'Vernichtungsschwinge',
-        'Blizzard+Thunder': 'Eis+Blitz',
-        'Half Arena': 'Halbe Arena',
-        'Statue Gaze': 'Statuenblick',
-        'Soak': 'Aufsaugen',
-        'Past/Future': 'Vergangenheit/Zukunft',
-        'Past/Future End': 'Vergangenheit/Zukunft Ende',
-        'Knockback Tethers': 'Rückstoß Verbindungen',
-        'Sleep/Confuse Tethers': 'Schlaf/Konfusion Verbindungen',
-        'Statue Half Cleave': 'Statue Halber Cleave',
       },
     },
     {
-      locale: 'fr',
-      replaceSync: {
-        'Graven Image': 'Statue Divine',
+      'locale': 'fr',
+      'replaceSync': {
+        'Graven Image': 'Statue divine',
         'Kefka': 'Kefka',
-        'Light Of Consecration': 'Lumière De La Consécration',
-        'The Mad Head': 'Visage De La Folie',
+        'Light Of Consecration': 'lumière de la consécration',
+        'The Mad Head': 'visage de la folie',
         'The limit gauge resets!': 'La jauge de Transcendance a été réinitialisée.',
       },
-      replaceText: {
-        'Engage!': 'À l\'attaque',
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
-        'Enrage': 'Enrage',
-
-        'Aero Assault': 'Méga Vent Véhément',
-        'Blizzard Blitz': 'Méga Glace Glissante',
-        'Flagrant Fire': 'Méga Feu Faufilant',
-        'Graven Image': 'Statue Divine',
-        'Gravitas': 'Tir Gravitationnel',
-        'Holy Ascent': 'Ascension Sacrée',
-        'Hyperdrive': 'Colonne De Feu',
-        'Idyllic Will': 'Volonté Idyllique',
-        'Indolent Will': 'Volonté Indolente',
-        'Indomitable Will': 'Volonté Indomptable',
-        'Indulgent Will': 'Volonté Indulgente',
-        'Inexorable Will': 'Volonté Inexorable',
-        'Intemperate Will': 'Volonté Intempérante',
-        'Light Of Judgment': 'Triade Guerrière',
-        'Mana Charge': 'Concentration De Mana',
-        'Mana Release': 'Décharge De Mana',
-        'Pulse Wave': 'Pulsation Spirituelle',
-        'Revolting Ruin': 'Méga Ruine Ravageuse',
-        'Shockwave': 'Onde De Choc',
-        'Thrumming Thunder': 'Méga Foudre Fourmillante',
-        'Timely Teleport': 'Téléportation Turbulente',
-        'Ultima Upsurge': 'Ultima Ulcérante',
-        'Vitrophyre': 'Vitrophyre',
-        'Wave Cannon': 'Canon Plasma',
-
-        'Blizzard+Thunder': 'Méga Glace + Méga Foudre',
-        'Half Arena': 'Moitié d\'arène',
-        'Statue Gaze': 'Regard statue',
-
-        'All Things Ending': 'Fin De Toutes Choses',
+      'replaceText': {
+        'Aero Assault': 'Méga Vent véhément',
+        'All Things Ending': 'Fin de toutes choses',
+        'Blizzard Blitz': 'Méga Glace glissante',
         'Blizzard III': 'Méga Glace',
+        'Blizzard\\+Thunder': 'Méga Glace + Méga Foudre',
         'Celestriad': 'Tristella',
         'Explosion': 'Explosion',
         'Fire III': 'Méga Feu',
+        'Flagrant Fire': 'Méga Feu faufilant',
         'Forsaken': 'Cataclysme',
-        'Future\'s End': 'Fin Du Futur',
-        'Futures Numbered': 'Ruine Du Futur',
-        'Gravitational Wave': 'Onde Gravitationnelle',
-        'Heartless Angel': 'Ange Sans Cœur',
-        'Heartless Archangel': 'Archange Sans Cœur',
-        'Meteor': 'Météore',
-        'Pasts Forgotten': 'Ruine Du Passé',
-        'Starstrafe': 'Fou Dansant',
-        'The Path Of Light': 'Voie De Lumière',
-        'Thunder III': 'Méga Foudre',
-        'Trine': 'Trine',
-        'Trine (big)': 'Trine (grand)',
-        'Trine (small)': 'Trine (petit)',
-        'Ultima': 'Ultima',
-        'Ultimate Embrace': 'Étreinte Fatidique',
-        'Wings Of Destruction': 'Aile De La Destruction',
-
-        'Soak': 'Absorber',
-        'Past/Future': 'Passé/Futur',
-        'Past/Future End': 'Passé/Fin du futur',
+        'Future\'s End': 'Fin du futur',
+        'Futures Numbered': 'Ruine du futur',
+        'Graven Image': 'Statue divine',
+        'Gravitas': 'Tir gravitationnel',
+        'Gravitational Wave': 'Onde gravitationnelle',
+        'Half Arena': 'Moitié d\'arène',
+        'Heartless Angel': 'Ange sans cœur',
+        'Heartless Archangel': 'Archange sans cœur',
+        'Holy Ascent': 'Ascension sacrée',
+        'Hyperdrive': 'Colonne de feu',
+        'Idyllic Will': 'Volonté idyllique',
+        'Indolent Will': 'Volonté indolente',
+        'Indomitable Will': 'Volonté indomptable',
+        'Indulgent Will': 'Volonté indulgente',
+        'Inexorable Will': 'Volonté inexorable',
+        'Intemperate Will': 'Volonté intempérante',
         'Knockback Tethers': 'Liens de projection',
+        'Light Of Judgment': 'Triade guerrière',
+        'Mana Charge': 'Concentration de mana',
+        'Mana Release': 'Décharge de mana',
+        'Meteor': 'Météore',
+        'Past/Future(?! )': 'Passé/Futur',
+        'Past/Future End': 'Passé/Fin du futur',
+        'Pasts Forgotten': 'Ruine du passé',
+        'Pulse Wave': 'Pulsation spirituelle',
+        'Revolting Ruin': 'Méga Ruine ravageuse',
+        'Shockwave': 'Onde de choc',
         'Sleep/Confuse Tethers': 'Liens de Sommeil/Confusion',
+        'Soak': 'Absorber',
+        'Starstrafe': 'Fou dansant',
+        'Statue Gaze': 'Regard statue',
         'Statue Half Cleave': 'Demi clivage de la statue',
+        'The Path Of Light': 'Voie de lumière',
+        'Thrumming Thunder': 'Méga Foudre fourmillante',
+        'Thunder III': 'Méga Foudre',
+        'Timely Teleport': 'Téléportation turbulente',
+        'Trine': 'Trine',
+        'Ultima Upsurge': 'Ultima ulcérante',
+        'Ultimate Embrace': 'Étreinte fatidique',
+        'Ultima(?![ |\\w])': 'Ultima',
+        'Vitrophyre': 'Vitrophyre',
+        'Wave Cannon': 'Canon plasma',
+        'Wings Of Destruction': 'Aile de la destruction',
       },
     },
     {
-      locale: 'ja',
-      replaceSync: {
+      'locale': 'ja',
+      'replaceSync': {
         'Graven Image': '神々の像',
         'Kefka': 'ケフカ',
         'Light Of Consecration': '聖別の光',
         'The Mad Head': 'マッドヘッド',
+        'The limit gauge resets!': 'リミットゲージがリセットされた……',
       },
-      replaceText: {
-        'Engage!': '戦闘開始！',
-
+      'replaceText': {
         'Aero Assault': 'ずんずんエアロガ',
+        'All Things Ending': '消滅の脚',
         'Blizzard Blitz': 'ぐるぐるブリザガ',
+        'Blizzard III': 'ブリザガ',
+        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
+        'Celestriad': 'スリースターズ',
+        'Explosion': '爆発',
+        'Fire III': 'ファイガ',
         'Flagrant Fire': 'めらめらファイガ',
+        'Forsaken': 'ミッシング',
+        'Future\'s End': '未来の終焉',
+        'Futures Numbered': '未来の破滅',
         'Graven Image': '神々の像',
         'Gravitas': '重力弾',
+        'Gravitational Wave': '重力波',
+        'Half Arena': 'Half Arena', // FIXME
+        'Heartless Angel': '心ない天使',
+        'Heartless Archangel': '心ない大天使',
         'Holy Ascent': '昇天',
         'Hyperdrive': 'ハイパードライブ',
         'Idyllic Will': '睡魔の神気',
@@ -894,59 +917,128 @@
         'Indulgent Will': '聖母の神気',
         'Inexorable Will': '無情の神気',
         'Intemperate Will': '撲殺の神気',
+        'Knockback Tethers': 'Knockback Tethers', // FIXME
         'Light Of Judgment': '裁きの光',
         'Mana Charge': 'マジックチャージ',
         'Mana Release': 'マジックアウト',
+        'Meteor': 'メテオ',
+        'Past/Future(?! )': 'Past/Future', // FIXME
+        'Past/Future End': 'Past/Future End', // FIXME
+        'Pasts Forgotten': '過去の破滅',
         'Pulse Wave': '波動弾',
         'Revolting Ruin': 'ばりばりルインガ',
         'Shockwave': '衝撃波',
+        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers', // FIXME
+        'Soak': 'Soak', // FIXME
+        'Starstrafe': '妖星乱舞',
+        'Statue Gaze': 'Statue Gaze', // FIXME
+        'Statue Half Cleave': 'Statue Half Cleave', // FIXME
+        'The Path Of Light': '光の波動',
         'Thrumming Thunder': 'もりもりサンダガ',
+        'Thunder III': 'サンダガ',
         'Timely Teleport': 'ぶっとびテレポ',
+        'Trine': 'トライン',
         'Ultima Upsurge': 'どきどきアルテマ',
+        'Ultimate Embrace': '終末の双腕',
+        'Ultima(?![ |\\w])': 'アルテマ',
         'Vitrophyre': '岩石弾',
         'Wave Cannon': '波動砲',
-
-        'All Things Ending': '消滅の脚',
-        'Blizzard III': 'ブリザガ',
-        'Celestriad': 'スリースターズ',
-        'Explosion': '爆発',
-        'Fire III': 'ファイガ',
-        'Forsaken': 'ミッシング',
-        'Future\'s End': '未来の終焉',
-        'Futures Numbered': '未来の破滅',
-        'Gravitational Wave': '重力波',
-        'Heartless Angel': '心ない天使',
-        'Heartless Archangel': '心ない大天使',
-        'Meteor': 'メテオ',
-        'Pasts Forgotten': '過去の破滅',
-        'Starstrafe': '妖星乱舞',
-        'The Path Of Light': '光の波動',
-        'Thunder III': 'サンダガ',
-        'Trine': 'トライン',
-        'Ultima': 'アルテマ',
-        'Ultimate Embrace': '終末の双腕',
         'Wings Of Destruction': '破壊の翼',
       },
     },
     {
-      locale: 'ko',
-      replaceSync: {
+      'locale': 'cn',
+      'replaceSync': {
+        'Graven Image': '众神之像',
+        'Kefka': '凯夫卡',
+        'Light Of Consecration': '祝圣之光',
+        'The Mad Head': '妖首',
+        'The limit gauge resets!': '极限槽被清零了……',
+      },
+      'replaceText': {
+        'Aero Assault': '疼飕飕暴风',
+        'All Things Ending': '消灭之脚',
+        'Blizzard Blitz': '滴溜溜冰封',
+        'Blizzard III': '冰封',
+        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
+        'Celestriad': '三星',
+        'Explosion': '爆炸',
+        'Fire III': '爆炎',
+        'Flagrant Fire': '呼啦啦爆炎',
+        'Forsaken': '遗弃末世',
+        'Future\'s End': '未来终结',
+        'Futures Numbered': '未来破灭',
+        'Graven Image': '众神之像',
+        'Gravitas': '重力弹',
+        'Gravitational Wave': '重力波',
+        'Half Arena': 'Half Arena', // FIXME
+        'Heartless Angel': '无心天使',
+        'Heartless Archangel': '无心大天使',
+        'Holy Ascent': '升天',
+        'Hyperdrive': '超驱动',
+        'Idyllic Will': '睡魔的神气',
+        'Indolent Will': '懒惰的神气',
+        'Indomitable Will': '强腕的神气',
+        'Indulgent Will': '圣母的神气',
+        'Inexorable Will': '无情的神气',
+        'Intemperate Will': '扑杀的神气',
+        'Knockback Tethers': 'Knockback Tethers', // FIXME
+        'Light Of Judgment': '制裁之光',
+        'Mana Charge': '魔法储存',
+        'Mana Release': '魔法放出',
+        'Meteor': '陨石',
+        'Past/Future(?! )': 'Past/Future', // FIXME
+        'Past/Future End': 'Past/Future End', // FIXME
+        'Pasts Forgotten': '过去破灭',
+        'Pulse Wave': '波动弹',
+        'Revolting Ruin': '恶狠狠毁荡',
+        'Shockwave': '冲击波',
+        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers', // FIXME
+        'Soak': 'Soak', // FIXME
+        'Starstrafe': '妖星乱舞',
+        'Statue Gaze': 'Statue Gaze', // FIXME
+        'Statue Half Cleave': 'Statue Half Cleave', // FIXME
+        'The Path Of Light': '光之波动',
+        'Thrumming Thunder': '劈啪啪暴雷',
+        'Thunder III': '暴雷',
+        'Timely Teleport': '跳蹦蹦传送',
+        'Trine': '异三角',
+        'Ultima Upsurge': '扑腾腾究极',
+        'Ultimate Embrace': '终末双腕',
+        'Ultima(?![ |\\w])': '究极',
+        'Vitrophyre': '岩石弹',
+        'Wave Cannon': '波动炮',
+        'Wings Of Destruction': '破坏之翼',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
         'Graven Image': '신들의 상',
         'Kefka': '케프카',
         'Light Of Consecration': '성결의 빛',
         'The Mad Head': '광인의 머리',
+        'The limit gauge resets!': '리미트 게이지가 초기화되었습니다…….',
       },
-      replaceText: {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
-        'Enrage': '전멸기',
-        'Engage!': '전투 시작!',
-
+      'replaceText': {
         'Aero Assault': '갈기갈기 에어로가',
+        'All Things Ending': '소멸의 발차기',
         'Blizzard Blitz': '빙글빙글 블리자가',
+        'Blizzard III': '블리자가',
+        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
+        'Celestriad': '세 개의 별',
+        'Explosion': '폭발',
+        'Fire III': '파이가',
         'Flagrant Fire': '이글이글 파이가',
+        'Forsaken': '행방불명',
+        'Future\'s End': '미래의 종언',
+        'Futures Numbered': '미래의 파멸',
         'Graven Image': '신들의 상',
         'Gravitas': '중력탄',
+        'Gravitational Wave': '중력파',
+        'Half Arena': 'Half Arena', // FIXME
+        'Heartless Angel': '비정한 천사',
+        'Heartless Archangel': '비정한 대천사',
         'Holy Ascent': '승천',
         'Hyperdrive': '하이퍼드라이브',
         'Idyllic Will': '수마의 신기',
@@ -955,37 +1047,32 @@
         'Indulgent Will': '성모의 신기',
         'Inexorable Will': '무정의 신기',
         'Intemperate Will': '박살의 신기',
+        'Knockback Tethers': 'Knockback Tethers', // FIXME
         'Light Of Judgment': '심판의 빛',
         'Mana Charge': '마력 충전',
         'Mana Release': '마력 방출',
+        'Meteor': '메테오',
+        'Past/Future(?! )': 'Past/Future', // FIXME
+        'Past/Future End': 'Past/Future End', // FIXME
+        'Pasts Forgotten': '과거의 파멸',
         'Pulse Wave': '파동탄',
         'Revolting Ruin': '파삭파삭 루인가',
         'Shockwave': '충격파',
+        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers', // FIXME
+        'Soak': 'Soak', // FIXME
+        'Starstrafe': '요성난무',
+        'Statue Gaze': 'Statue Gaze', // FIXME
+        'Statue Half Cleave': 'Statue Half Cleave', // FIXME
+        'The Path Of Light': '빛의 파동',
         'Thrumming Thunder': '찌릿찌릿 선더가',
+        'Thunder III': '선더가',
         'Timely Teleport': '껑충껑충 텔레포',
+        'Trine': '트라인',
         'Ultima Upsurge': '두근두근 알테마',
+        'Ultimate Embrace': '종말의 포옹',
+        'Ultima(?![ |\\w])': '알테마',
         'Vitrophyre': '암석탄',
         'Wave Cannon': '파동포',
-
-        'All Things Ending': '소멸의 발차기',
-        'Blizzard III': '블리자가',
-        'Celestriad': '세 개의 별',
-        'Explosion': '폭발',
-        'Fire III': '파이가',
-        'Forsaken': '행방불명',
-        'Future\'s End': '미래의 종언',
-        'Futures Numbered': '미래의 파멸',
-        'Gravitational Wave': '중력파',
-        'Heartless Angel': '비정한 천사',
-        'Heartless Archangel': '비정한 대천사',
-        'Meteor': '메테오',
-        'Pasts Forgotten': '과거의 파멸',
-        'Starstrafe': '요성난무',
-        'The Path Of Light': '빛의 파동',
-        'Thunder III': '선더가',
-        'Trine': '트라인',
-        'Ultima': '알테마',
-        'Ultimate Embrace': '종말의 포옹',
         'Wings Of Destruction': '파괴의 날개',
       },
     },

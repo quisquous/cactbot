@@ -2,7 +2,10 @@
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 [{
-  zoneRegex: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
+  zoneRegex: {
+    en: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
+    ko: /^절 바하무트 토벌전$/,
+  },
   triggers: [
     {
       id: 'UCU Twister Death',
@@ -20,6 +23,7 @@
           text: {
             en: 'Twister Pop',
             de: 'Wirbelsturm berührt',
+            ko: '회오리 밟음',
           },
         };
       },
@@ -37,6 +41,7 @@
           text: {
             en: 'Pizza Slice',
             de: 'Pizzastück',
+            ko: e.abilityName,
           },
         };
       },
@@ -87,6 +92,7 @@
           text: {
             en: 'hit by lightning',
             de: 'vom Blitz getroffen',
+            ko: '번개 맞음',
           },
         };
       },

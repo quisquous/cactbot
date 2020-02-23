@@ -17,10 +17,12 @@
   triggers: [
     {
       id: 'T13 Gigaflare Phase Change',
-      regex: / 14:BB9:Bahamut Prime starts using Gigaflare/,
-      regexDe: / 14:BB9:Prim-Bahamut starts using Gigaflare/,
-      regexFr: / 14:BB9:Primo-Bahamut starts using Gigabrasier/,
-      regexJa: / 14:BB9:バハムート・プライム starts using ギガフレア/,
+      regex: Regexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
+      regexDe: Regexes.startsUsing({ id: 'BB9', source: 'Prim-Bahamut', capture: false }),
+      regexFr: Regexes.startsUsing({ id: 'BB9', source: 'Primo-Bahamut', capture: false }),
+      regexJa: Regexes.startsUsing({ id: 'BB9', source: 'バハムート・プライム', capture: false }),
+      regexCn: Regexes.startsUsing({ id: 'BB9', source: '至尊巴哈姆特', capture: false }),
+      regexKo: Regexes.startsUsing({ id: 'BB9', source: '바하무트 프라임', capture: false }),
       condition: function(data) {
         // Only the first two gigas are phase changes, the rest are in final phase.
         return !(data.gigaflare > 1);
@@ -41,12 +43,14 @@
     },
     {
       id: 'T13 Flatten',
-      regex: / 14:BAE:Bahamut Prime starts using Flatten on (\y{Name})\./,
-      regexDe: / 14:BAE:Prim-Bahamut starts using Einebnen on (\y{Name})\./,
-      regexFr: / 14:BAE:Primo-Bahamut starts using Compression on (\y{Name})\./,
-      regexJa: / 14:BAE:バハムート・プライム starts using フラッテン on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
+      regexDe: Regexes.startsUsing({ id: 'BAE', source: 'Prim-Bahamut' }),
+      regexFr: Regexes.startsUsing({ id: 'BAE', source: 'Primo-Bahamut' }),
+      regexJa: Regexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
+      regexCn: Regexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
+      regexKo: Regexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Flatten on YOU',
             fr: 'Applatissement sur VOUS',
@@ -54,21 +58,21 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] == data.me)
+        if (matches.target == data.me)
           return;
         if (data.role == 'healer' || data.job == 'BLU') {
           return {
-            en: 'Flatten on ' + data.ShortName(matches[1]),
-            fr: 'Applatissement sur ' + data.ShortName(matches[1]),
+            en: 'Flatten on ' + data.ShortName(matches.target),
+            fr: 'Applatissement sur ' + data.ShortName(matches.target),
           };
         }
       },
     },
     {
       id: 'T13 Megaflare Share',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0027:/,
+      regex: Regexes.headMarker({ id: '0027' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Megaflare Stack',
@@ -77,9 +81,9 @@
     },
     {
       id: 'T13 Earthshaker',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0028:/,
+      regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.target;
       },
       alertText: {
         en: 'Earthshaker on YOU',
@@ -88,12 +92,14 @@
     },
     {
       id: 'T13 Tempest Wing',
-      regex: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Bahamut Prime:....:....:0004:/,
-      regexDe: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Prim-Bahamut:....:....:0004:/,
-      regexFr: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:Primo-Bahamut:....:....:0004:/,
-      regexJa: / 23:\y{ObjectId}:(\y{Name}):\y{ObjectId}:バハムート・プライム:....:....:0004:/,
+      regex: Regexes.tether({ id: '0004', target: 'Bahamut Prime' }),
+      regexDe: Regexes.tether({ id: '0004', target: 'Prim-Bahamut' }),
+      regexFr: Regexes.tether({ id: '0004', target: 'Primo-Bahamut' }),
+      regexJa: Regexes.tether({ id: '0004', target: 'バハムート・プライム' }),
+      regexCn: Regexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
+      regexKo: Regexes.tether({ id: '0004', target: '바하무트 프라임' }),
       condition: function(data, matches) {
-        return data.me == matches[1];
+        return data.me == matches.source;
       },
       infoText: {
         en: 'Tempest Tether on YOU',
@@ -102,12 +108,14 @@
     },
     {
       id: 'T13 Akh Morn',
-      regex: / 14:BC2:Bahamut Prime starts using Akh Morn on (\y{Name})\./,
-      regexDe: / 14:BC2:Prim-Bahamut starts using Akh Morn on (\y{Name})\./,
-      regexFr: / 14:BC2:Primo-Bahamut starts using Akh Morn on (\y{Name})\./,
-      regexJa: / 14:BC2:バハムート・プライム starts using アク・モーン on (\y{Name})\./,
+      regex: Regexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
+      regexDe: Regexes.startsUsing({ id: 'BC2', source: 'Prim-Bahamut' }),
+      regexFr: Regexes.startsUsing({ id: 'BC2', source: 'Primo-Bahamut' }),
+      regexJa: Regexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
+      regexCn: Regexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
+      regexKo: Regexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Akh Morn on YOU',
             fr: 'Akh Morn sur VOUS',
@@ -115,10 +123,10 @@
         }
       },
       infoText: function(data, matches) {
-        if (matches[1] != data.me) {
+        if (matches.target != data.me) {
           return {
-            en: 'Akh Morn on ' + data.ShortName(matches[1]),
-            fr: 'Akh Morn sur ' + data.ShortName(matches[1]),
+            en: 'Akh Morn on ' + data.ShortName(matches.target),
+            fr: 'Akh Morn sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -129,7 +137,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
-        'Engage!': 'Start!',
         'The Storm of Meracydia': 'Sturm von Meracydia',
       },
       'replaceText': {
@@ -138,7 +145,6 @@
         'Dark Aether': 'Dunkeläther',
         'Double Dive': 'Doppelschwinge',
         'Earth Shaker': 'Erdstoß',
-        'Enrage': 'Finalangriff',
         'Flare Breath': 'Flare-Atem',
         'Flare Star': 'Flare-Stern',
         'Flatten': 'Einstampfen',
@@ -162,7 +168,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Engage!': 'À l\'attaque !',
         'The Storm of Meracydia': 'Tempête de Méracydia',
       },
       'replaceText': {
@@ -171,13 +176,12 @@
         'Dark Aether': 'éther sombre',
         'Double Dive': 'Plongeon double',
         'Earth Shaker': 'Secousse',
-        'Enrage': 'Enrage',
         'Flare Breath': 'Souffle brasier',
         'Flare Star': 'Astre flamboyant',
         'Flatten': 'Aplatissement',
         'Gigaflare': 'GigaBrasier',
         'Gust Add': 'Add Bourrasque',
-        'MF Pepperoni': 'MF Pepperoni', // FIXME
+        'MF Pepperoni': 'MF Pepperoni',
         'MF Share': 'MégaBrasier Partage',
         'MF Spread': 'MégaBrasier Dispersion',
         'MF Tower': 'MégaBrasier Tour',
@@ -195,7 +199,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
-        'Engage!': '戦闘開始！',
         'The Storm of Meracydia': 'メラシディアン・ストーム',
       },
       'replaceText': {
@@ -204,7 +207,6 @@
         'Dark Aether': 'ダークエーテル',
         'Double Dive': 'ダブルダイブ',
         'Earth Shaker': 'アースシェイカー',
-        'Enrage': 'Enrage',
         'Flare Breath': 'フレアブレス',
         'Flare Star': 'フレアスター',
         'Flatten': '押しつぶす',
@@ -222,6 +224,68 @@
         'Storm Add': 'Storm Add', // FIXME
         'Tempest Wing': 'テンペストウィング',
         'Teraflare': 'テラフレア',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Bahamut Prime': '至尊巴哈姆特',
+        'The Storm of Meracydia': '美拉西迪亚的怒雨',
+      },
+      'replaceText': {
+        'Akh Morn': '死亡轮回',
+        'Blood Add': 'Blood Add', // FIXME
+        'Dark Aether': '暗以太',
+        'Double Dive': '双重俯冲',
+        'Earth Shaker': '大地摇动',
+        'Flare Breath': '核爆吐息',
+        'Flare Star': '耀星',
+        'Flatten': '跺脚',
+        'Gigaflare': '十亿核爆',
+        'Gust Add': 'Gust Add', // FIXME
+        'MF Pepperoni': 'MF Pepperoni', // FIXME
+        'MF Share': 'MF Share', // FIXME
+        'MF Spread': 'MF Spread', // FIXME
+        'MF Tower': 'MF Tower', // FIXME
+        'Megaflare': '百万核爆',
+        'Pain Add': 'Pain Add', // FIXME
+        'Rage Of Bahamut': '龙神咆哮',
+        'Shadow Add': 'Shadow Add', // FIXME
+        'Sin Add': 'Sin Add', // FIXME
+        'Storm Add': 'Storm Add', // FIXME
+        'Tempest Wing': '风暴之翼',
+        'Teraflare': '万亿核爆',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Bahamut Prime': '바하무트 프라임',
+        'The Storm of Meracydia': '메라시디아의 폭풍',
+      },
+      'replaceText': {
+        'Akh Morn': '아크 몬',
+        'Blood Add': 'Blood Add', // FIXME
+        'Dark Aether': '어둠의 에테르',
+        'Double Dive': '이중 강하',
+        'Earth Shaker': '요동치는 대지',
+        'Flare Breath': '타오르는 숨결',
+        'Flare Star': '타오르는 별',
+        'Flatten': '압사',
+        'Gigaflare': '기가플레어',
+        'Gust Add': 'Gust Add', // FIXME
+        'MF Pepperoni': 'MF Pepperoni', // FIXME
+        'MF Share': 'MF Share', // FIXME
+        'MF Spread': 'MF Spread', // FIXME
+        'MF Tower': 'MF Tower', // FIXME
+        'Megaflare': '메가플레어',
+        'Pain Add': 'Pain Add', // FIXME
+        'Rage Of Bahamut': '용신의 포효',
+        'Shadow Add': 'Shadow Add', // FIXME
+        'Sin Add': 'Sin Add', // FIXME
+        'Storm Add': 'Storm Add', // FIXME
+        'Tempest Wing': '폭풍우 날개',
+        'Teraflare': '테라플레어',
       },
     },
   ],

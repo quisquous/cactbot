@@ -11,23 +11,27 @@
   resetWhenOutOfCombat: false,
   triggers: [
     {
-      regex: / 04:\y{ObjectId}:Removing combatant Phantom Train\./,
-      regexDe: / 04:\y{ObjectId}:Removing combatant Phantomzug\./,
-      regexFr: / 04:\y{ObjectId}:Removing combatant Train Fantôme\./,
-      regexJa: / 04:\y{ObjectId}:Removing combatant 魔列車\./,
+      id: 'O5S Stop Combat',
+      regex: Regexes.removingCombatant({ name: 'Phantom Train', capture: false }),
+      regexDe: Regexes.removingCombatant({ name: 'Phantomzug', capture: false }),
+      regexFr: Regexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.removingCombatant({ name: '魔列車', capture: false }),
+      regexCn: Regexes.removingCombatant({ name: '魔列车', capture: false }),
+      regexKo: Regexes.removingCombatant({ name: '마열차', capture: false }),
       run: function(data) {
         data.StopCombat();
       },
     },
     {
       id: 'O5S Doom Strike',
-      regex: / 14:28B1:Phantom Train starts using Doom Strike on (\y{Name})/,
-      regexDe: / 14:28B1:Phantomzug starts using Vernichtungsschlag on (\y{Name})/,
-      regexFr: / 14:28B1:Train Fantôme starts using Frappe Létale on (\y{Name})/,
-      regexJa: / 14:28B1:魔列車 starts using 魔霊撃 on (\y{Name})/,
-      regexKo: / 14:28B1:마열차 starts using 마령격 on (\y{Name})/,
+      regex: Regexes.startsUsing({ id: '28B1', source: 'Phantom Train' }),
+      regexDe: Regexes.startsUsing({ id: '28B1', source: 'Phantomzug' }),
+      regexFr: Regexes.startsUsing({ id: '28B1', source: 'Train Fantôme' }),
+      regexJa: Regexes.startsUsing({ id: '28B1', source: '魔列車' }),
+      regexCn: Regexes.startsUsing({ id: '28B1', source: '魔列车' }),
+      regexKo: Regexes.startsUsing({ id: '28B1', source: '마열차' }),
       alertText: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tank Buster auf DIR',
@@ -37,15 +41,15 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Buster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: '탱버 → ' + data.ShortName(matches[1]),
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Buster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ko: '탱버 → ' + data.ShortName(matches.target),
           };
         }
       },
       tts: function(data, matches) {
-        if (matches[1] == data.me) {
+        if (matches.target == data.me) {
           return {
             en: 'buster',
             de: 'basta',
@@ -58,11 +62,12 @@
     },
     {
       id: 'O5S Head On',
-      regex: / 14:28A4:Phantom Train starts using Head On/,
-      regexDe: / 14:28A4:Phantomzug starts using Frontalangriff/,
-      regexFr: / 14:28A4:Train Fantôme starts using Plein Fouet/,
-      regexJa: / 14:28A4:魔列車 starts using 追突/,
-      regexKo: / 14:28A4:마열차 starts using 추돌/,
+      regex: Regexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28A4', source: '魔列車', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28A4', source: '魔列车', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28A4', source: '마열차', capture: false }),
       alertText: {
         en: 'Go to back',
         de: 'Nach hinten laufen',
@@ -80,11 +85,12 @@
     },
     {
       id: 'O5S Diabolic Headlamp',
-      regex: / 14:28B2:Phantom Train starts using Diabolic Headlamp/,
-      regexDe: / 14:28B2:Phantomzug starts using Diabolische Leuchte/,
-      regexFr: / 14:28B2:Train Fantôme starts using Phare Diabolique/,
-      regexJa: / 14:28B2:魔列車 starts using 魔界の前照灯/,
-      regexKo: / 14:28B2:마열차 starts using 마계의 전조등/,
+      regex: Regexes.startsUsing({ id: '28B2', source: 'Phantom Train', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '28B2', source: 'Phantomzug', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '28B2', source: 'Train Fantôme', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '28B2', source: '魔列車', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '28B2', source: '魔列车', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '28B2', source: '마열차', capture: false }),
       alertText: {
         en: 'Stack middle',
         de: 'Stack in der Mitte',
@@ -95,9 +101,9 @@
     },
     {
       id: 'O5S Diabolic Light',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0001:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0001' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Light',
@@ -109,9 +115,9 @@
     },
     {
       id: 'O5S Diabolic Wind',
-      regex: / 1B:\y{ObjectId}:(\y{Name}):....:....:0046:0000:0000:0000:/,
+      regex: Regexes.headMarker({ id: '0046' }),
       condition: function(data, matches) {
-        return matches[1] == data.me;
+        return matches.target == data.me;
       },
       infoText: {
         en: 'Wind',
@@ -123,11 +129,12 @@
     },
     {
       id: 'O5S Remorse',
-      regex: / 03:\y{ObjectId}:Added new combatant Remorse/,
-      regexDe: / 03:\y{ObjectId}:Added new combatant Melancholischer Geist/,
-      regexFr: / 03:\y{ObjectId}:Added new combatant Fantôme Mélancolique/,
-      regexJa: / 03:\y{ObjectId}:Added new combatant 未練のゴースト/,
-      regexKo: / 03:\y{ObjectId}:Added new combatant 미련이 남은 유령/,
+      regex: Regexes.addedCombatant({ name: 'Remorse', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Melancholisch(?:e|er|es|en) Geist', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Fantôme Mélancolique', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '未練のゴースト', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '留恋幽灵', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '미련이 남은 유령', capture: false }),
       infoText: {
         en: 'Knockback Ghost',
         de: 'Rückstoß Geist',
@@ -142,21 +149,19 @@
       'locale': 'de',
       'replaceSync': {
         'Agony': 'Gequälter Geist',
-        'Doom Chimney': 'Unheilvoller Schornstein',
+        'Doom Chimney': 'unheilvoll(?:e|er|es|en) Schornstein',
+        'Malice': 'Boshaftigkeit',
         'Phantom Train': 'Phantomzug',
-        'Putrid Passenger': 'Fauliger Fahrgast',
-        'Wroth Ghost': 'Erzürnter Geist',
-        'Remorse': 'Melancholischer Geist',
-        'Malice': 'Bösartiger Geist',
-        'Engage!': 'Start!',
+        'Putrid Passenger': 'faulig(?:e|er|es|en) Fahrgast',
+        'Remorse': 'melancholisch(?:e|er|es|en) Geist',
+        'Wroth Ghost': 'erzürnt(?:e|er|es|en) Geist',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
-        'Enrage': 'Finalangriff',
-
+        ' Ghosts': ' Geister',
         'Acid Rain': 'Säureregen',
+        'Add Wave': 'Add Welle',
         'All In The Mind': 'Psychokinese',
+        'Crossing Whistle': 'Kreuzend Pfeife',
         'Diabolic Chimney': 'Diabolischer Schlot',
         'Diabolic Headlamp': 'Diabolische Leuchte',
         'Diabolic Light': 'Diabolisches Licht',
@@ -164,70 +169,56 @@
         'Diabolic Wind': 'Diabolischer Wind',
         'Doom Strike': 'Vernichtungsschlag',
         'Encumber': 'Wegsperrung',
-        'Engage!': 'Start!',
+        'Ghosts spawn': 'Geister erscheinen',
         'Head On': 'Frontalangriff',
+        'Knockback Whistle': 'Rückstoß Pfeife',
         'Possess': 'Besessenheit',
         'Saintly Beam': 'Heiligenstrahl',
-
-        'Crossing Whistle': 'Kreuzend Pfeife',
-        'Knockback Whistle': 'Rückstoß Pfeife',
         'Tether Whistle': 'Verfolger Pfeife',
-        ' Ghosts': ' Geister',
-        'Ghosts spawn': 'Geister erscheinen',
-
-        'Add Wave': 'Add Welle',
       },
       '~effectNames': {
         'Connectivity': 'Kopplung',
-        'Prey': 'Markiert',
+        'Prey': 'Beute',
         'Stun': 'Betäubung',
-        'Throttle': 'Erstickung',
+        'Throttle': 'Gas geben',
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Agony': 'Fantôme Souffrant',
-        'Doom Chimney': 'Cheminée Maléfique',
-        'Phantom Train': 'Train Fantôme',
-        'Putrid Passenger': 'Passager Putride',
-        'Wroth Ghost': 'Fantôme Furieux',
-        'Remorse': 'Fantôme Mélancolique',
-        'Malice': 'Fantôme Rancunier',
-        'Engage!': 'À l\'attaque',
+        'Doom Chimney': 'cheminée maléfique',
+        'Malice': 'Malveillance',
+        'Phantom Train': 'train fantôme',
+        'Putrid Passenger': 'passager putride',
+        'Remorse': 'fantôme mélancolique',
+        'Wroth Ghost': 'fantôme furieux',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
-        'Enrage': 'Enrage',
-
-        'Acid Rain': 'Pluie Acide',
-        'All In The Mind': 'Force De Volonté',
-        'Diabolic Chimney': 'Cheminée Diabolique',
-        'Diabolic Headlamp': 'Phare Diabolique',
-        'Diabolic Light': 'Lueur Diabolique',
-        'Diabolic Whistle': 'Sifflet Diabolique',
-        'Diabolic Wind': 'Vent Diabolique',
-        'Doom Strike': 'Frappe Létale',
-        'Encumber': 'Encombrement',
-        'Engage!': 'À l\'attaque',
-        'Head On': 'Plein Fouet',
-        'Possess': 'Possession',
-        'Saintly Beam': 'Faisceaux Sacrés',
         ' Ghosts': ' Fantômes',
-        'Crossing Whistle': 'Sifflet traversée',
-        'Tether Whistle': 'Sifflet liens',
-        'Ghosts spawn': 'Pop des Fantômes',
+        'Acid Rain': 'Pluie acide',
         'Add Wave': 'Vague d\'Adds',
-        'Ghost Beams': 'Faisceaux Sacrés',
+        'All In The Mind': 'Force de volonté',
+        'Crossing Whistle': 'Sifflet traversée',
+        'Diabolic Chimney': 'Cheminée diabolique',
+        'Diabolic Headlamp': 'Phare diabolique',
+        'Diabolic Light': 'Lueur diabolique',
+        'Diabolic Whistle': 'Sifflet diabolique',
+        'Diabolic Wind': 'Vent diabolique',
+        'Doom Strike': 'Frappe létale',
+        'Encumber': 'Encombrement',
+        'Ghosts spawn': 'Pop des Fantômes',
+        'Head On': 'Plein fouet',
+        'Knockback Whistle': 'Knockback Whistle', // FIXME
+        'Possess': 'Possession',
+        'Saintly Beam': 'Faisceaux sacrés',
+        'Tether Whistle': 'Sifflet liens',
       },
       '~effectNames': {
         'Connectivity': 'Attelage',
-        'Prey': 'Marquage',
+        'Prey': 'Proie',
         'Stun': 'Étourdissement',
-        'Throttle': 'Suffocation',
+        'Throttle': 'Cadence améliorée',
       },
     },
     {
@@ -235,15 +226,18 @@
       'replaceSync': {
         'Agony': '苦悶のゴースト',
         'Doom Chimney': '魔煙突',
+        'Malice': '怨念',
         'Phantom Train': '魔列車',
         'Putrid Passenger': 'ゾンビー・パッセンジャー',
-        'Wroth Ghost': 'ロスゴースト',
         'Remorse': '未練のゴースト',
-        'Malice': '怨念のゴースト',
+        'Wroth Ghost': 'ロスゴースト',
       },
       'replaceText': {
+        ' Ghosts': ' Ghosts', // FIXME
         'Acid Rain': '酸性雨',
+        'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '念力',
+        'Crossing Whistle': 'Crossing Whistle', // FIXME
         'Diabolic Chimney': '魔界の噴煙',
         'Diabolic Headlamp': '魔界の前照灯',
         'Diabolic Light': '魔界の光',
@@ -251,40 +245,75 @@
         'Diabolic Wind': '魔界の風',
         'Doom Strike': '魔霊撃',
         'Encumber': '進路妨害',
-        'Engage!': '戦闘開始！',
+        'Ghosts spawn': 'Ghosts spawn', // FIXME
         'Head On': '追突',
+        'Knockback Whistle': 'Knockback Whistle', // FIXME
         'Possess': '取り憑く',
         'Saintly Beam': 'セイントビーム',
-        // FIXME:
-        'Crossing Whistle': 'Crossing Whistle',
-        'Knockback Whistle': 'Knockback Whistle',
-        'Tether Whistle': 'Tether Whistle',
-        ' Ghosts': ' Ghosts',
-        'Ghosts spawn': 'Ghosts spawn',
+        'Tether Whistle': 'Tether Whistle', // FIXME
       },
       '~effectNames': {
         'Connectivity': '連結',
-        'Prey': 'マーキング',
+        'Prey': 'プレイ',
         'Stun': 'スタン',
-        'Throttle': '窒息',
+        'Throttle': 'スロットル',
       },
     },
     {
-      'locale': 'Ko',
+      'locale': 'cn',
+      'replaceSync': {
+        'Agony': '苦闷幽灵',
+        'Doom Chimney': '魔烟囱',
+        'Malice': '怨念',
+        'Phantom Train': '魔列车',
+        'Putrid Passenger': '僵尸乘客',
+        'Remorse': '留恋幽灵',
+        'Wroth Ghost': '怒灵',
+      },
+      'replaceText': {
+        ' Ghosts': ' Ghosts', // FIXME
+        'Acid Rain': '酸雨',
+        'Add Wave': 'Add Wave', // FIXME
+        'All In The Mind': '念力',
+        'Crossing Whistle': 'Crossing Whistle', // FIXME
+        'Diabolic Chimney': '魔界喷烟',
+        'Diabolic Headlamp': '魔界前照灯',
+        'Diabolic Light': '魔界光',
+        'Diabolic Whistle': '魔界汽笛',
+        'Diabolic Wind': '魔界风',
+        'Doom Strike': '魔灵击',
+        'Encumber': '挡路',
+        'Ghosts spawn': 'Ghosts spawn', // FIXME
+        'Head On': '追尾',
+        'Knockback Whistle': 'Knockback Whistle', // FIXME
+        'Possess': '附身',
+        'Saintly Beam': '圣光射线',
+        'Tether Whistle': 'Tether Whistle', // FIXME
+      },
+      '~effectNames': {
+        'Connectivity': '连接',
+        'Prey': 'プレイ',
+        'Stun': '眩晕',
+        'Throttle': '轰油起步',
+      },
+    },
+    {
+      'locale': 'ko',
       'replaceSync': {
         'Agony': '고뇌하는 유령',
         'Doom Chimney': '마열차 굴뚝',
+        'Malice': '원한',
         'Phantom Train': '마열차',
         'Putrid Passenger': '좀비 승객',
-        'Wroth Ghost': '격노하는 유령',
         'Remorse': '미련이 남은 유령',
-        'Malice': '원한 품은 유령',
+        'Wroth Ghost': '격노하는 유령',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
+        ' Ghosts': ' Ghosts', // FIXME
         'Acid Rain': '산성비',
+        'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '염력',
+        'Crossing Whistle': 'Crossing Whistle', // FIXME
         'Diabolic Chimney': '마계의 연기',
         'Diabolic Headlamp': '마계의 전조등',
         'Diabolic Light': '마계의 빛',
@@ -292,22 +321,18 @@
         'Diabolic Wind': '마계의 바람',
         'Doom Strike': '마령격',
         'Encumber': '진로 방해',
-        'Engage!': '전투 시작!',
+        'Ghosts spawn': 'Ghosts spawn', // FIXME
         'Head On': '추돌',
+        'Knockback Whistle': 'Knockback Whistle', // FIXME
         'Possess': '빙의',
         'Saintly Beam': '성스러운 광선',
-
-        'Crossing Whistle': '행진 유령',
-        'Knockback Whistle': '넉백 유령',
-        'Tether Whistle': '추적 유령',
-        ' Ghosts': ' 유령',
-        'Ghosts spawn': '유령 등장',
+        'Tether Whistle': 'Tether Whistle', // FIXME
       },
       '~effectNames': {
         'Connectivity': '연결',
-        'Prey': '징',
+        'Prey': 'プレイ',
         'Stun': '기절',
-        'Throttle': '질식',
+        'Throttle': '고속 주행',
       },
     },
   ],
