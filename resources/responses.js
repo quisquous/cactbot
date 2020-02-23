@@ -209,9 +209,8 @@ let Responses = {
   bigAoe: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
-      en: 'Extreme raid damage!',
-      de: 'Großer Raid Schaden!',
-      fr: 'Dommages de raid extrêmes !',
+      en: 'big aoe!',
+      de: 'Große AoE!',
     };
     return obj;
   },
@@ -267,12 +266,8 @@ let Responses = {
   stackMiddle: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
-      en: 'aoe',
-      de: 'AoE',
-      fr: 'AoE',
-      ja: 'AoE',
-      cn: 'AOE',
-      ko: '전체공격',
+      en: 'Stack in middle',
+      de: 'In der Mitte sammeln',
     };
     return obj;
   },
@@ -663,7 +658,7 @@ let Responses = {
     };
     return obj;
   },
-  earthshacker: (sev) => {
+  earthshaker: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
       let target = getTarget(matches);
