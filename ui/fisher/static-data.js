@@ -813,6 +813,20 @@ let gFisherData = {
       '27513': '\u98df\u7528\u869d',
       '27514': '\u5f69\u8679\u867e',
       '27515': '\u730e\u624b\u9c7c',
+      '28065': '\u60ac\u6302\u8102\u9ca4',
+      '28066': '\u8d35\u5987\u8774\u8776\u9c7c',
+      '28067': '\u91cd\u7f6a\u77f3\u8f6f\u87f9',
+      '28068': '\u94dc\u8910\u9cce',
+      '28069': '\u51a0\u9aa8\u9c7c',
+      '28070': '\u72c2\u6012\u6597\u9c7c',
+      '28071': '\u6d1b\u514b\u74e6\u536b\u5175',
+      '28072': '\u730e\u661f\u9c7c',
+      '28189': '\u62c9\u514b\u6c55\u58a8\u87ba',
+      '28190': '\u767d\u6cb9\u523a\u9c7c',
+      '28191': '\u4ed9\u5973\u8d1d',
+      '28192': '\u827e\u5170\u51f6\u9f9f',
+      '28193': '\u73c2\u9732\u897f\u4e9a\u5e1d\u738b\u87f9',
+      '28719': '\u8d3b\u8d1d',
     },
     'de': {
       '4776': [
@@ -1163,7 +1177,7 @@ let gFisherData = {
       ],
       '4952': [
         'Eunuchenkrebs',
-        'Eunuchenrebse',
+        'Eunuchenkrebse',
       ],
       '4953': [
         'Jade-Aal',
@@ -1737,7 +1751,10 @@ let gFisherData = {
         'Nietenauster',
         'Nietenaustern',
       ],
-      '7712': 'Jens der Schnipper',
+      '7712': [
+        'Exemplar von Jens der Schnipper',
+        'Exemplare von Jens der Schnipper',
+      ],
       '7713': 'Sturmt\u00e4nzer',
       '7714': [
         'Glimmerschuppe',
@@ -1949,7 +1966,10 @@ let gFisherData = {
         'Neptodrache',
         'Neptodrachen',
       ],
-      '8755': 'Coelacanthus',
+      '8755': [
+        'Coelacanthus',
+        'Coelacanthi',
+      ],
       '8756': 'Endoceras',
       '8757': [
         'Seehexe',
@@ -2476,7 +2496,7 @@ let gFisherData = {
       ],
       '12821': [
         'Pteranodon',
-        'Pteranodons',
+        'Pteranodonten',
       ],
       '12822': [
         'gefl\u00fcgelte Knurrhahn',
@@ -3477,7 +3497,7 @@ let gFisherData = {
       ],
       '23060': [
         'Trennungsadvokat',
-        'Trennungsadvokate',
+        'Trennungsadvokaten',
       ],
       '23061': [
         'Z\u00f6gerling',
@@ -4079,7 +4099,7 @@ let gFisherData = {
       '27509': 'Cyanteufel',
       '27510': [
         'Adorabilis',
-        'Adorabili',
+        'Adorabiles',
       ],
       '27511': 'Flossenlosenfresser',
       '27512': 'Sterngucker',
@@ -4162,10 +4182,354 @@ let gFisherData = {
         'kholusischen K\u00f6nigskrabbe',
         'kholusisches K\u00f6nigskrabbe',
         'kholusischer K\u00f6nigskrabbe',
+        'kholusische K\u00f6nigskrabben',
+        'kholusischen K\u00f6nigskrabben',
+        'kholusisches K\u00f6nigskrabben',
+        'kholusischer K\u00f6nigskrabben',
       ],
       '28719': [
         'Miserabelmuschel',
         'Miserabelmuscheln',
+      ],
+      '28925': 'Todbei\u00dfer',
+      '28926': [
+        'Wei\u00dfbart',
+        'Wei\u00dfb\u00e4rte',
+      ],
+      '28927': [
+        'Nagelschweif',
+        'Nagelschweife',
+      ],
+      '28928': 'Regenbogent\u00e4nzer',
+      '28929': [
+        'Schwarze Strahlstrom',
+        'Schwarzen Strahlstrom',
+        'Schwarzes Strahlstrom',
+        'Schwarzer Strahlstrom',
+        'Schwarze Strahlstr\u00f6me',
+        'Schwarzen Strahlstr\u00f6me',
+        'Schwarzes Strahlstr\u00f6me',
+        'Schwarzer Strahlstr\u00f6me',
+      ],
+      '28930': 'Ondo-Seufzer',
+      '28937': [
+        'Galadion-Grundel',
+        'Galadion-Grundeln',
+      ],
+      '28938': [
+        'Galadion-Sardelle',
+        'Galadion-Sardellen',
+      ],
+      '28939': [
+        'Rosenbrasse',
+        'Rosenbrassen',
+      ],
+      '28940': 'Hochsee-Dreistachler',
+      '28941': [
+        'Sonnenschmetterling',
+        'Sonnenschmetterlinge',
+      ],
+      '28942': [
+        'Matthai',
+        'Matthaie',
+      ],
+      '29718': [
+        'Wurfdolchfisch',
+        'Wurfdolchfische',
+      ],
+      '29719': [
+        'Jaspis',
+        'Jaspisse',
+      ],
+      '29720': 'Merlthor-Hummer',
+      '29721': [
+        'Himmelsfisch',
+        'Himmelsfische',
+      ],
+      '29722': [
+        'Ghoul-Barrakuda',
+        'Ghoul-Barrakudas',
+      ],
+      '29723': [
+        'Leopard-Aal',
+        'Leopard-Aale',
+      ],
+      '29724': 'Hochseebomber',
+      '29725': 'Momora Mora',
+      '29726': [
+        'Merlthor-Schmetterling',
+        'Merlthor-Schmetterlinge',
+      ],
+      '29727': [
+        'Gladius',
+        'Gladiusse',
+      ],
+      '29728': [
+        'Rhotano-Makrele',
+        'Rhotano-Makrelen',
+      ],
+      '29729': [
+        'Rhotano-Sardine',
+        'Rhotano-Sardinen',
+      ],
+      '29730': [
+        'Tiefseescholle',
+        'Tiefseeschollen',
+      ],
+      '29731': [
+        'Karmin-Anglerfisch',
+        'Karmin-Anglerfische',
+      ],
+      '29732': [
+        'Lampenfisch',
+        'Lampenfische',
+      ],
+      '29733': [
+        'Oger-Aal',
+        'Oger-Aale',
+      ],
+      '29734': [
+        'Zyan-Oktopus',
+        'Zyan-Oktopusse',
+      ],
+      '29735': [
+        'Chrom-Hammerhai',
+        'Chrom-Hammerhaie',
+      ],
+      '29736': [
+        'Treibeisfisch',
+        'Treibeisfische',
+      ],
+      '29737': [
+        'Megakalmar',
+        'Megakalmare',
+      ],
+      '29738': [
+        'Tiefsee-Teufelsfisch',
+        'Tiefsee-Teufelsfische',
+      ],
+      '29739': [
+        'La-Noscea-Qualle',
+        'La-Noscea-Quallen',
+      ],
+      '29740': [
+        'zottelige Seedrache',
+        'zotteligen Seedrache',
+        'zotteliges Seedrache',
+        'zotteliger Seedrache',
+        'zottelige Seedrachen',
+        'zotteligen Seedrachen',
+        'zotteliges Seedrachen',
+        'zotteliger Seedrachen',
+      ],
+      '29741': [
+        'Spinnenkrabbe',
+        'Spinnenkrabben',
+      ],
+      '29742': [
+        'Finster-Perlboot',
+        'Finster-Perlboote',
+      ],
+      '29743': [
+        'Tiefsee-Dunkleosteus',
+        'Tiefsee-Dunkleosteusse',
+      ],
+      '29744': [
+        'Trunkenbold',
+        'Trunkenbolde',
+      ],
+      '29745': [
+        'kleine Leviathan',
+        'kleinen Leviathan',
+        'kleines Leviathan',
+        'kleiner Leviathan',
+        'kleine Leviathane',
+        'kleinen Leviathane',
+        'kleines Leviathane',
+        'kleiner Leviathane',
+      ],
+      '29746': [
+        'Eisenfu\u00df',
+        'Eisenf\u00fc\u00dfe',
+      ],
+      '29747': [
+        'Meerschnuppe',
+        'Meerschnuppen',
+      ],
+      '29748': 'Hammer-Hummer',
+      '29749': [
+        'Himmelspforte',
+        'Himmelspforten',
+      ],
+      '29750': [
+        'Geisterhai',
+        'Geisterhaie',
+      ],
+      '29751': [
+        'Quecksilberklinge',
+        'Quecksilberklingen',
+      ],
+      '29752': [
+        'Llymlaens Mal',
+        'Llymlaens Male',
+      ],
+      '29753': [
+        'Nagelauster',
+        'Nagelaustern',
+      ],
+      '29754': 'Fischh\u00e4ndler',
+      '29755': [
+        'Mithril-Souver\u00e4n',
+        'Mithril-Souver\u00e4ne',
+      ],
+      '29756': 'Wellent\u00e4nzer',
+      '29757': [
+        'Seenessel',
+        'Seenesseln',
+      ],
+      '29758': [
+        'K\u00f6nigsmarlin',
+        'K\u00f6nigsmarline',
+      ],
+      '29759': 'Treibholzgleiter',
+      '29760': 'Azeyma-Schleier',
+      '29761': [
+        'gro\u00dfe \u00c4therlaus',
+        'gro\u00dfen \u00c4therlaus',
+        'gro\u00dfes \u00c4therlaus',
+        'gro\u00dfer \u00c4therlaus',
+        'gro\u00dfe \u00c4therl\u00e4use',
+        'gro\u00dfen \u00c4therl\u00e4use',
+        'gro\u00dfes \u00c4therl\u00e4use',
+        'gro\u00dfer \u00c4therl\u00e4use',
+      ],
+      '29762': [
+        'treibende Tellerfisch',
+        'treibenden Tellerfisch',
+        'treibendes Tellerfisch',
+        'treibender Tellerfisch',
+        'treibende Tellerfische',
+        'treibenden Tellerfische',
+        'treibendes Tellerfische',
+        'treibender Tellerfische',
+      ],
+      '29763': [
+        '\u00e4therische Seedrache',
+        '\u00e4therischen Seedrache',
+        '\u00e4therisches Seedrache',
+        '\u00e4therischer Seedrache',
+        '\u00e4therische Seedrachen',
+        '\u00e4therischen Seedrachen',
+        '\u00e4therisches Seedrachen',
+        '\u00e4therischer Seedrachen',
+      ],
+      '29764': [
+        'Korallenseedrache',
+        'Korallenseedrachen',
+      ],
+      '29765': [
+        'Schurkosaurus',
+        'Schurkosaurier',
+      ],
+      '29766': 'Mama Haarlos',
+      '29767': [
+        'Fluffy',
+        'Fluffys',
+      ],
+      '29768': [
+        'Schweigefisch',
+        'Schweigefische',
+      ],
+      '29769': [
+        'Tiefenaal',
+        'Tiefenaale',
+      ],
+      '29770': 'Schiffshenker',
+      '29771': 'Riesenseeigel',
+      '29772': [
+        'Barramundi',
+        'Barramundis',
+      ],
+      '29773': [
+        'tanzende Zupfbart',
+        'tanzenden Zupfbart',
+        'tanzendes Zupfbart',
+        'tanzender Zupfbart',
+        'tanzende Zupfb\u00e4rte',
+        'tanzenden Zupfb\u00e4rte',
+        'tanzendes Zupfb\u00e4rte',
+        'tanzender Zupfb\u00e4rte',
+      ],
+      '29774': [
+        'Schlangenfisch',
+        'Schlangenfische',
+      ],
+      '29775': 'Aronnax',
+      '29776': 'Coccosteus',
+      '29777': [
+        'Exemplar von Hans dem Klipper',
+        'Exemplare von Hans dem Klipper',
+      ],
+      '29778': [
+        'Tigerkatzendorsch',
+        'Tigerkatzendorsche',
+      ],
+      '29779': [
+        'Scharlatanschere',
+        'Scharlatanscheren',
+      ],
+      '29780': [
+        'verlorene Sohn',
+        'verlorenen Sohn',
+        'verlorenes Sohn',
+        'verlorener Sohn',
+        'verlorene S\u00f6hne',
+        'verlorenen S\u00f6hne',
+        'verlorenes S\u00f6hne',
+        'verlorener S\u00f6hne',
+      ],
+      '29781': [
+        'Gugrusaurus',
+        'Gugrusaurier',
+      ],
+      '29782': [
+        'Trichterhai',
+        'Trichterhaie',
+      ],
+      '29783': [
+        'Gefallene',
+        'Gefallenen',
+        'Gefallenes',
+        'Gefallener',
+      ],
+      '29784': [
+        'Spektral-Megalodon',
+        'Spektral-Megalodons',
+      ],
+      '29785': [
+        'Spektral-Diskusfisch',
+        'Spektral-Diskusfische',
+      ],
+      '29786': [
+        'Spektral-Seebo',
+        'Spektral-Seebos',
+      ],
+      '29787': [
+        'Spektralbarsch',
+        'Spektralbarsche',
+      ],
+      '29788': 'Sotis',
+      '29789': [
+        'Korallenmanta',
+        'Korallenmantas',
+      ],
+      '29790': [
+        'Felsenschuppe',
+        'Felsenschuppen',
+      ],
+      '29791': [
+        'Elasmosaurus',
+        'Elasmosaurier',
       ],
     },
     'en': {
@@ -4271,7 +4635,10 @@ let gFisherData = {
         'silver shark',
         'silver sharks',
       ],
-      '4904': 'wahoo',
+      '4904': [
+        'wahoo',
+        'wahoos',
+      ],
       '4905': [
         'raincaller',
         'raincallers',
@@ -4421,7 +4788,10 @@ let gFisherData = {
         'root skipper',
         'root skippers',
       ],
-      '4973': 'bonytongue',
+      '4973': [
+        'bonytongue',
+        'bonytongues',
+      ],
       '4974': [
         'mitten crab',
         'mitten crabs',
@@ -4693,7 +5063,10 @@ let gFisherData = {
       ],
       '7708': 'matron carp',
       '7709': 'high perch',
-      '7710': 'Syldra',
+      '7710': [
+        'Syldra',
+        'Syldras',
+      ],
       '7711': [
         'rivet oyster',
         'rivet oysters',
@@ -4726,13 +5099,13 @@ let gFisherData = {
         'Vip Viper',
         'Vip Vipers',
       ],
-      '7909': [
-        'the Greatest Bream in the World',
-        'the Greatest Breams in the World',
-      ],
+      '7909': 'the Greatest Bream in the World',
       '7910': 'Dirty Herry',
       '7911': 'Old Hollow Eyes',
-      '7912': 'Sylphsbane',
+      '7912': [
+        'Sylphsbane',
+        'Sylphsbanes',
+      ],
       '7913': [
         'floating boulder',
         'floating boulders',
@@ -4906,7 +5279,10 @@ let gFisherData = {
         'Canavan',
         'Canavans',
       ],
-      '8763': 'Kuno the Killer',
+      '8763': [
+        'Kuno the Killer',
+        'Kuno the Killers',
+      ],
       '8764': [
         'Pirate\'s Bane',
         'Pirate\'s Banes',
@@ -4932,7 +5308,7 @@ let gFisherData = {
       ],
       '8772': [
         'shonisaurus',
-        'shonisauruses',
+        'shonisaurs',
       ],
       '8773': [
         'magicked mushroom',
@@ -4940,7 +5316,10 @@ let gFisherData = {
       ],
       '8774': 'giant takitaro',
       '8775': 'namitaro',
-      '8776': 'blood red bonytongue',
+      '8776': [
+        'blood red bonytongue',
+        'blood red bonytongues',
+      ],
       '10123': [
         'gigant clam',
         'gigant clams',
@@ -5429,7 +5808,7 @@ let gFisherData = {
       ],
       '15634': [
         'the Soul of the Martyr',
-        'Souls of the Martyrs',
+        'Souls of the Martyr',
       ],
       '15635': 'inkfish',
       '15636': [
@@ -5484,7 +5863,10 @@ let gFisherData = {
         'hundred-eyed axolotls',
       ],
       '16754': 'bobgoblin bass',
-      '16756': 'Merciless',
+      '16756': [
+        'Merciless',
+        'Mercilesses',
+      ],
       '17562': [
         'Thavnairian leaf',
         'Thavnairian leaves',
@@ -5648,7 +6030,10 @@ let gFisherData = {
         'Tao bitterling',
         'Tao bitterlings',
       ],
-      '20045': 'idle goby',
+      '20045': [
+        'idle goby',
+        'idle gobies',
+      ],
       '20046': 'river barramundi',
       '20047': [
         'mirage chub',
@@ -5754,10 +6139,7 @@ let gFisherData = {
         'Rhalgr\'s bolts',
       ],
       '20090': 'highland perch',
-      '20091': [
-        'gravel gudgeon',
-        'gravel gudgeons',
-      ],
+      '20091': 'gravel gudgeon',
       '20092': [
         'grinning anchovy',
         'grinning anchovies',
@@ -5780,10 +6162,7 @@ let gFisherData = {
       '20099': 'dafu',
       '20100': 'swordfish',
       '20101': 'leaf tatsunoko',
-      '20102': [
-        'Glass flounder',
-        'Glass flounders',
-      ],
+      '20102': 'Glass flounder',
       '20103': [
         'Zekki gator',
         'Zekki gators',
@@ -6212,7 +6591,10 @@ let gFisherData = {
         'strip of shellfracture kelp',
         'strips of shellfracture kelp',
       ],
-      '27447': 'blood cloud',
+      '27447': [
+        'blood cloud',
+        'blood clouds',
+      ],
       '27448': 'Kholusian flounder',
       '27449': 'south Kholusian cod',
       '27450': 'razorfish',
@@ -6228,10 +6610,7 @@ let gFisherData = {
         'weedy seadragons',
       ],
       '27456': 'henodus',
-      '27457': [
-        'spearhead squid',
-        'spearhead squids',
-      ],
+      '27457': 'spearhead squid',
       '27458': [
         'shadow crab',
         'shadow crabs',
@@ -6286,10 +6665,7 @@ let gFisherData = {
         'blood-eyed frog',
         'blood-eyed frogs',
       ],
-      '27473': [
-        'cherry herring',
-        'cherry herrings',
-      ],
+      '27473': 'cherry herring',
       '27474': 'wimple carp',
       '27475': 'lemonfish',
       '27476': [
@@ -6453,6 +6829,293 @@ let gFisherData = {
       '28719': [
         'sweetmeat mussel',
         'sweetmeat mussels',
+      ],
+      '28925': 'the Jaws of Undeath',
+      '28926': 'white Ronso',
+      '28927': [
+        'ambling caltrop',
+        'ambling caltrops',
+      ],
+      '28928': [
+        'fae rainbow',
+        'fae rainbows',
+      ],
+      '28929': [
+        'black jet',
+        'black jets',
+      ],
+      '28930': [
+        'Ondo sigh',
+        'Ondo sighs',
+      ],
+      '28937': [
+        'Galadion goby',
+        'Galadion gobies',
+      ],
+      '28938': [
+        'Galadion chovy',
+        'Galadion chovies',
+      ],
+      '28939': 'rosy bream',
+      '28940': 'tripod fish',
+      '28941': [
+        'sunfly',
+        'sunflies',
+      ],
+      '28942': [
+        'tarnished shark',
+        'tarnished sharks',
+      ],
+      '29718': [
+        'tossed dagger',
+        'tossed daggers',
+      ],
+      '29719': [
+        'jasperhead',
+        'jasperheads',
+      ],
+      '29720': [
+        'Merlthor lobster',
+        'Merlthor lobsters',
+      ],
+      '29721': [
+        'Heavenswimmer',
+        'Heavenswimmers',
+      ],
+      '29722': 'ghoul barracuda',
+      '29723': [
+        'leopard eel',
+        'leopard eels',
+      ],
+      '29724': [
+        'marine bomb',
+        'marine bombs',
+      ],
+      '29725': [
+        'Momora Mora',
+        'Momora Moras',
+      ],
+      '29726': [
+        'Merlthor butterfly',
+        'Merlthor butterflies',
+      ],
+      '29727': [
+        'gladius',
+        'gladii',
+      ],
+      '29728': [
+        'Rhotano wahoo',
+        'Rhotano wahoos',
+      ],
+      '29729': [
+        'Rhotano sardine',
+        'Rhotano sardines',
+      ],
+      '29730': 'deep plaice',
+      '29731': 'crimson monkfish',
+      '29732': 'lampfish',
+      '29733': [
+        'ogre eel',
+        'ogre eels',
+      ],
+      '29734': [
+        'cyan octopus',
+        'cyan octopodes',
+      ],
+      '29735': [
+        'chrome hammerhead',
+        'chrome hammerheads',
+      ],
+      '29736': 'floefish',
+      '29737': 'megasquid',
+      '29738': [
+        'Oschon\'s stone',
+        'Oschon\'s stones',
+      ],
+      '29739': [
+        'La Noscean jelly',
+        'La Noscean jellies',
+      ],
+      '29740': [
+        'shaggy seadragon',
+        'shaggy seadragons',
+      ],
+      '29741': [
+        'spider crab',
+        'spider crabs',
+      ],
+      '29742': [
+        'dark nautilus',
+        'dark nautiluses',
+      ],
+      '29743': 'elder dinichthys',
+      '29744': 'drunkfish',
+      '29745': [
+        'little Leviathan',
+        'little Leviathans',
+      ],
+      '29746': [
+        'sabaton',
+        'sabatons',
+      ],
+      '29747': [
+        'shooting star',
+        'shooting stars',
+      ],
+      '29748': [
+        'hammerclaw',
+        'hammerclaws',
+      ],
+      '29749': [
+        'heavenskey',
+        'heavenskeys',
+      ],
+      '29750': [
+        'ghost shark',
+        'ghost sharks',
+      ],
+      '29751': [
+        'quicksilver blade',
+        'quicksilver blades',
+      ],
+      '29752': [
+        'Navigator\'s print',
+        'Navigator\'s prints',
+      ],
+      '29753': [
+        'casket oyster',
+        'casket oysters',
+      ],
+      '29754': [
+        'fishmonger',
+        'fishmongers',
+      ],
+      '29755': [
+        'mythril sovereign',
+        'mythril sovereigns',
+      ],
+      '29756': [
+        'nimble dancer',
+        'nimble dancers',
+      ],
+      '29757': [
+        'sea nettle',
+        'sea nettles',
+      ],
+      '29758': 'great grandmarlin',
+      '29759': [
+        'shipwreck\'s sail',
+        'shipwreck\'s sails',
+      ],
+      '29760': [
+        'Azeyma\'s Sleeve',
+        'Azeyma\'s Sleeves',
+      ],
+      '29761': [
+        'hi-aetherlouse',
+        'hi-aetherlice',
+      ],
+      '29762': [
+        'floating saucer',
+        'floating saucers',
+      ],
+      '29763': [
+        'aetheric seadragon',
+        'aetheric seadragons',
+      ],
+      '29764': [
+        'coral seadragon',
+        'coral seadragons',
+      ],
+      '29765': [
+        'roguesaurus',
+        'roguesaurs',
+      ],
+      '29766': [
+        'merman\'s mane',
+        'merman\'s manes',
+      ],
+      '29767': [
+        'sweeper',
+        'sweepers',
+      ],
+      '29768': [
+        'silencer',
+        'silencers',
+      ],
+      '29769': [
+        'deep-sea eel',
+        'deep-sea eels',
+      ],
+      '29770': [
+        'executioner',
+        'executioners',
+      ],
+      '29771': [
+        'wild urchin',
+        'wild urchins',
+      ],
+      '29772': 'true barramundi',
+      '29773': [
+        'mopbeard',
+        'mopbeards',
+      ],
+      '29774': [
+        'slipsnail',
+        'slipsnails',
+      ],
+      '29775': 'aronnax',
+      '29776': 'coccosteus',
+      '29777': [
+        'Bartholomew the Chopper',
+        'Bartholomew the Choppers',
+      ],
+      '29778': [
+        'prowler',
+        'prowlers',
+      ],
+      '29779': [
+        'charlatan survivor',
+        'charlatan survivors',
+      ],
+      '29780': [
+        'prodigal son',
+        'prodigal sons',
+      ],
+      '29781': [
+        'gugrusaurus',
+        'gugrusaurs',
+      ],
+      '29782': [
+        'funnel shark',
+        'funnel sharks',
+      ],
+      '29783': [
+        'the Fallen One',
+        'Fallen Ones',
+      ],
+      '29784': [
+        'spectral megalodon',
+        'spectral megalodons',
+      ],
+      '29785': 'spectral discus',
+      '29786': [
+        'spectral sea bo',
+        'spectral sea bos',
+      ],
+      '29787': 'spectral bass',
+      '29788': 'Sothis',
+      '29789': [
+        'coral manta',
+        'coral mantas',
+      ],
+      '29790': [
+        'stonescale',
+        'stonescales',
+      ],
+      '29791': [
+        'elasmosaurus',
+        'elasmosaurs',
       ],
     },
     'fr': {
@@ -9464,10 +10127,7 @@ let gFisherData = {
         'poisson-papillon z\u00e9br\u00e9',
         'poissons-papillons z\u00e9br\u00e9s',
       ],
-      '28067': [
-        'Impitoyable',
-        'Impitoyables',
-      ],
+      '28067': 'Impitoyable',
       '28068': [
         'sole cuivr\u00e9e',
         'soles cuivr\u00e9es',
@@ -9500,7 +10160,7 @@ let gFisherData = {
         'palourde f\u00e9erique',
         'palourdes f\u00e9eriques',
       ],
-      '28192': 'Araeng dire',
+      '28192': 'Areng dire',
       '28193': [
         'crabe g\u00e9ant de Kholusia',
         'crabes g\u00e9ants de Kholusia',
@@ -9509,6 +10169,317 @@ let gFisherData = {
         'moule marine',
         'moules marines',
       ],
+      '28925': [
+        'gueule \u00e9ternelle',
+        'gueules \u00e9ternelles',
+      ],
+      '28926': [
+        'ronso-blanc',
+        'ronsos-blancs',
+      ],
+      '28927': [
+        'l\u00e9zard chausse-trappe',
+        'l\u00e9zards chausse-trappe',
+      ],
+      '28928': [
+        'pixie-en-ciel',
+        'pixies-en-ciel',
+      ],
+      '28929': [
+        '\u00e9toile noir de jais',
+        '\u00e9toiles noir de jais',
+      ],
+      '28930': [
+        'soupir ondo',
+        'soupirs ondos',
+      ],
+      '28937': [
+        'gobie de Galadion',
+        'gobies de Galadion',
+      ],
+      '28938': 'anchois de Galadion',
+      '28939': [
+        'br\u00e8me ros\u00e9e',
+        'br\u00e8mes ros\u00e9es',
+      ],
+      '28940': [
+        'poisson-tr\u00e9pied',
+        'poissons-tr\u00e9pieds',
+      ],
+      '28941': [
+        'poisson-tournesol',
+        'poissons-tournesols',
+      ],
+      '28942': [
+        'requin terni',
+        'requins ternis',
+      ],
+      '29718': [
+        'dague de Merlthor',
+        'dagues de Merlthor',
+      ],
+      '29719': [
+        't\u00eate-de-jaspe',
+        't\u00eates-de-jaspe',
+      ],
+      '29720': [
+        'homard de Merlthor',
+        'homards de Merlthor',
+      ],
+      '29721': [
+        'poisson-papillon \u00e9lys\u00e9en',
+        'poissons-papillons \u00e9lys\u00e9ens',
+      ],
+      '29722': [
+        'barracuda goule',
+        'barracudas goule',
+      ],
+      '29723': [
+        'anguille l\u00e9opard',
+        'anguilles l\u00e9opard',
+      ],
+      '29724': [
+        'bombe marine',
+        'bombes marines',
+      ],
+      '29725': 'momora mora',
+      '29726': [
+        'poisson-papillon de Merlthor',
+        'poissons-papillons de Merlthor',
+      ],
+      '29727': [
+        'gladius',
+        'gladii',
+      ],
+      '29728': [
+        'thazard de Rhotano',
+        'thazards de Rhotano',
+      ],
+      '29729': [
+        'sardine de Rhotano',
+        'sardines de Rhotano',
+      ],
+      '29730': [
+        'plie des profondeurs',
+        'plies des profondeurs',
+      ],
+      '29731': [
+        'baudroie abyssale pourpre',
+        'baudroies abyssales pourpres',
+      ],
+      '29732': [
+        'poisson-pierre',
+        'poissons-pierres',
+      ],
+      '29733': [
+        'anguille ogresse',
+        'anguilles ogresses',
+      ],
+      '29734': [
+        'poulpe c\u00e9rul\u00e9en',
+        'poulpes c\u00e9rul\u00e9ens',
+      ],
+      '29735': [
+        'requin-marteau de chrome',
+        'requins-marteaux de chrome',
+      ],
+      '29736': [
+        'poisson des banquises',
+        'poissons des banquises',
+      ],
+      '29737': [
+        'm\u00e9ga calmar',
+        'm\u00e9ga calmars',
+      ],
+      '29738': [
+        'pierre d\'Oschon',
+        'pierres d\'Oschon',
+      ],
+      '29739': [
+        'm\u00e9duse nosc\u00e9enne',
+        'm\u00e9duses nosc\u00e9ennes',
+      ],
+      '29740': [
+        'dragon de mer \u00e9bouriff\u00e9',
+        'dragons de mer \u00e9bouriff\u00e9s',
+      ],
+      '29741': [
+        'crabe-araign\u00e9e g\u00e9ant',
+        'crabes-araign\u00e9es g\u00e9ants',
+      ],
+      '29742': [
+        'nautile sombre',
+        'nautiles sombres',
+      ],
+      '29743': [
+        'dinichthys ancien',
+        'dinichthys anciens',
+      ],
+      '29744': [
+        'psychrolutes avin\u00e9',
+        'psychrolutes avin\u00e9s',
+      ],
+      '29745': 'mini-L\u00e9viathan',
+      '29746': [
+        'sabaton des mers',
+        'sabatons des mers',
+      ],
+      '29747': [
+        '\u00e9toile filante des mers',
+        '\u00e9toiles filantes des mers',
+      ],
+      '29748': [
+        'marteaupince',
+        'marteaupinces',
+      ],
+      '29749': [
+        'clef du paradis',
+        'clefs du paradis',
+      ],
+      '29750': [
+        'requin-fant\u00f4me',
+        'requins-fant\u00f4mes',
+      ],
+      '29751': [
+        'lame vif-argent',
+        'lames vif-argent',
+      ],
+      '29752': [
+        'empreinte de Llymlaen',
+        'empreintes de Llymlaen',
+      ],
+      '29753': [
+        'hu\u00eetre cercueil',
+        'hu\u00eetres cercueils',
+      ],
+      '29754': [
+        'poissonni\u00e8re',
+        'poissonni\u00e8res',
+      ],
+      '29755': [
+        'souverain de mithril',
+        'souverains de mithril',
+      ],
+      '29756': [
+        'danseuse agile',
+        'danseuses agiles',
+      ],
+      '29757': [
+        'ortie des mers',
+        'orties des mers',
+      ],
+      '29758': [
+        'grand marlin',
+        'grands marlins',
+      ],
+      '29759': [
+        'voile de l\'\u00e9pave',
+        'voiles de l\'\u00e9pave',
+      ],
+      '29760': [
+        '\u00e9toffe d\'Azeyma',
+        '\u00e9toffes d\'Azeyma',
+      ],
+      '29761': [
+        'superpou d\'\u00e9ther',
+        'superpoux d\'\u00e9ther',
+      ],
+      '29762': [
+        'soucoupe flottante',
+        'soucoupes flottantes',
+      ],
+      '29763': [
+        'dragon de mer \u00e9th\u00e9r\u00e9',
+        'dragons de mer \u00e9th\u00e9r\u00e9s',
+      ],
+      '29764': [
+        'dragon de mer corallin',
+        'dragons de mer corallins',
+      ],
+      '29765': 'roguesaurus',
+      '29766': [
+        'crini\u00e8re de triton',
+        'crini\u00e8res de triton',
+      ],
+      '29767': [
+        'requin-balais',
+        'requins-balais',
+      ],
+      '29768': [
+        'suppresseur',
+        'suppresseurs',
+      ],
+      '29769': [
+        'anguille des profondeurs',
+        'anguilles des profondeurs',
+      ],
+      '29770': [
+        'ex\u00e9cuteur',
+        'ex\u00e9cuteurs',
+      ],
+      '29771': [
+        'oursin f\u00e9roce',
+        'oursins f\u00e9roces',
+      ],
+      '29772': [
+        'barramundi',
+        'barramundis',
+      ],
+      '29773': [
+        'barbe-tremp\u00e9e',
+        'barbes-tremp\u00e9es',
+      ],
+      '29774': [
+        'limace de mer',
+        'limaces de mer',
+      ],
+      '29775': 'aronnax',
+      '29776': 'coccosteus',
+      '29777': 'Bartholomew l\'\u00e9quarrisseur',
+      '29778': [
+        'morue tigre-chat',
+        'morues tigre-chat',
+      ],
+      '29779': [
+        'survivant charlatan',
+        'survivants charlatans',
+      ],
+      '29780': [
+        'fils prodigue',
+        'fils prodigues',
+      ],
+      '29781': 'gugrusaurus',
+      '29782': [
+        'requin entonnoir',
+        'requins entonnoirs',
+      ],
+      '29783': [
+        'ange d\u00e9chu',
+        'anges d\u00e9chus',
+      ],
+      '29784': [
+        'm\u00e9galodon spectral',
+        'm\u00e9galodons spectraux',
+      ],
+      '29785': [
+        'discus spectral',
+        'discus spectraux',
+      ],
+      '29786': [
+        'hippocampe spectral',
+        'hippocampes spectraux',
+      ],
+      '29787': [
+        'bar spectral',
+        'bars spectraux',
+      ],
+      '29788': 'sothis',
+      '29789': [
+        'raie corallienne',
+        'raies coralliennes',
+      ],
+      '29790': 'pierr\u00e9cailles',
+      '29791': 'elasmosaurus',
     },
     'ja': {
       '4776': '\u30de\u30eb\u30e0\u30b1\u30eb\u30d7',
@@ -10332,6 +11303,92 @@ let gFisherData = {
       '28192': '\u30a2\u30ec\u30f3\u30fb\u30c7\u30eb',
       '28193': '\u30b3\u30eb\u30b7\u30a2\u30f3\u30ad\u30f3\u30b0\u30af\u30e9\u30d6',
       '28719': '\u30e0\u30bb\u30eb',
+      '28925': '\u30a4\u30e2\u30fc\u30bf\u30eb\u30b8\u30e7\u30fc',
+      '28926': '\u30db\u30ef\u30a4\u30c8\u30ed\u30f3\u30be',
+      '28927': '\u30af\u30ae\u30c8\u30ab\u30b2',
+      '28928': '\u30d4\u30af\u30b7\u30fc\u30ec\u30a4\u30f3\u30dc\u30fc',
+      '28929': '\u30d6\u30e9\u30c3\u30af\u30b8\u30a7\u30c3\u30c8\u30b9\u30c8\u30ea\u30fc\u30e0',
+      '28930': '\u30aa\u30f3\u30c9\u306e\u6e9c\u606f',
+      '28937': '\u30ac\u30e9\u30c7\u30a3\u30aa\u30f3\u30b4\u30d3\u30fc',
+      '28938': '\u30ac\u30e9\u30c7\u30a3\u30aa\u30f3\u30a2\u30f3\u30c1\u30e7\u30d3',
+      '28939': '\u30ed\u30fc\u30ba\u30d6\u30ea\u30fc\u30e0',
+      '28940': '\u30c8\u30e9\u30a4\u30dd\u30c3\u30c9',
+      '28941': '\u30b5\u30cb\u30fc\u30d0\u30bf\u30d5\u30e9\u30a4',
+      '28942': '\u30bf\u30fc\u30cb\u30c3\u30b7\u30e5\u30b7\u30e3\u30fc\u30af',
+      '29718': '\u30b9\u30ed\u30a6\u30f3\u30c0\u30ac\u30fc',
+      '29719': '\u30b8\u30e3\u30b9\u30d1\u30fc\u30d8\u30c3\u30c9',
+      '29720': '\u30e1\u30eb\u30c8\u30fc\u30eb\u30ed\u30d6\u30b9\u30bf\u30fc',
+      '29721': '\u30d8\u30f4\u30f3\u30ea\u30fc\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '29722': '\u30b0\u30fc\u30eb\u30d0\u30e9\u30af\u30fc\u30c0',
+      '29723': '\u30ec\u30aa\u30d1\u30fc\u30c9\u30a4\u30fc\u30eb',
+      '29724': '\u30de\u30ea\u30f3\u30dc\u30e0',
+      '29725': '\u30e2\u30e2\u30e9\u30fb\u30e2\u30e9',
+      '29726': '\u30e1\u30eb\u30c8\u30fc\u30eb\u30d0\u30bf\u30d5\u30e9\u30a4',
+      '29727': '\u30b0\u30e9\u30c7\u30a3\u30a6\u30b9',
+      '29728': '\u30ed\u30fc\u30bf\u30ce\u30ef\u30d5\u30fc',
+      '29729': '\u30ed\u30fc\u30bf\u30ce\u30b5\u30fc\u30c7\u30a3\u30f3',
+      '29730': '\u30c7\u30a3\u30fc\u30d7\u30b7\u30fc\u30fb\u30d7\u30ec\u30a4\u30b9',
+      '29731': '\u30af\u30ea\u30e0\u30be\u30f3\u30e2\u30f3\u30af\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '29732': '\u30e9\u30f3\u30d7\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '29733': '\u30aa\u30fc\u30ac\u30a4\u30fc\u30eb',
+      '29734': '\u30b7\u30a2\u30f3\u30aa\u30af\u30c8\u30d1\u30b9',
+      '29735': '\u30af\u30ed\u30e0\u30cf\u30f3\u30de\u30fc\u30d8\u30c3\u30c9',
+      '29736': '\u30c9\u30ea\u30d5\u30c8\u30a2\u30a4\u30b9\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '29737': '\u30e1\u30ac\u30b9\u30ad\u30c3\u30c9',
+      '29738': '\u30aa\u30b7\u30e5\u30aa\u30f3\u30ba\u30b9\u30c8\u30fc\u30f3',
+      '29739': '\u30e9\u30ce\u30b7\u30a2\u30f3\u30b8\u30a7\u30ea\u30fc',
+      '29740': '\u30b7\u30e3\u30ae\u30fc\u30b7\u30fc\u30c9\u30e9\u30b4\u30f3',
+      '29741': '\u30b9\u30d1\u30a4\u30c0\u30fc\u30af\u30e9\u30d6',
+      '29742': '\u30c0\u30fc\u30af\u30ce\u30fc\u30c1\u30e9\u30b9',
+      '29743': '\u30a8\u30eb\u30c0\u30fc\u30fb\u30c7\u30a3\u30cb\u30af\u30c6\u30a3\u30b9',
+      '29744': '\u30c9\u30e9\u30f3\u30ab\u30fc\u30c9\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '29745': '\u30ea\u30c8\u30eb\u30ea\u30f4\u30a1\u30a4\u30a2\u30b5\u30f3',
+      '29746': '\u30b7\u30fc\u30b5\u30d0\u30c8\u30f3',
+      '29747': '\u6d77\u306e\u6d41\u661f',
+      '29748': '\u30cf\u30f3\u30de\u30fc\u30ed\u30d6\u30b9\u30bf\u30fc',
+      '29749': '\u30ad\u30fc\u30fb\u30aa\u30d6\u30fb\u30d8\u30f4\u30f3',
+      '29750': '\u30b4\u30fc\u30b9\u30c8\u30b7\u30e3\u30fc\u30af',
+      '29751': '\u30af\u30a4\u30c3\u30af\u30b7\u30eb\u30d0\u30fc\u30d6\u30ec\u30fc\u30c9',
+      '29752': '\u30ea\u30e0\u30ec\u30fc\u30f3\u30d7\u30ea\u30f3\u30c8',
+      '29753': '\u30cd\u30a4\u30eb\u30c9\u30aa\u30a4\u30b9\u30bf\u30fc',
+      '29754': '\u30d5\u30a3\u30c3\u30b7\u30e5\u30e2\u30f3\u30ac\u30fc',
+      '29755': '\u30df\u30b9\u30ea\u30eb\u30bd\u30d6\u30ea\u30f3',
+      '29756': '\u30cb\u30f3\u30d6\u30eb\u30c0\u30f3\u30b5\u30fc',
+      '29757': '\u30b7\u30fc\u30cd\u30c8\u30eb',
+      '29758': '\u30b0\u30e9\u30f3\u30c9\u30de\u30fc\u30ea\u30f3',
+      '29759': '\u30ec\u30c3\u30af\u30c9\u30af\u30ed\u30b9',
+      '29760': '\u30a2\u30fc\u30bc\u30de\u306e\u5782\u8863',
+      '29761': '\u30cf\u30a4\u30a8\u30fc\u30c6\u30eb\u30e9\u30a6\u30b9',
+      '29762': '\u30d5\u30ed\u30fc\u30c6\u30a3\u30f3\u30b0\u30bd\u30fc\u30b5\u30fc',
+      '29763': '\u30a8\u30fc\u30c6\u30ea\u30c3\u30af\u30b7\u30fc\u30c9\u30e9\u30b4\u30f3',
+      '29764': '\u30b3\u30fc\u30e9\u30eb\u30b7\u30fc\u30c9\u30e9\u30b4\u30f3',
+      '29765': '\u30ed\u30ac\u30b5\u30a6\u30eb\u30b9',
+      '29766': '\u30de\u30fc\u30de\u30f3\u30d8\u30a2\u30fc',
+      '29767': '\u30d5\u30e9\u30c3\u30d5\u30a3\u30fc',
+      '29768': '\u30b5\u30a4\u30ec\u30f3\u30b5\u30fc',
+      '29769': '\u30c7\u30a3\u30fc\u30d7\u30b7\u30fc\u30a4\u30fc\u30eb',
+      '29770': '\u30a8\u30af\u30b9\u30ad\u30e5\u30fc\u30b7\u30e7\u30ca\u30fc',
+      '29771': '\u30ef\u30a4\u30eb\u30c9\u30a2\u30fc\u30c1\u30f3',
+      '29772': '\u30d0\u30e9\u30de\u30f3\u30c7\u30a3',
+      '29773': '\u30e2\u30c3\u30d4\u30a3\u30d3\u30a2\u30fc\u30c9',
+      '29774': '\u30b9\u30cd\u30a4\u30eb\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '29775': '\u30a2\u30ed\u30ca\u30af\u30b9',
+      '29776': '\u30b3\u30c3\u30b3\u30b9\u30c6\u30a6\u30b9',
+      '29777': '\u30b6\u30fb\u30c1\u30e7\u30c3\u30d1\u30fc',
+      '29778': '\u30bf\u30a4\u30ac\u30fc\u30ad\u30e3\u30c3\u30c8\u30b3\u30c3\u30c9',
+      '29779': '\u30b7\u30e3\u30fc\u30e9\u30bf\u30f3\u30b5\u30d0\u30a4\u30d0\u30fc',
+      '29780': '\u30d7\u30ed\u30c7\u30a3\u30ac\u30eb\u30b5\u30f3',
+      '29781': '\u30b0\u30b0\u30ea\u30e5\u30fc\u30b5\u30a6\u30eb\u30b9',
+      '29782': '\u30d5\u30a1\u30f3\u30cd\u30eb\u30b7\u30e3\u30fc\u30af',
+      '29783': '\u30d5\u30a9\u30fc\u30ec\u30f3\u30ef\u30f3',
+      '29784': '\u30b9\u30da\u30af\u30c8\u30e9\u30eb\u30e1\u30ac\u30ed\u30c9\u30f3',
+      '29785': '\u30b9\u30da\u30af\u30c8\u30e9\u30eb\u30c7\u30a3\u30b9\u30ab\u30b9',
+      '29786': '\u30b9\u30da\u30af\u30c8\u30e9\u30eb\u30b7\u30fc\u30db\u30fc\u30b9',
+      '29787': '\u30b9\u30da\u30af\u30c8\u30e9\u30eb\u30d0\u30b9',
+      '29788': '\u30bd\u30c6\u30a3\u30b9',
+      '29789': '\u30b3\u30fc\u30e9\u30eb\u30de\u30f3\u30bf',
+      '29790': '\u30ed\u30c3\u30af\u30b9\u30b1\u30a4\u30eb',
+      '29791': '\u30a8\u30e9\u30b9\u30e2\u30b5\u30a6\u30eb\u30b9',
     },
   },
   'placefish': {
@@ -10642,6 +11699,7 @@ let gFisherData = {
       4881,
       4893,
       4895,
+      4899,
       4911,
       7910,
     ],
@@ -12245,6 +13303,7 @@ let gFisherData = {
       27428,
       27436,
       27437,
+      28925,
     ],
     '3297': [
       27438,
@@ -12264,6 +13323,7 @@ let gFisherData = {
       27439,
       27440,
       27444,
+      28926,
     ],
     '3300': [
       27438,
@@ -12328,6 +13388,7 @@ let gFisherData = {
       27466,
       26749,
       27467,
+      28927,
     ],
     '3308': [
       27470,
@@ -12356,6 +13417,7 @@ let gFisherData = {
       27479,
       27472,
       27468,
+      28928,
     ],
     '3312': [
       26748,
@@ -12396,6 +13458,7 @@ let gFisherData = {
       27489,
       27488,
       27483,
+      28929,
     ],
     '3318': [
       27482,
@@ -12417,6 +13480,7 @@ let gFisherData = {
       27499,
       27501,
       27502,
+      28930,
     ],
     '3321': [
       27497,
@@ -12462,6 +13526,106 @@ let gFisherData = {
       27498,
       27514,
       27515,
+    ],
+    '3448': [
+      28937,
+      28938,
+      29723,
+      29719,
+      28942,
+      28939,
+      29734,
+      29721,
+      29784,
+      29744,
+    ],
+    '3449': [
+      29766,
+      29749,
+      29750,
+      29754,
+      29752,
+      29753,
+      29751,
+      29782,
+      29756,
+      29788,
+    ],
+    '3450': [
+      29722,
+      29739,
+      28941,
+      29724,
+      29740,
+      29725,
+      29726,
+      29727,
+      29785,
+      29745,
+    ],
+    '3451': [
+      29757,
+      29758,
+      29759,
+      29779,
+      29761,
+      29760,
+      29763,
+      29755,
+      29765,
+      29789,
+    ],
+    '3452': [
+      29736,
+      29737,
+      29738,
+      29718,
+      28940,
+      29741,
+      29720,
+      29743,
+      29786,
+      29747,
+    ],
+    '3453': [
+      29748,
+      29776,
+      29777,
+      29778,
+      29773,
+      29771,
+      29781,
+      29764,
+      29783,
+      29791,
+    ],
+    '3454': [
+      29728,
+      29729,
+      29730,
+      29731,
+      29735,
+      29733,
+      29742,
+      29732,
+      29787,
+      29746,
+    ],
+    '3455': [
+      29775,
+      29767,
+      29768,
+      29769,
+      29770,
+      29762,
+      29772,
+      29780,
+      29774,
+      29790,
+    ],
+    '3458': [
+      27482,
+      27486,
     ],
   },
   'places': {
@@ -13645,6 +14809,15 @@ let gFisherData = {
         'Caliban-Furche',
         'in der Caliban-Furche',
       ],
+      '3448': 'Galadion-Bucht - Hochsee',
+      '3449': 'Galadion-Bucht - Phantomstr\u00f6mung',
+      '3450': 'S\u00fcdliche Stra\u00dfe von Merlthor',
+      '3451': 'Merlthorstra\u00dfe (S\u00fcd) - Phantomstr\u00f6mung',
+      '3452': 'N\u00f6rdliche Stra\u00dfe von Merlthor',
+      '3453': 'Merlthorstra\u00dfe (Nord) - Phantomstr\u00f6mung',
+      '3454': 'Rhotano-See - Hochsee',
+      '3455': 'Rhotano-See - Phantomstr\u00f6mung',
+      '3458': 'Mjrls Tr\u00e4nen',
     },
     'en': {
       '28': 'Limsa Lominsa upper decks',
@@ -13883,6 +15056,15 @@ let gFisherData = {
       '3324': 'east Caliban Gap',
       '3325': 'Purpure',
       '3326': 'Norvrandt Slope',
+      '3448': 'outer Galadion Bay',
+      '3449': 'Galadion spectral current',
+      '3450': 'southern Strait of Merlthor',
+      '3451': 'southern Merlthor spectral current',
+      '3452': 'northern Strait of Merlthor',
+      '3453': 'northern Merlthor spectral current',
+      '3454': 'open Rhotano Sea',
+      '3455': 'Rhotano spectral current',
+      '3458': 'Mjrl\'s Tears',
     },
     'fr': {
       '28': 'Limsa Lominsa - Le Tillac',
@@ -14121,6 +15303,15 @@ let gFisherData = {
       '3324': 'Est de la caverne de Caliban',
       '3325': 'Grotte purpurine',
       '3326': 'Marge continentale de Norvrandt',
+      '3448': 'Large de la baie de Galadion',
+      '3449': 'Courant spectral (large de la baie de Galadion)',
+      '3450': 'D\u00e9troit sud de Merlthor',
+      '3451': 'Courant spectral (d\u00e9troit sud de Merlthor)',
+      '3452': 'D\u00e9troit nord de Merlthor',
+      '3453': 'Courant spectral (d\u00e9troit nord de Merlthor)',
+      '3454': 'Large de la mer de Rhotano',
+      '3455': 'Courant spectral (large de la mer de Rhotano)',
+      '3458': 'Les Larmes de Mjrl',
     },
     'ja': {
       '28': '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0a\u7532\u677f\u5c64',
@@ -14359,6 +15550,15 @@ let gFisherData = {
       '3324': '\u30ad\u30e3\u30ea\u30d0\u30f3\u306e\u53e4\u5de3\u7a74\u6771',
       '3325': '\u30d7\u30eb\u30d7\u30e9\u6d1e',
       '3326': '\u30ce\u30eb\u30f4\u30e9\u30f3\u30c8\u5927\u9678\u659c\u9762',
+      '3448': '\u30ac\u30e9\u30c7\u30a3\u30aa\u30f3\u6e7e\u6c96\u5408',
+      '3449': '\u30ac\u30e9\u30c7\u30a3\u30aa\u30f3\u6e7e\u6c96\u5408\uff1a\u5e7b\u6d77\u6d41',
+      '3450': '\u30e1\u30eb\u30c8\u30fc\u30eb\u6d77\u5ce1\u5357',
+      '3451': '\u30e1\u30eb\u30c8\u30fc\u30eb\u6d77\u5ce1\u5357\uff1a\u5e7b\u6d77\u6d41',
+      '3452': '\u30e1\u30eb\u30c8\u30fc\u30eb\u6d77\u5ce1\u5317',
+      '3453': '\u30e1\u30eb\u30c8\u30fc\u30eb\u6d77\u5ce1\u5317\uff1a\u5e7b\u6d77\u6d41',
+      '3454': '\u30ed\u30fc\u30bf\u30ce\u6d77\u6c96\u5408',
+      '3455': '\u30ed\u30fc\u30bf\u30ce\u6d77\u6c96\u5408\uff1a\u5e7b\u6d77\u6d41',
+      '3458': '\u30df\u30e5\u30ea\u30eb\u306e\u843d\u6d99',
     },
   },
   'tackle': {
@@ -14436,6 +15636,7 @@ let gFisherData = {
       '27590': '\u4e4c\u8d3c\u4e1d',
       '27591': '\u6de1\u6c34\u4e07\u80fd\u9975',
       '27592': '\u6d77\u6c34\u4e07\u80fd\u9975',
+      '28634': '\u91d1\u5c5e\u4eae\u7247',
     },
     'de': {
       '2585': [
@@ -14675,6 +15876,18 @@ let gFisherData = {
       '28634': [
         'Metallspinner',
       ],
+      '29714': [
+        'Steinwurm',
+      ],
+      '29715': [
+        'Krill',
+      ],
+      '29716': [
+        'Dickwurm',
+      ],
+      '29717': [
+        'Universalk\u00f6der',
+      ],
     },
     'en': {
       '2585': 'lugworm',
@@ -14751,6 +15964,10 @@ let gFisherData = {
       '27591': 'freshwater boilie',
       '27592': 'saltwater boilie',
       '28634': 'metal spinner',
+      '29714': 'ragworm',
+      '29715': 'krill',
+      '29716': 'plump worm',
+      '29717': 'versatile lure',
     },
     'fr': {
       '2585': 'ver de vase',
@@ -14827,6 +16044,10 @@ let gFisherData = {
       '27591': 'app\u00e2t universel d\'eau douce',
       '27592': 'app\u00e2t universel d\'eau de mer',
       '28634': 'leurre m\u00e9tallique',
+      '29714': 'teigne',
+      '29715': 'krill',
+      '29716': 'ver charnu',
+      '29717': 'leurre universel',
     },
     'ja': {
       '2585': '\u30e9\u30b0\u30ef\u30fc\u30e0',
@@ -14903,6 +16124,10 @@ let gFisherData = {
       '27591': '\u6de1\u6c34\u4e07\u80fd\u990c',
       '27592': '\u6d77\u6c34\u4e07\u80fd\u990c',
       '28634': '\u30e1\u30bf\u30eb\u30b9\u30d4\u30ca\u30fc',
+      '29714': '\u30a4\u30ef\u30a4\u30bd\u30e1',
+      '29715': '\u30af\u30ea\u30eb',
+      '29716': '\u30d5\u30a1\u30c3\u30c8\u30ef\u30fc\u30e0',
+      '29717': '\u4e07\u80fd\u30eb\u30a2\u30fc',
     },
   },
   'tugs': {
