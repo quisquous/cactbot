@@ -317,7 +317,7 @@ let Responses = {
           en: 'Knockback on YOU',
           de: 'Rückstoß auf DIR',
           fr: 'Poussée sur VOUS',
-          ko: '나에게 넉백징',
+          ko: '넉백징 대상자',
         };
       }
       return {
