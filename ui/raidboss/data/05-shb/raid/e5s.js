@@ -139,11 +139,11 @@
     },
     {
       id: 'E5S Crippling Blow',
-      regex: Regexes.ability({ id: '4BCA', source: 'Ramuh', capture: false }),
-      regexDe: Regexes.ability({ id: '4BCA', source: 'Ramuh', capture: false }),
-      regexFr: Regexes.ability({ id: '4BCA', source: 'Ramuh', capture: false }),
-      regexJa: Regexes.ability({ id: '4BCA', source: 'ラムウ', capture: false }),
-      regexKo: Regexes.ability({ id: '4BCA', source: '라무', capture: false }),
+      regex: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
+      regexDe: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
+      regexFr: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
+      regexJa: Regexes.ability({ id: '4BCA', source: 'ラムウ' }),
+      regexKo: Regexes.ability({ id: '4BCA', source: '라무' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
