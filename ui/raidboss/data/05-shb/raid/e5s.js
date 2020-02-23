@@ -149,18 +149,6 @@
       },
     },
     {
-      id: 'E5S Thunderstorm',
-      regex: Regexes.ability({ id: '4BBF', source: 'Ramuh', capture: false }),
-      regexDe: Regexes.ability({ id: '4BBF', source: 'Ramuh', capture: false }),
-      regexFr: Regexes.ability({ id: '4BBF', source: 'Ramuh', capture: false }),
-      regexJa: Regexes.ability({ id: '4BBF', source: 'ラムウ', capture: false }),
-      regexKo: Regexes.ability({ id: '4BBF', source: '라무', capture: false }),
-      infoText: {
-        en: 'Avoid AoE',
-        ko: '장판 피하기',
-      },
-    },
-    {
       id: 'E5S Chain Lightning',
       regex: Regexes.startsUsing({ id: '4BC4', source: 'Ramuh', capture: false }),
       regexDe: Regexes.startsUsing({ id: '4BC4', source: 'Ramuh', capture: false }),
