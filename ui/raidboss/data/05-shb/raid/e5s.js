@@ -28,7 +28,7 @@
       },
       run: function(data) {
         data.firstSpear++;
-      }
+      },
     },
     {
       id: 'E5S Tribunal Summons',
@@ -50,7 +50,7 @@
       },
       run: function(data) {
         data.adds++;
-      }
+      },
     },
     {
       id: 'E5S Fury\'s Bolt',
@@ -104,7 +104,7 @@
       },
       run: function(data) {
         data.leaderCount++;
-      }
+      },
     },
     {
       id: 'E5S Stepped Leader Spread',
