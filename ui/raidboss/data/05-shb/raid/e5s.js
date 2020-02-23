@@ -36,7 +36,7 @@
       regexKo: Regexes.ability({ id: '4BA5', source: '라무', capture: false }),
       delaySeconds: 5,
       condition: function(data) {
-        return data.seenFirstSpear;
+        return !data.seenFirstSpear;
       },
       run: function(data) {
         data.seenFirstSpear = true;
