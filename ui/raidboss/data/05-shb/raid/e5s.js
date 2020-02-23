@@ -10,8 +10,8 @@
     {
       id: 'E5S Fury\'s Bolt Gain',
       regex: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Wütender Blitz', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Boules de foudre', capture: false }),
       regexJa: Regexes.gainsEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
       run: function(data) {
         data.fury = true;
@@ -20,8 +20,8 @@
     {
       id: 'E5S Fury\'s Bolt Lose',
       regex: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
-      regexDe: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
-      regexFr: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexDe: Regexes.losesEffect({ target: 'Ramuh', effect: 'Wütender Blitz', capture: false }),
+      regexFr: Regexes.losesEffect({ target: 'Ramuh', effect: 'Boules de foudre', capture: false }),
       regexJa: Regexes.losesEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
       run: function(data) {
         data.fury = false;
