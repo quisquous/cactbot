@@ -52,7 +52,7 @@
       regexJa: Regexes.startsUsing({ id: '4BAA', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
       infoText: {
-        en: 'pick up orb',
+        en: 'Fury\'s Bolt',
         ko: '라무 강화',
       },
     },
