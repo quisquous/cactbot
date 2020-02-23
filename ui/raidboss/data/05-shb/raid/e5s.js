@@ -15,9 +15,13 @@
       regexJa: Regexes.ability({ id: '4BA5', source: 'ラムウ', capture: false }),
       regexKo: Regexes.ability({ id: '4BA5', source: '라무', capture: false }),
       delaySeconds: 5,
-      condition: function(data) { return data.seenFirstSpear; },
-      run: function(data) { data.seenFirstSpear = true; },
-      infoText:{
+      condition: function(data) {
+        return data.seenFirstSpear;
+      },
+      run: function(data) {
+        data.seenFirstSpear = true;
+      },
+      infoText: {
         en: 'Look for small spear',
         ko: '작은 지팡이 확인',
       },
@@ -134,7 +138,7 @@
           return {
             en: 'Tank Buster on ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            fr: '"' + data.ShortName(matches.target) + '" 탱버',
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
