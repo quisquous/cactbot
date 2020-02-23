@@ -48,16 +48,19 @@ let defaultInfoText = (sev) => {
     return 'infoText';
   return getText(sev);
 };
+
 let defaultAlertText = (sev) => {
   if (!sev)
     return 'alertText';
   return getText(sev);
 };
+
 let defaultAlarmText = (sev) => {
   if (!sev)
     return 'alarmText';
   return getText(sev);
 };
+
 let getTarget = (matches) => {
   return matches.target || matches[1];
 };
@@ -203,6 +206,14 @@ let Responses = {
     };
     return obj;
   },
+  bigAoe: (sev) => {
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'big aoe!',
+      de: 'Große AoE!',
+    };
+    return obj;
+  },
   spread: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
@@ -212,6 +223,18 @@ let Responses = {
       ja: '散開',
       cn: '分散',
       ko: '산개',
+    };
+    return obj;
+  },
+  stack: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Stack',
+      de: 'Sammeln',
+      fr: 'Package',
+      ja: '散開',
+      cn: '集合',
+      ko: '집합',
     };
     return obj;
   },
@@ -240,14 +263,35 @@ let Responses = {
     };
     return obj;
   },
-  stack: (sev) => {
+  stackMiddle: (sev) => {
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Stack in middle',
+      de: 'In der Mitte sammeln',
+    };
+    return obj;
+  },
+  spreadThanStack: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
-      en: 'Stack',
-      de: 'Sammeln',
-      fr: 'Package',
-      cn: '集合',
-      ko: '집합',
+      en: 'Spread => Stack',
+      de: 'Verteilen => Sammeln',
+      fr: 'Dispersez-vous => Package',
+      ja: '散開 => 散開',
+      cn: '分散 => 集合',
+      ko: '산개 => 집합',
+    };
+    return obj;
+  },
+  stackThanSpread: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Stack => Spread',
+      de: 'Sammeln => Verteilen',
+      fr: 'Package => Dispersez-vous',
+      ja: '散開 => 散開',
+      cn: '集合 => 分散',
+      ko: '집합 => 산개',
     };
     return obj;
   },
@@ -280,17 +324,6 @@ let Responses = {
         fr: 'Poussée sur ' + data.ShortName(target),
         ko: '넉백 → ' + data.ShortName(target),
       };
-    };
-    return obj;
-  },
-  getUnder: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Get Under',
-      de: 'Unter ihn',
-      fr: 'Intérieur',
-      ja: '中へ',
-      ko: '보스 밑으로',
     };
     return obj;
   },
@@ -339,6 +372,19 @@ let Responses = {
     };
     return obj;
   },
+  // .getUnder() is used when you have to get into the bosses hitbox
+  getUnder: (sev) => {
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Get Under',
+      de: 'Unter ihn',
+      fr: 'Intérieur',
+      ja: '中へ',
+      ko: '보스 밑으로',
+    };
+    return obj;
+  },
+  // .getIn() is more like "get close but maybe even melee range is fine"
   getIn: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
@@ -351,6 +397,7 @@ let Responses = {
     };
     return obj;
   },
+  // .getOut() means get far away
   getOut: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
@@ -360,6 +407,17 @@ let Responses = {
       fr: 'Dehors',
       cn: '远离',
       ko: '밖으로',
+    };
+    return obj;
+  },
+  outOfMelee: (sev) => {
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Out of melee',
+      de: 'Raus aus Nahkampf',
+      fr: 'Eloignez-vous du CaC',
+      cn: '远离近战',
+      ko: '근접범위 밖으로',
     };
     return obj;
   },
@@ -452,16 +510,18 @@ let Responses = {
     };
     return obj;
   },
-  outOfFront: (sev) => {
+  // .killAdds() is used for adds that will always be available
+  killAdds: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
-      en: 'Out of Front',
-      de: 'Weg von Vorne',
-      fr: 'Ne restez pas devant',
-      ko: '보스 전방 피하기',
+      en: 'Kill adds',
+      de: 'Adds besiegen',
+      fr: 'Tuez les adds',
+      ko: '쫄 잡기',
     };
     return obj;
   },
+  // .killExtraAdd() is used for adds that appear if a mechanic was not played correctly
   killExtraAdd: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
@@ -470,16 +530,6 @@ let Responses = {
       ja: '水の精倒して',
       fr: 'Tuez l\'add',
       cn: '击杀小怪',
-      ko: '쫄 잡기',
-    };
-    return obj;
-  },
-  killAdds: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Kill adds',
-      de: 'Adds besiegen',
-      fr: 'Tuez les adds',
       ko: '쫄 잡기',
     };
     return obj;
@@ -494,15 +544,35 @@ let Responses = {
     };
     return obj;
   },
-  silence: (sev) => {
+  sleep: (sev) => {
     let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Silence',
-      de: 'Verstummen',
-      fr: 'Silence',
-      ja: 'ストンスキン',
-      cn: '沉默石肤',
-      ko: '기술시전 중단',
+    obj[defaultAlertText(sev)] = {
+      en: 'Sleep',
+      de: 'Schlaf',
+      fr: 'Sommeil',
+      ja: 'スリプル',
+      cn: '催眠',
+      ko: '슬리플',
+    };
+    return obj;
+  },
+  stun: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Stun',
+      de: 'Betäubung',
+      fr: 'Étourdissement ',
+      ja: 'スタン',
+      cn: '眩晕',
+      ko: '기절',
+    };
+    return obj;
+  },
+  interupt: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'interupt',
+      de: 'unterbrechen',
     };
     return obj;
   },
@@ -571,14 +641,34 @@ let Responses = {
     };
     return obj;
   },
-  outOfMelee: (sev) => {
+  breakChains: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
-      en: 'Out of melee',
-      de: 'Raus aus Nahkampf',
-      fr: 'Eloignez-vous du CaC',
-      cn: '远离近战',
-      ko: '근접범위 밖으로',
+      en: 'Break chains',
+      de: 'Kette zerbrechen',
+      fr: 'Cassez les chaines',
+    };
+    return obj;
+  },
+  moveChainsTogether: (sev) => {
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Move chains together',
+      de: 'Ketten zusammen bewegen',
+    };
+    return obj;
+  },
+  earthshaker: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = (data, matches) => {
+      let target = getTarget(matches);
+      if (target != data.me)
+        return;
+      return {
+        en: 'Earth Shaker on YOU',
+        de: 'Erdstoß auf DIR',
+        fr: 'Marque de terre sur VOUS',
+      };
     };
     return obj;
   },
