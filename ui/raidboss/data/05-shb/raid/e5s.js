@@ -8,6 +8,26 @@
   timelineFile: 'e5s.txt',
   triggers: [
     {
+      id: 'E5S Fury\'s Bolt Gain',
+      regex: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
+      run: function(data) {
+        data.fury = true;
+      },
+    },
+    {
+      id: 'E5S Fury\'s Bolt Lose',
+      regex: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexDe: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexFr: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexJa: Regexes.losesEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
+      run: function(data) {
+        data.fury = false;
+      },
+    },
+    {
       id: 'E5S Stratospear Summons',
       regex: Regexes.ability({ id: '4BA5', source: 'Ramuh', capture: false }),
       regexDe: Regexes.ability({ id: '4BA5', source: 'Ramuh', capture: false }),
@@ -72,24 +92,18 @@
       regexFr: Regexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
-      preRun: function(data) {
-        data.leaderCount = data.leaderCount || 0;
-      },
       alertText: function(data) {
-        if (data.leaderCount %2 == 0) {
+        if (!data.fury) {
           return {
             en: 'Ready Spread',
             ko: '산개 준비',
           };
-        } else if (data.leaderCount %2 == 1) {
+        } else if (data.fury) {
           return {
             en: 'donut AoE',
             ko: '도넛 장판',
           };
         }
-      },
-      run: function(data) {
-        data.leaderCount++;
       },
     },
     {
@@ -100,7 +114,7 @@
       regexJa: Regexes.ability({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.ability({ id: '4BC6', source: '라무', capture: false }),
       alarmText: function(data) {
-        if (data.leaderCount %2 == 0) {
+        if (!data.fury) {
           return {
             en: 'Spread',
             de: 'Verteilen',
