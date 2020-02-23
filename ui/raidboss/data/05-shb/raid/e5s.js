@@ -33,19 +33,15 @@
       regexFr: Regexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
-      preRun: function(data) {
-        data.adds = data.adds || 0;
+      condition: function(data) {
+        return !data.firstAdd;
       },
-      infoText: function(data) {
-        if (data.adds != 0) {
-          return {
-            en: 'Look for adds',
-            ko: '쫄 위치 확인',
-          };
-        }
+      infoText: {
+        en: 'Look for adds',
+        ko: '쫄 위치 확인',
       },
       run: function(data) {
-        data.adds++;
+        data.firstAdd = false;
       },
     },
     {
