@@ -145,13 +145,22 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     let containsMatches = false;
     let containsMatchesParam = false;
 
-    for (let j = 0; j < triggerFunctions.length; j++) {
-      let currentTriggerFunction = currentTrigger[triggerFunctions[j]];
-      if (typeof currentTriggerFunction !== 'undefined' && currentTriggerFunction !== null) {
-        containsMatches |= currentTriggerFunction.toString().includes('matches');
-        containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
+    let verifyTrigger = (trigger) => {
+      for (let j = 0; j < triggerFunctions.length; j++) {
+        let currentTriggerFunction = trigger[triggerFunctions[j]];
+        if (currentTriggerFunction === null)
+          continue;
+        if (typeof currentTriggerFunction !== 'undefined') {
+          containsMatches |= currentTriggerFunction.toString().includes('matches');
+          containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
+        }
+        if (triggerFunctions[j] === 'response' && typeof currentTriggerFunction === 'object') {
+          // Treat a response object as its own trigger and look at all the functions it returns.
+          verifyTrigger(currentTriggerFunction);
+        }
       }
-    }
+    };
+    verifyTrigger(currentTrigger);
 
     let captures = -1;
 
