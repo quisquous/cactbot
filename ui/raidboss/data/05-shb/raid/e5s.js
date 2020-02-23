@@ -113,17 +113,16 @@
       regexFr: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
       regexJa: Regexes.ability({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.ability({ id: '4BC6', source: '라무', capture: false }),
-      alarmText: function(data) {
-        if (!data.fury) {
-          return {
-            en: 'Spread',
-            de: 'Verteilen',
-            fr: 'Ecartez-vous',
-            ja: '散開',
-            cn: '分散',
-            ko: '산개',
-          };
-        }
+      condition: function(data) {
+        return !data.fury;
+      },
+      alarmText: {
+        en: 'Spread',
+        de: 'Verteilen',
+        fr: 'Ecartez-vous',
+        ja: '散開',
+        cn: '分散',
+        ko: '산개',
       },
     },
     {
