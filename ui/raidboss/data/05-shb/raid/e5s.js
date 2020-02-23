@@ -123,25 +123,10 @@
       regexFr: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
       regexJa: Regexes.ability({ id: '4BCA', source: 'ラムウ' }),
       regexKo: Regexes.ability({ id: '4BCA', source: '라무' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur VOUS',
-            ko: '탱버 대상자',
-          };
-        }
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
       },
-      infoText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Tank Buster on ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'E5S Stormcloud Summons',
@@ -152,7 +137,7 @@
       regexKo: Regexes.startsUsing({ id: '4BB8', source: '라무', capture: false }),
       infoText: {
         en: 'Position for Stormcloud',
-        ko: '번개 구름 위치',
+        ko: '번개 구름 위치 잡기',
       },
     },
     {
