@@ -77,6 +77,18 @@
       },
     },
     {
+      id: 'E5S Fury\'s Fourteen',
+      regex: Regexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
+      infoText: {
+        en: 'Grab an orb',
+        ko: '구슬 줍기',
+      },
+    },
+    {
       id: 'E5S Judgment Volts',
       regex: Regexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
       regexDe: Regexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
