@@ -48,7 +48,7 @@ hideall "--sync--"
 228.5 "Eruption" sync /:Garuda:4C17:/
 232.4 "Instant Incineration" sync /:Ifrit:4C0E:/
 236.0 "Meteor Strike" sync /:Ifrit:4C0F:/
-240.0 "--untargetable--
+240.0 "--untargetable--"
 
 ### Phase 3: Garuda and Ifrit
 246.2 "--targetable--"
