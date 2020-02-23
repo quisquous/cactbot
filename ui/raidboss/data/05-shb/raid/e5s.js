@@ -15,19 +15,11 @@
       regexJa: Regexes.ability({ id: '4BA5', source: 'ラムウ', capture: false }),
       regexKo: Regexes.ability({ id: '4BA5', source: '라무', capture: false }),
       delaySeconds: 5,
-      preRun: function(data) {
-        data.firstSpear = data.firstSpear || 1;
-      },
-      infoText: function(data) {
-        if (data.firstSpear == 1) {
-          return {
-            en: 'Look for small spear',
-            ko: '작은 지팡이 확인',
-          };
-        }
-      },
-      run: function(data) {
-        data.firstSpear++;
+      condition: function(data) { return data.seenFirstSpear; },
+      run: function(data) { data.seenFirstSpear = true; },
+      infoText:{
+        en: 'Look for small spear',
+        ko: '작은 지팡이 확인',
       },
     },
     {
@@ -60,7 +52,7 @@
       regexJa: Regexes.startsUsing({ id: '4BAA', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
       infoText: {
-        en: 'Fury\'s Bolt',
+        en: 'pick up orb',
         ko: '라무 강화',
       },
     },
@@ -71,13 +63,7 @@
       regexFr: Regexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BB5', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BB5', source: '라무', capture: false }),
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E5S Stepped Leader',
@@ -128,11 +114,11 @@
     },
     {
       id: 'E5S Crippling Blow',
-      regex: Regexes.ability({ id: '4BCA', source: 'Ramuh', capture: false }),
-      regexDe: Regexes.ability({ id: '4BCA', source: 'Ramuh', capture: false }),
-      regexFr: Regexes.ability({ id: '4BCA', source: 'Ramuh', capture: false }),
-      regexJa: Regexes.ability({ id: '4BCA', source: 'ラムウ', capture: false }),
-      regexKo: Regexes.ability({ id: '4BCA', source: '라무', capture: false }),
+      regex: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
+      regexDe: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
+      regexFr: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
+      regexJa: Regexes.ability({ id: '4BCA', source: 'ラムウ' }),
+      regexKo: Regexes.ability({ id: '4BCA', source: '라무' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -140,6 +126,15 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tank Buster sur VOUS',
             ko: '탱버 대상자',
+          };
+        }
+      },
+      infoText: function(data, matches) {
+        if (data.role == 'healer') {
+          return {
+            en: 'Tank Buster on ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            fr: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -199,13 +194,7 @@
       regexFr: Regexes.startsUsing({ id: '4BCC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BCC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BCC', source: '라무', capture: false }),
-      infoText: {
-        en: 'knockback',
-        fr: 'Projection',
-        de: 'Rückstoß',
-        ko: '넉백',
-        ja: 'ノックバック',
-      },
+      response: Responses.knockback(),
     },
   ],
   timelineReplace: [
