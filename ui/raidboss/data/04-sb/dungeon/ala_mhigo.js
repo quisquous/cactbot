@@ -37,6 +37,7 @@
         return data.role == 'healer';
       },
       response: Responses.aoe(),
+    },
     {
       id: 'Ala Mhigo Demimagicks',
       regex: Regexes.startsUsing({ id: '205D', source: 'Aulus Mal Asina', capture: false }),

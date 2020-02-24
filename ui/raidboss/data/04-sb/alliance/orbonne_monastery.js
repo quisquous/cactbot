@@ -295,12 +295,12 @@
     },
     {
       id: 'Orbonne Cid Crush Helm Healer',
-      regex: Regexes.startsUsing({ id: '3752', source: 'The Thunder God', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3752', source: 'Cidolfus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3752', source: 'Cid Le Dieu De La Foudre', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3752', source: '雷神シド', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3752', source: '雷神西德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3752', source: '뇌신 시드', capture: false }),
+      regex: Regexes.startsUsing({ id: '3752', source: 'The Thunder God' }),
+      regexDe: Regexes.startsUsing({ id: '3752', source: 'Cidolfus' }),
+      regexFr: Regexes.startsUsing({ id: '3752', source: 'Cid Le Dieu De La Foudre' }),
+      regexJa: Regexes.startsUsing({ id: '3752', source: '雷神シド' }),
+      regexCn: Regexes.startsUsing({ id: '3752', source: '雷神西德' }),
+      regexKo: Regexes.startsUsing({ id: '3752', source: '뇌신 시드' }),
       condition: function(data) {
         return data.role == 'healer';
       },
