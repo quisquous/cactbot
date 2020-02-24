@@ -166,7 +166,6 @@
       regexJa: Regexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
       regexKo: Regexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
       response: Responses.stack(),
     },
     {
