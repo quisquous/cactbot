@@ -12,27 +12,13 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      infoText: {
-        en: 'Tank Buster',
-        fr: 'Tankbuster',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Gubal Hard Searing Wind',
       regex: /Searing Wind/,
       beforeSeconds: 5,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank Cleave on you',
-            fr: 'Cleave sur vous',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-          fr: 'Evitez le cleave sur le tank',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Gubal Hard Properties of Darkness',
@@ -41,10 +27,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      infoText: {
-        en: 'Tank Buster',
-        fr: 'Tankbuster',
-      },
+      response: Responses.tankBuster(),
     },
   ],
   triggers: [

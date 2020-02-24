@@ -18,16 +18,7 @@
       id: 'Fractal Sanctification',
       regex: /Sanctification/,
       beforeSeconds: 5,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave on YOU',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Fractal Unholy',
@@ -48,18 +39,7 @@
       regexJa: Regexes.startsUsing({ id: 'F7A', source: 'ファントムレイ' }),
       regexCn: Regexes.startsUsing({ id: 'F7A', source: '幻影光' }),
       regexKo: Regexes.startsUsing({ id: 'F7A', source: '환영 광선' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tank buster on YOU',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.shortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Fractal Slash',

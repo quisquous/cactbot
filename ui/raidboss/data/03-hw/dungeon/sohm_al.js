@@ -8,25 +8,7 @@
     {
       id: 'Sohm Al Myath Stack',
       regex: Regexes.headMarker({ id: '0017' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Stack auf DIR',
-            fr: 'Stack sur VOUS',
-          };
-        }
-        return {
-          en: 'Stack on ' + matches.target,
-          de: 'Stack auf ' + matches.target,
-          fr: 'Stack sur ' + matches.target,
-        };
-      },
-      tts: {
-        en: 'stack',
-        de: 'stek',
-        fr: 'stack',
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Sohm Al Myath Spread',

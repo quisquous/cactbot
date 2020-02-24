@@ -12,9 +12,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      infoText: {
-        en: 'Tank buster',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Facility Hood Swing',
@@ -23,43 +21,19 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      infoText: {
-        en: 'Tank buster',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Facility Chthonic Hush',
       regex: /Chthonic Hush/,
       beforeSeconds: 4,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave on YOU',
-            de: 'Tank Cleave auf DIR',
-            fr: 'Tank cleave sur vous',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Facility Height Of Chaos',
       regex: /Height Of Chaos/,
       beforeSeconds: 4,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave on YOU',
-            de: 'Tank Cleave auf DIR',
-            fr: 'Tank cleave sur vous',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-        };
-      },
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
@@ -85,18 +59,7 @@
         // Tanks technically shouldn't assist with this mechanic
         return data.role != 'tank';
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Laser Stack on YOU',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.shortName(matches.target),
-          de: 'Stack auf ' + data.shortName(matches.target),
-          fr: 'Stack sur ' + data.shortName(matches.target),
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Facility Dark Orb',
@@ -106,17 +69,7 @@
       regexJa: Regexes.startsUsing({ id: '10FC', source: ['アシエン・イゲオルム', 'アシエン・ラハブレア'] }),
       regexCn: Regexes.startsUsing({ id: '10FC', source: ['以格约姆', '拉哈布雷亚'] }),
       regexKo: Regexes.startsUsing({ id: '10FC', source: ['아씨엔 이게요름', '아씨엔 라하브레아'] }),
-      infoText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank buster on YOU',
-          };
-        } else if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.shortName(matches[1]),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Facility Shadow Flare',

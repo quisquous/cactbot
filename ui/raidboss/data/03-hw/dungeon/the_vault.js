@@ -9,16 +9,7 @@
       id: 'The Vault Heavenly Slash',
       regex: /Heavenly Slash/,
       beforeSeconds: 3.5,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'The Vault Shining Blade',
@@ -33,16 +24,7 @@
       id: 'The Vault Heavy Swing',
       regex: /Heavy Swing/,
       beforeSeconds: 4,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'The Vault Altar Candle',
@@ -51,9 +33,7 @@
       condition: function(data) {
         return data.role != 'dps';
       },
-      alertText: {
-        en: 'Tank buster',
-      },
+      response: Responses.tankBuster(),en: 'Tank buster',
     },
   ],
   triggers: [
@@ -102,9 +82,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Interrupt the Knight',
-      },
+      response: Responses.interupt(),
     },
     {
       id: 'The Vault Faith Unmoving',
@@ -151,9 +129,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Break chains',
-      },
+      response: Responses.breakChains(),
     },
     {
       id: 'The Vault Knights March',
