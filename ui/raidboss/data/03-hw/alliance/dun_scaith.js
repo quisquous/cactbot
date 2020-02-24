@@ -8,16 +8,7 @@
     {
       id: 'Dun Scaith Generic Stack-up',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.stackOn(),
     },
     // DEATHGAZE
     {
@@ -64,10 +55,7 @@
       regexCn: Regexes.startsUsing({ id: '1C8B', source: '虚空死亡凝视', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1C8B', source: '공허의 저승파수꾼', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Knockback soon--Get in front of ice pillar',
-        fr: 'Poussée bientot - Placez-vous devant les pilliers de glace',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'Dun Scaith Void Sprite',
@@ -106,10 +94,7 @@
       regexCn: Regexes.startsUsing({ id: ['1C7B', '1C8D'], source: '虚空死亡凝视', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['1C7B', '1C8D'], source: '공허의 저승파수꾼', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Knockback from center',
-        fr: 'Poussée depuis le centre',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'Dun Scaith Void Death',
@@ -147,22 +132,7 @@
       regexJa: Regexes.startsUsing({ id: '1C98', source: 'フェルディア・ホロー' }),
       regexCn: Regexes.startsUsing({ id: '1C98', source: '虚空弗迪亚' }),
       regexKo: Regexes.startsUsing({ id: '1C98', source: '공허의 페르디아' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank buster on YOU',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       // Wailing Atomos is blue, Cursed Atomos is yellow.
@@ -518,10 +488,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      alertText: {
-        en: 'Boss hitting hard--Shield/Mitigate',
-        fr: 'Le boss frappe fort - Bouclier/Mitigation',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Dun Scaith Ruinous Omen',
@@ -559,22 +526,7 @@
       regexJa: Regexes.startsUsing({ id: '1C19', source: 'ディアボロス・ホロー' }),
       regexCn: Regexes.startsUsing({ id: '1C19', source: '虚空迪亚波罗斯' }),
       regexKo: Regexes.startsUsing({ id: '1C19', source: '공허의 디아볼로스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank buster on YOU',
-            fr: 'Tank buster sur VOUS',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Dun Scaith Hollow Night',
@@ -610,18 +562,7 @@
       // This is the tank version of the stack marker. It has minimal circular bordering
       id: 'Dun Scaith Blindside',
       regex: Regexes.headMarker({ id: '005D' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            fr: 'Package sur VOUS',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          fr: 'Package sur ' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Dun Scaith Earth Shaker',
@@ -629,10 +570,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Earth Shaker on YOU',
-        fr: 'Marque de terre sur VOUS',
-      },
+      response: Responses.earthshaker(),
     },
   ],
 },
