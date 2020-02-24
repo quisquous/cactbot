@@ -15,7 +15,7 @@
       regexDe: Regexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
       regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
       regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
-      response: Responses.aoe(),
+      response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Dark Pulse',
