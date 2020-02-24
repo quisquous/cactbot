@@ -34,7 +34,7 @@
       condition: function(data) {
         return data.role != 'dps';
       },
-      response: Responses.tankBuster(),en: 'Tank buster',
+      response: Responses.tankBuster(),
     },
   ],
   triggers: [
