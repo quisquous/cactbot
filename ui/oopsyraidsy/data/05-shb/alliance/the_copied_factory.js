@@ -4,7 +4,7 @@
 [{
   zoneRegex: {
     en: /^The Copied Factory$/,
-    ko: /^복제된 공장 폐허$/
+    ko: /^복제된 공장 폐허$/,
   },
   damageWarn: {
     'Copied Serial Energy Bomb': '48B4',

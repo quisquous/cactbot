@@ -4,7 +4,7 @@
 [{
   zoneRegex: {
     en: /^The Grand Cosmos$/,
-    ko: /^그랑 코스모스$/
+    ko: /^그랑 코스모스$/,
   },
   damageWarn: {
     'Cosmos Iron Justice': '491F',
