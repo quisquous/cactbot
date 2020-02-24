@@ -1,7 +1,7 @@
 hideall "--reset--"
 hideall "--sync--"
 
-0 "--reset--" sync /is no longer sealed/ window 10000 jump 0
+0 "--reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 ###Ser Adelphel Brightblade
 # -ii 101B 1374 1019 101C
@@ -9,7 +9,7 @@ hideall "--sync--"
 # Pre-phase
 # Barely worth including, but oh well.
 
-0.0 "--sync--" sync /The Quire will be sealed off/ window 0,1
+0.0 "--sync--" sync / 00:0839:The Quire will be sealed off/ window 0,1
 5.4 "Fast Blade" sync /:Ser Adelphel Brightblade:2CD:/
 12.5 "Bloodstain" sync /:Ser Adelphel Brightblade:44B:/
 15.8 "Fast Blade" sync /:Ser Adelphel Brightblade:2CD:/
@@ -92,7 +92,7 @@ hideall "--sync--"
 # -ii 101A
 
 # Pre-phase
-1000 "--sync--" sync /The chapter house will be sealed off/ window 1000,1
+1000 "--sync--" sync / 00:0839:The chapter house will be sealed off/ window 1000,1
 1006.7 "Overpower" sync /:Ser Grinnaux the Bull:88C:/
 1015.6 "Rive" sync /:Ser Grinnaux the Bull:46F:/
 1018.9 "Overpower" sync /:Ser Grinnaux the Bull:88C:/
@@ -154,7 +154,7 @@ hideall "--sync--"
 
 ###Ser Charibert
 
-2000.0 "--sync--" sync /The Chancel will be sealed off/ window 2000,0
+2000.0 "--sync--" sync / 00:0839:The Chancel will be sealed off/ window 2000,0
 2006.3 "Altar Candle" sync /:Ser Charibert:1030:/
 2015.0 "Heavensflame" sync /:Ser Charibert:1031:/
 2019.2 "Holy Chain" sync /:Ser Charibert:1033:/

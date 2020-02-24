@@ -11,6 +11,7 @@
   triggers: [
     // --- State ---
     {
+      id: 'UCU Firescorched Gain',
       regex: Regexes.gainsEffect({ effect: 'Firescorched' }),
       regexDe: Regexes.gainsEffect({ effect: 'Feuerhorn' }),
       regexFr: Regexes.gainsEffect({ effect: 'Corne-De-Feu' }),
@@ -25,6 +26,7 @@
       },
     },
     {
+      id: 'UCU Firescorched Lose',
       regex: Regexes.losesEffect({ effect: 'Firescorched' }),
       regexDe: Regexes.losesEffect({ effect: 'Feuerhorn' }),
       regexFr: Regexes.losesEffect({ effect: 'Corne-De-Feu' }),
@@ -39,6 +41,7 @@
       },
     },
     {
+      id: 'UCU Icebitten Gain',
       regex: Regexes.gainsEffect({ effect: 'Icebitten' }),
       regexDe: Regexes.gainsEffect({ effect: 'Eisklaue' }),
       regexFr: Regexes.gainsEffect({ effect: 'Griffe-De-Glace' }),
@@ -53,6 +56,7 @@
       },
     },
     {
+      id: 'UCU Icebitten Lose',
       regex: Regexes.losesEffect({ effect: 'Icebitten' }),
       regexDe: Regexes.losesEffect({ effect: 'Eisklaue' }),
       regexFr: Regexes.losesEffect({ effect: 'Griffe-De-Glace' }),
@@ -67,6 +71,7 @@
       },
     },
     {
+      id: 'UCU Fireball Counter',
       regex: Regexes.ability({ id: '26C5', source: 'Firehorn' }),
       regexDe: Regexes.ability({ id: '26C5', source: 'Feuerhorn' }),
       regexFr: Regexes.ability({ id: '26C5', source: 'Corne-De-Feu' }),
@@ -78,6 +83,7 @@
       },
     },
     {
+      id: 'UCU Quickmarch Phase',
       regex: Regexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E2', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E2', source: 'Primo-Bahamut', capture: false }),
@@ -89,6 +95,7 @@
       },
     },
     {
+      id: 'UCU Blackfire Phase',
       regex: Regexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E3', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E3', source: 'Primo-Bahamut', capture: false }),
@@ -100,6 +107,7 @@
       },
     },
     {
+      id: 'UCU Fellruin Phase',
       regex: Regexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E4', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E4', source: 'Primo-Bahamut', capture: false }),
@@ -111,6 +119,7 @@
       },
     },
     {
+      id: 'UCU Heavensfall Phase',
       regex: Regexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E5', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E5', source: 'Primo-Bahamut', capture: false }),
@@ -122,6 +131,7 @@
       },
     },
     {
+      id: 'UCU Tenstrike Phase',
       regex: Regexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E6', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E6', source: 'Primo-Bahamut', capture: false }),
@@ -133,6 +143,7 @@
       },
     },
     {
+      id: 'UCU Octet Phase',
       regex: Regexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '26E7', source: 'Prim-Bahamut', capture: false }),
       regexFr: Regexes.startsUsing({ id: '26E7', source: 'Primo-Bahamut', capture: false }),
@@ -144,6 +155,7 @@
       },
     },
     {
+      id: 'UCU Ragnarok Party Tracker',
       regex: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
       regexDe: Regexes.ability({ id: '26B8', source: 'Ragnarök' }),
       regexFr: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
@@ -170,14 +182,6 @@
       regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       alertText: {
         en: 'Twisters',
-        fr: 'Tornades',
-        de: 'Wirbelstürme',
-        ja: '大竜巻',
-        cn: '大龙卷',
-        ko: '회오리',
-      },
-      tts: {
-        en: 'twisters',
         fr: 'Tornades',
         de: 'Wirbelstürme',
         ja: '大竜巻',
@@ -219,7 +223,7 @@
       },
     },
     {
-      // Hatch Collect
+      id: 'UCU Hatch Collect',
       regex: Regexes.headMarker({ id: '0076' }),
       run: function(data, matches) {
         data.hatch = data.hatch || [];
@@ -271,7 +275,7 @@
       },
     },
     {
-      // Hatch Cleanup
+      id: 'UCU Hatch Cleanup',
       regex: Regexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
       run: function(data) {
@@ -334,14 +338,6 @@
         ko: '산개 => 안으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'spread then in',
-        fr: 'Se dispercer, puis dedans',
-        de: 'verteilen, dann rein',
-        ja: '散開や密着',
-        cn: '分散后靠近',
-        ko: '산개 다음 안으로',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6496?pretty=true
@@ -361,14 +357,6 @@
         ko: '산개 => 밖으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'spread then out',
-        fr: 'Se dispercer, puis dehors',
-        de: 'verteilen, dann raus',
-        ja: '散開や離れる',
-        cn: '分散后远离',
-        ko: '산개 다음 밖으로',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6495?pretty=true
@@ -388,14 +376,6 @@
         ko: '쉐어 => 안으로',
       },
       durationSeconds: 6,
-      tts: {
-        en: 'stack then in',
-        fr: 'Se rassembler, puis dedans',
-        de: 'stek dann rein',
-        ja: '頭割りや密着',
-        cn: '集合后靠近',
-        ko: '쉐어 다음 안으로',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6494?pretty=true
@@ -413,15 +393,6 @@
         ja: '頭割り => 離れる',
         cn: '集合 => 远离',
         ko: '쉐어 => 밖으로',
-      },
-      durationSeconds: 6,
-      tts: {
-        en: 'stack then out',
-        fr: 'Se rassembler, puis dehors',
-        de: 'stek dann raus',
-        ja: '頭割りや離れる',
-        cn: '集合后远离',
-        ko: '쉐어 다음 안으로',
       },
     },
     {
@@ -441,15 +412,6 @@
         cn: '靠近 => 集合',
         ko: '안으로 => 쉐어',
       },
-      durationSeconds: 6,
-      tts: {
-        en: 'in then stack',
-        fr: 'Dedans, puis se rassembler',
-        de: 'rein dann stek',
-        ja: '密着や頭割り',
-        cn: '靠近后集合',
-        ko: '안으로 다음 쉐어',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6492?pretty=true
@@ -467,15 +429,6 @@
         ja: '密着 => 離れる',
         cn: '靠近 => 远离',
         ko: '안으로 => 밖으로',
-      },
-      durationSeconds: 6,
-      tts: {
-        en: 'in then out',
-        fr: 'Dedans, puis dehors',
-        de: 'rein dann raus',
-        ja: '密着や離れる',
-        cn: '靠近后远离',
-        ko: '안으로 다음 밖으로',
       },
     },
     {
@@ -497,14 +450,6 @@
       },
       durationSeconds: 6,
       delaySeconds: 4,
-      tts: {
-        en: 'away from tank then stack',
-        fr: 'S\'éloigner du tank, puis se rassembler',
-        de: 'weck vom tenk dann stek',
-        ja: 'タンクから離れるや頭割り',
-        cn: '远离坦克后集合',
-        ko: '탱커 피하기 다음 쉐어',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6500?pretty=true
@@ -525,14 +470,6 @@
       },
       durationSeconds: 6,
       delaySeconds: 4,
-      tts: {
-        en: 'spread then away from tank',
-        fr: 'Se dispercer, puis s\'éloigner du tank',
-        de: 'verteilen dann weck vom tenk',
-        ja: '散開やタンクから離れる',
-        cn: '分散后远离坦克',
-        ko: '산개 다음 탱커 피하기',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6502?pretty=true
@@ -551,14 +488,6 @@
         ja: '散開 => 密着',
         cn: '分散 => 靠近',
         ko: '산개 => 안으로',
-      },
-      tts: {
-        en: 'spread then in',
-        fr: 'Se dispercer, puis dedans',
-        de: 'verteilen dann rein',
-        ja: '散開や密着',
-        cn: '分散后靠近',
-        ko: '산개 다음 안으로',
       },
     },
     {
@@ -579,14 +508,6 @@
         cn: '靠近 => 分散',
         ko: '안으로 => 산개',
       },
-      tts: {
-        en: 'in then spread',
-        fr: 'Dedans, puis se dispercer',
-        de: 'rein dann verteilen',
-        ja: '密着や散開',
-        cn: '靠近后分散',
-        ko: '안으로 다음 산개',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6507?pretty=true
@@ -605,14 +526,6 @@
         ja: '密着 => 離れる => 散開',
         cn: '靠近 => 远离 => 分散',
         ko: '안으로 => 밖으로 => 산개',
-      },
-      tts: {
-        en: 'in then out then spread',
-        fr: 'Dedans, puis dehors, puis se dispercer',
-        de: 'rein dann raus dann verteilen',
-        ja: '密着や離れるや散開',
-        cn: '靠近后远离最后分散',
-        ko: '안으로 다음 밖으로 다음 산개',
       },
     },
     {
@@ -633,14 +546,6 @@
         cn: '靠近 => 分散 => 集合',
         ko: '안으로 => 산개 => 쉐어',
       },
-      tts: {
-        en: 'in then spread then stack',
-        fr: 'Dedans, puis se dispercer, puis se rassembler',
-        de: 'rein dann verteilen dann stek',
-        ja: '密着や散開や頭割り',
-        cn: '靠近后分散最后集合',
-        ko: '안으로 다음 산개 다음 쉐어',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6504?pretty=true
@@ -660,14 +565,6 @@
         cn: '远离 => 集合 => 分散',
         ko: '밖으로 => 쉐어 => 산개',
       },
-      tts: {
-        en: 'out then stack then spread',
-        fr: 'Dehors, puis se rassembler, puis se dispercer',
-        de: 'raus dann stek dann verteilen',
-        ja: '離れるや頭割りや散開',
-        cn: '远离后集合最后分散',
-        ko: '밖으로 다음 쉐어 다음 산개',
-      },
     },
     {
       // https://xivapi.com/NpcYell/6505?pretty=true
@@ -686,14 +583,6 @@
         ja: '離れる => 散開 => 頭割り',
         cn: '远离 => 分散 => 集合',
         ko: '밖으로 => 산개 => 쉐어',
-      },
-      tts: {
-        en: 'out then spread then stack',
-        fr: 'Dehors, puis se dispercer, puis se rassembler',
-        de: 'Raus dann verteilen dann stek',
-        ja: '離れるや散開や頭割り',
-        cn: '远离后分散最后集合',
-        ko: '밖으로 다음 산개 다음 쉐어',
       },
     },
     {
@@ -794,7 +683,7 @@
       },
     },
     {
-      // Doom tracking init.
+      id: 'UCU Doom Init',
       regex: Regexes.gainsEffect({ effect: 'Doom' }),
       regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
       regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
@@ -823,7 +712,7 @@
       },
     },
     {
-      // Doom tracking cleanup.
+      id: 'UCU Doom Cleanup',
       regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
@@ -885,8 +774,6 @@
         fr: 'Feu en dedans',
         de: 'Feuer innen',
         ja: 'ファイアボール密着',
-        cn: '火进',
-        ko: '불 같이맞기',
       },
       run: function(data) {
         data.naelFireballCount = 1;
@@ -1091,7 +978,7 @@
       },
     },
     {
-      // TODO: this should really use the new added combatant line with positions.
+      id: 'UCU Dragon Tracker',
       regex: Regexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       regexDe: Regexes.abilityFull({ source: ['Eisklaue', 'Donnerschwinge', 'Lichtklaue', 'Dunkelschweif', 'Feuerhorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       regexFr: Regexes.abilityFull({ source: ['Griffe-De-Glace', 'Aile-De-Foudre', 'Croc De Lumière', 'Queue De Ténèbres', 'Corne-De-Feu'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
@@ -1233,6 +1120,7 @@
     },
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
+      id: 'UCU Octet Marker Tracking',
       regex: Regexes.headMarker({ id: ['0077', '0014', '0029'] }),
       condition: function(data) {
         return data.trio == 'octet';
@@ -1455,7 +1343,7 @@
       },
     },
     {
-      // Megaflare stack tracking
+      id: 'UCU Megaflare Stack Tracking',
       regex: Regexes.headMarker({ id: '0027' }),
       run: function(data, matches) {
         data.megaStack.push(matches.target);
@@ -1567,7 +1455,7 @@
       },
     },
     {
-      // Earthshaker tracking
+      id: 'UCU Earthshaker Tracking',
       regex: Regexes.headMarker({ id: '0028' }),
       run: function(data, matches) {
         data.shakers.push(matches.target);
@@ -1756,7 +1644,6 @@
           de: 'Exafleer '+ data.exaflareCount,
           ja: 'エクサフレア' + data.exaflareCount,
           cn: '百京核爆 ' + data.exaflareCount,
-          ko: '엑사플레어 ' + data.exaflareCount,
         };
       },
     },
@@ -1925,7 +1812,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
-        'Engage!': 'Start!',
         'Fang of Light': 'Lichtklaue',
         'Firehorn': 'Feuerhorn',
         'Iceclaw': 'Eisklaue',
@@ -1939,8 +1825,6 @@
       },
       'replaceText': {
         '--push--': '--stoß--',
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Aetheric Profusion': 'Ätherische Profusion',
         'Akh Morn': 'Akh Morn',
         'Bahamut Marker': 'Bahamut Marker',
@@ -1960,8 +1844,6 @@
         'Doom': 'Verhängnis',
         'Dynamo . Beam/Chariot': 'Dynamo + Strahl/Streitwagen',
         'Earth Shaker': 'Erdstoß',
-        'Engage!': 'Start!',
-        'Enrage': 'Finalangriff',
         'Exaflare': 'Exaflare',
         'Fellruin Trio': 'Untergangs-Trio',
         'Fireball(?! Soak)': 'Feuerball',
@@ -2035,7 +1917,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Engage!': 'À l\'attaque',
         'Fang of Light': 'croc de lumière',
         'Firehorn': 'corne-de-feu',
         'Iceclaw': 'griffe-de-glace',
@@ -2049,8 +1930,6 @@
       },
       'replaceText': {
         '--push--': '--Poussé(e)--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Aetheric Profusion': 'Excès d\'éther',
         'Akh Morn': 'Akh Morn',
         'Bahamut Marker': 'Marqueur de Bahamut',
@@ -2070,8 +1949,6 @@
         'Doom': 'Glas',
         'Dynamo . Beam/Chariot': 'Dynamo + Rayon/Char',
         'Earth Shaker': 'Secousse',
-        'Engage!': 'À l\'attaque',
-        'Enrage': 'Enrage',
         'Exaflare': 'ExaBrasier',
         'Fellruin Trio': 'Trio du désastre',
         'Fireball(?! Soak)': 'Boule de feu',
@@ -2145,7 +2022,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
-        'Engage!': '戦闘開始！',
         'Fang of Light': 'ライトファング',
         'Firehorn': 'ファイアホーン',
         'Iceclaw': 'アイスクロウ',
@@ -2159,8 +2035,6 @@
       },
       'replaceText': {
         '--push--': '--push--', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Aetheric Profusion': 'エーテリックプロフュージョン',
         'Akh Morn': 'アク・モーン',
         'Bahamut Marker': 'Bahamut Marker', // FIXME
@@ -2180,8 +2054,6 @@
         'Doom': '死の宣告',
         'Dynamo . Beam/Chariot': 'Dynamo . Beam/Chariot', // FIXME
         'Earth Shaker': 'アースシェイカー',
-        'Engage!': '戦闘開始！',
-        'Enrage': 'Enrage',
         'Exaflare': 'エクサフレア',
         'Fellruin Trio': '厄災の三重奏',
         'Fireball(?! Soak)': 'ファイアボール',
@@ -2255,7 +2127,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Bahamut Prime': '至尊巴哈姆特',
-        'Engage!': '战斗开始！',
         'Fang of Light': '光牙',
         'Firehorn': '火角',
         'Iceclaw': '冰爪',
@@ -2269,8 +2140,6 @@
       },
       'replaceText': {
         '--push--': '--push--', // FIXME
-        '--targetable--': '--可选中--',
-        '--untargetable--': '--不可选中--',
         'Aetheric Profusion': '以太失控',
         'Akh Morn': '死亡轮回',
         'Bahamut Marker': '巴哈标记',
@@ -2290,8 +2159,6 @@
         'Doom': '死亡宣告',
         'Dynamo . Beam/Chariot': '月环 + 光束/钢铁',
         'Earth Shaker': '大地摇动',
-        'Engage!': '战斗开始！',
-        'Enrage': '战斗开始',
         'Exaflare': '百京核爆',
         'Fellruin Trio': '灾厄的三重奏',
         'Fireball(?! Soak)': '火球',
@@ -2365,7 +2232,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
-        'Engage!': '전투 시작!',
         'Fang of Light': '빛의 송곳니',
         'Firehorn': '화염뿔',
         'Iceclaw': '얼음발톱',
@@ -2379,8 +2245,6 @@
       },
       'replaceText': {
         '--push--': '--최소 RDPS컷--',
-        '--targetable--': '--타겟 가능--',
-        '--untargetable--': '--타겟 불가--',
         'Aetheric Profusion': '에테르 홍수',
         'Akh Morn': '아크 몬',
         'Bahamut Marker': '바하무트 징',
@@ -2400,8 +2264,6 @@
         'Doom': '죽음의 선고',
         'Dynamo . Beam/Chariot': '달 + 광선/강철',
         'Earth Shaker': '요동치는 대지',
-        'Engage!': '전투 시작!',
-        'Enrage': '전멸기',
         'Exaflare': '엑사플레어',
         'Fellruin Trio': '재앙의 3중주',
         'Fireball(?! Soak)': '화염구',

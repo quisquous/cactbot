@@ -15,7 +15,8 @@
     },
   ],
   triggers: [
-    { // Thundercloud tracker
+    {
+      id: 'SusEx Thundercloud Tracker',
       regex: Regexes.addedCombatant({ name: 'Thunderhead', capture: false }),
       regexDe: Regexes.addedCombatant({ name: 'Gewitterwolke', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Nuage Orageux', capture: false }),
@@ -26,11 +27,12 @@
         data.cloud = true;
       },
     },
-    { // Thundercloud tracker
+    {
       // Stop tracking the cloud after it casts lightning instead of
       // when it disappears.  This is because there are several
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
+      id: 'SusEx Thundercloud Cleanup',
       regex: Regexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2041', source: 'Gewitterwolke', target: 'Gewitterwolke', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2041', source: 'Nuage Orageux', target: 'Nuage Orageux', capture: false }),
@@ -41,7 +43,8 @@
         data.cloud = false;
       },
     },
-    { // Churning tracker
+    {
+      id: 'SusEx Churning Gain',
       regex: Regexes.gainsEffect({ effect: 'Churning', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Schäumend', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Agitation', capture: false }),
@@ -55,10 +58,11 @@
         data.churning = true;
       },
     },
-    { // Churning tracker
+    {
       // We could track the number of people with churning here, but
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
+      id: 'SusEx Churning Lose',
       regex: Regexes.losesEffect({ effect: 'Churning', capture: false }),
       regexDe: Regexes.losesEffect({ effect: 'Schäumend', capture: false }),
       regexFr: Regexes.losesEffect({ effect: 'Agitation', capture: false }),
@@ -108,7 +112,8 @@
         }
       },
     },
-    { // Red knockback marker indicator
+    {
+      // Red knockback marker indicator
       id: 'SusEx Knockback',
       regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
@@ -149,7 +154,7 @@
         };
       },
     },
-    { // Levinbolt indicator
+    {
       id: 'SusEx Levinbolt',
       regex: Regexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
@@ -180,7 +185,7 @@
         };
       },
     },
-    { // Levinbolt indicator debug
+    {
       id: 'SusEx Levinbolt Debug',
       regex: Regexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
@@ -188,7 +193,7 @@
         return (matches.target != data.me);
       },
     },
-    { // Stunning levinbolt indicator
+    {
       id: 'SusEx Levinbolt Stun',
       regex: Regexes.headMarker({ id: '006F' }),
       infoText: function(data, matches) {
@@ -202,7 +207,7 @@
         }
       },
     },
-    { // Churning (dice)
+    {
       id: 'SusEx Churning',
       regex: Regexes.gainsEffect({ effect: 'Churning', capture: true }),
       regexDe: Regexes.gainsEffect({ effect: 'Schäumend', capture: true }),
@@ -229,7 +234,6 @@
         'Ama-No-Iwato': 'Ama no Iwato',
         'Ame-No-Murakumo': 'Ame no Murakumo',
         'Dark Levin': 'violett(?:e|er|es|en) Blitz',
-        'Engage!': 'Start!',
         'How our hearts sing in the chaos': 'Jahaha! Weiter so!',
         'Let the revels begin': 'Kommt, lasst uns singen und tanzen!',
         'REJOICE!': 'Uohhh!',
@@ -237,8 +241,6 @@
         'Thunderhead': 'Donnerhall',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Ame No Murakumo': 'Ame No Murakumo',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': 'Schwere Attacke',
@@ -247,7 +249,6 @@
         'Churning Deep': 'Schäumen',
         'Dark Levin': 'violett(?:e|er|es|en) Blitz',
         'Electrocution': 'Stromschlag',
-        'Enrage': 'Finalangriff',
         'Knockback': 'Rückstoß',
         'Levinbolt': 'Keraunisches Feld',
         'Phase': 'Phase',
@@ -285,7 +286,6 @@
         'Ama-No-Iwato': 'ama no iwato',
         'Ame-No-Murakumo': 'Ame no Murakumo',
         'Dark Levin': 'foudre violette',
-        'Engage!': 'À l\'attaque',
         'How our hearts sing in the chaos': 'HA HA, HA ! Je m\'amuse comme un fou !',
         'Let the revels begin': 'Dansez maintenant... La fête commence !  ',
         'REJOICE!': 'MOUAAAAAAH !',
@@ -293,8 +293,6 @@
         'Thunderhead': 'Pointe d\'éclair',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Ame No Murakumo': 'Ame No Murakumo',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': 'Assaut',
@@ -303,7 +301,6 @@
         'Churning Deep': 'Agitation profonde',
         'Dark Levin': 'foudre violette',
         'Electrocution': 'Électrocution',
-        'Enrage': 'Enrage',
         'Knockback': 'Knockback', // FIXME
         'Levinbolt': 'Fulguration',
         'Phase': 'Phase', // FIXME
@@ -341,7 +338,6 @@
         'Ama-No-Iwato': '天岩戸',
         'Ame-No-Murakumo': 'アメノムラクモ',
         'Dark Levin': '紫電',
-        'Engage!': '戦闘開始！',
         'How our hearts sing in the chaos': 'カッカッカッ、興が乗ったわ！ アメノムラクモの真なる姿、見せてくれよう！',
         'Let the revels begin': 'いざ舞え、踊れ！　祭りである！ 神前たれども無礼を許す……武器を取れい！',
         'REJOICE!': 'フンヌアァァァァ！',
@@ -349,8 +345,6 @@
         'Thunderhead': 'サンダーヘッド',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Ame No Murakumo': 'アメノムラクモ',
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': '強撃',
@@ -359,7 +353,6 @@
         'Churning Deep': '禍泡',
         'Dark Levin': '紫電',
         'Electrocution': '感電',
-        'Enrage': 'Enrage',
         'Knockback': 'Knockback', // FIXME
         'Levinbolt': '稲妻',
         'Phase': 'Phase', // FIXME
@@ -397,7 +390,6 @@
         'Ama-No-Iwato': '天之岩户',
         'Ame-No-Murakumo': '天之丛云',
         'Dark Levin': '紫电',
-        'Engage!': '战斗开始！',
         'How our hearts sing in the chaos': 'How our hearts sing in the chaos', // FIXME
         'Let the revels begin': 'Let the revels begin', // FIXME
         'REJOICE!': 'REJOICE!', // FIXME
@@ -405,8 +397,6 @@
         'Thunderhead': '雷暴云砧',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Ame No Murakumo': 'Ame No Murakumo', // FIXME
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': '强击',
@@ -415,7 +405,6 @@
         'Churning Deep': '祸泡',
         'Dark Levin': '紫电',
         'Electrocution': '感电',
-        'Enrage': 'Enrage', // FIXME
         'Knockback': 'Knockback', // FIXME
         'Levinbolt': '闪电',
         'Phase': 'Phase', // FIXME
@@ -453,7 +442,6 @@
         'Ama-No-Iwato': '신의 바위',
         'Ame-No-Murakumo': '아메노무라쿠모',
         'Dark Levin': '번갯불',
-        'Engage!': '전투 시작!',
         'How our hearts sing in the chaos': 'How our hearts sing in the chaos', // FIXME
         'Let the revels begin': 'Let the revels begin', // FIXME
         'REJOICE!': 'REJOICE!', // FIXME
@@ -461,8 +449,6 @@
         'Thunderhead': '번개 머리',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         'Ame No Murakumo': 'Ame No Murakumo', // FIXME
         'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': '강력 공격',
@@ -471,7 +457,6 @@
         'Churning Deep': '재앙거품',
         'Dark Levin': '번갯불',
         'Electrocution': '감전',
-        'Enrage': '전멸기',
         'Knockback': 'Knockback', // FIXME
         'Levinbolt': '우레',
         'Phase': 'Phase', // FIXME

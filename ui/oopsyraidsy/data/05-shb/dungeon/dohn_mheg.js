@@ -6,7 +6,10 @@
 // (15:........:Dohnfast Fuath:3DAA:Watering Wheel:........:(\y{Name}):)
 
 [{
-  zoneRegex: /^Dohn Mheg$/,
+  zoneRegex: {
+    en: /^Dohn Mheg$/,
+    ko: /^도느 메그$/,
+  },
   damageWarn: {
     'Dohn Mheg Geyser': '2260', // Water eruptions, boss 1
     'Dohn Mheg Hydrofall': '22BD', // Ground AoE marker, boss 1

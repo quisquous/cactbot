@@ -59,7 +59,7 @@
       // For the cannons, match #1 and #2 for the first one.  This is so
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
-      // Starboard/Larboard Cannon cleanup.
+      id: 'O11S Cannon Cleanup',
       regex: Regexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
       regexDe: Regexes.startsUsing({ id: '326[24]', source: 'Omega', capture: false }),
       regexFr: Regexes.startsUsing({ id: '326[24]', source: 'Oméga', capture: false }),
@@ -257,14 +257,11 @@
       'locale': 'de',
       'replaceSync': {
         'Augmented Rocket Punch': 'verstärkt(?:e|er|es|en) Raketenschlag',
-        'Engage!': 'Start!',
         'Level Checker': 'Monitor',
         'Omega': 'Omega',
         'Rocket Punch': 'Raketenschlag',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Afterburner': 'Nachbrenner',
         'Atomic Ray': 'Atomstrahlung',
         'Ballistic Impact': 'Ballistischer Einschlag',
@@ -277,7 +274,6 @@
         'Dual Storage Violation': 'Speicherverletzung P',
         'Electric Slide': 'Elektrosturz',
         'Engage Ballistics Systems': 'Feuerleitsystem-Initiierung',
-        'Enrage': 'Finalangriff',
         'Executable': 'Programmstart',
         '(?<! )Explosion': 'Explosion',
         'Ferrofluid': 'Ferrofluid',
@@ -330,14 +326,11 @@
       'locale': 'fr',
       'replaceSync': {
         'Augmented Rocket Punch': 'astéropoing renforcé',
-        'Engage!': 'À l\'attaque',
         'Level Checker': 'vérifiniveau',
         'Omega': 'Oméga',
         'Rocket Punch': 'Astéropoing',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Afterburner': 'Postcombustion',
         'Atomic Ray': 'Rayon atomique',
         'Ballistic Impact': 'Impact de missile',
@@ -350,7 +343,6 @@
         'Dual Storage Violation': 'Corruption de données P',
         'Electric Slide': 'Glissement Oméga',
         'Engage Ballistics Systems': 'Contrôle de tir activé',
-        'Enrage': 'Enrage',
         'Executable': 'Exécution de programme',
         '(?<! )Explosion': 'Explosion',
         'Ferrofluid': 'Ferrofluide',
@@ -403,14 +395,11 @@
       'locale': 'ja',
       'replaceSync': {
         'Augmented Rocket Punch': '強化型ロケットパンチ',
-        'Engage!': '戦闘開始！',
         'Level Checker': 'レベルチェッカー',
         'Omega': 'オメガ',
         'Rocket Punch': 'ロケットパンチ',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Afterburner': 'アフターバーナー',
         'Atomic Ray': 'アトミックレイ',
         'Ballistic Impact': 'ミサイル着弾',
@@ -423,7 +412,6 @@
         'Dual Storage Violation': '記憶汚染除去P',
         'Electric Slide': 'オメガスライド',
         'Engage Ballistics Systems': '射撃統制システム起動',
-        'Enrage': 'Enrage',
         'Executable': 'プログラム実行',
         '(?<! )Explosion': '爆発',
         'Ferrofluid': 'マグネット',
@@ -476,14 +464,11 @@
       'locale': 'cn',
       'replaceSync': {
         'Augmented Rocket Punch': '强化型火箭飞拳',
-        'Engage!': '战斗开始！',
         'Level Checker': '等级检测仪',
         'Omega': '欧米茄',
         'Rocket Punch': '火箭飞拳',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Afterburner': '燃烧室排热',
         'Atomic Ray': '原子射线',
         'Ballistic Impact': '导弹命中',
@@ -496,7 +481,6 @@
         'Dual Storage Violation': '清除记忆污染P',
         'Electric Slide': '欧米茄滑跃',
         'Engage Ballistics Systems': '射击总控系统启动',
-        'Enrage': 'Enrage', // FIXME
         'Executable': '运行程序',
         '(?<! )Explosion': '爆炸',
         'Ferrofluid': '磁铁',
@@ -549,14 +533,11 @@
       'locale': 'ko',
       'replaceSync': {
         'Augmented Rocket Punch': '강화형 로켓 주먹',
-        'Engage!': '전투 시작!',
         'Level Checker': '레벨 측정기',
         'Omega': '오메가',
         'Rocket Punch': '로켓 주먹',
       },
       'replaceText': {
-        '--targetable--': '--타겟불가능--',
-        '--untargetable--': '--타겟가능--',
         'Afterburner': '재연소 장치',
         'Atomic Ray': '원자 파동',
         'Ballistic Impact': '미사일 착탄',
@@ -569,7 +550,6 @@
         'Dual Storage Violation': '기억 오염 제거 P',
         'Electric Slide': '오메가 슬라이드',
         'Engage Ballistics Systems': '사격 통제 시스템 기동',
-        'Enrage': 'Enrage', // FIXME
         'Executable': '프로그램 실행',
         '(?<! )Explosion': '폭발',
         'Ferrofluid': '자석',

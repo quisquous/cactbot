@@ -221,13 +221,10 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
-        'The Right Hand of Bahamut will be sealed off': 'bis sich der Zugang zu[rm]? Rechte Hand von Bahamut schließt',
+        'The Right Hand of Bahamut': 'Rechte Hand von Bahamut',
         'Twintania': 'Twintania',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
         'Aetheric Profusion': 'Ätherische Profusion',
         'Asclepius': 'Asclepius',
         'Death Sentence': 'Todesurteil',
@@ -245,13 +242,10 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque !',
-        'The Right Hand of Bahamut is no longer sealed': 'Ouverture de la Serre droite de Bahamut',
-        'The Right Hand of Bahamut will be sealed off': 'Fermeture de la Serre droite de Bahamut',
+        'The Right Hand of Bahamut': 'la Serre droite de Bahamut',
         'Twintania': 'Gémellia',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
         'Aetheric Profusion': 'Excès d\'éther',
         'Asclepius': 'Asclépios',
         'Death Sentence': 'Peine de mort',
@@ -268,14 +262,11 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
-        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': 'ツインタニア',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
         'Aetheric Profusion': 'エーテリックプロフュージョン',
         'Asclepius': 'アスクレピオス',
         'Death Sentence': 'デスセンテンス',
@@ -292,14 +283,11 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '战斗开始！',
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
-        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': '双塔尼亚',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         'Aetheric Profusion': '以太失控',
         'Asclepius': '阿斯克勒庇俄斯',
         'Death Sentence': '死刑',
@@ -316,14 +304,11 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '전투 시작!',
-        'The Right Hand of Bahamut is no longer sealed': 'The Right Hand of Bahamut is no longer sealed', // FIXME
-        'The Right Hand of Bahamut will be sealed off': 'The Right Hand of Bahamut will be sealed off', // FIXME
         'Twintania': '트윈타니아',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
         'Aetheric Profusion': '에테르 홍수',
         'Asclepius': '아스클레피오스',
         'Death Sentence': '사형 선고',

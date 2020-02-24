@@ -260,7 +260,6 @@
         'The Hall of Magicks': 'Halle der Magie',
         'The Rare Tomes Room': 'Abteilung für seltene Schriften',
         'Top Shelf Tome': 'Prachtband',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Bibliocide': 'Bibliozid',
@@ -302,18 +301,17 @@
         'The Hall of Magicks': 'Puits des magies',
         'The Rare Tomes Room': 'Dôme des manuscrits rares',
         'Top Shelf Tome': 'livre relié',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Bibliocide': 'Bibliocide',
-        'Book Drop': 'Book Drop', // FIXME
+        'Book Drop': 'Laché de livre',
         'Check Out': 'Anthologie',
         'Discontinue': 'Arrêt de publication',
         'Ecliptic Meteor': 'Météore écliptique',
         'Folio': 'Réimpression',
         'Form Shift': 'Glissement de posture',
         'Frightful Roar': 'Rugissement effroyable',
-        'Hand/Tornado': 'Hand/Tornado', // FIXME
+        'Hand/Tornado': 'Main/Tornade',
         'Issue': 'Publication',
         'Magnetism': 'Magnétisme',
         'Meteor Impact': 'Impact de météore',
@@ -322,7 +320,7 @@
         'Properties Of Quakes': 'Des propriétés de Méga Séisme',
         'Properties Of Thunder III': 'Des propriétés de Méga Foudre',
         'Properties Of Tornados': 'Des propriétés de Tornade',
-        'Quakes/Tornados': 'Quakes/Tornados', // FIXME
+        'Quakes/Tornados': 'Séismes/Tornades',
         'Repel': 'Répulsion',
         'Sea Of Flames': 'Mer de flammes',
         'Seal Of Night And Day': 'Gravure',
@@ -344,7 +342,6 @@
         'The Hall of Magicks': '魔書の翼廊',
         'The Rare Tomes Room': '思想稀覯書庫',
         'Top Shelf Tome': '上製本',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Bibliocide': '火炎',
@@ -386,7 +383,6 @@
         'The Hall of Magicks': '魔书翼廊',
         'The Rare Tomes Room': '思想珍秘书库',
         'Top Shelf Tome': '精装本',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Bibliocide': '焚书',
@@ -428,7 +424,6 @@
         'The Hall of Magicks': '악마서 복도',
         'The Rare Tomes Room': '사상희귀서고',
         'Top Shelf Tome': '양장본',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Bibliocide': '화염',

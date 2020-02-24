@@ -66,7 +66,7 @@ hideall "--sync--"
 524.7 "Arbor Storm" sync /:Marquis Morbol:3E17:/
 
 # extensible tendrils appears to have some variation on start time
-532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 10,10
+532.3 "--sync--" sync /:3E10:Marquis Morbol/ window 30,10
 537.3 "Extensible Tendrils" sync /:Marquis Morbol:3E10:/ duration 25
 564.7 "Putrid Breath" sync /:Marquis Morbol:3E12:/
 569.0 "Lash" #sync /:Marquis Morbol:3E16:/

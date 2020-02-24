@@ -1,0 +1,131 @@
+### Eden 6 (Savage)
+# Eden's Verse: Furor
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+
+### Phase 1: Garuda
+0 "Start"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+2.3 "--sync--" sync /:Garuda:366:/ window 5,0
+17.8 "Superstorm" sync /:Garuda:4BF7:/
+26.9 "Occluded Front" sync /:Garuda:4BD2:/
+35.9 "Wind Cutter" sync /:Tumultuous Nexus:4C02:/
+38.9 "Storm Of Fury" sync /:Garuda:4C01:/
+46.5 "Air Bump" sync /:Garuda:4BF9:/
+50.9 "Thorns" sync /:Garuda:4BFA:/
+63.6 "Ferostorm" sync /:Garuda:4BFD:/
+73.1 "Downburst" sync /:Garuda:4BFB:/
+75.6 "Air Bump" sync /:Garuda:4BF9:/
+80.1 "Thorns" sync /:Garuda:4BFA:/
+87.5 "Vacuum Slice" sync /:Garuda:4BF5:/
+94.6 "Occluded Front" sync /:Garuda:4BD2:/
+102.7 "Storm Of Fury" sync /:Garuda:4C01:/
+104.1 "Irresistible Pull" sync /:Garuda:4BF6:/
+104.9 "Explosions" sync /:Tumultuous Nexus:4C03:/
+110.2 "Ferostorm" sync /:Garuda:4BFD:/
+117.9 "--untargetable--"
+
+### Phase 2: Ifrit
+121.9 "Touchdown" sync /:Ifrit:4C09:/
+123.4 "--targetable--"
+135.3 "Hands Of Flame" sync /:Ifrit:4C0A:/
+139.6 "Eruption" sync /:Garuda:4C17:/
+143.5 "Instant Incineration" sync /:Ifrit:4C0E:/
+147.2 "Meteor Strike" sync /:Ifrit:4C0F:/
+159.3 "Inferno Howl" sync /:Ifrit:4C14:/
+172.8 "Hands Of Hell" sync /:Ifrit:4C0C:/
+177.0 "Eruption" sync /:Garuda:4C17:/
+184.9 "Strike Spark" sync /:Ifrit:4BD3:/
+188.0 "Call Of The Inferno" sync /:Ifrit:4C12:/
+197.1 "Hot Foot" sync /:Ifrit:4C11:/
+198.6 "Eruption" sync /:Ifrit:4C16:/
+215.6 "Hands Of Hell" sync /:Ifrit:4C0C:/
+219.8 "Eruption" sync /:Garuda:4C17:/
+224.0 "Hands Of Flame" sync /:Ifrit:4C0A:/
+228.3 "Eruption" sync /:Garuda:4C17:/
+232.2 "Instant Incineration" sync /:Ifrit:4C0E:/
+235.9 "Meteor Strike" sync /:Ifrit:4C0F:/
+239.9 "--untargetable--"
+
+### Phase 3: Garuda and Ifrit
+246.1 "--targetable--"
+248.4 "Hated Of Embers/Vortex" sync /:Ifrit:4FA0:/
+253.6 "Occluded Front" sync /:Garuda:4BD2:/
+262.7 "Wind Cutter" sync /:Tumultuous Nexus:4C02:/
+264.8 "Hands Of Flame" sync /:Ifrit:4C0A:/
+269.0 "Eruption" sync /:Garuda:4C17:/
+272.9 "Instant Incineration" sync /:Ifrit:4C0E:/
+276.6 "Meteor Strike" sync /:Ifrit:4C0F:/
+277.0 "Vacuum Slice" sync /:Garuda:4BF5:/
+279.8 "Call Of The Inferno" sync /:Ifrit:4C12:/
+284.2 "Occluded Front" sync /:Garuda:4BD2:/
+292.0 "Hot Foot" sync /:Ifrit:4C11:/
+293.6 "Eruption" sync /:Ifrit:4C16:/
+293.9 "Irresistible Pull" sync /:Garuda:4BF6:/
+294.5 "Explosion" sync /:Tumultuous Nexus:4C03:/
+298.4 "Ferostorm" sync /:Garuda:4BFD:/
+302.7 "--untargetable--"
+
+### Phase 4: Raktapaksa
+320.7 "Firestorm" sync /:Garuda:4BF8:/
+325.2 "--targetable--"
+344.3 "Hands of Hell" sync /:Raktapaksa:4C0C:/
+348.1 "Heat Burst" sync /:Garuda:4C0D:/
+348.2 "Eruption" #sync /:Garuda:4C17:/
+361.4 "Hands of Hell" sync /:Raktapaksa:4C0C:/
+365.3 "Heat Burst" sync /:Garuda:4C0D:/
+365.5 "Eruption" #sync /:Garuda:4C17:/
+376.3 "Inferno Howl" sync /:Raktapaksa:4C14:/
+383.9 "Air Bump" sync /:Garuda:4BF9:/
+386.9 "Ferostorm" sync /:Garuda:4C06:/
+388.3 "Thorns" sync /:Garuda:4BFA:/
+394.6 "Strike Spark" sync /:Raktapaksa:4BD3:/
+397.8 "Call of the Inferno" sync /:Raktapaksa:4C12:/
+406.8 "Hot Foot" sync /:Raktapaksa:4C11:/
+408.3 "Eruption" sync /:Garuda:4C17:/
+410.6 "Hands of Flame" sync /:Raktapaksa:4C0A:/
+414.6 "Heat Burst" sync /:Garuda:4C0D:/
+414.9 "Eruption" #sync /:Garuda:4C17:/
+418.8 "Instant Incineration" sync /:Raktapaksa:4C0E:/
+422.4 "Meteor Strike" sync /:Raktapaksa:4C0F:/
+436.0 "Downburst" sync /:Garuda:4BFC:/
+448.5 "Radiant Plume" sync /:Garuda:4C15:/
+456.6 "Blaze 1" sync /:Twisting Blaze:4C1B:/
+458.7 "Blaze 2" sync /:Twisting Blaze:4C1B:/
+459.1 "Wind Cutter" #sync /:Tumultuous Nexus:4C02:/
+460.8 "Blaze 3" sync /:Twisting Blaze:4C1B:/
+462.1 "Wind Cutter" sync /:Tumultuous Nexus:4C02:/
+462.9 "Blaze 4" sync /:Twisting Blaze:4C1B:/
+465.0 "Blaze 5" sync /:Twisting Blaze:4C1B:/
+465.1 "Wind Cutter" #sync /:Tumultuous Nexus:4C02:/
+471.6 "Spread of Fire" sync /:Garuda:4C18:/
+472.1 "Air Bump" sync /:Garuda:4BF9:/
+475.4 "Conflag Strike" sync /:Raktapaksa:4C10:/
+489.6 "Occluded Front" sync /:Raktapaksa:4E4C:/
+494.1 "Air Bump" sync /:Garuda:4BF9:/
+498.6 "Thorns" sync /:Garuda:4BFA:/
+498.7 "Wind Cutter" #sync /:Tumultuous Nexus:4C02:/
+501.7 "Storm of Fury" sync /:Garuda:4C08:/
+508.8 "Inferno Howl" sync /:Raktapaksa:4C14:/
+519.9 "Occluded Front" sync /:Raktapaksa:4E4C:/
+529.0 "Wind Cutter" sync /:Tumultuous Nexus:4C02:/
+530.4 "Hands of Hell" sync /:Raktapaksa:4C0C:/
+534.4 "Heat Burst" sync /:Garuda:4C0D:/
+534.6 "Eruption" #sync /:Garuda:4C17:/
+546.1 "Air Bump" sync /:Garuda:4BF9:/
+547.9 "Hands of Hell" sync /:Raktapaksa:4C0C:/
+550.5 "Thorns" sync /:Garuda:4BFA:/
+551.8 "Heat Burst" sync /:Garuda:4C0D:/
+552.0 "Eruption" #sync /:Garuda:4C17:/
+556.1 "Hands of Flame" sync /:Raktapaksa:4C0A:/
+560.1 "Heat Burst" sync /:Garuda:4C0D:/
+560.4 "Eruption" #sync /:Garuda:4C17:/
+564.4 "Instant Incineration" sync /:Raktapaksa:4C0E:/
+568.1 "Meteor Strike" sync /:Raktapaksa:4C0F:/
+585.7 "Ferostorm" sync /:Garuda:4C06:/
+593.8 "Ferostorm" sync /:Raktapaksa:4C06:/
+601.9 "Downburst" sync /:Raktapaksa:4BFC:/
+618.2 "Conflag Strike Enrage" sync /:Raktapaksa:4C1C:/

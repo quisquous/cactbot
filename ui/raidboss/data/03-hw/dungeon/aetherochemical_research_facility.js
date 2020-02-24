@@ -14,6 +14,7 @@
       },
       infoText: {
         en: 'Tank buster',
+        fr: 'Tankbuster',
       },
     },
     {
@@ -25,6 +26,7 @@
       },
       infoText: {
         en: 'Tank buster',
+        fr: 'Tankbuster',
       },
     },
     {
@@ -41,6 +43,7 @@
         }
         return {
           en: 'Avoid tank cleave',
+          fr: 'Evitez le cleave sur le tank',
         };
       },
     },
@@ -58,6 +61,7 @@
         }
         return {
           en: 'Avoid tank cleave',
+          fr: 'Evitez le cleave sur le tank',
         };
       },
     },
@@ -74,7 +78,7 @@
       infoText: {
         en: 'Look away',
         de: 'Wegschauen!',
-        fr: 'Ne regardez pas',
+        fr: 'Regardez ailleurs',
       },
     },
     {
@@ -93,6 +97,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Laser Stack on YOU',
+            fr: 'Laser sur VOUS',
           };
         }
         return {
@@ -114,10 +119,12 @@
         if (matches[1] == data.me) {
           return {
             en: 'Tank buster on YOU',
+            fr: 'Tankbuster sur VOUS',
           };
         } else if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.shortName(matches[1]),
+            fr: 'Tankbuster sur ' + data.shortName(matches[1]),
           };
         }
       },
@@ -167,6 +174,7 @@
       delaySeconds: 4,
       alertText: {
         en: 'Stand in dark portal',
+        fr: 'Allez dans le portail noir',
       },
     },
     {
@@ -180,6 +188,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid your orb--pop others\'',
+        fr: 'Evitez votre orbe, détruisez les autres',
       },
     },
   ],
@@ -199,7 +208,6 @@
         'Magitek Turret II': 'Magitek-Geschütz II',
         'Neurolink Nacelle': 'Neurolink-Zelle',
         'Regula van Hydrus': 'Regula van Hydrus',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Magitek-Granate',
@@ -245,17 +253,16 @@
       'replaceSync': {
         'Analysis and Proving': 'Analyse et Essai',
         'Ascian Prime': 'Primo-Ascien',
-        'Blizzardsphere': 'sphère de glace',
+        'Blizzardsphere': 'Sphère de glace',
         'Evaluation and Authentication': 'Évaluation et Authentification',
-        'Firesphere': 'sphère de feu',
+        'Firesphere': 'Sphère de feu',
         'Harmachis': 'Horemakhet',
         'Igeyorhm': 'Igeyorhm',
         'Lahabrea': 'Lahabrea',
-        'Magitek Turret I': 'tourelle magitek TM-I',
-        'Magitek Turret II': 'tourelle magitek TM-II',
+        'Magitek Turret I': 'Tourelle magitek TM-I',
+        'Magitek Turret II': 'Tourelle magitek TM-II',
         'Neurolink Nacelle': 'Nacelle neurolien',
         'Regula van Hydrus': 'Regula van Hydrus',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Grenade magitek',
@@ -311,7 +318,6 @@
         'Magitek Turret II': '魔導タレットII',
         'Neurolink Nacelle': 'ニューロリンク・ナセル',
         'Regula van Hydrus': 'レグラ・ヴァン・ヒュドルス',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '魔導榴弾',
@@ -367,7 +373,6 @@
         'Magitek Turret II': '魔导炮塔II',
         'Neurolink Nacelle': '拘束仓',
         'Regula van Hydrus': '雷古拉·范·休著斯',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '魔导榴弹',
@@ -423,7 +428,6 @@
         'Magitek Turret II': '마도 포탑 II',
         'Neurolink Nacelle': '신경연결기관',
         'Regula van Hydrus': '레굴라 반 히드루스',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Aetherochemical Grenado': '마도 유탄',

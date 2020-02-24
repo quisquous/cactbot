@@ -98,6 +98,7 @@
       },
     },
     {
+      id: 'Tsukuyomi Full Moon',
       regex: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Full Moon', capture: false }),
       regexDe: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Vollmond', capture: false }),
       regexFr: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Force De La Pleine Lune', capture: false }),
@@ -115,6 +116,7 @@
       },
     },
     {
+      id: 'Tsukuyomi New Moon',
       regex: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'New Moon', capture: false }),
       regexDe: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Neumond', capture: false }),
       regexFr: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Force De La Nouvelle Lune', capture: false }),
@@ -324,7 +326,6 @@
       'locale': 'de',
       'replaceSync': {
         'Dancing Fan': 'tanzend(?:e|er|es|en) Fächer',
-        'Engage!': 'Start!',
         'Moondust': 'Mondfragment',
         'Moonlight': 'Mondlicht',
         'Specter(?! )': 'Schemen',
@@ -338,8 +339,6 @@
         'Tsukuyomi': 'Tsukuyomi',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Antitwilight': 'Schönheit der Nacht',
         'Bright Blade': 'Helle Klinge',
         'Concentrativity': 'Konzentriertheit',
@@ -348,7 +347,6 @@
         'Dark Blade': 'Dunkle Klinge',
         'Dispersivity': 'Dispersivität',
         'Empire adds .SW->NW.': 'Garlear Adds (SW->NW)',
-        'Enrage': 'Finalangriff',
         'Hagetsu': 'Hagetsu',
         'Homeland adds .E->W.': 'Domaner Adds (O->W)',
         'Lead Of The Underworld': 'Blei der Unterwelt',
@@ -396,7 +394,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Dancing Fan': 'maiôgi',
-        'Engage!': 'À l\'attaque',
         'Moondust': 'fragment de lune',
         'Moonlight': 'Clair de lune',
         'Specter(?! )': 'spector',
@@ -410,8 +407,6 @@
         'Tsukuyomi': 'Tsukuyomi',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Antitwilight': 'Belle-de-nuit',
         'Bright Blade': 'Lame blafarde',
         'Concentrativity': 'Kenki concentré',
@@ -420,7 +415,6 @@
         'Dark Blade': 'Lame ténébreuse',
         'Dispersivity': 'Onde Kenki',
         'Empire adds .SW->NW.': 'Soldats Impériaux (SO->NO)',
-        'Enrage': 'Enrage',
         'Hagetsu': 'Pulvérisation lunaire',
         'Homeland adds .E->W.': 'Soldats Domiens (E->O)',
         'Lead Of The Underworld': 'Tir de l\'au-delà',
@@ -468,7 +462,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Dancing Fan': '舞扇',
-        'Engage!': '戦闘開始！',
         'Moondust': '月の欠片',
         'Moonlight': '月光',
         'Specter(?! )': 'スペクター',
@@ -482,8 +475,6 @@
         'Tsukuyomi': 'ツクヨミ',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Antitwilight': '月下美人',
         'Bright Blade': '月刀左近',
         'Concentrativity': '圧縮剣気',
@@ -492,7 +483,6 @@
         'Dark Blade': '月刀右近',
         'Dispersivity': '剣気波動',
         'Empire adds .SW->NW.': 'Empire adds .SW->NW.', // FIXME
-        'Enrage': 'Enrage',
         'Hagetsu': '破月',
         'Homeland adds .E->W.': 'Homeland adds .E->W.', // FIXME
         'Lead Of The Underworld': '黄泉の銃弾',
@@ -540,7 +530,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Dancing Fan': '舞扇',
-        'Engage!': '战斗开始！',
         'Moondust': '月之碎片',
         'Moonlight': '月光',
         'Specter(?! )': '妖影',
@@ -554,8 +543,6 @@
         'Tsukuyomi': '月读',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
-        '--untargetable--': '--不可选中--',
         'Antitwilight': '月下美人',
         'Bright Blade': '月刀左斩',
         'Concentrativity': '压缩剑气',
@@ -564,7 +551,6 @@
         'Dark Blade': '月刀右斩',
         'Dispersivity': '剑气波动',
         'Empire adds .SW->NW.': '帝国幻影(西南->西北)',
-        'Enrage': '战斗开始',
         'Hagetsu': '破月',
         'Homeland adds .E->W.': '家人幻影(东->西)',
         'Lead Of The Underworld': '黄泉之弹',
@@ -612,7 +598,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Dancing Fan': '춤추는 부채',
-        'Engage!': '전투 시작!',
         'Moondust': '달조각',
         'Moonlight': '월광',
         'Specter(?! )': '그림자요괴',
@@ -626,8 +611,6 @@
         'Tsukuyomi': '츠쿠요미',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         'Antitwilight': '월하미인',
         'Bright Blade': '하현달 베기',
         'Concentrativity': '압축 검기',
@@ -636,7 +619,6 @@
         'Dark Blade': '상현달 베기',
         'Dispersivity': '검기 파동',
         'Empire adds .SW->NW.': 'Empire adds .SW->NW.', // FIXME
-        'Enrage': '전멸기',
         'Hagetsu': '파월',
         'Homeland adds .E->W.': 'Homeland adds .E->W.', // FIXME
         'Lead Of The Underworld': '황천의 총탄',

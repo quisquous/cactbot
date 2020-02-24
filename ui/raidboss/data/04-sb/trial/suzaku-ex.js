@@ -115,7 +115,6 @@
       'replaceSync': {
         ':Tenzen': ':Tenzen',
         'Eastern Pyre': 'Ostflamme',
-        'Engage!': 'Start!',
         'Northern Pyre': 'Nordflamme',
         'Rapturous Echo': 'Klang der Liebe',
         'Scarlet Lady': 'Flammenvogel',
@@ -130,12 +129,9 @@
         'Western Pyre': 'Westflamme',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Burn': 'Verbrennung',
         'Close-Quarter Crescendo': 'Puppencrescendo',
         'Cremate': 'Einäschern',
-        'Enrage': 'Finalangriff',
         'Eternal Flame': 'Ewige Flamme',
         'Fleeting Summer': 'Vergänglicher Sommer',
         'Hotspot': 'Hitzestau',
@@ -175,7 +171,6 @@
       'replaceSync': {
         ':Tenzen': ':Tenzen',
         'Eastern Pyre': 'flamme orientale',
-        'Engage!': 'À l\'attaque',
         'Northern Pyre': 'flamme boréale',
         'Rapturous Echo': 'chant d\'amour',
         'Scarlet Lady': 'oiseau de feu',
@@ -190,12 +185,9 @@
         'Western Pyre': 'flamme occidentale',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Burn': 'Combustion',
         'Close-Quarter Crescendo': 'Mélopée fantoche',
         'Cremate': 'Crématorium',
-        'Enrage': 'Enrage',
         'Eternal Flame': 'Flamme éternelle',
         'Fleeting Summer': 'Ailes vermillon',
         'Hotspot': 'Couleurs',
@@ -235,7 +227,6 @@
       'replaceSync': {
         ':Tenzen': ':テンゼン',
         'Eastern Pyre': '東炎',
-        'Engage!': '戦闘開始！',
         'Northern Pyre': '北炎',
         'Rapturous Echo': '愛の音色',
         'Scarlet Lady': '火焔鳥',
@@ -250,12 +241,9 @@
         'Western Pyre': '西炎',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Burn': '燃焼',
         'Close-Quarter Crescendo': '傀儡の調べ',
         'Cremate': '赤熱撃',
-        'Enrage': 'Enrage',
         'Eternal Flame': '再生の大火',
         'Fleeting Summer': '翼宿撃',
         'Hotspot': '紅蓮炎',
@@ -295,7 +283,6 @@
       'replaceSync': {
         ':Tenzen': ':典膳',
         'Eastern Pyre': '东炎',
-        'Engage!': '战斗开始！',
         'Northern Pyre': '北炎',
         'Rapturous Echo': '爱之音',
         'Scarlet Lady': '火焰鸟',
@@ -310,12 +297,9 @@
         'Western Pyre': '西炎',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
-        '--untargetable--': '--不可选中--',
         'Burn': '燃烧',
         'Close-Quarter Crescendo': '傀儡旋律',
         'Cremate': '赤热击',
-        'Enrage': 'Enrage', // FIXME
         'Eternal Flame': '苏生大火',
         'Fleeting Summer': '翼宿击',
         'Hotspot': '红莲炎',
@@ -355,7 +339,6 @@
       'replaceSync': {
         ':Tenzen': ':텐젠',
         'Eastern Pyre': '동염',
-        'Engage!': '전투 시작!',
         'Northern Pyre': '북염',
         'Rapturous Echo': '사랑의 음색',
         'Scarlet Lady': '화염조',
@@ -370,12 +353,9 @@
         'Western Pyre': '서염',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         'Burn': '연소',
         'Close-Quarter Crescendo': '꼭두각시의 음률',
         'Cremate': '적열격',
-        'Enrage': '전멸기',
         'Eternal Flame': '재생의 불길',
         'Fleeting Summer': '익수격',
         'Hotspot': '홍련염',

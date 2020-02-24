@@ -2,7 +2,10 @@
 
 // Fractal Continuum
 [{
-  zoneRegex: /^The Fractal Continuum$/,
+  zoneRegex: {
+    en: /^The Fractal Continuum$/,
+    ko: /^무한연속 박물함$/,
+  },
   damageWarn: {
     'Fractal Double Sever': 'F7D', // Conals, boss 1
     'Fractal Aetheric Compression': 'F80', // Ground AoE circles, boss 1

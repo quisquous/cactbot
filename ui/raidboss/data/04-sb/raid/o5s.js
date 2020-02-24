@@ -11,6 +11,7 @@
   resetWhenOutOfCombat: false,
   triggers: [
     {
+      id: 'O5S Stop Combat',
       regex: Regexes.removingCombatant({ name: 'Phantom Train', capture: false }),
       regexDe: Regexes.removingCombatant({ name: 'Phantomzug', capture: false }),
       regexFr: Regexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
@@ -149,7 +150,6 @@
       'replaceSync': {
         'Agony': 'Gequälter Geist',
         'Doom Chimney': 'unheilvoll(?:e|er|es|en) Schornstein',
-        'Engage!': 'Start!',
         'Malice': 'Boshaftigkeit',
         'Phantom Train': 'Phantomzug',
         'Putrid Passenger': 'faulig(?:e|er|es|en) Fahrgast',
@@ -158,8 +158,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Geister',
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Acid Rain': 'Säureregen',
         'Add Wave': 'Add Welle',
         'All In The Mind': 'Psychokinese',
@@ -171,8 +169,6 @@
         'Diabolic Wind': 'Diabolischer Wind',
         'Doom Strike': 'Vernichtungsschlag',
         'Encumber': 'Wegsperrung',
-        'Engage!': 'Start!',
-        'Enrage': 'Finalangriff',
         'Ghosts spawn': 'Geister erscheinen',
         'Head On': 'Frontalangriff',
         'Knockback Whistle': 'Rückstoß Pfeife',
@@ -192,7 +188,6 @@
       'replaceSync': {
         'Agony': 'Fantôme Souffrant',
         'Doom Chimney': 'cheminée maléfique',
-        'Engage!': 'À l\'attaque',
         'Malice': 'Malveillance',
         'Phantom Train': 'train fantôme',
         'Putrid Passenger': 'passager putride',
@@ -201,8 +196,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Fantômes',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Acid Rain': 'Pluie acide',
         'Add Wave': 'Vague d\'Adds',
         'All In The Mind': 'Force de volonté',
@@ -214,8 +207,6 @@
         'Diabolic Wind': 'Vent diabolique',
         'Doom Strike': 'Frappe létale',
         'Encumber': 'Encombrement',
-        'Engage!': 'À l\'attaque',
-        'Enrage': 'Enrage',
         'Ghosts spawn': 'Pop des Fantômes',
         'Head On': 'Plein fouet',
         'Knockback Whistle': 'Knockback Whistle', // FIXME
@@ -235,7 +226,6 @@
       'replaceSync': {
         'Agony': '苦悶のゴースト',
         'Doom Chimney': '魔煙突',
-        'Engage!': '戦闘開始！',
         'Malice': '怨念',
         'Phantom Train': '魔列車',
         'Putrid Passenger': 'ゾンビー・パッセンジャー',
@@ -244,8 +234,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Ghosts', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Acid Rain': '酸性雨',
         'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '念力',
@@ -257,8 +245,6 @@
         'Diabolic Wind': '魔界の風',
         'Doom Strike': '魔霊撃',
         'Encumber': '進路妨害',
-        'Engage!': '戦闘開始！',
-        'Enrage': 'Enrage',
         'Ghosts spawn': 'Ghosts spawn', // FIXME
         'Head On': '追突',
         'Knockback Whistle': 'Knockback Whistle', // FIXME
@@ -278,7 +264,6 @@
       'replaceSync': {
         'Agony': '苦闷幽灵',
         'Doom Chimney': '魔烟囱',
-        'Engage!': '战斗开始！',
         'Malice': '怨念',
         'Phantom Train': '魔列车',
         'Putrid Passenger': '僵尸乘客',
@@ -287,8 +272,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Ghosts', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Acid Rain': '酸雨',
         'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '念力',
@@ -300,8 +283,6 @@
         'Diabolic Wind': '魔界风',
         'Doom Strike': '魔灵击',
         'Encumber': '挡路',
-        'Engage!': '战斗开始！',
-        'Enrage': 'Enrage', // FIXME
         'Ghosts spawn': 'Ghosts spawn', // FIXME
         'Head On': '追尾',
         'Knockback Whistle': 'Knockback Whistle', // FIXME
@@ -321,7 +302,6 @@
       'replaceSync': {
         'Agony': '고뇌하는 유령',
         'Doom Chimney': '마열차 굴뚝',
-        'Engage!': '전투 시작!',
         'Malice': '원한',
         'Phantom Train': '마열차',
         'Putrid Passenger': '좀비 승객',
@@ -330,8 +310,6 @@
       },
       'replaceText': {
         ' Ghosts': ' Ghosts', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Acid Rain': '산성비',
         'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '염력',
@@ -343,8 +321,6 @@
         'Diabolic Wind': '마계의 바람',
         'Doom Strike': '마령격',
         'Encumber': '진로 방해',
-        'Engage!': '전투 시작!',
-        'Enrage': 'Enrage', // FIXME
         'Ghosts spawn': 'Ghosts spawn', // FIXME
         'Head On': '추돌',
         'Knockback Whistle': 'Knockback Whistle', // FIXME

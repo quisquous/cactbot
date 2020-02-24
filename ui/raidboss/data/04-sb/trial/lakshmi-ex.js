@@ -19,6 +19,7 @@
   ],
   triggers: [
     {
+      id: 'Lakshmi Chanchala Gain',
       regex: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2148', source: 'Lakshmi', capture: false }),
@@ -30,6 +31,7 @@
       },
     },
     {
+      id: 'Lakshmi Chanchala Lose',
       regex: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
       regexDe: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
       regexFr: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
@@ -190,7 +192,7 @@
       },
     },
     { // Offtank cleave
-      id: 'Lakshmi Path of Light',
+      id: 'Lakshmi Path of Light Marker',
       regex: Regexes.headMarker({ id: '000E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -247,13 +249,10 @@
         'Dreaming Brahmin': 'verträumt(?:e|er|es|en) Brahmin',
         'Dreaming Kshatriya': 'verträumt(?:e|er|es|en) Kshatriya',
         'Dreaming Shudra': 'verträumt(?:e|er|es|en) Shudra',
-        'Engage!': 'Start!',
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {
         '/dance': '/tanz',
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'Ätherabsorption',
         'Alluring Arm': 'Anziehender Arm',
@@ -266,7 +265,6 @@
         'Divine Denial': 'Göttliche Leugnung',
         'Divine Desire': 'Göttliche Lockung',
         'Divine Doubt': 'Göttliche Bestürzung',
-        'Enrage': 'Finalangriff',
         'Hand Of Beauty': 'Hand der Schönheit',
         'Hand Of Grace': 'Hand der Anmut',
         'Hands Of Grace/Beauty': 'Hand Der Anmut/Schönheit',
@@ -296,13 +294,10 @@
         'Dreaming Brahmin': 'brahmin rêveuse',
         'Dreaming Kshatriya': 'kshatriya rêveuse',
         'Dreaming Shudra': 'shudra rêveuse',
-        'Engage!': 'À l\'attaque',
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {
         '/dance': '/danser',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'Absorption d\'éther',
         'Alluring Arm': 'Bras séduisants',
@@ -315,7 +310,6 @@
         'Divine Denial': 'Refus divin',
         'Divine Desire': 'Désir divin',
         'Divine Doubt': 'Doute divin',
-        'Enrage': 'Enrage',
         'Hand Of Beauty': 'Main de la beauté',
         'Hand Of Grace': 'Main de la grâce',
         'Hands Of Grace/Beauty': 'Main De La Grâce/Beauté',
@@ -345,13 +339,10 @@
         'Dreaming Brahmin': 'テンパード・ブラフミン',
         'Dreaming Kshatriya': 'テンパード・クシャトリア',
         'Dreaming Shudra': 'テンパード・シュードラ',
-        'Engage!': '戦闘開始！',
         'Lakshmi': 'ラクシュミ',
       },
       'replaceText': {
         '/dance': '/dance', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '魅惑の腕',
@@ -364,7 +355,6 @@
         'Divine Denial': '完全なる拒絶',
         'Divine Desire': '完全なる誘引',
         'Divine Doubt': '完全なる惑乱',
-        'Enrage': 'Enrage',
         'Hand Of Beauty': '優美なる左手',
         'Hand Of Grace': '優雅なる右手',
         'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME
@@ -394,13 +384,10 @@
         'Dreaming Brahmin': '梦寐的婆罗门',
         'Dreaming Kshatriya': '梦寐的刹帝利',
         'Dreaming Shudra': '梦寐的首陀罗',
-        'Engage!': '战斗开始！',
         'Lakshmi': '吉祥天女',
       },
       'replaceText': {
         '/dance': '/跳舞',
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '魅惑之臂',
@@ -413,7 +400,6 @@
         'Divine Denial': '完全拒绝',
         'Divine Desire': '完全引诱',
         'Divine Doubt': '完全惑乱',
-        'Enrage': 'Enrage', // FIXME
         'Hand Of Beauty': '优美的左手',
         'Hand Of Grace': '优雅的右手',
         'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME
@@ -443,13 +429,10 @@
         'Dreaming Brahmin': '신도화된 브라만',
         'Dreaming Kshatriya': '신도화된 크샤트리아',
         'Dreaming Shudra': '신도화된 수드라',
-        'Engage!': '전투 시작!',
         'Lakshmi': '락슈미',
       },
       'replaceText': {
         '/dance': '/춤',
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '매혹적인 팔',
@@ -462,7 +445,6 @@
         'Divine Denial': '완전한 거절',
         'Divine Desire': '완전한 유인',
         'Divine Doubt': '완전한 혼란',
-        'Enrage': '전멸기',
         'Hand Of Beauty': '아름다운 왼손',
         'Hand Of Grace': '우아한 오른손',
         'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME

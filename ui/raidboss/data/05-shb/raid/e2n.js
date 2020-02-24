@@ -337,7 +337,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Voidwalker': 'Nichtswandler',
         'The Hand of Erebos': 'Arm des Erebos',
       },
@@ -346,16 +345,12 @@
         'Shadowflame': 'Schattenflamme',
         'Doomvoid Guillotine': 'Nichtsmarter-Fallbeil',
         'Dark Fire III': 'Dunkel-Feuga',
-        'attack': 'Attacke',
         'Unholy Darkness': 'Unheiliges Dunkel',
-        '--targetable--': '--anvisierbar--',
         'Punishing Ray': 'Strafender Strahl',
         'Doomvoid Slicer': 'Nichtsmarter-Sense',
         'Empty Hate': 'Gähnender Abgrund',
         'Shadoweye': 'Schattenauge',
-        'Enrage': 'Finalangriff',
         'Entropy': 'Entropie',
-        '--untargetable--': '--nich anvisierbar--',
       },
       '~effectNames': {
         'Spell-in-Waiting: Shadoweye': 'Verzögerung: Schattenauge',
@@ -370,9 +365,9 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Voidwalker': 'Marcheuse du néant',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
         'Spell-in-Waiting': 'Déphasage incantatoire',
@@ -380,17 +375,13 @@
         'Shadowflame': 'Flamme d\'ombre',
         'Doomvoid Guillotine': 'Guillotine du néant ravageur',
         'Dark Fire III': 'Méga Feu ténébreux',
-        'attack': 'Attaque',
         'Unholy Darkness': 'Miracle sombre',
-        '--targetable--': '--Ciblable--',
         '--Reset--': '--Réinitialisation--',
         'Punishing Ray': 'Rayon punitif',
         'Doomvoid Slicer': 'Entaille du néant ravageur',
         'Empty Hate': 'Vaine malice',
         'Shadoweye': 'Œil de l\'ombre',
-        'Enrage': 'Enrage',
         'Entropy': 'Entropie',
-        '--untargetable--': '--Impossible à cibler--',
       },
       '~effectNames': {
         'Spell-in-Waiting: Shadoweye': 'Sort déphasé: Œil de l\'ombre',
@@ -405,15 +396,14 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
         'Spell-in-Waiting': 'ディレイスペル',
         'Shadowflame': 'シャドーフレイム',
         'Doomvoid Guillotine': 'ドゥームヴォイド・ギロチン',
         'Dark Fire III': 'ダークファイガ',
-        'attack': '攻撃',
         'Unholy Darkness': 'ダークホーリー',
         'Punishing Ray': 'パニッシュレイ',
         'Doomvoid Slicer': 'ドゥームヴォイド・スライサー',
@@ -435,7 +425,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Voidwalker': '虚无行者',
         'The Hand of Erebos': '厄瑞玻斯的巨腕',
       },
@@ -444,7 +433,6 @@
         'Shadowflame': '暗影炎',
         'Doomvoid Guillotine': '末日虚无断',
         'Dark Fire III': '黑暗爆炎',
-        'attack': '攻击',
         'Unholy Darkness': '黑暗神圣',
         'Punishing Ray': '惩戒之光',
         'Doomvoid Slicer': '末日虚无切',
@@ -466,7 +454,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Voidwalker': '보이드워커',
         'The Hand of Erebos': '에레보스의 팔',
       },
@@ -475,7 +462,6 @@
         'Shadowflame': '그림자 불꽃',
         'Doomvoid Guillotine': '파멸의 보이드 절단',
         'Dark Fire III': '다크 파이가',
-        'attack': '공격',
         'Unholy Darkness': '다크 홀리',
         'Punishing Ray': '응징의 빛줄기',
         'Doomvoid Slicer': '파멸의 보이드 베기',

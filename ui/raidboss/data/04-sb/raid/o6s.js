@@ -82,6 +82,7 @@
       },
     },
     {
+      id: 'O6S Last Kiss Tracker',
       regex: Regexes.headMarker({ id: '0017' }),
       run: function(data, matches) {
         data.lastKiss = matches.target;
@@ -153,8 +154,6 @@
         'The Storm\'s Grip': 'Sturmgebiet',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Demonic Howl': 'Dämonisches Heulen',
         'Demonic Pain': 'Dämonischer Schmerz',
         'Demonic Shear': 'Dämonische Schere',
@@ -168,8 +167,6 @@
         'Dull Pain': 'Dumpfer Schmerz',
         'Earthquake': 'Erdbeben',
         'Easterlies': 'Ostwinde',
-        'Engage!': 'Start!',
-        'Enrage': 'Finalangriff',
         'Featherlance': 'Federlanze',
         'Flash Fire': 'Blitzfeuer',
         'Flash Flood': 'Blitzregen',
@@ -214,8 +211,6 @@
         'The Storm\'s Grip': 'Emprise de la tempête',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Demonic Howl': 'Hurlement démoniaque',
         'Demonic Pain': 'Douleur démoniaque',
         'Demonic Shear': 'Cisailles démoniaques',
@@ -229,8 +224,6 @@
         'Dull Pain': 'Douleur sourde',
         'Earthquake': 'Grand séisme',
         'Easterlies': 'Rafale Ultim',
-        'Engage!': 'À l\'attaque',
-        'Enrage': 'Enrage',
         'Featherlance': 'Lance de plume',
         'Flash Fire': 'Flammes subites',
         'Flash Flood': 'Pluie subite',
@@ -275,8 +268,6 @@
         'The Storm\'s Grip': '暴風域',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Demonic Howl': 'デモニックハウル',
         'Demonic Pain': 'デモニックペイン',
         'Demonic Shear': 'デモニックシアー',
@@ -290,8 +281,6 @@
         'Dull Pain': 'ダルペイン',
         'Earthquake': '大地震',
         'Easterlies': '極風',
-        'Engage!': '戦闘開始！',
-        'Enrage': 'Enrage',
         'Featherlance': 'フェザーランス',
         'Flash Fire': 'フラッシュファイア',
         'Flash Flood': 'フラッシュレイン',
@@ -336,8 +325,6 @@
         'The Storm\'s Grip': '暴风域',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Demonic Howl': '恶魔啸',
         'Demonic Pain': '恶魔痛',
         'Demonic Shear': '恶魔斩',
@@ -351,8 +338,6 @@
         'Dull Pain': '钝痛',
         'Earthquake': '大地震',
         'Easterlies': 'Easterlies', // FIXME
-        'Engage!': '战斗开始！',
-        'Enrage': 'Enrage', // FIXME
         'Featherlance': '羽枪',
         'Flash Fire': '闪光炎',
         'Flash Flood': '闪光雨',
@@ -397,8 +382,6 @@
         'The Storm\'s Grip': '폭풍 영역',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Demonic Howl': '악령의 외침',
         'Demonic Pain': '악령의 고통',
         'Demonic Shear': '악령의 참격',
@@ -412,8 +395,6 @@
         'Dull Pain': '약한 고통',
         'Earthquake': '대지진',
         'Easterlies': 'Easterlies', // FIXME
-        'Engage!': '전투 시작!',
-        'Enrage': 'Enrage', // FIXME
         'Featherlance': '깃털창',
         'Flash Fire': '불바다',
         'Flash Flood': '급류',

@@ -6,6 +6,7 @@
   timelineFile: 'shinryu-ex.txt',
   triggers: [
     {
+      id: 'ShinryuEx Heart Cleanup',
       regex: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
       regexDe: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
       regexFr: Regexes.removingCombatant({ name: 'Shinryu', capture: false }),
@@ -18,6 +19,7 @@
       },
     },
     {
+      id: 'ShinryuEx Phase 1',
       regex: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
       regexDe: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
       regexFr: Regexes.startsUsing({ id: '25DE', source: 'Shinryu', capture: false }),
@@ -29,6 +31,7 @@
       },
     },
     {
+      id: 'ShinryuEx Phase 2',
       regex: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
       regexDe: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
       regexFr: Regexes.startsUsing({ id: '25E7', source: 'Shinryu', capture: false }),
@@ -40,6 +43,7 @@
       },
     },
     {
+      id: 'ShinryuEx Phase 3',
       regex: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
       regexDe: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
       regexFr: Regexes.startsUsing({ id: '25E4', source: 'Shinryu', capture: false }),
@@ -51,6 +55,7 @@
       },
     },
     {
+      id: 'ShinryuEx Phase 4',
       regex: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       regexDe: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
       regexFr: Regexes.startsUsing({ id: '264E', source: 'Shinryu', capture: false }),
@@ -639,7 +644,6 @@
       'locale': 'de',
       'replaceSync': {
         'Cocoon': 'Lichtsphäre',
-        'Engage!': 'Start!',
         'Ginryu': 'Ginryu',
         'Hakkinryu': 'Hakkinryu',
         'Left Wing': 'link(?:e|er|es|en) Schwinge',
@@ -649,8 +653,6 @@
         'The Worm\'s Heart': 'Shinryus Herz',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Aerial Blast': 'Windschlag',
         'Aetherial Ray': 'Ätherstrahl',
         'Akh Morn': 'Akh Morn',
@@ -667,7 +669,6 @@
         'Dragonflight': 'Drachenflug',
         'Earth Breath': 'Erdatem',
         'Earthen Fury': 'Gaias Zorn',
-        'Enrage': 'Finalangriff',
         'Fireball': 'Feuerball',
         'First Wing': 'Erster Flügel',
         'Gyre Charge': 'Wirbel-Aufladung',
@@ -723,7 +724,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Cocoon': 'cocon de lumière',
-        'Engage!': 'À l\'attaque',
         'Ginryu': 'ginryu',
         'Hakkinryu': 'hakkinryu',
         'Left Wing': 'aile gauche',
@@ -733,8 +733,6 @@
         'The Worm\'s Heart': 'cœur du dragon',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Aerial Blast': 'Rafale aérienne',
         'Aetherial Ray': 'Rayon éthéré',
         'Akh Morn': 'Akh Morn',
@@ -751,7 +749,6 @@
         'Dragonflight': 'Vol du dragon',
         'Earth Breath': 'Souffle de terre',
         'Earthen Fury': 'Fureur tellurique',
-        'Enrage': 'Enrage',
         'Fireball': 'Boule de feu',
         'First Wing': 'First Wing', // FIXME
         'Gyre Charge': 'Gyrocharge',
@@ -807,7 +804,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Cocoon': '光の繭',
-        'Engage!': '戦闘開始！',
         'Ginryu': '銀龍',
         'Hakkinryu': '白金龍',
         'Left Wing': 'レフトウィング',
@@ -817,8 +813,6 @@
         'The Worm\'s Heart': '神龍の心核',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Aerial Blast': 'エリアルブラスト',
         'Aetherial Ray': 'エーテルレイ',
         'Akh Morn': 'アク・モーン',
@@ -835,7 +829,6 @@
         'Dragonflight': '昇竜',
         'Earth Breath': 'アースブレス',
         'Earthen Fury': '大地の怒り',
-        'Enrage': 'Enrage',
         'Fireball': 'ファイアボール',
         'First Wing': 'First Wing', // FIXME
         'Gyre Charge': 'ジャイヤチャージ',
@@ -891,7 +884,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Cocoon': '光茧',
-        'Engage!': '战斗开始！',
         'Ginryu': '银龙',
         'Hakkinryu': '白金龙',
         'Left Wing': '左翼',
@@ -901,8 +893,6 @@
         'The Worm\'s Heart': '神龙的核心',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Aerial Blast': '大气爆发',
         'Aetherial Ray': '以太射线',
         'Akh Morn': '死亡轮回',
@@ -919,7 +909,6 @@
         'Dragonflight': '龙腾',
         'Earth Breath': '大地吐息',
         'Earthen Fury': '大地之怒',
-        'Enrage': 'Enrage', // FIXME
         'Fireball': '火球',
         'First Wing': 'First Wing', // FIXME
         'Gyre Charge': '螺旋冲锋',
@@ -975,7 +964,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Cocoon': '빛의 고치',
-        'Engage!': '전투 시작!',
         'Ginryu': '은룡',
         'Hakkinryu': '백금룡',
         'Left Wing': '왼쪽 날개',
@@ -985,8 +973,6 @@
         'The Worm\'s Heart': '신룡의 심핵',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         'Aerial Blast': '대기 폭발',
         'Aetherial Ray': '에테르 광선',
         'Akh Morn': '아크 몬',
@@ -1003,7 +989,6 @@
         'Dragonflight': '용의 비행',
         'Earth Breath': '대지의 숨결',
         'Earthen Fury': '대지의 분노',
-        'Enrage': '전멸기',
         'Fireball': '화염구',
         'First Wing': 'First Wing', // FIXME
         'Gyre Charge': '회전 돌진',

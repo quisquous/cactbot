@@ -21,7 +21,7 @@
       },
     },
     {
-      id: 'SeiryuEx Stack',
+      id: 'SeiryuEx Line Stack',
       regex: /Forbidden Arts$/,
       beforeSeconds: 1,
       suppressSeconds: 10,
@@ -436,7 +436,6 @@
         'Ao-no-shiki': 'Ao no Shiki',
         'Blue Orochi': 'blau(?:e|er|es|en) Orochi',
         'Doro-no-shiki': 'Doro no Shiki',
-        'Engage!': 'Start!',
         'Iwa-no-shiki': 'Iwa no Shiki',
         'Numa-no-shiki': 'Numa no Shiki',
         'Seiryu': 'Seiryu',
@@ -445,8 +444,6 @@
       'replaceText': {
         '--jump--': '--Sprung--',
         '--rotate--': '--rotate--', // FIXME
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         '100-tonze Swing': '100-Tonzen-Schwung',
         'Blazing Aramitama': 'Flammende Aramitama',
         'Blue Bolt': 'Blauer Blitz',
@@ -454,7 +451,6 @@
         'Coursing River': 'Woge der Schlange',
         'Cursekeeper': 'Wächter des Fluchs',
         'Dragon\'s Wake': 'Erwachen des Drachen',
-        'Enrage': 'Finalangriff',
         'Explosion': 'Explosion',
         'Fifth Element': 'Fünftes Element',
         'Forbidden Arts': 'Verbotene Künste',
@@ -495,7 +491,6 @@
         'Ao-no-shiki': 'shiki céruléen',
         'Blue Orochi': 'orochi azur',
         'Doro-no-shiki': 'shiki fangeux',
-        'Engage!': 'À l\'attaque',
         'Iwa-no-shiki': 'shiki rocailleux',
         'Numa-no-shiki': 'shiki uligineux',
         'Seiryu': 'Seiryû',
@@ -504,8 +499,6 @@
       'replaceText': {
         '--jump--': '--jump--',
         '--rotate--': '--rotate--', // FIXME
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         '100-tonze Swing': 'Swing de 100 tonz',
         'Blazing Aramitama': 'Aramitama incandescent',
         'Blue Bolt': 'Percée bleue',
@@ -513,7 +506,6 @@
         'Coursing River': 'Vague de serpents',
         'Cursekeeper': 'Katashiro',
         'Dragon\'s Wake': 'Ascension draconique',
-        'Enrage': 'Enrage',
         'Explosion': 'Explosion',
         'Fifth Element': 'Cinq éléments',
         'Forbidden Arts': 'Lame interdite',
@@ -554,7 +546,6 @@
         'Ao-no-shiki': '蒼の式鬼',
         'Blue Orochi': '青のオロチ',
         'Doro-no-shiki': '泥の式鬼',
-        'Engage!': '戦闘開始！',
         'Iwa-no-shiki': '岩の式鬼',
         'Numa-no-shiki': '沼の式鬼',
         'Seiryu': '青龍',
@@ -563,8 +554,6 @@
       'replaceText': {
         '--jump--': '--jump--',
         '--rotate--': '--rotate--', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         '100-tonze Swing': '100トンズ・スイング',
         'Blazing Aramitama': '荒魂燃焼',
         'Blue Bolt': '青の突進',
@@ -572,7 +561,6 @@
         'Coursing River': '蛇崩',
         'Cursekeeper': '呪怨の形代',
         'Dragon\'s Wake': '雲蒸龍変',
-        'Enrage': 'Enrage',
         'Explosion': '爆散',
         'Fifth Element': '陰陽五行',
         'Forbidden Arts': '刀禁呪',
@@ -613,7 +601,6 @@
         'Ao-no-shiki': '苍之式鬼',
         'Blue Orochi': '青之大蛇',
         'Doro-no-shiki': '泥之式鬼',
-        'Engage!': '战斗开始！',
         'Iwa-no-shiki': '岩之式鬼',
         'Numa-no-shiki': '沼之式鬼',
         'Seiryu': '青龙',
@@ -622,8 +609,6 @@
       'replaceText': {
         '--jump--': '--龙大跳--',
         '--rotate--': '--龙回转--',
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         '100-tonze Swing': '百吨回转',
         'Blazing Aramitama': '荒魂燃烧',
         'Blue Bolt': '青突进',
@@ -631,7 +616,6 @@
         'Coursing River': '蛇崩',
         'Cursekeeper': '咒怨的替身',
         'Dragon\'s Wake': '云蒸龙变',
-        'Enrage': 'Enrage', // FIXME
         'Explosion': '爆散',
         'Fifth Element': '阴阳五行',
         'Forbidden Arts': '刀禁咒',
@@ -672,7 +656,6 @@
         'Ao-no-shiki': '푸른 사역귀',
         'Blue Orochi': '푸른 이무기',
         'Doro-no-shiki': '진흙 사역귀',
-        'Engage!': '전투 시작!',
         'Iwa-no-shiki': '바위 사역귀',
         'Numa-no-shiki': '늪 사역귀',
         'Seiryu': '청룡',
@@ -681,8 +664,6 @@
       'replaceText': {
         '--jump--': '--jump--', // FIXME
         '--rotate--': '--rotate--', // FIXME
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         '100-tonze Swing': '100톤즈 휘두르기',
         'Blazing Aramitama': '아라미타마 연소',
         'Blue Bolt': '푸른 돌진',
@@ -690,7 +671,6 @@
         'Coursing River': '뱀의 행진',
         'Cursekeeper': '저주 인형',
         'Dragon\'s Wake': '운증용변',
-        'Enrage': '전멸기',
         'Explosion': '폭발',
         'Fifth Element': '음양오행',
         'Forbidden Arts': '금단의 주술검',

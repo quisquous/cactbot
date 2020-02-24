@@ -244,7 +244,7 @@
     {
       // Optical Stack
       id: 'TEA Collective Reprobation',
-      damageRegex: '488C',
+      damageRegex: '488D',
       condition: function(e, data) {
         // Single Tap
         return e.type == '15';

@@ -120,7 +120,6 @@
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
         'Black Hole': 'Schwarzes Loch',
-        'Engage!': 'Start!',
         'Exdeath': 'Exdeath',
         'Wyrm Tail': 'Antiker Drachenschweif',
       },
@@ -128,8 +127,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Black Hole': 'Schwarzes Loch',
         'Black Spark': 'Schwarzer Funke',
         'Blaze': 'Flamme',
@@ -142,7 +139,6 @@
         'Collision': 'Aufprall',
         'Doom': 'Verhängnis',
         'Downburst': 'Fallböe',
-        'Enrage': 'Finalangriff',
         'Fire III': 'Feuga',
         'Flare': 'Flare',
         'Holy': 'Sanctus',
@@ -175,7 +171,6 @@
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
         'Black Hole': 'Trou noir',
-        'Engage!': 'À l\'attaque',
         'Exdeath': 'Exdeath',
         'Wyrm Tail': 'Queue du dragon ancestral',
       },
@@ -183,8 +178,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Black Hole': 'Trou noir',
         'Black Spark': 'Étincelle noire',
         'Blaze': 'Fournaise',
@@ -197,7 +190,6 @@
         'Collision': 'Impact',
         'Doom': 'Glas',
         'Downburst': 'Rafale descendante',
-        'Enrage': 'Enrage',
         'Fire III': 'Méga Feu',
         'Flare': 'Brasier',
         'Holy': 'Miracle',
@@ -230,7 +222,6 @@
       'replaceSync': {
         'Alte Roite': 'アルテ・ロイテ',
         'Black Hole': 'ブラックホール',
-        'Engage!': '戦闘開始！',
         'Exdeath': 'エクスデス',
         'Wyrm Tail': '太古の龍尾',
       },
@@ -238,8 +229,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Black Hole': 'ブラックホール',
         'Black Spark': 'ブラックスパーク',
         'Blaze': '火炎',
@@ -252,7 +241,6 @@
         'Collision': '衝撃',
         'Doom': '死の宣告',
         'Downburst': 'ダウンバースト',
-        'Enrage': 'Enrage',
         'Fire III': 'ファイガ',
         'Flare': 'フレア',
         'Holy': 'ホーリー',
@@ -285,7 +273,6 @@
       'replaceSync': {
         'Alte Roite': '老者',
         'Black Hole': '黑洞',
-        'Engage!': '战斗开始！',
         'Exdeath': '艾克斯迪司',
         'Wyrm Tail': '太古龙尾',
       },
@@ -293,8 +280,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Black Hole': '黑洞',
         'Black Spark': '黑洞',
         'Blaze': '炎爆',
@@ -307,7 +292,6 @@
         'Collision': '冲击',
         'Doom': '死亡宣告',
         'Downburst': '下行突风',
-        'Enrage': 'Enrage', // FIXME
         'Fire III': '爆炎',
         'Flare': '核爆',
         'Holy': '神圣',
@@ -340,7 +324,6 @@
       'replaceSync': {
         'Alte Roite': '알테 로이테',
         'Black Hole': '블랙홀',
-        'Engage!': '전투 시작!',
         'Exdeath': '엑스데스',
         'Wyrm Tail': '태고의 용 꼬리',
       },
@@ -348,8 +331,6 @@
         '(safe)': '(safe)', // FIXME
         '(spread)': '(spread)', // FIXME
         '(stack)': '(stack)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Black Hole': '블랙홀',
         'Black Spark': '검은 불꽃',
         'Blaze': '화염',
@@ -362,7 +343,6 @@
         'Collision': '충격',
         'Doom': '죽음의 선고',
         'Downburst': '하강 기류',
-        'Enrage': 'Enrage', // FIXME
         'Fire III': '파이가',
         'Flare': '플레어',
         'Holy': '홀리',

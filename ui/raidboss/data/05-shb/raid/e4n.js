@@ -157,7 +157,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Titan': 'Titan',
         'Bomb Boulder': 'Bomber-Brocken',
         'Massive Boulder': 'Riesiger Felsen',
@@ -173,15 +172,12 @@
         'Voice Of The Land': 'Aufschrei der Erde',
         'Left/Right Landslide': 'Linker/Rechter Bergsturz',
         'Leftward Landslide': 'Linker Bergsturz',
-        '--untargetable--': '--nich anvisierbar--',
         'Explosion': 'Explosion',
         'Evil Earth': 'Grimm der Erde',
         'Aftershock': 'Nachbeben',
         'Magnitude 5.0': 'Magnitude 5.0',
-        '--targetable--': '--anvisierbar--',
         'Seismic Wave': 'Seismische Welle',
         'Crumbling Down': 'Felsfall',
-        'Enrage': 'Finalangriff',
         'Rightward Landslide': 'Rechter Bergsturz',
         'Massive Landslide': 'Gigantischer Bergsturz',
         'Earthen Gauntlets': 'Gaia-Armberge',
@@ -189,7 +185,7 @@
         'Bury': 'Begraben',
         'Earthen Fury': 'Gaias Zorn',
         'Stonecrusher': 'Felsbrecher',
-        'Landslide': 'Bergsturz',
+        '(?<! )Landslide': 'Bergsturz',
       },
       '~effectNames': {
         'Brink of Death': 'Sterbenselend',
@@ -199,8 +195,8 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Titan': 'Titan',
         'Bomb Boulder': 'Bombo Rocher',
       },
@@ -217,15 +213,12 @@
         'Voice of the Land': 'Hurlement tellurique',
         'Left/Right Landslide': 'Glissement senestre/dextre',
         'Leftward Landslide': 'Glissement senestre',
-        '--untargetable--': '--Impossible à cibler--',
         'Explosion': 'Explosion',
         'Evil Earth': 'Terre maléfique',
         'Aftershock': 'Répercussion',
         'Magnitude 5.0': 'Magnitude 5',
-        '--targetable--': '--Ciblable--',
         'Seismic Wave': 'Ondes sismiques',
         'Crumbling Down': 'Chute de monolithes',
-        'Enrage': 'Enrage',
         'Rightward Landslide': 'Glissement dextre',
         'Massive Landslide': 'Glissement apocalyptique',
         'Earthen Gauntlets': 'Poing tellurique',
@@ -233,7 +226,7 @@
         'Bury': 'Ensevelissement',
         'Earthen Fury': 'Fureur tellurique',
         'Stonecrusher': 'Éruption tellurique',
-        'Landslide': 'Glissement de terrain',
+        '(?<! )Landslide': 'Glissement de terrain',
       },
       '~effectNames': {
         'Brink of Death': 'Mourant',
@@ -243,8 +236,8 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Titan': 'タイタン',
         'Bomb Boulder': 'ボムボルダー',
       },
@@ -272,7 +265,7 @@
         'Cobalt Bomb': 'コバルトボム',
         'Bury': '衝撃',
         'Stonecrusher': 'ロッククラッシュ',
-        'Landslide': 'ランドスライド',
+        '(?<! )Landslide': 'ランドスライド',
       },
       '~effectNames': {
         'Dropsy': '水毒',
@@ -284,7 +277,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Titan': '泰坦',
         'Bomb Boulder': '爆破岩石',
         'Massive Boulder': '巨大岩石',
@@ -313,7 +305,7 @@
         'Cobalt Bomb': '钴弹',
         'Bury': '塌方',
         'Stonecrusher': '崩岩',
-        'Landslide': '地裂',
+        '(?<! )Landslide': '地裂',
       },
       '~effectNames': {
         'Dropsy': '水毒',
@@ -325,7 +317,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Titan': '타이탄',
         'Bomb Boulder': '바위폭탄',
         'Massive Boulder': '거대 바위',
@@ -354,7 +345,7 @@
         'Cobalt Bomb': '코발트 폭탄',
         'Bury': '충격',
         'Stonecrusher': '암석 붕괴',
-        'Landslide': '산사태',
+        '(?<! )Landslide': '산사태',
       },
       '~effectNames': {
         'Dropsy': '물독',

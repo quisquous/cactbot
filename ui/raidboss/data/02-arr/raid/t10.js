@@ -94,9 +94,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Imdugud': 'Imdugud',
-        'The Alpha Concourse will be sealed off': 'bis sich der Zugang zur Alpha-Emergenzzone schließt',
+        'The Alpha Concourse': 'Alpha-Emergenzzone',
       },
       'replaceText': {
         'Crackle Hiss': 'Knisterndes Fauchen',
@@ -115,9 +114,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Imdugud': 'Imdugud',
-        'The Alpha Concourse will be sealed off': 'Fermeture du secteur des croyants',
+        'The Alpha Concourse': 'secteur des croyants',
       },
       'replaceText': {
         'Crackle Hiss': 'Crachat crépitant',
@@ -135,10 +133,9 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Imdugud': 'イムドゥグド',
-        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
       'replaceText': {
         'Crackle Hiss': 'クラックルヒス',
@@ -156,10 +153,9 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Imdugud': '伊姆都古德',
-        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
       'replaceText': {
         'Crackle Hiss': '雷光电闪',
@@ -177,10 +173,9 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Imdugud': '임두구드',
-        'The Alpha Concourse will be sealed off': 'The Alpha Concourse will be sealed off', // FIXME
       },
       'replaceText': {
         'Crackle Hiss': '파직파직 번개',

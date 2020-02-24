@@ -2,7 +2,10 @@
 
 // Temple of the Fist
 [{
-  zoneRegex: /Temple Of The Fist/,
+  zoneRegex: {
+    en: /Temple Of The Fist/,
+    ko: /^성도산 사원$/,
+  },
   damageWarn: {
     'Temple Fire Break': '21ED', // Conal AoE, Bloodglider Monk trash
     'Temple Radial Blaster': '1FD3', // Circle AoE, boss 1

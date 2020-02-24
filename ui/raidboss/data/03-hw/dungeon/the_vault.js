@@ -13,10 +13,12 @@
         if (data.role == 'tank') {
           return {
             en: 'Tank cleave',
+            fr: 'Tank cleave',
           };
         }
         return {
           en: 'Avoid tank cleave',
+          fr: 'Evitez le cleave sur le tank',
         };
       },
     },
@@ -27,6 +29,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Avoid dashes',
+        fr: 'Evitez les dash',
       },
     },
     {
@@ -37,10 +40,12 @@
         if (data.role == 'tank') {
           return {
             en: 'Tank cleave',
+            fr: 'Tank cleave',
           };
         }
         return {
           en: 'Avoid tank cleave',
+          fr: 'Evitez le cleave sur le tank',
         };
       },
     },
@@ -53,6 +58,7 @@
       },
       alertText: {
         en: 'Tank buster',
+        fr: 'Tankbuster',
       },
     },
   ],
@@ -70,6 +76,7 @@
       },
       infoText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -84,6 +91,7 @@
         if (data.role == 'healer') {
           return {
             en: 'Heal + shield ' + data.ShortName(matches.target),
+            fr: 'Heal + boucliers ' + data.ShortName(matches.target),
           };
         }
       },
@@ -95,10 +103,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Spread marker on YOU',
+            fr: 'Marqueur de séparation sur VOUS',
           };
         }
         return {
           en: 'Avoid ' + data.ShortName(matches.target),
+          fr: 'Evitez ' + data.ShortName(matches.target),
         };
       },
     },
@@ -115,6 +125,7 @@
       },
       infoText: {
         en: 'Interrupt the Knight',
+        fr: 'Interrompez le chevalier',
       },
     },
     {
@@ -127,6 +138,7 @@
       regexKo: Regexes.startsUsing({ id: '1027', source: '성기사 그리노', capture: false }),
       infoText: {
         en: 'Knockback',
+        fr: 'Poussée',
       },
     },
     {
@@ -143,6 +155,7 @@
       },
       alarmText: {
         en: 'Away from rifts',
+        fr: 'Eloignez-vous des déchirures',
       },
     },
     {
@@ -158,6 +171,7 @@
       },
       alertText: {
         en: 'AoE',
+        fr: 'Dégâts de zone',
       },
     },
     {
@@ -168,6 +182,7 @@
       },
       alertText: {
         en: 'Break chains',
+        fr: 'Cassez les chaines',
       },
     },
     {
@@ -181,6 +196,7 @@
       suppressSeconds: 4,
       infoText: {
         en: 'Evade marching knights',
+        fr: 'Esquivez les chevaliers',
       },
     },
   ],
@@ -198,11 +214,8 @@
         'The Chancel': 'Bekenntnis des Glaubens',
         'The Quire': 'Chorempore',
         'The chapter house': 'Himmelsgewölbe',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
-        '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': 'Wiederkunft',
         'Altar Candle': 'Altarkerze',
@@ -245,12 +258,9 @@
         'The Chancel': 'Salle de prière du sanctuaire de l\'Azur',
         'The Quire': 'Chœur',
         'The chapter house': 'Kiosque du patio',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
-        '--Untargetable--': '--Untargetable--', // FIXME
-        '--reset--': '--reset--', // FIXME
+        '--reset--': '-- Reset --',
         'Advent': 'Avènement',
         'Altar Candle': 'Cierge funéraire',
         'Altar Pyre': 'Bûcher funéraire',
@@ -268,7 +278,7 @@
         'Holy Chain': 'Chaîne sacrée',
         'Holy Shield Bash': 'Coup de bouclier saint',
         'Hyperdimensional Slash': 'Lacération hyperdimensionnelle',
-        'Knights Appear': 'Knights Appear', // FIXME
+        'Knights Appear': 'Apparition des chevaliers',
         'Overpower': 'Domination',
         'Pure Of Heart': 'Pureté du cœur',
         'Retreat': 'Retraite',
@@ -292,11 +302,8 @@
         'The Chancel': '氷天宮礼拝堂',
         'The Quire': '聖歌隊席',
         'The chapter house': '庭園の小ホール',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
-        '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '降臨',
         'Altar Candle': 'アルターキャンドル',
@@ -339,11 +346,8 @@
         'The Chancel': '冰天宫礼拜堂',
         'The Quire': '圣歌队席',
         'The chapter house': '庭园小厅',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
-        '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '降临',
         'Altar Candle': '圣坛蜡烛',
@@ -386,11 +390,8 @@
         'The Chancel': '빙천궁 예배당',
         'The Quire': '성가대석',
         'The chapter house': '기사단 강당',
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
-        '--Targetable--': '--Targetable--', // FIXME
-        '--Untargetable--': '--Untargetable--', // FIXME
         '--reset--': '--reset--', // FIXME
         'Advent': '강림',
         'Altar Candle': '제단의 초',

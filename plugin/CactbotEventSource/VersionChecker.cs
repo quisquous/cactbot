@@ -114,6 +114,7 @@ namespace Cactbot {
         pluginDirectory = pluginDirectory,
         lastCheck = config.LastUpdateCheck,
         currentVersion = GetCactbotVersion(),
+        checkInterval = TimeSpan.FromMinutes(15),
         repo = kRepo,
         downloadUrl = kDownloadUrl,
         strippedDirs = 2,

@@ -11,7 +11,7 @@
   timelineFile: 'o12s.txt',
   triggers: [
     {
-      // Track Omega MF vs Final Omega phase.
+      id: 'O12S Phase Init',
       regex: Regexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3357', source: 'Oméga', capture: false }),
@@ -603,7 +603,7 @@
       },
     },
     {
-      // Archive All Marker Tracking
+      id: 'O12S Archive All Marker Tracking',
       regex: Regexes.headMarker({ id: ['003E', '0060'] }),
       condition: function(data) {
         return data.isFinalOmega;
@@ -701,7 +701,7 @@
       },
     },
     {
-      // Archive Peripheral Tracking.
+      id: 'O12S Archive  Peripheral Tracking',
       regex: Regexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'] }),
       regexDe: Regexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'] }),
       regexFr: Regexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'] }),
@@ -781,7 +781,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Left Arm Unit': 'link(?:e|er|es|en) Arm',
         'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
@@ -791,8 +790,6 @@
         'Right Arm Unit': 'recht(?:e|er|es|en) Arm',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Advanced Optical Laser': 'Optischer Laser S',
         'Advanced Suppression': 'Hilfsprogramm S',
         '(?<! )Archive All': 'Alles archivieren',
@@ -811,7 +808,6 @@
         'Discharger': 'Entlader',
         'Efficient Bladework': 'Effiziente Klingenführung',
         'Electric Slide': 'Elektrosturz',
-        'Enrage': 'Finalangriff',
         'Firewall': 'Sicherungssystem',
         'Floodlight': 'Flutlicht',
         'Fundamental Synergy': 'Synergieprogramm C',
@@ -870,7 +866,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Left Arm Unit': 'unité bras gauche',
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
@@ -880,8 +875,6 @@
         'Right Arm Unit': 'unité bras droit',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Advanced Optical Laser': 'Laser optique S',
         'Advanced Suppression': 'Programme d\'assistance S',
         '(?<! )Archive All': 'Archivage intégral',
@@ -900,7 +893,6 @@
         'Discharger': 'Déchargeur',
         'Efficient Bladework': 'Lame active',
         'Electric Slide': 'Glissement Oméga',
-        'Enrage': 'Enrage',
         'Firewall': 'Programme protecteur',
         'Floodlight': 'Projecteur',
         'Fundamental Synergy': 'Programme synergique C',
@@ -959,7 +951,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Left Arm Unit': 'レフトアームユニット',
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
@@ -969,8 +960,6 @@
         'Right Arm Unit': 'ライトアームユニット',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Advanced Optical Laser': 'オプチカルレーザーS',
         'Advanced Suppression': '援護プログラムS',
         '(?<! )Archive All': 'アーカイブオール',
@@ -989,7 +978,6 @@
         'Discharger': 'ディスチャージャー',
         'Efficient Bladework': 'ソードアクション',
         'Electric Slide': 'オメガスライド',
-        'Enrage': 'Enrage',
         'Firewall': 'ガードプログラム',
         'Floodlight': 'フラッドライト',
         'Fundamental Synergy': '連携プログラムC',
@@ -1048,7 +1036,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Left Arm Unit': '左臂组',
         'Omega(?!-)': '欧米茄',
         'Omega-F': '欧米茄F',
@@ -1058,8 +1045,6 @@
         'Right Arm Unit': '右臂组',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Advanced Optical Laser': '光学射线S',
         'Advanced Suppression': '援护程序S',
         '(?<! )Archive All': '全归档',
@@ -1078,7 +1063,6 @@
         'Discharger': '能量放出',
         'Efficient Bladework': '剑击',
         'Electric Slide': '欧米茄滑跃',
-        'Enrage': 'Enrage', // FIXME
         'Firewall': '防御程序',
         'Floodlight': '泛光灯',
         'Fundamental Synergy': '协作程序C',
@@ -1137,7 +1121,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Left Arm Unit': '왼팔 유닛',
         'Omega(?!-)': '오메가',
         'Omega-F': '오메가 F',
@@ -1147,8 +1130,6 @@
         'Right Arm Unit': '오른팔 유닛',
       },
       'replaceText': {
-        '--targetable--': '--타겟가능--',
-        '--untargetable--': '--타겟불가능--',
         'Advanced Optical Laser': '광학 레이저 S',
         'Advanced Suppression': '지원 프로그램 S',
         '(?<! )Archive All': '전체 기록 보존',
@@ -1167,7 +1148,6 @@
         'Discharger': '방출',
         'Efficient Bladework': '검격',
         'Electric Slide': '오메가 슬라이드',
-        'Enrage': 'Enrage', // FIXME
         'Firewall': '방어 프로그램',
         'Floodlight': '투광 조명',
         'Fundamental Synergy': '연계 프로그램 C',

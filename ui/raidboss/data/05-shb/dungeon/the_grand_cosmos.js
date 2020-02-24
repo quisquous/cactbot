@@ -374,10 +374,9 @@
         'Leannan Sith': 'Leanan Sidhe',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Einsiedler',
-        'The Chamber of Celestial Song will be sealed off': 'bis sich der Zugang zu[rm]? den Großen Vergnügungen schließt',
-        'The Font of Quintessence will be sealed off': 'bis sich der Zugang zu[rm]? Broderieparterre schließt',
-        'The Martial Court will be sealed off': 'bis sich der Zugang zu[rm]? Kleine Stufenarkade schließt',
-        'is no longer sealed': 'öffnet sich wieder',
+        'The Chamber of Celestial Song': 'den Großen Vergnügungen',
+        'The Font of Quintessence': 'Broderieparterre',
+        'The Martial Court': 'Kleine Stufenarkade',
       },
       'replaceText': {
         'Black Flame': 'Finsterer Flammenwind',
@@ -387,7 +386,7 @@
         'Dark Shock': 'Angriff aus dem Dunkeln',
         'Dark Well': 'Dunkles Bersten',
         'Direct Seeding': 'Bedecktbesamung',
-        'Far Wind': 'Heller Sturm',
+        '(?<! )Far Wind': 'Heller Sturm',
         'Fire\'s Domain': 'Heißer Höllensturm',
         'Fire\'s Ire': 'Holistisches Höllenfeuer',
         'Gardener\'s Hymn': 'Wiegenlied der Sprösslinge',
@@ -413,10 +412,9 @@
         'Leannan Sith': 'Leannan Sith',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Ermite du Palais',
-        'is no longer sealed': 'Ouverture ',
-        'The Martial Court will be sealed off': 'Fermeture de La Cour martiale',
-        'The Font of Quintessence will be sealed off': 'Fermeture de La Source de Quintessence',
-        'The Chamber of Celestial Song will be sealed off': 'Fermeture du Chœur céleste',
+        'The Martial Court': 'La Cour martiale',
+        'The Font of Quintessence': 'La Source de Quintessence',
+        'The Chamber of Celestial Song': 'Chœur céleste',
       },
       'replaceText': {
         'Black Flame': 'Torrent fuligineux',
@@ -426,7 +424,7 @@
         'Dark Shock': 'Onde ténébreuse',
         'Dark Well': 'Déflagration ténébreuse',
         'Direct Seeding': 'Semis direct',
-        'Far Wind': 'Claire tempête',
+        '(?<! )Far Wind': 'Claire tempête',
         'Fire\'s Domain': 'Fournaise infernale',
         'Fire\'s Ire': 'Étincelle infernale',
         'Gardener\'s Hymn': 'Ballade du bourgeonnement',
@@ -447,15 +445,12 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Enslaved Love': 'エンスレイブド・ラヴ',
         'Leannan Sith': 'リャナンシー',
         'Lugus': 'ルゴス',
         'Seeker of Solitude': '宮殿の隠者',
-        'The Chamber of Celestial Song will be sealed off': 'The Chamber of Celestial Song will be sealed off', // FIXME
-        'The Font of Quintessence will be sealed off': 'The Font of Quintessence will be sealed off', // FIXME
-        'The Martial Court will be sealed off': 'The Martial Court will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         'Black Flame': '黒炎流',
@@ -465,7 +460,7 @@
         'Dark Shock': '黒の衝撃',
         'Dark Well': '黒の爆砕',
         'Direct Seeding': 'ダイレクトシーディング',
-        'Far Wind': '晴嵐',
+        '(?<! )Far Wind': '晴嵐',
         'Fire\'s Domain': '炎獄殺',
         'Fire\'s Ire': '炎獄閃',
         'Gardener\'s Hymn': '萌芽への謡',

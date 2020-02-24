@@ -61,7 +61,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bomb Boulder': 'Bomber-Brocken',
-        'Engage!': 'Start!',
         'Granite Gaoler': 'graniten(?:e|er|es|en) Kerkermeister',
         'Titan': 'Titan',
       },
@@ -69,12 +68,9 @@
         '(all)': '(alle)',
         '(clock)': '(Uhrzeiger)',
         '(one side)': '(eine Seite)',
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Burst': 'Einschlag',
         'Bury': 'Begraben',
         'Earthen Fury': 'Gaias Zorn',
-        'Enrage': 'Finalangriff',
         'Gaoler Adds': 'Gaoler Adds', // FIXME
         'Gaoler Landslide': 'Gaoler Landslide', // FIXME
         'Gaoler Tumult': 'Gaoler Tumult', // FIXME
@@ -92,7 +88,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Bomb Boulder': 'bombo rocher',
-        'Engage!': 'À l\'attaque !',
         'Granite Gaoler': 'Geôlier de granite',
         'Titan': 'Titan',
       },
@@ -100,12 +95,9 @@
         '(all)': '(tous)',
         '(clock)': '(horloge)',
         '(one side)': '(un côté)',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Burst': 'Explosion',
         'Bury': 'Ensevelissement',
         'Earthen Fury': 'Fureur tellurique',
-        'Enrage': 'Enrage',
         'Gaoler Adds': 'Adds geôlier',
         'Gaoler Landslide': 'Geôlier glissement',
         'Gaoler Tumult': 'Geôlier tumulte',
@@ -123,7 +115,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
-        'Engage!': '戦闘開始！',
         'Granite Gaoler': 'グラナイト・ジェイラー',
         'Titan': 'タイタン',
       },
@@ -131,12 +122,9 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Burst': '大爆発',
         'Bury': '衝撃',
         'Earthen Fury': '大地の怒り',
-        'Enrage': 'Enrage',
         'Gaoler Adds': 'Gaoler Adds', // FIXME
         'Gaoler Landslide': 'Gaoler Landslide', // FIXME
         'Gaoler Tumult': 'Gaoler Tumult', // FIXME
@@ -154,7 +142,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Bomb Boulder': '爆破岩石',
-        'Engage!': '战斗开始！',
         'Granite Gaoler': '花岗石卫',
         'Titan': '泰坦',
       },
@@ -162,12 +149,9 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Burst': '爆炸',
         'Bury': '塌方',
         'Earthen Fury': '大地之怒',
-        'Enrage': 'Enrage', // FIXME
         'Gaoler Adds': 'Gaoler Adds', // FIXME
         'Gaoler Landslide': 'Gaoler Landslide', // FIXME
         'Gaoler Tumult': 'Gaoler Tumult', // FIXME
@@ -185,7 +169,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Bomb Boulder': '바위폭탄',
-        'Engage!': '전투 시작!',
         'Granite Gaoler': '화강암 감옥',
         'Titan': '타이탄',
       },
@@ -193,12 +176,9 @@
         '(all)': '(all)', // FIXME
         '(clock)': '(clock)', // FIXME
         '(one side)': '(one side)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Burst': '대폭발',
         'Bury': '충격',
         'Earthen Fury': '대지의 분노',
-        'Enrage': 'Enrage', // FIXME
         'Gaoler Adds': 'Gaoler Adds', // FIXME
         'Gaoler Landslide': 'Gaoler Landslide', // FIXME
         'Gaoler Tumult': 'Gaoler Tumult', // FIXME

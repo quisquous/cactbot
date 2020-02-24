@@ -60,7 +60,7 @@
   ],
   triggers: [
     {
-      id: 'Eureka Hydatos Falling Asleep',
+      id: 'BA Falling Asleep',
       regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity.', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen.', capture: false }),
       regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes', capture: false }),
@@ -73,7 +73,7 @@
       },
     },
     {
-      id: 'Eureka Saved By Rememberance',
+      id: 'BA Saved By Rememberance',
       regex: Regexes.gameLog({ line: 'The memories of heroes past live on again', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf', capture: false }),
       regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来', capture: false }),
@@ -1096,12 +1096,9 @@
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
         'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--sync--': '--sync--',
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
         'Acceleration Bomb': 'Beschleunigungsbombe',
         'Adds': 'Adds', // FIXME
@@ -1190,12 +1187,9 @@
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
         'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Acallam Na Senorach': 'Spirale sépulcrale',
         'Acceleration Bomb': 'Bombe accélératrice',
         'Adds': 'Adds', // FIXME
@@ -1284,12 +1278,9 @@
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
         'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--sync--': '--sync--',
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Acallam Na Senorach': '真妖槍旋',
         'Acceleration Bomb': '加速度爆弾',
         'Adds': 'Adds', // FIXME
@@ -1378,12 +1369,9 @@
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
         'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--sync--': '--sync--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Acallam Na Senorach': '真妖枪旋',
         'Acceleration Bomb': '加速度炸弹',
         'Adds': 'Adds', // FIXME
@@ -1472,12 +1460,9 @@
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
         'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--sync--': '--sync--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Acallam Na Senorach': '피어너의 창',
         'Acceleration Bomb': '가속도 폭탄',
         'Adds': 'Adds', // FIXME

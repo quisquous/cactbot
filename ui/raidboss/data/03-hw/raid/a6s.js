@@ -45,7 +45,7 @@
       condition: function(data) {
         return data.CanSilence();
       },
-      response: Responses.silence(),
+      response: Responses.interupt(),
     },
     {
       id: 'A6S Hidden Minefield',
@@ -59,10 +59,12 @@
         if (data.role == 'tank' && !data.magicVulnerability) {
           return {
             en: 'Get Mines',
+            fr: 'Prenez les mines',
           };
         }
         return {
           en: 'Avoid Mines',
+          fr: 'Evitez les mines',
         };
       },
     },
@@ -77,6 +79,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Dodge Mirage Charge',
+        fr: 'Esquivez la charge de la réplique',
       },
     },
     {
@@ -92,6 +95,7 @@
       },
       alertText: {
         en: 'Look Away from Mirage',
+        fr: 'Ne regardez pas la réplique',
       },
     },
     {
@@ -107,6 +111,7 @@
       },
       alertText: {
         en: 'Look Towards Mirage',
+        fr: 'Regardez la réplique',
       },
     },
     {
@@ -132,6 +137,7 @@
       regexKo: Regexes.ability({ source: '폭격자', id: '1603', capture: false }),
       infoText: {
         en: 'Double Buster: Group Soak',
+        fr: 'Double buster: Packez-vous',
       },
     },
     {
@@ -147,6 +153,7 @@
       },
       alertText: {
         en: 'Get Away from Boss',
+        fr: 'Eloignez-vous du boss',
       },
     },
     {
@@ -162,6 +169,7 @@
       },
       alarmText: {
         en: 'Double Drill: Be Near/Far',
+        fr: 'Double foreuse : Soyez Loin/Près',
       },
     },
     {
@@ -177,6 +185,7 @@
       },
       alertText: {
         en: 'Go High',
+        fr: 'Allez en haut',
       },
     },
     {
@@ -192,6 +201,7 @@
       },
       alertText: {
         en: 'Go Low',
+        fr: 'Allez en bas',
       },
     },
     {
@@ -224,6 +234,7 @@
       regexKo: Regexes.startsUsing({ source: '교반자', id: '161A', capture: false }),
       alertText: {
         en: 'Hide Behind Tornado',
+        fr: 'Cachez vous derrière la tornade',
       },
     },
     {
@@ -234,6 +245,7 @@
       },
       alarmText: {
         en: 'Ice Missile on YOU',
+        fr: 'Missile de glace sur VOUS',
       },
     },
     {
@@ -250,6 +262,7 @@
       infoText: {
         en: 'Water on YOU',
         de: 'Wasser auf DIR',
+        fr: 'Eau sur VOUS',
         ja: '自分に水',
       },
     },
@@ -271,6 +284,7 @@
       alertText: {
         en: 'Drop Water Soon',
         de: 'Gleich Wasser ablegen',
+        fr: 'Posez l\'eau bientôt',
         ja: '水来るよ',
       },
     },
@@ -288,6 +302,7 @@
       infoText: {
         en: 'Lightning on YOU',
         de: 'Blitz auf DIR',
+        fr: 'Eclair sur VOUS',
         ja: '自分に雷',
       },
     },
@@ -309,6 +324,7 @@
       alertText: {
         en: 'Drop Lightning Soon',
         de: 'Gleich Blitz ablegen',
+        fr: 'Déposez l\'éclair bientôt',
         ja: '雷来るよ',
       },
     },

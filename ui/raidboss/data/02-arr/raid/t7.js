@@ -205,9 +205,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Das Biowaffen-Magazin öffnet sich erneut',
-        'Bioweapon Storage will be sealed off': 'bis sich das Biowaffen-Magazin schließt',
-        'Engage!': 'Start!',
+        'Bioweapon Storage': 'Biowaffen-Magazin',
         'Lamia Prosector': 'Lamia-Prosektorin',
         'Melusine': 'Melusine',
       },
@@ -228,9 +226,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Ouverture de l\'Entrepôt d\'armes biologiques',
-        'Bioweapon Storage will be sealed off': 'Fermeture de l\'Entrepôt d\'armes biologiques',
-        'Engage!': 'À l\'attaque',
+        'Bioweapon Storage': 'l\'Entrepôt d\'armes biologiques',
         'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
       },
@@ -250,10 +246,8 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Bioweapon Storage is no longer sealed', // FIXME
-        'Bioweapon Storage will be sealed off': 'Bioweapon Storage will be sealed off', // FIXME
-        'Engage!': '戦闘開始！',
         'Lamia Prosector': 'ラミア・プロセクター',
         'Melusine': 'メリュジーヌ',
       },
@@ -273,10 +267,8 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Bioweapon Storage is no longer sealed', // FIXME
-        'Bioweapon Storage will be sealed off': 'Bioweapon Storage will be sealed off', // FIXME
-        'Engage!': '战斗开始！',
         'Lamia Prosector': '拉米亚解剖女王',
         'Melusine': '美瑠姬奴',
       },
@@ -296,10 +288,8 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
-        'Bioweapon Storage is no longer sealed': 'Bioweapon Storage is no longer sealed', // FIXME
-        'Bioweapon Storage will be sealed off': 'Bioweapon Storage will be sealed off', // FIXME
-        'Engage!': '전투 시작!',
         'Lamia Prosector': '라미아 시체해부자',
         'Melusine': '멜뤼진',
       },

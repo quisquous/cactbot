@@ -47,10 +47,10 @@ hideall "--Reset--"
 #alertall "LB3" before 0 speak "voice" "limit break"
 
 ##############################################################
-0 "--Reset--" sync /Excruciationator is no longer sealed/ window 10000 jump 0
+0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 ################# Phase 1
-0 "--Start--" sync /Excruciationator will be sealed off in 15 seconds/ window 10000
+0 "--Start--" sync / 00:0839:Excruciationator will be sealed off in 15 seconds/ window 10000
 9 "AoE"
 14 "AoE"
 21 "Single Charge"

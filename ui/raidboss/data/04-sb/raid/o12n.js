@@ -184,7 +184,6 @@
       'locale': 'de',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': 'Start!',
         'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
@@ -192,14 +191,11 @@
         'Progress to party combat': 'Initiiere Gruppenkampf',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Beyond Strength': 'Schildkombo G',
         'Cosmo Memory': 'Kosmospeicher',
         'Discharger': 'Entlader',
         'Efficient Bladework': 'Effiziente Klingenführung',
         'Electric Slide': 'Elektrosturz',
-        'Enrage': 'Finalangriff',
         'Firewall': 'Sicherungssystem',
         'Floodlight': 'Flutlicht',
         'Ground Zero': 'Explosionszentrum',
@@ -234,7 +230,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': 'À l\'attaque',
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
@@ -242,14 +237,11 @@
         'Progress to party combat': 'Limites du combat en solitaire atteintes',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Beyond Strength': 'Combo bouclier G',
         'Cosmo Memory': 'Cosmomémoire',
         'Discharger': 'Déchargeur',
         'Efficient Bladework': 'Lame active',
         'Electric Slide': 'Glissement Oméga',
-        'Enrage': 'Enrage',
         'Firewall': 'Programme protecteur',
         'Floodlight': 'Projecteur',
         'Ground Zero': 'Ruée féroce',
@@ -284,7 +276,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': '戦闘開始！',
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
@@ -292,14 +283,11 @@
         'Progress to party combat': '単独戦闘による限界を確認',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Beyond Strength': 'シールドコンボG',
         'Cosmo Memory': 'コスモメモリー',
         'Discharger': 'ディスチャージャー',
         'Efficient Bladework': 'ソードアクション',
         'Electric Slide': 'オメガスライド',
-        'Enrage': 'Enrage',
         'Firewall': 'ガードプログラム',
         'Floodlight': 'フラッドライト',
         'Ground Zero': '急襲',
@@ -334,7 +322,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': '战斗开始！',
         'Omega(?!-)': '欧米茄',
         'Omega-F': '欧米茄F',
         'Omega-M': '欧米茄M',
@@ -342,14 +329,11 @@
         'Progress to party combat': '确认到单独战斗的极限',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Beyond Strength': '盾连击G',
         'Cosmo Memory': '宇宙记忆',
         'Discharger': '能量放出',
         'Efficient Bladework': '剑击',
         'Electric Slide': '欧米茄滑跃',
-        'Enrage': 'Enrage', // FIXME
         'Firewall': '防御程序',
         'Floodlight': '泛光灯',
         'Ground Zero': '急袭',
@@ -384,7 +368,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
-        'Engage!': '전투 시작!',
         'Omega(?!-)': '오메가',
         'Omega-F': '오메가 F',
         'Omega-M': '오메가 M',
@@ -392,14 +375,11 @@
         'Progress to party combat': '단독 전투 한계 확인',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Beyond Strength': '방패 연격 G',
         'Cosmo Memory': '세계의 기억',
         'Discharger': '방출',
         'Efficient Bladework': '검격',
         'Electric Slide': '오메가 슬라이드',
-        'Enrage': 'Enrage', // FIXME
         'Firewall': '방어 프로그램',
         'Floodlight': '투광 조명',
         'Ground Zero': '급습',
