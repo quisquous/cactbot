@@ -104,7 +104,7 @@ let Responses = {
   tankBusterSwap: (busterSev, swapSev) => {
     // Note: busterSev and swapSev can be the same priority.
     let obj = {};
-    let tankSwapFunc = (data) => {
+    let tankSwapFunc = (data, matches) => {
       let target = getTarget(matches);
       if (data.role == 'tank' && target != data.me) {
         return {
@@ -116,7 +116,7 @@ let Responses = {
         };
       }
     };
-    let busterFunc = (data) => {
+    let busterFunc = (data, matches) => {
       let target = getTarget(matches);
       if (target == data.me) {
         return {
