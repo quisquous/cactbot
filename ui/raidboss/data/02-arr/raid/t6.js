@@ -140,10 +140,7 @@
       regexJa: Regexes.startsUsing({ id: '79D', source: 'ラフレシア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '79D', source: '大王花', capture: false }),
       regexKo: Regexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
-      alarmText: {
-        en: 'STOP',
-        fr: 'STOP',
-      },
+      response: Responses.stopEverything(),
     },
     {
       id: 'T6 Phase 3',
@@ -169,10 +166,8 @@
       regexJa: Regexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
       regexKo: Regexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
-      infoText: {
-        en: 'Stack for Acid',
-        fr: 'Packez vous pour Acide',
-      },
+      regexKo: Regexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
+      response: Responses.stack(),
     },
     {
       id: 'T6 Swarm',

@@ -47,22 +47,7 @@
     {
       id: 'T10 Prey',
       regex: Regexes.headMarker({ id: '001E' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Prey on YOU',
-            fr: 'Prière sur VOUS',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Prey on ' + data.ShortName(matches.target),
-            fr: 'Prière sur ' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.preyOn(),
     },
     {
       id: 'T10 Cyclonic Tether',

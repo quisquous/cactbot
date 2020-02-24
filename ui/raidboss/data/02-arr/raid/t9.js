@@ -11,10 +11,7 @@
         return data.role == 'tank' || data.role == 'healer' || data.job == 'BLU';
       },
       beforeSeconds: 5,
-      infoText: {
-        en: 'Tankbuster',
-        fr: 'TankBuster',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'T9 Dalamud Dive',
