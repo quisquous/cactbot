@@ -110,7 +110,10 @@
       regexCn: Regexes.hasHP({ name: '卡利亚', hp: '60', capture: false }),
       regexKo: Regexes.hasHP({ name: '칼리야', hp: '60', capture: false }),
       sound: 'Long',
-      response: Responses.getOut(),
+      infoText: {
+        en: 'Out of Middle',
+        fr: 'En dehors du centre',
+      },
     },
     {
       id: 'T11 Forked Lightning',
