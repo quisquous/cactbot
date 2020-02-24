@@ -211,6 +211,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'big aoe!',
       de: 'Große AoE!',
+      fr: 'Grosse AoE !',
       ko: '강한 전체 공격!',
     };
     return obj;
@@ -268,6 +269,7 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Stack in middle',
+      fr: 'Packez-vous au centre',
       de: 'In der Mitte sammeln',
       ko: '중앙에서 모이기',
     };
@@ -563,7 +565,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Stun',
       de: 'Betäubung',
-      fr: 'Étourdissement ',
+      fr: 'Étourdissement',
       ja: 'スタン',
       cn: '眩晕',
       ko: '기절',
@@ -575,6 +577,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'interupt',
       de: 'unterbrechen',
+      fr: 'Interrompez',
       ko: '기술 시전 끊기',
     };
     return obj;
@@ -659,6 +662,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Move chains together',
       de: 'Ketten zusammen bewegen',
+      fr: 'Bougez les chaines ensemble',
       ko: '선 붙어서 같이 움직이기',
     };
     return obj;
