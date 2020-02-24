@@ -12,9 +12,7 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alertText: {
-        en: 'Cleave Soon',
-      },
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
@@ -50,36 +48,7 @@
       regexJa: Regexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       regexCn: Regexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       regexKo: Regexes.startsUsing({ id: '215E', source: '락슈미' }),
-      alarmText: function(data, matches) {
-        if (data.role != 'tank' && matches.target == data.me) {
-          return {
-            en: 'Buster on YOU',
-            de: 'Tankbuster auf DIR',
-          };
-        }
-      },
-      alertText: function(data, matches) {
-        if (data.role == 'tank' && matches.target == data.me) {
-          return {
-            en: 'Buster on YOU',
-            de: 'Tankbuster auf DIR',
-          };
-        }
-        if (data.role == 'healer' && matches.target != data.me) {
-          return {
-            en: 'Buster on ' + matches.target,
-            de: 'Tankbuster auf ' + matches.target,
-          };
-        }
-      },
-      tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'buster',
-            de: 'Basta',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Lakshmi Divine Denial',

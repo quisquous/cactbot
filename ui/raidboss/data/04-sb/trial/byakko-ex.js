@@ -16,37 +16,7 @@
       regexJa: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
       regexCn: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
       regexKo: Regexes.startsUsing({ id: '27DA', source: '백호' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: '自分にタンク即死級',
-            cn: '死刑减伤',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ja: 'タンク即死級に' + data.ShortName(matches.target),
-            cn: '死刑->' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ja: 'タンク即死級',
-            cn: '死刑',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'ByaEx Flying Donut',
@@ -56,20 +26,7 @@
       regexJa: Regexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
       regexCn: Regexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
       regexKo: Regexes.startsUsing({ id: '27F4', source: '백호', capture: false }),
-      alertText: {
-        en: 'Get Inside',
-        de: 'Reingehen',
-        fr: 'Allez au centre',
-        ja: '密着',
-        cn: '靠近',
-      },
-      tts: {
-        en: 'inside',
-        de: 'rein',
-        fr: 'centre',
-        ja: '密着',
-        cn: '靠近',
-      },
+      response: Responses.getIn(),
     },
     {
       id: 'ByaEx Sweep The Leg',
@@ -79,20 +36,7 @@
       regexJa: Regexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
       regexCn: Regexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
       regexKo: Regexes.startsUsing({ id: '27DB', source: '백호', capture: false }),
-      alertText: {
-        en: 'Get Behind',
-        de: 'Hinter ihn laufen',
-        fr: 'Allez derrière le boss',
-        ja: '後ろ',
-        cn: '背后',
-      },
-      tts: {
-        en: 'behind',
-        de: 'hinter ihn',
-        fr: 'derrière',
-        ja: '後ろ',
-        cn: '背后',
-      },
+      response: Responses.getBehind(),
     },
     {
       id: 'ByaEx Storm Pulse',
@@ -102,23 +46,7 @@
       regexJa: Regexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
       regexCn: Regexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
       regexKo: Regexes.startsUsing({ id: '27DC', source: '백호', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'healer') {
-          return {
-            en: 'AOE',
-            de: 'AoE',
-            fr: 'AoE',
-            ja: 'AoE',
-          };
-        }
-      },
-      tts: {
-        en: 'aoe',
-        de: 'a o e',
-        fr: ' a o e',
-        ja: 'AoE',
-        cn: 'A O E',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'ByaEx Distant Clap',
