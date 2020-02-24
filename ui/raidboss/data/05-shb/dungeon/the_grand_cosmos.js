@@ -5,7 +5,7 @@
 [{
   zoneRegex: {
     en: /^The Grand Cosmos$/,
-    ko: /\(692\)/,
+    ko: /^그랑 코스모스$/,
   },
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [
@@ -15,53 +15,12 @@
       regexDe: Regexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
       regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
       regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Cosmos Dark Pulse',
       regex: Regexes.headMarker({ id: '003E' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            ja: '自分にシェア',
-            fr: 'Package sur VOUS',
-            cn: '集合点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Cosmos Dark Well Far Winds',
@@ -69,14 +28,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        ja: '散開',
-        fr: 'Ecartez-vous',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Cosmos Immortal Anathema',
@@ -87,14 +39,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ja: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Cosmos Tribulation',
@@ -116,30 +61,7 @@
       regexDe: Regexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
       regexFr: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
       regexJa: Regexes.startsUsing({ id: '471B', source: 'リャナンシー' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Ode To Lost Love',
@@ -150,14 +72,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ja: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       // Can't use added combatant here as all these adds exist.
@@ -168,14 +83,7 @@
       regexFr: Regexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
       regexJa: Regexes.ability({ id: '368', source: 'ラヴァーズリング', capture: false }),
       suppressSeconds: 60,
-      infoText: {
-        en: 'Kill Extra Add',
-        de: 'Add angreifen',
-        ja: '水の精倒して',
-        fr: 'Tuez l\'add',
-        cn: '击杀小怪',
-        ko: '쫄 처리',
-      },
+      response: Responses.killExtraAdd(),
     },
     {
       id: 'Cosmos Gardener\'s Hymn',
@@ -212,30 +120,7 @@
       regexDe: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
       regexFr: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
       regexJa: Regexes.startsUsing({ id: '4764', source: 'ルゴス' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 -> ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Culling Blade',
@@ -246,14 +131,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ja: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Cosmos Black Flame 1',
@@ -323,7 +201,7 @@
         en: 'Left',
         de: 'Links',
         fr: 'Gauche',
-        ko: '왼쪽 공격',
+        ko: '왼쪽 피하기',
       },
     },
     {
@@ -336,7 +214,7 @@
         en: 'Right',
         de: 'Rechts',
         fr: 'Droite',
-        ko: '오른쪽 공격',
+        ko: '오른쪽 피하기',
       },
     },
     {
