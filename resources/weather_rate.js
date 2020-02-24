@@ -1520,4 +1520,82 @@ let gWeatherRates = {
       'Fog',
     ],
   },
+  118: {
+    'rates': [
+      50,
+      100,
+    ],
+    'weathers': [
+      'Clear Skies',
+      'Fair Skies',
+    ],
+  },
+  119: {
+    'rates': [
+      45,
+      63,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Showers',
+    ],
+  },
+  120: {
+    'rates': [
+      40,
+      55,
+      70,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Wind',
+      'Gales',
+    ],
+  },
+  121: {
+    'rates': [
+      35,
+      50,
+      65,
+      85,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Snow',
+      'Blizzards',
+    ],
+  },
+  122: {
+    'rates': [
+      82,
+      87,
+      92,
+      97,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Dust Storms',
+      'Heat Waves',
+    ],
+  },
+  123: {
+    'rates': [],
+    'weathers': [],
+  },
 };
