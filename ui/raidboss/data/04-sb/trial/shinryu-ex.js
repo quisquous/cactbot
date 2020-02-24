@@ -442,12 +442,12 @@
     },
     {
       id: 'ShinryuEx Breath',
-      regex: Regexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '264A', source: 'Shinryu', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '264A', source: '神龍', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '264A', source: '神龙', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '264A', source: '신룡', capture: false }),
+      regex: Regexes.startsUsing({ id: '264A', source: 'Shinryu' }),
+      regexDe: Regexes.startsUsing({ id: '264A', source: 'Shinryu' }),
+      regexFr: Regexes.startsUsing({ id: '264A', source: 'Shinryu' }),
+      regexJa: Regexes.startsUsing({ id: '264A', source: '神龍' }),
+      regexCn: Regexes.startsUsing({ id: '264A', source: '神龙' }),
+      regexKo: Regexes.startsUsing({ id: '264A', source: '신룡' }),
       response: Responses.tankCleave(),
     },
     {
