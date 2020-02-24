@@ -556,7 +556,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      response: Responses.aoe(),
+      response: Responses.bigAoe(),
     },
     {
       // This is the tank version of the stack marker. It has minimal circular bordering
