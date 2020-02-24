@@ -12,10 +12,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      infoText: {
-        en: 'Tank buster',
-        fr: 'Tank buster',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Temple Cardinal Shift',
@@ -24,10 +21,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
   ],
   triggers: [
@@ -42,10 +36,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Temple Electric Burst Smriti',
@@ -58,10 +49,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Temple Fourfold Shear',
@@ -71,20 +59,7 @@
       regexJa: Regexes.startsUsing({ id: '1FD9', source: 'アブダ' }),
       regexCn: Regexes.startsUsing({ id: '1FD9', source: '额部陀' }),
       regexKo: Regexes.startsUsing({ id: '1FD9', source: '아부다' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tank buster on YOU',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Tank buster on ' + data.shortName(matches.target),
-            fr: 'Tankbuster sur ' + data.shortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Temple Moonseal',
@@ -116,16 +91,7 @@
       regexJa: Regexes.startsUsing({ id: '1FDC', source: 'アブダ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1FDC', source: '额部陀', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1FDC', source: '아부다', capture: false }),
-      alertText: {
-        en: 'front/back are safe',
-        de: 'Vorne/Hinten sicher',
-        fr: 'Allez devant ou derrière',
-      },
-      tts: {
-        en: 'go front or back',
-        de: 'nach vorn oder hinten',
-        fr: 'allez devant ou derrière',
-      },
+      response: Responses.goFrontBack(),
     },
     {
       id: 'Temple Fore And Aft',
@@ -135,16 +101,7 @@
       regexJa: Regexes.startsUsing({ id: '1FDB', source: 'アブダ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1FDB', source: '额部陀', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1FDB', source: '아부다', capture: false }),
-      alertText: {
-        en: 'sides are safe',
-        de: 'Seiten sind sicher',
-        fr: 'Allez à gauche ou à droite',
-      },
-      tts: {
-        en: 'go sides',
-        de: 'zur Seite',
-        fr: 'allez sur les côtés',
-      },
+      response: Responses.goSides(),
     },
     {
       id: 'Temple Killer Instinct',
@@ -171,10 +128,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Temple Touch Of Slaughter',
@@ -228,18 +182,7 @@
       regexJa: Regexes.startsUsing({ id: '1FEE', source: '双豹のイヴォン' }),
       regexCn: Regexes.startsUsing({ id: '1FEE', source: '双豹伊沃恩' }),
       regexKo: Regexes.startsUsing({ id: '1FEE', source: '쌍표범 이본' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack marker on YOU',
-            fr: 'Package sur VOUS',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.shortName(matches.target),
-          fr: 'Package sur ' + data.shortName(matches.target),
-        };
-      },
+      response: Responses.stackOn(),
     },
   ],
   timelineReplace: [
