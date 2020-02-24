@@ -77,8 +77,8 @@
       id: 'RubyEx Pall of Rage',
       regex: Regexes.gainsEffect({ effect: 'Pall of Rage' }),
       preRun: function(data) {
-        data.color = data.color || [];
-        data.color[matches.target] = 'blue';
+        data.colors = data.colors || [];
+        data.colors[matches.target] = 'blue';
       },
       infoText: function(data, matches) {
         if (data.me == matches.target) {
@@ -92,8 +92,8 @@
       id: 'RubyEx Pall of Grief',
       regex: Regexes.gainsEffect({ effect: 'Pall of Grief' }),
       preRun: function(data) {
-        data.color = data.color || [];
-        data.color[matches.target] = 'red';
+        data.colors = data.colors || [];
+        data.colors[matches.target] = 'red';
       },
       infoText: function(data, matches) {
         if (data.me == matches.target) {
@@ -115,7 +115,7 @@
       condition: function(data) {
         if (data.role != 'healer' || data.role != 'tank')
           return false;
-        if (data.color[data.me] == data.color[matches.target])
+        if (data.colors[data.me] == data.colors[matches.target])
           return true;
       },
       suppressSeconds: 1,
@@ -125,13 +125,15 @@
       id: 'RubyEx Change of Heart',
       regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
       preRun: function(data) {
-        if (data.color == 'red')
-          data.color = 'blue';
-        else
-          data.color = 'red';
+        for (color of data.colors) {
+          if (color == 'blue')
+            color = 'red';
+          else
+            color = 'blue';
+        }
       },
       infoText: function(data) {
-        if (data.color == 'red') {
+        if (data.colors[data.me] == 'red') {
           return {
             en: 'Attack Red (West)',
           };
