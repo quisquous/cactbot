@@ -43,6 +43,7 @@
       },
       infoText: {
         en: 'Look for small spear',
+        fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
       },
     },
@@ -58,6 +59,7 @@
       },
       infoText: {
         en: 'Look for adds',
+        fr: 'Cherchez les adds',
         ko: '쫄 위치 확인',
       },
       run: function(data) {
@@ -73,6 +75,7 @@
       regexKo: Regexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
       infoText: {
         en: 'Fury\'s Bolt',
+        fr: 'Boule de foudre',
         ko: '라무 강화',
       },
     },
@@ -85,6 +88,7 @@
       regexKo: Regexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
       infoText: {
         en: 'Grab an orb',
+        fr: 'Prenez un orb',
         ko: '구슬 줍기',
       },
     },
@@ -108,11 +112,13 @@
         if (!data.fury) {
           return {
             en: 'Ready Spread',
+            fr: 'Dispersion bientot',
             ko: '산개 준비',
           };
         } else if (data.fury) {
           return {
             en: 'donut AoE',
+            fr: 'AoE en donut',
             ko: '도넛 장판',
           };
         }
@@ -159,6 +165,7 @@
       regexKo: Regexes.startsUsing({ id: '4BB8', source: '라무', capture: false }),
       infoText: {
         en: 'Position for Stormcloud',
+        fr: 'Position pour les nuages',
         ko: '번개 구름 위치 잡기',
       },
     },
@@ -171,6 +178,7 @@
       regexKo: Regexes.startsUsing({ id: '4BAD', source: '라무', capture: false }),
       infoText: {
         en: 'Be in your position',
+        fr: 'Soyez en place',
         ko: '자기 위치에 있기',
       },
     },
@@ -183,6 +191,7 @@
       regexKo: Regexes.startsUsing({ id: '4BC4', source: '라무', capture: false }),
       alertText: {
         en: 'Ready for Chain',
+        fr: 'Préparez vous pour la chaine',
         ko: '번개 돌려막기 준비',
       },
     },

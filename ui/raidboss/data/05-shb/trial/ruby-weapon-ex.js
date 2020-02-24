@@ -9,6 +9,7 @@
     {
       id: 'RubyEx Optimized Ultima',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4ABE', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4ABE', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -17,6 +18,7 @@
     {
       id: 'RubyEx Stamp',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B03' }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B03' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -25,17 +27,21 @@
     {
       id: 'RubyEx Undermine',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD0', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD0', capture: false }),
       preRun: function(data) {
         data.rubyCounter = data.rubyCounter || 0;
         data.rubyCounter++;
       },
       infoText: {
         en: 'Away from Lines',
+        fr: 'En dehors des sillons',
+        ko: '선 피하기',
       },
     },
     {
       id: 'RubyEx Liquefaction',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEC', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AEC', capture: false }),
       preRun: function(data) {
         data.rubyCounter = data.rubyCounter || 0;
         data.rubyCounter++;
@@ -46,21 +52,26 @@
       },
       alertText: {
         en: 'Get On Lines',
+        fr: 'Sur les sillons',
+        ko: '선 위로 올라가기',
       },
     },
     {
       id: 'RubyEx Ruby Ray',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B02', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B02', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'RubyEx Cut And Run',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B05', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B05', capture: false }),
       response: Responses.goSides(),
     },
     {
       id: 'RubyEx High-Powered Homing Lasers',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8' }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
       condition: Conditions.targetIsYou(),
       response: Responses.stackOn(),
     },
@@ -69,13 +80,17 @@
       // Give a friendly reminder to pop LB3 if you haven't already
       id: 'RubyEx Optimized Ultima Enrage',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B2D', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B2D', capture: false }),
       infoText: {
         en: 'Enrage!',
+        fr: 'Enrage !',
+        ko: '전멸기!',
       },
     },
     {
       id: 'RubyEx Pall of Rage',
       regex: Regexes.gainsEffect({ effect: 'Pall of Rage' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Fureur' }),
       preRun: function(data) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'blue';
@@ -84,6 +99,8 @@
         if (data.me == matches.target) {
           return {
             en: 'Attack Blue (East)',
+            fr: 'Attaquez le bleu (Est)',
+            ko: '파란색 공격 (오른쪽)',
           };
         }
       },
@@ -91,6 +108,7 @@
     {
       id: 'RubyEx Pall of Grief',
       regex: Regexes.gainsEffect({ effect: 'Pall of Grief' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Angoisse' }),
       preRun: function(data) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'red';
@@ -99,6 +117,8 @@
         if (data.me == matches.target) {
           return {
             en: 'Attack Red (West)',
+            fr: 'Attaquez le rouge (Ouest)',
+            ko: '빨간색 공격 (왼쪽)',
           };
         }
       },
@@ -112,6 +132,7 @@
     {
       id: 'RubyEx Ruby Claw',
       regex: Regexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
+      regexFr: Regexes.startsUsing({ source: 'Griffe Rubis', id: '4AFF' }),
       condition: function(data) {
         if (data.role != 'healer' || data.role != 'tank')
           return false;
@@ -124,6 +145,7 @@
     {
       id: 'RubyEx Change of Heart',
       regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AFC', capture: false }),
       preRun: function(data) {
         for (color of data.colors) {
           if (color == 'blue')
@@ -136,26 +158,33 @@
         if (data.colors[data.me] == 'red') {
           return {
             en: 'Attack Red (East)',
+            fr: 'Attaquez le rouge (Est)',
+            ko: '빨간색 공격 (오른쪽)',
           };
         }
         return {
           en: 'Attack Blue (West)',
+          fr: 'Attaquez le bleu (Ouest)',
+          ko: '파란색 공격 (왼쪽)',
         };
       },
     },
     {
       id: 'RubyEx Negative Aura',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AFE', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AFE', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'RubyEx Screech',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEE', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AEE', capture: false }),
       response: Responses.knockback(),
     },
     {
       id: 'RubyEx Outrage',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B04', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B04', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
