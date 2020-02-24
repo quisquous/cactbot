@@ -125,7 +125,7 @@
       regexFr: Regexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
-      delaySeconds: 3.5,
+      delaySeconds: 3.0,
       condition: function(data) {
         return !data.fury;
       },
@@ -140,11 +140,11 @@
     },
     {
       id: 'E5S Crippling Blow',
-      regex: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
-      regexDe: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
-      regexFr: Regexes.ability({ id: '4BCA', source: 'Ramuh' }),
-      regexJa: Regexes.ability({ id: '4BCA', source: 'ラムウ' }),
-      regexKo: Regexes.ability({ id: '4BCA', source: '라무' }),
+      regex: Regexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
+      regexDe: Regexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
+      regexFr: Regexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
+      regexJa: Regexes.startsUsing({ id: '4BCA', source: 'ラムウ' }),
+      regexKo: Regexes.startsUsing({ id: '4BCA', source: '라무' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
