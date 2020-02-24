@@ -42,6 +42,7 @@
       },
       infoText: {
         en: 'Tether on YOU',
+        ko: '선 대상자',
       },
     },
     {
@@ -71,6 +72,7 @@
         let names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
         return {
           en: 'Stack (' + names.join(', ') + ')',
+          ko: '모이기 (' + names.join(', ') + ')',
         };
       },
     },
@@ -80,6 +82,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Left',
+        ko: '왼쪽으로 순간이동',
       },
     },
     {
@@ -88,6 +91,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Right',
+        ko: '오른쪽으로 순간이동',
       },
     },
     {
@@ -96,6 +100,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Forward',
+        ko: '앞으로 순간이동',
       },
     },
     {
@@ -104,6 +109,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Back',
+        ko: '뒤로 순간이동',
       },
     },
     {
@@ -149,7 +155,7 @@
           fr: 'Package sur ' + data.ShortName(target),
           ja: data.ShortName(target) + 'にスタック',
           cn: '靠近 ' + data.ShortName(target) + '集合',
-          ko: '쉐어 → ' + data.ShortName(target),
+          ko: '쉐어징 → ' + data.ShortName(target),
         };
       },
     },
@@ -178,7 +184,7 @@
             de: 'Sammeln auf DIR',
             ja: '自分にシェア',
             fr: 'Stack sur VOUS',
-            ko: '나에게 모이기',
+            ko: '나에게 쉐어징',
           };
         }
         if (data.insatiableLightStack.length == 1)
@@ -186,6 +192,7 @@
         let names = data.insatiableLightStack.map((x) => data.ShortName(x)).sort();
         return {
           en: 'Stack (' + names.join(', ') + ')',
+          ko: '모이기 (' + names.join(', ') + ')',
         };
       },
     },
@@ -202,6 +209,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Get under vertical add',
+        ko: '똑바로 서 있는 쫄 아래로',
       },
     },
     {
@@ -229,9 +237,11 @@
         data.colorMap = {};
         data.colorMap['light'] = {
           en: 'Dark',
+          ko: '어둠',
         };
         data.colorMap['dark'] = {
           en: 'Light',
+          ko: '빛',
         };
       },
     },
@@ -273,6 +283,7 @@
       alertText: function(data) {
         return {
           en: 'Get hit by ' + data.colorMap[data.color][data.lang],
+          ko: data.colorMap[data.color][data.lang] + ' 맞기',
         };
       },
     },
@@ -295,6 +306,7 @@
       alertText: function(data) {
         return {
           en: 'Stand in ' + data.colorMap[data.color][data.lang],
+          ko: data.colorMap[data.color][data.lang] + '에 서기',
         };
       },
     },

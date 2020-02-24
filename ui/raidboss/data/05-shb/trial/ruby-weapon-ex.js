@@ -31,6 +31,7 @@
       },
       infoText: {
         en: 'Away from Lines',
+        ko: '선 피하기',
       },
     },
     {
@@ -46,6 +47,7 @@
       },
       alertText: {
         en: 'Get On Lines',
+        ko: '선 위로 올라가기',
       },
     },
     {
@@ -71,6 +73,7 @@
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B2D', capture: false }),
       infoText: {
         en: 'Enrage!',
+        ko: '전멸기!',
       },
     },
     {
@@ -84,6 +87,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Attack Blue (East)',
+            ko: '파란색 공격 (오른쪽)',
           };
         }
       },
@@ -99,6 +103,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Attack Red (West)',
+            ko: '빨간색 공격 (왼쪽)',
           };
         }
       },
@@ -136,10 +141,12 @@
         if (data.colors[data.me] == 'red') {
           return {
             en: 'Attack Red (East)',
+            ko: '빨간색 공격 (오른쪽)',
           };
         }
         return {
           en: 'Attack Blue (West)',
+          ko: '파란색 공격 (왼쪽)',
         };
       },
     },
