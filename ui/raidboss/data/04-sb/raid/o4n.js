@@ -30,16 +30,7 @@
       regexJa: Regexes.startsUsing({ id: '24BD', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24BD', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24BD', source: '엑스데스', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave soon!',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'O4N Standard Fire',
@@ -49,13 +40,7 @@
       regexJa: Regexes.startsUsing({ id: '24BA', source: 'エクスデス' }),
       regexCn: Regexes.startsUsing({ id: '24BA', source: '艾克斯迪司' }),
       regexKo: Regexes.startsUsing({ id: '24BA', source: '엑스데스' }),
-      alertText: function(data, matches) {
-        if (data.me == matches[1]) {
-          return {
-            en: 'Spread for Fire',
-          };
-        }
-      },
+      response: Responses.spread(),
     },
     {
       id: 'O4N Empowered Blizzard',
@@ -77,9 +62,7 @@
       regexJa: Regexes.startsUsing({ id: '24BF', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24BF', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24BF', source: '엑스데스', capture: false }),
-      infoText: {
-        en: 'Stop everything',
-      },
+      response: Responses.stopEverything(),
     },
     {
       id: 'O4N Empowered Thunder',
@@ -89,9 +72,7 @@
       regexJa: Regexes.startsUsing({ id: '24C1', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24C1', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24C1', source: '엑스데스', capture: false }),
-      alertText: {
-        en: 'Get out',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'O4N Decisive Battle ',
@@ -139,9 +120,7 @@
       regexJa: Regexes.startsUsing({ id: '24B8', source: 'エクスデス', target: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24B8', source: '艾克斯迪司', target: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24B8', source: '엑스데스', target: '엑스데스', capture: false }),
-      alertText: {
-        en: 'Knockback',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'O4N Flare',
@@ -178,9 +157,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'Heavy raid damage',
-      },
+      response: Responses.bigAoe(),
     },
   ],
 },

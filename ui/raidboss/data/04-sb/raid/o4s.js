@@ -101,14 +101,7 @@
       regexJa: Regexes.startsUsing({ id: '23FB', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '23FB', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '23FB', source: '엑스데스', capture: false }),
-      alarmText: {
-        en: 'Fire III: Stop',
-        de: 'Feuga: Stehenbleiben',
-      },
-      tts: {
-        en: 'fire stop moving',
-        de: 'feuga stehenbleiben',
-      },
+      response: Responses.stopMoving(),
     },
     {
       // Blizzard III after Decisive Battle.
@@ -119,14 +112,7 @@
       regexJa: Regexes.startsUsing({ id: '23FC', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '23FC', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '23FC', source: '엑스데스', capture: false }),
-      alertText: {
-        en: 'Blizzard III: Keep moving',
-        de: 'Eisga: Bewegen',
-      },
-      tts: {
-        en: 'blizzard keep moving',
-        de: 'eisga bewegen',
-      },
+      response: Responses.move(),
     },
     {
       // Thunder III after Decisive Battle.
@@ -137,14 +123,7 @@
       regexJa: Regexes.startsUsing({ id: '23FD', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '23FD', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '23FD', source: '엑스데스', capture: false }),
-      alertText: {
-        en: 'Thunder III: Get out',
-        de: 'Blitzga: Raus da',
-      },
-      tts: {
-        en: 'thunder get out',
-        de: 'blitzga raus da',
-      },
+      response: Responses.getOut(),
     },
     {
       // Flare
@@ -719,14 +698,7 @@
       regexJa: Regexes.startsUsing({ id: '242D', source: 'ネオエクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '242D', source: '新生艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '242D', source: '네오 엑스데스', capture: false }),
-      infoText: {
-        en: 'Grand Cross Omega: Go to middle',
-        de: 'Supernova Omega: In die Mitte',
-      },
-      tts: {
-        en: 'go to middle',
-        de: 'in die Mitte',
-      },
+      response: Responses.stackMiddle(),
     },
     {
       id: 'O4S Neo Forked Lightning',
@@ -737,17 +709,10 @@
       regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
       regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
       delaySeconds: 1,
-      alertText: {
-        en: 'Forked Lightning: Don\'t Stack',
-        de: 'Gabelblitz: Nicht stacken',
-      },
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      tts: {
-        en: 'lightning get out',
-        de: 'blitz raus da',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'O4S Neo Acceleration Bomb',
@@ -953,26 +918,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alarmText: function(data) {
-        if (data.role != 'tank') {
-          return {
-            en: 'Earthshaker on YOU',
-            de: 'Erdstoß auf DIR',
-          };
-        }
-      },
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Earthshaker on YOU',
-            de: 'Erdstoß auf DIR',
-          };
-        }
-      },
-      tts: {
-        en: 'shaker',
-        de: 'erstoß',
-      },
+      response: Responses.earthshaker(),
     },
     {
       id: 'O4S Neo Delta Attack',
@@ -982,14 +928,7 @@
       regexJa: Regexes.startsUsing({ id: '241E', source: 'ネオエクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '241E', source: '新生艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '241E', source: '네오 엑스데스', capture: false }),
-      infoText: {
-        en: 'Delta Attack: Stack',
-        de: 'Delta Attacke: Stack',
-      },
-      tts: {
-        en: 'stack for delta',
-        de: 'für delta stek en',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'O4S Neo Almagest',

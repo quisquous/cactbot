@@ -26,31 +26,7 @@
       regexJa: Regexes.startsUsing({ id: '3287', source: 'オメガ' }),
       regexCn: Regexes.startsUsing({ id: '3287', source: '欧米茄' }),
       regexKo: Regexes.startsUsing({ id: '3287', source: '오메가' }),
-      alarmText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       // Ability IDs:
@@ -84,11 +60,7 @@
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
-      alertText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-      },
+      response: Responses.goLeft(),
       run: function(data) {
         data.lastWasStarboard = true;
       },
@@ -104,11 +76,7 @@
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
-      alertText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite',
-      },
+      response: Responses.goRight(),
       run: function(data) {
         data.lastWasStarboard = false;
       },

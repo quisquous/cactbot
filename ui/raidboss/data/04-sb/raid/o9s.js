@@ -18,57 +18,7 @@
       regexJa: Regexes.startsUsing({ id: '3170', source: 'カオス' }),
       regexCn: Regexes.startsUsing({ id: '3170', source: '卡奥斯' }),
       regexKo: Regexes.startsUsing({ id: '3170', source: '카오스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑减伤',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank Swap',
-            de: 'Tank-Wechsel',
-            fr: 'Tank Swap',
-            ja: 'スイッチ',
-            cn: '换T',
-            ko: '탱 교대',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑-> ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + ' 탱버',
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ja: 'バスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        } else if (data.role == 'tank') {
-          return {
-            en: 'tank swap',
-            de: 'tenk wechsel',
-            fr: 'tank swap',
-            ja: 'スイッチ',
-            cn: '换T',
-            ko: '탱 교대',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O9S Longitudinal Implosion',
@@ -184,13 +134,7 @@
       regexJa: Regexes.startsUsing({ id: '3171', source: 'カオス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3171', source: '卡奥斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3171', source: '카오스', capture: false }),
-      infoText: {
-        en: 'Get Behind',
-        de: 'Hinten dran',
-        fr: 'Derrière le boss',
-        ja: '背面へ',
-        ko: '뒤로 이동',
-      },
+      response: Responses.getBehind(),
     },
     {
       id: 'O9S Orbs Fiend',

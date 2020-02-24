@@ -30,35 +30,7 @@
       regexJa: Regexes.startsUsing({ id: '28B1', source: '魔列車' }),
       regexCn: Regexes.startsUsing({ id: '28B1', source: '魔列车' }),
       regexKo: Regexes.startsUsing({ id: '28B1', source: '마열차' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tank Buster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '탱버 → 나',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Buster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '탱버 → ' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ko: '탱버',
-            ja: 'バスター',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O5S Head On',
@@ -68,20 +40,7 @@
       regexJa: Regexes.startsUsing({ id: '28A4', source: '魔列車', capture: false }),
       regexCn: Regexes.startsUsing({ id: '28A4', source: '魔列车', capture: false }),
       regexKo: Regexes.startsUsing({ id: '28A4', source: '마열차', capture: false }),
-      alertText: {
-        en: 'Go to back',
-        de: 'Nach hinten laufen',
-        fr: 'S\'éloigner',
-        ko: '뒤로 이동',
-        ja: '後ろへ',
-      },
-      tts: {
-        en: 'run away',
-        de: 'ab nach hinten',
-        fr: 'S\'éloigner',
-        ko: '뒤로 이동',
-        ja: '後ろへ',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'O5S Diabolic Headlamp',
@@ -91,13 +50,7 @@
       regexJa: Regexes.startsUsing({ id: '28B2', source: '魔列車', capture: false }),
       regexCn: Regexes.startsUsing({ id: '28B2', source: '魔列车', capture: false }),
       regexKo: Regexes.startsUsing({ id: '28B2', source: '마열차', capture: false }),
-      alertText: {
-        en: 'Stack middle',
-        de: 'Stack in der Mitte',
-        fr: 'Stack au milieu',
-        ko: '중앙으로 모이기',
-        ja: '中央でスタック',
-      },
+      response: Responses.stackMiddle(),
     },
     {
       id: 'O5S Diabolic Light',
@@ -135,13 +88,7 @@
       regexJa: Regexes.addedCombatant({ name: '未練のゴースト', capture: false }),
       regexCn: Regexes.addedCombatant({ name: '留恋幽灵', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '미련이 남은 유령', capture: false }),
-      infoText: {
-        en: 'Knockback Ghost',
-        de: 'Rückstoß Geist',
-        fr: 'Fantôme soufflant',
-        ko: 'Fantôme soufflant',
-        ja: 'ノックバックゴースト',
-      },
+      response: Responses.knockback(),
     },
   ],
   timelineReplace: [
