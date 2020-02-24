@@ -25,7 +25,7 @@
     },
     {
       id: 'E7S Betwixt Worlds',
-      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4CF9', capture: false }),
+      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4CFD', capture: false }),
       run: function(data) {
         data.phase = 'betwixtWorlds';
       },
@@ -282,6 +282,20 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Bait Puddles',
+      },
+    },
+    {
+      id: 'E7S Crusade',
+      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C76', capture: false }),
+      response: Responses.knockback(),
+    },
+    {
+      id: 'E7S Threefold Grace',
+      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C7E', capture: false }),
+      alertText: function(data) {
+        return {
+          en: 'Stand in ' + data.colorMap[data.color][data.lang],
+        };
       },
     },
   ],
