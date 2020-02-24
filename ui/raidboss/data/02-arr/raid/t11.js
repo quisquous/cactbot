@@ -69,7 +69,14 @@
       regexJa: Regexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
       regexCn: Regexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
       regexKo: Regexes.ability({ id: 'B76', source: '칼리야', capture: false }),
-      response: Responses.stack(),
+      infoText: function(data) {
+        if (!data.firstSeed)
+          return;
+        return {
+          en: 'Stack',
+          fr: 'Packé',
+        };
+      },
       run: function(data) {
         delete data.firstSeed;
       },
@@ -82,7 +89,14 @@
       regexJa: Regexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
       regexCn: Regexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
       regexKo: Regexes.ability({ id: 'B77', source: '칼리야', capture: false }),
-      response: Responses.spread(),
+      infoText: function(data) {
+        if (!data.firstSeed)
+          return;
+        return {
+          en: 'Spread',
+          fr: 'Ecarté',
+        };
+      },
       run: function(data) {
         delete data.firstSeed;
       },
