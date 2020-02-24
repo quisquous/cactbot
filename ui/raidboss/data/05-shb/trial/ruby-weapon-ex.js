@@ -51,7 +51,7 @@
     {
       id: 'RubyEx Ruby Ray',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B02', capture: false }),
-      response: Responses.outOfFront()
+      response: Responses.awayFromFront(),
     },
     {
       id: 'RubyEx Cut And Run',
@@ -76,23 +76,31 @@
     {
       id: 'RubyEx Pall of Rage',
       regex: Regexes.gainsEffect({ effect: 'Pall of Rage' }),
-      condition: Conditions.targetIsYou(),
       preRun: function(data) {
-        data.color = 'blue';
+        data.color = data.color || [];
+        data.color[matches.target] = 'blue';
       },
-      infoText: {
-        en: 'Attack Blue (East)',
+      infoText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Attack Blue (East)',
+          };
+        }
       },
     },
     {
       id: 'RubyEx Pall of Grief',
       regex: Regexes.gainsEffect({ effect: 'Pall of Grief' }),
-      condition: Conditions.targetIsYou(),
       preRun: function(data) {
-        data.color = 'red';
+        data.color = data.color || [];
+        data.color[matches.target] = 'red';
       },
-      infoText: {
-        en: 'Attack Red (West)',
+      infoText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Attack Red (West)',
+          };
+        }
       },
     },
     {
@@ -103,9 +111,12 @@
     },
     {
       id: 'RubyEx Ruby Claw',
-      regex: Regexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF', capture: false }),
+      regex: Regexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
       condition: function(data) {
-        return data.role == 'healer' || data.role == 'tank';
+        if (data.role != 'healer' || data.role != 'tank')
+          return false;
+        if (data.color[data.me] == data.color[matches.target])
+          return true;
       },
       suppressSeconds: 1,
       response: Responses.tankBuster(),
