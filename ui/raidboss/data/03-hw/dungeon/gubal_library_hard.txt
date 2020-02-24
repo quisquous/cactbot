@@ -1,12 +1,12 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-0.0 "--Reset--" sync / is no longer sealed/ window 5000 jump 0
+0.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 5000 jump 0
 
 # Demon of the Tome
 # -ii 1951 1952
 
-0 "--sync--" sync /The Hall of Magicks will be sealed off/
+0 "--sync--" sync / 00:0839:The Hall of Magicks will be sealed off/
 6.1 "Triclip" sync /:Demon of the Tome:193A:/
 17.3 "Folio" sync /:Demon of the Tome:193C:/
 23.4 "--sync--" sync /:Top Shelf Tome:193D:/
@@ -54,7 +54,7 @@ hideall "--sync--"
 # We use game log lines for the phases because the ACT log lines are unreliable
 # Whichever intermission comes second ends up with phantom "Gains Effect" lines
 
-1000.0 "--sync--"  sync /The Astrology and Astromancy Camera will be sealed off/ window 1000,0
+1000.0 "--sync--"  sync / 00:0839:The Astrology and Astromancy Camera will be sealed off/ window 1000,0
 1007.3 "Searing Wind" sync /:Liquid Flame:1944:/
 1014.3 "Bibliocide" sync /:Liquid Flame:1945:/
 1025.7 "Sea Of Flames x3"
@@ -107,7 +107,7 @@ hideall "--sync--"
 # Strix
 # -ii 194F 1950 1958 195B 1969
 
-2000.0 "--sync--" sync /The Rare Tomes Room will be sealed off/ window 2000,5
+2000.0 "--sync--" sync / 00:0839:The Rare Tomes Room will be sealed off/ window 2000,5
 2009.2 "Check Out" sync /:Strix:194E:/
 2017.5 "Properties Of Darkness (buster)" sync /:Strix:1954:/
 2029.6 "Properties Of Quakes" sync /:Strix:1956:/

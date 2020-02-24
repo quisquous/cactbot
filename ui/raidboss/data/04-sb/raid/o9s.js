@@ -605,7 +605,7 @@
       },
     },
     {
-      // Primordial Crust Cleanup
+      id: 'O9S Primordial Crust Cleanup',
       regex: Regexes.gainsEffect({ effect: 'Primordial Crust' }),
       regexDe: Regexes.gainsEffect({ effect: 'Chaoserde' }),
       regexFr: Regexes.gainsEffect({ effect: 'Terre Du Chaos' }),
@@ -724,12 +724,9 @@
       'replaceSync': {
         'Chaos': 'Chaos',
         'Chaosphere': 'Chaossphäre',
-        'Engage!': 'Start!',
         'dark crystal': 'dunkl(?:e|er|es|en) Kristall',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Big Bang': 'Quantengravitation',
         'Blaze': 'Flamme',
         'Bowels of Agony': 'Quälende Eingeweide',
@@ -738,7 +735,6 @@
         'Cyclone': 'Tornado',
         'Damning Edict': 'Verdammendes Edikt',
         'Earthquake': 'Erdbeben',
-        'Enrage': 'Finalangriff',
         'Fiendish Orbs': 'Höllenkugeln',
         'Knock Down': 'Niederschmettern',
         'Knock(?! )': 'Einschlag',
@@ -772,12 +768,9 @@
       'replaceSync': {
         'Chaos': 'Chaos',
         'Chaosphere': 'Sphère de chaos',
-        'Engage!': 'À l\'attaque',
         'dark crystal': 'cristal noir',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Big Bang': 'Saillie',
         'Blaze': 'Fournaise',
         'Bowels of Agony': 'Entrailles de l\'agonie',
@@ -786,7 +779,6 @@
         'Cyclone': 'Tornade',
         'Damning Edict': 'Décret accablant',
         'Earthquake': 'Grand séisme',
-        'Enrage': 'Enrage',
         'Fiendish Orbs': 'Ordre de poursuite',
         'Knock Down': 'Ordre d\'impact',
         'Knock(?! )': 'Impact',
@@ -820,12 +812,9 @@
       'replaceSync': {
         'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',
-        'Engage!': '戦闘開始！',
         'dark crystal': '黒水晶',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Big Bang': '突出',
         'Blaze': 'ほのお',
         'Bowels of Agony': 'バウル・オブ・アゴニー',
@@ -834,7 +823,6 @@
         'Cyclone': 'たつまき',
         'Damning Edict': 'ダミングイーディクト',
         'Earthquake': 'じしん',
-        'Enrage': 'Enrage',
         'Fiendish Orbs': '追尾せよ',
         'Knock Down': '着弾せよ',
         'Knock(?! )': '着弾',
@@ -868,12 +856,9 @@
       'replaceSync': {
         'Chaos': '卡奥斯',
         'Chaosphere': '混沌晶球',
-        'Engage!': '战斗开始！',
         'dark crystal': '黑水晶',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Big Bang': '돌출',
         'Blaze': '烈焰',
         'Bowels of Agony': '深层痛楚',
@@ -882,7 +867,6 @@
         'Cyclone': '龙卷风',
         'Damning Edict': '诅咒敕令',
         'Earthquake': '地震',
-        'Enrage': 'Enrage', // FIXME
         'Fiendish Orbs': '追踪',
         'Knock Down': '中弹',
         'Knock(?! )': 'Knock', // FIXME
@@ -916,13 +900,10 @@
       'replaceSync': {
         'Chaos': '카오스',
         'Chaosphere': '혼돈의 구체',
-        'Engage!': '전투 시작!',
         'dark crystal': '흑수정',
       },
       'replaceText': {
         'Big Bang': '돌출하라',
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Blaze': '화염',
         'Bowels of Agony': '고통의 심핵',
         'Chaosphere': '혼돈의 구체',
@@ -930,7 +911,6 @@
         'Cyclone': '회오리',
         'Damning Edict': '파멸 포고',
         'Earthquake': '지진',
-        'Enrage': '전멸기',
         'Fiendish Orbs': '추격하라',
         'Knock Down': '착탄하라',
         'Knock(?! )': '착탄',

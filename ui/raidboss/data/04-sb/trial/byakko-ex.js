@@ -197,6 +197,7 @@
       },
     },
     {
+      id: 'ByaEx Roar Counter',
       regex: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
       regexDe: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
       regexFr: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
@@ -341,6 +342,7 @@
       },
     },
     {
+      id: 'ByaEx Stake Counter',
       regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
@@ -353,6 +355,7 @@
       },
     },
     {
+      id: 'ByaEx Stake Counter Cleanup',
       regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
       regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
@@ -390,13 +393,10 @@
         'Aratama Force': 'Aratama-Kraft',
         'Aratama Soul': 'Aratama-Seele',
         'Byakko': 'Byakko',
-        'Engage!': 'Start!',
         'Hakutei': 'Hakutei',
         'There is no turning back!': 'Mein Jagdtrieb ist erwacht!',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Answer On High': 'Himmlische Antwort',
         'Aratama': 'Einschlag',
         'Bombogenesis': 'Plötzliches Orkantief',
@@ -404,7 +404,6 @@
         'Dance Of The Incomplete': 'Tanz der zwei Gesichter',
         'Distant Clap': 'Donnergrollen',
         'Donut AOE': 'Donut AoE',
-        'Enrage': 'Finalangriff',
         'Fell Swoop': 'Auf einen Streich',
         'Fire And Lightning': 'Feuer und Blitz',
         'Gale Force': 'Orkan',
@@ -452,13 +451,10 @@
         'Aratama Force': 'aramitama',
         'Aratama Soul': 'Aramitama',
         'Byakko': 'Byakko',
-        'Engage!': 'À l\'attaque',
         'Hakutei': 'Hakutei',
         'There is no turning back!': 'Grrraaaah ! ... Trop tard pour les regrets !',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Answer On High': 'Foudre céleste',
         'Aratama': 'Aratama',
         'Bombogenesis': 'Bombogénèse',
@@ -466,7 +462,6 @@
         'Dance Of The Incomplete': 'Danse semi-bestiale',
         'Distant Clap': 'Tonnerre lointain',
         'Donut AOE': 'Donut AOE', // FIXME
-        'Enrage': 'Enrage',
         'Fell Swoop': 'Éléments déchaînés',
         'Fire And Lightning': 'Feu et foudre',
         'Gale Force': 'Coup de rafale',
@@ -514,13 +509,10 @@
         'Aratama Force': '荒弾',
         'Aratama Soul': '荒魂',
         'Byakko': '白虎',
-        'Engage!': '戦闘開始！',
         'Hakutei': '白帝',
         'There is no turning back!': 'オオオオオ……この衝動、もはや止められん！',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Answer On High': '天つ雷',
         'Aratama': '着弾',
         'Bombogenesis': '爆弾低気圧',
@@ -528,7 +520,6 @@
         'Dance Of The Incomplete': '半獣舞踏',
         'Distant Clap': '遠雷',
         'Donut AOE': 'Donut AOE', // FIXME
-        'Enrage': 'Enrage',
         'Fell Swoop': '迅雷風烈波',
         'Fire And Lightning': '雷火一閃',
         'Gale Force': '暴風',
@@ -576,13 +567,10 @@
         'Aratama Force': '荒弹',
         'Aratama Soul': '荒魂',
         'Byakko': '白虎',
-        'Engage!': '战斗开始！',
         'Hakutei': '白帝',
         'There is no turning back!': '我体内的冲动已无法抑制！',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
-        '--untargetable--': '--不可选中--',
         'Answer On High': '天雷',
         'Aratama': '荒弹',
         'Bombogenesis': '炸弹低气压',
@@ -590,7 +578,6 @@
         'Dance Of The Incomplete': '半兽舞蹈',
         'Distant Clap': '远雷',
         'Donut AOE': '月环',
-        'Enrage': '战斗开始',
         'Fell Swoop': '迅雷风烈波',
         'Fire And Lightning': '雷火一闪',
         'Gale Force': '暴风',
@@ -638,13 +625,10 @@
         'Aratama Force': '아라미타마 탄환',
         'Aratama Soul': 'Aratama Soul', // FIXME
         'Byakko': '백호',
-        'Engage!': '전투 시작!',
         'Hakutei': '하얀 제왕',
         'There is no turning back!': 'There is no turning back!', // FIXME
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         'Answer On High': '하늘의 번개',
         'Aratama': '아라미타마 탄환',
         'Bombogenesis': '폭탄 저기압',
@@ -652,7 +636,6 @@
         'Dance Of The Incomplete': '반수의 춤',
         'Distant Clap': '원뢰',
         'Donut AOE': 'Donut AOE', // FIXME
-        'Enrage': '전멸기',
         'Fell Swoop': '신뢰풍렬파',
         'Fire And Lightning': '뇌화일섬',
         'Gale Force': '폭풍',

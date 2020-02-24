@@ -21,7 +21,7 @@
     {
       // Look for spellblade holy so that the last noisy waltz
       // books message in the library phase can be ignored.
-      id: 'Spellblade holy counter',
+      id: 'O3S Spellblade Holy Counter',
       regex: Regexes.ability({ id: '22EF', source: 'Halicarnassus', capture: false }),
       regexDe: Regexes.ability({ id: '22EF', source: 'Halikarnassos', capture: false }),
       regexFr: Regexes.ability({ id: '22EF', source: 'Halicarnasse', capture: false }),
@@ -379,7 +379,6 @@
       'replaceSync': {
         'Ancient Tome': 'uralt(?:e|er|es|en) Foliant',
         'Apanda': 'Apanda',
-        'Engage!': 'Start!',
         'Great Dragon': 'Riesendrache',
         'Halicarnassus': 'Halikarnassos',
         'Soul Reaper': 'Seelenschnitter',
@@ -390,8 +389,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Blizzard': 'Eis',
         'Critical Hit': 'Kritischer Treffer',
         'Cross Reaper': 'Sensenschwung',
@@ -399,7 +396,6 @@
         'Dimensional Wave': 'Dimensionswelle',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': 'Tanz der Erde',
-        'Enrage': 'Finalangriff',
         'Fire': 'Feuer',
         'Folio': 'Foliant',
         'Frost Breath': 'Frostiger Atem',
@@ -456,7 +452,6 @@
       'replaceSync': {
         'Ancient Tome': 'volume ancien',
         'Apanda': 'apanda',
-        'Engage!': 'À l\'attaque',
         'Great Dragon': 'dragon suprême',
         'Halicarnassus': 'Halicarnasse',
         'Soul Reaper': 'faucheur d\'âmes',
@@ -467,8 +462,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Blizzard': 'Glace',
         'Critical Hit': 'Attaque critique',
         'Cross Reaper': 'Fauchaison',
@@ -476,7 +469,6 @@
         'Dimensional Wave': 'Onde dimensionnelle',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': 'Danse de la terre',
-        'Enrage': 'Enrage',
         'Fire': 'Feu',
         'Folio': 'Réimpression',
         'Frost Breath': 'Souffle glacé',
@@ -533,7 +525,6 @@
       'replaceSync': {
         'Ancient Tome': '古代書',
         'Apanda': 'アパンダ',
-        'Engage!': '戦闘開始！',
         'Great Dragon': 'ドラゴングレイト',
         'Halicarnassus': 'ハリカルナッソス',
         'Soul Reaper': 'ソウルリーパー',
@@ -544,8 +535,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Blizzard': 'ブリザド',
         'Critical Hit': 'クリティカル',
         'Cross Reaper': 'クロスリーパー',
@@ -553,7 +542,6 @@
         'Dimensional Wave': '次元波動',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': '大地の舞い',
-        'Enrage': 'Enrage',
         'Fire': 'ファイア',
         'Folio': '重版',
         'Frost Breath': 'フロストブレス',
@@ -610,7 +598,6 @@
       'replaceSync': {
         'Ancient Tome': '古代书',
         'Apanda': '阿班达',
-        'Engage!': '战斗开始！',
         'Great Dragon': '巨龙',
         'Halicarnassus': '哈利卡纳苏斯',
         'Soul Reaper': '灵魂收割者',
@@ -621,8 +608,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Blizzard': '冰结',
         'Critical Hit': '暴击',
         'Cross Reaper': '交叉斩击',
@@ -630,7 +615,6 @@
         'Dimensional Wave': '次元波动',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': '大地之舞',
-        'Enrage': 'Enrage', // FIXME
         'Fire': '火炎',
         'Folio': '再版',
         'Frost Breath': '寒霜吐息',
@@ -687,7 +671,6 @@
       'replaceSync': {
         'Ancient Tome': '고대의 책',
         'Apanda': '아판다',
-        'Engage!': '전투 시작!',
         'Great Dragon': '거대 드래곤',
         'Halicarnassus': '할리카르나소스',
         'Soul Reaper': '영혼 수확자',
@@ -698,8 +681,6 @@
         '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
         '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
         '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Blizzard': '블리자드',
         'Critical Hit': '극대화',
         'Cross Reaper': '사신의 낫',
@@ -707,7 +688,6 @@
         'Dimensional Wave': '차원 파동',
         'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
         'Earthly Dance': '대지의 춤',
-        'Enrage': 'Enrage', // FIXME
         'Fire': '파이어',
         'Folio': '증쇄',
         'Frost Breath': '서리 숨결',

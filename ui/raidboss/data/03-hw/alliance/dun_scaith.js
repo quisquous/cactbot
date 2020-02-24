@@ -12,7 +12,7 @@
     },
     // DEATHGAZE
     {
-      id: 'Dun Scaith Void Death',
+      id: 'Dun Scaith Void Death Circle',
       regex: Regexes.startsUsing({ id: ['1C7F', '1C90'], source: 'Deathgaze Hollow', capture: false }),
       regexDe: Regexes.startsUsing({ id: ['1C7F', '1C90'], source: 'Nihil-Thanatos', capture: false }),
       regexFr: Regexes.startsUsing({ id: ['1C7F', '1C90'], source: 'Mortalis Nihil', capture: false }),
@@ -97,7 +97,7 @@
       response: Responses.knockback(),
     },
     {
-      id: 'Dun Scaith Void Death',
+      id: 'Dun Scaith Void Death Squares',
       regex: Regexes.startsUsing({ id: '1C82', source: 'Deathgaze Hollow', capture: false }),
       regexDe: Regexes.startsUsing({ id: '1C82', source: 'Nihil-Thanatos', capture: false }),
       regexFr: Regexes.startsUsing({ id: '1C82', source: 'Mortalis Nihil', capture: false }),

@@ -6,7 +6,11 @@
 // gains the effect of Petrification from Voidwalker for 10.00 Seconds.
 // TODO: puddle failure?
 [{
-  zoneRegex: /^Eden's Gate: Descent$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Descent$/,
+    cn: /^伊甸希望乐园 \(觉醒之章2\)$/,
+    ko: /^희망의 낙원 에덴: 각성편 \(2\)$/,
+  },
   damageWarn: {
     'E2S Doomvoid Slicer': '3E3C',
     'E3S Doomvoid Guillotine': '3E3B',
@@ -26,6 +30,7 @@
             fr: e.abilityName,
             cn: e.abilityName,
             ja: e.abilityName,
+            ko: '닉스',
           },
         };
       },

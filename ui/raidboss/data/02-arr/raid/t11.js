@@ -239,15 +239,12 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Kaliya': 'Kaliya',
-        'The Core Override is no longer sealed': 'Der Zugang zur Kern-Steuereinheit öffnet sich wieder',
-        'The Core Override will be sealed off': 'bis sich der Zugang zur Kern-Steuereinheit schließt',
+        'The Core Override': 'Kern-Steuereinheit',
       },
       'replaceText': {
         'Barofield': 'Baro-Feld',
         'Emergency Mode': 'Notprogramm',
-        'Enrage': 'Finalangriff',
         'Main Head': 'Hauptkopf',
         'Nanospore Jet': 'Nanosporen-Strahl',
         'Nerve Cloud': 'Nervenwolke',
@@ -262,15 +259,12 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Kaliya': 'Kaliya',
-        'The Core Override is no longer sealed': 'Ouverture de l\'unité de contrôle du Cœur',
-        'The Core Override will be sealed off': 'Fermeture de l\'unité de contrôle du Cœur',
+        'The Core Override': 'l\'unité de contrôle du Cœur',
       },
       'replaceText': {
         'Barofield': 'Barotraumatisme',
         'Emergency Mode': 'Mode d\'urgence',
-        'Enrage': 'Enrage',
         'Main Head': 'Tête principale',
         'Nanospore Jet': 'Jet de magismoparticules',
         'Nerve Cloud': 'Nuage neurotoxique',
@@ -284,16 +278,13 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Kaliya': 'カーリア',
-        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
-        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
       },
       'replaceText': {
         'Barofield': 'バロフィールド',
         'Emergency Mode': 'イマージャンシーモード',
-        'Enrage': 'Enrage',
         'Main Head': 'メインヘッド',
         'Nanospore Jet': '魔科学粒子散布',
         'Nerve Cloud': 'ナーブクラウド',
@@ -307,16 +298,13 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Kaliya': '卡利亚',
-        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
-        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
       },
       'replaceText': {
         'Barofield': '气压领域',
         'Emergency Mode': '紧急模式',
-        'Enrage': 'Enrage', // FIXME
         'Main Head': '主首',
         'Nanospore Jet': '魔科学粒子散布',
         'Nerve Cloud': '神经云',
@@ -330,16 +318,13 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Kaliya': '칼리야',
-        'The Core Override is no longer sealed': 'The Core Override is no longer sealed', // FIXME
-        'The Core Override will be sealed off': 'The Core Override will be sealed off', // FIXME
       },
       'replaceText': {
         'Barofield': '압력 필드',
         'Emergency Mode': '비상 모드',
-        'Enrage': 'Enrage', // FIXME
         'Main Head': '가운뎃머리',
         'Nanospore Jet': '마과학 입자 살포',
         'Nerve Cloud': '신경 구름',

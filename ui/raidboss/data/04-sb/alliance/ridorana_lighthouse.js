@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Ridorana Lighthouse$/,
+  zoneRegex: {
+    en: /^The Ridorana Lighthouse$/,
+    ko: /^대등대 리도르아나$/,
+  },
   timelineFile: 'ridorana_lighthouse.txt',
   timelineTriggers: [
     {
@@ -12,6 +15,7 @@
         en: 'Get Behind',
         de: 'Hinter ihn laufen',
         fr: 'Allez derrière',
+        ko: '뒤에 숨기 (Get Behind)',
       },
     },
   ],
@@ -30,6 +34,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tank Buster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -41,6 +46,7 @@
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
       tts: function(data, matches) {
@@ -49,12 +55,13 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
     },
     {
-      id: 'Ridorana Famfrit Tsunami',
+      id: 'Ridorana Famfrit Tsunami 1',
       regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
@@ -66,15 +73,17 @@
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
+        ko: '대해일 확인',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
+        ko: '대해일',
       },
     },
     {
-      id: 'Ridorana Famfrit Tsunami',
+      id: 'Ridorana Famfrit Tsunami 2',
       regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
@@ -86,15 +95,17 @@
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
+        ko: '대해일 확인',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
+        ko: '대해일',
       },
     },
     {
-      id: 'Ridorana Famfrit Tsunami',
+      id: 'Ridorana Famfrit Tsunami 3',
       regex: Regexes.startsUsing({ id: '2C50', source: 'Famfrit, The Darkening Cloud', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C50', source: 'Dunkelfürst Famfrit', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C50', source: 'Famfrit Le Nuage Ténébreux', capture: false }),
@@ -106,11 +117,13 @@
         en: 'Look for Tsunami',
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
+        ko: '대해일 확인',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
+        ko: '대해일',
       },
     },
     {
@@ -123,6 +136,7 @@
         en: 'Dorito Stack',
         de: 'Stacken',
         fr: 'Stack',
+        ko: '모이기',
       },
     },
     {
@@ -135,6 +149,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Ecartez-vous',
+        ko: '산개',
       },
     },
     {
@@ -150,11 +165,13 @@
         en: 'Kill Adds',
         de: 'Adds',
         fr: 'Adds',
+        ko: '쫄 죽이기',
       },
       tts: {
         en: 'Adds',
         de: 'etz',
         fr: 'Adds',
+        ko: '쫄 추가',
       },
     },
     {
@@ -171,6 +188,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -182,6 +200,7 @@
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
       tts: function(data, matches) {
@@ -190,6 +209,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -206,6 +226,7 @@
         en: 'Stand on Slow Clock',
         de: 'In der langsamen Uhr stehen',
         fr: 'Placez-vous sur une horloge lente',
+        ko: '느린 시계 위로',
       },
     },
     {
@@ -223,6 +244,7 @@
         en: 'Stretch Tether Outside',
         de: 'Verbindung nach außen strecken',
         fr: 'Lien vers l\'exterieur',
+        ko: '줄 바깥으로 늘이기',
       },
     },
     {
@@ -237,6 +259,7 @@
         en: 'Stop Clocks',
         de: 'Uhrzeiger nach außen',
         fr: 'Arrêtez horloge',
+        ko: '시간 폭탄',
       },
     },
     {
@@ -252,6 +275,7 @@
         en: 'Kill Adds',
         de: 'Adds',
         fr: 'Adds',
+        ko: '쫄 죽이기',
       },
     },
     {
@@ -268,6 +292,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -279,6 +304,7 @@
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
       tts: function(data, matches) {
@@ -287,6 +313,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -304,6 +331,7 @@
         en: 'Spread',
         de: 'Verteilen',
         fr: 'Ecartez-vous',
+        ko: '산개',
       },
     },
     {
@@ -317,16 +345,18 @@
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Stack auf ' + data.ShortName(matches.target),
           fr: 'Stack sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
         };
       },
       tts: {
         en: 'Stack',
         de: 'Stek en',
         fr: 'Stack',
+        ko: '모이기',
       },
     },
     {
-      // Accelerate cleanup
+      id: 'Ridorana Construct Accelerate Cleanup',
       regex: Regexes.startsUsing({ id: '2C65', source: 'Construct 7', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C65', source: 'Automat Nr\\. 7', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C65', source: 'Bâtisseur N°7', capture: false }),
@@ -338,7 +368,7 @@
       },
     },
     {
-      // TODO: need an "always run this trigger when starting zone" option
+      id: 'Ridorana Construct Math Setup',
       regex: Regexes.startsUsing({ id: '2C6C', source: 'Construct 7', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2C6C', source: 'Automat Nr\\. 7', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2C6C', source: 'Bâtisseur N°7', capture: false }),
@@ -359,32 +389,38 @@
               en: 'Stay out',
               de: 'Draußen stehen',
               fr: 'Restez dehors',
+              ko: '바깥에 있기',
             },
             {
               en: 'Stand in 1',
               de: 'In 1 stehen',
               fr: 'Allez sur le 1',
+              ko: '답: 1',
             },
             {
               en: 'Stand in 2',
               de: 'In 2 stehen',
               fr: 'Allez sur le 2',
+              ko: '답: 2',
             },
             {
               en: 'Stand in 3',
               de: 'In 3 stehen',
               fr: 'Allez sur le 3',
+              ko: '답: 3',
             },
             {
               en: 'Stand in 4',
               de: 'In 4 stehen',
               fr: 'Allez sur le 4',
+              ko: '답: 4',
             },
           ][this.correctMath[data.mathBaseValue]];
         };
       },
     },
     {
+      id: 'Ridorana Construct Math HP Check 1',
       regex: Regexes.gainsEffect({ effect: 'Hp Penalty' }),
       regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus' }),
       regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits' }),
@@ -404,6 +440,7 @@
       // trigger happens.  However, by t=1 second in testing, standing a circle
       // will apply.  So, hope for the best by testing at t=0.5 as well, but not
       // overwriting any results from t=0 if that was valid.
+      id: 'Ridorana Construct Math HP Check 2',
       regex: Regexes.gainsEffect({ effect: 'Hp Penalty' }),
       regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus' }),
       regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits' }),
@@ -492,6 +529,7 @@
         en: 'Get Out',
         de: 'Raus da',
         fr: 'Eloignez-vous',
+        ko: '바깥으로',
       },
     },
     {
@@ -506,6 +544,7 @@
         en: 'Get Behind',
         de: 'Boss von hinten umkreisen',
         fr: 'Allez derrière le boss',
+        ko: 'Get Behind', // FiX ME
       },
     },
     {
@@ -524,6 +563,7 @@
         en: 'Stop',
         de: 'Stopp',
         fr: 'Stop',
+        ko: '가만히',
       },
     },
     {
@@ -540,6 +580,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
+            ko: '탱버 대상자',
           };
         }
       },
@@ -551,6 +592,7 @@
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
       },
       tts: function(data, matches) {
@@ -559,6 +601,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tankbuster',
+            ko: '탱버',
           };
         }
       },
@@ -578,6 +621,7 @@
         en: 'Out of Front',
         de: 'Vorm Boss weg',
         fr: 'Ne restez pas devant',
+        ko: '보스 정면 피하기',
       },
     },
     {
@@ -592,6 +636,7 @@
         en: 'Get Under',
         de: 'Reingehen',
         fr: 'Allez sous le boss',
+        ko: '보스 아래로',
       },
     },
     {
@@ -609,6 +654,7 @@
         en: 'Move to Postive',
         de: 'Ins Positive laufen',
         fr: 'Allez sur le plus',
+        ko: '+전하 쪽으로',
       },
     },
     {
@@ -626,6 +672,7 @@
         en: 'Move to Negative',
         de: 'Ins Negative laufen',
         fr: 'Allez sur le moins',
+        ko: '-전하 쪽으로',
       },
     },
     {
@@ -641,6 +688,7 @@
         en: 'Kill Adds',
         de: 'Adds',
         fr: 'Adds',
+        ko: '쫄 처리',
       },
       tts: {
         en: 'Adds',
@@ -661,6 +709,7 @@
         en: 'Kill Heart',
         de: 'Herz',
         fr: 'Tuer le cœur',
+        ko: '심핵 처리',
       },
       tts: {
         en: 'Heart',
@@ -678,21 +727,18 @@
         'Construct 7': 'Automat Nr. 7',
         'Construct 7.1': 'verbessert(?:e|er|es|en) Automat Nr. 7',
         'Dark Rain': 'Dunkler Regen',
-        'Echoes from Time\'s Garden will be sealed off': 'Garten ewiger Zeit schließt',
-        'Engage!': 'Start!',
+        'Echoes from Time\'s Garden': 'Garten ewiger Zeit',
         'Famfrit, The Darkening Cloud': 'Dunkelfürst Famfrit',
         '(?<! )Gigas': 'Diener von Belias',
         'Heart of the Dragon': 'Herz des Drachen',
         'Missile': 'Rakete',
-        'The Cleft of Profaning Wind will be sealed off': 'Kluft entweihender Winde schließt',
-        'The Clockwork Coliseum will be sealed off': 'Kolosseum von Gog schließt',
-        'The Spire\'s Bounds will be sealed off': 'Katastase schließt',
+        'The Cleft of Profaning Wind': 'Kluft entweihender Winde',
+        'The Clockwork Coliseum': 'Kolosseum von Gog',
+        'The Spire\'s Bounds': 'Katastase',
         'Wind Azer': 'Windseele',
         'Yiazmat': 'Yiasmat',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Accelerate': 'Beschleunigen',
         'Acceleration Bomb': 'Beschleunigungsbombe',
         'Ancient Aero': 'Antiker Wind',
@@ -718,7 +764,6 @@
         'Divide By Three': 'Arithmetik: Durch 3 teilbar',
         'Division': 'Division',
         'Dust Storm': 'Staubsturm',
-        'Enrage': 'Finalangriff',
         '(?<![\\w| ])Eruption': 'Eruption',
         'Explosion': 'Explosion',
         'Face Off': 'Unbeugsamkeit',
@@ -803,21 +848,18 @@
         'Construct 7': 'Bâtisseur n°7',
         'Construct 7.1': 'Bâtisseur n°7 amélioré',
         'Dark Rain': 'Trombe d\'eau',
-        'Echoes from Time\'s Garden will be sealed off': 'Fermeture du Jardin d\'un autre temps dans',
-        'Engage!': 'À l\'attaque',
+        'Echoes from Time\'s Garden': 'Jardin d\'un autre temps',
         'Famfrit, The Darkening Cloud': 'Famfrit le Nuage Ténébreux',
         '(?<! )Gigas': 'serviteur de Bélias',
         'Heart of the Dragon': 'cœur de Yiazmat',
         'Missile': 'Missile',
-        'The Cleft of Profaning Wind will be sealed off': 'Fermeture de la corniche des Vents distordants dans',
-        'The Clockwork Coliseum will be sealed off': 'Fermeture de l\'arène de Goug dans',
-        'The Spire\'s Bounds will be sealed off': 'Fermeture de l\'orée des Cieux dans',
+        'The Cleft of Profaning Wind': 'la corniche des Vents distordants',
+        'The Clockwork Coliseum': 'l\'arène de Goug',
+        'The Spire\'s Bounds': 'l\'orée des Cieux',
         'Wind Azer': 'aze de vent',
         'Yiazmat': 'Yiazmat',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Accelerate': 'Aplatir',
         'Acceleration Bomb': 'Bombe accélératrice',
         'Ancient Aero': 'Vent ancien',
@@ -843,7 +885,6 @@
         'Divide By Three': 'Arithmétique : multiples de 3',
         'Division': 'Division',
         'Dust Storm': 'Tempête de poussière',
-        'Enrage': 'Enrage',
         '(?<![\\w| ])Eruption': 'Éruption',
         'Explosion': 'Explosion',
         'Face Off': 'Défiguration',
@@ -922,27 +963,21 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': 'アルケオデーモン',
         'Belias, The Gigas': '魔人ベリアス',
         'Construct 7': '労働七号',
         'Construct 7.1': '労働七号・改',
         'Dark Rain': '暗雲の雨水',
-        'Echoes from Time\'s Garden will be sealed off': 'Echoes from Time\'s Garden will be sealed off', // FIXME
-        'Engage!': '戦闘開始！',
         'Famfrit, The Darkening Cloud': '暗黒の雲ファムフリート',
         '(?<! )Gigas': '魔人兵',
         'Heart of the Dragon': 'ヤズマットの心核',
         'Missile': 'ミサイル',
-        'The Cleft of Profaning Wind will be sealed off': 'The Cleft of Profaning Wind will be sealed off', // FIXME
-        'The Clockwork Coliseum will be sealed off': 'The Clockwork Coliseum will be sealed off', // FIXME
-        'The Spire\'s Bounds will be sealed off': 'The Spire\'s Bounds will be sealed off', // FIXME
         'Wind Azer': '風のアーゼ',
         'Yiazmat': '鬼龍ヤズマット',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Accelerate': '突貫する',
         'Acceleration Bomb': '加速度爆弾',
         'Ancient Aero': 'エンシェントエアロ',
@@ -968,7 +1003,6 @@
         'Divide By Three': '算術：3倍数',
         'Division': 'Division', // FIXME
         'Dust Storm': 'ダストストーム',
-        'Enrage': 'Enrage',
         '(?<![\\w| ])Eruption': 'エラプション',
         'Explosion': '爆発',
         'Face Off': 'フェイスオフ',
@@ -1047,27 +1081,21 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'Belias, The Gigas': '魔人贝利亚斯',
         'Construct 7': '劳动七号',
         'Construct 7.1': '劳动七号改',
         'Dark Rain': '暗云雨水',
-        'Echoes from Time\'s Garden will be sealed off': 'Echoes from Time\'s Garden will be sealed off', // FIXME
-        'Engage!': '战斗开始！',
         'Famfrit, The Darkening Cloud': '暗黑之云法姆弗里特',
         '(?<! )Gigas': '魔人兵',
         'Heart of the Dragon': '鬼龙的核心',
         'Missile': '导弹',
-        'The Cleft of Profaning Wind will be sealed off': 'The Cleft of Profaning Wind will be sealed off', // FIXME
-        'The Clockwork Coliseum will be sealed off': 'The Clockwork Coliseum will be sealed off', // FIXME
-        'The Spire\'s Bounds will be sealed off': 'The Spire\'s Bounds will be sealed off', // FIXME
         'Wind Azer': '风魔',
         'Yiazmat': '鬼龙雅兹玛特',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
-        '--untargetable--': '--不可选中--',
         'Accelerate': '执行贯穿',
         'Acceleration Bomb': '加速度炸弹',
         'Ancient Aero': '古代疾风',
@@ -1093,7 +1121,6 @@
         'Divide By Three': '算术：3的倍数',
         'Division': 'Division', // FIXME
         'Dust Storm': '尘暴',
-        'Enrage': 'Enrage', // FIXME
         '(?<![\\w| ])Eruption': '地火喷发',
         'Explosion': '爆炸',
         'Face Off': '对决',
@@ -1172,33 +1199,31 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '원시 악마',
         'Belias, The Gigas': '마인 벨리아스',
         'Construct 7': '노동 7호',
         'Construct 7.1': '개량형 노동 7호',
         'Dark Rain': '암운의 빗물',
-        'Echoes from Time\'s Garden will be sealed off': 'Echoes from Time\'s Garden will be sealed off', // FIXME
-        'Engage!': '전투 시작!',
+        'Echoes from Time\'s Garden': '아득한 시간의 정원',
         'Famfrit, The Darkening Cloud': '암흑의 구름 팜프리트',
         '(?<! )Gigas': '마인병',
         'Heart of the Dragon': '야즈마트의 심핵',
         'Missile': '미사일',
-        'The Cleft of Profaning Wind will be sealed off': 'The Cleft of Profaning Wind will be sealed off', // FIXME
-        'The Clockwork Coliseum will be sealed off': 'The Clockwork Coliseum will be sealed off', // FIXME
-        'The Spire\'s Bounds will be sealed off': 'The Spire\'s Bounds will be sealed off', // FIXME
+        'The Cleft of Profaning Wind': '다른 바람이 부는 하얀 전장',
+        'The Clockwork Coliseum': '거그 투기장',
+        'The Spire\'s Bounds': '정점의 봉인 영역',
         'Wind Azer': '바람 원소',
         'Yiazmat': '귀룡 야즈마트',
       },
       'replaceText': {
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         'Accelerate': '관통',
         'Acceleration Bomb': '가속도 폭탄',
         'Ancient Aero': '에인션트 에어로',
         'Annihilation Mode': '제노사이드 칩',
-        'Archaeodemon spawn': 'Archaeodemon spawn', // FIXME
-        'Area Lockdown': 'Area Lockdown', // FIXME
+        'Archaeodemon spawn': '원시 악마 생성',
+        'Area Lockdown': '지역 봉쇄',
         'Ballistic Missile': '미사일 발사',
         'Briny Cannonade': '푸른 포격',
         'Compress': '압축',
@@ -1216,18 +1241,17 @@
         'Divide By Five': '5배수 계산',
         'Divide By Four': '4배수 계산',
         'Divide By Three': '3배수 계산',
-        'Division': 'Division', // FIXME
+        'Division': '나눗셈',
         'Dust Storm': '먼지 폭풍',
-        'Enrage': '전멸기',
         '(?<![\\w| ])Eruption': '용암 분출',
         'Explosion': '폭발',
         'Face Off': '경기 시작',
-        'Fast Hands': 'Fast Hands', // FIXME
+        'Fast Hands': '빠른 시계 터짐',
         'Ferrofluid': '자석',
         '(?<!\\w)Fire(?! )': '파이어',
         'Fire IV': '파이쟈',
         'Gale Gaol': '바람 감옥',
-        'Gigas spawns': 'Gigas spawns', // FIXME
+        'Gigas spawns': '마인병 생성',
         'Growing Threat': '경이',
         'Gust Front': '돌풍전선',
         'Hellfire': '지옥의 화염',
@@ -1243,7 +1267,7 @@
         'Materialize': '실체화',
         'Pulverize': '분쇄',
         '(?<!\\w)Rake': '할퀴기',
-        'Slow Hands': 'Slow Hands', // FIXME
+        'Slow Hands': '느린 시계 터짐',
         'Solar Storm': '태양 폭풍',
         'Stone Breath': '석화 숨결',
         'Subtract': '뺄셈',
@@ -1262,6 +1286,12 @@
         'Ventilate': '냉각',
         'Water IV': '워터쟈',
         'White Breath': '하얀 숨결',
+        'cross': '지나감',
+        'orbit': '떠있음',
+        'close': '가까이',
+        'far': '멀리',
+        'combo': '콤보',
+        'single': '1회',
       },
       '~effectNames': {
         'Acceleration Bomb': '가속도 폭탄',

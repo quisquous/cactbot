@@ -57,7 +57,7 @@
       },
     },
     {
-      id: 'T9 Raven Blight You',
+      id: 'T9 Raven Blight Not You',
       regex: Regexes.gainsEffect({ effect: 'Raven Blight' }),
       regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge' }),
       regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace' }),
@@ -79,7 +79,7 @@
       },
     },
     {
-      id: 'T9 Meteor Stream',
+      id: 'T9 Meteor',
       regex: Regexes.headMarker({ id: '000[7A9]' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -403,7 +403,6 @@
       'replaceSync': {
         'Astral Debris': 'Lichtgestein',
         'Dalamud Fragment': 'Dalamud-Bruchstück',
-        'Engage!': 'Start!',
         'Firehorn': 'Feuerhorn',
         'Iceclaw': 'Eisklaue',
         'Nael Geminus': 'Nael Geminus',
@@ -415,8 +414,6 @@
       'replaceText': {
         '\\(In\\)': '(Rein)',
         '\\(Out\\)': '(Raus)',
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Bahamut\'s Claw': 'Klauen Bahamuts',
         'Bahamut\'s Favor': 'Bahamuts Segen',
         'Binding Coil': 'Verschlungene Schatten',
@@ -424,7 +421,6 @@
         'Chain Lightning': 'Kettenblitz',
         'Dalamud Dive': 'Dalamud-Sturzflug',
         'Divebomb': 'Sturzbombe',
-        'Enrage': 'Finalangriff',
         'Fireball': 'Feuerball',
         'Ghost': 'Geist',
         'Golem Meteors': 'Golem Meteore',
@@ -447,7 +443,6 @@
       'replaceSync': {
         'Astral Debris': 'Débris astral',
         'Dalamud Fragment': 'Débris de Dalamud',
-        'Engage!': 'À l\'attaque',
         'Firehorn': 'Corne-de-feu',
         'Iceclaw': 'Griffe-de-glace',
         'Nael Geminus': 'Nael Geminus',
@@ -459,8 +454,6 @@
       'replaceText': {
         '\\(In\\)': '(Dedans)',
         '\\(Out\\)': '(Dehors)',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Bahamut\'s Claw': 'Griffe de Bahamut',
         'Bahamut\'s Favor': 'Auspice du dragon',
         'Binding Coil': 'Écheveau entravant',
@@ -468,7 +461,6 @@
         'Chain Lightning': 'Chaîne d\'éclairs',
         'Dalamud Dive': 'Chute de Dalamud',
         'Divebomb': 'Bombe plongeante',
-        'Enrage': 'Enrage',
         'Fireball': 'Boule de feu',
         'Ghost': 'fantôme',
         'Golem Meteors': 'Golem de Dalamud',
@@ -491,7 +483,6 @@
       'replaceSync': {
         'Astral Debris': 'アストラルデブリ',
         'Dalamud Fragment': 'ダラガブデブリ',
-        'Engage!': '戦闘開始！',
         'Firehorn': 'ファイアホーン',
         'Iceclaw': 'アイスクロウ',
         'Nael Geminus': 'ネール・ジェミナス',
@@ -503,8 +494,6 @@
       'replaceText': {
         '\\(In\\)': '(In)',
         '\\(Out\\)': '(Out)',
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Bahamut\'s Claw': 'バハムートクロウ',
         'Bahamut\'s Favor': '龍神の加護',
         'Binding Coil': 'バインディングコイル',
@@ -512,7 +501,6 @@
         'Chain Lightning': 'チェインライトニング',
         'Dalamud Dive': 'ダラガブダイブ',
         'Divebomb': 'ダイブボム',
-        'Enrage': 'Enrage',
         'Fireball': 'ファイアボール',
         'Ghost': 'ゴースト',
         'Golem Meteors': 'Golem Meteors', // FIXME
@@ -535,7 +523,6 @@
       'replaceSync': {
         'Astral Debris': '星极岩屑',
         'Dalamud Fragment': '卫月岩屑',
-        'Engage!': '战斗开始！',
         'Firehorn': '火角',
         'Iceclaw': '冰爪',
         'Nael Geminus': '奈尔双生子',
@@ -547,8 +534,6 @@
       'replaceText': {
         '\\(In\\)': '(In)', // FIXME
         '\\(Out\\)': '(Out)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Bahamut\'s Claw': '巴哈姆特之爪',
         'Bahamut\'s Favor': '龙神的加护',
         'Binding Coil': '拘束圈',
@@ -556,7 +541,6 @@
         'Chain Lightning': '雷光链',
         'Dalamud Dive': '月华冲',
         'Divebomb': '爆破俯冲',
-        'Enrage': 'Enrage', // FIXME
         'Fireball': '火球',
         'Ghost': '幽灵',
         'Golem Meteors': 'Golem Meteors', // FIXME
@@ -579,7 +563,6 @@
       'replaceSync': {
         'Astral Debris': '천상의 잔해',
         'Dalamud Fragment': '달라가브의 잔해',
-        'Engage!': '전투 시작!',
         'Firehorn': '화염뿔',
         'Iceclaw': '얼음발톱',
         'Nael Geminus': '넬 게미누스',
@@ -591,8 +574,6 @@
       'replaceText': {
         '\\(In\\)': '(In)', // FIXME
         '\\(Out\\)': '(Out)', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Bahamut\'s Claw': '바하무트의 발톱',
         'Bahamut\'s Favor': '용신의 가호',
         'Binding Coil': '구속의 고리',
@@ -600,7 +581,6 @@
         'Chain Lightning': '번개 사슬',
         'Dalamud Dive': '달라가브 강하',
         'Divebomb': '급강하 폭격',
-        'Enrage': 'Enrage', // FIXME
         'Fireball': '화염구',
         'Ghost': '유령',
         'Golem Meteors': 'Golem Meteors', // FIXME

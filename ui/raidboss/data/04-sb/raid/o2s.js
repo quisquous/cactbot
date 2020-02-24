@@ -16,7 +16,8 @@
     },
   ],
   triggers: [
-    { // Phase Tracker: Maniacal Probe.
+    {
+      id: 'O2S Phase Probe Tracker',
       regex: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
       regexDe: Regexes.startsUsing({ id: '235A', source: 'Katastroph', capture: false }),
       regexFr: Regexes.startsUsing({ id: '235A', source: 'Catastrophe', capture: false }),
@@ -30,7 +31,7 @@
       },
     },
     {
-      id: 'O2S Levitation',
+      id: 'O2S Levitation Gain',
       regex: Regexes.gainsEffect({ effect: 'Levitation' }),
       regexDe: Regexes.gainsEffect({ effect: 'Levitation' }),
       regexFr: Regexes.gainsEffect({ effect: 'Lévitation' }),
@@ -45,7 +46,7 @@
       },
     },
     {
-      id: 'O2S Levitation',
+      id: 'O2S Levitation Lose',
       regex: Regexes.losesEffect({ effect: 'Levitation' }),
       regexDe: Regexes.losesEffect({ effect: 'Levitation' }),
       regexFr: Regexes.losesEffect({ effect: 'Lévitation' }),
@@ -246,7 +247,7 @@
       },
     },
     {
-      id: 'O2S 6 Fulms Under',
+      id: 'O2S 6 Fulms Under Gain',
       regex: Regexes.gainsEffect({ effect: '6 Fulms Under' }),
       regexDe: Regexes.gainsEffect({ effect: 'Versinkend' }),
       regexFr: Regexes.gainsEffect({ effect: 'Enfoncement' }),
@@ -282,7 +283,7 @@
       },
     },
     {
-      id: 'O2S 6 Fulms Under',
+      id: 'O2S 6 Fulms Under Lose',
       regex: Regexes.losesEffect({ effect: '6 Fulms Under' }),
       regexDe: Regexes.losesEffect({ effect: 'Versinkend' }),
       regexFr: Regexes.losesEffect({ effect: 'Enfoncement' }),
@@ -302,19 +303,15 @@
       'locale': 'de',
       'replaceSync': {
         'Catastrophe': 'Katastroph',
-        'Engage!': 'Start!',
         'Fleshy Member': 'Tentakel',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         '-100 Gs': 'Minus 100 G',
         '(?<!-)100 Gs': '100 G',
         'Antilight': 'Dunkellicht',
         'Death\'s Gaze': 'Todesblick',
         'Double Stack': 'Double Stack', // FIXME
         'Earthquake': 'Erdbeben',
-        'Enrage': 'Finalangriff',
         'Epicenter': 'Epizentrum',
         'Erosion': 'Erosion',
         'Evilsphere': 'Sphäre des Bösen',
@@ -348,19 +345,15 @@
       'locale': 'fr',
       'replaceSync': {
         'Catastrophe': 'Catastrophe',
-        'Engage!': 'À l\'attaque',
         'Fleshy Member': 'tentacule',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         '-100 Gs': 'Gravité -100',
         '(?<!-)100 Gs': 'Gravité 100',
         'Antilight': 'Lumière obscure',
         'Death\'s Gaze': 'Œil de la Mort',
         'Double Stack': 'Double Stack', // FIXME
         'Earthquake': 'Grand séisme',
-        'Enrage': 'Enrage',
         'Epicenter': 'Épicentre',
         'Erosion': 'Érosion',
         'Evilsphere': 'Sphère démoniaque',
@@ -394,19 +387,15 @@
       'locale': 'ja',
       'replaceSync': {
         'Catastrophe': 'カタストロフィー',
-        'Engage!': '戦闘開始！',
         'Fleshy Member': '触手',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         '-100 Gs': '重力マイナス100',
         '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黒光',
         'Death\'s Gaze': '死神の瞳',
         'Double Stack': 'Double Stack', // FIXME
         'Earthquake': '大地震',
-        'Enrage': 'Enrage',
         'Epicenter': '震源生成',
         'Erosion': '浸食',
         'Evilsphere': 'イビルスフィア',
@@ -440,19 +429,15 @@
       'locale': 'cn',
       'replaceSync': {
         'Catastrophe': '灾变者',
-        'Engage!': '战斗开始！',
         'Fleshy Member': '触手',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         '-100 Gs': '重力-100',
         '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黑光',
         'Death\'s Gaze': '死神之瞳',
         'Double Stack': 'Double Stack', // FIXME
         'Earthquake': '大地震',
-        'Enrage': 'Enrage', // FIXME
         'Epicenter': '震源制造',
         'Erosion': '侵入',
         'Evilsphere': '邪球',
@@ -486,19 +471,15 @@
       'locale': 'ko',
       'replaceSync': {
         'Catastrophe': '카타스트로피',
-        'Engage!': '전투 시작!',
         'Fleshy Member': '촉수',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         '-100 Gs': '중력 -100',
         '(?<!-)100 Gs': '중력 100',
         'Antilight': '암흑광',
         'Death\'s Gaze': '사신의 눈동자',
         'Double Stack': 'Double Stack', // FIXME
         'Earthquake': '대지진',
-        'Enrage': 'Enrage', // FIXME
         'Epicenter': '진원 생성',
         'Erosion': '침식',
         'Evilsphere': '악의 세력권',

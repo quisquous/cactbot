@@ -81,6 +81,7 @@
       regexKo: Regexes.startsUsing({ id: 'F87', source: '미노타우로스', capture: false }),
       alertText: {
         en: 'Use a cage',
+        fr: 'Utilisez une cage',
       },
     },
     {
@@ -96,6 +97,7 @@
       },
       infoText: {
         en: 'Cleanse bomb',
+        fr: 'Guérissez la bombe',
       },
     },
     {
@@ -114,14 +116,13 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Exhibit level III will be sealed off': 'bis sich der Zugang zu[rm]? Ausstellungssektor III schließt',
+        'Exhibit level III': 'Ausstellungssektor III',
         'Minotaur': 'Minotaurus',
         'Phantom Ray': 'Phantomschimmer',
         'Repository Node': 'Verwahrungsknoten',
         'The Curator': 'Kurator',
-        'The high-level incubation bay will be sealed off': 'Inkubationskammer schließt',
-        'The reality augmentation bay will be sealed off': 'Dilatationskammer schließt',
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'The high-level incubation bay': 'Inkubationskammer',
+        'The reality augmentation bay': 'Dilatationskammer',
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -147,17 +148,16 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
+        'Exhibit level III': 'secteur d\'exposition III',
         'Minotaur': 'minotaure',
         'Phantom Ray': 'rayon fantomatique',
         'Repository Node': 'sphère de dépôt',
         'The Curator': 'Conservateur',
-        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
-        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
+        'The high-level incubation bay': 'la chambre d\'incubation chimérique',
+        'The reality augmentation bay': 'la salle de distorsion de la réalité',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
+        '--reset--': '-- Reset --',
         '10-Tonze Slash': 'Taillade de 10 tonz',
         '11-Tonze Swipe': 'Fauche de 11 tonz',
         '(?<!1)111-Tonze Swing': 'Swing de 111 tonz',
@@ -179,15 +179,12 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
         'Minotaur': 'ミノタウロス',
         'Phantom Ray': 'ファントムレイ',
         'Repository Node': '収蔵システム',
         'The Curator': 'キュレーター',
-        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
-        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -212,15 +209,12 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
-        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
         'Minotaur': '弥诺陶洛斯',
         'Phantom Ray': '幻影光',
         'Repository Node': '收藏系统',
         'The Curator': '博物总管',
-        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
-        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME
@@ -245,15 +239,12 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
-        'Exhibit level III will be sealed off': 'Exhibit level III will be sealed off', // FIXME
         'Minotaur': '미노타우로스',
         'Phantom Ray': '환영 광선',
         'Repository Node': '소장 시스템',
         'The Curator': '전시 책임자',
-        'The high-level incubation bay will be sealed off': 'The high-level incubation bay will be sealed off', // FIXME
-        'The reality augmentation bay will be sealed off': 'The reality augmentation bay will be sealed off', // FIXME
-        'is no longer sealed': 'is no longer sealed', // FIXME
       },
       'replaceText': {
         '--reset--': '--reset--', // FIXME

@@ -178,12 +178,10 @@
       'locale': 'de',
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
-        'Eden': 'Eden',
-        'Engage!': 'Start!',
+        'Eden(?! )': 'Eden',
         'Guardian of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Vice Of Vanity': 'Laster der Eitelkeit',
         'Vice Of Apathy': 'Laster der Apathie',
         'Vice And Virtue': 'Laster und Tugend',
@@ -201,7 +199,6 @@
         'Heavensunder': 'Himmelsdonner',
         'Fragor Maximus': 'Fragor Maximus',
         'Eternal Breath': 'Ewiger Atem',
-        'Enrage': 'Finalangriff',
         'Eden\'s Thunder III': 'Eden-Blitzga',
         'Eden\'s Gravity': 'Eden-Gravitas',
         'Eden\'s Flare': 'Eden-Flare',
@@ -209,8 +206,6 @@
         'Eden\'s Blizzard III': 'Eden-Eisga',
         'Dimensional Shift': 'Dimensionsverschiebung',
         'Delta Attack': 'Delta-Attacke',
-        '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
         '--corner--': '--ecke--',
         '--center--': '..mitte--',
       },
@@ -223,12 +218,11 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': 'Primo-Éden',
-        'Engage!': 'À l\'attaque',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Spear Of Paradise': 'Lance du paradis',
         'Vice of Vanity': 'Péché de vanité',
         'Vice of Apathy': 'Péché d\'apathie',
@@ -247,7 +241,6 @@
         'Heavensunder': 'Ravageur de paradis',
         'Fragor Maximus': 'Fragor Maximus',
         'Eternal Breath': 'Souffle de l\'éternel',
-        'Enrage': 'Enrage',
         'Eden\'s Thunder III': 'Méga Foudre édénique',
         'Eden\'s Gravity': 'Gravité édénique',
         'Eden\'s Flare': 'Brasier édénique',
@@ -255,8 +248,6 @@
         'Eden\'s Blizzard III': 'Méga Glace édénique',
         'Dimensional Shift': 'Translation dimensionnelle',
         'Delta Attack': 'Attaque Delta',
-        '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
         '--corner--': '--Coin--',
@@ -271,12 +262,11 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': 'Eden Prime',
-        'Engage!': '戦闘開始！',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Vice of Vanity': 'ヴァイス・オブ・ヴァニティー',
         'Vice of Apathy': 'ヴァイス・オブ・アパシー',
         'Vice and Virtue': 'ヴァイス・アンド・ヴァーチュー',
@@ -313,12 +303,10 @@
       'locale': 'cn',
       'replaceSync': {
         'Eden Prime': '至尊伊甸',
-        'Eden': '伊甸',
+        'Eden(?! )': '伊甸',
         'Guardian of Paradise': '伊甸守护者',
-        'Engage!': '战斗开始！',
       },
       'replaceText': {
-        'attack': '攻击',
         'Vice [oO]f Vanity': '虚荣之恶',
         'Vice [oO]f Apathy': '冷漠之恶',
         'Vice [aA]nd Virtue': '恶习与美德',
@@ -344,8 +332,6 @@
         'Delta Attack': '三角攻击',
         '--corner--': '--角落--',
         '--center--': '--中央--',
-        '--untargetable--': '--无法选中--',
-        '--targetable--': '--可选中--',
       },
       '~effectNames': {
         'Summon Order': '发动技能待命I',
@@ -358,9 +344,8 @@
       'locale': 'ko',
       'replaceSync': {
         'Eden Prime': '에덴 프라임',
-        'Eden': '에덴',
+        'Eden(?! )': '에덴',
         'Guardian of Paradise': '에덴의 수호자',
-        'Engage!': '전투 시작!',
       },
       'replaceText': {
         'Vice [oO]f Vanity': '허영의 악덕',
@@ -388,8 +373,6 @@
         'Delta Attack': '델타 공격',
         '--corner--': '--모서리--',
         '--center--': '--중앙--',
-        '--untargetable--': '--타겟불가능--',
-        '--targetable--': '--타겟가능--',
       },
       '~effectNames': {
         'Summon Order': 'Summon Order',

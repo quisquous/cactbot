@@ -10,22 +10,22 @@ import fflogs
 
 # 'en' here is 'www' which we consider the "base" and do automatically.
 # 'cn' exists on fflogs but does not have proper translations, sorry.
-languages = ['en', 'de', 'fr', 'ja', 'cn']
+languages = ["en", "de", "fr", "ja", "cn"]
 prefixes = {
-    'en': 'www',
-    'de': 'de',
-    'fr': 'fr',
-    'ja': 'ja',
-    'cn': 'cn',
+    "en": "www",
+    "de": "de",
+    "fr": "fr",
+    "ja": "ja",
+    "cn": "cn",
 }
-default_language = 'en'
-ignore_abilities = ['Attack']
+default_language = "en"
+ignore_abilities = ["Attack"]
 ignore_effects = [
-    'Brink Of Death',
-    'Sprint',
-    'Regen',
-    'Vulnerability Up',
-    'Weakness',
+    "Brink Of Death",
+    "Sprint",
+    "Regen",
+    "Vulnerability Up",
+    "Weakness",
 ]
 
 
@@ -34,19 +34,19 @@ def find_start_end_time(report, args):
     start_time = 0
     end_time = 0
     fight_id = 0
-    for fight in report['fights']:
-        if args.fight and fight['id'] == args.fight:
-            start_time = fight['start_time']
-            end_time = fight['end_time']
-            fight_id = fight['id']
+    for fight in report["fights"]:
+        if args.fight and fight["id"] == args.fight:
+            start_time = fight["start_time"]
+            end_time = fight["end_time"]
+            fight_id = fight["id"]
             break
-        elif fight['end_time'] - fight['start_time'] > end_time - start_time:
-            start_time = fight['start_time']
-            end_time = fight['end_time']
-            fight_id = fight['id']
+        elif fight["end_time"] - fight["start_time"] > end_time - start_time:
+            start_time = fight["start_time"]
+            end_time = fight["end_time"]
+            fight_id = fight["id"]
 
     if args.fight and not fight_id:
-        raise Exception('Fight ID not found in report')
+        raise Exception("Fight ID not found in report")
 
     return start_time, end_time, fight_id
 
@@ -56,24 +56,24 @@ def add_default_ability_mappings(ability_replace):
 
     # FIXME: add ja translations here.
     # FIXME: add Start as well
-    ability_replace['de']['--targetable--'] = '--anvisierbar--'
-    ability_replace['fr']['--targetable--'] = '--Ciblable--'
+    ability_replace["de"]["--targetable--"] = "--anvisierbar--"
+    ability_replace["fr"]["--targetable--"] = "--Ciblable--"
 
-    ability_replace['de']['--untargetable--'] = '--nich anvisierbar--'
-    ability_replace['fr']['--untargetable--'] = '--Impossible à cibler--'
+    ability_replace["de"]["--untargetable--"] = "--nich anvisierbar--"
+    ability_replace["fr"]["--untargetable--"] = "--Impossible à cibler--"
 
-    ability_replace['de']['Enrage'] = 'Finalangriff'
-    ability_replace['fr']['Enrage'] = 'Enrage'
+    ability_replace["de"]["Enrage"] = "Finalangriff"
+    ability_replace["fr"]["Enrage"] = "Enrage"
 
-    ability_replace['fr']['--Reset--'] = '--Réinitialisation--'
-    ability_replace['fr']['--sync--'] = '--Synchronisation--'
+    ability_replace["fr"]["--Reset--"] = "--Réinitialisation--"
+    ability_replace["fr"]["--sync--"] = "--Synchronisation--"
 
 
 def add_default_sync_mappings(sync_replace):
-    sync_replace['de']['Engage!'] = 'Start!'
-    sync_replace['fr']['Engage!'] = 'À l\'attaque'
-    sync_replace['ja']['Engage!'] = '戦闘開始！'
-    sync_replace['cn']['Engage!'] = '战斗开始！'
+    sync_replace["de"]["Engage!"] = "Start!"
+    sync_replace["fr"]["Engage!"] = "À l'attaque"
+    sync_replace["ja"]["Engage!"] = "戦闘開始！"
+    sync_replace["cn"]["Engage!"] = "战斗开始！"
 
 
 def build_mapping(translations, ignore_list=[]):
@@ -89,7 +89,7 @@ def build_mapping(translations, ignore_list=[]):
             default_name = item[default_language]
             if default_name in ignore_list:
                 continue
-            if default_name.startswith('Unknown_'):
+            if default_name.startswith("Unknown_"):
                 continue
             if default_name in replace[lang]:
                 existing_name = replace[lang][default_name]
@@ -105,7 +105,7 @@ def build_mapping(translations, ignore_list=[]):
 
 def format_output_str(output_str):
     output_str = output_str.replace("'", "\\'")
-    output_str = output_str.replace("\"", "'")
+    output_str = output_str.replace('"', "'")
     output_str = output_str.replace("'timelineReplace'", "timelineReplace")
     regex = re.compile(r"]$", re.M)
     output_str = regex.sub("],", output_str)
@@ -120,69 +120,69 @@ def main(args):
     # Get overall reports and enemies.
     enemies = defaultdict(dict)
     options = {
-        'api_key': args.key,
-        'translate': 'true',
+        "api_key": args.key,
+        "translate": "true",
     }
     fight_id = 0
 
     for lang in languages:
-        report = fflogs.api('fights', args.report, prefixes[lang], options)
+        report = fflogs.api("fights", args.report, prefixes[lang], options)
         if fight_id == 0:
             start_time, end_time, fight_id = find_start_end_time(report, args)
-        for enemy in report['enemies']:
+        for enemy in report["enemies"]:
             # Because the overall report contains all enemies from any report,
             # filter them by the fight_id that we care about.
-            for fight in enemy['fights']:
-                if fight['id'] == fight_id:
-                    enemies[enemy['id']][lang] = enemy['name']
+            for fight in enemy["fights"]:
+                if fight["id"] == fight_id:
+                    enemies[enemy["id"]][lang] = enemy["name"]
                     break
 
     # Get abilities for the chosen fight.
     options = {
-        'api_key': args.key,
-        'start': start_time,
-        'end': end_time,
+        "api_key": args.key,
+        "start": start_time,
+        "end": end_time,
         # filtering for disposition='enemy' drops neutral abilities like Encumber.
         # including death also gets you Wroth Ghosts that don't show up otherwise.
-        'filter': 'source.type="NPC" and (type="cast" or type="death" or type="begincast")',
-        'translate': 'true',
+        "filter": 'source.type="NPC" and (type="cast" or type="death" or type="begincast")',
+        "translate": "true",
     }
     abilities = defaultdict(dict)
     for lang in languages:
-        events = fflogs.api('events', args.report, prefixes[lang], options)['events']
+        events = fflogs.api("events", args.report, prefixes[lang], options)["events"]
         for event in events:
             actor = 0
-            if 'targetID' in event:
-                actor = event['targetID']
+            if "targetID" in event:
+                actor = event["targetID"]
 
-            if 'ability' not in event:
+            if "ability" not in event:
                 # Some mobs don't show up in the fight enemy list, but are things that get death events.
                 # e.g. {'sourceIsFriendly': False, 'type': 'death', 'target': {'guid': 58, 'name': 'Wroth Ghost', 'type': 'NPC' } }
-                if event['type'] == 'death' and not actor and 'target' in event:
-                    target = event['target']
-                    enemies[target['guid']][lang] = target['name']
+                if event["type"] == "death" and not actor and "target" in event:
+                    target = event["target"]
+                    enemies[target["guid"]][lang] = target["name"]
                 continue
-            ability = event['ability']
-            abilities[(actor, ability['guid'])][lang] = ability['name']
+            ability = event["ability"]
+            abilities[(actor, ability["guid"])][lang] = ability["name"]
 
     # Finally, get boss debuff names.  These aren't used directly in timeline replacement
     # but are helpful to have listed when writing other triggers.
     options = {
-        'api_key': args.key,
-        'start': start_time,
-        'end': end_time,
-        'filter': 'source.type="NPC" and (type="applydebuffstack" or type="applydebuff" or type="refreshdebuff")',
-        'translate': 'true',
+        "api_key": args.key,
+        "start": start_time,
+        "end": end_time,
+        "filter": 'source.type="NPC" and (type="applydebuffstack" or type="applydebuff" or type="refreshdebuff")',
+        "translate": "true",
     }
     effects = defaultdict(dict)
     for lang in languages:
-        events = fflogs.api('events', args.report, prefixes[lang], options)['events']
+        events = fflogs.api("events", args.report, prefixes[lang], options)["events"]
         for event in events:
             actor = 0
-            if 'targetID' in event:
-                actor = event['targetID']
-            ability = event['ability']
-            effects[(actor, ability['guid'])][lang] = ability['name']
+            if "targetID" in event:
+                actor = event["targetID"]
+            ability = event["ability"]
+            effects[(actor, ability["guid"])][lang] = ability["name"]
 
     # Generate mappings of english => locale names.
     mob_replace = build_mapping(enemies)
@@ -197,20 +197,22 @@ def main(args):
     for lang in languages:
         if lang == default_language:
             continue
-        timeline_replace.append({
-            'locale': lang,
-            'replaceSync': dict(sorted(mob_replace[lang].items(), reverse=True)),
-            'replaceText': dict(sorted(ability_replace[lang].items(), reverse=True)),
-            # sort this last <_<
-            '~effectNames': dict(sorted(effect_replace[lang].items(), reverse=True)),
-        })
-    output = {'timelineReplace': timeline_replace}
+        timeline_replace.append(
+            {
+                "locale": lang,
+                "replaceSync": dict(sorted(mob_replace[lang].items(), reverse=True)),
+                "replaceText": dict(sorted(ability_replace[lang].items(), reverse=True)),
+                # sort this last <_<
+                "~effectNames": dict(sorted(effect_replace[lang].items(), reverse=True)),
+            }
+        )
+    output = {"timelineReplace": timeline_replace}
     output_str = json.dumps(output, ensure_ascii=False, indent=2, sort_keys=False)
     output_str = format_output_str(output_str)
-    
+
     # Write that out to the user.
     if args.output_file:
-        with open(args.output_file, 'w', encoding='utf-8') as fp:
+        with open(args.output_file, "w", encoding="utf-8") as fp:
             fp.write(output_str)
     else:
         try:
@@ -231,13 +233,23 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description="Creates a translation from an fflogs report",
         epilog=example_usage,
-        formatter_class=argparse.RawDescriptionHelpFormatter)
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+    )
 
-    parser.add_argument('-r', '--report', help="The ID of an FFLogs report")
-    parser.add_argument('-of', '--output-file', help="The file to write output in")
+    parser.add_argument("-r", "--report", help="The ID of an FFLogs report")
+    parser.add_argument("-of", "--output-file", help="The file to write output in")
 
-    parser.add_argument('-k', '--key', help="The FFLogs API key (public) to use, from https://www.fflogs.com/accounts/changeuser")
-    parser.add_argument('-rf', '--fight', type=int, help="Fight ID of the report to use. Defaults to longest in the report")
+    parser.add_argument(
+        "-k",
+        "--key",
+        help="The FFLogs API key (public) to use, from https://www.fflogs.com/accounts/changeuser",
+    )
+    parser.add_argument(
+        "-rf",
+        "--fight",
+        type=int,
+        help="Fight ID of the report to use. Defaults to longest in the report",
+    )
 
     args = parser.parse_args()
 
@@ -246,6 +258,8 @@ if __name__ == "__main__":
         sys.exit(0)
 
     if args.report and not args.key:
-        raise parser.error("FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key")
+        raise parser.error(
+            "FFlogs parsing requires an API key. Visit https://www.fflogs.com/accounts/changeuser and use the Public key"
+        )
 
     main(args)

@@ -115,14 +115,11 @@
       'locale': 'de',
       'replaceSync': {
         'Ancient Dragon': 'antik(?:e|er|es|en) Drache',
-        'Engage!': 'Start!',
         'Immortal Key': 'unsterblich(?:e|er|es|en) Schlüssel',
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Azurschwingen',
@@ -136,7 +133,6 @@
         'Dark Wave': 'Dunkle Welle',
         'Dry Ice': 'Trockeneis',
         'Earth Shaker': 'Erdstoß',
-        'Enrage': 'Finalangriff',
         'Exaflare': 'Exaflare',
         'Flame Blast': 'Flammenhölle',
         'Flip': 'Rolle',
@@ -158,7 +154,6 @@
         'Thunderstorm': 'Gewitter',
         'Time Immemorial': 'Urknall',
         'Touchdown': 'Himmelssturz',
-        'attack': 'Attacke',
       },
       '~effectNames': {
         'Arcane Bulwark': 'Magische Barriere',
@@ -175,14 +170,11 @@
       'locale': 'fr',
       'replaceSync': {
         'Ancient Dragon': 'dragon ancien',
-        'Engage!': 'À l\'attaque',
         'Immortal Key': 'clef immortelle',
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
         'ready': 'prêt',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Ailes azur',
@@ -196,7 +188,6 @@
         'Dark Wave': 'Vague de ténèbres',
         'Dry Ice': 'Poussière glaçante',
         'Earth Shaker': 'Secousse',
-        'Enrage': 'Enrage',
         'Exaflare': 'ExaBrasier',
         'Flame Blast': 'Fournaise',
         'Flip': 'Tour vertical',
@@ -218,7 +209,6 @@
         'Thunderstorm': 'Tempête de foudre',
         'Time Immemorial': 'Big bang',
         'Touchdown': 'Atterrissage',
-        'attack': 'Attaque',
       },
       '~effectNames': {
         'Arcane Bulwark': 'Barrière magique',
@@ -235,14 +225,11 @@
       'locale': 'ja',
       'replaceSync': {
         'Ancient Dragon': 'エンシェントドラゴン',
-        'Engage!': '戦闘開始！',
         'Immortal Key': '竜の楔',
         'Midgardsormr': 'ミドガルズオルム',
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Akh Morn': 'アク・モーン',
         'Akh Rhai': 'アク・ラーイ',
         'Azure Wings': '蒼翼の焔',
@@ -256,7 +243,6 @@
         'Dark Wave': 'ダークウェーブ',
         'Dry Ice': 'フリージングダスト',
         'Earth Shaker': 'アースシェイカー',
-        'Enrage': 'Enrage',
         'Exaflare': 'エクサフレア',
         'Flame Blast': 'フレイムブラスト',
         'Flip': 'Flip', // FIXME
@@ -278,7 +264,6 @@
         'Thunderstorm': 'サンダーストーム',
         'Time Immemorial': '天地開闢',
         'Touchdown': 'タッチダウン',
-        'attack': '攻撃',
       },
       '~effectNames': {
         'Arcane Bulwark': '魔法障壁',
@@ -295,14 +280,11 @@
       'locale': 'cn',
       'replaceSync': {
         'Ancient Dragon': '远古之龙',
-        'Engage!': '战斗开始！',
         'Immortal Key': '龙之楔',
         'Midgardsormr': '尘世幻龙',
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
         'Azure Wings': '苍翼之焰',
@@ -316,7 +298,6 @@
         'Dark Wave': '黑暗波动',
         'Dry Ice': '冰尘',
         'Earth Shaker': '大地摇动',
-        'Enrage': 'Enrage', // FIXME
         'Exaflare': '百京核爆',
         'Flame Blast': '烈焰十字爆',
         'Flip': 'Flip', // FIXME
@@ -338,7 +319,6 @@
         'Thunderstorm': '闪雷风暴',
         'Time Immemorial': '开天辟地',
         'Touchdown': '空降',
-        'attack': '攻击',
       },
       '~effectNames': {
         'Arcane Bulwark': '魔法障壁',
@@ -355,14 +335,11 @@
       'locale': 'ko',
       'replaceSync': {
         'Ancient Dragon': '고룡',
-        'Engage!': '전투 시작!',
         'Immortal Key': '용의 말뚝',
         'Midgardsormr': '미드가르드오름',
       },
       'replaceText': {
         'ready': 'ready', // FIXME
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',
         'Azure Wings': '창익의 불꽃',
@@ -376,7 +353,6 @@
         'Dark Wave': '어둠의 파동',
         'Dry Ice': '지면 동결',
         'Earth Shaker': '요동치는 대지',
-        'Enrage': 'Enrage', // FIXME
         'Exaflare': '엑사플레어',
         'Flame Blast': '화염 작렬',
         'Flip': 'Flip', // FIXME
@@ -398,7 +374,6 @@
         'Thunderstorm': '번개 폭풍',
         'Time Immemorial': '천지개벽',
         'Touchdown': '착지',
-        'attack': '공격',
       },
       '~effectNames': {
         'Arcane Bulwark': '마법 장벽',

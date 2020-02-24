@@ -30,8 +30,8 @@ class CactbotLanguageKo extends CactbotLanguage {
       LadyOfCrowns: '여왕의 날개', // 0x755
       LordOfCrowns: '왕의 검', // 0x754
       Hypercharge: '과충전', // 0x2b0
-      LeftEye: '용의 왼쪽 눈', // 0x4a0
-      RightEye: '용의 오른쪽 눈', // 0x49f
+      LeftEye: '용의 왼눈', // 0x4a0
+      RightEye: '용의 오른눈', // 0x49f
       Brotherhood: '도원결의: 투기', // 0x49e
       Devotion: '에기의 가호', // 0x4bd
       FoeRequiem: '마인의 진혼곡', // up 0x8b, down 0x8c

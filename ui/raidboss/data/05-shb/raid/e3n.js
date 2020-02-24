@@ -115,7 +115,7 @@
       },
     },
     {
-      id: 'E3N Undersea Quake Outside',
+      id: 'E3N Undersea Quake Inside',
       regex: Regexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3FCF', source: 'Léviathan', capture: false }),
@@ -258,25 +258,21 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Leviathan': 'Leviathan',
       },
       'replaceText': {
         'Freak Wave': 'Gigantische Welle',
         'Killer Wave': 'Tödliche Welle',
-        '--untargetable--': '--nich anvisierbar--',
         'Maelstrom': 'Mahlstrom',
         'Monster Wave': 'Monsterwelle',
         'Tidal Roar': 'Schrei der Gezeiten',
         'Smothering Tsunami': 'Ertränkende Sturzflut',
-        '--targetable--': '--anvisierbar--',
         'Splashing Tsunami': 'Stürmende Sturzflut',
         'Undersea Quake': 'Unterwasserbeben',
-        'Enrage': 'Finalangriff',
         'Swirling Tsunami': 'Wirbelnde Sturzflut',
         'Unknown Ability': 'Unknown Ability',
         'Tidal Wave': 'Flutwelle',
-        'Tsunami': 'Sturzflut',
+        '(?<! )Tsunami': 'Sturzflut',
         'Spinning Dive': 'Drehsprung',
         'Rip Current': 'Brandungsrückstrom',
         'Temporary Current': 'Unstete Gezeiten',
@@ -295,31 +291,27 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Leviathan': 'Léviathan',
       },
       'replaceText': {
         'Freak Wave': 'Vague gigantesque',
-        'Enrage': 'Enrage',
         'Maelstrom': 'Maelström',
         '--sync--': '--Synchronisation--',
         'Rip Current': 'Courant d\'arrachement',
         'Undersea Quake': 'Séisme sous-marin',
-        '--targetable--': '--Ciblable--',
         'Spinning Dive': 'Piqué tournant',
         'Killer Wave': 'Vague meutrière',
         'Temporary Current': 'Courant évanescent',
         'Crashing Pulse': 'Pulsation déchaînée',
         'Surging Tsunami': 'Tsunami écrasant',
         '--Reset--': '--Réinitialisation--',
-        '--untargetable--': '--Impossible à cibler--',
         'Monster Wave': 'Vague monstrueuse',
         'Tidal Roar': 'Vague rugissante',
         'Smothering Tsunami': 'Tsunami submergeant',
         'Splashing Tsunami': 'Tsunami déferlant',
         'Swirling Tsunami': 'Tsunami tournoyant',
         'Tidal Wave': 'Raz-de-marée',
-        'Tsunami': 'Tsunami',
+        '(?<! )Tsunami': 'Tsunami',
         'Drenching Pulse': 'Pulsation sauvage',
       },
       '~effectNames': {
@@ -332,8 +324,8 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Leviathan': 'リヴァイアサン',
       },
       'replaceText': {
@@ -348,7 +340,7 @@
         'Swirling Tsunami': '渦動の大海嘯',
         'Unknown Ability': 'Unknown Ability',
         'Tidal Wave': 'タイダルウェイブ',
-        'Tsunami': '大海嘯',
+        '(?<! )Tsunami': '大海嘯',
         'Spinning Dive': 'スピニングダイブ',
         'Rip Current': 'リップカレント',
         'Temporary Current': 'テンポラリーカレント',
@@ -367,7 +359,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Leviathan': '利维亚桑',
       },
       'replaceText': {
@@ -381,15 +372,13 @@
         'Undersea Quake': '海底地震',
         'Swirling Tsunami': '涡动大海啸',
         'Tidal Wave': '巨浪',
-        'Tsunami': '大海啸',
+        '(?<! )Tsunami': '大海啸',
         'Spinning Dive': '旋转下潜',
         'Rip Current': '裂流',
         'Temporary Current': '临时洋流',
         'Crashing Pulse': '激烈波动',
         'Drenching Pulse': '猛烈波动',
         'Surging Tsunami': '强压大海啸',
-        '--untargetable--': '--无法选中--',
-        '--targetable--': '--可选中--',
       },
       '~effectNames': {
         'Dropsy': '水毒',
@@ -402,7 +391,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Leviathan': '리바이어선',
       },
       'replaceText': {
@@ -422,9 +410,7 @@
         'Crashing Pulse': '격렬한 파동',
         'Drenching Pulse': '맹렬한 파동',
         'Surging Tsunami': '강압의 대해일',
-        'Tsunami': '대해일',
-        '--untargetable--': '--타겟불가능--',
-        '--targetable--': '--타겟가능--',
+        '(?<! )Tsunami': '대해일',
       },
       '~effectNames': {
         'Dropsy': '물독',

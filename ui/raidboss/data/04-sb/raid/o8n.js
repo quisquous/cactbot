@@ -310,16 +310,12 @@
         'The Mad Head': 'verrückt(?:e|er|es|en) Kopf',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Aero Assault': 'Wallendes Windga',
         'Aero/Ruin': 'Wind/Ruin',
         'All Things Ending': 'Ende aller Dinge',
         'Blizzard Blitz': 'Erstarrendes Eisga',
         'Blizzard III': 'Eisga',
         'Celestriad': 'Dreigestirn',
-        'Engage!': 'Start!',
-        'Enrage': 'Finalangriff',
         'Explosion': 'Explosion',
         'Fire III': 'Feuga',
         'Flagrant Fire': 'Flammendes Feuga',
@@ -373,16 +369,12 @@
         'The Mad Head': 'visage de la folie',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Aero Assault': 'Méga Vent véhément',
         'Aero/Ruin': 'Vent/Ruine',
         'All Things Ending': 'Fin de toutes choses',
         'Blizzard Blitz': 'Méga Glace glissante',
         'Blizzard III': 'Méga Glace',
         'Celestriad': 'Tristella',
-        'Engage!': 'À l\'attaque',
-        'Enrage': 'Enrage',
         'Explosion': 'Explosion',
         'Fire III': 'Méga Feu',
         'Flagrant Fire': 'Méga Feu faufilant',
@@ -436,16 +428,12 @@
         'The Mad Head': 'マッドヘッド',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Aero Assault': 'ずんずんエアロガ',
         'Aero/Ruin': 'Aero/Ruin', // FIXME
         'All Things Ending': '消滅の脚',
         'Blizzard Blitz': 'ぐるぐるブリザガ',
         'Blizzard III': 'ブリザガ',
         'Celestriad': 'スリースターズ',
-        'Engage!': '戦闘開始！',
-        'Enrage': 'Enrage',
         'Explosion': '爆発',
         'Fire III': 'ファイガ',
         'Flagrant Fire': 'めらめらファイガ',
@@ -499,16 +487,12 @@
         'The Mad Head': '妖首',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Aero Assault': '疼飕飕暴风',
         'Aero/Ruin': 'Aero/Ruin', // FIXME
         'All Things Ending': '消灭之脚',
         'Blizzard Blitz': '滴溜溜冰封',
         'Blizzard III': '冰封',
         'Celestriad': '三星',
-        'Engage!': '战斗开始！',
-        'Enrage': 'Enrage', // FIXME
         'Explosion': '爆炸',
         'Fire III': '爆炎',
         'Flagrant Fire': '呼啦啦爆炎',
@@ -562,16 +546,12 @@
         'The Mad Head': '광인의 머리',
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Aero Assault': '갈기갈기 에어로가',
         'Aero/Ruin': 'Aero/Ruin', // FIXME
         'All Things Ending': '소멸의 발차기',
         'Blizzard Blitz': '빙글빙글 블리자가',
         'Blizzard III': '블리자가',
         'Celestriad': '세 개의 별',
-        'Engage!': '전투 시작!',
-        'Enrage': 'Enrage', // FIXME
         'Explosion': '폭발',
         'Fire III': '파이가',
         'Flagrant Fire': '이글이글 파이가',

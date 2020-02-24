@@ -56,7 +56,6 @@
       'replaceSync': {
         'Electrogenetic Force': 'Elektro-Kraft',
         'Embodiment': 'Gilgamesch-Doppelgänger',
-        'Engage!': 'Start!',
         'Gilgamesh': 'Gilgamesch',
         'Inoshikacho': 'Ino-shika-cho',
         'Yojimbo': 'Yojinbo',
@@ -64,8 +63,6 @@
       'replaceText': {
         '--Reset--': '--Reset--',
         '--sync--': '--sync--',
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'Klingenschimmer',
@@ -93,7 +90,6 @@
       'replaceSync': {
         'Electrogenetic Force': 'Force électrogénétique',
         'Embodiment': 'double de Gilgamesh',
-        'Engage!': 'À l\'attaque',
         'Gilgamesh': 'Gilgamesh',
         'Inoshikacho': 'Ino-shika-cho',
         'Yojimbo': 'Yojimbo',
@@ -101,8 +97,6 @@
       'replaceText': {
         '--Reset--': '--Réinitialisation--',
         '--sync--': '--Synchronisation--',
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'Éradication',
@@ -130,7 +124,6 @@
       'replaceSync': {
         'Electrogenetic Force': '電撃',
         'Embodiment': 'ギルガメッシュの分身',
-        'Engage!': '戦闘開始！',
         'Gilgamesh': 'ギルガメッシュ',
         'Inoshikacho': '猪鹿蝶',
         'Yojimbo': 'ヨウジンボウ',
@@ -138,8 +131,6 @@
       'replaceText': {
         '--Reset--': '--Reset--',
         '--sync--': '--sync--',
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'ヒット・ジ・エンド',
@@ -167,7 +158,6 @@
       'replaceSync': {
         'Electrogenetic Force': '电击',
         'Embodiment': '吉尔伽美什的分身',
-        'Engage!': '战斗开始！',
         'Gilgamesh': '吉尔伽美什',
         'Inoshikacho': '猪鹿蝶',
         'Yojimbo': '保镖',
@@ -175,8 +165,6 @@
       'replaceText': {
         '--Reset--': '--Reset--', // FIXME
         '--sync--': '--sync--', // FIXME
-        '--targetable--': '--可选中--',
-        '--untargetable--': '--不可选中--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': '命尽于此',
@@ -204,7 +192,6 @@
       'replaceSync': {
         'Electrogenetic Force': '전류',
         'Embodiment': '길가메시의 분신',
-        'Engage!': '전투 시작!',
         'Gilgamesh': '길가메시',
         'Inoshikacho': '멧돼지사슴나비',
         'Yojimbo': '요우진보',
@@ -212,8 +199,6 @@
       'replaceText': {
         '--Reset--': '--Reset--', // FIXME
         '--sync--': '--sync--', // FIXME
-        '--targetable--': '--대상 지정 가능--',
-        '--untargetable--': '--대상 지정 불가--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': '끝장타',

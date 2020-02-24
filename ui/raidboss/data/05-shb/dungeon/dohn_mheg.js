@@ -252,10 +252,9 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Teag Gye will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Taeg Gye schließt',
-        'The Atelier will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Griaules Revier schließt',
-        'The throne room will be sealed off': 'Noch 15 Sekunden bis sich der Zugang zu Garten des Kronsaal schließt',
-        'is no longer sealed': 'öffnet sich erneut',
+        'Teag Gye': 'Taeg Gye',
+        'The Atelier': 'Griaules Revier',
+        'The throne room': 'Garten des Kronsaal',
         'Aenc Thon, Lord of the Lingering Gaze': 'Aenc Thon der Glupschäugige',
         'Griaule': 'Griaule',
         'Painted Sapling': 'Griaules Sämling',
@@ -278,7 +277,6 @@
         'Landsblood': 'Erdblut',
         'Candy Cane': 'Quietschehammer',
         'Funambulist\'s Fantasia': 'Seiltanz-Fantasie',
-        'Enrage': 'Finalangriff',
         'Malaise': 'Malaise',
         'Bile Bombardment': 'Galliger Niederschlag',
         'Flailing Tentacles': 'Tentakelflegel',
@@ -291,10 +289,9 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Teag Gye will be sealed off': '15초 후에 선잠의 샘이 봉쇄됩니다',
-        'The Atelier will be sealed off': '15초 후에 그리올의 침상이 봉쇄됩니다',
-        'The throne room will be sealed off': '15초 후에 왕관의 방이 봉쇄됩니다',
-        'is no longer sealed': '의 봉쇄가 해제되었습니다',
+        'Teag Gye': '선잠의 샘',
+        'The Atelier': '그리올의 침상',
+        'The throne room': '왕관의 방',
         'Aenc Thon, Lord of the Lingering Gaze': '눈이 예쁜 잉크 돈',
         'Griaule': '그리올',
         'Painted Sapling': '그리올 묘목',
@@ -317,7 +314,6 @@
         'Landsblood': '수맥 난타',
         'Candy Cane': '막대사탕',
         'Funambulist\'s Fantasia': '외나무다리 환상곡',
-        'Enrage': '전멸기',
         'Malaise': '벌레독',
         'Bile Bombardment': '벌레독 살포',
         'Flailing Tentacles': '꿈틀대는 촉수',

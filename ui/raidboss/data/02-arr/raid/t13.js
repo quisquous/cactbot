@@ -137,7 +137,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
-        'Engage!': 'Start!',
         'The Storm of Meracydia': 'Sturm von Meracydia',
       },
       'replaceText': {
@@ -146,7 +145,6 @@
         'Dark Aether': 'Dunkeläther',
         'Double Dive': 'Doppelschwinge',
         'Earth Shaker': 'Erdstoß',
-        'Enrage': 'Finalangriff',
         'Flare Breath': 'Flare-Atem',
         'Flare Star': 'Flare-Stern',
         'Flatten': 'Einstampfen',
@@ -170,7 +168,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'Engage!': 'À l\'attaque',
         'The Storm of Meracydia': 'Tempête de Méracydia',
       },
       'replaceText': {
@@ -179,7 +176,6 @@
         'Dark Aether': 'éther sombre',
         'Double Dive': 'Plongeon double',
         'Earth Shaker': 'Secousse',
-        'Enrage': 'Enrage',
         'Flare Breath': 'Souffle brasier',
         'Flare Star': 'Astre flamboyant',
         'Flatten': 'Aplatissement',
@@ -203,7 +199,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
-        'Engage!': '戦闘開始！',
         'The Storm of Meracydia': 'メラシディアン・ストーム',
       },
       'replaceText': {
@@ -212,7 +207,6 @@
         'Dark Aether': 'ダークエーテル',
         'Double Dive': 'ダブルダイブ',
         'Earth Shaker': 'アースシェイカー',
-        'Enrage': 'Enrage',
         'Flare Breath': 'フレアブレス',
         'Flare Star': 'フレアスター',
         'Flatten': '押しつぶす',
@@ -236,7 +230,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Bahamut Prime': '至尊巴哈姆特',
-        'Engage!': '战斗开始！',
         'The Storm of Meracydia': '美拉西迪亚的怒雨',
       },
       'replaceText': {
@@ -245,7 +238,6 @@
         'Dark Aether': '暗以太',
         'Double Dive': '双重俯冲',
         'Earth Shaker': '大地摇动',
-        'Enrage': 'Enrage', // FIXME
         'Flare Breath': '核爆吐息',
         'Flare Star': '耀星',
         'Flatten': '跺脚',
@@ -269,7 +261,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
-        'Engage!': '전투 시작!',
         'The Storm of Meracydia': '메라시디아의 폭풍',
       },
       'replaceText': {
@@ -278,7 +269,6 @@
         'Dark Aether': '어둠의 에테르',
         'Double Dive': '이중 강하',
         'Earth Shaker': '요동치는 대지',
-        'Enrage': 'Enrage', // FIXME
         'Flare Breath': '타오르는 숨결',
         'Flare Star': '타오르는 별',
         'Flatten': '압사',

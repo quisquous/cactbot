@@ -6,7 +6,11 @@
 // TODO: missing puddles?
 // TODO: missing light/dark circle stack
 [{
-  zoneRegex: /^Eden's Gate: Descent \(Savage\)$/,
+  zoneRegex: {
+    en: /^Eden's Gate: Descent \(Savage\)$/,
+    cn: /^伊甸零式希望乐园 \(觉醒之章2\)$/,
+    ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(2\)$/,
+  },
   damageWarn: {
     'E2S Doomvoid Slicer': '3E50',
     'E3S Empty Rage': '3E6C',
@@ -45,6 +49,7 @@
             fr: e.abilityName,
             cn: e.abilityName,
             ja: e.abilityName,
+            ko: '닉스',
           },
         };
       },

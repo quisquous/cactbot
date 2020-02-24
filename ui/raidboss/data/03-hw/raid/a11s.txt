@@ -59,10 +59,10 @@ hideall "--Reset--"
 #alertall "Enrage" before 22 speak "voice" "Go Cleric Stance"
 
 ##############################################################
-0 "--Reset--" sync /The Main Generators is no longer sealed/ window 10000 jump 0
+0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 ################# Phase 1
-0 "--Start--" sync /The Main Generators will be sealed off in 15 seconds/ window 10000
+0 "--Start--" sync / 00:0839:The Main Generators will be sealed off in 15 seconds/ window 10000
 8 "Laser Sword"
 17 "Optical Sight"
 28 ""

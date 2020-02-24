@@ -135,7 +135,6 @@
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': 'Start!',
         'Phoenix-Egi': 'Phönix-Egi',
         'Phoenix(?!-)': 'Phönix',
       },
@@ -160,7 +159,6 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Phoenix-Egi': 'Phénix-Egi',
         'Phoenix(?!-)': 'Phénix',
       },
@@ -185,7 +183,6 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Phoenix-Egi': 'フェニックス・エギ',
         'Phoenix(?!-)': 'フェニックス',
       },
@@ -210,7 +207,6 @@
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Phoenix(?!-)': '不死鸟',
         'Phoenix-Egi': '不死鸟之灵',
       },
@@ -235,7 +231,6 @@
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Phoenix(?!-)': '피닉스',
         'Phoenix-Egi': '피닉스 에기',
       },

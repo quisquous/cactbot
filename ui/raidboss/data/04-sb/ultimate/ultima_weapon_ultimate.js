@@ -26,6 +26,7 @@
   triggers: [
     // Phases
     {
+      id: 'UWU Suppression Phase',
       regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
       regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
       regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
@@ -38,6 +39,7 @@
     },
     {
       // Wait after suppression for primal triggers at the end.
+      id: 'UWU Finale Phase',
       regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
       regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
       regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
@@ -274,7 +276,7 @@
       },
     },
     {
-      // Cleanup
+      id: 'UWU Gaol Cleanup',
       regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
       regexCn: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'], capture: false }),
       regexDe: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
@@ -374,7 +376,6 @@
         '(?<! )Aetheroplasm': 'Ätheroplasma',
         'Bomb Boulder': 'Bomber-Brocken',
         'Chirada': 'Chirada',
-        'Engage!': 'Start!',
         'Garuda': 'Garuda',
         'Granite Gaol': 'Granitgefängnis',
         'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Nun, ihr Würmer! Ihr wollt die Macht des Windes spüren?',
@@ -391,8 +392,6 @@
         'Ultimaplasm': 'Ultimaplasma',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Aerial Blast': 'Windschlag',
         'Aetheric Boom': 'Ätherknall',
         'Aetherochemical Laser': 'Ätherochemischer Laser',
@@ -408,7 +407,6 @@
         'Diffractive Laser': 'Diffraktiver Laser',
         'Downburst': 'Fallböe',
         'Earthen Fury': 'Gaias Zorn',
-        'Enrage': 'Finalangriff',
         'Eruption': 'Eruption',
         'Eye Of The Storm': 'Auge des Sturms',
         'Feather Rain': 'Federregen',
@@ -481,7 +479,6 @@
         '(?<! )Aetheroplasm': 'Éthéroplasma',
         'Bomb Boulder': 'bombo rocher',
         'Chirada': 'Chirada',
-        'Engage!': 'À l\'attaque',
         'Garuda': 'Garuda',
         'Granite Gaol': 'geôle de granite',
         'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'Je vais vous écorcher avec mes bourrasques',
@@ -498,8 +495,6 @@
         'Ultimaplasm': 'ultimaplasme',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Aerial Blast': 'Rafale aérienne',
         'Aetheric Boom': 'Onde d\'éther',
         'Aetherochemical Laser': 'Laser magismologique',
@@ -515,7 +510,6 @@
         'Diffractive Laser': 'Laser diffracteur',
         'Downburst': 'Rafale descendante',
         'Earthen Fury': 'Fureur tellurique',
-        'Enrage': 'Enrage',
         'Eruption': 'Éruption',
         'Eye Of The Storm': 'Œil du cyclone',
         'Feather Rain': 'Pluie de plumes',
@@ -588,7 +582,6 @@
         '(?<! )Aetheroplasm': 'エーテル爆雷',
         'Bomb Boulder': 'ボムボルダ',
         'Chirada': 'チラーダ',
-        'Engage!': '戦闘開始！',
         'Garuda': 'ガルーダ',
         'Granite Gaol': 'グラナイト・ジェイル',
         'Heehee HAHA hahaha HEEHEE haha HEEEEEE': 'はじめようぞ、虫ケラ…… .わたくしの風でッ！　嵐でッ！　無残に散れッ！',
@@ -605,8 +598,6 @@
         'Ultimaplasm': 'アルテマ爆雷',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Aerial Blast': 'エリアルブラスト',
         'Aetheric Boom': 'エーテル波動',
         'Aetherochemical Laser': '魔科学レーザー',
@@ -622,7 +613,6 @@
         'Diffractive Laser': '拡散レーザー',
         'Downburst': 'ダウンバースト',
         'Earthen Fury': '大地の怒り',
-        'Enrage': 'Enrage',
         'Eruption': 'エラプション',
         'Eye Of The Storm': 'アイ・オブ・ストーム',
         'Feather Rain': 'フェザーレイン',
@@ -695,7 +685,6 @@
         '(?<! )Aetheroplasm': '以太爆雷',
         'Bomb Boulder': '爆破岩石',
         'Chirada': '妙翅',
-        'Engage!': '战斗开始！',
         'Garuda': '迦楼罗',
         'Granite Gaol': '花岗石牢',
         'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '哈哈哈哈哈！',
@@ -712,8 +701,6 @@
         'Ultimaplasm': '究极炸弹',
       },
       'replaceText': {
-        '--targetable--': '--可选中--',
-        '--untargetable--': '--不可选中--',
         'Aerial Blast': '大气爆发',
         'Aetheric Boom': '以太波动',
         'Aetherochemical Laser': '魔科学激光',
@@ -729,7 +716,6 @@
         'Diffractive Laser': '扩散射线',
         'Downburst': '下行突风',
         'Earthen Fury': '大地之怒',
-        'Enrage': '战斗开始',
         'Eruption': '地火喷发',
         'Eye Of The Storm': '台风眼',
         'Feather Rain': '飞翎雨',
@@ -802,7 +788,6 @@
         '(?<! )Aetheroplasm': '에테르 폭뢰',
         'Bomb Boulder': '화강암 감옥',
         'Chirada': '치라다',
-        'Engage!': '전투 시작!',
         'Garuda': '가루다',
         'Granite Gaol': '화강암 감옥',
         'Heehee HAHA hahaha HEEHEE haha HEEEEEE': '시작하자, 버러지들아',
@@ -819,8 +804,6 @@
         'Ultimaplasm': '알테마 폭뢰',
       },
       'replaceText': {
-        '--targetable--': '--타겟 가능--',
-        '--untargetable--': '--타겟 불가--',
         'Aerial Blast': '대기 폭발',
         'Aetheric Boom': '에테르 파동',
         'Aetherochemical Laser': '마과학 레이저',
@@ -836,7 +819,6 @@
         'Diffractive Laser': '확산 레이저',
         'Downburst': '하강 기류',
         'Earthen Fury': '대지의 분노',
-        'Enrage': '전멸기',
         'Eruption': '용암 분출',
         'Eye Of The Storm': '태풍의 눈',
         'Feather Rain': '깃털비',

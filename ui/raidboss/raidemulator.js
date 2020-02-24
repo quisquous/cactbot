@@ -471,7 +471,7 @@ class LogPlayer {
 class EmulatorView {
   constructor(
       fightListElement, timerElements, elapsedElement, infoElement,
-      partyElement, currentPlayerElement, triggerInfoElement
+      partyElement, currentPlayerElement, triggerInfoElement,
   ) {
     this.fightListElement = fightListElement;
     this.timerElements = timerElements;
@@ -980,7 +980,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   gEmulatorView = new EmulatorView(
       fightListElement, timerElements, elapsedElement, infoElement,
-      partyElement, currentPlayerElement, triggerInfoElement
+      partyElement, currentPlayerElement, triggerInfoElement,
   );
   gLogCollector = new LogCollector(gEmulatorView.AddFight.bind(gEmulatorView));
 

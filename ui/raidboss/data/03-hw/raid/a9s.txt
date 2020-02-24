@@ -48,10 +48,10 @@ hideall "--Reset--"
 #alertall "Scrap" before 3 speak "voice" "Tank Buster"
 
 ##############################################################
-0 "--Reset--" sync /The Main Generators is no longer sealed/ window 10000 jump 0
+0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 ################# Phase 1
-0	"--Start--"	sync /Life Support will be sealed off in 15 seconds/ window 10000
+0	"--Start--"	sync / 00:0839:Life Support will be sealed off in 15 seconds/ window 10000
 8	"Stockpile"
 14	"Power Generator Spawn"
 22	"Scrap"

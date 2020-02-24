@@ -552,42 +552,42 @@
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
-      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      regex: Regexes.headMarker({ id: '00(?:8F|9[0-6])' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
       preRun: function(data, matches) {
         data.limitCutNumber = {
-          '004F': 1,
-          '0050': 2,
-          '0051': 3,
-          '0052': 4,
-          '0053': 5,
-          '0054': 6,
-          '0055': 7,
-          '0056': 8,
+          '008F': 1,
+          '0090': 2,
+          '0091': 3,
+          '0092': 4,
+          '0093': 5,
+          '0094': 6,
+          '0095': 7,
+          '0096': 8,
         }[matches.id];
         if (data.phase == 'wormhole') {
           data.limitCutDelay = {
-            '004F': 9.2,
-            '0050': 10.7,
-            '0051': 13.4,
-            '0052': 15.0,
-            '0053': 17.7,
-            '0054': 19.2,
-            '0055': 22.0,
-            '0056': 23.4,
+            '008F': 9.2,
+            '0090': 10.7,
+            '0091': 13.4,
+            '0092': 15.0,
+            '0093': 17.7,
+            '0094': 19.2,
+            '0095': 22.0,
+            '0096': 23.4,
           }[matches.id];
         } else {
           data.limitCutDelay = {
-            '004F': 9.5,
-            '0050': 11,
-            '0051': 14.1,
-            '0052': 15.5,
-            '0053': 18.6,
-            '0054': 20,
-            '0055': 23.2,
-            '0056': 24.6,
+            '008F': 9.5,
+            '0090': 11,
+            '0091': 14.1,
+            '0092': 15.5,
+            '0093': 18.6,
+            '0094': 20,
+            '0095': 23.2,
+            '0096': 24.6,
           }[matches.id];
         }
       },
@@ -609,7 +609,7 @@
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
-      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      regex: Regexes.headMarker({ id: '00(?:8F|9[0-6])' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1483,7 +1483,7 @@
     },
     {
       id: 'TEA Cactbot Wormhole Strat',
-      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      regex: Regexes.headMarker({ id: '00(?:8F|9[0-6])' }),
       condition: function(data, matches) {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1492,14 +1492,14 @@
       durationSeconds: 10,
       preRun: function(data, matches) {
         data.puddle = {
-          '004F': 3,
-          '0050': 3,
-          '0051': 0,
-          '0052': 0,
-          '0053': 1,
-          '0054': 1,
-          '0055': 2,
-          '0056': 2,
+          '008F': 3,
+          '0090': 3,
+          '0091': 0,
+          '0092': 0,
+          '0093': 1,
+          '0094': 1,
+          '0095': 2,
+          '0096': 2,
         }[matches.id];
       },
       infoText: function(data, matches) {
@@ -1507,49 +1507,49 @@
         // TODO: we could figure out which robot was left and right based
         // on chakrams, and call that out here too instead of just saying "Robot".
         return {
-          '004F': {
+          '008F': {
             en: 'Left To Robot; Look Outside; 3rd Puddle',
             de: 'Links vom Robot; Nach Außen schauen; 3. Fläche',
             ja: '右上 外向き 懺悔3回目',
             ko: '왼쪽 위 / 참회 #3',
           },
-          '0050': {
+          '0090': {
             en: 'Back Right Opposite Robot; Look Middle; 3rd Puddle',
             de: 'Hinten Rechts gegenüber vom Robot; zur Mitte schauen; 3. Fläche',
             ja: '左下 内向き 懺悔3回目',
             ko: '오른쪽 위 / 참회 #3',
           },
-          '0051': {
+          '0091': {
             en: 'Back Left Opposite Robot; No Puddle',
             de: 'Hinten Links gegenüber vom Robot; keine Fläche',
             ja: '左上',
             ko: '왼쪽 아래',
           },
-          '0052': {
+          '0092': {
             en: 'Right To Robot; No puddle',
             de: 'Rechts vom Robot; keine Fläche',
             ja: '右下',
             ko: '오른쪽 아래',
           },
-          '0053': {
+          '0093': {
             en: 'Left Robot Side -> 1st Puddle',
             de: 'Linke Robot Seite -> 1. Fläche',
             ja: '右ちょい上 懺悔1回目',
             ko: '왼쪽 / 참회 #1',
           },
-          '0054': {
+          '0094': {
             en: 'Right Robot Side -> 1st Puddle',
             de: 'Rechte Robot Seite -> 1. Fläche',
             ja: '左ちょい上 懺悔1回目',
             ko: '오른쪽 / 참회 #1',
           },
-          '0055': {
+          '0095': {
             en: 'Left Robot Side -> cardinal; 2nd Puddle',
             de: 'Linke Robot Seite -> cardinal; 2. Fläche',
             ja: '右ちょい上 懺悔2回目',
             ko: '왼쪽 / 참회 #2',
           },
-          '0056': {
+          '0096': {
             en: 'Right Robot Side -> cardinal; 2nd Puddle',
             de: 'Rechte Robot Seite -> cardinal; 2. Fläche',
             ja: '左ちょい上 懺悔2回目',
@@ -2691,8 +2691,8 @@
         'Alexander Prime': 'Prim-Alexander',
         'Brute Justice': 'Brutalus',
         'Cruise Chaser': 'Chaser-Mecha',
-        'Engage!': 'Start!',
         'Jagd Doll': 'Jagdpuppe',
+        'Judgment Crystal': 'Urteilskristall',
         'Liquid Hand': 'belebte Hand',
         'Living Liquid': 'belebtes Wasser',
         'Liquid Rage': 'levitierte Rage',
@@ -2704,8 +2704,6 @@
         '--Cruise Chaser Invincible--': '--Chaser-Mecha unverwundbar--',
         '--adds targetable--': '--adds anvisierbar--',
         '--alex untargetable--': '--alex nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Aetheroplasm': 'Ätheroplasma',
         'Almighty Judgment': 'Göttliches Letzturteil',
         'Alpha Sword': 'Alpha-Schwert',
@@ -2736,7 +2734,7 @@
         'Hand of Prayer': 'Betende Hand',
         'Hawk Blaster': 'Jagdfalke',
         'Hidden Minefield': 'Getarntes Minenfeld',
-        'Inception': 'Raumzeit-Eingriff',
+        'Inception(?! )': 'Raumzeit-Eingriff',
         'Inception Formation': 'Raumzeit-Eingriffsformation',
         'Incinerating Heat': 'Sengende Hitze',
         'Individual Reprobation': 'Einzelstrafe',
@@ -2765,7 +2763,7 @@
         'Protean Wave': 'Proteische Welle',
         'Punishing Wave': 'Strafende Welle',
         'Rage Wave': 'Rage Wave', // FIXME
-        'Repentance': 'Reue',
+        '(?<! )Repentance': 'Reue',
         'Sacrament': 'Sakrament',
         'Severity': 'Erschwertes',
         'Sluice': 'Schleusenöffnung',
@@ -2806,14 +2804,8 @@
         'Final Word: Contact Regulation': 'Urteil: Kontakt-Order',
         'Final Word: Contact Prohibition': 'Urteil: Kontaktverbot',
         'Final Judgment: Penalty III': 'Prozess über Schwächung 3',
-        'Final Judgment: Decree Nisi δ': 'Prozess über Vorläufiges Urteil δ',
-        'Final Judgment: Decree Nisi γ': 'Prozess über Vorläufiges Urteil γ',
-        'Final Judgment: Decree Nisi β': 'Prozess über Vorläufiges Urteil β',
-        'Final Judgment: Decree Nisi α': 'Prozess über Vorläufiges Urteil α',
-        'Final Decree Nisi δ': 'Letztes Vorläufiges Urteil δ',
-        'Final Decree Nisi γ': 'Letztes Vorläufiges Urteil γ',
-        'Final Decree Nisi β': 'Letztes Vorläufiges Urteil β',
-        'Final Decree Nisi α': 'Letztes Vorläufiges Urteil α',
+        'Final Judgment: Decree Nisi': 'Prozess über Vorläufiges Urteil',
+        'Final Decree Nisi': 'Letztes Vorläufiges Urteil',
         'Escape Detection Ordained': 'Fluchtbeobachtung',
         'Enigma Codex': 'Enigma-Kodex',
         'Embolden': 'Ermutigen',
@@ -2832,7 +2824,6 @@
         'Alexander Prime': 'Primo-Alexander',
         'Brute Justice': 'Justicier',
         'Cruise Chaser': 'Croiseur-chasseur',
-        'Engage!': 'À l\'attaque!',
         'Jagd Doll': 'poupée jagd',
         'Liquid Hand': 'membre liquide',
         'Liquid Rage': 'furie liquide',
@@ -2845,8 +2836,6 @@
         '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
         '--adds targetable--': '--adds targetable--', // FIXME
         '--alex untargetable--': '--alex untargetable--', // FIXME
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Aetheroplasm': 'Éthéroplasma',
         'Almighty Judgment': 'Sentence divine',
         'Alpha Sword': 'Épée alpha',
@@ -2877,7 +2866,7 @@
         'Hand of Prayer': 'Main de prière',
         'Hawk Blaster': 'Canon faucon',
         'Hidden Minefield': 'Champ de mines caché',
-        'Inception': 'Commencement',
+        'Inception(?! )': 'Commencement',
         'Inception Formation': 'Marche du commencement',
         'Incinerating Heat': 'Chaleur purifiante',
         'Individual Reprobation': 'Réprobation individuelle',
@@ -2906,7 +2895,7 @@
         'Protean Wave': 'Vague inconstante',
         'Punishing Wave': 'Vague punitive',
         'Rage Wave': 'Rage Wave', // FIXME
-        'Repentance': 'Repentir',
+        '(?<! )Repentance': 'Repentir',
         'Sacrament': 'Sacrement',
         'Severity': 'Severity', // FIXME
         'Sluice': 'Éclusage',
@@ -2973,7 +2962,6 @@
         'Alexander Prime': 'アレキサンダー・プライム',
         'Brute Justice': 'ブルートジャスティス',
         'Cruise Chaser': 'クルーズチェイサー',
-        'Engage!': '戦闘開始！',
         'Jagd Doll': 'ヤークトドール',
         'Liquid Hand': 'リキッドハンド',
         'Liquid Rage': 'リキッドレイジ',
@@ -2986,8 +2974,6 @@
         '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
         '--adds targetable--': '--adds targetable--', // FIXME
         '--alex untargetable--': '--alex untargetable--', // FIXME
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Aetheroplasm': 'エーテル爆雷',
         'Almighty Judgment': '聖なる大審判',
         'Alpha Sword': 'アルファソード',
@@ -3018,7 +3004,7 @@
         'Hand of Prayer': 'ハンド・オブ・プレイヤー',
         'Hawk Blaster': 'ホークブラスター',
         'Hidden Minefield': 'ステルス地雷散布',
-        'Inception': '時空潜行',
+        'Inception(?! )': '時空潜行',
         'Inception Formation': '時空潜行のマーチ',
         'Incinerating Heat': '浄化の熱線',
         'Individual Reprobation': '個の断罪',
@@ -3047,7 +3033,7 @@
         'Protean Wave': 'プロティアンウェイブ',
         'Punishing Wave': 'パニッシュウェーブ',
         'Rage Wave': 'Rage Wave', // FIXME
-        'Repentance': '罪の意識',
+        '(?<! )Repentance': '罪の意識',
         'Sacrament': '十字の秘蹟',
         'Severity': 'Severity', // FIXME
         'Sluice': 'スルース',

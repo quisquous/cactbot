@@ -256,7 +256,7 @@
       // 3D78: tank2
       // 44F0: healer1
       // 3D7D: healer2
-      id: 'E1S Vice and Virtue DPS 1',
+      id: 'E1S Vice and Virtue Tracker',
       regex: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Eden Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Prim-Eden', capture: false }),
       regexFr: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Primo-Éden', capture: false }),
@@ -288,7 +288,7 @@
       },
     },
     {
-      id: 'E1S Vice and Virtue DPS 2',
+      id: 'E1S Vice and Virtue DPS 2 Tracker',
       regex: Regexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
       regexDe: Regexes.startsUsing({ id: '3D7A', source: 'Prim-Eden', capture: false }),
       regexFr: Regexes.startsUsing({ id: '3D7A', source: 'Primo-Éden', capture: false }),
@@ -547,13 +547,11 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Eden Prime': 'Prim-Eden',
         'Arcane Sphere': 'Arkane Sphäre',
         'Guardian of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
-        'attack': 'Attacke',
         'Vice of Vanity': 'Laster der Eitelkeit',
         'Vice of Thievery': 'Laster der Habgier',
         'Vice of Sloth': 'Laster der Faulheit',
@@ -578,7 +576,6 @@
         'Heavensunder': 'Himmelsdonner',
         'Fragor Maximus': 'Fragor Maximus',
         'Eternal Breath': 'Ewiger Atem',
-        'Enrage': 'Finalangriff',
         'Eden\'s Thunder III': 'Eden-Blitzga',
         'Eden\'s Gravity': 'Eden-Gravitas',
         'Eden\'s Flare': 'Eden-Flare',
@@ -586,8 +583,6 @@
         'Eden\'s Blizzard III': 'Eden-Eisga',
         'Dimensional Shift': 'Dimensionsverschiebung',
         'Delta Attack': 'Delta-Attacke',
-        '--untargetable--': '--nich anvisierbar--',
-        '--targetable--': '--anvisierbar--',
         '--center--': '--mitte--',
         'Vice And Virtue': 'Laster und Tugend',
         'Spear Of Paradise': 'Paradiesspeer',
@@ -607,13 +602,12 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Eden Prime': 'Primo-Éden',
         'Arcane Sphere': 'Sphère Arcanique',
       },
       'replaceText': {
-        'attack': 'Attaque',
         'Vice of Vanity': 'Péché de vanité',
         'Vice of Thievery': 'Péché de larcin',
         'Vice of Sloth': 'Péché de paresse',
@@ -638,7 +632,6 @@
         'Heavensunder': 'Ravageur de paradis',
         'Fragor Maximus': 'Fragor Maximus',
         'Eternal Breath': 'Souffle de l\'éternel',
-        'Enrage': 'Enrage',
         'Eden\'s Thunder III': 'Méga Foudre édénique',
         'Eden\'s Gravity': 'Gravité édénique',
         'Eden\'s Flare': 'Brasier édénique',
@@ -646,8 +639,6 @@
         'Eden\'s Blizzard III': 'Méga Glace édénique',
         'Dimensional Shift': 'Translation dimensionnelle',
         'Delta Attack': 'Attaque Delta',
-        '--untargetable--': '--Impossible à cibler--',
-        '--targetable--': '--Ciblable--',
         '--sync--': '--Synchronisation--',
         '--Reset--': '--Réinitialisation--',
         '--center--': '--Centre--',
@@ -667,14 +658,13 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Guardian of Paradise': 'エデン・ガーデナー',
-        'Engage!': '戦闘開始！',
         'Eden Prime': 'エデン・プライム',
         'Arcane Sphere': '立体魔法陣',
       },
       'replaceText': {
-        'attack': '攻撃',
         'Vice of Vanity': 'ヴァイス・オブ・ヴァニティー',
         'Vice of Thievery': 'ヴァイス・オブ・シーヴァリィ',
         'Vice of Sloth': 'ヴァイス・オブ・スロース',
@@ -722,7 +712,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Eden Prime': '至尊伊甸',
         'Arcane Sphere': '立体魔法阵',
         'Guardian of Paradise': '伊甸守护者',
@@ -766,11 +755,8 @@
         'Delta Attack (Cross)': '三角攻击(角落)',
         'Delta Attack (Donut)': '三角攻击(月环)',
         'Delta Attack': '三角攻击',
-        'attack': '攻击',
         '--corner--': '--角落--',
         '--center--': '--中央--',
-        '--untargetable--': '--无法选中--',
-        '--targetable--': '--可选中--',
       },
       '~effectNames': {
         'Slippery Prey': '非目标',
@@ -787,7 +773,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Eden Prime': '에덴 프라임',
         'Arcane Sphere': '입체 마법진',
         'Guardian of Paradise': '에덴의 수호자',
@@ -816,7 +801,6 @@
         'Heavensunder': '천국의 낙뢰',
         'Fragor Maximus': '우주 탄생',
         'Eternal Breath': '영원의 숨결',
-        'Enrage': '전멸기',
         'Eden\'s Thunder III': '에덴 선더가',
         'Eden\'s Gravity': '에덴 그라비데',
         'Eden\'s Flare': '에덴 플레어',
@@ -826,8 +810,6 @@
         'Delta Attack': '델타 공격',
         '--corner--': '--구석--',
         '--center--': '--중앙--',
-        '--untargetable--': '--타겟불가능--',
-        '--targetable--': '--타겟가능--',
         'Cross': '십자',
         'Donut': '중앙',
       },

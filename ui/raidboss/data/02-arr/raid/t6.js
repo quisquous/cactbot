@@ -5,7 +5,7 @@
   timelineFile: 't6.txt',
   triggers: [
     {
-      id: 'T6 Thorn Whip',
+      id: 'T6 Thorn Whip Collect',
       regex: Regexes.tether({ id: '0012' }),
       regexDe: Regexes.tether({ id: '0012' }),
       regexFr: Regexes.tether({ id: '0012' }),
@@ -162,7 +162,7 @@
       },
     },
     {
-      id: 'T6 Swarm',
+      id: 'T6 Swarm Stack',
       regex: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       regexDe: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
       regexFr: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
@@ -223,10 +223,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Engage!': 'Start!',
         'Rafflesia': 'Rafflesia',
-        'Scar\'s Edge is no longer sealed': 'Der Zugang zum Narbenrand öffnet sich wieder',
-        'Scar\'s Edge will be sealed off': 'bis sich der Zugang zum Narbenrand schließt',
+        'Scar\'s Edge': 'Narbenrand',
       },
       'replaceText': {
         'Acid Rain': 'Säureregen',
@@ -246,10 +244,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Engage!': 'À l\'attaque',
         'Rafflesia': 'Rafflesia',
-        'Scar\'s Edge is no longer sealed': 'Ouverture du Huis de la Marque',
-        'Scar\'s Edge will be sealed off': 'Fermeture du Huis de la Marque',
+        'Scar\'s Edge': 'Huis de la Marque',
       },
       'replaceText': {
         'Acid Rain': 'Pluie acide',
@@ -268,11 +264,9 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '戦闘開始！',
         'Rafflesia': 'ラフレシア',
-        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
-        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
       },
       'replaceText': {
         'Acid Rain': '酸性雨',
@@ -291,11 +285,9 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '战斗开始！',
         'Rafflesia': '大王花',
-        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
-        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
       },
       'replaceText': {
         'Acid Rain': '酸雨',
@@ -314,11 +306,9 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
-        'Engage!': '전투 시작!',
         'Rafflesia': '라플레시아',
-        'Scar\'s Edge is no longer sealed': 'Scar\'s Edge is no longer sealed', // FIXME
-        'Scar\'s Edge will be sealed off': 'Scar\'s Edge will be sealed off', // FIXME
       },
       'replaceText': {
         'Acid Rain': '산성비',

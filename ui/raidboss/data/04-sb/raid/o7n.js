@@ -134,8 +134,6 @@
         'WEAPON SYSTEMS ONLINE': 'Feuerkontrollsystem aktiviert',
       },
       'replaceText': {
-        '--targetable--': '--anvisierbar--',
-        '--untargetable--': '--nich anvisierbar--',
         'Aether Rot': 'Ätherfäule',
         'Arm And Hammer': 'Arm-Hammer',
         'Atomic Ray': 'Atomstrahlung',
@@ -152,8 +150,6 @@
         'Diffractive Laser': 'Diffraktiver Laser',
         'Diffractive Plasma': 'Diffusionsplasma',
         'Electric Pulse': 'Elektrischer Impuls',
-        'Engage!': 'Start!',
-        'Enrage': 'Finalangriff',
         'Explosion': 'Explosion',
         'Ink': 'Tinte',
         'Interrupt Stoneskin': 'Steinhaut unterbrechen',
@@ -222,8 +218,6 @@
         'WEAPON SYSTEMS ONLINE': 'Démarrage du système de contrôle',
       },
       'replaceText': {
-        '--targetable--': '--Ciblable--',
-        '--untargetable--': '--Impossible à cibler--',
         'Aether Rot': 'Pourriture éthéréenne',
         'Arm And Hammer': 'Marteau stratégique',
         'Atomic Ray': 'Rayon atomique',
@@ -240,8 +234,6 @@
         'Diffractive Laser': 'Laser diffracteur',
         'Diffractive Plasma': 'Plasma diffracteur',
         'Electric Pulse': 'Impulsion électrique',
-        'Engage!': 'À l\'attaque',
-        'Enrage': 'Enrage',
         'Explosion': 'Explosion',
         'Ink': 'Encre',
         'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
@@ -310,8 +302,6 @@
         'WEAPON SYSTEMS ONLINE': 'ファイアコントロールシステム起動',
       },
       'replaceText': {
-        '--targetable--': '--targetable--',
-        '--untargetable--': '--untargetable--',
         'Aether Rot': 'エーテルロット',
         'Arm And Hammer': 'アームハンマー',
         'Atomic Ray': 'アトミックレイ',
@@ -328,8 +318,6 @@
         'Diffractive Laser': '拡散レーザー',
         'Diffractive Plasma': '拡散プラズマ',
         'Electric Pulse': 'エレクトリックパルス',
-        'Engage!': '戦闘開始！',
-        'Enrage': 'Enrage',
         'Explosion': '爆発',
         'Ink': '墨',
         'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
@@ -398,8 +386,6 @@
         'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Aether Rot': '以太病毒',
         'Arm And Hammer': '臂锤',
         'Atomic Ray': '原子射线',
@@ -416,8 +402,6 @@
         'Diffractive Laser': '扩散射线',
         'Diffractive Plasma': '扩散离子',
         'Electric Pulse': '电磁脉冲',
-        'Engage!': '战斗开始！',
-        'Enrage': 'Enrage', // FIXME
         'Explosion': '爆炸',
         'Ink': '墨汁',
         'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
@@ -486,8 +470,6 @@
         'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
-        '--targetable--': '--targetable--', // FIXME
-        '--untargetable--': '--untargetable--', // FIXME
         'Aether Rot': '에테르 부패',
         'Arm And Hammer': '양팔 내리치기',
         'Atomic Ray': '원자 파동',
@@ -504,8 +486,6 @@
         'Diffractive Laser': '확산 레이저',
         'Diffractive Plasma': '확산 플라스마',
         'Electric Pulse': '전기 충격',
-        'Engage!': '전투 시작!',
-        'Enrage': 'Enrage', // FIXME
         'Explosion': '폭발',
         'Ink': '먹물',
         'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
