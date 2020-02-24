@@ -35,6 +35,7 @@
       infoText: {
         en: 'Away from Lines',
         fr: 'En dehors des sillons',
+        ko: '선 피하기',
       },
     },
     {
@@ -52,6 +53,7 @@
       alertText: {
         en: 'Get On Lines',
         fr: 'Sur les sillons',
+        ko: '선 위로 올라가기',
       },
     },
     {
@@ -82,6 +84,7 @@
       infoText: {
         en: 'Enrage!',
         fr: 'Enrage !',
+        ko: '전멸기!',
       },
     },
     {
@@ -97,6 +100,7 @@
           return {
             en: 'Attack Blue (East)',
             fr: 'Attaquez le bleu (Est)',
+            ko: '파란색 공격 (오른쪽)',
           };
         }
       },
@@ -114,6 +118,7 @@
           return {
             en: 'Attack Red (West)',
             fr: 'Attaquez le rouge (Ouest)',
+            ko: '빨간색 공격 (왼쪽)',
           };
         }
       },
@@ -154,11 +159,13 @@
           return {
             en: 'Attack Red (East)',
             fr: 'Attaquez le rouge (Est)',
+            ko: '빨간색 공격 (오른쪽)',
           };
         }
         return {
           en: 'Attack Blue (West)',
           fr: 'Attaquez le bleu (Ouest)',
+          ko: '파란색 공격 (왼쪽)',
         };
       },
     },
