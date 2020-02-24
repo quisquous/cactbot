@@ -125,7 +125,7 @@
       regexFr: Regexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
-      delaySeconds: 2.0,
+      delaySeconds: 3.0,
       condition: function(data) {
         return !data.fury;
       },
