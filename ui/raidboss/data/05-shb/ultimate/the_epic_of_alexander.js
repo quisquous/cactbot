@@ -26,7 +26,10 @@
 // * escape/contact regulator/prohibition headmarkers
 
 [{
-  zoneRegex: /^The Epic [Oo]f Alexander \(Ultimate\)$/,
+  zoneRegex: {
+    en: /^The Epic [Oo]f Alexander \(Ultimate\)$/,
+    cn: /^亚历山大绝境战$/,
+  },
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [
     {
@@ -52,6 +55,7 @@
               fr: 'Tank busters',
               ja: 'タンクバスター',
               ko: '탱크버스터',
+              cn: '死刑',
             };
           }
           if (data.liquidTank) {
@@ -61,6 +65,7 @@
               fr: 'Tank buster',
               ja: 'タンクバスター',
               ko: '탱크버스터',
+              cn: '死刑 -> ' + data.ShortName(data.liquidTank),
             };
           }
           return {
@@ -69,6 +74,7 @@
             fr: 'Tank buster',
             ja: 'タンクバスター',
             ko: '탱크버스터',
+            cn: '死刑',
           };
         }
 
@@ -80,6 +86,7 @@
               ja: '自分にタンクバスター',
               fr: 'Tank buster sur VOUS',
               ko: '나에게 탱크버스터',
+              cn: '死刑点名',
             };
           }
         }
@@ -96,6 +103,7 @@
           ja: 'タンククリーブ',
           fr: 'Tank Cleave',
           ko: '탱크 범위 공격',
+          cn: '坦克顺劈',
         };
       },
     },
@@ -115,6 +123,7 @@
         de: 'Bosse bewegen',
         ja: 'ボス動かして',
         ko: '보스 이동 주차',
+        cn: '移动Boss',
       },
     },
     {
@@ -144,6 +153,7 @@
         ja: '水/雷まで3秒',
         fr: 'Eau/Foudre dans 3',
         ko: '물/번개까지 3초',
+        cn: '3秒后水/雷',
       },
     },
     {
@@ -159,6 +169,7 @@
         de: 'Drehe Brute zum Wasser',
         ja: 'ジャスを竜巻に向ける',
         ko: '심판자가 물을 바라보게 유도',
+        cn: '残暴正义号拉向水龙卷',
       },
     },
     {
@@ -171,6 +182,7 @@
         ja: '氷の後ろへ',
         fr: 'Derrière la glace',
         ko: '얼음 뒤로 피하기',
+        cn: '冰块后躲避',
       },
     },
     {
@@ -196,6 +208,7 @@
             ja: '懺悔踏む (#' + matches[1] + ')',
             fr: 'Absorbe cette flaque (#' + matches[1] + ')',
             ko: '참회 밟기 (#' + matches[1] + ')',
+            cn: '踩水圈 (#' + matches[1] + ')',
           };
         }
       },
@@ -208,6 +221,7 @@
           ja: '懺悔 #' + matches[1],
           fr: 'Flaque #' + matches[1],
           ko: '참회 #' + matches[1],
+          cn: '水圈 #' + matches[1],
         };
       },
       tts: function(data, matches) {
@@ -217,6 +231,7 @@
             de: 'Fläche nehmen',
             ja: '沼踏んで',
             ko: '웅덩이 밟기',
+            cn: '踩水圈',
           };
         }
       },
@@ -236,6 +251,7 @@
             ja: 'タンクシェア',
             fr: 'Tankbuster partagé',
             ko: '쉐어 탱크버스터',
+            cn: '分摊死刑',
           };
         }
       },
@@ -293,6 +309,12 @@
             2: '보라 γ',
             3: '녹색 δ',
           },
+          cn: {
+            0: '蓝 α',
+            1: '橙 β',
+            2: '紫 γ',
+            3: '绿 δ',
+          },
         }[data.lang];
 
         // Convenience function called for third and fourth nisi passes.
@@ -305,6 +327,7 @@
               ja: '最後のナイサイを取得 (?)',
               fr: 'Récupère Nisi Final (?)',
               ko: '마지막 나이사이 받기 (?)',
+              cn: '取得最后审判 (?)',
             };
           }
 
@@ -332,6 +355,7 @@
                 ja: data.nisiNames[myNisi] + ' を渡す',
                 fr: 'Passe ' + data.nisiNames[myNisi] + ' Nisi',
                 ko: '나이사이 건네기: ' + data.nisiNames[myNisi],
+                cn: '传递 ' + data.nisiNames[myNisi] + '审判',
               };
             }
 
@@ -348,6 +372,8 @@
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', ou '),
               ko: '나이사이 건네기: ' + data.nisiNames[myNisi] + ' → ' +
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', 또는 '),
+              cn: '将 ' + data.nisiNames[myNisi] + ' 传给 ' +
+                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', 或 '),
             };
           }
 
@@ -362,6 +388,7 @@
               ja: data.nisiNames[myNisi] + ' を取る',
               fr: 'Récupère ' + data.nisiNames[myNisi],
               ko: '나이사이 가져오기: ' + data.nisiNames[myNisi],
+              cn: '获得 ' + data.nisiNames[myNisi],
             };
           }
           return {
@@ -370,6 +397,7 @@
             ja: data.ShortName(names[0]) + ' から ' + data.nisiNames[myNisi] + ' を取る',
             fr: 'Récupère ' + data.nisiNames[myNisi] + ' de ' + data.ShortName(names[0]),
             ko: '나이사이 가져오기: ' + data.nisiNames[myNisi] + ' ← ' + data.ShortName(names[0]),
+            cn: '从 '+ data.ShortName(names[0]) + '获得' + data.nisiNames[myNisi],
           };
         };
       },
@@ -492,6 +520,7 @@
         de: 'Proteische Welle',
         ja: 'プロティアン',
         ko: '프로틴 웨이브',
+        cn: 'Protean Wave', // FIXME
       },
     },
     {
@@ -508,6 +537,7 @@
         ja: '自分にドレナージ',
         de: 'Entwässerungsverbindung auf DIR',
         ko: '나에게 물줄기',
+        cn: '连线点名',
       },
     },
     {
@@ -526,6 +556,7 @@
             de: 'belebtes Wasser fokussieren',
             ja: 'リビングリキッドを攻撃',
             ko: '인간형 집중 공격',
+            cn: '攻击水基佬',
           };
         }
       },
@@ -547,6 +578,7 @@
         de: 'Erstickung entfernen',
         ja: '窒息',
         ko: '질식',
+        cn: '窒息',
       },
     },
     {
@@ -603,6 +635,7 @@
           ja: data.limitCutNumber + '番',
           fr: '#' + data.limitCutNumber,
           ko: data.limitCutNumber + '번째',
+          cn: '#' + data.limitCutNumber,
         };
       },
     },
@@ -627,6 +660,7 @@
               ja: 'ノックバック ソード; 外向く',
               fr: 'Poussée Cleave; Regarde à l\'extérieur',
               ko: '넉백 소드; 바깥쪽 바라보기',
+              cn: '击退顺劈; 面向外侧',
             };
           }
           return {
@@ -635,6 +669,7 @@
             ja: 'ノックバック チャージ; 中央向く',
             fr: 'Poussée Charge; Regarde à l\'intérieur',
             ko: '넉백 차지; 안쪽 바라보기',
+            cn: '击退冲锋; 面向中间',
           };
         }
         if (isOddNumber) {
@@ -644,6 +679,7 @@
             fr: 'Cleave sur VOUS',
             ja: '自分にクリーブ',
             ko: '나에게 넉백 공격',
+            cn: '击退顺劈点名',
           };
         }
         return {
@@ -674,6 +710,7 @@
         ja: '外へ',
         fr: 'Dehors, évite les Chakrams',
         ko: '바깥으로 차크람 피하기',
+        cn: '远离，躲避轮轮',
       },
     },
     {
@@ -691,6 +728,7 @@
         de: 'Rein',
         ja: '中へ',
         ko: '가운데로',
+        cn: '靠近',
       },
     },
     {
@@ -724,6 +762,7 @@
         de: 'Rotorbrecher ausweichen',
         ja: 'スピンクラッシャー避けて',
         ko: '스핀 크러시 피하기',
+        cn: '躲避回旋碎踢',
       },
     },
     {
@@ -738,6 +777,7 @@
         ja: '竜巻凍らせる',
         fr: 'Gèle la tornade',
         ko: '물 회오리 얼리기',
+        cn: '冰冻龙卷风',
       },
     },
     {
@@ -758,6 +798,7 @@
         ja: '地雷',
         fr: 'Mines',
         ko: '지뢰',
+        cn: '地雷',
       },
     },
     {
@@ -772,6 +813,7 @@
         ja: '自分にカウント',
         fr: 'Enumeration sur VOUS',
         ko: '나에게 인원수',
+        cn: '计数点名',
       },
     },
     {
@@ -791,6 +833,7 @@
           ja: 'カウント: ' + names.map((x) => data.ShortName(x)).join(', '),
           fr: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
           ko: '인원수 대상: ' + names.map((x) => data.ShortName(x)).join(', '),
+          cn: '计数' + names.map((x) => data.ShortName(x)).join(', '),
         };
       },
     },
@@ -809,6 +852,7 @@
         ja: '正面からシールド壊して',
         fr: 'Détruis le bouclier en face',
         ko: '정면에서 실드를 부수기',
+        cn: '从前面击破盾牌',
       },
     },
     {
@@ -828,6 +872,7 @@
         ja: '自分に水',
         fr: 'Eau sur VOUS',
         ko: '나에게 물',
+        cn: '水点名',
       },
     },
     {
@@ -854,6 +899,7 @@
           ja: '水来るよ',
           fr: 'Dépose l\'eau bientôt',
           ko: '물이 곧 옵니다',
+          cn: '马上放水',
         };
       },
     },
@@ -874,6 +920,7 @@
         ja: '自分に雷',
         fr: 'Foudre sur VOUS',
         ko: '나에게 번개',
+        cn: '雷点名',
       },
     },
     {
@@ -900,6 +947,7 @@
           ja: '雷来るよ',
           fr: 'Passe la foudre bientôt',
           ko: '번개가 곧 옵니다',
+          cn: '马上放雷',
         };
       },
     },
@@ -920,6 +968,7 @@
         ja: 'ナイサイ渡して',
         fr: 'Passe Nisi',
         ko: '나이사이 건네기',
+        cn: '传递审判',
       },
     },
     {
@@ -942,6 +991,7 @@
         ja: 'ナイサイ渡して',
         fr: 'Passe Nisi',
         ko: '나이사이 건네기',
+        cn: '传递审判',
       },
     },
     {
@@ -1046,6 +1096,7 @@
           ja: '最終: ' + data.nisiNames[num],
           fr: 'Verdict: ' + data.nisiNames[num] + ' Nisi',
           ko: '최종: ' + data.nisiNames[num],
+          cn: '最终: ' + data.nisiNames[num],
         };
       },
     },
@@ -1077,6 +1128,7 @@
             ja: '自分にタンクシェア',
             fr: 'Tankbuster partagé sur vous',
             ko: '나에게 쉐어 탱크버스터',
+            cn: '分摊死刑点名',
           };
         }
         if (data.role == 'tank' || data.role == 'healer') {
@@ -1086,6 +1138,7 @@
             ja: data.ShortName(matches.target) + ' にタンクシェア',
             fr: 'Tankbuster partagé sur ' + data.ShortName(matches.target),
             ko: '쉐어 탱크버스터 대상: ' + data.ShortName(matches.target),
+            cn: '分摊死刑点 ' + data.ShortName(matches.target),
           };
         }
       },
@@ -1097,6 +1150,7 @@
           de: 'Supersprung anlocken?',
           ja: 'スパジャン誘導',
           ko: '슈퍼 점프 유도',
+          cn: '引导超级跳跃',
         };
       },
     },
@@ -1115,6 +1169,7 @@
         ja: 'アポカリ避けて',
         fr: 'Evitez le rayon',
         ko: '아포칼립틱 광선 피하기',
+        cn: '躲避激光',
       },
     },
     {
@@ -1159,6 +1214,14 @@
           '확정 판결: 단체형',
         ],
       }),
+      regexCn: Regexes.gainsEffect({ // FIXME
+        effect: [
+          'Restraining Order',
+          'House Arrest',
+          'Aggravated Assault',
+          'Shared Sentence',
+        ],
+      }),
       run: function(data, matches) {
         data.buffMap = data.buffMap || {};
         data.buffMap[matches.target] = matches.effect;
@@ -1188,6 +1251,7 @@
           de: 'Kein Debuff',
           ja: 'デバフ無し',
           ko: '디버프 없음',
+          cn: '无 Debuff',
         };
       },
     },
@@ -1251,6 +1315,7 @@
         ja: '集団罰',
         fr: 'Peine collective',
         ko: '단체형: 무직과 함께 맞기',
+        cn: '集团罪',
       },
     },
     {
@@ -1268,6 +1333,7 @@
           en: 'Shared Sentence on ' + matches.target,
           ja: matches.target + ' に集団罰',
           ko: matches.target + ' 에게 단체형',
+          cn: '集团罪->' + matches.target,
         };
       },
     },
@@ -1289,6 +1355,7 @@
         ja: '加重罰',
         fr: 'Peine Sévère',
         ko: '가중형: 가중형끼리 모이기',
+        cn: '加重罪',
       },
     },
     {
@@ -1307,6 +1374,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             ko: '나에게 탱크버스터',
+            cn: '死刑点名',
           };
         }
         if (data.role == 'healer') {
@@ -1316,6 +1384,7 @@
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            cn: '死刑点 ' + data.ShortName(matches.target),
           };
         }
       },
@@ -1333,6 +1402,7 @@
           fr: 'Tankbuster sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'にタンクバスター',
           ko: data.ShortName(matches.target) + '에게 탱크버스터',
+          cn: '死刑点 ' + data.ShortName(matches.target),
         };
       },
     },
@@ -1348,6 +1418,7 @@
         ja: '自分に結晶',
         fr: 'Cristal sur VOUS',
         ko: '나에게 수정',
+        cn: '结晶点名',
       },
     },
     {
@@ -1365,6 +1436,7 @@
         ja: '結晶から離れて',
         fr: 'Eloignez-vous des Cristaux',
         ko: '수정으로부터 멀어질 것',
+        cn: '远离结晶',
       },
     },
     {
@@ -1382,6 +1454,7 @@
         de: 'Locke Brute\'s Großflammenwerfer',
         ja: '火炎放射を誘導',
         ko: '화염 방사 유도',
+        cn: '引导火炎放射',
       },
     },
     {
@@ -1417,6 +1490,7 @@
             en: 'Bait Jump With Cooldowns',
             ja: 'スパジャン誘導',
             ko: '슈퍼 점프 유도',
+            cn: '引导冷却跳跃',
           };
         }
       },
@@ -1432,6 +1506,7 @@
             de: 'Locke Chaser-Mecha Schwert',
             ja: 'ソード誘導',
             ko: '소드 유도',
+            cn: '引导剑',
           };
         }
 
@@ -1440,6 +1515,7 @@
           en: 'Bait Sword or Jump?',
           ja: 'ソードかジャンプ誘導?',
           ko: '소드 또는 슈퍼 점프 유도?',
+          cn: '引导剑或跳?',
         };
       },
       infoText: function(data) {
@@ -1453,6 +1529,7 @@
             en: 'Vuln: Avoid cleaves and jump',
             ja: '被ダメ増加',
             ko: '받는 데미지 증가: 공격과 점프 피할것',
+            cn: '易伤：躲避顺劈和跳',
           };
         }
       },
@@ -1472,12 +1549,14 @@
             de: 'Locke Chakrams mittig; schau weg von Alex',
             ja: '中央にチャクラム誘導; アレキの反対見て',
             ko: '가운데로 차크람 유도; 알렉 반대쪽이 북쪽',
+            cn: '中间引导轮轮，背对亚历山大',
           };
         }
         return {
           en: 'Bait Chakrams',
           ja: 'チャクラム誘導',
           ko: '차크람 유도',
+          cn: '引导轮轮',
         };
       },
     },
@@ -1512,48 +1591,56 @@
             de: 'Links vom Robot; Nach Außen schauen; 3. Fläche',
             ja: '右上 外向き 懺悔3回目',
             ko: '왼쪽 위 / 참회 #3',
+            cn: '左-->机器人; 面向外侧; 水圈#3',
           },
           '0090': {
             en: 'Back Right Opposite Robot; Look Middle; 3rd Puddle',
             de: 'Hinten Rechts gegenüber vom Robot; zur Mitte schauen; 3. Fläche',
             ja: '左下 内向き 懺悔3回目',
             ko: '오른쪽 위 / 참회 #3',
+            cn: '右后<--机器人; 面向中间; 水圈#3',
           },
           '0091': {
             en: 'Back Left Opposite Robot; No Puddle',
             de: 'Hinten Links gegenüber vom Robot; keine Fläche',
             ja: '左上',
             ko: '왼쪽 아래',
+            cn: '左后<--机器人; 无水圈',
           },
           '0092': {
             en: 'Right To Robot; No puddle',
             de: 'Rechts vom Robot; keine Fläche',
             ja: '右下',
             ko: '오른쪽 아래',
+            cn: '右-->机器人; 无水圈',
           },
           '0093': {
             en: 'Left Robot Side -> 1st Puddle',
             de: 'Linke Robot Seite -> 1. Fläche',
             ja: '右ちょい上 懺悔1回目',
             ko: '왼쪽 / 참회 #1',
+            cn: '机器人左侧 --> 水圈#1',
           },
           '0094': {
             en: 'Right Robot Side -> 1st Puddle',
             de: 'Rechte Robot Seite -> 1. Fläche',
             ja: '左ちょい上 懺悔1回目',
             ko: '오른쪽 / 참회 #1',
+            cn: '机器人右侧 --> 水圈#1',
           },
           '0095': {
             en: 'Left Robot Side -> cardinal; 2nd Puddle',
             de: 'Linke Robot Seite -> cardinal; 2. Fläche',
             ja: '右ちょい上 懺悔2回目',
             ko: '왼쪽 / 참회 #2',
+            cn: '机器人左侧 --> 边; 水圈#2',
           },
           '0096': {
             en: 'Right Robot Side -> cardinal; 2nd Puddle',
             de: 'Rechte Robot Seite -> cardinal; 2. Fläche',
             ja: '左ちょい上 懺悔2回目',
             ko: '오른쪽 / 참회 #2',
+            cn: '机器人右侧 --> 边; 水圈#2',
           },
         }[matches.id];
       },
@@ -1578,6 +1665,7 @@
         de: 'Geh hinter Brutalus?',
         ja: 'ジャスティスの背面へ',
         ko: '심판자 등 뒤로 이동?',
+        cn: '残暴正义号背后躲避?',
       },
     },
     {
@@ -1588,6 +1676,7 @@
         de: 'mittig sammeln',
         ja: '中央へ',
         ko: '가운데로 모이기',
+        cn: '中间集合',
       },
     },
     {
@@ -1603,6 +1692,7 @@
         de: 'große AoE',
         fr: 'Grosse AoE',
         ko: '거대 전체 공격',
+        cn: '大的AOE',
       },
     },
     {
@@ -1620,6 +1710,7 @@
         ja: 'チェイサーから倒す',
         fr: 'Tuez Croiseur-chasseur en premier',
         ko: '순항추격기부터 처치하기',
+        cn: '先杀巡航驱逐者',
       },
     },
     {
@@ -1640,6 +1731,7 @@
         ja: 'タンクLB!!',
         fr: 'TANK LB!!',
         ko: '탱크 LIMITE BREAK!!',
+        cn: '坦克LB!!',
       },
     },
     {
@@ -1672,6 +1764,7 @@
             ja: '自分にシェア',
             fr: 'Stack sur VOUS',
             ko: '나에게 모이기',
+            cn: '集合点名',
           };
         }
       },
@@ -1685,6 +1778,7 @@
           ja: 'シェア (' + names.join(', ') + ')',
           fr: 'Stack Optical (' + names.join(', ') + ')',
           ko: '옵티컬 대상: ' + names.join(', '),
+          cn: '照准集合 (' + names.join(', ') + ')',
         };
       },
     },
@@ -1701,6 +1795,7 @@
         ja: '動く',
         fr: 'Bougez',
         ko: '움직여!!!',
+        cn: '保持移动',
       },
     },
     {
@@ -1715,6 +1810,7 @@
         ja: '止まる',
         fr: 'ARRÊTEZ TOUT',
         ko: '멈춰!!!',
+        cn: '停止一切动作',
       },
     },
     {
@@ -1730,6 +1826,7 @@
         ja: '接触禁止',
         fr: 'Orange (Attraction)',
         ko: '노랑/접근금지',
+        cn: '接触禁止',
       },
       tts: {
         en: 'Orange',
@@ -1737,6 +1834,7 @@
         ja: '接触禁止',
         fr: 'Orange',
         ko: '접근금지',
+        cn: '接触禁止',
       },
     },
     {
@@ -1752,6 +1850,7 @@
         ja: '接触保護',
         fr: 'Appât Orange: Eloignez-vous',
         ko: '노랑/접촉보호; 유도역할/혼자 멀리 있기',
+        cn: '接触保护',
       },
     },
     {
@@ -1767,6 +1866,7 @@
         ja: '逃亡禁止',
         fr: 'Violet (Répulsion)',
         ko: '보라/도망금지',
+        cn: '逃亡禁止',
       },
       tts: {
         en: 'Purple',
@@ -1774,6 +1874,7 @@
         ja: '逃亡禁止',
         fr: 'Violet',
         ko: '도망금지',
+        cn: '逃亡禁止',
       },
     },
     {
@@ -1789,6 +1890,7 @@
         ja: '逃亡監察',
         fr: 'Appât Violet: Placez-vous derrière le groupe',
         ko: '보라/도망관찰; 유도역할/사람들 뒤에 있기',
+        cn: '逃亡监察',
       },
     },
     {
@@ -1822,6 +1924,7 @@
           ja: 'デバフ無し',
           fr: 'Aucun debuff: stack partagé',
           ko: '디버프 없음; 오른쪽/함께 맞기',
+          cn: '无Debuff：分组分摊',
         };
         let kSeverity = {
           en: 'Severity: avoid shared stack',
@@ -1829,6 +1932,7 @@
           ja: '加重罰',
           fr: 'Sévérité: éloignez-vous du stack',
           ko: '가중형; 왼쪽/가중형끼리 모이기',
+          cn: '加重罪：远离分摊',
         };
 
         let kUnknown;
@@ -1839,6 +1943,7 @@
             ja: 'クローン無し: 多分シェア?',
             fr: 'Pas de clone: stack?',
             ko: '클론 없음: 아마도 오른쪽/함께 맞기?',
+            cn: '没有分身: 或许要集合?',
           };
         } else {
           kUnknown = {
@@ -1847,6 +1952,7 @@
             ja: 'クローン無し: ???',
             fr: 'Pas de clone: ???',
             ko: '클론 없음: ???',
+            cn: '没有分身: ¿¿¿',
           };
         }
 
@@ -1858,12 +1964,14 @@
             ja: '集団罰: ',
             fr: 'Peine collective: stack',
             ko: '집단형: 오른쪽/함께 맞기',
+            cn: '集团罪',
           },
           '1': {
             en: 'Defamation on YOU',
             de: 'Ehrenstrafe aud DIR',
             ja: '名誉罰',
             ko: '명예형: 보스 밑에서 나 홀로!!!',
+            cn: '名誉罪',
           },
           '2': kSeverity,
           '3': kSeverity,
@@ -1919,6 +2027,7 @@
           ja: '最初は動く',
           fr: 'Mouvement en premier',
           ko: '우선 움직이기',
+          cn: '首先移动',
         };
       },
       infoText: (data) => data.firstAlphaOrdainedText,
@@ -1941,6 +2050,7 @@
           ja: '最初は止まる',
           fr: 'Immobilité en premier',
           ko: '우선 멈추기',
+          cn: '首先静止',
         };
       },
       infoText: (data) => data.firstAlphaOrdainedText,
@@ -1963,6 +2073,7 @@
           ja: '最後は動く',
           fr: 'Mouvement en deuxième',
           ko: '마지막엔 움직이기',
+          cn: '最后移动',
         };
       },
       infoText: function(data) {
@@ -1994,6 +2105,7 @@
           ja: '最後は止まる',
           fr: 'Immobilité en deuxième',
           ko: '마지막엔 멈추기',
+          cn: '最后静止',
         };
       },
       infoText: function(data) {
@@ -2056,12 +2168,14 @@
               de: 'Ehrenstrafe: vorne links',
               ja: '名誉: 左前',
               ko: '명예: 왼쪽 앞!!!',
+              cn: '名誉罪: 左前',
             },
             {
               en: 'Defamation: front right',
               de: 'Ehrenstrafe: vorne rechts',
               ja: '名誉: 右前',
               ko: '명예: 오른쪽 앞!!!',
+              cn: '名誉罪: 右前',
             },
           ][idx - 1];
         }
@@ -2073,6 +2187,7 @@
             ja: '右後ろ',
             fr: 'Groupe: arrière droite',
             ko: '오른쪽 뒤!!!',
+            cn: '右后',
           },
           {
             en: 'Party: back left',
@@ -2080,6 +2195,7 @@
             ja: '左後ろ',
             fr: 'Groupe: arrière gauche',
             ko: '왼쪽 뒤!!!',
+            cn: '左后',
           },
         ][idx - 1];
       },
@@ -2100,6 +2216,7 @@
             ja: '最初は動く',
             fr: 'Bougez en premier',
             ko: '우선 움직이기',
+            cn: '首先移动',
           };
         }
         return {
@@ -2108,6 +2225,7 @@
           ja: '最初は止まる',
           fr: 'Restez immobile en premier',
           ko: '우선 멈추기',
+          cn: '首先静止',
         };
       },
     },
@@ -2127,6 +2245,7 @@
             ja: '最後は動く',
             fr: 'Continuez à bouger',
             ko: '마지막엔 움직이기',
+            cn: '保持移动',
           };
         }
         return {
@@ -2135,6 +2254,7 @@
           ja: '最後は止まる',
           fr: 'Arrêtez tout',
           ko: '마지막엔 멈추기',
+          cn: '保持静止',
         };
       },
     },
@@ -2162,6 +2282,7 @@
             ja: 'クローン無し: 多分東から南???',
             fr: 'Pas de Clone: peut-être E->S ???',
             ko: '클론 없음: 아마도 동→남 ???',
+            cn: '没有分身: 可能紫色 东->南 ???',
           },
           '0': {
             en: 'Purple Bait: bait E',
@@ -2169,6 +2290,7 @@
             ja: '逃亡監察: 東へ',
             fr: 'Appât Violet: placez-vous E',
             ko: '보라/도망관찰: 유도역할/동쪽',
+            cn: '紫色引导: 东',
           },
           '1': {
             en: 'Orange Bait: bait N',
@@ -2176,6 +2298,7 @@
             ja: '接触保護: 北へ',
             fr: 'Appât Orange: placez-vous N',
             ko: '노랑/접촉보호: 유도역할/북쪽',
+            cn: '橙色引导: 北',
           },
           '2': {
             en: 'Purple, no tether: E->W',
@@ -2183,6 +2306,7 @@
             ja: '接触禁止, 線無し: 東から西へ',
             fr: 'Violet, pas de lien: E->O',
             ko: '보라/접촉금지/선없음: 동→서',
+            cn: '紫色, 无连线: 东->西',
           },
           // This person also has the shared sentence.
           '3': {
@@ -2191,6 +2315,7 @@
             ja: '接触禁止, 線無し: 東から北へ',
             fr: 'Orange, pas de lien: E->N',
             ko: '노랑/접촉금지/선없음: 동→북',
+            cn: '橙色, 无连线: 东->北',
           },
           '4': {
             en: 'Purple, close tether: E->N',
@@ -2198,6 +2323,7 @@
             ja: '逃亡禁止, 接近強制: 東から北へ',
             fr: 'Violet, lien rapproché: E->N',
             ko: '보라/도망금지/접근강제: 동→북',
+            cn: '紫色, 接近连线: 东->北',
           },
           '5': {
             en: 'Orange, close tether: E->N',
@@ -2205,6 +2331,7 @@
             ja: '接触禁止, 接近強制: 東から北へ',
             fr: 'Orange, lien rapproché: E->N',
             ko: '노랑/접촉금지/접근강제: 동→북',
+            cn: '橙色, 接近连线: 东->北',
           },
           '6': {
             en: 'Purple, far tether: E->S',
@@ -2212,6 +2339,7 @@
             ja: '逃亡禁止, 接近禁止: 東から南へ',
             fr: 'Violet, lien éloigné: E->S',
             ko: '보라/도망금지/접근금지: 동→남',
+            cn: '紫色, 远离连线: 东->南',
           },
           '7': {
             en: 'Orange, far tether: E->N',
@@ -2219,6 +2347,7 @@
             ja: '接触禁止, 接近禁止: 東から北へ',
             fr: 'Orange, lien éloigné: E->N',
             ko: '노랑/접촉금지/접근금지: 동→북',
+            cn: '橙色, 远离连线: 东->北',
           },
         }[sortedNames.indexOf(data.me)];
       },
@@ -2276,6 +2405,7 @@
             ja: '拝火は北',
             fr: 'Sacrement Nord',
             ko: '성례: 북',
+            cn: '拜火 北',
           },
           1: {
             en: 'Sacrament East',
@@ -2283,6 +2413,7 @@
             ja: '拝火は東',
             fr: 'Sacrement Est',
             ko: '성례: 동',
+            cn: '拜火 东',
           },
           2: {
             en: 'Sacrament South',
@@ -2290,6 +2421,7 @@
             ja: '拝火は南',
             fr: 'Sacrement Sud',
             ko: '성례: 남',
+            cn: '拜火 南',
           },
           3: {
             en: 'Sacrament West',
@@ -2297,6 +2429,7 @@
             ja: '拝火は西',
             fr: 'Sacrement Ouest',
             ko: '성례: 서',
+            cn: '拜火 西',
           },
         }[idx];
       },
@@ -2320,6 +2453,7 @@
         de: 'Visier verteilen',
         ja: '散開',
         ko: '옵티컬: 산개',
+        cn: '分散',
       },
       run: function(data) {
         data.betaIsOpticalStack = false;
@@ -2336,6 +2470,7 @@
         de: 'Visier sammeln',
         ja: 'シェア',
         ko: '옵티컬: 모이기',
+        cn: '分散',
       },
       run: function(data) {
         data.betaIsOpticalStack = true;
@@ -2355,6 +2490,7 @@
             de: 'Visier verteilen',
             ja: '散開',
             ko: '옵티컬: 산개',
+            cn: '分散',
           };
         }
         if (data.betaBait.includes(data.me)) {
@@ -2363,6 +2499,7 @@
             de: 'Visier sammeln auf DIR',
             ja: '自分にシェア',
             ko: '옵티컬: 나에게 모이기',
+            cn: '集合点名',
           };
         }
       },
@@ -2376,6 +2513,7 @@
             en: 'Optical Stack',
             de: 'Visier sammeln',
             ko: '옵티컬: 모이기',
+            cn: '集合',
           };
         }
         let names = data.betaBait.map((x) => data.ShortName(x)).sort();
@@ -2383,6 +2521,7 @@
           en: 'Optical Stack (' + names.join(', ') + ')',
           de: 'Visier sammeln (' + names.join(', ') + ')',
           ko: '옵티컬: 모이기 (' + names.join(', ') + ')',
+          cn: '集合 (' + names.join(', ') + ')',
         };
       },
     },
@@ -2409,6 +2548,7 @@
             en: 'Tank Swap!',
             de: 'Tank Wechsel!',
             ko: '탱크 교대!!!',
+            cn: '换T!',
           };
         }
       },
@@ -2421,6 +2561,7 @@
             fr: 'Tankbuster sur VOUS',
             ja: '自分にタンクバスター',
             ko: '나에게 탱크버스터',
+            cn: '死刑点名',
           };
         }
         if (data.role == 'healer') {
@@ -2430,6 +2571,7 @@
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             ko: data.ShortName(matches.target) + '에게 탱크버스터',
+            cn: '死刑点 ' + data.ShortName(matches.target),
           };
         }
       },
@@ -2445,6 +2587,7 @@
         de: 'Mittig sammeln für Trine',
         ja: '大審判来るよ',
         ko: '대심판(Trine)이 옵니다, 가운데로',
+        cn: '大审判 中间集合',
       },
     },
     {
@@ -2539,6 +2682,10 @@
               first: '가운데서 북쪽으로',
               second: '북쪽으로',
             },
+            cn: {
+              first: '中间 -> 北',
+              second: '北',
+            },
           },
           'rg': {
             en: {
@@ -2556,6 +2703,10 @@
             ko: {
               first: '북쪽에서 가운데로',
               second: '가운데로',
+            },
+            cn: {
+              first: '北 -> 中间',
+              second: '中间',
             },
           },
           'ry': {
@@ -2575,6 +2726,10 @@
               first: '북쪽에서 서쪽으로',
               second: '서쪽으로',
             },
+            cn: {
+              first: '北 -> 西',
+              second: '西',
+            },
           },
           'yr': {
             en: {
@@ -2592,6 +2747,10 @@
             ko: {
               first: '남쪽에서 동쪽으로',
               second: '동쪽으로',
+            },
+            cn: {
+              first: '南 -> 东',
+              second: '东',
             },
           },
           'gy': {
@@ -2611,6 +2770,10 @@
               first: '가운데서 남쪽으로',
               second: '남쪽으로',
             },
+            cn: {
+              first: '中间 -> 南',
+              second: '南',
+            },
           },
           'yg': {
             en: {
@@ -2628,6 +2791,10 @@
             ko: {
               first: '남쪽에서 북쪽으로',
               second: '북쪽으로',
+            },
+            cn: {
+              first: '南 -> 北',
+              second: '北',
             },
           },
         }[threeOne][data.lang];
