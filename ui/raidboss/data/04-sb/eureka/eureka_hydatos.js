@@ -14,11 +14,7 @@
       regexDe: /Wirbelsturm/,
       regexCn: /妖枪乱击/,
       beforeSeconds: 0,
-      infoText: {
-        en: 'Stop Moving',
-        de: 'Stehenbleiben',
-        cn: '停止移动',
-      },
+      response: Responses.stopMoving(),
     },
     {
       id: 'BA Raiden Levinwhorl',
@@ -155,34 +151,7 @@
       condition: function(data) {
         return data.side == 'west';
       },
-      alarmText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑减伤',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑打' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            cn: '死刑',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'BA Art Orb Marker',
@@ -214,11 +183,7 @@
       condition: function(data, matches) {
         return data.side == 'west' && data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread Marker',
-        de: 'Marker verteilen',
-        cn: '点名分散',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'BA Art Legendcarver',
@@ -231,11 +196,7 @@
       condition: function(data) {
         return data.side == 'west';
       },
-      infoText: {
-        en: 'Out',
-        de: 'Raus',
-        cn: '远离',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'BA Art Legendspinner',
@@ -248,11 +209,7 @@
       condition: function(data) {
         return data.side == 'west';
       },
-      infoText: {
-        en: 'In',
-        de: 'Rein',
-        cn: '靠近',
-      },
+      response: Responses.getIn(),
     },
     {
       id: 'BA Art Mythcall Legendcarver',
@@ -266,11 +223,7 @@
         return data.side == 'west' && data.mythcall;
       },
       delaySeconds: 3.5,
-      infoText: {
-        en: 'Under Boss',
-        de: 'Unter Boss',
-        cn: 'Boss脚下',
-      },
+      response: Responses.getUnder(),
     },
     {
       id: 'BA Art Mythcall Legendspinner',
@@ -301,34 +254,7 @@
       condition: function(data) {
         return data.side == 'west';
       },
-      alarmText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑减伤',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑打 ' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            cn: '死刑',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'BA Owain Piercing Light Marker',
@@ -336,11 +262,7 @@
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread Marker',
-        de: 'Marker verteilen',
-        cn: '点名分散',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'BA Owain Dorito Stack',
@@ -348,11 +270,7 @@
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches.target;
       },
-      alarmText: {
-        en: 'Dorito Stack',
-        de: 'Dorito Stack',
-        cn: '点名集合',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'BA Owain Fire Element',
@@ -403,11 +321,7 @@
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches.target;
       },
-      alarmText: {
-        en: 'Dorito Stack',
-        de: 'Dorito Stack',
-        cn: '点名集合',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'BA Owain Pitfall',
@@ -420,11 +334,7 @@
       condition: function(data) {
         return data.side == 'east';
       },
-      alertText: {
-        en: 'Get Out To Edges',
-        de: 'An den Rand',
-        cn: '靠近边',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'BA Silence Centaur',
@@ -437,11 +347,7 @@
       condition: function(data) {
         return data.CanSleep();
       },
-      alertText: {
-        en: 'Sleep Centaur',
-        de: 'Zentaur einschläfern',
-        cn: '沉默人马',
-      },
+      response: Responses.sleep(),
     },
     {
       id: 'BA Raiden Tankbuster',
@@ -454,34 +360,7 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑减伤',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑打' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            cn: '死刑',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'BA Raiden Lancing Bolt',
@@ -489,11 +368,7 @@
       condition: function(data, matches) {
         return data.sealed && data.me == matches.target;
       },
-      alarmText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        cn: '分散',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'BA Raiden Ame',
@@ -506,11 +381,7 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Get Far Away',
-        de: 'Weit weg gehen',
-        cn: '远离',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'BA Raiden Whirling',
@@ -523,11 +394,7 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Under',
-        de: 'Drunter',
-        cn: '脚下',
-      },
+      response: Responses.getUnder(),
     },
     {
       id: 'BA Raiden For Honor',
@@ -540,11 +407,7 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Get Out',
-        de: 'Raus da',
-        cn: '远离',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'BA Raiden Lateral 1',
@@ -557,11 +420,7 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'LEFT',
-        de: 'LINKS',
-        cn: '左',
-      },
+      response: Responses.goLeft(),
     },
     {
       id: 'BA Raiden Lateral 2',
@@ -574,11 +433,7 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'RIGHT',
-        de: 'RECHTS',
-        cn: '右',
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'BA AV Tankbuster',
@@ -591,25 +446,7 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: function(data, matches) {
-        if (matches.target != data.me)
-          return;
-        return {
-          en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-          fr: 'Tankbuster sur VOUS',
-          cn: '死刑减伤',
-        };
-      },
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
-          return;
-        return {
-          en: 'Away from ' + data.ShortName(matches.target),
-          de: 'Weg von ' + data.ShortName(matches.target),
-          cn: '远离' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'BA AV Eidos Dark Bracelets',
@@ -801,11 +638,7 @@
       condition: function(data) {
         return data.sealed;
       },
-      infoText: {
-        en: 'Kill Wyverns, Switch Magia',
-        de: 'Wyvern töten, Magia wechseln',
-        cn: '杀龙，切换元素板',
-      },
+      response: Responses.killAdds(),
     },
     {
       id: 'BA Ozma Sphere Form',
@@ -1038,11 +871,7 @@
         return data.sealed;
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Kill Adds',
-        de: 'Adds töten',
-        cn: '杀小怪',
-      },
+      response: Responses.killAdds(),
     },
     {
       id: 'BA Ozma Acceleration Bomb',
@@ -1055,11 +884,7 @@
       condition: function(data, matches) {
         return data.sealed && data.me == matches.target;
       },
-      alarmText: {
-        en: 'Stop Soon',
-        de: 'Bald stoppen',
-        cn: '注意停手',
-      },
+      response: Responses.stopEverything(),
     },
     {
       id: 'BA Ozma Meteor',
@@ -1067,11 +892,7 @@
       condition: function(data, matches) {
         return data.sealed && data.me == matches.target;
       },
-      alarmText: {
-        en: 'Meteor on YOU',
-        de: 'Meteor auf DIR',
-        cn: '陨石点名',
-      },
+      response: Responses.meteorOnYou(),
     },
   ],
   timelineReplace: [
