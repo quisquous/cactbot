@@ -16,7 +16,9 @@
     },
     {
       id: 'AnAnyder Scrutiny',
-      regex: Regexes.ability({ source: 'Unknown', id: '4E25', capture: false }),
+      regex: Regexes.startsUsing({ source: 'Unknown', id: '4E25', capture: false }),
+      delaySeconds: 3,
+      durationSeconds: 7,
       infoText: {
         en: 'Avoid Arrow',
       },
@@ -55,7 +57,7 @@
     },
     {
       id: 'AnAnyder Raging Glower',
-      regex: Regexes.startsUsing({ source: 'Kyklops', id: '4B54', capture: false }),
+      regex: Regexes.startsUsing({ source: 'Kyklops', id: '4B56', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -77,7 +79,8 @@
     },
     {
       id: 'AnAnyder Flying Fount',
-      regex: Regexes.startsUsing({ source: 'Rukshs Dheem', id: '4B80' }),
+      regex: Regexes.headMarker({ id: '003E' }),
+      suppressSeconds: 1,
       response: Responses.stackOn(),
     },
     {
