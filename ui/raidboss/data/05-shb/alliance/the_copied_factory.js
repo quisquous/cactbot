@@ -58,7 +58,7 @@
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
-      },
+    },
     {
       id: 'Copied Serial Energy Assault',
       regex: Regexes.startsUsing({ id: '48B5', source: 'Serial-Jointed Command Model', capture: false }),
@@ -97,8 +97,8 @@
       regexDe: Regexes.startsUsing({ id: '48CE', source: 'Befehlsmodell Mit Omnigelenk' }),
       regexFr: Regexes.startsUsing({ id: '48CE', source: 'Modèle Multiarticulé : Commandant' }),
       regexJa: Regexes.startsUsing({ id: '48CE', source: '多関節型：司令機' }),
-      response: Responses.tankbuster(),
-      },
+      response: Responses.tankBuster(),
+    },
     {
       id: 'Copied Serial Centrifugal Spin',
       regex: Regexes.startsUsing({ id: '48C8', source: 'Serial-Jointed Command Model', capture: false }),
@@ -137,7 +137,7 @@
       regexFr: Regexes.startsUsing({ id: '48C3', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48C3', source: '多関節型：司令機', capture: false }),
       response: Responses.knockback(),
-      },
+    },
     {
       id: 'Copied Hobbes Laser-Resistance Test',
       regex: Regexes.startsUsing({ id: '4805', source: 'Hobbes', capture: false }),
@@ -149,7 +149,7 @@
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
-      },
+    },
     {
       id: 'Copied Hobbes Right Arm',
       regex: Regexes.message({ line: 'The wall-mounted right arm begins to move\.\.\.', capture: false }),
@@ -244,7 +244,7 @@
         return data.me == matches.target;
       },
       response: Responses.spread(),
-      },
+    },
     {
       id: 'Copied Hobbes Laser Sight',
       regex: Regexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
@@ -253,7 +253,7 @@
       regexFr: Regexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4807', source: 'ホッブス', capture: false }),
       response: Responses.stack(),
-      },
+    },
     {
       id: 'Copied Hobbes Electric Floor',
       regex: Regexes.message({ line: 'You hear frenzied movement from machines beneath\.\.\.', capture: false }),
@@ -350,7 +350,7 @@
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
       response: Responses.aoe(),
-      },
+    },
     {
       id: 'Copied Flight Unit Ballistic Impact',
       regex: Regexes.headMarker({ id: '0017' }),
@@ -358,7 +358,7 @@
         return data.me == matches.target;
       },
       response: Responses.spread(),
-      },
+    },
     {
       id: 'Copied Engels Marx Smash Right',
       regex: Regexes.startsUsing({ id: '4727', source: 'Engels', capture: false }),
@@ -440,8 +440,8 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.tankbuster(),
-      },
+      response: Responses.tankBuster(),
+    },
     {
       id: 'Copied Engels Diffuse Laser',
       regex: Regexes.startsUsing({ id: '4755', source: 'Engels', capture: false }),
@@ -575,7 +575,7 @@
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer';
       },
-      response: Responses.tankbuster(),
+      response: Responses.tankBuster(),
     },
     {
       id: 'Copied 9S Laser Saturation',
@@ -620,8 +620,8 @@
       },
       alertText: {
         en: 'Laser Buster on YOU',
-        de: 'Laser Tankbuster auf DIR',
-        fr: 'Laser Tankbuster sur VOUS',
+        de: 'Laser tankBuster auf DIR',
+        fr: 'Laser tankBuster sur VOUS',
         cn: '激光点名',
         ko: '레이저 대상자',
       },
