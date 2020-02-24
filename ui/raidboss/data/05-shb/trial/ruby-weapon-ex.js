@@ -135,11 +135,11 @@
       infoText: function(data) {
         if (data.colors[data.me] == 'red') {
           return {
-            en: 'Attack Red (West)',
+            en: 'Attack Red (East)',
           };
         }
         return {
-          en: 'Attack Blue (East)',
+          en: 'Attack Blue (West)',
         };
       },
     },
