@@ -243,7 +243,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied Hobbes Laser Sight',
@@ -357,7 +357,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied Engels Marx Smash Right',
@@ -440,7 +440,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.tankBuster(),
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'Copied Engels Diffuse Laser',

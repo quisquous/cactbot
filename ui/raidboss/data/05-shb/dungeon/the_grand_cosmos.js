@@ -20,7 +20,7 @@
     {
       id: 'Cosmos Dark Pulse',
       regex: Regexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackOn('info'),
     },
     {
       id: 'Cosmos Dark Well Far Winds',
