@@ -620,8 +620,8 @@
       },
       alertText: {
         en: 'Laser Buster on YOU',
-        de: 'Laser tankBuster auf DIR',
-        fr: 'Laser tankBuster sur VOUS',
+        de: 'Laser Tankbuster auf DIR',
+        fr: 'Laser Tankbuster sur VOUS',
         cn: '激光点名',
         ko: '레이저 대상자',
       },
