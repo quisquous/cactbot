@@ -261,10 +261,10 @@
     {
       id: 'TEA Brute Phase',
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '483E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483E', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '483E', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '483E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '483E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483E', capture: false }),
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '483E', capture: false }),
       run: function(data) {
         data.phase = 'brute';
@@ -405,10 +405,10 @@
     {
       id: 'TEA Inception Phase',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '486F', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486F', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486F', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '486F', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486F', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486F', capture: false }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '486F', capture: false }),
       run: function(data) {
         data.phase = 'inception';
@@ -418,10 +418,10 @@
     {
       id: 'TEA Wormhole Phase',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '486E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486E', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486E', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '486E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486E', capture: false }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '486E', capture: false }),
       run: function(data) {
         data.phase = 'wormhole';
@@ -431,6 +431,7 @@
     {
       id: 'TEA Fate Alpha Phase',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487B', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487B', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487B', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487B', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487B', capture: false }),
@@ -442,6 +443,7 @@
     {
       id: 'TEA Fate Beta Phase',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4B13', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4B13', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4B13', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4B13', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4B13', capture: false }),
@@ -453,10 +455,10 @@
     {
       id: 'TEA Liquid Tank',
       regex: Regexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
+      regexCn: Regexes.abilityFull({ source: '有生命活水', id: '4978' }),
       regexDe: Regexes.abilityFull({ source: 'belebtes Wasser', id: '4978' }),
       regexFr: Regexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
       regexJa: Regexes.abilityFull({ source: 'リビングリキッド', id: '4978' }),
-      regexCn: Regexes.abilityFull({ source: '有生命活水', id: '4978' }),
       regexKo: Regexes.abilityFull({ source: '살아있는 액체', id: '4978' }),
       run: function(data, matches) {
         data.liquidTank = matches.target;
@@ -465,6 +467,7 @@
     {
       id: 'TEA Hand Tank',
       regex: Regexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
+      regexCn: Regexes.abilityFull({ source: '活水之手', id: '4979' }),
       regexDe: Regexes.abilityFull({ source: 'belebte Hand', id: '4979' }),
       regexFr: Regexes.abilityFull({ source: 'membre liquide', id: '4979' }),
       regexJa: Regexes.abilityFull({ source: 'リキッドハンド', id: '4979' }),
@@ -475,10 +478,10 @@
     {
       id: 'TEA Cruise Chaser Tank',
       regex: Regexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
+      regexCn: Regexes.abilityFull({ source: '巡航驱逐者', id: '497A' }),
       regexDe: Regexes.abilityFull({ source: 'Chaser-Mecha', id: '497A' }),
       regexFr: Regexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
       regexJa: Regexes.abilityFull({ source: 'クルーズチェイサー', id: '497A' }),
-      regexCn: Regexes.abilityFull({ source: '巡航驱逐者', id: '497A' }),
       regexKo: Regexes.abilityFull({ source: '순항추격기', id: '497A' }),
       run: function(data, matches) {
         data.cruiseTank = matches.target;
@@ -487,10 +490,10 @@
     {
       id: 'TEA Brute Tank',
       regex: Regexes.abilityFull({ source: 'Brute Justice', id: '497B' }),
+      regexCn: Regexes.abilityFull({ source: '残暴正义号', id: '497B' }),
       regexDe: Regexes.abilityFull({ source: 'Brutalus', id: '497B' }),
       regexFr: Regexes.abilityFull({ source: 'Justicier', id: '497B' }),
       regexJa: Regexes.abilityFull({ source: 'ブルートジャスティス', id: '497B' }),
-      regexCn: Regexes.abilityFull({ source: '残暴正义号', id: '497B' }),
       regexKo: Regexes.abilityFull({ source: '포악한 심판자', id: '497B' }),
       run: function(data, matches) {
         data.bruteTank = matches.target;
@@ -499,10 +502,10 @@
     {
       id: 'TEA Cascade',
       regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4826', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4826', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
       regexKo: Regexes.startsUsing({ source: '살아있는 액체', id: '4826', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
@@ -510,10 +513,10 @@
     {
       id: 'TEA Protean Wave',
       regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4822', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4822', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
       regexKo: Regexes.startsUsing({ source: '살아있는 액체', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
@@ -526,6 +529,7 @@
     {
       id: 'TEA Drainage Tether',
       regex: Regexes.tether({ source: 'Liquid Rage', id: '0003' }),
+      regexCn: Regexes.tether({ source: '活水之怒', id: '0003' }),
       regexDe: Regexes.tether({ source: 'levitierte Rage', id: '0003' }),
       regexFr: Regexes.tether({ source: 'furie liquide', id: '0003' }),
       regexJa: Regexes.tether({ source: 'リキッドレイジ', id: '0003' }),
@@ -543,6 +547,7 @@
     {
       id: 'TEA Hand of Pain 5',
       regex: Regexes.startsUsing({ source: 'Liquid Hand', id: '482D', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '活水之手', id: '482D', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'belebte Hand', id: '482D', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'membre liquide', id: '482D', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リキッドハンド', id: '482D', capture: false }),
@@ -564,10 +569,10 @@
     {
       id: 'TEA Throttle',
       regex: Regexes.gainsEffect({ effect: 'Throttle', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '窒息', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Erstickung', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Suffocation', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '窒息', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '窒息', capture: false }),
       regexKo: Regexes.gainsEffect({ effect: '질식', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
@@ -696,10 +701,10 @@
       id: 'TEA Chakrams Out',
       // Link Up
       regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '483F', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '483F', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
       condition: function(data) {
         return data.phase == 'brute';
@@ -717,10 +722,10 @@
       id: 'TEA Chakrams In',
       // Optical Sight
       regex: Regexes.ability({ source: 'Cruise Chaser', id: '482F', capture: false }),
+      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
       regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '482F', capture: false }),
       regexFr: Regexes.ability({ source: 'Croiseur-chasseur', id: '482F', capture: false }),
       regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '482F', capture: false }),
-      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
       regexKo: Regexes.ability({ source: '순항추격기', id: '482F', capture: false }),
       suppressSeconds: 1,
       alertText: {
@@ -734,10 +739,10 @@
     {
       id: 'TEA Whirlwind',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '49C2', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
       regexKo: Regexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
@@ -747,10 +752,10 @@
     {
       id: 'TEA Spin Crusher',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '4A72', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4A72', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '4A72', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '4A72', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '4A72', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4A72', capture: false }),
       regexKo: Regexes.startsUsing({ source: '순항추격기', id: '4A72', capture: false }),
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
@@ -783,10 +788,10 @@
     {
       id: 'TEA Hidden Minefield',
       regex: Regexes.ability({ source: 'Brute Justice', id: '4851', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '4851', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '4851', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '4851', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '4851', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
@@ -840,10 +845,10 @@
     {
       id: 'TEA Limit Cut Shield',
       regex: Regexes.ability({ source: 'Cruise Chaser', id: '4833', capture: false }),
+      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
       regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '4833', capture: false }),
       regexFr: Regexes.ability({ source: 'Croiseur-chasseur', id: '4833', capture: false }),
       regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '4833', capture: false }),
-      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
       regexKo: Regexes.ability({ source: '순항추격기', id: '4833', capture: false }),
       delaySeconds: 2,
       infoText: {
@@ -858,10 +863,10 @@
     {
       id: 'TEA Compressed Water Initial',
       regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
       regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
       regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -878,10 +883,10 @@
     {
       id: 'TEA Compressed Water Explode',
       regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
       regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
       regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -906,10 +911,10 @@
     {
       id: 'TEA Compressed Lightning Initial',
       regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
+      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
       regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
       regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
       regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -926,10 +931,10 @@
     {
       id: 'TEA Compressed Lightning Explode',
       regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
+      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
       regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
       regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
       regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
       regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -955,10 +960,10 @@
       id: 'TEA Pass Nisi 1',
       // 4 seconds after Photon cast starts.
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '4836', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4836', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '4836', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '4836', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '4836', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4836', capture: false }),
       regexKo: Regexes.startsUsing({ source: '순항추격기', id: '4836', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 10000,
@@ -976,10 +981,10 @@
       // 1 second after enumeration.
       // TODO: find a startsUsing instead of matching an action.
       regex: Regexes.ability({ source: 'Brute Justice', id: '4850', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '4850', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '4850', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '4850', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '4850', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '4850', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '4850', capture: false }),
       // Ignore enumerations later in the fight.
       condition: (data) => data.phase == 'brute',
@@ -998,10 +1003,10 @@
       id: 'TEA Pass Nisi 3',
       // 8 seconds after Flarethrower cast starts.
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4845', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4845', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4845', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4845', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4845', capture: false }),
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '4845', capture: false }),
       delaySeconds: 8,
       durationSeconds: 9,
@@ -1012,10 +1017,10 @@
     {
       id: 'TEA Decree Nisi Gain',
       regex: Regexes.gainsEffect({ effect: 'Final Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.gainsEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexDe: Regexes.gainsEffect({ effect: 'Letztes Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
       regexFr: Regexes.gainsEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
       regexJa: Regexes.gainsEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.gainsEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexKo: Regexes.gainsEffect({ effect: '최후의 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
         let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
@@ -1026,10 +1031,10 @@
     {
       id: 'TEA Decree Nisi Lose',
       regex: Regexes.losesEffect({ effect: 'Final Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.losesEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexDe: Regexes.losesEffect({ effect: 'Letztes Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
       regexFr: Regexes.losesEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
       regexJa: Regexes.losesEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.losesEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexKo: Regexes.losesEffect({ effect: '최후의 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
         data.nisiMap = data.nisiMap || {};
@@ -1038,24 +1043,12 @@
     },
     {
       id: 'TEA Final Judgment Nisi Gain',
-      regex: Regexes.gainsEffect({
-        effect: 'Final Judgment: Decree Nisi (?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexDe: Regexes.gainsEffect({
-        effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexFr: Regexes.gainsEffect({
-        effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexJa: Regexes.gainsEffect({
-        effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexCn: Regexes.gainsEffect({
-        effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexKo: Regexes.gainsEffect({
-        effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])',
-      }),
+      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.gainsEffect({ effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexJa: Regexes.gainsEffect({ effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
         let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
         data.finalNisiMap = data.finalNisiMap || {};
@@ -1064,24 +1057,12 @@
     },
     {
       id: 'TEA Final Judgment Nisi Verdict',
-      regex: Regexes.gainsEffect({
-        effect: 'Final Judgment: Decree Nisi (?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexDe: Regexes.gainsEffect({
-        effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexFr: Regexes.gainsEffect({
-        effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexJa: Regexes.gainsEffect({
-        effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexCn: Regexes.gainsEffect({
-        effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])',
-      }),
-      regexKo: Regexes.gainsEffect({
-        effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])',
-      }),
+      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.gainsEffect({ effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexJa: Regexes.gainsEffect({ effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1103,10 +1084,10 @@
     {
       id: 'TEA Gavel',
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '483C', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483C', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '483C', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '483C', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '483C', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483C', capture: false }),
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '483C', capture: false }),
       run: function(data) {
         data.seenGavel = true;
@@ -1115,10 +1096,10 @@
     {
       id: 'TEA Double Rocket Punch',
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '4847' }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4847' }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4847' }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4847' }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4847' }),
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
@@ -1157,10 +1138,10 @@
     {
       id: 'TEA Brute Ray',
       regex: Regexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '484A', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: (data) => data.phase == 'brute',
       infoText: {
@@ -1174,54 +1155,12 @@
     },
     {
       id: 'TEA Buff Collection',
-      regex: Regexes.gainsEffect({
-        effect: [
-          'Restraining Order',
-          'House Arrest',
-          'Aggravated Assault',
-          'Shared Sentence',
-        ],
-      }),
-      regexDe: Regexes.gainsEffect({
-        effect: [
-          'Urteil: Näherungsverbot',
-          'Urteil: Freiheitsstrafe',
-          'Urteil: Erschwerte Strafe',
-          'Urteil: Kollektivstrafe',
-        ],
-      }),
-      regexFr: Regexes.gainsEffect({
-        effect: [
-          'Jugement : éloignement',
-          'Jugement : Rapprochement',
-          'Jugement : Peine Sévère',
-          'Jugement : Peine Collective',
-        ],
-      }),
-      regexJa: Regexes.gainsEffect({
-        effect: [
-          '確定判決：接近禁止命令',
-          '確定判決：接近強制命令',
-          '確定判決：加重罰',
-          '確定判決：集団罰',
-        ],
-      }),
-      regexKo: Regexes.gainsEffect({
-        effect: [
-          '확정 판결: 접근금지 명령',
-          '확정 판결: 접근강제 명령',
-          '확정 판결: 가중형',
-          '확정 판결: 단체형',
-        ],
-      }),
-      regexCn: Regexes.gainsEffect({ // FIXME
-        effect: [
-          'Restraining Order',
-          'House Arrest',
-          'Aggravated Assault',
-          'Shared Sentence',
-        ],
-      }),
+      regex: Regexes.gainsEffect({ effect: ['Restraining Order', 'House Arrest', 'Aggravated Assault', 'Shared Sentence'] }),
+      regexCn: Regexes.gainsEffect({ effect: ['判决确定：禁止接近命令', '判决确定：强制接近命令', '判决确定：加重罪', '判决确定：集团罪'] }),
+      regexDe: Regexes.gainsEffect({ effect: ['Urteil: Näherungsverbot', 'Urteil: Freiheitsstrafe', 'Urteil: Erschwerte Strafe', 'Urteil: Kollektivstrafe'] }),
+      regexFr: Regexes.gainsEffect({ effect: ['Jugement : éloignement', 'Jugement : Rapprochement', 'Jugement : Peine Sévère', 'Jugement : Peine Collective'] }),
+      regexJa: Regexes.gainsEffect({ effect: ['確定判決：接近禁止命令', '確定判決：接近強制命令', '確定判決：加重罰', '確定判決：集団罰'] }),
+      regexKo: Regexes.gainsEffect({ effect: ['확정 판결: 접근금지 명령', '확정 판결: 접근강제 명령', '확정 판결: 가중형', '확정 판결: 단체형'] }),
       run: function(data, matches) {
         data.buffMap = data.buffMap || {};
         data.buffMap[matches.target] = matches.effect;
@@ -1230,10 +1169,10 @@
     {
       id: 'TEA Temporal Stasis No Buff',
       regex: Regexes.gainsEffect({ effect: 'Restraining Order', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Näherungsverbot', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : éloignement', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令', capture: false }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
@@ -1258,10 +1197,10 @@
     {
       id: 'TEA Restraining Order',
       regex: Regexes.gainsEffect({ effect: 'Restraining Order' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Näherungsverbot' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : éloignement' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -1279,10 +1218,10 @@
     {
       id: 'TEA House Arrest',
       regex: Regexes.gainsEffect({ effect: 'House Arrest' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：强制接近命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Freiheitsstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Rapprochement' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近強制命令' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：强制接近命令' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 강제접근 명령' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -1300,10 +1239,10 @@
     {
       id: 'TEA Shared Sentence',
       regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
       durationSeconds: 10,
       condition: function(data, matches) {
@@ -1321,10 +1260,10 @@
     {
       id: 'TEA Shared Sentence Inception',
       regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
       delaySeconds: 3,
       condition: (data) => data.phase == 'inception',
@@ -1340,10 +1279,10 @@
     {
       id: 'TEA Aggravated Assault',
       regex: Regexes.gainsEffect({ effect: 'Aggravated Assault' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：加重罪' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Erschwerte Strafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Sévère' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：加重罰' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：加重罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 가중형' }),
       durationSeconds: 10,
       condition: function(data, matches) {
@@ -1361,10 +1300,10 @@
     {
       id: 'TEA Chastening Heat',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A80' }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A80' }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A80' }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A80' }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A80' }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
@@ -1424,10 +1363,10 @@
     {
       id: 'TEA Judgment Crystal Placement',
       regex: Regexes.ability({ source: 'Alexander Prime', id: '485C', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485C', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485C', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485C', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
       regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '485C', capture: false }),
       suppressSeconds: 100,
       infoText: {
@@ -1442,10 +1381,10 @@
     {
       id: 'TEA Terashatter Flarethrower',
       regex: Regexes.ability({ source: 'Judgment Crystal', id: '4A88', capture: false }),
+      regexCn: Regexes.ability({ source: '审判结晶', id: '4A88', capture: false }),
       regexDe: Regexes.ability({ source: 'Urteilskristall', id: '4A88', capture: false }),
       regexFr: Regexes.ability({ source: 'Cristal du jugement', id: '4A88', capture: false }),
       regexJa: Regexes.ability({ source: '審判の結晶', id: '4A88', capture: false }),
-      regexCn: Regexes.ability({ source: '审判结晶', id: '4A88', capture: false }),
       regexKo: Regexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
       suppressSeconds: 100,
       delaySeconds: 1,
@@ -1460,10 +1399,10 @@
     {
       id: 'TEA Inception Vuln Collection',
       regex: Regexes.gainsEffect({ effect: 'Physical Vulnerability Up' }),
+      regexCn: Regexes.gainsEffect({ effect: '物理受伤加重' }),
       regexDe: Regexes.gainsEffect({ effect: 'Erhöhte Physische Verwundbarkeit' }),
       regexFr: Regexes.gainsEffect({ effect: 'Vulnérabilité physique augmentée' }),
       regexJa: Regexes.gainsEffect({ effect: '被物理ダメージ増加' }),
-      regexCn: Regexes.gainsEffect({ effect: '物理受伤加重' }),
       regexKo: Regexes.gainsEffect({ effect: '받는 물리 피해량 증가' }),
       condition: (data) => data.phase == 'inception',
       run: function(data, matches) {
@@ -1474,10 +1413,10 @@
       id: 'TEA Inception Alpha Sword',
       // Sacrament cast.
       regex: Regexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485F', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485F', capture: false }),
       regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
       condition: (data) => data.phase == 'inception',
       alarmText: function(data) {
@@ -1537,10 +1476,10 @@
     {
       id: 'TEA Wormhole',
       regex: Regexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '486E', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '486E', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '486E', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '486E', capture: false }),
       regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
       infoText: function(data) {
         if (data.options.cactbotWormholeStrat) {
@@ -1648,10 +1587,10 @@
     {
       id: 'TEA Cactbot Wormhole 4 Super Jump',
       regex: Regexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '484A', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: function(data) {
         if (!data.options.cactbotWormholeStrat)
@@ -1682,10 +1621,10 @@
     {
       id: 'TEA Mega Holy',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
       alertText: {
         en: 'big aoe',
@@ -1698,10 +1637,10 @@
     {
       id: 'TEA Summon Alexander',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A55', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A55', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A55', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A55', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A55', capture: false }),
       delaySeconds: 10.4,
       infoText: {
@@ -1716,10 +1655,10 @@
     {
       id: 'TEA Divine Judgment',
       regex: Regexes.ability({ source: 'Alexander Prime', id: '4879', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '4879', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '4879', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '4879', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '4879', capture: false }),
       regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
@@ -1737,6 +1676,7 @@
     {
       id: 'TEA Perfect Optical Sight Spread',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '488A', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '488A', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '488A', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '488A', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '488A', capture: false }),
@@ -1785,6 +1725,7 @@
     {
       id: 'TEA Ordained Motion',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487E', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487E', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487E', capture: false }),
@@ -1801,6 +1742,7 @@
     {
       id: 'TEA Ordained Stillness',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487F', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487F', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487F', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487F', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
@@ -1816,6 +1758,7 @@
     {
       id: 'TEA Contact Prohibition',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Prohibition' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：接触禁止命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontaktverbot' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact prohibé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触禁止命令' }),
@@ -1840,6 +1783,7 @@
     {
       id: 'TEA Contact Regulation',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Regulation' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：接触保护命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontakt-Order' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact forcé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触保護命令' }),
@@ -1856,6 +1800,7 @@
     {
       id: 'TEA Escape Prohibition',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Prohibition' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：逃亡禁止命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtverbot' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite prohibée' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡禁止命令' }),
@@ -1880,6 +1825,7 @@
     {
       id: 'TEA Escape Detection',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Detection' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：逃亡监察命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtbeobachtung' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite forcée' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡監察命令' }),
@@ -2015,6 +1961,7 @@
     {
       id: 'TEA Alpha Ordained Motion 1',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B0D', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B0D', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0D', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
@@ -2038,6 +1985,7 @@
     {
       id: 'TEA Alpha Ordained Stillness 1',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B0E', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B0E', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0E', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
@@ -2061,6 +2009,7 @@
     {
       id: 'TEA Alpha Ordained Motion 2',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '4899', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
@@ -2093,6 +2042,7 @@
     {
       id: 'TEA Alpha Ordained Stillness 2',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '489A', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
@@ -2126,6 +2076,7 @@
       id: 'TEA Alpha Safe Spot',
       // The non-safe alexanders use 489F.
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '49AA' }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '49AA' }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '49AA' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '49AA' }),
@@ -2203,6 +2154,7 @@
     {
       id: 'TEA Alpha Resolve First Motion',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
@@ -2232,6 +2184,7 @@
     {
       id: 'TEA Alpha Resolve Second Motion',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
@@ -2384,6 +2337,7 @@
     {
       id: 'TEA Beta Radiant',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '489E' }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '489E' }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489E' }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489E' }),
@@ -2445,6 +2399,7 @@
       // Stack (two people) is 48A3.
       id: 'TEA Beta Optical Spread',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '48A0', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '48A0', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
@@ -2462,6 +2417,7 @@
     {
       id: 'TEA Beta Optical Stack',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A1', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '48A1', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '48A1', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
@@ -2479,6 +2435,7 @@
     {
       id: 'TEA Beta Optical Final',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
@@ -2528,6 +2485,7 @@
     {
       id: 'TEA Beta Radiant Final',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
@@ -2539,6 +2497,7 @@
     {
       id: 'TEA Ordained Punishment',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4891' }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4891' }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4891' }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4891' }),
@@ -2579,6 +2538,7 @@
     {
       id: 'TEA Trine Get Middle',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '488E', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '488E', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '488E', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '488E', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
@@ -2593,6 +2553,7 @@
     {
       id: 'TEA Trine Initial',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '488F', x: '100', y: '(?:92|100|108)' }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '488F', x: '100', y: '(?:92|100|108)' }),
@@ -2808,6 +2769,7 @@
     {
       id: 'TEA Trine Second',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '4890', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '4890', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4890', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4890', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4890', capture: false }),
@@ -2819,6 +2781,7 @@
     {
       id: 'TEA Irresistible Grace',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4894' }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4894' }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4894' }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4894' }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4894' }),
@@ -3258,6 +3221,164 @@
         'Temporal Displacement': '時間停止',
         'Throttle': 'スロットル',
         'Water Resistance Down II': '水属性耐性低下［強］',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        '(?<! )Alexander(?! )': '亚历山大',
+        'Alexander Prime': '至尊亚历山大',
+        'Brute Justice': '残暴正义号',
+        'Cruise Chaser': '巡航驱逐者',
+        'Jagd Doll': '狩猎人偶',
+        'Liquid Hand': '活水之手',
+        'Liquid Rage': '活水之怒',
+        'Living Liquid': '有生命活水',
+        'Perfect Alexander': '完美亚历山大',
+        'Plasmasphere': '等离子球',
+        'Steam Chakram': '蒸汽战轮',
+      },
+      'replaceText': {
+        '--Cruise Chaser Invincible--': '--巡航驱逐者无敌--',
+        '--adds targetable--': '--小怪可选中--',
+        '--alex untargetable--': '--亚历山大无法选中--',
+        '--targetable--': '--可选中--',
+        '--untargetable--': '--不可选中--',
+        'True Heart': '真心',
+        'Waves': '水波',
+        'Hand of Prayer/Parting': '祈祷/离别之手',
+        'Eternal Darkness Enrage': '黑暗命运 狂暴',
+        'Divine Judgment Enrage': '神圣审判 狂暴',
+        'Temporal Prison Enrage': '时间牢狱 狂暴',
+        'Ordained Motion/Stillness': '行动/静止命令',
+        'Individual/Collective Reprobation': '单体/群体断罪',
+        'Radiant Sacrament': '拜火圣礼',
+        'Almighty Judgment Reveal': '神圣大审判 生效',
+        'Fate: Obloquy, Solidarity and 3x Severity': '未来: 污名 连带 3x 重罚',
+        'Obloquy, Solidarity and 3x Severity': '污名, 连带 3x 重罚',
+        'Surety, Solidarity and Severity': '誓约 连带 重罚',
+        'Fate: Surety and Solidarity': '未来: 誓约 连带',
+        'Surety and Solidarity': '誓约 连带',
+        'Fate: ': '未来: ',
+        'Aetheroplasm': '以太爆雷',
+        'Almighty Judgment': '神圣大审判',
+        'Alpha Sword': '阿尔法之剑',
+        'Apocalyptic Ray': '末世宣言',
+        'Cascade Enrage': '倾泻狂暴',
+        'Cascade': '倾泻',
+        'Chakrams': '轮轮',
+        'Chastening Heat': '神罚射线',
+        'Collective Reprobation': '群体断罪',
+        'Crashing Wave': '冲击波',
+        'Divine Judgment': '神圣审判',
+        'Divine Spear': '圣炎',
+        'Double Rocket Punch': '双重火箭飞拳',
+        'Down for the Count': '击倒',
+        'Drainage': '排水',
+        'Earth Missile': '寒冰导弹',
+        'Embolus': '栓塞',
+        'Enumeration': '计数',
+        'Eternal Darkness': '黑暗命运',
+        'Exhaust': '污染蒸汽',
+        'Fate Calibration': '未来确定',
+        'Fate Projection': '未来观测',
+        'Final Sentence': '死刑判决',
+        'Flarethrower': '大火炎放射',
+        'Fluid Strike': '流体强袭',
+        'Fluid Swing': '流体摆动',
+        'Gavel': '终审闭庭',
+        'Hand of Pain': '苦痛之手',
+        'Hand of Prayer': '祈祷之手',
+        'Hawk Blaster': '鹰式破坏炮',
+        'Hidden Minefield': '隐形地雷散布',
+        'Inception(?! )': '时空潜行',
+        'Inception Formation': '时空潜行阵列',
+        'Incinerating Heat': '净化射线',
+        'Individual Reprobation': '个体断罪',
+        'Irresistible Grace': '株连',
+        'J Jump': '正义之跃',
+        'J Kick': '正义飞踢',
+        'J Storm': '正义旋风',
+        'Judgment Crystal': '审判结晶',
+        'Judgment Nisi': '非最终审判',
+        'Limit Cut': '限制器减档',
+        'Link-Up': '系统连接',
+        'Liquid Gaol': '液体监狱',
+        'Mega Holy': '百万神圣',
+        'Middle Blaster': '中间冲击波',
+        'Missile Command': '导弹齐发',
+        'Obloquy': '污名神判',
+        'Optical Sight': '制导',
+        'Ordained Capital Punishment': '加重诛罚',
+        'Ordained Motion': '行动命令',
+        'Ordained Punishment': '诛罚',
+        'Ordained Stillness': '静止命令',
+        'Photon': '光子炮',
+        'Players Remaining': '剩余玩家',
+        'Pressurize': '填充水压',
+        'Propeller Wind': '螺旋桨强风',
+        'Protean Wave': '万变水波',
+        'Punishing Wave': '惩戒波',
+        'Rage Wave': '活水之怒',
+        '(?<! )Repentance': '罪恶感',
+        'Sacrament': '十字圣礼',
+        'Surety and Severity': '誓约和重罚',
+        'Severity': '重罚神判',
+        'Sluice': '冲洗',
+        'Solidarity': '连带神判',
+        'Spin Crusher': '回旋碎踢',
+        'Splash': '溅开',
+        'Summon Alexander': '召唤亚历山大',
+        'Super Blassty Charge': '超级摧毁者冲击',
+        'Super Jump': '超级跳跃',
+        'Surety': '誓约神判',
+        'Temporal Interference': '时空干涉',
+        'Temporal Prison': '时间牢狱',
+        'Temporal Stasis': '时间停止',
+        'The Final Word': '终审判決',
+        'Throttles': '窒息',
+        'Void Of Repentance': '忏悔区',
+        'Water and Thunder': '水雷',
+        'Whirlwind': '旋风',
+        'Wormhole Formation': '次元断绝阵列',
+      },
+      '~effectNames': {
+        'Aggravated Assault': '判决确定：加重罪',
+        'Compressed Lightning': '雷属性压缩',
+        'Compressed Water': '水属性压缩',
+        'Contact Regulation Ordained': '接触保护命令',
+        'Devotion': '灵护',
+        'Down for the Count': '击倒',
+        'Embolden': '鼓励',
+        'Enigma Codex': '英格玛秘典',
+        'Escape Detection Ordained': '逃亡监察命令',
+        'Final Decree Nisi α': '最终判决α',
+        'Final Decree Nisi β': '最终判决β',
+        'Final Decree Nisi γ': '最终判决γ',
+        'Final Decree Nisi δ': '最终判决δ',
+        'Final Judgment: Decree Nisi α': '终审：判决α',
+        'Final Judgment: Decree Nisi β': '终审：判决β',
+        'Final Judgment: Decree Nisi γ': '终审：判决γ',
+        'Final Judgment: Decree Nisi δ': '终审：判决δ',
+        'Final Judgment: Penalty III': '终审：弱化状态3',
+        'Final Word: Contact Prohibition': '判决确定：接触禁止命令',
+        'Final Word: Contact Regulation': '判决确定：接触保护命令',
+        'Final Word: Escape Detection': '判决确定：逃亡监察命令',
+        'Final Word: Escape Prohibition': '判决确定：逃亡禁止命令',
+        'Fire Resistance Down II': '火属性耐性大幅降低',
+        'Heavy': '加重',
+        'House Arrest': '判决确定：强制接近命令',
+        'Lightning Resistance Down II': '雷属性耐性大幅降低',
+        'Luminous Aetheroplasm': '光性爆雷',
+        'Magic Vulnerability Up': '魔法受伤加重',
+        'Physical Vulnerability Up': '物理受伤加重',
+        'Restraining Order': '判决确定：禁止接近命令',
+        'Shared Sentence': '判决确定：集团罪',
+        'Summon Order': '发动技能待命I',
+        'Summon Order III': '发动技能待命III',
+        'Temporal Displacement': '时间停止',
+        'Throttle': '窒息',
+        'Water Resistance Down II': '水属性耐性大幅降低',
       },
     },
   ],
