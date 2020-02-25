@@ -45,7 +45,7 @@
       regexJa: Regexes.startsUsing({ id: '10EB', source: 'ハルマキス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '10EB', source: '赫鲁玛奇斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '10EB', source: '하르마키스', capture: false }),
-      response: Responses.lookAway(),
+      response: Responses.lookAway('info'),
     },
     {
       id: 'Facility Inertia Stream',

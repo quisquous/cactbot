@@ -71,7 +71,7 @@
     {
       id: 'The Vault Execution',
       regex: Regexes.headMarker({ id: '0020', capture: false }),
-      response: Responses.spread(),
+      response: Responses.awayFrom(),
     },
     {
       id: 'The Vault Black Nebula',
@@ -84,7 +84,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      response: Responses.interupt(),
+      response: Responses.stun(),
     },
     {
       id: 'The Vault Faith Unmoving',
