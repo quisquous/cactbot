@@ -29,17 +29,12 @@ const triggerFunctions = [
   'soundVolume',
   'suppressSeconds',
   'tts',
-  'unusedText',
 ];
 
 const severityMap = {
   'info': 'infoText',
   'alert': 'alertText',
   'alarm': 'alarmText',
-  // Allow |hide| as an option to hide text.
-  // |unusedText| is a bogus entry that is not run, so this effectively hides this,
-  // without creating a million conditionals everywhere.
-  'hide': 'unusedText',
 };
 
 let getText = (sev) => {
