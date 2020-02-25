@@ -57,13 +57,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Copied Serial Energy Assault',
@@ -72,13 +66,7 @@
       regexDe: Regexes.startsUsing({ id: '48B5', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48B5', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48B5', source: '多関節型：司令機', capture: false }),
-      alertText: {
-        en: 'Get Behind',
-        de: 'Hinter Ihn',
-        fr: 'Derrière le boss',
-        cn: '背面',
-        ko: '보스 뒤로',
-      },
+      response: Responses.getBehind(),
     },
     {
       id: 'Copied Serial High-Caliber Laser',
@@ -103,29 +91,7 @@
       regexDe: Regexes.startsUsing({ id: '48CE', source: 'Befehlsmodell Mit Omnigelenk' }),
       regexFr: Regexes.startsUsing({ id: '48CE', source: 'Modèle Multiarticulé : Commandant' }),
       regexJa: Regexes.startsUsing({ id: '48CE', source: '多関節型：司令機' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches.target == data.me || data.role != 'healer')
-          return;
-
-        return {
-          en: 'Buster on ' + data.ShortName(matches.target),
-          de: 'Tankbuster auf ' + data.ShortName(matches.target),
-          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-          cn: '死刑点 ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 탱버',
-        };
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Copied Serial Centrifugal Spin',
@@ -134,13 +100,7 @@
       regexDe: Regexes.startsUsing({ id: '48C8', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48C8', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48C8', source: '多関節型：司令機', capture: false }),
-      alertText: {
-        en: 'Go To Sides',
-        de: 'Geh zu den Seiten',
-        fr: 'Sur les côtés',
-        cn: '两侧躲避',
-        ko: '양옆으로 이동',
-      },
+      response: Responses.goSides(),
     },
     {
       id: 'Copied Serial Sidestriking Spin',
@@ -149,13 +109,7 @@
       regexDe: Regexes.startsUsing({ id: '48CA', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48CA', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48CA', source: '多関節型：司令機', capture: false }),
-      alertText: {
-        en: 'Go Front/Back',
-        de: 'Geh nach Vorne/ Hinten',
-        fr: 'Devant/Derrière',
-        cn: '去前/后',
-        ko: '앞/뒤로 이동',
-      },
+      response: Responses.goFrontBack(),
     },
     {
       id: 'Copied Serial Shockwave',
@@ -164,13 +118,7 @@
       regexDe: Regexes.startsUsing({ id: '48C3', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48C3', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48C3', source: '多関節型：司令機', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        de: 'Rückstoß',
-        fr: 'Poussée',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'Copied Hobbes Laser-Resistance Test',
@@ -182,13 +130,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Copied Hobbes Right Arm',
@@ -237,13 +179,7 @@
       run: function(data) {
         data.alliance = data.alliance || 'C';
       },
-      infoText: {
-        en: 'Out',
-        de: 'Raus',
-        fr: 'Dehors',
-        cn: '远离',
-        ko: '밖으로',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Copied Hobbes Left Arm 2',
@@ -283,13 +219,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispertion',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Copied Hobbes Laser Sight',
@@ -298,13 +228,7 @@
       regexDe: Regexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4807', source: 'ホッブス', capture: false }),
-      alertText: {
-        en: 'Stack',
-        de: 'Sammeln',
-        fr: 'Package',
-        cn: '集合',
-        ko: '모이기',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'Copied Hobbes Electric Floor',
@@ -401,13 +325,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Copied Flight Unit Ballistic Impact',
@@ -415,13 +333,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispertion',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Copied Engels Marx Smash Right',
@@ -430,13 +342,7 @@
       regexDe: Regexes.startsUsing({ id: '4727', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4727', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4727', source: 'エンゲルス', capture: false }),
-      alertText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite',
-        cn: '右',
-        ko: '오른쪽',
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'Copied Engels Marx Smash Left',
@@ -445,13 +351,7 @@
       regexDe: Regexes.startsUsing({ id: '4726', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4726', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4726', source: 'エンゲルス', capture: false }),
-      alertText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        cn: '左',
-        ko: '왼쪽',
-      },
+      response: Responses.goLeft(),
     },
     {
       id: 'Copied Engels Marx Smash Forward',
@@ -504,13 +404,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Tank Buster on YOU',
-        de: 'Tankbuster auf DIR',
-        fr: 'Tankbuster sur VOUS',
-        cn: '死刑点名',
-        ko: '탱버 대상자',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Copied Engels Diffuse Laser',
@@ -522,13 +416,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       // Technicallly this is Laser Sight 473A, but energy barrage
@@ -651,28 +539,7 @@
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer';
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑点 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Copied 9S Laser Saturation',
@@ -684,13 +551,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Copied 9S Laser Turret',
@@ -699,13 +560,7 @@
       regexDe: Regexes.startsUsing({ id: '4A74', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4A74', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4A74', source: '９Ｓ：多脚戦車従属', capture: false }),
-      alertText: {
-        en: 'Away From Front',
-        de: 'Weg von Vorne',
-        fr: 'Eloignez vous de l\'avant',
-        cn: '远离前方',
-        ko: '앞 피하기',
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'Copied 9S Ballistic Impact',
@@ -713,13 +568,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispertion',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
@@ -742,13 +591,7 @@
       regexDe: Regexes.startsUsing({ id: '48DF', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48DF', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48DF', source: '９Ｓ：多脚戦車従属', capture: false }),
-      infoText: {
-        en: 'Go Sides',
-        de: 'Zu den Seiten',
-        fr: 'Sur les côtés',
-        cn: '两侧',
-        ko: '양옆으로',
-      },
+      response: Responses.goSides(),
     },
     {
       id: 'Copied 9S Dual-Flank Cannons',
@@ -757,13 +600,7 @@
       regexDe: Regexes.startsUsing({ id: '48DE', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48DE', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48DE', source: '９Ｓ：多脚戦車従属', capture: false }),
-      infoText: {
-        en: 'Go Front / Back',
-        de: 'Geh nach Vorne / Hinten',
-        fr: 'Allez devant / derrière',
-        cn: '前往前/后',
-        ko: '앞/뒤로 이동',
-      },
+      response: Responses.goFrontBack(),
     },
     {
       id: 'Copied 9S Engage Marx Support',
@@ -790,13 +627,7 @@
       regexDe: Regexes.ability({ id: '48EA', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.ability({ id: '48EA', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.ability({ id: '48EA', source: '９Ｓ：多脚戦車従属', capture: false }),
-      infoText: {
-        en: 'Adds',
-        de: 'Adds',
-        fr: 'Adds',
-        cn: '小怪',
-        ko: '쫄',
-      },
+      response: Responses.killAdds(),
     },
     {
       id: 'Copied 9S Engage Goliath Tank Support',
@@ -805,13 +636,7 @@
       regexDe: Regexes.startsUsing({ id: '48E5', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48E5', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48E5', source: '９Ｓ：多脚戦車従属', capture: false }),
-      infoText: {
-        en: 'Adds',
-        de: 'Adds',
-        fr: 'Adds',
-        cn: '小怪',
-        ko: '탱크 쫄',
-      },
+      response: Responses.killAdds(),
     },
     {
       id: 'Copied 9S Hack Goliath Tank',
@@ -836,13 +661,7 @@
       regexFr: Regexes.startsUsing({ id: '48F3', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48F3', source: '９Ｓ：多脚戦車従属', capture: false }),
       suppressSeconds: 2,
-      infoText: {
-        en: 'Stack',
-        de: 'Sammeln',
-        fr: 'Package',
-        cn: '集合',
-        ko: '모이기',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'Copied 9S Bubble',
