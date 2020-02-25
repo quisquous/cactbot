@@ -20,10 +20,21 @@
       response: Responses.aoe(),
     },
     {
+      // Save ability state since the generic tether used has multiple uses in this fight
+      id: 'E6S Hands of Flame Start',
+      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      preRun: function(data) {
+        data.handsOfFlame = true;
+      },
+    },
+    {
       // Tank swap if you're not the target
       // Break tether if you're the target during Ifrit+Garuda phase
-      id: 'E6S Hands of Hell',
-      regex: Regexes.tether({ id: '006B' }),
+      id: 'E6S Hands of Flame Tether',
+      regex: Regexes.tether({ id: '0068' }),
+      condition: function(data) {
+        return data.handsOfFlame = true;
+      },
       infoText: function(data, matches) {
         if (data.me != matches.target || data.role != 'tank')
           return;
@@ -43,6 +54,13 @@
       },
     },
     {
+      id: 'E6S Hands of Flame Cast',
+      regex: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      preRun: function(data) {
+        data.handsOfFlame = false;
+      },
+    },
+    {
       id: 'E6S Instant Incineration',
       regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
       condition: Conditions.caresAboutMagical(),
@@ -54,11 +72,11 @@
       response: Responses.awayFromFront(),
     },
     {
-      id: 'E6S Hands of Flame',
+      id: 'E6S Hands of Hell',
       regex: Regexes.headMarker({ id: '0016' }),
       condition: Conditions.targetIsYou(),
       alertText: {
-        en: 'Tethers on YOU',
+        en: 'Tether Marker on YOU',
       },
     },
     {
