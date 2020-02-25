@@ -36,18 +36,13 @@
         return data.handsOfFlame = true;
       },
       infoText: function(data, matches) {
-        if (data.me != matches.target || data.role != 'tank' || data.onGaruda)
-          return;
         if (data.me == matches.target) {
-          if (data.onIfrit == true) {
-            return {
-              en: 'Break Tether',
-            };
-          }
           return {
             en: 'Charge on YOU',
           };
         }
+        if (data.role != 'tank' || data.phase == 'both')
+          return;
         return {
           en: 'Tank Swap',
         };
@@ -81,26 +76,25 @@
     },
     {
       id: 'E6S Hated of the Vortex',
+      regex: Regexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
+      run: function(data) {
+        data.phase = 'both';
+      },
+    },
+    {
+      id: 'E6S Hated of the Vortex Effect',
       regex: Regexes.gainsEffect({ effect: 'Hated of the Vortex' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Garuda',
       },
-      run: function(data, matches) {
-        if (data.me == matches.target)
-          data.onGaruda = true;
-      },
     },
     {
-      id: 'E6S Hated of the Embers',
+      id: 'E6S Hated of the Embers Effect',
       regex: Regexes.gainsEffect({ effect: 'Hated of the Embers' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Ifrit',
-      },
-      run: function(data, matches) {
-        if (data.me == matches.target)
-          data.onIfrit = true;
       },
     },
     {
