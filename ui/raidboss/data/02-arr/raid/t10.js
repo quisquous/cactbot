@@ -22,10 +22,7 @@
       regexJa: Regexes.startsUsing({ id: 'B5F', source: 'イムドゥグド', capture: false }),
       regexCn: Regexes.startsUsing({ id: 'B5F', source: '伊姆都古德', capture: false }),
       regexKo: Regexes.startsUsing({ id: 'B5F', source: '임두구드', capture: false }),
-      alertText: {
-        en: 'Spread',
-        fr: 'Ecartez-vous',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'T10 Wild Charge',
@@ -50,22 +47,7 @@
     {
       id: 'T10 Prey',
       regex: Regexes.headMarker({ id: '001E' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Prey on YOU',
-            fr: 'Prière sur VOUS',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Prey on ' + data.ShortName(matches.target),
-            fr: 'Prière sur ' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.preyOn(),
     },
     {
       id: 'T10 Cyclonic Tether',
