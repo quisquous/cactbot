@@ -172,7 +172,7 @@
     },
     {
       id: 'Qitana Confession of Faith Stack',
-      regex: Regexes.headMarker({ id: '003E' }),
+      regex: Regexes.headMarker({ id: '003E', capture: false }),
       response: Responses.stackMiddle(),
     },
     {

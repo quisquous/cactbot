@@ -175,12 +175,12 @@
     },
     {
       id: 'TitaniaEx Fae Light',
-      regex: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아', capture: false }),
+      regex: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexDe: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexFr: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
+      regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
+      regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아' }),
       response: Responses.tankCleave(),
     },
     {

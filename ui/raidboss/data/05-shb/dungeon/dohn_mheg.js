@@ -44,7 +44,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      iresponse: Responses.stun(),
+      response: Responses.stun(),
     },
     {
       id: 'Dohn Mheg Proboscis',

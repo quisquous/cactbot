@@ -159,12 +159,12 @@
     },
     {
       id: 'InnoEx Holy Sword Healer',
-      regex: Regexes.startsUsing({ id: '3EC9', source: 'Forgiven Venery', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3EC9', source: 'Geläutert(?:e|er|es|en) Wollust', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3EC9', source: 'Débauche Pardonnée', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3EC9', source: 'フォーギヴン・ヴェナリー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3EC9', source: '면죄된 정욕', capture: false }),
+      regex: Regexes.startsUsing({ id: '3EC9', source: 'Forgiven Venery' }),
+      regexDe: Regexes.startsUsing({ id: '3EC9', source: 'Geläutert(?:e|er|es|en) Wollust' }),
+      regexFr: Regexes.startsUsing({ id: '3EC9', source: 'Débauche Pardonnée' }),
+      regexJa: Regexes.startsUsing({ id: '3EC9', source: 'フォーギヴン・ヴェナリー' }),
+      regexCn: Regexes.startsUsing({ id: '3EC9', source: '得到宽恕的情欲' }),
+      regexKo: Regexes.startsUsing({ id: '3EC9', source: '면죄된 정욕' }),
       condition: function(data) {
         return data.role == 'healer';
       },

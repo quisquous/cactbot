@@ -116,12 +116,12 @@
     {
       id: 'Gulg Catechism',
       // no target name
-      regex: Regexes.startsUsing({ id: '3D09', source: 'Forgiven Whimsy', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D09', source: 'Geläutert(?:e|er|es|en) Gereiztheit', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D09', source: 'Caprice Pardonné', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D09', source: 'フォーギヴン・ウィムズィー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D09', source: '得到宽恕的无常', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D09', source: '면죄된 변덕', capture: false }),
+      regex: Regexes.startsUsing({ id: '3D09', source: 'Forgiven Whimsy' }),
+      regexDe: Regexes.startsUsing({ id: '3D09', source: 'Geläutert(?:e|er|es|en) Gereiztheit' }),
+      regexFr: Regexes.startsUsing({ id: '3D09', source: 'Caprice Pardonné' }),
+      regexJa: Regexes.startsUsing({ id: '3D09', source: 'フォーギヴン・ウィムズィー' }),
+      regexCn: Regexes.startsUsing({ id: '3D09', source: '得到宽恕的无常' }),
+      regexKo: Regexes.startsUsing({ id: '3D09', source: '면죄된 변덕' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -173,17 +173,17 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      : Responses.aoe(),
+      response: Responses.aoe(),
     },
     {
       id: 'Gulg Sforzando',
       // no target name
-      regex: Regexes.startsUsing({ id: '3D12', source: 'Forgiven Obscenity', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D12', source: 'Geläutert(?:e|er|es|en) Unzucht', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D12', source: 'Obscénité Pardonnée', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D12', source: 'フォーギヴン・オブセニティー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D12', source: '得到宽恕的猥亵', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D12', source: '면죄된 외설', capture: false }),
+      regex: Regexes.startsUsing({ id: '3D12', source: 'Forgiven Obscenity' }),
+      regexDe: Regexes.startsUsing({ id: '3D12', source: 'Geläutert(?:e|er|es|en) Unzucht' }),
+      regexFr: Regexes.startsUsing({ id: '3D12', source: 'Obscénité Pardonnée' }),
+      regexJa: Regexes.startsUsing({ id: '3D12', source: 'フォーギヴン・オブセニティー' }),
+      regexCn: Regexes.startsUsing({ id: '3D12', source: '得到宽恕的猥亵' }),
+      regexKo: Regexes.startsUsing({ id: '3D12', source: '면죄된 외설' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
