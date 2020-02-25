@@ -36,7 +36,7 @@
         return data.handsOfFlame = true;
       },
       infoText: function(data, matches) {
-        if (data.me != matches.target || data.role != 'tank')
+        if (data.me != matches.target || data.role != 'tank' || data.onGaruda)
           return;
         if (data.me == matches.target) {
           if (data.onIfrit == true) {
@@ -85,6 +85,10 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Garuda',
+      },
+      run: function(data, matches) {
+        if (data.me == matches.target)
+          data.onGaruda = true;
       },
     },
     {
