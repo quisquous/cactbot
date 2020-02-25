@@ -12,6 +12,16 @@
       regex: Regexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
+      run: function(data) {
+        data.phase = 'garuda';
+      },
+    },
+    {
+      id: 'E6S Touchdown',
+      regex: Regexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
+      run: function(data) {
+        data.phase = 'ifrit';
+      },
     },
     {
       id: 'E6S Inferno Howl',
@@ -95,6 +105,13 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Ifrit',
+      },
+    },
+    {
+      id: 'E6S Raktapaksa Spawn',
+      regex: Regexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
+      run: function(data) {
+        data.phase = 'raktapaksa';
       },
     },
     {
