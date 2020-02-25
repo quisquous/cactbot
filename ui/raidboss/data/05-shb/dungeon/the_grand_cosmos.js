@@ -225,7 +225,7 @@
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
             fr: 'Placez le liens loin des décors',
-            ko: '징 대상자',
+            ko: '징: 장판이 가구에 닿지 않게 하기',
           };
         }
         return {
