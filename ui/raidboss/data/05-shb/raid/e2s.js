@@ -75,14 +75,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'aoe',
-        fr: 'Dégâts de zone',
-        ja: 'aoe',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E2S Quietus',
@@ -95,14 +88,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'aoe',
-        fr: 'Dégâts de zone',
-        ja: 'aoe',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E2S Shadowflame Tank',
@@ -115,34 +101,20 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Tank Buster on YOU',
-        de: 'Tankbuster auf DIR',
-        fr: 'Tankbuster sur VOUS',
-        ja: '自分にタンクバスター',
-        cn: '死刑点名',
-        ko: '탱버 대상자',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'E2S Shadowflame Healer',
-      regex: Regexes.startsUsing({ id: '3E61', source: 'Voidwalker', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E61', source: 'Nichtswandler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E61', source: 'Marcheuse Du Néant', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E61', source: 'ヴォイドウォーカー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E61', source: '虚无行者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E61', source: '보이드워커', capture: false }),
+      regex: Regexes.startsUsing({ id: '3E61', source: 'Voidwalker' }),
+      regexDe: Regexes.startsUsing({ id: '3E61', source: 'Nichtswandler' }),
+      regexFr: Regexes.startsUsing({ id: '3E61', source: 'Marcheuse Du Néant' }),
+      regexJa: Regexes.startsUsing({ id: '3E61', source: 'ヴォイドウォーカー' }),
+      regexCn: Regexes.startsUsing({ id: '3E61', source: '虚无行者' }),
+      regexKo: Regexes.startsUsing({ id: '3E61', source: '보이드워커' }),
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'tank busters',
-        de: 'Tank buster',
-        fr: 'Tank busters',
-        ja: 'タンクバスター',
-        cn: '死刑',
-        ko: '탱버',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'E2S Doomvoid Cleaver',
@@ -169,14 +141,7 @@
       regexJa: Regexes.startsUsing({ id: '3E4F', source: 'ヴォイドウォーカー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E4F', source: '虚无行者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E4F', source: '보이드워커', capture: false }),
-      alertText: {
-        en: 'Sides',
-        de: 'Seiten',
-        fr: 'Côtés',
-        ja: '横へ',
-        cn: '两侧',
-        ko: '보스 측면으로 이동',
-      },
+      response: Responses.goSides(),
     },
     {
       id: 'E2S Doomvoid Slicer',
@@ -186,14 +151,7 @@
       regexJa: Regexes.startsUsing({ id: '3E50', source: 'ヴォイドウォーカー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E50', source: '虚无行者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E50', source: '보이드워커', capture: false }),
-      infoText: {
-        en: 'Get Under',
-        de: 'Unter den Boss',
-        fr: 'Sous le boss',
-        ja: '中へ',
-        cn: '脚下',
-        ko: '보스 아래로',
-      },
+      response: Responses.getUnder(),
     },
     {
       id: 'E2S Empty Hate',
@@ -203,14 +161,7 @@
       regexJa: Regexes.startsUsing({ id: '3E59', source: 'エレボスの巨腕', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E59', source: '厄瑞玻斯的巨腕', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E59', source: '에레보스의 팔', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        de: 'Knockback',
-        fr: 'Poussée',
-        ja: 'ノックバック',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'E2S Empty Rage',
@@ -235,26 +186,7 @@
       condition: function(data) {
         return !data.waiting;
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR stacken',
-            fr: 'Package sur VOUS',
-            ja: '自分にスタック',
-            cn: '集合',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' stacken',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスタック',
-          cn: data.ShortName(matches.target) + ' 处集合',
-          ko: '"' + data.ShortName(matches.target) + '"에게 모이세요',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'E2S Unholy Darkness Collect',
@@ -288,26 +220,7 @@
       condition: function(data, matches) {
         return !data.hellWind && data.spell[matches.target] == 'stack';
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR stacken',
-            fr: 'Package sur VOUS',
-            ja: '自分にスタック',
-            cn: '集合',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' stacken',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスタック',
-          cn: data.ShortName(matches.target) + ' 处集合',
-          ko: '"' + data.ShortName(matches.target) + '"에게 모이세요',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'E2S Dark Fire No Waiting',
@@ -315,14 +228,7 @@
       condition: function(data, matches) {
         return !data.waiting && data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ja: '散開',
-        cn: '散开',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'E2S Dark Fire Collect',
@@ -356,14 +262,7 @@
       condition: function(data, matches) {
         return data.me == matches.target && data.spell[data.me] == 'fire';
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ja: '散開',
-        cn: '散开',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'E2S Shadoweye No Waiting',
@@ -371,18 +270,7 @@
       condition: function(data) {
         return !data.waiting;
       },
-      alertText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Look Away from ' + data.ShortName(matches.target),
-            de: 'Von ' + data.ShortName(matches.target) + ' weg schauen',
-            fr: 'Ne regardez pas '+ data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'を見ないで',
-            cn: '背对 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 바라보지 마세요',
-          };
-        }
-      },
+      response: Responses.lookAwayFrom(),
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -449,16 +337,7 @@
       delaySeconds: 2,
       // Let's just assume these people are stacked.
       // We could call out both names, but it's probably unnecessary.
-      alertText: function(data, matches) {
-        return {
-          en: 'Look Away from ' + data.ShortName(matches.target),
-          de: 'Von ' + data.ShortName(matches.target) + ' weg schauen',
-          fr: 'Ne regardez pas ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'を見ないで',
-          cn: '背对 ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 바라보지 말기',
-        };
-      },
+      response: Responses.lookAwayFrom(),
     },
     {
       id: 'E2S Flare No Waiting',

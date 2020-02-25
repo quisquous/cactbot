@@ -15,14 +15,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      alertText: {
-        en: 'Tank Busters',
-        de: 'Tank buster',
-        fr: 'Tank busters',
-        ja: 'タンクバスター',
-        cn: '坦克死刑',
-        ko: '탱버',
-      },
+      response: Responses.tankBuster(),
     },
   ],
   triggers: [
@@ -60,35 +53,7 @@
       regexJa: Regexes.startsUsing({ id: '4116', source: 'タイタン' }),
       regexCn: Regexes.startsUsing({ id: '4116', source: '泰坦' }),
       regexKo: Regexes.startsUsing({ id: '4116', source: '타이탄' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      // As this seems to usually seems to be invulned,
-      // don't make a big deal out of it.
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
-          return;
-        if (data.role != 'tank' && data.role != 'healer')
-          return;
-
-        return {
-          en: 'Buster on ' + data.ShortName(matches.target),
-          de: 'Tankbuster auf ' + data.ShortName(matches.target),
-          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にタンクバスター',
-          cn: '死刑点 ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 탱버',
-        };
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'E4S Pulse of the Land',
@@ -96,14 +61,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread Marker',
-        de: 'Verteilen-Marker',
-        fr: 'Marque de dispersion',
-        ja: '黄色: 散開',
-        cn: '黄色：散开',
-        ko: '징: 산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'E4S Evil Earth',
@@ -129,14 +87,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Stack Marker',
-        de: 'Sammeln-Marker',
-        fr: 'Marque de package',
-        ja: '橙色: スタック',
-        cn: '橙色：集合',
-        ko: '징: 쉐어',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'E4S Voice of the Land',
@@ -149,14 +100,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E4S Geocrush',
@@ -166,14 +110,7 @@
       regexJa: Regexes.startsUsing({ id: '4113', source: 'タイタン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4113', source: '泰坦', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4113', source: '타이탄', capture: false }),
-      alertText: {
-        en: 'Knockback',
-        de: 'Rückstoß',
-        fr: 'Poussée',
-        ja: 'ノックバック',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'E4S Massive Landslide - Front',
@@ -200,14 +137,7 @@
       regexJa: Regexes.ability({ id: '4117', source: 'タイタン', capture: false }),
       regexCn: Regexes.ability({ id: '4117', source: '泰坦', capture: false }),
       regexKo: Regexes.ability({ id: '4117', source: '타이탄', capture: false }),
-      infoText: {
-        en: 'Get to Sides',
-        de: 'Zur Seite',
-        fr: 'Sur les côtés',
-        ja: '横へ',
-        cn: '两侧躲避',
-        ko: '양옆으로',
-      },
+      response: Responses.goSides(),
     },
     {
       id: 'E4S Landslide',
@@ -353,14 +283,7 @@
       regexJa: Regexes.startsUsing({ id: '4121', source: 'タイタン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4121', source: '泰坦', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4121', source: '타이탄', capture: false }),
-      alertText: {
-        en: 'Get Under',
-        de: 'Unter ihn',
-        fr: 'Sous le boss',
-        ja: '中へ',
-        cn: '脚下集合',
-        ko: '보스 아래로',
-      },
+      response: Responses.getUnder(),
     },
     {
       id: 'E4S Earthen Fury',
@@ -373,14 +296,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'Big aoe',
-        de: 'Große AoE',
-        fr: 'Gros dégâts de zone',
-        ja: '強AoE',
-        cn: '大AOE',
-        ko: '강한 전체공격',
-      },
+      response: Responses.bigAoe(),
     },
     {
       id: 'E4S Earthen Fist - Left/Right',
@@ -458,14 +374,7 @@
       regexJa: Regexes.startsUsing({ id: '4135', source: 'マキシタイタン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4135', source: '极大泰坦', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4135', source: '거대 타이탄', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        de: 'Rückstoß',
-        fr: 'Poussée',
-        ja: 'ノックバック',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'E4S Weight of the World',
@@ -473,48 +382,12 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Weight, Get Out',
-        ja: '青: 離れて',
-        de: 'Schwere, Raus gehen',
-        fr: 'Poids, éloignez-vous',
-        cn: '蓝色：离开人群',
-        ko: '파랑징, 피하기',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'E4S Megalith',
       regex: Regexes.headMarker({ id: '005D' }),
-      alertText: function(data, matches) {
-        if (data.role != 'tank') {
-          return {
-            en: 'Away from Tanks',
-            ja: 'タンクから離れて',
-            de: 'Weg von den Tanks',
-            fr: 'Loin des tanks',
-            cn: '远离坦克',
-            ko: '탱커에서 멀어지기',
-          };
-        }
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            ja: '自分にシェア',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            cn: '集合分摊',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にシェア',
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          cn: '集合 ->' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'E4S Granite Gaol',
@@ -616,14 +489,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        ja: '激震',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체공격 5회',
-      },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [

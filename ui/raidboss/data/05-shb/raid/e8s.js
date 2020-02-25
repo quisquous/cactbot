@@ -75,9 +75,7 @@
     {
       id: 'E8S Banish III',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
-      alertText: {
-        en: 'Stacks',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'E8S Banish III Fake',
