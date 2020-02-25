@@ -46,12 +46,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Amaurot Final Sky',
@@ -78,12 +73,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Amaurot Apokalypsis',

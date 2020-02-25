@@ -18,12 +18,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      infoText: {
-        en: 'Interrupt Prejudice',
-        de: 'Unterbreche Voreingenommenheit',
-        fr: 'Interrompez Préjugé Pardonnée',
-        ko: '면죄된 편견 시전 끊기',
-      },
+      response: Responses.interupt(),
     },
     {
       id: 'Gulg Tail Smash',
@@ -48,24 +43,7 @@
       regexJa: Regexes.startsUsing({ id: '3CFB', source: 'フォーギヴン・クルエルティー' }),
       regexCn: Regexes.startsUsing({ id: '3CFB', source: '得到宽恕的残忍' }),
       regexKo: Regexes.startsUsing({ id: '3CFB', source: '면죄된 잔혹' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Gulg Lumen Infinitum',
@@ -93,12 +71,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Gulg Typhoon Wing 1',
@@ -125,12 +98,7 @@
       regexCn: Regexes.startsUsing({ id: '3D0[12]', source: '得到宽恕的残忍', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D0[12]', source: '면죄된 잔혹', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'out of melee, dodge cones',
-        de: 'Nahkämpfer raus, Wind-Fächerflächen ausweichen',
-        fr: 'Distants, évitez les cônes',
-        ko: '보스로부터 떨어지기, 부채꼴 공격 피하기',
-      },
+      response: Responses.outOfMelee(),
     },
     {
       id: 'Gulg Sacrament of Penance',
@@ -143,12 +111,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Gulg Catechism',
@@ -162,12 +125,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      alertText: {
-        en: 'tank buster',
-        de: 'Tankbuster',
-        fr: 'Tankbuster',
-        ko: '탱버',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Gulg Judgment Day',
@@ -192,12 +150,7 @@
       regexJa: Regexes.startsUsing({ id: '3F7A', source: 'フォーギヴン・レヴェルリー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3F7A', source: '得到宽恕的放纵', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3F7A', source: '면죄된 환락', capture: false }),
-      infoText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        ko: '왼쪽으로',
-      },
+      response: Responses.goLeft(),
     },
     {
       id: 'Gulg Right Palm',
@@ -207,12 +160,7 @@
       regexJa: Regexes.startsUsing({ id: '3F78', source: 'フォーギヴン・レヴェルリー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3F78', source: '得到宽恕的放纵', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3F78', source: '면죄된 환락', capture: false }),
-      infoText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite',
-        ko: '오른쪽으로',
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'Gulg Orison Fortissimo',
@@ -225,12 +173,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      : Responses.aoe(),
     },
     {
       id: 'Gulg Sforzando',
@@ -244,12 +187,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      alertText: {
-        en: 'tank buster',
-        de: 'Tankbuster',
-        fr: 'Tankbuster',
-        ko: '탱버',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Gulg Divine Diminuendo',
@@ -274,12 +212,7 @@
       regexJa: Regexes.startsUsing({ id: '3D1A', source: 'フォーギヴン・オブセニティー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D1A', source: '得到宽恕的猥亵', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D1A', source: '면죄된 외설', capture: false }),
-      infoText: {
-        en: 'Behind Boss',
-        de: 'Hinter den Boss',
-        fr: 'Derrière le boss',
-        ko: '보스 측후로 피하기',
-      },
+      response: Responses.getBehind(),
     },
   ],
   timelineReplace: [
