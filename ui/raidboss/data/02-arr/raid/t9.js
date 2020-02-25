@@ -348,12 +348,6 @@
         de: 'Blitz auf DIR',
         ja: '自分にサンダー',
       },
-      tts: {
-        en: 'thunder',
-        fr: 'Foudre',
-        de: 'blitz',
-        ja: 'サンダー',
-      },
     },
     {
       id: 'T9 Dragon Safe Zone',
