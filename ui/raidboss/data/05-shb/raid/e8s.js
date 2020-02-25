@@ -109,16 +109,16 @@
       preRun: function(data, matches) {
         if (data.wyrmsLament == 1) {
           data.wyrmclawNumber = {
-            '14.00': 1,
-            '22.00': 2,
-            '30.00': 3,
-            '38.00': 4,
-          }[matches.duration];
+            '14': 1,
+            '22': 2,
+            '30': 3,
+            '38': 4,
+          }[Math.ceil(matches.duration)];
         } else {
           data.wyrmclawNumber = {
-            '22.00': 1,
-            '38.00': 2,
-          }[matches.duration];
+            '22': 1,
+            '38': 2,
+          }[Math.ceil(matches.duration)];
         }
       },
       durationSeconds: function(data, matches) {
@@ -137,16 +137,16 @@
       preRun: function(data, matches) {
         if (data.wyrmsLament == 1) {
           data.wyrmfangNumber = {
-            '20.00': 1,
-            '28.00': 2,
-            '36.00': 3,
-            '44.00': 4,
-          }[matches.duration];
+            '20': 1,
+            '28': 2,
+            '36': 3,
+            '44': 4,
+          }[Math.ceil(matches.duration)];
         } else {
           data.wyrmfangNumber = {
-            '28.00': 1,
-            '44.00': 2,
-          }[matches.duration];
+            '28': 1,
+            '44': 2,
+          }[Math.ceil(matches.duration)];
         }
       },
       durationSeconds: function(data, matches) {
@@ -190,7 +190,7 @@
         return data.CanCleanse();
       },
       infoText: {
-        en: 'Cleanse',
+        en: 'Cleanse DPS',
       },
     },
   ],
