@@ -76,6 +76,7 @@
     {
       id: 'E6S Hands of Flame Cast',
       regex: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      suppressSeconds: 1,
       preRun: function(data) {
         data.handsOfFlame = false;
       },
