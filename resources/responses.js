@@ -29,12 +29,17 @@ const triggerFunctions = [
   'soundVolume',
   'suppressSeconds',
   'tts',
+  'unusedText',
 ];
 
 const severityMap = {
   'info': 'infoText',
   'alert': 'alertText',
   'alarm': 'alarmText',
+  // Allow |hide| as an option to hide text.
+  // |unusedText| is a bogus entry that is not run, so this effectively hides this,
+  // without creating a million conditionals everywhere.
+  'hide': 'unusedText',
 };
 
 let getText = (sev) => {
@@ -65,10 +70,24 @@ let getTarget = (matches) => {
   return matches.target || matches[1];
 };
 
+// FIXME: make this work for any number of pairs of params
+let combineFuncs = function(text1, func1, text2, func2) {
+  let obj = {};
+
+  if (text1 != text2) {
+    obj[text1] = func1;
+    obj[text2] = func2;
+  } else {
+    obj[text1] = (data, matches) => {
+      func1(data, matches) || func2(data, matches);
+    };
+  }
+  return obj;
+};
+
 let Responses = {
-  tankBuster: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
+  tankBuster: (targetSev, otherSev) => {
+    let targetFunc = (data, matches) => {
       if (!matches) {
         if (data.role != 'tank' && data.role != 'healer')
           return;
@@ -90,6 +109,11 @@ let Responses = {
           ko: '탱버 대상자',
         };
       }
+    };
+
+    let otherFunc = (data, matches) => {
+      if (!matches || getTarget(matches) == data.me)
+        return;
       return {
         en: 'Buster on ' + data.ShortName(target),
         de: 'Tankbuster auf ' + data.ShortName(target),
@@ -99,11 +123,12 @@ let Responses = {
         ko: '"' + data.ShortName(target) + '" 탱버',
       };
     };
-    return obj;
+
+    return combineFuncs(defaultAlertText(targetSev), targetFunc,
+        defaultInfoText(otherSev), otherFunc);
   },
   tankBusterSwap: (busterSev, swapSev) => {
     // Note: busterSev and swapSev can be the same priority.
-    let obj = {};
     let tankSwapFunc = (data, matches) => {
       let target = getTarget(matches);
       if (data.role == 'tank' && target != data.me) {
@@ -139,18 +164,8 @@ let Responses = {
       };
     };
 
-    let swapText = defaultAlarmText(swapSev);
-    let busterText = defaultAlertText(busterSev);
-
-    if (swapText != busterText) {
-      obj[swapText] = tankSwapFunc;
-      obj[busterText] = busterFunc;
-    } else {
-      obj[swapText] = (data) => {
-        tankSwapFunc(data) || busterFunc(data);
-      };
-    }
-    return obj;
+    return combineFuncs(defaultAlarmText(swapSev), tankSwapFunc,
+        defaultAlertText(busterSev), busterFunc);
   },
   tankCleave: (sev) => {
     let obj = {};
@@ -313,9 +328,8 @@ let Responses = {
     };
     return obj;
   },
-  knockbackOn: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = (data, matches) => {
+  knockbackOn: (targetSev, otherSev) => {
+    let targetFunc = (data, matches) => {
       let target = getTarget(matches);
       if (target == data.me) {
         return {
@@ -326,15 +340,21 @@ let Responses = {
           ko: '넉백징 대상자',
         };
       }
-      return {
-        en: 'Knockback on ' + data.ShortName(target),
-        de: 'Rückstoß auf ' + data.ShortName(target),
-        fr: 'Poussée sur ' + data.ShortName(target),
-        ja: data.ShortName(target) + 'にノックバック',
-        ko: '넉백징 → ' + data.ShortName(target),
-      };
     };
-    return obj;
+
+    let otherFunc = (data, matches) => {
+      if (matches && getTarget(matches) != data.me) {
+        return {
+          en: 'Knockback on ' + data.ShortName(target),
+          de: 'Rückstoß auf ' + data.ShortName(target),
+          fr: 'Poussée sur ' + data.ShortName(target),
+          ja: data.ShortName(target) + 'にノックバック',
+          ko: '넉백징 → ' + data.ShortName(target),
+        };
+      }
+    };
+    return combineFuncs(defaultInfoText(targetSev), targetFunc,
+        defaultInfoText(otherSev), otherFunc);
   },
   lookTowards: (sev) => {
     let obj = {};
@@ -598,9 +618,8 @@ let Responses = {
     };
     return obj;
   },
-  preyOn: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
+  preyOn: (targetSev, otherSev) => {
+    let targetFunc = (data, matches) => {
       let target = getTarget(matches);
       if (data.me == target) {
         return {
@@ -611,15 +630,21 @@ let Responses = {
           ja: 'マーカー on YOU',
         };
       }
-      return {
-        en: 'Prey on ' + data.ShortName(target),
-        de: 'Marker auf ' + data.ShortName(target),
-        fr: 'Marquage sur ' + data.ShortName(target),
-        ko: '홍옥징 → ' + data.ShortName(target),
-        ja: 'マーカー on ' + data.ShortName(target),
-      };
     };
-    return obj;
+
+    let otherFunc = (data, matches) => {
+      if (matches && getTarget(matches) != data.me) {
+        return {
+          en: 'Prey on ' + data.ShortName(target),
+          de: 'Marker auf ' + data.ShortName(target),
+          fr: 'Marquage sur ' + data.ShortName(target),
+          ko: '홍옥징 → ' + data.ShortName(target),
+          ja: 'マーカー on ' + data.ShortName(target),
+        };
+      }
+    };
+    return combineFuncs(defaultAlertText(targetSev), targetFunc,
+        defaultInfoText(otherSev), otherFunc);
   },
   meteorOnYou: (sev) => {
     let obj = {};
