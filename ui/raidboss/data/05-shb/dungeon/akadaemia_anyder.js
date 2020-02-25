@@ -15,22 +15,13 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      infoText: {
-        en: 'Mini Buster',
-        de: 'Kleiner Tankbuster',
-        ko: '탱버',
-      },
+      response: Responses.miniBuster(),
     },
     {
       id: 'Anyder Putrid Breath',
       regex: /Putrid Breath/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Out of Front',
-        de: 'Weg von Vorne',
-        fr: 'Ne restez pas devant',
-        ko: '정면 피하기',
-      },
+      response: Responses.awayFromFront(),
     },
   ],
   triggers: [
@@ -55,24 +46,7 @@
       regexJa: Regexes.startsUsing({ id: '3E04', source: ['クラドセラケ', 'ドリオドゥス'] }),
       regexCn: Regexes.startsUsing({ id: '3E04', source: ['裂口鲨', '原祖鲨'] }),
       regexKo: Regexes.startsUsing({ id: '3E04', source: ['클라도셀라케', '돌리오두스'] }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '"탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Anyder Tidal Guillotine',
@@ -115,12 +89,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Anyder Sap Shower',
@@ -128,12 +97,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez vous',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Anyder Arbor Storm',
@@ -146,12 +110,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Anyder Noahionto',
@@ -164,12 +123,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      alertText: {
-        en: 'Interrupt Evil Armor',
-        de: 'Unterbreche Böse Kampfmaschine',
-        fr: 'Interrompez l\'armure maléfique',
-        ko: '사악한 갑옷 기술 시전 끊기',
-      },
+      response: Responses.interupt(),
     },
     {
       id: 'Anyder Shockbolt',
@@ -179,24 +133,7 @@
       regexJa: Regexes.startsUsing({ id: '3E23', source: 'ケツァクウァトル' }),
       regexCn: Regexes.startsUsing({ id: '3E23', source: '克察尔科亚特尔' }),
       regexKo: Regexes.startsUsing({ id: '3E23', source: '케찰코아틀' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '"탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Anyder Thunderbolt',
@@ -209,12 +146,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Anyder Thunderstorm',

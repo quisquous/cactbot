@@ -20,12 +20,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      alertText: {
-        en: 'Interrupt Kaliya',
-        de: 'Unterbreche Kaliya',
-        fr: 'Interrompez Kaliya',
-        ko: '양산형 칼리아 기술 시전 끊기',
-      },
+      response: Responses.interupt(),
     },
     {
       id: 'Twinning Berserk',
@@ -38,12 +33,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      alertText: {
-        en: 'Interrupt Reptoid',
-        de: 'Unterbreche Reptoid',
-        fr: 'Interrompez Reptoïde',
-        ko: '활성된 파충류 기술 시전 끊기',
-      },
+      response: Responses.interupt(),
     },
     {
       id: 'Twinning 128 Tonze Swing',
@@ -56,24 +46,14 @@
       condition: function(data) {
         return data.CanSilence();
       },
-      alertText: {
-        en: 'Silence Minotaur',
-        de: 'Stumme Minotaur',
-        fr: 'Silence sur Minotaure',
-        ko: '자동제어 미노타우로스 침묵',
-      },
+      response: Responses.interupt(),
     },
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
       regex: Regexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Spread (avoid cages)',
-        de: 'Verteilen (Vermeide "Käfige")',
-        fr: 'Dispersez vous (évitez les cages)',
-        ko: '산개 (몬스터 우리 피하기)',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Twinning Beastly Roar',
@@ -86,12 +66,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Twinning Augurium',
@@ -101,42 +76,12 @@
       regexJa: Regexes.startsUsing({ id: '3D65', source: 'アルファ・ザグナル' }),
       regexCn: Regexes.startsUsing({ id: '3D65', source: '扎戈斧龙一型' }),
       regexKo: Regexes.startsUsing({ id: '3D65', source: '알파 자그날' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tank cleave on YOU',
-            de: 'Tank cleave auf YOU',
-            fr: 'Tank cleave sur VOUS',
-            ko: '나에게 범위 탱버',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-          de: 'Tank cleave ausweichen',
-          fr: 'Evitez le cleave',
-          ko: '탱버 피하기',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Twinning Charge Eradicated',
       regex: Regexes.headMarker({ id: '005D' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR stacken',
-            fr: 'Package sur VOUS',
-            ko: '나에게 쉐어징',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Twinning Thunder Beam',
@@ -146,24 +91,7 @@
       regexJa: Regexes.startsUsing({ id: '3DED', source: 'ミトリダテス' }),
       regexCn: Regexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
       regexKo: Regexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Buster on YOU',
-            de: 'Buster auf DIR',
-            fr: 'Buster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Buster auf ' + data.ShortName(matches.target),
-            fr: 'Buster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '"에게 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       // Alternatively, we could use 1B:\y{ObjectId}:(\y{Name}):....:....:00A0
@@ -177,12 +105,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Twinning Magitek Crossray',
@@ -224,24 +147,7 @@
       regexJa: Regexes.startsUsing({ id: '3DFB', source: 'タイクーン' }),
       regexCn: Regexes.startsUsing({ id: '3DFB', source: '泰空' }),
       regexKo: Regexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Buster on YOU',
-            de: 'Buster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Buster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '"에게 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       // An alternative is 1B:\y{ObjectId}:\y{Name}:....:....:00A9
@@ -252,12 +158,7 @@
       regexJa: Regexes.startsUsing({ id: '3E0C', source: 'タイクーン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E0C', source: '泰空', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E0C', source: '타이쿤', capture: false }),
-      alertText: {
-        en: 'spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Twinning Discharger',
@@ -270,12 +171,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [

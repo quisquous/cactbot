@@ -14,11 +14,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      infoText: {
-        en: 'Mini Buster',
-        de: 'Kleiner TankbBuster',
-        ko: '탱버',
-      },
+      response: Responses.miniBuster(),
     },
   ],
   triggers: [
@@ -34,11 +30,7 @@
       condition: function(data) {
         return data.CanSilence();
       },
-      alertText: {
-        en: 'Silence Fuath',
-        de: 'Stumme Dohn-Fuath',
-        ko: '도느 푸아 기술 시전 끊기',
-      },
+      response: Responses.interupt(),
     },
     {
       id: 'Dohn Mheg Straight Punch',
@@ -52,11 +44,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Stun Basket',
-        de: 'Unterbreche Dohn-Blumenkorb',
-        ko: '도느 바구니 기절시키기',
-      },
+      iresponse: Responses.stun(),
     },
     {
       id: 'Dohn Mheg Proboscis',
@@ -70,11 +58,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Stun Moth',
-        de: 'Unterbreche Dohn-Edianmotte',
-        ko: '도느 에다인나방 기절시키기',
-      },
+      response: Responses.stun(),
     },
     {
       id: 'Dohn Mheg Torpedo',
@@ -88,11 +72,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Stun Kelpie',
-        de: 'Unterbreche Dohn-Kelpie',
-        ko: '기절 → 도느 켈피',
-      },
+      response: Responses.stun(),
     },
     {
       id: 'Dohn Mheg Candy Cane',
@@ -102,24 +82,7 @@
       regexJa: Regexes.startsUsing({ id: '2299', source: '美眼のインク＝ゾン' }),
       regexCn: Regexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
       regexKo: Regexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
-      alertText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: data.ShortName(matches[1]) + '에게 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Dohn Mheg Landsblood',
@@ -132,27 +95,12 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Dohn Mheg Leap Stack',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            ko: '나에게 쉐어징',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '에게 쉐어징',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Dohn Mheg Timber',
@@ -165,12 +113,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégats de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Dohn Mheg Crippling Blow',
@@ -180,24 +123,7 @@
       regexJa: Regexes.startsUsing({ id: '35A4', source: '楽聖のインク＝ゾン' }),
       regexCn: Regexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
       regexKo: Regexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
-      alertText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: data.ShortName(matches[1]) + '에게 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Dohn Mheg Imp Choir',
@@ -207,12 +133,7 @@
       regexJa: Regexes.startsUsing({ id: '34F0', source: '楽聖のインク＝ゾン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '34F0', source: '乐圣 因克·佐恩', capture: false }),
       regexKo: Regexes.startsUsing({ id: '34F0', source: '대음악가 잉크 돈', capture: false }),
-      alertText: {
-        en: 'Look Away',
-        de: 'Weg schauen',
-        fr: 'Regardez ailleurs',
-        ko: '뒤돌기',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'Dohn Mheg Toad Choir',
@@ -222,12 +143,7 @@
       regexJa: Regexes.startsUsing({ id: '34EF', source: '楽聖のインク＝ゾン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '34EF', source: '乐圣 因克·佐恩', capture: false }),
       regexKo: Regexes.startsUsing({ id: '34EF', source: '대음악가 잉크 돈', capture: false }),
-      alertText: {
-        en: 'Out of Front',
-        de: 'Weg von vorne',
-        fr: 'Ne restez pas devant',
-        ko: '보스 앞 피하기',
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
@@ -240,12 +156,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégats de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [
