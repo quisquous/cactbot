@@ -70,7 +70,7 @@
     },
     {
       id: 'The Vault Execution',
-      regex: Regexes.headMarker({ id: '0020', capture: false }),
+      regex: Regexes.headMarker({ id: '0020' }),
       response: Responses.awayFrom(),
     },
     {
