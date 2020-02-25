@@ -55,7 +55,7 @@
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
       condition: function(data) {
-        return !data.firstAdd;
+        return data.notFirstAdd;
       },
       infoText: {
         en: 'Look for adds',
@@ -63,7 +63,7 @@
         ko: '쫄 위치 확인',
       },
       run: function(data) {
-        data.firstAdd = false;
+        data.notFirstAdd = true;
       },
     },
     {
