@@ -171,6 +171,7 @@
     {
       id: 'E7S Adds',
       regex: Regexes.addedCombatant({ name: 'Blasphemy', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Vol D\'idolâtries Impardonnables', capture: false }),
       suppressSeconds: 1,
       run: function(data) {
         data.phase = 'adds';
@@ -208,6 +209,7 @@
     {
       id: 'E7S Insatiable Light',
       regex: Regexes.ability({ source: 'Idolatry', id: '4C6D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C6D', capture: false }),
       run: function(data) {
         data.insatiableLightStack = [];
       },
@@ -215,6 +217,7 @@
     {
       id: 'E7S Strength in Numbers',
       regex: Regexes.startsUsing({ source: 'Idolatry', id: '4C70', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Vol D\'idolâtries Impardonnables', id: '4C70', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Get under vertical add',
@@ -224,6 +227,7 @@
     {
       id: 'E7S Unearned Envy',
       regex: Regexes.ability({ source: 'Blasphemy', id: '4C74', capture: false }),
+      regexFr: Regexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C74', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -285,6 +289,7 @@
     {
       id: 'E7S Boundless Dark',
       regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5D' }),
+      regexFr: Regexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '4C5D' }),
       condition: function(data) {
         return data.color == 'light';
       },
@@ -293,6 +298,7 @@
     {
       id: 'E7S Words of Night',
       regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '(?:4C2C|4C65)', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '(?:4C2C|4C65)', capture: false }),
       alertText: function(data) {
         return {
           en: 'Get hit by ' + data.colorMap[data.color][data.lang],
