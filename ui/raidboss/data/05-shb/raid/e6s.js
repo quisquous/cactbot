@@ -15,7 +15,7 @@
     },
     {
       id: 'E6S Inferno Howl',
-      regex: Regexes.startsUsing({ source: '(?:Ifrit|Raktapaksa)', id: '4C14', capture: false }),
+      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
@@ -44,13 +44,13 @@
     },
     {
       id: 'E6S Instant Incineration',
-      regex: Regexes.startsUsing({ source: '(?:Ifrit|Raktapaksa)', id: '4C0E' }),
+      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
       id: 'E6S Meteor Strike',
-      regex: Regexes.startsUsing({ source: '(?:Ifrit|Raktapaksa)', id: '4C0F', capture: false }),
+      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
