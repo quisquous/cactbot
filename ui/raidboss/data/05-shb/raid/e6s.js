@@ -17,6 +17,21 @@
       },
     },
     {
+      id: 'E6S Air Bump',
+      regex: Regexes.headMarker({ id: '00D3' }),
+      suppressSeconds: 1,
+      infoText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Enumeration on YOU',
+          };
+        }
+        return {
+          en: 'Enumeration',
+        };
+      },
+    },
+    {
       id: 'E6S Touchdown',
       regex: Regexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
       run: function(data) {
