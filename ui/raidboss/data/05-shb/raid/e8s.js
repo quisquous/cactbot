@@ -190,7 +190,7 @@
         return data.CanCleanse();
       },
       infoText: {
-        en: 'Cleanse DPS',
+        en: 'Cleanse DPS Only',
       },
     },
   ],
