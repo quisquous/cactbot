@@ -130,7 +130,7 @@
       },
     },
     {
-      id: 'E6S Conflag Strike',
+      id: 'E6S Conflag Strike Knockback',
       regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       response: Responses.knockback(),
     },
@@ -150,6 +150,12 @@
           en: 'Tethered to ' + matches.source,
         };
       },
+    },
+    {
+      id: 'E6S Conflag Strike Behind',
+      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      delaySeconds: 31,
+      response: Responses.getBehind(),
     },
   ],
   timelineReplace: [
