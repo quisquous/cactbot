@@ -145,7 +145,7 @@
         ja: '散開',
         fr: 'Ecartez-vous',
         cn: '分散',
-        ko: '산개 A',
+        ko: '십자 장판 징: 산개',
       },
     },
     {
@@ -168,14 +168,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        ja: '散開',
-        fr: 'Ecartez-vous',
-        cn: '分散',
-        ko: '산개 B',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Cosmos Mortal Flame 2',
@@ -232,7 +225,7 @@
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
             fr: 'Placez le liens loin des décors',
-            ko: '가구에서 떨어지기',
+            ko: '징 대상자',
           };
         }
         return {
