@@ -34,17 +34,6 @@
           };
         }
       },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ja: 'バスター',
-            cn: '死刑',
-          };
-        }
-      },
     },
     {
       id: 'SuzEx Phantom Flurry',
@@ -63,12 +52,6 @@
         fr: 'Tankbuster',
         cn: '死刑',
       },
-      tts: {
-        en: 'buster',
-        de: 'basta',
-        fr: 'tankbuster',
-        cn: '死刑',
-      },
     },
     {
       id: 'SuzEx Mesmerizing Melody',
@@ -85,9 +68,6 @@
         ja: '誘引',
         cn: '远离',
       },
-      tts: {
-        ja: '外へ',
-      },
     },
     {
       id: 'SuzEx Ruthless Refrain',
@@ -103,9 +83,6 @@
         fr: 'Allez au bord intérieur',
         ja: '拒絶',
         cn: '靠近',
-      },
-      tts: {
-        ja: '中へ',
       },
     },
   ],
