@@ -3248,7 +3248,7 @@
         '/Stillness': '/静止命令',
         'Individual/': '单体/',
         'Reveal': '生效',
-        '(?<=) and': '',
+        ' and': '',
         'Fate: ': '未来: ',
         'Aetheroplasm': '以太爆雷',
         'Almighty Judgment': '神圣大审判',
