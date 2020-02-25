@@ -28,37 +28,7 @@
       regexJa: Regexes.startsUsing({ id: '4158', source: 'ハーデス' }),
       regexCn: Regexes.startsUsing({ id: '4158', source: '哈迪斯' }),
       regexKo: Regexes.startsUsing({ id: '4158', source: '하데스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑',
-            ko: '탱크버스터 -> YOU',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑 ->' + data.ShortName(matches.target),
-            ko: '탱버 ->' + data.ShortName(matches.target),
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
-          return;
-        return {
-          en: 'Away From ' + data.ShortName(matches.target),
-          de: 'Weg von ' + data.ShortName(matches.target),
-          fr: 'Loin de ' + data.ShortName(matches.target),
-          cn: '远离 ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + ' 한테서 피하세요',
-        };
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Hades Bad Faith Left',
@@ -68,13 +38,7 @@
       regexJa: Regexes.startsUsing({ id: '4149', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4149', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4149', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        cn: '左',
-        ko: '왼쪽',
-      },
+      response: Responses.goLeft(),
     },
     {
       id: 'Hades Bad Faith Right',
@@ -84,13 +48,7 @@
       regexJa: Regexes.startsUsing({ id: '414A', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '414A', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '414A', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite',
-        cn: '右',
-        ko: '오른쪽',
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'Hades Broken Faith',
@@ -116,13 +74,7 @@
       regexJa: Regexes.startsUsing({ id: '4164', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4164', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4164', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Gauche',
-        cn: '右',
-        ko: '오른쪽',
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'Hades Echo Left',
@@ -132,13 +84,7 @@
       regexJa: Regexes.startsUsing({ id: '4163', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4163', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4163', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        cn: '左',
-        ko: '왼쪽',
-      },
+      response: Responses.goLeft(),
     },
     {
       id: 'Hades Titanomachy',
@@ -151,13 +97,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '광역',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Hades Shadow Stream',
@@ -167,14 +107,7 @@
       regexJa: Regexes.startsUsing({ id: '415C', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '415C', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '415C', source: '하데스', capture: false }),
-      alertText: {
-        en: 'Go Outside',
-        de: 'Raus gehen',
-        fr: 'Allez sur les côtés',
-        ja: '中壊れるよ',
-        cn: '两侧躲避',
-        ko: '밖으로',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Hades Purgation',
@@ -184,14 +117,7 @@
       regexJa: Regexes.startsUsing({ id: '4170', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4170', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4170', source: '하데스', capture: false }),
-      alertText: {
-        en: 'Get Middle',
-        de: 'In die Mitte gehen',
-        fr: 'Allez au centre',
-        ja: '外壊れるよ',
-        cn: '中间躲避',
-        ko: '중앙으로',
-      },
+      response: Responses.getIn(),
     },
     {
       id: 'Hades Doom',
@@ -255,14 +181,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tank Buster',
-        fr: 'Tank busters',
-        ja: 'タンクバスター',
-        cn: '坦克死刑',
-        ko: '탱크버스터',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Hades Dual Strike',
@@ -328,13 +247,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Hades Ancient Darkness',
@@ -356,13 +269,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Stack on YOU',
-        de: 'Sammeln auf DIR',
-        fr: 'Package sur VOUS',
-        cn: '点名集合',
-        ko: '쉐어징 -> YOU',
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Hades Ancient Collect',
