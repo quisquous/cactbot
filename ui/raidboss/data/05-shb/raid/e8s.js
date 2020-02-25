@@ -58,12 +58,12 @@
     },
     {
       id: 'E8S Axe Kick',
-      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6D' }),
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6D', capture: false }),
       response: Responses.getOut(),
     },
     {
       id: 'E8S Scythe Kick',
-      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6E' }),
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6E', capture: false }),
       response: Responses.getUnder(),
     },
     {
@@ -104,7 +104,7 @@
     },
     {
       id: 'E8S Wyrmclaw',
-      regex: Regexes.gainsEffect({ id: 'Wyrmclaw' }),
+      regex: Regexes.gainsEffect({ effect: 'Wyrmclaw' }),
       condition: Conditions.targetIsYou(),
       preRun: function(data, matches) {
         if (data.wyrmsLament == 1) {
@@ -132,7 +132,7 @@
     },
     {
       id: 'E8S Wyrmfang',
-      regex: Regexes.gainsEffect({ id: 'Wyrmfang' }),
+      regex: Regexes.gainsEffect({ effect: 'Wyrmfang' }),
       condition: Conditions.targetIsYou(),
       preRun: function(data, matches) {
         if (data.wyrmsLament == 1) {
