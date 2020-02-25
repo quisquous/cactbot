@@ -488,7 +488,10 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      response: Responses.tankBuster(),
+      alertText: {
+        en: 'Boss hitting hard--Shield/Mitigate',
+        fr: 'Le boss frappe fort - Bouclier/Mitigation',
+      },
     },
     {
       id: 'Dun Scaith Ruinous Omen',
