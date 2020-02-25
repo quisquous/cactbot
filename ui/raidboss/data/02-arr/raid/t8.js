@@ -7,7 +7,7 @@
     {
       id: 'T8 Stack',
       regex: Regexes.headMarker({ id: '0011' }),
-      response: Responses.stackOn(),
+      response: Responses.stackOn('info'),
     },
     {
       id: 'T8 Landmine Start',
