@@ -491,6 +491,14 @@ let Responses = {
     };
     return obj;
   },
+  goMiddle: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'go into middle',
+      de: 'in die Mitte gehen',
+    };
+    return obj;
+  },
   goRight: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
