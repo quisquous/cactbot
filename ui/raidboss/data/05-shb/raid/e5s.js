@@ -211,7 +211,7 @@
         'stormcloud': 'Cumulonimbus-Wolke',
         'Ramuh': 'Ramuh',
         'Raiden': 'Raiden',
-        'Will Of Ixion': 'Will Of Ixion',
+        'Will Of Ixion': 'Will Of Ixion', // FIXME
       },
       'replaceText': {
         'Volt Strike': 'Voltschlag',
@@ -251,7 +251,7 @@
         'stormcloud': 'Cumulonimbus',
         'Ramuh': 'Ramuh',
         'Raiden': 'Raiden',
-        'Will Of Ixion': 'Will Of Ixion',
+        'Will Of Ixion': 'Réplique d\'Ixion',
       },
       'replaceText': {
         'Volt Strike': 'Frappe d\'éclair',
@@ -291,7 +291,7 @@
         'stormcloud': '積乱雲',
         'Ramuh': 'ラムウ',
         'Raiden': 'ライディーン',
-        'Will Of Ixion': 'Will Of Ixion',
+        'Will Of Ixion': 'Will Of Ixion', // FIXME
       },
       'replaceText': {
         'Volt Strike': 'ボルトストライク',
