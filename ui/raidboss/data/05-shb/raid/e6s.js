@@ -58,7 +58,7 @@
       id: 'E6S Hands of Flame Tether',
       regex: Regexes.tether({ id: '0068' }),
       condition: function(data) {
-        return data.handsOfFlame = true;
+        return data.handsOfFlame;
       },
       infoText: function(data, matches) {
         if (data.me == matches.target) {

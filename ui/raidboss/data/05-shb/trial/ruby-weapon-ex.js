@@ -54,14 +54,15 @@
         data.rubyCounter = data.rubyCounter || 0;
         data.rubyCounter++;
       },
-      // Ignore Liquefaction casts during dashes
-      condition: function(data) {
-        return data.rubyCounter % 2;
-      },
-      alertText: {
-        en: 'Get On Lines',
-        fr: 'Sur les sillons',
-        ko: '선 위로 올라가기',
+      alertText: function(data) {
+        // Ignore Liquefaction casts during dashes
+        if (data.rubyCounter % 2) {
+          return {
+            en: 'Get On Lines',
+            fr: 'Sur les sillons',
+            ko: '선 위로 올라가기',
+          };
+        }
       },
     },
     {

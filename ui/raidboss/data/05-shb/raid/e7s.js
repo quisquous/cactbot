@@ -231,6 +231,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
+      suppressSeconds: 15,
       durationSeconds: 7,
       response: Responses.aoe(),
     },
