@@ -101,7 +101,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread'alert'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'E2N Unholy Darkness No Waiting',

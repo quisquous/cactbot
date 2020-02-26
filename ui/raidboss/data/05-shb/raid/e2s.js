@@ -228,7 +228,7 @@
       condition: function(data, matches) {
         return !data.waiting && data.me == matches.target;
       },
-      response: Responses.spread('alert'),
+      response: Responses.spread('alarm'),
     },
     {
       id: 'E2S Dark Fire Collect',

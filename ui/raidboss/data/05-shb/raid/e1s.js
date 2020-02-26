@@ -152,7 +152,7 @@
       regexJa: Regexes.startsUsing({ id: '3D73', source: 'エデン・プライム', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D73', source: '至尊伊甸', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D73', source: '에덴 프라임', capture: false }),
-      response: Responses.getUnder('alert'),
+      response: Responses.getUnder('alarm'),
     },
     {
       id: 'E1S Delta Attack 1',

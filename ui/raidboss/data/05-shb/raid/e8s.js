@@ -144,7 +144,7 @@
     {
       id: 'E8S Banish III Divided',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
-      response: Responses.spread('alert'),
+      response: Responses.spread('alarm'),
     },
     {
       id: 'E8S Morn Afah',
@@ -255,7 +255,7 @@
       id: 'E8S Holy Divided',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D83', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.getIn('alert'),
+      response: Responses.getIn('alarm'),
     },
     {
       id: 'E8S Twin Stillness',
@@ -296,7 +296,7 @@
       id: 'E8S Banish',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7E', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.stack('alert'),
+      response: Responses.stack('alarm'),
     },
     {
       id: 'E8S Banish Divided',

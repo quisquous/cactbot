@@ -56,7 +56,7 @@
       regexJa: Regexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
       delaySeconds: 5.5,
-      response: Responses.move('alert'),
+      response: Responses.move('alarm'),
     },
     {
       id: 'HadesEx Ravenous Assault',
