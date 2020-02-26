@@ -74,11 +74,11 @@
         if (data.furysBoltActive) {
           return {
             en: 'Big Knockback',
-          }
+          };
         }
         return {
           en: 'Short Knockback',
-        }
+        };
       },
     },
     {
@@ -198,7 +198,7 @@
       regexKo: Regexes.ability({ id: '4BC6', source: '라무', capture: false }),
       run: function(data) {
         data.steppedLeaderNext = false;
-      }
+      },
     },
     {
       id: 'E5S Crippling Blow',
