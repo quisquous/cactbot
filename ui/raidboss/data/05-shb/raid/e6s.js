@@ -119,7 +119,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Garuda',
-        fr: 'Attacquez Garuda',
+        fr: 'Attaquez Garuda',
       },
     },
     {
