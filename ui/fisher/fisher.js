@@ -230,15 +230,13 @@ class Fisher {
       this.ui.startFishing();
       return;
     }
-    // Set place, if it's unset
-    if (!this.place || !this.place.id) {
-      this.place = this.seaBase.getPlace(place);
-      // This lookup could fail and, for German,
-      // this.place.name may differ from place
-      // due to differing cast vs location names.
-      if (this.place.id)
-        this.ui.setPlace(this.place.name);
-    }
+    // Set place (set this every cast because it can change during ocean fishing)
+    this.place = this.seaBase.getPlace(place);
+    // This lookup could fail and, for German,
+    // this.place.name may differ from place
+    // due to differing cast vs location names.
+    if (this.place.id)
+      this.ui.setPlace(this.place.name);
     let _this = this;
 
     this.updateFishData().then(function() {

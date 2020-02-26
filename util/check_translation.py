@@ -237,7 +237,7 @@ def translate_timeline(line, trans):
 def print_timeline(locale, timeline_file, trans, missing_filter):
     if not locale in trans:
         raise Exception("no translation for " + locale)
-    with open(timeline_file) as fp:
+    with open(timeline_file, encoding="utf-8") as fp:
         for line in fp.readlines():
             filter_print_timeline(translate_timeline(line.strip(), trans[locale]), missing_filter)
 

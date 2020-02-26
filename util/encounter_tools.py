@@ -67,6 +67,10 @@ def is_instance_begun(line_fields):
     return line_fields[4].endswith("has begun.")
 
 
+def is_instance_updated(line_fields):
+    return line_fields[0] == "33" and line_fields[3] in ["40000001", "40000006"]
+
+
 def is_instance_ended(line_fields):
     return line_fields[4].endswith("has ended.")
 
@@ -82,6 +86,7 @@ def find_fights_in_file(file):
     encounter_start_staging = 0  # Staged to avoid spurious starts such as limit break usage
     e_ends = []
     encounter_in_progress = False
+    current_zone = None
     current_instance = None
     encounter_sets = []
     for line in file:
@@ -90,12 +95,27 @@ def find_fights_in_file(file):
             continue
         line_fields = line.split("|")
 
-        # Update current instance for returning alongside timestamps
-        # Don't update if we're not entering a combat instance
-        if is_instance_begun(line_fields):
-            current_instance = line_fields[4].split(" has begun")[0]
+        # Continually update the zone
+        if line[0:2] == "01":
+            current_zone = line_fields[3]
             continue
+
+        # Update current instance for returning alongside timestamps
+        # We don't want instances that aren't a combat instance
+        # If we see an instance begin, that's automatically good
+        if is_instance_begun(line_fields):
+            current_zone = line_fields[4].split(" has begun")[0]
+            current_instance = current_zone
+            continue
+
+        # If we see a 21 line with a timer attached, that's also an instance
+        if is_instance_updated(line_fields):
+            current_instance = current_zone
+            continue
+
+        # An instance ending obviously means we aren't in an instance
         if is_instance_ended(line_fields):
+            current_zone = None
             current_instance = None
             encounter_in_progress = False
             continue
@@ -116,7 +136,7 @@ def find_fights_in_file(file):
             encounter_start_staging = [parse_event_time(line), current_instance]
             encounter_in_progress = True
             continue
-        # If this fired regardless of an encounter being found, we would end up with phantom encounters.
+        # Fires only if there's an encounter in progress. This avoids phantom encounters.
         if is_line_end(line_fields) and encounter_in_progress:
             e_starts.append(encounter_start_staging)
             e_ends.append(parse_event_time(line))
