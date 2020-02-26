@@ -75,12 +75,12 @@
     },
     {
       id: 'The Vault Black Nebula',
-      regex: Regexes.startsUsing({ id: '1042', source: 'Face Of The Hero', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '1042', source: 'Gesicht Des Helden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '1042', source: 'Visage Du Héros', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '1042', source: 'フェイス・オブ・ヒーロー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '1042', source: '英雄之相', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '1042', source: '영웅의 형상', capture: false }),
+      regex: Regexes.startsUsing({ id: '1042', source: 'Face Of The Hero' }),
+      regexDe: Regexes.startsUsing({ id: '1042', source: 'Gesicht Des Helden' }),
+      regexFr: Regexes.startsUsing({ id: '1042', source: 'Visage Du Héros' }),
+      regexJa: Regexes.startsUsing({ id: '1042', source: 'フェイス・オブ・ヒーロー' }),
+      regexCn: Regexes.startsUsing({ id: '1042', source: '英雄之相' }),
+      regexKo: Regexes.startsUsing({ id: '1042', source: '영웅의 형상' }),
       condition: function(data) {
         return data.CanStun();
       },
