@@ -156,7 +156,7 @@
       },
       tts: {
         ko: '콘플레그',
-      }
+      },
     },
     {
       id: 'E6S Irons Of Purgatory',
