@@ -154,7 +154,7 @@
       regexCn: Regexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
       delaySeconds: 3,
-      response: Responses.move(),
+      response: Responses.move('alarm'),
     },
     {
       id: 'TitaniaEx Bramble Knockback',
@@ -209,7 +209,7 @@
       regexCn: Regexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
       delaySeconds: 6.5,
-      response: Responses.getOut(),
+      response: Responses.getOut('info'),
     },
     {
       id: 'TitaniaEx Frost Rune 3',
@@ -220,7 +220,7 @@
       regexCn: Regexes.ability({ id: '3D2B', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.ability({ id: '3D2B', source: '티타니아', capture: false }),
       suppressSeconds: 60,
-      response: Responses.getIn(),
+      response: Responses.getIn('info'),
     },
     {
       id: 'TitaniaEx Growth Rune',

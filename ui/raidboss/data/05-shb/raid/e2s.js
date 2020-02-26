@@ -161,7 +161,7 @@
       regexJa: Regexes.startsUsing({ id: '3E59', source: 'エレボスの巨腕', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E59', source: '厄瑞玻斯的巨腕', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E59', source: '에레보스의 팔', capture: false }),
-      response: Responses.knockback(),
+      response: Responses.knockback('info'),
     },
     {
       id: 'E2S Empty Rage',
@@ -228,7 +228,7 @@
       condition: function(data, matches) {
         return !data.waiting && data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread('alert'),
     },
     {
       id: 'E2S Dark Fire Collect',
@@ -262,7 +262,7 @@
       condition: function(data, matches) {
         return data.me == matches.target && data.spell[data.me] == 'fire';
       },
-      response: Responses.spread(),
+      response: Responses.spread('alarm'),
     },
     {
       id: 'E2S Shadoweye No Waiting',

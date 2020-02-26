@@ -38,7 +38,7 @@
       regexJa: Regexes.startsUsing({ id: '4149', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4149', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4149', source: '하데스', capture: false }),
-      response: Responses.goLeft(),
+      response: Responses.goLeft('info'),
     },
     {
       id: 'Hades Bad Faith Right',
@@ -48,7 +48,7 @@
       regexJa: Regexes.startsUsing({ id: '414A', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '414A', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '414A', source: '하데스', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.goRight('info'),
     },
     {
       id: 'Hades Broken Faith',
@@ -74,7 +74,7 @@
       regexJa: Regexes.startsUsing({ id: '4164', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4164', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4164', source: '하데스', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.goRight('info'),
     },
     {
       id: 'Hades Echo Left',
@@ -84,7 +84,7 @@
       regexJa: Regexes.startsUsing({ id: '4163', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4163', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4163', source: '하데스', capture: false }),
-      response: Responses.goLeft(),
+      response: Responses.goLeft('info'),
     },
     {
       id: 'Hades Titanomachy',
@@ -247,7 +247,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread('alarm'),
     },
     {
       id: 'Hades Ancient Darkness',

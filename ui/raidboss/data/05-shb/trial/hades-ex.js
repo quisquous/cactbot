@@ -56,7 +56,7 @@
       regexJa: Regexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
       delaySeconds: 5.5,
-      response: Responses.move(),
+      response: Responses.move('alert'),
     },
     {
       id: 'HadesEx Ravenous Assault',
@@ -76,7 +76,7 @@
       regexFr: Regexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47AB', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47AB', source: '하데스', capture: false }),
-      response: Responses.goLeft(),
+      response: Responses.goLeft('info'),
     },
     {
       id: 'HadesEx Bad Faith Left 2',
@@ -104,7 +104,7 @@
       regexFr: Regexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47AC', source: 'ハーデス', capture: false }),
       regexKo: Regexes.startsUsing({ id: '47AC', source: '하데스', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.goRight('info'),
     },
     {
       id: 'HadesEx Bad Faith Right 2',
@@ -418,7 +418,7 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 2;
       },
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alarm'),
     },
     {
       id: 'HadesEx Beyond Death',

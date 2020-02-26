@@ -47,7 +47,7 @@
       condition: function(data) {
         return data.CanSilence();
       },
-      response: Responses.interupt(),
+      response: Responses.interupt('info'),
     },
     {
       id: 'Malikah Efface',
@@ -67,7 +67,7 @@
       regexJa: Regexes.startsUsing({ id: '3CEC', source: 'ハイドロタロース', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3CEC', source: '水陆两用塔罗斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3CEC', source: '수력 탈로스', capture: false }),
-      response: Responses.knockback(),
+      response: Responses.knockback('info'),
     },
     {
       id: 'Malikah Swift Spill',
@@ -77,7 +77,7 @@
       regexJa: Regexes.startsUsing({ id: '3CEF', source: 'ハイドロタロース', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3CEF', source: '水陆两用塔罗斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3CEF', source: '수력 탈로스', capture: false }),
-      response: Responses.getBehind(),
+      response: Responses.getBehind('info'),
     },
     {
       id: 'Malikah Intestinal Crank',

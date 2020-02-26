@@ -110,7 +110,7 @@
       regexCn: Regexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
       delaySeconds: 6.5,
-      response: Responses.getOut(),
+      response: Responses.getOut('info'),
     },
     {
       id: 'Titania Frost Rune 3',
@@ -121,7 +121,7 @@
       regexCn: Regexes.ability({ id: '3D4E', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.ability({ id: '3D4E', source: '티타니아', capture: false }),
       suppressSeconds: 60,
-      response: Responses.getIn(),
+      response: Responses.getIn('info'),
     },
     {
       id: 'Titania Growth Rune',

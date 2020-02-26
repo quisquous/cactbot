@@ -80,7 +80,7 @@
       regexJa: Regexes.startsUsing({ id: '3E46', source: 'エレボスの巨腕', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E46', source: '厄瑞玻斯的巨腕', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E46', source: '에레보스의 팔', capture: false }),
-      response: Responses.knockback(),
+      response: Responses.knockback('info'),
     },
     {
       id: 'E2N Darkfire Counter',
@@ -101,7 +101,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread'alert'),
     },
     {
       id: 'E2N Unholy Darkness No Waiting',

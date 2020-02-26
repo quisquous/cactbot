@@ -118,7 +118,7 @@
       regexDe: Regexes.startsUsing({ id: '48C3', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48C3', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48C3', source: '多関節型：司令機', capture: false }),
-      response: Responses.knockback(),
+      response: Responses.knockback('info'),
     },
     {
       id: 'Copied Hobbes Laser-Resistance Test',
@@ -179,7 +179,7 @@
       run: function(data) {
         data.alliance = data.alliance || 'C';
       },
-      response: Responses.getOut(),
+      response: Responses.getOut('info'),
     },
     {
       id: 'Copied Hobbes Left Arm 2',
@@ -219,7 +219,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread('alarm'),
     },
     {
       id: 'Copied Hobbes Laser Sight',
@@ -333,7 +333,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread('alarm'),
     },
     {
       id: 'Copied Engels Marx Smash Right',
@@ -568,7 +568,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread('alarm'),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
@@ -591,7 +591,7 @@
       regexDe: Regexes.startsUsing({ id: '48DF', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48DF', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48DF', source: '９Ｓ：多脚戦車従属', capture: false }),
-      response: Responses.goSides(),
+      response: Responses.goSides('info'),
     },
     {
       id: 'Copied 9S Dual-Flank Cannons',
@@ -600,7 +600,7 @@
       regexDe: Regexes.startsUsing({ id: '48DE', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48DE', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48DE', source: '９Ｓ：多脚戦車従属', capture: false }),
-      response: Responses.goFrontBack(),
+      response: Responses.goFrontBack('info'),
     },
     {
       id: 'Copied 9S Engage Marx Support',
@@ -661,7 +661,7 @@
       regexFr: Regexes.startsUsing({ id: '48F3', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48F3', source: '９Ｓ：多脚戦車従属', capture: false }),
       suppressSeconds: 2,
-      response: Responses.stack(),
+      response: Responses.stack('info'),
     },
     {
       id: 'Copied 9S Bubble',

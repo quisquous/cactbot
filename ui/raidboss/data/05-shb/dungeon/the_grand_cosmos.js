@@ -20,7 +20,7 @@
     {
       id: 'Cosmos Dark Pulse',
       regex: Regexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackOn('info'),
     },
     {
       id: 'Cosmos Dark Well Far Winds',
@@ -107,7 +107,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      response: Responses.stun(),
+      response: Responses.stun('info'),
     },
     {
       id: 'Cosmos Captive Bolt',
@@ -178,7 +178,7 @@
       regexDe: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
-      response: Responses.goLeft(),
+      response: Responses.goLeft('info'),
     },
     {
       id: 'Cosmos Scorching Right',
@@ -186,7 +186,7 @@
       regexDe: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.goRight('info'),
     },
     {
       id: 'Cosmos Fire\'s Domain',

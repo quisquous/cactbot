@@ -21,7 +21,7 @@
       id: 'Anyder Putrid Breath',
       regex: /Putrid Breath/,
       beforeSeconds: 5,
-      response: Responses.awayFromFront(),
+      response: Responses.awayFromFront('info'),
     },
   ],
   triggers: [

@@ -61,7 +61,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      response: Responses.spread('alarm'),
     },
     {
       id: 'E4S Evil Earth',
@@ -137,7 +137,7 @@
       regexJa: Regexes.ability({ id: '4117', source: 'タイタン', capture: false }),
       regexCn: Regexes.ability({ id: '4117', source: '泰坦', capture: false }),
       regexKo: Regexes.ability({ id: '4117', source: '타이탄', capture: false }),
-      response: Responses.goSides(),
+      response: Responses.goSides('info'),
     },
     {
       id: 'E4S Landslide',
@@ -283,7 +283,7 @@
       regexJa: Regexes.startsUsing({ id: '4121', source: 'タイタン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4121', source: '泰坦', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4121', source: '타이탄', capture: false }),
-      response: Responses.getUnder(),
+      response: Responses.getUnder('alarm'),
     },
     {
       id: 'E4S Earthen Fury',

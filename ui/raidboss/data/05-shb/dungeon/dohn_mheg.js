@@ -44,7 +44,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      response: Responses.stun(),
+      response: Responses.stun('info'),
     },
     {
       id: 'Dohn Mheg Proboscis',
@@ -58,7 +58,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      response: Responses.stun(),
+      response: Responses.stun('info'),
     },
     {
       id: 'Dohn Mheg Torpedo',
@@ -72,7 +72,7 @@
       condition: function(data) {
         return data.CanStun();
       },
-      response: Responses.stun(),
+      response: Responses.stun('info'),
     },
     {
       id: 'Dohn Mheg Candy Cane',
@@ -133,7 +133,7 @@
       regexJa: Regexes.startsUsing({ id: '34F0', source: '楽聖のインク＝ゾン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '34F0', source: '乐圣 因克·佐恩', capture: false }),
       regexKo: Regexes.startsUsing({ id: '34F0', source: '대음악가 잉크 돈', capture: false }),
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alarm'),
     },
     {
       id: 'Dohn Mheg Toad Choir',

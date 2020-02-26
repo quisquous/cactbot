@@ -18,7 +18,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      response: Responses.interupt(),
+      response: Responses.interupt('info'),
     },
     {
       id: 'Gulg Tail Smash',
@@ -150,7 +150,7 @@
       regexJa: Regexes.startsUsing({ id: '3F7A', source: 'フォーギヴン・レヴェルリー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3F7A', source: '得到宽恕的放纵', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3F7A', source: '면죄된 환락', capture: false }),
-      response: Responses.goLeft(),
+      response: Responses.goLeft('info'),
     },
     {
       id: 'Gulg Right Palm',
@@ -160,7 +160,7 @@
       regexJa: Regexes.startsUsing({ id: '3F78', source: 'フォーギヴン・レヴェルリー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3F78', source: '得到宽恕的放纵', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3F78', source: '면죄된 환락', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.goRight('info'),
     },
     {
       id: 'Gulg Orison Fortissimo',
@@ -212,7 +212,7 @@
       regexJa: Regexes.startsUsing({ id: '3D1A', source: 'フォーギヴン・オブセニティー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D1A', source: '得到宽恕的猥亵', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D1A', source: '면죄된 외설', capture: false }),
-      response: Responses.getBehind(),
+      response: Responses.getBehind('info'),
     },
   ],
   timelineReplace: [
