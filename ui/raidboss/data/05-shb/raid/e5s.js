@@ -141,14 +141,7 @@
       condition: function(data) {
         return !data.fury;
       },
-      alarmText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez-vous',
-        ja: '散開',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread('alarm'),
     },
     {
       id: 'E5S Crippling Blow',
