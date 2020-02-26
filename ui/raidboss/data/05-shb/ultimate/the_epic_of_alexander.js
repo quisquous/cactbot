@@ -523,7 +523,7 @@
         de: 'Proteische Welle',
         ja: 'プロティアン',
         ko: '프로틴 웨이브',
-        cn: 'Protean Wave', // FIXME
+        cn: '万变水波',
       },
     },
     {
