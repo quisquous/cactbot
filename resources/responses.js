@@ -600,8 +600,8 @@ let Responses = {
     obj[defaultAlertText(sev)] = (data, matches) => {
       let source = getSource(matches);
       return {
-        en: 'Sleep => ' + source,
-        de: 'Schlaf => ' + source,
+        en: 'Sleep ' + source,
+        de: 'Schlaf auf ' + source,
         fr: 'Sommeil => ' + source,
         ja: 'スリプル => ' + source,
         cn: '催眠 => ' + source,
@@ -615,8 +615,8 @@ let Responses = {
     obj[defaultAlertText(sev)] = (data, matches) => {
       let source = getSource(matches);
       return {
-        en: 'Stun => ' + source,
-        de: 'Betäubung => ' + source,
+        en: 'Stun ' + source,
+        de: 'Betäubung auf ' + source,
         fr: 'Étourdissement => ' + source,
         ja: 'スタン => ' + source,
         cn: '眩晕 => ' + source,
@@ -630,8 +630,8 @@ let Responses = {
     obj[defaultAlertText(sev)] = (data, matches) => {
       let source = getSource(matches);
       return {
-        en: 'interupt => ' + source,
-        de: 'unterbrechen => ' + source,
+        en: 'interupt ' + source,
+        de: 'unterbreche ' + source,
         ko: '기술 시전 끊기 => ' + source,
       };
     };
