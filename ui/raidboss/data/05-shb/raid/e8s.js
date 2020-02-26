@@ -89,10 +89,14 @@
       tts: function(data) {
         if (data.firstFrost == 'biting') {
           return {
+            en: 'Biting Frost Next',
+            fr: 'Taillade de givre bientot',
             ko: '다음: 바이팅 스라슈',
           };
         }
         return {
+          en: 'Driving Frost Next',
+          fr: 'Percée de givre bientot',
           ko: '다음: 드라이빙 스라스토',
         };
       },
