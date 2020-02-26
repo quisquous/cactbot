@@ -54,7 +54,7 @@
       regexJa: Regexes.startsUsing({ id: '28DF', source: '神々の像', capture: false }),
       regexCn: Regexes.startsUsing({ id: '28DF', source: '众神之像', capture: false }),
       regexKo: Regexes.startsUsing({ id: '28DF', source: '신들의 상', capture: false }),
-      response: Responses.goLeft(),
+      response: Responses.goWest(),
     },
     {
       id: 'O8S Gravitational Wave',
@@ -64,7 +64,7 @@
       regexJa: Regexes.startsUsing({ id: '28DE', source: '神々の像', capture: false }),
       regexCn: Regexes.startsUsing({ id: '28DE', source: '众神之像', capture: false }),
       regexKo: Regexes.startsUsing({ id: '28DE', source: '신들의 상', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.goEast(),
     },
     {
       id: 'O8S Ave Maria',

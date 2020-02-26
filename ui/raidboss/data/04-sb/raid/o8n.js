@@ -58,7 +58,7 @@
       regexJa: Regexes.startsUsing({ id: '2929', source: '神々の像', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2929', source: '众神之像', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2929', source: '신들의 상', capture: false }),
-      response: Responses.goRight(),
+      response: Responses.goEast(),
     },
     {
       id: 'O8N Intemperate Will',
@@ -68,7 +68,7 @@
       regexJa: Regexes.startsUsing({ id: '292A', source: '神々の像', capture: false }),
       regexCn: Regexes.startsUsing({ id: '292A', source: '众神之像', capture: false }),
       regexKo: Regexes.startsUsing({ id: '292A', source: '신들의 상', capture: false }),
-      response: Responses.goLeft(),
+      response: Responses.goWest(),
     },
     {
       id: 'O8N Ave Maria',
@@ -189,7 +189,16 @@
       regexCn: Regexes.startsUsing({ id: '2916', source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2916', source: '케프카', capture: false }),
       suppressSeconds: 1,
-      response: Responses.getOut(),
+      infoText: {
+        en: 'Fake Ice: Get out',
+        fr: 'Fausse glace : Sortez',
+        de: 'Falsches Eis: Rausgehen',
+      },
+      tts: {
+        en: 'Get out',
+        fr: 'Sortez',
+        de: 'Rausgehen',
+      },
     },
     {
       id: 'O8N Blizzard True Donut',
@@ -200,7 +209,16 @@
       regexCn: Regexes.startsUsing({ id: '2919', source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2919', source: '케프카', capture: false }),
       suppressSeconds: 1,
-      response: Responses.getIn(),
+      infoText: {
+        en: 'True Ice: Get in',
+        fr: 'Vraie glace: Rentrez dedans',
+        de: 'Wahre Eis: Reingehen',
+      },
+      tts: {
+        en: 'Get in',
+        fr: 'rentrez dedans',
+        de: 'Reingehen',
+      },
     },
     {
       id: 'O8N Blizzard Fake Near',
@@ -211,7 +229,16 @@
       regexCn: Regexes.startsUsing({ id: '2914', source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2914', source: '케프카', capture: false }),
       suppressSeconds: 1,
-      response: Responses.getIn(),
+      infoText: {
+        en: 'Fake Ice: Get in',
+        fr: 'Fausse glace: Rentrez dedans',
+        de: 'Falsches Eis: Reingehen',
+      },
+      tts: {
+        en: 'Get in',
+        fr: 'rentrez dedans',
+        de: 'Reingehen',
+      },
     },
     {
       id: 'O8N Blizzard True Near',
@@ -222,7 +249,16 @@
       regexCn: Regexes.startsUsing({ id: '2918', source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2918', source: '케프카', capture: false }),
       suppressSeconds: 1,
-      response: Responses.getOut(),
+      infoText: {
+        en: 'True Ice: Get out',
+        fr: 'Vraie glace: Sortez',
+        de: 'Wahres Eis: Rausgehen',
+      },
+      tts: {
+        en: 'Get out',
+        fr: 'Sortez',
+        de: 'raus da',
+      },
     },
   ],
   timelineReplace: [

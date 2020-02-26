@@ -428,7 +428,7 @@
       regexJa: Regexes.startsUsing({ id: '264B', source: '神龍' }),
       regexCn: Regexes.startsUsing({ id: '264B', source: '神龙' }),
       regexKo: Regexes.startsUsing({ id: '264B', source: '신룡' }),
-      response: Responses.tankBuster(),
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'ShinryuEx Wormwail',

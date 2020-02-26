@@ -698,7 +698,7 @@
       regexJa: Regexes.startsUsing({ id: '242D', source: 'ネオエクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '242D', source: '新生艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '242D', source: '네오 엑스데스', capture: false }),
-      response: Responses.stackMiddle(),
+      response: Responses.goMiddle(),
     },
     {
       id: 'O4S Neo Forked Lightning',
@@ -913,10 +913,18 @@
       },
     },
     {
-      id: 'O4S Neo Earthshaker',
+      id: 'O4S Neo Earthshaker on Tank',
       regex: Regexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
-        return matches.target == data.me;
+        return matches.target == data.me && data.role == 'tank';
+      },
+      response: Responses.earthshaker('info'),
+    },
+    {
+      id: 'O4S Neo Earthshaker on not Tank',
+      regex: Regexes.headMarker({ id: '0028' }),
+      condition: function(data, matches) {
+        return matches.target == data.me && data.role != 'tank';
       },
       response: Responses.earthshaker(),
     },

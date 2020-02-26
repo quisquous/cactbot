@@ -346,7 +346,7 @@
       regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
       delaySeconds: 2.7,
-      response: Responses.getIn'info'),
+      response: Responses.getIn('info'),
     },
     {
       id: 'SeiryuEx Swim Lessons',
