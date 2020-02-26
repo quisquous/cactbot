@@ -60,6 +60,9 @@
       regexFr: Regexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
+      run: function(data) {
+        data.seenFirstAdd = true;
+      },
       infoText: function(data) {
         if (data.seenFirstAdd) {
           return {
@@ -68,7 +71,14 @@
             ko: '쫄 위치 확인',
           };
         }
-        data.seenFirstAdd = true;
+        if (data.furysBoltActive) {
+          return {
+            en: 'Big Knockback',
+          }
+        }
+        return {
+          en: 'Short Knockback',
+        }
       },
     },
     {
@@ -220,15 +230,10 @@
       regexFr: Regexes.startsUsing({ id: '4BAD', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAD', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAD', source: '라무', capture: false }),
-      infoText: function(data) {
-        if (!data.furysBoltActive) {
-          return {
-            en: 'Short Knockback',
-          };
-        }
-        return {
-          en: 'Big Knockback',
-        };
+      infoText: {
+        en: 'Be in your position',
+        fr: 'Soyez en place',
+        ko: '자기 위치에 있기',
       },
     },
     {
