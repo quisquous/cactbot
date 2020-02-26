@@ -70,8 +70,9 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
       condition: (data) => data.role == 'tank',
       delaySeconds: 43,
+      suppressSeconds: 80,
       infoText: function(data) {
-        if (data.firstFrost == 'biting') {
+        if (data.firstFrost == 'driving') {
           return {
             en: 'Biting Frost Next',
             fr: 'Taillade de givre bientot',
