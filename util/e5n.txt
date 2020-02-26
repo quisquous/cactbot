@@ -65,7 +65,7 @@ hideall "--sync--"
 382.0 "Volt Strike" sync /:Ramuh:4CF2:/
 388.5 "Gallop" sync /:Will Of Ixion:4B96:/
 389.1 "Volt Strike" sync /:Ramuh:4CF2:/
-399.5 "Crippling Blow" sync /:Ramuh:4BA3:/ jump 272.0
+399.5 "Crippling Blow" sync /:Ramuh:4BA3:/ window 30,30 jump 272.0
 
 412.7 "Stratospear Summons"
 417.6 "Impact"
