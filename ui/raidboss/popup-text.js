@@ -632,8 +632,13 @@ class PopupText {
           ko: ' 그리고 ',
         };
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
-        let cmd = { 'call': 'cactbotSay', 'text': ttsText };
-        window.callOverlayHandler(cmd);
+        // if we're overriding player name and browser tts engine is loaded, use that
+        if(Options.PlayerNameOverride !== null && typeof BrowserTTSEngine === "function") {
+          BrowserTTSEngine.play(ttsText);
+        } else {
+          let cmd = { 'call': 'cactbotSay', 'text': ttsText };
+          window.callOverlayHandler(cmd);
+        }
       } else if (soundUrl && playSounds) {
         let audio = new Audio(soundUrl);
         audio.volume = soundVol;

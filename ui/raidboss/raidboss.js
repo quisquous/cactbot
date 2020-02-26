@@ -58,6 +58,12 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
   if (PlayerNameOverride !== null) {
     Options.PlayerNameOverride = PlayerNameOverride;
     console.log('Enabling player name override via query parameter, ' + PlayerNameOverride);
+    if (Options.audioAllowed) {
+      // include the tts engine script
+      // re-using this since it's already created
+      UserConfig.appendJSLink('browser_tts_engine.js');
+      console.log('Enabling browser TTS engine');
+    }
   }
 
   let container = document.getElementById('container');
