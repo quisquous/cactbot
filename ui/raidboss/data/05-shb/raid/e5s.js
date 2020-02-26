@@ -6,6 +6,16 @@
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(1\)$/,
   },
   timelineFile: 'e5s.txt',
+  timelineTriggers: [
+    {
+      id: 'E5S Stepped Leader Next',
+      regex: /^Stepped Leader$/,
+      beforeSeconds: 15,
+      run: function(data) {
+        data.steppedLeaderNext = true;
+      },
+    },
+  ],
   triggers: [
     {
       id: 'E5S Surge Protection Gain',
@@ -50,14 +60,6 @@
       regexFr: Regexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
-      run: function(data) {
-        if (!data.seenFirstAdd) {
-          // Always set the Fury's Bolt counter to 2 on first Tribunal Summons
-          // since it is random if he casts Fury's Bolt immediately before
-          data.furysBoltCounter = 2;
-        }
-        data.seenFirstAdd = true;
-      },
       infoText: function(data) {
         if (data.seenFirstAdd) {
           return {
@@ -66,6 +68,7 @@
             ko: '쫄 위치 확인',
           };
         }
+        data.seenFirstAdd = true;
       },
     },
     {
@@ -75,23 +78,9 @@
       regexFr: Regexes.startsUsing({ id: '4BAA', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAA', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
-      preRun: function(data) {
-        data.furysBoltEnum = {
-          1: 'Judgment Volts',
-          2: 'Tribunal Summons',
-          3: 'Thunderstorm',
-          4: 'Stepped Leader',
-          5: 'Thunderstorm',
-          6: 'Judgment Volts',
-          7: 'Judgment Volts',
-          8: 'Judgment Volts',
-        };
-        data.furysBoltCounter = data.furysBoltCounter || 0;
-        data.furysBoltCounter++;
-      },
       alertText: function(data) {
         // Fury's Bolt + Stepped Leader doesn't require an orb
-        if (!data.surgeProtection && data.furysBoltEnum[data.furysBoltCounter] != 'Stepped Leader') {
+        if (!data.surgeProtection && !data.steppedLeaderNext) {
           return {
             en: 'Grab an orb',
             fr: 'Prenez un orbe',
@@ -189,6 +178,17 @@
         return !data.furysBoltActive;
       },
       response: Responses.spread('alarm'),
+    },
+    {
+      id: 'E5S Stepped Leader Cast',
+      regex: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexDe: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexFr: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexJa: Regexes.ability({ id: '4BC6', source: 'ラムウ', capture: false }),
+      regexKo: Regexes.ability({ id: '4BC6', source: '라무', capture: false }),
+      run: function(data) {
+        data.steppedLeaderNext = false;
+      }
     },
     {
       id: 'E5S Crippling Blow',
