@@ -13,6 +13,18 @@
       beforeSeconds: 2,
       response: Responses.lookAway(),
     },
+    {
+      id: 'E8S Rush',
+      regex: /Rush \d/,
+      beforeSeconds: 5,
+      infoText: function(data) {
+        data.rushCount = data.rushCount || 0;
+        data.rushCount++;
+        return {
+          en: 'Tether ' + data.rushCount,
+        };
+      },
+    },
   ],
   triggers: [
     {
