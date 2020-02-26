@@ -6,22 +6,6 @@
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(1\)$/,
   },
   timelineFile: 'e5s.txt',
-  timelineTriggers: [
-    {
-      id: 'E5S Pre-Chain Lightning',
-      regex: /^Chain Lightning$/,
-      beforeSeconds: 4,
-      alertText: function(data) {
-        if (!data.surgeProtection) {
-          return {
-            en: 'Grab an orb',
-            fr: 'Prenez un orbe',
-            ko: '구슬 줍기',
-          };
-        }
-      },
-    },
-  ],
   triggers: [
     {
       id: 'E5S Surge Protection Gain',
