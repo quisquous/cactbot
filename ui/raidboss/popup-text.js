@@ -229,8 +229,8 @@ class PopupText {
   OnJobChange(e) {
     // allow override of player via query parameter
     // only apply override if player is in party
-    if (Options.PlayerNameOverride !== null 
-        && this.partyTracker.inParty(Options.PlayerNameOverride)) {
+    if (Options.PlayerNameOverride !== null &&
+        this.partyTracker.inParty(Options.PlayerNameOverride)) {
       this.me = Options.PlayerNameOverride;
       this.job = this.partyTracker.jobName(this.me);
       // if there's any issue with looking up player name for
@@ -635,8 +635,8 @@ class PopupText {
         };
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
         // if we're overriding player name and browser tts engine is loaded, use that
-        if (Options.PlayerNameOverride !== null 
-            && typeof BrowserTTSEngine === 'function') {
+        if (Options.PlayerNameOverride !== null &&
+            typeof BrowserTTSEngine === 'function') {
           BrowserTTSEngine.play(ttsText);
         } else {
           let cmd = { 'call': 'cactbotSay', 'text': ttsText };
