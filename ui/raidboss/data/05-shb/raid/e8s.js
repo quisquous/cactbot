@@ -146,14 +146,7 @@
     {
       id: 'E8S Banish III',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
-<<<<<<< HEAD
       response: Responses.stack(),
-=======
-      infoText: {
-        en: 'Stacks',
-        fr: 'Packages',
-      },
->>>>>>> upstream/master
     },
     {
       id: 'E8S Banish III Divided',
