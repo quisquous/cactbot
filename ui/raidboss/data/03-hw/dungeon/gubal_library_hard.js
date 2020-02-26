@@ -12,27 +12,13 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      infoText: {
-        en: 'Tank Buster',
-        fr: 'Tankbuster',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Gubal Hard Searing Wind',
       regex: /Searing Wind/,
       beforeSeconds: 5,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank Cleave on you',
-            fr: 'Cleave sur vous',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-          fr: 'Evitez le cleave sur le tank',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Gubal Hard Properties of Darkness',
@@ -41,10 +27,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      infoText: {
-        en: 'Tank Buster',
-        fr: 'Tankbuster',
-      },
+      response: Responses.tankBuster(),
     },
   ],
   triggers: [
@@ -59,10 +42,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Gubal Hard Ferrofluid',
@@ -210,10 +190,7 @@
       regexJa: Regexes.startsUsing({ id: '195A', source: 'ストリックス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '195A', source: '博学林鸮', capture: false }),
       regexKo: Regexes.startsUsing({ id: '195A', source: '스트릭스', capture: false }),
-      infoText: {
-        en: 'Spread',
-        fr: 'Dispersez-vous',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Gubal Hard Properties of Darkness II',
@@ -226,10 +203,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Gubal Hard Ecliptic Meteor',

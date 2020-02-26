@@ -12,27 +12,13 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Fractal Sanctification',
       regex: /Sanctification/,
       beforeSeconds: 5,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave on YOU',
-            fr: 'Tank cleave sur VOUS',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-          fr: 'Evitez le cleave sur le tank',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Fractal Unholy',
@@ -41,10 +27,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
   ],
   triggers: [
@@ -56,20 +39,7 @@
       regexJa: Regexes.startsUsing({ id: 'F7A', source: 'ファントムレイ' }),
       regexCn: Regexes.startsUsing({ id: 'F7A', source: '幻影光' }),
       regexKo: Regexes.startsUsing({ id: 'F7A', source: '환영 광선' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tank buster on YOU',
-            fr: 'Tankbuster sur VOUS',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.shortName(matches.target),
-            fr: 'Tankbuster sur ' + data.shortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Fractal Slash',
@@ -79,10 +49,7 @@
       regexJa: Regexes.startsUsing({ id: 'F83', source: 'ミノタウロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: 'F83', source: '弥诺陶洛斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: 'F83', source: '미노타우로스', capture: false }),
-      infoText: {
-        en: 'Out of front',
-        fr: 'Ne restez pas devant',
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Swipe',
@@ -92,10 +59,7 @@
       regexJa: Regexes.startsUsing({ id: 'F81', source: 'ミノタウロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: 'F81', source: '弥诺陶洛斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: 'F81', source: '미노타우로스', capture: false }),
-      infoText: {
-        en: 'Out of front',
-        fr: 'Ne restez pas devant',
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'Fractal Small Swing',
@@ -105,10 +69,7 @@
       regexJa: Regexes.startsUsing({ id: 'F82', source: 'ミノタウロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: 'F82', source: '弥诺陶洛斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: 'F82', source: '미노타우로스', capture: false }),
-      infoText: {
-        en: 'Get out',
-        fr: 'Ecartez vous du CaC',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Fractal Big Swing',
@@ -148,10 +109,7 @@
       regexCn: Regexes.addedCombatant({ name: '发条报警虫', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '알라그 태엽경보장치', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Kill adds',
-        fr: 'Tuez les adds',
-      },
+      response: Responses.killAdds(),
     },
   ],
   timelineReplace: [
