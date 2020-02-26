@@ -182,7 +182,7 @@
     {
       id: 'O7S Prey',
       regex: Regexes.headMarker({ id: '001E' }),
-      response: Responses.preyOn(),
+      response: Responses.preyOn('info'),
     },
     {
       id: 'O7S Searing Wind',
@@ -269,7 +269,7 @@
       regexJa: Regexes.startsUsing({ id: '2AB5', source: 'オルトロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2AB5', source: '오르트로스', capture: false }),
-      response: Responses.interupt(),
+      response: Responses.interupt('alarm'),
     },
     {
       id: 'O7S Load',

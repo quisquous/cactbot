@@ -321,7 +321,7 @@
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches.target;
       },
-      response: Responses.stack(),
+      response: Responses.doritoStack(),
     },
     {
       id: 'BA Owain Pitfall',

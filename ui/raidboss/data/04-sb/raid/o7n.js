@@ -57,7 +57,7 @@
     {
       id: 'O7N Prey',
       regex: Regexes.headMarker({ id: '001E' }),
-      response: Responses.preyOn(),
+      response: Responses.preyOn('info'),
     },
   ],
   timelineReplace: [

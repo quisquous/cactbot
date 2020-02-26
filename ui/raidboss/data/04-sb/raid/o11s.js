@@ -17,7 +17,7 @@
       regexJa: Regexes.startsUsing({ id: '326D', source: 'オメガ' }),
       regexCn: Regexes.startsUsing({ id: '326D', source: '欧米茄' }),
       regexKo: Regexes.startsUsing({ id: '326D', source: '오메가' }),
-      response: Responses.tankBuster(),
+      response: Responses.tankBuster('alarm'),
     },
     {
       // Ability IDs:

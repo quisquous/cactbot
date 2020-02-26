@@ -23,7 +23,14 @@
       regexJa: Regexes.startsUsing({ id: '1ED6', source: 'アルテ・ロイテ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1ED6', source: '老者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1ED6', source: '알테 로이테', capture: false }),
-      response: Responses.goSides(),
+      infoText: {
+        en: 'Breath Wing: Be beside boss',
+        de: 'Atemschwinge: Neben Boss gehen',
+      },
+      tts: {
+        en: 'breath wing',
+        de: 'atemschwinge',
+      },
     },
     {
       id: 'O1S Clamp',

@@ -304,7 +304,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      response: Responses.tankBuster(),
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'Orbonne Cid Crush Helm Feint',
@@ -453,7 +453,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      response: Responses.getOut(),
+      response: Responses.getOut('alarm'),
     },
     {
       id: 'Orbonne Cid Hallowed Bolt Stack',
@@ -583,7 +583,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      response: Responses.getOut(),
+      response: Responses.getOut('alarm'),
     },
     {
       id: 'Orbonne Ultima Time Eruption',

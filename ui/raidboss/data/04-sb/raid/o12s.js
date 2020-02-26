@@ -39,7 +39,14 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread(),
+      alarmText: {
+        en: 'Don\'t Stack!',
+        de: 'Nicht stacken!',
+        fr: 'Ne vous packez pas !',
+        ja: 'スタックするな！',
+        cn: '分散站位！',
+        ko: '쉐어 맞지 말것',
+      },
     },
     {
       id: 'O12S Local Resonance',
@@ -142,7 +149,7 @@
         return !data.isFinalOmega;
       },
       suppressSeconds: 1,
-      response: Responses.stack(),
+      response: Responses.stack('info'),
     },
     {
       id: 'O12S Optimized Meteor',
@@ -150,7 +157,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.meteorOnYou(),
+      response: Responses.meteorOnYou('info'),
     },
     {
       id: 'O12S Packet Filter F',
@@ -200,7 +207,7 @@
       regexJa: Regexes.startsUsing({ id: '3367', source: 'オメガ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3367', source: '欧米茄', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3367', source: '오메가', capture: false }),
-      response: Responses.goSides(),
+      response: Responses.goSides('info'),
     },
     {
       id: 'O12S Diffuse Wave Cannon Front/Back',
@@ -210,7 +217,7 @@
       regexJa: Regexes.startsUsing({ id: '3368', source: 'オメガ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3368', source: '欧米茄', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3368', source: '오메가', capture: false }),
-      response: Responses.goFrontBack(),
+      response: Responses.goFrontBack('info'),
     },
     {
       id: 'O12S Oversampled Wave Cannon Right',
@@ -541,7 +548,7 @@
       condition: function(data, matches) {
         return data.isFinalOmega && matches.target == data.me;
       },
-      response: Responses.stackOn(),
+      response: Responses.stackOn('info'),
     },
     {
       id: 'O12S Archive All Spread Marker',

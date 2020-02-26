@@ -97,7 +97,7 @@
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
-      response: Responses.stack(),
+      response: Responses.doritoStack(),
     },
     {
       id: 'Ridorana Famfrit Briny Cannonade',
