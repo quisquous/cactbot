@@ -5,7 +5,7 @@
 [{
   zoneRegex: {
     en: /^The Grand Cosmos$/,
-    ko: /\(692\)/,
+    ko: /^그랑 코스모스$/,
   },
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [
@@ -95,7 +95,7 @@
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
         fr: 'Placez les graines sur la terre',
-        ko: '씨앗 흙 위에 놓기',
+        ko: '씨앗 자라지 못하게 하기',
       },
     },
     {
@@ -147,7 +147,7 @@
         en: 'Dodge Crosses',
         de: 'Den Kreuzen ausweichen',
         fr: 'Evitez les croix',
-        ko: '십자 장판 서로 산개',
+        ko: '십자 장판 피하기',
       },
     },
     {
@@ -203,7 +203,7 @@
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
             fr: 'Placez le liens loin des décors',
-            ko: '십자 장판 징: 가구에 닿지 말기',
+            ko: '징: 장판이 가구에 닿지 않게 하기',
           };
         }
         return {

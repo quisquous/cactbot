@@ -10,6 +10,7 @@
     {
       id: 'E7S Empty Wave',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C8A', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '44C8A', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -18,6 +19,7 @@
     {
       id: 'E7S Unshadowed Stake',
       regex: Regexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
+      regexFr: Regexes.tether({ source: 'Idole Des Ténèbres', id: '0025' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -26,6 +28,7 @@
     {
       id: 'E7S Betwixt Worlds',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4CFD', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4CFD', capture: false }),
       run: function(data) {
         data.phase = 'betwixtWorlds';
       },
@@ -33,6 +36,7 @@
     {
       id: 'E7S Betwixt Worlds Tether',
       regex: Regexes.tether({ source: 'The Idol Of Darkness', id: '0011' }),
+      regexFr: Regexes.tether({ source: 'Idole Des Ténèbres', id: '0011' }),
       preRun: function(data, matches) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
@@ -79,6 +83,7 @@
     {
       id: 'E7S Left With Thee',
       regex: Regexes.gainsEffect({ effect: 'Left With Thee' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Translation Gauche' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Left',
@@ -88,6 +93,7 @@
     {
       id: 'E7S Left With Right',
       regex: Regexes.gainsEffect({ effect: 'Right With Thee' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Translation Droite' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Right',
@@ -97,6 +103,7 @@
     {
       id: 'E7S Forward With Thee',
       regex: Regexes.gainsEffect({ effect: 'Forward With Thee' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Translation Avant' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Forward',
@@ -106,6 +113,7 @@
     {
       id: 'E7S Back With Thee',
       regex: Regexes.gainsEffect({ effect: 'Back With Thee' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Translation Arrière' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Back',
@@ -115,6 +123,7 @@
     {
       id: 'E7S False Midnight',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C99', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C99', capture: false }),
       run: function(data) {
         data.phase = 'falseMidnight';
       },
@@ -162,6 +171,7 @@
     {
       id: 'E7S Adds',
       regex: Regexes.addedCombatant({ name: 'Blasphemy', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Vol D\'idolâtries Impardonnables', capture: false }),
       suppressSeconds: 1,
       run: function(data) {
         data.phase = 'adds';
@@ -199,6 +209,7 @@
     {
       id: 'E7S Insatiable Light',
       regex: Regexes.ability({ source: 'Idolatry', id: '4C6D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C6D', capture: false }),
       run: function(data) {
         data.insatiableLightStack = [];
       },
@@ -206,6 +217,7 @@
     {
       id: 'E7S Strength in Numbers',
       regex: Regexes.startsUsing({ source: 'Idolatry', id: '4C70', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Vol D\'idolâtries Impardonnables', id: '4C70', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Get under vertical add',
@@ -215,15 +227,18 @@
     {
       id: 'E7S Unearned Envy',
       regex: Regexes.ability({ source: 'Blasphemy', id: '4C74', capture: false }),
+      regexFr: Regexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C74', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
+      suppressSeconds: 15,
       durationSeconds: 7,
       response: Responses.aoe(),
     },
     {
       id: 'E7S Empty Flood',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '(?:4C8[BC]|4E5[56])', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
@@ -233,6 +248,7 @@
     {
       id: 'E7S Unjoined Aspect',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C3B', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C3B', capture: false }),
       run: function(data) {
         data.colorMap = {};
         data.colorMap['light'] = {
@@ -248,6 +264,7 @@
     {
       id: 'E7S Astral Effect',
       regex: Regexes.gainsEffect({ effect: 'Astral Effect' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Corruption De Lumière' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.color = 'light';
@@ -256,6 +273,7 @@
     {
       id: 'E7S Umbral Effect',
       regex: Regexes.gainsEffect({ effect: 'Umbral Effect' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Corruption De Ténèbres' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.color = 'dark';
@@ -272,6 +290,7 @@
     {
       id: 'E7S Boundless Dark',
       regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5D' }),
+      regexFr: Regexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '4C5D' }),
       condition: function(data) {
         return data.color == 'light';
       },
@@ -280,6 +299,7 @@
     {
       id: 'E7S Words of Night',
       regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '(?:4C2C|4C65)', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '(?:4C2C|4C65)', capture: false }),
       alertText: function(data) {
         return {
           en: 'Get hit by ' + data.colorMap[data.color][data.lang],
@@ -290,6 +310,7 @@
     {
       id: 'E7S False Dawn',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C9A', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C9A', capture: false }),
       suppressSeconds: 1,
       alertText: {
         en: 'Bait Puddles',
@@ -298,11 +319,13 @@
     {
       id: 'E7S Crusade',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C76', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C76', capture: false }),
       response: Responses.knockback(),
     },
     {
       id: 'E7S Threefold Grace',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C7E', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C7E', capture: false }),
       alertText: function(data) {
         return {
           en: 'Stand in ' + data.colorMap[data.color][data.lang],

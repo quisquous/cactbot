@@ -10,7 +10,7 @@
   zoneRegex: {
     en: /^The Copied Factory$/,
     cn: /^复制工厂废墟$/,
-    ko: /\(700\)/,
+    ko: /^복제된 공장 폐허$/,
   },
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [
@@ -42,7 +42,7 @@
         de: 'zur südlichen Kante',
         fr: 'Allez au Sud',
         cn: '前往南侧边缘',
-        ko: '남쪽 구석으로',
+        ko: '남쪽으로',
       },
     },
   ],
@@ -147,7 +147,7 @@
         de: 'Bewegenden Kreisen ausweichen',
         fr: 'Evitez les cercles mouvants',
         cn: '躲避移动圆圈',
-        ko: '움직이는 동그라미 피하기',
+        ko: '시계방향 회전하면서 나오는 장판 피하기',
       },
     },
     {
@@ -165,7 +165,7 @@
         de: 'Flammenwerfer hinter dir',
         fr: 'Regardez derrière (lance-flammes)',
         cn: '观察后方放火',
-        ko: '불 나오는 곳 확인하기',
+        ko: '뒤에서 불 나오는 곳 확인',
       },
     },
     {
@@ -210,7 +210,7 @@
         de: 'Verbindungen Verteilen',
         fr: 'Ecartez les liens',
         cn: '散开扯断连线',
-        ko: '산개 선 (탱 무적처리도 가능)',
+        ko: '산개 선 (탱 혼자도 가능)',
       },
     },
     {
@@ -219,7 +219,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied Hobbes Laser Sight',
@@ -244,7 +244,7 @@
         de: 'Elektrischem Boden ausweichen',
         fr: 'Evitez le sol électrifié',
         cn: '躲避带电地板',
-        ko: '전기 장판 피하기',
+        ko: '바닥 장판 피하기',
       },
     },
     {
@@ -333,7 +333,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied Engels Marx Smash Right',
@@ -365,7 +365,7 @@
         de: 'Vorne und Mitte',
         fr: 'Devant et au centre',
         cn: '前方中间',
-        ko: '앞 중앙',
+        ko: '앞으로 => 중앙으로',
       },
     },
     {
@@ -380,7 +380,7 @@
         de: 'Hinten und Seiten',
         fr: 'Arrière et côtés',
         cn: '后方两侧',
-        ko: '뒤 양옆',
+        ko: '뒤로 => 양옆으로',
       },
     },
     {
@@ -395,7 +395,7 @@
         de: 'Klauen töten',
         fr: 'Tuez les pinces',
         cn: '杀掉爪子',
-        ko: '톱 죽이기',
+        ko: '양옆 톱 처리',
       },
     },
     {
@@ -404,7 +404,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.tankBuster(),
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'Copied Engels Diffuse Laser',
@@ -477,7 +477,7 @@
             de: 'Geh Raus + Zielsuch-AoE ausweichen',
             fr: 'Dehors + Evitez l\'AoE',
             cn: '远离 + 躲避弹幕',
-            ko: '바깥으로 + 장판 피하기',
+            ko: '바깥으로 빠지고 따라오는 장판 피하기',
           };
         }
       },
@@ -568,7 +568,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
@@ -676,7 +676,7 @@
         de: 'Geh in die Kuppel',
         fr: 'Allez dans les bulles',
         cn: '进入圈圈',
-        ko: '안전지대 안에 들어가기',
+        ko: '안전지대 안으로 들어가기',
       },
     },
   ],

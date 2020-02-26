@@ -62,6 +62,10 @@ let defaultAlarmText = (sev) => {
 };
 
 let getTarget = (matches) => {
+  // Often tankbusters can be casted by the boss on the boss.
+  // Consider this as "not having a target".
+  if (!matches || matches.target == matches.source)
+    return null;
   return matches.target || matches[1];
 };
 

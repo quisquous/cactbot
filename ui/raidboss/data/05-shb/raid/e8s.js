@@ -1,5 +1,18 @@
 'use strict';
 
+// TODO: figure out *anything* with mirrors and mirror colors
+// TODO: yell at you to take the last tower for Light Rampant if needed
+// TODO: yell at you to take the last tower for Icelit Dragonsong if needed
+// TODO: House of light clock position callout
+// TODO: "move" calls for all the akh raihs
+// TODO: Light Rampant early callouts (who has prox marker, who gets aoes)
+// TODO: reflected scythe kick callout (stand by mirror)
+// TODO: reflected axe kick callout (get under)
+// TODO: callouts for initial Hallowed Wings mirrors?
+// TODO: callouts for the stack group mirrors?
+// TODO: callouts for the Shining Armor mirrors?
+// TODO: icelit dragonsong callouts?
+
 [{
   zoneRegex: {
     en: /^Eden's Verse: Refulgence \(Savage\)$/,
@@ -13,6 +26,18 @@
       beforeSeconds: 2,
       response: Responses.lookAway(),
     },
+    {
+      id: 'E8S Rush',
+      regex: /Rush \d/,
+      beforeSeconds: 5,
+      infoText: function(data) {
+        data.rushCount = data.rushCount || 0;
+        data.rushCount++;
+        return {
+          en: 'Tether ' + data.rushCount,
+        };
+      },
+    },
   ],
   triggers: [
     {
@@ -25,12 +50,34 @@
       id: 'E8S Biting Frost',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
       response: Responses.getBehind(),
+      run: function(data) {
+        data.firstFrost = data.firstFrost || 'biting';
+      },
     },
     {
       id: 'E8S Driving Frost',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       alertText: {
-        en: 'Away From Back',
+        en: 'Go Front / Sides',
+      },
+      run: function(data) {
+        data.firstFrost = data.firstFrost || 'driving';
+      },
+    },
+    {
+      id: 'E8S Forgetful Tank Second Frost',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
+      condition: (data) => data.role == 'tank',
+      delaySeconds: 43,
+      infoText: function(data) {
+        if (data.firstFrost == 'biting') {
+          return {
+            en: 'Biting Frost Next',
+          };
+        }
+        return {
+          en: 'Driving Frost Next',
+        };
       },
     },
     {
@@ -73,14 +120,57 @@
       response: Responses.aoe(),
     },
     {
+      id: 'E8S Refulgent Chain',
+      regex: Regexes.gainsEffect({ effect: 'Refulgent Chain' }),
+      condition: Conditions.targetIsYou(),
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Chain on YOU',
+      },
+    },
+    {
+      id: 'E8S Holy Light',
+      regex: Regexes.tether({ id: '0002' }),
+      condition: Conditions.targetIsYou(),
+      infoText: {
+        en: 'Orb on YOU',
+      },
+    },
+    {
       id: 'E8S Banish III',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
       response: Responses.stack(),
     },
     {
-      id: 'E8S Banish III Fake',
+      id: 'E8S Banish III Divided',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
-      response: Responses.spread(),
+      response: Responses.spread('alert'),
+    },
+    {
+      id: 'E8S Morn Afah',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
+      alertText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Morn Afah on YOU',
+          };
+        }
+        if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
+          return {
+            en: 'Morn Afah on ' + matches.target,
+          };
+        }
+      },
+    },
+    {
+      id: 'E8S Hallowed Wings Left',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
+      response: Responses.goRight(),
+    },
+    {
+      id: 'E8S Hallowed Wings Right',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D76', capture: false }),
+      response: Responses.goLeft(),
     },
     {
       id: 'E8S Wyrm\'s Lament',
@@ -157,17 +247,28 @@
       },
     },
     {
+      id: 'E8S Holy',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
+      response: Responses.getOut(),
+    },
+    {
+      id: 'E8S Holy Divided',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D83', capture: false }),
+      condition: (data) => data.role == 'tank',
+      response: Responses.getIn('alert'),
+    },
+    {
       id: 'E8S Twin Stillness',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
       alertText: {
-        en: 'Get Back Then Front',
+        en: 'Back Then Front',
       },
     },
     {
       id: 'E8S Twin Silence',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
       alertText: {
-        en: 'Get Front Then Back',
+        en: 'Front Then Back',
       },
     },
     {
@@ -190,6 +291,18 @@
       infoText: {
         en: 'Cleanse DPS Only',
       },
+    },
+    {
+      id: 'E8S Banish',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7E', capture: false }),
+      condition: (data) => data.role == 'tank',
+      response: Responses.stack('alert'),
+    },
+    {
+      id: 'E8S Banish Divided',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7F', capture: false }),
+      condition: (data) => data.role == 'tank',
+      response: Responses.spread('alarm'),
     },
   ],
   timelineReplace: [
