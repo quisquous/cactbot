@@ -263,12 +263,12 @@
     },
     {
       id: 'O7S Stoneskin',
-      regex: Regexes.startsUsing({ id: '2AB5', source: 'Ultros', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2AB5', source: 'Ultros', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2AB5', source: 'Orthros', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2AB5', source: 'オルトロス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2AB5', source: '오르트로스', capture: false }),
+      regex: Regexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
+      regexDe: Regexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
+      regexFr: Regexes.startsUsing({ id: '2AB5', source: 'Orthros' }),
+      regexJa: Regexes.startsUsing({ id: '2AB5', source: 'オルトロス' }),
+      regexCn: Regexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯' }),
+      regexKo: Regexes.startsUsing({ id: '2AB5', source: '오르트로스' }),
       response: Responses.interupt('alarm'),
     },
     {

@@ -256,12 +256,12 @@
     },
     {
       id: 'SeiryuEx Silence',
-      regex: Regexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '37F4', source: 'Numa No Shiki', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '37F4', source: 'Shiki Uligineux', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '37F4', source: '沼の式鬼', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '37F4', source: '沼之式鬼', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '37F4', source: '늪 사역귀', capture: false }),
+      regex: Regexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki' }),
+      regexDe: Regexes.startsUsing({ id: '37F4', source: 'Numa No Shiki' }),
+      regexFr: Regexes.startsUsing({ id: '37F4', source: 'Shiki Uligineux' }),
+      regexJa: Regexes.startsUsing({ id: '37F4', source: '沼の式鬼' }),
+      regexCn: Regexes.startsUsing({ id: '37F4', source: '沼之式鬼' }),
+      regexKo: Regexes.startsUsing({ id: '37F4', source: '늪 사역귀' }),
       condition: function(data) {
         return data.CanSilence();
       },

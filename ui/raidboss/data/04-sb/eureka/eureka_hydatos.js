@@ -338,12 +338,12 @@
     },
     {
       id: 'BA Silence Centaur',
-      regex: Regexes.startsUsing({ id: '3BFE', source: 'Arsenal Centaur', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3BFE', source: 'Arsenal-Zentaur', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3BFE', source: 'Centaure De L\'Arsenal', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3BFE', source: 'アーセナル・セントール', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3BFE', source: '兵武半人马', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3BFE', source: '무기고 켄타우로스', capture: false }),
+      regex: Regexes.startsUsing({ id: '3BFE', source: 'Arsenal Centaur' }),
+      regexDe: Regexes.startsUsing({ id: '3BFE', source: 'Arsenal-Zentaur' }),
+      regexFr: Regexes.startsUsing({ id: '3BFE', source: 'Centaure De L\'Arsenal' }),
+      regexJa: Regexes.startsUsing({ id: '3BFE', source: 'アーセナル・セントール' }),
+      regexCn: Regexes.startsUsing({ id: '3BFE', source: '兵武半人马' }),
+      regexKo: Regexes.startsUsing({ id: '3BFE', source: '무기고 켄타우로스' }),
       condition: function(data) {
         return data.CanSleep();
       },
