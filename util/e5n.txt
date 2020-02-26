@@ -12,7 +12,7 @@ hideall "--sync--"
 0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
 0.5 "--sync--" sync /:Ramuh:4BA2:/ window 0,1
-13.6 "Crippling Blow" sync /:Ramuh:4BA3:/
+13.6 "Crippling Blow" sync /:Ramuh:4BA3:/ window 15,15
 20.9 "--sync--" sync /:Ramuh:4BCB:/
 26.8 "Stratospear Summons" sync /:Ramuh:4B8D:/ window 30,30
 31.7 "Impact" sync /:Ramuh:4E3A:/
