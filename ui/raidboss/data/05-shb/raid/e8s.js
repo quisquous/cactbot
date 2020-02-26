@@ -35,6 +35,7 @@
         data.rushCount++;
         return {
           en: 'Tether ' + data.rushCount,
+          ko: '선: ' + data.rushCount,
         };
       },
     },
@@ -59,6 +60,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       alertText: {
         en: 'Go Front / Sides',
+        ko: '앞 / 양옆으로',
       },
       run: function(data) {
         data.firstFrost = data.firstFrost || 'driving';
@@ -73,10 +75,22 @@
         if (data.firstFrost == 'biting') {
           return {
             en: 'Biting Frost Next',
+            ko: '다음: Biting/スラッシュ',
           };
         }
         return {
           en: 'Driving Frost Next',
+          ko: '다음: Driving/スラスト',
+        };
+      },
+      tts: function(data) {
+        if (data.firstFrost == 'biting') {
+          return {
+            ko: '다음: 바이팅 스라슈',
+          };
+        }
+        return {
+          ko: '다음: 드라이빙 스라스토',
         };
       },
     },
@@ -95,6 +109,7 @@
       },
       infoText: {
         en: 'Cleanse',
+        ko: '에스나',
       },
     },
     {
@@ -126,6 +141,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Chain on YOU',
+        ko: '사슬 대상자',
       },
     },
     {
@@ -134,6 +150,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Orb on YOU',
+        ko: '구슬 대상자',
       },
     },
     {
@@ -141,6 +158,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
       infoText: {
         en: 'Stacks',
+        ko: '쉐어징',
       },
     },
     {
@@ -155,11 +173,13 @@
         if (data.me == matches.target) {
           return {
             en: 'Morn Afah on YOU',
+            ko: '몬아파 대상자',
           };
         }
         if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
           return {
             en: 'Morn Afah on ' + matches.target,
+            ko: '"' + matches.target + '" 몬 아파',
           };
         }
       },
@@ -217,6 +237,7 @@
       alertText: function(data) {
         return {
           en: 'Red #' + data.wyrmclawNumber,
+          ko: '빨강 ' + data.wyrmclawNumber + '번',
         };
       },
     },
@@ -245,6 +266,7 @@
       alertText: function(data) {
         return {
           en: 'Blue #' + data.wyrmfangNumber,
+          ko: '파랑 ' + data.wyrmclawNumber + '번',
         };
       },
     },
@@ -264,6 +286,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
       alertText: {
         en: 'Back Then Front',
+        ko: '뒤로 => 앞으로',
       },
     },
     {
@@ -271,6 +294,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
       alertText: {
         en: 'Front Then Back',
+        ko: '앞으로 => 뒤로',
       },
     },
     {
@@ -292,6 +316,7 @@
       },
       infoText: {
         en: 'Cleanse DPS Only',
+        ko: '딜러만 에스나',
       },
     },
     {
