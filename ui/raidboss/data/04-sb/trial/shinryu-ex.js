@@ -448,7 +448,14 @@
       regexJa: Regexes.startsUsing({ id: '264A', source: '神龍' }),
       regexCn: Regexes.startsUsing({ id: '264A', source: '神龙' }),
       regexKo: Regexes.startsUsing({ id: '264A', source: '신룡' }),
-      response: Responses.tankCleave(),
+      alertText: {
+        en: 'front cleave',
+        de: 'Frontalcleave',
+      },
+      tts: {
+        en: 'cleave',
+        de: 'klief',
+      },
     },
     {
       id: 'ShinryuEx Final Left Wing',

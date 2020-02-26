@@ -304,7 +304,7 @@
       regexJa: Regexes.startsUsing({ id: '3A01', source: '青龍', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3A01', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A01', source: '청룡', capture: false }),
-      response: Responses.getOut(),
+      response: Responses.getOut('info'),
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
@@ -314,7 +314,7 @@
       regexJa: Regexes.startsUsing({ id: '3A05', source: '青龍', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
-      response: Responses.getInThenOut(),
+      response: Responses.getInThenOut('info'),
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
@@ -325,7 +325,7 @@
       regexCn: Regexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
       delaySeconds: 2.7,
-      response: Responses.getOut(),
+      response: Responses.getOut('info'),
     },
     {
       id: 'SeiryuEx Sigil Out In 1',
@@ -335,7 +335,7 @@
       regexJa: Regexes.startsUsing({ id: '3A03', source: '青龍', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
-      response: Responses.getOutThenIn(),
+      response: Responses.getOutThenIn('info'),
     },
     {
       id: 'SeiryuEx Sigil Out In 2',
@@ -346,7 +346,7 @@
       regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
       delaySeconds: 2.7,
-      response: Responses.getIn(),
+      response: Responses.getIn'info'),
     },
     {
       id: 'SeiryuEx Swim Lessons',

@@ -16,6 +16,9 @@
       regexJa: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
       regexCn: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
       regexKo: Regexes.startsUsing({ id: '27DA', source: '백호' }),
+      condition: function(data, matches) {
+        return data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {
