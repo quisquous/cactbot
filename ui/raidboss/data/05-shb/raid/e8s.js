@@ -30,7 +30,7 @@
       id: 'E8S Driving Frost',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       alertText: {
-        en: 'Away From Back',
+        en: 'Go Front / Sides',
       },
     },
     {
@@ -73,6 +73,23 @@
       response: Responses.aoe(),
     },
     {
+      id: 'E8S Refulgent Chain',
+      regex: Regexes.gainsEffect({ effect: 'Refulgent Chain' }),
+      condition: Conditions.targetIsYou(),
+      suppressSeconds: 1,
+      infoText: {
+        en: 'Chain on YOU',
+      },
+    },
+    {
+      id: 'E8S Holy Light',
+      regex: Regexes.tether({ id: '0002' }),
+      condition: Conditions.targetIsYou(),
+      infoText: {
+        en: 'Orb on YOU',
+      },
+    },
+    {
       id: 'E8S Banish III',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
       alertText: {
@@ -83,6 +100,32 @@
       id: 'E8S Banish III Fake',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
       response: Responses.spread(),
+    },
+    {
+      id: 'E8S Morn Afah',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
+      alertText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Morn Afah on YOU',
+          };
+        }
+        if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
+          return {
+            en: 'Morn Afah on ' + matches.target,
+          };
+        }
+      },
+    },
+    {
+      id: 'E8S Hallowed Wings Left',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
+      response: Responses.goRight(),
+    },
+    {
+      id: 'E8S Hallowed Wings Right',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D76', capture: false }),
+      response: Responses.goLeft(),
     },
     {
       id: 'E8S Wyrm\'s Lament',
