@@ -114,12 +114,12 @@
     },
     {
       id: 'Anyder Noahionto',
-      regex: Regexes.startsUsing({ id: '430C', source: 'Evil Armor', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '430C', source: 'Bös(?:e|er|es|en) Kampfmaschine', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '430C', source: 'Armure Maléfique', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '430C', source: 'イビルアーマー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '430C', source: '恶魔装甲', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '430C', source: '사악한 갑옷', capture: false }),
+      regex: Regexes.startsUsing({ id: '430C', source: 'Evil Armor' }),
+      regexDe: Regexes.startsUsing({ id: '430C', source: 'Bös(?:e|er|es|en) Kampfmaschine' }),
+      regexFr: Regexes.startsUsing({ id: '430C', source: 'Armure Maléfique' }),
+      regexJa: Regexes.startsUsing({ id: '430C', source: 'イビルアーマー' }),
+      regexCn: Regexes.startsUsing({ id: '430C', source: '恶魔装甲' }),
+      regexKo: Regexes.startsUsing({ id: '430C', source: '사악한 갑옷' }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },

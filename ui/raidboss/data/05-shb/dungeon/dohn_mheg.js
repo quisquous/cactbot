@@ -21,12 +21,12 @@
     {
       id: 'Dohn Mheg Watering Wheel',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DAA', source: 'Dohn-Fuath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DAA', source: 'Fuath De Dohn Mheg', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DAA', source: 'ドォーヌ・フーア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DAA', source: '禁园水妖', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DAA', source: '도느 푸아', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath' }),
+      regexDe: Regexes.startsUsing({ id: '3DAA', source: 'Dohn-Fuath' }),
+      regexFr: Regexes.startsUsing({ id: '3DAA', source: 'Fuath De Dohn Mheg' }),
+      regexJa: Regexes.startsUsing({ id: '3DAA', source: 'ドォーヌ・フーア' }),
+      regexCn: Regexes.startsUsing({ id: '3DAA', source: '禁园水妖' }),
+      regexKo: Regexes.startsUsing({ id: '3DAA', source: '도느 푸아' }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -35,12 +35,12 @@
     {
       id: 'Dohn Mheg Straight Punch',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DAB', source: 'Dohn-Blumenkorb', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DAB', source: 'Panier De Dohn Mheg', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DAB', source: 'ドォーヌ・バスケット', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DAB', source: '禁园篮筐', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DAB', source: '도느 바구니', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket' }),
+      regexDe: Regexes.startsUsing({ id: '3DAB', source: 'Dohn-Blumenkorb' }),
+      regexFr: Regexes.startsUsing({ id: '3DAB', source: 'Panier De Dohn Mheg' }),
+      regexJa: Regexes.startsUsing({ id: '3DAB', source: 'ドォーヌ・バスケット' }),
+      regexCn: Regexes.startsUsing({ id: '3DAB', source: '禁园篮筐' }),
+      regexKo: Regexes.startsUsing({ id: '3DAB', source: '도느 바구니' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -49,12 +49,12 @@
     {
       id: 'Dohn Mheg Proboscis',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DAF', source: 'Dohn-Edianmotte', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DAF', source: 'Noctuétain De Dohn Mheg', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DAF', source: 'ドォーヌ・エーディンモス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DAF', source: '禁园爱蒂恩蛾', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DAF', source: '도느 에다인나방', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth' }),
+      regexDe: Regexes.startsUsing({ id: '3DAF', source: 'Dohn-Edianmotte' }),
+      regexFr: Regexes.startsUsing({ id: '3DAF', source: 'Noctuétain De Dohn Mheg' }),
+      regexJa: Regexes.startsUsing({ id: '3DAF', source: 'ドォーヌ・エーディンモス' }),
+      regexCn: Regexes.startsUsing({ id: '3DAF', source: '禁园爱蒂恩蛾' }),
+      regexKo: Regexes.startsUsing({ id: '3DAF', source: '도느 에다인나방' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -63,12 +63,12 @@
     {
       id: 'Dohn Mheg Torpedo',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DB5', source: 'Dohn-Kelpie', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DB5', source: 'Kelpie De Dohn Mheg', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DB5', source: 'ドォーヌ・ケルピー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DB5', source: '禁园凯尔派', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DB5', source: '도느 켈피', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie' }),
+      regexDe: Regexes.startsUsing({ id: '3DB5', source: 'Dohn-Kelpie' }),
+      regexFr: Regexes.startsUsing({ id: '3DB5', source: 'Kelpie De Dohn Mheg' }),
+      regexJa: Regexes.startsUsing({ id: '3DB5', source: 'ドォーヌ・ケルピー' }),
+      regexCn: Regexes.startsUsing({ id: '3DB5', source: '禁园凯尔派' }),
+      regexKo: Regexes.startsUsing({ id: '3DB5', source: '도느 켈피' }),
       condition: function(data) {
         return data.CanStun();
       },

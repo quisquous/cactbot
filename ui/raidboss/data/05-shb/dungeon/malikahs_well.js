@@ -38,12 +38,12 @@
     },
     {
       id: 'Malikah Deep Draught',
-      regex: Regexes.startsUsing({ id: '4188', source: 'Pack Armadillo', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4188', source: 'Rudel-Gürteltier', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4188', source: 'Tatou Grégaire', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4188', source: 'パック・アルマジロ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4188', source: '群落犰狳', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4188', source: '무리 아르마딜로', capture: false }),
+      regex: Regexes.startsUsing({ id: '4188', source: 'Pack Armadillo' }),
+      regexDe: Regexes.startsUsing({ id: '4188', source: 'Rudel-Gürteltier' }),
+      regexFr: Regexes.startsUsing({ id: '4188', source: 'Tatou Grégaire' }),
+      regexJa: Regexes.startsUsing({ id: '4188', source: 'パック・アルマジロ' }),
+      regexCn: Regexes.startsUsing({ id: '4188', source: '群落犰狳' }),
+      regexKo: Regexes.startsUsing({ id: '4188', source: '무리 아르마딜로' }),
       condition: function(data) {
         return data.CanSilence();
       },

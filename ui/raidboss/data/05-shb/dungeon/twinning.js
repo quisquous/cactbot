@@ -11,12 +11,12 @@
   triggers: [
     {
       id: 'Twinning Main Head',
-      regex: Regexes.startsUsing({ id: '3DBC', source: 'Surplus Kaliya', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DBC', source: 'Massengefertigt(?:e|er|es|en) Kaliya', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DBC', source: '量産型カーリア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DBC', source: '量产型卡利亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DBC', source: '양산형 칼리아', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DBC', source: 'Surplus Kaliya' }),
+      regexDe: Regexes.startsUsing({ id: '3DBC', source: 'Massengefertigt(?:e|er|es|en) Kaliya' }),
+      regexFr: Regexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus' }),
+      regexJa: Regexes.startsUsing({ id: '3DBC', source: '量産型カーリア' }),
+      regexCn: Regexes.startsUsing({ id: '3DBC', source: '量产型卡利亚' }),
+      regexKo: Regexes.startsUsing({ id: '3DBC', source: '양산형 칼리아' }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -24,12 +24,12 @@
     },
     {
       id: 'Twinning Berserk',
-      regex: Regexes.startsUsing({ id: '3DC0', source: 'Vitalized Reptoid', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DC0', source: 'Gestärkt(?:e|er|es|en) Reptoid', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DC0', source: 'Reptoïde Vitalisé', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DC0', source: 'ヴァイタライズ・レプトイド', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DC0', source: '活力化爬虫半人马', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DC0', source: '활성된 파충류', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DC0', source: 'Vitalized Reptoid' }),
+      regexDe: Regexes.startsUsing({ id: '3DC0', source: 'Gestärkt(?:e|er|es|en) Reptoid' }),
+      regexFr: Regexes.startsUsing({ id: '3DC0', source: 'Reptoïde Vitalisé' }),
+      regexJa: Regexes.startsUsing({ id: '3DC0', source: 'ヴァイタライズ・レプトイド' }),
+      regexCn: Regexes.startsUsing({ id: '3DC0', source: '活力化爬虫半人马' }),
+      regexKo: Regexes.startsUsing({ id: '3DC0', source: '활성된 파충류' }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -37,12 +37,12 @@
     },
     {
       id: 'Twinning 128 Tonze Swing',
-      regex: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanical Minotaur', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanisch(?:e|er|es|en) Minotaurus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DBA', source: 'Minotaure Servomécanique', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DBA', source: 'サーヴォ・ミノタウロス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DBA', source: '自控化弥诺陶洛斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DBA', source: '자동제어 미노타우로스', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanical Minotaur' }),
+      regexDe: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanisch(?:e|er|es|en) Minotaurus' }),
+      regexFr: Regexes.startsUsing({ id: '3DBA', source: 'Minotaure Servomécanique' }),
+      regexJa: Regexes.startsUsing({ id: '3DBA', source: 'サーヴォ・ミノタウロス' }),
+      regexCn: Regexes.startsUsing({ id: '3DBA', source: '自控化弥诺陶洛斯' }),
+      regexKo: Regexes.startsUsing({ id: '3DBA', source: '자동제어 미노타우로스' }),
       condition: function(data) {
         return data.CanSilence();
       },

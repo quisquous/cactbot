@@ -424,12 +424,12 @@
     },
     {
       id: 'E1S Mana Boost',
-      regex: Regexes.startsUsing({ id: '3D8D', source: 'Guardian Of Paradise', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D8D', source: 'Hüter Von Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D8D', source: '伊甸守护者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D8D', source: '에덴의 수호자', capture: false }),
+      regex: Regexes.startsUsing({ id: '3D8D', source: 'Guardian Of Paradise' }),
+      regexDe: Regexes.startsUsing({ id: '3D8D', source: 'Hüter Von Eden' }),
+      regexFr: Regexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin' }),
+      regexJa: Regexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー' }),
+      regexCn: Regexes.startsUsing({ id: '3D8D', source: '伊甸守护者' }),
+      regexKo: Regexes.startsUsing({ id: '3D8D', source: '에덴의 수호자' }),
       condition: function(data) {
         return data.CanSilence();
       },

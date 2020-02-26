@@ -100,10 +100,10 @@
     },
     {
       id: 'Cosmos Ronkan Cure II',
-      regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス', capture: false }),
+      regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
+      regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
+      regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
+      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス' }),
       condition: function(data) {
         return data.CanStun();
       },

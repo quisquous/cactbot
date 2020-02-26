@@ -9,12 +9,12 @@
   triggers: [
     {
       id: 'Gulg Punitive Light',
-      regex: Regexes.startsUsing({ id: '41AF', source: 'Forgiven Prejudice', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '41AF', source: 'Geläutert(?:e|er|es|en) Voreingenommenheit', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '41AF', source: 'Préjugé Pardonné', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '41AF', source: 'フォーギヴン・プレジュディス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '41AF', source: '得到宽恕的偏见', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '41AF', source: '면죄된 편견', capture: false }),
+      regex: Regexes.startsUsing({ id: '41AF', source: 'Forgiven Prejudice' }),
+      regexDe: Regexes.startsUsing({ id: '41AF', source: 'Geläutert(?:e|er|es|en) Voreingenommenheit' }),
+      regexFr: Regexes.startsUsing({ id: '41AF', source: 'Préjugé Pardonné' }),
+      regexJa: Regexes.startsUsing({ id: '41AF', source: 'フォーギヴン・プレジュディス' }),
+      regexCn: Regexes.startsUsing({ id: '41AF', source: '得到宽恕的偏见' }),
+      regexKo: Regexes.startsUsing({ id: '41AF', source: '면죄된 편견' }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
