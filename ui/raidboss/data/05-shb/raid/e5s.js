@@ -54,16 +54,15 @@
       regexFr: Regexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
-      condition: function(data) {
-        return !data.firstAdd;
-      },
-      infoText: {
-        en: 'Look for adds',
-        fr: 'Cherchez les adds',
-        ko: '쫄 위치 확인',
-      },
-      run: function(data) {
-        data.firstAdd = false;
+      infoText: function(data) {
+        if (data.seenFirstAdd) {
+          return {
+            en: 'Look for adds',
+            fr: 'Cherchez les adds',
+            ko: '쫄 위치 확인',
+          };
+        }
+        data.seenFirstAdd = true;
       },
     },
     {
@@ -86,10 +85,17 @@
       regexFr: Regexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
+      condition: function(data) {
+        return !data.fourteenCount || data.fourteenCount < 2;
+      },
       infoText: {
         en: 'Grab an orb',
         fr: 'Prenez un orb',
         ko: '구슬 줍기',
+      },
+      run: function(data) {
+        data.fourteenCount = data.fourteenCount || 0;
+        data.fourteenCount++;
       },
     },
     {
@@ -135,14 +141,7 @@
       condition: function(data) {
         return !data.fury;
       },
-      alarmText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez-vous',
-        ja: '散開',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread('alarm'),
     },
     {
       id: 'E5S Crippling Blow',
