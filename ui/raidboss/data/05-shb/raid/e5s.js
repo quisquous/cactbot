@@ -85,6 +85,10 @@
       regexFr: Regexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
+      preRun: function(data) {
+        data.fourteenCount = data.fourteenCount || 0;
+        data.fourteenCount++;
+      },
       condition: function(data) {
         return data.fourteenCount < 3;
       },
@@ -92,10 +96,6 @@
         en: 'Grab an orb',
         fr: 'Prenez un orb',
         ko: '구슬 줍기',
-      },
-      run: function(data) {
-        data.fourteenCount = data.fourteenCount || 0;
-        data.fourteenCount++;
       },
     },
     {
