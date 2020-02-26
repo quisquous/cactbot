@@ -44,7 +44,7 @@
       regexFr: Regexes.startsUsing({ id: '4B91', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4B91', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4B91', source: '라무', capture: false }),
-      infoText:  {
+      infoText: {
         en: 'Look for adds',
         fr: 'Cherchez les adds',
         ko: '쫄 위치 확인',
@@ -87,7 +87,7 @@
         en: 'Grab an orb',
         fr: 'Prenez un orbe',
         ko: '구슬 줍기',
-      }
+      },
     },
     {
       id: 'E5N Stormcloud',
