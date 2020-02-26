@@ -21,6 +21,7 @@
       durationSeconds: 7,
       infoText: {
         en: 'Avoid Arrow',
+        ko: '화살표 피하기',
       },
     },
     {
@@ -88,6 +89,7 @@
       regex: Regexes.startsUsing({ source: 'Rukshs Dheem', id: '4B84', capture: false }),
       infoText: {
         en: 'Avoid Hands',
+        ko: '손 피하기',
       },
     },
   ],

@@ -175,10 +175,7 @@
       regexJa: Regexes.startsUsing({ id: '7BB', source: 'ラミア・プロセクター', capture: false }),
       regexCn: Regexes.startsUsing({ id: '7BB', source: '拉米亚解剖女王', capture: false }),
       regexKo: Regexes.startsUsing({ id: '7BB', source: '라미아 시체해부자', capture: false }),
-      alertText: {
-        en: 'Look Away!',
-        fr: 'Regardez ailleurs !',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'T7 Petrifaction 2',
@@ -188,10 +185,7 @@
       regexJa: Regexes.startsUsing({ id: '7B1', source: 'メリュジーヌ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '7B1', source: '美瑠姬奴', capture: false }),
       regexKo: Regexes.startsUsing({ id: '7B1', source: '멜뤼진', capture: false }),
-      alertText: {
-        en: 'Look Away!',
-        fr: 'Regardez ailleurs !',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'T7 Tail',

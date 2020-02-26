@@ -10,7 +10,7 @@
   zoneRegex: {
     en: /^The Copied Factory$/,
     cn: /^复制工厂废墟$/,
-    ko: /\(700\)/,
+    ko: /^복제된 공장 폐허$/,
   },
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [
@@ -42,7 +42,7 @@
         de: 'zur südlichen Kante',
         fr: 'Allez au Sud',
         cn: '前往南侧边缘',
-        ko: '남쪽 구석으로',
+        ko: '남쪽으로',
       },
     },
   ],
@@ -57,13 +57,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Copied Serial Energy Assault',
@@ -77,7 +71,7 @@
         de: 'Hinter Ihn',
         fr: 'Derrière le boss',
         cn: '背面',
-        ko: '보스 뒤로',
+        ko: '보스 앞 피하기',
       },
     },
     {
@@ -103,29 +97,7 @@
       regexDe: Regexes.startsUsing({ id: '48CE', source: 'Befehlsmodell Mit Omnigelenk' }),
       regexFr: Regexes.startsUsing({ id: '48CE', source: 'Modèle Multiarticulé : Commandant' }),
       regexJa: Regexes.startsUsing({ id: '48CE', source: '多関節型：司令機' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches.target == data.me || data.role != 'healer')
-          return;
-
-        return {
-          en: 'Buster on ' + data.ShortName(matches.target),
-          de: 'Tankbuster auf ' + data.ShortName(matches.target),
-          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-          cn: '死刑点 ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 탱버',
-        };
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Copied Serial Centrifugal Spin',
@@ -154,7 +126,7 @@
         de: 'Geh nach Vorne/ Hinten',
         fr: 'Devant/Derrière',
         cn: '去前/后',
-        ko: '앞/뒤로 이동',
+        ko: '양옆 피하기',
       },
     },
     {
@@ -164,13 +136,7 @@
       regexDe: Regexes.startsUsing({ id: '48C3', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48C3', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48C3', source: '多関節型：司令機', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        de: 'Rückstoß',
-        fr: 'Poussée',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'Copied Hobbes Laser-Resistance Test',
@@ -182,13 +148,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Copied Hobbes Right Arm',
@@ -205,7 +165,7 @@
         de: 'Bewegenden Kreisen ausweichen',
         fr: 'Evitez les cercles mouvants',
         cn: '躲避移动圆圈',
-        ko: '움직이는 동그라미 피하기',
+        ko: '시계방향 회전하면서 나오는 장판 피하기',
       },
     },
     {
@@ -223,7 +183,7 @@
         de: 'Flammenwerfer hinter dir',
         fr: 'Regardez derrière (lance-flammes)',
         cn: '观察后方放火',
-        ko: '불 나오는 곳 확인하기',
+        ko: '뒤에서 불 나오는 곳 확인',
       },
     },
     {
@@ -242,7 +202,7 @@
         de: 'Raus',
         fr: 'Dehors',
         cn: '远离',
-        ko: '밖으로',
+        ko: '외곽으로',
       },
     },
     {
@@ -274,7 +234,7 @@
         de: 'Verbindungen Verteilen',
         fr: 'Ecartez les liens',
         cn: '散开扯断连线',
-        ko: '산개 선 (탱 무적처리도 가능)',
+        ko: '산개 선 (탱 혼자도 가능)',
       },
     },
     {
@@ -283,13 +243,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispertion',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied Hobbes Laser Sight',
@@ -298,13 +252,7 @@
       regexDe: Regexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4807', source: 'ホッブス', capture: false }),
-      alertText: {
-        en: 'Stack',
-        de: 'Sammeln',
-        fr: 'Package',
-        cn: '集合',
-        ko: '모이기',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'Copied Hobbes Electric Floor',
@@ -320,7 +268,7 @@
         de: 'Elektrischem Boden ausweichen',
         fr: 'Evitez le sol électrifié',
         cn: '躲避带电地板',
-        ko: '전기 장판 피하기',
+        ko: '바닥 장판 피하기',
       },
     },
     {
@@ -401,13 +349,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Copied Flight Unit Ballistic Impact',
@@ -415,13 +357,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispertion',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied Engels Marx Smash Right',
@@ -435,7 +371,7 @@
         de: 'Rechts',
         fr: 'Droite',
         cn: '右',
-        ko: '오른쪽',
+        ko: '오른쪽으로',
       },
     },
     {
@@ -450,7 +386,7 @@
         de: 'Links',
         fr: 'Gauche',
         cn: '左',
-        ko: '왼쪽',
+        ko: '왼쪽으로',
       },
     },
     {
@@ -465,7 +401,7 @@
         de: 'Vorne und Mitte',
         fr: 'Devant et au centre',
         cn: '前方中间',
-        ko: '앞 중앙',
+        ko: '앞으로 => 중앙으로',
       },
     },
     {
@@ -480,7 +416,7 @@
         de: 'Hinten und Seiten',
         fr: 'Arrière et côtés',
         cn: '后方两侧',
-        ko: '뒤 양옆',
+        ko: '뒤로 => 양옆으로',
       },
     },
     {
@@ -495,7 +431,7 @@
         de: 'Klauen töten',
         fr: 'Tuez les pinces',
         cn: '杀掉爪子',
-        ko: '톱 죽이기',
+        ko: '양옆 톱 처리',
       },
     },
     {
@@ -504,13 +440,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Tank Buster on YOU',
-        de: 'Tankbuster auf DIR',
-        fr: 'Tankbuster sur VOUS',
-        cn: '死刑点名',
-        ko: '탱버 대상자',
-      },
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'Copied Engels Diffuse Laser',
@@ -522,13 +452,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       // Technicallly this is Laser Sight 473A, but energy barrage
@@ -589,7 +513,7 @@
             de: 'Geh Raus + Zielsuch-AoE ausweichen',
             fr: 'Dehors + Evitez l\'AoE',
             cn: '远离 + 躲避弹幕',
-            ko: '바깥으로 + 장판 피하기',
+            ko: '바깥으로 빠지고 따라오는 장판 피하기',
           };
         }
       },
@@ -651,28 +575,7 @@
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer';
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑点 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Copied 9S Laser Saturation',
@@ -684,13 +587,7 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Copied 9S Laser Turret',
@@ -704,7 +601,7 @@
         de: 'Weg von Vorne',
         fr: 'Eloignez vous de l\'avant',
         cn: '远离前方',
-        ko: '앞 피하기',
+        ko: '정면 피하기',
       },
     },
     {
@@ -713,13 +610,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispertion',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',
@@ -762,7 +653,7 @@
         de: 'Geh nach Vorne / Hinten',
         fr: 'Allez devant / derrière',
         cn: '前往前/后',
-        ko: '앞/뒤로 이동',
+        ko: '앞/뒤로',
       },
     },
     {
@@ -810,7 +701,7 @@
         de: 'Adds',
         fr: 'Adds',
         cn: '小怪',
-        ko: '탱크 쫄',
+        ko: '탱크 쫄 나옴',
       },
     },
     {
@@ -836,13 +727,7 @@
       regexFr: Regexes.startsUsing({ id: '48F3', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48F3', source: '９Ｓ：多脚戦車従属', capture: false }),
       suppressSeconds: 2,
-      infoText: {
-        en: 'Stack',
-        de: 'Sammeln',
-        fr: 'Package',
-        cn: '集合',
-        ko: '모이기',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'Copied 9S Bubble',
@@ -857,7 +742,7 @@
         de: 'Geh in die Kuppel',
         fr: 'Allez dans les bulles',
         cn: '进入圈圈',
-        ko: '안전지대 안에 들어가기',
+        ko: '안전지대 안으로 들어가기',
       },
     },
   ],

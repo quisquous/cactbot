@@ -2,7 +2,10 @@
 
 // The Grand Cosmos
 [{
-  zoneRegex: /^The Grand Cosmos$/,
+  zoneRegex: {
+    en: /^The Grand Cosmos$/,
+    ko: /^그랑 코스모스$/,
+  },
   damageWarn: {
     'Cosmos Iron Justice': '491F',
     'Cosmos Smite Of Rage': '4921',

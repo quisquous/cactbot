@@ -43,6 +43,7 @@
       },
       infoText: {
         en: 'Look for small spear',
+        fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
       },
     },
@@ -53,15 +54,15 @@
       regexFr: Regexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
-      condition: function(data) {
-        return !data.firstAdd;
-      },
-      infoText: {
-        en: 'Look for adds',
-        ko: '쫄 위치 확인',
-      },
-      run: function(data) {
-        data.firstAdd = false;
+      infoText: function(data) {
+        if (data.seenFirstAdd) {
+          return {
+            en: 'Look for adds',
+            fr: 'Cherchez les adds',
+            ko: '쫄 위치 확인',
+          };
+        }
+        data.seenFirstAdd = true;
       },
     },
     {
@@ -73,6 +74,7 @@
       regexKo: Regexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
       infoText: {
         en: 'Fury\'s Bolt',
+        fr: 'Boule de foudre',
         ko: '라무 강화',
       },
     },
@@ -83,9 +85,17 @@
       regexFr: Regexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
+      condition: function(data) {
+        return !data.fourteenCount || data.fourteenCount < 2;
+      },
       infoText: {
         en: 'Grab an orb',
+        fr: 'Prenez un orb',
         ko: '구슬 줍기',
+      },
+      run: function(data) {
+        data.fourteenCount = data.fourteenCount || 0;
+        data.fourteenCount++;
       },
     },
     {
@@ -108,11 +118,13 @@
         if (!data.fury) {
           return {
             en: 'Ready Spread',
+            fr: 'Dispersion bientot',
             ko: '산개 준비',
           };
         } else if (data.fury) {
           return {
             en: 'donut AoE',
+            fr: 'AoE en donut',
             ko: '도넛 장판',
           };
         }
@@ -129,14 +141,7 @@
       condition: function(data) {
         return !data.fury;
       },
-      alarmText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez-vous',
-        ja: '散開',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread('alarm'),
     },
     {
       id: 'E5S Crippling Blow',
@@ -159,6 +164,7 @@
       regexKo: Regexes.startsUsing({ id: '4BB8', source: '라무', capture: false }),
       infoText: {
         en: 'Position for Stormcloud',
+        fr: 'Position pour les nuages',
         ko: '번개 구름 위치 잡기',
       },
     },
@@ -171,6 +177,7 @@
       regexKo: Regexes.startsUsing({ id: '4BAD', source: '라무', capture: false }),
       infoText: {
         en: 'Be in your position',
+        fr: 'Soyez en place',
         ko: '자기 위치에 있기',
       },
     },
@@ -183,6 +190,7 @@
       regexKo: Regexes.startsUsing({ id: '4BC4', source: '라무', capture: false }),
       alertText: {
         en: 'Ready for Chain',
+        fr: 'Préparez vous pour la chaine',
         ko: '번개 돌려막기 준비',
       },
     },
