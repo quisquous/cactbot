@@ -61,7 +61,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'E4S Evil Earth',
@@ -283,7 +283,7 @@
       regexJa: Regexes.startsUsing({ id: '4121', source: 'タイタン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4121', source: '泰坦', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4121', source: '타이탄', capture: false }),
-      response: Responses.getUnder('alarm'),
+      response: Responses.getUnder('alert'),
     },
     {
       id: 'E4S Earthen Fury',

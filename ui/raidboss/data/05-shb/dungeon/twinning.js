@@ -158,7 +158,7 @@
       regexJa: Regexes.startsUsing({ id: '3E0C', source: 'タイクーン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E0C', source: '泰空', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E0C', source: '타이쿤', capture: false }),
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Twinning Discharger',

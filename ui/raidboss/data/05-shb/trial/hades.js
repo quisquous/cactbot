@@ -247,7 +247,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Hades Ancient Darkness',

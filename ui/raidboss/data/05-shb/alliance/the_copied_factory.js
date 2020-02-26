@@ -219,7 +219,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied Hobbes Laser Sight',
@@ -333,7 +333,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied Engels Marx Smash Right',
@@ -568,7 +568,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'Copied 9S Goliath Laser Turret',

@@ -154,7 +154,7 @@
       regexCn: Regexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
       delaySeconds: 3,
-      response: Responses.move('alarm'),
+      response: Responses.move('alert'),
     },
     {
       id: 'TitaniaEx Bramble Knockback',

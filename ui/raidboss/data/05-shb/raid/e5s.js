@@ -141,7 +141,7 @@
       condition: function(data) {
         return !data.fury;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'E5S Crippling Blow',

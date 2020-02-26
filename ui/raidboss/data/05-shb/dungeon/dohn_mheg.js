@@ -133,7 +133,7 @@
       regexJa: Regexes.startsUsing({ id: '34F0', source: '楽聖のインク＝ゾン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '34F0', source: '乐圣 因克·佐恩', capture: false }),
       regexKo: Regexes.startsUsing({ id: '34F0', source: '대음악가 잉크 돈', capture: false }),
-      response: Responses.lookAway('alarm'),
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'Dohn Mheg Toad Choir',

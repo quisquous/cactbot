@@ -228,7 +228,7 @@
       condition: function(data, matches) {
         return !data.waiting && data.me == matches.target;
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'E2S Dark Fire Collect',
@@ -262,7 +262,7 @@
       condition: function(data, matches) {
         return data.me == matches.target && data.spell[data.me] == 'fire';
       },
-      response: Responses.spread('alarm'),
+      response: Responses.spread('alert'),
     },
     {
       id: 'E2S Shadoweye No Waiting',
