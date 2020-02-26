@@ -121,9 +121,8 @@ class PartyTracker {
   // returns the job name of the specified party member
   jobName(name) {
     let partyIndex = this.partyNames.indexOf(name);
-    if(partyIndex >= 0) {
+    if (partyIndex >= 0)
       return Util.jobEnumToJob(this.details[partyIndex].job);
-    }
     return null;
   }
 }
