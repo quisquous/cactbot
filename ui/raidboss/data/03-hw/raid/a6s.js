@@ -36,12 +36,12 @@
     },
     {
       id: 'A6S Mind Blast',
-      regex: Regexes.startsUsing({ source: 'Blaster', id: '15F3', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Blaster', id: '15F3', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Fracasseur', id: '15F3', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ブラスター', id: '15F3', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '爆破者', id: '15F3', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '폭파자', id: '15F3', capture: false }),
+      regex: Regexes.startsUsing({ source: 'Blaster', id: '15F3' }),
+      regexDe: Regexes.startsUsing({ source: 'Blaster', id: '15F3' }),
+      regexFr: Regexes.startsUsing({ source: 'Fracasseur', id: '15F3' }),
+      regexJa: Regexes.startsUsing({ source: 'ブラスター', id: '15F3' }),
+      regexCn: Regexes.startsUsing({ source: '爆破者', id: '15F3' }),
+      regexKo: Regexes.startsUsing({ source: '폭파자', id: '15F3' }),
       condition: function(data) {
         return data.CanSilence();
       },

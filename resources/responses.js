@@ -69,6 +69,10 @@ let getTarget = (matches) => {
   return matches.target || matches[1];
 };
 
+let getSource = (matches) => {
+  return matches.source || matches[0];
+};
+
 // FIXME: make this work for any number of pairs of params
 let combineFuncs = function(text1, func1, text2, func2) {
   let obj = {};
@@ -292,6 +296,15 @@ let Responses = {
     };
     return obj;
   },
+  doritoStack: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Dorito Stack',
+      de: 'Mit Marker sammeln',
+      cn: '点名集合',
+    };
+    return obj;
+  },
   spreadThanStack: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
@@ -478,6 +491,14 @@ let Responses = {
     };
     return obj;
   },
+  goMiddle: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'go into middle',
+      de: 'in die Mitte gehen',
+    };
+    return obj;
+  },
   goRight: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
@@ -584,36 +605,43 @@ let Responses = {
   },
   sleep: (sev) => {
     let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Sleep',
-      de: 'Schlaf',
-      fr: 'Sommeil',
-      ja: 'スリプル',
-      cn: '催眠',
-      ko: '슬리플',
+    obj[defaultAlertText(sev)] = (data, matches) => {
+      let source = getSource(matches);
+      return {
+        en: 'Sleep ' + source,
+        de: 'Schlaf auf ' + source,
+        fr: 'Sommeil => ' + source,
+        ja: 'スリプル => ' + source,
+        cn: '催眠 => ' + source,
+        ko: '슬리플 => ' + source,
+      };
     };
     return obj;
   },
   stun: (sev) => {
     let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Stun',
-      de: 'Betäubung',
-      fr: 'Étourdissement',
-      ja: 'スタン',
-      cn: '眩晕',
-      ko: '기절',
+    obj[defaultAlertText(sev)] = (data, matches) => {
+      let source = getSource(matches);
+      return {
+        en: 'Stun ' + source,
+        de: 'Betäubung auf ' + source,
+        fr: 'Étourdissement => ' + source,
+        ja: 'スタン => ' + source,
+        cn: '眩晕 => ' + source,
+        ko: '기절 => ' + source,
+      };
     };
     return obj;
   },
   interupt: (sev) => {
     let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'interupt',
-      de: 'unterbrechen',
-      fr: 'Interrompez',
-      ja: 'Interrupt',
-      ko: '기술 시전 끊기',
+    obj[defaultAlertText(sev)] = (data, matches) => {
+      let source = getSource(matches);
+      return {
+        en: 'interupt ' + source,
+        de: 'unterbreche ' + source,
+        ko: '기술 시전 끊기 => ' + source,
+      };
     };
     return obj;
   },
