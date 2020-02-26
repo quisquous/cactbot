@@ -44,7 +44,12 @@ let tests = {
   },
   doubleSeverity: () => {
     // TODO: we could figure out which has multiple parameters programatically.
-    let doubleFuncs = ['tankBusterSwap'];
+    let doubleFuncs = [
+      'tankBuster',
+      'tankBusterSwap',
+      'knockbackOn',
+      'preyOn',
+    ];
 
     for (let i = 0; i < doubleFuncs.length; ++i) {
       for (let sev1 in severityMap) {

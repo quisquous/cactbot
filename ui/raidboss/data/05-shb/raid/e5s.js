@@ -43,6 +43,7 @@
       },
       infoText: {
         en: 'Look for small spear',
+        fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
       },
     },
@@ -53,15 +54,15 @@
       regexFr: Regexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
-      condition: function(data) {
-        return !data.firstAdd;
-      },
-      infoText: {
-        en: 'Look for adds',
-        ko: '쫄 위치 확인',
-      },
-      run: function(data) {
-        data.firstAdd = false;
+      infoText: function(data) {
+        if (data.seenFirstAdd) {
+          return {
+            en: 'Look for adds',
+            fr: 'Cherchez les adds',
+            ko: '쫄 위치 확인',
+          };
+        }
+        data.seenFirstAdd = true;
       },
     },
     {
@@ -73,6 +74,7 @@
       regexKo: Regexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
       infoText: {
         en: 'Fury\'s Bolt',
+        fr: 'Boule de foudre',
         ko: '라무 강화',
       },
     },
@@ -83,9 +85,17 @@
       regexFr: Regexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
+      condition: function(data) {
+        return !data.fourteenCount || data.fourteenCount < 2;
+      },
       infoText: {
         en: 'Grab an orb',
+        fr: 'Prenez un orbe',
         ko: '구슬 줍기',
+      },
+      run: function(data) {
+        data.fourteenCount = data.fourteenCount || 0;
+        data.fourteenCount++;
       },
     },
     {
@@ -108,11 +118,13 @@
         if (!data.fury) {
           return {
             en: 'Ready Spread',
+            fr: 'Dispersion bientot',
             ko: '산개 준비',
           };
         } else if (data.fury) {
           return {
             en: 'donut AoE',
+            fr: 'AoE en donut',
             ko: '도넛 장판',
           };
         }
@@ -129,14 +141,7 @@
       condition: function(data) {
         return !data.fury;
       },
-      alarmText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez-vous',
-        ja: '散開',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread('alarm'),
     },
     {
       id: 'E5S Crippling Blow',
@@ -159,6 +164,7 @@
       regexKo: Regexes.startsUsing({ id: '4BB8', source: '라무', capture: false }),
       infoText: {
         en: 'Position for Stormcloud',
+        fr: 'Position pour les nuages',
         ko: '번개 구름 위치 잡기',
       },
     },
@@ -171,6 +177,7 @@
       regexKo: Regexes.startsUsing({ id: '4BAD', source: '라무', capture: false }),
       infoText: {
         en: 'Be in your position',
+        fr: 'Soyez en place',
         ko: '자기 위치에 있기',
       },
     },
@@ -183,6 +190,7 @@
       regexKo: Regexes.startsUsing({ id: '4BC4', source: '라무', capture: false }),
       alertText: {
         en: 'Ready for Chain',
+        fr: 'Préparez vous pour la chaine',
         ko: '번개 돌려막기 준비',
       },
     },
@@ -197,5 +205,125 @@
     },
   ],
   timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'stormcloud': 'Cumulonimbus-Wolke',
+        'Ramuh': 'Ramuh',
+        'Raiden': 'Raiden',
+        'Will Of Ixion': 'Will Of Ixion', // FIXME
+      },
+      'replaceText': {
+        'Volt Strike': 'Voltschlag',
+        'Tribunal Summons': 'Gedankenentstehung',
+        'Thunderstorm': 'Gewitter',
+        'Stratospear Summons': 'Stromgenerierung',
+        'Stormcloud Summons': 'Elektrizitätsgenerierung',
+        'Stepped Leader': 'Leuchtspur',
+        'Shock Strike': 'Schockschlag',
+        'Shock Blast': 'Schockstoß',
+        'Shock(?! )': 'Entladung',
+        'Lightning Bolt': 'Blitzschlag',
+        'Levinforce': 'Blitzkraft',
+        'Judgment Volts': 'Gewitter des Urteils',
+        'Judgment Jolt': 'Blitz des Urteils',
+        'Impact': 'Impakt',
+        'Gallop': 'Galopp',
+        'Fury\'s Fourteen': 'Wütende Vierzehn',
+        'Fury\'s Bolt': 'Wütender Blitz',
+        'Executor Summons': 'Wächtergenerierung',
+        'Deadly Discharge': 'Tödliche Entladung',
+        'Crippling Blow': 'Verkrüppelnder Schlag',
+        'Chaos Strike': 'Chaosschlag',
+        'Chain Lightning': 'Kettenblitz',
+        'Centaur\'s Charge': 'Zentaurenansturm',
+      },
+      '~effectNames': {
+        'System Shock': 'Elektrisiert',
+        'Hated of Levin': 'Fluch des Blitzes',
+        'Electrified': 'Stromleiter',
+        'Damage Down': 'Schaden -',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'stormcloud': 'Cumulonimbus',
+        'Ramuh': 'Ramuh',
+        'Raiden': 'Raiden',
+        'Will Of Ixion': 'Réplique d\'Ixion',
+      },
+      'replaceText': {
+        'Volt Strike': 'Frappe d\'éclair',
+        'Tribunal Summons': 'Manifestations de l\'esprit',
+        'Thunderstorm': 'Tempête de foudre',
+        'Stratospear Summons': 'Conjuration de dards',
+        'Stormcloud Summons': 'Nuage d\'orage',
+        'Stepped Leader': 'Traceur',
+        'Shock Strike': 'Frappe de choc',
+        'Shock Blast': 'Impact foudroyant',
+        'Shock(?! )': 'Décharge électrostatique',
+        'Lightning Bolt': 'Éclair de foudre',
+        'Levinforce': 'Déflagration fulgurante',
+        'Judgment Volts': 'Éclair de chaleur du jugement',
+        'Judgment Jolt': 'Front orageux du jugement',
+        'Impact': 'Impact',
+        'Gallop': 'Galop',
+        'Fury\'s Fourteen': 'Boules de foudre - Quattordecim',
+        'Fury\'s Bolt': 'Boules de foudre',
+        'Executor Summons': 'Disjonction corporelle',
+        'Deadly Discharge': 'Décharge mortelle',
+        'Crippling Blow': 'Coup handicapant',
+        'Chaos Strike': 'Frappe chaotique',
+        'Chain Lightning': 'Chaîne d\'éclairs',
+        'Centaur\'s Charge': 'Charge centaure',
+      },
+      '~effectNames': {
+        'System Shock': 'Électro-choc',
+        'Hated of Levin': 'Malédiction du Patriarche fulgurant',
+        'Electrified': 'Électrocution irradiante',
+        'Damage Down': 'Malus de dégâts',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'stormcloud': '積乱雲',
+        'Ramuh': 'ラムウ',
+        'Raiden': 'ライディーン',
+        'Will Of Ixion': 'Will Of Ixion', // FIXME
+      },
+      'replaceText': {
+        'Volt Strike': 'ボルトストライク',
+        'Tribunal Summons': '思念体生成',
+        'Thunderstorm': 'サンダーストーム',
+        'Stratospear Summons': '武具生成',
+        'Stormcloud Summons': '雷雲生成',
+        'Stepped Leader': 'ステップトリーダー',
+        'Shock Strike': 'ショックストライク',
+        'Shock Blast': 'ショックブラスト',
+        'Shock(?! )': '放電',
+        'Lightning Bolt': '落雷',
+        'Levinforce': 'ライトニングフォース',
+        'Judgment Volts': '裁きの熱雷',
+        'Judgment Jolt': '裁きの界雷',
+        'Impact': '衝撃',
+        'Gallop': 'ギャロップ',
+        'Fury\'s Fourteen': 'フォーティーン・チャージボルト',
+        'Fury\'s Bolt': 'チャージボルト',
+        'Executor Summons': '分離体生成',
+        'Deadly Discharge': 'デッドリーディスチャージ',
+        'Crippling Blow': '痛打',
+        'Chaos Strike': 'カオスストライク',
+        'Chain Lightning': 'チェインライトニング',
+        'Centaur\'s Charge': 'セントールチャージ',
+      },
+      '~effectNames': {
+        'System Shock': '電気ショック',
+        'Hated of Levin': '雷神の呪い',
+        'Electrified': '過剰帯電',
+        'Damage Down': 'ダメージ低下',
+      },
+    },
   ],
 }];
