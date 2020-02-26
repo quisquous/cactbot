@@ -18,6 +18,8 @@ let Options = {
   PerTriggerOptions: {},
 
   Triggers: [],
+
+  PlayerNameOverride: null,
 };
 
 let gTimelineController;
@@ -50,6 +52,12 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
     Options.audioAllowed = !!parseInt(audio);
     if (!previous && Options.audioAllowed)
       console.log('Enabling audio via query parameter');
+  }
+
+  let PlayerNameOverride = params.get('player');
+  if (PlayerNameOverride !== null) {
+    Options.PlayerNameOverride = PlayerNameOverride;
+    console.log('Enabling player name override via query parameter, ' + PlayerNameOverride);
   }
 
   let container = document.getElementById('container');

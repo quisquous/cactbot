@@ -227,8 +227,20 @@ class PopupText {
   }
 
   OnJobChange(e) {
-    this.me = e.detail.name;
-    this.job = e.detail.job;
+    // allow override of player via query parameter
+    // only apply override if player is in party
+    if(Options.PlayerNameOverride !== null && this.partyTracker.inParty(Options.PlayerNameOverride)) {
+      this.me = Options.PlayerNameOverride;
+      this.job = this.partyTracker.jobName(this.me);
+      // if there's any issue with looking up player name for override, fall back to default behavior
+      if(this.job === null || this.job === undefined) {
+        this.me = e.detail.name;
+        this.job = e.detail.job;
+      }
+    } else {
+      this.me = e.detail.name;
+      this.job = e.detail.job;
+    }
     this.role = Util.jobToRole(this.job);
     this.ReloadTimelines();
   }
