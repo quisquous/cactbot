@@ -45,6 +45,7 @@
         en: 'Look for small spear',
         fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
+        cn: '找短矛',
       },
     },
     {
@@ -60,6 +61,7 @@
             en: 'Look for adds',
             fr: 'Cherchez les adds',
             ko: '쫄 위치 확인',
+            cn: '冲锋',
           };
         }
         data.seenFirstAdd = true;
@@ -76,6 +78,7 @@
         en: 'Fury\'s Bolt',
         fr: 'Boule de foudre',
         ko: '라무 강화',
+        cn: '强化',
       },
     },
     {
@@ -92,6 +95,7 @@
         en: 'Grab an orb',
         fr: 'Prenez un orbe',
         ko: '구슬 줍기',
+        cn: '吃球',
       },
       run: function(data) {
         data.fourteenCount = data.fourteenCount || 0;
@@ -120,12 +124,14 @@
             en: 'Ready Spread',
             fr: 'Dispersion bientot',
             ko: '산개 준비',
+            cn: '准备分散',
           };
         } else if (data.fury) {
           return {
             en: 'donut AoE',
             fr: 'AoE en donut',
             ko: '도넛 장판',
+            cn: '环形AOE',
           };
         }
       },
@@ -166,6 +172,7 @@
         en: 'Position for Stormcloud',
         fr: 'Position pour les nuages',
         ko: '번개 구름 위치 잡기',
+        cn: '雷云站位',
       },
     },
     {
@@ -179,6 +186,7 @@
         en: 'Be in your position',
         fr: 'Soyez en place',
         ko: '자기 위치에 있기',
+        cn: '冲锋站位',
       },
     },
     {
@@ -192,6 +200,7 @@
         en: 'Ready for Chain',
         fr: 'Préparez vous pour la chaine',
         ko: '번개 돌려막기 준비',
+        cn: '闪电链',
       },
     },
     {

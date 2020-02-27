@@ -12,9 +12,9 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 220px;
-  height: 120px;
-  font-size: 14px;
+  width: 400px;
+  height: 150px;
+  font-size: 20px;
 }
 
 .hide-timeline #timeline-container {
@@ -58,21 +58,21 @@
 
 .info-text {
   color: #2b2;
-  font-size: 140%;
+  font-size: 400%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   will-change: transform;
 }
 
 .alert-text {
   color: #fb0;
-  font-size: 170%;
+  font-size: 450%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   will-change: transform;
 }
 
 .alarm-text {
   color: #f30;
-  font-size: 230%;
+  font-size: 500%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   will-change: transform;
 }
