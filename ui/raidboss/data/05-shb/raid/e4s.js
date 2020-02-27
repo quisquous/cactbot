@@ -15,7 +15,14 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
-      response: Responses.tankBuster(),
+      alertText: {
+        en: 'Tank Busters',
+        de: 'Tank buster',
+        fr: 'Tank busters',
+        ja: 'タンクバスター',
+        cn: '坦克死刑',
+        ko: '탱버',
+      },
     },
   ],
   triggers: [
@@ -53,6 +60,11 @@
       regexJa: Regexes.startsUsing({ id: '4116', source: 'タイタン' }),
       regexCn: Regexes.startsUsing({ id: '4116', source: '泰坦' }),
       regexKo: Regexes.startsUsing({ id: '4116', source: '타이탄' }),
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      // As this seems to usually seems to be invulned,
+      // don't make a big deal out of it.
       response: Responses.tankBuster(),
     },
     {
@@ -374,7 +386,7 @@
       regexJa: Regexes.startsUsing({ id: '4135', source: 'マキシタイタン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4135', source: '极大泰坦', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4135', source: '거대 타이탄', capture: false }),
-      response: Responses.knockback(),
+      response: Responses.knockback('info'),
     },
     {
       id: 'E4S Weight of the World',
@@ -387,7 +399,36 @@
     {
       id: 'E4S Megalith',
       regex: Regexes.headMarker({ id: '005D' }),
-      response: Responses.stackOn(),
+      alertText: function(data, matches) {
+        if (data.role != 'tank') {
+          return {
+            en: 'Away from Tanks',
+            ja: 'タンクから離れて',
+            de: 'Weg von den Tanks',
+            fr: 'Loin des tanks',
+            cn: '远离坦克',
+            ko: '탱커에서 멀어지기',
+          };
+        }
+        if (matches.target == data.me) {
+          return {
+            en: 'Stack on YOU',
+            ja: '自分にシェア',
+            de: 'Auf DIR sammeln',
+            fr: 'Package sur VOUS',
+            cn: '集合分摊',
+            ko: '쉐어징 대상자',
+          };
+        }
+        return {
+          en: 'Stack on ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にシェア',
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          cn: '集合 ->' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
+        };
+      },
     },
     {
       id: 'E4S Granite Gaol',

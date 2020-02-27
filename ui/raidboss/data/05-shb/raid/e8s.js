@@ -146,7 +146,7 @@
     {
       id: 'E8S Banish III',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
-      response: Responses.stack(),
+      response: Responses.stack('info'),
     },
     {
       id: 'E8S Banish III Divided',
@@ -318,7 +318,7 @@
       id: 'E8S Banish Divided',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7F', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.spread('alert'),
+      response: Responses.spread('alarm'),
     },
   ],
   timelineReplace: [

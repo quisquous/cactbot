@@ -92,7 +92,7 @@
       regexJa: Regexes.startsUsing({ id: '40F6', source: 'タイタン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '40F6', source: '泰坦', capture: false }),
       regexKo: Regexes.startsUsing({ id: '40F6', source: '타이탄', capture: false }),
-      response: Responses.knockback(),
+      response: Responses.knockback('info'),
     },
     {
       id: 'E4N Fault Zone',

@@ -112,7 +112,27 @@
           };
         }
       },
-      response: Responses.tankBuster(),
+      alertText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tank buster sur VOUS',
+            ja: '自分にタンクバスター',
+            cn: '死刑点名',
+            ko: '탱버 대상자',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Tank Busters',
+            fr: 'Tank busters',
+            ja: 'タンクバスター',
+            cn: '死刑',
+            ko: '탱버',
+          };
+        }
+      },
     },
     {
       id: 'E3S Undersea Quake Outside',
@@ -139,7 +159,7 @@
       regexJa: Regexes.startsUsing({ id: '3FEE', source: 'リヴァイアサン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3FEE', source: '利维亚桑', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3FEE', source: '리바이어선', capture: false }),
-      response: Responses.getOut(),
+      response: Responses.doSides('alarm'),
     },
     {
       id: 'E3S Flare',

@@ -169,7 +169,14 @@
         return data.role == 'healer';
       },
       suppressSeconds: 5,
-      response: Responses.tankBuster(),
+      infoText: {
+        en: 'Tank Busters',
+        de: 'Tank Buster',
+        ja: 'タンクバスター',
+        fr: 'Tankbusters',
+        cn: '死刑',
+        ko: '탱버',
+      },
     },
     {
       id: 'InnoEx Holy Sword Me',

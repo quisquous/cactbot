@@ -28,7 +28,37 @@
       regexJa: Regexes.startsUsing({ id: '4158', source: 'ハーデス' }),
       regexCn: Regexes.startsUsing({ id: '4158', source: '哈迪斯' }),
       regexKo: Regexes.startsUsing({ id: '4158', source: '하데스' }),
-      response: Responses.tankBuster(),
+      alertText: function(data, matches) {
+        if (matches.target == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+            cn: '死刑',
+            ko: '탱크버스터 -> YOU',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            cn: '死刑 ->' + data.ShortName(matches.target),
+            ko: '탱버 ->' + data.ShortName(matches.target),
+          };
+        }
+      },
+      infoText: function(data, matches) {
+        if (matches.target == data.me)
+          return;
+        return {
+          en: 'Away From ' + data.ShortName(matches.target),
+          de: 'Weg von ' + data.ShortName(matches.target),
+          fr: 'Loin de ' + data.ShortName(matches.target),
+          cn: '远离 ' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + ' 한테서 피하세요',
+        };
+      },
     },
     {
       id: 'Hades Bad Faith Left',
@@ -117,7 +147,7 @@
       regexJa: Regexes.startsUsing({ id: '4170', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4170', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4170', source: '하데스', capture: false }),
-      response: Responses.getIn(),
+      response: Responses.goMiddle(),
     },
     {
       id: 'Hades Doom',
@@ -181,7 +211,14 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      response: Responses.tankBuster(),
+      infoText: {
+        en: 'Tank Busters',
+        de: 'Tank Buster',
+        fr: 'Tank busters',
+        ja: 'タンクバスター',
+        cn: '坦克死刑',
+        ko: '탱크버스터',
+      },
     },
     {
       id: 'Hades Dual Strike',

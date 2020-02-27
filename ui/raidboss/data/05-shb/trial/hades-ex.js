@@ -383,7 +383,14 @@
         return data.role == 'healer';
       },
       suppressSeconds: 5,
-      response: Responses.tankBuster(),
+      alertText: {
+        en: 'Tank Busters',
+        de: 'Tankbuster',
+        fr: 'Tankbuster',
+        ja: 'タンクにTB',
+        cn: '坦克死刑',
+        ko: '탱버',
+      },
     },
     {
       id: 'HadesEx Doom',
@@ -418,7 +425,7 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 2;
       },
-      response: Responses.lookAway('alert'),
+      response: Responses.lookAway('alarm'),
     },
     {
       id: 'HadesEx Beyond Death',
@@ -513,7 +520,35 @@
       regexDe: Regexes.startsUsing({ id: '47D1', source: 'Schatten Des Prim-Ascian' }),
       regexFr: Regexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
       regexJa: Regexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
-      response: Responses.tankBuster(),
+      alertText: function(data, matches) {
+        if (matches.target == data.me) {
+          return {
+            en: 'Tank Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+            ja: '自分にTB',
+            cn: '死刑点名',
+            ko: '탱버 대상자',
+          };
+        }
+        if (data.role == 'healer') {
+          return {
+            en: 'Buster on ' + data.ShortName(matches.target),
+            de: 'Tankbuster auf ' + data.ShortName(matches.target),
+            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にTB',
+            cn: '死刑点 ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
+          };
+        }
+        return {
+          en: 'Away from ' + data.ShortName(matches.target),
+          fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'から離れて',
+          cn: '远离 ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 탱버',
+        };
+      },
     },
     {
       id: 'HadesEx Megiddo Flame',
@@ -550,7 +585,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.getOut(),
+      response: Responses.getOut('alarm'),
     },
     {
       id: 'HadesEx Aetherial Gaol',

@@ -114,7 +114,14 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      response: Responses.tankBuster(),
+      infoText: {
+        en: 'tank busters',
+        de: 'Tank buster',
+        fr: 'Tank busters',
+        ja: 'タンクバスター',
+        cn: '死刑',
+        ko: '탱버',
+      },
     },
     {
       id: 'E2S Doomvoid Cleaver',
@@ -270,7 +277,7 @@
       condition: function(data) {
         return !data.waiting;
       },
-      response: Responses.lookAwayFrom(),
+      response: Responses.lookAwayFrom('alarm'),
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {

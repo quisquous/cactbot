@@ -20,7 +20,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      response: Responses.interupt(),
+      response: Responses.stun(),
     },
     {
       id: 'Twinning Berserk',
@@ -53,7 +53,12 @@
       id: 'Twinning Impact + Pounce',
       regex: Regexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
       suppressSeconds: 10,
-      response: Responses.spread(),
+      infoText: {
+        en: 'Spread (avoid cages)',
+        de: 'Verteilen (Vermeide "Käfige")',
+        fr: 'Dispersez vous (évitez les cages)',
+        ko: '산개 (몬스터 우리 피하기)',
+      },
     },
     {
       id: 'Twinning Beastly Roar',

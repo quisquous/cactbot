@@ -47,7 +47,13 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      response: Responses.tankBuster(),
+      infoText: {
+        en: 'tank busters',
+        de: 'tank buster',
+        fr: 'Tank busters',
+        cn: '死刑',
+        ko: '탱버',
+      },
     },
     {
       id: 'E2N Entropy',
