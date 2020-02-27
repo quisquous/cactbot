@@ -31,6 +31,19 @@ class PopupText {
     this.alertText = document.getElementById('popup-text-alert');
     this.alarmText = document.getElementById('popup-text-alarm');
 
+    if (Options.PlayerNameOverride !== null &&
+      typeof BrowserTTSEngine === 'function') {
+      this.ttsEngine = new BrowserTTSEngine();
+      this.ttsSay = function(text) {
+        this.ttsEngine.play(ttsText);
+      };
+    } else {
+      this.ttsSay = function(text) {
+        let cmd = { 'call': 'cactbotSay', 'text': ttsText };
+        window.callOverlayHandler(cmd);
+      };
+    }
+
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
@@ -635,13 +648,7 @@ class PopupText {
         };
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
         // if we're overriding player name and browser tts engine is loaded, use that
-        if (Options.PlayerNameOverride !== null &&
-            typeof BrowserTTSEngine === 'function') {
-          BrowserTTSEngine.play(ttsText);
-        } else {
-          let cmd = { 'call': 'cactbotSay', 'text': ttsText };
-          window.callOverlayHandler(cmd);
-        }
+        this.ttsSay(ttsText);
       } else if (soundUrl && playSounds) {
         let audio = new Audio(soundUrl);
         audio.volume = soundVol;
