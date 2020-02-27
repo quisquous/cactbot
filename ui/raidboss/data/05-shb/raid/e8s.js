@@ -190,10 +190,6 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
-      run: function(data) {
-        data.wyrmsLament = data.wyrmsLament || 0;
-        data.wyrmsLament++;
-      },
     },
     {
       id: 'E8S Wyrm\'s Lament Counter',
