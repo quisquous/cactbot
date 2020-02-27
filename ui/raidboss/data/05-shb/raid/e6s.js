@@ -173,15 +173,15 @@
       alertText: function(data, matches) {
         if (data.me == matches.source) {
           return {
-            en: 'Tethered to ' + matches.target,
-            fr: 'Lié à ' + matches.target,
-            ko: '선 연결 짝: ' + matches.target,
+            en: 'Tethered to ' + data.ShortName(matches.target),
+            fr: 'Lié à ' + data.ShortName(matches.target),
+            ko: '선 연결 짝: ' + data.ShortName(matches.target),
           };
         }
         return {
-          en: 'Tethered to ' + matches.source,
-          fr: 'Lié à ' + matches.source,
-          ko: '선 연결 짝: ' + matches.source,
+          en: 'Tethered to ' + data.ShortName(matches.source),
+          fr: 'Lié à ' + data.ShortName(matches.source),
+          ko: '선 연결 짝: ' + data.ShortName(matches.source),
         };
       },
     },
