@@ -159,7 +159,7 @@
       regexJa: Regexes.startsUsing({ id: '3FEE', source: 'リヴァイアサン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3FEE', source: '利维亚桑', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3FEE', source: '리바이어선', capture: false }),
-      response: Responses.doSides('alarm'),
+      response: Responses.goSides('alarm'),
     },
     {
       id: 'E3S Flare',

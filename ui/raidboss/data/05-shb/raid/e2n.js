@@ -37,12 +37,12 @@
     },
     {
       id: 'E2N Shadowflame Healer',
-      regex: Regexes.startsUsing({ id: '3E4D', source: 'Voidwalker' }),
-      regexDe: Regexes.startsUsing({ id: '3E4D', source: 'Nichtswandler' }),
-      regexFr: Regexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant' }),
-      regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー' }),
-      regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
-      regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
+      regex: Regexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '3E4D', source: 'Nichtswandler', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
       suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer';

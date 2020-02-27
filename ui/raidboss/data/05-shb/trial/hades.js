@@ -202,12 +202,12 @@
     },
     {
       id: 'Hades Dual Strike Healer',
-      regex: Regexes.startsUsing({ id: '4161', source: 'Hades' }),
-      regexDe: Regexes.startsUsing({ id: '4161', source: 'Hades' }),
-      regexFr: Regexes.startsUsing({ id: '4161', source: 'Hadès' }),
-      regexJa: Regexes.startsUsing({ id: '4161', source: 'ハーデス' }),
-      regexCn: Regexes.startsUsing({ id: '4161', source: '哈迪斯' }),
-      regexKo: Regexes.startsUsing({ id: '4161', source: '하데스' }),
+      regex: Regexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4161', source: 'Hadès', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4161', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4161', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4161', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },

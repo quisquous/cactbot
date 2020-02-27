@@ -374,11 +374,11 @@
     },
     {
       id: 'HadesEx Healers Blizzard/Fire IV',
-      regex: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'] }),
-      regexCn: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['以格约姆之影', '拉哈布雷亚之影'] }),
-      regexDe: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhms Schatten', 'Lahabreas Schatten'] }),
-      regexFr: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'] }),
-      regexJa: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'] }),
+      regex: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['以格约姆之影', '拉哈布雷亚之影'], capture: false }),
+      regexDe: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
+      regexFr: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
+      regexJa: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
