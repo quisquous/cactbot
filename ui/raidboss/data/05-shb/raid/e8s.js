@@ -36,6 +36,7 @@
         return {
           en: 'Tether ' + data.rushCount,
           fr: 'Lien ' + data.rushCount,
+          ko: '선: ' + data.rushCount,
         };
       },
     },
@@ -60,6 +61,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       alertText: {
         en: 'Go Front / Sides',
+        ko: '앞 / 양옆으로',
       },
       run: function(data) {
         data.firstFrost = data.firstFrost || 'driving';
@@ -76,11 +78,27 @@
           return {
             en: 'Biting Frost Next',
             fr: 'Taillade de givre bientot',
+            ko: '다음: Biting/スラッシュ',
           };
         }
         return {
           en: 'Driving Frost Next',
           fr: 'Percée de givre bientot',
+          ko: '다음: Driving/スラスト',
+        };
+      },
+      tts: function(data) {
+        if (data.firstFrost == 'biting') {
+          return {
+            en: 'Biting Frost Next',
+            fr: 'Taillade de givre bientot',
+            ko: '다음: 바이팅 스라슈',
+          };
+        }
+        return {
+          en: 'Driving Frost Next',
+          fr: 'Percée de givre bientot',
+          ko: '다음: 드라이빙 스라스토',
         };
       },
     },
@@ -100,6 +118,7 @@
       infoText: {
         en: 'Cleanse',
         fr: 'Guérison',
+        ko: '에스나',
       },
     },
     {
@@ -133,6 +152,7 @@
       infoText: {
         en: 'Chain on YOU',
         fr: 'Chaine sur VOUS',
+        ko: '사슬 대상자',
       },
     },
     {
@@ -142,6 +162,7 @@
       infoText: {
         en: 'Orb on YOU',
         fr: 'Orbe sur VOUS',
+        ko: '구슬 대상자',
       },
     },
     {
@@ -150,6 +171,7 @@
       infoText: {
         en: 'Stacks',
         fr: 'Packages',
+        ko: '쉐어징',
       },
     },
     {
@@ -165,12 +187,14 @@
           return {
             en: 'Morn Afah on YOU',
             fr: 'Morn Afah sur YOU',
+            ko: '몬아파 대상자',
           };
         }
         if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
           return {
             en: 'Morn Afah on ' + matches.target,
             fr: 'Morn Afah sur ' + matches.target,
+            ko: '"' + matches.target + '" 몬 아파',
           };
         }
       },
@@ -226,6 +250,7 @@
         return {
           en: 'Red #' + data.wyrmclawNumber,
           fr: 'Rouge #' + data.wyrmclawNumber,
+          ko: '빨강 ' + data.wyrmclawNumber + '번',
         };
       },
     },
@@ -256,6 +281,7 @@
         return {
           en: 'Blue #' + data.wyrmfangNumber,
           fr: 'Bleu #' + data.wyrmfangNumber,
+          ko: '파랑 ' + data.wyrmclawNumber + '번',
         };
       },
     },
@@ -276,6 +302,7 @@
       alertText: {
         en: 'Back Then Front',
         fr: 'Derrière puis devant',
+        ko: '뒤로 => 앞으로',
       },
     },
     {
@@ -284,6 +311,7 @@
       alertText: {
         en: 'Front Then Back',
         fr: 'Devant puis derrière',
+        ko: '앞으로 => 뒤로',
       },
     },
     {
@@ -306,6 +334,7 @@
       infoText: {
         en: 'Cleanse DPS Only',
         fr: 'Guérissez les DPS seulement',
+        ko: '딜러만 에스나',
       },
     },
     {

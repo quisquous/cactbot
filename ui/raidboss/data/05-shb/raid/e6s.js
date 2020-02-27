@@ -25,11 +25,13 @@
           return {
             en: 'Enumeration on YOU',
             fr: 'Enumération sur VOUS',
+            ko: '2인 장판 대상자',
           };
         }
         return {
           en: 'Enumeration',
           fr: 'Enumération',
+          ko: '2인 장판',
         };
       },
     },
@@ -67,6 +69,7 @@
           return {
             en: 'Charge on YOU',
             fr: 'Charge sur VOUS',
+            ko: '나에게 보스 돌진',
           };
         }
         if (data.role != 'tank' || data.phase == 'both')
@@ -74,6 +77,7 @@
         return {
           en: 'Tank Swap',
           fr: 'Tank Swap',
+          ko: '탱 교대',
         };
       },
     },
@@ -103,6 +107,7 @@
       alertText: {
         en: 'Tether Marker on YOU',
         fr: 'Marque de lien sur VOUS',
+        ko: '선 징 대상자',
       },
     },
     {
@@ -120,6 +125,7 @@
       infoText: {
         en: 'Attack Garuda',
         fr: 'Attaquez Garuda',
+        ko: '가루다 공격하기',
       },
     },
     {
@@ -130,6 +136,7 @@
       infoText: {
         en: 'Attack Ifrit',
         fr: 'Attaquez Ifrit',
+        ko: '이프리트 공격하기',
       },
     },
     {
@@ -140,9 +147,22 @@
       },
     },
     {
-      id: 'E6S Conflag Strike Knockback',
-      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      id: 'E6S Downburst Knockback 1',
+      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BFB', capture: false }),
       response: Responses.knockback(),
+    },
+    {
+      id: 'E6S Downburst Knockback 2',
+      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
+      response: Responses.knockback(),
+    },
+    {
+      id: 'E6S Conflag Strike',
+      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      infoText: {
+        en: 'go to spots for chains',
+        ko: '콘플레그 준비',
+      },
     },
     {
       id: 'E6S Irons Of Purgatory',
@@ -155,11 +175,13 @@
           return {
             en: 'Tethered to ' + matches.target,
             fr: 'Lié à ' + matches.target,
+            ko: '선 연결 짝: ' + matches.target,
           };
         }
         return {
           en: 'Tethered to ' + matches.source,
           fr: 'Lié à ' + matches.source,
+          ko: '선 연결 짝: ' + matches.source,
         };
       },
     },
