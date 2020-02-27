@@ -42,7 +42,7 @@
       },
       alertText: {
         en: 'Cleanse Doom soon!',
-        en: 'Verhängnis bald reinigen!',
+        de: 'Verhängnis bald reinigen!',
         fr: 'Guerrissez Glas bientot',
       },
     },

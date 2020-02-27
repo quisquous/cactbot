@@ -81,7 +81,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Dodge Mirage Charge',
-        en: 'Superladung ausweichen',
+        de: 'Superladung ausweichen',
         fr: 'Esquivez la charge de la réplique',
       },
     },
@@ -98,7 +98,7 @@
       },
       alertText: {
         en: 'Look Away from Mirage',
-        en: 'Von Replikant wegschauen',
+        de: 'Von Replikant wegschauen',
         fr: 'Ne regardez pas la réplique',
       },
     },
@@ -115,7 +115,7 @@
       },
       alertText: {
         en: 'Look Towards Mirage',
-        en: 'Von Replikant hinschauen',
+        de: 'Von Replikant hinschauen',
         fr: 'Regardez la réplique',
       },
     },
@@ -244,7 +244,7 @@
       regexKo: Regexes.startsUsing({ source: '교반자', id: '161A', capture: false }),
       alertText: {
         en: 'Hide Behind Tornado',
-        en: 'Hinter Tornado verstecken',
+        de: 'Hinter Tornado verstecken',
         fr: 'Cachez vous derrière la tornade',
       },
     },
