@@ -633,12 +633,12 @@ let Responses = {
     };
     return obj;
   },
-  interupt: (sev) => {
+  interrupt: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
       let source = getSource(matches);
       return {
-        en: 'interupt ' + source,
+        en: 'interrupt ' + source,
         de: 'unterbreche ' + source,
         ko: '기술 시전 끊기 => ' + source,
       };

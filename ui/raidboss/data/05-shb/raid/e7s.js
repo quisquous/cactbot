@@ -195,9 +195,9 @@
     {
       id: 'E7S Advent Of Light',
       regex: Regexes.startsUsing({ source: 'Idolatry', id: '4C6E' }),
-      condition: (data) => data.role == tank,
+      condition: (data) => data.CanSilence(),
       suppressSeconds: 1,
-      response: Responses.interupt('alarm'),
+      response: Responses.interrupt('alarm'),
     },
     {
       id: 'E7S Insatiable Light Stack',
