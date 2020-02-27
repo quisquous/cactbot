@@ -41,7 +41,7 @@
       },
     },
     {
-      id: 'Lakshmi Pull of Light on Tank',
+      id: 'Lakshmi Pull of Light Tank',
       regex: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       regexDe: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       regexFr: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
@@ -51,10 +51,10 @@
       condition: function(data, matches) {
         return data.role == 'tank';
       },
-      response: Responses.tankBuster('alarm'),
+      response: Responses.tankBuster('info'),
     },
     {
-      id: 'Lakshmi Pull of Light on non Tank',
+      id: 'Lakshmi Pull of Light Unexpected',
       regex: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       regexDe: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       regexFr: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
@@ -64,7 +64,7 @@
       condition: function(data, matches) {
         return data.role != 'tank' && data.role != 'healer';
       },
-      response: Responses.tankBuster('info'),
+      response: Responses.tankBuster('alarm'),
     },
     {
       id: 'Lakshmi Divine Denial',

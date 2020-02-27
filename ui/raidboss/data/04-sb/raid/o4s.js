@@ -926,7 +926,7 @@
       condition: function(data, matches) {
         return matches.target == data.me && data.role != 'tank';
       },
-      response: Responses.earthshaker(),
+      response: Responses.earthshaker('alarm'),
     },
     {
       id: 'O4S Neo Delta Attack',
