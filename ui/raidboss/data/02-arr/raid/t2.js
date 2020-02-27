@@ -5,11 +5,11 @@
   triggers: [
     {
       id: 'T2 High Voltage',
-      regex: Regexes.startsUsing({ id: '4C0', capture: false }),
+      regex: Regexes.startsUsing({ id: '4C0' }),
       condition: function(data) {
         return data.CanSilence();
       },
-      response: Responses.silence(),
+      response: Responses.interupt(),
     },
     {
       id: 'T2 Ballast',

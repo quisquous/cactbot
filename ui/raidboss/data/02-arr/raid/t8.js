@@ -7,18 +7,7 @@
     {
       id: 'T8 Stack',
       regex: Regexes.headMarker({ id: '0011' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Laser Stack on YOU',
-            fr: 'Package laser sur VOUS',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          fr: 'Package sur ' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.stackOn('info'),
     },
     {
       id: 'T8 Landmine Start',

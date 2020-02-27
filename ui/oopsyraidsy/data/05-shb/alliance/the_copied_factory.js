@@ -2,7 +2,10 @@
 
 // The Copied Factory
 [{
-  zoneRegex: /^The Copied Factory$/,
+  zoneRegex: {
+    en: /^The Copied Factory$/,
+    ko: /^복제된 공장 폐허$/,
+  },
   damageWarn: {
     'Copied Serial Energy Bomb': '48B4',
     // Make sure enemies are ignored on these

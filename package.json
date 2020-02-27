@@ -78,6 +78,10 @@
           "properties": false
         }
       ],
+      "no-cond-assign": [
+        "error",
+        "always"
+      ],
       "no-console": "off",
       "no-else-return": "error",
       "no-undef": "off",

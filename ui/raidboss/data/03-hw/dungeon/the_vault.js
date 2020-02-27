@@ -9,18 +9,7 @@
       id: 'The Vault Heavenly Slash',
       regex: /Heavenly Slash/,
       beforeSeconds: 3.5,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave',
-            fr: 'Tank cleave',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-          fr: 'Evitez le cleave sur le tank',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'The Vault Shining Blade',
@@ -36,18 +25,7 @@
       id: 'The Vault Heavy Swing',
       regex: /Heavy Swing/,
       beforeSeconds: 4,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave',
-            fr: 'Tank cleave',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-          fr: 'Evitez le cleave sur le tank',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'The Vault Altar Candle',
@@ -56,10 +34,7 @@
       condition: function(data) {
         return data.role != 'dps';
       },
-      alertText: {
-        en: 'Tank buster',
-        fr: 'Tankbuster',
-      },
+      response: Responses.tankBuster(),
     },
   ],
   triggers: [
@@ -74,10 +49,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Shield Bash',
@@ -99,34 +71,20 @@
     {
       id: 'The Vault Execution',
       regex: Regexes.headMarker({ id: '0020' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Spread marker on YOU',
-            fr: 'Marqueur de séparation sur VOUS',
-          };
-        }
-        return {
-          en: 'Avoid ' + data.ShortName(matches.target),
-          fr: 'Evitez ' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.awayFrom(),
     },
     {
       id: 'The Vault Black Nebula',
-      regex: Regexes.startsUsing({ id: '1042', source: 'Face Of The Hero', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '1042', source: 'Gesicht Des Helden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '1042', source: 'Visage Du Héros', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '1042', source: 'フェイス・オブ・ヒーロー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '1042', source: '英雄之相', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '1042', source: '영웅의 형상', capture: false }),
+      regex: Regexes.startsUsing({ id: '1042', source: 'Face Of The Hero' }),
+      regexDe: Regexes.startsUsing({ id: '1042', source: 'Gesicht Des Helden' }),
+      regexFr: Regexes.startsUsing({ id: '1042', source: 'Visage Du Héros' }),
+      regexJa: Regexes.startsUsing({ id: '1042', source: 'フェイス・オブ・ヒーロー' }),
+      regexCn: Regexes.startsUsing({ id: '1042', source: '英雄之相' }),
+      regexKo: Regexes.startsUsing({ id: '1042', source: '영웅의 형상' }),
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Interrupt the Knight',
-        fr: 'Interrompez le chevalier',
-      },
+      response: Responses.stun(),
     },
     {
       id: 'The Vault Faith Unmoving',
@@ -136,10 +94,7 @@
       regexJa: Regexes.startsUsing({ id: '1027', source: '聖騎士グリノー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1027', source: '圣骑士格里诺', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1027', source: '성기사 그리노', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        fr: 'Poussée',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'The Vault Dimensional Torsion',
@@ -169,10 +124,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'The Vault Holy Chains',
@@ -180,10 +132,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Break chains',
-        fr: 'Cassez les chaines',
-      },
+      response: Responses.breakChains(),
     },
     {
       id: 'The Vault Knights March',

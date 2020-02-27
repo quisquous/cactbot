@@ -8,10 +8,7 @@
       id: 'T13 Dive Warning',
       regex: /Megaflare Dive/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Stack Center for Dives',
-        fr: 'Packé au centre pour les dives',
-      },
+      response: Responses.stackMiddle(),
     },
   ],
   triggers: [
@@ -85,10 +82,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Earthshaker on YOU',
-        fr: 'Secousse sur VOUS',
-      },
+      response: Responses.earthshaker(),
     },
     {
       id: 'T13 Tempest Wing',
