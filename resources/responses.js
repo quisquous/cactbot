@@ -673,6 +673,23 @@ let Responses = {
     return combineFuncs(defaultAlertText(targetSev), targetFunc,
         defaultInfoText(otherSev), otherFunc);
   },
+  awayFrom: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = (data, matches) => {
+      let target = getTarget(matches);
+      if (data.me == target) {
+        return {
+          en: 'Away from Group',
+          de: 'Weg von der Gruppe',
+        };
+      }
+      return {
+        en: 'Away from ' + data.ShortName(target),
+        de: 'Weg von ' + data.ShortName(target),
+      };
+    };
+    return obj;
+  },
   meteorOnYou: (sev) => {
     let obj = {};
     obj[defaultAlarmText(sev)] = {

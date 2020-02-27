@@ -68,6 +68,7 @@ hideall "--sync--"
 203.6 "--sync--" sync /:Idolatry:4C3A:/
 224.9 "Overwhelming Force" sync /:Blasphemy:4C73:/
 231.8 "Insatiable Light" sync /:Idolatry:4C6D:/
+239.5 "Advent Of Light" sync /:4C6E:Idolatry/ # use start of cast for this interrupt
 243.6 "Overwhelming Force" sync /:Blasphemy:4C73:/
 253.7 "Overwhelming Force" sync /:Blasphemy:4C73:/
 254.5 "Insatiable Light" sync /:Idolatry:4C6D:/
@@ -77,6 +78,7 @@ hideall "--sync--"
 290.9 "Overwhelming Force" sync /:Blasphemy:4C73:/
 291.8 "Strength In Numbers" sync /:Idolatry:4C7[01]:/
 302.0 "Insatiable Light" sync /:Idolatry:4C6D:/
+# TODO: fix this sync up
 323.4 "Unearned Envy" sync /:Blasphemy:4C74:/
 325.5 "Unearned Envy" #sync /:Blasphemy:4C74:/
 327.6 "Unearned Envy" #sync /:Blasphemy:4C74:/

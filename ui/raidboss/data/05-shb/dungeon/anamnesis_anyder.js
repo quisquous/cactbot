@@ -62,7 +62,7 @@
       response: Responses.awayFromFront(),
     },
     {
-      id: 'AnAnyder Open Hearth',
+      id: 'AnAnyder Open Hearth Flying Fount',
       regex: Regexes.headMarker({ id: '003E' }),
       response: Responses.stackOn(),
     },
@@ -77,12 +77,6 @@
       regex: Regexes.startsUsing({ source: 'Rukshs Dheem', id: '4B7E' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
-    },
-    {
-      id: 'AnAnyder Flying Fount',
-      regex: Regexes.headMarker({ id: '003E' }),
-      suppressSeconds: 1,
-      response: Responses.stackOn(),
     },
     {
       id: 'AnAnyder Depth Grip',

@@ -6,25 +6,31 @@
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(1\)$/,
   },
   timelineFile: 'e5s.txt',
+  timelineTriggers: [
+    {
+      id: 'E5S Stepped Leader Next',
+      regex: /^Stepped Leader$/,
+      beforeSeconds: 15,
+      run: function(data) {
+        data.steppedLeaderNext = true;
+      },
+    },
+  ],
   triggers: [
     {
-      id: 'E5S Fury\'s Bolt Gain',
-      regex: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Wütender Blitz', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Boules de foudre', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
+      id: 'E5S Surge Protection Gain',
+      regex: Regexes.gainsEffect({ effect: 'Surge Protection' }),
+      condition: Conditions.targetIsYou(),
       run: function(data) {
-        data.fury = true;
+        data.surgeProtection = true;
       },
     },
     {
-      id: 'E5S Fury\'s Bolt Lose',
-      regex: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
-      regexDe: Regexes.losesEffect({ target: 'Ramuh', effect: 'Wütender Blitz', capture: false }),
-      regexFr: Regexes.losesEffect({ target: 'Ramuh', effect: 'Boules de foudre', capture: false }),
-      regexJa: Regexes.losesEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
+      id: 'E5S Surge Protection Loss',
+      regex: Regexes.losesEffect({ effect: 'Surge Protection' }),
+      condition: Conditions.targetIsYou(),
       run: function(data) {
-        data.fury = false;
+        data.surgeProtection = false;
       },
     },
     {
@@ -54,6 +60,9 @@
       regexFr: Regexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
+      run: function(data) {
+        data.seenFirstAdd = true;
+      },
       infoText: function(data) {
         if (data.seenFirstAdd) {
           return {
@@ -62,7 +71,14 @@
             ko: '쫄 위치 확인',
           };
         }
-        data.seenFirstAdd = true;
+        if (data.furysBoltActive) {
+          return {
+            en: 'Big Knockback',
+          };
+        }
+        return {
+          en: 'Short Knockback',
+        };
       },
     },
     {
@@ -72,10 +88,35 @@
       regexFr: Regexes.startsUsing({ id: '4BAA', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAA', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
-      infoText: {
-        en: 'Fury\'s Bolt',
-        fr: 'Boule de foudre',
-        ko: '라무 강화',
+      alertText: function(data) {
+        // Fury's Bolt + Stepped Leader doesn't require an orb
+        if (!data.surgeProtection && !data.steppedLeaderNext) {
+          return {
+            en: 'Grab an orb',
+            fr: 'Prenez un orbe',
+            ko: '구슬 줍기',
+          };
+        }
+      },
+    },
+    {
+      id: 'E5S Fury\'s Bolt Gain',
+      regex: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexDe: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Wütender Blitz', capture: false }),
+      regexFr: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Boules de foudre', capture: false }),
+      regexJa: Regexes.gainsEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
+      run: function(data) {
+        data.furysBoltActive = true;
+      },
+    },
+    {
+      id: 'E5S Fury\'s Bolt Lose',
+      regex: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
+      regexDe: Regexes.losesEffect({ target: 'Ramuh', effect: 'Wütender Blitz', capture: false }),
+      regexFr: Regexes.losesEffect({ target: 'Ramuh', effect: 'Boules de foudre', capture: false }),
+      regexJa: Regexes.losesEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
+      run: function(data) {
+        data.furysBoltActive = false;
       },
     },
     {
@@ -86,16 +127,20 @@
       regexJa: Regexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
       condition: function(data) {
-        return !data.fourteenCount || data.fourteenCount < 2;
+        return !data.furysFourteenCounter || data.furysFourteenCounter < 2;
       },
-      infoText: {
-        en: 'Grab an orb',
-        fr: 'Prenez un orbe',
-        ko: '구슬 줍기',
+      alertText: function(data) {
+        if (!data.surgeProtection) {
+          return {
+            en: 'Grab an orb',
+            fr: 'Prenez un orbe',
+            ko: '구슬 줍기',
+          };
+        }
       },
       run: function(data) {
-        data.fourteenCount = data.fourteenCount || 0;
-        data.fourteenCount++;
+        data.furysFourteenCounter = data.furysFourteenCounter || 0;
+        data.furysFourteenCounter++;
       },
     },
     {
@@ -105,6 +150,7 @@
       regexFr: Regexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BB5', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BB5', source: '라무', capture: false }),
+      condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
@@ -115,19 +161,19 @@
       regexJa: Regexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
       alertText: function(data) {
-        if (!data.fury) {
+        // Fury's Bolt + Stepped Leader is a donut AoE instead
+        if (!data.furysBoltActive) {
           return {
             en: 'Ready Spread',
             fr: 'Dispersion bientot',
             ko: '산개 준비',
           };
-        } else if (data.fury) {
-          return {
-            en: 'donut AoE',
-            fr: 'AoE en donut',
-            ko: '도넛 장판',
-          };
         }
+        return {
+          en: 'donut AoE',
+          fr: 'AoE en donut',
+          ko: '도넛 장판',
+        };
       },
     },
     {
@@ -139,9 +185,20 @@
       regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
       delaySeconds: 3.0,
       condition: function(data) {
-        return !data.fury;
+        return !data.furysBoltActive;
       },
       response: Responses.spread('alarm'),
+    },
+    {
+      id: 'E5S Stepped Leader Cast',
+      regex: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexDe: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexFr: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexJa: Regexes.ability({ id: '4BC6', source: 'ラムウ', capture: false }),
+      regexKo: Regexes.ability({ id: '4BC6', source: '라무', capture: false }),
+      run: function(data) {
+        data.steppedLeaderNext = false;
+      },
     },
     {
       id: 'E5S Crippling Blow',
@@ -150,9 +207,7 @@
       regexFr: Regexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
       regexJa: Regexes.startsUsing({ id: '4BCA', source: 'ラムウ' }),
       regexKo: Regexes.startsUsing({ id: '4BCA', source: '라무' }),
-      condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
-      },
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {
@@ -211,7 +266,7 @@
         'stormcloud': 'Cumulonimbus-Wolke',
         'Ramuh': 'Ramuh',
         'Raiden': 'Raiden',
-        'Will Of Ixion': 'Will Of Ixion',
+        'Will Of Ixion': 'Will Of Ixion', // FIXME
       },
       'replaceText': {
         'Volt Strike': 'Voltschlag',
@@ -251,7 +306,7 @@
         'stormcloud': 'Cumulonimbus',
         'Ramuh': 'Ramuh',
         'Raiden': 'Raiden',
-        'Will Of Ixion': 'Will Of Ixion',
+        'Will Of Ixion': 'Réplique d\'Ixion',
       },
       'replaceText': {
         'Volt Strike': 'Frappe d\'éclair',
@@ -291,7 +346,7 @@
         'stormcloud': '積乱雲',
         'Ramuh': 'ラムウ',
         'Raiden': 'ライディーン',
-        'Will Of Ixion': 'Will Of Ixion',
+        'Will Of Ixion': 'Will Of Ixion', // FIXME
       },
       'replaceText': {
         'Volt Strike': 'ボルトストライク',

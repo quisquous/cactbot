@@ -70,8 +70,9 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
       condition: (data) => data.role == 'tank',
       delaySeconds: 43,
+      suppressSeconds: 80,
       infoText: function(data) {
-        if (data.firstFrost == 'biting') {
+        if (data.firstFrost == 'driving') {
           return {
             en: 'Biting Frost Next',
             fr: 'Taillade de givre bientot',
@@ -186,10 +187,6 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
-      run: function(data) {
-        data.wyrmsLament = data.wyrmsLament || 0;
-        data.wyrmsLament++;
-      },
     },
     {
       id: 'E8S Wyrm\'s Lament Counter',
