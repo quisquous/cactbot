@@ -160,8 +160,8 @@
       id: 'E6S Conflag Strike',
       regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       infoText: {
-        en: 'Conflag',
-        ko: 'Conflag/コンフラグ',
+        en: 'go to spots for chains',
+        ko: '콘플레그 준비',
       },
     },
     {
