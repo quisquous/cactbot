@@ -10,7 +10,7 @@
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Dance to the song of ringing steel': 'Ein Tanz im Takt des singenden Stahls', // FIXME
+        'Dance to the song of ringing steel': 'Ein Tanz im Takt des singenden Stahls',
       },
       'replaceText': {
         '1st Double Prey': '1st Double Prey', // FIXME
