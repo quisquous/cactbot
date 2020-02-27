@@ -192,9 +192,9 @@
         }
         if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
           return {
-            en: 'Morn Afah on ' + matches.target,
-            fr: 'Morn Afah sur ' + matches.target,
-            ko: '"' + matches.target + '" 몬 아파',
+            en: 'Morn Afah on ' + data.ShortName(matches.target),
+            fr: 'Morn Afah sur ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 몬 아파',
           };
         }
       },
