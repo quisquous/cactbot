@@ -241,7 +241,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Enslaved Love': 'versklavt[a] Liebhaber',
+        'Enslaved Love': 'versklavt(?:e|er|es|en) Liebhaber',
         'Leannan Sith': 'Leanan Sidhe',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Einsiedler',

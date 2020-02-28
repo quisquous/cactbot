@@ -40,6 +40,7 @@
       },
       infoText: {
         en: 'Away from Lines',
+        de: 'Weg von den Linien',
         fr: 'En dehors des sillons',
         ko: '선 피하기',
       },
@@ -59,6 +60,7 @@
         if (data.rubyCounter % 2) {
           return {
             en: 'Get On Lines',
+            de: 'Auf die Linien gehen',
             fr: 'Sur les sillons',
             ko: '선 위로 올라가기',
           };
@@ -100,6 +102,7 @@
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4B2D', capture: false }),
       infoText: {
         en: 'Enrage!',
+        de: 'Finalangriff!',
         fr: 'Enrage !',
         ko: '전멸기!',
       },
@@ -116,6 +119,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Attack Blue (East)',
+            de: 'Greife Blau an (Osten)',
             fr: 'Attaquez le bleu (Est)',
             ko: '파란색 공격 (오른쪽)',
           };
@@ -134,6 +138,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Attack Red (West)',
+            de: 'Greife Rot an (Westen)',
             fr: 'Attaquez le rouge (Ouest)',
             ko: '빨간색 공격 (왼쪽)',
           };
@@ -177,12 +182,14 @@
         if (data.colors[data.me] == 'red') {
           return {
             en: 'Attack Red (East)',
+            de: 'Greife Rot an (Osten)',
             fr: 'Attaquez le rouge (Est)',
             ko: '빨간색 공격 (오른쪽)',
           };
         }
         return {
           en: 'Attack Blue (West)',
+          de: 'Greife Blau an (Westen)',
           fr: 'Attaquez le bleu (Ouest)',
           ko: '파란색 공격 (왼쪽)',
         };
