@@ -533,6 +533,7 @@
       regexDe: Regexes.tether({ source: 'levitierte Rage', id: '0003' }),
       regexFr: Regexes.tether({ source: 'furie liquide', id: '0003' }),
       regexJa: Regexes.tether({ source: 'リキッドレイジ', id: '0003' }),
+      regexKo: Regexes.tether({ source: '분노한 액체', id: '0003' }),
       condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
