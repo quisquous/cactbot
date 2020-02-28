@@ -129,20 +129,7 @@
       regexJa: Regexes.startsUsing({ id: '3D88', source: 'エデン・プライム' }),
       regexCn: Regexes.startsUsing({ id: '3D88', source: '至尊伊甸' }),
       regexKo: Regexes.startsUsing({ id: '3D88', source: '에덴 프라임' }),
-      alarmText: function(data, matches) {
-        if (matches.target == data.me || data.role != 'tank')
-          return;
-
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'タンクスイッチ',
-          cn: '换T！',
-          ko: '탱 교대',
-        };
-      },
-      response: Responses.tankBuster(),
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'E1S Eden\'s Flare',
