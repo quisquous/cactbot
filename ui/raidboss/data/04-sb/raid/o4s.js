@@ -11,6 +11,7 @@
       beforeSeconds: 8,
       alertText: {
         en: 'Vacuum Wave soon',
+        de: 'Vakuumwelle bald',
       },
     },
   ],

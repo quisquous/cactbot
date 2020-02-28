@@ -11,6 +11,7 @@
       beforeSeconds: 1.5,
       infoText: {
         en: 'look for cloud',
+        de: 'Nach Wolke ausschau halten',
       },
     },
   ],

@@ -164,6 +164,7 @@
           return;
         return {
           en: 'Orb on YOU',
+          de: 'Orb auf DIR',
           cn: '点名',
         };
       },
@@ -172,7 +173,7 @@
           return;
         return {
           en: 'Away From Orb Marker',
-          de: 'Weg von Orb-Marker',
+          de: 'Weg vom Orb-Marker',
           cn: '远离点名',
         };
       },
@@ -239,7 +240,7 @@
       delaySeconds: 3.5,
       infoText: {
         en: 'Under Spears',
-        de: 'Unter Speere',
+        de: 'Unter einen Speer',
         cn: '枪脚下',
       },
     },
@@ -658,12 +659,14 @@
       alarmText: function(data) {
         return {
           en: 'Black Hole ' + data.blackHoleCount + ' / 6',
+          de: 'Schwarzes Loch ' + data.blackHoleCount + ' / 6',
           cn: '黑洞 ' + data.blackHoleCount + ' / 6',
         };
       },
       tts: function(data) {
         return {
           en: 'Black Hole ' + data.blackHoleCount,
+          de: 'Schwarzes Loch ' + data.blackHoleCount,
           cn: '黑洞 ' + data.blackHoleCount,
         };
       },

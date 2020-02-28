@@ -58,6 +58,7 @@
       regexKo: Regexes.startsUsing({ id: ['2066', '2587'], source: '제노스 예 갈부스', capture: false }),
       infoText: {
         en: 'Out of blue circle',
+        de: 'Raus aus dem blauen Kreis',
         fr: 'Hors du cercle bleu',
       },
     },
@@ -81,6 +82,7 @@
       regexKo: Regexes.startsUsing({ id: ['2068', '2588'], source: '제노스 예 갈부스', capture: false }),
       alertText: {
         en: 'Protean',
+        de: 'Um den Boss verteilen',
         fr: 'Changement',
       },
     },
@@ -97,6 +99,7 @@
       },
       alertText: {
         en: 'Face tether out',
+        de: 'Verbindung nach draußen richten',
         fr: 'Lien vers l\'extérieur',
       },
     },
