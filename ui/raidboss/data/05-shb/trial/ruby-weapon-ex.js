@@ -108,7 +108,7 @@
       id: 'RubyEx Pall of Rage',
       regex: Regexes.gainsEffect({ effect: 'Pall of Rage' }),
       regexFr: Regexes.gainsEffect({ effect: 'Fureur' }),
-      preRun: function(data) {
+      preRun: function(data, matches) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'blue';
       },
@@ -126,7 +126,7 @@
       id: 'RubyEx Pall of Grief',
       regex: Regexes.gainsEffect({ effect: 'Pall of Grief' }),
       regexFr: Regexes.gainsEffect({ effect: 'Angoisse' }),
-      preRun: function(data) {
+      preRun: function(data, matches) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'red';
       },
@@ -150,7 +150,7 @@
       id: 'RubyEx Ruby Claw',
       regex: Regexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
       regexFr: Regexes.startsUsing({ source: 'Griffe Rubis', id: '4AFF' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         if (data.role != 'healer' || data.role != 'tank')
           return false;
         if (data.colors[data.me] == data.colors[matches.target])
