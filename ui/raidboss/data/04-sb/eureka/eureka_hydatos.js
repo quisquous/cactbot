@@ -72,7 +72,10 @@
       id: 'BA Saved By Rememberance',
       regex: Regexes.gameLog({ line: 'The memories of heroes past live on again', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscitée', capture: false }),
+      regexJa: Regexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された', capture: false }),
       regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来', capture: false }),
+      regexKo: Regexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다', capture: false }),
       sound: 'Long',
     },
     {
