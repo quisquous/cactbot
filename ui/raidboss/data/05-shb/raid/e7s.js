@@ -215,9 +215,9 @@
     {
       id: 'E7S Advent Of Light',
       regex: Regexes.startsUsing({ source: 'Idolatry', id: '4C6E' }),
-      regexDe: Regexes.startsUsing({ source: 'Idolatrie', id: '4C6E', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C6E', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アイドラトリー', id: '4C6E', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Idolatrie', id: '4C6E' }),
+      regexFr: Regexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C6E' }),
+      regexJa: Regexes.startsUsing({ source: 'アイドラトリー', id: '4C6E' }),
       condition: (data) => data.CanSilence(),
       suppressSeconds: 1,
       response: Responses.interrupt('alarm'),
@@ -323,9 +323,9 @@
     {
       id: 'E7S Astral Effect',
       regex: Regexes.gainsEffect({ effect: 'Astral Effect' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Denaturation Licht', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Denaturation Licht' }),
       regexFr: Regexes.gainsEffect({ effect: 'Corruption De Lumière' }),
-      regexJa: Regexes.gainsEffect({ effect: '偏属性：光', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '偏属性：光' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.color = 'light';
@@ -334,9 +334,9 @@
     {
       id: 'E7S Umbral Effect',
       regex: Regexes.gainsEffect({ effect: 'Umbral Effect' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Denaturation Dunkelheit', capture: false }),
+      regexDe: Regexes.gainsEffect({ effect: 'Denaturation Dunkelheit' }),
       regexFr: Regexes.gainsEffect({ effect: 'Corruption De Ténèbres' }),
-      regexJa: Regexes.gainsEffect({ effect: '偏属性：闇', capture: false }),
+      regexJa: Regexes.gainsEffect({ effect: '偏属性：闇' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.color = 'dark';
@@ -345,9 +345,9 @@
     {
       id: 'E7S Boundless Light',
       regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5C' }),
-      regexDe: Regexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5C', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5C', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5C', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5C' }),
+      regexFr: Regexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5C' }),
+      regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5C' }),
       condition: function(data) {
         return data.color == 'dark';
       },
@@ -356,9 +356,9 @@
     {
       id: 'E7S Boundless Dark',
       regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5D' }),
-      regexDe: Regexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5D', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5D' }),
       regexFr: Regexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '4C5D' }),
-      regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5D', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5D' }),
       condition: function(data) {
         return data.color == 'light';
       },
