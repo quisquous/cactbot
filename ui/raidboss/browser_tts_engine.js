@@ -42,8 +42,8 @@ class GoogleTTSItem extends TTSItem {
 
 class BrowserTTSEngine {
   constructor() {
-    engineType = null;
-    ttsItems = {};
+    this.engineType = null;
+    this.ttsItems = {};
   }
 
   play(text) {

@@ -35,11 +35,11 @@ class PopupText {
       typeof BrowserTTSEngine === 'function') {
       this.ttsEngine = new BrowserTTSEngine();
       this.ttsSay = function(text) {
-        this.ttsEngine.play(ttsText);
+        this.ttsEngine.play(text);
       };
     } else {
       this.ttsSay = function(text) {
-        let cmd = { 'call': 'cactbotSay', 'text': ttsText };
+        let cmd = { 'call': 'cactbotSay', 'text': text };
         window.callOverlayHandler(cmd);
       };
     }
