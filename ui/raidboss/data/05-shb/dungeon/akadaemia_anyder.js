@@ -123,7 +123,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      response: Responses.interupt(),
+      response: Responses.interrupt(),
     },
     {
       id: 'Anyder Shockbolt',

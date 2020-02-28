@@ -18,7 +18,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      response: Responses.interupt('info'),
+      response: Responses.interrupt('info'),
     },
     {
       id: 'Gulg Tail Smash',

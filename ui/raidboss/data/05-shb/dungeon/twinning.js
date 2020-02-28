@@ -33,7 +33,7 @@
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      response: Responses.interupt(),
+      response: Responses.interrupt(),
     },
     {
       id: 'Twinning 128 Tonze Swing',
@@ -46,7 +46,7 @@
       condition: function(data) {
         return data.CanSilence();
       },
-      response: Responses.interupt(),
+      response: Responses.interrupt(),
     },
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger

@@ -47,7 +47,7 @@
       condition: function(data) {
         return data.CanSilence();
       },
-      response: Responses.interupt('info'),
+      response: Responses.interrupt('info'),
     },
     {
       id: 'Malikah Efface',

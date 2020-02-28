@@ -434,7 +434,7 @@
         return data.CanSilence();
       },
       suppressSeconds: 1,
-      response: Responses.interupt(),
+      response: Responses.interrupt(),
     },
     {
       id: 'E1S Pure Light',
