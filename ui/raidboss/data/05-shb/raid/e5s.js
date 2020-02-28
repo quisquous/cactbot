@@ -74,10 +74,12 @@
         if (data.furysBoltActive) {
           return {
             en: 'Big Knockback',
+            fr: 'Forte poussée',
           };
         }
         return {
           en: 'Short Knockback',
+          fr: 'Faible poussée',
         };
       },
     },
@@ -245,7 +247,7 @@
       regexKo: Regexes.startsUsing({ id: '4BC4', source: '라무', capture: false }),
       alertText: {
         en: 'Ready for Chain',
-        fr: 'Préparez vous pour la chaine',
+        fr: 'Préparez-vous pour la chaine',
         ko: '번개 돌려막기 준비',
       },
     },
