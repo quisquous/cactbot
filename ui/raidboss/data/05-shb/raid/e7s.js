@@ -13,7 +13,7 @@
       beforeSeconds: 10,
       infoText: {
         en: 'Dark NW, Light NE, one pair S',
-        cn: '黑左前 白右前 两人后'
+        cn: '黑左前 白右前 两人后',
       },
     },
   ],

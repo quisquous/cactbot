@@ -169,7 +169,7 @@
       infoText: {
         en: 'go to spots for chains',
         ko: '콘플레그 준비',
-        cn: '连线站位'
+        cn: '连线站位',
       },
     },
     {
