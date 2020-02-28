@@ -110,7 +110,9 @@
     {
       id: 'RubyEx Pall of Rage',
       regex: Regexes.gainsEffect({ effect: 'Pall of Rage' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Zorn' }),
       regexFr: Regexes.gainsEffect({ effect: 'Fureur' }),
+      regexJa: Regexes.gainsEffect({ effect: '憤怒' }),
       preRun: function(data, matches) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'blue';
@@ -129,7 +131,9 @@
     {
       id: 'RubyEx Pall of Grief',
       regex: Regexes.gainsEffect({ effect: 'Pall of Grief' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Trauer' }),
       regexFr: Regexes.gainsEffect({ effect: 'Angoisse' }),
+      regexJa: Regexes.gainsEffect({ effect: '悲嘆' }),
       preRun: function(data, matches) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'red';
@@ -154,7 +158,9 @@
     {
       id: 'RubyEx Ruby Claw',
       regex: Regexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
-      regexFr: Regexes.startsUsing({ source: 'Griffe Rubis', id: '4AFF' }),
+      regexDe: Regexes.startsUsing({ source: 'Naels Trugbild', id: '4AFF' }),
+      regexFr: Regexes.startsUsing({ source: 'Spectre De Nael', id: '4AFF' }),
+      regexJa: Regexes.startsUsing({ source: 'ネールの幻影', id: '4AFF' }),
       condition: function(data, matches) {
         if (data.role != 'healer' || data.role != 'tank')
           return false;
@@ -167,9 +173,9 @@
     {
       id: 'RubyEx Change of Heart',
       regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AFC', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AFC', capture: false }),
+      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
+      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AFC', capture: false }),
+      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AFC', capture: false }),
       preRun: function(data) {
         for (color of data.colors) {
           if (color == 'blue')

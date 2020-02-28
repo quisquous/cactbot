@@ -46,12 +46,22 @@
     {
       id: 'E8S Absolute Zero',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4DCC', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4DCC', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4DCC', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4DCC', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4DCC', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4DCC', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
       id: 'E8S Biting Frost',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D66', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D66', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D66', capture: false }),
       response: Responses.getBehind(),
       run: function(data) {
         data.firstFrost = data.firstFrost || 'biting';
@@ -60,6 +70,11 @@
     {
       id: 'E8S Driving Frost',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D67', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D67', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
       alertText: {
         en: 'Go Front / Sides',
         de: 'Gehe nach Forne/ zu den Seiten',
@@ -72,6 +87,11 @@
     {
       id: 'E8S Forgetful Tank Second Frost',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D6[67]', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D6[67]', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D6[67]', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D6[67]', capture: false }),
       condition: (data) => data.role == 'tank',
       delaySeconds: 43,
       suppressSeconds: 80,
@@ -111,12 +131,22 @@
     {
       id: 'E8S Diamond Frost',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6C', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D6C', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D6C', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D6C', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D6C', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D6C', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
       id: 'E8S Diamond Frost Cleanse',
       regex: Regexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D6C', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4D6C', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4D6C', capture: false }),
       suppressSeconds: 1,
       condition: function(data) {
         return data.CanCleanse();
@@ -131,29 +161,51 @@
     {
       id: 'E8S Double Slap',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D65' }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D65' }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D65' }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D65' }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D65' }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D65' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'E8S Axe Kick',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6D', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D6D', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D6D', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D6D', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D6D', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D6D', capture: false }),
       response: Responses.getOut(),
     },
     {
       id: 'E8S Scythe Kick',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6E', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D6E', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D6E', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D6E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D6E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D6E', capture: false }),
       response: Responses.getUnder(),
     },
     {
       id: 'E8S Light Rampant',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D73', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D73', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D73', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D73', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D73', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D73', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
       id: 'E8S Refulgent Chain',
       regex: Regexes.gainsEffect({ effect: 'Refulgent Chain' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Lichtfessel' }),
       regexFr: Regexes.gainsEffect({ effect: 'Chaînes de Lumière' }),
+      regexJa: Regexes.gainsEffect({ effect: '光の鎖' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 1,
       infoText: {
@@ -177,6 +229,11 @@
     {
       id: 'E8S Banish III',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D80', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D80', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D80', capture: false }),
       infoText: {
         en: 'Stacks',
         de: 'Stacks',
@@ -187,11 +244,21 @@
     {
       id: 'E8S Banish III Divided',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D81', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D81', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D81', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D81', capture: false }),
       response: Responses.spread('alert'),
     },
     {
       id: 'E8S Morn Afah',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D7B' }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7B' }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D7B' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -214,22 +281,42 @@
     {
       id: 'E8S Hallowed Wings Left',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D75', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D75', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D75', capture: false }),
       response: Responses.goRight(),
     },
     {
       id: 'E8S Hallowed Wings Right',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D76', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D76', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D76', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D76', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D76', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D76', capture: false }),
       response: Responses.goLeft(),
     },
     {
       id: 'E8S Wyrm\'s Lament',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D7C', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7C', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D7C', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
       id: 'E8S Wyrm\'s Lament Counter',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D7C', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7C', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D7C', capture: false }),
       run: function(data) {
         data.wyrmsLament = data.wyrmsLament || 0;
         data.wyrmsLament++;
@@ -238,7 +325,9 @@
     {
       id: 'E8S Wyrmclaw',
       regex: Regexes.gainsEffect({ effect: 'Wyrmclaw' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Krallen Des Heiligen Drachen' }),
       regexFr: Regexes.gainsEffect({ effect: 'Griffes du Dragon divin' }),
+      regexJa: Regexes.gainsEffect({ effect: '聖竜の爪' }),
       condition: Conditions.targetIsYou(),
       preRun: function(data, matches) {
         if (data.wyrmsLament == 1) {
@@ -270,7 +359,9 @@
     {
       id: 'E8S Wyrmfang',
       regex: Regexes.gainsEffect({ effect: 'Wyrmfang' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Reißzähne Des Heiligen Drachen' }),
       regexFr: Regexes.gainsEffect({ effect: 'Crocs du Dragon divin' }),
+      regexJa: Regexes.gainsEffect({ effect: '聖竜の牙' }),
       condition: Conditions.targetIsYou(),
       preRun: function(data, matches) {
         if (data.wyrmsLament == 1) {
@@ -302,17 +393,32 @@
     {
       id: 'E8S Holy',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D82', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D82', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D82', capture: false }),
       response: Responses.getOut(),
     },
     {
       id: 'E8S Holy Divided',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D83', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D83', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D83', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D83', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D83', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D83', capture: false }),
       condition: (data) => data.role == 'tank',
       response: Responses.getIn('alert'),
     },
     {
       id: 'E8S Twin Stillness',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D68', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D68', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D68', capture: false }),
       alertText: {
         en: 'Back Then Front',
         de: 'Nach Hinten, danach nach Forne',
@@ -323,6 +429,11 @@
     {
       id: 'E8S Twin Silence',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D69', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D69', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D69', capture: false }),
       alertText: {
         en: 'Front Then Back',
         de: 'Nach Forne, danach nach Hinten',
@@ -333,16 +444,31 @@
     {
       id: 'E8S Spiteful Dance',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D6F', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D6F', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D6F', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D6F', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D6F', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D6F', capture: false }),
       response: Responses.getOutThenIn(),
     },
     {
       id: 'E8S Embittered Dance',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D70', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D70', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D70', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D70', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D70', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D70', capture: false }),
       response: Responses.getInThenOut(),
     },
     {
       id: 'E8S Icelit Dragonsong Cleanse',
       regex: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D70', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4D70', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4D70', capture: false }),
       suppressSeconds: 1,
       condition: function(data) {
         return data.CanCleanse();
@@ -357,12 +483,22 @@
     {
       id: 'E8S Banish',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7E', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D7E', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D7E', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D7E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
       condition: (data) => data.role == 'tank',
       response: Responses.stack('alert'),
     },
     {
       id: 'E8S Banish Divided',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7F', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D7F', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D7F', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D7F', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
       condition: (data) => data.role == 'tank',
       response: Responses.spread('alarm'),
     },

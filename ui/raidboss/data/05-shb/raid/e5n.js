@@ -10,6 +10,9 @@
     {
       id: 'E5N Surge Protection Gain',
       regex: Regexes.gainsEffect({ effect: 'Surge Protection' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Überspannungsschutz' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Parafoudre' }),
+      regexJa: Regexes.gainsEffect({ effect: '避雷' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.surgeProtection = true;
@@ -18,6 +21,9 @@
     {
       id: 'E5N Surge Protection Lose',
       regex: Regexes.losesEffect({ effect: 'Surge Protection' }),
+      regexDe: Regexes.losesEffect({ effect: 'Überspannungsschutz' }),
+      regexFr: Regexes.losesEffect({ effect: 'Parafoudre' }),
+      regexJa: Regexes.losesEffect({ effect: '避雷' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.surgeProtection = false;
@@ -30,6 +36,7 @@
       regexFr: Regexes.ability({ id: '4B8D', source: 'Ramuh', capture: false }),
       regexJa: Regexes.ability({ id: '4B8D', source: 'ラムウ', capture: false }),
       regexKo: Regexes.ability({ id: '4B8D', source: '라무', capture: false }),
+      regexCn: Regexes.ability({ id: '4B8D', source: '拉姆', capture: false }),
       delaySeconds: 5,
       infoText: {
         en: 'Look for small spear',
@@ -45,6 +52,7 @@
       regexFr: Regexes.startsUsing({ id: '4B91', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4B91', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4B91', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4B91', source: '拉姆', capture: false }),
       infoText: {
         en: 'Look for adds',
         de: 'Halt nach dem Add ausschau',
@@ -59,6 +67,7 @@
       regexFr: Regexes.startsUsing({ id: '4B90', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4B90', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4B90', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4B90', source: '拉姆', capture: false }),
       infoText: {
         en: 'Fury\'s Bolt',
         de: 'Wütender Blitz',
@@ -73,6 +82,7 @@
       regexFr: Regexes.startsUsing({ id: ['4B98', '4B9A'], source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: ['4B98', '4B9A'], source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['4B98', '4B9A'], source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: ['4B98', '4B9A'], source: '拉姆', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -83,6 +93,7 @@
       regexFr: Regexes.startsUsing({ id: '4B9A', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4B9A', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4B9A', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4B9A', source: '拉姆', capture: false }),
       condition: function(data) {
         return !data.surgeProtection;
       },

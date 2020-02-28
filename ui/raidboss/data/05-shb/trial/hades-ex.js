@@ -222,6 +222,7 @@
       regexDe: Regexes.startsUsing({ id: '47B8', source: 'Nabriales\' Schatten', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47B8', source: 'Spectre De Nabriales', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '47B8', source: '那布里亚勒斯之影', capture: false }),
       delaySeconds: 25,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
