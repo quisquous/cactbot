@@ -31,6 +31,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Charge on YOU',
+            de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
           };
         }
@@ -39,6 +40,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Charge on ' + data.ShortName(matches.target),
+            de: 'Ansturm auf ' + data.ShortName(matches.target),
             fr: 'Charge sur ' + data.ShortName(matches.target),
           };
         }
@@ -61,6 +63,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Cyclonic on YOU',
+            de: 'Zyklon-Chaos auf DIR',
             fr: 'Chaos cyclonique sur VOUS',
           };
         }
@@ -69,6 +72,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Cyclonic on ' + data.ShortName(matches.target),
+            de: 'Zyklon-Chaos auf ' + data.ShortName(matches.target),
             fr: 'Chaos cyclonique sur ' + data.ShortName(matches.target),
           };
         }
