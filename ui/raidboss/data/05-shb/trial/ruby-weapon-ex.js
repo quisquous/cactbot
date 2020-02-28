@@ -189,7 +189,7 @@
         }
         return {
           en: 'Attack Blue (West)',
-            de: 'Greife Blau an (Westen)',
+          de: 'Greife Blau an (Westen)',
           fr: 'Attaquez le bleu (Ouest)',
           ko: '파란색 공격 (왼쪽)',
         };
