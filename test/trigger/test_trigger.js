@@ -299,6 +299,58 @@ let testResponseHasNoFriends = function(file, contents) {
   }
 };
 
+let testTriggerFieldsSorted = function(file, contents) {
+  let json = eval(contents);
+
+  // This is the order in which they are run.
+  const triggerOrder = [
+    'id',
+    'disabled',
+    'regex',
+    // Other regexes are not important in ordering.
+    'beforeSeconds',
+    'condition',
+    'preRun',
+    'delaySeconds',
+    'durationSeconds',
+    'suppressSeconds',
+    // This is where the delay happens.
+    'sound',
+    'response',
+    'alarmText',
+    'alertText',
+    'infoText',
+    'groupTTS',
+    'tts',
+    'soundVolume', // Maybe we should move this??
+    'run',
+  ];
+
+  for (let set of [json[0].triggers, json[0].timelineTriggers]) {
+    if (!set)
+      continue;
+    for (let trigger of set) {
+      let lastIdx = -1;
+
+      let keys = Object.keys(trigger);
+
+      for (let field of triggerOrder) {
+        if (typeof trigger[field] === 'undefined')
+          continue;
+
+        let thisIdx = keys.indexOf(field);
+        if (thisIdx === -1)
+          continue;
+        if (thisIdx <= lastIdx) {
+          console.error(`${file}: in ${trigger.id}, field '${keys[lastIdx]}' must precede '${keys[thisIdx]}'`);
+          exitCode = 1;
+        }
+        lastIdx = thisIdx;
+      }
+    }
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -315,6 +367,7 @@ let testTriggerFile = function(file) {
     testInvalidTriggerKeys(file, contents);
     testValidIds(file, contents);
     testResponseHasNoFriends(file, contents);
+    testTriggerFieldsSorted(file, contents);
   } catch (e) {
     console.error(`Trigger error in ${file}.`);
     console.error(e);
