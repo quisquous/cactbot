@@ -24,38 +24,7 @@
       regexJa: Regexes.startsUsing({ id: '31AA', source: 'ミドガルズオルム' }),
       regexCn: Regexes.startsUsing({ id: '31AA', source: '尘世幻龙' }),
       regexKo: Regexes.startsUsing({ id: '31AA', source: '미드가르드오름' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑减伤',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: data.ShortName(matches.target) + '吃死刑',
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ja: 'バスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O10S Fire Marker',

@@ -61,11 +61,13 @@
           if (sameMarkers) {
             return {
               en: 'Close to boss',
+              de: 'Nahe zum Boss',
               fr: 'Près du boss',
             };
           }
           return {
             en: 'Away from boss',
+            de: 'Weg vom Boss',
             fr: 'Eloignez-vous du boss',
           };
         }
@@ -84,6 +86,7 @@
       },
       infoText: {
         en: 'Away from boss',
+        de: 'Weg vom Boss',
         fr: 'Eloignez-vous du boss',
       },
     },
@@ -100,6 +103,7 @@
       },
       infoText: {
         en: 'Stand in red',
+        de: 'Im Roten stehen',
         fr: 'Restez dans le rouge',
       },
     },
@@ -116,6 +120,7 @@
       },
       infoText: {
         en: 'Stand in blue',
+        de: 'Im Blauen stehen',
         fr: 'Restez dans le bleu',
       },
     },
@@ -132,12 +137,14 @@
         if (data.CanSilence()) {
           return {
             en: 'Interrupt Mechanoscribe',
+            de: 'unterbreche Mechanoscholar',
             fr: 'Interrompez le Mécano-scribe',
           };
         }
         if (data.CanStun()) {
           return {
             en: 'Stun Mechanoscribe',
+            de: 'betäube Mechanoscholar',
             fr: 'Etourdissez le Mécano-scribe',
           };
         }
@@ -153,6 +160,7 @@
       regexKo: Regexes.startsUsing({ id: '1956', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Stand in light circle',
+        de: 'Im hellen Kreis stehen',
         fr: 'Restez dans le cercle blanc',
       },
     },
@@ -166,6 +174,7 @@
       regexKo: Regexes.startsUsing({ id: '1957', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Stand in dark circle',
+        de: 'Im dunklen Kreis stehen',
         fr: 'Restez dans le cercle noir',
       },
     },
@@ -179,6 +188,7 @@
       regexKo: Regexes.startsUsing({ id: '1959', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Cleanse in green circle',
+        de: 'Im grünen Kreis reinigen',
         fr: 'Nettoyez dans le cercle vert',
       },
     },
@@ -216,6 +226,7 @@
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
       alertText: {
         en: 'Hide behind boulder',
+        de: 'Hinter dem Brocken verstecken',
         fr: 'Derrière le rocher',
       },
     },

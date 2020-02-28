@@ -428,37 +428,7 @@
       regexJa: Regexes.startsUsing({ id: '264B', source: '神龍' }),
       regexCn: Regexes.startsUsing({ id: '264B', source: '神龙' }),
       regexKo: Regexes.startsUsing({ id: '264B', source: '신룡' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-          };
-        } else if (data.role == 'tank') {
-          return {
-            en: 'Tank Swap',
-            de: 'Tankwechsel',
-          };
-        } else if (data.role == 'healer') {
-          return {
-            en: 'Tank Buster on ' + matches.target,
-            de: 'Tankbuster auf ' + matches.target,
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me || data.role == 'healer') {
-          return {
-            en: 'Tank Buster',
-            de: 'Tenkbasta',
-          };
-        } else if (data.role == 'tank') {
-          return {
-            en: 'Tank Swap',
-            de: 'Tenk wechsel',
-          };
-        }
-      },
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'ShinryuEx Wormwail',
@@ -468,14 +438,7 @@
       regexJa: Regexes.startsUsing({ id: '2648', source: '神龍', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2648', source: '神龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2648', source: '신룡', capture: false }),
-      alertText: {
-        en: 'be inside hitbox',
-        de: 'In seine Hitbox',
-      },
-      tts: {
-        en: 'get inside',
-        de: 'reingehen',
-      },
+      response: Responses.getUnder(),
     },
     {
       id: 'ShinryuEx Breath',
@@ -633,10 +596,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alarmText: {
-        en: 'spread out',
-        de: 'verteilen',
-      },
+      response: Responses.spread(),
     },
   ],
   timelineReplace: [

@@ -14,7 +14,7 @@
       condition: function(data) {
         return data.CanSilence();
       },
-      response: Responses.interupt(),
+      response: Responses.interrupt(),
     },
     {
       // Indiscriminate Hood Swing

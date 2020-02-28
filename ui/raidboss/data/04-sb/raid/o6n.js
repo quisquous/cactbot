@@ -13,31 +13,7 @@
       regexJa: Regexes.startsUsing({ id: '282A', source: 'チャダルヌーク・デーモン' }),
       regexCn: Regexes.startsUsing({ id: '282A', source: '恶魔查达奴克' }),
       regexKo: Regexes.startsUsing({ id: '282A', source: '차다르누크 악령' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur VOUS',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Buster auf ' + data.ShortName(matches.target),
-            fr: 'Buster sur ' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O6N Meteors',

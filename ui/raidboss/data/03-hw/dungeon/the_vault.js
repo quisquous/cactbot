@@ -18,6 +18,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Avoid dashes',
+        de: 'Sprint ausweichen',
         fr: 'Evitez les dash',
       },
     },
@@ -63,6 +64,7 @@
         if (data.role == 'healer') {
           return {
             en: 'Heal + shield ' + data.ShortName(matches.target),
+            de: 'Heilung + Schild ' + data.ShortName(matches.target),
             fr: 'Heal + boucliers ' + data.ShortName(matches.target),
           };
         }
@@ -110,6 +112,7 @@
       },
       alarmText: {
         en: 'Away from rifts',
+        de: 'Weg von de Ätherspalten',
         fr: 'Eloignez-vous des déchirures',
       },
     },
@@ -145,6 +148,7 @@
       suppressSeconds: 4,
       infoText: {
         en: 'Evade marching knights',
+        de: 'Marschierenden Rittern ausweichen',
         fr: 'Esquivez les chevaliers',
       },
     },

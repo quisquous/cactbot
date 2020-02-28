@@ -12,9 +12,7 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alertText: {
-        en: 'Cleave Soon',
-      },
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
@@ -43,43 +41,30 @@
       },
     },
     {
-      id: 'Lakshmi Pull of Light',
+      id: 'Lakshmi Pull of Light Tank',
       regex: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       regexDe: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       regexFr: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
       regexJa: Regexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
       regexCn: Regexes.startsUsing({ id: '215E', source: '吉祥天女' }),
       regexKo: Regexes.startsUsing({ id: '215E', source: '락슈미' }),
-      alarmText: function(data, matches) {
-        if (data.role != 'tank' && matches.target == data.me) {
-          return {
-            en: 'Buster on YOU',
-            de: 'Tankbuster auf DIR',
-          };
-        }
+      condition: function(data, matches) {
+        return data.role == 'tank';
       },
-      alertText: function(data, matches) {
-        if (data.role == 'tank' && matches.target == data.me) {
-          return {
-            en: 'Buster on YOU',
-            de: 'Tankbuster auf DIR',
-          };
-        }
-        if (data.role == 'healer' && matches.target != data.me) {
-          return {
-            en: 'Buster on ' + matches.target,
-            de: 'Tankbuster auf ' + matches.target,
-          };
-        }
+      response: Responses.tankBuster('info'),
+    },
+    {
+      id: 'Lakshmi Pull of Light Unexpected',
+      regex: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      regexDe: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      regexFr: Regexes.startsUsing({ id: '215E', source: 'Lakshmi' }),
+      regexJa: Regexes.startsUsing({ id: '215E', source: 'ラクシュミ' }),
+      regexCn: Regexes.startsUsing({ id: '215E', source: '吉祥天女' }),
+      regexKo: Regexes.startsUsing({ id: '215E', source: '락슈미' }),
+      condition: function(data, matches) {
+        return data.role != 'tank' && data.role != 'healer';
       },
-      tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'buster',
-            de: 'Basta',
-          };
-        }
-      },
+      response: Responses.tankBuster('alarm'),
     },
     {
       id: 'Lakshmi Divine Denial',
