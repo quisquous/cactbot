@@ -32,31 +32,7 @@
       regexJa: Regexes.startsUsing({ id: '276C', source: 'ガーディアン' }),
       regexCn: Regexes.startsUsing({ id: '276C', source: '守护者' }),
       regexKo: Regexes.startsUsing({ id: '276C', source: '가디언' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank Buster sur VOUS',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Buster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O7N Shockwave',
@@ -66,11 +42,7 @@
       regexJa: Regexes.startsUsing({ id: '2766', source: 'ガーディアン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2766', source: '守护者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2766', source: '가디언', capture: false }),
-      alertText: {
-        en: 'Knockback',
-        de: 'Rückstoß',
-        fr: 'Projection',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'O7N Diffractive Laser',
@@ -80,43 +52,12 @@
       regexJa: Regexes.startsUsing({ id: '2761', source: 'ガーディアン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2761', source: '守护者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2761', source: '가디언', capture: false }),
-      alertText: {
-        en: 'Get Out',
-        de: 'Raus da',
-        fr: 'Eloignez-vous',
-      },
-      tts: {
-        en: 'out',
-        de: 'raus',
-        fr: 's\'éloigner',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'O7N Prey',
       regex: Regexes.headMarker({ id: '001E' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Prey on YOU',
-            de: 'Beute auf DIR',
-            fr: 'Marquage sur VOUS',
-          };
-        }
-        return {
-          en: 'Prey on ' + data.ShortName(matches.target),
-          de: 'Beute auf ' + data.ShortName(matches.target),
-          fr: 'Marquage sur ' + data.ShortName(matches.target),
-        };
-      },
-      tts: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'prey',
-            de: 'beute',
-            fr: 'marquage',
-          };
-        }
-      },
+      response: Responses.preyOn('info'),
     },
   ],
   timelineReplace: [

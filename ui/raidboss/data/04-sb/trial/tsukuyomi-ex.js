@@ -16,12 +16,7 @@
       regexJa: Regexes.startsUsing({ id: '2BBC', source: 'ツクヨミ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2BBC', source: '月读', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2BBC', source: '츠쿠요미', capture: false }),
-      alertText: {
-        en: 'Gun: Stack',
-        de: 'Pistole: Stack',
-        fr: 'Pistolet : Pack',
-        cn: '铳: 集合',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'Tsukuyomi Nightfall Spear',
@@ -31,12 +26,7 @@
       regexJa: Regexes.startsUsing({ id: '2BBD', source: 'ツクヨミ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2BBD', source: '月读', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2BBD', source: '츠쿠요미', capture: false }),
-      alertText: {
-        en: 'Spear: Spread',
-        de: 'Speer: Verteilen',
-        fr: 'Lance : Ecartez-vous',
-        cn: '枪: 分散',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Tsukuyomi Torment',
@@ -173,22 +163,12 @@
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
-      alarmText: {
-        en: 'Meteor on YOU',
-        de: 'Meteor auf DIR',
-        fr: 'Météore sur VOUS',
-        cn: '陨石点名',
-      },
+      response: Responses.meteorOnYou(),
     },
     {
       id: 'Tsukuyomi Lunacy',
       regex: Regexes.headMarker({ id: '003E', capture: false }),
-      alertText: {
-        en: 'Stack',
-        de: 'Stack',
-        fr: 'Pack',
-        cn: '集合',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'Tsukuyomi Hagetsu',
@@ -196,12 +176,7 @@
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez-vous',
-        cn: '分散',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Tsukuyomi Dance of the Dead',
@@ -211,18 +186,7 @@
       regex: Regexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\.', capture: false }),
       regexFr: Regexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\.', capture: false }),
       regexCn: Regexes.dialog({ line: '[^:]*:我不能输.*我还没有.*', capture: false }),
-      infoText: {
-        en: 'aoe',
-        de: 'aoe',
-        fr: 'aoe',
-        cn: 'AOE',
-      },
-      tts: {
-        en: 'aoe',
-        de: 'a o e',
-        fr: 'a o e',
-        cn: 'A O E',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Tsukuyomi Supreme Selenomancy',

@@ -218,13 +218,14 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 3;
       },
+      condition: function(data, matches) {
+        return matches.target == data.me;
+      },
       alertText: {
         en: 'Stop',
         de: 'Stopp',
       },
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+
     },
   ],
   timelineReplace: [

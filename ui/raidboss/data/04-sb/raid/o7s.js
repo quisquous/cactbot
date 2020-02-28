@@ -119,35 +119,7 @@
       regexJa: Regexes.startsUsing({ id: '2789', source: 'ガーディアン' }),
       regexCn: Regexes.startsUsing({ id: '2789', source: '守护者' }),
       regexKo: Regexes.startsUsing({ id: '2789', source: '가디언' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tenkbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '탱버 → 나',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tenkbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '탱버 → ' + data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ko: '탱버',
-            ja: 'バスター',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O7S Orb Marker',
@@ -210,35 +182,7 @@
     {
       id: 'O7S Prey',
       regex: Regexes.headMarker({ id: '001E' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Prey on YOU',
-            de: 'Rakete auf DIR',
-            fr: 'Marquage sur VOUS',
-            ko: '빨간징 → 나',
-            ja: 'マーカー on YOU',
-          };
-        }
-        return {
-          en: 'Prey on ' + data.ShortName(matches.target),
-          de: 'Beute auf ' + data.ShortName(matches.target),
-          fr: 'Marquage sur ' + data.ShortName(matches.target),
-          ko: '빨간징 → ' + data.ShortName(matches.target),
-          ja: 'マーカー on ' + data.ShortName(matches.target),
-        };
-      },
-      tts: function(data, matches) {
-        if (data.me != matches.target)
-          return;
-        return {
-          en: 'prey',
-          de: 'beute',
-          fr: 'marquage',
-          ko: '빨간징',
-          ja: 'マーカー',
-        };
-      },
+      response: Responses.preyOn('info'),
     },
     {
       id: 'O7S Searing Wind',
@@ -251,20 +195,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Searing Wind: go outside',
-        de: 'Gluthitze: Geh weg',
-        fr: 'Fournaise : éloignez-vous',
-        ko: '작열: 바깥으로',
-        ja: '灼熱: 外側へ',
-      },
-      tts: {
-        en: 'searing wind',
-        de: 'gluthitze',
-        fr: 'fournaise',
-        ko: '작열',
-        ja: '灼熱',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'O7S Abandonment',
@@ -332,34 +263,13 @@
     },
     {
       id: 'O7S Stoneskin',
-      regex: Regexes.startsUsing({ id: '2AB5', source: 'Ultros', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2AB5', source: 'Ultros', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2AB5', source: 'Orthros', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2AB5', source: 'オルトロス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2AB5', source: '오르트로스', capture: false }),
-      alarmText: function(data) {
-        if (data.CanSilence()) {
-          return {
-            en: 'SILENCE!',
-            de: 'VERSTUMMEN!',
-            fr: 'SILENCE!',
-            ko: '침묵!',
-            ja: '沈黙！',
-          };
-        }
-      },
-      infoText: function(data) {
-        if (!data.CanSilence()) {
-          return {
-            en: 'Silence',
-            de: 'stumm',
-            fr: 'silence',
-            ko: '침묵',
-            ja: '沈黙',
-          };
-        }
-      },
+      regex: Regexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
+      regexDe: Regexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
+      regexFr: Regexes.startsUsing({ id: '2AB5', source: 'Orthros' }),
+      regexJa: Regexes.startsUsing({ id: '2AB5', source: 'オルトロス' }),
+      regexCn: Regexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯' }),
+      regexKo: Regexes.startsUsing({ id: '2AB5', source: '오르트로스' }),
+      response: Responses.interupt('alarm'),
     },
     {
       id: 'O7S Load',
