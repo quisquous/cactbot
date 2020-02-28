@@ -269,7 +269,7 @@
       regexJa: Regexes.startsUsing({ id: '2AB5', source: 'オルトロス' }),
       regexCn: Regexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯' }),
       regexKo: Regexes.startsUsing({ id: '2AB5', source: '오르트로스' }),
-      response: Responses.interupt('alarm'),
+      response: Responses.interrupt('alarm'),
     },
     {
       id: 'O7S Load',
