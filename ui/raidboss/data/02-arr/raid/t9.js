@@ -226,7 +226,7 @@
       id: 'T9 Dragon Locations',
       regex: Regexes.addedCombatantFull({ name: ['Firehorn', 'Iceclaw', 'Thunderwing'] }),
       regexDe: Regexes.addedCombatantFull({ name: ['Feuerhorn', 'Eisklaue', 'Donnerschwinge'] }),
-      regexFr: Regexes.addedCombatantFull({ name: ['corne-de-feu', 'griffe-de-glace ', 'aile-de-foudre'] }),
+      regexFr: Regexes.addedCombatantFull({ name: ['Corne-De-Feu', 'Griffe-De-Glace', 'Aile-De-Foudre'] }),
       regexJa: Regexes.addedCombatantFull({ name: ['ファイアホーン', 'アイスクロウ', 'サンダーウィング'] }),
       regexCn: Regexes.addedCombatantFull({ name: ['火角', '冰爪', '雷翼'] }),
       regexKo: Regexes.addedCombatantFull({ name: ['화염뿔', '얼음발톱', '번개날개'] }),

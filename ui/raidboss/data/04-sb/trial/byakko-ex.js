@@ -260,6 +260,7 @@
       regexDe: Regexes.dialog({ line: '[^:]*:Stürmt los, meine zwei Gesichter!', capture: false }),
       regexFr: Regexes.dialog({ line: '[^:]*:Ma colère devient double.*?!', capture: false }),
       regexJa: Regexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！', capture: false }),
+      regexKo: Regexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
