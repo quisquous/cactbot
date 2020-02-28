@@ -17,38 +17,7 @@
       regexJa: Regexes.startsUsing({ id: '326D', source: 'オメガ' }),
       regexCn: Regexes.startsUsing({ id: '326D', source: '欧米茄' }),
       regexKo: Regexes.startsUsing({ id: '326D', source: '오메가' }),
-      alarmText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: data.ShortName(matches.target) + '吃死刑',
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ja: 'バスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster('alarm'),
     },
     {
       // Ability IDs:
@@ -82,14 +51,7 @@
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
-      alertText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        ja: '左',
-        cn: '左',
-        ko: '왼쪽으로',
-      },
+      response: Responses.goLeft(),
       run: function(data) {
         data.lastWasStarboard = true;
       },
@@ -105,14 +67,7 @@
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
-      alertText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite',
-        ja: '右',
-        cn: '右',
-        ko: '오른쪽으로',
-      },
+      response: Responses.goRight(),
       run: function(data) {
         data.lastWasStarboard = false;
       },

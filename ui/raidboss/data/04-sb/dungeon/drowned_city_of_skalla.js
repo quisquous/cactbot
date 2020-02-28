@@ -5,23 +5,13 @@
   triggers: [
     {
       id: 'Hrodric Tank',
-      regex: Regexes.startsUsing({ id: '2661', source: 'Hrodric Poisontongue', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2661', source: 'Hrodric Giftzunge', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2661', source: 'Hrodric Le Médisant', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2661', source: '直言のフロドリック', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2661', source: '直言不讳 赫罗德里克', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2661', source: '입바른 흐로드릭', capture: false }),
-      infoText: function(data) {
-        return data.role != 'tank' ? 'tank cleave' : '';
-      },
-      alertText: function(data) {
-        return data.role == 'tank' ? 'tank cleave' : '';
-      },
-      tts: {
-        en: 'tank cleave',
-        de: 'tenk klief',
-        fr: 'tank clive',
-      },
+      regex: Regexes.startsUsing({ id: '2661', source: 'Hrodric Poisontongue' }),
+      regexDe: Regexes.startsUsing({ id: '2661', source: 'Hrodric Giftzunge' }),
+      regexFr: Regexes.startsUsing({ id: '2661', source: 'Hrodric Le Médisant' }),
+      regexJa: Regexes.startsUsing({ id: '2661', source: '直言のフロドリック' }),
+      regexCn: Regexes.startsUsing({ id: '2661', source: '直言不讳 赫罗德里克' }),
+      regexKo: Regexes.startsUsing({ id: '2661', source: '입바른 흐로드릭' }),
+      response: Responses.tankCleave(),
     },
     {
       id: 'Hrodric Tail',
@@ -51,11 +41,7 @@
       regexJa: Regexes.startsUsing({ id: '2665', source: '直言のフロドリック', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2665', source: '直言不讳 赫罗德里克', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2665', source: '입바른 흐로드릭', capture: false }),
-      alertText: {
-        en: 'look away',
-        de: 'wegschauen',
-        fr: 'Détournez le regard',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'Hrodric Words',

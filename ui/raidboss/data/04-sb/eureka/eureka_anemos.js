@@ -36,44 +36,7 @@
       regexJa: Regexes.startsUsing({ id: '29EB', source: '賞金首：サボテンダー・コリード' }),
       regexCn: Regexes.startsUsing({ id: '29EB', source: '悬赏魔物：科里多仙人刺' }),
       regexKo: Regexes.startsUsing({ id: '29EB', source: '현상수배: 사보텐더 코리도' }),
-      alertText: function(data, matches) {
-        if (matches.target != data.me)
-          return;
-
-        return {
-          en: 'Stack on YOU',
-          de: 'Stack auf DIR',
-          fr: 'Stack sur VOUS',
-          cn: '集合',
-        };
-      },
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
-          return;
-
-        return {
-          en: '100k Needle Stack',
-          de: '100k Nadeln Stack',
-          fr: 'Stack 100k Aiguilles',
-          cn: '十万针刺集合',
-        };
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'stack on you',
-            de: 'stek auf dir',
-            fr: 'Stack sur vous',
-            cn: '集合',
-          };
-        }
-        return {
-          en: 'needle stack',
-          de: 'nadel stek',
-          fr: 'stack aiguille',
-          cn: '集合',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Eureka Poly Swipe',
@@ -98,12 +61,7 @@
       regexJa: Regexes.startsUsing({ id: '2A6E', source: 'ポリュペモス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2A6E', source: '波吕斐摩斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2A6E', source: '폴리페모스', capture: false }),
-      alarmText: {
-        en: 'GET OUT',
-        de: 'RAUS DA',
-        fr: 'ELOIGNEZ-VOUS',
-        cn: '远离',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Eureka Poly Eye',
@@ -143,18 +101,7 @@
       regexJa: Regexes.startsUsing({ id: '2A64', source: 'カイム', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2A64', source: '盖因', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2A64', source: '카임', capture: false }),
-      alarmText: {
-        en: 'Look Away!',
-        de: 'Wegschauen!',
-        fr: 'Ne regardez pas',
-        cn: '背对！',
-      },
-      tts: {
-        en: 'look away',
-        de: 'weck schauen',
-        fr: 'Ne regardez pas',
-        cn: '背对！',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'Eureka Fafnir Terror',
@@ -164,18 +111,7 @@
       regexJa: Regexes.startsUsing({ id: '29B7', source: 'ファヴニル', capture: false }),
       regexCn: Regexes.startsUsing({ id: '29B7', source: '法夫纳', capture: false }),
       regexKo: Regexes.startsUsing({ id: '29B7', source: '파프니르', capture: false }),
-      alarmText: {
-        en: 'Look Away!',
-        de: 'Wegschauen!',
-        fr: 'Ne regardez pas',
-        cn: '背对！',
-      },
-      tts: {
-        en: 'look away',
-        de: 'weck schauen',
-        fr: 'Ne regardez pas',
-        cn: '背对！',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'Eureka Voidscale Ice',
@@ -209,12 +145,7 @@
       regexJa: Regexes.startsUsing({ id: '2899', source: 'パズズ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2899', source: '帕祖祖', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2899', source: '파주주', capture: false }),
-      alarmText: {
-        en: 'Get Out',
-        de: 'Raus da',
-        fr: 'Eloignez-vous',
-        cn: '远离',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Eureka Pazuzu Camisado',
@@ -227,18 +158,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Buster on YOU',
-        de: 'Tenkbasta auf DIR',
-        fr: 'Tank Buster sur VOUS',
-        cn: '死刑减伤',
-      },
-      tts: {
-        en: 'buster',
-        de: 'basta',
-        fr: 'tankbuster',
-        cn: '死刑减伤',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Eureka Pazuzu Cloud of Locust',
@@ -248,12 +168,7 @@
       regexJa: Regexes.startsUsing({ id: '2897', source: 'パズズ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2897', source: '帕祖祖', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2897', source: '파주주', capture: false }),
-      infoText: {
-        en: 'Out of melee',
-        de: 'Raus aus Nahkampf',
-        fr: 'Eloignez-vous de la mélée',
-        cn: '远离近战',
-      },
+      response: Responses.outOfMelee(),
     },
     {
       id: 'Eureka Pazuzu Plague of Locust',

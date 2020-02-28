@@ -6,6 +6,16 @@
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(3\)$/,
   },
   timelineFile: 'e7s.txt',
+  timelineTriggers: [
+    {
+      id: 'E7S Tornado Spots',
+      regex: /Words Of Fervor/,
+      beforeSeconds: 10,
+      infoText: {
+        en: 'Dark NW, Light NE, one pair S',
+      },
+    },
+  ],
   triggers: [
     {
       id: 'E7S Empty Wave',
@@ -183,6 +193,13 @@
       },
     },
     {
+      id: 'E7S Advent Of Light',
+      regex: Regexes.startsUsing({ source: 'Idolatry', id: '4C6E' }),
+      condition: (data) => data.CanSilence(),
+      suppressSeconds: 1,
+      response: Responses.interrupt('alarm'),
+    },
+    {
       id: 'E7S Insatiable Light Stack',
       regex: Regexes.headMarker({ id: '0064' }),
       preRun: function(data, matches) {
@@ -330,7 +347,10 @@
       id: 'E7S Crusade',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C76', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C76', capture: false }),
-      response: Responses.knockback(),
+      // Can't use knockback prevention for this, so say where to get knocked back.
+      alertText: {
+        en: 'Get Knocked Into Corner',
+      },
     },
     {
       id: 'E7S Threefold Grace',

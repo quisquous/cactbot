@@ -212,20 +212,7 @@
       regexJa: Regexes.ability({ id: '37E5', source: '山の式鬼', capture: false }),
       regexCn: Regexes.ability({ id: '37E5', source: '山之式鬼', capture: false }),
       regexKo: Regexes.ability({ id: '37E5', source: '산 사역귀', capture: false }),
-      infoText: {
-        en: 'East =>',
-        de: 'Osten =>',
-        fr: 'Est =>',
-        ja: '東 =>',
-        cn: '东 =>',
-      },
-      tts: {
-        en: 'East',
-        de: 'Osten',
-        fr: 'Est',
-        ja: 'ひがし',
-        cn: '东 =>',
-      },
+      response: Responses.goEast(),
     },
     {
       id: 'SeiryuEx Handprint West',
@@ -235,20 +222,7 @@
       regexJa: Regexes.ability({ id: '37E6', source: '山の式鬼', capture: false }),
       regexCn: Regexes.ability({ id: '37E6', source: '山之式鬼', capture: false }),
       regexKo: Regexes.ability({ id: '37E6', source: '산 사역귀', capture: false }),
-      infoText: {
-        en: '<= West',
-        de: '<= Westen',
-        fr: '<= Ouest',
-        ja: '<= 西',
-        cn: '<= 西',
-      },
-      tts: {
-        en: 'West',
-        de: 'Westen',
-        fr: 'Ouest',
-        ja: 'にし',
-        cn: '<= 西',
-      },
+      response: Responses.goWest(),
     },
     {
       id: 'SeiryuEx Find Sneks',
@@ -282,22 +256,16 @@
     },
     {
       id: 'SeiryuEx Silence',
-      regex: Regexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '37F4', source: 'Numa No Shiki', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '37F4', source: 'Shiki Uligineux', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '37F4', source: '沼の式鬼', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '37F4', source: '沼之式鬼', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '37F4', source: '늪 사역귀', capture: false }),
+      regex: Regexes.startsUsing({ id: '37F4', source: 'Numa-No-Shiki' }),
+      regexDe: Regexes.startsUsing({ id: '37F4', source: 'Numa No Shiki' }),
+      regexFr: Regexes.startsUsing({ id: '37F4', source: 'Shiki Uligineux' }),
+      regexJa: Regexes.startsUsing({ id: '37F4', source: '沼の式鬼' }),
+      regexCn: Regexes.startsUsing({ id: '37F4', source: '沼之式鬼' }),
+      regexKo: Regexes.startsUsing({ id: '37F4', source: '늪 사역귀' }),
       condition: function(data) {
         return data.CanSilence();
       },
-      alertText: {
-        en: 'Silence',
-        de: 'Verstummen',
-        fr: 'Silence',
-        ja: 'ストンスキン',
-        cn: '沉默石肤',
-      },
+      response: Responses.interrupt(),
     },
     {
       id: 'SeiryuEx Stack',
@@ -336,13 +304,7 @@
       regexJa: Regexes.startsUsing({ id: '3A01', source: '青龍', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3A01', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A01', source: '청룡', capture: false }),
-      infoText: {
-        en: 'Out',
-        de: 'Raus',
-        fr: 'Dehors',
-        ja: '外',
-        cn: '远离',
-      },
+      response: Responses.getOut('info'),
     },
     {
       id: 'SeiryuEx Sigil In Out 1',
@@ -352,13 +314,7 @@
       regexJa: Regexes.startsUsing({ id: '3A05', source: '青龍', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
-      infoText: {
-        en: 'In, then out',
-        de: 'Rein, dann raus',
-        fr: 'Dedans, puis dehors',
-        ja: '中から外',
-        cn: '先靠近，再远离',
-      },
+      response: Responses.getInThenOut('info'),
     },
     {
       id: 'SeiryuEx Sigil In Out 2',
@@ -369,13 +325,7 @@
       regexCn: Regexes.startsUsing({ id: '3A05', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A05', source: '청룡', capture: false }),
       delaySeconds: 2.7,
-      infoText: {
-        en: 'Out',
-        de: 'Raus',
-        fr: 'Dehors',
-        ja: '外',
-        cn: '远离',
-      },
+      response: Responses.getOut('info'),
     },
     {
       id: 'SeiryuEx Sigil Out In 1',
@@ -385,13 +335,7 @@
       regexJa: Regexes.startsUsing({ id: '3A03', source: '青龍', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
-      infoText: {
-        en: 'Out, then in',
-        de: 'Raus, dann rein',
-        fr: 'Dehors, puis dedans',
-        ja: '外から中',
-        cn: '先远离，再靠近',
-      },
+      response: Responses.getOutThenIn('info'),
     },
     {
       id: 'SeiryuEx Sigil Out In 2',
@@ -402,13 +346,7 @@
       regexCn: Regexes.startsUsing({ id: '3A03', source: '青龙', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3A03', source: '청룡', capture: false }),
       delaySeconds: 2.7,
-      infoText: {
-        en: 'In',
-        de: 'Rein',
-        fr: 'Dedans',
-        ja: '中',
-        cn: '靠近',
-      },
+      response: Responses.getIn('info'),
     },
     {
       id: 'SeiryuEx Swim Lessons',

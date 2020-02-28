@@ -10,7 +10,7 @@
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
+        'Dance to the song of ringing steel': 'Ein Tanz im Takt des singenden Stahls',
       },
       'replaceText': {
         '1st Double Prey': '1st Double Prey', // FIXME
@@ -21,11 +21,11 @@
         'Blinding Blade': 'Blendende Klinge',
         'Bloody Fuller': 'Blutrille',
         'Dragonfly Avatar': 'Libellen-Inkarnation',
-        'Inner AOE': 'Inner AOE', // FIXME
+        'Inner AOE': 'AoE innen',
         'Laughing Rose': 'Lachende Rose',
         '(?<! )Liberation': 'Befreiung',
         'Orbs': 'Orbs', // FIXME
-        'Outer AOE': 'Outer AOE', // FIXME
+        'Outer AOE': 'AoE außen',
         'Pillars of Heaven': 'Säulen des Himmels',
         'Prelude to Liberation': 'Auftakt zur Befreiung',
         'Scorpion Avatar': 'Skorpion-Inkarnation',
