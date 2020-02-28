@@ -35,6 +35,7 @@
         data.rushCount++;
         return {
           en: 'Tether ' + data.rushCount,
+          de: 'Verbindung ' + data.rushCount,
           fr: 'Lien ' + data.rushCount,
           ko: '선: ' + data.rushCount,
         };
@@ -61,6 +62,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
       alertText: {
         en: 'Go Front / Sides',
+        de: 'Gehe nach Forne/ zu den Seiten',
         ko: '앞 / 양옆으로',
       },
       run: function(data) {
@@ -77,12 +79,14 @@
         if (data.firstFrost == 'driving') {
           return {
             en: 'Biting Frost Next',
+            de: 'Frosthieb als nächstes',
             fr: 'Taillade de givre bientot',
             ko: '다음: Biting/スラッシュ',
           };
         }
         return {
           en: 'Driving Frost Next',
+          de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientot',
           ko: '다음: Driving/スラスト',
         };
@@ -91,12 +95,14 @@
         if (data.firstFrost == 'biting') {
           return {
             en: 'Biting Frost Next',
+            de: 'Frosthieb als nächstes',
             fr: 'Taillade de givre bientot',
             ko: '다음: 바이팅 스라슈',
           };
         }
         return {
           en: 'Driving Frost Next',
+          de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientot',
           ko: '다음: 드라이빙 스라스토',
         };
@@ -117,6 +123,7 @@
       },
       infoText: {
         en: 'Cleanse',
+        de: 'Reinigen',
         fr: 'Guérison',
         ko: '에스나',
       },
@@ -151,6 +158,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Chain on YOU',
+        de: 'Kette auf DIR',
         fr: 'Chaine sur VOUS',
         ko: '사슬 대상자',
       },
@@ -161,6 +169,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Orb on YOU',
+        de: 'Orb auf DIR',
         fr: 'Orbe sur VOUS',
         ko: '구슬 대상자',
       },
@@ -170,6 +179,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D80', capture: false }),
       infoText: {
         en: 'Stacks',
+        de: 'Stacks',
         fr: 'Packages',
         ko: '쉐어징',
       },
@@ -186,6 +196,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Morn Afah on YOU',
+            de: 'Morn Afah auf DIR',
             fr: 'Morn Afah sur YOU',
             ko: '몬아파 대상자',
           };
@@ -193,6 +204,7 @@
         if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
           return {
             en: 'Morn Afah on ' + data.ShortName(matches.target),
+            de: 'Morn Afah auf ' + data.ShortName(matches.target),
             fr: 'Morn Afah sur ' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 몬 아파',
           };
@@ -249,6 +261,7 @@
       alertText: function(data) {
         return {
           en: 'Red #' + data.wyrmclawNumber,
+          de: 'Rot #' + data.wyrmclawNumber,
           fr: 'Rouge #' + data.wyrmclawNumber,
           ko: '빨강 ' + data.wyrmclawNumber + '번',
         };
@@ -280,6 +293,7 @@
       alertText: function(data) {
         return {
           en: 'Blue #' + data.wyrmfangNumber,
+          de: 'Blau #' + data.wyrmclawNumber,
           fr: 'Bleu #' + data.wyrmfangNumber,
           ko: '파랑 ' + data.wyrmclawNumber + '번',
         };
@@ -301,6 +315,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D68', capture: false }),
       alertText: {
         en: 'Back Then Front',
+        de: 'Nach Hinten, danach nach Forne',
         fr: 'Derrière puis devant',
         ko: '뒤로 => 앞으로',
       },
@@ -310,6 +325,7 @@
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D69', capture: false }),
       alertText: {
         en: 'Front Then Back',
+        de: 'Nach Forne, danach nach Hinten',
         fr: 'Devant puis derrière',
         ko: '앞으로 => 뒤로',
       },
@@ -333,6 +349,7 @@
       },
       infoText: {
         en: 'Cleanse DPS Only',
+        de: 'Nur DPS reinigen',
         fr: 'Guérissez les DPS seulement',
         ko: '딜러만 에스나',
       },
@@ -355,8 +372,8 @@
       'locale': 'de',
       'replaceSync': {
         'luminous aether': 'Lichtäther',
-        'holy light': 'heilig[a] Licht',
-        'great wyrm': 'Körper[p] des heiligen Drachen',
+        'holy light': 'heilig(?:e|er|es|en) Licht',
+        'great wyrm': 'Körper des heiligen Drachen',
         'frozen mirror': 'Eisspiegel',
         'electric aether': 'Blitzäther',
         'earthen aether': 'Erdäther',
@@ -414,23 +431,21 @@
         'Akh Rhai': 'Akh Rhai',
         'Akh Morn': 'Akh Morn',
         'Absolute Zero': 'Absoluter Nullpunkt',
-
-        // FIXME
-        'Reflected Frost \\(G\\)': 'Reflected Frost (G)',
-        'Reflected Frost \\(R\\)': 'Reflected Frost (R)',
-        '--middle--': '--middle--',
-        'Reflected Kick \\(G\\)': 'Reflected Kick (G)',
-        'Reflected Wings \\(B\\)': 'Reflected Wings (B)',
-        'Reflected Wings \\(G\\)': 'Reflected Wings (G)',
-        'Reflected Wings \\(R\\)': 'Reflected Wings (R)',
-        'Twin Silence/Stillness': 'Twin Silence/Stillness',
+        'Reflected Frost \\(G\\)': 'Spiegelung Frost (G)',
+        'Reflected Frost \\(R\\)': 'Spiegelung Frost (R)',
+        '--middle--': '--mitte--',
+        'Reflected Kick \\(G\\)': 'Spiegelung Tritt (G)',
+        'Reflected Wings \\(B\\)': 'Spiegelung Schwingen (B)',
+        'Reflected Wings \\(G\\)': 'Spiegelung Schwingen (G)',
+        'Reflected Wings \\(R\\)': 'Spiegelung Schwingen (R)',
+        'Twin Silence/Stillness': 'Zwillingsschwerter der Ruhe/Stille',
         '--teleport--': '--teleport--',
-        'Reflected Armor \\(B\\)': 'Reflected Armor (B)',
-        'Reflected Armor \\(G\\)': 'Reflected Armor (G)',
-        'Reflected Armor \\(R\\)': 'Reflected Armor (R)',
-        'Spiteful/Embittered Dance': 'Spiteful/Embittered Dance',
-        'Reflected Drachen': 'Reflected Drachen',
-        'Inescapable Illumination': 'Inescapable Illumination',
+        'Reflected Armor \\(B\\)': 'Spiegelung Rüstung (B)',
+        'Reflected Armor \\(G\\)': 'Spiegelung Rüstung (G)',
+        'Reflected Armor \\(R\\)': 'Spiegelung Rüstung (R)',
+        'Spiteful/Embittered Dance': 'Kalter/Strenger Tanz',
+        'Reflected Drachen': 'Spiegelung Drachen',
+        'Inescapable Illumination': 'Expositionslicht',
       },
       '~effectNames': {
         'Wyrmfang': 'Reißzähne des heiligen Drachen',

@@ -22,6 +22,7 @@
       },
       infoText: {
         en: 'Comet Towers',
+        de: 'Türme',
         fr: 'Tours',
         ja: 'コメットを処理',
         cn: '踩塔',
@@ -58,6 +59,7 @@
       delaySeconds: 5.5,
       alertText: {
         en: 'Move',
+        de: 'Bewegen',
         fr: 'Esquivez',
         ja: '移動',
         cn: '移动',

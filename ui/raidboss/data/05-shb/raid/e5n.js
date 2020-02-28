@@ -33,6 +33,7 @@
       delaySeconds: 5,
       infoText: {
         en: 'Look for small spear',
+        de: 'Halt nach kleinem Speer ausschau',
         fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
       },
@@ -46,6 +47,7 @@
       regexKo: Regexes.startsUsing({ id: '4B91', source: '라무', capture: false }),
       infoText: {
         en: 'Look for adds',
+        de: 'Halt nach dem Add ausschau',
         fr: 'Cherchez les adds',
         ko: '쫄 위치 확인',
       },
@@ -59,6 +61,7 @@
       regexKo: Regexes.startsUsing({ id: '4B90', source: '라무', capture: false }),
       infoText: {
         en: 'Fury\'s Bolt',
+        de: 'Wütender Blitz',
         fr: 'Boule de foudre',
         ko: '라무 강화',
       },
@@ -85,6 +88,7 @@
       },
       alertText: {
         en: 'Grab an orb',
+        de: 'Einen Orb nehmen',
         fr: 'Prenez un orbe',
         ko: '구슬 줍기',
       },
@@ -95,6 +99,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Drop cloud outside',
+        de: 'Wolken draußen ablegen',
       },
     },
   ],
@@ -104,7 +109,7 @@
       'replaceSync': {
         'stormcloud': 'Cumulonimbus-Wolke',
         'Ramuh': 'Ramuh',
-        'Will Of Ixion': 'Will Of Ixion', // FIXME
+        'Will Of Ixion': 'Ixion-Spiegelung',
       },
       'replaceText': {
         'Volt Strike': 'Voltschlag',
@@ -166,7 +171,7 @@
       'replaceSync': {
         'stormcloud': '積乱雲',
         'Ramuh': 'ラムウ',
-        'Will Of Ixion': 'Will Of Ixion', // FIXME
+        'Will Of Ixion': 'イクシオン・ミラージュ',
       },
       'replaceText': {
         'Volt Strike': 'ボルトストライク',

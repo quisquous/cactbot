@@ -24,12 +24,14 @@
         if (data.me == matches.target) {
           return {
             en: 'Enumeration on YOU',
+            de: 'Enumeration aud DIR',
             fr: 'Enumération sur VOUS',
             ko: '2인 장판 대상자',
           };
         }
         return {
           en: 'Enumeration',
+          de: 'Enumeration',
           fr: 'Enumération',
           ko: '2인 장판',
         };
@@ -68,6 +70,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Charge on YOU',
+            de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
             ko: '나에게 보스 돌진',
           };
@@ -76,6 +79,7 @@
           return;
         return {
           en: 'Tank Swap',
+          de: 'Tank Swap',
           fr: 'Tank Swap',
           ko: '탱 교대',
         };
@@ -106,6 +110,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Tether Marker on YOU',
+        de: 'Verbindung auf DIR',
         fr: 'Marque de lien sur VOUS',
         ko: '선 징 대상자',
       },
@@ -124,6 +129,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Garuda',
+        de: 'Greife Garuda an',
         fr: 'Attaquez Garuda',
         ko: '가루다 공격하기',
       },
@@ -135,6 +141,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Ifrit',
+        de: 'Greife Ifrit an',
         fr: 'Attaquez Ifrit',
         ko: '이프리트 공격하기',
       },
@@ -161,6 +168,7 @@
       regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       infoText: {
         en: 'go to spots for chains',
+        de: 'Gehe zu den Stellen für die Kette',
         ko: '콘플레그 준비',
       },
     },
@@ -174,12 +182,14 @@
         if (data.me == matches.source) {
           return {
             en: 'Tethered to ' + data.ShortName(matches.target),
+            de: 'Verbunden mit ' + data.ShortName(matches.target),
             fr: 'Lié à ' + data.ShortName(matches.target),
             ko: '선 연결 짝: ' + data.ShortName(matches.target),
           };
         }
         return {
           en: 'Tethered to ' + data.ShortName(matches.source),
+          de: 'Verbunden mit ' + data.ShortName(matches.source),
           fr: 'Lié à ' + data.ShortName(matches.source),
           ko: '선 연결 짝: ' + data.ShortName(matches.source),
         };

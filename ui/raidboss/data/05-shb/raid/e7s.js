@@ -13,6 +13,7 @@
       beforeSeconds: 10,
       infoText: {
         en: 'Dark NW, Light NE, one pair S',
+        de: 'Dunkel NW, Licht NO, ein Paar S',
       },
     },
   ],
@@ -56,6 +57,7 @@
       },
       infoText: {
         en: 'Tether on YOU',
+        de: 'Verbindung auf DIR',
         fr: 'Lien sur VOUS',
         ko: '선 대상자',
       },
@@ -87,6 +89,7 @@
         let names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
         return {
           en: 'Stack (' + names.join(', ') + ')',
+          de: 'Sammeln (' + names.join(', ') + ')',
           ko: '모이기 (' + names.join(', ') + ')',
         };
       },
@@ -98,6 +101,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Left',
+        de: 'Teleportation Links',
         fr: 'Téléportation à gauche',
         ko: '왼쪽으로 순간이동',
       },
@@ -109,6 +113,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Right',
+        de: 'Teleportation Rechts',
         fr: 'Téléportation à droite',
         ko: '오른쪽으로 순간이동',
       },
@@ -120,6 +125,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Forward',
+        de: 'Teleportation Vorwärts',
         fr: 'Téléportation devant',
         ko: '앞으로 순간이동',
       },
@@ -131,6 +137,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Back',
+        de: 'Teleportation Rückwärts',
         fr: 'Téléportation derrière',
         ko: '뒤로 순간이동',
       },
@@ -224,6 +231,7 @@
         let names = data.insatiableLightStack.map((x) => data.ShortName(x)).sort();
         return {
           en: 'Stack (' + names.join(', ') + ')',
+          de: 'Sammeln (' + names.join(', ') + ')',
           fr: 'Package (' + names.join(', ') + ')',
           ko: '모이기 (' + names.join(', ') + ')',
         };
@@ -244,6 +252,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Get under vertical add',
+        de: 'Unter das vertikale Add gehen',
         fr: 'Allez sous l\'add vertical',
         ko: '똑바로 서 있는 쫄 아래로',
       },
@@ -277,11 +286,13 @@
         data.colorMap = {};
         data.colorMap['light'] = {
           en: 'Dark',
+          de: 'Dunkel',
           fr: 'Noir',
           ko: '어둠',
         };
         data.colorMap['dark'] = {
           en: 'Light',
+          de: 'Licht',
           fr: 'Blanc',
           ko: '빛',
         };
@@ -329,6 +340,7 @@
       alertText: function(data) {
         return {
           en: 'Get hit by ' + data.colorMap[data.color][data.lang],
+          de: 'Lass dich treffen von ' + data.colorMap[data.color][data.lang],
           ko: data.colorMap[data.color][data.lang] + ' 맞기',
         };
       },
@@ -340,6 +352,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Bait Puddles',
+        de: 'Flächen ködern',
         fr: 'Placez les flaques',
       },
     },
@@ -350,6 +363,7 @@
       // Can't use knockback prevention for this, so say where to get knocked back.
       alertText: {
         en: 'Get Knocked Into Corner',
+        de: 'Lass dich in die Ecke zurückstoßen',
       },
     },
     {
@@ -359,6 +373,7 @@
       alertText: function(data) {
         return {
           en: 'Stand in ' + data.colorMap[data.color][data.lang],
+          de: 'Stehe in ' + data.colorMap[data.color][data.lang],
           fr: 'Restez sur ' + data.colorMap[data.color][data.lang],
           ko: data.colorMap[data.color][data.lang] + '에 서기',
         };
@@ -369,11 +384,11 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'unforgiven idolatry': 'ungeläutert[a] Götzenverehrung',
-        'the Idol of Darkness': 'Götzenbild[p] der Dunkelheit',
-        'scuro': 'verdichtet[a] Licht',
+        'unforgiven idolatry': 'ungeläutert(?:e|er|es|en) Götzenverehrung',
+        'the Idol of Darkness': 'Götzenbild der Dunkelheit',
+        'scuro': 'verdichtet(?:e|er|es|en) Licht',
         '(?<! )idolatry': 'Idolatrie',
-        'chiaro': 'verdichtet[a] Dunkel',
+        'chiaro': 'verdichtet(?:e|er|es|en) Dunkel',
         'blasphemy': 'Blasphemie',
       },
       'replaceText': {
