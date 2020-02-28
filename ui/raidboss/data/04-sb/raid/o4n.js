@@ -20,6 +20,7 @@
       },
       alertText: {
         en: 'Cleanse Doom soon',
+        de: 'Reinige Verhängnis bald',
       },
     },
     {
@@ -52,6 +53,7 @@
       regexKo: Regexes.startsUsing({ id: '24C0', source: '엑스데스', capture: false }),
       infoText: {
         en: 'Move around',
+        de: 'Bewegen',
       },
     },
     {
@@ -85,6 +87,7 @@
       delaySeconds: 6,
       infoText: {
         en: 'Stand in the gap',
+        de: 'In der Lücke stehen',
       },
     },
     {
@@ -98,6 +101,7 @@
       delaySeconds: 6,
       infoText: {
         en: 'Behind head--Avoid zombie breath',
+        de: 'Hinter den Kopf - Vermeide den Zombie-Atem',
       },
     },
     {
@@ -110,6 +114,7 @@
       regexKo: Regexes.startsUsing({ id: '24C8', source: '엑스데스', target: '엑스데스', capture: false }),
       infoText: {
         en: 'Avoid black holes',
+        de: 'Weiche den Schwarzen Löchern aus',
       },
     },
     {
@@ -130,6 +135,7 @@
       },
       alertText: {
         en: 'Flare on YOU',
+        de: 'Flare auf DIR',
       },
     },
     {
@@ -139,10 +145,12 @@
         if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
+            de: 'Sammeln auf DIR',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Sammeln auf ' + data.ShortName(matches.target),
         };
       },
     },
