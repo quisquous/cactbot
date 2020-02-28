@@ -29,6 +29,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Rot on YOU',
+            de: 'Fäulnis auf DIR',
             fr: 'Pourriture sur VOUS',
           };
         }
@@ -37,6 +38,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Rot on ' + data.ShortName(matches.target),
+            de: 'Fäulnis auf ' + data.ShortName(matches.target),
             fr: 'Pourriture sur ' + data.ShortName(matches.target),
           };
         }
@@ -62,6 +64,7 @@
           return;
         return {
           en: 'Pass Rot',
+          de: 'Fäulnis abgeben',
           fr: 'Passez la pourriture',
         };
       },
