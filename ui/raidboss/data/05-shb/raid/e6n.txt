@@ -25,10 +25,11 @@ hideall "--sync--"
 81.7 "Vacuum Slice" sync /:Garuda:4BD5:/
 88.8 "Occluded Front" sync /:Garuda:4BD2:/ window 30,30
 98.3 "Irresistible Pull" sync /:Garuda:4BD6:/
-111.5 "--untargetable--" sync /22:........:Garuda:........:Garuda:00/
+111.5 "--untargetable--"
 
 # Ifrit solo
-114.0 "--targetable--" sync /22:........:Ifrit:........:Ifrit:01/ window 30,30
+114.0 "--targetable--"
+114.0 "Touchdown" sync /:Ifrit:4BE8:/ window 30,30
 129.2 "Hands Of Flame" sync /:Ifrit:4CFE:/
 143.6 "Hands Of Hell" sync /:Ifrit:4CFF:/
 152.3 "Instant Incineration" sync /:Ifrit:4BED:/ window 30,30
@@ -36,12 +37,12 @@ hideall "--sync--"
 166.1 "Strike Spark" sync /:Ifrit:4BD3:/
 177.5 "Hot Foot" sync /:Ifrit:4BEF:/
 188.2 "Inferno Howl" sync /:Ifrit:4BF1:/ window 30,30
-196.5 "--untargetable--" sync /22:........:Ifrit:........:Ifrit:00/
+196.5 "--untargetable--"
 
 
 # Garuda and Ifrit
-200.8 "--targetable--" sync /22:........:Garuda:........:Garuda:01/ window 30,30
-207.2 "Vacuum Slice" sync /:Garuda:4BD5:/
+200.8 "--targetable--"
+207.2 "Vacuum Slice" sync /:Garuda:4BD5:/ window 30,30
 209.9 "Eruption" sync /:Ifrit:4BF3:/
 209.9 "Eruption" sync /:Ifrit:4BF4:/
 213.1 "--sync--" sync /:Ifrit:4F98:/
@@ -52,12 +53,12 @@ hideall "--sync--"
 233.3 "Thorns" sync /:Garuda:4BDA:/
 237.9 "Hands Of Hell" sync /:Ifrit:4CFF:/
 245.5 "Ferostorm"# sync /:Garuda:4BD[DEF]:/
-250.2 "--untargetable--" sync /22:........:Garuda:........:Garuda:00/
+250.2 "--untargetable--"
 
 
 # Raktapaksa initial block
-267.9 "Firestorm" sync /:Raktapaksa:4BD8:/
-271.2 "--targetable--" sync/22:........:Raktapaksa:........:Raktapaksa:01/
+267.9 "Firestorm" sync /:Raktapaksa:4BD8:/ window 30,30
+271.2 "--targetable--"
 283.2 "Radiant Plume" sync /:Raktapaksa:4BF2:/
 286.2 "Ferostorm"# sync /:Raktapaksa:4BE[345]:/
 297.3 "Hands Of Flame" sync /:Raktapaksa:4CFE:/ window 30,30
