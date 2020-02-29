@@ -23,4 +23,3 @@ matrix:
     script:
       - pylint **/*.py --errors-only
       - black **/*.py --line-length 100 --diff
-
