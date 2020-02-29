@@ -8,18 +8,7 @@
       id: 'Ala Mhigo Umoving Troika',
       regex: /Unmoving Troika/,
       beforeSeconds: 5,
-      alertText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave on YOU',
-            fr: 'Tank cleave sur VOUS',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-          fr: 'Evitez le cleave sur le tank',
-        };
-      },
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
@@ -34,10 +23,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Ala Mhigo Mana Burst',
@@ -50,10 +36,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Ala Mhigo Demimagicks',
@@ -63,10 +46,7 @@
       regexJa: Regexes.startsUsing({ id: '205D', source: 'アウルス・マル・アシナ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '205D', source: '奥卢斯·玛尔·亚希纳', capture: false }),
       regexKo: Regexes.startsUsing({ id: '205D', source: '아울루스 말 아시나', capture: false }),
-      infoText: {
-        en: 'Spread',
-        fr: 'Ecartez-vous',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Ala Mhigo Storm',
@@ -78,6 +58,7 @@
       regexKo: Regexes.startsUsing({ id: ['2066', '2587'], source: '제노스 예 갈부스', capture: false }),
       infoText: {
         en: 'Out of blue circle',
+        de: 'Raus aus dem blauen Kreis',
         fr: 'Hors du cercle bleu',
       },
     },
@@ -89,10 +70,7 @@
       regexJa: Regexes.startsUsing({ id: ['2065', '2586'], source: 'ゼノス・イェー・ガルヴァス', capture: false }),
       regexCn: Regexes.startsUsing({ id: ['2065', '2586'], source: '芝诺斯·耶·加尔乌斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['2065', '2586'], source: '제노스 예 갈부스', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        fr: 'Poussée',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'Ala Mhigo Sword',
@@ -104,6 +82,7 @@
       regexKo: Regexes.startsUsing({ id: ['2068', '2588'], source: '제노스 예 갈부스', capture: false }),
       alertText: {
         en: 'Protean',
+        de: 'Um den Boss verteilen',
         fr: 'Changement',
       },
     },
@@ -120,6 +99,7 @@
       },
       alertText: {
         en: 'Face tether out',
+        de: 'Verbindung nach draußen richten',
         fr: 'Lien vers l\'extérieur',
       },
     },
@@ -134,10 +114,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [

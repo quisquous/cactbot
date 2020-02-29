@@ -266,8 +266,36 @@ let testValidIds = function(file, contents) {
   // as the prefix "O4" is not a full word (and have a space after it,
   // as "Prefix " does.  This is a bit rigid, but prevents many typos.
   if (ids.size > 1 && !brokenPrefixes && prefix && prefix.length > 0) {
-    if (prefix[prefix.length - 1] != ' ')
+    if (prefix[prefix.length - 1] != ' ') {
       console.error(`${file}: id prefix '${prefix}' is not a full word, must end in a space`);
+      exitCode = 1;
+    }
+  }
+};
+
+let testResponseHasNoFriends = function(file, contents) {
+  let json = eval(contents);
+
+  let bannedItems = [
+    'alarmText',
+    'alertText',
+    'infoText',
+    'tts',
+  ];
+
+  for (let set of [json[0].triggers, json[0].timelineTriggers]) {
+    if (!set)
+      continue;
+    for (let trigger of set) {
+      if (!trigger.response)
+        continue;
+      for (let item of bannedItems) {
+        if (trigger[item]) {
+          console.error(`${file}: ${trigger.id} cannot have both 'response' and '${item}'`);
+          exitCode = 1;
+        }
+      }
+    }
   }
 };
 
@@ -286,6 +314,7 @@ let testTriggerFile = function(file) {
     testInvalidCapturingGroupRegex(file, contents);
     testInvalidTriggerKeys(file, contents);
     testValidIds(file, contents);
+    testResponseHasNoFriends(file, contents);
   } catch (e) {
     console.error(`Trigger error in ${file}.`);
     console.error(e);

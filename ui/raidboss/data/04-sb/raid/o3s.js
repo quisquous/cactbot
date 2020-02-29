@@ -256,14 +256,7 @@
       regexJa: Regexes.startsUsing({ id: '22F7', source: 'ハリカルナッソス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '22F7', source: '哈利卡纳苏斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '22F7', source: '할리카르나소스', capture: false }),
-      alertText: {
-        en: 'Ribbit: Get behind',
-        de: 'Quaaak: Hinter sie',
-      },
-      tts: {
-        en: 'ribbit',
-        de: 'quak',
-      },
+      response: Responses.getBehind(),
     },
     {
       id: 'O3S Oink',
@@ -273,14 +266,7 @@
       regexJa: Regexes.startsUsing({ id: '22F9', source: 'ハリカルナッソス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '22F9', source: '哈利卡纳苏斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '22F9', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Oink: Stack',
-        de: 'Quiiiek: Stack',
-      },
-      tts: {
-        en: 'oink',
-        de: 'quiek',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'O3S Squelch',
@@ -290,14 +276,7 @@
       regexJa: Regexes.startsUsing({ id: '22F8', source: 'ハリカルナッソス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '22F8', source: '哈利卡纳苏斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '22F8', source: '할리카르나소스', capture: false }),
-      alarmText: {
-        en: 'Squelch: Look away',
-        de: 'Gurrr: Wegschauen',
-      },
-      tts: {
-        en: 'look away',
-        de: 'weckschauen',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'O3S The Queen\'s Waltz: Books',

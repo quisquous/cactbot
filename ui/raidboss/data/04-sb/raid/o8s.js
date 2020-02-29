@@ -21,20 +21,7 @@
       regexCn: Regexes.startsUsing({ id: '28DB', source: '众神之像', capture: false }),
       regexKo: Regexes.startsUsing({ id: '28DB', source: '신들의 상', capture: false }),
       delaySeconds: 5,
-      alertText: {
-        en: 'Look for Knockback',
-        fr: 'Préparez-vous à la projection',
-        de: 'Auf Rückstoß achten',
-        ko: '넉백 대비',
-        ja: 'ノックバックくるよ',
-      },
-      tts: {
-        en: 'knockback',
-        fr: 'Projection',
-        de: 'Rückstoß',
-        ko: '넉백',
-        ja: 'ノックバック',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'O8S Indolent Will',
@@ -67,20 +54,7 @@
       regexJa: Regexes.startsUsing({ id: '28DF', source: '神々の像', capture: false }),
       regexCn: Regexes.startsUsing({ id: '28DF', source: '众神之像', capture: false }),
       regexKo: Regexes.startsUsing({ id: '28DF', source: '신들의 상', capture: false }),
-      alertText: {
-        en: '<= Get Left/West',
-        fr: '<= Allez à Gauche/Ouest',
-        de: '<= Nach Links/Westen',
-        ko: '<= 왼쪽이 안전',
-        ja: '<= 左/西へ',
-      },
-      tts: {
-        en: 'left',
-        fr: 'gauche',
-        de: 'links',
-        ko: '왼쪽',
-        ja: '左',
-      },
+      response: Responses.goWest(),
     },
     {
       id: 'O8S Gravitational Wave',
@@ -90,20 +64,7 @@
       regexJa: Regexes.startsUsing({ id: '28DE', source: '神々の像', capture: false }),
       regexCn: Regexes.startsUsing({ id: '28DE', source: '众神之像', capture: false }),
       regexKo: Regexes.startsUsing({ id: '28DE', source: '신들의 상', capture: false }),
-      alertText: {
-        en: 'Get Right/East =>',
-        fr: 'Allez à Droite/Est =>',
-        de: 'Nach Rechts/Westen =>',
-        ko: '오른쪽이 안전 =>',
-        ja: '右/東へ =>',
-      },
-      tts: {
-        en: 'right',
-        fr: 'Projection depuis le côté droit',
-        de: 'rechts',
-        ko: '오른쪽',
-        ja: '右',
-      },
+      response: Responses.goEast(),
     },
     {
       id: 'O8S Ave Maria',
@@ -239,20 +200,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Knockback on YOU',
-        fr: 'Projection sur VOUS',
-        de: 'Rückstoß auf DIR',
-        ko: '넉백 → 나',
-        ja: 'ノックバック on YOU',
-      },
-      tts: {
-        en: 'knockback',
-        fr: 'Projection',
-        de: 'Rückstoß',
-        ko: '넉백',
-        ja: 'ノックバック',
-      },
+      response: Responses.knockbackOn(),
     },
     {
       id: 'O8S Wings of Destruction',

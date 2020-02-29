@@ -17,35 +17,7 @@
       regexJa: Regexes.startsUsing({ id: '2829', source: 'チャダルヌーク・デーモン' }),
       regexCn: Regexes.startsUsing({ id: '2829', source: '恶魔查达奴克' }),
       regexKo: Regexes.startsUsing({ id: '2829', source: '차다르누크 악령' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tank Buster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '탱버 → 나',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Buster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur '+data.ShortName(matches.target),
-            ko: '탱버 → '+data.ShortName(matches.target),
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'buster',
-            de: 'tenkbasta',
-            fr: 'tankbuster',
-            ko: '탱버',
-            ja: 'バスター',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O6S Storms Grip',

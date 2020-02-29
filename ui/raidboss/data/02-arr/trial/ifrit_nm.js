@@ -22,6 +22,7 @@
       beforeSeconds: 0.5,
       infoText: {
         en: 'Kill Nail',
+        de: 'infernalische Fessel zerstören',
         fr: 'Détruisez le clou',
       },
     },

@@ -85,14 +85,7 @@
       regexJa: Regexes.startsUsing({ id: '236F', source: 'カタストロフィー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '236F', source: '灾变者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '236F', source: '카타스트로피', capture: false }),
-      alarmText: {
-        en: 'Death\'s Gaze: Look away',
-        de: 'Todesblick: Wegschauen',
-      },
-      tts: {
-        en: 'look away',
-        de: 'weckschauen',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'O2S Earthquake',
@@ -167,14 +160,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-      },
-      tts: {
-        en: 'wave',
-        de: 'welle',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'O2S Maniacal Probe',

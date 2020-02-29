@@ -20,42 +20,28 @@
       },
       alertText: {
         en: 'Cleanse Doom soon',
+        de: 'Reinige Verhängnis bald',
       },
     },
     {
       id: 'O4N Standard Thunder',
-      regex: Regexes.startsUsing({ id: '24BD', source: 'Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '24BD', source: 'Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '24BD', source: 'Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '24BD', source: 'エクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '24BD', source: '艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '24BD', source: '엑스데스', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank cleave soon!',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-        };
-      },
+      regex: Regexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
+      regexDe: Regexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
+      regexFr: Regexes.startsUsing({ id: '24BD', source: 'Exdeath' }),
+      regexJa: Regexes.startsUsing({ id: '24BD', source: 'エクスデス' }),
+      regexCn: Regexes.startsUsing({ id: '24BD', source: '艾克斯迪司' }),
+      regexKo: Regexes.startsUsing({ id: '24BD', source: '엑스데스' }),
+      response: Responses.tankCleave(),
     },
     {
       id: 'O4N Standard Fire',
-      regex: Regexes.startsUsing({ id: '24BA', source: 'Exdeath' }),
-      regexDe: Regexes.startsUsing({ id: '24BA', source: 'Exdeath' }),
-      regexFr: Regexes.startsUsing({ id: '24BA', source: 'Exdeath' }),
-      regexJa: Regexes.startsUsing({ id: '24BA', source: 'エクスデス' }),
-      regexCn: Regexes.startsUsing({ id: '24BA', source: '艾克斯迪司' }),
-      regexKo: Regexes.startsUsing({ id: '24BA', source: '엑스데스' }),
-      alertText: function(data, matches) {
-        if (data.me == matches[1]) {
-          return {
-            en: 'Spread for Fire',
-          };
-        }
-      },
+      regex: Regexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '24BA', source: 'Exdeath', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '24BA', source: 'エクスデス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '24BA', source: '艾克斯迪司', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '24BA', source: '엑스데스', capture: false }),
+      response: Responses.spread(),
     },
     {
       id: 'O4N Empowered Blizzard',
@@ -67,6 +53,7 @@
       regexKo: Regexes.startsUsing({ id: '24C0', source: '엑스데스', capture: false }),
       infoText: {
         en: 'Move around',
+        de: 'Bewegen',
       },
     },
     {
@@ -77,9 +64,7 @@
       regexJa: Regexes.startsUsing({ id: '24BF', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24BF', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24BF', source: '엑스데스', capture: false }),
-      infoText: {
-        en: 'Stop everything',
-      },
+      response: Responses.stopEverything(),
     },
     {
       id: 'O4N Empowered Thunder',
@@ -89,9 +74,7 @@
       regexJa: Regexes.startsUsing({ id: '24C1', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24C1', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24C1', source: '엑스데스', capture: false }),
-      alertText: {
-        en: 'Get out',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'O4N Decisive Battle ',
@@ -104,6 +87,7 @@
       delaySeconds: 6,
       infoText: {
         en: 'Stand in the gap',
+        de: 'In der Lücke stehen',
       },
     },
     {
@@ -117,6 +101,7 @@
       delaySeconds: 6,
       infoText: {
         en: 'Behind head--Avoid zombie breath',
+        de: 'Hinter den Kopf - Vermeide den Zombie-Atem',
       },
     },
     {
@@ -129,6 +114,7 @@
       regexKo: Regexes.startsUsing({ id: '24C8', source: '엑스데스', target: '엑스데스', capture: false }),
       infoText: {
         en: 'Avoid black holes',
+        de: 'Weiche den Schwarzen Löchern aus',
       },
     },
     {
@@ -139,9 +125,7 @@
       regexJa: Regexes.startsUsing({ id: '24B8', source: 'エクスデス', target: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24B8', source: '艾克斯迪司', target: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24B8', source: '엑스데스', target: '엑스데스', capture: false }),
-      alertText: {
-        en: 'Knockback',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'O4N Flare',
@@ -151,6 +135,7 @@
       },
       alertText: {
         en: 'Flare on YOU',
+        de: 'Flare auf DIR',
       },
     },
     {
@@ -160,10 +145,12 @@
         if (matches.target == data.me) {
           return {
             en: 'Stack on YOU',
+            de: 'Sammeln auf DIR',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Sammeln auf ' + data.ShortName(matches.target),
         };
       },
     },
@@ -178,9 +165,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      alertText: {
-        en: 'Heavy raid damage',
-      },
+      response: Responses.bigAoe(),
     },
   ],
 },

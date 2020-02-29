@@ -77,6 +77,7 @@
         let name = data.ShortName(matches.source);
         return {
           en: 'Holmgang: ' + name,
+          de: 'Holmgang: ' + name,
           ja: 'ホルムギャング: ' + name,
           cn: '死斗: ' + name,
           ko: '일대일 결투: ' + name,

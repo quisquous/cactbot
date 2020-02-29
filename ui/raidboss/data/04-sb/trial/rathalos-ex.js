@@ -66,20 +66,7 @@
     {
       id: 'RathEx Fireball',
       regex: Regexes.headMarker({ id: ['0084', '005D'] }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Stack auf DIR',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Stack auf ' + data.ShortName(matches.target),
-          ko: '쉐어징 "' + data.ShortName(matches.target) + '"',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'RathEx Adds',
@@ -93,11 +80,7 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: {
-        en: 'Adds',
-        de: 'Adds',
-        ko: '쫄',
-      },
+      response: Responses.killAdds(),
     },
   ],
 }];

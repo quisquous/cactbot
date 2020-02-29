@@ -49,12 +49,7 @@
       regexCn: Regexes.startsUsing({ id: '3778', source: '哈比鸟', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3778', source: '하피', capture: false }),
       suppressSeconds: 10,
-      alertText: {
-        en: 'Look Away',
-        de: 'Wegschauen',
-        fr: 'Regardez ailleurs',
-        ko: '주위 확인',
-      },
+      response: Responses.lookAway(),
     },
     {
       id: 'Orbonne Mustadio Right Handgonne',
@@ -64,12 +59,7 @@
       regexJa: Regexes.startsUsing({ id: '373E', source: '機工士ムスタディオ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '373E', source: '机工士姆斯塔迪奥', capture: false }),
       regexKo: Regexes.startsUsing({ id: '373E', source: '기공사 무스타디오', capture: false }),
-      infoText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'A gauche',
-        ko: '왼쪽',
-      },
+      response: Responses.goLeft(),
     },
     {
       id: 'Orbonne Mustadio Left Handgonne',
@@ -79,12 +69,7 @@
       regexJa: Regexes.startsUsing({ id: '373F', source: '機工士ムスタディオ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '373F', source: '机工士姆斯塔迪奥', capture: false }),
       regexKo: Regexes.startsUsing({ id: '373F', source: '기공사 무스타디오', capture: false }),
-      infoText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'A droite',
-        ko: '오른쪽',
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'Orbonne Mustadio Last Testament',
@@ -96,6 +81,7 @@
       regexKo: Regexes.startsUsing({ id: '3737', source: '기공사 무스타디오', capture: false }),
       alertText: {
         en: 'Point opening at Mustadio',
+        de: 'Richte Öffnung auf Mustadio',
         fr: 'Orientez l\'ouverture vers le boss',
         ko: '문양이 빈 쪽을 무스타디오쪽으로 향하게 하기',
       },
@@ -108,26 +94,7 @@
       regexJa: Regexes.startsUsing({ id: '3739', source: '機工士ムスタディオ' }),
       regexCn: Regexes.startsUsing({ id: '3739', source: '机工士姆斯塔迪奥' }),
       regexKo: Regexes.startsUsing({ id: '3739', source: '기공사 무스타디오' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches.target != data.me && data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Orbonne Mustadio Searchlight',
@@ -148,12 +115,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread Marker',
-        de: 'Verteilen-Marker',
-        fr: 'Ecartez-vous',
-        ko: '산개 징',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Orbonne Agrias Thunder Slash',
@@ -163,26 +125,7 @@
       regexJa: Regexes.startsUsing({ id: '3866', source: '聖騎士アグリアス' }),
       regexCn: Regexes.startsUsing({ id: '3866', source: '圣骑士阿格莉亚丝' }),
       regexKo: Regexes.startsUsing({ id: '3866', source: '성기사 아그리아스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Cleave on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches.target != data.me) {
-          return {
-            en: 'Tank Cleave',
-            de: 'Tank Cleave',
-            fr: 'Tank Cleave',
-            ko: '탱버',
-          };
-        }
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Orbonne Agrias Cleansing Strike',
@@ -353,21 +296,16 @@
     },
     {
       id: 'Orbonne Cid Crush Helm Healer',
-      regex: Regexes.startsUsing({ id: '3752', source: 'The Thunder God', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3752', source: 'Cidolfus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3752', source: 'Cid Le Dieu De La Foudre', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3752', source: '雷神シド', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3752', source: '雷神西德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3752', source: '뇌신 시드', capture: false }),
+      regex: Regexes.startsUsing({ id: '3752', source: 'The Thunder God' }),
+      regexDe: Regexes.startsUsing({ id: '3752', source: 'Cidolfus' }),
+      regexFr: Regexes.startsUsing({ id: '3752', source: 'Cid Le Dieu De La Foudre' }),
+      regexJa: Regexes.startsUsing({ id: '3752', source: '雷神シド' }),
+      regexCn: Regexes.startsUsing({ id: '3752', source: '雷神西德' }),
+      regexKo: Regexes.startsUsing({ id: '3752', source: '뇌신 시드' }),
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'Tank Buster',
-        de: 'Tankbuster',
-        fr: 'Tankbuster',
-        ko: '탱버',
-      },
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'Orbonne Cid Crush Helm Feint',
@@ -398,12 +336,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Tank Buster on YOU',
-        de: 'Tankbuster auf DIR',
-        fr: 'Tankbuster sur VOUS',
-        ko: '탱버 대상자',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Orbonne Cid Crush Armor Tank',
@@ -451,6 +384,7 @@
       regexKo: Regexes.startsUsing({ id: '375A', source: '뇌신 시드', capture: false }),
       alertText: {
         en: 'Kill Icewolf Adds',
+        de: 'Besiege die Eiswolf Adds',
         fr: 'Tuez les Grêlons de glace',
         ko: '얼음 부수기',
       },
@@ -521,23 +455,13 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alarmText: {
-        en: 'GTFO',
-        de: 'VERZIEH DICH',
-        fr: 'Sortez',
-        ko: '멀리 떨어지기',
-      },
+      response: Responses.getOut('alarm'),
     },
     {
       id: 'Orbonne Cid Hallowed Bolt Stack',
       regex: Regexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Stack',
-        de: 'Stacken',
-        fr: 'Packez-vous',
-        ko: '모이기',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'Orbonne Cid Divine Ruination',
@@ -560,12 +484,7 @@
       regexJa: Regexes.startsUsing({ id: '3750', source: '雷神シド', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3750', source: '雷神西德', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3750', source: '뇌신 시드', capture: false }),
-      alertText: {
-        en: 'Get In',
-        de: 'Rein da',
-        fr: 'Près du boss',
-        ko: '안으로',
-      },
+      response: Responses.getIn(),
     },
     {
       id: 'Orbonne Cid Holy Sword Out',
@@ -575,12 +494,7 @@
       regexJa: Regexes.startsUsing({ id: '374F', source: '雷神シド', capture: false }),
       regexCn: Regexes.startsUsing({ id: '374F', source: '雷神西德', capture: false }),
       regexKo: Regexes.startsUsing({ id: '374F', source: '뇌신 시드', capture: false }),
-      alertText: {
-        en: 'Get Out',
-        de: 'Raus da',
-        fr: 'Loin du boss',
-        ko: '바깥으로',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Left',
@@ -590,12 +504,7 @@
       regexJa: Regexes.startsUsing({ id: '3749', source: '雷神シド', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3749', source: '雷神西德', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3749', source: '뇌신 시드', capture: false }),
-      alertText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        ko: '왼쪽으로',
-      },
+      response: Responses.goLeft(),
     },
     {
       id: 'Orbonne Cid Holy Sword Thunder Right',
@@ -605,12 +514,7 @@
       regexJa: Regexes.startsUsing({ id: '374A', source: '雷神シド', capture: false }),
       regexCn: Regexes.startsUsing({ id: '374A', source: '雷神西德', capture: false }),
       regexKo: Regexes.startsUsing({ id: '374A', source: '뇌신 시드', capture: false }),
-      alertText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite',
-        ko: '오른쪽으로',
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'Orbonne Cid Holy Sword Three 1',
@@ -652,26 +556,7 @@
       regexJa: Regexes.startsUsing({ id: '38AA', source: '聖天使アルテマ' }),
       regexCn: Regexes.startsUsing({ id: '38AA', source: '圣天使阿尔蒂玛' }),
       regexKo: Regexes.startsUsing({ id: '38AA', source: '성천사 알테마' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches.target != data.me && data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Orbonne Ultima Dark Cannonade',
@@ -679,12 +564,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Dorito Stack',
-        de: 'Stacken',
-        fr: 'Packez-vous',
-        ko: '모이기',
-      },
+      response: Responses.doritoStack(),
     },
     {
       id: 'Orbonne Ultima Eruption',
@@ -705,12 +585,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alarmText: {
-        en: 'GTFO',
-        de: 'VERZIEH DICH',
-        fr: 'Sortez',
-        ko: '멀리 떨어지기',
-      },
+      response: Responses.getOut('alarm'),
     },
     {
       id: 'Orbonne Ultima Time Eruption',
@@ -794,12 +669,7 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 1;
       },
-      alertText: {
-        en: 'stop',
-        de: 'Stopp',
-        fr: 'Stop',
-        ko: '가만히',
-      },
+      response: Responses.stopEverything(),
     },
   ],
   timelineReplace: [

@@ -42,6 +42,7 @@
       },
       alertText: {
         en: 'Spit on YOU',
+        de: 'Spucke auf DIR',
         fr: 'Crachat sur VOUS',
       },
     },
@@ -59,6 +60,7 @@
       },
       alertText: {
         en: 'Split',
+        de: 'Zerteilung',
         fr: 'Séparation',
       },
     },
@@ -77,6 +79,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Hood Swing in 10',
+        de: 'Kapuzenschwung in 10',
       },
     },
     {
@@ -86,6 +89,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Slime Soon',
+        de: 'Schleim bald',
         fr: 'Slime bientôt',
       },
     },
@@ -101,6 +105,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Slime Soon',
+        de: 'Schleim bald',
         fr: 'Slime bientôt',
       },
     },

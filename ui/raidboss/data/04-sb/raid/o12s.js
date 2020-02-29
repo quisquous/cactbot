@@ -94,40 +94,7 @@
         return data.me == matches[1] || data.role == 'healer';
       },
       suppressSeconds: 1,
-      alertText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: 'タンクバスター on YOU',
-            cn: '死刑减伤',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Tank Busters',
-            de: 'Tankbuster',
-            fr: 'Tankbuster',
-            ja: 'バスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ja: 'バスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O12S Optimized Blade Dance',
@@ -141,40 +108,7 @@
         return data.me == matches[1] || data.role == 'healer';
       },
       suppressSeconds: 1,
-      alertText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: 'タンクバスター on YOU',
-            cn: '死刑减伤',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Tank Busters',
-            de: 'Tankbuster',
-            fr: 'Tankbuster',
-            ja: 'バスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-      },
-      tts: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tankbuster',
-            ja: 'バスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'O12S Electric Slide Marker',
@@ -215,14 +149,7 @@
         return !data.isFinalOmega;
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Stack',
-        de: 'Stacken',
-        fr: 'Packez-vous',
-        ja: 'スタック',
-        cn: '集合',
-        ko: '쉐어',
-      },
+      response: Responses.stack('info'),
     },
     {
       id: 'O12S Optimized Meteor',
@@ -230,14 +157,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Meteor on YOU',
-        de: 'Meteor auf DIR',
-        fr: 'Météore sur VOUS',
-        ja: 'メテオ on YOU',
-        cn: '陨石点名',
-        ko: '메테오 대상자',
-      },
+      response: Responses.meteorOnYou('info'),
     },
     {
       id: 'O12S Packet Filter F',
@@ -287,14 +207,7 @@
       regexJa: Regexes.startsUsing({ id: '3367', source: 'オメガ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3367', source: '欧米茄', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3367', source: '오메가', capture: false }),
-      infoText: {
-        en: 'Sides',
-        de: 'Seiten',
-        fr: 'Cotés',
-        ja: '横',
-        cn: '横',
-        ko: '옆으로',
-      },
+      response: Responses.goSides('info'),
     },
     {
       id: 'O12S Diffuse Wave Cannon Front/Back',
@@ -304,14 +217,7 @@
       regexJa: Regexes.startsUsing({ id: '3368', source: 'オメガ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3368', source: '欧米茄', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3368', source: '오메가', capture: false }),
-      infoText: {
-        en: 'Front or Back',
-        de: 'Vorn oder Hinten',
-        fr: 'Devant ou derrière',
-        ja: '縦',
-        cn: '竖',
-        ko: '앞뒤로',
-      },
+      response: Responses.goFrontBack('info'),
     },
     {
       id: 'O12S Oversampled Wave Cannon Right',
@@ -642,14 +548,7 @@
       condition: function(data, matches) {
         return data.isFinalOmega && matches.target == data.me;
       },
-      infoText: {
-        en: 'Stack on YOU',
-        de: 'Stacken auf DIR',
-        fr: 'Package sur VOUS',
-        ja: 'スタック on YOU',
-        cn: '等待队友集合',
-        ko: '쉐어징 대상자',
-      },
+      response: Responses.stackOn('info'),
     },
     {
       id: 'O12S Archive All Spread Marker',
@@ -657,14 +556,7 @@
       condition: function(data, matches) {
         return data.isFinalOmega && matches.target == data.me;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez-vous',
-        ja: '散開',
-        cn: '散开',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'O12S Archive All Blue Arrow',
@@ -742,6 +634,16 @@
             0b101: undefined,
             0b110: 'Southwest',
             0b111: 'West',
+          },
+          de: {
+            0b000: 'Osten',
+            0b001: 'Nordosten',
+            0b010: undefined,
+            0b011: 'Nordwesten',
+            0b100: 'Südosten',
+            0b101: undefined,
+            0b110: 'Südwesten',
+            0b111: 'Westen',
           },
           ja: {
             0b000: '東',
