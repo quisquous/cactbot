@@ -316,13 +316,13 @@ let testTriggerFieldsSorted = function(file, contents) {
     'suppressSeconds',
     // This is where the delay happens.
     'sound',
+    'soundVolume',
     'response',
     'alarmText',
     'alertText',
     'infoText',
     'groupTTS',
     'tts',
-    'soundVolume', // Maybe we should move this??
     'run',
   ];
 
