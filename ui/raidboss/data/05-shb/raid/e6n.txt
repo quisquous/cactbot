@@ -28,7 +28,7 @@ hideall "--sync--"
 111.5 "--untargetable--" sync /22:........:Garuda:........:Garuda:00/
 
 # Ifrit solo
-114.0 "--targetable--" sync /:Ifrit:4BE8:/ window 30,30
+114.0 "--targetable--" sync /22:........:Ifrit:........:Ifrit:01/ window 30,30
 129.2 "Hands Of Flame" sync /:Ifrit:4CFE:/
 143.6 "Hands Of Hell" sync /:Ifrit:4CFF:/
 152.3 "Instant Incineration" sync /:Ifrit:4BED:/ window 30,30
