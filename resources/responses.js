@@ -306,7 +306,7 @@ let Responses = {
     };
     return obj;
   },
-  spreadThanStack: (sev) => {
+  spreadThenStack: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Spread => Stack',
@@ -318,7 +318,7 @@ let Responses = {
     };
     return obj;
   },
-  stackThanSpread: (sev) => {
+  stackThenSpread: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Stack => Spread',
