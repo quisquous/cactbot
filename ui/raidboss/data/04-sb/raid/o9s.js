@@ -277,11 +277,11 @@
       regexJa: Regexes.startsUsing({ id: '3180', source: 'カオス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3180', source: '卡奥斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3180', source: '카오스', capture: false }),
-      // Each big bang has its own cast, so suppress.
-      suppressSeconds: 1,
       condition: function(data) {
         return data.phaseType == 'fire';
       },
+      // Each big bang has its own cast, so suppress.
+      suppressSeconds: 1,
       alertText: {
         en: 'Hide Middle',
         de: 'Zur Mitte',
@@ -316,9 +316,9 @@
       condition: function(data) {
         return data.phaseType == 'water';
       },
+      delaySeconds: 5,
       suppressSeconds: 1,
       // T/H get 10s & DPS get 17s
-      delaySeconds: 5,
       infoText: {
         en: 'Stack Donut',
         de: 'Sammeln Donut',
@@ -339,9 +339,9 @@
       condition: function(data) {
         return data.phaseType == 'water';
       },
-      suppressSeconds: 1,
       // T/H get 10s & DPS get 17s
       delaySeconds: 12,
+      suppressSeconds: 1,
       infoText: {
         en: 'Stack Donut',
         de: 'Sammeln Donut',
@@ -362,9 +362,9 @@
       condition: function(data) {
         return data.phaseType == 'enrage';
       },
-      suppressSeconds: 1,
       // enrage -> 6s
       delaySeconds: 1,
+      suppressSeconds: 1,
       infoText: {
         en: 'Stack Donut',
         de: 'Sammeln Donut',
@@ -601,10 +601,10 @@
       condition: function(data, matches) {
         return matches.target != data.me && data.phaseType == 'orb';
       },
-      suppressSeconds: 10,
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 3;
       },
+      suppressSeconds: 10,
       alertText: function(data) {
         if (data.head == 'wind') {
           return {

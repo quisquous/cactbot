@@ -21,11 +21,11 @@
       regexJa: Regexes.startsUsing({ id: '2663', source: '直言のフロドリック', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2663', source: '直言不讳 赫罗德里克', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2663', source: '입바른 흐로드릭', capture: false }),
-      infoText: function(data) {
-        return data.role == 'tank' ? 'tail cleave' : '';
-      },
       alertText: function(data) {
         return data.role != 'tank' ? 'tail cleave' : '';
+      },
+      infoText: function(data) {
+        return data.role == 'tank' ? 'tail cleave' : '';
       },
       tts: {
         en: 'tail attack',

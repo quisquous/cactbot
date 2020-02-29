@@ -56,12 +56,12 @@
       regexDe: Regexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0011' }),
       regexFr: Regexes.tether({ source: 'Idole Des Ténèbres', id: '0011' }),
       regexJa: Regexes.tether({ source: 'ダークアイドル', id: '0011' }),
+      condition: function(data, matches) {
+        return data.phase == 'betwixtWorlds' && data.me == matches.target;
+      },
       preRun: function(data, matches) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
-      },
-      condition: function(data, matches) {
-        return data.phase == 'betwixtWorlds' && data.me == matches.target;
       },
       infoText: {
         en: 'Tether on YOU',
@@ -73,12 +73,12 @@
     {
       id: 'E7S Betwixt Worlds Stack',
       regex: Regexes.headMarker({ id: '0064' }),
+      condition: function(data) {
+        return data.phase == 'betwixtWorlds';
+      },
       preRun: function(data, matches) {
         data.betwixtWorldsStack = data.betwixtWorldsStack || [];
         data.betwixtWorldsStack.push(matches.target);
-      },
-      condition: function(data) {
-        return data.phase == 'betwixtWorlds';
       },
       alertText: function(data, matches) {
         if (data.betwixtWorldsTethers.indexOf(data.me))
@@ -171,12 +171,12 @@
     {
       id: 'E7S Silver Shot',
       regex: Regexes.headMarker({ id: '0065' }),
+      condition: function(data, matches) {
+        return data.phase == 'falseMidnight' && data.me == matches.target;
+      },
       preRun: function(data, matches) {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         data.falseMidnightSpread.push(matches.target);
-      },
-      condition: function(data, matches) {
-        return data.phase == 'falseMidnight' && data.me == matches.target;
       },
       response: Responses.spread(),
     },
@@ -232,12 +232,12 @@
     {
       id: 'E7S Insatiable Light Stack',
       regex: Regexes.headMarker({ id: '0064' }),
+      condition: function(data) {
+        return data.phase == 'adds';
+      },
       preRun: function(data, matches) {
         data.insatiableLightStack = data.insatiableLightStack || [];
         data.insatiableLightStack.push(matches.target);
-      },
-      condition: function(data) {
-        return data.phase == 'adds';
       },
       alertText: function(data, matches) {
         if (data.me == matches.target) {
@@ -293,8 +293,8 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      suppressSeconds: 15,
       durationSeconds: 7,
+      suppressSeconds: 15,
       response: Responses.aoe(),
     },
     {
@@ -303,10 +303,10 @@
       regexDe: Regexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ダークアイドル', id: '(?:4C8[BC]|4E5[56])', capture: false }),
-      suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
+      suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {

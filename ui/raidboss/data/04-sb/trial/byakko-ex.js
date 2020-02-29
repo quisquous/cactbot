@@ -108,10 +108,10 @@
       regexJa: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
       regexCn: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
       regexKo: Regexes.startsUsing({ id: '27E0', source: '백호' }),
-      delaySeconds: 12,
       condition: function(data, matches) {
         return data.role == 'tank' && matches.target == data.me;
       },
+      delaySeconds: 12,
       alertText: {
         en: 'Provoke Boss',
         de: 'Boss abspotten',

@@ -216,11 +216,11 @@
       regexJa: Regexes.gainsEffect({ effect: '禍泡', capture: true }),
       regexCn: Regexes.gainsEffect({ effect: '祸泡', capture: true }),
       regexKo: Regexes.gainsEffect({ effect: '재앙거품', capture: true }),
-      delaySeconds: function(data, matches) {
-        return parseFloat(matches.duration) - 3;
-      },
       condition: function(data, matches) {
         return matches.target == data.me;
+      },
+      delaySeconds: function(data, matches) {
+        return parseFloat(matches.duration) - 3;
       },
       alertText: {
         en: 'Stop',

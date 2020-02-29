@@ -47,18 +47,18 @@
       regexJa: Regexes.ability({ id: '4BA5', source: 'ラムウ', capture: false }),
       regexKo: Regexes.ability({ id: '4BA5', source: '라무', capture: false }),
       regexCn: Regexes.ability({ id: '4BA5', source: '拉姆', capture: false }),
-      delaySeconds: 5,
       condition: function(data) {
         return !data.seenFirstSpear;
       },
-      run: function(data) {
-        data.seenFirstSpear = true;
-      },
+      delaySeconds: 5,
       infoText: {
         en: 'Look for small spear',
         de: 'Halt nach kleinem Speer ausschau',
         fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
+      },
+      run: function(data) {
+        data.seenFirstSpear = true;
       },
     },
     {
@@ -69,9 +69,6 @@
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4BAC', source: '拉姆', capture: false }),
-      run: function(data) {
-        data.seenFirstAdd = true;
-      },
       infoText: function(data) {
         if (data.seenFirstAdd) {
           return {
@@ -93,6 +90,9 @@
           de: 'Kurzer Rückstoß',
           fr: 'Faible poussée',
         };
+      },
+      run: function(data) {
+        data.seenFirstAdd = true;
       },
     },
     {
@@ -206,10 +206,10 @@
       regexJa: Regexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4BC6', source: '拉姆', capture: false }),
-      delaySeconds: 3.0,
       condition: function(data) {
         return !data.furysBoltActive;
       },
+      delaySeconds: 3.0,
       response: Responses.spread('alarm'),
     },
     {

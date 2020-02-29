@@ -163,10 +163,10 @@
       regexJa: Regexes.ability({ source: 'シヴァ', id: '4D6C', capture: false }),
       regexCn: Regexes.ability({ source: '希瓦', id: '4D6C', capture: false }),
       regexKo: Regexes.ability({ source: '시바', id: '4D6C', capture: false }),
-      suppressSeconds: 1,
       condition: function(data) {
         return data.CanCleanse();
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Cleanse',
         de: 'Reinigen',
@@ -485,10 +485,10 @@
       regexJa: Regexes.ability({ source: 'シヴァ', id: '4D70', capture: false }),
       regexCn: Regexes.ability({ source: '希瓦', id: '4D70', capture: false }),
       regexKo: Regexes.ability({ source: '시바', id: '4D70', capture: false }),
-      suppressSeconds: 1,
       condition: function(data) {
         return data.CanCleanse();
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Cleanse DPS Only',
         de: 'Nur DPS reinigen',
