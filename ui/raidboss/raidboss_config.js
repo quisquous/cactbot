@@ -1072,6 +1072,18 @@ UserConfig.registerOptions('raidboss', {
       default: 1,
     },
     {
+      id: 'BrowserTTS',
+      name: {
+        en: 'Use Browser for Text to Speech',
+        de: 'Verwenden Sie den Browser für Text zu Sprache', // Machine translation
+        fr: 'Utiliser le navigateur pour la synthèse vocale', // Machine Translation
+        ko: '텍스트 음성 변환을위한 브라우저 사용', // Machine translation
+        cn: '使用浏览器进行文字转语音', // Machine translation
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
       id: 'cactbotWormholeStrat',
       // TODO: maybe need some way to group these kinds of
       // options if we end up having a lot?

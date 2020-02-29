@@ -31,8 +31,7 @@ class PopupText {
     this.alertText = document.getElementById('popup-text-alert');
     this.alarmText = document.getElementById('popup-text-alarm');
 
-    if (Options.PlayerNameOverride !== null &&
-      typeof BrowserTTSEngine === 'function') {
+    if (this.options.BrowserTTS || Options.PlayerNameOverride !== null) {
       this.ttsEngine = new BrowserTTSEngine();
       this.ttsSay = function(text) {
         this.ttsEngine.play(text);
