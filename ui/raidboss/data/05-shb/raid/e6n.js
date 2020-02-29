@@ -25,7 +25,7 @@
     },
     {
       id: 'E6N Ferostorm',
-      regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaska'], id: ['4BD[DEF]', '4BE[345]'] }),
+      regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaska'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
       },
@@ -114,7 +114,7 @@
     },
     {
       id: 'E6N Strike Spark',
-      regex: Regexes.ability({ source: 'Ifrit', id: '4F98' }),
+      regex: Regexes.ability({ source: 'Ifrit', id: '4F98', capture: false }),
       // Run only once, because Ifrit's other jumps are not important.
       condition: function(data) {
         return !data.seenSpark;
@@ -129,7 +129,7 @@
     {
       id: 'E6N Storm Of Fury',
       // Garuda uses this ability without eruptions alongside, so she needs no warnings.
-      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BE6' }),
+      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BE6', capture: false }),
       response: Responses.stackThenSpread(),
     },
   ],
