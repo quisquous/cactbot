@@ -293,6 +293,7 @@ let Responses = {
       de: 'In der Mitte sammeln',
       ja: '中央でスタック',
       ko: '중앙에서 모이기',
+      cn: '中间集合',
     };
     return obj;
   },
@@ -338,6 +339,7 @@ let Responses = {
       fr: 'Poussée',
       ja: 'ノックバック',
       ko: '넉백',
+      cn: '击退',
     };
     return obj;
   },
@@ -351,6 +353,7 @@ let Responses = {
           fr: 'Poussée sur VOUS',
           ja: '自分にノックバック',
           ko: '넉백징 대상자',
+          cn: '击退点你',
         };
       }
     };
@@ -363,6 +366,7 @@ let Responses = {
           fr: 'Poussée sur ' + data.ShortName(target),
           ja: data.ShortName(target) + 'にノックバック',
           ko: '넉백징 → ' + data.ShortName(target),
+          cn: '击退点名' + data.ShortName(target),
         };
       }
     };
@@ -377,6 +381,7 @@ let Responses = {
       fr: 'Regardez le boss',
       ja: '見る',
       ko: '쳐다보기',
+      cn: '背对',
     };
     return obj;
   },
@@ -388,6 +393,7 @@ let Responses = {
       fr: 'Regardez ailleurs',
       ja: '見ない',
       ko: '뒤돌기',
+      cn: '背对',
     };
     return obj;
   },
@@ -403,6 +409,7 @@ let Responses = {
         fr: 'Ne regardez pas '+ data.ShortName(target),
         ja: data.ShortName(target) + 'を見ない',
         ko: data.ShortName(target) + '에게서 뒤돌기',
+        cn: '背对' + data.ShortName(target),
       };
     };
     return obj;
@@ -415,6 +422,7 @@ let Responses = {
       fr: 'Derrière le boss',
       ja: '背面へ',
       ko: '보스 뒤로',
+      cn: '去背后',
     };
     return obj;
   },
@@ -427,6 +435,7 @@ let Responses = {
       fr: 'Intérieur',
       ja: '中へ',
       ko: '보스 아래로',
+      cn: '去脚下',
     };
     return obj;
   },
@@ -644,6 +653,7 @@ let Responses = {
         de: 'unterbreche ' + source,
         fr: 'Interrompez ' + source,
         ko: '기술 시전 끊기 => ' + source,
+        cn: '打断' + source,
       };
     };
     return obj;
@@ -685,12 +695,14 @@ let Responses = {
           en: 'Away from Group',
           fr: 'Eloignez-vous du groupe',
           de: 'Weg von der Gruppe',
+          cn: '远离人群',
         };
       }
       return {
         en: 'Away from ' + data.ShortName(target),
         fr: 'Eloignez-vous de ' + data.ShortName(target),
         de: 'Weg von ' + data.ShortName(target),
+        cn: '远离' + data.ShortName(target),
       };
     };
     return obj;

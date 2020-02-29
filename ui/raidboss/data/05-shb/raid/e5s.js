@@ -59,6 +59,7 @@
         de: 'Halt nach kleinem Speer ausschau',
         fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
+        cn: '找短矛',
       },
     },
     {
@@ -79,17 +80,20 @@
             de: 'Halt nach dem Add ausschau',
             fr: 'Cherchez les adds',
             ko: '쫄 위치 확인',
+            cn: '冲锋',
           };
         }
         if (data.furysBoltActive) {
           return {
             en: 'Big Knockback',
+            cn: '长击退',
             de: 'Weiter Rückstoß',
             fr: 'Forte poussée',
           };
         }
         return {
           en: 'Short Knockback',
+          cn: '短击退',
           de: 'Kurzer Rückstoß',
           fr: 'Faible poussée',
         };
@@ -111,6 +115,7 @@
             de: 'Einen Orb nehmen',
             fr: 'Prenez un orbe',
             ko: '구슬 줍기',
+            cn: '吃球',
           };
         }
       },
@@ -153,6 +158,7 @@
             de: 'Einen Orb nehmen',
             fr: 'Prenez un orbe',
             ko: '구슬 줍기',
+            cn: '吃球',
           };
         }
       },
@@ -188,6 +194,7 @@
             de: 'Bereitmachen zum Verteilen',
             fr: 'Dispersion bientot',
             ko: '산개 준비',
+            cn: '准备分散',
           };
         }
         return {
@@ -195,6 +202,7 @@
           de: 'Donut AoE',
           fr: 'AoE en donut',
           ko: '도넛 장판',
+          cn: '环形AOE',
         };
       },
     },
@@ -248,6 +256,7 @@
         de: 'Position für die Wolke',
         fr: 'Position pour les nuages',
         ko: '번개 구름 위치 잡기',
+        cn: '雷云站位',
       },
     },
     {
@@ -263,6 +272,7 @@
         de: 'Befinde dich auf deiner Position!',
         fr: 'Soyez en place',
         ko: '자기 위치에 있기',
+        cn: '冲锋站位',
       },
     },
     {
@@ -278,6 +288,7 @@
         de: 'Bereit für Kettenblitz',
         fr: 'Préparez-vous pour la chaine',
         ko: '번개 돌려막기 준비',
+        cn: '闪电链',
       },
     },
     {
