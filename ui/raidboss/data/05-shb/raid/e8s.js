@@ -140,6 +140,22 @@
       response: Responses.aoe(),
     },
     {
+      id: 'E8S Icicle Impact',
+      regex: Regexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
+      suppressSeconds: 20,
+      infoText: function(data, matches) {
+        let x = parseFloat(matches.x);
+        if (x >= 99 && x <= 101) {
+          return {
+            en: 'North / South',
+          };
+        }
+        return {
+          en: 'East / West',
+        };
+      },
+    },
+    {
       id: 'E8S Diamond Frost Cleanse',
       regex: Regexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
       regexDe: Regexes.ability({ source: 'Shiva', id: '4D6C', capture: false }),
