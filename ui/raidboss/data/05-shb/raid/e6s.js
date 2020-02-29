@@ -26,7 +26,7 @@
             en: 'Enumeration on YOU',
             fr: 'Enumération sur VOUS',
             ko: '2인 장판 대상자',
-            cn: '蓝圈分摊点你',
+            cn: '蓝圈分摊点名',
           };
         }
         return {
@@ -72,7 +72,7 @@
             en: 'Charge on YOU',
             fr: 'Charge sur VOUS',
             ko: '나에게 보스 돌진',
-            cn: '冲锋点你',
+            cn: '冲锋点名',
           };
         }
         if (data.role != 'tank' || data.phase == 'both')
@@ -112,7 +112,7 @@
         en: 'Tether Marker on YOU',
         fr: 'Marque de lien sur VOUS',
         ko: '선 징 대상자',
-        cn: '连线点你',
+        cn: '连线点名',
       },
     },
     {

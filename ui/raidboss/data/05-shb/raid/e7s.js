@@ -59,7 +59,7 @@
         en: 'Tether on YOU',
         fr: 'Lien sur VOUS',
         ko: '선 대상자',
-        cn: '连线点你',
+        cn: '连线点名',
       },
     },
     {
@@ -82,7 +82,7 @@
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             ko: '나에게 모이기',
-            cn: '分摊点你',
+            cn: '分摊点名',
           };
         }
         if (data.betwixtWorldsStack.length == 1)
@@ -179,7 +179,7 @@
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             ko: '나에게 모이기',
-            cn: '分摊点你',
+            cn: '分摊点名',
           };
         }
         return {
@@ -226,7 +226,7 @@
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             ko: '나에게 쉐어징',
-            cn: '分摊点你',
+            cn: '分摊点名',
           };
         }
         if (data.insatiableLightStack.length == 1)
