@@ -22,7 +22,7 @@
       regex: Regexes.startsUsing({ source: 'Garuda', id: '4BD7', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
-    }, 
+    },
     {
       id: 'E6N Ferostorm',
       regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaska'], id: ['4BD[DEF]', '4BE[345]'] }),
@@ -114,7 +114,7 @@
     },
     {
       id: 'E6N Strike Spark',
-      regex: Regexes.ability({ source: 'Ifrit', id: '4F98'}),
+      regex: Regexes.ability({ source: 'Ifrit', id: '4F98' }),
       // Run only once, because Ifrit's other jumps are not important.
       condition: function(data) {
         return !data.seenSpark;
@@ -122,8 +122,8 @@
       alertText: {
         en: 'Move to Ifrit',
       },
-      run: function(data){
-        data.seenSpark =true;
+      run: function(data) {
+        data.seenSpark = true;
       },
     },
     {
