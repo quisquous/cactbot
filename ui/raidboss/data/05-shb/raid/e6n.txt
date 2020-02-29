@@ -13,7 +13,7 @@ hideall "--sync--"
 
 # Garuda solo
 2.0 "--sync--" sync /:Garuda:366:/ window 3,1
-13.5 "Ferostorm"# sync /:Garuda:4BDE:/
+13.5 "Ferostorm"# sync /:Garuda:4BD[DEF]:/
 20.6 "Superstorm" sync /:Garuda:4BD7:/ window 20,30
 31.4 "Air Bump" sync /:Garuda:4BD1:/
 36.8 "Thorns" sync /:Garuda:4BDA:/
@@ -25,8 +25,10 @@ hideall "--sync--"
 81.7 "Vacuum Slice" sync /:Garuda:4BD5:/
 88.8 "Occluded Front" sync /:Garuda:4BD2:/ window 30,30
 98.3 "Irresistible Pull" sync /:Garuda:4BD6:/
+111.5 "--untargetable--"
 
 # Ifrit solo
+114.0 "--targetable--"
 114.0 "Touchdown" sync /:Ifrit:4BE8:/ window 30,30
 129.2 "Hands Of Flame" sync /:Ifrit:4CFE:/
 143.6 "Hands Of Hell" sync /:Ifrit:4CFF:/
@@ -35,10 +37,12 @@ hideall "--sync--"
 166.1 "Strike Spark" sync /:Ifrit:4BD3:/
 177.5 "Hot Foot" sync /:Ifrit:4BEF:/
 188.2 "Inferno Howl" sync /:Ifrit:4BF1:/ window 30,30
+196.5 "--untargetable--"
+
 
 # Garuda and Ifrit
-200.9 "--sync--" sync /:Garuda:4BD0:/ window 30,30
-207.2 "Vacuum Slice" sync /:Garuda:4BD5:/
+200.8 "--targetable--"
+207.2 "Vacuum Slice" sync /:Garuda:4BD5:/ window 30,30
 209.9 "Eruption" sync /:Ifrit:4BF3:/
 209.9 "Eruption" sync /:Ifrit:4BF4:/
 213.1 "--sync--" sync /:Ifrit:4F98:/
@@ -48,13 +52,15 @@ hideall "--sync--"
 228.0 "Air Bump" sync /:Garuda:4BD1:/
 233.3 "Thorns" sync /:Garuda:4BDA:/
 237.9 "Hands Of Hell" sync /:Ifrit:4CFF:/
-245.5 "Ferostorm"# sync /:Garuda:4BDF:/
+245.5 "Ferostorm"# sync /:Garuda:4BD[DEF]:/
+250.2 "--untargetable--"
+
 
 # Raktapaksa initial block
-257.1 "--sync--" sync /:Raktapaksa:4D55:/ window 30,30
-267.9 "Firestorm" sync /:Raktapaksa:4BD8:/
+267.9 "Firestorm" sync /:Raktapaksa:4BD8:/ window 30,30
+271.2 "--targetable--"
 283.2 "Radiant Plume" sync /:Raktapaksa:4BF2:/
-286.2 "Ferostorm"# sync /:Raktapaksa:4BE4:/
+286.2 "Ferostorm"# sync /:Raktapaksa:4BE[345]:/
 297.3 "Hands Of Flame" sync /:Raktapaksa:4CFE:/ window 30,30
 301.1 "Heat Burst" sync /:Raktapaksa:4C1E:/
 311.2 "Eruption" sync /:Raktapaksa:4BF4:/
@@ -69,7 +75,7 @@ hideall "--sync--"
 360.4 "Conflag Strike" sync /:Raktapaksa:4BEE:/ window 30,30
 
 # Raktapaksa rotation block
-375.6 "Ferostorm"# sync /:Raktapaksa:4BE3:/
+375.6 "Ferostorm"# sync /:Raktapaksa:4BE[345]:/
 377.6 "Air Bump" sync /:Raktapaksa:4BD4:/
 382.5 "Thorns" sync /:Raktapaksa:4BDA:/ window 30,30
 390.7 "Storm Of Fury" sync /:Raktapaksa:4BE6:/
@@ -82,7 +88,7 @@ hideall "--sync--"
 433.4 "Radiant Plume" sync /:Raktapaksa:4BF2:/
 439.4 "Inferno Howl" sync /:Raktapaksa:4BF1:/ window 30,30
 
-454.6 "Ferostorm"# sync /:Raktapaksa:4BE3:/
+454.6 "Ferostorm"# sync /:Raktapaksa:4BE[345]:/
 456.6 "Air Bump" sync /:Raktapaksa:4BD4:/
 461.5 "Thorns" sync /:Raktapaksa:4BDA:/ window 30,30
 469.7 "Storm Of Fury" sync /:Raktapaksa:4BE6:/
