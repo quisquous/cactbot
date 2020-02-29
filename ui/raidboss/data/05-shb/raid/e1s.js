@@ -25,6 +25,15 @@
           'Eden\'s Snoozefest',
           'rip enochian',
         ],
+        de: [
+          'brb',
+          ':zzz:',
+          'LA HEE',
+          'Kurzer Powernap',
+          'brb Kafee machen',
+          'Eden\'s Schlaffest',
+          'tschüss Henochisch',
+        ],
         cn: [
           '马上回来',
           '困了睡会儿',

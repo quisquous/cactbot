@@ -15,6 +15,7 @@
       regexDe: Regexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
       regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
       regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
+      regexCn: Regexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
       response: Responses.tankBuster(),
     },
     {
@@ -36,6 +37,7 @@
       regexDe: Regexes.startsUsing({ id: '49A3', source: 'Einsiedler', capture: false }),
       regexFr: Regexes.startsUsing({ id: '49A3', source: 'Ermite Du Palais', capture: false }),
       regexJa: Regexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '49A3', source: '宫殿的隐者', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -47,6 +49,7 @@
       regexDe: Regexes.startsUsing({ id: '476B', source: 'Einsiedler', capture: false }),
       regexFr: Regexes.startsUsing({ id: '476B', source: 'Ermite Du Palais', capture: false }),
       regexJa: Regexes.startsUsing({ id: '476B', source: '宮殿の隠者', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '476B', source: '宫殿的隐者', capture: false }),
       delaySeconds: 8,
       alertText: {
         en: 'Avoid Brooms',
@@ -61,6 +64,7 @@
       regexDe: Regexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
       regexFr: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
       regexJa: Regexes.startsUsing({ id: '471B', source: 'リャナンシー' }),
+      regexCn: Regexes.startsUsing({ id: '471B', source: '凉南希' }),
       response: Responses.tankBuster(),
     },
     {
@@ -69,6 +73,7 @@
       regexDe: Regexes.startsUsing({ id: '471C', source: 'Leanan Sidhe', capture: false }),
       regexFr: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
       regexJa: Regexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '471C', source: '凉南希', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -82,6 +87,7 @@
       regexDe: Regexes.ability({ id: '368', source: 'Keim Des Geliebten', capture: false }),
       regexFr: Regexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
       regexJa: Regexes.ability({ id: '368', source: 'ラヴァーズリング', capture: false }),
+      regexCn: Regexes.ability({ id: '368', source: '恋人之戒', capture: false }),
       suppressSeconds: 60,
       response: Responses.killExtraAdd(),
     },
@@ -91,6 +97,7 @@
       regexDe: Regexes.startsUsing({ id: '471E', source: 'Leanan Sidhe', capture: false }),
       regexFr: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
       regexJa: Regexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '471E', source: '凉南希', capture: false }),
       infoText: {
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
@@ -103,7 +110,7 @@
       regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
       regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
       regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
-      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス' }),
+      regexCn: Regexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -115,6 +122,7 @@
       regexDe: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
       regexFr: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
       regexJa: Regexes.startsUsing({ id: '4764', source: 'ルゴス' }),
+      regexCn: Regexes.startsUsing({ id: '4764', source: '卢格斯' }),
       response: Responses.tankBuster(),
     },
     {
@@ -123,6 +131,7 @@
       regexDe: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -178,6 +187,7 @@
       regexDe: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4763', source: '卢格斯', capture: false }),
       response: Responses.goLeft('info'),
     },
     {
@@ -186,6 +196,7 @@
       regexDe: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4762', source: '卢格斯', capture: false }),
       response: Responses.goRight('info'),
     },
     {
@@ -219,7 +230,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Enslaved Love': 'versklavt[a] Liebhaber',
+        'Enslaved Love': 'versklavt(?:e|er|es|en) Liebhaber',
         'Leannan Sith': 'Leanan Sidhe',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Einsiedler',

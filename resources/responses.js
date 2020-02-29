@@ -301,11 +301,12 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Dorito Stack',
       de: 'Mit Marker sammeln',
+      fr: 'Packez-vous avec les autres marqueurs',
       cn: '点名集合',
     };
     return obj;
   },
-  spreadThanStack: (sev) => {
+  spreadThenStack: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Spread => Stack',
@@ -317,7 +318,7 @@ let Responses = {
     };
     return obj;
   },
-  stackThanSpread: (sev) => {
+  stackThenSpread: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Stack => Spread',
@@ -495,6 +496,7 @@ let Responses = {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'go into middle',
+      fr: 'Allez au milieu',
       de: 'in die Mitte gehen',
     };
     return obj;
@@ -640,6 +642,7 @@ let Responses = {
       return {
         en: 'interrupt ' + source,
         de: 'unterbreche ' + source,
+        fr: 'Interrompez ' + source,
         ko: '기술 시전 끊기 => ' + source,
       };
     };
@@ -680,11 +683,13 @@ let Responses = {
       if (data.me == target) {
         return {
           en: 'Away from Group',
+          fr: 'Eloignez-vous du groupe',
           de: 'Weg von der Gruppe',
         };
       }
       return {
         en: 'Away from ' + data.ShortName(target),
+        fr: 'Eloignez-vous de ' + data.ShortName(target),
         de: 'Weg von ' + data.ShortName(target),
       };
     };

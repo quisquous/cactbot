@@ -15,6 +15,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Stun on ' + data.ShortName(matches.target),
+          de: 'Stun auf ' + data.ShortName(matches.target),
           fr: 'Stun sur ' + data.ShortName(matches.target),
         };
       },
@@ -32,6 +33,7 @@
           return;
         return {
           en: 'Spread => Stack',
+          de: 'Verteilen => Sammeln',
           fr: 'Ecarté -> Packé',
         };
       },
@@ -53,6 +55,7 @@
           return;
         return {
           en: 'Stack => Spread',
+          de: 'Sammeln => Verteilen',
           fr: 'Packé -> Ecarté',
         };
       },
@@ -74,6 +77,7 @@
           return;
         return {
           en: 'Stack',
+          de: 'Sammeln',
           fr: 'Packé',
         };
       },
@@ -94,6 +98,7 @@
           return;
         return {
           en: 'Spread',
+          de: 'Verteilen',
           fr: 'Ecarté',
         };
       },
@@ -112,6 +117,7 @@
       sound: 'Long',
       infoText: {
         en: 'Out of Middle',
+        de: 'Raus aus der Mitte',
         fr: 'En dehors du centre',
       },
     },
@@ -128,6 +134,7 @@
       },
       alarmText: {
         en: 'Lightning on YOU',
+        de: 'Blitz auf DIR',
         fr: 'Eclair sur VOUS',
       },
     },
@@ -142,6 +149,7 @@
       sound: 'Long',
       infoText: {
         en: 'Final Phase',
+        de: 'Finale Phase',
         fr: 'Phase finale',
       },
     },
@@ -192,6 +200,7 @@
           return;
         return {
           en: 'Red Tethers With ' + data.ShortName(partner),
+          de: 'Rote Verbindung mit ' + data.ShortName(partner),
           fr: 'Liens rouges avec ' + data.ShortName(partner),
         };
       },
@@ -217,6 +226,7 @@
           return;
         return {
           en: 'Blue Tethers With ' + data.ShortName(partner),
+          de: 'Blaue Verbindung mit ' + data.ShortName(partner),
           fr: 'Liens bleus avec ' + data.ShortName(partner),
         };
       },

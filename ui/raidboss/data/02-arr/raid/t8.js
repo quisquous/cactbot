@@ -12,8 +12,14 @@
     {
       id: 'T8 Landmine Start',
       regex: Regexes.message({ line: 'Landmines have been scattered', capture: false }),
+      regexDe: Regexes.message({ line: 'Die Landminen haben sich verteilt', capture: false }),
+      regexFr: Regexes.message({ line: 'Des mines ont été répandues', capture: false }),
+      regexJa: Regexes.message({ line: '地雷が散布された', capture: false }),
+      regexCn: Regexes.message({ line: '地雷分布在了各处', capture: false }),
+      regexKo: Regexes.message({ line: '지뢰가 뿌려졌습니다', capture: false }),
       alertText: {
         en: 'Explode Landmines',
+        de: 'Landminen explodieren',
         fr: 'Explosion mines',
       },
       run: function(data) {
@@ -54,6 +60,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Missile Tether (on ' + data.ShortName(matches.source) + ')',
+          de: 'Raketen Tether (auf ' + data.ShortName(matches.source) + ')',
           fr: 'Lien missile sur ' + data.ShortName(matches.source),
         };
       },
@@ -70,6 +77,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Brainjack on YOU',
+            de: 'Gehirnwäsche auf DIR',
             fr: 'Détournement cérébral sur VOUS',
           };
         }
@@ -78,6 +86,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Brainjack on ' + data.ShortName(matches.target),
+            de: 'Gehirnwäsche auf ' + data.ShortName(matches.target),
             fr: 'Détournement cérébral sur ' + data.ShortName(matches.target),
           };
         }
@@ -95,6 +104,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Allagan Field on YOU',
+            de: 'Allagisches Feld auf DIR',
             fr: 'Champ allagois sur VOUS',
           };
         }
@@ -103,6 +113,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Allagan Field on ' + data.ShortName(matches.target),
+            de: 'Allagisches Feld auf ' + data.ShortName(matches.target),
             fr: 'Champ allagois sur ' + data.ShortName(matches.target),
           };
         }
@@ -118,6 +129,7 @@
       regexKo: Regexes.addedCombatant({ name: '드레드노트', capture: false }),
       infoText: {
         en: 'Dreadnaught Add',
+        de: 'Brummonaut Add',
         fr: 'Add cuirassé',
       },
     },

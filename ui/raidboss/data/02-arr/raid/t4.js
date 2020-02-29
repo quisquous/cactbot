@@ -17,6 +17,7 @@
       },
       alertText: {
         en: 'LOS Thrust',
+        de: 'LOS Gravitationsschlag',
       },
     },
     {
@@ -32,6 +33,7 @@
       },
       alarmText: {
         en: 'LOS Pox',
+        de: 'LOS Pocken',
       },
     },
     {
@@ -45,6 +47,7 @@
       suppressSeconds: 100000,
       infoText: {
         en: 'Magic on Soldier, Physical on Knights',
+        de: 'Magier auf Soldat, Physische auf Ritter',
       },
     },
   ],

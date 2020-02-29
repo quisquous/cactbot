@@ -20,6 +20,9 @@
     {
       id: 'E5S Surge Protection Gain',
       regex: Regexes.gainsEffect({ effect: 'Surge Protection' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Überspannungsschutz' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Parafoudre' }),
+      regexJa: Regexes.gainsEffect({ effect: '避雷' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.surgeProtection = true;
@@ -28,6 +31,9 @@
     {
       id: 'E5S Surge Protection Loss',
       regex: Regexes.losesEffect({ effect: 'Surge Protection' }),
+      regexDe: Regexes.losesEffect({ effect: 'Überspannungsschutz' }),
+      regexFr: Regexes.losesEffect({ effect: 'Parafoudre' }),
+      regexJa: Regexes.losesEffect({ effect: '避雷' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.surgeProtection = false;
@@ -40,6 +46,7 @@
       regexFr: Regexes.ability({ id: '4BA5', source: 'Ramuh', capture: false }),
       regexJa: Regexes.ability({ id: '4BA5', source: 'ラムウ', capture: false }),
       regexKo: Regexes.ability({ id: '4BA5', source: '라무', capture: false }),
+      regexCn: Regexes.ability({ id: '4BA5', source: '拉姆', capture: false }),
       delaySeconds: 5,
       condition: function(data) {
         return !data.seenFirstSpear;
@@ -49,6 +56,7 @@
       },
       infoText: {
         en: 'Look for small spear',
+        de: 'Halt nach kleinem Speer ausschau',
         fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
       },
@@ -60,6 +68,7 @@
       regexFr: Regexes.startsUsing({ id: '4BAC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAC', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BAC', source: '拉姆', capture: false }),
       run: function(data) {
         data.seenFirstAdd = true;
       },
@@ -67,6 +76,7 @@
         if (data.seenFirstAdd) {
           return {
             en: 'Look for adds',
+            de: 'Halt nach dem Add ausschau',
             fr: 'Cherchez les adds',
             ko: '쫄 위치 확인',
           };
@@ -74,10 +84,14 @@
         if (data.furysBoltActive) {
           return {
             en: 'Big Knockback',
+            de: 'Weiter Rückstoß',
+            fr: 'Forte poussée',
           };
         }
         return {
           en: 'Short Knockback',
+          de: 'Kurzer Rückstoß',
+          fr: 'Faible poussée',
         };
       },
     },
@@ -88,11 +102,13 @@
       regexFr: Regexes.startsUsing({ id: '4BAA', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAA', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAA', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BAA', source: '拉姆', capture: false }),
       alertText: function(data) {
         // Fury's Bolt + Stepped Leader doesn't require an orb
         if (!data.surgeProtection && !data.steppedLeaderNext) {
           return {
             en: 'Grab an orb',
+            de: 'Einen Orb nehmen',
             fr: 'Prenez un orbe',
             ko: '구슬 줍기',
           };
@@ -126,6 +142,7 @@
       regexFr: Regexes.startsUsing({ id: '4BAB', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAB', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAB', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BAB', source: '拉姆', capture: false }),
       condition: function(data) {
         return !data.furysFourteenCounter || data.furysFourteenCounter < 2;
       },
@@ -133,6 +150,7 @@
         if (!data.surgeProtection) {
           return {
             en: 'Grab an orb',
+            de: 'Einen Orb nehmen',
             fr: 'Prenez un orbe',
             ko: '구슬 줍기',
           };
@@ -150,6 +168,7 @@
       regexFr: Regexes.startsUsing({ id: '4BB5', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BB5', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BB5', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BB5', source: '拉姆', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
@@ -160,17 +179,20 @@
       regexFr: Regexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BC6', source: '拉姆', capture: false }),
       alertText: function(data) {
         // Fury's Bolt + Stepped Leader is a donut AoE instead
         if (!data.furysBoltActive) {
           return {
             en: 'Ready Spread',
+            de: 'Bereitmachen zum Verteilen',
             fr: 'Dispersion bientot',
             ko: '산개 준비',
           };
         }
         return {
           en: 'donut AoE',
+          de: 'Donut AoE',
           fr: 'AoE en donut',
           ko: '도넛 장판',
         };
@@ -183,6 +205,7 @@
       regexFr: Regexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BC6', source: '拉姆', capture: false }),
       delaySeconds: 3.0,
       condition: function(data) {
         return !data.furysBoltActive;
@@ -196,6 +219,7 @@
       regexFr: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
       regexJa: Regexes.ability({ id: '4BC6', source: 'ラムウ', capture: false }),
       regexKo: Regexes.ability({ id: '4BC6', source: '라무', capture: false }),
+      regexCn: Regexes.ability({ id: '4BC6', source: '拉姆', capture: false }),
       run: function(data) {
         data.steppedLeaderNext = false;
       },
@@ -207,6 +231,7 @@
       regexFr: Regexes.startsUsing({ id: '4BCA', source: 'Ramuh' }),
       regexJa: Regexes.startsUsing({ id: '4BCA', source: 'ラムウ' }),
       regexKo: Regexes.startsUsing({ id: '4BCA', source: '라무' }),
+      regexCn: Regexes.startsUsing({ id: '4BCA', source: '拉姆' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -217,8 +242,10 @@
       regexFr: Regexes.startsUsing({ id: '4BB8', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BB8', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BB8', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BB8', source: '拉姆', capture: false }),
       infoText: {
         en: 'Position for Stormcloud',
+        de: 'Position für die Wolke',
         fr: 'Position pour les nuages',
         ko: '번개 구름 위치 잡기',
       },
@@ -230,8 +257,10 @@
       regexFr: Regexes.startsUsing({ id: '4BAD', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BAD', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BAD', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BAD', source: '拉姆', capture: false }),
       infoText: {
         en: 'Be in your position',
+        de: 'Befinde dich auf deiner Position!',
         fr: 'Soyez en place',
         ko: '자기 위치에 있기',
       },
@@ -243,9 +272,11 @@
       regexFr: Regexes.startsUsing({ id: '4BC4', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BC4', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BC4', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BC4', source: '拉姆', capture: false }),
       alertText: {
         en: 'Ready for Chain',
-        fr: 'Préparez vous pour la chaine',
+        de: 'Bereit für Kettenblitz',
+        fr: 'Préparez-vous pour la chaine',
         ko: '번개 돌려막기 준비',
       },
     },
@@ -256,6 +287,7 @@
       regexFr: Regexes.startsUsing({ id: '4BCC', source: 'Ramuh', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4BCC', source: 'ラムウ', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4BCC', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BCC', source: '拉姆', capture: false }),
       response: Responses.knockback(),
     },
   ],
@@ -266,7 +298,7 @@
         'stormcloud': 'Cumulonimbus-Wolke',
         'Ramuh': 'Ramuh',
         'Raiden': 'Raiden',
-        'Will Of Ixion': 'Will Of Ixion', // FIXME
+        'Will Of Ixion': 'Ixion-Spiegelung',
       },
       'replaceText': {
         'Volt Strike': 'Voltschlag',
@@ -346,7 +378,7 @@
         'stormcloud': '積乱雲',
         'Ramuh': 'ラムウ',
         'Raiden': 'ライディーン',
-        'Will Of Ixion': 'Will Of Ixion', // FIXME
+        'Will Of Ixion': 'イクシオン・ミラージュ',
       },
       'replaceText': {
         'Volt Strike': 'ボルトストライク',

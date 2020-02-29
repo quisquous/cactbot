@@ -69,6 +69,7 @@
       },
       infoText: {
         en: 'Stand in blue',
+        de: 'Im Blauen stehen',
         fr: 'Allez dans le bleu',
       },
     },
@@ -80,6 +81,7 @@
       },
       infoText: {
         en: 'Stand in red',
+        de: 'Im Roten stehen',
         fr: 'Allez dans le rouge',
       },
     },
@@ -113,7 +115,7 @@
       regexKo: Regexes.startsUsing({ id: '1FDE', source: '아부다', capture: false }),
       alertText: {
         en: 'watch for safe',
-        de: 'nach Sicherheit schauen',
+        de: 'nach sicherer Position schauen',
         fr: 'trouvez une zone safe',
       },
     },
@@ -158,6 +160,7 @@
       regexKo: Regexes.ability({ id: '1FE9', source: '쌍표범 이본', capture: false }),
       infoText: {
         en: 'Avoid floating heads',
+        de: 'Weiche den fliegenden Köpfen aus',
         fr: 'Evitez les têtes',
       },
     },
@@ -171,6 +174,7 @@
       regexKo: Regexes.startsUsing({ id: '1FED', source: '쌍표범 이본', capture: false }),
       infoText: {
         en: 'Away from marker',
+        de: 'Weg von den Markierungen',
         fr: 'Loin de la marque',
       },
     },
