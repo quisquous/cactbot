@@ -704,10 +704,10 @@
       regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
       regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
       regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
-      delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
       },
+      delaySeconds: 9,
       infoText: {
         en: 'Spread for Bleed',
         de: 'Blutung verteilen',
@@ -739,10 +739,10 @@
       regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
       regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
       regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
-      delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
       },
+      delaySeconds: 9,
       infoText: function(data) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
@@ -785,10 +785,10 @@
       regexJa: Regexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
       regexCn: Regexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
       regexKo: Regexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
-      delaySeconds: 9,
       condition: function(data) {
         return data.sealed;
       },
+      delaySeconds: 9,
       alertText: function(data) {
         // FIXME: taking multiple autos probably means tanking,
         // so probably could figure this out automatically.
@@ -872,10 +872,10 @@
       regexJa: Regexes.ability({ source: 'クラウドラーカー', id: '37B0', capture: false }),
       regexCn: Regexes.ability({ source: '翻云狮鹫', id: '37B0', capture: false }),
       regexKo: Regexes.ability({ source: '구름 잠복자', id: '37B0', capture: false }),
-      delaySeconds: 2,
       condition: function(data) {
         return data.sealed;
       },
+      delaySeconds: 2,
       suppressSeconds: 1,
       response: Responses.killAdds(),
     },

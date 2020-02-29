@@ -512,7 +512,6 @@
       regexJa: Regexes.startsUsing({ id: ['28CD', '2B31'], source: 'ケフカ', capture: false }),
       regexCn: Regexes.startsUsing({ id: ['28CD', '2B31'], source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['28CD', '2B31'], source: '케프카', capture: false }),
-      suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
           en: 'True Thunder',
@@ -522,6 +521,7 @@
           ja: '真サンダガ',
         }[data.lang];
       },
+      suppressSeconds: 40,
       infoText: function(data) {
         return data.lastThunder;
       },
@@ -540,7 +540,6 @@
       regexJa: Regexes.startsUsing({ id: ['28CC', '2B30'], source: 'ケフカ', capture: false }),
       regexCn: Regexes.startsUsing({ id: ['28CC', '2B30'], source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['28CC', '2B30'], source: '케프카', capture: false }),
-      suppressSeconds: 40,
       preRun: function(data) {
         data.lastThunder = {
           en: 'Fake Thunder',
@@ -550,6 +549,7 @@
           ja: 'にせサンダガ',
         }[data.lang];
       },
+      suppressSeconds: 40,
       infoText: function(data) {
         return data.lastThunder;
       },
@@ -568,7 +568,6 @@
       regexJa: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: 'ケフカ', capture: false }),
       regexCn: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['28C5', '2B2B'], source: '케프카', capture: false }),
-      suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
           en: 'Fake Ice',
@@ -585,6 +584,7 @@
           ja: '外へ',
         }[data.lang];
       },
+      suppressSeconds: 40,
       infoText: function(data) {
         return data.lastIce + ': ' + data.lastIceDir;
       },
@@ -603,7 +603,6 @@
       regexJa: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: 'ケフカ', capture: false }),
       regexCn: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['28C9', '2B2E'], source: '케프카', capture: false }),
-      suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
           en: 'True Ice',
@@ -620,6 +619,7 @@
           ja: '中へ',
         }[data.lang];
       },
+      suppressSeconds: 40,
       infoText: function(data) {
         return data.lastIce + ': ' + data.lastIceDir;
       },
@@ -638,7 +638,6 @@
       regexJa: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: 'ケフカ', capture: false }),
       regexCn: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['28C4', '2B2A'], source: '케프카', capture: false }),
-      suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
           en: 'Fake Ice',
@@ -655,6 +654,7 @@
           ja: '中へ',
         }[data.lang];
       },
+      suppressSeconds: 40,
       infoText: function(data) {
         return data.lastIce + ': ' + data.lastIceDir;
       },
@@ -673,7 +673,6 @@
       regexJa: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: 'ケフカ', capture: false }),
       regexCn: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: '凯夫卡', capture: false }),
       regexKo: Regexes.startsUsing({ id: ['28C8', '2B2D'], source: '케프카', capture: false }),
-      suppressSeconds: 40,
       preRun: function(data) {
         data.lastIce = {
           en: 'True Ice',
@@ -690,6 +689,7 @@
           ja: '外へ',
         }[data.lang];
       },
+      suppressSeconds: 40,
       infoText: function(data) {
         return data.lastIce + ': ' + data.lastIceDir;
       },

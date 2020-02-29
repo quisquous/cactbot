@@ -106,10 +106,10 @@
       regexJa: Regexes.tether({ id: '0001', source: '次元の裂け目' }),
       regexCn: Regexes.tether({ id: '0001', source: '次元裂缝' }),
       regexKo: Regexes.tether({ id: '0001', source: '차원의 틈새' }),
-      suppressSeconds: 5,
       condition: function(data, matches) {
         return data.me == matches.target;
       },
+      suppressSeconds: 5,
       alarmText: {
         en: 'Away from rifts',
         de: 'Weg von de Ätherspalten',

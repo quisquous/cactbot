@@ -41,10 +41,10 @@
       // This is probably a problem for all timeline triggers (whoops)
       // and needs to be fixed more generally rather than adding a
       // suppression.
-      suppressSeconds: 1,
       preRun: function(data) {
         data.swingCount = (data.swingCount || 0) + 1;
       },
+      suppressSeconds: 1,
       alertText: function(data) {
         let multipleSwings = data.swingCount == 2 || data.swingCount == 3;
         if (data.role == 'healer') {
@@ -114,10 +114,10 @@
       id: 'TEA Hand of Stuff',
       regex: /Hand of Prayer\/Parting/,
       beforeSeconds: 5,
-      suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'tank';
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Move Bosses',
         de: 'Bosse bewegen',
@@ -130,10 +130,10 @@
       id: 'TEA J Kick',
       regex: /J Kick/,
       beforeSeconds: 5,
-      suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank';
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'aoe',
         de: 'AoE',
@@ -160,10 +160,10 @@
       id: 'TEA Flarethrower',
       regex: /Flarethrower/,
       beforeSeconds: 8,
-      suppressSeconds: 300,
       condition: function(data) {
         return data.me == data.bruteTank && data.phase == 'brute';
       },
+      suppressSeconds: 300,
       alertText: {
         en: 'Face Brute Towards Water',
         de: 'Drehe Brute zum Wasser',
@@ -188,8 +188,8 @@
     {
       id: 'TEA Final Nisi Pass',
       regex: /Propeller Wind/,
-      durationSeconds: 14,
       beforeSeconds: 15,
+      durationSeconds: 14,
       alertText: function(data) {
         return data.namedNisiPass(data);
       },
@@ -1175,14 +1175,14 @@
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : éloignement', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令', capture: false }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령', capture: false }),
-      delaySeconds: 0.5,
-      suppressSeconds: 1,
-      durationSeconds: 10,
       condition: function(data) {
         // NOTE: due to timings the "temporal" phase does not start until after debuffs are out.
         // So consider the "temporal" no debuff to be "brute" no debuff here.
         return data.phase == 'brute' || data.phase == 'inception';
       },
+      delaySeconds: 0.5,
+      durationSeconds: 10,
+      suppressSeconds: 1,
       infoText: function(data) {
         if (data.me in data.buffMap)
           return;
@@ -1245,10 +1245,10 @@
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
-      durationSeconds: 10,
       condition: function(data, matches) {
         return data.me == matches.target;
       },
+      durationSeconds: 10,
       alertText: {
         en: 'Shared Sentence',
         de: 'Urteil: Kollektivstrafe',
@@ -1266,8 +1266,8 @@
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
-      delaySeconds: 3,
       condition: (data) => data.phase == 'inception',
+      delaySeconds: 3,
       infoText: function(data, matches) {
         return {
           en: 'Shared Sentence on ' + matches.target,
@@ -1285,10 +1285,10 @@
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Sévère' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：加重罰' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 가중형' }),
-      durationSeconds: 10,
       condition: function(data, matches) {
         return data.me == matches.target;
       },
+      durationSeconds: 10,
       alarmText: {
         en: 'Thunder',
         de: 'Blitz',
@@ -1387,8 +1387,8 @@
       regexFr: Regexes.ability({ source: 'Cristal du jugement', id: '4A88', capture: false }),
       regexJa: Regexes.ability({ source: '審判の結晶', id: '4A88', capture: false }),
       regexKo: Regexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
-      suppressSeconds: 100,
       delaySeconds: 1,
+      suppressSeconds: 100,
       infoText: {
         en: 'Bait Brute\'s Flarethrower',
         de: 'Locke Brute\'s Großflammenwerfer',
@@ -1508,7 +1508,6 @@
           return false;
         return data.phase == 'wormhole' && data.me == matches.target;
       },
-      durationSeconds: 10,
       preRun: function(data, matches) {
         data.puddle = {
           '008F': 3,
@@ -1521,6 +1520,7 @@
           '0096': 2,
         }[matches.id];
       },
+      durationSeconds: 10,
       infoText: function(data, matches) {
         // Initial directions.
         // TODO: we could figure out which robot was left and right based
@@ -1933,9 +1933,9 @@
       id: 'TEA Alpha Instructions Callout',
       regex: Regexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'alpha',
-      suppressSeconds: 10,
       delaySeconds: 2,
       durationSeconds: 28,
+      suppressSeconds: 10,
       alarmText: function(data) {
         // Defamation will wipe the group, so gets an alarm.
         if (data.me == data.alphaDefamation)
@@ -1966,8 +1966,6 @@
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0D', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
-      suppressSeconds: 20,
-      durationSeconds: 8,
       preRun: function(data) {
         data.firstAlphaOrdainedText = {
           en: 'Motion first',
@@ -1978,6 +1976,8 @@
           cn: '首先移动',
         };
       },
+      durationSeconds: 8,
+      suppressSeconds: 20,
       infoText: (data) => data.firstAlphaOrdainedText,
       run: function(data) {
         data.firstAlphaOrdained = 'motion';
@@ -1990,8 +1990,6 @@
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0E', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
-      suppressSeconds: 20,
-      durationSeconds: 8,
       preRun: function(data) {
         data.firstAlphaOrdainedText = {
           en: 'Stillness first',
@@ -2002,6 +2000,8 @@
           cn: '首先静止',
         };
       },
+      durationSeconds: 8,
+      suppressSeconds: 20,
       infoText: (data) => data.firstAlphaOrdainedText,
       run: function(data) {
         data.firstAlphaOrdained = 'stillness';
@@ -2014,8 +2014,6 @@
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
-      suppressSeconds: 20,
-      durationSeconds: 15,
       preRun: function(data) {
         data.secondAlphaOrdainedText = {
           en: 'Motion second',
@@ -2026,6 +2024,8 @@
           cn: '最后移动',
         };
       },
+      durationSeconds: 15,
+      suppressSeconds: 20,
       infoText: function(data) {
         let first = data.firstAlphaOrdainedText[data.lang];
         let second = data.secondAlphaOrdainedText[data.lang];
@@ -2047,8 +2047,6 @@
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
-      suppressSeconds: 20,
-      durationSeconds: 15,
       preRun: function(data) {
         data.secondAlphaOrdainedText = {
           en: 'Stillness second',
@@ -2059,6 +2057,8 @@
           cn: '最后静止',
         };
       },
+      durationSeconds: 15,
+      suppressSeconds: 20,
       infoText: function(data) {
         let first = data.firstAlphaOrdainedText[data.lang];
         let second = data.secondAlphaOrdainedText[data.lang];
@@ -2216,8 +2216,8 @@
       id: 'TEA Beta Instructions',
       regex: Regexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'beta',
-      suppressSeconds: 10,
       delaySeconds: 1,
+      suppressSeconds: 10,
       run: function(data) {
         // See notes in TEA Alpha Instructions about what's going on here.
         let sortedIds = Object.keys(data.tetherBois).sort().reverse();
@@ -2310,9 +2310,9 @@
       id: 'TEA Beta Instructions Callout',
       regex: Regexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'beta',
-      suppressSeconds: 10,
       delaySeconds: 2,
       durationSeconds: 35,
+      suppressSeconds: 10,
       // TODO: this mess would be a nice use for a function that can just return the text type.
       alarmText: function(data) {
         // Baiters get an alarm text.

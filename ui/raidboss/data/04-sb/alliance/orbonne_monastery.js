@@ -397,10 +397,10 @@
       regexJa: Regexes.ability({ id: '3751', source: '雷神シド', capture: false }),
       regexCn: Regexes.ability({ id: '3751', source: '雷神西德', capture: false }),
       regexKo: Regexes.ability({ id: '3751', source: '뇌신 시드', capture: false }),
-      suppressSeconds: 10,
       condition: function(data) {
         return data.role == 'healer';
       },
+      suppressSeconds: 10,
       alertText: {
         en: 'Heal To Full',
         de: 'Vollheilen',

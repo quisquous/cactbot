@@ -428,8 +428,8 @@
       condition: function(data, matches) {
         return data.spell[matches.target] == 'eye' && matches.target == data.me;
       },
-      suppressSeconds: 10,
       delaySeconds: 2,
+      suppressSeconds: 10,
       infoText: {
         en: 'Eye on YOU',
         de: 'Auge auf DIR',
@@ -445,8 +445,8 @@
       condition: function(data, matches) {
         return data.spell[matches.target] == 'eye' && data.spell[data.me] != 'eye';
       },
-      suppressSeconds: 10,
       delaySeconds: 2,
+      suppressSeconds: 10,
       // Let's just assume these people are stacked.
       // We could call out both names, but it's probably unnecessary.
       alertText: function(data, matches) {

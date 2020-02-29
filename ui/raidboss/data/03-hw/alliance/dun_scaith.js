@@ -295,10 +295,10 @@
       regexJa: Regexes.startsUsing({ id: '1DA4', source: 'プロトアルテマ', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1DA4', source: '究极神兵原型', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1DA4', source: '프로토 알테마', capture: false }),
-      suppressSeconds: 1,
       preRun: function(data) {
         data.flareStarCount = (data.flareStarCount || 0) + 1;
       },
+      suppressSeconds: 1,
       alertText: function(data) {
         if (data.flareStarCount == 1) {
           return {
@@ -511,10 +511,10 @@
       regexJa: Regexes.gainsEffect({ target: 'ディアボロス', effect: 'ノクトシールド', capture: false }),
       regexCn: Regexes.gainsEffect({ target: '迪亚波罗斯', effect: '夜障', capture: false }),
       regexKo: Regexes.gainsEffect({ target: '디아볼로스', effect: '밤의 방패', capture: false }),
-      suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
+      suppressSeconds: 5,
       alertText: {
         en: 'Boss hitting hard--Shield/Mitigate',
         de: 'Harter Hit vom Boss - Schild/Milderung',
@@ -529,10 +529,10 @@
       regexJa: Regexes.startsUsing({ id: '1C1[01]', source: 'ディアボロス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1C1[01]', source: '迪亚波罗斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1C1[01]', source: '디아볼로스', capture: false }),
-      suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'healer';
       },
+      suppressSeconds: 5,
       response: Responses.aoe(),
     },
     {
@@ -586,10 +586,10 @@
       regexJa: Regexes.startsUsing({ id: '1C2[23]', source: 'ディアボロス・ホロー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '1C2[23]', source: '虚空迪亚波罗斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '1C2[23]', source: '공허의 디아볼로스', capture: false }),
-      suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'healer';
       },
+      suppressSeconds: 5,
       response: Responses.bigAoe(),
     },
     {

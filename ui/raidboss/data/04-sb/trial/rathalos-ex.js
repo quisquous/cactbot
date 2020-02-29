@@ -76,10 +76,10 @@
       regexJa: Regexes.addedCombatant({ name: 'ステップ・シープ', capture: false }),
       regexCn: Regexes.addedCombatant({ name: '草原绵羊', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '초원 양', capture: false }),
-      suppressSeconds: 5,
       condition: function(data) {
         return data.role == 'tank';
       },
+      suppressSeconds: 5,
       response: Responses.killAdds(),
     },
   ],
