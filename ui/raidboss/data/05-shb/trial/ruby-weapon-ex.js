@@ -1,5 +1,12 @@
 'use strict';
 
+// TODO: ravensflight calls
+// TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
+// TODO: get behind meteor
+// TODO: get away from last exploding meteor
+// TODO: tank calls to pick up meteors
+// TODO: bradamante calls (avoid tanks)
+
 [{
   zoneRegex: {
     en: /^Cinder Drift \(Extreme\)$/,
@@ -232,6 +239,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'The Ruby Weapon': 'Rubin-Waffe',
       },
@@ -250,7 +258,7 @@
         'Magitek Charge': 'Magitek-Sprengladung',
         'Magitek Bit': 'Magitek-Bit',
         'Liquefaction': 'Verflüssigen',
-        'Homing Lasers': 'Leitlaser',
+        '(?<! )Homing Lasers': 'Leitlaser',
         'High-powered Homing Lasers': 'Hochenergie-Leitlaser',
         'Helicoclaw': 'Spiralklauen',
         'Flexiclaw': 'Flex-Klauen',
@@ -266,6 +274,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'The Ruby Weapon': 'Arme Rubis',
       },
@@ -284,7 +293,7 @@
         'Magitek Charge': 'Éthéroplasma magitek',
         'Magitek Bit': 'Éjection de drones',
         'Liquefaction': 'Sables mouvants',
-        'Homing Lasers': 'Lasers autoguidés',
+        '(?<! )Homing Lasers': 'Lasers autoguidés',
         'High-powered Homing Lasers': 'Lasers autoguidés surpuissants',
         'Helicoclaw': 'Héliogriffes',
         'Flexiclaw': 'Flexigriffes',
@@ -300,6 +309,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'The Ruby Weapon': 'ルビーウェポン',
       },
@@ -318,7 +328,7 @@
         'Magitek Charge': '魔導爆雷',
         'Magitek Bit': 'ビット射出',
         'Liquefaction': 'リクェファクション',
-        'Homing Lasers': '誘導レーザー',
+        '(?<! )Homing Lasers': '誘導レーザー',
         'High-powered Homing Lasers': '高出力誘導レーザー',
         'Helicoclaw': 'スパイラルクロー',
         'Flexiclaw': 'フレキシブルクロー',
