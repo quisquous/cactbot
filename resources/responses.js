@@ -147,6 +147,11 @@ let Responses = {
     };
     let busterFunc = (data, matches) => {
       let target = getTarget(matches);
+
+      // Covered in tankSwapFunc above.
+      if (data.role == 'tank' && target != data.me)
+        return;
+
       if (target == data.me) {
         return {
           en: 'Tank Buster on YOU',
