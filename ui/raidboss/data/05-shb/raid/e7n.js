@@ -94,24 +94,22 @@
       response: Responses.getOut(),
     },
     {
+      // For this and the following trigger, we warn the user only if they
+      // will be struck by a color before their debuff expires.
       id: 'E7N Astral Effect',
       regex: Regexes.gainsEffect({ effect: 'Astral Effect' }),
       regexFr: Regexes.gainsEffect({ effect: 'Corruption De Lumière' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data) {
-        data.colorCount = data.colorCount || 1;
-      },
       suppressSeconds: 3,
       infoText: function(data) {
-        if (data.colorCount != 3) {
-          return {
-            en: 'Get hit by dark',
-          };
-        }
-      },
-      run: function(data) {
-        if (data.colorCount == 3)
+        data.colorCount = data.colorCount + 1 || 1;
+        if (data.colorCount == 3) {
           delete data.colorCount;
+          return;
+        }
+        return {
+          en: 'Get hit by dark',
+        };
       },
     },
     {
@@ -119,20 +117,16 @@
       regex: Regexes.gainsEffect({ effect: 'Umbral Effect' }),
       regexFr: Regexes.gainsEffect({ effect: 'Corruption De Ténèbres' }),
       condition: Conditions.targetIsYou(),
-      preRun: function(data) {
-        data.colorCount = data.colorCount || 1;
-      },
       suppressSeconds: 3,
       infoText: function(data) {
-        if (data.colorCount != 3) {
-          return {
-            en: 'Get hit by light',
-          };
-        }
-      },
-      run: function(data) {
-        if (data.colorCount == 3)
+        data.colorCount = data.colorCount + 1 || 1;
+        if (data.colorCount == 3) {
           delete data.colorCount;
+          return;
+        }
+        return {
+          en: 'Get hit by light',
+        };
       },
     },
   ],
