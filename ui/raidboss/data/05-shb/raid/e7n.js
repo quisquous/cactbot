@@ -98,10 +98,10 @@
       regex: Regexes.gainsEffect({ effect: 'Astral Effect' }),
       regexFr: Regexes.gainsEffect({ effect: 'Corruption De Lumière' }),
       condition: Conditions.targetIsYou(),
-      suppressSeconds: 3,
       preRun: function(data) {
         data.colorCount = data.colorCount || 1;
       },
+      suppressSeconds: 3,
       infoText: function(data) {
         if (data.colorCount != 3) {
           return {
@@ -119,10 +119,10 @@
       regex: Regexes.gainsEffect({ effect: 'Umbral Effect' }),
       regexFr: Regexes.gainsEffect({ effect: 'Corruption De Ténèbres' }),
       condition: Conditions.targetIsYou(),
-      suppressSeconds: 3,
       preRun: function(data) {
         data.colorCount = data.colorCount || 1;
       },
+      suppressSeconds: 3,
       infoText: function(data) {
         if (data.colorCount != 3) {
           return {
