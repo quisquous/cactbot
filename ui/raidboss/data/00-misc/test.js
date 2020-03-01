@@ -18,6 +18,7 @@
     function(data) {
       if (data.role != 'tank' && data.role != 'healer')
         return 'hideall "Super Tankbuster"';
+      return 'alarmtext "Super Tankbuster" before 2';
     },
     function(data) {
       if (!data.role.startsWith('dps'))

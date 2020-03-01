@@ -18,6 +18,7 @@
       },
       infoText: {
         en: 'Silence Ram\'s Voice',
+        de: 'Verstumme Stimme des Widders',
         fr: 'Silence Voix du bélier',
       },
     },
@@ -35,6 +36,7 @@
       },
       infoText: {
         en: 'Silence Dragon\'s Voice',
+        de: 'Verstumme Stimme des Drachens',
         fr: 'Silence Voix du dragon',
       },
     },
@@ -53,6 +55,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Tail Slap in 10',
+        de: 'Schweifklapser in 10',
         fr: 'Gifle caudale dans 10',
       },
     },
@@ -66,6 +69,7 @@
       regexKo: Regexes.addedCombatant({ name: '르노', capture: false }),
       infoText: {
         en: 'Renaud Add',
+        de: 'Renaud Add',
         fr: 'Add Renaud',
       },
     },
@@ -85,6 +89,7 @@
       },
       alertText: {
         en: 'Voice Soon',
+        de: 'Stimme Der Verwünschung bald',
         fr: 'Voix bientôt',
       },
     },
@@ -101,6 +106,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Shriek on YOU',
+            de: 'Schrei Der Verwünschung auf DIR',
             fr: 'Cri sur VOUS',
           };
         }
@@ -109,6 +115,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Shriek on ' + data.ShortName(matches.target),
+            de: 'Schrei Der Verwünschung auf ' + data.ShortName(matches.target),
             fr: 'Cri sur ' + data.ShortName(matches.target),
           };
         }
@@ -128,11 +135,13 @@
         if (data.me == matches.target) {
           return {
             en: 'Shriek Soon',
+            de: 'Schrei Der Verwünschung bald',
             fr: 'Cri bientôt',
           };
         }
         return {
           en: 'Dodge Shriek',
+          de: 'Schrei Der Verwünschung ausweichen',
           fr: 'Esquivez le cri',
         };
       },
@@ -197,6 +206,7 @@
       regexKo: Regexes.startsUsing({ id: '7B2', source: '멜뤼진', capture: false }),
       alertText: {
         en: 'Venomous Tail',
+        de: 'Venomschweif',
         fr: 'Queue venimeuse',
       },
     },

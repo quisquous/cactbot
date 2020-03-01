@@ -423,6 +423,8 @@
       regexDe: Regexes.message({ line: 'Schatten sammeln sich auf dem Boden', capture: false }),
       regexFr: Regexes.message({ line: 'Le pouvoir des ombres se concentre sur le sol', capture: false }),
       regexJa: Regexes.message({ line: '床に影の力が集束していく', capture: false }),
+      regexCn: Regexes.message({ line: '影之力正在向地面聚集', capture: false }),
+      regexKo: Regexes.message({ line: '바닥에 그림자의 힘이 모여듭니다', capture: false }),
       suppressSeconds: 5,
       response: Responses.stopMoving(),
     },

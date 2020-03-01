@@ -32,7 +32,7 @@
           return;
         return {
           en: 'Bennu Soon',
-          de: 'Bennu Add',
+          de: 'Bennu Add bald',
           fr: 'Bénou bientôt',
         };
       },

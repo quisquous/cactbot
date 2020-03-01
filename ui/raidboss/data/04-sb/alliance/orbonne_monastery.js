@@ -81,6 +81,7 @@
       regexKo: Regexes.startsUsing({ id: '3737', source: '기공사 무스타디오', capture: false }),
       alertText: {
         en: 'Point opening at Mustadio',
+        de: 'Richte Öffnung auf Mustadio',
         fr: 'Orientez l\'ouverture vers le boss',
         ko: '문양이 빈 쪽을 무스타디오쪽으로 향하게 하기',
       },
@@ -383,6 +384,7 @@
       regexKo: Regexes.startsUsing({ id: '375A', source: '뇌신 시드', capture: false }),
       alertText: {
         en: 'Kill Icewolf Adds',
+        de: 'Besiege die Eiswolf Adds',
         fr: 'Tuez les Grêlons de glace',
         ko: '얼음 부수기',
       },

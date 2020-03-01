@@ -1,5 +1,13 @@
 'use strict';
 
+// TODO: ravensflight calls
+// TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
+// TODO: stop calling out switch on adds if the other add is dead, etc
+// TODO: get behind meteor
+// TODO: get away from last exploding meteor
+// TODO: tank calls to pick up meteors
+// TODO: bradamante calls (avoid tanks)
+
 [{
   zoneRegex: {
     en: /^Cinder Drift \(Extreme\)$/,
@@ -34,35 +42,24 @@
       regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD0', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD0', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AD0', capture: false }),
-      preRun: function(data) {
-        data.rubyCounter = data.rubyCounter || 0;
-        data.rubyCounter++;
-      },
       infoText: {
         en: 'Away from Lines',
+        de: 'Weg von den Linien',
         fr: 'En dehors des sillons',
         ko: '선 피하기',
       },
     },
     {
       id: 'RubyEx Liquefaction',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEC', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEC', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AEC', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AEC', capture: false }),
-      preRun: function(data) {
-        data.rubyCounter = data.rubyCounter || 0;
-        data.rubyCounter++;
-      },
-      alertText: function(data) {
-        // Ignore Liquefaction casts during dashes
-        if (data.rubyCounter % 2) {
-          return {
-            en: 'Get On Lines',
-            fr: 'Sur les sillons',
-            ko: '선 위로 올라가기',
-          };
-        }
+      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACF', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4ACF', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4ACF', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4ACF', capture: false }),
+      alertText: {
+        en: 'Get On Lines',
+        de: 'Auf die Linien gehen',
+        fr: 'Sur les sillons',
+        ko: '선 위로 올라가기',
       },
     },
     {
@@ -100,6 +97,7 @@
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4B2D', capture: false }),
       infoText: {
         en: 'Enrage!',
+        de: 'Finalangriff!',
         fr: 'Enrage !',
         ko: '전멸기!',
       },
@@ -107,7 +105,9 @@
     {
       id: 'RubyEx Pall of Rage',
       regex: Regexes.gainsEffect({ effect: 'Pall of Rage' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Zorn' }),
       regexFr: Regexes.gainsEffect({ effect: 'Fureur' }),
+      regexJa: Regexes.gainsEffect({ effect: '憤怒' }),
       preRun: function(data, matches) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'blue';
@@ -116,6 +116,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Attack Blue (East)',
+            de: 'Greife Blau an (Osten)',
             fr: 'Attaquez le bleu (Est)',
             ko: '파란색 공격 (오른쪽)',
           };
@@ -125,7 +126,9 @@
     {
       id: 'RubyEx Pall of Grief',
       regex: Regexes.gainsEffect({ effect: 'Pall of Grief' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Trauer' }),
       regexFr: Regexes.gainsEffect({ effect: 'Angoisse' }),
+      regexJa: Regexes.gainsEffect({ effect: '悲嘆' }),
       preRun: function(data, matches) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'red';
@@ -134,6 +137,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Attack Red (West)',
+            de: 'Greife Rot an (Westen)',
             fr: 'Attaquez le rouge (Ouest)',
             ko: '빨간색 공격 (왼쪽)',
           };
@@ -149,7 +153,9 @@
     {
       id: 'RubyEx Ruby Claw',
       regex: Regexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
-      regexFr: Regexes.startsUsing({ source: 'Griffe Rubis', id: '4AFF' }),
+      regexDe: Regexes.startsUsing({ source: 'Naels Trugbild', id: '4AFF' }),
+      regexFr: Regexes.startsUsing({ source: 'Spectre De Nael', id: '4AFF' }),
+      regexJa: Regexes.startsUsing({ source: 'ネールの幻影', id: '4AFF' }),
       condition: function(data, matches) {
         if (data.role != 'healer' || data.role != 'tank')
           return false;
@@ -162,9 +168,9 @@
     {
       id: 'RubyEx Change of Heart',
       regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AFC', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AFC', capture: false }),
+      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
+      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AFC', capture: false }),
+      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AFC', capture: false }),
       preRun: function(data) {
         for (color of data.colors) {
           if (color == 'blue')
@@ -177,12 +183,14 @@
         if (data.colors[data.me] == 'red') {
           return {
             en: 'Attack Red (East)',
+            de: 'Greife Rot an (Osten)',
             fr: 'Attaquez le rouge (Est)',
             ko: '빨간색 공격 (오른쪽)',
           };
         }
         return {
           en: 'Attack Blue (West)',
+          de: 'Greife Blau an (Westen)',
           fr: 'Attaquez le bleu (Ouest)',
           ko: '파란색 공격 (왼쪽)',
         };
@@ -219,6 +227,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'The Ruby Weapon': 'Rubin-Waffe',
       },
@@ -237,7 +246,7 @@
         'Magitek Charge': 'Magitek-Sprengladung',
         'Magitek Bit': 'Magitek-Bit',
         'Liquefaction': 'Verflüssigen',
-        'Homing Lasers': 'Leitlaser',
+        '(?<! )Homing Lasers': 'Leitlaser',
         'High-powered Homing Lasers': 'Hochenergie-Leitlaser',
         'Helicoclaw': 'Spiralklauen',
         'Flexiclaw': 'Flex-Klauen',
@@ -253,6 +262,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'The Ruby Weapon': 'Arme Rubis',
       },
@@ -271,7 +281,7 @@
         'Magitek Charge': 'Éthéroplasma magitek',
         'Magitek Bit': 'Éjection de drones',
         'Liquefaction': 'Sables mouvants',
-        'Homing Lasers': 'Lasers autoguidés',
+        '(?<! )Homing Lasers': 'Lasers autoguidés',
         'High-powered Homing Lasers': 'Lasers autoguidés surpuissants',
         'Helicoclaw': 'Héliogriffes',
         'Flexiclaw': 'Flexigriffes',
@@ -287,6 +297,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'The Ruby Weapon': 'ルビーウェポン',
       },
@@ -305,7 +316,7 @@
         'Magitek Charge': '魔導爆雷',
         'Magitek Bit': 'ビット射出',
         'Liquefaction': 'リクェファクション',
-        'Homing Lasers': '誘導レーザー',
+        '(?<! )Homing Lasers': '誘導レーザー',
         'High-powered Homing Lasers': '高出力誘導レーザー',
         'Helicoclaw': 'スパイラルクロー',
         'Flexiclaw': 'フレキシブルクロー',

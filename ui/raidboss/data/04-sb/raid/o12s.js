@@ -635,6 +635,16 @@
             0b110: 'Southwest',
             0b111: 'West',
           },
+          de: {
+            0b000: 'Osten',
+            0b001: 'Nordosten',
+            0b010: undefined,
+            0b011: 'Nordwesten',
+            0b100: 'Südosten',
+            0b101: undefined,
+            0b110: 'Südwesten',
+            0b111: 'Westen',
+          },
           ja: {
             0b000: '東',
             0b001: '北東',

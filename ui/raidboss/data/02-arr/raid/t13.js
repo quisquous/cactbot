@@ -29,6 +29,7 @@
         if (data.gigaflare) {
           return {
             en: 'Stack Center for Dives',
+            de: 'In der Mitte sammeln für Sturzbombe',
             fr: 'Packé au centre pour les dives',
           };
         }
@@ -50,6 +51,7 @@
         if (matches.target == data.me) {
           return {
             en: 'Flatten on YOU',
+            de: 'Einebnen auf DIR',
             fr: 'Applatissement sur VOUS',
           };
         }
@@ -60,6 +62,7 @@
         if (data.role == 'healer' || data.job == 'BLU') {
           return {
             en: 'Flatten on ' + data.ShortName(matches.target),
+            de: 'Einebnen auf ' + data.ShortName(matches.target),
             fr: 'Applatissement sur ' + data.ShortName(matches.target),
           };
         }
@@ -73,6 +76,7 @@
       },
       alertText: {
         en: 'Megaflare Stack',
+        de: 'Megaflare Sammeln',
         fr: 'MégaBrasier package',
       },
     },
@@ -97,6 +101,7 @@
       },
       infoText: {
         en: 'Tempest Tether on YOU',
+        de: 'Sturm Verbindung auf DIR',
         fr: 'Liens de tempête sur VOUS',
       },
     },
@@ -112,6 +117,7 @@
         if (matches.target == data.me) {
           return {
             en: 'Akh Morn on YOU',
+            de: 'Akh Morn auf DIR',
             fr: 'Akh Morn sur VOUS',
           };
         }
@@ -120,6 +126,7 @@
         if (matches.target != data.me) {
           return {
             en: 'Akh Morn on ' + data.ShortName(matches.target),
+            de: 'Akh Morn auf ' + data.ShortName(matches.target),
             fr: 'Akh Morn sur ' + data.ShortName(matches.target),
           };
         }

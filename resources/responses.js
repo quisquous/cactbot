@@ -11,6 +11,9 @@
 // Note: Breaking out the condition like this lets people override it if they
 // always (or never) want to know about it, rather than hiding the logic inside
 // the tankbuster callback with a "is healer" check.
+//
+// If data.role is used, it should be only to differentiate between alert levels,
+// and not whether a message is sent at all.
 
 const triggerFunctions = [
   'alarmText',
@@ -90,18 +93,21 @@ let combineFuncs = function(text1, func1, text2, func2) {
 
 let Responses = {
   tankBuster: (targetSev, otherSev) => {
+    let noTargetText = {
+      en: 'Tank Buster',
+      de: 'Tankbuster',
+      fr: 'Tankbuster',
+      ko: '탱버',
+    };
+
     let targetFunc = (data, matches) => {
-      if (!matches) {
+      let target = getTarget(matches);
+      if (!target) {
         if (data.role != 'tank' && data.role != 'healer')
           return;
-        return {
-          en: 'Tank Buster',
-          de: 'Tankbuster',
-          fr: 'Tankbuster',
-          ko: '탱버',
-        };
+        return noTargetText;
       }
-      let target = getTarget(matches);
+
       if (target == data.me) {
         return {
           en: 'Tank Buster on YOU',
@@ -115,8 +121,15 @@ let Responses = {
     };
 
     let otherFunc = (data, matches) => {
-      if (!matches || getTarget(matches) == data.me)
+      let target = getTarget(matches);
+      if (!target) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return;
+        return noTargetText;
+      }
+      if (target == data.me)
         return;
+
       return {
         en: 'Buster on ' + data.ShortName(target),
         de: 'Tankbuster auf ' + data.ShortName(target),
@@ -147,6 +160,10 @@ let Responses = {
     };
     let busterFunc = (data, matches) => {
       let target = getTarget(matches);
+
+      if (data.role == 'tank' && target != data.me)
+        return;
+
       if (target == data.me) {
         return {
           en: 'Tank Buster on YOU',
@@ -293,6 +310,7 @@ let Responses = {
       de: 'In der Mitte sammeln',
       ja: '中央でスタック',
       ko: '중앙에서 모이기',
+      cn: '中间集合',
     };
     return obj;
   },
@@ -301,11 +319,12 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Dorito Stack',
       de: 'Mit Marker sammeln',
+      fr: 'Packez-vous avec les autres marqueurs',
       cn: '点名集合',
     };
     return obj;
   },
-  spreadThanStack: (sev) => {
+  spreadThenStack: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Spread => Stack',
@@ -317,7 +336,7 @@ let Responses = {
     };
     return obj;
   },
-  stackThanSpread: (sev) => {
+  stackThenSpread: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Stack => Spread',
@@ -337,6 +356,7 @@ let Responses = {
       fr: 'Poussée',
       ja: 'ノックバック',
       ko: '넉백',
+      cn: '击退',
     };
     return obj;
   },
@@ -350,6 +370,7 @@ let Responses = {
           fr: 'Poussée sur VOUS',
           ja: '自分にノックバック',
           ko: '넉백징 대상자',
+          cn: '击退点你',
         };
       }
     };
@@ -362,6 +383,7 @@ let Responses = {
           fr: 'Poussée sur ' + data.ShortName(target),
           ja: data.ShortName(target) + 'にノックバック',
           ko: '넉백징 → ' + data.ShortName(target),
+          cn: '击退点名' + data.ShortName(target),
         };
       }
     };
@@ -376,6 +398,7 @@ let Responses = {
       fr: 'Regardez le boss',
       ja: '見る',
       ko: '쳐다보기',
+      cn: '背对',
     };
     return obj;
   },
@@ -387,6 +410,7 @@ let Responses = {
       fr: 'Regardez ailleurs',
       ja: '見ない',
       ko: '뒤돌기',
+      cn: '背对',
     };
     return obj;
   },
@@ -402,6 +426,7 @@ let Responses = {
         fr: 'Ne regardez pas '+ data.ShortName(target),
         ja: data.ShortName(target) + 'を見ない',
         ko: data.ShortName(target) + '에게서 뒤돌기',
+        cn: '背对' + data.ShortName(target),
       };
     };
     return obj;
@@ -414,6 +439,7 @@ let Responses = {
       fr: 'Derrière le boss',
       ja: '背面へ',
       ko: '보스 뒤로',
+      cn: '去背后',
     };
     return obj;
   },
@@ -426,6 +452,7 @@ let Responses = {
       fr: 'Intérieur',
       ja: '中へ',
       ko: '보스 아래로',
+      cn: '去脚下',
     };
     return obj;
   },
@@ -495,6 +522,7 @@ let Responses = {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'go into middle',
+      fr: 'Allez au milieu',
       de: 'in die Mitte gehen',
     };
     return obj;
@@ -640,7 +668,9 @@ let Responses = {
       return {
         en: 'interrupt ' + source,
         de: 'unterbreche ' + source,
+        fr: 'Interrompez ' + source,
         ko: '기술 시전 끊기 => ' + source,
+        cn: '打断' + source,
       };
     };
     return obj;
@@ -680,12 +710,16 @@ let Responses = {
       if (data.me == target) {
         return {
           en: 'Away from Group',
+          fr: 'Eloignez-vous du groupe',
           de: 'Weg von der Gruppe',
+          cn: '远离人群',
         };
       }
       return {
         en: 'Away from ' + data.ShortName(target),
+        fr: 'Eloignez-vous de ' + data.ShortName(target),
         de: 'Weg von ' + data.ShortName(target),
+        cn: '远离' + data.ShortName(target),
       };
     };
     return obj;
