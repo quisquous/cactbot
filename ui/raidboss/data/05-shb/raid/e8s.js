@@ -497,12 +497,12 @@
     },
     {
       id: 'E8S Icelit Dragonsong Cleanse',
-      regex: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexDe: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexFr: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D70', capture: false }),
-      regexCn: Regexes.ability({ source: '希瓦', id: '4D70', capture: false }),
-      regexKo: Regexes.ability({ source: '시바', id: '4D70', capture: false }),
+      regex: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D7D', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4D7D', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4D7D', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
