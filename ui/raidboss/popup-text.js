@@ -45,9 +45,8 @@ class PopupText {
 
     // check to see if we need user interaction to play audio
     // only if audio is enabled in options
-    if (Options.audioAllowed) {
+    if (Options.audioAllowed)
       AutoplayHelper.CheckAndPrompt();
-    }
 
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
