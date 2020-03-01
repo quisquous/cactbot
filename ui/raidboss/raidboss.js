@@ -57,6 +57,7 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
   let PlayerNameOverride = params.get('player');
   if (PlayerNameOverride !== null) {
     Options.PlayerNameOverride = PlayerNameOverride;
+    Options.BrowserTTS = true;
     console.log('Enabling player name override via query parameter, ' + PlayerNameOverride);
   }
 

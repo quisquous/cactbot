@@ -31,7 +31,7 @@ class PopupText {
     this.alertText = document.getElementById('popup-text-alert');
     this.alarmText = document.getElementById('popup-text-alarm');
 
-    if (this.options.BrowserTTS || Options.PlayerNameOverride !== null) {
+    if (this.options.BrowserTTS) {
       this.ttsEngine = new BrowserTTSEngine();
       this.ttsSay = function(text) {
         this.ttsEngine.play(text);
@@ -41,6 +41,12 @@ class PopupText {
         let cmd = { 'call': 'cactbotSay', 'text': text };
         window.callOverlayHandler(cmd);
       };
+    }
+
+    // check to see if we need user interaction to play audio
+    // only if audio is enabled in options
+    if (Options.audioAllowed) {
+      AutoplayHelper.CheckAndPrompt();
     }
 
     this.partyTracker = new PartyTracker();
@@ -646,7 +652,6 @@ class PopupText {
           ko: ' 그리고 ',
         };
         ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
-        // if we're overriding player name and browser tts engine is loaded, use that
         this.ttsSay(ttsText);
       } else if (soundUrl && playSounds) {
         let audio = new Audio(soundUrl);
