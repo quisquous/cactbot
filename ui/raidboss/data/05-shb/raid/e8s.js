@@ -4,7 +4,6 @@
 // TODO: yell at you to take the last tower for Light Rampant if needed
 // TODO: yell at you to take the last tower for Icelit Dragonsong if needed
 // TODO: House of light clock position callout
-// TODO: "move" calls for all the akh raihs
 // TODO: Light Rampant early callouts (who has prox marker, who gets aoes)
 // TODO: reflected scythe kick callout (stand by mirror)
 // TODO: reflected axe kick callout (get under)
@@ -523,7 +522,9 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.stack('alert'),
+      alertText: {
+        en: 'Tank Stack in Tower',
+      },
     },
     {
       id: 'E8S Banish Divided',
@@ -534,7 +535,9 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.spread('alarm'),
+      alertText: {
+        en: 'Tank Spread in Tower',
+      },
     },
   ],
   timelineReplace: [
