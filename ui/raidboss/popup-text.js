@@ -619,7 +619,7 @@ class PopupText {
           ja: 'や',
           ko: ' 그리고 ',
         };
-        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
         let cmd = { 'call': 'cactbotSay', 'text': ttsText };
         window.callOverlayHandler(cmd);
       } else if (soundUrl && playSounds) {
