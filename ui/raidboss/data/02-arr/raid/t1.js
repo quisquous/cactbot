@@ -54,10 +54,10 @@
       regexJa: Regexes.addedCombatant({ name: 'カドゥケウス', capture: false }),
       regexCn: Regexes.addedCombatant({ name: '神杖巨蛇', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '카두케우스', capture: false }),
-      suppressSeconds: 5,
       condition: function(data) {
         return data.started;
       },
+      suppressSeconds: 5,
       alertText: {
         en: 'Split',
         de: 'Zerteilung',

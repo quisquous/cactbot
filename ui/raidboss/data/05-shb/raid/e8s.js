@@ -163,10 +163,10 @@
       regexJa: Regexes.ability({ source: 'シヴァ', id: '4D6C', capture: false }),
       regexCn: Regexes.ability({ source: '希瓦', id: '4D6C', capture: false }),
       regexKo: Regexes.ability({ source: '시바', id: '4D6C', capture: false }),
-      suppressSeconds: 1,
       condition: function(data) {
         return data.CanCleanse();
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Cleanse',
         de: 'Reinigen',
@@ -407,6 +407,24 @@
       },
     },
     {
+      id: 'E8S Drachen Armor',
+      regex: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4DD2', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4DD2', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4DD2', capture: false }),
+      response: Responses.move('alert'),
+    },
+    {
+      id: 'E8S Reflected Drachen Armor',
+      regex: Regexes.ability({ source: 'Frozen Mirror', id: '4DC2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Eisspiegel', id: '4DD2', capture: false }),
+      regexFr: Regexes.ability({ source: 'miroir de glace', id: '4DD2', capture: false }),
+      regexJa: Regexes.ability({ source: '氷面鏡', id: '4DD2', capture: false }),
+      response: Responses.move('alert'),
+    },
+    {
       id: 'E8S Holy',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
@@ -479,16 +497,16 @@
     },
     {
       id: 'E8S Icelit Dragonsong Cleanse',
-      regex: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexDe: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexFr: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D70', capture: false }),
-      regexCn: Regexes.ability({ source: '希瓦', id: '4D70', capture: false }),
-      regexKo: Regexes.ability({ source: '시바', id: '4D70', capture: false }),
-      suppressSeconds: 1,
+      regex: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D7D', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4D7D', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4D7D', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Cleanse DPS Only',
         de: 'Nur DPS reinigen',

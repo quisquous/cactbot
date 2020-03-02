@@ -11,10 +11,10 @@
       id: 'Anyder Lash',
       regex: /Lash/,
       beforeSeconds: 5,
-      suppressSeconds: 10,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
+      suppressSeconds: 10,
       infoText: {
         en: 'Mini Buster',
         de: 'Kleiner Tankbuster',
