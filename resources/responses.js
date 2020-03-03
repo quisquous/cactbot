@@ -99,6 +99,7 @@ let Responses = {
           de: 'Tankbuster',
           fr: 'Tankbuster',
           ko: '탱버',
+          cn: '死刑',
         };
       }
       let target = getTarget(matches);
@@ -182,6 +183,7 @@ let Responses = {
               de: 'Tank Cleave aud DIR',
               fr: 'Tank cleave sur VOUS',
               ko: '나에게 광역 탱버',
+              cn: '顺劈点名',
             };
           }
         } else {
@@ -191,6 +193,7 @@ let Responses = {
             de: 'Tank Cleave',
             fr: 'Tank cleave',
             ko: '광역 탱버',
+            cn: '顺劈',
           };
         }
       }
@@ -199,6 +202,7 @@ let Responses = {
         de: 'Tank Cleave ausweichen',
         fr: 'Evitez le cleave sur le tank',
         ko: '광역 탱버 피하기',
+        cn: '远离顺劈',
       };
     };
     return obj;
@@ -221,7 +225,7 @@ let Responses = {
       de: 'AoE',
       fr: 'AoE',
       ja: 'AoE',
-      cn: 'AOE',
+      cn: 'AoE',
       ko: '전체 공격',
     };
     return obj;
@@ -353,7 +357,7 @@ let Responses = {
           fr: 'Poussée sur VOUS',
           ja: '自分にノックバック',
           ko: '넉백징 대상자',
-          cn: '击退点你',
+          cn: '击退点名',
         };
       }
     };
@@ -542,6 +546,7 @@ let Responses = {
       fr: '<= Allez à Gauche/Ouest',
       ja: '<= 左/西へ',
       ko: '<= 왼쪽으로',
+      cn: '<= 去左/西边',
     };
     return obj;
   },
@@ -553,6 +558,7 @@ let Responses = {
       fr: 'Allez à Droite/Est =>',
       ja: '右/東へ =>',
       ko: '오른쪽으로 =>',
+      cn: '去右/东边 =>',
     };
     return obj;
   },
@@ -564,6 +570,7 @@ let Responses = {
       fr: 'Devant/Derrière',
       ja: '縦へ',
       ko: '앞/뒤로',
+      cn: '去前后',
     };
     return obj;
   },
@@ -575,6 +582,7 @@ let Responses = {
       fr: 'Côtés',
       ja: '横へ',
       ko: '양옆으로',
+      cn: '去侧面',
     };
     return obj;
   },
@@ -587,6 +595,7 @@ let Responses = {
       fr: 'Tuez les adds',
       ja: '雑魚を処理',
       ko: '쫄 잡기',
+      cn: '击杀小怪',
     };
     return obj;
   },
@@ -611,6 +620,7 @@ let Responses = {
       fr: 'Eloignez vous de l\'avant',
       ja: '前方から離れて',
       ko: '보스 전방 피하기',
+      cn: '远离正面',
     };
     return obj;
   },
@@ -668,6 +678,7 @@ let Responses = {
           fr: 'Marquage sur VOUS',
           ko: '홍옥징 대상자',
           ja: 'マーカー on YOU',
+          cn: '掠食点名',
         };
       }
     };
@@ -680,6 +691,7 @@ let Responses = {
           fr: 'Marquage sur ' + data.ShortName(target),
           ko: '홍옥징 → ' + data.ShortName(target),
           ja: 'マーカー on ' + data.ShortName(target),
+          cn: '掠食点名' + data.ShortName(target),
         };
       }
     };
@@ -727,6 +739,7 @@ let Responses = {
       fr: 'Ne bougez pas !',
       ja: '移動禁止！',
       ko: '이동 멈추기!',
+      cn: '停止移动！',
     };
     return obj;
   },
@@ -738,6 +751,7 @@ let Responses = {
       fr: 'Stoppez TOUT !',
       ja: '行動禁止！',
       ko: '행동 멈추기!',
+      cn: '停止行动！',
     };
     return obj;
   },
@@ -749,6 +763,7 @@ let Responses = {
       fr: 'Bougez',
       ja: '動く！',
       ko: '움직이기!',
+      cn: '快动！'
     };
     return obj;
   },
@@ -760,6 +775,7 @@ let Responses = {
       fr: 'Cassez les chaines',
       ja: '線を切る',
       ko: '선 끊기',
+      cn: '切断连线',
     };
     return obj;
   },
@@ -771,6 +787,7 @@ let Responses = {
       fr: 'Bougez les chaines ensemble',
       ja: '線同士一緒に移動',
       ko: '선 붙어서 같이 움직이기',
+      cn: '连线一起移动',
     };
     return obj;
   },
@@ -786,6 +803,7 @@ let Responses = {
         fr: 'Marque de terre sur VOUS',
         ja: '自分にアースシェイカー',
         ko: '어스징 대상자',
+        
       };
     };
     return obj;
