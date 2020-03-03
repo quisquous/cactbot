@@ -83,6 +83,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Teleport into donut',
+        fr: 'Téléportez vous dans le donut',
       },
     },
     {
@@ -109,6 +110,7 @@
         }
         return {
           en: 'Get hit by dark',
+          fr: 'Encaissez le noir',
         };
       },
     },
@@ -126,6 +128,7 @@
         }
         return {
           en: 'Get hit by light',
+          fr: 'Encaissez le blanc',
         };
       },
     },
