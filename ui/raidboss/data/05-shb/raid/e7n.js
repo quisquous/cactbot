@@ -130,13 +130,13 @@
       },
     },
     {
-      //Safety in case the user dies during Dark/Light Course.
+      // Safety in case the user dies during Dark/Light Course.
       id: 'E7N Color Cleanup',
       regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', ability: 'Away With Thee', capture: false }),
       run: function(data) {
         delete data.colorCount;
       },
-    }
+    },
   ],
   timelineReplace: [
     {
