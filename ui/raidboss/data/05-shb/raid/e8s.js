@@ -27,6 +27,14 @@
       response: Responses.lookAway('alert'),
     },
     {
+      id: 'E8S Frost Armor',
+      // Not the reflected one, as we want the "move" call there
+      // which will happen naturally from `Reflected Drachen Armor`.
+      regex: /^Frost Armor$/,
+      beforeSeconds: 2,
+      response: Responses.stopMoving('alert'),
+    },
+    {
       id: 'E8S Rush',
       regex: /Rush \d/,
       beforeSeconds: 5,
