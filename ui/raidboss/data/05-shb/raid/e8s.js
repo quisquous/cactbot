@@ -4,7 +4,6 @@
 // TODO: yell at you to take the last tower for Light Rampant if needed
 // TODO: yell at you to take the last tower for Icelit Dragonsong if needed
 // TODO: House of light clock position callout
-// TODO: "move" calls for all the akh raihs
 // TODO: Light Rampant early callouts (who has prox marker, who gets aoes)
 // TODO: reflected scythe kick callout (stand by mirror)
 // TODO: reflected axe kick callout (get under)
@@ -22,9 +21,10 @@
   timelineTriggers: [
     {
       id: 'E8S Shining Armor',
-      regex: /Shining Armor/,
+      regex: /(Shining|Reflected) Armor/,
       beforeSeconds: 2,
-      response: Responses.lookAway(),
+      supressSeconds: 0.5,
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'E8S Rush',
@@ -171,10 +171,10 @@
       regexJa: Regexes.ability({ source: 'シヴァ', id: '4D6C', capture: false }),
       regexCn: Regexes.ability({ source: '希瓦', id: '4D6C', capture: false }),
       regexKo: Regexes.ability({ source: '시바', id: '4D6C', capture: false }),
-      suppressSeconds: 1,
       condition: function(data) {
         return data.CanCleanse();
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Cleanse',
         de: 'Reinigen',
@@ -423,6 +423,24 @@
       },
     },
     {
+      id: 'E8S Drachen Armor',
+      regex: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4DD2', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4DD2', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4DD2', capture: false }),
+      response: Responses.move('alert'),
+    },
+    {
+      id: 'E8S Reflected Drachen Armor',
+      regex: Regexes.ability({ source: 'Frozen Mirror', id: '4DC2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Eisspiegel', id: '4DD2', capture: false }),
+      regexFr: Regexes.ability({ source: 'miroir de glace', id: '4DD2', capture: false }),
+      regexJa: Regexes.ability({ source: '氷面鏡', id: '4DD2', capture: false }),
+      response: Responses.move('alert'),
+    },
+    {
       id: 'E8S Holy',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D82', capture: false }),
@@ -497,16 +515,16 @@
     },
     {
       id: 'E8S Icelit Dragonsong Cleanse',
-      regex: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexDe: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexFr: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D70', capture: false }),
-      regexCn: Regexes.ability({ source: '希瓦', id: '4D70', capture: false }),
-      regexKo: Regexes.ability({ source: '시바', id: '4D70', capture: false }),
-      suppressSeconds: 1,
+      regex: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D7D', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4D7D', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4D7D', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Cleanse DPS Only',
         de: 'Nur DPS reinigen',
@@ -524,7 +542,9 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.stack('alert'),
+      alertText: {
+        en: 'Tank Stack in Tower',
+      },
     },
     {
       id: 'E8S Banish Divided',
@@ -535,7 +555,9 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.spread('alarm'),
+      alertText: {
+        en: 'Tank Spread in Tower',
+      },
     },
   ],
   timelineReplace: [

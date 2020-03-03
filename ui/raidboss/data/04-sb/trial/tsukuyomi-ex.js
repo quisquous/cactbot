@@ -199,11 +199,11 @@
       regexJa: Regexes.ability({ source: 'ツクヨミ', id: '2EB0', capture: false }),
       regexCn: Regexes.ability({ source: '月读', id: '2EB0', capture: false }),
       regexKo: Regexes.ability({ source: '츠쿠요미', id: '2EB0', capture: false }),
+      suppressSeconds: 5,
       run: function(data) {
         delete data.moonlitCount;
         delete data.moonshadowedCount;
       },
-      suppressSeconds: 5,
     },
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',

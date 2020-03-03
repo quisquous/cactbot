@@ -199,6 +199,7 @@
       regexJa: Regexes.wasDefeated({ target: 'シャドウ・レイス', capture: false }),
       regexCn: Regexes.wasDefeated({ target: '暗影幽灵', capture: false }),
       regexKo: Regexes.wasDefeated({ target: '그림자 망령', capture: false }),
+      soundVolume: 0,
       infoText: function(data) {
         data.wraithCount = data.wraithCount || 0;
         data.wraithCount++;
@@ -209,7 +210,6 @@
           cn: '幽灵击杀: ' + data.wraithCount,
         };
       },
-      soundVolume: 0,
     },
     {
       id: 'Eureka Pazuzu Pop',

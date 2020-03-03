@@ -7,10 +7,10 @@
     {
       id: 'T9 Claw',
       regex: /Bahamut's Claw x5/,
+      beforeSeconds: 5,
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.job == 'BLU';
       },
-      beforeSeconds: 5,
       response: Responses.tankBuster(),
     },
     {

@@ -329,6 +329,7 @@
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u6708\u3092\u4ef0\u304c\u3093\uff01/,
       regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5bf9\u6708\u957f\u5578\uff01/,
       regexKo: /흉조가 내려와 달을 올려다보리라!/,
+      durationSeconds: 6,
       infoText: {
         en: 'Spread => In',
         fr: 'Se dispercer => Dedans',
@@ -337,7 +338,6 @@
         cn: '分散 => 靠近',
         ko: '산개 => 안으로',
       },
-      durationSeconds: 6,
     },
     {
       // https://xivapi.com/NpcYell/6496?pretty=true
@@ -348,6 +348,7 @@
       regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01/,
       regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5f81\u6218\u94c1\u8840\u9738\u9053\uff01/,
       regexKo: /흉조가 내려와 강철의 패도를 걸으리라!/,
+      durationSeconds: 6,
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
@@ -356,7 +357,6 @@
         cn: '分散 => 远离',
         ko: '산개 => 밖으로',
       },
-      durationSeconds: 6,
     },
     {
       // https://xivapi.com/NpcYell/6495?pretty=true
@@ -367,6 +367,7 @@
       regexJa: /\u8d64\u71b1\u305b\u3057\s*\u6708\u306e\u795d\u798f\u3092\uff01/,
       regexCn: /\u70bd\u70ed\u71c3\u70e7\uff01\s*\u7ed9\u4e88\u6211\u6708\u4eae\u7684\u795d\u798f\uff01/,
       regexKo: /붉게 타오른 달의 축복을!/,
+      durationSeconds: 6,
       infoText: {
         en: 'Stack => In',
         fr: 'Se rassembler => Dedans',
@@ -375,7 +376,6 @@
         cn: '集合 => 靠近',
         ko: '쉐어 => 안으로',
       },
-      durationSeconds: 6,
     },
     {
       // https://xivapi.com/NpcYell/6494?pretty=true
@@ -440,6 +440,8 @@
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01/,
       regexCn: /\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u7167\u4eae\u7ea2\u6708\u4e0b\u70bd\u70ed\u4e4b\u5730\uff01/,
       regexKo: /초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!/,
+      delaySeconds: 4,
+      durationSeconds: 6,
       infoText: {
         en: 'Away from Tank => Stack',
         fr: 'S\'éloigner du tank => Se rassembler',
@@ -448,8 +450,6 @@
         cn: '远离坦克 => 集合',
         ko: '탱커 피하기 => 쉐어',
       },
-      durationSeconds: 6,
-      delaySeconds: 4,
     },
     {
       // https://xivapi.com/NpcYell/6500?pretty=true
@@ -460,6 +460,8 @@
       regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01/,
       regexCn: /\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u5728\u661f\u964d\u4e4b\u591c\uff0c\u79f0\u8d5e\u7ea2\u6708\uff01/,
       regexKo: /초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!/,
+      delaySeconds: 4,
+      durationSeconds: 6,
       infoText: {
         en: 'Spread => Away from Tank',
         fr: 'Se dispercer => S\'éloigner du Tank',
@@ -468,8 +470,6 @@
         cn: '分散 => 远离坦克',
         ko: '산개 => 탱커 피하기',
       },
-      durationSeconds: 6,
-      delaySeconds: 4,
     },
     {
       // https://xivapi.com/NpcYell/6502?pretty=true
@@ -632,7 +632,6 @@
       },
       // FIXME: temporary workaround for multiple gains effects messages.
       // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223#issuecomment-513486275
-      suppressSeconds: 20,
       durationSeconds: function(data, matches) {
         if (parseFloat(matches.duration) <= 6)
           return 3;
@@ -642,6 +641,7 @@
 
         return 9;
       },
+      suppressSeconds: 20,
       alarmText: function(data, matches) {
         if (parseFloat(matches.duration) <= 6) {
           return {
@@ -789,18 +789,6 @@
       regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 51,
       suppressSeconds: 99999,
-      infoText: function(data) {
-        if (data.fireballs[1].indexOf(data.me) >= 0) {
-          return {
-            en: 'Fire OUT',
-            fr: 'Feu EN DEHORS',
-            de: 'Feuer AUßEN',
-            ja: 'ファイアボールは離れる',
-            cn: '火出',
-            ko: '불 대상자 밖으로',
-          };
-        }
-      },
       alertText: function(data) {
         // All players should be neutral by the time fire #2 happens.
         // If you have ice at this point, it means you missed the first
@@ -815,6 +803,18 @@
             ja: 'ファイアボールは離れる: 自分に密着',
             cn: '火出，踩火',
             ko: '불 대상자 밖으로: 나는 같이 맞기',
+          };
+        }
+      },
+      infoText: function(data) {
+        if (data.fireballs[1].indexOf(data.me) >= 0) {
+          return {
+            en: 'Fire OUT',
+            fr: 'Feu EN DEHORS',
+            de: 'Feuer AUßEN',
+            ja: 'ファイアボールは離れる',
+            cn: '火出',
+            ko: '불 대상자 밖으로',
           };
         }
       },
@@ -853,6 +853,20 @@
       regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 77,
       suppressSeconds: 99999,
+      alertText: function(data) {
+        // If you were the person with fire tether #2, then you could
+        // have fire debuff here and need to not stack.
+        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
+          return {
+            en: 'Fire IN: AVOID!',
+            fr: 'Feu EN DEDANS : L\'ÉVITER !',
+            de: 'Feuer INNEN: AUSWEICHEN!',
+            ja: 'ファイアボールは密着: 自分に離れる',
+            cn: '火进：躲避！',
+            ko: '불 같이맞기: 나는 피하기',
+          };
+        }
+      },
       infoText: function(data) {
         let tookTwo = data.fireballs[1].filter(function(p) {
           return data.fireballs[2].indexOf(p) >= 0;
@@ -880,20 +894,6 @@
           cn: '火进',
           ko: '불 같이맞기',
         };
-      },
-      alertText: function(data) {
-        // If you were the person with fire tether #2, then you could
-        // have fire debuff here and need to not stack.
-        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
-          return {
-            en: 'Fire IN: AVOID!',
-            fr: 'Feu EN DEDANS : L\'ÉVITER !',
-            de: 'Feuer INNEN: AUSWEICHEN!',
-            ja: 'ファイアボールは密着: 自分に離れる',
-            cn: '火进：躲避！',
-            ko: '불 같이맞기: 나는 피하기',
-          };
-        }
       },
       tts: function(data) {
         if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
@@ -927,8 +927,6 @@
       regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
       regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
       regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
-      delaySeconds: 98,
-      suppressSeconds: 99999,
       preRun: function(data) {
         let tookTwo = data.fireballs[1].filter(function(p) {
           return data.fireballs[2].indexOf(p) >= 0;
@@ -938,18 +936,8 @@
         });
         data.tookThreeFireballs = tookThree.indexOf(data.me) >= 0;
       },
-      infoText: function(data) {
-        if (!data.tookThreeFireballs) {
-          return {
-            en: 'Fire IN',
-            fr: 'Feu EN DEDANS',
-            de: 'Feuer INNEN',
-            ja: 'ファイアボール密着',
-            cn: '火进',
-            ko: '불 같이맞기',
-          };
-        }
-      },
+      delaySeconds: 98,
+      suppressSeconds: 99999,
       alertText: function(data) {
         // It's possible that you can take 1, 2, and 3 even if nobody dies with
         // careful ice debuff luck.  However, this means you probably shouldn't
@@ -962,6 +950,18 @@
             ja: 'ファイアボールは密着: 自分に離れる',
             cn: '火进：躲避！',
             ko: '불 같이맞기: 나는 피하기',
+          };
+        }
+      },
+      infoText: function(data) {
+        if (!data.tookThreeFireballs) {
+          return {
+            en: 'Fire IN',
+            fr: 'Feu EN DEDANS',
+            de: 'Feuer INNEN',
+            ja: 'ファイアボール密着',
+            cn: '火进',
+            ko: '불 같이맞기',
           };
         }
       },

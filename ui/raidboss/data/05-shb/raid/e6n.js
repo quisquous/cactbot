@@ -91,10 +91,10 @@
     {
       id: 'E6N Hands of Flame Cast',
       regex: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
-      suppressSeconds: 1,
       preRun: function(data) {
         data.handsOfFlame = false;
       },
+      suppressSeconds: 1,
     },
     {
       id: 'E6N Instant Incineration',

@@ -111,10 +111,10 @@
       regexDe: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       regexFr: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       regexJa: Regexes.ability({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
-      suppressSeconds: 1,
       preRun: function(data) {
         data.handsOfFlame = false;
       },
+      suppressSeconds: 1,
     },
     {
       id: 'E6S Instant Incineration',

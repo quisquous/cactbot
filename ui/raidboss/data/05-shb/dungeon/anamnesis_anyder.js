@@ -138,6 +138,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'trench yovra': 'Tiefsee-Yovra',
         'trench xzomit': 'Tiefsee-Xzomit',
@@ -214,6 +215,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'trench yovra': 'Yovra des abysses',
         'trench xzomit': 'Xzomit des abysses',
@@ -290,6 +292,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'trench yovra': 'トレンチ・ヨヴラ',
         'trench xzomit': 'トレンチ・ゾミト',

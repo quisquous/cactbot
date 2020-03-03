@@ -459,6 +459,7 @@ class PopupText {
       // Otherwise, if multiple alarm/alert/info are specified
       // it will pick one sound in the order of alarm > alert > info.
       let soundUrl = ValueOrFunction(trigger.sound);
+      let triggerSoundVol = ValueOrFunction(trigger.soundVolume);
       let soundVol = 1;
 
       let defaultTTSText;
@@ -587,11 +588,8 @@ class PopupText {
         }
       }
 
-      if ('soundVolume' in trigger)
-        soundVol = ValueOrFunction(trigger.soundVolume);
-
       soundUrl = triggerOptions.SoundOverride || soundUrl;
-      soundVol = triggerOptions.VolumeOverride || soundVol;
+      soundVol = triggerOptions.VolumeOverride || triggerSoundVol || soundVol;
 
       // Text to speech overrides all other sounds.  This is so
       // that a user who prefers tts can still get the benefit
@@ -621,7 +619,7 @@ class PopupText {
           ja: 'や',
           ko: ' 그리고 ',
         };
-        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
         let cmd = { 'call': 'cactbotSay', 'text': ttsText };
         window.callOverlayHandler(cmd);
       } else if (soundUrl && playSounds) {

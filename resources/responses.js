@@ -11,6 +11,9 @@
 // Note: Breaking out the condition like this lets people override it if they
 // always (or never) want to know about it, rather than hiding the logic inside
 // the tankbuster callback with a "is healer" check.
+//
+// If data.role is used, it should be only to differentiate between alert levels,
+// and not whether a message is sent at all.
 
 const triggerFunctions = [
   'alarmText',
@@ -90,19 +93,21 @@ let combineFuncs = function(text1, func1, text2, func2) {
 
 let Responses = {
   tankBuster: (targetSev, otherSev) => {
+    let noTargetText = {
+      en: 'Tank Buster',
+      de: 'Tankbuster',
+      fr: 'Tankbuster',
+      ko: '탱버',
+    };
+
     let targetFunc = (data, matches) => {
-      if (!matches) {
+      let target = getTarget(matches);
+      if (!target) {
         if (data.role != 'tank' && data.role != 'healer')
           return;
-        return {
-          en: 'Tank Buster',
-          de: 'Tankbuster',
-          fr: 'Tankbuster',
-          ko: '탱버',
-          cn: '死刑',
-        };
+        return noTargetText;
       }
-      let target = getTarget(matches);
+
       if (target == data.me) {
         return {
           en: 'Tank Buster on YOU',
@@ -116,8 +121,15 @@ let Responses = {
     };
 
     let otherFunc = (data, matches) => {
-      if (!matches || getTarget(matches) == data.me)
+      let target = getTarget(matches);
+      if (!target) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return;
+        return noTargetText;
+      }
+      if (target == data.me)
         return;
+
       return {
         en: 'Buster on ' + data.ShortName(target),
         de: 'Tankbuster auf ' + data.ShortName(target),
@@ -148,6 +160,10 @@ let Responses = {
     };
     let busterFunc = (data, matches) => {
       let target = getTarget(matches);
+
+      if (data.role == 'tank' && target != data.me)
+        return;
+
       if (target == data.me) {
         return {
           en: 'Tank Buster on YOU',
@@ -803,7 +819,7 @@ let Responses = {
         fr: 'Marque de terre sur VOUS',
         ja: '自分にアースシェイカー',
         ko: '어스징 대상자',
-        
+
       };
     };
     return obj;

@@ -49,10 +49,10 @@
       regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
-      suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer';
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'tank busters',
         de: 'tank buster',
