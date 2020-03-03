@@ -18,7 +18,7 @@
         data.surgeProtection = true;
       },
     },
-     {
+    {
       id: 'E5N TankBuster',
       regex: Regexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
       regexDe: Regexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
