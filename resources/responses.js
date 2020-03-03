@@ -779,7 +779,7 @@ let Responses = {
       fr: 'Bougez',
       ja: '動く！',
       ko: '움직이기!',
-      cn: '快动！'
+      cn: '快动！',
     };
     return obj;
   },
