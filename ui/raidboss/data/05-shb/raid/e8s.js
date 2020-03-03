@@ -21,9 +21,10 @@
   timelineTriggers: [
     {
       id: 'E8S Shining Armor',
-      regex: /Shining Armor/,
+      regex: /(Shining|Reflected) Armor/,
       beforeSeconds: 2,
-      response: Responses.lookAway(),
+      supressSeconds: 0.5,
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'E8S Rush',
