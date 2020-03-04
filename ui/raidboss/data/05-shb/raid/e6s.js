@@ -32,6 +32,7 @@
             de: 'Enumeration aud DIR',
             fr: 'Enumération sur VOUS',
             ko: '2인 장판 대상자',
+            cn: '蓝圈分摊点名',
           };
         }
         return {
@@ -39,6 +40,7 @@
           de: 'Enumeration',
           fr: 'Enumération',
           ko: '2인 장판',
+          cn: '蓝圈分摊',
         };
       },
     },
@@ -89,6 +91,7 @@
             de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
             ko: '나에게 보스 돌진',
+            cn: '冲锋点名',
           };
         }
         if (data.role != 'tank' || data.phase == 'both')
@@ -98,6 +101,7 @@
           de: 'Tank Swap',
           fr: 'Tank Swap',
           ko: '탱 교대',
+          cn: '换坦',
         };
       },
     },
@@ -107,10 +111,10 @@
       regexDe: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       regexFr: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       regexJa: Regexes.ability({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
-      suppressSeconds: 1,
       preRun: function(data) {
         data.handsOfFlame = false;
       },
+      suppressSeconds: 1,
     },
     {
       id: 'E6S Instant Incineration',
@@ -138,6 +142,7 @@
         de: 'Verbindung auf DIR',
         fr: 'Marque de lien sur VOUS',
         ko: '선 징 대상자',
+        cn: '连线点名',
       },
     },
     {
@@ -164,6 +169,7 @@
         de: 'Greife Garuda an',
         fr: 'Attaquez Garuda',
         ko: '가루다 공격하기',
+        cn: '打风神',
       },
     },
     {
@@ -178,6 +184,7 @@
         de: 'Greife Ifrit an',
         fr: 'Attaquez Ifrit',
         ko: '이프리트 공격하기',
+        cn: '打火神',
       },
     },
     {
@@ -216,6 +223,7 @@
         en: 'go to spots for chains',
         de: 'Gehe zu den Stellen für die Kette',
         ko: '콘플레그 준비',
+        cn: '连线站位',
       },
     },
     {
@@ -231,6 +239,7 @@
             de: 'Verbunden mit ' + data.ShortName(matches.target),
             fr: 'Lié à ' + data.ShortName(matches.target),
             ko: '선 연결 짝: ' + data.ShortName(matches.target),
+            cn: '和' + data.ShortName(matches.target) + '连线',
           };
         }
         return {
@@ -238,6 +247,7 @@
           de: 'Verbunden mit ' + data.ShortName(matches.source),
           fr: 'Lié à ' + data.ShortName(matches.source),
           ko: '선 연결 짝: ' + data.ShortName(matches.source),
+          cn: '和' + data.ShortName(matches.source) + '连线',
         };
       },
     },

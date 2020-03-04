@@ -4,13 +4,11 @@
 // TODO: yell at you to take the last tower for Light Rampant if needed
 // TODO: yell at you to take the last tower for Icelit Dragonsong if needed
 // TODO: House of light clock position callout
-// TODO: "move" calls for all the akh raihs
 // TODO: Light Rampant early callouts (who has prox marker, who gets aoes)
 // TODO: reflected scythe kick callout (stand by mirror)
 // TODO: reflected axe kick callout (get under)
 // TODO: callouts for initial Hallowed Wings mirrors?
 // TODO: callouts for the stack group mirrors?
-// TODO: callouts for the Shining Armor mirrors?
 // TODO: icelit dragonsong callouts?
 
 [{
@@ -22,9 +20,23 @@
   timelineTriggers: [
     {
       id: 'E8S Shining Armor',
-      regex: /Shining Armor/,
+      regex: /(?<!Reflected )Shining Armor/,
       beforeSeconds: 2,
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
+    },
+    {
+      id: 'E8S Reflected Armor',
+      regex: /Reflected Shining Armor/,
+      beforeSeconds: 2,
+      response: Responses.lookAway('alert'),
+    },
+    {
+      id: 'E8S Frost Armor',
+      // Not the reflected one, as we want the "move" call there
+      // which will happen naturally from `Reflected Drachen Armor`.
+      regex: /^Frost Armor$/,
+      beforeSeconds: 2,
+      response: Responses.stopMoving('alert'),
     },
     {
       id: 'E8S Rush',
@@ -38,6 +50,7 @@
           de: 'Verbindung ' + data.rushCount,
           fr: 'Lien ' + data.rushCount,
           ko: '선: ' + data.rushCount,
+          cn: '和' + data.rushCount + '连线',
         };
       },
     },
@@ -79,6 +92,7 @@
         en: 'Go Front / Sides',
         de: 'Gehe nach Forne/ zu den Seiten',
         ko: '앞 / 양옆으로',
+        cn: '去前侧方',
       },
       run: function(data) {
         data.firstFrost = data.firstFrost || 'driving';
@@ -102,6 +116,7 @@
             de: 'Frosthieb als nächstes',
             fr: 'Taillade de givre bientot',
             ko: '다음: Biting/スラッシュ',
+            cn: '下次攻击前侧方',
           };
         }
         return {
@@ -109,15 +124,17 @@
           de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientot',
           ko: '다음: Driving/スラスト',
+          cn: '下次攻击后方',
         };
       },
       tts: function(data) {
-        if (data.firstFrost == 'biting') {
+        if (data.firstFrost == 'driving') {
           return {
             en: 'Biting Frost Next',
             de: 'Frosthieb als nächstes',
             fr: 'Taillade de givre bientot',
             ko: '다음: 바이팅 스라슈',
+            cn: '下次攻击前侧方',
           };
         }
         return {
@@ -125,6 +142,7 @@
           de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientot',
           ko: '다음: 드라이빙 스라스토',
+          cn: '下次攻击后方',
         };
       },
     },
@@ -148,10 +166,12 @@
         if (x >= 99 && x <= 101) {
           return {
             en: 'North / South',
+            cn: '南北站位',
           };
         }
         return {
           en: 'East / West',
+          cn: '东西站位',
         };
       },
     },
@@ -163,15 +183,16 @@
       regexJa: Regexes.ability({ source: 'シヴァ', id: '4D6C', capture: false }),
       regexCn: Regexes.ability({ source: '希瓦', id: '4D6C', capture: false }),
       regexKo: Regexes.ability({ source: '시바', id: '4D6C', capture: false }),
-      suppressSeconds: 1,
       condition: function(data) {
         return data.CanCleanse();
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Cleanse',
         de: 'Reinigen',
         fr: 'Guérison',
         ko: '에스나',
+        cn: '驱散',
       },
     },
     {
@@ -229,6 +250,7 @@
         de: 'Kette auf DIR',
         fr: 'Chaine sur VOUS',
         ko: '사슬 대상자',
+        cn: '连线',
       },
     },
     {
@@ -240,6 +262,7 @@
         de: 'Orb auf DIR',
         fr: 'Orbe sur VOUS',
         ko: '구슬 대상자',
+        cn: '拉球',
       },
     },
     {
@@ -277,6 +300,7 @@
             de: 'Morn Afah auf DIR',
             fr: 'Morn Afah sur YOU',
             ko: '몬아파 대상자',
+            cn: '8人分摊点名',
           };
         }
         if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
@@ -285,6 +309,7 @@
             de: 'Morn Afah auf ' + data.ShortName(matches.target),
             fr: 'Morn Afah sur ' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 몬 아파',
+            cn: '8人分摊点名' + data.ShortName(matches.target),
           };
         }
       },
@@ -364,6 +389,7 @@
           de: 'Rot #' + data.wyrmclawNumber,
           fr: 'Rouge #' + data.wyrmclawNumber,
           ko: '빨강 ' + data.wyrmclawNumber + '번',
+          cn: '红色 #' + data.wyrmclawNumber,
         };
       },
     },
@@ -398,8 +424,27 @@
           de: 'Blau #' + data.wyrmclawNumber,
           fr: 'Bleu #' + data.wyrmfangNumber,
           ko: '파랑 ' + data.wyrmclawNumber + '번',
+          cn: '蓝色 #' + data.wyrmclawNumber,
         };
       },
+    },
+    {
+      id: 'E8S Drachen Armor',
+      regex: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4DD2', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4DD2', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4DD2', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4DD2', capture: false }),
+      response: Responses.move('alert'),
+    },
+    {
+      id: 'E8S Reflected Drachen Armor',
+      regex: Regexes.ability({ source: 'Frozen Mirror', id: '4DC2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Eisspiegel', id: '4DD2', capture: false }),
+      regexFr: Regexes.ability({ source: 'miroir de glace', id: '4DD2', capture: false }),
+      regexJa: Regexes.ability({ source: '氷面鏡', id: '4DD2', capture: false }),
+      response: Responses.move('alert'),
     },
     {
       id: 'E8S Holy',
@@ -435,6 +480,7 @@
         de: 'Nach Hinten, danach nach Forne',
         fr: 'Derrière puis devant',
         ko: '뒤로 => 앞으로',
+        cn: '后 => 前',
       },
     },
     {
@@ -450,6 +496,7 @@
         de: 'Nach Forne, danach nach Hinten',
         fr: 'Devant puis derrière',
         ko: '앞으로 => 뒤로',
+        cn: '前 => 后',
       },
     },
     {
@@ -474,21 +521,22 @@
     },
     {
       id: 'E8S Icelit Dragonsong Cleanse',
-      regex: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexDe: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexFr: Regexes.ability({ source: 'Shiva', id: '4D70', capture: false }),
-      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D70', capture: false }),
-      regexCn: Regexes.ability({ source: '希瓦', id: '4D70', capture: false }),
-      regexKo: Regexes.ability({ source: '시바', id: '4D70', capture: false }),
-      suppressSeconds: 1,
+      regex: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexDe: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Shiva', id: '4D7D', capture: false }),
+      regexJa: Regexes.ability({ source: 'シヴァ', id: '4D7D', capture: false }),
+      regexCn: Regexes.ability({ source: '希瓦', id: '4D7D', capture: false }),
+      regexKo: Regexes.ability({ source: '시바', id: '4D7D', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Cleanse DPS Only',
         de: 'Nur DPS reinigen',
         fr: 'Guérissez les DPS seulement',
         ko: '딜러만 에스나',
+        cn: '驱散DPS',
       },
     },
     {
@@ -500,7 +548,9 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7E', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D7E', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.stack('alert'),
+      alertText: {
+        en: 'Tank Stack in Tower',
+      },
     },
     {
       id: 'E8S Banish Divided',
@@ -511,7 +561,9 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7F', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
       condition: (data) => data.role == 'tank',
-      response: Responses.spread('alarm'),
+      alertText: {
+        en: 'Tank Spread in Tower',
+      },
     },
   ],
   timelineReplace: [

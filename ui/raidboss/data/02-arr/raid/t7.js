@@ -81,11 +81,11 @@
       regexJa: Regexes.gainsEffect({ effect: '呪詛の声' }),
       regexCn: Regexes.gainsEffect({ effect: '诅咒之声' }),
       regexKo: Regexes.gainsEffect({ effect: '저주의 목소리' }),
-      delaySeconds: function(data, matches) {
-        return matches.duration - 3;
-      },
       condition: function(data, matches) {
         return data.me == matches.target;
+      },
+      delaySeconds: function(data, matches) {
+        return matches.duration - 3;
       },
       alertText: {
         en: 'Voice Soon',

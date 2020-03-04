@@ -184,19 +184,19 @@
         cn: '激励！！',
         ko: '힘내라!!',
       },
-      tts: {
-        en: 'psych',
-        de: 'auf gehts',
-        fr: 'Motivation',
-        cn: '激励',
-        ko: '힘내라!',
-      },
       groupTTS: {
         en: 'group psych',
         de: 'Gruppen auf gehts',
         fr: 'group motivation',
         cn: '组激励',
         ko: '단체 격려',
+      },
+      tts: {
+        en: 'psych',
+        de: 'auf gehts',
+        fr: 'Motivation',
+        cn: '激励',
+        ko: '힘내라!',
       },
     },
     {
@@ -214,19 +214,19 @@
         cn: '2333333333',
         ko: '푸하하하하핳',
       },
-      tts: {
-        en: 'hahahahaha',
-        de: 'hahahahaha',
-        fr: 'Haha mort de rire',
-        cn: '哈哈哈哈哈哈',
-        ko: '푸하하하하핳',
-      },
       groupTTS: {
         en: 'group laugh',
         de: 'Gruppenlache',
         fr: 'group motivation',
         cn: '组哈哈',
         ko: '단체 웃음',
+      },
+      tts: {
+        en: 'hahahahaha',
+        de: 'hahahahaha',
+        fr: 'Haha mort de rire',
+        cn: '哈哈哈哈哈哈',
+        ko: '푸하하하하핳',
       },
     },
     {

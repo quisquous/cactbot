@@ -67,14 +67,6 @@
       regexJa: Regexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
-      infoText: function(data) {
-        // Tanks/healers always get an alert.
-        if (data.role == 'tank' || data.role == 'healer') return false;
-        return {
-          en: 'Thunder III',
-          de: 'Blitzga',
-        };
-      },
       alertText: function(data) {
         // Tanks/healers always get an alert.
         if (data.role == 'tank' || data.role == 'healer') {
@@ -83,6 +75,14 @@
             de: 'Blitzga: Tank buster',
           };
         }
+      },
+      infoText: function(data) {
+        // Tanks/healers always get an alert.
+        if (data.role == 'tank' || data.role == 'healer') return false;
+        return {
+          en: 'Thunder III',
+          de: 'Blitzga',
+        };
       },
       tts: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
@@ -352,6 +352,10 @@
       regexCn: Regexes.startsUsing({ id: '240E', source: '新生艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '240E', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
+      sound: function(data) {
+        if (data.shouldDieOnLaser())
+          return data.dieDieDieSound;
+      },
       alarmText: function(data) {
         if (data.shouldDieOnLaser()) {
           return {
@@ -367,10 +371,6 @@
             de: 'Nach Außen',
           };
         }
-      },
-      sound: function(data) {
-        if (data.shouldDieOnLaser())
-          return data.dieDieDieSound;
       },
       tts: function(data) {
         if (data.shouldDieOnLaser()) {
@@ -394,6 +394,10 @@
       regexCn: Regexes.startsUsing({ id: '240F', source: '新生艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '240F', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
+      sound: function(data) {
+        if (data.shouldDieOnLaser())
+          return data.dieDieDieSound;
+      },
       alarmText: function(data) {
         if (data.shouldDieOnLaser()) {
           return {
@@ -409,10 +413,6 @@
             de: 'Rein gehen',
           };
         }
-      },
-      sound: function(data) {
-        if (data.shouldDieOnLaser())
-          return data.dieDieDieSound;
       },
       tts: function(data) {
         if (data.shouldDieOnLaser()) {
@@ -436,6 +436,10 @@
       regexCn: Regexes.startsUsing({ id: '2411', source: '新生艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2411', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
+      sound: function(data) {
+        if (data.shouldDieOnLaser())
+          return data.dieDieDieSound;
+      },
       alarmText: function(data) {
         if (!data.shouldDieOnLaser())
           return;
@@ -476,10 +480,6 @@
           de: 'Farbige Seiten',
         };
       },
-      sound: function(data) {
-        if (data.shouldDieOnLaser())
-          return data.dieDieDieSound;
-      },
       tts: {
         en: 'colors',
         de: 'Farben',
@@ -494,6 +494,10 @@
       regexCn: Regexes.startsUsing({ id: '2412', source: '新生艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2412', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
+      sound: function(data) {
+        if (data.shouldDieOnLaser())
+          return data.dieDieDieSound;
+      },
       alarmText: function(data) {
         if (!data.shouldDieOnLaser())
           return;
@@ -533,10 +537,6 @@
           en: 'Color sides',
           de: 'Farbige Seiten',
         };
-      },
-      sound: function(data) {
-        if (data.shouldDieOnLaser())
-          return data.dieDieDieSound;
       },
       tts: {
         en: 'colors',
@@ -709,10 +709,10 @@
       regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング' }),
       regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
       regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
-      delaySeconds: 1,
       condition: function(data, matches) {
         return matches.target == data.me;
       },
+      delaySeconds: 1,
       response: Responses.spread(),
     },
     {
@@ -967,13 +967,10 @@
       regexJa: Regexes.startsUsing({ id: '2401', source: 'ネオエクスデス' }),
       regexCn: Regexes.startsUsing({ id: '2401', source: '新生艾克斯迪司' }),
       regexKo: Regexes.startsUsing({ id: '2401', source: '네오 엑스데스' }),
-      infoText: function(data) {
-        if (data.flareTargets.indexOf(data.me) < 0) {
-          return {
-            en: 'Light and Darkness: Stack',
-            de: 'Licht und Dunkel: Stack',
-          };
-        }
+      condition: function(data, matches) {
+        data.flareTargets = data.flareTargets || [];
+        data.flareTargets.push(matches.target);
+        return data.flareTargets.length == 3;
       },
       alarmText: function(data) {
         if (data.flareTargets.indexOf(data.me) >= 0) {
@@ -983,10 +980,13 @@
           };
         }
       },
-      condition: function(data, matches) {
-        data.flareTargets = data.flareTargets || [];
-        data.flareTargets.push(matches.target);
-        return data.flareTargets.length == 3;
+      infoText: function(data) {
+        if (data.flareTargets.indexOf(data.me) < 0) {
+          return {
+            en: 'Light and Darkness: Stack',
+            de: 'Licht und Dunkel: Stack',
+          };
+        }
       },
       tts: function(data) {
         if (data.flareTargets.indexOf(data.me) >= 0) {

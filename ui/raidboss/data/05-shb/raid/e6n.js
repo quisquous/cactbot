@@ -28,6 +28,7 @@
       regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaska'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
+        fr: 'Evitez les clous',
       },
     },
     {
@@ -91,10 +92,10 @@
     {
       id: 'E6N Hands of Flame Cast',
       regex: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
-      suppressSeconds: 1,
       preRun: function(data) {
         data.handsOfFlame = false;
       },
+      suppressSeconds: 1,
     },
     {
       id: 'E6N Instant Incineration',
@@ -121,6 +122,7 @@
       },
       alertText: {
         en: 'Move to Ifrit',
+        fr: 'Allez sur Ifrit',
       },
       run: function(data) {
         data.seenSpark = true;

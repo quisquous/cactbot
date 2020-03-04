@@ -40,16 +40,6 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: function(data) {
-        if (data.breathless >= 7) {
-          return {
-            en: 'Breathless: ' + (data.breathless + 1),
-            de: 'Atemnot: ' + (data.breathless + 1),
-            fr: 'Suffocation :' + (data.breathless + 1),
-            ko: '호흡곤란: ' + (data.breathless + 1),
-          };
-        }
-      },
       alarmText: function(data) {
         if (data.breathless == 6) {
           return {
@@ -57,6 +47,16 @@
             de: 'Geh in die Blase',
             fr: 'Allez dans une bulle',
             ko: '물방울 안으로',
+          };
+        }
+      },
+      infoText: function(data) {
+        if (data.breathless >= 7) {
+          return {
+            en: 'Breathless: ' + (data.breathless + 1),
+            de: 'Atemnot: ' + (data.breathless + 1),
+            fr: 'Suffocation :' + (data.breathless + 1),
+            ko: '호흡곤란: ' + (data.breathless + 1),
           };
         }
       },

@@ -139,15 +139,15 @@
       regexDe: Regexes.message({ line: 'Der wandmontierte rechte Arm ist aktiv!', capture: false }),
       regexFr: Regexes.message({ line: 'Le bras mural droit s\'active!', capture: false }),
       regexJa: Regexes.message({ line: '壁面のライトアームが稼働を始めた……！', capture: false }),
-      run: function(data) {
-        data.alliance = data.alliance || 'A';
-      },
       infoText: {
         en: 'Dodge Moving Circle',
         de: 'Bewegenden Kreisen ausweichen',
         fr: 'Evitez les cercles mouvants',
         cn: '躲避移动圆圈',
         ko: '시계방향 회전하면서 나오는 장판 피하기',
+      },
+      run: function(data) {
+        data.alliance = data.alliance || 'A';
       },
     },
     {
@@ -157,15 +157,15 @@
       regexDe: Regexes.message({ line: 'Die wandmontierten Flammenwerfer sind aktiv!', capture: false }),
       regexFr: Regexes.message({ line: 'Les lance-flammes muraux s\'activent!', capture: false }),
       regexJa: Regexes.message({ line: '壁面の火炎放射器が稼働を始めた……！', capture: false }),
-      run: function(data) {
-        data.alliance = data.alliance || 'B';
-      },
       alertText: {
         en: 'Look Behind For Flamethrowers',
         de: 'Flammenwerfer hinter dir',
         fr: 'Regardez derrière (lance-flammes)',
         cn: '观察后方放火',
         ko: '뒤에서 불 나오는 곳 확인',
+      },
+      run: function(data) {
+        data.alliance = data.alliance || 'B';
       },
     },
     {
@@ -176,10 +176,10 @@
       regexFr: Regexes.message({ line: 'Le bras mural gauche s\'active!', capture: false }),
       regexJa: Regexes.message({ line: '壁面のレフトアームが稼働を始めた……！', capture: false }),
       durationSeconds: 6,
+      response: Responses.getOut('info'),
       run: function(data) {
         data.alliance = data.alliance || 'C';
       },
-      response: Responses.getOut('info'),
     },
     {
       id: 'Copied Hobbes Left Arm 2',
@@ -237,8 +237,8 @@
       regexDe: Regexes.message({ line: 'Die Maschinenwesen zu deinen Füßen bewegen sich!', capture: false }),
       regexFr: Regexes.message({ line: 'Les formes de vie mécaniques sous vos pieds s\'activent!', capture: false }),
       regexJa: Regexes.message({ line: '床下の機械生命体が怪しく動き始めた……！', capture: false }),
-      suppressSeconds: 15,
       durationSeconds: 10,
+      suppressSeconds: 15,
       infoText: {
         en: 'Dodge Electric Floor',
         de: 'Elektrischem Boden ausweichen',
@@ -269,8 +269,8 @@
       regexDe: Regexes.message({ line: 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!', capture: false }),
       regexFr: Regexes.message({ line: 'Le sol s\'imbibe de liquide inflammable!', capture: false }),
       regexJa: Regexes.message({ line: '床下に可燃性の液体が満ち始めた……！', capture: false }),
-      suppressSeconds: 15,
       durationSeconds: 3,
+      suppressSeconds: 15,
       alertText: {
         en: 'Oil Vats',
         de: 'Ölbehälter',
@@ -286,9 +286,9 @@
       regexDe: Regexes.message({ line: 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!', capture: false }),
       regexFr: Regexes.message({ line: 'Le sol s\'imbibe de liquide inflammable!', capture: false }),
       regexJa: Regexes.message({ line: '床下に可燃性の液体が満ち始めた……！', capture: false }),
-      suppressSeconds: 15,
       delaySeconds: 6,
       durationSeconds: 3,
+      suppressSeconds: 15,
       alertText: {
         en: 'Oil Vats',
         de: 'Ölbehälter',

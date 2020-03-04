@@ -13,6 +13,7 @@
       beforeSeconds: 10,
       infoText: {
         en: 'Dark NW, Light NE, one pair S',
+        cn: '黑左前 白右前 两人后',
         de: 'Dunkel NW, Licht NO, ein Paar S',
       },
     },
@@ -56,29 +57,30 @@
       regexDe: Regexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0011' }),
       regexFr: Regexes.tether({ source: 'Idole Des Ténèbres', id: '0011' }),
       regexJa: Regexes.tether({ source: 'ダークアイドル', id: '0011' }),
+      condition: function(data, matches) {
+        return data.phase == 'betwixtWorlds' && data.me == matches.target;
+      },
       preRun: function(data, matches) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
-      },
-      condition: function(data, matches) {
-        return data.phase == 'betwixtWorlds' && data.me == matches.target;
       },
       infoText: {
         en: 'Tether on YOU',
         de: 'Verbindung auf DIR',
         fr: 'Lien sur VOUS',
         ko: '선 대상자',
+        cn: '连线点名',
       },
     },
     {
       id: 'E7S Betwixt Worlds Stack',
       regex: Regexes.headMarker({ id: '0064' }),
+      condition: function(data) {
+        return data.phase == 'betwixtWorlds';
+      },
       preRun: function(data, matches) {
         data.betwixtWorldsStack = data.betwixtWorldsStack || [];
         data.betwixtWorldsStack.push(matches.target);
-      },
-      condition: function(data) {
-        return data.phase == 'betwixtWorlds';
       },
       alertText: function(data, matches) {
         if (data.betwixtWorldsTethers.indexOf(data.me))
@@ -90,6 +92,7 @@
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             ko: '나에게 모이기',
+            cn: '分摊点名',
           };
         }
         if (data.betwixtWorldsStack.length == 1)
@@ -99,6 +102,7 @@
           en: 'Stack (' + names.join(', ') + ')',
           de: 'Sammeln (' + names.join(', ') + ')',
           ko: '모이기 (' + names.join(', ') + ')',
+          cn: '分摊 (' + names.join(', ') + ')',
         };
       },
     },
@@ -114,6 +118,7 @@
         de: 'Teleportation Links',
         fr: 'Téléportation à gauche',
         ko: '왼쪽으로 순간이동',
+        cn: '向左传送',
       },
     },
     {
@@ -128,6 +133,7 @@
         de: 'Teleportation Rechts',
         fr: 'Téléportation à droite',
         ko: '오른쪽으로 순간이동',
+        cn: '向右传送',
       },
     },
     {
@@ -142,6 +148,7 @@
         de: 'Teleportation Vorwärts',
         fr: 'Téléportation devant',
         ko: '앞으로 순간이동',
+        cn: '向前传送',
       },
     },
     {
@@ -156,6 +163,7 @@
         de: 'Teleportation Rückwärts',
         fr: 'Téléportation derrière',
         ko: '뒤로 순간이동',
+        cn: '向后传送',
       },
     },
     {
@@ -171,12 +179,12 @@
     {
       id: 'E7S Silver Shot',
       regex: Regexes.headMarker({ id: '0065' }),
+      condition: function(data, matches) {
+        return data.phase == 'falseMidnight' && data.me == matches.target;
+      },
       preRun: function(data, matches) {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         data.falseMidnightSpread.push(matches.target);
-      },
-      condition: function(data, matches) {
-        return data.phase == 'falseMidnight' && data.me == matches.target;
       },
       response: Responses.spread(),
     },
@@ -196,6 +204,7 @@
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             ko: '나에게 모이기',
+            cn: '分摊点名',
           };
         }
         return {
@@ -232,12 +241,12 @@
     {
       id: 'E7S Insatiable Light Stack',
       regex: Regexes.headMarker({ id: '0064' }),
+      condition: function(data) {
+        return data.phase == 'adds';
+      },
       preRun: function(data, matches) {
         data.insatiableLightStack = data.insatiableLightStack || [];
         data.insatiableLightStack.push(matches.target);
-      },
-      condition: function(data) {
-        return data.phase == 'adds';
       },
       alertText: function(data, matches) {
         if (data.me == matches.target) {
@@ -247,6 +256,7 @@
             ja: '自分にシェア',
             fr: 'Package sur VOUS',
             ko: '나에게 쉐어징',
+            cn: '分摊点名',
           };
         }
         if (data.insatiableLightStack.length == 1)
@@ -257,6 +267,7 @@
           de: 'Sammeln (' + names.join(', ') + ')',
           fr: 'Package (' + names.join(', ') + ')',
           ko: '모이기 (' + names.join(', ') + ')',
+          cn: '分摊 (' + names.join(', ') + ')',
         };
       },
     },
@@ -282,6 +293,7 @@
         de: 'Unter das vertikale Add gehen',
         fr: 'Allez sous l\'add vertical',
         ko: '똑바로 서 있는 쫄 아래로',
+        cn: '去垂直小怪脚下',
       },
     },
     {
@@ -293,8 +305,8 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      suppressSeconds: 15,
       durationSeconds: 7,
+      suppressSeconds: 15,
       response: Responses.aoe(),
     },
     {
@@ -303,10 +315,10 @@
       regexDe: Regexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ダークアイドル', id: '(?:4C8[BC]|4E5[56])', capture: false }),
-      suppressSeconds: 1,
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
+      suppressSeconds: 1,
       response: Responses.aoe(),
     },
     {
@@ -322,12 +334,14 @@
           de: 'Dunkel',
           fr: 'Noir',
           ko: '어둠',
+          cn: '黑色',
         };
         data.colorMap['dark'] = {
           en: 'Light',
           de: 'Licht',
           fr: 'Blanc',
           ko: '빛',
+          cn: '白色',
         };
       },
     },
@@ -386,6 +400,7 @@
           en: 'Get hit by ' + data.colorMap[data.color][data.lang],
           de: 'Lass dich treffen von ' + data.colorMap[data.color][data.lang],
           ko: data.colorMap[data.color][data.lang] + ' 맞기',
+          cn: '撞' + data.colorMap[data.color][data.lang],
         };
       },
     },
@@ -400,6 +415,7 @@
         en: 'Bait Puddles',
         de: 'Flächen ködern',
         fr: 'Placez les flaques',
+        cn: '放圈',
       },
     },
     {
@@ -411,6 +427,7 @@
       // Can't use knockback prevention for this, so say where to get knocked back.
       alertText: {
         en: 'Get Knocked Into Corner',
+        cn: '击退到角落',
         de: 'Lass dich in die Ecke zurückstoßen',
       },
     },
@@ -426,6 +443,7 @@
           de: 'Stehe in ' + data.colorMap[data.color][data.lang],
           fr: 'Restez sur ' + data.colorMap[data.color][data.lang],
           ko: data.colorMap[data.color][data.lang] + '에 서기',
+          cn: '站进' + data.colorMap[data.color][data.lang],
         };
       },
     },

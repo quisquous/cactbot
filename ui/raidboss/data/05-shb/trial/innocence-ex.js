@@ -228,10 +228,10 @@
       regexJa: Regexes.startsUsing({ id: '3EEF', source: 'イノセンス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3EEF', source: '无瑕灵君', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3EEF', source: '이노센스', capture: false }),
-      delaySeconds: 6,
       condition: function(data) {
         return data.starbirthCount == 1;
       },
+      delaySeconds: 6,
       alertText: {
         en: 'Get to Safe Corner',
         de: 'Geh in die sichere Ecke',

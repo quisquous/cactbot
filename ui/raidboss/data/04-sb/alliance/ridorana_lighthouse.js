@@ -311,11 +311,11 @@
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
-      delaySeconds: 0.5,
       preRun: function(data) {
         if (!data.mathBaseValue && data.currentHP > 0 && data.currentHP < 10)
           data.mathBaseValue = data.currentHP;
       },
+      delaySeconds: 0.5,
     },
     {
       id: 'Ridorana Construct Divide By Five',

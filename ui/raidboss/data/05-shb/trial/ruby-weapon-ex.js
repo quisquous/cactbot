@@ -2,6 +2,7 @@
 
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
+// TODO: stop calling out switch on adds if the other add is dead, etc
 // TODO: get behind meteor
 // TODO: get away from last exploding meteor
 // TODO: tank calls to pick up meteors
@@ -41,10 +42,6 @@
       regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD0', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD0', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AD0', capture: false }),
-      preRun: function(data) {
-        data.rubyCounter = data.rubyCounter || 0;
-        data.rubyCounter++;
-      },
       infoText: {
         en: 'Away from Lines',
         de: 'Weg von den Linien',
@@ -54,24 +51,15 @@
     },
     {
       id: 'RubyEx Liquefaction',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEC', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEC', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AEC', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AEC', capture: false }),
-      preRun: function(data) {
-        data.rubyCounter = data.rubyCounter || 0;
-        data.rubyCounter++;
-      },
-      alertText: function(data) {
-        // Ignore Liquefaction casts during dashes
-        if (data.rubyCounter % 2) {
-          return {
-            en: 'Get On Lines',
-            de: 'Auf die Linien gehen',
-            fr: 'Sur les sillons',
-            ko: '선 위로 올라가기',
-          };
-        }
+      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACF', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4ACF', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4ACF', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4ACF', capture: false }),
+      alertText: {
+        en: 'Get On Lines',
+        de: 'Auf die Linien gehen',
+        fr: 'Sur les sillons',
+        ko: '선 위로 올라가기',
       },
     },
     {

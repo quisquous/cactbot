@@ -46,6 +46,15 @@
       // So, #2 is the person everybody should stack on.
       id: 'O3S Spellblade Holy',
       regex: Regexes.headMarker({ id: ['0064', '0065'] }),
+      condition: function(data, matches) {
+        // Library phase stack markers behave differently.
+        if (data.phase == 3)
+          return false;
+
+        data.holyTargets = data.holyTargets || [];
+        data.holyTargets.push(matches.target);
+        return data.holyTargets.length == 4;
+      },
       alarmText: function(data) {
         if (data.holyTargets[1] != data.me)
           return '';
@@ -81,15 +90,6 @@
           }
         }
       },
-      condition: function(data, matches) {
-        // Library phase stack markers behave differently.
-        if (data.phase == 3)
-          return false;
-
-        data.holyTargets = data.holyTargets || [];
-        data.holyTargets.push(matches.target);
-        return data.holyTargets.length == 4;
-      },
       tts: function(data) {
         if (data.holyTargets[1] == data.me) {
           return {
@@ -118,6 +118,23 @@
       // Library phase spellblade holy with 2 stacks / 4 preys / 2 unmarked.
       id: 'O3S Library Spellblade',
       regex: Regexes.headMarker({ id: ['0064', '0065'] }),
+      condition: function(data, matches) {
+        // This is only for library phase.
+        if (data.phase != 3)
+          return false;
+
+        if (matches.target == data.me)
+          data.librarySpellbladeMe = matches.id;
+
+        return true;
+      },
+      // Because people can be dead and there are eight marks, delay to
+      // accumulate logs instead of counting marks.  Instantly print if
+      // anything is on you.  The 6 triggers will all have condition=true
+      // and run, but only the first one will print.
+      delaySeconds: function(data, matches) {
+        return matches.target == data.me ? 0 : 0.5;
+      },
       alertText: function(data) {
         if (data.librarySpellbladePrinted)
           return;
@@ -139,23 +156,6 @@
           en: 'go south: stack on friend',
           de: 'nach süden: stack auf freund',
         };
-      },
-      // Because people can be dead and there are eight marks, delay to
-      // accumulate logs instead of counting marks.  Instantly print if
-      // anything is on you.  The 6 triggers will all have condition=true
-      // and run, but only the first one will print.
-      delaySeconds: function(data, matches) {
-        return matches.target == data.me ? 0 : 0.5;
-      },
-      condition: function(data, matches) {
-        // This is only for library phase.
-        if (data.phase != 3)
-          return false;
-
-        if (matches.target == data.me)
-          data.librarySpellbladeMe = matches.id;
-
-        return true;
       },
       tts: function(data) {
         if (data.librarySpellbladePrinted)

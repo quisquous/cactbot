@@ -19,6 +19,17 @@
       },
     },
     {
+      id: 'E5N Crippling Blow',
+      regex: Regexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
+      regexDe: Regexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
+      regexFr: Regexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
+      regexJa: Regexes.startsUsing({ id: '4BA3', source: 'ラムウ' }),
+      regexKo: Regexes.startsUsing({ id: '4BA3', source: '라무' }),
+      regexCn: Regexes.startsUsing({ id: '4BA3', source: '拉姆' }),
+      condition: Conditions.caresAboutPhysical(),
+      response: Responses.tankBuster(),
+    },
+    {
       id: 'E5N Surge Protection Lose',
       regex: Regexes.losesEffect({ effect: 'Surge Protection' }),
       regexDe: Regexes.losesEffect({ effect: 'Überspannungsschutz' }),
@@ -111,6 +122,7 @@
       alertText: {
         en: 'Drop cloud outside',
         de: 'Wolken draußen ablegen',
+        fr: 'Placez le nuage à l\'extérieur',
       },
     },
   ],

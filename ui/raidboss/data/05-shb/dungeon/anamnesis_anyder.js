@@ -10,12 +10,12 @@
   triggers: [
     {
       id: 'AnAnyder Fetid Fang',
-      regex: Regexes.startsUsing({ source: 'Unknown', id: '4B69' }),
-      regexDe: Regexes.startsUsing({ source: 'Unbekannt(?:e|er|es|en)', id: '4B69' }),
-      regexFr: Regexes.startsUsing({ source: 'Inconnu', id: '4B69' }),
-      regexJa: Regexes.startsUsing({ source: '正体不明', id: '4B69' }),
-      regexCn: Regexes.startsUsing({ source: '不明物体', id: '4B69' }),
-      regexKo: Regexes.startsUsing({ source: '정체불명', id: '4B69' }),
+      regex: Regexes.startsUsing({ source: 'Unknown', id: ['4B69', '4B72'] }),
+      regexDe: Regexes.startsUsing({ source: 'Unbekannt(?:e|er|es|en)', id: ['4B69', '4B72'] }),
+      regexFr: Regexes.startsUsing({ source: 'Inconnu', id: ['4B69', '4B72'] }),
+      regexJa: Regexes.startsUsing({ source: '正体不明', id: ['4B69', '4B72'] }),
+      regexCn: Regexes.startsUsing({ source: '不明物体', id: ['4B69', '4B72'] }),
+      regexKo: Regexes.startsUsing({ source: '정체불명', id: ['4B69', '4B72'] }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -138,6 +138,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'trench yovra': 'Tiefsee-Yovra',
         'trench xzomit': 'Tiefsee-Xzomit',
@@ -214,6 +215,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'trench yovra': 'Yovra des abysses',
         'trench xzomit': 'Xzomit des abysses',
@@ -290,6 +292,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'trench yovra': 'トレンチ・ヨヴラ',
         'trench xzomit': 'トレンチ・ゾミト',
