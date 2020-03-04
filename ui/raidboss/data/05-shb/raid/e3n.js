@@ -22,17 +22,12 @@
       response: Responses.aoe(),
     },
     {
-      id: 'E3N Rip Current Tank',
-      regex: Regexes.headMarker({ id: '0017' }),
-      response: Responses.tankBuster(),
-    },
-    {
-      id: 'E3N Rip Current Tank Buddy',
+      id: 'E3N Rip Current',
       regex: Regexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
-        return matches.target != data.me && data.role == 'tank';
+        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
-      response: Responses.tankBuster('info'),
+      response: Responses.tankBuster(),
     },
     {
       id: 'E3N Tidal Wave Look',

@@ -223,13 +223,21 @@
       },
     },
     {
-      id: 'E2N Countdown Marker Shadoweye',
+      id: 'E2N Countdown Marker Shadoweye LookAwayFrom',
       regex: Regexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         return data.spell[matches.target] == 'eye';
       },
       delaySeconds: 2,
       response: Responses.lookAwayFrom(),
+    },
+    {
+      id: 'E2N Countdown Marker Shadoweye EyeOnYou',
+      regex: Regexes.headMarker({ id: '00B8' }),
+      condition: function(data, matches) {
+        return data.spell[matches.target] == 'eye';
+      },
+      delaySeconds: 2,
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {

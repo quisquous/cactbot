@@ -272,12 +272,19 @@
       response: Responses.spread('alert'),
     },
     {
-      id: 'E2S Shadoweye No Waiting',
+      id: 'E2S Shadoweye No Waiting LookAwayFrom',
       regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data) {
         return !data.waiting;
       },
       response: Responses.lookAwayFrom('alarm'),
+    },
+    {
+      id: 'E2S Shadoweye No Waiting EyeOnYou',
+      regex: Regexes.headMarker({ id: '00B3' }),
+      condition: function(data) {
+        return !data.waiting;
+      },
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {
