@@ -222,6 +222,7 @@
       infoText: {
         en: 'go to spots for chains',
         de: 'Gehe zu den Stellen für die Kette',
+        fr: 'Positions pour les chaines',
         ko: '콘플레그 준비',
         cn: '连线站位',
       },
