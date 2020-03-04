@@ -4,7 +4,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-# -ii 4D58 4DD3 4DDF 4DE0 4DF3 4DF5 4E0B 4E0D 4E10 4E11 4E18 4FCA
+# -ii 4D58 4DD3 4DDF 4DE0 4DF3 4DF5 4E0B 4E0D 4E10 4E11 4E18 4FC9 4FCA
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
@@ -20,7 +20,7 @@ hideall "--sync--"
 65.6 "Biting Frost/Driving Frost" sync /:Shiva:4DD[BC]:/
 78.8 "Double Slap" sync /:Shiva:4DDA:/
 92.0 "Diamond Frost" sync /:Shiva:4DE1:/
-100.2 "Frigid Water/Frigid Stone" # sync /:Shiva:4E(?:08|66):/
+100.2 "Frigid Water/Frigid Stone" # sync /:Shiva:4E(08|66):/
 103.1 "Icicle Impact" sync /:Shiva:4E0A:/
 110.2 "Frigid Eruption" # sync /:Shiva:4E09:/
 111.2 "Icicle Impact" sync /:Shiva:4E0A:/
@@ -32,23 +32,21 @@ hideall "--sync--"
 148.5 "Reflected Frost" sync /:Frozen Mirror:4DF[EF]:/
 160.6 "Redress" sync /:Shiva:4F4F:/
 165.7 "Shining Armor" sync /:Shiva:4DF1:/
-173.7 "Scythe Kick" sync /:Shiva:4DE3:/
+173.7 "Axe Kick/Scythe Kick" sync /:Shiva:4DE[23]:/
 181.9 "--Untargetable--"
 193.2 "Shattered World" sync /:Shiva:4DE9:/
 
 # Intermission. Fixed length.
 209.4 "Heart Asunder" sync /:Mothercrystal:4E12:/
-218.1 "Stoneskin" sync /:Earthen Aether:4DEF:/
+218.1 "Stoneskin" # sync /:Earthen Aether:4DEF:/
 223.5 "Heart Asunder" sync /:Mothercrystal:4E12:/
 228.2 "Shock Spikes" sync /:Electric Aether:4DEE:/
 233.2 "Rush" sync /:Luminous Aether:4FC8:/
-233.3 "Rush" sync /:Luminous Aether:4FC9:/
 237.5 "Heart Asunder" sync /:Mothercrystal:4E12:/
 251.5 "Heart Asunder" sync /:Mothercrystal:4E12:/
 256.2 "Shock Spikes" sync /:Electric Aether:4DEE:/
-260.2 "Stoneskin" sync /:Earthen Aether:4DEF:/
+260.2 "Stoneskin" # sync /:Earthen Aether:4DEF:/
 261.2 "Rush" sync /:Luminous Aether:4FC8:/
-261.3 "Rush" sync /:Luminous Aether:4FC9:/
 
 # Post-intermission block
 272.6 "Skyfall" sync /:Shiva:4E13:/
@@ -62,8 +60,8 @@ hideall "--sync--"
 345.9 "the Path of Light" sync /:Shiva:4DD9:/
 348.6 "Bright Hunger" sync /:Shiva:4E0C:/
 356.0 "Mirror, Mirror" sync /:Shiva:4DD4:/
-368.1 "Kick/Frost" sync /:Shiva:4D(?:D[BC]|E[23]):/
-373.2 "Reflected Kick/Frost" sync /:Frozen Mirror:(?:4DF[EF]|4E0[01]):/
+368.1 "Kick/Frost" sync /:Shiva:4D(D[BC]|E[23]):/
+373.2 "Reflected Kick/Frost" sync /:Frozen Mirror:(4DF[EF]|4E0[01]):/
 
 # Rotation block
 385.3 "Redress" sync /:Shiva:4F4E:/
@@ -71,12 +69,12 @@ hideall "--sync--"
 398.4 "Twin Stillness/Twin Silence" sync /:Shiva:4DD[DE]:/
 413.7 "Double Slap" sync /:Shiva:4DDA:/
 424.8 "Mirror, Mirror" sync /:Shiva:4DD4:/
-437.0 "Kick/Frost" sync /:Shiva:4D(?:D[BC]|E[23]):/
-442.1 "Reflected Kick/Frost" sync /:Frozen Mirror:(?:4DF[EF]|4E0[01]):/
+437.0 "Kick/Frost" sync /:Shiva:4D(D[BC]|E[23]):/
+442.1 "Reflected Kick/Frost" sync /:Frozen Mirror:(4DF[EF]|4E0[01]):/
 455.2 "Absolute Zero" sync /:Shiva:4DD7:/
 467.4 "Redress" sync /:Shiva:4F4F:/
 472.6 "Shining Armor" sync /:Shiva:4DF1:/
-480.6 "Spiteful Dance/Embittered Dance" sync /:Shiva:4DE[4567]:/
+480.6 "Embittered Dance/Spiteful Dance" sync /:Shiva:4DE[4567]:/
 484.7 "Spiteful Dance/Embittered Dance" sync /:Shiva:4DE[4567]:/
 500.8 "Holy" sync /:Shiva:4DE[CD]:/
 513.9 "Absolute Zero" sync /:Shiva:4DD7:/
@@ -86,15 +84,15 @@ hideall "--sync--"
 539.2 "Twin Stillness/Twin Silence" sync /:Shiva:4DD[DE]:/
 554.5 "Double Slap" sync /:Shiva:4DDA:/
 565.6 "Mirror, Mirror" sync /:Shiva:4DD4:/
-577.8 "Kick/Frost" sync /:Shiva:4D(?:D[BC]|E[23]):/
-582.9 "Reflected Kick/Frost" sync /:Frozen Mirror:(?:4DF[EF]|4E0[01]):/
+577.8 "Kick/Frost" sync /:Shiva:4D(D[BC]|E[23]):/
+582.9 "Reflected Kick/Frost" sync /:Frozen Mirror:(4DF[EF]|4E0[01]):/
 596.0 "Absolute Zero" sync /:Shiva:4DD7:/
 608.2 "Redress" sync /:Shiva:4F4F:/
 613.4 "Shining Armor" sync /:Shiva:4DF1:/
-621.4 "Spiteful Dance/Embittered Dance" sync /:Shiva:4DE[4567]:/
+621.4 "Embittered Dance/Spiteful Dance" sync /:Shiva:4DE[4567]:/
 625.5 "Spiteful Dance/Embittered Dance" sync /:Shiva:4DE[4567]:/
 641.6 "Holy" sync /:Shiva:4DE[CD]:/
-654.7 "Absolute Zero" sync /:Shiva:4DD7:/
+654.7 "Absolute Zero" sync /:Shiva:4DD7:/ jump 513.9
 
 666.9 "Redress"
 672.0 "Frost Armor"

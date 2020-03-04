@@ -147,7 +147,6 @@
       regexDe: Regexes.startsUsing({ source: 'Eisspeigel', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       regexFr: Regexes.startsUsing({ source: 'miroir de glace', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       regexJa: Regexes.startsUsing({ source: '氷面鏡', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
-      // FIXME: CN/KO translations.
       // Maybe not necessary to delay here, but just to be safe.
       delaySeconds: 5,
       run: function(data) {
@@ -196,7 +195,7 @@
       regex: Regexes.headMarker({ id: '00C5' }),
       condition: Conditions.targetIsYou(),
       alertText: {
-        en: 'Dropping puddles--Stay out',
+        en: '3x puddles on you',
       },
     },
     {
@@ -206,7 +205,6 @@
       regexDe: Regexes.startsUsing({ source: 'Erdäther', id: '4DEF' }),
       regexFr: Regexes.startsUsing({ source: 'éther de terre', id: '4DEF' }),
       regexJa: Regexes.startsUsing({ source: 'アース・エーテル', id: '4DEF' }),
-      // FIXME: CN/KO translations.
       condition: function(data) {
         return data.canSilence();
       },
@@ -221,7 +219,7 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4DEC', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4DEC', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4DEC', capture: false }),
-      response: Responses.getOut(),
+      response: Responses.getOut('info'),
     },
     {
       id: 'E8N Holy Divided',
