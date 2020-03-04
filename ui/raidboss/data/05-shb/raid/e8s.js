@@ -91,6 +91,7 @@
       alertText: {
         en: 'Go Front / Sides',
         de: 'Gehe nach Forne/ zu den Seiten',
+        fr: 'Devant / Côtés',
         ko: '앞 / 양옆으로',
         cn: '去前侧方',
       },
@@ -166,11 +167,13 @@
         if (x >= 99 && x <= 101) {
           return {
             en: 'North / South',
+            fr: 'Nord / Sud',
             cn: '南北站位',
           };
         }
         return {
           en: 'East / West',
+          fr: 'Est / Ouest',
           cn: '东西站位',
         };
       },
@@ -304,7 +307,7 @@
           return {
             en: 'Morn Afah on YOU',
             de: 'Morn Afah auf DIR',
-            fr: 'Morn Afah sur YOU',
+            fr: 'Morn Afah sur VOUS',
             ko: '몬아파 대상자',
             cn: '8人分摊点名',
           };
@@ -556,6 +559,7 @@
       condition: (data) => data.role == 'tank',
       alertText: {
         en: 'Tank Stack in Tower',
+        fr: 'Tank packé dans les tours',
       },
     },
     {
@@ -569,6 +573,7 @@
       condition: (data) => data.role == 'tank',
       alertText: {
         en: 'Tank Spread in Tower',
+        fr: 'Tank écarté dans les tours',
       },
     },
   ],
