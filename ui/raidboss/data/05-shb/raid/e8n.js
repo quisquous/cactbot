@@ -142,7 +142,7 @@
       },
     },
     {
-      id: 'E8n Mirror Cleanup',
+      id: 'E8N Mirror Cleanup',
       regex: Regexes.startsUsing({ source: 'Frozen Mirror', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Eisspeigel', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       regexFr: Regexes.startsUsing({ source: 'miroir de glace', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
@@ -202,10 +202,10 @@
     {
 
       id: 'E8N Stoneskin',
-      regex: Regexes.startsUsing({ source: 'Earthen Aether', id: '4DEF', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Erdäther', id: '4DEF', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'éther de terre', id: '4DEF', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アース・エーテル', id: '4DEF', capture: false }),
+      regex: Regexes.startsUsing({ source: 'Earthen Aether', id: '4DEF' }),
+      regexDe: Regexes.startsUsing({ source: 'Erdäther', id: '4DEF' }),
+      regexFr: Regexes.startsUsing({ source: 'éther de terre', id: '4DEF' }),
+      regexJa: Regexes.startsUsing({ source: 'アース・エーテル', id: '4DEF' }),
       // FIXME: CN/KO translations.
       condition: function(data) {
         return data.canSilence();
@@ -243,7 +243,7 @@
     },
     {
       id: 'E8N Light Rampant',
-      regex: Regexes.headMarker({ id: '0017' }),
+      regex: Regexes.headMarker({ id: '0017', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 2,
       alertText: function(data) {
@@ -354,13 +354,16 @@
         'Shining Armor': 'Funkelnde Rüstung',
         'Shattered World': 'Zersplitterte Welt',
         'Scythe Kick': 'Abwehrtritt',
+        'Rush': 'Sturm',
         'Reflected Scythe Kick': 'Spiegelung: Abwehrtritt',
         'Reflected Biting Frost': 'Spiegelung: Frosthieb',
+        'Redress': 'Beseitigung',
         'Mirror, Mirror': 'Spiegelland',
         'Light Rampant': 'Überflutendes Licht',
         'Icicle Impact': 'Eiszapfen-Schlag',
         'Holy': 'Sanctus',
         'Heavenly Strike': 'Elysischer Schlag',
+        'Heart Asunder': 'Herzensbrecher',
         'Frost Armor(?! )': 'Frostrüstung',
         'Frigid Water': 'Eisfrost',
         'Frigid Stone': 'Eisstein',
@@ -376,6 +379,9 @@
         // FIXME
         'Twin Silence/Stillness': 'Twin Silence/Stillness',
         'Spiteful/Embittered Dance': 'Spiteful/Embittered Dance',
+        'Reflected Kick/Frost': 'Reflected Kick/Frost',
+        'Reflected Frost': 'Reflected Frost',
+        'Kick/Frost': 'Kick/Frost',
       },
       '~effectNames': {
         'Thin Ice': 'Glatteis',
@@ -414,11 +420,13 @@
         'Rush': 'Jaillissement',
         'Reflected Scythe Kick': 'Réverbération : Jambe faucheuse',
         'Reflected Biting Frost': 'Réverbération : Taillade de givre',
+        'Redress': 'Parure',
         'Mirror, Mirror': 'Monde des miroirs',
         'Light Rampant': 'Débordement de Lumière',
         'Icicle Impact': 'Impact de stalactite',
         'Holy': 'Miracle',
         'Heavenly Strike': 'Frappe céleste',
+        'Heart Asunder': 'Cœur déchiré',
         'Frost Armor(?! )': 'Armure de givre',
         'Frigid Water': 'Cataracte gelée',
         'Frigid Stone': 'Rocher de glace',
@@ -434,6 +442,9 @@
         // FIXME
         'Twin Silence/Stillness': 'Twin Silence/Stillness',
         'Spiteful/Embittered Dance': 'Spiteful/Embittered Dance',
+        'Reflected Kick/Frost': 'Reflected Kick/Frost',
+        'Reflected Frost': 'Reflected Frost',
+        'Kick/Frost': 'Kick/Frost',
       },
       '~effectNames': {
         'Thin Ice': 'Verglas',
@@ -470,13 +481,16 @@
         'Shining Armor': 'ブライトアーマー',
         'Shattered World': 'シャッタード・ワールド',
         'Scythe Kick': 'サイスキック',
+        'Rush': 'ラッシュ',
         'Reflected Scythe Kick': 'ミラーリング・サイスキック',
         'Reflected Biting Frost': 'ミラーリング・フロストスラッシュ',
+        'Redress': 'ドレスアップ',
         'Mirror, Mirror': '鏡の国',
         'Light Rampant': '光の暴走',
         'Icicle Impact': 'アイシクルインパクト',
         'Holy': 'ホーリー',
         'Heavenly Strike': 'ヘヴンリーストライク',
+        'Heart Asunder': 'ハートアサンダー',
         'Frost Armor(?! )': 'フロストアーマー',
         'Frigid Water': 'アイスフロスト',
         'Frigid Stone': 'アイスストーン',
@@ -492,6 +506,9 @@
         // FIXME
         'Twin Silence/Stillness': 'Twin Silence/Stillness',
         'Spiteful/Embittered Dance': 'Spiteful/Embittered Dance',
+        'Reflected Kick/Frost': 'Reflected Kick/Frost',
+        'Reflected Frost': 'Reflected Frost',
+        'Kick/Frost': 'Kick/Frost',
       },
       '~effectNames': {
         'Thin Ice': '氷床',
