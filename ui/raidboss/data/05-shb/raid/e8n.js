@@ -11,7 +11,7 @@
       id: 'E8N Shining Armor',
       regex: /Shining Armor/,
       beforeSeconds: 2,
-      response: Responses.lookAway(),
+      response: Responses.lookAway('alert'),
     },
   ],
   triggers: [
@@ -198,6 +198,20 @@
       alertText: {
         en: 'Dropping puddles--Stay out',
       },
+    },
+    {
+
+      id: 'E8N Stoneskin',
+      regex: Regexes.startsUsing({ source: 'Earthen Aether', id: '4DEF', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Erdäther', id: '4DEF', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'éther de terre', id: '4DEF', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'アース・エーテル', id: '4DEF', capture: false }),
+      // FIXME: CN/KO translations.
+      condition: function(data) {
+        return data.canSilence();
+      },
+      // It's a minor annoyance at best, so don't bug the user too much.
+      response: Responses.interrupt('info'),
     },
     {
       id: 'E8N Holy',
