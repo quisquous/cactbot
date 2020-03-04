@@ -9,7 +9,6 @@
 // TODO: reflected axe kick callout (get under)
 // TODO: callouts for initial Hallowed Wings mirrors?
 // TODO: callouts for the stack group mirrors?
-// TODO: callouts for the Shining Armor mirrors?
 // TODO: icelit dragonsong callouts?
 
 [{
@@ -21,9 +20,14 @@
   timelineTriggers: [
     {
       id: 'E8S Shining Armor',
-      regex: /(Shining|Reflected) Armor/,
+      regex: /(?<!Reflected )Shining Armor/,
       beforeSeconds: 2,
-      supressSeconds: 0.5,
+      response: Responses.lookAway('alert'),
+    },
+    {
+      id: 'E8S Reflected Armor',
+      regex: /Reflected Shining Armor/,
+      beforeSeconds: 2,
       response: Responses.lookAway('alert'),
     },
     {
