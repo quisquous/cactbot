@@ -78,12 +78,11 @@ class PopupText {
   OnPlayerChange(e) {
     // allow override of player via query parameter
     // only apply override if player is in party
-    if (Options.PlayerNameOverride !== null &&
-        this.partyTracker.inParty(Options.PlayerNameOverride)) {
-      let tmpJob;
+    if (Options.PlayerNameOverride !== null) {
+      let tmpJob = null;
       if (Options.PlayerJobOverride !== null)
         tmpJob = Options.PlayerJobOverride;
-      else
+      else if (this.partyTracker.inParty(Options.PlayerNameOverride))
         tmpJob = this.partyTracker.jobName(this.me);
       // if there's any issue with looking up player name for
       // override, don't perform override

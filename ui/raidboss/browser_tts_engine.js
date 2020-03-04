@@ -44,11 +44,10 @@ class BrowserTTSEngine {
   constructor() {
     // figure out what TTS engine type we need
     if (window.speechSynthesis !== undefined) {
-      let me = this;
-      window.speechSynthesis.onvoiceschanged = function() {
+      window.speechSynthesis.onvoiceschanged = () => {
         if (window.speechSynthesis.getVoices().length > 0) {
           window.speechSynthesis.onvoiceschanged = null;
-          me.engineType = TTSEngineType.SpeechSynthesis;
+          this.engineType = TTSEngineType.SpeechSynthesis;
         }
       };
     }
