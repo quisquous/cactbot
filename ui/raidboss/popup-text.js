@@ -76,6 +76,22 @@ class PopupText {
   }
 
   OnPlayerChange(e) {
+    // allow override of player via query parameter
+    // only apply override if player is in party
+    if (Options.PlayerNameOverride !== null &&
+        this.partyTracker.inParty(Options.PlayerNameOverride)) {
+      let tmpJob;
+      if(Options.PlayerJobOverride !== null) 
+        tmpJob = Options.PlayerJobOverride;
+      else
+        tmpJob = this.partyTracker.jobName(this.me);
+      // if there's any issue with looking up player name for
+      // override, don't perform override
+      if(tmpJob !== null) {
+        e.detail.job = tmpJob;
+        e.detail.name = Options.PlayerNameOverride;
+      }
+    }
     if (this.job != e.detail.job || this.me != e.detail.name)
       this.OnJobChange(e);
     this.data.currentHP = e.detail.currentHP;
@@ -244,22 +260,8 @@ class PopupText {
   }
 
   OnJobChange(e) {
-    // allow override of player via query parameter
-    // only apply override if player is in party
-    if (Options.PlayerNameOverride !== null &&
-        this.partyTracker.inParty(Options.PlayerNameOverride)) {
-      this.me = Options.PlayerNameOverride;
-      this.job = this.partyTracker.jobName(this.me);
-      // if there's any issue with looking up player name for
-      // override, fall back to default behavior
-      if (this.job === null || this.job === undefined) {
-        this.me = e.detail.name;
-        this.job = e.detail.job;
-      }
-    } else {
-      this.me = e.detail.name;
-      this.job = e.detail.job;
-    }
+    this.me = e.detail.name;
+    this.job = e.detail.job;
     this.role = Util.jobToRole(this.job);
     this.ReloadTimelines();
   }

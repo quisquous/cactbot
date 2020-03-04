@@ -42,7 +42,18 @@ class GoogleTTSItem extends TTSItem {
 
 class BrowserTTSEngine {
   constructor() {
-    this.engineType = null;
+    // figure out what TTS engine type we need
+    if (window.speechSynthesis !== undefined) {
+      let me = this;
+      window.speechSynthesis.onvoiceschanged = function() {
+        if (window.speechSynthesis.getVoices().length > 0) {
+          window.speechSynthesis.onvoiceschanged = null;
+          me.engineType = TTSEngineType.SpeechSynthesis;
+        }
+      };
+    }
+
+    this.engineType = TTSEngineType.GoogleTTS;
     this.ttsItems = {};
   }
 
@@ -51,27 +62,21 @@ class BrowserTTSEngine {
       if (this.ttsItems[text] !== undefined) {
         this.ttsItems[text].play();
       } else {
-        switch (this.engineType) {
-        case null:
-          // figure out what TTS engine type we need
-          if (window.speechSynthesis !== undefined &&
-            window.speechSynthesis.getVoices().length > 0)
-            this.engineType = TTSEngineType.SpeechSynthesis;
-          else
-            this.engineType = TTSEngineType.GoogleTTS;
-          // just recurse to avoid repeating code
-          this.play(text);
-          break;
-        case TTSEngineType.SpeechSynthesis:
-          this.playSpeechTTS(text);
-          break;
-        case TTSEngineType.GoogleTTS:
-          this.playGoogleTTS(text);
-          break;
-        }
+        this.playTTS(text);
       }
     } catch (e) {
       console.log('Exception performing TTS', e);
+    }
+  }
+
+  playTTS(text) {
+    switch (this.engineType) {
+    case TTSEngineType.SpeechSynthesis:
+      this.playSpeechTTS(text);
+      break;
+    case TTSEngineType.GoogleTTS:
+      this.playGoogleTTS(text);
+      break;
     }
   }
 
