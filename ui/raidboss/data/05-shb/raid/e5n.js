@@ -19,7 +19,7 @@
       },
     },
     {
-      id: 'E5N TankBuster',
+      id: 'E5N Crippling Blow',
       regex: Regexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
       regexDe: Regexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
       regexFr: Regexes.startsUsing({ id: '4BA3', source: 'Ramuh' }),
