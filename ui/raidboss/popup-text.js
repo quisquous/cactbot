@@ -81,13 +81,13 @@ class PopupText {
     if (Options.PlayerNameOverride !== null &&
         this.partyTracker.inParty(Options.PlayerNameOverride)) {
       let tmpJob;
-      if(Options.PlayerJobOverride !== null) 
+      if (Options.PlayerJobOverride !== null)
         tmpJob = Options.PlayerJobOverride;
       else
         tmpJob = this.partyTracker.jobName(this.me);
       // if there's any issue with looking up player name for
       // override, don't perform override
-      if(tmpJob !== null) {
+      if (tmpJob !== null) {
         e.detail.job = tmpJob;
         e.detail.name = Options.PlayerNameOverride;
       }

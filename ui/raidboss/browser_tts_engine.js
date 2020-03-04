@@ -59,11 +59,10 @@ class BrowserTTSEngine {
 
   play(text) {
     try {
-      if (this.ttsItems[text] !== undefined) {
+      if (this.ttsItems[text] !== undefined)
         this.ttsItems[text].play();
-      } else {
+      else
         this.playTTS(text);
-      }
     } catch (e) {
       console.log('Exception performing TTS', e);
     }
