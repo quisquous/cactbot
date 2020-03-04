@@ -28,6 +28,7 @@
       regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaska'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
+        fr: 'Evitez les clous',
       },
     },
     {
@@ -121,6 +122,7 @@
       },
       alertText: {
         en: 'Move to Ifrit',
+        fr: 'Allez sur Ifrit',
       },
       run: function(data) {
         data.seenSpark = true;
