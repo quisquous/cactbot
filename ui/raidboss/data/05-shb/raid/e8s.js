@@ -128,7 +128,7 @@
         };
       },
       tts: function(data) {
-        if (data.firstFrost == 'biting') {
+        if (data.firstFrost == 'driving') {
           return {
             en: 'Biting Frost Next',
             de: 'Frosthieb als nächstes',
