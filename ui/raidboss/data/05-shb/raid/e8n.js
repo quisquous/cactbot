@@ -199,19 +199,6 @@
       },
     },
     {
-
-      id: 'E8N Stoneskin',
-      regex: Regexes.startsUsing({ source: 'Earthen Aether', id: '4DEF' }),
-      regexDe: Regexes.startsUsing({ source: 'Erdäther', id: '4DEF' }),
-      regexFr: Regexes.startsUsing({ source: 'éther de terre', id: '4DEF' }),
-      regexJa: Regexes.startsUsing({ source: 'アース・エーテル', id: '4DEF' }),
-      condition: function(data) {
-        return data.canSilence();
-      },
-      // It's a minor annoyance at best, so don't bug the user too much.
-      response: Responses.interrupt('info'),
-    },
-    {
       id: 'E8N Holy',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4DEC', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4DEC', capture: false }),
