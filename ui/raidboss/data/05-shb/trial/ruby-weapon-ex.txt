@@ -83,7 +83,7 @@ hideall "--sync--"
 
 ### Phase 2
 # -p 4AAA:1007
-# -ii 4CF7 4E68 4B00 4E20 4AF3 4AF4 4AF1 4AF2 4B30 4E31
+# -ii 4CF7 4E68 4B00 4E20 4AF3 4AF4 4AF1 4AF2 4B30 4E31 4AB1
 
 1000.0 "Start"
 1000.5 "--sync--" sync /:The Ruby Weapon:4CF7:/ window 1001,0
@@ -103,7 +103,6 @@ hideall "--sync--"
 1106.0 "Dalamud Impact" sync /:The Ruby Weapon:4B0B:/
 1120.4 "Meteor Project" sync /:The Ruby Weapon:4AAA:/
 1126.6 "Meteor Mine" sync /:The Ruby Weapon:4E89:/
-1132.8 "Magitek Meteor" sync /:The Ruby Weapon:4AB1:/
 1143.8 "Landing x8" duration 7 #sync /:Meteor:4AF1:/
 1156.0 "Screech" sync /:The Ruby Weapon:4AEE:/
 1157.0 "Burst x8" duration 7 #sync /:Meteor:4AF2:/

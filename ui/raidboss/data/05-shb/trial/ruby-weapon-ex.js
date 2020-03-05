@@ -3,8 +3,6 @@
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
 // TODO: stop calling out switch on adds if the other add is dead, etc
-// TODO: get behind meteor
-// TODO: get away from last exploding meteor
 // TODO: tank calls to pick up meteors
 // TODO: bradamante calls (avoid tanks)
 
@@ -13,6 +11,24 @@
     en: /^Cinder Drift \(Extreme\)$/,
   },
   timelineFile: 'ruby-weapon-ex.txt',
+  timelineTriggers: [
+    {
+      id: 'RubyEx Magitek Meteor Behind',
+      regex: /Magitek Meteor/,
+      beforeSeconds: 4,
+      alertText: {
+        en: 'Hide Behind Meteor',
+      },
+    },
+    {
+      id: 'RubyEx Magitek Meteor Away',
+      regex: /Magitek Meteor/,
+      beforeSeconds: 0,
+      infoText: {
+        en: 'Away From Meteor',
+      },
+    },
+  ],
   triggers: [
     {
       id: 'RubyEx Optimized Ultima',
@@ -86,6 +102,24 @@
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
       condition: Conditions.targetIsYou(),
       response: Responses.stackOn(),
+    },
+    {
+      id: 'RubyEx Raven\'s Image',
+      regex: Regexes.addedCombatantFull({ name: 'Raven\'s Image' }),
+      regexDe: Regexes.addedCombatantFull({ name: 'Naels Trugbild' }),
+      regexFr: Regexes.addedCombatantFull({ name: 'Spectre De Nael' }),
+      regexJa: Regexes.addedCombatantFull({ name: 'ネールの幻影' }),
+      run: function(data, matches) {
+        // 112,108 (east)
+        // 88,108 (west)
+        // TODO: it's impossible to do anything with this now,
+        // as there's no actor id in the startsUsing line.  T_T
+        data.ravens = data.ravens || {};
+        if (matches.x < 100)
+          data.ravens.red = matches.id;
+        else
+          data.ravens.blue = matches.id;
+      },
     },
     {
       // Enrage can start casting before Ruby Weapon has finished their rotation
@@ -178,6 +212,11 @@
           else
             color = 'blue';
         }
+        data.ravens = data.ravens || {};
+
+        let tmp = data.ravens.red;
+        data.ravens.red = data.ravens.blue;
+        data.ravens.blue = tmp;
       },
       infoText: function(data) {
         if (data.colors[data.me] == 'red') {
