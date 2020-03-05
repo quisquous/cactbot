@@ -3,7 +3,6 @@
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
 // TODO: stop calling out switch on adds if the other add is dead, etc
-// TODO: tank calls to pick up meteors
 // TODO: bradamante calls (avoid tanks)
 
 [{
@@ -250,6 +249,58 @@
       regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AEE', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AEE', capture: false }),
       response: Responses.knockback(),
+    },
+    {
+      id: 'RubyEx Magitek Meteor Burst',
+      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AF0', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AF0', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AF0', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
+      infoText: {
+        en: 'Away from Meteor!',
+      },
+    },
+    {
+      id: 'RubyEx Mark II Magitek Comet Tank',
+      regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
+      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
+      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
+      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
+      condition: (data) => data.role == 'tank',
+      delaySeconds: 11.5,
+      alarmText: {
+        en: 'Stand in Meteor Tankbuster',
+      },
+    },
+    {
+      id: 'RubyEx Mark II Magitek Comet Other',
+      regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
+      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
+      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
+      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
+      condition: (data) => data.role != 'tank',
+      delaySeconds: 13,
+      alertText: {
+        en: 'Kill Meteor Adds',
+      },
+    },
+    {
+      id: 'RubyEx Mark II Magitek Comet Directions',
+      regex: Regexes.addedCombatantFull({ name: 'Comet' }),
+      infoText: function(data, matches) {
+        // Possible positions:
+        // 85.16,100.131 and 115.16,100.131
+        // 100.16,85.13102 and 100.16,115.131
+        if (matches.y < 90) {
+          return {
+            en: 'Comets N/S',
+          };
+        } else if (matches.x < 90) {
+          return {
+            en: 'Comets E/W',
+          };
+        }
+      },
     },
     {
       id: 'RubyEx Outrage',
