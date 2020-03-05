@@ -95,7 +95,7 @@
         return data.mirrorsActive;
       },
       alertText: {
-        en: 'Get behind, then away from mirrors',
+        en: 'Get behind, then South',
       },
     },
     {
@@ -110,7 +110,7 @@
         return data.mirrorsActive;
       },
       alertText: {
-        en: 'Go Front / Sides, then close between mirrors',
+        en: 'Go Front / Sides, then North',
       },
     },
     {
@@ -127,18 +127,13 @@
       response: Responses.getOutThenIn(),
     },
     {
-      id: 'E8N Scythe Kick With Mirror',
-      regex: Regexes.startsUsing({ source: 'Shiva', id: '4DE3', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4DE3', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4DE3', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4DE3', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4DE3', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '시바', id: '4DE3', capture: false }),
-      condition: function(data) {
-        return data.mirrorsActive;
-      },
+      id: 'E8N Reflected Scythe Kick',
+      regex: Regexes.startsUsing({ source: 'Frozen Mirror', id: '4E01', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Eisspeigel', id: '4E01', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'miroir de glace', id: '4E01', capture: false }),
+      regexJa: Regexes.startsUsing({ source: '氷面鏡', id: '4E01', capture: false }),
       infoText: {
-        en: 'Get in, then close to a mirror',
+        en: 'Close to mirrors',
       },
     },
     {
@@ -329,8 +324,7 @@
         'Mothercrystal': 'Urkristall',
       },
       'replaceText': {
-        'the Path of Light': 'Pfad des Lichts',
-        'the House of Light': 'Tsunami des Lichts',
+        'The Path of Light': 'Pfad des Lichts',
         'Twin Stillness': 'Zwillingsschwerter der Stille',
         'Stoneskin': 'Steinhaut',
         'Spiteful Dance': 'Kalter Tanz',
@@ -392,8 +386,7 @@
         'Mothercrystal': 'Cristal-mère',
       },
       'replaceText': {
-        'the Path of Light': 'Voie de lumière',
-        'the House of Light': 'Raz-de-lumière',
+        'The Path of Light': 'Voie de lumière',
         'Twin Stillness': 'Entaille de la quiétude',
         'Stoneskin': 'Cuirasse',
         'Spiteful Dance': 'Danse de la froideur',
@@ -455,8 +448,7 @@
         'Mothercrystal': 'マザークリスタル',
       },
       'replaceText': {
-        'the Path of Light': '光の波動',
-        'the House of Light': '光の津波',
+        'The Path of Light': '光の波動',
         'attack': '攻撃',
         'Twin Stillness': '静寂の双剣技',
         'Stoneskin': 'ストンスキン',

@@ -53,11 +53,11 @@ hideall "--sync--"
 287.9 "--targetable--"
 306.9 "Holy" sync /:Shiva:4DE[CD]:/
 321.4 "Light Rampant" sync /:Shiva:4DE8:/
-329.6 "the Path of Light" sync /:Shiva:4DD9:/
+329.6 "The Path of Light" sync /:Shiva:4DD9:/
 332.6 "Bright Hunger" sync /:Shiva:4E0C:/
-337.7 "the Path of Light" sync /:Shiva:4DD9:/
+337.7 "The Path of Light" sync /:Shiva:4DD9:/
 340.6 "Bright Hunger" sync /:Shiva:4E0C:/
-345.9 "the Path of Light" sync /:Shiva:4DD9:/
+345.9 "The Path of Light" sync /:Shiva:4DD9:/
 348.6 "Bright Hunger" sync /:Shiva:4E0C:/
 356.0 "Mirror, Mirror" sync /:Shiva:4DD4:/
 368.1 "Kick/Frost" sync /:Shiva:4D(D[BC]|E[23]):/
