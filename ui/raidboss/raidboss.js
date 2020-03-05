@@ -18,6 +18,9 @@ let Options = {
   PerTriggerOptions: {},
 
   Triggers: [],
+
+  PlayerNameOverride: null,
+  PlayerJobOverride: null,
 };
 
 let gTimelineController;
@@ -50,6 +53,19 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
     Options.audioAllowed = !!parseInt(audio);
     if (!previous && Options.audioAllowed)
       console.log('Enabling audio via query parameter');
+  }
+
+  let PlayerNameOverride = params.get('player');
+  if (PlayerNameOverride !== null)
+    Options.PlayerNameOverride = PlayerNameOverride;
+
+  let PlayerJobOverride = params.get('job');
+  if (PlayerJobOverride !== null)
+    Options.PlayerJobOverride = PlayerJobOverride;
+
+  if (PlayerNameOverride !== null || PlayerJobOverride !== null) {
+    Options.BrowserTTS = true;
+    console.log('Enabling player name override via query parameter, name: ' + PlayerNameOverride + ', job: ' + PlayerJobOverride);
   }
 
   let container = document.getElementById('container');

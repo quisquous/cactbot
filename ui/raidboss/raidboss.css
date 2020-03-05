@@ -122,3 +122,11 @@
   top: 0;
   left: calc(100%);
 }
+
+.autoplay-helper-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0.2em;
+  max-width: 100vw;
+}
