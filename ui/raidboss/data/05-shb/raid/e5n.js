@@ -123,6 +123,7 @@
         en: 'Drop cloud outside',
         de: 'Wolken draußen ablegen',
         fr: 'Placez le nuage à l\'extérieur',
+        ko: '바깥으로 구름 유도',
       },
     },
   ],
