@@ -2,7 +2,6 @@
 
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
-// TODO: stop calling out switch on adds if the other add is dead, etc
 
 [{
   zoneRegex: {
@@ -198,6 +197,20 @@
       response: Responses.tankBuster(),
     },
     {
+      id: 'RubyEx Raven Death',
+      regex: Regexes.losesEffect({ effect: 'Pall of Rage', capture: false }),
+      regexDe: Regexes.losesEffect({ effect: 'Zorn', capture: false }),
+      regexFr: Regexes.losesEffect({ effect: 'Fureur', capture: false }),
+      regexJa: Regexes.losesEffect({ effect: '憤怒', capture: false }),
+      suppressSeconds: 10,
+      run: function(data) {
+        // This effect persists through death, and is removed off of everybody
+        // about two seconds before the 19: defeated log line.
+        // TODO: it'd be nice to say to attack the other add, if you knew which one was dead.
+        data.ravenDead = true;
+      },
+    },
+    {
       id: 'RubyEx Change of Heart',
       regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
       regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
@@ -216,7 +229,12 @@
         data.ravens.red = data.ravens.blue;
         data.ravens.blue = tmp;
       },
+      // This gets cast twice (maybe once for each add)?
+      suppressSeconds: 1,
       infoText: function(data) {
+        // TODO: it'd be nice to call out which raven was alive?
+        if (data.ravenDead)
+          return;
         if (data.colors[data.me] == 'red') {
           return {
             en: 'Attack Red (East)',
