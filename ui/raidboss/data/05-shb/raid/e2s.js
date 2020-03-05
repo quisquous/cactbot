@@ -272,15 +272,15 @@
       response: Responses.spread('alert'),
     },
     {
-      id: 'E2S Shadoweye No Waiting LookAwayFrom',
+      id: 'E2S Shadoweye No Waiting',
       regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data) {
         return !data.waiting;
       },
-      response: Responses.lookAwayFrom('alarm'),
+      response: Responses.lookAwayFrom('alert'),
     },
     {
-      id: 'E2S Shadoweye No Waiting EyeOnYou',
+      id: 'E2S Shadoweye No Waiting You',
       regex: Regexes.headMarker({ id: '00B3' }),
       condition: function(data) {
         return !data.waiting;

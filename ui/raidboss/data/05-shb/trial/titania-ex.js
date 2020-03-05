@@ -181,7 +181,23 @@
       regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
       regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아' }),
+      condition: function(data) {
+        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
+    },
+    {
+      id: 'TitaniaEx Fae Light Cleave',
+      regex: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexDe: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexFr: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
+      regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
+      regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아' }),
+      condition: function(data) {
+        return data.role != 'tank' && data.role != 'healer';
+      },
+      response: Responses.tankCleave('info'),
     },
     {
       id: 'TitaniaEx Frost Rune 1',

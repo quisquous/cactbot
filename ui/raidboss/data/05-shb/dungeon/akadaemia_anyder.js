@@ -46,6 +46,9 @@
       regexJa: Regexes.startsUsing({ id: '3E04', source: ['クラドセラケ', 'ドリオドゥス'] }),
       regexCn: Regexes.startsUsing({ id: '3E04', source: ['裂口鲨', '原祖鲨'] }),
       regexKo: Regexes.startsUsing({ id: '3E04', source: ['클라도셀라케', '돌리오두스'] }),
+      condition: function(data) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {
@@ -133,6 +136,9 @@
       regexJa: Regexes.startsUsing({ id: '3E23', source: 'ケツァクウァトル' }),
       regexCn: Regexes.startsUsing({ id: '3E23', source: '克察尔科亚特尔' }),
       regexKo: Regexes.startsUsing({ id: '3E23', source: '케찰코아틀' }),
+      condition: function(data) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {

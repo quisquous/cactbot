@@ -61,7 +61,7 @@
       regexCn: Regexes.startsUsing({ id: '4116', source: '泰坦' }),
       regexKo: Regexes.startsUsing({ id: '4116', source: '타이탄' }),
       condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
+        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
