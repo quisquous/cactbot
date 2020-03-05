@@ -651,7 +651,7 @@ class PopupText {
           ja: 'や',
           ko: ' 그리고 ',
         };
-        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/, arrowReplacement[lang]);
+        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
         this.ttsSay(ttsText);
       } else if (soundUrl && playSounds) {
         let audio = new Audio(soundUrl);
