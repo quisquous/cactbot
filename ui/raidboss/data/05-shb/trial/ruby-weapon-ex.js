@@ -2,6 +2,7 @@
 
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
+// TODO: there's no 23: message for tethers, so is likely part of add spawn?
 
 [{
   zoneRegex: {
@@ -258,6 +259,14 @@
       regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AFE', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AFE', capture: false }),
       response: Responses.lookAway(),
+    },
+    {
+      id: 'RubyEx Meteor',
+      regex: Regexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
+      condition: Conditions.targetIsYou(),
+      infoText: function(data, matches) {
+        return parseInt(matches.id, 16) - parseInt('00CA', 16) + 1;
+      },
     },
     {
       id: 'RubyEx Screech',
