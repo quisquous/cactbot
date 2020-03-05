@@ -84,6 +84,7 @@
       infoText: {
         en: 'Teleport into donut',
         fr: 'Téléportez vous dans le donut',
+        ko: '도넛 장판 안으로 순간이동하기',
       },
     },
     {
@@ -111,6 +112,7 @@
         return {
           en: 'Get hit by dark',
           fr: 'Encaissez le noir',
+          ko: '어둠 맞기',
         };
       },
     },
@@ -129,6 +131,7 @@
         return {
           en: 'Get hit by light',
           fr: 'Encaissez le blanc',
+          ko: '빛 맞기',
         };
       },
     },
