@@ -3,7 +3,6 @@
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
 // TODO: stop calling out switch on adds if the other add is dead, etc
-// TODO: bradamante calls (avoid tanks)
 
 [{
   zoneRegex: {
@@ -282,6 +281,14 @@
       delaySeconds: 13,
       alertText: {
         en: 'Kill Meteor Adds',
+      },
+    },
+    {
+      id: 'RubyEx Bradamante',
+      regex: Regexes.headMarker({ id: '0017' }),
+      condition: Conditions.targetIsYou(),
+      infoText: {
+        en: 'Avoid tanks with laser',
       },
     },
     {
