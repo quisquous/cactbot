@@ -28,6 +28,7 @@
         en: 'Avoid green nails',
         fr: 'Evitez les clous',
       },
+    },
     {
       id: 'E6S Air Bump',
       regex: Regexes.headMarker({ id: '00D3' }),
