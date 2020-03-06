@@ -57,19 +57,23 @@
       regexDe: Regexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0011' }),
       regexFr: Regexes.tether({ source: 'Idole Des Ténèbres', id: '0011' }),
       regexJa: Regexes.tether({ source: 'ダークアイドル', id: '0011' }),
-      condition: function(data, matches) {
-        return data.phase == 'betwixtWorlds' && data.me == matches.target;
+      condition: function(data) {
+        return data.phase == 'betwixtWorlds';
       },
       preRun: function(data, matches) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
       },
-      infoText: {
-        en: 'Tether on YOU',
-        de: 'Verbindung auf DIR',
-        fr: 'Lien sur VOUS',
-        ko: '선 대상자',
-        cn: '连线点名',
+      infoText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Tether on YOU',
+            de: 'Verbindung auf DIR',
+            fr: 'Lien sur VOUS',
+            ko: '선 대상자',
+            cn: '连线点名',
+          };
+        }
       },
     },
     {
