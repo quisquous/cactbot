@@ -344,6 +344,19 @@
       response: Responses.goLeft(),
     },
     {
+      id: 'E8S Hallowed Wings Knockback',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D77', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D77', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D77', capture: false }),
+      response: Responses.knockback(),
+      // This gives a warning within 1.4 seconds, so you can hit arm's length.
+      delaySeconds: 3.6,
+      durationSeconds: 1.4,
+    },
+    {
       id: 'E8S Wyrm\'s Lament',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D7C', capture: false }),
