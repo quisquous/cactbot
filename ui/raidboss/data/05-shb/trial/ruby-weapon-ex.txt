@@ -13,7 +13,7 @@ hideall "--sync--"
 2.0 "--sync--" sync /:The Ruby Weapon:368:/ window 3,0
 14.5 "Optimized Ultima" sync /:The Ruby Weapon:4ABE:/ window 15,5
 28.7 "Magitek Bit" sync /:The Ruby Weapon:4AD1:/
-30.8 "--sync--" sync /:The Ruby Weapon:4A9B:/
+30.8 "--middle--" sync /:The Ruby Weapon:4A9B:/
 36.0 "Flexiclaw" sync /:The Ruby Weapon:4A92:/
 38.9 "Magitek Ray" sync /:Ruby Bit:4AD2:/
 44.6 "Helicoclaw" sync /:The Ruby Weapon:4A99:/
@@ -24,7 +24,7 @@ hideall "--sync--"
 54.5 "Magitek Ray" sync /:Ruby Bit:4AD2:/
 62.4 "Magitek Ray" sync /:Ruby Bit:4AD2:/
 72.6 "Stamp" sync /:The Ruby Weapon:4B03:/
-77.8 "--sync--" sync /:The Ruby Weapon:4A9B:/
+77.8 "--middle--" sync /:The Ruby Weapon:4A9B:/
 80.2 "Ruby Sphere" sync /:The Ruby Weapon:4AC9:/
 86.3 "Flexiclaw" sync /:The Ruby Weapon:4A92:/
 95.9 "Ravensclaw" sync /:The Ruby Weapon:4ACC:/
@@ -36,11 +36,13 @@ hideall "--sync--"
 134.7 "Optimized Ultima" sync /:The Ruby Weapon:4ABE:/
 145.4 "Flexiclaw" sync /:The Ruby Weapon:4A92:/
 151.1 "Liquefaction" sync /:The Ruby Weapon:4AEC:/
-157.6 "--sync--" sync /:The Ruby Weapon:4A9B:/
+157.6 "--north--" sync /:The Ruby Weapon:4A9B:/
+168.0 "--untargetable--"
 168.0 "Ravensflight" sync /:The Ruby Weapon:4AA1:/
+181.8 "--targetable--"
 196.9 "Optimized Ultima" sync /:The Ruby Weapon:4ABE:/
 205.2 "Stamp" sync /:The Ruby Weapon:4B03:/
-212.4 "--sync--" sync /:The Ruby Weapon:4A9B:/
+212.4 "--teleport--" sync /:The Ruby Weapon:4A9B:/
 220.3 "Ruby Dynamics" sync /:The Ruby Weapon:4B09:/
 221.4 "High-Powered Homing Lasers" sync /:The Ruby Weapon:4AD8:/
 229.5 "Cut And Run" sync /:The Ruby Weapon:4B05:/ duration 2.5
@@ -48,7 +50,7 @@ hideall "--sync--"
 237.1 "Magitek Charge" sync /:The Ruby Weapon:4AD4:/
 246.2 "Ruby Ray" sync /:The Ruby Weapon:4B02:/
 253.3 "Optimized Ultima" sync /:The Ruby Weapon:4ABE:/
-259.5 "--sync--" sync /:The Ruby Weapon:4A9B:/
+259.5 "--middle--" sync /:The Ruby Weapon:4A9B:/
 261.8 "Ruby Sphere" sync /:The Ruby Weapon:4AC9:/
 267.9 "Flexiclaw" sync /:The Ruby Weapon:4A92:/
 277.5 "Ravensclaw" sync /:The Ruby Weapon:4ACC:/
@@ -60,17 +62,20 @@ hideall "--sync--"
 314.3 "Optimized Ultima" sync /:The Ruby Weapon:4ABE:/
 325.0 "Flexiclaw" sync /:The Ruby Weapon:4A92:/
 330.7 "Liquefaction" sync /:The Ruby Weapon:4AEC:/
-337.2 "--sync--" sync /:The Ruby Weapon:4A9B:/
+337.2 "--north--" sync /:The Ruby Weapon:4A9B:/
+347.6 "--untargetable--"
 347.6 "Ravensflight" sync /:The Ruby Weapon:4AA1:/
+360.4 "--targetable--"
 375.5 "Optimized Ultima" sync /:The Ruby Weapon:4ABE:/
 383.8 "Stamp" sync /:The Ruby Weapon:4B03:/
-391.0 "--sync--" sync /:The Ruby Weapon:4A9B:/
+391.0 "--teleport--" sync /:The Ruby Weapon:4A9B:/
 398.8 "Ruby Dynamics" sync /:The Ruby Weapon:4B09:/
 399.9 "High-Powered Homing Lasers" sync /:The Ruby Weapon:4AD8:/
 407.9 "Cut And Run" sync /:The Ruby Weapon:4B05:/
 409.5 "Homing Lasers" sync /:The Ruby Weapon:4AD6:/
 414.9 "--sync--" sync /:The Ruby Weapon:4A9B:/
 415.4 "Magitek Charge" sync /:The Ruby Weapon:4AD4:/
+424.5 "Ruby Ray" sync /:The Ruby Weapon:4B02:/
 # TODO: when does enrage happen naturally??
 
 ### Enrage
@@ -83,7 +88,7 @@ hideall "--sync--"
 
 ### Phase 2
 # -p 4AAA:1007
-# -ii 4CF7 4E68 4B00 4E20 4AF3 4AF4 4AF1 4AF2 4B30 4E31
+# -ii 4CF7 4E68 4B00 4E20 4AF3 4AF4 4AF1 4AF2 4B30 4E31 4AB1
 
 1000.0 "Start"
 1000.5 "--sync--" sync /:The Ruby Weapon:4CF7:/ window 1001,0
@@ -103,12 +108,12 @@ hideall "--sync--"
 1106.0 "Dalamud Impact" sync /:The Ruby Weapon:4B0B:/
 1120.4 "Meteor Project" sync /:The Ruby Weapon:4AAA:/
 1126.6 "Meteor Mine" sync /:The Ruby Weapon:4E89:/
-1132.8 "Magitek Meteor" sync /:The Ruby Weapon:4AB1:/
 1143.8 "Landing x8" duration 7 #sync /:Meteor:4AF1:/
 1156.0 "Screech" sync /:The Ruby Weapon:4AEE:/
 1157.0 "Burst x8" duration 7 #sync /:Meteor:4AF2:/
 1159.7 "Magitek Meteor" sync /:The Ruby Weapon:4AF0:/
 1167.2 "Mark II Magitek Comet" sync /:The Ruby Weapon:4AB6:/
+1178.8 "Tank Comets"
 1190.4 "--sync--" sync /:The Ruby Weapon:4E38:/
 1190.5 "Bradamante" sync /:The Ruby Weapon:4AF7:/
 1199.6 "--sync--" sync /:The Ruby Weapon:4E38:/
