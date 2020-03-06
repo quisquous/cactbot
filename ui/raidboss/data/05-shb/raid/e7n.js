@@ -83,6 +83,8 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Teleport into donut',
+        fr: 'Téléportez vous dans le donut',
+        ko: '도넛 장판 안으로 순간이동하기',
       },
     },
     {
@@ -102,13 +104,15 @@
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: function(data) {
-        data.colorCount = data.colorCount + 1 || 1;
+        data.colorCount = data.colorCount + 1 || 0;
         if (data.colorCount == 3) {
           delete data.colorCount;
           return;
         }
         return {
           en: 'Get hit by dark',
+          fr: 'Encaissez le noir',
+          ko: '어둠 맞기',
         };
       },
     },
@@ -119,14 +123,24 @@
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: function(data) {
-        data.colorCount = data.colorCount + 1 || 1;
+        data.colorCount = data.colorCount + 1 || 0;
         if (data.colorCount == 3) {
           delete data.colorCount;
           return;
         }
         return {
           en: 'Get hit by light',
+          fr: 'Encaissez le blanc',
+          ko: '빛 맞기',
         };
+      },
+    },
+    {
+      // Safety in case the user dies during Dark/Light Course.
+      id: 'E7N Color Cleanup',
+      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', ability: 'Away With Thee', capture: false }),
+      run: function(data) {
+        delete data.colorCount;
       },
     },
   ],

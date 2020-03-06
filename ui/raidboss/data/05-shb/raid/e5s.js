@@ -202,7 +202,7 @@
           de: 'Donut AoE',
           fr: 'AoE en donut',
           ko: '도넛 장판',
-          cn: '环形AOE',
+          cn: '环形AoE',
         };
       },
     },
