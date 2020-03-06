@@ -67,7 +67,7 @@
       regexFr: Regexes.startsUsing({ id: '47A6', source: 'Hadès' }),
       regexJa: Regexes.startsUsing({ id: '47A6', source: 'ハーデス' }),
       regexKo: Regexes.startsUsing({ id: '47A6', source: '하데스' }),
-      condition: function(data) {
+      condition: function(dat, matches) {
         return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
       response: Responses.tankBuster(),

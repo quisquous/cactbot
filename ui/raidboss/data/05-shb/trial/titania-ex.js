@@ -181,7 +181,7 @@
       regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
       regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
       regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
       response: Responses.tankBuster(),

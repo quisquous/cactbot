@@ -70,7 +70,7 @@
       regexJa: Regexes.startsUsing({ id: '3EA3', source: 'イノセンス' }),
       regexCn: Regexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
       regexKo: Regexes.startsUsing({ id: '3EA3', source: '이노센스' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
       response: Responses.tankBuster(),

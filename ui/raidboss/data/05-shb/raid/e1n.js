@@ -84,7 +84,7 @@
       regexJa: Regexes.startsUsing({ id: '3DA1', source: 'エデン・プライム' }),
       regexCn: Regexes.startsUsing({ id: '3DA1', source: '至尊伊甸' }),
       regexKo: Regexes.startsUsing({ id: '3DA1', source: '에덴 프라임' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
       response: Responses.tankBuster(),
