@@ -138,8 +138,9 @@
       response: Responses.breakChains(),
     },
     {
+      // This prevents out-of-combat activation for the March trigger during Charibert's spawn-in.
       id: 'The Vault Knights Activation',
-      regex: Regexes.headMarker({ id: '0061' }),
+      regex: Regexes.headMarker({ id: '0061', capture: false }),
       condition: function(data) {
         return !data.knightsActive;
       },
