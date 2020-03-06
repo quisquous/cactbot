@@ -16,6 +16,9 @@
       regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
       regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
       regexCn: Regexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {

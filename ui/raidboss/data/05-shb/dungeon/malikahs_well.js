@@ -15,6 +15,9 @@
       regexJa: Regexes.startsUsing({ id: '3CE5', source: 'グレーター・アルマジロ' }),
       regexCn: Regexes.startsUsing({ id: '3CE5', source: '大犰狳' }),
       regexKo: Regexes.startsUsing({ id: '3CE5', source: '거대 아르마딜로' }),
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {
@@ -57,6 +60,9 @@
       regexJa: Regexes.startsUsing({ id: '3CEB', source: 'ハイドロタロース' }),
       regexCn: Regexes.startsUsing({ id: '3CEB', source: '水陆两用塔罗斯' }),
       regexKo: Regexes.startsUsing({ id: '3CEB', source: '수력 탈로스' }),
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {

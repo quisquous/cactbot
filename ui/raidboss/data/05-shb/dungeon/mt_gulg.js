@@ -43,6 +43,9 @@
       regexJa: Regexes.startsUsing({ id: '3CFB', source: 'フォーギヴン・クルエルティー' }),
       regexCn: Regexes.startsUsing({ id: '3CFB', source: '得到宽恕的残忍' }),
       regexKo: Regexes.startsUsing({ id: '3CFB', source: '면죄된 잔혹' }),
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {

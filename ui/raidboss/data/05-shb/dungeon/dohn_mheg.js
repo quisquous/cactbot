@@ -82,6 +82,9 @@
       regexJa: Regexes.startsUsing({ id: '2299', source: '美眼のインク＝ゾン' }),
       regexCn: Regexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
       regexKo: Regexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {
@@ -123,6 +126,9 @@
       regexJa: Regexes.startsUsing({ id: '35A4', source: '楽聖のインク＝ゾン' }),
       regexCn: Regexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
       regexKo: Regexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {

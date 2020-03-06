@@ -15,7 +15,7 @@
       regexJa: Regexes.startsUsing({ id: '3C89', source: 'ロツァトル' }),
       regexCn: Regexes.startsUsing({ id: '3C89', source: '洛查特尔' }),
       regexKo: Regexes.startsUsing({ id: '3C89', source: '로차틀' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
       response: Responses.tankBuster(),
@@ -91,7 +91,7 @@
       regexJa: Regexes.startsUsing({ id: '3C91', source: 'バッツカッチ' }),
       regexCn: Regexes.startsUsing({ id: '3C91', source: '大脚野蝠' }),
       regexKo: Regexes.startsUsing({ id: '3C91', source: '배츠콰치' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
       response: Responses.tankBuster(),
@@ -130,7 +130,7 @@
       regexJa: Regexes.startsUsing({ id: '3C99', source: 'エロース' }),
       regexCn: Regexes.startsUsing({ id: '3C99', source: '艾洛斯' }),
       regexKo: Regexes.startsUsing({ id: '3C99', source: '에로스' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
       response: Responses.tankBuster(),

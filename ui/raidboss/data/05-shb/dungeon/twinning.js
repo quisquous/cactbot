@@ -96,7 +96,7 @@
       regexJa: Regexes.startsUsing({ id: '3DED', source: 'ミトリダテス' }),
       regexCn: Regexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
       regexKo: Regexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
       response: Responses.tankBuster(),
@@ -155,7 +155,7 @@
       regexJa: Regexes.startsUsing({ id: '3DFB', source: 'タイクーン' }),
       regexCn: Regexes.startsUsing({ id: '3DFB', source: '泰空' }),
       regexKo: Regexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
-      condition: function(data) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
       response: Responses.tankBuster(),
