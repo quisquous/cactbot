@@ -2,7 +2,10 @@
 
 // The Great Gubal Library--Hard
 [{
-  zoneRegex: /Great Gubal Library \(Hard\)/,
+  zoneRegex: {
+    en: /Great Gubal Library \(Hard\)/,
+    cn: /^秘本宝库迦巴勒幻想图书馆$/,
+  },
   timelineFile: 'gubal_library_hard.txt',
   timelineTriggers: [
     {

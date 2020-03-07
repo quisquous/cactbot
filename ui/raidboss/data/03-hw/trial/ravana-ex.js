@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Thok Ast Thok \(Extreme\)$/,
+  zoneRegex: {
+    en: /^Thok Ast Thok \(Extreme\)$/,
+    cn: /^罗波那歼殛战$/,
+  },
   timelineFile: 'ravana-ex.txt',
   triggers: [
   ],

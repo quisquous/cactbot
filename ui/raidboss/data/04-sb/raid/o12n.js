@@ -2,7 +2,10 @@
 
 // O12N - Alphascape 4.0
 [{
-  zoneRegex: /^Alphascape \(V4\.0\)$/,
+  zoneRegex: {
+    en: /^Alphascape \(V4\.0\)$/,
+    cn: /^欧米茄时空狭缝 阿尔法幻境4$/,
+  },
   timelineFile: 'o12n.txt',
   timelineTriggers: [
     {

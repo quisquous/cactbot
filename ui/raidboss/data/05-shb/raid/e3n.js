@@ -3,7 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Gate: Inundation$/,
-    cn: /^伊甸希望乐园 \(觉醒之章3\)$/,
+    cn: /^伊甸希望乐园 觉醒之章3$/,
     ko: /^희망의 낙원 에덴: 각성편 \(3\)$/,
   },
   timelineFile: 'e3n.txt',

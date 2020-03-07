@@ -3,7 +3,10 @@
 // Sohm Al (normal)
 // Nobody remembers what to do here, so here's triggers.
 [{
-  zoneRegex: /^Sohm Al$/,
+  zoneRegex: {
+    en: /^Sohm Al$/,
+    cn: /^天山绝顶索姆阿尔灵峰$/,
+  },
   triggers: [
     {
       id: 'Sohm Al Myath Stack',

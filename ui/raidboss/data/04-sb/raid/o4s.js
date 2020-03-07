@@ -2,7 +2,10 @@
 
 // O4S - Deltascape 4.0 Savage
 [{
-  zoneRegex: /^Deltascape V4\.0 \(Savage\)$/,
+  zoneRegex: {
+    en: /^Deltascape V4\.0 \(Savage\)$/,
+    cn: /^欧米茄零式时空狭缝 德尔塔幻境4$/,
+  },
   timelineFile: 'o4s.txt',
   timelineTriggers: [
     {

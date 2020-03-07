@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Holminster Switch$/,
     ko: /^홀민스터$/,
+    cn: /^遇袭集落水滩村$/,
   },
   timelineFile: 'holminster_switch.txt',
   triggers: [

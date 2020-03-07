@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Final Coil Of Bahamut - Turn \(1\)$/,
+  zoneRegex: {
+    en: /^The Final Coil Of Bahamut - Turn \(1\)$/,
+    cn: /^巴哈姆特大迷宫 真源之章1$/,
+  },
   timelineFile: 't10.txt',
   triggers: [
     {

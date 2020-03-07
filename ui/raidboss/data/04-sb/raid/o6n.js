@@ -2,7 +2,10 @@
 
 // O6N - Sigmascape 2.0 Normal
 [{
-  zoneRegex: /^Sigmascape \(V2\.0\)$/,
+  zoneRegex: {
+    en: /^Sigmascape \(V2\.0\)$/,
+    cn: /^欧米茄时空狭缝 西格玛幻境2$/,
+  },
   timelineFile: 'o6n.txt',
   triggers: [
     {

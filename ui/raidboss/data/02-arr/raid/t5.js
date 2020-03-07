@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Binding Coil Of Bahamut - Turn \(5\)$/,
+  zoneRegex: {
+    en: /^The Binding Coil Of Bahamut - Turn \(5\)$/,
+    cn: /^巴哈姆特大迷宫 邂逅之章5$/,
+  },
   timelineFile: 't5.txt',
   triggers: [
     {

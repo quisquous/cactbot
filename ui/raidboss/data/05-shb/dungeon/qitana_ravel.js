@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^[tT]he Qitana Ravel$/,
     ko: /^키타나 신굴$/,
+    cn: /^文明古迹奇坦那神影洞$/,
   },
   timelineFile: 'qitana_ravel.txt',
   triggers: [

@@ -2,7 +2,10 @@
 
 // Shinryu Extreme
 [{
-  zoneRegex: /^The Minstrel's Ballad: Shinryu's Domain$/,
+  zoneRegex: {
+    en: /^The Minstrel's Ballad: Shinryu's Domain$/,
+    cn: /^神龙梦幻歼灭战$/,
+  },
   timelineFile: 'shinryu-ex.txt',
   triggers: [
     {

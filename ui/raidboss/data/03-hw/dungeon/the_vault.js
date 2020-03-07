@@ -2,7 +2,10 @@
 
 // The Vault
 [{
-  zoneRegex: /^The Vault$/,
+  zoneRegex: {
+    en: /^The Vault$/,
+    cn: /^圣教中枢伊修加德教皇厅$/,
+  },
   timelineFile: 'the_vault.txt',
   timelineTriggers: [
     {
