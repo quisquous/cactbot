@@ -631,7 +631,7 @@ class PopupText {
       if (ttsText && playSpeech) {
         // Heuristics for auto tts.
         // * In case this is an integer.
-        ttsText = JSON.stringify(ttsText);
+        ttsText = ttsText.toString();
         // * Remove a bunch of chars.
         ttsText = ttsText.replace(/[#!]/g, '');
         // * slashes between mechanics
