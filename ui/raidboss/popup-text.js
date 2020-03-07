@@ -630,6 +630,8 @@ class PopupText {
       // not cause tts to play over top of sounds or noises.
       if (ttsText && playSpeech) {
         // Heuristics for auto tts.
+        // * In case this is an integer.
+        ttsText = JSON.stringify(ttsText);
         // * Remove a bunch of chars.
         ttsText = ttsText.replace(/[#!]/g, '');
         // * slashes between mechanics
