@@ -17,6 +17,9 @@
       regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
       regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
       regexCn: Regexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
+      },
       response: Responses.tankBuster(),
     },
     {
@@ -108,20 +111,14 @@
     },
     {
       id: 'Cosmos Ronkan Cure II',
-      regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯', capture: false }),
+      regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
+      regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
+      regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
+      regexCn: Regexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯' }),
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Stun Hamonth',
-        de: 'Sir Hamonth unterbrechen',
-        fr: 'Etoudissez Hamonth',
-        ko: 'Hamonth 기절시키기',
-      },
+      response: Responses.stun('info'),
     },
     {
       id: 'Cosmos Captive Bolt',
@@ -150,14 +147,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        ja: '散開',
-        fr: 'Ecartez-vous',
-        cn: '分散',
-        ko: '십자 장판 징: 산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Cosmos Black Flame 2',
@@ -202,12 +192,7 @@
       regexFr: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4763', source: '卢格斯', capture: false }),
-      infoText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        ko: '왼쪽 피하기',
-      },
+      response: Responses.goLeft('info'),
     },
     {
       id: 'Cosmos Scorching Right',
@@ -216,12 +201,7 @@
       regexFr: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4762', source: '卢格斯', capture: false }),
-      infoText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite',
-        ko: '오른쪽 피하기',
-      },
+      response: Responses.goRight('info'),
     },
     {
       id: 'Cosmos Fire\'s Domain',

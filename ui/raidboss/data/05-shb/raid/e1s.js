@@ -102,14 +102,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E1S Fragor Maximus',
@@ -122,14 +115,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E1S Dimensional Shift',
@@ -142,14 +128,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E1S Spear Of Paradise',
@@ -159,41 +138,10 @@
       regexJa: Regexes.startsUsing({ id: '3D88', source: 'エデン・プライム' }),
       regexCn: Regexes.startsUsing({ id: '3D88', source: '至尊伊甸' }),
       regexKo: Regexes.startsUsing({ id: '3D88', source: '에덴 프라임' }),
-      alarmText: function(data, matches) {
-        if (matches.target == data.me || data.role != 'tank')
-          return;
-
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'タンクスイッチ',
-          cn: '换T！',
-          ko: '탱 교대',
-        };
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑点 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankBusterSwap(),
     },
     {
       id: 'E1S Eden\'s Flare',
@@ -203,14 +151,7 @@
       regexJa: Regexes.startsUsing({ id: '3D73', source: 'エデン・プライム', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D73', source: '至尊伊甸', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D73', source: '에덴 프라임', capture: false }),
-      alertText: {
-        en: 'Under',
-        de: 'Unter den Boss',
-        fr: 'Sous le boss',
-        ja: '中へ',
-        cn: '脚下',
-        ko: '보스 아래로',
-      },
+      response: Responses.getUnder('alert'),
     },
     {
       id: 'E1S Delta Attack 1',
@@ -482,24 +423,17 @@
     },
     {
       id: 'E1S Mana Boost',
-      regex: Regexes.startsUsing({ id: '3D8D', source: 'Guardian Of Paradise', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D8D', source: 'Hüter Von Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D8D', source: '伊甸守护者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D8D', source: '에덴의 수호자', capture: false }),
+      regex: Regexes.startsUsing({ id: '3D8D', source: 'Guardian Of Paradise' }),
+      regexDe: Regexes.startsUsing({ id: '3D8D', source: 'Hüter Von Eden' }),
+      regexFr: Regexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin' }),
+      regexJa: Regexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー' }),
+      regexCn: Regexes.startsUsing({ id: '3D8D', source: '伊甸守护者' }),
+      regexKo: Regexes.startsUsing({ id: '3D8D', source: '에덴의 수호자' }),
       condition: function(data) {
         return data.CanSilence();
       },
       suppressSeconds: 1,
-      alertText: {
-        en: 'Silence Guardian',
-        de: 'Stumm auf Hüter ',
-        ja: '沈黙',
-        fr: 'Interrompez le gardien',
-        cn: '沉默小怪',
-        ko: '쫄 침묵',
-      },
+      response: Responses.interrupt(),
     },
     {
       id: 'E1S Pure Light',
@@ -509,14 +443,7 @@
       regexJa: Regexes.startsUsing({ id: '3D8A', source: 'エデン・プライム', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D8A', source: '至尊伊甸', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D8A', source: '에덴 프라임', capture: false }),
-      alertText: {
-        en: 'Get Behind',
-        de: 'Hinter den Boss',
-        fr: 'Derrière le boss',
-        ja: '背面へ',
-        cn: '背面',
-        ko: '보스 뒤로',
-      },
+      response: Responses.getBehind(),
     },
     {
       id: 'E1S Pure Beam 1',

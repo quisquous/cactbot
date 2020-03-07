@@ -276,13 +276,7 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D80', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D80', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D80', capture: false }),
-      infoText: {
-        en: 'Stacks',
-        de: 'Stacks',
-        fr: 'Packages',
-        ko: '쉐어징',
-        cn: '分摊',
-      },
+      response: Responses.stack('info'),
     },
     {
       id: 'E8S Banish III Divided',

@@ -19,12 +19,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ja: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Inno Enthrall',
@@ -68,12 +63,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ja: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Inno Righteous Bolt',
@@ -83,24 +73,10 @@
       regexJa: Regexes.startsUsing({ id: '3EA3', source: 'イノセンス' }),
       regexCn: Regexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
       regexKo: Regexes.startsUsing({ id: '3EA3', source: '이노센스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ja: '自分にタンクバスター',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Inno Charge',

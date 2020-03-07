@@ -12,57 +12,42 @@
   triggers: [
     {
       id: 'Twinning Main Head',
-      regex: Regexes.startsUsing({ id: '3DBC', source: 'Surplus Kaliya', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DBC', source: 'Massengefertigt(?:e|er|es|en) Kaliya', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DBC', source: '量産型カーリア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DBC', source: '量产型卡利亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DBC', source: '양산형 칼리아', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DBC', source: 'Surplus Kaliya' }),
+      regexDe: Regexes.startsUsing({ id: '3DBC', source: 'Massengefertigt(?:e|er|es|en) Kaliya' }),
+      regexFr: Regexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus' }),
+      regexJa: Regexes.startsUsing({ id: '3DBC', source: '量産型カーリア' }),
+      regexCn: Regexes.startsUsing({ id: '3DBC', source: '量产型卡利亚' }),
+      regexKo: Regexes.startsUsing({ id: '3DBC', source: '양산형 칼리아' }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      alertText: {
-        en: 'Interrupt Kaliya',
-        de: 'Unterbreche Kaliya',
-        fr: 'Interrompez Kaliya',
-        ko: '양산형 칼리아 기술 시전 끊기',
-      },
+      response: Responses.stun(),
     },
     {
       id: 'Twinning Berserk',
-      regex: Regexes.startsUsing({ id: '3DC0', source: 'Vitalized Reptoid', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DC0', source: 'Gestärkt(?:e|er|es|en) Reptoid', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DC0', source: 'Reptoïde Vitalisé', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DC0', source: 'ヴァイタライズ・レプトイド', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DC0', source: '活力化爬虫半人马', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DC0', source: '활성된 파충류', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DC0', source: 'Vitalized Reptoid' }),
+      regexDe: Regexes.startsUsing({ id: '3DC0', source: 'Gestärkt(?:e|er|es|en) Reptoid' }),
+      regexFr: Regexes.startsUsing({ id: '3DC0', source: 'Reptoïde Vitalisé' }),
+      regexJa: Regexes.startsUsing({ id: '3DC0', source: 'ヴァイタライズ・レプトイド' }),
+      regexCn: Regexes.startsUsing({ id: '3DC0', source: '活力化爬虫半人马' }),
+      regexKo: Regexes.startsUsing({ id: '3DC0', source: '활성된 파충류' }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
-      alertText: {
-        en: 'Interrupt Reptoid',
-        de: 'Unterbreche Reptoid',
-        fr: 'Interrompez Reptoïde',
-        ko: '활성된 파충류 기술 시전 끊기',
-      },
+      response: Responses.interrupt(),
     },
     {
       id: 'Twinning 128 Tonze Swing',
-      regex: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanical Minotaur', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanisch(?:e|er|es|en) Minotaurus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DBA', source: 'Minotaure Servomécanique', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DBA', source: 'サーヴォ・ミノタウロス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DBA', source: '自控化弥诺陶洛斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DBA', source: '자동제어 미노타우로스', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanical Minotaur' }),
+      regexDe: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanisch(?:e|er|es|en) Minotaurus' }),
+      regexFr: Regexes.startsUsing({ id: '3DBA', source: 'Minotaure Servomécanique' }),
+      regexJa: Regexes.startsUsing({ id: '3DBA', source: 'サーヴォ・ミノタウロス' }),
+      regexCn: Regexes.startsUsing({ id: '3DBA', source: '自控化弥诺陶洛斯' }),
+      regexKo: Regexes.startsUsing({ id: '3DBA', source: '자동제어 미노타우로스' }),
       condition: function(data) {
         return data.CanSilence();
       },
-      alertText: {
-        en: 'Silence Minotaur',
-        de: 'Stumme Minotaur',
-        fr: 'Silence sur Minotaure',
-        ko: '자동제어 미노타우로스 침묵',
-      },
+      response: Responses.interrupt(),
     },
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
@@ -87,12 +72,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Twinning Augurium',
@@ -102,42 +82,12 @@
       regexJa: Regexes.startsUsing({ id: '3D65', source: 'アルファ・ザグナル' }),
       regexCn: Regexes.startsUsing({ id: '3D65', source: '扎戈斧龙一型' }),
       regexKo: Regexes.startsUsing({ id: '3D65', source: '알파 자그날' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tank cleave on YOU',
-            de: 'Tank cleave auf YOU',
-            fr: 'Tank cleave sur VOUS',
-            ko: '나에게 범위 탱버',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-          de: 'Tank cleave ausweichen',
-          fr: 'Evitez le cleave',
-          ko: '탱버 피하기',
-        };
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Twinning Charge Eradicated',
       regex: Regexes.headMarker({ id: '005D' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR stacken',
-            fr: 'Package sur VOUS',
-            ko: '나에게 쉐어징',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '"에게 모이기',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Twinning Thunder Beam',
@@ -147,24 +97,10 @@
       regexJa: Regexes.startsUsing({ id: '3DED', source: 'ミトリダテス' }),
       regexCn: Regexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
       regexKo: Regexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Buster on YOU',
-            de: 'Buster auf DIR',
-            fr: 'Buster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Buster auf ' + data.ShortName(matches.target),
-            fr: 'Buster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '"에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       // Alternatively, we could use 1B:\y{ObjectId}:(\y{Name}):....:....:00A0
@@ -178,12 +114,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Twinning Magitek Crossray',
@@ -225,24 +156,10 @@
       regexJa: Regexes.startsUsing({ id: '3DFB', source: 'タイクーン' }),
       regexCn: Regexes.startsUsing({ id: '3DFB', source: '泰空' }),
       regexKo: Regexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Buster on YOU',
-            de: 'Buster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Buster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '"에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       // An alternative is 1B:\y{ObjectId}:\y{Name}:....:....:00A9
@@ -253,12 +170,7 @@
       regexJa: Regexes.startsUsing({ id: '3E0C', source: 'タイクーン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E0C', source: '泰空', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E0C', source: '타이쿤', capture: false }),
-      alertText: {
-        en: 'spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ko: '산개',
-      },
+      response: Responses.spread('alert'),
     },
     {
       id: 'Twinning Discharger',
@@ -271,12 +183,7 @@
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [

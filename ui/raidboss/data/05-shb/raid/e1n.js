@@ -19,13 +19,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E1N Fragor Maximus',
@@ -38,13 +32,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E1N Dimensional Shift',
@@ -57,13 +45,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E1N Eden\'s Flare',
@@ -73,13 +55,7 @@
       regexJa: Regexes.startsUsing({ id: '3D97', source: 'エデン・プライム', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D97', source: '至尊伊甸', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D97', source: '에덴 프라임', capture: false }),
-      alertText: {
-        en: 'Under',
-        de: 'Unter ihn',
-        fr: 'Sous le boss',
-        cn: '脚下',
-        ko: '보스밑으로',
-      },
+      response: Responses.getUnder('alert'),
     },
     {
       id: 'E1N Vice of Vanity You',
@@ -108,37 +84,10 @@
       regexJa: Regexes.startsUsing({ id: '3DA1', source: 'エデン・プライム' }),
       regexCn: Regexes.startsUsing({ id: '3DA1', source: '至尊伊甸' }),
       regexKo: Regexes.startsUsing({ id: '3DA1', source: '에덴 프라임' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑点名',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑 -> ' + data.ShortName(matches.target),
-            ko: '탱버 -> ' + data.ShortName(matches.target),
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me && data.role == 'tank') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑 -> ' + data.ShortName(matches.target),
-            ko: '탱버 -> ' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'E1N Vice of Apathy Mark',
@@ -164,13 +113,7 @@
       regexCn: Regexes.startsUsing({ id: '3DA3', source: '至尊伊甸', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3DA3', source: '에덴 프라임', capture: false }),
       delaySeconds: 4.5,
-      alertText: {
-        en: 'Get Behind',
-        de: 'Hinter ihn',
-        fr: 'Derrière le boss',
-        cn: '身后躲避',
-        ko: '보스뒤로',
-      },
+      response: Responses.getBehind(),
     },
   ],
   timelineReplace: [
