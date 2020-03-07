@@ -352,7 +352,7 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D77', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D77', capture: false }),
       // This gives a warning within 1.4 seconds, so you can hit arm's length.
-      delaySeconds: 3.6,
+      delaySeconds: 8.6,
       durationSeconds: 1.4,
       response: Responses.knockback(),
     },
