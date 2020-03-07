@@ -426,7 +426,7 @@ class PopupText {
     let suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
-    let promise = 'promise' in trigger ? promise : () => {
+    let promise = 'promise' in trigger ? trigger.promise : () => {
       return new Promise((res) => {
         res(matches);
       });
