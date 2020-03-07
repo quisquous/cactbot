@@ -2,7 +2,10 @@
 
 // Susano Extreme
 [{
-  zoneRegex: /^The Pool Of Tribute \(Extreme\)$/,
+  zoneRegex: {
+    en: /^The Pool Of Tribute \(Extreme\)$/,
+    cn: /^须佐之男歼殛战$/,
+  },
   timelineFile: 'susano-ex.txt',
   timelineTriggers: [
     {

@@ -6,7 +6,10 @@
 //   fr: timeline done, triggers incomplete
 //   ja: timeline done, triggers incomplete
 [{
-  zoneRegex: /^Sigmascape V2\.0 \(Savage\)$/,
+  zoneRegex: {
+    en: /^Sigmascape V2\.0 \(Savage\)$/,
+    cn: /^欧米茄零式时空狭缝 西格玛幻境2$/,
+  },
   timelineFile: 'o6s.txt',
   triggers: [
     {

@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Dun Scaith$/,
+  zoneRegex: {
+    en: /^Dun Scaith$/,
+    cn: /^影之国$/,
+  },
   timelineFile: 'dun_scaith.txt',
   triggers: [
     // Basic stack occurs across all encounters except Deathgaze.

@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Second Coil Of Bahamut - Turn \(3\)$/,
+  zoneRegex: {
+    en: /^The Second Coil Of Bahamut - Turn \(3\)$/,
+    cn: /^巴哈姆特大迷宫 入侵之章3$/,
+  },
   timelineFile: 't8.txt',
   triggers: [
     {

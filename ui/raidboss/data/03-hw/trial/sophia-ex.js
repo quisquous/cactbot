@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Containment Bay P1T6 \(Extreme\)$/,
+  zoneRegex: {
+    en: /^Containment Bay P1T6 \(Extreme\)$/,
+    cn: /^索菲娅歼殛战$/,
+  },
   timelineFile: 'sophia-ex.txt',
   triggers: [
   ],

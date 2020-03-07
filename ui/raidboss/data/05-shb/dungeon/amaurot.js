@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Amaurot$/,
+    cn: /^末日暗影亚马乌罗提$/,
     ko: /^아모로트$/,
   },
   timelineFile: 'amaurot.txt',
