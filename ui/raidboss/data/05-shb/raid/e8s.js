@@ -4,7 +4,7 @@
 //   Options.cactbote8sUptimeKnockbackStrat = true;
 // .. if you want cactbot to callout Mirror Mirror 4's double knockback
 // Callout happens during/after boss turns and requires <1.4s reaction time
-// to avoid both Green and Read Mirror knockbacks. 
+// to avoid both Green and Read Mirror knockbacks.
 // Example: https://clips.twitch.tv/CreativeDreamyAsparagusKlappa
 // Group splits into two groups behind boss after the jump.
 // Tanks adjust to where the Red and Green Mirror are located.
