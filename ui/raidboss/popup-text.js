@@ -426,6 +426,11 @@ class PopupText {
     let suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
+    let promise = 'promise' in trigger ? promise : () => {
+      return new Promise((res) => {
+        res(matches);
+      });
+    };
 
     // FIXME: this is quite gross that PerTriggerOptions does not use the same fields as
     // options.  Ideally we should smush everything down into a single trigger object.
@@ -665,19 +670,28 @@ class PopupText {
         trigger.run(that.data, matches);
     };
 
-    // Run immediately?
-    if (!delay) {
-      f();
-      return;
-    }
+    // Allow promise to return a new set of matches
+    promise().then((pMatches) => {
+      matches = pMatches;
 
-    this.timers.push(window.setTimeout(() => {
-      try {
+      // Re-apply the groups logic above if we've got a new set of matches
+      if ((matches != undefined) && (matches.groups != undefined))
+        matches = matches.groups;
+
+      // Run immediately?
+      if (!delay) {
         f();
-      } catch (e) {
-        onTriggerException(trigger, e);
+        return;
       }
-    }, delay * 1000));
+
+      this.timers.push(window.setTimeout(() => {
+        try {
+          f();
+        } catch (e) {
+          onTriggerException(trigger, e);
+        }
+      }, delay * 1000));
+    });
   }
 
   Test(zone, log) {
