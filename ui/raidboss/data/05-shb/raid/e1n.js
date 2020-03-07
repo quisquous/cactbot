@@ -120,7 +120,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Eden Prime': 'Eden Prime',
+        'Eden Prime': 'Prim-Eden',
         'Eden(?! )': 'Eden',
         'Guardian of Paradise': 'Hüter von Eden',
       },
@@ -150,7 +150,7 @@
         'Dimensional Shift': 'Dimensionsverschiebung',
         'Delta Attack': 'Delta-Attacke',
         '--corner--': '--ecke--',
-        '--center--': '..mitte--',
+        '--center--': '--mitte--',
       },
       '~effectNames': {
         'Summon Order': 'Egi-Attacke I',
@@ -164,6 +164,7 @@
       'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': 'Primo-Éden',
+        'Guardian of Paradise': 'gardien du jardin',
       },
       'replaceText': {
         'Spear Of Paradise': 'Lance du paradis',
@@ -207,7 +208,8 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Eden Prime': 'Eden Prime',
+        'Eden Prime': 'エデン・プライム',
+        'Guardian of Paradise': 'エデン・ガーデナー',
       },
       'replaceText': {
         'Vice of Vanity': 'ヴァイス・オブ・ヴァニティー',
