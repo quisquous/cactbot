@@ -48,7 +48,7 @@
       regexJa: Regexes.startsUsing({ id: '40F9', source: 'タイタン' }),
       regexCn: Regexes.startsUsing({ id: '40F9', source: '泰坦' }),
       regexKo: Regexes.startsUsing({ id: '40F9', source: '타이탄' }),
-      condition: function(dat, matches) {
+      condition: function(data, matches) {
         return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
       response: Responses.tankBuster(),
