@@ -119,9 +119,9 @@
         'Terminus Bellwether': 'Läuter der Totenglocke',
         'Terminus Beholder': 'Terminus-Betrachter',
         'Mithridates': 'Mithridates',
-        'The First Doom': 'Erstes Unheil',
-        'The Second Doom': 'Zweites Unheil',
-        'The Third Doom': 'Drittes Unheil',
+        'The First Doom': 'Ersten Unheil',
+        'The Second Doom': 'Zweiten Unheil',
+        'The Third Doom': 'Dritten Unheil',
       },
       'replaceText': {
         'Adds': 'Adds',

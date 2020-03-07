@@ -227,8 +227,8 @@
         'Forgiven Cruelty': 'geläuterte Grausamkeit',
         'Forgiven Whimsy': 'geläuterte Gereiztheit',
         'Brightsphere': 'Lichtsphäre',
-        'The Winding Flare': 'Die Strahlenden Stufen',
-        'The White Gate': 'Die Weiße Pforte',
+        'The Winding Flare': 'Strahlenden Stufen',
+        'The White Gate': 'Weißen Pforte',
         'The Perished Path': 'Pfad ohne Halt',
       },
       'replaceText': {

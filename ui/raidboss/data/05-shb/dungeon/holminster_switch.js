@@ -168,9 +168,7 @@
         'The Auction': 'Viehmarkt',
         'The manor house courtyard': 'Garten des Herrenhauses',
         'Forgiven Dissonance': 'Geläuterter Widerspruch',
-
         'Tesleen, the Forgiven': 'Tesleen die Bekehrte',
-
         'Philia': 'Philia',
       },
       'replaceText': {

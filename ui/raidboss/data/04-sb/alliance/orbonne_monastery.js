@@ -701,7 +701,7 @@
         'The Crystalline Gaol': 'Kristallkerker',
         'The Realm of the Machinists': 'Reich der Maschinisten',
         'The Realm of the Templars': 'Reich der Tempelritter',
-        'The Realm of the Thunder God': '.*Reich des Donnergottes',
+        'The Realm of the Thunder God': 'Reich des Donnergottes',
         '(?<! )The Thunder God': 'Cidolfus',
         'The lifeless alley': 'Leblosen Pfad',
         'Ultima, the High Seraph': 'Cherub Ultima',
