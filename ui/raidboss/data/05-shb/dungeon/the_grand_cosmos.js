@@ -238,9 +238,9 @@
         'Leannan Sith': 'Leanan Sidhe',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Einsiedler',
-        'The Chamber of Celestial Song': 'den Großen Vergnügungen',
+        'The Chamber of Celestial Song': 'Großen Vergnügungen',
         'The Font of Quintessence': 'Broderieparterre',
-        'The Martial Court': 'Kleine Stufenarkade',
+        'The Martial Court': 'Kleinen Stufenarkade',
       },
       'replaceText': {
         'Black Flame': 'Finsterer Flammenwind',

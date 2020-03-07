@@ -237,7 +237,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'The Right Hand of Bahamut': 'Rechte Hand von Bahamut',
+        'The Right Hand of Bahamut': 'Rechten Hand von Bahamut',
         'Twintania': 'Twintania',
       },
       'replaceText': {
