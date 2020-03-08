@@ -1095,5 +1095,13 @@ UserConfig.registerOptions('raidboss', {
       type: 'checkbox',
       default: false,
     },
+    {
+      id: 'cactbote8sUptimeKnockbackStrat',
+      name: {
+        en: 'e8s: enable cactbot Uptime Knockback strat',
+      },
+      type: 'checkbox',
+      default: false,
+    },
   ],
 });

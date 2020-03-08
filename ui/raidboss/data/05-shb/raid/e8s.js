@@ -1,5 +1,16 @@
 'use strict';
 
+// In your cactbot/user/raidboss.js file, add the line:
+//   Options.cactbote8sUptimeKnockbackStrat = true;
+// .. if you want cactbot to callout Mirror Mirror 4's double knockback
+// Callout happens during/after boss turns and requires <1.4s reaction time
+// to avoid both Green and Read Mirror knockbacks.
+// Example: https://clips.twitch.tv/CreativeDreamyAsparagusKlappa
+// Group splits into two groups behind boss after the jump.
+// Tanks adjust to where the Red and Green Mirror are located.
+// One tank must be inbetween the party, the other closest to Greem Mirror.
+// Once Green Mirror goes off, the tanks adjust for Red Mirror.
+
 // TODO: figure out *anything* with mirrors and mirror colors
 // TODO: yell at you to take the last tower for Light Rampant if needed
 // TODO: yell at you to take the last tower for Icelit Dragonsong if needed
@@ -336,6 +347,22 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D76', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D76', capture: false }),
       response: Responses.goLeft(),
+    },
+    {
+      id: 'E8S Hallowed Wings Knockback',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D77', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D77', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D77', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D77', capture: false }),
+      condition: function(data) {
+        return data.options.cactbote8sUptimeKnockbackStrat;
+      },
+      // This gives a warning within 1.4 seconds, so you can hit arm's length.
+      delaySeconds: 8.6,
+      durationSeconds: 1.4,
+      response: Responses.knockback(),
     },
     {
       id: 'E8S Wyrm\'s Lament',
