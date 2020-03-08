@@ -667,11 +667,20 @@ class PopupText {
 
     let promise = null;
 
-    if ('promise' in trigger && typeof trigger.promise === "function")
-      promise = trigger.promise();
+    if ('promise' in trigger) {
+      if (typeof trigger.promise === 'function') {
+        promise = trigger.promise();
+        // Make sure we actually get a Promise back from the function
+        if (Promise.resolve(promise) !== promise) {
+          console.error('Trigger ' + trigger.id + ': promise function did not return a promise');
+          promise = null;
+        }
+      } else {
+        console.error('Trigger ' + trigger.id + ': promise defined but not a function');
+      }
+    }
 
-    //Make sure we actually get a Promise back from the function
-    if (Promise.resolve(promise) !== promise) {
+    if (promise === null) {
       promise = new Promise((res) => {
         res(matches);
       });
