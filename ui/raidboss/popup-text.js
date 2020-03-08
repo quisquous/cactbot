@@ -669,7 +669,7 @@ class PopupText {
 
     if ('promise' in trigger) {
       if (typeof trigger.promise === 'function') {
-        promise = trigger.promise();
+        promise = trigger.promise(data);
         // Make sure we actually get a Promise back from the function
         if (Promise.resolve(promise) !== promise) {
           console.error('Trigger ' + trigger.id + ': promise function did not return a promise');
@@ -687,13 +687,7 @@ class PopupText {
     }
 
     // Allow promise to return a new set of matches
-    promise.then((pMatches) => {
-      matches = pMatches;
-
-      // Re-apply the groups logic above if we've got a new set of matches
-      if ((matches != undefined) && (matches.groups != undefined))
-        matches = matches.groups;
-
+    promise.then(() => {
       // Run immediately?
       if (!delay) {
         f();
