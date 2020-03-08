@@ -426,11 +426,6 @@ class PopupText {
     let suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
-    let promise = 'promise' in trigger ? trigger.promise : () => {
-      return new Promise((res) => {
-        res(matches);
-      });
-    };
 
     // FIXME: this is quite gross that PerTriggerOptions does not use the same fields as
     // options.  Ideally we should smush everything down into a single trigger object.
@@ -670,8 +665,20 @@ class PopupText {
         trigger.run(that.data, matches);
     };
 
+    let promise = null;
+
+    if ('promise' in trigger && typeof trigger.promise === "function")
+      promise = trigger.promise();
+
+    //Make sure we actually get a Promise back from the function
+    if (Promise.resolve(promise) !== promise) {
+      promise = new Promise((res) => {
+        res(matches);
+      });
+    }
+
     // Allow promise to return a new set of matches
-    promise().then((pMatches) => {
+    promise.then((pMatches) => {
       matches = pMatches;
 
       // Re-apply the groups logic above if we've got a new set of matches
