@@ -22,7 +22,7 @@
       id: 'E5N Static Condensation',
       gainsEffectRegex: gLang.kEffect.StaticCondensation,
       mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+        return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },
     {
@@ -42,7 +42,7 @@
         return !data.hasOrb;
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' (no orb)' };
       },
     },
     {
@@ -59,11 +59,11 @@
       damageRegex: '4B9D',
       suppressSeconds: 30,
       mistake: function(e, data) {
-        for (let m in data.cloudMarkers) {
+        for (let m of data.cloudMarkers) {
           return {
             type: 'fail',
             blame: data.cloudMarkers[m],
-            text: e.abilityName,
+            text: e.abilityName + '(clouds too close)',
           };
         }
       },
