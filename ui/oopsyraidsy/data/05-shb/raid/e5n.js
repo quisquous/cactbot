@@ -47,7 +47,7 @@
     },
     {
       id: 'E5N Stormcloud Target Tracking',
-      regex: Regexes.headMarker('006E'),
+      regex: Regexes.headMarker({ id: '006E' }),
       run: function(e, data) {
         data.cloudMarkers = data.cloudMarkers || [];
         data.cloudMarkers.push(e.targetName);
@@ -70,7 +70,7 @@
     },
     {
       id: 'E5N Stormcloud cleanup',
-      regex: Regexes.headMarker('006E'),
+      regex: Regexes.headMarker({ id: '006E' }),
       delaySeconds: 30, // Stormclouds resolve well before this.
       run: function(e, data) {
         delete data.cloudMarkers;
