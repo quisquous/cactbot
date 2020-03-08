@@ -179,12 +179,14 @@
           return {
             en: 'North / South',
             fr: 'Nord / Sud',
+            ko: '남 / 북',
             cn: '南北站位',
           };
         }
         return {
           en: 'East / West',
           fr: 'Est / Ouest',
+          ko: '동 / 서',
           cn: '东西站位',
         };
       },
@@ -451,10 +453,10 @@
       alertText: function(data) {
         return {
           en: 'Blue #' + data.wyrmfangNumber,
-          de: 'Blau #' + data.wyrmclawNumber,
+          de: 'Blau #' + data.wyrmfangNumber,
           fr: 'Bleu #' + data.wyrmfangNumber,
-          ko: '파랑 ' + data.wyrmclawNumber + '번',
-          cn: '蓝色 #' + data.wyrmclawNumber,
+          ko: '파랑 ' + data.wyrmfangNumber + '번',
+          cn: '蓝色 #' + data.wyrmfangNumber,
         };
       },
     },
