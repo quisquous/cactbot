@@ -54,6 +54,7 @@
       },
     },
     {
+      // This ability is seen only if players stacked the clounds instead of spreading them.
       id: 'E5N The Parting Clouds',
       damageRegex: '4B9D',
       suppressSeconds: 30,
