@@ -31,9 +31,9 @@
         return e.type != '15';
       },
       mistake: function(e) {
-        // This is a failure because it will kill non-tanks
+        // Kills non-tanks who get hit by it.
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
       },
-    }
+    },
   ],
 }];
