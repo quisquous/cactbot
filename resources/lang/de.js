@@ -50,6 +50,8 @@ class CactbotLanguageDe extends CactbotLanguage {
       Shifu: 'Shifu',
       CircleOfPower: 'Ley-Linien',
 
+      SurgeProtection: 'Überspannungsschutz',
+
       Paralysis: 'Paralyse',
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',
@@ -62,6 +64,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       FoolsTumble: 'Trügerischer Sturz', // 0x183
       Dropsy: 'Wassersucht',
       Throttle: 'Erstickung',
+      StaticCondensation: 'Statische Ladung',
     });
 
     this.kUIStrings = Object.freeze({

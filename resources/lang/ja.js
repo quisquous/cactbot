@@ -50,6 +50,8 @@ class CactbotLanguageJa extends CactbotLanguage {
       Shifu: '士風',
       CircleOfPower: '黒魔紋：効果',
 
+      SurgeProtection: '避雷',
+
       Paralysis: '麻痺',
       Petrification: '石化',
       BeyondDeath: '死の超越',
@@ -62,6 +64,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       FoolsTumble: '墜落幻覚', // 0x183
       Dropsy: '水毒',
       Throttle: '窒息',
+      StaticCondensation: '蓄電',
 
       // UWU
       Windburn: '裂傷',
