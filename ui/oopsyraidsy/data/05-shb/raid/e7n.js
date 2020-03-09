@@ -37,7 +37,7 @@
       // If we don't set this up ahead of time, the Dark/Light Course triggers will fail
       // on the first two uses of Light's Course, since the Astral/Umbral properties wouldn't exist.
       id: 'E7N Debuff Setup',
-      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C2C' }),
+      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C2B' }),
       condition: function(e, data) {
         return !(data.hasAstral && data.hasUmbral);
       },
