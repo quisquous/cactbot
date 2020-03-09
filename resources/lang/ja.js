@@ -66,6 +66,8 @@ class CactbotLanguageJa extends CactbotLanguage {
       Throttle: '窒息',
       StaticCondensation: '蓄電',
       DamageDown: 'ダメージ低下',
+      AstralEffect: '偏属性：光',
+      UmbralEffect: '偏属性：闇',
 
       // UWU
       Windburn: '裂傷',
