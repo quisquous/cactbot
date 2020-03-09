@@ -65,6 +65,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       Dropsy: '水毒',
       Throttle: '窒息',
       StaticCondensation: '蓄電',
+      DamageDown: 'ダメージ低下',
 
       // UWU
       Windburn: '裂傷',

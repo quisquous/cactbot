@@ -62,6 +62,8 @@ class CactbotLanguageCn extends CactbotLanguage {
       FoolsTumble: '坠落幻觉', // 0x183
       Dropsy: 'FIXME',
       Throttle: 'FIXME',
+      StaticCondensation: '蓄电',
+      DamageDown: '伤害降低',
 
       // UWU
       Windburn: '裂伤',

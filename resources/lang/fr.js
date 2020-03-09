@@ -65,6 +65,9 @@ class CactbotLanguageFr extends CactbotLanguage {
       Dropsy: 'Œdème',
       Throttle: 'Suffocation',
       StaticCondensation: 'Charge électrique',
+      DamageDown: 'Malus de dégâts',
+
+      WindBurn: 'Brûlure du vent',
     });
 
     this.kUIStrings = Object.freeze({
