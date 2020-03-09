@@ -964,7 +964,19 @@ class DamageTracker {
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
-      if (this.zoneName.search(set.zoneRegex) < 0)
+
+      let zoneRegex = set.zoneRegex;
+      let locale = this.options.Language || 'en';
+      if (locale in zoneRegex) {
+        zoneRegex = zoneRegex[locale];
+      } else if ('en' in zoneRegex) {
+        zoneRegex = zoneRegex['en'];
+      } else {
+        console.error('unknown zoneRegex locale: ' + JSON.stringify(set.zoneRegex));
+        continue;
+      }
+
+      if (this.zoneName.search(zoneRegex) < 0)
         continue;
       this.AddSimpleTriggers('warn', set.damageWarn);
       this.AddSimpleTriggers('fail', set.damageFail);
