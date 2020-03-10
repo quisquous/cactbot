@@ -70,6 +70,7 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   durationSeconds: 3,
   condition: function(data, matches) { return true if it should run },
   preRun: function(data, matches) { do stuff.. },
+  promise: function(data) { return promise to wait for resolution of },
   infoText: {'Info popup'},
   alertText: {'Alert Popup'},
   alarmText: {'Alarm Popup'},
@@ -138,6 +139,9 @@ Activates the trigger if the function returns `true`. If it does not return `tru
 **preRun: function(data, matches)**
 If the trigger activates, the function will run as the first action after the activation condition is met.
 
+**promise: function(data)**
+If present and a function which returns a promise, will wait for promise to resolve before continuing with trigger. This runs after `preRun` and before the `delaySeconds` delay.
+
 **run: function(data, matches)**
 If the trigger activates, the function will run as the last action before the trigger ends.
 
@@ -155,14 +159,15 @@ Trigger elements are evaluated in this order:
 
 1. condition
 2. preRun
-3. delaySeconds
-4. durationSeconds
-5. suppressSeconds
-6. infoText
-7. alertText
-8. alarmText
-9. tts
-10. run
+3. promise
+4. delaySeconds
+5. durationSeconds
+6. suppressSeconds
+7. infoText
+8. alertText
+9. alarmText
+10. tts
+11. run
 
 ## Timeline Info
 

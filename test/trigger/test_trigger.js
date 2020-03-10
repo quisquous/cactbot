@@ -311,6 +311,7 @@ let testTriggerFieldsSorted = function(file, contents) {
     'beforeSeconds',
     'condition',
     'preRun',
+    'promise',
     'delaySeconds',
     'durationSeconds',
     'suppressSeconds',

@@ -686,7 +686,6 @@ class PopupText {
       });
     }
 
-    // Allow promise to return a new set of matches
     promise.then(() => {
       // Run immediately?
       if (!delay) {
