@@ -669,7 +669,7 @@ class PopupText {
 
     if ('promise' in trigger) {
       if (typeof trigger.promise === 'function') {
-        promise = trigger.promise(data);
+        promise = trigger.promise(data, matches);
         // Make sure we actually get a Promise back from the function
         if (Promise.resolve(promise) !== promise) {
           console.error('Trigger ' + trigger.id + ': promise function did not return a promise');
@@ -682,7 +682,7 @@ class PopupText {
 
     if (promise === null) {
       promise = new Promise((res) => {
-        res(matches);
+        res();
       });
     }
 

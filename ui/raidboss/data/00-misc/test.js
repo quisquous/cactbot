@@ -76,7 +76,7 @@
       regexDe: /(Wütender Dummy)/,
       regexCn: /愤怒的木人/,
       regexKo: /화난 나무인형/,
-      promise: function(data) {
+      promise: function(data, matches) {
         data.delayedDummyTimestampBefore = Date.now();
         let p = new Promise((res) => {
           window.setTimeout(() => {
