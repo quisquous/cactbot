@@ -3,7 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Gate: Descent$/,
-    cn: /^伊甸希望乐园 \(觉醒之章2\)$/,
+    cn: /^伊甸希望乐园 觉醒之章2$/,
     ko: /^희망의 낙원 에덴: 각성편 \(2\)$/,
   },
   timelineFile: 'e2n.txt',
@@ -24,22 +24,16 @@
   triggers: [
     {
       id: 'E2N Shadowflame Tank',
-      regex: Regexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E4D', source: 'Nichtswandler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
+      regex: Regexes.startsUsing({ id: '3E4D', source: 'Voidwalker' }),
+      regexDe: Regexes.startsUsing({ id: '3E4D', source: 'Nichtswandler' }),
+      regexFr: Regexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant' }),
+      regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー' }),
+      regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
+      regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
       condition: function(data) {
         return data.role == 'tank';
       },
-      alertText: {
-        en: 'Tank Buster on YOU',
-        de: 'Tankbuster auf DIR',
-        fr: 'Tankbuster sur VOUS',
-        cn: '死刑点名',
-        ko: '나에게 탱버',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'E2N Shadowflame Healer',
@@ -72,13 +66,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E2N Doomvoid Slicer',
@@ -88,13 +76,7 @@
       regexJa: Regexes.startsUsing({ id: '3E3C', source: 'ヴォイドウォーカー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E3C', source: '虚无行者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E3C', source: '보이드워커', capture: false }),
-      infoText: {
-        en: 'Get Under',
-        de: 'Unter ihn',
-        fr: 'Intérieur',
-        cn: '脚下',
-        ko: '안으로',
-      },
+      response: Responses.getUnder(),
     },
     {
       id: 'E2N Empty Hate',
@@ -104,13 +86,7 @@
       regexJa: Regexes.startsUsing({ id: '3E46', source: 'エレボスの巨腕', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3E46', source: '厄瑞玻斯的巨腕', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3E46', source: '에레보스의 팔', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        de: 'Knockback',
-        fr: 'Poussée',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback('info'),
     },
     {
       id: 'E2N Darkfire Counter',
@@ -131,48 +107,17 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread('alert'),
     },
     {
       id: 'E2N Unholy Darkness No Waiting',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            cn: '集合',
-            ko: '나에게 쉐어',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur '+ data.ShortName(matches.target),
-          cn: '集合 -> ' + data.ShortName(matches.target),
-          ko: '쉐어 -> ' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'E2N Shadoweye No Waiting',
       regex: Regexes.headMarker({ id: '00B3' }),
-      alertText: function(data, matches) {
-        return {
-          en: 'Look Away from ' + data.ShortName(matches.target),
-          de: 'Schau weg von ' + data.ShortName(matches.target),
-          fr: 'Ne regardez pas '+ data.ShortName(matches.target),
-          cn: '背对 ' + data.ShortName(matches.target),
-          ko: '보지마세요 -> ' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.lookAwayFrom(),
     },
     {
       id: 'E2N Dark Fire Collect',
@@ -253,24 +198,7 @@
           return false;
         return data.spell[matches.target] == 'stack';
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            cn: '集合',
-            ko: '나에게 쉐어',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          cn: '集合 -> ' + data.ShortName(matches.target),
-          ko: '쉐어 -> ' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'E2N Shadoweye Collect',
@@ -301,17 +229,15 @@
         return data.spell[matches.target] == 'eye';
       },
       delaySeconds: 2,
-      alarmText: function(data, matches) {
-        if (data.me != matches.target) {
-          return {
-            en: 'Look Away from ' + data.ShortName(matches.target),
-            de: 'Von ' + data.ShortName(matches.target) + ' weg schauen',
-            fr: 'Ne regardez pas ' + data.ShortName(matches.target),
-            cn: '背对 ' + data.ShortName(matches.target),
-            ko: '보지마세요 -> ' + data.ShortName(matches.target),
-          };
-        }
+      response: Responses.lookAwayFrom('alarm'),
+    },
+    {
+      id: 'E2N Countdown Marker Shadoweye You',
+      regex: Regexes.headMarker({ id: '00B8' }),
+      condition: function(data, matches) {
+        return data.spell[matches.target] == 'eye';
       },
+      delaySeconds: 2,
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {

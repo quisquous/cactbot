@@ -6,31 +6,60 @@ hideall "--sync--"
 0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 100000 jump 0
 
 ### Unknown
-# -p 4B69:1013.5
-# -ii 4B78
+# -p 4B69:1013.5 4E4B:1313
+# -ii 4B78 4B6D 4B6F
 1000.0 "--sync--" sync / 00:0839:Katharsis will be sealed off/ window 1000,0
 1013.5 "Fetid Fang" sync /:Unknown:4B69:/
-1016.8 "Nursed Grudge" sync /:Unknown:4B6D:/
-1031.9 "Scrutiny" sync /:Unknown:4E25:/
-1033.5 "Reflection" sync /:Unknown:4B6F:/
-1033.8 "Explosion" sync /:Sinister Bubble:4B6E:/
-1040.7 "Inscrutability" sync /:Unknown:4B6A:/
-1046.4 "Nursed Grudge" sync /:Unknown:4B6D:/
-1049.2 "--sync--" sync /:Unknown:4B77:/
-1054.2 "Ectoplasmic Ray" sync /:Unknown:4B7A:/
-1061.5 "Scrutiny" sync /:Unknown:4E25:/
-1063.1 "Reflection" sync /:Unknown:4B6F:/
-1063.5 "Explosion" sync /:Sinister Bubble:4B6E:/
-1071.7 "Luminous Ray" sync /:Unknown:4E27:/
-1080.2 "Inscrutability" sync /:Unknown:4B6A:/
-1089.5 "Fetid Fang" sync /:Unknown:4B69:/
-1098.3 "Clearout" sync /:Unknown:4B74:/
-1103.5 "Plain Weirdness" sync /:Unknown:4E4B:/
-1109.7 "Inscrutability" sync /:Unknown:4B73:/
-1119.9 "--sync--" sync /:Unknown:4B77:/
-1124.9 "Ectoplasmic Ray" sync /:Unknown:4B7A:/
-1132.5 "Luminous Ray" sync /:Unknown:4E27:/
+1032.3 "Scrutiny" sync /:Unknown:4E25:/
+1034.3 "Explosion" sync /:Sinister Bubble:4B6E:/
+1042.2 "Luminous Ray" sync /:Unknown:4E26:/
 # ???
+
+# Two Adds (hp push???)
+# hopefully there's not an inscrutability cast before the one preceding the add?
+1047.4 "--sync--" sync /:4B6A:Unknown/ window 50,0
+1051.4 "Inscrutability" sync /:Unknown:4B6A:/
+1059.8 "Unknown Add" sync /:Unknown:4B77:/ window 60,60
+1064.8 "Ectoplasmic Ray" sync /:Unknown:4B7A:/
+1072.1 "Scrutiny" sync /:Unknown:4E25:/
+1074.1 "Explosion" sync /:Sinister Bubble:4B6E:/
+1082.3 "Luminous Ray" sync /:Unknown:4E27:/
+1090.9 "Inscrutability" sync /:Unknown:4B6A:/
+1100.2 "Fetid Fang" sync /:Unknown:4B69:/
+1108.9 "Clearout" sync /:Unknown:4B74:/
+1114.9 "Clearout" sync /:Unknown:4B6B:/
+1120.1 "Setback" sync /:Unknown:4B6C:/
+1126.3 "--sync--" sync /:Unknown:4B70:/
+1131.3 "Ectoplasmic Ray" sync /:Unknown:4B79:/
+1131.7 "Ectoplasmic Ray" sync /:Unknown:4B71:/
+1138.2 "Luminous Ray" sync /:Unknown:4E27:/
+1147.8 "Inscrutability" sync /:Unknown:4B6A:/
+
+1156.9 "--sync--" sync /:Unknown:4B77:/ window 50,50 jump 1059.8
+1161.9 "Ectoplasmic Ray" sync /:Unknown:4B7A:/
+1169.5 "Scrutiny" sync /:Unknown:4E25:/
+1171.5 "Explosion" sync /:Sinister Bubble:4B6E:/
+1179.3 "Luminous Ray" sync /:Unknown:4E27:/
+1187.4 "Inscrutability" sync /:Unknown:4B6A:/
+1196.7 "Fetid Fang" sync /:Unknown:4B69:/
+1206.0 "Clearout" sync /:Unknown:4B74:/
+1212.0 "Clearout" sync /:Unknown:4B6B:/
+1217.2 "Setback" sync /:Unknown:4B6C:/
+
+# One add (???)
+# starts 3 second cast 10 seconds after other add dies?
+1310.0 "--sync--"  sync /:4E4B:Unknown/ window 310,0
+1313.0 "Plain Weirdness" sync /:Unknown:4E4B:/
+1319.2 "Inscrutability" sync /:Unknown:4B73:/
+1329.4 "--sync--" sync /:Unknown:4B77:/
+1334.4 "Ectoplasmic Ray" sync /:Unknown:4B7A:/
+1342.0 "Luminous Ray" sync /:Unknown:4E27:/
+1354.3 "Fetid Fang" sync /:Unknown:4B72:/
+1362.5 "Inscrutability" sync /:Unknown:4B73:/
+1383.6 "Scrutiny" sync /:Unknown:4E25:/
+1385.6 "Explosion" sync /:Sinister Bubble:4B6E:/
+1401.5 "Inscrutability" sync /:Unknown:4B73:/
+
 
 
 ### Kyklops
@@ -90,7 +119,27 @@ hideall "--sync--"
 3171.6 "Flying Fount" sync /:Rukshs Dheem:4B7F:/
 3178.8 "Swift Shift" sync /:Rukshs Dheem:4B83:/
 3186.9 "Command Current" sync /:Rukshs Dheem:4B81:/
-# Is this a loop back to 3019.2??
-3194.1 "Swift Shift" sync /:Rukshs Dheem:4B83:/
-3201.4 "Seabed Ceremony" sync /:Rukshs Dheem:4B7B:/
-### ???
+
+3193.6 "Swift Shift" sync /:Rukshs Dheem:4B83:/
+3200.9 "Seabed Ceremony" sync /:Rukshs Dheem:4B7B:/
+3207.0 "Depth Grip" sync /:Rukshs Dheem:4B84:/
+3215.1 "Falling Water" sync /:Rukshs Dheem:4B7D:/
+3216.8 "Wavebreaker x4" duration 3 #sync /:Depth Grip:33D4:/
+3220.2 "Rising Tide" sync /:Rukshs Dheem:4B8B:/
+3229.4 "Bonebreaker" sync /:Rukshs Dheem:4B8C:/
+3241.7 "Seabed Ceremony" sync /:Rukshs Dheem:4B7B:/
+3247.6 "Depth Grip" sync /:Rukshs Dheem:4B84:/
+3257.8 "Wavebreaker x8" duration 7 #sync /:Depth Grip:33D4:/
+3275.1 "Bonebreaker" sync /:Rukshs Dheem:4B8C:/
+
+3282.3 "Swift Shift" sync /:Rukshs Dheem:4B83:/ window 50,50 jump 3193.6
+3289.6 "Seabed Ceremony"
+3295.7 "Depth Grip"
+3303.8 "Falling Water"
+3305.5 "Wavebreaker x4"
+3308.9 "Rising Tide"
+3318.1 "Bonebreaker"
+3330.2 "Seabed Ceremony"
+3336.3 "Depth Grip"
+3346.5 "Wavebreaker x8"
+3363.8 "Bonebreaker"

@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Bowl Of Embers$/,
+  zoneRegex: {
+    en: /^The Bowl Of Embers$/,
+    cn: /^伊弗利特讨伐战$/,
+  },
   timelineFile: 'ifrit_nm.txt',
   timelineTriggers: [
     {

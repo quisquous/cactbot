@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Malikah's Well$/,
+    cn: /^避暑离宫马利卡大井$/,
     ko: /^말리카 큰우물$/,
   },
   timelineFile: 'malikahs_well.txt',
@@ -15,42 +16,15 @@
       regexJa: Regexes.startsUsing({ id: '3CE5', source: 'グレーター・アルマジロ' }),
       regexCn: Regexes.startsUsing({ id: '3CE5', source: '大犰狳' }),
       regexKo: Regexes.startsUsing({ id: '3CE5', source: '거대 아르마딜로' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Malikah Head Toss Stack',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            ko: '나에게 쉐어징',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          ko: data.ShortName(matches.target) + '에게 쉐어징',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Malikah Right Round',
@@ -68,21 +42,16 @@
     },
     {
       id: 'Malikah Deep Draught',
-      regex: Regexes.startsUsing({ id: '4188', source: 'Pack Armadillo', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4188', source: 'Rudel-Gürteltier', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4188', source: 'Tatou Grégaire', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4188', source: 'パック・アルマジロ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4188', source: '群落犰狳', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4188', source: '무리 아르마딜로', capture: false }),
+      regex: Regexes.startsUsing({ id: '4188', source: 'Pack Armadillo' }),
+      regexDe: Regexes.startsUsing({ id: '4188', source: 'Rudel-Gürteltier' }),
+      regexFr: Regexes.startsUsing({ id: '4188', source: 'Tatou Grégaire' }),
+      regexJa: Regexes.startsUsing({ id: '4188', source: 'パック・アルマジロ' }),
+      regexCn: Regexes.startsUsing({ id: '4188', source: '群落犰狳' }),
+      regexKo: Regexes.startsUsing({ id: '4188', source: '무리 아르마딜로' }),
       condition: function(data) {
         return data.CanSilence();
       },
-      infoText: {
-        en: 'Silence Add',
-        de: 'Add stummen',
-        fr: 'Silence Add',
-        ko: '쫄 시전 끊기',
-      },
+      response: Responses.interrupt('info'),
     },
     {
       id: 'Malikah Efface',
@@ -92,24 +61,10 @@
       regexJa: Regexes.startsUsing({ id: '3CEB', source: 'ハイドロタロース' }),
       regexCn: Regexes.startsUsing({ id: '3CEB', source: '水陆两用塔罗斯' }),
       regexKo: Regexes.startsUsing({ id: '3CEB', source: '수력 탈로스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Malikah High Pressure',
@@ -119,11 +74,7 @@
       regexJa: Regexes.startsUsing({ id: '3CEC', source: 'ハイドロタロース', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3CEC', source: '水陆两用塔罗斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3CEC', source: '수력 탈로스', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        de: 'Rückstoß',
-        ko: '넉백',
-      },
+      response: Responses.knockback('info'),
     },
     {
       id: 'Malikah Swift Spill',
@@ -133,11 +84,7 @@
       regexJa: Regexes.startsUsing({ id: '3CEF', source: 'ハイドロタロース', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3CEF', source: '水陆两用塔罗斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3CEF', source: '수력 탈로스', capture: false }),
-      infoText: {
-        en: 'Get Behind',
-        de: 'Hinter ihn',
-        ko: '보스 뒤로',
-      },
+      response: Responses.getBehind('info'),
     },
     {
       id: 'Malikah Intestinal Crank',
@@ -150,12 +97,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [

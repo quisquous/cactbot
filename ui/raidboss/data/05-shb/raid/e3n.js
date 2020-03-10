@@ -3,7 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Gate: Inundation$/,
-    cn: /^伊甸希望乐园 \(觉醒之章3\)$/,
+    cn: /^伊甸希望乐园 觉醒之章3$/,
     ko: /^희망의 낙원 에덴: 각성편 \(3\)$/,
   },
   timelineFile: 'e3n.txt',
@@ -19,48 +19,15 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E3N Rip Current',
       regex: Regexes.headMarker({ id: '0017' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑点名',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑 ->' + data.ShortName(matches.target),
-            ko: '탱버 ->' + data.ShortName(matches.target),
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me && data.role == 'tank') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑 ->' + data.ShortName(matches.target),
-            ko: '탱버 ->' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'E3N Tidal Wave Look',
@@ -90,13 +57,7 @@
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
-      alertText: {
-        en: 'Knockback',
-        de: 'Knockback',
-        fr: 'Poussée',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'E3N Undersea Quake Outside',
@@ -122,13 +83,7 @@
       regexJa: Regexes.startsUsing({ id: '3FCF', source: 'リヴァイアサン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3FCF', source: '利维亚桑', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3FCF', source: '리바이어선', capture: false }),
-      alarmText: {
-        en: 'Go To Sides',
-        de: 'Auf die Seiten gehen',
-        fr: 'Allez sur les côtés',
-        cn: '两侧',
-        ko: '좌우 외곽으로',
-      },
+      response: Responses.goSides('alarm'),
     },
     {
       id: 'E3N Maelstrom',
@@ -153,13 +108,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'E3N Tsunami',
@@ -172,58 +121,18 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       // Crashing Pulse and Smothering Waters
       id: 'E3N Stack',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            cn: '集合',
-            ko: '나에게 쉐어',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          cn: '集合 ->' + data.ShortName(matches.target),
-          ko: '쉐어 ->' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'E3N Surging Waters Marker',
       regex: Regexes.headMarker({ id: '00AD' }),
-      infoText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Knockback on YOU',
-            de: 'Knockback auf DIR',
-            fr: 'Poussée sur VOUS',
-            cn: '击退点名',
-            ko: '나에게 넉백징',
-          };
-        }
-        return {
-          en: 'Knockback on ' + data.ShortName(matches.target),
-          de: 'Knockback auf ' + data.ShortName(matches.target),
-          fr: 'Poussée sur ' + data.ShortName(matches.target),
-          cn: '击退 ->' + data.ShortName(matches.target),
-          ko: '넉백 ->' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.knockbackOn(),
     },
     {
       id: 'E3N Splashing Waters Spread',
@@ -231,13 +140,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'E3N Swirling Waters Donut',

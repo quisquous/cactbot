@@ -111,14 +111,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ja: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '광딜',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'InnoEx Righteous Bolt',
@@ -196,14 +189,7 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Tank Buster on YOU',
-        de: 'Tankbuster auf DIR',
-        fr: 'Tankbuster sur VOUS',
-        ja: '自分にタンクバスター',
-        cn: '死刑点名',
-        ko: '나에게 탱버',
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'InnoEx Charge',

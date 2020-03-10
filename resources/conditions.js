@@ -7,6 +7,9 @@ let Conditions = {
   targetIsYou: () => (data, matches) => {
     return data.me == matches.target;
   },
+  targetIsNotYou: () => (data, matches) => {
+    return data.me !== matches.target;
+  },
   caresAboutAOE: () => (data) => {
     return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
   },

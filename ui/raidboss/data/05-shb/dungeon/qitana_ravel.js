@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^[tT]he Qitana Ravel$/,
     ko: /^키타나 신굴$/,
+    cn: /^文明古迹奇坦那神影洞$/,
   },
   timelineFile: 'qitana_ravel.txt',
   triggers: [
@@ -15,24 +16,10 @@
       regexJa: Regexes.startsUsing({ id: '3C89', source: 'ロツァトル' }),
       regexCn: Regexes.startsUsing({ id: '3C89', source: '洛查特尔' }),
       regexKo: Regexes.startsUsing({ id: '3C89', source: '로차틀' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Qitana Scorn',
@@ -45,12 +32,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Qitana Eerie Pillar',
@@ -110,24 +92,10 @@
       regexJa: Regexes.startsUsing({ id: '3C91', source: 'バッツカッチ' }),
       regexCn: Regexes.startsUsing({ id: '3C91', source: '大脚野蝠' }),
       regexKo: Regexes.startsUsing({ id: '3C91', source: '배츠콰치' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Qitana Soundwave',
@@ -140,12 +108,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Qitana Subsonics',
@@ -158,12 +121,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoes',
-        de: 'AoEs',
-        fr: 'Dégâts de zone',
-        ko: '연속 전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Qitana Rend',
@@ -173,24 +131,10 @@
       regexJa: Regexes.startsUsing({ id: '3C99', source: 'エロース' }),
       regexCn: Regexes.startsUsing({ id: '3C99', source: '艾洛斯' }),
       regexKo: Regexes.startsUsing({ id: '3C99', source: '에로스' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Qitana Glossolalia',
@@ -203,12 +147,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Qitana Hound Tether',
@@ -244,22 +183,7 @@
     {
       id: 'Qitana Confession of Faith Stack',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack Middle on YOU',
-            de: 'In der Mitte auf DIR sammeln',
-            fr: 'Package au milieu sur VOUS',
-            ko: '보스 정면에서 쉐어',
-          };
-        }
-        return {
-          en: 'Stack Middle on ' + data.ShortName(matches.target),
-          de: 'In Der Mitte auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package au milieu sur ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '에게 쉐어징',
-        };
-      },
+      response: Responses.stackOn('alert'),
     },
     {
       id: 'Qitana Confession of Faith Spread',

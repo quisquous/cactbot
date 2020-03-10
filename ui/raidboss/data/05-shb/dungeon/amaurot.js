@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Amaurot$/,
+    cn: /^末日暗影亚马乌罗提$/,
     ko: /^아모로트$/,
   },
   timelineFile: 'amaurot.txt',
@@ -46,12 +47,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Amaurot Final Sky',
@@ -78,12 +74,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Amaurot Apokalypsis',
@@ -128,9 +119,9 @@
         'Terminus Bellwether': 'Läuter der Totenglocke',
         'Terminus Beholder': 'Terminus-Betrachter',
         'Mithridates': 'Mithridates',
-        'The First Doom': 'Erstes Unheil',
-        'The Second Doom': 'Zweites Unheil',
-        'The Third Doom': 'Drittes Unheil',
+        'The First Doom': 'Ersten Unheil',
+        'The Second Doom': 'Zweiten Unheil',
+        'The Third Doom': 'Dritten Unheil',
       },
       'replaceText': {
         'Adds': 'Adds',

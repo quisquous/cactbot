@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Dohn Mheg$/,
+    cn: /^水妖幻园多恩美格禁园$/,
     ko: /^도느 메그$/,
   },
   timelineFile: 'dohn_mheg.txt',
@@ -14,85 +15,65 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      infoText: {
-        en: 'Mini Buster',
-        de: 'Kleiner TankbBuster',
-        ko: '탱버',
-      },
+      response: Responses.miniBuster(),
     },
   ],
   triggers: [
     {
       id: 'Dohn Mheg Watering Wheel',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DAA', source: 'Dohn-Fuath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DAA', source: 'Fuath De Dohn Mheg', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DAA', source: 'ドォーヌ・フーア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DAA', source: '禁园水妖', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DAA', source: '도느 푸아', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath' }),
+      regexDe: Regexes.startsUsing({ id: '3DAA', source: 'Dohn-Fuath' }),
+      regexFr: Regexes.startsUsing({ id: '3DAA', source: 'Fuath De Dohn Mheg' }),
+      regexJa: Regexes.startsUsing({ id: '3DAA', source: 'ドォーヌ・フーア' }),
+      regexCn: Regexes.startsUsing({ id: '3DAA', source: '禁园水妖' }),
+      regexKo: Regexes.startsUsing({ id: '3DAA', source: '도느 푸아' }),
       condition: function(data) {
         return data.CanSilence();
       },
-      alertText: {
-        en: 'Silence Fuath',
-        de: 'Stumme Dohn-Fuath',
-        ko: '도느 푸아 기술 시전 끊기',
-      },
+      response: Responses.interrupt(),
     },
     {
       id: 'Dohn Mheg Straight Punch',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DAB', source: 'Dohn-Blumenkorb', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DAB', source: 'Panier De Dohn Mheg', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DAB', source: 'ドォーヌ・バスケット', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DAB', source: '禁园篮筐', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DAB', source: '도느 바구니', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket' }),
+      regexDe: Regexes.startsUsing({ id: '3DAB', source: 'Dohn-Blumenkorb' }),
+      regexFr: Regexes.startsUsing({ id: '3DAB', source: 'Panier De Dohn Mheg' }),
+      regexJa: Regexes.startsUsing({ id: '3DAB', source: 'ドォーヌ・バスケット' }),
+      regexCn: Regexes.startsUsing({ id: '3DAB', source: '禁园篮筐' }),
+      regexKo: Regexes.startsUsing({ id: '3DAB', source: '도느 바구니' }),
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Stun Basket',
-        de: 'Unterbreche Dohn-Blumenkorb',
-        ko: '도느 바구니 기절시키기',
-      },
+      response: Responses.stun('info'),
     },
     {
       id: 'Dohn Mheg Proboscis',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DAF', source: 'Dohn-Edianmotte', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DAF', source: 'Noctuétain De Dohn Mheg', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DAF', source: 'ドォーヌ・エーディンモス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DAF', source: '禁园爱蒂恩蛾', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DAF', source: '도느 에다인나방', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth' }),
+      regexDe: Regexes.startsUsing({ id: '3DAF', source: 'Dohn-Edianmotte' }),
+      regexFr: Regexes.startsUsing({ id: '3DAF', source: 'Noctuétain De Dohn Mheg' }),
+      regexJa: Regexes.startsUsing({ id: '3DAF', source: 'ドォーヌ・エーディンモス' }),
+      regexCn: Regexes.startsUsing({ id: '3DAF', source: '禁园爱蒂恩蛾' }),
+      regexKo: Regexes.startsUsing({ id: '3DAF', source: '도느 에다인나방' }),
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Stun Moth',
-        de: 'Unterbreche Dohn-Edianmotte',
-        ko: '도느 에다인나방 기절시키기',
-      },
+      response: Responses.stun('info'),
     },
     {
       id: 'Dohn Mheg Torpedo',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DB5', source: 'Dohn-Kelpie', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DB5', source: 'Kelpie De Dohn Mheg', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DB5', source: 'ドォーヌ・ケルピー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DB5', source: '禁园凯尔派', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DB5', source: '도느 켈피', capture: false }),
+      regex: Regexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie' }),
+      regexDe: Regexes.startsUsing({ id: '3DB5', source: 'Dohn-Kelpie' }),
+      regexFr: Regexes.startsUsing({ id: '3DB5', source: 'Kelpie De Dohn Mheg' }),
+      regexJa: Regexes.startsUsing({ id: '3DB5', source: 'ドォーヌ・ケルピー' }),
+      regexCn: Regexes.startsUsing({ id: '3DB5', source: '禁园凯尔派' }),
+      regexKo: Regexes.startsUsing({ id: '3DB5', source: '도느 켈피' }),
       condition: function(data) {
         return data.CanStun();
       },
-      infoText: {
-        en: 'Stun Kelpie',
-        de: 'Unterbreche Dohn-Kelpie',
-        ko: '기절 → 도느 켈피',
-      },
+      response: Responses.stun('info'),
     },
     {
       id: 'Dohn Mheg Candy Cane',
@@ -102,24 +83,10 @@
       regexJa: Regexes.startsUsing({ id: '2299', source: '美眼のインク＝ゾン' }),
       regexCn: Regexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
       regexKo: Regexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
-      alertText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: data.ShortName(matches[1]) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Dohn Mheg Landsblood',
@@ -132,27 +99,12 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Dohn Mheg Leap Stack',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            ko: '나에게 쉐어징',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '에게 쉐어징',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Dohn Mheg Timber',
@@ -165,12 +117,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégats de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Dohn Mheg Crippling Blow',
@@ -180,24 +127,10 @@
       regexJa: Regexes.startsUsing({ id: '35A4', source: '楽聖のインク＝ゾン' }),
       regexCn: Regexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
       regexKo: Regexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
-      alertText: function(data, matches) {
-        if (matches[1] == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches[1]),
-            de: 'Tankbuster auf ' + data.ShortName(matches[1]),
-            fr: 'Tankbuster sur ' + data.ShortName(matches[1]),
-            ko: data.ShortName(matches[1]) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Dohn Mheg Imp Choir',
@@ -207,12 +140,7 @@
       regexJa: Regexes.startsUsing({ id: '34F0', source: '楽聖のインク＝ゾン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '34F0', source: '乐圣 因克·佐恩', capture: false }),
       regexKo: Regexes.startsUsing({ id: '34F0', source: '대음악가 잉크 돈', capture: false }),
-      alertText: {
-        en: 'Look Away',
-        de: 'Weg schauen',
-        fr: 'Regardez ailleurs',
-        ko: '뒤돌기',
-      },
+      response: Responses.lookAway('alert'),
     },
     {
       id: 'Dohn Mheg Toad Choir',
@@ -222,12 +150,7 @@
       regexJa: Regexes.startsUsing({ id: '34EF', source: '楽聖のインク＝ゾン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '34EF', source: '乐圣 因克·佐恩', capture: false }),
       regexKo: Regexes.startsUsing({ id: '34EF', source: '대음악가 잉크 돈', capture: false }),
-      alertText: {
-        en: 'Out of Front',
-        de: 'Weg von vorne',
-        fr: 'Ne restez pas devant',
-        ko: '보스 앞 피하기',
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
@@ -240,12 +163,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégats de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
   ],
   timelineReplace: [

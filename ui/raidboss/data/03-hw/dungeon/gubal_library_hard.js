@@ -2,7 +2,10 @@
 
 // The Great Gubal Library--Hard
 [{
-  zoneRegex: /Great Gubal Library \(Hard\)/,
+  zoneRegex: {
+    en: /Great Gubal Library \(Hard\)/,
+    cn: /^秘本宝库迦巴勒幻想图书馆$/,
+  },
   timelineFile: 'gubal_library_hard.txt',
   timelineTriggers: [
     {
@@ -241,7 +244,7 @@
         'Meteor': 'Meteo',
         'Middle Shelf Tome': 'Pappband',
         'Strix': 'Strix',
-        'The Astrology and Astromancy Camera': 'Astrologisches und Astronomisches Gewölbe',
+        'The Astrology and Astromancy Camera': 'Astrologische und Astronomische Gewölbe',
         'The Hall of Magicks': 'Halle der Magie',
         'The Rare Tomes Room': 'Abteilung für seltene Schriften',
         'Top Shelf Tome': 'Prachtband',

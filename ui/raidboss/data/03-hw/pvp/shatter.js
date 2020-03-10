@@ -2,7 +2,10 @@
 
 // Frontlines: Shatter
 [{
-  zoneRegex: /^The Fields Of Glory \(Shatter\)$/,
+  zoneRegex: {
+    en: /^The Fields Of Glory \(Shatter\)$/,
+    cn: /^荣誉野（碎冰战）$/,
+  },
   triggers: [
     {
       id: 'Shatter Big Ice',

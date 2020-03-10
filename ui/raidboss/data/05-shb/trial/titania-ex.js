@@ -20,13 +20,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'TitaniaEx Phantom Out',
@@ -36,14 +30,7 @@
       regexJa: Regexes.startsUsing({ id: '3D4C', source: 'ティターニア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D4C', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D4C', source: '티타니아', capture: false }),
-      alertText: {
-        en: 'Out',
-        de: 'Raus',
-        ja: '外へ',
-        fr: 'Dehors',
-        cn: '远离',
-        ko: '밖으로',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'TitaniaEx Phantom In',
@@ -53,14 +40,7 @@
       regexJa: Regexes.startsUsing({ id: '3D4D', source: 'ティターニア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D4D', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D4D', source: '티타니아', capture: false }),
-      alertText: {
-        en: 'In',
-        de: 'Rein',
-        ja: '中へ',
-        fr: 'Dedans',
-        cn: '靠近',
-        ko: '안으로',
-      },
+      response: Responses.getIn(),
     },
     {
       id: 'TitaniaEx Mist Failure',
@@ -70,14 +50,7 @@
       regexJa: Regexes.addedCombatant({ name: '水の精', capture: false }),
       regexCn: Regexes.addedCombatant({ name: '水精', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '물의 정령', capture: false }),
-      infoText: {
-        en: 'Kill Extra Add',
-        de: 'Add angreifen',
-        ja: '水の精倒して',
-        fr: 'Tuez l\'add',
-        cn: '击杀小怪',
-        ko: '쫄 나온거부터 처리',
-      },
+      response: Responses.killExtraAdd(),
     },
     {
       id: 'TitaniaEx Mist',
@@ -153,30 +126,7 @@
       regexJa: Regexes.startsUsing({ id: '3D4A', source: 'ティターニア' }),
       regexCn: Regexes.startsUsing({ id: '3D4A', source: '缇坦妮雅' }),
       regexKo: Regexes.startsUsing({ id: '3D4A', source: '티타니아' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Cleave on YOU',
-            de: 'Tank Cleave auf DIR',
-            ja: '自分にタンクバスター',
-            fr: 'Tank cleave sur vous',
-            cn: '坦克顺劈点名',
-            ko: '탱버 대상자',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches.target != data.me) {
-          return {
-            en: 'Tank Cleave on ' + data.ShortName(matches.target),
-            de: 'Tank Cleave auf ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            fr: 'Tank cleave sur ' + data.ShortName(matches.target),
-            cn: '坦克顺劈 -> ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'TitaniaEx Bramble 1',
@@ -204,14 +154,7 @@
       regexCn: Regexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
       delaySeconds: 3,
-      alertText: {
-        en: 'Run!',
-        de: 'Lauf!',
-        ja: '走れ！',
-        fr: 'Courez !',
-        cn: '跑！',
-        ko: '달려!',
-      },
+      response: Responses.move('alert'),
     },
     {
       id: 'TitaniaEx Bramble Knockback',
@@ -232,36 +175,29 @@
     },
     {
       id: 'TitaniaEx Fae Light',
-      regex: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D2C', source: 'Titania', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아', capture: false }),
-      alertText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Tank Buster',
-            de: 'Tankbuster',
-            fr: 'Tankbuster',
-            ja: 'タンクバスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
+      regex: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexDe: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexFr: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
+      regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
+      regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아' }),
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
-      infoText: function(data) {
-        if (data.role != 'tank' && data.role != 'healer') {
-          return {
-            en: 'Tank Cleave',
-            de: 'Tank Cleave',
-            ja: 'タンクバスター',
-            fr: 'Tank cleave',
-            cn: '坦克顺劈',
-            ko: '탱버',
-          };
-        }
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'TitaniaEx Fae Light Cleave',
+      regex: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexDe: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexFr: Regexes.startsUsing({ id: '3D2C', source: 'Titania' }),
+      regexJa: Regexes.startsUsing({ id: '3D2C', source: 'ティターニア' }),
+      regexCn: Regexes.startsUsing({ id: '3D2C', source: '缇坦妮雅' }),
+      regexKo: Regexes.startsUsing({ id: '3D2C', source: '티타니아' }),
+      condition: function(data) {
+        return data.role != 'tank' && data.role != 'healer';
       },
+      response: Responses.tankCleave('info'),
     },
     {
       id: 'TitaniaEx Frost Rune 1',
@@ -289,14 +225,7 @@
       regexCn: Regexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
       delaySeconds: 6.5,
-      infoText: {
-        en: 'Run Out',
-        de: 'Raus gehen',
-        ja: '外へ',
-        fr: 'Allez à l\'extérieur',
-        cn: '远离',
-        ko: '장판 피하기',
-      },
+      response: Responses.getOut('info'),
     },
     {
       id: 'TitaniaEx Frost Rune 3',
@@ -307,14 +236,7 @@
       regexCn: Regexes.ability({ id: '3D2B', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.ability({ id: '3D2B', source: '티타니아', capture: false }),
       suppressSeconds: 60,
-      infoText: {
-        en: 'Run In',
-        de: 'Rein gehen',
-        ja: '中へ',
-        fr: 'Allez au centre',
-        cn: '靠近',
-        ko: '중앙으로',
-      },
+      response: Responses.getIn('info'),
     },
     {
       id: 'TitaniaEx Growth Rune',
@@ -339,14 +261,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        ja: '散開',
-        fr: 'Dispersez-vous',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'TitaniaEx Hard Swipe',
@@ -359,14 +274,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Tank Buster',
-        de: 'Tankbuster',
-        fr: 'Tankbuster',
-        ja: 'タンクバスター',
-        cn: '死刑',
-        ko: '탱버',
-      },
+      response: Responses.tankBuster('info'),
     },
     {
       id: 'TitaniaEx Pummel',
@@ -400,14 +308,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        ja: '散開',
-        fr: 'Ecartez-vous',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread(),
       run: function(data) {
         data.bomb = data.bomb || {};
         data.bomb[data.me] = true;

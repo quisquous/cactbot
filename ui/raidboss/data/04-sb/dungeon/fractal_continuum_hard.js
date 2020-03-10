@@ -2,7 +2,10 @@
 
 // Fractal Continuum (Hard)
 [{
-  zoneRegex: /^The Fractal Continuum \(Hard\)$/,
+  zoneRegex: {
+    en: /^The Fractal Continuum \(Hard\)$/,
+    cn: /^疯狂战舰无限回廊$/,
+  },
   triggers: [
     {
       id: 'Fractal Swipe Servo',

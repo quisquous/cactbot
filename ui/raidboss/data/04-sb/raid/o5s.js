@@ -6,7 +6,10 @@
 //   fr: missing replaceText, triggers
 //   ja: missing replaceText, triggers
 [{
-  zoneRegex: /^Sigmascape V1\.0 \(Savage\)$/,
+  zoneRegex: {
+    en: /^Sigmascape V1\.0 \(Savage\)$/,
+    cn: /^欧米茄零式时空狭缝 西格玛幻境1$/,
+  },
   timelineFile: 'o5s.txt',
   resetWhenOutOfCombat: false,
   triggers: [

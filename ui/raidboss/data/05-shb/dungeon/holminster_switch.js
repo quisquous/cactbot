@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Holminster Switch$/,
     ko: /^홀민스터$/,
+    cn: /^遇袭集落水滩村$/,
   },
   timelineFile: 'holminster_switch.txt',
   triggers: [
@@ -18,12 +19,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Holminster Pillory',
@@ -33,24 +29,10 @@
       regexJa: Regexes.startsUsing({ id: '3DC4', source: 'フォーギヴン・ディソナンス' }),
       regexCn: Regexes.startsUsing({ id: '3DC4', source: '得到宽恕的失调' }),
       regexKo: Regexes.startsUsing({ id: '3DC4', source: '면죄된 불화' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Tickler',
@@ -60,24 +42,10 @@
       regexJa: Regexes.startsUsing({ id: '3DCF', source: 'フォーギヴン・テスリーン' }),
       regexCn: Regexes.startsUsing({ id: '3DCF', source: '得到宽恕的泰丝琳' }),
       regexKo: Regexes.startsUsing({ id: '3DCF', source: '면죄된 테슬린' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Bridle',
@@ -90,12 +58,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Holminster Flagellation',
@@ -105,32 +68,12 @@
       regexJa: Regexes.startsUsing({ id: '3DD5', source: 'フォーギヴン・テスリーン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3DD5', source: '得到宽恕的泰丝琳', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3DD5', source: '면죄된 테슬린', capture: false }),
-      infoText: {
-        en: 'spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Holminster Exorcise Stack',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-            ko: '나에게 쉐어징',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          ko: data.ShortName(matches.target) + '에게 쉐어징',
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Holminster Scavenger',
@@ -143,12 +86,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ko: '전체 공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Holminster Head Crusher',
@@ -158,24 +96,10 @@
       regexJa: Regexes.startsUsing({ id: '3DD7', source: 'フィリア' }),
       regexCn: Regexes.startsUsing({ id: '3DD7', source: '斐利亚' }),
       regexKo: Regexes.startsUsing({ id: '3DD7', source: '필리아' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ko: data.ShortName(matches.target) + '에게 탱버',
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'healer';
       },
+      response: Responses.tankBuster(),
     },
     {
       id: 'Holminster Chain Down',
@@ -198,12 +122,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ko: '산개',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Holminster Into The Light',
@@ -228,12 +147,7 @@
       regexJa: Regexes.startsUsing({ id: '3DE7', source: 'フィリア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3DE7', source: '斐利亚', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3DE7', source: '필리아', capture: false }),
-      alertText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite ',
-        ko: '오른쪽으로',
-      },
+      response: Responses.goRight(),
     },
     {
       id: 'Holminster Right Knout',
@@ -243,12 +157,7 @@
       regexJa: Regexes.startsUsing({ id: '3DE6', source: 'フィリア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3DE6', source: '斐利亚', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3DE6', source: '필리아', capture: false }),
-      alertText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        ko: '왼쪽으로',
-      },
+      response: Responses.goLeft(),
     },
   ],
   timelineReplace: [
@@ -259,9 +168,7 @@
         'The Auction': 'Viehmarkt',
         'The manor house courtyard': 'Garten des Herrenhauses',
         'Forgiven Dissonance': 'Geläuterter Widerspruch',
-
         'Tesleen, the Forgiven': 'Tesleen die Bekehrte',
-
         'Philia': 'Philia',
       },
       'replaceText': {
