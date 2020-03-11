@@ -69,7 +69,9 @@
         return !data.hasUmbral[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong/no buff' };
+        if (data.hasAstral[e.targetName])
+          return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
+        return { type: 'warn', blame: e.targetName, text: e.abilityName + ' no buff' };
       },
     },
     {
