@@ -70,6 +70,29 @@
         ko: '집합',
       },
     },
+    {
+      id: 'Test Delayed Dummy',
+      regex: /(Angry Dummy)/,
+      regexDe: /(Wütender Dummy)/,
+      regexCn: /愤怒的木人/,
+      regexKo: /화난 나무인형/,
+      promise: function(data, matches) {
+        data.delayedDummyTimestampBefore = Date.now();
+        let p = new Promise((res) => {
+          window.setTimeout(() => {
+            data.delayedDummyTimestampAfter = Date.now();
+            res();
+          }, 3000);
+        });
+        return p;
+      },
+      infoText: function(data) {
+        let elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
+        return {
+          en: 'Elapsed ms: ' + elapsed,
+        };
+      },
+    },
   ],
   timelineReplace: [
     {
