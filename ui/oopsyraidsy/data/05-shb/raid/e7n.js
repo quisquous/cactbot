@@ -64,12 +64,7 @@
     },
     {
       id: 'E7N Light\'s Course',
-      // Would be nice to use an array instead, as
       damageRegex: ['4C3E', '4C40', '4C22', '4C3C', '4E63'],
-      // rather than this awful cup of regex soup.
-      // We could instead split this out into individual triggers for each ID,
-      // but that seems ridiculous.
-      // damageRegex: '(?:4C(?:22|40|3[CE])|4E63)',
       condition: function(e, data) {
         return data.hasAstral[e.targetName];
       },
@@ -79,8 +74,7 @@
     },
     {
       id: 'E7N Darks\'s Course',
-      // damageRegex: ['4C3D', '4C23', '4C41', '4C43']
-      damageRegex: '4C(?:23|3D|4[13])',
+      damageRegex: ['4C3D', '4C23', '4C41', '4C43'],
       condition: function(e, data) {
         return !data.hasAstral[e.targetName];
       },
