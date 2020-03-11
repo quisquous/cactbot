@@ -65,13 +65,13 @@
     {
       id: 'E7N Light\'s Course',
       // Would be nice to use an array instead, as
-      // damageRegex: ['4C3E', '4C40', '4C22', '4C3C', '4E63']
+      damageRegex: ['4C3E', '4C40', '4C22', '4C3C', '4E63'],
       // rather than this awful cup of regex soup.
       // We could instead split this out into individual triggers for each ID,
       // but that seems ridiculous.
-      damageRegex: '(?:4C(?:22|40|3[CE])|4E63)',
+      // damageRegex: '(?:4C(?:22|40|3[CE])|4E63)',
       condition: function(e, data) {
-        return data.hasAstral[targetName];
+        return data.hasAstral[e.targetName];
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
