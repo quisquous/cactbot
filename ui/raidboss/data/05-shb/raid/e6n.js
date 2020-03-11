@@ -29,6 +29,7 @@
       infoText: {
         en: 'Avoid green nails',
         fr: 'Evitez les clous',
+        ko: '초록 발톱 피하기',
       },
     },
     {
