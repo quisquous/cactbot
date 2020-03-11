@@ -71,10 +71,10 @@
       // but that seems ridiculous.
       damageRegex: '(?:4C(?:22|40|3[CE])|4E63)',
       condition: function(e, data) {
-        return !data.hasUmbral[e.targetName];
+        return data.hasAstral[targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong/no buff' };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
       },
     },
     {
