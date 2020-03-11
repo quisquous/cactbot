@@ -27,8 +27,6 @@
       regexDe: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       regexFr: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       regexJa: Regexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
-      regexCn: Regexes.startsUsing({ source: '迦楼罗', id: '4BF[EF]', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '가루다', id: '4BF[EF]', capture: false }),
       infoText: {
         en: 'Avoid green nails',
         fr: 'Evitez les AoE',
