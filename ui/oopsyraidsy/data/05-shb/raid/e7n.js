@@ -66,20 +66,20 @@
       id: 'E7N Light\'s Course',
       damageRegex: ['4C3E', '4C40', '4C22', '4C3C', '4E63'],
       condition: function(e, data) {
-        return data.hasAstral[e.targetName];
+        return !data.hasUmbral[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong/no buff' };
       },
     },
     {
       id: 'E7N Darks\'s Course',
       damageRegex: ['4C3D', '4C23', '4C41', '4C43'],
       condition: function(e, data) {
-        return !data.hasAstral[e.targetName];
+        return data.hasUmbral[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong/no buff' };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
       },
     },
   ],
