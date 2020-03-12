@@ -10,14 +10,14 @@ hideall "--sync--"
 # -ii 10E1
 0.0 "--sync--" sync / 00:0839:Analysis and Proving will be sealed off/
 2.9 "--sync--" sync /:Regula van Hydrus:366/
-6.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
+6.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 6.3,5
 
-13.4 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,15
+13.4 "Judgment" sync /:Regula van Hydrus:10DD:/ window 13.4,2.5
 18.6 "Judgment" sync /:Regula van Hydrus:10DE:/
 25.5 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 37.8 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 
-44.9 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,15
+44.9 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,3
 50.1 "Judgment" sync /:Regula van Hydrus:10DE:/
 57.0 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 69.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ jump 37.8
@@ -44,9 +44,9 @@ hideall "--sync--"
 193.0 "Magitek Slug" sync /:Regula van Hydrus:10DB:/
 
 # Rotation resumes here whether or not turrets are successful
-199.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 100,5
+199.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 100,2
 202.4 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
-209.7 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,15
+209.7 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,2.5
 215.0 "Judgment" sync /:Regula van Hydrus:10DE:/
 
 221.9 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 10,10
@@ -88,9 +88,9 @@ hideall "--sync--"
 386.5 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 389.6 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 392.7 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
-399.8 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,15
+399.8 "Judgment" sync /:Regula van Hydrus:10DD:/
 405.0 "Judgment" sync /:Regula van Hydrus:10DE:/
-414.9 "Magitek Spread" sync /:Regula van Hydrus:10DC:/
+414.9 "Magitek Spread" sync /:Regula van Hydrus:10DC:/ 15,15
 422.0 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 
 # More turrets, same as the second set
@@ -166,7 +166,7 @@ hideall "--sync--"
 1258.3 "Ballistic Missile 1" sync /:Harmachis:10EE:/
 1259.3 "Ballistic Missile 2" sync /:Harmachis:12A3:/
 1260.4 "Ballistic Missile 3" sync /:Harmachis:10EF:/
-1265.6 "Gaseous Bomb" sync /:Harmachis:10F0:/
+1265.6 "Gaseous Bomb" sync /:Harmachis:10F0:/ window 10,10
 1269.7 "Weighing of the Heart" sync /:Harmachis:138F:/
 
 # Rotation resumes to HP = 0
@@ -184,7 +184,7 @@ hideall "--sync--"
 
 # Random shift Cobra
 1350.0 "Weighing of the Heart" sync /:Harmachis:10E8:/
-1353.3 "Steel Scales" sync /:Harmachis:10EA:/
+1353.3 "Steel Scales" sync /:Harmachis:10EA:/ window 10,10
 1356.5 "Hood Swing" sync /:Harmachis:10E9:/
 1360.5 "Weighing of the Heart" sync /:Harmachis:138F:/
 1366.2 "Chthonic Hush" sync /:Harmachis:10E7:/ window 10,10 jump 1275.2
