@@ -66,6 +66,8 @@ class CactbotLanguageDe extends CactbotLanguage {
       Throttle: 'Erstickung',
       StaticCondensation: 'Statische Ladung',
       DamageDown: 'Schaden -',
+      AstralEffect: 'Denaturation Licht',
+      UmbralEffect: 'Denaturation Dunkelheit',
 
       Windburn: 'Beißender Wind',
     });

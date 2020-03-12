@@ -986,15 +986,15 @@ class DamageTracker {
       for (let j = 0; j < set.triggers.length; ++j) {
         let trigger = set.triggers[j];
         if ('regex' in trigger) {
-          trigger.regex = Regexes.parse(trigger.regex);
+          trigger.regex = Regexes.parse(Regexes.anyOf(trigger.regex));
           this.generalTriggers.push(trigger);
         }
         if ('damageRegex' in trigger) {
-          trigger.idRegex = Regexes.parse('^' + trigger.damageRegex + '$');
+          trigger.idRegex = Regexes.parse('^' + Regexes.anyOf(trigger.damageRegex) + '$');
           this.damageTriggers.push(trigger);
         }
         if ('abilityRegex' in trigger) {
-          trigger.idRegex = Regexes.parse('^' + trigger.abilityRegex + '$');
+          trigger.idRegex = Regexes.parse('^' + Regexes.anyOf(trigger.abilityRegex) + '$');
           this.abilityTriggers.push(trigger);
         }
         if ('gainsEffectRegex' in trigger) {
@@ -1006,7 +1006,7 @@ class DamageTracker {
           this.effectTriggers.push(trigger);
         }
         if ('healRegex' in trigger) {
-          trigger.idRegex = Regexes.parse('^' + trigger.healRegex + '$');
+          trigger.idRegex = Regexes.parse('^' + Regexes.anyOf(trigger.healRegex) + '$');
           this.healTriggers.push(trigger);
         }
       }

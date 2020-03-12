@@ -64,6 +64,8 @@ class CactbotLanguageCn extends CactbotLanguage {
       Throttle: '窒息',
       StaticCondensation: '蓄电',
       DamageDown: '伤害降低',
+      AstralEffect: 'Astral Effect',
+      UmbralEffect: 'Umbral Effect',
 
       // UWU
       Windburn: '裂伤',
