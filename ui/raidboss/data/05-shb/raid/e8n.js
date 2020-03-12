@@ -96,6 +96,7 @@
       },
       alertText: {
         en: 'Get behind, then South',
+        ko: '보스 뒤로 => 남쪽으로',
       },
     },
     {
@@ -111,6 +112,7 @@
       },
       alertText: {
         en: 'Go Front / Sides, then North',
+        ko: '앞/양옆으로 => 북쪽으로',
       },
     },
     {
@@ -134,6 +136,7 @@
       regexJa: Regexes.startsUsing({ source: '氷面鏡', id: '4E01', capture: false }),
       infoText: {
         en: 'Close to mirrors',
+        ko: '거울 밑으로',
       },
     },
     {
@@ -177,6 +180,7 @@
       infoText: {
         en: 'Flare on YOU',
         de: 'Flare auf DIR',
+        ko: '플레어 대상자',
       },
     },
     {
@@ -191,6 +195,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: '3x puddles on you',
+        ko: '따라오는 장판 피하기',
       },
     },
     {
@@ -230,10 +235,12 @@
         if (data.rampant[data.me]) {
           return {
             en: 'Cone on YOU -- avoid towers',
+            ko: '부채꼴 대상자 - 장판 피하기',
           };
         }
         return {
           en: 'Stand in a tower',
+          ko: '장판 들어가기',
         };
       },
     },
