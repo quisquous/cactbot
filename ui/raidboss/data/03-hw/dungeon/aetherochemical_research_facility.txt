@@ -12,12 +12,12 @@ hideall "--sync--"
 2.9 "--sync--" sync /:Regula van Hydrus:366/
 6.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 
-13.4 "Judgment" sync /:Regula van Hydrus:10DD:/
+13.4 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,15
 18.6 "Judgment" sync /:Regula van Hydrus:10DE:/
 25.5 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 37.8 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 
-44.9 "Judgment" sync /:Regula van Hydrus:10DD:/
+44.9 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,15
 50.1 "Judgment" sync /:Regula van Hydrus:10DE:/
 57.0 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 69.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ jump 37.8
@@ -46,7 +46,7 @@ hideall "--sync--"
 # Rotation resumes here whether or not turrets are successful
 199.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 100,5
 202.4 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
-209.7 "Judgment" sync /:Regula van Hydrus:10DD:/
+209.7 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,15
 215.0 "Judgment" sync /:Regula van Hydrus:10DE:/
 
 221.9 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 10,10
@@ -88,7 +88,7 @@ hideall "--sync--"
 386.5 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 389.6 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 392.7 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
-399.8 "Judgment" sync /:Regula van Hydrus:10DD:/
+399.8 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,15
 405.0 "Judgment" sync /:Regula van Hydrus:10DE:/
 414.9 "Magitek Spread" sync /:Regula van Hydrus:10DC:/
 422.0 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
@@ -216,11 +216,11 @@ hideall "--sync--"
 # We can't sync to the zone seal message because it's a two-part battle
 
 2000.5 "--sync--" sync /:Igeyorhm:10F1:/ window 2000.5,0
-2008.6 "Dark Orb" sync /:Igeyorhm:10FC:/
+2008.6 "Dark Orb" sync /:Igeyorhm:10FC:/ window 9,5
 
 2009.0 "End of Days" sync /:Lahabrea:10FD:/
 2015.8 "Dark Orb" sync /:Igeyorhm:10FC:/
-2020.9 "Sea Of Pitch" sync /:Igeyorhm:10FB:/
+2020.9 "Sea Of Pitch" sync /:Igeyorhm:10FB:/ window 15,15
 2023.4 "End of Days" sync /:Lahabrea:10FD:/
 2024.5 "Sea Of Pitch" sync /:Igeyorhm:12DE:/
 2029.0 "Dark Orb" sync /:Igeyorhm:10FC:/
@@ -286,18 +286,18 @@ hideall "--sync--"
 2278.8 "Dark Orb" sync /:Igeyorhm:10FC:/
 
 #Lahabrea de-syncs from here, so we just sync to Igeyorhm now
-2285.9 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
+2285.9 "Dark Blizzard II" sync /:Igeyorhm:10F2:/ window 15,15
 2295.0 "Shadow Flare" sync /:Igeyorhm:10FA:/
 2306.2 "Dark Orb" sync /:Igeyorhm:10FC:/
 2311.3 "Sea Of Pitch" sync /:Igeyorhm:10FB:/
 2319.6 "Dark Orb" sync /:Igeyorhm:10FC:/
-2326.7 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
+2326.7 "Dark Blizzard II" sync /:Igeyorhm:10F2:/ window 15,15
 2335.8 "Shadow Flare" sync /:Igeyorhm:10FA:/
 2346.9 "Dark Orb" sync /:Igeyorhm:10FC:/
 2352.1 "Sea Of Pitch" sync /:Igeyorhm:10FB:/
 2360.3 "Dark Orb" sync /:Igeyorhm:10FC:/
 
-2367.4 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
+2367.4 "Dark Blizzard II" sync /:Igeyorhm:10F2:/ window 15,15
 2376.6 "Shadow Flare" sync /:Igeyorhm:10FA:/
 2387.8 "Dark Orb" sync /:Igeyorhm:10FC:/
 2392.9 "Sea Of Pitch" sync /:Igeyorhm:10FB:/
@@ -401,14 +401,14 @@ hideall "--sync--"
 # We can't sync to the zone seal message because it's a two-part battle
 
 3002.3 "--sync--" sync /:Ascian Prime:1100:/ window 3003,2
-3005.8 "Height of Chaos" sync /:Ascian Prime:1101:/
+3005.8 "Height of Chaos" sync /:Ascian Prime:1101:/ window 5.8,5
 3013.0 "Ancient Eruption" sync /:Ascian Prime:1103:/
-3022.1 "Shadow Flare" sync /:Ascian Prime:1109:/
+3022.1 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15
 3028.2 "Height of Chaos" sync /:Ascian Prime:1101:/
 
 3038.0 "Height of Chaos" sync /:Ascian Prime:1101:/
 3045.2 "Ancient Eruption" sync /:Ascian Prime:1103:/
-3054.3 "Shadow Flare" sync /:Ascian Prime:1109:/
+3054.3 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15
 3060.4 "Height of Chaos" sync /:Ascian Prime:1101:/ jump 3028.2
 
 3070.2 "Height of Chaos"
@@ -428,14 +428,14 @@ hideall "--sync--"
 3156.4 "Height of Chaos" sync /:Ascian Prime:1101:/ window 50,5
 3163.5 "Entropic Flame" sync /:Ascian Prime:1107:/
 3168.6 "Height of Chaos" sync /:Ascian Prime:1101:/
-3175.7 "Ancient Eruption" sync /:Ascian Prime:1103:/
+3175.7 "Ancient Eruption" sync /:Ascian Prime:1103:/ window 15,15
 3184.8 "Shadow Flare" sync /:Ascian Prime:1109:/
 
 3194.0 "Height of Chaos" sync /:Ascian Prime:1101:/
 3201.1 "Entropic Flame" sync /:Ascian Prime:1107:/ window 30,30
 3206.2 "Height of Chaos" sync /:Ascian Prime:1101:/
 3213.3 "Ancient Eruption" sync /:Ascian Prime:1103:/
-3222.4 "Shadow Flare" sync /:Ascian Prime:1109:/ jump 3184.8
+3222.4 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15 jump 3184.8
 
 3231.6 "Height of Chaos"
 3238.7 "Entropic Flame"
