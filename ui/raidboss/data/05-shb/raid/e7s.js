@@ -8,13 +8,21 @@
   timelineFile: 'e7s.txt',
   timelineTriggers: [
     {
+      // TODO: it might be nice to call out spots directly once people have a buff.
       id: 'E7S Tornado Spots',
       regex: /Words Of Fervor/,
       beforeSeconds: 10,
       infoText: {
-        en: 'Dark NW, Light NE, one pair S',
-        cn: '黑左前 白右前 两人后',
-        de: 'Dunkel NW, Licht NO, ein Paar S',
+        en: 'Dark NE, Light NW, one pair S',
+        cn: '黑右前 白左前 两人后',
+        de: 'Dunkel NO, Licht NW, ein Paar S',
+        ko: '어둠 북동, 빛 북서, 한쌍은 남으로',
+      },
+      // Some tts users complained that this was way too long.
+      tts: {
+        en: 'Dark Northeast',
+        cn: '黑右前',
+        de: 'Dunkel Nordosten',
       },
     },
   ],
@@ -431,6 +439,7 @@
         de: 'Flächen ködern',
         fr: 'Placez les flaques',
         cn: '放圈',
+        ko: '장판 버리기',
       },
     },
     {
@@ -444,6 +453,7 @@
         en: 'Get Knocked Into Corner',
         cn: '击退到角落',
         de: 'Lass dich in die Ecke zurückstoßen',
+        ko: '구석으로 넉백',
       },
     },
     {

@@ -665,19 +665,42 @@ class PopupText {
         trigger.run(that.data, matches);
     };
 
-    // Run immediately?
-    if (!delay) {
-      f();
-      return;
+    let promise = null;
+
+    if ('promise' in trigger) {
+      if (typeof trigger.promise === 'function') {
+        promise = trigger.promise(data, matches);
+        // Make sure we actually get a Promise back from the function
+        if (Promise.resolve(promise) !== promise) {
+          console.error('Trigger ' + trigger.id + ': promise function did not return a promise');
+          promise = null;
+        }
+      } else {
+        console.error('Trigger ' + trigger.id + ': promise defined but not a function');
+      }
     }
 
-    this.timers.push(window.setTimeout(() => {
-      try {
+    if (promise === null) {
+      promise = new Promise((res) => {
+        res();
+      });
+    }
+
+    promise.then(() => {
+      // Run immediately?
+      if (!delay) {
         f();
-      } catch (e) {
-        onTriggerException(trigger, e);
+        return;
       }
-    }, delay * 1000));
+
+      this.timers.push(window.setTimeout(() => {
+        try {
+          f();
+        } catch (e) {
+          onTriggerException(trigger, e);
+        }
+      }, delay * 1000));
+    });
   }
 
   Test(zone, log) {
