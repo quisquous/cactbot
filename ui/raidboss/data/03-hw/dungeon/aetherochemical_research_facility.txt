@@ -90,7 +90,7 @@ hideall "--sync--"
 392.7 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 399.8 "Judgment" sync /:Regula van Hydrus:10DD:/
 405.0 "Judgment" sync /:Regula van Hydrus:10DE:/
-414.9 "Magitek Spread" sync /:Regula van Hydrus:10DC:/ 15,15
+414.9 "Magitek Spread" sync /:Regula van Hydrus:10DC:/ window 15,15
 422.0 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 
 # More turrets, same as the second set
