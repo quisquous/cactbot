@@ -26,6 +26,7 @@
       regex: Regexes.startsUsing({ source: 'Garuda', id: '4BF[EF]', capture: false }),
       infoText: {
         en: 'Avoid green nails',
+		cn: '躲避风牙',
         fr: 'Evitez les clous',
         ko: '초록 발톱 피하기',
       },
