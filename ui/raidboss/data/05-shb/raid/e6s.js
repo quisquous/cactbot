@@ -23,10 +23,13 @@
     },
     {
       id: 'E6S Ferostorm',
-      regex: Regexes.startsUsing({ source: 'Garuda', id: '4BF[EF]', capture: false }),
+      regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      regexDe: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      regexFr: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      regexJa: Regexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
-        fr: 'Evitez les clous',
+        fr: 'Evitez les AoE',
         ko: '초록 발톱 피하기',
       },
     },
