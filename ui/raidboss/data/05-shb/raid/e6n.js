@@ -28,6 +28,7 @@
       regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
+        cn: '躲避风牙',
         fr: 'Evitez les clous',
         ko: '초록 발톱 피하기',
       },
@@ -40,6 +41,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Enumeration on YOU',
+            cn: '蓝圈分摊点名',
             de: 'Enumeration aud DIR',
             fr: 'Enumération sur VOUS',
             ko: '2인 장판 대상자',
@@ -47,6 +49,7 @@
         }
         return {
           en: 'Enumeration',
+          cn: '蓝圈分摊',
           de: 'Enumeration',
           fr: 'Enumération',
           ko: '2인 장판',
@@ -79,6 +82,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Charge on YOU',
+            cn: '冲锋点名',
             de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
             ko: '돌진 대상자',
@@ -88,6 +92,7 @@
           return;
         return {
           en: 'Tank Swap',
+          cn: '换坦克',
           de: 'Tank Swap',
           fr: 'Tank Swap',
           ko: '탱 교대',
@@ -114,6 +119,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Tether Marker on YOU',
+        cn: '连线点名',
         de: 'Verbindung auf DIR',
         fr: 'Marque de lien sur VOUS',
         ko: '징 대상자',
@@ -128,6 +134,7 @@
       },
       alertText: {
         en: 'Move to Ifrit',
+        cn: '踢球 集合待机',
         fr: 'Allez sur Ifrit',
         ko: '이프리트로 이동',
       },
