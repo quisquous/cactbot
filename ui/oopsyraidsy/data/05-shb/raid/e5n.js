@@ -39,7 +39,7 @@
       id: 'E5N Divine Judgement Volts',
       damageRegex: '4B9A',
       condition: function(e, data) {
-        return !data.hasOrb;
+        return !data.hasOrb[e.targetName];
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName + ' (no orb)' };
