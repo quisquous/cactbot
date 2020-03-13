@@ -2,7 +2,10 @@
 
 // The Vault
 [{
-  zoneRegex: /^The Vault$/,
+  zoneRegex: {
+    en: /^The Vault$/,
+    cn: /^圣教中枢伊修加德教皇厅$/,
+  },
   timelineFile: 'the_vault.txt',
   timelineTriggers: [
     {
@@ -138,6 +141,17 @@
       response: Responses.breakChains(),
     },
     {
+      // This prevents out-of-combat activation for the March trigger during Charibert's spawn-in.
+      id: 'The Vault Knights Activation',
+      regex: Regexes.headMarker({ id: '0061', capture: false }),
+      condition: function(data) {
+        return !data.knightsActive;
+      },
+      run: function(data) {
+        data.knightsActive = true;
+      },
+    },
+    {
       id: 'The Vault Knights March',
       regex: Regexes.addedCombatant({ name: ['Dawn Knight', 'Dusk Knight'], capture: false }),
       regexDe: Regexes.addedCombatant({ name: ['Dämmerross', 'Morgenross'], capture: false }),
@@ -145,6 +159,9 @@
       regexJa: Regexes.addedCombatant({ name: ['ドーン・オートナイト', 'ダスク・オートナイト'], capture: false }),
       regexCn: Regexes.addedCombatant({ name: ['拂晓骑士', '黄昏骑士'], capture: false }),
       regexKo: Regexes.addedCombatant({ name: ['여명의 자동기사', '황혼의 자동기사'], capture: false }),
+      condition: function(data) {
+        return data.knightsActive;
+      },
       suppressSeconds: 4,
       infoText: {
         en: 'Evade marching knights',

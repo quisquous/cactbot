@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^Cape Westwind$/,
+  zoneRegex: {
+    en: /^Cape Westwind$/,
+    cn: /^里塔提恩强攻战$/,
+  },
   timelineFile: 'cape_westwind.txt',
   triggers: [
   ],

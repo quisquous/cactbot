@@ -7,6 +7,7 @@
 [{
   zoneRegex: {
     en: /^The Orbonne Monastery$/,
+    cn: /^乐欲之所瓯博讷修道院$/,
     ko: /^오본느 수도원$/,
   },
   timelineFile: 'orbonne_monastery.txt',
@@ -700,7 +701,7 @@
         'The Crystalline Gaol': 'Kristallkerker',
         'The Realm of the Machinists': 'Reich der Maschinisten',
         'The Realm of the Templars': 'Reich der Tempelritter',
-        'The Realm of the Thunder God': '.*Reich des Donnergottes',
+        'The Realm of the Thunder God': 'Reich des Donnergottes',
         '(?<! )The Thunder God': 'Cidolfus',
         'The lifeless alley': 'Leblosen Pfad',
         'Ultima, the High Seraph': 'Cherub Ultima',

@@ -25,9 +25,11 @@
     },
     {
       id: 'E6N Ferostorm',
-      regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaska'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
+      regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
+        fr: 'Evitez les clous',
+        ko: '초록 발톱 피하기',
       },
     },
     {
@@ -40,12 +42,14 @@
             en: 'Enumeration on YOU',
             de: 'Enumeration aud DIR',
             fr: 'Enumération sur VOUS',
+            ko: '2인 장판 대상자',
           };
         }
         return {
           en: 'Enumeration',
           de: 'Enumeration',
           fr: 'Enumération',
+          ko: '2인 장판',
         };
       },
     },
@@ -77,6 +81,7 @@
             en: 'Charge on YOU',
             de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
+            ko: '돌진 대상자',
           };
         }
         if (data.role != 'tank' || data.phase == 'both')
@@ -85,6 +90,7 @@
           en: 'Tank Swap',
           de: 'Tank Swap',
           fr: 'Tank Swap',
+          ko: '탱 교대',
         };
       },
     },
@@ -110,6 +116,7 @@
         en: 'Tether Marker on YOU',
         de: 'Verbindung auf DIR',
         fr: 'Marque de lien sur VOUS',
+        ko: '징 대상자',
       },
     },
     {
@@ -121,6 +128,8 @@
       },
       alertText: {
         en: 'Move to Ifrit',
+        fr: 'Allez sur Ifrit',
+        ko: '이프리트로 이동',
       },
       run: function(data) {
         data.seenSpark = true;

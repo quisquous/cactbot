@@ -4,7 +4,10 @@
 
 [{
 
-  zoneRegex: /^Deltascape \(V4\.0\)$/,
+  zoneRegex: {
+    en: /^Deltascape \(V4\.0\)$/,
+    cn: /^欧米茄时空狭缝 德尔塔幻境4$/,
+  },
   timelineFile: 'o4n.txt',
   triggers: [
     {

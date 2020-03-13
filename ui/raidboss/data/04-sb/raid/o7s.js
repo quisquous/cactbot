@@ -6,7 +6,10 @@
 //   fr: partial timeline, partial triggers
 //   ja: partial timeline, partial triggers
 [{
-  zoneRegex: /^Sigmascape V3\.0 \(Savage\)$/,
+  zoneRegex: {
+    en: /^Sigmascape V3\.0 \(Savage\)$/,
+    cn: /^欧米茄零式时空狭缝 西格玛幻境3$/,
+  },
   timelineFile: 'o7s.txt',
   triggers: [
     // State

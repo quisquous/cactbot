@@ -8,13 +8,21 @@
   timelineFile: 'e7s.txt',
   timelineTriggers: [
     {
+      // TODO: it might be nice to call out spots directly once people have a buff.
       id: 'E7S Tornado Spots',
       regex: /Words Of Fervor/,
       beforeSeconds: 10,
       infoText: {
-        en: 'Dark NW, Light NE, one pair S',
-        cn: '黑左前 白右前 两人后',
-        de: 'Dunkel NW, Licht NO, ein Paar S',
+        en: 'Dark NE, Light NW, one pair S',
+        cn: '黑右前 白左前 两人后',
+        de: 'Dunkel NO, Licht NW, ein Paar S',
+        ko: '어둠 북동, 빛 북서, 한쌍은 남으로',
+      },
+      // Some tts users complained that this was way too long.
+      tts: {
+        en: 'Dark Northeast',
+        cn: '黑右前',
+        de: 'Dunkel Nordosten',
       },
     },
   ],
@@ -57,19 +65,23 @@
       regexDe: Regexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0011' }),
       regexFr: Regexes.tether({ source: 'Idole Des Ténèbres', id: '0011' }),
       regexJa: Regexes.tether({ source: 'ダークアイドル', id: '0011' }),
-      condition: function(data, matches) {
-        return data.phase == 'betwixtWorlds' && data.me == matches.target;
+      condition: function(data) {
+        return data.phase == 'betwixtWorlds';
       },
       preRun: function(data, matches) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
       },
-      infoText: {
-        en: 'Tether on YOU',
-        de: 'Verbindung auf DIR',
-        fr: 'Lien sur VOUS',
-        ko: '선 대상자',
-        cn: '连线点名',
+      infoText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Tether on YOU',
+            de: 'Verbindung auf DIR',
+            fr: 'Lien sur VOUS',
+            ko: '선 대상자',
+            cn: '连线点名',
+          };
+        }
       },
     },
     {
@@ -179,14 +191,25 @@
     {
       id: 'E7S Silver Shot',
       regex: Regexes.headMarker({ id: '0065' }),
-      condition: function(data, matches) {
-        return data.phase == 'falseMidnight' && data.me == matches.target;
+      condition: function(data) {
+        return data.phase == 'falseMidnight';
       },
       preRun: function(data, matches) {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         data.falseMidnightSpread.push(matches.target);
       },
-      response: Responses.spread(),
+      infoText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Spread',
+            de: 'Verteilen',
+            ja: '散開',
+            fr: 'Dispersez-vous',
+            ko: '산개',
+            cn: '分散',
+          };
+        }
+      },
     },
     {
       id: 'E7S Silver Sledge',
@@ -208,12 +231,12 @@
           };
         }
         return {
-          en: 'Stack on ' + data.ShortName(target),
-          de: 'Auf ' + data.ShortName(target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(target),
-          ja: data.ShortName(target) + 'にスタック',
-          cn: '靠近 ' + data.ShortName(target) + '集合',
-          ko: '쉐어징 → ' + data.ShortName(target),
+          en: 'Stack on ' + data.ShortName(matches.target),
+          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
+          fr: 'Package sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にスタック',
+          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
+          ko: '쉐어징 → ' + data.ShortName(matches.target),
         };
       },
     },
@@ -416,6 +439,7 @@
         de: 'Flächen ködern',
         fr: 'Placez les flaques',
         cn: '放圈',
+        ko: '장판 버리기',
       },
     },
     {
@@ -429,6 +453,7 @@
         en: 'Get Knocked Into Corner',
         cn: '击退到角落',
         de: 'Lass dich in die Ecke zurückstoßen',
+        ko: '구석으로 넉백',
       },
     },
     {

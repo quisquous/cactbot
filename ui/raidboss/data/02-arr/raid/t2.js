@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Binding Coil Of Bahamut - Turn \(2\)$/,
+  zoneRegex: {
+    en: /^The Binding Coil Of Bahamut - Turn \(2\)$/,
+    cn: /^巴哈姆特大迷宫 邂逅之章2$/,
+  },
   triggers: [
     {
       id: 'T2 High Voltage',

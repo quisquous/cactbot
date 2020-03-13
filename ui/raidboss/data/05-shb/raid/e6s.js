@@ -22,6 +22,15 @@
       },
     },
     {
+      id: 'E6S Ferostorm',
+      regex: Regexes.startsUsing({ source: 'Garuda', id: '4BF[EF]', capture: false }),
+      infoText: {
+        en: 'Avoid green nails',
+        fr: 'Evitez les clous',
+        ko: '초록 발톱 피하기',
+      },
+    },
+    {
       id: 'E6S Air Bump',
       regex: Regexes.headMarker({ id: '00D3' }),
       suppressSeconds: 1,
@@ -222,6 +231,7 @@
       infoText: {
         en: 'go to spots for chains',
         de: 'Gehe zu den Stellen für die Kette',
+        fr: 'Positions pour les chaines',
         ko: '콘플레그 준비',
         cn: '连线站位',
       },

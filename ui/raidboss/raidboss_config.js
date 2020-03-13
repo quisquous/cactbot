@@ -775,30 +775,35 @@ UserConfig.registerOptions('raidboss', {
           '🆙💬 Text and TTS': 'ttsAndText',
           '💬 TTS Only': 'ttsOnly',
           '🆙 Text Only': 'textOnly',
+          '❌ Disabled': 'disabled',
         },
         de: {
           '🆙🔊 Text und Ton': 'textAndSound',
           '🆙💬 Text und TTS': 'ttsAndText',
           '💬 Nur TTS': 'ttsOnly',
           '🆙 Nur Text': 'textOnly',
+          '❌ Deaktiviert': 'disabled',
         },
         fr: {
           '🆙🔊 Texte et son': 'textAndSound',
           '🆙💬 Texte et TTS': 'ttsAndText',
           '💬 TTS seulement': 'ttsOnly',
           '🆙 Text seulement': 'textOnly',
+          '❌ Désactivé': 'disabled',
         },
         cn: {
           '🆙🔊 文字和声音': 'textAndSound',
           '🆙💬 文字和TTS': 'ttsAndText',
           '💬 只使用TTS': 'ttsOnly',
           '🆙 只使用文字': 'textOnly',
+          '❌ 禁用': 'disabled',
         },
         ko: {
           '🆙🔊 텍스트와 소리': 'textAndSound',
           '🆙💬 텍스트와 TTS': 'ttsAndText',
           '💬 TTS만': 'ttsOnly',
           '🆙 텍스트만': 'textOnly',
+          '❌ 비활성화': 'disabled',
         },
       },
       default: 'textAndSound',
@@ -1072,6 +1077,18 @@ UserConfig.registerOptions('raidboss', {
       default: 1,
     },
     {
+      id: 'BrowserTTS',
+      name: {
+        en: 'Use Browser for Text to Speech',
+        de: 'Verwenden Sie den Browser für Text zu Sprache', // Machine translation
+        fr: 'Utiliser le navigateur pour la synthèse vocale', // Machine Translation
+        ko: '텍스트 음성 변환을위한 브라우저 사용', // Machine translation
+        cn: '使用浏览器进行文字转语音', // Machine translation
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
       id: 'cactbotWormholeStrat',
       // TODO: maybe need some way to group these kinds of
       // options if we end up having a lot?
@@ -1079,6 +1096,14 @@ UserConfig.registerOptions('raidboss', {
         en: 'Alex Ultimate: enable cactbot Wormhole strat',
         ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
         cn: '亚历山大绝境战：cactbot虫洞辅助功能',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
+      id: 'cactbote8sUptimeKnockbackStrat',
+      name: {
+        en: 'e8s: enable cactbot Uptime Knockback strat',
       },
       type: 'checkbox',
       default: false,

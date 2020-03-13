@@ -68,13 +68,7 @@
       regexJa: Regexes.startsUsing({ id: '4149', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4149', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4149', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        cn: '左',
-        ko: '왼쪽',
-      },
+      response: Responses.goLeft('info'),
     },
     {
       id: 'Hades Bad Faith Right',
@@ -84,13 +78,7 @@
       regexJa: Regexes.startsUsing({ id: '414A', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '414A', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '414A', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Droite',
-        cn: '右',
-        ko: '오른쪽',
-      },
+      response: Responses.goRight('info'),
     },
     {
       id: 'Hades Broken Faith',
@@ -116,13 +104,7 @@
       regexJa: Regexes.startsUsing({ id: '4164', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4164', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4164', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Right',
-        de: 'Rechts',
-        fr: 'Gauche',
-        cn: '右',
-        ko: '오른쪽',
-      },
+      response: Responses.goRight('info'),
     },
     {
       id: 'Hades Echo Left',
@@ -132,13 +114,7 @@
       regexJa: Regexes.startsUsing({ id: '4163', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4163', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4163', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Left',
-        de: 'Links',
-        fr: 'Gauche',
-        cn: '左',
-        ko: '왼쪽',
-      },
+      response: Responses.goLeft('info'),
     },
     {
       id: 'Hades Titanomachy',
@@ -151,13 +127,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '광역',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Hades Shadow Stream',
@@ -167,14 +137,7 @@
       regexJa: Regexes.startsUsing({ id: '415C', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '415C', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '415C', source: '하데스', capture: false }),
-      alertText: {
-        en: 'Go Outside',
-        de: 'Raus gehen',
-        fr: 'Allez sur les côtés',
-        ja: '中壊れるよ',
-        cn: '两侧躲避',
-        ko: '밖으로',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Hades Purgation',
@@ -184,14 +147,7 @@
       regexJa: Regexes.startsUsing({ id: '4170', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4170', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '4170', source: '하데스', capture: false }),
-      alertText: {
-        en: 'Get Middle',
-        de: 'In die Mitte gehen',
-        fr: 'Allez au centre',
-        ja: '外壊れるよ',
-        cn: '中间躲避',
-        ko: '중앙으로',
-      },
+      response: Responses.goMiddle(),
     },
     {
       id: 'Hades Doom',
@@ -328,13 +284,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        cn: '分散',
-        ko: '산개',
-      },
+      response: Responses.spread('alert'),
     },
     {
       id: 'Hades Ancient Darkness',
@@ -356,13 +306,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Stack on YOU',
-        de: 'Sammeln auf DIR',
-        fr: 'Package sur VOUS',
-        cn: '点名集合',
-        ko: '쉐어징 -> YOU',
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Hades Ancient Collect',

@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /^The Drowned City Of Skalla$/,
+  zoneRegex: {
+    en: /^The Drowned City Of Skalla$/,
+    cn: /^沉没神殿斯卡拉遗迹$/,
+  },
   triggers: [
     {
       id: 'Hrodric Tank',

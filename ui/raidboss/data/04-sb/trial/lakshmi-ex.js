@@ -2,7 +2,10 @@
 
 // Lakshmi Extreme
 [{
-  zoneRegex: /^Emanation \(Extreme\)$/,
+  zoneRegex: {
+    en: /^Emanation \(Extreme\)$/,
+    cn: /^吉祥天女歼殛战$/,
+  },
   timelineFile: 'lakshmi-ex.txt',
   timelineTriggers: [
     {

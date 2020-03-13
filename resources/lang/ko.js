@@ -62,6 +62,10 @@ class CactbotLanguageKo extends CactbotLanguage {
       FoolsTumble: '추락 환각', // 0x183
       Dropsy: '물독',
       Throttle: '질식',
+      StaticCondensation: '축전',
+      DamageDown: '주는 피해량 감소',
+      AstralEffect: 'Astral Effect',
+      UmbralEffect: 'Umbral Effect',
 
       // UWU
       Windburn: '열상',

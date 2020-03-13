@@ -53,7 +53,9 @@ hideall "--sync--"
 292.4 "--sync--" sync /:The Ruby Weapon:4BCD:/
 308.7 "Stamp" sync /:The Ruby Weapon:4AC7:/
 311.8 "--sync--" sync /:The Ruby Weapon:4A9B:/
-314.0 "--sync--" sync /:4AA9:The Ruby Weapon/ window 500,5
+
+# FIXME: does this push at a percent like extreme?
+314.0 "--sync--" sync /:4AA9:The Ruby Weapon/ window 500,500
 329.0 "Optimized Ultima Enrage" sync /:The Ruby Weapon:4AA9:/
 
 ### Cutscene
@@ -63,7 +65,7 @@ hideall "--sync--"
 
 ### Phase 2
 # -p 4AAA:1007
-# -ii 4CF6 4AC0 4AB8 4AB7 4E31 4E67 4ABB
+# -ii 4CF6 4AC0 4AB8 4AB7 4E31 4E67 4ABB 4AB1
 
 1000.0 "Start"
 1000.5 "--sync--" sync /:The Ruby Weapon:4CF6:/ window 1001,0
@@ -76,7 +78,6 @@ hideall "--sync--"
 1057.7 "Meteor Stream" sync /:The Ruby Weapon:4E71:/
 1069.0 "Dalamud Impact" sync /:The Ruby Weapon:4AAE:/
 1080.9 "Meteor Project" sync /:The Ruby Weapon:4AAA:/
-1088.1 "Magitek Meteor" sync /:The Ruby Weapon:4AB1:/
 1094.2 "Magitek Comet" sync /:The Ruby Weapon:4AB0:/
 1104.3 "Landing" sync /:Comet:4E2B:/
 1114.9 "Magitek Meteor" sync /:The Ruby Weapon:4AB2:/

@@ -2,17 +2,33 @@
 
 // TODO: ravensflight calls
 // TODO: in/out calls for your orange/blue add, dynamo 4EB0, chariot 4EB1
-// TODO: stop calling out switch on adds if the other add is dead, etc
-// TODO: get behind meteor
-// TODO: get away from last exploding meteor
-// TODO: tank calls to pick up meteors
-// TODO: bradamante calls (avoid tanks)
+// TODO: there's no 23: message for tethers, so is likely part of add spawn?
 
 [{
   zoneRegex: {
     en: /^Cinder Drift \(Extreme\)$/,
   },
   timelineFile: 'ruby-weapon-ex.txt',
+  timelineTriggers: [
+    {
+      id: 'RubyEx Magitek Meteor Behind',
+      regex: /Magitek Meteor/,
+      beforeSeconds: 4,
+      alertText: {
+        en: 'Hide Behind Meteor',
+        ko: '운석 뒤에 숨기',
+      },
+    },
+    {
+      id: 'RubyEx Magitek Meteor Away',
+      regex: /Magitek Meteor/,
+      beforeSeconds: 0,
+      infoText: {
+        en: 'Away From Meteor',
+        ko: '운석에게서 멀어지기',
+      },
+    },
+  ],
   triggers: [
     {
       id: 'RubyEx Optimized Ultima',
@@ -79,13 +95,40 @@
       response: Responses.goSides(),
     },
     {
-      id: 'RubyEx High-Powered Homing Lasers',
+      id: 'RubyEx High-Powered Homing Lasers You',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8' }),
       regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8' }),
       regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.stackOn(),
+      response: Responses.stackOn('alert'),
+    },
+    {
+      id: 'RubyEx High-Powered Homing Lasers',
+      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8' }),
+      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8' }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
+      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
+      condition: Conditions.targetIsNotYou(),
+      response: Responses.stack('info'),
+    },
+    {
+      id: 'RubyEx Raven\'s Image',
+      regex: Regexes.addedCombatantFull({ name: 'Raven\'s Image' }),
+      regexDe: Regexes.addedCombatantFull({ name: 'Naels Trugbild' }),
+      regexFr: Regexes.addedCombatantFull({ name: 'Spectre De Nael' }),
+      regexJa: Regexes.addedCombatantFull({ name: 'ネールの幻影' }),
+      run: function(data, matches) {
+        // 112,108 (east)
+        // 88,108 (west)
+        // TODO: it's impossible to do anything with this now,
+        // as there's no actor id in the startsUsing line.  T_T
+        data.ravens = data.ravens || {};
+        if (matches.x < 100)
+          data.ravens.red = matches.id;
+        else
+          data.ravens.blue = matches.id;
+      },
     },
     {
       // Enrage can start casting before Ruby Weapon has finished their rotation
@@ -166,6 +209,20 @@
       response: Responses.tankBuster(),
     },
     {
+      id: 'RubyEx Raven Death',
+      regex: Regexes.losesEffect({ effect: 'Pall of Rage', capture: false }),
+      regexDe: Regexes.losesEffect({ effect: 'Zorn', capture: false }),
+      regexFr: Regexes.losesEffect({ effect: 'Fureur', capture: false }),
+      regexJa: Regexes.losesEffect({ effect: '憤怒', capture: false }),
+      suppressSeconds: 10,
+      run: function(data) {
+        // This effect persists through death, and is removed off of everybody
+        // about two seconds before the 19: defeated log line.
+        // TODO: it'd be nice to say to attack the other add, if you knew which one was dead.
+        data.ravenDead = true;
+      },
+    },
+    {
       id: 'RubyEx Change of Heart',
       regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
       regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
@@ -178,8 +235,18 @@
           else
             color = 'blue';
         }
+        data.ravens = data.ravens || {};
+
+        let tmp = data.ravens.red;
+        data.ravens.red = data.ravens.blue;
+        data.ravens.blue = tmp;
       },
+      // This gets cast twice (maybe once for each add)?
+      suppressSeconds: 1,
       infoText: function(data) {
+        // TODO: it'd be nice to call out which raven was alive?
+        if (data.ravenDead)
+          return;
         if (data.colors[data.me] == 'red') {
           return {
             en: 'Attack Red (East)',
@@ -205,12 +272,86 @@
       response: Responses.lookAway(),
     },
     {
+      id: 'RubyEx Meteor',
+      regex: Regexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
+      condition: Conditions.targetIsYou(),
+      infoText: function(data, matches) {
+        return parseInt(matches.id, 16) - parseInt('00CA', 16) + 1;
+      },
+    },
+    {
       id: 'RubyEx Screech',
       regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEE', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEE', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AEE', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AEE', capture: false }),
       response: Responses.knockback(),
+    },
+    {
+      id: 'RubyEx Magitek Meteor Burst',
+      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AF0', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AF0', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AF0', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
+      infoText: {
+        en: 'Away from Meteor!',
+        ko: '운석에게서 멀어지기',
+      },
+    },
+    {
+      id: 'RubyEx Mark II Magitek Comet Tank',
+      regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
+      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
+      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
+      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
+      condition: (data) => data.role == 'tank',
+      delaySeconds: 11.5,
+      alarmText: {
+        en: 'Stand in Meteor Tankbuster',
+        ko: '운석 막기',
+      },
+    },
+    {
+      id: 'RubyEx Mark II Magitek Comet Other',
+      regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
+      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
+      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
+      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
+      condition: (data) => data.role != 'tank',
+      delaySeconds: 13,
+      alertText: {
+        en: 'Kill Meteor Adds',
+        ko: '운석 부수기',
+      },
+    },
+    {
+      id: 'RubyEx Bradamante',
+      regex: Regexes.headMarker({ id: '0017' }),
+      condition: Conditions.targetIsYou(),
+      infoText: {
+        en: 'Avoid tanks with laser',
+        ko: '레이저 대상자 - 탱커 피하기',
+      },
+    },
+    {
+      id: 'RubyEx Mark II Magitek Comet Directions',
+      regex: Regexes.addedCombatantFull({ name: 'Comet' }),
+      infoText: function(data, matches) {
+        // Possible positions:
+        // 85.16,100.131 and 115.16,100.131
+        // 100.16,85.13102 and 100.16,115.131
+        if (matches.y < 90) {
+          return {
+            en: 'Comets N/S',
+            ko: '남/북 운석 낙하',
+          };
+        } else if (matches.x < 90) {
+          return {
+            en: 'Comets E/W',
+            ko: '동/서 운석낙하',
+          };
+        }
+      },
     },
     {
       id: 'RubyEx Outrage',

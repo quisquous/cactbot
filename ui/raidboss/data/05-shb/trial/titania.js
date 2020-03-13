@@ -2,7 +2,10 @@
 
 // Titania Normal Mode
 [{
-  zoneRegex: /^The Dancing Plague$/,
+  zoneRegex: {
+    en: /^The Dancing Plague$/,
+    cn: /^缇坦妮雅歼灭战$/,
+  },
   timelineFile: 'titania.txt',
   triggers: [
     {
@@ -16,12 +19,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        ja: 'AoE',
-        fr: 'Dégâts de zone',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'Titania Phantom Out',
@@ -31,11 +29,7 @@
       regexJa: Regexes.startsUsing({ id: '3D5D', source: 'ティターニア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D5D', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D5D', source: '티타니아', capture: false }),
-      alertText: {
-        en: 'Out',
-        de: 'Raus',
-        fr: 'Dehors',
-      },
+      response: Responses.getOut(),
     },
     {
       id: 'Titania Phantom In',
@@ -45,11 +39,7 @@
       regexJa: Regexes.startsUsing({ id: '3D5E', source: 'ティターニア', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3D5E', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D5E', source: '티타니아', capture: false }),
-      alertText: {
-        en: 'In',
-        de: 'Rein',
-        fr: 'Dedans',
-      },
+      response: Responses.getIn(),
     },
     {
       id: 'Titania Mist Failure',
@@ -59,10 +49,7 @@
       regexJa: Regexes.addedCombatant({ name: '水の精', capture: false }),
       regexCn: Regexes.addedCombatant({ name: '水精', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '물의 정령', capture: false }),
-      infoText: {
-        en: 'Kill Extra Add',
-        de: 'Adds angreifen',
-      },
+      response: Responses.killExtraAdd(),
     },
     {
       id: 'Titania Mist',
@@ -101,24 +88,7 @@
       regexJa: Regexes.startsUsing({ id: '3D5B', source: 'ティターニア' }),
       regexCn: Regexes.startsUsing({ id: '3D5B', source: '缇坦妮雅' }),
       regexKo: Regexes.startsUsing({ id: '3D5B', source: '티타니아' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Cleave on YOU',
-            de: 'Tank Cleave auf DIR',
-            fr: 'Tank cleave sur vous',
-          };
-        }
-      },
-      infoText: function(data, matches) {
-        if (matches.target != data.me) {
-          return {
-            en: 'Tank Cleave on ' + data.ShortName(matches.target),
-            fr: 'Tank cleave sur ' + data.ShortName(matches.target),
-            de: 'Tank Cleave auf ' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankCleave(),
     },
     {
       id: 'Titania Frost Rune 1',
@@ -143,11 +113,7 @@
       regexCn: Regexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
       delaySeconds: 6.5,
-      infoText: {
-        en: 'Run Out',
-        de: 'Nach drausen rennen',
-        fr: 'Courez dehors',
-      },
+      response: Responses.getOut('info'),
     },
     {
       id: 'Titania Frost Rune 3',
@@ -158,11 +124,7 @@
       regexCn: Regexes.ability({ id: '3D4E', source: '缇坦妮雅', capture: false }),
       regexKo: Regexes.ability({ id: '3D4E', source: '티타니아', capture: false }),
       suppressSeconds: 60,
-      infoText: {
-        en: 'Run In',
-        de: 'In die Mitte rennen',
-        fr: 'Courez dedans',
-      },
+      response: Responses.getIn('info'),
     },
     {
       id: 'Titania Growth Rune',
@@ -184,11 +146,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez-vous',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Titania Peasebomb Markers',
@@ -196,29 +154,12 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Ecartez-vous',
-      },
+      response: Responses.spread(),
     },
     {
       id: 'Titania Pucks Breath Markers',
       regex: Regexes.headMarker({ id: '00A1' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            fr: 'Package sur VOUS',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Packez-vous sur' + data.ShortName(matches.target),
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'Titania Knockback',

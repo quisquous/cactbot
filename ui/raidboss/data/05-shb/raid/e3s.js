@@ -3,7 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Gate: Inundation \(Savage\)$/,
-    cn: /^伊甸零式希望乐园 \(觉醒之章3\)$/,
+    cn: /^伊甸零式希望乐园 觉醒之章3$/,
     ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(3\)$/,
   },
   timelineFile: 'e3s.txt',
@@ -50,14 +50,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E3S Tidal Rage',
@@ -70,14 +63,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E3S Tidal Wave Look',
@@ -108,14 +94,7 @@
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
-      alertText: {
-        en: 'Knockback',
-        de: 'Knockback',
-        fr: 'Poussée',
-        ja: 'ノックバック',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'E3S Rip Current',
@@ -180,14 +159,7 @@
       regexJa: Regexes.startsUsing({ id: '3FEE', source: 'リヴァイアサン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '3FEE', source: '利维亚桑', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3FEE', source: '리바이어선', capture: false }),
-      alarmText: {
-        en: 'Go Outside',
-        de: 'Geh nach Ausen',
-        fr: 'Allez sur les côtés',
-        ja: '中壊れるよ',
-        cn: '两侧',
-        ko: '양옆으로',
-      },
+      response: Responses.goSides('alarm'),
     },
     {
       id: 'E3S Flare',
@@ -486,14 +458,7 @@
         return parseFloat(matches.duration) - 3;
       },
       suppressSeconds: 1,
-      alertText: {
-        en: 'Stack',
-        de: 'Sammeln',
-        fr: 'Packé',
-        ja: 'スタック',
-        cn: '集合',
-        ko: '모이기',
-      },
+      response: Responses.stack(),
     },
     {
       id: 'E3S Scouring Waters',

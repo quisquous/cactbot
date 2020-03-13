@@ -100,13 +100,13 @@ hideall "--sync--"
 2006.2 "Sanctification" sync /:The Curator:F89:/
 2011.4 "Unholy" sync /:The Curator:F8A:/
 2020.6 "Sanctification" sync /:The Curator:F89:/
-2028.8 "Aetherochemical Explosive" sync /:The Curator:F8B:/
+2028.8 "Aetherochemical Explosive" sync /:The Curator:F8B:/ window 15,15
 2033.0 "Unholy" sync /:The Curator:F8A:/
 2035.8 "Sanctification" sync /:The Curator:F89:/
 2042.0 "Unholy" sync /:The Curator:F8A:/
 2044.1 "Sanctification" sync /:The Curator:F89:/
 2053.2 "Aetherochemical Explosive" sync /:The Curator:F8B:/
-2066.4 "The Educator" sync /:The Curator:F8D:/
+2066.4 "The Educator" sync /:The Curator:F8D:/ window 30,30
 
 2073.2 "Sanctification" sync /:The Curator:F89:/
 2078.4 "Unholy" sync /:The Curator:F8A:/
@@ -117,7 +117,7 @@ hideall "--sync--"
 2109.0 "Unholy" sync /:The Curator:F8A:/
 2111.1 "Sanctification" sync /:The Curator:F89:/
 2120.2 "Aetherochemical Explosive" sync /:The Curator:F8B:/
-2133.4 "The Educator" sync /:The Curator:F8D:/
+2133.4 "The Educator" sync /:The Curator:F8D:/ window 30,30
 
 2140.2 "Sanctification" sync /:The Curator:F89:/ window 15,15 jump 2073.2
 2145.4 "Unholy"
@@ -133,13 +133,13 @@ hideall "--sync--"
 2205.2 "Unholy" sync /:The Curator:F8A:/
 2214.6 "Sanctification" sync /:The Curator:F89:/
 2222.7 "Aetherochemical Explosive" sync /:The Curator:F8B:/
-2225.0 "Aetherochemical Mine" sync /:Repository Node:F8F:/
+2225.0 "Aetherochemical Mine" sync /:Repository Node:F8F:/ window 10,10
 2226.8 "Unholy" sync /:The Curator:F8A:/
 2229.0 "Sanctification" sync /:The Curator:F89:/
 2235.0 "Unholy" sync /:The Curator:F8A:/
 2237.4 "Sanctification" sync /:The Curator:F89:/
 2242.0 "Aetherochemical Mine" sync /:Repository Node:F8F:/
-2246.5 "Aetherochemical Explosive" sync /:The Curator:F8B:/
+2246.5 "Aetherochemical Explosive" sync /:The Curator:F8B:/ window 10,10
 2259.7 "The Educator" sync /:The Curator:F8D:/
 
 2267.0 "Sanctification" sync /:The Curator:F89:/ window 15,15 jump 2196.1

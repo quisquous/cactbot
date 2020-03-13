@@ -50,6 +50,8 @@ class CactbotLanguageFr extends CactbotLanguage {
       Shifu: 'Shifû',
       CircleOfPower: 'Manalignements',
 
+      SurgeProtection: 'Parafoudre',
+
       Paralysis: 'Paralysie',
       Petrification: 'Pétrification',
       BeyondDeath: 'Outre-mort',
@@ -62,6 +64,12 @@ class CactbotLanguageFr extends CactbotLanguage {
       FoolsTumble: 'Acrophobie illusoire', // 0x183
       Dropsy: 'Œdème',
       Throttle: 'Suffocation',
+      StaticCondensation: 'Charge électrique',
+      DamageDown: 'Malus de dégâts',
+      AstralEffect: 'Corruption de Lumière',
+      UmbralEffect: 'Corruption de Ténèbres',
+
+      WindBurn: 'Brûlure du vent',
     });
 
     this.kUIStrings = Object.freeze({

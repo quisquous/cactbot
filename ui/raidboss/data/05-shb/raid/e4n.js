@@ -3,7 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Gate: Sepulture$/,
-    cn: /^伊甸希望乐园 \(觉醒之章4\)$/,
+    cn: /^伊甸希望乐园 觉醒之章4$/,
     ko: /^희망의 낙원 에덴: 각성편 \(4\)$/,
   },
   timelineFile: 'e4n.txt',
@@ -19,13 +19,7 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'Dégâts de zone',
-        cn: 'AOE',
-        ko: '전체공격',
-      },
+      response: Responses.aoe(),
     },
     {
       id: 'E4N Earthen Fury',
@@ -54,37 +48,10 @@
       regexJa: Regexes.startsUsing({ id: '40F9', source: 'タイタン' }),
       regexCn: Regexes.startsUsing({ id: '40F9', source: '泰坦' }),
       regexKo: Regexes.startsUsing({ id: '40F9', source: '타이탄' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
-            cn: '死刑点名',
-            ko: '나에게 탱버',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑 ->' + data.ShortName(matches.target),
-            ko: '탱버 ->' + data.ShortName(matches.target),
-          };
-        }
+      condition: function(data, matches) {
+        return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
-      infoText: function(data, matches) {
-        if (matches.target != data.me && data.role == 'tank') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            cn: '死刑 ->' + data.ShortName(matches.target),
-            ko: '탱버 ->' + data.ShortName(matches.target),
-          };
-        }
-      },
+      response: Responses.tankBuster(),
     },
     {
       id: 'E4N Massive Landslide',
@@ -128,13 +95,7 @@
       regexJa: Regexes.startsUsing({ id: '40F6', source: 'タイタン', capture: false }),
       regexCn: Regexes.startsUsing({ id: '40F6', source: '泰坦', capture: false }),
       regexKo: Regexes.startsUsing({ id: '40F6', source: '타이탄', capture: false }),
-      infoText: {
-        en: 'Knockback',
-        de: 'Knockback',
-        fr: 'Poussée',
-        cn: '击退',
-        ko: '넉백',
-      },
+      response: Responses.knockback('info'),
     },
     {
       id: 'E4N Fault Zone',

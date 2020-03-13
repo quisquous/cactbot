@@ -1,6 +1,6 @@
 ### Eden 7 (Savage)
 # Eden's Verse: Iconoclasm
-# -p 4C8A:13 4C8B:500 -ii 4C77 4C80 4C81 4C7D 4C34 3CC3 4CFD 4C28 4C72 4E7E 4C71 4D14 4D15 4C8E 4E55 4E56 4C36 4C75 4C76 4C7C 4C83 4C84 4C82 4C7F 4C37 4C38
+# -p 4C8A:13 4C8B:500 -ii 4C77 4C80 4C81 4C7D 4C34 3CC3 4CFD 4C28 4C72 4E7E 4C71 4D14 4D15 4C8E 4E55 4E56 4C36 4C75 4C76 4C7C 4C83 4C84 4C82 4C7F 4C37 4C38 4CAF
 
 # TODO: add interrupt ability
 # TODO: add explosions
@@ -109,7 +109,6 @@ hideall "--sync--"
 578.8 "Unjoined Aspect" sync /:The Idol Of Darkness:4C3B:/
 582.0 "Betwixt Worlds" sync /:The Idol Of Darkness:4CF9:/
 587.0 "Words Of Night" sync /:The Idol Of Darkness:4C2C:/
-596.6 "Light's Course" #sync /:Unforgiven Idolatry:4C5B:/
 596.6 "Light's Course" #sync /:Unforgiven Idolatry:4C62:/
 605.2 "Light's Course" #sync /:Unforgiven Idolatry:4C63:/
 610.2 "False Dawn" sync /:The Idol Of Darkness:4C9A:/
@@ -132,9 +131,7 @@ hideall "--sync--"
 716.9 "Threefold Grace" sync /:The Idol Of Darkness:4C7E:/
 722.6 "Threefold Grace" sync /:The Idol Of Darkness:4C7E:/
 728.3 "Threefold Grace" sync /:The Idol Of Darkness:4C7E:/
-736.5 "Empty Wave" sync /:The Idol Of Darkness:4CAF:/
 736.6 "Empty Wave" sync /:The Idol Of Darkness:4CB0:/
-746.1 "Empty Wave" sync /:The Idol Of Darkness:4CAF:/
 746.2 "Empty Wave" sync /:The Idol Of Darkness:4CB0:/
 
 755.7 "Unjoined Aspect" sync /:The Idol Of Darkness:4C7A:/
@@ -142,7 +139,5 @@ hideall "--sync--"
 795.1 "Threefold Grace" sync /:The Idol Of Darkness:4C7E:/
 800.8 "Threefold Grace" sync /:The Idol Of Darkness:4C7E:/
 806.5 "Threefold Grace" sync /:The Idol Of Darkness:4C7E:/
-814.7 "Empty Wave" sync /:The Idol Of Darkness:4CAF:/
 814.8 "Empty Wave" sync /:The Idol Of Darkness:4CB0:/
-824.2 "Empty Wave" sync /:The Idol Of Darkness:4CAF:/
 824.3 "Empty Wave" sync /:The Idol Of Darkness:4CB0:/
