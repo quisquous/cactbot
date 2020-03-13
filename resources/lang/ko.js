@@ -64,6 +64,8 @@ class CactbotLanguageKo extends CactbotLanguage {
       Throttle: '질식',
       StaticCondensation: '축전',
       DamageDown: '주는 피해량 감소',
+      AstralEffect: 'Astral Effect',
+      UmbralEffect: 'Umbral Effect',
 
       // UWU
       Windburn: '열상',

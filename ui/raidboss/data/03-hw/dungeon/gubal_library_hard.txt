@@ -7,19 +7,19 @@ hideall "--sync--"
 # -ii 1951 1952
 
 0 "--sync--" sync / 00:0839:The Hall of Magicks will be sealed off/
-6.1 "Triclip" sync /:Demon of the Tome:193A:/
+6.1 "Triclip" sync /:Demon of the Tome:193A:/ window 6.1,5
 17.3 "Folio" sync /:Demon of the Tome:193C:/
 23.4 "--sync--" sync /:Top Shelf Tome:193D:/
 24.0 "Book Drop" sync /:Top Shelf Tome:193E:/
 
-29.5 "Triclip" sync /:Demon of the Tome:193A:/
+29.5 "Triclip" sync /:Demon of the Tome:193A:/ window 15,15
 38.7 "Folio" sync /:Demon of the Tome:193C:/
 44.8 "--sync--" sync /:Top Shelf Tome:193D:/
 45.4 "Book Drop" sync /:Top Shelf Tome:193E:/
-47.0 "Issue" sync /:Middle Shelf Tome:193F:/
+47.0 "Issue" sync /:Middle Shelf Tome:193F:/ window 15,15
 52.6 "Discontinue" sync /:Middle Shelf Tome:1940:/
 58.3 "Frightful Roar" sync /:Demon of the Tome:193B:/
-63.5 "Triclip" sync /:Demon of the Tome:193A:/
+63.5 "Triclip" sync /:Demon of the Tome:193A:/ window 15,15
 71.5 "Folio" sync /:Demon of the Tome:193C:/
 77.6 "Issue"
 82.2 "Discontinue"
@@ -30,7 +30,7 @@ hideall "--sync--"
 111.9 "Folio" sync /:Demon of the Tome:193C:/
 118.0 "--sync--" sync /:Top Shelf Tome:193D:/
 118.6 "Book Drop" sync /:Top Shelf Tome:193E:/
-120.2 "Issue" sync /:Middle Shelf Tome:193F:/
+120.2 "Issue" sync /:Middle Shelf Tome:193F:/ window 15,15
 125.8 "Discontinue" sync /:Middle Shelf Tome:1940:/
 131.5 "Frightful Roar" sync /:Demon of the Tome:193B:/
 136.7 "Triclip" sync /:Demon of the Tome:193A:/
@@ -55,7 +55,7 @@ hideall "--sync--"
 # Whichever intermission comes second ends up with phantom "Gains Effect" lines
 
 1000.0 "--sync--"  sync / 00:0839:The Astrology and Astromancy Camera will be sealed off/ window 1000,0
-1007.3 "Searing Wind" sync /:Liquid Flame:1944:/
+1007.3 "Searing Wind" sync /:Liquid Flame:1944:/ window 7.3,5
 1014.3 "Bibliocide" sync /:Liquid Flame:1945:/
 1025.7 "Sea Of Flames x3"
 1030.5 "Slosh" sync /:Liquid Flame:1947:/ window 10,10
@@ -108,16 +108,16 @@ hideall "--sync--"
 # -ii 194F 1950 1958 195B 1969
 
 2000.0 "--sync--" sync / 00:0839:The Rare Tomes Room will be sealed off/ window 2000,5
-2009.2 "Check Out" sync /:Strix:194E:/
+2009.2 "Check Out" sync /:Strix:194E:/ window 9.2,10
 2017.5 "Properties Of Darkness (buster)" sync /:Strix:1954:/
 2029.6 "Properties Of Quakes" sync /:Strix:1956:/
 2033.8 "Properties Of Darkness (buster)" sync /:Strix:1954:/
-2040.1 "Check Out" sync /:Strix:194E:/
+2040.1 "Check Out" sync /:Strix:194E:/ window 10,10
 2048.4 "Properties Of Darkness (buster)" sync /:Strix:1954:/
 2056.7 "Properties Of Darkness II" sync /:Strix:1955:/
 2069.9 "Properties Of Tornados" sync /:Strix:1957:/
 2074.2 "Properties Of Darkness (buster)" sync /:Strix:1954:/
-2082.4 "Properties Of Imps" sync /:Strix:1959:/
+2082.4 "Properties Of Imps" sync /:Strix:1959:/ window 30,30
 2085.5 "Properties Of Darkness" sync /:Strix:1954:/
 2094.7 "Properties Of Thunder III" sync /:Strix:195A:/
 
@@ -136,7 +136,7 @@ hideall "--sync--"
 2172.3 "Quakes/Tornados" sync /:Strix:195[67]:/
 2178.6 "Properties Of Darkness II" sync /:Strix:1955:/
 2181.8 "Properties Of Darkness (buster)" sync /:Strix:1954:/
-2188.1 "Properties Of Imps" sync /:Strix:1959:/
+2188.1 "Properties Of Imps" sync /:Strix:1959:/ window 30,25
 2196.3 "Properties Of Thunder III" sync /:Strix:195A:/
 2203.5 "Properties Of Darkness II" sync /:Strix:1955:/
 2207.7 "Properties Of Darkness (buster)" sync /:Strix:1954:/
@@ -145,7 +145,7 @@ hideall "--sync--"
 2232.3 "Quakes/Tornados" sync /:Strix:195[67]:/
 2238.6 "Properties Of Darkness II" sync /:Strix:1955:/
 2241.8 "Properties Of Darkness (buster)" sync /:Strix:1954:/
-2248.1 "Properties Of Imps" sync /:Strix:1959:/
+2248.1 "Properties Of Imps" sync /:Strix:1959:/ window 30,25
 2256.3 "Properties Of Thunder III" sync /:Strix:195A:/
 2263.5 "Properties Of Darkness II" sync /:Strix:1955:/
 2267.7 "Properties Of Darkness (buster)" sync /:Strix:1954:/ jump 2207.7

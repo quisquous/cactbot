@@ -64,6 +64,8 @@ class CactbotLanguageEn extends CactbotLanguage {
       Throttle: 'Throttle', // 0x2bc
       StaticCondensation: 'Static Condensation',
       DamageDown: 'Damage Down',
+      AstralEffect: 'Astral Effect',
+      UmbralEffect: 'Umbral Effect',
 
       // UWU
       Windburn: 'Windburn',

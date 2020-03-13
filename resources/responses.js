@@ -26,6 +26,7 @@ const triggerFunctions = [
   'id',
   'infoText',
   'preRun',
+  'promise',
   'response',
   'run',
   'sound',

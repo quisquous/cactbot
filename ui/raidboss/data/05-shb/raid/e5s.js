@@ -86,6 +86,7 @@
             cn: '长击退',
             de: 'Weiter Rückstoß',
             fr: 'Forte poussée',
+            ko: '긴 넉백',
           };
         }
         return {
@@ -93,6 +94,7 @@
           cn: '短击退',
           de: 'Kurzer Rückstoß',
           fr: 'Faible poussée',
+          ko: '짧은 넉백',
         };
       },
       run: function(data) {

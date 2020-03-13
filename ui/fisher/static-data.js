@@ -4531,6 +4531,71 @@ let gFisherData = {
         'Elasmosaurus',
         'Elasmosaurier',
       ],
+      '29994': 'Genist-Wolkenskipper',
+      '29995': 'Genist-Meditierer',
+      '29996': [
+        'Genist-Coeurlfisch',
+        'Genist-Coeurlfische',
+      ],
+      '29997': [
+        'Genist-Hecht',
+        'Genist-Hechte',
+      ],
+      '29998': [
+        'Genist-Pirarucu',
+        'Genist-Pirarucus',
+      ],
+      '29999': [
+        'Genist-Bumerang',
+        'Genist-Bumerangs',
+      ],
+      '30000': [
+        'Genist-Bitterling',
+        'Genist-Bitterlinge',
+      ],
+      '30001': [
+        'Genist-Kaiman',
+        'Genist-Kaimane',
+      ],
+      '30002': 'Genist-Wolkenspalter',
+      '30003': [
+        'Genist-Vampirteppich',
+        'Genist-Vampirteppiche',
+      ],
+      '30004': [
+        'Genist-Tupuxuara',
+        'Genist-Tupuxuaras',
+      ],
+      '30005': [
+        'Genist-Blindmanta',
+        'Genist-Blindmantas',
+      ],
+      '30006': [
+        'Genist-Rhomaleosaurus',
+        'Genist-Rhomaleosaurier',
+      ],
+      '30007': [
+        'Genist-Goblinmaske',
+        'Genist-Goblinmasken',
+      ],
+      '30008': [
+        'Genist-Pterodaktylus',
+        'Genist-Pterodaktylen',
+      ],
+      '30009': [
+        'Genist-Luftfisch',
+        'Genist-Luftfische',
+      ],
+      '30010': [
+        'Genist-Kometenfisch',
+        'Genist-Kometenfische',
+      ],
+      '30011': 'Genist-Anomalocaris',
+      '30012': 'Genist-Rhamphorhynchus',
+      '30013': [
+        'Genist-Drachenseele',
+        'Genist-Drachenseelen',
+      ],
     },
     'en': {
       '4776': [
@@ -6941,8 +7006,8 @@ let gFisherData = {
         'shaggy seadragons',
       ],
       '29741': [
-        'spider crab',
-        'spider crabs',
+        'net crawler',
+        'net crawlers',
       ],
       '29742': [
         'dark nautilus',
@@ -7116,6 +7181,65 @@ let gFisherData = {
       '29791': [
         'elasmosaurus',
         'elasmosaurs',
+      ],
+      '29994': [
+        'grade 2 skybuilders\' cloudskipper',
+        'grade 2 skybuilders\' cloudskippers',
+      ],
+      '29995': [
+        'grade 2 skybuilders\' meditator',
+        'grade 2 skybuilders\' meditators',
+      ],
+      '29996': 'grade 2 skybuilders\' coeurlfish',
+      '29997': 'grade 2 skybuilders\' garpike',
+      '29998': 'grade 2 skybuilders\' pirarucu',
+      '29999': 'grade 2 skybuilders\' brown bolo',
+      '30000': [
+        'grade 2 skybuilders\' bitterling',
+        'grade 2 skybuilders\' bitterlings',
+      ],
+      '30001': [
+        'grade 2 skybuilders\' caiman',
+        'grade 2 skybuilders\' caimans',
+      ],
+      '30002': [
+        'grade 2 skybuilders\' cloud cutter',
+        'grade 2 skybuilders\' cloud cutters',
+      ],
+      '30003': [
+        'grade 2 skybuilders\' vampiric tapestry',
+        'grade 2 skybuilders\' vampiric tapestries',
+      ],
+      '30004': [
+        'grade 2 skybuilders\' tupuxuara',
+        'grade 2 skybuilders\' tupuxuaras',
+      ],
+      '30005': [
+        'grade 2 skybuilders\' blind manta',
+        'grade 2 skybuilders\' blind mantas',
+      ],
+      '30006': [
+        'grade 2 artisanal skybuilders\' rhomaleosaurus',
+        'grade 2 artisanal skybuilders\' rhomaleosaurs',
+      ],
+      '30007': [
+        'grade 2 artisanal skybuilders\' gobbie mask',
+        'grade 2 artisanal skybuilders\' gobbie masks',
+      ],
+      '30008': [
+        'grade 2 artisanal skybuilders\' pterodactyl',
+        'grade 2 artisanal skybuilders\' pterodactyls',
+      ],
+      '30009': 'grade 2 artisanal skybuilders\' skyfish',
+      '30010': 'grade 2 artisanal skybuilders\' cometfish',
+      '30011': [
+        'grade 2 artisanal skybuilders\' anomalocaris',
+        'grade 2 artisanal skybuilders\' anomalocarises',
+      ],
+      '30012': 'grade 2 artisanal skybuilders\' rhamphorhynchus',
+      '30013': [
+        'grade 2 artisanal skybuilders\' dragon\'s soul',
+        'grade 2 artisanal skybuilders\' dragon\'s souls',
       ],
     },
     'fr': {
@@ -10480,6 +10604,74 @@ let gFisherData = {
       ],
       '29790': 'pierr\u00e9cailles',
       '29791': 'elasmosaurus',
+      '29994': [
+        'gobie vogue-nuage de restauration (2e phase)',
+        'gobies vogue-nuage de restauration (2e phase)',
+      ],
+      '29995': [
+        'contemplateur de restauration (2e phase)',
+        'contemplateurs de restauration (2e phase)',
+      ],
+      '29996': [
+        'poisson coeurl de restauration (2e phase)',
+        'poissons coeurl de restauration (2e phase)',
+      ],
+      '29997': [
+        'brochet crocodile de restauration (2e phase)',
+        'brochets crocodile de restauration (2e phase)',
+      ],
+      '29998': [
+        'pirarucu de restauration (2e phase)',
+        'pirarucus de restauration (2e phase)',
+      ],
+      '29999': [
+        'boomerang de restauration (2e phase)',
+        'boomerangs de restauration (2e phase)',
+      ],
+      '30000': [
+        'bouvi\u00e8re de restauration (2e phase)',
+        'bouvi\u00e8res de restauration (2e phase)',
+      ],
+      '30001': [
+        'ca\u00efman de restauration (2e phase)',
+        'ca\u00efmans de restauration (2e phase)',
+      ],
+      '30002': 'brise-nuage de restauration (2e phase)',
+      '30003': [
+        'voile-vampire de restauration (2e phase)',
+        'voiles-vampires de restauration (2e phase)',
+      ],
+      '30004': [
+        'tupuxuara de restauration (2e phase)',
+        'tupuxuaras de restauration (2e phase)',
+      ],
+      '30005': [
+        'manta volante de restauration (2e phase)',
+        'mantas volantes de restauration (2e phase)',
+      ],
+      '30006': 'rhomaleosaurus sur commande de restauration (2e phase)',
+      '30007': [
+        'poulpe gobelin sur commande de restauration (2e phase)',
+        'poulpes gobelins sur commande de restauration (2e phase)',
+      ],
+      '30008': [
+        'pt\u00e9rodactyle sur commande de restauration (2e phase)',
+        'pt\u00e9rodactyles sur commande de restauration (2e phase)',
+      ],
+      '30009': [
+        'fulgure sur commande de restauration (2e phase)',
+        'fulgures sur commande de restauration (2e phase)',
+      ],
+      '30010': [
+        'poisson-com\u00e8te sur commande de restauration (2e phase)',
+        'poissons-com\u00e8tes sur commande de restauration (2e phase)',
+      ],
+      '30011': 'anomalocaris sur commande de restauration (2e phase)',
+      '30012': 'rhamphorhynchus sur commande de restauration (2e phase)',
+      '30013': [
+        '\u00e2me-de-dragon sur commande de restauration (2e phase)',
+        '\u00e2mes-de-dragons sur commande de restauration (2e phase)',
+      ],
     },
     'ja': {
       '4776': '\u30de\u30eb\u30e0\u30b1\u30eb\u30d7',
@@ -11389,6 +11581,26 @@ let gFisherData = {
       '29789': '\u30b3\u30fc\u30e9\u30eb\u30de\u30f3\u30bf',
       '29790': '\u30ed\u30c3\u30af\u30b9\u30b1\u30a4\u30eb',
       '29791': '\u30a8\u30e9\u30b9\u30e2\u30b5\u30a6\u30eb\u30b9',
+      '29994': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30af\u30e9\u30a6\u30c9\u30b9\u30ad\u30c3\u30d1\u30fc',
+      '29995': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7791\u60f3\u9b5a',
+      '29996': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30af\u30a1\u30fc\u30eb\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '29997': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30ac\u30fc',
+      '29998': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30d4\u30e9\u30eb\u30af',
+      '29999': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30d6\u30fc\u30e1\u30e9\u30f3',
+      '30000': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30d3\u30bf\u30fc\u30ea\u30f3\u30b0',
+      '30001': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30ab\u30a4\u30de\u30f3',
+      '30002': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30b9\u30d7\u30ea\u30c3\u30c8\u30af\u30e9\u30a6\u30c9',
+      '30003': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30f4\u30a1\u30f3\u30d1\u30a4\u30a2\u30d6\u30e9\u30f3\u30b1\u30c3\u30c8',
+      '30004': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30c8\u30a5\u30d7\u30af\u30b9\u30a2\u30e9',
+      '30005': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u30d5\u30e9\u30a4\u30de\u30f3\u30bf',
+      '30006': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7279\u6ce8\u30ed\u30de\u30ec\u30aa\u30b5\u30a6\u30eb\u30b9',
+      '30007': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7279\u6ce8\u30b4\u30d6\u30ea\u30d1\u30b9',
+      '30008': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7279\u6ce8\u30d7\u30c6\u30ed\u30c0\u30af\u30c6\u30a3\u30eb\u30b9',
+      '30009': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7279\u6ce8\u30b9\u30ab\u30a4\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '30010': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7279\u6ce8\u30b3\u30e1\u30c3\u30c8\u30d5\u30a3\u30c3\u30b7\u30e5',
+      '30011': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7279\u6ce8\u30a2\u30ce\u30de\u30ed\u30ab\u30ea\u30b9',
+      '30012': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7279\u6ce8\u30e9\u30e0\u30d5\u30a9\u30ea\u30f3\u30af\u30b9',
+      '30013': '\u7b2c\u4e8c\u6b21\u5fa9\u8208\u7528\u306e\u7279\u6ce8\u30c9\u30e9\u30b4\u30f3\u30bd\u30a6\u30eb',
     },
   },
   'placefish': {
@@ -13156,8 +13368,10 @@ let gFisherData = {
       12731,
     ],
     '2258': [
-      12828,
-      12768,
+      29994,
+      29995,
+      30000,
+      30001,
     ],
     '2259': [
       12728,
@@ -13169,23 +13383,31 @@ let gFisherData = {
       12729,
     ],
     '2261': [
-      12731,
+      29994,
+      29995,
+      29998,
+      29999,
     ],
     '2262': [
-      12734,
-      12732,
-      12744,
-      12736,
+      30002,
+      30003,
+      30004,
+      30006,
+      30010,
     ],
     '2263': [
-      12732,
-      12735,
-      12736,
-      12744,
+      30002,
+      30003,
+      30005,
+      30007,
+      30011,
     ],
     '2264': [
-      12834,
-      12814,
+      30002,
+      30003,
+      30004,
+      30008,
+      30012,
     ],
     '2500': [
       20127,
@@ -13626,6 +13848,13 @@ let gFisherData = {
     '3458': [
       27482,
       27486,
+    ],
+    '3489': [
+      30002,
+      30003,
+      30005,
+      30009,
+      30013,
     ],
   },
   'places': {
@@ -14809,15 +15038,43 @@ let gFisherData = {
         'Caliban-Furche',
         'in der Caliban-Furche',
       ],
-      '3448': 'Galadion-Bucht - Hochsee',
-      '3449': 'Galadion-Bucht - Phantomstr\u00f6mung',
-      '3450': 'S\u00fcdliche Stra\u00dfe von Merlthor',
-      '3451': 'Merlthorstra\u00dfe (S\u00fcd) - Phantomstr\u00f6mung',
-      '3452': 'N\u00f6rdliche Stra\u00dfe von Merlthor',
-      '3453': 'Merlthorstra\u00dfe (Nord) - Phantomstr\u00f6mung',
-      '3454': 'Rhotano-See - Hochsee',
-      '3455': 'Rhotano-See - Phantomstr\u00f6mung',
+      '3448': [
+        'Galadion-Bucht - Hochsee',
+        'in der Gladion-Bucht - Hochsee',
+      ],
+      '3449': [
+        'Galadion-Bucht - Phantomstr\u00f6mung',
+        'in der Gladion-Bucht - Phantomstr\u00f6mung',
+      ],
+      '3450': [
+        'S\u00fcdliche Stra\u00dfe von Merlthor',
+        'in der S\u00fcdlichen Stra\u00dfe von Merlthor',
+      ],
+      '3451': [
+        'Merlthorstra\u00dfe (S\u00fcd) - Phantomstr\u00f6mung',
+        'in der Merlthorstra\u00dfe S\u00fcd - Phantomstr\u00f6mung',
+      ],
+      '3452': [
+        'N\u00f6rdliche Stra\u00dfe von Merlthor',
+        'in der N\u00f6rdlichen Stra\u00dfe von Merlthor',
+      ],
+      '3453': [
+        'Merlthorstra\u00dfe (Nord) - Phantomstr\u00f6mung',
+        'in der Merlthorstra\u00dfe Nord - Phantomstr\u00f6mung',
+      ],
+      '3454': [
+        'Rhotano-See - Hochsee',
+        'auf der Rhotano-See - Hochsee',
+      ],
+      '3455': [
+        'Rhotano-See - Phantomstr\u00f6mung',
+        'auf der Rhotano-See - Phantomstr\u00f6mung',
+      ],
       '3458': 'Mjrls Tr\u00e4nen',
+      '3489': [
+        'Sturmumtostes Wolkenmeer',
+        'im sturmumtosten Wolkenmeer',
+      ],
     },
     'en': {
       '28': 'Limsa Lominsa upper decks',
@@ -15065,6 +15322,7 @@ let gFisherData = {
       '3454': 'open Rhotano Sea',
       '3455': 'Rhotano spectral current',
       '3458': 'Mjrl\'s Tears',
+      '3489': 'windswept cloudtop',
     },
     'fr': {
       '28': 'Limsa Lominsa - Le Tillac',
@@ -15312,6 +15570,7 @@ let gFisherData = {
       '3454': 'Large de la mer de Rhotano',
       '3455': 'Courant spectral (large de la mer de Rhotano)',
       '3458': 'Les Larmes de Mjrl',
+      '3489': 'Cimes \u00e9vent\u00e9es',
     },
     'ja': {
       '28': '\u30ea\u30e0\u30b5\u30fb\u30ed\u30df\u30f3\u30b5\uff1a\u4e0a\u7532\u677f\u5c64',
@@ -15559,6 +15818,7 @@ let gFisherData = {
       '3454': '\u30ed\u30fc\u30bf\u30ce\u6d77\u6c96\u5408',
       '3455': '\u30ed\u30fc\u30bf\u30ce\u6d77\u6c96\u5408\uff1a\u5e7b\u6d77\u6d41',
       '3458': '\u30df\u30e5\u30ea\u30eb\u306e\u843d\u6d99',
+      '3489': '\u98a8\u5439\u304d\u4e0a\u304c\u308b\u96f2\u6d77',
     },
   },
   'tackle': {
@@ -15888,6 +16148,21 @@ let gFisherData = {
       '29717': [
         'Universalk\u00f6der',
       ],
+      '30278': [
+        'Diadem-Ballonk\u00e4fer',
+      ],
+      '30279': [
+        'rote Diadem-Ballonk\u00e4fer',
+        'roten Diadem-Ballonk\u00e4fer',
+        'rotes Diadem-Ballonk\u00e4fer',
+        'roter Diadem-Ballonk\u00e4fer',
+      ],
+      '30280': [
+        'Diadem-Riesenschnake',
+      ],
+      '30281': [
+        'Diadem-Schwebwurm',
+      ],
     },
     'en': {
       '2585': 'lugworm',
@@ -15968,6 +16243,10 @@ let gFisherData = {
       '29715': 'krill',
       '29716': 'plump worm',
       '29717': 'versatile lure',
+      '30278': 'Diadem balloon bug',
+      '30279': 'Diadem red balloon',
+      '30280': 'Diadem crane fly',
+      '30281': 'Diadem hoverworm',
     },
     'fr': {
       '2585': 'ver de vase',
@@ -16048,6 +16327,10 @@ let gFisherData = {
       '29715': 'krill',
       '29716': 'ver charnu',
       '29717': 'leurre universel',
+      '30278': 'scaraballon du Diad\u00e8me',
+      '30279': 'scaraballon rouge du Diad\u00e8me',
+      '30280': 'tipule g\u00e9ante du Diad\u00e8me',
+      '30281': 'a\u00e9rover du Diad\u00e8me',
     },
     'ja': {
       '2585': '\u30e9\u30b0\u30ef\u30fc\u30e0',
@@ -16128,6 +16411,10 @@ let gFisherData = {
       '29715': '\u30af\u30ea\u30eb',
       '29716': '\u30d5\u30a1\u30c3\u30c8\u30ef\u30fc\u30e0',
       '29717': '\u4e07\u80fd\u30eb\u30a2\u30fc',
+      '30278': '\u30c7\u30a3\u30a2\u30c7\u30e0\u30fb\u30d0\u30eb\u30fc\u30f3',
+      '30279': '\u30c7\u30a3\u30a2\u30c7\u30e0\u30fb\u30ec\u30c3\u30c9\u30d0\u30eb\u30fc\u30f3',
+      '30280': '\u30c7\u30a3\u30a2\u30c7\u30e0\u30fb\u30ac\u30ac\u30f3\u30dc',
+      '30281': '\u30c7\u30a3\u30a2\u30c7\u30e0\u30fb\u30db\u30d0\u30fc\u30ef\u30fc\u30e0',
     },
   },
   'tugs': {
@@ -16474,5 +16761,7 @@ let gFisherData = {
     '28072': 3,
     '28191': 1,
     '28719': 1,
+    '28928': 3,
+    '28929': 3,
   },
 };

@@ -50,7 +50,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       Shifu: '士风',
       CircleOfPower: '魔纹环',
 
-      Paralysis: 'FIXME',
+      Paralysis: '麻痹',
       Petrification: '石化',
       BeyondDeath: '超越死亡',
       Burns: '火伤',
@@ -60,10 +60,12 @@ class CactbotLanguageCn extends CactbotLanguage {
       Imp: '河童',
       Toad: '蛙变',
       FoolsTumble: '坠落幻觉', // 0x183
-      Dropsy: 'FIXME',
-      Throttle: 'FIXME',
+      Dropsy: '水毒',
+      Throttle: '窒息',
       StaticCondensation: '蓄电',
       DamageDown: '伤害降低',
+      AstralEffect: 'Astral Effect',
+      UmbralEffect: 'Umbral Effect',
 
       // UWU
       Windburn: '裂伤',

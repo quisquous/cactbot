@@ -30,6 +30,7 @@
       infoText: {
         en: 'Avoid green nails',
         fr: 'Evitez les AoE',
+        ko: '초록 발톱 피하기',
       },
     },
     {
