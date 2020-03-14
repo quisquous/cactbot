@@ -6,7 +6,6 @@
     ko: /^희망의 낙원 에덴: 공명편 \(1\)$/,
   },
   damageWarn: {
-    'Judgment Jolt': '4B8F', // Stratospear explosions
     'Impact': '4E3A', // Stratospear landing AoE
     'Lightning Bolt': '4B9C', // Stormcloud standard attack
     'Gallop': '4B97', // Sideways add charge
@@ -15,6 +14,7 @@
 
   },
   damageFail: {
+    'Judgment Jolt': '4B8F', // Stratospear explosions
   },
   triggers: [
     {
