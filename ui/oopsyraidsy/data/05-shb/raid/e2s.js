@@ -47,7 +47,7 @@
             // FIXME: ability name here is "Attack", which isn't great.
             de: e.abilityName,
             fr: e.abilityName,
-            cn: e.abilityName,
+            cn: '攻击伤害降低',
             ja: e.abilityName,
             ko: '닉스',
           },
