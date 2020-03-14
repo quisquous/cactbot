@@ -391,8 +391,6 @@ class PopupText {
     if ('preRun' in trigger)
       trigger.preRun(this.data, matches);
 
-    let that = this;
-
     let ValueOrFunction = (f) => {
       let result = (typeof(f) == 'function') ? f(this.data, matches) : f;
       // All triggers return either a string directly, or an object
@@ -509,17 +507,17 @@ class PopupText {
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
           text = triggerUpperCase(text);
-          let holder = that.alarmText.getElementsByClassName('holder')[0];
+          let holder = this.alarmText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alarm-text');
-          addText.bind(that)(holder, div);
+          addText.bind(this)(holder, div);
           window.setTimeout(
-              removeText.bind(that, holder, div),
+              removeText.bind(this, holder, div),
               (duration.fromTrigger || duration.alarmText) * 1000,
           );
 
           if (!soundUrl) {
-            soundUrl = that.options.AlarmSound;
-            soundVol = that.options.AlarmSoundVolume;
+            soundUrl = this.options.AlarmSound;
+            soundVol = this.options.AlarmSoundVolume;
           }
         }
       }
@@ -530,17 +528,17 @@ class PopupText {
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
           text = triggerUpperCase(text);
-          let holder = that.alertText.getElementsByClassName('holder')[0];
+          let holder = this.alertText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'alert-text');
-          addText.bind(that)(holder, div);
+          addText.bind(this)(holder, div);
           window.setTimeout(
-              removeText.bind(that, holder, div),
+              removeText.bind(this, holder, div),
               (duration.fromTrigger || duration.alertText) * 1000,
           );
 
           if (!soundUrl) {
-            soundUrl = that.options.AlertSound;
-            soundVol = that.options.AlertSoundVolume;
+            soundUrl = this.options.AlertSound;
+            soundVol = this.options.AlertSoundVolume;
           }
         }
       }
@@ -550,17 +548,17 @@ class PopupText {
         let text = ValueOrFunction(infoText);
         defaultTTSText = defaultTTSText || text;
         if (text && showText) {
-          let holder = that.infoText.getElementsByClassName('holder')[0];
+          let holder = this.infoText.getElementsByClassName('holder')[0];
           let div = makeTextElement(text, 'info-text');
-          addText.bind(that)(holder, div);
+          addText.bind(this)(holder, div);
           window.setTimeout(
-              removeText.bind(that, holder, div),
+              removeText.bind(this, holder, div),
               (duration.fromTrigger || duration.infoText) * 1000,
           );
 
           if (!soundUrl) {
-            soundUrl = that.options.InfoSound;
-            soundVol = that.options.InfoSoundVolume;
+            soundUrl = this.options.InfoSound;
+            soundVol = this.options.InfoSoundVolume;
           }
         }
       }
@@ -613,10 +611,10 @@ class PopupText {
       if (trigger.sound && soundUrl) {
         let namedSound = soundUrl + 'Sound';
         let namedSoundVolume = soundUrl + 'SoundVolume';
-        if (namedSound in that.options) {
-          soundUrl = that.options[namedSound];
-          if (namedSoundVolume in that.options)
-            soundVol = that.options[namedSoundVolume];
+        if (namedSound in this.options) {
+          soundUrl = this.options[namedSound];
+          if (namedSoundVolume in this.options)
+            soundVol = this.options[namedSoundVolume];
         }
       }
 
@@ -662,7 +660,7 @@ class PopupText {
       }
 
       if ('run' in trigger)
-        trigger.run(that.data, matches);
+        trigger.run(this.data, matches);
     };
 
     let promise = null;
