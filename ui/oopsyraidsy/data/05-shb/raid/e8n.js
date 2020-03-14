@@ -6,9 +6,62 @@
     ko: /^희망의 낙원 에덴: 공명편 \(4\)$/,
   },
   damageWarn: {
+    'Biting Frost': '4DDB', // 270-degree frontal AoE, Shiva
+    'Driving Frost': '4DDC', // Rear cone AoE, Shiva
+    'Frigid Stone': '4E66', // Small spread circles, phase 1
+    'Reflected Axe Kick': '4E00', // Large circle AoE, Frozen Mirror
+    'Reflected Scythe Kick': '4E01', // Donut AoE, Frozen Mirror
+    'Frigid Eruption': '4E09', // Small circle AoE puddles, phase 1
+    'Icicle Impact': '4E0A', // Large circle AoE puddles, phase 1
+    'Axe Kick': '4DE2', // Large circle AoE, Shiva
+    'Scythe Kick': '4DE3', // Donut AoE, Shiva
+    'Reflected Biting Frost': '4DFE', // 270-degree frontal AoE, Frozen Mirror
+    'Reflected Driving Frost': '4DFF', // Cone AoE, Frozen Mirror
   },
   damageFail: {
   },
   triggers: [
+    {
+      id: 'E8N Shining Armor',
+      damageRegex: '4DF1',
+      condition: function(e) {
+        // From the More Than One test runs I did on this encounter,
+        // it appears that this flag will always be E if the player fails.
+        return e.Flags == 'E';
+      },
+      mistake: function(e) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'E8N Heavenly Strike',
+      damageRegex: '4DD8',
+      deathReason: function(e) {
+        return { type: 'fail', name: e.targetName, reason: 'Pushed off!' };
+      },
+    },
+    {
+      id: 'E8N Frost Armor Setup',
+      regex: Regexes.ability({ id: '4DF0' }),
+      run: function(e, data) {
+        data.frozenFloor = true;
+      },
+    },
+    {
+      id: 'E8N Frost Armor',
+      regex: Regexes.ability({ id: '4DF0' }),
+      delaySeconds: 1,
+      deathReason: function(e) {
+        return { type: 'fail', name: e.targetName, reason: 'Slid off!' };
+      },
+    },
+    {
+      id: 'E8N Frost Armor Cleanup',
+      regex: Regexes.ability({ id: '4DF0' }),
+      delaySeconds: 12,
+      run: function(e, data) {
+        data.frozenFloor = false;
+      },
+    },
   ],
 }];
