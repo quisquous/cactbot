@@ -3,7 +3,7 @@
 [{
   zoneRegex: {
     en: /^Alexander - The Cuff Of The Son \(Savage\)$/,
-    cn: /^亚历山大零式机神城 律动之章2$/,
+    cn: /^亚历山大零式机神城 \(律动之章2\)$/,
   },
   timelineFile: 'a6s.txt',
   triggers: [

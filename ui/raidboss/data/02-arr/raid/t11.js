@@ -3,7 +3,7 @@
 [{
   zoneRegex: {
     en: /^The Final Coil Of Bahamut - Turn \(2\)$/,
-    cn: /^巴哈姆特大迷宫 真源之章2$/,
+    cn: /^巴哈姆特大迷宫 \(真源之章2\)$/,
   },
   timelineFile: 't11.txt',
   triggers: [
