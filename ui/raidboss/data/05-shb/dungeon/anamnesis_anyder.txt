@@ -105,10 +105,10 @@ hideall "--sync--"
 3042.4 "Wavebreaker x4" duration 3 #sync /:Depth Grip:33D4:/
 3045.9 "Rising Tide" sync /:Rukshs Dheem:4B8B:/
 3056.2 "Swift Shift" sync /:Rukshs Dheem:4B83:/
-3063.6 "Seabed Ceremony" sync /:Rukshs Dheem:4B7B:/
+3063.6 "Seabed Ceremony" sync /:Rukshs Dheem:4B7B:/ window 30,10
 3074.8 "Falling Water" sync /:Rukshs Dheem:4B7D:/
 3087.0 "Bonebreaker" sync /:Rukshs Dheem:4B8C:/
-3099.1 "Seabed Ceremony" sync /:Rukshs Dheem:4B7B:/
+3099.1 "Seabed Ceremony" sync /:Rukshs Dheem:4B7B:/ window 30,10
 3105.2 "Depth Grip" sync /:Rukshs Dheem:4B84:/
 3115.5 "Wavebreaker x8" duration 7 #sync /:Depth Grip:33D4:/
 3131.8 "Bonebreaker" sync /:Rukshs Dheem:4B8C:/
