@@ -6,9 +6,9 @@
     ko: /^희망의 낙원 에덴: 공명편 \(3\)$/,
   },
   damageWarn: {
-    '4C55': 'Stygian Sword', // Circle ground AoEs after False Twilight
-    '4C4C': 'Strength In Numbers 1', // Large donut ground AoEs, intermission
-    '4C4D': 'Strength In Numbers 2', // Large circle ground AoEs, intermission
+    'Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
+    'Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission
+    'Strength In Numbers 2': '4C4D', // Large circle ground AoEs, intermission
   },
   damageFail: {
   },
@@ -66,22 +66,20 @@
       id: 'E7N Light\'s Course',
       damageRegex: ['4C3E', '4C40', '4C22', '4C3C', '4E63'],
       condition: function(e, data) {
-        return !data.hasUmbral[e.targetName];
+        return data.hasAstral[e.targetName];
       },
       mistake: function(e) {
-        if (data.hasAstral[e.targetName])
-          return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
-        return { type: 'warn', blame: e.targetName, text: e.abilityName + ' no buff' };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
       },
     },
     {
       id: 'E7N Darks\'s Course',
       damageRegex: ['4C3D', '4C23', '4C41', '4C43'],
       condition: function(e, data) {
-        return data.hasUmbral[e.targetName];
+        return !data.hasAstral[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
+        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong/no buff' };
       },
     },
   ],
