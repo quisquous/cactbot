@@ -8,7 +8,7 @@
 [{
   zoneRegex: {
     en: /^Sigmascape V2\.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 西格玛幻境2$/,
+    cn: /^欧米茄零式时空狭缝 \(西格玛幻境2\)$/,
   },
   timelineFile: 'o6s.txt',
   triggers: [
