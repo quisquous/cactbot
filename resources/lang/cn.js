@@ -64,6 +64,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       Throttle: 'FIXME',
       StaticCondensation: '蓄电',
       DamageDown: '伤害降低',
+      Stun: '眩晕',
 
       // UWU
       Windburn: '裂伤',

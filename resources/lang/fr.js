@@ -66,6 +66,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       Throttle: 'Suffocation',
       StaticCondensation: 'Charge électrique',
       DamageDown: 'Malus de dégâts',
+      Stun: 'Étourdissement',
 
       WindBurn: 'Brûlure du vent',
     });

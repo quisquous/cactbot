@@ -23,15 +23,10 @@
   triggers: [
     {
       id: 'E8N Shining Armor',
-      damageRegex: '4DF1',
-      condition: function(e) {
-        // From the More Than One test runs I did on this encounter,
-        // it appears that this flag will always be E if the player fails.
-        return e.Flags == 'E';
-      },
+      gainsEffectRegex: gLang.kEffect.Stun,
       mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
+        return { type: 'warn', blame: e.targetName, reason: gLang.kEffect.Stun };
+      }
     },
     {
       id: 'E8N Heavenly Strike',

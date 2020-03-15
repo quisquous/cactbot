@@ -51,7 +51,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       CircleOfPower: 'Ley-Linien',
 
       SurgeProtection: 'Überspannungsschutz',
-
+      
       Paralysis: 'Paralyse',
       Petrification: 'Stein',
       BeyondDeath: 'Jenseits Des Jenseits',
@@ -66,6 +66,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       Throttle: 'Erstickung',
       StaticCondensation: 'Statische Ladung',
       DamageDown: 'Schaden -',
+      Stun: 'Betäubung',
 
       Windburn: 'Beißender Wind',
     });
