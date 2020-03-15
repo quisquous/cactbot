@@ -98,6 +98,7 @@ let Responses = {
       en: 'Tank Buster',
       de: 'Tankbuster',
       fr: 'Tankbuster',
+      cn: '坦克死刑',
       ko: '탱버',
     };
 
@@ -253,6 +254,7 @@ let Responses = {
       en: 'big aoe!',
       de: 'Große AoE!',
       fr: 'Grosse AoE !',
+      cn: '大AoE伤害！',
       ko: '강한 전체 공격!',
     };
     return obj;
