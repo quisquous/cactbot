@@ -12,6 +12,7 @@
       beforeSeconds: 4,
       alertText: {
         en: 'Hide Behind Meteor',
+        ko: '운석 뒤에 숨기',
       },
     },
     {
@@ -20,6 +21,7 @@
       beforeSeconds: 1,
       infoText: {
         en: 'Away From Meteor',
+        ko: '운석에게서 멀어지기',
       },
     },
   ],
@@ -154,6 +156,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Avoid meteors with laser',
+        ko: '레이저 대상자 - 탱커 피하기',
       },
     },
     {

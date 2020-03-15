@@ -590,42 +590,42 @@
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
-      regex: Regexes.headMarker({ id: '00(?:8F|9[0-6])' }),
+      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
       preRun: function(data, matches) {
         data.limitCutNumber = {
-          '008F': 1,
-          '0090': 2,
-          '0091': 3,
-          '0092': 4,
-          '0093': 5,
-          '0094': 6,
-          '0095': 7,
-          '0096': 8,
+          '004F': 1,
+          '0050': 2,
+          '0051': 3,
+          '0052': 4,
+          '0053': 5,
+          '0054': 6,
+          '0055': 7,
+          '0056': 8,
         }[matches.id];
         if (data.phase == 'wormhole') {
           data.limitCutDelay = {
-            '008F': 9.2,
-            '0090': 10.7,
-            '0091': 13.4,
-            '0092': 15.0,
-            '0093': 17.7,
-            '0094': 19.2,
-            '0095': 22.0,
-            '0096': 23.4,
+            '004F': 9.2,
+            '0050': 10.7,
+            '0051': 13.4,
+            '0052': 15.0,
+            '0053': 17.7,
+            '0054': 19.2,
+            '0055': 22.0,
+            '0056': 23.4,
           }[matches.id];
         } else {
           data.limitCutDelay = {
-            '008F': 9.5,
-            '0090': 11,
-            '0091': 14.1,
-            '0092': 15.5,
-            '0093': 18.6,
-            '0094': 20,
-            '0095': 23.2,
-            '0096': 24.6,
+            '004F': 9.5,
+            '0050': 11,
+            '0051': 14.1,
+            '0052': 15.5,
+            '0053': 18.6,
+            '0054': 20,
+            '0055': 23.2,
+            '0056': 24.6,
           }[matches.id];
         }
       },
@@ -648,7 +648,7 @@
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
-      regex: Regexes.headMarker({ id: '00(?:8F|9[0-6])' }),
+      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1502,7 +1502,7 @@
     },
     {
       id: 'TEA Cactbot Wormhole Strat',
-      regex: Regexes.headMarker({ id: '00(?:8F|9[0-6])' }),
+      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
       condition: function(data, matches) {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1510,14 +1510,14 @@
       },
       preRun: function(data, matches) {
         data.puddle = {
-          '008F': 3,
-          '0090': 3,
-          '0091': 0,
-          '0092': 0,
-          '0093': 1,
-          '0094': 1,
-          '0095': 2,
-          '0096': 2,
+          '004F': 3,
+          '0050': 3,
+          '0051': 0,
+          '0052': 0,
+          '0053': 1,
+          '0054': 1,
+          '0055': 2,
+          '0056': 2,
         }[matches.id];
       },
       durationSeconds: 10,
@@ -1526,56 +1526,56 @@
         // TODO: we could figure out which robot was left and right based
         // on chakrams, and call that out here too instead of just saying "Robot".
         return {
-          '008F': {
+          '004F': {
             en: 'Left To Robot; Look Outside; 3rd Puddle',
             de: 'Links vom Robot; Nach Außen schauen; 3. Fläche',
             ja: '右上 外向き 懺悔3回目',
             ko: '왼쪽 위 / 참회 #3',
             cn: '左-->机器人; 面向外侧; 水圈#3',
           },
-          '0090': {
+          '0050': {
             en: 'Back Right Opposite Robot; Look Middle; 3rd Puddle',
             de: 'Hinten Rechts gegenüber vom Robot; zur Mitte schauen; 3. Fläche',
             ja: '左下 内向き 懺悔3回目',
             ko: '오른쪽 위 / 참회 #3',
             cn: '右后<--机器人; 面向中间; 水圈#3',
           },
-          '0091': {
+          '0051': {
             en: 'Back Left Opposite Robot; No Puddle',
             de: 'Hinten Links gegenüber vom Robot; keine Fläche',
             ja: '左上',
             ko: '왼쪽 아래',
             cn: '左后<--机器人; 无水圈',
           },
-          '0092': {
+          '0052': {
             en: 'Right To Robot; No puddle',
             de: 'Rechts vom Robot; keine Fläche',
             ja: '右下',
             ko: '오른쪽 아래',
             cn: '右-->机器人; 无水圈',
           },
-          '0093': {
+          '0053': {
             en: 'Left Robot Side -> 1st Puddle',
             de: 'Linke Robot Seite -> 1. Fläche',
             ja: '右ちょい上 懺悔1回目',
             ko: '왼쪽 / 참회 #1',
             cn: '机器人左侧 --> 水圈#1',
           },
-          '0094': {
+          '0054': {
             en: 'Right Robot Side -> 1st Puddle',
             de: 'Rechte Robot Seite -> 1. Fläche',
             ja: '左ちょい上 懺悔1回目',
             ko: '오른쪽 / 참회 #1',
             cn: '机器人右侧 --> 水圈#1',
           },
-          '0095': {
+          '0055': {
             en: 'Left Robot Side -> cardinal; 2nd Puddle',
             de: 'Linke Robot Seite -> cardinal; 2. Fläche',
             ja: '右ちょい上 懺悔2回目',
             ko: '왼쪽 / 참회 #2',
             cn: '机器人左侧 --> 边; 水圈#2',
           },
-          '0096': {
+          '0056': {
             en: 'Right Robot Side -> cardinal; 2nd Puddle',
             de: 'Rechte Robot Seite -> cardinal; 2. Fläche',
             ja: '左ちょい上 懺悔2回目',

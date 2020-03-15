@@ -6,15 +6,15 @@
     ko: /^희망의 낙원 에덴: 공명편 \(1\)$/,
   },
   damageWarn: {
-    '4B8F': 'Judgment Jolt', // Stratospear explosions
-    '4E3A': 'Impact', // Stratospear landing AoE
-    '4B9C': 'Lightning Bolt', // Stormcloud standard attack
-    '4B97': 'Gallop', // Sideways add charge
-    '4BA1': 'Shock Strike', // Small AoE circles during Thunderstorm
-    '4CF2': 'Volt Strike', // Large AoE circles during Thunderstorm
+    'Impact': '4E3A', // Stratospear landing AoE
+    'Lightning Bolt': '4B9C', // Stormcloud standard attack
+    'Gallop': '4B97', // Sideways add charge
+    'Shock Strike': '4BA1', // Small AoE circles during Thunderstorm
+    'Volt Strike': '4CF2', // Large AoE circles during Thunderstorm
 
   },
   damageFail: {
+    'Judgment Jolt': '4B8F', // Stratospear explosions
   },
   triggers: [
     {
@@ -39,7 +39,7 @@
       id: 'E5N Divine Judgement Volts',
       damageRegex: '4B9A',
       condition: function(e, data) {
-        return !data.hasOrb;
+        return !data.hasOrb[e.targetName];
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName + ' (no orb)' };

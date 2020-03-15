@@ -10,12 +10,12 @@ hideall "--sync--"
 # Barely worth including, but oh well.
 
 0.0 "--sync--" sync / 00:0839:The Quire will be sealed off/ window 0,1
-5.4 "Fast Blade" sync /:Ser Adelphel Brightblade:2CD:/
+5.4 "Fast Blade" sync /:Ser Adelphel Brightblade:2CD:/ window 5.4,5
 12.5 "Bloodstain" sync /:Ser Adelphel Brightblade:44B:/
 15.8 "Fast Blade" sync /:Ser Adelphel Brightblade:2CD:/
 26.5 "Fast Blade" sync /:Ser Adelphel Brightblade:2CD:/
 
-33.6 "Bloodstain" sync /:Ser Adelphel Brightblade:44B:/
+33.6 "Bloodstain" sync /:Ser Adelphel Brightblade:44B:/ window 10,10
 36.8 "Fast Blade" sync /:Ser Adelphel Brightblade:2CD:/
 47.5 "Fast Blade" sync /:Ser Adelphel Brightblade:2CD:/ jump 26.5
 
@@ -30,13 +30,13 @@ hideall "--sync--"
 
 110.3 "Holiest Of Holy" sync /:Ser Adelphel:101E:/
 114.5 "Heavenly Slash" sync /:Ser Adelphel:101D:/
-122.8 "Holy Shield Bash" sync /:Ser Adelphel:101F:/
+122.8 "Holy Shield Bash" sync /:Ser Adelphel:101F:/ window 10,10
 123.9 "Solid Ascension x2" sync /:Ser Adelphel:1020:/
 131.8 "Heavenly Slash" sync /:Ser Adelphel:101D:/
 
 140.0 "Holiest Of Holy" sync /:Ser Adelphel:101E:/
 144.2 "Heavenly Slash" sync /:Ser Adelphel:101D:/
-152.5 "Holy Shield Bash" sync /:Ser Adelphel:101F:/
+152.5 "Holy Shield Bash" sync /:Ser Adelphel:101F:/ window 10,10
 153.6 "Solid Ascension x2" sync /:Ser Adelphel:1020:/
 161.5 "Heavenly Slash" sync /:Ser Adelphel:101D:/ window 10,5 jump 131.8
 
@@ -57,7 +57,7 @@ hideall "--sync--"
 311.7 "Execution" sync /:Ser Adelphel:1023:/
 322.8 "Holiest Of Holy" sync /:Ser Adelphel:101E:/
 328.0 "Heavenly Slash" sync /:Ser Adelphel:101D:/
-337.2 "Holy Shield Bash" sync /:Ser Adelphel:101F:/
+337.2 "Holy Shield Bash" sync /:Ser Adelphel:101F:/ window 15,15
 338.3 "Solid Ascension x2" sync /:Ser Adelphel:1020:/
 349.1 "Holiest Of Holy" sync /:Ser Adelphel:101E:/
 353.3 "Heavenly Slash" sync /:Ser Adelphel:101D:/
@@ -71,7 +71,7 @@ hideall "--sync--"
 369.1 "Execution" sync /:Ser Adelphel:1023:/
 380.2 "Holiest Of Holy" sync /:Ser Adelphel:101E:/
 385.4 "Heavenly Slash" sync /:Ser Adelphel:101D:/
-394.6 "Holy Shield Bash" sync /:Ser Adelphel:101F:/
+394.6 "Holy Shield Bash" sync /:Ser Adelphel:101F:/ window 15,15
 395.7 "Solid Ascension x2" sync /:Ser Adelphel:1020:/
 406.5 "Holiest Of Holy" sync /:Ser Adelphel:101E:/
 410.7 "Heavenly Slash" sync /:Ser Adelphel:101D:/ window 15,15 jump 353.3
@@ -93,7 +93,7 @@ hideall "--sync--"
 
 # Pre-phase
 1000 "--sync--" sync / 00:0839:The chapter house will be sealed off/ window 1000,1
-1006.7 "Overpower" sync /:Ser Grinnaux the Bull:88C:/
+1006.7 "Overpower" sync /:Ser Grinnaux the Bull:88C:/ window 6.7,5
 1015.6 "Rive" sync /:Ser Grinnaux the Bull:46F:/
 1018.9 "Overpower" sync /:Ser Grinnaux the Bull:88C:/
 1031.2 "Overpower" sync /:Ser Grinnaux the Bull:88C:/
@@ -101,7 +101,7 @@ hideall "--sync--"
 
 1043.2 "Overpower" sync /:Ser Grinnaux the Bull:88C:/
 1055.5 "Overpower" sync /:Ser Grinnaux the Bull:88C:/
-1064.2 "Rive" sync /:Ser Grinnaux the Bull:46F:/ jump 1039.9
+1064.2 "Rive" sync /:Ser Grinnaux the Bull:46F:/ window 15,15 jump 1039.9
 
 1067.5 "Overpower"
 1079.8 "Overpower"
@@ -119,7 +119,7 @@ hideall "--sync--"
 1125.1 "Hyperdimensional Slash" sync /:Ser Grinnaux:1026:/
 1130.3 "Hyperdimensional Slash" sync /:Ser Grinnaux:1026:/
 1134.4 "Heavy Swing" sync /:Ser Grinnaux:1025:/
-1139.4 "Faith Unmoving" sync /:Ser Grinnaux:1027:/
+1139.4 "Faith Unmoving" sync /:Ser Grinnaux:1027:/ window 15,15
 
 1144.1 "Dimensional Collapse" sync /:Ser Grinnaux:1028:/
 1152.3 "Dimensional Rip" sync /:Ser Grinnaux:102C:/
@@ -127,23 +127,23 @@ hideall "--sync--"
 1161.6 "Hyperdimensional Slash" sync /:Ser Grinnaux:1026:/
 1166.8 "Hyperdimensional Slash" sync /:Ser Grinnaux:1026:/
 1170.8 "Heavy Swing" sync /:Ser Grinnaux:1025:/
-1177.4 "Dimensional Collapse" sync /:Ser Grinnaux:1028:/
-1182.5 "Faith Unmoving" sync /:Ser Grinnaux:1027:/
+1177.4 "Dimensional Collapse" sync /:Ser Grinnaux:1028:/ window 15,15
+1182.5 "Faith Unmoving" sync /:Ser Grinnaux:1027:/ 
 
 1192.7 "Dimensional Rip" sync /:Ser Grinnaux:102C:/ window 15,15
 1195.9 "Heavy Swing" sync /:Ser Grinnaux:1025:/
 1202.1 "Hyperdimensional Slash" sync /:Ser Grinnaux:1026:/
 1207.9 "Hyperdimensional Slash" sync /:Ser Grinnaux:1026:/
 1212.1 "Heavy Swing" sync /:Ser Grinnaux:1025:/
-1218.7 "Dimensional Collapse" sync /:Ser Grinnaux:1028:/
+1218.7 "Dimensional Collapse" sync /:Ser Grinnaux:1028:/ window 15,15
 1223.8 "Faith Unmoving" sync /:Ser Grinnaux:1027:/
 
-1234.0 "Dimensional Rip" sync /:Ser Grinnaux:102C:/
+1234.0 "Dimensional Rip" sync /:Ser Grinnaux:102C:/ window 15,15
 1237.1 "Heavy Swing" sync /:Ser Grinnaux:1025:/
 1243.3 "Hyperdimensional Slash" sync /:Ser Grinnaux:1026:/
 1248.8 "Hyperdimensional Slash" sync /:Ser Grinnaux:1026:/
 1253.0 "Heavy Swing" sync /:Ser Grinnaux:1025:/
-1259.6 "Dimensional Collapse" sync /:Ser Grinnaux:1028:/
+1259.6 "Dimensional Collapse" sync /:Ser Grinnaux:1028:/ window 15,15
 1264.7 "Faith Unmoving" sync /:Ser Grinnaux:1027:/ jump 1182.5
 
 # Closing sequence
@@ -155,16 +155,16 @@ hideall "--sync--"
 ###Ser Charibert
 
 2000.0 "--sync--" sync / 00:0839:The Chancel will be sealed off/ window 2000,0
-2006.3 "Altar Candle" sync /:Ser Charibert:1030:/
+2006.3 "Altar Candle" sync /:Ser Charibert:1030:/ window 6.3,5
 2015.0 "Heavensflame" sync /:Ser Charibert:1031:/
-2019.2 "Holy Chain" sync /:Ser Charibert:1033:/
+2019.2 "Holy Chain" sync /:Ser Charibert:1033:/ window 15,15
 2024.4 "Altar Candle" sync /:Ser Charibert:1030:/
 2028.7 "Knights Appear"
-2037.6 "Altar Pyre" sync /:Ser Charibert:1035:/
+2037.6 "Altar Pyre" sync /:Ser Charibert:1035:/ window 15,15
 
 2046.6 "Altar Candle" sync /:Ser Charibert:1030:/
 2055.3 "Heavensflame" sync /:Ser Charibert:1031:/
-2059.5 "Holy Chain" sync /:Ser Charibert:1033:/
+2059.5 "Holy Chain" sync /:Ser Charibert:1033:/ window 15,15
 2064.7 "Altar Candle" sync /:Ser Charibert:1030:/
 2068.8 "Knights Appear"
 2077.9 "Altar Pyre" sync /:Ser Charibert:1035:/ window 15,15 jump 2037.6
@@ -194,7 +194,7 @@ hideall "--sync--"
 2300.0 "Altar Candle" sync /:Ser Charibert:1030:/ window 100,20
 2309.0 "Altar Pyre" sync /:Ser Charibert:1035:/
 2316.3 "Knights Appear"
-2318.6 "Heavensflame" sync /:Ser Charibert:1031:/
+2318.6 "Heavensflame" sync /:Ser Charibert:1031:/ window 15,15
 2322.8 "Holy Chain" sync /:Ser Charibert:1033:/
 2332.0 "Altar Pyre" sync /:Ser Charibert:1035:/
 2336.1 "Altar Candle" sync /:Ser Charibert:1030:/
@@ -202,7 +202,7 @@ hideall "--sync--"
 2345.3 "Altar Candle" sync /:Ser Charibert:1030:/
 2354.3 "Altar Pyre" sync /:Ser Charibert:1035:/
 2356.6 "Knights Appear"
-2363.9 "Heavensflame" sync /:Ser Charibert:1031:/
+2363.9 "Heavensflame" sync /:Ser Charibert:1031:/ window 15,15
 2368.1 "Holy Chain" sync /:Ser Charibert:1033:/
 2377.3 "Altar Pyre" sync /:Ser Charibert:1035:/
 2381.4 "Altar Candle" sync /:Ser Charibert:1030:/ window 15,5 jump 2336.1

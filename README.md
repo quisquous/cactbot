@@ -175,22 +175,25 @@ Follow the same process but select a different cactbot preset.
 Follow all the steps above for installing cactbot first.
 To install dependencies there are 2 methods: **per script** and **manualy**
 
-##### Dependancies: Script Method
+### Dependancies: Script Method
+
 1. `curl` MUST be installed (this is used to download dependencies)
 1. Execute the `./tools/fetch_deps.py` script
 1. Continue with **Steps to build**
 
-##### Dependancies: Manual Method
-1. Please download the latest Zip file from https://github.com/EQAditu/AdvancedCombatTracker/releases/download/
+### Dependancies: Manual Method
+
+1. Please download the latest Zip file from <https://github.com/EQAditu/AdvancedCombatTracker/releases/download/>
 1. Extract the `Advanced Combat Tracker.exe` to `cactbot/plugin/ThirdParty/ACT/`
-1. Please download the latest SDK Zip file from https://github.com/ravahn/FFXIV_ACT_Plugin/ (make sure the file says SDK in its name)
+1. Please download the latest SDK Zip file from <https://github.com/ravahn/FFXIV_ACT_Plugin/> (make sure the file says SDK in its name)
 1. Extract the `SDK folder` as well as the `FFXIV_ACT_Plugin.dll` to `cactbot/plugin/ThirdParty/FFXIV_ACT/`
-1. Please download the latest Zip file from https://github.com/ngld/OverlayPlugin/releases/download/
+1. Please download the latest Zip file from <https://github.com/ngld/OverlayPlugin/releases/download/>
 1. Extract the `libs folder` as well as the `OverlayPlugin.dll` to `cactbot/plugin/ThirdParty/OverlayPlugin/`
 1. Continue with **Steps to build**
 
 The folder should look something like this (keep in mind files can change with updates in the future):
-```
+
+```plaintext
 ThirdParty
 |- ACT
 |  |- Advanced Combat Tracker.exe
@@ -219,7 +222,8 @@ ThirdParty
    |- OverlayPlugin.dll
 ```
 
-##### Steps to build
+### Steps to build
+
 1. Open the solution in Visual Studio (tested with Visual Studio 2017).
 1. Build for "Release" and "x64".
 1. The plugin will be built as **bin/x64/Release/CactbotOverlay.dll**.

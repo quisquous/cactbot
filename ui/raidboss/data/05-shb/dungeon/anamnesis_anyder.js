@@ -49,12 +49,12 @@
     },
     {
       id: 'AnAnyder Luminous Ray',
-      regex: Regexes.startsUsing({ source: 'Unknown', id: '4E27', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Unbekannt(?:e|er|es|en)', id: '4E27', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Inconnu', id: '4E27', capture: false }),
-      regexJa: Regexes.startsUsing({ source: '正体不明', id: '4E27', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '不明物体', id: '4E27', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '정체불명', id: '4E27', capture: false }),
+      regex: Regexes.startsUsing({ source: 'Unknown', id: '4E2[67]', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Unbekannt(?:e|er|es|en)', id: '4E2[67]', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Inconnu', id: '4E2[67]', capture: false }),
+      regexJa: Regexes.startsUsing({ source: '正体不明', id: '4E2[67]', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '不明物体', id: '4E2[67]', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '정체불명', id: '4E2[67]', capture: false }),
       response: Responses.awayFromFront(),
     },
     {

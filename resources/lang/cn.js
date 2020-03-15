@@ -50,7 +50,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       Shifu: '士风',
       CircleOfPower: '魔纹环',
 
-      Paralysis: 'FIXME',
+      Paralysis: '麻痹',
       Petrification: '石化',
       BeyondDeath: '超越死亡',
       Burns: '火伤',
@@ -60,10 +60,12 @@ class CactbotLanguageCn extends CactbotLanguage {
       Imp: '河童',
       Toad: '蛙变',
       FoolsTumble: '坠落幻觉', // 0x183
-      Dropsy: 'FIXME',
-      Throttle: 'FIXME',
+      Dropsy: '水毒',
+      Throttle: '窒息',
       StaticCondensation: '蓄电',
       DamageDown: '伤害降低',
+      AstralEffect: 'Astral Effect',
+      UmbralEffect: 'Umbral Effect',
       Stun: '眩晕',
 
       // UWU
@@ -76,19 +78,19 @@ class CactbotLanguageCn extends CactbotLanguage {
     });
 
     this.countdownStartRegex = function() {
-      return Regexes.parse(/距离战斗开始还有(\y{Float})秒！/);
+      return Regexes.parse(/^.{14} 00:00b9:距离战斗开始还有(\y{Float})秒！/);
     };
     this.countdownEngageRegex = function() {
-      return /:战斗开始！/;
+      return /^.{14} 00:0039:战斗开始！/;
     };
     this.countdownCancelRegex = function() {
-      return /:(\y{Name})取消了战斗开始倒计时。/;
+      return /^.{14} 00:00b9:(\y{Name})取消了战斗开始倒计时。/;
     };
     this.areaSealRegex = function() {
-      return /:距(.*)被封锁还有\y{Float}秒/;
+      return /^.{14} 00:0839:距(.*)被封锁还有\y{Float}秒/;
     };
     this.areaUnsealRegex = function() {
-      return /:(.*)的封锁解除了/;
+      return /^.{14} 00:0839:(.*)的封锁解除了/;
     };
   }
 }

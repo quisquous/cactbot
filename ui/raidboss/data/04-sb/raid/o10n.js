@@ -4,7 +4,7 @@
 [{
   zoneRegex: {
     en: /^Alphascape \(V2\.0\)$/,
-    cn: /^欧米茄时空狭缝 阿尔法幻境2$/,
+    cn: /^欧米茄时空狭缝 \(阿尔法幻境2\)$/,
   },
   timelineFile: 'o10n.txt',
   triggers: [

@@ -4,7 +4,7 @@
 [{
   zoneRegex: {
     en: /^Deltascape V1\.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 德尔塔幻境1$/,
+    cn: /^欧米茄零式时空狭缝 \(德尔塔幻境1\)$/,
   },
   timelineFile: 'o1s.txt',
   triggers: [

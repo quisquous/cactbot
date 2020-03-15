@@ -26,6 +26,7 @@ const triggerFunctions = [
   'id',
   'infoText',
   'preRun',
+  'promise',
   'response',
   'run',
   'sound',
@@ -97,6 +98,7 @@ let Responses = {
       en: 'Tank Buster',
       de: 'Tankbuster',
       fr: 'Tankbuster',
+      cn: '坦克死刑',
       ko: '탱버',
     };
 
@@ -230,6 +232,7 @@ let Responses = {
       de: 'Kleiner Tankbuster',
       fr: 'Mini Buster',
       ja: 'ミニバスター',
+      cn: '小死刑',
       ko: '약한 탱버',
     };
     return obj;
@@ -252,6 +255,7 @@ let Responses = {
       en: 'big aoe!',
       de: 'Große AoE!',
       fr: 'Grosse AoE !',
+      cn: '大AoE伤害！',
       ko: '강한 전체 공격!',
     };
     return obj;
@@ -492,7 +496,7 @@ let Responses = {
       de: 'Raus aus Nahkampf',
       fr: 'Eloignez-vous du CaC',
       ja: '近接最大レンジ',
-      cn: '远离近战',
+      cn: '近战最远距离回避',
       ko: '근접범위 밖으로',
     };
     return obj;
@@ -527,6 +531,7 @@ let Responses = {
       en: 'go into middle',
       fr: 'Allez au milieu',
       de: 'in die Mitte gehen',
+      cn: '去中间',
     };
     return obj;
   },
@@ -818,6 +823,7 @@ let Responses = {
         de: 'Erdstoß auf DIR',
         fr: 'Marque de terre sur VOUS',
         ja: '自分にアースシェイカー',
+        cn: '大地摇动点名',
         ko: '어스징 대상자',
 
       };

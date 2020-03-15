@@ -4,7 +4,7 @@
 [{
   zoneRegex: {
     en: /^Sigmascape \(V3\.0\)$/,
-    cn: /^欧米茄时空狭缝 西格玛幻境3$/,
+    cn: /^欧米茄时空狭缝 \(西格玛幻境3\)$/,
   },
   timelineFile: 'o7n.txt',
   triggers: [

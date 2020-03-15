@@ -62,10 +62,12 @@ hideall "--sync--"
 191.7 "Silver Shot" sync /:The Idol Of Darkness:4C92:/
 191.7 "Dark's Course" sync /:Unforgiven Idolatry:4C5A:/
 191.7 "--sync--" sync /:The Idol Of Darkness:4C30:/
+198.5 "--untargetable--"
 198.6 "--sync--" sync /:The Idol Of Darkness:4D0A:/
 
 202.7 "--sync--" sync /:The Idol Of Darkness:4C32:/ window 210,10
 203.6 "--sync--" sync /:Idolatry:4C3A:/
+205.6 "--targetable--"
 224.9 "Overwhelming Force" sync /:Blasphemy:4C73:/
 231.8 "Insatiable Light" sync /:Idolatry:4C6D:/
 239.5 "Advent Of Light" sync /:4C6E:Idolatry/ # use start of cast for this interrupt
@@ -91,6 +93,7 @@ hideall "--sync--"
 503.2 "--sync--" sync /:The Idol Of Darkness:4D0B:/
 507.3 "--sync--" sync /:The Idol Of Darkness:4C32:/
 
+510.3 "--targetable--"
 514.4 "Unjoined Aspect" sync /:The Idol Of Darkness:4C3B:/
 519.4 "Words Of Unity" sync /:The Idol Of Darkness:4C2D:/
 524.0 "--sync--" sync /:The Idol Of Darkness:4C5E:/
@@ -122,10 +125,11 @@ hideall "--sync--"
 636.2 "Empty Wave" sync /:The Idol Of Darkness:4C8A:/
 643.8 "Unshadowed Stake" sync /:The Idol Of Darkness:4C88:/
 646.4 "Silver Stake" sync /:The Idol Of Darkness:4C89:/
+658.8 "--untargetable--"
 658.9 "--sync--" sync /:The Idol Of Darkness:4C31:/
 
 668.5 "Crusade" sync /:The Idol Of Darkness:4C58:/ window 700,10
-
+673.5 "--targetable--"
 677.6 "Unjoined Aspect" sync /:The Idol Of Darkness:4C7A:/
 683.7 "Words Of Fervor" sync /:The Idol Of Darkness:4C7B:/
 716.9 "Threefold Grace" sync /:The Idol Of Darkness:4C7E:/

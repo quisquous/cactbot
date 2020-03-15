@@ -16,6 +16,7 @@
       beforeSeconds: 4,
       alertText: {
         en: 'Hide Behind Meteor',
+        ko: '운석 뒤에 숨기',
       },
     },
     {
@@ -24,6 +25,7 @@
       beforeSeconds: 0,
       infoText: {
         en: 'Away From Meteor',
+        ko: '운석에게서 멀어지기',
       },
     },
   ],
@@ -293,6 +295,7 @@
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
       infoText: {
         en: 'Away from Meteor!',
+        ko: '운석에게서 멀어지기',
       },
     },
     {
@@ -305,6 +308,7 @@
       delaySeconds: 11.5,
       alarmText: {
         en: 'Stand in Meteor Tankbuster',
+        ko: '운석 막기',
       },
     },
     {
@@ -317,6 +321,7 @@
       delaySeconds: 13,
       alertText: {
         en: 'Kill Meteor Adds',
+        ko: '운석 부수기',
       },
     },
     {
@@ -325,6 +330,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Avoid tanks with laser',
+        ko: '레이저 대상자 - 탱커 피하기',
       },
     },
     {
@@ -337,10 +343,12 @@
         if (matches.y < 90) {
           return {
             en: 'Comets N/S',
+            ko: '남/북 운석 낙하',
           };
         } else if (matches.x < 90) {
           return {
             en: 'Comets E/W',
+            ko: '동/서 운석낙하',
           };
         }
       },
