@@ -26,7 +26,7 @@
       gainsEffectRegex: gLang.kEffect.Stun,
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, reason: gLang.kEffect.Stun };
-      }
+      },
     },
     {
       id: 'E8N Heavenly Strike',

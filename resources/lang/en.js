@@ -69,7 +69,7 @@ class CactbotLanguageEn extends CactbotLanguage {
       AstralEffect: 'Astral Effect',
       UmbralEffect: 'Umbral Effect',
       Stun: 'Stun',
-      
+
       // UWU
       Windburn: 'Windburn',
     });
