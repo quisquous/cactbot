@@ -496,7 +496,6 @@ let Responses = {
       de: 'Raus aus Nahkampf',
       fr: 'Eloignez-vous du CaC',
       ja: '近接最大レンジ',
-      //'远离近战' is an inaccurate translation
       cn: '近战最远距离回避',
       ko: '근접범위 밖으로',
     };
