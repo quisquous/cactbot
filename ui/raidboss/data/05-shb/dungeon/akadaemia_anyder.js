@@ -400,7 +400,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'marquis morbol': '侯爵魔界花	',
+        'marquis morbol': '侯爵魔界花',
         'laboratory tomato': '研究所番茄',
         'laboratory queen': '研究所王后',
         'laboratory onion': '研究所洋葱',
@@ -421,7 +421,7 @@
         'engendered bomb': '创造出的爆弹怪',
         'engendered bandersnatch': '创造出的斑攫兽',
         'engendered anemone': '创造出的风花',
-        'Quetzalcoatl': '克察尔科亚特尔	',
+        'Quetzalcoatl': '克察尔科亚特尔',
         'Doliodus': '原祖鲨',
         'Cladoselache': '裂口鲨',
         'Ichthyology': '水生生物创造场',
