@@ -1,14 +1,13 @@
-#~~~~~~~~~~~~~~~~~~~~~~#
-# DELTASCAPE V1.0--O1N #
-#      ALTE ROITE      #
-#~~~~~~~~~~~~~~~~~~~~~~#
+
+# DELTASCAPE V1.0--O1N
+# ALTE ROITE 
 
 # Enrage is approximately 13:40. Yes, Normal has an enrage.
 # -ii 1ED9 1EDA 23D7 23D9 2583
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 0 "Start" sync /:Engage!/ window 0,1
-1.8 "--sync--" sync /:Alte Roite:368:/
+1.8 "--sync--" sync /:Alte Roite:368:/ window 2,0
 6.6 "Wyrm Tail" sync /:Alte Roite:23D6:/ window 6.6,2.5
 12.8 "Wyrm Tail" sync /:Alte Roite:23D6:/
 19.0 "Flame" sync /:Alte Roite:23DD:/ window 19,10
