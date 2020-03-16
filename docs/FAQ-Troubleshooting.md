@@ -64,8 +64,11 @@ If your game has a text language setting other than english you will need to ope
 Korean is not supported at this time.
 You will need to restart ACT for this setting to take effect.
 
-### Other Issues
+## Places To Get Help
 
-If your issue isn't listed here you can open an issue [here](https://github.com/quisquous/cactbot/issues) and we will try and help you.
+- ask in the [FFXIV ACT discord](https://discord.gg/ahFKcmx) #troubleshooting channel
+- open a [github issue](https://github.com/quisquous/cactbot/issues)
 
-Last updated: 06/12/2019
+## Places To Not Get Help
+
+- DMing quisquous, as they will just redirect you to [places you *can* get help](#places-to-get-help)

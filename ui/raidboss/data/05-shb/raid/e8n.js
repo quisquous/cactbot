@@ -78,9 +78,6 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4DE3', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4DE3', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4DE3', capture: false }),
-      condition: function(data) {
-        return !data.mirrorsActive;
-      },
       response: Responses.getUnder(),
     },
     {
@@ -134,6 +131,7 @@
       regexDe: Regexes.startsUsing({ source: 'Eisspeigel', id: '4E01', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'miroir de glace', id: '4E01', capture: false }),
       regexJa: Regexes.startsUsing({ source: '氷面鏡', id: '4E01', capture: false }),
+      suppressSeconds: 3,
       infoText: {
         en: 'Close to mirrors',
         ko: '거울 밑으로',

@@ -6,21 +6,21 @@
     ko: /^희망의 낙원 에덴: 공명편 \(2\)$/,
   },
   damageWarn: {
-    '4BDA': 'Thorns', // AoE markers after Enumeration
-    '4BDD': 'Ferostorm 1',
-    '4BE0': 'Storm of Fury 1', // Circle AoE during tethers--Garuda
-    '4BE2': 'Explosion', // AoE circles, Garuda orbs
-    '4BE5': 'Ferostorm 2',
-    '4BE6': 'Storm Of Fury 2', // Circle AoE during tethers--Raktapaksa
-    '4BEC': 'Heat Burst',
-    '4BEE': 'Conflag Strike', // 270-degree frontal AoE
-    '4BF0': 'Spike Of Flame', // Orb explosions after Strike Spark
-    '4BF2': 'Radiant Plume',
-    '4BF4': 'Eruption',
+    'Thorns': '4BDA', // AoE markers after Enumeration
+    'Ferostorm 1': '4BDD',
+    'Storm of Fury 1': '4BE0', // Circle AoE during tethers--Garuda
+    'Explosion': '4BE2', // AoE circles, Garuda orbs
+    'Ferostorm 2': '4BE5',
+    'Storm Of Fury 2': '4BE6', // Circle AoE during tethers--Raktapaksa
+    'Heat Burst': '4BEC',
+    'Conflag Strike': '4BEE', // 270-degree frontal AoE
+    'Spike Of Flame': '4BF0', // Orb explosions after Strike Spark
+    'Radiant Plume': '4BF2',
+    'Eruption': '4BF4',
   },
   damageFail: {
-    '4BD5': 'Vacuum Slice', // Dark line AoE from Garuda
-    '4BDB': 'Downburst', // Blue knockback circle. Actual knockback is unknown ability 4C20
+    'Vacuum Slice': '4BD5', // Dark line AoE from Garuda
+    'Downburst': '4BDB', // Blue knockback circle. Actual knockback is unknown ability 4C20
   },
   triggers: [
     {

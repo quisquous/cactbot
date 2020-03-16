@@ -884,7 +884,7 @@ class DamageTracker {
       if ('deathReason' in trigger) {
         let ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
         if (ret) {
-          ret.reason = this.Translate(ret.reason);
+          ret.reason = this.collector.Translate(ret.reason);
           this.AddImpliedDeathReason(ret);
         }
       }
@@ -965,15 +965,30 @@ class DamageTracker {
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
 
+      let zoneError = (s) => {
+        console.error(s + ': ' + JSON.stringify(set.zoneRegex) + ' in ' + set.filename);
+      };
+
       let zoneRegex = set.zoneRegex;
       let locale = this.options.Language || 'en';
-      if (locale in zoneRegex) {
-        zoneRegex = zoneRegex[locale];
-      } else if ('en' in zoneRegex) {
-        zoneRegex = zoneRegex['en'];
-      } else {
-        console.error('unknown zoneRegex locale: ' + JSON.stringify(set.zoneRegex));
+      if (typeof zoneRegex !== 'object') {
+        zoneError('zoneRegex must be translatable object or regexp');
         continue;
+      } else if (!(zoneRegex instanceof RegExp)) {
+        let locale = this.options.Language || 'en';
+        if (locale in zoneRegex) {
+          zoneRegex = zoneRegex[locale];
+        } else if ('en' in zoneRegex) {
+          zoneRegex = zoneRegex['en'];
+        } else {
+          zoneError('unknown zoneRegex locale');
+          continue;
+        }
+
+        if (!(zoneRegex instanceof RegExp)) {
+          zoneError('zoneRegex must be regexp');
+          continue;
+        }
       }
 
       if (this.zoneName.search(zoneRegex) < 0)
@@ -1055,6 +1070,7 @@ class DamageTracker {
           console.error('Unexpected JSON from ' + filename + ', expected a zoneRegex');
           continue;
         }
+        json[i].filename = filename;
         if ('triggers' in json[i]) {
           if (typeof json[i].triggers != 'object' || !(json[i].triggers.length >= 0)) {
             console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');

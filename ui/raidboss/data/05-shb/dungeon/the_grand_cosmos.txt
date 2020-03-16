@@ -8,7 +8,7 @@ hideall "--sync--"
 ### Seeker of Solitude
 # -ii 4768 49A4 476C 476F 4771 4770 -p 4769:111.7
 100.0 "--sync--" sync /00:0839:The Martial Court will be sealed off/ window 100,0
-111.7 "Shadowbolt" sync /:Seeker of Solitude:4769:/
+111.7 "Shadowbolt" sync /:Seeker of Solitude:4769:/ window 112,5
 119.4 "Immortal Anathema" sync /:Seeker of Solitude:49A3:/
 
 126.8 "Tribulation" sync /:Seeker of Solitude:476B:/
@@ -85,7 +85,6 @@ hideall "--sync--"
 1026.8 "Black Flame" sync /:Lugus:475D:/
 1030.3 "Otherworldly Heat" sync /:Lugus:475C:/
 1037.8 "Captive Bolt" sync /:Lugus:4764:/
-1043.2 "--sync--" sync /:4759:Lugus/ window 50,0
 1048.2 "Mortal Flame" sync /:Lugus:4759:/ window 30,0
 1077.1 "Fire's Domain" sync /:Lugus:47(5F|60):/
 1080.2 "Fire's Ire" sync /:Lugus:4761:/

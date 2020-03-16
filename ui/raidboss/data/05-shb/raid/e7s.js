@@ -16,6 +16,7 @@
         en: 'Dark NE, Light NW, one pair S',
         cn: '黑右前 白左前 两人后',
         de: 'Dunkel NO, Licht NW, ein Paar S',
+        fr: 'Noir NE, Blanc NE, paire Sud',
         ko: '어둠 북동, 빛 북서, 한쌍은 남으로',
       },
       // Some tts users complained that this was way too long.
@@ -23,6 +24,7 @@
         en: 'Dark Northeast',
         cn: '黑右前',
         de: 'Dunkel Nordosten',
+        fr: 'Noir Nore Est',
       },
     },
   ],
@@ -113,6 +115,7 @@
         return {
           en: 'Stack (' + names.join(', ') + ')',
           de: 'Sammeln (' + names.join(', ') + ')',
+          fr: 'Package (' + names.join(', ') + ')',
           ko: '모이기 (' + names.join(', ') + ')',
           cn: '分摊 (' + names.join(', ') + ')',
         };
@@ -422,6 +425,7 @@
         return {
           en: 'Get hit by ' + data.colorMap[data.color][data.lang],
           de: 'Lass dich treffen von ' + data.colorMap[data.color][data.lang],
+          fr: 'Encaissez le ' + data.colorMap[data.color][data.lang],
           ko: data.colorMap[data.color][data.lang] + ' 맞기',
           cn: '撞' + data.colorMap[data.color][data.lang],
         };
@@ -453,6 +457,7 @@
         en: 'Get Knocked Into Corner',
         cn: '击退到角落',
         de: 'Lass dich in die Ecke zurückstoßen',
+        fr: 'Faites vous pousser dans les coins',
         ko: '구석으로 넉백',
       },
     },

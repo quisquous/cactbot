@@ -6,9 +6,9 @@
     ko: /^희망의 낙원 에덴: 공명편 \(3\)$/,
   },
   damageWarn: {
-    '4C55': 'Stygian Sword', // Circle ground AoEs after False Twilight
-    '4C4C': 'Strength In Numbers 1', // Large donut ground AoEs, intermission
-    '4C4D': 'Strength In Numbers 2', // Large circle ground AoEs, intermission
+    'Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
+    'Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission
+    'Strength In Numbers 2': '4C4D', // Large circle ground AoEs, intermission
   },
   damageFail: {
   },
