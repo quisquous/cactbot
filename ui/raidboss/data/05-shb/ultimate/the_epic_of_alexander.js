@@ -34,6 +34,9 @@ let getHeadmarkerId = (data, matches) => {
     // The first 1B marker in the encounter is Limit Cut 1, ID 004F.
     data.decOffset = parseInt(matches.id, 16) - 79;
   }
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  // Fortunately, we don't have to worry about whether or not this is robust,
+  // since we know all the IDs that will be present in the encounter.
   return '00' + (parseInt(matches.id, 16) - data.decOffset).toString(16);
 };
 
