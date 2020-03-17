@@ -98,6 +98,7 @@ let Responses = {
       en: 'Tank Buster',
       de: 'Tankbuster',
       fr: 'Tankbuster',
+      ja: 'タンクバスター',
       cn: '坦克死刑',
       ko: '탱버',
     };
@@ -154,7 +155,7 @@ let Responses = {
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
-          ja: 'スイッチ',
+          ja: 'タンクスイッチ',
           cn: '换T！',
           ko: '탱 교대',
         };
@@ -200,6 +201,7 @@ let Responses = {
               en: 'Tank cleave on YOU',
               de: 'Tank Cleave aud DIR',
               fr: 'Tank cleave sur VOUS',
+              ja: '自分に前方範囲攻撃',
               ko: '나에게 광역 탱버',
               cn: '顺劈点名',
             };
@@ -210,6 +212,7 @@ let Responses = {
             en: 'Tank cleave',
             de: 'Tank Cleave',
             fr: 'Tank cleave',
+            ja: '前方範囲攻撃',
             ko: '광역 탱버',
             cn: '顺劈',
           };
@@ -219,6 +222,7 @@ let Responses = {
         en: 'Avoid tank cleave',
         de: 'Tank Cleave ausweichen',
         fr: 'Evitez le cleave sur le tank',
+        ja: '前方範囲攻撃を避け',
         ko: '광역 탱버 피하기',
         cn: '远离顺劈',
       };
@@ -255,6 +259,7 @@ let Responses = {
       en: 'big aoe!',
       de: 'Große AoE!',
       fr: 'Grosse AoE !',
+      ja: '大ダメージAoE',
       cn: '大AoE伤害！',
       ko: '강한 전체 공격!',
     };
@@ -327,6 +332,7 @@ let Responses = {
       en: 'Dorito Stack',
       de: 'Mit Marker sammeln',
       fr: 'Packez-vous avec les autres marqueurs',
+      ja: 'マーカー付けた人とスタック',
       cn: '点名集合',
     };
     return obj;
@@ -507,7 +513,7 @@ let Responses = {
       en: 'In, then out',
       de: 'Rein, dann raus',
       fr: 'Dedans, puis dehors',
-      ja: '中から外',
+      ja: '中 => 外',
       cn: '先靠近，再远离',
       ko: '안으로 => 밖으로',
     };
@@ -519,7 +525,7 @@ let Responses = {
       en: 'Out, then in',
       de: 'Raus, dann rein',
       fr: 'Dehors, puis dedans',
-      ja: '外から中',
+      ja: '外 => 中',
       cn: '先远离，再靠近',
       ko: '밖으로 => 안으로',
     };
@@ -531,6 +537,7 @@ let Responses = {
       en: 'go into middle',
       fr: 'Allez au milieu',
       de: 'in die Mitte gehen',
+      ja: '中へ',
       cn: '去中间',
     };
     return obj;
@@ -541,7 +548,7 @@ let Responses = {
       en: 'Right',
       de: 'Rechts',
       fr: 'Droite ',
-      ja: '右',
+      ja: '右へ',
       cn: '右',
       ko: '오른쪽',
     };
@@ -553,7 +560,7 @@ let Responses = {
       en: 'Left',
       de: 'Links',
       fr: 'Gauche',
-      ja: '左',
+      ja: '左へ',
       cn: '左',
       ko: '왼쪽',
     };
@@ -626,7 +633,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Kill Extra Add',
       de: 'Add besiegen',
-      ja: '水の精倒して',
+      ja: '雑魚を倒す',
       fr: 'Tuez l\'add',
       cn: '击杀小怪',
       ko: '쫄 잡기',
@@ -683,6 +690,7 @@ let Responses = {
         en: 'interrupt ' + source,
         de: 'unterbreche ' + source,
         fr: 'Interrompez ' + source,
+        ja: '沈黙 => ' + source,
         ko: '기술 시전 끊기 => ' + source,
         cn: '打断' + source,
       };
@@ -698,7 +706,7 @@ let Responses = {
           de: 'Marker auf DIR',
           fr: 'Marquage sur VOUS',
           ko: '홍옥징 대상자',
-          ja: 'マーカー on YOU',
+          ja: '自分に捕食',
           cn: '掠食点名',
         };
       }
@@ -711,7 +719,7 @@ let Responses = {
           de: 'Marker auf ' + data.ShortName(target),
           fr: 'Marquage sur ' + data.ShortName(target),
           ko: '홍옥징 → ' + data.ShortName(target),
-          ja: 'マーカー on ' + data.ShortName(target),
+          ja: data.ShortName(target) + 'に捕食',
           cn: '掠食点名' + data.ShortName(target),
         };
       }
@@ -728,6 +736,7 @@ let Responses = {
           en: 'Away from Group',
           fr: 'Eloignez-vous du groupe',
           de: 'Weg von der Gruppe',
+          ja: '外へ',
           cn: '远离人群',
         };
       }
@@ -735,6 +744,7 @@ let Responses = {
         en: 'Away from ' + data.ShortName(target),
         fr: 'Eloignez-vous de ' + data.ShortName(target),
         de: 'Weg von ' + data.ShortName(target),
+        ja: data.ShortName(target) + 'から離れて',
         cn: '远离' + data.ShortName(target),
       };
     };
