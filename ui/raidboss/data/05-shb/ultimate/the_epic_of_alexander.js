@@ -25,6 +25,21 @@
 // * inception orb tethers (likely some "new combatant" flag, like suzex birbs?)
 // * escape/contact regulator/prohibition headmarkers
 
+
+// Due to changes introduced in patch 5.2, overhead markers now have a random offset
+// added to their ID. This offset currently appears to be set per instance, so
+// we can determine what it is from the first overhead marker we see.
+let getHeadmarkerId = (data, matches) => {
+  if (!data.decOffset) {
+    // The first 1B marker in the encounter is Limit Cut 1, ID 004F.
+    data.decOffset = parseInt(matches.id, 16) - 79;
+  }
+  // The leading zeroes are stripped when converting back to string, so we re-add them here.
+  // Fortunately, we don't have to worry about whether or not this is robust,
+  // since we know all the IDs that will be present in the encounter.
+  return '00' + (parseInt(matches.id, 16) - data.decOffset).toString(16);
+};
+
 [{
   zoneRegex: {
     en: /^The Epic [Oo]f Alexander \(Ultimate\)$/,
@@ -590,11 +605,14 @@
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
-      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      regex: Regexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target;
+        // Here and elsewhere, it's probably best to check for whether the user is the target first,
+        // as that should short-circuit more often.
+        return data.me == matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       preRun: function(data, matches) {
+        let correctedMatch = getHeadmarkerId(data, matches);
         data.limitCutNumber = {
           '004F': 1,
           '0050': 2,
@@ -604,7 +622,7 @@
           '0054': 6,
           '0055': 7,
           '0056': 8,
-        }[matches.id];
+        }[correctedMatch];
         if (data.phase == 'wormhole') {
           data.limitCutDelay = {
             '004F': 9.2,
@@ -615,7 +633,7 @@
             '0054': 19.2,
             '0055': 22.0,
             '0056': 23.4,
-          }[matches.id];
+          }[correctedMatch];
         } else {
           data.limitCutDelay = {
             '004F': 9.5,
@@ -626,7 +644,7 @@
             '0054': 20,
             '0055': 23.2,
             '0056': 24.6,
-          }[matches.id];
+          }[correctedMatch];
         }
       },
       durationSeconds: function(data) {
@@ -648,16 +666,16 @@
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
-      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      regex: Regexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target;
+        return data.me == matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: function(data) {
         return data.limitCutDelay - 5;
       },
       alertText: function(data, matches) {
-        let isOddNumber = parseInt(matches.id, 16) & 1 == 1;
+        let isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 == 1;
         if (data.phase == 'wormhole') {
           if (isOddNumber) {
             return {
@@ -773,9 +791,9 @@
     },
     {
       id: 'TEA Ice Marker',
-      regex: Regexes.headMarker({ id: '0043' }),
+      regex: Regexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target;
+        return data.me == matches.target && getHeadmarkerId(data, matches) == '0043';
       },
       alarmText: {
         en: 'Freeze Tornado',
@@ -809,9 +827,9 @@
     },
     {
       id: 'TEA Enumeration YOU',
-      regex: Regexes.headMarker({ id: '0041' }),
+      regex: Regexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target;
+        return data.me == matches.target && getHeadmarkerId(data, matches) == '0041';
       },
       alertText: {
         en: 'Enumeration on YOU',
@@ -824,7 +842,10 @@
     },
     {
       id: 'TEA Enumeration Everyone',
-      regex: Regexes.headMarker({ id: '0041' }),
+      regex: Regexes.headMarker({ }),
+      condition: function(data, matches) {
+        return getHeadmarkerId(data, matches) == '0041';
+      },
       preRun: function(data, matches) {
         data.enumerations = data.enumerations || [];
         data.enumerations.push(matches.target);
@@ -1348,9 +1369,9 @@
     },
     {
       id: 'TEA Judgment Crystal',
-      regex: Regexes.headMarker({ id: '0060' }),
+      regex: Regexes.headMarker({ }),
       condition: function(data, matches) {
-        return data.me == matches.target;
+        return data.me == matches.target && getHeadmarkerId(data, matches) == '0060';
       },
       alertText: {
         en: 'Crystal on YOU',
@@ -1502,9 +1523,11 @@
     },
     {
       id: 'TEA Cactbot Wormhole Strat',
-      regex: Regexes.headMarker({ id: '00(?:4F|5[0-6])' }),
+      regex: Regexes.headMarker({ }),
       condition: function(data, matches) {
         if (!data.options.cactbotWormholeStrat)
+          return false;
+        if (!(/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches)))
           return false;
         return data.phase == 'wormhole' && data.me == matches.target;
       },
@@ -1518,7 +1541,7 @@
           '0054': 1,
           '0055': 2,
           '0056': 2,
-        }[matches.id];
+        }[getHeadmarkerId(data, matches)];
       },
       durationSeconds: 10,
       infoText: function(data, matches) {
@@ -1582,7 +1605,7 @@
             ko: '오른쪽 / 참회 #2',
             cn: '机器人右侧 --> 边; 水圈#2',
           },
-        }[matches.id];
+        }[getHeadmarkerId(data, matches)];
       },
     },
     {
@@ -1610,7 +1633,10 @@
     },
     {
       id: 'TEA Incinerating Heat',
-      regex: Regexes.headMarker({ id: '005D', capture: false }),
+      regex: Regexes.headMarker({ }),
+      condition: function(data, matches) {
+        return getHeadmarkerId(data, matches) == '005D';
+      },
       alertText: {
         en: 'Stack Middle',
         de: 'mittig sammeln',
@@ -1692,7 +1718,10 @@
     },
     {
       id: 'TEA Perfect Optical Sight Stack',
-      regex: Regexes.headMarker({ id: '003E' }),
+      regex: Regexes.headMarker({ }),
+      condition: function(data, matches) {
+        return getHeadmarkerId(data, matches) == '003E';
+      },
       preRun: function(data, matches) {
         data.opticalStack = data.opticalStack || [];
         data.opticalStack.push(matches.target);
