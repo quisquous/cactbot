@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Gate: Resurrection \(Savage\)$/,
+    fr: /^L'Éveil d'Éden: Resurrection \(Sadique\)$/,
     cn: /^伊甸零式希望乐园 \(觉醒之章1\)$/,
     ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(1\)$/,
   },
@@ -34,6 +35,15 @@
           'Eden\'s Schlaffest',
           'tschüss Henochisch',
         ],
+        fr: [
+          'brb',
+          ':zzz:',
+          'La HEE',
+          'Courte Sièste',
+          'brb faire du café',
+          'Eden\'s Dormez bien',
+          'rip Énochien',
+        ],   
         cn: [
           '马上回来',
           '困了睡会儿',
