@@ -50,8 +50,6 @@ class CactbotLanguageEn extends CactbotLanguage {
       Shifu: 'Shifu',
       CircleOfPower: 'Circle Of Power',
 
-      SurgeProtection: 'Surge Protection',
-
       Paralysis: 'Paralysis',
       Petrification: 'Petrification',
       BeyondDeath: 'Beyond Death',
