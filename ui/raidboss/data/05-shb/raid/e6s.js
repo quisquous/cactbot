@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Furor \(Savage\)$/,
+    fr: /^Les Accords d'Éden: Fureur \(Sadique\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(2\)$/,
   },
   timelineFile: 'e6s.txt',
