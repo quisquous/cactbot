@@ -316,7 +316,7 @@
             de: 'Morn Afah auf DIR',
             fr: 'Morn Afah sur VOUS',
             ko: '몬아파 대상자',
-            cn: '8人分摊点名',
+            cn: '无尽顿悟点名',
           };
         }
         if (data.role == 'tank' || data.role == 'healer' || data.CanAddle()) {
@@ -325,7 +325,7 @@
             de: 'Morn Afah auf ' + data.ShortName(matches.target),
             fr: 'Morn Afah sur ' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 몬 아파',
-            cn: '8人分摊点名' + data.ShortName(matches.target),
+            cn: '无尽顿悟点名' + data.ShortName(matches.target),
           };
         }
       },
@@ -582,6 +582,7 @@
       condition: (data) => data.role == 'tank',
       alertText: {
         en: 'Tank Stack in Tower',
+        cn: '坦克塔内分摊',
         fr: 'Tank packé dans les tours',
       },
     },
@@ -596,6 +597,7 @@
       condition: (data) => data.role == 'tank',
       alertText: {
         en: 'Tank Spread in Tower',
+        cn: '坦克塔内分散',
         fr: 'Tank écarté dans les tours',
       },
     },
