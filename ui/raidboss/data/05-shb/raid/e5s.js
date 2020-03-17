@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Fulmination \(Savage\)$/,
+    fr: /^Les Accords d'Éden: Fulmination \(Sadique\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(1\)$/,
   },
   timelineFile: 'e5s.txt',
@@ -194,7 +195,7 @@
           return {
             en: 'Ready Spread',
             de: 'Bereitmachen zum Verteilen',
-            fr: 'Dispersion bientot',
+            fr: 'Dispersion bientôt',
             ko: '산개 준비',
             cn: '准备分散',
           };
