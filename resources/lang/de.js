@@ -68,6 +68,8 @@ class CactbotLanguageDe extends CactbotLanguage {
       DamageDown: 'Schaden -',
       AstralEffect: 'Denaturation Licht',
       UmbralEffect: 'Denaturation Dunkelheit',
+      Stun: 'Betäubung',
+      ThinIce: 'Glatteis',
 
       Windburn: 'Beißender Wind',
     });

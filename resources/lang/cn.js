@@ -66,6 +66,8 @@ class CactbotLanguageCn extends CactbotLanguage {
       DamageDown: '伤害降低',
       AstralEffect: 'Astral Effect',
       UmbralEffect: 'Umbral Effect',
+      Stun: '眩晕',
+      ThinIce: '冰面',
 
       // UWU
       Windburn: '裂伤',
