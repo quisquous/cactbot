@@ -67,6 +67,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       AstralEffect: 'Astral Effect',
       UmbralEffect: 'Umbral Effect',
       Stun: '기절',
+      ThinIce: '얼음 바닥',
 
       // UWU
       Windburn: '열상',

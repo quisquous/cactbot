@@ -69,6 +69,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       AstralEffect: 'Corruption de Lumière',
       UmbralEffect: 'Corruption de Ténèbres',
       Stun: 'Étourdissement',
+      ThinIce: 'Verglas',
 
       WindBurn: 'Brûlure du vent',
     });

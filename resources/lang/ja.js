@@ -69,6 +69,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       AstralEffect: '偏属性：光',
       UmbralEffect: '偏属性：闇',
       Stun: 'スタン',
+      ThinIce: '氷床',
 
       // UWU
       Windburn: '裂傷',

@@ -32,30 +32,14 @@
       id: 'E8N Heavenly Strike',
       damageRegex: '4DD8',
       deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: 'Pushed off!' };
-      },
-    },
-    {
-      id: 'E8N Frost Armor Setup',
-      regex: Regexes.ability({ id: '4DF0' }),
-      run: function(e, data) {
-        data.frozenFloor = true;
+        return { type: 'fail', name: e.targetName, reason: { en: 'Pushed off!' } };
       },
     },
     {
       id: 'E8N Frost Armor',
-      regex: Regexes.ability({ id: '4DF0' }),
-      delaySeconds: 1,
+      gainsEffectRegex: gLang.kEffect.ThinIce,
       deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: 'Slid off!' };
-      },
-    },
-    {
-      id: 'E8N Frost Armor Cleanup',
-      regex: Regexes.ability({ id: '4DF0' }),
-      delaySeconds: 12,
-      run: function(e, data) {
-        data.frozenFloor = false;
+        return { type: 'fail', name: e.targetName, reason: { en: 'Slid off!' } };
       },
     },
   ],
