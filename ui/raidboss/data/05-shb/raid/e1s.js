@@ -33,15 +33,6 @@
           'brb Kafee machen',
           'Eden\'s Schlaffest',
           'tschüss Henochisch',
-        ],
-        fr: [
-          'brb',
-          ':zzz:',
-          'La HEE',
-          'Courte Sièste',
-          'brb faire du café',
-          'Eden\'s Dormez bien',
-          'rip Énochien',
         ],   
         cn: [
           '马上回来',
