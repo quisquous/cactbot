@@ -396,26 +396,53 @@
       },
     },
     {
-      id: 'E7S Boundless Light',
-      regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5C' }),
-      regexDe: Regexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5C' }),
-      regexFr: Regexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5C' }),
-      regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5C' }),
-      condition: function(data) {
-        return data.color == 'dark';
+      id: 'E7S Boundless Tracker',
+      regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
+      regexDe: Regexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]' }),
+      regexFr: Regexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '4C5[CD]' }),
+      regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
+      run: function(data, matches) {
+        data.boundless = data.boundless || {};
+        let oppositeColor = matches.id == '4C5C' ? 'dark' : 'light';
+        data.boundless[oppositeColor] = matches.target;
       },
-      response: Responses.stackOn(),
     },
     {
-      id: 'E7S Boundless Dark',
-      regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5D' }),
+      id: 'E7S Boundless Light Dark Stack',
+      regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
+      regexDe: Regexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]' }),
+      regexFr: Regexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]' }),
+      regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
+      condition: function(data, matches) {
+        if (Object.keys(data.boundless).length != 2)
+          return false;
+        let oppositeColor = matches.id == '4C5C' ? 'dark' : 'light';
+        return data.color == oppositeColor;
+      },
+      response: function(data, matches) {
+        // If somebody is taking both, definitely don't stack with them!
+        if (data.boundless.light == data.boundless.dark) {
+          if (matches.target == data.me)
+            return;
+          return {
+            infoText: {
+              en: 'Avoid ' + data.ShortName(matches.target),
+            },
+          };
+        }
+        return Responses.stackOn();
+      },
+    },
+    {
+      id: 'E7S Boundless Cleanup',
+      regex: Regexes.startsUsing({ source: 'Unforgiven Idolatry', id: '4C5[CD]' }),
       regexDe: Regexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5D' }),
       regexFr: Regexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '4C5D' }),
       regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5D' }),
-      condition: function(data) {
-        return data.color == 'light';
+      delaySeconds: 20,
+      run: function(data, matches) {
+        delete data.boundless;
       },
-      response: Responses.stackOn(),
     },
     {
       id: 'E7S Words of Night',
