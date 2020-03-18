@@ -477,7 +477,7 @@ let Options = {
           trackerName: {
             en: 'Strider',
             de: 'Läufer',
-            fr: 'Simurgh',
+            fr: 'Trotteur',
             ja: 'シムルグ',
             ko: '시무르그',
             cn: '祖',
@@ -755,7 +755,7 @@ let Options = {
           trackerName: {
             en: 'Glavoid',
             de: 'Glavoid',
-            fr: 'Graboïde',
+            fr: 'Glaboïde',
             ja: 'グラヴォ',
             ko: '지렁이',
             cn: '魔虫',
@@ -1174,7 +1174,7 @@ let Options = {
           trackerName: {
             en: 'Leucosia',
             de: 'Leucosia',
-            fr: 'Leucosie',
+            fr: 'Leucosia',
             ja: 'レウコ',
             cn: '惨叫',
             ko: '레우코시아',
@@ -1287,7 +1287,7 @@ let Options = {
           trackerName: {
             en: 'Owl',
             de: 'Askala',
-            fr: 'Ascala',
+            fr: 'Askala',
             ja: 'アスカラ',
             cn: '阿福',
             ko: '작은 부엉이',
@@ -1316,7 +1316,7 @@ let Options = {
           trackerName: {
             en: 'Batym',
             de: 'Batym',
-            fr: 'Batime',
+            fr: 'Duc Batym',
             ja: 'デューク',
             cn: '大公',
             ko: '대공',
@@ -1345,7 +1345,7 @@ let Options = {
           trackerName: {
             en: 'Aetolus',
             de: 'Aetolus',
-            fr: 'Aetolos',
+            fr: 'Aetolus',
             ja: 'アイトロス',
             cn: '雷鸟',
             ko: '아이톨로스',
@@ -1514,7 +1514,7 @@ let Options = {
           trackerName: {
             en: 'Jack',
             de: 'Holz',
-            fr: 'Bûcheron',
+            fr: 'Jack',
             ja: 'ジャック',
             cn: '树人',
             ko: '럼버잭',
