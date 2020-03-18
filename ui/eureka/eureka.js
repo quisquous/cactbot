@@ -1542,7 +1542,7 @@ let Options = {
           trackerName: {
             en: 'Glaukopis',
             de: 'Glaukopis',
-            fr: 'Glaukôpis',
+            fr: 'Glaukopis',
             ja: 'グラウコ',
             cn: '明眸',
             ko: '큰 부엉이',
@@ -1570,7 +1570,7 @@ let Options = {
           trackerName: {
             en: 'YY',
             de: 'Yin-Yang',
-            fr: 'Yin-Yang',
+            fr: 'Ying-Yang',
             ja: 'インヤン',
             cn: '阴·阳',
             ko: '음양',
@@ -1598,7 +1598,7 @@ let Options = {
           trackerName: {
             en: 'Skoll',
             de: 'Skalli',
-            fr: 'Sköll',
+            fr: 'Skoll',
             ja: 'スコル',
             cn: '狼',
             ko: '스콜',
@@ -1677,7 +1677,7 @@ let Options = {
           trackerName: {
             en: 'Khalamari',
             de: 'Kalamari',
-            fr: 'Khalamar',
+            fr: 'Khalamari',
             ja: 'カラマリ',
             cn: '墨鱼',
             ko: '칼라마리',
@@ -1845,7 +1845,7 @@ let Options = {
           trackerName: {
             en: 'Golde',
             de: 'Golde',
-            fr: 'Goldmar',
+            fr: 'Goldemar',
             ja: 'キング',
             cn: '马王',
             ko: '골데마르',
