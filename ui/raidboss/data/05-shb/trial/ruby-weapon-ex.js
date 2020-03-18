@@ -295,6 +295,7 @@
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
       infoText: {
         en: 'Away from Meteor!',
+        fr: 'Loin du Météore!',
         ko: '운석에게서 멀어지기',
       },
     },
@@ -308,6 +309,7 @@
       delaySeconds: 11.5,
       alarmText: {
         en: 'Stand in Meteor Tankbuster',
+        fr: 'Restez dans la Comète Tankbuster',
         ko: '운석 막기',
       },
     },
@@ -321,6 +323,7 @@
       delaySeconds: 13,
       alertText: {
         en: 'Kill Meteor Adds',
+        fr: 'Tuez les Comètes',
         ko: '운석 부수기',
       },
     },
@@ -330,6 +333,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Avoid tanks with laser',
+        fr: 'Évitez les tanks avec vôtre laser',
         ko: '레이저 대상자 - 탱커 피하기',
       },
     },
@@ -343,11 +347,13 @@
         if (matches.y < 90) {
           return {
             en: 'Comets N/S',
+            fr: 'Comètes N/S',
             ko: '남/북 운석 낙하',
           };
         } else if (matches.x < 90) {
           return {
             en: 'Comets E/W',
+            fr: 'Comètes E/O',
             ko: '동/서 운석낙하',
           };
         }
@@ -417,6 +423,7 @@
         'Retract': 'Rétraction',
         'Ravensflight': 'Vol du rapace',
         'Ravensclaw': 'Griffes du rapace',
+        'Outrage': 'Indignation',
         'Optimized Ultima': 'Ultima magitek',
         'Magitek Ray': 'Laser magitek',
         'Magitek Charge': 'Éthéroplasma magitek',
