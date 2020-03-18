@@ -3,7 +3,6 @@
 [{
   zoneRegex: {
     en: /^Cinder Drift$/,
-    fr: /^Les Nuées de Brandons$/,
   },
   timelineFile: 'ruby-weapon.txt',
   timelineTriggers: [
