@@ -16,7 +16,7 @@
         en: 'Dark NE, Light NW, one pair S',
         cn: '黑右前 白左前 两人后',
         de: 'Dunkel NO, Licht NW, ein Paar S',
-        fr: 'Noir NE, Blanc NE, paire Sud',
+        fr: 'Noir NE, Blanc NO, une paire S',
         ko: '어둠 북동, 빛 북서, 한쌍은 남으로',
       },
       // Some tts users complained that this was way too long.
@@ -24,7 +24,7 @@
         en: 'Dark Northeast',
         cn: '黑右前',
         de: 'Dunkel Nordosten',
-        fr: 'Noir Nore Est',
+        fr: 'Noir Nord-Est',
       },
     },
   ],
