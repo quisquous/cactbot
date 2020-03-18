@@ -93,12 +93,12 @@
         return data.phase == 'betwixtWorlds';
       },
       preRun: function(data, matches) {
-        data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsStack = data.betwixtWorldsStack || [];
         data.betwixtWorldsStack.push(matches.target);
       },
       alertText: function(data, matches) {
-        if (data.betwixtWorldsTethers.indexOf(data.me))
+        data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
+        if (data.betwixtWorldsTethers.includes(data.me))
           return;
         if (data.me == matches.target) {
           return {
@@ -222,7 +222,8 @@
         return data.phase == 'falseMidnight';
       },
       alertText: function(data, matches) {
-        if (data.falseMidnightSpread.indexOf(data.me))
+        data.falseMidnightSpread = data.falseMidnightSpread || [];
+        if (data.falseMidnightSpread.includes(data.me))
           return;
         if (data.me == matches.target) {
           return {
