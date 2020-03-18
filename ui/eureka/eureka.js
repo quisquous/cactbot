@@ -1900,7 +1900,7 @@ let Options = {
           },
           trackerName: {
             en: 'Barong',
-            de: 'Barong',
+            de: 'Baron',
             fr: 'Barong',
             ja: 'バロン',
             cn: '巴龙',
