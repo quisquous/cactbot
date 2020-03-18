@@ -3,7 +3,6 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Iconoclasm \(Savage\)$/,
-    fr: /^Les Accords d'Éden: Iconoclasme \(Sadique\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(3\)$/,
   },
   timelineFile: 'e7s.txt',
