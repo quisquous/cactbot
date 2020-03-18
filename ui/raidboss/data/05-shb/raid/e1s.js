@@ -3,7 +3,6 @@
 [{
   zoneRegex: {
     en: /^Eden's Gate: Resurrection \(Savage\)$/,
-    fr: /^L'Éveil d'Éden: Résurrection \(Sadique\)$/,
     cn: /^伊甸零式希望乐园 \(觉醒之章1\)$/,
     ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(1\)$/,
   },
