@@ -678,13 +678,7 @@ class PopupText {
       }
     }
 
-    if (promise === null) {
-      promise = new Promise((res) => {
-        res();
-      });
-    }
-
-    promise.then(() => {
+    let func = () => {
       // Run immediately?
       if (!delay) {
         f();
@@ -698,7 +692,15 @@ class PopupText {
           onTriggerException(trigger, e);
         }
       }, delay * 1000));
-    });
+    };
+
+    // Only if there is a promise, run the trigger asynchronously.
+    // Otherwise, run it immediately.  Otherwise, multiple triggers
+    // might run their condition/preRun prior to all of the alerts.
+    if (promise)
+      promise.then(func);
+    else
+      func();
   }
 
   Test(zone, log) {
