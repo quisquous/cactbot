@@ -93,6 +93,7 @@
         return data.phase == 'betwixtWorlds';
       },
       preRun: function(data, matches) {
+        data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsStack = data.betwixtWorldsStack || [];
         data.betwixtWorldsStack.push(matches.target);
       },
@@ -422,12 +423,17 @@
       regexFr: Regexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '(?:4C2C|4C65)', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '(?:4C2C|4C65)', capture: false }),
       alertText: function(data) {
+        data.colorMap = data.colorMap || [];
+        let colorTrans = data.colorMap[data.color] || {};
+        let color = colorTrans[data.lang];
+        if (!color)
+          return;
         return {
-          en: 'Get hit by ' + data.colorMap[data.color][data.lang],
-          de: 'Lass dich treffen von ' + data.colorMap[data.color][data.lang],
-          fr: 'Encaissez le ' + data.colorMap[data.color][data.lang],
-          ko: data.colorMap[data.color][data.lang] + ' 맞기',
-          cn: '撞' + data.colorMap[data.color][data.lang],
+          en: 'Get hit by ' + color,
+          de: 'Lass dich treffen von ' + color,
+          fr: 'Encaissez le ' + color,
+          ko: color + ' 맞기',
+          cn: '撞' + color,
         };
       },
     },
@@ -468,12 +474,17 @@
       regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C7E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ダークアイドル', id: '4C7E', capture: false }),
       alertText: function(data) {
+        data.colorMap = data.colorMap || [];
+        let colorTrans = data.colorMap[data.color] || {};
+        let color = colorTrans[data.lang];
+        if (!color)
+          return;
         return {
-          en: 'Stand in ' + data.colorMap[data.color][data.lang],
-          de: 'Stehe in ' + data.colorMap[data.color][data.lang],
-          fr: 'Restez sur ' + data.colorMap[data.color][data.lang],
-          ko: data.colorMap[data.color][data.lang] + '에 서기',
-          cn: '站进' + data.colorMap[data.color][data.lang],
+          en: 'Stand in ' + color,
+          de: 'Stehe in ' + color,
+          fr: 'Restez sur ' + color,
+          ko: color + '에 서기',
+          cn: '站进' + color,
         };
       },
     },
