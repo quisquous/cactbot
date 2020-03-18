@@ -12,6 +12,7 @@
       beforeSeconds: 4,
       alertText: {
         en: 'Hide Behind Meteor',
+        fr: 'Cacher derrière le météore',
         ko: '운석 뒤에 숨기',
       },
     },
@@ -21,6 +22,7 @@
       beforeSeconds: 1,
       infoText: {
         en: 'Away From Meteor',
+        fr: 'Loin du météore',
         ko: '운석에게서 멀어지기',
       },
     },
@@ -223,6 +225,7 @@
         'Retract': 'Rétraction',
         'Ravensflight': 'Vol du rapace',
         'Ravensclaw': 'Griffes du rapace',
+        'Outrage': 'Indignation',
         'Optimized Ultima': 'Ultima magitek',
         'Magitek Ray': 'Laser magitek',
         'Magitek Charge': 'Éthéroplasma magitek',
