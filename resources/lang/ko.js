@@ -50,6 +50,8 @@ class CactbotLanguageKo extends CactbotLanguage {
       Shifu: '사풍',
       CircleOfPower: '흑마법 문양: 효과',
 
+      SurgeProtection: '피뢰침',
+
       Paralysis: '마비',
       Petrification: '석화',
       BeyondDeath: '죽음의 초월',
