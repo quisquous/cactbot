@@ -158,6 +158,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Avoid meteors with laser',
+        fr: 'Évitez les météores avec vôtre laser',
         ko: '레이저 대상자 - 탱커 피하기',
       },
     },
