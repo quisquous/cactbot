@@ -7,6 +7,7 @@
 [{
   zoneRegex: {
     en: /^Cinder Drift \(Extreme\)$/,
+    fr: /^Les Nuées de Brandons \(Extrême\)$/,
   },
   timelineFile: 'ruby-weapon-ex.txt',
   timelineTriggers: [
