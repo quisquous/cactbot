@@ -353,7 +353,7 @@
         } else if (matches.x < 90) {
           return {
             en: 'Comets E/W',
-            fr: 'Comètes E/O',00
+            fr: 'Comètes E/O',
             ko: '동/서 운석낙하',
           };
         }
