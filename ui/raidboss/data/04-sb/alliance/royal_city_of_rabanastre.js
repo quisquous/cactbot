@@ -21,12 +21,14 @@
         en: 'Kill Aqua Spheres',
         de: 'Wasserkugeln zerstören',
         fr: 'Détruire les bulles d\'eau',
+        cn: '击杀水球',
         ko: '물 구체 죽이기',
       },
       tts: {
         en: 'adds',
         de: 'etz',
         fr: 'adds',
+        cn: '击杀水球',
         ko: '쫄 추가',
       },
     },
@@ -47,6 +49,7 @@
             en: 'Get In Bubble',
             de: 'Geh in die Blase',
             fr: 'Allez dans une bulle',
+            cn: '进气泡',
             ko: '물방울 안으로',
           };
         }
@@ -57,6 +60,7 @@
             en: 'Breathless: ' + (data.breathless + 1),
             de: 'Atemnot: ' + (data.breathless + 1),
             fr: 'Suffocation :' + (data.breathless + 1),
+            cn: '窒息层数:' + (data.breathless + 1),
             ko: '호흡곤란: ' + (data.breathless + 1),
           };
         }
@@ -67,6 +71,7 @@
             en: 'bubble',
             de: 'blase',
             fr: 'bulle',
+            cn: '进气泡',
             ko: '숨쉬어!',
           };
         }
@@ -103,12 +108,14 @@
         en: 'Move To Safe Spot',
         de: 'Zur sicheren Zone',
         fr: 'Allez en zone sûre',
+        cn: '去安全点',
         ko: '안전 지대로 이동',
       },
       tts: {
         en: 'move away',
         de: 'weck da',
         fr: 'Zone sure',
+        cn: '去安全点',
         ko: '안전 지대로',
       },
     },
@@ -135,12 +142,14 @@
         en: 'Move Away',
         de: 'Weg da',
         fr: 'Eloignez-vous',
+        cn: '远离大锤落点',
         ko: '피하기',
       },
       tts: {
         en: 'move away',
         de: 'weck da',
         fr: 'Eloignez vous',
+        cn: '远离大锤落点',
       },
     },
     {
@@ -156,12 +165,14 @@
         en: 'Kill Golems',
         de: 'Golems töten',
         fr: 'Détruisez les golems',
+        cn: '击杀小怪',
         ko: '골렘 죽이기',
       },
       tts: {
         en: 'adds',
         de: 'etz',
         fr: 'adds',
+        cn: '击杀小怪',
         ko: '쫄 추가',
       },
     },
@@ -177,12 +188,14 @@
         en: 'Dragon Voice: Move In',
         de: 'Stimme Des Drachen: Rein',
         fr: 'Voix Du Dragon : Packez-vous',
+        cn: '雷电咆哮: 靠近',
         ko: '뇌전 포효: 안으로',
       },
       tts: {
         en: 'dragon voice',
         de: 'Stimme des Drachen',
         fr: 'Voix Du Dragon',
+        cn: '靠近',
         ko: '번개 안으로',
       },
     },
@@ -198,12 +211,14 @@
         en: 'Ram Voice: Move Out',
         de: 'Stimme Des Widders: Raus',
         fr: 'Voix Du Bélier : Eloignez-vous',
+        cn: '寒冰咆哮: 远离',
         ko: '빙결 포효: 바깥으로',
       },
       tts: {
         en: 'rams voice',
         de: 'Stimme des Widders',
         fr: 'Voix Du Bélier',
+        cn: '远离',
         ko: '빙결 바깥으로',
       },
     },
@@ -227,6 +242,7 @@
         en: 'Trample',
         de: 'Zertrampeln',
         fr: 'Fauchage',
+        cn: '蹂躏',
         ko: '유린',
       },
     },
@@ -266,6 +282,7 @@
             en: 'Move',
             de: 'Bewegen',
             fr: 'Bougez',
+            cn: '动起来',
             ko: '움직이기',
           };
         }
@@ -273,6 +290,7 @@
           en: 'Stop',
           de: 'Stopp',
           fr: 'Stop',
+          cn: '不要动',
           ko: '멈추기',
         };
       },
@@ -289,6 +307,7 @@
             en: 'Look Away',
             de: 'Wegschauen',
             fr: 'Regardez ailleurs',
+            cn: '背对BOSS',
             ko: '바라보기',
           };
         }
@@ -296,6 +315,7 @@
           en: 'Look Towards',
           de: 'Anschauen',
           fr: 'Regardez le boss',
+          cn: '面对BOSS',
           ko: '바라보지 말기',
         };
       },
@@ -515,33 +535,32 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'command tower': '支配之塔',
         'Frostwave': '寒冰波动',
-        'I am Revelation': 'I am Revelation', // FIXME
-        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
-        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
+        'I am Revelation': '遵从朕的神谕',
+        'I am the truth from which you run': '此乃真神之力！',
+        'I am the lies upon which you sup': '此乃伪神之力！',
         'Mateus, The Corrupt': '背德皇帝马提乌斯',
         'Argath Thadalfus': '冷血剑阿加斯',
         'Hashmal, Bringer Of Order': '统治者哈修马利姆',
         'Rofocale': '人马王洛弗卡勒',
-        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
+        'The heavens tremble in my wake': '我的战车驰骋天际！',
       },
       'replaceText': {
-        '--face--': '--face--', // FIXME
-        '--ice disappears--': '--ice disappears--', // FIXME
-        '--invulnerable--': '--invulnerable--', // FIXME
-        '--knockback--': '--knockback--', // FIXME
-        '--lock out--': '--lock out--', // FIXME
-        '--meteors--': '--meteors--', // FIXME
-        '--reset--': '--reset--', // FIXME
-        '--start--': '--start--', // FIXME
-        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
-        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
-        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
-        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
+        '--face--': '--面对--',
+        '--ice disappears--': '--冰消失--',
+        '--invulnerable--': '--无敌--',
+        '--knockback--': '--击退--',
+        '--lock out--': '--封锁--',
+        '--meteors--': '--陨石--',
+        '--reset--': '--重置--',
+        '--start--': '--开始--',
+        'Aqua Sphere Adds': '水球出现',
+        'Archaeodemon Adds': '古恶魔出现',
+        'Azure Guard Adds': '蔚蓝护卫出现',
+        'Blade, or putt putt': '去刀AOE缝隙处/去BOSS脚下',
         'Blizzard IV': '冰澈',
         'Chariot': '人马战车',
         'Coldblood': '冷血乱舞',
@@ -556,27 +575,27 @@
         'Embrace': '攻击',
         'Extreme Edge': '加速刃',
         'Fire IV': '炽炎',
-        'Frog Phase': 'Frog Phase', // FIXME
+        'Frog Phase': '窒息阶段',
         'Frostwave': '寒冰波动',
         'Gnawing Dread': '丧失之痛',
-        'Golem Adds': 'Golem Adds', // FIXME
+        'Golem Adds': '巨像兵出现',
         'Heavenly Subjugation': '天将霸道击',
-        'Hole In One': 'Hole In One', // FIXME
-        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
+        'Hole In One': '去BOSS脚下',
+        'Ice Cone Phase': '引导冰块阶段',
         'Judgment': '制裁',
         'Landwaster': '地动',
-        'Line AOEs': 'Line AOEs', // FIXME
+        'Line AOEs': '直线AOE',
         'Maverick': '特立独行',
         'Pomp and Circumstance': '威风凛凛',
-        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
+        'Putt putt, or Blade': '去BOSS脚下/去刀AOE缝隙处',
         'Quake IV': '激震',
         'Rock Cutter': '石刃',
         'Royal Blood': '高贵血脉',
-        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
-        'Shades Appear': 'Shades Appear', // FIXME
-        'Shard Adds': 'Shard Adds', // FIXME
+        'Sand Sphere Adds': '沙球出现',
+        'Shades Appear': '阿加斯之影出现',
+        'Shard Adds': '虚无结晶出现',
         'Soulfix': '咒枪穿刺',
-        'Stack Damage': 'Stack Damage', // FIXME
+        'Stack Damage': '分摊伤害',
         'Submission Tower': '服从之塔',
         'Trample': '踩踏',
         'Trepidation': '狐鸡鼠',
