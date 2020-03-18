@@ -25,7 +25,6 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Refulgence \(Savage\)$/,
-    fr: /^Les Accords d'Éden: Éclat \(Sadique\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(4\)$/,
   },
   timelineFile: 'e8s.txt',
