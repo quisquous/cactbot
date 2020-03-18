@@ -25,6 +25,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Refulgence \(Savage\)$/,
+    fr: /^Les Accords d'Éden: Éclat \(Sadique\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(4\)$/,
   },
   timelineFile: 'e8s.txt',
@@ -126,7 +127,7 @@
           return {
             en: 'Biting Frost Next',
             de: 'Frosthieb als nächstes',
-            fr: 'Taillade de givre bientot',
+            fr: 'Taillade de givre bientôt',
             ko: '다음: Biting/スラッシュ',
             cn: '下次攻击前侧方',
           };
@@ -134,7 +135,7 @@
         return {
           en: 'Driving Frost Next',
           de: 'Froststoß als nächstes',
-          fr: 'Percée de givre bientot',
+          fr: 'Percée de givre bientôt',
           ko: '다음: Driving/スラスト',
           cn: '下次攻击后方',
         };
@@ -144,7 +145,7 @@
           return {
             en: 'Biting Frost Next',
             de: 'Frosthieb als nächstes',
-            fr: 'Taillade de givre bientot',
+            fr: 'Taillade de givre bientôt',
             ko: '다음: 바이팅 스라슈',
             cn: '下次攻击前侧方',
           };
@@ -152,7 +153,7 @@
         return {
           en: 'Driving Frost Next',
           de: 'Froststoß als nächstes',
-          fr: 'Percée de givre bientot',
+          fr: 'Percée de givre bientôt',
           ko: '다음: 드라이빙 스라스토',
           cn: '下次攻击后方',
         };
