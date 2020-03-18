@@ -3,7 +3,6 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Fulmination \(Savage\)$/,
-    fr: /^Les Accords d'Éden: Fulmination \(Sadique\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(1\)$/,
   },
   timelineFile: 'e5s.txt',
