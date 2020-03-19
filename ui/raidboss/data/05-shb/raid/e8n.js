@@ -54,7 +54,7 @@
       alertText: {
         en: 'Go Front / Sides',
         de: 'Gehe nach Forne/ zu den Seiten',
-        en: 'Allez devant / sur les côtés',
+        fr: 'Allez devant / sur les côtés',
         ko: '앞 / 양옆으로',
       },
     },
