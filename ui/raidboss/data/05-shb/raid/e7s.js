@@ -459,7 +459,7 @@
         return {
           en: 'Get hit by ' + color,
           de: 'Lass dich treffen von ' + color,
-          fr: 'Encaissez le ' + color,
+          fr: 'Encaissez-le ' + color,
           ko: color + ' 맞기',
           cn: '撞' + color,
         };
@@ -475,7 +475,7 @@
       alertText: {
         en: 'Bait Puddles',
         de: 'Flächen ködern',
-        fr: 'Placez les flaques',
+        fr: 'Placez les zones au sol',
         cn: '放圈',
         ko: '장판 버리기',
       },
@@ -491,7 +491,7 @@
         en: 'Get Knocked Into Corner',
         cn: '击退到角落',
         de: 'Lass dich in die Ecke zurückstoßen',
-        fr: 'Faites vous pousser dans les coins',
+        fr: 'Faites-vous pousser dans les coins',
         ko: '구석으로 넉백',
       },
     },
