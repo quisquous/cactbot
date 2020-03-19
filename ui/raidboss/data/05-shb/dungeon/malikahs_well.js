@@ -190,7 +190,7 @@
         'Crystal Nail': '打桩',
         'Censure': '执行',
         'Armadillo': '犰狳',
-        '2x Pack Armadillo': '2x 犰狳',
+        'Pack': '',
       },
       '~effectNames': {},
     },
