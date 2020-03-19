@@ -366,8 +366,6 @@
         'Burst': '大爆炸',
         'Apokalypsis': '启示录',
         'Aetherspike': '以太钉刺',
-        '--sync--': '--sync--',
-        '--Reset--': '--reset--',
       },
       '~effectNames': {
         'Healing Magic Down': '治疗魔法效果降低',

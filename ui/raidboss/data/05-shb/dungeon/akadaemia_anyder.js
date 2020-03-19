@@ -436,7 +436,7 @@
       'replaceText': {
         'Worse Breath': '恶臭吐息',
         'Winding Current': '绕组电流',
-        'Waterspout': '水龙卷',
+        'Waterspout': '喷射水波',
         'Tidal Guillotine': '怒潮断头台',
         'Thunderstorm': '雷暴',
         'Thunderbolt': '霹雳',
