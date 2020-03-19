@@ -54,6 +54,7 @@
       alertText: {
         en: 'Go Front / Sides',
         de: 'Gehe nach Forne/ zu den Seiten',
+        en: 'Allez devant / sur les côtés',
         ko: '앞 / 양옆으로',
       },
     },
@@ -93,6 +94,7 @@
       },
       alertText: {
         en: 'Get behind, then South',
+        fr: 'Passer derrière, puis au Sud',
         ko: '보스 뒤로 => 남쪽으로',
       },
     },
@@ -109,6 +111,7 @@
       },
       alertText: {
         en: 'Go Front / Sides, then North',
+        fr: 'Allez devant / sur les côtés, puis au Nord',
         ko: '앞/양옆으로 => 북쪽으로',
       },
     },
@@ -134,6 +137,7 @@
       suppressSeconds: 3,
       infoText: {
         en: 'Close to mirrors',
+        fr: 'Près des mirroirs',
         ko: '거울 밑으로',
       },
     },
@@ -178,6 +182,7 @@
       infoText: {
         en: 'Flare on YOU',
         de: 'Flare auf DIR',
+        fr: 'Brasier sur VOUS',
         ko: '플레어 대상자',
       },
     },
@@ -193,6 +198,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: '3x puddles on you',
+        fr: '3x flaques sur vous',
         ko: '따라오는 장판 피하기',
       },
     },
@@ -233,11 +239,13 @@
         if (data.rampant[data.me]) {
           return {
             en: 'Cone on YOU -- avoid towers',
+            fr: 'Cône sur Vous -- évitez les tours',
             ko: '부채꼴 대상자 - 장판 피하기',
           };
         }
         return {
           en: 'Stand in a tower',
+          fr: 'Se tenir dans une tour',
           ko: '장판 들어가기',
         };
       },
