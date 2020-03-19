@@ -32,6 +32,7 @@
       alertText: {
         en: 'Look Away, Get Towers',
         de: 'Weg schauen, Türme nehmen',
+        fr: 'Regarde ailleurs, prenez une tour',
       },
     },
     {
@@ -215,6 +216,7 @@
         'God Ray': 'Rayon divin',
         'Flaming Sword': 'Épée du feu des cieux',
         'Explosion': 'Explosion',
+        'Enthrall': 'Œil captivant',
         'Duel Descent': 'Double plongeon',
         'Drop of Light': 'Goutte de lumière',
         'Dream of the Rood': 'Le Rêve de la Croix',
