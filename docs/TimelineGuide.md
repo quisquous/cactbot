@@ -401,6 +401,18 @@ python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
 398.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
 402.4 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 ```
+(Note that you can also use the `-lf` parameter to list the encounters in the combat log.
+```
+python make_timeline.py -f CapeWestwind.log -lf
+1. 02:03:44.018 02:16:53.632 Cape Westwind
+2. 18:32:52.981 18:36:14.086 Cape Westwind
+3. 18:42:23.614 18:49:22.934 Cape Westwind
+4. 18:57:09.114 19:10:13.200 Cape Westwind
+5. 19:29:42.265 19:36:22.437 Cape Westwind
+6. 19:40:20.606 19:46:44.342 Cape Westwind
+```
+From here, you can then rerun the command with the number of the encounter you want to use,
+as `-lf 3`.)
 
 This isn't really a workable timeline yet, but it's a start.
 Paste this into **ui/raidboss/data/timelines/cape_westwind.txt**.
@@ -1051,6 +1063,7 @@ adjusting timelines to be more accurate.
 Here's an example.
 The `-t` parameter here refers to the file name of the timeline you want to test against
 in the **ui/raidboss/data/timelines** folder, minus the .txt extension.
+(As with `make_timeline`, you can use the `-lf` parameter to list encounters.)
 
 ```bash
 $ python util/test_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
