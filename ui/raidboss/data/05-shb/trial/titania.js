@@ -189,7 +189,6 @@
             en: 'Group Adds East (on Mustardseed)',
             de: 'Adds im Osten sammeln (bei Senfsamen)',
             fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
-            
           };
         }
         return {
