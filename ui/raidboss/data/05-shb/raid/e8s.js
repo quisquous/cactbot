@@ -79,6 +79,55 @@
       response: Responses.aoe(),
     },
     {
+      id: 'E8S Biting Frost First Mirror',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D66', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D66', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D66', capture: false }),
+      condition: function(data) {
+        // Have not seen any frost yet.
+        return !data.firstFrost;
+      },
+      // This cast is 5 seconds, so don't muddy the back/front call.
+      // But also don't wait too long to give directions?
+      delaySeconds: 2,
+      infoText: {
+        // Sorry, there are no mirror colors in the logs (YET),
+        // and so this is the best that can be done.
+        en: 'Go Back, Red Mirror Side',
+      },
+    },
+    {
+      id: 'E8S Driving Frost First Mirror',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D67', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D67', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D67', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
+      condition: function(data) {
+        return !data.firstFrost;
+      },
+      // See comments on Biting Frost First Mirror above.
+      delaySeconds: 2,
+      infoText: {
+        en: 'Go Front, Green Mirror Side',
+      },
+    },
+    {
+      id: 'E8S Reflected Frost 1',
+      regex: Regexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
+      regexDe: Regexes.ability({ source: 'Eisspiegel', id: '4DB[78]', capture: false }),
+      regexFr: Regexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
+      regexJa: Regexes.ability({ source: '氷面鏡', id: '4DB[78]', capture: false }),
+      suppressSeconds: 5,
+      infoText: {
+        en: 'Swap Sides',
+      },
+    },
+    {
       id: 'E8S Biting Frost',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D66', capture: false }),

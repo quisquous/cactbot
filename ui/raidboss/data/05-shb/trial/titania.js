@@ -78,7 +78,7 @@
       alertText: {
         en: 'Stack In Puddles',
         de: 'In einer Fläche sammeln',
-        fr: 'Packez-vous',
+        fr: 'Packez dans les Flaques d\'eau',
         cn: '水圈集合',
       },
     },
@@ -142,7 +142,7 @@
       infoText: {
         en: 'Avoid Roots',
         de: 'Ranken vermeiden',
-        fr: 'Racines',
+        fr: 'Evitez les Racines',
         cn: '躲避树根',
       },
     },
@@ -197,12 +197,14 @@
           return {
             en: 'Group Adds East (on Mustardseed)',
             de: 'Adds im Osten sammeln (bei Senfsamen)',
+            fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
             cn: '东边小怪 (芥子)',
           };
         }
         return {
           en: 'Kill Mustardseed (East)',
           de: 'Senfsamen angreifen (Osten)',
+          fr: 'Tuez Pousse-de-moutarde (Est)',
           cn: '击杀芥子 (东)',
         };
       },
@@ -242,6 +244,41 @@
         'Pummel': 'Deftige Dachtel',
         'Uplift': 'Feenring',
         'War And Pease': 'Böhnchen und Tönchen',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Titania': 'Titania',
+        'Puck': 'Puck',
+        'Spirit of Flame': 'Esprit Des Flammes',
+        'Peaseblossom': 'Fleur-de-pois',
+        'Mustardseed': 'Pousse-de-moutarde',
+      },
+      'replaceText': {
+        'Being Mortal': 'Deuil des vivants',
+        'Bright Sabbath': 'Sabbat en plein jour',
+        'Divination Rune': 'Rune de malice',
+        'Flame Hammer': 'Marteau de feu',
+        'Flame Rune': 'Rune de feu',
+        'Frost Rune(?! )': 'Rune de gel',
+        'Frost Rune Middle': 'Rune de gel milieu',
+        'Gentle Breeze': 'Douce Brise',
+        'Growth Rune': 'Rune de racine',
+        'Hard Swipe': 'Fauchage brutal',
+        'Leafstorm': 'Tempête de feuilles',
+        'Love-In-Idleness': 'Pensées sauvages',
+        'Midsummer Night\'s Dream': 'Songe d\'une nuit d\'été',
+        'Mist Rune': 'Rune d\'eau',
+        '(?<! )Pease(?!\\w)': 'Explosion de haricot',
+        'Peasebomb': 'Haricot explosif',
+        'Phantom Rune': 'Rune d\'illusion',
+        'Puck\'s Breath': 'Haleine de Puck',
+        'Puck\'s Caprice': 'Toquade de Puck',
+        'Puck\'s Rebuke': 'Réprimande de Puck',
+        'Pummel': 'Torgnole',
+        'Uplift': 'Exhaussement',
+        'War And Pease': 'La fin des haricots',
       },
     },
     {

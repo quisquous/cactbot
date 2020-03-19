@@ -16,6 +16,7 @@
       beforeSeconds: 4,
       alertText: {
         en: 'Hide Behind Meteor',
+        fr: 'Cacher derrière le météore',
         ko: '운석 뒤에 숨기',
         cn: '躲在陨石后',
       },
@@ -26,6 +27,7 @@
       beforeSeconds: 0,
       infoText: {
         en: 'Away From Meteor',
+        fr: 'Loin du météore',
         ko: '운석에게서 멀어지기',
         cn: '远离陨石',
       },

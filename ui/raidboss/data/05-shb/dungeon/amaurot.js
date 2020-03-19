@@ -23,6 +23,7 @@
             en: 'Drop Meteor West',
             de: 'Meteor im Westen ablegen',
             fr: 'Poser le météore à l\'ouest',
+            cn: '西侧陨石',
             ko: '메테오 서쪽으로 빼기',
             cn: '西侧放陨石',
           };
@@ -31,6 +32,7 @@
             en: 'Drop Meteor East',
             de: 'Meteor im Osten ablegen',
             fr: 'Poser le météore à l\'est',
+            cn: '东侧陨石',
             ko: '메테오 동쪽으로 빼기',
             cn: '陨石放东边',
           };
@@ -39,6 +41,7 @@
           en: 'Meteor',
           de: 'Meteor',
           fr: 'Météore',
+          cn: '陨石',
           ko: '메테오',
           cn: '陨石',
         };
@@ -63,6 +66,7 @@
       alertText: {
         en: 'Hide Behind Boulder',
         de: 'Hinter einem Felsen verstecken',
+        cn: '躲在石头后',
         ko: '바위 뒤에 숨기',
         cn: '躲在岩石后',
       },
@@ -92,6 +96,7 @@
         en: 'Get Off',
         de: 'Runter gehen',
         fr: 'Sur les plateformes extérieures',
+        cn: '去安全的平台躲避',
         ko: '바깥으로 피하기',
         cn: '站左右小平台',
       },
@@ -333,10 +338,9 @@
         'The First Doom': '第一之灾难',
         'The Second Doom': '第二之灾难',
         'The Third Doom': '第三之灾难',
-        'ヴォイドウォーカー': 'ヴォイドウォーカー(FIXME)',
       },
       'replaceText': {
-        'Adds': 'Adds(FIXME)',
+        'Adds': '小怪',
         'The Final Sky': '末日流星',
         'The Falling Sky': '灾厄流星',
         'The Burning Sky': '灾变流星',
