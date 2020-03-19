@@ -64,7 +64,7 @@
       alertText: {
         en: 'Stand In Front',
         de: 'Vor ihm stehen',
-        fr: 'Se placer devant',
+        fr: 'Placez-vous devant',
         cn: '面前躲避',
         ko: '정면이 안전',
       },
@@ -82,7 +82,7 @@
       infoText: {
         en: 'Hide Behind Boulder',
         de: 'Hinter Felsen verstecken',
-        fr: 'Se cacher derrière le rocher',
+        fr: 'Cachez-vous derrière le rocher',
         cn: '躲在石头后',
         ko: '돌 뒤에 숨기',
       },
@@ -108,7 +108,7 @@
       alertText: {
         en: 'Stand On Flank',
         de: 'Auf seiner Flanke stehen',
-        fr: 'Se placer sur le flanc',
+        fr: 'Placez-vous sur le flanc',
         cn: '两侧躲避',
         ko: '넓은쪽 옆면이 안전',
       },
