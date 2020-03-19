@@ -425,6 +425,7 @@
       infoText: {
         en: 'Rotate Left',
         de: 'Links rum rotieren',
+        fr: 'Tournez à gauche',
         cn: '向左旋转',
         ko: '왼쪽으로 도세요',
       },
@@ -441,6 +442,7 @@
       infoText: {
         en: 'Rotate Right',
         de: 'Rechts rum rotieren',
+        fr: 'Tournez à droite',
         cn: '向右旋转',
         ko: '오른쪽으로 도세요',
       },
@@ -457,6 +459,7 @@
       infoText: {
         en: 'Rotate Left',
         de: 'Links rum rotieren',
+        fr: 'Tournez à gauche',
         cn: '向左旋转',
         ko: '왼쪽으로 도세요',
       },
@@ -473,6 +476,7 @@
       infoText: {
         en: 'Rotate Right',
         de: 'Rechts rum rotieren',
+        fr: 'Tournez à droite',
         cn: '向右旋转',
         ko: '오른쪽으로 도세요',
       },
@@ -535,6 +539,9 @@
       },
       'replaceText': {
         'Winged Reprobation': 'Réprobation ailée',
+        'Winged Rep Trident': 'Trident ailée',
+        'Winged Rep Tethers': 'Attaches ailée',
+        'Winged Rep Rotate': 'Rotation ailée',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth(?! )': 'Accouchement stellaire',
         'Soul and Body': 'Âme et corps',
