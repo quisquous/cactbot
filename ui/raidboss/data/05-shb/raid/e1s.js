@@ -34,6 +34,15 @@
           'Eden\'s Schlaffest',
           'tschüss Henochisch',
         ],
+        fr: [
+          'brb',
+          ':zzz:',
+          'LA HEE',
+          'Courte Sièste',
+          'brb faire du café',
+          'Eden\'s Dormez bien',
+          'rip énochien',
+        ],
         cn: [
           '马上回来',
           '困了睡会儿',
