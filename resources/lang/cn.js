@@ -81,19 +81,19 @@ class CactbotLanguageCn extends CactbotLanguage {
     });
 
     this.countdownStartRegex = function() {
-      return Regexes.parse(/^.{14} 00:00b9:距离战斗开始还有(\y{Float})秒！/);
+      return Regexes.parse(/^.{14} 00:.{4}:距离战斗开始还有(\y{Float})秒！/);
     };
     this.countdownEngageRegex = function() {
-      return /^.{14} 00:0039:战斗开始！/;
+      return /^.{14} 00:.{4}:战斗开始！/;
     };
     this.countdownCancelRegex = function() {
-      return /^.{14} 00:00b9:(\y{Name})取消了战斗开始倒计时。/;
+      return /^.{14} 00:.{4}:(\y{Name})取消了战斗开始倒计时。/;
     };
     this.areaSealRegex = function() {
-      return /^.{14} 00:0839:距(.*)被封锁还有\y{Float}秒/;
+      return /^.{14} 00:.{4}:距(.*)被封锁还有\y{Float}秒/;
     };
     this.areaUnsealRegex = function() {
-      return /^.{14} 00:0839:(.*)的封锁解除了/;
+      return /^.{14} 00:.{4}:(.*)的封锁解除了/;
     };
   }
 }
