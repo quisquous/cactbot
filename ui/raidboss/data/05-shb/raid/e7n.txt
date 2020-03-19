@@ -43,7 +43,7 @@ hideall "--sync--"
 
 # Intermission block
 226.3 "--targetable--"
-236.8 "Away with Thee" sync /:The Idol Of Darkness:(?:4C39|4E7E):/ window 30,30
+236.8 "Away with Thee" sync /:The Idol Of Darkness:(4C39|4E7E):/ window 30,30
 251.7 "Strength in Numbers" sync /:Idolatry:4C4[CD]:/ window 251.7,5
 262.3 "Silver Shot" sync /:The Idol Of Darkness:4E7[CD]:/
 270.3 "Silver Shot" sync /:The Idol Of Darkness:4E7[CD]:/
