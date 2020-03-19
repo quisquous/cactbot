@@ -50,6 +50,8 @@ class CactbotLanguageCn extends CactbotLanguage {
       Shifu: '士风',
       CircleOfPower: '魔纹环',
 
+      SurgeProtection: '避雷',
+
       Paralysis: '麻痹',
       Petrification: '石化',
       BeyondDeath: '超越死亡',

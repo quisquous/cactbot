@@ -148,7 +148,7 @@ let Options = {
           label: {
             en: 'Emp',
             de: 'Kaiser',
-            fr: 'Emp',
+            fr: 'Empereur',
             ja: 'アネモス',
             ko: '잠자리',
             cn: '蜻蜓',
@@ -654,7 +654,7 @@ let Options = {
           label: {
             en: 'Queen',
             de: 'Schneekönigin',
-            fr: 'Snow Queen',
+            fr: 'Reine',
             ja: '女王',
             ko: '눈의 여왕',
             cn: '周冬雨',
@@ -662,7 +662,7 @@ let Options = {
           mobName: {
             en: 'The Snow Queen',
             de: 'Schneekönigin',
-            fr: 'The Snow Queen',
+            fr: 'Reine Des Neiges',
             ja: '雪の女王',
             ko: '눈의 여왕',
             cn: '雪之女王',
@@ -711,7 +711,7 @@ let Options = {
           label: {
             en: 'Dragon',
             de: 'Aschedrache',
-            fr: 'Ash Dragon',
+            fr: 'Dragon',
             ja: 'ドラゴン',
             ko: '용',
             cn: '灰烬龙',
@@ -719,7 +719,7 @@ let Options = {
           mobName: {
             en: 'Ash Dragon',
             de: 'Aschedrache',
-            fr: 'Ash Dragon',
+            fr: 'Dragon Cendré',
             ja: 'アッシュドラゴン',
             ko: '잿더미 드래곤',
             cn: '灰烬龙',
@@ -739,7 +739,7 @@ let Options = {
           label: {
             en: 'Glavoid',
             de: 'Glavoid',
-            fr: 'Glavoid',
+            fr: 'Graboïde',
             ja: 'グラヴォイド',
             ko: '지렁이',
             cn: '魔虫',
@@ -747,7 +747,7 @@ let Options = {
           mobName: {
             en: 'Glavoid',
             de: 'Glavoid',
-            fr: 'Glavoid',
+            fr: 'Graboïde',
             ja: 'グラヴォイド',
             ko: '그라보이드',
             cn: '异形魔虫',
@@ -796,7 +796,7 @@ let Options = {
           label: {
             en: 'Haku',
             de: 'Hakutaku',
-            fr: 'Hakutaku',
+            fr: 'Haku',
             ja: 'ハクタク',
             ko: '백택',
             cn: '白泽',
@@ -832,7 +832,7 @@ let Options = {
           mobName: {
             en: 'King Igloo',
             de: 'Iglu-König',
-            fr: 'King Igloo',
+            fr: 'Roi Igloo',
             ja: 'キングイグルー',
             ko: '이글루 왕',
             cn: '雪屋王',
@@ -908,7 +908,7 @@ let Options = {
           label: {
             en: 'Arthro',
             de: 'König Athro',
-            fr: 'King Arthro',
+            fr: 'Arthro',
             ja: 'アースロ',
             ko: '게',
             cn: '螃蟹',
@@ -916,7 +916,7 @@ let Options = {
           mobName: {
             en: 'King Arthro',
             de: 'König Athro',
-            fr: 'King Arthro',
+            fr: 'Roi Arthro',
             ja: 'キングアースロ',
             ko: '아스로 왕',
             cn: '亚瑟罗王',
@@ -937,7 +937,7 @@ let Options = {
           label: {
             en: 'Minotaurs',
             de: 'Minotauren',
-            fr: 'Minotaurs',
+            fr: 'Spiritaure',
             ja: 'ミノタウロス',
             ko: '미노타우루스',
             cn: '双牛',
@@ -945,7 +945,7 @@ let Options = {
           mobName: {
             en: 'Mindertaur',
             de: 'Niederer Minotaurus',
-            fr: 'Mindertaur',
+            fr: 'Spiritaure',
             ja: 'Mindertaur',
             ko: '호위 타우루스',
             cn: '牛头魔看守',
@@ -965,7 +965,7 @@ let Options = {
           label: {
             en: 'Holy Cow',
             de: 'Heilsbringer',
-            fr: 'Holy Cow',
+            fr: 'Vache',
             ja: '聖牛',
             ko: '소',
             cn: '圣牛',
@@ -973,7 +973,7 @@ let Options = {
           mobName: {
             en: 'Holy Cow',
             de: 'Heilsbringer',
-            fr: 'Holy Cow',
+            fr: 'Vache Sacrée D\'Eurêka',
             ja: 'エウレカの聖牛',
             ko: '에우레카의 신성한 소',
             cn: '优雷卡圣牛',
@@ -993,7 +993,7 @@ let Options = {
           label: {
             en: 'Hadha',
             de: 'Hadhayosh',
-            fr: 'Hadhayosh',
+            fr: 'Hadha',
             ja: 'ハダヨッシュ',
             ko: '베히모스',
             cn: '贝爷',
@@ -1059,7 +1059,7 @@ let Options = {
           mobName: {
             en: 'Arch Angra Mainyu',
             de: 'Erz-Angra Mainyu',
-            fr: 'Arch Angra Mainyu',
+            fr: 'Archi Angra Mainyu',
             ja: 'アーチ・アンラ・マンユ',
             ko: '우두머리 앙그라 마이뉴',
             cn: '总领安哥拉·曼纽',
@@ -1087,7 +1087,7 @@ let Options = {
           mobName: {
             en: 'Copycat Cassie',
             de: 'Kopierende Cassie',
-            fr: 'Copycat Cassie',
+            fr: 'Cassie La Copieuse',
             ja: 'コピーキャット・キャシー',
             ko: '흉내쟁이 캐시',
             cn: '复制魔花凯西',
@@ -1166,7 +1166,7 @@ let Options = {
           mobName: {
             en: 'Leucosia',
             de: 'Leukosia',
-            fr: 'Leucosia',
+            fr: 'Leucosie',
             ja: 'レウコシアー',
             cn: '琉科西亚',
             ko: '레우코시아',
@@ -1215,7 +1215,7 @@ let Options = {
           label: {
             en: 'Sophist',
             de: 'Sophist',
-            fr: 'Sophist',
+            fr: 'Sophiste',
             ja: 'ソフィスト',
             cn: '诡辩者',
             ko: '소피스트',
@@ -1223,7 +1223,7 @@ let Options = {
           mobName: {
             en: 'The Sophist',
             de: 'Sophist',
-            fr: 'The Sophist',
+            fr: 'Le Sophiste',
             ja: 'ソフィスト',
             cn: '诡辩者',
             ko: '소피스트',
@@ -1271,7 +1271,7 @@ let Options = {
           label: {
             en: 'Askala',
             de: 'Askala',
-            fr: 'Askala',
+            fr: 'Ascala',
             ja: 'アスカラ',
             cn: '阿福',
             ko: '작은 부엉이',
@@ -1279,7 +1279,7 @@ let Options = {
           mobName: {
             en: 'Askalaphos',
             de: 'Askalaphos',
-            fr: 'Askalaphos',
+            fr: 'Ascalaphe',
             ja: 'アスカラポス',
             cn: '阿斯卡拉福斯',
             ko: '아스칼라포스',
@@ -1300,7 +1300,7 @@ let Options = {
           label: {
             en: 'Batym',
             de: 'Batym',
-            fr: 'Batym',
+            fr: 'Batime',
             ja: 'パティム',
             cn: '大公',
             ko: '대공',
@@ -1308,7 +1308,7 @@ let Options = {
           mobName: {
             en: 'Grand Duke Batym',
             de: 'Großherzog Batym',
-            fr: 'Grand Duke Batym',
+            fr: 'Batime Le Grand Duc',
             ja: 'グランドデューク・パティム',
             cn: '巴钦大公爵',
             ko: '바팀 대공',
@@ -1329,7 +1329,7 @@ let Options = {
           label: {
             en: 'Aetolus',
             de: 'Aetolus',
-            fr: 'Aetolus',
+            fr: 'Aetolos',
             ja: 'アイトロス',
             cn: '雷鸟',
             ko: '아이톨로스',
@@ -1337,7 +1337,7 @@ let Options = {
           mobName: {
             en: 'Aetolus',
             de: 'Aetolus',
-            fr: 'Aetolus',
+            fr: 'Aetolos',
             ja: 'アイトロス',
             cn: '埃托洛斯',
             ko: '아이톨로스',
@@ -1365,8 +1365,8 @@ let Options = {
           mobName: {
             en: 'Lesath',
             de: 'Lesath',
-            fr: 'レサト',
-            ja: 'Lesath',
+            fr: 'Lesath',
+            ja: 'レサト',
             cn: '来萨特',
             ko: '레사트',
           },
@@ -1449,7 +1449,7 @@ let Options = {
           mobName: {
             en: 'Lamebrix Strikebocks',
             de: 'Wüterix der Söldner',
-            fr: 'Lamebrix Strikebocks',
+            fr: 'Lamebrix Le Mercenaire',
             ja: '傭兵のレイムプリクス',
             cn: '佣兵雷姆普里克斯',
             ko: '용병 레임브릭스',
@@ -1477,7 +1477,7 @@ let Options = {
           mobName: {
             en: 'Dux',
             de: 'Dux',
-            fr: 'Dux',
+            fr: 'Dux De La Foudre',
             ja: 'ライトニング・ドゥクス',
             cn: '闪电督军',
             ko: '번개 사령관',
@@ -1498,7 +1498,7 @@ let Options = {
           label: {
             en: 'Jack',
             de: 'Weide',
-            fr: 'Jack',
+            fr: 'Bûcheron',
             ja: 'ジャック',
             cn: '树人',
             ko: '럼버잭',
@@ -1506,7 +1506,7 @@ let Options = {
           mobName: {
             en: 'The Weeping Willow',
             de: 'Trauerweide',
-            fr: 'Lumber Jack',
+            fr: 'Saule Pleureur',
             ja: 'ランバージャック・デスマッチ',
             cn: '垂柳树人',
             ko: '럼버잭',
@@ -1534,7 +1534,7 @@ let Options = {
           mobName: {
             en: 'Glaukopis',
             de: 'Glaukopis',
-            fr: 'Glaukopis',
+            fr: 'Glaukôpis',
             ja: 'グラウコピス',
             cn: '明眸',
             ko: '글라우코피스',
@@ -1554,7 +1554,7 @@ let Options = {
           label: {
             en: 'Ying-Yang',
             de: 'Yin-Yang',
-            fr: 'Ying-Yang',
+            fr: 'Yin-Yang',
             ja: 'イン・ヤン',
             cn: '阴·阳',
             ko: '음양',
@@ -1562,7 +1562,7 @@ let Options = {
           mobName: {
             en: 'Ying-Yang',
             de: 'Yin-Yang',
-            fr: 'Ying-Yang',
+            fr: 'Yin-Yang',
             ja: 'イン・ヤン',
             cn: '阴·阳',
             ko: '음과 양',
@@ -1590,7 +1590,7 @@ let Options = {
           mobName: {
             en: 'Skoll',
             de: 'Skalli',
-            fr: 'Skoll',
+            fr: 'Sköll',
             ja: 'スコル',
             cn: '斯库尔',
             ko: '스콜',
@@ -1619,7 +1619,7 @@ let Options = {
           mobName: {
             en: 'Penthesilea',
             de: 'Penthesilea',
-            fr: 'Penthesilea',
+            fr: 'Penthesilée',
             ja: 'ペンテシレイア',
             cn: '彭忒西勒亚',
             ko: '펜테실레이아',
@@ -1669,7 +1669,7 @@ let Options = {
           mobName: {
             en: 'Khalamari',
             de: 'Kalamari',
-            fr: 'Khalamari',
+            fr: 'Khalamar',
             ja: 'Khalamari',
             cn: '卡拉墨鱼',
             ko: '칼라마리',
@@ -1773,7 +1773,7 @@ let Options = {
           label: {
             en: 'Frost',
             de: 'Frost',
-            fr: 'Frost',
+            fr: 'Crinière',
             ja: 'フロストメーン',
             cn: '老虎',
             ko: '서리갈기',
@@ -1837,7 +1837,7 @@ let Options = {
           mobName: {
             en: 'King Goldemar',
             de: 'König Goldemar',
-            fr: 'Roi Goldemar',
+            fr: 'Roi Goldmar',
             ja: 'キング・ゴルデマール',
             cn: '戈尔德马尔王',
             ko: '골데마르 왕',
@@ -1949,7 +1949,7 @@ let Options = {
           mobName: {
             en: 'Provenance Watcher',
             de: 'Kristallwächter',
-            fr: 'gardien de Provenance',
+            fr: 'Gardien De Provenance',
             ja: 'プロヴェナンス・ウォッチャー',
             cn: '起源守望者',
             ko: '기원 관찰자',

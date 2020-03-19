@@ -68,7 +68,3 @@ You will need to restart ACT for this setting to take effect.
 
 - ask in the [FFXIV ACT discord](https://discord.gg/ahFKcmx) #troubleshooting channel
 - open a [github issue](https://github.com/quisquous/cactbot/issues)
-
-## Places To Not Get Help
-
-- DMing quisquous, as they will just redirect you to [places you *can* get help](#places-to-get-help)
