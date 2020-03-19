@@ -198,7 +198,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: '3x puddles on you',
-        fr: '3x flaques sur vous',
+        fr: '3x Zones au sol sur vous',
         ko: '따라오는 장판 피하기',
       },
     },
