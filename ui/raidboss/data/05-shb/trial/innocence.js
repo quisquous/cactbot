@@ -33,6 +33,7 @@
         en: 'Look Away, Get Towers',
         de: 'Weg schauen, Türme nehmen',
         cn: '背对BOSS，踩塔',
+        fr: 'Regarde ailleurs, prenez une tour',
       },
     },
     {
@@ -224,6 +225,7 @@
         'God Ray': 'Rayon divin',
         'Flaming Sword': 'Épée du feu des cieux',
         'Explosion': 'Explosion',
+        'Enthrall': 'Œil captivant',
         'Duel Descent': 'Double plongeon',
         'Drop of Light': 'Goutte de lumière',
         'Dream of the Rood': 'Le Rêve de la Croix',
