@@ -60,6 +60,7 @@
         de: 'Besen ausweichen',
         fr: 'Evitez les balais',
         ko: '빗자루 피하기',
+        cn: '躲扫把',
       },
     },
     {
@@ -107,6 +108,7 @@
         de: 'Samen auf den nicht bewachsenen Boden legen',
         fr: 'Placez les graines sur la terre',
         ko: '씨앗 자라지 못하게 하기',
+        cn: '种子搬离AOE',
       },
     },
     {
@@ -161,6 +163,7 @@
         de: 'Den Kreuzen ausweichen',
         fr: 'Evitez les croix',
         ko: '십자 장판 피하기',
+        cn: '躲避交叉',
       },
     },
     {
@@ -183,6 +186,7 @@
         de: 'Einrichtung berühren',
         fr: 'Touchez un élément de décor',
         ko: '가구에 불 옮기기',
+        cn: '传火家具',
       },
     },
     {
@@ -219,6 +223,7 @@
             de: 'Verbindung weg von der Einrichtung zeigen',
             fr: 'Placez le liens loin des décors',
             ko: '징: 장판이 가구에 닿지 않게 하기',
+            cn: '连线不要打到家具',
           };
         }
         return {
@@ -226,6 +231,8 @@
           de: 'Verbindung auf DIR',
           fr: 'Lien sur vous',
           ko: '징 대상자',
+          ja: '線ついた',
+          cn: '连线点名',
         };
       },
     },
@@ -342,6 +349,45 @@
         'Storm Of Color': '春嵐',
         'Tribulation': 'トリビュレーション',
       },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Enslaved Love': '被奴役的爱',
+        'Leannan Sith': '凉南希',
+        'Lugus': '卢格斯',
+        'Seeker of Solitude': '宫殿的隐者',
+        'The Chamber of Celestial Song': '演奏之间',
+        'The Font of Quintessence': '春水涌泉',
+        'The Martial Court': '兵棋之间',
+      },
+      'replaceText': {
+        'Black Flame': '黑炎流',
+        'Captive Bolt': '破碎斩',
+        'Culling Blade': '冲击斩',
+        'Dark Pulse': '黑暗波动',
+        'Dark Shock': '黑暗冲击',
+        'Dark Well': '黑暗爆碎',
+        'Direct Seeding': '直接播种',
+        '(?<! )Far Wind': '(?<! )远风',
+        'Fire\'s Domain': '炎狱杀',
+        'Fire\'s Ire': '炎狱闪',
+        'Gardener\'s Hymn': '育芽之谣',
+        'Immortal Anathema': '不朽的诅咒',
+        'Ireful Wind': '强风',
+        'Mortal Flame': '必灭之炎',
+        'Ode To Fallen Petals': '花雨之歌',
+        'Ode To Far Winds': '晴岚之歌',
+        'Ode To Lost Love': '狂爱之歌',
+        'Otherworldly Heat': '鬼炎斩',
+        'Plummet': '掉落',
+        'Scorching Left/Right': '左/右炎狱斩',
+        'Scorching Right': '右炎狱斩',
+        'Shadowbolt': '暗影雷',
+        'Storm Of Color': '春风',
+        'Tribulation': '苦难',
+      },
+      '~effectNames': {},
     },
   ],
 }];

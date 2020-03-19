@@ -36,6 +36,7 @@
             fr: 'Tankbuster sur VOUS',
             cn: '死刑',
             ko: '탱크버스터 -> YOU',
+            ja: '自分にタンクバスター',
           };
         }
         if (data.role == 'healer') {
@@ -45,6 +46,7 @@
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: '死刑 ->' + data.ShortName(matches.target),
             ko: '탱버 ->' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にTB',
           };
         }
       },
