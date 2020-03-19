@@ -15,7 +15,7 @@
       infoText: {
         en: 'Line Stack',
         de: 'In einer Linie sammeln',
-        fr: 'Packé en ligne',
+        fr: 'Packez en ligne',
         ja: '直線スタック',
         cn: '直线分摊',
         ko: '쉐어징 모이기',
@@ -187,7 +187,7 @@
       infoText: {
         en: 'Stack, Bait Puddles',
         de: 'Sammeln, Flächen ködern',
-        fr: 'Packé, évitez zone au sol',
+        fr: 'Packez, évitez les zones au sol',
         ja: '集合',
         cn: '集合',
         ko: '모이기',
@@ -205,7 +205,7 @@
       infoText: {
         en: 'Drop Puddles Outside',
         de: 'Flächen drausen ablegen',
-        fr: 'Placez les flaques à l\'extérieur',
+        fr: 'Placez les zones à l\'extérieur',
         ja: '散開',
         cn: '散开',
         ko: '산개',
@@ -222,7 +222,7 @@
       infoText: {
         en: 'Stack, Bait Puddles',
         de: 'Sammeln, Flächen ködern',
-        fr: 'Packé, évitez zone au sol',
+        fr: 'Packez, évitez les zones au sol',
         ja: '集合',
         cn: '集合',
         ko: '모이기',
@@ -251,7 +251,7 @@
         return {
           en: 'Stack Outside, Avoid Flares',
           de: 'Auserhalb sammeln, Flares vermeiden',
-          fr: 'Packé à l\'extérieur, évitez les brasiers',
+          fr: 'Packez à l\'extérieur, évitez les brasiers',
           ja: '前で集合',
           cn: '外侧集合躲避核爆',
           ko: '양옆 앞으로 모이고, 플레어 피하기',
@@ -269,7 +269,7 @@
       infoText: {
         en: 'Panto Puddles x5',
         de: 'Panto Flächen x5',
-        fr: 'Panto x5',
+        fr: 'Panto Zones au sol x5',
         ja: 'パント5回',
         cn: '处理水圈 x5',
         ko: '발밑장판 5회',
@@ -546,7 +546,7 @@
       infoText: {
         en: 'Front left / Back right',
         de: 'Vorne Links / Hinten Rechts',
-        fr: 'Avant gauche / Arrière droite',
+        fr: 'Avant-gauche / Arrière-droite',
         ja: '左前 / 右後ろ',
         cn: '前左 / 后右',
         ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
@@ -563,7 +563,7 @@
       infoText: {
         en: 'Front right / Back left',
         de: 'Vorne Rechts / Hinten Links',
-        fr: 'Avant droit / Arrière gauche',
+        fr: 'Avant-droite / Arrière-gauche',
         ja: '右前 / 左後ろ',
         cn: '前右 / 后左',
         ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
@@ -588,7 +588,7 @@
       alertText: {
         en: 'Front left / Back right',
         de: 'Vorne Links / Hinten Rechts',
-        fr: 'Avant gauche / Arrière droite',
+        fr: 'Avant-gauche / Arrière-droite',
         ja: '左前 / 右後ろ',
         cn: '前左 / 后右',
         ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
@@ -609,7 +609,7 @@
       alertText: {
         en: 'Front right / Back left',
         de: 'Vorne Rechts / Hinten Links',
-        fr: 'Avant droit / Arrière gauche',
+        fr: 'Avant-droite / Arrière-gauche',
         ja: '右前 / 左後ろ',
         cn: '前右 / 后左',
         ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
