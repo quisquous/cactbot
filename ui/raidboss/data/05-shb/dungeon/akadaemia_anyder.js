@@ -457,7 +457,7 @@
         'Frumious Jaws': '胡乱咬',
         'Extensible Tendrils': '藤条抽打',
         'Dominion Slash': '支配斩',
-        'Detonator': '引爆装置',
+        'Detonator': '爆炸',
         'Dark Arrivisme': '黑暗野心',
         'Blossom': '花丛',
         'Arbor Storm': '树木风暴',
@@ -469,7 +469,7 @@
         '--1x targetable--': '--1x 可选中--',
       },
       '~effectNames': {
-        'Stun': '昏厥',
+        'Stun': '眩晕',
         'Damage Up': '伤害提高',
       },
     },
