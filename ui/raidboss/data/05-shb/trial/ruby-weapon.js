@@ -14,6 +14,7 @@
         en: 'Hide Behind Meteor',
         fr: 'Cacher derrière le météore',
         ko: '운석 뒤에 숨기',
+        cn: '躲在陨石后',
       },
     },
     {
@@ -24,6 +25,7 @@
         en: 'Away From Meteor',
         fr: 'Loin du météore',
         ko: '운석에게서 멀어지기',
+        cn: '远离陨石',
       },
     },
   ],
@@ -61,6 +63,7 @@
         de: 'Weg von den Linien',
         fr: 'En dehors des sillons',
         ko: '선 피하기',
+        cn: '远离线',
       },
     },
     {
@@ -74,6 +77,7 @@
         de: 'Auf die Linien gehen',
         fr: 'Sur les sillons',
         ko: '선 위로 올라가기',
+        cn: '靠近线',
       },
     },
     {
@@ -129,6 +133,7 @@
         de: 'Finalangriff!',
         fr: 'Enrage !',
         ko: '전멸기!',
+        cn: '狂暴',
       },
     },
     {
@@ -160,6 +165,7 @@
         en: 'Avoid meteors with laser',
         fr: 'Évitez les météores avec vôtre laser',
         ko: '레이저 대상자 - 탱커 피하기',
+        cn: '躲开激光点名',
       },
     },
     {

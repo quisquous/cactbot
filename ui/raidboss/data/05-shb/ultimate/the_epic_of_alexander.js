@@ -2456,7 +2456,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Visier sammeln',
         ja: 'シェア',
         ko: '옵티컬: 모이기',
-        cn: '分散',
+        cn: '分摊',
       },
       run: function(data) {
         data.betaIsOpticalStack = true;

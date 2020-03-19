@@ -63,6 +63,7 @@
         en: 'Water Positions',
         de: 'Wasser Positionen',
         fr: 'Position pour l\'eau',
+        cn: '水毒',
       },
     },
     {
@@ -78,6 +79,7 @@
         en: 'Stack In Puddles',
         de: 'In einer Fläche sammeln',
         fr: 'Packez dans les Flaques d\'eau',
+        cn: '水圈集合',
       },
     },
     {
@@ -102,6 +104,9 @@
         en: 'Get Middle, Shiva Circles',
         de: 'In die Mitte, Shiva Kreise',
         fr: 'Allez au milieu, comme sur Shiva',
+        ja: 'シヴァの輪っか',
+        cn: '中间集合, 九连环',
+        ko: '시바 얼음 장판',
       },
     },
     {
@@ -138,6 +143,7 @@
         en: 'Avoid Roots',
         de: 'Ranken vermeiden',
         fr: 'Evitez les Racines',
+        cn: '躲避树根',
       },
     },
     {
@@ -173,6 +179,9 @@
         en: 'Diagonal Knockback Soon',
         de: 'diagonaler Knockback bald',
         fr: 'Poussée en diagonale bientôt',
+        ja: '対角に飛ぶ',
+        cn: '对角击退准备',
+        ko: '곧 대각선 넉백',
       },
     },
     {
@@ -189,12 +198,14 @@
             en: 'Group Adds East (on Mustardseed)',
             de: 'Adds im Osten sammeln (bei Senfsamen)',
             fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
+            cn: '东边小怪 (芥子)',
           };
         }
         return {
           en: 'Kill Mustardseed (East)',
           de: 'Senfsamen angreifen (Osten)',
           fr: 'Tuez Pousse-de-moutarde (Est)',
+          cn: '击杀芥子 (东)',
         };
       },
     },
@@ -269,6 +280,42 @@
         'Uplift': 'Exhaussement',
         'War And Pease': 'La fin des haricots',
       },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Titania': '缇坦妮雅',
+        'Puck': '帕克',
+        'Spirit of Flame': '炎精',
+        'Peaseblossom': '豌豆花',
+        'Mustardseed': '芥子',
+      },
+      'replaceText': {
+        'Being Mortal': '终有一死',
+        'Bright Sabbath': '欢快的安息日',
+        'Divination Rune': '魔之符文',
+        'Flame Hammer': '烈火锤',
+        'Flame Rune': '火之符文',
+        'Frost Rune(?! )': '冰之符文(?! )',
+        'Frost Rune Middle': '冰之符文 中间',
+        'Gentle Breeze': '青翠柔风',
+        'Growth Rune': '根之符文',
+        'Hard Swipe': '强烈重击',
+        'Leafstorm': '绿叶风暴',
+        'Love-In-Idleness': '爱懒花',
+        'Midsummer Night\'s Dream': '仲夏夜之梦',
+        'Mist Rune': '水之符文',
+        '(?<! )Pease(?!\\w)': '(?<! )爆炸(?!\\w)',
+        'Peasebomb': '豌豆炸弹',
+        'Phantom Rune': '幻之符文',
+        'Puck\'s Breath': '帕克的吐息',
+        'Puck\'s Caprice': '帕克的随想',
+        'Puck\'s Rebuke': '帕克的指责',
+        'Pummel': '殴打',
+        'Uplift': '隆起',
+        'War And Pease': '豌豆大爆炸',
+      },
+      '~effectNames': {},
     },
   ],
 }];

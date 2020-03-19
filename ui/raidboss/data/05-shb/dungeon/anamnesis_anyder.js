@@ -34,6 +34,7 @@
         de: 'Pfeil ausweichen',
         fr: 'Evitez la flèche',
         ko: '화살표 피하기',
+        cn: '躲箭头',
       },
     },
     {
@@ -132,6 +133,7 @@
         de: 'Händen ausweichen',
         fr: 'Evitez les mains',
         ko: '손 피하기',
+        cn: '躲手',
       },
     },
   ],
