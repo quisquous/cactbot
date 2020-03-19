@@ -87,11 +87,11 @@ You can use `duration` to show the action for that length of time.
 It does not need a sync to do this.
 
 `window Number,Number` is the time frame in which to consider the sync.
-By default, if `window` is not specified, then it is the
-same as specifying `window 5,5`.  In other words,
-5 seconds before the ability time and 5 seconds after.
+By default, if `window` is not specified, cactbot considers it the
+same as specifying `window 2.5,2.5`.  In other words,
+2.5 seconds before the ability time and 2.5 seconds after.
 As an example, for the line `3118.9 "Lancing Bolt" sync /:Raiden:3876:/`,
-if the regular expression `/:Raiden:3876:/` is encountered anywhere between 3115.9 and 3123.9
+if the regular expression `/:Raiden:3876:/` is encountered anywhere between 3116.4 and 3121.4
 then it will resync the timeline playback to 3118.9.
 Often timelines will use very large windows for unique abilities,
 to make sure that timelines sync to the right place even if started mid-fight.
@@ -144,7 +144,8 @@ These are guidelines that cactbot tries to follow for timelines.
 
 * add syncs for everything possible
 * always add an Engage! entry, but add syncs in case there's no /countdown
-* if the first boss action is an auto, add a sync to start the timeline asap
+* if the first boss action is an auto-attack, add a sync to start the timeline asap.
+(Note that sometimes boss auto-attacks are not literally "Attack"!)
 * include the command line used to generate the timeline in a comment at the top
 * prefer actions for syncs over rp text, but rp text syncs if that's the only option
 * if you do sync a phase with rp text, add a large window sync for an action
@@ -155,7 +156,8 @@ These are guidelines that cactbot tries to follow for timelines.
 * do not put any triggers or tts or alerts in the timeline file itself
 * use [timeline triggers](#timeline-triggers) for any alerts
 * add at least a 30 second lookahead window for loops
-* remove syncs from any abilities that are within 7 seconds of each other
+* comment out syncs from any abilities that are within 7 seconds of each other
+(This preserves the ability ID for future maintainers.)
 
 ## Timeline Triggers
 
@@ -211,10 +213,11 @@ This has two purposes.
 The first purpose is for tools, to autogenerate regular expression translations for triggers.
 
 The second purpose is for timelines at runtime.
-cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text`/ on a timeline line and the `replaceText` section to auto-replace anything inside the ability text.
+cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text`/ on a timeline line,
+and the `replaceText` section to auto-replace anything inside the ability text.
 
-These do not match the entire line by default.
-So, some care is needed to make sure that replacements are not overzealous.
+These do not match the entire line (that is, they are non-greedy) by default.
+Care is needed to make sure that replacements are not overzealous.
 
 ## Example Timeline Creation
 
