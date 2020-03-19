@@ -32,7 +32,7 @@
       alertText: {
         en: 'Look Away, Get Towers',
         de: 'Weg schauen, Türme nehmen',
-        fr: 'Regarde ailleurs, prenez une tour',
+        fr: 'Regardez ailleurs, prenez une tour',
       },
     },
     {

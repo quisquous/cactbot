@@ -16,7 +16,7 @@
       beforeSeconds: 4,
       alertText: {
         en: 'Hide Behind Meteor',
-        fr: 'Cacher derrière le météore',
+        fr: 'Allez derrière le météore',
         ko: '운석 뒤에 숨기',
       },
     },
@@ -26,7 +26,7 @@
       beforeSeconds: 0,
       infoText: {
         en: 'Away From Meteor',
-        fr: 'Loin du météore',
+        fr: 'Ecartez-vous du météore',
         ko: '운석에게서 멀어지기',
       },
     },
@@ -297,7 +297,7 @@
       regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
       infoText: {
         en: 'Away from Meteor!',
-        fr: 'Loin du Météore!',
+        fr: 'Loin du météore !',
         ko: '운석에게서 멀어지기',
       },
     },
@@ -311,7 +311,7 @@
       delaySeconds: 11.5,
       alarmText: {
         en: 'Stand in Meteor Tankbuster',
-        fr: 'Restez dans la Comète Tankbuster',
+        fr: 'Tankbuster, Restez dans la comète',
         ko: '운석 막기',
       },
     },
@@ -325,7 +325,7 @@
       delaySeconds: 13,
       alertText: {
         en: 'Kill Meteor Adds',
-        fr: 'Tuez les Comètes',
+        fr: 'Tuez les comètes',
         ko: '운석 부수기',
       },
     },
@@ -335,7 +335,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Avoid tanks with laser',
-        fr: 'Évitez les tanks avec vôtre laser',
+        fr: 'Évitez les tanks avec votre laser',
         ko: '레이저 대상자 - 탱커 피하기',
       },
     },

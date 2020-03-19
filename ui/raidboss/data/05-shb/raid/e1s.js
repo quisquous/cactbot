@@ -35,13 +35,13 @@
           'tschüss Henochisch',
         ],
         fr: [
-          'brb',
+          'Brb',
           ':zzz:',
           'LA HEE',
-          'Courte Sièste',
+          'Courte sieste',
           'brb faire du café',
           'Eden\'s Dormez bien',
-          'rip énochien',
+          'Rip énochien',
         ],
         cn: [
           '马上回来',
