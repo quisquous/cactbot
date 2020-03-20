@@ -540,7 +540,7 @@
       'replaceText': {
         'Winged Reprobation': 'Réprobation ailée',
         'Winged Rep Trident': 'Trident ailée',
-        'Winged Rep Tethers': 'Attaches ailée',
+        'Winged Rep Tethers': 'Liens ailée',
         'Winged Rep Rotate': 'Rotation ailée',
         'Unknown Ability': 'Unknown Ability',
         'Starbirth(?! )': 'Accouchement stellaire',
