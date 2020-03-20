@@ -74,6 +74,7 @@
         en: 'Stand in blue',
         de: 'Im Blauen stehen',
         fr: 'Allez dans le bleu',
+        cn: '站在蓝色区域',
       },
     },
     {
@@ -86,6 +87,7 @@
         en: 'Stand in red',
         de: 'Im Roten stehen',
         fr: 'Allez dans le rouge',
+        cn: '站在红色区域',
       },
     },
     {
@@ -120,6 +122,7 @@
         en: 'watch for safe',
         de: 'nach sicherer Position schauen',
         fr: 'trouvez une zone safe',
+        cn: '前往安全区',
       },
     },
     {
@@ -150,6 +153,7 @@
         return {
           en: 'Heal ' + data.shortName(matches.target) + ' soon',
           fr: 'Soignez ' + data.shortName(matches.target) + ' bientôt',
+          cn: '马上奶 ' + data.shortName(matches.target),
         };
       },
     },
@@ -165,6 +169,7 @@
         en: 'Avoid floating heads',
         de: 'Weiche den fliegenden Köpfen aus',
         fr: 'Evitez les têtes',
+        cn: '避开漂浮的头',
       },
     },
     {
@@ -179,6 +184,7 @@
         en: 'Away from marker',
         de: 'Weg von den Markierungen',
         fr: 'Loin de la marque',
+        cn: '远离标记',
       },
     },
     {
@@ -301,7 +307,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Arbuda': '额部陀',
         'Coeurl Smriti': '凶豹所忆',
@@ -309,13 +314,13 @@
         'Ivon Coeurlfist': '双豹伊沃恩',
       },
       'replaceText': {
-        '--Smriti Appears--': '--Smriti Appears--', // FIXME
+        '--Smriti Appears--': '--凶豹出现--',
         'Basic Instinct': '斗争本能',
         'Cardinal Shift': '四剑大回旋',
         'Coeurl Whisper': '双豹招来',
         'Electric Burst': '电光爆发',
         'Fourfold Shear': '四连双斩',
-        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
+        'Front/Back\\?Sides\\?': '前/后?两侧?',
         'Furious Fists': '双豹苍连击',
         'Heat Lightning': '惊电',
         'Hellseal': '试炼刻印',

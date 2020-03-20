@@ -34,6 +34,7 @@
         en: 'tail attack',
         de: 'schweifattacke',
         fr: 'attaque queue',
+        cn: '尾巴攻击',
       },
     },
     {
@@ -58,6 +59,7 @@
         en: 'avoid eye lasers',
         de: 'Augenlaser ausweichen',
         fr: 'Evitez les lasers',
+        cn: '避开眼部激光',
       },
       tts: {
         en: 'eye laser',
