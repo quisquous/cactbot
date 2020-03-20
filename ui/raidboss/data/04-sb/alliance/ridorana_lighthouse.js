@@ -896,7 +896,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'Belias, The Gigas': '魔人贝利亚斯',
