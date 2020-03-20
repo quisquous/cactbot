@@ -83,6 +83,7 @@
       infoText: {
         en: 'Hood Swing in 10',
         de: 'Kapuzenschwung in 10',
+        fr: 'Coup de capot dans 10s',
       },
     },
     {
