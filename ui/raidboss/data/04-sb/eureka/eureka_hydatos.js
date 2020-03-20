@@ -1193,32 +1193,31 @@
         'Relative Virtue': '相对的美德',
         'Shadow': '奥兹玛原型之影',
         'Streak Lightning': '强袭雷光',
-        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
-        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
-        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'The Lance of Virtue Containment Unit will be sealed off': '距美德之枪封印区被封锁还有',
+        'The Proto Ozma Containment Unit will be sealed off': '距奥兹玛原型封印区被封锁还有',
+        'The Shin-Zantetsuken Containment Unit will be sealed off': '距真·斩铁剑封印区被封锁还有',
       },
       'replaceText': {
-        '--sync--': '--sync--', // FIXME
         'Acallam Na Senorach': '真妖枪旋',
         'Acceleration Bomb': '加速度炸弹',
-        'Adds': 'Adds', // FIXME
+        'Adds': '小怪',
         'Ame-no-Sakahoko': '天逆矛',
         'Astral Essence': '光之腕',
         'Auroral Wind': '极光之风',
         'Berserk': '狂暴',
         'Bitter Barbs': '罪恶荆棘',
         'Black Hole': '黑洞',
-        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Bleed Attack': '流血攻击',
         'Booming Lament': '哀痛雷鸣',
         'Call Wyvern': '召唤飞龙',
-        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Carver/Spinner': '靠近/远离',
         'Cloud to Ground': '袭雷',
-        'Cube Form': 'Cube Form', // FIXME
+        'Cube Form': '立方体形式',
         'Eidos': '变异',
         'Elemental Magicks': '元素魔法',
         'Elemental Shift': '元素开关',
         'Execration': '缩小射线',
-        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosion Enrage': '爆炸狂暴',
         'Explosive Impulse': '爆炸性冲击',
         'Flare Star': '耀星',
         'For Honor': '战死击',
@@ -1237,25 +1236,25 @@
         'Meteor': '陨石',
         'Mourning Star': '启明星',
         'Mythcall': '幻枪招来',
-        'Orb x5': 'Orb x5', // FIXME
-        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Orb x5': '球 x5',
+        'Ozma Ability': '奥兹玛技能',
         'Piercing Dark': '暗之枪',
         'Piercing Light': '光之枪',
         'Pitfall': '强袭',
-        'Pyramid Form': 'Pyramid Form', // FIXME
-        'Random Form': 'Random Form', // FIXME
-        'Random Shade': 'Random Shade', // FIXME
-        'Shade Ability': 'Shade Ability', // FIXME
+        'Pyramid Form': '金字塔形式',
+        'Random Form': '随机形式',
+        'Random Shade': '随机影子',
+        'Shade Ability': '影子技能',
         'Shingan': '真眼击',
         'Shooting Star': '流星',
-        'Soak Attack': 'Soak Attack', // FIXME
-        'Spear Copy': 'Spear Copy', // FIXME
-        'Spear Shade': 'Spear Shade', // FIXME
-        'Sphere Form': 'Sphere Form', // FIXME
+        'Soak Attack': '被攻击',
+        'Spear Copy': '矛复制',
+        'Spear Shade': '矛影子',
+        'Sphere Form': '球形式',
         'Spiritcull': '连装魔',
         'Spirits of the Fallen': '英灵魂',
-        'Stack': 'Stack', // FIXME
-        'Star Form': 'Star Form', // FIXME
+        'Stack': '分摊',
+        'Star Form': '星星形式',
         'Streak Lightning': '强袭雷光',
         'Thricecull': '三连枪',
         'Thundercall': '招雷',
@@ -1263,7 +1262,7 @@
         'Ultimate Zantetsuken': '极·斩铁剑',
         'Umbral Essence': '暗之腕',
         'Whirling Zantetsuken': '旋·斩铁剑',
-        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
+        'Wyvern Explosion': '小龙爆炸',
       },
     },
     {
