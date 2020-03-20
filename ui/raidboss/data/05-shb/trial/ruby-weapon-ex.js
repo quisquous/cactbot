@@ -18,6 +18,7 @@
         en: 'Hide Behind Meteor',
         fr: 'Allez derrière le météore',
         ko: '운석 뒤에 숨기',
+        cn: '躲在陨石后',
       },
     },
     {
@@ -28,6 +29,7 @@
         en: 'Away From Meteor',
         fr: 'Ecartez-vous du météore',
         ko: '운석에게서 멀어지기',
+        cn: '远离陨石',
       },
     },
   ],
@@ -65,6 +67,7 @@
         de: 'Weg von den Linien',
         fr: 'En dehors des sillons',
         ko: '선 피하기',
+        cn: '远离线',
       },
     },
     {
@@ -78,6 +81,7 @@
         de: 'Auf die Linien gehen',
         fr: 'Sur les sillons',
         ko: '선 위로 올라가기',
+        cn: '靠近线',
       },
     },
     {
@@ -145,6 +149,7 @@
         de: 'Finalangriff!',
         fr: 'Enrage !',
         ko: '전멸기!',
+        cn: '狂暴',
       },
     },
     {
@@ -164,6 +169,7 @@
             de: 'Greife Blau an (Osten)',
             fr: 'Attaquez le bleu (Est)',
             ko: '파란색 공격 (오른쪽)',
+            cn: '攻击蓝色(东)',
           };
         }
       },
@@ -185,6 +191,7 @@
             de: 'Greife Rot an (Westen)',
             fr: 'Attaquez le rouge (Ouest)',
             ko: '빨간색 공격 (왼쪽)',
+            cn: '攻击红色(西)',
           };
         }
       },
@@ -255,6 +262,7 @@
             de: 'Greife Rot an (Osten)',
             fr: 'Attaquez le rouge (Est)',
             ko: '빨간색 공격 (오른쪽)',
+            cn: '攻击红色(东)',
           };
         }
         return {
@@ -262,6 +270,7 @@
           de: 'Greife Blau an (Westen)',
           fr: 'Attaquez le bleu (Ouest)',
           ko: '파란색 공격 (왼쪽)',
+          cn: '攻击蓝色(西)',
         };
       },
     },
@@ -299,6 +308,7 @@
         en: 'Away from Meteor!',
         fr: 'Loin du météore !',
         ko: '운석에게서 멀어지기',
+        cn: '远离陨石',
       },
     },
     {
@@ -313,6 +323,7 @@
         en: 'Stand in Meteor Tankbuster',
         fr: 'Tankbuster, Restez dans la comète',
         ko: '운석 막기',
+        cn: '接刀',
       },
     },
     {
@@ -327,6 +338,7 @@
         en: 'Kill Meteor Adds',
         fr: 'Tuez les comètes',
         ko: '운석 부수기',
+        cn: '击杀陨石',
       },
     },
     {
@@ -337,6 +349,7 @@
         en: 'Avoid tanks with laser',
         fr: 'Évitez les tanks avec votre laser',
         ko: '레이저 대상자 - 탱커 피하기',
+        cn: '躲开坦克激光',
       },
     },
     {
@@ -351,12 +364,14 @@
             en: 'Comets N/S',
             fr: 'Comètes N/S',
             ko: '남/북 운석 낙하',
+            cn: '彗星 北/南',
           };
         } else if (matches.x < 90) {
           return {
             en: 'Comets E/W',
             fr: 'Comètes E/O',
             ko: '동/서 운석낙하',
+            cn: '彗星 东/西',
           };
         }
       },
