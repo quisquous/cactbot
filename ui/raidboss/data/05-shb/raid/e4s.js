@@ -135,7 +135,7 @@
       alertText: {
         en: 'Landslide: In Front',
         de: 'Armberge: Vor ihm',
-        fr: 'Devant',
+        fr: 'Glissement: Devant',
         ja: 'ランスラ: 正面へ',
         cn: '面前躲避',
         ko: '완갑: 정면',
@@ -321,7 +321,7 @@
       infoText: {
         en: 'Left, Then Right',
         de: 'Links, dann Rechts',
-        fr: 'Gauche puis droite',
+        fr: 'Gauche, puis droite',
         ja: '左 => 右',
         cn: '左 => 右',
         ko: '왼쪽 => 오른쪽',
@@ -338,7 +338,7 @@
       infoText: {
         en: 'Right, Then Left',
         de: 'Rechts, dann Links',
-        fr: 'Droite puis gauche',
+        fr: 'Droite, puis gauche',
         ja: '右 => 左',
         cn: '右 => 左',
         ko: '오른쪽 => 왼쪽',
@@ -355,7 +355,7 @@
       infoText: {
         en: 'Left, Stay Left',
         de: 'Links, Links bleiben',
-        fr: 'Gauche puis restez',
+        fr: 'Gauche, puis restez',
         ja: 'ずっと左',
         cn: '一直在左',
         ko: '왼쪽 => 왼쪽',
@@ -372,7 +372,7 @@
       infoText: {
         en: 'Right, Stay Right',
         de: 'Rechts, Rechts bleiben',
-        fr: 'Droite puis restez',
+        fr: 'Droite, puis restez',
         ja: 'ずっと右',
         cn: '一直在右',
         ko: '오른쪽 => 오른쪽',
