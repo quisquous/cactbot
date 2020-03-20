@@ -202,7 +202,7 @@
           en: 'In, Stack Behind',
           de: 'Rein, hinten stacken',
           ja: '背面集合',
-          fr: 'Intérieur, pack derrière',
+          fr: 'Intérieur, packez derrière',
           cn: '背面集合',
           ko: '보스 가까이, 뒤에서 쉐어',
         };
