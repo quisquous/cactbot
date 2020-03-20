@@ -21,6 +21,7 @@
       infoText: {
         en: 'Mangle',
         de: 'Biss und Schweifhieb',
+        fr: 'Broyage',
         ko: '으깨기',
       },
     },
@@ -35,6 +36,7 @@
       alertText: {
         en: 'Rush',
         de: 'Stürmen',
+        fr: 'Ruée',
         ko: '돌진',
       },
     },
@@ -49,6 +51,7 @@
       alarmText: {
         en: 'Flaming Recoil',
         de: 'Flammenschlag vorne',
+        fr: 'Bond enflammé',
         ko: '반동 화염',
       },
     },
@@ -61,6 +64,7 @@
       infoText: {
         en: 'Fire Breath on YOU',
         de: 'Feueratem auf DIR',
+        fr: 'Souffle enflammé sur Vous',
         ko: '화염 숨결 대상자',
       },
     },
