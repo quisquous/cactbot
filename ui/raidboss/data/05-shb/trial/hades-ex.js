@@ -675,7 +675,7 @@
       alertText: {
         en: 'Puddles on YOU',
         de: 'Fläsche auf YOU',
-        fr: 'Puddle sur VOUS',
+        fr: 'Zone au sol sur VOUS',
         ja: 'AoEを外に捨て',
         cn: '水圈点名',
         ko: '징 대상자',
