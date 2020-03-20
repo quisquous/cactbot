@@ -205,7 +205,7 @@
             en: 'Avoid Charge and Orbs',
             de: 'Charge und Orbs ausweichen',
             ja: '玉と突進避けて',
-            fr: 'Evitez les charges et orbes',
+            fr: 'Evitez les charges et les orbes',
             cn: '躲避冲锋与晶石',
             ko: '돌진이랑 구슬 폭발을 피하세요',
           };
@@ -355,7 +355,7 @@
           return {
             en: 'Circle, Avoid Orbs',
             de: 'Kreis, vermeide Orbs',
-            fr: 'Cercle, Evitez orbes',
+            fr: 'Cercle, Evitez les orbes',
             ja: 'オーブに当てないで',
             cn: '圆圈点名，远离晶石',
             ko: '원형 징, 구슬 피하세요',
