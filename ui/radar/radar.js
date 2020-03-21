@@ -257,8 +257,12 @@ class Radar {
       matches = e.detail.logs[i].match(Regexes.abilityFull());
       if (matches) {
         let monster = this.targetMonsters[matches.groups.target.toLowerCase()];
-        if (monster)
-          this.UpdateMonsterPuller(monster, matches.groups.source);
+        if (monster) {
+          // provoke doesn't work on hunt mobs
+          let isProvoke = e.detail.logs[i].match(Regexes.ability({ id: '1D6D' }));
+          if (!isProvoke)
+            this.UpdateMonsterPuller(monster, matches.groups.source);
+        }
       }
       // change instance
       let r = e.detail.logs[i].match(instanceChangedRegex[lang] || instanceChangedRegex['en']);
