@@ -21,6 +21,7 @@
       alertText: {
         en: 'LOS Thrust',
         de: 'LOS Gravitationsschlag',
+        fr: 'LOS Percée gravitationelle',
       },
     },
     {
@@ -37,6 +38,7 @@
       alarmText: {
         en: 'LOS Pox',
         de: 'LOS Pocken',
+        fr: 'LOS Vérole',
       },
     },
     {
@@ -51,6 +53,7 @@
       infoText: {
         en: 'Magic on Soldier, Physical on Knights',
         de: 'Magier auf Soldat, Physische auf Ritter',
+        fr: 'Magique sur Soldat, Physique sur Chevalier',
       },
     },
   ],
