@@ -36,7 +36,7 @@
       infoText: {
         en: 'Death Sentence Soon',
         de: 'Todesurteil bald',
-        fr: 'Sentence de mort bientôt',
+        fr: 'Peine de mort bientôt',
       },
     },
     {
@@ -103,7 +103,7 @@
           return {
             en: 'Conflag on YOU',
             de: 'Feuersturm auf DIR',
-            fr: 'Incendie sur VOUS',
+            fr: 'Tempête de feu sur VOUS',
           };
         }
       },
@@ -112,7 +112,7 @@
           return {
             en: 'Conflag on ' + data.ShortName(matches.target),
             de: 'Feuersturm auf ' + data.ShortName(matches.target),
-            fr: 'Incendie sur ' + data.ShortName(matches.target),
+            fr: 'Tempête de feu sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -192,7 +192,7 @@
       alertText: {
         en: 'Twister!',
         de: 'Wirbelsturm!',
-        fr: 'Grande tornade !',
+        fr: 'Tornade !',
       },
     },
     {
@@ -272,7 +272,7 @@
         'Hygieia': 'Hygie',
         'Liquid Hell': 'Enfer liquide',
         'Plummet': 'Piqué',
-        'Twister': 'Grande tornade',
+        'Twister': 'Tornade',
         'Unwoven Will': 'Volonté dispersée',
       },
     },
