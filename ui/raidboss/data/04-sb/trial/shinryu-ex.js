@@ -82,11 +82,13 @@
           return {
             en: 'Akh Morn on YOU',
             de: 'Akh Morn auf DIR',
+            cn: '死亡轮回点名',
           };
         } else if (data.role == 'tank') {
           return {
             en: 'Akh Morn on ' + matches.target,
             de: 'Akh Morn auf ' + matches.target,
+            cn: '死亡轮回点名',
           };
         }
       },
@@ -97,11 +99,13 @@
         return {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
+          cn: '天光轮回：散开和移动',
         };
       },
       tts: {
         en: 'akh morn',
         de: 'akh morn',
+        cn: '死亡轮回',
       },
     },
     {
@@ -115,10 +119,12 @@
       infoText: {
         en: 'Ice: Stack and Stop',
         de: 'Eis: Stack und Stehenbleiben',
+        cn: '冰地面：站一起和停止移动',
       },
       tts: {
         en: 'stop',
         de: 'stopp',
+        cn: '停止',
       },
     },
     {
@@ -132,6 +138,7 @@
       infoText: {
         en: 'Out of middle',
         de: 'Raus aus der Mitte',
+        cn: '离开中间',
       },
     },
     {
@@ -146,10 +153,12 @@
       alertText: {
         en: 'Get in water',
         de: 'In\'s Wasser',
+        cn: '进水圈',
       },
       tts: {
         en: 'water',
         de: 'wasser',
+        cn: '进水圈',
       },
     },
     {
@@ -168,11 +177,13 @@
           return {
             en: 'stop to get frozen',
             de: 'Stopp! Einfrieren lassen',
+            cn: '停下，冰地面',
           };
         }
         return {
           en: 'Stack in water',
           de: 'In Wasser stacken',
+          cn: '在水圈攻击',
         };
       },
       tts: function(data) {
@@ -180,11 +191,13 @@
           return {
             en: 'stop to get frozen',
             de: 'Stopp! Einfrieren lassen',
+            cn: '停下，冰地面',
           };
         }
         return {
           en: 'water',
           de: 'Wasser',
+          cn: '水圈',
         };
       },
     },
@@ -200,6 +213,7 @@
       alertText: {
         en: 'out of water',
         de: 'Raus aus dem Wasser',
+        cn: '离开水圈',
       },
     },
     {
@@ -216,11 +230,13 @@
           return {
             en: 'bait bolt, keep moving',
             de: 'Blitz ködern, weiterbewegen',
+            cn: '闪电，保持移动',
           };
         }
         return {
           en: 'Spread out, no water',
           de: 'Verteilen und nicht in\'s Wasser',
+          cn: '散开，离开水圈',
         };
       },
       tts: function(data) {
@@ -228,11 +244,13 @@
           return {
             en: 'bait bolt, keep moving',
             de: 'Blitz ködern, weiterbewegen',
+            cn: '闪电，保持移动',
           };
         }
         return {
           en: 'levinbolt',
           de: 'Blitz',
+          cn: '离开闪电',
         };
       },
     },
@@ -250,6 +268,7 @@
           return {
             en: 'move away',
             de: 'wegbewegen',
+            cn: '散开',
           };
         }
       },
@@ -258,6 +277,7 @@
           return {
             en: 'move away',
             de: 'weckbewegen',
+            cn: '散开',
           };
         }
       },
@@ -273,6 +293,7 @@
       alarmText: {
         en: 'icicle, lean west',
         de: 'Eiszapfen, nach westen',
+        cn: '冰柱，去左边',
       },
     },
     {
@@ -286,6 +307,7 @@
       alarmText: {
         en: 'icicle, lean east',
         de: 'Eiszapfen, nach Osten',
+        cn: '冰柱，去右边',
       },
     },
     {
@@ -301,10 +323,12 @@
       infoText: {
         en: 'Knockback, look for water',
         de: 'Rückstoß, nach Wasser schauen',
+        cn: '击退，找水圈',
       },
       tts: {
         en: 'knockback',
         de: 'Rückstoß',
+        cn: '击退',
       },
     },
     {
@@ -321,10 +345,12 @@
       infoText: {
         en: 'no more heals needed',
         de: 'keine Heilung mehr nötig',
+        cn: '不需要更多奶了',
       },
       tts: {
         en: 'stop healing',
         de: 'keine Heilung mehr',
+        cn: '停奶',
       },
     },
     {
@@ -339,10 +365,12 @@
       infoText: {
         en: 'Tail: Switch targets',
         de: 'Schweif: Zielwechsel',
+        cn: '打尾巴',
       },
       tts: {
         en: 'tail',
         de: 'schweif',
+        cn: '尾巴',
       },
     },
     {
@@ -361,10 +389,12 @@
       infoText: {
         en: 'Heart: Switch targets',
         de: 'Herz: Ziel wechseln',
+        cn: '打核心',
       },
       tts: {
         en: 'heart',
         de: 'herz',
+        cn: '核心',
       },
     },
     {
@@ -379,10 +409,12 @@
       alarmText: {
         en: 'avoid divebomb',
         de: 'Divebomb ausweichen',
+        cn: '前方顺劈',
       },
       tts: {
         en: 'divebombs',
         de: 'sturzflug',
+        cn: '顺劈',
       },
     },
     {
@@ -398,11 +430,13 @@
           return {
             en: 'Death Sentence on YOU',
             de: 'Todesurteil auf DIR',
+            cn: '死刑点名',
           };
         } else if (data.role == 'healer') {
           return {
             en: 'Death Sentence on ' + matches.target,
             de: 'Todesurteil auf ' + matches.target,
+            cn: '死刑点名'+ matches.target,
           };
         }
       },
@@ -411,6 +445,7 @@
           return {
             en: 'Death Sentence on ' + matches.target,
             de: 'Todesurteil auf ' + matches.target,
+            cn: '死刑点名'+ matches.target,
           };
         }
       },
@@ -419,6 +454,7 @@
           return {
             en: 'Death Sentence',
             de: 'Todesurteil',
+            cn: '死刑',
           };
         }
       },
@@ -454,10 +490,12 @@
       alertText: {
         en: 'front cleave',
         de: 'Frontalcleave',
+        cn: '离开正面',
       },
       tts: {
         en: 'cleave',
         de: 'klief',
+        cn: '顺劈',
       },
     },
     {
@@ -474,10 +512,12 @@
       alertText: {
         en: 'kill left first',
         de: 'linken Flügel zuerst',
+        cn: '击杀左翼',
       },
       tts: {
         en: 'left first',
         de: 'links zuerst',
+        cn: '击杀左翼',
       },
       run: function(data) {
         data.finalWing = true;
@@ -497,10 +537,12 @@
       alertText: {
         en: 'kill right first',
         de: 'rechten Flügel zuerst',
+        cn: '击杀右翼',
       },
       tts: {
         en: 'right first',
         de: 'rechts zuerst',
+        cn: '击杀右翼',
       },
       run: function(data) {
         data.finalWing = true;
@@ -518,11 +560,13 @@
           return {
             en: 'break tethers then stack',
             de: 'Kette zerreissen, dann stack',
+            cn: '拉断锁链然后攻击',
           };
         }
         return {
           en: 'break tethers',
           de: 'Ketten zerreissen',
+          cn: '拉断锁链',
         };
       },
       tts: function(data) {
@@ -530,11 +574,13 @@
           return {
             en: 'break tethers then stack',
             de: 'Kette zerreissen, dann stack',
+            cn: '拉断锁链然后攻击',
           };
         }
         return {
           en: 'break tethers',
           de: 'Ketten zerreissen',
+          cn: '拉断锁链',
         };
       },
     },
@@ -547,10 +593,12 @@
       alarmText: {
         en: 'tail marker on you',
         de: 'Schweifmarker auf dir',
+        cn: '龙尾点名',
       },
       tts: {
         en: 'tail marker',
         de: 'schweif marker',
+        cn: '龙尾点名',
       },
     },
     {
@@ -566,6 +614,7 @@
           return {
             en: 'earthshaker on you',
             de: 'Erdstoss auf dir',
+            cn: '大地动摇点名',
           };
         }
       },
@@ -574,6 +623,7 @@
           return {
             en: 'avoid earthshakers',
             de: 'Stöße ausweichen',
+            cn: '远离大地动摇',
           };
         }
       },
@@ -582,11 +632,13 @@
           return {
             en: 'avoid shakers',
             de: 'Stöße ausweichen',
+            cn: '离开点名',
           };
         }
         return {
           en: 'earthshaker',
           de: 'erdstoß',
+          cn: '大地动摇',
         };
       },
       run: function(data) {
@@ -861,10 +913,10 @@
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
         'Atomic Ray': '原子射线',
-        'Benighting / Wormwail': 'Benighting / Wormwail', // FIXME
+        'Benighting / Wormwail': '黑暗吐息/神龙啸',
         'Benighting Breath': '黑暗吐息',
         'Blazing Trail': '炽热弥漫',
-        'Cocoon Markers': 'Cocoon Markers', // FIXME
+        'Cocoon Markers': '光茧点名',
         'Dark Matter': '暗物质',
         'Death Sentence': '死刑',
         'Diamond Dust': '钻石星尘',
@@ -873,7 +925,7 @@
         'Earth Breath': '大地吐息',
         'Earthen Fury': '大地之怒',
         'Fireball': '火球',
-        'First Wing': 'First Wing', // FIXME
+        'First Wing': '第一只翅膀',
         'Gyre Charge': '螺旋冲锋',
         'Hellfire': '地狱之火炎',
         'Hypernova': '超新星',
@@ -882,21 +934,21 @@
         'Judgment Bolt': '制裁之雷',
         'Levinbolt': '闪电',
         'Meteor Impact': '陨石冲击',
-        'Phase': 'Phase', // FIXME
+        'Phase': '阶段',
         'Protostar': '原恒星',
-        'Reiyu Adds': 'Reiyu Adds', // FIXME
-        'Second Wing': 'Second Wing', // FIXME
+        'Reiyu Adds': '小怪',
+        'Second Wing': '第二只翅膀',
         'Shatter': '破碎',
         'Spiked Tail': '刺尾',
         'Spikesicle': '冰柱突刺',
         'Summon Icicle': '召唤冰柱',
         'Super Cyclone': '超级气旋',
-        'TAP BUTTON OR ELSE': 'TAP BUTTON OR ELSE', // FIXME
-        'Tail Marker': 'Tail Marker', // FIXME
+        'TAP BUTTON OR ELSE': 'XJB按',
+        'Tail Marker': '尾巴点名',
         'Tail Slap': '尾部猛击',
         'Tail Spit': '尾部重击',
         'Tera Slash': '万亿斩击',
-        'Tethers': 'Tethers', // FIXME
+        'Tethers': '连线',
         'Tidal Wave': '巨浪',
         'Touchdown': '空降',
       },
@@ -918,7 +970,7 @@
         'Rehabilitation': '体力持续恢复',
         'Sludge': '污泥',
         'Stun': '眩晕',
-        'Tethers': 'Tethers', // FIXME
+        'Tethers': '连线',
         'The Worm\'s Curse': '神龙诅咒',
         'Thin Ice': '冰面',
       },

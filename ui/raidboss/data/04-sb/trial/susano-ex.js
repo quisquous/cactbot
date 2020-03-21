@@ -15,6 +15,7 @@
       infoText: {
         en: 'look for cloud',
         de: 'Nach Wolke ausschau halten',
+        cn: '寻找雷云',
       },
     },
   ],
@@ -94,6 +95,8 @@
             en: 'Tank Swap',
             de: 'Tank Wechsel',
             ja: 'スイッチ',
+            fr: 'Tank Swap',
+            cn: '换T',
           };
         }
         return false;
@@ -103,6 +106,8 @@
           return {
             en: 'Tank Buster',
             de: 'Tank Buster',
+            fr: 'Tankbuster',
+            cn: '死刑',
           };
         }
         return false;
@@ -112,6 +117,7 @@
           return {
             en: 'tank buster',
             de: 'tenkbasta',
+            cn: '坦克死刑',
           };
         }
       },
@@ -128,16 +134,19 @@
           return {
             en: 'Knockback on you (cloud)',
             de: 'Rückstoss auf Dir (Wolke)',
+            cn: '击退点名（雷云）',
           };
         } else if (data.churning) {
           return {
             en: 'Knockback + dice (STOP)',
             de: 'Rückstoss + Würfel (STOPP)',
+            cn: '击退+水泡（静止）',
           };
         }
         return {
           en: 'Knockback on YOU',
           de: 'Rückstoß auf DIR',
+          cn: '击退点名',
         };
       },
       tts: function(data) {
@@ -145,16 +154,20 @@
           return {
             en: 'knockback with cloud',
             de: 'Rückstoß mit wolke',
+            cn: '雷云击退',
           };
         } else if (data.churning) {
           return {
             en: 'Knockback with dice',
             de: 'Rückstoß mit Würfel',
+            cn: '水泡击退',
           };
         }
         return {
           en: 'Knockback',
           de: 'Rückstoß',
+          fr: 'Poussée',
+          cn: '击退',
         };
       },
     },
@@ -169,11 +182,13 @@
           return {
             en: 'Levinbolt on you (cloud)',
             de: 'Blitz auf Dir (Wolke)',
+            cn: '闪电点名（雷云）',
           };
         }
         return {
           en: 'Levinbolt on you',
           de: 'Blitz auf dir',
+          cn: '闪电点名',
         };
       },
       tts: function(data) {
@@ -181,11 +196,13 @@
           return {
             en: 'bolt with cloud',
             de: 'blitz mit wolke',
+            cn: '闪电带雷云',
           };
         }
         return {
           en: 'bolt',
           de: 'blitz',
+          cn: '闪电',
         };
       },
     },
@@ -207,6 +224,7 @@
           return {
             en: 'Stun: ' + matches.target,
             de: 'Paralyse ' + matches.target,
+            cn: '击晕'+ matches.target,
           };
         }
       },
@@ -228,6 +246,7 @@
       alertText: {
         en: 'Stop',
         de: 'Stopp',
+        cn: '停止动作',
       },
 
     },
@@ -395,39 +414,39 @@
         'Ama-No-Iwato': '天之岩户',
         'Ame-No-Murakumo': '天之丛云',
         'Dark Levin': '紫电',
-        'How our hearts sing in the chaos': 'How our hearts sing in the chaos', // FIXME
-        'Let the revels begin': 'Let the revels begin', // FIXME
-        'REJOICE!': 'REJOICE!', // FIXME
+        'How our hearts sing in the chaos': '(有意思，真有意思|终于到了该使用神器的时候了吗)', // FIXME: they have the same english translation
+        'Let the revels begin': '欢庆吧！跳舞吧！',
+        'REJOICE!': '哇啊啊啊！',
         'Susano': '须佐之男',
         'Thunderhead': '雷暴云砧',
       },
       'replaceText': {
-        'Ame No Murakumo': 'Ame No Murakumo', // FIXME
-        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
+        'Ame No Murakumo': '天之丛云',
+        'Ame-No-Murakumo add': '天之丛云小怪',
         'Assail': '强击',
         'Brightstorm': '晴空风暴',
         'Churn': '祸泡附身',
         'Churning Deep': '祸泡',
         'Dark Levin': '紫电',
         'Electrocution': '感电',
-        'Knockback': 'Knockback', // FIXME
+        'Knockback': '击退',
         'Levinbolt': '闪电',
-        'Phase': 'Phase', // FIXME
+        'Phase': '阶段',
         'Rasen Kaikyo': '螺旋海峡',
         'Seasplitter': '断海',
         'Sheer Force': '剑压',
         'Shock': '放电',
-        'Stack': 'Stack', // FIXME
+        'Stack': '集合',
         'Stormsplitter': '破浪斩',
         'The Altered Gate': '岩户返',
         'The Hidden Gate': '岩户隐',
         'The Parting Clouds': '云间放电',
         'The Sealed Gate': '岩户闭合',
         'Ukehi': '祈请',
-        'Yasakani No Magatama': 'Yasakani No Magatama', // FIXME
-        'Yata No Kagami': 'Yata No Kagami', // FIXME
-        'cloud': 'cloud', // FIXME
-        'dice': 'dice', // FIXME
+        'Yasakani No Magatama': '八尺琼勾玉',
+        'Yata No Kagami': '八咫镜',
+        'cloud': '云',
+        'dice': '骰点',
       },
       '~effectNames': {
         'Churning': '祸泡',

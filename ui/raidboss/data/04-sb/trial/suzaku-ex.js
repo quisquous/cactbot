@@ -301,7 +301,7 @@
       },
       '~effectNames': {
         'Burns': '火伤',
-        'Damage Up': 'ダメージ上昇',
+        'Damage Up': '伤害提高',
         'Fire Resistance Down II': '火属性耐性大幅降低',
         'HP Boost': '体力增加',
         'Looming Crescendo': '傀儡旋律',
