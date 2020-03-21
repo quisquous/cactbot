@@ -24,6 +24,7 @@
       alertText: {
         en: 'Cleanse Doom soon',
         de: 'Reinige Verhängnis bald',
+        cn: '驱散死宣',
       },
     },
     {
@@ -57,6 +58,7 @@
       infoText: {
         en: 'Move around',
         de: 'Bewegen',
+        cn: '不停移动',
       },
     },
     {
@@ -91,6 +93,7 @@
       infoText: {
         en: 'Stand in the gap',
         de: 'In der Lücke stehen',
+        cn: '远离中间位置',
       },
     },
     {
@@ -105,6 +108,7 @@
       infoText: {
         en: 'Behind head--Avoid zombie breath',
         de: 'Hinter den Kopf - Vermeide den Zombie-Atem',
+        cn: '站头后方',
       },
     },
     {
@@ -118,6 +122,7 @@
       infoText: {
         en: 'Avoid black holes',
         de: 'Weiche den Schwarzen Löchern aus',
+        cn: '远离黑洞',
       },
     },
     {
@@ -139,6 +144,7 @@
       alertText: {
         en: 'Flare on YOU',
         de: 'Flare auf DIR',
+        cn: '核爆点名',
       },
     },
     {
@@ -149,11 +155,13 @@
           return {
             en: 'Stack on YOU',
             de: 'Sammeln auf DIR',
+            cn: '分摊点名',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Sammeln auf ' + data.ShortName(matches.target),
+          cn: '分摊' + data.holyTargets[1],
         };
       },
     },

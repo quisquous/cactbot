@@ -1,7 +1,10 @@
 'use strict';
 
 [{
-  zoneRegex: /Ala Mhigo/,
+  zoneRegex: {
+    en: /Ala Mhigo/,
+    cn: /^鏖战红莲阿拉米格$/,
+  },
   timelineFile: 'ala_mhigo.txt',
   timelineTriggers: [
     {
@@ -60,6 +63,7 @@
         en: 'Out of blue circle',
         de: 'Raus aus dem blauen Kreis',
         fr: 'Hors du cercle bleu',
+        cn: '离开蓝圈',
       },
     },
     {
@@ -84,6 +88,7 @@
         en: 'Protean',
         de: 'Um den Boss verteilen',
         fr: 'Changement',
+        cn: '和队友分散路径',
       },
     },
     {
@@ -101,6 +106,7 @@
         en: 'Face tether out',
         de: 'Verbindung nach draußen richten',
         fr: 'Lien vers l\'extérieur',
+        cn: '离开人群背对连线',
       },
     },
     {
@@ -268,14 +274,14 @@
         'Order To Charge': '出击命令',
         'Order To Fire': '攻击命令',
         'Storm, Swell, Sword': '秘剑风雷妖',
-        'Storm\\?/Swell\\?(?!/Sword)': 'Storm?/Swell?', // FIXME
-        'Storm\\?/Swell\\?/Sword\\?': 'Storm?/Swell?/Sword?', // FIXME
-        'Swell/Sword': 'Swell/Sword', // FIXME
+        'Storm\\?/Swell\\?(?!/Sword)': '雷切?/风断?',
+        'Storm\\?/Swell\\?/Sword\\?': '雷切?/风断?/妖刀?',
+        'Swell/Sword': '风断/妖刀',
         'Tail Laser': '尾部射线',
         'Target Search': '寻找目标',
-        'Unknown_206E': 'Unknown_206E', // FIXME
         'Unmoving Troika': '不动三段',
         'Vein Splitter': '地脉断',
+        'Unknown_206E': 'Unknown_206E', // FIXME
       },
     },
     {

@@ -22,6 +22,7 @@
             en: 'Hyperdrive on YOU',
             fr: 'Colonne de feu sur VOUS',
             de: 'Hyperantrieb auf DIR',
+            cn: '死刑点名',
           };
         }
         if (data.role == 'healer') {
@@ -29,6 +30,7 @@
             en: 'Hyperdrive on ' + data.ShortName(matches.target),
             fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
             de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
+            cn: '死刑点名'+ data.ShortName(matches.target),
           };
         }
       },
@@ -38,6 +40,7 @@
             en: 'buster',
             fr: 'Colonne de feu',
             de: 'hyperantrieb',
+            cn: '死刑',
           };
         }
       },
@@ -85,11 +88,13 @@
         en: 'Look At Statue',
         fr: 'Regardez la statue',
         de: 'Statue anschauen',
+        cn: '面对神像',
       },
       tts: {
         en: 'look towards',
         fr: 'Regardez la statue',
         de: 'anschauen',
+        cn: '面对神像',
       },
     },
     {
@@ -104,11 +109,13 @@
         en: 'Look Away From Statue',
         fr: 'Ne regardez pas la statue',
         de: 'Von Statue wegschauen',
+        cn: '背对神像',
       },
       tts: {
         en: 'look away',
         fr: 'Ne regardez pas la statue',
         de: 'weckschauen',
+        cn: '背对神像',
       },
     },
     {
@@ -131,11 +138,13 @@
         en: 'fire on YOU',
         fr: 'Feu sur VOUS',
         de: 'Feuer auf DIR',
+        cn: '火点名',
       },
       tts: {
         en: 'fire',
         fr: 'feu',
         de: 'Feuer',
+        cn: '火',
       },
     },
     {
@@ -156,11 +165,13 @@
         en: 'True Thunder',
         fr: 'Vraie foudre',
         de: 'Wahrer Blitz',
+        cn: '真雷',
       },
       tts: {
         en: 'True',
         fr: 'Vrai',
         de: 'Wahr',
+        cn: '真',
       },
     },
     {
@@ -176,11 +187,13 @@
         en: 'Fake Thunder',
         fr: 'Fausse foudre',
         de: 'Falscher Blitz',
+        cn: '假雷',
       },
       tts: {
         en: 'Fake',
         fr: 'Fausse',
         de: 'Falsch',
+        cn: '假',
       },
     },
     {
@@ -196,11 +209,13 @@
         en: 'Fake Ice: Get out',
         fr: 'Fausse glace : Sortez',
         de: 'Falsches Eis: Rausgehen',
+        cn: '假冰：远离',
       },
       tts: {
         en: 'Get out',
         fr: 'Sortez',
         de: 'Rausgehen',
+        cn: '远离',
       },
     },
     {
@@ -216,11 +231,13 @@
         en: 'True Ice: Get in',
         fr: 'Vraie glace: Rentrez dedans',
         de: 'Wahre Eis: Reingehen',
+        cn: '真冰：靠近',
       },
       tts: {
         en: 'Get in',
         fr: 'rentrez dedans',
         de: 'Reingehen',
+        cn: '靠近',
       },
     },
     {
@@ -236,11 +253,13 @@
         en: 'Fake Ice: Get in',
         fr: 'Fausse glace: Rentrez dedans',
         de: 'Falsches Eis: Reingehen',
+        cn: '假冰：靠近',
       },
       tts: {
         en: 'Get in',
         fr: 'rentrez dedans',
         de: 'Reingehen',
+        cn: '靠近',
       },
     },
     {
@@ -256,11 +275,13 @@
         en: 'True Ice: Get out',
         fr: 'Vraie glace: Sortez',
         de: 'Wahres Eis: Rausgehen',
+        cn: '真冰：远离',
       },
       tts: {
         en: 'Get out',
         fr: 'Sortez',
         de: 'raus da',
+        cn: '远离',
       },
     },
   ],
@@ -445,7 +466,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!', // FIXME
+        'Destroy! Destroy! Destroy! I will destroy it all!': '我要破坏一切！破坏！破坏！破坏！',
         'Graven Image': '众神之像',
         'Kefka': '凯夫卡',
         'Light Of Consecration': '祝圣之光',
@@ -453,7 +474,7 @@
       },
       'replaceText': {
         'Aero Assault': '疼飕飕暴风',
-        'Aero/Ruin': 'Aero/Ruin', // FIXME
+        'Aero/Ruin': '暴风/毁荡',
         'All Things Ending': '消灭之脚',
         'Blizzard Blitz': '滴溜溜冰封',
         'Blizzard III': '冰封',
@@ -467,7 +488,7 @@
         'Graven Image': '众神之像',
         'Gravitas': '重力弹',
         'Gravitational Wave': '重力波',
-        'Half Arena': 'Half Arena', // FIXME
+        'Half Arena': '半场',
         'Heartless Angel': '无心天使',
         'Heartless Archangel': '无心大天使',
         'Holy Ascent': '升天',
@@ -487,7 +508,7 @@
         'Revolting Ruin': '恶狠狠毁荡',
         'Shockwave': '冲击波',
         'Starstrafe': '妖星乱舞',
-        'Statue Gaze': 'Statue Gaze', // FIXME
+        'Statue Gaze': '神像视线',
         'The Path Of Light': '光之波动',
         'Thrumming Thunder': '劈啪啪暴雷',
         'Thunder III': '暴雷',

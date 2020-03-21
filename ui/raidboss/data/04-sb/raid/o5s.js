@@ -67,6 +67,7 @@
         fr: 'Lumière',
         ko: '빛장판',
         ja: 'ライト',
+        cn: '光点名',
       },
     },
     {
@@ -81,6 +82,7 @@
         fr: 'Vent',
         ko: '초록징',
         ja: '風',
+        cn: '圆圈点名',
       },
     },
     {
@@ -221,11 +223,11 @@
         'Wroth Ghost': '怒灵',
       },
       'replaceText': {
-        ' Ghosts': ' Ghosts', // FIXME
+        ' Ghosts': ' 幽灵',
         'Acid Rain': '酸雨',
-        'Add Wave': 'Add Wave', // FIXME
+        'Add Wave': '一波小怪',
         'All In The Mind': '念力',
-        'Crossing Whistle': 'Crossing Whistle', // FIXME
+        'Crossing Whistle': '交叉汽笛',
         'Diabolic Chimney': '魔界喷烟',
         'Diabolic Headlamp': '魔界前照灯',
         'Diabolic Light': '魔界光',
@@ -233,16 +235,16 @@
         'Diabolic Wind': '魔界风',
         'Doom Strike': '魔灵击',
         'Encumber': '挡路',
-        'Ghosts spawn': 'Ghosts spawn', // FIXME
+        'Ghosts spawn': '幽灵出现',
         'Head On': '追尾',
-        'Knockback Whistle': 'Knockback Whistle', // FIXME
+        'Knockback Whistle': '击退汽笛',
         'Possess': '附身',
         'Saintly Beam': '圣光射线',
-        'Tether Whistle': 'Tether Whistle', // FIXME
+        'Tether Whistle': '连线汽笛',
       },
       '~effectNames': {
         'Connectivity': '连接',
-        'Prey': 'プレイ',
+        'Prey': '猎物',
         'Stun': '眩晕',
         'Throttle': '轰油起步',
       },

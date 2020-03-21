@@ -40,12 +40,14 @@
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
         ko: '대해일 확인',
+        cn: '离开水瓶口方向',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
         ko: '대해일',
+        cn: '龙卷风',
       },
     },
     {
@@ -62,12 +64,14 @@
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
         ko: '대해일 확인',
+        cn: '离开水瓶口方向',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
         ko: '대해일',
+        cn: '龙卷风',
       },
     },
     {
@@ -84,12 +88,14 @@
         de: 'Auf Krug achten',
         fr: 'Attention Tsunami',
         ko: '대해일 확인',
+        cn: '离开水瓶口方向',
       },
       tts: {
         en: 'Tsunami',
         de: 'Krug',
         fr: 'Tsunami',
         ko: '대해일',
+        cn: '龙卷风',
       },
     },
     {
@@ -142,6 +148,7 @@
         de: 'In der langsamen Uhr stehen',
         fr: 'Placez-vous sur une horloge lente',
         ko: '느린 시계 위로',
+        cn: '站慢速时钟等待',
       },
     },
     {
@@ -160,6 +167,7 @@
         de: 'Verbindung nach außen strecken',
         fr: 'Lien vers l\'exterieur',
         ko: '줄 바깥으로 늘이기',
+        cn: '将连线朝外远离人群',
       },
     },
     {
@@ -175,6 +183,7 @@
         de: 'Uhrzeiger nach außen',
         fr: 'Arrêtez horloge',
         ko: '시간 폭탄',
+        cn: '定时炸弹',
       },
     },
     {
@@ -252,30 +261,35 @@
               de: 'Draußen stehen',
               fr: 'Restez dehors',
               ko: '바깥에 있기',
+              cn: '远离',
             },
             {
               en: 'Stand in 1',
               de: 'In 1 stehen',
               fr: 'Allez sur le 1',
               ko: '답: 1',
+              cn: '站在 1',
             },
             {
               en: 'Stand in 2',
               de: 'In 2 stehen',
               fr: 'Allez sur le 2',
               ko: '답: 2',
+              cn: '站在 2',
             },
             {
               en: 'Stand in 3',
               de: 'In 3 stehen',
               fr: 'Allez sur le 3',
               ko: '답: 3',
+              cn: '站在 3',
             },
             {
               en: 'Stand in 4',
               de: 'In 4 stehen',
               fr: 'Allez sur le 4',
               ko: '답: 4',
+              cn: '站在 4',
             },
           ][this.correctMath[data.mathBaseValue]];
         };
@@ -462,6 +476,7 @@
         de: 'Ins Positive laufen',
         fr: 'Allez sur le plus',
         ko: '+전하 쪽으로',
+        cn: '移动到正极',
       },
     },
     {
@@ -480,6 +495,7 @@
         de: 'Ins Negative laufen',
         fr: 'Allez sur le moins',
         ko: '-전하 쪽으로',
+        cn: '移动到负极',
       },
     },
     {
@@ -507,11 +523,13 @@
         de: 'Herz',
         fr: 'Tuer le cœur',
         ko: '심핵 처리',
+        cn: '消灭boss核心',
       },
       tts: {
         en: 'Heart',
         de: 'Herz',
         fr: 'Cœur',
+        cn: '核心',
       },
     },
   ],
@@ -878,7 +896,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'Belias, The Gigas': '魔人贝利亚斯',
@@ -897,8 +914,8 @@
         'Acceleration Bomb': '加速度炸弹',
         'Ancient Aero': '古代疾风',
         'Annihilation Mode': '灭绝芯片',
-        'Archaeodemon spawn': 'Archaeodemon spawn', // FIXME
-        'Area Lockdown': 'Area Lockdown', // FIXME
+        'Archaeodemon spawn': '古恶魔出现',
+        'Area Lockdown': '区域封锁',
         'Ballistic Missile': '导弹发射',
         'Briny Cannonade': '苍炮击',
         'Compress': '执行压缩',
@@ -916,17 +933,17 @@
         'Divide By Five': '算术：5的倍数',
         'Divide By Four': '算术：4的倍数',
         'Divide By Three': '算术：3的倍数',
-        'Division': 'Division', // FIXME
+        'Division': '除法',
         'Dust Storm': '尘暴',
         '(?<![\\w| ])Eruption': '地火喷发',
         'Explosion': '爆炸',
         'Face Off': '对决',
-        'Fast Hands': 'Fast Hands', // FIXME
+        'Fast Hands': '快手',
         'Ferrofluid': '磁铁',
         '(?<!\\w)Fire(?! )': '火炎',
         'Fire IV': '炽炎',
         'Gale Gaol': '风牢',
-        'Gigas spawns': 'Gigas spawns', // FIXME
+        'Gigas spawns': '魔人兵出现',
         'Growing Threat': '惊异',
         'Gust Front': '飑风',
         'Hellfire': '地狱之火炎',
@@ -942,7 +959,7 @@
         'Materialize': '实体化',
         'Pulverize': '执行粉碎',
         '(?<!\\w)Rake': '利爪',
-        'Slow Hands': 'Slow Hands', // FIXME
+        'Slow Hands': '慢手',
         'Solar Storm': '太阳风暴',
         'Stone Breath': '石化吐息',
         'Subtract': '执行减算',

@@ -19,6 +19,7 @@
         en: 'swipe',
         de: 'Hieb',
         fr: 'Fauche',
+        cn: '去目标背后',
       },
     },
     {
@@ -33,6 +34,7 @@
         en: 'swipe',
         de: 'Hieb',
         fr: 'Fauche',
+        cn: '去目标背后',
       },
     },
     {
@@ -47,6 +49,7 @@
         en: 'Swing',
         de: 'Schwung',
         fr: 'Swing',
+        cn: '远离目标',
       },
     },
     {
@@ -61,6 +64,7 @@
         en: 'Swing',
         de: 'Schwung',
         fr: 'Swing',
+        cn: '远离目标',
       },
     },
     {
@@ -75,11 +79,13 @@
         en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
         fr: 'Voix Du Dragon',
+        cn: '靠近奇美拉',
       },
       tts: {
         en: 'dragon',
         de: 'drache',
         fr: 'dragon',
+        cn: '靠近奇美拉',
       },
     },
     {
@@ -94,11 +100,13 @@
         en: 'Ram\'s Voice',
         de: 'Stimme Des Widders',
         fr: 'Voix Du Bélier',
+        cn: '远离奇美拉',
       },
       tts: {
         en: 'ram',
         de: 'widder',
         fr: 'bélier',
+        cn: '远离奇美拉',
       },
     },
     {

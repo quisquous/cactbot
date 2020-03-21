@@ -20,11 +20,13 @@
         en: 'Magitek Ray',
         de: 'Magitek-Laser',
         fr: 'Rayon Magitek',
+        cn: '直线AOE',
       },
       tts: {
         en: 'beam',
         de: 'les er strahl',
         fr: 'laser',
+        cn: '直线AOE',
       },
     },
     {
@@ -327,52 +329,52 @@
         'Interdimensional Bomb': '次元炸弹',
         'Tentacle': '腕足',
         'Ultros': '奥尔特罗斯',
-        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
+        'WEAPON SYSTEMS ONLINE': '武器火控系统启动',
       },
       'replaceText': {
         'Aether Rot': '以太病毒',
         'Arm And Hammer': '臂锤',
         'Atomic Ray': '原子射线',
         'Aura Cannon': '斗气炮',
-        'Biblio': 'Biblio', // FIXME
+        'Biblio': '永世珍本',
         'Bomb Deployment': '设置炸弹',
-        'Burst/Darkness': 'Burst/Darkness', // FIXME
+        'Burst/Darkness': '脉轮爆发/黑暗',
         'Chain Cannon': '链式机关炮',
         'Chakra Burst': '脉轮爆发',
         'Copy Program': '复制程序',
-        'Copy(?! )': 'Copy', // FIXME
-        'Dada': 'Dada', // FIXME
+        'Copy(?! )': '复制',
+        'Dada': '达达鲁玛',
         'Demon Simulation': '加载恶魔模拟程序',
         'Diffractive Laser': '扩散射线',
         'Diffractive Plasma': '扩散离子',
         'Electric Pulse': '电磁脉冲',
         'Explosion': '爆炸',
         'Ink': '墨汁',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
+        'Interrupt Stoneskin': '打断石肤',
         'Light Blast': '小规模爆炸',
         'Load': '加载',
         'Magitek Ray': '魔导激光',
-        'Magnetism/Repel': 'Magnetism/Repel', // FIXME
+        'Magnetism/Repel': '磁力/相斥',
         'Magnetism': '磁力',
         'Main Cannon': '主加农炮',
         'Missile Simulation': '加载导弹模拟程序',
         'Missile(?![ |\\w])': '导弹',
         'Paste Program': '粘贴程序',
-        'Paste(?! )': 'Paste', // FIXME
-        'Plane Laser': 'Plane Laser', // FIXME
-        'Prey': 'プレイ',
-        'Radar': 'Radar', // FIXME
+        'Paste(?! )': '粘贴',
+        'Plane Laser': '平面激光',
+        'Prey': '猎物',
+        'Radar': '雷达',
         'Repel': '相斥',
         'Retrieve Program': '反向加载',
         'Run Program': '实体化程序',
-        'Run(?! )': 'Run', // FIXME
+        'Run(?! )': '跑',
         'Shockwave': '冲击波',
         'Skip Program': '跳跃加载',
-        'Skip(?! )': 'Skip', // FIXME
+        'Skip(?! )': '跳跃',
         'Stoneskin': '石肤',
         'Temporary Misdirection': '精神失常',
         'Tentacle Simulation': '加载腕足模拟程序',
-        'Tentacle(?! )': 'Tentacle(?! )', // FIXME
+        'Tentacle(?! )': '触手(?! )',
         'The Heat': '热风',
         'Viral Weapon': '病毒兵器',
         '(?<!\\w)Virus': '病毒',

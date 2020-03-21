@@ -15,6 +15,7 @@
       alertText: {
         en: 'Vacuum Wave soon',
         de: 'Vakuumwelle bald',
+        cn: '马上真空波',
       },
     },
   ],
@@ -45,6 +46,7 @@
       infoText: {
         en: 'Fire III',
         de: 'Feuga',
+        cn: '静止',
       },
     },
     {
@@ -59,6 +61,7 @@
       infoText: {
         en: 'Blizzard III',
         de: 'Eisga',
+        cn: '蛇皮走位',
       },
     },
     {
@@ -76,6 +79,7 @@
           return {
             en: 'Thunder III: Tank buster',
             de: 'Blitzga: Tank buster',
+            cn: '雷三：坦克死刑',
           };
         }
       },
@@ -85,6 +89,7 @@
         return {
           en: 'Thunder III',
           de: 'Blitzga',
+          cn: '雷三',
         };
       },
       tts: function(data) {
@@ -92,6 +97,7 @@
           return {
             en: 'thunder',
             de: 'blitzga',
+            cn: '远离',
           };
         }
       },
@@ -148,6 +154,7 @@
           return {
             en: 'Flare on you',
             de: 'Flare auf dir',
+            cn: '核爆点名',
           };
         }
       },
@@ -364,6 +371,7 @@
           return {
             en: 'Die on Inside',
             de: 'Innen sterben',
+            cn: '在里面死亡',
           };
         }
       },
@@ -372,6 +380,7 @@
           return {
             en: 'Go Outside',
             de: 'Nach Außen',
+            cn: '去外面',
           };
         }
       },
@@ -380,11 +389,13 @@
           return {
             en: 'die in in in',
             de: 'sterben rein rein rein',
+            cn: '死亡',
           };
         }
         return {
           en: 'out out out',
           de: 'raus raus raus',
+          cn: '出去出去',
         };
       },
     },
@@ -406,6 +417,7 @@
           return {
             en: 'Die on Outside',
             de: 'Außen sterben',
+            cn: '在外面死亡',
           };
         }
       },
@@ -414,6 +426,7 @@
           return {
             en: 'Go Inside',
             de: 'Rein gehen',
+            cn: '去里面',
           };
         }
       },
@@ -422,11 +435,13 @@
           return {
             en: 'die out out out',
             de: 'sterben raus raus raus',
+            cn: '在外面死亡',
           };
         }
         return {
           en: 'in in in',
           de: 'rein rein rein',
+          cn: '进去进去',
         };
       },
     },
@@ -451,16 +466,19 @@
           return {
             en: 'Die On Right Blue',
             de: 'In Blauem rechts sterben',
+            cn: '在右边蓝色死亡',
           };
         } else if (data.whiteWound) {
           return {
             en: 'Die On Left Purple',
             de: 'In Pinkem links sterben',
+            cn: '在左边紫色死亡',
           };
         }
         return {
           en: 'Die on color sides',
           de: 'Auf Farben sterben',
+          cn: '在同色一边死亡',
         };
       },
       alertText: function(data) {
@@ -471,16 +489,19 @@
           return {
             en: 'Left On Purple',
             de: 'Links auf Pink',
+            cn: '左边紫色',
           };
         } else if (data.whiteWound) {
           return {
             en: 'Right On Blue',
             de: 'Rechts auf Blau',
+            cn: '右边蓝色',
           };
         }
         return {
           en: 'Color sides',
           de: 'Farbige Seiten',
+          cn: '颜色一侧',
         };
       },
       tts: {
@@ -509,16 +530,19 @@
           return {
             en: 'Die On Left Blue',
             de: 'Auf Blauem links sterben',
+            cn: '在左边蓝色死亡',
           };
         } else if (data.whiteWound) {
           return {
             en: 'Die On Right Purple',
             de: 'Auf Pinkem rechts sterben',
+            cn: '在右边紫色死亡',
           };
         }
         return {
           en: 'Die on color sides',
           de: 'Auf Farben sterben',
+          cn: '在同色一边死亡',
         };
       },
       alertText: function(data) {
@@ -529,21 +553,25 @@
           return {
             en: 'Be Right On Purple',
             de: 'Rechts auf Pink',
+            cn: '去右边紫色',
           };
         } else if (data.whiteWound) {
           return {
             en: 'Be Left On Blue',
             de: 'Links auf Blau',
+            cn: '去左边蓝色',
           };
         }
         return {
           en: 'Color sides',
           de: 'Farbige Seiten',
+          cn: '颜色一侧',
         };
       },
       tts: {
         en: 'colors',
         de: 'farben',
+        cn: '颜色',
       },
     },
     {
@@ -584,27 +612,32 @@
             return {
               en: 'Charge: be behind other tank',
               de: 'Aufladung: hinter anderen Tank',
+              cn: '站在另一个坦克后面',
             };
           }
           return {
             en: 'Charge: be in the very back',
             de: 'Aufladung: Ganz nach hinten',
+            cn: '去后面',
           };
         }
         if (data.role == 'tank') {
           return {
             en: 'Charge: be in front!',
             de: 'Aufladung: Ganz nach vorn',
+            cn: '去前面',
           };
         }
         return {
           en: 'Charge: be behind tanks',
           de: 'Aufladung: Hinter die Tanks',
+          cn: '站在坦克后面',
         };
       },
       tts: {
         en: 'charge',
         de: 'aufladung',
+        cn: '充能',
       },
     },
     {
@@ -620,16 +653,19 @@
           return {
             en: 'Double Attack',
             de: 'Doppelangriff',
+            cn: '双重攻击',
           };
         }
         return {
           en: 'Double Attack: Get out',
           de: 'Doppelangriff: Raus da',
+          cn: '双重攻击：去外面',
         };
       },
       tts: {
         en: 'double attack',
         de: 'Doppelangriff',
+        cn: '双重攻击',
       },
     },
     { // Grand Cross Alpha.
@@ -643,10 +679,12 @@
       infoText: {
         en: 'Grand Cross Alpha: Go to middle',
         de: 'Supernova Alpha: In die Mitte',
+        cn: '前往中间集合',
       },
       tts: {
         en: 'go to middle',
         de: 'In die Mitte',
+        cn: '前往中间',
       },
     },
     {
@@ -662,17 +700,20 @@
           return {
             en: 'Grand Cross Delta: Be in front of boss',
             de: 'Supernova Delta: Vor den Boss',
+            cn: '站在boss前面',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Grand Cross Delta: Be on sides of boss',
             de: 'Supernova Delta: An die Seiten vom Boss',
+            cn: '站在boss后面',
           };
         }
         return {
           en: 'Grand Cross Delta: Inside boss',
           de: 'Supernvoa Delta: In den Boss',
+          cn: '站在boss中间',
         };
       },
       tts: function(data) {
@@ -680,17 +721,20 @@
           return {
             en: 'delta: be in front',
             de: 'delta: vor den boss',
+            cn: '去前面',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'delta: be on sides',
             de: 'delta: an die seiten',
+            cn: '去两侧',
           };
         }
         return {
           en: 'delta: be inside boss',
           de: 'delta: in den boss',
+          cn: '去boss中间',
         };
       },
     },
@@ -737,11 +781,13 @@
           return {
             en: 'look away and stop',
             de: 'wegschauen und stehenbleiben',
+            cn: '看外面并静止',
           };
         }
         return {
           en: 'stop',
           de: 'Stopp',
+          cn: '静止',
         };
       },
     },
@@ -759,10 +805,12 @@
       infoText: {
         en: 'Acceleration Bomb',
         de: 'Beschleunigungsbombe',
+        cn: '加速度炸弹',
       },
       tts: {
         en: 'bomb',
         de: 'bombe',
+        cn: '加速度炸弹',
       },
     },
     {
@@ -782,10 +830,12 @@
       alertText: {
         en: 'shriek: get mid, look away',
         de: 'Schrei: Zur mitte und wegschauen',
+        cn: '石化点名',
       },
       tts: {
         en: 'shriek',
         de: 'schrei',
+        cn: '石化',
       },
     },
     {
@@ -819,17 +869,20 @@
           return {
             en: 'water on you',
             de: 'wasser auf dir',
+            cn: '水点名',
           };
         } else if (data.phase == 'omega') {
           return {
             en: 'water: stack under neo',
             de: 'Wasser: Unter Neo stacken',
+            cn: '去下面',
           };
         }
       },
       tts: {
         en: 'water stack',
         de: 'Wasser stek',
+        cn: '水分摊',
       },
     },
     {
@@ -852,16 +905,19 @@
           return {
             en: 'Stack on ' + data.waterHealer,
             de: 'Stack auf '+ data.waterHealer,
+            cn: '分摊于'+ data.waterHealer,
           };
         }
         return {
           en: 'Stack on water',
           de: 'Bei Wasser stacken',
+          cn: '和水点名分摊',
         };
       },
       tts: {
         en: 'water stack',
         de: 'wasser stek',
+        cn: '水分摊',
       },
     },
     {
@@ -879,10 +935,12 @@
       infoText: {
         en: 'Beyond Death',
         de: 'Jenseis Des Jenseits',
+        cn: '超越死亡',
       },
       tts: {
         en: 'death',
         de: 'tod',
+        cn: '找死',
       },
     },
     {
@@ -904,16 +962,19 @@
           return {
             en: 'Stack under boss on ' + data.waterHealer,
             de: 'Unter Boss auf ' + data.waterHealer + ' stacken',
+            cn: '分摊于'+ data.waterHealer,
           };
         }
         return {
           en: 'Stack on water',
           de: 'Auf Wasser stacken',
+          cn: '和水点名分摊',
         };
       },
       tts: {
         en: 'water stack',
         de: 'Wasser stek',
+        cn: '水分摊',
       },
     },
     {
@@ -953,10 +1014,12 @@
       alertText: {
         en: 'Almagest',
         de: 'Almagest',
+        cn: '大AOE',
       },
       tts: {
         en: 'almagest',
         de: 'almagest',
+        cn: '大AOE',
       },
       run: function(data) {
         data.almagestCount = (data.almagestCount || 0) + 1;
@@ -980,6 +1043,7 @@
           return {
             en: 'Flare on you',
             de: 'Flare auf dir',
+            cn: '核爆点名',
           };
         }
       },
@@ -988,6 +1052,7 @@
           return {
             en: 'Light and Darkness: Stack',
             de: 'Licht und Dunkel: Stack',
+            cn: '分摊点名',
           };
         }
       },
@@ -996,11 +1061,13 @@
           return {
             en: 'flare on you',
             de: 'fleer auf dir',
+            cn: '核爆点名',
           };
         }
         return {
           en: 'stack',
           de: 'stek',
+          cn: '分摊',
         };
       },
       run: function(data) {
@@ -1202,11 +1269,11 @@
         'Exdeath': '艾克斯迪司',
       },
       'replaceText': {
-        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
-        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
-        '--Boss Targetable--': '--Boss Targetable--', // FIXME
-        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
-        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
+        '--Acceleration Bomb Resolves--': '--加速度炸弹处理--',
+        '--Allagan Field Explodes--': '--亚拉戈领域爆炸--',
+        '--Boss Targetable--': '--Boss 可选中--',
+        '--Boss Untargetable--': '--Boss 不可选中--',
+        '--LB Gauge Resets--': '--LB量表重置--',
         'Aero III': '暴风',
         'Almagest': '至高无上',
         'Black Hole': '黑洞',
@@ -1220,27 +1287,27 @@
         'Delta Attack': '三角攻击',
         'Doom': '死亡宣告',
         'Double Attack': '双重攻击',
-        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
+        'Tethers': '连线',
         'Dualcast': '连续咏唱',
         'Earth Shaker': '大地摇动',
         'Emptiness': '无之失控',
-        'Final Battle': 'Final Battle', // FIXME
+        'Final Battle': '最终之战',
         'Fire III': '爆炎',
         'Flare': '核爆',
         'Flood of Naught': '无之泛滥',
-        'Forked Lightning': '', // FIXME
+        'Forked Lightning': '叉形闪电',
         'Frenzied Fist': '狂乱之拳',
         'Frenzied Sphere': '狂乱领域',
         'Grand Cross Alpha': '大十字·阿尔法',
         'Grand Cross Delta': '大十字·德尔塔',
         'Grand Cross Omega': '大十字·欧米茄',
-        'HP Down Debuff': 'HP Down Debuff', // FIXME
+        'HP Down Debuff': 'HP下降Debuff',
         'Holy': '神圣',
-        'Knockback': 'Knockback', // FIXME
+        'Knockback': '击退',
         'Light and Darkness': '光与暗',
         'Meteor': '陨石',
         'Neverwhere': '规律崩坏',
-        'Random Elemental': 'Random Elemental', // FIXME
+        'Random Elemental': '随机元灵',
         'The Decisive Battle': '决战',
         'Thunder III': '暴雷',
         'Vacuum Wave': '真空波',
@@ -1253,7 +1320,7 @@
         'Doom': '死亡宣告',
         'Lightning Resistance Down': '雷属性耐性降低',
         'Paralysis': '麻痹',
-        'Pyretic': '', // FIXME
+        'Pyretic': '热病',
         'Zombification': '僵尸',
       },
     },

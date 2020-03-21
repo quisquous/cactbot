@@ -24,6 +24,7 @@
         de: 'Geh auf Dein Feld',
         fr: 'Allez sur votre tour',
         ko: '패드 밟기',
+        cn: '踩塔',
       },
     },
     {
@@ -37,6 +38,7 @@
         de: 'Verbindung abnehmen',
         fr: 'Prenez le lien',
         ko: '선 가져오기',
+        cn: '坦克接线',
       },
     },
   ],
@@ -85,6 +87,7 @@
         de: 'Richte Öffnung auf Mustadio',
         fr: 'Orientez l\'ouverture vers le boss',
         ko: '문양이 빈 쪽을 무스타디오쪽으로 향하게 하기',
+        cn: '脚下光环缺口对准boss',
       },
     },
     {
@@ -108,6 +111,7 @@
         de: 'Suchscheinwerfer auf DIR',
         fr: 'Repérage sur VOUS',
         ko: '탐조등 대상자',
+        cn: '远离人群放地雷后离开',
       },
     },
     {
@@ -170,6 +174,7 @@
         de: 'Schwerter aufnehmen',
         fr: 'Prenez les épées',
         ko: '검 들기',
+        cn: '进入附近的剑标记圈',
       },
     },
     {
@@ -216,6 +221,7 @@
         de: 'In die Mitte gehen',
         fr: 'Allez au centre',
         ko: '중앙으로 이동',
+        cn: '前往中间',
       },
     },
     {
@@ -231,6 +237,7 @@
         de: 'Schild nehmen',
         fr: 'Prenez un bouclier',
         ko: '방패 들기',
+        cn: '进入盾标记圈',
       },
     },
     {
@@ -247,6 +254,7 @@
         de: 'Schild benutzen, Ritter anschauen',
         fr: 'Bouclier, face au chevaliers',
         ko: '방패 사용하고, 기사 바라보기',
+        cn: '面对剑骑使用盾牌',
       },
     },
     {
@@ -263,6 +271,7 @@
         de: 'Schilde mit Schwert zerstören',
         fr: 'Détruisez les boucliers avec les épées',
         ko: '방패에 검 사용하기',
+        cn: '用剑摧毁护盾',
       },
     },
     {
@@ -278,6 +287,7 @@
         de: 'Schild benutzen, Boss anschauen',
         fr: 'Bouclier, face au boss',
         ko: '방패 사용하고, 보스 바라보기',
+        cn: '面对boss使用盾牌',
       },
     },
     {
@@ -293,6 +303,7 @@
         de: 'Schild benutzen, wenn verbunden',
         fr: 'Bouclier si lié',
         ko: '선 연결되면 방패 사용하기',
+        cn: '被连线使用盾牌',
       },
     },
     {
@@ -324,6 +335,7 @@
         de: 'Tankbuster Zermürben',
         fr: 'Evitez Tank Buster',
         ko: '성천폭격타 탱버',
+        cn: '坦克死刑',
       },
     },
     {
@@ -355,6 +367,7 @@
         de: 'Verbindung abgeben',
         fr: 'Donnez le lien',
         ko: '선 가져오기',
+        cn: '获取连线受到一次伤害后转给下一个',
       },
     },
     {
@@ -373,6 +386,7 @@
         de: 'Verbindung abgeben',
         fr: 'Donnez le lien',
         ko: '장 바깥으로 빼기',
+        cn: '获取连线受到一次伤害后转给下一个',
       },
     },
     {
@@ -388,6 +402,7 @@
         de: 'Besiege die Eiswolf Adds',
         fr: 'Tuez les Grêlons de glace',
         ko: '얼음 부수기',
+        cn: '速度消灭冰狼',
       },
     },
     {
@@ -407,6 +422,7 @@
         de: 'Vollheilen',
         fr: 'Full life',
         ko: '체력 풀피로',
+        cn: '奶满全队',
       },
     },
     {
@@ -422,6 +438,7 @@
         de: 'Auf Felder stellen',
         fr: 'Restez sur le pad',
         ko: '패드 밟기',
+        cn: '踩塔',
       },
     },
     {
@@ -435,6 +452,7 @@
         de: 'Blase hinten ablegen',
         fr: 'Déposez bulles derrière',
         ko: '징 뒤에 깔기',
+        cn: '将身上圆圈放在圆型区域后方',
       },
     },
     {
@@ -448,6 +466,7 @@
         de: 'Blitz auf DIR',
         fr: 'Eclair sur VOUS',
         ko: '번개 대상자',
+        cn: '离开剑所指的区域',
       },
     },
     {
@@ -475,6 +494,7 @@
         de: 'Linie nach Außen',
         fr: 'Ligne vers l\'extérieur',
         ko: '성광폭렬파 바깥으로 빼기',
+        cn: '向外远离',
       },
     },
     {
@@ -531,6 +551,7 @@
         de: 'Im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens anti-horaire',
         ko: '오른쪽으로 돌기',
+        cn: '向右移动避开',
       },
     },
     {
@@ -547,6 +568,7 @@
         de: 'Schwertern im Uhrzeigersinn ausweichen',
         fr: 'Evitez les épées dans le sens horaire',
         ko: '왼쪽으로 돌기',
+        cn: '向左移动避开',
       },
     },
     {
@@ -578,6 +600,7 @@
         de: 'Eruption auf DIR',
         fr: 'Éruption sur vous',
         ko: '불기둥 대상자',
+        cn: '地火喷发',
       },
     },
     {
@@ -601,6 +624,7 @@
         de: 'In der langsamen Uhr stehen',
         fr: 'Placez-vous sur une horloge lente',
         ko: '느린 시계 위로',
+        cn: '站慢速时钟等待快速爆炸后立即离开',
       },
     },
     {
@@ -616,6 +640,7 @@
         de: 'Nach Hashmal-Dash ausschau halten',
         fr: 'Attention au dash',
         ko: '하쉬말 돌진 확인',
+        cn: '观察场地三个大十字路径并远离',
       },
     },
     {
@@ -634,6 +659,7 @@
         de: 'Heilen was das Zeug hält',
         fr: 'Mass heal',
         ko: '계속 힐 돌리기',
+        cn: '加大治疗',
       },
     },
     {
@@ -654,6 +680,7 @@
         de: 'Zerstörung vernichten',
         fr: 'Tuez la Marque des déchus',
         ko: '타락의 증거 죽이기',
+        cn: '速度消灭堕天之证',
       },
     },
     {
@@ -1083,7 +1110,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '圣骑士阿格莉亚丝',
         'Aspersory': '圣云水瓶',
@@ -1133,17 +1159,17 @@
         'Demi-Aquarius': '亚灵水瓶座',
         'Demi-Aries': '亚灵白羊座',
         'Demi-Leo': '亚灵狮子座',
-        'Demi-Virgo Feet': 'Demi-Virgo Feet', // FIXME
-        'Demi-Virgo Line(?!\/)': 'Demi-Virgo Line', // FIXME
-        'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether', // FIXME
-        'Demi-Virgo Tether(?!\/)': 'Demi-Virgo Tether', // FIXME
-        'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet', // FIXME
+        'Demi-Virgo Feet': '亚灵室女座 脚',
+        'Demi-Virgo Line(?!\/)': '亚灵室女座 直线',
+        'Demi-Virgo Line/Tether': '亚灵室女座 直线/连线',
+        'Demi-Virgo Tether(?!\/)': '亚灵室女座 连线',
+        'Demi-Virgo Tether/Feet': '亚灵室女座 连线/脚',
         'Devitalize': '夺命',
         'Divine Light': '幻光波',
         'Divine Ruination': '圣光爆裂破',
         'Duskblade': '暗影之剑',
         'Earth Hammer': '大地之锤',
-        'East/West March': 'East/West March', // FIXME
+        'East/West March': '东/西进军',
         'Eastward March': '向东进军',
         'Embrace': '攻击',
         'Energy Burst': '能量爆发',
@@ -1157,7 +1183,7 @@
         'Holy IV': '极圣',
         'Infernal Wave': '地狱波动',
         'Judgment Blade': '不动无明剑',
-        'L/R Handgonne': 'L/R Handgonne', // FIXME
+        'L/R Handgonne': '左/右舷扫射',
         'Last Testament': '最终圣约',
         'Left Handgonne': '左舷扫射',
         'Leg Shot': '击足',
@@ -1178,19 +1204,19 @@
         'Searchlight': '探照灯',
         'Shadowblade': '暗黑之剑',
         'Shockwave': '冲击波',
-        'Stack': 'Stack', // FIXME
-        'Sword In/Out': 'Sword In/Out', // FIXME
-        'Sword L/R': 'Sword L/R', // FIXME
-        'Sword Out/In': 'Sword Out/In', // FIXME
-        'Sword Three In A Row': 'Sword Three In A Row', // FIXME
+        'Stack': '集合',
+        'Sword In/Out': '剑 靠近/远离',
+        'Sword L/R': '剑 左/右',
+        'Sword Out/In': '剑 远离/靠近',
+        'Sword Three In A Row': '一行三剑',
         'T.G. Holy Sword': '雷神式圣剑技',
         'Thunder Slash': '雷鸣剑',
         'Time Eruption': '时空地火喷发',
         'Towerfall': '崩塌',
         'Ultimate Illusion': '究极幻想',
         'attack(?!\\w)': '攻击',
-        'crystal stun': 'crystal stun', // FIXME
-        'ghost stun': 'ghost stun', // FIXME
+        'crystal stun': '水晶击晕',
+        'ghost stun': '幽灵击晕',
       },
       '~effectNames': {
         'Acceleration Bomb': '加速度炸弹',

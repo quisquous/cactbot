@@ -80,6 +80,7 @@
       alertText: {
         en: 'Vrill + Knockback',
         de: 'Vril + Rückstoß',
+        cn: '完全拒绝',
       },
     },
     {
@@ -93,10 +94,12 @@
       alertText: {
         en: 'Vrill + Be Outside',
         de: 'Vril + Außen',
+        cn: '完全吸引',
       },
       tts: {
         en: 'vrill and outside',
         de: 'wriel und raus',
+        cn: '完全吸引',
       },
     },
     {
@@ -110,10 +113,12 @@
       alertText: {
         en: 'Vrill + Pair Up',
         de: 'Vril + Pärchen bilden',
+        cn: '完全惑乱',
       },
       tts: {
         en: 'vrill and buddy',
         de: 'wriel und zu partner',
+        cn: '完全惑乱',
       },
     },
     { // Stack marker
@@ -127,11 +132,13 @@
           return {
             en: 'Vrill + Stack on YOU',
             de: 'Vril + Stack auf DIR',
+            cn: '元气攻击点名',
           };
         }
         return {
           en: 'Vrill + Stack',
           de: 'Vril + Stack',
+          cn: '元气攻击',
         };
       },
       infoText: function(data, matches) {
@@ -142,11 +149,16 @@
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
+            cn: '分摊点名',
           };
         }
         return {
           en: 'Stack',
           de: 'Stack',
+          fr: 'Stack',
+          ja: '頭割り',
+          cn: '集合',
+          ko: '집합',
         };
       },
       tts: function(data) {
@@ -154,11 +166,13 @@
           return {
             en: 'vrill and stack',
             de: 'vril und stek',
+            cn: '元气攻击',
           };
         }
         return {
           en: 'stack',
           de: 'stek',
+          cn: '分摊',
         };
       },
     },
@@ -175,6 +189,7 @@
           return {
             en: 'Vrill for AOE',
             de: 'Vril fuer Flaechenangriff',
+            cn: '元气AOE',
           };
         }
       },
@@ -189,6 +204,7 @@
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave on YOU',
           de: (data.chanchala ? 'Vril + ' : '') + 'Cleave auf DIR',
+          cn: (data.chanchala ? '元气 ' : '') + '死刑点名',
         };
       },
     },
@@ -202,6 +218,7 @@
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
           de: (data.chanchala ? 'Vril + ' : '') + 'Kreuz-Marker',
+          cn: (data.chanchala ? '元气 ' : '') + '十字点名',
         };
       },
     },
@@ -215,6 +232,7 @@
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker',
           de: (data.chanchala ? 'Vril + ' : '') + 'Blumen-Marker',
+          cn: (data.chanchala ? '元气 ' : '') + '花点名',
         };
       },
     },
@@ -227,6 +245,9 @@
       alertText: {
         en: 'Move Away',
         de: 'Weg da',
+        fr: 'Eloignez-vous',
+        cn: '远离大锤落点',
+        ko: '피하기',
       },
     },
   ],
@@ -376,7 +397,7 @@
       },
       'replaceText': {
         '/dance': '/跳舞',
-        'Adds Appear': 'Adds Appear', // FIXME
+        'Adds Appear': '小怪出现',
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '魅惑之臂',
         'Alluring Embrace': '魅惑拥抱',
@@ -390,7 +411,7 @@
         'Divine Doubt': '完全惑乱',
         'Hand Of Beauty': '优美的左手',
         'Hand Of Grace': '优雅的右手',
-        'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME
+        'Hands Of Grace/Beauty': '右手/左手',
         'Inner Demons': '心魔',
         'Jagadishwari': '至上天母',
         'Stotram': '赞歌',

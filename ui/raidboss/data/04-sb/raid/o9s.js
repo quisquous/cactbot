@@ -813,9 +813,9 @@
         'Earthquake': '地震',
         'Fiendish Orbs': '追踪',
         'Knock Down': '中弹',
-        'Knock(?! )': 'Knock', // FIXME
+        'Knock(?! )': '中弹',
         'Latitudinal Implosion': '纬度聚爆',
-        'Long/Lat Implosion': '经/纬聚爆', // FIXME
+        'Long/Lat Implosion': '经/纬聚爆',
         'Longitudinal Implosion': '经度聚爆',
         'Orbshadow': '追踪',
         'Shockwave': '冲击波',
@@ -826,7 +826,7 @@
         'Stray Spray': '混沌之水',
         'Tsunami': '海啸',
         'Umbra Smash': '本影爆碎',
-        '\\(ALL\\)': '\\(ALL\\)', // FIXME
+        '\\(ALL\\)': '\\(全部\\)',
       },
       '~effectNames': {
         'Accretion': '混沌之泥土',

@@ -64,6 +64,7 @@
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
+          cn: '分摊点名',
         };
       },
       alertText: function(data) {
@@ -75,12 +76,14 @@
             return {
               en: 'Get out',
               de: 'Raus da',
+              cn: '出去',
             };
           }
         }
         return {
           en: 'Stack on ' + data.holyTargets[1],
           de: 'Stack auf ' + data.holyTargets[1],
+          cn: '分摊' + data.holyTargets[1],
         };
       },
       infoText: function(data) {
@@ -89,6 +92,7 @@
             return {
               en: 'others stack on ' + data.holyTargets[1],
               de: 'andere stacken auf ' + data.holyTargets[1],
+              cn: '其他分摊'+ data.holyTargets[1],
             };
           }
         }
@@ -98,6 +102,7 @@
           return {
             en: 'stack on you',
             de: 'stack auf dir',
+            cn: '分摊点名',
           };
         }
         for (let i = 0; i < 4; ++i) {
@@ -105,12 +110,14 @@
             return {
               en: 'get out',
               de: 'raus da',
+              cn: '出去',
             };
           }
         }
         return {
           en: 'stack on ' + data.holyTargets[1],
           de: 'stack auf ' + data.holyTargets[1],
+          cn: '分摊' + data.holyTargets[1],
         };
       },
       run: function(data) {
@@ -147,17 +154,20 @@
           return {
             en: 'Go south: stack on YOU',
             de: 'Nach Süden: stack auf DIR',
+            cn: '去南边分摊点名',
           };
         }
         if (data.librarySpellbladeMe == '0065') {
           return {
             en: 'go north',
             de: 'nach norden',
+            cn: '去南边',
           };
         }
         return {
           en: 'go south: stack on friend',
           de: 'nach süden: stack auf freund',
+          cn: '去南边分摊',
         };
       },
       tts: function(data) {
@@ -169,17 +179,20 @@
           return {
             en: 'stack outside',
             de: 'außen stacken',
+            cn: '去外面分摊',
           };
         }
         if (data.librarySpellbladeMe == '0065') {
           return {
             en: 'go north',
             de: 'nach norden',
+            cn: '去南边',
           };
         }
         return {
           en: 'stack inside',
           de: 'innen stacken',
+          cn: '去里面分摊',
         };
       },
     },
@@ -198,6 +211,7 @@
       infoText: {
         en: 'Mindjack: Right',
         de: 'Geistlenkung: Rechts',
+        cn: '右',
       },
     },
     {
@@ -215,6 +229,7 @@
       infoText: {
         en: 'Mindjack: Forward',
         de: 'Geistlenkung: Vorwärts',
+        cn: '前',
       },
     },
     {
@@ -232,6 +247,7 @@
       infoText: {
         en: 'Mindjack: Left',
         de: 'Geistlenkung: Links',
+        cn: '左',
       },
     },
     {
@@ -249,6 +265,7 @@
       infoText: {
         en: 'Mindjack: Back',
         de: 'Geistlenkung: Zurück',
+        cn: '后',
       },
     },
     {
@@ -297,10 +314,12 @@
       alertText: {
         en: 'The Queen\'s Waltz: Books',
         de: 'Tanz der Königin: Bücher',
+        cn: '中间两排分格站位',
       },
       tts: {
         en: 'books',
         de: 'bücher',
+        cn: '书',
       },
     },
     {
@@ -314,10 +333,12 @@
       infoText: {
         en: 'The Queen\'s Waltz: Clock',
         de: 'Tanz der Königin: Uhr',
+        cn: '万变水波站位',
       },
       tts: {
         en: 'clock',
         de: 'uhr',
+        cn: '万变水波',
       },
     },
     {
@@ -331,10 +352,12 @@
       infoText: {
         en: 'The Queen\'s Waltz: Crystal Square',
         de: 'Tanz der Königin: Kristallfeld',
+        cn: '站在蓝地板',
       },
       tts: {
         en: 'blue square',
         de: 'blaues feld',
+        cn: '蓝地板',
       },
     },
     {
@@ -348,10 +371,12 @@
       infoText: {
         en: 'The Queen\'s Waltz: Tethers',
         de: 'Tanz der Königin: Ranken',
+        cn: '先集中后扯线',
       },
       tts: {
         en: 'tethers',
         de: 'ranken',
+        cn: '扯线',
       },
     },
   ],
@@ -586,23 +611,23 @@
         'White Flame': '白焰',
       },
       'replaceText': {
-        '--Apanda Spawns--': '--Apanda Spawns--', // FIXME
-        '--Great Dragon Spawns--': '--Great Dragon Spawns--', // FIXME
-        '--Ninjas \\+ Giant Spawn--': '--Ninjas + Giant Spawn--', // FIXME
-        '--White Flame Spawns--': '--White Flame Spawns--', // FIXME
+        '--Apanda Spawns--': '--阿班达出现--',
+        '--Great Dragon Spawns--': '--巨龙出现--',
+        '--Ninjas \\+ Giant Spawn--': '--忍者 + 巨人出现--',
+        '--White Flame Spawns--': '--白焰出现--',
         'Blizzard': '冰结',
         'Critical Hit': '暴击',
         'Cross Reaper': '交叉斩击',
-        'DPS Morph': 'DPS Morph', // FIXME
+        'DPS Morph': 'DPS变形',
         'Dimensional Wave': '次元波动',
-        'Dragon Conal AoE': 'Dragon Conal AoE', // FIXME
+        'Dragon Conal AoE': '龙圆锥AOE',
         'Earthly Dance': '大地之舞',
         'Fire': '火炎',
         'Folio': '再版',
         'Frost Breath': '寒霜吐息',
         'Gusting Gouge': '削风',
         'Haste': '加速',
-        'Healers Morph': 'Healers Morph', // FIXME
+        'Healers Morph': '治疗变形',
         'Holy Blur': '神圣雾',
         'Holy Edge': '神圣刃',
         'Magic Hammer': '魔法锤',
@@ -613,8 +638,8 @@
         'Place Token': '召唤魔形',
         'Pole Shift': '磁场转换',
         'Pummel': '殴打',
-        'Queen\'s Waltz': 'Queen\'s Waltz', // FIXME
-        'Random Elemental': 'Random Elemental', // FIXME
+        '(The )?Queen\'s Waltz': '女王之舞',
+        'Random Elemental': '随机元灵',
         'Ray Of White': '苍白射击',
         'Ribbit': '呱呱呱呱呱！',
         'Saber Dance': '剑舞',
@@ -624,11 +649,10 @@
         'Spellblade Thunder III': '魔法剑·暴雷',
         'Squelch': '喀喀喀喀喀！',
         'Stench Of Death': '死亡气息',
-        'Tanks Morph': 'Tanks Morph', // FIXME
-        'Tethers': 'Tethers', // FIXME
+        'Tanks Morph': '坦克变形',
+        'Tethers': '连线',
         'The Game': '游戏开始',
         'The Playing Field': '游戏盘面',
-        'The Queen\'s Waltz': '女王之舞',
         'Thunder': '闪雷',
         'Uplift': '隆起',
         'White Wind': '白风',

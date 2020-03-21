@@ -29,10 +29,12 @@
       infoText: {
         en: 'Breath Wing: Be beside boss',
         de: 'Atemschwinge: Neben Boss gehen',
+        cn: '站boss附近',
       },
       tts: {
         en: 'breath wing',
         de: 'atemschwinge',
+        cn: '站boss附近',
       },
     },
     {
@@ -245,9 +247,9 @@
         'Wyrm Tail': '太古龙尾',
       },
       'replaceText': {
-        '(safe)': '(safe)', // FIXME
-        '(spread)': '(spread)', // FIXME
-        '(stack)': '(stack)', // FIXME
+        '(safe)': '(安全)',
+        '(spread)': '(分散)',
+        '(stack)': '(分摊)',
         'Black Hole': '黑洞',
         'Black Spark': '黑洞',
         'Blaze': '炎爆',
@@ -255,7 +257,7 @@
         'Breath Wing': '风息之翼',
         'Charybdis': '大漩涡',
         'Clamp': '压迫',
-        'Classical': 'Classical', // FIXME
+        'Classical': '经典',
         'Clearout': '横扫',
         'Collision': '冲击',
         'Doom': '死亡宣告',
@@ -263,17 +265,16 @@
         'Fire III': '爆炎',
         'Flare': '核爆',
         'Holy': '神圣',
-        'Inner Fireballs': 'Inner Fireballs', // FIXME
+        'Inner Fireballs': '内圈火球',
         'Levinbolt': '闪电',
         'Meteor': '陨石',
-        'Outer Fireballs': 'Outer Fireballs', // FIXME
+        'Outer Fireballs': '外圈火球',
         'Roar': '咆啸',
         'Teleport': '传送',
         'The Decisive Battle': '决战',
         'Thin Ice': '冰面',
         'Thunder III': '暴雷',
         'Twin Bolt': '双重落雷',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Vacuum Wave': '真空波',
         'Wyrm Tail': '太古龙尾',
         'Zombie Breath': '死亡吐息',
@@ -284,7 +285,7 @@
         'Doom': '死亡宣告',
         'Lightning Resistance Down': '雷属性耐性降低',
         'Paralysis': '麻痹',
-        'Pyretic': '', // FIXME
+        'Pyretic': '热病',
       },
     },
     {

@@ -16,6 +16,7 @@
       alertText: {
         en: 'Run Marker Away',
         de: 'Mit Marker weglaufen',
+        cn: '远离点名',
       },
     },
     {
@@ -35,6 +36,7 @@
       infoText: {
         en: 'Gekko Marker',
         de: 'Gekko Marker',
+        cn: '月光点名',
       },
     },
     {
@@ -159,10 +161,8 @@
         'Yojimbo': '保镖',
       },
       'replaceText': {
-        '--Reset--': '--Reset--', // FIXME
-        '--sync--': '--sync--', // FIXME
-        'A Giant Me': 'A Giant Me', // FIXME
-        'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
+        'A Giant Me': '巨大化之术',
+        'Ame-no-Murakamo': '天之丛云',
         'Bitter End': '命尽于此',
         'Dragon Night': '龙星击',
         'Dragon\'s Lair': '云蒸龙变',
@@ -171,7 +171,7 @@
         'Epic Stormsplitter': '我流破浪斩',
         'Gekko': '月光',
         'Giga Jump': '十亿跳跃',
-        'Hell\'s Gate': 'Hell\'s Gate', // FIXME
+        'Hell\'s Gate': '地狱之门',
         'Inoshikacho': '猪鹿蝶',
         'Kasha': '花车',
         'Masamune': '正宗',

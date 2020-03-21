@@ -15,6 +15,7 @@
       alertText: {
         en: 'DPS: Levitate',
         de: 'DDs hoch',
+        cn: 'DPS浮空',
       },
     },
   ],
@@ -74,10 +75,12 @@
       infoText: {
         en: '-100 Gs: Go north/south and look away',
         de: '-100G: Nach Norden/Süden und wegschauen',
+        cn: '前往南边/北边并背对boss',
       },
       tts: {
         en: '100 gs',
         de: '-100 G',
+        cn: '重力负100',
       },
     },
     {
@@ -103,6 +106,7 @@
           return {
             en: 'Earthquake: Levitate',
             de: 'Erdbeben: Schweben',
+            cn: '地震：漂浮',
           };
         }
       },
@@ -111,6 +115,7 @@
           return {
             en: 'Earthquake',
             de: 'Erdbeben',
+            cn: '地震',
           };
         }
       },
@@ -119,6 +124,7 @@
           return {
             en: 'levitate',
             de: 'schweben',
+            cn: '漂浮',
           };
         }
       },
@@ -136,6 +142,7 @@
           return {
             en: 'DPS: Levitate',
             de: 'DDs: Schweben',
+            cn: 'DPS浮空',
           };
         }
       },
@@ -144,12 +151,14 @@
           return {
             en: 'DPS up, T/H down',
             de: 'DDs hoch, T/H runter',
+            cn: 'DPS升起，T奶下降',
           };
         }
       },
       tts: {
         en: 'dps up',
         de: 'dee dees hoch',
+        cn: 'DPS升起',
       },
     },
     {
@@ -179,11 +188,13 @@
             return {
               en: 'Maniacal Probe: Tanks & Healers',
               de: 'Tentakeltanz: Tanks & Heiler',
+              cn: 'T奶触手',
             };
           }
           return {
             en: 'Maniacal Probe: DPS',
             de: 'Tentakeltanz: DDs',
+            cn: 'DPS触手',
           };
         }
       },
@@ -193,11 +204,13 @@
             return {
               en: 'Maniacal Probe: Tanks & Healers',
               de: 'Tentakeltanz: Tanks & Heiler',
+              cn: 'T奶触手',
             };
           }
           return {
             en: 'Maniacal Probe: DPS',
             de: 'Tentakeltanz: DDs',
+            cn: 'DPS触手',
           };
         }
       },
@@ -206,11 +219,13 @@
           return {
             en: 'dps probe',
             de: 'dee dees tentakel',
+            cn: 'dps触手',
           };
         }
         return {
           en: 'tank heal probe',
           de: 'tenks heiler tentakel',
+          cn: 'T奶触手',
         };
       },
     },
@@ -229,10 +244,12 @@
       alarmText: {
         en: 'Unstable Gravity: Elevate and outside stack',
         de: 'Schwerkraftschwankung: Schweben und außen stacken',
+        cn: '升起并分摊',
       },
       tts: {
         en: 'float for bomb',
         de: 'schweben für bombe',
+        cn: '升起并分摊',
       },
     },
     {
@@ -252,6 +269,7 @@
           return {
             en: '6 Fulms Under: Levitate',
             de: 'Versinkend: Schweben',
+            cn: '下陷：悬浮',
           };
         }
       },
@@ -260,12 +278,14 @@
           return {
             en: '6 Fulms Under',
             de: 'Versinkend',
+            cn: '下陷',
           };
         }
       },
       tts: {
         en: 'float',
         de: 'schweben',
+        cn: '悬浮',
       },
       run: function(data) {
         data.under = true;
@@ -425,7 +445,7 @@
         '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黑光',
         'Death\'s Gaze': '死神之瞳',
-        'Double Stack': 'Double Stack', // FIXME
+        'Double Stack': '二连分摊',
         'Earthquake': '大地震',
         'Epicenter': '震源制造',
         'Erosion': '侵入',
@@ -441,7 +461,7 @@
         'Main Quake': '主震',
         'Maniacal Probe': '触手乱舞',
         'Paranormal Wave': '诅咒波',
-        'Probes': 'Probes', // FIXME
+        'Probes': '引导',
         'Tremblor': '地震',
         'Unstable Gravity': '重力爆发',
         'Weighted Wing': '重力之翼',

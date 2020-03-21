@@ -28,11 +28,13 @@
         en: 'Drop AOEs Away',
         de: 'AoEs weglocken',
         fr: 'Posez les AoE au loin',
+        cn: '远离放置AOE',
       },
       tts: {
         en: 'aoes',
         de: 'Flächen',
         fr: 'aoe',
+        cn: 'AOE',
       },
     },
   ],
@@ -212,7 +214,7 @@
         'Easterly': '极风',
         'Goddess Chadarnook': '神圣查达奴克',
         'Haunt': '幻影',
-        'I have claimed the girl in the picture!': 'I have claimed the girl in the picture!', // FIXME
+        'I have claimed the girl in the picture!': '呵哼哼……这个画作的女人就归我了',
         'Portrayal of Earth': '土之画作',
         'Portrayal of Fire': '火之画作',
         'Portrayal of Water': '水之画作',
@@ -232,7 +234,7 @@
         'Downpour': '水刑',
         'Dull Pain': '钝痛',
         'Earthquake': '大地震',
-        'Easterlies': 'Easterlies', // FIXME
+        'Easterlies': '极风',
         'Featherlance': '羽枪',
         'Flash Fire': '闪光炎',
         'Flash Gale': '闪光风',
