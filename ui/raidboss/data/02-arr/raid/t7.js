@@ -22,7 +22,7 @@
       infoText: {
         en: 'Silence Ram\'s Voice',
         de: 'Verstumme Stimme des Widders',
-        fr: 'Silence Voix du bélier',
+        fr: 'Interrompez Voix du bélier',
       },
     },
     {
@@ -40,7 +40,7 @@
       infoText: {
         en: 'Silence Dragon\'s Voice',
         de: 'Verstumme Stimme des Drachens',
-        fr: 'Silence Voix du dragon',
+        fr: 'Interrompez Voix du dragon',
       },
     },
     {
@@ -59,7 +59,7 @@
       infoText: {
         en: 'Tail Slap in 10',
         de: 'Schweifklapser in 10',
-        fr: 'Gifle caudale dans 10',
+        fr: 'Gifle caudale dans 10s',
       },
     },
     {
@@ -93,7 +93,7 @@
       alertText: {
         en: 'Voice Soon',
         de: 'Stimme Der Verwünschung bald',
-        fr: 'Voix bientôt',
+        fr: 'Voix maudite bientôt',
       },
     },
     {
@@ -110,7 +110,7 @@
           return {
             en: 'Shriek on YOU',
             de: 'Schrei Der Verwünschung auf DIR',
-            fr: 'Cri sur VOUS',
+            fr: 'Cri maudit sur VOUS',
           };
         }
       },
@@ -119,7 +119,7 @@
           return {
             en: 'Shriek on ' + data.ShortName(matches.target),
             de: 'Schrei Der Verwünschung auf ' + data.ShortName(matches.target),
-            fr: 'Cri sur ' + data.ShortName(matches.target),
+            fr: 'Cri maudit sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -139,13 +139,13 @@
           return {
             en: 'Shriek Soon',
             de: 'Schrei Der Verwünschung bald',
-            fr: 'Cri bientôt',
+            fr: 'Cri maudit bientôt',
           };
         }
         return {
           en: 'Dodge Shriek',
           de: 'Schrei Der Verwünschung ausweichen',
-          fr: 'Esquivez le cri',
+          fr: 'Esquivez le cri maudit',
         };
       },
     },
