@@ -87,11 +87,11 @@ You can use `duration` to show the action for that length of time.
 It does not need a sync to do this.
 
 `window Number,Number` is the time frame in which to consider the sync.
-By default, if `window` is not specified, then it is the
-same as specifying `window 5,5`.  In other words,
-5 seconds before the ability time and 5 seconds after.
+By default, if `window` is not specified, cactbot considers it the
+same as specifying `window 2.5,2.5`.  In other words,
+2.5 seconds before the ability time and 2.5 seconds after.
 As an example, for the line `3118.9 "Lancing Bolt" sync /:Raiden:3876:/`,
-if the regular expression `/:Raiden:3876:/` is encountered anywhere between 3115.9 and 3123.9
+if the regular expression `/:Raiden:3876:/` is encountered anywhere between 3116.4 and 3121.4
 then it will resync the timeline playback to 3118.9.
 Often timelines will use very large windows for unique abilities,
 to make sure that timelines sync to the right place even if started mid-fight.
@@ -144,7 +144,8 @@ These are guidelines that cactbot tries to follow for timelines.
 
 * add syncs for everything possible
 * always add an Engage! entry, but add syncs in case there's no /countdown
-* if the first boss action is an auto, add a sync to start the timeline asap
+* if the first boss action is an auto-attack, add a sync to start the timeline asap.
+(Note that sometimes boss auto-attacks are not literally "Attack"!)
 * include the command line used to generate the timeline in a comment at the top
 * prefer actions for syncs over rp text, but rp text syncs if that's the only option
 * if you do sync a phase with rp text, add a large window sync for an action
@@ -155,7 +156,8 @@ These are guidelines that cactbot tries to follow for timelines.
 * do not put any triggers or tts or alerts in the timeline file itself
 * use [timeline triggers](#timeline-triggers) for any alerts
 * add at least a 30 second lookahead window for loops
-* remove syncs from any abilities that are within 7 seconds of each other
+* comment out syncs from any abilities that are within 7 seconds of each other
+(This preserves the ability ID for future maintainers.)
 
 ## Timeline Triggers
 
@@ -211,10 +213,11 @@ This has two purposes.
 The first purpose is for tools, to autogenerate regular expression translations for triggers.
 
 The second purpose is for timelines at runtime.
-cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text`/ on a timeline line and the `replaceText` section to auto-replace anything inside the ability text.
+cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text`/ on a timeline line,
+and the `replaceText` section to auto-replace anything inside the ability text.
 
-These do not match the entire line by default.
-So, some care is needed to make sure that replacements are not overzealous.
+These match only the exact text of the regex within the line, not the entire line.
+Care is needed to make sure that replacements are not overzealous.
 
 ## Example Timeline Creation
 
@@ -398,6 +401,21 @@ python util/make_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.934
 398.1 "Firebomb" sync /:Rhitahtyn sas Arvina:476:/
 402.4 "Winds Of Tartarus" sync /:Rhitahtyn sas Arvina:472:/
 ```
+
+(Note that you can also use the `-lf` parameter to list the encounters in the combat log.
+
+```bash
+python make_timeline.py -f CapeWestwind.log -lf
+1. 02:03:44.018 02:16:53.632 Cape Westwind
+2. 18:32:52.981 18:36:14.086 Cape Westwind
+3. 18:42:23.614 18:49:22.934 Cape Westwind
+4. 18:57:09.114 19:10:13.200 Cape Westwind
+5. 19:29:42.265 19:36:22.437 Cape Westwind
+6. 19:40:20.606 19:46:44.342 Cape Westwind
+```
+
+From here, you can then rerun the command with the number of the encounter you want to use,
+as `-lf 3`.)
 
 This isn't really a workable timeline yet, but it's a start.
 Paste this into **ui/raidboss/data/timelines/cape_westwind.txt**.
@@ -1048,6 +1066,7 @@ adjusting timelines to be more accurate.
 Here's an example.
 The `-t` parameter here refers to the file name of the timeline you want to test against
 in the **ui/raidboss/data/timelines** folder, minus the .txt extension.
+(As with `make_timeline`, you can use the `-lf` parameter to list encounters.)
 
 ```bash
 $ python util/test_timeline.py -f CapeWestwind.log -s 18:42:23.614 -e 18:49:22.
