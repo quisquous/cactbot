@@ -767,7 +767,7 @@
         'Accursed Flame': '诅咒之炎',
         'Aetherially Charged': '以太供应',
         'Beyond Limits': '突破极限',
-        'Damage Up': 'ダメージ上昇',
+        'Damage Up': '伤害提高',
         'Doom': '死亡宣告',
         'Down For The Count': '击倒',
         'Fetters': '拘束',

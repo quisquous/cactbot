@@ -2139,7 +2139,7 @@
         'Twintania': '双塔尼亚',
       },
       'replaceText': {
-        '--push--': '--push--', // FIXME
+        '--push--': '--开怪--',
         'Aetheric Profusion': '以太失控',
         'Akh Morn': '死亡轮回',
         'Bahamut Marker': '巴哈标记',
