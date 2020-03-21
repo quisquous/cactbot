@@ -5,7 +5,7 @@ primarily for cactbot.
 
 ![import screenshot](images/timelineguide_timeline.png)
 
-Cactbot uses the [raidboss module](https://github.com/quisquous/cactbot#raidboss-module)
+cactbot uses the [raidboss module](https://github.com/quisquous/cactbot#raidboss-module)
 for triggers and timelines.
 These are combined together so that you can make triggers that are based on actions
 or triggers that are based on timelines themselves.
@@ -46,7 +46,7 @@ That plugin is now part of Hojoring.
 
 There's also an older [kaizoban](https://github.com/090/act_timeline/releases) version of the plugin that some people have used that predates anoyetta's work.
 
-Cactbot timeline files were originally intended to be backwards compatible with these,
+cactbot timeline files were originally intended to be backwards compatible with these,
 and so cactbot-specific extensions are injected later from the triggers file.
 
 ## Timeline File Syntax
@@ -213,7 +213,7 @@ This has two purposes.
 The first purpose is for tools, to autogenerate regular expression translations for triggers.
 
 The second purpose is for timelines at runtime.
-Cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text`/ on a timeline line,
+cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text`/ on a timeline line,
 and the `replaceText` section to auto-replace anything inside the ability text.
 
 These do not match the entire line (that is, they are non-greedy) by default.
@@ -228,7 +228,7 @@ This is pretty straightforward and only requires one person to test, so is a goo
 
 The first step in making a timeline is generating a few ACT logs.
 
-Cactbot will also let you make timelines from fflogs clears, but this drops many log lines.
+cactbot will also let you make timelines from fflogs clears, but this drops many log lines.
 In particular, you can't get rp text lines, the text for the zone sealing/unsealing, and new combatants.
 
 Once you've run the combat, you'll have generated a couple of [network log files](LogGuide.md#network-log-lines).
@@ -1052,7 +1052,7 @@ hideall "--sync--"
 
 ### Testing Timelines
 
-Cactbot has a testing tool called **util/test_timeline.py** that can
+cactbot has a testing tool called **util/test_timeline.py** that can
 test a network log file or an fflogs fight against an existing timeline.
 
 The test tool will tell you when a sync in your timeline is not matched against the fight,
