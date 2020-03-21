@@ -1287,7 +1287,7 @@
         'Delta Attack': '三角攻击',
         'Doom': '死亡宣告',
         'Double Attack': '双重攻击',
-        'Double Attack Tethers': '双重攻击连线',
+        'Tethers': '连线',
         'Dualcast': '连续咏唱',
         'Earth Shaker': '大地摇动',
         'Emptiness': '无之失控',

@@ -281,6 +281,7 @@
         'Target Search': '寻找目标',
         'Unmoving Troika': '不动三段',
         'Vein Splitter': '地脉断',
+        'Unknown_206E': 'Unknown_206E', // FIXME
       },
     },
     {
