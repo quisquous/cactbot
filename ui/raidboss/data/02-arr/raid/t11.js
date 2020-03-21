@@ -37,7 +37,7 @@
         return {
           en: 'Spread => Stack',
           de: 'Verteilen => Sammeln',
-          fr: 'Ecarté -> Packé',
+          fr: 'Ecartez -> Packez',
         };
       },
       run: function(data) {
@@ -59,7 +59,7 @@
         return {
           en: 'Stack => Spread',
           de: 'Sammeln => Verteilen',
-          fr: 'Packé -> Ecarté',
+          fr: 'Packez -> Ecartez',
         };
       },
       run: function(data) {
@@ -81,7 +81,7 @@
         return {
           en: 'Stack',
           de: 'Sammeln',
-          fr: 'Packé',
+          fr: 'Packez',
         };
       },
       run: function(data) {
@@ -102,7 +102,7 @@
         return {
           en: 'Spread',
           de: 'Verteilen',
-          fr: 'Ecarté',
+          fr: 'Ecartez',
         };
       },
       run: function(data) {
