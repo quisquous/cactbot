@@ -23,7 +23,7 @@
       infoText: {
         en: 'Dive on Main Tank',
         de: 'Sturz auf den Main Tank',
-        fr: 'Plongeon sur le main tank',
+        fr: 'Plongeon sur le Main Tank',
       },
     },
     {
@@ -33,7 +33,7 @@
       infoText: {
         en: 'Bait Super Novas Outside',
         de: 'Köder Supernova draußen',
-        fr: 'Attirer super novas à l\'extérieur',
+        fr: 'Attirer les Supernovas à l\'extérieur',
       },
     },
   ],
@@ -56,7 +56,7 @@
       alarmText: {
         en: 'Blight on YOU',
         de: 'Pestschwinge auf DIR',
-        fr: 'Bile sur VOUS',
+        fr: 'Bile du Rapace sur VOUS',
       },
     },
     {
@@ -78,7 +78,7 @@
         return {
           en: 'Blight on ' + data.ShortName(matches.target),
           de: 'Pestschwinge auf ' + data.ShortName(matches.target),
-          fr: 'Bile sur ' + data.ShortName(matches.target),
+          fr: 'Bile du Rapace sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -140,7 +140,7 @@
       alertText: {
         en: 'Silence Blue Golem',
         de: 'Blauen Golem verstummen',
-        fr: 'Silence le Golem bleu',
+        fr: 'Interrompez le Golem bleu',
       },
     },
     {
@@ -154,7 +154,7 @@
       alertText: {
         en: 'Heavensfall',
         de: 'Himmelssturz',
-        fr: 'Chutes du ciel',
+        fr: 'Chute du ciel',
       },
     },
     {
@@ -171,7 +171,7 @@
       infoText: {
         en: 'Garotte on YOU',
         de: 'Leicht fixierbar auf DIR',
-        fr: 'Sangle sur VOUS',
+        fr: 'Sangle accélérée sur VOUS',
       },
       run: function(data) {
         data.garotte = true;
@@ -191,7 +191,7 @@
       alarmText: {
         en: 'Cleanse Garotte',
         de: 'reinige Leicht fixierbar',
-        fr: 'Guerrisez Sangle',
+        fr: 'Dissipez Sangle accélérée',
       },
     },
     {
@@ -307,7 +307,7 @@
         return {
           en: 'Marks: ' + data.naelMarks.join(', '),
           de: 'Markierungen : ' + data.naelMarks.join(', '),
-          fr: 'Marque : ' + data.naelMarks.join(', '),
+          fr: 'Marque: ' + data.naelMarks.join(', '),
           ja: 'マーカー: ' + data.naelMarks.join(', '),
         };
       },
@@ -468,9 +468,9 @@
         'Dalamud Dive': 'Chute de Dalamud',
         'Divebomb': 'Bombe plongeante',
         'Fireball': 'Boule de feu',
-        'Ghost': 'fantôme',
+        'Ghost': 'Fantôme',
         'Golem Meteors': 'Golem de Dalamud',
-        'Heavensfall': 'Chute céleste',
+        'Heavensfall': 'Destruction universelle',
         'Iron Chariot': 'Char de fer',
         'Lunar Dynamo': 'Dynamo lunaire',
         'Megaflare': 'MégaBrasier',
