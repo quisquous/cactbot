@@ -258,13 +258,10 @@ class Radar {
       if (matches) {
         let monster = this.targetMonsters[matches.groups.target.toLowerCase()];
         if (monster) {
-          if (monster.rank.startsWith('S')) { // provoke doesn't work for S rank
-            let isProvoke = e.detail.logs[i].match(Regexes.ability({ id: '1D6D' }));
-            if (!isProvoke)
-              this.UpdateMonsterPuller(monster, matches.groups.source);
-          } else {
+          // provoke doesn't work on hunt mobs
+          let isProvoke = e.detail.logs[i].match(Regexes.ability({ id: '1D6D' }));
+          if (!isProvoke)
             this.UpdateMonsterPuller(monster, matches.groups.source);
-          }
         }
       }
       // change instance
