@@ -39,6 +39,7 @@
         fr: 'Packez vous dans le vent',
         ko: '쉐어징 천무',
         ja: '隅でスタック',
+        cn: '风分摊',
       },
     },
     {
@@ -52,6 +53,7 @@
             fr: 'Pierre démoniaque sur VOUS',
             ko: '악령의 돌 장판 → 나',
             ja: 'デモニックストーン on YOU',
+            cn: '引导aoe',
           };
         }
       },
@@ -75,6 +77,7 @@
         fr: 'Baiser fatal sur VOUS',
         ko: '죽음의 입맞춤 → 나',
         ja: '口づけ on YOU',
+        cn: '死亡之吻点名',
       },
       tts: {
         en: 'last kiss',
@@ -82,6 +85,7 @@
         fr: 'baiser fatal',
         ko: '죽음의 입맞춤',
         ja: '口づけ',
+        cn: '死亡之吻',
       },
     },
     {
@@ -103,6 +107,7 @@
         fr: 'Baiser fatal sur VOUS',
         ko: '죽음의 입맞춤 → 나',
         ja: '口づけ on YOU',
+        cn: '死亡之吻点名',
       },
       tts: {
         en: 'last kiss',
@@ -110,6 +115,7 @@
         fr: 'baiser fatal',
         ko: '죽음의 ',
         ja: '口づけ',
+        cn: '死亡之吻',
       },
     },
   ],
@@ -292,7 +298,7 @@
         'Easterly': '极风',
         'Goddess Chadarnook': '神圣查达奴克',
         'Haunt': '幻影',
-        'I have claimed the girl in the picture!': 'I have claimed the girl in the picture!', // FIXME
+        'I have claimed the girl in the picture!': '呵哼哼……这个画作的女人就归我了',
         'Portrayal of Earth': '土之画作',
         'Portrayal of Fire': '火之画作',
         'Portrayal of Water': '水之画作',
@@ -312,7 +318,7 @@
         'Downpour': '水刑',
         'Dull Pain': '钝痛',
         'Earthquake': '大地震',
-        'Easterlies': 'Easterlies', // FIXME
+        'Easterlies': '极风',
         'Featherlance': '羽枪',
         'Flash Fire': '闪光炎',
         'Flash Flood': '闪光雨',

@@ -459,8 +459,8 @@
         'Rush': '突进',
         'Starboard Wave Cannon(?! )': '右舷齐射·波动炮',
         'Starboard Wave Cannon Surge': '右舷齐射·零式波动炮',
-        'Starboard/Larboard Cannon': 'Starboard/Larboard Cannon', // FIXME
-        'Starboard/Larboard Surge': 'Starboard/Larboard Surge', // FIXME
+        'Starboard/Larboard Cannon': '右/左舷齐射·波动炮',
+        'Starboard/Larboard Surge': '右/左舷齐射·零式波动炮',
         '(?<! )Storage Violation': '清除记忆污染S',
         'Unmitigated Explosion': '大爆炸',
         'Update Program': '更新循环程序',

@@ -105,6 +105,7 @@
         fr: 'Rayon Magitek',
         ko: '마도 레이저',
         ja: '魔導レーザー',
+        cn: '直线AOE',
       },
       tts: {
         en: 'beam',
@@ -112,6 +113,7 @@
         fr: 'laser',
         ko: '레이저',
         ja: 'レーザー',
+        cn: '激光',
       },
     },
     {
@@ -136,6 +138,7 @@
         fr: 'Orbe',
         ko: '원자 파동 징',
         ja: 'マーカー',
+        cn: '死刑点名',
       },
       tts: {
         en: 'orb',
@@ -143,6 +146,7 @@
         fr: 'orbe',
         ko: '원자 파동',
         ja: 'マーカー',
+        cn: '球',
       },
     },
     {
@@ -157,6 +161,7 @@
           fr: 'Marque Bleue sur VOUS',
           ko: '파란징 → 나',
           ja: '青玉 on YOU',
+          cn: '蓝球点名',
         };
       },
       infoText: function(data, matches) {
@@ -168,6 +173,7 @@
           fr: 'Marque Bleue sur ' + data.ShortName(matches.target),
           ko: '파란징 → ' + data.ShortName(matches.target),
           ja: '青玉 on ' + data.ShortName(matches.target),
+          cn: '蓝球点名'+ data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
@@ -179,6 +185,7 @@
           fr: 'marque bleu',
           ko: '파란징',
           ja: '青玉ついた',
+          cn: '蓝球',
         };
       },
     },
@@ -217,6 +224,7 @@
         fr: 'Isolement : restez au milieu',
         ko: '고독감: 중앙에 있기',
         ja: '孤独: 内側へ',
+        cn: '呆在中间',
       },
       tts: {
         en: 'abandonment',
@@ -224,6 +232,7 @@
         fr: 'isolement',
         ko: '고독감',
         ja: '孤独',
+        cn: '孤独',
       },
     },
     {
@@ -242,6 +251,7 @@
             fr: 'Pourriture sur VOUS',
             ko: '에테르 → 나',
             ja: 'ロット on YOU',
+            cn: '以太病毒点名',
           };
         }
         return {
@@ -250,6 +260,7 @@
           fr: 'Pourriture sur ' + data.ShortName(matches.target),
           ko: '에테르 → ' + data.ShortName(matches.target),
           ja: 'ロット on ' + data.ShortName(matches.target),
+          cn: '以太病毒点名'+ data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
@@ -261,6 +272,7 @@
           de: 'fäule',
           fr: 'pourriture',
           ja: 'ロット',
+          cn: '结束前传毒',
         };
       },
     },
@@ -643,27 +655,27 @@
         'Guardian': '守护者',
         'Interdimensional Bomb': '次元炸弹',
         'Ultros': '奥尔特罗斯',
-        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
+        'WEAPON SYSTEMS ONLINE': '武器火控系统启动',
       },
       'replaceText': {
         'Aether Rot': '以太病毒',
         'Arm And Hammer': '臂锤',
         'Atomic Ray': '原子射线',
         'Aura Cannon': '斗气炮',
-        'Biblio': 'Biblio', // FIXME
+        'Biblio': '永世珍本',
         'Bomb Deployment': '设置炸弹',
         'Chain Cannon': '链式机关炮',
         'Chakra Burst': '脉轮爆发',
         'Copy Program': '复制程序',
-        'Copy(?! Program)': 'Copy', // FIXME
-        'Dada': 'Dada', // FIXME
+        'Copy(?! Program)': '复制',
+        'Dada': '达达鲁玛',
         'Demon Simulation': '加载恶魔模拟程序',
         'Diffractive Laser': '扩散射线',
         'Diffractive Plasma': '扩散离子',
         'Electric Pulse': '电磁脉冲',
         'Explosion': '爆炸',
         'Ink': '墨汁',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
+        'Interrupt Stoneskin': '打断石肤',
         'Light Blast': '小规模爆炸',
         'Load': '加载',
         'Magitek Ray': '魔导激光',
@@ -672,19 +684,19 @@
         'Missile Simulation': '加载导弹模拟程序',
         'Missile(?![ |\\w])': '导弹',
         'Paste Program': '粘贴程序',
-        'Paste(?! Program)': 'Paste', // FIXME
-        'Plane Laser': 'Plane Laser', // FIXME
-        'Prey': 'プレイ',
-        'Radar': 'Radar', // FIXME
+        'Paste(?! Program)': '粘贴',
+        'Plane Laser': '平面激光',
+        'Prey': '猎物',
+        'Radar': '雷达',
         'Repel': '相斥',
-        'Retrieve Air Force': 'Retrieve Air Force', // FIXME
+        'Retrieve Air Force': '接小飞机',
         'Retrieve Program': '反向加载',
-        'Retrieve Ultros': 'Retrieve Ultros', // FIXME
+        'Retrieve Ultros': '接奥尔特罗斯',
         'Run Program': '实体化程序',
-        'Run(?! Program)': 'Run', // FIXME
+        'Run(?! Program)': '跑',
         'Shockwave': '冲击波',
         'Skip Program': '跳跃加载',
-        'Skip(?! Program)': 'Skip', // FIXME
+        'Skip(?! Program)': '跳跃',
         '(?<! )Stoneskin': '石肤',
         'Temporary Misdirection': '精神失常',
         'Tentacle(?! )': '腕足',

@@ -1013,7 +1013,7 @@
         'Packet Filter F': '防护程序F',
         'Packet Filter M': '防护程序M',
         'Physical Vulnerability Up': '物理受伤加重',
-        'Prey': 'プレイ',
+        'Prey': '猎物',
         'Remote Regression': '回归方程：远',
         'Remote Resonance': '共鸣程序：远',
         'Synchronization Debugger': '修复错误：同步',

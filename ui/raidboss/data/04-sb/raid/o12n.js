@@ -16,6 +16,7 @@
         en: 'Knockback',
         de: 'Rückstoß',
         fr: 'Poussée',
+        cn: '击退',
       },
     },
   ],
@@ -63,6 +64,7 @@
         en: 'Move bosses apart',
         de: 'Bosse auseinander ziehen',
         fr: 'Ecartez les boss',
+        cn: '分开boss',
       },
     },
     {
@@ -83,6 +85,8 @@
           en: 'Get Out',
           de: 'Raus da',
           fr: 'Sortez',
+          ja: '誘引',
+          cn: '远离',
         };
       },
       infoText: function(data, matches) {
@@ -92,6 +96,9 @@
           en: 'Stack',
           de: 'Stacken',
           fr: 'Packez vous',
+          ja: '頭割り',
+          cn: '集合',
+          ko: '집합',
         };
       },
     },
@@ -110,6 +117,7 @@
         en: 'Attack Omega-M',
         de: 'Omega-M angreifen',
         fr: 'Attaquez Oméga-M',
+        cn: '攻击男性',
       },
     },
     {
@@ -127,6 +135,7 @@
         en: 'Attack Omega-F',
         de: 'Omega-W angreifen',
         fr: 'Attaquez Oméga-F',
+        cn: '攻击女性',
       },
     },
   ],
@@ -272,7 +281,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
         'Omega(?!-)': '欧米茄',
         'Omega-F': '欧米茄F',
         'Omega-M': '欧米茄M',

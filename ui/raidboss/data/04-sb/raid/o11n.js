@@ -17,6 +17,7 @@
       },
       infoText: {
         en: 'Tank Tether',
+        cn: '坦克接线远离人群',
       },
     },
   ],
@@ -101,12 +102,14 @@
             en: 'Move (Left)',
             de: 'Bewegen (Links)',
             fr: 'Bougez (Gauche)',
+            cn: '去左边',
           };
         }
         return {
           en: 'Stay (Left)',
           de: 'Stehenbleiben (Links)',
           fr: 'Restez ici (Gauche)',
+          cn: '呆在左边',
         };
       },
     },
@@ -127,12 +130,14 @@
             en: 'Stay (Right)',
             de: 'Stehenbleiben (Rechts)',
             fr: 'Restez ici (Droite)',
+            cn: '呆在右边',
           };
         }
         return {
           en: 'Move (Right)',
           de: 'Bewegen (Rechts)',
           fr: 'Bougez (droite)',
+          cn: '去右边',
         };
       },
     },
@@ -393,8 +398,8 @@
         'Rush': '突进',
         'Starboard Wave Cannon(?! )': '右舷齐射·波动炮',
         'Starboard Wave Cannon Surge': '右舷齐射·零式波动炮',
-        'Starboard/Larboard Cannon': 'Starboard/Larboard Cannon', // FIXME
-        'Starboard/Larboard Surge': 'Starboard/Larboard Surge', // FIXME
+        'Starboard/Larboard Cannon': '右/左舷齐射·波动炮',
+        'Starboard/Larboard Surge': '右/左舷齐射·零式波动炮',
         'Storage Violation': '清除记忆污染S',
         'Unmitigated Explosion': '大爆炸',
         'Update Program': '更新循环程序',

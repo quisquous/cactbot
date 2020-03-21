@@ -38,6 +38,7 @@
         de: 'Von Statue wegschauen',
         ko: '시선 피하기',
         ja: '塔を見ないで！',
+        cn: '背对神像',
       },
       tts: {
         en: 'look away',
@@ -45,6 +46,7 @@
         de: 'weckschauen',
         ko: '뒤돌기',
         ja: '見るな！',
+        cn: '背对神像',
       },
     },
     {
@@ -81,6 +83,7 @@
         de: 'Statue anschauen',
         ko: '시선 바라보기',
         ja: '像を見て！',
+        cn: '面对神像',
       },
       tts: {
         en: 'look towards',
@@ -88,6 +91,7 @@
         de: 'anschauen',
         ko: '쳐다보기',
         ja: '像見て！',
+        cn: '面对神像',
       },
     },
     {
@@ -104,6 +108,7 @@
         de: 'Vergangenheit: Sammeln und Stehenbleiben',
         ko: '과거: 맞고 가만히있기',
         ja: '過去: スタックしてそのまま',
+        cn: '分摊不动',
       },
       tts: {
         en: 'stack and stay',
@@ -111,6 +116,7 @@
         de: 'Stek und Stehenbleiben',
         ko: '맞고 가만히',
         ja: 'スタックしてそのまま',
+        cn: '分摊不动',
       },
     },
     {
@@ -127,6 +133,7 @@
         de: 'Zukunft: Sammeln und Durchlaufen',
         ko: '미래: 맞고 통과해가기',
         ja: '未来: シェア後ボス通り抜ける',
+        cn: '分摊穿boss',
       },
       tts: {
         en: 'stack and through',
@@ -134,6 +141,7 @@
         de: 'Stek und durchlaufen',
         ko: '맞고 통과해가기',
         ja: 'シェア後通り抜け',
+        cn: '分摊穿boss',
       },
     },
     {
@@ -154,6 +162,7 @@
         de: 'Vergangenheit : Anlocken und Durchlaufen',
         ko: '과거: 맞고, 이동',
         ja: '過去: 飛んできたら反対向ける',
+        cn: '诱导然后穿boss',
       },
       tts: {
         en: 'run run run',
@@ -161,6 +170,7 @@
         de: 'Durchlaufen',
         ko: '맞고 이동',
         ja: '反対向ける',
+        cn: '诱导然后穿boss',
       },
     },
     {
@@ -181,6 +191,7 @@
         de: 'Zukunft: Anlocken und Stehenbleiben',
         ko: '미래: 맞고, 가만히',
         ja: '未来: 飛んできたらそのまま',
+        cn: '诱导然后不动',
       },
       tts: {
         en: 'stay stay stay',
@@ -188,6 +199,7 @@
         de: 'Stehenbleiben',
         ko: '맞고 가만히',
         ja: 'そのまま',
+        cn: '诱导然后不动',
       },
     },
     {
@@ -219,6 +231,7 @@
             de: 'Schwingen: Nah/Fern',
             ko: '양날개: 가까이/멀리',
             ja: '翼: めり込む/離れる',
+            cn: '双翅膀：近或远',
           };
         }
       },
@@ -230,6 +243,7 @@
             de: 'Max Nahkampf: Weg von den Tanks',
             ko: '칼끝딜: 탱커 피하기',
             ja: '近接最大レンジ タンクから離れて',
+            cn: '最远距离',
           };
         }
       },
@@ -241,6 +255,7 @@
             de: 'schwingen',
             ko: '양날개',
             ja: '翼',
+            cn: '双翅膀',
           };
         }
         return {
@@ -249,6 +264,7 @@
           de: 'max nahkampf',
           ko: '칼끝딜',
           ja: '最大レンジ',
+          cn: '最远距离',
         };
       },
     },
@@ -266,6 +282,7 @@
         de: 'Einzelner Flügel',
         ko: '한쪽 날개',
         ja: '片翼',
+        cn: '单翅膀',
       },
     },
     {
@@ -286,6 +303,7 @@
           de: 'Umarmung auf DIR',
           ko: '종말의 포옹 → 나',
           ja: '双腕 on YOU',
+          cn: '分摊死刑点名',
         };
       },
       infoText: function(data, matches) {
@@ -299,6 +317,7 @@
             de: 'Umarmung auf ' + data.ShortName(matches.target),
             ko: '종말의 포옹 → ' + data.ShortName(matches.target),
             ja: '双腕 on ' + data.ShortName(matches.target),
+            cn: '分摊死刑'+ data.ShortName(matches.target),
           };
         }
       },
@@ -310,6 +329,7 @@
             de: 'umarmung',
             ko: '종말의 포옹',
             ja: '双腕',
+            cn: '分摊死刑',
           };
         }
       },
@@ -333,6 +353,7 @@
           de: 'Hyperantrieb auf DIR',
           ko: '하이퍼드라이브 → 나',
           ja: 'ハイパードライブ on YOU',
+          cn: '死刑点名',
         };
       },
       infoText: function(data, matches) {
@@ -346,6 +367,7 @@
             de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
             ko: '하이퍼드라이브 → ' + data.ShortName(matches.target),
             ja: 'ハイパードライブ on ' + data.ShortName(matches.target),
+            cn: '死刑点名'+ data.ShortName(matches.target),
           };
         }
       },
@@ -357,6 +379,7 @@
             de: 'hyperantrieb',
             ko: '하이퍼드라이브',
             ja: 'ハイパードライブ',
+            cn: '圆形死刑',
           };
         }
       },
@@ -378,6 +401,7 @@
         de: 'Konfusion: Nach außen',
         ko: '혼란: 바깥으로',
         ja: '混乱: 外へ',
+        cn: '去外面',
       },
       tts: {
         en: 'confusion',
@@ -385,6 +409,7 @@
         de: 'konfusion',
         ko: '혼란',
         ja: '混乱',
+        cn: '去外面',
       },
     },
     {
@@ -404,6 +429,7 @@
         de: 'Schlaf: Zur Mitte',
         ko: '수면: 안으로',
         ja: '睡眠: 中へ',
+        cn: '去中间',
       },
       tts: {
         en: 'sleep',
@@ -411,6 +437,7 @@
         de: 'Schlaf',
         ko: '수면',
         ja: '睡眠',
+        cn: '去中间',
       },
     },
     {
@@ -477,6 +504,7 @@
           de: 'verteilen',
           ko: '산개',
           ja: '散開',
+          cn: '散开',
         }[data.lang];
       },
     },
@@ -499,6 +527,7 @@
           de: 'Stacken',
           ko: '집합',
           ja: 'スタック',
+          cn: '集合',
         }[data.lang];
       },
     },
@@ -520,6 +549,7 @@
           de: 'Wahrer Blitz',
           ko: '진실 선더가',
           ja: '真サンダガ',
+          cn: '真雷',
         }[data.lang];
       },
       suppressSeconds: 40,
@@ -548,6 +578,7 @@
           de: 'Falscher Blitz',
           ko: '거짓 선더가',
           ja: 'にせサンダガ',
+          cn: '假雷',
         }[data.lang];
       },
       suppressSeconds: 40,
@@ -576,6 +607,7 @@
           de: 'Falsches Eis',
           ko: '거짓 블리자가',
           ja: 'にせブリザガ',
+          cn: '假冰',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
@@ -583,6 +615,7 @@
           de: 'raus da',
           ko: '밖으로',
           ja: '外へ',
+          cn: '远离',
         }[data.lang];
       },
       suppressSeconds: 40,
@@ -611,6 +644,7 @@
           de: 'Wahres Eis',
           ko: '진실 블리자가',
           ja: '真ブリザガ',
+          cn: '真冰',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
@@ -618,6 +652,7 @@
           de: 'reingehen',
           ko: '안으로',
           ja: '中へ',
+          cn: '靠近',
         }[data.lang];
       },
       suppressSeconds: 40,
@@ -646,6 +681,7 @@
           de: 'Falsches Eis',
           ko: '거짓 블리자가',
           ja: 'にせブリザガ',
+          cn: '假冰',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get In',
@@ -653,6 +689,7 @@
           de: 'reingehen',
           ko: '안으로',
           ja: '中へ',
+          cn: '靠近',
         }[data.lang];
       },
       suppressSeconds: 40,
@@ -681,6 +718,7 @@
           de: 'Wahres Eis',
           ko: '진실 블리자가',
           ja: '真ブリザガ',
+          cn: '真冰',
         }[data.lang];
         data.lastIceDir = {
           en: 'Get Out',
@@ -688,6 +726,7 @@
           de: 'rausgehen',
           ko: '밖으로',
           ja: '外へ',
+          cn: '远离',
         }[data.lang];
       },
       suppressSeconds: 40,
@@ -909,7 +948,7 @@
         'All Things Ending': '消灭之脚',
         'Blizzard Blitz': '滴溜溜冰封',
         'Blizzard III': '冰封',
-        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
+        'Blizzard\\+Thunder': '冰封+暴雷',
         'Celestriad': '三星',
         'Explosion': '爆炸',
         'Fire III': '爆炎',
@@ -920,7 +959,7 @@
         'Graven Image': '众神之像',
         'Gravitas': '重力弹',
         'Gravitational Wave': '重力波',
-        'Half Arena': 'Half Arena', // FIXME
+        'Half Arena': '半场',
         'Heartless Angel': '无心天使',
         'Heartless Archangel': '无心大天使',
         'Holy Ascent': '升天',
@@ -931,22 +970,22 @@
         'Indulgent Will': '圣母的神气',
         'Inexorable Will': '无情的神气',
         'Intemperate Will': '扑杀的神气',
-        'Knockback Tethers': 'Knockback Tethers', // FIXME
+        'Knockback Tethers': '击退连线',
         'Light Of Judgment': '制裁之光',
         'Mana Charge': '魔法储存',
         'Mana Release': '魔法放出',
         'Meteor': '陨石',
-        'Past/Future(?! )': 'Past/Future', // FIXME
-        'Past/Future End': 'Past/Future End', // FIXME
+        'Past/Future(?! )': '过去/未来',
+        'Past/Future End': '过去/未来 结束',
         'Pasts Forgotten': '过去破灭',
         'Pulse Wave': '波动弹',
         'Revolting Ruin': '恶狠狠毁荡',
         'Shockwave': '冲击波',
-        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers', // FIXME
-        'Soak': 'Soak', // FIXME
+        'Sleep/Confuse Tethers': '睡眠/混乱 连线',
+        'Soak': '踩',
         'Starstrafe': '妖星乱舞',
-        'Statue Gaze': 'Statue Gaze', // FIXME
-        'Statue Half Cleave': 'Statue Half Cleave', // FIXME
+        'Statue Gaze': '神像视线',
+        'Statue Half Cleave': '神像半场AOE',
         'The Path Of Light': '光之波动',
         'Thrumming Thunder': '劈啪啪暴雷',
         'Thunder III': '暴雷',

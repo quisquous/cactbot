@@ -37,6 +37,7 @@
         en: 'Next Spin: In or Out',
         de: 'Nächste Drehung: Rein oder raus',
         fr: 'Tour suivant : Dedans/Dehors',
+        cn: '下一转:内圈/外圈',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = true;
@@ -54,6 +55,7 @@
         en: 'Next Spin: Corners',
         de: 'Nächste Drehung: Ecken',
         fr: 'Tour suivant : Plus',
+        cn: '下一转:角落',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
@@ -76,6 +78,8 @@
             en: 'Get Out',
             de: 'Raus da',
             fr: 'Sortez',
+            ja: '誘引',
+            cn: '远离',
           };
         }
         // This shouldn't happen.
@@ -83,6 +87,7 @@
           en: 'Go To Cardinals',
           de: 'Geh zu den Kanten',
           fr: 'Allez sur les points cardinaux',
+          cn: '去正点',
         };
       },
     },
@@ -103,12 +108,15 @@
             en: 'Get In',
             de: 'Rein da',
             fr: 'Allez sous le boss',
+            ja: '拒絶',
+            cn: '靠近',
           };
         }
         return {
           en: 'Go To Corners',
           de: 'In die Ecken',
           fr: 'Allez dans les coins',
+          cn: '去角落',
         };
       },
     },
@@ -287,15 +295,15 @@
         'Midgardsormr': '尘世幻龙',
       },
       'replaceText': {
-        'ready': 'ready', // FIXME
+        'ready': '准备',
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
         'Azure Wings': '苍翼之焰',
         'Bloodied Maw': '红牙之焰',
-        'Cardinals': 'Cardinals', // FIXME
+        'Cardinals': '边',
         'Cauterize': '低温俯冲',
-        'Coil': 'Coil', // FIXME
-        'Corners': 'Corners', // FIXME
+        'Coil': '横转',
+        'Corners': '角',
         'Crimson Breath': '深红吐息',
         'Crimson Wings': '红翼之焰',
         'Dark Wave': '黑暗波动',
@@ -303,19 +311,19 @@
         'Earth Shaker': '大地摇动',
         'Exaflare': '百京核爆',
         'Flame Blast': '烈焰十字爆',
-        'Flip': 'Flip', // FIXME
+        'Flip': '竖转',
         'Frost Breath': '寒霜吐息',
         'Horrid Roar': '恐惧咆哮',
         'Hot Tail': '燃烧之尾',
-        '(?<!\\w)In(?!/)': 'In', // FIXME
-        'In/Out': 'In/Out', // FIXME
-        '(?<!/)Out': 'Out', // FIXME
+        '(?<!\\w)In(?!/)': '靠近',
+        'In/Out': '靠近/远离',
+        '(?<!/)Out': '远离',
         'Northern Cross': '北十字星',
-        'Position': 'Position', // FIXME
+        'Position': '站位',
         'Protostar': '原恒星',
         'Rime Wreath': '白霜环绕',
-        'Shaker/Thunder': 'Shaker/Thunder', // FIXME
-        'Signal': 'Signal', // FIXME
+        'Shaker/Thunder': '大地摇动/闪雷风暴',
+        'Signal': '信号',
         'Spin': '回转',
         'Stygian Maw': '黑牙之焰',
         'Tail End': '煞尾',

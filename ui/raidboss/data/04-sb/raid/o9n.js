@@ -33,6 +33,7 @@
         en: 'Orb Tethers',
         de: 'Kugel-Verbindungen',
         fr: 'Attrapez les orbes',
+        cn: '连线',
       },
     },
   ],
@@ -177,7 +178,7 @@
       'replaceSync': {
         'Chaos': '混沌',
         'Chaosphere': '混沌晶球',
-        'YOU DARE!': 'YOU DARE!', // FIXME
+        'YOU DARE!': '居然……把黑水晶给……',
         'dark crystal': '黑水晶',
       },
       'replaceText': {
@@ -191,9 +192,9 @@
         'Earthquake': '大地震',
         'Fiendish Orbs': '追踪',
         'Knock Down': '中弹',
-        'Knock(?! )': 'Knock', // FIXME
+        'Knock(?! )': '中弹',
         'Latitudinal Implosion': '纬度聚爆',
-        'Long/Lat Implosion': 'Long/Lat Implosion', // FIXME
+        'Long/Lat Implosion': '经/纬度聚爆',
         'Longitudinal Implosion': '经度聚爆',
         'Orbshadow': '追踪',
         'Shockwave': '冲击波',
@@ -204,7 +205,7 @@
         'Stray Spray': '混沌之水',
         'Tsunami': '海啸',
         'Umbra Smash': '本影爆碎',
-        '\\(ALL\\)': '\\(ALL\\)', // FIXME
+        '\\(ALL\\)': '\\(所有\\)',
       },
       '~effectNames': {
         'Accretion': '混沌之泥土',

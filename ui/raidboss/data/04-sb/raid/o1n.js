@@ -4,6 +4,7 @@
 [{
   zoneRegex: {
     en: /^Deltascape \(V1\.0\)$/,
+    cn: /^欧米茄时空狭缝 \(德尔塔幻境1\)$/,
   },
   timelineFile: 'o1n.txt',
   timelineTriggers: [
@@ -39,10 +40,12 @@
       infoText: {
         en: 'Breath Wing: Be beside boss',
         de: 'Atemschwinge: Neben Boss gehen',
+        cn: '站boss附近',
       },
       tts: {
         en: 'breath wing',
         de: 'atemschwinge',
+        cn: '站boss附近',
       },
     },
     {
