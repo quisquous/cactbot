@@ -216,7 +216,7 @@ The second purpose is for timelines at runtime.
 cactbot will use the `replaceSync` section to auto-replace anything inside a `sync /text`/ on a timeline line,
 and the `replaceText` section to auto-replace anything inside the ability text.
 
-These do not match the entire line (that is, they are non-greedy) by default.
+These match only the exact text of the regex within the line, not the entire line.
 Care is needed to make sure that replacements are not overzealous.
 
 ## Example Timeline Creation
