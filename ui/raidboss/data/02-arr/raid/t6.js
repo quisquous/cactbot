@@ -105,7 +105,7 @@
           return {
             en: 'Devour: Get Eaten',
             de: 'Verschlingen: Gefressen werden',
-            fr: 'Dévoration : Faites vous manger',
+            fr: 'Dévoration: Faites-vous manger',
           };
         }
       },
@@ -117,7 +117,7 @@
           return {
             en: 'Devour: Jump In New Thorns',
             de: 'Verschlingen: Spring in die neuen Dornen',
-            fr: 'Dévoration : Sautez dans les ronces',
+            fr: 'Dévoration: Sautez dans les ronces',
           };
         }
       },
@@ -179,7 +179,7 @@
       infoText: {
         en: 'Stack for Acid',
         de: 'Sammeln für Säure-Blubberblase',
-        fr: 'Packez vous pour Acide',
+        fr: 'Packez-vous pour Pluie acide',
       },
     },
     {
@@ -268,7 +268,7 @@
         'Floral Trap': 'Piège floral',
         'Leafstorm': 'Tempête de feuilles',
         'Rotten Stench': 'Pestilence nauséabonde',
-        'Spit': 'Crachat morbide',
+        'Spit': 'Crachat',
         'Swarm': 'Nuée',
         'Thorn Whip': 'Fouet de ronces',
         'Viscid Emission': 'Émission visqueuse',
