@@ -78,7 +78,7 @@
       infoText: {
         en: 'Blackfire Spread',
         de: 'Schwarzfeuer verteilen',
-        fr: 'Flamme noire, dispersion',
+        fr: 'Flamme noire, dispersez-vous',
       },
     },
     {
