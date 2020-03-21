@@ -49,7 +49,7 @@ class LogCollector {
   }
 
   MatchEnd(log) {
-    if (this.IsWipe(log))
+    if (this.IsWipe(log) || this.IsWin(log))
       return true;
     for (let i in this.unsealRegexes) {
       if (log.match(this.unsealRegexes[i]))
@@ -68,7 +68,15 @@ class LogCollector {
       if (logZoneChange && logZoneChange != this.currentZone) {
         if (this.currentFight) {
           this.currentFight.fightName = this.currentFight.zoneName;
-          this.EndFight(log);
+
+          // If the current fight started from a countdown, then it is always
+          // real.  If we started from an ability because some jerk pulled
+          // without a countdown, then only treat this as a real fight if we
+          // saw a wipe message.
+          if (this.currentFight.fromCountdown)
+            this.EndFight(log);
+          else
+            this.CancelFight();
         }
         this.currentZone = logZoneChange;
       }
@@ -88,25 +96,35 @@ class LogCollector {
             this.currentFight.fightName = this.currentFight.zoneName;
           this.EndFight(log);
         }
-      } else if (this.MatchStart(log)) {
+      } else {
+        let startLang = this.MatchStart(log);
+        let isAbility = log.match(Regexes.ability());
+
         // For consistency, only start fights on a countdown.  This
         // makes it easy to know where to start all fights (vs
         // reading timeline files or some such).
         if (!this.currentZone)
           console.error('Network log file specifies no zone?');
 
-        this.currentFight = {
-          zoneName: this.currentZone,
-          fightName: null,
-          startDate: dateFromLogLine(log),
-          logs: [log],
-          durationMs: null,
-          key: this.fights.length,
-          players: {},
-          lang: this.MatchStart(log),
-        };
+        if (startLang || isAbility) {
+          this.currentFight = {
+            zoneName: this.currentZone,
+            fightName: null,
+            startDate: dateFromLogLine(log),
+            logs: [log],
+            durationMs: null,
+            key: this.fights.length,
+            players: {},
+            lang: startLang,
+            fromCountdown: !isAbility,
+          };
+        }
       }
     }
+  }
+
+  CancelFight() {
+    this.currentFight = null;
   }
 
   EndFight(log) {
@@ -144,6 +162,10 @@ class LogCollector {
   IsWipe(log) {
     // Actor control line list: https://gist.github.com/quisquous/250001cbce232a48e6a9ce772a56675a
     return log.match(/ 21:........:40000010:/) || log.indexOf('00:0038:cactbot wipe') != -1;
+  }
+
+  IsWin(log) {
+    return log.match(/ 21:........:40000003:/);
   }
 
   ParseZoneChange(log) {
