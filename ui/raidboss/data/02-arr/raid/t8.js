@@ -23,7 +23,7 @@
       alertText: {
         en: 'Explode Landmines',
         de: 'Landminen explodieren',
-        fr: 'Explosion mines',
+        fr: 'Explosez les mines',
       },
       run: function(data) {
         data.landmines = {};
