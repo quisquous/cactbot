@@ -118,7 +118,7 @@ var Regexes = {
     validateParams(f, 'headMarker', ['targetId', 'target', 'id', 'capture']);
     let capture = trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1B:' +
-      Regexes.maybeCapture(capture, 'targetId', f.sourceId, '\\y{ObjectId}') + ':' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':....:....:' +
       Regexes.maybeCapture(capture, 'id', f.id, '....') + ':';
     return Regexes.parse(str);
@@ -168,14 +168,15 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: target, effect, source, duration, capture
+  // fields: targetId, target, effect, source, duration, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1a-networkbuff
   gainsEffect: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'gainsEffect', ['target', 'effect', 'source', 'duration', 'capture']);
+    validateParams(f, 'gainsEffect', ['targetId', 'target', 'effect', 'source', 'duration', 'capture']);
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{Timestamp} 1A:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1A:' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ' gains the effect of ' +
       Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +
@@ -238,14 +239,15 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
-  // fields: target, effect, source, capture
+  // fields: targetId, target, effect, source, capture
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove
   losesEffect: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'losesEffect', ['target', 'effect', 'source', 'capture']);
+    validateParams(f, 'losesEffect', ['targetId', 'target', 'effect', 'source', 'capture']);
     let capture = trueIfUndefined(f.capture);
-    let str = '\\y{Timestamp} 1E:\\y{ObjectId}:' +
+    let str = '\\y{Timestamp} 1E:' +
+      Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ' loses the effect of ' +
       Regexes.maybeCapture(capture, 'effect', f.effect, '.*?') +

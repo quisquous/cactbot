@@ -50,6 +50,8 @@ let kYouGainEffectRegex = null;
 let kYouLoseEffectRegex = null;
 let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
+let kMobGainsEffectRegex = null;
+let kMobLosesEffectRegex = null;
 
 let kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
@@ -241,6 +243,8 @@ function setupRegexes(playerName) {
   kYouLoseEffectRegex = Regexes.losesEffect({ target: playerName });
   kYouUseAbilityRegex = Regexes.ability({ source: playerName });
   kAnybodyAbilityRegex = Regexes.ability();
+  kMobGainsEffectRegex = Regexes.gainsEffect({ targetId: '4.......' });
+  kMobLosesEffectRegex = Regexes.losesEffect({ targetId: '4.......' });
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -518,11 +522,67 @@ class BuffTracker {
         sortKey: 0,
         cooldown: 270,
       },
+      astralAttenuationFire: {
+        mobGainsEffect: gLang.kEffect.AstralAttenuation,
+        mobLosesEffect: gLang.kEffect.AstralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/fire.png',
+        borderColor: '#e8481c',
+        sortKey: 0,
+      },
+      astralAttenuationLightning: {
+        mobGainsEffect: gLang.kEffect.AstralAttenuation,
+        mobLosesEffect: gLang.kEffect.AstralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/lightning.png',
+        borderColor: '#e0cb5c',
+        sortKey: 0,
+      },
+      astralAttenuationWind: {
+        mobGainsEffect: gLang.kEffect.AstralAttenuation,
+        mobLosesEffect: gLang.kEffect.AstralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/wind.png',
+        borderColor: '#9bdec0',
+        sortKey: 0,
+      },
+      umbralAttenuationIce: {
+        mobGainsEffect: gLang.kEffect.UmbralAttenuation,
+        mobLosesEffect: gLang.kEffect.UmbralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/ice.png',
+        borderColor: '#95dbdb',
+        sortKey: 0,
+      },
+      umbralAttenuationEarth: {
+        mobGainsEffect: gLang.kEffect.UmbralAttenuation,
+        mobLosesEffect: gLang.kEffect.UmbralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/earth.png',
+        borderColor: '#96855a',
+        sortKey: 0,
+      },
+      umbralAttenuationWater: {
+        mobGainsEffect: gLang.kEffect.UmbralAttenuation,
+        mobLosesEffect: gLang.kEffect.UmbralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/water.png',
+        borderColor: '#4d8bc9',
+        sortKey: 0,
+      },
+      physicalAttenuation: {
+        mobGainsEffect: gLang.kEffect.PhysicalAttenuation,
+        mobLosesEffect: gLang.kEffect.PhysicalAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/physical.png',
+        borderColor: '#fff712',
+        sortKey: 0,
+      },
       offguard: {
         gainAbility: gLang.kAbility.OffGuard,
         durationSeconds: 15,
         icon: '../../resources/icon/status/offguard.png',
-        borderColor: '#F28F7B',
+        borderColor: '#47bf41',
         sortKey: 1,
         cooldown: 60,
       },
@@ -745,6 +805,17 @@ class BuffTracker {
     this.gainEffectMap = {};
     this.loseEffectMap = {};
     this.gainAbilityMap = {};
+    this.mobGainsEffectMap = {};
+    this.mobLosesEffectMap = {};
+
+    let propToMapMap = {
+      gainEffect: this.gainEffectMap,
+      loseEffect: this.loseEffectMap,
+      gainAbility: this.gainAbilityMap,
+      mobGainsEffect: this.mobGainsEffectMap,
+      mobLosesEffect: this.mobLosesEffectMap,
+    };
+
     for (let i = 0; i < keys.length; ++i) {
       let buff = this.buffInfo[keys[i]];
       buff.name = keys[i];
@@ -756,20 +827,13 @@ class BuffTracker {
       buff.sortKey = overrides.sortKey || buff.sortKey;
       buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
 
-      if (buff.gainEffect) {
-        if (buff.gainEffect in this.gainEffectMap)
-          console.error('Duplicate buff entry: ' + buff.gainEffect);
-        this.gainEffectMap[buff.gainEffect] = buff;
-      }
-      if (buff.loseEffect) {
-        if (buff.loseEffect in this.loseEffectMap)
-          console.error('Duplicate buff entry: ' + buff.loseEffect);
-        this.loseEffectMap[buff.loseEffect] = buff;
-      }
-      if (buff.gainAbility) {
-        if (buff.gainAbility in this.gainAbilityMap)
-          console.error('Duplicate buff entry: ' + buff.gainAbility);
-        this.gainAbilityMap[buff.gainAbility] = buff;
+      for (let prop in propToMapMap) {
+        let key = buff[prop];
+        if (!key)
+          continue;
+        let map = propToMapMap[prop];
+        map[key] = map[key] || [];
+        map[key].push(buff);
       }
     }
 
@@ -794,37 +858,56 @@ class BuffTracker {
   }
 
   onUseAbility(id, log) {
-    let b = this.gainAbilityMap[id];
-    if (!b)
+    let buffs = this.gainAbilityMap[id];
+    if (!buffs)
       return;
 
-    if (b.gainRegex && !log.match(b.gainRegex))
-      return;
+    for (let b of buffs) {
+      if (b.gainRegex && !log.match(b.gainRegex))
+        continue;
 
-    let seconds = b.durationSeconds;
-    let source = abilitySourceFromLog(log);
-    this.onBigBuff(b.name, seconds, b, source);
+      let seconds = b.durationSeconds;
+      let source = abilitySourceFromLog(log);
+      this.onBigBuff(b.name, seconds, b, source);
+    }
+  }
+
+  onGainEffect(buffs, log) {
+    if (!buffs)
+      return;
+    for (let b of buffs) {
+      let seconds = -1;
+      if (b.useEffectDuration)
+        seconds = gainSecondsFromLog(log);
+      else if ('durationSeconds' in b)
+        seconds = b.durationSeconds;
+
+      let source = gainSourceFromLog(log);
+      this.onBigBuff(b.name, seconds, b, source);
+    }
+  }
+
+  onLoseEffect(buffs, log) {
+    if (!buffs)
+      return;
+    for (let b of buffs)
+      this.onLoseBigBuff(b.name, b);
   }
 
   onYouGainEffect(name, log) {
-    let b = this.gainEffectMap[name];
-    if (!b)
-      return;
-    let seconds = -1;
-    if (b.useEffectDuration)
-      seconds = gainSecondsFromLog(log);
-    else if ('durationSeconds' in b)
-      seconds = b.durationSeconds;
-
-    let source = gainSourceFromLog(log);
-    this.onBigBuff(b.name, seconds, b, source);
+    this.onGainEffect(this.gainEffectMap[name], log);
   }
 
   onYouLoseEffect(name, log) {
-    let b = this.loseEffectMap[name];
-    if (!b)
-      return;
-    this.onLoseBigBuff(b.name, b);
+    this.onLoseEffect(this.loseEffectMap[name], log);
+  }
+
+  onMobGainsEffect(name, log) {
+    this.onGainEffect(this.mobGainsEffectMap[name], log);
+  }
+
+  onMobLosesEffect(name, log) {
+    this.onLoseEffect(this.mobLosesEffectMap[name], log);
   }
 
   onBigBuff(name, seconds, info, source) {
@@ -2267,6 +2350,9 @@ class Bars {
               f(name, log);
             this.buffTracker.onYouGainEffect(name, log);
           }
+          m = log.match(kMobGainsEffectRegex);
+          if (m)
+            this.buffTracker.onMobGainsEffect(m.groups.effect, log);
         } else if (log[16] == 'E') {
           let m = log.match(kYouLoseEffectRegex);
           if (m) {
@@ -2276,6 +2362,9 @@ class Bars {
               f(name, log);
             this.buffTracker.onYouLoseEffect(name, log);
           }
+          m = log.match(kMobLosesEffectRegex);
+          if (m)
+            this.buffTracker.onMobLosesEffect(m.groups.effect, log);
         }
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.

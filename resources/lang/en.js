@@ -49,6 +49,9 @@ class CactbotLanguageEn extends CactbotLanguage {
       PresenceOfMind: 'Presence Of Mind',
       Shifu: 'Shifu',
       CircleOfPower: 'Circle Of Power',
+      AstralAttenuation: 'Astral Attenuation',
+      UmbralAttenuation: 'Umbral Attenuation',
+      PhysicalAttenuation: 'Physical Attenuation',
 
       SurgeProtection: 'Surge Protection',
 
