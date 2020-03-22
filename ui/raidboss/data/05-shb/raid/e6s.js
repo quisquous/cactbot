@@ -27,7 +27,7 @@
               combatantNames = { names: ['Ifrit', 'イフリート', '伊弗利特', '이프리트'] };
           } else {
               // @TODO: Need the CN/KR names for Raktapaksa
-              combatantNames = { names: ['Ifrit', 'イフリート'] };
+              combatantNames = { names: ['Raktapaksa', 'ラクタパクシャ'] };
           }
             
           let combatantData = await window.callOverlayHandler({
