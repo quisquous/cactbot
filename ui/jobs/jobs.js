@@ -50,6 +50,8 @@ let kYouGainEffectRegex = null;
 let kYouLoseEffectRegex = null;
 let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
+let kMobGainsEffectRegex = null;
+let kMobLosesEffectRegex = null;
 
 let kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
@@ -241,6 +243,8 @@ function setupRegexes(playerName) {
   kYouLoseEffectRegex = Regexes.losesEffect({ target: playerName });
   kYouUseAbilityRegex = Regexes.ability({ source: playerName });
   kAnybodyAbilityRegex = Regexes.ability();
+  kMobGainsEffectRegex = Regexes.gainsEffect({ targetId: '4.......' });
+  kMobLosesEffectRegex = Regexes.losesEffect({ targetId: '4.......' });
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -410,9 +414,14 @@ class Buff {
       this.ready[source].removeCallback();
     }
 
-    // TODO: if multiple sources, put people's names as text?
-    // TODO: we could also count up?
+    // TODO: could consider looking at the party list to make initials unique?
     let txt = '';
+    let initials = source.split(' ');
+    if (initials.length == 2)
+      txt = initials[0][0] + initials[1][0];
+    else
+      txt = initials[0].slice(0, 3);
+
     let color = this.info.borderColor;
 
     let readyKey = 'r:' + this.name + ':' + source;
@@ -478,16 +487,18 @@ class Buff {
       this.ready[readyKeys[i]].removeCallback();
   }
 
-  onGain(seconds, source) {
+  clearCooldown(source) {
     this.onLose();
-
     let ready = this.ready[source];
     if (ready)
       ready.removeCallback();
     let cooldown = this.cooldown[source];
     if (cooldown)
       cooldown.removeCallback();
+  }
 
+  onGain(seconds, source) {
+    this.clearCooldown(source);
     this.active = this.makeAura(this.name, this.activeList, seconds, 0, 0, 'white', '', 1);
     this.addCooldown(source, seconds);
   }
@@ -518,6 +529,55 @@ class BuffTracker {
         sortKey: 0,
         cooldown: 270,
       },
+      astralAttenuationWind: {
+        mobGainsEffect: gLang.kEffect.AstralAttenuation,
+        mobLosesEffect: gLang.kEffect.AstralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/wind.png',
+        borderColor: '#9bdec0',
+        sortKey: 0,
+      },
+      astralAttenuationLightning: {
+        mobGainsEffect: gLang.kEffect.AstralAttenuation,
+        mobLosesEffect: gLang.kEffect.AstralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/lightning.png',
+        borderColor: '#e0cb5c',
+        sortKey: 0,
+      },
+      umbralAttenuationEarth: {
+        mobGainsEffect: gLang.kEffect.UmbralAttenuation,
+        mobLosesEffect: gLang.kEffect.UmbralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/earth.png',
+        borderColor: '#96855a',
+        sortKey: 0,
+      },
+      umbralAttenuationWater: {
+        mobGainsEffect: gLang.kEffect.UmbralAttenuation,
+        mobLosesEffect: gLang.kEffect.UmbralAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/water.png',
+        borderColor: '#4d8bc9',
+        sortKey: 0,
+      },
+      physicalAttenuation: {
+        mobGainsEffect: gLang.kEffect.PhysicalAttenuation,
+        mobLosesEffect: gLang.kEffect.PhysicalAttenuation,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/physical.png',
+        borderColor: '#fff712',
+        sortKey: 0,
+      },
+      offguard: {
+        gainAbility: gLang.kAbility.OffGuard,
+        durationSeconds: 15,
+        icon: '../../resources/icon/status/offguard.png',
+        borderColor: '#47bf41',
+        sortKey: 1,
+        cooldown: 60,
+        sharesCooldownWith: ['peculiar'],
+      },
       peculiar: {
         gainAbility: gLang.kAbility.PeculiarLight,
         durationSeconds: 15,
@@ -525,6 +585,7 @@ class BuffTracker {
         borderColor: '#F28F7B',
         sortKey: 1,
         cooldown: 60,
+        sharesCooldownWith: ['offguard'],
       },
       trick: {
         gainAbility: gLang.kAbility.TrickAttack,
@@ -737,6 +798,17 @@ class BuffTracker {
     this.gainEffectMap = {};
     this.loseEffectMap = {};
     this.gainAbilityMap = {};
+    this.mobGainsEffectMap = {};
+    this.mobLosesEffectMap = {};
+
+    let propToMapMap = {
+      gainEffect: this.gainEffectMap,
+      loseEffect: this.loseEffectMap,
+      gainAbility: this.gainAbilityMap,
+      mobGainsEffect: this.mobGainsEffectMap,
+      mobLosesEffect: this.mobLosesEffectMap,
+    };
+
     for (let i = 0; i < keys.length; ++i) {
       let buff = this.buffInfo[keys[i]];
       buff.name = keys[i];
@@ -748,20 +820,13 @@ class BuffTracker {
       buff.sortKey = overrides.sortKey || buff.sortKey;
       buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
 
-      if (buff.gainEffect) {
-        if (buff.gainEffect in this.gainEffectMap)
-          console.error('Duplicate buff entry: ' + buff.gainEffect);
-        this.gainEffectMap[buff.gainEffect] = buff;
-      }
-      if (buff.loseEffect) {
-        if (buff.loseEffect in this.loseEffectMap)
-          console.error('Duplicate buff entry: ' + buff.loseEffect);
-        this.loseEffectMap[buff.loseEffect] = buff;
-      }
-      if (buff.gainAbility) {
-        if (buff.gainAbility in this.gainAbilityMap)
-          console.error('Duplicate buff entry: ' + buff.gainAbility);
-        this.gainAbilityMap[buff.gainAbility] = buff;
+      for (let prop in propToMapMap) {
+        let key = buff[prop];
+        if (!key)
+          continue;
+        let map = propToMapMap[prop];
+        map[key] = map[key] || [];
+        map[key].push(buff);
       }
     }
 
@@ -786,37 +851,56 @@ class BuffTracker {
   }
 
   onUseAbility(id, log) {
-    let b = this.gainAbilityMap[id];
-    if (!b)
+    let buffs = this.gainAbilityMap[id];
+    if (!buffs)
       return;
 
-    if (b.gainRegex && !log.match(b.gainRegex))
-      return;
+    for (let b of buffs) {
+      if (b.gainRegex && !log.match(b.gainRegex))
+        continue;
 
-    let seconds = b.durationSeconds;
-    let source = abilitySourceFromLog(log);
-    this.onBigBuff(b.name, seconds, b, source);
+      let seconds = b.durationSeconds;
+      let source = abilitySourceFromLog(log);
+      this.onBigBuff(b.name, seconds, b, source);
+    }
+  }
+
+  onGainEffect(buffs, log) {
+    if (!buffs)
+      return;
+    for (let b of buffs) {
+      let seconds = -1;
+      if (b.useEffectDuration)
+        seconds = gainSecondsFromLog(log);
+      else if ('durationSeconds' in b)
+        seconds = b.durationSeconds;
+
+      let source = gainSourceFromLog(log);
+      this.onBigBuff(b.name, seconds, b, source);
+    }
+  }
+
+  onLoseEffect(buffs, log) {
+    if (!buffs)
+      return;
+    for (let b of buffs)
+      this.onLoseBigBuff(b.name, b);
   }
 
   onYouGainEffect(name, log) {
-    let b = this.gainEffectMap[name];
-    if (!b)
-      return;
-    let seconds = -1;
-    if (b.useEffectDuration)
-      seconds = gainSecondsFromLog(log);
-    else if ('durationSeconds' in b)
-      seconds = b.durationSeconds;
-
-    let source = gainSourceFromLog(log);
-    this.onBigBuff(b.name, seconds, b, source);
+    this.onGainEffect(this.gainEffectMap[name], log);
   }
 
   onYouLoseEffect(name, log) {
-    let b = this.loseEffectMap[name];
-    if (!b)
-      return;
-    this.onLoseBigBuff(b.name, b);
+    this.onLoseEffect(this.loseEffectMap[name], log);
+  }
+
+  onMobGainsEffect(name, log) {
+    this.onGainEffect(this.mobGainsEffectMap[name], log);
+  }
+
+  onMobLosesEffect(name, log) {
+    this.onLoseEffect(this.mobLosesEffectMap[name], log);
   }
 
   onBigBuff(name, seconds, info, source) {
@@ -831,6 +915,13 @@ class BuffTracker {
     if (!buff) {
       this.buffs[name] = new Buff(name, info, list, this.options);
       buff = this.buffs[name];
+    }
+
+    let shareList = info.sharesCooldownWith || [];
+    for (let share of shareList) {
+      let existingBuff = this.buffs[share];
+      if (existingBuff)
+        existingBuff.clearCooldown(source);
     }
 
     buff.onGain(seconds, source);
@@ -1387,9 +1478,23 @@ class Bars {
       threshold: gcd * 3,
     });
 
+    let offguardDuration = () => {
+      // If you've reloaded the jobs overlay since the last time an `0C` line went by,
+      // then spellSpeed will be 0.  Assume that you have at least the default spell speed
+      // at level 60.
+      let defaultLevel = 60;
+      let spellSpeed = Math.max(this.spellSpeed, kLevelMod[defaultLevel][0]);
+
+      return this.CalcGCDFromStat(spellSpeed, 60000);
+    };
+
     this.abilityFuncMap[gLang.kAbility.OffGuard] = () => {
       offguardBox.duration = 0;
-      offguardBox.duration = 30;
+      offguardBox.duration = offguardDuration();
+    };
+    this.abilityFuncMap[gLang.kAbility.PeculiarLight] = () => {
+      offguardBox.duration = 0;
+      offguardBox.duration = offguardDuration();
     };
     this.abilityFuncMap[gLang.kAbility.SongOfTorment] = () => {
       tormentBox.duration = 0;
@@ -2259,6 +2364,9 @@ class Bars {
               f(name, log);
             this.buffTracker.onYouGainEffect(name, log);
           }
+          m = log.match(kMobGainsEffectRegex);
+          if (m)
+            this.buffTracker.onMobGainsEffect(m.groups.effect, log);
         } else if (log[16] == 'E') {
           let m = log.match(kYouLoseEffectRegex);
           if (m) {
@@ -2268,6 +2376,9 @@ class Bars {
               f(name, log);
             this.buffTracker.onYouLoseEffect(name, log);
           }
+          m = log.match(kMobLosesEffectRegex);
+          if (m)
+            this.buffTracker.onMobLosesEffect(m.groups.effect, log);
         }
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.

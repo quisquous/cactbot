@@ -49,6 +49,9 @@ class CactbotLanguageFr extends CactbotLanguage {
       PresenceOfMind: 'Présence d\'esprit',
       Shifu: 'Shifû',
       CircleOfPower: 'Manalignements',
+      AstralAttenuation: 'Résistance astrale diminuée',
+      UmbralAttenuation: 'Résistance ombrale diminuée',
+      PhysicalAttenuation: 'Vulnérabilité physique augmentée',
 
       SurgeProtection: 'Parafoudre',
 

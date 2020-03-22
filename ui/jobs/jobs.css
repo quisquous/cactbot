@@ -38,6 +38,10 @@
   left: -40px;
 }
 
+.blu #right-side-icons {
+  left: 204px;
+}
+
 /* Relative to #bars */
 #pull-bar,
 #hp-bar,

@@ -49,6 +49,9 @@ class CactbotLanguageDe extends CactbotLanguage {
       PresenceOfMind: 'Geistesgegenwart',
       Shifu: 'Shifu',
       CircleOfPower: 'Ley-Linien',
+      AstralAttenuation: 'Lichtschwäche',
+      UmbralAttenuation: 'Schattenschwäche',
+      PhysicalAttenuation: 'Leibesschwäche',
 
       SurgeProtection: 'Überspannungsschutz',
 
