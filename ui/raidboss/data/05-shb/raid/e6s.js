@@ -14,7 +14,7 @@
       regexFr: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
       regexJa: Regexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BD3', capture: false }),
       promise: function(data) {
-        let p = new Promise((res) => {
+        let p = new Promise(async (res) => {
           // helper function to delay the promise execution for the given time
           const sleep = m => new Promise(r => setTimeout(r, m));
 
