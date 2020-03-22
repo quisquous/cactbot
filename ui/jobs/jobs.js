@@ -522,22 +522,6 @@ class BuffTracker {
         sortKey: 0,
         cooldown: 270,
       },
-      astralAttenuationFire: {
-        mobGainsEffect: gLang.kEffect.AstralAttenuation,
-        mobLosesEffect: gLang.kEffect.AstralAttenuation,
-        useEffectDuration: true,
-        icon: '../../resources/icon/status/fire.png',
-        borderColor: '#e8481c',
-        sortKey: 0,
-      },
-      astralAttenuationLightning: {
-        mobGainsEffect: gLang.kEffect.AstralAttenuation,
-        mobLosesEffect: gLang.kEffect.AstralAttenuation,
-        useEffectDuration: true,
-        icon: '../../resources/icon/status/lightning.png',
-        borderColor: '#e0cb5c',
-        sortKey: 0,
-      },
       astralAttenuationWind: {
         mobGainsEffect: gLang.kEffect.AstralAttenuation,
         mobLosesEffect: gLang.kEffect.AstralAttenuation,
@@ -546,12 +530,12 @@ class BuffTracker {
         borderColor: '#9bdec0',
         sortKey: 0,
       },
-      umbralAttenuationIce: {
-        mobGainsEffect: gLang.kEffect.UmbralAttenuation,
-        mobLosesEffect: gLang.kEffect.UmbralAttenuation,
+      astralAttenuationLightning: {
+        mobGainsEffect: gLang.kEffect.AstralAttenuation,
+        mobLosesEffect: gLang.kEffect.AstralAttenuation,
         useEffectDuration: true,
-        icon: '../../resources/icon/status/ice.png',
-        borderColor: '#95dbdb',
+        icon: '../../resources/icon/status/lightning.png',
+        borderColor: '#e0cb5c',
         sortKey: 0,
       },
       umbralAttenuationEarth: {
