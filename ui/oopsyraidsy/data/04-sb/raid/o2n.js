@@ -6,42 +6,20 @@
     en: /^Deltascape \(V2\.0\)$/,
   },
   damageWarn: {
-    'O2N Lower Explosion': '2513', // Large purple AoE circles on the floor
-    'O2N Upper Explosion': '2503', // Large orange AoE circles in the air
     'O2N Main Quake': '24A5', // Non-telegraphed circle AoE, Fleshy Member
+    'O2N Erosion': '2590', // Small circle AoEs, Fleshy Member
   },
   triggers: [
     {
-      id: 'O2N Petrification Collect',
+      // We could try to separate out the mistake that led to the player being petrified.
+      // However, it's Normal mode, why overthink it?
+      id: 'O2N Petrification',
       gainsEffectRegex: gLang.kEffect.Petrification,
-      run: function(e, data) {
-        data.petrified = data.petrified || [];
-        data.petrified.push(e.target);
-      },
-    },
-    {
-      id: 'O2N Demon Eye',
-      abilityRegex: '250D',
-      delaySeconds: 2,
-      // Anyone who was petrified before Demon Eye hit them
-      // should be covered in the Petrosphere warnings.
-      // The delay should ensure that people who looked
-      // are caught by this one.
-      condition: function(e, data) {
-        return !(data.petrified.includes(e.target));
-      },
-      mistake: function(e, data) {
-        if (data.petrified.includes(e.target))
-          return { type: 'warn', name: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'O2N Petrification Collect',
-      gainsEffectRegex: gLang.kEffect.Petrification,
-      delaySeconds: 10,
-      suppressSeconds: 15,
-      run: function(e, data) {
-        delete data.petrified;
+      // The user might get hit by another petrifying ability before the effect ends.
+      // There's no point in notifying for that.
+      suppressSeconds: 10,
+      mistake: function(e) {
+        return { type: 'warn', name: e.targetName, text: e.effectName };
       },
     },
     {
@@ -57,7 +35,15 @@
       },
     },
     {
-
+      id: 'O2N Earthquake',
+      damageRegex: '2515',
+      condition: function(e) {
+        // This deals damage only to non-floating targets.
+        return e.damage > 0;
+      },
+      mistake: function(e) {
+        return { type: 'warn', name: e.targetName, text: e.abilityName };
+      },
     },
   ],
 }];
