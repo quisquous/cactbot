@@ -486,7 +486,7 @@ class Buff {
     for (let i = 0; i < readyKeys.length; ++i)
       this.ready[readyKeys[i]].removeCallback();
   }
-  
+
   clearCooldown(source) {
     this.onLose();
     let ready = this.ready[source];
@@ -916,7 +916,7 @@ class BuffTracker {
       this.buffs[name] = new Buff(name, info, list, this.options);
       buff = this.buffs[name];
     }
-    
+
     let shareList = info.sharesCooldownWith || [];
     for (let share of shareList) {
       let existingBuff = this.buffs[share];
@@ -1478,9 +1478,23 @@ class Bars {
       threshold: gcd * 3,
     });
 
+    let offguardDuration = () => {
+      // If you've reloaded the jobs overlay since the last time an `0C` line went by,
+      // then spellSpeed will be 0.  Assume that you have at least the default spell speed
+      // at level 60.
+      let defaultLevel = 60;
+      let spellSpeed = Math.max(this.spellSpeed, kLevelMod[defaultLevel][0]);
+
+      return this.CalcGCDFromStat(spellSpeed, 60000);
+    };
+
     this.abilityFuncMap[gLang.kAbility.OffGuard] = () => {
       offguardBox.duration = 0;
-      offguardBox.duration = 30;
+      offguardBox.duration = offguardDuration();
+    };
+    this.abilityFuncMap[gLang.kAbility.PeculiarLight] = () => {
+      offguardBox.duration = 0;
+      offguardBox.duration = offguardDuration();
     };
     this.abilityFuncMap[gLang.kAbility.SongOfTorment] = () => {
       tormentBox.duration = 0;
