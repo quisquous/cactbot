@@ -33,7 +33,7 @@
       infoText: {
         en: 'Bait Super Novas Outside',
         de: 'Köder Supernova draußen',
-        fr: 'Attirer les Supernovas à l\'extérieur',
+        fr: 'Attirez les Supernovas à l\'extérieur',
       },
     },
   ],
