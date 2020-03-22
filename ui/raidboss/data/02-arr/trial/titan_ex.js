@@ -24,7 +24,7 @@
         if (data.role != 'healer' && data.role != 'tank') {
           return {
             en: 'Tank Cleave',
-            fr: 'Cleave sur le tank',
+            fr: 'Tank Cleave',
           };
         }
       },
