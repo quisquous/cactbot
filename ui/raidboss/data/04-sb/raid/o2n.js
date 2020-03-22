@@ -8,7 +8,6 @@
   timelineFile: 'o2n.txt',
   timelineTriggers: [
     {
-      // Unfortunately we can't separate out the main tank without additional
       id: 'O2N Paranormal Wave',
       regex: /Paranormal Wave/,
       beforeSeconds: 5,
@@ -36,6 +35,24 @@
       regexKo: Regexes.ability({ id: '24E8', source: '카타스트로피' }),
       run: function(data, matches) {
         data.activeTank = matches.target;
+      },
+    },
+    {
+      id: 'O2N Gravitational Manipulation',
+      regex: Regexes.headMarker({ id: '0071' }),
+      condition: function(data) {
+        // The active tank shouldn't participate in the stack, as the boss would turn.
+        return !data.me == data.activeTank;
+      },
+      alertText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Stack marker on YOU',
+          };
+        }
+        return {
+          en: 'Levitate--Stack on ' + data.shortName(matches.target),
+        };
       },
     },
     {
@@ -188,7 +205,7 @@
       regexJa: Regexes.startsUsing({ id: '2502', source: 'カタストロフィー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2502', source: '灾变者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2502', source: '카타스트로피', capture: false }),
-      displaySeconds: 8,
+      durationSeconds: 8,
       preRun: function(data) {
         data.antiCounter = data.antiCounter || 0;
       },
