@@ -198,20 +198,27 @@
       },
     },
     {
-      id: 'O2N Petrosphere Handling',
+      id: 'O2N Antilight',
       regex: Regexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
       regexDe: Regexes.startsUsing({ id: '2502', source: 'Katastroph', capture: false }),
       regexFr: Regexes.startsUsing({ id: '2502', source: 'Catastrophe', capture: false }),
       regexJa: Regexes.startsUsing({ id: '2502', source: 'カタストロフィー', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2502', source: '灾变者', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2502', source: '카타스트로피', capture: false }),
-      durationSeconds: 8,
+      durationSeconds: function(data) {
+        if (data.antiCounter == 0 && data.levitating)
+          return 3;
+        return 8;
+      },
       preRun: function(data) {
         data.antiCounter = data.antiCounter || 0;
       },
-      infoText: function(data) {
+      alertText: function(data) {
         // The first Antilight is always blue.
         if (data.antiCounter == 0) {
+          // Players who are already floating should just get an info about Petrospheres.
+          if (data.levitating)
+            return;
           return {
             en: 'Levitate',
           };
@@ -226,6 +233,18 @@
         return {
           en: 'Don\'t levitate',
         };
+      },
+      infoText: function(data) {
+        if (data.antiCounter == 0 && data.levitating) {
+          return {
+            en: 'Antilight',
+            de: 'Dunkellicht',
+            fr: 'Lumière obscure',
+            ja: '暗黒光',
+            cn: '暗黑光',
+            ko: '암흑광',
+          };
+        }
       },
       run: function(data) {
         data.antiCounter += 1;
