@@ -2,7 +2,7 @@
 # CATASTROPHE
 
 hideall "--Reset--"
-hideall " "--sync--"
+hideall "--sync--"
 
 # Unlike O1N and O3N, Catastrophe has no enrage.
 # -ii 24E8 24FC 2500 2501 2505 2514 2515 2516
@@ -105,7 +105,7 @@ hideall " "--sync--"
 635.9 "Erosion" sync /:Fleshy Member:2590:/
 639.9 "Epicenter" sync /:Catastrophe:24A2:/
 645.1 "100 Gs" sync /:Catastrophe:24FB:/
-655.3 "Demon Eye" sync /:Catastrophe:250D:/window 30,30
+655.3 "Demon Eye" sync /:Catastrophe:250D:/ window 30,30
 658.2 "Main Quake" sync /:Catastrophe:24A5:/ jump 507.8
 
 663.5 "Gravitational Wave"
