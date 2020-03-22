@@ -33,7 +33,7 @@
           return {
             en: 'Stack Center for Dives',
             de: 'In der Mitte sammeln für Sturzbombe',
-            fr: 'Packé au centre pour les dives',
+            fr: 'Packez au centre pour les plongeons',
           };
         }
       },
@@ -55,7 +55,7 @@
           return {
             en: 'Flatten on YOU',
             de: 'Einebnen auf DIR',
-            fr: 'Applatissement sur VOUS',
+            fr: 'Compression sur VOUS',
           };
         }
       },
@@ -66,7 +66,7 @@
           return {
             en: 'Flatten on ' + data.ShortName(matches.target),
             de: 'Einebnen auf ' + data.ShortName(matches.target),
-            fr: 'Applatissement sur ' + data.ShortName(matches.target),
+            fr: 'Compression sur ' + data.ShortName(matches.target),
           };
         }
       },
@@ -80,7 +80,7 @@
       alertText: {
         en: 'Megaflare Stack',
         de: 'Megaflare Sammeln',
-        fr: 'MégaBrasier package',
+        fr: 'MégaBrasier Packez',
       },
     },
     {
@@ -178,17 +178,17 @@
         'Akh Morn': 'Akh Morn',
         'Blood Add': 'Add Sang',
         'Dark Aether': 'éther sombre',
-        'Double Dive': 'Plongeon double',
+        'Double Dive': 'Double plongeon',
         'Earth Shaker': 'Secousse',
         'Flare Breath': 'Souffle brasier',
         'Flare Star': 'Astre flamboyant',
-        'Flatten': 'Aplatissement',
+        'Flatten': 'Compression',
         'Gigaflare': 'GigaBrasier',
         'Gust Add': 'Add Bourrasque',
-        'MF Pepperoni': 'MF Pepperoni',
-        'MF Share': 'MégaBrasier Partage',
-        'MF Spread': 'MégaBrasier Dispersion',
-        'MF Tower': 'MégaBrasier Tour',
+        'MF Pepperoni': 'MB Zones au sol',
+        'MF Share': 'MB Partagez',
+        'MF Spread': 'MB Ecartez',
+        'MF Tower': 'MB Tour',
         'Megaflare': 'MégaBrasier',
         'Pain Add': 'Add Douleur',
         'Rage Of Bahamut': 'Courroux de Bahamut',
