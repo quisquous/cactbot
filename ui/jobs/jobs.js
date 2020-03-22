@@ -518,6 +518,14 @@ class BuffTracker {
         sortKey: 0,
         cooldown: 270,
       },
+      offguard: {
+        gainAbility: gLang.kAbility.OffGuard,
+        durationSeconds: 15,
+        icon: '../../resources/icon/status/offguard.png',
+        borderColor: '#F28F7B',
+        sortKey: 1,
+        cooldown: 60,
+      },
       peculiar: {
         gainAbility: gLang.kAbility.PeculiarLight,
         durationSeconds: 15,
