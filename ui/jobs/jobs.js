@@ -486,17 +486,19 @@ class Buff {
     for (let i = 0; i < readyKeys.length; ++i)
       this.ready[readyKeys[i]].removeCallback();
   }
-
-  onGain(seconds, source) {
+  
+  clearCooldown(source) {
     this.onLose();
-
     let ready = this.ready[source];
     if (ready)
       ready.removeCallback();
     let cooldown = this.cooldown[source];
     if (cooldown)
       cooldown.removeCallback();
+  }
 
+  onGain(seconds, source) {
+    this.clearCooldown(source);
     this.active = this.makeAura(this.name, this.activeList, seconds, 0, 0, 'white', '', 1);
     this.addCooldown(source, seconds);
   }
@@ -574,6 +576,7 @@ class BuffTracker {
         borderColor: '#47bf41',
         sortKey: 1,
         cooldown: 60,
+        sharesCooldownWith: ['peculiar'],
       },
       peculiar: {
         gainAbility: gLang.kAbility.PeculiarLight,
@@ -582,6 +585,7 @@ class BuffTracker {
         borderColor: '#F28F7B',
         sortKey: 1,
         cooldown: 60,
+        sharesCooldownWith: ['offguard'],
       },
       trick: {
         gainAbility: gLang.kAbility.TrickAttack,
@@ -911,6 +915,13 @@ class BuffTracker {
     if (!buff) {
       this.buffs[name] = new Buff(name, info, list, this.options);
       buff = this.buffs[name];
+    }
+    
+    let shareList = info.sharesCooldownWith || [];
+    for (let share of shareList) {
+      let existingBuff = this.buffs[share];
+      if (existingBuff)
+        existingBuff.clearCooldown(source);
     }
 
     buff.onGain(seconds, source);
