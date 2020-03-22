@@ -83,9 +83,9 @@
                 safeZoneString1 = "south";
               }
 
-              if (currentHighestCombatant.posX > 84 && currentHighestCombatant.posY < 94) {
+              if (currentHighestCombatant.posX > 84 && currentHighestCombatant.posX < 94) {
                 safeZoneString2 = "west";
-              } else if (currentHighestCombatant.posY > 106 && currentHighestCombatant.posY < 116) {
+              } else if (currentHighestCombatant.posX > 106 && currentHighestCombatant.posX < 116) {
                 safeZoneString2 = "east";
               }
 
