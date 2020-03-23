@@ -22,74 +22,88 @@
 
           let combatantNames = null;
 
+          const ifritLocaleNames = {
+            en: 'Ifrit',
+            de: 'Ifrit',
+            fr: 'Ifrit',
+            ja: 'イフリート',
+          };
+
+          const raktapaksaLocaleNames = {
+            en: 'Raktapaksa',
+            de: 'Raktapaksa',
+            fr: 'Raktapaksa',
+            ja: 'ラクタパクシャ',
+          };
+
           // select the 4 most recent Ifrit or Raktapaksa's depending on phase
-          if (data.phase === 'ifrit') {
-            combatantNames = { names: ['Ifrit', 'イフリート', '伊弗利特', '이프리트'] };
-          } else {
-            // @TODO: Need the CN/KR names for Raktapaksa
-            combatantNames = { names: ['Raktapaksa', 'ラクタパクシャ'] };
-          }
+          if (data.phase === 'ifrit')
+            combatantNames = { names: [ifritLocaleNames[data.lang]] };
+          else
+            combatantNames = { names: [raktapaksaLocaleNames[data.lang]] };
+
 
           let combatantData = await window.callOverlayHandler({
             call: 'getCombatants',
             data: combatantNames,
           });
 
-          if (combatantData !== null &&
+          // if we could not retrieve combatant data, the
+          // trigger will not work, so just resume promise here.
+          if (!(combatantData !== null &&
             combatantData.combatants &&
-            combatantData.combatants.length) {
-            // helper function in order to check which one of the comparison,
-            // has the highest numeric value of the HEX ID
-            const idComparer = (id1, id2) => {
-              if (parseInt(id1, 16) > parseInt(id2, 16))
-                return id1;
-
-              return id2;
-            };
-
-            let currentHighestCombatant = null;
-
-            // we need to filter for the Ifrit with the highest HEX ID
-            // since that one is always the safe spot.
-            combatantData.combatants.forEach((combatant) => {
-              if (currentHighestCombatant) {
-                let newHighestID = idComparer(currentHighestCombatant.ID, combatant.ID);
-
-                if (newHighestID !== combatant.ID)
-                  currentHighestCombatant = combatant;
-              } else {
-                currentHighestCombatant = combatant;
-              }
-            });
-
-            // all variation ranges for all the 9 ball positions for the kicking actors
-            // north      x: 96-104   y: 85-93
-            // northeast  x: 107-115  y: 85-93
-            // northwest  x: 85-93    y: 85-93
-            // east       x: 107-115  y: 96-104
-            // west       x: 85-93    y: 96-104
-            // south      x: 96-104   y: 107-115
-            // southeast  x: 107-115  y: 107-115
-            // southwest  x: 85-93    y: 107-115
-            let safeZoneString1 = '';
-            let safeZoneString2 = '';
-
-            // don't need to go through all the posibilities,
-            // only those 4 ifs do reflect the above positions
-            if (currentHighestCombatant.posY > 84 && currentHighestCombatant.posY < 94)
-              safeZoneString1 = 'north';
-            else if (currentHighestCombatant.posY > 106 && currentHighestCombatant.posY < 116)
-              safeZoneString1 = 'south';
-
-
-            if (currentHighestCombatant.posX > 84 && currentHighestCombatant.posX < 94)
-              safeZoneString2 = 'west';
-            else if (currentHighestCombatant.posX > 106 && currentHighestCombatant.posX < 116)
-              safeZoneString2 = 'east';
-
-
-            data.safeZone = safeZoneString1 + safeZoneString2;
+            combatantData.combatants.length)) {
+            data.safeZone = null;
+            res();
           }
+
+          // we need to filter for the Ifrit with the highest HEX ID
+          // since that one is always the safe spot.
+          let currentHighestCombatant =
+            combatantData.combatants.sort((a, b) => a.ID.localeCompare(b.ID)).pop();
+
+          // all variation ranges for all the 9 ball positions for the kicking actors
+          // north      x: 96-104   y: 85-93
+          // northeast  x: 107-115  y: 85-93
+          // northwest  x: 85-93    y: 85-93
+          // east       x: 107-115  y: 96-104
+          // west       x: 85-93    y: 96-104
+          // south      x: 96-104   y: 107-115
+          // southeast  x: 107-115  y: 107-115
+          // southwest  x: 85-93    y: 107-115
+          let safeZoneObj1 = { en: '', de: '' };
+          let safeZoneObj2 = { en: '', de: '' };
+
+          // don't need to go through all the posibilities,
+          // only those 4 ifs do reflect the above positions
+          if (currentHighestCombatant.posY > 84 && currentHighestCombatant.posY < 94) {
+            safeZoneObj1 = {
+              en: 'north',
+              de: 'nord',
+            };
+          } else if (currentHighestCombatant.posY > 106 && currentHighestCombatant.posY < 116) {
+            safeZoneObj1 = {
+              en: 'south',
+              de: 'süd',
+            };
+          }
+
+          if (currentHighestCombatant.posX > 84 && currentHighestCombatant.posX < 94) {
+            safeZoneObj2 = {
+              en: 'west',
+              de: 'westen',
+            };
+          } else if (currentHighestCombatant.posX > 106 && currentHighestCombatant.posX < 116) {
+            safeZoneObj2 = {
+              en: 'east',
+              de: 'osten',
+            };
+          }
+
+          data.safeZone = {
+            en: safeZoneObj1.en + safeZoneObj2.en,
+            de: safeZoneObj1.de + safeZoneObj2.de,
+          };
 
           res();
         });
