@@ -104,6 +104,8 @@
 04-sb/raid/o1n.txt
 04-sb/raid/o1s.js
 04-sb/raid/o1s.txt
+04-sb/raid/o2n.js
+04-sb/raid/o2n.txt
 04-sb/raid/o2s.js
 04-sb/raid/o2s.txt
 04-sb/raid/o3s.js
