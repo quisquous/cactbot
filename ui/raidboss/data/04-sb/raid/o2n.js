@@ -11,50 +11,10 @@
       id: 'O2N Paranormal Wave',
       regex: /Paranormal Wave/,
       beforeSeconds: 5,
-      infoText: function(data) {
-        if (data.activeTank == data.me) {
-          return {
-            en: 'Tank cleave on YOU',
-          };
-        }
-        return {
-          en: 'Avoid tank cleave',
-        };
-      },
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
-    {
-      // Used for avoiding Paranormal Wave.
-      id: 'O2N Tank Tracking',
-      regex: Regexes.ability({ id: '24E8', source: 'Catastrophe' }),
-      regexDe: Regexes.ability({ id: '24E8', source: 'Katastroph' }),
-      regexFr: Regexes.ability({ id: '24E8', source: 'Catastrophe' }),
-      regexJa: Regexes.ability({ id: '24E8', source: 'カタストロフィー' }),
-      regexCn: Regexes.ability({ id: '24E8', source: '灾变者' }),
-      regexKo: Regexes.ability({ id: '24E8', source: '카타스트로피' }),
-      run: function(data, matches) {
-        data.activeTank = matches.target;
-      },
-    },
-    {
-      id: 'O2N Gravitational Manipulation',
-      regex: Regexes.headMarker({ id: '0071' }),
-      condition: function(data) {
-        // The active tank shouldn't participate in the stack, as the boss would turn.
-        return !data.me == data.activeTank;
-      },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack marker on YOU',
-          };
-        }
-        return {
-          en: 'Levitate--Stack on ' + data.shortName(matches.target),
-        };
-      },
-    },
     {
       id: 'O2N Levitation Gain',
       regex: Regexes.gainsEffect({ effect: 'Levitation' }),
@@ -79,6 +39,31 @@
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.levitating = false;
+      },
+    },
+    {
+      id: 'O2N Gravitational Manipulation Stack',
+      regex: Regexes.headMarker({ id: '0071' }),
+      alertText: function(data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Stack marker on YOU',
+          };
+        }
+        return {
+          en: 'Stack on ' + data.shortName(matches.target),
+        };
+      },
+    },
+    {
+      id: 'O2N Gravitational Manipulation Float',
+      regex: Regexes.headMarker({ id: '0071' }),
+      condition: function(data, matches) {
+        return !data.levitating && Conditions.targetIsNotYou();
+      },
+      infoText: {
+        en: 'Levitate',
+        de: 'Schweben',
       },
     },
     {
@@ -132,8 +117,8 @@
       alertText: function(data) {
         if (!data.levitating) {
           return {
-            en: 'Earthquake: Levitate',
-            de: 'Erdbeben: Schweben',
+            en: 'Levitate',
+            de: 'Schweben',
           };
         }
       },
@@ -179,8 +164,8 @@
       alertText: function(data) {
         if (!data.levitating) {
           return {
-            en: '6 Fulms Under: Levitate',
-            de: 'Versinkend: Schweben',
+            en: 'Levitate',
+            de: 'Schweben',
           };
         }
       },
@@ -227,7 +212,7 @@
         // The second, fifth, eighth, etc Antilights require moving to the center as well.
         if (data.antiCounter % 3 == 1) {
           return {
-            en: 'Don\'t levitate--Go center',
+            en: 'Go center and don\'t levitate',
           };
         }
         return {
