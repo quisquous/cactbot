@@ -33,7 +33,7 @@
           return {
             en: 'Stack Center for Dives',
             de: 'In der Mitte sammeln für Sturzbombe',
-            fr: 'Packez au centre pour les plongeons',
+            fr: 'Packez-vous au centre pour les plongeons',
           };
         }
       },
@@ -178,7 +178,7 @@
         'Akh Morn': 'Akh Morn',
         'Blood Add': 'Add Sang',
         'Dark Aether': 'éther sombre',
-        'Double Dive': 'Double plongeon',
+        'Double Dive': 'Plongeon double',
         'Earth Shaker': 'Secousse',
         'Flare Breath': 'Souffle brasier',
         'Flare Star': 'Astre flamboyant',
