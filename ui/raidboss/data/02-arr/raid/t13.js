@@ -80,7 +80,7 @@
       alertText: {
         en: 'Megaflare Stack',
         de: 'Megaflare Sammeln',
-        fr: 'MégaBrasier Packez',
+        fr: 'MégaBrasier Packez-vous',
       },
     },
     {
