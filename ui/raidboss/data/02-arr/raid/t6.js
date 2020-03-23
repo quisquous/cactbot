@@ -179,7 +179,7 @@
       infoText: {
         en: 'Stack for Acid',
         de: 'Sammeln für Säure-Blubberblase',
-        fr: 'Packez-vous pour Pluie acide',
+        fr: 'Packez pour Pluie acide',
       },
     },
     {
@@ -220,7 +220,7 @@
           return {
             en: 'Share Laser (on YOU)',
             de: 'Geteilter Laser (auf DIR)',
-            fr: 'Partage de laser (sur VOUS)',
+            fr: 'Partagez le laser (sur VOUS)',
           };
         }
         return {
