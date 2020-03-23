@@ -29,7 +29,7 @@
       regexJa: Regexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
-        fr: 'Evitez les AoE',
+        fr: 'Evitez les griffes',
         ko: '초록 발톱 피하기',
       },
     },
