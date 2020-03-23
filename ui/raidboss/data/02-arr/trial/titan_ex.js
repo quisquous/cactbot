@@ -11,23 +11,19 @@
       id: 'TitanEx Mountain Buster',
       regex: /Mountain Buster/,
       beforeSeconds: 7,
-      alertText: function(data) {
-        if (data.role == 'healer' || data.role == 'tank') {
-          return {
-            en: 'Tankbuster',
-            de: 'Tankbuster',
-            fr: 'Tankbuster',
-          };
-        }
+      condition: function(data) {
+        return data.role == 'healer' || data.role == 'tank';
       },
-      infoText: function(data) {
-        if (data.role != 'healer' && data.role != 'tank') {
-          return {
-            en: 'Tank Cleave',
-            fr: 'Tank Cleave',
-          };
-        }
+      response: Responses.tankBuster(),
+    },
+    {
+      id: 'TitanEx Mountain Buster Avoid',
+      regex: /Mountain Buster/,
+      beforeSeconds: 7,
+      condition: function(data) {
+        return data.role != 'healer' && data.role != 'tank';
       },
+      response: Responses.tankCleave(),
     },
     {
       id: 'TitanEx Tumult',
