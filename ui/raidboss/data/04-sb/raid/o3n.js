@@ -278,6 +278,8 @@
         'Soul Reaper': 'Seelenschnitter',
       },
       'replaceText': {
+        'Aetherial Pull': 'Einsaugen',
+        'Aetherial Tear': 'Ätherspalt',
         'Cross Reaper': 'Sensenschwung',
         'Dimensional Wave': 'Dimensionswelle',
         'Frost Breath': 'Frostiger Atem',
@@ -297,6 +299,7 @@
         'The Game': 'Spielbeginn',
         'The Playing Field': 'Spielfeld',
         'The Queen\'s Waltz': 'Tanz der Königin',
+        'Ultimum': 'Ende der Dimension',
         'Uplift': 'Erhöhung',
       },
       '~effectNames': {
@@ -314,6 +317,8 @@
         'Soul Reaper': 'faucheur d\'âmes',
       },
       'replaceText': {
+        'Aetherial Pull': 'Aspiration',
+        'Aetherial Tear': 'Déchirure dimensionnelle',
         'Cross Reaper': 'Fauchaison',
         'Dimensional Wave': 'Onde dimensionnelle',
         'Frost Breath': 'Souffle glacé',
@@ -333,6 +338,7 @@
         'The Game': 'Début de partie',
         'The Playing Field': 'Plateau de jeu',
         'The Queen\'s Waltz': 'Danse de la reine',
+        'Ultimum': 'Déclin dimensionnel',
         'Uplift': 'Exhaussement',
       },
       '~effectNames': {
@@ -350,6 +356,8 @@
         'Soul Reaper': 'ソウルリーパー',
       },
       'replaceText': {
+        'Aetherial Pull': '吸引',
+        'Aetherial Tear': '次元の裂け目',
         'Cross Reaper': 'クロスリーパー',
         'Dimensional Wave': '次元波動',
         'Frost Breath': 'フロストブレス',
@@ -369,6 +377,7 @@
         'The Game': 'ゲームスタート',
         'The Playing Field': 'ゲームボード',
         'The Queen\'s Waltz': '女王の舞い',
+        'Ultimum': '次元の終焉',
         'Uplift': '隆起',
       },
       '~effectNames': {
@@ -386,6 +395,8 @@
         'Soul Reaper': '灵魂收割者',
       },
       'replaceText': {
+        'Aetherial Pull': '吸引',
+        'Aetherial Tear': '次元裂缝',
         'Cross Reaper': '交叉斩击',
         'Dimensional Wave': '次元波动',
         'Frost Breath': '寒霜吐息',
@@ -405,6 +416,7 @@
         'The Game': '游戏开始',
         'The Playing Field': '游戏盘面',
         'The Queen\'s Waltz': '女王之舞',
+        'Ultimum': '次元终结',
         'Uplift': '隆起',
       },
       '~effectNames': {
@@ -422,6 +434,8 @@
         'Soul Reaper': '영혼 수확자',
       },
       'replaceText': {
+        'Aetherial Pull': '흡인',
+        'Aetherial Tear': '차원의 틈새',
         'Cross Reaper': '사신의 낫',
         'Dimensional Wave': '차원 파동',
         'Frost Breath': '서리 숨결',
@@ -441,6 +455,7 @@
         'The Game': '게임 시작',
         'The Playing Field': '게임판',
         'The Queen\'s Waltz': '여왕의 춤',
+        'Ultimum': '차원의 종언',
         'Uplift': '융기',
       },
       '~effectNames': {

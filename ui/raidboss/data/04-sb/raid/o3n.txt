@@ -44,7 +44,7 @@
 
 # Intermission. Nothing of import happens here.
 216.6 "Aetherial Pull" sync /:Aetherial Tear:2475:/
-272.9 "Starry End (Ultimum)" # sync /:Halicarnassus:2474:/
+272.9 "Ultimum (Starry End)" # sync /:Halicarnassus:2477:/
 # There is unfortunately no way to continue to display 
 # Ultimum if another player escapes before the user
 

@@ -15,7 +15,7 @@
     'Uplift': '2473', // Ground spears, Queen's Waltz effect, Halicarnassus
   },
   damageFail: {
-    'Ultimum': '2474', // Instant kill. Used if the player does not exit the sand maze fast enough.
+    'Ultimum': '2477', // Instant kill. Used if the player does not exit the sand maze fast enough.
   },
   triggers: [
     {
