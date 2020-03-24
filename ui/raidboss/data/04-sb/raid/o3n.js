@@ -11,10 +11,6 @@
       id: 'O3N Frost Breath',
       regex: /Frost Breath/,
       beforeSeconds: 4,
-      condition: function(data) {
-        return data.role == 'tank'&& !data.activeTank == data.me;
-      },
-      // This will at least warn the Dragon tank that they need to be careful.
       response: Responses.tankCleave('alert'),
     },
   ],
@@ -31,6 +27,10 @@
         return !data.phaseNumber;
       },
       run: function(data) {
+        // Indexing phases at 1 so as to make phases match what humans expect.
+        // 1: We start here.
+        // 2: Cave phase with Uplifts.
+        // 3: Post-intermission, with good and bad frogs.
         data.phaseNumber = 1;
       },
     },
@@ -68,20 +68,31 @@
         if (data.holyTargets[0] == data.me) {
           return {
             en: 'Stack on YOU',
-            de: 'Stack auf DIR',
+            de: 'Auf DIR sammeln',
+            fr: 'Package sur VOUS',
+            ja: '自分にスタック',
+            cn: '集合点名',
+            ko: '쉐어징 대상자',
           };
         }
         for (let i = 1; i < 3; i++) {
           if (data.holyTargets[i] == data.me) {
             return {
-              en: 'Get out',
-              de: 'Raus da',
+              en: 'Out',
+              de: 'Raus',
+              ja: '外へ',
+              fr: 'Dehors',
+              cn: '远离',
+              ko: '밖으로',
             };
           }
         }
         return {
           en: 'Stack on ' + data.holyTargets[0],
           de: 'Stack auf ' + data.holyTargets[0],
+          ja: data.holyTargets[0] + 'にスタック',
+          cn: '靠近 ' + data.holyTargets[0] + '集合',
+          ko: '쉐어징 → ' + data.holyTargets[0],
         };
       },
       run: function(data) {
@@ -140,7 +151,7 @@
         return data.role == 'tank';
       },
       infoText: {
-        en: 'Grab dragon--point away',
+        en: 'Grab dragon',
       },
     },
     {

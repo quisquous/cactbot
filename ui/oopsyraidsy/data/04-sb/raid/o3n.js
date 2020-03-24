@@ -57,6 +57,9 @@
       run: function(e, data) {
         data.gameCount = 0;
         // Indexing phases at 1 so as to make phases match what humans expect.
+        // 1: We start here.
+        // 2: Cave phase with Uplifts.
+        // 3: Post-intermission, with good and bad frogs.
         data.phaseNumber = 1;
         data.initialized = true;
       },
@@ -84,7 +87,7 @@
         return e.damage > 0;
       },
       mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: { en: e.abilityName } };
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
       run: function(e, data) {
         data.gameCount += 1;
