@@ -179,7 +179,7 @@
       infoText: {
         en: 'Stack for Acid',
         de: 'Sammeln für Säure-Blubberblase',
-        fr: 'Packez pour Pluie acide',
+        fr: 'Packez-vous pour Pluie acide',
       },
     },
     {
