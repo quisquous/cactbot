@@ -75,7 +75,7 @@
 438.2 "Ribbit (avoid)" sync /:Halicarnassus:2466:/
 445.3 "The Game (symbols)" sync /:Halicarnassus:246D:/
 454.4 "Spellblade Holy" sync /:Halicarnassus:22EF:/
-459.6 584.6 "Mindjack" sync /:Halicarnassus:246[789A]:/ window 30,30
+459.6 "Mindjack" sync /:Halicarnassus:246[789A]:/ window 30,30
 463.5 "Holy Blur" sync /:Halicarnassus:2464:/
 465.3 "Spellblade Thunder III" sync /:Halicarnassus:2462:/
 472.4 "Place Dark Token" sync /:Halicarnassus:22FC:/
