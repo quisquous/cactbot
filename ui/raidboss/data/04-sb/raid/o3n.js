@@ -273,6 +273,7 @@
     {
       'locale': 'de',
       'replaceSync': {
+        'Aetherial Tear': 'Ätherspalt',
         'Great Dragon': 'Riesendrache',
         'Halicarnassus': 'Halikarnassos',
         'Soul Reaper': 'Seelenschnitter',
@@ -312,6 +313,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        'Aetherial Tear': 'Déchirure dimensionnelle',
         'Great Dragon': 'dragon suprême',
         'Halicarnassus': 'Halicarnasse',
         'Soul Reaper': 'faucheur d\'âmes',
@@ -351,6 +353,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
+        'Aetherial Tear': '次元の裂け目',
         'Great Dragon': 'ドラゴングレイト',
         'Halicarnassus': 'ハリカルナッソス',
         'Soul Reaper': 'ソウルリーパー',
@@ -390,6 +393,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
+        'Aetherial Tear': '次元裂缝',
         'Great Dragon': '巨龙',
         'Halicarnassus': '哈利卡纳苏斯',
         'Soul Reaper': '灵魂收割者',
@@ -429,6 +433,7 @@
     {
       'locale': 'ko',
       'replaceSync': {
+        'Aetherial Tear': '차원의 틈새',
         'Great Dragon': '거대 드래곤',
         'Halicarnassus': '할리카르나소스',
         'Soul Reaper': '영혼 수확자',
