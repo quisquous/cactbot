@@ -154,7 +154,7 @@
       alertText: {
         en: 'Heavensfall',
         de: 'Himmelssturz',
-        fr: 'Chute du ciel',
+        fr: 'Destruction universelle',
       },
     },
     {
