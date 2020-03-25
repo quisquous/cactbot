@@ -227,6 +227,7 @@
         if (x >= 99 && x <= 101) {
           return {
             en: 'North / South',
+            de: 'Norden / Süden',
             fr: 'Nord / Sud',
             ko: '남 / 북',
             cn: '南北站位',
@@ -234,6 +235,7 @@
         }
         return {
           en: 'East / West',
+          de: 'Osten / Westen',
           fr: 'Est / Ouest',
           ko: '동 / 서',
           cn: '东西站位',
@@ -558,7 +560,7 @@
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D68', capture: false }),
       alertText: {
         en: 'Back Then Front',
-        de: 'Nach Hinten, danach nach Forne',
+        de: 'Nach Hinten, danach nach Vorne',
         fr: 'Derrière puis devant',
         ko: '뒤로 => 앞으로',
         cn: '后 => 前',
@@ -574,7 +576,7 @@
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D69', capture: false }),
       alertText: {
         en: 'Front Then Back',
-        de: 'Nach Forne, danach nach Hinten',
+        de: 'Nach Vorne, danach nach Hinten',
         fr: 'Devant puis derrière',
         ko: '앞으로 => 뒤로',
         cn: '前 => 后',
@@ -632,6 +634,7 @@
       alertText: {
         en: 'Tank Stack in Tower',
         cn: '坦克塔内分摊',
+        de: 'Auf Tank im Turm sammeln',
         fr: 'Tank packé dans les tours',
       },
     },
@@ -647,6 +650,7 @@
       alertText: {
         en: 'Tank Spread in Tower',
         cn: '坦克塔内分散',
+        de: 'Tank im Turm verteilen',
         fr: 'Tank écarté dans les tours',
       },
     },
