@@ -9,7 +9,7 @@
   zoneRegex: {
     en: /^The Minstrel's Ballad: Hades's Elegy$/,
     cn: /^哈迪斯孤念歼灭战$/,
-    ko: /(^극 하데스 토벌전$)|(693)/,
+    ko: /^극 하데스 토벌전$/,
   },
   timelineFile: 'hades-ex.txt',
   timelineTriggers: [
