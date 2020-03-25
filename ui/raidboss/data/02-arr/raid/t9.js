@@ -23,7 +23,7 @@
       infoText: {
         en: 'Dive on Main Tank',
         de: 'Sturz auf den Main Tank',
-        fr: 'Plongeon sur le main tank',
+        fr: 'Plongeon sur le Main Tank',
       },
     },
     {
@@ -33,7 +33,7 @@
       infoText: {
         en: 'Bait Super Novas Outside',
         de: 'Köder Supernova draußen',
-        fr: 'Attirer super novas à l\'extérieur',
+        fr: 'Attirez les Supernovas à l\'extérieur',
       },
     },
   ],
@@ -56,7 +56,7 @@
       alarmText: {
         en: 'Blight on YOU',
         de: 'Pestschwinge auf DIR',
-        fr: 'Bile sur VOUS',
+        fr: 'Bile du Rapace sur VOUS',
       },
     },
     {
@@ -78,7 +78,7 @@
         return {
           en: 'Blight on ' + data.ShortName(matches.target),
           de: 'Pestschwinge auf ' + data.ShortName(matches.target),
-          fr: 'Bile sur ' + data.ShortName(matches.target),
+          fr: 'Bile du Rapace sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -112,7 +112,7 @@
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Sammeln auf ' + data.ShortName(matches.target),
-          fr: 'Package sur ' + data.ShortName(matches.target),
+          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
         };
       },
     },
@@ -140,7 +140,7 @@
       alertText: {
         en: 'Silence Blue Golem',
         de: 'Blauen Golem verstummen',
-        fr: 'Silence le Golem bleu',
+        fr: 'Interrompez le Golem bleu',
       },
     },
     {
@@ -154,7 +154,7 @@
       alertText: {
         en: 'Heavensfall',
         de: 'Himmelssturz',
-        fr: 'Chutes du ciel',
+        fr: 'Destruction universelle',
       },
     },
     {
@@ -171,7 +171,7 @@
       infoText: {
         en: 'Garotte on YOU',
         de: 'Leicht fixierbar auf DIR',
-        fr: 'Sangle sur VOUS',
+        fr: 'Sangle accélérée sur VOUS',
       },
       run: function(data) {
         data.garotte = true;
@@ -191,7 +191,7 @@
       alarmText: {
         en: 'Cleanse Garotte',
         de: 'reinige Leicht fixierbar',
-        fr: 'Guerrisez Sangle',
+        fr: 'Dissipez Sangle accélérée',
       },
     },
     {
@@ -386,7 +386,7 @@
         return {
           en: 'Go To ' + marker + ' (in ' + dir + ')',
           de: 'Gehe zu ' + marker + ' (im ' + dir + ')',
-          fr: 'Aller en ' + marker + ' (au ' + dir + ')',
+          fr: 'Allez en ' + marker + ' (au ' + dir + ')',
           ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
         };
       },
@@ -397,7 +397,7 @@
         return {
           en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           de: 'Gehe zu ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          fr: 'Aller en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+          fr: 'Allez en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
         };
       },
@@ -468,9 +468,9 @@
         'Dalamud Dive': 'Chute de Dalamud',
         'Divebomb': 'Bombe plongeante',
         'Fireball': 'Boule de feu',
-        'Ghost': 'fantôme',
+        'Ghost': 'Fantôme',
         'Golem Meteors': 'Golem de Dalamud',
-        'Heavensfall': 'Chute céleste',
+        'Heavensfall': 'Destruction universelle',
         'Iron Chariot': 'Char de fer',
         'Lunar Dynamo': 'Dynamo lunaire',
         'Megaflare': 'MégaBrasier',
