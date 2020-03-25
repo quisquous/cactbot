@@ -13,6 +13,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Liftoff Soon',
+        fr: 'Décollage bientôt',
       },
     },
   ],
@@ -38,6 +39,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Hydrothermal on You',
+        fr: 'Missile hydrothermique sur Vous',
       },
     },
     {
@@ -50,6 +52,7 @@
           return;
         return {
           en: 'Hydrothermal on ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
+          fr: 'Missile hydrothermique sur ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
         };
       },
     },
@@ -67,6 +70,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Bait Resin Bomb',
+        fr: 'Placez-vous pour Bombe de résine',
       },
     },
     {
