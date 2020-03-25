@@ -282,7 +282,6 @@
         'Otherworldly Heat': 'Sengendes Seelenbrennen',
         'Plummet': 'Ausloten',
         'Scorching Left/Right': 'Linker/Rechter Höllenhieb',
-        'Scorching Right': 'Rechter Höllenhieb',
         'Shadowbolt': 'Schattenramme',
         'Storm Of Color': 'Frühlingssturm',
         'Tribulation': 'Schwermütiges Zaudern',
@@ -319,8 +318,7 @@
         'Ode To Lost Love': 'Rhapsodie de l\'amour fou',
         'Otherworldly Heat': 'Croix de feu',
         'Plummet': 'Piqué',
-        'Scorching Left/Right': 'Scrutement Gauche/Droite', // FIXME
-        'Scorching Right': 'Scrutement Gauche',
+        'Scorching Left/Right': 'Scrutement Gauche/Droite',
         'Shadowbolt': 'Éclair ombreux',
         'Storm Of Color': 'Orage de printemps',
         'Tribulation': 'Tribulation',
@@ -328,7 +326,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Enslaved Love': 'エンスレイブド・ラヴ',
         'Leannan Sith': 'リャナンシー',
@@ -355,8 +352,7 @@
         'Ode To Lost Love': '狂愛の歌声',
         'Otherworldly Heat': '鬼炎斬',
         'Plummet': 'プラメット',
-        'Scorching Left/Right': 'Scorching Left/Right', // FIXME
-        'Scorching Right': '右辺炎獄斬',
+        'Scorching Left/Right': '左/右辺炎獄斬',
         'Shadowbolt': 'シャドウボルト',
         'Storm Of Color': '春嵐',
         'Tribulation': 'トリビュレーション',
@@ -394,7 +390,6 @@
         'Otherworldly Heat': '鬼炎斩',
         'Plummet': '掉落',
         'Scorching Left/Right': '左/右炎狱斩',
-        'Scorching Right': '右炎狱斩',
         'Shadowbolt': '暗影雷',
         'Storm Of Color': '春风',
         'Tribulation': '苦难',
