@@ -163,7 +163,7 @@
         fr: 'Cachez-vous derrière le mirroir',
         ja: '鏡の後ろに',
         cn: '镜子后躲避',
-        ko: '문 뒤에 숨기',
+        ko: '문 없는 곳 반대쪽으로',
       },
     },
     {
