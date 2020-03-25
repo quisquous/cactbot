@@ -6,7 +6,7 @@
   zoneRegex: {
     en: /^The Grand Cosmos$/,
     cn: /^魔法宫殿宇宙宫$/,
-    ko: /^그랑 코스모스$/,
+    ko: /(^그랑 코스모스$)|(692)/,
   },
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [
