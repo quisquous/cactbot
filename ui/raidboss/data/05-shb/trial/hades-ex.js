@@ -1164,6 +1164,7 @@
         'Forked Lightning': '갈래 번개',
         'Gigantomachy': '기간토마키아',
         'Height Of Chaos': '혼돈의 정점',
+        'Life In Captivity': '감금된 삶',
         'Magic Chakram/Spear': '마법 차크람/창',
         'Magic Spear/Chakram': '마법 창/차크람',
         'Megiddo Flame': '메기도 플레임',

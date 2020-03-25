@@ -1082,7 +1082,7 @@
         '9S-Operated Walking Fortress': '9S: 다각전차 종속',
         'Engels': '엥겔스',
         '(?<! )Flight Unit': '비행 유닛',
-        'Goliath Tank': '대형 전차',
+        '(?<! )Goliath Tank': '대형 전차',
         'Hobbes': '홉스',
         'Marx': '마르크스',
         'Marx [LR]': '마르크스 (왼쪽|오른쪽)',
@@ -1102,8 +1102,14 @@
       },
       'replaceText': {
         '--jump--': '--점프--',
+        'F/B': '앞/뒤',
+        'B/F': '뒤/앞',
+        'L/R': '좌/우',
+        'R/L': '우/좌',
         '360-Degree Bombing Maneuver': '공격: 미사일 원형 사격',
-        'Adds': '쫄',
+        'Tank Adds': '대형 전차 쫄',
+        'Serial-Jointed Adds': ' 다관절형 쫄',
+        '(?<! )Adds': '쫄',
         'Anti-Personnel Missile': '대인 미사일 난사',
         'Area Bombardment': '미사일 난사',
         'Area Bombing Maneuver': '공격: 미사일 일제 사격',
@@ -1114,7 +1120,7 @@
         'Crusher Adds': '분쇄',
         'Crushing Wheel': '협공 차륜',
         'Demolish Structure': '지형 파괴 공격',
-        'Diffuse Laser': '확산 레이저', // 같은 영어에 다른 번역 - 광확산 레이저, 확살 레이저 번역 두 개
+        '(?<! )Diffuse Laser': '확산 레이저', // 같은 영어에 다른 번역 - 광확산 레이저, 확살 레이저 번역 두 개
         'Energy Assault': '연속 에너지탄',
         'Energy Barrage': '에너지 탄막',
         'Energy Blast': '에너지 작렬',
