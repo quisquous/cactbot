@@ -332,7 +332,7 @@
         fr: 'Attaquez Igeyorhm',
         ja: 'イゲオルムを攻撃',
         cn: '攻击以格约姆',
-        ko: 'Igeyorhm 공격',
+        ko: '이게요름 공격',
       },
       run: function(data) {
         data.brand = 'fire';
