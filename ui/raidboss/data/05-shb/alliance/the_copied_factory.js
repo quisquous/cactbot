@@ -1120,7 +1120,7 @@
         'Crusher Adds': '분쇄',
         'Crushing Wheel': '협공 차륜',
         'Demolish Structure': '지형 파괴 공격',
-        '(?<! )Diffuse Laser': '확산 레이저', // 같은 영어에 다른 번역 - 광확산 레이저, 확살 레이저 번역 두 개
+        '(?<! )Diffuse Laser': '확산 레이저', // 같은 영어에 다른 번역 - 광확산 레이저, 확산 레이저 번역 두 개
         'Energy Assault': '연속 에너지탄',
         'Energy Barrage': '에너지 탄막',
         'Energy Blast': '에너지 작렬',
