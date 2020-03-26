@@ -134,6 +134,8 @@
         'Gunnery Pod': 'Feu d\'artillerie',
         'Hydrothermal Missile': 'Missile hydrothermique',
         'Hypercompressed Plasma': 'Plasma hypercomprimé',
+        'Kaltstrahl': 'Kaltstrahl'
+        'Kaltstrahl Enrage': 'Kaltstrahl Enrage'
         'Missile Impact': 'Frappe de missile',
         'Photon Spaser': 'Spaser à photons',
         'Pressure Increase': 'Hausse de pression',
