@@ -122,7 +122,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-		'Faust': 'Faust',
+	'Faust': 'Faust',
         'Oppressor 0.5': 'Oppresseur 0.5',
         'Oppressor': 'Oppresseur',	
       },
