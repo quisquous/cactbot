@@ -480,7 +480,7 @@
       regexFr: Regexes.ability({ source: 'Idole Des Ténèbres', id: '4C7A', capture: false }),
       regexJa: Regexes.ability({ source: 'ダークアイドル', id: '4C7A', capture: false }),
       // Color buffs go out immediately after the cast
-      delay: 0.1,
+      delaySeconds: 0.1,
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
