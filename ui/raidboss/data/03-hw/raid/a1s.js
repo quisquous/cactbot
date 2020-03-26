@@ -146,5 +146,5 @@
         'Quick Landing': 'Atterissage rapide',
       },
     },
-  ]
+  ],
 }];
