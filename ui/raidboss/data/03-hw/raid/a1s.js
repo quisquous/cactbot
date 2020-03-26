@@ -122,6 +122,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        'Faust': 'Faust',
         'Oppressor 0.5': 'Oppresseur 0.5',
         'Oppressor': 'Oppresseur',
       },
@@ -130,7 +131,6 @@
         'Distress Beacon': 'Fanal de détresse',
         'Emergency Deployment': 'Déploiement d\'urgence',
         'Emergency Liftoff': 'Décollage d\'urgence',
-        'Enrage': 'Enrage',
         'Gunnery Pod': 'Feu d\'artillerie',
         'Hydrothermal Missile': 'Missile hydrothermique',
         'Hypercompressed Plasma': 'Plasma hypercomprimé',
