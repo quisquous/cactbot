@@ -6,7 +6,7 @@ using Newtonsoft.Json.Linq;
 namespace Cactbot {
   public class FFXIVProcessKo : FFXIVProcess {
     //
-    // for FFXIV KO version: 5.01
+    // for FFXIV KO version: 5.1
     //
     // Latest KO version can be found at:
     // https://www.ff14.co.kr/news/notice?category=3

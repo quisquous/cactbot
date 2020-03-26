@@ -137,7 +137,7 @@
       regexFr: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
       regexJa: Regexes.startsUsing({ id: '4764', source: 'ルゴス' }),
       regexCn: Regexes.startsUsing({ id: '4764', source: '卢格斯' }),
-      regexKo: Regexes.startsUsing({ id: '4764', source: '卢格斯' }),
+      regexKo: Regexes.startsUsing({ id: '4764', source: '루구스' }),
       response: Responses.tankBuster(),
     },
     {
@@ -147,7 +147,7 @@
       regexFr: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4765', source: '루구스', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
