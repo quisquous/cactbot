@@ -54,6 +54,7 @@
       regexDe: Regexes.startsUsing({ id: '48CF', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48CF', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48CF', source: '多関節型：司令機', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48CF', source: '다관절형: 사령기', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -66,6 +67,7 @@
       regexDe: Regexes.startsUsing({ id: '48B5', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48B5', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48B5', source: '多関節型：司令機', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48B5', source: '다관절형: 사령기', capture: false }),
       response: Responses.getBehind(),
     },
     {
@@ -75,6 +77,7 @@
       regexDe: Regexes.startsUsing({ id: '48FA', source: 'Modell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48FA', source: 'Modèle Multiarticulé : Soldat', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48FA', source: '多関節型：兵隊機', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48FA', source: '다관절형: 병정기', capture: false }),
       suppressSeconds: 15,
       infoText: {
         en: 'Look for Lasers',
@@ -91,6 +94,7 @@
       regexDe: Regexes.startsUsing({ id: '48CE', source: 'Befehlsmodell Mit Omnigelenk' }),
       regexFr: Regexes.startsUsing({ id: '48CE', source: 'Modèle Multiarticulé : Commandant' }),
       regexJa: Regexes.startsUsing({ id: '48CE', source: '多関節型：司令機' }),
+      regexKo: Regexes.startsUsing({ id: '48CE', source: '다관절형: 사령기' }),
       response: Responses.tankBuster(),
     },
     {
@@ -100,6 +104,7 @@
       regexDe: Regexes.startsUsing({ id: '48C8', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48C8', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48C8', source: '多関節型：司令機', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48C8', source: '다관절형: 사령기', capture: false }),
       response: Responses.goSides(),
     },
     {
@@ -109,6 +114,7 @@
       regexDe: Regexes.startsUsing({ id: '48CA', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48CA', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48CA', source: '多関節型：司令機', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48CA', source: '다관절형: 사령기', capture: false }),
       response: Responses.goFrontBack(),
     },
     {
@@ -118,6 +124,7 @@
       regexDe: Regexes.startsUsing({ id: '48C3', source: 'Befehlsmodell Mit Omnigelenk', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48C3', source: 'Modèle Multiarticulé : Commandant', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48C3', source: '多関節型：司令機', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48C3', source: '다관절형: 사령기', capture: false }),
       response: Responses.knockback('info'),
     },
     {
@@ -127,6 +134,7 @@
       regexDe: Regexes.startsUsing({ id: '4805', source: 'Hobbes', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4805', source: 'Hobbes', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4805', source: 'ホッブス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4805', source: '홉스', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -139,6 +147,7 @@
       regexDe: Regexes.message({ line: 'Der wandmontierte rechte Arm ist aktiv!', capture: false }),
       regexFr: Regexes.message({ line: 'Le bras mural droit s\'active!', capture: false }),
       regexJa: Regexes.message({ line: '壁面のライトアームが稼働を始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '벽면의 오른팔이 움직이기 시작합니다……!', capture: false }),
       infoText: {
         en: 'Dodge Moving Circle',
         de: 'Bewegenden Kreisen ausweichen',
@@ -157,6 +166,7 @@
       regexDe: Regexes.message({ line: 'Die wandmontierten Flammenwerfer sind aktiv!', capture: false }),
       regexFr: Regexes.message({ line: 'Les lance-flammes muraux s\'activent!', capture: false }),
       regexJa: Regexes.message({ line: '壁面の火炎放射器が稼働を始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '벽면의 화염 방사기가 가동되었습니다……!', capture: false }),
       alertText: {
         en: 'Look Behind For Flamethrowers',
         de: 'Flammenwerfer hinter dir',
@@ -175,6 +185,7 @@
       regexDe: Regexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!', capture: false }),
       regexFr: Regexes.message({ line: 'Le bras mural gauche s\'active!', capture: false }),
       regexJa: Regexes.message({ line: '壁面のレフトアームが稼働を始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!', capture: false }),
       durationSeconds: 6,
       response: Responses.getOut('info'),
       run: function(data) {
@@ -188,6 +199,7 @@
       regexDe: Regexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!', capture: false }),
       regexFr: Regexes.message({ line: 'Le bras mural gauche s\'active!', capture: false }),
       regexJa: Regexes.message({ line: '壁面のレフトアームが稼働を始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!', capture: false }),
       delaySeconds: 8,
       alertText: {
         en: 'Dodge Falling Walls',
@@ -204,6 +216,7 @@
       regexDe: Regexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!', capture: false }),
       regexFr: Regexes.message({ line: 'Le bras mural gauche s\'active!', capture: false }),
       regexJa: Regexes.message({ line: '壁面のレフトアームが稼働を始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '벽면의 왼팔이 움직이기 시작합니다……!', capture: false }),
       delaySeconds: 10,
       alertText: {
         en: 'Spread Tethers',
@@ -228,6 +241,7 @@
       regexDe: Regexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4807', source: 'ホッブス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4807', source: '홉스', capture: false }),
       response: Responses.stack(),
     },
     {
@@ -237,6 +251,7 @@
       regexDe: Regexes.message({ line: 'Die Maschinenwesen zu deinen Füßen bewegen sich!', capture: false }),
       regexFr: Regexes.message({ line: 'Les formes de vie mécaniques sous vos pieds s\'activent!', capture: false }),
       regexJa: Regexes.message({ line: '床下の機械生命体が怪しく動き始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '바닥 아래의 기계생명체가 수상한 움직임을 보입니다……!', capture: false }),
       durationSeconds: 10,
       suppressSeconds: 15,
       infoText: {
@@ -254,6 +269,7 @@
       regexDe: Regexes.message({ line: 'Die Fließbänder sind aktiv!', capture: false }),
       regexFr: Regexes.message({ line: 'Le tapis roulant s\'est mis en branle!', capture: false }),
       regexJa: Regexes.message({ line: '床面のローラーコンベアが稼働を始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '바닥의 컨베이어가 움직이기 시작합니다……!', capture: false }),
       infoText: {
         en: 'Conveyor Belts',
         de: 'Förderbänder',
@@ -269,6 +285,7 @@
       regexDe: Regexes.message({ line: 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!', capture: false }),
       regexFr: Regexes.message({ line: 'Le sol s\'imbibe de liquide inflammable!', capture: false }),
       regexJa: Regexes.message({ line: '床下に可燃性の液体が満ち始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '바닥 밑에 가연성 액체가 차오릅니다……!', capture: false }),
       durationSeconds: 3,
       suppressSeconds: 15,
       alertText: {
@@ -286,6 +303,7 @@
       regexDe: Regexes.message({ line: 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!', capture: false }),
       regexFr: Regexes.message({ line: 'Le sol s\'imbibe de liquide inflammable!', capture: false }),
       regexJa: Regexes.message({ line: '床下に可燃性の液体が満ち始めた……！', capture: false }),
+      regexKo: Regexes.message({ line: '바닥 밑에 가연성 액체가 차오릅니다……!', capture: false }),
       delaySeconds: 6,
       durationSeconds: 3,
       suppressSeconds: 15,
@@ -304,6 +322,7 @@
       regexDe: Regexes.tether({ id: '0011', source: 'Mittelgroß(?:e|er|es|en) Selbstzerstörung' }),
       regexFr: Regexes.tether({ id: '0011', source: 'Unité Kamikaze Moyenne' }),
       regexJa: Regexes.tether({ id: '0011', source: '中型自爆' }),
+      regexKo: Regexes.tether({ id: '0011', source: '중형 자폭' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -322,6 +341,7 @@
       regexDe: Regexes.startsUsing({ id: '4941', source: 'Flugeinheit', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4941', source: 'Module De Vol', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4941', source: '飛行ユニット', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4941', source: '비행 유닛', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -342,6 +362,7 @@
       regexDe: Regexes.startsUsing({ id: '4727', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4727', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4727', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4727', source: '엥겔스', capture: false }),
       response: Responses.goRight(),
     },
     {
@@ -351,6 +372,7 @@
       regexDe: Regexes.startsUsing({ id: '4726', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4726', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4726', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4726', source: '엥겔스', capture: false }),
       response: Responses.goLeft(),
     },
     {
@@ -360,6 +382,7 @@
       regexDe: Regexes.startsUsing({ id: '472E', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '472E', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '472E', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '472E', source: '엥겔스', capture: false }),
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
@@ -375,6 +398,7 @@
       regexDe: Regexes.startsUsing({ id: '472A', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '472A', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '472A', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '472A', source: '엥겔스', capture: false }),
       alertText: {
         en: 'Back and Sides',
         de: 'Hinten und Seiten',
@@ -390,6 +414,7 @@
       regexDe: Regexes.startsUsing({ id: '4746', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4746', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4746', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4746', source: '엥겔스', capture: false }),
       infoText: {
         en: 'Kill Claws',
         de: 'Klauen töten',
@@ -413,6 +438,7 @@
       regexDe: Regexes.startsUsing({ id: '4755', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4755', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4755', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4755', source: '엥겔스', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -428,6 +454,7 @@
       regexDe: Regexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '473C', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '473C', source: '엥겔스', capture: false }),
       infoText: {
         en: 'Go Sides (Near Front)',
         de: 'Zu den Seiten (Nahe der Front)',
@@ -443,6 +470,7 @@
       regexDe: Regexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '473C', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '473C', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '473C', source: '엥겔스', capture: false }),
       delaySeconds: 8,
       infoText: {
         en: 'Get Towers',
@@ -489,6 +517,7 @@
       regexDe: Regexes.ability({ id: '473F', source: 'Engels', capture: false }),
       regexFr: Regexes.ability({ id: '473F', source: 'Engels', capture: false }),
       regexJa: Regexes.ability({ id: '473F', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.ability({ id: '473F', source: '엥겔스', capture: false }),
       durationSeconds: 4,
       infoText: {
         en: 'Adds (Ignore Small)',
@@ -505,6 +534,7 @@
       regexDe: Regexes.startsUsing({ id: '474E', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '474E', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '474E', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '474E', source: '엥겔스', capture: false }),
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
@@ -520,6 +550,7 @@
       regexDe: Regexes.startsUsing({ id: '48A8', source: 'Engels', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48A8', source: 'Engels', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48A8', source: 'エンゲルス', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48A8', source: '엥겔스', capture: false }),
       delaySeconds: 9,
       infoText: {
         en: 'Look For Wall Saws',
@@ -536,6 +567,7 @@
       regexDe: Regexes.startsUsing({ id: '48F5', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer' }),
       regexFr: Regexes.startsUsing({ id: '48F5', source: '9S : Avec Multipède Esclave' }),
       regexJa: Regexes.startsUsing({ id: '48F5', source: '９Ｓ：多脚戦車従属' }),
+      regexKo: Regexes.startsUsing({ id: '48F5', source: '9S: 다각전차 종속' }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer';
       },
@@ -548,6 +580,7 @@
       regexDe: Regexes.startsUsing({ id: '48F6', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48F6', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48F6', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48F6', source: '9S: 다각전차 종속', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
       },
@@ -560,6 +593,7 @@
       regexDe: Regexes.startsUsing({ id: '4A74', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '4A74', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '4A74', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4A74', source: '9S: 다각전차 종속', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -591,6 +625,7 @@
       regexDe: Regexes.startsUsing({ id: '48DF', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48DF', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48DF', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48DF', source: '9S: 다각전차 종속', capture: false }),
       response: Responses.goSides('info'),
     },
     {
@@ -600,6 +635,7 @@
       regexDe: Regexes.startsUsing({ id: '48DE', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48DE', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48DE', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48DE', source: '9S: 다각전차 종속', capture: false }),
       response: Responses.goFrontBack('info'),
     },
     {
@@ -609,6 +645,7 @@
       regexDe: Regexes.startsUsing({ id: '48D3', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48D3', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48D3', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48D3', source: '9S: 다각전차 종속', capture: false }),
       delaySeconds: 4,
       alertText: {
         en: 'Dodge Overhead Saws',
@@ -627,6 +664,7 @@
       regexDe: Regexes.ability({ id: '48EA', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.ability({ id: '48EA', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.ability({ id: '48EA', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.ability({ id: '48EA', source: '9S: 다각전차 종속', capture: false }),
       response: Responses.killAdds(),
     },
     {
@@ -636,6 +674,7 @@
       regexDe: Regexes.startsUsing({ id: '48E5', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48E5', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48E5', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48E5', source: '9S: 다각전차 종속', capture: false }),
       response: Responses.killAdds(),
     },
     {
@@ -645,6 +684,7 @@
       regexDe: Regexes.startsUsing({ id: '48E7', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48E7', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48E7', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48E7', source: '9S: 다각전차 종속', capture: false }),
       alertText: {
         en: 'Go Behind Untethered Tank',
         de: 'Hinter den nicht verbundenen Panzer gehen',
@@ -660,6 +700,7 @@
       regexDe: Regexes.startsUsing({ id: '48F3', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48F3', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48F3', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48F3', source: '9S: 다각전차 종속', capture: false }),
       suppressSeconds: 2,
       response: Responses.stack('info'),
     },
@@ -670,6 +711,7 @@
       regexDe: Regexes.startsUsing({ id: '48EB', source: '9S\' Mehrbeinig(?:e|er|es|en) Panzer', capture: false }),
       regexFr: Regexes.startsUsing({ id: '48EB', source: '9S : Avec Multipède Esclave', capture: false }),
       regexJa: Regexes.startsUsing({ id: '48EB', source: '９Ｓ：多脚戦車従属', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '48EB', source: '9S: 다각전차 종속', capture: false }),
       delaySeconds: 5,
       infoText: {
         en: 'Get in the bubble',
@@ -1031,6 +1073,100 @@
         'Total Annihilation Maneuver': '攻击：歼灭轰炸',
         'Undock': '对接解除',
         'Wall Mechanic': '墙机制',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        '9S-operated Flight Unit': '9S: 비행 유닛 장비',
+        '9S-Operated Walking Fortress': '9S: 다각전차 종속',
+        'Engels': '엥겔스',
+        '(?<! )Flight Unit': '비행 유닛',
+        '(?<! )Goliath Tank': '대형 전차',
+        'Hobbes': '홉스',
+        'Marx': '마르크스',
+        'Marx [LR]': '마르크스 (왼쪽|오른쪽)',
+        'Medium Exploder': '중형 자폭',
+        'Multi-leg Medium Model': '중형 다각',
+        'Quality assurance': '검품장',
+        'Reverse-jointed Goliath': '대형 역관절',
+        'Serial-jointed Command Model': '다관절형: 사령기',
+        'Serial-jointed Service Model': '다관절형: 병정기',
+        'Small Biped': '소형 이족',
+        'Small Flyer': '소형 비행체',
+        'The forward deck': '전방 갑판',
+        'The rear deck': '후방 갑판',
+        'Warehouse A': '창고 A',
+        'Warehouse B': '창고 B',
+        'Warehouse C': '창고 C',
+      },
+      'replaceText': {
+        '--jump--': '--점프--',
+        'F/B': '앞/뒤',
+        'B/F': '뒤/앞',
+        'L/R': '좌/우',
+        'R/L': '우/좌',
+        '360-Degree Bombing Maneuver': '공격: 미사일 원형 사격',
+        'Tank Adds': '대형 전차 쫄',
+        'Serial-Jointed Adds': ' 다관절형 쫄',
+        '(?<! )Adds': '쫄',
+        'Anti-Personnel Missile': '대인 미사일 난사',
+        'Area Bombardment': '미사일 난사',
+        'Area Bombing Maneuver': '공격: 미사일 일제 사격',
+        'Arm Laser': '팔 레이저',
+        'Cannons': '일제 사격',
+        'Clanging Blow': '강공격',
+        'Convenient Self-Destruction': '자폭 공격',
+        'Crusher Adds': '분쇄',
+        'Crushing Wheel': '협공 차륜',
+        'Demolish Structure': '지형 파괴 공격',
+        '(?<! )Diffuse Laser': '확산 레이저', // 같은 영어에 다른 번역 - 광확산 레이저, 확산 레이저 번역 두 개
+        'Energy Assault': '연속 에너지탄',
+        'Energy Barrage': '에너지 탄막',
+        'Energy Blast': '에너지 작렬',
+        'Energy Bombardment': '박격 에너지탄',
+        'Energy Ring': '전방위 에너지탄',
+        'Engage Goliath Tank Support': '지원 요청: 대형 전차',
+        'Engage Marx Support': '지원 요청: 마르크스',
+        'Exploding Tethers': '선: 폭발',
+        'Floor': '바닥 장판',
+        'Forceful Impact': '대진동',
+        'Frontal Somersault': '점프 공격',
+        'Ground-To-Ground Missile': '지대지 미사일',
+        '(?<! )Guided Missile': '유도 미사일',
+        'Hack Goliath Tank': '해킹: 대형 전차',
+        'High-Caliber Laser': '대구경 레이저',
+        'High-Frequency Laser': '고주파 레이저',
+        'High-Powered Laser': '고출력 레이저',
+        'Incendiary Bombing': '소진 미사일',
+        'Incendiary Saturation Bombing': '확산 소진 미사일',
+        'Laser Saturation': '전방위 레이저',
+        'Laser Sight': '레이저 광선',
+        'Laser Turret': '주포 레이저',
+        'Laser-Resistance Test': '레이저 저항 검증',
+        'Lightfast Blade': '빛의 칼날 베기',
+        'Marx Activation': '마르크스 기동',
+        'Marx Crush': '마르크스 협공',
+        'Marx Impact': '마르크스 낙하',
+        'Marx Smash': '마르크스 타격',
+        'Marx Thrust': '마르크스 돌격',
+        'Neutralization': '제압 사격',
+        'Precision Guided Missile': '고성능 유도 미사일',
+        'Radiate Heat': '열 방출 공격',
+        'Ring Laser': '고리 레이저',
+        'Shockwave': '충격파',
+        'Short-Range Missile': '단거리 미사일',
+        'Shrapnel Impact': '잔해 낙하',
+        'Spin': '회전 공격',
+        'Surface Missile': '대지 미사일',
+        'Systematic Airstrike': '공폭 진형',
+        'Systematic Siege': '포위 진형',
+        'Systematic Suppression': '소사 진형',
+        'Systematic Targeting': '조준 진형',
+        'Total Annihilation Maneuver': '공격: 섬멸 폭격',
+        'Undock': '도킹 해제',
+        'Wall Mechanic': '벽 기믹',
+        'Wide-Angle Diffuse Laser': '광확산 레이저',
       },
     },
   ],

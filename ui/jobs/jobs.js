@@ -830,18 +830,18 @@ class BuffTracker {
       }
     }
 
-    const v5_08 = {
+    const v5_20 = {
+      // identical with latest patch
+      /* example
       trick: {
         durationSeconds: 10,
       },
-      peculiar: {
-        durationSeconds: 10,
-      },
+      */
     };
 
     let buffOverrides = {
-      ko: v5_08,
-      cn: v5_08,
+      ko: v5_20,
+      cn: v5_20,
     };
 
     for (let key in buffOverrides[this.options.Language]) {
