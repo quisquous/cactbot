@@ -51,7 +51,7 @@ hideall "--sync--"
 # -ic "Oppressor 0.5"
 
 2000.0 "--sync--" sync / 00:0839:Hangar 8 will be sealed off in 15 seconds/ window 2000,0
-2007.0 "Royal Fount" sync /:Oppressor:E40:/
+2007.0 "Royal Fount" sync /:Oppressor:E40:/ window 2010,5
 2011.1 "Gunnery Pod" sync /:Oppressor:E41:/
 2016.2 "Hydrothermal Missile" sync /:Oppressor:E43:/ duration 8
 2018.3 "Gunnery Pod" sync /:Oppressor:E41:/
