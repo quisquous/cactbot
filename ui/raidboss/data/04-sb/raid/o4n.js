@@ -45,6 +45,7 @@
       regexJa: Regexes.startsUsing({ id: '24BA', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24BA', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24BA', source: '엑스데스', capture: false }),
+      suppressSeconds: 5,
       response: Responses.spread(),
     },
     {
@@ -89,6 +90,12 @@
       regexJa: Regexes.startsUsing({ id: '2408', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2408', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2408', source: '엑스데스', capture: false }),
+      condition: function(data) {
+        // Without a condition, this notifies on the first one, where it's meaningless.
+        data.battleCount = data.battleCount || 0;
+        data.battleCount += 1;
+        return data.battleCount > 1;
+      },
       delaySeconds: 6,
       infoText: {
         en: 'Stand in the gap',
@@ -138,9 +145,7 @@
     {
       id: 'O4N Flare',
       regex: Regexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Flare on YOU',
         de: 'Flare auf DIR',
@@ -150,20 +155,7 @@
     {
       id: 'O4N Holy',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            cn: '分摊点名',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Sammeln auf ' + data.ShortName(matches.target),
-          cn: '分摊' + data.holyTargets[1],
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'O4N Meteor',
@@ -173,9 +165,7 @@
       regexJa: Regexes.startsUsing({ id: '24C6', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24C6', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24C6', source: '엑스데스', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
     },
   ],
