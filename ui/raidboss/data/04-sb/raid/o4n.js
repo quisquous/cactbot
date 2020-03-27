@@ -321,7 +321,7 @@
       'replaceText': {
         'Black Hole': '블랙홀',
         'Black Spark': '검은 불꽃',
-        'Blizzard/Fire III':  '블리자가/파이가',
+        'Blizzard/Fire III': '블리자가/파이가',
         '(?<! )Blizzard/Fire/Thunder III': '블리자가/파이가/선더가',
         'Clearout': '휩쓸기',
         'Collision': '충격',
