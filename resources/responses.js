@@ -267,7 +267,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Spread',
       de: 'Verteilen',
-      fr: 'Dispersez-vous',
+      fr: 'Ecartez-vous',
       ja: '散開',
       cn: '分散',
       ko: '산개',
@@ -279,7 +279,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Stack',
       de: 'Sammeln',
-      fr: 'Package',
+      fr: 'Packez-vous',
       ja: 'スタック',
       cn: '集合',
       ko: '집합',
@@ -303,7 +303,7 @@ let Responses = {
       return {
         en: 'Stack on ' + data.ShortName(target),
         de: 'Auf ' + data.ShortName(target) + ' sammeln',
-        fr: 'Package sur ' + data.ShortName(target),
+        fr: 'Packez-vous sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にスタック',
         cn: '靠近 ' + data.ShortName(target) + '集合',
         ko: '쉐어징 → ' + data.ShortName(target),
@@ -339,7 +339,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Spread => Stack',
       de: 'Verteilen => Sammeln',
-      fr: 'Dispersez-vous => Package',
+      fr: 'Ecartez-vous => Packez-vous',
       ja: '散開 => スタック',
       cn: '分散 => 集合',
       ko: '산개 => 집합',
@@ -351,7 +351,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Stack => Spread',
       de: 'Sammeln => Verteilen',
-      fr: 'Package => Dispersez-vous',
+      fr: 'Packez-vous => Ecartez-vous',
       ja: 'スタック => 散開',
       cn: '集合 => 分散',
       ko: '집합 => 산개',
@@ -446,7 +446,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Get Behind',
       de: 'Hinter ihn',
-      fr: 'Derrière le boss',
+      fr: 'Passez derrière',
       ja: '背面へ',
       ko: '보스 뒤로',
       cn: '去背后',
@@ -592,7 +592,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Go Front/Back',
       de: 'Geh nach Vorne/ Hinten',
-      fr: 'Devant/Derrière',
+      fr: 'Allez Devant/Derrière',
       ja: '縦へ',
       ko: '앞/뒤로',
       cn: '去前后',
