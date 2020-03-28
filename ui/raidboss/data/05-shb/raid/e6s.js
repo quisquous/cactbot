@@ -38,14 +38,13 @@
 
           // select the 4 most recent Ifrit or Raktapaksa's depending on phase
           if (data.phase === 'ifrit')
-            combatantNames = { names: [ifritLocaleNames[data.lang]] };
+            combatantNames = [ifritLocaleNames[data.lang]];
           else
-            combatantNames = { names: [raktapaksaLocaleNames[data.lang]] };
-
+            combatantNames = [raktapaksaLocaleNames[data.lang]];
 
           let combatantData = await window.callOverlayHandler({
             call: 'getCombatants',
-            data: combatantNames,
+            names: combatantNames,
           });
 
           // if we could not retrieve combatant data, the
@@ -57,10 +56,10 @@
             res();
           }
 
-          // we need to filter for the Ifrit with the highest HEX ID
+          // we need to filter for the Ifrit with the highest ID
           // since that one is always the safe spot.
           let currentHighestCombatant =
-            combatantData.combatants.sort((a, b) => a.ID.localeCompare(b.ID)).pop();
+            combatantData.combatants.sort((a, b) => a.ID - b.ID).pop();
 
           // all variation ranges for all the 9 ball positions for the kicking actors
           // north      x: 96-104   y: 85-93
@@ -76,27 +75,27 @@
 
           // don't need to go through all the posibilities,
           // only those 4 ifs do reflect the above positions
-          if (currentHighestCombatant.posY > 84 && currentHighestCombatant.posY < 94) {
+          if (currentHighestCombatant.PosY > 84 && currentHighestCombatant.PosY < 94) {
             safeZoneObj1 = {
               en: 'north',
               de: 'nord',
             };
-          } else if (currentHighestCombatant.posY > 106 && currentHighestCombatant.posY < 116) {
+          } else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116) {
             safeZoneObj1 = {
               en: 'south',
               de: 'süd',
             };
           }
 
-          if (currentHighestCombatant.posX > 84 && currentHighestCombatant.posX < 94) {
+          if (currentHighestCombatant.PosX > 84 && currentHighestCombatant.PosX < 94) {
             safeZoneObj2 = {
               en: 'west',
-              de: 'westen',
+              de: 'west',
             };
-          } else if (currentHighestCombatant.posX > 106 && currentHighestCombatant.posX < 116) {
+          } else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116) {
             safeZoneObj2 = {
               en: 'east',
-              de: 'osten',
+              de: 'ost',
             };
           }
 
