@@ -194,29 +194,26 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = (data, matches) => {
       if (data.role == 'tank') {
-        if (matches) {
-          let target = getTarget(matches);
-          if (target == data.me) {
-            return {
-              en: 'Tank cleave on YOU',
-              de: 'Tank Cleave aud DIR',
-              fr: 'Tank cleave sur VOUS',
-              ja: '自分に前方範囲攻撃',
-              ko: '나에게 광역 탱버',
-              cn: '顺劈点名',
-            };
-          }
-        } else {
-          // targetless tank cleave
+        let target = getTarget(matches);
+        if (target == data.me) {
           return {
-            en: 'Tank cleave',
-            de: 'Tank Cleave',
-            fr: 'Tank cleave',
-            ja: '前方範囲攻撃',
-            ko: '광역 탱버',
-            cn: '顺劈',
+            en: 'Tank cleave on YOU',
+            de: 'Tank Cleave aud DIR',
+            fr: 'Tank cleave sur VOUS',
+            ja: '自分に前方範囲攻撃',
+            ko: '나에게 광역 탱버',
+            cn: '顺劈点名',
           };
         }
+        // targetless tank cleave
+        return {
+          en: 'Tank cleave',
+          de: 'Tank Cleave',
+          fr: 'Tank cleave',
+          ja: '前方範囲攻撃',
+          ko: '광역 탱버',
+          cn: '顺劈',
+        };
       }
       return {
         en: 'Avoid tank cleave',
