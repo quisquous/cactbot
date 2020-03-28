@@ -162,9 +162,6 @@ UserConfig.registerOptions('jobs', {
       id: 'GpAlarmPoint',
       name: {
         en: 'GP ready alarm (if 0, no alarm)',
-        de: 'GP ready alarm (if 0, no alarm)', // FIXME
-        fr: 'GP ready alarm (if 0, no alarm)', // FIXME
-        cn: 'GP ready alarm (if 0, no alarm)', // FIXME
         ko: 'GP 포인트 알람 (0이면 알리지 않음)',
       },
       type: 'integer',
@@ -174,9 +171,6 @@ UserConfig.registerOptions('jobs', {
       id: 'GpAlarmSoundVolume',
       name: {
         en: 'GP alarm sound (0-1)',
-        de: 'GP alarm sound (0-1)', // FIXME
-        fr: 'GP alarm sound (0-1)', // FIXME
-        cn: 'GP alarm sound (0-1)', // FIXME
         ko: 'GP 알람 소리 크기 (0-1)',
       },
       type: 'float',
