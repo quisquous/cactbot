@@ -2262,7 +2262,7 @@ class Bars {
       this.umbralStacks = 0;
       this.UpdateMPTicker();
       updateJob = updateHp = updateMp = updateCp = updateGp = true;
-      if(!Util.isGatheringJob(this.job))
+      if (!Util.isGatheringJob(this.job))
         this.gpAlarmReady = false;
     }
     if (e.detail.level != this.level) {
