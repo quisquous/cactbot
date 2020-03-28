@@ -161,11 +161,11 @@ UserConfig.registerOptions('jobs', {
     {
       id: 'GpAlarmPoint',
       name: {
-        en: 'GP alarm (if 0, no alarm)',
-        de: 'GP alarm (if 0, no alarm)', // FIXME
-        fr: 'GP alarm (if 0, no alarm)', // FIXME
-        cn: 'GP alarm (if 0, no alarm)', // FIXME
-        ko: 'GP 알람 (0이면 알리지 않음)',
+        en: 'GP alarm point (if 0, no alarm)',
+        de: 'GP alarm point (if 0, no alarm)', // FIXME
+        fr: 'GP alarm point (if 0, no alarm)', // FIXME
+        cn: 'GP alarm point (if 0, no alarm)', // FIXME
+        ko: 'GP 알람 포인트 (0이면 알리지 않음)',
       },
       type: 'integer',
       default: 0,
