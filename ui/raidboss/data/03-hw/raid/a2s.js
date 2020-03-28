@@ -17,10 +17,12 @@
     {
       id: 'A2S Breakblock',
       regex: /(?:Brainhurt|Bodyhurt) Breakblock/,
+      regexFr: /(?:Spirituel|Corporel) Blindage/,
       beforeSeconds: 10,
       suppressSeconds: 1,
       infoText: {
         en: 'Stun Soon',
+        fr: 'Stun bientôt',
       },
     },
   ],
@@ -28,13 +30,16 @@
     {
       id: 'A2S Bomb',
       regex: Regexes.addedCombatant({ name: 'Bomb', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Bombe', capture: false }),
       alertText: {
         en: 'Bomb',
+        fr: 'Bombe',
       },
     },
     {
       id: 'A2S Prey',
       regex: Regexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
+      regexFr: Regexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
       condition: function(data) {
         return data.role == 'healer' || data.job == 'blu';
       },
@@ -42,21 +47,25 @@
       infoText: function(data, matches) {
         return {
           en: 'Keep ' + data.ShortName(matches.target) + ' topped',
+          fr: 'Gardez-le ' + data.ShortName(matches.target) + ' topped',
         };
       },
     },
     {
       id: 'A2S Prey You',
       regex: Regexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
+      regexFr: Regexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: {
         en: 'Boomcannon on YOU',
+        fr: 'Double cannon sur VOUS',
       },
     },
     {
       id: 'A2S Soldier Spawn',
       regex: Regexes.addedCombatant({ name: 'Gordian Soldier', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Soldat Gordien', capture: false }),
       run: function(data) {
         delete data.bangyzoom;
       },
@@ -64,15 +73,61 @@
     {
       id: 'A2S Bangyzoom',
       regex: Regexes.ability({ id: 'FD9', target: 'Gordian Soldier', capture: false }),
+      regexFr: Regexes.ability({ id: 'FD9', target: 'Soldat Gordien', capture: false }),
       condition: function(data) {
         return !data.bangyzoom;
       },
       infoText: {
         en: 'Stun Soldier',
+        fr: 'Stun sur le soldat',
       },
       run: function(data) {
         data.bangyzoom = true;
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Added new combatant Boomtype Magitek Gobwalker G-VII': 'Ajout d\'un nouveau combattant Gobblindé magitek G-VII Boumbardier',
+        'Added new combatant Giant Bomb': 'Ajout d\'un nouveau combattant Bombe géante',
+        'Added new combatant Gordian Hardhelm': 'Ajout d\'un nouveau combattant Casque-dur gordien',
+        'Added new combatant Gordian Hardmind': 'Ajout d\'un nouveau combattant Cerveau-dur gordien',
+        'Added new combatant Gordian Sniper G-IX': 'Ajout d\'un nouveau combattant Sniper gordien G-IX',
+        'Added new combatant Jagd Doll': 'Ajout d\'un nouveau combattant Poupée jagd',
+        'Added new combatant Magitek Gobwidow G-IX': 'Ajout d\'un nouveau combattant Gobmygale magitek G-IX',
+        'Bomb': 'Bombe',
+        'Boomtype Magitek Gobwalker G-VII': 'Gobblindé magitek G-VII Boumbardier',
+        'Hangar 12 will be sealed off in 15 seconds': 'Fermeture du grand hangar GH-12 dans 15 secondes.',
+        'Gordian Hardhelm': 'Casque-dur gordien',
+        'Gordian Hardmind': 'Cerveau-dur gordien',
+        'Gordian Sniper G-IX': 'Sniper gordien G-IX',
+        'Jagd Doll': 'Poupée jagd',
+        'King Gobtank G-IV': 'Gobtank G-IV roi',
+        'Magitek Gobwidow G-IX': 'Gobmygale magitek G-IX',
+      },
+      'replaceText': {
+        '(mid)': '(centre)',
+        '(NW)': '(NO)',
+        '(SW)': '(SO)',
+        'Bangyzoom': 'Ordre d\'attaque',
+        'Blitzstrahl': 'Blitzstrahl',
+        'Bomb': 'Bombe',
+        'Boomcannon': 'Double cannon',
+        'Bodyhurt Breakblock': 'Blindage corporel'
+        'Brainhurt Breakblock': 'Blindage spirituel',
+        'Carpet Bomb': 'Tapis de bombes',
+        'Explosion': 'Explosion',
+        'Hardhelm': 'Casque-dur',
+        'Hardmind': 'Cerveau-dur',
+        'Giant Bomb': 'Bombe géante',
+        'Gobwalker': 'Gobblindé',
+        'Gobwidow': 'Gobmygale',
+        'Jagd Doll': 'Poupée jagd',
+        'Kaltstrahl': 'Kaltstrahl',
+        'Massive Explosion Enrage': 'Grosse explosion Enrage',
+        'Sniper': 'Sniper',
+        'Soldier': 'Soldat',
+        'Wave': 'Vague',
 }];
