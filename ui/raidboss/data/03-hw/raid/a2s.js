@@ -128,4 +128,7 @@
         'Sniper': 'Sniper',
         'Soldier': 'Soldat',
         'Wave': 'Vague',
+      },
+    },
+  ],
 }];
