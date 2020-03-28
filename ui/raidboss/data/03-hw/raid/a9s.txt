@@ -11,7 +11,7 @@ hideall "--sync--"
 ### Faust Z
 # -p 1A2B:1006.5
 1000.0	"--sync--"	sync / 00:0839:The Cranial Plate will be sealed off/ window 10000
-1006.5 "Kaltstrahl" sync /:Faust Z:1A2B:/
+1006.5 "Kaltstrahl" sync /:Faust Z:1A2B:/ window 1007,2.5
 1013.6 "Kaltstrahl" sync /:Faust Z:1A2B:/
 1020.7 "Kaltstrahl" sync /:Faust Z:1A2B:/
 1027.8 "Kaltstrahl" sync /:Faust Z:1A2B:/
