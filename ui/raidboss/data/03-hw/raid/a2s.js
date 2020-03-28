@@ -114,7 +114,7 @@
         'Bangyzoom': 'Ordre d\'attaque',
         'Blitzstrahl': 'Blitzstrahl',
         'Bomb': 'Bombe',
-        'Boomcannon': 'Double cannon',      
+        'Boomcannon': 'Double cannon',
         'Carpet Bomb': 'Tapis de bombes',
         'Explosion': 'Explosion',
         'Hardhelm': 'Casque-dur',
