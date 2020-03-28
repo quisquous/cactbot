@@ -114,7 +114,7 @@ hideall "--sync--"
 
 # Wave 8 (timed push)
 # TODO: include additional jagd doll stuff into here?
-3080.7 "--Wave 8--" sync /03:........:Added new combatant Gordian Sniper G-IX/ window 1075,100
+3080.7 "--Wave 8--" sync /03:........:Added new combatant Gordian Sniper/ window 1075,100
 3080.7 "Sniper x3, Soldier (SW)"
 3080.7 "Hardmind (N)"
 3080.7 "Hardhelm (SE)"
