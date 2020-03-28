@@ -10,12 +10,12 @@ hideall "--sync--"
 # -ii 24BA 24BC 24BE 24C3 24C5
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
-0 "Start"
+0 "Start" sync /Engage!/ window 0,1
 2.5 "--sync--" sync /:Exdeath:366:/ window 2.5,1
 9.5 "Doom" sync /:Exdeath:24B7:/ window 9.5,5
-19.1 "Blizzard/Fire/Thunder III" sync /:Exdeath:24B[9BD]:/
-28.8 "Blizzard/Fire/Thunder III" sync /:Exdeath:24B[9BD]:/
-37.4 "Blizzard/Fire/Thunder III" sync /:Exdeath:24B[9BD]:/
+19.1 "Blizzard/Fire III" sync /:Exdeath:24B[9B]:/
+28.8 "Thunder III (Buster)" sync /:Exdeath:24BD:/
+37.4 "Blizzard/Fire III" sync /:Exdeath:24B[9B]:/
 50.3 "Mega Blizzard/Fire/Thunder" sync /:Exdeath:24(BF|C[01]):/
 63.6 "Mega Blizzard/Fire/Thunder" sync /:Exdeath:24(BF|C[01]):/
 74.8 "Mega Blizzard/Fire/Thunder" sync /:Exdeath:24(BF|C[01]):/
