@@ -96,7 +96,6 @@
         'Gordian Hardmind': 'Cerveau-dur gordien',
         'Gordian Soldier': 'Soldat gordien',
         'Gordian Sniper': 'Sniper gordien',
-        'Hangar 12 will be sealed off in 15 seconds': 'Fermeture du grand hangar GH-12 dans 15 secondes',
         'Jagd Doll': 'Poupée jagd',
         'King Gobtank G-IV': 'Gobtank G-IV roi',
         'Magitek Gobwidow G-IX': 'Gobmygale magitek G-IX',
