@@ -2134,7 +2134,7 @@ class Bars {
       this.gpAlarmReady = true;
     } else if (this.gpAlarmReady && this.gp >= this.options.GpAlarmPoint) {
       this.gpAlarmReady = false;
-      let audio = new Audio('../../resources/sounds/PowerAuras/phone.ogg');
+      let audio = new Audio('../../resources/sounds/PowerAuras/kaching.ogg');
       audio.volume = this.options.GpAlarmSoundVolume;
       audio.play();
     }
