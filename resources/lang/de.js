@@ -73,6 +73,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       UmbralEffect: 'Denaturation Dunkelheit',
       Stun: 'Betäubung',
       ThinIce: 'Glatteis',
+      DeepFreeze: 'Tiefkühlung',
 
       Windburn: 'Beißender Wind',
     });

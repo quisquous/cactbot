@@ -73,6 +73,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       UmbralEffect: 'Corruption de Ténèbres',
       Stun: 'Étourdissement',
       ThinIce: 'Verglas',
+      DeepFreeze: 'Congélation',
 
       WindBurn: 'Brûlure du vent',
     });
