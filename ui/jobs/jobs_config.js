@@ -170,5 +170,17 @@ UserConfig.registerOptions('jobs', {
       type: 'integer',
       default: 0,
     },
+    {
+      id: 'GpAlarmSoundVolume',
+      name: {
+        en: 'GP alarm sound (0-1)',
+        de: 'GP alarm sound (0-1)', // FIXME
+        fr: 'GP alarm sound (0-1)', // FIXME
+        cn: 'GP alarm sound (0-1)', // FIXME
+        ko: 'GP 알람 소리 크기 (0-1)',
+      },
+      type: 'float',
+      default: 0.8,
+    },
   ],
 });

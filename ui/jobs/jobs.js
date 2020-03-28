@@ -2128,11 +2128,15 @@ class Bars {
     if (!this.o.gpBar) return;
     this.o.gpBar.value = this.gp;
     this.o.gpBar.maxvalue = this.maxGP;
-    if(this.gp < this.options.GpAlarmPoint) {
+
+    // GP Alarm
+    if (this.gp < this.options.GpAlarmPoint) {
       this.gpAlarmReady = true;
-    } else if(this.gpAlarmReady && this.gp >= this.options.GpAlarmPoint) {
+    } else if (this.gpAlarmReady && this.gp >= this.options.GpAlarmPoint) {
       this.gpAlarmReady = false;
-      // put some sound alarm here
+      let audio = new Audio('../../resources/sounds/PowerAuras/phone.ogg');
+      audio.volume = this.options.GpAlarmSoundVolume;
+      audio.play();
     }
   }
 
