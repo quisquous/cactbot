@@ -162,7 +162,6 @@ An alternative text string for the chosen TTS option to use for callouts. This c
 **run: function(data, matches)**
 If the trigger activates, the function will run as the last action before the trigger ends.
 
-
 ## Miscellaneous Trigger Info
 
 Any field that can return a function (e.g. `infoText`, `alertText`, `alarmText`, `tts`) can also return a localized
