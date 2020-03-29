@@ -101,7 +101,7 @@ Defaults to false.
 The regular expression Cactbot will run against each log line to determine whether the trigger will activate. Positions 1 and 2 are capture groups that are returned in the `matches` variable for use in trigger functions.
 
 More commonly, however, a regex replacement is used instead of a bare regex.
-Helper functions defined in (regexes.js)[https://github.com/quisquous/cactbot/blob/master/resources/regexes.js]
+Helper functions defined in [regexes.js](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js)
 take the parameters that would otherwise be extracted via match groups.
 From here, the functions automagically construct the regex that should
 be matched against.
