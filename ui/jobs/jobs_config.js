@@ -161,8 +161,8 @@ UserConfig.registerOptions('jobs', {
     {
       id: 'GpAlarmPoint',
       name: {
-        en: 'GP ready alarm (if 0, no alarm)',
-        ko: 'GP 포인트 알람 (0이면 알리지 않음)',
+        en: 'GP alarm threshold (0 to disable)',
+        ko: 'GP 알람 설정값 (0 = 기능 정지)',
       },
       type: 'integer',
       default: 0,
