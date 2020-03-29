@@ -100,10 +100,19 @@ Defaults to false.
  **regex**
 The regular expression Cactbot will run against each log line to determine whether the trigger will activate. Positions 1 and 2 are capture groups that are returned in the `matches` variable for use in trigger functions.
 
+More commonly, however, a regex replacement is used instead of a bare regex.
+Helper functions defined in (regexes.js)[https://github.com/quisquous/cactbot/blob/master/resources/regexes.js]
+take the parameters that would otherwise be extracted via match groups.
+From here, the functions automagically construct the regex that should
+be matched against.
+
 **regexFr**
 Example of a locale-based regular expression for the 'fr' locale.
-If `Options.Language == 'fr'`, then regexFr (if it exists) takes precedence over regex.
+If `Options.Language == 'fr'`, then `regexFr` (if it exists) takes precedence over `regex`.
 Otherwise, it is ignored.  This is only an example for french, but other locales behave the same, e.g. regexEn, regexKo.
+(Locale regexes do not have a defined ordering.
+Current practice is to order them as `de`, `fr`, `ja`, `cn`, `ko`, however.
+Additionally, as with bare `regex` elements, current practice is to use regex replacements instead.)
 
 **condition: function(data, matches)**
 Activates the trigger if the function returns `true`. If it does not return `true`, nothing is shown/sounded/run. If multiple functions are present on the trigger, this has first priority to run.
@@ -118,7 +127,7 @@ If present and a function which returns a promise, will wait for promise to reso
 An amount of time, in seconds, to wait from the time the regex match is detected until the trigger activates. May be a number or a function(data, matches) that returns a number.
 
 **durationSeconds**
-Time, in seconds, to display the trigger text. May be a number or a `function(data, matches)` that returns a number.
+Time, in seconds, to display the trigger text. May be a number or a `function(data, matches)` that returns a number. If not specified, defaults to 3.
 
 **suppressSeconds**
 Time to wait, in seconds, before showing this trigger again.  May be a number or a function(data, matches).  The time to wait begins at the time of the initial regex match, and is unaffected by presense or absence of a delaySeconds value. Once a trigger with this element activates, it will not activate again until after its timeout period is over.
