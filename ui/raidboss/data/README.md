@@ -116,6 +116,8 @@ Additionally, as with bare `regex` elements, current practice is to use regex re
 
 **condition: function(data, matches)**
 Activates the trigger if the function returns `true`. If it does not return `true`, nothing is shown/sounded/run. If multiple functions are present on the trigger, this has first priority to run.
+(Pre-made "canned" conditions are available within [conditions.js](https://github.com/quisquous/cactbot/blob/master/resources/conditions.js).
+Generally speaking it's best to use one of these if it fits the situation.)
 
 **preRun: function(data, matches)**
 If the trigger activates, the function will run as the first action after the activation condition is met.
@@ -143,6 +145,7 @@ A way to return infoText/alertText/alarmText/tts all from a single entrypoint.
 Also used by `resources/responses.js`.
 Response has less priority than an explicity specified text or tts,
 and so can be overridden.
+(As with `regex` and `condition`, "canned" responses are available within [responses.js](https://github.com/quisquous/cactbot/blob/master/resources/responses.js).)
 
 **alarmtext**
 Displays a text popup with Alarm importance when the trigger activates. This is for high-priority events where failure is guaranteed to kill you, is likely to wipe the encounter, or will otherwise make successful completion much more difficult. (Examples include Allagan Rot in T2, Cursed Shriek in T7, or Ultros' Stoneskin cast in O7s. ) May be a string or a `function(data, matches)` that returns a string.
