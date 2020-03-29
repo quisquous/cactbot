@@ -170,19 +170,28 @@ object, e.g. instead of returning 'Get Out', they can return {en: 'Get Out', fr:
 instead.  Fields can also return a function that return a localized object as well.  If the current locale
 does not exist in the object, the 'en' result will be returned.
 
-Trigger elements are evaluated in this order:
+Trigger elements are evaluated in this order, and must be listed in this order:
 
-1. condition
-2. preRun
-3. promise
-4. delaySeconds
-5. durationSeconds
-6. suppressSeconds
-7. alarmText
-8. alertText
-9. infoText
-10. tts
-11. run
+- id
+- disabled
+- regex (and regexDe, regexFr, etc)
+- beforeSeconds (for timelineTriggers)
+- condition
+- preRun
+- delaySeconds
+- durationSeconds
+- suppressSeconds
+- (the delaySeconds occurs here)
+- promise
+- (awaiting the promise occurs here)
+- sound
+- soundVolume
+- response
+- alarmText
+- infoText
+- groupTTS
+- tts
+- run
 
 ## Timeline Info
 

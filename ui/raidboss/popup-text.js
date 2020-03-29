@@ -663,44 +663,48 @@ class PopupText {
         trigger.run(this.data, matches);
     };
 
-    let promise = null;
-
-    if ('promise' in trigger) {
-      if (typeof trigger.promise === 'function') {
-        promise = trigger.promise(this.data, matches);
-        // Make sure we actually get a Promise back from the function
-        if (Promise.resolve(promise) !== promise) {
-          console.error('Trigger ' + trigger.id + ': promise function did not return a promise');
-          promise = null;
+    let promiseThenTrigger = () => {
+      // Put the resolution of the `promise` field inside this function so that
+      // It occurs after delaySeconds.
+      let promise = null;
+      if ('promise' in trigger) {
+        if (typeof trigger.promise === 'function') {
+          promise = trigger.promise(this.data, matches);
+          // Make sure we actually get a Promise back from the function
+          if (Promise.resolve(promise) !== promise) {
+            console.error('Trigger ' + trigger.id + ': promise function did not return a promise');
+            promise = null;
+          }
+        } else {
+          console.error('Trigger ' + trigger.id + ': promise defined but not a function');
         }
-      } else {
-        console.error('Trigger ' + trigger.id + ': promise defined but not a function');
-      }
-    }
-
-    let func = () => {
-      // Run immediately?
-      if (!delay) {
-        f();
-        return;
       }
 
-      this.timers.push(window.setTimeout(() => {
+      let runTriggerBody = () => {
         try {
           f();
         } catch (e) {
           onTriggerException(trigger, e);
         }
-      }, delay * 1000));
+      };
+
+      // Only if there is a promise, run the trigger asynchronously.
+      // Otherwise, run it immediately.  Otherwise, multiple triggers
+      // might run their condition/preRun prior to all of the alerts.
+      if (promise)
+        promise.then(runTriggerBody);
+      else
+        runTriggerBody();
     };
 
-    // Only if there is a promise, run the trigger asynchronously.
-    // Otherwise, run it immediately.  Otherwise, multiple triggers
-    // might run their condition/preRun prior to all of the alerts.
-    if (promise)
-      promise.then(func);
-    else
-      func();
+    // Run immediately?
+    if (!delay) {
+      promiseThenTrigger();
+      return;
+    }
+
+    this.timers.push(window.setTimeout(promiseThenTrigger,
+        delay * 1000));
   }
 
   Test(zone, log) {

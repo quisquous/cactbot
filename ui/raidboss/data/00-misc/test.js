@@ -76,6 +76,8 @@
       regexDe: /(Wütender Dummy)/,
       regexCn: /愤怒的木人/,
       regexKo: /화난 나무인형/,
+      // Add in a huge delay to make it obvious the delay runs before promise.
+      delaySeconds: 10,
       promise: function(data, matches) {
         data.delayedDummyTimestampBefore = Date.now();
         let p = new Promise((res) => {
