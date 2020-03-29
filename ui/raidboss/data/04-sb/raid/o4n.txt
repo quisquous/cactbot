@@ -101,4 +101,4 @@ hideall "--sync--"
 # Enrage. Exdeath is untargetable at this point.
 # "Nothingness is my weapon, and nothingness alone can strike me down!"
 1000.0 "--sync--" sync /:24C7:Exdeath/ window 1000,0
-1005.0 Meteor Enrage sync /:Exdeath:24C7:/
+1005.0 "Meteor Enrage" sync /:Exdeath:24C7:/
