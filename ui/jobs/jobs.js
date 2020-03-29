@@ -2132,7 +2132,7 @@ class Bars {
     // GP Alarm
     if (this.gp < this.options.GpAlarmPoint) {
       this.gpAlarmReady = true;
-    } else if (this.gpAlarmReady && this.gp >= this.options.GpAlarmPoint) {
+    } else if (this.gpAlarmReady && !this.GpPotion && this.gp >= this.options.GpAlarmPoint) {
       this.gpAlarmReady = false;
       let audio = new Audio('../../resources/sounds/PowerAuras/kaching.ogg');
       audio.volume = this.options.GpAlarmSoundVolume;
@@ -2407,6 +2407,14 @@ class Bars {
             let m = log.match(kAnybodyAbilityRegex);
             if (m)
               this.buffTracker.onUseAbility(m.groups.id, log);
+          }
+          // use of GP Potion
+          let cordialRegex = new RegExp(this.me + ':20(017FD|F5A3D|F844F|0420F|0317D):');
+          if (log.match(cordialRegex)) {
+            this.GpPotion = true;
+            setTimeout(() => {
+              this.GpPotion = false;
+            }, 2000);
           }
         }
       }
