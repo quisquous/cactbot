@@ -311,11 +311,12 @@ let testTriggerFieldsSorted = function(file, contents) {
     'beforeSeconds',
     'condition',
     'preRun',
-    'promise',
     'delaySeconds',
     'durationSeconds',
     'suppressSeconds',
     // This is where the delay happens.
+    'promise',
+    // This is where the promise delay happens.
     'sound',
     'soundVolume',
     'response',
