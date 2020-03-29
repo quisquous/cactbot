@@ -1,205 +1,212 @@
-# Alexander - The Breath of the Creator (Savage) - A10S / C2S
-# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
-# Shasta's reddit: /u/shastaxc
-# Last Updated: 10/6/2016
-
-#############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from 
-########the beginning of the following lines to prevent 
-########them from appearing on your timeline.
+### A10S
+# Alexander - The Breath of the Creator (Savage)
+# https://dtguilds.enjin.com/a10sguide
+# -p 1A16:6.5 1AB2:30.3 1AB1:73.6 1AB0:126.6 1AA9:207 1A99:528.5 1A92:735.3
+# -ii 1A9D 1A8D 1AA5 1DCC 1A8C 1AB3 1A96 1A93 1A90
 
 hideall "--Reset--"
-#hideall "Discharge Cast"
-#########DPS CAN HIDE THESE
-#hideall "AoE"
+hideall "--sync--"
 
-#########HEALERS CAN HIDE THESE
+0.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
+### Phase 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 00:0839:The Excruciationator will be sealed off/ window 10000,10000
+6.5 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/ window 7,2.5
+9.6 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+14.7 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+18.8 "--sync--" sync /:Lamebrix Strikebocks:1AB[AB]:/
+22.1 "Single Charge" sync /:Lamebrix Strikebocks:1A97:/
+22.9 "--spread/stack--" sync /:Lamebrix Strikebocks:1A9[CE]:/
 
-#########TANKS CAN HIDE THESE
+# trap 1: hp ??%
+30.3 "Floor Trap" sync /:Lamebrix Strikebocks:1AB2:/ window 31,5
+31.6 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+35.7 "--sync--" sync /:Lamebrix Strikebocks:1AB[AB]:/
+39.0 "Single Charge (Stack/Spread)" sync /:Lamebrix Strikebocks:1A97:/
+39.8 "--stack/spread--" sync /:Lamebrix Strikebocks:1A9[CE]:/
+50.0 "Gobslash Slicetops" sync /:Lamebrix Strikebocks:1AA1:/
+53.1 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+61.2 "Gobrush Rushgob" sync /:Lamebrix Strikebocks:1A9F:/
+64.4 "--sync--" sync /:Lamebrix Strikebocks:1AA6:/ # discharge puddles appear
+67.6 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
 
+# trap 2: hp 85%
+73.6 "Frost Trap" sync /:Lamebrix Strikebocks:1AB1:/ window 75,5
+74.9 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+76.5 "Discharge" sync /:Lamebrix Strikebocks:1AA7:/
+78.5 "Frostbite" sync /:Lamebrix Strikebocks:1A8E:/
+88.0 "Gobsnick Leghops" sync /:Lamebrix Strikebocks:1AA4:/
+90.2 "Clone Add"
+90.2 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+92.5 "--sync--" sync /:Lamebrix Strikebocks:1AB8:/
+95.8 "Single Charge" sync /:Lamebrix Strikebocks:1A97:/
+96.6 "--in--" sync /:Lamebrix Strikebocks:1A9A:/
+103.7 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+105.3 "Gobswish Spraymops" sync /:Lameprix Strikedocks:1AA3:/
+113.9 "Gobrush Rushgob" sync /:Lamebrix Strikebocks:1A9F:/
+118.5 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+119.5 "Gobswish Spraymops" sync /:Lameprix Strikedocks:1AA3:/
+120.7 "--sync--" sync /:Lamebrix Strikebocks:1AA6:/ # discharge puddles appear
 
-##############################################################
-################## Windows 8 & 10 Voices ##################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Zira Desktop" 0 100
-#define speaker "voice" "Microsoft David Desktop" 0 100
-
-#################### Windows 7 Voices ####################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Anna" 0 100
-
-################ CUSTOMIZE Call Outs #####################
-########REMOVE THE HASHTAG to enable each call out
-#alertall "Single Charge" before 3 speak "voice" "Charge"
-#alertall "Single Charge: In" before 7 speak "voice" "In"
-#alertall "Tank Buster" before 5 speak "voice" "Buster"
-#alertall "Discharge Hits" before 3 speak "voice" "Sides"
-#alertall "Turrets Fire" before 4 speak "voice" "Move Middle"
-#alertall "Gobsnick Leghops" before 4 speak "voice" "Stop Actions"
-#alertall "Ceiling Balls Drop" before 3 speak "voice" "Sides"
-#alertall "AoE Puddles Hit" before 3 speak "voice" "Near Button"
-#alertall "Ceiling Balls Drop" before 5 speak "voice" "Move Sides"
-#alertall "Gobspin Zoomdrops + Gobswish Spraymops" before 0 speak "voice" "Get Tether"
-#alertall "Gobslice Mooncrops" before 7 speak "voice" "Hit Spikes"
-#alertall "Steam Roller" before 4 speak "voice" "Move"
-#alertall "Steam Roller Wipe" before 1 speak "voice" "git gud"
-#alertall "LB3" before 0 speak "voice" "limit break"
-
-##############################################################
-0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
-
-################# Phase 1
-0 "--Start--" sync / 00:0839:Excruciationator will be sealed off in 15 seconds/ window 10000
-9 "AoE"
-14 "AoE"
-21 "Single Charge"
-28 "Trap"
-37 "Single Charge"
-51 "Line AoE to Prey"
-61 "Tank Buster"
-
-################# Phase 2; Pushes at 85%
-165 "Discharge Cast" sync /uses Discharge/ window 165,0
-168 "AoE" sync /uses Gobsway Rumblerocks/ window 140,0
-172 "Trap"
-175 "Discharge Hits"
-178 "Turrets Fire"
-187 "Gobsnick Leghops"
-189 "Clone Spawns"
-194 "Single Charge: In"
-202 "AoE"
-203 "Gobswish Spraymops"
-212 "Tank Buster"
-224 "Trap"
-228 "Ceiling Balls Drop"
-233 "AoE Puddles Hit"
-242 "Line AoE to Prey"
-245 "AoE"
-249 "AoE"
-262 "Double Charge"
-275 "Single Charge/Gobsnick Leghops"
-281 "AoE"
-291 "Tank Buster"
-399 ""
-399 ""
-399 ""
-399 ""
-399 ""
-399 ""
-399 ""
-399 ""
-399 ""
-399 ""
+# trap 3: hp ??%
+126.6 "Weight Trap" sync /:Lamebrix Strikebocks:1AB0:/ window 127,5
+128.0 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+131.6 "Impact" sync /:Weight Of The World:1A8B:/
+135.7 "Discharge" sync /:Lamebrix Strikebocks:1AA7:/
+144.3 "Gobslash Slicetops" sync /:Lamebrix Strikebocks:1AA1:/
+147.4 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+151.6 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+159.7 "--sync--" #sync /:Lamebrix Strikebocks:1AB[89]:/
+161.7 "--sync--" #sync /:Lamebrix Strikebocks:1AB[89]:/
+165.0 "Double Charge" sync /:Lamebrix Strikebocks:1A98:/
+165.8 "--in/out--" sync /:Lamebrix Strikebocks:1A9[AB]:/
+168.8 "--out/in--" sync /:Lamebrix Strikebocks:1A9[AB]:/
+171.9 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+178.2 "Leghops?/Charge (In)?"
+184.0 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+187.2 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+195.3 "Gobrush Rushgob" sync /:Lamebrix Strikebocks:1A9F:/
+199.5 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
 
 
-################# Phase 3; Pushes at 60%
-400 "" sync /Added new combatant Gobpress R-VI/ window 400,0
-412 "Hand Cannon"
-412 "Fire Puddles #1 Drop"
-420 "Fire Puddles #2 Drop"
-420 "Steam Roller"
-430 "Hand Cannon"
-434 "AoE"
-438 "AoE"
-440 "Steam Roller"
-446 "Hand Cannon"
-446 "Fire Puddles #1 Drop"
-454 "Fire Puddles #2 Drop"
-458 "Steam Roller"
-466 "Hand Cannon"
-471 "AoE"
-475 "AoE"
-477 "Steam Roller"
-483 "Hand Cannon"
-484 "AoE"
-490 "AoE"
-494 "AoE"
-498 "AoE"
-499 "Steam Roller Wipe"
-591 ""
-591 ""
-591 ""
-591 ""
-591 ""
-591 ""
-591 ""
-591 ""
-591 ""
-591 ""
+### Phase 2: Steam Roller (60%)
+200.5 "--untargetable--" sync / 22:........:Lamebrix Strikebocks:........:Lamebrix Strikebocks:00/ window 201,5
+201.6 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/ window 20,5
+207.0 "Brighteyes Markers" sync /:Lamebrix Strikebocks:1AA9:/ window 210,5
+212.0 "Brighteyes" sync /:Lamebrix Strikebocks:1AAA:/
+212.1 "Illuminati Hand Cannon" sync /:Lamebrix Strikebocks:1AA8:/
+216.3 "Brighteyes Markers" sync /:Lamebrix Strikebocks:1AA9:/
+221.2 "Steam Roller" sync /:Gobpress R-VI:1A95:/
+221.2 "Brighteyes" sync /:Lamebrix Strikebocks:1AAA:/
+231.5 "Illuminati Hand Cannon" sync /:Lamebrix Strikebocks:1AA8:/
+234.7 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+238.9 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+240.5 "Steam Roller" sync /:Gobpress R-VI:1A95:/
+241.6 "Brighteyes Markers" sync /:Lamebrix Strikebocks:1AA9:/
+246.6 "Brighteyes" sync /:Lamebrix Strikebocks:1AAA:/
+246.7 "Illuminati Hand Cannon" sync /:Lamebrix Strikebocks:1AA8:/
+250.9 "Brighteyes Markers" sync /:Lamebrix Strikebocks:1AA9:/
+255.9 "Brighteyes" sync /:Lamebrix Strikebocks:1AAA:/
+259.8 "Steam Roller" sync /:Gobpress R-VI:1A95:/
+268.1 "Illuminati Hand Cannon" sync /:Lamebrix Strikebocks:1AA8:/
+271.3 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+275.5 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+279.1 "Steam Roller" sync /:Gobpress R-VI:1A95:/
+285.8 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+289.9 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+294.1 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+298.2 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+298.4 "Steam Roller Enrage" sync /:Gobpress R-VI:1A95:/
+302.4 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
 
-################# Phase 4
-592 "" sync /uses Goblin Rush/ window 190,0
-600 "Tank Buster" sync /uses Gobrush Rushgob/ window 200,0
-612 "Triple Charge" sync /uses Triple Charge/ window 600,0
-629 "AoE"
-639 "AoE"
-645 "Clone Spawns"
-648 "Single Charge: In"
-658 "Gobspin Zoomdrops + Gobswish Spraymops"
-661 "Tether Spawn"
-667 "Spin AoE"
-673 "Spin AoE"
-679 "Spin AoE"
+### Phase 3
+500.0 "--targetable--" sync / 22:........:Lamebrix Strikebocks:........:Lamebrix Strikebocks:01/ window 500,0
+509.0 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/ window 305,5
+517.1 "Gobrush Rushgob" sync /:Lamebrix Strikebocks:1A9F:/
+521.3 "--sync--" #sync /:Lamebrix Strikebocks:1AB[89AB]:/
+523.3 "--sync--" #sync /:Lamebrix Strikebocks:1AB[89AB]:/
+525.3 "--sync--" #sync /:Lamebrix Strikebocks:1AB[89AB]:/
 
-783 "AoE" sync /uses Gobsway Rumblerocks/ window 125,0
-789 "Tank Buster"
-794 "Boss Dashes"
-804 "Gobslice Mooncrops"
-809 "Boss Dashes"
-815 "Single Charge/Gobsnick Leghops"
-821 "AoE"
-825 "AoE"
-836 "Prey Fire Puddles" #Brighteyes Prey applies
-840 "Hand Cannon"
-840 "Fire Puddles Drop"
-850 "Fire Puddles Drop"
-851 "Single Charge"
-867 "Line AoE to Prey"
-874 "Tank Buster"
-882 "Trap"
-886 "Turrets Fire"
-890 "Ceiling Balls Drop"
-894 "AoE Puddles Hit"
-898 "Adds x3 Spawn"
-898 "AoE"
-902 "AoE"
-909 "Gobsnick Leghops"
-912 "LB3"
+528.5 "Triple Charge" sync /:Lamebrix Strikebocks:1A99:/ window 530,10
+529.3 "--mechanic 1--" sync /:Lamebrix Strikebocks:1A9[ABCE]:/
+532.4 "--mechanic 2--" sync /:Lamebrix Strikebocks:1A9[ABCE]:/
+536.9 "--mechanic 3--" sync /:Lamebrix Strikebocks:1A9[ABCE]:/
+542.0 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+546.1 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+550.2 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+554.3 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+559.4 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+561.7 "--sync--" sync /:Lamebrix Strikebocks:1AB8:/
+565.0 "Single Charge" sync /:Lamebrix Strikebocks:1A97:/
+565.8 "--in--" sync /:Lamebrix Strikebocks:1A9A:/
 
-########### This marks phase repeat
-923 "Tank Buster" sync /uses Gobrush Rushgob/ window 30,0
-935 "Triple Charge" sync /uses Triple Charge/ window 200,0
-952 "AoE"
-962 "AoE"
-968 "Clone Spawns"
-971 "Single Charge: In"
-981 "Gobspin Zoomdrops + Gobswish Spraymops"
-984 "Tether Spawn"
-990 "Spin AoE"
-996 "Spin AoE"
-1002 "Spin AoE"
+575.0 "Gobspin Zoomdrops" sync /:Lamebrix Strikebocks:1A8F:/
+576.9 "Stoneskin"
+580.2 "Gobspin Zoomdrops" sync /:Lamebrix Strikebocks:1A91:/
+586.2 "Gobspin Zoomdrops" sync /:Lamebrix Strikebocks:1A91:/
+592.2 "Gobspin Zoomdrops" sync /:Lamebrix Strikebocks:1A91:/ window 3,100
+594.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+596.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+598.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+600.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+602.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+604.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+606.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+608.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+610.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+612.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+614.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+616.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+618.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+620.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+622.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+624.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+626.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
+628.2 "Gobspin Zoomdrops" #sync /:Lamebrix Strikebocks:1A91:/
 
-1106 "AoE" sync/uses Gobsway Rumblerocks/ window 125,0
-1112 "Tank Buster"
-1117 "Boss Dashes"
-1127 "Gobslice Mooncrops"
-1132 "Boss Dashes"
-1138 "Single Charge/Gobsnick Leghops"
-1144 "AoE"
-1148 "AoE"
-1159 "Prey Fire Puddles" #Brighteyes Prey applies
-1163 "Hand Cannon"
-1163 "Fire Puddles Drop"
-1173 "Fire Puddles Drop"
-1174 "Single Charge"
-1190 "Line AoE to Prey"
-1197 "Tank Buster"
-1205 "Trap"
-1209 "Turrets Fire"
-1213 "Ceiling Balls Drop"
-1217 "AoE Puddles Hit"
-1221 "Adds x3 Spawn"
-1221 "AoE"
-1225 "AoE"
-1232 "Gobsnick Leghops"
+700.0 "Frostbite" sync /:Lamebrix Strikebocks:1A8E:/ window 125,0
+712.8 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+720.9 "Gobrush Rushgob" sync /:Lamebrix Strikebocks:1A9F:/
+724.1 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+735.3 "Gobslice Mooncrops" sync /:Lamebrix Strikebocks:1A92:/
+739.4 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+745.7 "Leghops?/Charge (In)?"
+749.9 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+754.0 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+758.1 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+762.2 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+
+# Sawblade phase
+765.3 "Brighteyes Markers" sync /:Lamebrix Strikebocks:1AA9:/
+769.2 "Laceration" #sync /:Buzzsaw:1A94:/
+770.3 "Brighteyes" sync /:Lamebrix Strikebocks:1AAA:/
+770.9 "Illuminati Hand Cannon" sync /:Lamebrix Strikebocks:1AA8:/
+772.3 "Laceration" #sync /:Buzzsaw:1A94:/
+775.1 "Brighteyes Markers" sync /:Lamebrix Strikebocks:1AA9:/
+775.4 "Laceration" #sync /:Buzzsaw:1A94:/
+778.2 "--sync--" sync /:Lamebrix Strikebocks:1AB9:/
+778.4 "Laceration" #sync /:Buzzsaw:1A94:/
+780.1 "Brighteyes" sync /:Lamebrix Strikebocks:1AAA:/
+781.5 "Single Charge" sync /:Lamebrix Strikebocks:1A97:/
+782.3 "--out--" sync /:Lamebrix Strikebocks:1A9B:/
+786.4 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+795.6 "Gobslash Slicetops" sync /:Lamebrix Strikebocks:1AA1:/
+803.7 "Gobrush Rushgob" sync /:Lamebrix Strikebocks:1A9F:/
+
+# Adds phase
+806.9 "--sync--" sync /:Lamebrix Strikebocks:1AA6:/ # discharge puddles appear
+811.8 "Frost Trap" sync /:Lamebrix Strikebocks:1AB1:/
+814.9 "Discharge" sync /:Lamebrix Strikebocks:1AA7:/
+815.9 "Weight Trap" sync /:Lamebrix Strikebocks:1AB0:/
+816.8 "Frostbite" sync /:Lamebrix Strikebocks:1A8E:/
+820.8 "Impact" sync /:Weight Of The World:1A8B:/
+817.2 "--jump--" sync /:Lamebrix Strikebocks:1AA2:/
+824.9 "Discharge" sync /:Lamebrix Strikebocks:1AA7:/
+827.1 "Gobbie Adds x3 (NE)"
+828.4 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+832.5 "Gobsway Rumblerocks" sync /:Lamebrix Strikebocks:1AA0:/
+840.7 "Gobsnick Leghops" sync /:Lamebrix Strikebocks:1AA4:/
+845.6 "Laceration" #sync /:Buzzsaw:1A94:/
+847.8 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+848.6 "Laceration" #sync /:Buzzsaw:1A94:/
+851.6 "Laceration" #sync /:Buzzsaw:1A94:/
+855.9 "Gobrush Rushgob" sync /:Lamebrix Strikebocks:1A9F:/
+860.0 "Goblin Rush" sync /:Lamebrix Strikebocks:1A16:/
+
+# Loop
+868.1 "--sync--" #sync /:Lamebrix Strikebocks:1AB[89AB]:/
+870.1 "--sync--" #sync /:Lamebrix Strikebocks:1AB[89AB]:/
+872.1 "--sync--" #sync /:Lamebrix Strikebocks:1AB[89AB]:/
+875.3 "Triple Charge" sync /:Lamebrix Strikebocks:1A99:/ window 300,300 jump 528.5
+876.1 "--mechanic 1--" #sync /:Lamebrix Strikebocks:1A9[ABCE]:/
+879.2 "--mechanic 2--" #sync /:Lamebrix Strikebocks:1A9[ABCE]:/
+883.7 "--mechanic 3--" #sync /:Lamebrix Strikebocks:1A9[ABCE]:/
+888.8 "Goblin Rush" #sync /:Lamebrix Strikebocks:1A16:/
+892.9 "Gobsway Rumblerocks" #sync /:Lamebrix Strikebocks:1AA0:/
+897.0 "Goblin Rush" #sync /:Lamebrix Strikebocks:1A16:/
+901.1 "Gobsway Rumblerocks" #sync /:Lamebrix Strikebocks:1AA0:/
+906.2 "--jump--" #sync /:Lamebrix Strikebocks:1AA2:/
+908.5 "--sync--" #sync /:Lamebrix Strikebocks:1AB8:/
+911.8 "Single Charge" #sync /:Lamebrix Strikebocks:1A97:/
+912.6 "--in--" #sync /:Lamebrix Strikebocks:1A9A:/
