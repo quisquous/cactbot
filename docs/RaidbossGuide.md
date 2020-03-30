@@ -209,7 +209,7 @@ the `id`, (the hex ability ID, such as `2478`,) and whether or not the regex sho
 
 A sample trigger that makes use of all these elements:
 
-```bash
+```javascript
 {
   id: 'TEA Mega Holy Modified',
   regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
@@ -225,7 +225,7 @@ A sample trigger that makes use of all these elements:
 
 While this doesn't reduce the number of lines we need to match the locale regexes, this is far less verbose than:
 
-```bash
+```javascript
 {
   id: 'TEA Mega Holy Modified',
   regex:  / 14:........:Alexander Prime starts using Mega Holy/,
