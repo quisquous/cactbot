@@ -192,6 +192,67 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 - tts
 - run
 
+## Canned Helper Functions
+
+In order to unify trigger construction and reduce the manual burden of translation, cactbot makes widespread use of 
+"canned" trigger elements. Use of these helpers makes automated testing significantly easier, and allows humans to catch
+errors and inconsistencies more easily when reviewing pull requests.
+
+Currently, three separate elements have pre-made structures defined: 
+[Condition](https://github.com/quisquous/cactbot/blob/master/resources/conditions.js), [Regex](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/master/resources/responses.js].
+Usage for each of these different functions should be relatively self-explanatory. Almost all `Response` functions take
+one argument, `severity`, used to determine what level of popup text to display to the user when the trigger activates.
+`Regex` functions take several arguments depending on which log line is being matched against,
+but generally a contributor would include the `source`, (name of the caster/user of the ability to match,)
+the `id`, (the hex ability ID, such as `2478`,) and whether or not the regex should capture the matches (`capture: false`.)
+`Regex` functions capture by default, but standard practice is to specify non-capturing unless a trigger element requires captures.
+
+A sample trigger that makes use of all these elements:
+
+```bash
+{
+  id: 'TEA Mega Holy Modified',
+  regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
+  regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
+  regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
+  regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
+  regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
+  regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
+  condition: Conditions.caresAboutMagical(),
+  response: Responses.bigAoe('alert'),
+},
+```
+
+While this doesn't reduce the number of lines we need to match the locale regexes, this is far less verbose than:
+
+```bash
+{
+  id: 'TEA Mega Holy Modified',
+  regex:  / 14:........:Alexander Prime starts using Mega Holy/,
+  regexDe: / 14:........:Prim-Alexander starts using Super-Sanctus/,
+  regexFr: / 14:........:Primo-Alexander starts using Méga Miracle/,
+  regexJa: / 14:........:アレキサンダー・プライム starts using メガホーリー/,
+  regexCn: / 14:........:至尊亚历山大 starts using 百万神圣/,
+  regexKo: / 14:........:알렉산더 프라임 starts using 지진/,
+  condition: function(data) {
+    return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+  },
+  alertText: {
+    en: 'big aoe!',
+    de: 'Große AoE!',
+    fr: 'Grosse AoE !',
+    ja: '大ダメージAoE',
+    cn: '大AoE伤害！',
+    ko: '강한 전체 공격!',
+  },
+},
+```
+Use of bare regexes is deprecated. *Always* use the appropriate canned function unless there is a very specific
+reason not to. (Attempting to use a bare regex will cause a build failure when the pull request is submitted.)
+Use of canned conditions and responses is recommended where possible, although
+given Square's extremely talented fight design team, it's not always going to *be* possible.
+(Note that if you are writing triggers just for your personal use, you are free to do what you want.)
+
 ## Timeline Info
 
 The trigger subfolders may contain timeline text files in the format defined by ACT Timeline plugin, which described in here:
