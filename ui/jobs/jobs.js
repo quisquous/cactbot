@@ -2128,6 +2128,16 @@ class Bars {
     if (!this.o.gpBar) return;
     this.o.gpBar.value = this.gp;
     this.o.gpBar.maxvalue = this.maxGP;
+
+    // GP Alarm
+    if (this.gp < this.options.GpAlarmPoint) {
+      this.gpAlarmReady = true;
+    } else if (this.gpAlarmReady && !this.gpPotion && this.gp >= this.options.GpAlarmPoint) {
+      this.gpAlarmReady = false;
+      let audio = new Audio('../../resources/sounds/PowerAuras/kaching.ogg');
+      audio.volume = this.options.GpAlarmSoundVolume;
+      audio.play();
+    }
   }
 
   UpdateOpacity() {
@@ -2252,6 +2262,8 @@ class Bars {
       this.umbralStacks = 0;
       this.UpdateMPTicker();
       updateJob = updateHp = updateMp = updateCp = updateGp = true;
+      if (!Util.isGatheringJob(this.job))
+        this.gpAlarmReady = false;
     }
     if (e.detail.level != this.level) {
       this.level = e.detail.level;
@@ -2395,6 +2407,14 @@ class Bars {
             let m = log.match(kAnybodyAbilityRegex);
             if (m)
               this.buffTracker.onUseAbility(m.groups.id, log);
+          }
+          // use of GP Potion
+          let cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
+          if (log.match(cordialRegex)) {
+            this.gpPotion = true;
+            setTimeout(() => {
+              this.gpPotion = false;
+            }, 2000);
           }
         }
       }

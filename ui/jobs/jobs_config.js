@@ -158,5 +158,23 @@ UserConfig.registerOptions('jobs', {
       type: 'integer',
       default: 1,
     },
+    {
+      id: 'GpAlarmPoint',
+      name: {
+        en: 'GP alarm threshold (0 to disable)',
+        ko: 'GP 알람 설정값 (0 = 기능 정지)',
+      },
+      type: 'integer',
+      default: 0,
+    },
+    {
+      id: 'GpAlarmSoundVolume',
+      name: {
+        en: 'GP alarm sound (0-1)',
+        ko: 'GP 알람 소리 크기 (0-1)',
+      },
+      type: 'float',
+      default: 0.8,
+    },
   ],
 });
