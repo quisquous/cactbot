@@ -68,21 +68,21 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   regexFr: /trigger-regex-(with-position-1)-here-but-in-french/,
   condition: function(data, matches) { return true if it should run },
   preRun: function(data, matches) { do stuff.. },
-  promise: function(data, matches) { return promise to wait for resolution of },
   delaySeconds: 0,
   durationSeconds: 3,
   suppressSeconds: 0,
+  promise: function(data, matches) { return promise to wait for resolution of },
   sound: '',
   soundVolume: 1,
-   response: {
+  response: {
     alarmText: {'Alarm Popup'},
     alertText: {'Alert Popup'},
     infoText: {'Info Popup'},
     tts: {'TTS text'},
   },
-  alarmText: {'Alarm Popup'},
-  alertText: {'Alert Popup'},
-  infoText: {'Info Popup'},
+  alarmText: {en: 'Alarm Popup'},
+  alertText: {en: 'Alert Popup'},
+  infoText: {en: 'Info Popup'},
   tts: {'TTS text'},
   run: function(data, matches) { do stuff.. },
 },
@@ -147,7 +147,7 @@ Response has less priority than an explicity specified text or tts,
 and so can be overridden.
 (As with `regex` and `condition`, "canned" responses are available within [responses.js](https://github.com/quisquous/cactbot/blob/master/resources/responses.js).)
 
-**alarmtext**
+**alarmText**
 Displays a text popup with Alarm importance when the trigger activates. This is for high-priority events where failure is guaranteed to kill you, is likely to wipe the encounter, or will otherwise make successful completion much more difficult. (Examples include Allagan Rot in T2, Cursed Shriek in T7, or Ultros' Stoneskin cast in O7s. ) May be a string or a `function(data, matches)` that returns a string.
 
 **alertText**
