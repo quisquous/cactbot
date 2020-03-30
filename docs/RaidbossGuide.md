@@ -74,16 +74,11 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   promise: function(data, matches) { return promise to wait for resolution of },
   sound: '',
   soundVolume: 1,
-  response: {
-    alarmText: {'Alarm Popup'},
-    alertText: {'Alert Popup'},
-    infoText: {'Info Popup'},
-    tts: {'TTS text'},
-  },
+  response: Responses.doSomething(severity),
   alarmText: {en: 'Alarm Popup'},
   alertText: {en: 'Alert Popup'},
   infoText: {en: 'Info Popup'},
-  tts: {'TTS text'},
+  tts: {en: 'TTS text'},
   run: function(data, matches) { do stuff.. },
 },
 ```
