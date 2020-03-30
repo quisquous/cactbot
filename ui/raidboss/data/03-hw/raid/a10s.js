@@ -31,21 +31,21 @@
   triggers: [
     {
       id: 'A10S Floor Spike Trap',
-      regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB2' }),
+      regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB2', capture: false }),
       infoText: {
         en: 'Floor Spikes',
       },
     },
     {
       id: 'A10S Frost Laser Trap',
-      regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB1' }),
+      regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB1', capture: false }),
       infoText: {
         en: 'Frost Lasers',
       },
     },
     {
       id: 'A10S Ceiling Weight Trap',
-      regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB0' }),
+      regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB0', capture: false }),
       infoText: {
         en: 'Ceiling Weight',
       },
