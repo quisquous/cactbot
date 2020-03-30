@@ -97,6 +97,7 @@
         // Sorry, there are no mirror colors in the logs (YET),
         // and so this is the best that can be done.
         en: 'Go Back, Red Mirror Side',
+        ko: '빨간 거울 방향 구석으로 이동',
       },
     },
     {
@@ -114,6 +115,7 @@
       delaySeconds: 2,
       infoText: {
         en: 'Go Front, Green Mirror Side',
+        ko: '초록 거울 방향 구석으로 이동',
       },
     },
     {
@@ -125,6 +127,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Swap Sides',
+        ko: '반대로 이동',
       },
     },
     {
@@ -636,6 +639,7 @@
         cn: '坦克塔内分摊',
         de: 'Auf Tank im Turm sammeln',
         fr: 'Tank packé dans les tours',
+        ko: '탱커 집합',
       },
     },
     {
@@ -652,6 +656,7 @@
         cn: '坦克塔内分散',
         de: 'Tank im Turm verteilen',
         fr: 'Tank écarté dans les tours',
+        ko: '탱커 산개',
       },
     },
   ],
