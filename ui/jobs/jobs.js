@@ -2409,7 +2409,7 @@ class Bars {
               this.buffTracker.onUseAbility(m.groups.id, log);
           }
           // use of GP Potion
-          let cordialRegex = Regexes.ability({source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)'});
+          let cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
           if (log.match(cordialRegex)) {
             this.gpPotion = true;
             setTimeout(() => {
