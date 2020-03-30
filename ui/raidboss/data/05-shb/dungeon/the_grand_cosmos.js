@@ -123,6 +123,7 @@
       regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
       regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
       regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
+      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス' }),
       regexCn: Regexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯' }),
       regexKo: Regexes.startsUsing({ id: '4931', source: '환영기사 하몬스' }),
       condition: function(data) {

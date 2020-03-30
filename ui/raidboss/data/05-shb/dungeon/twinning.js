@@ -206,7 +206,7 @@
         'enforcement droid 209': 'Vollzugsdroide 209',
         'clockwork ark knight': 'Uhrwerk-Erzritter',
         'beta zaghnal': 'Beta-Zaghnal',
-        'alpha zaghnal': 'Alpha-Zaghnal',
+        'Alpha Zaghnal': 'Alpha-Zaghnal',
         '(?<! )Zaghnal': 'Zaghnal',
         'Servomechanical Minotaur': 'Servomechanischer Minotaurus',
         'Mithridates': 'Mithridates',
