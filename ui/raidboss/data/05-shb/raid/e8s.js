@@ -97,6 +97,7 @@
         // Sorry, there are no mirror colors in the logs (YET),
         // and so this is the best that can be done.
         en: 'Go Back, Red Mirror Side',
+        de: 'Nach Hinten gehen, Seite des roten Spiegels',
         ko: '빨간 거울 방향 구석으로 이동',
       },
     },
@@ -115,6 +116,7 @@
       delaySeconds: 2,
       infoText: {
         en: 'Go Front, Green Mirror Side',
+        de: 'Nach Vorne gehen, Seite des grünen Spiegels',
         ko: '초록 거울 방향 구석으로 이동',
       },
     },
@@ -127,6 +129,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Swap Sides',
+        de: 'Seiten wechseln',
         ko: '반대로 이동',
       },
     },
@@ -153,7 +156,7 @@
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
       alertText: {
         en: 'Go Front / Sides',
-        de: 'Gehe nach Forne/ zu den Seiten',
+        de: 'Gehe nach Vorne/ zu den Seiten',
         fr: 'Devant / Côtés',
         ko: '앞 / 양옆으로',
         cn: '去前侧方',
@@ -224,6 +227,11 @@
     {
       id: 'E8S Icicle Impact',
       regex: Regexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
+      regexDe: Regexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
+      regexFr: Regexes.abilityFull({ source: 'Shiva', id: '4DA0' }),
+      regexJa: Regexes.abilityFull({ source: 'シヴァ', id: '4DA0' }),
+      regexCn: Regexes.abilityFull({ source: '希瓦', id: '4DA0' }),
+      regexKo: Regexes.abilityFull({ source: '시바', id: '4DA0' }),
       suppressSeconds: 20,
       infoText: function(data, matches) {
         let x = parseFloat(matches.x);
@@ -527,9 +535,9 @@
     {
       id: 'E8S Reflected Drachen Armor',
       regex: Regexes.ability({ source: 'Frozen Mirror', id: '4DC2', capture: false }),
-      regexDe: Regexes.ability({ source: 'Eisspiegel', id: '4DD2', capture: false }),
-      regexFr: Regexes.ability({ source: 'miroir de glace', id: '4DD2', capture: false }),
-      regexJa: Regexes.ability({ source: '氷面鏡', id: '4DD2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Eisspiegel', id: '4DC2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Miroir De Glace', id: '4DC2', capture: false }),
+      regexJa: Regexes.ability({ source: '氷面鏡', id: '4DC2', capture: false }),
       response: Responses.move('alert'),
     },
     {
@@ -664,19 +672,19 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'luminous aether': 'Lichtäther',
+        'Luminous Aether': 'Lichtäther',
         'holy light': 'heilig(?:e|er|es|en) Licht',
         'great wyrm': 'Körper des heiligen Drachen',
-        'frozen mirror': 'Eisspiegel',
-        'electric aether': 'Blitzäther',
-        'earthen aether': 'Erdäther',
-        'aqueous aether': 'Wasseräther',
+        'Frozen Mirror': 'Eisspiegel',
+        'Electric Aether': 'Blitzäther',
+        'Earthen Aether': 'Erdäther',
+        'Aqueous Aether': 'Wasseräther',
         'Shiva': 'Shiva',
         'Mothercrystal': 'Urkristall',
       },
       'replaceText': {
-        'the Path of Light': 'Pfad des Lichts',
-        'the House of Light': 'Tsunami des Lichts',
+        'The Path Of Light': 'Pfad des Lichts',
+        'The House Of Light': 'Tsunami des Lichts',
         'Wyrm\'s Lament': 'Brüllen des heiligen Drachen',
         'Twin Stillness': 'Zwillingsschwerter der Stille',
         'Stoneskin': 'Steinhaut',
@@ -762,13 +770,13 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'luminous aether': 'éther de lumière',
+        'luminous Aether': 'éther de lumière',
         'holy light': 'lumière sacrée',
         'great wyrm': 'Dragon divin',
         'frozen mirror': 'miroir de glace',
-        'electric aether': 'éther de foudre',
-        'earthen aether': 'éther de terre',
-        'aqueous aether': 'éther d\'eau',
+        'electric Aether': 'éther de foudre',
+        'earthen Aether': 'éther de terre',
+        'aqueous Aether': 'éther d\'eau',
         'Shiva': 'Shiva',
         'Mothercrystal': 'Cristal-mère',
       },
@@ -862,13 +870,13 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'luminous aether': 'ライト・エーテル',
+        'luminous Aether': 'ライト・エーテル',
         'holy light': '聖なる光',
         'great wyrm': '聖竜',
         'frozen mirror': '氷面鏡',
-        'electric aether': 'ライトニング・エーテル',
-        'earthen aether': 'アース・エーテル',
-        'aqueous aether': 'ウォーター・エーテル',
+        'electric Aether': 'ライトニング・エーテル',
+        'earthen Aether': 'アース・エーテル',
+        'aqueous Aether': 'ウォーター・エーテル',
         'Shiva': 'シヴァ',
         'Mothercrystal': 'マザークリスタル',
       },
