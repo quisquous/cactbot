@@ -200,8 +200,8 @@ errors and inconsistencies more easily when reviewing pull requests.
 
 Currently, three separate elements have pre-made structures defined: 
 [Condition](https://github.com/quisquous/cactbot/blob/master/resources/conditions.js), [Regex](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/master/resources/responses.js).
-Usage for each of these different functions should be relatively self-explanatory. Almost all `Response` functions take
-one argument, `severity`, used to determine what level of popup text to display to the user when the trigger activates.
+`Condition` functions take no arguments. Almost all `Response` functions take one argument, `severity`,
+used to determine what level of popup text to display to the user when the trigger activates.
 `Regex` functions take several arguments depending on which log line is being matched against,
 but generally a contributor would include the `source`, (name of the caster/user of the ability to match,)
 the `id`, (the hex ability ID, such as `2478`,) and whether or not the regex should capture the matches (`capture: false`.)
