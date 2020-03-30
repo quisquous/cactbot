@@ -194,9 +194,9 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 
 ## Canned Helper Functions
 
-In order to unify trigger construction and reduce the manual burden of translation, cactbot makes widespread use of 
-"canned" trigger elements. Use of these helpers makes automated testing significantly easier, and allows humans to catch
-errors and inconsistencies more easily when reviewing pull requests.
+In order to unify trigger construction and reduce the manual burden of translation,
+cactbot makes widespread use of "canned" trigger elements. Use of these helpers makes automated testing significantly easier,
+and allows humans to catch errors and inconsistencies more easily when reviewing pull requests.
 
 Currently, three separate elements have pre-made structures defined: 
 [Condition](https://github.com/quisquous/cactbot/blob/master/resources/conditions.js), [Regex](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/master/resources/responses.js).
@@ -248,10 +248,12 @@ While this doesn't reduce the number of lines we need to match the locale regexe
 },
 ```
 Use of bare regexes is deprecated. *Always* use the appropriate canned function unless there is a very specific
-reason not to. (Attempting to use a bare regex will cause a build failure when the pull request is submitted.)
+reason not to. Attempting to use a bare regex will cause a build failure when the pull request is submitted.
+(Note that if you are writing triggers for just your personal use, you are free to do what you want.
+This deprecation applies only to work intended for the cactbot repository.)
+
 Use of canned conditions and responses is recommended where possible, although
 given Square's extremely talented fight design team, it's not always going to *be* possible.
-(Note that if you are writing triggers just for your personal use, you are free to do what you want.)
 
 ## Timeline Info
 
