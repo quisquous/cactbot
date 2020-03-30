@@ -44,6 +44,7 @@ let getHeadmarkerId = (data, matches) => {
   zoneRegex: {
     en: /^The Epic [Oo]f Alexander \(Ultimate\)$/,
     cn: /^亚历山大绝境战$/,
+    ko: /^절 알렉산더 토벌전$/,
   },
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [
