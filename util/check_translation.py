@@ -208,7 +208,7 @@ def translate_timeline(line, trans):
         "Start",
     ]
     for skip in skip_text:
-        did_work = did_work or re.search(skip, text)
+        did_work = did_work or re.search(skip, text, re.IGNORECASE)
     if not did_work:
         line = line + " #MISSINGTEXT"
 
@@ -220,7 +220,7 @@ def translate_timeline(line, trans):
         return line
     text = m.group(1)
     for old, new in trans["replaceSync"].items():
-        did_work = did_work or re.search(old, text)
+        did_work = did_work or re.search(old, text, re.IGNORECASE)
         text = re.sub(old, new, text)
         # Double escape any escaped characters that will break the
         # regex below.  The regex substitution will turn the
