@@ -186,7 +186,6 @@
         'The chapter house': 'Himmelsgewölbe',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
         'Advent': 'Wiederkunft',
         'Altar Candle': 'Altarkerze',
         'Altar Pyre': 'Scheiterhaufen',
@@ -230,7 +229,6 @@
         'The chapter house': 'Kiosque du patio',
       },
       'replaceText': {
-        '--reset--': '-- Reset --',
         'Advent': 'Avènement',
         'Altar Candle': 'Cierge funéraire',
         'Altar Pyre': 'Bûcher funéraire',
@@ -274,7 +272,6 @@
         'The chapter house': '庭園の小ホール',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
         'Advent': '降臨',
         'Altar Candle': 'アルターキャンドル',
         'Altar Pyre': 'アルターパイヤ',
@@ -318,7 +315,6 @@
         'The chapter house': '庭园小厅',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
         'Advent': '降临',
         'Altar Candle': '圣坛蜡烛',
         'Altar Pyre': '圣坛火葬',
@@ -362,7 +358,6 @@
         'The chapter house': '기사단 강당',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
         'Advent': '강림',
         'Altar Candle': '제단의 초',
         'Altar Pyre': '제단의 장작',
