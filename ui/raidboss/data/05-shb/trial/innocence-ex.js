@@ -520,6 +520,11 @@
         'Winged Rep': 'Schwinge des Urteils',
         'Soul And Body': 'Seele und Körper',
         '--jump--': '--Sprung--',
+        'Starbirth Corner': 'Sternengeburt Ecke',
+        'Starbirth Explode': 'Sternengeburt Explosion',
+        'Starbirth Charge': 'Sternengeburt Charge',
+        'Starbirth Avoid': 'vermeide Sternengeburt',
+        'Starbirth Final': 'Finale Sternengeburt',
       },
       '~effectNames': {
         'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
