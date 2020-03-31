@@ -36,7 +36,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        '--sync--': '--sync--',
         'Ifrit': 'Ifrit',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
@@ -55,7 +54,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        '--sync--': '--Synchronisation--',
         'Ifrit': 'Ifrit',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
@@ -74,7 +72,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        '--sync--': '--sync--',
         'Ifrit': 'イフリート',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
@@ -93,7 +90,6 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        '--sync--': '--sync--', // FIXME
         'Ifrit': '伊弗利特',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
@@ -112,7 +108,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        '--sync--': '--sync--', // FIXME
         'Ifrit': '이프리트',
         'Succumb': 'Succumb', // FIXME
         'Surrender': 'Surrender', // FIXME
