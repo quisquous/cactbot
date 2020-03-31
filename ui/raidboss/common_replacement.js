@@ -59,7 +59,7 @@ let commonReplacement = {
     de: '--mitte--',
     fr: '--milieu--',
     cn: '--中间--',
-    ko: '--중간에--',
+    ko: '--중앙--',
   },
   '--north--': {
     de: '--norden--',
