@@ -313,9 +313,7 @@
         'Aquatic Lance': 'Lance aquatique',
         'Aqua Spear': 'Épieu aquatique',
         'Acrid Stream': 'Projection âcre',
-        '(?<!un)targetable--': 'Ciblable--',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
+        '(?<!un)targetable--': 'ciblable--',
         'Carcharian Verve': 'Verve carcharienne',
       },
       '~effectNames': {
