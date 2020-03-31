@@ -59,8 +59,6 @@
         'Yojimbo': 'Yojinbo',
       },
       'replaceText': {
-        '--Reset--': '--Reset--',
-        '--sync--': '--sync--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'Klingenschimmer',
@@ -93,8 +91,6 @@
         'Yojimbo': 'Yojimbo',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'Éradication',
@@ -127,8 +123,6 @@
         'Yojimbo': 'ヨウジンボウ',
       },
       'replaceText': {
-        '--Reset--': '--Reset--',
-        '--sync--': '--sync--',
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'ヒット・ジ・エンド',
@@ -193,8 +187,6 @@
         'Yojimbo': '요우진보',
       },
       'replaceText': {
-        '--Reset--': '--Reset--', // FIXME
-        '--sync--': '--sync--', // FIXME
         'A Giant Me': 'A Giant Me', // FIXME
         'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': '끝장타',
