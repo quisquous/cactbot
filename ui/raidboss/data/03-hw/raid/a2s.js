@@ -47,7 +47,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Keep ' + data.ShortName(matches.target) + ' topped',
-          fr: 'Gardez-le ' + data.ShortName(matches.target) + ' topped',
+          fr: 'Maintenez ' + data.ShortName(matches.target) + ' Max PV',
         };
       },
     },
@@ -101,9 +101,9 @@
         'Magitek Gobwidow G-IX': 'Gobmygale magitek G-IX',
       },
       'replaceText': {
-        '(mid)': '(centre)',
-        '(NW)': '(NO)',
-        '(SW)': '(SO)',
+        'mid': 'milieu',
+        'NW': 'NO',
+        'SW': 'SO',
         'Bangyzoom': 'Ordre d\'attaque',
         'Blitzstrahl': 'Blitzstrahl',
         'Bodyhurt Breakblock': 'Blindage corporel',
