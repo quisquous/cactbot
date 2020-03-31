@@ -228,8 +228,6 @@
         'Burst': 'Explosion',
         'Apokalypsis': 'Apokalypsis',
         'Aetherspike': 'Pic d\'éther',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Healing Magic Down': 'Malus De Soin',
