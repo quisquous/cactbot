@@ -213,7 +213,7 @@
         'Acrid Stream': 'Ätzende Strömung',
         '2,000-mina swipe': '2000 Mina-Hiebe',
         '2,000-mina swing': '2000 Mina-Schwung',
-        'Swing/Swipe/Cyclone': '',
+        'Swing/Swipe/Cyclone': 'Hiebe/Schwung/Zyklons',
         'Hammer/Blade Mark': 'Schreckenshammer/klinge',
         'Blade/Hammer Mark': 'Schreckensklinge/hammer',
         'Pyre/Hearth': 'Schreckensstachel/flammen',
