@@ -929,6 +929,11 @@
         'Wail Of The Lost': 'Wehklagen der Verlorenen',
         'Comet': 'Komet',
         'Quadrastrike(?! [^0-9])': 'Quadraschlag',
+        'Magic Chakram/Spear': 'Magisches Chakram/Speer',
+        'Magic Spear/Chakram': 'Magischer Speer/Chakram',
+        'Life In Captivity': 'Leben in Gefangenschaft',
+        'Quadrastrike Tower': 'Quadraschlag Turm',
+        'Quadrastrike Bleed': 'Quadraschlag Blutung',
       },
     },
     {

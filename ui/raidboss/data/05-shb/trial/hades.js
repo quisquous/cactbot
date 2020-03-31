@@ -139,7 +139,7 @@
       regexJa: Regexes.startsUsing({ id: '415C', source: 'ハーデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '415C', source: '哈迪斯', capture: false }),
       regexKo: Regexes.startsUsing({ id: '415C', source: '하데스', capture: false }),
-      response: Responses.getOut(),
+      response: Responses.goSides(),
     },
     {
       id: 'Hades Purgation',
@@ -264,6 +264,18 @@
       },
     },
     {
+      id: 'Hades Life In Captivity',
+      regex: Regexes.ability({ id: '4175', source: 'Hades', capture: false }),
+      regexDe: Regexes.ability({ id: '4175', source: 'Hades', capture: false }),
+      regexFr: Regexes.ability({ id: '4175', source: 'Hadès', capture: false }),
+      regexJa: Regexes.ability({ id: '4175', source: 'ハーデス', capture: false }),
+      regexCn: Regexes.ability({ id: '4175', source: '哈迪斯', capture: false }),
+      regexKo: Regexes.ability({ id: '4175', source: '하데스', capture: false }),
+      run: function(data) {
+        data.seenLifeInCaptivity = true;
+      },
+    },
+    {
       id: 'Hades Gaol',
       regex: Regexes.ability({ id: '417F', source: 'Hades', capture: false }),
       regexDe: Regexes.ability({ id: '417F', source: 'Hades', capture: false }),
@@ -271,6 +283,11 @@
       regexJa: Regexes.ability({ id: '417F', source: 'ハーデス', capture: false }),
       regexCn: Regexes.ability({ id: '417F', source: '哈迪斯', capture: false }),
       regexKo: Regexes.ability({ id: '417F', source: '하데스', capture: false }),
+      condition: function(data) {
+        // There can be multiple gaols (if the phase loops), but ability also
+        // gets used during the finall phase transition.  Ignore that one.
+        return !data.seenLifeInCaptivity;
+      },
       delaySeconds: 2,
       infoText: {
         en: 'Kill Jail',
