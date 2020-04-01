@@ -199,7 +199,6 @@
       'replaceText': {
         'Freak Wave': 'Vague gigantesque',
         'Maelstrom': 'Maelström',
-        '--sync--': '--Synchronisation--',
         'Rip Current': 'Courant d\'arrachement',
         'Undersea Quake': 'Séisme sous-marin',
         'Spinning Dive': 'Piqué tournant',
@@ -207,7 +206,6 @@
         'Temporary Current': 'Courant évanescent',
         'Crashing Pulse': 'Pulsation déchaînée',
         'Surging Tsunami': 'Tsunami écrasant',
-        '--Reset--': '--Réinitialisation--',
         'Monster Wave': 'Vague monstrueuse',
         'Tidal Roar': 'Vague rugissante',
         'Smothering Tsunami': 'Tsunami submergeant',
