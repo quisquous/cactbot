@@ -706,8 +706,6 @@
         '(?<!\\w)Breaking Wave': 'Vague brisante',
         'Black Smokers': 'Fumeurs noirs',
         'Backbreaking Wave': 'Vague dévastatrice',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Swirling Waters': 'Eaux tournoyantes',
