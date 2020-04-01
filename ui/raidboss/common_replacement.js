@@ -116,7 +116,7 @@ let commonReplacement = {
     cn: '--可选中--',
     ko: '--타겟 가능--',
   },
-  '--teleport----': {
+  '--teleport--': {
     de: '--teleportation--',
     fr: '--téléportation--',
     ja: '--テレポート--',
