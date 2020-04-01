@@ -454,9 +454,6 @@
         'Spike Of Flame': 'Flammenstachel',
         'Tank Comets': 'Tank Meteore',
         '--cutscene--': '--Zwischensequenz--',
-        '--middle--': '--Mitte--',
-        '--north--': '--Norden--',
-        '--teleport--': '--Teleportation--',
       },
       '~effectNames': {
         'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
