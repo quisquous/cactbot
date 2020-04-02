@@ -13,13 +13,9 @@
       regexDe: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
       regexFr: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
       regexJa: Regexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BD3', capture: false }),
+      delaySeconds: 11,
       promise: function(data) {
         let p = new Promise(async (res) => {
-          // helper function to delay the promise execution for the given time
-          const sleep = (m) => new Promise((r) => setTimeout(r, m));
-
-          await sleep(11000);
-
           let combatantNames = null;
 
           const ifritLocaleNames = {
