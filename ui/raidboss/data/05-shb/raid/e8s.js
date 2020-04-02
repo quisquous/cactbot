@@ -385,6 +385,97 @@
       },
     },
     {
+      id: 'E8S Mirror, Mirror',
+      regex: Regexes.startsUsing({ source: 'Shiva', id: '4D5A', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D5A', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Shiva', id: '4D5A', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D5A', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D5A', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '시바', id: '4D5A', capture: false }),
+      condition: function(data) {
+        data.mirrorCast = data.mirrorCast || 0;
+        data.mirrorCast++;
+        data.isHallowedWingsMirrorMirror = data.mirrorCast === 3;
+
+        return data.isHallowedWingsMirrorMirror;
+      },
+      delaySeconds: 12,
+      promise: function(data) {
+        let p = new Promise(async (res) => {
+          const shivaLocaleNames = {
+            en: 'Shiva',
+            de: 'Shiva',
+            fr: 'Shiva',
+            ja: 'シヴァ',
+            cn: '希瓦',
+            ko: '시바',
+          };
+
+          let combatantData = await window.callOverlayHandler({
+            call: 'getCombatants',
+            names: [shivaLocaleNames[data.lang]],
+          });
+
+          // if we could not retrieve combatant data, the
+          // trigger will not work, so just resume promise here.
+          if (!(combatantData !== null &&
+            combatantData.combatants &&
+            combatantData.combatants.length)) {
+            data.safeZone = null;
+            res();
+            return;
+          }
+
+          // if we dont have information about which wing was
+          // casted, then the trigger will not work (safety measure)
+          if (!(data.leftWing || data.rightWing)) {
+            data.safeZone = null;
+            res();
+            return;
+          }
+
+          // we want to inspect the active shiva (it's the one with the lowest id)
+          let shivaCombatant =
+            combatantData.combatants.sort((a, b) => b.ID - a.ID).pop();
+
+          // we have 2 inputs: shiva faces north/south
+          //                   left/right wing is glowing
+          let ttsNumbers = "";
+          let sideResponse = {};
+
+          if (data.leftWing) {
+            sideResponse = Responses.goRight().alertText;
+            if (shivaCombatant.Heading > 3) {
+              ttsNumbers = "1 4 ";
+            }
+          }
+
+          if (data.rightWing) {
+            sideResponse = Responses.goLeft().alertText;
+            if (shivaCombatant.Heading > 3) {
+              ttsNumbers = "2 3 ";
+            }
+          }
+
+          data.safeZone = {
+            en: ttsNumbers + sideResponse.en,
+            de: ttsNumbers + sideResponse.de,
+            fr: ttsNumbers + sideResponse.fr,
+            ja: ttsNumbers + sideResponse.ja,
+            cn: ttsNumbers + sideResponse.cn,
+            ko: ttsNumbers + sideResponse.ko,
+          }
+
+          res();
+        });
+
+        return p;
+      },
+      tts: function(data) {
+        return data.safeZone;
+      },
+    },
+    {
       id: 'E8S Hallowed Wings Left',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D75', capture: false }),
@@ -392,7 +483,14 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D75', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D75', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D75', capture: false }),
+      condition: function(data) {
+        return !data.isHallowedWingsMirrorMirror;
+      },
       response: Responses.goRight(),
+      run: function(data) {
+        data.leftWing = true;
+        data.rightWing = false;
+      },
     },
     {
       id: 'E8S Hallowed Wings Right',
@@ -402,7 +500,14 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D76', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D76', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D76', capture: false }),
+      condition: function(data) {
+        return !data.isHallowedWingsMirrorMirror;
+      },
       response: Responses.goLeft(),
+      run: function(data) {
+        data.leftWing = false;
+        data.rightWing = true;
+      },
     },
     {
       id: 'E8S Hallowed Wings Knockback',
@@ -440,6 +545,7 @@
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D7C', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D7C', capture: false }),
       run: function(data) {
+        data.isHallowedWingsMirrorMirror = false;
         data.wyrmsLament = data.wyrmsLament || 0;
         data.wyrmsLament++;
       },
