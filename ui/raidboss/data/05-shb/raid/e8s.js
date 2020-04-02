@@ -440,21 +440,19 @@
 
           // we have 2 inputs: shiva faces north/south
           //                   left/right wing is glowing
-          let ttsNumbers = "";
+          let ttsNumbers = '';
           let sideResponse = {};
 
           if (data.leftWing) {
             sideResponse = Responses.goRight().alertText;
-            if (shivaCombatant.Heading > 3) {
-              ttsNumbers = "1 4 ";
-            }
+            if (shivaCombatant.Heading > 3)
+              ttsNumbers = '1 4 ';
           }
 
           if (data.rightWing) {
             sideResponse = Responses.goLeft().alertText;
-            if (shivaCombatant.Heading > 3) {
-              ttsNumbers = "2 3 ";
-            }
+            if (shivaCombatant.Heading > 3)
+              ttsNumbers = '2 3 ';
           }
 
           data.safeZone = {
@@ -464,7 +462,7 @@
             ja: ttsNumbers + sideResponse.ja,
             cn: ttsNumbers + sideResponse.cn,
             ko: ttsNumbers + sideResponse.ko,
-          }
+          };
 
           res();
         });
