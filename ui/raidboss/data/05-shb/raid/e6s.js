@@ -18,7 +18,7 @@
           // helper function to delay the promise execution for the given time
           const sleep = (m) => new Promise((r) => setTimeout(r, m));
 
-          await sleep(10000);
+          await sleep(11000);
 
           let combatantNames = null;
 
@@ -54,6 +54,7 @@
             combatantData.combatants.length)) {
             data.safeZone = null;
             res();
+            return;
           }
 
           // we need to filter for the Ifrit with the highest ID
@@ -79,11 +80,13 @@
             safeZoneObj1 = {
               en: 'north',
               de: 'nord',
+              fr: 'nord',
             };
           } else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116) {
             safeZoneObj1 = {
               en: 'south',
               de: 'süd',
+              fr: 'sud',
             };
           }
 
@@ -91,17 +94,20 @@
             safeZoneObj2 = {
               en: 'west',
               de: 'west',
+              fr: 'ouest',
             };
           } else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116) {
             safeZoneObj2 = {
               en: 'east',
               de: 'ost',
+              fr: 'est',
             };
           }
 
           data.safeZone = {
             en: safeZoneObj1.en + safeZoneObj2.en,
             de: safeZoneObj1.de + safeZoneObj2.de,
+            fr: safeZoneObj1.fr + safeZoneObj2.fr,
           };
 
           res();
