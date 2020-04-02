@@ -62,7 +62,7 @@
           return {
             en: 'Away from ' + data.ShortName(matches.target),
             de: 'Weg von ' + data.ShortName(matches.target),
-            fr: 'Ecartez-vous de ' + data.ShortName(matches.target),
+            fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
           };
         }
       },
@@ -78,7 +78,7 @@
       infoText: {
         en: 'Blackfire Spread',
         de: 'Schwarzfeuer verteilen',
-        fr: 'Flamme noire, dispersion',
+        fr: 'Flamme noire, écartez-vous',
       },
     },
     {
@@ -102,7 +102,7 @@
       alertText: {
         en: 'Bluefire Away',
         de: 'Blaufeuer wegbringen',
-        fr: 'Flame bleue, écartez-vous',
+        fr: 'Flamme bleue, éloignez-vous',
       },
     },
     {

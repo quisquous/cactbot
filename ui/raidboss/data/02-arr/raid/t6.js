@@ -220,7 +220,7 @@
           return {
             en: 'Share Laser (on YOU)',
             de: 'Geteilter Laser (auf DIR)',
-            fr: 'Partage de laser (sur VOUS)',
+            fr: 'Partagez le laser (sur VOUS)',
           };
         }
         return {

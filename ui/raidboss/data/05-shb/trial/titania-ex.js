@@ -455,6 +455,9 @@
         'Being Mortal': 'Sterblichkeit',
         '--center--': '--Mitte--',
         'Love-In-Idleness': 'Liebevoller Müßiggang',
+        'War And Pease': 'Bohnenkrieg',
+        'Phantom Rune In': 'Phantomrune Rein',
+        'Phantom Rune Out': 'Phantomrune Raus',
       },
       '~effectNames': {
         'Thorny Vine': 'Dornenranken',

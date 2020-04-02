@@ -49,6 +49,9 @@ class CactbotLanguageCn extends CactbotLanguage {
       PresenceOfMind: '神速咏唱',
       Shifu: '士风',
       CircleOfPower: '魔纹环',
+      AstralAttenuation: 'Astral Attenuation', // FIXME
+      UmbralAttenuation: 'Umbral Attenuation', // FIXME
+      PhysicalAttenuation: 'Physical Attenuation', // FIXME
 
       SurgeProtection: '避雷',
 
@@ -70,6 +73,7 @@ class CactbotLanguageCn extends CactbotLanguage {
       UmbralEffect: 'Umbral Effect',
       Stun: '眩晕',
       ThinIce: '冰面',
+      DeepFreeze: '冻结',
 
       // UWU
       Windburn: '裂伤',

@@ -1008,17 +1008,16 @@
           return;
 
         let output = data.findDragonMarks(data.naelDragons);
-        let dir_names;
-        if (data.lang == 'fr')
-          dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'];
-        else if (data.lang == 'de')
-          dir_names = ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'];
-        else if (data.lang == 'ko')
-          dir_names = ['12시', '1시', '3시', '5시', '6시', '7시', '9시', '11시'];
-        else
-          dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+        let langMap = {
+          en: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
+          de: ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'],
+          fr: ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'],
+          ko: ['12시', '1시', '3시', '5시', '6시', '7시', '9시', '11시'],
+        };
+
+        let dirNames = langMap[data.lang] || langMap['en'];
         data.naelMarks = output.marks.map(function(i) {
-          return dir_names[i];
+          return dirNames[i];
         });
         data.wideThirdDive = output.wideThirdDive;
         data.unsafeThirdMark = output.unsafeThirdMark;
@@ -1062,28 +1061,9 @@
         data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
         if (matches.target != data.me)
           return;
-        let marker = ['A', 'B', 'C'][data.naelDiveMarkerCount];
         let dir = data.naelMarks[data.naelDiveMarkerCount];
         return {
-          en: 'Go To ' + marker + ' (in ' + dir + ')',
-          fr: 'Aller en ' + marker + ' (au ' + dir + ')',
-          de: 'Gehe zu ' + marker + ' (im ' + dir + ')',
-          ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
-          cn: '冲向' + marker + ' (剩余 ' + dir + '秒)',
-          ko: marker + '로 이동' + ' (그리고 ' + dir + '로)',
-        };
-      },
-      tts: function(data, matches) {
-        data.naelDiveMarkerCount = data.naelDiveMarkerCount || 0;
-        if (matches.target != data.me)
-          return;
-        return {
-          en: 'Go To ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          fr: 'Aller en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          de: 'Gehe zu ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
-          cn: '前往 ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          ko: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '로 이동',
+          en: 'Go To ' + dir + ' with marker',
         };
       },
     },
@@ -1797,7 +1777,6 @@
           bad.concat(badSpots(marks[0], dragons[1]));
           ret.unsafeThirdMark = bad.indexOf(marks[2]) != -1;
 
-          let dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
           ret.marks = marks;
           return ret;
         };

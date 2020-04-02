@@ -26,6 +26,7 @@ hideall "--sync--"
 104.7 "Irresistible Pull" sync /:Garuda:4BF6:/
 105.5 "Explosions" #sync /:Tumultuous Nexus:4C03:/
 110.8 "Ferostorm" sync /:Garuda:4BFD:/
+119.0 "--untargetable--"
 
 ### Phase 2: Ifrit
 122.0 "Touchdown" sync /:Ifrit:4C09:/
@@ -46,9 +47,10 @@ hideall "--sync--"
 228.2 "Eruption" sync /:Ifrit:4C17:/
 232.1 "Instant Incineration" sync /:Ifrit:4C0E:/
 235.7 "Meteor Strike" sync /:Ifrit:4C0F:/
+241.1 "--untargetable--"
 
 ### Phase 3: Garuda and Ifrit
-246.1 "--targetable--"
+245.4 "--targetable--"
 248.4 "Hated Of Embers/Vortex" sync /:Ifrit:4FA0:/
 253.6 "Occluded Front" sync /:Garuda:4BD2:/
 262.7 "Wind Cutter" sync /:Tumultuous Nexus:4C02:/
@@ -67,10 +69,12 @@ hideall "--sync--"
 294.5 "Explosion" sync /:Tumultuous Nexus:4C03:/
 294.5 "Explosion" sync /:Tumultuous Nexus:4C03:/
 298.6 "Ferostorm" sync /:Garuda:4BFD:/
-309.6 "--sync--" sync /:Raktapaksa:4D55:/
+303.2 "--untargetable--"
 
 ### Phase 4: Raktapaksa
+309.6 "--sync--" sync /:Raktapaksa:4D55:/
 320.4 "Firestorm" sync /:Raktapaksa:4BF8:/ window 350,5
+324.5 "--targetable--"
 343.8 "Hands Of Hell" sync /:Raktapaksa:4D01:/
 348.1 "Heat Burst" sync /:Raktapaksa:4C0D:/
 348.3 "Eruption" sync /:Raktapaksa:4C17:/
@@ -90,8 +94,10 @@ hideall "--sync--"
 415.3 "Eruption" sync /:Raktapaksa:4C17:/
 419.2 "Instant Incineration" sync /:Raktapaksa:4C0E:/
 423.0 "Meteor Strike" sync /:Raktapaksa:4C0F:/
-
 436.7 "Downburst" sync /:Raktapaksa:4BFC:/
+436.7 "--untargetable--"
+
+441.0 "--targetable--"
 445.2 "--sync--" sync /:Raktapaksa:4C19:/
 449.2 "Radiant Plume" sync /:Raktapaksa:4C15:/
 457.3 "Blaze 1" #sync /:Twisting Blaze:4C1B:/
@@ -131,4 +137,6 @@ hideall "--sync--"
 594.5 "Ferostorm" sync /:Raktapaksa:4C06:/
 
 603.3 "Downburst" sync /:Raktapaksa:4BFC:/
+603.3 "--untargetable--"
+607.6 "--targetable--"
 619.6 "Conflag Strike Enrage" sync /:Raktapaksa:4C1C:/

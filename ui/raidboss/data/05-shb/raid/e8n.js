@@ -53,7 +53,7 @@
       },
       alertText: {
         en: 'Go Front / Sides',
-        de: 'Gehe nach Forne/ zu den Seiten',
+        de: 'Gehe nach Vorne/ zu den Seiten',
         fr: 'Allez devant / sur les côtés',
         ko: '앞 / 양옆으로',
       },
@@ -94,6 +94,7 @@
       },
       alertText: {
         en: 'Get behind, then South',
+        de: 'Gehe nach Hinten, danach in den Süden',
         fr: 'Passer derrière, puis au Sud',
         ko: '보스 뒤로 => 남쪽으로',
       },
@@ -111,6 +112,7 @@
       },
       alertText: {
         en: 'Go Front / Sides, then North',
+        de: 'Gehe nach Vorne, danach in den Norden',
         fr: 'Allez devant / sur les côtés, puis au Nord',
         ko: '앞/양옆으로 => 북쪽으로',
       },
@@ -137,6 +139,7 @@
       suppressSeconds: 3,
       infoText: {
         en: 'Close to mirrors',
+        de: 'Nahe zu den Spiegeln',
         fr: 'Près des mirroirs',
         ko: '거울 밑으로',
       },
@@ -197,7 +200,8 @@
       regex: Regexes.headMarker({ id: '00C5' }),
       condition: Conditions.targetIsYou(),
       alertText: {
-        en: '3x puddles on you',
+        en: '3x puddles on YOU',
+        de: '3x Fläche auf DIR',
         fr: '3x Zones au sol sur vous',
         ko: '따라오는 장판 피하기',
       },
@@ -239,12 +243,14 @@
         if (data.rampant[data.me]) {
           return {
             en: 'Cone on YOU -- avoid towers',
+            de: 'Kegel AoE auf DIR -- Turm vermeiden',
             fr: 'Cône sur Vous -- évitez les tours',
             ko: '부채꼴 대상자 - 장판 피하기',
           };
         }
         return {
           en: 'Stand in a tower',
+          de: 'Im Turm stehen',
           fr: 'Se tenir dans une tour',
           ko: '장판 들어가기',
         };
@@ -282,7 +288,7 @@
       regexKo: Regexes.startsUsing({ source: '시바', id: '4DDD', capture: false }),
       alertText: {
         en: 'Back Then Front',
-        de: 'Nach Hinten, danach nach Forne',
+        de: 'Nach Hinten, danach nach Vorne',
         fr: 'Derrière puis devant',
         ko: '뒤로 => 앞으로',
       },
@@ -297,7 +303,7 @@
       regexKo: Regexes.startsUsing({ source: '시바', id: '4DDE', capture: false }),
       alertText: {
         en: 'Front Then Back',
-        de: 'Nach Forne, danach nach Hinten',
+        de: 'Nach Vorne, danach nach Hinten',
         fr: 'Devant puis derrière',
         ko: '앞으로 => 뒤로',
       },

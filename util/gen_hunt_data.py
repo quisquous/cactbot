@@ -24,6 +24,8 @@ def update_german(list, search, replace):
 
 
 def parse_data(monsters, csvfile, lang="en", name_map=None):
+    print(f"Processing {lang} hunt names language...")
+
     reader = csv.reader(csvfile)
     # skip the first three header lines
     next(reader)
@@ -66,18 +68,22 @@ def parse_data(monsters, csvfile, lang="en", name_map=None):
             rank = "B"
 
         if nm_id in monsters:
+            assert monsters[nm_id]['id'] == name_id
             assert monsters[nm_id]["rank"] == rank
         else:
-            monsters[nm_id] = {"rank": rank, "name": {}}
+            monsters[nm_id] = {"id": name_id, "rank": rank, "name": {}}
 
         monsters[nm_id]["name"][lang] = name
 
 
 def update_coinach(monsters, reader):
+    print("Reading Notorious Monster list...")
+
+    nm_csv = reader.rawexd("NotoriousMonster")
     languages = ["en", "de", "fr", "ja"]
     for locale in languages:
-        exd = reader.exd("NotoriousMonster", lang=locale)
-        parse_data(monsters, exd, lang=locale, name_map=None)
+        name_map = process_npc_names(reader.exd("BNpcName", lang=locale))
+        parse_data(monsters, nm_csv, lang=locale, name_map=name_map)
     return monsters
 
 

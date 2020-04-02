@@ -135,6 +135,7 @@
       regexDe: Regexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Kugel', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Globe Arcanique', capture: false }),
       regexJa: Regexes.addedCombatant({ name: '球体魔法陣', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '구체 마법진', capture: false }),
       durationSeconds: 6,
       suppressSeconds: 2,
       infoText: {
@@ -153,6 +154,7 @@
       regexDe: Regexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Körper', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Solide Arcanique', capture: false }),
       regexJa: Regexes.addedCombatant({ name: '立体魔法陣', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '입체 마법진', capture: false }),
       durationSeconds: 6,
       suppressSeconds: 2,
       infoText: {
@@ -161,7 +163,7 @@
         fr: 'Cachez-vous derrière le mirroir',
         ja: '鏡の後ろに',
         cn: '镜子后躲避',
-        ko: '문 뒤에 숨기',
+        ko: '문 없는 곳 반대쪽으로',
       },
     },
     {
@@ -171,6 +173,7 @@
       regexFr: Regexes.startsUsing({ id: '47B8', source: 'Spectre De Nabriales', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
       regexCn: Regexes.startsUsing({ id: '47B8', source: '那布里亚勒斯之影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47B8', source: '나브리알레스의 그림자', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -258,6 +261,7 @@
       regexDe: Regexes.tether({ id: '000E', source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], target: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
       regexFr: Regexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
       regexJa: Regexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
+      regexKo: Regexes.tether({ id: '000E', source: ['이게요름의 그림자', '라하브레아의 그림자'], target: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -278,6 +282,7 @@
       regexDe: Regexes.startsUsing({ id: '47BD', source: 'Igeyorhms Schatten', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47BD', source: 'Spectre D\'Igeyorhm', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47BD', source: 'イゲオルムの影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47BD', source: '이게요름의 그림자', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -304,6 +309,7 @@
       regexDe: Regexes.startsUsing({ id: '47BF', source: 'Lahabrea Und Igeyorhm', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47BF', source: 'Duo D\'Asciens', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47BF', source: 'ラハブレアとイゲオルム', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47BF', source: '라하브레아와 이게요름', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -316,6 +322,7 @@
       regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Feuers' }),
       regexFr: Regexes.gainsEffect({ effect: 'Marque De Feu' }),
       regexJa: Regexes.gainsEffect({ effect: '火の烙印' }),
+      regexKo: Regexes.gainsEffect({ effect: '불의 낙인' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -325,7 +332,7 @@
         fr: 'Attaquez Igeyorhm',
         ja: 'イゲオルムを攻撃',
         cn: '攻击以格约姆',
-        ko: 'Igeyorhm 공격',
+        ko: '이게요름 공격',
       },
       run: function(data) {
         data.brand = 'fire';
@@ -338,6 +345,7 @@
       regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Eises' }),
       regexFr: Regexes.gainsEffect({ effect: 'Marque De Glace' }),
       regexJa: Regexes.gainsEffect({ effect: '氷の烙印' }),
+      regexKo: Regexes.gainsEffect({ effect: '얼음의 낙인' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -360,6 +368,7 @@
       regexDe: Regexes.startsUsing({ id: '47C3', source: 'Igeyorhms Schatten' }),
       regexFr: Regexes.startsUsing({ id: '47C3', source: 'Spectre D\'Igeyorhm' }),
       regexJa: Regexes.startsUsing({ id: '47C3', source: 'イゲオルムの影' }),
+      regexKo: Regexes.startsUsing({ id: '47C3', source: '이게요름의 그림자' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -372,6 +381,7 @@
       regexDe: Regexes.startsUsing({ id: '47C2', source: 'Lahabreas Schatten' }),
       regexFr: Regexes.startsUsing({ id: '47C2', source: 'Spectre De Lahabrea' }),
       regexJa: Regexes.startsUsing({ id: '47C2', source: 'ラハブレアの影' }),
+      regexKo: Regexes.startsUsing({ id: '47C2', source: '라하브레아의 그림자' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -384,6 +394,7 @@
       regexDe: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
       regexFr: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
       regexJa: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
+      regexKo: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -460,6 +471,7 @@
       regexDe: Regexes.gainsEffect({ effect: 'Orbis Antiquus' }),
       regexFr: Regexes.gainsEffect({ effect: 'Cercle Ancien' }),
       regexJa: Regexes.gainsEffect({ effect: 'エンシェントリング' }),
+      regexKo: Regexes.gainsEffect({ effect: '고대의 고리' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -505,6 +517,7 @@
       regexDe: Regexes.startsUsing({ id: '47CC', source: 'Schatten Des Prim-Ascian', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47CC', source: 'Spectre De Primo-Ascien', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47CC', source: 'アシエン・プライムの影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47CC', source: '아씨엔 프라임의 그림자', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -525,6 +538,7 @@
       regexDe: Regexes.startsUsing({ id: '47D1', source: 'Schatten Des Prim-Ascian' }),
       regexFr: Regexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
       regexJa: Regexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
+      regexKo: Regexes.startsUsing({ id: '47D1', source: '아씨엔 프라임의 그림자' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -562,6 +576,7 @@
       regexDe: Regexes.startsUsing({ id: '47CD', source: 'Schatten Des Prim-Ascian', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47CD', source: 'Spectre De Primo-Ascien', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47CD', source: 'アシエン・プライムの影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47CD', source: '아씨엔 프라임의 그림자', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Healer Stacks',
@@ -579,6 +594,7 @@
       regexDe: Regexes.startsUsing({ id: '47D0', source: 'Schatten Des Prim-Ascian', capture: false }),
       regexFr: Regexes.startsUsing({ id: '47D0', source: 'Spectre De Primo-Ascien', capture: false }),
       regexJa: Regexes.startsUsing({ id: '47D0', source: 'アシエン・プライムの影', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '47D0', source: '아씨엔 프라임의 그림자', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -747,7 +763,7 @@
         fr: 'Exaflares',
         ja: 'ダークストリーム',
         cn: '地火',
-        ko: '엑소플레어',
+        ko: '엑사플레어',
       },
     },
     {
@@ -914,6 +930,11 @@
         'Wail Of The Lost': 'Wehklagen der Verlorenen',
         'Comet': 'Komet',
         'Quadrastrike(?! [^0-9])': 'Quadraschlag',
+        'Magic Chakram/Spear': 'Magisches Chakram/Speer',
+        'Magic Spear/Chakram': 'Magischer Speer/Chakram',
+        'Life In Captivity': 'Leben in Gefangenschaft',
+        'Quadrastrike Tower': 'Quadraschlag Turm',
+        'Quadrastrike Bleed': 'Quadraschlag Blutung',
       },
     },
     {
@@ -1103,6 +1124,69 @@
         'Quadrastrike Tower': '四重强袭 塔',
         'Quadrastrike Bleed': '四重强袭 流血',
         'Quadrastrike(?! [^0-9])': '四重强袭',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Arcane Font': '입체 마법진',
+        'Arcane Globe': '구체 마법진',
+        'Ascian Prime\'s Shade': '아씨엔 프라임의 그림자',
+        '(?<!\\w)Hades': '하데스',
+        '(?<! )Igeyorhm\'s Shade': '이게요름의 그림자',
+        'Lahabrea\'s Shade': '라하브레아의 그림자',
+        'Lahabrea\'s and Igeyorhm\'s Shades': '라하브레아와 이게요름',
+        'Nabriales\'s Shade': '나브리알레스의 그림자',
+        'Shadow of the Ancients': '고대인의 그림자',
+      },
+      'replaceText': {
+        'Again The Abyssal Celebrant': '심연의 기억',
+        'Again The Majestic': '존엄왕의 기억',
+        'Again The Martyr': '순교자의 기억',
+        'Ancient Circle': '고대의 고리',
+        'Ancient Dark IV': '에인션트 다쟈',
+        'Ancient Darkness': '에인션트 다크',
+        'Ancient Double': '고대의 이중 공격',
+        'Ancient Eruption': '고대의 불기둥',
+        'Ancient Water III': '에인션트 워터가',
+        'Annihilation': '멸절',
+        'Arcane Control': '마법진 기동',
+        'Arcane Utterance': '마법진 전개',
+        'Bad Faith': '불신',
+        'Blight': '좀먹힌 우울',
+        'Blizzard IV': '블리자쟈',
+        'Blizzard Sphere': '눈보라 구체',
+        'Broken Faith': '배신',
+        '(?<! )Captivity': '감금',
+        'Dark Current': '어둠의 급류',
+        'Dark Flame': '다크 플레임',
+        'Dark Freeze': '다크 프리즈',
+        'Dark II': '다라',
+        'Dark Seal': '어둠의 봉인',
+        'Death Shriek': '죽음의 비명',
+        'Fire IV': '파이쟈',
+        'Fire Sphere': '불의 구체',
+        'Forked Lightning': '갈래 번개',
+        'Gigantomachy': '기간토마키아',
+        'Height Of Chaos': '혼돈의 정점',
+        'Life In Captivity': '감금된 삶',
+        'Magic Chakram/Spear': '마법 차크람/창',
+        'Magic Spear/Chakram': '마법 창/차크람',
+        'Megiddo Flame': '메기도 플레임',
+        'Nether Blast': '지옥 강풍',
+        'Purgation': '폴리데그몬',
+        'Quake III': '퀘이가',
+        'Ravenous Assault': '탐욕스러운 공격',
+        'Shadow Flare': '섀도우 플레어',
+        'Shadow Spread': '그림자 확산',
+        'Stream': '그림자 급류',
+        'Titanomachy': '티타노마키아',
+        'Universal Manipulation': '법칙 변조',
+        'Wail Of The Lost': '상실의 통곡',
+        'Comet': '혜성',
+        'Quadrastrike Tower': '사분격 기둥',
+        'Quadrastrike Bleed': '사분격 출혈',
+        'Quadrastrike(?! [^0-9])': '사분격',
       },
     },
   ],

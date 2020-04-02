@@ -49,6 +49,9 @@ class CactbotLanguageJa extends CactbotLanguage {
       PresenceOfMind: '神速魔',
       Shifu: '士風',
       CircleOfPower: '黒魔紋：効果',
+      AstralAttenuation: '星極性耐性低下',
+      UmbralAttenuation: '霊極性耐性低下',
+      PhysicalAttenuation: '被物理ダメージ増加',
 
       SurgeProtection: '避雷',
 
@@ -70,6 +73,7 @@ class CactbotLanguageJa extends CactbotLanguage {
       UmbralEffect: '偏属性：闇',
       Stun: 'スタン',
       ThinIce: '氷床',
+      DeepFreeze: '氷結',
 
       // UWU
       Windburn: '裂傷',

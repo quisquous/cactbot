@@ -45,6 +45,7 @@
       regexJa: Regexes.startsUsing({ id: '24BA', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24BA', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24BA', source: '엑스데스', capture: false }),
+      suppressSeconds: 5,
       response: Responses.spread(),
     },
     {
@@ -89,6 +90,12 @@
       regexJa: Regexes.startsUsing({ id: '2408', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '2408', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '2408', source: '엑스데스', capture: false }),
+      condition: function(data) {
+        // Without a condition, this notifies on the first one, where it's meaningless.
+        data.battleCount = data.battleCount || 0;
+        data.battleCount += 1;
+        return data.battleCount > 1;
+      },
       delaySeconds: 6,
       infoText: {
         en: 'Stand in the gap',
@@ -138,9 +145,7 @@
     {
       id: 'O4N Flare',
       regex: Regexes.headMarker({ id: '0057' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Flare on YOU',
         de: 'Flare auf DIR',
@@ -150,20 +155,7 @@
     {
       id: 'O4N Holy',
       regex: Regexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            cn: '分摊点名',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Sammeln auf ' + data.ShortName(matches.target),
-          cn: '分摊' + data.holyTargets[1],
-        };
-      },
+      response: Responses.stackOn(),
     },
     {
       id: 'O4N Meteor',
@@ -173,10 +165,180 @@
       regexJa: Regexes.startsUsing({ id: '24C6', source: 'エクスデス', capture: false }),
       regexCn: Regexes.startsUsing({ id: '24C6', source: '艾克斯迪司', capture: false }),
       regexKo: Regexes.startsUsing({ id: '24C6', source: '엑스데스', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.bigAoe(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Black Hole': 'Schwarzes Loch',
+        'Deathly Vine': 'Seelenbaumranke',
+        'Exdeath': 'Exdeath',
+      },
+      'replaceText': {
+        'Black Hole': 'Schwarzes Loch',
+        'Black Spark': 'Schwarzer Funke',
+        'Blizzard/Fire III': 'Eisga/Feuga',
+        '(?<! )Blizzard/Fire/Thunder III': 'Eisga/Feuga/Blitzga',
+        'Clearout': 'Kreisfeger',
+        'Collision': 'Aufprall',
+        'Doom': 'Verhängnis',
+        'Flare': 'Flare',
+        'Holy': 'Sanctus',
+        'Knockback': 'Rückstoß',
+        'Mega Blizzard/Fire/Thunder': 'Eisga/Feuga/Blitzga ++',
+        'Meteor': 'Meteo',
+        'The Decisive Battle': 'Entscheidungsschlacht',
+        '(?<!/)Thunder III': 'Blitzga',
+        'Vacuum Wave': 'Vakuumwelle',
+        'Zombie Breath': 'Zombie-Atem',
+      },
+      '~effectNames': {
+        'Deep Freeze': 'Tiefkühlung',
+        'Doom': 'Verhängnis',
+        'Lightning Resistance Down': 'Blitzresistenz -',
+        'Paralysis': 'Paralyse',
+        'Pyretic': 'Hitze',
+        'Zombification': 'Zombie',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Black Hole': 'Trou noir',
+        'Deathly Vine': 'Lierre mortuaire',
+        'Exdeath': 'Exdeath',
+      },
+      'replaceText': {
+        'Black Hole': 'Trou noir',
+        'Black Spark': 'Étincelle noire',
+        'Blizzard/Fire III': 'Mega Feu/Glace',
+        'Blizzard/Fire/Thunder III': 'Mega Feu/Foudre/Glace',
+        'Clearout': 'Fauchage',
+        'Collision': 'Impact',
+        'Doom': 'Glas',
+        'Flare': 'Brasier',
+        'Holy': 'Miracle',
+        'Knockback': 'Poussée',
+        'Mega Blizzard/Fire/Thunder': 'Feu/Foudre/Glace ++',
+        'Meteor': 'Météore',
+        'The Decisive Battle': 'Combat décisif',
+        '(?<!/)Thunder III': 'Méga Foudre',
+        'Vacuum Wave': 'Vague de vide',
+        'Zombie Breath': 'Haleine zombie',
+      },
+      '~effectNames': {
+        'Deep Freeze': 'Congélation',
+        'Doom': 'Glas',
+        'Lightning Resistance Down': 'Résistance à la foudre réduite',
+        'Paralysis': 'Paralysie',
+        'Pyretic': 'Ardeur',
+        'Zombification': 'Zombification',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Black Hole': 'ブラックホール',
+        'Deathly Vine': '霊樹の蔦',
+        'Exdeath': 'エクスデス',
+      },
+      'replaceText': {
+        'Black Hole': 'ブラックホール',
+        'Black Spark': 'ブラックスパーク',
+        'Blizzard/Fire III': 'ブリザガ/ファイガ',
+        '(?<! )Blizzard/Fire/Thunder III': 'ブリザガ/ファイガ/サンダガ',
+        'Clearout': 'なぎ払い',
+        'Collision': '衝撃',
+        'Doom': '死の宣告',
+        'Flare': 'フレア',
+        'Holy': 'ホーリー',
+        'Knockback': 'ノックバック',
+        'Mega Blizzard/Fire/Thunder': 'ブリザガ/ファイガ/サンダガ ++',
+        'Meteor': 'メテオ',
+        'The Decisive Battle': '決戦',
+        '(?<!/)Thunder III': 'サンダガ',
+        'Vacuum Wave': '真空波',
+        'Zombie Breath': 'ゾンビブレス',
+      },
+      '~effectNames': {
+        'Deep Freeze': '氷結',
+        'Doom': '死の宣告',
+        'Lightning Resistance Down': '雷属性耐性低下',
+        'Paralysis': '麻痺',
+        'Pyretic': 'ヒート',
+        'Zombification': 'ゾンビー',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Black Hole': '黑洞',
+        'Deathly Vine': '灵树藤',
+        'Exdeath': '艾克斯迪司',
+      },
+      'replaceText': {
+        'Black Hole': '黑洞',
+        'Black Spark': '黑洞',
+        'Blizzard/Fire III': '冰封/爆炎',
+        '(?<! )Blizzard/Fire/Thunder III': '冰封/爆炎/暴雷',
+        'Clearout': '横扫',
+        'Collision': '冲击',
+        'Doom': '死亡宣告',
+        'Flare': '核爆',
+        'Holy': '神圣',
+        'Knockback': '击退',
+        'Mega Blizzard/Fire/Thunder': '冰封/爆炎/暴雷 ++',
+        'Meteor': '陨石',
+        'The Decisive Battle': '决战',
+        '(?<!/)Thunder III': '暴雷',
+        'Vacuum Wave': '真空波',
+        'Zombie Breath': '死亡吐息',
+      },
+      '~effectNames': {
+        'Deep Freeze': '冻结',
+        'Doom': '死亡宣告',
+        'Lightning Resistance Down': '雷属性耐性降低',
+        'Paralysis': '麻痹',
+        'Pyretic': '热病',
+        'Zombification': '僵尸',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Black Hole': '블랙홀',
+        'Deathly Vine': '영목 덩굴',
+        'Exdeath': '엑스데스',
+      },
+      'replaceText': {
+        'Black Hole': '블랙홀',
+        'Black Spark': '검은 불꽃',
+        'Blizzard/Fire III': '블리자가/파이가',
+        '(?<! )Blizzard/Fire/Thunder III': '블리자가/파이가/선더가',
+        'Clearout': '휩쓸기',
+        'Collision': '충격',
+        'Doom': '죽음의 선고',
+        'Flare': '플레어',
+        'Holy': '홀리',
+        'Knockback': '넉백',
+        'Mega Blizzard/Fire/Thunder': '블리자가/파이가/선더가 ++',
+        'Meteor': '메테오',
+        'The Decisive Battle': '결전',
+        '(?<!/)Thunder III': '선더가',
+        'Vacuum Wave': '진공파',
+        'Zombie Breath': '좀비 숨결',
+      },
+      '~effectNames': {
+        'Deep Freeze': '빙결',
+        'Doom': '죽음의 선고',
+        'Lightning Resistance Down': '번개속성 저항 감소',
+        'Paralysis': '마비',
+        'Pyretic': '열병',
+        'Zombification': '좀비',
+      },
     },
   ],
 },

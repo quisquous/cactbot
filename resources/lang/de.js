@@ -49,6 +49,9 @@ class CactbotLanguageDe extends CactbotLanguage {
       PresenceOfMind: 'Geistesgegenwart',
       Shifu: 'Shifu',
       CircleOfPower: 'Ley-Linien',
+      AstralAttenuation: 'Lichtschwäche',
+      UmbralAttenuation: 'Schattenschwäche',
+      PhysicalAttenuation: 'Leibesschwäche',
 
       SurgeProtection: 'Überspannungsschutz',
 
@@ -70,6 +73,7 @@ class CactbotLanguageDe extends CactbotLanguage {
       UmbralEffect: 'Denaturation Dunkelheit',
       Stun: 'Betäubung',
       ThinIce: 'Glatteis',
+      DeepFreeze: 'Tiefkühlung',
 
       Windburn: 'Beißender Wind',
     });

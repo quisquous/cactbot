@@ -5,6 +5,7 @@
 
 let gMonster = {
   'Agathos': {
+    'id': '4369',
     'name': {
       'cn': '\u963f\u4f3d\u6258\u65af',
       'de': 'Agathos',
@@ -16,6 +17,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Aglaope': {
+    'id': '8653',
     'name': {
       'cn': '\u963f\u683c\u62c9\u4fc4\u73c0',
       'de': 'Aglaope',
@@ -27,6 +29,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Agrippa the Mighty': {
+    'id': '2969',
     'name': {
       'cn': '\u963f\u683c\u91cc\u5e15',
       'de': 'Agrippa',
@@ -38,6 +41,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Albin the Ashen': {
+    'id': '2926',
     'name': {
       'cn': '\u6b7b\u7070\u590d\u71c3\u7684\u963f\u5c14\u5bbe',
       'de': 'Albin Aschfahl',
@@ -49,6 +53,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Alectryon': {
+    'id': '2940',
     'name': {
       'cn': '\u963f\u5217\u523b\u7279\u5229\u6602',
       'de': 'Alectryon',
@@ -60,6 +65,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Alteci': {
+    'id': '4350',
     'name': {
       'cn': '\u963f\u5c14\u63d0\u514b',
       'de': 'Artic',
@@ -71,6 +77,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Angada': {
+    'id': '5999',
     'name': {
       'cn': '\u5b89\u8fe6\u8fbe',
       'de': 'Angada',
@@ -82,6 +89,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Aqrabuamelu': {
+    'id': '5993',
     'name': {
       'cn': '\u7194\u9aa8\u708e\u874e',
       'de': 'Aqrabuamelu',
@@ -93,6 +101,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Aswang': {
+    'id': '6007',
     'name': {
       'cn': '\u963f\u82cf\u9ec4',
       'de': 'Aswang',
@@ -104,6 +113,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Baal': {
+    'id': '8897',
     'name': {
       'cn': '\u5df4\u529b',
       'de': 'Baal',
@@ -115,6 +125,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Barbastelle': {
+    'id': '2929',
     'name': {
       'cn': '\u5bbd\u8033\u51f6\u8760',
       'de': 'Barbastelle',
@@ -126,6 +137,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Bird of Paradise': {
+    'id': '4378',
     'name': {
       'cn': '\u6781\u4e50\u9e1f',
       'de': 'Paradiesvogel',
@@ -137,6 +149,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Bloody Mary': {
+    'id': '2930',
     'name': {
       'cn': '\u8840\u8165\u739b\u4e3d',
       'de': 'Bloody Mary',
@@ -148,6 +161,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Bone Crawler': {
+    'id': '5988',
     'name': {
       'cn': '\u722c\u9aa8\u602a\u9f99',
       'de': 'Knochenkriecher',
@@ -159,6 +173,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Bonnacon': {
+    'id': '2965',
     'name': {
       'cn': '\u706b\u6124\u725b',
       'de': 'Bonnacon',
@@ -170,6 +185,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Brontes': {
+    'id': '2958',
     'name': {
       'cn': '\u5e03\u9686\u7279\u65af',
       'de': 'Brontes',
@@ -181,6 +197,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Buccaboo': {
+    'id': '6011',
     'name': {
       'cn': '\u5e03\u5361\u535c',
       'de': 'Buccaboo',
@@ -192,6 +209,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Bune': {
+    'id': '4368',
     'name': {
       'cn': '\u5e03\u6d85',
       'de': 'Bune',
@@ -203,6 +221,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Campacti': {
+    'id': '4372',
     'name': {
       'cn': '\u574e\u5e15\u63d0',
       'de': 'Campacti',
@@ -214,6 +233,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Chernobog': {
+    'id': '2967',
     'name': {
       'cn': '\u725b\u5934\u9ed1\u795e',
       'de': 'Czernobog',
@@ -225,6 +245,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Coquecigrue': {
+    'id': '8913',
     'name': {
       'cn': '\u4e09\u5408\u9e1f\u513f',
       'de': 'Coquecigrue',
@@ -236,6 +257,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Cornu': {
+    'id': '2950',
     'name': {
       'cn': '\u89d2\u7956',
       'de': 'Cornu',
@@ -247,6 +269,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Croakadile': {
+    'id': '2963',
     'name': {
       'cn': '\u5495\u5c14\u5471\u6d1b\u65af',
       'de': 'Quakquak',
@@ -258,6 +281,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Croque-mitaine': {
+    'id': '2962',
     'name': {
       'cn': '\u62a4\u571f\u7cbe\u7075',
       'de': 'Croque Mitaine',
@@ -269,6 +293,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Dalvag\'s Final Flame': {
+    'id': '2944',
     'name': {
       'cn': '\u83f2\u5170\u5fb7\u7684\u9057\u706b',
       'de': [
@@ -284,6 +309,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Dark Helmet': {
+    'id': '2931',
     'name': {
       'cn': '\u6697\u76d4\u9b54\u87f9',
       'de': 'Dunkelhelm',
@@ -295,6 +321,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Deacon': {
+    'id': '8899',
     'name': {
       'cn': '\u52a9\u796d\u5927\u87f9',
       'de': 'Diakon',
@@ -306,6 +333,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Deidar': {
+    'id': '6004',
     'name': {
       'cn': '\u5927\u592a',
       'de': 'Deidar',
@@ -317,6 +345,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Domovoi': {
+    'id': '8656',
     'name': {
       'cn': '\u675c\u83ab\u4f0a',
       'de': 'Domovoi',
@@ -328,6 +357,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Enkelados': {
+    'id': '4370',
     'name': {
       'cn': '\u6069\u514b\u62c9\u591a\u65af',
       'de': 'Engedoras',
@@ -339,6 +369,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Erle': {
+    'id': '5991',
     'name': {
       'cn': '\u5973\u738b\u8702',
       'de': 'Erle',
@@ -350,6 +381,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Flame Sergeant Dalvag': {
+    'id': '2927',
     'name': {
       'cn': '\u6c38\u6052\u4e0d\u706d\u7684\u83f2\u5170\u5fb7\u526f\u8000\u58eb',
       'de': 'Dalvag',
@@ -361,6 +393,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Forneus': {
+    'id': '2936',
     'name': {
       'cn': '\u5f17\u5185\u4e4c\u65af',
       'de': 'Forneus',
@@ -372,6 +405,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Funa Yurei': {
+    'id': '5996',
     'name': {
       'cn': '\u8239\u5e7d\u7075',
       'de': 'Funa Yurei',
@@ -383,6 +417,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Gajasura': {
+    'id': '5998',
     'name': {
       'cn': '\u8c61\u9b54\u4fee\u7f57',
       'de': 'Gajasura',
@@ -394,6 +429,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Gamma': {
+    'id': '5985',
     'name': {
       'cn': '\u4f3d\u9a6c',
       'de': 'Gamma',
@@ -405,6 +441,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Gandarewa': {
+    'id': '4377',
     'name': {
       'cn': '\u521a\u5fb7\u745e\u74e6',
       'de': 'Gandalva',
@@ -416,6 +453,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Gatling': {
+    'id': '2925',
     'name': {
       'cn': '\u52a0\u7279\u6797\u9488\u9f39',
       'de': 'Gatling',
@@ -427,6 +465,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Gauki Strongblade': {
+    'id': '6002',
     'name': {
       'cn': '\u5251\u8c6a \u5211\u5177',
       'de': 'Gauki Starkklinge',
@@ -438,6 +477,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Ghede Ti Malice': {
+    'id': '2938',
     'name': {
       'cn': '\u76d6\u5f97',
       'de': 'Ghede Titus H\u00e4me',
@@ -449,6 +489,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Gilshs Aath Swiftclaw': {
+    'id': '8898',
     'name': {
       'cn': '\u5f92\u624b\u6293\u9c7c \u57fa\u4e4c\u5636\u00b7\u6e0a\u65af',
       'de': 'Gilshs Aath',
@@ -460,6 +501,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Girimekhala': {
+    'id': '6000',
     'name': {
       'cn': '\u57fa\u91cc\u9ea6\u5361\u62c9',
       'de': 'Girimekhala',
@@ -471,6 +513,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Girtab': {
+    'id': '2939',
     'name': {
       'cn': '\u5c3e\u5bbf\u86db\u874e',
       'de': 'Girtab',
@@ -482,6 +525,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Gnath cometdrone': {
+    'id': '4352',
     'name': {
       'cn': '\u9aa8\u988c\u5f57\u661f\u5175',
       'de': 'Gnath-Kometdrohne',
@@ -493,6 +537,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Grassman': {
+    'id': '8892',
     'name': {
       'cn': '\u683c\u62c9\u65af\u66fc',
       'de': 'Grasmann',
@@ -504,6 +549,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Guhuo Niao': {
+    'id': '6003',
     'name': {
       'cn': '\u59d1\u83b7\u9e1f',
       'de': 'Guhuo Niao',
@@ -515,6 +561,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Gunitt': {
+    'id': '8895',
     'name': {
       'cn': '\u987e\u5c3c\u56fe',
       'de': 'Gunitt',
@@ -526,6 +573,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Gwas-y-neidr': {
+    'id': '6010',
     'name': {
       'cn': '\u86c7\u4ec6\u8682\u8713',
       'de': 'Gwas-y-neidr',
@@ -537,6 +585,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Gyorai Quickstrike': {
+    'id': '6005',
     'name': {
       'cn': '\u95ea\u96f7\u51fb \u9c7c\u96f7',
       'de': 'Gyorai Schnellschlag',
@@ -548,6 +597,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Hellsclaw': {
+    'id': '2947',
     'name': {
       'cn': '\u9b54\u5bfc\u5730\u72f1\u722a',
       'de': 'H\u00f6llenklaue',
@@ -559,6 +609,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Huracan': {
+    'id': '8912',
     'name': {
       'cn': '\u4e4c\u62c9\u574e',
       'de': 'Huracan',
@@ -570,6 +621,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Indomitable': {
+    'id': '8914',
     'name': {
       'cn': '\u4e0d\u5c48\u53f7',
       'de': 'Unbez\u00e4hmbar',
@@ -581,6 +633,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Itzpapalotl': {
+    'id': '8909',
     'name': {
       'cn': '\u4f0a\u5179\u5e15\u5e15\u6d1b\u7279\u5c14',
       'de': 'Itzpapalotl',
@@ -592,6 +645,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Ixtab': {
+    'id': '8890',
     'name': {
       'cn': '\u4f0a\u4f11\u59b2',
       'de': 'Ixtab',
@@ -603,6 +657,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Juggler Hecatomb': {
+    'id': '8904',
     'name': {
       'cn': '\u6b8b\u8650\u6742\u6280\u5e08',
       'de': 'Gaukler Hecatomb',
@@ -614,6 +669,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Kiwa': {
+    'id': '6013',
     'name': {
       'cn': '\u5947\u6d3c',
       'de': 'Kiwa',
@@ -625,6 +681,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Kreutzet': {
+    'id': '4351',
     'name': {
       'cn': '\u514b\u9c81\u6cfd',
       'de': 'Kreutzet',
@@ -636,6 +693,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Kurma': {
+    'id': '6006',
     'name': {
       'cn': '\u4ff1\u5229\u6469',
       'de': 'Kurma',
@@ -647,6 +705,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Kurrea': {
+    'id': '2952',
     'name': {
       'cn': '\u5e93\u96f7\u4e9a',
       'de': 'Kurrea',
@@ -658,6 +717,7 @@ let gMonster = {
     'rank': 'A',
   },
   'La Velue': {
+    'id': '8908',
     'name': {
       'cn': '\u6d53\u6bdb\u517d',
       'de': 'La Velue',
@@ -669,6 +729,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Laideronnette': {
+    'id': '2953',
     'name': {
       'cn': '\u96f7\u5fb7\u7f57\u5de8\u86c7',
       'de': 'Laideronette',
@@ -680,6 +741,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Lampalagua': {
+    'id': '2959',
     'name': {
       'cn': '\u5df4\u62c9\u4e4c\u5c14',
       'de': 'Balaur',
@@ -691,6 +753,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Leech King': {
+    'id': '2935',
     'name': {
       'cn': '\u6c34\u86ed\u738b',
       'de': 'Egelk\u00f6nig',
@@ -702,6 +765,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Leucrotta': {
+    'id': '4380',
     'name': {
       'cn': '\u5362\u514b\u6d1b\u5854',
       'de': 'Leucrotta',
@@ -713,6 +777,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Li\'l Murderer': {
+    'id': '8911',
     'name': {
       'cn': '\u5c0f\u5c0f\u6740\u624b',
       'de': [
@@ -728,6 +793,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Lord of the Wyverns': {
+    'id': '4365',
     'name': {
       'cn': '\u53cc\u8db3\u98de\u9f99\u4e4b\u738b',
       'de': 'Wyvern-Lord',
@@ -739,6 +805,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Luminare': {
+    'id': '5995',
     'name': {
       'cn': '\u6cdb\u5149\u6676\u4f53',
       'de': 'Luminare',
@@ -750,6 +817,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Lycidas': {
+    'id': '4360',
     'name': {
       'cn': '\u5229\u897f\u8fbe\u65af',
       'de': 'Lykidas',
@@ -761,6 +829,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Lyuba': {
+    'id': '4363',
     'name': {
       'cn': '\u5362\u82ad',
       'de': 'Lyuba',
@@ -772,6 +841,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Maahes': {
+    'id': '2942',
     'name': {
       'cn': '\u739b\u8d6b\u65af',
       'de': 'Maahes',
@@ -783,6 +853,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Mahisha': {
+    'id': '5994',
     'name': {
       'cn': '\u9a6c\u5e0c\u6c99',
       'de': 'Mahisha',
@@ -794,6 +865,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Maliktender': {
+    'id': '8901',
     'name': {
       'cn': '\u9a6c\u5229\u514b\u5de8\u4eba\u638c',
       'de': 'Malikkaktor',
@@ -805,6 +877,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Manes': {
+    'id': '6012',
     'name': {
       'cn': '\u739b\u6d85\u65af',
       'de': 'Manes',
@@ -816,6 +889,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Marberry': {
+    'id': '2949',
     'name': {
       'cn': '\u739b\u8d1d\u5229',
       'de': 'Marberry',
@@ -827,6 +901,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Marraco': {
+    'id': '2951',
     'name': {
       'cn': '\u9a6c\u62c9\u514b',
       'de': 'Marraco',
@@ -838,6 +913,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Melt': {
+    'id': '2937',
     'name': {
       'cn': '\u5343\u773c\u51dd\u80f6',
       'de': 'Schmelze',
@@ -849,6 +925,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Mindmaker': {
+    'id': '8893',
     'name': {
       'cn': '\u542f\u7075\u679c',
       'de': 'Freigeist',
@@ -860,6 +937,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Minhocao': {
+    'id': '2961',
     'name': {
       'cn': '\u8693\u8788\u5de8\u866b',
       'de': 'Minhocao',
@@ -871,6 +949,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Mirka': {
+    'id': '4362',
     'name': {
       'cn': '\u7c73\u52d2\u5361',
       'de': 'Mirka',
@@ -882,6 +961,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Monarch Ogrefly': {
+    'id': '2921',
     'name': {
       'cn': '\u541b\u738b\u9b3c\u873b\u8713',
       'de': 'Monarch Ogerlibelle',
@@ -893,6 +973,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Myradrosh': {
+    'id': '2932',
     'name': {
       'cn': '\u7c73\u814a\u5fb7\u7f57\u65af\u8702\u9e1f',
       'de': 'Myradrosh',
@@ -904,6 +985,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Nahn': {
+    'id': '2948',
     'name': {
       'cn': '\u7eb3\u6069',
       'de': 'Nahn',
@@ -915,6 +997,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Nandi': {
+    'id': '2966',
     'name': {
       'cn': '\u5357\u8fea',
       'de': 'Nandi',
@@ -926,6 +1009,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Nariphon': {
+    'id': '8907',
     'name': {
       'cn': '\u7eb3\u91cc\u84ec',
       'de': 'Nariphon',
@@ -937,6 +1021,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Naul': {
+    'id': '2934',
     'name': {
       'cn': '\u7eb3\u4e4c\u5c14',
       'de': 'Naul',
@@ -948,6 +1033,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Nuckelavee': {
+    'id': '8906',
     'name': {
       'cn': '\u7eb3\u514b\u62c9\u7ef4',
       'de': 'Nuckelavee',
@@ -959,6 +1045,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Nunyunuwi': {
+    'id': '2960',
     'name': {
       'cn': '\u52aa\u7ebd\u52aa\u7ef4',
       'de': 'Nunyunuwi',
@@ -970,6 +1057,7 @@ let gMonster = {
     'rank': 'S',
   },
   'O Poorest Pauldia': {
+    'id': '8655',
     'name': {
       'cn': '\u4fdd\u5c14\u8fea\u96c5',
       'de': [
@@ -985,6 +1073,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Okina': {
+    'id': '5984',
     'name': {
       'cn': '\u5de8\u5927\u9cd0',
       'de': 'Okina',
@@ -996,6 +1085,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Omni': {
+    'id': '4361',
     'name': {
       'cn': '\u5168\u80fd\u673a\u7532',
       'de': 'Omni',
@@ -1007,6 +1097,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Oni Yumemi': {
+    'id': '5997',
     'name': {
       'cn': '\u9b3c\u89c2\u68a6',
       'de': 'Oni Yumemi',
@@ -1018,6 +1109,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Orcus': {
+    'id': '5990',
     'name': {
       'cn': '\u5965\u8fe6\u65af',
       'de': 'Orcus',
@@ -1029,6 +1121,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Orghana': {
+    'id': '5986',
     'name': {
       'cn': '\u5140\u9c81\u5ffd\u4e43\u671d\u9c81',
       'de': 'Orghana',
@@ -1040,6 +1133,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Ouzelum': {
+    'id': '6009',
     'name': {
       'cn': '\u5965\u7956\u9c81\u59c6',
       'de': 'Ouzelum',
@@ -1051,6 +1145,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Ovjang': {
+    'id': '2924',
     'name': {
       'cn': '\u5965\u5f17\u6770\u6069',
       'de': 'Ovjang',
@@ -1062,6 +1157,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Pachamama': {
+    'id': '8894',
     'name': {
       'cn': '\u5e15\u67e5\u739b\u739b',
       'de': 'Pachamama',
@@ -1073,6 +1169,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Phecda': {
+    'id': '2922',
     'name': {
       'cn': '\u5929\u7391\u5de8\u718a',
       'de': 'Phecda',
@@ -1084,6 +1181,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Pterygotus': {
+    'id': '4354',
     'name': {
       'cn': '\u7ffc\u80a2\u9c8e',
       'de': 'Pterygotus',
@@ -1095,6 +1193,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Pylraster': {
+    'id': '4364',
     'name': {
       'cn': '\u6d3e\u62c9\u65af\u7279\u66b4\u9f99',
       'de': 'Xhauron',
@@ -1106,6 +1205,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Rusalka': {
+    'id': '8896',
     'name': {
       'cn': '\u5362\u838e\u5361',
       'de': 'Rusalka',
@@ -1117,6 +1217,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Sabotender Bailarina': {
+    'id': '2941',
     'name': {
       'cn': '\u82b1\u821e\u4ed9\u4eba\u523a',
       'de': 'Sabotender Bailarina',
@@ -1128,6 +1229,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Safat': {
+    'id': '2968',
     'name': {
       'cn': '\u8428\u6cd5\u7279',
       'de': 'Safat',
@@ -1139,6 +1241,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Salt and Light': {
+    'id': '5989',
     'name': {
       'cn': '\u76d0\u548c\u5149',
       'de': 'Salzlicht',
@@ -1150,6 +1253,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Sanu Vali of Dancing Wings': {
+    'id': '4359',
     'name': {
       'cn': '\u98de\u821e\u7ffc \u8428\u52aa\u74e6\u529b',
       'de': [
@@ -1171,6 +1275,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Scitalis': {
+    'id': '4356',
     'name': {
       'cn': '\u65af\u5947\u5854\u5229\u65af',
       'de': 'Scitalis',
@@ -1182,6 +1287,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Senmurv': {
+    'id': '4375',
     'name': {
       'cn': '\u795e\u7a46\u5c14\u9e1f',
       'de': 'Simurgh',
@@ -1193,6 +1299,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Sewer Syrup': {
+    'id': '2923',
     'name': {
       'cn': '\u9634\u6c9f\u6bd2\u6db2',
       'de': 'Abwasser-Sirup',
@@ -1204,6 +1311,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Shadow-dweller Yamini': {
+    'id': '6008',
     'name': {
       'cn': '\u5f71\u4e2d\u6697 \u96c5\u5f25\u5c3c',
       'de': 'Schattenkauer-Yamini',
@@ -1215,6 +1323,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Sisiutl': {
+    'id': '4371',
     'name': {
       'cn': '\u897f\u65af\u5c24',
       'de': 'Sisiutl',
@@ -1226,6 +1335,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Skogs Fru': {
+    'id': '2928',
     'name': {
       'cn': '\u82b1\u6797\u5973\u90ce',
       'de': 'Skogs Fru',
@@ -1237,6 +1347,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Slipkinx Steeljoints': {
+    'id': '4366',
     'name': {
       'cn': '\u673a\u5de5\u5175 \u65af\u5229\u666e\u91d1\u514b\u65af',
       'de': 'Rutschfix Stahlscharnier',
@@ -1248,6 +1359,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Squonk': {
+    'id': '4358',
     'name': {
       'cn': '\u65af\u594e\u514b',
       'de': 'Squonk',
@@ -1259,6 +1371,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Stinging Sophie': {
+    'id': '2920',
     'name': {
       'cn': '\u51fb\u523a\u9b54\u8702\u7d22\u83f2',
       'de': [
@@ -1274,6 +1387,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Stolas': {
+    'id': '4367',
     'name': {
       'cn': '\u65af\u7279\u62c9\u65af',
       'de': 'Stolas',
@@ -1285,6 +1399,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Sugaar': {
+    'id': '8902',
     'name': {
       'cn': '\u4f11\u683c\u5c14',
       'de': 'Sugaar',
@@ -1296,6 +1411,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Sum': {
+    'id': '6001',
     'name': {
       'cn': '\u7855\u59c6',
       'de': 'Sum',
@@ -1307,6 +1423,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Supay': {
+    'id': '8891',
     'name': {
       'cn': '\u82cf\u5e15\u4f0a',
       'de': 'Supay',
@@ -1318,16 +1435,19 @@ let gMonster = {
     'rank': 'A',
   },
   'Tarchia': {
+    'id': '8900',
     'name': {
       'cn': '\u591a\u667a\u517d',
       'de': 'Tarchia',
       'en': 'Tarchia',
       'fr': 'Tarchia',
       'ja': '\u30bf\u30eb\u30ad\u30a2',
+      'ko': '\ud0c0\ub974\ud0a4\uc544',
     },
     'rank': 'S',
   },
   'Thextera': {
+    'id': '4353',
     'name': {
       'cn': '\u63d0\u514b\u65af\u5854',
       'de': 'Dexter',
@@ -1339,6 +1459,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Thousand-cast Theda': {
+    'id': '2956',
     'name': {
       'cn': '\u5343\u7aff\u53e3\u82b1\u5e0c\u8fbe',
       'de': 'Tausendzahn Theda',
@@ -1350,16 +1471,19 @@ let gMonster = {
     'rank': 'S',
   },
   'Tyger': {
+    'id': '8905',
     'name': {
       'cn': '\u623e\u866b',
       'de': 'Tyger',
       'en': 'Tyger',
       'fr': 'Tygre',
       'ja': '\u30c6\u30a3\u30ac\u30fc',
+      'ko': '\ud2f0\uac70',
     },
     'rank': 'S',
   },
   'Udumbara': {
+    'id': '5987',
     'name': {
       'cn': '\u4f18\u6619\u5a46\u7f57\u82b1',
       'de': 'Udumbara',
@@ -1371,6 +1495,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Unktehi': {
+    'id': '2946',
     'name': {
       'cn': '\u4e4c\u514b\u63d0\u5e0c',
       'de': 'Unktehi',
@@ -1382,6 +1507,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Vochstein': {
+    'id': '5992',
     'name': {
       'cn': '\u5f17\u514b\u65bd\u6cf0\u56e0',
       'de': 'Vochstein',
@@ -1393,6 +1519,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Vogaal Ja': {
+    'id': '2945',
     'name': {
       'cn': '\u4e11\u7537\u5b50 \u6c83\u8fe6\u52a0',
       'de': 'Vogaal Ja',
@@ -1404,6 +1531,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Vulpangue': {
+    'id': '8657',
     'name': {
       'cn': '\u72d0\u9996\u867a',
       'de': 'Vulpangue',
@@ -1415,6 +1543,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Vuokho': {
+    'id': '2933',
     'name': {
       'cn': '\u5deb\u523b\u730e\u9e6b',
       'de': 'Vuokho',
@@ -1426,6 +1555,7 @@ let gMonster = {
     'rank': 'B',
   },
   'White Joker': {
+    'id': '2919',
     'name': {
       'cn': '\u767d\u9b3c\u9f20\u738b',
       'de': [
@@ -1441,6 +1571,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Worm of the Well': {
+    'id': '8903',
     'name': {
       'cn': '\u5927\u4e95\u5de8\u866b',
       'de': 'Wurm des Brunnens',
@@ -1452,6 +1583,7 @@ let gMonster = {
     'rank': 'B',
   },
   'Wulgaru': {
+    'id': '2954',
     'name': {
       'cn': '\u4e4c\u5c14\u4f3d\u9c81',
       'de': 'Wulgaru',
@@ -1463,6 +1595,7 @@ let gMonster = {
     'rank': 'S',
   },
   'Zanig\'oh': {
+    'id': '2943',
     'name': {
       'cn': '\u672d\u5c3c\u6208',
       'de': 'Zanig\'oh',
@@ -1474,6 +1607,7 @@ let gMonster = {
     'rank': 'A',
   },
   'Zona Seeker': {
+    'id': '2957',
     'name': {
       'cn': '\u865a\u65e0\u63a2\u7d22\u8005',
       'de': 'Zona Sucher',
@@ -1485,6 +1619,7 @@ let gMonster = {
     'rank': 'S',
   },
   'false gigantopithecus': {
+    'id': '4355',
     'name': {
       'cn': '\u5e03\u62c9\u5de8\u733f',
       'de': 'Gigantopithecus',
@@ -1496,6 +1631,7 @@ let gMonster = {
     'rank': 'B',
   },
   'forgiven gossip': {
+    'id': '8916',
     'name': {
       'cn': '\u5f97\u5230\u5bbd\u6055\u7684\u6d41\u8a00',
       'de': [
@@ -1511,6 +1647,7 @@ let gMonster = {
     'rank': 'SS-',
   },
   'forgiven pedantry': {
+    'id': '8910',
     'name': {
       'cn': '\u5f97\u5230\u5bbd\u6055\u7684\u70ab\u5b66',
       'de': [
@@ -1521,10 +1658,12 @@ let gMonster = {
       'en': 'forgiven pedantry',
       'fr': 'p\u00e9danterie pardonn\u00e9e',
       'ja': '\u30d5\u30a9\u30fc\u30ae\u30f4\u30f3\u30fb\u30da\u30c0\u30f3\u30c8\u30ea\u30fc',
+      'ko': '\uba74\uc8c4\ub41c \ud604\ud559',
     },
     'rank': 'S',
   },
   'forgiven rebellion': {
+    'id': '8915',
     'name': {
       'cn': '\u5f97\u5230\u5bbd\u6055\u7684\u53db\u4e71',
       'de': [
@@ -1540,6 +1679,7 @@ let gMonster = {
     'rank': 'SS+',
   },
   'kaiser behemoth': {
+    'id': '4374',
     'name': {
       'cn': '\u51ef\u6492\u8d1d\u5e0c\u6469\u65af',
       'de': 'Kaiser-Behemoth',
@@ -1551,6 +1691,7 @@ let gMonster = {
     'rank': 'S',
   },
   'mindflayer': {
+    'id': '2955',
     'name': {
       'cn': '\u593a\u5fc3\u9b54',
       'de': 'Seelenbrenner',
@@ -1562,6 +1703,7 @@ let gMonster = {
     'rank': 'S',
   },
   'stench blossom': {
+    'id': '4373',
     'name': {
       'cn': '\u6076\u81ed\u72c2\u82b1',
       'de': 'Pestwurz',
@@ -1573,6 +1715,7 @@ let gMonster = {
     'rank': 'A',
   },
   'the Garlok': {
+    'id': '2964',
     'name': {
       'cn': '\u4f3d\u6d1b\u514b',
       'de': 'Garlok',
@@ -1584,6 +1727,7 @@ let gMonster = {
     'rank': 'S',
   },
   'the Pale Rider': {
+    'id': '4376',
     'name': {
       'cn': '\u82cd\u767d\u9a91\u58eb',
       'de': [
@@ -1599,6 +1743,7 @@ let gMonster = {
     'rank': 'S',
   },
   'the Scarecrow': {
+    'id': '4357',
     'name': {
       'cn': '\u60ca\u614c\u7a3b\u8349\u9f99',
       'de': 'Tyranno',
@@ -1610,6 +1755,7 @@ let gMonster = {
     'rank': 'B',
   },
   'the mudman': {
+    'id': '8654',
     'name': {
       'cn': '\u6ce5\u4eba',
       'de': 'Matschklops',

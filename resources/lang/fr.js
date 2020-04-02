@@ -49,6 +49,9 @@ class CactbotLanguageFr extends CactbotLanguage {
       PresenceOfMind: 'Présence d\'esprit',
       Shifu: 'Shifû',
       CircleOfPower: 'Manalignements',
+      AstralAttenuation: 'Résistance astrale diminuée',
+      UmbralAttenuation: 'Résistance ombrale diminuée',
+      PhysicalAttenuation: 'Vulnérabilité physique augmentée',
 
       SurgeProtection: 'Parafoudre',
 
@@ -70,6 +73,7 @@ class CactbotLanguageFr extends CactbotLanguage {
       UmbralEffect: 'Corruption de Ténèbres',
       Stun: 'Étourdissement',
       ThinIce: 'Verglas',
+      DeepFreeze: 'Congélation',
 
       WindBurn: 'Brûlure du vent',
     });

@@ -183,11 +183,11 @@ To install dependencies there are 2 methods: **per script** and **manualy**
 
 ### Dependancies: Manual Method
 
-1. Please download the latest Zip file from <https://github.com/EQAditu/AdvancedCombatTracker/releases/download/>
+1. Please download the latest Zip file from <https://github.com/EQAditu/AdvancedCombatTracker/releases/>
 1. Extract the `Advanced Combat Tracker.exe` to `cactbot/plugin/ThirdParty/ACT/`
 1. Please download the latest SDK Zip file from <https://github.com/ravahn/FFXIV_ACT_Plugin/> (make sure the file says SDK in its name)
 1. Extract the `SDK folder` as well as the `FFXIV_ACT_Plugin.dll` to `cactbot/plugin/ThirdParty/FFXIV_ACT/`
-1. Please download the latest Zip file from <https://github.com/ngld/OverlayPlugin/releases/download/>
+1. Please download the latest Zip file from <https://github.com/ngld/OverlayPlugin/releases/>
 1. Extract the `libs folder` as well as the `OverlayPlugin.dll` to `cactbot/plugin/ThirdParty/OverlayPlugin/`
 1. Continue with **Steps to build**
 

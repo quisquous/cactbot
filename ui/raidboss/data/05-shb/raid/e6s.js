@@ -141,7 +141,7 @@
       regexJa: Regexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
-        fr: 'Evitez les AoE',
+        fr: 'Evitez les griffes',
         ko: '초록 발톱 피하기',
       },
     },
@@ -323,10 +323,12 @@
     },
     {
       id: 'E6S Downburst Knockback 1',
-      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BFB', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BFB', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BFB', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ラクタパクシャ', id: '4BFB', capture: false }),
+      regex: Regexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ガルーダ', id: '4BFB', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '迦楼罗', id: '4BFB', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '가루다', id: '4BFB', capture: false }),
       response: Responses.knockback(),
     },
     {

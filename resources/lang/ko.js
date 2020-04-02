@@ -49,6 +49,9 @@ class CactbotLanguageKo extends CactbotLanguage {
       PresenceOfMind: '쾌속의 마법',
       Shifu: '사풍',
       CircleOfPower: '흑마법 문양: 효과',
+      AstralAttenuation: 'Astral Attenuation', // FIXME
+      UmbralAttenuation: 'Umbral Attenuation', // FIXME
+      PhysicalAttenuation: 'Physical Attenuation', // FIXME
 
       SurgeProtection: '피뢰침',
 
@@ -70,6 +73,7 @@ class CactbotLanguageKo extends CactbotLanguage {
       UmbralEffect: 'Umbral Effect',
       Stun: '기절',
       ThinIce: '얼음 바닥',
+      DeepFreeze: '빙결',
 
       // UWU
       Windburn: '열상',

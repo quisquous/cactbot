@@ -31,15 +31,10 @@
       regexJa: Regexes.ability({ source: 'カーリア', id: 'B74', capture: false }),
       regexCn: Regexes.ability({ source: '卡利亚', id: 'B74', capture: false }),
       regexKo: Regexes.ability({ source: '칼리야', id: 'B74', capture: false }),
-      alertText: function(data) {
-        if (data.firstSeed)
-          return;
-        return {
-          en: 'Spread => Stack',
-          de: 'Verteilen => Sammeln',
-          fr: 'Ecarté -> Packé',
-        };
+      condition: function(data) {
+        return !data.firstSeed;
       },
+      response: Responses.spreadThenStack(),
       run: function(data) {
         if (!data.firstSeed)
           data.firstSeed = 'river';
@@ -53,15 +48,10 @@
       regexJa: Regexes.ability({ id: 'B75', source: 'カーリア', capture: false }),
       regexCn: Regexes.ability({ id: 'B75', source: '卡利亚', capture: false }),
       regexKo: Regexes.ability({ id: 'B75', source: '칼리야', capture: false }),
-      alertText: function(data) {
-        if (data.firstSeed)
-          return;
-        return {
-          en: 'Stack => Spread',
-          de: 'Sammeln => Verteilen',
-          fr: 'Packé -> Ecarté',
-        };
+      condition: function(data) {
+        return !data.firstSeed;
       },
+      response: Responses.stackThenSpread(),
       run: function(data) {
         if (!data.firstSeed)
           data.firstSeed = 'sea';
@@ -75,15 +65,10 @@
       regexJa: Regexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
       regexCn: Regexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
       regexKo: Regexes.ability({ id: 'B76', source: '칼리야', capture: false }),
-      infoText: function(data) {
-        if (!data.firstSeed)
-          return;
-        return {
-          en: 'Stack',
-          de: 'Sammeln',
-          fr: 'Packé',
-        };
+      condition: function(data) {
+        return !data.firstSeed;
       },
+      response: Responses.stack(),
       run: function(data) {
         delete data.firstSeed;
       },
@@ -96,15 +81,10 @@
       regexJa: Regexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
       regexCn: Regexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
       regexKo: Regexes.ability({ id: 'B77', source: '칼리야', capture: false }),
-      infoText: function(data) {
-        if (!data.firstSeed)
-          return;
-        return {
-          en: 'Spread',
-          de: 'Verteilen',
-          fr: 'Ecarté',
-        };
+      condition: function(data) {
+        return !data.firstSeed;
       },
+      response: Responses.spread(),
       run: function(data) {
         delete data.firstSeed;
       },

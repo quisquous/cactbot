@@ -2,7 +2,7 @@
 
 // TODO: maybe this should be structured identically to a timelineReplace section.
 let commonReplacement = {
-  '(?<=00:0839:)(.*) will be sealed off': {
+  '(?<=00:0839:)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?': {
     de: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
     cn: '距$1被封锁还有',
     fr: 'Fermeture d(?:e|u|es) $1 dans',

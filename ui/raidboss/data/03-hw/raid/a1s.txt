@@ -5,6 +5,7 @@ hideall "--Reset--"
 hideall "--sync--"
 
 0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+0.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
 
 ### Faust
 # -p E3C:1006 -ii E3E
@@ -51,7 +52,7 @@ hideall "--sync--"
 # -ic "Oppressor 0.5"
 
 2000.0 "--sync--" sync / 00:0839:Hangar 8 will be sealed off in 15 seconds/ window 2000,0
-2007.0 "Royal Fount" sync /:Oppressor:E40:/
+2007.0 "Royal Fount" sync /:Oppressor:E40:/ window 2010,5
 2011.1 "Gunnery Pod" sync /:Oppressor:E41:/
 2016.2 "Hydrothermal Missile" sync /:Oppressor:E43:/ duration 8
 2018.3 "Gunnery Pod" sync /:Oppressor:E41:/

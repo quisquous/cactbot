@@ -194,29 +194,26 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = (data, matches) => {
       if (data.role == 'tank') {
-        if (matches) {
-          let target = getTarget(matches);
-          if (target == data.me) {
-            return {
-              en: 'Tank cleave on YOU',
-              de: 'Tank Cleave aud DIR',
-              fr: 'Tank cleave sur VOUS',
-              ja: '自分に前方範囲攻撃',
-              ko: '나에게 광역 탱버',
-              cn: '顺劈点名',
-            };
-          }
-        } else {
-          // targetless tank cleave
+        let target = getTarget(matches);
+        if (target == data.me) {
           return {
-            en: 'Tank cleave',
-            de: 'Tank Cleave',
-            fr: 'Tank cleave',
-            ja: '前方範囲攻撃',
-            ko: '광역 탱버',
-            cn: '顺劈',
+            en: 'Tank cleave on YOU',
+            de: 'Tank Cleave aud DIR',
+            fr: 'Tank cleave sur VOUS',
+            ja: '自分に前方範囲攻撃',
+            ko: '나에게 광역 탱버',
+            cn: '顺劈点名',
           };
         }
+        // targetless tank cleave
+        return {
+          en: 'Tank cleave',
+          de: 'Tank Cleave',
+          fr: 'Tank cleave',
+          ja: '前方範囲攻撃',
+          ko: '광역 탱버',
+          cn: '顺劈',
+        };
       }
       return {
         en: 'Avoid tank cleave',
@@ -270,7 +267,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Spread',
       de: 'Verteilen',
-      fr: 'Dispersez-vous',
+      fr: 'Ecartez-vous',
       ja: '散開',
       cn: '分散',
       ko: '산개',
@@ -282,7 +279,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Stack',
       de: 'Sammeln',
-      fr: 'Package',
+      fr: 'Packez-vous',
       ja: 'スタック',
       cn: '集合',
       ko: '집합',
@@ -306,7 +303,7 @@ let Responses = {
       return {
         en: 'Stack on ' + data.ShortName(target),
         de: 'Auf ' + data.ShortName(target) + ' sammeln',
-        fr: 'Package sur ' + data.ShortName(target),
+        fr: 'Packez-vous sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にスタック',
         cn: '靠近 ' + data.ShortName(target) + '集合',
         ko: '쉐어징 → ' + data.ShortName(target),
@@ -342,7 +339,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Spread => Stack',
       de: 'Verteilen => Sammeln',
-      fr: 'Dispersez-vous => Package',
+      fr: 'Ecartez-vous => Packez-vous',
       ja: '散開 => スタック',
       cn: '分散 => 集合',
       ko: '산개 => 집합',
@@ -354,7 +351,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Stack => Spread',
       de: 'Sammeln => Verteilen',
-      fr: 'Package => Dispersez-vous',
+      fr: 'Packez-vous => Ecartez-vous',
       ja: 'スタック => 散開',
       cn: '集合 => 分散',
       ko: '집합 => 산개',
@@ -449,7 +446,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Get Behind',
       de: 'Hinter ihn',
-      fr: 'Derrière le boss',
+      fr: 'Passez derrière',
       ja: '背面へ',
       ko: '보스 뒤로',
       cn: '去背后',
@@ -595,7 +592,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Go Front/Back',
       de: 'Geh nach Vorne/ Hinten',
-      fr: 'Devant/Derrière',
+      fr: 'Allez Devant/Derrière',
       ja: '縦へ',
       ko: '앞/뒤로',
       cn: '去前后',

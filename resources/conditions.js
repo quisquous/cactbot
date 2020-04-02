@@ -11,13 +11,13 @@ let Conditions = {
     return data.me !== matches.target;
   },
   caresAboutAOE: () => (data) => {
-    return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+    return data.role == 'tank' || data.role == 'healer' || data.CanAddle || data.job == 'blu';
   },
   caresAboutMagical: () => (data) => {
-    return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+    return data.role == 'tank' || data.role == 'healer' || data.CanAddle() || data.job == 'blu';
   },
   caresAboutPhysical: () => (data) => {
-    return data.role == 'tank' || data.role == 'healer' || data.CanFeint();
+    return data.role == 'tank' || data.role == 'healer' || data.CanFeint() || data.job == 'blu';
   },
 };
 
