@@ -103,7 +103,7 @@
         en: 'Out of Middle',
         de: 'Raus aus der Mitte',
         fr: 'En dehors du centre',
-        cn: '离开中间'
+        cn: '离开中间',
       },
     },
     {
@@ -121,7 +121,7 @@
         en: 'Lightning on YOU',
         de: 'Blitz auf DIR',
         fr: 'Eclair sur VOUS',
-        cn: '雷点名'
+        cn: '雷点名',
       },
     },
     {
@@ -137,7 +137,7 @@
         en: 'Final Phase',
         de: 'Finale Phase',
         fr: 'Phase finale',
-        cn: 'P3'
+        cn: 'P3',
       },
     },
     {
@@ -189,7 +189,7 @@
           en: 'Red Tethers With ' + data.ShortName(partner),
           de: 'Rote Verbindung mit ' + data.ShortName(partner),
           fr: 'Liens rouges avec ' + data.ShortName(partner),
-          cn: '红线连' + data.ShortName(partner)
+          cn: '红线连' + data.ShortName(partner),
         };
       },
     },
@@ -216,7 +216,7 @@
           en: 'Blue Tethers With ' + data.ShortName(partner),
           de: 'Blaue Verbindung mit ' + data.ShortName(partner),
           fr: 'Liens bleus avec ' + data.ShortName(partner),
-          cn: '蓝线连' + data.ShortName(partner)
+          cn: '蓝线连' + data.ShortName(partner),
         };
       },
     },
