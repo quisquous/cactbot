@@ -30,11 +30,13 @@
         en: 'Kill Chyme Add',
         de: 'Brei Add töten',
         fr: 'Tuez l\'add',
+        cn: '击杀圣山之糜',
       },
       tts: {
         en: 'kill chyme',
         de: 'brei töten',
         fr: 'tuez lad',
+        cn: '击杀圣山之糜',
       },
     },
     {
