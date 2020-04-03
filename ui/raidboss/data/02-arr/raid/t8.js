@@ -24,6 +24,7 @@
         en: 'Explode Landmines',
         de: 'Landminen explodieren',
         fr: 'Explosez les mines',
+        cn: '引爆地雷',
       },
       run: function(data) {
         data.landmines = {};
@@ -65,6 +66,7 @@
           en: 'Missile Tether (on ' + data.ShortName(matches.source) + ')',
           de: 'Raketen Tether (auf ' + data.ShortName(matches.source) + ')',
           fr: 'Lien missile sur ' + data.ShortName(matches.source),
+          cn: '导弹连线(on ' + data.ShortName(matches.source) + ')',
         };
       },
     },
@@ -82,6 +84,7 @@
             en: 'Brainjack on YOU',
             de: 'Gehirnwäsche auf DIR',
             fr: 'Détournement cérébral sur VOUS',
+            cn: '洗脑点名',
           };
         }
       },
@@ -91,6 +94,7 @@
             en: 'Brainjack on ' + data.ShortName(matches.target),
             de: 'Gehirnwäsche auf ' + data.ShortName(matches.target),
             fr: 'Détournement cérébral sur ' + data.ShortName(matches.target),
+            cn: '洗脑点' + data.ShortName(matches.target)',
           };
         }
       },
@@ -109,6 +113,7 @@
             en: 'Allagan Field on YOU',
             de: 'Allagisches Feld auf DIR',
             fr: 'Champ allagois sur VOUS',
+            cn: '亚拉戈领域点名',
           };
         }
       },
@@ -118,6 +123,7 @@
             en: 'Allagan Field on ' + data.ShortName(matches.target),
             de: 'Allagisches Feld auf ' + data.ShortName(matches.target),
             fr: 'Champ allagois sur ' + data.ShortName(matches.target),
+            cn: '亚拉戈领域点' + data.ShortName(matches.target)',
           };
         }
       },
@@ -134,6 +140,7 @@
         en: 'Dreadnaught Add',
         de: 'Brummonaut Add',
         fr: 'Add cuirassé',
+        cn: '恐慌装甲出现',
       },
     },
   ],
