@@ -42,6 +42,7 @@
         en: 'Gaoler Adds',
         de: 'graniten Kerkermeister Adds',
         fr: 'Adds geôlier',
+        cn: '小土豆出现',
       },
     },
     {
@@ -52,6 +53,7 @@
         en: 'Double Weight',
         de: 'Doppeltes Gaias Gewicht',
         fr: 'Double poids',
+        cn: '二连流沙',
       },
     },
   ],
