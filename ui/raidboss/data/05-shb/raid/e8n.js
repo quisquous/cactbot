@@ -133,7 +133,7 @@
     {
       id: 'E8N Reflected Scythe Kick',
       regex: Regexes.startsUsing({ source: 'Frozen Mirror', id: '4E01', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Eisspeigel', id: '4E01', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Eisspiegel', id: '4E01', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'miroir de glace', id: '4E01', capture: false }),
       regexJa: Regexes.startsUsing({ source: '氷面鏡', id: '4E01', capture: false }),
       suppressSeconds: 3,
@@ -147,7 +147,7 @@
     {
       id: 'E8N Mirror Cleanup',
       regex: Regexes.startsUsing({ source: 'Frozen Mirror', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Eisspeigel', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Eisspiegel', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       regexFr: Regexes.startsUsing({ source: 'miroir de glace', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       regexJa: Regexes.startsUsing({ source: '氷面鏡', id: ['4DFE', '4DFF', '4E00', '4E01'], capture: false }),
       // Maybe not necessary to delay here, but just to be safe.
@@ -333,11 +333,11 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'luminous aether': 'Lichtäther',
-        'holy light': 'heilig[a] Licht',
-        'frozen mirror': 'Eisspiegel',
-        'electric aether': 'Blitzäther',
-        'earthen aether': 'Erdäther',
+        'Luminous Aether': 'Lichtäther',
+        'holy light': 'heiliges Licht',
+        'Frozen Mirror': 'Eisspiegel',
+        'Electric Aether': 'Blitzäther',
+        'Earthen Aether': 'Erdäther',
         'aqueous aether': 'Wasseräther',
         'Shiva': 'Shiva',
         'Mothercrystal': 'Urkristall',
@@ -373,13 +373,11 @@
         'Biting Frost': 'Frosthieb',
         'Axe Kick': 'Axttritt',
         'Absolute Zero': 'Absoluter Nullpunkt',
-
-        // FIXME
-        'Twin Silence/Stillness': 'Twin Silence/Stillness',
-        'Spiteful/Embittered Dance': 'Spiteful/Embittered Dance',
-        'Reflected Kick/Frost': 'Reflected Kick/Frost',
-        'Reflected Frost': 'Reflected Frost',
-        'Kick/Frost': 'Kick/Frost',
+        'Twin Silence/Stillness': 'Zwillingsschwerter Der Ruhe/Stille',
+        'Spiteful/Embittered Dance': 'Kalter/Strenger Tanz',
+        'Reflected Kick/Frost': 'Spiegelung Tritt/Frost',
+        'Reflected Frost': 'Spiegelung Frost',
+        '(?<! )Kick/Frost': 'Tritt/Frost',
       },
       '~effectNames': {
         'Thin Ice': 'Glatteis',

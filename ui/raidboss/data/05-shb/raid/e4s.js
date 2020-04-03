@@ -577,6 +577,7 @@
         'Bury': 'Begraben',
         'Bomb Boulders': 'Tumulus',
         'Aftershock': 'Nachbeben',
+        'Right/Left Landslide': 'Rechter/Linker Bergsturz',
       },
       '~effectNames': {
         'Summon Order III': 'Egi-Attacke III',

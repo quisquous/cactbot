@@ -308,7 +308,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'stormcloud': 'Cumulonimbus-Wolke',
+        'Stormcloud': 'Cumulonimbus-Wolke',
         'Ramuh': 'Ramuh',
         'Raiden': 'Raiden',
         'Will Of Ixion': 'Ixion-Spiegelung',

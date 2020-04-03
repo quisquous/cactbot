@@ -437,7 +437,7 @@
       regexFr: Regexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin' }),
       regexJa: Regexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー' }),
       regexCn: Regexes.startsUsing({ id: '3D8D', source: '伊甸守护者' }),
-      regexKo: Regexes.startsUsing({ id: '3D8D', source: '에덴의 수호자' }),
+      regexKo: Regexes.startsUsing({ id: '3D8D', source: '에덴 정원사' }),
       condition: function(data) {
         return data.CanSilence();
       },
