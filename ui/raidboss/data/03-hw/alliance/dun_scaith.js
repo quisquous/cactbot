@@ -27,6 +27,7 @@
         en: 'Out of death circle',
         de: 'Raus aus den Todeskreisen',
         fr: 'Sortez du cercle de mort',
+        cn: '离开圈内并扯断连线',
       },
     },
     {
@@ -47,6 +48,7 @@
         en: 'Cleanse Doom soon!',
         de: 'Verhängnis bald reinigen!',
         fr: 'Guerrissez Glas bientot',
+        cn: '尽快驱散死亡宣告！',
       },
     },
     {
@@ -75,6 +77,7 @@
         en: 'Kill sprites',
         de: 'Exergone töten',
         fr: 'Tuez les adds',
+        cn: '击杀虚无元精',
       },
     },
     {
@@ -87,6 +90,7 @@
         en: 'Drop Tornado outside',
         de: 'Wirbel draußen ablegen',
         fr: 'Déposez les tornades à l\'extérieur',
+        cn: '场地边缘放风圈',
       },
     },
     {
@@ -116,6 +120,7 @@
         en: 'Avoid death squares',
         de: 'Weiche den Todes-Feldern aus',
         fr: 'Evitez les carrés mortels',
+        cn: '离开即死区域',
       },
     },
     // FERDIAD
@@ -129,6 +134,7 @@
             en: 'Drop scythe outside',
             de: 'Sense draußen ablegen',
             fr: 'Posez à l\'extérieur',
+            cn: '场地边缘放镰刀',
           };
         }
       },
@@ -159,6 +165,8 @@
             en: 'Avoid Untethered Blue',
             de: 'Weiche dem nicht verbundenen blauem Atomos aus',
             fr: 'Evitez Gueule bleue non-liée',
+            cn: '远离蓝色小怪',
+            
           };
         }
         if (matches.id == '1CA0') {
@@ -166,6 +174,7 @@
             en: 'Go to Untethered Blue',
             de: 'Gehe zu dem nicht verbundenen blauem Atomos',
             fr: 'Allez vers la Gueule bleue non-liée',
+            cn: '靠近蓝色小怪',
           };
         }
       },
@@ -184,6 +193,7 @@
             en: 'Avoid Untethered Yellow',
             de: 'Weiche dem nicht verbundenen gelben Atomos aus',
             fr: 'Evitez Gueule jaune non-liée',
+            cn: '远离黄色小怪',
           };
         }
         if (matches.id == '1CA0') {
@@ -191,6 +201,7 @@
             en: 'Go to Untethered Yellow',
             de: 'Gehe zu dem nicht verbundenen gelben Atomos',
             fr: 'Allez vers la Gueule jaune non-liée',
+            cn: '靠近黄色小怪',
           };
         }
       },
@@ -207,6 +218,7 @@
         en: 'Avoid puddles',
         de: 'Flächen ausweichen',
         fr: 'Evitez les zones au sol',
+        cn: '离开圈圈',
       },
     },
     {
@@ -223,6 +235,7 @@
         en: 'Change puddles to water',
         de: 'Ändere Flächen zu Wasser',
         fr: 'Changez en eau',
+        cn: '将地上的圈踩成蓝色',
       },
     },
     {
@@ -239,6 +252,7 @@
         en: 'Change puddles to fire',
         de: 'Ändere Flächen zu Feuer',
         fr: 'Changez en feu',
+        cn: '将地上的圈踩成红色',
       },
     },
     // PROTO-ULTIMA
@@ -256,6 +270,7 @@
         en: 'Dodge trident laser',
         de: 'Weiche dem Laser aus',
         fr: 'Evitez le laser',
+        cn: '躲避三向激光',
       },
     },
     {
@@ -286,6 +301,7 @@
             en: 'Prey--Avoid party and keep moving',
             de: 'Markiert - Weg von der Gruppe und bleib in Bewegung',
             fr: 'Marquage - Evitez les autres et bougez',
+            cn: '离开人群并保持移动',
           };
         }
       },
@@ -308,12 +324,14 @@
             en: 'Out of center--Wait for outer ring then keep going',
             de: 'Raus aus der Mitte - Warte auf den äuseren Ring',
             fr: 'Loin du centre - Attendez l\'anneau extérieur et continuez',
+            cn: '远离中心--在外圈内等待再进行移动',
           };
         }
         return {
           en: 'Avoid flares--Wait for outer ring then keep going',
           de: 'Flares ausweichen - Warte auf den äuseren Ring',
           fr: 'Evitez les explosions - Attendez l\'anneau extérieur et continuez',
+          cn: '避免爆炸--在外圈内等待再进行移动',
         };
       },
     },
@@ -329,6 +347,7 @@
         en: 'Avoid line AoE',
         de: 'Weiche der Linien AoE aus',
         fr: 'Evitez l\'AoE en ligne',
+        cn: '躲避直线AOE',
       },
     },
     {
@@ -346,6 +365,7 @@
         en: 'Avoid Bit AoEs',
         de: 'Weiche den Bit AoEs aus',
         fr: 'Evitez les AoE des forets',
+        cn: '躲避小型AOE',
       },
     },
     {
@@ -361,6 +381,7 @@
         en: 'Kill collectors',
         de: 'Ätherakkumulator besiegen',
         fr: 'Détruisez les accumulateurs',
+        cn: '击杀以太收集器',
       },
     },
     // SCATHACH
@@ -378,6 +399,7 @@
         en: 'Avoid arm slaps',
         de: 'Weiche den Armschlägen aus',
         fr: 'Evitez les bras',
+        cn: '站在boss背后方向',
       },
     },
     {
@@ -403,6 +425,7 @@
         en: 'Avoid line AoEs',
         de: 'Weiche den Linien AoEs aus',
         fr: 'Evitez les AoE en ligne',
+        cn: '躲开boss正面路线',
       },
     },
     {
@@ -444,6 +467,7 @@
         en: 'Kill the hands',
         de: 'Besiege die Hand',
         fr: 'Tuez les mains',
+        cn: '击杀影之手',
       },
     },
     {
@@ -458,6 +482,7 @@
         en: 'Avoid AoE, Kill Connla',
         de: 'Weiche AoE aus, besiege Connla',
         fr: 'Evitez les AoE, tuez Connla',
+        cn: '躲避AOE后击杀康拉',
       },
     },
     // These triggers are common to both Scathach and Diabolos
@@ -471,6 +496,7 @@
             en: 'Take orb outside',
             de: 'Orb nach außen bringen',
             fr: 'Prenez l\'orb à l\'extérieur',
+            cn: '把球带出人群，移动到球不再出现为止',
           };
         }
       },
@@ -522,6 +548,7 @@
         en: 'Boss hitting hard--Shield/Mitigate',
         de: 'Harter Hit vom Boss - Schild/Milderung',
         fr: 'Le boss frappe fort - Bouclier/Mitigation',
+        cn: 'MT大伤害物理死刑—注意减伤/治疗盾',
       },
     },
     {
@@ -551,6 +578,7 @@
         en: 'Kill the deathgates',
         de: 'Besiege die Tore des Todes',
         fr: 'Détruisez les portes de mort',
+        cn: '击杀召唤之门',
       },
     },
     {
@@ -572,12 +600,14 @@
             en: 'Gaze stack on YOU',
             de: 'Blick-Sammeln auf DIR',
             fr: 'Package sur VOUS',
+            cn: '点名分摊',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target) + ' and look away',
           de: 'Sammeln bei ' + data.ShortName(matches.target) + ' und wewg schauen',
           fr: 'Package sur ' + data.ShortName(matches.target) + ' et regardez ailleurs',
+          cn: '靠近并背对' + data.ShortName(matches.target) + '分摊',
         };
       },
     },
