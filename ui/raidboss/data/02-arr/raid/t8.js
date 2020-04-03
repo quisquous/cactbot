@@ -94,7 +94,7 @@
             en: 'Brainjack on ' + data.ShortName(matches.target),
             de: 'Gehirnwäsche auf ' + data.ShortName(matches.target),
             fr: 'Détournement cérébral sur ' + data.ShortName(matches.target),
-            cn: '洗脑点' + data.ShortName(matches.target)',
+            cn: '洗脑点' + data.ShortName(matches.target),
           };
         }
       },
