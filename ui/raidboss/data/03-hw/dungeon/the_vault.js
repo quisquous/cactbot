@@ -23,6 +23,7 @@
         en: 'Avoid dashes',
         de: 'Sprint ausweichen',
         fr: 'Evitez les dash',
+        cn: '躲开冲锋',
       },
     },
     {
@@ -69,6 +70,7 @@
             en: 'Heal + shield ' + data.ShortName(matches.target),
             de: 'Heilung + Schild ' + data.ShortName(matches.target),
             fr: 'Heal + boucliers ' + data.ShortName(matches.target),
+            cn: '马上治疗' + data.ShortName(matches.target),
           };
         }
       },
@@ -117,6 +119,7 @@
         en: 'Away from rifts',
         de: 'Weg von de Ätherspalten',
         fr: 'Eloignez-vous des déchirures',
+        cn: '远离黑圈',
       },
     },
     {
@@ -167,6 +170,7 @@
         en: 'Evade marching knights',
         de: 'Marschierenden Rittern ausweichen',
         fr: 'Esquivez les chevaliers',
+        cn: '躲开人马',
       },
     },
   ],
