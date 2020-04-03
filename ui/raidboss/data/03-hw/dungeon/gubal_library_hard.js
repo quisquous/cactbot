@@ -66,12 +66,14 @@
               en: 'Close to boss',
               de: 'Nahe zum Boss',
               fr: 'Près du boss',
+              cn: '靠近boss',
             };
           }
           return {
             en: 'Away from boss',
             de: 'Weg vom Boss',
             fr: 'Eloignez-vous du boss',
+            cn: '远离boss',
           };
         }
       },
@@ -91,6 +93,7 @@
         en: 'Away from boss',
         de: 'Weg vom Boss',
         fr: 'Eloignez-vous du boss',
+        cn: '远离boss',
       },
     },
     {
@@ -108,6 +111,7 @@
         en: 'Stand in red',
         de: 'Im Roten stehen',
         fr: 'Restez dans le rouge',
+        cn: '站在红色',
       },
     },
     {
@@ -125,6 +129,7 @@
         en: 'Stand in blue',
         de: 'Im Blauen stehen',
         fr: 'Restez dans le bleu',
+        cn: '站在蓝色',
       },
     },
     {
@@ -142,6 +147,7 @@
             en: 'Interrupt Mechanoscribe',
             de: 'unterbreche Mechanoscholar',
             fr: 'Interrompez le Mécano-scribe',
+            cn: '打断人偶',
           };
         }
         if (data.CanStun()) {
@@ -149,6 +155,7 @@
             en: 'Stun Mechanoscribe',
             de: 'betäube Mechanoscholar',
             fr: 'Etourdissez le Mécano-scribe',
+            cn: '眩晕人偶',
           };
         }
       },
@@ -165,6 +172,7 @@
         en: 'Stand in light circle',
         de: 'Im hellen Kreis stehen',
         fr: 'Restez dans le cercle blanc',
+        cn: '去白色区域',
       },
     },
     {
@@ -179,6 +187,7 @@
         en: 'Stand in dark circle',
         de: 'Im dunklen Kreis stehen',
         fr: 'Restez dans le cercle noir',
+        cn: '去黑色区域',
       },
     },
     {
@@ -193,6 +202,7 @@
         en: 'Cleanse in green circle',
         de: 'Im grünen Kreis reinigen',
         fr: 'Nettoyez dans le cercle vert',
+        cn: '去绿色区域',
       },
     },
     {
@@ -231,6 +241,7 @@
         en: 'Hide behind boulder',
         de: 'Hinter dem Brocken verstecken',
         fr: 'Derrière le rocher',
+        cn: '站在陨石后',
       },
     },
   ],
