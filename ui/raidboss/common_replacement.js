@@ -16,6 +16,7 @@ let commonReplacement = {
     ko: '의 봉쇄가 해제되었습니다',
   },
   '--center--': {
+    de: '--center--',
     fr: '--centre--',
     ja: '--センター--',
     cn: '--中央--',
@@ -58,6 +59,7 @@ let commonReplacement = {
   '--middle--': {
     de: '--mitte--',
     fr: '--milieu--',
+    ja: '--中央--',
     cn: '--中间--',
     ko: '--중앙--',
   },
