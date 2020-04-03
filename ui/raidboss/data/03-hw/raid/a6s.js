@@ -64,12 +64,14 @@
             en: 'Get Mines',
             de: 'Mienen nehmen',
             fr: 'Prenez les mines',
+            cn: '踩雷',
           };
         }
         return {
           en: 'Avoid Mines',
           de: 'Mienen vermeiden',
           fr: 'Evitez les mines',
+          cn: '躲开地雷',
         };
       },
     },
@@ -86,6 +88,7 @@
         en: 'Dodge Mirage Charge',
         de: 'Superladung ausweichen',
         fr: 'Esquivez la charge de la réplique',
+        cn: '躲开冲锋',
       },
     },
     {
@@ -103,6 +106,7 @@
         en: 'Look Away from Mirage',
         de: 'Von Replikant wegschauen',
         fr: 'Ne regardez pas la réplique',
+        cn: '背对幻象',
       },
     },
     {
@@ -120,6 +124,7 @@
         en: 'Look Towards Mirage',
         de: 'Von Replikant hinschauen',
         fr: 'Regardez la réplique',
+        cn: '面向幻象',
       },
     },
     {
@@ -147,6 +152,7 @@
         en: 'Double Buster: Group Soak',
         de: 'Doppel Buster: Gruppe sammeln',
         fr: 'Double buster: Packez-vous',
+        cn: '面向幻象',
       },
     },
     {
@@ -164,6 +170,7 @@
         en: 'Get Away from Boss',
         de: 'Gehe weit weg vom Boss',
         fr: 'Eloignez-vous du boss',
+        cn: '背后分摊',
       },
     },
     {
@@ -181,6 +188,7 @@
         en: 'Double Drill: Be Near/Far',
         de: 'Doppel Bohrer: Sei weit weg/nah dran',
         fr: 'Double foreuse : Soyez Loin/Près',
+        cn: '靠近或远离',
       },
     },
     {
@@ -198,6 +206,7 @@
         en: 'Go High',
         de: 'Geh Hoch',
         fr: 'Allez en haut',
+        cn: '上高台',
       },
     },
     {
@@ -215,6 +224,7 @@
         en: 'Go Low',
         de: 'Geh Runter',
         fr: 'Allez en bas',
+        cn: '下低台',
       },
     },
     {
@@ -249,6 +259,7 @@
         en: 'Hide Behind Tornado',
         de: 'Hinter Tornado verstecken',
         fr: 'Cachez vous derrière la tornade',
+        cn: '躲在冰块后',
       },
     },
     {
@@ -261,6 +272,7 @@
         en: 'Ice Missile on YOU',
         de: 'Eis Rakete auf DIR',
         fr: 'Missile de glace sur VOUS',
+        cn: '冰导弹点名',
       },
     },
     {
@@ -279,6 +291,7 @@
         de: 'Wasser auf DIR',
         fr: 'Eau sur VOUS',
         ja: '自分に水',
+        cn: '水点名',
       },
     },
     {
@@ -301,6 +314,7 @@
         de: 'Gleich Wasser ablegen',
         fr: 'Posez l\'eau bientôt',
         ja: '水来るよ',
+        cn: '马上水分摊',
       },
     },
     {
@@ -319,6 +333,7 @@
         de: 'Blitz auf DIR',
         fr: 'Eclair sur VOUS',
         ja: '自分に雷',
+        cn: '雷点名',
       },
     },
     {
@@ -341,6 +356,7 @@
         de: 'Gleich Blitz ablegen',
         fr: 'Déposez l\'éclair bientôt',
         ja: '雷来るよ',
+        cn: '马上雷分摊',
       },
     },
   ],
