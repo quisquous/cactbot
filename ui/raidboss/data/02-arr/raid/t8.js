@@ -123,7 +123,7 @@
             en: 'Allagan Field on ' + data.ShortName(matches.target),
             de: 'Allagisches Feld auf ' + data.ShortName(matches.target),
             fr: 'Champ allagois sur ' + data.ShortName(matches.target),
-            cn: '亚拉戈领域点' + data.ShortName(matches.target)',
+            cn: '亚拉戈领域点' + data.ShortName(matches.target),
           };
         }
       },
