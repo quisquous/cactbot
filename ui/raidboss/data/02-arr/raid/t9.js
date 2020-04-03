@@ -342,7 +342,7 @@
           return {
             en: data.tetherDir + ' (on YOU)',
             fr: data.tetherDir + ' (sur VOUS)',
-            cn: data.tetherDir + ' (点名)'
+            cn: data.tetherDir + ' (点名)',
           };
         }
       },
@@ -351,7 +351,7 @@
           return {
             en: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
             fr: data.tetherDir + ' (sur ' + data.ShortName(matches.target) + ')',
-            cn: data.tetherDir + ' (点 ' + data.ShortName(matches.target) + ')'
+            cn: data.tetherDir + ' (点 ' + data.ShortName(matches.target) + ')',
           };
         }
       },
