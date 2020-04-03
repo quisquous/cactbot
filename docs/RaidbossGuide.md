@@ -98,16 +98,21 @@ The regular expression Cactbot will run against each log line to determine wheth
 More commonly, however, a regex replacement is used instead of a bare regex.
 Helper functions defined in [regexes.js](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js)
 take the parameters that would otherwise be extracted via match groups.
-From here, the functions automagically construct the regex that should
+From here, the functions automatically construct the regex that should
 be matched against.
 
 **regexFr**
 Example of a locale-based regular expression for the 'fr' locale.
 If `Options.Language == 'fr'`, then `regexFr` (if it exists) takes precedence over `regex`.
 Otherwise, it is ignored.  This is only an example for french, but other locales behave the same, e.g. regexEn, regexKo.
-(Locale regexes do not have a defined ordering.
+
+Locale regexes do not have a defined ordering.
 Current practice is to order them as `de`, `fr`, `ja`, `cn`, `ko`, however.
-Additionally, as with bare `regex` elements, current practice is to use regex replacements instead.)
+Additionally, as with bare `regex` elements, current practice is to use regex replacements instead.
+
+(Ideally, at some point in the future, we could get to the point where we don't need individual locale regexes.
+Instead, we could use the translations provided in the `timelineReplace` object to do this automagically.
+We're not there yet, but there's always someday.)
 
 **condition: function(data, matches)**
 Activates the trigger if the function returns `true`. If it does not return `true`, nothing is shown/sounded/run. If multiple functions are present on the trigger, this has first priority to run.
@@ -186,6 +191,74 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 - groupTTS
 - tts
 - run
+
+## Canned Helper Functions
+
+In order to unify trigger construction and reduce the manual burden of translation,
+cactbot makes widespread use of "canned" trigger elements.
+Use of these helpers makes automated testing significantly easier,
+and allows humans to catch errors and inconsistencies more easily when reviewing pull requests.
+
+Currently, three separate elements have pre-made structures defined:
+[Condition](https://github.com/quisquous/cactbot/blob/master/resources/conditions.js), [Regex](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/master/resources/responses.js).
+`Condition` functions take no arguments. Almost all `Response` functions take one optional argument, `severity`,
+used to determine what level of popup text to display to the user when the trigger activates.
+`Regex` functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/quisquous/cactbot/blob/dcdf3ee4cd1b6d5bdfb9a8052cc9e4c9b10844d8/resources/regexes.js#L176) depending on which log line is being matched against,
+but generally a contributor would include the `source`, (name of the caster/user of the ability to match,)
+the `id`, (the hex ability ID, such as `2478`,) and whether or not the regex should capture the matches (`capture: false`.)
+`Regex` functions capture by default, but standard practice is to specify non-capturing unless a trigger element requires captures.
+
+A sample trigger that makes use of all these elements:
+
+```javascript
+{
+  id: 'TEA Mega Holy Modified',
+  regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
+  regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
+  regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
+  regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
+  regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
+  regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
+  condition: Conditions.caresAboutMagical(),
+  response: Responses.bigAoe('alert'),
+},
+```
+
+While this doesn't reduce the number of lines we need to match the locale regexes, this is far less verbose than:
+
+```javascript
+{
+  id: 'TEA Mega Holy Modified',
+  regex:  / 14:........:Alexander Prime starts using Mega Holy/,
+  regexDe: / 14:........:Prim-Alexander starts using Super-Sanctus/,
+  regexFr: / 14:........:Primo-Alexander starts using Méga Miracle/,
+  regexJa: / 14:........:アレキサンダー・プライム starts using メガホーリー/,
+  regexCn: / 14:........:至尊亚历山大 starts using 百万神圣/,
+  regexKo: / 14:........:알렉산더 프라임 starts using 지진/,
+  condition: function(data) {
+    return data.role == 'tank' || data.role == 'healer' || data.CanAddle();
+  },
+  alertText: {
+    en: 'big aoe!',
+    de: 'Große AoE!',
+    fr: 'Grosse AoE !',
+    ja: '大ダメージAoE',
+    cn: '大AoE伤害！',
+    ko: '강한 전체 공격!',
+  },
+},
+```
+
+Use of bare regexes is deprecated. *Always* use the appropriate canned function unless there is a very specific
+reason not to. Attempting to use a bare regex will cause a build failure when the pull request is submitted.
+If a bare regex must be used for whatever reason (if, say, a new log line is added to ACT,)
+pull requests to update `regexes.js` are strongly encouraged.
+
+(Note that if you are writing triggers for just your personal use, you are free to do what you want.
+This deprecation applies only to work intended for the cactbot repository.)
+
+Use of canned conditions and responses is recommended where possible, although
+given Square's extremely talented fight design team, it's not always going to *be* possible.
 
 ## Timeline Info
 
