@@ -166,7 +166,6 @@
             de: 'Weiche dem nicht verbundenen blauem Atomos aus',
             fr: 'Evitez Gueule bleue non-liée',
             cn: '远离蓝色小怪',
-            
           };
         }
         if (matches.id == '1CA0') {
