@@ -118,7 +118,7 @@
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Sammeln auf ' + data.ShortName(matches.target),
           fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          cn: '靠近' + data.ShortName(matches.target) + '分摊' ,
+          cn: '靠近' + data.ShortName(matches.target) + '分摊',
         };
       },
     },
