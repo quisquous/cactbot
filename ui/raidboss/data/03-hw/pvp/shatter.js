@@ -34,10 +34,10 @@
             '4': 'Sud-Ouest',
           },
           cn: {
-            '1': '中央大冰',
-            '2': '北方大冰',
-            '3': '东南大冰',
-            '4': '西南大冰',
+            '1': '中央',
+            '2': '北方',
+            '3': '东南',
+            '4': '西南',
             },
         };
 
@@ -52,6 +52,7 @@
           en: 'Big Ice: ' + big_ice_dir[matches[1]],
           de: 'Grosses Eis: ' + big_ice_dir[matches[1]],
           fr: 'Grosse Glace :' + big_ice_dir[matches[1]],
+          cn: '大冰: ' + big_ice_dir[matches[1]],
         };
       },
       alertText: function(data) {
