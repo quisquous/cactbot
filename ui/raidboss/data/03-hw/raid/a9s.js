@@ -20,15 +20,19 @@
       infoText: function(data) {
         let nw1_se1 = {
           en: 'Place Generators NW/SE',
+          cn: '搬运发电器到西北/东南',
         };
         let nw2 = {
           en: 'Place Generators NW',
+          cn: '搬运发电器到西北',
         };
         let nw1 = {
           en: 'Place Generator NW',
+          cn: '搬运发电器到西北',
         };
         let se2 = {
           en: 'Place Generators SE',
+          cn: '搬运发电器到东南',
         };
 
         return {
@@ -51,10 +55,12 @@
         // .. or anywhere not NW
         let se = {
           en: 'Kill Alarum SE',
+          cn: '在东南击杀警报',
         };
         // ... or anywhere not NW/SE
         let sw = {
           en: 'Kill Alarum SW',
+          cn: '在西南击杀警报',
         };
 
         return {
@@ -71,6 +77,7 @@
       beforeSeconds: 7,
       infoText: {
         en: 'Bombs Soon',
+        cn: '炸弹马上爆炸',
       },
     },
   ],
@@ -103,6 +110,7 @@
           return;
         return {
           en: 'Scrapline on YOU',
+          cn: '死刑',
         };
         // ...probably, we hope...
       },
@@ -112,6 +120,7 @@
       regex: Regexes.startsUsing({ source: 'Refurbisher 0', id: '1A3D', capture: false }),
       alertText: {
         en: 'Stand in Alarum Puddle',
+        cn: '站进紫色圈圈',
       },
     },
     {
@@ -120,6 +129,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Rock on YOU',
+        cn: '落石点名',
       },
     },
     {
@@ -129,6 +139,7 @@
       suppressSeconds: 1,
       alertText: {
         en: 'Hide Fully Behind Rock',
+        cn: '躲在石头后',
       },
     },
     {
@@ -160,15 +171,19 @@
         // This is an old fight, so just pick one for people.
         let ne = {
           en: 'Adds to NE Lava',
+          cn: '拉小怪到东北击杀',
         };
         let se = {
           en: 'Adds to SE Lava',
+          cn: '拉小怪到东南击杀',
         };
         let sw = {
           en: 'Adds to SW Lava',
+          cn: '拉小怪到西南击杀',
         };
         let nw = {
           en: 'Adds to NW Lava',
+          cn: '拉小怪到西北击杀',
         };
 
         return {
