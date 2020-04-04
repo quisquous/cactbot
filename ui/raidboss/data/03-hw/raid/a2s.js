@@ -23,6 +23,7 @@
       infoText: {
         en: 'Stun Soon',
         fr: 'Stun bientôt',
+        cn: '马上眩晕',
       },
     },
   ],
@@ -34,6 +35,7 @@
       alertText: {
         en: 'Bomb',
         fr: 'Bombe',
+        cn: '炸弹出现',
       },
     },
     {
@@ -48,6 +50,7 @@
         return {
           en: 'Keep ' + data.ShortName(matches.target) + ' topped',
           fr: 'Maintenez ' + data.ShortName(matches.target) + ' Max PV',
+          cn: '保持' + data.ShortName(matches.target) + '满血',
         };
       },
     },
@@ -60,6 +63,7 @@
       alertText: {
         en: 'Boomcannon on YOU',
         fr: 'Double cannon sur VOUS',
+        cn: '死刑点名',
       },
     },
     {
@@ -80,6 +84,7 @@
       infoText: {
         en: 'Stun Soldier',
         fr: 'Stun sur le soldat',
+        cn: '眩晕士兵',
       },
       run: function(data) {
         data.bangyzoom = true;
