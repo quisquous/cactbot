@@ -15,7 +15,8 @@
     },
     {
       id: 'Sohm Al Myath Spread',
-      regex: Regexes.headMarker({ id: '00AE', capture: false }),
+      regex: Regexes.headMarker({ id: '00AE' }),
+      condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
@@ -39,7 +40,8 @@
     },
     {
       id: 'Sohm Al Tioman Meteor',
-      regex: Regexes.headMarker({ id: '0007', capture: false }),
+      regex: Regexes.headMarker({ id: '0007' }),
+      condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },
   ],
