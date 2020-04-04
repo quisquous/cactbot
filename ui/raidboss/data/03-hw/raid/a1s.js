@@ -69,7 +69,7 @@
     },
     {
       id: 'A1S Resin Bomb',
-      regex: Regexes.startsUsing({ id: 'E46', source: 'Oppressor' }),
+      regex: Regexes.startsUsing({ id: 'E47', source: 'Oppressor' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Bait Resin Bomb',
