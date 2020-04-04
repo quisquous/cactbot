@@ -1,338 +1,274 @@
-# Alexander - Burden of the Son (Savage) - A8S / M4S
-# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
-# Shasta's reddit: /u/shastaxc
-# Last Updated: 6/28/2016
+### A12S
+# Alexander - The Burden of the Son (Savage)
+# https://dtguilds.enjin.com/a8sguide
+# -p 162A:6.7 163B:313.5 1657:603 167C:800 166E:1257.1
+# -ii 1629 162C 1630 1644 1643 164F 1667 166A 166B 165F 1671 1723 165C 1641
 
-#############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from 
-########the beginning of the following lines to prevent 
-########them from appearing on your timeline.
+hideall "--Reset--"
+hideall "--sync--"
+hideall "Magicked Mark"
+hideall "Brute Force"
 
-#########DPS CAN HIDE THESE
-#hideall "Seed of the Sky"
-#hideall "Hydrothermal"
-#hideall "Execution"
-#hideall "Perpetual Ray"
-#hideall "Aux Power (Brawler)"
-#hideall "Aux Power (Swindler)"
-#hideall "Flarethrower"
-#hideall "Double Rocket Punch"
-#hideall "Long Needle"
-#hideall "Super Jump"
-#hideall "Missile Command"
-#hideall "Flarethrower"
-#hideall "Apocalyptic Ray"
-#hideall "100-megatonze Shock"
-#hideall "Mines"
-#hideall "Justice"
-#hideall "Final Punch"
-#hideall "Final Apocalypse"
-#hideall "J Wave"
-#hideall "--Reset--"
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
-#########HEALERS CAN HIDE THESE
-#hideall "Seed of the Sky"
-#hideall "Execution"
-#hideall "Aux Power (Brawler)"
-#hideall "Aux Power (Swindler)"
-#hideall "Super Jump"
-#hideall "Missile Command"
+### Phase 1: Onslaughter: Execution and Legislation
+0.0 "--sync--" sync /:Engage!/ window 0,1
+1.0 "--sync--" sync /:Onslaughter:1629:/ window 1,0
+6.7 "Hydrothermal Missile" sync /:Onslaughter:162A:/ window 7,5
+15.9 "Seed Of The Sky" sync /:Onslaughter:162D:/
+17.9 "Mega Beam" sync /:Onslaughter:162E:/
+22.1 "Hydrothermal Missile" sync /:Onslaughter:162A:/
 
-#########TANKS CAN HIDE THESE
-#hideall "Seed of the Sky"
-#hideall "Execution"
-#hideall "Missile Command"
-#hideall "100-megatonze Shock"
-#hideall "Justice"
-#hideall "J Wave"
+29.3 "Execution" sync /:Onslaughter:1632:/
+31.5 "--targetable--"
+31.5 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+38.7 "Seed Of The Sky" sync /:Onslaughter:162D:/
+40.7 "Mega Beam" sync /:Onslaughter:162E:/
+47.9 "Perpetual Ray" sync /:Onslaughter:162B:/ duration 3.3
+51.5 "--regulator check--" #sync /:Steam Regulator B:1634:/
+54.7 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+61.8 "Mega Beam" sync /:Onslaughter:162E:/
+66.0 "Hydrothermal Missile" sync /:Onslaughter:162A:/
 
+73.2 "Legislation" sync /:Onslaughter:1631:/
+78.3 "Discoid" sync /:Onslaughter:162F:/
+79.9 "--orbs--"
+80.5 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+90.7 "Seed Of The Sky" sync /:Onslaughter:162D:/
+93.0 "Mega Beam" sync /:Onslaughter:162E:/
+95.4 "Hydrothermal Missile" sync /:Onslaughter:162A:/
 
-##############################################################
-################## Windows 8 & 10 Voices ##################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Zira Desktop" 0 100
-#define speaker "voice" "Microsoft David Desktop" 0 100
+102.5 "Perpetual Ray" sync /:Onslaughter:162B:/ duration 3.3
+106.9 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+117.1 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+126.3 "Seed Of The Sky" sync /:Onslaughter:162D:/
+127.4 "Mega Beam" sync /:Onslaughter:162E:/
+132.6 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+138.7 "Hydrothermal Missile" sync /:Onslaughter:162A:/
 
-#################### Windows 7 Voices ####################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Anna" 0 100
+145.8 "Perpetual Ray" sync /:Onslaughter:162B:/ duration 3.3
+150.2 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+155.3 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+164.5 "Seed Of The Sky" sync /:Onslaughter:162D:/
+165.6 "Mega Beam" sync /:Onslaughter:162E:/
+170.8 "Hydrothermal Missile" sync /:Onslaughter:162A:/
+176.9 "Hydrothermal Missile" sync /:Onslaughter:162A:/
 
-################ CUSTOMIZE Call Outs #####################
-########REMOVE THE HASHTAG to enable each call out
-#alertall "Mega Beam" before 3 speak "voice" "Beam"
-#alertall "Final Beam" before 3 speak "voice" "Beam"
-#alertall "Hydrothermal" before 3 speak "voice" "Hydrothermal"
-#alertall "Perpetual Ray" before 4 speak "voice" "Perpetual Ray"
-#alertall "Legislation" before 1 speak "voice" "Check Your Debuff"
-#alertall "Git Gud" before 0 speak "voice" "Git Gud"
-#
-#alertall "Height" before 0 speak "voice" "Height"
-#alertall "Attachment" before 1 speak "voice" "Attachment"
-#alertall "Mind Blast" before 3 speak "voice" "Mind Blast"
-#alertall "Swindler Spawn" before 2 speak "voice" "Swindler"
-#alertall "Vortexer Spawn" before 2 speak "voice" "Vortexer"
-#
-#alertall "Puddles" before 6 speak "voice" "Stack"
-#alertall "Super Jump" before 6 speak "voice" "Super Jump"
-#alertall "Missile Command" before 6 speak "voice" "Shield"
-#alertall "Flarethrower" before 4 speak "voice" "Flarethrower"
-#alertall "Double Rocket Punch" before 4 speak "voice" "Punch"
-#alertall "Final Punch" before 4 speak "voice" "Punch"
-#alertall "Apocalyptic Ray" before 3 speak "voice" "Apocalyptic"
-#alertall "Final Apocalypse" before 3 speak "voice" "Apocalypse"
-#
-#alertall "J Kick" before 5 speak "voice" "Stack"
-#alertall "Double Buster" before 5 speak "voice" "Stack"
-#alertall "Double Drills" before 5 speak "voice" "Double Drill"
-#alertall "Chakrams Spawn" before 1 speak "voice" "Chawkrums"
-#alertall "Mirages Land" before 6 speak "voice" "Spread Out"
-#
-#alertall "Enumeration" before 5 speak "voice" "Enumeration"
-#alertall "Verdict" before 1 speak "voice" "Check Debuff"
-#alertall "Gavel" before 1 speak "voice" "Get Last Orb"
-#
-#alertall "J Storm" before 5 speak "voice" "Burn Baby Burn"
-
-##############################################################
-0 "--Reset--" sync /Removing combatant Onslaughter/ window 300 jump 0
-
-################# Phase 1
-0 "--Start--" sync /Onslaughter uses Hydrothermal Missile/ window 12
-5 "Seed of the Sky"
-11 "Mega Beam"
-16 "Hydrothermal"
-21 "Execution"
-24 "Regulators Spawn"
-25 "Hydrothermal"
-28 "Seed of the Sky"
-34 "Mega Beam"
-40 "Perpetual Ray"
-48 "Hydrothermal"
-55 "Mega Beam"
-61 "Hydrothermal"
-65 "Legislation"
-73 "Balls Spawn"
-75 "Hydrothermal"
-80 "Seed of the Sky"
-86 "Mega Beam"
-89 "Hydrothermal"
-94 "Perpetual Ray"
-100 "Hydrothermal"
-105 "Boss Should be Dead"
-110 "Git Gud"
-200 ""
-200 ""
-200 ""
-200 ""
-200 ""
-200 ""
-200 ""
-200 ""
-200 ""
-200 ""
+184.0 "Perpetual Ray" sync /:Onslaughter:162B:/ duration 3.3 window 30,30 jump 145.8
+188.4 "Hydrothermal Missile"
+193.5 "Hydrothermal Missile"
+202.7 "Seed Of The Sky"
+203.8 "Mega Beam"
+209.0 "Hydrothermal Missile"
+215.1 "Hydrothermal Missile"
 
 
-################# Phase 2
-300 "Phase 2" sync /Added new combatant Blaster/ window 300,0
-301 "--Reset--" sync /Removing combatant Brawler/ window 2,50 jump 0
-302 "--Reset--" sync /Removing combatant Vortexer/ window 0,300 jump 0
-311 "Aux Power (Brawler)"
-315 "Attachment" #Brawler
-321 "Swindler Spawn"
-325 "Aux Power (Brawler)"
-341 "Aux Power (Brawler)"
-344 "Height" #Swindler
-345 "Attachment" #Brawler
-345 "Vortexer Spawn"
-355 "Aux Power (Brawler)"
-376 "Height" #Swindler
-408 "Height" #Swindler
-440 "Height" #Swindler
-499 ""
-499 ""
-499 ""
-499 ""
-499 ""
-499 ""
-499 ""
-499 ""
-499 ""
-499 ""
+### Phase 2: Robots
+300.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 300,0
+303.0 "--sync--" sync / 03:........:Added new combatant Blaster/ window 303,30
+304.0 "Blaster (north)"
+304.0 "Brawler (middle)"
+306.2 "--targetable--"
+313.5 "Magicked Mark" sync /:Brawler:163B:/ window 314,5
+314.5 "Brute Force" sync /:Blaster:1638:/
+316.6 "Auxiliary Power" sync /:Brawler:164B:/
 
-500 "Bio-arithmeticks" sync /Swindler readies Bio-arithmeticks/ window 200,20
-504 "Aux Power (Swindler)"
-521 "Height + Enumeration"
-528 "Aux Power (Swindler)"
-534 "Aux Power (Swindler)"
-599 ""
-599 ""
-599 ""
-599 ""
-599 ""
-599 ""
-599 ""
-599 ""
-599 ""
-599 ""
+319.9 "Mirage Add" #sync / 03:........:Added new combatant Blaster Mirage/
+319.8 "Attachment" sync /:Brawler:163C:/
+322.4 "Mind Blast?" #sync /:Blaster:1639:/ # 3 second cast, interruptible
+324.5 "Brute Force" #sync /:Blaster Mirage:1638:/
+325.6 "Brute Force" sync /:Blaster:1638:/
+326.0 "Brawler Mechanic" sync /:Brawler:(163D|163E|163F|1640):/
 
+329.4 "Swindler (east)" #sync / 22:........:Swindler:........:Swindler:01/
+330.1 "Auxiliary Power" sync /:Brawler:164B:/
+333.7 "Brute Force" sync /:Blaster:1638:/
+334.2 "Magicked Mark" sync /:Brawler:163B:/
+334.6 "Brute Force" #sync /:Blaster Mirage:1638:/
+337.5 "Magicked Mark" sync /:Swindler:1646:/
+341.7 "Brute Force" sync /:Blaster:1638:/
+343.2 "Magicked Mark" sync /:Brawler:163B:/
+346.3 "Auxiliary Power" sync /:Brawler:164B:/
+348.5 "Height" sync /:Swindler:1647:/
+349.4 "Attachment" sync /:Brawler:163C:/
 
-################# Phase 3
-600 "Transform"
-613 "Flarethrower" sync /Brute Justice uses Flarethrower/ window 1000,0
-614 "--Reset--" sync /Removing combatant Brute Justice/ window 0,74 jump 0
-618 "Double Rocket Punch"
-623 "Missile Command"
-625 "Puddles"
-627 "Flarethrower"
-630 "Long Needle"
-633 "Mega Beam"
-638 "Super Jump"
-644 "Apocalyptic Ray"
-653 "Flarethrower"
-659 "Double Rocket Punch"
-661 "Flarethrower"
-665 "Missile Command"
-667 "Puddles"
-669 "Flarethrower"
-671 "Long Needle"
-674 "Mega Beam"
-679 "Super Jump"
-683 "--Untargetable--"
+352.4 "Vortexer (south)" #sync / 22:........:Vortexer:........:Vortexer:01/
+354.6 "Magicked Mark" sync /:Swindler:1646:/
+355.5 "Brawler Mechanic" sync /:Brawler:(163D|163E|163F|1640):/
+359.6 "Auxiliary Power" sync /:Brawler:164B:/
+360.4 "Brute Force" sync /:Vortexer:164D:/
+363.7 "Magicked Mark" sync /:Brawler:163B:/
+370.4 "Brute Force" sync /:Vortexer:164D:/
+372.8 "Magicked Mark" sync /:Brawler:163B:/
+375.9 "Auxiliary Power" sync /:Brawler:164B:/
+379.0 "Attachment" sync /:Brawler:163C:/
+380.5 "Brute Force" sync /:Vortexer:164D:/
+385.0 "Brawler Mechanic" sync /:Brawler:(163D|163E|163F|1640):/
+390.2 "Auxiliary Power" sync /:Brawler:164B:/
+390.6 "Brute Force" sync /:Vortexer:164D:/
+393.4 "Attachment" sync /:Brawler:163C:/
+399.5 "Brawler Mechanic" sync /:Brawler:(163D|163E|163F|1640):/
+400.7 "Brute Force" sync /:Vortexer:164D:/
+403.6 "Auxiliary Power" sync /:Brawler:164B:/
+407.7 "Magicked Mark" sync /:Brawler:163B:/
 
 
-################# Phase 4
-
-686 "J Kick" sync /Brute Justice uses J Kick/ window 686,0
-695 "100-megatonze Shock"
-698 "Chakrams Spawn"
-704 "Double Buster"
-708 "Mega Beam"
-715 "Ballistic Missile Telegraph"
-717 "Ice Missiles"
-717 "Height"
-718 "Ballistic Missiles Hit"
-721 "Mega Beam"
-723 "Single Buster"
-##### Just here for appearences
-736 "Flarethrower"
-742 "--Reset--" sync /(.*)/ window 0,5 jump 0
-743 "Double Rocket Punch"
-747 "Missile Command"
-749 "Puddles"
-751 "Flarethrower"
-752 "Long Needle"
-756 "Mega Beam"
-761 "Super Jump"
-767 "Apocalyptic Ray"
+# All of the robots have their own rotation <50%
+# Messing up thunder seems the most punishing, so here's Vortexer.
+600.0 "--sync--" sync /:1657:Vortexer/ window 600,0
+603.0 "Super Cyclone" sync /:Vortexer:1657:/
+608.1 "Elemental Jammer" sync /:Vortexer:167E:/
+615.4 "Ballistic Missile" sync /:Vortexer:1650:/
+621.4 "Earth Missile" sync /:Vortexer:1651:/
+645.8 "Ballistic Missile" sync /:Vortexer:1650:/
+650.0 "Crashing Thunder" sync /:Vortexer:164E:/
+651.7 "Earth Missile" sync /:Vortexer:1651:/
+671.6 "Crashing Thunder" sync /:Vortexer:164E:/
+676.1 "Ballistic Missile" sync /:Vortexer:1650:/
+682.1 "Earth Missile" sync /:Vortexer:1651:/
 
 
-################# Phase 5 (exactly the same as Phase 3)
-
-800 "Flarethrower" sync /Brute Justice uses Flarethrower/ window 100,0
-801 "--Reset--" sync /Removing combatant Brute Justice/ window 0,300 jump 0
-807 "Double Rocket Punch"
-811 "Missile Command"
-813 "Puddles"
-815 "Flarethrower"
-816 "Long Needle"
-820 "Mega Beam"
-825 "Super Jump"
-831 "Apocalyptic Ray"
-840 "Flarethrower"
-847 "Double Rocket Punch"
-851 "Missile Command"
-853 "Puddles"
-855 "Flarethrower"
-856 "Long Needle"
-860 "Mega Beam"
-865 "Super Jump" #End at 1HP
-900 ""
-900 ""
-900 ""
-900 ""
-900 ""
-900 ""
-900 ""
-900 ""
-900 ""
-900 ""
+### Phase 3: Brute Justice
+800.0 "Transform" sync /:Brute Justice:167C:/ window 800,0
+802.7 "--targetable--"
+810.9 "Flarethrower" sync /:Brute Justice:1662:/
+818.0 "Double Rocket Punch" sync /:Brute Justice:1663:/
+821.2 "Missile Command" sync /:Brute Justice:1668:/
+824.2 "Short Needle" sync /:Brute Justice:1669:/
+825.3 "Flarethrower" sync /:Brute Justice:1662:/
+# 166A (ground), 166B (prey), 166C (stack)
+828.2 "Long Needle" sync /:Brute Justice:166C:/
+831.1 "Short Needle" sync /:Brute Justice:1669:/
+831.6 "Mega Beam" sync /:Brute Justice:1664:/
+837.0 "Super Jump" sync /:Brute Justice:1665:/
+841.6 "Apocalyptic Ray" sync /:Brute Justice:1666:/ duration 5
+850.9 "Flarethrower" sync /:Brute Justice:1662:/
+857.0 "Double Rocket Punch" sync /:Brute Justice:1663:/
+859.1 "Flarethrower" sync /:Brute Justice:1662:/
+862.2 "Missile Command" sync /:Brute Justice:1668:/
+865.2 "Short Needle" sync /:Brute Justice:1669:/
+866.3 "Flarethrower" sync /:Brute Justice:1662:/
+869.2 "Long Needle" sync /:Brute Justice:166C:/
+872.2 "Short Needle" sync /:Brute Justice:1669:/
+872.9 "Mega Beam" sync /:Brute Justice:1664:/
+878.1 "Super Jump" sync /:Brute Justice:1665:/
+881.2 "--untargetable--"
 
 
-################# Phase 6
-1000 "J Kick"
-1009 "100-megatonze Shock"
-1014 "Mines" sync /Hidden Minefield/ window 1014,5 #might not work
-1015 "Double Drills"
-1018 "Chakrams Spawn"
-1018 "Mega Beam"
-1024 "Mirages Land" #TTS: Spread Out
-1026 "Single Drill"
-1028 "Mega Beam"
-1037 "Enumeration" sync /(.*)/ window 1 jump 0
+### Phase 4: First Intermission
+884.4 "J Kick" sync /:Brute Justice:166D:/ window 890,5
+892.7 "--sync--" sync /:Brute Justice:1636:/
+893.9 "100-Megatonze Shock" sync /:Onslaughter:1635:/
+894.7 "Mirage" sync /:Blaster Mirage:1658:/
+895.7 "Attachment" sync /:Brawler:163C:/
+899.7 "Supercharge" #sync /:Blaster Mirage:1659:/
+901.9 "Double Buster" sync /:Brawler:163E:/
+906.2 "Mega Beam" sync /:Onslaughter:162E:/
+906.5 "Eye Of The Chakram" sync /:Steam Chakram:1654:/
+914.0 "Attachment" sync /:Brawler:163C:/
+915.5 "Height" sync /:Swindler:1647:/
+915.6 "Ice Missile" #sync /:Vortexer:1655:/
+916.4 "Earth Missile" sync /:Vortexer:1651:/
+919.5 "Mega Beam" sync /:Onslaughter:162E:/
+920.6 "Single Buster" sync /:Brawler:163D:/
 
 
-################# Phase 7
-1053 "Justice" sync /Brute Justice uses Justice/ window 2000,5
-1054 "--Reset--" sync /Removing combatant Brute Justice/ window 0,70 jump 0
-1060 "Verdict"
-1092 "Gavel"
-1101 "--Untargetable--"
-##### Just here for appearences
-1106 "J Kick"
-1110 "Link-up"
-1123 "Final Punch"
-1124 "Final Apocalypse"
-1130 "Final Beam"
-1134 "Missile Command"
-1134 "Hidden Mine"
-1138 "Flarethrower"
-1139 "Puddles"
+### Phase 5: Round 2, Fighto!
+933.1 "--targetable--"
+936.2 "Flarethrower" sync /:Brute Justice:1662:/
+943.3 "Double Rocket Punch" sync /:Brute Justice:1663:/
+946.5 "Missile Command" sync /:Brute Justice:1668:/
+949.5 "Short Needle" sync /:Brute Justice:1669:/
+950.6 "Flarethrower" sync /:Brute Justice:1662:/
+953.5 "Long Needle" sync /:Brute Justice:166C:/
+956.4 "Short Needle" sync /:Brute Justice:1669:/
+956.9 "Mega Beam" sync /:Brute Justice:1664:/
+962.3 "Super Jump" sync /:Brute Justice:1665:/
+966.9 "Apocalyptic Ray" sync /:Brute Justice:1666:/ duration 5
+976.2 "Flarethrower" sync /:Brute Justice:1662:/
+982.3 "Double Rocket Punch" sync /:Brute Justice:1663:/
+984.4 "Flarethrower" sync /:Brute Justice:1662:/
+987.5 "Missile Command" sync /:Brute Justice:1668:/
+990.5 "Short Needle" sync /:Brute Justice:1669:/
+991.6 "Flarethrower" sync /:Brute Justice:1662:/
+994.5 "Long Needle" sync /:Brute Justice:166C:/
+997.5 "Short Needle" sync /:Brute Justice:1669:/
+998.2 "Mega Beam" sync /:Brute Justice:1664:/
+1003.4 "Super Jump" sync /:Brute Justice:1665:/
+1006.5 "--untargetable--"
+1009.7 "J Kick" sync /:Brute Justice:166D:/
+# FIXME: some pause here, before looping back to targetable?
+1012.0 "--targetable?--"
 
 
-################# Phase 8
-1200 "J Kick"
-1204 "Link-up" sync /uses Link-up/ window 5000
-1206 "--Reset--" sync /Removing combatant Brute Justice/ window 0,200 jump 0
-1217 "Final Punch"
-1218 "Final Apocalypse"
-1224 "Final Beam"
-1228 "Missile Command"
-1228 "Hidden Mine Spawn"
-1230 "Puddles"
-1233 "Flarethrower"
-1234 "Long Needle"
-1235 "Chakrams Spawn"
-1247 "Crashing Wave"
-1247 "Enumeration"
-1251 "Mega Beam"
-1257 "Super Jump"
-1264 "Flarethrower"
-1270 "Missile Command"
-1276 "Final Punch"
-1277 "Final Apocalypse"
-1284 "Final Beam"
-1290 "--Untargetable--"
+### Phase 6: Second Intermission
+1200.0 "--untargetable--"
+1203.2 "J Kick" sync /:Brute Justice:166D:/
+1211.5 "Attachment" sync /:Brawler:163C:/ window 291.5,5
+1211.5 "--sync--" sync /:Brute Justice:1636:/
+1212.6 "100-Megatonze Shock" sync /:Onslaughter:1635:/
+# First Intermission can be skipped, but this is the first different ability.
+1217.5 "Hidden Minefield" sync /:Hidden Mine:165E:/ window 1220,5 duration 9
+1217.6 "Double Drill Crush" sync /:Brawler:1640:/
+1218.6 "Drill Drive" sync /:Brawler:1641:/
+1222.1 "Mega Beam" sync /:Onslaughter:162E:/
+1223.7 "Attachment" sync /:Brawler:163C:/
+1228.5 "Mirage" sync /:Blaster Mirage:1658:/
+1229.8 "Rocket Drill" sync /:Brawler:163F:/
+1232.6 "Mega Beam" sync /:Onslaughter:162E:/
+1232.6 "Eye Of The Chakram" sync /:Steam Chakram:1654:/
+1233.6 "Power Tackle" #sync /:Blaster Mirage:165B:/
+1233.6 "Blinder" #sync /:Blaster Mirage:165A:/
+1241.4 "Enumeration" sync /:Swindler:1649:/
+1241.4 "Ultra Flash" sync /:Vortexer:1656:/
 
 
-################# Phase 9
-1294 "J Storm" sync /uses J Storm/ window 10000
-1300 "J Wave"
-1305 "J Wave"
-1310 "J Wave"
-1315 "J Wave"
-1320 "J Wave"
-1325 "J Wave"
-1330 "J Wave"
-1335 "J Wave"
-1340 "J Wave"
-1345 "J Wave"
-1350 "J Wave"
-1355 "J Wave"
-1360 "J Wave"
-1365 "J Wave"
-1370 "J Wave"
-1375 "J Wave"
-1380 "J Wave"
-1385 "J Wave"
-1390 "J Wave"
-1395 "J Wave"
+### Phase 7: Gavel
+1252.1 "--targetable--" sync /:166E:Brute Justice/ window 1255,100
+1257.1 "Justice" sync /:Brute Justice:166E:/
+1264.2 "Verdict" sync /:Brute Justice:166F:/
+1296.3 "Gavel" sync /:Brute Justice:1670:/
+1304.4 "--untargetable--"
+
+
+### Phase 8: Final Justice
+1307.6 "J Kick" sync /:Brute Justice:166D:/
+1310.6 "--targetable-"
+1313.7 "Link-Up" sync /:Brute Justice:1673:/
+1324.8 "Final Punch" sync /:Brute Justice:170C:/
+1326.0 "Final Apocalypse" sync /:Brute Justice:1716:/
+1332.1 "Final Beam" sync /:Brute Justice:1725:/
+1335.2 "Missile Command" sync /:Brute Justice:1668:/
+1339.2 "Hidden Minefield" sync /:Hidden Mine:165E:/ duration 9
+1340.3 "Flarethrower" sync /:Brute Justice:1662:/
+1341.4 "Long Needle" sync /:Brute Justice:166C:/
+
+# FIXME: recreate this final section from logs
+# This taken from Shasta Kota's timeline.
+1342.0 "Chakrams Spawn"
+1354.0 "Crashing Wave"
+1354.0 "Enumeration"
+1358.0 "Mega Beam"
+1364.0 "Super Jump"
+1371.0 "Flarethrower"
+1377.0 "Missile Command"
+1383.0 "Final Punch"
+1384.0 "Final Apocalypse"
+1391.0 "Final Beam"
+1397.0 "--untargetable--"
+
+
+### Phase 9: J-Storm
+# FIXME: how does this transition naturally from phase 8?
+# FIXME: recreate this final section from logs
+1500.0 "J Storm" sync /:Brute Justice:1674:/ window 1500,0
+1501.0 "--targetable--"
+1506.0 "J Wave" sync /:Brute Justice:1675:/ window 100,100
+1511.0 "J Wave"
+1516.0 "J Wave"
+1521.0 "J Wave"
+1526.0 "J Wave"
+1531.0 "J Wave"
+1536.0 "J Wave"
+1541.0 "J Wave"
+1546.0 "J Wave"
