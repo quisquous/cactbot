@@ -34,6 +34,7 @@
             en: 'Rot on YOU',
             de: 'Fäulnis auf DIR',
             fr: 'Pourriture sur VOUS',
+            cn: '毒点名',
           };
         }
       },
@@ -43,6 +44,7 @@
             en: 'Rot on ' + data.ShortName(matches.target),
             de: 'Fäulnis auf ' + data.ShortName(matches.target),
             fr: 'Pourriture sur ' + data.ShortName(matches.target),
+            cn: '毒点 ' + data.ShortName(matches.target),
           };
         }
       },
@@ -69,6 +71,7 @@
           en: 'Pass Rot',
           de: 'Fäulnis abgeben',
           fr: 'Passez la pourriture',
+          cn: '传毒',
         };
       },
     },

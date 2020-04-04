@@ -41,6 +41,7 @@
             en: 'Thorns on YOU',
             de: 'Dornenpeitsche auf DIR',
             fr: 'Ronces sur VOUS',
+            cn: '荆棘点名',
           };
         }
         if (partners.length == 1) {
@@ -48,6 +49,7 @@
             en: 'Thorns w/ (' + data.ShortName(partners[0]) + ')',
             de: 'Dornenpeitsche mit (' + data.ShortName(partners[0]) + ')',
             fr: 'Ronces avec (' + data.ShortName(partners[0]) + ')',
+            cn: '荆棘与(' + data.ShortName(partners[0]) + ')',
           };
         }
         if (partners.length == 2) {
@@ -55,12 +57,14 @@
             en: 'Thorns w/ (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
             de: 'Dornenpeitsche mit (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
             fr: 'Ronces avec (' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
+            cn: '荆棘与(' + data.ShortName(partners[0]) + ', ' + data.ShortName(partners[1]) + ')',
           };
         }
         return {
           en: 'Thorns (' + partners.length + ' people)',
           de: 'Dornenpeitsche mit (' + partners.length + ' Personen)',
           fr: 'Ronces (' + partners.length + ' personne)',
+          cn: '荆棘(' + partners.length + ' people)',
         };
       },
       run: function(data) {
@@ -106,6 +110,7 @@
             en: 'Devour: Get Eaten',
             de: 'Verschlingen: Gefressen werden',
             fr: 'Dévoration: Faites-vous manger',
+            cn: '捕食点名',
           };
         }
       },
@@ -118,6 +123,7 @@
             en: 'Devour: Jump In New Thorns',
             de: 'Verschlingen: Spring in die neuen Dornen',
             fr: 'Dévoration: Sautez dans les ronces',
+            cn: '去新荆棘',
           };
         }
       },
@@ -129,6 +135,7 @@
           en: 'Avoid Devour',
           de: 'Weiche Verschlingen aus',
           fr: 'Evitez dévoration',
+          cn: '躲开吞食',
         };
       },
     },
@@ -180,6 +187,7 @@
         en: 'Stack for Acid',
         de: 'Sammeln für Säure-Blubberblase',
         fr: 'Packez-vous pour Pluie acide',
+        cn: '集合引导酸雨',
       },
     },
     {
@@ -199,6 +207,7 @@
             en: 'Swarm on YOU',
             de: 'Fähenfurz auf DIR',
             fr: 'Nuée sur VOUS',
+            cn: '蜂群点名',
           };
         }
       },
@@ -208,6 +217,7 @@
             en: 'Swarm on ' + data.ShortName(matches.target),
             de: 'Fähenfurz auf ' + data.ShortName(matches.target),
             fr: 'Nuée sur ' + data.ShortName(matches.target),
+            cn: '蜂群点' + data.ShortName(matches.target),
           };
         }
       },
@@ -221,12 +231,14 @@
             en: 'Share Laser (on YOU)',
             de: 'Geteilter Laser (auf DIR)',
             fr: 'Partagez le laser (sur VOUS)',
+            cn: '分摊激光点名',
           };
         }
         return {
           en: 'Share Laser (on ' + data.ShortName(matches.target) + ')',
           de: 'Geteilter Laser (auf ' + data.ShortName(matches.target) + ')',
           fr: 'Partage de laser (sur ' + data.ShortName(matches.target) + ')',
+          cn: '分摊激光点(on ' + data.ShortName(matches.target) + ')',
         };
       },
     },

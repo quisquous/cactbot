@@ -14,6 +14,7 @@
       infoText: {
         en: 'Liftoff Soon',
         fr: 'Décollage bientôt',
+        cn: '上升',
       },
     },
   ],
@@ -40,6 +41,7 @@
       alertText: {
         en: 'Hydrothermal on You',
         fr: 'Missile hydrothermique sur Vous',
+        cn: '导弹点名',
       },
     },
     {
@@ -53,6 +55,7 @@
         return {
           en: 'Hydrothermal on ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
           fr: 'Missile hydrothermique sur ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
+          cn: '导弹点' + data.hydro.map((x) => data.ShortName(x)).join(', '),
         };
       },
     },
@@ -71,6 +74,7 @@
       infoText: {
         en: 'Bait Resin Bomb',
         fr: 'Placez-vous pour Bombe de résine',
+        cn: '粘着弹',
       },
     },
     {

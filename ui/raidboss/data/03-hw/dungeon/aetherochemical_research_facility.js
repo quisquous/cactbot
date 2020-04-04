@@ -115,6 +115,7 @@
         en: 'Stand in dark portal',
         de: 'Im dunklen Portal stehen',
         fr: 'Allez dans le portail noir',
+        cn: '进入黑球',
       },
     },
     {
@@ -130,6 +131,7 @@
         en: 'Avoid your orb--pop others\'',
         de: 'Weiche deinem Orb aus - löse die Orbs der anderen aus',
         fr: 'Evitez votre orbe, détruisez les autres',
+        cn: '躲开圈圈',
       },
     },
   ],

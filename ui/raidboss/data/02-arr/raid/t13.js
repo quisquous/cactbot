@@ -34,6 +34,7 @@
             en: 'Stack Center for Dives',
             de: 'In der Mitte sammeln für Sturzbombe',
             fr: 'Packez-vous au centre pour les plongeons',
+            cn: '中间集合等待俯冲',
           };
         }
       },
@@ -56,6 +57,7 @@
             en: 'Flatten on YOU',
             de: 'Einebnen auf DIR',
             fr: 'Compression sur VOUS',
+            cn: '死刑',
           };
         }
       },
@@ -67,6 +69,7 @@
             en: 'Flatten on ' + data.ShortName(matches.target),
             de: 'Einebnen auf ' + data.ShortName(matches.target),
             fr: 'Compression sur ' + data.ShortName(matches.target),
+            cn: '死刑点' + data.ShortName(matches.target),
           };
         }
       },
@@ -81,6 +84,7 @@
         en: 'Megaflare Stack',
         de: 'Megaflare Sammeln',
         fr: 'MégaBrasier Packez-vous',
+        cn: '百万核爆集合',
       },
     },
     {
@@ -106,6 +110,7 @@
         en: 'Tempest Tether on YOU',
         de: 'Sturm Verbindung auf DIR',
         fr: 'Liens de tempête sur VOUS',
+        cn: '风圈点名',
       },
     },
     {
@@ -122,6 +127,7 @@
             en: 'Akh Morn on YOU',
             de: 'Akh Morn auf DIR',
             fr: 'Akh Morn sur VOUS',
+            cn: '死亡轮回点名',
           };
         }
       },
@@ -131,6 +137,7 @@
             en: 'Akh Morn on ' + data.ShortName(matches.target),
             de: 'Akh Morn auf ' + data.ShortName(matches.target),
             fr: 'Akh Morn sur ' + data.ShortName(matches.target),
+            cn: '死亡轮回点' + data.ShortName(matches.target),
           };
         }
       },

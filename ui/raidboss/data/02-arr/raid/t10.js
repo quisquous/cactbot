@@ -36,6 +36,7 @@
             en: 'Charge on YOU',
             de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
+            cn: '蓝球点名',
           };
         }
       },
@@ -45,6 +46,7 @@
             en: 'Charge on ' + data.ShortName(matches.target),
             de: 'Ansturm auf ' + data.ShortName(matches.target),
             fr: 'Charge sur ' + data.ShortName(matches.target),
+            cn: '蓝球点' + data.ShortName(matches.target),
           };
         }
       },
@@ -68,6 +70,7 @@
             en: 'Cyclonic on YOU',
             de: 'Zyklon-Chaos auf DIR',
             fr: 'Chaos cyclonique sur VOUS',
+            cn: '连线点名',
           };
         }
       },
@@ -77,6 +80,7 @@
             en: 'Cyclonic on ' + data.ShortName(matches.target),
             de: 'Zyklon-Chaos auf ' + data.ShortName(matches.target),
             fr: 'Chaos cyclonique sur ' + data.ShortName(matches.target),
+            cn: '连线点' + data.ShortName(matches.target),
           };
         }
       },

@@ -27,6 +27,7 @@
         en: 'Kill Nail',
         de: 'infernalische Fessel zerstören',
         fr: 'Détruisez le clou',
+        cn: '击杀火狱之楔',
       },
     },
   ],

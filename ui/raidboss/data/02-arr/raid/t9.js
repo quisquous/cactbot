@@ -24,6 +24,7 @@
         en: 'Dive on Main Tank',
         de: 'Sturz auf den Main Tank',
         fr: 'Plongeon sur le Main Tank',
+        cn: '凶鸟跳点MT',
       },
     },
     {
@@ -34,6 +35,7 @@
         en: 'Bait Super Novas Outside',
         de: 'Köder Supernova draußen',
         fr: 'Attirez les Supernovas à l\'extérieur',
+        cn: '人群外放黑洞',
       },
     },
   ],
@@ -57,6 +59,7 @@
         en: 'Blight on YOU',
         de: 'Pestschwinge auf DIR',
         fr: 'Bile du Rapace sur VOUS',
+        cn: '毒气点名',
       },
     },
     {
@@ -79,6 +82,7 @@
           en: 'Blight on ' + data.ShortName(matches.target),
           de: 'Pestschwinge auf ' + data.ShortName(matches.target),
           fr: 'Bile du Rapace sur ' + data.ShortName(matches.target),
+          cn: '毒气点' + data.ShortName(matches.target),
         };
       },
     },
@@ -107,12 +111,14 @@
             en: 'Thermo on YOU',
             de: 'Thermo auf DIR',
             fr: 'Thermo sur VOUS',
+            cn: '分摊点名',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Sammeln auf ' + data.ShortName(matches.target),
           fr: 'Packez-vous sur ' + data.ShortName(matches.target),
+          cn: '靠近' + data.ShortName(matches.target) + '分摊',
         };
       },
     },
@@ -141,6 +147,7 @@
         en: 'Silence Blue Golem',
         de: 'Blauen Golem verstummen',
         fr: 'Interrompez le Golem bleu',
+        cn: '沉默蓝色小怪',
       },
     },
     {
@@ -155,6 +162,7 @@
         en: 'Heavensfall',
         de: 'Himmelssturz',
         fr: 'Destruction universelle',
+        cn: '击退AOE',
       },
     },
     {
@@ -172,6 +180,7 @@
         en: 'Garotte on YOU',
         de: 'Leicht fixierbar auf DIR',
         fr: 'Sangle accélérée sur VOUS',
+        cn: '连坐点名',
       },
       run: function(data) {
         data.garotte = true;
@@ -192,6 +201,7 @@
         en: 'Cleanse Garotte',
         de: 'reinige Leicht fixierbar',
         fr: 'Dissipez Sangle accélérée',
+        cn: '踩白圈',
       },
     },
     {
@@ -309,6 +319,7 @@
           de: 'Markierungen : ' + data.naelMarks.join(', '),
           fr: 'Marque : ' + data.naelMarks.join(', '),
           ja: 'マーカー: ' + data.naelMarks.join(', '),
+          cn: '标记： ' + data.naelMarks.join(', '),
         };
       },
     },
@@ -331,6 +342,7 @@
           return {
             en: data.tetherDir + ' (on YOU)',
             fr: data.tetherDir + ' (sur VOUS)',
+            cn: data.tetherDir + ' (点名)',
           };
         }
       },
@@ -339,6 +351,7 @@
           return {
             en: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
             fr: data.tetherDir + ' (sur ' + data.ShortName(matches.target) + ')',
+            cn: data.tetherDir + ' (点 ' + data.ShortName(matches.target) + ')',
           };
         }
       },
@@ -359,6 +372,7 @@
         de: 'Blitz auf DIR',
         fr: 'Foudre sur VOUS',
         ja: '自分にサンダー',
+        cn: '雷点名',
       },
     },
     {
@@ -388,6 +402,7 @@
           de: 'Gehe zu ' + marker + ' (im ' + dir + ')',
           fr: 'Allez en ' + marker + ' (au ' + dir + ')',
           ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
+          cn: '去' + marker + ' (在 ' + dir + '秒)',
         };
       },
       tts: function(data, matches) {
@@ -399,6 +414,7 @@
           de: 'Gehe zu ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           fr: 'Allez en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
+          cn: '去' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
         };
       },
     },

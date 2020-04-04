@@ -86,6 +86,7 @@
         en: 'Use a cage',
         de: 'Benutze einen Käfig',
         fr: 'Utilisez une cage',
+        cn: '打开笼子',
       },
     },
     {
@@ -103,6 +104,7 @@
         en: 'Cleanse bomb',
         de: 'Reinige Bomben-Debuff',
         fr: 'Guérissez la bombe',
+        cn: '康复魔炸弹',
       },
     },
     {
