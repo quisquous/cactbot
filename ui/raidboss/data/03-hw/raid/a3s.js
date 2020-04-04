@@ -48,6 +48,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Sluice on YOU',
+        cn: '蓝点名',
       },
     },
     {
@@ -56,6 +57,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Tank Debuff',
+        cn: '坦克 Debuff',
       },
     },
     {
@@ -64,6 +66,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Healer Debuff',
+        cn: '奶妈 Debuff',
       },
     },
     {
@@ -73,6 +76,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Damage Debuff',
+        cn: 'DPS Debuff',
       },
     },
     {
@@ -80,6 +84,7 @@
       regex: Regexes.ability({ source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false }),
       infoText: {
         en: 'Burn Higher HP Hand',
+        cn: '转火血多手',
       },
     },
     {
@@ -90,6 +95,7 @@
       },
       alertText: {
         en: 'Drainage on YOU',
+        cn: '连线点名',
       },
     },
     {
@@ -101,6 +107,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Get drainage tether',
+        cn: '接线',
       },
     },
     {
@@ -137,11 +144,13 @@
         if (marker1 == marker2) {
           return {
             en: 'Repel: close to ' + data.ShortName(partner),
+            cn: '同极：靠近' + data.ShortName(partner),
           };
         }
 
         return {
           en: 'Attract: away from ' + data.ShortName(partner),
+          cn: '异极：远离' + data.ShortName(partner),
         };
       },
     },
@@ -161,6 +170,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Throttle on ' + data.ShortName(matches.target),
+          cn: '窒息点' + data.ShortName(matches.target),
         };
       },
     },
@@ -171,6 +181,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Claw on YOU',
+            cn: '抓奶手点名',
           };
         }
       },
@@ -178,6 +189,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Claw on ' + data.ShortName(matches.target),
+            cn: '抓奶手点' + data.ShortName(matches.target),
           };
         }
       },
@@ -191,6 +203,7 @@
       },
       infoText: {
         en: 'Embolus: Move Boss',
+        cn: '水球出现：拉走BOSS',
       },
     },
   ],

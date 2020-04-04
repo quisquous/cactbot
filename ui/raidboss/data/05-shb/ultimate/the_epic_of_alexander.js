@@ -1659,7 +1659,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'große AoE',
         fr: 'Grosse AoE',
         ko: '거대 전체 공격',
-        cn: '大的AOE',
+        cn: '高伤AOE',
       },
     },
     {
