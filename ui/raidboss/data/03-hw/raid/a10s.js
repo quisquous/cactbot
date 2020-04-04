@@ -24,7 +24,7 @@
       beforeSeconds: 0,
       suppressSeconds: 1,
       infoText: {
-        en: 'Hit Adds With Spike Trap',
+        en: 'Hit Adds With Weight Trap',
         cn: '使用铁锤陷阱击中小怪',
       },
     },
