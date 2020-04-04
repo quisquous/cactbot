@@ -25,6 +25,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Hit Adds With Spike Trap',
+        cn: '使用铁锤陷阱击中小怪',
       },
     },
   ],
@@ -34,6 +35,7 @@
       regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB2', capture: false }),
       infoText: {
         en: 'Floor Spikes',
+        cn: '地刺陷阱',
       },
     },
     {
@@ -41,6 +43,7 @@
       regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB1', capture: false }),
       infoText: {
         en: 'Frost Lasers',
+        cn: '冰晶陷阱',
       },
     },
     {
@@ -48,6 +51,7 @@
       regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1AB0', capture: false }),
       infoText: {
         en: 'Ceiling Weight',
+        cn: '铁球陷阱',
       },
     },
     {
@@ -111,6 +115,7 @@
           return;
         return {
           en: 'Tank Swap, Get Away',
+          cn: '换T并且远离',
         };
       },
       alertText: function(data, matches) {
@@ -129,6 +134,7 @@
         if (data.role == 'healer' || data.job == 'blu') {
           return {
             en: 'Shield ' + data.ShortName(matches.target),
+            cn: '单盾' + data.ShortName(matches.target),
           };
         }
       },
@@ -161,6 +167,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Prey on YOU',
+        cn: '火圈点名',
       },
     },
     {
@@ -173,6 +180,7 @@
       delaySeconds: 5,
       infoText: {
         en: 'Pass Prey',
+        cn: '传递点名',
       },
     },
     {
@@ -180,6 +188,7 @@
       regex: Regexes.startsUsing({ source: 'Lamebrix Strikebocks', id: '1A92', capture: false }),
       infoText: {
         en: 'Hit Floor Trap',
+        cn: '踩地刺陷阱',
       },
     },
     {
@@ -192,6 +201,7 @@
       regex: Regexes.ability({ source: 'Lamebrix Strikebocks', id: '1A8F', capture: false }),
       infoText: {
         en: 'Hit Boss With Ice',
+        cn: '踩冰晶陷阱',
       },
     },
   ],
