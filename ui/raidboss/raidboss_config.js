@@ -576,7 +576,7 @@ class RaidbossConfigurator {
 
     let lang = this.base.lang;
     let regexLocale = 'regex' + lang.charAt(0).toUpperCase() + lang.slice(1);
-    let baseRegex = trig[regexLocale] || trig.regex;
+    let baseRegex = Regexes.parse(trig[regexLocale] || trig.regex);
     // FIXME: the current \y{Name} is extremely verbose due to some unicode characters.
     // It would be nice to replace it with something much simpler like `.*?`, as Regexes does.
     // However, this doesn't work for all regexes yet until they are converted over.
