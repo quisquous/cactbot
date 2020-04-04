@@ -40,6 +40,7 @@
       },
       alertText: {
         en: 'Scourge on YOU',
+        cn: '白光之鞭点名',
       },
     },
     {
@@ -72,6 +73,7 @@
           return;
         return {
           en: 'Scourge: ' + names.join(', '),
+          cn: '白光之鞭点:' + names.join(', '),
         };
       },
     },
@@ -91,6 +93,7 @@
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
       infoText: {
         en: 'Lasers',
+        cn: '十字圣礼',
       },
     },
     {
@@ -206,6 +209,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Puddle Tether on YOU',
+        cn: '放圈连线点名',
       },
     },
   ],
