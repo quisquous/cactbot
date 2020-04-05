@@ -1,215 +1,229 @@
-# Alexander - The Heart of the Creator (Savage) - A11S / C3S
-# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
-# Shasta's reddit: /u/shastaxc
-# Last Updated: 11/1/2016 v2
-
-#############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from 
-########the beginning of the following lines to prevent 
-########them from appearing on your timeline.
+### A12S
+# Alexander - The Heart of the Creator (Savage)
+# https://docs.google.com/document/d/1z7VC-k2UzkLMsfWhWR9C5Z4dUlTZPPR0w2mNswTCnU4/edit
+# https://www.reddit.com/r/ffxiv/comments/5743rk/question_pillars_and_final_phase_of_a11s/d8p39zj/
+# -ii 1A64 1A65 1A77 1A74 1A7C 1AAF 1A61 1A62 1A63 1A70 1A72 1A7E
+# -p 1A80:179.3 1A19:352.5 1A75:651.8
+# Optionally for first phase: -p 1A6C:17.3 1A6D:17.3
+# Optionally for last phase: -p 1A76:551.3
 
 hideall "--Reset--"
-#########DPS CAN HIDE THESE
-#hideall "Photon"
-#hideall "Photon OT"
-#hideall "Photon DPS"
-#hideall "Photon Healer"
-#hideall "Laser X Sword"
+hideall "--sync--"
 
-#########HEALERS CAN HIDE THESE
-#hideall "Destroy Armor"
+0.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
-#########TANKS CAN HIDE THESE
-#hideall "Destroy Armor"
+0.0 "--sync--" sync /:Engage!/ window 0,1
+0.0 "--sync--" sync / 00:0839:The Main Generators will be sealed off in 15 seconds/ window 10,10
+6.2 "--sync--" sync /:1A7[A9]:Cruise Chaser/ window 7,5
+9.2 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+
+# skippable
+17.3 "Optical Sight (clock/out)" sync /:Cruise Chaser:1A6[CD]:/
+
+# skippable
+33.4 "Whirlwind" sync /:Cruise Chaser:1A84:/
+40.6 "Spin Crusher" sync /:Cruise Chaser:1A85:/
+
+# skippable
+45.8 "E.D.D. Add" sync / 03:........:Added new combatant E\.D\.D\./ window 50,5
+
+# If we jump to this laser sword immediately after first, the timing is:
+# 9.2 (first sword) 21.7 (second sword)
+# Sync to somewhere that will catch t=18.7 - 2.5 seconds = ~36 window (at least)
+51.8 "--sync--" sync /:1A7[A9]:Cruise Chaser/ window 40,5
+54.8 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+55.8 "E.D.D. Armored Pauldron"
+64.0 "Spin Crusher" sync /:Cruise Chaser:1A85:/
+81.2 "Whirlwind" sync /:Cruise Chaser:1A84:/
+
+85.3 "--sync--" sync /:1A7[A9]:Cruise Chaser/ window 30,5
+88.3 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+
+# GA-100 in the first phase.  WHO KNEW?
+# There's a question mark because nobody should ever see this.
+101.6 "GA-100?" sync /:Cruise Chaser:1A76:/
+
+# can skip add and jump here
+112.7 "--sync--" sync /:1A6E:Cruise Chaser/ window 113,5
+114.7 "Optical Sight (bait)" sync /:Cruise Chaser:1A6E:/
+119.9 "Hawk Blaster" sync /:Cruise Chaser:1A6F:/
+
+129.8 "Optical Sight (clock/out)" sync /:Cruise Chaser:1A6[CD]:/
+137.9 "Super Hawk Blaster" sync /:Cruise Chaser:1A71:/
+
+143.9 "Optical Sight (out/clock)" sync /:Cruise Chaser:1A6[CD]:/
+150.9 "Super Hawk Blaster" sync /:Cruise Chaser:1A71:/
+
+159.9 "Whirlwind" sync /:Cruise Chaser:1A84:/
+168.1 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+
+### Limit Cut Numbers
+177.3 "--sync--" sync /:1A80:Cruise Chaser/ window 180,5
+179.3 "Limit Cut (numbers)" sync /:Cruise Chaser:1A80:/
+179.9 "--invincible--"
+183.5 "Markers"
+192.1 "Sword 1" sync /:Cruise Chaser:1A81:/
+193.2 "Charge 2" sync /:Cruise Chaser:1A82:/
+195.4 "Sword 3" sync /:Cruise Chaser:1A81:/
+196.5 "Charge 4" sync /:Cruise Chaser:1A82:/
+198.7 "Sword 5" sync /:Cruise Chaser:1A81:/
+199.8 "Charge 6" sync /:Cruise Chaser:1A82:/
+202.0 "Sword 7" sync /:Cruise Chaser:1A81:/
+203.1 "Charge 8" sync /:Cruise Chaser:1A82:/
+205.2 "--targetable--"
+
+215.3 "Photon" sync /:Cruise Chaser:1A73:/
+222.4 "Whirlwind" sync /:Cruise Chaser:1A84:/
+229.6 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+237.1 "Blastoff" sync /:Cruise Chaser:1A66:/ window 240,10
+237.9 "--untargetable--"
 
 
-##############################################################
-################## Windows 8 & 10 Voices ##################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Zira Desktop" 0 100
-#define speaker "voice" "Microsoft David Desktop" 0 100
+### Cutscene
+240.2 "Transform" sync /:Cruise Chaser:1A49:/
+247.9 "--sync--" sync /:Cruise Chaser:1A4A:/
+252.8 "Blassty Blaster" sync /:Cruise Chaser:1A69:/
+258.8 "Transform" sync /:Cruise Chaser:1A4E:/
+264.8 "Perfect Landing" sync /:Cruise Chaser:1A6B:/
 
-#################### Windows 7 Voices ####################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Anna" 0 100
 
-################ CUSTOMIZE Call Outs #####################
-########REMOVE THE HASHTAG to enable each call out
-#alertall "Destroy Armor" before 2 speak "voice" "Destroy Armor"
-#alertall "Destroy Shield" before 2 speak "voice" "Destroy Shield"
-#alertall "Open Duct" before 2 speak "voice" "Open Duct"
-#alertall "GA-100" before 2 speak "voice" "Away from Marker"
-#alertall "E.D.D. Spawns" before 2 speak "voice" "Kill Ed Boy"
-#alertall "Propeller Wind" before 7 speak "voice" "Hide from Boss"
-#alertall "Plasmasphere 1" before 0 speak "voice" "Sphere South"
-#alertall "Plasmasphere 2 3" before 0 speak "voice" "Spheres Northeast Northwest"
-#alertall "Plasmasphere 4 5" before 0 speak "voice" "Spheres Southeast Southwest"
-#alertall "Markers" before 2 speak "voice" "Memorize Number"
-#alertall "Enrage" before 10 speak "voice" "Enrage"
+### ORBS
+268.0 "--targetable--"
+270.1 "Limit Cut (orbs)" sync /:Cruise Chaser:1A80:/
+270.7 "--invincible--"
+273.2 "Lapis Lazuli x4"
+276.3 "--sync--" sync /:Cruise Chaser:1A7B:/
+276.8 "Plasmasphere x1"
+283.4 "Whirlwind" sync /:Cruise Chaser:1A84:/
+287.6 "--sync--" sync /:Cruise Chaser:1A5A:/
+292.7 "--sync--" sync /:Claster:1A5B:/
+295.7 "--sync--" sync /:Cruise Chaser:1A7B:/
+296.4 "Plasmasphere x2"
+297.4 "Assault Cannon" #sync /:Claster:1A78:/
+308.0 "Laser X Sword" sync /:Cruise Chaser:1A7F:/
+308.9 "--sync--" sync /:Claster:1A5B:/
+313.7 "Assault Cannon" #sync /:Claster:1A78:/
+315.1 "--sync--" sync /:Cruise Chaser:1A7B:/
+315.7 "Plasmasphere x2"
+321.7 "Assault Cannon" #sync /:Claster:1A78:/
+326.2 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+338.3 "Whirlwind" sync /:Cruise Chaser:1A84:/
 
-############### Tank-Only Callouts
-#alertall "Laser X Sword" before 3 speak "voice" "Tanks Stack Front"
-#alertall "Spin Crusher" before 3 speak "voice" "Move Rear"
 
-############### Healer-Only Callouts
-#alertall "Laser X Sword" before 3 speak "voice" "Heal Both Tanks"
-#alertall "Photon OT" before 3 speak "voice" "Heal Off Tank"
-#alertall "Photon DPS" before 3 speak "voice" "Heal DPS"
-#alertall "Photon Healer" before 3 speak "voice" "Heal Healer"
-#alertall "Enrage" before 22 speak "voice" "Go Cleric Stance"
+### Eternal Darkness
+344.4 "--targetable--"
+344.5 "--sync--" sync /:1A19:Cruise Chaser/ window 350,10
+352.5 "Eternal Darkness" sync /:Cruise Chaser:1A19:/
+361.7 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+370.8 "Whirlwind" sync /:Cruise Chaser:1A84:/
+378.9 "Spin Crusher" sync /:Cruise Chaser:1A85:/
 
-##############################################################
-0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 10000 jump 0
+# skippable
+386.0 "Optical Sight (bait)" sync /:Cruise Chaser:1A6E:/
+391.2 "Hawk Blaster" sync /:Cruise Chaser:1A6F:/
+396.1 "Super Hawk Blaster" sync /:Cruise Chaser:1A71:/
 
-################# Phase 1
-0 "--Start--" sync / 00:0839:The Main Generators will be sealed off in 15 seconds/ window 10000
-8 "Laser Sword"
-17 "Optical Sight"
-28 ""
-28 ""
-28 ""
-28 ""
-28 ""
-28 ""
-28 ""
-28 ""
-28 ""
-28 ""
+# also skippable
+399.2 "--sync--" sync /:1A80:Cruise Chaser/ window 50,10
+401.2 "Limit Cut (shield)" sync /:Cruise Chaser:1A80:/
+401.8 "--invincible--"
+406.6 "Plasma Shield"
+431.2 "Plasma Shield Enrage"
+431.2 "--sync--" sync /:1A83:Cruise Chaser/ window 40,30
+435.2 "Blassty Charge" sync /:Cruise Chaser:1A83:/
+437.3 "--targetable--"
 
-################# Phase 2; Push at 93%
-29 "E.D.D. Spawns" sync /Added new combatant E.D.D./ window 60
-36 "Laser Sword"
-39 "Destroy Armor"
-45 "Spin Crusher"
-63 "Whirlwind" #skippable
-272 ""
-272 ""
-272 ""
-272 ""
-272 ""
-272 ""
-272 ""
-272 ""
-272 ""
-272 ""
+439.5 "--sync--" sync /:1A73:Cruise Chaser/ window 40,10
+442.5 "Photon (offtank)" sync /:Cruise Chaser:1A73:/
+450.9 "Laser X Sword" sync /:Cruise Chaser:1A7F:/
 
-################# Phase 3; Push at 86%
-273 "Optical Sight" sync /Cruise Chaser uses Optical Sight/ window 244,0
-288 "Optical Sight"
-302 "Optical Sight"
-320 "Whirlwind" 
-328 "Laser Sword"
+# maybe skippable
+458.7 "E.D.D. Add" sync / 03:........:Added new combatant E\.D\.D\./
+462.0 "Photon (dps)" sync /:Cruise Chaser:1A73:/
+470.2 "Whirlwind" sync /:Cruise Chaser:1A84:/
 
-################# Phase 3
-337 "Limit Cut" sync /uses Limit Cut/ window 341,0
-342 "Markers"
-353 "Cleave"
-354 "Super Blassty Charge"
-356 "Cleave"
-357 "Super Blassty Charge"
-359 "Cleave"
-360 "Super Blassty Charge"
-363 "Cleave"
-364 "Super Blassty Charge"
-366 "Boss Targetable"
-375 "Photon"
-382 "Whirlwind"
-390 "Laser Sword"
-396 "Knockback"
-398 "Open Duct"
-425 "--Boss Targetable--"
+478.4 "--sync--" sync /:1A7[A9]:Cruise Chaser/ window 80,5
+481.4 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+487.5 "Photon (healer)" sync /:Cruise Chaser:1A73:/
+495.6 "Whirlwind" sync /:Cruise Chaser:1A84:/
+502.1 "Blastoff" sync /:Cruise Chaser:1A66:/ window 260,10
+502.9 "--untargetable--"
 
-################# Phase 4
-524 "Limit Cut" sync /uses Limit Cut/ window 100,0
-531 "Lapis Lazuli Spawn" sync /Added new combatant Lapis Lazuli/ window 531,0
-534 "Plasmasphere 1" #always on OT
-537 "Whirlwind"
-546 "Clasters Spawn"
-552 "Plasmasphere 2 3"
-553 "Claster Lasers"
-562 "Laser X Sword"
-569 "Claster Lasers"
-572 "Plasmasphere 4 5"
-580 "Laser Sword"
-589 ""
-589 ""
-589 ""
-589 ""
-589 ""
-589 ""
-589 ""
-589 ""
-589 ""
-589 ""
 
-################# Phase 5
-588 "Eternal Darkness" duration 8 sync /Cruise Chaser readies Eternal Darkness/ window 600,0
-605 "Laser Sword"
-613 "Whirlwind"
-622 "Spin Crusher"
-629 "Optical Sight"
-644 "Limit Cut"
-650 "Destroy Shield"
+### Cutscene 2
+505.2 "Transform" sync /:Cruise Chaser:1A49:/
+513.0 "--sync--" sync /:Cruise Chaser:1A4A:/
+517.8 "Blassty Blaster" sync /:Cruise Chaser:1A69:/
+520.8 "Multifield x3" sync / 03:........:Added new combatant Multifield/
+523.9 "Transform" sync /:Cruise Chaser:1A4E:/
+529.9 "Perfect Landing" sync /:Cruise Chaser:1A6B:/
 
-701 "Blassty Charge" duration 4 sync /Cruise Chaser readies Blassty Charge/ window 51,0
-711 "Photon OT" sync/Cruise Chaser uses Photon/ window 150,0
-718 "Laser X Sword"
-730 "E.D.D. Spawns"
-731 "Photon DPS"
-736 "Destroy Armor"
-739 "Whirlwind"
-750 "Laser Sword"
-756 "Photon Healer"
-764 "Whirlwind" #skippable
 
-################# Phase 6; Push at 46%?
-807 "Knockback" sync /Cruise Chaser uses Blastoff/ window 105,0
-811 "Open Duct"
-837 "--Boss Targetable--"
-855 "GA-100"	#Away from marker
-863 "Optical Sight"
-878 "Optical Sight"
-891 "Whirlwind"
-900 "Whirlwind"
-910 "Laser X Sword"
-917 "Optical Sight"
-930 "Clasters Spawn"
-933 "Photon"#911
-938 "Claster Lasers"
-940 "Whirlwind"
-945 "Claster Lasers"
-952 "Claster Lasers"
-956 "Propeller Wind"	#LoS Boss
+### Final phase
+532.7 "--targetable--"
+551.3 "GA-100" sync /:Cruise Chaser:1A76:/
+558.4 "Optical Sight (clock/out)" sync /:Cruise Chaser:1A6[CD]:/
+565.5 "Super Hawk Blaster" sync /:Cruise Chaser:1A71:/
+573.6 "Optical Sight (out/clock)" sync /:Cruise Chaser:1A6[CD]:/
+581.7 "Super Hawk Blaster" sync /:Cruise Chaser:1A71:/
+586.7 "Whirlwind" sync /:Cruise Chaser:1A84:/
+595.9 "Whirlwind" sync /:Cruise Chaser:1A84:/
+605.1 "Laser X Sword" sync /:Cruise Chaser:1A7F:/
+612.2 "Optical Sight (bait)" sync /:Cruise Chaser:1A6E:/
+617.4 "Hawk Blaster" sync /:Cruise Chaser:1A6F:/
+622.3 "Super Hawk Blaster" sync /:Cruise Chaser:1A71:/
+622.4 "--sync--" sync /:Cruise Chaser:1A5A:/
+626.6 "--sync--" sync /:Claster:1A5B:/
+# Well, really everyone but the main tank.  But that's too long to write out.
+628.6 "Photon (everyone)" sync /:Cruise Chaser:1A73:/
+633.1 "Assault Cannon" #sync /:Claster:1A78:/
+635.8 "Whirlwind" sync /:Cruise Chaser:1A84:/
+640.3 "Assault Cannon" #sync /:Claster:1A78:/
+647.4 "Assault Cannon" #sync /:Claster:1A78:/
+651.8 "Propeller Wind" sync /:Cruise Chaser:1A75:/
 
-################# Phase 7
-961 "Limit Cut"
-966 "Markers"
-977 "Cleave"
-978 "Super Blassty Charge"
-980 "Cleave"
-981 "Super Blassty Charge"
-983 "Cleave"
-984 "Super Blassty Charge"
-986 "Cleave"
-987 "Super Blassty Charge"
+655.0 "--sync--" sync /:1A80:Cruise Chaser/ window 100,20
+657.0 "Limit Cut (numbers)" sync /:Cruise Chaser:1A80:/
+657.6 "--invincible--"
+661.2 "Markers"
+669.9 "Sword 1" sync /:Cruise Chaser:1A81:/
+671.0 "Charge 2" sync /:Cruise Chaser:1A82:/
+673.2 "Sword 3" sync /:Cruise Chaser:1A81:/
+674.3 "Charge 4" sync /:Cruise Chaser:1A82:/
+676.5 "Sword 5" sync /:Cruise Chaser:1A81:/
+677.6 "Charge 6" sync /:Cruise Chaser:1A82:/
+679.8 "Sword 7" sync /:Cruise Chaser:1A81:/
+680.9 "Charge 8" sync /:Cruise Chaser:1A82:/
+683.0 "--targetable--"
 
-################# Phase 8
-988 "Boss Targetable"
-998 "Laser X Sword"
-1005 "E.D.D. Spawns"
-1010 "Destroy Armor"
-1011 "Photon DPS"
-1020 "Laser Sword"
-1027 "Photon Healer"
-1035 "Whirlwind"
+693.2 "Laser X Sword" sync /:Cruise Chaser:1A7F:/
+697.2 "E.D.D. Add" sync / 03:........:Added new combatant E\.D\.D\./
+705.4 "Photon (dps)" sync /:Cruise Chaser:1A73:/
+714.6 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
+722.7 "Photon (healer)" sync /:Cruise Chaser:1A73:/
+730.8 "Whirlwind" sync /:Cruise Chaser:1A84:/
 
-################# Phase 9
-1040 "Limit Cut"
-1046 "Destroy Shield"
+733.7 "--sync--" sync /:1A80:Cruise Chaser/ window 70,20
+735.7 "Limit Cut (shield)" sync /:Cruise Chaser:1A80:/
+736.3 "--invincible--"
+741.1 "Plasma Shield"
+765.7 "Plasma Shield Enrage"
+765.7 "--sync--" sync /:1A83:Cruise Chaser/ window 40,30
+769.7 "Blassty Charge" sync /:Cruise Chaser:1A83:/
+771.8 "--targetable--"
 
-1100 "Blassty Charge" duration 4 sync /readies Blassty Charge/ window 60,0
-1114 "Laser Sword"
-1124 "Whirlwind"
-1131 "Spin Crusher"
-1140 "Laser X Sword"
-1165 "Enrage"
+779.7 "Spin Crusher" sync /:Cruise Chaser:1A85:/
+789.7 "Whirlwind" sync /:Cruise Chaser:1A84:/
+806.4 "Laser X Sword" sync /:Cruise Chaser:1A7F:/
+
+# If you destroy a tower with the first GA-100, this is enrage.
+# FIXME: Guessing that this loops, but unclear.
+829.4 "GA-100" sync /:Cruise Chaser:1A76:/ window 100,100 jump 551.3
+836.5 "Optical Sight (clock/out)"
+843.6 "Super Hawk Blaster"
+851.7 "Optical Sight (out/clock)"
+859.8 "Super Hawk Blaster"
+864.8 "Whirlwind"
+874.0 "Whirlwind"
+883.2 "Laser X Sword"
