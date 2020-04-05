@@ -129,27 +129,30 @@ namespace Cactbot {
     }
 
     public unsafe void ProcessMessage(byte* buffer, byte[] message) {
-      switch (*((int*)&buffer[Category_Offset])) {
-
-        // Fate Start: 0x74
+      int a = *((int*)&buffer[Category_Offset]);
+/*      int para1 = *((int*)&buffer[Param1_Offset]);
+      int para2 = *(int*)&buffer[Param2_Offset];
+      Debug.WriteLine(a.ToString() + " - " + para1 + "," + para2);*/
+      switch (a) {
+        // Fate Start: 0x935
         // param1: fateID
         // param2: unknown
-        case 0x74: {
+        case 0x935: {
           AddFate(*(int*)&buffer[Param1_Offset]);
           break;
         };
 
-        // Fate End: 0x79
+        // Fate End: 0x936
         // param1: fateID
-        case 0x79: {
+        case 0x936: {
           RemoveFate(*(int*)&buffer[Param1_Offset]);
           break;
         };
 
-        // Fate Progress: 0x9B
+        // Fate Progress: 0x93E
         // param1: fateID
         // param2: progress (0-100)
-        case 0x9B: {
+        case 0x93E: {
           int param1 = *(int*)&buffer[Param1_Offset];
           int param2 = *(int*)&buffer[Param2_Offset];
           if (!fates.ContainsKey(param1)) {
@@ -168,7 +171,6 @@ namespace Cactbot {
       if (!fates.ContainsKey(fateID)) {
         client_.DispatchToJS(new JSEvents.FateEvent("add", fateID, 0));
         fates.Add(fateID, 0);
-        
       }
     }
 

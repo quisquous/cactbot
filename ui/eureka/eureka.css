@@ -82,6 +82,12 @@
   min-width: 100px;
 }
 
+.nm-progress {
+  display: block;
+  text-align: center;
+  min-width: 100px;
+}
+
 .nm-time {
   display: block;
   text-align: center;
@@ -109,10 +115,35 @@
   }
 }
 
+@keyframes pulse2 {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+  }
+}
+
 .nm-pop .nm-name {
   color: #8686ff;
   font-size: 18;
   animation: pulse 1s infinite alternate;
+}
+
+.bunny-pop .nm-name {
+  color: #66f;
+  font-size: 14;
+  animation: pulse2 1s infinite alternate;
+}
+
+.bunny-pop .nm-time {
+  display: none;
+}
+
+.nm-pop .nm-progress {
+  color: #8686ff;
+  font-size: 12;
 }
 
 .nm-pop .nm-time {

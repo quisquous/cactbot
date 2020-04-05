@@ -44,6 +44,8 @@ namespace Cactbot {
     // Held while the |fast_update_timer_| is running.
     private FFXIVProcess ffxiv_;
     private WipeDetector wipe_detector_;
+    private FateWatcher fate_watcher_;
+
     private string language_ = null;
     private List<FileSystemWatcher> watchers;
 
@@ -110,6 +112,7 @@ namespace Cactbot {
         "onImportLogEvent",
         "onInCombatChangedEvent",
         "onZoneChangedEvent",
+        "onFateEvent",
         "onPlayerDied",
         "onPartyWipe",
         "onPlayerChangedEvent",
@@ -170,8 +173,7 @@ namespace Cactbot {
       return dialog.SelectedPath;
     }
 
-    public override System.Windows.Forms.Control CreateConfigControl()
-    {
+    public override System.Windows.Forms.Control CreateConfigControl() {
       var control = new OverlayControl();
       var initDone = false;
 
@@ -189,8 +191,7 @@ namespace Cactbot {
       return control;
     }
 
-    public override void LoadConfig(IPluginConfig config)
-    {
+    public override void LoadConfig(IPluginConfig config) {
       Config = CactbotEventSourceConfig.LoadConfig(config, logger);
       if (Config.OverlayData == null)
         Config.OverlayData = new Dictionary<string, JToken>();
@@ -208,8 +209,7 @@ namespace Cactbot {
       }
     }
 
-    public override void SaveConfig(IPluginConfig config)
-    {
+    public override void SaveConfig(IPluginConfig config) {
       Config.SaveConfig(config);
     }
 
@@ -264,6 +264,7 @@ namespace Cactbot {
         LogInfo("Version: intl");
       }
       wipe_detector_ = new WipeDetector(this);
+      fate_watcher_ = new FateWatcher(this, language_);
 
       // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
@@ -285,6 +286,7 @@ namespace Cactbot {
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
+      fate_watcher_.Start();
 
       string net_version_str = System.Diagnostics.FileVersionInfo.GetVersionInfo(typeof(int).Assembly.Location).ProductVersion;
       string[] net_version = net_version_str.Split('.');
@@ -296,12 +298,12 @@ namespace Cactbot {
 
     public override void Stop() {
       fast_update_timer_.Stop();
+      fate_watcher_.Stop();
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead -= OnLogLineRead;
     }
 
-    protected override void Update()
-    {
-        // Nothing to do since this is handled in SendFastRateEvents.
+    protected override void Update() {
+      // Nothing to do since this is handled in SendFastRateEvents.
     }
 
     private void OnLogLineRead(bool isImport, LogLineEventArgs args) {
@@ -667,7 +669,7 @@ namespace Cactbot {
     private void StartFileWatcher() {
       watchers = new List<FileSystemWatcher>();
       var paths = new List<string>();
-      
+
       paths.Add((new VersionChecker(this)).GetCactbotDirectory());
       paths.Add(Config.UserConfigFile);
 
@@ -686,8 +688,7 @@ namespace Cactbot {
         if (!Directory.Exists(watchDir))
           continue;
 
-        var watcher = new FileSystemWatcher()
-        {
+        var watcher = new FileSystemWatcher() {
           Path = watchDir,
           NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
           IncludeSubdirectories = true,
@@ -724,7 +725,7 @@ namespace Cactbot {
       public string Url { get; set; }
       public int[] Size { get; set; }
       public bool Locked { get; set; }
-      public List<string> Supports { get { return new List<string>{"modern"}; } }
+      public List<string> Supports { get { return new List<string> { "modern" }; } }
     }
 
     private void RegisterPreset(string dirName, int width, int height, string nameOverride = null, string fileOverride = null) {
@@ -733,7 +734,7 @@ namespace Cactbot {
       var name = nameOverride != null ? nameOverride : dirName;
       var filename = fileOverride != null ? fileOverride : dirName;
 
-      Registry.RegisterOverlayPreset(new OverlayPreset{
+      Registry.RegisterOverlayPreset(new OverlayPreset {
         Name = $"Cactbot {name}",
         Url = Path.Combine(path, "ui", lc, $"{filename}.html"),
         Size = new int[] { width, height },
@@ -744,7 +745,7 @@ namespace Cactbot {
     private void RegisterDpsPreset(string name, string file, int width, int height) {
       var path = new VersionChecker(this).GetCactbotDirectory();
       string lc = name.ToLowerInvariant();
-      Registry.RegisterOverlayPreset(new OverlayPreset{
+      Registry.RegisterOverlayPreset(new OverlayPreset {
         Name = $"Cactbot DPS {name}",
         Url = Path.Combine(path, "ui", "dps", lc, $"{file}.html"),
         Size = new int[] { width, height },
@@ -753,18 +754,18 @@ namespace Cactbot {
     }
 
     private void RegisterPresets() {
-      RegisterPreset("Raidboss", width:1100, height:300, "Raidboss Alerts", "raidboss_alerts_only");
-      RegisterPreset("Raidboss", width:320, height:220, "Raidboss Timeline", "raidboss_timeline_only");
-      RegisterPreset("Jobs", width:600, height:300);
-      RegisterPreset("Eureka", width:400, height:400);
-      RegisterPreset("Fisher", width:500, height:500);
-      RegisterPreset("OopsyRaidsy", width:400, height:400);
-      RegisterPreset("PullCounter", width:200, height:200);
-      RegisterPreset("Radar", width:300, height:400);
-      RegisterPreset("Test", width:300, height:300);
+      RegisterPreset("Raidboss", width: 1100, height: 300, "Raidboss Alerts", "raidboss_alerts_only");
+      RegisterPreset("Raidboss", width: 320, height: 220, "Raidboss Timeline", "raidboss_timeline_only");
+      RegisterPreset("Jobs", width: 600, height: 300);
+      RegisterPreset("Eureka", width: 400, height: 400);
+      RegisterPreset("Fisher", width: 500, height: 500);
+      RegisterPreset("OopsyRaidsy", width: 400, height: 400);
+      RegisterPreset("PullCounter", width: 200, height: 200);
+      RegisterPreset("Radar", width: 300, height: 400);
+      RegisterPreset("Test", width: 300, height: 300);
       // FIXME: these should be consistently named.
-      RegisterDpsPreset("Xephero", "xephero-cactbot", width:600, height:400);
-      RegisterDpsPreset("Rdmty", "dps", width:600, height:400);
+      RegisterDpsPreset("Xephero", "xephero-cactbot", width: 600, height: 400);
+      RegisterDpsPreset("Rdmty", "dps", width: 600, height: 400);
     }
 
     // State that is tracked and sent to JS when it changes.

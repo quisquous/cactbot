@@ -73,6 +73,17 @@ namespace Cactbot {
     public class PartyWipeEvent : JSEvent {
       public string EventName() { return "onPartyWipe"; }
     }
+    public class FateEvent : JSEvent {
+      public FateEvent(string eventType, int fateID, int progress) {
+        this.eventType = eventType;
+        this.fateID = fateID;
+        this.progress = progress;
+      }
+      public string EventName() { return "onFateEvent"; }
+      public string eventType;
+      public int fateID;
+      public int progress;
+    }
 
     public class PlayerChangedEvent : JSEvent {
       public PlayerChangedEvent(FFXIVProcess.EntityData e) {
