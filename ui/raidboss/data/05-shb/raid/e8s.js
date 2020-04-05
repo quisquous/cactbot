@@ -320,30 +320,199 @@
     },
     {
       id: 'E8S Refulgent Chain',
-      regex: Regexes.gainsEffect({ effect: 'Refulgent Chain' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Lichtfessel' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Chaînes de Lumière' }),
-      regexJa: Regexes.gainsEffect({ effect: '光の鎖' }),
-      condition: Conditions.targetIsYou(),
-      suppressSeconds: 1,
-      infoText: {
-        en: 'Chain on YOU',
-        de: 'Kette auf DIR',
-        fr: 'Chaîne sur VOUS',
-        ko: '사슬 대상자',
-        cn: '连线',
+      regex: Regexes.tether({ id: '006E' }),
+      condition: function(data, matches) {
+        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'None')
+          return data.me == matches.source;
+
+        if (data.options.cactbote8sLightRampantStrat === 'sharingan') {
+          data.rampant = data.rampant || {
+            chains: {},
+            total: 0,
+            meChain: false,
+            chainSwapTank: 'Stay',
+            chainSwapDps: 'Stay',
+          };
+          if (data.party.isTank(matches.source)) {
+            data.rampant.chains.tank = matches;
+          } else {
+            if (data.party.isHealer(matches.source)) {
+              data.rampant.chains.healer = matches;
+            } else {
+              if (data.rampant.chains.dps1 === undefined)
+                data.rampant.chains.dps1 = matches;
+              else
+                data.rampant.chains.dps2 = matches;
+            }
+            if (data.party.isTank(matches.target))
+              data.rampant.chains.tankReverse = matches;
+          }
+          ++data.rampant.total;
+          data.rampant.meChain = data.rampant.meChain || data.me == matches.source;
+          if (data.rampant.total===4) {
+            // First figure out which DPS is in which corner
+            // So we can ensure dps1 is southwest and dps2 is southeast
+            let meleePriority = ['MNK', 'DRG', 'NIN', 'SAM'];
+            let rangedPriority = ['BRD', 'MCH', 'DNC', 'BLM', 'SMN', 'RDM'];
+            let dps1Role = data.party.jobName(data.rampant.chains.dps1.source);
+            let dps2Role = data.party.jobName(data.rampant.chains.dps2.source);
+            let dps1Priority = meleePriority.indexOf(dps1Role);
+            let dps2Priority = meleePriority.indexOf(dps2Role);
+            if (dps1Priority >= 0 && dps2Priority >= 0) {
+              // Both melee, so go on priority
+              if (dps1Priority > dps2Priority) {
+                // Swap, they're out of order
+                let tmp = data.rampant.chains.dps1;
+                data.rampant.chains.dps1 = data.rampant.chains.dps2;
+                data.rampant.chains.dps2 = tmp;
+              }
+            } else if (dps1Priority >= 0 || dps2Priority >= 0) {
+              if (dps2Priority >= 0) {
+                // Swap, they're out of order
+                let tmp = data.rampant.chains.dps1;
+                data.rampant.chains.dps1 = data.rampant.chains.dps2;
+                data.rampant.chains.dps2 = tmp;
+              }
+            } else {
+              // Both ranged, so go on priority
+              dps1Priority = rangedPriority.indexOf(dps1Role);
+              dps2Priority = rangedPriority.indexOf(dps2Role);
+              if (dps1Priority > dps2Priority) {
+                // Swap, they're out of order
+                let tmp = data.rampant.chains.dps1;
+                data.rampant.chains.dps1 = data.rampant.chains.dps2;
+                data.rampant.chains.dps2 = tmp;
+              }
+            }
+            // All positions based on tank tethers
+            let tankTether1 = (
+              data.rampant.chains.tank.target === data.rampant.chains.healer.source ? 'NE' : (
+                data.rampant.chains.tank.target === data.rampant.chains.dps1.source ? 'SW' : 'SE'
+              )
+            );
+            let tankTether2 = (
+              data.rampant.chains.tankReverse.source === data.rampant.chains.healer.target ? 'NE' : (
+                data.rampant.chains.tankReverse.source === data.rampant.chains.dps1.target ? 'SW' : 'SE'
+              )
+            );
+            if ((tankTether1 === 'NE' && tankTether2 === 'SW') ||
+                (tankTether1 === 'SW' && tankTether2 === 'NE')) {
+              // If the tank is tethered to NE and SW (makes a box)
+              // Tank swaps with SW to make bowtie
+              data.rampant.chainSwapTank = 'SW';
+              data.rampant.chainSwapDps = data.rampant.chains.dps1.source;
+            } else if ((tankTether1 === 'NE' && tankTether2 === 'SE') ||
+                (tankTether1 === 'SE' && tankTether2 === 'NE')) {
+              // If the tank is tethered to NE and SE (makes an hourglass)
+              // Tank swaps with SE to make bowtie
+              data.rampant.chainSwapTank = 'SE';
+              data.rampant.chainSwapDps = data.rampant.chains.dps2.source;
+            }
+          }
+          return data.rampant.total===4;
+        }
+      },
+      infoText: function(data, matches) {
+        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'None') {
+          return {
+            en: 'Chain on YOU',
+            de: 'Kette auf DIR',
+            fr: 'Chaîne sur VOUS',
+            ko: '사슬 대상자',
+            cn: '连线',
+          };
+        }
+
+        if (data.options.cactbote8sLightRampantStrat === 'sharingan') {
+          let ret = {};
+          if (data.rampant.meChain) {
+            let extra = '';
+            if (data.rampant.chainSwapTank!=='Stay') {
+              if (data.rampant.chains.tank.source == data.me)
+                extra = ', Swap '+data.rampant.chainSwapTank;
+              else if (data.rampant.chainSwapDps == data.me)
+                extra = ', Swap NW';
+              else if (data.party.isHealer(data.me))
+                extra = ', Tank swap with '+data.rampant.chainSwapTank;
+            }
+            ret = {
+              en: 'Chain on YOU'+extra,
+              de: 'Kette auf DIR',
+              fr: 'Chaîne sur VOUS',
+              ko: '사슬 대상자',
+              cn: '连线',
+            };
+          }
+          delete data.rampant;
+          return ret;
+        }
       },
     },
     {
       id: 'E8S Holy Light',
       regex: Regexes.tether({ id: '0002' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Orb on YOU',
-        de: 'Orb auf DIR',
-        fr: 'Orbe sur VOUS',
-        ko: '구슬 대상자',
-        cn: '拉球',
+      promise: function(data, matches) {
+        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'None')
+          return null;
+
+        let p = new Promise(async (res) => {
+          let combatantData = await window.callOverlayHandler({
+            call: 'getCombatants',
+            ids: [matches.sourceId],
+          });
+          if (!(combatantData !== null &&
+            combatantData.combatants &&
+            combatantData.combatants.length)) {
+            data.rampantOrb = null;
+            res();
+            return;
+          }
+          data.rampantOrb = combatantData.combatants.pop();
+          res();
+        });
+        return p;
+      },
+      run: function(data, matches) {
+        if (data.options.cactbote8sLightRampantStrat === undefined ||
+          data.options.cactbote8sLightRampantStrat === 'None' ||
+          data.rampantOrb === null)
+          return;
+
+        if (data.options.cactbote8sLightRampantStrat === 'sharingan') {
+          // Take orb to opposite side of spawn
+          if (data.rampantOrb.PosX > 105)
+            data.rampantOrbText = 'W';
+          else if (data.rampantOrb.PosX < 95)
+            data.rampantOrbText = 'E';
+          else if (data.rampantOrb.PosY > 105)
+            data.rampantOrbText = 'S';
+          else if (data.rampantOrb.PosY < 95)
+            data.rampantOrbText = 'N';
+          else
+            data.rampantOrbText = '???';
+        }
+      },
+      infoText: function(data) {
+        if (data.options.cactbote8sLightRampantStrat === undefined ||
+          data.options.cactbote8sLightRampantStrat === 'None' ||
+          data.rampantOrb === null) {
+          return {
+            en: 'Orb on YOU',
+            de: 'Orb auf DIR',
+            fr: 'Orbe sur VOUS',
+            ko: '구슬 대상자',
+            cn: '拉球',
+          };
+        }
+
+        return {
+          en: 'Orb on YOU, '+data.rampantOrbText,
+          de: 'Orb auf DIR, '+data.rampantOrbText,
+          fr: 'Orbe sur VOUS, '+data.rampantOrbText,
+          ko: '구슬 대상자, '+data.rampantOrbText,
+          cn: '拉球, '+data.rampantOrbText,
+        };
       },
     },
     {
