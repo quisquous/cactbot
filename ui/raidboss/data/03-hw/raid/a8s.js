@@ -25,6 +25,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Mirage Soon',
+        cn: '分身即将出现',
       },
     },
     {
@@ -33,6 +34,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Swindler Soon',
+        cn: '欺诈者即将出现',
       },
     },
     {
@@ -41,6 +43,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Vortexer Soon',
+        cn: '环旋者即将出现',
       },
     },
     {
@@ -55,6 +58,7 @@
       beforeSeconds: 8,
       infoText: {
         en: 'Bait Super Jump',
+        cn: '引导超级跳',
       },
     },
   ],
@@ -67,6 +71,7 @@
       },
       infoText: {
         en: 'Kill Regulators',
+        cn: '击杀小怪',
       },
     },
     {
@@ -81,6 +86,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Orb on YOU',
+        cn: '球点名',
       },
     },
     {
@@ -98,6 +104,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Get High',
+        cn: '上高台',
       },
     },
     {
@@ -106,6 +113,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Get Down',
+        cn: '下低台',
       },
     },
     {
@@ -128,6 +136,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Thunder on YOU',
+            cn: '雷点名',
           };
         }
       },
@@ -135,6 +144,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Thunder on ' + data.ShortName(matches.target),
+            cn: '雷点' + data.ShortName(matches.target),
           };
         }
       },
@@ -160,6 +170,7 @@
           return;
         return {
           en: 'Thunder Soon on ' + data.ShortName(data.lightning),
+          cn: '马上雷分摊' + data.ShortName(data.lightning),
         };
       },
     },
@@ -171,6 +182,7 @@
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
         return {
           en: data.ShortName(matches.target) + ': ' + count,
+          cn: data.ShortName(matches.target) + '生命计算法: ' + count,
         };
       },
     },
@@ -233,6 +245,7 @@
         if (data.longNeedlePrey.includes(data.me)) {
           return {
             en: 'Prey: Get Out',
+            cn: '红点名离开人群',
           };
         }
       },
@@ -272,6 +285,7 @@
           return;
         return {
           en: 'Super Jump on YOU',
+          cn: '超级跳点名',
         };
       },
       infoText: function(data, matches) {
@@ -279,6 +293,7 @@
           return;
         return {
           en: 'Super Jump on ' + data.ShortName(matches.target),
+          cn: '超级跳点' + data.ShortName(matches.target),
         };
       },
     },
@@ -288,6 +303,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Mirage on YOU',
+        cn: '分身点名',
       },
     },
     {
@@ -296,6 +312,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Ice Missile on YOU',
+        cn: '冰点名',
       },
     },
     {
@@ -360,6 +377,7 @@
       durationSeconds: 8,
       alertText: {
         en: 'Min HP: Provoke Boss => Late NE Tornado',
+        cn: '最少HP:挑衅BOSS=>东北龙卷风',
       },
     },
     {
@@ -376,6 +394,7 @@
       delaySeconds: 27,
       alarmText: {
         en: 'Get NE Tornado',
+        cn: '去东北龙卷风',
       },
     },
     {
@@ -391,6 +410,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Max HP: Provoke Boss Second',
+        cn: '最多HP:第二个挑衅BOSS',
       },
     },
     {
@@ -401,6 +421,7 @@
       },
       alertText: {
         en: 'Provoke Boss',
+        cn: '挑衅BOSS',
       },
     },
     {
@@ -412,6 +433,7 @@
       delaySeconds: 27,
       alarmText: {
         en: 'Use Devour',
+        cn: '使用捕食',
       },
     },
     {
@@ -423,6 +445,7 @@
       // TODO: we could also repeat the "share north orbs" after sw orb Explosion.
       alertText: {
         en: 'Penalty 1: SW orb -> Share 2x North Orbs',
+        cn: '1号：吃西南球然后分摊北边双球',
       },
     },
     {
@@ -431,6 +454,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Penalty 2: NW Tornado',
+        cn: '2号：西北龙卷风',
       },
     },
     {
@@ -439,6 +463,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Penalty 3: Get a South Tornado',
+        cn: '2号：南边龙卷风',
       },
     },
     {
@@ -450,6 +475,7 @@
       // TODO: we could also say who to share north orb with.
       infoText: {
         en: 'Share last orb after gavel',
+        cn: '等待锤子判定后分摊最后球',
       },
     },
     {
@@ -461,6 +487,7 @@
       // TODO: we could also repeat the share after the regular dies?
       infoText: {
         en: 'Blue Regulator -> Share 1x North Orb',
+        cn: '蓝色小怪然后北边分摊球',
       },
     },
     {
@@ -469,6 +496,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Red Regulator -> Share 1x North Orb',
+        cn: '红色小怪然后北边分摊球',
       },
     },
     {
@@ -478,6 +506,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Water on YOU',
+            cn: '水点名',
           };
         }
       },
@@ -485,6 +514,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Water on ' + data.ShortName(matches.target),
+            cn: '水点'+ data.ShortName(matches.target),
           };
         }
       },
@@ -511,6 +541,7 @@
           return;
         return {
           en: 'Water Soon on ' + data.ShortName(data.water),
+          cn: '马上水分摊' + data.ShortName(data.water),
         };
       },
     },
@@ -526,6 +557,7 @@
       regex: Regexes.ability({ source: 'Brute Justice', id: '1716', capture: false }),
       infoText: {
         en: 'Stack for Final Beam',
+        cn: '集合分摊',
       },
     },
   ],
