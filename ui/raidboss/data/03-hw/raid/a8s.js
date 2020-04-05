@@ -445,6 +445,7 @@
       // TODO: we could also repeat the "share north orbs" after sw orb Explosion.
       alertText: {
         en: 'Penalty 1: SW orb -> Share 2x North Orbs',
+        cn: '1号：吃西南球然后分摊北边双球',
       },
     },
     {
@@ -453,6 +454,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Penalty 2: NW Tornado',
+        cn: '2号：西北龙卷风',
       },
     },
     {
@@ -461,6 +463,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Penalty 3: Get a South Tornado',
+        cn: '2号：南边龙卷风',
       },
     },
     {
@@ -472,6 +475,7 @@
       // TODO: we could also say who to share north orb with.
       infoText: {
         en: 'Share last orb after gavel',
+        cn: '等待锤子判定后分摊最后球',
       },
     },
     {
@@ -483,6 +487,7 @@
       // TODO: we could also repeat the share after the regular dies?
       infoText: {
         en: 'Blue Regulator -> Share 1x North Orb',
+        cn: '蓝色小怪然后北边分摊球',
       },
     },
     {
@@ -491,6 +496,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Red Regulator -> Share 1x North Orb',
+        cn: '红色小怪然后北边分摊球',
       },
     },
     {
@@ -500,6 +506,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Water on YOU',
+            cn: '水点名',
           };
         }
       },
@@ -507,6 +514,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Water on ' + data.ShortName(matches.target),
+            cn: '水点'+ data.ShortName(matches.target),
           };
         }
       },
@@ -533,6 +541,7 @@
           return;
         return {
           en: 'Water Soon on ' + data.ShortName(data.water),
+          cn: '马上水分摊' + data.ShortName(data.water),
         };
       },
     },
@@ -548,6 +557,7 @@
       regex: Regexes.ability({ source: 'Brute Justice', id: '1716', capture: false }),
       infoText: {
         en: 'Stack for Final Beam',
+        cn: '集合分摊'
       },
     },
   ],
