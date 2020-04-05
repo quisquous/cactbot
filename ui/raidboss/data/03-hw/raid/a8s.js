@@ -557,7 +557,7 @@
       regex: Regexes.ability({ source: 'Brute Justice', id: '1716', capture: false }),
       infoText: {
         en: 'Stack for Final Beam',
-        cn: '集合分摊'
+        cn: '集合分摊',
       },
     },
   ],
