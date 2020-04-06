@@ -164,8 +164,6 @@
       'replaceText': {
         'Fault Line': 'Ligne de faille',
         'Earthen Wheels': 'Pas tellurique',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
         'Geocrush': 'Broie-terre',
         'Earthen Armor': 'Armure tellurique',
         'Fault Zone': 'Faille tectonique',

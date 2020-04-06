@@ -344,8 +344,6 @@
         '--knockback--': '--knockback--', // FIXME
         '--lock out--': '--lock out--', // FIXME
         '--meteors--': '--meteors--', // FIXME
-        '--reset--': '--reset--', // FIXME
-        '--start--': '--start--', // FIXME
         'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
         'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
         'Azure Guard Adds': 'Azure Guard Adds', // FIXME
@@ -414,8 +412,6 @@
         '--knockback--': '--knockback--', // FIXME
         '--lock out--': '--lock out--', // FIXME
         '--meteors--': '--meteors--', // FIXME
-        '--reset--': '--reset--', // FIXME
-        '--start--': '--start--', // FIXME
         'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
         'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
         'Azure Guard Adds': 'Azure Guard Adds', // FIXME
@@ -485,8 +481,6 @@
         '--knockback--': '--knockback--', // FIXME
         '--lock out--': '--lock out--', // FIXME
         '--meteors--': '--meteors--', // FIXME
-        '--reset--': '--reset--', // FIXME
-        '--start--': '--start--', // FIXME
         'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
         'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
         'Azure Guard Adds': 'Azure Guard Adds', // FIXME
@@ -555,8 +549,6 @@
         '--knockback--': '--击退--',
         '--lock out--': '--封锁--',
         '--meteors--': '--陨石--',
-        '--reset--': '--重置--',
-        '--start--': '--开始--',
         'Aqua Sphere Adds': '水球出现',
         'Archaeodemon Adds': '古恶魔出现',
         'Azure Guard Adds': '蔚蓝护卫出现',

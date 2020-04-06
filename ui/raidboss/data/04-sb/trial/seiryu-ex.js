@@ -380,7 +380,6 @@
         'Yama-no-shiki': 'Yama no Shiki',
       },
       'replaceText': {
-        '--jump--': '--Sprung--',
         '--rotate--': '--rotate--', // FIXME
         '100-tonze Swing': '100-Tonzen-Schwung',
         'Blazing Aramitama': 'Flammende Aramitama',
@@ -435,7 +434,6 @@
         'Yama-no-shiki': 'shiki montagneux',
       },
       'replaceText': {
-        '--jump--': '--jump--',
         '--rotate--': '--rotate--', // FIXME
         '100-tonze Swing': 'Swing de 100 tonz',
         'Blazing Aramitama': 'Aramitama incandescent',
@@ -490,7 +488,6 @@
         'Yama-no-shiki': '山の式鬼',
       },
       'replaceText': {
-        '--jump--': '--jump--',
         '--rotate--': '--rotate--', // FIXME
         '100-tonze Swing': '100トンズ・スイング',
         'Blazing Aramitama': '荒魂燃焼',
@@ -545,7 +542,6 @@
         'Yama-no-shiki': '山之式鬼',
       },
       'replaceText': {
-        '--jump--': '--龙大跳--',
         '--rotate--': '--龙回转--',
         '100-tonze Swing': '百吨回转',
         'Blazing Aramitama': '荒魂燃烧',
@@ -600,7 +596,6 @@
         'Yama-no-shiki': '산 사역귀',
       },
       'replaceText': {
-        '--jump--': '--jump--', // FIXME
         '--rotate--': '--rotate--', // FIXME
         '100-tonze Swing': '100톤즈 휘두르기',
         'Blazing Aramitama': '아라미타마 연소',

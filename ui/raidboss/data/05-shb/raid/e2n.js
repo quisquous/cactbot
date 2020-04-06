@@ -297,12 +297,10 @@
       },
       'replaceText': {
         'Spell-in-Waiting': 'Déphasage incantatoire',
-        '--sync--': '--Synchronisation--',
         'Shadowflame': 'Flamme d\'ombre',
         'Doomvoid Guillotine': 'Guillotine du néant ravageur',
         'Dark Fire III': 'Méga Feu ténébreux',
         'Unholy Darkness': 'Miracle sombre',
-        '--Reset--': '--Réinitialisation--',
         'Punishing Ray': 'Rayon punitif',
         'Doomvoid Slicer': 'Entaille du néant ravageur',
         'Empty Hate': 'Vaine malice',

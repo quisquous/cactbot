@@ -925,7 +925,6 @@
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
       },
       'replaceText': {
-        '--sync--': '--sync--',
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
         'Acceleration Bomb': 'Beschleunigungsbombe',
         'Adds': 'Adds', // FIXME
@@ -1016,7 +1015,6 @@
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
       },
       'replaceText': {
-        '--sync--': '--Synchronisation--',
         'Acallam Na Senorach': 'Spirale sépulcrale',
         'Acceleration Bomb': 'Bombe accélératrice',
         'Adds': 'Adds', // FIXME
@@ -1107,7 +1105,6 @@
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
       },
       'replaceText': {
-        '--sync--': '--sync--',
         'Acallam Na Senorach': '真妖槍旋',
         'Acceleration Bomb': '加速度爆弾',
         'Adds': 'Adds', // FIXME
@@ -1288,7 +1285,6 @@
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
       },
       'replaceText': {
-        '--sync--': '--sync--', // FIXME
         'Acallam Na Senorach': '피어너의 창',
         'Acceleration Bomb': '가속도 폭탄',
         'Adds': 'Adds', // FIXME

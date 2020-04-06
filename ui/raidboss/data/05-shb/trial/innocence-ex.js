@@ -519,7 +519,6 @@
         'Drop Of Light': 'Lichtabfall',
         'Winged Rep': 'Schwinge des Urteils',
         'Soul And Body': 'Seele und Körper',
-        '--jump--': '--Sprung--',
         'Starbirth Corner': 'Sternengeburt Ecke',
         'Starbirth Explode': 'Sternengeburt Explosion',
         'Starbirth Charge': 'Sternengeburt Charge',
@@ -568,8 +567,6 @@
         'Beatific Vision': 'Vision béatifique',
         'Forgiven venery': 'débauche pardonnée',
         'Forgiven shame': 'déshonneur pardonné',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
@@ -655,7 +652,6 @@
         'Beatific Vision': '荣福直观',
         'Forgiven venery': '得到宽恕的情欲',
         'Forgiven shame': '得到宽恕的耻辱',
-        '--jump--': '--BOSS位移--',
       },
       '~effectNames': {
         'Physical Vulnerability Up': '物理受伤加重',
@@ -698,7 +694,6 @@
         'Beatific Vision': '지복직관',
         'Forgiven venery': '면죄된 정욕',
         'Forgiven shame': '면죄된 수치',
-        '--jump--': '--보스이동--',
         ' Avoid': ' (피하기)',
         ' Explode': ' (터뜨리기)',
         ' Charge': ' (돌진)',

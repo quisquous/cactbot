@@ -209,8 +209,6 @@
         'Tesleen, the Forgiven': 'Tesleen pardonnée',
       },
       'replaceText': {
-        '--Reset--': '--Réinitialisation--',
-        '--sync--': '--Synchronisation--',
         'The Path Of Light': 'Voie de lumière',
         'Brazen Bull': 'Taureau d\'airain',
         'Gibbet Cage': 'Gibet de fer',
@@ -308,8 +306,6 @@
         'The Tickler': '抓挠',
         'Thumbscrew': '螺旋突刺',
         'Wooden Horse': '木马',
-        '--Reset--': '--reset--',
-        '--sync--': '--sync--',
         'Tank': '坦克',
         'Center': '中心',
       },

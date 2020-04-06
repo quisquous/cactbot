@@ -330,8 +330,6 @@
         'Aetherochemical Amplification': 'Laser Magismologique',
         '32-tonze Swipe': 'Swing de 32 tonz',
         '128-tonze Swing': 'Swing de 128 tonz',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Summon Order II': 'Actions en attente: 2',
@@ -480,8 +478,6 @@
         '128-tonze Swing': '百廿八吨回转',
         '(?<! )Gravity': '(?<! )重力',
         '(?<! )Crossray': '(?<! )交叉激光',
-        '--sync--': '--sync--',
-        '--Reset--': '--reset--',
       },
       '~effectNames': {
         'Summon Order II': '发动技能待命II',

@@ -634,8 +634,6 @@
         'Bury': 'Ensevelissement',
         'Bomb Boulders': 'Bombo rocher',
         'Aftershock': 'Répercussion',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Summon Order III': 'Actions en attente: 3',

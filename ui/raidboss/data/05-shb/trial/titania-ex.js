@@ -453,7 +453,6 @@
         'Chain Of Brambles': 'Dornenfessel',
         'Bright Sabbath': 'Leuchtender Sabbat',
         'Being Mortal': 'Sterblichkeit',
-        '--center--': '--Mitte--',
         'Love-In-Idleness': 'Liebevoller Müßiggang',
         'War And Pease': 'Bohnenkrieg',
         'Phantom Rune In': 'Phantomrune Rein',
@@ -510,8 +509,6 @@
         'Chain Of Brambles': 'Chaînes de ronces',
         'Bright Sabbath': 'Sabbat en plein jour',
         'Being Mortal': 'Deuil des vivants',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
       },
       '~effectNames': {
         'Thorny Vine': 'Sarment De Ronces',
@@ -620,7 +617,6 @@
         'Chain Of Brambles': '荆棘链',
         'Bright Sabbath': '欢快的安息日',
         'Being Mortal': '终有一死',
-        '--center--': '--中场集合--',
       },
       '~effectNames': {
         'Thorny Vine': '荆棘丛生',
@@ -673,7 +669,6 @@
         'Chain Of Brambles': '나무딸기 사슬',
         'Bright Sabbath': '빛나는 안식',
         'Being Mortal': '죽어야 할 운명',
-        '--center--': '--중앙--',
         ' Middle': ' (중앙)',
       },
       '~effectNames': {

@@ -885,7 +885,6 @@
         'Shadow of the Ancients': 'Schatten der Alten',
       },
       'replaceText': {
-        '--sync--': '--sync--',
         'Again The Abyssal Celebrant': 'Erinnerung an den Abgrund',
         'Again The Majestic': 'Erinnerung an den Erhabenen',
         'Again The Martyr': 'Erinnerung an die Märtyrer',
@@ -952,7 +951,6 @@
         'Shadow of the Ancients': 'Spectre d\'Ascien',
       },
       'replaceText': {
-        '--sync--': '--Synchronisation--',
         'Again The Abyssal Celebrant': 'Mémoire d\'un contemplateur de l\'abysse',
         'Again The Majestic': 'Mémoire d\'un souverain',
         'Again The Martyr': 'Mémoire d\'un martyre',
@@ -1014,7 +1012,6 @@
         'Shadow of the Ancients': '古代人の影',
       },
       'replaceText': {
-        '--sync--': '--sync--',
         'Again The Abyssal Celebrant': '深淵の記憶',
         'Again The Majestic': '尊厳王の記憶',
         'Again The Martyr': '殉教者の記憶',

@@ -634,8 +634,6 @@
         'Dark Fire III': 'Méga Feu ténébreux',
         'Cycle of Retribution': 'Multi-taillade vengeresse',
         'Cycle of Chaos': 'Multi-taillade chaotique',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
         'Slicer/Guillotine': 'Entaille/Guillotine',
         'Light/Dark Circles': 'Cercle Lumière/Ombre',
         'Cycle Of': 'Cycle',

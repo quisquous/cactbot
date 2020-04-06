@@ -749,7 +749,6 @@
         'Warehouse C': 'Warenlager C',
       },
       'replaceText': {
-        '--jump--': '--Sprung--',
         '360-Degree Bombing Maneuver': 'Offensive: Raketenring',
         'Adds': 'Adds',
         'Anti-Personnel Missile': 'Antipersonenrakete',
@@ -836,7 +835,6 @@
         'Warehouse C': 'l\'entrepôt C',
       },
       'replaceText': {
-        '--jump--': '--Saut--',
         '360-Degree Bombing Maneuver': 'Attaque : tir de missiles circulaire',
         'Adds': 'Adds',
         'Anti-Personnel Missile': 'Pluie de missiles antipersonnel',
@@ -918,7 +916,6 @@
         'Small Flyer': '小型飛行体',
       },
       'replaceText': {
-        '--jump--': '--jump--', // FIXME
         '360-Degree Bombing Maneuver': '攻撃：ミサイル円射',
         'Adds': 'Adds', // FIXME
         'Anti-Personnel Missile': '対人ミサイル乱射',
@@ -1007,7 +1004,6 @@
         'Warehouse C': '仓库C',
       },
       'replaceText': {
-        '--jump--': '--大跳--',
         '360-Degree Bombing Maneuver': '攻击：周边导弹轰炸',
         'Anti-Personnel Missile': '对人导弹乱射',
         'Area Bombardment': '导弹乱射',
@@ -1101,7 +1097,6 @@
         'Warehouse C': '창고 C',
       },
       'replaceText': {
-        '--jump--': '--점프--',
         'F/B': '앞/뒤',
         'B/F': '뒤/앞',
         'L/R': '좌/우',

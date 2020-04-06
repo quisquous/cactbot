@@ -132,7 +132,6 @@
         'The reality augmentation bay': 'Dilatationskammer',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '11-Tonzen-Schlag',
         '11-Tonze Swipe': '11-Tonzen-Hieb',
         '(?<!1)111-Tonze Swing': '111-Tonzen-Schwung',
@@ -164,7 +163,6 @@
         'The reality augmentation bay': 'la salle de distorsion de la réalité',
       },
       'replaceText': {
-        '--reset--': '-- Reset --',
         '10-Tonze Slash': 'Taillade de 10 tonz',
         '11-Tonze Swipe': 'Fauche de 11 tonz',
         '(?<!1)111-Tonze Swing': 'Swing de 111 tonz',
@@ -194,7 +192,6 @@
         'The Curator': 'キュレーター',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '10トンズ・スラッシュ',
         '11-Tonze Swipe': '11トンズ・スワイプ',
         '(?<!1)111-Tonze Swing': '111トンズ・スイング',
@@ -224,7 +221,6 @@
         'The Curator': '博物总管',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '十吨挥打',
         '11-Tonze Swipe': '十一吨横扫',
         '(?<!1)111-Tonze Swing': '百十一吨回转',
@@ -254,7 +250,6 @@
         'The Curator': '전시 책임자',
       },
       'replaceText': {
-        '--reset--': '--reset--', // FIXME
         '10-Tonze Slash': '10톤즈 베기',
         '11-Tonze Swipe': '11톤즈 후려치기',
         '(?<!1)111-Tonze Swing': '111톤즈 휘두르기',

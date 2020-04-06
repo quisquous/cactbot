@@ -149,8 +149,6 @@
         'Eden\'s Blizzard III': 'Eden-Eisga',
         'Dimensional Shift': 'Dimensionsverschiebung',
         'Delta Attack': 'Delta-Attacke',
-        '--corner--': '--ecke--',
-        '--center--': '--mitte--',
       },
       '~effectNames': {
         'Summon Order': 'Egi-Attacke I',
@@ -192,10 +190,6 @@
         'Eden\'s Blizzard III': 'Méga Glace édénique',
         'Dimensional Shift': 'Translation dimensionnelle',
         'Delta Attack': 'Attaque Delta',
-        '--sync--': '--Synchronisation--',
-        '--Reset--': '--Réinitialisation--',
-        '--corner--': '--Coin--',
-        '--center--': '--Centre--',
       },
       '~effectNames': {
         'Summon Order': 'Action en attente: 1',
@@ -275,8 +269,6 @@
         'Eden\'s Blizzard III': '伊甸冰封',
         'Dimensional Shift': '空间转换',
         'Delta Attack': '三角攻击',
-        '--corner--': '--角落--',
-        '--center--': '--中央--',
       },
       '~effectNames': {
         'Summon Order': '发动技能待命I',
@@ -316,8 +308,6 @@
         'Eden\'s Blizzard III': '에덴 블리자가',
         'Dimensional Shift': '차원 전환',
         'Delta Attack': '델타 공격',
-        '--corner--': '--모서리--',
-        '--center--': '--중앙--',
       },
       '~effectNames': {
         'Summon Order': 'Summon Order',
