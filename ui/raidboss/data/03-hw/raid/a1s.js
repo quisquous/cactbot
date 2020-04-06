@@ -20,8 +20,8 @@
     {
       id: 'A1S Gunnery Pod',
       regex: /Gunnery Pod/,
-      condition: Conditions.caresAboutAOE(),
       beforeSeconds: 4,
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
   ],
@@ -69,7 +69,7 @@
     },
     {
       id: 'A1S Resin Bomb',
-      regex: Regexes.startsUsing({ id: 'E46', source: 'Oppressor' }),
+      regex: Regexes.startsUsing({ id: 'E46', source: 'Oppressor', capture: false }),
       infoText: {
         en: 'Bait Resin Bomb',
         fr: 'Placez-vous pour Bombe de résine',
