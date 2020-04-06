@@ -17,15 +17,15 @@
         cn: '上升',
       },
     },
-  ],
-  triggers: [
     {
       id: 'A1S Gunnery Pod',
-      regex: Regexes.startsUsing({ id: 'E41', source: 'Oppressor', capture: false }),
+      regex: /Gunnery Pod/,
       condition: Conditions.caresAboutAOE(),
-      suppressSeconds: 3,
+      beforeSeconds: 4,
       response: Responses.aoe(),
     },
+  ],
+  triggers: [
     {
       id: 'A1S Hydrothermal Collect',
       regex: Regexes.headMarker({ id: '001E' }),
@@ -69,8 +69,7 @@
     },
     {
       id: 'A1S Resin Bomb',
-      regex: Regexes.startsUsing({ id: 'E47', source: 'Oppressor' }),
-      condition: Conditions.targetIsYou(),
+      regex: Regexes.startsUsing({ id: 'E46', source: 'Oppressor' }),
       infoText: {
         en: 'Bait Resin Bomb',
         fr: 'Placez-vous pour Bombe de résine',
