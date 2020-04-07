@@ -171,7 +171,7 @@
         if (marker1 == marker2) {
           return {
             en: 'Repel: close to ' + data.ShortName(partner),
-            en: 'Abstoß: nahe bei ' + data.ShortName(partner),
+            de: 'Abstoß: nahe bei ' + data.ShortName(partner),
             cn: '同极：靠近' + data.ShortName(partner),
           };
         }

@@ -273,7 +273,7 @@
         if (data.role == 'tank' || data.role == 'healer' || data.job == 'blu') {
           return {
             en: 'Shared Tankbuster on' + data.ShortName(matches.target),
-            en: 'Geteilter Tankbuster auf' + data.ShortName(matches.target),
+            de: 'Geteilter Tankbuster auf' + data.ShortName(matches.target),
           };
         }
       },
@@ -332,7 +332,7 @@
           return;
         return {
           en: 'Charge on ' + data.ShortName(matches.target),
-          en: 'Ansturm auf ' + data.ShortName(matches.target),
+          de: 'Ansturm auf ' + data.ShortName(matches.target),
         };
       },
     },

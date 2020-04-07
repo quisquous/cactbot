@@ -617,7 +617,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Penalty 3: Get a South Tornado',
-        en: 'Schwächung 3: Nimm südlichen Tornado',
+        de: 'Schwächung 3: Nimm südlichen Tornado',
         cn: '2号：南边龙卷风',
       },
     },
