@@ -35,7 +35,7 @@
       infoText: {
         en: 'Move Bosses',
         de: 'Bosse bewegen',
-        fr: 'Déplacez les Boss',
+        fr: 'Déplacez les boss',
         ja: 'ボス動かして',
         ko: '보스 이동 주차',
         cn: '移动Boss',
@@ -152,14 +152,14 @@
         if (marker1 == marker2) {
           return {
             en: 'Repel: close to ' + data.ShortName(partner),
-            fr: 'Repoussement: Rapprochez-vous de ' + data.ShortName(partner),
+            fr: 'Répulsion : Rapprochez-vous de ' + data.ShortName(partner),
             cn: '同极：靠近' + data.ShortName(partner),
           };
         }
 
         return {
           en: 'Attract: away from ' + data.ShortName(partner),
-          fr: 'Attirement: Eloignez-vous de ' + data.ShortName(partner),
+          fr: 'Attraction : Eloignez-vous de ' + data.ShortName(partner),
           cn: '异极：远离' + data.ShortName(partner),
         };
       },
@@ -216,7 +216,7 @@
       },
       infoText: {
         en: 'Embolus: Move Boss',
-        fr: 'Caillot: Déplacez le Boss',
+        fr: 'Caillot : Déplacez le boss',
         cn: '水球出现：拉走BOSS',
       },
     },
