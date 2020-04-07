@@ -35,6 +35,7 @@
       infoText: {
         en: 'Move Bosses',
         de: 'Bosse bewegen',
+        fr: 'Déplacez les Boss',
         ja: 'ボス動かして',
         ko: '보스 이동 주차',
         cn: '移动Boss',
@@ -48,6 +49,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Sluice on YOU',
+        fr: 'Eclusage sur Vous',
         cn: '蓝点名',
       },
     },
@@ -57,6 +59,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Tank Debuff',
+        fr: 'Debuff vulnérabilité',
         cn: '坦克 Debuff',
       },
     },
@@ -66,6 +69,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Healer Debuff',
+        fr: 'Debuff soins',
         cn: '奶妈 Debuff',
       },
     },
@@ -76,6 +80,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Damage Debuff',
+        fr: 'Debuff dégats',
         cn: 'DPS Debuff',
       },
     },
@@ -84,6 +89,7 @@
       regex: Regexes.ability({ source: ['Liquid Limb', 'Living Liquid'], id: 'F09', capture: false }),
       infoText: {
         en: 'Burn Higher HP Hand',
+        fr: 'Burn sur la main au PV le plus élevée',
         cn: '转火血多手',
       },
     },
@@ -95,6 +101,7 @@
       },
       alertText: {
         en: 'Drainage on YOU',
+        fr: 'Drainage sur VOUS',
         cn: '连线点名',
       },
     },
@@ -107,6 +114,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Get drainage tether',
+        fr: 'Prenez un lien drainage',
         cn: '接线',
       },
     },
@@ -144,12 +152,14 @@
         if (marker1 == marker2) {
           return {
             en: 'Repel: close to ' + data.ShortName(partner),
+            fr: 'Repoussement: Rapprochez-vous de ' + data.ShortName(partner),
             cn: '同极：靠近' + data.ShortName(partner),
           };
         }
 
         return {
           en: 'Attract: away from ' + data.ShortName(partner),
+          fr: 'Attirement: Eloignez-vous de ' + data.ShortName(partner),
           cn: '异极：远离' + data.ShortName(partner),
         };
       },
@@ -170,6 +180,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Throttle on ' + data.ShortName(matches.target),
+          fr: 'Geôle liquide sur ' + data.ShortName(matches.target),
           cn: '窒息点' + data.ShortName(matches.target),
         };
       },
@@ -181,6 +192,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Claw on YOU',
+            fr: 'Griffe sur VOUS',
             cn: '抓奶手点名',
           };
         }
@@ -189,6 +201,7 @@
         if (data.me != matches.target) {
           return {
             en: 'Claw on ' + data.ShortName(matches.target),
+            fr: 'Griffe sur ' + data.ShortName(matches.target),
             cn: '抓奶手点' + data.ShortName(matches.target),
           };
         }
@@ -203,7 +216,43 @@
       },
       infoText: {
         en: 'Embolus: Move Boss',
+        fr: 'Caillot: Déplacez le Boss',
         cn: '水球出现：拉走BOSS',
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Hydrate Core': 'Noyau d\'hydrate',
+        'Liquid Limb': 'Membre Liquide',
+        'Liquid Rage': 'Furie liquide',
+        'Living Liquid': 'Liquide vivant',
+      },
+      'replaceText': {
+        'Cascade': 'Cascade',
+        'Digititis': 'Phalangette',
+        'Drainage': 'Drainage',
+        'Embolus': 'Caillot',
+        'Equal Concentration': 'Nivellement aqueux',
+        'Ferrofluid': 'Ferrofluide',
+        'Fluid Claw': 'Griffe fluide',
+        'Fluid Strike': 'Frappe fluide',
+        'Fluid Swing': 'Coup fluide',
+        'Gear Lubricant': 'Lubrifiant d\'engrenage',
+        'Hand Of Pain': 'Main de douleur',
+        'Hand Of Parting': 'Main de séparation',
+        'Hand Of Prayer': 'Main de prière',
+        'Hydromorph': 'Hydromorphe',
+        'Magnetism': 'Magnétisme',
+        'Piston Lubricant': 'Lubrifiant de piston',
+        'Protean Wave': 'Vague inconstante',
+        'Repel': 'Repoussement',
+        'Sluice': 'Éclusage',
+        'Splash': 'Éclaboussement',
+        'Throttle': 'Geôle liquide',
+        'Wash Away': 'Lessivage',
       },
     },
   ],
