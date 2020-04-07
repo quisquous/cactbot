@@ -18,6 +18,11 @@
     {
       id: 'A11S Left Laser Sword',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A7A', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A7A', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A7A', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A7A', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A7A', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A7A', capture: false }),
       // Sorry tanks.
       // We could figure out who is tanking and then do the opposite,
       // but probably that could get confusing too?
@@ -27,25 +32,47 @@
     {
       id: 'A11S Right Laser Sword',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A79', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A79', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A79', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A79', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A79', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A79', capture: false }),
       response: Responses.goLeft(),
     },
     {
       id: 'A11S Optical Sight Clock',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A6C', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A6C', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A6C', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6C', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A6C', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A6C', capture: false }),
       infoText: {
         en: 'Clock',
+        de: 'Uhr',
       },
     },
     {
       id: 'A11S Optical Sight Out',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A6D', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A6D', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A6D', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6D', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A6D', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A6D', capture: false }),
       response: Responses.getOut('info'),
     },
     {
       id: 'A11S Optical Sight Bait',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A6E', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A6E', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A6E', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A6E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A6E', capture: false }),
       infoText: {
         en: 'Bait Optical Sight',
+        de: 'Köder Visier',
       },
     },
     {
@@ -57,38 +84,66 @@
     {
       id: 'A11S Whirlwind',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A84', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A84', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A84', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A84', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A84', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A84', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'A11S Spin Crusher',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A85', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A85', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A85', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A85', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A85', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A85', capture: false }),
       response: Responses.awayFromFront('info'),
     },
     {
       id: 'A11S EDD Add',
       regex: Regexes.addedCombatant({ name: 'E\\.D\\.D\\.', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'E\\.D\\.D\\.-Mecha', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'E\\.D\\.D\\.', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'イーディーディー', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '护航机甲', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: 'E\\.D\\.D\\.', capture: false }),
       infoText: {
         en: 'Kill Add',
+        de: 'Add besiegen',
       },
     },
     {
       id: 'A11S Armored Pauldron Add',
       regex: Regexes.addedCombatant({ name: 'Armored Pauldron', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Schulterplatte', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Protection D\'Épaule', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ショルダーアーマー', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '肩部装甲', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '견갑부', capture: false }),
       infoText: {
         en: 'Break Pauldron',
+        de: 'Schulterplatte zerstören',
       },
     },
     {
       id: 'A11S GA-100',
       // Note: 0057 headmarker, but starts using occurs 3 seconds earlier.
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A77' }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A77' }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A77' }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A77' }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A77' }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A77' }),
       // TODO: maybe we need a Responses.abilityOn()
       alarmText: function(data, matches) {
         if (data.me != matches.target)
           return;
         return {
           en: 'GA-100 on YOU',
+          de: 'GA-100 auf DIR',
         };
       },
       infoText: function(data, matches) {
@@ -96,6 +151,7 @@
           return;
         return {
           en: 'GA-100 on ' + data.ShortName(matches.target),
+          de: 'GA-100 on ' + data.ShortName(matches.target),
         };
       },
     },
@@ -186,6 +242,11 @@
     {
       id: 'A11S Limit Cut Cleanup',
       regex: Regexes.ability({ source: 'Cruise Chaser', id: '1A80', capture: false }),
+      regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '1A80', capture: false }),
+      regexFr: Regexes.ability({ source: 'Croiseur-Chasseur', id: '1A80', capture: false }),
+      regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '1A80', capture: false }),
+      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '1A80', capture: false }),
+      regexKo: Regexes.ability({ source: '순항추격기', id: '1A80', capture: false }),
       delaySeconds: 30,
       run: function(data) {
         delete data.limitCutDelay;
@@ -196,16 +257,23 @@
     {
       id: 'A11S Laser X Sword',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A7F' }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A7F' }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A7F' }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A7F' }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A7F' }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A7F' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
             en: 'Shared Tankbuster on YOU',
+            de: 'Geteilter Tankbuster auf DIR',
           };
         }
 
         if (data.role == 'tank' || data.role == 'healer' || data.job == 'blu') {
           return {
             en: 'Shared Tankbuster on' + data.ShortName(matches.target),
+            en: 'Geteilter Tankbuster auf' + data.ShortName(matches.target),
           };
         }
       },
@@ -213,31 +281,50 @@
     {
       id: 'A11S Propeller Wind',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A7F', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A7F', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A7F', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A7F', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A7F', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A7F', capture: false }),
       alertText: {
         en: 'Hide Behind Tower',
+        de: 'Hinter dem Tower verstecken',
       },
     },
     {
       id: 'A11S Plasma Shield',
       regex: Regexes.addedCombatant({ name: 'Plasma Shield', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Plasmaschild', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Bouclier Plasma', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'プラズマシールド', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '等离子护盾', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '플라스마 방어막', capture: false }),
       alertText: {
         en: 'Break Shield From Front',
+        de: 'Schild von vorne zerstören',
       },
     },
     {
       id: 'A11S Plasma Shield Shattered',
       regex: Regexes.gameLog({ line: 'The plasma shield is shattered', capture: false }),
+
       response: Responses.spread('info'),
     },
     {
       id: 'A11S Blassty Charge',
       // The single post-shield charge.  Not "super" blassty charge during limit cut.
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '1A83' }),
+      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '1A83' }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '1A83' }),
+      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '1A83' }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '1A83' }),
+      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '1A83' }),
       alarmText: function(data, matches) {
         if (data.me != matches.target)
           return;
         return {
           en: 'Charge on YOU',
+          de: 'Ansturm auf DIR',
         };
       },
       alertText: function(data, matches) {
@@ -245,6 +332,7 @@
           return;
         return {
           en: 'Charge on ' + data.ShortName(matches.target),
+          en: 'Ansturm auf ' + data.ShortName(matches.target),
         };
       },
     },
