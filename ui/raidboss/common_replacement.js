@@ -29,7 +29,7 @@ let commonReplacement = {
     cn: '--角落--',
     ko: '--구석--',
   },
-    '--dps burn--': {
+  '--dps burn--': {
     de: '--dps burn--',
     fr: '--burn dps--',
     ja: '--dps burn--',
@@ -112,7 +112,7 @@ let commonReplacement = {
     cn: '--西南--',
     ko: '--남서--',
   },
-    '--split--': {
+  '--split--': {
     de: '--trennung--',
     fr: '--séparation--',
     ja: '--分離--',
