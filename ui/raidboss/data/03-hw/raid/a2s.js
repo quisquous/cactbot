@@ -22,6 +22,7 @@
       suppressSeconds: 1,
       infoText: {
         en: 'Stun Soon',
+        de: 'Bald unterbrechen',
         fr: 'Stun bientôt',
         cn: '马上眩晕',
       },
@@ -31,9 +32,14 @@
     {
       id: 'A2S Bomb',
       regex: Regexes.addedCombatant({ name: 'Bomb', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Bombe', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Bombe', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: '爆弾', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '炸弹', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '폭탄', capture: false }),
       alertText: {
         en: 'Bomb',
+        de: 'Bombe',
         fr: 'Bombe',
         cn: '炸弹出现',
       },
@@ -41,7 +47,11 @@
     {
       id: 'A2S Prey',
       regex: Regexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
+      regexDe: Regexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
       regexFr: Regexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
+      regexJa: Regexes.ability({ source: 'Ix号ゴブリウィドー', id: '1413' }),
+      regexCn: Regexes.ability({ source: '9号哥布林黑寡妇', id: '1413' }),
+      regexKo: Regexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: function(data) {
         return data.role == 'healer' || data.job == 'blu';
       },
@@ -57,11 +67,16 @@
     {
       id: 'A2S Prey You',
       regex: Regexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
+      regexDe: Regexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
       regexFr: Regexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
+      regexJa: Regexes.ability({ source: 'Ix号ゴブリウィドー', id: '1413' }),
+      regexCn: Regexes.ability({ source: '9号哥布林黑寡妇', id: '1413' }),
+      regexKo: Regexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: {
         en: 'Boomcannon on YOU',
+        de: 'Großeknall auf DIR',
         fr: 'Double cannon sur VOUS',
         cn: '死刑点名',
       },
@@ -69,7 +84,11 @@
     {
       id: 'A2S Soldier Spawn',
       regex: Regexes.addedCombatant({ name: 'Gordian Soldier', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Gordios-Soldat', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Soldat Gordien', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ゴルディオス・ソルジャー', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '戈耳狄士兵', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '고르디우스 병사', capture: false }),
       run: function(data) {
         delete data.bangyzoom;
       },
@@ -77,12 +96,17 @@
     {
       id: 'A2S Bangyzoom',
       regex: Regexes.ability({ id: 'FD9', target: 'Gordian Soldier', capture: false }),
+      regexDe: Regexes.ability({ id: 'FD9', target: 'Gordios-Soldat', capture: false }),
       regexFr: Regexes.ability({ id: 'FD9', target: 'Soldat Gordien', capture: false }),
+      regexJa: Regexes.ability({ id: 'FD9', target: 'ゴルディオス・ソルジャー', capture: false }),
+      regexCn: Regexes.ability({ id: 'FD9', target: '戈耳狄士兵', capture: false }),
+      regexKo: Regexes.ability({ id: 'FD9', target: '고르디우스 병사', capture: false }),
       condition: function(data) {
         return !data.bangyzoom;
       },
       infoText: {
         en: 'Stun Soldier',
+        de: 'unterbreche Soldat',
         fr: 'Stun sur le soldat',
         cn: '眩晕士兵',
       },
