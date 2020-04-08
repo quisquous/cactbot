@@ -113,7 +113,7 @@ let commonReplacement = {
     ko: '--남서--',
   },
   '--split--': {
-    de: '--trennung--',
+    de: '--teilen--',
     fr: '--séparation--',
     ja: '--分離--',
     cn: '--分離--',
