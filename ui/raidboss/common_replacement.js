@@ -114,10 +114,10 @@ let commonReplacement = {
   },
   '--split--': {
     de: '--teilen--',
-    fr: '--séparation--',
-    ja: '--分離--',
-    cn: '--分離--',
-    ko: '--분리--',
+    fr: '--division--',
+    ja: '--分裂--',
+    cn: '--分裂--',
+    ko: '--나누다--',
   },
   '--sync--': {
     de: '--synchronisation--',
