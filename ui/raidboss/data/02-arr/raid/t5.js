@@ -229,7 +229,7 @@
           return {
             en: 'Hatch on YOU',
             de: 'Austritt auf DIR',
-            fr: 'Eclosion sur VOUS',
+            fr: 'Éclosion sur VOUS',
             cn: '黑球点名',
           };
         }
@@ -239,7 +239,7 @@
           return {
             en: 'Hatch on ' + data.ShortName(matches.target),
             de: 'Austritt auf ' + data.ShortName(matches.target),
-            fr: 'Eclosion sur ' + data.ShortName(matches.target),
+            fr: 'Éclosion sur ' + data.ShortName(matches.target),
             cn: '黑球点' + data.ShortName(matches.target),
           };
         }
@@ -250,7 +250,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'The Right Hand of Bahamut': 'Rechten Hand von Bahamut',
         'Twintania': 'Twintania',
       },
       'replaceText': {
@@ -271,18 +270,17 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'The Right Hand of Bahamut': 'la Serre droite de Bahamut',
         'Twintania': 'Gémellia',
       },
       'replaceText': {
         'Aetheric Profusion': 'Excès d\'éther',
-        'Asclepius': 'Asclépios',
+        'Asclepius Add': 'Add Asclépios',
         'Death Sentence': 'Peine de mort',
         'Divebomb': 'Bombe plongeante',
         'Fireball': 'Boule de feu',
         'Firestorm': 'Tempête de feu',
         'Hatch': 'Éclosion',
-        'Hygieia': 'Hygie',
+        'Hygieia Adds': 'Adds Hygie',
         'Liquid Hell': 'Enfer liquide',
         'Plummet': 'Piqué',
         'Twister': 'Tornade',
