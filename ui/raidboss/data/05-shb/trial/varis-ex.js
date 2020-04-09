@@ -20,14 +20,6 @@
       },
     },
     {
-      id: 'VarisEx Clones Cleanup',
-      regex: Regexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
-      delaySeconds: 20,
-      run: function(data) {
-        delete data.clones;
-      },
-    },
-    {
       id: 'VarisEx Ignis Est',
       regex: Regexes.startsUsing({ source: 'Ignis Est', id: '4CB6', capture: false }),
       delaySeconds: 2,
@@ -123,6 +115,9 @@
       condition: (data) => data.clones == 'active',
       infoText: {
         en: 'Dodge Clones',
+      },
+      run: function(data) {
+        delete data.clones;
       },
     },
     {
