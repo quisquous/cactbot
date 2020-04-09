@@ -95,7 +95,7 @@
         'Titan': 'Titan',
       },
       'replaceText': {
-        'E/W': 'E/O',		  
+        'E/W': 'E/O',
         'all': 'tous',
         'clock': 'horloge',
         'one side': 'un côté',
