@@ -91,7 +91,6 @@
       'locale': 'de',
       'replaceSync': {
         'Imdugud': 'Imdugud',
-        'The Alpha Concourse': 'Alpha-Emergenzzone',
       },
       'replaceText': {
         'Crackle Hiss': 'Knisterndes Fauchen',
@@ -111,18 +110,18 @@
       'locale': 'fr',
       'replaceSync': {
         'Imdugud': 'Imdugud',
-        'The Alpha Concourse': 'secteur des croyants',
       },
       'replaceText': {
+        '1x Son': 'Adds 1x Fils',
+        '2x Son': 'Adds 2x Fils',
         'Crackle Hiss': 'Crachat crépitant',
         'Critical Rip': 'Griffure critique',
         'Cyclonic Chaos': 'Chaos cyclonique',
-        'Daughter': 'Fille',
+        'Daughter Adds': 'Fille',
         'Electric Burst': 'Salve électrique',
         'Electrocharge': 'Charge électrique',
         'Heat Lightning': 'Éclair de chaleur',
         'Random \\+ Charge': 'Aléatoire + Charge',
-        'Son': 'Fils',
         'Spike Flail': 'Fléau à pointes',
         'Wild Charge': 'Charge sauvage',
       },
