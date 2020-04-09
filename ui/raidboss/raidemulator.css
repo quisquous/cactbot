@@ -249,3 +249,8 @@ input[name=fight]:checked + label {
   overflow: hidden;
   max-height: 4em;
 }
+
+/* new styles */
+.tooltip.bs-tooltip-bottom .arrow {
+  left: calc(50% - 0.4rem)!important;
+}

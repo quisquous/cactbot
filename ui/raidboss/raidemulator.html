@@ -5,6 +5,11 @@
   <!-- General Overlay Scripts-->
   <link rel="stylesheet" href="../../resources/defaults.css">
   <link rel="stylesheet" href="../../resources/resize_handle.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
   <script src="../../resources/common.js"></script>
   <script src="../../resources/zone_id.js"></script>
   <script src="../../resources/party.js"></script>
@@ -29,56 +34,42 @@
   <script src="raidemulator.js"></script>
   <link rel="stylesheet" type="text/css" href="raidemulator.css">
 </head>
-<body>
-<div id="container" class="hide"></div>
-  <div id="timeline-container">
-    <div id="timeline-resize-helper" class="resize-helper"></div>
-    <div id="timeline-debug"></div>
-    <widget-list id="timeline"></widget-list>
-  </div>
-  <div id="popup-text-container">
-    <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>How to use: </div><div>First, lock the overlay.</div></span></div>
-    <div id="popup-text-alert" class="text"><div class="holder"></div><span class="resize-helper alert-text"><div>Then, import a Network log into ACT.</div><div>Select the fight in the list below.</div></span></div>
-    <div id="popup-text-info" class="text"><div class="holder"></div><span class="resize-helper info-text"><div>Press the play button.</div><div>(Remember to lock the overlay to hide this text.)</div></span></div>
-  </div>
-  <!-- Fight Picker & Playback -->
-  <div id='playback-controls'>
-    <div id='emulator-input'>
-      <div id='fight-picker'></div>
-      <button onclick='playLogFile()'>Play</button>
-      <button onclick='stopLogFile()'>Stop</button>
-      <button onclick="toggleStoreFight()">Toggle Store</button>
-      <button onclick="clearStorage()">Clear Storage</button>
-      <button onclick="toggleRunTriggers()">Toggle Run</button>
-      <div id='elapsed-time'></div>
-    </div>
-    <div id='info-panel'></div>
-  </div>
-  <!-- Infos & Play as -->
-  <div class="playback-info">
-    <div class="info-element">
-      <div id="player"></div>
-      <div class="subtitle">Current Player</div>
-    </div>
-  </div>
-  <div class="emulator-info">
-      <div class="info-element">
-        <div id="tInfo"></div>
-        <div id="tInfoSub" class="subtitle">Selected Trigger ID</div>
+<body class="bg-secondary">
+  <div class="container-fluid">
+    <div class="row my-3">
+      <div class="col-auto">
+        <button class="btn btn-outline-primary w-auto h-auto play" type="button">
+          <i class="fa fa-play" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-outline-primary w-auto h-auto pause d-none" type="button">
+          <i class="fa fa-pause" aria-hidden="true"></i>
+        </button>
       </div>
-      <div class="info-element right">
-        <div id="party"></div>
-        <div class="subtitle">Player Characters</div>
+      <div class="col">
+        <div class="progress h-100 encounterProgressBar">
+          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
+        </div>
       </div>
+      <div class="col-auto">
+        <div class="d-inline progress-bar-timestamp current-timestamp"></div>
+        <div class="d-inline progress-bar-timestamp divider-timestamp">/</div>
+        <div class="d-inline progress-bar-timestamp duration-timestamp"></div>
+      </div>
+    </div>
+    <div class="row triggerInfo d-none"></div>
+    <div class="row">
+      <div class="col-auto encountersTabColumn">
+        <button class="btn btn-outline-primary w-auto h-auto float-right showEncountersButton" type="button"
+          data-toggle="collapse" data-target="#encountersTab" 
+          aria-expanded="false" aria-controls="encountersTab">
+          <i class="fa fa-bars" aria-hidden="true"></i>
+        </button>
+        <div class="collapse" id="encountersTab">
+          qwer
+        </div>
+      </div>
+      <div class="col">asdf</div>
+    </div>
   </div>
-  <!-- Triggerlines -->
-  <div class="triggerlines">
-    <div id="triggerline-all" class="triggerline all"></div>
-    <div id="triggerline-tank" class="triggerline tank"></div>
-    <div id="triggerline-healer" class="triggerline healer"></div>
-    <div id="triggerline-dps" class="triggerline dps"></div>
-    <div id="triggerline-playAs" class="triggerline all"></div>
-  </div>
-  <div class="emulator-background"></div>
 </body>
 </html>

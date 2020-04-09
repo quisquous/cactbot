@@ -1062,3 +1062,111 @@ function debug(arg) {
   if (arg)
     gEmulatorView.logPlayer.SendLogEvent(['00:0038:Engage!']);
 }
+
+// Simple event bus implementation to decouple things
+class EventBus {
+  constructor() {
+    this.listeners = {};
+  }
+  on(event, callback=undefined, scope=undefined) {
+    this.listeners[event] = this.listeners[event] || [];
+    if (callback !== undefined) {
+      this.listeners[event].push({scope:scope!==undefined?scope:window,callback:callback});
+    } else {
+      return this.listeners[event];
+    }
+  }
+  dispatch(event) {
+    if(this.listeners[event] === undefined) {
+      return;
+    }
+    let args = [];
+    for (let i = 1; i < arguments.length; ++i) {
+      args.push(arguments[i]);
+    }
+
+    for (let i = 0; i < this.listeners[event].length; ++i) {
+      let l = this.listeners[event][i];
+      l.callback.apply(l.scope, args);
+    }
+  }
+};
+
+class Encounter {
+  constructor(logLines) {
+    this.logLines = logLines;
+    // @TODO: initialize players, encounter length, wipe/win
+    this.duration = 0;
+  }
+};
+
+class AnalyzedEncounter extends EventBus {
+  constructor(encounter) {
+    super();
+    this.encounter = encounter;
+    // @TODO: Analyze encounter for each player, store data state for each log line
+  }
+
+  Playback(player, start=0) {
+
+  }
+};
+
+class RaidEmulator extends EventBus {
+  constructor() {
+    super();
+    this.encounters = [];
+    this.currentEncounter = null;
+  }
+  AddEncounter(encounter) {
+    this.encounters.push(encounter);
+  }
+  SetCurrent(index) {
+    this.currentEncounter = new AnalyzedEncounter(this.encounters[index]);
+    this.dispatch('CurrentEncounterChanged', this.currentEncounter);
+  }
+};
+
+function timeToString(time,includeMillis=true) {
+  // Milliseconds
+  let millis = ('00'+(time % 1000)).substr(-3);
+  let secs = ('0'+((time % (60*1000))-millis)/1000).substr(-2);
+  let mins = ('0'+((((time % (60*60*1000))-millis)/1000)-secs)/60).substr(-2);
+  return mins+':'+secs+(includeMillis?'.'+millis:'');
+}
+
+let $progressBarCurrent, $progressBarDuration;
+
+let emulator;
+
+(($) => {
+  $(() => {
+    let $progressBarTooltip = $('.encounterProgressBar').tooltip({
+      animation: false,
+      placement: 'bottom',
+    });
+    $progressBarCurrent = $('.current-timestamp');
+    $progressBarDuration = $('.duration-timestamp');
+    $('.showEncountersButton').on('click', () => {
+      $('.encountersTabColumn').toggleClass('col-auto').toggleClass('col-3');
+    });
+    $('.encounterProgressBar').on('mousemove', function(e) {
+      let percent = e.offsetX / this.offsetWidth;
+      let time = Math.floor(emulator.currentEncounter.encounter.duration * percent);
+      $progressBarTooltip.data('bs.tooltip').config.offset=e.offsetX-(this.offsetWidth/2);
+      $progressBarTooltip.data('bs.tooltip').config.title = timeToString(time);
+      $progressBarTooltip.tooltip('show');
+    });
+    emulator = new RaidEmulator();
+
+    emulator.on('CurrentEncounterChanged', function(encounter) {
+      $progressBarCurrent.text(timeToString(0,false));
+      $progressBarDuration.text(timeToString(encounter.encounter.duration,false));
+    });
+    
+    // Debug code
+    emulator.AddEncounter(new Encounter([]));
+    emulator.encounters[0].duration = 785750;//13:05.750
+    emulator.SetCurrent(0);    
+  });
+})(jQuery);
