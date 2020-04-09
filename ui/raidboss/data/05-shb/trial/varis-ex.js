@@ -13,6 +13,21 @@
       },
     },
     {
+      id: 'VarisEx Clones',
+      regex: Regexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
+      run: function(data) {
+        data.clones = 'active';
+      },
+    },
+    {
+      id: 'VarisEx Clones Cleanup',
+      regex: Regexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
+      delaySeconds: 20,
+      run: function(data) {
+        delete data.clones;
+      },
+    },
+    {
       id: 'VarisEx Ignis Est',
       regex: Regexes.startsUsing({ source: 'Ignis Est', id: '4CB6', capture: false }),
       delaySeconds: 2,
@@ -51,52 +66,61 @@
       },
     },
     {
-      id: 'VarisEx Alea lacta Est',
+      id: 'VarisEx Alea Iacta Est',
       regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
-      response: Responses.getBehind('alarm'),
+      response: Responses.getBehind('alert'),
     },
     {
-      id: 'VarisEx Alea lacta Est Front',
+      id: 'VarisEx Alea Iacta Est Front',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
-      alertText: {
+      infoText: {
         en: 'Go Front',
       },
     },
     {
       id: 'VarisEx Electrified Gunshield',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD7', capture: false }),
-      delaySeconds: 22,
+      delaySeconds: 21,
       response: Responses.knockback(),
     },
     {
       id: 'VarisEx Reinforced Gunshield',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
-      condition: (data) => data.phase != 'phase2',
-      delaySeconds: 10,
-      alarmText: {
-        en: 'Stop',
+      delaySeconds: function(data) {
+        if (data.phase == 'phase2')
+          return 20;
+        return 10;
+      },
+      alertText: {
+        en: 'Stop attacking',
       },
     },
     {
       id: 'VarisEx Loaded Gunshield',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD8', capture: false }),
       delaySeconds: 10,
-      alarmText: {
+      infoText: {
         en: 'Spread soon',
       },
     },
     {
-      id: 'VarisEx Reinforced Gunshield 2',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
-      condition: (data) => data.phase == 'phase2',
-      delaySeconds: 20,
-      alarmText: {
-        en: 'Stop',
+      id: 'VarisEx Reinforcements',
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CEA', capture: false }),
+      infoText: function(data) {
+        if (data.role == 'tank') {
+          return {
+            en: 'Grab Tethers',
+          };
+        }
+        return {
+          en: 'Kill Adds',
+        };
       },
     },
     {
-      id: 'VarisEx Terminus Est',
+      id: 'VarisEx Terminus Est Clones',
       regex: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
+      condition: (data) => data.clones == 'active',
       infoText: {
         en: 'Dodge Clones',
       },
