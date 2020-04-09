@@ -68,9 +68,9 @@
         'Titan': 'Titan',
       },
       'replaceText': {
-        '(all)': '(alle)',
-        '(clock)': '(Uhrzeiger)',
-        '(one side)': '(eine Seite)',
+        'all': 'alle',
+        'clock': 'Uhrzeiger',
+        'one side': 'eine Seite',
         'Burst': 'Einschlag',
         'Bury': 'Begraben',
         'Earthen Fury': 'Gaias Zorn',
@@ -95,9 +95,10 @@
         'Titan': 'Titan',
       },
       'replaceText': {
-        '(all)': '(tous)',
-        '(clock)': '(horloge)',
-        '(one side)': '(un côté)',
+        'E/W': 'E/O',		  
+        'all': 'tous',
+        'clock': 'horloge',
+        'one side': 'un côté',
         'Burst': 'Explosion',
         'Bury': 'Ensevelissement',
         'Earthen Fury': 'Fureur tellurique',
@@ -122,9 +123,9 @@
         'Titan': 'タイタン',
       },
       'replaceText': {
-        '(all)': '(all)', // FIXME
-        '(clock)': '(clock)', // FIXME
-        '(one side)': '(one side)', // FIXME
+        'all': 'all', // FIXME
+        'clock': 'clock', // FIXME
+        'one side': 'one side', // FIXME
         'Burst': '大爆発',
         'Bury': '衝撃',
         'Earthen Fury': '大地の怒り',
@@ -149,9 +150,9 @@
         'Titan': '泰坦',
       },
       'replaceText': {
-        '(all)': '(all)', // FIXME
-        '(clock)': '(clock)', // FIXME
-        '(one side)': '(one side)', // FIXME
+        'all': 'all', // FIXME
+        'clock': 'clock', // FIXME
+        'one side': 'one side', // FIXME
         'Burst': '爆炸',
         'Bury': '塌方',
         'Earthen Fury': '大地之怒',
@@ -176,9 +177,9 @@
         'Titan': '타이탄',
       },
       'replaceText': {
-        '(all)': '(all)', // FIXME
-        '(clock)': '(clock)', // FIXME
-        '(one side)': '(one side)', // FIXME
+        'all': 'all', // FIXME
+        'clock': 'clock', // FIXME
+        'one side': 'one side', // FIXME
         'Burst': '대폭발',
         'Bury': '충격',
         'Earthen Fury': '대지의 분노',
