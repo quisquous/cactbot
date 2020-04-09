@@ -117,7 +117,7 @@ let commonReplacement = {
     fr: '--division--',
     ja: '--分裂--',
     cn: '--分裂--',
-    ko: '--나누다--',
+    ko: '--분열--',
   },
   '--sync--': {
     de: '--synchronisation--',
