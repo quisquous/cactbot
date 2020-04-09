@@ -120,7 +120,7 @@
       alarmText: {
         en: 'Lightning on YOU',
         de: 'Blitz auf DIR',
-        fr: 'Eclair sur VOUS',
+        fr: 'Éclair sur VOUS',
         cn: '雷点名',
       },
     },
@@ -239,7 +239,6 @@
       'locale': 'de',
       'replaceSync': {
         'Kaliya': 'Kaliya',
-        'The Core Override': 'Kern-Steuereinheit',
       },
       'replaceText': {
         'Barofield': 'Baro-Feld',
@@ -259,7 +258,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Kaliya': 'Kaliya',
-        'The Core Override': 'l\'unité de contrôle du Cœur',
       },
       'replaceText': {
         'Barofield': 'Barotraumatisme',
