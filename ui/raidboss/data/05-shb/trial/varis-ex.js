@@ -10,7 +10,6 @@
       regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
       run: function(data) {
         data.phase = 'phase2';
-        data.resetState();
       },
     },
     {
@@ -23,7 +22,7 @@
       id: 'VarisEx Ventus Est',
       regex: Regexes.startsUsing({ source: 'Ventus Est', id: '4CC7', capture: false }),
       delaySeconds: 2,
-      response: Responses.getIn(),
+      response: Responses.getIn('info'),
     },
     {
       id: 'VarisEx Altius',
@@ -35,13 +34,15 @@
     {
       id: 'VarisEx Citius',
       regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CF0' }),
-      condition: function(data) {
-        return data.role == 'tank' || data.role == 'healer';
-      },
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
             en: 'Buster on YOU',
+          };
+        }
+        if (data.role == 'dps') {
+          return {
+            en: 'Avoid Tanks',
           };
         }
         return {
@@ -52,8 +53,13 @@
     {
       id: 'VarisEx Alea lacta Est',
       regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
-      alarmText: {
-        en: 'Get Behind then Front',
+      response: Responses.getBehind('alarm'),
+    },
+    {
+      id: 'VarisEx Alea lacta Est Front',
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
+      alertText: {
+        en: 'Go Front',
       },
     },
     {
@@ -68,7 +74,15 @@
       condition: (data) => data.phase != 'phase2',
       delaySeconds: 10,
       alarmText: {
-        en: 'Stop Attacking',
+        en: 'Stop',
+      },
+    },
+    {
+      id: 'VarisEx Loaded Gunshield',
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD8', capture: false }),
+      delaySeconds: 10,
+      alarmText: {
+        en: 'Spread soon',
       },
     },
     {
@@ -77,7 +91,14 @@
       condition: (data) => data.phase == 'phase2',
       delaySeconds: 20,
       alarmText: {
-        en: 'Stop Attacking',
+        en: 'Stop',
+      },
+    },
+    {
+      id: 'VarisEx Terminus Est',
+      regex: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
+      infoText: {
+        en: 'Dodge Clones',
       },
     },
     {
