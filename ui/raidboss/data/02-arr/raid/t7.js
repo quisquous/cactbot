@@ -228,7 +228,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Bioweapon Storage': 'Biowaffen-Magazin',
         'Lamia Prosector': 'Lamia-Prosektorin',
         'Melusine': 'Melusine',
       },
@@ -249,7 +248,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bioweapon Storage': 'l\'Entrepôt d\'armes biologiques',
         'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
       },
