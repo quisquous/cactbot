@@ -35,6 +35,7 @@
       infoText: {
         en: 'Move Bosses',
         de: 'Bosse bewegen',
+        fr: 'Déplacez les boss',
         ja: 'ボス動かして',
         ko: '보스 이동 주차',
         cn: '移动Boss',
@@ -49,6 +50,7 @@
       alertText: {
         en: 'Sluice on YOU',
         de: 'Schleusenöffnung auf DIR',
+        fr: 'Eclusage sur Vous',
         cn: '蓝点名',
       },
     },
@@ -59,6 +61,7 @@
       infoText: {
         en: 'Tank Debuff',
         de: 'Tank Debuff',
+        fr: 'Debuff vulnérabilité',
         cn: '坦克 Debuff',
       },
     },
@@ -69,6 +72,7 @@
       infoText: {
         en: 'Healer Debuff',
         de: 'Heiler Debuff',
+        fr: 'Debuff soins',
         cn: '奶妈 Debuff',
       },
     },
@@ -80,6 +84,7 @@
       infoText: {
         en: 'Damage Debuff',
         de: 'DD Debuff',
+        fr: 'Debuff dégats',
         cn: 'DPS Debuff',
       },
     },
@@ -94,6 +99,7 @@
       infoText: {
         en: 'Burn Higher HP Hand',
         de: 'Fokusiere Hand mit mehr HP',
+        fr: 'Burn sur la main au PV le plus élevée',
         cn: '转火血多手',
       },
     },
@@ -111,6 +117,7 @@
       alertText: {
         en: 'Drainage on YOU',
         de: 'Entwässerung auf DIR',
+        fr: 'Drainage sur VOUS',
         cn: '连线点名',
       },
     },
@@ -129,6 +136,7 @@
       infoText: {
         en: 'Get drainage tether',
         de: 'Hole die Entwässerungs-Verbindung',
+        fr: 'Prenez un lien drainage',
         cn: '接线',
       },
     },
@@ -172,6 +180,7 @@
           return {
             en: 'Repel: close to ' + data.ShortName(partner),
             de: 'Abstoß: nahe bei ' + data.ShortName(partner),
+            fr: 'Répulsion : Rapprochez-vous de ' + data.ShortName(partner),
             cn: '同极：靠近' + data.ShortName(partner),
           };
         }
@@ -179,6 +188,7 @@
         return {
           en: 'Attract: away from ' + data.ShortName(partner),
           de: 'Anziehung: weg von ' + data.ShortName(partner),
+          fr: 'Attraction : Eloignez-vous de ' + data.ShortName(partner),
           cn: '异极：远离' + data.ShortName(partner),
         };
       },
@@ -210,6 +220,7 @@
         return {
           en: 'Throttle on ' + data.ShortName(matches.target),
           de: 'Vollgas auf ' + data.ShortName(matches.target),
+          fr: 'Geôle liquide sur ' + data.ShortName(matches.target),
           cn: '窒息点' + data.ShortName(matches.target),
         };
       },
@@ -222,6 +233,7 @@
           return {
             en: 'Claw on YOU',
             de: 'Klaue auf DIR',
+            fr: 'Griffe sur VOUS',
             cn: '抓奶手点名',
           };
         }
@@ -231,6 +243,7 @@
           return {
             en: 'Claw on ' + data.ShortName(matches.target),
             de: 'Klaue auf ' + data.ShortName(matches.target),
+            fr: 'Griffe sur ' + data.ShortName(matches.target),
             cn: '抓奶手点' + data.ShortName(matches.target),
           };
         }
@@ -251,7 +264,43 @@
       infoText: {
         en: 'Embolus: Move Boss',
         de: 'Pfropfen: Boss bewegen',
+        fr: 'Caillot : Déplacez le boss',
         cn: '水球出现：拉走BOSS',
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Hydrate Core': 'Noyau d\'hydrate',
+        'Liquid Limb': 'Membre Liquide',
+        'Liquid Rage': 'Furie liquide',
+        'Living Liquid': 'Liquide vivant',
+      },
+      'replaceText': {
+        'Cascade': 'Cascade',
+        'Digititis': 'Phalangette',
+        'Drainage': 'Drainage',
+        'Embolus': 'Caillot',
+        'Equal Concentration': 'Nivellement aqueux',
+        'Ferrofluid': 'Ferrofluide',
+        'Fluid Claw': 'Griffe fluide',
+        'Fluid Strike': 'Frappe fluide',
+        'Fluid Swing': 'Coup fluide',
+        'Gear Lubricant': 'Lubrifiant d\'engrenage',
+        'Hand Of Pain': 'Main de douleur',
+        'Hand Of Parting': 'Main de séparation',
+        'Hand Of Prayer': 'Main de prière',
+        'Hydromorph': 'Hydromorphe',
+        'Magnetism': 'Magnétisme',
+        'Piston Lubricant': 'Lubrifiant de piston',
+        'Protean Wave': 'Vague inconstante',
+        'Repel': 'Repoussement',
+        'Sluice': 'Éclusage',
+        'Splash': 'Éclaboussement',
+        'Throttle': 'Geôle liquide',
+        'Wash Away': 'Lessivage',
       },
     },
   ],
