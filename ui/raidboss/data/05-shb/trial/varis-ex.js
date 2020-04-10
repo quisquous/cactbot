@@ -61,7 +61,35 @@
       regexDe: Regexes.startsUsing({ id: '4CF0', source: 'Varis yae Galvus' }),
       regexFr: Regexes.startsUsing({ id: '4CF0', source: 'Varis yae Galvus' }),
       regexJa: Regexes.startsUsing({ id: '4CF0', source: 'ヴァリス・イェー・ガルヴァス' }),
-      response: Responses.tankBuster(),
+      alertText: function (data, matches) {
+        if (data.me == matches.target) {
+          return {
+            en: 'Buster on YOU',
+            de: 'Tankbuster auf DIR',
+            fr: 'Tankbuster sur VOUS',
+            ja: '自分にタンクバスター',
+            cn: '死刑点名',
+            ko: '탱버 대상자',
+          };
+        }
+        if (data.role == 'dps') {
+          return {
+            en: 'Avoid tank cleave',
+            de: 'Tank Cleave ausweichen',
+            fr: 'Evitez le cleave sur le tank',
+            ja: '前方範囲攻撃を避け',
+            ko: '광역 탱버 피하기',
+            cn: '远离顺劈',
+          };
+        }
+        return {
+          en: 'Buster on ' + data.ShortName(target),
+          de: 'Tankbuster auf ' + data.ShortName(target),
+          fr: 'Tankbuster sur ' + data.ShortName(target),
+          ja: data.ShortName(target) + 'にタンクバスター',
+          cn: '死刑 -> ' + data.ShortName(target),
+          ko: '탱버 → ' + data.ShortName(target),
+        };
     },
     {
       id: 'VarisEx Alea Iacta Est',
@@ -124,7 +152,23 @@
       regexDe: Regexes.ability({ id: '4CEA', source: 'Varis yae Galvus', capture: false }),
       regexFr: Regexes.ability({ id: '4CEA', source: 'Varis yae Galvus', capture: false }),
       regexJa: Regexes.ability({ id: '4CEA', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
-      response: Responses.killAdds(),
+      infoText: function (data) {
+        if (data.role == 'tank') {
+          return {
+            en: 'Grab Tethers',
+            ja: '線を取る',
+            cn: '接线',
+          };
+        }
+        return {
+          en: 'Kill adds',
+          de: 'Adds besiegen',
+          fr: 'Tuez les adds',
+          ja: '雑魚を処理',
+          ko: '쫄 잡기',
+          cn: '击杀小怪',
+        };
+      },
     },
     {
       id: 'VarisEx Terminus Est Clones',
