@@ -475,26 +475,6 @@
         });
         return p;
       },
-      run: function(data, matches) {
-        if (data.options.cactbote8sLightRampantStrat === undefined ||
-          data.options.cactbote8sLightRampantStrat === 'none' ||
-          data.rampantOrb === null)
-          return;
-
-        if (data.options.cactbote8sLightRampantStrat === 'sharingan') {
-          // Take orb to opposite side of spawn
-          if (data.rampantOrb.PosX > 105)
-            data.rampantOrbText = 'W';
-          else if (data.rampantOrb.PosX < 95)
-            data.rampantOrbText = 'E';
-          else if (data.rampantOrb.PosY > 105)
-            data.rampantOrbText = 'S';
-          else if (data.rampantOrb.PosY < 95)
-            data.rampantOrbText = 'N';
-          else
-            data.rampantOrbText = '???';
-        }
-      },
       infoText: function(data) {
         if (data.options.cactbote8sLightRampantStrat === undefined ||
           data.options.cactbote8sLightRampantStrat === 'none' ||
@@ -515,6 +495,26 @@
           ko: '구슬 대상자, '+data.rampantOrbText,
           cn: '拉球, '+data.rampantOrbText,
         };
+      },
+      run: function(data, matches) {
+        if (data.options.cactbote8sLightRampantStrat === undefined ||
+          data.options.cactbote8sLightRampantStrat === 'none' ||
+          data.rampantOrb === null)
+          return;
+
+        if (data.options.cactbote8sLightRampantStrat === 'sharingan') {
+          // Take orb to opposite side of spawn
+          if (data.rampantOrb.PosX > 105)
+            data.rampantOrbText = 'W';
+          else if (data.rampantOrb.PosX < 95)
+            data.rampantOrbText = 'E';
+          else if (data.rampantOrb.PosY > 105)
+            data.rampantOrbText = 'S';
+          else if (data.rampantOrb.PosY < 95)
+            data.rampantOrbText = 'N';
+          else
+            data.rampantOrbText = '???';
+        }
       },
     },
     {
