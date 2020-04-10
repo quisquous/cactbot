@@ -1,5 +1,5 @@
 # Memoria Misera Extreme
-# -ic "Phantom Varis" -ii 4CEF 4CF1 4CDD 4CEE
+# -ic "Phantom Varis" -ii 4CF1 4CDD 4CEE
 hideall "--Reset--"
 hideall "--sync--"
 
@@ -29,8 +29,9 @@ hideall "--sync--"
 156.0 "Ventus Est Ready" sync /:Varis Yae Galvus:4CC6:/
 163.6 "Magitek Burst" sync /:Varis Yae Galvus:4CDE:/
 164.2 "Ventus Est Action"
-166.7 "Magitek Burst Hit"
-177.1 "Vivere Militare Est" sync /:Varis Yae Galvus:4CCC:/
+166.7 "Magitek Burst"
+177.1 "--untargetable--" duration 5
+177.1 "Vivere Militare Est" sync /:Varis Yae Galvus:4CCC:/ duration 5
 
 # Phase 2
 200.1 "--targetable--"
@@ -50,8 +51,13 @@ hideall "--sync--"
 317.0 "Ignis Est Action"
 324.3 "Terminus Est" # sync /:Terminus Est:4CB4:/
 324.5 "Festina Lente" sync /:Varis Yae Galvus:4CC9:/
-# since trigger would notice tankbuster with startsUsing, timeline would not show it
-# 312.7 "Citius" sync /:Varis Yae Galvus:4CF0:/
+335.7 "Citius" sync /:Varis Yae Galvus:4CF0:/
+# 
+351.8 "Reinforced Gunshield?"
+360.9 "Altius" 
+369.8 "Ventus Est Ready"
+371.0 "Terminus Est"
+373.1 "Magitek Shielding"
 
 
 # group 2 (Reinforced Gunshield, block)
@@ -61,6 +67,12 @@ hideall "--sync--"
 519.2 "Terminus Est" # sync /:Terminus Est:4CB4:/
 521.3 "Magitek Shielding" sync /:Varis Yae Galvus:4CDB:/
 526.1 "Ventus Est Action" sync /:Ventus Est:4CC7:/
+536.5 "Citius" sync /:Varis Yae Galvus:4CF0:/
+# 
+554.7 "Electrified Gunshield?" 
+559.8 "Reinforcements"
+565.8 "Terminus Est"
+568.9 "Aetherochemical Grenado"
 
 # group 3 (Electrified Gunshield, knockback)
 700.0 "Electrified Gunshield" sync /:Varis Yae Galvus:4CD7:/ window 500,100
@@ -70,6 +82,13 @@ hideall "--sync--"
 723.9 "Terminus Est" # sync /:Terminus Est:4CB4:/
 726.6 "Magitek Shock" sync /:Varis Yae Galvus:4CDA:/
 737.5 "Alea Iacta Est" sync /:Varis Yae Galvus:4CD2:/
+# 
+758.7 "Reinforced Gunshield?"
+767.8 "Altius"
+776.6 "Ventus Est Ready"
+777.9 "Terminus Est"
+780.0 "Magitek Shielding"
+784.8 "Ventus Est Action"
 # ==================== random groups ==================
 
 
@@ -80,14 +99,14 @@ hideall "--sync--"
 
 # Phase 5
 1056.8 "Loaded Gunshield" sync /:Varis Yae Galvus:4CD8:/ window 56.8,5
-1066.0 "Fortius" 
+1066.0 "Fortius" sync /:Varis Yae Galvus:4CE7:/
 1078.5 "Magitek Burst" sync /:Varis Yae Galvus:4CDE:/
 1086.7 "Festina Lente" sync /:Varis Yae Galvus:4CC9:/
 1097.9 "Citius" sync /:Varis Yae Galvus:4CF0:/
 
 1106.7 "Terminus Est"
 1111.1 "Electrified Gunshield" sync /:Varis Yae Galvus:4CD7:/
-1120.3 "Fortius" 
+1120.3 "Fortius" sync /:Varis Yae Galvus:4CE7:/
 1137.7 "Magitek Shock" sync /:Varis Yae Galvus:4CDA:/
 1151.5 "Terminus Est"
 1155.9 "Altius" sync /:Varis Yae Galvus:4CCA:/
@@ -102,15 +121,15 @@ hideall "--sync--"
 1213.1 "Alea Iacta Est" sync /:Varis Yae Galvus:4CD2:/
 1218.6 "Ignis Est Action"
 
-1230.1 "Loaded Gunshield" sync /:Varis Yae Galvus:4CD8:/
-1239.3 "Fortius" 
-1254.8 "Magitek Burst" sync /:Varis Yae Galvus:4CDE:/
-1259.9 "Festina Lente" sync /:Varis Yae Galvus:4CC9:/
-1271.2 "Citius" sync /:Varis Yae Galvus:4CF0:/
+1235.7 "Loaded Gunshield" sync /:Varis Yae Galvus:4CD8:/
+1244.9 "Fortius" sync /:Varis Yae Galvus:4CE7:/
+1260.4 "Magitek Burst" sync /:Varis Yae Galvus:4CDE:/
+1265.5 "Festina Lente" sync /:Varis Yae Galvus:4CC9:/
+1276.8 "Citius" sync /:Varis Yae Galvus:4CF0:/
 
-1280.0 "Altius" sync /:Varis Yae Galvus:4CCA:/
-1284.6 "Electrified Gunshield" sync /:Varis Yae Galvus:4CD7:/
-1293.8 "Fortius" 
-1308.9 "Terminus Est"
-1311.2 "Magitek Shock" sync /:Varis Yae Galvus:4CDA:/
-1325.1 "Enrage"
+1285.6 "Terminus Est"
+1290.2 "Electrified Gunshield" sync /:Varis Yae Galvus:4CD7:/
+1299.4 "Fortius" sync /:Varis Yae Galvus:4CE7:/
+1314.5 "Terminus Est"
+1316.8 "Magitek Shock" sync /:Varis Yae Galvus:4CDA:/
+1330.7 "Enrage"
