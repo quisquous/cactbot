@@ -250,6 +250,7 @@
     {
       'locale': 'de',
       'replaceSync': {
+        'The Right Hand of Bahamut': 'Rechten Hand von Bahamut',
         'Twintania': 'Twintania',
       },
       'replaceText': {
@@ -270,6 +271,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        'The Right Hand of Bahamut': 'la Serre droite de Bahamut',
         'Twintania': 'Gémellia',
       },
       'replaceText': {
