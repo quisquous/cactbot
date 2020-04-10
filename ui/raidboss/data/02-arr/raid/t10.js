@@ -91,6 +91,7 @@
       'locale': 'de',
       'replaceSync': {
         'Imdugud': 'Imdugud',
+        'The Alpha Concourse': 'Alpha-Emergenzzone',
       },
       'replaceText': {
         'Crackle Hiss': 'Knisterndes Fauchen',
@@ -110,6 +111,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Imdugud': 'Imdugud',
+        'The Alpha Concourse': 'secteur des croyants',
       },
       'replaceText': {
         '1x Son / 1x Daughter Adds': 'Adds 1x Fils / 1x Fille',
