@@ -322,11 +322,12 @@
       id: 'E8S Refulgent Chain',
       regex: Regexes.tether({ id: '006E' }),
       condition: function(data, matches) {
-        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'None')
+        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'none')
           return data.me == matches.source;
 
         if (data.options.cactbote8sLightRampantStrat === 'sharingan') {
-          data.rampant = data.rampant || {
+          data.rampant = data.rampant || {};
+          data.rampant.chain = data.rampant.chain || {
             chains: {},
             total: 0,
             meChain: false,
@@ -334,44 +335,44 @@
             chainSwapDps: 'Stay',
           };
           if (data.party.isTank(matches.source)) {
-            data.rampant.chains.tank = matches;
+            data.rampant.chain.chains.tank = matches;
           } else {
             if (data.party.isHealer(matches.source)) {
-              data.rampant.chains.healer = matches;
+              data.rampant.chain.chains.healer = matches;
             } else {
-              if (data.rampant.chains.dps1 === undefined)
-                data.rampant.chains.dps1 = matches;
+              if (data.rampant.chain.chains.dps1 === undefined)
+                data.rampant.chain.chains.dps1 = matches;
               else
-                data.rampant.chains.dps2 = matches;
+                data.rampant.chain.chains.dps2 = matches;
             }
             if (data.party.isTank(matches.target))
-              data.rampant.chains.tankReverse = matches;
+              data.rampant.chain.chains.tankReverse = matches;
           }
-          ++data.rampant.total;
-          data.rampant.meChain = data.rampant.meChain || data.me == matches.source;
-          if (data.rampant.total===4) {
+          ++data.rampant.chain.total;
+          data.rampant.chain.meChain = data.rampant.chain.meChain || data.me == matches.source;
+          if (data.rampant.chain.total===4) {
             // First figure out which DPS is in which corner
             // So we can ensure dps1 is southwest and dps2 is southeast
             let meleePriority = ['MNK', 'DRG', 'NIN', 'SAM'];
             let rangedPriority = ['BRD', 'MCH', 'DNC', 'BLM', 'SMN', 'RDM'];
-            let dps1Role = data.party.jobName(data.rampant.chains.dps1.source);
-            let dps2Role = data.party.jobName(data.rampant.chains.dps2.source);
+            let dps1Role = data.party.jobName(data.rampant.chain.chains.dps1.source);
+            let dps2Role = data.party.jobName(data.rampant.chain.chains.dps2.source);
             let dps1Priority = meleePriority.indexOf(dps1Role);
             let dps2Priority = meleePriority.indexOf(dps2Role);
             if (dps1Priority >= 0 && dps2Priority >= 0) {
               // Both melee, so go on priority
               if (dps1Priority > dps2Priority) {
                 // Swap, they're out of order
-                let tmp = data.rampant.chains.dps1;
-                data.rampant.chains.dps1 = data.rampant.chains.dps2;
-                data.rampant.chains.dps2 = tmp;
+                let tmp = data.rampant.chain.chains.dps1;
+                data.rampant.chain.chains.dps1 = data.rampant.chain.chains.dps2;
+                data.rampant.chain.chains.dps2 = tmp;
               }
             } else if (dps1Priority >= 0 || dps2Priority >= 0) {
               if (dps2Priority >= 0) {
                 // Swap, they're out of order
-                let tmp = data.rampant.chains.dps1;
-                data.rampant.chains.dps1 = data.rampant.chains.dps2;
-                data.rampant.chains.dps2 = tmp;
+                let tmp = data.rampant.chain.chains.dps1;
+                data.rampant.chain.chains.dps1 = data.rampant.chain.chains.dps2;
+                data.rampant.chain.chains.dps2 = tmp;
               }
             } else {
               // Both ranged, so go on priority
@@ -379,41 +380,41 @@
               dps2Priority = rangedPriority.indexOf(dps2Role);
               if (dps1Priority > dps2Priority) {
                 // Swap, they're out of order
-                let tmp = data.rampant.chains.dps1;
-                data.rampant.chains.dps1 = data.rampant.chains.dps2;
-                data.rampant.chains.dps2 = tmp;
+                let tmp = data.rampant.chain.chains.dps1;
+                data.rampant.chain.chains.dps1 = data.rampant.chain.chains.dps2;
+                data.rampant.chain.chains.dps2 = tmp;
               }
             }
             // All positions based on tank tethers
             let tankTether1 = (
-              data.rampant.chains.tank.target === data.rampant.chains.healer.source ? 'NE' : (
-                data.rampant.chains.tank.target === data.rampant.chains.dps1.source ? 'SW' : 'SE'
+              data.rampant.chain.chains.tank.target === data.rampant.chain.chains.healer.source ? 'NE' : (
+                data.rampant.chain.chains.tank.target === data.rampant.chain.chains.dps1.source ? 'SW' : 'SE'
               )
             );
             let tankTether2 = (
-              data.rampant.chains.tankReverse.source === data.rampant.chains.healer.target ? 'NE' : (
-                data.rampant.chains.tankReverse.source === data.rampant.chains.dps1.target ? 'SW' : 'SE'
+              data.rampant.chain.chains.tankReverse.source === data.rampant.chain.chains.healer.target ? 'NE' : (
+                data.rampant.chain.chains.tankReverse.source === data.rampant.chain.chains.dps1.target ? 'SW' : 'SE'
               )
             );
             if ((tankTether1 === 'NE' && tankTether2 === 'SW') ||
                 (tankTether1 === 'SW' && tankTether2 === 'NE')) {
               // If the tank is tethered to NE and SW (makes a box)
               // Tank swaps with SW to make bowtie
-              data.rampant.chainSwapTank = 'SW';
-              data.rampant.chainSwapDps = data.rampant.chains.dps1.source;
+              data.rampant.chain.chainSwapTank = 'SW';
+              data.rampant.chain.chainSwapDps = data.rampant.chain.chains.dps1.source;
             } else if ((tankTether1 === 'NE' && tankTether2 === 'SE') ||
                 (tankTether1 === 'SE' && tankTether2 === 'NE')) {
               // If the tank is tethered to NE and SE (makes an hourglass)
               // Tank swaps with SE to make bowtie
-              data.rampant.chainSwapTank = 'SE';
-              data.rampant.chainSwapDps = data.rampant.chains.dps2.source;
+              data.rampant.chain.chainSwapTank = 'SE';
+              data.rampant.chain.chainSwapDps = data.rampant.chain.chains.dps2.source;
             }
           }
-          return data.rampant.total===4;
+          return data.rampant.chain.total===4;
         }
       },
       infoText: function(data, matches) {
-        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'None') {
+        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'none') {
           return {
             en: 'Chain on YOU',
             de: 'Kette auf DIR',
@@ -425,15 +426,15 @@
 
         if (data.options.cactbote8sLightRampantStrat === 'sharingan') {
           let ret = {};
-          if (data.rampant.meChain) {
+          if (data.rampant.chain.meChain) {
             let extra = '';
             if (data.rampant.chainSwapTank!=='Stay') {
-              if (data.rampant.chains.tank.source == data.me)
-                extra = ', Swap '+data.rampant.chainSwapTank;
+              if (data.rampant.chain.chains.tank.source == data.me)
+                extra = ', Swap '+data.rampant.chain.chainSwapTank;
               else if (data.rampant.chainSwapDps == data.me)
                 extra = ', Swap NW';
               else if (data.party.isHealer(data.me))
-                extra = ', Tank swap with '+data.rampant.chainSwapTank;
+                extra = ', Tank swap with '+data.rampant.chain.chainSwapTank;
             }
             ret = {
               en: 'Chain on YOU'+extra,
@@ -453,7 +454,7 @@
       regex: Regexes.tether({ id: '0002' }),
       condition: Conditions.targetIsYou(),
       promise: function(data, matches) {
-        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'None')
+        if (data.options.cactbote8sLightRampantStrat === undefined || data.options.cactbote8sLightRampantStrat === 'none')
           return null;
 
         let p = new Promise(async (res) => {
@@ -461,21 +462,22 @@
             call: 'getCombatants',
             ids: [matches.sourceId],
           });
+          data.rampant = data.rampant || {};
           if (!(combatantData !== null &&
             combatantData.combatants &&
             combatantData.combatants.length)) {
-            data.rampantOrb = null;
+            data.rampant.orb = null;
             res();
             return;
           }
-          data.rampantOrb = combatantData.combatants.pop();
+          data.rampant.orb = combatantData.combatants.pop();
           res();
         });
         return p;
       },
       run: function(data, matches) {
         if (data.options.cactbote8sLightRampantStrat === undefined ||
-          data.options.cactbote8sLightRampantStrat === 'None' ||
+          data.options.cactbote8sLightRampantStrat === 'none' ||
           data.rampantOrb === null)
           return;
 
@@ -495,7 +497,7 @@
       },
       infoText: function(data) {
         if (data.options.cactbote8sLightRampantStrat === undefined ||
-          data.options.cactbote8sLightRampantStrat === 'None' ||
+          data.options.cactbote8sLightRampantStrat === 'none' ||
           data.rampantOrb === null) {
           return {
             en: 'Orb on YOU',
