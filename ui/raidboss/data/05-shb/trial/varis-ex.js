@@ -62,7 +62,8 @@
       regexFr: Regexes.startsUsing({ id: '4CF0', source: 'Varis yae Galvus' }),
       regexJa: Regexes.startsUsing({ id: '4CF0', source: 'ヴァリス・イェー・ガルヴァス' }),
       alertText: function(data, matches) {
-        if (data.me == matches.target) {
+        const target = matches.target;
+        if (data.me == target) {
           return {
             en: 'Buster on YOU',
             de: 'Tankbuster auf DIR',
