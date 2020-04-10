@@ -61,7 +61,7 @@
       regexDe: Regexes.startsUsing({ id: '4CF0', source: 'Varis yae Galvus' }),
       regexFr: Regexes.startsUsing({ id: '4CF0', source: 'Varis yae Galvus' }),
       regexJa: Regexes.startsUsing({ id: '4CF0', source: 'ヴァリス・イェー・ガルヴァス' }),
-      alertText: function (data, matches) {
+      alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
             en: 'Buster on YOU',
@@ -90,6 +90,7 @@
           cn: '死刑 -> ' + data.ShortName(target),
           ko: '탱버 → ' + data.ShortName(target),
         };
+      },
     },
     {
       id: 'VarisEx Alea Iacta Est',
@@ -152,7 +153,7 @@
       regexDe: Regexes.ability({ id: '4CEA', source: 'Varis yae Galvus', capture: false }),
       regexFr: Regexes.ability({ id: '4CEA', source: 'Varis yae Galvus', capture: false }),
       regexJa: Regexes.ability({ id: '4CEA', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
-      infoText: function (data) {
+      infoText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Grab Tethers',
