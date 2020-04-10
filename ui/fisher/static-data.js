@@ -4233,6 +4233,14 @@ let gFisherData = {
         'Matthai',
         'Matthaie',
       ],
+      '29673': [
+        'Weisenkoralle',
+        'Weisenkorallen',
+      ],
+      '29678': [
+        'Drachenknochenmuschel',
+        'Drachenknochenmuscheln',
+      ],
       '29718': [
         'Wurfdolchfisch',
         'Wurfdolchfische',
@@ -6930,6 +6938,14 @@ let gFisherData = {
       '28942': [
         'tarnished shark',
         'tarnished sharks',
+      ],
+      '29673': [
+        'piece of thinker\'s coral',
+        'pieces of thinker\'s coral',
+      ],
+      '29678': [
+        'dragonspine',
+        'dragonspines',
       ],
       '29718': [
         'tossed dagger',
@@ -10338,6 +10354,14 @@ let gFisherData = {
         'requin terni',
         'requins ternis',
       ],
+      '29673': [
+        'corail sapient',
+        'coraux sapients',
+      ],
+      '29678': [
+        'coquillage draconique',
+        'coquillages draconiques',
+      ],
       '29718': [
         'dague de Merlthor',
         'dagues de Merlthor',
@@ -11507,6 +11531,8 @@ let gFisherData = {
       '28940': '\u30c8\u30e9\u30a4\u30dd\u30c3\u30c9',
       '28941': '\u30b5\u30cb\u30fc\u30d0\u30bf\u30d5\u30e9\u30a4',
       '28942': '\u30bf\u30fc\u30cb\u30c3\u30b7\u30e5\u30b7\u30e3\u30fc\u30af',
+      '29673': '\u667a\u6167\u73ca\u745a',
+      '29678': '\u7adc\u9aa8\u8c9d',
       '29718': '\u30b9\u30ed\u30a6\u30f3\u30c0\u30ac\u30fc',
       '29719': '\u30b8\u30e3\u30b9\u30d1\u30fc\u30d8\u30c3\u30c9',
       '29720': '\u30e1\u30eb\u30c8\u30fc\u30eb\u30ed\u30d6\u30b9\u30bf\u30fc',
@@ -13200,6 +13226,7 @@ let gFisherData = {
       12783,
       12804,
       12819,
+      29673,
       15632,
     ],
     '2048': [
@@ -13361,6 +13388,7 @@ let gFisherData = {
       12824,
       12809,
       12823,
+      29678,
       15627,
     ],
     '2257': [
@@ -15035,8 +15063,8 @@ let gFisherData = {
         'in der Purpurh\u00f6hle',
       ],
       '3326': [
-        'Caliban-Furche',
-        'in der Caliban-Furche',
+        'Norvrandt-Hang',
+        'am Norvrandt-Hang',
       ],
       '3448': [
         'Galadion-Bucht - Hochsee',
@@ -16148,6 +16176,9 @@ let gFisherData = {
       '29717': [
         'Universalk\u00f6der',
       ],
+      '30136': [
+        'Himmelsstahlk\u00f6der',
+      ],
       '30278': [
         'Diadem-Ballonk\u00e4fer',
       ],
@@ -16243,6 +16274,7 @@ let gFisherData = {
       '29715': 'krill',
       '29716': 'plump worm',
       '29717': 'versatile lure',
+      '30136': 'signature skyball',
       '30278': 'Diadem balloon bug',
       '30279': 'Diadem red balloon',
       '30280': 'Diadem crane fly',
@@ -16327,6 +16359,7 @@ let gFisherData = {
       '29715': 'krill',
       '29716': 'ver charnu',
       '29717': 'leurre universel',
+      '30136': 'boulette de Cielacier',
       '30278': 'scaraballon du Diad\u00e8me',
       '30279': 'scaraballon rouge du Diad\u00e8me',
       '30280': 'tipule g\u00e9ante du Diad\u00e8me',
@@ -16411,6 +16444,7 @@ let gFisherData = {
       '29715': '\u30af\u30ea\u30eb',
       '29716': '\u30d5\u30a1\u30c3\u30c8\u30ef\u30fc\u30e0',
       '29717': '\u4e07\u80fd\u30eb\u30a2\u30fc',
+      '30136': '\u30b9\u30ab\u30a4\u30dc\u30fc\u30eb',
       '30278': '\u30c7\u30a3\u30a2\u30c7\u30e0\u30fb\u30d0\u30eb\u30fc\u30f3',
       '30279': '\u30c7\u30a3\u30a2\u30c7\u30e0\u30fb\u30ec\u30c3\u30c9\u30d0\u30eb\u30fc\u30f3',
       '30280': '\u30c7\u30a3\u30a2\u30c7\u30e0\u30fb\u30ac\u30ac\u30f3\u30dc',
@@ -16761,6 +16795,7 @@ let gFisherData = {
     '28072': 3,
     '28191': 1,
     '28719': 1,
+    '28927': 3,
     '28928': 3,
     '28929': 3,
   },
