@@ -79,7 +79,7 @@ hideall "--sync--"
 1019.1 "Magitek Torch/Spark" sync /:Gunshield:(4CE4|4CE3):/ window 5,5
 
 # Phase 5
-1056.8 "Loaded Gunshield" sync /:Varis Yae Galvus:4CD8:/
+1056.8 "Loaded Gunshield" sync /:Varis Yae Galvus:4CD8:/ window 56.8,5
 1066.0 "Fortius" 
 1078.5 "Magitek Burst" sync /:Varis Yae Galvus:4CDE:/
 1086.7 "Festina Lente" sync /:Varis Yae Galvus:4CC9:/
