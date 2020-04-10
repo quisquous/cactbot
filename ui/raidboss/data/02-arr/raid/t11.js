@@ -239,6 +239,7 @@
       'locale': 'de',
       'replaceSync': {
         'Kaliya': 'Kaliya',
+        'The Core Override': 'Kern-Steuereinheit',
       },
       'replaceText': {
         'Barofield': 'Baro-Feld',
@@ -258,6 +259,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Kaliya': 'Kaliya',
+        'The Core Override': 'l\'unité de contrôle du Cœur',
       },
       'replaceText': {
         'Barofield': 'Barotraumatisme',
@@ -268,8 +270,8 @@
         'Nerve Gas': 'Gaz neurotoxique',
         'Resonance': 'Résonance',
         'Secondary Head': 'Tête secondaire',
-        'Seed Of The Rivers': 'Germe de la rivière',
-        'Seed Of The Sea': 'Germe de la mer',
+        'Seed Of The Rivers/Sea': 'Germe de la rivière / mer',
+        'Seed Of The Sea/Rivers': 'Germe de la mer / rivière',
         'Stun': 'Étourdissement',
       },
     },
