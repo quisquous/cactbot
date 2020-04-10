@@ -247,6 +247,7 @@
     {
       'locale': 'de',
       'replaceSync': {
+        'Scar\'s Edge': 'Narbenrand',
         'Rafflesia': 'Rafflesia',
       },
       'replaceText': {
@@ -267,6 +268,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        'Scar\'s Edge': 'Huis de la Marque',
         'Rafflesia': 'Rafflesia',
       },
       'replaceText': {
