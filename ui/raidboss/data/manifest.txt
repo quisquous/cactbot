@@ -227,5 +227,6 @@
 05-shb/trial/titania.txt
 05-shb/trial/titania-ex.js
 05-shb/trial/titania-ex.txt
+05-shb/trial/varis-ex.js
 05-shb/ultimate/the_epic_of_alexander.js
 05-shb/ultimate/the_epic_of_alexander.txt
