@@ -150,6 +150,7 @@
       'replaceSync': {
         'Allagan Field': 'Allagisches Feld',
         'The Avatar': 'Avatar',
+        'The central bow': 'Rumpf-Zentralsektor',
       },
       'replaceText': {
         'Allagan Field': 'Allagisches Feld',
@@ -168,6 +169,7 @@
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
         'The Avatar': 'Bio-tréant',
+        'The central bow': 'l\'axe central - proue',
       },
       'replaceText': {
         'Allagan Field': 'Champ allagois',
