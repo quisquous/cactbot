@@ -139,7 +139,7 @@
       infoText: {
         en: 'Dreadnaught Add',
         de: 'Brummonaut Add',
-        fr: 'Add cuirassé',
+        fr: 'Add Cuirassé',
         cn: '恐慌装甲出现',
       },
     },
@@ -169,7 +169,7 @@
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
         'The Avatar': 'Bio-tréant',
-        'The central bow': 'l\'axe central',
+        'The central bow': 'l\'axe central - proue',
       },
       'replaceText': {
         'Allagan Field': 'Champ allagois',
