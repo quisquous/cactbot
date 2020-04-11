@@ -102,11 +102,13 @@
       response: Responses.getBehind('alert'),
     },
     {
+      // this trigger match the fourth Alea Iacta Est that Varis used
+      // norice player should go front to avoid the fifth one, which hits back.
       id: 'VarisEx Alea Iacta Est Front',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD2', capture: false }),
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD5', capture: false }),
       infoText: {
         en: 'Go Front',
         ja: '前へ',
