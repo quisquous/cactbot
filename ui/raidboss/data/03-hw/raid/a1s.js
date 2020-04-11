@@ -72,12 +72,12 @@
     },
     {
       id: 'A1S Resin Bomb',
-      regex: Regexes.startsUsing({ id: 'E46', source: 'Oppressor' }),
-      regexDe: Regexes.startsUsing({ id: 'E46', source: 'Unterdrücker' }),
-      regexFr: Regexes.startsUsing({ id: 'E46', source: 'Oppresseur' }),
-      regexJa: Regexes.startsUsing({ id: 'E46', source: 'オプレッサー' }),
-      regexCn: Regexes.startsUsing({ id: 'E46', source: '压迫者' }),
-      regexKo: Regexes.startsUsing({ id: 'E46', source: '억압자' }),
+      regex: Regexes.startsUsing({ id: 'E46', source: 'Oppressor', capture: false }),
+      regexDe: Regexes.startsUsing({ id: 'E46', source: 'Unterdrücker', capture: false }),
+      regexFr: Regexes.startsUsing({ id: 'E46', source: 'Oppresseur', capture: false }),
+      regexJa: Regexes.startsUsing({ id: 'E46', source: 'オプレッサー', capture: false }),
+      regexCn: Regexes.startsUsing({ id: 'E46', source: '压迫者', capture: false }),
+      regexKo: Regexes.startsUsing({ id: 'E46', source: '억압자', capture: false }),
       infoText: {
         en: 'Bait Resin Bomb',
         de: 'Köder Pechbombe',
