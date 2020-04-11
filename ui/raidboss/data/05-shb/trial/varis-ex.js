@@ -231,6 +231,7 @@
   timelineReplace: [
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Varis Yae Galvus': 'ヴァリス・イェー・ガルヴァス',
         'Ventus Est': 'ウェントゥス・エスト',
