@@ -8,9 +8,9 @@
     {
       id: 'VarisEx Phase 2',
       regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4CCC', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4CCC', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4CCC', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
       run: function(data) {
         data.phase = 'phase2';
       },
@@ -28,27 +28,27 @@
     {
       id: 'VarisEx Ignis Est',
       regex: Regexes.startsUsing({ source: 'Ignis Est', id: '4CB6', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4CB6', source: 'Ignis Est', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4CB6', source: 'Ignis Est', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4CB6', source: 'イグニス・エスト', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Ignis Est', id: '4CB6', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Ignis Est', id: '4CB6', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'イグニス・エスト', id: '4CB6', capture: false }),
       delaySeconds: 2,
       response: Responses.getOut(),
     },
     {
       id: 'VarisEx Ventus Est',
       regex: Regexes.startsUsing({ source: 'Ventus Est', id: '4CC7', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4CC7', source: 'Ventus Est', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4CC7', source: 'Ventus Est', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4CC7', source: 'ウェントゥス・エスト', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Ventus Est', id: '4CC7', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Ventus Est', id: '4CC7', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ウェントゥス・エスト', id: '4CC7', capture: false }),
       delaySeconds: 2,
       response: Responses.getIn('info'),
     },
     {
       id: 'VarisEx Altius',
       regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCA', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4CCA', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4CCA', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4CCA', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
       infoText: {
         en: 'Bait Slashes',
         ja: '縦へ、アルティウスを誘導',
@@ -57,10 +57,10 @@
     },
     {
       id: 'VarisEx Citius',
-      regex: Regexes.startsUsing({ id: '4CF0', source: 'Varis Yae Galvus' }),
-      regexDe: Regexes.startsUsing({ id: '4CF0', source: 'Varis yae Galvus' }),
-      regexFr: Regexes.startsUsing({ id: '4CF0', source: 'Varis yae Galvus' }),
-      regexJa: Regexes.startsUsing({ id: '4CF0', source: 'ヴァリス・イェー・ガルヴァス' }),
+      regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CF0' }),
+      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
+      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
+      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CF0' }),
       alertText: function(data, matches) {
         const target = matches.target;
         if (data.me == target) {
@@ -95,18 +95,18 @@
     },
     {
       id: 'VarisEx Alea Iacta Est',
-      regex: Regexes.startsUsing({ id: '4CD2', source: 'Varis Yae Galvus', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4CD2', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4CD2', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4CD2', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD2', capture: false }),
       response: Responses.getBehind('alert'),
     },
     {
       id: 'VarisEx Alea Iacta Est Front',
-      regex: Regexes.ability({ id: '4CD2', source: 'Varis Yae Galvus', capture: false }),
-      regexDe: Regexes.ability({ id: '4CD2', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.ability({ id: '4CD2', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.ability({ id: '4CD2', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD2', capture: false }),
       infoText: {
         en: 'Go Front',
         ja: '前へ',
@@ -116,18 +116,18 @@
     {
       id: 'VarisEx Electrified Gunshield',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD7', capture: false }),
-      regexDe: Regexes.ability({ id: '4CD7', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.ability({ id: '4CD7', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.ability({ id: '4CD7', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD7', capture: false }),
       delaySeconds: 21,
       response: Responses.knockback(),
     },
     {
       id: 'VarisEx Reinforced Gunshield',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4CD9', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4CD9', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4CD9', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD9', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD9', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
       delaySeconds: function(data) {
         if (data.phase == 'phase2')
           return 20;
@@ -142,18 +142,18 @@
     {
       id: 'VarisEx Loaded Gunshield',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD8', capture: false }),
-      regexDe: Regexes.ability({ id: '4CD8', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.ability({ id: '4CD8', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.ability({ id: '4CD8', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD8', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD8', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD8', capture: false }),
       delaySeconds: 10,
       response: Responses.spread(),
     },
     {
       id: 'VarisEx Reinforcements',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CEA', capture: false }),
-      regexDe: Regexes.ability({ id: '4CEA', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.ability({ id: '4CEA', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.ability({ id: '4CEA', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CEA', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -175,9 +175,9 @@
     {
       id: 'VarisEx Terminus Est Clones',
       regex: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4E4F', source: 'Terminus Est', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4E4F', source: 'Terminus Est', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4E4F', source: 'ターミナス・エスト', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ターミナス・エスト', id: '4CB4', capture: false }),
       condition: (data) => data.clones == 'active',
       infoText: {
         en: 'Dodge Clones',
@@ -191,25 +191,25 @@
     {
       id: 'VarisEx Magitek Spark',
       regex: Regexes.startsUsing({ source: 'Gunshield', id: '4E50', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4E50', source: 'Gewehrschild', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4E50', source: 'bouclier-canon', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4E50', source: 'ガンシールド', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Gewehrschild', id: '4E50', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
       response: Responses.spread(),
     },
     {
       id: 'VarisEx Magitek Torch',
       regex: Regexes.startsUsing({ source: 'Gunshield', id: '4E4F', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4E4F', source: 'Gewehrschild', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4E4F', source: 'bouclier-canon', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4E4F', source: 'ガンシールド', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Gewehrschild', id: '4E4F', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ガンシールド', id: '4E4F', capture: false }),
       response: Responses.stack(),
     },
     {
       id: 'VarisEx Fortius',
       regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
-      regexDe: Regexes.ability({ id: '4CE[56]', source: 'Varis yae Galvus', capture: false }),
-      regexFr: Regexes.ability({ id: '4CE[56]', source: 'Varis yae Galvus', capture: false }),
-      regexJa: Regexes.ability({ id: '4CE[56]', source: 'ヴァリス・イェー・ガルヴァス', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CE[56]', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CE[56]', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
       infoText: {
         en: 'Bait Puddles Out',
         ja: '外周に安置',
