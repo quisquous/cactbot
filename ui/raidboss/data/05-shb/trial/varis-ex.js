@@ -145,7 +145,13 @@
       regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD8', capture: false }),
       regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD8', capture: false }),
       regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD8', capture: false }),
-      delaySeconds: 10,
+      delaySeconds: function(data) {
+        if (data.phase == 'phase2')
+          return 13;
+        if (data.phase == 'phase3')
+          return 21;
+        return 16;
+      },
       response: Responses.spread(),
     },
     {
@@ -195,6 +201,9 @@
       regexFr: Regexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
       response: Responses.spread(),
+      run: function(data) {
+        data.phase = 'phase3';
+      },
     },
     {
       id: 'VarisEx Magitek Torch',
