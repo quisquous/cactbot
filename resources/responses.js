@@ -403,8 +403,8 @@ let Responses = {
   lookTowards: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
-      en: 'Look Towards',
-      de: 'Anschauen',
+      en: 'Look Towards Boss',
+      de: 'Anschauen Boss',
       fr: 'Regardez le boss',
       ja: '見る',
       ko: '쳐다보기',
@@ -444,9 +444,9 @@ let Responses = {
   getBehind: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
-      en: 'Get Behind',
-      de: 'Hinter ihn',
-      fr: 'Passez derrière',
+      en: 'Get Behind Boss',
+      de: 'Hinter ihn Boss',
+      fr: 'Passez derrière le boss',
       ja: '背面へ',
       ko: '보스 뒤로',
       cn: '去背后',
@@ -731,16 +731,16 @@ let Responses = {
       if (data.me == target) {
         return {
           en: 'Away from Group',
-          fr: 'Éloignez-vous du groupe',
           de: 'Weg von der Gruppe',
+          fr: 'Éloignez-vous du groupe',
           ja: '外へ',
           cn: '远离人群',
         };
       }
       return {
         en: 'Away from ' + data.ShortName(target),
-        fr: 'Éloignez-vous de ' + data.ShortName(target),
         de: 'Weg von ' + data.ShortName(target),
+        fr: 'Éloignez-vous de ' + data.ShortName(target),
         ja: data.ShortName(target) + 'から離れて',
         cn: '远离' + data.ShortName(target),
       };
@@ -776,7 +776,7 @@ let Responses = {
     obj[defaultAlarmText(sev)] = {
       en: 'Stop Everything!',
       de: 'Stoppe Alles!',
-      fr: 'Stoppez TOUT !',
+      fr: 'Arrêtez TOUT !',
       ja: '行動禁止！',
       ko: '행동 멈추기!',
       cn: '停止行动！',
