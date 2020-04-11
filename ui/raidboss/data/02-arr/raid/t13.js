@@ -194,7 +194,7 @@
         'Gust Add': 'Add Bourrasque',
         'MF Pepperoni': 'MB Zones au sol',
         'MF Share': 'MB Partagez',
-        'MF Spread': 'MB Ecartez',
+        'MF Spread': 'MB Écartez',
         'MF Tower': 'MB Tour',
         'Megaflare': 'MégaBrasier',
         'Pain Add': 'Add Douleur',
