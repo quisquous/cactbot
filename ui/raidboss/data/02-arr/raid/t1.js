@@ -64,8 +64,8 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Split',
-        de: 'Zerteilung',
-        fr: 'Séparation',
+        de: 'Teilen',
+        fr: 'Division',
         cn: '分裂',
       },
     },

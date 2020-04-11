@@ -249,7 +249,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bioweapon Storage': 'l\'Entrepôt d\'armes biologiques',
+        'Bioweapon Storage': 'l\'entrepôt d\'armes biologiques',
         'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
       },

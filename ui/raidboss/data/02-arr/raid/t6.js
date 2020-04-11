@@ -109,7 +109,7 @@
           return {
             en: 'Devour: Get Eaten',
             de: 'Verschlingen: Gefressen werden',
-            fr: 'Dévoration: Faites-vous manger',
+            fr: 'Dévoration : Faites-vous manger',
             cn: '捕食点名',
           };
         }
@@ -122,7 +122,7 @@
           return {
             en: 'Devour: Jump In New Thorns',
             de: 'Verschlingen: Spring in die neuen Dornen',
-            fr: 'Dévoration: Sautez dans les ronces',
+            fr: 'Dévoration : Sautez dans les ronces',
             cn: '去新荆棘',
           };
         }
@@ -247,8 +247,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Rafflesia': 'Rafflesia',
         'Scar\'s Edge': 'Narbenrand',
+        'Rafflesia': 'Rafflesia',
       },
       'replaceText': {
         'Acid Rain': 'Säureregen',
@@ -268,8 +268,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
+        'Scar\'s Edge': 'l\'Huis de la Marque',
         'Rafflesia': 'Rafflesia',
-        'Scar\'s Edge': 'Huis de la Marque',
       },
       'replaceText': {
         'Acid Rain': 'Pluie acide',

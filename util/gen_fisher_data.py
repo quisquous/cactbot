@@ -283,7 +283,7 @@ def get_cn_data():
 
 
 if __name__ == "__main__":
-    example_usage = "python3 get_fisher_data.py"
+    example_usage = "python3 gen_fisher_data.py"
     parser = argparse.ArgumentParser(
         description="Generate fisher data from xivapi",
         epilog=example_usage,
