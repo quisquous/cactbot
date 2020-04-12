@@ -51,42 +51,42 @@ hideall "--sync--"
 ### Phase 3: Random Groups
 # Note: all three of these blocks occur, but can occur in any order
 269.1 "--targetable--"
-276.3 "--sync--" sync /:4CD8:Varis Yae Galvus/ window 100,100 jump 500
-276.3 "--sync--" sync /:4CD9:Varis Yae Galvus/ window 100,100 jump 700
-276.3 "--sync--" sync /:4CD7:Varis Yae Galvus/ window 100,100 jump 900
+274.3 "--sync--" sync /:4CD8:Varis Yae Galvus/ window 100,100 jump 500
+274.3 "--sync--" sync /:4CD9:Varis Yae Galvus/ window 100,100 jump 700
+274.3 "--sync--" sync /:4CD7:Varis Yae Galvus/ window 100,100 jump 900
 
 # loaded lookahead window
-281.3 "Loaded Gunshield?" #sync /:Varis Yae Galvus:4CD8:/
-290.2 "--sync--" #sync /:Varis Yae Galvus:4CB5:/
-294.5 "--sync--" #sync /:Varis Yae Galvus:4CDE:/
-296.0 "--clones appear?--" #sync /:Phantom Varis:4CB3:/
-297.6 "Magitek Burst?" #sync /:Varis Yae Galvus:4CDF:/
-298.3 "Ignis Est?" #sync /:Ignis Est:4CB6:/
-305.6 "Terminus Est?" #sync /:Terminus Est:4CB4:/
-305.8 "Festina Lente?" #sync /:Varis Yae Galvus:4CC9:/
-317.0 "Citius?" #sync /:Varis Yae Galvus:4CF0:/
+279.3 "Loaded Gunshield?" #sync /:Varis Yae Galvus:4CD8:/
+288.2 "--sync--" #sync /:Varis Yae Galvus:4CB5:/
+292.5 "--sync--" #sync /:Varis Yae Galvus:4CDE:/
+294.0 "--clones appear?--" #sync /:Phantom Varis:4CB3:/
+295.6 "Magitek Burst?" #sync /:Varis Yae Galvus:4CDF:/
+296.3 "Ignis Est?" #sync /:Ignis Est:4CB6:/
+303.6 "Terminus Est?" #sync /:Terminus Est:4CB4:/
+303.8 "Festina Lente?" #sync /:Varis Yae Galvus:4CC9:/
+315.0 "Citius?" #sync /:Varis Yae Galvus:4CF0:/
 
 # reinforced lookahead window
-281.3 "Reinforced Gunshield?" #sync /:Varis Yae Galvus:4CD9:/
-290.4 "Altius?" #sync /:Varis Yae Galvus:4CCA:/
-299.3 "--sync--" #sync /:Varis Yae Galvus:4CC6:/
-300.5 "Terminus Est" #sync /:Terminus Est:4CB4:/
-302.6 "Magitek Shielding" #sync /:Varis Yae Galvus:4CDB:/
-307.4 "Ventus Est" #sync /:Ventus Est:4CC7:/
-317.8 "Citius" #sync /:Varis Yae Galvus:4CF0:/
+279.3 "Reinforced Gunshield?" #sync /:Varis Yae Galvus:4CD9:/
+288.4 "Altius?" #sync /:Varis Yae Galvus:4CCA:/
+297.3 "--sync--" #sync /:Varis Yae Galvus:4CC6:/
+298.5 "Terminus Est" #sync /:Terminus Est:4CB4:/
+300.6 "Magitek Shielding" #sync /:Varis Yae Galvus:4CDB:/
+305.4 "Ventus Est" #sync /:Ventus Est:4CC7:/
+315.8 "Citius" #sync /:Varis Yae Galvus:4CF0:/
 
 # electrified lookahead window
-281.3 "Electrified Gunshield?" #sync /:Varis Yae Galvus:4CD7:/
-286.4 "Reinforcements?" #sync /:Varis Yae Galvus:4CEA:/
-292.3 "--clones appear?--" #sync /:Phantom Varis:4CB3:/
-295.5 "Aetherochemical Grenado?" #sync /:Magitek Turret II:4CED:/
-305.2 "Terminus Est?" #sync /:Terminus Est:4CB4:/
-307.9 "Magitek Shock?" #sync /:Varis Yae Galvus:4CDA:/
-318.8 "Alea Iacta Est?" #sync /:Varis Yae Galvus:4CD2:/
-320.0 "--sync--" #sync /:Varis Yae Galvus:4CD3:/
-320.4 "--sync--" #sync /:Varis Yae Galvus:4CD4:/
-320.8 "--sync--" #sync /:Varis Yae Galvus:4CD5:/
-323.5 "--sync--" #sync /:Varis Yae Galvus:4CD6:/
+279.3 "Electrified Gunshield?" #sync /:Varis Yae Galvus:4CD7:/
+284.4 "Reinforcements?" #sync /:Varis Yae Galvus:4CEA:/
+290.3 "--clones appear?--" #sync /:Phantom Varis:4CB3:/
+293.5 "Aetherochemical Grenado?" #sync /:Magitek Turret II:4CED:/
+303.2 "Terminus Est?" #sync /:Terminus Est:4CB4:/
+305.9 "Magitek Shock?" #sync /:Varis Yae Galvus:4CDA:/
+316.8 "Alea Iacta Est?" #sync /:Varis Yae Galvus:4CD2:/
+318.0 "--sync--" #sync /:Varis Yae Galvus:4CD3:/
+318.4 "--sync--" #sync /:Varis Yae Galvus:4CD4:/
+318.8 "--sync--" #sync /:Varis Yae Galvus:4CD5:/
+321.5 "--sync--" #sync /:Varis Yae Galvus:4CD6:/
 
 
 ## Phase 3: Loaded Gunshield, Spread
