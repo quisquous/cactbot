@@ -68,6 +68,31 @@
   ],
   triggers: [
     {
+      id: 'A8S Megabeam Onslaughter',
+      regex: Regexes.startsUsing({ source: 'Onslaughter', id: '162E', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Schlachter', id: '162E', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Attaqueur', id: '162E', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'オンスローター', id: '162E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '突击者', id: '162E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '맹습자', id: '162E', capture: false }),
+      // Insert sound effect from Arthars here.
+      alertText: {
+        en: 'Megabeamu~',
+      },
+    },
+    {
+      id: 'A8S Megabeam Brute Justice',
+      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '1664', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '1664', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '1664', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '1664', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '1664', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '1664', capture: false }),
+      alertText: {
+        en: 'Megabeamu~!',
+      },
+    },
+    {
       id: 'A8S Execution',
       regex: Regexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
       regexDe: Regexes.ability({ source: 'Schlachter', id: '1632', capture: false }),
