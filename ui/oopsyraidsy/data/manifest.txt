@@ -55,4 +55,5 @@
 05-shb/trial/ruby-weapon-ex.js
 05-shb/trial/titania-ex.js
 05-shb/trial/titania.js
+05-shb/trial/varis-ex.js
 05-shb/ultimate/the_epic_of_alexander.js
