@@ -38,11 +38,26 @@
     {
       id: 'VarisEx Festina Lente',
       // This is headMarker({id: '00A1'}), but is a timeline trigger both
-      // for more warning, and to space around other triggers (dodge clones).
+      // for more warning, and to precede the "dodge clones" call.
       regex: /^Festina Lente$/,
       beforeSeconds: 6,
       durationSeconds: 6,
-      response: Responses.stack('alert'),
+      response: function(data) {
+        // In any case where you need to position stacks in the right lane,
+        // use this special call, no matter how far ahead in time it is.
+        if (data.clonesActive) {
+          // Sometimes in the fight, dodge clones + stack happen right next to each other.
+          // In these cases, don't also call out "dodge clones", by setting this variable.
+          // For cases where they are far apart, this gets cleared in the cleanup trigger.
+          data.suppressDodgeCloneCall = true;
+          return {
+            alertText: {
+              en: 'Dodge Clones + Stack',
+            },
+          };
+        }
+        return Responses.stack('alert');
+      },
     },
     {
       id: 'VarisEx Magitek Burst',
@@ -252,21 +267,39 @@
       },
     },
     {
+      // The warning is taken care of above with a timeline trigger.  See notes.
+      id: 'VarisEx Festina Lente Cleanup',
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CC9', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CC9', capture: false }),
+      delaySeconds: 10,
+      run: function(data) {
+        delete data.suppressDodgeCloneCall;
+      },
+    },
+    {
       id: 'VarisEx Terminus Est Clones',
       regex: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ターミナス・エスト', id: '4CB4', capture: false }),
       condition: (data) => data.clonesActive,
-      infoText: {
-        en: 'Dodge Clones',
-        de: 'Klonen ausweichen',
-        fr: 'Esquivez les clones',
-        ja: 'ターミナス・エストを避け',
-        cn: '躲避剑气',
-        ko: '클론 피하기',
+      infoText: function(data) {
+        // Sometimes this is called out with the stack mechanic.
+        if (data.suppressDodgeCloneCall)
+          return;
+        return {
+          en: 'Dodge Clones',
+          de: 'Klonen ausweichen',
+          fr: 'Esquivez les clones',
+          ja: 'ターミナス・エストを避け',
+          cn: '躲避剑气',
+          ko: '클론 피하기',
+        };
       },
       run: function(data) {
+        delete data.suppressDodgeCloneCall;
         delete data.clonesActive;
       },
     },
