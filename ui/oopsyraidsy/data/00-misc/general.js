@@ -45,7 +45,7 @@
     },
     {
       id: 'General Rabbit Medium',
-      abilityRegex: gLang.kAbility.RabbitMedium,
+      abilityRegex: '8E0',
       condition: function(e, data) {
         return data.IsPlayerId(e.attackerId);
       },

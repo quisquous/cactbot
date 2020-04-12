@@ -95,60 +95,6 @@ class CactbotLanguage {
       Thunder3: '99',
       Thunder4: '1CFC',
       Divination: '40A8',
-
-      // Susano Ex
-      ChurningDeep: '203F',
-      RasenKaikyo: '202E',
-
-      // o4s
-      DecisiveBattle: '2408',
-      VacuumWave: '23FE',
-      Almagest: '2417',
-      NeoVacuumWave: '241D',
-      BlizzardIII: '23F8', // both floor aoe and after decisive battle
-      ThunderIII: '23FD', // after decisive battle, not the tankbuster
-      DeathBomb: '2431',
-      DeathBolt: '242E',
-      DoubleAttack: '241C',
-      Emptiness: '2422', // 2420 is cast, 2421 (???), 2422 seems to be damage.
-      EdgeOfDeath: '2415',
-
-      // Unending Coil
-      Twister: '26AB', // 26AA is cast
-      LunarDynamo: '26BC',
-      IronChariot: '26BB',
-      WingsOfSalvation: '26CA',
-      ChainLightning: '26C8',
-      ThermionicBurst: '26B9',
-      Exaflare: '26EF',
-
-      // Byakko Ex
-      ByaSweepTheLeg: '27DB',
-      ByaFireAndLightning: '27DE',
-      ByaDistantClap: '27DD',
-      ByaAratama: '27F6', // Popping Unrelenting Anguish bubbles
-      ByaVacuumClaw: '27E9', // Stepping in growing orb
-      ByaImperialGuard: '27F1', // Midphase line attack
-      ByaOminousWind: '27EC', // Pink bubble collision
-      ByaHundredfoldHavoc1: '27E5', // Lightning Puddles
-      ByaHundredfoldHavoc2: '27E6', // Lightning Puddles
-
-      // o7s
-      MissileExplosion: '2782',
-      UltrosStoneskin: '2AB5',
-      TheHeat: '2777',
-      ChainCannon: '278F',
-
-      // uwu
-      GreatWhirlwind: '2B41',
-      SearingWind: '2B5C',
-      Slipstream: '2B53',
-      WickedWheel: '2B4E',
-      WickedTornado: '2B4F',
-      Eruption: '2B5A',
-      WeightOfTheLand: '2B65',
-      Landslide1: '2B70',
-      Landslide2: '2B71',
     });
 
     this.kZone = Object.freeze({

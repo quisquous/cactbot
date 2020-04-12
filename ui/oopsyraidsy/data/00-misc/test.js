@@ -48,7 +48,7 @@
     },
     {
       id: 'Test Bootshine',
-      damageRegex: gLang.kAbility.Bootshine,
+      damageRegex: '35',
       condition: function(e, data) {
         if (e.attackerName != data.me)
           return false;

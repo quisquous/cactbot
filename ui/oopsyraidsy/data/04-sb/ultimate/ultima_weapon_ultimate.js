@@ -6,103 +6,26 @@
     en: /^The Weapon's Refrain \(Ultimate\)$/,
     ko: /^절 알테마 웨폰 파괴작전$/,
   },
+  damageWarn: {
+    'UWU Searing Wind': '2B5C',
+    'UWU Eruption': '2B5A',
+    'UWU Weight': '2B65',
+    'UWU Landslide1': '2B70',
+    'UWU Landslide2': '2B71',
+  },
+  damageFail: {
+    'UWU Great Whirlwind': '2B41',
+    'UWU Slipstream': '2B53',
+    'UWU Wicked Wheel': '2B4E',
+    'UWU Wicked Tornado': '2B4F',
+  },
   triggers: [
-    {
-      id: 'UWU Great Whirlwind',
-      damageRegex: gLang.kAbility.GreatWhirlwind,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'UWU Slipstream',
-      damageRegex: gLang.kAbility.Slipstream,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.effectName };
-      },
-    },
     {
       id: 'UWU Windburn',
       gainsEffectRegex: gLang.kEffect.Windburn,
       // TODO: implement suppressSeconds <_<
       suppressSeconds: 2,
       mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'UWU Wicked Wheel',
-      damageRegex: gLang.kAbility.WickedWheel,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'UWU Wicked Tornado',
-      damageRegex: gLang.kAbility.WickedTornado,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'UWU Searing Wind',
-      damageRegex: gLang.kAbility.SearingWind,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'UWU Eruption',
-      damageRegex: gLang.kAbility.Eruption,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'UWU Weight',
-      damageRegex: gLang.kAbility.WeightOfTheLand,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'UWU Landslide1',
-      damageRegex: gLang.kAbility.Landslide1,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'UWU Landslide2',
-      damageRegex: gLang.kAbility.Landslide2,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },
