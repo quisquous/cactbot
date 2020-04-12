@@ -4,15 +4,76 @@
     en: /^Memoria Misera \(Extreme\)$/,
   },
   timelineFile: 'varis-ex.txt',
+  timelineTriggers: [
+    {
+      id: 'VarisEx Ignis Est',
+      // 4CB5: Varis starts using
+      // 4CB6, 4CC5: Ignis Est starts using
+      regex: /^Ignis Est$/,
+      // Many alerts are 5 seconds ahead (stack, knockback), so differentiate.
+      beforeSeconds: 7,
+      durationSeconds: 7,
+      // In and Out both use severity info here so that it doesn't conflict with the
+      // spread/knockback/stack alert callouts.  These are always static, so it isn't
+      // as important to differentiate with noise.
+      //
+      // Also, these are timeline triggers because there is a varying time between when
+      // the initial cast (by Varis) happens and when other things happen.
+      // Making them timeline triggers interleaves callouts a little bit more nicely
+      // without having to hardcode a lot of delays.
+      //
+      // Also, 7 seconds interleaves properly where the order of callouts is the order
+      // of things happening, i.e. "out => knockback", in first phase.
+      response: Responses.getOut('info'),
+    },
+    {
+      id: 'VarisEx Ventus Est',
+      // 4CC6: Varis starts using
+      // 4CC7, 4CC8: Ventus Est starts using
+      regex: /^Ventus Est$/,
+      beforeSeconds: 7,
+      durationSeconds: 7,
+      response: Responses.getIn('info'),
+    },
+    {
+      id: 'VarisEx Festina Lente',
+      // This is headMarker({id: '00A1'}), but is a timeline trigger both
+      // for more warning, and to space around other triggers (dodge clones).
+      regex: /^Festina Lente$/,
+      beforeSeconds: 6,
+      durationSeconds: 6,
+      response: Responses.stack('alert'),
+    },
+    {
+      id: 'VarisEx Magitek Burst',
+      regex: /^Magitek Burst$/,
+      beforeSeconds: 15,
+      durationSeconds: 5,
+      infoText: {
+        en: 'Spread Soon',
+      },
+    },
+  ],
   triggers: [
     {
       id: 'VarisEx Phase 2',
-      regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
+      // 4CCC: Vivere Militare Est
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
       run: function(data) {
-        data.phase = 'phase2';
+        data.phase = 2;
+      },
+    },
+    {
+      id: 'VarisEx Phase 5',
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CE2', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE2', capture: false }),
+      run: function(data) {
+        data.phase = 5;
       },
     },
     {
@@ -22,26 +83,8 @@
       regexFr: Regexes.ability({ source: 'double de Varis', id: '4CB3', capture: false }),
       regexJa: Regexes.ability({ source: 'ヴァリスの幻影', id: '4CB3', capture: false }),
       run: function(data) {
-        data.clones = 'active';
+        data.clonesActive = true;
       },
-    },
-    {
-      id: 'VarisEx Ignis Est',
-      regex: Regexes.startsUsing({ source: 'Ignis Est', id: '4CB6', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Ignis Est', id: '4CB6', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Ignis Est', id: '4CB6', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'イグニス・エスト', id: '4CB6', capture: false }),
-      delaySeconds: 2,
-      response: Responses.getOut(),
-    },
-    {
-      id: 'VarisEx Ventus Est',
-      regex: Regexes.startsUsing({ source: 'Ventus Est', id: '4CC7', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Ventus Est', id: '4CC7', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Ventus Est', id: '4CC7', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ウェントゥス・エスト', id: '4CC7', capture: false }),
-      delaySeconds: 2,
-      response: Responses.getIn('info'),
     },
     {
       id: 'VarisEx Altius',
@@ -103,13 +146,15 @@
       response: Responses.getBehind('alert'),
     },
     {
-      // this trigger match the fourth Alea Iacta Est that Varis used
-      // norice player should go front to avoid the fifth one, which hits back.
+      // This trigger match the fourth Alea Iacta Est that Varis used.
+      // The player should go front to avoid the fifth one, which hits back.
       id: 'VarisEx Alea Iacta Est Front',
       regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
       regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
       regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
       regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD5', capture: false }),
+      // Multiple people getting hit by this can cause double triggers.
+      suppressSeconds: 1,
       infoText: {
         en: 'Go Front',
         de: 'Nach Vorne gehen',
@@ -123,8 +168,8 @@
       regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
       regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
       regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD7', capture: false }),
-      delaySeconds: 21,
-      response: Responses.knockback(),
+      delaySeconds: 21.5,
+      response: Responses.knockback('alert'),
     },
     {
       id: 'VarisEx Reinforced Gunshield',
@@ -133,9 +178,7 @@
       regexFr: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
       delaySeconds: function(data) {
-        if (data.phase == 'phase2')
-          return 20;
-        return 10;
+        return data.phase == 2 ? 20 : 10;
       },
       alertText: {
         en: 'Stop attacking',
@@ -145,19 +188,33 @@
       },
     },
     {
-      id: 'VarisEx Loaded Gunshield',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD8', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD8', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD8', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD8', capture: false }),
-      delaySeconds: function(data) {
-        if (data.phase == 'phase2')
-          return 13;
-        if (data.phase == 'phase3')
-          return 21;
-        return 16;
+      id: 'VarisEx Reinforced Gunshield Sides',
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CDC', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CDC', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDC', capture: false }),
+      response: Responses.goFrontBack('info'),
+    },
+    {
+      id: 'VarisEx Reinforced Gunshield Front',
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CDB', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CDB', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDB', capture: false }),
+      response: Responses.goSides('info'),
+    },
+    {
+      id: 'VarisEx Loaded Gunshield Final Warning',
+      // This ability id occurs ~3 seconds before the Magitek Burst spread damage.
+      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDE', capture: false }),
+      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
+      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
+      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDE', capture: false }),
+      response: function(data) {
+        // This is easily forgetable after dodging and seems to get people killed.
+        // This also differentiates spread from the spread => stack in the last phase.
+        return Responses.spread(data.phase == 5 ? 'alarm' : 'alert');
       },
-      response: Responses.spread(),
     },
     {
       id: 'VarisEx Reinforcements',
@@ -190,7 +247,7 @@
       regexDe: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ターミナス・エスト', id: '4CB4', capture: false }),
-      condition: (data) => data.clones == 'active',
+      condition: (data) => data.clonesActive,
       infoText: {
         en: 'Dodge Clones',
         de: 'Klonen ausweichen',
@@ -198,18 +255,7 @@
         cn: '躲避剑气',
       },
       run: function(data) {
-        delete data.clones;
-      },
-    },
-    {
-      id: 'VarisEx Magitek Spark',
-      regex: Regexes.startsUsing({ source: 'Gunshield', id: '4E50', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Gewehrschild', id: '4E50', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
-      response: Responses.spread(),
-      run: function(data) {
-        data.phase = 'phase3';
+        delete data.clonesActive;
       },
     },
     {
@@ -226,7 +272,7 @@
       regexDe: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
-      infoText: {
+      alertText: {
         en: 'Bait Puddles Out',
         de: 'Flächen nach draußen ködern',
         ja: '外周に安置',

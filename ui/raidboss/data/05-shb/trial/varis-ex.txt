@@ -41,7 +41,7 @@ hideall "--sync--"
 
 ### Phase 2: Susano Remix
 177.1 "Vivere Militare Est" sync /:Varis Yae Galvus:4CCC:/ window 180,50
-192.3 "Blade's Pulse"
+192.3 "Blade's Pulse x2"
 200.1 "--targetable--"
 203.1 "Shockwave" #sync /:Bladesblood:4CCE:/
 # shockwaves continue every 2 seconds
@@ -233,7 +233,7 @@ hideall "--sync--"
 1378.0 "Fortius" sync /:Varis Yae Galvus:4CE7:/
 1392.2 "Terminus Est" sync /:Terminus Est:4CB4:/
 1394.6 "Magitek Shock" sync /:Varis Yae Galvus:4CDA:/
-1408.5 "Terminus Est" sync /:Phantom Varis:4CB3:/
+1408.5 "--clones appear--" sync /:Phantom Varis:4CB3:/
 1412.9 "Altius" sync /:Varis Yae Galvus:4CCA:/
 1421.2 "Festina Lente" sync /:Varis Yae Galvus:4CC9:/
 1427.7 "--sync--" sync /:Varis Yae Galvus:4CC6:/
@@ -259,6 +259,7 @@ hideall "--sync--"
 1502.4 "Fortius" sync /:Varis Yae Galvus:4CE7:/
 1514.1 "--sync--" sync /:Varis Yae Galvus:4CDE:/
 1517.2 "Magitek Burst" sync /:Varis Yae Galvus:4CDF:/
+
 1522.4 "Festina Lente" sync /:Varis Yae Galvus:4CC9:/
 1533.7 "Citius" sync /:Varis Yae Galvus:4CF0:/
 1542.5 "--clones appear--" sync /:Phantom Varis:4CB3:/
