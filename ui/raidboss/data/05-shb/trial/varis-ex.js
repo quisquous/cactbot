@@ -51,6 +51,7 @@
       durationSeconds: 5,
       infoText: {
         en: 'Spread Soon',
+        fr: 'Écartez-vous bientôt',
       },
     },
   ],
@@ -110,9 +111,9 @@
         const target = matches.target;
         if (data.me == target) {
           return {
-            en: 'Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            en: 'Tank Buster on YOU',
+            de: 'Tank buster auf DIR',
+            fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
             ko: '탱버 대상자',
@@ -129,9 +130,9 @@
           };
         }
         return {
-          en: 'Buster on ' + data.ShortName(target),
-          de: 'Tankbuster auf ' + data.ShortName(target),
-          fr: 'Tankbuster sur ' + data.ShortName(target),
+          en: 'Tank Buster on ' + data.ShortName(target),
+          de: 'Tank buster auf ' + data.ShortName(target),
+          fr: 'Tank buster sur ' + data.ShortName(target),
           ja: data.ShortName(target) + 'にタンクバスター',
           cn: '死刑 -> ' + data.ShortName(target),
           ko: '탱버 → ' + data.ShortName(target),
