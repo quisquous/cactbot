@@ -444,9 +444,9 @@ let Responses = {
   getBehind: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
-      en: 'Get Behind Boss',
-      de: 'Hinter ihn Boss',
-      fr: 'Passez derrière le boss',
+      en: 'Get Behind',
+      de: 'Hinter ihn',
+      fr: 'Passez derrière',
       ja: '背面へ',
       ko: '보스 뒤로',
       cn: '去背后',
