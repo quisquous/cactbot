@@ -499,6 +499,10 @@ class PopupText {
         // Can't use ValueOrFunction here as r returns a non-localizable object.
         let r = trigger.response;
         response = (typeof(r) == 'function') ? r(this.data, matches) : r;
+
+        // Turn falsy values into a default no-op response.
+        if (!response)
+          response = {};
       }
 
       let alarmText = triggerOptions.AlarmText || trigger.alarmText || response.alarmText;
