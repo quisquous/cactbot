@@ -93,7 +93,7 @@
       regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
       infoText: {
-        en: 'Bait Slashes',        
+        en: 'Bait Slashes',
         de: 'Schnitte ködern',
         fr: 'Attirez les taillades',
         ja: '縦へ、アルティウスを誘導',
@@ -157,7 +157,7 @@
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
       infoText: {
-        en: 'Go Front Boss',
+        en: 'Go Front',
         de: 'Nach Vorne gehen',
         fr: 'Allez devant le boss',
         ja: '前へ',
@@ -349,7 +349,6 @@
         'Aetherochemical Grenado?': 'Grenade Magitek ?',
         'Alea Iacta Est?': 'Alea Jacta Est ?',
         'Altius?': 'Altius ?',
-        'Blade\'s Pulse': '
         'Citius?': 'Citius ?',
         'Electrified Gunshield?': 'Bouclier-canon : Choc magitek ?',
         'Ignis Est,': 'Ignis Est ?',
