@@ -309,7 +309,17 @@
       regexDe: Regexes.startsUsing({ source: 'Gewehrschild', id: '4E4F', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ガンシールド', id: '4E4F', capture: false }),
-      response: Responses.stack(),
+      response: Responses.stack('info'),
+    },
+    {
+      id: 'VarisEx Magitek Spark',
+      regex: Regexes.startsUsing({ source: 'Gunshield', id: '4E50', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Gewehrschild', id: '4E50', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
+      // TODO: This is technicallly a spread, but it's more like "protean" spread?
+      // Not sure how to make this more clear.
+      response: Responses.spread('alert'),
     },
     {
       id: 'VarisEx Fortius',
