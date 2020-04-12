@@ -372,7 +372,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bladesblood': '剣気',
         'Gunshield': 'ガンシールド',
@@ -385,15 +384,17 @@
         'Ventus Est': 'ウェントゥス・エスト',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '--clones appear--': '--幻影が現れる--',
         'Aetherochemical Grenado': '魔導榴弾',
         'Alea Iacta Est': 'アーレア・ヤクタ・エスト',
         'Altius': 'アルティウス',
+        'Blade\'s Pulse': '攻撃を受け止める',
         'Citius': 'キティウス',
         'Electrified Gunshield': 'ガンシールド：魔導ショック',
         'Festina Lente': 'フェスティナ・レンテ',
         'Fortius': 'フォルティウス',
         '(?<! )Gunshield(?! )': 'ガンシールド',
-        'Gunshield Actions': 'ガンシールド技',
         'Ignis Est': 'イグニス・エスト',
         'Loaded Gunshield': 'ガンシールド：魔導バースト',
         'Magitek Burst': '魔導バースト',
