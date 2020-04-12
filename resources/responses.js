@@ -315,7 +315,7 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Stack in middle',
-      fr: 'Packez-vous au centre',
+      fr: 'Packez-vous au milieu',
       de: 'In der Mitte sammeln',
       ja: '中央でスタック',
       ko: '중앙에서 모이기',
