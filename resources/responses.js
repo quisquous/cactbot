@@ -96,8 +96,8 @@ let Responses = {
   tankBuster: (targetSev, otherSev) => {
     let noTargetText = {
       en: 'Tank Buster',
-      de: 'Tankbuster',
-      fr: 'Tankbuster',
+      de: 'Tank buster',
+      fr: 'Tank buster',
       ja: 'タンクバスター',
       cn: '坦克死刑',
       ko: '탱버',
@@ -114,8 +114,8 @@ let Responses = {
       if (target == data.me) {
         return {
           en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-          fr: 'Tankbuster sur VOUS',
+          de: 'Tank buster auf DIR',
+          fr: 'Tank buster sur VOUS',
           ja: '自分にタンクバスター',
           cn: '死刑点名',
           ko: '탱버 대상자',
@@ -134,9 +134,9 @@ let Responses = {
         return;
 
       return {
-        en: 'Buster on ' + data.ShortName(target),
-        de: 'Tankbuster auf ' + data.ShortName(target),
-        fr: 'Tankbuster sur ' + data.ShortName(target),
+        en: 'Tank Buster on ' + data.ShortName(target),
+        de: 'Tank buster auf ' + data.ShortName(target),
+        fr: 'Tank buster sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にタンクバスター',
         cn: '死刑 -> ' + data.ShortName(target),
         ko: '"' + data.ShortName(target) + '" 탱버',
@@ -170,17 +170,17 @@ let Responses = {
       if (target == data.me) {
         return {
           en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-          fr: 'Tankbuster sur VOUS',
+          de: 'Tank buster auf DIR',
+          fr: 'Tank buster sur VOUS',
           ja: '自分にタンクバスター',
           cn: '死刑点名',
           ko: '탱버 대상자',
         };
       }
       return {
-        en: 'Buster on ' + data.ShortName(target),
-        de: 'Tankbuster auf ' + data.ShortName(target),
-        fr: 'Tankbuster sur ' + data.ShortName(target),
+        en: 'Tank Buster on ' + data.ShortName(target),
+        de: 'Tank buster auf ' + data.ShortName(target),
+        fr: 'Tank buster sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にタンクバスター',
         cn: '死刑 -> ' + data.ShortName(target),
         ko: '탱버 → ' + data.ShortName(target),
@@ -218,7 +218,7 @@ let Responses = {
       return {
         en: 'Avoid tank cleave',
         de: 'Tank Cleave ausweichen',
-        fr: 'Evitez le cleave sur le tank',
+        fr: 'Évitez le cleave sur le tank',
         ja: '前方範囲攻撃を避け',
         ko: '광역 탱버 피하기',
         cn: '远离顺劈',
@@ -267,7 +267,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Spread',
       de: 'Verteilen',
-      fr: 'Ecartez-vous',
+      fr: 'Écartez-vous',
       ja: '散開',
       cn: '分散',
       ko: '산개',
@@ -315,7 +315,7 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Stack in middle',
-      fr: 'Packez-vous au centre',
+      fr: 'Packez-vous au milieu',
       de: 'In der Mitte sammeln',
       ja: '中央でスタック',
       ko: '중앙에서 모이기',
@@ -339,7 +339,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Spread => Stack',
       de: 'Verteilen => Sammeln',
-      fr: 'Ecartez-vous => Packez-vous',
+      fr: 'Écartez-vous => Packez-vous',
       ja: '散開 => スタック',
       cn: '分散 => 集合',
       ko: '산개 => 집합',
@@ -351,7 +351,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Stack => Spread',
       de: 'Sammeln => Verteilen',
-      fr: 'Packez-vous => Ecartez-vous',
+      fr: 'Packez-vous => Écartez-vous',
       ja: 'スタック => 散開',
       cn: '集合 => 分散',
       ko: '집합 => 산개',
@@ -403,8 +403,8 @@ let Responses = {
   lookTowards: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
-      en: 'Look Towards',
-      de: 'Anschauen',
+      en: 'Look Towards Boss',
+      de: 'Anschauen Boss',
       fr: 'Regardez le boss',
       ja: '見る',
       ko: '쳐다보기',
@@ -497,7 +497,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Out of melee',
       de: 'Raus aus Nahkampf',
-      fr: 'Eloignez-vous du CaC',
+      fr: 'Éloignez-vous du CaC',
       ja: '近接最大レンジ',
       cn: '近战最远距离回避',
       ko: '근접범위 밖으로',
@@ -642,7 +642,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Away From Front',
       de: 'Weg von Vorne',
-      fr: 'Eloignez vous de l\'avant',
+      fr: 'Éloignez vous de l\'avant',
       ja: '前方から離れて',
       ko: '보스 전방 피하기',
       cn: '远离正面',
@@ -731,16 +731,16 @@ let Responses = {
       if (data.me == target) {
         return {
           en: 'Away from Group',
-          fr: 'Eloignez-vous du groupe',
           de: 'Weg von der Gruppe',
+          fr: 'Éloignez-vous du groupe',
           ja: '外へ',
           cn: '远离人群',
         };
       }
       return {
         en: 'Away from ' + data.ShortName(target),
-        fr: 'Eloignez-vous de ' + data.ShortName(target),
         de: 'Weg von ' + data.ShortName(target),
+        fr: 'Éloignez-vous de ' + data.ShortName(target),
         ja: data.ShortName(target) + 'から離れて',
         cn: '远离' + data.ShortName(target),
       };
@@ -776,7 +776,7 @@ let Responses = {
     obj[defaultAlarmText(sev)] = {
       en: 'Stop Everything!',
       de: 'Stoppe Alles!',
-      fr: 'Stoppez TOUT !',
+      fr: 'Arrêtez TOUT !',
       ja: '行動禁止！',
       ko: '행동 멈추기!',
       cn: '停止行动！',

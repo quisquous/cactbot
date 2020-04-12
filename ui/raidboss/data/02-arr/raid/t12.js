@@ -64,7 +64,7 @@
           return {
             en: 'Away from ' + data.ShortName(matches.target),
             de: 'Weg von ' + data.ShortName(matches.target),
-            fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
+            fr: 'Éloignez-vous de ' + data.ShortName(matches.target),
             cn: '远离' + data.ShortName(matches.target),
           };
         }

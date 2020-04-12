@@ -52,6 +52,7 @@
       infoText: {
         en: 'Spread Soon',
         fr: 'Écartez-vous bientôt',
+        ko: '잠시후 산개',
       },
     },
   ],
@@ -99,6 +100,7 @@
         fr: 'Attirez les taillades',
         ja: '縦へ、アルティウスを誘導',
         cn: 'Boss身后诱导剑气方向',
+        ko: '슬래시 유도',
       },
     },
     {
@@ -125,8 +127,8 @@
             de: 'Tank Cleave ausweichen',
             fr: 'Évitez le cleave sur le tank',
             ja: '前方範囲攻撃を避け',
-            ko: '광역 탱버 피하기',
             cn: '远离顺劈',
+            ko: '광역 탱버 피하기',
           };
         }
         return {
@@ -163,6 +165,7 @@
         fr: 'Allez devant le boss',
         ja: '前へ',
         cn: '到正面',
+        ko: '정면으로',
       },
     },
     {
@@ -189,6 +192,7 @@
         fr: 'Arrêtez d\'attaquer',
         ja: 'ブロックしない側に攻撃',
         cn: '攻击未格挡的方向',
+        ko: '공격 중지',
       },
     },
     {
@@ -234,6 +238,7 @@
             fr: 'Prenez un lien',
             ja: '線を取る',
             cn: '接线',
+            ko: '선 가로채기',
           };
         }
         return {
@@ -241,8 +246,8 @@
           de: 'Adds besiegen',
           fr: 'Tuez les adds',
           ja: '雑魚を処理',
-          ko: '쫄 잡기',
           cn: '击杀小怪',
+          ko: '쫄 잡기',
         };
       },
     },
@@ -259,6 +264,7 @@
         fr: 'Esquivez les clones',
         ja: 'ターミナス・エストを避け',
         cn: '躲避剑气',
+        ko: '클론 피하기',
       },
       run: function(data) {
         delete data.clonesActive;
@@ -284,6 +290,7 @@
         fr: 'Attirez les taillades en dehors',
         ja: '外周に安置',
         cn: '外圈放黑泥',
+        ko: '장판 바깥쪽으로 유도',
       },
     },
   ],
@@ -373,7 +380,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bladesblood': '剣気',
         'Gunshield': 'ガンシールド',
@@ -386,15 +392,17 @@
         'Ventus Est': 'ウェントゥス・エスト',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '--clones appear--': '--幻影が現れる--',
         'Aetherochemical Grenado': '魔導榴弾',
         'Alea Iacta Est': 'アーレア・ヤクタ・エスト',
         'Altius': 'アルティウス',
+        'Blade\'s Pulse': '攻撃を受け止める',
         'Citius': 'キティウス',
         'Electrified Gunshield': 'ガンシールド：魔導ショック',
         'Festina Lente': 'フェスティナ・レンテ',
         'Fortius': 'フォルティウス',
         '(?<! )Gunshield(?! )': 'ガンシールド',
-        'Gunshield Actions': 'ガンシールド技',
         'Ignis Est': 'イグニス・エスト',
         'Loaded Gunshield': 'ガンシールド：魔導バースト',
         'Magitek Burst': '魔導バースト',
