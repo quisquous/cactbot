@@ -221,10 +221,9 @@
         'The General\'s Time': '阿里达乌斯之时',
         'The General\'s Might': '阿里达乌斯之力',
         'Judgment Crystal': '审判结晶',
-        'Engage!': '战斗开始！',
         'Arrhidaeus\'s Lanner': '阿里达乌斯之速',
         'Alexander Prime': '至尊亚历山大',
-        '(?! )Alexander(?<! )': '亚历山大',
+        '(?<! )Alexander(?! )': '亚历山大',
         'is no longer sealed': '不再封闭',
       },
       'replaceText': {
@@ -265,7 +264,8 @@
         'Holy Scourge': '圣光之鞭',
         'Chastening Heat': '神罚射线',
         'Communion': '圣餐',
-        'timegates active': '时空门激活',
+        'timegates active': '时空门',
+        'active': '时空门激活',
       },
       '~effectNames': {
         'Magic Vulnerability Up': '魔法受伤加重',
