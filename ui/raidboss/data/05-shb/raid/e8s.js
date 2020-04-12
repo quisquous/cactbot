@@ -364,6 +364,47 @@
       response: Responses.spread('alert'),
     },
     {
+      id: 'E8S Akh Morn',
+      regex: Regexes.startsUsing({ source: ['Shiva', 'Great Wyrm'], id: ['4D98', '4D79'] }),
+      regexDe: Regexes.startsUsing({ source: ['Shiva', 'Körper des heiligen Drachen'], id: ['4D98', '4D79'] }),
+      regexFr: Regexes.startsUsing({ source: ['Shiva', 'Dragon divin'], id: ['4D98', '4D79'] }),
+      regexJa: Regexes.startsUsing({ source: ['シヴァ', '聖竜'], id: ['4D98', '4D79'] }),
+      preRun: function(data, matches) {
+        data.akhMornTargets = data.akhMornTargets || [];
+        data.akhMornTargets.push(matches.target);
+      },
+      response: function(data, matches) {
+        if (data.me == matches.target) {
+          let onYou = {
+            en: 'Akh Morn on YOU',
+          };
+          if (data.role == 'tank')
+            return { alertText: onYou };
+          return { alarmText: onYou };
+        }
+        if (data.akhMornTargets.length != 2)
+          return;
+        if (data.akhMornTargets.includes(data.me))
+          return;
+        return {
+          infoText: {
+            en: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
+          },
+        };
+      },
+    },
+    {
+      id: 'E8S Akh Morn Cleanup',
+      regex: Regexes.startsUsing({ source: ['Shiva', 'Great Wyrm'], id: ['4D98', '4D79'], capture: false }),
+      regexDe: Regexes.startsUsing({ source: ['Shiva', 'Körper des heiligen Drachen'], id: ['4D98', '4D79'], capture: false }),
+      regexFr: Regexes.startsUsing({ source: ['Shiva', 'Dragon divin'], id: ['4D98', '4D79'], capture: false }),
+      regexJa: Regexes.startsUsing({ source: ['シヴァ', '聖竜'], id: ['4D98', '4D79'], capture: false }),
+      delaySeconds: 15,
+      run: function(data) {
+        delete data.akhMornTargets;
+      },
+    },
+    {
       id: 'E8S Morn Afah',
       regex: Regexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
       regexDe: Regexes.startsUsing({ source: 'Shiva', id: '4D7B' }),
