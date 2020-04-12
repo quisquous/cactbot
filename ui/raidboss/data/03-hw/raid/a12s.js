@@ -236,7 +236,7 @@
         'Temporal Stasis': '时间停止',
         'Smash': '粉碎',
         'Radiant Sacrament': '拜火',
-        'Sacrament(?<! )': '十字',
+        '(?<! )Sacrament': '十字',
         'Punishing Heat': '惩戒射线',
         'Plaint of Surety': '誓约神判',
         'Plaint of Solidarity': '连带神判',
@@ -264,7 +264,7 @@
         'Holy Scourge': '圣光之鞭',
         'Chastening Heat': '神罚射线',
         'Communion': '圣餐',
-        'timegates active': '时空门',
+        'timegates': '时空门',
         'active': '时空门激活',
       },
       '~effectNames': {
