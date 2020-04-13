@@ -1,11 +1,11 @@
 'use strict';
 
 // Because apparently people don't understand uppercase greek letters,
-// only uppercase alphabetic letters.
+// add a special case to not uppercase them.
 function triggerUpperCase(str) {
   if (!str)
     return str;
-  return str.replace(/\w/g, (x) => x.toUpperCase());
+  return str.replace(/[^αβγδ]/g, (x) => x.toUpperCase());
 }
 
 function onTriggerException(trigger, e) {
