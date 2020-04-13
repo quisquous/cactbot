@@ -132,10 +132,10 @@
       infoText: function(data, matches) {
         if (matches.target != data.me) {
           return {
-            en: 'Chain on ' + data.ShortName(matches[1]),
-            de: 'Kette auf ' + data.ShortName(matches[1]),
-            fr: 'Chaine sur ' + data.ShortName(matches[1]),
-            cn: '毒点名' + data.ShortName(matches[1]),
+            en: 'Chain on ' + data.ShortName(matches.target),
+            de: 'Kette auf ' + data.ShortName(matches.target),
+            fr: 'Chaine sur ' + data.ShortName(matches.target),
+            cn: '毒点名' + data.ShortName(matches.target),
           };
         }
       },

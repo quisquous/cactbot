@@ -626,7 +626,7 @@
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
-        if (matches[2] > 1000)
+        if (matches.duration > 1000)
           return false;
         return data.me == matches.target;
       },

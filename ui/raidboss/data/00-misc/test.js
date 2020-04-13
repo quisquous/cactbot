@@ -174,14 +174,11 @@
   triggers: [
     {
       id: 'Test Poke',
-      // TODO: change this to Regexes
-      // e.g. "00:001d:\y{Name}:You poke the striking dummy."
-      // Are other emotes on the same id?
-      regex: /:You poke the striking dummy/,
-      regexDe: /:Du stupst die Trainingspuppe an/,
-      regexFr: /:Vous touchez légèrement le mannequin d'entraînement du doigt/,
-      regexCn: /:.*用手指戳向木人/,
-      regexKo: /:.*나무인형을 쿡쿡 찌릅니다/,
+      regex: Regexes.gameNameLog({ line: 'You poke the striking dummy', capture: false }),
+      regexDe: Regexes.gameNameLog({ line: '\\y{Name}:Du stupst die Trainingspuppe an', capture: false }),
+      regexFr: Regexes.gameNameLog({ line: '\\y{Name}:Vous touchez légèrement le mannequin d\'entraînement du doigt', capture: false }),
+      regexCn: Regexes.gameNameLog({ line: '\\y{Name}:.*用手指戳向木人', capture: false }),
+      regexKo: Regexes.gameNameLog({ line: '\\y{Name}:.*나무인형을 쿡쿡 찌릅니다', capture: false }),
       preRun: function(data) {
         data.pokes = (data.pokes || 0) + 1;
       },
@@ -197,11 +194,11 @@
     },
     {
       id: 'Test Psych',
-      regex: /:You psych yourself up alongside the striking dummy/,
-      regexDe: /:Du willst wahren Kampfgeist in der Trainingspuppe entfachen/,
-      regexFr: /:Vous vous motivez devant le mannequin d'entraînement/,
-      regexCn: /:.*激励木人/,
-      regexKo: /:.*나무인형에게 힘을 불어넣습니다/,
+      regex: Regexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*', capture: false }),
+      regexDe: Regexes.gameNameLog({ line: 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen', capture: false }),
+      regexFr: Regexes.gameNameLog({ line: 'Vous vous motivez devant le mannequin d\'entraînement', capture: false }),
+      regexCn: Regexes.gameNameLog({ line: '.*激励木人', capture: false }),
+      regexKo: Regexes.gameNameLog({ line: '.*나무인형에게 힘을 불어넣습니다', capture: false }),
       alertText: {
         en: 'PSYCH!!!',
         de: 'AUF GEHTS!!!',
@@ -226,11 +223,11 @@
     },
     {
       id: 'Test Laugh',
-      regex: /:You burst out laughing at the striking dummy/,
-      regexDe: /:Du lachst herzlich mit der Trainingspuppe/,
-      regexFr: /:Vous vous esclaffez devant le mannequin d'entraînement/,
-      regexCn: /:.*看着木人高声大笑/,
-      regexKo: /:.*나무인형을 보고 폭소를 터뜨립니다/,
+      regex: Regexes.gameNameLog({ line: 'You burst out laughing at the striking dummy', capture: false }),
+      regexDe: Regexes.gameNameLog({ line: 'Du lachst herzlich mit der Trainingspuppe', capture: false }),
+      regexFr: Regexes.gameNameLog({ line: 'Vous vous esclaffez devant le mannequin d\'entraînement', capture: false }),
+      regexCn: Regexes.gameNameLog({ line: '.*看着木人高声大笑', capture: false }),
+      regexKo: Regexes.gameNameLog({ line: '.*나무인형을 보고 폭소를 터뜨립니다', capture: false }),
       suppressSeconds: 5,
       alarmText: {
         en: 'hahahahaha',
@@ -256,11 +253,11 @@
     },
     {
       id: 'Test Clap',
-      regex: /:You clap for the striking dummy/,
-      regexDe: /:Du klatschst begeistert Beifall für die Trainingspuppe/,
-      regexFr: /:Vous applaudissez le mannequin d'entraînement/,
-      regexCn: /:.*向木人送上掌声/,
-      regexKo: /:.*나무인형에게 박수를 보냅니다/,
+      regex: Regexes.gameNameLog({ line: 'You clap for the striking dummy', capture: false }),
+      regexDe: Regexes.gameNameLog({ line: 'Du klatschst begeistert Beifall für die Trainingspuppe', capture: false }),
+      regexFr: Regexes.gameNameLog({ line: 'Vous applaudissez le mannequin d\'entraînement', capture: false }),
+      regexCn: Regexes.gameNameLog({ line: '.*向木人送上掌声', capture: false }),
+      regexKo: Regexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다', capture: false }),
       sound: '../../resources/sounds/WeakAuras/Applause.ogg',
       soundVolume: 0.3,
       tts: {

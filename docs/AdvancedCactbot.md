@@ -113,7 +113,7 @@ Options.Triggers = [
     zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
     triggers: [
       {
-        regex: /:26AA:Twintania starts using/,
+        regex: Regexes.ability({ source: 'Twintania', id: '26AA' }),
         alarmText: 'Panic!',
       },
     ],
@@ -164,7 +164,8 @@ Options.Triggers = [
   { zoneRegex: /./,
     triggers: [
       // Trick Attack used.
-      { regex: /:\y{Name}:\y{AbilityCode}:Trick Attack:/,
+      {
+        regex: Regexes.ability({ ability: 'Trick Attack' }),
         sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
       },
 
@@ -187,10 +188,11 @@ Options.Triggers = [
     triggers: [
       // .. other triggers here ..
 
-      { regex: /:(\y{Name}) gains the effect of Forked Lightning from/,
+      {
+        regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
         delaySeconds: 1,
         alertText: 'Forked Lightning: Get out',
-        condition: function(data, matches) { return matches[1] == data.me; },
+        condition: function(data, matches) { return matches.target == data.me; },
       },
 
       // .. other triggers here ..

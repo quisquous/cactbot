@@ -8,55 +8,51 @@
   },
   triggers: [
     {
-      id: 'Shatter Big Ice',
-      regex: /The icebound tomelith A([1-4]) activates and begins to emit heat/,
-      regexDe: /Vereister Echolith A([1-4]) activates and begins to emit heat/,
-      regexFr: /Mémolithe Congelé A([1-4]) activates and begins to emit heat/,
-      preRun: function(data, matches) {
-        data.iceDir = undefined;
-        let ice_lang = {
-          en: {
-            '1': 'Center',
-            '2': 'North',
-            '3': 'Southeast',
-            '4': 'Southwest',
-          },
-          de: {
-            '1': 'Mitte',
-            '2': 'Norden',
-            '3': 'Süden',
-            '4': 'Südwesten',
-          },
-          fr: {
-            '1': 'Milieu',
-            '2': 'Nord',
-            '3': 'Sud-Est',
-            '4': 'Sud-Ouest',
-          },
-          cn: {
-            '1': '中央',
-            '2': '北方',
-            '3': '东南',
-            '4': '西南',
-          },
-        };
-
-        let big_ice_dir = ice_lang['en'];
-        if (data.lang in ice_lang)
-          big_ice_dir = ice_lang[data.lang];
-
-        if (!(matches[1] in big_ice_dir))
-          return;
-
-        data.iceDir = {
-          en: 'Big Ice: ' + big_ice_dir[matches[1]],
-          de: 'Grosses Eis: ' + big_ice_dir[matches[1]],
-          fr: 'Grosse Glace :' + big_ice_dir[matches[1]],
-          cn: '大冰: ' + big_ice_dir[matches[1]],
-        };
+      id: 'Shatter Big Ice Center',
+      regex: Regexes.gameLog({ line: 'The icebound tomelith A1 activates and begins to emit heat', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Vereister Echolith A1 activates and begins to emit heat', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Mémolithe Congelé A1 activates and begins to emit heat', capture: false }),
+      alertText: {
+        en: 'Big Ice: Center',
+        de: 'Grosses Eis: Mitte',
+        fr: 'Grosse Glace : Milieu',
+        cn: '大冰: 中央',
       },
-      alertText: function(data) {
-        return data.iceDir;
+    },
+    {
+      id: 'Shatter Big Ice North',
+      regex: Regexes.gameLog({ line: 'The icebound tomelith A2 activates and begins to emit heat', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Vereister Echolith A2 activates and begins to emit heat', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Mémolithe Congelé A2 activates and begins to emit heat', capture: false }),
+      alertText: {
+        en: 'Big Ice: North',
+        de: 'Grosses Eis: Norden',
+        fr: 'Grosse Glace : Nord',
+        cn: '大冰: 北方',
+      },
+    },
+    {
+      id: 'Shatter Big Ice Southeast',
+      regex: Regexes.gameLog({ line: 'The icebound tomelith A3 activates and begins to emit heat', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Vereister Echolith A3 activates and begins to emit heat', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Mémolithe Congelé A3 activates and begins to emit heat', capture: false }),
+      alertText: {
+        en: 'Big Ice: Southeast',
+        de: 'Grosses Eis: Süden',
+        fr: 'Grosse Glace : Sud-Est',
+        cn: '大冰: 东南',
+      },
+    },
+    {
+      id: 'Shatter Big Ice Southwest',
+      regex: Regexes.gameLog({ line: 'The icebound tomelith A4 activates and begins to emit heat', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Vereister Echolith A4 activates and begins to emit heat', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Mémolithe Congelé A4 activates and begins to emit heat', capture: false }),
+      alertText: {
+        en: 'Big Ice: Southwest',
+        de: 'Grosses Eis: Südwesten',
+        fr: 'Grosse Glace : Sud-Ouest',
+        cn: '大冰: 西南',
       },
     },
   ],

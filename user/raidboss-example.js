@@ -59,7 +59,7 @@ Options.Triggers = [
     zoneRegex: /./,
     triggers: [
       {
-        regex: /:You are defeated by/,
+        regex: Regexes.gameLog({ line: 'You are defeated by' }),
         alarmText: 'YOU DIED',
       },
     ],
@@ -73,7 +73,7 @@ Options.Triggers = [
     zoneRegex: /^(Mist|The Goblet|The Lavender Beds|Shirogane)$/,
     triggers: [
       {
-        regex: /You blow a kiss/,
+        regex: Regexes.gameNameLog({ line: 'You blow a kiss' }),
         sound: '../../resources/sounds/PowerAuras/bigkiss.ogg',
         volume: 0.5,
       },
@@ -109,7 +109,7 @@ Options.Triggers = [
       // If you provoke the striking dummy (or anything), this will trigger.
       {
         id: 'User Example Provoke',
-        regex: /You use Provoke/,
+        regex: Regexes.gameLog({ line: 'You use Provoke' }),
         infoText: 'Provoke!',
         tts: 'provoke',
       },
@@ -119,13 +119,13 @@ Options.Triggers = [
         id: 'User Example Regen',
         // This will match log lines from ACT that look like this:
         // "Nacho Queen gains the effect of Regen from Taco Cat for 21.00 Seconds."
-        regex: /gains the effect of Regen from \y{Name} for (\y{Float}) Seconds/,
+        regex: Regexes.gainsEffect({ effect: 'Regen' }),
         delaySeconds: function(data, matches) {
           // Wait the amount of seconds regen lasts before reminding you to
           // reapply it.  This is not smart enough to figure out if you
           // cast it twice, and is left as an exercise for the reader to
           // figure out how to do so via storing variables on `data`.
-          return data.ParseLocaleFloat(matches[1]);
+          return data.ParseLocaleFloat(matches.duration);
         },
 
         alertText: 'Regen Reminder',
