@@ -4,14 +4,14 @@
 let commonReplacement = {
   '(?<=00:0839:)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?': {
     de: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
-    cn: '距$1被封锁还有',
     fr: 'Fermeture d(?:e|u|es) $1 dans',
     ja: '$1の封鎖まであと',
+    cn: '距$1被封锁还有',
     ko: '15초 후에 $1(이|가) 봉쇄됩니다',
   },
   'is no longer sealed': {
     de: 'öffnet sich erneut',
-    fr: 'Ouverture ',
+    fr: 'Ouverture',
     ja: 'の封鎖が解かれた',
     ko: '의 봉쇄가 해제되었습니다',
   },
@@ -45,7 +45,7 @@ let commonReplacement = {
   },
   'Engage!': {
     de: 'Start!',
-    fr: 'À l\'attaque',
+    fr: 'À l\'attaque !',
     ja: '戦闘開始！',
     cn: '战斗开始！',
     ko: '전투 시작!',
