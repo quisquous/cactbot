@@ -377,7 +377,7 @@
         if (data.me == matches.target) {
           let onYou = {
             en: 'Akh Morn on YOU',
-            ko: '아크몬 대상자'
+            ko: '아크몬 대상자',
           };
           if (data.role == 'tank')
             return { alertText: onYou };
