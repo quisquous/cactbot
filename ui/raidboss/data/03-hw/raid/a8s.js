@@ -582,6 +582,7 @@
         'Eye Of The Chakram': '战轮光束',
         'Steam Chakram': '蒸汽战轮',
         'Reset-': '重置',
+        'Added new combatant Blaster': '增加新的爆破者',
       },
       'replaceText': {
         'attack': '攻击',
@@ -614,7 +615,7 @@
         'Ice Missile': '寒冰导弹',
         'Hydrothermal Missile': '蒸汽导弹',
         'Hidden Minefield': '隐形地雷散布',
-        'Hidden Mine(?! )': '地雷爆炸',
+        '(?<! )Hidden Mine(?! )': '地雷爆炸',
         'Height': '高度算术',
         'Gavel': '终审闭庭',
         'Gale Force': '暴风',
@@ -659,8 +660,7 @@
         'J Wave': '正义震荡波',
         'Chakrams Spawn': '飞盘',
         'Reset-': '重置',
-        '--targetable?--': '可选中',
-        '--targetable-': '可选中',
+        '--targetable\--': '可选中',
       },
       '~effectNames': {
         'Prey': '猎物',
