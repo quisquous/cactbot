@@ -53,6 +53,7 @@
           return {
             alertText: {
               en: 'Dodge Clones + Stack',
+              ko: '분신 피하기 + 집합',
             },
           };
         }
@@ -180,7 +181,7 @@
         fr: 'Allez devant le boss',
         ja: '前へ',
         cn: '到正面',
-        ko: '정면으로',
+        ko: '앞으로',
       },
     },
     {

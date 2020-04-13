@@ -485,15 +485,18 @@
         if (data.role == 'tank') {
           return {
             en: 'Go South',
+            ko: '남쪽',
           };
         }
         if (data.color == 'light') {
           return {
             en: 'Go Northwest',
+            ko: '북서쪽',
           };
         }
         return {
           en: 'Go Northeast',
+          ko: '북동쪽',
         };
       },
     },
