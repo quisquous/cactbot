@@ -190,6 +190,12 @@ let tests = {
     ];
     regexCaptureTest(Regexes.dialog, dialogLines);
 
+    let namedLines = [
+      '[17:56:54.000] 00:001d:Potato Chippy:You clap for the striking dummy.',
+    ];
+    regexCaptureTest(Regexes.gameNameLog, namedLines);
+    regexCaptureTest(Regexes.gameNameLog, dialogLines);
+
     let messageLines = [
       '[23:12:47.000] 00:0839:An avatar of Absolute Virtue has manifested somewhere in Hydatos!',
       '[19:39:13.000] 00:0839:The Hand of Erebos manifests!',
@@ -201,6 +207,7 @@ let tests = {
     allLines.push(...echoLines);
     allLines.push(...dialogLines);
     allLines.push(...messageLines);
+    allLines.push(...namedLines);
     regexCaptureTest(Regexes.gameLog, allLines);
   },
   statchange: () => {

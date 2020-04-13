@@ -355,6 +355,22 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // fields: code, name, line, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // Some game log lines have names in them, but not all.  All network log lines for these
+  // have empty fields, but these get dropped by the ACT FFXV plugin.
+  gameNameLog: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
+    validateParams(f, 'gameNameLog', ['code', 'name', 'line', 'capture']);
+    let capture = trueIfUndefined(f.capture);
+    let str = '\\y{Timestamp} 00:' +
+      Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
+      Regexes.maybeCapture(capture, 'name', f.name, '[^:]*') + ':' +
+      Regexes.maybeCapture(capture, 'line', f.line, '.*');
+    return Regexes.parse(str);
+  },
+
   // fields: job, strength, dexterity, vitality, intelligence, mind, piety, attackPower,
   //         directHit, criticalHit, attackMagicPotency, healMagicPotency, determination,
   //         skillSpeed, spellSpeed, tenacity, capture
