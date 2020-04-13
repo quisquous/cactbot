@@ -117,10 +117,10 @@
     },
     {
       id: 'TEA Tether Tracking',
-      regex: / 23:(\y{ObjectId}):Jagd Doll:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regex: Regexes.tether({ source: 'Jagd Doll', id: '0011' }),
       run: function(e, data, matches) {
         data.jagdTether = data.jagdTether || {};
-        data.jagdTether[matches[1]] = matches[2];
+        data.jagdTether[matches.sourceId] = matches.target;
       },
     },
     {

@@ -37,7 +37,7 @@
       regexCn: Regexes.startsUsing({ id: '411E', source: '泰坦' }),
       regexKo: Regexes.startsUsing({ id: '411E', source: '타이탄' }),
       run: function(e, data, matches) {
-        data.faultLineTarget = matches[1];
+        data.faultLineTarget = matches.target;
       },
     },
     {

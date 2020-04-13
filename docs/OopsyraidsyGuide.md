@@ -209,6 +209,11 @@ For example, if you want to store a map of which players have doom or not, that 
 
 `matches` is literally the regex match object returned from whatever regex this trigger matched.  `matches[0]` is always the full match, with other array entries being any other groups from the regex (if any).  In the case of the single event above, `matches[0] === 'Iron Chariot'`.
 
+However, if `matches` has any groups
+(which all the `Regexes` helper functions do),
+then matches will be the groups field directly,
+so that you can do things like `matches.target`.
+
 ## Trigger Field Evaluation Order
 
 The full order of evaluation of functions in a trigger is:
