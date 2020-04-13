@@ -1012,6 +1012,7 @@
           en: ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'],
           de: ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'],
           fr: ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'],
+          cn: ['北', '东北', '东', '东南', '南', '西南', '西', '西北'],
           ko: ['12시', '1시', '3시', '5시', '6시', '7시', '9시', '11시'],
         };
 
@@ -1172,6 +1173,7 @@
           en: data.octetMarker.length + ': ' + data.ShortName(matches.target),
           fr: data.octetMarker.length + ' : ' + data.ShortName(matches.target),
           de: data.octetMarker.length + ': ' + data.ShortName(matches.target),
+          cn: data.octetMarker.length + '：' + data.ShortName(matches.target),
           ko: data.octetMarker.length + ': ' + data.ShortName(matches.target),
         };
       },
