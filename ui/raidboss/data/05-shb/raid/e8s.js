@@ -600,7 +600,6 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D83', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D83', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D83', capture: false }),
-      condition: (data) => data.role == 'tank',
       response: Responses.getIn('alert'),
     },
     {
