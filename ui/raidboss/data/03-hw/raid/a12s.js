@@ -213,7 +213,7 @@
       },
     },
   ],
-   timelineReplace: [
+  timelineReplace: [
     {
       'locale': 'cn',
       'replaceSync': {
