@@ -64,7 +64,7 @@
           return {
             en: 'Away from ' + data.ShortName(matches.target),
             de: 'Weg von ' + data.ShortName(matches.target),
-            fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
+            fr: 'Éloignez-vous de ' + data.ShortName(matches.target),
             cn: '远离' + data.ShortName(matches.target),
           };
         }
@@ -132,10 +132,10 @@
       infoText: function(data, matches) {
         if (matches.target != data.me) {
           return {
-            en: 'Chain on ' + data.ShortName(matches[1]),
-            de: 'Kette auf ' + data.ShortName(matches[1]),
-            fr: 'Chaine sur ' + data.ShortName(matches[1]),
-            cn: '毒点名' + data.ShortName(matches[1]),
+            en: 'Chain on ' + data.ShortName(matches.target),
+            de: 'Kette auf ' + data.ShortName(matches.target),
+            fr: 'Chaine sur ' + data.ShortName(matches.target),
+            cn: '毒点名' + data.ShortName(matches.target),
           };
         }
       },
@@ -174,13 +174,14 @@
         'Phoenix(?!-)': 'Phénix',
       },
       'replaceText': {
-        'Bennu Add': 'Bénou Add',
+        'Bennu Add': 'Add Bénou',
         'Blackfire': 'Flamme noire',
         'Bluefire': 'Flamme bleue',
         'Brand Of Purgatory': 'Tison du purgatoire',
         'Flames Of Rebirth': 'Feu résurrecteur',
         'Flames Of Unforgiveness': 'Flammes du purgatoire',
         'Fountain Of Fire': 'Flamme de la vie',
+        'Fountain Tick': 'Fontaine tick',
         '(?<! )Rebirth': 'Résurrection',
         'Redfire Plume': 'Panache rouge',
         'Redfire(?! )': 'Flambée rouge',

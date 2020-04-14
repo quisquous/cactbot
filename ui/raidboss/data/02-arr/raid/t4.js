@@ -89,6 +89,8 @@
         'Spinner-rook': 'Drone-drille',
       },
       'replaceText': {
+        'NW': 'NO',
+        'SW': 'SO',
         'Bug': 'Insecte',
         'Dreadnaught': 'Cuirassé',
         'Emergency Override': 'Annulation d\'urgence',

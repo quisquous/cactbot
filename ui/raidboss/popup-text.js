@@ -1,11 +1,11 @@
 'use strict';
 
 // Because apparently people don't understand uppercase greek letters,
-// only uppercase alphabetic letters.
+// add a special case to not uppercase them.
 function triggerUpperCase(str) {
   if (!str)
     return str;
-  return str.replace(/\w/g, (x) => x.toUpperCase());
+  return str.replace(/[^αβγδ]/g, (x) => x.toUpperCase());
 }
 
 function onTriggerException(trigger, e) {
@@ -499,6 +499,10 @@ class PopupText {
         // Can't use ValueOrFunction here as r returns a non-localizable object.
         let r = trigger.response;
         response = (typeof(r) == 'function') ? r(this.data, matches) : r;
+
+        // Turn falsy values into a default no-op response.
+        if (!response)
+          response = {};
       }
 
       let alarmText = triggerOptions.AlarmText || trigger.alarmText || response.alarmText;

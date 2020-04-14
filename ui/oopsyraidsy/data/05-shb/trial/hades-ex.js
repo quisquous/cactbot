@@ -11,10 +11,11 @@
     'HadesEx Shadow Spread 2': '47AA',
     'HadesEx Shadow Spread 3': '47E4',
     'HadesEx Shadow Spread 4': '47E5',
-    'HadesEx Bad Faith 1': '47AD',
-    'HadesEx Bad Faith 2': '47B0',
-    'HadesEx Bad Faith 3': '47AE',
-    'HadesEx Bad Faith 4': '47AF',
+    // Everybody stacks in good faith for Bad Faith, so don't call it a mistake.
+    // 'HadesEx Bad Faith 1': '47AD',
+    // 'HadesEx Bad Faith 2': '47B0',
+    // 'HadesEx Bad Faith 3': '47AE',
+    // 'HadesEx Bad Faith 4': '47AF',
     'HadesEx Broken Faith': '47B2',
     'HadesEx Magic Spear': '47B6',
     'HadesEx Magic Chakram': '47B5',
@@ -55,10 +56,10 @@
     },
     {
       id: 'HadesEx Dark II Tether',
-      regex: / 23:\y{ObjectId}:Shadow of the Ancients:\y{ObjectId}:(\y{Name}):....:....:0011:/,
+      regex: Regexes.tether({ source: 'Shadow of the Ancients', id: '0011' }),
       run: function(e, data, matches) {
         data.hasDark = data.hasDark || [];
-        data.hasDark.push(matches[1]);
+        data.hasDark.push(matches.target);
       },
     },
     {
@@ -96,7 +97,7 @@
     },
     {
       id: 'HadesEx Boss Tether',
-      regex: / 23:\y{ObjectId}:(?:Igeyorhm's Shade|Lahabrea's Shade):\y{ObjectId}:(?:Igeyorhm's Shade|Lahabrea's Shade):....:....:000E:/,
+      regex: Regexes.tether({ source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], id: '000E', capture: false }),
       mistake: {
         type: 'warn',
         text: {

@@ -843,6 +843,11 @@ class DamageTracker {
   }
 
   OnTrigger(trigger, evt, matches) {
+    // If using named groups, treat matches.groups as matches
+    // so triggers can do things like matches.target.
+    if ((matches != undefined) && (matches.groups != undefined))
+      matches = matches.groups;
+
     if (trigger.id && this.options.DisabledTriggers[trigger.id])
       return;
 

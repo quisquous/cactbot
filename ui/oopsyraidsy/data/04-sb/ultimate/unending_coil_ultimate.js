@@ -6,10 +6,16 @@
     en: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
     ko: /^절 바하무트 토벌전$/,
   },
+  damageFail: {
+    'UCU Lunar Dynamo': '26BC',
+    'UCU Iron Chariot': '26BB',
+    'UCU Exaflare': '26EF',
+    'UCU Wings Of Salvation': '26CA',
+  },
   triggers: [
     {
       id: 'UCU Twister Death',
-      damageRegex: gLang.kAbility.Twister,
+      damageRegex: '26AB',
       condition: function(e, data) {
         // Instant death uses '32' as its flags, differentiating
         // from the explosion damage you take when somebody else
@@ -30,7 +36,7 @@
     },
     {
       id: 'UCU Thermionic Burst',
-      damageRegex: gLang.kAbility.ThermionicBurst,
+      damageRegex: '26B9',
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
@@ -47,38 +53,8 @@
       },
     },
     {
-      id: 'UCU Dynamo',
-      damageRegex: gLang.kAbility.LunarDynamo,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'UCU Chariot',
-      damageRegex: gLang.kAbility.IronChariot,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'UCU White Puddle',
-      damageRegex: gLang.kAbility.WingsOfSalvation,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
       id: 'UCU Chain Lightning',
-      damageRegex: gLang.kAbility.ChainLightning,
+      damageRegex: '26C8',
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
@@ -112,16 +88,7 @@
       },
     },
     {
-      id: 'UCU Exaflare',
-      damageRegex: gLang.kAbility.Exaflare,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
+      id: 'UCU Doom Collect',
       gainsEffectRegex: gLang.kEffect.Doom,
       losesEffectRegex: gLang.kEffect.Doom,
       run: function(e, data) {
@@ -142,7 +109,7 @@
       // Strategy: if you haven't cleared doom with 1 second to go then you probably
       // died to doom.  You can get non-fatally iceballed or auto'd in between,
       // but what can you do.
-      id: 'UCU Doom',
+      id: 'UCU Doom Death',
       gainsEffectRegex: gLang.kEffect.Doom,
       delaySeconds: function(e) {
         return e.durationSeconds - 1;

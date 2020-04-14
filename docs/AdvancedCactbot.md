@@ -33,7 +33,7 @@ future updates of cactbot will update files inside the ui directory,
 and any user configuration should go in files in the user directory.
 This will prevent your changes from being clobbered during future cactbot updates.
 
-All cactbot UI modules can load user settings from the [user/](user/) directory.
+All cactbot UI modules can load user settings from the [user/](../user/) directory.
 The user/ directory already includes some example configuration files,
 which you can rename and use.
 For example the **user/raidboss-example.js** can be renamed to **user/raidboss.js**
@@ -42,7 +42,7 @@ and edited to change the behavior of the **raidboss** module.
 If you want to do it yourself,
 then create a **user/\<name\>.css** or a **user/\<name\>.js** file,
 where **\<name\>** is the name of the UI module,
-such as [raidboss](ui/raidboss) or [jobs](ui/jobs).
+such as [raidboss](../ui/raidboss) or [jobs](../ui/jobs).
 
 After making any changes to these files,
 pressing the "Reload overlay" button
@@ -59,7 +59,7 @@ exist, it will then look for **../cactbot/user/** relative to the **CactbotOverl
 
 The **user/\<name\>.css** file can change positions, sizes, colors, etc. for components of
 the UI module. See the **ui/\<name\>/\<name\>.css** to find the names of things you can modify.
-For example in [ui/raidboss/raidboss.css](ui/raidboss/raidboss.css), you see the
+For example in [ui/raidboss/raidboss.css](../ui/raidboss/raidboss.css), you see the
 `#popup-text-container` and `#timeline-container` which can be changed via **user/raidboss.css**
 to different positions as desired. The size and color of info text alerts can also be changed by
 making a CSS rule for the `.info-text` class such as below:
@@ -75,7 +75,7 @@ making a CSS rule for the `.info-text` class such as below:
 
 The **user/\<name\>.js** file can set options to customize how the UI module works. The
 options that can be changed are documented in the `Options` section at the top of the
-**ui/\<name\>/\<name\>.js** file. For example in [ui/raidboss/raidboss.js](ui/raidboss/raidboss.js),
+**ui/\<name\>/\<name\>.js** file. For example in [ui/raidboss/raidboss.js](../ui/raidboss/raidboss.js),
 you see the `BarExpiresSoonSeconds` option which controls when timeline bars should be
 highlighted. You can change that option from the default value to 5 seconds by editing
 **user/raidboss.js** to say:
@@ -85,7 +85,7 @@ Options.BarExpiresSoonSeconds = 5
 ```
 
 To disable a text/sound alert that comes built-in for a fight, find the trigger's `id` in the files in
-[ui/raidboss/data/triggers](ui/raidboss/data/triggers). Then add the `id` to the `Options.DisabledTriggers`
+[ui/raidboss/data/triggers](../ui/raidboss/data/triggers). Then add the `id` to the `Options.DisabledTriggers`
 in the **user/raidboss.js** file, such as:
 
 ```javascript
@@ -96,7 +96,7 @@ Options.DisabledTriggers = {
 
 ### Per Trigger Options
 
-If you want to customize when and what triggers say, there are a few options.  For example, you want to change how the twisters callout works in ucob.  To start, look up the id for the trigger in the [triggers file](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L139).  This is `UCU Twisters`.  The `zoneRegex` for this zone is at the top of this file, and is `zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,`.
+If you want to customize when and what triggers say, there are a few options.  For example, you want to change how the twisters callout works in ucob.  To start, look up the id for the trigger in the [triggers file](../ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L139).  This is `UCU Twisters`.  The `zoneRegex` for this zone is at the top of this file, and is `zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,`.
 
 #### Option 1: disable the original, write your own
 
@@ -113,7 +113,7 @@ Options.Triggers = [
     zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
     triggers: [
       {
-        regex: /:26AA:Twintania starts using/,
+        regex: Regexes.ability({ source: 'Twintania', id: '26AA' }),
         alarmText: 'Panic!',
       },
     ],
@@ -125,7 +125,7 @@ Options.Triggers = [
 
 The other option is to use per trigger options.  These override the existing trigger behaviors, without needing to disable the original trigger.
 
-The [user/raidboss-example.js](https://github.com/quisquous/cactbot/blob/master/user/raidboss-example.js#L198) file has some examples of how to do this.
+The [user/raidboss-example.js](../user/raidboss-example.js#L198) file has some examples of how to do this.
 
 If you wanted to change the twister cast to say `Panic!` as above, you would do the following:
 
@@ -164,7 +164,8 @@ Options.Triggers = [
   { zoneRegex: /./,
     triggers: [
       // Trick Attack used.
-      { regex: /:\y{Name}:\y{AbilityCode}:Trick Attack:/,
+      {
+        regex: Regexes.ability({ ability: 'Trick Attack' }),
         sound: '../../resources/sounds/WeakAuras/RoaringLion.ogg',
       },
 
@@ -187,10 +188,11 @@ Options.Triggers = [
     triggers: [
       // .. other triggers here ..
 
-      { regex: /:(\y{Name}) gains the effect of Forked Lightning from/,
+      {
+        regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
         delaySeconds: 1,
         alertText: 'Forked Lightning: Get out',
-        condition: function(data, matches) { return matches[1] == data.me; },
+        condition: function(data, matches) { return matches.target == data.me; },
       },
 
       // .. other triggers here ..
@@ -222,27 +224,27 @@ See this [cactbot-user git repo](https://github.com/quisquous/cactbot-user) for 
 ## Writing a cactbot UI module
 
 To build a cactbot ui, you need to make a **.html** file and point cactbot at it. There are a
-number of helpful things in the [resources/](resources/) directory.
+number of helpful things in the [resources/](../resources/) directory.
 
-Include the [resources/defaults.css](resources/defaults.css) file to get some of the default
+Include the [resources/defaults.css](../resources/defaults.css) file to get some of the default
 look and feel of other cactbot uis, then use the `.text` class on any HTML elements which contain
 text. You may add the `.hide` class to elements you do not want shown, and remove it when they
 should be visible.
 
-Include the [resources/resize_handle.css](resources/resize_handle.css) and
+Include the [resources/resize_handle.css](../resources/resize_handle.css) and
 [resources/resize_handle.js](resources/resize_handle.js) files to give visual feedback to the
 user when the module is unlocked for moving and resizing.
 
-Include the [resources/unicode.js](resources/unicode.js) file to use unicode categories in
+Include the [resources/unicode.js](../resources/unicode.js) file to use unicode categories in
 regular expressions in order to support non-english characters.
 
 There are a number of web components that provide widgets for building your ui, including the
-[timerbar](resources/timerbar.js), [timerbox](resources/timerbox.js) or
-[resourcebar](resources/resourcebar.js). Include the file and then instantiate it by making an
+[timerbar](../resources/timerbar.js), [timerbox](../resources/timerbox.js) or
+[resourcebar](../resources/resourcebar.js). Include the file and then instantiate it by making an
 element of that type, such as `<timer-bar></timer-bar>` or `<resource-bar></resource-bar>`.
 
 The set of Javascript events that can be listened for via `document.addEventListener` is found
-in [CactbotOverlay/JSEvents.cs](CactbotOverlay/JSEvents.cs). The public fields of each event
+in [plugin/CactbotEventSource/JSEvents.cs](../plugin/CactbotEventSource/JSEvents.cs). The public fields of each event
 type will be members of the event's `detail`. See the
-[ui/test/test.html](ui/test/test.html) ui module for a simple example of
+[ui/test/test.html](../ui/test/test.html) ui module for a simple example of
 listening to and using the Javascript events.

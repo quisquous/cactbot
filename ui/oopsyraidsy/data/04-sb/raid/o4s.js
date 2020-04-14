@@ -6,29 +6,39 @@
     en: /^Deltascape V4\.0 \(Savage\)$/,
     ko: /^차원의 틈 오메가: 델타편\(영웅\) \(4\)$/,
   },
+  damageWarn: {
+    'O4S2 Neo Vacuum Wave': '241D',
+    'O4S2 Acceleration Bomb': '2431',
+    'O4S2 Emptiness': '2422',
+  },
+  damageFail: {
+    'O4S2 Double Laser': '2415',
+  },
   triggers: [
     {
-      abilityRegex: gLang.kAbility.DecisiveBattle,
-      regex: /:2408:Exdeath starts using The Decisive Battle/,
+      id: 'O4S2 Decisive Battle',
+      abilityRegex: '2408',
       run: function(e, data) {
         data.isDecisiveBattleElement = true;
       },
     },
     {
-      abilityRegex: gLang.kAbility.VacuumWave,
+      id: 'O4S1 Vacuum Wave',
+      abilityRegex: '23FE',
       run: function(e, data) {
         data.isDecisiveBattleElement = false;
       },
     },
     {
-      abilityRegex: gLang.kAbility.Almagest,
+      id: 'O4S2 Almagest',
+      abilityRegex: '2417',
       run: function(e, data) {
         data.isNeoExdeath = true;
       },
     },
     {
       id: 'O4S2 Blizzard III',
-      damageRegex: gLang.kAbility.BlizzardIII,
+      damageRegex: '23F8',
       condition: function(e, data) {
         // Ignore unavoidable raid aoe Blizzard III.
         return data.IsPlayerId(e.targetId) && !data.isDecisiveBattleElement;
@@ -39,19 +49,12 @@
     },
     {
       id: 'O4S2 Thunder III',
-      damageRegex: gLang.kAbility.ThunderIII,
+      damageRegex: '23FD',
       condition: function(e, data) {
         // Only consider this during random mechanic after decisive battle.
         return data.IsPlayerId(e.targetId) && data.isDecisiveBattleElement;
       },
       mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'O4S2 Acceleration Bomb',
-      damageRegex: gLang.kAbility.DeathBomb,
-      mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
@@ -68,7 +71,7 @@
     },
     {
       id: 'O4S2 Forked Lightning',
-      damageRegex: gLang.kAbility.DeathBolt,
+      damageRegex: '242E',
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
@@ -79,7 +82,7 @@
     },
     {
       id: 'O4S2 Double Attack',
-      damageRegex: gLang.kAbility.DoubleAttack,
+      damageRegex: '241C',
       condition: function(e, data) {
         return data.IsPlayerId(e.targetId);
       },
@@ -93,26 +96,7 @@
       },
     },
     {
-      id: 'O4S2 Emptiness',
-      damageRegex: gLang.kAbility.Emptiness,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'O4S2 Double Laser',
-      damageRegex: gLang.kAbility.EdgeOfDeath,
-      condition: function(e, data) {
-        return data.IsPlayerId(e.targetId);
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
+      id: 'O4S2 Beyond Death Collect',
       gainsEffectRegex: gLang.kEffect.BeyondDeath,
       losesEffectRegex: gLang.kEffect.BeyondDeath,
       run: function(e, data) {

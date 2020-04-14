@@ -64,6 +64,7 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 {
   id: 'id string',
   disabled: false,
+  // Note: prefer to use the regex helpers from [regexes.js](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js)
   regex: /trigger-regex-(with-position-1)(and-position-2)-here/,
   regexFr: /trigger-regex-(with-position-1)-here-but-in-french/,
   condition: function(data, matches) { return true if it should run },

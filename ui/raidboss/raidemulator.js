@@ -862,6 +862,10 @@ class EmulatorView {
       if (trigger.response) {
         let r = trigger.response;
         response = (typeof r === 'function') ? r(data, matches) : r;
+
+        // Turn falsy values into a default no-op response.
+        if (!response)
+          response = {};
       }
 
       // popup text

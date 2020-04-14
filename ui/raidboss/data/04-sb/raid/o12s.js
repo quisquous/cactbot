@@ -91,7 +91,7 @@
       regexCn: Regexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
       regexKo: Regexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer';
+        return data.me == matches.target || data.role == 'healer';
       },
       suppressSeconds: 1,
       response: Responses.tankBuster(),
@@ -105,7 +105,7 @@
       regexCn: Regexes.startsUsing({ id: ['334B', '334C'], source: ['欧米茄', '欧米茄M'] }),
       regexKo: Regexes.startsUsing({ id: ['334B', '334C'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
-        return data.me == matches[1] || data.role == 'healer';
+        return data.me == matches.target || data.role == 'healer';
       },
       suppressSeconds: 1,
       response: Responses.tankBuster(),

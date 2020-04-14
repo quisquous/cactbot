@@ -25,6 +25,11 @@
     {
       id: 'A12S Punishing Heat',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19E9' }),
+      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19E9' }),
+      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19E9' }),
+      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19E9' }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19E9' }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19E9' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
@@ -40,6 +45,7 @@
       },
       alertText: {
         en: 'Scourge on YOU',
+        de: 'Licht auf DIR',
         cn: '白光之鞭点名',
       },
     },
@@ -73,6 +79,7 @@
           return;
         return {
           en: 'Scourge: ' + names.join(', '),
+          de: 'Licht: ' + names.join(', '),
           cn: '白光之鞭点:' + names.join(', '),
         };
       },
@@ -80,6 +87,11 @@
     {
       id: 'A12S Mega Holy',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19EE', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19EE', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19EE', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EE', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19EE', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19EE', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -91,14 +103,25 @@
     {
       id: 'A12S Laser Sacrament',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19EB', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19EB', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EB', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19EB', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19EB', capture: false }),
       infoText: {
         en: 'Lasers',
+        de: 'Laser',
         cn: '十字圣礼',
       },
     },
     {
       id: 'A12S Radiant Sacrament',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19ED', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19ED', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19ED', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19ED', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19ED', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19ED', capture: false }),
       response: Responses.getUnder('alert'),
     },
     {
@@ -160,6 +183,11 @@
     {
       id: 'A12S Defamation',
       regex: Regexes.gainsEffect({ effect: 'Defamation' }),
+      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Ehrenstrafe' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement: Diffamation' }),
+      regexJa: Regexes.gainsEffect({ effect: '確定判決：名誉罰' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：名誉罪' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 명예형' }),
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Defamation',
@@ -185,6 +213,11 @@
     {
       id: 'A12S Holy Scourge',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '1A0B', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '1A0B', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '1A0B', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer' || data.job == 'blu') {
           return {
@@ -201,14 +234,25 @@
     {
       id: 'A12S Chastening Heat',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '1A0D' }),
+      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '1A0D' }),
+      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '1A0D' }),
+      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0D' }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '1A0D' }),
+      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '1A0D' }),
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'A12S Communion Tether',
       regex: Regexes.tether({ source: 'Alexander', id: '0036' }),
+      regexDe: Regexes.tether({ source: 'Alexander', id: '0036' }),
+      regexFr: Regexes.tether({ source: 'Alexander', id: '0036' }),
+      regexJa: Regexes.tether({ source: 'アレキサンダー', id: '0036' }),
+      regexCn: Regexes.tether({ source: '亚历山大', id: '0036' }),
+      regexKo: Regexes.tether({ source: '알렉산더', id: '0036' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Puddle Tether on YOU',
+        de: 'Flächen-Verbindung auf dir',
         cn: '放圈连线点名',
       },
     },
