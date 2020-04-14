@@ -808,7 +808,6 @@
         'Blaster(?! Mirage)': '爆破者',
         'Eye Of The Chakram': '战轮光束',
         'Steam Chakram': '蒸汽战轮',
-        'Reset-': '重置',
       },
       'replaceText': {
         'attack': '攻击',
