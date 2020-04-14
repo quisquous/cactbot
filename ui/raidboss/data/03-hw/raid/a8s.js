@@ -805,7 +805,7 @@
         'Brute Justice': '残暴正义号',
         '(?! )Brawler(?<! )': '争斗者',
         'Blaster Mirage': '爆破者幻象',
-        '(?<! )Blaster(?! )': '爆破者',
+        'Blaster(?! Mirage)': '爆破者',
         'Eye Of The Chakram': '战轮光束',
         'Steam Chakram': '蒸汽战轮',
         'Reset-': '重置',
