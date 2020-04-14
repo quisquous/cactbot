@@ -227,7 +227,7 @@
         'is no longer sealed': '不再封闭',
       },
       'replaceText': {
-         'blazing scourge': '白光之鞭',
+        'blazing scourge': '白光之鞭',
         'attack': '攻击',
         'Will of the Creator': '神明意志',
         'Unknown Ability': 'Unknown Ability',
