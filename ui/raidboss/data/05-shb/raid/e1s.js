@@ -712,7 +712,7 @@
       'replaceSync': {
         'Eden Prime': '에덴 프라임',
         'Arcane Sphere': '입체 마법진',
-        'Guardian of Paradise': '에덴의 수호자',
+        'Guardian of Paradise': '에덴 정원사',
       },
       'replaceText': {
         'Vice of Vanity': '허영의 악덕',
