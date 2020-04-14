@@ -282,7 +282,7 @@
       'replaceSync': {
         'Eden Prime': '에덴 프라임',
         'Eden(?! )': '에덴',
-        'Guardian of Paradise': '에덴의 수호자',
+        'Guardian of Paradise': '에덴 정원사',
       },
       'replaceText': {
         'Vice [oO]f Vanity': '허영의 악덕',
