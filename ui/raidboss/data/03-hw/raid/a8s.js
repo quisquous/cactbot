@@ -883,7 +883,6 @@
         'J Storm': '正义风暴',
         'J Wave': '正义震荡波',
         'Chakrams Spawn': '飞盘',
-        '--targetable-(?!-)': '--可选中-',
         '--targetable\\?--': '--可选中？--',
       },
       '~effectNames': {
