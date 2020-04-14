@@ -53,6 +53,8 @@
           return {
             alertText: {
               en: 'Dodge Clones + Stack',
+              ja: 'ターミナス・エストを避け／頭割り集合',
+              cn: '躲避剑气 + 集合分摊',
               ko: '분신 피하기 + 집합',
             },
           };
@@ -68,6 +70,8 @@
       infoText: {
         en: 'Spread Soon',
         fr: 'Écartez-vous bientôt',
+        ja: 'まもなく散開',
+        cn: '即将散开',
         ko: '잠시후 산개',
       },
     },
