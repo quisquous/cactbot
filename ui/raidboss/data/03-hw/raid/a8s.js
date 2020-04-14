@@ -803,7 +803,7 @@
         'J Storm': '正义旋风',
         'Hidden Mine': '隐形地雷',
         'Brute Justice': '残暴正义号',
-        '(?! )Brawler(?<! )': '争斗者',
+        'Brawler': '争斗者',
         'Blaster Mirage': '爆破者幻象',
         'Blaster(?! Mirage)': '爆破者',
         'Eye Of The Chakram': '战轮光束',
@@ -884,6 +884,8 @@
         'J Storm': '正义风暴',
         'J Wave': '正义震荡波',
         'Chakrams Spawn': '飞盘',
+        '--targetable-(?!-)': '--可选中-',
+        '--targetable\\?--': '--可选中？--',
       },
       '~effectNames': {
         'Prey': '猎物',
