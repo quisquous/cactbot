@@ -231,6 +231,7 @@
         'attack': '攻击',
         'Will of the Creator': '神明意志',
         'Unknown Ability': 'Unknown Ability',
+        'timegate': '时空门',
         'Tetrashatter': '结晶破碎',
         'Temporal Stasis': '时间停止',
         'Smash': '粉碎',
