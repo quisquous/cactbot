@@ -451,6 +451,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487B', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487B', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487B', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487B', capture: false }),
       run: function(data) {
         data.phase = 'alpha';
         data.resetState();
@@ -463,6 +464,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4B13', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4B13', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4B13', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '4B13', capture: false }),
       run: function(data) {
         data.phase = 'beta';
         data.resetState();
@@ -487,6 +489,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'belebte Hand', id: '4979' }),
       regexFr: Regexes.abilityFull({ source: 'membre liquide', id: '4979' }),
       regexJa: Regexes.abilityFull({ source: 'リキッドハンド', id: '4979' }),
+      regexKo: Regexes.abilityFull({ source: '액체 손', id: '4979' }),
       run: function(data, matches) {
         data.handTank = matches.target;
       },
@@ -568,6 +571,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'belebte Hand', id: '482D', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'membre liquide', id: '482D', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リキッドハンド', id: '482D', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '액체 손', id: '482D', capture: false }),
       preRun: function(data) {
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
       },
@@ -1708,6 +1712,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '488A', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '488A', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '488A', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '488A', capture: false }),
       infoText: {
         en: 'Spread',
         de: 'Verteilen',
@@ -1760,6 +1765,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487E', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487E', capture: false }),
       durationSeconds: 4,
       alertText: {
         en: 'Keep Moving',
@@ -1777,6 +1783,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487F', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487F', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487F', capture: false }),
       alarmText: {
         en: 'STOP LITERALLY EVERYTHING',
         de: 'STOP WIRKLICH ALLES',
@@ -1793,6 +1800,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontaktverbot' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact prohibé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触禁止命令' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접촉금지 명령' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Orange (Attract)',
@@ -1818,6 +1826,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontakt-Order' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact forcé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触保護命令' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접촉보호 명령' }),
       condition: (data, matches) => data.me == matches.target,
       alarmText: {
         en: 'Orange Bait: Get Away',
@@ -1835,6 +1844,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtverbot' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite prohibée' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡禁止命令' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 도망금지 명령' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Purple (Repel)',
@@ -1860,6 +1870,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtbeobachtung' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite forcée' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡監察命令' }),
+      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 도망감찰 명령' }),
       condition: (data, matches) => data.me == matches.target,
       alertText: {
         en: 'Purple Bait: Be In Back Of Group',
@@ -1996,6 +2007,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0D', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
+      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B0D', capture: false }),
       preRun: function(data) {
         data.firstAlphaOrdainedText = {
           en: 'Motion first',
@@ -2020,6 +2032,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0E', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
+      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B0E', capture: false }),
       preRun: function(data) {
         data.firstAlphaOrdainedText = {
           en: 'Stillness first',
@@ -2044,6 +2057,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
+      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '4899', capture: false }),
       preRun: function(data) {
         data.secondAlphaOrdainedText = {
           en: 'Motion second',
@@ -2077,6 +2091,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
+      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '489A', capture: false }),
       preRun: function(data) {
         data.secondAlphaOrdainedText = {
           en: 'Stillness second',
@@ -2111,6 +2126,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '49AA' }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '49AA' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '49AA' }),
+      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '49AA' }),
       durationSeconds: 10,
       infoText: function(data, matches) {
         // TODO: this is overly complicated.
@@ -2189,6 +2205,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
+      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // 5 seconds until mechanic
       delaySeconds: 2.2,
       alertText: function(data) {
@@ -2219,6 +2236,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
+      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // ~4 seconds until mechanic (to avoid overlapping with first)
       delaySeconds: 7.2,
       alertText: function(data) {
@@ -2372,6 +2390,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489E' }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489E' }),
+      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '489E' }),
       preRun: function(data, matches) {
         // Track which perfect alexander clone did this.
         data.radiantSourceId = matches.sourceId;
@@ -2434,6 +2453,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '48A0', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
+      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '48A0', capture: false }),
       infoText: {
         en: 'Optical Spread',
         de: 'Visier verteilen',
@@ -2452,6 +2472,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '48A1', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
+      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '48A1', capture: false }),
       infoText: {
         en: 'Optical Stack',
         de: 'Visier sammeln',
@@ -2470,6 +2491,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
+      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 12.2,
       alertText: function(data) {
         if (!data.betaIsOpticalStack) {
@@ -2520,6 +2542,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
+      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 16,
       alertText: function(data) {
         return data.radiantText;
@@ -2532,6 +2555,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4891' }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4891' }),
+      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '4891' }),
       alarmText: function(data, matches) {
         if (data.role == 'tank' && data.me != matches.target) {
           return {
@@ -2573,6 +2597,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '488E', capture: false }),
       regexFr: Regexes.ability({ source: 'Alexander parfait', id: '488E', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
+      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '488E', capture: false }),
       alertText: {
         en: 'Stack Middle for Trine',
         de: 'Mittig sammeln für Trine',
@@ -2588,6 +2613,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '488F', x: '100', y: '(?:92|100|108)' }),
       preRun: function(data, matches) {
         data.trine = data.trine || [];
         // See: https://imgur.com/a/l1n9MhS
@@ -2804,6 +2830,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4890', capture: false }),
       regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4890', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4890', capture: false }),
+      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
       suppressSeconds: 15,
       alertText: function(data) {
         return data.secondTrineResponse;
@@ -2816,6 +2843,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4894' }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4894' }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4894' }),
+      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487B' }),
       // Don't collide with trine.
       delaySeconds: 2,
       infoText: function(data, matches) {
@@ -3400,6 +3428,149 @@ let getHeadmarkerId = (data, matches) => {
         'Temporal Displacement': '时间停止',
         'Throttle': '窒息',
         'Water Resistance Down II': '水属性耐性大幅降低',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        '(?<! )Alexander(?! )': '알렉산더',
+        'Alexander Prime': '알렉산더 프라임',
+        'Brute Justice': '포악한 심판자',
+        'Cruise Chaser': '순항추격기',
+        'Jagd Doll': '인형 수렵병',
+        'Liquid Hand': '액체 손',
+        'Liquid Rage': '분노한 액체',
+        'Living Liquid': '살아있는 액체',
+        'Perfect Alexander': '완전체 알렉산더',
+        'Plasmasphere': '플라스마 구체',
+        'Steam Chakram': '증기 차크람',
+      },
+      'replaceText': {
+        '--Cruise Chaser Invincible--': '--순항추격기 무적--',
+        '--adds targetable--': '--쫄 타겟 가능--',
+        '--alex untargetable--': '--알렉산더 타겟 불가능--',
+        'Aetheroplasm': '에테르 폭뢰',
+        'Almighty Judgment': '성스러운 대심판',
+        'Alpha Sword': '알파검',
+        'Apocalyptic Ray': '파멸 계시',
+        'Cascade': '폭포수',
+        'Chakrams': '차크람',
+        'Chastening Heat': '신벌의 열선',
+        'Collective Reprobation': '무리 단죄',
+        'Crashing Wave': '충격의 파도',
+        'Divine Judgment': '신성한 심판',
+        'Divine Spear': '신성한 불꽃',
+        'Double Rocket Punch': '양손 로켓 주먹',
+        'Down for the Count': '넉다운',
+        'Drainage': '하수로',
+        'Earth Missile': '대지 미사일',
+        'Embolus': '응고체',
+        'Enumeration': '계산',
+        'Eternal Darkness': '암흑의 운명',
+        'Exhaust': '고갈',
+        ' and': '',
+        '/Stillness': '정지 명령',
+        'Fate: ': '미래: ',
+        'Fate Calibration': '미래 확정',
+        'Fate Projection': '미래 관측',
+        'Final Sentence': '사형 판결',
+        'Flarethrower': '대화염방사',
+        'Fluid Strike': '유체 강타',
+        'Fluid Swing': '유체 타격',
+        'Gavel': '최후의 심판: 폐정',
+        'Hand of Pain': '고통의 손길',
+        'Hand of Prayer': '기도의 손길',
+        'Hawk Blaster': '호크 블래스터',
+        'Hidden Minefield': '은폐 지뢰 살포',
+        'Inception(?! )': '시공 잠행',
+        'Inception Formation': '시공 잠행 대형',
+        'Incinerating Heat': '정화의 열선',
+        'Individual/': '개체/',
+        'Individual Reprobation': '개체 단죄',
+        'Irresistible Grace': '연대 형벌',
+        'J Jump': '정의의 점프',
+        'J Kick': '정의의 발차기',
+        'J Storm': '정의의 폭풍',
+        'Judgment Crystal': '심판의 결정체',
+        'Judgment Nisi': '임시처분',
+        'Limit Cut': '리미터 해제',
+        'Link-Up': '시스템 연결',
+        'Liquid Gaol': '액체 감옥',
+        'Mega Holy': '메가 홀리',
+        'Middle Blaster': '중앙 블래스터', // CHECKME
+        'Missile Command': '미사일 전탄 발사',
+        'Obloquy': '오명',
+        'Optical Sight': '조준',
+        'Ordained Capital Punishment': '가중 처벌',
+        'Ordained Motion': '행동 명령',
+        'Ordained Punishment': '처벌',
+        'Ordained Stillness': '정지 명령',
+        'Photon': '광자',
+        ' Players Remaining': '명 남음',
+        'Pressurize': '수압 충전',
+        'Propeller Wind': '추진 돌풍',
+        'Protean Wave': '변화의 물결',
+        'Punishing Wave': '응징의 파도',
+        'Radiant Sacrament': '원형 성례',
+        'Rage Wave': '분노한 액체 웨이브',
+        '(?<! )Repentance': '죄의식',
+        '(?<! )Sacrament': '십자 성례',
+        'Severity': '중벌', // CHECKME
+        'Sluice': '봇물',
+        'Solidarity': '연대', // CHECKME
+        'Spin Crusher': '회전 분쇄',
+        'Splash': '물장구',
+        'Summon Alexander': '알렉산더 소환',
+        'Super Blassty Charge': '슈퍼 블래스티 돌진',
+        'Super Jump': '슈퍼 점프',
+        'Surety': '서약', // CHECKME
+        'Temporal Interference': '시공 간섭',
+        'Temporal Prison': '시간의 감옥',
+        'Temporal Stasis': '시간 정지',
+        'The Final Word': '확정 판결',
+        'Throttles': '질식', // CHECKME
+        'Void Of Repentance': '참회의 방',
+        'Water and Thunder': 'Water and Thunder', // FIXME
+        'Whirlwind': '회오리바람',
+        'Wormhole Formation': '차원 단절 대형',
+      },
+      '~effectNames': {
+        'Aggravated Assault': '확정 판결: 가중형',
+        'Compressed Lightning': '번개속성 압축',
+        'Compressed Water': '물속성 압축',
+        'Contact Regulation Ordained': '접촉보호 명령',
+        'Devotion': '에기의 가호',
+        'Down for the Count': '넉다운',
+        'Embolden': '성원',
+        'Enigma Codex': '에니그마 코덱스',
+        'Escape Detection Ordained': '도망감찰 명령',
+        'Final Decree Nisi α': '최후의 임시 판결 α',
+        'Final Decree Nisi β': '최후의 임시 판결 β',
+        'Final Decree Nisi γ': '최후의 임시 판결 γ',
+        'Final Decree Nisi δ': '최후의 임시 판결 δ',
+        'Final Judgment: Decree Nisi α': '최후의 심판: 임시 판결 α',
+        'Final Judgment: Decree Nisi β': '최후의 심판: 임시 판결 β',
+        'Final Judgment: Decree Nisi γ': '최후의 심판: 임시 판결 γ',
+        'Final Judgment: Decree Nisi δ': '최후의 심판: 임시 판결 δ',
+        'Final Judgment: Penalty III': '최후의 심판: 약화 3',
+        'Final Word: Contact Prohibition': '확정 판결: 접촉금지 명령',
+        'Final Word: Contact Regulation': '확정 판결: 접촉보호 명령',
+        'Final Word: Escape Detection': '확정 판결: 도망감찰 명령',
+        'Final Word: Escape Prohibition': '확정 판결: 도망금지 명령',
+        'Fire Resistance Down II': '불속성 저항 감소[강]',
+        'Heavy': '과중력',
+        'House Arrest': '확정 판결: 강제접근 명령',
+        'Lightning Resistance Down II': '번개속성 저항 감소[강]',
+        'Luminous Aetheroplasm': '빛의 폭뢰',
+        'Magic Vulnerability Up': '받는 마법 피해량 증가',
+        'Physical Vulnerability Up': '받는 물리 피해량 증가',
+        'Restraining Order': '확정 판결: 접근금지 명령',
+        'Shared Sentence': '확정 판결: 단체형',
+        'Summon Order': '기술 실행 대기 1',
+        'Summon Order III': '기술 실행 대기 3',
+        'Temporal Displacement': '시간 정지',
+        'Throttle': '질식',
+        'Water Resistance Down II': '물속성 저항 감소[강]',
       },
     },
   ],
