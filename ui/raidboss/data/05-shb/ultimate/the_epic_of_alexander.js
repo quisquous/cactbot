@@ -3468,7 +3468,6 @@ let getHeadmarkerId = (data, matches) => {
         'Enumeration': '계산',
         'Eternal Darkness': '암흑의 운명',
         'Exhaust': '고갈',
-        ' and': '',
         '/Stillness': '정지 명령',
         'Fate: ': '미래: ',
         'Fate Calibration': '미래 확정',
