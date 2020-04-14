@@ -582,7 +582,6 @@
         'Eye Of The Chakram': '战轮光束',
         'Steam Chakram': '蒸汽战轮',
         'Reset-': '重置',
-        'Added new combatant Blaster': '增加新的爆破者',
       },
       'replaceText': {
         'attack': '攻击',
@@ -659,9 +658,6 @@
         'J Storm': '正义风暴',
         'J Wave': '正义震荡波',
         'Chakrams Spawn': '飞盘',
-        'Reset-': '重置',
-        '--targetable?--': '可选中',
-        '(?<! )targetable(?! )': '可选中',
       },
       '~effectNames': {
         'Prey': '猎物',
