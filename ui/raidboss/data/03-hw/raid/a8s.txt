@@ -233,7 +233,7 @@ hideall "Brute Force"
 
 ### Phase 8: Final Justice
 1307.6 "J Kick" sync /:Brute Justice:166D:/
-1310.6 "--targetable-"
+1310.6 "--targetable--"
 1313.7 "Link-Up" sync /:Brute Justice:1673:/
 1324.8 "Final Punch" sync /:Brute Justice:170C:/
 1326.0 "Final Apocalypse" sync /:Brute Justice:1716:/
