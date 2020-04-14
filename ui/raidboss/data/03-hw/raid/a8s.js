@@ -651,7 +651,6 @@
         'Swindler': '欺诈者（东）',
         'Vortexer': '环旋者（南）',
         'Crashing Thunder': '雷死刑',
-        '100-Megatonze Shock': '亿万吨震荡',
         'Eye Of The Chakram': '战轮光束',
         'Enumeration': '计数',
         'Link-Up': '升起',
