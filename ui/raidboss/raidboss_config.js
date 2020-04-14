@@ -1109,7 +1109,7 @@ UserConfig.registerOptions('raidboss', {
       default: false,
     },
     {
-      id: 'cactbote8sLightRampantStrat',
+      id: 'e8sLightRampantStrat',
       name: {
         en: 'e8s: enable specific Light Rampant strat',
       },
@@ -1117,6 +1117,7 @@ UserConfig.registerOptions('raidboss', {
       options: {
         en: {
           'None': 'none',
+          // See: https://ff14.toolboxgaming.space/?id=29987164943851&preview=1
           'Sharingan/Ayatori': 'sharingan',
         },
       },
