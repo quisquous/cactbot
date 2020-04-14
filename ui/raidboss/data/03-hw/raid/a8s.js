@@ -614,7 +614,7 @@
         'Ice Missile': '寒冰导弹',
         'Hydrothermal Missile': '蒸汽导弹',
         'Hidden Minefield': '隐形地雷散布',
-        'Hidden Mine(?!ield)': '地雷爆炸',
+        'Hidden Mine(?!field)': '地雷爆炸',
         'Height': '高度算术',
         'Gavel': '终审闭庭',
         'Gale Force': '暴风',
