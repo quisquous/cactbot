@@ -45,7 +45,7 @@ let commonReplacement = {
   },
   'Engage!': {
     de: 'Start!',
-    fr: 'À l\'attaque !',
+    fr: 'À l\'attaque',
     ja: '戦闘開始！',
     cn: '战斗开始！',
     ko: '전투 시작!',
