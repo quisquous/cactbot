@@ -244,7 +244,7 @@
         'Judgment Crystal': '审判结晶',
         'Incinerating Heat': '净化射线',
         'Inception': '时空潜行',
-        'Half Gravity': '小重力', 
+        'Half Gravity': '小重力',
         'Gravitational Anomaly': '重力异常',
         'Divine Spear': '圣炎',
         'Divine Judgment': '神圣审判',
