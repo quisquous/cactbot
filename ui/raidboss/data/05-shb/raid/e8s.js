@@ -98,6 +98,7 @@
         // and so this is the best that can be done.
         en: 'Go Back, Red Mirror Side',
         de: 'Nach Hinten gehen, Seite des roten Spiegels',
+        fr: 'Allez derrière, côté miroir rouge',
         ko: '빨간 거울 방향 구석으로 이동',
       },
     },
@@ -116,6 +117,7 @@
       delaySeconds: 2,
       infoText: {
         en: 'Go Front, Green Mirror Side',
+        fr: 'Allez devant, côté miroir vert
         de: 'Nach Vorne gehen, Seite des grünen Spiegels',
         ko: '초록 거울 방향 구석으로 이동',
       },
@@ -130,6 +132,7 @@
       infoText: {
         en: 'Swap Sides',
         de: 'Seiten wechseln',
+        fr: 'Changez de côté',
         ko: '반대로 이동',
       },
     },
@@ -326,7 +329,7 @@
       infoText: {
         en: 'Chain on YOU',
         de: 'Kette auf DIR',
-        fr: 'Chaine sur VOUS',
+        fr: 'Chaîne sur VOUS',
         ko: '사슬 대상자',
         cn: '连线',
       },
@@ -377,6 +380,7 @@
         if (data.me == matches.target) {
           let onYou = {
             en: 'Akh Morn on YOU',
+            fr: 'Akh Morn sur VOUS',
             ko: '아크몬 대상자',
           };
           if (data.role == 'tank')
@@ -390,6 +394,7 @@
         return {
           infoText: {
             en: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
+            fr: 'Akh Morn : ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
           },
         };
       },
@@ -870,20 +875,20 @@
         'Akh Morn': 'Akh Morn',
         'Absolute Zero': 'Zéro absolu',
 
-        // FIXME
-        'Reflected Frost \\(G\\)': 'Reflected Frost (G)',
-        'Reflected Frost \\(R\\)': 'Reflected Frost (R)',
-        'Reflected Kick \\(G\\)': 'Reflected Kick (G)',
-        'Reflected Wings \\(B\\)': 'Reflected Wings (B)',
-        'Reflected Wings \\(G\\)': 'Reflected Wings (G)',
-        'Reflected Wings \\(R\\)': 'Reflected Wings (R)',
-        'Twin Silence/Stillness': 'Twin Silence/Stillness',
-        'Reflected Armor \\(B\\)': 'Reflected Armor (B)',
-        'Reflected Armor \\(G\\)': 'Reflected Armor (G)',
-        'Reflected Armor \\(R\\)': 'Reflected Armor (R)',
-        'Spiteful/Embittered Dance': 'Spiteful/Embittered Dance',
-        'Reflected Drachen': 'Reflected Drachen',
-        'Inescapable Illumination': 'Inescapable Illumination',
+        // Double check please
+        'Reflected Frost \\(G\\)': 'Givre réfléchi (G)',
+        'Reflected Frost \\(R\\)': 'Givre réfléchi (R)',
+        'Reflected Kick \\(G\\)': 'Jambe réfléchie (G)',
+        'Reflected Wings \\(B\\)': 'Ailes réfléchies (B)',
+        'Reflected Wings \\(G\\)': 'Ailes réfléchies (G)',
+        'Reflected Wings \\(R\\)': 'Ailes réfléchies (R)',
+        'Reflected Armor \\(B\\)': 'Armure réfléchie (B)',
+        'Reflected Armor \\(G\\)': 'Armure réfléchie (G)',
+        'Reflected Armor \\(R\\)': 'Armure réfléchie (R)',
+        'Spiteful/Embittered Dance': 'Dance de la froideur/amertume',
+        'Reflected Drachen': 'Dragon réfléchi',
+        'Inescapable Illumination': 'Illumination incontournable',
+        'Twin Silence/Stillness': 'Entaille de la quiétude/du silence',
       },
       '~effectNames': {
         'Wyrmfang': 'Crocs du Dragon divin',
