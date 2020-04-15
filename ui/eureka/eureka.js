@@ -2,9 +2,8 @@
 
 let Options = {
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
-  PopVolume: 1.0,
-  TrackBunnyFates: true,
   BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
+  PopVolume: 1.0,
   BunnyPopVolume: 0.3,
   // 20 minutes for Ovni?
   SuppressPopMs: 60 * 20 * 1000,
@@ -83,12 +82,13 @@ let Options = {
             de: 'Sabo',
             fr: 'Pampa',
             ja: 'サボテン',
-            ko: '사보텐더',
+            ko: '사보',
             cn: '仙人掌',
           },
           x: 13.9,
           y: 21.9,
           fateID: 1332,
+          bunny: false,
         },
         lord: {
           label: {
@@ -104,12 +104,13 @@ let Options = {
             de: 'Prinz',
             fr: 'Seigneur',
             ja: 'ロード',
-            ko: '문어',
+            ko: '대왕',
             cn: '章鱼',
           },
           x: 29.7,
           y: 27.1,
           fateID: 1348,
+          bunny: false,
         },
         teles: {
           label: {
@@ -131,6 +132,7 @@ let Options = {
           x: 25.6,
           y: 27.4,
           fateID: 1333,
+          bunny: false,
         },
         emperor: {
           label: {
@@ -146,12 +148,13 @@ let Options = {
             de: 'Kaiser',
             fr: 'Empereur',
             ja: 'エンペラ',
-            ko: '잠자리',
+            ko: '황제',
             cn: '蜻蜓',
           },
           x: 17.2,
           y: 22.2,
           fateID: 1328,
+          bunny: false,
         },
         callisto: {
           label: {
@@ -174,6 +177,7 @@ let Options = {
           x: 26.2,
           y: 22.0,
           fateID: 1344,
+          bunny: false,
         },
         number: {
           label: {
@@ -196,6 +200,7 @@ let Options = {
           x: 23.5,
           y: 23.4,
           fateID: 1347,
+          bunny: false,
         },
         jaha: {
           label: {
@@ -217,6 +222,7 @@ let Options = {
           x: 17.7,
           y: 18.6,
           fateID: 1345,
+          bunny: false,
           weather: 'Gales',
         },
         amemet: {
@@ -239,6 +245,7 @@ let Options = {
           x: 15.0,
           y: 15.6,
           fateID: 1334,
+          bunny: false,
         },
         caym: {
           label: {
@@ -260,6 +267,7 @@ let Options = {
           x: 13.8,
           y: 12.5,
           fateID: 1335,
+          bunny: false,
         },
         bomb: {
           label: {
@@ -275,12 +283,13 @@ let Options = {
             de: 'Bomba',
             fr: 'Bomba',
             ja: 'ボンバ',
-            ko: '봄바딜',
+            ko: '봄바',
             cn: '举高高',
           },
           x: 28.3,
           y: 20.4,
           fateID: 1336,
+          bunny: false,
           time: 'Night',
         },
         serket: {
@@ -297,12 +306,13 @@ let Options = {
             de: 'Serket',
             fr: 'Serket',
             ja: 'セルケト',
-            ko: '전갈',
+            ko: '세르케트',
             cn: '蝎子',
           },
           x: 24.8,
           y: 17.9,
           fateID: 1339,
+          bunny: false,
         },
         juli: {
           label: {
@@ -345,6 +355,7 @@ let Options = {
           x: 20.3,
           y: 13.0,
           fateID: 1343,
+          bunny: false,
           time: 'Night',
         },
         poly: {
@@ -361,12 +372,13 @@ let Options = {
             de: 'Poly',
             fr: 'Poly',
             ja: 'ポリュ',
-            ko: '외눈',
+            ko: '폴리',
             cn: '独眼',
           },
           x: 26.4,
           y: 14.3,
           fateID: 1337,
+          bunny: false,
         },
         strider: {
           label: {
@@ -388,6 +400,7 @@ let Options = {
           x: 28.6,
           y: 13.0,
           fateID: 1342,
+          bunny: false,
         },
         hazmat: {
           label: {
@@ -409,6 +422,7 @@ let Options = {
           x: 35.3,
           y: 18.3,
           fateID: 1341,
+          bunny: false,
         },
         fafnir: {
           label: {
@@ -430,6 +444,7 @@ let Options = {
           x: 35.5,
           y: 21.5,
           fateID: 1331,
+          bunny: false,
           time: 'Night',
         },
         amarok: {
@@ -452,6 +467,7 @@ let Options = {
           x: 7.6,
           y: 18.2,
           fateID: 1340,
+          bunny: false,
         },
         lama: {
           label: {
@@ -474,6 +490,7 @@ let Options = {
           x: 7.7,
           y: 25.3,
           fateID: 1338,
+          bunny: false,
           time: 'Night',
         },
         pazu: {
@@ -496,6 +513,7 @@ let Options = {
           x: 7.4,
           y: 21.7,
           fateID: 1329,
+          bunny: false,
           weather: 'Gales',
         },
       },
@@ -518,37 +536,27 @@ let Options = {
         cn: '恒冰元灵',
         ko: '파고스 정령',
       },
-      bunnys: {
+      nms: {
         northbunny: {
           label: {
             en: 'Bunny',
-            de: 'Bunny',
-            fr: 'Bunny',
-            ja: 'Bunny',
-            ko: 'Bunny',
-            cn: 'Bunny',
           },
           x: 20.5,
           y: 21.5,
           fateID: 1368,
+          bunny: true,
           respawnMinutes: 8,
         },
         southbunny: {
           label: {
             en: 'Bunny',
-            de: 'Bunny',
-            fr: 'Bunny',
-            ja: 'Bunny',
-            ko: 'Bunny',
-            cn: 'Bunny',
           },
           x: 18.0,
           y: 27.5,
           fateID: 1367,
+          bunny: true,
           respawnMinutes: 8,
         },
-      },
-      nms: {
         snowqueen: {
           label: {
             en: 'Queen',
@@ -569,6 +577,7 @@ let Options = {
           x: 21.5,
           y: 26.5,
           fateID: 1351,
+          bunny: false,
         },
         taxim: {
           label: {
@@ -584,12 +593,13 @@ let Options = {
             de: 'Taxim',
             fr: 'Taxim',
             ja: 'タキシム',
-            ko: '택심',
+            ko: '텍심',
             cn: '读书人',
           },
           x: 25.5,
           y: 28.3,
           fateID: 1369,
+          bunny: false,
           time: 'Night',
         },
         ashdragon: {
@@ -606,12 +616,13 @@ let Options = {
             de: 'Drache',
             fr: 'Dragon',
             ja: 'アッシュ',
-            ko: '용',
+            ko: '잿더미 용',
             cn: '灰烬龙',
           },
           x: 29.7,
           y: 30.0,
           fateID: 1353,
+          bunny: false,
         },
         glavoid: {
           label: {
@@ -627,12 +638,13 @@ let Options = {
             de: 'Glavoid',
             fr: 'Glaboïde',
             ja: 'グラヴォ',
-            ko: '지렁이',
+            ko: '그라보이드',
             cn: '魔虫',
           },
           x: 33.0,
           y: 28.0,
           fateID: 1354,
+          bunny: false,
         },
         anapos: {
           label: {
@@ -654,6 +666,7 @@ let Options = {
           x: 33.0,
           y: 21.5,
           fateID: 1355,
+          bunny: false,
           weather: 'Fog',
         },
         hakutaku: {
@@ -676,6 +689,7 @@ let Options = {
           x: 29.0,
           y: 22.5,
           fateID: 1366,
+          bunny: false,
         },
         igloo: {
           label: {
@@ -697,6 +711,7 @@ let Options = {
           x: 17,
           y: 16,
           fateID: 1357,
+          bunny: false,
         },
         asag: {
           label: {
@@ -718,6 +733,7 @@ let Options = {
           x: 11.3,
           y: 10.5,
           fateID: 1356,
+          bunny: false,
         },
         surabhi: {
           label: {
@@ -733,12 +749,13 @@ let Options = {
             de: 'Surabhi',
             fr: 'Surabhi',
             ja: 'スラビー',
-            ko: '염소',
+            ko: '수라비',
             cn: '山羊',
           },
           x: 10.5,
           y: 20.5,
           fateID: 1352,
+          bunny: false,
         },
         kingarthro: {
           label: {
@@ -754,12 +771,13 @@ let Options = {
             de: 'Athro',
             fr: 'Arthro',
             ja: 'アスロ',
-            ko: '게',
+            ko: '아스로',
             cn: '螃蟹',
           },
           x: 8.0,
           y: 15.2,
           fateID: 1360,
+          bunny: false,
           weather: 'Fog',
         },
         minotaurs: {
@@ -776,12 +794,13 @@ let Options = {
             de: 'Brüder',
             fr: 'Frères',
             ja: 'ミノ',
-            ko: '미노타우루스',
+            ko: '형제',
             cn: '双牛',
           },
           x: 13.8,
           y: 18.4,
           fateID: 1358,
+          bunny: false,
         },
         holycow: {
           label: {
@@ -797,12 +816,13 @@ let Options = {
             de: 'Heil',
             fr: 'Vache',
             ja: '聖牛',
-            ko: '소',
+            ko: '신성 소',
             cn: '圣牛',
           },
           x: 26,
           y: 16,
           fateID: 1361,
+          bunny: false,
         },
         hadhayosh: {
           label: {
@@ -818,12 +838,13 @@ let Options = {
             de: 'Hadhayosh',
             fr: 'Hadhayosh',
             ja: 'ハダヨ',
-            ko: '베히모스',
+            ko: '하다요쉬',
             cn: '贝爷',
           },
           x: 30,
           y: 19,
           fateID: 1362,
+          bunny: false,
           weather: 'Thunder',
         },
         horus: {
@@ -846,6 +867,7 @@ let Options = {
           x: 26,
           y: 20,
           fateID: 1359,
+          bunny: false,
           weather: 'Heat Waves',
         },
         mainyu: {
@@ -868,6 +890,7 @@ let Options = {
           x: 25,
           y: 24,
           fateID: 1363,
+          bunny: false,
         },
         cassie: {
           label: {
@@ -890,6 +913,7 @@ let Options = {
           x: 22,
           y: 14,
           fateID: 1365,
+          bunny: false,
         },
         louhi: {
           label: {
@@ -911,6 +935,7 @@ let Options = {
           x: 36,
           y: 18.5,
           fateID: 1364,
+          bunny: false,
           time: 'Night',
         },
       },
@@ -933,35 +958,27 @@ let Options = {
         cn: '涌火元灵',
         ko: '피로스 정령',
       },
-      bunnys: {
+      nms: {
         northbunny: {
           label: {
             en: 'Bunny',
-            de: 'Bunny',
-            fr: 'Bunny',
-            ja: 'Bunny',
-            cn: 'Bunny',
           },
           x: 25.0,
           y: 11.0,
           fateID: 1408,
+          bunny: true,
           respawnMinutes: 8,
         },
         southbunny: {
           label: {
             en: 'Bunny',
-            de: 'Bunny',
-            fr: 'Bunny',
-            ja: 'Bunny',
-            cn: 'Bunny',
           },
           x: 24.5,
           y: 26.0,
           fateID: 1407,
+          bunny: true,
           respawnMinutes: 8,
         },
-      },
-      nms: {
         luecosia: {
           label: {
             en: 'Leuco',
@@ -971,25 +988,18 @@ let Options = {
             cn: '惨叫',
             ko: '레우코시아',
           },
-          mobName: {
+          trackerName: {
             en: 'Leucosia',
             de: 'Leukosia',
             fr: 'Leucosia',
-            ja: 'レウコシアー',
-            cn: '琉科西亚',
-            ko: '레우코시아',
-          },
-          trackerName: {
-            en: 'Leucosia',
-            de: 'Leucosia',
-            fr: 'Leucosia',
             ja: 'レウコ',
             cn: '惨叫',
-            ko: '레우코시아',
+            ko: '레우',
           },
           x: 26.8,
           y: 26.3,
           fateID: 1388,
+          bunny: false,
           time: 'Night',
         },
         flauros: {
@@ -1007,11 +1017,12 @@ let Options = {
             fr: 'Flauros',
             ja: 'フラウロ',
             cn: '雷兽',
-            ko: '플라우로스',
+            ko: '플라',
           },
           x: 28.9,
           y: 29.2,
           fateID: 1389,
+          bunny: false,
         },
         sophist: {
           label: {
@@ -1028,11 +1039,12 @@ let Options = {
             fr: 'Sophiste',
             ja: 'ソフィスト',
             cn: '诡辩者',
-            ko: '소피스트',
+            ko: '소피',
           },
           x: 31.8,
           y: 31.0,
           fateID: 1390,
+          bunny: false,
         },
         graff: {
           label: {
@@ -1049,11 +1061,12 @@ let Options = {
             fr: 'Graff',
             ja: 'グラフアカネ',
             cn: '塔塔露',
-            ko: '인형',
+            ko: '그라',
           },
           x: 23.5,
           y: 37.2,
           fateID: 1391,
+          bunny: false,
         },
         askala: {
           label: {
@@ -1070,11 +1083,12 @@ let Options = {
             fr: 'Askala',
             ja: 'アスカラ',
             cn: '阿福',
-            ko: '작은 부엉이',
+            ko: '아스',
           },
           x: 19.3,
           y: 29.0,
           fateID: 1392,
+          bunny: false,
           weather: 'Umbral Wind',
         },
         batym: {
@@ -1092,11 +1106,12 @@ let Options = {
             fr: 'Duc Batym',
             ja: 'デューク',
             cn: '大公',
-            ko: '대공',
+            ko: '바팀',
           },
           x: 18.0,
           y: 14.1,
           fateID: 1393,
+          bunny: false,
           time: 'Night',
         },
         aetolus: {
@@ -1114,11 +1129,12 @@ let Options = {
             fr: 'Aetolus',
             ja: 'アイトロス',
             cn: '雷鸟',
-            ko: '아이톨로스',
+            ko: '아이',
           },
           x: 10.0,
           y: 14.0,
           fateID: 1394,
+          bunny: false,
         },
         lesath: {
           label: {
@@ -1135,11 +1151,12 @@ let Options = {
             fr: 'Lesath',
             ja: 'レサト',
             cn: '蝎子',
-            ko: '전갈',
+            ko: '레사트',
           },
           x: 13.2,
           y: 11.2,
           fateID: 1395,
+          bunny: false,
         },
         eldthurs: {
           label: {
@@ -1156,11 +1173,12 @@ let Options = {
             fr: 'Eldthurs',
             ja: 'エルドスルス',
             cn: '火巨人',
-            ko: '구부',
+            ko: '엘드',
           },
           x: 15.3,
           y: 6.8,
           fateID: 1396,
+          bunny: false,
         },
         iris: {
           label: {
@@ -1182,6 +1200,7 @@ let Options = {
           x: 21.3,
           y: 12.0,
           fateID: 1397,
+          bunny: false,
         },
         lamebrix: {
           label: {
@@ -1198,11 +1217,12 @@ let Options = {
             fr: 'Lamebrix',
             ja: 'ゴブ',
             cn: '哥布林',
-            ko: '레임브릭스',
+            ko: '용병',
           },
           x: 21.9,
           y: 8.3,
           fateID: 1398,
+          bunny: false,
         },
         dux: {
           label: {
@@ -1219,11 +1239,12 @@ let Options = {
             fr: 'Dux',
             ja: 'ドゥクス',
             cn: '雷军',
-            ko: '번개 사령관',
+            ko: '번개',
           },
           x: 27.4,
           y: 8.8,
           fateID: 1399,
+          bunny: false,
           weather: 'Thunder',
         },
         jack: {
@@ -1246,6 +1267,7 @@ let Options = {
           x: 30.1,
           y: 11.7,
           fateID: 1400,
+          bunny: false,
         },
         glauko: {
           label: {
@@ -1262,11 +1284,12 @@ let Options = {
             fr: 'Glaukopis',
             ja: 'グラウコ',
             cn: '明眸',
-            ko: '큰 부엉이',
+            ko: '글라',
           },
           x: 32.3,
           y: 15.1,
           fateID: 1401,
+          bunny: false,
         },
         yingyang: {
           label: {
@@ -1288,6 +1311,7 @@ let Options = {
           x: 11.4,
           y: 34.1,
           fateID: 1402,
+          bunny: false,
         },
         skoll: {
           label: {
@@ -1309,6 +1333,7 @@ let Options = {
           x: 24.3,
           y: 30.1,
           fateID: 1403,
+          bunny: false,
           weather: 'Blizzards',
         },
         penthe: {
@@ -1331,6 +1356,7 @@ let Options = {
           x: 35.7,
           y: 5.9,
           fateID: 1404,
+          bunny: false,
           weather: 'Heat Waves',
         },
       },
@@ -1353,7 +1379,7 @@ let Options = {
         cn: '丰水元灵',
         ko: '히다토스 정령',
       },
-      bunnys: {
+      nms: {
         bunny: {
           label: {
             en: 'Bunny',
@@ -1361,10 +1387,9 @@ let Options = {
           x: 14.0,
           y: 21.5,
           fateID: 1425,
+          bunny: true,
           respawnMinutes: 8,
         },
-      },
-      nms: {
         khalamari: {
           label: {
             en: 'Khala',
@@ -1377,14 +1402,15 @@ let Options = {
           trackerName: {
             en: 'Khalamari',
             de: 'Kalamari',
-            fr: 'Khalamar',
+            fr: 'Khalamari',
             ja: 'カラマリ',
             cn: '墨鱼',
-            ko: '칼라마리',
+            ko: '칼라',
           },
           x: 11.1,
           y: 24.9,
           fateID: 1412,
+          bunny: false,
         },
         stegodon: {
           label: {
@@ -1401,11 +1427,12 @@ let Options = {
             fr: 'Stegodon',
             ja: 'ステゴドン',
             cn: '象',
-            ko: '스테고돈',
+            ko: '스테',
           },
           x: 9.3,
           y: 18.2,
           fateID: 1413,
+          bunny: false,
         },
         molech: {
           label: {
@@ -1427,6 +1454,7 @@ let Options = {
           x: 7.8,
           y: 21.9,
           fateID: 1414,
+          bunny: false,
         },
         piasa: {
           label: {
@@ -1448,6 +1476,7 @@ let Options = {
           x: 7.1,
           y: 14.1,
           fateID: 1415,
+          bunny: false,
         },
         frostmane: {
           label: {
@@ -1460,15 +1489,16 @@ let Options = {
           },
           trackerName: {
             en: 'Frostmane',
-            de: 'Frosticore',
-            fr: 'Crinière-de-givre',
-            ja: 'フロストメーン',
+            de: 'Frosti',
+            fr: 'Crinière',
+            ja: 'フロスト',
             cn: '老虎',
-            ko: '서리갈기',
+            ko: '서리',
           },
           x: 8.1,
           y: 26.4,
           fateID: 1416,
+          bunny: false,
         },
         daphne: {
           label: {
@@ -1490,6 +1520,7 @@ let Options = {
           x: 25.6,
           y: 16.2,
           fateID: 1417,
+          bunny: false,
         },
         goldemar: {
           label: {
@@ -1511,6 +1542,7 @@ let Options = {
           x: 28.9,
           y: 23.9,
           fateID: 1418,
+          bunny: false,
         },
         leuke: {
           label: {
@@ -1525,13 +1557,14 @@ let Options = {
             en: 'Leuke',
             de: 'Leukea',
             fr: 'Leuke',
-            ja: 'レウケー',
+            ja: 'レウケ',
             cn: '琉刻',
             ko: '레우케',
           },
           x: 37.3,
           y: 27.0,
           fateID: 1419,
+          bunny: false,
         },
         barong: {
           label: {
@@ -1544,7 +1577,7 @@ let Options = {
           },
           trackerName: {
             en: 'Barong',
-            de: 'Baron Feuermähne',
+            de: 'Baron',
             fr: 'Barong',
             ja: 'バロン',
             cn: '巴龙',
@@ -1553,6 +1586,7 @@ let Options = {
           x: 32.2,
           y: 24.2,
           fateID: 1420,
+          bunny: false,
         },
         ceto: {
           label: {
@@ -1567,13 +1601,14 @@ let Options = {
             en: 'Ceto',
             de: 'Ceto',
             fr: 'Ceto',
-            ja: 'ケートー',
+            ja: 'ケート',
             cn: '刻托',
             ko: '케토',
           },
           x: 36.1,
           y: 13.4,
           fateID: 1421,
+          bunny: false,
         },
         watcher: {
           label: {
@@ -1585,16 +1620,17 @@ let Options = {
             ko: '수정룡',
           },
           trackerName: {
-            en: 'Provenance Watcher',
-            de: 'Kristallwächter',
-            fr: 'Provenance Watcher',
-            ja: 'プロヴェナンス・ウォッチャー',
+            en: 'PW',
+            de: 'Wächter',
+            fr: 'Gardien',
+            ja: 'ウォッチャ',
             cn: '守望者',
-            ko: '수정룡',
+            ko: '관찰자',
           },
           x: 32.7,
           y: 19.5,
           fateID: 1423,
+          bunny: false,
         },
         ovni: {
           label: {
@@ -1605,20 +1641,13 @@ let Options = {
             cn: 'UFO',
             ko: '오브니',
           },
-          trackerName: {
-            en: 'Ovni',
-            de: 'Ovni',
-            fr: 'Ovni',
-            ja: 'オヴニ',
-            cn: '武器库',
-            ko: '오브니',
-          },
           x: 26.8,
           y: 29.0,
           fateID: 1424,
+          bunny: false,
           respawnMinutes: 20,
         },
-        tristicia: {
+        tristitia: {
           label: {
             en: 'Tristitia',
             de: 'Tristitia',
@@ -1627,17 +1656,10 @@ let Options = {
             cn: '光灵鳐',
             ko: '트리스티샤',
           },
-          trackerName: {
-            en: 'Tristitia',
-            de: 'Tristitia',
-            fr: 'Tristitia',
-            ja: 'トリスティシア',
-            cn: '伤悲光灵鳐',
-            ko: '트리스티샤',
-          },
           x: 18.7,
           y: 29.7,
           fateID: 1422,
+          bunny: false,
           respawnMinutes: 20,
         },
       },
@@ -1661,30 +1683,6 @@ let gWeatherIcons = {
 let gNightIcon = '&#x1F319;';
 let gDayIcon = '&#x263C;';
 
-class EventQueue {
-  constructor() {
-    this.items = [];
-  }
-
-  enqueue(element) {
-    this.items.push(element);
-  }
-
-  next() {
-    if (!this.isEmpty())
-      return this.items.shift();
-    return null;
-  }
-
-  isEmpty() {
-    return (this.items.length == 0);
-  }
-
-  clear() {
-    this.items = {};
-  }
-}
-
 let gTracker;
 class EurekaTracker {
   constructor(options) {
@@ -1692,7 +1690,7 @@ class EurekaTracker {
     this.zoneInfo = null;
     this.ResetZone();
     this.updateTimesHandle = null;
-    this.fateQueue = new EventQueue();
+    this.fateQueue = [];
   }
 
   SetStyleFromMap(style, mx, my) {
@@ -1736,6 +1734,10 @@ class EurekaTracker {
     let time = document.createElement('span');
     time.classList.add('nm-time');
     time.classList.add('text');
+
+    if (nm.bunny)
+      label.classList.add('bunny');
+
     label.appendChild(icon);
     label.appendChild(name);
     label.appendChild(progress);
@@ -1752,19 +1754,12 @@ class EurekaTracker {
   InitNMs() {
     this.nms = this.options.ZoneInfo[this.zoneName].nms;
     // Anemos has no bunny fates
-    this.bunnys = this.options.ZoneInfo[this.zoneName].bunnys || [];
     this.nmKeys = Object.keys(this.nms);
-    this.bunnyKeys = Object.keys(this.bunnys);
 
     let container = document.getElementById('nm-labels');
 
     for (let i = 0; i < this.nmKeys.length; ++i)
       this.AddElement(container, this.nms[this.nmKeys[i]]);
-
-    if (this.options.TrackBunnyFates) {
-      for (let i = 0; i < this.bunnyKeys.length; ++i)
-        this.AddElement(container, this.bunnys[this.bunnyKeys[i]]);
-    }
 
 
     this.fairy = this.options.ZoneInfo[this.zoneName].fairy;
@@ -1843,28 +1838,23 @@ class EurekaTracker {
     fate.lastPopTimeMsLocal = +new Date();
     fate.respawnTimeMsLocal = this.RespawnTime(fate);
 
-    if (this.options.PopSound && this.options.PopVolume) {
-      let audio = new Audio(this.options.PopSound);
-      audio.volume = this.options.PopVolume;
-      audio.play();
-    }
-  }
-
-  OnBunnyPop(bunny) {
-    bunny.element.classList.add('bunny-pop');
-    bunny.element.classList.remove('nm-down');
-    bunny.lastPopTimeMsLocal = +new Date();
-    bunny.respawnTimeMsLocal = this.RespawnTime(bunny);
-
-    if (this.options.BunnyPopSound && this.options.BunnyPopVolume) {
-      let audio = new Audio(this.options.BunnyPopSound);
-      audio.volume = this.options.BunnyPopVolume;
-      audio.play();
+    if (fate.bunny) {
+      if (this.options.BunnyPopSound && this.options.BunnyPopVolume) {
+        let audio = new Audio(this.options.BunnyPopSound);
+        audio.volume = this.options.BunnyPopVolume;
+        audio.play();
+      }
+    } else {
+      if (this.options.PopSound && this.options.PopVolume) {
+        let audio = new Audio(this.options.PopSound);
+        audio.volume = this.options.PopVolume;
+        audio.play();
+      }
     }
   }
 
   OnFateUpdate(fate, percent) {
-    if (fate.element.classList.contains('nm-pop') || fate.element.classList.contains('bunny-pop'))
+    if (fate.element.classList.contains('nm-pop'))
       fate.progressElement.innerText = percent + '%';
   }
 
@@ -1875,16 +1865,12 @@ class EurekaTracker {
       fate.element.classList.remove('nm-pop');
       fate.progressElement.innerText = null;
       return;
-    } else if (fate.element.classList.contains('bunny-pop')) {
-      fate.element.classList.add('nm-down');
-      fate.element.classList.remove('bunny-pop');
-      fate.progressElement.innerText = null;
     }
   }
 
   ProcessFateQueue() {
-    while (!this.fateQueue.isEmpty())
-      this.OnFate(this.fateQueue.next());
+    while (this.fateQueue.length != 0)
+      this.OnFate(this.fateQueue.pop());
   }
 
   UpdateTimes() {
@@ -1953,7 +1939,6 @@ class EurekaTracker {
     let nextDay = findNextNight(nowMs);
     let nextNight = findNextDay(nowMs);
     let timeStr = '';
-    let timeVal;
     if (nextDay > nextNight)
       timeStr = gNightIcon + ' for ';
     else
@@ -2034,31 +2019,6 @@ class EurekaTracker {
         nm.element.classList.add('nm-down');
       }
     }
-    if (this.options.TrackBunnyFates) {
-      for (let i = 0; i < this.bunnyKeys.length; ++i) {
-        let bunny = this.bunnys[this.bunnyKeys[i]];
-
-        let respawnMs = null;
-        if (bunny.respawnTimeMsLocal)
-          respawnMs = bunny.respawnTimeMsLocal;
-        else if (bunny.respawnTimeMsTracker)
-          respawnMs = bunny.respawnTimeMsTracker;
-
-        // Ignore respawns in the past.
-        respawnMs = Math.max(respawnMs, nowMs);
-        let respawnIcon = '';
-
-        let remainingMs = respawnMs - nowMs;
-
-        if (remainingMs <= 0) {
-          bunny.element.classList.remove('nm-down');
-        } else {
-          let remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
-          bunny.timeElement.innerHTML = respawnIcon + remainingMinutes + 'm';
-          bunny.element.classList.add('nm-down');
-        }
-      }
-    }
   }
 
   ImportFromTracker(importText) {
@@ -2122,7 +2082,7 @@ class EurekaTracker {
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
     if (!this.zoneInfo) {
-      this.fateQueue.enqueue(e);
+      this.fateQueue.push(e);
       return;
     }
 
@@ -2136,15 +2096,6 @@ class EurekaTracker {
           return;
         }
       }
-      if (this.options.TrackBunnyFates) {
-        for (let i = 0; i < this.bunnyKeys.length; ++i) {
-          let bunny = this.bunnys[this.bunnyKeys[i]];
-          if (e.detail.fateID == bunny.fateID) {
-            this.OnBunnyPop(bunny);
-            return;
-          }
-        }
-      }
       break;
     case 'remove':
       console.log('remove: ' + e.detail.fateID + ' (' + e.detail.progress + '%)');
@@ -2155,15 +2106,6 @@ class EurekaTracker {
           return;
         }
       }
-      if (this.options.TrackBunnyFates) {
-        for (let i = 0; i < this.bunnyKeys.length; ++i) {
-          let bunny = this.bunnys[this.bunnyKeys[i]];
-          if (e.detail.fateID == bunny.fateID) {
-            this.OnFateKill(bunny);
-            return;
-          }
-        }
-      }
       break;
     case 'update':
       console.log('update: ' + e.detail.fateID + ' (' + e.detail.progress + '%)');
@@ -2172,15 +2114,6 @@ class EurekaTracker {
         if (e.detail.fateID == nm.fateID) {
           this.OnFateUpdate(nm, e.detail.progress);
           return;
-        }
-      }
-      if (this.options.TrackBunnyFates) {
-        for (let i = 0; i < this.bunnyKeys.length; ++i) {
-          let bunny = this.bunnys[this.bunnyKeys[i]];
-          if (e.detail.fateID == bunny.fateID) {
-            this.OnFateUpdate(bunny, e.detail.progress);
-            return;
-          }
         }
       }
       break;

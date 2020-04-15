@@ -127,23 +127,23 @@
 
 .nm-pop .nm-name {
   color: #8686ff;
-  font-size: 18;
+  font-size: 18px;
   animation: pulse 1s infinite alternate;
 }
 
-.bunny-pop .nm-name {
+.bunny.nm-pop .nm-name {
   color: #66f;
-  font-size: 14;
+  font-size: 14px;
   animation: pulse2 1s infinite alternate;
 }
 
-.bunny-pop .nm-time {
+.bunny.nm-pop .nm-time {
   display: none;
 }
 
 .nm-pop .nm-progress {
   color: #8686ff;
-  font-size: 12;
+  font-size: 12px;
 }
 
 .nm-pop .nm-time {
