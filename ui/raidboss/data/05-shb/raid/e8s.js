@@ -117,7 +117,7 @@
       delaySeconds: 2,
       infoText: {
         en: 'Go Front, Green Mirror Side',
-        fr: 'Allez devant, côté miroir vert
+        fr: 'Allez devant, côté miroir vert',
         de: 'Nach Vorne gehen, Seite des grünen Spiegels',
         ko: '초록 거울 방향 구석으로 이동',
       },
