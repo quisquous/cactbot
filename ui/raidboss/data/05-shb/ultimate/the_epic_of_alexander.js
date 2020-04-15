@@ -3449,6 +3449,8 @@ let getHeadmarkerId = (data, matches) => {
         '--Cruise Chaser Invincible--': '--순항추격기 무적--',
         '--adds targetable--': '--쫄 타겟 가능--',
         '--alex untargetable--': '--알렉산더 타겟 불가능--',
+        'True Heart': '진심',
+        'Reveal': '예고',
         'Aetheroplasm': '에테르 폭뢰',
         'Almighty Judgment': '성스러운 대심판',
         'Alpha Sword': '알파검',
