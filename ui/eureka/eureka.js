@@ -1,18 +1,19 @@
 'use strict';
 
+let bunnyLabel = {
+  en: 'Bunny',
+  de: 'Hase',
+  fr: 'Lapin',
+  ja: 'バニー',
+  ko: '토끼',
+  cn: '兔子',
+};
+
 let Options = {
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
   PopVolume: 1.0,
   BunnyPopVolume: 0.3,
-  bunnyLabel: {
-    en: 'Bunny',
-    de: 'Hase',
-    fr: 'Lapin',
-    ja: 'バニー',
-    ko: '토끼',
-    cn: '兔子',
-  },
   // 20 minutes for Ovni?
   SuppressPopMs: 60 * 20 * 1000,
   ZoneName: {
