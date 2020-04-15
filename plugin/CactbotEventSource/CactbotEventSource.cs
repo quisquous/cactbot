@@ -211,7 +211,7 @@ namespace Cactbot {
       }
     }
 
-   public override void SaveConfig(IPluginConfig config)
+    public override void SaveConfig(IPluginConfig config)
     {
       Config.SaveConfig(config);
     }
@@ -659,7 +659,7 @@ namespace Cactbot {
     private JObject FetchUserFiles(JObject msg) {
       Dictionary<string, string> user_files;
       GetUserConfigDirAndFiles(msg["source"].ToString(), out string config_dir, out user_files);
-      
+
       var result = new JObject();
       result["userLocation"] = config_dir;
       result["localUserFiles"] = user_files == null ? null : JObject.FromObject(user_files);
@@ -673,7 +673,7 @@ namespace Cactbot {
     private void StartFileWatcher() {
       watchers = new List<FileSystemWatcher>();
       var paths = new List<string>();
-
+      
       paths.Add((new VersionChecker(this)).GetCactbotDirectory());
       paths.Add(Config.UserConfigFile);
 
