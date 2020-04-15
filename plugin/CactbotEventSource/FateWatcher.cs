@@ -35,7 +35,7 @@ namespace Cactbot {
         try {
           subscription = (IDataSubscription)FFXIV.pluginObj.GetType().GetProperty("DataSubscription").GetValue(FFXIV.pluginObj);
         } catch (Exception ex) {
-          client_.LogError("It broked: " + ex);
+          client_.LogError(ex);
         }
       }
 
@@ -130,7 +130,7 @@ namespace Cactbot {
 
     public unsafe void ProcessMessage(byte* buffer, byte[] message) {
       int a = *((int*)&buffer[Category_Offset]);
-/*      int para1 = *((int*)&buffer[Param1_Offset]);
+/*    int para1 = *((int*)&buffer[Param1_Offset]);
       int para2 = *(int*)&buffer[Param2_Offset];
       Debug.WriteLine(a.ToString() + " - " + para1 + "," + para2);*/
       switch (a) {
