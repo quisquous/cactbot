@@ -5,6 +5,14 @@ let Options = {
   BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
   PopVolume: 1.0,
   BunnyPopVolume: 0.3,
+  bunnyLabel: {
+    en: 'Bunny',
+    de: 'Hase',
+    fr: 'Lapin',
+    ja: 'バニー',
+    ko: '토끼',
+    cn: '兔子',
+  },
   // 20 minutes for Ovni?
   SuppressPopMs: 60 * 20 * 1000,
   ZoneName: {
@@ -538,9 +546,7 @@ let Options = {
       },
       nms: {
         northbunny: {
-          label: {
-            en: 'Bunny',
-          },
+          label: bunnyLabel,
           x: 20.5,
           y: 21.5,
           fateID: 1368,
@@ -548,9 +554,7 @@ let Options = {
           respawnMinutes: 8,
         },
         southbunny: {
-          label: {
-            en: 'Bunny',
-          },
+          label: bunnyLabel,
           x: 18.0,
           y: 27.5,
           fateID: 1367,
@@ -960,9 +964,7 @@ let Options = {
       },
       nms: {
         northbunny: {
-          label: {
-            en: 'Bunny',
-          },
+          label: bunnyLabel,
           x: 25.0,
           y: 11.0,
           fateID: 1408,
@@ -970,9 +972,7 @@ let Options = {
           respawnMinutes: 8,
         },
         southbunny: {
-          label: {
-            en: 'Bunny',
-          },
+          label: bunnyLabel,
           x: 24.5,
           y: 26.0,
           fateID: 1407,
@@ -1381,9 +1381,7 @@ let Options = {
       },
       nms: {
         bunny: {
-          label: {
-            en: 'Bunny',
-          },
+          label: bunnyLabel,
           x: 14.0,
           y: 21.5,
           fateID: 1425,
