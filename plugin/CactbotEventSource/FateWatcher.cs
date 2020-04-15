@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections.Concurrent;
 using Advanced_Combat_Tracker;
 using FFXIV_ACT_Plugin.Common;
 using System.Linq;
@@ -24,18 +24,18 @@ namespace Cactbot {
     private ushort ActorControl143_Opcode = 0;
 
     // fates<fateID, progress>
-    private static Dictionary<int, int> fates;
+    private static ConcurrentDictionary<int, int> fates;
 
     public FateWatcher(CactbotEventSource client, string language) {
       client_ = client;
-      fates = new Dictionary<int, int>();
+      fates = new ConcurrentDictionary<int, int>();
 
       var FFXIV = ActGlobals.oFormActMain.ActPlugins.FirstOrDefault(x => x.lblPluginTitle.Text == "FFXIV_ACT_Plugin.dll");
       if (FFXIV != null && FFXIV.pluginObj != null) {
         try {
           subscription = (IDataSubscription)FFXIV.pluginObj.GetType().GetProperty("DataSubscription").GetValue(FFXIV.pluginObj);
         } catch (Exception ex) {
-          client_.LogError(ex);
+          client_.LogError(ex.ToString());
         }
       }
 
@@ -119,12 +119,6 @@ namespace Cactbot {
         if (*((ushort*)&buffer[MessageType_Offset]) == ActorControl143_Opcode) {
           ProcessMessage(buffer, message);
         }
-
-
-        // Sent upon client logout
-        if (*((ushort*)&buffer[MessageType_Offset]) == 0x142) { //TODO
-          RemoveAndClearFates();
-        }
       }
     }
 
@@ -169,8 +163,8 @@ namespace Cactbot {
     private void AddFate(int fateID) {
 
       if (!fates.ContainsKey(fateID)) {
+        fates.TryAdd(fateID, 0);
         client_.DispatchToJS(new JSEvents.FateEvent("add", fateID, 0));
-        fates.Add(fateID, 0);
       }
     }
 
@@ -178,17 +172,17 @@ namespace Cactbot {
 
       if (fates.ContainsKey(fateID)) {
         client_.DispatchToJS(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
-        fates.Remove(fateID);
+        fates.TryRemove(fateID, out _);
       }
     }
 
     private void UpdateFate(int fateID, int progress) {
 
-      fates[fateID] = progress;
+      fates.AddOrUpdate(fateID, progress, (int id, int prog) => progress);
       client_.DispatchToJS(new JSEvents.FateEvent("update", fateID, progress));
     }
 
-    private void RemoveAndClearFates() {
+    public void RemoveAndClearFates() {
       foreach (int fateID in fates.Keys) {
         client_.DispatchToJS(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
       }
