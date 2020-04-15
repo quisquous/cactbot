@@ -137,17 +137,13 @@
   animation: pulse2 1s infinite alternate;
 }
 
-.bunny.nm-pop .nm-time {
+.nm-pop .nm-time {
   display: none;
 }
 
 .nm-pop .nm-progress {
   color: #8686ff;
   font-size: 12px;
-}
-
-.nm-pop .nm-time {
-  display: none;
 }
 
 .nm-pop .nm-icon {
