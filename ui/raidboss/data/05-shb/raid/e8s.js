@@ -849,7 +849,7 @@
         'Light Rampant': 'Débordement de Lumière',
         'Icicle Impact': 'Impact de stalactite',
         'Icelit Dragonsong': 'Chant de Glace et de Lumière',
-        'Holy Divided': 'Miracle fractionné',
+        'Holy': 'Miracle',
         'Heavenly Strike': 'Frappe céleste',
         'Heart Asunder': 'Cœur déchiré',
         'Hallowed Wings': 'Aile sacrée',
