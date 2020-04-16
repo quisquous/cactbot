@@ -690,9 +690,9 @@
       condition: (data) => data.role == 'tank',
       alertText: {
         en: 'Tank Stack in Tower',
-        cn: '坦克塔内分摊',
         de: 'Auf Tank im Turm sammeln',
-        fr: 'PAckage tanks dans les tours',
+        fr: 'Package tanks dans les tours',
+        cn: '坦克塔内分摊',
         ko: '탱커 집합',
       },
     },
