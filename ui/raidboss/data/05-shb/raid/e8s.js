@@ -849,7 +849,7 @@
         'Light Rampant': 'Débordement de Lumière',
         'Icicle Impact': 'Impact de stalactite',
         'Icelit Dragonsong': 'Chant de Glace et de Lumière',
-        'Holy': 'Miracle',
+        'Holy Divided': 'Miracle fractionné',
         'Heavenly Strike': 'Frappe céleste',
         'Heart Asunder': 'Cœur déchiré',
         'Hallowed Wings': 'Aile sacrée',
@@ -874,8 +874,6 @@
         'Akh Rhai': 'Akh Rhai',
         'Akh Morn': 'Akh Morn',
         'Absolute Zero': 'Zéro absolu',
-
-        // Double check please
         'Reflected Frost \\(G\\)': 'Givre réfléchi (G)',
         'Reflected Frost \\(R\\)': 'Givre réfléchi (R)',
         'Reflected Kick \\(G\\)': 'Jambe réfléchie (G)',
@@ -888,7 +886,7 @@
         'Spiteful/Embittered Dance': 'Dance de la froideur/amertume',
         'Reflected Drachen': 'Dragon réfléchi',
         'Inescapable Illumination': 'Illumination incontournable',
-        'Twin Silence/Stillness': 'Entaille de la quiétude/du silence',
+        'Twin Silence/Stillness': 'Entaille de la tranquilité/de la quiétude',
       },
       '~effectNames': {
         'Wyrmfang': 'Crocs du Dragon divin',
