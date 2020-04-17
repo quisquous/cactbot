@@ -1383,7 +1383,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Kristall auf DIR',
         ja: '自分に結晶',
         fr: 'Cristal sur VOUS',
-        ko: '나에게 수정',
+        ko: '나에게 결정체',
         cn: '结晶点名',
       },
     },
@@ -1401,7 +1401,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Geh weg vom Kristall',
         ja: '結晶から離れて',
         fr: 'Eloignez-vous des Cristaux',
-        ko: '수정으로부터 멀어질 것',
+        ko: '결정체로부터 멀어질 것',
         cn: '远离结晶',
       },
     },
@@ -1471,7 +1471,7 @@ let getHeadmarkerId = (data, matches) => {
             en: 'Bait Sword',
             de: 'Locke Chaser-Mecha Schwert',
             ja: 'ソード誘導',
-            ko: '소드 유도',
+            ko: '검 유도',
             cn: '引导剑',
           };
         }
@@ -1480,7 +1480,7 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Bait Sword or Jump?',
           ja: 'ソードかジャンプ誘導?',
-          ko: '소드 또는 슈퍼 점프 유도?',
+          ko: '검 또는 슈퍼 점프 유도?',
           cn: '引导剑或跳?',
         };
       },
