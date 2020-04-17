@@ -420,7 +420,7 @@
     },
     {
       id: 'E8S Holy Light',
-      regex: Regexes.tether({ id: '0002' }),
+      regex: Regexes.tether({ id: '0002', source: 'Holy Light' }),
       condition: Conditions.targetIsYou(),
       promise: function(data, matches) {
         if (data.options.e8sLightRampantStrat === undefined || data.options.e8sLightRampantStrat === 'none') {
@@ -487,6 +487,15 @@
           delete data.rampant.orb;
           break;
         }
+      },
+    },
+    {
+      id: 'E8S Holy Light Absorb',
+      regex: Regexes.tether({ id: '0002', source: 'Holy Light' }),
+      condition: Conditions.targetIsYou(),
+      delaySeconds: 15,
+      alertText: {
+        en: 'Absorb Orb',
       },
     },
     {
