@@ -410,8 +410,12 @@
         };
       },
       run: function(data) {
-        // Clean up for later
-        delete data.rampant.chains, data.rampant.chainCount;
+        switch (data.options.e8sLightRampantStrat) {
+        case 'sharingan':
+          // Clean up for later
+          delete data.rampant.chains, data.rampant.chainCount;
+          break;
+        }
       },
     },
     {
@@ -419,8 +423,11 @@
       regex: Regexes.tether({ id: '0002' }),
       condition: Conditions.targetIsYou(),
       promise: function(data, matches) {
-        if (data.options.e8sLightRampantStrat === undefined || data.options.e8sLightRampantStrat === 'none')
-          return null;
+        if (data.options.e8sLightRampantStrat === undefined || data.options.e8sLightRampantStrat === 'none') {
+          return new Promise((res)=>{
+            res();
+          });
+        }
 
         // Orbs spawn at combat start but are not moved into position until the tethers go out
         // So we need to fetch up-to-date position info from the game client
@@ -474,8 +481,12 @@
         };
       },
       run: function(data) {
-        // Clean up for later
-        delete data.rampant.orb;
+        switch (data.options.e8sLightRampantStrat) {
+        case 'sharingan':
+          // Clean up for later
+          delete data.rampant.orb;
+          break;
+        }
       },
     },
     {
