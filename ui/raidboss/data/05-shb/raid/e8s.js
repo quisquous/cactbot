@@ -383,8 +383,10 @@
             fr: 'Akh Morn sur VOUS',
             ko: '아크몬 대상자',
           };
+          // It'd be nice to have this be an alert, but it mixes with a lot of
+          // other alerts (akh rhai "move" and worm's lament numbers).
           if (data.role == 'tank')
-            return { alertText: onYou };
+            return { infoText: onYou };
           return { alarmText: onYou };
         }
         if (data.akhMornTargets.length != 2)
