@@ -642,7 +642,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Away From Front',
       de: 'Weg von Vorne',
-      fr: 'Loin de l\'avant',
+      fr: 'Éloignez-vous du davant',
       ja: '前方から離れて',
       ko: '보스 전방 피하기',
       cn: '远离正面',
