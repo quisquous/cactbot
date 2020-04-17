@@ -50,6 +50,7 @@
       infoText: {
         en: 'Clock',
         de: 'Uhr',
+        cn: '九连环',
       },
     },
     {
@@ -73,6 +74,7 @@
       infoText: {
         en: 'Bait Optical Sight',
         de: 'Köder Visier',
+        cn: '诱导AOE',
       },
     },
     {
@@ -113,6 +115,7 @@
       infoText: {
         en: 'Kill Add',
         de: 'Add besiegen',
+        cn: '击杀小怪',
       },
     },
     {
@@ -126,6 +129,7 @@
       infoText: {
         en: 'Break Pauldron',
         de: 'Schulterplatte zerstören',
+        cn: '击破护盾',
       },
     },
     {
@@ -144,6 +148,7 @@
         return {
           en: 'GA-100 on YOU',
           de: 'GA-100 auf DIR',
+          cn: 'GA-100点名',
         };
       },
       infoText: function(data, matches) {
@@ -152,6 +157,7 @@
         return {
           en: 'GA-100 on ' + data.ShortName(matches.target),
           de: 'GA-100 on ' + data.ShortName(matches.target),
+          cn: 'GA-100点' + data.ShortName(matches.target),
         };
       },
     },
@@ -236,6 +242,7 @@
 
         return {
           en: 'Face ' + data.ShortName(partner),
+          cn: '面向' + data.ShortName(partner),
         };
       },
     },
@@ -267,6 +274,7 @@
           return {
             en: 'Shared Tankbuster on YOU',
             de: 'Geteilter Tankbuster auf DIR',
+            cn: '分摊死刑点名',
           };
         }
 
@@ -274,6 +282,7 @@
           return {
             en: 'Shared Tankbuster on' + data.ShortName(matches.target),
             de: 'Geteilter Tankbuster auf' + data.ShortName(matches.target),
+            cn: '分摊死刑点' + data.ShortName(matches.target),
           };
         }
       },
@@ -289,6 +298,7 @@
       alertText: {
         en: 'Hide Behind Tower',
         de: 'Hinter dem Tower verstecken',
+        cn: '躲在塔后',
       },
     },
     {
@@ -302,6 +312,7 @@
       alertText: {
         en: 'Break Shield From Front',
         de: 'Schild von vorne zerstören',
+        cn: '正面击破护盾',
       },
     },
     {
@@ -325,6 +336,7 @@
         return {
           en: 'Charge on YOU',
           de: 'Ansturm auf DIR',
+          cn: '冲锋点名',
         };
       },
       alertText: function(data, matches) {
@@ -333,6 +345,7 @@
         return {
           en: 'Charge on ' + data.ShortName(matches.target),
           de: 'Ansturm auf ' + data.ShortName(matches.target),
+          cn: '冲锋点' + data.ShortName(matches.target),
         };
       },
     },
