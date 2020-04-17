@@ -210,15 +210,16 @@
     },
     {
       id: 'E5S Stepped Leader Spread',
-      regex: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
-      regexDe: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
-      regexFr: Regexes.ability({ id: '4BC6', source: 'Ramuh', capture: false }),
-      regexJa: Regexes.ability({ id: '4BC6', source: 'ラムウ', capture: false }),
-      regexKo: Regexes.ability({ id: '4BC6', source: '라무', capture: false }),
-      regexCn: Regexes.ability({ id: '4BC6', source: '拉姆', capture: false }),
+      regex: Regexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexFr: Regexes.startsUsing({ id: '4BC6', source: 'Ramuh', capture: false }),
+      regexJa: Regexes.startsUsing({ id: '4BC6', source: 'ラムウ', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '4BC6', source: '라무', capture: false }),
+      regexCn: Regexes.startsUsing({ id: '4BC6', source: '拉姆', capture: false }),
       condition: function(data) {
         return !data.furysBoltActive;
       },
+      delaySeconds: 3,
       response: Responses.move('alarm'),
     },
     {
