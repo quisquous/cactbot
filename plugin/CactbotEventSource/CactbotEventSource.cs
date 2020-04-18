@@ -394,7 +394,6 @@ namespace Cactbot {
       // onZoneChangedEvent: Fires when the player changes their current zone.
       string zone_name = Advanced_Combat_Tracker.ActGlobals.oFormActMain.CurrentZone;
       if (notify_state_.zone_name == null || !zone_name.Equals(notify_state_.zone_name)) {
-        fate_watcher_.RemoveAndClearFates();
         notify_state_.zone_name = zone_name;
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
       }
@@ -422,6 +421,10 @@ namespace Cactbot {
       if (player != null) {
         bool send = false;
         if (!player.Equals(notify_state_.player)) {
+          // Clear the FATE dictionary if we switched characters
+          if (notify_state_.player != null && !player.name.Equals(notify_state_.player.name)) {
+            fate_watcher_.RemoveAndClearFates();
+          }
           notify_state_.player = player;
           send = true;
         }
