@@ -541,7 +541,7 @@ let getHeadmarkerId = (data, matches) => {
         en: 'Protean Wave',
         de: 'Proteische Welle',
         ja: 'プロティアン',
-        ko: '프로틴 웨이브',
+        ko: '변화의 물결',
         cn: '万变水波',
       },
     },
@@ -790,7 +790,7 @@ let getHeadmarkerId = (data, matches) => {
         en: 'Dodge Spin Crusher',
         de: 'Rotorbrecher ausweichen',
         ja: 'スピンクラッシャー避けて',
-        ko: '스핀 크러시 피하기',
+        ko: '회전 분쇄 피하기',
         cn: '躲避回旋碎踢',
       },
     },
@@ -1176,7 +1176,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Strahl ausweichen',
         ja: 'アポカリ避けて',
         fr: 'Evitez le rayon',
-        ko: '아포칼립틱 광선 피하기',
+        ko: '파멸 계시 피하기',
         cn: '躲避激光',
       },
     },
@@ -1187,7 +1187,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.gainsEffect({ effect: ['Urteil: Näherungsverbot', 'Urteil: Freiheitsstrafe', 'Urteil: Erschwerte Strafe', 'Urteil: Kollektivstrafe'] }),
       regexFr: Regexes.gainsEffect({ effect: ['Jugement : éloignement', 'Jugement : Rapprochement', 'Jugement : Peine Sévère', 'Jugement : Peine Collective'] }),
       regexJa: Regexes.gainsEffect({ effect: ['確定判決：接近禁止命令', '確定判決：接近強制命令', '確定判決：加重罰', '確定判決：集団罰'] }),
-      regexKo: Regexes.gainsEffect({ effect: ['확정 판결: 접근금지 명령', '확정 판결: 접근강제 명령', '확정 판결: 가중형', '확정 판결: 단체형'] }),
+      regexKo: Regexes.gainsEffect({ effect: ['확정 판결: 접근금지 명령', '확정 판결: 강제접근 명령', '확정 판결: 가중형', '확정 판결: 단체형'] }),
       run: function(data, matches) {
         data.buffMap = data.buffMap || {};
         data.buffMap[matches.target] = matches.effect;
@@ -1383,7 +1383,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Kristall auf DIR',
         ja: '自分に結晶',
         fr: 'Cristal sur VOUS',
-        ko: '나에게 수정',
+        ko: '나에게 결정체',
         cn: '结晶点名',
       },
     },
@@ -1401,7 +1401,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Geh weg vom Kristall',
         ja: '結晶から離れて',
         fr: 'Eloignez-vous des Cristaux',
-        ko: '수정으로부터 멀어질 것',
+        ko: '결정체로부터 멀어질 것',
         cn: '远离结晶',
       },
     },
@@ -1471,7 +1471,7 @@ let getHeadmarkerId = (data, matches) => {
             en: 'Bait Sword',
             de: 'Locke Chaser-Mecha Schwert',
             ja: 'ソード誘導',
-            ko: '소드 유도',
+            ko: '검 유도',
             cn: '引导剑',
           };
         }
@@ -1480,7 +1480,7 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Bait Sword or Jump?',
           ja: 'ソードかジャンプ誘導?',
-          ko: '소드 또는 슈퍼 점프 유도?',
+          ko: '검 또는 슈퍼 점프 유도?',
           cn: '引导剑或跳?',
         };
       },
@@ -1753,7 +1753,7 @@ let getHeadmarkerId = (data, matches) => {
           de: 'Optischer Stack (' + names.join(', ') + ')',
           ja: 'シェア (' + names.join(', ') + ')',
           fr: 'Stack Optical (' + names.join(', ') + ')',
-          ko: '옵티컬 대상: ' + names.join(', '),
+          ko: '조준 대상: ' + names.join(', '),
           cn: '照准集合 (' + names.join(', ') + ')',
         };
       },
@@ -1807,7 +1807,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Orange (Anziehen)',
         ja: '接触禁止',
         fr: 'Orange (Attraction)',
-        ko: '노랑/접근금지',
+        ko: '노랑/접촉금지',
         cn: '接触禁止',
       },
       tts: {
@@ -1815,7 +1815,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Orange',
         ja: '接触禁止',
         fr: 'Orange',
-        ko: '접근금지',
+        ko: '접촉금지',
         cn: '接触禁止',
       },
     },
@@ -1877,7 +1877,7 @@ let getHeadmarkerId = (data, matches) => {
         de: 'Lila locken: Hinter der Gruppe sein',
         ja: '逃亡監察',
         fr: 'Appât Violet: Placez-vous derrière le groupe',
-        ko: '보라/도망관찰; 유도역할/사람들 뒤에 있기',
+        ko: '보라/도망감찰; 유도역할/사람들 뒤에 있기',
         cn: '逃亡监察',
       },
     },
@@ -2291,7 +2291,7 @@ let getHeadmarkerId = (data, matches) => {
             de: 'Lila Köder: locke O',
             ja: '逃亡監察: 東へ',
             fr: 'Appât Violet: placez-vous E',
-            ko: '보라/도망관찰: 유도역할/동쪽',
+            ko: '보라/도망감찰: 유도역할/동쪽',
             cn: '紫色引导: 东',
           },
           '1': {
@@ -2324,7 +2324,7 @@ let getHeadmarkerId = (data, matches) => {
             de: 'Lila, nahe Verbindungr: O->N',
             ja: '逃亡禁止, 接近強制: 東から北へ',
             fr: 'Violet, lien rapproché: E->N',
-            ko: '보라/도망금지/접근강제: 동→북',
+            ko: '보라/도망금지/강제접근: 동→북',
             cn: '紫色, 接近连线: 东->北',
           },
           '5': {
@@ -2332,7 +2332,7 @@ let getHeadmarkerId = (data, matches) => {
             de: 'Orange, nahe Verbindung: O->N',
             ja: '接触禁止, 接近強制: 東から北へ',
             fr: 'Orange, lien rapproché: E->N',
-            ko: '노랑/접촉금지/접근강제: 동→북',
+            ko: '노랑/접촉금지/강제접근: 동→북',
             cn: '橙色, 接近连线: 东->北',
           },
           '6': {
@@ -2602,7 +2602,7 @@ let getHeadmarkerId = (data, matches) => {
         en: 'Stack Middle for Trine',
         de: 'Mittig sammeln für Trine',
         ja: '大審判来るよ',
-        ko: '대심판(Trine)이 옵니다, 가운데로',
+        ko: '대심판이 옵니다, 가운데로',
         cn: '大审判 中间集合',
       },
     },
