@@ -16,8 +16,6 @@
       delaySeconds: 11,
       promise: function(data) {
         let p = new Promise(async (res) => {
-          let combatantNames = null;
-
           const ifritLocaleNames = {
             en: 'Ifrit',
             de: 'Ifrit',
@@ -33,15 +31,19 @@
           };
 
           // select the 4 most recent Ifrit or Raktapaksa's depending on phase
+          let combatantName = null;
           if (data.phase === 'ifrit')
-            combatantNames = [ifritLocaleNames[data.lang]];
+            combatantName = ifritLocaleNames[data.lang];
           else
-            combatantNames = [raktapaksaLocaleNames[data.lang]];
+            combatantName = raktapaksaLocaleNames[data.lang];
 
-          let combatantData = await window.callOverlayHandler({
-            call: 'getCombatants',
-            names: combatantNames,
-          });
+          let combatantData = null;
+          if (combatantName) {
+            combatantData = await window.callOverlayHandler({
+              call: 'getCombatants',
+              names: [combatantName],
+            });
+          }
 
           // if we could not retrieve combatant data, the
           // trigger will not work, so just resume promise here.
