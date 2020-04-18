@@ -218,7 +218,7 @@ let Responses = {
       return {
         en: 'Avoid tank cleave',
         de: 'Tank Cleave ausweichen',
-        fr: 'Évitez le cleave sur le tank',
+        fr: 'Évitez le tank cleave',
         ja: '前方範囲攻撃を避け',
         ko: '광역 탱버 피하기',
         cn: '远离顺劈',
@@ -267,7 +267,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Spread',
       de: 'Verteilen',
-      fr: 'Écartez-vous',
+      fr: 'Dispersez-vous',
       ja: '散開',
       cn: '分散',
       ko: '산개',
@@ -328,7 +328,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Dorito Stack',
       de: 'Mit Marker sammeln',
-      fr: 'Packez-vous avec les autres marqueurs',
+      fr: 'Packez les marquages',
       ja: 'マーカー付けた人とスタック',
       cn: '点名集合',
     };
@@ -339,7 +339,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Spread => Stack',
       de: 'Verteilen => Sammeln',
-      fr: 'Écartez-vous => Packez-vous',
+      fr: 'Dispersion => Package',
       ja: '散開 => スタック',
       cn: '分散 => 集合',
       ko: '산개 => 집합',
@@ -351,7 +351,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Stack => Spread',
       de: 'Sammeln => Verteilen',
-      fr: 'Packez-vous => Écartez-vous',
+      fr: 'Package => Dispersion',
       ja: 'スタック => 散開',
       cn: '集合 => 分散',
       ko: '집합 => 산개',
@@ -459,7 +459,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Get Under',
       de: 'Unter ihn',
-      fr: 'Intérieur',
+      fr: 'En dessous',
       ja: '中へ',
       ko: '보스 아래로',
       cn: '去脚下',
@@ -472,7 +472,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'In',
       de: 'Rein',
-      fr: 'Dedans',
+      fr: 'Intérieur',
       ja: '中へ',
       cn: '靠近',
       ko: '안으로',
@@ -486,7 +486,7 @@ let Responses = {
       en: 'Out',
       de: 'Raus',
       ja: '外へ',
-      fr: 'Dehors',
+      fr: 'Exterieur',
       cn: '远离',
       ko: '밖으로',
     };
@@ -497,7 +497,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Out of melee',
       de: 'Raus aus Nahkampf',
-      fr: 'Éloignez-vous du CaC',
+      fr: 'Hors de la mêlée',
       ja: '近接最大レンジ',
       cn: '近战最远距离回避',
       ko: '근접범위 밖으로',
@@ -509,7 +509,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'In, then out',
       de: 'Rein, dann raus',
-      fr: 'Dedans, puis dehors',
+      fr: 'Intérieur, puis extérieur',
       ja: '中 => 外',
       cn: '先靠近，再远离',
       ko: '안으로 => 밖으로',
@@ -521,7 +521,7 @@ let Responses = {
     obj[defaultInfoText(sev)] = {
       en: 'Out, then in',
       de: 'Raus, dann rein',
-      fr: 'Dehors, puis dedans',
+      fr: 'Extérieur, puis intérieur',
       ja: '外 => 中',
       cn: '先远离，再靠近',
       ko: '밖으로 => 안으로',
@@ -591,7 +591,7 @@ let Responses = {
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Go Front/Back',
-      de: 'Geh nach Vorne/ Hinten',
+      de: 'Geh nach Vorne/Hinten',
       fr: 'Allez Devant/Derrière',
       ja: '縦へ',
       ko: '앞/뒤로',
@@ -642,7 +642,7 @@ let Responses = {
     obj[defaultAlertText(sev)] = {
       en: 'Away From Front',
       de: 'Weg von Vorne',
-      fr: 'Éloignez vous de l\'avant',
+      fr: 'Éloignez-vous du devant',
       ja: '前方から離れて',
       ko: '보스 전방 피하기',
       cn: '远离正面',
@@ -787,8 +787,8 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Move!',
-      de: 'Bewegen',
-      fr: 'Bougez',
+      de: 'Bewegen!',
+      fr: 'Bougez !',
       ja: '動く！',
       ko: '움직이기!',
       cn: '快动！',
