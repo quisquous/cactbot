@@ -488,7 +488,6 @@ class Buff {
   }
 
   clearCooldown(source) {
-    this.onLose();
     let ready = this.ready[source];
     if (ready)
       ready.removeCallback();
@@ -498,6 +497,7 @@ class Buff {
   }
 
   onGain(seconds, source) {
+    this.onLose();
     this.clearCooldown(source);
     this.active = this.makeAura(this.name, this.activeList, seconds, 0, 0, 'white', '', 1);
     this.addCooldown(source, seconds);
