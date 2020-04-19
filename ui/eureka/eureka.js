@@ -1958,7 +1958,7 @@ class EurekaTracker {
     let trackerToNM = {};
     for (let i = 0; i < this.nmKeys.length; ++i) {
       let nm = this.nms[this.nmKeys[i]];
-      if (nm.trackerName == null)
+      if (!nm.trackerName)
         continue;
       trackerToNM[nm.trackerName[this.options.Language].toLowerCase()] = nm;
     }
