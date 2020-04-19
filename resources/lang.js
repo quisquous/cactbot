@@ -95,6 +95,7 @@ class CactbotLanguage {
       Thunder3: '99',
       Thunder4: '1CFC',
       Divination: '40A8',
+      LucidDreaming: '1D8A',
     });
 
     this.kZone = Object.freeze({

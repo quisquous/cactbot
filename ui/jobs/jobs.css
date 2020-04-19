@@ -308,7 +308,8 @@
 
 #mnk-procs-demolish,
 #ast-procs-helios,
-#blm-procs-thunder {
+#blm-procs-thunder,
+#blu-procs-lucid {
   position: relative;
   display: inline-block;
   left: 142px;
@@ -555,6 +556,10 @@
 
 .blu-color-torment {
   background-color: rgb(168, 65, 45);
+}
+
+.blu-color-lucid {
+  background-color: rgb(227, 148, 210);
 }
 
 .blm-color-dot {
