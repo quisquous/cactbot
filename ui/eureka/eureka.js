@@ -18,10 +18,10 @@ let Options = {
       'Eureka Hydatos': '丰水之地',
     },
     ko: {
-      'Eureka Anemos': '아네모스 지대',
-      'Eureka Pagos': '파고스 지대',
-      'Eureka Pyros': '피로스 지대',
-      'Eureka Hydatos': '히다토스 지대',
+      'Eureka Anemos': '에우레카: 아네모스편',
+      'Eureka Pagos': '에우레카: 파고스편',
+      'Eureka Pyros': '에우레카: 피로스편',
+      'Eureka Hydatos': '에우레카: 히다토스편',
     },
   },
   Regex: {
@@ -36,6 +36,12 @@ let Options = {
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
+    },
+    ko: {
+      'gFlagRegex': Regexes.parse(/00:00..:(.*)에우레카 (?:아네모스|파고스|피로스|히다토스) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
+      'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
+      'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
     },
   },
   ZoneInfo: {
@@ -2146,6 +2152,7 @@ class EurekaTracker {
   OnZoneChange(e) {
     this.zoneName = e.detail.zoneName.replace('The Forbidden Land, ', '');
     this.zoneName = this.zoneName.replace('禁地优雷卡 ', '');
+    this.zoneName = this.zoneName.replace('금단의 땅 ', '');
     let zones = this.options.ZoneName[this.options.Language] || this.options.ZoneName['en'];
     for (let zone in zones) {
       this.zoneName = this.zoneName.replace(
@@ -2396,6 +2403,7 @@ class EurekaTracker {
       return;
     for (let idx = 0; idx < e.detail.logs.length; idx++) {
       let log = e.detail.logs[idx];
+      console.log(log);
       let gRegex = this.options.Regex[this.options.Language] || this.options.Regex['en'];
       let gFlagRegex = gRegex['gFlagRegex'];
       let match = log.match(gFlagRegex);
