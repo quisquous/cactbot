@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="CactbotEventSource.cs" />
     <Compile Include="CactbotEventSourceConfig.cs" />
+    <Compile Include="FateWatcher.cs" />
     <Compile Include="FFXIVPlugin.cs" />
     <Compile Include="VersionChecker.cs" />
     <Compile Include="FFXIVProcess.cs" />

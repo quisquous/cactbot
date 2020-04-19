@@ -65,7 +65,7 @@ hideall "Brute Force"
 
 ### Phase 2: Robots
 300.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 300,0
-303.0 "--sync--" sync / 03:........:Added new combatant Blaster/ window 303,30
+303.0 "--sync--" sync / 03:........:Added new combatant Blaster\./ window 303,30
 304.0 "Blaster (north)"
 304.0 "Brawler (middle)"
 306.2 "--targetable--"
@@ -73,7 +73,6 @@ hideall "Brute Force"
 314.5 "Brute Force" sync /:Blaster:1638:/
 316.6 "Auxiliary Power" sync /:Brawler:164B:/
 
-319.9 "Mirage Add" #sync / 03:........:Added new combatant Blaster Mirage/
 319.8 "Attachment" sync /:Brawler:163C:/
 322.4 "Mind Blast?" #sync /:Blaster:1639:/ # 3 second cast, interruptible
 324.5 "Brute Force" #sync /:Blaster Mirage:1638:/
