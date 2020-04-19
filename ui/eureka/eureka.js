@@ -2082,7 +2082,7 @@ class EurekaTracker {
     this.updateTimesHandle = null;
   }
 
-  strLocalization(str){
+  strLocalization(str) {
     for (let key in this.options.timeString) {
       let repl = this.options.timeString[key][this.options.Language];
       if (!repl)
