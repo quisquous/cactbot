@@ -384,6 +384,7 @@
             ret = {
               en: 'Chain: Tank NW',
             };
+            alertFor = [tank];
           }
 
           // If we need to move, alert us, otherwise just show info
