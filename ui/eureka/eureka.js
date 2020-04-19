@@ -40,7 +40,7 @@ let Options = {
     ko: {
       'gFlagRegex': Regexes.parse(/00:00..:(.*)에우레카 (?:아네모스|파고스|피로스|히다토스) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
-      'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
+      'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
     },
   },
@@ -2528,7 +2528,7 @@ class EurekaTracker {
     let zi = this.zoneInfo;
     let mx = zi.entityToMapXScalar * ex + zi.entityToMapXConstant;
     let my = zi.entityToMapYScalar * ey + zi.entityToMapYConstant;
-    this.AddFlag(mx, my, 'fairy', '');
+    this.AddFlag(mx, my, this.zoneInfo.fairy[this.options.Language || 'en'], '');
   }
 }
 
