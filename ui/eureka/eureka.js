@@ -2029,10 +2029,8 @@ class EurekaTracker {
       let gRegex = this.options.Regex[this.options.Language] || this.options.Regex['en'];
       let gFlagRegex = gRegex['gFlagRegex'];
       let match = log.match(gFlagRegex);
-      if (match){
-        console.log(match);
+      if (match)
         this.AddFlag(match[2], match[3], match[1], match[4]);
-      }
       let gTrackerRegex = gRegex['gTrackerRegex'];
       match = log.match(gTrackerRegex);
       if (match)
