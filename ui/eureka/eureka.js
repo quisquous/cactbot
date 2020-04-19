@@ -84,7 +84,7 @@ let Options = {
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
     },
     ko: {
-      'gFlagRegex': Regexes.parse(/00:00..:(.*)에우레카 (?:아네모스|파고스|피로스|히다토스) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00..:(.*)에우레카: (?:아네모스|파고스|피로스|히다토스) 지대 \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
@@ -2436,8 +2436,10 @@ class EurekaTracker {
       let gRegex = this.options.Regex[this.options.Language] || this.options.Regex['en'];
       let gFlagRegex = gRegex['gFlagRegex'];
       let match = log.match(gFlagRegex);
-      if (match)
+      if (match){
+        console.log(match);
         this.AddFlag(match[2], match[3], match[1], match[4]);
+      }
       let gTrackerRegex = gRegex['gTrackerRegex'];
       match = log.match(gTrackerRegex);
       if (match)
