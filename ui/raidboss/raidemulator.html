@@ -1,75 +1,133 @@
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title></title>
-  <!-- General Overlay Scripts-->
-  <link rel="stylesheet" href="../../resources/defaults.css">
-  <link rel="stylesheet" href="../../resources/resize_handle.css">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-  <script src="../../resources/common.js"></script>
-  <script src="../../resources/zone_id.js"></script>
-  <script src="../../resources/party.js"></script>
-  <script src="../../resources/regexes.js"></script>
-  <script src="../../resources/netregexes.js"></script>
-  <script src="../../resources/conditions.js"></script>
-  <script src="../../resources/responses.js"></script>
-  <script src="../../resources/resize_handle.js"></script>
-  <script src="../../resources/timerbar.js"></script>
-  <script src="../../resources/widgetlist.js"></script>
-  <script src="../../resources/user_config.js"></script>
-
-  <!-- Cactbot Overlay Scripts-->
-  <link rel="stylesheet" type="text/css" href="raidboss.css">
-  <script src="common_replacement.js"></script>
-  <script src="raidboss_config.js"></script>
-  <script src="timeline.js"></script>
-  <script src="browser_tts_engine.js"></script>
-  <script src="autoplay_helper.js"></script>
-  <script src="popup-text.js"></script>
-  <script src="raidboss.js"></script>
-  <script src="raidemulator.js"></script>
-  <link rel="stylesheet" type="text/css" href="raidemulator.css">
-</head>
-<body class="bg-secondary">
-  <div class="container-fluid">
-    <div class="row my-3">
-      <div class="col-auto">
-        <button class="btn btn-outline-primary w-auto h-auto play" type="button">
-          <i class="fa fa-play" aria-hidden="true"></i>
-        </button>
-        <button class="btn btn-outline-primary w-auto h-auto pause d-none" type="button">
-          <i class="fa fa-pause" aria-hidden="true"></i>
-        </button>
-      </div>
-      <div class="col">
-        <div class="progress h-100 encounterProgressBar">
-          <div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="0"></div>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- General Overlay Scripts-->
+    <link rel="stylesheet" href="../../resources/defaults.css" />
+    <link rel="stylesheet" href="../../resources/resize_handle.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+      integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+      integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../../resources/common.js"></script>
+    <script src="../../resources/user_config.js"></script>
+    <script src="../../resources/party.js"></script>
+    <script src="../../resources/regexes.js"></script>
+    <script src="../../resources/responses.js"></script>
+    <script src="../../resources/conditions.js"></script>
+    <script src="autoplay_helper.js"></script>
+    <script src="common_replacement.js"></script>
+    <!-- Extend base raidboss classes so we can control them directly -->
+    <script src="timeline.js"></script>
+    <script src="popup-text.js"></script>
+    <script src="emulator/overrides/RaidEmulatorTimelineController.js"></script>
+    <script src="emulator/overrides/RaidEmulatorTimelineUI.js"></script>
+    <script src="emulator/overrides/RaidEmulatorTimelineLoader.js"></script>
+    <script src="emulator/overrides/RaidEmulatorPopupText.js"></script>
+    <script src="emulator/overrides/RaidEmulatorPopupTextGenerator.js"></script>
+    <script src="emulator/data/CombatantJobSearch.js"></script>
+    <script src="emulator/data/CombatantState.js"></script>
+    <script src="emulator/data/Combatant.js"></script>
+    <script src="emulator/data/CombatantTracker.js"></script>
+    <script src="emulator/EventBus.js"></script>
+    <script src="emulator/data/Encounter.js"></script>
+    <script src="emulator/data/AnalyzedEncounter.js"></script>
+    <script src="emulator/data/RaidEmulator.js"></script>
+    <script src="emulator/ui/ProgressBar.js"></script>
+    <script src="emulator/ui/EmulatedPartyInfo.js"></script>
+    <script src="emulator/ui/EmulatedMap.js"></script>
+    <script src="emulator/data/PersistorEncounter.js"></script>
+    <script src="emulator/data/Persistor.js"></script>
+    <script src="emulator/functions.js"></script>
+    <script src="emulator/data/LogEventHandler.js"></script>
+    <script src="emulator/ui/EncounterTab.js"></script>
+    <script src="raidemulator.js"></script>
+    <link rel="stylesheet" type="text/css" href="raidemulator.css" />
+  </head>
+  <body class="bg-secondary">
+    <div class="container-fluid h-100">
+      <div class="row my-3 progressBarRow">
+        <div class="col-auto">
+          <button
+            class="btn btn-outline-primary w-auto h-auto play"
+            type="button"
+          >
+            <i class="fa fa-play" aria-hidden="true"></i>
+          </button>
+          <button
+            class="btn btn-outline-primary w-auto h-auto pause d-none"
+            type="button"
+          >
+            <i class="fa fa-pause" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col">
+          <div class="progress h-100 encounterProgressBar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="0"
+            ></div>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="d-inline progress-bar-timestamp current-timestamp"></div>
+          <div class="d-inline progress-bar-timestamp divider-timestamp">/</div>
+          <div class="d-inline progress-bar-timestamp duration-timestamp"></div>
         </div>
       </div>
-      <div class="col-auto">
-        <div class="d-inline progress-bar-timestamp current-timestamp"></div>
-        <div class="d-inline progress-bar-timestamp divider-timestamp">/</div>
-        <div class="d-inline progress-bar-timestamp duration-timestamp"></div>
-      </div>
-    </div>
-    <div class="row triggerInfo d-none"></div>
-    <div class="row">
-      <div class="col-auto encountersTabColumn">
-        <button class="btn btn-outline-primary w-auto h-auto float-right showEncountersButton" type="button"
-          data-toggle="collapse" data-target="#encountersTab" 
-          aria-expanded="false" aria-controls="encountersTab">
-          <i class="fa fa-bars" aria-hidden="true"></i>
-        </button>
-        <div class="collapse" id="encountersTab">
-          qwer
+      <div class="row triggerInfoRow d-none"></div>
+      <div class="row mainContentRow">
+        <div class="col-10 raidbossTimelineColumn">Placeholder Timeline/Alerts</div>
+        <div class="col-2 partyInfoColumn">
+          <div class="d-flex flex-column flex-fill">
+            <div style="height: calc(16.666667vw - 30px)" class="p-1 map">Placeholder Map</div>
+            <div class="flex-fill party">Placeholder party info</div>
+          </div>
         </div>
       </div>
-      <div class="col">asdf</div>
+      <div class="row encountersRow bg-secondary">
+        <div class="col">
+          <button
+            class="btn btn-outline-primary w-auto h-auto float-right showEncountersButton"
+            type="button"
+            data-toggle="collapse"
+            data-target="#encountersTab"
+            aria-expanded="false"
+            aria-controls="encountersTab"
+          >
+            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div class="collapse" id="encountersTab">
+            <div class="row flex-fill border-top border-dark h-100 mh-100">
+              <div class="col col-3 border-right border-dark h-100 mh-100 zoneList"></div>
+              <div class="col col-3 border-right border-dark h-100 mh-100 dateList"></div>
+              <div class="col col-3 border-right border-dark h-100 mh-100 encounterList"></div>
+              <div class="col col-3 h-100 mh-100 encounterInfo"></div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</body>
+  </body>
 </html>

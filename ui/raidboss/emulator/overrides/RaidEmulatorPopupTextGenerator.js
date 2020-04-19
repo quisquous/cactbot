@@ -1,0 +1,3 @@
+class RaidEmulatorPopupTextGenerator extends PopupTextGenerator {
+
+}

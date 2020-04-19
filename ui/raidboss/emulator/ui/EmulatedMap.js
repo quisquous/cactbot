@@ -1,0 +1,5 @@
+class EmulatedMap {
+  constructor(emulator) {
+
+  }
+}

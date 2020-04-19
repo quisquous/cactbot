@@ -1,0 +1,3 @@
+class RaidEmulatorTimelineLoader extends TimelineLoader {
+
+}

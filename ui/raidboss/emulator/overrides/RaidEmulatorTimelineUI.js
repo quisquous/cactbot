@@ -1,0 +1,3 @@
+class RaidEmulatorTimelineUI extends TimelineUI {
+
+}
