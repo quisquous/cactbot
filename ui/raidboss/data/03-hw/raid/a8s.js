@@ -20,16 +20,6 @@
       response: Responses.tankCleave('info'),
     },
     {
-      id: 'A8S Robot Mirage',
-      regex: /Mirage Add/,
-      beforeSeconds: 5,
-      infoText: {
-        en: 'Mirage Soon',
-        de: 'Bald Mirage',
-        cn: '分身即将出现',
-      },
-    },
-    {
       id: 'A8S Swindler Add',
       regex: /Swindler/,
       beforeSeconds: 5,
@@ -121,6 +111,15 @@
       response: Responses.tankBusterSwap(),
     },
     {
+      id: 'A8S Blaster Mirage',
+      regex: Regexes.addedCombatant({ name: 'Blaster Mirage', capture: false }),
+      infoText: {
+        en: 'Mirage',
+        de: 'Mirage',
+        cn: '分身即',
+      },
+    },
+    {
       id: 'A8S Discoid',
       regex: Regexes.headMarker({ id: '0023' }),
       condition: Conditions.targetIsYou(),
@@ -153,6 +152,8 @@
       regexCn: Regexes.gainsEffect({ effect: '算术：高度1' }),
       regexKo: Regexes.gainsEffect({ effect: '산술: 고도 1' }),
       condition: Conditions.targetIsYou(),
+      durationSeconds: 5,
+      suppressSeconds: 5,
       alertText: {
         en: 'Get High',
         de: 'Geh nach Oben',
@@ -168,6 +169,8 @@
       regexCn: Regexes.gainsEffect({ effect: '算术：高度2' }),
       regexKo: Regexes.gainsEffect({ effect: '산술: 고도 2' }),
       condition: Conditions.targetIsYou(),
+      durationSeconds: 5,
+      suppressSeconds: 5,
       alertText: {
         en: 'Get Down',
         de: 'Geh nach Unten',
