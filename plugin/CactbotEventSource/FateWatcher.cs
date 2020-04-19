@@ -26,7 +26,7 @@ namespace Cactbot {
     // fates<fateID, progress>
     private static ConcurrentDictionary<int, int> fates;
 
-    public FateWatcher(CactbotEventSource client, string language) {
+    public FateWatcher(CactbotEventSource client) {
       client_ = client;
       fates = new ConcurrentDictionary<int, int>();
 
@@ -124,9 +124,6 @@ namespace Cactbot {
 
     public unsafe void ProcessMessage(byte* buffer, byte[] message) {
       int a = *((int*)&buffer[Category_Offset]);
-/*    int para1 = *((int*)&buffer[Param1_Offset]);
-      int para2 = *(int*)&buffer[Param2_Offset];
-      Debug.WriteLine(a.ToString() + " - " + para1 + "," + para2);*/
       switch (a) {
         // Fate Start: 0x935
         // param1: fateID

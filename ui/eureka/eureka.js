@@ -97,7 +97,6 @@ let Options = {
           x: 13.9,
           y: 21.9,
           fateID: 1332,
-          bunny: false,
         },
         lord: {
           label: {
@@ -119,7 +118,6 @@ let Options = {
           x: 29.7,
           y: 27.1,
           fateID: 1348,
-          bunny: false,
         },
         teles: {
           label: {
@@ -141,7 +139,6 @@ let Options = {
           x: 25.6,
           y: 27.4,
           fateID: 1333,
-          bunny: false,
         },
         emperor: {
           label: {
@@ -163,7 +160,6 @@ let Options = {
           x: 17.2,
           y: 22.2,
           fateID: 1328,
-          bunny: false,
         },
         callisto: {
           label: {
@@ -186,7 +182,6 @@ let Options = {
           x: 26.2,
           y: 22.0,
           fateID: 1344,
-          bunny: false,
         },
         number: {
           label: {
@@ -209,7 +204,6 @@ let Options = {
           x: 23.5,
           y: 23.4,
           fateID: 1347,
-          bunny: false,
         },
         jaha: {
           label: {
@@ -231,7 +225,6 @@ let Options = {
           x: 17.7,
           y: 18.6,
           fateID: 1345,
-          bunny: false,
           weather: 'Gales',
         },
         amemet: {
@@ -254,7 +247,6 @@ let Options = {
           x: 15.0,
           y: 15.6,
           fateID: 1334,
-          bunny: false,
         },
         caym: {
           label: {
@@ -276,7 +268,6 @@ let Options = {
           x: 13.8,
           y: 12.5,
           fateID: 1335,
-          bunny: false,
         },
         bomb: {
           label: {
@@ -298,7 +289,6 @@ let Options = {
           x: 28.3,
           y: 20.4,
           fateID: 1336,
-          bunny: false,
           time: 'Night',
         },
         serket: {
@@ -321,7 +311,6 @@ let Options = {
           x: 24.8,
           y: 17.9,
           fateID: 1339,
-          bunny: false,
         },
         juli: {
           label: {
@@ -364,7 +353,6 @@ let Options = {
           x: 20.3,
           y: 13.0,
           fateID: 1343,
-          bunny: false,
           time: 'Night',
         },
         poly: {
@@ -387,7 +375,6 @@ let Options = {
           x: 26.4,
           y: 14.3,
           fateID: 1337,
-          bunny: false,
         },
         strider: {
           label: {
@@ -409,7 +396,6 @@ let Options = {
           x: 28.6,
           y: 13.0,
           fateID: 1342,
-          bunny: false,
         },
         hazmat: {
           label: {
@@ -431,7 +417,6 @@ let Options = {
           x: 35.3,
           y: 18.3,
           fateID: 1341,
-          bunny: false,
         },
         fafnir: {
           label: {
@@ -453,7 +438,6 @@ let Options = {
           x: 35.5,
           y: 21.5,
           fateID: 1331,
-          bunny: false,
           time: 'Night',
         },
         amarok: {
@@ -476,7 +460,6 @@ let Options = {
           x: 7.6,
           y: 18.2,
           fateID: 1340,
-          bunny: false,
         },
         lama: {
           label: {
@@ -499,7 +482,6 @@ let Options = {
           x: 7.7,
           y: 25.3,
           fateID: 1338,
-          bunny: false,
           time: 'Night',
         },
         pazu: {
@@ -522,7 +504,6 @@ let Options = {
           x: 7.4,
           y: 21.7,
           fateID: 1329,
-          bunny: false,
           weather: 'Gales',
         },
       },
@@ -582,7 +563,6 @@ let Options = {
           x: 21.5,
           y: 26.5,
           fateID: 1351,
-          bunny: false,
         },
         taxim: {
           label: {
@@ -604,7 +584,6 @@ let Options = {
           x: 25.5,
           y: 28.3,
           fateID: 1369,
-          bunny: false,
           time: 'Night',
         },
         ashdragon: {
@@ -627,7 +606,6 @@ let Options = {
           x: 29.7,
           y: 30.0,
           fateID: 1353,
-          bunny: false,
         },
         glavoid: {
           label: {
@@ -649,7 +627,6 @@ let Options = {
           x: 33.0,
           y: 28.0,
           fateID: 1354,
-          bunny: false,
         },
         anapos: {
           label: {
@@ -671,7 +648,6 @@ let Options = {
           x: 33.0,
           y: 21.5,
           fateID: 1355,
-          bunny: false,
           weather: 'Fog',
         },
         hakutaku: {
@@ -694,7 +670,6 @@ let Options = {
           x: 29.0,
           y: 22.5,
           fateID: 1366,
-          bunny: false,
         },
         igloo: {
           label: {
@@ -716,7 +691,6 @@ let Options = {
           x: 17,
           y: 16,
           fateID: 1357,
-          bunny: false,
         },
         asag: {
           label: {
@@ -738,7 +712,6 @@ let Options = {
           x: 11.3,
           y: 10.5,
           fateID: 1356,
-          bunny: false,
         },
         surabhi: {
           label: {
@@ -760,7 +733,6 @@ let Options = {
           x: 10.5,
           y: 20.5,
           fateID: 1352,
-          bunny: false,
         },
         kingarthro: {
           label: {
@@ -782,7 +754,6 @@ let Options = {
           x: 8.0,
           y: 15.2,
           fateID: 1360,
-          bunny: false,
           weather: 'Fog',
         },
         minotaurs: {
@@ -805,7 +776,6 @@ let Options = {
           x: 13.8,
           y: 18.4,
           fateID: 1358,
-          bunny: false,
         },
         holycow: {
           label: {
@@ -827,7 +797,6 @@ let Options = {
           x: 26,
           y: 16,
           fateID: 1361,
-          bunny: false,
         },
         hadhayosh: {
           label: {
@@ -849,7 +818,6 @@ let Options = {
           x: 30,
           y: 19,
           fateID: 1362,
-          bunny: false,
           weather: 'Thunder',
         },
         horus: {
@@ -872,7 +840,6 @@ let Options = {
           x: 26,
           y: 20,
           fateID: 1359,
-          bunny: false,
           weather: 'Heat Waves',
         },
         mainyu: {
@@ -895,7 +862,6 @@ let Options = {
           x: 25,
           y: 24,
           fateID: 1363,
-          bunny: false,
         },
         cassie: {
           label: {
@@ -918,7 +884,6 @@ let Options = {
           x: 22,
           y: 14,
           fateID: 1365,
-          bunny: false,
         },
         louhi: {
           label: {
@@ -940,7 +905,6 @@ let Options = {
           x: 36,
           y: 18.5,
           fateID: 1364,
-          bunny: false,
           time: 'Night',
         },
       },
@@ -1000,7 +964,6 @@ let Options = {
           x: 26.8,
           y: 26.3,
           fateID: 1388,
-          bunny: false,
           time: 'Night',
         },
         flauros: {
@@ -1023,7 +986,6 @@ let Options = {
           x: 28.9,
           y: 29.2,
           fateID: 1389,
-          bunny: false,
         },
         sophist: {
           label: {
@@ -1045,7 +1007,6 @@ let Options = {
           x: 31.8,
           y: 31.0,
           fateID: 1390,
-          bunny: false,
         },
         graff: {
           label: {
@@ -1067,7 +1028,6 @@ let Options = {
           x: 23.5,
           y: 37.2,
           fateID: 1391,
-          bunny: false,
         },
         askala: {
           label: {
@@ -1089,7 +1049,6 @@ let Options = {
           x: 19.3,
           y: 29.0,
           fateID: 1392,
-          bunny: false,
           weather: 'Umbral Wind',
         },
         batym: {
@@ -1112,7 +1071,6 @@ let Options = {
           x: 18.0,
           y: 14.1,
           fateID: 1393,
-          bunny: false,
           time: 'Night',
         },
         aetolus: {
@@ -1135,7 +1093,6 @@ let Options = {
           x: 10.0,
           y: 14.0,
           fateID: 1394,
-          bunny: false,
         },
         lesath: {
           label: {
@@ -1157,7 +1114,6 @@ let Options = {
           x: 13.2,
           y: 11.2,
           fateID: 1395,
-          bunny: false,
         },
         eldthurs: {
           label: {
@@ -1179,7 +1135,6 @@ let Options = {
           x: 15.3,
           y: 6.8,
           fateID: 1396,
-          bunny: false,
         },
         iris: {
           label: {
@@ -1201,7 +1156,6 @@ let Options = {
           x: 21.3,
           y: 12.0,
           fateID: 1397,
-          bunny: false,
         },
         lamebrix: {
           label: {
@@ -1223,7 +1177,6 @@ let Options = {
           x: 21.9,
           y: 8.3,
           fateID: 1398,
-          bunny: false,
         },
         dux: {
           label: {
@@ -1245,7 +1198,6 @@ let Options = {
           x: 27.4,
           y: 8.8,
           fateID: 1399,
-          bunny: false,
           weather: 'Thunder',
         },
         jack: {
@@ -1268,7 +1220,6 @@ let Options = {
           x: 30.1,
           y: 11.7,
           fateID: 1400,
-          bunny: false,
         },
         glauko: {
           label: {
@@ -1290,7 +1241,6 @@ let Options = {
           x: 32.3,
           y: 15.1,
           fateID: 1401,
-          bunny: false,
         },
         yingyang: {
           label: {
@@ -1312,7 +1262,6 @@ let Options = {
           x: 11.4,
           y: 34.1,
           fateID: 1402,
-          bunny: false,
         },
         skoll: {
           label: {
@@ -1334,7 +1283,6 @@ let Options = {
           x: 24.3,
           y: 30.1,
           fateID: 1403,
-          bunny: false,
           weather: 'Blizzards',
         },
         penthe: {
@@ -1357,7 +1305,6 @@ let Options = {
           x: 35.7,
           y: 5.9,
           fateID: 1404,
-          bunny: false,
           weather: 'Heat Waves',
         },
       },
@@ -1409,7 +1356,6 @@ let Options = {
           x: 11.1,
           y: 24.9,
           fateID: 1412,
-          bunny: false,
         },
         stegodon: {
           label: {
@@ -1431,7 +1377,6 @@ let Options = {
           x: 9.3,
           y: 18.2,
           fateID: 1413,
-          bunny: false,
         },
         molech: {
           label: {
@@ -1453,7 +1398,6 @@ let Options = {
           x: 7.8,
           y: 21.9,
           fateID: 1414,
-          bunny: false,
         },
         piasa: {
           label: {
@@ -1475,7 +1419,6 @@ let Options = {
           x: 7.1,
           y: 14.1,
           fateID: 1415,
-          bunny: false,
         },
         frostmane: {
           label: {
@@ -1497,7 +1440,6 @@ let Options = {
           x: 8.1,
           y: 26.4,
           fateID: 1416,
-          bunny: false,
         },
         daphne: {
           label: {
@@ -1519,7 +1461,6 @@ let Options = {
           x: 25.6,
           y: 16.2,
           fateID: 1417,
-          bunny: false,
         },
         goldemar: {
           label: {
@@ -1541,7 +1482,6 @@ let Options = {
           x: 28.9,
           y: 23.9,
           fateID: 1418,
-          bunny: false,
         },
         leuke: {
           label: {
@@ -1563,7 +1503,6 @@ let Options = {
           x: 37.3,
           y: 27.0,
           fateID: 1419,
-          bunny: false,
         },
         barong: {
           label: {
@@ -1585,7 +1524,6 @@ let Options = {
           x: 32.2,
           y: 24.2,
           fateID: 1420,
-          bunny: false,
         },
         ceto: {
           label: {
@@ -1607,7 +1545,6 @@ let Options = {
           x: 36.1,
           y: 13.4,
           fateID: 1421,
-          bunny: false,
         },
         watcher: {
           label: {
@@ -1629,7 +1566,6 @@ let Options = {
           x: 32.7,
           y: 19.5,
           fateID: 1423,
-          bunny: false,
         },
         ovni: {
           label: {
@@ -1643,7 +1579,6 @@ let Options = {
           x: 26.8,
           y: 29.0,
           fateID: 1424,
-          bunny: false,
           respawnMinutes: 20,
         },
         tristitia: {
@@ -1658,7 +1593,6 @@ let Options = {
           x: 18.7,
           y: 29.7,
           fateID: 1422,
-          bunny: false,
           respawnMinutes: 20,
         },
       },
@@ -2024,6 +1958,8 @@ class EurekaTracker {
     let trackerToNM = {};
     for (let i = 0; i < this.nmKeys.length; ++i) {
       let nm = this.nms[this.nmKeys[i]];
+      if (nm.trackerName == null)
+        continue;
       trackerToNM[nm.trackerName[this.options.Language].toLowerCase()] = nm;
     }
 
@@ -2087,9 +2023,8 @@ class EurekaTracker {
 
     switch (e.detail.eventType) {
     case 'add':
-      console.log('add: ' + e.detail.fateID);
-      for (let i = 0; i < this.nmKeys.length; ++i) {
-        let nm = this.nms[this.nmKeys[i]];
+      for (let key of this.nmKeys) {
+        let nm = this.nms[key];
         if (e.detail.fateID == nm.fateID) {
           this.OnFatePop(nm);
           return;
@@ -2097,9 +2032,8 @@ class EurekaTracker {
       }
       break;
     case 'remove':
-      console.log('remove: ' + e.detail.fateID + ' (' + e.detail.progress + '%)');
-      for (let i = 0; i < this.nmKeys.length; ++i) {
-        let nm = this.nms[this.nmKeys[i]];
+      for (let key of this.nmKeys) {
+        let nm = this.nms[key];
         if (e.detail.fateID == nm.fateID) {
           this.OnFateKill(nm);
           return;
@@ -2107,9 +2041,8 @@ class EurekaTracker {
       }
       break;
     case 'update':
-      console.log('update: ' + e.detail.fateID + ' (' + e.detail.progress + '%)');
-      for (let i = 0; i < this.nmKeys.length; ++i) {
-        let nm = this.nms[this.nmKeys[i]];
+      for (let key of this.nmKeys) {
+        let nm = this.nms[key];
         if (e.detail.fateID == nm.fateID) {
           this.OnFateUpdate(nm, e.detail.progress);
           return;
