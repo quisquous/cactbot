@@ -1871,22 +1871,25 @@ class EurekaTracker {
           continue;
         }
         let weather = getWeather(nowMs, this.zoneName);
-        let weatherStr = gWeatherIcons[primaryWeather];
+        let weatherIcon = gWeatherIcons[primaryWeather];
+        let weatherStr;
         if (weather == primaryWeather) {
           let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
-          weatherStr += this.options.timeStrings.weatherFor[this.options.Language](nowMs, stopTime);
+          weatherStr = this.options.timeStrings.weatherFor[this.options.Language](nowMs, stopTime);
         } else {
           let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
-          weatherStr += this.options.timeStrings.weatherIn[this.options.Language](nowMs, startTime);
+          weatherStr = this.options.timeStrings.weatherIn[this.options.Language](nowMs, startTime);
         }
-        document.getElementById('label-weather' + i).innerHTML = weatherStr;
+        document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
+        document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
       }
     } else {
       let currentWeather = getWeather(nowMs, this.zoneName);
       let stopTime = findNextWeatherNot(nowMs, this.zoneName, currentWeather);
-      let weatherStr = gWeatherIcons[currentWeather];
-      weatherStr += this.options.timeStrings.weatherFor[this.options.Language](nowMs, stopTime);
-      document.getElementById('label-weather0').innerHTML = weatherStr;
+      let weatherIcon = gWeatherIcons[currentWeather];
+      let weatherStr = this.options.timeStrings.weatherFor[this.options.Language](nowMs, stopTime);
+      document.getElementById('label-weather-icon0').innerHTML = weatherIcon;
+      document.getElementById('label-weather-text0').innerHTML = weatherStr;
 
       // round up current time
       let lastTime = nowMs;
@@ -1894,9 +1897,10 @@ class EurekaTracker {
       for (let i = 1; i < 5; ++i) {
         let startTime = findNextWeatherNot(lastTime, this.zoneName, lastWeather);
         let weather = getWeather(startTime + 1, this.zoneName);
-        let weatherStr = gWeatherIcons[weather];
-        weatherStr += this.options.timeStrings.weatherIn[this.options.Language](nowMs, startTime);
-        document.getElementById('label-weather' + i).innerHTML = weatherStr;
+        let weatherIcon = gWeatherIcons[weather];
+        weatherStr = this.options.timeStrings.weatherIn[this.options.Language](nowMs, startTime);
+        document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
+        document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
         lastTime = startTime;
         lastWeather = weather;
       }
@@ -1904,15 +1908,16 @@ class EurekaTracker {
 
     let nextDay = findNextNight(nowMs);
     let nextNight = findNextDay(nowMs);
-    let timeStr = '';
+    let timeIcon;
     if (nextDay > nextNight)
-      timeStr = gNightIcon;
+      timeIcon = gNightIcon;
     else
-      timeStr = gDayIcon;
+      timeIcon = gDayIcon;
 
     let dayNightMin = Math.ceil((Math.min(nextDay, nextNight) - nowMs) / 1000 / 60);
-    timeStr += this.options.timeStrings.timeFor[this.options.Language](dayNightMin);
-    document.getElementById('label-time').innerHTML = timeStr;
+    let timeStr = this.options.timeStrings.timeFor[this.options.Language](dayNightMin);
+    document.getElementById('label-time-icon').innerHTML = timeIcon;
+    document.getElementById('label-time-text').innerHTML = timeStr;
 
     document.getElementById('label-tracker').innerHTML = this.currentTracker;
 

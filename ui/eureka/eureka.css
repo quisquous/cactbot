@@ -70,6 +70,16 @@
   top: -3px;
 }
 
+.text.icon {
+  text-align: center;
+  width: 30px;
+}
+
+#label-time > div,
+#label-weather-container > div > div {
+  display: inline-block;
+}
+
 .nm {
   position: absolute;
   font-size: 12px;
@@ -168,6 +178,15 @@
   font-weight: normal;
   padding: 5px;
   border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+#label-weather-container {
+  padding-top: 5px;
+}
+
+#label-time {
+  padding-bottom: 5px;
+  border-bottom: 2px dashed rgba(255, 255, 255, 0.3);
 }
 
 .aspect-ratio-anemos #label-container {
