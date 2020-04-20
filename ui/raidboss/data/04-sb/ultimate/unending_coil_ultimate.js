@@ -1626,6 +1626,7 @@
           de: 'Exafleer '+ data.exaflareCount,
           ja: 'エクサフレア' + data.exaflareCount,
           cn: '百京核爆 ' + data.exaflareCount,
+          ko: '엑사플레어 ' + data.exaflareCount,
         };
       },
     },
