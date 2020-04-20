@@ -68,6 +68,7 @@
       // Insert sound effect from Arthars here.
       alertText: {
         en: 'Megabeamu~',
+        cn: '巨型光束炮~',
       },
     },
     {
@@ -80,6 +81,7 @@
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '1664', capture: false }),
       alertText: {
         en: 'Megabeamu~!',
+        cn: '巨型光束炮~!',
       },
     },
     {
