@@ -584,20 +584,11 @@ class TimelineUI {
     if (Options.Skin)
       this.root.classList.add('skin-' + Options.Skin);
 
-    this.barWidth = window.getComputedStyle(this.root).width;
-    let windowHeight = parseFloat(window.getComputedStyle(this.root).height.match(/([0-9.]+)px/)[1]);
-    this.barHeight = windowHeight / this.options.MaxNumberOfTimerBars - 2;
-
     this.barColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color');
     this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');
 
     this.timerlist = document.getElementById('timeline');
-    this.timerlist.maxnumber = this.options.MaxNumberOfTimerBars;
-    this.timerlist.rowcolsize = this.options.MaxNumberOfTimerBars;
-    this.timerlist.elementwidth = this.barWidth;
-    this.timerlist.elementheight = this.barHeight + 2;
-    this.timerlist.toward = 'down right';
-
+    this.timerlist.style.gridTemplateRows = 'repeat(' + this.options.MaxNumberOfTimerBars + ', 1fr)';
     this.activeBars = {};
     this.expireTimers = {};
   }
@@ -626,9 +617,6 @@ class TimelineUI {
       else
         helperBar.innerText = 'Test bar ' + (i + 1);
       helper.appendChild(helperBar);
-      let borderWidth = parseFloat(window.getComputedStyle(helperBar).borderWidth.match(/([0-9.]+)px/)[1]);
-      helperBar.style.width = this.barWidth - borderWidth * 2;
-      helperBar.style.height = this.barHeight - borderWidth * 2;
     }
 
     this.debugElement = document.getElementById('timeline-debug');
@@ -671,9 +659,8 @@ class TimelineUI {
   OnAddTimer(fightNow, e, channeling) {
     let div = document.createElement('div');
     let bar = document.createElement('timer-bar');
+    div.classList.add('timer-bar');
     div.appendChild(bar);
-    bar.width = this.barWidth;
-    bar.height = this.barHeight;
     bar.duration = channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds;
     bar.value = e.time - fightNow;
     bar.righttext = 'remain';
@@ -693,7 +680,15 @@ class TimelineUI {
       bar.fg = this.barExpiresSoonColor;
     }
 
-    this.timerlist.addElement(e.id, div, e.sortKey);
+    // Adding a timer with the same id immediately removes the previous.
+    if (this.activeBars[e.id]) {
+      let div = this.activeBars[e.id].parentNode;
+      div.parentNode.removeChild(div);
+    }
+
+    div.style.order = e.sortKey;
+    div.id = e.id;
+    this.timerlist.appendChild(div);
     this.activeBars[e.id] = bar;
     if (e.id in this.expireTimers) {
       window.clearTimeout(this.expireTimers[e.id]);
@@ -716,7 +711,10 @@ class TimelineUI {
       window.clearTimeout(this.expireTimers[e.id]);
       delete this.expireTimers[e.id];
     }
-    this.timerlist.removeElement(e.id);
+
+    let bar = this.activeBars[e.id];
+    let div = bar.parentNode;
+    div.parentNode.removeChild(div);
     delete this.activeBars[e.id];
   }
 

@@ -1,5 +1,7 @@
-
 'use strict';
+// NOTE
+// This class should be considered deprecated, and any users of this class should
+// just switch over to using CSS grid.
 
 class WidgetList extends HTMLElement {
   static get observedAttributes() {

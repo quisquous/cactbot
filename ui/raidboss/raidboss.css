@@ -13,7 +13,7 @@
   top: 0;
   left: 0;
   width: 220px;
-  height: 120px;
+  height: 100%;
   font-size: 14px;
 }
 
@@ -104,9 +104,26 @@
 
 #timeline-resize-helper .resize-helper-bar {
   border: 1px solid black;
-  margin-bottom: 2;
   padding: 0 0.2em 0 0.2em;
   vertical-align: middle;
+  height: 18px;
+  margin-bottom: 2;
+}
+
+.timeline-grid {
+  display: grid;
+  width: 100%;
+  grid-auto-columns: 0;
+  grid-auto-rows: 0;
+  overflow-y: hidden;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(6, 1fr);
+}
+
+.timer-bar {
+  width: calc(100% - 2px);
+  height: 18px;
+  margin-bottom: 2;
 }
 
 .timeline-bar-color {
