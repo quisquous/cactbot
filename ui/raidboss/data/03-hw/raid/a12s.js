@@ -145,7 +145,7 @@
     },
     {
       id: 'A12S Restraining Order',
-      regex: Regexes.tether({ id: '001C' }),
+      regex: Regexes.tether({ id: '001D' }),
       condition: function(data, matches) {
         return matches.source == data.me || matches.target == data.me;
       },
