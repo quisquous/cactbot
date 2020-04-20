@@ -30,10 +30,56 @@ let Options = {
       'Eureka Hydatos': '丰水之地',
     },
     ko: {
-      'Eureka Anemos': '아네모스 지대',
-      'Eureka Pagos': '파고스 지대',
-      'Eureka Pyros': '피로스 지대',
-      'Eureka Hydatos': '히다토스 지대',
+      'Eureka Anemos': '아네모스편',
+      'Eureka Pagos': '파고스편',
+      'Eureka Pyros': '피로스편',
+      'Eureka Hydatos': '히다토스편',
+    },
+  },
+  timeStrings: {
+    weatherFor: {
+      en: (nowMs, stopTime) => {
+        if (stopTime) {
+          let min = (stopTime - nowMs) / 1000 / 60;
+          return ' for ' + Math.ceil(min) + 'm';
+        }
+        return ' for ???';
+      },
+      ko: (nowMs, stopTime) => {
+        if (stopTime) {
+          let min = (stopTime - nowMs) / 1000 / 60;
+          return ' ' + Math.ceil(min) + '분 동안';
+        }
+        return ' ??? 동안';
+      },
+    },
+    weatherIn: {
+      en: (nowMs, startTime) => {
+        if (startTime) {
+          let min = (startTime - nowMs) / 1000 / 60;
+          return ' in ' + Math.ceil(min) + 'm';
+        }
+        return ' in ???';
+      },
+      ko: (nowMs, startTime) => {
+        if (startTime) {
+          let min = (startTime - nowMs) / 1000 / 60;
+          return ' ' + Math.ceil(min) + '분 후';
+        }
+        return ' ??? 후';
+      },
+    },
+    timeFor: {
+      en: (dayNightMin) => {
+        return ' for ' + dayNightMin + 'm';
+      },
+      ko: (dayNightMin) => {
+        return ' ' + dayNightMin + '분 동안';
+      },
+    },
+    minute: {
+      en: 'm',
+      ko: '분',
     },
   },
   Regex: {
@@ -48,6 +94,12 @@ let Options = {
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
+    },
+    ko: {
+      'gFlagRegex': Regexes.parse(/00:00..:(.*)에우레카: (?:아네모스|파고스|피로스|히다토스) 지대 \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
+      'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
+      'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
     },
   },
   ZoneInfo: {
@@ -570,7 +622,7 @@ let Options = {
             de: 'Taxim',
             fr: 'Taxim',
             ja: 'タキシム',
-            ko: '택심',
+            ko: '텍심',
             cn: '读书人',
           },
           trackerName: {
@@ -804,7 +856,7 @@ let Options = {
             de: 'Hadhayosh',
             fr: 'Hadhayosh',
             ja: 'ハダヨッシュ',
-            ko: '베히모스',
+            ko: '하다요쉬',
             cn: '贝爷',
           },
           trackerName: {
@@ -1720,6 +1772,7 @@ class EurekaTracker {
   OnZoneChange(e) {
     this.zoneName = e.detail.zoneName.replace('The Forbidden Land, ', '');
     this.zoneName = this.zoneName.replace('禁地优雷卡 ', '');
+    this.zoneName = this.zoneName.replace('금단의 땅 에우레카: ', '');
     let zones = this.options.ZoneName[this.options.Language] || this.options.ZoneName['en'];
     for (let zone in zones) {
       this.zoneName = this.zoneName.replace(
@@ -1817,38 +1870,26 @@ class EurekaTracker {
           document.getElementById('label-weather' + i).innerHTML = '';
           continue;
         }
-        let weatherStr = gWeatherIcons[primaryWeather];
         let weather = getWeather(nowMs, this.zoneName);
+        let weatherIcon = gWeatherIcons[primaryWeather];
+        let weatherStr;
         if (weather == primaryWeather) {
           let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
-          if (stopTime) {
-            let min = (stopTime - nowMs) / 1000 / 60;
-            weatherStr += ' for ' + Math.ceil(min) + 'm';
-          } else {
-            weatherStr += ' for ???';
-          }
+          weatherStr = this.options.timeStrings.weatherFor[this.options.Language](nowMs, stopTime);
         } else {
           let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
-          if (startTime) {
-            let min = (startTime - nowMs) / 1000 / 60;
-            weatherStr += ' in ' + Math.ceil(min) + 'm';
-          } else {
-            weatherStr += ' in ???';
-          }
+          weatherStr = this.options.timeStrings.weatherIn[this.options.Language](nowMs, startTime);
         }
-        document.getElementById('label-weather' + i).innerHTML = weatherStr;
+        document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
+        document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
       }
     } else {
       let currentWeather = getWeather(nowMs, this.zoneName);
-      let weatherStr = gWeatherIcons[currentWeather];
       let stopTime = findNextWeatherNot(nowMs, this.zoneName, currentWeather);
-      if (stopTime) {
-        let min = (stopTime - nowMs) / 1000 / 60;
-        weatherStr += ' for ' + Math.ceil(min) + 'm';
-      } else {
-        weatherStr += ' for ???';
-      }
-      document.getElementById('label-weather0').innerHTML = weatherStr;
+      let weatherIcon = gWeatherIcons[currentWeather];
+      let weatherStr = this.options.timeStrings.weatherFor[this.options.Language](nowMs, stopTime);
+      document.getElementById('label-weather-icon0').innerHTML = weatherIcon;
+      document.getElementById('label-weather-text0').innerHTML = weatherStr;
 
       // round up current time
       let lastTime = nowMs;
@@ -1856,14 +1897,10 @@ class EurekaTracker {
       for (let i = 1; i < 5; ++i) {
         let startTime = findNextWeatherNot(lastTime, this.zoneName, lastWeather);
         let weather = getWeather(startTime + 1, this.zoneName);
-        let weatherStr = gWeatherIcons[weather];
-        if (startTime) {
-          let min = (startTime - nowMs) / 1000 / 60;
-          weatherStr += ' in ' + Math.ceil(min) + 'm';
-        } else {
-          weatherStr += ' in ???';
-        }
-        document.getElementById('label-weather' + i).innerHTML = weatherStr;
+        let weatherIcon = gWeatherIcons[weather];
+        weatherStr = this.options.timeStrings.weatherIn[this.options.Language](nowMs, startTime);
+        document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
+        document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
         lastTime = startTime;
         lastWeather = weather;
       }
@@ -1871,15 +1908,16 @@ class EurekaTracker {
 
     let nextDay = findNextNight(nowMs);
     let nextNight = findNextDay(nowMs);
-    let timeStr = '';
+    let timeIcon;
     if (nextDay > nextNight)
-      timeStr = gNightIcon + ' for ';
+      timeIcon = gNightIcon;
     else
-      timeStr = gDayIcon + ' for ';
+      timeIcon = gDayIcon;
 
-    let dayNightMin = (Math.min(nextDay, nextNight) - nowMs) / 1000 / 60;
-    timeStr += Math.ceil(dayNightMin) + 'm';
-    document.getElementById('label-time').innerHTML = timeStr;
+    let dayNightMin = Math.ceil((Math.min(nextDay, nextNight) - nowMs) / 1000 / 60);
+    let timeStr = this.options.timeStrings.timeFor[this.options.Language](dayNightMin);
+    document.getElementById('label-time-icon').innerHTML = timeIcon;
+    document.getElementById('label-time-text').innerHTML = timeStr;
 
     document.getElementById('label-tracker').innerHTML = this.currentTracker;
 
@@ -1937,7 +1975,9 @@ class EurekaTracker {
 
         if (openUntil) {
           let openMin = (openUntil - nowMs) / 1000 / 60;
-          nm.timeElement.innerHTML = respawnIcon + Math.ceil(openMin) + 'm';
+          let nmString = respawnIcon + Math.ceil(openMin) +
+          this.options.timeStrings.minute[this.options.Language];
+          nm.timeElement.innerHTML = nmString;
         } else {
           nm.timeElement.innerText = '';
         }
@@ -1948,7 +1988,9 @@ class EurekaTracker {
           respawnIcon = '';
 
         let remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
-        nm.timeElement.innerHTML = respawnIcon + remainingMinutes + 'm';
+        let nmString = respawnIcon + remainingMinutes +
+        this.options.timeStrings.minute[this.options.Language];
+        nm.timeElement.innerHTML = nmString;
         nm.element.classList.add('nm-down');
       }
     }
@@ -2137,7 +2179,7 @@ class EurekaTracker {
     let zi = this.zoneInfo;
     let mx = zi.entityToMapXScalar * ex + zi.entityToMapXConstant;
     let my = zi.entityToMapYScalar * ey + zi.entityToMapYConstant;
-    this.AddFlag(mx, my, 'fairy', '');
+    this.AddFlag(mx, my, this.zoneInfo.fairy[this.options.Language || 'en'], '');
   }
 }
 
