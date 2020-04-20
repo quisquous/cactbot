@@ -1619,16 +1619,6 @@
           ko: '엑사플레어 ' + data.exaflareCount,
         };
       },
-      tts: function(data) {
-        return {
-          en: 'exaflare ' + data.exaflareCount,
-          fr: 'Exabrasier '+ data.exaflareCount,
-          de: 'Exafleer '+ data.exaflareCount,
-          ja: 'エクサフレア' + data.exaflareCount,
-          cn: '百京核爆 ' + data.exaflareCount,
-          ko: '엑사플레어 ' + data.exaflareCount,
-        };
-      },
     },
     {
       // One time setup.
