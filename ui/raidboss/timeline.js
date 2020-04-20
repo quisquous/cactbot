@@ -637,7 +637,8 @@ class TimelineUI {
       this.timeline.SetSpeakTTS(null);
       this.timeline.SetTrigger(null);
       this.timeline.SetSyncTime(null);
-      this.timerlist.clear();
+      while (this.timerlist.lastChild)
+        this.timerlist.removeChild(this.timerlist.lastChild);
       this.debugElement.innerHTML = '';
       this.debugFightTimer = null;
       this.activeBars = {};
