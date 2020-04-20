@@ -5,11 +5,11 @@ using FFXIV_ACT_Plugin.Common;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 
 namespace Cactbot {
   public class FateWatcher {
     private CactbotEventSource client_;
+    private string language_;
     private IDataSubscription subscription;
 
     private Type MessageType = null;
@@ -26,8 +26,9 @@ namespace Cactbot {
     // fates<fateID, progress>
     private static ConcurrentDictionary<int, int> fates;
 
-    public FateWatcher(CactbotEventSource client) {
+    public FateWatcher(CactbotEventSource client, string language) {
       client_ = client;
+      language_ = language;
       fates = new ConcurrentDictionary<int, int>();
 
       var FFXIV = ActGlobals.oFormActMain.ActPlugins.FirstOrDefault(x => x.lblPluginTitle.Text == "FFXIV_ACT_Plugin.dll");
@@ -124,35 +125,116 @@ namespace Cactbot {
 
     public unsafe void ProcessMessage(byte* buffer, byte[] message) {
       int a = *((int*)&buffer[Category_Offset]);
-      switch (a) {
-        // Fate Start: 0x935
-        // param1: fateID
-        // param2: unknown
-        case 0x935: {
-          AddFate(*(int*)&buffer[Param1_Offset]);
-          break;
-        };
+      if (language_ == "ko") {
+        switch (a) {
+          //
+          // for FFXIV KO version: 5.11
+          //
+          // Latest KO version can be found at:
+          // https://www.ff14.co.kr/news/notice?category=3
+          //
+          // Fate Start: 0x74
+          // param1: fateID
+          // param2: unknown
+          case 0x74: {
+            AddFate(*(int*)&buffer[Param1_Offset]);
+            break;
+          };
 
-        // Fate End: 0x936
-        // param1: fateID
-        case 0x936: {
-          RemoveFate(*(int*)&buffer[Param1_Offset]);
-          break;
-        };
+          // Fate End: 0x79
+          // param1: fateID
+          case 0x79: {
+            RemoveFate(*(int*)&buffer[Param1_Offset]);
+            break;
+          };
 
-        // Fate Progress: 0x93E
-        // param1: fateID
-        // param2: progress (0-100)
-        case 0x93E: {
-          int param1 = *(int*)&buffer[Param1_Offset];
-          int param2 = *(int*)&buffer[Param2_Offset];
-          if (!fates.ContainsKey(param1)) {
-            AddFate(param1);
+          // Fate Progress: 0x9B
+          // param1: fateID
+          // param2: progress (0-100)
+          case 0x9B: {
+            int param1 = *(int*)&buffer[Param1_Offset];
+            int param2 = *(int*)&buffer[Param2_Offset];
+            if (!fates.ContainsKey(param1)) {
+              AddFate(param1);
+            }
+            if (fates[param1] != param2) {
+              UpdateFate(param1, param2);
+            }
+            break;
           }
-          if (fates[param1] != param2) {
-            UpdateFate(param1, param2);
+        }
+      } else if (language_ == "cn") {
+        switch (a) {
+          //
+          // for FFXIV CN version: 5.1
+          //
+          // Latest CN version can be found at:
+          // http://ff.sdo.com/web8/index.html#/patchnote
+          //
+          // Fate Start: 0x74
+          // param1: fateID
+          // param2: unknown
+          case 0x74: {
+            AddFate(*(int*)&buffer[Param1_Offset]);
+            break;
+          };
+
+          // Fate End: 0x79
+          // param1: fateID
+          case 0x79: {
+            RemoveFate(*(int*)&buffer[Param1_Offset]);
+            break;
+          };
+
+          // Fate Progress: 0x9B
+          // param1: fateID
+          // param2: progress (0-100)
+          case 0x9B: {
+            int param1 = *(int*)&buffer[Param1_Offset];
+            int param2 = *(int*)&buffer[Param2_Offset];
+            if (!fates.ContainsKey(param1)) {
+              AddFate(param1);
+            }
+            if (fates[param1] != param2) {
+              UpdateFate(param1, param2);
+            }
+            break;
           }
-          break;
+        }
+      } else {
+        switch (a) {
+          //
+          // Last updated for FFXIV 5.25
+          //
+          // Fate Start: 0x935
+          // param1: fateID
+          // param2: unknown
+          case 0x935: {
+            AddFate(*(int*)&buffer[Param1_Offset]);
+            break;
+          };
+
+          // Fate End: 0x936
+          // param1: fateID
+          case 0x936: {
+            RemoveFate(*(int*)&buffer[Param1_Offset]);
+            break;
+          };
+
+          // Fate Progress: 0x93E
+          // param1: fateID
+          // param2: progress (0-100)
+          case 0x93E: {
+            int param1 = *(int*)&buffer[Param1_Offset];
+            int param2 = *(int*)&buffer[Param2_Offset];
+            if (!fates.ContainsKey(param1)) {
+              AddFate(param1);
+            }
+            if (fates[param1] != param2) {
+              UpdateFate(param1, param2);
+            }
+            break;
+          }
         }
       }
     }
