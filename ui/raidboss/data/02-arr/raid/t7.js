@@ -254,11 +254,12 @@
         'Melusine': 'Mélusine',
       },
       'replaceText': {
+        '\\(NW\\)': '(NO)',
         'Circle Blade': 'Lame circulaire',
         'Circle Of Flames': 'Cercle de flammes',
         'Cursed Shriek': 'Cri maudit',
         'Cursed Voice': 'Voix maudite',
-        'Deathdancer': 'Danseuse de mort',
+        'Deathdancer Add': 'Add Danseuse de mort',
         'Frenzy': 'Frénésie',
         'Petrifaction': 'Pétrification',
         'Red Lotus Blade': 'Lame lotus rouge',
