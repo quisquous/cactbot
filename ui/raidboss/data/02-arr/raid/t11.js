@@ -102,7 +102,7 @@
       infoText: {
         en: 'Out of Middle',
         de: 'Raus aus der Mitte',
-        fr: 'En dehors du centre',
+        fr: 'Hors du milieu',
         cn: '离开中间',
       },
     },
