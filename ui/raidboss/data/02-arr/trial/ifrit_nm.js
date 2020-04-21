@@ -42,8 +42,8 @@
         'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        'inner': 'innen',
-        'outer': 'außen',
+        '\\(inner\\)': '(innen)',
+        '\\(outer\\)': '(außen)',
         'Eruption': 'Eruption',
         'Hellfire': 'Höllenfeuer',
         'Incinerate': 'Einäschern',
@@ -60,8 +60,8 @@
         'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        'inner': 'intérieur',
-        'outer': 'extérieur',
+        '\\(inner\\)': '(intérieur)',
+        '\\(outer\\)': '(extérieur)',
         'Eruption': 'Éruption',
         'Hellfire': 'Flammes de l\'enfer',
         'Incinerate': 'Incinération',
@@ -78,8 +78,8 @@
         'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        'inner': 'inner', // FIXME
-        'outer': 'outer', // FIXME
+        '\\(inner\\)': '(inner)', // FIXME
+        '\\(outer\\)': '(outer)', // FIXME
         'Eruption': 'エラプション',
         'Hellfire': '地獄の火炎',
         'Incinerate': 'インシネレート',
@@ -96,8 +96,8 @@
         'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        'inner': 'inner', // FIXME
-        'outer': 'outer', // FIXME
+        '\\(inner\\)': '(inner)', // FIXME
+        '\\(outer\\)': '(outer)', // FIXME
         'Eruption': '地火喷发',
         'Hellfire': '地狱之火炎',
         'Incinerate': '烈焰焚烧',
@@ -114,8 +114,8 @@
         'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        'inner': 'inner', // FIXME
-        'outer': 'outer', // FIXME
+        '\\(inner\\)': '(inner)', // FIXME
+        '\\(outer\\)': '(outer)', // FIXME
         'Eruption': '용암 분출',
         'Hellfire': '지옥의 화염',
         'Incinerate': '소각',
