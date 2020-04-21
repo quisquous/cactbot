@@ -13,12 +13,33 @@ namespace Cactbot {
     private string region_;
     private IDataSubscription subscription;
 
+    // Fate start
+    // param1: fateID
+    // param2: unknown
+    //
+    // Fate end
+    // param1: fateID
+    //
+    // Fate update
+    // param1: fateID
+    // param2: progress (0-100)
     private struct OPCodes {
-      public OPCodes(int add_, int remove_, int update_) { this.add = add_; this.remove = remove_; this.update = update_; }
+    public OPCodes(int add_, int remove_, int update_) { this.add = add_; this.remove = remove_; this.update = update_; }
       public int add;
       public int remove;
       public int update;
-    }
+    };
+    private OPCodes v5_1 = new OPCodes(
+      0x74,
+      0x79,
+      0x9B
+    );
+    private OPCodes v5_2 = new OPCodes(
+      0x935,
+      0x936,
+      0x93E
+    );
+
     private Dictionary<string, OPCodes> opcodes = null;
 
     private Type MessageType = null;
@@ -45,53 +66,9 @@ namespace Cactbot {
         region_ = "intl";
 
       opcodes = new Dictionary<string, OPCodes>();
-
-      // Fate start
-      // param1: fateID
-      // param2: unknown
-      //
-      // Fate end
-      // param1: fateID
-      //
-      // Fate update
-      // param1: fateID
-      // param2: progress (0-100)
-
-      //
-      // for FFXIV KO version: 5.11
-      //
-      // Latest KO version can be found at:
-      // https://www.ff14.co.kr/news/notice?category=3
-      //
-      opcodes.Add("ko", new OPCodes(
-        0x74,
-        0x79,
-        0x9B
-        ));
-
-      //
-      // for FFXIV CN version: 5.15
-      //
-      // Latest CN version can be found at:
-      // http://ff.sdo.com/web8/index.html#/patchnote
-      //
-      opcodes.Add("cn", new OPCodes(
-        0x74,
-        0x79,
-        0x9B
-        ));
-
-      //
-      // for FFXIV intl version: 5.25
-      //
-      // Latest intl version can be fount at:
-      // https://eu.finalfantasyxiv.com/lodestone/special/patchnote_log/
-      //
-      opcodes.Add("intl", new OPCodes(
-        0x935,
-        0x936,
-        0x93E
-        ));
+      opcodes.Add("ko", v5_1);
+      opcodes.Add("cn", v5_1);
+      opcodes.Add("intl", v5_2);
 
       fates = new ConcurrentDictionary<int, int>();
 
