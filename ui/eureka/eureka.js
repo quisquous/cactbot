@@ -52,6 +52,13 @@ let Options = {
         }
         return ' ??? 동안';
       },
+      cn: (nowMs, stopTime) => {
+        if (stopTime) {
+          let min = (stopTime - nowMs) / 1000 / 60;
+          return ' ' + Math.ceil(min) + '分钟后结束';
+        }
+        return ' ??? 分钟';
+      },
     },
     weatherIn: {
       en: (nowMs, startTime) => {
@@ -68,6 +75,13 @@ let Options = {
         }
         return ' ??? 후';
       },
+      cn: (nowMs, startTime) => {
+        if (startTime) {
+          let min = (startTime - nowMs) / 1000 / 60;
+          return ' ' + Math.ceil(min) + '分钟后';
+        }
+        return ' ??? 后';
+      },
     },
     timeFor: {
       en: (dayNightMin) => {
@@ -76,10 +90,14 @@ let Options = {
       ko: (dayNightMin) => {
         return ' ' + dayNightMin + '분 동안';
       },
+      cn: (dayNightMin) => {
+        return ' ' + dayNightMin + '分钟';
+      },
     },
     minute: {
       en: 'm',
       ko: '분',
+      cn: '分',
     },
   },
   Regex: {
@@ -1711,7 +1729,7 @@ class EurekaTracker {
     let name = document.createElement('span');
     name.classList.add('nm-name');
     name.classList.add('text');
-    name.innerText = nm.label[this.options.Language];
+    name.innerText = nm.label[this.options.Language] || nm.label['en'];
     let progress = document.createElement('span');
     progress.innerText = '';
     progress.classList.add('nm-progress');
@@ -1748,7 +1766,7 @@ class EurekaTracker {
 
 
     this.fairy = this.options.ZoneInfo[this.zoneName].fairy;
-    let fairyName = this.fairy[this.options.Language];
+    let fairyName = this.fairy[this.options.Language] || this.fairy['en'];
     this.fairy.regex = Regexes.parse('03:\\y{ObjectId}:Added new combatant (' + fairyName + ')\\. .* ' +
                                      'Pos: \\(([^,]+),([^,]+),([^,]+)\\)');
 
@@ -1875,10 +1893,10 @@ class EurekaTracker {
         let weatherStr;
         if (weather == primaryWeather) {
           let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
-          weatherStr = this.options.timeStrings.weatherFor[this.options.Language](nowMs, stopTime);
+          weatherStr = (this.options.timeStrings.weatherFor[this.options.Language] || this.options.timeStrings.weatherFor['en'])(nowMs, stopTime);
         } else {
           let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
-          weatherStr = this.options.timeStrings.weatherIn[this.options.Language](nowMs, startTime);
+          weatherStr = (this.options.timeStrings.weatherIn[this.options.Language] || this.options.timeStrings.weatherIn['en'])(nowMs, startTime);
         }
         document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
         document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
@@ -1887,7 +1905,7 @@ class EurekaTracker {
       let currentWeather = getWeather(nowMs, this.zoneName);
       let stopTime = findNextWeatherNot(nowMs, this.zoneName, currentWeather);
       let weatherIcon = gWeatherIcons[currentWeather];
-      let weatherStr = this.options.timeStrings.weatherFor[this.options.Language](nowMs, stopTime);
+      let weatherStr = (this.options.timeStrings.weatherFor[this.options.Language] || this.options.timeStrings.weatherFor['en'])(nowMs, stopTime);
       document.getElementById('label-weather-icon0').innerHTML = weatherIcon;
       document.getElementById('label-weather-text0').innerHTML = weatherStr;
 
@@ -1898,7 +1916,7 @@ class EurekaTracker {
         let startTime = findNextWeatherNot(lastTime, this.zoneName, lastWeather);
         let weather = getWeather(startTime + 1, this.zoneName);
         let weatherIcon = gWeatherIcons[weather];
-        weatherStr = this.options.timeStrings.weatherIn[this.options.Language](nowMs, startTime);
+        weatherStr = (this.options.timeStrings.weatherIn[this.options.Language] || this.options.timeStrings.weatherIn['en'])(nowMs, startTime);
         document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
         document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
         lastTime = startTime;
@@ -1915,7 +1933,7 @@ class EurekaTracker {
       timeIcon = gDayIcon;
 
     let dayNightMin = Math.ceil((Math.min(nextDay, nextNight) - nowMs) / 1000 / 60);
-    let timeStr = this.options.timeStrings.timeFor[this.options.Language](dayNightMin);
+    let timeStr = (this.options.timeStrings.timeFor[this.options.Language] || this.options.timeStrings.timeFor['en'])(dayNightMin);
     document.getElementById('label-time-icon').innerHTML = timeIcon;
     document.getElementById('label-time-text').innerHTML = timeStr;
 
@@ -1976,7 +1994,7 @@ class EurekaTracker {
         if (openUntil) {
           let openMin = (openUntil - nowMs) / 1000 / 60;
           let nmString = respawnIcon + Math.ceil(openMin) +
-          this.options.timeStrings.minute[this.options.Language];
+          (this.options.timeStrings.minute[this.options.Language] || this.options.timeStrings.minute['en']);
           nm.timeElement.innerHTML = nmString;
         } else {
           nm.timeElement.innerText = '';
@@ -1989,7 +2007,7 @@ class EurekaTracker {
 
         let remainingMinutes = Math.ceil(remainingMs / 1000 / 60);
         let nmString = respawnIcon + remainingMinutes +
-        this.options.timeStrings.minute[this.options.Language];
+        (this.options.timeStrings.minute[this.options.Language] || this.options.timeStrings.minute['en']);
         nm.timeElement.innerHTML = nmString;
         nm.element.classList.add('nm-down');
       }
@@ -2002,7 +2020,7 @@ class EurekaTracker {
       let nm = this.nms[this.nmKeys[i]];
       if (!nm.trackerName)
         continue;
-      trackerToNM[nm.trackerName[this.options.Language].toLowerCase()] = nm;
+      trackerToNM[(nm.trackerName[this.options.Language] || nm.trackerName['en']).toLowerCase()] = nm;
     }
 
     let regex = this.options.Regex[this.options.Language] || this.options.Regex['en'];
@@ -2179,7 +2197,7 @@ class EurekaTracker {
     let zi = this.zoneInfo;
     let mx = zi.entityToMapXScalar * ex + zi.entityToMapXConstant;
     let my = zi.entityToMapYScalar * ey + zi.entityToMapYConstant;
-    this.AddFlag(mx, my, this.zoneInfo.fairy[this.options.Language || 'en'], '');
+    this.AddFlag(mx, my, this.zoneInfo.fairy[this.options.Language] || this.zoneInfo.fairy['en'], '');
   }
 }
 
