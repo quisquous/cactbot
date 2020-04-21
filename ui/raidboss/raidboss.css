@@ -126,6 +126,10 @@
   margin-bottom: 2;
 }
 
+.lang-ko .timer-bar {
+  height: 23px;
+}
+
 .timeline-bar-color {
   background-color: #88f;
 }
