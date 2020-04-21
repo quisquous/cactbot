@@ -161,7 +161,7 @@ class PopupText {
       if (Array.isArray(obj)) {
         for (let i = 0; i < obj.length; ++i)
           addTimeline(obj[i]);
-      } else if (typeof(obj) == 'function') {
+      } else if (typeof (obj) == 'function') {
         addTimeline(obj(this.data));
       } else if (obj) {
         timelines.push(obj);
@@ -392,7 +392,7 @@ class PopupText {
       trigger.preRun(this.data, matches);
 
     let ValueOrFunction = (f) => {
-      let result = (typeof(f) == 'function') ? f(this.data, matches) : f;
+      let result = (typeof (f) == 'function') ? f(this.data, matches) : f;
       // All triggers return either a string directly, or an object
       // whose keys are different locale names.  For simplicity, this is
       // valid to do for any trigger entry that can handle a function.
@@ -408,19 +408,18 @@ class PopupText {
       return ValueOrFunction(result['en']);
     };
 
-    let showText = this.options.TextAlertsEnabled;
-    let playSounds = this.options.SoundAlertsEnabled;
-    let playSpeech = this.options.SpokenAlertsEnabled;
-    let playGroupSpeech = this.options.GroupSpokenAlertsEnabled;
+    let SoundOptions = {
+      soundUrl: ValueOrFunction(trigger.sound),
+      soundVol: 1,
+      defaultTTSText: undefined,
+      playSpeech: this.options.SpokenAlertsEnabled,
+      playGroupSpeech: this.options.GroupSpokenAlertsEnabled,
+      playSounds: this.options.SoundAlertsEnabled,
+      showText: this.options.TextAlertsEnabled,
+    };
 
     let userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
     let delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
-    let duration = {
-      fromTrigger: ValueOrFunction(trigger.durationSeconds),
-      alarmText: this.options.DisplayAlarmTextForSeconds,
-      alertText: this.options.DisplayAlertTextForSeconds,
-      infoText: this.options.DisplayInfoTextForSeconds,
-    };
     let suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
     if (trigger.id && suppress > 0)
       this.triggerSuppress[trigger.id] = now + suppress * 1000;
@@ -432,240 +431,35 @@ class PopupText {
     // Ideally, these would be the same.
     if (triggerAutoConfig) {
       if ('SpokenAlertsEnabled' in triggerAutoConfig)
-        playSpeech = triggerAutoConfig.SpokenAlertsEnabled;
+        SoundOptions.playSpeech = triggerAutoConfig.SpokenAlertsEnabled;
       if ('SoundAlertsEnabled' in triggerAutoConfig)
-        playSounds = triggerAutoConfig.SoundAlertsEnabled;
+        SoundOptions.playSounds = triggerAutoConfig.SoundAlertsEnabled;
       if ('TextAlertsEnabled' in triggerAutoConfig)
-        showText = triggerAutoConfig.TextAlertsEnabled;
+        SoundOptions.showText = triggerAutoConfig.TextAlertsEnabled;
     }
 
     if (triggerOptions) {
       if ('GroupSpeechAlert' in triggerOptions)
-        playGroupSpeech = triggerOptions.GroupSpeechAlert;
+        SoundOptions.playGroupSpeech = triggerOptions.GroupSpeechAlert;
       if ('SpeechAlert' in triggerOptions)
-        playSpeech = triggerOptions.SpeechAlert;
+        SoundOptions.playSpeech = triggerOptions.SpeechAlert;
       if ('SoundAlert' in triggerOptions)
-        playSounds = triggerOptions.SoundAlert;
+        SoundOptions.playSounds = triggerOptions.SoundAlert;
       if ('TextAlert' in triggerOptions)
-        showText = triggerOptions.TextAlert;
+        SoundOptions.showText = triggerOptions.TextAlert;
     }
 
     if (userDisabled) {
-      playSpeech = false;
-      playGroupSpeech = false;
-      playSounds = false;
-      showText = false;
+      SoundOptions.playSpeech = false;
+      SoundOptions.playGroupSpeech = false;
+      SoundOptions.playSounds = false;
+      SoundOptions.showText = false;
     }
     if (!this.options.audioAllowed) {
-      playSpeech = false;
-      playGroupSpeech = false;
-      playSounds = false;
+      SoundOptions.playSpeech = false;
+      SoundOptions.playGroupSpeech = false;
+      SoundOptions.playSounds = false;
     }
-
-    let f = () => {
-      let addText = (container, e) => {
-        container.appendChild(e);
-        if (container.children.length > this.kMaxRowsOfText)
-          container.removeChild(container.children[0]);
-      };
-      let removeText = (container, e) => {
-        for (let i = 0; i < container.children.length; ++i) {
-          if (container.children[i] == e) {
-            container.removeChild(e);
-            break;
-          }
-        }
-      };
-
-      let makeTextElement = function(text, className) {
-        let div = document.createElement('div');
-        div.classList.add(className);
-        div.classList.add('animate-text');
-        div.innerText = text;
-        return div;
-      };
-
-      // If sound is specified it overrides alarm/alert/info sounds.
-      // Otherwise, if multiple alarm/alert/info are specified
-      // it will pick one sound in the order of alarm > alert > info.
-      let soundUrl = ValueOrFunction(trigger.sound);
-      let triggerSoundVol = ValueOrFunction(trigger.soundVolume);
-      let soundVol = 1;
-
-      let defaultTTSText;
-
-      let response = {};
-      if (trigger.response) {
-        // Can't use ValueOrFunction here as r returns a non-localizable object.
-        let r = trigger.response;
-        response = (typeof(r) == 'function') ? r(this.data, matches) : r;
-
-        // Turn falsy values into a default no-op response.
-        if (!response)
-          response = {};
-      }
-
-      let alarmText = triggerOptions.AlarmText || trigger.alarmText || response.alarmText;
-      if (alarmText) {
-        let text = ValueOrFunction(alarmText);
-        defaultTTSText = defaultTTSText || text;
-        if (text && showText) {
-          text = triggerUpperCase(text);
-          let holder = this.alarmText.getElementsByClassName('holder')[0];
-          let div = makeTextElement(text, 'alarm-text');
-          addText.bind(this)(holder, div);
-          window.setTimeout(
-              removeText.bind(this, holder, div),
-              (duration.fromTrigger || duration.alarmText) * 1000,
-          );
-
-          if (!soundUrl) {
-            soundUrl = this.options.AlarmSound;
-            soundVol = this.options.AlarmSoundVolume;
-          }
-        }
-      }
-
-      let alertText = triggerOptions.AlertText || trigger.alertText || response.alertText;
-      if (alertText) {
-        let text = ValueOrFunction(alertText);
-        defaultTTSText = defaultTTSText || text;
-        if (text && showText) {
-          text = triggerUpperCase(text);
-          let holder = this.alertText.getElementsByClassName('holder')[0];
-          let div = makeTextElement(text, 'alert-text');
-          addText.bind(this)(holder, div);
-          window.setTimeout(
-              removeText.bind(this, holder, div),
-              (duration.fromTrigger || duration.alertText) * 1000,
-          );
-
-          if (!soundUrl) {
-            soundUrl = this.options.AlertSound;
-            soundVol = this.options.AlertSoundVolume;
-          }
-        }
-      }
-
-      let infoText = triggerOptions.InfoText || trigger.infoText || response.infoText;
-      if (infoText) {
-        let text = ValueOrFunction(infoText);
-        defaultTTSText = defaultTTSText || text;
-        if (text && showText) {
-          let holder = this.infoText.getElementsByClassName('holder')[0];
-          let div = makeTextElement(text, 'info-text');
-          addText.bind(this)(holder, div);
-          window.setTimeout(
-              removeText.bind(this, holder, div),
-              (duration.fromTrigger || duration.infoText) * 1000,
-          );
-
-          if (!soundUrl) {
-            soundUrl = this.options.InfoSound;
-            soundVol = this.options.InfoSoundVolume;
-          }
-        }
-      }
-
-      // Priority audio order:
-      // * user disabled (play nothing)
-      // * if tts options are enabled globally or for this trigger:
-      //   * user groupTTS trigger groupTTS/tts override
-      //   * groupTTS entries in the trigger
-      //   * user TTS triggers tts override
-      //   * tts entries in the trigger
-      //   * default alarm tts
-      //   * default alert tts
-      //   * default info tts
-      // * if sound options are enabled globally or for this trigger:
-      //   * user trigger sound overrides
-      //   * sound entries in the trigger
-      //   * alarm noise
-      //   * alert noise
-      //   * info noise
-      // * else, nothing
-      //
-      // In general, tts comes before sounds and user overrides come
-      // before defaults.  If a user trigger or tts entry is specified as
-      // being valid but empty, this will take priority over the default
-      // tts texts from alarm/alert/info and will prevent tts from playing
-      // and allowing sounds to be played instead.
-      let ttsText;
-
-
-      if (playGroupSpeech) {
-        if ('GroupTTSText' in triggerOptions)
-          ttsText = ValueOrFunction(triggerOptions.GroupTTSText);
-        else if ('groupTTS' in trigger)
-          ttsText = ValueOrFunction(trigger.groupTTS);
-        else if ('groupTTS' in response)
-          ttsText = ValueOrFunction(response.groupTTS);
-      }
-
-      if (!playGroupSpeech || typeof ttsText === 'undefined') {
-        if ('TTSText' in triggerOptions)
-          ttsText = ValueOrFunction(triggerOptions.TTSText);
-        else if ('tts' in trigger)
-          ttsText = ValueOrFunction(trigger.tts);
-        else if ('tts' in response)
-          ttsText = ValueOrFunction(response.TTSText);
-        else
-          ttsText = defaultTTSText;
-      }
-      if (trigger.sound && soundUrl) {
-        let namedSound = soundUrl + 'Sound';
-        let namedSoundVolume = soundUrl + 'SoundVolume';
-        if (namedSound in this.options) {
-          soundUrl = this.options[namedSound];
-          if (namedSoundVolume in this.options)
-            soundVol = this.options[namedSoundVolume];
-        }
-      }
-
-      soundUrl = triggerOptions.SoundOverride || soundUrl;
-      soundVol = triggerOptions.VolumeOverride || triggerSoundVol || soundVol;
-
-      // Text to speech overrides all other sounds.  This is so
-      // that a user who prefers tts can still get the benefit
-      // of infoText triggers without tts entries by turning
-      // on (speech=true, text=true, sound=true) but this will
-      // not cause tts to play over top of sounds or noises.
-      if (ttsText && playSpeech) {
-        // Heuristics for auto tts.
-        // * In case this is an integer.
-        ttsText = ttsText.toString();
-        // * Remove a bunch of chars.
-        ttsText = ttsText.replace(/[#!]/g, '');
-        // * slashes between mechanics
-        ttsText = ttsText.replace('/', ' ');
-        // * arrows helping visually simple to understand e.g. ↖ Front left / Back right ↘
-        ttsText = ttsText.replace(/[↖-↙]/g, '');
-        // * Korean TTS reads wrong with '1번째'
-        ttsText = ttsText.replace('1번째', '첫번째');
-        // * arrows at the front or the end are directions, e.g. "east =>"
-        ttsText = ttsText.replace(/[-=]>\s*$/g, '');
-        ttsText = ttsText.replace(/^\s*<[-=]/g, '');
-        // * arrows in the middle are a sequence, e.g. "in => out => spread"
-        let lang = this.options.AlertsLanguage || this.options.Language || 'en';
-        let arrowReplacement = {
-          en: ' then ',
-          cn: '然后',
-          de: ' dann ',
-          fr: ' puis ',
-          ja: 'や',
-          ko: ' 그리고 ',
-        };
-        ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
-        this.ttsSay(ttsText);
-      } else if (soundUrl && playSounds) {
-        let audio = new Audio(soundUrl);
-        audio.volume = soundVol;
-        audio.play();
-      }
-
-      if ('run' in trigger)
-        trigger.run(this.data, matches);
-    };
 
     let promiseThenTrigger = () => {
       // Put the resolution of the `promise` field inside this function so that
@@ -686,7 +480,23 @@ class PopupText {
 
       let runTriggerBody = () => {
         try {
-          f();
+          // If sound is specified it overrides alarm/alert/info sounds.
+          // Otherwise, if multiple alarm/alert/info are specified
+          // it will pick one sound in the order of alarm > alert > info.
+          let response = {};
+          if (trigger.response) {
+            // Can't use ValueOrFunction here as r returns a non-localizable object.
+            let r = trigger.response;
+            response = (typeof (r) == 'function') ? r(this.data, matches) : r;
+          }
+
+          this._HandleTriggerText(triggerOptions, trigger, response,
+              SoundOptions, ValueOrFunction);
+          this._HandleTriggerAudio(triggerOptions, trigger, response,
+              SoundOptions, ValueOrFunction);
+
+          if ('run' in trigger)
+            trigger.run(this.data, matches);
         } catch (e) {
           onTriggerException(trigger, e);
         }
@@ -707,8 +517,174 @@ class PopupText {
       return;
     }
 
-    this.timers.push(window.setTimeout(promiseThenTrigger,
-        delay * 1000));
+    this._ScheduleTrigger(promiseThenTrigger, delay);
+  }
+
+  _ScheduleTrigger(promiseThenTrigger, delay) {
+    this.timers.push(window.setTimeout(promiseThenTrigger, delay * 1000));
+  }
+  _AddText(container, e) {
+    container.appendChild(e);
+    if (container.children.length > this.kMaxRowsOfText)
+      container.removeChild(container.children[0]);
+  }
+
+  _AddTextFor(TextType, triggerOptions, trigger, response,
+      duration, SoundOptions, ValueOrFunction) {
+    let UpperTextType = TextType[0].toUpperCase() + TextType.slice(1);
+    let textObj = triggerOptions[UpperTextType] || trigger[TextType] || response[TextType];
+    if (textObj) {
+      let text = ValueOrFunction(textObj);
+      SoundOptions.defaultTTSText = SoundOptions.defaultTTSText || text;
+      if (text && SoundOptions.showText) {
+        text = triggerUpperCase(text);
+        let holder = this[TextType].getElementsByClassName('holder')[0];
+        let div = this._MakeTextElement(text, TextType.split('T')[0] + '-text');
+        this._AddText(holder, div);
+        this._ScheduleRemoveText(holder, div, (duration.fromTrigger || duration[TextType]));
+
+        if (!SoundOptions.soundUrl) {
+          SoundOptions.soundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
+          SoundOptions.soundVol = this.options[UpperTextType.split('T')[0] + 'SoundVolume'];
+        }
+      }
+    }
+  }
+
+  _MakeTextElement(text, className) {
+    let div = document.createElement('div');
+    div.classList.add(className);
+    div.classList.add('animate-text');
+    div.innerText = text;
+    return div;
+  }
+
+  _ScheduleRemoveText(container, e, delay) {
+    window.setTimeout(() => {
+      for (let i = 0; i < container.children.length; ++i) {
+        if (container.children[i] == e) {
+          container.removeChild(e);
+          break;
+        }
+      }
+    }, delay * 1000);
+  }
+
+  _HandleTriggerText(triggerOptions, trigger, response, SoundOptions, ValueOrFunction) {
+    let duration = {
+      fromTrigger: ValueOrFunction(trigger.durationSeconds),
+      alarmText: this.options.DisplayAlarmTextForSeconds,
+      alertText: this.options.DisplayAlertTextForSeconds,
+      infoText: this.options.DisplayInfoTextForSeconds,
+    };
+
+    this._AddTextFor('alarmText', triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction);
+    this._AddTextFor('alertText', triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction);
+    this._AddTextFor('infoText', triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction);
+  }
+
+  _HandleTriggerAudio(triggerOptions, trigger, response, SoundOptions, ValueOrFunction) {
+    let triggerSoundVol = ValueOrFunction(trigger.soundVolume);
+
+    // Priority audio order:
+    // * user disabled (play nothing)
+    // * if tts options are enabled globally or for this trigger:
+    //   * user groupTTS trigger groupTTS/tts override
+    //   * groupTTS entries in the trigger
+    //   * user TTS triggers tts override
+    //   * tts entries in the trigger
+    //   * default alarm tts
+    //   * default alert tts
+    //   * default info tts
+    // * if sound options are enabled globally or for this trigger:
+    //   * user trigger sound overrides
+    //   * sound entries in the trigger
+    //   * alarm noise
+    //   * alert noise
+    //   * info noise
+    // * else, nothing
+    //
+    // In general, tts comes before sounds and user overrides come
+    // before defaults.  If a user trigger or tts entry is specified as
+    // being valid but empty, this will take priority over the default
+    // tts texts from alarm/alert/info and will prevent tts from playing
+    // and allowing sounds to be played instead.
+    let ttsText;
+
+    if (SoundOptions.playGroupSpeech) {
+      if ('GroupTTSText' in triggerOptions)
+        ttsText = ValueOrFunction(triggerOptions.GroupTTSText);
+      else if ('groupTTS' in trigger)
+        ttsText = ValueOrFunction(trigger.groupTTS);
+      else if ('groupTTS' in response)
+        ttsText = ValueOrFunction(response.groupTTS);
+    }
+
+    if (!SoundOptions.playGroupSpeech || typeof ttsText === 'undefined') {
+      if ('TTSText' in triggerOptions)
+        ttsText = ValueOrFunction(triggerOptions.TTSText);
+      else if ('tts' in trigger)
+        ttsText = ValueOrFunction(trigger.tts);
+      else if ('tts' in response)
+        ttsText = ValueOrFunction(response.TTSText);
+      else
+        ttsText = SoundOptions.defaultTTSText;
+    }
+    if (trigger.sound && SoundOptions.soundUrl) {
+      let namedSound = SoundOptions.soundUrl + 'Sound';
+      let namedSoundVolume = SoundOptions.soundUrl + 'SoundVolume';
+      if (namedSound in this.options) {
+        SoundOptions.soundUrl = this.options[namedSound];
+        if (namedSoundVolume in this.options)
+          SoundOptions.soundVol = this.options[namedSoundVolume];
+      }
+    }
+
+    SoundOptions.soundUrl = triggerOptions.SoundOverride || SoundOptions.soundUrl;
+    SoundOptions.soundVol = triggerOptions.VolumeOverride ||
+        triggerSoundVol || SoundOptions.soundVol;
+
+    // Text to speech overrides all other sounds.  This is so
+    // that a user who prefers tts can still get the benefit
+    // of infoText triggers without tts entries by turning
+    // on (speech=true, text=true, sound=true) but this will
+    // not cause tts to play over top of sounds or noises.
+    if (ttsText && SoundOptions.playSpeech) {
+      // Heuristics for auto tts.
+      // * In case this is an integer.
+      ttsText = ttsText.toString();
+      // * Remove a bunch of chars.
+      ttsText = ttsText.replace(/[#!]/g, '');
+      // * slashes between mechanics
+      ttsText = ttsText.replace('/', ' ');
+      // * arrows helping visually simple to understand e.g. ↖ Front left / Back right ↘
+      ttsText = ttsText.replace(/[↖-↙]/g, '');
+      // * Korean TTS reads wrong with '1번째'
+      ttsText = ttsText.replace('1번째', '첫번째');
+      // * arrows at the front or the end are directions, e.g. "east =>"
+      ttsText = ttsText.replace(/[-=]>\s*$/g, '');
+      ttsText = ttsText.replace(/^\s*<[-=]/g, '');
+      // * arrows in the middle are a sequence, e.g. "in => out => spread"
+      let lang = this.options.AlertsLanguage || this.options.Language || 'en';
+      let arrowReplacement = {
+        en: ' then ',
+        cn: '然后',
+        de: ' dann ',
+        fr: ' puis ',
+        ja: 'や',
+        ko: ' 그리고 ',
+      };
+      ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
+      this.ttsSay(ttsText);
+    } else if (SoundOptions.soundUrl && SoundOptions.playSounds) {
+      this._PlayAudioFile(SoundOptions);
+    }
+  }
+
+  _PlayAudioFile(SoundOptions) {
+    let audio = new Audio(SoundOptions.soundUrl);
+    audio.volume = SoundOptions.soundVol;
+    audio.play();
   }
 
   Test(zone, log) {
