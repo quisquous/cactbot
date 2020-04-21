@@ -16,7 +16,7 @@
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
-        fr: 'REVEILLES TOI',
+        fr: 'RÉVEILLES-TOI',
         cn: '醒醒！动一动！！',
       },
     },
