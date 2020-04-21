@@ -14,23 +14,19 @@ class RaidEmulatorTimeline extends Timeline {
     });
   }
 
-  Init() {
-    if (this.init)
-      return;
-
-    super.Init();
-    // Being really really lazy about waiting for this element to be added to the DOM
-    // Probably a better way to do this but ¯\_(ツ)_/¯
-    let me = this;
-    jQuery(() => {
-      me.barHeight = jQuery(me).height() / me.options.MaxNumberOfTimerBars - 2;
-    });
-  }
-
   _ScheduleUpdate(fightNow) {
   }
 
   emulatedFightSync = 0;
+  emulatedFightSyncLastOffset = 0;
+
+  EmulatedSync(timestampOffset) {
+    if (!this.emulatedFightSyncLastOffset) {
+      return;
+    }
+    this.SyncTo(this.emulatedFightSync + ((timestampOffset - this.emulatedFightSyncLastOffset) / 1000));
+    this._OnUpdateTimer();
+  }
 
   SyncTo(fightNow) {
     console.log('SyncTo: ' + fightNow);
@@ -43,6 +39,7 @@ class RaidEmulatorTimeline extends Timeline {
       return;
 
     this.emulatedFightSync = fightNow;
+    this.emulatedFightSyncLastOffset = this.emulatedTimeOffset;
     this.timebase = newTimebase;
 
     this.nextEvent = 0;

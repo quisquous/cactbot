@@ -37,7 +37,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     });
     emulator.on('Play', () => {
       this.emulatedStatus = 'Play';
-      this.timeline.timebase && this.timeline.SyncTo(this.timeline.emulatedFightSync);
+      this.timeline.EmulatedSync(emulator.CurrentTimestamp);
     });
     emulator.on('Pause', () => {
       this.emulatedStatus = 'Pause';
@@ -56,10 +56,10 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     });
     emulator.on('PostSeek', (time) => {
       this.timeline.popupText = tmpPopupText;
-      this.timeline.timebase && this.timeline.SyncTo(this.timeline.emulatedFightSync);
+      this.timeline.EmulatedSync(time);
       for (let i in this.emulatedTimerBars) {
         let bar = this.emulatedTimerBars[i];
-        this.UpdateBar(bar, timestampOffset);
+        this.UpdateBar(bar, time);
       }
     });
   }
@@ -70,7 +70,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     if (bar.style === 'empty') {
       barProg = 100 - barProg;
     }
-    let rightText = (bar.duration - barElapsed) / 1000;
+    let rightText = ((bar.duration - barElapsed) / 1000).toFixed(1);
     if (barProg >= 100) {
       rightText = '';
     }

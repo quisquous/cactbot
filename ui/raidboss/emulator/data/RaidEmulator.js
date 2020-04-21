@@ -77,6 +77,7 @@ class RaidEmulator extends EventBus {
     if (logs.length) {
       this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
     }
+    this.dispatch('PostSeek', time);
     this.dispatch('Tick', this.CurrentTimestamp, this.LastLogTimestamp);
   }
 

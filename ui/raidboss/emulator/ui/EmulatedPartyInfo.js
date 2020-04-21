@@ -113,6 +113,11 @@ class EmulatedPartyInfo {
     ret.$mpElem.children('.progress').append(ret.$mpProgElem, ret.$mpLabelElem);
     ret.$rootElem.append(ret.$hpElem);
     ret.$rootElem.append(ret.$mpElem);
+    ret.$rootElem.tooltip({
+      animation: false,
+      placement: 'left',
+      title: combatant.Name,
+    })
     return ret;
   }
 }

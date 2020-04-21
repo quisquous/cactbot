@@ -1,3 +1,2 @@
 class RaidEmulatorPopupText extends PopupText {
-
 }
