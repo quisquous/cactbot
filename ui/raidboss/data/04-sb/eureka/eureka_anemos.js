@@ -18,13 +18,13 @@
       infoText: {
         en: 'Dragon\'s Voice',
         de: 'Stimme Des Drachen',
-        fr: 'Voix Du Dragon',
+        fr: 'Voix du dragon',
         cn: '雷电咆哮',
       },
       tts: {
         en: 'Dragon\'s Voice',
         de: 'drache',
-        fr: 'Voix Du Dragon',
+        fr: 'Voix du dragon',
         cn: '雷电咆哮',
       },
     },
@@ -89,7 +89,7 @@
       alertText: {
         en: 'Glower Laser',
         de: 'Blick Laser',
-        fr: 'Regard Laser',
+        fr: 'Regard laser',
         cn: '怒视',
       },
     },
@@ -127,7 +127,7 @@
       alertText: {
         en: 'Ice ball on you!',
         de: 'Eisball auf dir!',
-        fr: 'Boule de glace sur vous!',
+        fr: 'Boule de glace sur vous !',
         cn: '点名冰球！',
       },
       tts: {
@@ -232,7 +232,7 @@
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
-        fr: 'REVEILLES TOI',
+        fr: 'RÉVEILLES-TOI',
         cn: '醒醒！动一动！！',
       },
     },
