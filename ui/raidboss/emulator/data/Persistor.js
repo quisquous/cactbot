@@ -36,37 +36,6 @@ class Persistor extends EventBus {
           EncounterSummariesStorage.createIndex("zone", "Zone");
           EncounterSummariesStorage.createIndex("start", "Start");
           EncounterSummariesStorage.createIndex("zone_start", ["Zone", "Start"]);
-        case 2:
-          EncounterSummariesStorage = EncounterSummariesStorage ||
-            ev.target.transaction.objectStore("EncounterSummaries");
-          EncountersStorage = EncountersStorage ||
-            ev.target.transaction.objectStore("Encounters");
-          // Added duration to encounter summary in v3, handle upgrade
-          // This is really ugly code, yay async stuff.
-          Promises.push(new Promise((res) => {
-            let req = EncounterSummariesStorage.getAll();
-            req.onsuccess = (ev) => {
-              for (let i in req.result) {
-                Promises.push(new Promise((res) => {
-                  let req2 = EncountersStorage.get(req.result[i].ID);
-                  Promises.push(new Promise((res) => {
-                    req2.onsuccess = (ev) => {
-                      req.result[i].Duration = req2.result.endTimestamp - req2.result.startTimestamp;
-                      let req3 = EncounterSummariesStorage.put(req.result[i]);
-                      Promises.push(new Promise((res) => {
-                        req3.onsuccess = (ev) => {
-                          res();
-                        };
-                      }));
-                      res();
-                    };
-                  }));
-                  res();
-                }));
-              }
-              res();
-            };
-          }));
       }
       Promises.push(new Promise((res) => {
         EncountersStorage.transaction.oncomplete = (tev) => {

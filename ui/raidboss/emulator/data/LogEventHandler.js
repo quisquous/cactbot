@@ -81,9 +81,10 @@ class LogEventHandler extends EventBus {
     return false;
   }
 
-  constructor(addFightCallback) {
+  constructor() {
     super();
     window.addOverlayListener('onImportLogEvent', (e) => {
+      console.log("Parsing " + e.detail.logs.length + " lines...");
       this.ParseLogs(e.detail.logs);
     });
     this.currentZone = null;
@@ -116,6 +117,7 @@ class LogEventHandler extends EventBus {
       if (this.currentDate === null) {
         this.currentDate = new Date().toISOString().substr(0, 10);
       }
+      console.log("Adding new fight with " + this.currentFight.length + " lines...");
       this.dispatch('fight', this.currentDate, this.currentZone, this.currentFight);
     }
     this.currentFight = [];

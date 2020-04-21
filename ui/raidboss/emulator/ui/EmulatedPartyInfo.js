@@ -19,8 +19,10 @@ class EmulatedPartyInfo {
    */
   constructor(emulator) {
     this.$partyInfo = $('.partyInfoColumn .party');
-    emulator.on('LineEmitted', (timestamp, line) => {
-      this.UpdatePartyInfo(emulator, timestamp);
+    emulator.on('Tick', (timestampOffset, lastLogTimestamp) => {
+      if (lastLogTimestamp) {
+        this.UpdatePartyInfo(emulator, lastLogTimestamp);
+      }
     });
     emulator.on('CurrentEncounterChanged', (encounter) => {
       this.ResetPartyInfo(encounter);
@@ -66,17 +68,24 @@ class EmulatedPartyInfo {
      * @type {CombatantState}
      */
     let State = combatant.States[StateID];
+    if(State === undefined) {
+      return;
+    }
     let hpProg = (State.HP / State.MaxHP) * 100;
+    let hpLabel = State.HP + "/" + State.MaxHP;
+    hpLabel = hpLabel.padStart(((''+State.MaxHP).length*2)+1, ' '); // unicode nbsp (U+00A0)
     this.displayedParty[ID].$hpProgElem.attr('aria-valuenow', State.HP);
     this.displayedParty[ID].$hpProgElem.attr('aria-valuemax', State.MaxHP);
     this.displayedParty[ID].$hpProgElem.css('width', hpProg + '%');
-    this.displayedParty[ID].$hpProgElem.text(State.HP +"/"+ State.MaxHP);
+    this.displayedParty[ID].$hpLabelElem.text(hpLabel);
 
     let mpProg = (State.MP / State.MaxMP) * 100;
+    let mpLabel = State.MP + "/" + State.MaxMP;
+    mpLabel = mpLabel.padStart(((''+State.MaxMP).length*2)+1, ' '); // unicode nbsp (U+00A0)
     this.displayedParty[ID].$mpProgElem.attr('aria-valuenow', State.MP);
     this.displayedParty[ID].$mpProgElem.attr('aria-valuemax', State.MaxMP);
     this.displayedParty[ID].$mpProgElem.css('width', mpProg + '%');
-    this.displayedParty[ID].$mpProgElem.text(State.MP +"/"+ State.MaxMP);
+    this.displayedParty[ID].$mpLabelElem.text(mpLabel);
   }
 
   /**
@@ -87,8 +96,10 @@ class EmulatedPartyInfo {
       $rootElem: $('<div class="playerInfoRow"></div>'),
       $iconElem: $('<div class="jobicon"></div>'),
       $hpElem: $('<div class="hp"><div class="progress"></div></div>'),
+      $hpLabelElem: $('<div class="label text-monospace"></div>'),
       $hpProgElem: $('<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>'),
-      $mpElem: $('<div class="mp"><div class="progress"></div></div>'),
+      $mpElem: $('<div class="mp"><div class="progress"><div class="label"></div></div></div>'),
+      $mpLabelElem: $('<div class="label text-monospace"></div>'),
       $mpProgElem: $('<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>'),
       ID: ID,
     };
@@ -98,8 +109,8 @@ class EmulatedPartyInfo {
     let combatant = encounter.encounter.combatantTracker.combatants[ID];
     ret.$rootElem.addClass(combatant.Job.toUpperCase());
     ret.$rootElem.append(ret.$iconElem);
-    ret.$hpElem.children('.progress').append(ret.$hpProgElem);
-    ret.$mpElem.children('.progress').append(ret.$mpProgElem);
+    ret.$hpElem.children('.progress').append(ret.$hpProgElem, ret.$hpLabelElem);
+    ret.$mpElem.children('.progress').append(ret.$mpProgElem, ret.$mpLabelElem);
     ret.$rootElem.append(ret.$hpElem);
     ret.$rootElem.append(ret.$mpElem);
     return ret;

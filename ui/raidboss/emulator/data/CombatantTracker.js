@@ -8,6 +8,7 @@ class CombatantTracker {
     '16': /^[^ ]+ 16:(?<SourceID>[^:]*?):(?<SourceName>[^:]*?):(?<AbilityID>[^:]*?):(?<AbilityName>[^:]*?):(?<TargetID>[^:]*?):(?<TargetName>[^:]*?):[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:(?<TargetHP>[^:]*?):(?<TargetMaxHP>[^:]*?):(?<TargetMP>[^:]*?):(?<TargetMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<TargetPosX>[^:]*?):(?<TargetPosY>[^:]*?):(?<TargetPosZ>[^:]*?):(?<TargetHeading>[^:]*?):(?<SourceHP>[^:]*?):(?<SourceMaxHP>[^:]*?):(?<SourceMP>[^:]*?):(?<SourceMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<SourcePosX>[^:]*?):(?<SourcePosY>[^:]*?):(?<SourcePosZ>[^:]*?):(?<SourceHeading>[^:]*?):/i,
     '26': /^[^ ]+ 26:(?<SourceID>[^:]+):[^:]*:[^:]+:(?<SourceHP>[^:]+):(?<SourceMaxHP>[^:]+):(?<SourceMP>[^:]+):(?<SourceMaxMP>[^:]+)/i,
   };
+  static PetNames = ["Emerald Carbuncle", "Topaz Carbuncle", "Ifrit-Egi", "Titan-Egi", "Garuda-Egi", "Eos", "Selene", "Rook Autoturret", "Bishop Autoturret", "Demi-Bahamut", "Demi-Phoenix", "Seraph", "Moonstone Carbuncle", "Esteem", "Automaton Queen", "Bunshin", "Demi-Phoenix", "Seraph", "Bunshin"];
 
   constructor(encounterDay, logLines) {
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
@@ -16,6 +17,7 @@ class CombatantTracker {
     this.partyMembers = [];
     this.enemies = [];
     this.others = [];
+    this.pets = [];
     this.mainCombatantID = null;
     this.initialStates = {};
     this.Initialize(encounterDay, logLines);
@@ -24,17 +26,21 @@ class CombatantTracker {
 
   Initialize(encounterDay, logLines) {
     let keyedLogLines = {};
+    let allTimestamps = [];
     // First pass: Get list of combatants, figure out where they start at if possible, build our keyed log lines
     for (let i = 0; i < logLines.length; ++i) {
       let line = CombatantTracker.LogLineRegex.exec(logLines[i]);
       let lineTimestamp = new Date(encounterDay + ' ' + line[1]).getTime();
       let lineEvent = line[2];
       let eventParts = line[3].split(':');
+      if (!allTimestamps.includes(lineTimestamp)) {
+        allTimestamps.push(lineTimestamp);
+      }
 
       this.firstTimestamp = Math.min(this.firstTimestamp, lineTimestamp);
       this.lastTimestamp = Math.max(this.lastTimestamp, lineTimestamp);
 
-      keyedLogLines[lineTimestamp + '_' + i + '_' + logLines[i]] = logLines[i];
+      keyedLogLines[lineTimestamp + '_' + i] = logLines[i];
 
       switch (lineEvent) {
         case '03':
@@ -84,6 +90,7 @@ class CombatantTracker {
 
     // Second pass: Analyze combatant information for tracking
     let eventTracker = {};
+    let pushedStates = 0;
     for (let i = 0; i < sortedTimestamps.length; ++i) {
       let line = CombatantTracker.LogLineRegex.exec(keyedLogLines[sortedTimestamps[i]]);
       let lineTimestamp = new Date(encounterDay + ' ' + line[1]).getTime();
@@ -102,12 +109,21 @@ class CombatantTracker {
               return v !== undefined;
             })
           );
+          ++pushedStates;
+          continue;
         }
       }
+      ++pushedStates;
+      this.FillInCombatantStates(lineTimestamp, []);
     }
+
+    // Figure out party/enemy/other status
     this.others = this.others.filter((ID) => {
       if (this.combatants[ID].Job !== null) {
         this.partyMembers.push(ID);
+        return false;
+      } else if (CombatantTracker.PetNames.includes(this.combatants[ID].Name)) {
+        this.pets.push(ID);
         return false;
       } else if (eventTracker[ID] > 0) {
         this.enemies.push(ID);
@@ -115,6 +131,8 @@ class CombatantTracker {
       }
       return true;
     });
+
+    // Main combatant is the one that took the most actions
     this.mainCombatantID = this.enemies.sort((l, r) => {
       return eventTracker[r] - eventTracker[l];
     })[0];
@@ -193,10 +211,9 @@ class CombatantTracker {
 
   FillInCombatantStates(Timestamp, SkipIDs) {
     for (let ID in this.combatants) {
-      if (SkipIDs.includes(ID)) {
-        return;
+      if (!SkipIDs.includes(ID)) {
+        this.combatants[ID].PushPartialState(Timestamp, {});
       }
-      this.combatants[ID].PushPartialState(Timestamp, {});
     };
   }
 }

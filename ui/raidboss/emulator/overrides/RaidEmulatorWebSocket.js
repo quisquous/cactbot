@@ -9,6 +9,8 @@ class RaidEmulatorWebSocket {
   originalRemove;
   originalCall;
 
+  timestampOffset;
+
   constructor(emulator) {
     this.emulator = emulator;
     this.originalDispatch = window.dispatchOverlayEvent;
@@ -21,8 +23,8 @@ class RaidEmulatorWebSocket {
     window.removeOverlayListener = this.Remove.bind(this);
     window.callOverlayHandler = this.Call.bind(this);
 
-    emulator.on('Tick', (timestamp) => {
-      this.timestamp = timestamp;
+    emulator.on('Tick', (timestampOffset) => {
+      this.timestampOffset = timestampOffset;
     });
   }
 
@@ -39,20 +41,21 @@ class RaidEmulatorWebSocket {
   }
 
   Call(msg) {
-    if(msg.call === 'getCombatants') {
+    if (msg.call === 'getCombatants') {
       return new Promise((res) => {
         let combatants = [];
         /**
          * @type {CombatantTracker}
          */
         let tracker = this.emulator.currentEncounter.encounter.combatantTracker;
-        tracker.combatants.forEach((c) => {
-          if(msg.ids && msg.ids.includes(c.ID)) {
-            combatants.push(c.NextSignificantState(this.timestamp));
-          } else if(msg.names && msg.names.includes(c.Name)) {
-            combatants.push(c.NextSignificantState(this.timestamp));
+        let timestamp = this.emulator.currentEncounter.encounter.startTimestamp + this.timestampOffset;
+        for (let ID in tracker.combatants) {
+          if (msg.ids && msg.ids.includes(ID)) {
+            combatants.push(Combatant.prototype.NextSignificantState.apply(tracker.combatants[ID], [timestamp]));
+          } else if (msg.names && msg.names.includes(tracker.combatants[ID].Name)) {
+            combatants.push(Combatant.prototype.NextSignificantState.apply(tracker.combatants[ID], [timestamp]));
           }
-        });
+        }
         res({
           combatants: combatants,
         });

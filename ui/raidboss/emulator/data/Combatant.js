@@ -1,7 +1,7 @@
 class Combatant {
   constructor(ID, Name) {
     this.ID = ID;
-    this.Name = Name;
+    this.Name = Name.split('(')[0];
     this.States = {};
     this.SignificantStates = [];
     this.LatestTimestamp = null;
@@ -89,6 +89,7 @@ class Combatant {
       });
     } else {
       this.States[Timestamp] = this.States[this.LatestTimestamp].PartialClone(Props);
+      this.LatestTimestamp = Math.max(this.LatestTimestamp,Timestamp);
     }
     let LastSignificantStateTimestamp = this.SignificantStates[this.SignificantStates.length - 1];
     if (LastSignificantStateTimestamp !== Timestamp &&

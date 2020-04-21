@@ -35,6 +35,7 @@ let Options = {
   let encounterTab;
   let emulatedPartyInfo;
   let emulatedMap;
+  let emulatedWebSocket;
 
   $(() => {
     emulator = new RaidEmulator();
@@ -44,9 +45,13 @@ let Options = {
     encounterTab = new EncounterTab(persistor);
     emulatedPartyInfo = new EmulatedPartyInfo(emulator);
     emulatedMap = new EmulatedMap(emulator);
+    emulatedWebSocket = new RaidEmulatorWebSocket(emulator);
 
     logEventHandler.on('fight', (day, zone, lines) => {
-      emulator.AddEncounter(new Encounter(day, zone, lines));
+      let enc = new Encounter(day, zone, lines);
+      emulator.AddEncounter(enc);
+      persistor.PersistEncounter(enc);
+      encounterTab.Refresh();
     });
 
     encounterTab.on('load', (ID) => {
@@ -64,44 +69,55 @@ let Options = {
       });
     });
 
+    emulator.on('EmitLogs', (logs) => {
+      emulatedWebSocket.Dispatch({
+        type: 'onLogEvent',
+        detail: logs,
+      });
+    });
+
     $('.showEncountersButton').on('click', () => {
       $('.encountersTabColumn').toggleClass('col-auto').toggleClass('col-3');
     });
 
-    UserConfig.getUserConfigLocation('raidboss', function (e) {
-      addOverlayListener('onLogEvent', function (e) {
-        gTimelineController.OnLogEvent(e);
-      });
-
-      callOverlayHandler({
-        call: 'cactbotReadDataFiles',
-        source: location.href,
-      }).then((e) => {
-        gTimelineController.SetDataFiles(e.detail.files);
-        gPopupText.OnDataFilesRead(e);
-        gPopupText.ReloadTimelines();
-      });
-
-      gTimelineController = new RaidEmulatorTimelineController(Options, new RaidEmulatorTimelineUI(Options));
-      gPopupText = new RaidEmulatorPopupText(Options);
-
-      gTimelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(gPopupText));
-      gPopupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(gTimelineController));
-    });
-
     persistor.on('ready', () => {
-      encounterTab.Refresh();
+      UserConfig.getUserConfigLocation('raidboss', function (e) {
+        addOverlayListener('onLogEvent', function (e) {
+          gTimelineController.OnLogEvent(e);
+        });
 
-      // Debug code
-      if (true) {
-        window.raidEmulatorDebug = {
-          emulator: emulator,
-          progressBar: progressBar,
-          timelineController: gTimelineController,
-          popupText: gPopupText,
-          persistor: persistor,
-        };
-      }
+        callOverlayHandler({
+          call: 'cactbotReadDataFiles',
+          source: location.href,
+        }).then((e) => {
+          gTimelineController.SetDataFiles(e.detail.files);
+          gPopupText.OnDataFilesRead(e);
+          gPopupText.ReloadTimelines();
+        });
+        let gTimelineUI = new RaidEmulatorTimelineUI(Options);
+        gTimelineUI.BindTo(emulator);
+        gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
+        gTimelineController.BindTo(emulator);
+        gPopupText = new RaidEmulatorPopupText(Options);
+
+        gTimelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(gPopupText));
+        gPopupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(gTimelineController));
+
+        emulator.setPopupText(gPopupText);
+
+        encounterTab.Refresh();
+
+        // Debug code
+        if (true) {
+          window.raidEmulatorDebug = {
+            emulator: emulator,
+            progressBar: progressBar,
+            timelineController: gTimelineController,
+            popupText: gPopupText,
+            persistor: persistor,
+          };
+        }
+      });
     });
   });
 })(jQuery);

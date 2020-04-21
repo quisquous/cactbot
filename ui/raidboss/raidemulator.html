@@ -32,16 +32,23 @@
     <script src="../../resources/regexes.js"></script>
     <script src="../../resources/responses.js"></script>
     <script src="../../resources/conditions.js"></script>
+    <script src="../../resources/resize_handle.js"></script>
+    <script src="../../resources/timerbar.js"></script>
+    <script src="../../resources/widgetlist.js"></script>
     <script src="autoplay_helper.js"></script>
     <script src="common_replacement.js"></script>
+    <script src="raidboss_config.js"></script>
+    <script src="browser_tts_engine.js"></script>
     <!-- Extend base raidboss classes so we can control them directly -->
     <script src="timeline.js"></script>
     <script src="popup-text.js"></script>
+    <script src="emulator/overrides/RaidEmulatorTimeline.js"></script>
     <script src="emulator/overrides/RaidEmulatorTimelineController.js"></script>
     <script src="emulator/overrides/RaidEmulatorTimelineUI.js"></script>
     <script src="emulator/overrides/RaidEmulatorTimelineLoader.js"></script>
     <script src="emulator/overrides/RaidEmulatorPopupText.js"></script>
     <script src="emulator/overrides/RaidEmulatorPopupTextGenerator.js"></script>
+    <script src="emulator/overrides/RaidEmulatorWebSocket.js"></script>
     <script src="emulator/data/CombatantJobSearch.js"></script>
     <script src="emulator/data/CombatantState.js"></script>
     <script src="emulator/data/Combatant.js"></script>
@@ -97,11 +104,25 @@
       </div>
       <div class="row triggerInfoRow d-none"></div>
       <div class="row mainContentRow">
-        <div class="col-10 raidbossTimelineColumn">Placeholder Timeline/Alerts</div>
+        <div class="col-10 raidbossTimelineColumn">
+          <div class="timer-bar-container"></div>
+          <div id="popup-text-container">
+            <div id="popup-text-alarm" class="text">
+              <div class="holder"></div>
+            </div>
+            <div id="popup-text-alert" class="text">
+              <div class="holder"></div>
+            </div>
+            <div id="popup-text-info" class="text">
+              <div class="holder"></div>
+            </div>
+          </div>
+        </div>
         <div class="col-2 partyInfoColumn">
           <div class="d-flex flex-column flex-fill">
-            <div style="height: calc(16.666667vw - 30px)" class="p-1 map">Placeholder Map</div>
-            <div class="flex-fill party">Placeholder party info</div>
+            <div style="height: calc(16.666667vw - 30px)" class="p-1 map">
+            </div>
+            <div class="flex-fill party"></div>
           </div>
         </div>
       </div>
@@ -120,9 +141,15 @@
           </button>
           <div class="collapse" id="encountersTab">
             <div class="row flex-fill border-top border-dark h-100 mh-100">
-              <div class="col col-3 border-right border-dark h-100 mh-100 zoneList"></div>
-              <div class="col col-3 border-right border-dark h-100 mh-100 dateList"></div>
-              <div class="col col-3 border-right border-dark h-100 mh-100 encounterList"></div>
+              <div
+                class="col col-3 border-right border-dark h-100 mh-100 zoneList"
+              ></div>
+              <div
+                class="col col-3 border-right border-dark h-100 mh-100 dateList"
+              ></div>
+              <div
+                class="col col-3 border-right border-dark h-100 mh-100 encounterList"
+              ></div>
               <div class="col col-3 h-100 mh-100 encounterInfo"></div>
             </div>
           </div>

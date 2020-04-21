@@ -120,6 +120,10 @@ body {
 }
 
 /* new styles */
+.progress-bar {
+  transition: none;
+}
+
 .tooltip.bs-tooltip-bottom .arrow {
   left: calc(50% - 0.4rem) !important;
 }
@@ -150,7 +154,8 @@ div.row.progressBarRow {
   height: 3rem;
 }
 
-div.row.progressBarRow button.play {
+div.row.progressBarRow button.play,
+div.row.progressBarRow button.pause {
   padding: 0.625rem 1.5rem;
   font-size: 1.625rem;
   line-height: 1.5;
@@ -165,6 +170,10 @@ div.row.encountersRow {
   position: absolute;
   bottom: 0;
   width: 100%;
+}
+
+.encountersRow .selectorRow {
+  cursor: pointer;
 }
 
 .encountersRow .selectorRow.selected {
@@ -250,6 +259,15 @@ div.row.encountersRow {
   top: 0;
   right: 0;
   bottom: 0;
+  background-color: #36404a;
+}
+.partyInfoColumn .party .playerInfoRow .progress .label {
+  position:absolute;
+  left:0;
+  right:0;
+  height:1rem;
+  line-height:1rem;
+  text-align: center;
 }
 
 .partyInfoColumn .party .playerInfoRow .hp .progress .progress-bar {
@@ -270,4 +288,26 @@ div.row.encountersRow {
 
 #encountersTab .row .col {
   overflow-y: auto;
+}
+
+
+.timer-bar-container .progress {
+  width: 100%;
+  height: 2rem;
+}
+
+.timer-bar-container .progress .timer-bar-left-label {
+  height: 2rem;
+  line-height: 2rem;
+  position:absolute;
+  left:1.5rem;
+  color: black;
+}
+
+.timer-bar-container .progress .timer-bar-right-label {
+  height: 2rem;
+  line-height: 2rem;
+  position:absolute;
+  right:1.5rem;
+  color: black;
 }

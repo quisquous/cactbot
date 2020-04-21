@@ -8,7 +8,7 @@ function timeToString(time, includeMillis = true) {
 
 function timeToDateString(time) {
   let date = new Date(time);
-  return date.getFullYear() + '-' + zeroPad(date.getMonth()) + '-' + zeroPad(date.getDay());
+  return date.getFullYear() + '-' + zeroPad(date.getMonth()+1) + '-' + zeroPad(date.getDate());
 }
 
 function timeToTimeString(time) {
@@ -23,7 +23,7 @@ function msToDuration(ms) {
 
 function dateTimeToString(time, includeMillis = false) {
   let date = new Date(time);
-  let ret = date.getFullYear() + '-' + zeroPad(date.getMonth()) + '-' + zeroPad(date.getDay());
+  let ret = date.getFullYear() + '-' + zeroPad(date.getMonth()+1) + '-' + zeroPad(date.getDate());
   ret = ret + ' ' + zeroPad(date.getHours()) + ':' + zeroPad(date.getMinutes()) + ':' + zeroPad(date.getSeconds());
   if (includeMillis) {
     ret = ret + '.' + date.getMilliseconds();
