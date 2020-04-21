@@ -22,7 +22,20 @@ class AnalyzedEncounter extends EventBus {
     });
   }
 
+  SelectPerspective(ID) {
+    this.popupText.OnPlayerChange({
+      detail: {
+        name: this.encounter.combatantTracker.combatants[ID].Name.split('(')[0],
+        job: this.encounter.combatantTracker.combatants[ID].Job,
+        currentHP: this.encounter.combatantTracker.combatants[ID].States[this.logLines[0].Timestamp].HP,
+      },
+    });
+  }
+
+  popupText = null;
+
   async Analyze(popupText) {
+    this.popupText = popupText;
     let PartyEvent = {
       party: this.encounter.combatantTracker.partyMembers.map((ID) => {
         return {
@@ -75,7 +88,7 @@ class AnalyzedEncounter extends EventBus {
     };
 
     this.Perspectives[ID] = {
-      InitialData: this.CloneData(data),
+      InitialData: this.CloneData(data, true),
       Triggers: [],
       FinalData: data,
     };
@@ -241,9 +254,15 @@ class AnalyzedEncounter extends EventBus {
     return ret;
   }
 
-  CloneData(data) {
+  CloneData(data, full = false) {
     // Potential future bug: jQuery's extend doesn't include properties with a value of `undefined`
-    return jQuery.extend(true, {}, data);
+    let ret = jQuery.extend(true, {}, data);
+    // Filter out the stuff that won't ever change from trigger call to trigger call
+    if (!full) {
+      delete ret.options;
+      delete ret.party;
+    }
+    return ret;
   }
 
   JobToJobEnum(Job) {

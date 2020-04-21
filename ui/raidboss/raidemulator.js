@@ -47,6 +47,10 @@ let Options = {
     emulatedMap = new EmulatedMap(emulator);
     emulatedWebSocket = new RaidEmulatorWebSocket(emulator);
 
+    emulatedPartyInfo.on('SelectPerspective', (ID) => {
+      emulator.SelectPerspective(ID);
+    });
+
     logEventHandler.on('fight', (day, zone, lines) => {
       let enc = new Encounter(day, zone, lines);
       emulator.AddEncounter(enc);

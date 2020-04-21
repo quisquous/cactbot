@@ -1,4 +1,4 @@
-class EmulatedPartyInfo {
+class EmulatedPartyInfo extends EventBus {
   static JobOrder = [
     'PLD', 'WAR', 'DRK', 'GNB',
     'WHM', 'SCH', 'AST',
@@ -18,7 +18,11 @@ class EmulatedPartyInfo {
    * @param {RaidEmulator} emulator 
    */
   constructor(emulator) {
+    super();
+    this.emulator = emulator;
     this.$partyInfo = $('.partyInfoColumn .party');
+    this.$triggerInfo = $('.triggerInfoColumn');
+    this.$triggerHideCheckbox = $('.triggerHideSkipped');
     emulator.on('Tick', (timestampOffset, lastLogTimestamp) => {
       if (lastLogTimestamp) {
         this.UpdatePartyInfo(emulator, lastLogTimestamp);
@@ -27,6 +31,23 @@ class EmulatedPartyInfo {
     emulator.on('CurrentEncounterChanged', (encounter) => {
       this.ResetPartyInfo(encounter);
     });
+    let me = this;
+    this.UpdateTriggerState = () => {
+      if (me.$triggerHideCheckbox[0].checked) {
+        me.HideNonExecutedTriggers();
+      } else {
+        me.ShowNonExecutedTriggers();
+      }
+    };
+    this.$triggerHideCheckbox.on('change', this.UpdateTriggerState);
+  }
+
+  HideNonExecutedTriggers() {
+    this.$triggerInfo.find('.trigger-not-executed').addClass('d-none');
+  }
+
+  ShowNonExecutedTriggers() {
+    this.$triggerInfo.find('.trigger-not-executed').removeClass('d-none');
   }
 
   /**
@@ -43,7 +64,6 @@ class EmulatedPartyInfo {
    * @param {AnalyzedEncounter} encounter
    */
   ResetPartyInfo(encounter) {
-    let firstTimestamp = Object.keys(encounter.encounter.combatantTracker.combatants[encounter.encounter.combatantTracker.mainCombatantID].States)[0];
     this.displayedParty = {};
     this.$partyInfo.empty();
     let membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
@@ -58,7 +78,26 @@ class EmulatedPartyInfo {
       this.displayedParty[ID] = obj;
       this.UpdateCombatantInfo(encounter, ID);
       this.$partyInfo.append(obj.$rootElem);
+      this.$triggerInfo.append(obj.$triggerElem);
     }
+
+    this.UpdateTriggerState();
+
+    this.SelectPerspective(membersToDisplay[0]);
+  }
+
+  CurrentPerspective = null;
+
+  SelectPerspective(ID) {
+    if (ID === this.CurrentPerspective) {
+      return;
+    }
+    this.CurrentPerspective = ID;
+    this.$triggerInfo.find('.playerTriggerInfo').addClass('d-none');
+    this.displayedParty[ID].$triggerElem.removeClass('d-none');
+    this.$partyInfo.find('.playerInfoRow').removeClass('border border-success');
+    this.displayedParty[ID].$rootElem.addClass('border border-success');
+    this.dispatch('SelectPerspective', ID);
   }
 
   UpdateCombatantInfo(encounter, ID, StateID = null) {
@@ -68,12 +107,12 @@ class EmulatedPartyInfo {
      * @type {CombatantState}
      */
     let State = combatant.States[StateID];
-    if(State === undefined) {
+    if (State === undefined) {
       return;
     }
     let hpProg = (State.HP / State.MaxHP) * 100;
     let hpLabel = State.HP + "/" + State.MaxHP;
-    hpLabel = hpLabel.padStart(((''+State.MaxHP).length*2)+1, ' '); // unicode nbsp (U+00A0)
+    hpLabel = hpLabel.padStart((('' + State.MaxHP).length * 2) + 1, ' '); // unicode nbsp (U+00A0)
     this.displayedParty[ID].$hpProgElem.attr('aria-valuenow', State.HP);
     this.displayedParty[ID].$hpProgElem.attr('aria-valuemax', State.MaxHP);
     this.displayedParty[ID].$hpProgElem.css('width', hpProg + '%');
@@ -81,7 +120,7 @@ class EmulatedPartyInfo {
 
     let mpProg = (State.MP / State.MaxMP) * 100;
     let mpLabel = State.MP + "/" + State.MaxMP;
-    mpLabel = mpLabel.padStart(((''+State.MaxMP).length*2)+1, ' '); // unicode nbsp (U+00A0)
+    mpLabel = mpLabel.padStart((('' + State.MaxMP).length * 2) + 1, ' '); // unicode nbsp (U+00A0)
     this.displayedParty[ID].$mpProgElem.attr('aria-valuenow', State.MP);
     this.displayedParty[ID].$mpProgElem.attr('aria-valuemax', State.MaxMP);
     this.displayedParty[ID].$mpProgElem.css('width', mpProg + '%');
@@ -102,6 +141,7 @@ class EmulatedPartyInfo {
       $mpLabelElem: $('<div class="label text-monospace"></div>'),
       $mpProgElem: $('<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>'),
       ID: ID,
+      $triggerElem: this.GetTriggerInfoObjectFor(encounter, ID),
     };
     /**
      * @type {Combatant}
@@ -117,7 +157,69 @@ class EmulatedPartyInfo {
       animation: false,
       placement: 'left',
       title: combatant.Name,
-    })
+    });
+    let me = this;
+    ret.$rootElem.on('click', (e) => {
+      me.SelectPerspective(ID);
+    });
+    ret.$triggerElem.data('ID', ID);
     return ret;
+  }
+
+  GetTriggerInfoObjectFor(encounter, ID) {
+    let $ret = $('<div class="playerTriggerInfo d-none"></div>');
+    let $container = $('<div class="d-flex flex-column"></div>');
+    $ret.append($container);
+
+    let per = encounter.Perspectives[ID];
+
+    let $initDataViewer = $('<pre class="json-viewer"></pre>');
+    $initDataViewer.text(JSON.stringify(per.InitialData, null, 2));
+
+    $container.append(this._WrapCollapse('Initial Data', $initDataViewer, () => {
+      $initDataViewer.text(JSON.stringify(per.InitialData, null, 2));
+    }));
+
+    let $triggerContainer = $('<div class="d-flex flex-column"></div>');
+
+    for (let i in per.Triggers) {
+      let $triggerDataViewer = $('<pre class="json-viewer"></pre>');
+      let $trigger = this._WrapCollapse(per.Triggers[i].Trigger.id, $triggerDataViewer, () => {
+        $triggerDataViewer.text(JSON.stringify(per.Triggers[i], null, 2));
+      });
+      if (per.Triggers[i].Status.Executed) {
+        $trigger.addClass('trigger-executed');
+      } else {
+        $trigger.addClass('trigger-not-executed');
+      }
+      $triggerContainer.append($trigger);
+    }
+
+    $container.append($triggerContainer);
+
+    let $finalDataViewer = $('<pre class="json-viewer"></pre>');
+    $finalDataViewer.text(JSON.stringify(per.FinalData, null, 2));
+
+    $container.append(this._WrapCollapse('Final Data', $finalDataViewer, () => {
+      $finalDataViewer.text(JSON.stringify(per.FinalData, null, 2));
+    }));
+
+    return $ret;
+  }
+
+  _WrapCollapse(label, $obj, onclick) {
+    let ID = this.UniqueCollapseID++;
+    let $ret = $('<div class="wrap-collapse"></div>');
+    let $button = $('<button class="btn btn-outline-light btn-sm text-white" type="button">' + label + '</button>');
+    let $buttonContainer = $('<div class="wrap-collapse-button"></div>');
+    $buttonContainer.append($button);
+    let $wrapper = $('<div class="wrap-collapse-wrapper d-none"></div>');
+    $button.on('click', () => {
+      $wrapper.toggleClass('d-none');
+      onclick && onclick();
+    });
+    $wrapper.append($obj);
+    $ret.append($buttonContainer, $wrapper);
+    return $ret;
   }
 }

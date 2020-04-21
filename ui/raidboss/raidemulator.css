@@ -120,6 +120,27 @@ body {
 }
 
 /* new styles */
+.mainContentRow,
+.mainContentRow > * {
+  max-height: calc(100vh - 5rem);
+}
+
+.triggerInfoColumn {
+  overflow-y: auto;
+}
+.triggerInfoColumn .json-viewer {
+  max-height: calc(100vh - 15rem);
+  overflow-y: auto;
+}
+
+.triggerInfoColumn .triggerHideSkippedContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
+}
+
 .progress-bar {
   transition: none;
 }
@@ -227,6 +248,11 @@ div.row.encountersRow {
 .partyInfoColumn .party .playerInfoRow {
   height: 2rem;
   position: relative;
+  cursor: pointer;
+}
+.partyInfoColumn .party .playerInfoRow.border {
+  border-width: 3px!important;
+  height: calc(2rem + 6px);
 }
 
 .partyInfoColumn .party .playerInfoRow .jobicon {
@@ -242,9 +268,9 @@ div.row.encountersRow {
 .partyInfoColumn .party .playerInfoRow .mp {
   position: relative;
   display: block;
-  right: 0;
   left: 2rem;
   height: 1rem;
+  width: calc(100% - 2rem);
 }
 .partyInfoColumn .party .playerInfoRow .hp {
   top: 0;

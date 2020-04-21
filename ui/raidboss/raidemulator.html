@@ -69,7 +69,7 @@
     <link rel="stylesheet" type="text/css" href="raidemulator.css" />
   </head>
   <body class="bg-secondary">
-    <div class="container-fluid h-100">
+    <div class="container-fluid d-flex flex-column flex-fill h-100">
       <div class="row my-3 progressBarRow">
         <div class="col-auto">
           <button
@@ -102,20 +102,16 @@
           <div class="d-inline progress-bar-timestamp duration-timestamp"></div>
         </div>
       </div>
-      <div class="row triggerInfoRow d-none"></div>
-      <div class="row mainContentRow">
-        <div class="col-10 raidbossTimelineColumn">
-          <div class="timer-bar-container"></div>
-          <div id="popup-text-container">
-            <div id="popup-text-alarm" class="text">
-              <div class="holder"></div>
-            </div>
-            <div id="popup-text-alert" class="text">
-              <div class="holder"></div>
-            </div>
-            <div id="popup-text-info" class="text">
-              <div class="holder"></div>
-            </div>
+      <div class="row mainContentRow flex-fill">
+        <div class="col-5 raidbossTimelineColumn">
+          <div class="d-flex flex-column flex-fill">
+            <div class="timer-bar-container"></div>
+            <div id="popup-text-container"></div>
+          </div>
+        </div>
+        <div class="col-5 triggerInfoColumn border-dark border-left border-right">
+          <div class="triggerHideSkippedContainer" data-toggle="tooltip" title="Hide triggers that were not executed">
+            <input type="checkbox" name="hideSkipped" class="triggerHideSkipped" checked="checked">
           </div>
         </div>
         <div class="col-2 partyInfoColumn">

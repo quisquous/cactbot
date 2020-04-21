@@ -26,8 +26,9 @@ class RaidEmulator extends EventBus {
   }
   SetCurrent(index) {
     this.currentEncounter = new AnalyzedEncounter(this.encounters[index]);
-    this.currentEncounter.Analyze(this.popupText);
-    this.dispatch('CurrentEncounterChanged', this.currentEncounter);
+    this.currentEncounter.Analyze(this.popupText).then(() => {
+      this.dispatch('CurrentEncounterChanged', this.currentEncounter);
+    });
   }
   SetCurrentByID(ID) {
     let index = this.encounters.findIndex((v) => {
@@ -37,6 +38,11 @@ class RaidEmulator extends EventBus {
       return false;
     }
     this.SetCurrent(index);
+  }
+
+  SelectPerspective(ID) {
+    this.currentEncounter.SelectPerspective(ID);
+    this.Seek(this.CurrentTimestamp);
   }
 
   Play() {
@@ -82,8 +88,9 @@ class RaidEmulator extends EventBus {
   }
 
   Tick() {
-    if (this.CurrentLogLineIndex >= this.currentEncounter.logLines.length) {
+    if (this.CurrentLogLineIndex + 1 >= this.currentEncounter.logLines.length) {
       this.Pause();
+      return;
     }
     let logs = [];
     let offsets = [];
