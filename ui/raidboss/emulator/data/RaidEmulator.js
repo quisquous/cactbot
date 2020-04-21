@@ -75,6 +75,7 @@ class RaidEmulator extends EventBus {
         offsets.push(this.currentEncounter.logLines[i].Offset);
         this.LastLogTimestamp = this.currentEncounter.logLines[i].Timestamp;
         ++this.CurrentLogLineIndex;
+        this.dispatch('MidSeek', this.currentEncounter.logLines[i].Offset, this.currentEncounter.logLines[i].Line);
         continue;
       }
       break;

@@ -1,17 +1,51 @@
 class RaidEmulatorPopupText extends PopupText {
+  constructor(options) {
+    super(options);
+    this.$popupTextContainerWrapper = $('.popup-text-container-outer');
+  }
+
   emulatedOffset = 0;
 
   emulator;
+
+  DisplayedText = [];
+  ScheduledTriggers = [];
 
   BindTo(emulator) {
     this.emulator = emulator;
     emulator.on('Tick', (timestampOffset) => {
       this.emulatedOffset = timestampOffset;
-      // @TODO: Update displayed and scheduled
+      this.ScheduledTriggers = this.ScheduledTriggers.filter((t) => {
+        let remaining = t.Expires - timestampOffset;
+        if (remaining > 0) {
+          return true;
+        } else {
+          t.Promise();
+          return false;
+        }
+      });
+      this.DisplayedText = this.DisplayedText.filter((t) => {
+        let remaining = t.Expires - timestampOffset;
+        if (remaining > 0) {
+          t.Element.find('.popup-text-remaining').text('(' + (remaining / 1000).toFixed(1) + ')');
+          return true;
+        } else {
+          t.Element.remove();
+          return false;
+        }
+      });
+    });
+    emulator.on('PreSeek', (time) => {
+      this.ScheduledTriggers = [];
+      this.DisplayedText = this.DisplayedText.filter((t) => {
+        t.Element.remove();
+        return false;
+      });
+    });
+    emulator.on('MidSeek', (time) => {
+      this.emulatedOffset = time;
     });
   }
-
-  DisplayedText = [];
 
   _AddTextFor(TextType, triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction) {
     let UpperTextType = TextType[0].toUpperCase() + TextType.slice(1);
@@ -22,7 +56,7 @@ class RaidEmulatorPopupText extends PopupText {
       if (text && SoundOptions.showText) {
         text = triggerUpperCase(text);
         let div = this._MakeTextElement(text, TextType.split('T')[0] + '-text');
-        this.AddDisplayText(TextType, div, this.emulatedOffset + (duration.fromTrigger || duration[TextType]));
+        this.AddDisplayText(div, this.emulatedOffset + ((duration.fromTrigger || duration[TextType]) * 1000));
 
         if (!SoundOptions.soundUrl) {
           SoundOptions.soundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
@@ -31,8 +65,6 @@ class RaidEmulatorPopupText extends PopupText {
       }
     }
   }
-
-  ScheduledTriggers = [];
 
   _ScheduleTrigger(promiseThenTrigger, delay) {
     this.ScheduledTriggers.push({
@@ -43,30 +75,28 @@ class RaidEmulatorPopupText extends PopupText {
 
   _PlayAudioFile(SoundOptions) {
     let div = this._MakeTextElement(SoundOptions.soundUrl, 'audio-file');
-    this.AddDisplayText('audioFile', div, this.emulatedOffset + 2000);
+    this.AddDisplayText(div, this.emulatedOffset + 2000);
     super._PlayAudioFile(SoundOptions);
   }
   ttsSay(ttsText) {
     let div = this._MakeTextElement(ttsText, 'tts-text');
-    this.AddDisplayText('ttsText', div, this.emulatedOffset + 2000);
+    this.AddDisplayText(div, this.emulatedOffset + 2000);
     super.ttsSay(ttsText);
   }
 
-  AddDisplayText(elem, endTimestamp) {
-    let $e = $(elem);
-    // @TODO: Add element to DOM
-    switch (type) {
-      case 'infoText':
-        break;
-      case 'alertText':
-        break;
-      case 'alarmText':
-        break;
-      case 'ttsText':
-        break;
-      case 'audioFile':
-        break;
-    }
+  _MakeTextElement(text, className) {
+    let $ret = $('<div class="popup-text-container"></div>')
+    $ret.addClass(className);
+    let $text = $('<span class="popup-text"></span>');
+    $text.text(text);
+    let $rem = $('<span class="popup-text-remaining pl-1"></span>');
+    $ret.append($text, $rem);
+    return $ret;
+  }
+
+  AddDisplayText($e, endTimestamp) {
+    $e.find('.popup-text-remaining').text('(' + ((endTimestamp - this.emulatedOffset) / 1000).toFixed(1) + ')');
+    this.$popupTextContainerWrapper.append($e);
     this.DisplayedText.push({
       Element: $e,
       Expires: endTimestamp,

@@ -187,6 +187,67 @@ div.row.progressBarRow button.pause {
   line-height: 3rem;
 }
 
+.popup-text-container {
+  height: 2rem;
+  line-height: 2rem;
+  border: 1px solid black;
+  margin: 0.5rem;
+  padding-left: 0.5rem;
+  position: relative;
+  padding-right: 3rem;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popup-text-container .popup-text-remaining {
+  position:absolute;
+  right:0.5rem;
+}
+
+.popup-text-container.alarm-text {
+  color: black;
+  background-color: #ff3300;
+}
+.popup-text-container.alarm-text::before {
+  content: "ALARM: ";
+  display: inline;
+}
+.popup-text-container.alert-text {
+  color: black;
+  background-color: #ffbb00;
+}
+.popup-text-container.alert-text::before {
+  content: "ALERT: ";
+  display: inline;
+}
+.popup-text-container.info-text {
+  color: black;
+  background-color: #22bb22;
+}
+.popup-text-container.info-text::before {
+  content: "INFO: ";
+  display: inline;
+}
+.popup-text-container.tts-text {
+  color: black;
+  background-color: whitesmoke;
+}
+.popup-text-container.tts-text::before {
+  content: "TTS: ";
+  display: inline;
+}
+.popup-text-container.audio-file {
+  color: black;
+  background-color: blue;
+
+}
+.popup-text-container.audio-file::before {
+  content: "AUDIO: ";
+  display: inline;
+}
+
 div.row.encountersRow {
   position: absolute;
   bottom: 0;

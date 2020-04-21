@@ -103,6 +103,7 @@ let Options = {
         gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
         gTimelineController.BindTo(emulator);
         gPopupText = new RaidEmulatorPopupText(Options);
+        gPopupText.BindTo(emulator);
 
         gTimelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(gPopupText));
         gPopupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(gTimelineController));
