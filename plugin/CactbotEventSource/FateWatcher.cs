@@ -49,10 +49,10 @@ namespace Cactbot {
       // Fate start
       // param1: fateID
       // param2: unknown
-
+      //
       // Fate end
       // param1: fateID
-
+      //
       // Fate update
       // param1: fateID
       // param2: progress (0-100)
@@ -193,10 +193,8 @@ namespace Cactbot {
       if (a == opcodes[region_].add) {
         AddFate(*(int*)&buffer[Param1_Offset]);
       } else if (a == opcodes[region_].remove) {
-
         RemoveFate(*(int*)&buffer[Param1_Offset]);
       } else if (a == opcodes[region_].update) {
-
         int param1 = *(int*)&buffer[Param1_Offset];
         int param2 = *(int*)&buffer[Param2_Offset];
         if (!fates.ContainsKey(param1)) {
@@ -209,7 +207,6 @@ namespace Cactbot {
     }
 
     private void AddFate(int fateID) {
-
       if (!fates.ContainsKey(fateID)) {
         fates.TryAdd(fateID, 0);
         client_.DispatchToJS(new JSEvents.FateEvent("add", fateID, 0));
@@ -217,7 +214,6 @@ namespace Cactbot {
     }
 
     private void RemoveFate(int fateID) {
-
       if (fates.ContainsKey(fateID)) {
         client_.DispatchToJS(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
         fates.TryRemove(fateID, out _);
@@ -225,7 +221,6 @@ namespace Cactbot {
     }
 
     private void UpdateFate(int fateID, int progress) {
-
       fates.AddOrUpdate(fateID, progress, (int id, int prog) => progress);
       client_.DispatchToJS(new JSEvents.FateEvent("update", fateID, progress));
     }
