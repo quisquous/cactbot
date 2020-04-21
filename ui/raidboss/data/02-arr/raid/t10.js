@@ -113,7 +113,7 @@
         'Imdugud': 'Imdugud',
         'The Alpha Concourse': 'secteur des croyants',
       },
-      'replaceText': {  
+      'replaceText': {
         'Crackle Hiss': 'Crachat crépitant',
         'Critical Rip': 'Griffure critique',
         'Cyclonic Chaos': 'Chaos cyclonique',
