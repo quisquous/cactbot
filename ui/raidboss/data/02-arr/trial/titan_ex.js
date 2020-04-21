@@ -94,7 +94,7 @@
         'Granite Gaoler': 'Geôlier de granite',
         'Titan': 'Titan',
       },
-      'replaceText': {        
+      'replaceText': {
         '\\(all\\)': '(tous)',
         '\\(clock\\)': '(horloge)',
         '\\(E/W\\)': '(E/O)',
