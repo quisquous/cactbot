@@ -485,7 +485,7 @@
         'Cauterize': 'Cautérisation',
         'Chain Lightning': 'Chaîne d\'éclairs',
         'Dalamud Dive': 'Chute de Dalamud',
-        'Divebomb': 'Bombe plongeante',      
+        'Divebomb': 'Bombe plongeante',
         'Fireball': 'Boule de feu',
         'Ghost Add': 'Add Fantôme',
         'Golem Meteors': 'Golem de Dalamud',
