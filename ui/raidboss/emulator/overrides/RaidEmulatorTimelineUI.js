@@ -62,6 +62,15 @@ class RaidEmulatorTimelineUI extends TimelineUI {
         this.UpdateBar(bar, time);
       }
     });
+    emulator.on('CurrentEncounterChanged', () => {
+      this.timeline.Stop();
+      this.emulatedTimeOffset = 0;
+      for (let i in this.emulatedTimerBars) {
+        let bar = this.emulatedTimerBars[i];
+        bar.$progress.remove();
+      }
+      this.emulatedTimerBars = [];
+    });
   }
 
   UpdateBar(bar, timestampOffset) {

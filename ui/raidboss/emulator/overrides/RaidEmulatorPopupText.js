@@ -45,6 +45,13 @@ class RaidEmulatorPopupText extends PopupText {
     emulator.on('MidSeek', (time) => {
       this.emulatedOffset = time;
     });
+    emulator.on('CurrentEncounterChanged', () => {
+      this.ScheduledTriggers = [];
+      this.DisplayedText = this.DisplayedText.filter((t) => {
+        t.Element.remove();
+        return false;
+      });
+    });
   }
 
   _AddTextFor(TextType, triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction) {
@@ -74,8 +81,11 @@ class RaidEmulatorPopupText extends PopupText {
   }
 
   _PlayAudioFile(SoundOptions) {
-    let div = this._MakeTextElement(SoundOptions.soundUrl, 'audio-file');
-    this.AddDisplayText(div, this.emulatedOffset + 2000);
+    if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
+        .includes(SoundOptions.soundUrl)) {
+      let div = this._MakeTextElement(SoundOptions.soundUrl, 'audio-file');
+      this.AddDisplayText(div, this.emulatedOffset + 2000);
+    }
     super._PlayAudioFile(SoundOptions);
   }
   ttsSay(ttsText) {

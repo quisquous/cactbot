@@ -187,6 +187,74 @@ div.row.progressBarRow button.pause {
   line-height: 3rem;
 }
 
+div.row.progressBarRow .playerTriggers {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 2rem;
+  opacity: 0.85;
+  pointer-events: none;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar {
+  height: 0.25rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player0 {
+  bottom: 1.75rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player1 {
+  bottom: 1.5rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player2 {
+  bottom: 1.25rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player3 {
+  bottom: 1rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player4 {
+  bottom: 0.75rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player5 {
+  bottom: 0.5rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player6 {
+  bottom: 0.25rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player7 {
+  bottom: 0rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar .triggerItem {
+  pointer-events: all;
+  position: absolute;
+  height: 0.25rem;
+  width: 0.25rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.tank .triggerItem {
+  background: rgba(71, 94, 206, 0.9);
+}
+div.row.progressBarRow .playerTriggers .triggerBar.healer .triggerItem {
+  background: rgba(60, 105, 41, 0.9);
+}
+div.row.progressBarRow .playerTriggers .triggerBar.dps .triggerItem {
+  background: rgba(104, 53, 53, 0.9);
+}
+
 .popup-text-container {
   height: 2rem;
   line-height: 2rem;
@@ -397,4 +465,21 @@ div.row.encountersRow {
   position:absolute;
   right:1.5rem;
   color: black;
+}
+
+.wrap-collapse {
+  padding-bottom: 0.5rem;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label {
+  float: right;
+  height: 31px;
+  line-height: 31px;
+}
+.wrap-collapse .wrap-collapse-button .trigger-label > * {
+  float: right;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-time {
+  padding-left: 0.5rem;
 }

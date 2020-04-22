@@ -14,6 +14,8 @@ class EmulatedPartyInfo extends EventBus {
 
   displayedParty = {};
 
+  triggerBars;
+
   /**
    * @param {RaidEmulator} emulator 
    */
@@ -23,6 +25,11 @@ class EmulatedPartyInfo extends EventBus {
     this.$partyInfo = $('.partyInfoColumn .party');
     this.$triggerInfo = $('.triggerInfoColumn');
     this.$triggerHideCheckbox = $('.triggerHideSkipped');
+    this.$triggerBar = $('.playerTriggers');
+    this.triggerBars = [];
+    for (let i = 0; i < 8; ++i) {
+      this.triggerBars[i] = this.$triggerBar.find('.player' + i);
+    }
     emulator.on('Tick', (timestampOffset, lastLogTimestamp) => {
       if (lastLogTimestamp) {
         this.UpdatePartyInfo(emulator, lastLogTimestamp);
@@ -66,6 +73,7 @@ class EmulatedPartyInfo extends EventBus {
   ResetPartyInfo(encounter) {
     this.displayedParty = {};
     this.$partyInfo.empty();
+    this.$triggerBar.find('.triggerItem').remove();
     let membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
       let a = encounter.encounter.combatantTracker.combatants[l];
       let b = encounter.encounter.combatantTracker.combatants[r];
@@ -79,6 +87,20 @@ class EmulatedPartyInfo extends EventBus {
       this.UpdateCombatantInfo(encounter, ID);
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
+      this.triggerBars[i].removeClass('tank healer dps').addClass(Util.jobToRole(encounter.encounter.combatantTracker.combatants[ID].Job));
+      for (let triggerIndex in encounter.Perspectives[ID].Triggers) {
+        let trigger = encounter.Perspectives[ID].Triggers[triggerIndex];
+        if(!trigger.Status.Executed || trigger.ResolvedOffset > encounter.encounter.duration) {
+          continue;
+        }
+        let $e = $('<div class="triggerItem"></div>');
+        $e.css('left', ((trigger.ResolvedOffset / encounter.encounter.duration) * 100) + '%');
+        $e.tooltip({
+          title: trigger.Trigger.id,
+          placement: 'bottom',
+        });
+        this.triggerBars[i].append($e);
+      }
     }
 
     this.UpdateTriggerState();
@@ -182,11 +204,19 @@ class EmulatedPartyInfo extends EventBus {
 
     let $triggerContainer = $('<div class="d-flex flex-column"></div>');
 
-    for (let i in per.Triggers) {
+    for (let i in per.Triggers.sort((l,r) => l.ResolvedOffset - r.ResolvedOffset)) {
       let $triggerDataViewer = $('<pre class="json-viewer"></pre>');
-      let $trigger = this._WrapCollapse(per.Triggers[i].Trigger.id, $triggerDataViewer, () => {
+      let $trigger = this._WrapCollapse(this.GetTriggerFiredLabelTime(per.Triggers[i]) + ' - ' + per.Triggers[i].Trigger.id, $triggerDataViewer, () => {
         $triggerDataViewer.text(JSON.stringify(per.Triggers[i], null, 2));
       });
+      let $buttonWrapper = $trigger.children('.wrap-collapse-button');
+      let $label = $('<div class="trigger-label"></div>');
+      let $labelText = $('<div class="trigger-label-text"></div>');
+      let $labelTime = $('<div class="trigger-label-time"></div>');
+      $labelText.text(this.GetTriggerLabelText(per.Triggers[i]));
+      $labelTime.text(this.GetTriggerResolvedLabelTime(per.Triggers[i]));
+      $label.append($labelTime, $labelText);
+      $buttonWrapper.append($label);
       if (per.Triggers[i].Status.Executed) {
         $trigger.addClass('trigger-executed');
       } else {
@@ -207,8 +237,36 @@ class EmulatedPartyInfo extends EventBus {
     return $ret;
   }
 
+  GetTriggerLabelText(Trigger) {
+    let ret = Trigger.Status.Result;
+    if(typeof (ret) === 'function') {
+      ret = ret(AnalyzedEncounter.CloneData(Trigger.PostData, true), Trigger.Matches);
+    }
+    if (typeof (ret) === 'object') {
+      let lang = Trigger.PostData.lang;
+      if (ret[lang]) {
+        ret = ret[lang];
+      } else {
+        // Panic!
+        ret = JSON.stringify(ret);
+      }
+    } else if(typeof (ret) === 'boolean') {
+      ret = '';
+    } else if(typeof (ret) !== 'string') {
+      ret = 'Invalid Result?';
+    }
+    return ret;
+  }
+
+  GetTriggerFiredLabelTime(Trigger) {
+    return timeToString(Trigger.Offset, false);
+  }
+
+  GetTriggerResolvedLabelTime(Trigger) {
+    return timeToString(Trigger.ResolvedOffset, false);
+  }
+
   _WrapCollapse(label, $obj, onclick) {
-    let ID = this.UniqueCollapseID++;
     let $ret = $('<div class="wrap-collapse"></div>');
     let $button = $('<button class="btn btn-outline-light btn-sm text-white" type="button">' + label + '</button>');
     let $buttonContainer = $('<div class="wrap-collapse-button"></div>');

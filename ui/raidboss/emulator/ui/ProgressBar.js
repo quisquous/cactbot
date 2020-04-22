@@ -26,6 +26,7 @@ class ProgressBar {
     emulator.on('CurrentEncounterChanged', function (encounter) {
       me.$progressBarCurrent.text(timeToString(0, false));
       me.$progressBarDuration.text(timeToString(encounter.encounter.duration, false));
+      me.$progressBar.css('width', '0%');
       me.$progressBar.attr('aria-valuemax', encounter.encounter.duration);
     });
     emulator.on('Tick', function (timestampOffset) {

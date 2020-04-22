@@ -88,7 +88,7 @@ class AnalyzedEncounter extends EventBus {
     };
 
     this.Perspectives[ID] = {
-      InitialData: this.CloneData(data, true),
+      InitialData: AnalyzedEncounter.CloneData(data, true),
       Triggers: [],
       FinalData: data,
     };
@@ -114,13 +114,15 @@ class AnalyzedEncounter extends EventBus {
           if (matches.groups)
             matches = matches.groups;
 
-          let preData = this.CloneData(data);
+          let preData = AnalyzedEncounter.CloneData(data);
           let status = await this.RunTriggers(log.Timestamp, trigger, data, matches, suppressed);
           this.Perspectives[ID].Triggers.push({
             Trigger: trigger,
             Timestamp: log.Timestamp,
+            Offset: log.Timestamp - this.encounter.startTimestamp,
+            ResolvedOffset: (log.Timestamp - this.encounter.startTimestamp) + (status.Delay || 0),
             PreData: preData,
-            PostData: this.CloneData(data),
+            PostData: AnalyzedEncounter.CloneData(data),
             Matches: matches,
             Status: status,
           });
@@ -173,7 +175,7 @@ class AnalyzedEncounter extends EventBus {
 
     // promise
     if (typeof trigger.promise === 'function') {
-      ret.DataPrePromise = this.CloneData(data);
+      ret.DataPrePromise = AnalyzedEncounter.CloneData(data);
       ret.Promise = trigger.promise(data, matches);
       if (Promise.resolve(ret.Promise) === ret.Promise) {
         await ret.Promise;
@@ -181,7 +183,7 @@ class AnalyzedEncounter extends EventBus {
       } else {
         ret.PromiseStatus = 'Not a function';
       }
-      ret.DataPostPromise = this.CloneData(data);
+      ret.DataPostPromise = AnalyzedEncounter.CloneData(data);
     }
 
     let response = {};
@@ -254,7 +256,7 @@ class AnalyzedEncounter extends EventBus {
     return ret;
   }
 
-  CloneData(data, full = false) {
+  static CloneData(data, full = false) {
     // Potential future bug: jQuery's extend doesn't include properties with a value of `undefined`
     let ret = jQuery.extend(true, {}, data);
     // Filter out the stuff that won't ever change from trigger call to trigger call
