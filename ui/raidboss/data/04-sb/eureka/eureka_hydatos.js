@@ -1298,31 +1298,31 @@
         'Relative Virtue': '상대미덕',
         'Shadow': '프로토 오즈마의 그림자',
         'Streak Lightning': '연쇄 번개',
-        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
-        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
-        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
+        'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',
+        'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
       },
       'replaceText': {
         'Acallam Na Senorach': '피어너의 창',
         'Acceleration Bomb': '가속도 폭탄',
-        'Adds': 'Adds', // FIXME
+        'Adds': '쫄',
         'Ame-no-Sakahoko': '아메노사카호코',
         'Astral Essence': '빛의 팔',
         'Auroral Wind': '오로라 바람',
         'Berserk': '광포',
         'Bitter Barbs': '죄의 가시',
         'Black Hole': '블랙홀',
-        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Bleed Attack': '출혈 공격',
         'Booming Lament': '애도의 뇌명',
         'Call Wyvern': '와이번 소환',
-        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Carver/Spinner': '요창 떨치기/후리기',
         'Cloud to Ground': '습뢰',
-        'Cube Form': 'Cube Form', // FIXME
+        'Cube Form': '큐브 모양',
         'Eidos': '변이',
         'Elemental Magicks': '엘리멘탈 마법',
         'Elemental Shift': '엘리멘탈 변환',
         'Execration': '혐오의 저주',
-        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosion Enrage': '폭발 전멸기',
         'Explosive Impulse': '폭발적 추진력',
         'Flare Star': '타오르는 별',
         'For Honor': '전사격',
@@ -1341,25 +1341,25 @@
         'Meteor': '메테오',
         'Mourning Star': '샛별',
         'Mythcall': '환창 소환',
-        'Orb x5': 'Orb x5', // FIXME
-        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Orb x5': '구슬 5회',
+        'Ozma Ability': '오즈마 능력',
         'Piercing Dark': '어둠의 창',
         'Piercing Light': '빛의 창',
         'Pitfall': '강습',
-        'Pyramid Form': 'Pyramid Form', // FIXME
-        'Random Form': 'Random Form', // FIXME
-        'Random Shade': 'Random Shade', // FIXME
-        'Shade Ability': 'Shade Ability', // FIXME
+        'Pyramid Form': '피라미드 모양',
+        'Random Form': '무작위 모양',
+        'Random Shade': '무작위 그림자',
+        'Shade Ability': '그림자 능력',
         'Shingan': '진안격',
         'Shooting Star': '유성',
-        'Soak Attack': 'Soak Attack', // FIXME
-        'Spear Copy': 'Spear Copy', // FIXME
-        'Spear Shade': 'Spear Shade', // FIXME
-        'Sphere Form': 'Sphere Form', // FIXME
+        'Soak Attack': '빨아들이기 공격',
+        'Spear Copy': '창 복사',
+        'Spear Shade': '창 그림자',
+        'Sphere Form': '구 모양',
         'Spiritcull': '마법 연발',
         'Spirits of the Fallen': '영령혼',
-        'Stack': 'Stack', // FIXME
-        'Star Form': 'Star Form', // FIXME
+        'Stack': '모이기',
+        'Star Form': '별 모양',
         'Streak Lightning': '연쇄 번개',
         'Thricecull': '삼연창',
         'Thundercall': '초뢰',
@@ -1367,7 +1367,7 @@
         'Ultimate Zantetsuken': '극 참철검',
         'Umbral Essence': '어둠의 팔',
         'Whirling Zantetsuken': '선 참철검',
-        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
+        'Wyvern Explosion': '와이번 폭발',
       },
     },
   ],
