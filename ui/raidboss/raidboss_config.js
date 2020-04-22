@@ -314,6 +314,7 @@ class RaidbossConfigurator {
     // This is probably where using something like vue or react would be easier.
     // For the moment, folks can just reload, for real.
     this.alertsLang = this.base.getOption('raidboss', 'AlertsLanguage', this.base.lang);
+    this.timelineLang = this.base.getOption('raidboss', 'TimelineLanguage', this.base.lang);
   }
 
   buildUI(container, raidbossFiles) {
@@ -439,6 +440,8 @@ class RaidbossConfigurator {
     // TODO: somehow use the option for alert language here??
     if (result[this.alertsLang])
       return this.valueOrFunction(result[this.alertsLang]);
+    if (result[this.timelineLang])
+      return this.valueOrFunction(result[this.timelineLang]);
     // For partially localized results where this localization doesn't
     // exist, prefer English over nothing.
     return this.valueOrFunction(result['en']);
@@ -872,6 +875,71 @@ UserConfig.registerOptions('raidboss', {
         if (value === 'default')
           return;
         options['AlertsLanguage'] = value;
+      },
+    },
+    {
+      id: 'TimelineLanguage',
+      name: {
+        en: 'Timeline language',
+        de: 'Timeline Sprache',
+        fr: 'Langue des timeline',
+        cn: '时间轴语言',
+        ko: '타임라인 언어',
+      },
+      type: 'select',
+      options: {
+        en: {
+          'Use FFXIV Plugin Language': 'default',
+          'English (en)': 'en',
+          'Chinese (cn)': 'cn',
+          'German (de)': 'de',
+          'French (fr)': 'fr',
+          'Japanese (ja)': 'ja',
+          'Korean (ko)': 'ko',
+        },
+        de: {
+          'Benutze FFXIV Plugin Sprache': 'default',
+          'Englisch (en)': 'en',
+          'Chinesisch (cn)': 'cn',
+          'Deutsch (de)': 'de',
+          'Französisch (fr)': 'fr',
+          'Japanisch (ja)': 'ja',
+          'Koreanisch (ko)': 'ko',
+        },
+        fr: {
+          'Utiliser la langue du Plugin FFXIV': 'default',
+          'Anglais (en)': 'en',
+          'Chinois (cn)': 'cn',
+          'Allemand (de)': 'de',
+          'Français (fr)': 'fr',
+          'Japonais (ja)': 'ja',
+          'Coréen (ko)': 'ko',
+        },
+        cn: {
+          '使用最终幻想XIV解析插件设置的语言': 'default',
+          '英语 (en)': 'en',
+          '汉语 (cn)': 'cn',
+          '德语 (de)': 'de',
+          '法语 (fr)': 'fr',
+          '日语 (ja)': 'ja',
+          '朝鲜语 (ko)': 'ko',
+        },
+        ko: {
+          'FFXIV Plugin 언어 사용': 'default',
+          '영어 (en)': 'en',
+          '중국어 (cn)': 'cn',
+          '독일어 (de)': 'de',
+          '프랑스어 (fr)': 'fr',
+          '일본어 (ja)': 'ja',
+          '한국어 (ko)': 'ko',
+        },
+      },
+      default: 'default',
+      debug: true,
+      setterFunc: (options, value) => {
+        if (value === 'default')
+          return;
+        options['TimelineLanguage'] = value;
       },
     },
     {

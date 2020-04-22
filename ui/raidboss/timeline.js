@@ -44,6 +44,8 @@ class Timeline {
 
     let orig = text;
     let locale = this.options.Language || 'en';
+    if (replaceKey === 'replaceText')
+      locale = this.options.TimelineLanguage || this.options.Language || 'en';
     for (let r of this.replacements) {
       if (r.locale && r.locale != locale)
         continue;
