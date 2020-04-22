@@ -102,13 +102,13 @@ let Options = {
   },
   Regex: {
     en: {
-      'gFlagRegex': Regexes.parse(/00:00..:(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00..:(?:[^:]*:)?(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
     },
     cn: {
-      'gFlagRegex': Regexes.parse(/00:00..:(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00..:(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
