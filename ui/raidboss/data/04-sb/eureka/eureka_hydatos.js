@@ -588,17 +588,32 @@
     },
     {
       // Note: These use 00:329e: lines, without any proper "gains effect" lines.
-      id: 'BA AV Eidos Relative Virtue Colors',
-      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of (Astral|Umbral) Essence', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm (des Lichts|der Dunkelheit)', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of (光|暗)之腕', capture: false }),
+      id: 'BA AV Eidos Relative Virtue Astral',
+      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts', capture: false }),
+      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕', capture: false })
       condition: function(data) {
         return data.sealed;
       },
       run: function(data, matches) {
         // RV clones get buffs in the reverse order that they do their attacks in.
         data.clones = data.clones || [];
-        data.clones.push(matches[1]);
+        data.clones.push('astral');
+      },
+    },
+    {
+      // Note: These use 00:329e: lines, without any proper "gains effect" lines.
+      id: 'BA AV Eidos Relative Virtue Umbral',
+      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit', capture: false }),
+      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕', capture: false }),
+      condition: function(data) {
+        return data.sealed;
+      },
+      run: function(data) {
+        // RV clones get buffs in the reverse order that they do their attacks in.
+        data.clones = data.clones || [];
+        data.clones.push('umbral');
       },
     },
     {
