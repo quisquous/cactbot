@@ -1,16 +1,46 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.Concurrent;
 using Advanced_Combat_Tracker;
 using FFXIV_ACT_Plugin.Common;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Diagnostics;
 
 namespace Cactbot {
   public class FateWatcher {
     private CactbotEventSource client_;
+    private string region_;
     private IDataSubscription subscription;
+
+    // Fate start
+    // param1: fateID
+    // param2: unknown
+    //
+    // Fate end
+    // param1: fateID
+    //
+    // Fate update
+    // param1: fateID
+    // param2: progress (0-100)
+    private struct OPCodes {
+    public OPCodes(int add_, int remove_, int update_) { this.add = add_; this.remove = remove_; this.update = update_; }
+      public int add;
+      public int remove;
+      public int update;
+    };
+    private OPCodes v5_1 = new OPCodes(
+      0x74,
+      0x79,
+      0x9B
+    );
+    private OPCodes v5_2 = new OPCodes(
+      0x935,
+      0x936,
+      0x93E
+    );
+
+    private Dictionary<string, OPCodes> opcodes = null;
 
     private Type MessageType = null;
     private Type ActorControl143 = null;
@@ -26,8 +56,20 @@ namespace Cactbot {
     // fates<fateID, progress>
     private static ConcurrentDictionary<int, int> fates;
 
-    public FateWatcher(CactbotEventSource client) {
+    public FateWatcher(CactbotEventSource client, string language) {
       client_ = client;
+      if (language == "ko")
+        region_ = "ko";
+      else if (language == "cn")
+        region_ = "cn";
+      else
+        region_ = "intl";
+
+      opcodes = new Dictionary<string, OPCodes>();
+      opcodes.Add("ko", v5_1);
+      opcodes.Add("cn", v5_1);
+      opcodes.Add("intl", v5_2);
+
       fates = new ConcurrentDictionary<int, int>();
 
       var FFXIV = ActGlobals.oFormActMain.ActPlugins.FirstOrDefault(x => x.lblPluginTitle.Text == "FFXIV_ACT_Plugin.dll");
@@ -124,41 +166,24 @@ namespace Cactbot {
 
     public unsafe void ProcessMessage(byte* buffer, byte[] message) {
       int a = *((int*)&buffer[Category_Offset]);
-      switch (a) {
-        // Fate Start: 0x935
-        // param1: fateID
-        // param2: unknown
-        case 0x935: {
-          AddFate(*(int*)&buffer[Param1_Offset]);
-          break;
-        };
 
-        // Fate End: 0x936
-        // param1: fateID
-        case 0x936: {
-          RemoveFate(*(int*)&buffer[Param1_Offset]);
-          break;
-        };
-
-        // Fate Progress: 0x93E
-        // param1: fateID
-        // param2: progress (0-100)
-        case 0x93E: {
-          int param1 = *(int*)&buffer[Param1_Offset];
-          int param2 = *(int*)&buffer[Param2_Offset];
-          if (!fates.ContainsKey(param1)) {
-            AddFate(param1);
-          }
-          if (fates[param1] != param2) {
-            UpdateFate(param1, param2);
-          }
-          break;
+      if (a == opcodes[region_].add) {
+        AddFate(*(int*)&buffer[Param1_Offset]);
+      } else if (a == opcodes[region_].remove) {
+        RemoveFate(*(int*)&buffer[Param1_Offset]);
+      } else if (a == opcodes[region_].update) {
+        int param1 = *(int*)&buffer[Param1_Offset];
+        int param2 = *(int*)&buffer[Param2_Offset];
+        if (!fates.ContainsKey(param1)) {
+          AddFate(param1);
+        }
+        if (fates[param1] != param2) {
+          UpdateFate(param1, param2);
         }
       }
     }
 
     private void AddFate(int fateID) {
-
       if (!fates.ContainsKey(fateID)) {
         fates.TryAdd(fateID, 0);
         client_.DispatchToJS(new JSEvents.FateEvent("add", fateID, 0));
@@ -166,7 +191,6 @@ namespace Cactbot {
     }
 
     private void RemoveFate(int fateID) {
-
       if (fates.ContainsKey(fateID)) {
         client_.DispatchToJS(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
         fates.TryRemove(fateID, out _);
@@ -174,7 +198,6 @@ namespace Cactbot {
     }
 
     private void UpdateFate(int fateID, int progress) {
-
       fates.AddOrUpdate(fateID, progress, (int id, int prog) => progress);
       client_.DispatchToJS(new JSEvents.FateEvent("update", fateID, progress));
     }

@@ -267,7 +267,7 @@ namespace Cactbot {
         LogInfo("Version: intl");
       }
       wipe_detector_ = new WipeDetector(this);
-      fate_watcher_ = new FateWatcher(this);
+      fate_watcher_ = new FateWatcher(this, language_);
 
       // Incoming events.
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.OnLogLineRead += OnLogLineRead;
