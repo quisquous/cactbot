@@ -114,10 +114,11 @@ namespace Cactbot {
         pluginDirectory = pluginDirectory,
         lastCheck = config.LastUpdateCheck,
         currentVersion = GetCactbotVersion(),
-        checkInterval = TimeSpan.FromMinutes(15),
+        checkInterval = TimeSpan.FromMinutes(5),
         repo = kRepo,
         downloadUrl = kDownloadUrl,
         strippedDirs = 2,
+        actPluginId = 78,
       };
 
       await Updater.RunAutoUpdater(options);
