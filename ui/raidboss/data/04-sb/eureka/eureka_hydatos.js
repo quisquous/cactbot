@@ -14,6 +14,7 @@
       regex: /Legendary Geas/,
       regexDe: /Wirbelsturm/,
       regexCn: /妖枪乱击/,
+      regexKo: /요창난격/,
       beforeSeconds: 0,
       response: Responses.stopMoving(),
     },
@@ -22,6 +23,7 @@
       regex: /Levinwhorl/,
       regexDe: /Wirbelsturm/,
       regexCn: /涡雷/,
+      regexKo: /와뢰/,
       beforeSeconds: 10,
       alertText: {
         en: 'Shields and Mitigation',
@@ -34,6 +36,7 @@
       regex: /Explosive Impulse/,
       regexDe: /Explosiver Impuls/,
       regexCn: /爆炸性冲击/,
+      regexKo: /폭발적 추진력/,
       beforeSeconds: 10,
       suppressSeconds: 60,
       infoText: {
@@ -47,6 +50,7 @@
       regex: /Black Hole/,
       regexDe: /Schwarzes Loch/,
       regexCn: /黑洞/,
+      regexKo: /블랙홀/,
       beforeSeconds: 12,
       infoText: {
         en: 'Black Hole Soon',
@@ -86,6 +90,7 @@
       regex: Regexes.message({ line: '.*will be sealed off', capture: false }),
       regexDe: Regexes.message({ line: '.*bis sich der Zugang', capture: false }),
       regexCn: Regexes.message({ line: '距.*被封锁还有', capture: false }),
+      regexKo: Regexes.message({ line: '.*(이|가) 봉쇄됩니다', capture: false }),
       run: function(data) {
         data.sealed = true;
       },
@@ -95,6 +100,7 @@
       regex: Regexes.message({ line: '.*is no longer sealed', capture: false }),
       regexDe: Regexes.message({ line: '.*öffnet sich wieder', capture: false }),
       regexCn: Regexes.message({ line: '.*的封锁解除了', capture: false }),
+      regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다', capture: false }),
       run: function(data) {
         delete data.side;
         delete data.mythcall;
@@ -172,6 +178,7 @@
           en: 'Orb on YOU',
           de: 'Orb auf DIR',
           cn: '点名',
+          ko: '구슬 대상자',
         };
       },
       alertText: function(data, matches) {
@@ -181,6 +188,7 @@
           en: 'Away From Orb Marker',
           de: 'Weg vom Orb-Marker',
           cn: '远离点名',
+          ko: '구슬 대상자에서 떨어지기',
         };
       },
     },
@@ -248,6 +256,7 @@
         en: 'Under Spears',
         de: 'Unter einen Speer',
         cn: '枪脚下',
+        ko: '창 아래로',
       },
     },
     {
@@ -291,11 +300,13 @@
         en: 'Get to Ice',
         de: 'Geh zum Eis',
         cn: '冰',
+        ko: '얼음',
       },
       infoText: {
         en: 'Switch Magia',
         de: 'Magia-Brett drehen',
         cn: '切换元素板',
+        ko: '마기아 전환',
       },
     },
     {
@@ -310,11 +321,13 @@
         en: 'Get to Fire',
         de: 'Geh zum Feuer',
         cn: '火',
+        ko: '불',
       },
       infoText: {
         en: 'Switch Magia',
         de: 'Magia-Brett drehen',
         cn: '切换元素板',
+        ko: '마기아 전환',
       },
     },
     {
@@ -470,6 +483,7 @@
         en: 'Dark Bracelets',
         de: 'Dunkle Armreife',
         cn: '黑光环',
+        ko: '어두운 고리',
       },
       run: function(data) {
         data.bracelets = 'dark';
@@ -490,6 +504,7 @@
         en: 'Light Bracelets',
         de: 'Helle Armreife',
         cn: '白光环',
+        ko: '빛 고리',
       },
       run: function(data) {
         data.bracelets = 'light';
@@ -513,6 +528,7 @@
               en: 'Away From Light Circles',
               de: 'Weg von hellen Kreisen',
               cn: '远离白圈',
+              ko: '밝은 원에서 떨어지기',
             };
           }
           if (data.bracelets == 'dark') {
@@ -520,6 +536,7 @@
               en: 'Away From Dark Circles',
               de: 'Weg von dunklen Kreisen',
               cn: '远离黑圈',
+              ko: '어두운 원에서 떨어지기',
             };
           }
           return;
@@ -529,6 +546,7 @@
             en: 'Stand By Dark Circles',
             de: 'Zu den dunklen Kreisen',
             cn: '靠近黑圈',
+            ko: '어두운 원 옆에 서기',
           };
         }
         if (data.bracelets == 'dark') {
@@ -536,6 +554,7 @@
             en: 'Stand By Light Circles',
             de: 'zu den hellen Kreisen',
             cn: '靠近白圈',
+            ko: '밝은 원 옆에 서기',
           };
         }
       },
@@ -560,6 +579,7 @@
             en: 'Dark',
             de: 'Dunkel',
             cn: '黑',
+            ko: '어둠',
           };
         }
         if (data.bracelets == 'dark') {
@@ -567,6 +587,7 @@
             en: 'Light',
             de: 'Hell',
             cn: '白',
+            ko: '빛',
           };
         }
       },
@@ -577,6 +598,7 @@
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts', capture: false }),
       regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕', capture: false }),
+      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -592,6 +614,7 @@
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit', capture: false }),
       regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕', capture: false }),
+      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -621,6 +644,7 @@
             en: 'Dark',
             de: 'Dunkel',
             cn: '黑',
+            ko: '어둠',
           };
         }
         if (wrists == 'Umbral') {
@@ -628,6 +652,7 @@
             en: 'Light',
             de: 'Hell',
             cn: '白',
+            ko: '빛',
           };
         }
       },
@@ -647,6 +672,7 @@
         en: 'Orbs to Opposite Colors',
         de: 'Kugeln zu umgekehrter Farbe',
         cn: '连线去相反颜色',
+        ko: '구슬 반대 색깔로',
       },
     },
     {
@@ -682,6 +708,7 @@
           en: 'Black Hole ' + data.blackHoleCount + ' / 6',
           de: 'Schwarzes Loch ' + data.blackHoleCount + ' / 6',
           cn: '黑洞 ' + data.blackHoleCount + ' / 6',
+          ko: '블랙홀' + data.blackHoleCount + ' / 6',
         };
       },
       tts: function(data) {
@@ -689,6 +716,7 @@
           en: 'Black Hole ' + data.blackHoleCount,
           de: 'Schwarzes Loch ' + data.blackHoleCount,
           cn: '黑洞 ' + data.blackHoleCount,
+          ko: '블랙홀' + data.blackHoleCount,
         };
       },
     },
@@ -712,6 +740,7 @@
         en: 'Off the Platform',
         de: 'Weg von der Fläche',
         cn: '远离平台',
+        ko: '멀어지기',
       },
     },
     {
@@ -730,6 +759,7 @@
         en: 'Spread for Bleed',
         de: 'Blutung verteilen',
         cn: '分散',
+        ko: '산개',
       },
     },
     {
@@ -747,6 +777,7 @@
         en: 'Go Far',
         de: 'Weit weg',
         cn: '远离',
+        ko: '멀리가기',
       },
     },
     {
@@ -769,12 +800,14 @@
             en: 'Stack (if not tanking)',
             de: 'Stack (wenn nicht am tanken)',
             cn: '集合（如果没在坦怪）',
+            ko: '집합 (탱킹 중인 사람 제외)',
           };
         }
         return {
           en: 'Stack Up',
           de: 'Stacken',
           cn: '集合',
+          ko: '집합',
         };
       },
     },
@@ -793,6 +826,7 @@
         en: 'Get Close',
         de: 'Nah dran',
         cn: '靠近',
+        ko: '가까이',
       },
     },
     {
@@ -815,6 +849,7 @@
             en: 'Offtanks Get Orbs',
             de: 'Offtanks holt Kugeln',
             cn: 'ST撞球',
+            ko: '섭탱 구슬 가져가기',
           };
         }
       },
@@ -824,6 +859,7 @@
             en: 'Stack Away From Tank',
             de: 'Weg vom Tank stacken',
             cn: '远离坦克集合',
+            ko: '탱커에서 멀어지기',
           };
         }
       },
@@ -844,6 +880,7 @@
         en: 'Get Off',
         de: 'Weg da',
         cn: '远离平台',
+        ko: '멀어지기',
       },
     },
     {
@@ -862,6 +899,7 @@
         en: 'Get Close',
         de: 'Nah dran',
         cn: '靠近',
+        ko: '가까이',
       },
     },
     {
@@ -880,6 +918,7 @@
         en: 'Go Far',
         de: 'Weit weg',
         cn: '远离',
+        ko: '멀리',
       },
     },
     {

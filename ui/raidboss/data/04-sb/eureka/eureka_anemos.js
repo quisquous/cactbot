@@ -21,12 +21,14 @@
         de: 'Stimme Des Drachen',
         fr: 'Voix Du Dragon',
         cn: '雷电咆哮',
+        ko: '뇌전의 포효',
       },
       tts: {
         en: 'Dragon\'s Voice',
         de: 'drache',
         fr: 'Voix Du Dragon',
         cn: '雷电咆哮',
+        ko: '뇌전의 포효',
       },
     },
     {
@@ -52,6 +54,7 @@
         de: 'Hieb',
         fr: 'Fauche',
         cn: '横扫',
+        ko: '휘두르기',
       },
     },
     {
@@ -92,6 +95,7 @@
         de: 'Blick Laser',
         fr: 'Regard Laser',
         cn: '怒视',
+        ko: '광선',
       },
     },
     {
@@ -209,6 +213,7 @@
           de: 'Geister: ' + data.wraithCount,
           fr: 'spectres: ' + data.wraithCount,
           cn: '幽灵击杀: ' + data.wraithCount,
+          ko: '망령: ' + data.wraithCount,
         };
       },
     },
