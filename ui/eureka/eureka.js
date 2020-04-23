@@ -2172,7 +2172,7 @@ class EurekaTracker {
     }
     beforeText = beforeText.replace(/(?: at|@)$/, '');
     // remove party member number in the front
-    beforeText = beforeText.replace(/\uE090-\uE097/g, '');
+    beforeText = beforeText.replace(/[\uE090-\uE097]/g, '');
 
     let container = document.getElementById('flag-labels');
     let label = document.createElement('div');
