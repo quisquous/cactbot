@@ -6,7 +6,7 @@ class CombatantTracker {
     '04': /^[^ ]+ 04:(?<SourceID>[^:]+):Removing combatant (?<SourceName>[^:]+)\.  Max HP: (?<SourceMaxHP>\d+)\. Pos: \((?<SourcePosX>[^,]+),(?<SourcePosY>[^,]+),(?<SourcePosZ>[^,)]+)\)/i,
     '15': /^[^ ]+ 15:(?<SourceID>[^:]*?):(?<SourceName>[^:]*?):(?<AbilityID>[^:]*?):(?<AbilityName>[^:]*?):(?<TargetID>[^:]*?):(?<TargetName>[^:]*?):[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:(?<TargetHP>[^:]*?):(?<TargetMaxHP>[^:]*?):(?<TargetMP>[^:]*?):(?<TargetMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<TargetPosX>[^:]*?):(?<TargetPosY>[^:]*?):(?<TargetPosZ>[^:]*?):(?<TargetHeading>[^:]*?):(?<SourceHP>[^:]*?):(?<SourceMaxHP>[^:]*?):(?<SourceMP>[^:]*?):(?<SourceMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<SourcePosX>[^:]*?):(?<SourcePosY>[^:]*?):(?<SourcePosZ>[^:]*?):(?<SourceHeading>[^:]*?):/i,
     '16': /^[^ ]+ 16:(?<SourceID>[^:]*?):(?<SourceName>[^:]*?):(?<AbilityID>[^:]*?):(?<AbilityName>[^:]*?):(?<TargetID>[^:]*?):(?<TargetName>[^:]*?):[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:(?<TargetHP>[^:]*?):(?<TargetMaxHP>[^:]*?):(?<TargetMP>[^:]*?):(?<TargetMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<TargetPosX>[^:]*?):(?<TargetPosY>[^:]*?):(?<TargetPosZ>[^:]*?):(?<TargetHeading>[^:]*?):(?<SourceHP>[^:]*?):(?<SourceMaxHP>[^:]*?):(?<SourceMP>[^:]*?):(?<SourceMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<SourcePosX>[^:]*?):(?<SourcePosY>[^:]*?):(?<SourcePosZ>[^:]*?):(?<SourceHeading>[^:]*?):/i,
-    '26': /^[^ ]+ 26:(?<SourceID>[^:]+):[^:]*:[^:]+:(?<SourceHP>[^:]+):(?<SourceMaxHP>[^:]+):(?<SourceMP>[^:]+):(?<SourceMaxMP>[^:]+)/i,
+    '26': /^[^ ]+ 26:(?<SourceID>[^:]+):(?<SourceName>[^:]*?):[^:]+:(?<SourceHP>[^:]+):(?<SourceMaxHP>[^:]+):(?<SourceMP>[^:]+):(?<SourceMaxMP>[^:]+)/i,
   };
   static PetNames = ["Emerald Carbuncle", "Topaz Carbuncle", "Ifrit-Egi", "Titan-Egi", "Garuda-Egi", "Eos", "Selene", "Rook Autoturret", "Bishop Autoturret", "Demi-Bahamut", "Demi-Phoenix", "Seraph", "Moonstone Carbuncle", "Esteem", "Automaton Queen", "Bunshin", "Demi-Phoenix", "Seraph", "Bunshin"];
 
@@ -67,6 +67,9 @@ class CombatantTracker {
         case '23':
           this.AddCombatant(lineTimestamp, eventParts[0], eventParts[1], lineEvent, logLines[i]);
           this.AddCombatant(lineTimestamp, eventParts[2], eventParts[3], lineEvent, logLines[i]);
+          break;
+        case '26':
+          this.AddCombatant(lineTimestamp, eventParts[0], eventParts[1], lineEvent, logLines[i]);
           break;
       }
     }

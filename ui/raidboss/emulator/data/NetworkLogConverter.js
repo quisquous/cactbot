@@ -1,14 +1,6 @@
 class NetworkLogConverter {
   static LineRegex = /^(?<Event>\d+)\|(?<Timestamp>[^|]+)\|(?<Line>.*)\|(?<Hash>[^|]+)$/i;
 
-  static UncheckedLines = [
-    '01', '02',
-    '11', '12',
-    '29',
-    '35',
-    '249', '250', '251', '253',
-  ];
-
   static ShowAbilityNamesFor = [
     '4C4', // Excognition
     '35D', // Wildfire
@@ -147,6 +139,16 @@ class NetworkLogConverter {
     for (let i in Options) {
       this[i] = Options[i];
     }
+  }
+
+  async ConvertFile(Data) {
+    let ret = await this.ConvertLines(
+      // Split Data on event|timestamp|
+      Data.split(/(\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|.*?)\r?\n(?=\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|)/gm)
+      // Remove blank lines since each actual line ends up separated by a blank line
+        .filter((l) => l !== '')
+    );
+    return ret;
   }
 
   async ConvertLines(Lines) {
@@ -346,9 +348,16 @@ class NetworkLogConverter {
   }
 
   Convert_19(ret) {
+    let Name;
+    if(ret.ExplodedLine[2] === '00') {
+      Name = '';
+    } else {
+      Name = this.ResolveName(ret.ExplodedLine, 2, 3);
+    }
+
     ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
       this.BugProperCase(ret.ExplodedLine[1]) + ' was defeated by ' +
-      this.ResolveName(ret.ExplodedLine, 2, 3) + '.';
+      Name + '.';
 
   }
 
@@ -506,40 +515,40 @@ class NetworkLogConverter {
     return Status;
   }
 
-  TestConvert_Check_19(i, Bug_250_Offset, BL, CL, Status) {
-    return this.TestConvert_Check_StringUtil(i, Bug_250_Offset, BL, CL, Status, 'Test_19_StringFixes');
+  TestConvert_Check_19(i, Bug_250_Offset, Base, Converted, Status) {
+    return this.TestConvert_Check_StringUtil(i, Bug_250_Offset, Base, Converted, Status, 'Test_19_StringFixes');
   }
 
-  TestConvert_Check_StringUtil(i, Bug_250_Offset, BL, CL, Status, CheckSet, Checks = []) {
-    let Line = CL.Line;
+  TestConvert_Check_1A_1E(i, Bug_250_Offset, Base, Converted, Status) {
+    return this.TestConvert_Check_StringUtil(i, Bug_250_Offset, Base, Converted, Status, 'Test_1A_1E_StringFixes');
+  }
+
+  TestConvert_Check_StringUtil(i, Bug_250_Offset, Base, Converted, Status, CheckSet, Checks = []) {
+    let Line = Converted.Line;
     for (let c in Checks) {
       Line = Line.replace(Checks[c].S, Checks[c].R);
     }
-    if (Line === BL) {
+    if (Line === Base) {
       ++Status.Ignored;
       Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!
-${CL.NetworkLine}
-${BL}
-${CL.Line}
+${Converted.NetworkLine}
+${Base}
+${Converted.Line}
 Applied text fixes:
 ${JSON.stringify(Checks, null, 2)}`);
       return true;
     }
-    for (let a in NetworkLogConverter[CheckSet]) {
-      let aO = NetworkLogConverter[CheckSet][a];
-      if (Checks.includes(aO)) {
+    for (let CheckIndex in NetworkLogConverter[CheckSet]) {
+      let Check = NetworkLogConverter[CheckSet][CheckIndex];
+      if (Checks.includes(Check)) {
         continue;
       }
       let NewChecks = Checks.slice(0);
-      NewChecks.push(aO);
-      if (this.TestConvert_Check_StringUtil(i, Bug_250_Offset, BL, CL, Status, CheckSet, NewChecks)) {
+      NewChecks.push(Check);
+      if (this.TestConvert_Check_StringUtil(i, Bug_250_Offset, Base, Converted, Status, CheckSet, NewChecks)) {
         return true;
       }
     }
     return false;
-  }
-
-  TestConvert_Check_1A_1E(i, Bug_250_Offset, BL, CL, Status, Checks = []) {
-    return this.TestConvert_Check_StringUtil(i, Bug_250_Offset, BL, CL, Status, 'Test_1A_1E_StringFixes');
   }
 }

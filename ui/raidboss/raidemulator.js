@@ -36,6 +36,7 @@ let Options = {
   let emulatedPartyInfo;
   let emulatedMap;
   let emulatedWebSocket;
+  let logConverter;
 
   $(() => {
     emulator = new RaidEmulator();
@@ -46,6 +47,7 @@ let Options = {
     emulatedPartyInfo = new EmulatedPartyInfo(emulator);
     emulatedMap = new EmulatedMap(emulator);
     emulatedWebSocket = new RaidEmulatorWebSocket(emulator);
+    logConverter = new NetworkLogConverter();
 
     emulatedPartyInfo.on('SelectPerspective', (ID) => {
       emulator.SelectPerspective(ID);
@@ -111,6 +113,49 @@ let Options = {
         emulator.setPopupText(gPopupText);
 
         encounterTab.Refresh();
+
+        $('body').on('dragenter dragover', (e) => { e.preventDefault(); e.stopPropagation(); });
+        $('body').on('drop', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          let dt = e.originalEvent.dataTransfer;
+          let files = dt.files;
+          for (let i = 0; i < files.length; ++i) {
+            let file = files[i];
+            if (file.type === "application/json") {
+              // Import DB?
+            } else {
+              // Assume it's a log file?
+              file.text().then((txt) => {
+                logConverter.ConvertFile(txt).then((lines) => {
+                  let FileTimestamp = lines[0].Timestamp;
+                  lines = lines.map((l) => l.Line);
+                  let LocalLogHandler = new LogEventHandler();
+
+                  LocalLogHandler.on('fight', (day, zone, lines) => {
+                    let enc = new Encounter(day, zone, lines);
+                    emulator.AddEncounter(enc);
+                    persistor.PersistEncounter(enc);
+                  });
+
+                  LocalLogHandler.CurrentDate = new Date(FileTimestamp).toISOString().substr(0, 10)
+                  LocalLogHandler.ParseLogs(lines);
+                  LocalLogHandler.EndFight();
+                });
+              });
+            }
+          }
+        });
+
+        $('.deleteDBModal .btn-primary').on('click', (e) => {
+          persistor.ListEncounters().then((encounters) => {
+            for (let i in encounters) {
+              persistor.DeleteEncounter(encounters[i].ID);
+            }
+            encounterTab.Refresh();
+            $('.deleteDBModal').modal('hide');
+          });
+        });
 
         // Debug code
         if (true) {

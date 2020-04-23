@@ -147,6 +147,12 @@
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
           <div class="collapse" id="encountersTab">
+            <div class="row flex-fill border-top border-dark">
+              <button class="btn btn-primary btn-sm loadNetworkLogButton mx-2 disabled" type="button" disabled="disabled">Load Network Log</button>
+              <button class="btn btn-primary btn-sm exportDBButton mx-2 disabled" type="button" disabled="disabled">Export DB</button>
+              <button class="btn btn-primary btn-sm importDBButton mx-2 disabled" type="button" disabled="disabled">Import DB</button>
+              <button class="btn btn-primary btn-sm clearDBButton mx-2" type="button" data-toggle="modal" data-target=".deleteDBModal">Clear DB</button>
+            </div>
             <div class="row flex-fill border-top border-dark h-100 mh-100">
               <div
                 class="col col-3 border-right border-dark h-100 mh-100 zoneList"
@@ -159,6 +165,25 @@
               ></div>
               <div class="col col-3 h-100 mh-100 encounterInfo"></div>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal deleteDBModal text-dark" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete Encounter Database</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>You are about to delete the encounter database. Are you sure?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
           </div>
         </div>
       </div>

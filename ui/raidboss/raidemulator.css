@@ -160,7 +160,7 @@ button.showEncountersButton[aria-expanded="false"] {
 }
 
 button.showEncountersButton[aria-expanded="true"] {
-  bottom: calc(25vh - 2rem);
+  top: 1px; /* border size */
 }
 
 button.showEncountersButton[aria-expanded="false"] .fa-chevron-down {
@@ -438,7 +438,8 @@ div.row.encountersRow {
 }
 
 #encountersTab {
-  height: 25vh;
+  /* encounter drawer + sm btn font + sm btn padding + sm btn border + border top + border top */
+  height: calc(25vh + 0.875rem + 0.25rem + 0.25rem + 2px + 1px + 1px);
 }
 
 #encountersTab .row .col {
