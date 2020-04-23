@@ -543,10 +543,10 @@ let Responses = {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Front Then Back',
-        de: 'Nach Vorne, danach nach Hinten',
-        fr: 'Devant puis derrière',
-        ko: '앞으로 => 뒤로',
-        cn: '前 => 后',
+      de: 'Nach Vorne, danach nach Hinten',
+      fr: 'Devant puis derrière',
+      ko: '앞으로 => 뒤로',
+      cn: '前 => 后',
     };
     return obj;
   },
