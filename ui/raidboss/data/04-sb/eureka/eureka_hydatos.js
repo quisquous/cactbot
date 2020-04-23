@@ -90,7 +90,7 @@
       regex: Regexes.message({ line: '.*will be sealed off', capture: false }),
       regexDe: Regexes.message({ line: '.*bis sich der Zugang', capture: false }),
       regexCn: Regexes.message({ line: '距.*被封锁还有', capture: false }),
-      regexKo: Regexes.message({ line: '.*(이|가) 봉쇄됩니다', capture: false }),
+      regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다', capture: false }),
       run: function(data) {
         data.sealed = true;
       },
