@@ -1192,7 +1192,7 @@ let Options = {
             fr: 'Eldthurs',
             ja: 'エルドスルス',
             cn: '火巨人',
-            ko: '구부',
+            ko: '엘드투르스',
           },
           trackerName: {
             en: 'Eldthurs',
