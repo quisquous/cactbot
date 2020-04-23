@@ -617,13 +617,7 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D68', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D68', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D68', capture: false }),
-      alertText: {
-        en: 'Back Then Front',
-        de: 'Nach Hinten, danach nach Vorne',
-        fr: 'Derrière puis devant',
-        ko: '뒤로 => 앞으로',
-        cn: '后 => 前',
-      },
+      response: Responses.getBackThenFront('alert'),
     },
     {
       id: 'E8S Twin Silence',
@@ -633,13 +627,7 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D69', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D69', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D69', capture: false }),
-      alertText: {
-        en: 'Front Then Back',
-        de: 'Nach Vorne, danach nach Hinten',
-        fr: 'Devant puis derrière',
-        ko: '앞으로 => 뒤로',
-        cn: '前 => 后',
-      },
+      response: Responses.getFrontThenBack('alert'),
     },
     {
       id: 'E8S Spiteful Dance',
