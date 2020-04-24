@@ -1083,7 +1083,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Keep expired timer bar (seconds)',
         de: 'Behalte abgelaufene Timer-Bar (in Sekunden)',
         fr: 'Garder les lignes de temps expirées (secondes)',
-        ja: '終了したタイムバーをそのまま置く',
+        ja: '終了したタイムバーをそのまま置く（秒）',
         cn: '保留失效计时条时间（秒）',
         ko: '만료된 타임라인이 사라지기까지의 시간 (초)',
       },
