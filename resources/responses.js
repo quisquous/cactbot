@@ -528,6 +528,28 @@ let Responses = {
     };
     return obj;
   },
+  getBackThenFront: (sev) => {
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Back Then Front',
+      de: 'Nach Hinten, danach nach Vorne',
+      fr: 'Derrière puis devant',
+      ko: '뒤로 => 앞으로',
+      cn: '后 => 前',
+    };
+    return obj;
+  },
+  getFrontThenBack: (sev) => {
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Front Then Back',
+      de: 'Nach Vorne, danach nach Hinten',
+      fr: 'Devant puis derrière',
+      ko: '앞으로 => 뒤로',
+      cn: '前 => 后',
+    };
+    return obj;
+  },
   goMiddle: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = {
