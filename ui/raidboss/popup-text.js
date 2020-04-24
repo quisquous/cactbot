@@ -24,7 +24,8 @@ class PopupText {
   constructor(options) {
     this.options = options;
     this.triggers = [];
-    this.timers = [];
+    this.timers = {};
+    this.CurrentTriggerID = 0;
     this.inCombat = false;
     this.resetWhenOutOfCombat = true;
     this.infoText = document.getElementById('popup-text-info');
@@ -337,9 +338,8 @@ class PopupText {
   }
 
   StopTimers() {
-    for (let i = 0; i < this.timers.length; ++i)
-      window.clearTimeout(this.timers[i]);
-    this.timers = [];
+    for (let i in this.timers.length)
+      this.timers[i] = false;
   }
 
   OnLog(e) {
@@ -398,6 +398,30 @@ class PopupText {
         this._OnTriggerInternal_AlarmText(TriggerHelper);
         this._OnTriggerInternal_AlertText(TriggerHelper);
         this._OnTriggerInternal_InfoText(TriggerHelper);
+
+        // Priority audio order:
+        // * user disabled (play nothing)
+        // * if tts options are enabled globally or for this trigger:
+        //   * user groupTTS trigger groupTTS/tts override
+        //   * groupTTS entries in the trigger
+        //   * user TTS triggers tts override
+        //   * tts entries in the trigger
+        //   * default alarm tts
+        //   * default alert tts
+        //   * default info tts
+        // * if sound options are enabled globally or for this trigger:
+        //   * user trigger sound overrides
+        //   * sound entries in the trigger
+        //   * alarm noise
+        //   * alert noise
+        //   * info noise
+        // * else, nothing
+        //
+        // In general, tts comes before sounds and user overrides come
+        // before defaults.  If a user trigger or tts entry is specified as
+        // being valid but empty, this will take priority over the default
+        // tts texts from alarm/alert/info and will prevent tts from playing
+        // and allowing sounds to be played instead.
         this._OnTriggerInternal_GroupTTS(TriggerHelper);
         this._OnTriggerInternal_TTS(TriggerHelper);
         this._OnTriggerInternal_PlayAudio(TriggerHelper);
@@ -467,8 +491,9 @@ class PopupText {
     let condition = TriggerHelper.TriggerOptions.Condition || TriggerHelper.Trigger.condition;
     if (condition) {
       if (!condition(this.data, TriggerHelper.Matches))
-        return;
+        return false;
     }
+    return true;
   }
 
   // Set defaults for TriggerHelper object (anything that won't change based on
@@ -512,21 +537,28 @@ class PopupText {
       TriggerHelper.Trigger.preRun(this.data, matches);
   }
 
-
   _OnTriggerInternal_DelaySeconds(TriggerHelper) {
-    // @TODO: Cancel this when StopTimers is called
     let delay = 'delaySeconds' in TriggerHelper.Trigger ? TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.delaySeconds) : 0;
-    return new Promise((res) => {
-      if (delay > 0)
-        window.setTimeout(res, delay * 1000);
-      else
+    let TriggerID = this.CurrentTriggerID++;
+    this.timers[TriggerID] = true;
+    return new Promise((res, rej) => {
+      if (delay > 0) {
+        window.setTimeout(() => {
+          if (this.timers[TriggerID])
+            res();
+          else
+            rej();
+          delete this.timers[TriggerID];
+        }, delay * 1000);
+      } else {
+        delete this.timers[TriggerID];
         res();
+      }
     });
   }
 
   _OnTriggerInternal_DurationSeconds(TriggerHelper) {
-    TriggerHelper.Duration = TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.durationSeconds);
-    duration = {
+    TriggerHelper.Duration = {
       FromTrigger: TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.durationSeconds),
       alarmText: this.options.DisplayAlarmTextForSeconds,
       alertText: this.options.DisplayAlertTextForSeconds,
@@ -598,30 +630,6 @@ class PopupText {
   }
 
   _OnTriggerInternal_GroupTTS(TriggerHelper) {
-    // Priority audio order:
-    // * user disabled (play nothing)
-    // * if tts options are enabled globally or for this trigger:
-    //   * user groupTTS trigger groupTTS/tts override
-    //   * groupTTS entries in the trigger
-    //   * user TTS triggers tts override
-    //   * tts entries in the trigger
-    //   * default alarm tts
-    //   * default alert tts
-    //   * default info tts
-    // * if sound options are enabled globally or for this trigger:
-    //   * user trigger sound overrides
-    //   * sound entries in the trigger
-    //   * alarm noise
-    //   * alert noise
-    //   * info noise
-    // * else, nothing
-    //
-    // In general, tts comes before sounds and user overrides come
-    // before defaults.  If a user trigger or tts entry is specified as
-    // being valid but empty, this will take priority over the default
-    // tts texts from alarm/alert/info and will prevent tts from playing
-    // and allowing sounds to be played instead.
-
     if (TriggerHelper.GroupSpokenAlertsEnabled) {
       if ('GroupTTSText' in TriggerHelper.TriggerOptions)
         TriggerHelper.TTSText = ValueOrFunction(TriggerHelper.TriggerOptions.GroupTTSText);
@@ -665,21 +673,21 @@ class PopupText {
     // of infoText triggers without tts entries by turning
     // on (speech=true, text=true, sound=true) but this will
     // not cause tts to play over top of sounds or noises.
-    if (ttsText && TriggerHelper.SpokenAlertsEnabled) {
+    if (TriggerHelper.TTSText && TriggerHelper.SpokenAlertsEnabled) {
       // Heuristics for auto tts.
       // * In case this is an integer.
-      ttsText = ttsText.toString();
+      TriggerHelper.TTSText = TriggerHelper.TTSText.toString();
       // * Remove a bunch of chars.
-      ttsText = ttsText.replace(/[#!]/g, '');
+      TriggerHelper.TTSText = TriggerHelper.TTSText.replace(/[#!]/g, '');
       // * slashes between mechanics
-      ttsText = ttsText.replace('/', ' ');
+      TriggerHelper.TTSText = TriggerHelper.TTSText.replace('/', ' ');
       // * arrows helping visually simple to understand e.g. ↖ Front left / Back right ↘
-      ttsText = ttsText.replace(/[↖-↙]/g, '');
+      TriggerHelper.TTSText = TriggerHelper.TTSText.replace(/[↖-↙]/g, '');
       // * Korean TTS reads wrong with '1번째'
-      ttsText = ttsText.replace('1번째', '첫번째');
+      TriggerHelper.TTSText = TriggerHelper.TTSText.replace('1번째', '첫번째');
       // * arrows at the front or the end are directions, e.g. "east =>"
-      ttsText = ttsText.replace(/[-=]>\s*$/g, '');
-      ttsText = ttsText.replace(/^\s*<[-=]/g, '');
+      TriggerHelper.TTSText = TriggerHelper.TTSText.replace(/[-=]>\s*$/g, '');
+      TriggerHelper.TTSText = TriggerHelper.TTSText.replace(/^\s*<[-=]/g, '');
       // * arrows in the middle are a sequence, e.g. "in => out => spread"
       let lang = this.options.AlertsLanguage || this.options.Language || 'en';
       let arrowReplacement = {
@@ -690,19 +698,18 @@ class PopupText {
         ja: 'や',
         ko: ' 그리고 ',
       };
-      ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
-      this.ttsSay(ttsText);
+      TriggerHelper.TTSText = TriggerHelper.TTSText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
+      this.ttsSay(TriggerHelper.TTSText);
     } else if (TriggerHelper.SoundUrl && TriggerHelper.SoundAlertsEnabled) {
       this._PlayAudioFile(TriggerHelper.SoundUrl, TriggerHelper.SoundVol);
     }
   }
 
   _OnTriggerInternal_Run(TriggerHelper) {
+    if ('run' in TriggerHelper.Trigger)
+      TriggerHelper.Trigger.run(this.data, TriggerHelper.Matches);
   }
 
-  _ScheduleTrigger(promiseThenTrigger, delay) {
-    this.timers.push(window.setTimeout(promiseThenTrigger, delay * 1000));
-  }
   _AddText(container, e) {
     container.appendChild(e);
     if (container.children.length > this.kMaxRowsOfText)
@@ -724,7 +731,7 @@ class PopupText {
         this._ScheduleRemoveText(holder, div,
             (TriggerHelper.Duration.FromTrigger || TriggerHelper.Duration[TextType]));
 
-        if (!TriggerHelper.soundUrl) {
+        if (!TriggerHelper.SoundUrl) {
           TriggerHelper.SoundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
           TriggerHelper.SoundVol = this.options[UpperTextType.split('T')[0] + 'SoundVolume'];
         }
