@@ -20,7 +20,7 @@ class RaidEmulatorPopupText extends PopupText {
         if (remaining > 0) {
           return true;
         } else {
-          t.Promise();
+          t.Resolver();
           return false;
         }
       });
@@ -54,39 +54,44 @@ class RaidEmulatorPopupText extends PopupText {
     });
   }
 
-  _AddTextFor(TextType, triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction) {
+  _AddTextFor(TextType, TriggerHelper) {
     let UpperTextType = TextType[0].toUpperCase() + TextType.slice(1);
-    let textObj = triggerOptions[UpperTextType] || trigger[TextType] || response[TextType];
+    let textObj = TriggerHelper.TriggerOptions[UpperTextType] || TriggerHelper.Trigger[TextType] || TriggerHelper.Response[TextType];
     if (textObj) {
-      let text = ValueOrFunction(textObj);
-      SoundOptions.defaultTTSText = SoundOptions.defaultTTSText || text;
-      if (text && SoundOptions.showText) {
+      let text = TriggerHelper.ValueOrFunction(textObj);
+      TriggerHelper.DefaultTTSText = TriggerHelper.DefaultTTSText || text;
+      if (text && TriggerHelper.TextAlertsEnabled) {
         text = triggerUpperCase(text);
         let div = this._MakeTextElement(text, TextType.split('T')[0] + '-text');
-        this.AddDisplayText(div, this.emulatedOffset + ((duration.fromTrigger || duration[TextType]) * 1000));
+        this.AddDisplayText(div, this.emulatedOffset + ((TriggerHelper.Duration.FromTrigger || TriggerHelper.Duration[TextType]) * 1000));
 
-        if (!SoundOptions.soundUrl) {
-          SoundOptions.soundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
-          SoundOptions.soundVol = this.options[UpperTextType.split('T')[0] + 'SoundVolume'];
+        if (!TriggerHelper.SoundUrl) {
+          TriggerHelper.SoundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
+          TriggerHelper.SoundVol = this.options[UpperTextType.split('T')[0] + 'SoundVolume'];
         }
       }
     }
   }
 
-  _ScheduleTrigger(promiseThenTrigger, delay) {
+  _OnTriggerInternal_DelaySeconds(TriggerHelper) {
+    let delay = 'delaySeconds' in TriggerHelper.Trigger ? TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.delaySeconds) : 0;
+    let resolver;
+    let ret = new Promise((res) => { resolver = res; });
     this.ScheduledTriggers.push({
-      Expires: this.emulatedOffset + delay,
-      Promise: promiseThenTrigger,
+      Expires: this.emulatedOffset + (delay * 1000),
+      Promise: ret,
+      Resolver: resolver,
     });
+    return ret;
   }
 
-  _PlayAudioFile(SoundOptions) {
+  _PlayAudioFile(URL, Volume) {
     if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
-        .includes(SoundOptions.soundUrl)) {
-      let div = this._MakeTextElement(SoundOptions.soundUrl, 'audio-file');
+        .includes(URL)) {
+      let div = this._MakeTextElement(URL, 'audio-file');
       this.AddDisplayText(div, this.emulatedOffset + 2000);
     }
-    super._PlayAudioFile(SoundOptions);
+    super._PlayAudioFile(URL, Volume);
   }
   ttsSay(ttsText) {
     let div = this._MakeTextElement(ttsText, 'tts-text');
