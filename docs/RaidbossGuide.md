@@ -189,6 +189,7 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 - soundVolume
 - response
 - alarmText
+- alertText
 - infoText
 - groupTTS
 - tts
