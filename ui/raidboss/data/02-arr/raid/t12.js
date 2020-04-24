@@ -81,7 +81,7 @@
       infoText: {
         en: 'Blackfire Spread',
         de: 'Schwarzfeuer verteilen',
-        fr: 'Flamme noire, écartez-vous',
+        fr: 'Flamme noire, dispersez-vous',
         cn: '黑火分散',
       },
     },

@@ -25,6 +25,7 @@
       alertText: {
         en: 'Shields and Mitigation',
         de: 'Schilde und Abschwächungen',
+        fr: 'Boucliers et mitigation',
         cn: '切盾减伤',
       },
     },
@@ -38,6 +39,7 @@
       infoText: {
         en: 'Pop Eurekan Potions',
         de: 'Eureka-Heiltränke benutzen',
+        fr: 'Utilisez potion d\'Eurêka',
         cn: '磕优雷卡回复药',
       },
     },
@@ -50,6 +52,7 @@
       infoText: {
         en: 'Black Hole Soon',
         de: 'Schwarzes Loch',
+        fr: 'Trou noir bientôt',
         cn: '黑洞警告',
       },
     },
@@ -64,7 +67,7 @@
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
-        fr: 'REVEILLES TOI',
+        fr: 'RÉVEILLES-TOI',
         cn: '醒醒！动一动！！',
       },
     },
@@ -168,6 +171,7 @@
         return {
           en: 'Orb on YOU',
           de: 'Orb auf DIR',
+          fr: 'Orbe sur VOUS',
           cn: '点名',
         };
       },
@@ -177,6 +181,7 @@
         return {
           en: 'Away From Orb Marker',
           de: 'Weg vom Orb-Marker',
+          fr: 'Éloignez-vous du marquage Orbe',
           cn: '远离点名',
         };
       },
@@ -244,6 +249,7 @@
       infoText: {
         en: 'Under Spears',
         de: 'Unter einen Speer',
+        fr: 'En dessous des lances',
         cn: '枪脚下',
       },
     },
@@ -287,11 +293,13 @@
       alertText: {
         en: 'Get to Ice',
         de: 'Geh zum Eis',
+        fr: 'Allez à la glace',
         cn: '冰',
       },
       infoText: {
         en: 'Switch Magia',
         de: 'Magia-Brett drehen',
+        fr: 'Changez de Magia',
         cn: '切换元素板',
       },
     },
@@ -306,11 +314,13 @@
       alertText: {
         en: 'Get to Fire',
         de: 'Geh zum Feuer',
+        fr: 'Allez au feu',
         cn: '火',
       },
       infoText: {
         en: 'Switch Magia',
         de: 'Magia-Brett drehen',
+        fr: 'Changez de Magia',
         cn: '切换元素板',
       },
     },
@@ -466,6 +476,7 @@
       infoText: {
         en: 'Dark Bracelets',
         de: 'Dunkle Armreife',
+        fr: 'Bracelets sombres',
         cn: '黑光环',
       },
       run: function(data) {
@@ -486,6 +497,7 @@
       infoText: {
         en: 'Light Bracelets',
         de: 'Helle Armreife',
+        fr: 'Bracelets lumineux',
         cn: '白光环',
       },
       run: function(data) {
@@ -509,6 +521,7 @@
             return {
               en: 'Away From Light Circles',
               de: 'Weg von hellen Kreisen',
+              fr: 'Éloignez-vous des cercles lumineux',
               cn: '远离白圈',
             };
           }
@@ -516,6 +529,7 @@
             return {
               en: 'Away From Dark Circles',
               de: 'Weg von dunklen Kreisen',
+              fr: 'Éloignez-vous des cercles sombres',
               cn: '远离黑圈',
             };
           }
@@ -525,6 +539,7 @@
           return {
             en: 'Stand By Dark Circles',
             de: 'Zu den dunklen Kreisen',
+            fr: 'Tenez-vous près des cercles sombres',
             cn: '靠近黑圈',
           };
         }
@@ -532,6 +547,7 @@
           return {
             en: 'Stand By Light Circles',
             de: 'zu den hellen Kreisen',
+            fr: 'Tenez-vous près des cercles lumineux',
             cn: '靠近白圈',
           };
         }
@@ -556,6 +572,7 @@
           return {
             en: 'Dark',
             de: 'Dunkel',
+            fr: 'Sombre',
             cn: '黑',
           };
         }
@@ -563,6 +580,7 @@
           return {
             en: 'Light',
             de: 'Hell',
+            fr: 'Lumière',
             cn: '白',
           };
         }
@@ -617,6 +635,7 @@
           return {
             en: 'Dark',
             de: 'Dunkel',
+            fr: 'Sombre',
             cn: '黑',
           };
         }
@@ -624,6 +643,7 @@
           return {
             en: 'Light',
             de: 'Hell',
+            fr: 'Lumière',
             cn: '白',
           };
         }
@@ -643,6 +663,7 @@
       infoText: {
         en: 'Orbs to Opposite Colors',
         de: 'Kugeln zu umgekehrter Farbe',
+        fr: 'Orbes aux couleurs opposées',
         cn: '连线去相反颜色',
       },
     },
@@ -678,6 +699,7 @@
         return {
           en: 'Black Hole ' + data.blackHoleCount + ' / 6',
           de: 'Schwarzes Loch ' + data.blackHoleCount + ' / 6',
+          fr: 'Trou noir ' + data.blackHoleCount + ' / 6',
           cn: '黑洞 ' + data.blackHoleCount + ' / 6',
         };
       },
@@ -685,6 +707,7 @@
         return {
           en: 'Black Hole ' + data.blackHoleCount,
           de: 'Schwarzes Loch ' + data.blackHoleCount,
+          fr: 'Trou noir ' + data.blackHoleCount,
           cn: '黑洞 ' + data.blackHoleCount,
         };
       },
@@ -708,6 +731,7 @@
       alertText: {
         en: 'Off the Platform',
         de: 'Weg von der Fläche',
+        fr: 'Hors de la plateforme',
         cn: '远离平台',
       },
     },
@@ -726,6 +750,7 @@
       infoText: {
         en: 'Spread for Bleed',
         de: 'Blutung verteilen',
+        fr: 'Dispersez-vous pour le saignement',
         cn: '分散',
       },
     },
@@ -743,6 +768,7 @@
       alertText: {
         en: 'Go Far',
         de: 'Weit weg',
+        fr: 'Allez loin',
         cn: '远离',
       },
     },
@@ -765,12 +791,14 @@
           return {
             en: 'Stack (if not tanking)',
             de: 'Stack (wenn nicht am tanken)',
+            fr: 'Packez-vous (sauf les tanks)',
             cn: '集合（如果没在坦怪）',
           };
         }
         return {
           en: 'Stack Up',
           de: 'Stacken',
+          fr: 'Packez-vous',
           cn: '集合',
         };
       },
@@ -789,6 +817,7 @@
       alertText: {
         en: 'Get Close',
         de: 'Nah dran',
+        fr: 'Rapprochez-vous',
         cn: '靠近',
       },
     },
@@ -811,6 +840,7 @@
           return {
             en: 'Offtanks Get Orbs',
             de: 'Offtanks holt Kugeln',
+            fr: 'Offtanks prenez les orbes',
             cn: 'ST撞球',
           };
         }
@@ -820,6 +850,7 @@
           return {
             en: 'Stack Away From Tank',
             de: 'Weg vom Tank stacken',
+            fr: 'Packez-vous loin du tank',
             cn: '远离坦克集合',
           };
         }
@@ -840,6 +871,7 @@
       alertText: {
         en: 'Get Off',
         de: 'Weg da',
+        fr: 'Descendez',
         cn: '远离平台',
       },
     },
@@ -858,6 +890,7 @@
       alertText: {
         en: 'Get Close',
         de: 'Nah dran',
+        fr: 'Rapprochez-vous',
         cn: '靠近',
       },
     },
@@ -876,6 +909,7 @@
       alertText: {
         en: 'Go Far',
         de: 'Weit weg',
+        fr: 'Allez loin',
         cn: '远离',
       },
     },
@@ -1032,14 +1066,14 @@
       'replaceText': {
         'Acallam Na Senorach': 'Spirale sépulcrale',
         'Acceleration Bomb': 'Bombe accélératrice',
-        'Adds': 'Adds', // FIXME
+        'Adds': 'Adds',
         'Ame-no-Sakahoko': 'Ama-no-sakahoko',
         'Astral Essence': 'Bras de Lumière',
         'Auroral Wind': 'Vent d\'aurore',
         'Berserk': 'Furie',
         'Bitter Barbs': 'Ronce du péché',
         'Black Hole': 'Trou noir',
-        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Bleed Attack': 'Attaque saignement',
         'Booming Lament': 'Tonnerre du regret',
         'Call Wyvern': 'Appel de wyverne',
         'Carver/Spinner': 'Carver/Spinner', // FIXME
@@ -1068,7 +1102,7 @@
         'Meteor': 'Météore',
         'Mourning Star': 'Étoile du matin',
         'Mythcall': 'Invitation fantasmagorique',
-        'Orb x5': 'Orb x5', // FIXME
+        'Orb x5': 'Orbe x5',
         'Ozma Ability': 'Ozma Ability', // FIXME
         'Piercing Dark': 'Lance des ténèbres',
         'Piercing Light': 'Lance de lumière',

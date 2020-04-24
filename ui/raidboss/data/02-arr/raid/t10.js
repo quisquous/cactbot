@@ -114,8 +114,6 @@
         'The Alpha Concourse': 'secteur des croyants',
       },
       'replaceText': {
-        '1x Son / 1x Daughter Adds': 'Adds 1x Fils / 1x Fille',
-        '2x Son / 2x Daughter Adds': 'Adds 2x Fils / 2x Fille',
         'Crackle Hiss': 'Crachat crépitant',
         'Critical Rip': 'Griffure critique',
         'Cyclonic Chaos': 'Chaos cyclonique',
@@ -123,6 +121,8 @@
         'Electrocharge': 'Charge électrique',
         'Heat Lightning': 'Éclair de chaleur',
         'Random \\+ Charge': 'Aléatoire + Charge',
+        '1x Son / 1x Daughter Adds': 'Adds 1x Fils / 1x Fille',
+        '2x Son / 2x Daughter Adds': 'Adds 2x Fils / 2x Fille',
         'Spike Flail': 'Fléau à pointes',
         'Wild Charge': 'Charge sauvage',
       },
