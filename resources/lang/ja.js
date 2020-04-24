@@ -81,7 +81,7 @@ class CactbotLanguageJa extends CactbotLanguage {
 
     this.kUIStrings = Object.freeze({
       // jobs: text on the pull countdown.
-      Pull: 'Pull',
+      Pull: 'タゲ取る',
     });
 
     this.countdownStartRegex = function() {
