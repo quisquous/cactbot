@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /Eureka Anemos/,
     cn: /常风之地/,
+    ko: /^금단의 땅 에우레카: 아네모스편$/,
   },
   resetWhenOutOfCombat: false,
   triggers: [
@@ -20,12 +21,14 @@
         de: 'Stimme Des Drachen',
         fr: 'Voix du dragon',
         cn: '雷电咆哮',
+        ko: '뇌전의 포효',
       },
       tts: {
         en: 'Dragon\'s Voice',
         de: 'drache',
         fr: 'Voix du dragon',
         cn: '雷电咆哮',
+        ko: '뇌전의 포효',
       },
     },
     {
@@ -51,6 +54,7 @@
         de: 'Hieb',
         fr: 'Fauche',
         cn: '横扫',
+        ko: '휘두르기',
       },
     },
     {
@@ -91,6 +95,7 @@
         de: 'Blick Laser',
         fr: 'Regard laser',
         cn: '怒视',
+        ko: '광선',
       },
     },
     {
@@ -208,6 +213,7 @@
           de: 'Geister: ' + data.wraithCount,
           fr: 'spectres: ' + data.wraithCount,
           cn: '幽灵击杀: ' + data.wraithCount,
+          ko: '망령: ' + data.wraithCount,
         };
       },
     },
@@ -229,11 +235,13 @@
       regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen.', capture: false }),
       regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes', capture: false }),
       regexCn: Regexes.gameLog({ line: '已经5分钟没有进行任何操作', capture: false }),
+      regexKo: Regexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다.', capture: false }),
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
         fr: 'RÉVEILLES-TOI',
         cn: '醒醒！动一动！！',
+        ko: '강제 퇴장 5분 전',
       },
     },
   ],
