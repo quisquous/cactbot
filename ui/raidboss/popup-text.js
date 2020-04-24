@@ -205,12 +205,15 @@ class PopupText {
             console.log('Loading user triggers for zone');
         }
         // Adjust triggers for the locale.
-        if (set.triggers) {
-          for (let j = 0; j < set.triggers.length; ++j) {
+        if (set.triggers && this.options.AlertsEnabled) {
+          // Filter out disabled triggers
+          let enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
+
+          for (let j = 0; j < enabledTriggers.length; ++j) {
             // Add an additional resolved regex here to save
             // time later.  This will clobber each time we
             // load this, but that's ok.
-            let trigger = set.triggers[j];
+            let trigger = enabledTriggers[j];
             trigger.filename = set.filename;
 
             if (!trigger.regex)
@@ -224,9 +227,11 @@ class PopupText {
             }
             trigger.localRegex = Regexes.parse(regex);
           }
+
+          // Save the triggers from each set that matches.
+          this.triggers.push(...enabledTriggers);
         }
-        // Save the triggers from each set that matches.
-        Array.prototype.push.apply(this.triggers, set.triggers);
+
         // And set the timeline files/timelines from each set that matches.
         if (set.timelineFile) {
           if (set.filename) {
@@ -239,11 +244,11 @@ class PopupText {
         if (set.timeline)
           addTimeline(set.timeline);
         if (set.timelineReplace)
-          Array.prototype.push.apply(replacements, set.timelineReplace);
+          replacements.push(...set.timelineReplace);
         if (set.timelineTriggers)
-          Array.prototype.push.apply(timelineTriggers, set.timelineTriggers);
+          timelineTriggers.push(...set.timelineTriggers);
         if (set.timelineStyles)
-          Array.prototype.push.apply(timelineStyles, set.timelineStyles);
+          timelineStyles.push(...set.timelineStyles);
         if (set.resetWhenOutOfCombat !== undefined)
           this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
       }
@@ -361,9 +366,9 @@ class PopupText {
   }
 
   OnTriggerInternal(trigger, matches) {
-    if (!this.options.AlertsEnabled)
-      return;
-    if ('disabled' in trigger && trigger.disabled)
+    let now = +new Date();
+
+    if (!this._OnTriggerInternal_CheckSuppressed(trigger, now))
       return;
 
     // If using named groups, treat matches.groups as matches
@@ -371,221 +376,228 @@ class PopupText {
     if ((matches != undefined) && (matches.groups != undefined))
       matches = matches.groups;
 
-    let now = +new Date();
+    // Set up a helper object so we don't have to throw
+    // a ton of info back and forth between subfunctions
+    let TriggerHelper = this._OnTriggerInternal_GetHelper(trigger, matches, now);
+
+    if (!this._OnTriggerInternal_Condition(TriggerHelper))
+      return;
+
+    this._OnTriggerInternal_PreRun(TriggerHelper);
+
+    // Evaluate for delay here, but run delay later
+    let DelayPromise = this._OnTriggerInternal_DelaySeconds(TriggerHelper);
+    this._OnTriggerInternal_DurationSeconds(TriggerHelper);
+    this._OnTriggerInternal_SuppressSeconds(TriggerHelper);
+
+    DelayPromise.then(() => {
+      this._OnTriggerInternal_Promise(TriggerHelper).then(() => {
+        this._OnTriggerInternal_Sound(TriggerHelper);
+        this._OnTriggerInternal_SoundVolume(TriggerHelper);
+        this._OnTriggerInternal_Response(TriggerHelper);
+        this._OnTriggerInternal_AlarmText(TriggerHelper);
+        this._OnTriggerInternal_AlertText(TriggerHelper);
+        this._OnTriggerInternal_InfoText(TriggerHelper);
+        this._OnTriggerInternal_GroupTTS(TriggerHelper);
+        this._OnTriggerInternal_TTS(TriggerHelper);
+        this._OnTriggerInternal_PlayAudio(TriggerHelper);
+        this._OnTriggerInternal_Run(TriggerHelper);
+      });
+    });
+  }
+
+  // Build a default TriggerHelper object for this trigger
+  _OnTriggerInternal_GetHelper(trigger, matches, now) {
+    let TriggerHelper;
+    // Separate the creation and assignment to let the ValueOrFunction method work properly
+    TriggerHelper = {
+      Trigger: trigger,
+      Now: now,
+      ValueOrFunction: (f) => {
+        let result = (typeof (f) == 'function') ? f(this.data, TriggerHelper.Matches) : f;
+        // All triggers return either a string directly, or an object
+        // whose keys are different locale names.  For simplicity, this is
+        // valid to do for any trigger entry that can handle a function.
+        // In case anybody wants to encapsulate any fancy grammar, the values
+        // in this object can also be functions.
+        if (result !== Object(result))
+          return result;
+        let lang = this.options.AlertsLanguage || this.options.Language || 'en';
+        if (result[lang])
+          return TriggerHelper.ValueOrFunction(result[lang]);
+        // For partially localized results where this localization doesn't
+        // exist, prefer English over nothing.
+        return TriggerHelper.ValueOrFunction(result['en']);
+      },
+      TriggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
+      TriggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
+      // This setting onyl suppresses output, trigger still runs for data/logic purposes
+      UserSuppressedOutput: trigger.id && this.options.DisabledTriggers[trigger.id],
+      Matches: matches,
+      Response: undefined,
+      // Default options
+      SoundUrl: undefined,
+      SoundVol: undefined,
+      TriggerSoundVol: undefined,
+      DefaultTTSText: undefined,
+      TextAlertsEnabled: this.options.TextAlertsEnabled,
+      SoundAlertsEnabled: this.options.SoundAlertsEnabled,
+      SpokenAlertsEnabled: this.options.SpokenAlertsEnabled,
+      GroupSpokenAlertsEnabled: this.options.GroupSpokenAlertsEnabled,
+      Duration: undefined,
+      TTSText: undefined,
+    };
+
+    this._OnTriggerInternal_HelperDefaults(TriggerHelper);
+
+    return TriggerHelper;
+  }
+
+  _OnTriggerInternal_CheckSuppressed(trigger, when) {
     if (trigger.id && trigger.id in this.triggerSuppress) {
-      if (this.triggerSuppress[trigger.id] > now)
-        return;
+      if (this.triggerSuppress[trigger.id] > when)
+        return false;
 
       delete this.triggerSuppress[trigger.id];
     }
+    return true;
+  }
 
-    let triggerOptions = trigger.id && this.options.PerTriggerOptions[trigger.id] || {};
-    let triggerAutoConfig = trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {};
-
-    let condition = triggerOptions.Condition || trigger.condition;
+  _OnTriggerInternal_Condition(TriggerHelper) {
+    let condition = TriggerHelper.TriggerOptions.Condition || TriggerHelper.Trigger.condition;
     if (condition) {
-      if (!condition(this.data, matches))
+      if (!condition(this.data, TriggerHelper.Matches))
         return;
     }
+  }
 
-    if ('preRun' in trigger)
-      trigger.preRun(this.data, matches);
-
-    let ValueOrFunction = (f) => {
-      let result = (typeof (f) == 'function') ? f(this.data, matches) : f;
-      // All triggers return either a string directly, or an object
-      // whose keys are different locale names.  For simplicity, this is
-      // valid to do for any trigger entry that can handle a function.
-      // In case anybody wants to encapsulate any fancy grammar, the values
-      // in this object can also be functions.
-      if (result !== Object(result))
-        return result;
-      let lang = this.options.AlertsLanguage || this.options.Language || 'en';
-      if (result[lang])
-        return ValueOrFunction(result[lang]);
-      // For partially localized results where this localization doesn't
-      // exist, prefer English over nothing.
-      return ValueOrFunction(result['en']);
-    };
-
-    let SoundOptions = {
-      soundUrl: ValueOrFunction(trigger.sound),
-      soundVol: 1,
-      defaultTTSText: undefined,
-      playSpeech: this.options.SpokenAlertsEnabled,
-      playGroupSpeech: this.options.GroupSpokenAlertsEnabled,
-      playSounds: this.options.SoundAlertsEnabled,
-      showText: this.options.TextAlertsEnabled,
-    };
-
-    let userDisabled = trigger.id && this.options.DisabledTriggers[trigger.id];
-    let delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds) : 0;
-    let suppress = 'suppressSeconds' in trigger ? ValueOrFunction(trigger.suppressSeconds) : 0;
-    if (trigger.id && suppress > 0)
-      this.triggerSuppress[trigger.id] = now + suppress * 1000;
-
-    // FIXME: this is quite gross that PerTriggerOptions does not use the same fields as
-    // options.  Ideally we should smush everything down into a single trigger object.
-    // Auto config here has a separate property mostly as a convenience to users who
-    // most likely will redefine it, clobbering settings from the config tool.
-    // Ideally, these would be the same.
-    if (triggerAutoConfig) {
-      if ('SpokenAlertsEnabled' in triggerAutoConfig)
-        SoundOptions.playSpeech = triggerAutoConfig.SpokenAlertsEnabled;
-      if ('SoundAlertsEnabled' in triggerAutoConfig)
-        SoundOptions.playSounds = triggerAutoConfig.SoundAlertsEnabled;
-      if ('TextAlertsEnabled' in triggerAutoConfig)
-        SoundOptions.showText = triggerAutoConfig.TextAlertsEnabled;
+  // Set defaults for TriggerHelper object (anything that won't change based on
+  // other trigger functions running)
+  _OnTriggerInternal_HelperDefaults(TriggerHelper) {
+    if (TriggerHelper.TriggerAutoConfig) {
+      if ('TextAlertsEnabled' in TriggerHelper.TriggerAutoConfig)
+        TriggerHelper.TextAlertsEnabled = TriggerHelper.TriggerAutoConfig.TextAlertsEnabled;
+      if ('SoundAlertsEnabled' in TriggerHelper.TriggerAutoConfig)
+        TriggerHelper.SoundAlertsEnabled = TriggerHelper.TriggerAutoConfig.SoundAlertsEnabled;
+      if ('SpokenAlertsEnabled' in TriggerHelper.TriggerAutoConfig)
+        TriggerHelper.SpokenAlertsEnabled = TriggerHelper.TriggerAutoConfig.SpokenAlertsEnabled;
     }
 
-    if (triggerOptions) {
-      if ('GroupSpeechAlert' in triggerOptions)
-        SoundOptions.playGroupSpeech = triggerOptions.GroupSpeechAlert;
-      if ('SpeechAlert' in triggerOptions)
-        SoundOptions.playSpeech = triggerOptions.SpeechAlert;
-      if ('SoundAlert' in triggerOptions)
-        SoundOptions.playSounds = triggerOptions.SoundAlert;
-      if ('TextAlert' in triggerOptions)
-        SoundOptions.showText = triggerOptions.TextAlert;
+    if (TriggerHelper.TriggerOptions) {
+      if ('TextAlert' in TriggerHelper.TriggerOptions)
+        TriggerHelper.TextAlertsEnabled = TriggerHelper.TriggerOptions.TextAlert;
+      if ('SoundAlert' in TriggerHelper.TriggerOptions)
+        TriggerHelper.SoundAlertsEnabled = TriggerHelper.TriggerOptions.SoundAlert;
+      if ('SpeechAlert' in TriggerHelper.TriggerOptions)
+        TriggerHelper.SpokenAlertsEnabled = TriggerHelper.TriggerOptions.SpeechAlert;
+      if ('GroupSpeechAlert' in TriggerHelper.TriggerOptions)
+        TriggerHelper.GroupSpokenAlertsEnabled = TriggerHelper.TriggerOptions.GroupSpeechAlert;
     }
 
-    if (userDisabled) {
-      SoundOptions.playSpeech = false;
-      SoundOptions.playGroupSpeech = false;
-      SoundOptions.playSounds = false;
-      SoundOptions.showText = false;
+    if (TriggerHelper.UserSuppressedOutput) {
+      TriggerHelper.TextAlertsEnabled = false;
+      TriggerHelper.SoundAlertsEnabled = false;
+      TriggerHelper.SpokenAlertsEnabled = false;
+      TriggerHelper.GroupSpokenAlertsEnabled = false;
     }
     if (!this.options.audioAllowed) {
-      SoundOptions.playSpeech = false;
-      SoundOptions.playGroupSpeech = false;
-      SoundOptions.playSounds = false;
+      TriggerHelper.SoundAlertsEnabled = false;
+      TriggerHelper.SpokenAlertsEnabled = false;
+      TriggerHelper.GroupSpokenAlertsEnabled = false;
     }
+  }
 
-    let promiseThenTrigger = () => {
-      // Put the resolution of the `promise` field inside this function so that
-      // It occurs after delaySeconds.
-      let promise = null;
-      if ('promise' in trigger) {
-        if (typeof trigger.promise === 'function') {
-          promise = trigger.promise(this.data, matches);
-          // Make sure we actually get a Promise back from the function
-          if (Promise.resolve(promise) !== promise) {
-            console.error('Trigger ' + trigger.id + ': promise function did not return a promise');
-            promise = null;
-          }
-        } else {
-          console.error('Trigger ' + trigger.id + ': promise defined but not a function');
-        }
-      }
+  _OnTriggerInternal_PreRun(TriggerHelper) {
+    if ('preRun' in TriggerHelper.Trigger)
+      TriggerHelper.Trigger.preRun(this.data, matches);
+  }
 
-      let runTriggerBody = () => {
-        try {
-          // If sound is specified it overrides alarm/alert/info sounds.
-          // Otherwise, if multiple alarm/alert/info are specified
-          // it will pick one sound in the order of alarm > alert > info.
-          let response = {};
-          if (trigger.response) {
-            // Can't use ValueOrFunction here as r returns a non-localizable object.
-            let r = trigger.response;
-            response = (typeof (r) == 'function') ? r(this.data, matches) : r;
-          }
 
-          this._HandleTriggerText(triggerOptions, trigger, response,
-              SoundOptions, ValueOrFunction);
-          this._HandleTriggerAudio(triggerOptions, trigger, response,
-              SoundOptions, ValueOrFunction);
-
-          if ('run' in trigger)
-            trigger.run(this.data, matches);
-        } catch (e) {
-          onTriggerException(trigger, e);
-        }
-      };
-
-      // Only if there is a promise, run the trigger asynchronously.
-      // Otherwise, run it immediately.  Otherwise, multiple triggers
-      // might run their condition/preRun prior to all of the alerts.
-      if (promise)
-        promise.then(runTriggerBody);
+  _OnTriggerInternal_DelaySeconds(TriggerHelper) {
+    // @TODO: Cancel this when StopTimers is called
+    let delay = 'delaySeconds' in TriggerHelper.Trigger ? TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.delaySeconds) : 0;
+    return new Promise((res) => {
+      if (delay > 0)
+        window.setTimeout(res, delay * 1000);
       else
-        runTriggerBody();
-    };
-
-    // Run immediately?
-    if (!delay) {
-      promiseThenTrigger();
-      return;
-    }
-
-    this._ScheduleTrigger(promiseThenTrigger, delay);
+        res();
+    });
   }
 
-  _ScheduleTrigger(promiseThenTrigger, delay) {
-    this.timers.push(window.setTimeout(promiseThenTrigger, delay * 1000));
-  }
-  _AddText(container, e) {
-    container.appendChild(e);
-    if (container.children.length > this.kMaxRowsOfText)
-      container.removeChild(container.children[0]);
-  }
-
-  _AddTextFor(TextType, triggerOptions, trigger, response,
-      duration, SoundOptions, ValueOrFunction) {
-    let UpperTextType = TextType[0].toUpperCase() + TextType.slice(1);
-    let textObj = triggerOptions[UpperTextType] || trigger[TextType] || response[TextType];
-    if (textObj) {
-      let text = ValueOrFunction(textObj);
-      SoundOptions.defaultTTSText = SoundOptions.defaultTTSText || text;
-      if (text && SoundOptions.showText) {
-        text = triggerUpperCase(text);
-        let holder = this[TextType].getElementsByClassName('holder')[0];
-        let div = this._MakeTextElement(text, TextType.split('T')[0] + '-text');
-        this._AddText(holder, div);
-        this._ScheduleRemoveText(holder, div, (duration.fromTrigger || duration[TextType]));
-
-        if (!SoundOptions.soundUrl) {
-          SoundOptions.soundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
-          SoundOptions.soundVol = this.options[UpperTextType.split('T')[0] + 'SoundVolume'];
-        }
-      }
-    }
-  }
-
-  _MakeTextElement(text, className) {
-    let div = document.createElement('div');
-    div.classList.add(className);
-    div.classList.add('animate-text');
-    div.innerText = text;
-    return div;
-  }
-
-  _ScheduleRemoveText(container, e, delay) {
-    window.setTimeout(() => {
-      for (let i = 0; i < container.children.length; ++i) {
-        if (container.children[i] == e) {
-          container.removeChild(e);
-          break;
-        }
-      }
-    }, delay * 1000);
-  }
-
-  _HandleTriggerText(triggerOptions, trigger, response, SoundOptions, ValueOrFunction) {
-    let duration = {
-      fromTrigger: ValueOrFunction(trigger.durationSeconds),
+  _OnTriggerInternal_DurationSeconds(TriggerHelper) {
+    TriggerHelper.Duration = TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.durationSeconds);
+    duration = {
+      FromTrigger: TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.durationSeconds),
       alarmText: this.options.DisplayAlarmTextForSeconds,
       alertText: this.options.DisplayAlertTextForSeconds,
       infoText: this.options.DisplayInfoTextForSeconds,
     };
-
-    this._AddTextFor('alarmText', triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction);
-    this._AddTextFor('alertText', triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction);
-    this._AddTextFor('infoText', triggerOptions, trigger, response, duration, SoundOptions, ValueOrFunction);
   }
 
-  _HandleTriggerAudio(triggerOptions, trigger, response, SoundOptions, ValueOrFunction) {
-    let triggerSoundVol = ValueOrFunction(trigger.soundVolume);
+  _OnTriggerInternal_SuppressSeconds(TriggerHelper) {
+    let suppress = 'suppressSeconds' in TriggerHelper.Trigger ? TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.suppressSeconds) : 0;
+    if (TriggerHelper.Trigger.id && suppress > 0)
+      this.triggerSuppress[TriggerHelper.Trigger.id] = TriggerHelper.Now + (suppress * 1000);
+  }
 
+  _OnTriggerInternal_Promise(TriggerHelper) {
+    let promise = null;
+    if ('promise' in TriggerHelper.Trigger) {
+      if (typeof TriggerHelper.Trigger.promise === 'function') {
+        promise = TriggerHelper.Trigger.promise(this.data, TriggerHelper.Matches);
+        // Make sure we actually get a Promise back from the function
+        if (Promise.resolve(promise) !== promise) {
+          console.error('Trigger ' + TriggerHelper.Trigger.id + ': promise function did not return a promise');
+          promise = null;
+        }
+      } else {
+        console.error('Trigger ' + TriggerHelper.Trigger.id + ': promise defined but not a function');
+      }
+    }
+    if (promise === null) {
+      promise = new Promise((res) => {
+        res();
+      });
+    }
+    return promise;
+  }
+
+  _OnTriggerInternal_Sound(TriggerHelper) {
+    TriggerHelper.SoundUrl = TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.sound);
+  }
+
+  _OnTriggerInternal_SoundVolume(TriggerHelper) {
+    TriggerHelper.TriggerSoundVol =
+      TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.soundVolume);
+  }
+
+  _OnTriggerInternal_Response(TriggerHelper) {
+    let response = {};
+    if (TriggerHelper.Trigger.response) {
+      // Can't use ValueOrFunction here as r returns a non-localizable object.
+      let r = TriggerHelper.Trigger.response;
+      response = (typeof (r) == 'function') ? r(this.data, TriggerHelper.Matches) : r;
+
+      // Turn falsy values into a default no-op response.
+      if (!response)
+        response = {};
+    }
+    TriggerHelper.Response = response;
+  }
+
+  _OnTriggerInternal_AlarmText(TriggerHelper) {
+    this._AddTextFor('alarmText', TriggerHelper);
+  }
+
+  _OnTriggerInternal_AlertText(TriggerHelper) {
+    this._AddTextFor('alertText', TriggerHelper);
+  }
+
+  _OnTriggerInternal_InfoText(TriggerHelper) {
+    this._AddTextFor('infoText', TriggerHelper);
+  }
+
+  _OnTriggerInternal_GroupTTS(TriggerHelper) {
     // Priority audio order:
     // * user disabled (play nothing)
     // * if tts options are enabled globally or for this trigger:
@@ -609,47 +621,51 @@ class PopupText {
     // being valid but empty, this will take priority over the default
     // tts texts from alarm/alert/info and will prevent tts from playing
     // and allowing sounds to be played instead.
-    let ttsText;
 
-    if (SoundOptions.playGroupSpeech) {
-      if ('GroupTTSText' in triggerOptions)
-        ttsText = ValueOrFunction(triggerOptions.GroupTTSText);
-      else if ('groupTTS' in trigger)
-        ttsText = ValueOrFunction(trigger.groupTTS);
-      else if ('groupTTS' in response)
-        ttsText = ValueOrFunction(response.groupTTS);
+    if (TriggerHelper.GroupSpokenAlertsEnabled) {
+      if ('GroupTTSText' in TriggerHelper.TriggerOptions)
+        TriggerHelper.TTSText = ValueOrFunction(TriggerHelper.TriggerOptions.GroupTTSText);
+      else if ('groupTTS' in TriggerHelper.Trigger)
+        TriggerHelper.TTSText = ValueOrFunction(TriggerHelper.Trigger.groupTTS);
+      else if ('groupTTS' in TriggerHelper.Response)
+        TriggerHelper.TTSText = ValueOrFunction(TriggerHelper.Response.groupTTS);
     }
+  }
 
-    if (!SoundOptions.playGroupSpeech || typeof ttsText === 'undefined') {
-      if ('TTSText' in triggerOptions)
-        ttsText = ValueOrFunction(triggerOptions.TTSText);
-      else if ('tts' in trigger)
-        ttsText = ValueOrFunction(trigger.tts);
-      else if ('tts' in response)
-        ttsText = ValueOrFunction(response.TTSText);
+  _OnTriggerInternal_TTS(TriggerHelper) {
+    if (!TriggerHelper.GroupSpokenAlertsEnabled || typeof TriggerHelper.TTSText === 'undefined') {
+      if ('TTSText' in TriggerHelper.TriggerOptions)
+        TriggerHelper.TTSText = ValueOrFunction(TriggerHelper.TriggerOptions.TTSText);
+      else if ('tts' in TriggerHelper.Trigger)
+        TriggerHelper.TTSText = ValueOrFunction(TriggerHelper.Trigger.tts);
+      else if ('tts' in TriggerHelper.Response)
+        TriggerHelper.TTSText = ValueOrFunction(TriggerHelper.Response.TTSText);
       else
-        ttsText = SoundOptions.defaultTTSText;
+        TriggerHelper.TTSText = TriggerHelper.DefaultTTSText;
     }
-    if (trigger.sound && SoundOptions.soundUrl) {
-      let namedSound = SoundOptions.soundUrl + 'Sound';
-      let namedSoundVolume = SoundOptions.soundUrl + 'SoundVolume';
+  }
+
+  _OnTriggerInternal_PlayAudio(TriggerHelper) {
+    if (TriggerHelper.Trigger.sound && TriggerHelper.SoundUrl) {
+      let namedSound = TriggerHelper.SoundUrl + 'Sound';
+      let namedSoundVolume = TriggerHelper.SoundUrl + 'SoundVolume';
       if (namedSound in this.options) {
-        SoundOptions.soundUrl = this.options[namedSound];
+        TriggerHelper.SoundUrl = this.options[namedSound];
         if (namedSoundVolume in this.options)
-          SoundOptions.soundVol = this.options[namedSoundVolume];
+          TriggerHelper.SoundVol = this.options[namedSoundVolume];
       }
     }
 
-    SoundOptions.soundUrl = triggerOptions.SoundOverride || SoundOptions.soundUrl;
-    SoundOptions.soundVol = triggerOptions.VolumeOverride ||
-        triggerSoundVol || SoundOptions.soundVol;
+    TriggerHelper.SoundUrl = TriggerHelper.TriggerOptions.SoundOverride || TriggerHelper.SoundUrl;
+    TriggerHelper.SoundVol = TriggerHelper.TriggerOptions.VolumeOverride ||
+      TriggerHelper.TriggerSoundVol || TriggerHelper.SoundVol;
 
     // Text to speech overrides all other sounds.  This is so
     // that a user who prefers tts can still get the benefit
     // of infoText triggers without tts entries by turning
     // on (speech=true, text=true, sound=true) but this will
     // not cause tts to play over top of sounds or noises.
-    if (ttsText && SoundOptions.playSpeech) {
+    if (ttsText && TriggerHelper.SpokenAlertsEnabled) {
       // Heuristics for auto tts.
       // * In case this is an integer.
       ttsText = ttsText.toString();
@@ -676,14 +692,68 @@ class PopupText {
       };
       ttsText = ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
       this.ttsSay(ttsText);
-    } else if (SoundOptions.soundUrl && SoundOptions.playSounds) {
-      this._PlayAudioFile(SoundOptions);
+    } else if (TriggerHelper.SoundUrl && TriggerHelper.SoundAlertsEnabled) {
+      this._PlayAudioFile(TriggerHelper.SoundUrl, TriggerHelper.SoundVol);
     }
   }
 
-  _PlayAudioFile(SoundOptions) {
-    let audio = new Audio(SoundOptions.soundUrl);
-    audio.volume = SoundOptions.soundVol;
+  _OnTriggerInternal_Run(TriggerHelper) {
+  }
+
+  _ScheduleTrigger(promiseThenTrigger, delay) {
+    this.timers.push(window.setTimeout(promiseThenTrigger, delay * 1000));
+  }
+  _AddText(container, e) {
+    container.appendChild(e);
+    if (container.children.length > this.kMaxRowsOfText)
+      container.removeChild(container.children[0]);
+  }
+
+  _AddTextFor(TextType, TriggerHelper) {
+    let UpperTextType = TextType[0].toUpperCase() + TextType.slice(1);
+    let textObj = TriggerHelper.TriggerOptions[UpperTextType] ||
+      TriggerHelper.Trigger[TextType] || TriggerHelper.Response[TextType];
+    if (textObj) {
+      let text = TriggerHelper.ValueOrFunction(textObj);
+      TriggerHelper.DefaultTTSText = TriggerHelper.DefaultTTSText || text;
+      if (text && TriggerHelper.TextAlertsEnabled) {
+        text = triggerUpperCase(text);
+        let holder = this[TextType].getElementsByClassName('holder')[0];
+        let div = this._MakeTextElement(text, TextType.split('T')[0] + '-text');
+        this._AddText(holder, div);
+        this._ScheduleRemoveText(holder, div,
+            (TriggerHelper.Duration.FromTrigger || TriggerHelper.Duration[TextType]));
+
+        if (!TriggerHelper.soundUrl) {
+          TriggerHelper.SoundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
+          TriggerHelper.SoundVol = this.options[UpperTextType.split('T')[0] + 'SoundVolume'];
+        }
+      }
+    }
+  }
+
+  _MakeTextElement(text, className) {
+    let div = document.createElement('div');
+    div.classList.add(className);
+    div.classList.add('animate-text');
+    div.innerText = text;
+    return div;
+  }
+
+  _ScheduleRemoveText(container, e, delay) {
+    window.setTimeout(() => {
+      for (let i = 0; i < container.children.length; ++i) {
+        if (container.children[i] == e) {
+          container.removeChild(e);
+          break;
+        }
+      }
+    }, delay * 1000);
+  }
+
+  _PlayAudioFile(URL, Volume) {
+    let audio = new Audio(URL);
+    audio.volume = Volume;
     audio.play();
   }
 
