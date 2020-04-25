@@ -84,24 +84,24 @@ class SeaBase {
 
     // find q2 (median)
     // we only need the index for the median
-    let q2_index = Math.floor(times.length / 2);
+    let q2Index = Math.floor(times.length / 2);
 
     // find q1 (median of first half)
-    let q1_index = Math.floor(q2_index / 2);
+    let q1Index = Math.floor(q2Index / 2);
 
-    if (q2_index % 2 || q2_index == 0)
-      q1 = times[q1_index];
+    if (q2Index % 2 || q2Index == 0)
+      q1 = times[q1Index];
     else
-      q1 = (times[q1_index] + times[q1_index - 1]) / 2;
+      q1 = (times[q1Index] + times[q1Index - 1]) / 2;
 
 
     // find q2 (median of second half)
-    let q3_index = q1_index + q2_index;
+    let q3Index = q1Index + q2Index;
 
-    if (q3_index % 2 || q2_index == 0)
-      q3 = times[q3_index];
+    if (q3Index % 2 || q2Index == 0)
+      q3 = times[q3Index];
     else
-      q3 = (times[q3_index] + times[q3_index - 1]) / 2;
+      q3 = (times[q3Index] + times[q3Index - 1]) / 2;
 
 
     let iqr = q3 - q1;

@@ -406,14 +406,14 @@ var Regexes = {
       Regexes.maybeCapture(capture, 'intelligence', f.intelligence, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'mind', f.mind, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'piety', f.piety, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'attackPower', f.attack_power, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'directHit', f.direct_hit, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'criticalHit', f.critical_hit, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'attackMagicPotency', f.attack_magic_potency, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'healMagicPotency', f.heal_magic_potency, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'attackPower', f.attackPower, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'directHit', f.directHit, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'criticalHit', f.criticalHit, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'attackMagicPotency', f.attackMagicPotency, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'healMagicPotency', f.healMagicPotency, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'determination', f.determination, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'skillSpeed', f.skill_speed, '\\d+') + ':' +
-      Regexes.maybeCapture(capture, 'spellSpeed', f.spell_speed, '\\d+') +
+      Regexes.maybeCapture(capture, 'skillSpeed', f.skillSpeed, '\\d+') + ':' +
+      Regexes.maybeCapture(capture, 'spellSpeed', f.spellSpeed, '\\d+') +
       ':0:' +
       Regexes.maybeCapture(capture, 'tenacity', f.tenacity, '\\d+');
     return Regexes.parse(str);

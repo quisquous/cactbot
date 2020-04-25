@@ -175,29 +175,29 @@ class TimerIcon extends HTMLElement {
     this._duration = 0;
     this._width = 64;
     this._height = 64;
-    this._border_bg = 'black';
-    this._border_fg = 'grey';
+    this._borderBg = 'black';
+    this._borderFg = 'grey';
     this._scale = 1;
-    this._hideafter = -1;
-    this._onhide = '';
+    this._hideAfter = -1;
+    this._onHide = '';
     this._icon = '';
     this._zoom = 20;
     this._text = 'remain';
-    this._textcolor = 'white';
-    this._color_border_size = 2;
+    this._textColor = 'white';
+    this._colorBorderSize = 2;
 
     if (this.duration != null) this._duration = Math.max(parseFloat(this.duration), 0);
     if (this.width != null) this._width = Math.max(parseInt(this.width), 1);
     if (this.height != null) this._height = Math.max(parseInt(this.height), 1);
-    if (this.bordercolor != null) this._border_fg = this.bordercolor;
-    if (this.bordersize != null) this._color_border_size = Math.max(parseInt(this.bordersize), 0);
+    if (this.bordercolor != null) this._borderFg = this.bordercolor;
+    if (this.bordersize != null) this._colorBorderSize = Math.max(parseInt(this.bordersize), 0);
     if (this.scale != null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.hideafter != null && this.hideafter != '') this._hideafter = Math.max(parseFloat(this.hideafter), 0);
-    if (typeof(this.onhide) !== 'undefined') this._onhide = this.onhide;
+    if (this.hideafter != null && this.hideafter != '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+    if (typeof(this.onhide) !== 'undefined') this._onHide = this.onhide;
     if (this.icon != null) this._icon = this.icon;
     if (this.zoom != null) this._zoom = Math.max(parseInt(this.zoom), 0);
     if (this.text != null) this._text = this.text;
-    if (this.textcolor != null) this._textcolor = this.textcolor;
+    if (this.textcolor != null) this._textColor = this.textcolor;
 
     this._connected = true;
     this.layout();
@@ -219,13 +219,13 @@ class TimerIcon extends HTMLElement {
       this._height = Math.max(parseInt(newValue), 1);
       this.layout();
     } else if (name == 'bordercolor') {
-      this._border_fg = newValue;
+      this._borderFg = newValue;
       this.layout();
     } else if (name == 'bordersize') {
-      this._color_border_size = Math.max(parseInt(newValue), 0);
+      this._colorBorderSize = Math.max(parseInt(newValue), 0);
       this.layout();
     } else if (name == 'onhide') {
-      this._onhide = newValue;
+      this._onHide = newValue;
     } else if (name == 'icon') {
       this._icon = newValue;
       this.layout();
@@ -235,7 +235,7 @@ class TimerIcon extends HTMLElement {
     } else if (name == 'text') {
       this._text = newValue;
     } else if (name == 'textcolor') {
-      this._textcolor = newValue;
+      this._textColor = newValue;
     }
 
 
@@ -252,50 +252,50 @@ class TimerIcon extends HTMLElement {
     let iconStyle = this.iconElement.style;
     let textStyle = this.textElement.style;
 
-    borderBackgroundStyle.backgroundColor = this._border_bg;
+    borderBackgroundStyle.backgroundColor = this._borderBg;
     borderBackgroundStyle.opacity = this.kBackgroundOpacity;
 
     borderBackgroundStyle.width = this._width * this._scale;
     borderBackgroundStyle.height = this._height * this._scale;
 
-    let borderPadding = this.kOuterBorderSize * 2 + this._color_border_size * 2;
+    let borderPadding = this.kOuterBorderSize * 2 + this._colorBorderSize * 2;
     borderForegroundStyle.width = (this._width - borderPadding) * this._scale;
     borderForegroundStyle.height = (this._height - borderPadding) * this._scale;
-    borderForegroundStyle.borderWidth = this._color_border_size * this._scale;
-    borderForegroundStyle.borderColor = this._border_fg;
+    borderForegroundStyle.borderWidth = this._colorBorderSize * this._scale;
+    borderForegroundStyle.borderColor = this._borderFg;
     borderForegroundStyle.borderStyle = 'solid';
     borderForegroundStyle.left = this.kOuterBorderSize * this._scale;
     borderForegroundStyle.top = this.kOuterBorderSize * this._scale;
 
-    let icon_left = (this.kOuterBorderSize * 2 + this._color_border_size) * this._scale;
-    let icon_top = (this.kOuterBorderSize * 2 + this._color_border_size) * this._scale;
-    let iconPadding = this.kOuterBorderSize * 4 + this._color_border_size * 2;
-    let icon_width = (this._width - iconPadding) * this._scale;
-    let icon_height = (this._height - iconPadding) * this._scale;
-    let text_height = Math.ceil(Math.min(icon_width, icon_height) / 1.8);
-    iconStyle.width = icon_width;
-    iconStyle.height = icon_height;
-    iconStyle.left = icon_left;
-    iconStyle.top = icon_top;
+    let iconLeft = (this.kOuterBorderSize * 2 + this._colorBorderSize) * this._scale;
+    let iconTop = (this.kOuterBorderSize * 2 + this._colorBorderSize) * this._scale;
+    let iconPadding = this.kOuterBorderSize * 4 + this._colorBorderSize * 2;
+    let iconWidth = (this._width - iconPadding) * this._scale;
+    let iconHeight = (this._height - iconPadding) * this._scale;
+    let textHeight = Math.ceil(Math.min(iconWidth, iconHeight) / 1.8);
+    iconStyle.width = iconWidth;
+    iconStyle.height = iconHeight;
+    iconStyle.left = iconLeft;
+    iconStyle.top = iconTop;
     iconStyle.backgroundImage = 'url(\'' + this._icon + '\')';
-    iconStyle.backgroundSize = (Math.min(icon_width, icon_height) + this._zoom * this._scale) + 'px';
+    iconStyle.backgroundSize = (Math.min(iconWidth, iconHeight) + this._zoom * this._scale) + 'px';
     iconStyle.backgroundPosition = 'center center';
 
-    textStyle.top = icon_top + (icon_height - text_height) / 2;
-    textStyle.left = icon_left;
-    textStyle.width = icon_width;
-    textStyle.height = text_height;
-    textStyle.fontSize = text_height;
+    textStyle.top = iconTop + (iconHeight - textHeight) / 2;
+    textStyle.left = iconLeft;
+    textStyle.width = iconWidth;
+    textStyle.height = textHeight;
+    textStyle.fontSize = textHeight;
     textStyle.textAlign = 'center';
     textStyle.fontWeight = 'bold';
-    textStyle.color = this._textcolor;
+    textStyle.color = this._textColor;
   }
 
   draw() {
     if (this._text == 'remain') {
-      let intremain = parseInt(this._value + 0.99999999999);
-      if (intremain > 0)
-        this.textElement.innerText = intremain;
+      let intRemain = parseInt(this._value + 0.99999999999);
+      if (intRemain > 0)
+        this.textElement.innerText = intRemain;
       else
         this.textElement.innerText = '';
     } else if (this._text == 'percent') {
@@ -318,8 +318,8 @@ class TimerIcon extends HTMLElement {
     this.startTimeMs = +new Date();
 
     this.rootElement.style.display = 'block';
-    clearTimeout(this._hide_timer);
-    this._hide_timer = null;
+    clearTimeout(this._hideTimer);
+    this._hideTimer = null;
     clearTimeout(this._timer);
     this._timer = null;
 
@@ -331,15 +331,15 @@ class TimerIcon extends HTMLElement {
     this._value = this._duration + (this.startTimeMs - new Date()) / 1000;
     if (this._value <= 0) {
       this._value = 0;
-      if (this._hideafter >= 0) {
-        this._hide_timer = setTimeout(() => {
+      if (this._hideAfter >= 0) {
+        this._hideTimer = setTimeout(() => {
           this.rootElement.style.display = 'none';
           try {
-            eval(this._onhide);
+            eval(this._onHide);
           } catch (e) {
-            console.log('error evaluating onhide: ' + this._onhide);
+            console.log('error evaluating onhide: ' + this._onHide);
           }
-        }, this._hideafter);
+        }, this._hideAfter);
       }
     } else {
       this._timer = setTimeout(() => {

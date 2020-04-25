@@ -121,9 +121,9 @@ let findDragonMarks = function(array) {
   bad.concat(badSpots(marks[0], dragons[1]));
   ret.unsafeThirdMark = bad.indexOf(marks[2]) != -1;
 
-  let dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
   ret.marks = marks.map(function(i) {
-    return dir_names[i];
+    return dirNames[i];
   });
   return ret;
 };
@@ -177,7 +177,7 @@ function testBadSpots() {
 testBadSpots();
 
 function testFindDragonMarks(array, output) {
-  let mark_dirs = output.marks;
+  let markDirs = output.marks;
   let dragons = [];
   for (let i = 0; i < 8; ++i) {
     if (array[i])
@@ -185,9 +185,9 @@ function testFindDragonMarks(array, output) {
   }
   console.assert(dragons.length == 5);
 
-  let dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-  let marks = mark_dirs.map(function(i) {
-    return dir_names.indexOf(i);
+  let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+  let marks = markDirs.map(function(i) {
+    return dirNames.indexOf(i);
   });
   console.assert(marks.length == 3);
   for (let i = 0; i < marks.length; ++i) {
