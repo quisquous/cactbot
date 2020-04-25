@@ -262,7 +262,7 @@
 
         // Most dragons are out on a circle of radius=~28.
         // Ignore spurious dragons like "Pos: (0.000919255,0.006120025,2.384186E-07)"
-        if (x*x + y*y < 20*20)
+        if (x * x + y * y < 20 * 20)
           return;
 
         // Positions are the 8 cardinals + numerical slop on a radius=28 circle.

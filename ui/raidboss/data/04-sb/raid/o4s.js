@@ -904,8 +904,8 @@
         if (data.waterHealer) {
           return {
             en: 'Stack on ' + data.waterHealer,
-            de: 'Stack auf '+ data.waterHealer,
-            cn: '分摊于'+ data.waterHealer,
+            de: 'Stack auf ' + data.waterHealer,
+            cn: '分摊于' + data.waterHealer,
           };
         }
         return {
@@ -962,7 +962,7 @@
           return {
             en: 'Stack under boss on ' + data.waterHealer,
             de: 'Unter Boss auf ' + data.waterHealer + ' stacken',
-            cn: '分摊于'+ data.waterHealer,
+            cn: '分摊于' + data.waterHealer,
           };
         }
         return {

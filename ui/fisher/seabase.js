@@ -71,14 +71,14 @@ class SeaBase {
     let q3;
 
     times.sort(function(a, b) {
-      return a-b;
+      return a - b;
     });
 
     // if there's less than 5 items, just assume it's legit
     if (times.length < 5) {
       return {
         low: times[0],
-        high: times[times.length-1],
+        high: times[times.length - 1],
       };
     }
 
@@ -121,7 +121,7 @@ class SeaBase {
     let i;
 
     // Iterate forward until a suitable minimum
-    for (i=0; i < times.length; i++) {
+    for (i = 0; i < times.length; i++) {
       if (times[i] >= thresholds.low) {
         min = times[i];
         break;
@@ -129,7 +129,7 @@ class SeaBase {
     }
 
     // Iterate backward until a suitable maximum
-    for (i=times.length-1; i >= 0; i--) {
+    for (i = times.length - 1; i >= 0; i--) {
       if (times[i] <= thresholds.high) {
         max = times[i];
         break;
@@ -264,7 +264,7 @@ class SeaBase {
     let times = [];
 
     return new Promise(function(resolve, reject) {
-      index.openCursor(IDBKeyRange.only([fish.id.toString(), bait.id, chum?1:0]))
+      index.openCursor(IDBKeyRange.only([fish.id.toString(), bait.id, chum ? 1 : 0]))
         .onsuccess = function(event) {
           let cursor = event.target.result;
 

@@ -549,7 +549,7 @@ var Regexes = {
     for (let p in unicodeCategories) {
       if (firstLetters[p[0]]) {
         firstLetters[p[0]] =
-            unicodeCategories[p].substring(0, unicodeCategories[p].length-1) +
+            unicodeCategories[p].substring(0, unicodeCategories[p].length - 1) +
             firstLetters[p[0]].substring(1);
       } else {
         firstLetters[p[0]] = unicodeCategories[p];

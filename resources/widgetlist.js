@@ -317,7 +317,7 @@ class WidgetList extends HTMLElement {
       rowcolindex = rowcolindex + 1;
       if (rowcolindex == this._rowcolsize) {
         x = x - (this._xinc1 * this._elementwidth) * rowcolindex;
-        y = y - (this._yinc1 * this._elementheight)* rowcolindex;
+        y = y - (this._yinc1 * this._elementheight) * rowcolindex;
         x = x + (this._xinc2 * this._elementwidth);
         y = y + (this._yinc2 * this._elementheight);
         rowcolindex = 0;
@@ -331,7 +331,7 @@ class WidgetList extends HTMLElement {
       div.style.width = this._elementwidth * 3 / 4;
       div.style.height = this._elementheight * 3 / 4;
       div.style.overflow = 'hidden';
-      div.style.backgroundColor = '#' + parseInt(Math.random()*10) + '' + parseInt(Math.random()*10) + '' + parseInt(Math.random()*10);
+      div.style.backgroundColor = '#' + parseInt(Math.random() * 10) + '' + parseInt(Math.random() * 10) + '' + parseInt(Math.random() * 10);
       div.style.textAlign = 'center';
       div.style.fontFamily = 'arial';
       div.style.fontSize = this._elementheight / 6;
