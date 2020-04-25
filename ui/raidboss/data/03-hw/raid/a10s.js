@@ -333,7 +333,7 @@
         'Stoneskin': 'Steinhaut',
         'Triple Charge': 'Dreifachaufladung',
         'Weight Trap': 'Gewichts-Falle',
-        'Leghops\\?\\/Charge \\(In\\)\\?': 'Gob am Berg?/Aufladung (Rein)?'
+        'Leghops\\?\\/Charge \\(In\\)\\?': 'Gob am Berg?/Aufladung (Rein)?',
       },
     },
     {

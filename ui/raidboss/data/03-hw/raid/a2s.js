@@ -131,7 +131,7 @@
         'Jagd Doll': 'Jagdpuppe',
         'King Gobtank G-IV': 'Königs-Gobmaschine IV',
         'Magitek Gobwidow G-IX': 'Gob-Witwe IX',
-        'Bomb': 'Bombe',
+        '(?<![ |Trumpf])Bomb': 'Bombe',
       },
       'replaceText': {
         'Bangyzoom': 'Auf sie mit Brüll',

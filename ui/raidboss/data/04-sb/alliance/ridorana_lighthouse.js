@@ -552,7 +552,6 @@
         'The Spire\'s Bounds': 'Katastase',
         'Wind Azer': 'Windseele',
         'Yiazmat': 'Yiasmat',
-        'Gigas': 'Diener Von Belias',
       },
       'replaceText': {
         'Accelerate': 'Beschleunigen',

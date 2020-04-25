@@ -995,6 +995,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
         'Arsenal Centaur': 'Arsenal-Zentaur',
@@ -1018,12 +1019,11 @@
         'The memories of heroes past live on again': 'Das Vermächtnis vergangener Helden lebt von Neuem auf',
         'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
         'Munderg, turn blood to ice': 'Munderg, das Eis der Ewigkeit soll sie für Äonen bannen',
-        'Raiden': 'Raiden',
       },
       'replaceText': {
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
         'Acceleration Bomb': 'Beschleunigungsbombe',
-        'Adds': 'Adds', // FIXME
+        'Adds': 'Adds',
         'Ame-no-Sakahoko': 'Himmelsriposte',
         'Astral Essence': 'Arm des Lichts',
         'Auroral Wind': 'Aurorawind',
@@ -1094,6 +1094,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'Vertu absolue',
         'Arsenal Centaur': 'centaure de l\'Arsenal',
@@ -1184,6 +1185,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'アブソリュートヴァーチュー',
         'Arsenal Centaur': 'アーセナル・セントール',
