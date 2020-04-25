@@ -130,6 +130,13 @@
         "error",
         "never"
       ],
+      "space-unary-ops": [
+        "error",
+        {
+          "words": true,
+          "nonwords": false
+        }
+      ],
       "strict": [
         "error",
         "global"
