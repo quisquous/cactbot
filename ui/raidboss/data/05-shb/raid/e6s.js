@@ -14,104 +14,97 @@
       regexFr: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
       regexJa: Regexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BD3', capture: false }),
       delaySeconds: 11,
-      promise: function(data) {
-        let p = new Promise(async (res) => {
-          const ifritLocaleNames = {
-            en: 'Ifrit',
-            de: 'Ifrit',
-            fr: 'Ifrit',
-            ja: 'イフリート',
+      promise: async (data) => {
+        const ifritLocaleNames = {
+          en: 'Ifrit',
+          de: 'Ifrit',
+          fr: 'Ifrit',
+          ja: 'イフリート',
+        };
+
+        const raktapaksaLocaleNames = {
+          en: 'Raktapaksa',
+          de: 'Raktapaksa',
+          fr: 'Raktapaksa',
+          ja: 'ラクタパクシャ',
+        };
+
+        // select the 4 most recent Ifrit or Raktapaksa's depending on phase
+        let combatantName = null;
+        if (data.phase === 'ifrit')
+          combatantName = ifritLocaleNames[data.lang];
+        else
+          combatantName = raktapaksaLocaleNames[data.lang];
+
+        let combatantData = null;
+        if (combatantName) {
+          combatantData = await window.callOverlayHandler({
+            call: 'getCombatants',
+            names: [combatantName],
+          });
+        }
+
+        // if we could not retrieve combatant data, the
+        // trigger will not work, so just resume promise here.
+        if (!(combatantData !== null &&
+          combatantData.combatants &&
+          combatantData.combatants.length)) {
+          data.safeZone = null;
+          return;
+        }
+
+        // we need to filter for the Ifrit with the highest ID
+        // since that one is always the safe spot.
+        let currentHighestCombatant =
+          combatantData.combatants.sort((a, b) => a.ID - b.ID).pop();
+
+        // all variation ranges for all the 9 ball positions for the kicking actors
+        // north      x: 96-104   y: 85-93
+        // northeast  x: 107-115  y: 85-93
+        // northwest  x: 85-93    y: 85-93
+        // east       x: 107-115  y: 96-104
+        // west       x: 85-93    y: 96-104
+        // south      x: 96-104   y: 107-115
+        // southeast  x: 107-115  y: 107-115
+        // southwest  x: 85-93    y: 107-115
+        let safeZoneObj1 = { en: '', de: '' };
+        let safeZoneObj2 = { en: '', de: '' };
+
+        // don't need to go through all the posibilities,
+        // only those 4 ifs do reflect the above positions
+        if (currentHighestCombatant.PosY > 84 && currentHighestCombatant.PosY < 94) {
+          safeZoneObj1 = {
+            en: 'north',
+            de: 'nord',
+            fr: 'nord',
           };
-
-          const raktapaksaLocaleNames = {
-            en: 'Raktapaksa',
-            de: 'Raktapaksa',
-            fr: 'Raktapaksa',
-            ja: 'ラクタパクシャ',
+        } else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116) {
+          safeZoneObj1 = {
+            en: 'south',
+            de: 'süd',
+            fr: 'sud',
           };
+        }
 
-          // select the 4 most recent Ifrit or Raktapaksa's depending on phase
-          let combatantName = null;
-          if (data.phase === 'ifrit')
-            combatantName = ifritLocaleNames[data.lang];
-          else
-            combatantName = raktapaksaLocaleNames[data.lang];
-
-          let combatantData = null;
-          if (combatantName) {
-            combatantData = await window.callOverlayHandler({
-              call: 'getCombatants',
-              names: [combatantName],
-            });
-          }
-
-          // if we could not retrieve combatant data, the
-          // trigger will not work, so just resume promise here.
-          if (!(combatantData !== null &&
-            combatantData.combatants &&
-            combatantData.combatants.length)) {
-            data.safeZone = null;
-            res();
-            return;
-          }
-
-          // we need to filter for the Ifrit with the highest ID
-          // since that one is always the safe spot.
-          let currentHighestCombatant =
-            combatantData.combatants.sort((a, b) => a.ID - b.ID).pop();
-
-          // all variation ranges for all the 9 ball positions for the kicking actors
-          // north      x: 96-104   y: 85-93
-          // northeast  x: 107-115  y: 85-93
-          // northwest  x: 85-93    y: 85-93
-          // east       x: 107-115  y: 96-104
-          // west       x: 85-93    y: 96-104
-          // south      x: 96-104   y: 107-115
-          // southeast  x: 107-115  y: 107-115
-          // southwest  x: 85-93    y: 107-115
-          let safeZoneObj1 = { en: '', de: '' };
-          let safeZoneObj2 = { en: '', de: '' };
-
-          // don't need to go through all the posibilities,
-          // only those 4 ifs do reflect the above positions
-          if (currentHighestCombatant.PosY > 84 && currentHighestCombatant.PosY < 94) {
-            safeZoneObj1 = {
-              en: 'north',
-              de: 'nord',
-              fr: 'nord',
-            };
-          } else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116) {
-            safeZoneObj1 = {
-              en: 'south',
-              de: 'süd',
-              fr: 'sud',
-            };
-          }
-
-          if (currentHighestCombatant.PosX > 84 && currentHighestCombatant.PosX < 94) {
-            safeZoneObj2 = {
-              en: 'west',
-              de: 'west',
-              fr: 'ouest',
-            };
-          } else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116) {
-            safeZoneObj2 = {
-              en: 'east',
-              de: 'ost',
-              fr: 'est',
-            };
-          }
-
-          data.safeZone = {
-            en: safeZoneObj1.en + safeZoneObj2.en,
-            de: safeZoneObj1.de + safeZoneObj2.de,
-            fr: safeZoneObj1.fr + safeZoneObj2.fr,
+        if (currentHighestCombatant.PosX > 84 && currentHighestCombatant.PosX < 94) {
+          safeZoneObj2 = {
+            en: 'west',
+            de: 'west',
+            fr: 'ouest',
           };
+        } else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116) {
+          safeZoneObj2 = {
+            en: 'east',
+            de: 'ost',
+            fr: 'est',
+          };
+        }
 
-          res();
-        });
-
-        return p;
+        data.safeZone = {
+          en: safeZoneObj1.en + safeZoneObj2.en,
+          de: safeZoneObj1.de + safeZoneObj2.de,
+          fr: safeZoneObj1.fr + safeZoneObj2.fr,
+        };
       },
       infoText: function(data) {
         return data.safeZone === null ? '???' : data.safeZone;
