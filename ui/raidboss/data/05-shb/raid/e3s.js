@@ -126,6 +126,7 @@
         if (data.role == 'healer') {
           return {
             en: 'Tank Busters',
+            de: 'Tank Buster',
             fr: 'Tank busters',
             ja: 'タンクバスター',
             cn: '死刑',

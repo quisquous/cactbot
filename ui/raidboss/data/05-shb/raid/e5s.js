@@ -343,6 +343,8 @@
         'Hated of Levin': 'Fluch des Blitzes',
         'Electrified': 'Stromleiter',
         'Damage Down': 'Schaden -',
+        'Surge Protection': 'Überspannungsschutz',
+        'Fury\'s Bolt': 'Wütender Blitz',
       },
     },
     {

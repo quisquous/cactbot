@@ -607,6 +607,7 @@
         'Diabolic Curse': 'Diabolischer Fluch',
         'Damage Down': 'Schaden -',
         'Bleeding': 'Blutung',
+        'Spell-In-Waiting': 'Verzögerung',
       },
     },
     {

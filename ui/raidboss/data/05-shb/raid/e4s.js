@@ -541,6 +541,7 @@
         'Titan': 'Titan',
         'Granite Gaol': 'Granitgefängnis',
         'Bomb Boulder': 'Bomber-Brocken',
+        'Titan Maximum': 'Gigantitan',
       },
       'replaceText': {
         'Dual Earthen Fists': 'Gaias Hammerfaust',

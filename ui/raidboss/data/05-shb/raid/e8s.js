@@ -380,6 +380,7 @@
         if (data.me == matches.target) {
           let onYou = {
             en: 'Akh Morn on YOU',
+            de: 'Akh Morn auf DIR',
             fr: 'Akh Morn sur VOUS',
             ko: '아크몬 대상자',
           };
@@ -396,6 +397,7 @@
         return {
           infoText: {
             en: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
+            de: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
             fr: 'Akh Morn : ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
           },
         };
