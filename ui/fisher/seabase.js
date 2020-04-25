@@ -151,7 +151,8 @@ class SeaBase {
     let keys = ['fish', 'bait', 'place', 'castTimestamp', 'hookTime', 'reelTime', 'chum', 'snagging'];
 
     for (let index in keys) {
-      if (!data.hasOwnProperty(keys[index]) || data[keys[index]] === null) {
+      if (!Object.prototype.hasOwnProperty.call(data, keys[index]) ||
+          data[keys[index]] === null) {
         commit = false;
         console.log(keys[index] + 'missing in catch');
       }
