@@ -461,7 +461,7 @@
         'Damage Up': 'Schaden +',
         'Doom': 'Verhängnis',
         'Down For The Count': 'Am Boden',
-        'Fetters': 'Fesselung',
+        '(?<! )Fetters': 'Fesselung',
         'Fire Resistance Down II': 'Feuerresistenz - (stark)',
         'Infernal Fetters': 'Infernofesseln',
         'Searing Wind': 'Versengen',

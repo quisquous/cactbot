@@ -151,6 +151,7 @@
         'Magitek Turret II': 'Magitek-Geschütz II',
         'Neurolink Nacelle': 'Neurolink-Zelle',
         'Regula van Hydrus': 'Regula van Hydrus',
+        'Chaosphere': 'Chaossphäre',
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Magitek-Granate',

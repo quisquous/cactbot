@@ -1081,6 +1081,15 @@
       'replaceSync': {
         'Black Hole': 'Schwarzes Loch',
         'Exdeath': 'Exdeath',
+        'White Wound': 'Wunde Des Lebenden',
+        'Black Wound': 'Wunde Des Toten',
+        'Beyond Death': 'Jenseits Des Jenseits',
+        'Allagan Field': 'Allagisches Feld',
+        'Off-Balance': 'Gleichgewichtsverlust',
+        'Compressed Water': 'Wasserkompression',
+        'Cursed Shriek': 'Schrei Der Verwünschung',
+        'Acceleration Bomb': 'Beschleunigungsbombe',
+        'Forked Lightning': 'Gabelblitz',
       },
       'replaceText': {
         '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME

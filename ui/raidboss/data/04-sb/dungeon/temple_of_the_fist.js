@@ -152,6 +152,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Heal ' + data.shortName(matches.target) + ' soon',
+          de: 'Bald ' + data.shortName(matches.target) + ' heilen',
           fr: 'Soignez ' + data.shortName(matches.target) + ' bientôt',
           cn: '马上奶 ' + data.shortName(matches.target),
         };

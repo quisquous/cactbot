@@ -162,6 +162,7 @@ UserConfig.registerOptions('jobs', {
       id: 'GpAlarmPoint',
       name: {
         en: 'GP alarm threshold (0 to disable)',
+        de: 'SP Alarm Grenze (0 to disable)',
         cn: '采集力警报阈值（0为禁用）',
         ko: 'GP 알람 설정값 (0 = 기능 정지)',
       },
@@ -172,6 +173,7 @@ UserConfig.registerOptions('jobs', {
       id: 'GpAlarmSoundVolume',
       name: {
         en: 'GP alarm sound (0-1)',
+        de: 'SP Alarm Sound (0-1)',
         cn: '采集力警报音量（0-1）',
         ko: 'GP 알람 소리 크기 (0-1)',
       },

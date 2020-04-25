@@ -1162,6 +1162,7 @@ UserConfig.registerOptions('raidboss', {
       // options if we end up having a lot?
       name: {
         en: 'Alex Ultimate: enable cactbot Wormhole strat',
+        de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie',
         ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
         cn: '亚历山大绝境战：cactbot灵泉辅助功能',
       },
@@ -1172,6 +1173,7 @@ UserConfig.registerOptions('raidboss', {
       id: 'cactbote8sUptimeKnockbackStrat',
       name: {
         en: 'e8s: enable cactbot Uptime Knockback strat',
+        de: 'e8s: aktiviere cactbot Uptime Knockback Strategie',
       },
       type: 'checkbox',
       default: false,
