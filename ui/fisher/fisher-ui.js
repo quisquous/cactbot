@@ -64,7 +64,7 @@ class FisherUI {
 
     let rows = this.element.querySelectorAll('.table-row');
 
-    for (let i=0; i<rows.length; i++) {
+    for (let i = 0; i < rows.length; i++) {
       let row = rows[i];
       let min = row.getAttribute('data-min');
       let max = row.getAttribute('data-max');
@@ -149,7 +149,7 @@ class FisherUI {
       node.parentNode.removeChild(node);
     });
 
-    for (let i=0; i < sortedKeys.length; i++) {
+    for (let i = 0; i < sortedKeys.length; i++) {
       // First, draw on the well
       let fish = sortedKeys[i];
 

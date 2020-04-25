@@ -92,7 +92,7 @@
             return {
               en: 'others stack on ' + data.holyTargets[1],
               de: 'andere stacken auf ' + data.holyTargets[1],
-              cn: '其他分摊'+ data.holyTargets[1],
+              cn: '其他分摊' + data.holyTargets[1],
             };
           }
         }

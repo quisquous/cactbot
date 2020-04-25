@@ -415,7 +415,7 @@ let getHeadmarkerId = (data, matches) => {
             ja: data.ShortName(names[0]) + ' から ' + data.nisiNames[myNisi] + ' を取る',
             fr: 'Récupère ' + data.nisiNames[myNisi] + ' de ' + data.ShortName(names[0]),
             ko: '나이사이 가져오기: ' + data.nisiNames[myNisi] + ' ← ' + data.ShortName(names[0]),
-            cn: '从 '+ data.ShortName(names[0]) + '获得' + data.nisiNames[myNisi],
+            cn: '从 ' + data.ShortName(names[0]) + '获得' + data.nisiNames[myNisi],
           };
         };
       },

@@ -731,7 +731,7 @@
           return {
             en: 'Water on ' + data.ShortName(matches.target),
             de: 'Wasser auf ' + data.ShortName(matches.target),
-            cn: '水点'+ data.ShortName(matches.target),
+            cn: '水点' + data.ShortName(matches.target),
           };
         }
       },

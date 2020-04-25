@@ -317,7 +317,7 @@
             de: 'Umarmung auf ' + data.ShortName(matches.target),
             ko: '종말의 포옹 → ' + data.ShortName(matches.target),
             ja: '双腕 on ' + data.ShortName(matches.target),
-            cn: '分摊死刑'+ data.ShortName(matches.target),
+            cn: '分摊死刑' + data.ShortName(matches.target),
           };
         }
       },
@@ -367,7 +367,7 @@
             de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
             ko: '하이퍼드라이브 → ' + data.ShortName(matches.target),
             ja: 'ハイパードライブ on ' + data.ShortName(matches.target),
-            cn: '死刑点名'+ data.ShortName(matches.target),
+            cn: '死刑点名' + data.ShortName(matches.target),
           };
         }
       },

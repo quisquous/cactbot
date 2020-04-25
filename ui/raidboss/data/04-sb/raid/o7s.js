@@ -173,7 +173,7 @@
           fr: 'Marque Bleue sur ' + data.ShortName(matches.target),
           ko: '파란징 → ' + data.ShortName(matches.target),
           ja: '青玉 on ' + data.ShortName(matches.target),
-          cn: '蓝球点名'+ data.ShortName(matches.target),
+          cn: '蓝球点名' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {
@@ -260,7 +260,7 @@
           fr: 'Pourriture sur ' + data.ShortName(matches.target),
           ko: '에테르 → ' + data.ShortName(matches.target),
           ja: 'ロット on ' + data.ShortName(matches.target),
-          cn: '以太病毒点名'+ data.ShortName(matches.target),
+          cn: '以太病毒点名' + data.ShortName(matches.target),
         };
       },
       tts: function(data, matches) {

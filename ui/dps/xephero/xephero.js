@@ -52,7 +52,7 @@ function update(dps) {
   container.append(header);
 
   let limit = Math.max(combatants.length, rows);
-  let names = Object.keys(combatants).slice(0, rows-1);
+  let names = Object.keys(combatants).slice(0, rows - 1);
   let maxdps = false;
 
   let dpsOrder = {};
