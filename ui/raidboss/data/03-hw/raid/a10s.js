@@ -293,7 +293,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Buzzsaw': 'Rotorsäge',
         'Gobpress R-VI': 'Gob-Roller VI',

@@ -341,7 +341,7 @@
         'Weighted Wing': 'Schwere Schwinge',
       },
       '~effectNames': {
-        '6 Fulms Under': 'Versinkend',
+        'Six Fulms Under': 'Versinkend',
         'Elevated': 'Erhöht',
         'Gradual Petrification': 'Steinwerdung',
         'Gravity Flip': 'Gravitationsumkehr',
@@ -383,7 +383,7 @@
         'Weighted Wing': 'Ailes antigravitationnelles',
       },
       '~effectNames': {
-        '6 Fulms Under': 'Enfoncement',
+        'Six Fulms Under': 'Enfoncement',
         'Elevated': 'Élévation',
         'Gradual Petrification': 'Pétrification graduelle',
         'Gravity Flip': 'Inversion de gravité',
@@ -425,7 +425,7 @@
         'Weighted Wing': 'グラビティウィング',
       },
       '~effectNames': {
-        '6 Fulms Under': '沈下',
+        'Six Fulms Under': '沈下',
         'Elevated': '高度固定：高',
         'Gradual Petrification': '徐々に石化',
         'Gravity Flip': '重力反転',
@@ -467,7 +467,7 @@
         'Weighted Wing': '重力之翼',
       },
       '~effectNames': {
-        '6 Fulms Under': '下陷',
+        'Six Fulms Under': '下陷',
         'Elevated': '固定高位',
         'Gradual Petrification': '渐渐石化',
         'Gravity Flip': '重力反转',
@@ -509,7 +509,7 @@
         'Weighted Wing': '중력 날개',
       },
       '~effectNames': {
-        '6 Fulms Under': '침하',
+        'Six Fulms Under': '침하',
         'Elevated': '고도 고정: 위',
         'Gradual Petrification': '서서히 석화',
         'Gravity Flip': '중력 반전',
