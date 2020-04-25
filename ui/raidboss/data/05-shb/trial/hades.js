@@ -401,6 +401,9 @@
         '--fetters--': '--fesseln--',
         'Wail Of The Lost': 'Wehklagen der Verlorenen',
       },
+      '~effectNames': {
+        'Doom': 'Verhängnis',
+      },
     },
     {
       'locale': 'cn',
