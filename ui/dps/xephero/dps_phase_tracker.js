@@ -200,12 +200,12 @@ class DpsPhaseTracker {
   // difference between the two as an {Encounter: {}, Combatant: {}} object.
   // It drops some of the fields to make the diff.
   //
-  // phase_start is optional, if it doesn't exist, it assumes default values
+  // phaseStart is optional, if it doesn't exist, it assumes default values
   // from the start of the fight.
   //
   // This may return null (used as a hint not to bother displaying the diff).
-  diffUpdateInfo(phase_start, phase_end) {
-    if (!phase_end) {
+  diffUpdateInfo(phaseStart, phaseEnd) {
+    if (!phaseEnd) {
       console.error(['diffError: no phase end', phase]);
       return;
     }
@@ -214,8 +214,8 @@ class DpsPhaseTracker {
     // attacks, causing a total duration of zero.  Just ignore these.
     // This happens where ACT stops providing new updates but log entries
     // or other triggers indicate that phases have started.
-    if (phase_start) {
-      if (phase_start.Encounter.DURATION == phase_end.Encounter.DURATION)
+    if (phaseStart) {
+      if (phaseStart.Encounter.DURATION == phaseEnd.Encounter.DURATION)
         return;
     }
 
@@ -273,20 +273,20 @@ class DpsPhaseTracker {
     ];
 
     let encounter = {};
-    if (phase_start) {
-      diffProps(phase_start.Encounter, phase_end.Encounter, encounterDiffProps, encounter);
+    if (phaseStart) {
+      diffProps(phaseStart.Encounter, phaseEnd.Encounter, encounterDiffProps, encounter);
       setDPS(encounter.DURATION, encounter.DURATION, encounter);
     } else {
-      copyProps(phase_end.Encounter, encounterDiffProps, encounter);
+      copyProps(phaseEnd.Encounter, encounterDiffProps, encounter);
       setDPS(encounter.DURATION, encounter.DURATION, encounter);
     }
 
     // Deliberately use end, as combatants aren't initally listed before
     // they've done any damage right when the fight starts.
     let combatant = {};
-    for (let name in phase_end.Combatant) {
-      let start = phase_start ? phase_start.Combatant[name] : null;
-      let end = phase_end.Combatant[name];
+    for (let name in phaseEnd.Combatant) {
+      let start = phaseStart ? phaseStart.Combatant[name] : null;
+      let end = phaseEnd.Combatant[name];
       if (!end)
         continue;
 

@@ -19,10 +19,10 @@ if (window.customElements) {
 class FisherUI {
   constructor(element) {
     this.element = element;
-    this.bait_el = element.querySelector('#bait-name');
-    this.place_el = element.querySelector('#place-name');
-    this.time_el = element.querySelector('#cast-duration');
-    this.arrow_el = element.querySelector('#fisher-arrow');
+    this.baitEl = element.querySelector('#bait-name');
+    this.placeEl = element.querySelector('#place-name');
+    this.timeEl = element.querySelector('#cast-duration');
+    this.arrowEl = element.querySelector('#fisher-arrow');
 
     this.tugNames = ['unknown', 'light', 'medium', 'heavy'];
 
@@ -36,26 +36,26 @@ class FisherUI {
     let timeMs = (new Date() - this.castStart);
     let time = (timeMs / 1000).toFixed(1);
 
-    this.time_el.innerHTML = time;
-    this.arrow_el.style.top = (timeMs / 600) + '%';
+    this.timeEl.innerHTML = time;
+    this.arrowEl.style.top = (timeMs / 600) + '%';
 
     this.animationFrame = requestAnimationFrame(this.draw.bind(this));
   }
 
-  setBait(bait_name) {
-    this.bait_el.innerHTML = bait_name;
+  setBait(baitName) {
+    this.baitEl.innerHTML = baitName;
   }
 
   setPlace(place) {
-    let oldPlace = this.place_el.innerHTML;
+    let oldPlace = this.placeEl.innerHTML;
 
     if (!place) {
       if (oldPlace && oldPlace[0] != '(')
-        this.place_el.innerHTML = '(' + oldPlace + ')';
+        this.placeEl.innerHTML = '(' + oldPlace + ')';
       else
-        this.place_el.innerHTML = '------------';
+        this.placeEl.innerHTML = '------------';
     } else {
-      this.place_el.innerHTML = place;
+      this.placeEl.innerHTML = place;
     }
   }
 

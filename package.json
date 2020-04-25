@@ -37,7 +37,12 @@
           "after": true
         }
       ],
-      "camelcase": "off",
+      "camelcase": [
+        "error",
+        {
+          "properties": "always"
+        }
+      ],
       "curly": [
         "error",
         "multi-or-nest",

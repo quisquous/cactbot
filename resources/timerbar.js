@@ -159,12 +159,12 @@ class TimerBar extends HTMLElement {
     this._height = '100%';
     this._bg = 'black';
     this._fg = 'yellow';
-    this._toward_right = false;
-    this._style_fill = false;
-    this._left_text = '';
-    this._center_text = '';
-    this._right_text = '';
-    this._hideafter = -1;
+    this._towardRight = false;
+    this._styleFill = false;
+    this._leftText = '';
+    this._centerText = '';
+    this._rightText = '';
+    this._hideAfter = -1;
     this._loop = false;
 
     root.innerHTML = `
@@ -327,30 +327,30 @@ class TimerBar extends HTMLElement {
       this._fg = newValue;
       this.layout();
     } else if (name == 'style') {
-      this._style_fill = newValue == 'fill';
+      this._styleFill = newValue == 'fill';
       this.layout();
     } else if (name == 'toward') {
-      this._toward_right = newValue == 'right';
+      this._towardRight = newValue == 'right';
       this.layout();
     } else if (name == 'lefttext') {
-      let update = newValue != this._left_text && this._connected;
-      this._left_text = newValue;
+      let update = newValue != this._leftText && this._connected;
+      this._leftText = newValue;
       if (update)
         this.updateText();
     } else if (name == 'centertext') {
-      let update = newValue != this._center_text && this._connected;
-      this._center_text = newValue;
+      let update = newValue != this._centerText && this._connected;
+      this._centerText = newValue;
       if (update)
         this.updateText();
     } else if (name == 'righttext') {
-      let update = newValue != this._right_text && this._connected;
-      this._right_text = newValue;
+      let update = newValue != this._rightText && this._connected;
+      this._rightText = newValue;
       if (update)
         this.updateText();
     } else if (name == 'hideafter') {
-      this._hideafter = Math.max(parseFloat(this.hideafter), 0);
+      this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
       if (this.value == '0') {
-        if (this._hideafter >= 0)
+        if (this._hideAfter >= 0)
           this.hide();
         else
           this.show();
@@ -374,24 +374,24 @@ class TimerBar extends HTMLElement {
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    if (this._toward_right ^ this._style_fill)
+    if (this._towardRight ^ this._styleFill)
       this.foregroundElement.style.transformOrigin = '100% 0%';
     else
       this.foregroundElement.style.transformOrigin = '0% 0%';
   }
 
   updateText() {
-    let varying_texts = ['elapsed', 'duration', 'percent', 'remain'];
+    let varyingTexts = ['elapsed', 'duration', 'percent', 'remain'];
     // These values are filled in during draw() when the values change.
-    if (varying_texts.indexOf(this._left_text) == -1) {
+    if (varyingTexts.indexOf(this._leftText) == -1) {
       // Otherwise the value is fixed so it can be set here.
-      this.leftTextElement.innerHTML = this._left_text;
+      this.leftTextElement.innerHTML = this._leftText;
     }
-    if (varying_texts.indexOf(this._center_text) == -1)
-      this.centerTextElement.innerHTML = this._center_text;
+    if (varyingTexts.indexOf(this._centerText) == -1)
+      this.centerTextElement.innerHTML = this._centerText;
 
-    if (varying_texts.indexOf(this._right_text) == -1)
-      this.rightTextElement.innerHTML = this._right_text;
+    if (varyingTexts.indexOf(this._rightText) == -1)
+      this.rightTextElement.innerHTML = this._rightText;
   }
 
   draw() {
@@ -400,40 +400,40 @@ class TimerBar extends HTMLElement {
     let percent = this._duration <= 0 ? 0 : remainSec / this._duration;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    let display_remain = remainSec ? remainSec.toFixed(1) : '';
-    let display_elapsed = elapsedSec.toFixed(1);
-    if (this._style_fill)
+    let displayRemain = remainSec ? remainSec.toFixed(1) : '';
+    let displayElapsed = elapsedSec.toFixed(1);
+    if (this._styleFill)
       percent = 1.0 - percent;
     this.foregroundElement.style.width = percent * 100 + '%';
-    if (this._left_text != '') {
-      if (this._left_text == 'remain')
-        this.leftTextElement.innerHTML = display_remain;
-      else if (this._left_text == 'duration')
-        this.leftTextElement.innerHTML = display_remain + ' / ' + this._duration;
-      else if (this._left_text == 'percent')
+    if (this._leftText != '') {
+      if (this._leftText == 'remain')
+        this.leftTextElement.innerHTML = displayRemain;
+      else if (this._leftText == 'duration')
+        this.leftTextElement.innerHTML = displayRemain + ' / ' + this._duration;
+      else if (this._leftText == 'percent')
         this.leftTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
-      else if (this._left_text == 'elapsed')
-        this.leftTextElement.innerHTML = display_elapsed;
+      else if (this._leftText == 'elapsed')
+        this.leftTextElement.innerHTML = displayElapsed;
     }
-    if (this._center_text != '') {
-      if (this._center_text == 'remain')
-        this.centerTextElement.innerHTML = display_remain;
-      else if (this._center_text == 'duration')
-        this.centerTextElement.innerHTML = display_remain + ' / ' + this._duration;
-      else if (this._center_text == 'percent')
+    if (this._centerText != '') {
+      if (this._centerText == 'remain')
+        this.centerTextElement.innerHTML = displayRemain;
+      else if (this._centerText == 'duration')
+        this.centerTextElement.innerHTML = displayRemain + ' / ' + this._duration;
+      else if (this._centerText == 'percent')
         this.centerTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
-      else if (this._center_text == 'elapsed')
-        this.centerTextElement.innerHTML = display_elapsed;
+      else if (this._centerText == 'elapsed')
+        this.centerTextElement.innerHTML = displayElapsed;
     }
-    if (this._right_text != '') {
-      if (this._right_text == 'remain')
-        this.rightTextElement.innerHTML = display_remain;
-      else if (this._right_text == 'duration')
-        this.rightTextElement.innerHTML = display_remain + ' / ' + this._duration;
-      else if (this._right_text == 'percent')
+    if (this._rightText != '') {
+      if (this._rightText == 'remain')
+        this.rightTextElement.innerHTML = displayRemain;
+      else if (this._rightText == 'duration')
+        this.rightTextElement.innerHTML = displayRemain + ' / ' + this._duration;
+      else if (this._rightText == 'percent')
         this.rightTextElement.innerHTML = (percent * 100).toFixed(1) + ' %';
-      else if (this._right_text == 'elapsed')
-        this.rightTextElement.innerHTML = display_elapsed;
+      else if (this._rightText == 'elapsed')
+        this.rightTextElement.innerHTML = displayElapsed;
     }
   }
 
@@ -455,8 +455,8 @@ class TimerBar extends HTMLElement {
     if (!this._connected) return;
 
     this.show();
-    clearTimeout(this._hide_timer);
-    this._hide_timer = null;
+    clearTimeout(this._hideTimer);
+    this._hideTimer = null;
 
     this.advance();
   }
@@ -474,9 +474,9 @@ class TimerBar extends HTMLElement {
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
       this._duration = 0;
-      if (this._hideafter > 0)
-        this._hide_timer = setTimeout(this.hide.bind(this), this._hideafter * 1000);
-      else if (this._hideafter == 0)
+      if (this._hideAfter > 0)
+        this._hideTimer = setTimeout(this.hide.bind(this), this._hideAfter * 1000);
+      else if (this._hideAfter == 0)
         this.hide();
 
       window.cancelAnimationFrame(this._animationFrame);
