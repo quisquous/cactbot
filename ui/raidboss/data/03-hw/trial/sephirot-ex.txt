@@ -1,234 +1,155 @@
-# Sephirot (Extreme)
-# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
-# Shasta's reddit: /u/shastaxc
+# Containment Bay S1-T17 (Extreme)
+# Sephirot Extreme
 
-#############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from 
-########the beginning of the following lines to prevent 
-########them from appearing on your timeline.
+# -ic Binah Cochma
+# -ii 368 15CB 156A 156C 1570 1572 1575 157C
 
-#########DPS CAN HIDE THESE
-#hideall "Cleave"
-#hideall "Tiferet"
-#hideall "Tank Buster"
-#hideall "Large Add Spawn"
-#hideall "Towers Up"
-#hideall "Fiendish Wail"
+hideall "--Reset--"
+hideall "--sync--"
 
-#########HEALERS CAN HIDE THESE
-#hideall "Large Add Spawn"
-#hideall "Towers Up"
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+
+0 "Start" sync /Engage!/ window 0,1
+2.5 "--sync--" sync /:Sephirot:368:/ window 2.5,1
+7.1 "Triple Trial" sync /:Sephirot:1566:/ window 7.1,5
+11.2 "Tiferet" sync /:Sephirot:1568:/
+17.4 "Tiferet" sync /:Sephirot:1568:/
+
+# Phase 1 rotation block, 76.3 seconds
+21.6 "Triple Trial" sync /:Sephirot:1566:/
+25.6 "Ein Sof" sync /:Sephirot:156E:/
+29.7 "Tiferet" sync /:Sephirot:1568:/
+38.3 "Fiendish Rage 1" sync /:Sephirot:156D:/
+42.0 "Fiendish Rage 2" sync /:Sephirot:156D:/
+49.2 "Tiferet" sync /:Sephirot:1568:/
+53.3 "Tiferet" sync /:Sephirot:1568:/
+59.4 "Chesed" sync /:Sephirot:1567:/ window 20,20
+61.6 "Triple Trial" sync /:Sephirot:1566:/
+67.7 "Ein Sof" sync /:Sephirot:156E:/
+70.9 "Tiferet" sync /:Sephirot:1568:/
+81.3 "Ratzon" # sync /:Sephirot:156B:/
+85.5 "Tiferet" sync /:Sephirot:1568:/
+89.6 "Tiferet" sync /:Sephirot:1568:/
+95.7 "Chesed" sync /:Sephirot:1567:/ window 20,20
+
+97.9 "Triple Trial" sync /:Sephirot:1566:/
+101.9 "Ein Sof" sync /:Sephirot:156E:/
+106.0 "Tiferet" sync /:Sephirot:1568:/
+114.6 "Fiendish Rage 1" sync /:Sephirot:156D:/
+118.3 "Fiendish Rage 2" sync /:Sephirot:156D:/
+125.5 "Tiferet" sync /:Sephirot:1568:/
+129.6 "Tiferet" sync /:Sephirot:1568:/
+135.7 "Chesed" sync /:Sephirot:1567:/ window 20,20
+137.9 "Triple Trial" sync /:Sephirot:1566:/
+144.0 "Ein Sof" sync /:Sephirot:156E:/
+147.2 "Tiferet" sync /:Sephirot:1568:/
+157.6 "Ratzon" # sync /:Sephirot:156B:/
+161.8 "Tiferet" sync /:Sephirot:1568:/
+165.9 "Tiferet" sync /:Sephirot:1568:/
+172.0 "Chesed" sync /:Sephirot:1567:/ window 20,20 jump 95.7
+
+174.2 "Triple Trial"
+178.2 "Ein Sof"
+182.3 "Tiferet"
+190.9 "Fiendish Rage 1"
+194.6 "Fiendish Rage 2"
+201.8 "Tiferet"
+205.9 "Tiferet"
 
 
-##############################################################
-################## Windows 8 & 10 Voices ##################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Zira Desktop" 0 100
-#define speaker "voice" "Microsoft David Desktop" 0 100
+# The intermission doesn't have anything worthwhile to sync.
+# Instead we just go straight for the ultimate cast.
 
-#################### Windows 7 Voices ####################
-#REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Anna" 0 100
+1000.0 "Ein Sof Ohr" sync /:Sephirot:1571:/ window 1000,5
 
-################ CUSTOMIZE Call Outs #####################
-########REMOVE THE HASHTAG to enable each call out
-#alertall "STACK" before 0 speak "voice" "stack"
-#alertall "STACK MID" before 0 speak "voice" "stack mid"
-#alertall "STACK FRONT" before 0 speak "voice" "stack front"
-#alertall "SPLIT STACKS" before 2 speak "voice" "stack"
-#alertall "SPREAD" before 0 speak "voice" "spread"
-#alertall "Yesod, MOVE" before 0 speak "voice" "move"
-#alertall "Debuff" before 0 speak "voice" "Check Color"
-#alertall "Tank Buster" before 3 speak "voice" "Tank Buster"
-#alertall "Spawn Orb" before 1 speak "voice" "stack"
-#alertall "Towers Up" before 0 speak "voice" "Tank Tower"
-#alertall "Fiendish Wail" before 2 speak "voice" "Heal Tanks"
-#alertall "Da'at" before 3 speak "voice" "Heal Tanks"
+# Phase 2 rotation block, 197.3 seconds
+1010.3 "Yesod" sync /:Sephirot:157E:/
+1016.2 "Force Field" sync /:Sephirot:1587:/
+1028.4 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1029.0 "Life Force" sync /:Sephirot:157A:/
+1029.0 "Spirit" sync /:Sephirot:157B:/
+1034.6 "Fiendish Wail" sync /:Sephirot:1576:/
+1042.7 "Da'at" # sync /:Sephirot:1574:/ duration 3.2
+1053.3 "Fiendish Wail" sync /:Sephirot:1576:/
+1060.3 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1060.9 "Life Force" sync /:Sephirot:157A:/
+1060.9 "Spirit" sync /:Sephirot:157B:/
+1068.4 "Earth Shaker" sync /:Sephirot:157D:/
+1070.1 "Yesod" sync /:Sephirot:157E:/
+1077.7 "Da'at spread" # sync /:Sephirot:1573:/
+1085.1 "Fiendish Wail" sync /:Sephirot:1576:/
+1092.2 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1092.9 "Spirit" sync /:Sephirot:157B:/
+1101.0 "Pillar of Mercy" sync /:Sephirot:1580:/
+1101.3 "Yesod" sync /:Sephirot:157E:/
+1106.2 "Pillar of Mercy" sync /:Sephirot:1580:/
+1110.1 "Pillar of Mercy" sync /:Sephirot:1580:/
+1119.3 "Earth Shaker" sync /:Sephirot:157D:/
+1128.8 "Da'at spread" # sync /:Sephirot:1573:/
+1129.7 "Yesod" sync /:Sephirot:157E:/
+1136.1 "Fiendish Wail" sync /:Sephirot:1576:/
+1143.2 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1143.8 "Life Force" sync /:Sephirot:157A:/
+1143.8 "Spirit" sync /:Sephirot:157B:/
+1149.4 "Malkuth" sync /:Sephirot:1582:/
+1150.5 "Adds Spawn" sync /03:........:Added new combatant Storm Of Words/
+1158.7 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1159.3 "Spirit" sync /:Sephirot:157B:/
+1159.3 "Life Force" sync /:Sephirot:157A:/
+1164.9 "Fiendish Wail" sync /:Sephirot:1576:/
+1166.5 "Yesod" sync /:Sephirot:157E:/
+1172.2 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1172.8 "Life Force" sync /:Sephirot:157A:/
+1172.8 "Spirit" sync /:Sephirot:157B:/
+1188.4 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1189.0 "Life Force" sync /:Sephirot:157A:/
+1189.0 "Spirit" sync /:Sephirot:157B:/
+1191.6 "Pillar of Severity" sync /:Sephirot:1585:/
+1195.3 "Impact of Hod" sync /:Sephirot:172C:/
+1199.7 "Ascension" sync /:Coronal Wind:1584:/
 
-##############################################################
-0 "-Preparing-" sync /Removing combatant Sephirot/ window 10000 jump 0
-
-0 "Cleave" sync /uses Triple Trial/ window 10 #Triple Trial
-4 "Tiferet" #AoE
-10 "Tiferet" #AoE
-
-14 "Cleave" sync /uses Triple Trial/ window 15,5 #Triple Trial
-19 "Spawn Orbs" #Plus / X pattern
-22 "Tiferet" #AoE
-25 "SPLIT STACKS"
-31 "Jump 1"
-34 "Jump 2"
-41 "Tiferet" #AoE
-46 "Tiferet" #AoE
-52 "Tank Buster" #Chesed
-54 "Cleave" #Triple Trial
-61 "Spawn Orb" #Single orb, stack to bait cleave
-63 "Tiferet" #AoE
-67 "SPREAD" #Ratzon Indicator, 5s til cleave
-73 "Ratzon" #AoEs go off
-77 "Tiferet" #AoE
-82 "Tiferet" #AoE
-88 "Tank Buster" #Chesed
- 
-90 "Cleave" sync /uses Triple Trial/ window 25,25 #Triple Trial
-95 "Spawn Orbs" #Plus / X pattern
-98 "Tiferet" #AoE
-101 "SPLIT STACKS"
-107 "Jump 1"
-110 "Jump 2"
-117 "Tiferet" #AoE
-122 "Tiferet" #AoE
-128 "Tank Buster" #Chesed
-130 "Cleave" #Triple Trial
-137 "Spawn Orb" #Single orb, stack to bait cleave
-139 "Tiferet" #AoE
-143 "SPREAD" #Ratzon Indicator, 5s til cleave
-149 "Ratzon" #AoEs go off
-153 "Tiferet" #AoE
-158 "Tiferet" #AoE
-164 "Tank Buster" #Chesed
- 
-166 "Cleave" sync /uses Triple Trial/ window 25,25 #Triple Trial
-171 "Spawn Orbs" #Plus / X pattern
-174 "Tiferet" #AoE
-177 "SPLIT STACKS"
-183 "Jump 1"
-186 "Jump 2"
-193 "Tiferet" #AoE
-198 "Tiferet" #AoE
-204 "Tank Buster" #Chesed
-206 "Cleave" #Triple Trial
-213 "Spawn Orb" #Single orb, stack to bait cleave
-215 "Tiferet" #AoE
-219 "SPREAD" #Ratzon Indicator, 5s til cleave
-225 "Ratzon" #AoEs go off
-229 "Tiferet" #AoE
-234 "Tiferet" #AoE
-240 "Tank Buster" #Chesed
- 
-242 "Cleave" sync /uses Triple Trial/ window 25,25 #Triple Trial
-247 "Spawn Orbs" #Plus / X pattern
-250 "Tiferet" #AoE
-253 "SPLIT STACKS"
-259 "Jump 1"
-262 "Jump 2"
-269 "Tiferet" #AoE
-274 "Tiferet" #AoE
-280 "Tank Buster" #Chesed
-282 "Cleave" #Triple Trial
-289 "Spawn Orb" #Single orb, stack to bait cleave
-291 "Tiferet" #AoE
-295 "SPREAD" #Ratzon Indicator, 5s til cleave
-301 "Ratzon" #AoEs go off
-305 "Tiferet" #AoE
-310 "Tiferet" #AoE
-316 "Tank Buster" #Chesed
-
-##############################################################
-########Phase is so straightforward, nothing needed here
-########Besides, the timing varies a lot based on DPS
-
-400 "-Phase 2-" sync /Added new combatant Cochma/ window 400,0
-400 "Large Add Spawn"
-436 "Large Add Spawn"
-
-##############################################################
-
-628 "Ein Sof Ohr" sync /Ein Sof Ohr/ window 10000 #Boss LB
-638 "Yesod, MOVE"
-
-646 "Debuff"
-657 "Color Slam" #Life Force / Spirit
-658 "Towers Up"
-#660 "Orbs Spawn" #4 orbs
-663 "Fiendish Wail"
-664 "Tethers"
-677 "Towers Up"
-682 "Fiendish Wail"
-689 "Color Slam" #Life Force / Spirit
-690 "STACK MID" #Earthshaker + Yesod
-692 "Earthshaker"
-695 "Yesod, MOVE"
-700 "SPREAD"
-705 "Da'at"
-710 "Towers Up"
-713 "Fiendish Wail"
-722 "Color Slam" #Life Force / Spirit
-723 "STACK" #Yesod
-726 "Yesod, MOVE"
-730 "Knockback" #Pillar of Mercy
-735 "Knockback" #Pillar of Mercy
-739 "Knockback" #Pillar of Mercy
-740 "STACK MID" #Earthshaker
-743 "Earthshaker"
-749 "SPREAD" #Da'at + Yesod
-755 "Yesod, MOVE"
-756 "Da'at"
-760 "Towers Up"
-764 "Fiendish Wail"
-773 "Color Slam" #Life Force / Spirit
-774 "STACK FRONT"
-778 "Blow Away" #Malkuth
-779 "Adds spawn" #4 Binah + 1 Storm of Words
-781 "STACK" #Yesod
-788 "Color Slam"
-789 "Towers Up"
-792 "Yesod, MOVE"
-793 "Fiendish Wail"
-796 "STACK"
-801 "Color Slam"
-803 "STACK"
-811 "Yesod, MOVE"
-817 "Color Slam"
-823 "Impact of Hod" #Small knockback
-823 "JUMP" #Indicator for jump
-828 "Ascension" #Damage from jump
-831 "STACK MID" #Yesod
-836 "Yesod, MOVE"
-
-845 "Debuff"
-856 "Color Slam" #Life Force / Spirit
-857 "Towers Up"
-#859 "Orbs Spawn" #4 orbs
-862 "Fiendish Wail"
-863 "Tethers"
-876 "Towers Up"
-881 "Fiendish Wail"
-888 "Color Slam" #Life Force / Spirit
-889 "STACK MID" #Earthshaker + Yesod
-891 "Earthshaker"
-894 "Yesod, MOVE"
-899 "SPREAD"
-904 "Da'at"
-909 "Towers Up"
-912 "Fiendish Wail"
-921 "Color Slam" #Life Force / Spirit
-922 "STACK" #Yesod
-925 "Yesod, MOVE"
-929 "Knockback" #Pillar of Mercy
-934 "Knockback" #Pillar of Mercy
-938 "Knockback" #Pillar of Mercy
-939 "STACK MID" #Earthshaker
-942 "Earthshaker"
-948 "SPREAD" #Da'at + Yesod
-954 "Yesod, MOVE"
-955 "Da'at"
-959 "Towers Up"
-963 "Fiendish Wail"
-972 "Color Slam" #Life Force / Spirit
-973 "STACK FRONT"
-977 "Blow Away" #Malkuth
-978 "Adds spawn" #4 Binah + 1 Storm of Words
-980 "STACK" #Yesod
-987 "Color Slam"
-988 "Towers Up"
-991 "Yesod, MOVE"
-992 "Fiendish Wail"
-995 "STACK"
-1000 "Color Slam"
-1002 "STACK"
-1010 "Yesod, MOVE"
-1016 "Color Slam"
-1022 "Impact of Hod" #Small knockback
-1022 "JUMP" #Indicator for jump
-1027 "Ascension" #Damage from jump
+1207.6 "Yesod" sync /:Sephirot:157E:/ window 30,30
+1213.5 "Force Field" sync /:Sephirot:1587:/
+1225.7 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1226.3 "Life Force" sync /:Sephirot:157A:/
+1226.3 "Spirit" sync /:Sephirot:157B:/
+1231.9 "Fiendish Wail" sync /:Sephirot:1576:/
+1240.0 "Da'at" # sync /:Sephirot:1574:/ duration 3.2
+1250.6 "Fiendish Wail" sync /:Sephirot:1576:/
+1257.6 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1258.2 "Life Force" sync /:Sephirot:157A:/
+1258.2 "Spirit" sync /:Sephirot:157B:/
+1265.7 "Earth Shaker" sync /:Sephirot:157D:/
+1267.4 "Yesod" sync /:Sephirot:157E:/
+1275.0 "Da'at spread" # sync /:Sephirot:1573:/
+1282.4 "Fiendish Wail" sync /:Sephirot:1576:/
+1289.5 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1290.2 "Spirit" sync /:Sephirot:157B:/
+1298.3 "Pillar of Mercy" sync /:Sephirot:1580:/
+1298.6 "Yesod" sync /:Sephirot:157E:/
+1303.5 "Pillar of Mercy" sync /:Sephirot:1580:/
+1307.4 "Pillar of Mercy" sync /:Sephirot:1580:/
+1316.6 "Earth Shaker" sync /:Sephirot:157D:/
+1326.1 "Da'at spread" # sync /:Sephirot:1573:/
+1327.0 "Yesod" sync /:Sephirot:157E:/
+1333.4 "Fiendish Wail" sync /:Sephirot:1576:/
+1340.5 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1341.1 "Life Force" sync /:Sephirot:157A:/
+1341.1 "Spirit" sync /:Sephirot:157B:/
+1346.7 "Malkuth" sync /:Sephirot:1582:/
+1347.8 "Adds Spawn" sync /03:........:Added new combatant Storm Of Words/
+1356.0 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1356.6 "Spirit" sync /:Sephirot:157B:/
+1356.6 "Life Force" sync /:Sephirot:157A:/
+1362.2 "Fiendish Wail" sync /:Sephirot:1576:/
+1363.8 "Yesod" sync /:Sephirot:157E:/
+1369.5 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1370.1 "Life Force" sync /:Sephirot:157A:/
+1370.1 "Spirit" sync /:Sephirot:157B:/
+1385.7 "Chesed Gevurah" sync /:Sephirot:157[89]:/
+1386.3 "Life Force" sync /:Sephirot:157A:/
+1386.3 "Spirit" sync /:Sephirot:157B:/
+1388.9 "Pillar of Severity" sync /:Sephirot:1585:/
+1392.6 "Impact of Hod" sync /:Sephirot:172C:/
+1397.0 "Ascension" sync /:Coronal Wind:1584:/
+1403.9 "Pillar of Severity Enrage" sync /:Sephirot:1585:/
