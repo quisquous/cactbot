@@ -227,7 +227,7 @@ class WidgetList extends HTMLElement {
       this.removeElement(name);
 
     let sortKeyFn;
-    if (typeof(sortKey) == 'number') {
+    if (typeof sortKey == 'number') {
       sortKeyFn = function() {
         return sortKey;
       };

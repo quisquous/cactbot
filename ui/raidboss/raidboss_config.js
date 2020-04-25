@@ -462,7 +462,7 @@ class RaidbossConfigurator {
 
   // This duplicates the raidboss function of the same name.
   valueOrFunction(f, data, matches) {
-    let result = (typeof(f) == 'function') ? f(data, matches) : f;
+    let result = (typeof f == 'function') ? f(data, matches) : f;
     if (result !== Object(result))
       return result;
     // TODO: somehow use the option for alert language here??
@@ -582,7 +582,7 @@ class RaidbossConfigurator {
         try {
           // Can't use ValueOrFunction here as r returns a non-localizable object.
           // FIXME: this hackily replicates some raidboss logic too.
-          let response = (typeof(r) == 'function') ? r(kFakeData[d], kFakeMatches) : r;
+          let response = (typeof r == 'function') ? r(kFakeData[d], kFakeMatches) : r;
           if (!response)
             continue;
           for (let i = 0; i < keys.length; ++i)

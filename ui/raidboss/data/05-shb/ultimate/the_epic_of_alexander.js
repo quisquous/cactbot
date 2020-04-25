@@ -32,7 +32,7 @@
 let getHeadmarkerId = (data, matches) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 004F.
   // (This makes the offset 0, and !0 is true.)
-  if (typeof(data.decOffset) == 'undefined') {
+  if (typeof data.decOffset == 'undefined') {
     // The first 1B marker in the encounter is Limit Cut 1, ID 004F.
     data.decOffset = parseInt(matches.id, 16) - 79;
   }

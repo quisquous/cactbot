@@ -1,7 +1,7 @@
 'use strict';
 
 let trueIfUndefined = (value) => {
-  if (typeof(value) === 'undefined')
+  if (typeof value === 'undefined')
     return true;
   return !!value;
 };
