@@ -101,7 +101,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'The First Beast': 'das erste Unheil',
+        'The First Beast': '(?:der|die|das) erst(?:e|er|es|en) Unheil',
         'The Face of the Beast': 'Antlitz des Boten',
         'Fallen Star': 'Komet',
         'Therion': 'Therion',

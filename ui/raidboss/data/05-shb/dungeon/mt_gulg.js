@@ -228,9 +228,9 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Forgiven Obscenity': 'geläuterte Unzucht',
-        'Forgiven Cruelty': 'geläuterte Grausamkeit',
-        'Forgiven Whimsy': 'geläuterte Gereiztheit',
+        'Forgiven Obscenity': 'geläutert(?:e|er|es|en) Unzucht',
+        'Forgiven Cruelty': 'geläutert(?:e|er|es|en) Grausamkeit',
+        'Forgiven Whimsy': 'geläutert(?:e|er|es|en) Gereiztheit',
         'Brightsphere': 'Lichtsphäre',
         'The Winding Flare': 'Strahlenden Stufen',
         'The White Gate': 'Weißen Pforte',

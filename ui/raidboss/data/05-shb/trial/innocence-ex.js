@@ -490,7 +490,7 @@
         'Innocence': 'Innozenz',
         'Nail of Condemnation': 'Nagel des Urteils',
         'Sword of Condemnation': 'Schwert des Urteils',
-        'Forgiven Venery': 'Geläuterte Wollust',
+        'Forgiven Venery': 'Geläutert(?:e|er|es|en) Wollust',
         'Forgiven Shame': 'Geläuterte Schande',
       },
       'replaceText': {

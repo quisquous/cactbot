@@ -418,6 +418,7 @@
       'replaceSync': {
         'Spirit of Flame': 'Feuerfee',
         'Spirit of Wood': 'Holzfee',
+        'Spirit Of Dew': 'Wasserfee',
         'Titania': 'Titania',
         'Puck': 'Puck',
         'Peaseblossom': 'Bohnenblüte',

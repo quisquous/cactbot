@@ -186,7 +186,7 @@
         'laboratory onion': 'Laborzwiebel',
         'laboratory garlic': 'Laborknoblauch',
         'laboratory eggplant': 'Laboraubergine',
-        'evil armor': 'böse Kampfmaschine',
+        'evil armor': 'bös(?:e|er|es|en) Kampfmaschine',
         'engendered soma': 'erzeugter Soma',
         'engendered snapweed': 'erzeugtes Springkraut',
         'engendered shark': 'erzeugter Hai',

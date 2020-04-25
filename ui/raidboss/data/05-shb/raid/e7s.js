@@ -405,6 +405,7 @@
           return {
             infoText: {
               en: 'Avoid ' + data.ShortName(matches.target),
+              de: 'Vermeide ' + data.ShortName(matches.target),
             },
           };
         }
@@ -485,17 +486,20 @@
         if (data.role == 'tank') {
           return {
             en: 'Go South',
+            de: 'Geh nach Süden',
             ko: '남쪽',
           };
         }
         if (data.color == 'light') {
           return {
             en: 'Go Northwest',
+            de: 'Geh nach Nordwesten',
             ko: '북서쪽',
           };
         }
         return {
           en: 'Go Northeast',
+          de: 'Geh nach Nordosten',
           ko: '북동쪽',
         };
       },
