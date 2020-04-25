@@ -341,6 +341,7 @@
         if (data.me == matches.target) {
           return {
             en: data.tetherDir + ' (on YOU)',
+            de: data.tetherDir + ' (auf DIR)',
             fr: data.tetherDir + ' (sur VOUS)',
             cn: data.tetherDir + ' (点名)',
           };
@@ -350,6 +351,7 @@
         if (data.me != matches.target) {
           return {
             en: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
+            de: data.tetherDir + ' (auf ' + data.ShortName(matches.target) + ')',
             fr: data.tetherDir + ' (sur ' + data.ShortName(matches.target) + ')',
             cn: data.tetherDir + ' (点 ' + data.ShortName(matches.target) + ')',
           };
@@ -432,6 +434,9 @@
         'Ragnarok': 'Ragnarök',
         'Thunderwing': 'Donnerschwinge',
         'Umbral Debris': 'Schattengestein',
+        'The Ghost Of Meracydia': 'Geist Von Meracydia',
+        'Garrote Twist': 'Leicht Fixierbar',
+        'Raven Blight': 'Pestschwinge',
       },
       'replaceText': {
         '\\(In\\)': '(Rein)',
