@@ -304,6 +304,9 @@
         'Specter Of The Patriarch': 'Yotsuyus Ziehvater',
         'Specter Of Zenos': 'Zenos',
         'Tsukuyomi': 'Tsukuyomi',
+        'New Moon': 'Neumond',
+        'Full Moon': 'Vollmond',
+        'No\. No\.\.\. Not yet\. Not\. Yet\.': 'Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\.',
       },
       'replaceText': {
         'Antitwilight': 'Schönheit der Nacht',

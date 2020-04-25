@@ -327,6 +327,7 @@
         'Byakko': 'Byakko',
         'Hakutei': 'Hakutei',
         'There is no turning back!': 'Mein Jagdtrieb ist erwacht!',
+        'Twofold is my wrath, twice-cursed my foes!': 'Stürmt los, meine zwei Gesichter!',
       },
       'replaceText': {
         'Answer On High': 'Himmlische Antwort',

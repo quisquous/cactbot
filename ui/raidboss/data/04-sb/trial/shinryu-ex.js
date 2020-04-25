@@ -666,6 +666,7 @@
         'Shinryu': 'Shinryu',
         'Tail': 'Schwanz',
         'The Worm\'s Heart': 'Shinryus Herz',
+        'Icicle': 'Eiszapfen',
       },
       'replaceText': {
         'Aerial Blast': 'Windschlag',
