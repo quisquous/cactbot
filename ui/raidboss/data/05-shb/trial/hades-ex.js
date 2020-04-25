@@ -403,7 +403,7 @@
         en: 'Tank Busters',
         de: 'Tankbuster',
         fr: 'Tankbuster',
-        ja: 'タンクにタンクバスター',
+        ja: 'タンクバスター',
         cn: '坦克死刑',
         ko: '탱버',
       },
