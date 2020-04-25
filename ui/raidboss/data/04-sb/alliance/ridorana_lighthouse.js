@@ -117,7 +117,7 @@
     {
       id: 'Ridorana Famfrit Dark Rain',
       regex: Regexes.addedCombatant({ name: 'Dark Rain', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Dunkl(?:e|er|es|en) Regen', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Dunkler Regen', capture: false }),
       regexFr: Regexes.addedCombatant({ name: 'Sphère D\'Eau Ténébreuse', capture: false }),
       regexJa: Regexes.addedCombatant({ name: '暗黒の雨水', capture: false }),
       regexCn: Regexes.addedCombatant({ name: '暗黑雨水', capture: false }),
@@ -539,8 +539,8 @@
       'replaceSync': {
         'Archaeodemon': 'Archaeodämon',
         'Belias, The Gigas': 'Dämonid Belias',
-        'Construct 7': 'Automat Nr. 7',
-        'Construct 7.1': 'verbessert(?:e|er|es|en) Automat Nr. 7',
+        'Construct 7': 'Automat Nr\\. 7',
+        'Construct 7.1': 'verbessert(?:e|er|es|en) Automat Nr\\. 7',
         'Dark Rain': 'Dunkler Regen',
         'Echoes from Time\'s Garden': 'Garten ewiger Zeit',
         'Famfrit, The Darkening Cloud': 'Dunkelfürst Famfrit',
@@ -552,6 +552,7 @@
         'The Spire\'s Bounds': 'Katastase',
         'Wind Azer': 'Windseele',
         'Yiazmat': 'Yiasmat',
+        'Gigas': 'Diener Von Belias',
       },
       'replaceText': {
         'Accelerate': 'Beschleunigen',
@@ -641,7 +642,7 @@
         'Invincibility': 'Unverwundbar',
         'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
         'Magnetic Levitation': 'Magnetschwebe',
-        'Magnetic Lysis +': 'Positives Magnetfeld',
+        'Magnetic Lysis \\+': 'Positives Magnetfeld',
         'Magnetic Lysis -': 'Negatives Magnetfeld',
         'Minimum': 'Wicht',
         'Negative Charge': 'Negative Ladung',
