@@ -242,6 +242,7 @@
 
         return {
           en: 'Face ' + data.ShortName(partner),
+          de: 'Schaue zu ' + data.ShortName(partner),
           cn: '面向' + data.ShortName(partner),
         };
       },
