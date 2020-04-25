@@ -231,6 +231,8 @@
         'Bioweapon Storage': 'Biowaffen-Magazin',
         'Lamia Prosector': 'Lamia-Prosektorin',
         'Melusine': 'Melusine',
+        'Cursed Shriek': 'Schrei der Verwünschung',
+        'Cursed Voice': 'Stimme der Verwünschung',
       },
       'replaceText': {
         'Circle Blade': 'Kreisklinge',

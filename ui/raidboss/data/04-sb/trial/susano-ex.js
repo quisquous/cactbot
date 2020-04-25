@@ -262,11 +262,11 @@
         'Let the revels begin': 'Kommt, lasst uns singen und tanzen!',
         'REJOICE!': 'Uohhh!',
         'Susano': 'Susano',
-        'Thunderhead': 'Donnerhall',
+        'Thunderhead': 'Gewitterwolke',
       },
       'replaceText': {
         'Ame No Murakumo': 'Ame No Murakumo',
-        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
+        'Ame-No-Murakumo add': 'Ame No Murakumo Add',
         'Assail': 'Schwere Attacke',
         'Brightstorm': 'Heller Sturm',
         'Churn': 'Schaum',

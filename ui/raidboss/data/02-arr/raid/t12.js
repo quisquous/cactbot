@@ -148,6 +148,7 @@
       'replaceSync': {
         'Phoenix-Egi': 'Phönix-Egi',
         'Phoenix(?!-)': 'Phönix',
+        'Chain Of Purgatory': 'Kette Der Purgation',
       },
       'replaceText': {
         'Bennu Add': 'Bennu Add',
@@ -157,6 +158,7 @@
         'Flames Of Rebirth': 'Flammen der Wiedergeburt',
         'Flames Of Unforgiveness': 'Zeichen der Läuterung',
         'Fountain Of Fire': 'Quell des Feuers',
+        'Fountain(?! Of Fire)': 'Quell',
         '(?<! )Rebirth': 'Wiedergeburt',
         'Redfire Plume': 'Rotfeuer-Feder',
         'Redfire(?! )': 'Rotfeuer',

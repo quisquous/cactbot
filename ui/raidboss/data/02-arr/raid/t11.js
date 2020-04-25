@@ -240,6 +240,7 @@
       'replaceSync': {
         'Kaliya': 'Kaliya',
         'The Core Override': 'Kern-Steuereinheit',
+        'Electric Node': 'Elektrisch(?:e|er|es|en) Modul',
       },
       'replaceText': {
         'Barofield': 'Baro-Feld',

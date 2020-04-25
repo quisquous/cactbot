@@ -95,7 +95,7 @@
       regexFr: Regexes.ability({ source: ['Membre Liquide', 'Liquide Vivant'], id: 'F09', capture: false }),
       regexJa: Regexes.ability({ source: ['リキッドハンド', 'リビングリキッド'], id: 'F09', capture: false }),
       regexCn: Regexes.ability({ source: ['活水之手', '有生命活水'], id: 'F09', capture: false }),
-      regexKo: Regexes.ability({ source: ['액체 손', ''], id: 'F09', capture: false }),
+      regexKo: Regexes.ability({ source: ['액체 손', '살아있는 액체'], id: 'F09', capture: false }),
       infoText: {
         en: 'Burn Higher HP Hand',
         de: 'Fokusiere Hand mit mehr HP',
