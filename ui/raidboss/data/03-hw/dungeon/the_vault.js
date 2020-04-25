@@ -188,6 +188,7 @@
         'The Chancel': 'Bekenntnis des Glaubens',
         'The Quire': 'Chorempore',
         'The chapter house': 'Himmelsgewölbe',
+        'Aetherial Tear': 'Ätherspalt',
       },
       'replaceText': {
         'Advent': 'Wiederkunft',
