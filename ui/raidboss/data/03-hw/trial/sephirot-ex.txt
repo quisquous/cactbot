@@ -69,7 +69,7 @@ hideall "--sync--"
 1029.0 "Life Force" sync /:Sephirot:157A:/
 1029.0 "Spirit" sync /:Sephirot:157B:/
 1034.6 "Fiendish Wail" sync /:Sephirot:1576:/
-1042.7 "Da'at" # sync /:Sephirot:1574:/ duration 3.2
+1042.7 "Da'at Tethers" # sync /:Sephirot:1574:/ duration 3.2
 1053.3 "Fiendish Wail" sync /:Sephirot:1576:/
 1060.3 "Chesed Gevurah" sync /:Sephirot:157[89]:/
 1060.9 "Life Force" sync /:Sephirot:157A:/
@@ -114,7 +114,7 @@ hideall "--sync--"
 1226.3 "Life Force" sync /:Sephirot:157A:/
 1226.3 "Spirit" sync /:Sephirot:157B:/
 1231.9 "Fiendish Wail" sync /:Sephirot:1576:/
-1240.0 "Da'at" # sync /:Sephirot:1574:/ duration 3.2
+1240.0 "Da'at Tethers" # sync /:Sephirot:1574:/ duration 3.2
 1250.6 "Fiendish Wail" sync /:Sephirot:1576:/
 1257.6 "Chesed Gevurah" sync /:Sephirot:157[89]:/
 1258.2 "Life Force" sync /:Sephirot:157A:/
