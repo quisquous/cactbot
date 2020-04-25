@@ -25,6 +25,7 @@
         'Shield Skewer': 'Schildspieß',
         'Shrapnel Shell': 'Schrapnell-Geschoss',
         'Winds Of Tartarus': 'Wind des Tartarus',
+        'Adds': 'Adds',
       },
     },
     {
