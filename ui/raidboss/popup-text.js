@@ -210,11 +210,10 @@ class PopupText {
           // Filter out disabled triggers
           let enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
 
-          for (let j = 0; j < enabledTriggers.length; ++j) {
+          for (let trigger of enabledTriggers) {
             // Add an additional resolved regex here to save
             // time later.  This will clobber each time we
             // load this, but that's ok.
-            let trigger = enabledTriggers[j];
             trigger.filename = set.filename;
 
             if (!trigger.regex)
@@ -228,6 +227,9 @@ class PopupText {
             }
             trigger.localRegex = Regexes.parse(regex);
           }
+
+          // Exclude triggers that don't have a valid regex
+          enabledTriggers = enabledTriggers.filter((trigger) => 'localRegex' in trigger);
 
           // Save the triggers from each set that matches.
           this.triggers.push(...enabledTriggers);
@@ -368,7 +370,7 @@ class PopupText {
   OnTriggerInternal(trigger, matches) {
     let now = +new Date();
 
-    if (!this._OnTriggerInternal_CheckSuppressed(trigger, now))
+    if (this._OnTriggerInternal_CheckSuppressed(trigger, now))
       return;
 
     // If using named groups, treat matches.groups as matches
@@ -455,7 +457,7 @@ class PopupText {
       },
       TriggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
       TriggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
-      // This setting onyl suppresses output, trigger still runs for data/logic purposes
+      // This setting only suppresses output, trigger still runs for data/logic purposes
       UserSuppressedOutput: trigger.id && this.options.DisabledTriggers[trigger.id],
       Matches: matches,
       Response: undefined,
@@ -480,11 +482,11 @@ class PopupText {
   _OnTriggerInternal_CheckSuppressed(trigger, when) {
     if (trigger.id && trigger.id in this.triggerSuppress) {
       if (this.triggerSuppress[trigger.id] > when)
-        return false;
+        return true;
 
       delete this.triggerSuppress[trigger.id];
     }
-    return true;
+    return false;
   }
 
   _OnTriggerInternal_Condition(TriggerHelper) {
@@ -618,15 +620,15 @@ class PopupText {
   }
 
   _OnTriggerInternal_AlarmText(TriggerHelper) {
-    this._AddTextFor('alarmText', TriggerHelper);
+    this._AddTextFor('alarm', TriggerHelper);
   }
 
   _OnTriggerInternal_AlertText(TriggerHelper) {
-    this._AddTextFor('alertText', TriggerHelper);
+    this._AddTextFor('alert', TriggerHelper);
   }
 
   _OnTriggerInternal_InfoText(TriggerHelper) {
-    this._AddTextFor('infoText', TriggerHelper);
+    this._AddTextFor('info', TriggerHelper);
   }
 
   _OnTriggerInternal_GroupTTS(TriggerHelper) {
@@ -717,23 +719,28 @@ class PopupText {
   }
 
   _AddTextFor(TextType, TriggerHelper) {
-    let UpperTextType = TextType[0].toUpperCase() + TextType.slice(1);
+    // infoText
+    let LowerTextType = TextType + 'Text';
+    // InfoText
+    let UpperTextType = TextType[0].toUpperCase() + TextType.slice(1) + 'Text';
+    // info-text
+    let TextElementClass = TextType + '-text';
     let textObj = TriggerHelper.TriggerOptions[UpperTextType] ||
-      TriggerHelper.Trigger[TextType] || TriggerHelper.Response[TextType];
+      TriggerHelper.Trigger[LowerTextType] || TriggerHelper.Response[LowerTextType];
     if (textObj) {
       let text = TriggerHelper.ValueOrFunction(textObj);
       TriggerHelper.DefaultTTSText = TriggerHelper.DefaultTTSText || text;
       if (text && TriggerHelper.TextAlertsEnabled) {
         text = triggerUpperCase(text);
-        let holder = this[TextType].getElementsByClassName('holder')[0];
-        let div = this._MakeTextElement(text, TextType.split('T')[0] + '-text');
+        let holder = this[LowerTextType].getElementsByClassName('holder')[0];
+        let div = this._MakeTextElement(text, TextElementClass);
         this._AddText(holder, div);
         this._ScheduleRemoveText(holder, div,
-            (TriggerHelper.Duration.FromTrigger || TriggerHelper.Duration[TextType]));
+            (TriggerHelper.Duration.FromTrigger || TriggerHelper.Duration[LowerTextType]));
 
         if (!TriggerHelper.SoundUrl) {
-          TriggerHelper.SoundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
-          TriggerHelper.SoundVol = this.options[UpperTextType.split('T')[0] + 'SoundVolume'];
+          TriggerHelper.SoundUrl = this.options[TextType + 'Sound'];
+          TriggerHelper.SoundVol = this.options[TextType + 'SoundVolume'];
         }
       }
     }
