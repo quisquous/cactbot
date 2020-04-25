@@ -261,6 +261,7 @@
         'The Chamber of Celestial Song': 'Großen Vergnügungen',
         'The Font of Quintessence': 'Broderieparterre',
         'The Martial Court': 'Kleinen Stufenarkade',
+        'Lover\'s Ring': 'Keim Des Geliebten',
       },
       'replaceText': {
         'Black Flame': 'Finsterer Flammenwind',
