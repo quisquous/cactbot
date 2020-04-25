@@ -170,7 +170,7 @@
         'Fire Resistance Up': 'Feuerresistenz +',
         'Invisible': 'Unsichtbar',
         'Knockback Penalty': 'Rückstoß unwirksam',
-        'Last Kiss': 'Todeskuss',
+        'Last Kiss': 'Letzter Kuss',
         'Red Paint': 'Rote Farbe',
         'Seduced': 'Versuchung',
         'Slippery Prey': 'Unmarkierbar',

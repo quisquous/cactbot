@@ -152,6 +152,7 @@
       },
       infoText: {
         en: 'Grab dragon',
+        de: 'Drachen nehmen',
       },
     },
     {
@@ -179,6 +180,7 @@
       },
       alertText: {
         en: 'Get hit by Ribbit',
+        de: 'Lass dich von Quaaak treffen',
       },
     },
     {
@@ -208,18 +210,22 @@
         if (data.phaseNumber == 3 && data.gameCount % 2 == 0) {
           return {
             en: 'Stand on frog tile',
+            de: 'Auf Frosch-Fläche stehen',
           };
         }
         return {
           // Maybe there's a cleaner way to do this than just enumerating roles?
           'tank': {
             en: 'Stand on shield',
+            de: 'Auf Schild-Fläche stehen',
           },
           'healer': {
             en: 'Stand on cross',
+            de: 'Auf Kreuz-Fläche stehen',
           },
           'dps': {
             en: 'Stand on sword',
+            de: 'Auf Schwert-Fläche stehen',
           },
         }[data.role];
       },

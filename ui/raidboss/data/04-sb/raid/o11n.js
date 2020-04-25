@@ -17,6 +17,7 @@
       },
       infoText: {
         en: 'Tank Tether',
+        de: 'Tank Verbindung',
         cn: '坦克接线远离人群',
       },
     },
