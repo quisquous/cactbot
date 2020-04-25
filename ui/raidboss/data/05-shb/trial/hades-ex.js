@@ -822,7 +822,7 @@
             en: 'tank busters',
             de: 'Tank buster',
             fr: 'Tank busters',
-            ja: 'タンクにタンクバスター',
+            ja: 'タンクバスター',
             cn: '坦克死刑',
             ko: '탱버',
           };
