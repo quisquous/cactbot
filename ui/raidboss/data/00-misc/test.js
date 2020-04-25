@@ -101,10 +101,10 @@
     {
       id: 'Test Poke',
       regex: Regexes.gameNameLog({ line: 'You poke the striking dummy', capture: false }),
-      regexDe: Regexes.gameNameLog({ line: '\\y{Name}:Du stupst die Trainingspuppe an', capture: false }),
-      regexFr: Regexes.gameNameLog({ line: '\\y{Name}:Vous touchez légèrement le mannequin d\'entraînement du doigt', capture: false }),
-      regexCn: Regexes.gameNameLog({ line: '\\y{Name}:.*用手指戳向木人', capture: false }),
-      regexKo: Regexes.gameNameLog({ line: '\\y{Name}:.*나무인형을 쿡쿡 찌릅니다', capture: false }),
+      regexDe: Regexes.gameNameLog({ line: 'Du stupst die Trainingspuppe an', capture: false }),
+      regexFr: Regexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt', capture: false }),
+      regexCn: Regexes.gameNameLog({ line: '.*用手指戳向木人', capture: false }),
+      regexKo: Regexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다', capture: false }),
       preRun: function(data) {
         data.pokes = (data.pokes || 0) + 1;
       },
