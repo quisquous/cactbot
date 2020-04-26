@@ -1,26 +1,5 @@
 'use strict';
 
-let trueIfUndefined = (value) => {
-  if (typeof value === 'undefined')
-    return true;
-  return !!value;
-};
-
-let validateParams = (f, funcName, params) => {
-  if (f === null)
-    return;
-  if (typeof f !== 'object')
-    return;
-  let keys = Object.keys(f);
-  for (let k = 0; k < keys.length; ++k) {
-    let key = keys[k];
-    if (params.indexOf(key) < 0) {
-      throw new Error(`${funcName}: invalid parameter '${key}'.  ` +
-          `Valid params: ${JSON.stringify(params)}`);
-    }
-  }
-};
-
 // Node loading shenanigans.  'var' lets other files require() this file inside of
 // Node and put Regexes as a global without conflicting when redefining.
 /* eslint-disable no-var */
@@ -32,8 +11,8 @@ var Regexes = {
   startsUsing: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'startsUsing', ['source', 'id', 'ability', 'target', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'startsUsing', ['source', 'id', 'ability', 'target', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 14:' +
       Regexes.maybeCapture(capture, 'id', f.id, '\\y{AbilityCode}') + ':';
 
@@ -55,8 +34,8 @@ var Regexes = {
   ability: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'ability', ['source', 'id', 'ability', 'target', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'ability', ['source', 'id', 'ability', 'target', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:\\y{ObjectId}:' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':';
 
@@ -78,7 +57,7 @@ var Regexes = {
   abilityFull: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'abilityFull', [
+    Regexes.validateParams(f, 'abilityFull', [
       'sourceId',
       'source',
       'id',
@@ -92,7 +71,7 @@ var Regexes = {
       'heading',
       'capture',
     ]);
-    let capture = trueIfUndefined(f.capture);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1[56]:' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
@@ -115,8 +94,8 @@ var Regexes = {
   headMarker: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'headMarker', ['targetId', 'target', 'id', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'headMarker', ['targetId', 'target', 'id', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1B:' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':....:....:' +
@@ -129,8 +108,8 @@ var Regexes = {
   addedCombatant: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'addedCombatant', ['name', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'addedCombatant', ['name', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 03:\\y{ObjectId}:Added new combatant ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
     return Regexes.parse(str);
@@ -141,8 +120,8 @@ var Regexes = {
   addedCombatantFull: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'addedCombatantFull', ['id', 'name', 'hp', 'x', 'y', 'z', 'npcId', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'addedCombatantFull', ['id', 'name', 'hp', 'x', 'y', 'z', 'npcId', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
       ':Added new combatant ' + Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
       '.*?Max HP: ' +
@@ -160,8 +139,8 @@ var Regexes = {
   removingCombatant: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'removingCombatant', ['name', 'hp', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'removingCombatant', ['name', 'hp', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 04:\\y{ObjectId}:Removing combatant ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
       '.*?Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.';
@@ -173,8 +152,8 @@ var Regexes = {
   gainsEffect: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'gainsEffect', ['targetId', 'target', 'effect', 'source', 'duration', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'gainsEffect', ['targetId', 'target', 'effect', 'source', 'duration', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1A:' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
@@ -194,7 +173,7 @@ var Regexes = {
   statusEffectExplicit: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'statusEffectExplicit', [
+    Regexes.validateParams(f, 'statusEffectExplicit', [
       'targetId',
       'target',
       'hp',
@@ -210,7 +189,7 @@ var Regexes = {
       'data4',
       'capture',
     ]);
-    let capture = trueIfUndefined(f.capture);
+    let capture = Regexes.trueIfUndefined(f.capture);
 
     let kField = '.*?:';
 
@@ -243,8 +222,8 @@ var Regexes = {
   losesEffect: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'losesEffect', ['targetId', 'target', 'effect', 'source', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'losesEffect', ['targetId', 'target', 'effect', 'source', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 1E:' +
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
@@ -260,8 +239,8 @@ var Regexes = {
   tether: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'tether', ['source', 'sourceId', 'target', 'targetId', 'id', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'tether', ['source', 'sourceId', 'target', 'targetId', 'id', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 23:' +
       Regexes.maybeCapture(capture, 'sourceId', f.sourceId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'source', f.source, '[^:]*?') + ':' +
@@ -278,8 +257,8 @@ var Regexes = {
   wasDefeated: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'wasDefeated', ['target', 'source', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'wasDefeated', ['target', 'source', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 19:' +
       Regexes.maybeCapture(capture, 'target', f.target, '.*?') +
       ' was defeated by ' +
@@ -292,8 +271,8 @@ var Regexes = {
   hasHP: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'hasHP', ['name', 'hp', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'hasHP', ['name', 'hp', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 0D:' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') +
       ' HP at ' +
@@ -306,7 +285,7 @@ var Regexes = {
   echo: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'echo', ['code', 'line', 'capture']);
+    Regexes.validateParams(f, 'echo', ['code', 'line', 'capture']);
     return Regexes.gameLog({
       line: f.line,
       capture: f.capture,
@@ -319,8 +298,8 @@ var Regexes = {
   dialog: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'dialog', ['code', 'line', 'name', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'dialog', ['code', 'line', 'name', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', '0044') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':' +
@@ -333,7 +312,7 @@ var Regexes = {
   message: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'message', ['code', 'line', 'capture']);
+    Regexes.validateParams(f, 'message', ['code', 'line', 'capture']);
     return Regexes.gameLog({
       line: f.line,
       capture: f.capture,
@@ -346,8 +325,8 @@ var Regexes = {
   gameLog: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'gameLog', ['code', 'line', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'gameLog', ['code', 'line', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
       Regexes.maybeCapture(capture, 'line', f.line, '.*');
@@ -361,8 +340,8 @@ var Regexes = {
   gameNameLog: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'gameNameLog', ['code', 'name', 'line', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'gameNameLog', ['code', 'name', 'line', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '[^:]*') + ':' +
@@ -377,7 +356,7 @@ var Regexes = {
   statChange: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'statChange', [
+    Regexes.validateParams(f, 'statChange', [
       'job',
       'strength',
       'dexterity',
@@ -396,7 +375,7 @@ var Regexes = {
       'tenacity',
       'capture',
     ]);
-    let capture = trueIfUndefined(f.capture);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 0C:Player Stats: ' +
       Regexes.maybeCapture(capture, 'job', f.job, '\\d+') + ':' +
       Regexes.maybeCapture(capture, 'strength', f.strength, '\\d+') + ':' +
@@ -423,8 +402,8 @@ var Regexes = {
   changeZone: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    validateParams(f, 'statChange', ['name', 'capture']);
-    let capture = trueIfUndefined(f.capture);
+    Regexes.validateParams(f, 'statChange', ['name', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 01:Changed Zone to ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
     return Regexes.parse(str);
@@ -499,6 +478,27 @@ var Regexes = {
       return kCactbotCategories[group] || match;
     });
     return new RegExp(Regexes.withUnicodeClasses(regexpString), modifiers);
+  },
+
+  trueIfUndefined: (value) => {
+    if (typeof (value) === 'undefined')
+      return true;
+    return !!value;
+  },
+
+  validateParams: (f, funcName, params) => {
+    if (f === null)
+      return;
+    if (typeof f !== 'object')
+      return;
+    let keys = Object.keys(f);
+    for (let k = 0; k < keys.length; ++k) {
+      let key = keys[k];
+      if (params.indexOf(key) < 0) {
+        throw new Error(`${funcName}: invalid parameter '${key}'.  ` +
+            `Valid params: ${JSON.stringify(params)}`);
+      }
+    }
   },
 
   /* ! This method is from https://stackoverflow.com/a/8933546
