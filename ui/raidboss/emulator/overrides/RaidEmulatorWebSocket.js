@@ -9,7 +9,7 @@ class RaidEmulatorWebSocket {
   originalRemove;
   originalCall;
 
-  timestampOffset;
+  timestampOffset = 0;
 
   constructor(emulator) {
     this.emulator = emulator;
@@ -18,29 +18,32 @@ class RaidEmulatorWebSocket {
     this.originalRemove = window.removeOverlayListener;
     this.originalCall = window.callOverlayHandler;
 
-    window.dispatchOverlayEvent = this.Dispatch.bind(this);
-    window.addOverlayListener = this.Add.bind(this);
-    window.removeOverlayListener = this.Remove.bind(this);
-    window.callOverlayHandler = this.Call.bind(this);
+    window.dispatchOverlayEvent = this.dispatch.bind(this);
+    window.addOverlayListener = this.add.bind(this);
+    window.removeOverlayListener = this.remove.bind(this);
+    window.callOverlayHandler = this.call.bind(this);
 
     emulator.on('tick', (timestampOffset) => {
       this.timestampOffset = timestampOffset;
     });
+    emulator.on('preSeek currentEncounterChanged', (timestampOffset) => {
+      this.timestampOffset = 0;
+    });
   }
 
   dispatch(msg) {
-    return this.originaldispatch(msg);
+    return this.originalDispatch(msg);
   }
 
-  Add(event, cb) {
+  add(event, cb) {
     return this.originalAdd(event, cb);
   }
 
-  Remove(event, cb) {
+  remove(event, cb) {
     return this.originalRemove(event, cb);
   }
 
-  Call(msg) {
+  call(msg) {
     if (msg.call === 'getCombatants') {
       return new Promise((res) => {
         let combatants = [];

@@ -82,27 +82,34 @@ class RaidEmulatorPopupText extends PopupText {
     });
   }
 
-  _AddTextFor(TextType, TriggerHelper) {
-    let UpperTextType = TextType[0].toUpperCase() + TextType.slice(1);
-    let textObj = TriggerHelper.TriggerOptions[UpperTextType] || TriggerHelper.Trigger[TextType] || TriggerHelper.Response[TextType];
+  _addTextFor(textType, triggerHelper) {
+    let textTypeUpper = textType[0].toUpperCase() + textType.slice(1);
+    // infoText
+    let lowerTextKey = textType + 'Text';
+    // InfoText
+    let upperTextKey = textTypeUpper + 'Text';
+    // info-text
+    let textElementClass = textType + '-text';
+    let textObj = triggerHelper.triggerOptions[upperTextKey] ||
+      triggerHelper.trigger[lowerTextKey] || triggerHelper.response[lowerTextKey];
     if (textObj) {
-      let text = TriggerHelper.ValueOrFunction(textObj);
-      TriggerHelper.DefaultTTSText = TriggerHelper.DefaultTTSText || text;
-      if (text && TriggerHelper.TextAlertsEnabled) {
+      let text = triggerHelper.valueOrFunction(textObj);
+      triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
+      if (text && triggerHelper.textAlertsEnabled) {
         text = triggerUpperCase(text);
-        let div = this._MakeTextElement(text, TextType.split('T')[0] + '-text');
-        this.AddDisplayText(div, this.emulatedOffset + ((TriggerHelper.Duration.FromTrigger || TriggerHelper.Duration[TextType]) * 1000));
+        let div = this._makeTextElement(text, textElementClass);
+        this.AddDisplayText(div, this.emulatedOffset + ((triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey]) * 1000));
 
-        if (!TriggerHelper.SoundUrl) {
-          TriggerHelper.SoundUrl = this.options[UpperTextType.split('T')[0] + 'Sound'];
-          TriggerHelper.SoundVol = this.options[UpperTextType.split('T')[0] + 'SoundVolume'];
+        if (!triggerHelper.soundUrl) {
+          triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
+          triggerHelper.soundVol = this.options[textTypeUpper + 'SoundVolume'];
         }
       }
     }
   }
 
-  _OnTriggerInternal_DelaySeconds(TriggerHelper) {
-    let delay = 'delaySeconds' in TriggerHelper.Trigger ? TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.delaySeconds) : 0;
+  _onTriggerInternalDelaySeconds(triggerHelper) {
+    let delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
 
     if (delay === 0) {
       return new Promise((res) => {
@@ -125,27 +132,27 @@ class RaidEmulatorPopupText extends PopupText {
     return ret;
   }
 
-  _PlayAudioFile(URL, Volume) {
+  _playAudioFile(url, volume) {
     if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
-      .includes(URL)) {
-      let div = this._MakeTextElement(URL, 'audio-file');
+      .includes(url)) {
+      let div = this._makeTextElement(url, 'audio-file');
       this.AddDisplayText(div, this.emulatedOffset + 2000);
     }
     if (this.Seeking) {
       return;
     }
-    super._PlayAudioFile(URL, Volume);
+    super._playAudioFile(url, volume);
   }
   ttsSay(ttsText) {
     if (this.Seeking) {
       return;
     }
-    let div = this._MakeTextElement(ttsText, 'tts-text');
+    let div = this._makeTextElement(ttsText, 'tts-text');
     this.AddDisplayText(div, this.emulatedOffset + 2000);
     super.ttsSay(ttsText);
   }
 
-  _MakeTextElement(text, className) {
+  _makeTextElement(text, className) {
     let $ret = $('<div class="popup-text-container"></div>')
     $ret.addClass(className);
     let $text = $('<span class="popup-text"></span>');

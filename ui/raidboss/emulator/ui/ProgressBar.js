@@ -20,14 +20,14 @@ class ProgressBar {
     this.emulator = emulator;
     this.$progress.on('mousemove', function(e) {
       if (me.emulator.currentEncounter) {
-        let percent = e.offsetX / me.offsetWidth;
+        let percent = e.offsetX / e.currentTarget.offsetWidth;
         let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
-        me.$progressBarTooltip.data('bs.tooltip').config.offset = e.offsetX - (me.offsetWidth / 2);
+        me.$progressBarTooltip.data('bs.tooltip').config.offset = e.offsetX - (e.currentTarget.offsetWidth / 2);
         me.$progressBarTooltip.data('bs.tooltip').config.title = timeToString(time);
         me.$progressBarTooltip.tooltip('show');
       }
     }).on('click', function(e) {
-      let percent = e.offsetX / me.offsetWidth;
+      let percent = e.offsetX / e.currentTarget.offsetWidth;
       let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
       me.emulator.seek(time);
     });

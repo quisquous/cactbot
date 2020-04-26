@@ -92,6 +92,7 @@ class EmulatedPartyInfo extends EventBus {
       let b = encounter.encounter.combatantTracker.combatants[r];
       return EmulatedPartyInfo.JobOrder.indexOf(a.Job) - EmulatedPartyInfo.JobOrder.indexOf(b.Job);
     }).slice(0, 8);
+    $('.playerTriggerInfo').remove();
 
     for (let i = 0; i < membersToDisplay.length; ++i) {
       let ID = membersToDisplay[i];
