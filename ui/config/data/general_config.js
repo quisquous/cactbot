@@ -7,7 +7,7 @@ UserConfig.registerOptions('general', {
       name: {
         en: 'Cactbot user directory',
         de: 'Cactbot Benutzerverzeichnis',
-        fr: 'Répertoire de l\'utilisateur de Cactbot',
+        fr: 'Répertoire utilisateur de Cactbot',
         cn: 'Cactbot user目录',
         ko: 'Cactbot 사용자 디렉터리',
       },
@@ -19,7 +19,7 @@ UserConfig.registerOptions('general', {
       name: {
         en: 'Show developer options',
         de: 'Zeige Entwickleroptionen',
-        fr: 'Afficher les options du développeur',
+        fr: 'Afficher les options développeur',
         cn: '显示开发者选项',
         ko: '개발자 옵션 표시',
       },
