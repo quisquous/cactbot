@@ -2056,9 +2056,9 @@ class EurekaTracker {
       let gRegex = this.Translate(this.options.Regex);
       let gFlagRegex = gRegex['gFlagRegex'];
       let match = log.match(gFlagRegex);
-      if (match){
+      if (match) {
         // remove character name on Korean server (if not /echo)
-        if(this.options.Language == 'ko' && !log.match(/00:0038:/))
+        if (this.options.Language == 'ko' && !log.match(/00:0038:/))
           match[1] = match[1].replace(/(.*):/, '');
         this.AddFlag(match[2], match[3], match[1], match[4]);
       }
