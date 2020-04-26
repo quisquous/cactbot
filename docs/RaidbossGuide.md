@@ -65,8 +65,10 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   id: 'id string',
   disabled: false,
   // Note: prefer to use the regex helpers from [regexes.js](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js)
-  regex: /trigger-regex-(with-position-1)(and-position-2)-here/,
-  regexFr: /trigger-regex-(with-position-1)-here-but-in-french/,
+  netRegex: /trigger-regex-for-network-log-lines/,
+  netRegexFr: /trigger-regex-for-network-log-lines-but-in-French/
+  regex: /trigger-regex-for-act-log-lines/,
+  regexFr: /trigger-regex-for-act-log-lines-but-in-French/,
   condition: function(data, matches) { return true if it should run },
   preRun: function(data, matches) { do stuff.. },
   delaySeconds: 0,
@@ -89,23 +91,32 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 **id string**
  An id string for the trigger, used to disable triggers. Every built-in trigger that has a text/sound output should have an id so it can be disabled. User-defined triggers need not have one.
 
- **disabled: false**
+**disabled: false**
 If this is true, the trigger is completely disabled and ignored.
 Defaults to false.
 
- **regex**
-The regular expression Cactbot will run against each log line to determine whether the trigger will activate. Positions 1 and 2 are capture groups that are returned in the `matches` variable for use in trigger functions.
+**netRegex / regex**
+The regular expression cactbot will run against each log line
+to determine whether the trigger will activate.
+The `netRegex` version matches against network log lines,
+while the `regex` version matches against regular ACT log lines.
 
 More commonly, however, a regex replacement is used instead of a bare regex.
 Helper functions defined in [regexes.js](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js)
+and in [netregexes.js](https://github.com/quisquous/cactbot/blob/master/resources/netregexes.js)
 take the parameters that would otherwise be extracted via match groups.
 From here, the functions automatically construct the regex that should
 be matched against.
+Unsurprisingly, for `netRegex` use the `NetRegexes` helper
+and for `regex` use the `Regexes` helper.
 
-**regexFr**
+**netRegexFr / regexFr**
 Example of a locale-based regular expression for the 'fr' locale.
 If `Options.Language == 'fr'`, then `regexFr` (if it exists) takes precedence over `regex`.
 Otherwise, it is ignored.  This is only an example for french, but other locales behave the same, e.g. regexEn, regexKo.
+Like `netRegex` vs `regex`,
+`netRegexFr` matches against network log lines in French
+while `regexFr` matches against ACT log lines in French.
 
 Locale regexes do not have a defined ordering.
 Current practice is to order them as `de`, `fr`, `ja`, `cn`, `ko`, however.
@@ -174,6 +185,7 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 
 - id
 - disabled
+- netRegex (and netRegexDe, netRegexFr, etc)
 - regex (and regexDe, regexFr, etc)
 - beforeSeconds (for timelineTriggers)
 - (supressed triggers early out here)
