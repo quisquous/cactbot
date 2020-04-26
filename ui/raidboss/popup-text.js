@@ -536,7 +536,7 @@ class PopupText {
 
   _OnTriggerInternal_PreRun(TriggerHelper) {
     if ('preRun' in TriggerHelper.Trigger)
-      TriggerHelper.Trigger.preRun(this.data, matches);
+      TriggerHelper.Trigger.preRun(this.data, TriggerHelper.Matches);
   }
 
   _OnTriggerInternal_DelaySeconds(TriggerHelper) {
