@@ -43,7 +43,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Hide cheese icon when food > time (in seconds)',
         de: 'Verstecke das Käse Icon wenn Bufffood > Zeit (in Sekunden)',
-        fr: 'Masquer l\'icône du fromage lorsque vous mangez > durée (en secondes)',
+        fr: 'Masquer l\'icône du fromage lorsque vous êtes repu > durée (en secondes)',
         cn: '食物提醒图标隐藏时间（秒）',
         ko: '남은 식사 효과 시간이 이 시간보다 길면, 치즈 아이콘 숨김 (단위: 초)',
       },
