@@ -459,6 +459,7 @@ let Responses = {
       en: 'Go Front / Sides',
       de: 'Gehe nach Vorne/ zu den Seiten',
       fr: 'Allez Devant / Côtés',
+      ja: '前／横へ',
       ko: '보스 후방 피하기',
       cn: '去前侧方',
     };
@@ -471,7 +472,7 @@ let Responses = {
       en: 'Get Under',
       de: 'Unter ihn',
       fr: 'En dessous',
-      ja: '中へ',
+      ja: 'ボスと貼り付く',
       ko: '보스 아래로',
       cn: '去脚下',
     };
@@ -545,6 +546,7 @@ let Responses = {
       en: 'Back Then Front',
       de: 'Nach Hinten, danach nach Vorne',
       fr: 'Derrière puis devant',
+      ja: '後ろ => 前',
       ko: '뒤로 => 앞으로',
       cn: '后 => 前',
     };
@@ -556,6 +558,7 @@ let Responses = {
       en: 'Front Then Back',
       de: 'Nach Vorne, danach nach Hinten',
       fr: 'Devant puis derrière',
+      ja: '前 => 後ろ',
       ko: '앞으로 => 뒤로',
       cn: '前 => 后',
     };
