@@ -229,7 +229,7 @@ class PopupText {
           }
 
           // Don't bother tracking triggers that don't have a regex to match against
-          enabledTriggers = enabledTriggers.filter((trigger)=>{
+          enabledTriggers = enabledTriggers.filter((trigger) => {
             return trigger.localRegex !== undefined;
           });
 
