@@ -18,6 +18,15 @@ UserConfig.registerOptions('eureka', {
       },
     },
     {
+      id: 'BunnyFate',
+      name: {
+        en: 'Enable bunny fate alarm',
+        ko: '토끼 돌발 알림 활성화',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
       id: 'PopVolume',
       name: {
         en: 'Volume of the nm pop sound (0-1)',

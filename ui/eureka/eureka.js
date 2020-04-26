@@ -1874,7 +1874,7 @@ class EurekaTracker {
     fate.lastPopTimeMsLocal = +new Date();
     fate.respawnTimeMsLocal = this.RespawnTime(fate);
 
-    if (fate.bunny) {
+    if (fate.bunny && this.options.BunnyFate) {
       if (this.options.BunnyPopSound && this.options.BunnyPopVolume) {
         let audio = new Audio(this.options.BunnyPopSound);
         audio.volume = this.options.BunnyPopVolume;
