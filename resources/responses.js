@@ -453,6 +453,17 @@ let Responses = {
     };
     return obj;
   },
+  goFrontOrSides: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Go Front / Sides',
+      de: 'Gehe nach Vorne/ zu den Seiten',
+      fr: 'Allez Devant / Côtés',
+      ko: '앞 / 양옆으로',
+      cn: '去前侧方',
+    };
+    return obj;
+  },
   // .getUnder() is used when you have to get into the bosses hitbox
   getUnder: (sev) => {
     let obj = {};

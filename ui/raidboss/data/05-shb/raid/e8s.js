@@ -157,13 +157,7 @@
       regexJa: Regexes.startsUsing({ source: 'シヴァ', id: '4D67', capture: false }),
       regexCn: Regexes.startsUsing({ source: '希瓦', id: '4D67', capture: false }),
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D67', capture: false }),
-      alertText: {
-        en: 'Go Front / Sides',
-        de: 'Gehe nach Vorne/ zu den Seiten',
-        fr: 'Allez Devant / Côtés',
-        ko: '앞 / 양옆으로',
-        cn: '去前侧方',
-      },
+      response: Responses.goFrontOrSides(),
       run: function(data) {
         data.firstFrost = data.firstFrost || 'driving';
       },
