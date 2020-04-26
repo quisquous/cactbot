@@ -102,19 +102,19 @@ let Options = {
   },
   Regex: {
     en: {
-      'gFlagRegex': Regexes.parse(/00:00..:(?:[^:]*:)?(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
     },
     cn: {
-      'gFlagRegex': Regexes.parse(/00:00..:(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
     },
     ko: {
-      'gFlagRegex': Regexes.parse(/00:00..:(.*)에우레카: (?:아네모스|파고스|피로스|히다토스) 지대 \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)에우레카: (?:아네모스|파고스|피로스|히다토스) 지대 \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
@@ -2056,12 +2056,8 @@ class EurekaTracker {
       let gRegex = this.Translate(this.options.Regex);
       let gFlagRegex = gRegex['gFlagRegex'];
       let match = log.match(gFlagRegex);
-      if (match) {
-        // remove character name on Korean server (if not /echo)
-        if (this.options.Language == 'ko' && !log.match(/00:0038:/))
-          match[1] = match[1].replace(/(.*):/, '');
+      if (match)
         this.AddFlag(match[2], match[3], match[1], match[4]);
-      }
       let gTrackerRegex = gRegex['gTrackerRegex'];
       match = log.match(gTrackerRegex);
       if (match)
