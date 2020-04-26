@@ -2056,8 +2056,12 @@ class EurekaTracker {
       let gRegex = this.Translate(this.options.Regex);
       let gFlagRegex = gRegex['gFlagRegex'];
       let match = log.match(gFlagRegex);
-      if (match)
+      if (match){
+        // remove character name on Korean server (if not /echo)
+        if(this.options.Language == 'ko' && !log.match(/00:0038:/))
+          match[1] = match[1].replace(/(.*):/, '');
         this.AddFlag(match[2], match[3], match[1], match[4]);
+      }
       let gTrackerRegex = gRegex['gTrackerRegex'];
       match = log.match(gTrackerRegex);
       if (match)
@@ -2171,8 +2175,6 @@ class EurekaTracker {
       afterText = '';
     }
     beforeText = beforeText.replace(/(?: at|@)$/, '');
-    // remove party member number in the front
-    beforeText = beforeText.replace(/[\uE090-\uE097]/g, '');
 
     let container = document.getElementById('flag-labels');
     let label = document.createElement('div');
