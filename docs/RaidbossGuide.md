@@ -176,6 +176,7 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 - disabled
 - regex (and regexDe, regexFr, etc)
 - beforeSeconds (for timelineTriggers)
+- (supressed triggers early out here)
 - condition
 - preRun
 - delaySeconds
@@ -188,6 +189,7 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 - soundVolume
 - response
 - alarmText
+- alertText
 - infoText
 - groupTTS
 - tts
