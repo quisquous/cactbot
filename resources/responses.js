@@ -665,7 +665,7 @@ let Responses = {
       en: 'Away From Front',
       de: 'Weg von Vorne',
       fr: 'Éloignez-vous du devant',
-      ja: '前方から離れて',
+      ja: '前方から離れ',
       ko: '보스 전방 피하기',
       cn: '远离正面',
     };
@@ -763,7 +763,7 @@ let Responses = {
         en: 'Away from ' + data.ShortName(target),
         de: 'Weg von ' + data.ShortName(target),
         fr: 'Éloignez-vous de ' + data.ShortName(target),
-        ja: data.ShortName(target) + 'から離れて',
+        ja: data.ShortName(target) + 'から離れ',
         cn: '远离' + data.ShortName(target),
       };
     };

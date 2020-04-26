@@ -109,7 +109,7 @@
         en: 'Away From Tanks',
         de: 'Weg von den Tanks',
         fr: 'Ecartez-vous des tanks',
-        ja: 'タンクから離れて',
+        ja: 'タンクから離れ',
         cn: '远离坦克',
       },
     },

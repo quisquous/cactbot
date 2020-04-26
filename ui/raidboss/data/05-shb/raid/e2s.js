@@ -182,7 +182,7 @@
         en: 'Away From Hand',
         de: 'Weg von der Hand',
         fr: 'Eloignez-vous de la main',
-        ja: '手から離れて',
+        ja: '手から離れ',
         cn: '远离手',
         ko: '팔에서 멀어지기',
       },

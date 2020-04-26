@@ -1402,7 +1402,7 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Get Away From Crystals',
         de: 'Geh weg vom Kristall',
-        ja: '結晶から離れて',
+        ja: '結晶から離れ',
         fr: 'Eloignez-vous des Cristaux',
         ko: '결정체로부터 멀어질 것',
         cn: '远离结晶',
