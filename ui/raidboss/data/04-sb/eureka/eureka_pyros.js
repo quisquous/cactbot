@@ -10,8 +10,8 @@
   triggers: [
     {
       id: 'Eureka Pyros Skoll Hoarhound Halo',
-      regex: Regexes.startsUsing({ id: '36E0', source: 'Skoll' }),
-      regexKo: Regexes.startsUsing({ id: '36E0', source: '스콜' }),
+      regex: Regexes.startsUsing({ id: '36E0', source: 'Skoll', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '36E0', source: '스콜', capture: false }),
       alertText: {
         en: 'Hoarhound Halo',
         ko: '꼬리 피하기',
@@ -19,8 +19,8 @@
     },
     {
       id: 'Eureka Pyros Skoll Heavensward Howl',
-      regex: Regexes.startsUsing({ id: '46BD', source: 'Skoll' }),
-      regexKo: Regexes.startsUsing({ id: '46BD', source: '스콜' }),
+      regex: Regexes.startsUsing({ id: '46BD', source: 'Skoll', capture: false }),
+      regexKo: Regexes.startsUsing({ id: '46BD', source: '스콜', capture: false }),
       alertText: {
         en: 'Heavensward Howl',
         ko: '정면 피하기',
