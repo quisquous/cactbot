@@ -22,17 +22,22 @@ zoneregex_locales = set(["en", "cn", "ko"])
 non_zoneregex_locales = all_locales - zoneregex_locales
 
 # Where to start looking for files.
+
+
 def base_path():
     return os.path.relpath(os.path.join(os.path.dirname(__file__), "..\\"))
 
 
 # Return a list of all javascript filenames found under base_path()
-def find_all_javascript_files():
+def find_all_javascript_files(filefilter):
     python_files = []
     for root, dirs, files in os.walk(base_path()):
         dirs[:] = [d for d in dirs if d not in ignore_dirs]
 
         for file in files:
+            if filefilter:
+                if filefilter not in root and filefilter not in file:
+                    continue
             if file.endswith(".js"):
                 python_files.append(os.path.join(root, file))
     return python_files
@@ -117,6 +122,9 @@ if __name__ == "__main__":
     parser.add_argument(
         "-l", "--locale", help="The locale to find missing translations for, e.g. de"
     )
+    parser.add_argument(
+        "-f", "--filter", help="Limits the results to only match specific files/path"
+    )
     args = parser.parse_args()
 
     if not args.locale:
@@ -125,6 +133,6 @@ if __name__ == "__main__":
         raise parser.error("Invalid locale: " + args.locale)
     locales = [args.locale]
 
-    for file in find_all_javascript_files():
+    for file in find_all_javascript_files(args.filter):
         parse_trigger_file_for_timelines(file, args.locale)
         parse_javascript_file(file, locales)
