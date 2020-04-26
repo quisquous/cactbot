@@ -403,7 +403,7 @@
         en: 'Tank Busters',
         de: 'Tankbuster',
         fr: 'Tankbuster',
-        ja: 'タンクにTB',
+        ja: 'タンクバスター',
         cn: '坦克死刑',
         ko: '탱버',
       },
@@ -545,7 +545,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
-            ja: '自分にTB',
+            ja: '自分にタンクバスター',
             cn: '死刑点名',
             ko: '탱버 대상자',
           };
@@ -555,7 +555,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にTB',
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑点 ' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
@@ -564,7 +564,7 @@
           en: 'Away from ' + data.ShortName(matches.target),
           de: 'Weg von ' + data.ShortName(matches.target),
           fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'から離れて',
+          ja: data.ShortName(matches.target) + 'から離れ',
           cn: '远离 ' + data.ShortName(matches.target),
           ko: '"' + data.ShortName(matches.target) + '" 탱버',
         };
@@ -654,7 +654,7 @@
         en: 'Knockback + Ice on YOU',
         de: 'Rückstoß + Eis auf DIR',
         fr: 'Poussée + Glace sur VOUS',
-        ja: 'ノックバック + 氷',
+        ja: '自分に ノックバック + 氷',
         cn: '击退 + 冰 点名',
         ko: '넉백 + 얼음징 대상자',
       },
@@ -823,7 +823,7 @@
             en: 'tank busters',
             de: 'Tank buster',
             fr: 'Tank busters',
-            ja: 'タンクにTB',
+            ja: 'タンクバスター',
             cn: '坦克死刑',
             ko: '탱버',
           };
@@ -1010,7 +1010,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Font': '立体魔法陣',
         'Arcane Globe': '球体魔法陣',
@@ -1054,6 +1053,8 @@
         'Height Of Chaos': 'ハイト・オブ・カオス',
         'Magic Chakram(?!/)': 'マジックチャクラム',
         'Magic Spear(?!/)': 'マジックスピア',
+        'Magic Chakram/Spear': 'マジックチャクラム／マジックスピア',
+        'Magic Spear/Chakram': 'マジックスピア／マジックチャクラム',
         'Megiddo Flame': 'メギドフレイム',
         'Nether Blast': 'ネザーブラスト',
         'Purgation': 'ポリデグモンストライク',
@@ -1067,6 +1068,8 @@
         'Wail Of The Lost': 'ウエイル・オブ・ザ・ロスト',
         'Comet': 'コメット',
         'Quadrastrike(?! [^0-9])': 'クアドラストライク',
+        'Quadrastrike Tower': 'クアドラストライク：塔',
+        'Quadrastrike Bleed': 'クアドラストライク：ペイン',
       },
     },
     {
