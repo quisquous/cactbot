@@ -19,7 +19,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Lower ui opacity when out of combat',
         de: 'Veringere die Deckkraft auserhalb des Kampfes',
-        fr: 'Diminiuer l\'opacité de l\'UI si hors combat',
+        fr: 'Diminiuer l\'opacité de l\'UI hors combat',
         cn: '非战斗状态时使UI透明化',
         ko: '전투 중이 아닐 때, UI 투명도 높이기',
       },
@@ -31,7 +31,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Opacity of ui when out of combat',
         de: 'Deckkraft der UI auserhalb des Kampfes',
-        fr: 'Opacité de l\'UI si hors combat',
+        fr: 'Opacité de l\'UI hors combat',
         cn: '非战斗状态时UI透明度',
         ko: '전투 중이 아닐 때, UI 투명도',
       },
@@ -43,7 +43,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Hide cheese icon when food > time (in seconds)',
         de: 'Verstecke das Käse Icon wenn Bufffood > Zeit (in Sekunden)',
-        fr: 'Masquer l\'icône quand Repu > durée (en secondes)',
+        fr: 'Masquer l\'icône du fromage lorsque vous mangez > durée (en secondes)',
         cn: '食物提醒图标隐藏时间（秒）',
         ko: '남은 식사 효과 시간이 이 시간보다 길면, 치즈 아이콘 숨김 (단위: 초)',
       },
@@ -55,7 +55,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Show MP ticker out of combat',
         de: 'Zeige MP-Ticker auserhalb des Kampfes',
-        fr: 'Afficher symbole MP si hors combat',
+        fr: 'Afficher le symbole PM hors combat',
         cn: '非战斗状态时显示MP监控',
         ko: '전투 중이 아닐 때, MP 티커 표시',
       },
@@ -91,7 +91,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Minimum seconds on a cooldown before shown',
         de: 'Minimum an Sekunden für einen Cooldown vor der Anzeige',
-        fr: 'Nombre minimal de secondes avant affichage du cooldown',
+        fr: 'Nombre minimal de secondes avant l\'affichage du cooldown',
         cn: '显示团辅冷却倒计时最小时间',
         ko: '재사용 대기시간을 표시할 기준 시간(초 이하)',
       },
@@ -127,7 +127,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Height of buff timer bars (px)',
         de: 'Höhe der Buff-Timer Leisten (px)',
-        fr: 'Hauteur des barres de temps des buffs (pixel)',
+        fr: 'Hauteur des barres de temps de buff (pixel)',
         cn: '团副监控计时条高度（像素）',
         ko: '버프 타이머 바 높이 (pixel)',
       },
@@ -139,7 +139,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Height of buff text (px)',
         de: 'Höhe des Buff-Text (px)',
-        fr: 'Hauteur des textes de buffs (pixel)',
+        fr: 'Hauteur du texte de buff (pixel)',
         cn: '团副监控文字高度（像素）',
         ko: '버프 텍스트 높이 (pixel)',
       },
@@ -151,7 +151,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Size of buff borders (px)',
         de: 'Größe der Buff-Ränder (px)',
-        fr: 'Taille des bordures de buffs (pixel)',
+        fr: 'Taille des bordures de buff (pixel)',
         cn: '团副监控边框尺寸（像素）',
         ko: '버프 아이콘 테두리 크기 (pixel)',
       },
@@ -162,8 +162,8 @@ UserConfig.registerOptions('jobs', {
       id: 'GpAlarmPoint',
       name: {
         en: 'GP alarm threshold (0 to disable)',
-        fr: 'Seuil d\'alarme GP (0 pour désactiver)',
-        cn: '采集力警报阈值（0为禁用）',
+        fr: 'Seuil d\'alarme PR (0 pour désactiver)',
+        cn: '采集力警报阈值（0为禁用)',
         ko: 'GP 알람 설정값 (0 = 기능 정지)',
       },
       type: 'integer',
@@ -173,8 +173,8 @@ UserConfig.registerOptions('jobs', {
       id: 'GpAlarmSoundVolume',
       name: {
         en: 'GP alarm sound (0-1)',
-        fr: 'Son d\'alarme GP (0-1)',
-        cn: '采集力警报音量（0-1)',
+        fr: 'Son d\'alarme PR (0-1)',        
+        cn: '采集力警报音量（0-1）',
         ko: 'GP 알람 소리 크기 (0-1)',
       },
       type: 'float',
