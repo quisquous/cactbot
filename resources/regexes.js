@@ -456,6 +456,8 @@ var Regexes = {
   parse: (regexpString) => {
     let kCactbotCategories = {
       Timestamp: '^.{14}',
+      NetTimestamp: '.{33}',
+      NetField: '(?:.*?\\|)',
       LogType: '[0-9A-Fa-f]{2}',
       AbilityCode: '[0-9A-Fa-f]{1,4}',
       ObjectId: '[0-9A-F]{8}',
