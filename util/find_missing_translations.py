@@ -22,24 +22,23 @@ zoneregex_locales = set(["en", "cn", "ko"])
 non_zoneregex_locales = all_locales - zoneregex_locales
 
 # Where to start looking for files.
-
-
 def base_path():
     return os.path.relpath(os.path.join(os.path.dirname(__file__), "..\\"))
 
 
 # Return a list of all javascript filenames found under base_path()
-def find_all_javascript_files(filefilter):
+def find_all_javascript_files(filter):
     python_files = []
     for root, dirs, files in os.walk(base_path()):
         dirs[:] = [d for d in dirs if d not in ignore_dirs]
 
         for file in files:
-            if filefilter:
-                if filefilter not in root and filefilter not in file:
-                    continue
-            if file.endswith(".js"):
-                python_files.append(os.path.join(root, file))
+            if not file.endswith(".js"):
+                continue
+            full_path = os.path.join(root, file)
+            if filter not in full_path:
+                continue
+            python_files.append(full_path)
     return python_files
 
 
