@@ -418,6 +418,18 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // fields: name, capture
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#01-changezone
+  changeZone: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
+    validateParams(f, 'statChange', ['name', 'capture']);
+    let capture = trueIfUndefined(f.capture);
+    let str = '\\y{Timestamp} 01:Changed Zone to ' +
+      Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.';
+    return Regexes.parse(str);
+  },
+
   // Helper function for building named capture group regexes.
   maybeCapture: (capture, name, value, defaultValue) => {
     if (!value)
