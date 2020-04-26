@@ -28,6 +28,21 @@ UserConfig.registerOptions('eureka', {
       },
       type: 'float',
       default: 1,
+      setterFunc: (options, value) => {
+        options['PopVolume'] = value;
+      },
+    },
+    {
+      id: 'BunnyPopVolume',
+      name: {
+        en: 'Volume of the bunny pop sound (0-1)',
+        ko: '토끼 돌발 등장 알림 소리 크기 (0-1)',
+      },
+      type: 'float',
+      default: 0.3,
+      setterFunc: (options, value) => {
+        options['BunnyPopVolume'] = value;
+      },
     },
     {
       id: 'RefreshRateSeconds',
