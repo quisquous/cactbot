@@ -1029,7 +1029,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Time to recolor timer as expiring soon (seconds)',
         de: 'Zeit bis ein bald auslaufender Timer umgefärbt wird (in Sekunden)',
-        fr: 'Durée avant la recolorisation du temps qui expire bientôt (secondes)',
+        fr: 'Recolorisation de la barre de temps avant expiration (secondes)',
         cn: '计时条即将失效重新着色时间（秒）',
         ko: '타임라인의 색상을 바꿀 기준 시간 (초 이하)',
       },
