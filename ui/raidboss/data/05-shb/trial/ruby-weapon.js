@@ -12,6 +12,7 @@
       beforeSeconds: 4,
       alertText: {
         en: 'Hide Behind Meteor',
+        de: 'Hinter Meteor verstecken',
         fr: 'Cacher derrière le météore',
         ko: '운석 뒤에 숨기',
         ja: 'コメットの後ろへ',
@@ -24,6 +25,7 @@
       beforeSeconds: 1,
       infoText: {
         en: 'Away From Meteor',
+        de: 'Weg vom Meteor',
         fr: 'Loin du météore',
         ko: '운석에게서 멀어지기',
         ja: 'コメットから離れ',
@@ -168,6 +170,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Avoid meteors with laser',
+        de: 'Meteore mit Laser vermeiden',
         fr: 'Évitez les météores avec votre laser',
         ko: '레이저 대상자 - 탱커 피하기',
         ja: 'レザーを避け',
@@ -192,6 +195,8 @@
       'missingTranslations': true,
       'replaceSync': {
         'The Ruby Weapon': 'Rubin-Waffe',
+        'Raven\'s Image': 'Naels Trugbild',
+        'Comet': 'Komet',
       },
       'replaceText': {
         'Undermine': 'Untergraben',
@@ -213,6 +218,18 @@
         'Helicoclaw': 'Spiralklauen',
         'Flexiclaw': 'Flex-Klauen',
         'Cut and Run': 'Klauensturm',
+        'Meteor Project': 'Projekt Meteor',
+        'Negative Personae': 'Persona Negativa',
+        'Meteor Stream': 'Meteorflug',
+        'Ruby Claw': 'Rubin-Klauen',
+        'Dalamud Impact': 'Dalamud-Sturz',
+        'Magitek Comet': 'Magitek-Komet',
+        'Outrage': 'Empörung',
+        'Landing': 'Einschlag',
+        'Magitek Meteor': '',
+        'Burst': 'Magitek-Meteor',
+        'Bradamante': 'Bradamante',
+        '--cutscene--': '--Zwischensequenz--',
       },
       '~effectNames': {
         'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',

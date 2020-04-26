@@ -259,10 +259,12 @@
         'The Hall of Magicks': 'Halle der Magie',
         'The Rare Tomes Room': 'Abteilung für seltene Schriften',
         'Top Shelf Tome': 'Prachtband',
+        'Sunseal': 'Sonnensiegel',
+        'Moonseal': 'Mondsiegel',
       },
       'replaceText': {
         'Bibliocide': 'Bibliozid',
-        'Book Drop': 'Book Drop', // FIXME
+        'Book Drop': 'Buch fällt',
         'Check Out': 'Anthologie',
         'Discontinue': 'Druck einstellen',
         'Ecliptic Meteor': 'Ekliptik-Meteor',
@@ -330,6 +332,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Behemoth Ward': 'ベヒーモス・ワード',
         'Demon of the Tome': 'デモン・オブ・トーム',
@@ -371,6 +374,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Behemoth Ward': '贝希摩斯护卫',
         'Demon of the Tome': '书中恶魔',
@@ -412,6 +416,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Behemoth Ward': '고서의 베히모스',
         'Demon of the Tome': '고서의 악마',

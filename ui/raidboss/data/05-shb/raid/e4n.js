@@ -120,7 +120,7 @@
       'replaceSync': {
         'Titan': 'Titan',
         'Bomb Boulder': 'Bomber-Brocken',
-        'Massive Boulder': 'Riesiger Felsen',
+        'Massive Boulder': 'Riesig(?:e|er|es|en) Felsen',
       },
       'replaceText': {
         'Fault Line': 'Bruchlinie',

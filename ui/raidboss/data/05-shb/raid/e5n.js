@@ -157,6 +157,7 @@
       '~effectNames': {
         'Electrified': 'Stromleiter',
         'Damage Down': 'Schaden -',
+        'Surge Protection': 'Überspannungsschutz',
       },
     },
     {

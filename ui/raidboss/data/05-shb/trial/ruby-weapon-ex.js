@@ -410,6 +410,7 @@
         'Ruby Bit': 'Rubin-Drohne',
         'Raven\'s Image': 'Naels Trugbild',
         'Meteor': 'Meteor',
+        'Comet': 'Komet',
       },
       'replaceText': {
         'Undermine': 'Untergraben',
@@ -460,7 +461,9 @@
         'Burns': 'Brandwunde',
         'Brink of Death': 'Sterbenselend',
         'Blunt Resistance Down': 'Schlagresistenz -',
-        '6 Fulms Under': 'Versinkend',
+        'Six Fulms Under': 'Versinkend',
+        'Pall of Rage': 'Zorn',
+        'Pall of Grief': 'Trauer',
       },
     },
     {
@@ -496,7 +499,7 @@
         'Burns': 'Brûlure',
         'Brink of Death': 'Mourant',
         'Blunt Resistance Down': 'Résistance au contondant réduite',
-        '6 Fulms Under': 'Enfoncement',
+        'Six Fulms Under': 'Enfoncement',
       },
     },
     {
@@ -531,7 +534,7 @@
         'Burns': '火傷',
         'Brink of Death': '衰弱［強］',
         'Blunt Resistance Down': '打属性耐性低下',
-        '6 Fulms Under': '沈下',
+        'Six Fulms Under': '沈下',
       },
     },
   ],

@@ -59,6 +59,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Keep ' + data.ShortName(matches.target) + ' topped',
+          de: 'Halte HP von ' + data.ShortName(matches.target) + ' oben',
           fr: 'Maintenez ' + data.ShortName(matches.target) + ' Max PV',
           cn: '保持' + data.ShortName(matches.target) + '满血',
         };
@@ -130,6 +131,7 @@
         'Jagd Doll': 'Jagdpuppe',
         'King Gobtank G-IV': 'Königs-Gobmaschine IV',
         'Magitek Gobwidow G-IX': 'Gob-Witwe IX',
+        '(?<![ |Trumpf])Bomb': 'Bombe',
       },
       'replaceText': {
         'Bangyzoom': 'Auf sie mit Brüll',

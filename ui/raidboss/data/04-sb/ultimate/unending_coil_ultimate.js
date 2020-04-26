@@ -1065,6 +1065,7 @@
         let dir = data.naelMarks[data.naelDiveMarkerCount];
         return {
           en: 'Go To ' + dir + ' with marker',
+          de: 'Gehe nach ' + dir + ' mit dem Marker',
         };
       },
     },
@@ -1401,12 +1402,14 @@
         if (data.megaStack.indexOf(data.lastOctetMarker) >= 0) {
           return {
             en: twin + ' (twin) has megaflare',
+            de: twin + ' (Twin) hat Megaflare',
             cn: twin + ' (双塔) 带百万核爆',
             ko: twin + ' (트윈 징 대상자) => 쉐어',
           };
         }
         return {
           en: twin + ' (twin) needs tower',
+          de: twin + ' (Twin) braucht einen Turm',
           cn: twin + ' (双塔) 需要踩塔',
           ko: twin + ' (트윈 징 대상자) => 기둥',
         };
@@ -1572,6 +1575,7 @@
       tts: function(data, matches) {
         return {
           en: 'morn afah ' + data.ShortName(matches.target),
+          de: 'Morn Afah ' + data.ShortName(matches.target),
           cn: '无尽顿悟 ' + data.ShortName(matches.target),
           ko: '몬 아파 ' + data.mornAfahCount,
         };
@@ -1592,6 +1596,7 @@
       infoText: function(data) {
         return {
           en: 'Akh Morn #' + data.akhMornCount,
+          de: 'Akh Morn #' + data.akhMornCount,
           cn: '死亡轮回 #' + data.akhMornCount,
           ko: '아크 몬 ' + data.akhMornCount,
         };
@@ -1794,6 +1799,20 @@
         'Tail of Darkness': 'Dunkelschweif',
         'Thunderwing': 'Donnerschwinge',
         'Twintania': 'Twintania',
+        'From on high I descend, the hallowed moon to call': 'Seht, ich steige herab, vom rotglühenden Monde',
+        'From on high I descend, the iron path to walk': 'Seht, ich steige herab, um euch zu beherrschen',
+        'Take fire, O hallowed moon': 'Flammender Pfad, geschaffen vom roten Mond',
+        'Blazing path, lead me to iron rule': 'Umloderter Pfad, führe mich zur Herrschaft',
+        'O hallowed moon, take fire and scorch my foes': 'O roter Mond! Umlodere meinen Pfad',
+        'O hallowed moon, shine you the iron path': 'O roter Mond! Führe mich zur Herrschaft',
+        'Fleeting light! \'Neath the red moon, scorch you the earth': 'Neues Gestirn! Glühe herab und umlodere meinen Pfad',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon': 'Neues Gestirn! Überstrahle jede Sternschnuppe',
+        'From on high I descend, the moon and stars to bring': 'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich',
+        'From hallowed moon I descend, a rain of stars to bring': 'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich',
+        'From hallowed moon I bare iron, in my descent to wield': 'O roter Mond, als Künder deiner Herrschaft stieg ich herab',
+        'From hallowed moon I descend, upon burning earth to tread': 'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen',
+        'Unbending iron, take fire and descend': 'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab',
+        'Unbending iron, descend with fiery edge': 'Zur Herrschaft steige ich herab, auf umlodertem Pfad',
       },
       'replaceText': {
         '--push--': '--stoß--',

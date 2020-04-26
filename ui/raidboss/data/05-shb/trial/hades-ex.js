@@ -562,6 +562,7 @@
         }
         return {
           en: 'Away from ' + data.ShortName(matches.target),
+          de: 'Weg von ' + data.ShortName(matches.target),
           fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'から離れ',
           cn: '远离 ' + data.ShortName(matches.target),
@@ -874,8 +875,8 @@
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Arcane Font': 'Arkaner Körper',
-        'Arcane Globe': 'Arkane Kugel',
+        'Arcane Font': 'Arkan(?:e|er|es|en) Körper',
+        'Arcane Globe': 'Arkan(?:e|er|es|en) Kugel',
         'Ascian Prime\'s Shade': 'Schatten des Prim-Ascian',
         '(?<!\\w)Hades': 'Hades',
         '(?<! )Igeyorhm\'s Shade': 'Igeyorhms Schatten',
@@ -934,6 +935,16 @@
         'Life In Captivity': 'Leben in Gefangenschaft',
         'Quadrastrike Tower': 'Quadraschlag Turm',
         'Quadrastrike Bleed': 'Quadraschlag Blutung',
+      },
+      '~effectNames': {
+        'Cursed Shriek': 'Schrei Der Verwünschung',
+        'Forked Lightning': 'Gabelblitz',
+        'Aetherial Gaol': 'Ätherkerker',
+        'Beyond Death': 'Jenseits Des Jenseits',
+        'Ancient Circle': 'Orbis Antiquus',
+        'Freezing Brand': 'Brandmal Des Eises',
+        'Burning Brand': 'Brandmal Des Feuers',
+        'Doom': 'Verhängnis',
       },
     },
     {

@@ -221,6 +221,7 @@
       'replaceSync': {
         'Titania': 'Titania',
         'Puck': 'Puck',
+        'Spirit Of Dew': 'Wasserfee',
         'Spirit of Flame': 'Feuerfee',
         'Peaseblossom': 'Bohnenblüte',
         'Mustardseed': 'Senfsamen',

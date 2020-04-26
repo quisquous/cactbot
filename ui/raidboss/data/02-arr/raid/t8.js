@@ -151,6 +151,9 @@
         'Allagan Field': 'Allagisches Feld',
         'The Avatar': 'Avatar',
         'The central bow': 'Rumpf-Zentralsektor',
+        'Landmines have been scattered': 'Die Landminen haben sich verteilt',
+        'Allagan Mine': 'Allagisch(?:e|er|es|en) Mine',
+        'Clockwork Dreadnaught': 'Brummonaut',
       },
       'replaceText': {
         'Allagan Field': 'Allagisches Feld',
