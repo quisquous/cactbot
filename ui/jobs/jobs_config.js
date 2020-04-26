@@ -91,7 +91,7 @@ UserConfig.registerOptions('jobs', {
       name: {
         en: 'Minimum seconds on a cooldown before shown',
         de: 'Minimum an Sekunden für einen Cooldown vor der Anzeige',
-        fr: 'Nombre minimal de secondes avant l\'affichage du cooldown',
+        fr: 'Nombre minimal de secondes avant l\'affichage du temps de recharge',
         cn: '显示团辅冷却倒计时最小时间',
         ko: '재사용 대기시간을 표시할 기준 시간(초 이하)',
       },
