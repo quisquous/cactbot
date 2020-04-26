@@ -78,6 +78,7 @@
         return {
           en: 'Holmgang: ' + name,
           de: 'Holmgang: ' + name,
+          fr: 'Holmgang: ' + name,
           ja: 'ホルムギャング: ' + name,
           cn: '死斗: ' + name,
           ko: '일대일 결투: ' + name,
@@ -148,7 +149,7 @@
       id: 'General Walking',
       regex: Regexes.gainsEffect({ effect: 'Walking Dead' }),
       regexDe: Regexes.gainsEffect({ effect: 'Erweckter' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marcheur Des Limbes' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Marcheur des limbes' }),
       regexJa: Regexes.gainsEffect({ effect: 'ウォーキングデッド' }),
       regexCn: Regexes.gainsEffect({ effect: '死而不僵' }),
       regexKo: Regexes.gainsEffect({ effect: '움직이는 시체' }),
@@ -162,7 +163,7 @@
         return {
           en: 'Walking: ' + name,
           de: 'Erweckter: ' + name,
-          fr: 'Marcheur Des Limbes: ' + name,
+          fr: 'Marcheur des limbes: ' + name,
           ja: 'ウォーキングデッド: ' + name,
           cn: '死而不僵: ' + name,
           ko: '움직이는 시체: ' + name,
