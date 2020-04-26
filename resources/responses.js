@@ -459,7 +459,7 @@ let Responses = {
       en: 'Go Front / Sides',
       de: 'Gehe nach Vorne/ zu den Seiten',
       fr: 'Allez Devant / Côtés',
-      ko: '앞 / 양옆으로',
+      ko: '보스 후방 피하기',
       cn: '去前侧方',
     };
     return obj;
