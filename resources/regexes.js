@@ -189,7 +189,7 @@ var Regexes = {
   },
 
   // Prefer gainsEffect over this function unless you really need extra data.
-  // fields: targetId, target, x, y, z, heading, data0, data1, data2, data3
+  // fields: targetId, target, x, y, z, heading, data0, data1, data2, data3, data4
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#26-networkstatuseffects
   statusEffectExplicit: (f) => {
     if (typeof f === 'undefined')
@@ -208,7 +208,6 @@ var Regexes = {
       'data2',
       'data3',
       'data4',
-      'data5',
       'capture',
     ]);
     let capture = trueIfUndefined(f.capture);
