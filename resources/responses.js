@@ -671,6 +671,15 @@ let Responses = {
     };
     return obj;
   },
+  awayFromBack: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Away From Back',
+      ja: '後方から離れて',
+      ko: '보스 후방 피하기',
+    };
+    return obj;
+  },
   sleep: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
