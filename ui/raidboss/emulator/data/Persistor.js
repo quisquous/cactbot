@@ -61,8 +61,15 @@ class Persistor extends EventBus {
     };
   }
 
-  PersistEncounter(encounter) {
+  PersistEncounter(baseEncounter) {
+    let ret;
     if (this.DB !== null) {
+      let resolver;
+      ret = new Promise((res) => {
+        resolver = res;
+      });
+      let encounter = $.extend(true, {}, baseEncounter);
+      delete encounter.combatantTracker;
       let EncountersStorage = this.DB.transaction("Encounters", "readwrite").objectStore("Encounters");
       let req;
       if (encounter.ID === null) {
@@ -72,17 +79,16 @@ class Persistor extends EventBus {
         req = EncountersStorage.put(encounter);
       }
       req.onsuccess = (ev) => {
-        encounter.ID = ev.target.result;
+        baseEncounter.ID = encounter.ID = ev.target.result;
         let EncounterSummariesStorage = this.DB.transaction("EncounterSummaries", "readwrite").objectStore("EncounterSummaries");
-        let Summary = new PersistorEncounter();
-        Summary.ID = encounter.ID;
-        Summary.Name = encounter.combatantTracker.combatants[encounter.combatantTracker.mainCombatantID].Name;
-        Summary.Start = encounter.startTimestamp;
-        Summary.Zone = encounter.encounterZone;
-        Summary.Duration = encounter.endTimestamp - encounter.startTimestamp;
+        let Summary = new PersistorEncounter(baseEncounter);
         EncounterSummariesStorage.put(Summary);
+        resolver();
       };
+    } else {
+      ret = new Promise((r) => r());
     }
+    return ret;
   }
 
   LoadEncounter(ID) {
@@ -91,7 +97,9 @@ class Persistor extends EventBus {
         let EncountersStorage = this.DB.transaction("Encounters", "readonly").objectStore("Encounters");
         let req = EncountersStorage.get(ID);
         req.onsuccess = (ev) => {
-          res(req.result);
+          let enc = new Encounter(req.result.encounterDay, req.result.encounterZone, req.result.logLines);
+          enc.ID = req.result.ID;
+          res(enc);
         };
       } else {
         res(null);
@@ -161,6 +169,36 @@ class Persistor extends EventBus {
       } else {
         res([]);
       }
+    });
+  }
+
+  async ClearDB() {
+    await this.ListEncounters().then(async (encounters) => {
+      for (let i in encounters) {
+        await this.DeleteEncounter(encounters[i].ID);
+      }
+    });
+  }
+
+  async ExportDB() {
+    let ret = {
+      Encounters: [],
+    };
+    let Summaries = await this.ListEncounters();
+    for (let i in Summaries) {
+      let enc = await this.LoadEncounter(Summaries[i].ID);
+      ret.Encounters.push({
+        EncounterDay: timeToDateString(Summaries[i].Start),
+        EncounterZone: Summaries[i].Zone,
+        EncounterLines: enc.logLines,
+      });
+    }
+    return ret;
+  }
+
+  async ImportDB(DB) {
+    DB.Encounters.forEach(enc => {
+      this.PersistEncounter(new Encounter(enc.EncounterDay, enc.EncounterZone, enc.EncounterLines));
     });
   }
 

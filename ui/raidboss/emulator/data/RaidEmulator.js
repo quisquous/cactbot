@@ -64,8 +64,8 @@ class RaidEmulator extends EventBus {
     return true;
   }
 
-  Seek(time) {
-    this.dispatch('PreSeek', time);
+  async Seek(time) {
+    await this.dispatch('PreSeek', time);
     this.CurrentLogLineIndex = -1;
     let logs = [];
     let offsets = [];
@@ -75,20 +75,20 @@ class RaidEmulator extends EventBus {
         offsets.push(this.currentEncounter.logLines[i].Offset);
         this.LastLogTimestamp = this.currentEncounter.logLines[i].Timestamp;
         ++this.CurrentLogLineIndex;
-        this.dispatch('MidSeek', this.currentEncounter.logLines[i].Offset, this.currentEncounter.logLines[i].Line);
+        await this.dispatch('MidSeek', this.currentEncounter.logLines[i].Offset, this.currentEncounter.logLines[i].Line);
         continue;
       }
       break;
     }
     this.CurrentTimestamp = time;
     if (logs.length) {
-      this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
+      await this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
     }
-    this.dispatch('PostSeek', time);
-    this.dispatch('Tick', this.CurrentTimestamp, this.LastLogTimestamp);
+    await this.dispatch('PostSeek', time);
+    await this.dispatch('Tick', this.CurrentTimestamp, this.LastLogTimestamp);
   }
 
-  Tick() {
+  async Tick() {
     if (this.CurrentLogLineIndex + 1 >= this.currentEncounter.logLines.length) {
       this.Pause();
       return;
@@ -107,9 +107,9 @@ class RaidEmulator extends EventBus {
     }
     this.CurrentTimestamp += RaidEmulator.PlaybackSpeed;
     if (logs.length) {
-      this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
+      await this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
     }
-    this.dispatch('Tick', this.CurrentTimestamp, this.LastLogTimestamp);
+    await this.dispatch('Tick', this.CurrentTimestamp, this.LastLogTimestamp);
   }
 
   setPopupText(popupText) {

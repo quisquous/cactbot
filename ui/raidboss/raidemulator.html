@@ -42,6 +42,8 @@
     <!-- Extend base raidboss classes so we can control them directly -->
     <script src="timeline.js"></script>
     <script src="popup-text.js"></script>
+    <script src="emulator/functions.js"></script>
+    <script src="emulator/EmulatorCommon.js"></script>
     <script src="emulator/overrides/RaidEmulatorTimeline.js"></script>
     <script src="emulator/overrides/RaidEmulatorTimelineController.js"></script>
     <script src="emulator/overrides/RaidEmulatorTimelineUI.js"></script>
@@ -63,7 +65,6 @@
     <script src="emulator/data/PersistorEncounter.js"></script>
     <script src="emulator/data/Persistor.js"></script>
     <script src="emulator/data/NetworkLogConverter.js"></script>
-    <script src="emulator/functions.js"></script>
     <script src="emulator/data/LogEventHandler.js"></script>
     <script src="emulator/ui/EncounterTab.js"></script>
     <script src="raidemulator.js"></script>
@@ -105,6 +106,7 @@
             <div class="triggerBar player5"></div>
             <div class="triggerBar player6"></div>
             <div class="triggerBar player7"></div>
+            <div class="engageIndicator d-none"></div>
           </div>
         </div>
         <div class="col-auto">
@@ -148,12 +150,12 @@
           </button>
           <div class="collapse" id="encountersTab">
             <div class="row flex-fill border-top border-dark">
-              <button class="btn btn-primary btn-sm loadNetworkLogButton mx-2 disabled" type="button" disabled="disabled">Load Network Log</button>
-              <button class="btn btn-primary btn-sm exportDBButton mx-2 disabled" type="button" disabled="disabled">Export DB</button>
-              <button class="btn btn-primary btn-sm importDBButton mx-2 disabled" type="button" disabled="disabled">Import DB</button>
+              <button class="btn btn-primary btn-sm loadNetworkLogButton mx-2" type="button">Load Network Log</button>
+              <button class="btn btn-primary btn-sm exportDBButton mx-2" type="button">Export DB</button>
+              <button class="btn btn-primary btn-sm importDBButton mx-2" type="button">Import DB</button>
               <button class="btn btn-primary btn-sm clearDBButton mx-2" type="button" data-toggle="modal" data-target=".deleteDBModal">Clear DB</button>
             </div>
-            <div class="row flex-fill border-top border-dark h-100 mh-100">
+            <div class="row flex-fill border-top border-dark encountersContainer">
               <div
                 class="col col-3 border-right border-dark h-100 mh-100 zoneList"
               ></div>
@@ -188,5 +190,6 @@
         </div>
       </div>
     </div>
+    <input type="file" name="files" class="d-none loadFileInput">
   </body>
 </html>

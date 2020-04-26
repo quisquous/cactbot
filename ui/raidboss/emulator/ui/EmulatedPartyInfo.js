@@ -16,6 +16,8 @@ class EmulatedPartyInfo extends EventBus {
 
   triggerBars;
 
+  latestDisplayedState = 0;
+  latestDisplayedState
   /**
    * @param {RaidEmulator} emulator 
    */
@@ -27,16 +29,26 @@ class EmulatedPartyInfo extends EventBus {
     this.$triggerHideCheckbox = $('.triggerHideSkipped');
     this.$triggerBar = $('.playerTriggers');
     this.triggerBars = [];
+    this.latestDisplayedState = 0;
     for (let i = 0; i < 8; ++i) {
       this.triggerBars[i] = this.$triggerBar.find('.player' + i);
     }
     emulator.on('Tick', (timestampOffset, lastLogTimestamp) => {
       if (lastLogTimestamp) {
         this.UpdatePartyInfo(emulator, lastLogTimestamp);
+        this.latestDisplayedState = Math.max(this.latestDisplayedState, lastLogTimestamp);
       }
     });
     emulator.on('CurrentEncounterChanged', (encounter) => {
       this.ResetPartyInfo(encounter);
+    });
+    
+    emulator.on('PreSeek', (time) => {
+      this.latestDisplayedState = 0;
+    });
+    emulator.on('MidSeek', (time) => {
+      this.UpdatePartyInfo(emulator, time);
+      this.latestDisplayedState = Math.max(this.latestDisplayedState, time);
     });
     let me = this;
     this.UpdateTriggerState = () => {
@@ -72,6 +84,7 @@ class EmulatedPartyInfo extends EventBus {
    */
   ResetPartyInfo(encounter) {
     this.displayedParty = {};
+    this.latestDisplayedState = 0;
     this.$partyInfo.empty();
     this.$triggerBar.find('.triggerItem').remove();
     let membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
@@ -123,6 +136,9 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   UpdateCombatantInfo(encounter, ID, StateID = null) {
+    if (StateID <= this.latestDisplayedState) {
+      return;
+    }
     let combatant = encounter.encounter.combatantTracker.combatants[ID];
     StateID = StateID || combatant.SignificantStates[0];
     /**
@@ -251,6 +267,8 @@ class EmulatedPartyInfo extends EventBus {
         ret = JSON.stringify(ret);
       }
     } else if(typeof (ret) === 'boolean') {
+      ret = '';
+    } else if(typeof (ret) === 'undefined') {
       ret = '';
     } else if(typeof (ret) !== 'string') {
       ret = 'Invalid Result?';

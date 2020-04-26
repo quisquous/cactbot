@@ -1,14 +1,5 @@
 class CombatantTracker {
-  static LogLineRegex = /^\[(\d\d:\d\d:\d\d.\d\d\d)\] ([0-9A-Z]+):(.*)$/i;
   static AddRemoveCombatantRegex = /:(?:Added new|Removing) combatant ([^:]+?)\.  /i;
-  static EventDetailsRegexes = {
-    '03': /^[^ ]+ 03:(?<SourceID>[^:]+):Added new combatant (?<SourceName>[^:]+)\.  Job: (?<Job>[^:]+) Level: (?<Level>[^:]+) Max HP: (?<SourceMaxHP>\d+) Max MP: (?<SourceMaxMP>\d+) Pos: \((?<SourcePosX>[^,)]+),(?<SourcePosY>[^,)]+),(?<SourcePosZ>[^,)]+)\)/i,
-    '04': /^[^ ]+ 04:(?<SourceID>[^:]+):Removing combatant (?<SourceName>[^:]+)\.  Max HP: (?<SourceMaxHP>\d+)\. Pos: \((?<SourcePosX>[^,]+),(?<SourcePosY>[^,]+),(?<SourcePosZ>[^,)]+)\)/i,
-    '15': /^[^ ]+ 15:(?<SourceID>[^:]*?):(?<SourceName>[^:]*?):(?<AbilityID>[^:]*?):(?<AbilityName>[^:]*?):(?<TargetID>[^:]*?):(?<TargetName>[^:]*?):[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:(?<TargetHP>[^:]*?):(?<TargetMaxHP>[^:]*?):(?<TargetMP>[^:]*?):(?<TargetMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<TargetPosX>[^:]*?):(?<TargetPosY>[^:]*?):(?<TargetPosZ>[^:]*?):(?<TargetHeading>[^:]*?):(?<SourceHP>[^:]*?):(?<SourceMaxHP>[^:]*?):(?<SourceMP>[^:]*?):(?<SourceMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<SourcePosX>[^:]*?):(?<SourcePosY>[^:]*?):(?<SourcePosZ>[^:]*?):(?<SourceHeading>[^:]*?):/i,
-    '16': /^[^ ]+ 16:(?<SourceID>[^:]*?):(?<SourceName>[^:]*?):(?<AbilityID>[^:]*?):(?<AbilityName>[^:]*?):(?<TargetID>[^:]*?):(?<TargetName>[^:]*?):[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:[^:]*?:(?<TargetHP>[^:]*?):(?<TargetMaxHP>[^:]*?):(?<TargetMP>[^:]*?):(?<TargetMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<TargetPosX>[^:]*?):(?<TargetPosY>[^:]*?):(?<TargetPosZ>[^:]*?):(?<TargetHeading>[^:]*?):(?<SourceHP>[^:]*?):(?<SourceMaxHP>[^:]*?):(?<SourceMP>[^:]*?):(?<SourceMaxMP>[^:]*?):[^:]*?:[^:]*?:(?<SourcePosX>[^:]*?):(?<SourcePosY>[^:]*?):(?<SourcePosZ>[^:]*?):(?<SourceHeading>[^:]*?):/i,
-    '26': /^[^ ]+ 26:(?<SourceID>[^:]+):(?<SourceName>[^:]*?):[^:]+:(?<SourceHP>[^:]+):(?<SourceMaxHP>[^:]+):(?<SourceMP>[^:]+):(?<SourceMaxMP>[^:]+)/i,
-  };
-  static PetNames = ["Emerald Carbuncle", "Topaz Carbuncle", "Ifrit-Egi", "Titan-Egi", "Garuda-Egi", "Eos", "Selene", "Rook Autoturret", "Bishop Autoturret", "Demi-Bahamut", "Demi-Phoenix", "Seraph", "Moonstone Carbuncle", "Esteem", "Automaton Queen", "Bunshin", "Demi-Phoenix", "Seraph", "Bunshin"];
 
   constructor(encounterDay, logLines) {
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
@@ -29,7 +20,7 @@ class CombatantTracker {
     let allTimestamps = [];
     // First pass: Get list of combatants, figure out where they start at if possible, build our keyed log lines
     for (let i = 0; i < logLines.length; ++i) {
-      let line = CombatantTracker.LogLineRegex.exec(logLines[i]);
+      let line = EmulatorCommon.LogLineRegex.exec(logLines[i]);
       let lineTimestamp = new Date(encounterDay + ' ' + line[1]).getTime();
       let lineEvent = line[2];
       let eventParts = line[3].split(':');
@@ -93,13 +84,12 @@ class CombatantTracker {
 
     // Second pass: Analyze combatant information for tracking
     let eventTracker = {};
-    let pushedStates = 0;
     for (let i = 0; i < sortedTimestamps.length; ++i) {
-      let line = CombatantTracker.LogLineRegex.exec(keyedLogLines[sortedTimestamps[i]]);
+      let line = EmulatorCommon.LogLineRegex.exec(keyedLogLines[sortedTimestamps[i]]);
       let lineTimestamp = new Date(encounterDay + ' ' + line[1]).getTime();
       let lineEvent = line[2];
-      if (CombatantTracker.EventDetailsRegexes.hasOwnProperty(lineEvent)) {
-        let eventParts = CombatantTracker.EventDetailsRegexes[lineEvent].exec(keyedLogLines[sortedTimestamps[i]]);
+      if (EmulatorCommon.EventDetailsRegexes.hasOwnProperty(lineEvent)) {
+        let eventParts = EmulatorCommon.EventDetailsRegexes[lineEvent].exec(keyedLogLines[sortedTimestamps[i]]);
         if (eventParts !== null) {
           if (lineEvent === '15' || lineEvent === '16') {
             eventTracker[eventParts.groups.SourceID] = eventTracker[eventParts.groups.SourceID] || 0;
@@ -112,20 +102,18 @@ class CombatantTracker {
               return v !== undefined;
             })
           );
-          ++pushedStates;
           continue;
         }
       }
-      ++pushedStates;
       this.FillInCombatantStates(lineTimestamp, []);
     }
 
     // Figure out party/enemy/other status
     this.others = this.others.filter((ID) => {
-      if (this.combatants[ID].Job !== null) {
+      if (this.combatants[ID].Job !== null || ID.startsWith('1')) {
         this.partyMembers.push(ID);
         return false;
-      } else if (CombatantTracker.PetNames.includes(this.combatants[ID].Name)) {
+      } else if (EmulatorCommon.PetNames.includes(this.combatants[ID].Name)) {
         this.pets.push(ID);
         return false;
       } else if (eventTracker[ID] > 0) {
@@ -138,7 +126,7 @@ class CombatantTracker {
     // Main combatant is the one that took the most actions
     this.mainCombatantID = this.enemies.sort((l, r) => {
       return eventTracker[r] - eventTracker[l];
-    })[0];
+    })[0] || null;
   }
 
   AddCombatant(Timestamp, ID, Name, Event, Line) {
@@ -159,16 +147,16 @@ class CombatantTracker {
       };
     }
 
-    if (CombatantTracker.EventDetailsRegexes.hasOwnProperty(Event)) {
-      let eventParts = CombatantTracker.EventDetailsRegexes[Event].exec(Line);
+    if (EmulatorCommon.EventDetailsRegexes.hasOwnProperty(Event)) {
+      let eventParts = EmulatorCommon.EventDetailsRegexes[Event].exec(Line);
 
       if (ID !== '' && Name !== '') {
         switch (Event) {
           case '03':
-            if (eventParts.groups.Job !== 'N/A' && this.initialStates[ID].Job === null) {
-              this.combatants[ID].Job = eventParts.groups.Job;
+            if (eventParts.groups.Job !== 'N/A' && this.combatants[ID].Job === null) {
+              this.combatants[ID].Job = eventParts.groups.Job.toUpperCase();
             }
-            if (this.initialStates[ID].Level === null) {
+            if (this.combatants[ID].Level === null && eventParts.groups.Level > 0) {
               this.combatants[ID].Level = eventParts.groups.Level;
             }
             break;

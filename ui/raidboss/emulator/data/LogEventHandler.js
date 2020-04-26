@@ -1,68 +1,48 @@
 class LogEventHandler extends EventBus {
 
-  static SealRegexes = {
-    ja: / 00:0839:(?<Zone>.*)の封鎖まであと(?<Time>.*)秒/,
-    en: / 00:0839:(?<Zone>.*) will be sealed off in (?<Time>.*) seconds!/,
-    de: / 00:0839:Noch (?<Time>.*) Sekunden, bis sich (?<Zone>.*) schließt/,
-    fr: / 00:0839:Fermeture (?<Zone>.*) dans /, //@TODO: Time? If we need it for some reason?
-    cn: / 00:0839:距(?<Zone>.*)被封锁还有(?<Time>.*)秒/,
-    ko: / 00:0839:(?<Time>.*)초 후에 (?<Zone>.*)(이|가) 봉쇄됩니다\./
-  };
-
   static UnsealRegexes = {
-    ja: / 00:0839:(?<Zone>.*)の封鎖が解かれた……/,
-    en: / 00:0839:(?<Zone>.*) is no longer sealed/,
-    de: / 00:0839:(?:Der Zugang zu\w* |)(?<Zone>.*) öffnet sich (?:erneut|wieder)/,
-    fr: / 00:0839:Ouverture (?<Zone>.*)/,
-    cn: / 00:0839:(?<Zone>.*)的封锁解除了/,
-    ko: / 00:0839:(?<Zone>.*)의 봉쇄가 해제되었습니다\./,
+    ja: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)の封鎖が解かれた……/,
+    en: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*) is no longer sealed/,
+    de: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?:Der Zugang zu\w* |)(?<Zone>.*) öffnet sich (?:erneut|wieder)/,
+    fr: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:Ouverture (?<Zone>.*)/,
+    cn: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)的封锁解除了/,
+    ko: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)의 봉쇄가 해제되었습니다\./,
   };
 
-  static EngageRegexes = {
-    ja: / 00:0039:戦闘開始！/,
-    en: / 00:0039:Engage!/,
-    de: / 00:0039:Start!/,
-    fr: / 00:0039:À l'attaque !/,
-    cn: / 00:0039:战斗开始！/,
-    ko: / 00:0039:전투 시작!/,
-  };
-
-  static CountdownRegexes = {
-    ja: / 00:.{4}:戦闘開始まで(?<Time>\d+)秒！/,
-    en: / 00:.{4}:Battle commencing in (?<Time>\d+) seconds!/,
-    de: / 00:.{4}:Noch (?<Time>\d+) Sekunden bis Kampfbeginn!/,
-    fr: / 00:.{4}:Début du combat dans (?<Time>\d+) secondes !/,
-    cn: / 00:.{4}:距离战斗开始还有(?<Time>\d+)秒！/,
-    ko: / 00:.{4}:전투 시작 (?<Time>\d+)초 전!/,
-  };
-
-  static WipeRegex = / 21:........:40000010:/;
-  static WinRegex = / 21:........:40000003:/;
-  static CactbotWipeRegex = /00:0038:cactbot wipe/;
+  static WipeRegex = /\[(?<LineTimestamp>[^\]]+)\] 21:........:40000010:/;
+  static WinRegex = /\[(?<LineTimestamp>[^\]]+)\] 21:........:40000003:/;
+  static CactbotWipeRegex = /\[(?<LineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
 
   static ZoneChangeRegex = / 01:Changed Zone to (?<Zone>.*)\./;
 
   static DoesLineMatch(line, regexes) {
     for (let i in regexes) {
       let res = regexes[i].exec(line);
-      if (res)
+      if (res) {
         return res;
+      }
     }
     return false;
   }
 
   static IsMatchStart(line) {
     let res;
-    res = LogEventHandler.DoesLineMatch(line, LogEventHandler.CountdownRegexes);
+    res = LogEventHandler.DoesLineMatch(line, EmulatorCommon.CountdownRegexes);
     if (res) {
+      res.groups.StartIn = res.groups.Time * 1000;
+      res.groups.StartType = 'Countdown';
       return res;
     }
-    res = LogEventHandler.DoesLineMatch(line, LogEventHandler.EngageRegexes);
+    res = LogEventHandler.DoesLineMatch(line, EmulatorCommon.SealRegexes);
     if (res) {
+      res.groups.StartIn = 0;
+      res.groups.StartType = 'Seal';
       return res;
     }
-    res = LogEventHandler.DoesLineMatch(line, LogEventHandler.SealRegexes);
+    res = LogEventHandler.DoesLineMatch(line, EmulatorCommon.EngageRegexes);
     if (res) {
+      res.groups.StartIn = 0;
+      res.groups.StartType = 'Engage';
       return res;
     }
     return false;
@@ -70,12 +50,24 @@ class LogEventHandler extends EventBus {
 
   static IsMatchEnd(line) {
     let res;
-    res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.WinRegex, LogEventHandler.WipeRegex, LogEventHandler.CactbotWipeRegex]);
+    res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.WinRegex]);
     if (res) {
+      res.groups.EndType = 'Win';
+      return res;
+    }
+    res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.WipeRegex]);
+    if (res) {
+      res.groups.EndType = 'Wipe';
+      return res;
+    }
+    res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.CactbotWipeRegex]);
+    if (res) {
+      res.groups.EndType = 'Cactbot Wipe';
       return res;
     }
     res = LogEventHandler.DoesLineMatch(line, LogEventHandler.UnsealRegexes);
     if (res) {
+      res.groups.EndType = 'Unseal';
       return res;
     }
     return false;
@@ -90,8 +82,6 @@ class LogEventHandler extends EventBus {
     this.currentZone = null;
     this.currentDate = null;
     this.currentFight = [];
-    this.currentFightHasStart = false;
-    this.currentFightHasEnd = false;
   }
 
   ParseLogs(logs) {
@@ -99,10 +89,7 @@ class LogEventHandler extends EventBus {
       let line = logs[i];
       this.currentFight.push(line);
       let res;
-      if (res = LogEventHandler.IsMatchStart(line)) {
-        this.currentFightHasStart = true;
-      } else if (res = LogEventHandler.IsMatchEnd(line)) {
-        this.currentFightHasEnd = true;
+      if (res = LogEventHandler.IsMatchEnd(line)) {
         this.EndFight();
       } else if (res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.ZoneChangeRegex])) {
         this.currentZone = res.groups.Zone;
@@ -112,16 +99,22 @@ class LogEventHandler extends EventBus {
   }
 
   EndFight() {
-    if (this.currentFightHasStart && this.currentFightHasEnd) {
-      // @TODO: Pull this from log import event when it's possible
-      if (this.currentDate === null) {
-        this.currentDate = new Date().toISOString().substr(0, 10);
-      }
-      console.log("Adding new fight with " + this.currentFight.length + " lines...");
-      this.dispatch('fight', this.currentDate, this.currentZone, this.currentFight);
+    if (this.currentFight.length < 2) {
+      return;
     }
+    // @TODO: Pull this from log import event when it's possible
+    // Until then, allow this to be passed in from controller
+    // or carried over from previous encounter
+    if (this.currentDate === null) {
+      this.currentDate = new Date().toISOString().substr(0, 10);
+    }
+    console.log(`Displatching new fight
+Date: ${this.currentDate}
+Zone: ${this.currentZone}
+Line Count: ${this.currentFight.length}
+`);
+    this.dispatch('fight', this.currentDate, this.currentZone, this.currentFight);
+
     this.currentFight = [];
-    this.currentFightHasStart = false;
-    this.currentFightHasEnd = false;
   }
 }

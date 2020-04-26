@@ -64,10 +64,15 @@ class EncounterTab extends EventBus {
       this.CurrentEncounter = t.data('index');
       me.RefreshUI();
     });
+
+    // @TODO: Probably a better way to do this...
     this.$infoColumn = $('#encountersTab .encounterInfo').on('click', '.encounterLoad', (ev) => {
       me.dispatch('load', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter.ID);
-    });
-    this.$infoColumn = $('#encountersTab .encounterInfo').on('click', '.encounterDelete', (ev) => {
+    }).on('click', '.encounterParse', (ev) => {
+      me.dispatch('parse', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter.ID);
+    }).on('click', '.encounterPrune', (ev) => {
+      me.dispatch('prune', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter.ID);
+    }).on('click', '.encounterDelete', (ev) => {
       me.dispatch('delete', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter.ID);
     });
 
@@ -176,13 +181,23 @@ class EncounterTab extends EventBus {
        */
       let enc = this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter;
 
+      let pullAt = 'N/A';
+      if(!isNaN(enc.Offset)) {
+        pullAt = timeToString(enc.Offset, false);
+      }
+
       let $info = $('<div class="encounterInfo"></div>');
-      $info.append($('<div class="encounterLoad btn btn-primary">Load Encounter</div>'));
+      $info.append($('<div class="encounterLoad btn btn-primary pull-right mb-1">Load Encounter</div>'));
+      $info.append($('<div class="encounterParse btn btn-primary pull-right mb-1">Reparse Encounter</div>'));
+      $info.append($('<div class="encounterPrune btn btn-primary pull-right mb-1">Prune Encounter</div>'));
+      $info.append($('<div class="encounterDelete btn btn-primary pull-right mb-1">Delete Encounter</div>'));
       $info.append($('<div class="encounterZone">Zone: ' + enc.Zone + '</div>'));
       $info.append($('<div class="encounterStart">Start: ' + dateTimeToString(enc.Start) + '</div>'));
       $info.append($('<div class="encounterDuration">Duration: ' + timeToString(enc.Duration, false) + '</div>'));
+      $info.append($('<div class="encounterOffset">Pull At: ' + pullAt + '</div>'));
       $info.append($('<div class="encounterName">Name: ' + enc.Name + '</div>'));
-      $info.append($('<div class="encounterDelete btn btn-primary">Delete Encounter</div>'));
+      $info.append($('<div class="encounterStartStatus">Start Status: ' + enc.StartStatus + '</div>'));
+      $info.append($('<div class="encounterEndStatus">End Status: ' + enc.EndStatus + '</div>'));
 
       this.$infoColumn.append($info);
     }

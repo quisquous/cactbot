@@ -146,7 +146,7 @@ class NetworkLogConverter {
       // Split Data on event|timestamp|
       Data.split(/(\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|.*?)\r?\n(?=\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|)/gm)
       // Remove blank lines since each actual line ends up separated by a blank line
-        .filter((l) => l !== '')
+        .filter((l) => l !== '' && l !== "\r" && l !== "\r\n")
     );
     return ret;
   }

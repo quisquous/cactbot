@@ -33,37 +33,37 @@ class RaidEmulatorTimelineUI extends TimelineUI {
         bar.$progress.remove();
       }
       this.emulatedTimerBars = this.emulatedTimerBars.filter((bar) => bar.forceRemoveAt > timestampOffset);
-      this.timeline.timebase && this.timeline._OnUpdateTimer();
+      this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer();
     });
     emulator.on('Play', () => {
       this.emulatedStatus = 'Play';
-      this.timeline.EmulatedSync(emulator.CurrentTimestamp);
+      this.timeline && this.timeline.EmulatedSync(emulator.CurrentTimestamp);
     });
     emulator.on('Pause', () => {
       this.emulatedStatus = 'Pause';
     });
     let tmpPopupText;
     emulator.on('PreSeek', (time) => {
-      this.timeline.Stop();
+      this.timeline && this.timeline.Stop();
       this.emulatedTimeOffset = time;
       for (let i in this.emulatedTimerBars) {
         let bar = this.emulatedTimerBars[i];
         bar.$progress.remove();
       }
       this.emulatedTimerBars = [];
-      tmpPopupText = this.timeline.popupText;
-      this.timeline.popupText = null;
+      this.timeline && (tmpPopupText = this.timeline.popupText);
+      this.timeline && (this.timeline.popupText = null);
     });
     emulator.on('PostSeek', (time) => {
-      this.timeline.popupText = tmpPopupText;
-      this.timeline.EmulatedSync(time);
+      this.timeline && (this.timeline.popupText = tmpPopupText);
+      this.timeline && this.timeline.EmulatedSync(time);
       for (let i in this.emulatedTimerBars) {
         let bar = this.emulatedTimerBars[i];
         this.UpdateBar(bar, time);
       }
     });
     emulator.on('CurrentEncounterChanged', () => {
-      this.timeline.Stop();
+      this.timeline && this.timeline.Stop();
       this.emulatedTimeOffset = 0;
       for (let i in this.emulatedTimerBars) {
         let bar = this.emulatedTimerBars[i];

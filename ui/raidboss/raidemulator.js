@@ -55,6 +55,9 @@ let Options = {
 
     logEventHandler.on('fight', (day, zone, lines) => {
       let enc = new Encounter(day, zone, lines);
+      if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0)) {
+        return;
+      }
       emulator.AddEncounter(enc);
       persistor.PersistEncounter(enc);
       encounterTab.Refresh();
@@ -65,8 +68,41 @@ let Options = {
         persistor.LoadEncounter(ID).then((enc) => {
           emulator.AddEncounter(enc);
           emulator.SetCurrentByID(ID);
+          if(!isNaN(emulator.currentEncounter.encounter.initialOffset))
+            emulator.Seek(emulator.currentEncounter.encounter.initialOffset);
         });
       }
+    });
+
+    encounterTab.on('parse', (ID) => {
+      persistor.LoadEncounter(ID).then(async (enc) => {
+        enc.Initialize();
+        await persistor.PersistEncounter(enc);
+        encounterTab.Refresh();
+      });
+    });
+
+    encounterTab.on('prune', (ID) => {
+      persistor.LoadEncounter(ID).then(async (enc) => {
+        let firstLine = 1;
+        for (let i = 0; i < enc.logLines.length; ++i) {
+          let l = enc.logLines[i];
+          let res = EmulatorCommon.LogLineRegex.exec(l);
+          let timestamp = +new Date(enc.encounterDay + ' ' + res[1]);
+          if(timestamp >= enc.startTimestamp + enc.initialOffset) {
+            firstLine = i;
+            break;
+          }
+        }
+
+        firstLine = firstLine > 1 ? firstLine - 1 : 1;
+
+        enc.logLines = enc.logLines.slice(firstLine-1);
+
+        enc.Initialize();
+        await persistor.PersistEncounter(enc);
+        encounterTab.Refresh();
+      });
     });
 
     encounterTab.on('delete', (ID) => {
@@ -114,44 +150,101 @@ let Options = {
 
         encounterTab.Refresh();
 
+        let importFile = (txt) => {
+          logConverter.ConvertFile(txt).then((lines) => {
+            let LocalLogHandler = new LogEventHandler();
+            LocalLogHandler.currentDate = timeToDateString(lines[0].Timestamp);
+            lines = lines.map((l) => l.Line);
+
+            LocalLogHandler.on('fight', async (day, zone, lines) => {
+              let enc = new Encounter(day, zone, lines);
+              if (enc.firstPlayerAbility === null && enc.firstEnemyAbility === null) {
+                return;
+              }
+              emulator.AddEncounter(enc);
+              await persistor.PersistEncounter(enc);
+            });
+
+            LocalLogHandler.ParseLogs(lines);
+            LocalLogHandler.EndFight();
+            // Have to wait for a DOM update or something for the encouter tab refresh to work.
+            // No clue why.
+            window.setTimeout(() => {
+              encounterTab.Refresh();
+            }, 100);
+          });
+        };
+
+        let importDB = (txt) => {
+          let DB = JSON.parse(txt);
+          persistor.ImportDB(DB).then(() => {
+            encounterTab.Refresh();
+          });
+        };
+
+        let checkFile = async (file) => {
+          if (file.type === "application/json") {
+            // Import DB?
+            file.text().then((txt) => {
+              importDB(txt);
+              encounterTab.Refresh();
+            });
+          } else {
+            // Assume it's a log file?
+            file.text().then((txt) => {
+              importFile(txt);
+            });
+          }
+        };
+
         $('body').on('dragenter dragover', (e) => { e.preventDefault(); e.stopPropagation(); });
-        $('body').on('drop', (e) => {
+        $('body').on('drop', async (e) => {
           e.preventDefault();
           e.stopPropagation();
           let dt = e.originalEvent.dataTransfer;
           let files = dt.files;
           for (let i = 0; i < files.length; ++i) {
             let file = files[i];
-            if (file.type === "application/json") {
-              // Import DB?
-            } else {
-              // Assume it's a log file?
-              file.text().then((txt) => {
-                logConverter.ConvertFile(txt).then((lines) => {
-                  let FileTimestamp = lines[0].Timestamp;
-                  lines = lines.map((l) => l.Line);
-                  let LocalLogHandler = new LogEventHandler();
-
-                  LocalLogHandler.on('fight', (day, zone, lines) => {
-                    let enc = new Encounter(day, zone, lines);
-                    emulator.AddEncounter(enc);
-                    persistor.PersistEncounter(enc);
-                  });
-
-                  LocalLogHandler.CurrentDate = new Date(FileTimestamp).toISOString().substr(0, 10)
-                  LocalLogHandler.ParseLogs(lines);
-                  LocalLogHandler.EndFight();
-                });
-              });
-            }
+            await checkFile(file);
           }
         });
 
+        let $exportButton = $('.exportDBButton');
+
+        $exportButton.tooltip({
+          title: 'Export DB is very slow and shows a 0 byte download, but it does work eventually.',
+          placement: 'bottom',
+        });
+        $exportButton.on('click', (e) => {
+          persistor.ExportDB().then((obj) => {
+            // encounters can have unicode, can't use btoa for base64 encode
+            let blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
+            obj = null;
+            var a = document.createElement("a");
+            a.href = URL.createObjectURL(blob);
+            a.setAttribute("download", 'RaidEmulator_DBExport_' + (+new Date()) + '.json');
+            a.click();
+            window.setTimeout(() => {
+              URL.revokeObjectURL(a.href);
+            }, 1000);
+          });
+        });
+
+        let $fileInput = $('.loadFileInput');
+
+        $fileInput.on('change', async (e) => {
+          for (let i = 0; i < e.originalEvent.target.files.length; ++i) {
+            let file = e.originalEvent.target.files[i];
+            checkFile(file);
+          }
+        });
+
+        $('.importDBButton, .loadNetworkLogButton').on('click', (e) => {
+          $fileInput.trigger('click');
+        });
+
         $('.deleteDBModal .btn-primary').on('click', (e) => {
-          persistor.ListEncounters().then((encounters) => {
-            for (let i in encounters) {
-              persistor.DeleteEncounter(encounters[i].ID);
-            }
+          persistor.ClearDB().then(() => {
             encounterTab.Refresh();
             $('.deleteDBModal').modal('hide');
           });

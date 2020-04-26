@@ -69,7 +69,7 @@ class AnalyzedEncounter extends EventBus {
 
   async AnalyzeFor(ID, triggers, popupText) {
     let data = {
-      lang: popupText.data.lang,
+      lang: this.encounter.language || popupText.data.lang,
       currentHP: 0,
       options: popupText.options,
       party: new PartyTracker(),

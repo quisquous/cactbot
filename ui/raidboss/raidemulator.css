@@ -255,6 +255,16 @@ div.row.progressBarRow .playerTriggers .triggerBar.dps .triggerItem {
   background: rgba(104, 53, 53, 0.9);
 }
 
+.engageIndicator {
+  position: absolute;
+  height: calc(3rem + 10px);
+  width: 3px;
+  background: rgba(0, 0, 0, 0.8);
+  bottom: -5px;
+  z-index:10;
+  pointer-events: all;
+}
+
 .popup-text-container {
   height: 2rem;
   line-height: 2rem;
@@ -439,13 +449,21 @@ div.row.encountersRow {
 
 #encountersTab {
   /* encounter drawer + sm btn font + sm btn padding + sm btn border + border top + border top */
-  height: calc(25vh + 0.875rem + 0.25rem + 0.25rem + 2px + 1px + 1px);
+  height: calc(25vh + 1.3125rem + 0.25rem + 0.25rem + 2px + 1px + 1px);
 }
 
 #encountersTab .row .col {
   overflow-y: auto;
 }
 
+.encountersContainer {
+  height: 25vh;
+  max-height: 25vh;
+}
+
+.encounterInfo .btn {
+  clear: right;
+}
 
 .timer-bar-container .progress {
   width: 100%;

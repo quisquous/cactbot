@@ -11,41 +11,69 @@ class RaidEmulatorPopupText extends PopupText {
   DisplayedText = [];
   ScheduledTriggers = [];
 
+  Seeking = false;
+
+  LastSeekTo = 0;
+
+  async DoUpdate(timestampOffset) {
+    this.emulatedOffset = timestampOffset;
+    for (let t of this.ScheduledTriggers) {
+      let remaining = t.Expires - timestampOffset;
+      if (remaining <= 0) {
+        t.Resolver();
+        await t.Promise;
+      }
+    }
+    this.ScheduledTriggers = this.ScheduledTriggers.filter((t) => {
+      let remaining = t.Expires - timestampOffset;
+      if (remaining > 0) {
+        return true;
+      } else {
+        return false;
+      }
+    });
+    this.DisplayedText = this.DisplayedText.filter((t) => {
+      let remaining = t.Expires - timestampOffset;
+      if (remaining > 0) {
+        t.Element.find('.popup-text-remaining').text('(' + (remaining / 1000).toFixed(1) + ')');
+        return true;
+      } else {
+        t.Element.remove();
+        return false;
+      }
+    });
+  }
+
   BindTo(emulator) {
     this.emulator = emulator;
-    emulator.on('Tick', (timestampOffset) => {
-      this.emulatedOffset = timestampOffset;
-      this.ScheduledTriggers = this.ScheduledTriggers.filter((t) => {
-        let remaining = t.Expires - timestampOffset;
-        if (remaining > 0) {
-          return true;
-        } else {
-          t.Resolver();
-          return false;
-        }
-      });
-      this.DisplayedText = this.DisplayedText.filter((t) => {
-        let remaining = t.Expires - timestampOffset;
-        if (remaining > 0) {
-          t.Element.find('.popup-text-remaining').text('(' + (remaining / 1000).toFixed(1) + ')');
-          return true;
-        } else {
-          t.Element.remove();
-          return false;
-        }
-      });
+    emulator.on('Tick', async (timestampOffset) => {
+      await this.DoUpdate(timestampOffset);
+    });
+    emulator.on('MidSeek', async (timestampOffset) => {
+      await this.DoUpdate(timestampOffset);
     });
     emulator.on('PreSeek', (time) => {
+      this.LastSeekTo = time;
+      this.Seeking = true;
+      for (let i of this.ScheduledTriggers) {
+        i.Rejecter();
+      }
       this.ScheduledTriggers = [];
       this.DisplayedText = this.DisplayedText.filter((t) => {
         t.Element.remove();
         return false;
       });
     });
-    emulator.on('MidSeek', (time) => {
-      this.emulatedOffset = time;
+    emulator.on('PostSeek', async (time) => {
+      // This is a hacky fix for audio still playing during seek
+      window.setTimeout(() => {
+        this.Seeking = false;
+      }, 5);
     });
     emulator.on('CurrentEncounterChanged', () => {
+      for (let i of this.ScheduledTriggers) {
+        i.Rejecter();
+      }
       this.ScheduledTriggers = [];
       this.DisplayedText = this.DisplayedText.filter((t) => {
         t.Element.remove();
@@ -75,25 +103,43 @@ class RaidEmulatorPopupText extends PopupText {
 
   _OnTriggerInternal_DelaySeconds(TriggerHelper) {
     let delay = 'delaySeconds' in TriggerHelper.Trigger ? TriggerHelper.ValueOrFunction(TriggerHelper.Trigger.delaySeconds) : 0;
+
+    if (delay === 0) {
+      return new Promise((res) => {
+        res();
+      });
+    }
+
     let resolver;
-    let ret = new Promise((res) => { resolver = res; });
+    let rejecter;
+    let ret = new Promise((res, rej) => {
+      resolver = res;
+      rejecter = rej;
+    });
     this.ScheduledTriggers.push({
       Expires: this.emulatedOffset + (delay * 1000),
       Promise: ret,
       Resolver: resolver,
+      Rejecter: rejecter,
     });
     return ret;
   }
 
   _PlayAudioFile(URL, Volume) {
     if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
-        .includes(URL)) {
+      .includes(URL)) {
       let div = this._MakeTextElement(URL, 'audio-file');
       this.AddDisplayText(div, this.emulatedOffset + 2000);
+    }
+    if (this.Seeking) {
+      return;
     }
     super._PlayAudioFile(URL, Volume);
   }
   ttsSay(ttsText) {
+    if (this.Seeking) {
+      return;
+    }
     let div = this._MakeTextElement(ttsText, 'tts-text');
     this.AddDisplayText(div, this.emulatedOffset + 2000);
     super.ttsSay(ttsText);

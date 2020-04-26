@@ -9,6 +9,12 @@ class ProgressBar {
     this.$progressBarDuration = $('.duration-timestamp');
     this.$progress = $('.encounterProgressBar');
     this.$progressBar = $('.encounterProgressBar .progress-bar');
+    this.$engageIndicator = $('.progressBarRow .engageIndicator');
+    this.$engageIndicator.tooltip({
+      animation: false,
+      placement: 'bottom',
+      title: 'Fight Begins',
+    });
     this.emulator = emulator;
     this.$progress.on('mousemove', function (e) {
       if (me.emulator.currentEncounter) {
@@ -28,6 +34,12 @@ class ProgressBar {
       me.$progressBarDuration.text(timeToString(encounter.encounter.duration, false));
       me.$progressBar.css('width', '0%');
       me.$progressBar.attr('aria-valuemax', encounter.encounter.duration);
+      if (isNaN(encounter.encounter.initialOffset)) {
+        me.$engageIndicator.addClass('d-none');
+      } else {
+        let initialPercent = (encounter.encounter.initialOffset / emulator.currentEncounter.encounter.duration) * 100;
+        me.$engageIndicator.removeClass('d-none').css('left', initialPercent + '%');
+      }
     });
     emulator.on('Tick', function (timestampOffset) {
       let progPercent = (timestampOffset / emulator.currentEncounter.encounter.duration) * 100;
