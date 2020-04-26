@@ -350,6 +350,16 @@ let tests = {
     assert.equal(matches.spellSpeed, '380');
     assert.equal(matches.tenacity, '382');
   },
+  changeZone: () => {
+    let lines = [
+      '[20:29:29.752] 01:Changed Zone to The Lavender Beds.',
+      '[12:50:15.438] 01:Changed Zone to The Unending Coil Of Bahamut (Ultimate).',
+    ];
+    regexCaptureTest(Regexes.changeZone, lines);
+
+    let matches = lines[0].match(Regexes.changeZone()).groups;
+    assert.equal(matches.name, 'The Lavender Beds');
+  },
 };
 
 let keys = Object.keys(tests);
