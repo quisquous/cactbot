@@ -9,6 +9,24 @@
   resetWhenOutOfCombat: false,
   triggers: [
     {
+      id: 'Eureka Pyros Skoll Hoarhound Halo',
+      regex: Regexes.startsUsing({ id: '36E0', source: 'Skoll' }),
+      regexKo: Regexes.startsUsing({ id: '36E0', source: '스콜' }),
+      alertText: {
+        en: 'Hoarhound Halo',
+        ko: '꼬리 피하기',
+      },
+    },
+    {
+      id: 'Eureka Pyros Skoll Heavensward Howl',
+      regex: Regexes.startsUsing({ id: '46BD', source: 'Skoll' }),
+      regexKo: Regexes.startsUsing({ id: '46BD', source: '스콜' }),
+      alertText: {
+        en: 'Heavensward Howl',
+        ko: '정면 피하기',
+      },
+    },
+    {
       id: 'Eureka Pyros Falling Asleep',
       regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity.', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen.', capture: false }),
