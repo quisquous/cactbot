@@ -4,10 +4,10 @@ class Encounter {
     this.logLines = logLines;
     this.encounterZone = encounterZone;
     this.encounterDay = encounterDay;
-    this.Initialize();
+    this.initialize();
   }
 
-  Initialize() {
+  initialize() {
     this.language = 'en';
     this.initialOffset = Number.MAX_SAFE_INTEGER;
     this.endStatus = 'Unknown';

@@ -61,7 +61,7 @@ class Persistor extends EventBus {
     };
   }
 
-  PersistEncounter(baseEncounter) {
+  persistEncounter(baseEncounter) {
     let ret;
     if (this.DB !== null) {
       let resolver;
@@ -91,7 +91,7 @@ class Persistor extends EventBus {
     return ret;
   }
 
-  LoadEncounter(ID) {
+  loadEncounter(ID) {
     return new Promise((res) => {
       if (this.DB !== null) {
         let EncountersStorage = this.DB.transaction("Encounters", "readonly").objectStore("Encounters");
@@ -107,7 +107,7 @@ class Persistor extends EventBus {
     });
   }
 
-  DeleteEncounter(ID) {
+  deleteEncounter(ID) {
     return new Promise((res) => {
       if (this.DB !== null) {
         let EncountersStorage = this.DB.transaction("Encounters", "readwrite").objectStore("Encounters");
@@ -172,21 +172,21 @@ class Persistor extends EventBus {
     });
   }
 
-  async ClearDB() {
+  async clearDB() {
     await this.ListEncounters().then(async (encounters) => {
       for (let i in encounters) {
-        await this.DeleteEncounter(encounters[i].ID);
+        await this.deleteEncounter(encounters[i].ID);
       }
     });
   }
 
-  async ExportDB() {
+  async exportDB() {
     let ret = {
       Encounters: [],
     };
     let Summaries = await this.ListEncounters();
     for (let i in Summaries) {
-      let enc = await this.LoadEncounter(Summaries[i].ID);
+      let enc = await this.loadEncounter(Summaries[i].ID);
       ret.Encounters.push({
         EncounterDay: timeToDateString(Summaries[i].Start),
         EncounterZone: Summaries[i].Zone,
@@ -196,9 +196,9 @@ class Persistor extends EventBus {
     return ret;
   }
 
-  async ImportDB(DB) {
+  async importDB(DB) {
     DB.Encounters.forEach(enc => {
-      this.PersistEncounter(new Encounter(enc.EncounterDay, enc.EncounterZone, enc.EncounterLines));
+      this.persistEncounter(new Encounter(enc.EncounterDay, enc.EncounterZone, enc.EncounterLines));
     });
   }
 

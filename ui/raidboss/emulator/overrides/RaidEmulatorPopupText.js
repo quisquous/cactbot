@@ -44,15 +44,15 @@ class RaidEmulatorPopupText extends PopupText {
     });
   }
 
-  BindTo(emulator) {
+  bindTo(emulator) {
     this.emulator = emulator;
-    emulator.on('Tick', async (timestampOffset) => {
+    emulator.on('tick', async (timestampOffset) => {
       await this.DoUpdate(timestampOffset);
     });
-    emulator.on('MidSeek', async (timestampOffset) => {
+    emulator.on('midSeek', async (timestampOffset) => {
       await this.DoUpdate(timestampOffset);
     });
-    emulator.on('PreSeek', (time) => {
+    emulator.on('preSeek', (time) => {
       this.LastSeekTo = time;
       this.Seeking = true;
       for (let i of this.ScheduledTriggers) {
@@ -64,13 +64,13 @@ class RaidEmulatorPopupText extends PopupText {
         return false;
       });
     });
-    emulator.on('PostSeek', async (time) => {
+    emulator.on('postSeek', async (time) => {
       // This is a hacky fix for audio still playing during seek
       window.setTimeout(() => {
         this.Seeking = false;
       }, 5);
     });
-    emulator.on('CurrentEncounterChanged', () => {
+    emulator.on('currentEncounterChanged', () => {
       for (let i of this.ScheduledTriggers) {
         i.Rejecter();
       }

@@ -141,7 +141,7 @@ class NetworkLogConverter {
     }
   }
 
-  async ConvertFile(Data) {
+  async convertFile(Data) {
     let ret = await this.ConvertLines(
       // Split Data on event|timestamp|
       Data.split(/(\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|.*?)\r?\n(?=\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|)/gm)

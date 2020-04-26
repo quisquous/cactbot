@@ -33,20 +33,20 @@ class EmulatedPartyInfo extends EventBus {
     for (let i = 0; i < 8; ++i) {
       this.triggerBars[i] = this.$triggerBar.find('.player' + i);
     }
-    emulator.on('Tick', (timestampOffset, lastLogTimestamp) => {
+    emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
       if (lastLogTimestamp) {
         this.UpdatePartyInfo(emulator, lastLogTimestamp);
         this.latestDisplayedState = Math.max(this.latestDisplayedState, lastLogTimestamp);
       }
     });
-    emulator.on('CurrentEncounterChanged', (encounter) => {
+    emulator.on('currentEncounterChanged', (encounter) => {
       this.ResetPartyInfo(encounter);
     });
     
-    emulator.on('PreSeek', (time) => {
+    emulator.on('preSeek', (time) => {
       this.latestDisplayedState = 0;
     });
-    emulator.on('MidSeek', (time) => {
+    emulator.on('midSeek', (time) => {
       this.UpdatePartyInfo(emulator, time);
       this.latestDisplayedState = Math.max(this.latestDisplayedState, time);
     });
@@ -118,12 +118,12 @@ class EmulatedPartyInfo extends EventBus {
 
     this.UpdateTriggerState();
 
-    this.SelectPerspective(membersToDisplay[0]);
+    this.selectPerspective(membersToDisplay[0]);
   }
 
   CurrentPerspective = null;
 
-  SelectPerspective(ID) {
+  selectPerspective(ID) {
     if (ID === this.CurrentPerspective) {
       return;
     }
@@ -198,7 +198,7 @@ class EmulatedPartyInfo extends EventBus {
     });
     let me = this;
     ret.$rootElem.on('click', (e) => {
-      me.SelectPerspective(ID);
+      me.selectPerspective(ID);
     });
     ret.$triggerElem.data('ID', ID);
     return ret;

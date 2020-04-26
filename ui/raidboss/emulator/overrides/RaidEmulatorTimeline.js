@@ -1,16 +1,16 @@
 class RaidEmulatorTimeline extends Timeline {
   emulatedTimeOffset;
-  emulatedStatus = 'Pause';
+  emulatedStatus = 'pause';
 
-  BindTo(emulator) {
-    emulator.on('Tick', (timestampOffset, lastLogTimestamp) => {
+  bindTo(emulator) {
+    emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
       this.emulatedTimeOffset = timestampOffset;
     });
-    emulator.on('Play', () => {
-      this.emulatedStatus = 'Play';
+    emulator.on('play', () => {
+      this.emulatedStatus = 'play';
     });
-    emulator.on('Pause', () => {
-      this.emulatedStatus = 'Pause';
+    emulator.on('pause', () => {
+      this.emulatedStatus = 'pause';
     });
   }
 

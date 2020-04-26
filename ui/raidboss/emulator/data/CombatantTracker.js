@@ -11,11 +11,11 @@ class CombatantTracker {
     this.pets = [];
     this.mainCombatantID = null;
     this.initialStates = {};
-    this.Initialize(encounterDay, logLines);
+    this.initialize(encounterDay, logLines);
     delete this.initialStates;
   }
 
-  Initialize(encounterDay, logLines) {
+  initialize(encounterDay, logLines) {
     let keyedLogLines = {};
     let allTimestamps = [];
     // First pass: Get list of combatants, figure out where they start at if possible, build our keyed log lines

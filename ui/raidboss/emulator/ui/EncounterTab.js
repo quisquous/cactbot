@@ -79,7 +79,7 @@ class EncounterTab extends EventBus {
     let me = this;
   }
 
-  Refresh() {
+  refresh() {
     this.Encounters = {};
     this.persistor.ListEncounters().then((encounters) => {
       for (let i in encounters) {

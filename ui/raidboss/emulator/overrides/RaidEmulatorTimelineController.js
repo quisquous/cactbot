@@ -2,10 +2,10 @@ class RaidEmulatorTimelineController extends TimelineController {
 
   emulator;
 
-  BindTo(emulator) {
+  bindTo(emulator) {
     this.emulator = emulator;
     if (this.activeTimeline) {
-      this.activeTimeline.BindTo(emulator);
+      this.activeTimeline.bindTo(emulator);
     }
   }
 
@@ -29,7 +29,7 @@ class RaidEmulatorTimelineController extends TimelineController {
     if (text) {
       this.activeTimeline = new RaidEmulatorTimeline(text, replacements, triggers, styles, this.options);
       if (this.emulator) {
-        this.activeTimeline.BindTo(this.emulator);
+        this.activeTimeline.bindTo(this.emulator);
       }
     }
     this.ui.SetTimeline(this.activeTimeline);

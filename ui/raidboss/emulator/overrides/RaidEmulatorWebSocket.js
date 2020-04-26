@@ -23,13 +23,13 @@ class RaidEmulatorWebSocket {
     window.removeOverlayListener = this.Remove.bind(this);
     window.callOverlayHandler = this.Call.bind(this);
 
-    emulator.on('Tick', (timestampOffset) => {
+    emulator.on('tick', (timestampOffset) => {
       this.timestampOffset = timestampOffset;
     });
   }
 
-  Dispatch(msg) {
-    return this.originalDispatch(msg);
+  dispatch(msg) {
+    return this.originaldispatch(msg);
   }
 
   Add(event, cb) {

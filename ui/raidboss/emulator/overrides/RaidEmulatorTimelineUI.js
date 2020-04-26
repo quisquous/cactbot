@@ -3,7 +3,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
   emulatedTimerBars = [];
   emulatedTimeOffset = 0;
   $barContainer;
-  emulatedStatus = 'Pause';
+  emulatedStatus = 'pause';
 
   constructor(options) {
     super(options);
@@ -20,8 +20,8 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     this.expireTimers = {};
   }
 
-  BindTo(emulator) {
-    emulator.on('Tick', (timestampOffset, lastLogTimestamp) => {
+  bindTo(emulator) {
+    emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
       this.emulatedTimeOffset = timestampOffset;
       for (let i in this.emulatedTimerBars) {
         let bar = this.emulatedTimerBars[i];
@@ -35,15 +35,15 @@ class RaidEmulatorTimelineUI extends TimelineUI {
       this.emulatedTimerBars = this.emulatedTimerBars.filter((bar) => bar.forceRemoveAt > timestampOffset);
       this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer();
     });
-    emulator.on('Play', () => {
-      this.emulatedStatus = 'Play';
+    emulator.on('play', () => {
+      this.emulatedStatus = 'play';
       this.timeline && this.timeline.EmulatedSync(emulator.CurrentTimestamp);
     });
-    emulator.on('Pause', () => {
-      this.emulatedStatus = 'Pause';
+    emulator.on('pause', () => {
+      this.emulatedStatus = 'pause';
     });
     let tmpPopupText;
-    emulator.on('PreSeek', (time) => {
+    emulator.on('preSeek', (time) => {
       this.timeline && this.timeline.Stop();
       this.emulatedTimeOffset = time;
       for (let i in this.emulatedTimerBars) {
@@ -54,7 +54,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
       this.timeline && (tmpPopupText = this.timeline.popupText);
       this.timeline && (this.timeline.popupText = null);
     });
-    emulator.on('PostSeek', (time) => {
+    emulator.on('postSeek', (time) => {
       this.timeline && (this.timeline.popupText = tmpPopupText);
       this.timeline && this.timeline.EmulatedSync(time);
       for (let i in this.emulatedTimerBars) {
@@ -62,7 +62,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
         this.UpdateBar(bar, time);
       }
     });
-    emulator.on('CurrentEncounterChanged', () => {
+    emulator.on('currentEncounterChanged', () => {
       this.timeline && this.timeline.Stop();
       this.emulatedTimeOffset = 0;
       for (let i in this.emulatedTimerBars) {

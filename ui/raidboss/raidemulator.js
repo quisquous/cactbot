@@ -50,46 +50,46 @@ let Options = {
     logConverter = new NetworkLogConverter();
 
     emulatedPartyInfo.on('SelectPerspective', (ID) => {
-      emulator.SelectPerspective(ID);
+      emulator.selectPerspective(ID);
     });
 
     logEventHandler.on('fight', (day, zone, lines) => {
       let enc = new Encounter(day, zone, lines);
-      if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0)) {
+      if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
         return;
-      }
-      emulator.AddEncounter(enc);
-      persistor.PersistEncounter(enc);
-      encounterTab.Refresh();
+
+      emulator.addEncounter(enc);
+      persistor.persistEncounter(enc);
+      encounterTab.refresh();
     });
 
     encounterTab.on('load', (ID) => {
-      if (!emulator.SetCurrentByID(ID)) {
-        persistor.LoadEncounter(ID).then((enc) => {
-          emulator.AddEncounter(enc);
-          emulator.SetCurrentByID(ID);
-          if(!isNaN(emulator.currentEncounter.encounter.initialOffset))
-            emulator.Seek(emulator.currentEncounter.encounter.initialOffset);
+      if (!emulator.setCurrentByID(ID)) {
+        persistor.loadEncounter(ID).then((enc) => {
+          emulator.addEncounter(enc);
+          emulator.setCurrentByID(ID);
+          if (!isNaN(emulator.currentEncounter.encounter.initialOffset))
+            emulator.seek(emulator.currentEncounter.encounter.initialOffset);
         });
       }
     });
 
     encounterTab.on('parse', (ID) => {
-      persistor.LoadEncounter(ID).then(async (enc) => {
-        enc.Initialize();
-        await persistor.PersistEncounter(enc);
-        encounterTab.Refresh();
+      persistor.loadEncounter(ID).then(async (enc) => {
+        enc.initialize();
+        await persistor.persistEncounter(enc);
+        encounterTab.refresh();
       });
     });
 
     encounterTab.on('prune', (ID) => {
-      persistor.LoadEncounter(ID).then(async (enc) => {
+      persistor.loadEncounter(ID).then(async (enc) => {
         let firstLine = 1;
         for (let i = 0; i < enc.logLines.length; ++i) {
           let l = enc.logLines[i];
           let res = EmulatorCommon.LogLineRegex.exec(l);
           let timestamp = +new Date(enc.encounterDay + ' ' + res[1]);
-          if(timestamp >= enc.startTimestamp + enc.initialOffset) {
+          if (timestamp >= enc.startTimestamp + enc.initialOffset) {
             firstLine = i;
             break;
           }
@@ -97,22 +97,22 @@ let Options = {
 
         firstLine = firstLine > 1 ? firstLine - 1 : 1;
 
-        enc.logLines = enc.logLines.slice(firstLine-1);
+        enc.logLines = enc.logLines.slice(firstLine - 1);
 
-        enc.Initialize();
-        await persistor.PersistEncounter(enc);
-        encounterTab.Refresh();
+        enc.initialize();
+        await persistor.persistEncounter(enc);
+        encounterTab.refresh();
       });
     });
 
     encounterTab.on('delete', (ID) => {
-      persistor.DeleteEncounter(ID).then(() => {
-        encounterTab.Refresh();
+      persistor.deleteEncounter(ID).then(() => {
+        encounterTab.refresh();
       });
     });
 
     emulator.on('EmitLogs', (logs) => {
-      emulatedWebSocket.Dispatch({
+      emulatedWebSocket.dispatch({
         type: 'onLogEvent',
         detail: logs,
       });
@@ -123,8 +123,9 @@ let Options = {
     });
 
     persistor.on('ready', () => {
-      UserConfig.getUserConfigLocation('raidboss', function (e) {
-        addOverlayListener('onLogEvent', function (e) {
+      UserConfig.getUserConfigLocation('raidboss', function(e) {
+        addOverlayListener('onLogEvent', function(e) {
+          // eslint-disable-next-line new-cap
           gTimelineController.OnLogEvent(e);
         });
 
@@ -132,62 +133,66 @@ let Options = {
           call: 'cactbotReadDataFiles',
           source: location.href,
         }).then((e) => {
+          // eslint-disable-next-line new-cap
           gTimelineController.SetDataFiles(e.detail.files);
+          // eslint-disable-next-line new-cap
           gPopupText.OnDataFilesRead(e);
+          // eslint-disable-next-line new-cap
           gPopupText.ReloadTimelines();
         });
         let gTimelineUI = new RaidEmulatorTimelineUI(Options);
-        gTimelineUI.BindTo(emulator);
+        gTimelineUI.bindTo(emulator);
         gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
-        gTimelineController.BindTo(emulator);
+        gTimelineController.bindTo(emulator);
         gPopupText = new RaidEmulatorPopupText(Options);
-        gPopupText.BindTo(emulator);
+        gPopupText.bindTo(emulator);
 
+        // eslint-disable-next-line new-cap
         gTimelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(gPopupText));
+        // eslint-disable-next-line new-cap
         gPopupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(gTimelineController));
 
         emulator.setPopupText(gPopupText);
 
-        encounterTab.Refresh();
+        encounterTab.refresh();
 
         let importFile = (txt) => {
-          logConverter.ConvertFile(txt).then((lines) => {
-            let LocalLogHandler = new LogEventHandler();
-            LocalLogHandler.currentDate = timeToDateString(lines[0].Timestamp);
+          logConverter.convertFile(txt).then((lines) => {
+            let localLogHandler = new LogEventHandler();
+            localLogHandler.currentDate = timeToDateString(lines[0].Timestamp);
             lines = lines.map((l) => l.Line);
 
-            LocalLogHandler.on('fight', async (day, zone, lines) => {
+            localLogHandler.on('fight', async (day, zone, lines) => {
               let enc = new Encounter(day, zone, lines);
-              if (enc.firstPlayerAbility === null && enc.firstEnemyAbility === null) {
+              if (enc.firstPlayerAbility === null && enc.firstEnemyAbility === null)
                 return;
-              }
-              emulator.AddEncounter(enc);
-              await persistor.PersistEncounter(enc);
+              emulator.addEncounter(enc);
+              await persistor.persistEncounter(enc);
             });
 
-            LocalLogHandler.ParseLogs(lines);
-            LocalLogHandler.EndFight();
+            localLogHandler.parseLogs(lines);
+            localLogHandler.endFight();
             // Have to wait for a DOM update or something for the encouter tab refresh to work.
             // No clue why.
             window.setTimeout(() => {
-              encounterTab.Refresh();
+              encounterTab.refresh();
             }, 100);
           });
         };
 
         let importDB = (txt) => {
           let DB = JSON.parse(txt);
-          persistor.ImportDB(DB).then(() => {
-            encounterTab.Refresh();
+          persistor.importDB(DB).then(() => {
+            encounterTab.refresh();
           });
         };
 
         let checkFile = async (file) => {
-          if (file.type === "application/json") {
+          if (file.type === 'application/json') {
             // Import DB?
             file.text().then((txt) => {
               importDB(txt);
-              encounterTab.Refresh();
+              encounterTab.refresh();
             });
           } else {
             // Assume it's a log file?
@@ -197,7 +202,10 @@ let Options = {
           }
         };
 
-        $('body').on('dragenter dragover', (e) => { e.preventDefault(); e.stopPropagation(); });
+        $('body').on('dragenter dragover', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+        });
         $('body').on('drop', async (e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -216,13 +224,13 @@ let Options = {
           placement: 'bottom',
         });
         $exportButton.on('click', (e) => {
-          persistor.ExportDB().then((obj) => {
+          persistor.exportDB().then((obj) => {
             // encounters can have unicode, can't use btoa for base64 encode
             let blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
             obj = null;
-            var a = document.createElement("a");
+            let a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
-            a.setAttribute("download", 'RaidEmulator_DBExport_' + (+new Date()) + '.json');
+            a.setAttribute('download', 'RaidEmulator_DBExport_' + (+new Date()) + '.json');
             a.click();
             window.setTimeout(() => {
               URL.revokeObjectURL(a.href);
@@ -244,22 +252,20 @@ let Options = {
         });
 
         $('.deleteDBModal .btn-primary').on('click', (e) => {
-          persistor.ClearDB().then(() => {
-            encounterTab.Refresh();
+          persistor.clearDB().then(() => {
+            encounterTab.refresh();
             $('.deleteDBModal').modal('hide');
           });
         });
 
         // Debug code
-        if (true) {
-          window.raidEmulatorDebug = {
-            emulator: emulator,
-            progressBar: progressBar,
-            timelineController: gTimelineController,
-            popupText: gPopupText,
-            persistor: persistor,
-          };
-        }
+        window.raidEmulatorDebug = {
+          emulator: emulator,
+          progressBar: progressBar,
+          timelineController: gTimelineController,
+          popupText: gPopupText,
+          persistor: persistor,
+        };
       });
     });
   });

@@ -22,7 +22,7 @@ class AnalyzedEncounter extends EventBus {
     });
   }
 
-  SelectPerspective(ID) {
+  selectPerspective(ID) {
     this.popupText.OnPlayerChange({
       detail: {
         name: this.encounter.combatantTracker.combatants[ID].Name.split('(')[0],

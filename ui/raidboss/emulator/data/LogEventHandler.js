@@ -77,28 +77,28 @@ class LogEventHandler extends EventBus {
     super();
     window.addOverlayListener('onImportLogEvent', (e) => {
       console.log("Parsing " + e.detail.logs.length + " lines...");
-      this.ParseLogs(e.detail.logs);
+      this.parseLogs(e.detail.logs);
     });
     this.currentZone = null;
     this.currentDate = null;
     this.currentFight = [];
   }
 
-  ParseLogs(logs) {
+  parseLogs(logs) {
     for (let i = 0; i < logs.length; ++i) {
       let line = logs[i];
       this.currentFight.push(line);
       let res;
       if (res = LogEventHandler.IsMatchEnd(line)) {
-        this.EndFight();
+        this.endFight();
       } else if (res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.ZoneChangeRegex])) {
         this.currentZone = res.groups.Zone;
-        this.EndFight();
+        this.endFight();
       }
     }
   }
 
-  EndFight() {
+  endFight() {
     if (this.currentFight.length < 2) {
       return;
     }
