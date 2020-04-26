@@ -210,11 +210,10 @@ class PopupText {
           // Filter out disabled triggers
           let enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
 
-          for (let j = 0; j < enabledTriggers.length; ++j) {
+          for (let trigger of enabledTriggers) {
             // Add an additional resolved regex here to save
             // time later.  This will clobber each time we
             // load this, but that's ok.
-            let trigger = enabledTriggers[j];
             trigger.filename = set.filename;
 
             if (!trigger.regex)
@@ -229,6 +228,7 @@ class PopupText {
             trigger.localRegex = Regexes.parse(regex);
           }
 
+          // Don't bother tracking triggers that don't have a regex to match against
           enabledTriggers = enabledTriggers.filter((trigger)=>{
             return trigger.localRegex !== undefined;
           });
@@ -459,7 +459,7 @@ class PopupText {
       },
       triggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
       triggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
-      // This setting onyl suppresses output, trigger still runs for data/logic purposes
+      // This setting only suppresses output, trigger still runs for data/logic purposes
       userSuppressedOutput: trigger.id && this.options.DisabledTriggers[trigger.id],
       matches: matches,
       response: undefined,
@@ -723,6 +723,7 @@ class PopupText {
   }
 
   _addTextFor(textType, triggerHelper) {
+    // Info
     let textTypeUpper = textType[0].toUpperCase() + textType.slice(1);
     // infoText
     let lowerTextKey = textType + 'Text';
