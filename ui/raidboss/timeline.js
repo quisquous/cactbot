@@ -863,10 +863,12 @@ class TimelineLoader {
 }
 
 // Node compatibility shenanigans.  There's probably a better way to do this.
+// TODO: Probably everything should be converted over to import.
 /* eslint-disable no-var */
 if (typeof require !== 'undefined') {
   let path = require('path');
   var Regexes = require('../../resources/regexes.js');
+  var NetRegexes = require('../../resources/netregexes.js');
 }
 if (typeof module !== 'undefined' && module.exports)
   module.exports = Timeline;
