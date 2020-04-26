@@ -12,7 +12,7 @@
       id: 'Eureka Pyros Skoll Hoarhound Halo',
       regex: Regexes.startsUsing({ id: '36E0', source: 'Skoll', capture: false }),
       regexKo: Regexes.startsUsing({ id: '36E0', source: '스콜', capture: false }),
-      response: Responses.awayFromBack(),
+      response: Responses.goFrontOrSides(),
     },
     {
       id: 'Eureka Pyros Skoll Heavensward Howl',
