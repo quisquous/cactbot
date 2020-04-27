@@ -31,11 +31,11 @@
     ],
     "rules": {
       "arrow-spacing": [
-	"error",
-	{
-	  "before": true,
-	  "after": true
-	}
+        "error",
+        {
+          "before": true,
+          "after": true
+        }
       ],
       "camelcase": "off",
       "curly": [
