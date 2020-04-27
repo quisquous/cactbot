@@ -404,12 +404,13 @@
       'locale': 'de',
       'replaceSync': {
         'Air Force': 'Luftwaffe',
-        'Dadaluma': 'Dadarma',
+        'Dadaluma(?! )': 'Dadarma',
         'Fire Control System': 'Feuerleitsystem',
         'Guardian': 'Wächter',
         'Interdimensional Bomb': 'interdimensional(?:e|er|es|en) Bombe',
         'Ultros': 'Ultros',
         'WEAPON SYSTEMS ONLINE': 'Feuerkontrollsystem aktiviert',
+        'Searing Wind': 'Gluthitze',
       },
       'replaceText': {
         'Aether Rot': 'Ätherfäule',

@@ -92,82 +92,8 @@
         let elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
         return {
           en: 'Elapsed ms: ' + elapsed,
+          de: 'Abgelaufene ms: ' + elapsed,
         };
-      },
-    },
-  ],
-  timelineReplace: [
-    {
-      locale: 'de',
-      replaceText: {
-        'Final Sting': 'Schlussstich',
-        'Almagest': 'Almagest',
-        'Angry Dummy': 'Wütender Dummy',
-        'Long Castbar': 'Langer Zauberbalken',
-        'Dummy Stands Still': 'Dummy still stehen',
-        'Death': 'Tot',
-        'Super Tankbuster': 'Super Tankbuster',
-        'Pentacle Sac': 'Pentacle Sac',
-        'Engage': 'Start!',
-      },
-      replaceSync: {
-        'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
-        'You bow courteously to the striking dummy': 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe',
-        'test sync': 'test sync',
-      },
-    },
-    {
-      locale: 'ko',
-      replaceText: {
-        'Final Sting': '마지막 벌침',
-        'Almagest': '알마게스트',
-        'Angry Dummy': '화난 나무인형',
-        'Long Castbar': '긴 시전바',
-        'Dummy Stands Still': '나무인형이 아직 살아있다',
-        'Death': '데스',
-        'Super Tankbuster': '초강력 탱크버스터',
-        'Pentacle Sac': 'Pentacle Sac',
-        'Engage': '시작',
-      },
-      replaceSync: {
-        'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
-        'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
-        'test sync': '테스트 싱크',
-      },
-    },
-    {
-      locale: 'fr',
-      missingTranslations: true,
-      replaceText: {
-        'Final Sting': 'Dard final',
-        'Almagest': 'Almageste',
-        'Angry Dummy': 'Mannequin en colère',
-        'Long Castbar': 'Longue barre de lancement',
-        'Dummy Stands Still': 'Mannequin immobile',
-        'Death': 'Mort',
-      },
-      replaceSync: {
-        'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
-        'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
-      },
-    },
-    {
-      locale: 'cn',
-      missingTranslations: true,
-      replaceText: {
-        'Final Sting': '终极针',
-        'Almagest': '至高无上',
-        'Angry Dummy': '愤怒的木人',
-        'Long Castbar': '长时间咏唱',
-        'Dummy Stands Still': '木人8动了',
-        'Super Tankbuster': '超级无敌转圈死刑',
-        'Death To': '嗝屁攻击：',
-        'Death': '嗝屁',
-        'Engage': '战斗开始',
-      },
-      replaceSync: {
-        'You bid farewell to the striking dummy': '.*向木人告别',
-        'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
       },
     },
   ],
@@ -175,10 +101,10 @@
     {
       id: 'Test Poke',
       regex: Regexes.gameNameLog({ line: 'You poke the striking dummy', capture: false }),
-      regexDe: Regexes.gameNameLog({ line: '\\y{Name}:Du stupst die Trainingspuppe an', capture: false }),
-      regexFr: Regexes.gameNameLog({ line: '\\y{Name}:Vous touchez légèrement le mannequin d\'entraînement du doigt', capture: false }),
-      regexCn: Regexes.gameNameLog({ line: '\\y{Name}:.*用手指戳向木人', capture: false }),
-      regexKo: Regexes.gameNameLog({ line: '\\y{Name}:.*나무인형을 쿡쿡 찌릅니다', capture: false }),
+      regexDe: Regexes.gameNameLog({ line: 'Du stupst die Trainingspuppe an', capture: false }),
+      regexFr: Regexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt', capture: false }),
+      regexCn: Regexes.gameNameLog({ line: '.*用手指戳向木人', capture: false }),
+      regexKo: Regexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다', capture: false }),
       preRun: function(data) {
         data.pokes = (data.pokes || 0) + 1;
       },
@@ -286,6 +212,7 @@
     {
       id: 'Test Response',
       regex: Regexes.echo({ line: 'cactbot test response', capture: false }),
+      regexDe: Regexes.echo({ line: 'cactbot test antwort', capture: false }),
       response: function(data) {
         return {
           alarmText: '1',
@@ -293,6 +220,87 @@
           infoText: '3',
           tts: '4',
         };
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      locale: 'de',
+      replaceSync: {
+        'You bid farewell to the striking dummy': 'Du winkst der Trainingspuppe zum Abschied zu',
+        'You bow courteously to the striking dummy': 'Du verbeugst dich hochachtungsvoll vor der Trainingspuppe',
+        'test sync': 'test sync',
+        'You burst out laughing at the striking dummy': 'Du lachst herzlich mit der Trainingspuppe',
+        'cactbot lang': 'cactbot sprache',
+        'cactbot test response': 'cactbot test antwort',
+        'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
+        'You psych yourself up alongside the striking dummy.*': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
+        'You poke the striking dummy': 'Du stupst die Trainingspuppe an',
+      },
+      replaceText: {
+        'Final Sting': 'Schlussstich',
+        'Almagest': 'Almagest',
+        'Angry Dummy': 'Wütender Dummy',
+        'Long Castbar': 'Langer Zauberbalken',
+        'Dummy Stands Still': 'Dummy still stehen',
+        'Death': 'Tot',
+        'Super Tankbuster': 'Super Tankbuster',
+        'Pentacle Sac': 'Pentacle Sac',
+        'Engage': 'Start!',
+      },
+    },
+    {
+      locale: 'fr',
+      missingTranslations: true,
+      replaceSync: {
+        'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
+        'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
+      },
+      replaceText: {
+        'Final Sting': 'Dard final',
+        'Almagest': 'Almageste',
+        'Angry Dummy': 'Mannequin en colère',
+        'Long Castbar': 'Longue barre de lancement',
+        'Dummy Stands Still': 'Mannequin immobile',
+        'Death': 'Mort',
+      },
+    },
+    {
+      locale: 'cn',
+      missingTranslations: true,
+      replaceSync: {
+        'You bid farewell to the striking dummy': '.*向木人告别',
+        'You bow courteously to the striking dummy': '.*恭敬地对木人行礼',
+      },
+      replaceText: {
+        'Final Sting': '终极针',
+        'Almagest': '至高无上',
+        'Angry Dummy': '愤怒的木人',
+        'Long Castbar': '长时间咏唱',
+        'Dummy Stands Still': '木人8动了',
+        'Super Tankbuster': '超级无敌转圈死刑',
+        'Death To': '嗝屁攻击：',
+        'Death': '嗝屁',
+        'Engage': '战斗开始',
+      },
+    },
+    {
+      locale: 'ko',
+      replaceSync: {
+        'You bid farewell to the striking dummy': '.*나무인형에게 작별 인사를 합니다',
+        'You bow courteously to the striking dummy': '.*나무인형에게 공손하게 인사합니다',
+        'test sync': '테스트 싱크',
+      },
+      replaceText: {
+        'Final Sting': '마지막 벌침',
+        'Almagest': '알마게스트',
+        'Angry Dummy': '화난 나무인형',
+        'Long Castbar': '긴 시전바',
+        'Dummy Stands Still': '나무인형이 아직 살아있다',
+        'Death': '데스',
+        'Super Tankbuster': '초강력 탱크버스터',
+        'Pentacle Sac': 'Pentacle Sac',
+        'Engage': '시작',
       },
     },
   ],

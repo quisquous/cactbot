@@ -323,12 +323,12 @@
     {
       // https://xivapi.com/NpcYell/6497?pretty=true
       id: 'UCU Nael Quote 1',
-      regex: /From on high I descend, the hallowed moon to call/,
-      regexDe: /Seht, ich steige herab, vom rotglühenden Monde/,
-      regexFr: /Des cieux je vais descendre et révérer la lune/,
-      regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u6708\u3092\u4ef0\u304c\u3093\uff01/,
-      regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5bf9\u6708\u957f\u5578\uff01/,
-      regexKo: /흉조가 내려와 달을 올려다보리라!/,
+      regex: Regexes.dialog({ line: 'From on high I descend, the hallowed moon to call', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Seht, ich steige herab, vom rotglühenden Monde', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Des cieux je vais descendre et révérer la lune', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u6708\u3092\u4ef0\u304c\u3093\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5bf9\u6708\u957f\u5578\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '흉조가 내려와 달을 올려다보리라!', capture: false }),
       durationSeconds: 6,
       infoText: {
         en: 'Spread => In',
@@ -342,18 +342,18 @@
     {
       // https://xivapi.com/NpcYell/6496?pretty=true
       id: 'UCU Nael Quote 2',
-      regex: /From on high I descend, the iron path to walk/,
-      regexDe: /Seht, ich steige herab, um euch zu beherrschen/,
-      regexFr: /Du haut des cieux, je vais descendre pour conquérir/,
-      regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01/,
-      regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5f81\u6218\u94c1\u8840\u9738\u9053\uff01/,
-      regexKo: /흉조가 내려와 강철의 패도를 걸으리라!/,
+      regex: Regexes.dialog({ line: 'From on high I descend, the iron path to walk', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Seht, ich steige herab, um euch zu beherrschen', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Du haut des cieux, je vais descendre pour conquérir', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u5f81\u6218\u94c1\u8840\u9738\u9053\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '흉조가 내려와 강철의 패도를 걸으리라!', capture: false }),
       durationSeconds: 6,
       infoText: {
         en: 'Spread => Out',
         fr: 'Se dispercer => Dehors',
         de: 'Verteilen => Raus',
-        ja: '散開 => 離れる',
+        ja: '散開 => 離れ',
         cn: '分散 => 远离',
         ko: '산개 => 밖으로',
       },
@@ -361,12 +361,12 @@
     {
       // https://xivapi.com/NpcYell/6495?pretty=true
       id: 'UCU Nael Quote 3',
-      regex: /Take fire, O hallowed moon/,
-      regexDe: /Flammender Pfad, geschaffen vom roten Mond/,
-      regexFr: /Baignez dans la bénédiction de la lune incandescente/,
-      regexJa: /\u8d64\u71b1\u305b\u3057\s*\u6708\u306e\u795d\u798f\u3092\uff01/,
-      regexCn: /\u70bd\u70ed\u71c3\u70e7\uff01\s*\u7ed9\u4e88\u6211\u6708\u4eae\u7684\u795d\u798f\uff01/,
-      regexKo: /붉게 타오른 달의 축복을!/,
+      regex: Regexes.dialog({ line: 'Take fire, O hallowed moon', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Flammender Pfad, geschaffen vom roten Mond', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Baignez dans la bénédiction de la lune incandescente', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u8d64\u71b1\u305b\u3057\s*\u6708\u306e\u795d\u798f\u3092\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u70bd\u70ed\u71c3\u70e7\uff01\s*\u7ed9\u4e88\u6211\u6708\u4eae\u7684\u795d\u798f\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '붉게 타오른 달의 축복을!', capture: false }),
       durationSeconds: 6,
       infoText: {
         en: 'Stack => In',
@@ -380,17 +380,17 @@
     {
       // https://xivapi.com/NpcYell/6494?pretty=true
       id: 'UCU Nael Quote 4',
-      regex: /Blazing path, lead me to iron rule/,
-      regexDe: /Umloderter Pfad, führe mich zur Herrschaft/,
-      regexFr: /La voie marquée par l'incandescence mène à la domination/,
-      regexJa: /\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\s*\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01/,
-      regexCn: /\u88ab\u70bd\u70ed\u707c\u70e7\u8fc7\u7684\u8f68\u8ff9\s*\u4e43\u6210\u94c1\u8840\u9738\u9053\uff01/,
-      regexKo: /붉게 타오른 길을 강철의 패도로 만들겠노라!/,
+      regex: Regexes.dialog({ line: 'Blazing path, lead me to iron rule', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Umloderter Pfad, führe mich zur Herrschaft', capture: false }),
+      regexFr: Regexes.dialog({ line: 'La voie marquée par l\'incandescence mène à la domination', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\s*\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u88ab\u70bd\u70ed\u707c\u70e7\u8fc7\u7684\u8f68\u8ff9\s*\u4e43\u6210\u94c1\u8840\u9738\u9053\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '붉게 타오른 길을 강철의 패도로 만들겠노라!', capture: false }),
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
         de: 'Stack => Raus',
-        ja: '頭割り => 離れる',
+        ja: '頭割り => 離れ',
         cn: '集合 => 远离',
         ko: '쉐어 => 밖으로',
       },
@@ -398,12 +398,12 @@
     {
       // https://xivapi.com/NpcYell/6493?pretty=true
       id: 'UCU Nael Quote 5',
-      regex: /O hallowed moon, take fire and scorch my foes/,
-      regexDe: /O roter Mond! Umlodere meinen Pfad/,
-      regexFr: /Que l'incandescence de la lune brûle mes ennemis/,
-      regexJa: /\u6708\u3088\uff01\s*\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01/,
-      regexCn: /\u6708\u5149\u554a\uff01\s*\u7528\u4f60\u7684\u70bd\u70ed\u70e7\u5c3d\u654c\u4eba\uff01/,
-      regexKo: /달이여! 붉게 타올라 신의 적을 태워버려라!/,
+      regex: Regexes.dialog({ line: 'O hallowed moon, take fire and scorch my foes', capture: false }),
+      regexDe: Regexes.dialog({ line: 'O roter Mond! Umlodere meinen Pfad', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Que l\'incandescence de la lune brûle mes ennemis', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u6708\u3088\uff01\s*\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u6708\u5149\u554a\uff01\s*\u7528\u4f60\u7684\u70bd\u70ed\u70e7\u5c3d\u654c\u4eba\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '달이여! 붉게 타올라 신의 적을 태워버려라!', capture: false }),
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
@@ -416,17 +416,17 @@
     {
       // https://xivapi.com/NpcYell/6492?pretty=true
       id: 'UCU Nael Quote 6',
-      regex: /O hallowed moon, shine you the iron path/,
-      regexDe: /O roter Mond! Führe mich zur Herrschaft/,
-      regexFr: /Ô lune! Éclaire la voie de la domination/,
-      regexJa: /\u6708\u3088\uff01\s*\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01/,
-      regexCn: /\u6708\u5149\u554a\uff01\s*\u7167\u4eae\u94c1\u8840\u9738\u9053\uff01/,
-      regexKo: /달이여! 강철의 패도를 비춰라!/,
+      regex: Regexes.dialog({ line: 'O hallowed moon, shine you the iron path', capture: false }),
+      regexDe: Regexes.dialog({ line: 'O roter Mond! Führe mich zur Herrschaft', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Ô lune! Éclaire la voie de la domination', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u6708\u3088\uff01\s*\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u6708\u5149\u554a\uff01\s*\u7167\u4eae\u94c1\u8840\u9738\u9053\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '달이여! 강철의 패도를 비춰라!', capture: false }),
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
         de: 'Rein => Raus',
-        ja: '密着 => 離れる',
+        ja: '密着 => 離れ',
         cn: '靠近 => 远离',
         ko: '안으로 => 밖으로',
       },
@@ -434,19 +434,19 @@
     {
       // https://xivapi.com/NpcYell/6501?pretty=true
       id: 'UCU Nael Quote 7',
-      regex: /Fleeting light! 'Neath the red moon, scorch you the earth/,
-      regexDe: /Neues Gestirn! Glühe herab und umlodere meinen Pfad/,
-      regexFr: /Supernova, brille de tout ton feu et irradie la terre rougie/,
-      regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01/,
-      regexCn: /\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u7167\u4eae\u7ea2\u6708\u4e0b\u70bd\u70ed\u4e4b\u5730\uff01/,
-      regexKo: /초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!/,
+      regex: Regexes.dialog({ line: 'Fleeting light! \'Neath the red moon, scorch you the earth', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Neues Gestirn! Glühe herab und umlodere meinen Pfad', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Supernova, brille de tout ton feu et irradie la terre rougie', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u7167\u4eae\u7ea2\u6708\u4e0b\u70bd\u70ed\u4e4b\u5730\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!', capture: false }),
       delaySeconds: 4,
       durationSeconds: 6,
       infoText: {
         en: 'Away from Tank => Stack',
         fr: 'S\'éloigner du tank => Se rassembler',
         de: 'Weg vom Tank => Stack',
-        ja: 'タンクから離れる => 頭割り',
+        ja: 'タンクから離れ => 頭割り',
         cn: '远离坦克 => 集合',
         ko: '탱커 피하기 => 쉐어',
       },
@@ -454,19 +454,19 @@
     {
       // https://xivapi.com/NpcYell/6500?pretty=true
       id: 'UCU Nael Quote 8',
-      regex: /Fleeting light! Amid a rain of stars, exalt you the red moon/,
-      regexDe: /Neues Gestirn! Überstrahle jede Sternschnuppe/,
-      regexFr: /Supernova, brille de tout ton feu et glorifie la lune rouge/,
-      regexJa: /\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01/,
-      regexCn: /\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u5728\u661f\u964d\u4e4b\u591c\uff0c\u79f0\u8d5e\u7ea2\u6708\uff01/,
-      regexKo: /초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!/,
+      regex: Regexes.dialog({ line: 'Fleeting light! Amid a rain of stars, exalt you the red moon', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Neues Gestirn! Überstrahle jede Sternschnuppe', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Supernova, brille de tout ton feu et glorifie la lune rouge', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\s*\u5728\u661f\u964d\u4e4b\u591c\uff0c\u79f0\u8d5e\u7ea2\u6708\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!', capture: false }),
       delaySeconds: 4,
       durationSeconds: 6,
       infoText: {
         en: 'Spread => Away from Tank',
         fr: 'Se dispercer => S\'éloigner du Tank',
         de: 'Verteilen => Weg vom Tank',
-        ja: '散開 => タンクから離れる',
+        ja: '散開 => タンクから離れ',
         cn: '分散 => 远离坦克',
         ko: '산개 => 탱커 피하기',
       },
@@ -474,12 +474,12 @@
     {
       // https://xivapi.com/NpcYell/6502?pretty=true
       id: 'UCU Nael Quote 9',
-      regex: /From on high I descend, the moon and stars to bring/,
-      regexDe: /Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich/,
-      regexFr: /Du haut des cieux, j'appelle une pluie d'étoiles/,
-      regexJa: /\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01/,
-      regexCn: /\u6211\u964d\u4e34\u4e8e\u6b64\u5bf9\u6708\u957f\u5578\uff01\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01/,
-      regexKo: /흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!/,
+      regex: Regexes.dialog({ line: 'From on high I descend, the moon and stars to bring', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Du haut des cieux, j\'appelle une pluie d\'étoiles', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\u5bf9\u6708\u957f\u5578\uff01\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'Spread => In',
@@ -493,12 +493,12 @@
     {
       // https://xivapi.com/NpcYell/6503?pretty=true
       id: 'UCU Nael Quote 10',
-      regex: /From hallowed moon I descend, a rain of stars to bring/,
-      regexDe: /O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich/,
-      regexFr: /Depuis la lune, j'invoque une pluie d'étoiles/,
-      regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01/,
-      regexCn: /\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01/,
-      regexKo: /달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!/,
+      regex: Regexes.dialog({ line: 'From hallowed moon I descend, a rain of stars to bring', capture: false }),
+      regexDe: Regexes.dialog({ line: 'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Depuis la lune, j\'invoque une pluie d\'étoiles', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread',
@@ -512,18 +512,18 @@
     {
       // https://xivapi.com/NpcYell/6507?pretty=true
       id: 'UCU Nael Quote 11',
-      regex: /From hallowed moon I bare iron, in my descent to wield/,
-      regexDe: /O roter Mond, als Künder deiner Herrschaft stieg ich herab/,
-      regexFr: /De la lune je m'arme d'acier et descends/,
-      regexJa: /\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\s*\u821e\u3044\u964d\u308a\u3093\uff01/,
-      regexCn: /\u6211\u81ea\u6708\u800c\u6765\u643a\u94a2\u94c1\u964d\u4e34\u4e8e\u6b64\uff01/,
-      regexKo: /달로부터 강철의 패도를 거쳐 흉조가 내려오리라!/,
+      regex: Regexes.dialog({ line: 'From hallowed moon I bare iron, in my descent to wield', capture: false }),
+      regexDe: Regexes.dialog({ line: 'O roter Mond, als Künder deiner Herrschaft stieg ich herab', capture: false }),
+      regexFr: Regexes.dialog({ line: 'De la lune je m\'arme d\'acier et descends', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\s*\u821e\u3044\u964d\u308a\u3093\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u643a\u94a2\u94c1\u964d\u4e34\u4e8e\u6b64\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '달로부터 강철의 패도를 거쳐 흉조가 내려오리라!', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'In => Out => Spread',
         fr: 'Dedans => Dehors => Se dispercer',
         de: 'Rein => Raus => Verteilen',
-        ja: '密着 => 離れる => 散開',
+        ja: '密着 => 離れ => 散開',
         cn: '靠近 => 远离 => 分散',
         ko: '안으로 => 밖으로 => 산개',
       },
@@ -531,12 +531,12 @@
     {
       // https://xivapi.com/NpcYell/6506?pretty=true
       id: 'UCU Nael Quote 12',
-      regex: /From hallowed moon I descend, upon burning earth to tread/,
-      regexDe: /O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen/,
-      regexFr: /De la lune, je descends et marche sur la terre ardente/,
-      regexJa: /\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01/,
-      regexCn: /\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u8e0f\u8fc7\u70bd\u70ed\u4e4b\u5730\uff01/,
-      regexKo: /달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!/,
+      regex: Regexes.dialog({ line: 'From hallowed moon I descend, upon burning earth to tread', capture: false }),
+      regexDe: Regexes.dialog({ line: 'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen', capture: false }),
+      regexFr: Regexes.dialog({ line: 'De la lune, je descends et marche sur la terre ardente', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\s*\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\s*\u8e0f\u8fc7\u70bd\u70ed\u4e4b\u5730\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread => Stack',
@@ -550,18 +550,18 @@
     {
       // https://xivapi.com/NpcYell/6504?pretty=true
       id: 'UCU Nael Quote 13',
-      regex: /Unbending iron, take fire and descend/,
-      regexDe: /Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab/,
-      regexFr: /Ô noble acier! Rougis ardemment et deviens ma lame transperçante/,
-      regexJa: /\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\s*\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01/,
-      regexCn: /\u94a2\u94c1\u71c3\u70e7\u5427\uff01\s*\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u5200\u5251\u5427\uff01/,
-      regexKo: /강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!/,
+      regex: Regexes.dialog({ line: 'Unbending iron, take fire and descend', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Ô noble acier! Rougis ardemment et deviens ma lame transperçante', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\s*\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u94a2\u94c1\u71c3\u70e7\u5427\uff01\s*\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u5200\u5251\u5427\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'Out => Stack => Spread',
         fr: 'Dehors => Se rassembler => Se dispercer',
         de: 'Raus => Stack => Verteilen',
-        ja: '離れる => 頭割り => 散開',
+        ja: '離れ => 頭割り => 散開',
         cn: '远离 => 集合 => 分散',
         ko: '밖으로 => 쉐어 => 산개',
       },
@@ -569,18 +569,18 @@
     {
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
-      regex: /Unbending iron, descend with fiery edge/,
-      regexDe: /Zur Herrschaft steige ich herab, auf umlodertem Pfad/,
-      regexFr: /Fier acier! Sois ma lame plongeante et deviens incandescent/,
-      regexJa: /\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01/,
-      regexCn: /\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01/,
-      regexKo: /강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!/,
+      regex: Regexes.dialog({ line: 'Unbending iron, descend with fiery edge', capture: false }),
+      regexDe: Regexes.dialog({ line: 'Zur Herrschaft steige ich herab, auf umlodertem Pfad', capture: false }),
+      regexFr: Regexes.dialog({ line: 'Fier acier! Sois ma lame plongeante et deviens incandescent', capture: false }),
+      regexJa: Regexes.dialog({ line: '\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01', capture: false }),
+      regexCn: Regexes.dialog({ line: '\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01', capture: false }),
+      regexKo: Regexes.dialog({ line: '강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'Out => Spread => Stack',
         fr: 'Dehors => Se dispercer => Se rassembler',
         de: 'Raus => Verteilen => Stack',
-        ja: '離れる => 散開 => 頭割り',
+        ja: '離れ => 散開 => 頭割り',
         cn: '远离 => 分散 => 集合',
         ko: '밖으로 => 산개 => 쉐어',
       },
@@ -800,7 +800,7 @@
             en: 'Fire OUT: Be in it',
             fr: 'Feu EN DEHORS : Allez dessus',
             de: 'Feuer AUßEN: Drin sein',
-            ja: 'ファイアボールは離れる: 自分に密着',
+            ja: 'ファイアボールは離れ: 自分に密着',
             cn: '火出，踩火',
             ko: '불 대상자 밖으로: 나는 같이 맞기',
           };
@@ -812,7 +812,7 @@
             en: 'Fire OUT',
             fr: 'Feu EN DEHORS',
             de: 'Feuer AUßEN',
-            ja: 'ファイアボールは離れる',
+            ja: 'ファイアボールは離れ',
             cn: '火出',
             ko: '불 대상자 밖으로',
           };
@@ -824,7 +824,7 @@
             en: 'fire out; go with',
             fr: 'Feu en dehors; y allez',
             de: 'feuer außen; mitgehen',
-            ja: 'ファイアボール離れる: 自分に密着',
+            ja: 'ファイアボール離れ: 自分に密着',
             cn: '火出，分摊',
             ko: '밖에서 불 같이 맞기',
           };
@@ -833,7 +833,7 @@
           en: 'fire out',
           fr: 'Feu en dehors',
           de: 'feuer außen',
-          ja: 'ファイアボール離れる',
+          ja: 'ファイアボール離れ',
           cn: '火出',
           ko: '불 대상자 밖으로',
         };
@@ -861,7 +861,7 @@
             en: 'Fire IN: AVOID!',
             fr: 'Feu EN DEDANS : L\'ÉVITER !',
             de: 'Feuer INNEN: AUSWEICHEN!',
-            ja: 'ファイアボールは密着: 自分に離れる',
+            ja: 'ファイアボールは密着: 自分に離れ',
             cn: '火进：躲避！',
             ko: '불 같이맞기: 나는 피하기',
           };
@@ -901,7 +901,7 @@
             en: 'avoid fire in',
             fr: 'Éviter le feu en dedans',
             de: 'feuer innen ausweichen',
-            ja: 'ファイアボール密着: 自分に離れる',
+            ja: 'ファイアボール密着: 自分に離れ',
             cn: '躲避火进',
             ko: '불 같이맞으면 안됨',
           };
@@ -947,7 +947,7 @@
             en: 'Fire IN: AVOID!',
             fr: 'Feu EN DEDANS : L\'ÉVITER !',
             de: 'Feuer INNEN: AUSWEICHEN!',
-            ja: 'ファイアボールは密着: 自分に離れる',
+            ja: 'ファイアボールは密着: 自分に離れ',
             cn: '火进：躲避！',
             ko: '불 같이맞기: 나는 피하기',
           };
@@ -1065,6 +1065,7 @@
         let dir = data.naelMarks[data.naelDiveMarkerCount];
         return {
           en: 'Go To ' + dir + ' with marker',
+          de: 'Gehe nach ' + dir + ' mit dem Marker',
         };
       },
     },
@@ -1401,12 +1402,14 @@
         if (data.megaStack.indexOf(data.lastOctetMarker) >= 0) {
           return {
             en: twin + ' (twin) has megaflare',
+            de: twin + ' (Twin) hat Megaflare',
             cn: twin + ' (双塔) 带百万核爆',
             ko: twin + ' (트윈 징 대상자) => 쉐어',
           };
         }
         return {
           en: twin + ' (twin) needs tower',
+          de: twin + ' (Twin) braucht einen Turm',
           cn: twin + ' (双塔) 需要踩塔',
           ko: twin + ' (트윈 징 대상자) => 기둥',
         };
@@ -1572,6 +1575,7 @@
       tts: function(data, matches) {
         return {
           en: 'morn afah ' + data.ShortName(matches.target),
+          de: 'Morn Afah ' + data.ShortName(matches.target),
           cn: '无尽顿悟 ' + data.ShortName(matches.target),
           ko: '몬 아파 ' + data.mornAfahCount,
         };
@@ -1592,6 +1596,7 @@
       infoText: function(data) {
         return {
           en: 'Akh Morn #' + data.akhMornCount,
+          de: 'Akh Morn #' + data.akhMornCount,
           cn: '死亡轮回 #' + data.akhMornCount,
           ko: '아크 몬 ' + data.akhMornCount,
         };
@@ -1794,6 +1799,20 @@
         'Tail of Darkness': 'Dunkelschweif',
         'Thunderwing': 'Donnerschwinge',
         'Twintania': 'Twintania',
+        'From on high I descend, the hallowed moon to call': 'Seht, ich steige herab, vom rotglühenden Monde',
+        'From on high I descend, the iron path to walk': 'Seht, ich steige herab, um euch zu beherrschen',
+        'Take fire, O hallowed moon': 'Flammender Pfad, geschaffen vom roten Mond',
+        'Blazing path, lead me to iron rule': 'Umloderter Pfad, führe mich zur Herrschaft',
+        'O hallowed moon, take fire and scorch my foes': 'O roter Mond! Umlodere meinen Pfad',
+        'O hallowed moon, shine you the iron path': 'O roter Mond! Führe mich zur Herrschaft',
+        'Fleeting light! \'Neath the red moon, scorch you the earth': 'Neues Gestirn! Glühe herab und umlodere meinen Pfad',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon': 'Neues Gestirn! Überstrahle jede Sternschnuppe',
+        'From on high I descend, the moon and stars to bring': 'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich',
+        'From hallowed moon I descend, a rain of stars to bring': 'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich',
+        'From hallowed moon I bare iron, in my descent to wield': 'O roter Mond, als Künder deiner Herrschaft stieg ich herab',
+        'From hallowed moon I descend, upon burning earth to tread': 'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen',
+        'Unbending iron, take fire and descend': 'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab',
+        'Unbending iron, descend with fiery edge': 'Zur Herrschaft steige ich herab, auf umlodertem Pfad',
       },
       'replaceText': {
         '--push--': '--stoß--',

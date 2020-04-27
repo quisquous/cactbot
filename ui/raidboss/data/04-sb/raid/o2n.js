@@ -48,10 +48,12 @@
         if (data.me == matches.target) {
           return {
             en: 'Stack marker on YOU',
+            de: 'Sammeln Marker auf DIR',
           };
         }
         return {
           en: 'Stack on ' + data.shortName(matches.target),
+          de: 'Sammeln auf ' + data.shortName(matches.target),
         };
       },
     },
@@ -206,6 +208,7 @@
             return;
           return {
             en: 'Levitate',
+            de: 'Levitation',
           };
         }
         // It's always safe not to levitate after the first Antilight.
@@ -213,10 +216,12 @@
         if (data.antiCounter % 3 == 1) {
           return {
             en: 'Go center and don\'t levitate',
+            de: 'Geh in die Mitte und nicht schweben',
           };
         }
         return {
           en: 'Don\'t levitate',
+          de: 'Nicht schweben',
         };
       },
       infoText: function(data) {
@@ -265,7 +270,7 @@
         '-100 Gs': 'Minus 100 G',
       },
       '~effectNames': {
-        '6 Fulms Under': 'Versinkend',
+        'Six Fulms Under': 'Versinkend',
       },
     },
     {
@@ -296,7 +301,7 @@
         '-100 Gs': 'Gravité -100',
       },
       '~effectNames': {
-        '6 Fulms Under': 'Enfoncement',
+        'Six Fulms Under': 'Enfoncement',
       },
     },
     {
@@ -327,7 +332,7 @@
         '-100 Gs': '重力マイナス100',
       },
       '~effectNames': {
-        '6 Fulms Under': '沈下',
+        'Six Fulms Under': '沈下',
       },
     },
     {
@@ -358,7 +363,7 @@
         '-100 Gs': '重力-100',
       },
       '~effectNames': {
-        '6 Fulms Under': '下陷',
+        'Six Fulms Under': '下陷',
       },
     },
     {
@@ -389,7 +394,7 @@
         '-100 Gs': '중력 -100',
       },
       '~effectNames': {
-        '6 Fulms Under': '침하',
+        'Six Fulms Under': '침하',
       },
     },
   ],

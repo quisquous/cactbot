@@ -995,6 +995,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
         'Arsenal Centaur': 'Arsenal-Zentaur',
@@ -1008,17 +1009,21 @@
         'Ozmashade': 'Yadis-Schatten',
         'Proto Ozma': 'Proto-Yadis',
         'Raiden': 'Raiden',
-        'Relative Virtue': 'Relativ(?:e|er|es|en) Tugend',
+        'Relative Virtue': 'Relative Tugend',
         'Shadow': 'Proto-Yadis-Schatten',
         'Streak Lightning': 'Blitzladung',
         'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
         'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
         'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
+        'The memories of heroes past live on again': 'Das Vermächtnis vergangener Helden lebt von Neuem auf',
+        'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
+        'Munderg, turn blood to ice': 'Munderg, das Eis der Ewigkeit soll sie für Äonen bannen',
       },
       'replaceText': {
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
         'Acceleration Bomb': 'Beschleunigungsbombe',
-        'Adds': 'Adds', // FIXME
+        'Adds': 'Adds',
         'Ame-no-Sakahoko': 'Himmelsriposte',
         'Astral Essence': 'Arm des Lichts',
         'Auroral Wind': 'Aurorawind',
@@ -1082,9 +1087,14 @@
         'Whirling Zantetsuken': 'Sen-Zantetsuken',
         'Wyvern Explosion': 'Wyvern Explosion', // FIXME
       },
+      '~effectNames': {
+        'Astral Essence': 'Arm des Lichts',
+        'Umbral Essence': 'Arm der Dunkelheit',
+      },
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'Vertu absolue',
         'Arsenal Centaur': 'centaure de l\'Arsenal',
@@ -1175,6 +1185,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'アブソリュートヴァーチュー',
         'Arsenal Centaur': 'アーセナル・セントール',

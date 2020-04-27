@@ -169,8 +169,8 @@
         'The Wound': 'Lavendellichtung',
         'The Auction': 'Viehmarkt',
         'The manor house courtyard': 'Garten des Herrenhauses',
-        'Forgiven Dissonance': 'Geläuterter Widerspruch',
-        'Tesleen, the Forgiven': 'Tesleen die Bekehrte',
+        'Forgiven Dissonance': 'Geläutert(?:e|er|es|en) Widerspruch',
+        'Tesleen, the Forgiven': 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)',
         'Philia': 'Philia',
       },
       'replaceText': {

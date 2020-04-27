@@ -689,7 +689,9 @@
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
         'Rear Power Unit': 'hinter(?:e|er|es|en) Antriebseinheit',
-        'Right Arm Unit': 'recht(?:e|er|es|en) Arm',
+        'Right Arm Unit': 'rechter Arm',
+        '(?<! )Latent Defect': 'Latenter Bug',
+        'Cascading Latent Defect': 'Latenter Bug: Unterlauf',
       },
       'replaceText': {
         'Advanced Optical Laser': 'Optischer Laser S',

@@ -23,6 +23,12 @@ let Options = {
       'Eureka Pyros': 'Eureka Pyros',
       'Eureka Hydatos': 'Eureka Hydatos',
     },
+    de: {
+      'Eureka Anemos': 'Eureka Anemos',
+      'Eureka Pagos': 'Eureka Pagos',
+      'Eureka Pyros': 'Eureka Pyros',
+      'Eureka Hydatos': 'Eureka Hydatos',
+    },
     cn: {
       'Eureka Anemos': '常风之地',
       'Eureka Pagos': '恒冰之地',
@@ -44,6 +50,13 @@ let Options = {
           return ' for ' + Math.ceil(min) + 'm';
         }
         return ' for ???';
+      },
+      de: (nowMs, stopTime) => {
+        if (stopTime) {
+          let min = (stopTime - nowMs) / 1000 / 60;
+          return ' für ' + Math.ceil(min) + 'min';
+        }
+        return ' für ???';
       },
       ko: (nowMs, stopTime) => {
         if (stopTime) {
@@ -68,6 +81,13 @@ let Options = {
         }
         return ' in ???';
       },
+      de: (nowMs, startTime) => {
+        if (startTime) {
+          let min = (startTime - nowMs) / 1000 / 60;
+          return ' in ' + Math.ceil(min) + 'min';
+        }
+        return ' in ???';
+      },
       ko: (nowMs, startTime) => {
         if (startTime) {
           let min = (startTime - nowMs) / 1000 / 60;
@@ -87,6 +107,9 @@ let Options = {
       en: (dayNightMin) => {
         return ' for ' + dayNightMin + 'm';
       },
+      de: (dayNightMin) => {
+        return ' für ' + dayNightMin + 'min';
+      },
       ko: (dayNightMin) => {
         return ' ' + dayNightMin + '분 동안';
       },
@@ -96,25 +119,26 @@ let Options = {
     },
     minute: {
       en: 'm',
+      de: 'min',
       ko: '분',
       cn: '分',
     },
   },
   Regex: {
     en: {
-      'gFlagRegex': Regexes.parse(/00:00..:(?:[^:]*:)?(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
     },
     cn: {
-      'gFlagRegex': Regexes.parse(/00:00..:(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
     },
     ko: {
-      'gFlagRegex': Regexes.parse(/00:00..:(.*)에우레카: (?:아네모스|파고스|피로스|히다토스) 지대 \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)에우레카: (?:아네모스|파고스|피로스|히다토스) 지대 \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/(?!maps\/)(\S*)\/?/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
@@ -143,6 +167,7 @@ let Options = {
       entityToMapYConstant: 21.4665545,
       fairy: {
         en: 'Anemos Elemental',
+        de: 'Anemos-Elementar',
         cn: '常风元灵',
         ko: '아네모스 정령',
       },
@@ -593,6 +618,7 @@ let Options = {
       entityToMapYConstant: 21.48,
       fairy: {
         en: 'Pagos Elemental',
+        de: 'Pagos-Elementar',
         cn: '恒冰元灵',
         ko: '파고스 정령',
       },
@@ -994,6 +1020,7 @@ let Options = {
       entityToMapYConstant: 21.48,
       fairy: {
         en: 'Pyros Elemental',
+        de: 'Pyros-Elementar',
         cn: '涌火元灵',
         ko: '피로스 정령',
       },
@@ -1192,7 +1219,7 @@ let Options = {
             fr: 'Eldthurs',
             ja: 'エルドスルス',
             cn: '火巨人',
-            ko: '구부',
+            ko: '엘드투르스',
           },
           trackerName: {
             en: 'Eldthurs',
@@ -1394,6 +1421,7 @@ let Options = {
       entityToMapYConstant: 30.977,
       fairy: {
         en: 'Hydatos Elemental',
+        de: 'Hydatos-Elementar',
         cn: '丰水元灵',
         ko: '히다토스 정령',
       },

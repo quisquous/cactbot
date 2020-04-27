@@ -122,7 +122,7 @@
     {
       id: 'Rab Hashmal Rock Cutter',
       regex: Regexes.startsUsing({ id: '25D7', source: 'Hashmal, Bringer Of Order' }),
-      regexDe: Regexes.startsUsing({ id: '25D7', source: 'Hashmallim (?:der|die|das) Einiger' }),
+      regexDe: Regexes.startsUsing({ id: '25D7', source: 'Hashmallim der Einiger' }),
       regexFr: Regexes.startsUsing({ id: '25D7', source: 'Hashmal Le Grand Ordonnateur' }),
       regexJa: Regexes.startsUsing({ id: '25D7', source: '統制者ハシュマリム' }),
       regexCn: Regexes.startsUsing({ id: '25D7', source: '统治者哈修马利姆' }),
@@ -133,7 +133,7 @@
     {
       id: 'Rab Hashmal Earth Hammer',
       regex: Regexes.startsUsing({ id: '25CB', source: 'Hashmal, Bringer Of Order', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '25CB', source: 'Hashmallim (?:der|die|das) Einiger', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25CB', source: 'Hashmallim der Einiger', capture: false }),
       regexFr: Regexes.startsUsing({ id: '25CB', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
       regexJa: Regexes.startsUsing({ id: '25CB', source: '統制者ハシュマリム', capture: false }),
       regexCn: Regexes.startsUsing({ id: '25CB', source: '统治者哈修马利姆', capture: false }),
@@ -155,7 +155,7 @@
     {
       id: 'Rab Hashmal Golems',
       regex: Regexes.startsUsing({ id: '25D4', source: 'Hashmal, Bringer Of Order', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '25D4', source: 'Hashmallim (?:der|die|das) Einiger', capture: false }),
+      regexDe: Regexes.startsUsing({ id: '25D4', source: 'Hashmallim der Einiger', capture: false }),
       regexFr: Regexes.startsUsing({ id: '25D4', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
       regexJa: Regexes.startsUsing({ id: '25D4', source: '統制者ハシュマリム', capture: false }),
       regexCn: Regexes.startsUsing({ id: '25D4', source: '统治者哈修马利姆', capture: false }),
@@ -336,6 +336,7 @@
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmallim der Einiger',
         'Rofocale': 'Rofocale',
+        'The heavens tremble in my wake': 'Mein Streitwagen donnert empor in luftige Höhen',
       },
       'replaceText': {
         '--face--': '--face--', // FIXME
@@ -388,6 +389,9 @@
         'Trepidation': 'Beklemmung',
         'Unbind': 'Loseisen',
         'Unrelenting': 'Unerbittliche Klinge',
+      },
+      '~effectNames': {
+        'Breathless': 'Atemnot',
       },
     },
     {
@@ -472,7 +476,7 @@
         'Argath Thadalfus': '冷血剣アルガス',
         'Hashmal, Bringer Of Order': '統制者ハシュマリム ',
         'Rofocale': '人馬王ロフォカレ',
-        'The heavens tremble in my wake': 'The heavens tremble in my wake', // FIXME
+        'The heavens tremble in my wake!': '“我が戦車の車輪は、天をも駆ける！ ゆくぞ……！”',
       },
       'replaceText': {
         '--face--': '--face--', // FIXME

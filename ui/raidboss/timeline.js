@@ -81,6 +81,7 @@ class Timeline {
       '^ ?21:',
       '^(\\^\\.\\{14\\})? ?1B:',
       '^(\\^\\.\\{14\\})? ?21:',
+      '^(\\^\\.\\{14\\})? ?23:',
       '^::\\y{AbilityCode}:$',
       '^\\.\\*$',
     ].map((x) => Regexes.parse(x));
@@ -759,8 +760,8 @@ class TimelineUI {
 
     if (!this.debugFightTimer) {
       this.debugFightTimer = document.createElement('timer-bar');
-      this.debugFightTimer.width = this.barWidth;
-      this.debugFightTimer.height = this.barHeight;
+      this.debugFightTimer.width = '100px';
+      this.debugFightTimer.height = '17px';
       this.debugFightTimer.duration = 10000; // anything big
       this.debugFightTimer.lefttext = 'elapsed';
       this.debugFightTimer.toward = 'right';

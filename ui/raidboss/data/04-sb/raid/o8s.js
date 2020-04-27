@@ -242,7 +242,7 @@
             fr: 'Max Mêlée : éloignez-vous des Tanks',
             de: 'Max Nahkampf: Weg von den Tanks',
             ko: '칼끝딜: 탱커 피하기',
-            ja: '近接最大レンジ タンクから離れて',
+            ja: '近接最大レンジ タンクから離れ',
             cn: '最远距离',
           };
         }

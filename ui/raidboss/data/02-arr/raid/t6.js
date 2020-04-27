@@ -249,6 +249,7 @@
       'replaceSync': {
         'Scar\'s Edge': 'Narbenrand',
         'Rafflesia': 'Rafflesia',
+        'Honey-Glazed': 'Honigsüß',
       },
       'replaceText': {
         'Acid Rain': 'Säureregen',

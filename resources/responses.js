@@ -453,6 +453,18 @@ let Responses = {
     };
     return obj;
   },
+  goFrontOrSides: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Go Front / Sides',
+      de: 'Gehe nach Vorne/ zu den Seiten',
+      fr: 'Allez Devant / Côtés',
+      ja: '前／横へ',
+      ko: '보스 후방 피하기',
+      cn: '去前侧方',
+    };
+    return obj;
+  },
   // .getUnder() is used when you have to get into the bosses hitbox
   getUnder: (sev) => {
     let obj = {};
@@ -460,7 +472,7 @@ let Responses = {
       en: 'Get Under',
       de: 'Unter ihn',
       fr: 'En dessous',
-      ja: '中へ',
+      ja: 'ボスと貼り付く',
       ko: '보스 아래로',
       cn: '去脚下',
     };
@@ -534,6 +546,7 @@ let Responses = {
       en: 'Back Then Front',
       de: 'Nach Hinten, danach nach Vorne',
       fr: 'Derrière puis devant',
+      ja: '後ろ => 前',
       ko: '뒤로 => 앞으로',
       cn: '后 => 前',
     };
@@ -545,6 +558,7 @@ let Responses = {
       en: 'Front Then Back',
       de: 'Nach Vorne, danach nach Hinten',
       fr: 'Devant puis derrière',
+      ja: '前 => 後ろ',
       ko: '앞으로 => 뒤로',
       cn: '前 => 后',
     };
@@ -665,7 +679,7 @@ let Responses = {
       en: 'Away From Front',
       de: 'Weg von Vorne',
       fr: 'Éloignez-vous du devant',
-      ja: '前方から離れて',
+      ja: '前方から離れ',
       ko: '보스 전방 피하기',
       cn: '远离正面',
     };
@@ -763,7 +777,7 @@ let Responses = {
         en: 'Away from ' + data.ShortName(target),
         de: 'Weg von ' + data.ShortName(target),
         fr: 'Éloignez-vous de ' + data.ShortName(target),
-        ja: data.ShortName(target) + 'から離れて',
+        ja: data.ShortName(target) + 'から離れ',
         cn: '远离' + data.ShortName(target),
       };
     };

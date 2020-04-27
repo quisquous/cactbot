@@ -199,7 +199,7 @@ def translate_timeline(line, trans):
         return line
     text = m.group(0)
     for old, new in trans["replaceText"].items():
-        did_work = did_work or re.search(old, text)
+        did_work = did_work or re.search(old, text, re.IGNORECASE)
         text = re.sub(old, new, text)
     line = replace_text_re.sub(text, line)
     skip_text = [

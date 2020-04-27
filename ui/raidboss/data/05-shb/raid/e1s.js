@@ -541,6 +541,7 @@
         'Healing Magic Down': 'Heilmagie -',
         'Fetters': 'Gefesselt',
         'Bleeding': 'Blutung',
+        'Paradise Regained': 'Wiedergewonnenes Paradies',
       },
     },
     {

@@ -1299,6 +1299,7 @@ let getHeadmarkerId = (data, matches) => {
       infoText: function(data, matches) {
         return {
           en: 'Shared Sentence on ' + matches.target,
+          de: 'Urteil: Kollektivstrafe auf ' + matches.target,
           ja: matches.target + ' に集団罰',
           ko: matches.target + ' 에게 단체형',
           cn: '集团罪->' + matches.target,
@@ -1401,7 +1402,7 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Get Away From Crystals',
         de: 'Geh weg vom Kristall',
-        ja: '結晶から離れて',
+        ja: '結晶から離れ',
         fr: 'Eloignez-vous des Cristaux',
         ko: '결정체로부터 멀어질 것',
         cn: '远离结晶',
@@ -1456,6 +1457,7 @@ let getHeadmarkerId = (data, matches) => {
           // TODO: we could probably determine where this is.
           return {
             en: 'Bait Jump With Cooldowns',
+            de: 'Köder Sprung mit Cooldowns',
             ja: 'スパジャン誘導',
             ko: '슈퍼 점프 유도',
             cn: '引导冷却跳跃',
@@ -1481,6 +1483,7 @@ let getHeadmarkerId = (data, matches) => {
         // Otherwise everybody without a vuln can do anything.
         return {
           en: 'Bait Sword or Jump?',
+          de: 'Köder Schwert oder Sprung?',
           ja: 'ソードかジャンプ誘導?',
           ko: '검 또는 슈퍼 점프 유도?',
           cn: '引导剑或跳?',
@@ -1495,6 +1498,7 @@ let getHeadmarkerId = (data, matches) => {
 
           return {
             en: 'Vuln: Avoid cleaves and jump',
+            de: 'Vuln: Cleaves und Sprung ausweichen',
             ja: '被ダメ増加',
             ko: '받는 데미지 증가: 공격과 점프 피할것',
             cn: '易伤：躲避顺劈和跳',
@@ -1522,6 +1526,7 @@ let getHeadmarkerId = (data, matches) => {
         }
         return {
           en: 'Bait Chakrams',
+          de: 'Köder Chakrams',
           ja: 'チャクラム誘導',
           ko: '차크람 유도',
           cn: '引导轮轮',

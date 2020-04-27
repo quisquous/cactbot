@@ -130,6 +130,8 @@
         'The Curator': 'Kurator',
         'The high-level incubation bay': 'Inkubationskammer',
         'The reality augmentation bay': 'Dilatationskammer',
+        'Aetherochemical Bomb': 'Ätherochemischer Sprengkörper',
+        'Clockwork Alarum': 'Uhrwerk-Alarm',
       },
       'replaceText': {
         '10-Tonze Slash': '11-Tonzen-Schlag',

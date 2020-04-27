@@ -197,7 +197,7 @@ hideall "Brute Force"
 1006.5 "--untargetable--"
 1009.7 "J Kick" sync /:Brute Justice:166D:/
 # FIXME: some pause here, before looping back to targetable?
-1012.0 "--targetable?--"
+1012.0 "--targetable--"
 
 
 ### Phase 6: Second Intermission

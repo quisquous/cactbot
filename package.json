@@ -30,6 +30,13 @@
       "google"
     ],
     "rules": {
+      "arrow-spacing": [
+        "error",
+        {
+          "before": true,
+          "after": true
+        }
+      ],
       "camelcase": "off",
       "curly": [
         "error",

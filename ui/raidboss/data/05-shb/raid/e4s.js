@@ -403,7 +403,7 @@
         if (data.role != 'tank') {
           return {
             en: 'Away from Tanks',
-            ja: 'タンクから離れて',
+            ja: 'タンクから離れ',
             de: 'Weg von den Tanks',
             fr: 'Loin des tanks',
             cn: '远离坦克',
@@ -538,9 +538,10 @@
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
-        'Titan': 'Titan',
+        '(?<!Gigan)Titan': 'Titan',
         'Granite Gaol': 'Granitgefängnis',
         'Bomb Boulder': 'Bomber-Brocken',
+        'Titan Maximum': 'Gigantitan',
       },
       'replaceText': {
         'Dual Earthen Fists': 'Gaias Hammerfaust',
