@@ -9,7 +9,7 @@ class RaidEmulatorPopupText extends PopupText {
   emulator;
 
   DisplayedText = [];
-  ScheduledTriggers = [];
+  scheduledTriggers = [];
 
   Seeking = false;
 
@@ -17,14 +17,14 @@ class RaidEmulatorPopupText extends PopupText {
 
   async DoUpdate(timestampOffset) {
     this.emulatedOffset = timestampOffset;
-    for (let t of this.ScheduledTriggers) {
+    for (let t of this.scheduledTriggers) {
       let remaining = t.Expires - timestampOffset;
       if (remaining <= 0) {
         t.Resolver();
         await t.Promise;
       }
     }
-    this.ScheduledTriggers = this.ScheduledTriggers.filter((t) => {
+    this.scheduledTriggers = this.scheduledTriggers.filter((t) => {
       let remaining = t.Expires - timestampOffset;
       if (remaining > 0) {
         return true;
@@ -55,10 +55,10 @@ class RaidEmulatorPopupText extends PopupText {
     emulator.on('preSeek', (time) => {
       this.LastSeekTo = time;
       this.Seeking = true;
-      for (let i of this.ScheduledTriggers) {
+      for (let i of this.scheduledTriggers) {
         i.Rejecter();
       }
-      this.ScheduledTriggers = [];
+      this.scheduledTriggers = [];
       this.DisplayedText = this.DisplayedText.filter((t) => {
         t.Element.remove();
         return false;
@@ -71,10 +71,10 @@ class RaidEmulatorPopupText extends PopupText {
       }, 5);
     });
     emulator.on('currentEncounterChanged', () => {
-      for (let i of this.ScheduledTriggers) {
+      for (let i of this.scheduledTriggers) {
         i.Rejecter();
       }
-      this.ScheduledTriggers = [];
+      this.scheduledTriggers = [];
       this.DisplayedText = this.DisplayedText.filter((t) => {
         t.Element.remove();
         return false;
@@ -123,7 +123,7 @@ class RaidEmulatorPopupText extends PopupText {
       resolver = res;
       rejecter = rej;
     });
-    this.ScheduledTriggers.push({
+    this.scheduledTriggers.push({
       Expires: this.emulatedOffset + (delay * 1000),
       Promise: ret,
       Resolver: resolver,

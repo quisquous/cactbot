@@ -77,9 +77,9 @@ class AnalyzedEncounter extends EventBus {
     };
 
     this.Perspectives[ID] = {
-      InitialData: AnalyzedEncounter.CloneData(data, true),
-      Triggers: [],
-      FinalData: data,
+      initialData: AnalyzedEncounter.cloneData(data, true),
+      triggers: [],
+      finalData: data,
     };
 
     let suppressed = {};
@@ -103,15 +103,15 @@ class AnalyzedEncounter extends EventBus {
           if (matches.groups)
             matches = matches.groups;
 
-          let preData = AnalyzedEncounter.CloneData(data);
-          let status = await this.RunTriggers(log.timestamp, trigger, data, matches, suppressed);
-          this.Perspectives[ID].Triggers.push({
+          let preData = AnalyzedEncounter.cloneData(data);
+          let status = await this.runTriggers(log.timestamp, trigger, data, matches, suppressed);
+          this.Perspectives[ID].triggers.push({
             trigger: trigger,
             timestamp: log.timestamp,
             offset: log.timestamp - this.encounter.startTimestamp,
             resolvedOffset: (log.timestamp - this.encounter.startTimestamp) + (status.Delay || 0),
             preData: preData,
-            postData: AnalyzedEncounter.CloneData(data),
+            postData: AnalyzedEncounter.cloneData(data),
             matches: matches,
             status: status,
           });
@@ -120,7 +120,7 @@ class AnalyzedEncounter extends EventBus {
     }
   }
 
-  async RunTriggers(timestamp, trigger, data, matches, suppressed) {
+  async runTriggers(timestamp, trigger, data, matches, suppressed) {
     let run;
     let result;
     let delay = 0;
@@ -164,7 +164,7 @@ class AnalyzedEncounter extends EventBus {
 
     // promise
     if (typeof trigger.promise === 'function') {
-      ret.DataPrePromise = AnalyzedEncounter.CloneData(data);
+      ret.DataPrePromise = AnalyzedEncounter.cloneData(data);
       ret.Promise = trigger.promise(data, matches);
       if (Promise.resolve(ret.Promise) === ret.Promise) {
         await ret.Promise;
@@ -172,7 +172,7 @@ class AnalyzedEncounter extends EventBus {
       } else {
         ret.PromiseStatus = 'Not a function';
       }
-      ret.DataPostPromise = AnalyzedEncounter.CloneData(data);
+      ret.DataPostPromise = AnalyzedEncounter.cloneData(data);
     }
 
     let response = {};
@@ -245,14 +245,16 @@ class AnalyzedEncounter extends EventBus {
     return ret;
   }
 
-  static CloneData(data, full = false) {
-    // Potential future bug: jQuery's extend doesn't include properties with a value of `undefined`
+  static cloneData(data, full = false) {
     let ret = {};
+    // Use our own extend logic for the top level to avoid cloning the `options` property
+    // This cut the execution time of this code from 41,000ms to 50ms when parsing a 12 minute pull
     for (let i in data) {
       if (!full && (i === 'options' || i === 'party')) {
         continue;
       }
       if (typeof data[i] === 'object') {
+        // Potential future bug: jQuery's extend doesn't include properties with a value of `undefined`
         if(Array.isArray(data[i])) {
           ret[i] = jQuery.extend(true, [], data[i]);
         } else {

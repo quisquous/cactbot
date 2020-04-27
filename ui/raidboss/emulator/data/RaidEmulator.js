@@ -30,9 +30,9 @@ class RaidEmulator extends EventBus {
       this.dispatch('currentEncounterChanged', this.currentEncounter);
     });
   }
-  setCurrentByID(ID) {
+  setCurrentByID(id) {
     let index = this.encounters.findIndex((v) => {
-      return v.ID === ID;
+      return v.id === id;
     });
     if (index === -1) {
       return false;
@@ -70,7 +70,7 @@ class RaidEmulator extends EventBus {
     this.currentLogLineIndex = -1;
     let logs = [];
     let offsets = [];
-    for (let i = this.currentLogLineIndex + 1; i < this.currentEncounter.logLines.length; ++i) {
+    for (let i = this.currentLogLineIndex + 1; i < this.currentEncounter.encounter.logLines.length; ++i) {
       if (this.currentEncounter.encounter.logLines[i].offset <= time) {
         logs.push(this.currentEncounter.encounter.logLines[i].line);
         offsets.push(this.currentEncounter.encounter.logLines[i].offset);
