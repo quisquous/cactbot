@@ -151,6 +151,9 @@ namespace Cactbot {
           currentMP = e.mp;
           maxMP = e.max_mp;
           pos = new Point3F(e.pos_x, e.pos_y, e.pos_z);
+          rotation = e.rotation;
+          current_world_id = e.current_world_id;
+          home_world_id = e.home_world_id;
           distance = e.distance;
         }
       }
@@ -168,6 +171,9 @@ namespace Cactbot {
       public int maxTP = 0;
 
       public Point3F pos;
+      public float rotation;
+      public ushort current_world_id;
+      public ushort home_world_id;
       public int distance = 0;
     }
 
