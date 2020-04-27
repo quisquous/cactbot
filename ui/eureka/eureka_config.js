@@ -34,7 +34,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Update rate of nm cooldowns (seconds)',
         de: 'Aktualisierung der NM cooldowns (in Sekunden)',
-        fr: 'Vitesse de rafraichissement du temps de réapparition d\'un NM (s)',
+        fr: 'Rafraîchissement du temps de réapparition d\'un NM (s)',
         cn: 'NM冷却刷新率（秒）',
         ko: '돌발 소환가능시간 갱신 주기 (초）',
       },
