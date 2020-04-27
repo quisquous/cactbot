@@ -133,6 +133,8 @@ namespace Cactbot {
       public float pos_y = 0;
       public float pos_z = 0;
       public float rotation = 0;
+      public ushort current_world_id = 0;
+      public ushort home_world_id = 0;
       public int hp = 0;
       public int max_hp = 0;
       public int mp = 0;
@@ -156,6 +158,8 @@ namespace Cactbot {
           pos_y == o.pos_y &&
           pos_z == o.pos_z &&
           rotation == o.rotation &&
+          current_world_id == o.current_world_id &&
+          home_world_id == o.home_world_id &&
           hp == o.hp &&
           max_hp == o.max_hp &&
           mp == o.mp &&
@@ -181,6 +185,8 @@ namespace Cactbot {
         hash = hash * 31 + pos_y.GetHashCode();
         hash = hash * 31 + pos_z.GetHashCode();
         hash = hash * 31 + rotation.GetHashCode();
+        hash = hash * 31 + current_world_id.GetHashCode();
+        hash = hash * 31 + home_world_id.GetHashCode();
         hash = hash * 31 + hp.GetHashCode();
         hash = hash * 31 + max_hp.GetHashCode();
         hash = hash * 31 + mp.GetHashCode();

@@ -38,6 +38,12 @@ namespace Cactbot {
       [FieldOffset(0xB0)]
       public Single rotation;
 
+      [FieldOffset(0x1884)]
+      public ushort current_world_id;
+
+      [FieldOffset(0x1886)]
+      public ushort home_world_id;
+
       [FieldOffset(0x1898)]
       public CharacterDetails charDetails;
     }
@@ -199,6 +205,8 @@ namespace Cactbot {
           pos_y = mem.pos_y,
           pos_z = mem.pos_z,
           rotation = mem.rotation,
+          current_world_id = mem.current_world_id,
+          home_world_id = mem.home_world_id,
         };
         if (entity.type == EntityType.PC || entity.type == EntityType.Monster) {
           entity.job = mem.charDetails.job;

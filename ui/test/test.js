@@ -59,6 +59,8 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
 
   document.getElementById('pos').innerText = e.detail.pos.x + ',' + e.detail.pos.y + ',' + e.detail.pos.z;
   document.getElementById('rotation').innerText = e.detail.rotation;
+  document.getElementById('current_world').innerText = e.detail.current_world_id;
+  document.getElementById('home_world').innerText = e.detail.home_world_id;
   document.getElementById('bait').innerText = e.detail.bait;
 });
 
