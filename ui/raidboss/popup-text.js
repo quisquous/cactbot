@@ -737,7 +737,8 @@ class PopupText {
       let text = triggerHelper.valueOrFunction(textObj);
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
       if (text && triggerHelper.textAlertsEnabled) {
-        text = triggerUpperCase(text);
+        if (textType !== 'info')
+          text = triggerUpperCase(text);
         let holder = this[lowerTextKey].getElementsByClassName('holder')[0];
         let div = this._makeTextElement(text, textElementClass);
         this._addText(holder, div);
