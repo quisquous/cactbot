@@ -31,11 +31,11 @@ class Persistor extends EventBus {
       // We deliberately avoid using breaks for this switch/case to allow incremental upgrades to apply in sequence
       switch (ev.oldVersion) {
         case 0:
-          EncountersStorage = ev.target.result.createObjectStore("Encounters", { keyPath: "ID", autoIncrement: true });
-          EncounterSummariesStorage = ev.target.result.createObjectStore("EncounterSummaries", { keyPath: "ID", autoIncrement: true });
-          EncounterSummariesStorage.createIndex("zone", "Zone");
-          EncounterSummariesStorage.createIndex("start", "Start");
-          EncounterSummariesStorage.createIndex("zone_start", ["Zone", "Start"]);
+          EncountersStorage = ev.target.result.createObjectStore("Encounters", { keyPath: "id", autoIncrement: true });
+          EncounterSummariesStorage = ev.target.result.createObjectStore("EncounterSummaries", { keyPath: "id", autoIncrement: true });
+          EncounterSummariesStorage.createIndex("zone", "zone");
+          EncounterSummariesStorage.createIndex("start", "start");
+          EncounterSummariesStorage.createIndex("zone_start", ["zone", "start"]);
       }
       Promises.push(new Promise((res) => {
         EncountersStorage.transaction.oncomplete = (tev) => {
@@ -72,14 +72,14 @@ class Persistor extends EventBus {
       delete encounter.combatantTracker;
       let EncountersStorage = this.DB.transaction("Encounters", "readwrite").objectStore("Encounters");
       let req;
-      if (encounter.ID === null) {
-        delete encounter.ID;
+      if (encounter.id === null) {
+        delete encounter.id;
         req = EncountersStorage.add(encounter);
       } else {
         req = EncountersStorage.put(encounter);
       }
       req.onsuccess = (ev) => {
-        baseEncounter.ID = encounter.ID = ev.target.result;
+        baseEncounter.id = encounter.id = ev.target.result;
         let EncounterSummariesStorage = this.DB.transaction("EncounterSummaries", "readwrite").objectStore("EncounterSummaries");
         let Summary = new PersistorEncounter(baseEncounter);
         EncounterSummariesStorage.put(Summary);
@@ -91,14 +91,14 @@ class Persistor extends EventBus {
     return ret;
   }
 
-  loadEncounter(ID) {
+  loadEncounter(id) {
     return new Promise((res) => {
       if (this.DB !== null) {
         let EncountersStorage = this.DB.transaction("Encounters", "readonly").objectStore("Encounters");
-        let req = EncountersStorage.get(ID);
+        let req = EncountersStorage.get(id);
         req.onsuccess = (ev) => {
           let enc = new Encounter(req.result.encounterDay, req.result.encounterZone, req.result.logLines);
-          enc.ID = req.result.ID;
+          enc.id = req.result.id;
           res(enc);
         };
       } else {
@@ -107,14 +107,14 @@ class Persistor extends EventBus {
     });
   }
 
-  deleteEncounter(ID) {
+  deleteEncounter(id) {
     return new Promise((res) => {
       if (this.DB !== null) {
         let EncountersStorage = this.DB.transaction("Encounters", "readwrite").objectStore("Encounters");
-        let req = EncountersStorage.delete(ID);
+        let req = EncountersStorage.delete(id);
         req.onsuccess = (ev) => {
           let EncounterSummariesStorage = this.DB.transaction("EncounterSummaries", "readwrite").objectStore("EncounterSummaries");
-          let req = EncounterSummariesStorage.delete(ID);
+          let req = EncounterSummariesStorage.delete(id);
           req.onsuccess = (ev) => {
             res(true);
           };
@@ -131,30 +131,30 @@ class Persistor extends EventBus {
     });
   }
 
-  ListEncounters(Zone = null, StartTimestamp = null, EndTimestamp = null) {
+  ListEncounters(zone = null, startTimestamp = null, endTimestamp = null) {
     return new Promise((res) => {
       if (this.DB !== null) {
         let EncountersStorage = this.DB.transaction("EncounterSummaries", "readonly").objectStore("EncounterSummaries");
         let KeyRange = null;
         let Index = null;
-        if (Zone !== null) {
-          if (StartTimestamp !== null) {
+        if (zone !== null) {
+          if (startTimestamp !== null) {
             Index = EncountersStorage.index("zone_start");
-            if (EndTimestamp !== null) {
-              KeyRange = IDBKeyRange.bound([Zone, StartTimestamp], [Zone, EndTimestamp], [true, true], [true, true]);
+            if (endTimestamp !== null) {
+              KeyRange = IDBKeyRange.bound([zone, startTimestamp], [zone, endTimestamp], [true, true], [true, true]);
             } else {
-              KeyRange = IDBKeyRange.lowerBound([Zone, StartTimestamp], [true, true]);
+              KeyRange = IDBKeyRange.lowerBound([zone, startTimestamp], [true, true]);
             }
           } else {
             Index = EncountersStorage.index("zone");
-            KeyRange = IDBKeyRange.only(Zone);
+            KeyRange = IDBKeyRange.only(zone);
           }
-        } else if (StartTimestamp !== null) {
+        } else if (startTimestamp !== null) {
           Index = EncountersStorage.index("start");
-          if (EndTimestamp !== null) {
-            KeyRange = IDBKeyRange.bound(StartTimestamp, EndTimestamp, true, true);
+          if (endTimestamp !== null) {
+            KeyRange = IDBKeyRange.bound(startTimestamp, endTimestamp, true, true);
           } else {
-            KeyRange = IDBKeyRange.lowerBound(StartTimestamp, true);
+            KeyRange = IDBKeyRange.lowerBound(startTimestamp, true);
           }
         }
         let req;
@@ -175,7 +175,7 @@ class Persistor extends EventBus {
   async clearDB() {
     await this.ListEncounters().then(async (encounters) => {
       for (let i in encounters) {
-        await this.deleteEncounter(encounters[i].ID);
+        await this.deleteEncounter(encounters[i].id);
       }
     });
   }
@@ -186,11 +186,11 @@ class Persistor extends EventBus {
     };
     let Summaries = await this.ListEncounters();
     for (let i in Summaries) {
-      let enc = await this.loadEncounter(Summaries[i].ID);
+      let enc = await this.loadEncounter(Summaries[i].id);
       ret.Encounters.push({
-        EncounterDay: timeToDateString(Summaries[i].Start),
-        EncounterZone: Summaries[i].Zone,
-        EncounterLines: enc.logLines,
+        encounterDay: timeToDateString(Summaries[i].Start),
+        encounterZone: Summaries[i].Zone,
+        encounterLines: enc.logLines,
       });
     }
     return ret;
@@ -198,7 +198,7 @@ class Persistor extends EventBus {
 
   async importDB(DB) {
     DB.Encounters.forEach(enc => {
-      this.persistEncounter(new Encounter(enc.EncounterDay, enc.EncounterZone, enc.EncounterLines));
+      this.persistEncounter(new Encounter(enc.encounterDay, enc.encounterZone, enc.encounterLines));
     });
   }
 

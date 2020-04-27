@@ -1,21 +1,21 @@
 class LogEventHandler extends EventBus {
 
   static UnsealRegexes = {
-    ja: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)の封鎖が解かれた……/,
-    en: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*) is no longer sealed/,
-    de: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?:Der Zugang zu\w* |)(?<Zone>.*) öffnet sich (?:erneut|wieder)/,
-    fr: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:Ouverture (?<Zone>.*)/,
-    cn: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)的封锁解除了/,
-    ko: /\[(?<LineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)의 봉쇄가 해제되었습니다\./,
+    ja: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)の封鎖が解かれた……/,
+    en: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*) is no longer sealed/,
+    de: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?:Der Zugang zu\w* |)(?<Zone>.*) öffnet sich (?:erneut|wieder)/,
+    fr: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:Ouverture (?<Zone>.*)/,
+    cn: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)的封锁解除了/,
+    ko: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)의 봉쇄가 해제되었습니다\./,
   };
 
-  static WipeRegex = /\[(?<LineTimestamp>[^\]]+)\] 21:........:40000010:/;
-  static WinRegex = /\[(?<LineTimestamp>[^\]]+)\] 21:........:40000003:/;
-  static CactbotWipeRegex = /\[(?<LineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
+  static WipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000010:/;
+  static WinRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000003:/;
+  static CactbotWipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
 
   static ZoneChangeRegex = / 01:Changed Zone to (?<Zone>.*)\./;
 
-  static DoesLineMatch(line, regexes) {
+  static doesLineMatch(line, regexes) {
     for (let i in regexes) {
       let res = regexes[i].exec(line);
       if (res) {
@@ -27,19 +27,19 @@ class LogEventHandler extends EventBus {
 
   static IsMatchStart(line) {
     let res;
-    res = LogEventHandler.DoesLineMatch(line, EmulatorCommon.CountdownRegexes);
+    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.CountdownRegexes);
     if (res) {
       res.groups.StartIn = res.groups.Time * 1000;
       res.groups.StartType = 'Countdown';
       return res;
     }
-    res = LogEventHandler.DoesLineMatch(line, EmulatorCommon.SealRegexes);
+    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.SealRegexes);
     if (res) {
       res.groups.StartIn = 0;
       res.groups.StartType = 'Seal';
       return res;
     }
-    res = LogEventHandler.DoesLineMatch(line, EmulatorCommon.EngageRegexes);
+    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.EngageRegexes);
     if (res) {
       res.groups.StartIn = 0;
       res.groups.StartType = 'Engage';
@@ -50,22 +50,22 @@ class LogEventHandler extends EventBus {
 
   static IsMatchEnd(line) {
     let res;
-    res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.WinRegex]);
+    res = LogEventHandler.doesLineMatch(line, [LogEventHandler.WinRegex]);
     if (res) {
       res.groups.EndType = 'Win';
       return res;
     }
-    res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.WipeRegex]);
+    res = LogEventHandler.doesLineMatch(line, [LogEventHandler.WipeRegex]);
     if (res) {
       res.groups.EndType = 'Wipe';
       return res;
     }
-    res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.CactbotWipeRegex]);
+    res = LogEventHandler.doesLineMatch(line, [LogEventHandler.CactbotWipeRegex]);
     if (res) {
       res.groups.EndType = 'Cactbot Wipe';
       return res;
     }
-    res = LogEventHandler.DoesLineMatch(line, LogEventHandler.UnsealRegexes);
+    res = LogEventHandler.doesLineMatch(line, LogEventHandler.UnsealRegexes);
     if (res) {
       res.groups.EndType = 'Unseal';
       return res;
@@ -73,25 +73,32 @@ class LogEventHandler extends EventBus {
     return false;
   }
 
+  lastFightFirstTimestamp = null;
+  currentZone = null;
+  currentDate = null;
+  currentFight = [];
+
   constructor() {
     super();
     window.addOverlayListener('onImportLogEvent', (e) => {
       console.log("Parsing " + e.detail.logs.length + " lines...");
       this.parseLogs(e.detail.logs);
     });
-    this.currentZone = null;
-    this.currentDate = null;
-    this.currentFight = [];
   }
 
   parseLogs(logs) {
     for (let i = 0; i < logs.length; ++i) {
+      // Be a bit more intelligent if we're receiving converted network logs instead of imported logs
+      let lineObj = logs[i];
       let line = logs[i];
+      if (typeof lineObj === 'object') {
+        line = lineObj.line;
+      }
       this.currentFight.push(line);
       let res;
       if (res = LogEventHandler.IsMatchEnd(line)) {
         this.endFight();
-      } else if (res = LogEventHandler.DoesLineMatch(line, [LogEventHandler.ZoneChangeRegex])) {
+      } else if (res = LogEventHandler.doesLineMatch(line, [LogEventHandler.ZoneChangeRegex])) {
         this.currentZone = res.groups.Zone;
         this.endFight();
       }
@@ -107,6 +114,17 @@ class LogEventHandler extends EventBus {
     // or carried over from previous encounter
     if (this.currentDate === null) {
       this.currentDate = new Date().toISOString().substr(0, 10);
+      this.lastFightFirstTimestamp = EmulatorCommon.getTimestampFromLogLine(this.currentDate, this.currentFight[0]);
+    } else {
+      let firstTimestamp = EmulatorCommon.getTimestampFromLogLine(this.currentDate, this.currentFight[0]);
+      if (this.lastFightFirstTimestamp === null) {
+        this.lastFightFirstTimestamp = firstTimestamp;
+      } else {
+        if (this.lastFightFirstTimestamp - firstTimestamp > 1000*60*60*12) {
+          this.lastFightFirstTimestamp = firstTimestamp + 1000*60*60*24;
+          this.currentDate = timeToDateString(this.lastFightFirstTimestamp);
+        }
+      }
     }
     console.log(`Displatching new fight
 Date: ${this.currentDate}

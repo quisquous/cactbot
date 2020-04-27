@@ -1,26 +1,36 @@
 class CombatantState {
-  constructor(PosX, PosY, PosZ, Heading, Visible, HP, MaxHP, MP, MaxMP) {
-    this.PosX = PosX;
-    this.PosY = PosY;
-    this.PosZ = PosZ;
-    this.Heading = Heading;
-    this.Visible = Visible;
+  posX;
+  posY;
+  posZ;
+  heading;
+  visible;
+  HP;
+  maxHP;
+  MP;
+  maxMP;
+
+  constructor(posX, posY, posZ, heading, visible, HP, maxHP, MP, maxMP) {
+    this.posX = posX;
+    this.posY = posY;
+    this.posZ = posZ;
+    this.heading = heading;
+    this.visible = visible;
     this.HP = HP;
-    this.MaxHP = MaxHP;
+    this.maxHP = maxHP;
     this.MP = MP;
-    this.MaxMP = MaxMP;
+    this.maxMP = maxMP;
   }
 
   PartialClone(props) {
     return new CombatantState(
-      props.PosX || this.PosX,
-      props.PosY || this.PosY,
-      props.PosZ || this.PosZ,
-      props.Heading || this.Heading,
-      props.Visible || this.Visible,
+      props.posX || this.posX,
+      props.posY || this.posY,
+      props.posZ || this.posZ,
+      props.heading || this.heading,
+      props.visible || this.visible,
       props.HP || this.HP,
-      props.MaxHP || this.MaxHP,
+      props.maxHP || this.maxHP,
       props.MP || this.MP,
-      props.MaxMP || this.MaxMP);
+      props.maxMP || this.maxMP);
   }
 }

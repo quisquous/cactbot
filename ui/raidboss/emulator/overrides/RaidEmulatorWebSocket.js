@@ -54,9 +54,9 @@ class RaidEmulatorWebSocket {
         let timestamp = this.emulator.currentEncounter.encounter.startTimestamp + this.timestampOffset;
         for (let ID in tracker.combatants) {
           if (msg.ids && msg.ids.includes(ID)) {
-            combatants.push(Combatant.prototype.NextSignificantState.apply(tracker.combatants[ID], [timestamp]));
-          } else if (msg.names && msg.names.includes(tracker.combatants[ID].Name)) {
-            combatants.push(Combatant.prototype.NextSignificantState.apply(tracker.combatants[ID], [timestamp]));
+            combatants.push(Combatant.prototype.nextSignificantState.apply(tracker.combatants[ID], [timestamp]));
+          } else if (msg.names && msg.names.includes(tracker.combatants[ID].name)) {
+            combatants.push(Combatant.prototype.nextSignificantState.apply(tracker.combatants[ID], [timestamp]));
           }
         }
         res({

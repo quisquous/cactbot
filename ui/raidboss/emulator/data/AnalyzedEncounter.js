@@ -1,5 +1,5 @@
 class AnalyzedEncounter extends EventBus {
-  static LineTimestampRegex = /^\[(\d\d:\d\d:\d\d.\d\d\d)\]/i;
+  static lineTimestampRegex = /^\[(\d\d:\d\d:\d\d.\d\d\d)\]/i;
 
   Perspectives = {};
 
@@ -9,25 +9,14 @@ class AnalyzedEncounter extends EventBus {
   constructor(encounter) {
     super();
     this.encounter = encounter;
-    let encDate = timeToDateString(encounter.startTimestamp);
-    //Extract the required info from log lines for playback
-    this.logLines = encounter.logLines.map((line) => {
-      let matches = AnalyzedEncounter.LineTimestampRegex.exec(line);
-      let ts = +new Date(encDate + ' ' + matches[1]);
-      return {
-        Timestamp: ts,
-        Offset: ts - encounter.startTimestamp,
-        Line: line,
-      };
-    });
   }
 
   selectPerspective(ID) {
     this.popupText.OnPlayerChange({
       detail: {
-        name: this.encounter.combatantTracker.combatants[ID].Name.split('(')[0],
-        job: this.encounter.combatantTracker.combatants[ID].Job,
-        currentHP: this.encounter.combatantTracker.combatants[ID].States[this.logLines[0].Timestamp].HP,
+        name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
+        job: this.encounter.combatantTracker.combatants[ID].job,
+        currentHP: this.encounter.combatantTracker.combatants[ID].getState(this.encounter.logLines[0].timestamp).HP,
       },
     });
   }
@@ -39,8 +28,8 @@ class AnalyzedEncounter extends EventBus {
     let PartyEvent = {
       party: this.encounter.combatantTracker.partyMembers.map((ID) => {
         return {
-          name: this.encounter.combatantTracker.combatants[ID].Name.split('(')[0],
-          job: this.JobToJobEnum(this.encounter.combatantTracker.combatants[ID].Job),
+          name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
+          job: this.JobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
           inParty: true,
         };
       }),
@@ -51,9 +40,9 @@ class AnalyzedEncounter extends EventBus {
       let ID = this.encounter.combatantTracker.partyMembers[index];
       popupText.OnPlayerChange({
         detail: {
-          name: this.encounter.combatantTracker.combatants[ID].Name.split('(')[0],
-          job: this.encounter.combatantTracker.combatants[ID].Job,
-          currentHP: this.encounter.combatantTracker.combatants[ID].States[this.logLines[0].Timestamp].HP,
+          name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
+          job: this.encounter.combatantTracker.combatants[ID].job,
+          currentHP: this.encounter.combatantTracker.combatants[ID].getState(this.encounter.logLines[0].timestamp).HP,
         },
       });
       popupText.OnZoneChange({
@@ -82,9 +71,9 @@ class AnalyzedEncounter extends EventBus {
       CanFeint: () => Util.canFeint(this.job),
       CanAddle: () => Util.canAddle(this.job),
       ShortName: (name) => !name ? '(undefined)' : name.split(/\s/)[0],
-      me: this.encounter.combatantTracker.combatants[ID].Name.split('(')[0],
-      job: this.encounter.combatantTracker.combatants[ID].Job,
-      role: Util.jobToRole(this.encounter.combatantTracker.combatants[ID].Job),
+      me: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
+      job: this.encounter.combatantTracker.combatants[ID].job,
+      role: Util.jobToRole(this.encounter.combatantTracker.combatants[ID].job),
     };
 
     this.Perspectives[ID] = {
@@ -95,13 +84,13 @@ class AnalyzedEncounter extends EventBus {
 
     let suppressed = {};
 
-    for (let i = 0; i < this.logLines.length; i++) {
-      let log = this.logLines[i];
+    for (let i = 0; i < this.encounter.logLines.length; i++) {
+      let log = this.encounter.logLines[i];
       popupText.OnPlayerChange({
         detail: {
-          name: this.encounter.combatantTracker.combatants[ID].Name.split('(')[0],
-          job: this.encounter.combatantTracker.combatants[ID].Job,
-          currentHP: this.encounter.combatantTracker.combatants[ID].States[log.Timestamp].HP,
+          name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
+          job: this.encounter.combatantTracker.combatants[ID].job,
+          currentHP: this.encounter.combatantTracker.combatants[ID].getState(log.timestamp).HP,
         },
       });
       for (let t = 0; t < triggers.length; t++) {
@@ -109,22 +98,22 @@ class AnalyzedEncounter extends EventBus {
         if (trigger.disabled)
           continue;
 
-        let matches = log.Line.match(trigger.localRegex);
+        let matches = log.line.match(trigger.localRegex);
         if (matches) {
           if (matches.groups)
             matches = matches.groups;
 
           let preData = AnalyzedEncounter.CloneData(data);
-          let status = await this.RunTriggers(log.Timestamp, trigger, data, matches, suppressed);
+          let status = await this.RunTriggers(log.timestamp, trigger, data, matches, suppressed);
           this.Perspectives[ID].Triggers.push({
-            Trigger: trigger,
-            Timestamp: log.Timestamp,
-            Offset: log.Timestamp - this.encounter.startTimestamp,
-            ResolvedOffset: (log.Timestamp - this.encounter.startTimestamp) + (status.Delay || 0),
-            PreData: preData,
-            PostData: AnalyzedEncounter.CloneData(data),
-            Matches: matches,
-            Status: status,
+            trigger: trigger,
+            timestamp: log.timestamp,
+            offset: log.timestamp - this.encounter.startTimestamp,
+            resolvedOffset: (log.timestamp - this.encounter.startTimestamp) + (status.Delay || 0),
+            preData: preData,
+            postData: AnalyzedEncounter.CloneData(data),
+            matches: matches,
+            status: status,
           });
         }
       }
@@ -258,11 +247,20 @@ class AnalyzedEncounter extends EventBus {
 
   static CloneData(data, full = false) {
     // Potential future bug: jQuery's extend doesn't include properties with a value of `undefined`
-    let ret = jQuery.extend(true, {}, data);
-    // Filter out the stuff that won't ever change from trigger call to trigger call
-    if (!full) {
-      delete ret.options;
-      delete ret.party;
+    let ret = {};
+    for (let i in data) {
+      if (!full && (i === 'options' || i === 'party')) {
+        continue;
+      }
+      if (typeof data[i] === 'object') {
+        if(Array.isArray(data[i])) {
+          ret[i] = jQuery.extend(true, [], data[i]);
+        } else {
+          ret[i] = jQuery.extend(true, {}, data[i]);
+        }
+      } else {
+        ret[i] = data[i];
+      }
     }
     return ret;
   }

@@ -90,7 +90,7 @@ class EmulatedPartyInfo extends EventBus {
     let membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
       let a = encounter.encounter.combatantTracker.combatants[l];
       let b = encounter.encounter.combatantTracker.combatants[r];
-      return EmulatedPartyInfo.JobOrder.indexOf(a.Job) - EmulatedPartyInfo.JobOrder.indexOf(b.Job);
+      return EmulatedPartyInfo.JobOrder.indexOf(a.job) - EmulatedPartyInfo.JobOrder.indexOf(b.job);
     }).slice(0, 8);
     $('.playerTriggerInfo').remove();
 
@@ -101,14 +101,14 @@ class EmulatedPartyInfo extends EventBus {
       this.UpdateCombatantInfo(encounter, ID);
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
-      this.triggerBars[i].removeClass('tank healer dps').addClass(Util.jobToRole(encounter.encounter.combatantTracker.combatants[ID].Job));
+      this.triggerBars[i].removeClass('tank healer dps').addClass(Util.jobToRole(encounter.encounter.combatantTracker.combatants[ID].job));
       for (let triggerIndex in encounter.Perspectives[ID].Triggers) {
         let trigger = encounter.Perspectives[ID].Triggers[triggerIndex];
-        if(!trigger.Status.Executed || trigger.ResolvedOffset > encounter.encounter.duration) {
+        if(!trigger.Status.Executed || trigger.resolvedOffset > encounter.encounter.duration) {
           continue;
         }
         let $e = $('<div class="triggerItem"></div>');
-        $e.css('left', ((trigger.ResolvedOffset / encounter.encounter.duration) * 100) + '%');
+        $e.css('left', ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%');
         $e.tooltip({
           title: trigger.Trigger.id,
           placement: 'bottom',
@@ -141,27 +141,27 @@ class EmulatedPartyInfo extends EventBus {
       return;
     }
     let combatant = encounter.encounter.combatantTracker.combatants[ID];
-    StateID = StateID || combatant.SignificantStates[0];
+    StateID = StateID || combatant.getState(0);
     /**
      * @type {CombatantState}
      */
-    let State = combatant.States[StateID];
+    let State = combatant.getState(StateID);
     if (State === undefined) {
       return;
     }
-    let hpProg = (State.HP / State.MaxHP) * 100;
-    let hpLabel = State.HP + "/" + State.MaxHP;
-    hpLabel = hpLabel.padStart((('' + State.MaxHP).length * 2) + 1, ' '); // unicode nbsp (U+00A0)
+    let hpProg = (State.HP / State.maxHP) * 100;
+    let hpLabel = State.HP + "/" + State.maxHP;
+    hpLabel = spacePadLeft(hpLabel, (State.maxHP.toString().length * 2) + 1);
     this.displayedParty[ID].$hpProgElem.attr('aria-valuenow', State.HP);
-    this.displayedParty[ID].$hpProgElem.attr('aria-valuemax', State.MaxHP);
+    this.displayedParty[ID].$hpProgElem.attr('aria-valuemax', State.maxHP);
     this.displayedParty[ID].$hpProgElem.css('width', hpProg + '%');
     this.displayedParty[ID].$hpLabelElem.text(hpLabel);
 
-    let mpProg = (State.MP / State.MaxMP) * 100;
-    let mpLabel = State.MP + "/" + State.MaxMP;
-    mpLabel = mpLabel.padStart((('' + State.MaxMP).length * 2) + 1, ' '); // unicode nbsp (U+00A0)
+    let mpProg = (State.MP / State.maxMP) * 100;
+    let mpLabel = State.MP + "/" + State.maxMP;
+    mpLabel = spacePadLeft(mpLabel, (State.maxMP.toString().length * 2) + 1);
     this.displayedParty[ID].$mpProgElem.attr('aria-valuenow', State.MP);
-    this.displayedParty[ID].$mpProgElem.attr('aria-valuemax', State.MaxMP);
+    this.displayedParty[ID].$mpProgElem.attr('aria-valuemax', State.maxMP);
     this.displayedParty[ID].$mpProgElem.css('width', mpProg + '%');
     this.displayedParty[ID].$mpLabelElem.text(mpLabel);
   }
@@ -186,7 +186,7 @@ class EmulatedPartyInfo extends EventBus {
      * @type {Combatant}
      */
     let combatant = encounter.encounter.combatantTracker.combatants[ID];
-    ret.$rootElem.addClass(combatant.Job.toUpperCase());
+    ret.$rootElem.addClass(combatant.job.toUpperCase());
     ret.$rootElem.append(ret.$iconElem);
     ret.$hpElem.children('.progress').append(ret.$hpProgElem, ret.$hpLabelElem);
     ret.$mpElem.children('.progress').append(ret.$mpProgElem, ret.$mpLabelElem);
@@ -195,7 +195,7 @@ class EmulatedPartyInfo extends EventBus {
     ret.$rootElem.tooltip({
       animation: false,
       placement: 'left',
-      title: combatant.Name,
+      title: combatant.name,
     });
     let me = this;
     ret.$rootElem.on('click', (e) => {
@@ -221,7 +221,7 @@ class EmulatedPartyInfo extends EventBus {
 
     let $triggerContainer = $('<div class="d-flex flex-column"></div>');
 
-    for (let i in per.Triggers.sort((l,r) => l.ResolvedOffset - r.ResolvedOffset)) {
+    for (let i in per.Triggers.sort((l,r) => l.resolvedOffset - r.resolvedOffset)) {
       let $triggerDataViewer = $('<pre class="json-viewer"></pre>');
       let $trigger = this._WrapCollapse(this.GetTriggerFiredLabelTime(per.Triggers[i]) + ' - ' + per.Triggers[i].Trigger.id, $triggerDataViewer, () => {
         $triggerDataViewer.text(JSON.stringify(per.Triggers[i], null, 2));
@@ -278,11 +278,11 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   GetTriggerFiredLabelTime(Trigger) {
-    return timeToString(Trigger.Offset, false);
+    return timeToString(Trigger.offset, false);
   }
 
   GetTriggerResolvedLabelTime(Trigger) {
-    return timeToString(Trigger.ResolvedOffset, false);
+    return timeToString(Trigger.resolvedOffset, false);
   }
 
   _WrapCollapse(label, $obj, onclick) {

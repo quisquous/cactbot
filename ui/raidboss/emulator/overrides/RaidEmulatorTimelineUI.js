@@ -37,7 +37,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     });
     emulator.on('play', () => {
       this.emulatedStatus = 'play';
-      this.timeline && this.timeline.EmulatedSync(emulator.CurrentTimestamp);
+      this.timeline && this.timeline.EmulatedSync(emulator.currentTimestamp);
     });
     emulator.on('pause', () => {
       this.emulatedStatus = 'pause';

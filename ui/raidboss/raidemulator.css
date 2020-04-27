@@ -433,6 +433,7 @@ div.row.encountersRow {
   height:1rem;
   line-height:1rem;
   text-align: center;
+  white-space: pre;
 }
 
 .partyInfoColumn .party .playerInfoRow .hp .progress .progress-bar {

@@ -67,13 +67,13 @@ class EncounterTab extends EventBus {
 
     // @TODO: Probably a better way to do this...
     this.$infoColumn = $('#encountersTab .encounterInfo').on('click', '.encounterLoad', (ev) => {
-      me.dispatch('load', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter.ID);
+      me.dispatch('load', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter.id);
     }).on('click', '.encounterParse', (ev) => {
-      me.dispatch('parse', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter.ID);
+      me.dispatch('parse', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter.id);
     }).on('click', '.encounterPrune', (ev) => {
-      me.dispatch('prune', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter.ID);
+      me.dispatch('prune', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter.id);
     }).on('click', '.encounterDelete', (ev) => {
-      me.dispatch('delete', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter.ID);
+      me.dispatch('delete', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter.id);
     });
 
     let me = this;
@@ -84,17 +84,17 @@ class EncounterTab extends EventBus {
     this.persistor.ListEncounters().then((encounters) => {
       for (let i in encounters) {
         let enc = encounters[i];
-        let zone = encounters[i].Zone;
-        let encDate = timeToDateString(enc.Start);
-        let encTime = timeToTimeString(enc.Start);
-        let encDuration = msToDuration(enc.Duration);
+        let zone = enc.zone;
+        let encDate = timeToDateString(enc.start);
+        let encTime = timeToTimeString(enc.start);
+        let encDuration = msToDuration(enc.duration);
         this.Encounters[zone] = this.Encounters[zone] || {};
         this.Encounters[zone][encDate] = this.Encounters[zone][encDate] || [];
         this.Encounters[zone][encDate].push({
-          Start: encTime,
-          Name: enc.Name,
-          Duration: encDuration,
-          Encounter: enc,
+          start: encTime,
+          name: enc.name,
+          duration: encDuration,
+          encounter: enc,
         });
       }
 
@@ -157,9 +157,9 @@ class EncounterTab extends EventBus {
         let enc = this.Encounters[this.CurrentZone][this.CurrentDate][i];
         let $enc = $('<div class="selectorRow border-bottom border-dark"></div>');
         $enc.data('index', i);
-        $enc.append($('<div class="encounterStart d-inline">[' + enc.Start + ']</div>'));
-        $enc.append($('<div class="encounterStart d-inline mx-2">' + enc.Name + '</div>'));
-        $enc.append($('<div class="encounterStart d-inline">(' + enc.Duration + ')</div>'));
+        $enc.append($('<div class="encounterStart d-inline">[' + enc.start + ']</div>'));
+        $enc.append($('<div class="encounterStart d-inline mx-2">' + enc.name + '</div>'));
+        $enc.append($('<div class="encounterStart d-inline">(' + enc.duration + ')</div>'));
         if (i === this.CurrentEncounter) {
           clear = false;
           $enc.addClass('selected');
@@ -179,11 +179,11 @@ class EncounterTab extends EventBus {
       /**
        * @type PersistorEncounter
        */
-      let enc = this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].Encounter;
+      let enc = this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter;
 
       let pullAt = 'N/A';
-      if(!isNaN(enc.Offset)) {
-        pullAt = timeToString(enc.Offset, false);
+      if(!isNaN(enc.offset)) {
+        pullAt = timeToString(enc.offset, false);
       }
 
       let $info = $('<div class="encounterInfo"></div>');
@@ -191,13 +191,13 @@ class EncounterTab extends EventBus {
       $info.append($('<div class="encounterParse btn btn-primary pull-right mb-1">Reparse Encounter</div>'));
       $info.append($('<div class="encounterPrune btn btn-primary pull-right mb-1">Prune Encounter</div>'));
       $info.append($('<div class="encounterDelete btn btn-primary pull-right mb-1">Delete Encounter</div>'));
-      $info.append($('<div class="encounterZone">Zone: ' + enc.Zone + '</div>'));
-      $info.append($('<div class="encounterStart">Start: ' + dateTimeToString(enc.Start) + '</div>'));
-      $info.append($('<div class="encounterDuration">Duration: ' + timeToString(enc.Duration, false) + '</div>'));
+      $info.append($('<div class="encounterZone">Zone: ' + enc.zone + '</div>'));
+      $info.append($('<div class="encounterStart">Start: ' + dateTimeToString(enc.start) + '</div>'));
+      $info.append($('<div class="encounterDuration">Duration: ' + timeToString(enc.duration, false) + '</div>'));
       $info.append($('<div class="encounterOffset">Pull At: ' + pullAt + '</div>'));
-      $info.append($('<div class="encounterName">Name: ' + enc.Name + '</div>'));
-      $info.append($('<div class="encounterStartStatus">Start Status: ' + enc.StartStatus + '</div>'));
-      $info.append($('<div class="encounterEndStatus">End Status: ' + enc.EndStatus + '</div>'));
+      $info.append($('<div class="encounterName">Name: ' + enc.name + '</div>'));
+      $info.append($('<div class="encounterStartStatus">Start Status: ' + enc.startStatus + '</div>'));
+      $info.append($('<div class="encounterEndStatus">End Status: ' + enc.endStatus + '</div>'));
 
       this.$infoColumn.append($info);
     }

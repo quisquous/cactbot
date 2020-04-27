@@ -1,9 +1,35 @@
 class Encounter {
   constructor(encounterDay, encounterZone, logLines) {
-    this.ID = null;
-    this.logLines = logLines;
+    this.id = null;
     this.encounterZone = encounterZone;
     this.encounterDay = encounterDay;
+    let firstTimestamp = null;
+    if (typeof logLines[0] !== 'object') {
+      // Extract the required info from log lines for playback, two passes.
+      // First pass just to figure out the earliest timestamp.
+      logLines = logLines.map((line) => {
+        let matches = AnalyzedEncounter.lineTimestampRegex.exec(line);
+        let timestamp = +new Date(encounterDay + ' ' + matches[1]);
+        // Probably not the best way to fix the midnight wraparound bug, but it should work
+        if(firstTimestamp !== null) {
+          if (timestamp < firstTimestamp && firstTimestamp - timestamp > 1000*60*60*12) {
+            timestamp = timestamp + 1000*60*60*24;
+          }
+        }
+        firstTimestamp = firstTimestamp || timestamp;
+        firstTimestamp = Math.min(firstTimestamp, timestamp);
+        return {
+          timestamp: timestamp,
+          line: line,
+        };
+      });
+      this.logLines = logLines.map((line) => {
+        line.offset = line.timestamp - firstTimestamp;
+        return line;
+      });
+    } else {
+      this.logLines = logLines;
+    }
     this.initialize();
   }
 
@@ -18,31 +44,30 @@ class Encounter {
 
     for (let i = 0; i < this.logLines.length; ++i) {
       let res;
-      if (res = LogEventHandler.IsMatchStart(this.logLines[i])) {
-        let Timestamp = +new Date(this.encounterDay + ' ' + res.groups.LineTimestamp);
+      let line = this.logLines[i];
+      if (res = LogEventHandler.IsMatchStart(line.line)) {
         this.startStatus.add(res.groups.StartType);
         if (res.groups.StartIn >= 0) {
-          this.engageAt = Math.min(Timestamp + res.groups.StartIn, this.engageAt);
+          this.engageAt = Math.min(line.timestamp + res.groups.StartIn, this.engageAt);
         }
-      } else if (res = LogEventHandler.IsMatchEnd(this.logLines[i])) {
+      } else if (res = LogEventHandler.IsMatchEnd(line.line)) {
         this.endStatus = res.groups.EndType;
-      } else if (res = LogEventHandler.IsMatchEnd(this.logLines[i])) {
+      } else if (res = LogEventHandler.IsMatchEnd(line.line)) {
         this.endStatus = res.groups.EndType;
-      } else if ((res = EmulatorCommon.EventDetailsRegexes['15'].exec(this.logLines[i])) ||
-        (res = EmulatorCommon.EventDetailsRegexes['16'].exec(this.logLines[i]))) {
-        let Timestamp = +new Date(this.encounterDay + ' ' + res.groups.LineTimestamp);
-        if (res.groups.SourceID.startsWith('1') ||
-          (res.groups.SourceID.startsWith('4') && EmulatorCommon.PetNames.includes(res.groups.SourceName))) {
+      } else if ((res = EmulatorCommon.EventDetailsRegexes['15'].exec(line.line)) ||
+        (res = EmulatorCommon.EventDetailsRegexes['16'].exec(line.line))) {
+        if (res.groups.source_id.startsWith('1') ||
+          (res.groups.source_id.startsWith('4') && EmulatorCommon.PetNames.includes(res.groups.source_name))) {
           // Player or pet ability
-          if (res.groups.TargetID.startsWith('4') && !EmulatorCommon.PetNames.includes(res.groups.TargetName)) {
+          if (res.groups.target_id.startsWith('4') && !EmulatorCommon.PetNames.includes(res.groups.target_name)) {
             // Targetting non player or pet
-            this.firstPlayerAbility = Math.min(this.firstPlayerAbility, Timestamp);
+            this.firstPlayerAbility = Math.min(this.firstPlayerAbility, line.timestamp);
           }
-        } else if (res.groups.SourceID.startsWith('4') && !EmulatorCommon.PetNames.includes(res.groups.SourceName)) {
+        } else if (res.groups.source_id.startsWith('4') && !EmulatorCommon.PetNames.includes(res.groups.source_name)) {
           // Non-player ability
-          if (res.groups.TargetID.startsWith('1') || EmulatorCommon.PetNames.includes(res.groups.TargetName)) {
+          if (res.groups.target_id.startsWith('1') || EmulatorCommon.PetNames.includes(res.groups.target_name)) {
             // Targetting player or pet
-            this.firstEnemyAbility = Math.min(this.firstEnemyAbility, Timestamp);
+            this.firstEnemyAbility = Math.min(this.firstEnemyAbility, line.timestamp);
           }
         }
       }

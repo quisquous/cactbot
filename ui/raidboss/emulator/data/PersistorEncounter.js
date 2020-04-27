@@ -5,16 +5,16 @@ class PersistorEncounter {
    * @param {Encounter} encounter 
    */
   constructor(encounter) {
-    this.ID = encounter.ID;
-    this.Name = 'Unknown';
+    this.id = encounter.id;
+    this.name = 'Unknown';
     if (encounter.combatantTracker.mainCombatantID !== null) {
-      this.Name = encounter.combatantTracker.combatants[encounter.combatantTracker.mainCombatantID].Name;
+      this.name = encounter.combatantTracker.combatants[encounter.combatantTracker.mainCombatantID].name;
     }
-    this.Start = encounter.startTimestamp;
-    this.Offset = encounter.initialOffset;
-    this.StartStatus = encounter.startStatus;
-    this.EndStatus = encounter.endStatus;
-    this.Zone = encounter.encounterZone;
-    this.Duration = encounter.endTimestamp - encounter.startTimestamp;
+    this.start = encounter.startTimestamp;
+    this.offset = encounter.initialOffset;
+    this.startStatus = encounter.startStatus;
+    this.endStatus = encounter.endStatus;
+    this.zone = encounter.encounterZone;
+    this.duration = encounter.endTimestamp - encounter.startTimestamp;
   }
 }

@@ -1,6 +1,6 @@
 class EmulatedMapInfo {
-  CombatantOffsetX;
-  CombatantOffsetY;
+  combatantOffsetX;
+  combatantOffsetY;
   $MapElement;
 }
 

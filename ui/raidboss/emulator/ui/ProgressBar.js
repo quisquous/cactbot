@@ -27,9 +27,11 @@ class ProgressBar {
         me.$progressBarTooltip.tooltip('show');
       }
     }).on('click', function(e) {
-      let percent = e.offsetX / e.currentTarget.offsetWidth;
-      let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
-      me.emulator.seek(time);
+      if (me.emulator.currentEncounter) {
+        let percent = e.offsetX / e.currentTarget.offsetWidth;
+        let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
+        me.emulator.seek(time);
+      }
     });
     emulator.on('currentEncounterChanged', function(encounter) {
       me.$progressBarCurrent.text(timeToString(0, false));

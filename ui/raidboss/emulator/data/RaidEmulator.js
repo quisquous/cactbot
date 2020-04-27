@@ -2,9 +2,9 @@ class RaidEmulator extends EventBus {
   static PlaybackSpeed = 10;
 
   Playing = false;
-  CurrentTimestamp = null;
-  CurrentLogLineIndex = null;
-  LastLogTimestamp = null;
+  currentTimestamp = null;
+  currentLogLineIndex = null;
+  lastLogTimestamp = null;
 
   /**
    * @type {AnalyzedEncounter}
@@ -38,19 +38,20 @@ class RaidEmulator extends EventBus {
       return false;
     }
     this.SetCurrent(index);
+    return true;
   }
 
   selectPerspective(ID) {
     this.currentEncounter.selectPerspective(ID);
-    this.seek(this.CurrentTimestamp);
+    this.seek(this.currentTimestamp);
   }
 
   play() {
     if (this.currentEncounter === null) {
       return false;
     }
-    this.CurrentTimestamp = this.CurrentTimestamp || -1;
-    this.CurrentLogLineIndex = this.CurrentLogLineIndex || -1;
+    this.currentTimestamp = this.currentTimestamp || -1;
+    this.currentLogLineIndex = this.currentLogLineIndex || -1;
     // Use setInterval since it should account for differences in execution time automagically
     this.Playing = window.setInterval(this.Tick.bind(this), RaidEmulator.PlaybackSpeed);
     this.dispatch('play');
@@ -66,50 +67,50 @@ class RaidEmulator extends EventBus {
 
   async seek(time) {
     await this.dispatch('preSeek', time);
-    this.CurrentLogLineIndex = -1;
+    this.currentLogLineIndex = -1;
     let logs = [];
     let offsets = [];
-    for (let i = this.CurrentLogLineIndex + 1; i < this.currentEncounter.logLines.length; ++i) {
-      if (this.currentEncounter.logLines[i].Offset <= time) {
-        logs.push(this.currentEncounter.logLines[i].Line);
-        offsets.push(this.currentEncounter.logLines[i].Offset);
-        this.LastLogTimestamp = this.currentEncounter.logLines[i].Timestamp;
-        ++this.CurrentLogLineIndex;
-        await this.dispatch('midSeek', this.currentEncounter.logLines[i].Offset, this.currentEncounter.logLines[i].Line);
+    for (let i = this.currentLogLineIndex + 1; i < this.currentEncounter.logLines.length; ++i) {
+      if (this.currentEncounter.encounter.logLines[i].offset <= time) {
+        logs.push(this.currentEncounter.encounter.logLines[i].line);
+        offsets.push(this.currentEncounter.encounter.logLines[i].offset);
+        this.lastLogTimestamp = this.currentEncounter.encounter.logLines[i].timestamp;
+        ++this.currentLogLineIndex;
+        await this.dispatch('midSeek', this.currentEncounter.encounter.logLines[i].offset, this.currentEncounter.encounter.logLines[i].line);
         continue;
       }
       break;
     }
-    this.CurrentTimestamp = time;
+    this.currentTimestamp = time;
     if (logs.length) {
       await this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
     }
     await this.dispatch('postSeek', time);
-    await this.dispatch('tick', this.CurrentTimestamp, this.LastLogTimestamp);
+    await this.dispatch('tick', this.currentTimestamp, this.lastLogTimestamp);
   }
 
   async Tick() {
-    if (this.CurrentLogLineIndex + 1 >= this.currentEncounter.logLines.length) {
+    if (this.currentLogLineIndex + 1 >= this.currentEncounter.encounter.logLines.length) {
       this.pause();
       return;
     }
     let logs = [];
     let offsets = [];
-    for (let i = this.CurrentLogLineIndex + 1; i < this.currentEncounter.logLines.length; ++i) {
-      if (this.currentEncounter.logLines[i].Offset <= this.CurrentTimestamp + RaidEmulator.PlaybackSpeed) {
-        logs.push(this.currentEncounter.logLines[i].Line);
-        offsets.push(this.currentEncounter.logLines[i].Offset);
-        this.LastLogTimestamp = this.currentEncounter.logLines[i].Timestamp;
-        ++this.CurrentLogLineIndex;
+    for (let i = this.currentLogLineIndex + 1; i < this.currentEncounter.encounter.logLines.length; ++i) {
+      if (this.currentEncounter.encounter.logLines[i].offset <= this.currentTimestamp + RaidEmulator.PlaybackSpeed) {
+        logs.push(this.currentEncounter.encounter.logLines[i].line);
+        offsets.push(this.currentEncounter.encounter.logLines[i].offset);
+        this.lastLogTimestamp = this.currentEncounter.encounter.logLines[i].timestamp;
+        ++this.currentLogLineIndex;
         continue;
       }
       break;
     }
-    this.CurrentTimestamp += RaidEmulator.PlaybackSpeed;
+    this.currentTimestamp += RaidEmulator.PlaybackSpeed;
     if (logs.length) {
       await this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
     }
-    await this.dispatch('tick', this.CurrentTimestamp, this.LastLogTimestamp);
+    await this.dispatch('tick', this.currentTimestamp, this.lastLogTimestamp);
   }
 
   setPopupText(popupText) {

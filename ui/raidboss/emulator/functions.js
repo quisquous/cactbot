@@ -52,3 +52,7 @@ function properCase(str) {
     (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
   );
 }
+
+function spacePadLeft(str, len) {
+  return str.padStart(len, ' ');
+}

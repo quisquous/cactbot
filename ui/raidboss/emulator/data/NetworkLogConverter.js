@@ -1,5 +1,5 @@
 class NetworkLogConverter {
-  static LineRegex = /^(?<Event>\d+)\|(?<Timestamp>[^|]+)\|(?<Line>.*)\|(?<Hash>[^|]+)$/i;
+  static lineRegex = /^(?<Event>\d+)\|(?<timestamp>[^|]+)\|(?<line>.*)\|(?<Hash>[^|]+)$/i;
 
   static ShowAbilityNamesFor = [
     '4C4', // Excognition
@@ -142,7 +142,7 @@ class NetworkLogConverter {
   }
 
   async convertFile(Data) {
-    let ret = await this.ConvertLines(
+    let ret = await this.convertLines(
       // Split Data on event|timestamp|
       Data.split(/(\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|.*?)\r?\n(?=\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|)/gm)
       // Remove blank lines since each actual line ends up separated by a blank line
@@ -151,28 +151,28 @@ class NetworkLogConverter {
     return ret;
   }
 
-  async ConvertLines(Lines) {
+  async convertLines(lines) {
     this.Combatants = {};
-    return Lines
+    return lines
       .map((l) => this.ExtractData(l))
-      .map((l) => this.ConvertLine(l));
+      .map((l) => this.convertLine(l));
   }
 
-  ExtractData(Line) {
+  ExtractData(line) {
     let ret = {
-      NetworkLine: Line,
-      Line: null,
-      Timestamp: null,
-      LineParts: NetworkLogConverter.LineRegex.exec(Line),
-      LineEvent: null,
-      ExplodedLine: null,
+      networkLine: line,
+      line: null,
+      timestamp: null,
+      lineParts: NetworkLogConverter.lineRegex.exec(line),
+      lineEvent: null,
+      explodedLine: null,
     };
-    ret.LineEvent = zeroPad(Number(ret.LineParts.groups.Event).toString(16).toUpperCase());
-    ret.ExplodedLine = ret.LineParts.groups.Line.split('|');
-    ret.Timestamp = +new Date(ret.LineParts.groups.Timestamp);
+    ret.lineEvent = zeroPad(Number(ret.lineParts.groups.Event).toString(16).toUpperCase());
+    ret.explodedLine = ret.lineParts.groups.line.split('|');
+    ret.timestamp = +new Date(ret.lineParts.groups.timestamp);
 
-    if (this['Extract_' + ret.LineEvent] !== undefined) {
-      this['Extract_' + ret.LineEvent](ret);
+    if (this['Extract_' + ret.lineEvent] !== undefined) {
+      this['Extract_' + ret.lineEvent](ret);
     }
 
     return ret;
@@ -202,127 +202,127 @@ class NetworkLogConverter {
   }
 
   Extract_02(ret) {
-    this.AddCombatant(ret.ExplodedLine[0], ret.ExplodedLine[1]);
+    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
   }
 
   Extract_03(ret) {
-    this.AddCombatant(ret.ExplodedLine[0], ret.ExplodedLine[1]);
-    this.Combatants[ret.ExplodedLine[0]].Spawn = Math.max(this.Combatants[ret.ExplodedLine[0]].Spawn, ret.Timestamp);
+    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
+    this.Combatants[ret.explodedLine[0]].Spawn = Math.max(this.Combatants[ret.explodedLine[0]].Spawn, ret.timestamp);
   }
 
   Extract_04(ret) {
-    this.AddCombatant(ret.ExplodedLine[0], ret.ExplodedLine[1]);
-    this.Combatants[ret.ExplodedLine[0]].Despawn = Math.min(this.Combatants[ret.ExplodedLine[0]].Despawn, ret.Timestamp);
+    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
+    this.Combatants[ret.explodedLine[0]].Despawn = Math.min(this.Combatants[ret.explodedLine[0]].Despawn, ret.timestamp);
   }
 
   Extract_14(ret) {
-    this.AddCombatant(ret.ExplodedLine[0], ret.ExplodedLine[1]);
-    this.AddAbility(ret.ExplodedLine[2], ret.ExplodedLine[3]);
-    this.AddCombatant(ret.ExplodedLine[4], ret.ExplodedLine[5]);
+    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
+    this.AddAbility(ret.explodedLine[2], ret.explodedLine[3]);
+    this.AddCombatant(ret.explodedLine[4], ret.explodedLine[5]);
   }
 
   Extract_18(ret) {
-    this.AddCombatant(ret.ExplodedLine[0], ret.ExplodedLine[1]);
+    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
   }
 
   Extract_1A(ret) {
-    this.AddAbility(ret.ExplodedLine[0], ret.ExplodedLine[1]);
-    this.AddCombatant(ret.ExplodedLine[3], ret.ExplodedLine[4]);
-    this.AddCombatant(ret.ExplodedLine[5], ret.ExplodedLine[6]);
+    this.AddAbility(ret.explodedLine[0], ret.explodedLine[1]);
+    this.AddCombatant(ret.explodedLine[3], ret.explodedLine[4]);
+    this.AddCombatant(ret.explodedLine[5], ret.explodedLine[6]);
   }
 
   Extract_1E(ret) {
-    this.AddAbility(ret.ExplodedLine[0], ret.ExplodedLine[1]);
-    this.AddCombatant(ret.ExplodedLine[3], ret.ExplodedLine[4]);
-    this.AddCombatant(ret.ExplodedLine[5], ret.ExplodedLine[6]);
+    this.AddAbility(ret.explodedLine[0], ret.explodedLine[1]);
+    this.AddCombatant(ret.explodedLine[3], ret.explodedLine[4]);
+    this.AddCombatant(ret.explodedLine[5], ret.explodedLine[6]);
   }
 
-  ConvertLine(ret) {
-    if (this['Convert_' + ret.LineEvent] !== undefined) {
-      this['Convert_' + ret.LineEvent](ret);
+  convertLine(ret) {
+    if (this['Convert_' + ret.lineEvent] !== undefined) {
+      this['Convert_' + ret.lineEvent](ret);
     } else {
-      this.ConvertGenericLine(ret);
+      this.convertGenericLine(ret);
     }
     return ret;
   }
 
-  GetLinePrefix(Timestamp, LineEvent) {
-    return '[' + timeToTimeString(Timestamp, true) + '] ' + LineEvent + ':';
+  getLinePrefix(timestamp, lineEvent) {
+    return '[' + timeToTimeString(timestamp, true) + '] ' + lineEvent + ':';
   }
 
-  ConvertGenericLine(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      ret.LineParts.groups.Line.replace(/\|/g, ':');
+  convertGenericLine(ret) {
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      ret.lineParts.groups.line.replace(/\|/g, ':');
   }
 
   Convert_00(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      ret.ExplodedLine[0] + ':' + ret.ExplodedLine[1] + ':' + ret.ExplodedLine.slice(2).join('|').trim();
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      ret.explodedLine[0] + ':' + ret.explodedLine[1] + ':' + ret.explodedLine.slice(2).join('|').trim();
 
-    ret.Line = ret.Line.replace(/([^ ]+)( 00:[^:]{4}:):/, '$1$2');
+    ret.line = ret.line.replace(/([^ ]+)( 00:[^:]{4}:):/, '$1$2');
 
-    ret.Line = NetworkLogConverter.ReplaceChatSymbols(ret.Line);
+    ret.line = NetworkLogConverter.ReplaceChatSymbols(ret.line);
   }
 
   Convert_01(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      'Changed Zone to ' + this.BugProperCase(ret.ExplodedLine[1]) + '.';
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      'Changed Zone to ' + this.BugProperCase(ret.explodedLine[1]) + '.';
   }
 
   Convert_02(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      'Changed primary player to ' + ret.ExplodedLine[1] + '.';
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      'Changed primary player to ' + ret.explodedLine[1] + '.';
   }
 
   Convert_03(ret) {
-    let Job = NetworkLogConverter.JobIDToName[parseInt(ret.ExplodedLine[2], 16)];
-    let CombatantName = ret.ExplodedLine[1];
-    if (ret.ExplodedLine[6] !== '') {
-      CombatantName = CombatantName + '(' + ret.ExplodedLine[6] + ')';
+    let Job = NetworkLogConverter.JobIDToName[parseInt(ret.explodedLine[2], 16)];
+    let CombatantName = ret.explodedLine[1];
+    if (ret.explodedLine[6] !== '') {
+      CombatantName = CombatantName + '(' + ret.explodedLine[6] + ')';
     }
     // This last part is guesswork for the area between 7 and 8.
-    let UnknownValue = ret.ExplodedLine[7] + zeroPad(ret.ExplodedLine[8], 8 + Math.max(0, 6 - ret.ExplodedLine[7].length));
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      ret.ExplodedLine[0].toUpperCase() + ':' +
+    let UnknownValue = ret.explodedLine[7] + zeroPad(ret.explodedLine[8], 8 + Math.max(0, 6 - ret.explodedLine[7].length));
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      ret.explodedLine[0].toUpperCase() + ':' +
       'Added new combatant ' + CombatantName +
       '.  Job: ' + Job +
-      ' Level: ' + parseInt(ret.ExplodedLine[3], 16) +
-      ' Max HP: ' + ret.ExplodedLine[10] +
-      ' Max MP: ' + ret.ExplodedLine[12] +
-      ' Pos: (' + ret.ExplodedLine[15] + ',' + ret.ExplodedLine[16] + ',' + ret.ExplodedLine[17] + ')';
+      ' Level: ' + parseInt(ret.explodedLine[3], 16) +
+      ' Max HP: ' + ret.explodedLine[10] +
+      ' Max MP: ' + ret.explodedLine[12] +
+      ' Pos: (' + ret.explodedLine[15] + ',' + ret.explodedLine[16] + ',' + ret.explodedLine[17] + ')';
     if (UnknownValue !== '00000000000000') {
-      ret.Line = ret.Line + ' (' + UnknownValue + ')';
+      ret.line = ret.line + ' (' + UnknownValue + ')';
     }
-    ret.Line = ret.Line + '.';
+    ret.line = ret.line + '.';
   }
 
   Convert_04(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      ret.ExplodedLine[0].toUpperCase() + ':' +
-      'Removing combatant ' + ret.ExplodedLine[1] +
-      '.  Max HP: ' + parseInt(ret.ExplodedLine[10], 16) +
-      '. Pos: (' + ret.ExplodedLine[15] + ',' + ret.ExplodedLine[16] + ',' + ret.ExplodedLine[17] + ').';
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      ret.explodedLine[0].toUpperCase() + ':' +
+      'Removing combatant ' + ret.explodedLine[1] +
+      '.  Max HP: ' + parseInt(ret.explodedLine[10], 16) +
+      '. Pos: (' + ret.explodedLine[15] + ',' + ret.explodedLine[16] + ',' + ret.explodedLine[17] + ').';
   }
 
   Convert_0C(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      'Player Stats: ' + ret.LineParts.groups.Line.replace(/\|/g, ':');
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      'Player Stats: ' + ret.lineParts.groups.line.replace(/\|/g, ':');
   }
 
   Convert_14(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      ret.ExplodedLine[2] + ':' +
-      this.BugProperCase(ret.ExplodedLine[1]) + ' starts using ' + ret.ExplodedLine[3] +
-      ' on ' + this.BugProperCase((ret.ExplodedLine[5].length === 0 ? 'Unknown' : ret.ExplodedLine[5])) + '.';
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      ret.explodedLine[2] + ':' +
+      this.BugProperCase(ret.explodedLine[1]) + ' starts using ' + ret.explodedLine[3] +
+      ' on ' + this.BugProperCase((ret.explodedLine[5].length === 0 ? 'Unknown' : ret.explodedLine[5])) + '.';
   }
 
-  ResolveName(ExplodedLine, IDIndex, NameIndex, FallbackIDIndex = null, FallbackNameIndex = null) {
-    let Name = ExplodedLine[NameIndex];
+  ResolveName(explodedLine, IDIndex, NameIndex, FallbackIDIndex = null, FallbackNameIndex = null) {
+    let Name = explodedLine[NameIndex];
 
     if (FallbackIDIndex !== null) {
-      if (ExplodedLine[IDIndex] === 'E0000000' && Name === '') {
-        if (ExplodedLine[FallbackIDIndex].startsWith('4')) {
-          Name = ExplodedLine[FallbackNameIndex];
+      if (explodedLine[IDIndex] === 'E0000000' && Name === '') {
+        if (explodedLine[FallbackIDIndex].startsWith('4')) {
+          Name = explodedLine[FallbackNameIndex];
         } else {
           Name = 'Unknown';
         }
@@ -330,7 +330,7 @@ class NetworkLogConverter {
     }
 
     if (Name === '') {
-      Name = this.Combatants[ExplodedLine[IDIndex]].Name;
+      Name = this.Combatants[explodedLine[IDIndex]].Name;
     }
 
     Name = this.BugProperCase(Name);
@@ -339,70 +339,70 @@ class NetworkLogConverter {
   }
 
   Convert_18(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent);
-    if (NetworkLogConverter.ShowAbilityNamesFor.includes(ret.ExplodedLine[3])) {
-      ret.Line = ret.Line + this.Abilities[ret.ExplodedLine[3]] + ' ';
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent);
+    if (NetworkLogConverter.ShowAbilityNamesFor.includes(ret.explodedLine[3])) {
+      ret.line = ret.line + this.Abilities[ret.explodedLine[3]] + ' ';
     }
-    ret.Line = ret.Line + ret.ExplodedLine[2] + ' Tick on ' + this.ResolveName(ret.ExplodedLine, 0, 1) +
-      ' for ' + parseInt(ret.ExplodedLine[4], 16) + ' damage.';
+    ret.line = ret.line + ret.explodedLine[2] + ' Tick on ' + this.ResolveName(ret.explodedLine, 0, 1) +
+      ' for ' + parseInt(ret.explodedLine[4], 16) + ' damage.';
   }
 
   Convert_19(ret) {
     let Name;
-    if(ret.ExplodedLine[2] === '00') {
+    if(ret.explodedLine[2] === '00') {
       Name = '';
     } else {
-      Name = this.ResolveName(ret.ExplodedLine, 2, 3);
+      Name = this.ResolveName(ret.explodedLine, 2, 3);
     }
 
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      this.BugProperCase(ret.ExplodedLine[1]) + ' was defeated by ' +
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      this.BugProperCase(ret.explodedLine[1]) + ' was defeated by ' +
       Name + '.';
 
   }
 
   Convert_1A(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      ret.ExplodedLine[5] + ':' +
-      this.BugProperCase(ret.ExplodedLine[6]) + ' gains the effect of ' + ret.ExplodedLine[1] + ' from ';
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      ret.explodedLine[5] + ':' +
+      this.BugProperCase(ret.explodedLine[6]) + ' gains the effect of ' + ret.explodedLine[1] + ' from ';
 
-    let Name = this.ResolveName(ret.ExplodedLine, 3, 4, 5, 6);
+    let Name = this.ResolveName(ret.explodedLine, 3, 4, 5, 6);
 
-    ret.Line = ret.Line + Name + ' for ';
-    ret.Line = ret.Line + ret.ExplodedLine[2];
-    ret.Line = ret.Line + ' Seconds.';
+    ret.line = ret.line + Name + ' for ';
+    ret.line = ret.line + ret.explodedLine[2];
+    ret.line = ret.line + ' Seconds.';
 
-    let StackCount = parseInt(ret.ExplodedLine[7], 16);
-    if (StackCount > 0 && StackCount < 20 && NetworkLogConverter.ShowStackCountFor.includes(ret.ExplodedLine[0])) {
-      ret.Line = ret.Line + ' (' + StackCount + ')';
+    let StackCount = parseInt(ret.explodedLine[7], 16);
+    if (StackCount > 0 && StackCount < 20 && NetworkLogConverter.ShowStackCountFor.includes(ret.explodedLine[0])) {
+      ret.line = ret.line + ' (' + StackCount + ')';
     }
   }
 
   Convert_1E(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      ret.ExplodedLine[5] + ':' +
-      this.BugProperCase(ret.ExplodedLine[6]) + ' loses the effect of ' + ret.ExplodedLine[1] + ' from ';
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      ret.explodedLine[5] + ':' +
+      this.BugProperCase(ret.explodedLine[6]) + ' loses the effect of ' + ret.explodedLine[1] + ' from ';
 
-    let Name = this.ResolveName(ret.ExplodedLine, 3, 4, 5, 6);
+    let Name = this.ResolveName(ret.explodedLine, 3, 4, 5, 6);
 
-    ret.Line = ret.Line + Name + '.';
+    ret.line = ret.line + Name + '.';
 
-    let StackCount = parseInt(ret.ExplodedLine[7], 16);
-    if (StackCount > 0 && StackCount < 20 && NetworkLogConverter.ShowStackCountFor.includes(ret.ExplodedLine[0])) {
-      ret.Line = ret.Line + ' (' + StackCount + ')';
+    let StackCount = parseInt(ret.explodedLine[7], 16);
+    if (StackCount > 0 && StackCount < 20 && NetworkLogConverter.ShowStackCountFor.includes(ret.explodedLine[0])) {
+      ret.line = ret.line + ' (' + StackCount + ')';
     }
   }
 
   Convert_1F(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      ret.ExplodedLine[0] + ':' + this.Combatants[ret.ExplodedLine[0]].Name + ':' +
-      ret.ExplodedLine[1] + ':' + ret.ExplodedLine[2] + ':' +
-      ret.ExplodedLine[3] + ':' + ret.ExplodedLine[4];
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      ret.explodedLine[0] + ':' + this.Combatants[ret.explodedLine[0]].Name + ':' +
+      ret.explodedLine[1] + ':' + ret.explodedLine[2] + ':' +
+      ret.explodedLine[3] + ':' + ret.explodedLine[4];
   }
 
   Convert_24(ret) {
-    ret.Line = this.GetLinePrefix(ret.Timestamp, ret.LineEvent) +
-      'Limit Break: ' + ret.ExplodedLine[0];
+    ret.line = this.getLinePrefix(ret.timestamp, ret.lineEvent) +
+      'Limit Break: ' + ret.explodedLine[0];
   }
 
   BugProperCase(str) {
@@ -412,15 +412,15 @@ class NetworkLogConverter {
     return str;
   }
 
-  static ReplaceChatSymbols(Line) {
+  static ReplaceChatSymbols(line) {
     for (let i in NetworkLogConverter.ChatSymbolReplacements) {
-      Line = Line.replace(NetworkLogConverter.ChatSymbolReplacements[i].Search, NetworkLogConverter.ChatSymbolReplacements[i].Replace);
+      line = line.replace(NetworkLogConverter.ChatSymbolReplacements[i].Search, NetworkLogConverter.ChatSymbolReplacements[i].Replace);
     }
-    return Line;
+    return line;
   }
 
-  async TestConvert(BaseLines, NetworkLines, IgnoreACTBugs = false) {
-    let ConvertedLines = await this.ConvertLines(NetworkLines);
+  async TestConvert(baseLines, networkLines, IgnoreACTBugs = false) {
+    let convertedLines = await this.convertLines(networkLines);
     let Bug_250_Offset = 0;
     let Status = {
       Same: 0,
@@ -430,26 +430,26 @@ class NetworkLogConverter {
       Warnings: [],
       Ignoreds: [],
     };
-    for (let i in BaseLines) {
-      let CL = ConvertedLines[(parseInt(i) + Bug_250_Offset).toString()];
-      let BL = BaseLines[i];
+    for (let i in baseLines) {
+      let CL = convertedLines[(parseInt(i) + Bug_250_Offset).toString()];
+      let BL = baseLines[i];
       CL === undefined && console.log(i, Bug_250_Offset, (parseInt(i) + Bug_250_Offset).toString(), Status);
-      if (CL.Line !== BL) {
+      if (CL.line !== BL) {
         if (IgnoreACTBugs) {
           let ClonedCL;
-          switch (CL.LineEvent) {
+          switch (CL.lineEvent) {
             case '00':
-              if (CL.Line.endsWith('\\')) {
+              if (CL.line.endsWith('\\')) {
                 let BLSplit = BL.split(/(\[\d\d:\d\d:\d\d.\d\d\d\].*?(?=\[\d\d:\d\d:\d\d.\d\d\d\]))/g).filter(l => l !== '').slice(0);
                 for (let b in BLSplit) {
                   let BL2 = BLSplit[b];
-                  let CL2 = ConvertedLines[(parseInt(i) + Bug_250_Offset).toString()];
-                  if (BL2 !== CL2.Line.replace(/\\/g, '')) {
+                  let CL2 = convertedLines[(parseInt(i) + Bug_250_Offset).toString()];
+                  if (BL2 !== CL2.line.replace(/\\/g, '')) {
                     ++Status.Different;
-                    Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}\n\n${JSON.stringify(CL, null, 2)}`);
+                    Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}\n\n${JSON.stringify(CL, null, 2)}`);
                   } else {
                     ++Status.Ignored;
-                    Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}`);
+                    Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}`);
                   }
                   ++Bug_250_Offset;
                 }
@@ -458,58 +458,58 @@ class NetworkLogConverter {
               break;
             case '14':
               ClonedCL = $.extend(true, {}, CL);
-              ClonedCL.ExplodedLine[1] = this.Combatants[ClonedCL.ExplodedLine[0]].Name;
+              ClonedCL.explodedLine[1] = this.Combatants[ClonedCL.explodedLine[0]].Name;
               this.Convert_14(ClonedCL);
-              if (ClonedCL.Line === BL) {
+              if (ClonedCL.line === BL) {
                 ++Status.Ignored;
-                Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}`);
+                Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}`);
                 break;
               }
-              ClonedCL.ExplodedLine[5] = this.Combatants[ClonedCL.ExplodedLine[4]].Name;
+              ClonedCL.explodedLine[5] = this.Combatants[ClonedCL.explodedLine[4]].Name;
               this.Convert_14(ClonedCL);
-              if (ClonedCL.Line === BL) {
+              if (ClonedCL.line === BL) {
                 ++Status.Ignored;
-                Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}`);
+                Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}`);
                 break;
               }
               ClonedCL = $.extend(true, {}, CL);
-              ClonedCL.ExplodedLine[5] = this.Combatants[ClonedCL.ExplodedLine[4]].Name;
+              ClonedCL.explodedLine[5] = this.Combatants[ClonedCL.explodedLine[4]].Name;
               this.Convert_14(ClonedCL);
-              if (ClonedCL.Line === BL) {
+              if (ClonedCL.line === BL) {
                 ++Status.Ignored;
-                Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}`);
+                Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}`);
                 break;
               }
               ++Status.Different;
-              Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}\n\n${JSON.stringify(CL, null, 2)}`);
+              Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}\n\n${JSON.stringify(CL, null, 2)}`);
               break;
             case '19':
               if (!this.TestConvert_Check_19(i, Bug_250_Offset, BL, CL, Status)) {
                 ++Status.Different;
-                Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}\n\n${JSON.stringify(CL, null, 2)}`);
+                Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}\n\n${JSON.stringify(CL, null, 2)}`);
               }
               break;
             case '1A':
             case '1E':
               if (!this.TestConvert_Check_1A_1E(i, Bug_250_Offset, BL, CL, Status)) {
                 ++Status.Different;
-                Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}\n\n${JSON.stringify(CL, null, 2)}`);
+                Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}\n\n${JSON.stringify(CL, null, 2)}`);
               }
               break;
             default:
               ++Status.Different;
-              Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}\n\n${JSON.stringify(CL, null, 2)}`);
+              Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}\n\n${JSON.stringify(CL, null, 2)}`);
               break;
           }
         } else {
           ++Status.Different;
-          Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.NetworkLine}\n${BL}\n${CL.Line}\n\n${JSON.stringify(CL, null, 2)}`);
+          Status.Errors.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!\n${CL.networkLine}\n${BL}\n${CL.line}\n\n${JSON.stringify(CL, null, 2)}`);
         }
       } else {
         ++Status.Same;
       }
-      delete BaseLines[i];
-      delete ConvertedLines[(parseInt(i) + Bug_250_Offset).toString()];
+      delete baseLines[i];
+      delete convertedLines[(parseInt(i) + Bug_250_Offset).toString()];
     }
 
     return Status;
@@ -524,16 +524,16 @@ class NetworkLogConverter {
   }
 
   TestConvert_Check_StringUtil(i, Bug_250_Offset, Base, Converted, Status, CheckSet, Checks = []) {
-    let Line = Converted.Line;
+    let line = Converted.line;
     for (let c in Checks) {
-      Line = Line.replace(Checks[c].S, Checks[c].R);
+      line = line.replace(Checks[c].S, Checks[c].R);
     }
-    if (Line === Base) {
+    if (line === Base) {
       ++Status.Ignored;
       Status.Ignoreds.push(`Base line and converted network line vary at index ${i},${Bug_250_Offset}!
-${Converted.NetworkLine}
+${Converted.networkLine}
 ${Base}
-${Converted.Line}
+${Converted.line}
 Applied text fixes:
 ${JSON.stringify(Checks, null, 2)}`);
       return true;

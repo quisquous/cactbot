@@ -87,9 +87,7 @@ let Options = {
         let firstLine = 1;
         for (let i = 0; i < enc.logLines.length; ++i) {
           let l = enc.logLines[i];
-          let res = EmulatorCommon.LogLineRegex.exec(l);
-          let timestamp = +new Date(enc.encounterDay + ' ' + res[1]);
-          if (timestamp >= enc.startTimestamp + enc.initialOffset) {
+          if (l.timestamp >= enc.startTimestamp + enc.initialOffset) {
             firstLine = i;
             break;
           }
@@ -159,8 +157,7 @@ let Options = {
         let importFile = (txt) => {
           logConverter.convertFile(txt).then((lines) => {
             let localLogHandler = new LogEventHandler();
-            localLogHandler.currentDate = timeToDateString(lines[0].Timestamp);
-            lines = lines.map((l) => l.Line);
+            localLogHandler.currentDate = timeToDateString(lines[0].timestamp);
 
             localLogHandler.on('fight', async (day, zone, lines) => {
               let enc = new Encounter(day, zone, lines);
