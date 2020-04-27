@@ -104,7 +104,7 @@ let Options = {
 let kEarlyPullText = {
   en: 'early pull',
   de: 'zu früh angegriffen',
-  fr: 'attaque trop tôt',
+  fr: 'early pull',
   // FIXME
   ja: 'early pull',
   cn: '抢开',
@@ -114,7 +114,7 @@ let kEarlyPullText = {
 let kLatePullText = {
   en: 'late pull',
   de: 'zu spät angegriffen',
-  fr: 'attaque trop tard',
+  fr: 'late pull',
   // FIXME
   ja: 'late pull',
   cn: '晚开',
@@ -124,7 +124,7 @@ let kLatePullText = {
 const kPartyWipeText = {
   en: 'Party Wipe',
   de: 'Party Wipe',
-  fr: 'Équipe anéantie',
+  fr: 'Party Wipe',
   ja: 'Party Wipe',
   cn: '团灭',
   ko: '파티 전멸',
