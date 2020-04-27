@@ -131,6 +131,8 @@ if __name__ == "__main__":
     if not args.locale in all_locales:
         raise parser.error("Invalid locale: " + args.locale)
     locales = [args.locale]
+    if not args.filter:
+        args.filter = ""
 
     for file in find_all_javascript_files(args.filter):
         parse_trigger_file_for_timelines(file, args.locale)
