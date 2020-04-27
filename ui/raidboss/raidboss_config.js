@@ -1174,7 +1174,6 @@ UserConfig.registerOptions('raidboss', {
         en: 'Alert sound volume (0-1)',
         de: 'Alert Lautstärke (0-1)',
         fr: 'Volume de l\'alerte (0-1)',
-        fr: 'Volume des alertes (0-1)',
         ja: '警告音声の音量（0-1）',
         cn: '警告声音音量（0-1）',
         ko: '주의 소리 크기 (0-1)',
