@@ -319,6 +319,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         ':Tenzen': ':텐젠',
         'Eastern Pyre': '동염',
