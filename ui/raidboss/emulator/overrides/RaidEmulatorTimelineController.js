@@ -1,14 +1,13 @@
+'use strict';
+
 class RaidEmulatorTimelineController extends TimelineController {
-
-  emulator;
-
   bindTo(emulator) {
     this.emulator = emulator;
-    if (this.activeTimeline) {
+    if (this.activeTimeline)
       this.activeTimeline.bindTo(emulator);
-    }
   }
 
+  // Override
   SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles) {
     this.activeTimeline = null;
 
@@ -27,14 +26,15 @@ class RaidEmulatorTimelineController extends TimelineController {
       text = text + '\n' + timelines[i];
 
     if (text) {
-      this.activeTimeline = new RaidEmulatorTimeline(text, replacements, triggers, styles, this.options);
-      if (this.emulator) {
+      this.activeTimeline =
+        new RaidEmulatorTimeline(text, replacements, triggers, styles, this.options);
+      if (this.emulator)
         this.activeTimeline.bindTo(this.emulator);
-      }
     }
     this.ui.SetTimeline(this.activeTimeline);
   }
 
+  // Override
   OnLogEvent(e) {
     if (!this.activeTimeline)
       return;
@@ -44,5 +44,4 @@ class RaidEmulatorTimelineController extends TimelineController {
       this.activeTimeline.OnLogLine(e.detail.logs[i]);
     }
   }
-
 }

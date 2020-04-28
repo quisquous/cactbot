@@ -1,23 +1,12 @@
+'use strict';
+
 class RaidEmulatorTimelineUI extends TimelineUI {
-
-  emulatedTimerBars = [];
-  emulatedTimeOffset = 0;
-  $barContainer;
-  emulatedStatus = 'pause';
-
   constructor(options) {
     super(options);
+    this.emulatedTimerBars = [];
+    this.emulatedTimeOffset = 0;
+    this.emulatedStatus = 'pause';
     this.$barContainer = jQuery('.timer-bar-container');
-  }
-
-  Init() {
-    if (this.init)
-      return;
-    this.init = true;
-    this.timerlist = { clear: () => { } };
-
-    this.activeBars = {};
-    this.expireTimers = {};
   }
 
   bindTo(emulator) {
@@ -25,14 +14,16 @@ class RaidEmulatorTimelineUI extends TimelineUI {
       this.emulatedTimeOffset = timestampOffset;
       for (let i in this.emulatedTimerBars) {
         let bar = this.emulatedTimerBars[i];
-        this.UpdateBar(bar, timestampOffset);
+        this.updateBar(bar, timestampOffset);
       }
       let toRemove = this.emulatedTimerBars.filter((bar) => bar.forceRemoveAt <= timestampOffset);
       for (let i in toRemove) {
         let bar = toRemove[i];
         bar.$progress.remove();
       }
-      this.emulatedTimerBars = this.emulatedTimerBars.filter((bar) => bar.forceRemoveAt > timestampOffset);
+      this.emulatedTimerBars = this.emulatedTimerBars.filter((bar) => {
+        return bar.forceRemoveAt > timestampOffset;
+      });
       this.timeline && this.timeline.timebase && this.timeline._OnUpdateTimer();
     });
     emulator.on('play', () => {
@@ -59,7 +50,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
       this.timeline && this.timeline.EmulatedSync(time);
       for (let i in this.emulatedTimerBars) {
         let bar = this.emulatedTimerBars[i];
-        this.UpdateBar(bar, time);
+        this.updateBar(bar, time);
       }
     });
     emulator.on('currentEncounterChanged', () => {
@@ -73,30 +64,43 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     });
   }
 
-  UpdateBar(bar, timestampOffset) {
+  updateBar(bar, timestampOffset) {
     let barElapsed = timestampOffset - bar.start;
     let barProg = Math.min((barElapsed / bar.duration) * 100, 100);
-    if (bar.style === 'empty') {
+    if (bar.style === 'empty')
       barProg = 100 - barProg;
-    }
+
     let rightText = ((bar.duration - barElapsed) / 1000).toFixed(1);
-    if (barProg >= 100) {
+    if (barProg >= 100)
       rightText = '';
-    }
+
     bar.$leftLabel.text(bar.event.text);
     bar.$rightLabel.text(rightText);
     bar.$bar.attr('aria-valuenow', barElapsed);
     bar.$bar.css('width', barProg + '%');
   }
 
+  // Overrride
+  Init() {
+    if (this.init)
+      return;
+    this.init = true;
+    this.timerlist = { clear: () => { } };
+
+    this.activeBars = {};
+    this.expireTimers = {};
+  }
+
+  // Overrride
   InitDebugUI() {
     this.debugElement = {};
   }
 
+  // Overrride
   OnAddTimer(fightNow, e, channeling) {
-    if (this.emulatedTimerBars.filter((bar) => bar.event.id === e.id).length) {
+    if (this.emulatedTimerBars.filter((bar) => bar.event.id === e.id).length)
       return;
-    }
+
     let end = (e.time - fightNow) * 1000;
     let start = end - (this.options.ShowTimerBarsAtSeconds * 1000);
     let bar = {
@@ -111,26 +115,28 @@ class RaidEmulatorTimelineUI extends TimelineUI {
       forceRemoveAt: 0,
     };
 
-    bar.forceRemoveAt = bar.start + bar.duration + (this.options.KeepExpiredTimerBarsForSeconds * 1000);
+    bar.forceRemoveAt = bar.start + bar.duration;
+
+    if (this.options.KeepExpiredTimerBarsForSeconds)
+      bar.forceRemoveAt += this.options.KeepExpiredTimerBarsForSeconds * 1000;
 
     bar.$progress.append(bar.$bar, bar.$leftLabel, bar.$rightLabel);
     bar.$bar.attr('aria-valuemax', bar.duration);
     this.emulatedTimerBars.push(bar);
     this.$barContainer.append(bar.$progress);
-    this.UpdateBar(bar, this.emulatedTimeOffset);
+    this.updateBar(bar, this.emulatedTimeOffset);
   }
 
+  // Overrride
   OnRemoveTimer(e, expired) {
     let bars = this.emulatedTimerBars.filter((bar) => bar.event.id === e.id);
-    if (bars.length < 1) {
+    if (bars.length < 1)
       return;
-    }
+
     if (expired) {
+      bars[0].forceRemoveAt = this.emulatedTimeOffset;
       if (this.options.KeepExpiredTimerBarsForSeconds)
-        bars[0].forceRemoveAt = this.emulatedTimeOffset + (this.options.KeepExpiredTimerBarsForSeconds * 1000);
-      else
-        bars[0].forceRemoveAt = this.emulatedTimeOffset;
+        bars[0].forceRemoveAt += this.options.KeepExpiredTimerBarsForSeconds * 1000;
     }
   }
-
 }

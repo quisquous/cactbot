@@ -1,17 +1,21 @@
+'use strict';
+
 class EmulatedMapInfo {
-  combatantOffsetX;
-  combatantOffsetY;
-  $MapElement;
+  constructor() {
+    this.combatantOffsetX;
+    this.combatantOffsetY;
+    this.$MapElement;
+  }
 }
 
 class EmulatedMapInfoImage extends EmulatedMapInfo {
-  constructor(ImagePath) {
-
+  constructor(imagePath) {
+    super();
   }
 }
 
 class EmulatedMapInfoShape extends EmulatedMapInfo {
-  constructor(ShapeType, ShapeX, ShapeY) {
-
+  constructor(shapeType, shapeX, shapeY) {
+    super();
   }
 }

@@ -1,3 +1,5 @@
+'use strict';
+
 function timeToString(time, includeMillis = true) {
   // Milliseconds
   let millis = ('00' + (time % 1000)).substr(-3);
@@ -14,9 +16,9 @@ function timeToDateString(time) {
 function timeToTimeString(time, includeMillis = false) {
   let date = new Date(time);
   let ret = zeroPad(date.getHours()) + ':' + zeroPad(date.getMinutes()) + ':' + zeroPad(date.getSeconds());
-  if (includeMillis) {
+  if (includeMillis)
     ret = ret + '.' + zeroPad(date.getMilliseconds(), 3);
-  }
+
   return ret;
 }
 
@@ -29,28 +31,20 @@ function dateTimeToString(time, includeMillis = false) {
   let date = new Date(time);
   let ret = date.getFullYear() + '-' + zeroPad(date.getMonth() + 1) + '-' + zeroPad(date.getDate());
   ret = ret + ' ' + zeroPad(date.getHours()) + ':' + zeroPad(date.getMinutes()) + ':' + zeroPad(date.getSeconds());
-  if (includeMillis) {
+  if (includeMillis)
     ret = ret + '.' + date.getMilliseconds();
-  }
+
   return ret;
 }
 
 function zeroPad(str, len = 2) {
-  return ('' + str).padStart(len, '0')
+  return ('' + str).padStart(len, '0');
 }
 
 function properCase(str) {
-  /*
-  return str.replace(/\b\w+/g, match => {
-    return match.charAt(0).toUpperCase() + match.substr(1).toLowerCase();
-  }).replace(/['’”‘“][A-Z]{1}\b/g, match => {
-    return match.toLowerCase();
+  return str.replace(/([^\W_]+[^\s-]*) */g, (txt) => {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
   });
-  */
-  return str.replace(
-    /([^\W_]+[^\s-]*) */g,
-    (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
-  );
 }
 
 function spacePadLeft(str, len) {

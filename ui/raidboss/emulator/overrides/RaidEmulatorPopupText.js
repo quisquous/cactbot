@@ -1,82 +1,77 @@
+'use strict';
+
 class RaidEmulatorPopupText extends PopupText {
   constructor(options) {
     super(options);
     this.$popupTextContainerWrapper = $('.popup-text-container-outer');
+    this.emulatedOffset = 0;
+
+    this.emulator = null;
+
+    this.displayedText = [];
+    this.scheduledTriggers = [];
+
+    this.seeking = false;
+
+    this.lastSeekTo = 0;
   }
 
-  emulatedOffset = 0;
-
-  emulator;
-
-  DisplayedText = [];
-  scheduledTriggers = [];
-
-  Seeking = false;
-
-  LastSeekTo = 0;
-
-  async DoUpdate(timestampOffset) {
+  async doUpdate(timestampOffset) {
     this.emulatedOffset = timestampOffset;
     for (let t of this.scheduledTriggers) {
-      let remaining = t.Expires - timestampOffset;
+      let remaining = t.expires - timestampOffset;
       if (remaining <= 0) {
-        t.Resolver();
-        await t.Promise;
+        t.resolver();
+        await t.promise;
       }
     }
     this.scheduledTriggers = this.scheduledTriggers.filter((t) => {
-      let remaining = t.Expires - timestampOffset;
-      if (remaining > 0) {
-        return true;
-      } else {
-        return false;
-      }
+      return t.expires - timestampOffset > 0;
     });
-    this.DisplayedText = this.DisplayedText.filter((t) => {
-      let remaining = t.Expires - timestampOffset;
+    this.displayedText = this.displayedText.filter((t) => {
+      let remaining = t.expires - timestampOffset;
       if (remaining > 0) {
-        t.Element.find('.popup-text-remaining').text('(' + (remaining / 1000).toFixed(1) + ')');
+        t.element.find('.popup-text-remaining').text('(' + (remaining / 1000).toFixed(1) + ')');
         return true;
-      } else {
-        t.Element.remove();
-        return false;
       }
+      t.element.remove();
+      return false;
     });
   }
 
   bindTo(emulator) {
     this.emulator = emulator;
     emulator.on('tick', async (timestampOffset) => {
-      await this.DoUpdate(timestampOffset);
+      await this.doUpdate(timestampOffset);
     });
     emulator.on('midSeek', async (timestampOffset) => {
-      await this.DoUpdate(timestampOffset);
+      await this.doUpdate(timestampOffset);
     });
     emulator.on('preSeek', (time) => {
-      this.LastSeekTo = time;
-      this.Seeking = true;
-      for (let i of this.scheduledTriggers) {
-        i.Rejecter();
-      }
+      this.lastSeekTo = time;
+      this.seeking = true;
+      for (let i of this.scheduledTriggers)
+        i.rejecter();
+
       this.scheduledTriggers = [];
-      this.DisplayedText = this.DisplayedText.filter((t) => {
-        t.Element.remove();
+      this.displayedText = this.displayedText.filter((t) => {
+        t.element.remove();
         return false;
       });
     });
     emulator.on('postSeek', async (time) => {
       // This is a hacky fix for audio still playing during seek
       window.setTimeout(() => {
-        this.Seeking = false;
+        this.seeking = false;
       }, 5);
     });
     emulator.on('currentEncounterChanged', () => {
-      for (let i of this.scheduledTriggers) {
-        i.Rejecter();
-      }
+      for (let i of this.scheduledTriggers)
+        i.rejecter();
+
       this.scheduledTriggers = [];
-      this.DisplayedText = this.DisplayedText.filter((t) => {
-        t.Element.remove();
+      this.displayedText = this.displayedText.filter((t) => {
+        t.element.remove();
         return false;
       });
     });
@@ -98,7 +93,9 @@ class RaidEmulatorPopupText extends PopupText {
       if (text && triggerHelper.textAlertsEnabled) {
         text = triggerUpperCase(text);
         let div = this._makeTextElement(text, textElementClass);
-        this.AddDisplayText(div, this.emulatedOffset + ((triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey]) * 1000));
+        let duration =
+          (triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey]) * 1000;
+        this.addDisplayText(div, this.emulatedOffset + duration);
 
         if (!triggerHelper.soundUrl) {
           triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
@@ -124,10 +121,10 @@ class RaidEmulatorPopupText extends PopupText {
       rejecter = rej;
     });
     this.scheduledTriggers.push({
-      Expires: this.emulatedOffset + (delay * 1000),
-      Promise: ret,
-      Resolver: resolver,
-      Rejecter: rejecter,
+      expires: this.emulatedOffset + (delay * 1000),
+      promise: ret,
+      resolver: resolver,
+      rejecter: rejecter,
     });
     return ret;
   }
@@ -136,24 +133,24 @@ class RaidEmulatorPopupText extends PopupText {
     if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
       .includes(url)) {
       let div = this._makeTextElement(url, 'audio-file');
-      this.AddDisplayText(div, this.emulatedOffset + 2000);
+      this.addDisplayText(div, this.emulatedOffset + 2000);
     }
-    if (this.Seeking) {
+    if (this.seeking)
       return;
-    }
+
     super._playAudioFile(url, volume);
   }
   ttsSay(ttsText) {
-    if (this.Seeking) {
+    if (this.seeking)
       return;
-    }
+
     let div = this._makeTextElement(ttsText, 'tts-text');
-    this.AddDisplayText(div, this.emulatedOffset + 2000);
+    this.addDisplayText(div, this.emulatedOffset + 2000);
     super.ttsSay(ttsText);
   }
 
   _makeTextElement(text, className) {
-    let $ret = $('<div class="popup-text-container"></div>')
+    let $ret = $('<div class="popup-text-container"></div>');
     $ret.addClass(className);
     let $text = $('<span class="popup-text"></span>');
     $text.text(text);
@@ -162,12 +159,13 @@ class RaidEmulatorPopupText extends PopupText {
     return $ret;
   }
 
-  AddDisplayText($e, endTimestamp) {
-    $e.find('.popup-text-remaining').text('(' + ((endTimestamp - this.emulatedOffset) / 1000).toFixed(1) + ')');
+  addDisplayText($e, endTimestamp) {
+    let remaining = (endTimestamp - this.emulatedOffset) / 1000;
+    $e.find('.popup-text-remaining').text('(' + remaining.toFixed(1) + ')');
     this.$popupTextContainerWrapper.append($e);
-    this.DisplayedText.push({
-      Element: $e,
-      Expires: endTimestamp,
+    this.displayedText.push({
+      element: $e,
+      expires: endTimestamp,
     });
   }
 }

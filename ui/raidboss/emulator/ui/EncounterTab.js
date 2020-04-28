@@ -1,96 +1,57 @@
+'use strict';
+
 class EncounterTab extends EventBus {
-  /** 
-   * @type Persistor
-   */
-  persistor = null;
-
-  /**
-   * @type jQuery
-   */
-  $zoneColumn;
-
-  /**
-   * @type jQuery
-   */
-  $dateColumn;
-
-  /**
-   * @type jQuery
-   */
-  $encounterColumn;
-
-  /**
-   * @type jQuery
-   */
-  $infoColumn;
-
-  /**
-   * @type string
-   */
-  CurrentZone;
-
-  /**
-   * @type string
-   */
-  CurrentDate;
-
-  /**
-   * @type int
-   */
-  CurrentEncounter;
-
   constructor(persistor) {
     super();
     this.persistor = persistor;
+    let me = this;
     // @TODO: This is really lazy, might want to *not* refresh the entire tab when changing
     this.$zoneColumn = $('#encountersTab .zoneList').on('click', '.selectorRow', (ev) => {
       let t = $(ev.currentTarget);
       t.parent().children('.selectorRow.selected').removeClass('selected');
       t.addClass('selected');
-      this.CurrentZone = t.text();
+      this.currentZone = t.text();
       me.RefreshUI();
     });
     this.$dateColumn = $('#encountersTab .dateList').on('click', '.selectorRow', (ev) => {
       let t = $(ev.currentTarget);
       t.parent().children('.selectorRow.selected').removeClass('selected');
       t.addClass('selected');
-      this.CurrentDate = t.text();
+      this.currentDate = t.text();
       me.RefreshUI();
     });
     this.$encounterColumn = $('#encountersTab .encounterList').on('click', '.selectorRow', (ev) => {
       let t = $(ev.currentTarget);
       t.parent().children('.selectorRow.selected').removeClass('selected');
       t.addClass('selected');
-      this.CurrentEncounter = t.data('index');
+      this.currentEncounter = t.data('index');
       me.RefreshUI();
     });
 
     // @TODO: Probably a better way to do this...
     this.$infoColumn = $('#encountersTab .encounterInfo').on('click', '.encounterLoad', (ev) => {
-      me.dispatch('load', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter.id);
+      me.dispatch('load', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
     }).on('click', '.encounterParse', (ev) => {
-      me.dispatch('parse', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter.id);
+      me.dispatch('parse', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
     }).on('click', '.encounterPrune', (ev) => {
-      me.dispatch('prune', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter.id);
+      me.dispatch('prune', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
     }).on('click', '.encounterDelete', (ev) => {
-      me.dispatch('delete', this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter.id);
+      me.dispatch('delete', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
     });
-
-    let me = this;
   }
 
   refresh() {
-    this.Encounters = {};
-    this.persistor.ListEncounters().then((encounters) => {
+    this.encounters = {};
+    this.persistor.listEncounters().then((encounters) => {
       for (let i in encounters) {
         let enc = encounters[i];
         let zone = enc.zone;
         let encDate = timeToDateString(enc.start);
         let encTime = timeToTimeString(enc.start);
         let encDuration = msToDuration(enc.duration);
-        this.Encounters[zone] = this.Encounters[zone] || {};
-        this.Encounters[zone][encDate] = this.Encounters[zone][encDate] || [];
-        this.Encounters[zone][encDate].push({
+        this.encounters[zone] = this.encounters[zone] || {};
+        this.encounters[zone][encDate] = this.encounters[zone][encDate] || [];
+        this.encounters[zone][encDate].push({
           start: encTime,
           name: enc.name,
           duration: encDuration,
@@ -114,9 +75,9 @@ class EncounterTab extends EventBus {
 
     let clear = true;
 
-    for (let i in this.Encounters) {
+    for (let i in this.encounters) {
       let $row = $('<div class="selectorRow border-bottom border-dark">' + i + '</div>');
-      if (i === this.CurrentZone) {
+      if (i === this.currentZone) {
         clear = false;
         $row.addClass('selected');
       }
@@ -124,7 +85,7 @@ class EncounterTab extends EventBus {
     }
 
     if (clear)
-      this.CurrentZone = undefined;
+      this.currentZone = undefined;
   }
 
   RefreshDates() {
@@ -132,10 +93,10 @@ class EncounterTab extends EventBus {
 
     let clear = true;
 
-    if (this.CurrentZone !== undefined) {
-      for (let i in this.Encounters[this.CurrentZone]) {
+    if (this.currentZone !== undefined) {
+      for (let i in this.encounters[this.currentZone]) {
         let $row = $('<div class="selectorRow border-bottom border-dark">' + i + '</div>');
-        if (i === this.CurrentDate) {
+        if (i === this.currentDate) {
           clear = false;
           $row.addClass('selected');
         }
@@ -144,7 +105,7 @@ class EncounterTab extends EventBus {
     }
 
     if (clear)
-      this.CurrentDate = undefined;
+      this.currentDate = undefined;
   }
 
   RefreshEncounters() {
@@ -152,15 +113,15 @@ class EncounterTab extends EventBus {
 
     let clear = true;
 
-    if (this.CurrentZone !== undefined && this.CurrentDate !== undefined) {
-      for (let i in this.Encounters[this.CurrentZone][this.CurrentDate]) {
-        let enc = this.Encounters[this.CurrentZone][this.CurrentDate][i];
+    if (this.currentZone !== undefined && this.currentDate !== undefined) {
+      for (let i in this.encounters[this.currentZone][this.currentDate]) {
+        let enc = this.encounters[this.currentZone][this.currentDate][i];
         let $enc = $('<div class="selectorRow border-bottom border-dark"></div>');
         $enc.data('index', i);
         $enc.append($('<div class="encounterStart d-inline">[' + enc.start + ']</div>'));
         $enc.append($('<div class="encounterStart d-inline mx-2">' + enc.name + '</div>'));
         $enc.append($('<div class="encounterStart d-inline">(' + enc.duration + ')</div>'));
-        if (i === this.CurrentEncounter) {
+        if (i === this.currentEncounter) {
           clear = false;
           $enc.addClass('selected');
         }
@@ -169,22 +130,23 @@ class EncounterTab extends EventBus {
     }
 
     if (clear)
-      this.CurrentEncounter = undefined;
+      this.currentEncounter = undefined;
   }
 
   RefreshInfo() {
     this.$infoColumn.empty();
 
-    if (this.CurrentZone !== undefined && this.CurrentDate !== undefined && this.CurrentEncounter !== undefined) {
+    if (this.currentZone !== undefined && this.currentDate !== undefined &&
+      this.currentEncounter !== undefined) {
       /**
        * @type PersistorEncounter
        */
-      let enc = this.Encounters[this.CurrentZone][this.CurrentDate][this.CurrentEncounter].encounter;
+      let enc =
+        this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter;
 
       let pullAt = 'N/A';
-      if(!isNaN(enc.offset)) {
+      if (!isNaN(enc.offset))
         pullAt = timeToString(enc.offset, false);
-      }
 
       let $info = $('<div class="encounterInfo"></div>');
       $info.append($('<div class="encounterLoad btn btn-primary pull-right mb-1">Load Encounter</div>'));

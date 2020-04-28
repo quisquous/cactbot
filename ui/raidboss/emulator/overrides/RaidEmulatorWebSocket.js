@@ -1,22 +1,13 @@
+'use strict';
+
 class RaidEmulatorWebSocket {
-  /**
-   * @type {RaidEmulator}
-   */
-  emulator;
-
-  originalDispatch;
-  originalAdd;
-  originalRemove;
-  originalCall;
-
-  timestampOffset = 0;
-
   constructor(emulator) {
     this.emulator = emulator;
     this.originalDispatch = window.dispatchOverlayEvent;
     this.originalAdd = window.addOverlayListener;
     this.originalRemove = window.removeOverlayListener;
     this.originalCall = window.callOverlayHandler;
+    this.timestampOffset = 0;
 
     window.dispatchOverlayEvent = this.dispatch.bind(this);
     window.addOverlayListener = this.add.bind(this);
@@ -47,24 +38,23 @@ class RaidEmulatorWebSocket {
     if (msg.call === 'getCombatants') {
       return new Promise((res) => {
         let combatants = [];
-        /**
-         * @type {CombatantTracker}
-         */
         let tracker = this.emulator.currentEncounter.encounter.combatantTracker;
-        let timestamp = this.emulator.currentEncounter.encounter.startTimestamp + this.timestampOffset;
-        for (let ID in tracker.combatants) {
-          if (msg.ids && msg.ids.includes(ID)) {
-            combatants.push(Combatant.prototype.nextSignificantState.apply(tracker.combatants[ID], [timestamp]));
-          } else if (msg.names && msg.names.includes(tracker.combatants[ID].name)) {
-            combatants.push(Combatant.prototype.nextSignificantState.apply(tracker.combatants[ID], [timestamp]));
-          }
+        let timestamp = this.emulator.currentEncounter.encounter.startTimestamp +
+          this.timestampOffset;
+        for (let combatant of tracker.combatants) {
+          // nextSignificatState is a bit inefficient but given that this isn't run every tick
+          // we can afford to be a bit inefficient for readability's sake
+          let combatantState = combatant.nextSignificantState(timestamp);
+          if (msg.ids && msg.ids.includes(ID))
+            combatants.push(combatantState);
+          else if (msg.names && msg.names.includes(tracker.combatants[ID].name))
+            combatants.push(combatantState);
         }
         res({
           combatants: combatants,
         });
       });
-    } else {
-      return this.originalCall(msg);
     }
+    return this.originalCall(msg);
   }
 }

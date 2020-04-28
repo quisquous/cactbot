@@ -41,7 +41,7 @@ class ProgressBar {
       if (isNaN(encounter.encounter.initialOffset)) {
         me.$engageIndicator.addClass('d-none');
       } else {
-        let initialPercent = 
+        let initialPercent =
           (encounter.encounter.initialOffset / emulator.currentEncounter.encounter.duration) * 100;
         me.$engageIndicator.removeClass('d-none').css('left', initialPercent + '%');
       }

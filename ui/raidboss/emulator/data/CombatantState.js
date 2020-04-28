@@ -1,14 +1,6 @@
-class CombatantState {
-  posX;
-  posY;
-  posZ;
-  heading;
-  visible;
-  HP;
-  maxHP;
-  MP;
-  maxMP;
+'use strict';
 
+class CombatantState {
   constructor(posX, posY, posZ, heading, visible, HP, maxHP, MP, maxMP) {
     this.posX = posX;
     this.posY = posY;
@@ -23,14 +15,14 @@ class CombatantState {
 
   PartialClone(props) {
     return new CombatantState(
-      props.posX || this.posX,
-      props.posY || this.posY,
-      props.posZ || this.posZ,
-      props.heading || this.heading,
-      props.visible || this.visible,
-      props.HP || this.HP,
-      props.maxHP || this.maxHP,
-      props.MP || this.MP,
-      props.maxMP || this.maxMP);
+        props.posX || this.posX,
+        props.posY || this.posY,
+        props.posZ || this.posZ,
+        props.heading || this.heading,
+        props.visible || this.visible,
+        props.HP || this.HP,
+        props.maxHP || this.maxHP,
+        props.MP || this.MP,
+        props.maxMP || this.maxMP);
   }
 }

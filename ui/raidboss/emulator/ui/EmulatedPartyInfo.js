@@ -1,26 +1,6 @@
+'use strict';
+
 class EmulatedPartyInfo extends EventBus {
-  static JobOrder = [
-    'PLD', 'WAR', 'DRK', 'GNB',
-    'WHM', 'SCH', 'AST',
-    'MNK', 'DRG', 'NIN', 'SAM',
-    'BRD', 'MCH', 'DNC',
-    'BLM', 'SMN', 'RDM',
-    'BLU'];
-
-  /**
-   * @type {jQuery}
-   */
-  $partyInfo;
-
-  displayedParty = {};
-
-  triggerBars;
-
-  latestDisplayedState = 0;
-  latestDisplayedState
-  /**
-   * @param {RaidEmulator} emulator 
-   */
   constructor(emulator) {
     super();
     this.emulator = emulator;
@@ -30,9 +10,11 @@ class EmulatedPartyInfo extends EventBus {
     this.$triggerBar = $('.playerTriggers');
     this.triggerBars = [];
     this.latestDisplayedState = 0;
-    for (let i = 0; i < 8; ++i) {
+    this.displayedParty = {};
+    this.currentPerspective = null;
+    for (let i = 0; i < 8; ++i)
       this.triggerBars[i] = this.$triggerBar.find('.player' + i);
-    }
+
     emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
       if (lastLogTimestamp) {
         this.UpdatePartyInfo(emulator, lastLogTimestamp);
@@ -42,7 +24,7 @@ class EmulatedPartyInfo extends EventBus {
     emulator.on('currentEncounterChanged', (encounter) => {
       this.ResetPartyInfo(encounter);
     });
-    
+
     emulator.on('preSeek', (time) => {
       this.latestDisplayedState = 0;
     });
@@ -52,11 +34,10 @@ class EmulatedPartyInfo extends EventBus {
     });
     let me = this;
     this.UpdateTriggerState = () => {
-      if (me.$triggerHideCheckbox[0].checked) {
+      if (me.$triggerHideCheckbox[0].checked)
         me.hideNonExecutedTriggers();
-      } else {
+      else
         me.showNonExecutedTriggers();
-      }
     };
     this.$triggerHideCheckbox.on('change', this.UpdateTriggerState);
   }
@@ -70,13 +51,12 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   /**
-   * @param {RaidEmulator} emulator 
-   * @param {string} timestamp 
+   * @param {RaidEmulator} emulator
+   * @param {string} timestamp
    */
   UpdatePartyInfo(emulator, timestamp) {
-    for (let id in this.displayedParty) {
+    for (let id in this.displayedParty)
       this.UpdateCombatantInfo(emulator.currentEncounter, id, timestamp);
-    }
   }
 
   /**
@@ -101,12 +81,15 @@ class EmulatedPartyInfo extends EventBus {
       this.UpdateCombatantInfo(encounter, id);
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
-      this.triggerBars[i].removeClass('tank healer dps').addClass(Util.jobToRole(encounter.encounter.combatantTracker.combatants[id].job));
-      for (let triggerIndex in encounter.Perspectives[id].triggers) {
-        let trigger = encounter.Perspectives[id].triggers[triggerIndex];
-        if(!trigger.status.Executed || trigger.resolvedOffset > encounter.encounter.duration) {
+      this.triggerBars[i]
+        .removeClass('tank healer dps')
+        .addClass(Util.jobToRole(encounter.encounter.combatantTracker.combatants[id].job));
+
+      for (let triggerIndex in encounter.perspectives[id].triggers) {
+        let trigger = encounter.perspectives[id].triggers[triggerIndex];
+        if (!trigger.status.Executed || trigger.resolvedOffset > encounter.encounter.duration)
           continue;
-        }
+
         let $e = $('<div class="triggerItem"></div>');
         $e.css('left', ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%');
         $e.tooltip({
@@ -122,13 +105,11 @@ class EmulatedPartyInfo extends EventBus {
     this.selectPerspective(membersToDisplay[0]);
   }
 
-  CurrentPerspective = null;
-
   selectPerspective(id) {
-    if (id === this.CurrentPerspective) {
+    if (id === this.currentPerspective)
       return;
-    }
-    this.CurrentPerspective = id;
+
+    this.currentPerspective = id;
     this.$triggerInfo.find('.playerTriggerInfo').addClass('d-none');
     this.displayedParty[id].$triggerElem.removeClass('d-none');
     this.$partyInfo.find('.playerInfoRow').removeClass('border border-success');
@@ -137,20 +118,18 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   UpdateCombatantInfo(encounter, id, stateID = null) {
-    if (stateID <= this.latestDisplayedState) {
+    if (stateID <= this.latestDisplayedState)
       return;
-    }
+
     let combatant = encounter.encounter.combatantTracker.combatants[id];
     stateID = stateID || combatant.getState(0);
-    /**
-     * @type {CombatantState}
-     */
+
     let State = combatant.getState(stateID);
-    if (State === undefined) {
+    if (State === undefined)
       return;
-    }
+
     let hpProg = (State.HP / State.maxHP) * 100;
-    let hpLabel = State.HP + "/" + State.maxHP;
+    let hpLabel = State.HP + '/' + State.maxHP;
     hpLabel = spacePadLeft(hpLabel, (State.maxHP.toString().length * 2) + 1);
     this.displayedParty[id].$hpProgElem.attr('aria-valuenow', State.HP);
     this.displayedParty[id].$hpProgElem.attr('aria-valuemax', State.maxHP);
@@ -158,7 +137,7 @@ class EmulatedPartyInfo extends EventBus {
     this.displayedParty[id].$hpLabelElem.text(hpLabel);
 
     let mpProg = (State.MP / State.maxMP) * 100;
-    let mpLabel = State.MP + "/" + State.maxMP;
+    let mpLabel = State.MP + '/' + State.maxMP;
     mpLabel = spacePadLeft(mpLabel, (State.maxMP.toString().length * 2) + 1);
     this.displayedParty[id].$mpProgElem.attr('aria-valuenow', State.MP);
     this.displayedParty[id].$mpProgElem.attr('aria-valuemax', State.maxMP);
@@ -166,9 +145,6 @@ class EmulatedPartyInfo extends EventBus {
     this.displayedParty[id].$mpLabelElem.text(mpLabel);
   }
 
-  /**
-   * @param {AnalyzedEncounter} encounter
-   */
   GetPartyInfoObjectFor(encounter, id) {
     let ret = {
       $rootElem: $('<div class="playerInfoRow"></div>'),
@@ -182,9 +158,7 @@ class EmulatedPartyInfo extends EventBus {
       id: id,
       $triggerElem: this.GetTriggerInfoObjectFor(encounter, id),
     };
-    /**
-     * @type {Combatant}
-     */
+
     let combatant = encounter.encounter.combatantTracker.combatants[id];
     ret.$rootElem.addClass(combatant.job.toUpperCase());
     ret.$rootElem.append(ret.$iconElem);
@@ -210,7 +184,7 @@ class EmulatedPartyInfo extends EventBus {
     let $container = $('<div class="d-flex flex-column"></div>');
     $ret.append($container);
 
-    let per = encounter.Perspectives[id];
+    let per = encounter.perspectives[id];
 
     let $initDataViewer = $('<pre class="json-viewer"></pre>');
     $initDataViewer.text(JSON.stringify(per.initialData, null, 2));
@@ -221,9 +195,11 @@ class EmulatedPartyInfo extends EventBus {
 
     let $triggerContainer = $('<div class="d-flex flex-column"></div>');
 
-    for (let i in per.triggers.sort((l,r) => l.resolvedOffset - r.resolvedOffset)) {
+    for (let i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
       let $triggerDataViewer = $('<pre class="json-viewer"></pre>');
-      let $trigger = this._WrapCollapse(this.GetTriggerFiredLabelTime(per.triggers[i]) + ' - ' + per.triggers[i].trigger.id, $triggerDataViewer, () => {
+      let buttonName = this.GetTriggerFiredLabelTime(per.triggers[i]) +
+        ' - ' + per.triggers[i].trigger.id;
+      let $trigger = this._WrapCollapse(buttonName, $triggerDataViewer, () => {
         $triggerDataViewer.text(JSON.stringify(per.triggers[i], null, 2));
       });
       let $buttonWrapper = $trigger.children('.wrap-collapse-button');
@@ -234,11 +210,11 @@ class EmulatedPartyInfo extends EventBus {
       $labelTime.text(this.GetTriggerResolvedLabelTime(per.triggers[i]));
       $label.append($labelTime, $labelText);
       $buttonWrapper.append($label);
-      if (per.triggers[i].status.Executed) {
+      if (per.triggers[i].status.Executed)
         $trigger.addClass('trigger-executed');
-      } else {
+      else
         $trigger.addClass('trigger-not-executed');
-      }
+
       $triggerContainer.append($trigger);
     }
 
@@ -256,22 +232,20 @@ class EmulatedPartyInfo extends EventBus {
 
   GetTriggerLabelText(trigger) {
     let ret = trigger.status.Result;
-    if(typeof (ret) === 'function') {
+    if (typeof (ret) === 'function')
       ret = ret(AnalyzedEncounter.cloneData(trigger.postData, true), trigger.matches);
-    }
+
     if (typeof (ret) === 'object') {
       let lang = trigger.postData.lang;
-      if (ret[lang]) {
+      if (ret[lang])
         ret = ret[lang];
-      } else {
-        // Panic!
-        ret = JSON.stringify(ret);
-      }
-    } else if(typeof (ret) === 'boolean') {
+      else
+        ret = JSON.stringify(ret); // Panic!
+    } else if (typeof (ret) === 'boolean') {
       ret = '';
-    } else if(typeof (ret) === 'undefined') {
+    } else if (typeof (ret) === 'undefined') {
       ret = '';
-    } else if(typeof (ret) !== 'string') {
+    } else if (typeof (ret) !== 'string') {
       ret = 'Invalid Result?';
     }
     return ret;
@@ -300,3 +274,11 @@ class EmulatedPartyInfo extends EventBus {
     return $ret;
   }
 }
+
+EmulatedPartyInfo.JobOrder = [
+  'PLD', 'WAR', 'DRK', 'GNB',
+  'WHM', 'SCH', 'AST',
+  'MNK', 'DRG', 'NIN', 'SAM',
+  'BRD', 'MCH', 'DNC',
+  'BLM', 'SMN', 'RDM',
+  'BLU'];

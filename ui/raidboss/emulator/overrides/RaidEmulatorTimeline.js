@@ -1,6 +1,13 @@
+'use strict';
+
 class RaidEmulatorTimeline extends Timeline {
-  emulatedTimeOffset;
-  emulatedStatus = 'pause';
+  constructor(text, replacements, triggers, styles, options) {
+    super(text, replacements, triggers, styles, options);
+    this.emulatedTimeOffset = 0;
+    this.emulatedFightSync = 0;
+    this.emulatedFightSyncLastOffset = 0;
+    this.emulatedStatus = 'pause';
+  }
 
   bindTo(emulator) {
     emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
@@ -14,23 +21,23 @@ class RaidEmulatorTimeline extends Timeline {
     });
   }
 
-  _ScheduleUpdate(fightNow) {
-  }
-
-  emulatedFightSync = 0;
-  emulatedFightSyncLastOffset = 0;
-
   EmulatedSync(timestampOffset) {
-    if (!this.emulatedFightSyncLastOffset) {
+    if (!this.emulatedFightSyncLastOffset)
       return;
-    }
-    this.SyncTo(this.emulatedFightSync + ((timestampOffset - this.emulatedFightSyncLastOffset) / 1000));
+
+    this.SyncTo(this.emulatedFightSync +
+      ((timestampOffset - this.emulatedFightSyncLastOffset) / 1000));
     this._OnUpdateTimer();
   }
 
+  // Override
+  _ScheduleUpdate(fightNow) {
+  }
+
+  // Override
   SyncTo(fightNow) {
     console.log('SyncTo: ' + fightNow);
-    //@TODO: This entire thing needs re-done, ugh.
+    // @TODO: This entire thing needs re-done, ugh.
     // This records the actual time which aligns with "0" in the timeline.
     let newTimebase = new Date((new Date() - fightNow * 1000));
     // Skip syncs that are too close.  Many syncs happen on abilities that

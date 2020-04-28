@@ -1,27 +1,23 @@
+'use strict';
+
 class AnalyzedEncounter extends EventBus {
-  static lineTimestampRegex = /^\[(\d\d:\d\d:\d\d.\d\d\d)\]/i;
-
-  Perspectives = {};
-
-  /** @type Encounter */
-  encounter;
-
   constructor(encounter) {
     super();
+    this.popupText = null;
+    this.perspectives = {};
     this.encounter = encounter;
   }
 
   selectPerspective(ID) {
+    let partyMember = this.encounter.combatantTracker.combatants[ID];
     this.popupText.OnPlayerChange({
       detail: {
-        name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
-        job: this.encounter.combatantTracker.combatants[ID].job,
-        currentHP: this.encounter.combatantTracker.combatants[ID].getState(this.encounter.logLines[0].timestamp).HP,
+        name: partyMember.name.split('(')[0],
+        job: partyMember.job,
+        currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
       },
     });
   }
-
-  popupText = null;
 
   async Analyze(popupText) {
     this.popupText = popupText;
@@ -38,17 +34,18 @@ class AnalyzedEncounter extends EventBus {
     // @TODO: Make this run in parallel sometime in the future, since it could be really slow?
     for (let index in this.encounter.combatantTracker.partyMembers) {
       let ID = this.encounter.combatantTracker.partyMembers[index];
+      let partyMember = this.encounter.combatantTracker.combatants[ID];
       popupText.OnPlayerChange({
         detail: {
-          name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
-          job: this.encounter.combatantTracker.combatants[ID].job,
-          currentHP: this.encounter.combatantTracker.combatants[ID].getState(this.encounter.logLines[0].timestamp).HP,
+          name: partyMember.name.split('(')[0],
+          job: partyMember.job,
+          currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
         },
       });
       popupText.OnZoneChange({
         detail: {
           zoneName: this.encounter.encounterZone,
-        }
+        },
       });
       let triggers = popupText.triggers;
       await this.AnalyzeFor(ID, triggers, popupText);
@@ -76,7 +73,7 @@ class AnalyzedEncounter extends EventBus {
       role: Util.jobToRole(this.encounter.combatantTracker.combatants[ID].job),
     };
 
-    this.Perspectives[ID] = {
+    this.perspectives[ID] = {
       initialData: AnalyzedEncounter.cloneData(data, true),
       triggers: [],
       finalData: data,
@@ -105,7 +102,7 @@ class AnalyzedEncounter extends EventBus {
 
           let preData = AnalyzedEncounter.cloneData(data);
           let status = await this.runTriggers(log.timestamp, trigger, data, matches, suppressed);
-          this.Perspectives[ID].triggers.push({
+          this.perspectives[ID].triggers.push({
             trigger: trigger,
             timestamp: log.timestamp,
             offset: log.timestamp - this.encounter.startTimestamp,
@@ -149,9 +146,8 @@ class AnalyzedEncounter extends EventBus {
       if (!trigger.condition(data, matches)) {
         ret.Condition = false;
         return ret;
-      } else {
-        ret.Condition = true;
       }
+      ret.Condition = true;
     }
 
     // preRun
@@ -250,16 +246,16 @@ class AnalyzedEncounter extends EventBus {
     // Use our own extend logic for the top level to avoid cloning the `options` property
     // This cut the execution time of this code from 41,000ms to 50ms when parsing a 12 minute pull
     for (let i in data) {
-      if (!full && (i === 'options' || i === 'party')) {
+      if (!full && (i === 'options' || i === 'party'))
         continue;
-      }
+
       if (typeof data[i] === 'object') {
-        // Potential future bug: jQuery's extend doesn't include properties with a value of `undefined`
-        if(Array.isArray(data[i])) {
+        // Potential future bug: jQuery's extend doesn't include
+        // properties with a value of `undefined`
+        if (Array.isArray(data[i]))
           ret[i] = jQuery.extend(true, [], data[i]);
-        } else {
+        else
           ret[i] = jQuery.extend(true, {}, data[i]);
-        }
       } else {
         ret[i] = data[i];
       }
@@ -270,4 +266,6 @@ class AnalyzedEncounter extends EventBus {
   JobToJobEnum(Job) {
     return Object.keys(kJobEnumToName).filter((k) => kJobEnumToName[k] === Job).pop();
   }
-};
+}
+
+AnalyzedEncounter.lineTimestampRegex = /^\[(\d\d:\d\d:\d\d.\d\d\d)\]/i;

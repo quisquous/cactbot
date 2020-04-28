@@ -1,26 +1,11 @@
+'use strict';
+
 class LogEventHandler extends EventBus {
-
-  static UnsealRegexes = {
-    ja: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)の封鎖が解かれた……/,
-    en: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*) is no longer sealed/,
-    de: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?:Der Zugang zu\w* |)(?<Zone>.*) öffnet sich (?:erneut|wieder)/,
-    fr: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:Ouverture (?<Zone>.*)/,
-    cn: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)的封锁解除了/,
-    ko: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)의 봉쇄가 해제되었습니다\./,
-  };
-
-  static WipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000010:/;
-  static WinRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000003:/;
-  static CactbotWipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
-
-  static ZoneChangeRegex = / 01:Changed Zone to (?<Zone>.*)\./;
-
   static doesLineMatch(line, regexes) {
     for (let i in regexes) {
       let res = regexes[i].exec(line);
-      if (res) {
+      if (res)
         return res;
-      }
     }
     return false;
   }
@@ -73,50 +58,56 @@ class LogEventHandler extends EventBus {
     return false;
   }
 
-  lastFightFirstTimestamp = null;
-  currentZone = null;
-  currentDate = null;
-  currentFight = [];
-
   constructor() {
     super();
+
+    this.lastFightFirstTimestamp = null;
+    this.currentZone = null;
+    this.currentDate = null;
+    this.currentFight = [];
+
     window.addOverlayListener('onImportLogEvent', (e) => {
-      console.log("Parsing " + e.detail.logs.length + " lines...");
       this.parseLogs(e.detail.logs);
     });
   }
 
   parseLogs(logs) {
     for (let i = 0; i < logs.length; ++i) {
-      // Be a bit more intelligent if we're receiving converted network logs instead of imported logs
+      // Be a bit more intelligent if we're receiving
+      // converted network logs instead of imported logs
       let lineObj = logs[i];
       let line = logs[i];
-      if (typeof lineObj === 'object') {
+      if (typeof lineObj === 'object')
         line = lineObj.line;
-      }
+
       this.currentFight.push(line);
-      let res;
-      if (res = LogEventHandler.IsMatchEnd(line)) {
+      let res = LogEventHandler.IsMatchEnd(line);
+      if (res) {
         this.endFight();
-      } else if (res = LogEventHandler.doesLineMatch(line, [LogEventHandler.ZoneChangeRegex])) {
-        this.currentZone = res.groups.Zone;
-        this.endFight();
+      } else {
+        res = LogEventHandler.doesLineMatch(line, [LogEventHandler.ZoneChangeRegex]);
+        if (res) {
+          this.currentZone = res.groups.Zone;
+          this.endFight();
+        }
       }
     }
   }
 
   endFight() {
-    if (this.currentFight.length < 2) {
+    if (this.currentFight.length < 2)
       return;
-    }
+
     // @TODO: Pull this from log import event when it's possible
     // Until then, allow this to be passed in from controller
     // or carried over from previous encounter
     if (this.currentDate === null) {
       this.currentDate = new Date().toISOString().substr(0, 10);
-      this.lastFightFirstTimestamp = EmulatorCommon.getTimestampFromLogLine(this.currentDate, this.currentFight[0]);
+      this.lastFightFirstTimestamp =
+        EmulatorCommon.getTimestampFromLogLine(this.currentDate, this.currentFight[0]);
     } else {
-      let firstTimestamp = EmulatorCommon.getTimestampFromLogLine(this.currentDate, this.currentFight[0]);
+      let firstTimestamp =
+        EmulatorCommon.getTimestampFromLogLine(this.currentDate, this.currentFight[0]);
       if (this.lastFightFirstTimestamp === null) {
         this.lastFightFirstTimestamp = firstTimestamp;
       } else {
@@ -136,3 +127,18 @@ Line Count: ${this.currentFight.length}
     this.currentFight = [];
   }
 }
+
+LogEventHandler.UnsealRegexes = {
+  ja: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)の封鎖が解かれた……/,
+  en: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*) is no longer sealed/,
+  de: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?:Der Zugang zu\w* |)(?<Zone>.*) öffnet sich (?:erneut|wieder)/,
+  fr: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:Ouverture (?<Zone>.*)/,
+  cn: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)的封锁解除了/,
+  ko: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)의 봉쇄가 해제되었습니다\./,
+};
+
+LogEventHandler.WipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000010:/;
+LogEventHandler.WinRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000003:/;
+LogEventHandler.CactbotWipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
+
+LogEventHandler.ZoneChangeRegex = / 01:Changed Zone to (?<Zone>.*)\./;
