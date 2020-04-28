@@ -13,57 +13,75 @@ body {
   display: inline-block;
   cursor: pointer;
 }
+
 .PLD .jobicon {
   background: url(../../resources/icon/jobs/pld-framed.png) 0 / contain;
 }
+
 .WAR .jobicon {
   background: url(../../resources/icon/jobs/war-framed.png) 0 / contain;
 }
+
 .DRK .jobicon {
   background: url(../../resources/icon/jobs/drk-framed.png) 0 / contain;
 }
+
 .GNB .jobicon {
   background: url(../../resources/icon/jobs/gnb-framed.png) 0 / contain;
 }
+
 .WHM .jobicon {
   background: url(../../resources/icon/jobs/whm-framed.png) 0 / contain;
 }
+
 .SCH .jobicon {
   background: url(../../resources/icon/jobs/sch-framed.png) 0 / contain;
 }
+
 .AST .jobicon {
   background: url(../../resources/icon/jobs/ast-framed.png) 0 / contain;
 }
+
 .MNK .jobicon {
   background: url(../../resources/icon/jobs/mnk-framed.png) 0 / contain;
 }
+
 .DRG .jobicon {
   background: url(../../resources/icon/jobs/drg-framed.png) 0 / contain;
 }
+
 .NIN .jobicon {
   background: url(../../resources/icon/jobs/nin-framed.png) 0 / contain;
 }
+
 .SAM .jobicon {
   background: url(../../resources/icon/jobs/sam-framed.png) 0 / contain;
 }
+
 .BRD .jobicon {
   background: url(../../resources/icon/jobs/brd-framed.png) 0 / contain;
 }
+
 .MCH .jobicon {
   background: url(../../resources/icon/jobs/mch-framed.png) 0 / contain;
 }
+
 .DNC .jobicon {
   background: url(../../resources/icon/jobs/dnc-framed.png) 0 / contain;
 }
+
 .BLM .jobicon {
   background: url(../../resources/icon/jobs/blm-framed.png) 0 / contain;
 }
+
 .SMN .jobicon {
   background: url(../../resources/icon/jobs/smn-framed.png) 0 / contain;
 }
+
 .RDM .jobicon {
   background: url(../../resources/icon/jobs/rdm-framed.png) 0 / contain;
 }
+
 .BLU .jobicon {
   background: url(../../resources/icon/jobs/blu-framed.png) 0 / contain;
 }
@@ -128,6 +146,7 @@ body {
 .triggerInfoColumn {
   overflow-y: auto;
 }
+
 .triggerInfoColumn .json-viewer {
   max-height: calc(100vh - 15rem);
   overflow-y: auto;
@@ -235,7 +254,7 @@ div.row.progressBarRow .playerTriggers .triggerBar.player6 {
 }
 
 div.row.progressBarRow .playerTriggers .triggerBar.player7 {
-  bottom: 0rem;
+  bottom: 0;
 }
 
 div.row.progressBarRow .playerTriggers .triggerBar .triggerItem {
@@ -248,9 +267,11 @@ div.row.progressBarRow .playerTriggers .triggerBar .triggerItem {
 div.row.progressBarRow .playerTriggers .triggerBar.tank .triggerItem {
   background: rgba(71, 94, 206, 0.9);
 }
+
 div.row.progressBarRow .playerTriggers .triggerBar.healer .triggerItem {
   background: rgba(60, 105, 41, 0.9);
 }
+
 div.row.progressBarRow .playerTriggers .triggerBar.dps .triggerItem {
   background: rgba(104, 53, 53, 0.9);
 }
@@ -261,7 +282,7 @@ div.row.progressBarRow .playerTriggers .triggerBar.dps .triggerItem {
   width: 3px;
   background: rgba(0, 0, 0, 0.8);
   bottom: -5px;
-  z-index:10;
+  z-index: 10;
   pointer-events: all;
 }
 
@@ -280,47 +301,55 @@ div.row.progressBarRow .playerTriggers .triggerBar.dps .triggerItem {
 }
 
 .popup-text-container .popup-text-remaining {
-  position:absolute;
-  right:0.5rem;
+  position: absolute;
+  right: 0.5rem;
 }
 
 .popup-text-container.alarm-text {
   color: black;
-  background-color: #ff3300;
+  background-color: #f30;
 }
+
 .popup-text-container.alarm-text::before {
   content: "ALARM: ";
   display: inline;
 }
+
 .popup-text-container.alert-text {
   color: black;
-  background-color: #ffbb00;
+  background-color: #fb0;
 }
+
 .popup-text-container.alert-text::before {
   content: "ALERT: ";
   display: inline;
 }
+
 .popup-text-container.info-text {
   color: black;
-  background-color: #22bb22;
+  background-color: #2b2;
 }
+
 .popup-text-container.info-text::before {
   content: "INFO: ";
   display: inline;
 }
+
 .popup-text-container.tts-text {
   color: black;
   background-color: whitesmoke;
 }
+
 .popup-text-container.tts-text::before {
   content: "TTS: ";
   display: inline;
 }
+
 .popup-text-container.audio-file {
   color: black;
   background-color: blue;
-
 }
+
 .popup-text-container.audio-file::before {
   content: "AUDIO: ";
   display: inline;
@@ -338,6 +367,11 @@ div.row.encountersRow {
 
 .encountersRow .selectorRow.selected {
   background-color: rgba(255, 255, 255, 0.2);
+}
+
+.timer-bar-container .progress {
+  width: 100%;
+  height: 2rem;
 }
 
 .partyInfoColumn .map .mapBackground {
@@ -389,8 +423,9 @@ div.row.encountersRow {
   position: relative;
   cursor: pointer;
 }
+
 .partyInfoColumn .party .playerInfoRow.border {
-  border-width: 3px!important;
+  border-width: 3px !important;
   height: calc(2rem + 6px);
 }
 
@@ -411,12 +446,15 @@ div.row.encountersRow {
   height: 1rem;
   width: calc(100% - 2rem);
 }
+
 .partyInfoColumn .party .playerInfoRow .hp {
   top: 0;
 }
+
 .partyInfoColumn .party .playerInfoRow .mp {
   bottom: 0;
 }
+
 .partyInfoColumn .party .playerInfoRow .progress {
   height: 1rem;
   position: absolute;
@@ -426,12 +464,13 @@ div.row.encountersRow {
   bottom: 0;
   background-color: #36404a;
 }
+
 .partyInfoColumn .party .playerInfoRow .progress .label {
-  position:absolute;
-  left:0;
-  right:0;
-  height:1rem;
-  line-height:1rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  line-height: 1rem;
   text-align: center;
   white-space: pre;
 }
@@ -466,24 +505,19 @@ div.row.encountersRow {
   clear: right;
 }
 
-.timer-bar-container .progress {
-  width: 100%;
-  height: 2rem;
-}
-
 .timer-bar-container .progress .timer-bar-left-label {
   height: 2rem;
   line-height: 2rem;
-  position:absolute;
-  left:1.5rem;
+  position: absolute;
+  left: 1.5rem;
   color: black;
 }
 
 .timer-bar-container .progress .timer-bar-right-label {
   height: 2rem;
   line-height: 2rem;
-  position:absolute;
-  right:1.5rem;
+  position: absolute;
+  right: 1.5rem;
   color: black;
 }
 
@@ -496,6 +530,7 @@ div.row.encountersRow {
   height: 31px;
   line-height: 31px;
 }
+
 .wrap-collapse .wrap-collapse-button .trigger-label > * {
   float: right;
 }
