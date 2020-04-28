@@ -24,7 +24,7 @@ UserConfig.registerOptions('eureka', {
         en: 'Volume of the nm pop sound (0-1)',
         de: 'Lautstärke des Popsounds bei erscheinen eines NM (0-1)',
         fr: 'Volume des sons NM (0-1)',
-        ja: 'NM出現音量',
+        ja: 'NM出現音量（0-1）',
         cn: 'NM提示音量（0-1）',
         ko: '돌발임무 등장 알림 소리 크기 (0-1)',
       },
@@ -38,7 +38,7 @@ UserConfig.registerOptions('eureka', {
       id: 'BunnyPopVolume',
       name: {
         en: 'Volume of the bunny pop sound (0-1)',
-        ja: 'しあわせうさぎ出現音量 (0-1)',
+        ja: 'しあわせうさぎ出現音量（0-1）',
         ko: '토끼 돌발 등장 알림 소리 크기 (0-1)',
       },
       type: 'float',
