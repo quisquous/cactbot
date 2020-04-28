@@ -482,6 +482,7 @@
         'Vril': '락슈미 에테르',
         'Water': '워터',
         'Water III': '워터가',
+        'over': '끝',
       },
       '~effectNames': {
         'Bleeding': '고통',
