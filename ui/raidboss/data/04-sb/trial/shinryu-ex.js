@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Minstrel's Ballad: Shinryu's Domain$/,
     cn: /^神龙梦幻歼灭战$/,
+    ko: /^극 신룡 토벌전$/,
   },
   timelineFile: 'shinryu-ex.txt',
   triggers: [
@@ -1044,7 +1045,7 @@
         'T\\/H': '탱/힐',
         'healer[s]*': '힐러',
         'dps': '딜러',
-        'tank': '탱',
+        'tank': '탱커',
         'Rhai': '아크 라이',
         'Aerial Blast': '대기 폭발',
         'Aetherial Ray': '에테르 광선',
