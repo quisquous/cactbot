@@ -330,7 +330,7 @@
           de: 'Stack #' + data.stakeCount,
           fr: 'Stack #' + data.stakeCount,
           cn: '集合 #' + data.stakeCount,
-          ko: '집합 #' + data.stakeCount,
+          ko: '쉐어 #' + data.stakeCount,
         };
       },
     },
