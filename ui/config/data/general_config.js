@@ -34,7 +34,7 @@ UserConfig.registerOptions('general', {
         en: 'Reload overlay on file change',
         de: 'Aktualisiere Overlay bei Dateiänderung',
         fr: 'Recharge l\'overlay si modification de fichier',
-        ja: 'ファイルが変更されたらオーバーレイをリロードする',
+        ja: 'ファイルが変更されたらオーバーレイを再読み込みます',
         cn: '文件更改时重新加载悬浮窗',
         ko: '파일 변경시 오버레이 새로고침',
       },
