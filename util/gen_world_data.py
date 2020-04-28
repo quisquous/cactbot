@@ -95,7 +95,11 @@ def world_localize(name):
         "MengYuBaoJing": "梦羽宝境",
         "HaiMaoChaWu": "海猫茶屋",
         "RouFengHaiWan": "柔风海湾",
-        "HuPoYuan": "琥珀原"
+        "HuPoYuan": "琥珀原",
+        "KrChocobo": "초코보",
+        "KrMoogle": "모그리",
+        "KrCarbuncle": "카벙클",
+        "KrTonberry": "톤베리"
     }
     return d[name] if name in d else name
 
