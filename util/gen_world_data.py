@@ -9,8 +9,6 @@ import requests
 import sys
 import argparse
 
-locales = ["de", "en", "fr", "ja"]
-tackle_id = 30
 base = "https://xivapi.com/"
 
 # First argument is the API key
@@ -72,7 +70,7 @@ def xivapi(content, filters={}):
 
     return results
 
-def chinese_localize(name):
+def world_localize(name):
     d = {
         "LaNuoXiYa": "拉诺西亚",
         "ZiShuiZhanQiao": "紫水栈桥",
@@ -112,7 +110,7 @@ def get_world_data():
     data = {}
     for world in results:
         world_id, world_name = world["ID"], world["Name"]
-        world_name = chinese_localize(world_name)
+        world_name = world_localize(world_name)
         data[world_id] = world_name
 
     return data
