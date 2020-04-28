@@ -9,7 +9,7 @@ UserConfig.registerOptions('oopsyraidsy', {
         en: 'Enable debug mode',
         de: 'Aktiviere Debugmodus',
         fr: 'Activer le mode debug',
-        ja: 'デバッグモードを有効する',
+        ja: 'デバッグモードを有効にする',
         cn: '启用调试模式',
         ko: '디버그 모드 활성화',
       },
