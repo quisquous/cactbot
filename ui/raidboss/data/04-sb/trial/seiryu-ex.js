@@ -147,7 +147,7 @@
         fr: 'Packez-vous pour l\'aoe',
         ja: 'スタック',
         cn: '集合放置AOE',
-        ko: '',
+        ko: '중앙에 모이기',
       },
     },
     {
