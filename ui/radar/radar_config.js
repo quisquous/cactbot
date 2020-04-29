@@ -47,7 +47,7 @@ UserConfig.registerOptions('radar', {
         en: 'Volume to play pop sound (0-1)',
         de: 'Lautstärke für den Popsound (0-1)',
         fr: 'Volume du son (0-1)',
-        ja: '知らせ音声の音量（0-1）',
+        ja: 'お知らせ音声の音量（0-1）',
         cn: '播放声音音量（0-1）',
         ko: '소리 크기 (0-1)',
       },
