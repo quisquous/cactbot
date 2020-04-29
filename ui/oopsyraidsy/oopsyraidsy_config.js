@@ -35,7 +35,7 @@ UserConfig.registerOptions('oopsyraidsy', {
         en: 'Minimum time to show early pull (seconds)',
         de: 'Minimum Zeit in der Early-Pulls angezeigt werden (in Sekunden)',
         fr: 'Durée minimale pour afficher l\'early pull (secondes)',
-        ja: 'タゲ取るのが早かったら、ミスとして表示する、カウントダウンとの最短時間（秒）',
+        ja: 'タゲ取るのが早かったら、ミスとして表示する、カウントダウンとの最短時間 (秒)',
         cn: '显示提前开怪最小时间（秒）',
         ko: '풀링이 빠르다고 표시 할 최소 시간 (초)',
       },
