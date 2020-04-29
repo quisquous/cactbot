@@ -90,7 +90,7 @@
           return {
             en: 'Akh Morn on ' + matches.target,
             de: 'Akh Morn auf ' + matches.target,
-            cn: '死亡轮回点名',
+            cn: '死亡轮回点名' + matches.target,
             ko: '"' + matches.target + '" 아크몬',
           };
         }
