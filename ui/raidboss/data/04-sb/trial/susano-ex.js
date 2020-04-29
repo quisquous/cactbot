@@ -5,7 +5,7 @@
   zoneRegex: {
     en: /^The Pool Of Tribute \(Extreme\)$/,
     cn: /^须佐之男歼殛战$/,
-    ko: /^극 스사노 토벌전$/,
+    ko: /^극 스사노오 토벌전$/,
   },
   timelineFile: 'susano-ex.txt',
   timelineTriggers: [
