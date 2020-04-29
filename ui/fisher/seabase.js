@@ -71,37 +71,37 @@ class SeaBase {
     let q3;
 
     times.sort(function(a, b) {
-      return a-b;
+      return a - b;
     });
 
     // if there's less than 5 items, just assume it's legit
     if (times.length < 5) {
       return {
         low: times[0],
-        high: times[times.length-1],
+        high: times[times.length - 1],
       };
     }
 
     // find q2 (median)
     // we only need the index for the median
-    let q2_index = Math.floor(times.length / 2);
+    let q2Index = Math.floor(times.length / 2);
 
     // find q1 (median of first half)
-    let q1_index = Math.floor(q2_index / 2);
+    let q1Index = Math.floor(q2Index / 2);
 
-    if (q2_index % 2 || q2_index == 0)
-      q1 = times[q1_index];
+    if (q2Index % 2 || q2Index == 0)
+      q1 = times[q1Index];
     else
-      q1 = (times[q1_index] + times[q1_index - 1]) / 2;
+      q1 = (times[q1Index] + times[q1Index - 1]) / 2;
 
 
     // find q2 (median of second half)
-    let q3_index = q1_index + q2_index;
+    let q3Index = q1Index + q2Index;
 
-    if (q3_index % 2 || q2_index == 0)
-      q3 = times[q3_index];
+    if (q3Index % 2 || q2Index == 0)
+      q3 = times[q3Index];
     else
-      q3 = (times[q3_index] + times[q3_index - 1]) / 2;
+      q3 = (times[q3Index] + times[q3Index - 1]) / 2;
 
 
     let iqr = q3 - q1;
@@ -121,7 +121,7 @@ class SeaBase {
     let i;
 
     // Iterate forward until a suitable minimum
-    for (i=0; i < times.length; i++) {
+    for (i = 0; i < times.length; i++) {
       if (times[i] >= thresholds.low) {
         min = times[i];
         break;
@@ -129,7 +129,7 @@ class SeaBase {
     }
 
     // Iterate backward until a suitable maximum
-    for (i=times.length-1; i >= 0; i--) {
+    for (i = times.length - 1; i >= 0; i--) {
       if (times[i] <= thresholds.high) {
         max = times[i];
         break;
@@ -151,7 +151,8 @@ class SeaBase {
     let keys = ['fish', 'bait', 'place', 'castTimestamp', 'hookTime', 'reelTime', 'chum', 'snagging'];
 
     for (let index in keys) {
-      if (!data.hasOwnProperty(keys[index]) || data[keys[index]] === null) {
+      if (!Object.prototype.hasOwnProperty.call(data, keys[index]) ||
+          data[keys[index]] === null) {
         commit = false;
         console.log(keys[index] + 'missing in catch');
       }
@@ -263,7 +264,7 @@ class SeaBase {
     let times = [];
 
     return new Promise(function(resolve, reject) {
-      index.openCursor(IDBKeyRange.only([fish.id.toString(), bait.id, chum?1:0]))
+      index.openCursor(IDBKeyRange.only([fish.id.toString(), bait.id, chum ? 1 : 0]))
         .onsuccess = function(event) {
           let cursor = event.target.result;
 

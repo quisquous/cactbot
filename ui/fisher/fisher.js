@@ -262,7 +262,7 @@ class Fisher {
         'castTimestamp': +this.castStart,
         'hookTime': (this.castEnd - this.castStart),
         'reelTime': (this.castGet - this.castEnd),
-        'chum': this.chum?1:0,
+        'chum': this.chum ? 1 : 0,
         'snagging': this.snagging,
       });
     }

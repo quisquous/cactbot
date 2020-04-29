@@ -88,8 +88,8 @@ class WidgetList extends HTMLElement {
       <div id="root" style="position: relative"></div>
     `;
 
-    this._next_id = 1;
-    this._name_to_id = {};
+    this._nextId = 1;
+    this._nameToId = {};
     this._elements = {};
     this._sorted = [];
 
@@ -219,15 +219,15 @@ class WidgetList extends HTMLElement {
   }
 
   addElement(name, element, sortKey) {
-    let id = this._next_id;
-    this._next_id = this._next_id + 1;
+    let id = this._nextId;
+    this._nextId = this._nextId + 1;
 
-    let old = this._name_to_id[name];
+    let old = this._nameToId[name];
     if (old != null)
       this.removeElement(name);
 
     let sortKeyFn;
-    if (typeof(sortKey) == 'number') {
+    if (typeof sortKey == 'number') {
       sortKeyFn = function() {
         return sortKey;
       };
@@ -235,7 +235,7 @@ class WidgetList extends HTMLElement {
       sortKeyFn = sortKey;
     }
 
-    this._name_to_id[name] = id;
+    this._nameToId[name] = id;
     this._elements[id] = sortKeyFn;
     this._sorted.push(id);
     let that = this;
@@ -256,14 +256,14 @@ class WidgetList extends HTMLElement {
   }
 
   removeElement(name) {
-    let id = this._name_to_id[name];
+    let id = this._nameToId[name];
     if (id == null)
       return;
     let container = this.shadowRoot.getElementById('child' + id);
     let element = container.childNodes[0];
     this.rootElement.removeChild(container);
 
-    delete this._name_to_id[name];
+    delete this._nameToId[name];
     delete this._elements[id];
     for (let i in this._sorted) {
       if (this._sorted[i] == id) {
@@ -277,7 +277,7 @@ class WidgetList extends HTMLElement {
   }
 
   clear() {
-    for (let name in this._name_to_id)
+    for (let name in this._nameToId)
       this.removeElement(name);
   }
 
@@ -317,7 +317,7 @@ class WidgetList extends HTMLElement {
       rowcolindex = rowcolindex + 1;
       if (rowcolindex == this._rowcolsize) {
         x = x - (this._xinc1 * this._elementwidth) * rowcolindex;
-        y = y - (this._yinc1 * this._elementheight)* rowcolindex;
+        y = y - (this._yinc1 * this._elementheight) * rowcolindex;
         x = x + (this._xinc2 * this._elementwidth);
         y = y + (this._yinc2 * this._elementheight);
         rowcolindex = 0;
@@ -331,7 +331,7 @@ class WidgetList extends HTMLElement {
       div.style.width = this._elementwidth * 3 / 4;
       div.style.height = this._elementheight * 3 / 4;
       div.style.overflow = 'hidden';
-      div.style.backgroundColor = '#' + parseInt(Math.random()*10) + '' + parseInt(Math.random()*10) + '' + parseInt(Math.random()*10);
+      div.style.backgroundColor = '#' + parseInt(Math.random() * 10) + '' + parseInt(Math.random() * 10) + '' + parseInt(Math.random() * 10);
       div.style.textAlign = 'center';
       div.style.fontFamily = 'arial';
       div.style.fontSize = this._elementheight / 6;

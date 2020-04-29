@@ -239,7 +239,7 @@
           return {
             en: 'Stun: ' + matches.target,
             de: 'Paralyse ' + matches.target,
-            cn: '击晕'+ matches.target,
+            cn: '击晕' + matches.target,
             ko: matches.target + '스턴',
           };
         }

@@ -470,7 +470,7 @@
           return {
             en: 'Death Sentence on ' + matches.target,
             de: 'Todesurteil auf ' + matches.target,
-            cn: '死刑点名'+ matches.target,
+            cn: '死刑点名' + matches.target,
             ko: '"' + matches.target + '" 사형 선고',
           };
         }
@@ -480,7 +480,7 @@
           return {
             en: 'Death Sentence on ' + matches.target,
             de: 'Todesurteil auf ' + matches.target,
-            cn: '死刑点名'+ matches.target,
+            cn: '死刑点名' + matches.target,
             ko: '"' + matches.target + '" 사형 선고',
           };
         }
