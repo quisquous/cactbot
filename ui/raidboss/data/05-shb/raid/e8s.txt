@@ -122,6 +122,7 @@ hideall "--sync--"
 663.6 "Frigid Stone" sync /:Shiva:4D9B:/
 666.6 "Bright Hunger" sync /:Shiva:4DA2:/
 668.6 "Draconic Strike" sync /:Shiva:4D62:/
+669.3 "--knockback--"
 672.7 "Frigid Needle" sync /:Shiva:4D9D:/
 674.7 "Bright Hunger" sync /:Shiva:4DA2:/
 676.7 "Frigid Eruption 1" #sync /:Shiva:4D9F:/
