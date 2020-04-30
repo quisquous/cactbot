@@ -6,14 +6,14 @@ class Combatant {
     this.name = name.split('(')[0];
     this.states = {};
     this.significantStates = [];
-    this.latesttimestamp = null;
+    this.latestTimestamp = null;
     this.job = null;
     this.level = null;
   }
 
   pushState(timestamp, State) {
     this.states[timestamp] = State;
-    this.latesttimestamp = timestamp;
+    this.latestTimestamp = timestamp;
     if (!this.significantStates.includes(timestamp))
       this.significantStates.push(timestamp);
   }
@@ -47,8 +47,8 @@ class Combatant {
           this.states[timestamp][k] = Number(props[k]);
       });
     } else {
-      this.states[timestamp] = this.states[this.latesttimestamp].PartialClone(props);
-      this.latesttimestamp = Math.max(this.latesttimestamp, timestamp);
+      this.states[timestamp] = this.states[this.latestTimestamp].PartialClone(props);
+      this.latestTimestamp = Math.max(this.latestTimestamp, timestamp);
     }
     let lastSignificantStatetimestamp = this.significantStates[this.significantStates.length - 1];
     let oldStateJSON = JSON.stringify(this.states[lastSignificantStatetimestamp]);

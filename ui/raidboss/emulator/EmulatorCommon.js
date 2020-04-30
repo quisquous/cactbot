@@ -53,12 +53,3 @@ EmulatorCommon.petNames = [
   'Demi-Bahamut', 'Demi-Phoenix',
   'Esteem', 'Bunshin',
 ];
-
-EmulatorCommon.Languages = [
-  'ja',
-  'en',
-  'de',
-  'fr',
-  'cn',
-  'ko',
-];

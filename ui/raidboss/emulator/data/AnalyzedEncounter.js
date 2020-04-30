@@ -12,6 +12,7 @@ class AnalyzedEncounter extends EventBus {
     let partyMember = this.encounter.combatantTracker.combatants[ID];
     this.popupText.OnPlayerChange({
       detail: {
+        // @TODO: Move this split to combatant name assignment, with server stored
         name: partyMember.name.split('(')[0],
         job: partyMember.job,
         currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
@@ -25,7 +26,7 @@ class AnalyzedEncounter extends EventBus {
       party: this.encounter.combatantTracker.partyMembers.map((ID) => {
         return {
           name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
-          job: this.JobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
+          job: Util.jobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
           inParty: true,
         };
       }),
@@ -261,10 +262,6 @@ class AnalyzedEncounter extends EventBus {
       }
     }
     return ret;
-  }
-
-  JobToJobEnum(Job) {
-    return Object.keys(kJobEnumToName).filter((k) => kJobEnumToName[k] === Job).pop();
   }
 }
 

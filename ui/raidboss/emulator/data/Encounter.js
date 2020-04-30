@@ -45,13 +45,13 @@ class Encounter {
 
     for (let i = 0; i < this.logLines.length; ++i) {
       let line = this.logLines[i];
-      let res = LogEventHandler.IsMatchStart(line.line);
+      let res = LogEventHandler.isMatchStart(line.line);
       if (res) {
         this.startStatus.add(res.groups.StartType);
         if (res.groups.StartIn >= 0)
           this.engageAt = Math.min(line.timestamp + res.groups.StartIn, this.engageAt);
       } else {
-        res = LogEventHandler.IsMatchEnd(line.line);
+        res = LogEventHandler.isMatchEnd(line.line);
         if (res) {
           this.endStatus = res.groups.EndType;
         } else {
@@ -76,9 +76,8 @@ class Encounter {
           }
         }
       }
-      if (res && res.groups && res.groups.Language &&
-          EmulatorCommon.Languages.includes(res.groups.Language))
-        this.language = res.groups.Language || this.language;
+      if (res && res.groups && res.groups.language)
+        this.language = res.groups.language || this.language;
     }
 
     if (this.firstPlayerAbility === Number.MAX_SAFE_INTEGER)

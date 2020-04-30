@@ -47,7 +47,7 @@ class NetworkLogConverter {
   }
 
   AddCombatant(ID, Name) {
-    if (ID && ID.length && this.Combatants[ID] !== undefined) {
+    if (ID && ID.length && this.Combatants[ID] === undefined) {
       ID = ID.toLowerCase();
       this.Combatants[ID] = {
         Name: Name,

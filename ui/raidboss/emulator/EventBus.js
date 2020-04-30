@@ -1,4 +1,6 @@
 'use strict';
+
+// @TODO: more documentation for this
 // Simple event bus implementation to decouple things
 class EventBus {
   constructor() {

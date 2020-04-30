@@ -4,13 +4,17 @@ class LogEventHandler extends EventBus {
   static doesLineMatch(line, regexes) {
     for (let i in regexes) {
       let res = regexes[i].exec(line);
-      if (res)
+      if (res) {
+        if (gLang.kLanguage.includes(i)) {
+          res.groups.language = i;
+        }
         return res;
+      }
     }
     return false;
   }
 
-  static IsMatchStart(line) {
+  static isMatchStart(line) {
     let res;
     res = LogEventHandler.doesLineMatch(line, EmulatorCommon.CountdownRegexes);
     if (res) {
@@ -33,7 +37,7 @@ class LogEventHandler extends EventBus {
     return false;
   }
 
-  static IsMatchEnd(line) {
+  static isMatchEnd(line) {
     let res;
     res = LogEventHandler.doesLineMatch(line, [LogEventHandler.WinRegex]);
     if (res) {
@@ -81,7 +85,7 @@ class LogEventHandler extends EventBus {
         line = lineObj.line;
 
       this.currentFight.push(line);
-      let res = LogEventHandler.IsMatchEnd(line);
+      let res = LogEventHandler.isMatchEnd(line);
       if (res) {
         this.endFight();
       } else {
@@ -141,4 +145,4 @@ LogEventHandler.WipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000010:/
 LogEventHandler.WinRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000003:/;
 LogEventHandler.CactbotWipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
 
-LogEventHandler.ZoneChangeRegex = / 01:Changed Zone to (?<Zone>.*)\./;
+LogEventHandler.ZoneChangeRegex = /\[(?<lineTimestamp>[^\]]+)\] 01:Changed Zone to (?<Zone>.*)\./;
