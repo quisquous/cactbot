@@ -119,4 +119,71 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Ads': 'Abwehrsystem',
+        'Caduceus': 'Caduceus',
+        'Dark Matter Slime': 'Dunkelmaterien-Schleim',
+        'The Allagan megastructure': 'Allagische Superstruktur',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Ads': 'sphère de contrôle',
+        'Caduceus': 'Caducée',
+        'Dark Matter Slime': 'gluant de matière sombre',
+        'The Allagan megastructure': 'Mégastructure allagoise',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Ads': '制御システム',
+        'Caduceus': '蛇杖撃',
+        'Dark Matter Slime': 'ダークマター・スライム',
+        'The Allagan megastructure': 'アラグの遺構',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Ads': '自卫系统',
+        'Caduceus': '蛇杖击',
+        'Dark Matter Slime': '暗物质粘液怪',
+        'The Allagan megastructure': '亚拉戈遗构',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Ads': '제어 시스템',
+        'Caduceus': '뱀 지팡이',
+        'Dark Matter Slime': '암흑물질 슬라임',
+        'The Allagan megastructure': '알라그 유적',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+  ],
 }];

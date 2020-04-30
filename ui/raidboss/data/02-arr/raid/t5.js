@@ -251,6 +251,7 @@
       'locale': 'de',
       'replaceSync': {
         'The Right Hand of Bahamut': 'Rechten Hand von Bahamut',
+        'The Scourge Of Meracydia': 'Fackel von Meracydia',
         'Twintania': 'Twintania',
       },
       'replaceText': {
@@ -264,35 +265,41 @@
         'Hygieia': 'Hygieia',
         'Liquid Hell': 'Höllenschmelze',
         'Plummet': 'Ausloten',
-        'Twister': 'Wilder Wirbelwind',
+        'Twister': 'Wirbelsturm',
         'Unwoven Will': 'Entwobener Wille',
+      },
+      '~effectNames': {
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'The Right Hand of Bahamut': 'la Serre droite de Bahamut',
+        'The Scourge Of Meracydia': 'fléau de Méracydia',
         'Twintania': 'Gémellia',
       },
       'replaceText': {
         '1x Asclepius Add': 'Add 1x Asclépios',
+        '2x Hygieia Adds': 'Adds 2x Hygie',
         'Aetheric Profusion': 'Excès d\'éther',
         'Death Sentence': 'Peine de mort',
         'Divebomb': 'Bombe plongeante',
         'Fireball': 'Boule de feu',
         'Firestorm': 'Tempête de feu',
         'Hatch': 'Éclosion',
-        '2x Hygieia Adds': 'Adds 2x Hygie',
         'Liquid Hell': 'Enfer liquide',
         'Plummet': 'Piqué',
         'Twister': 'Tornade',
         'Unwoven Will': 'Volonté dispersée',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
+        'The Right Hand of Bahamut': 'バハムートの右手',
+        'The Scourge Of Meracydia': 'メラシディアン・ワイバーン',
         'Twintania': 'ツインタニア',
       },
       'replaceText': {
@@ -306,14 +313,17 @@
         'Hygieia': 'ヒュギエイア',
         'Liquid Hell': 'ヘルリキッド',
         'Plummet': 'プラメット',
-        'Twister': '大竜巻',
+        'Twister': 'ツイスター',
         'Unwoven Will': 'アンウォーヴェンウィル',
+      },
+      '~effectNames': {
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
+        'The Right Hand of Bahamut': '巴哈姆特的右手',
+        'The Scourge Of Meracydia': '美拉西迪亚祸龙',
         'Twintania': '双塔尼亚',
       },
       'replaceText': {
@@ -327,14 +337,17 @@
         'Hygieia': '许癸厄亚',
         'Liquid Hell': '液体地狱',
         'Plummet': '垂直下落',
-        'Twister': '大龙卷',
+        'Twister': '旋风',
         'Unwoven Will': '破愿',
+      },
+      '~effectNames': {
       },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
+        'The Right Hand of Bahamut': '바하무트의 오른손',
+        'The Scourge Of Meracydia': '메라시디아 와이번',
         'Twintania': '트윈타니아',
       },
       'replaceText': {
@@ -348,8 +361,10 @@
         'Hygieia': '히기에이아',
         'Liquid Hell': '지옥의 늪',
         'Plummet': '곤두박질',
-        'Twister': '대회오리',
+        'Twister': '회오리',
         'Unwoven Will': '짓밟힌 의지',
+      },
+      '~effectNames': {
       },
     },
   ],
