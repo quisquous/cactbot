@@ -238,9 +238,9 @@
     {
       'locale': 'de',
       'replaceSync': {
+        'Electric Node': 'elektrisch(?:e|er|es|en) Modul',
         'Kaliya': 'Kaliya',
         'The Core Override': 'Kern-Steuereinheit',
-        'Electric Node': 'Elektrisch(?:e|er|es|en) Modul',
       },
       'replaceText': {
         'Barofield': 'Baro-Feld',
@@ -251,14 +251,17 @@
         'Nerve Gas': 'Nervengas',
         'Resonance': 'Resonanz',
         'Secondary Head': 'Nebenkopf',
-        'Seed Of The Rivers': 'Samen der Flüsse',
-        'Seed Of The Sea': 'Samen der See',
+        'Seed Of The Rivers/Sea': 'Samen der Flüsse/See',
+        'Seed Of The Sea/Rivers': 'Samen der See/Flüsse',
         'Stun': 'Betäubung',
+      },
+      '~effectNames': {
       },
     },
     {
       'locale': 'fr',
       'replaceSync': {
+        'Electric Node': 'module d\'électrochoc',
         'Kaliya': 'Kaliya',
         'The Core Override': 'l\'unité de contrôle du Cœur',
       },
@@ -275,12 +278,16 @@
         'Seed Of The Sea/Rivers': 'Germe de la mer/rivière',
         'Stun': 'Étourdissement',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
+        'Electric Node': '雷撃システム',
         'Kaliya': 'カーリア',
+        'The Core Override': 'コア制御区画',
       },
       'replaceText': {
         'Barofield': 'バロフィールド',
@@ -291,16 +298,18 @@
         'Nerve Gas': 'ナーブガス',
         'Resonance': 'レゾナンス',
         'Secondary Head': 'サブヘッド',
-        'Seed Of The Rivers': 'シード・オブ・リバー',
-        'Seed Of The Sea': 'シード・オブ・シー',
         'Stun': 'スタン',
+      },
+      '~effectNames': {
       },
     },
     {
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
+        'Electric Node': '雷击系统',
         'Kaliya': '卡利亚',
+        'The Core Override': '核心控制区间',
       },
       'replaceText': {
         'Barofield': '气压领域',
@@ -311,16 +320,18 @@
         'Nerve Gas': '神经毒气',
         'Resonance': '共鸣',
         'Secondary Head': '侧首',
-        'Seed Of The Rivers': '江河之种',
-        'Seed Of The Sea': '海洋之种',
         'Stun': '眩晕',
+      },
+      '~effectNames': {
       },
     },
     {
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
+        'Electric Node': '뇌격 시스템',
         'Kaliya': '칼리야',
+        'The Core Override': '핵심 제어 구역',
       },
       'replaceText': {
         'Barofield': '압력 필드',
@@ -331,9 +342,9 @@
         'Nerve Gas': '신경 가스',
         'Resonance': '공명',
         'Secondary Head': '옆 머리',
-        'Seed Of The Rivers': '강의 원천',
-        'Seed Of The Sea': '바다의 원천',
         'Stun': '기절',
+      },
+      '~effectNames': {
       },
     },
   ],
