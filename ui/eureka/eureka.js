@@ -1081,6 +1081,7 @@ let Options = {
           x: 28.9,
           y: 29.2,
           fateID: 1389,
+          weather: 'Thunder',
         },
         sophist: {
           label: {
@@ -1578,6 +1579,7 @@ let Options = {
           x: 28.9,
           y: 23.9,
           fateID: 1418,
+          time: 'Night',
         },
         leuke: {
           label: {
