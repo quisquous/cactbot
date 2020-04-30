@@ -77,7 +77,7 @@ var NetRegexes = {
   startsUsing: (params) => {
     return parseHelper(params, 'startsUsing', {
       0: '20',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'sourceId' },
       3: { field: 'source' },
       4: { field: 'id' },
@@ -93,7 +93,7 @@ var NetRegexes = {
   ability: (params) => {
     return parseHelper(params, 'ability', {
       0: '2[12]',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'sourceId' },
       3: { field: 'source' },
       4: { field: 'id' },
@@ -108,7 +108,7 @@ var NetRegexes = {
   abilityFull: (params) => {
     return parseHelper(params, 'abilityFull', {
       0: '2[12]',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'sourceId' },
       3: { field: 'source' },
       4: { field: 'id' },
@@ -127,7 +127,7 @@ var NetRegexes = {
   headMarker: (params) => {
     return parseHelper(params, 'headMarker', {
       0: '27',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'targetId' },
       3: { field: 'target' },
       4: '....',
@@ -140,7 +140,7 @@ var NetRegexes = {
   addedCombatant: (params) => {
     return parseHelper(params, 'addedCombatant', {
       0: '03',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
     });
@@ -151,7 +151,7 @@ var NetRegexes = {
   addedCombatantFull: (params) => {
     return parseHelper(params, 'addedCombatantFull', {
       0: '03',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
       4: { field: 'job' },
@@ -171,7 +171,7 @@ var NetRegexes = {
   removingCombatant: (params) => {
     return parseHelper(params, 'removingCombatant', {
       0: '04',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
       12: { field: 'hp' },
@@ -182,7 +182,7 @@ var NetRegexes = {
   gainsEffect: (params) => {
     return parseHelper(params, 'gainsEffect', {
       0: '26',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'effectId' },
       3: { field: 'effect' },
       4: { field: 'duration' },
@@ -199,7 +199,7 @@ var NetRegexes = {
   statusEffectExplicit: (params) => {
     return parseHelper(params, 'statusEffectExplicit', {
       0: '38',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'targetId' },
       3: { field: 'target' },
       5: { field: 'hp' },
@@ -220,7 +220,7 @@ var NetRegexes = {
   losesEffect: (params) => {
     return parseHelper(params, 'losesEffect', {
       0: '30',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'effectId' },
       3: { field: 'effect' },
       5: { field: 'sourceId' },
@@ -235,7 +235,7 @@ var NetRegexes = {
   tether: (params) => {
     return parseHelper(params, 'tether', {
       0: '35',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'sourceId' },
       3: { field: 'source' },
       4: { field: 'targetId' },
@@ -251,7 +251,7 @@ var NetRegexes = {
   wasDefeated: (params) => {
     return parseHelper(params, 'tether', {
       0: '25',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'targetId' },
       3: { field: 'target' },
       4: { field: 'sourceId' },
@@ -263,7 +263,7 @@ var NetRegexes = {
   echo: (params) => {
     if (typeof params === 'undefined')
       params = {};
-    Regexes.validateParams(params, 'echo', ['code', 'name', 'line', 'capture']);
+    Regexes.validateParams(params, 'echo', ['timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0038';
     return NetRegexes.gameLog(params);
   },
@@ -272,7 +272,7 @@ var NetRegexes = {
   dialog: (params) => {
     if (typeof params === 'undefined')
       params = {};
-    Regexes.validateParams(params, 'dialog', ['code', 'name', 'line', 'capture']);
+    Regexes.validateParams(params, 'dialog', ['timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0044';
     return NetRegexes.gameLog(params);
   },
@@ -281,7 +281,7 @@ var NetRegexes = {
   message: (params) => {
     if (typeof params === 'undefined')
       params = {};
-    Regexes.validateParams(params, 'message', ['code', 'name', 'line', 'capture']);
+    Regexes.validateParams(params, 'message', ['timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0839';
     return NetRegexes.gameLog(params);
   },
@@ -291,7 +291,7 @@ var NetRegexes = {
   gameLog: (params) => {
     return parseHelper(params, 'gameLog', {
       0: '00',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'code' },
       3: { field: 'name' },
       4: { field: 'line' },
@@ -308,7 +308,7 @@ var NetRegexes = {
   statChange: (params) => {
     return parseHelper(params, 'statChange', {
       0: '12',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'job' },
       3: { field: 'strength' },
       4: { field: 'dexterity' },
@@ -332,7 +332,7 @@ var NetRegexes = {
   changeZone: (params) => {
     return parseHelper(params, 'changeZone', {
       0: '01',
-      1: '\\y{NetTimestamp}',
+      1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
     });

@@ -83,20 +83,55 @@ class CactbotLanguageFr extends CactbotLanguage {
       Pull: 'Pull',
     });
 
+    this.kPetNames = Object.freeze([
+      // Pulled from https://xivapi.com/Pet?pretty=true&language=fr
+      'Carbuncle émeraude',
+      'Carbuncle topaze',
+      'Ifrit-Egi',
+      'Titan-Egi',
+      'Garuda-Egi',
+      'Eos',
+      'Selene',
+      'Auto-tourelle Tour',
+      'Auto-tourelle Fou',
+      'Demi-Bahamut',
+      'Demi-Phénix',
+      'Séraphin',
+      'Carbuncle hécatolite',
+      'Estime',
+      'Automate Reine',
+      'Ombre',
+    ]);
+
     this.countdownStartRegex = function() {
-      return Regexes.parse(/Début du combat dans (\y{Float}) secondes !/);
+      return Regexes.gameLog({
+        capture: true,
+        line: 'Début du combat dans (?<time>\\y{Float}) secondes[ ]?!',
+      });
     };
     this.countdownEngageRegex = function() {
-      return /:À l'attaque !/;
+      return Regexes.gameLog({
+        capture: true,
+        line: 'À l\'attaque[ ]?!',
+      });
     };
     this.countdownCancelRegex = function() {
-      return /Le compte à rebours a été interrompu par /;
+      return Regexes.gameLog({
+        capture: true,
+        line: 'Le compte à rebours a été interrompu par (?<name>\\y{Name})[ ]?\\.',
+      });
     };
     this.areaSealRegex = function() {
-      return /:Fermeture (.*) dans /;
+      return Regexes.gameLog({
+        capture: true,
+        line: 'Fermeture (?<name>\\y{Name}) dans (?<time>\\y{Float}) secondes[ ]?\\.',
+      });
     };
     this.areaUnsealRegex = function() {
-      return /:Ouverture (.*)/;
+      return Regexes.gameLog({
+        capture: true,
+        line: 'Ouverture (?<name>\\y{Name})[ ]?!',
+      });
     };
   }
 }
