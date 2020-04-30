@@ -59,7 +59,7 @@ Options.Triggers = [
     zoneRegex: /./,
     triggers: [
       {
-        regex: Regexes.gameLog({ line: 'You are defeated by' }),
+        regex: Regexes.gameLog({ line: 'You are defeated by.*?' }),
         alarmText: 'YOU DIED',
       },
     ],
@@ -73,7 +73,7 @@ Options.Triggers = [
     zoneRegex: /^(Mist|The Goblet|The Lavender Beds|Shirogane)$/,
     triggers: [
       {
-        regex: Regexes.gameNameLog({ line: 'You blow a kiss' }),
+        regex: Regexes.gameNameLog({ line: 'You blow a kiss.*?' }),
         sound: '../../resources/sounds/PowerAuras/bigkiss.ogg',
         volume: 0.5,
       },
@@ -109,7 +109,7 @@ Options.Triggers = [
       // If you provoke the striking dummy (or anything), this will trigger.
       {
         id: 'User Example Provoke',
-        regex: Regexes.gameLog({ line: 'You use Provoke' }),
+        regex: Regexes.gameLog({ line: 'You use Provoke.*?' }),
         infoText: 'Provoke!',
         tts: 'provoke',
       },

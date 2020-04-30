@@ -183,12 +183,12 @@
       // There's no "starts using" here.  She pushes at 35% to this ability.
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
-      regex: Regexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\.', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\.', capture: false }),
-      regexFr: Regexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\.', capture: false }),
-      regexJa: Regexes.dialog({ line: '[^:]*:嗚呼、まだ、あたしは…………。', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:我不能输.*我还没有.*', capture: false }),
-      regexKo: Regexes.dialog({ line: '[^:]*:아아, 나는 아직……\.', capture: false }),
+      regex: Regexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\..*?', capture: false }),
+      regexFr: Regexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\..*?', capture: false }),
+      regexJa: Regexes.dialog({ line: '[^:]*:嗚呼、まだ、あたしは…………。.*?', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:我不能输.*我还没有.*.*?', capture: false }),
+      regexKo: Regexes.dialog({ line: '[^:]*:아아, 나는 아직……\..*?', capture: false }),
       response: Responses.aoe(),
     },
     {
