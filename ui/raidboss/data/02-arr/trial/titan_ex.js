@@ -70,13 +70,17 @@
       'replaceText': {
         '\\(all\\)': '(alle)',
         '\\(clock\\)': '(Uhrzeiger)',
+        '\\(E/W\\)': '(O/W)',
         '\\(one side\\)': '(eine Seite)',
+        '\\(row 1\\)': '(Reihe 1)',
+        '\\(row 2\\)': '(Reihe 2)',
+        '\\(row 3\\)': '(Reihe 3)',
         'Burst': 'Einschlag',
         'Bury': 'Begraben',
         'Earthen Fury': 'Gaias Zorn',
-        'Gaoler Adds': 'Gaoler Adds', // FIXME
-        'Gaoler Landslide': 'Gaoler Landslide', // FIXME
-        'Gaoler Tumult': 'Gaoler Tumult', // FIXME
+        'Gaoler Adds': 'Kerkermeister Adds',
+        'Gaoler Landslide': 'Kerkermeister Bergsturz',
+        'Gaoler Tumult': 'Kerkermeister Urerschütterung ',
         'Geocrush': 'Geo-Stoß',
         '(?<! )Landslide': 'Bergsturz',
         'Mountain Buster': 'Bergsprenger',
@@ -120,21 +124,16 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
         'Granite Gaoler': 'グラナイト・ジェイラー',
         'Titan': 'タイタン',
       },
       'replaceText': {
-        '\\(all\\)': '(all)', // FIXME
-        '\\(clock\\)': '(clock)', // FIXME
-        '\\(one side\\)': '(one side)', // FIXME
         'Burst': '大爆発',
         'Bury': '衝撃',
         'Earthen Fury': '大地の怒り',
-        'Gaoler Adds': 'Gaoler Adds', // FIXME
-        'Gaoler Landslide': 'Gaoler Landslide', // FIXME
-        'Gaoler Tumult': 'Gaoler Tumult', // FIXME
         'Geocrush': 'ジオクラッシュ',
         '(?<! )Landslide': 'ランドスライド',
         'Mountain Buster': 'マウンテンバスター',
@@ -147,21 +146,16 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '爆破岩石',
         'Granite Gaoler': '花岗石卫',
         'Titan': '泰坦',
       },
       'replaceText': {
-        '\\(all\\)': '(all)', // FIXME
-        '\\(clock\\)': '(clock)', // FIXME
-        '\\(one side\\)': '(one side)', // FIXME
         'Burst': '爆炸',
         'Bury': '塌方',
         'Earthen Fury': '大地之怒',
-        'Gaoler Adds': 'Gaoler Adds', // FIXME
-        'Gaoler Landslide': 'Gaoler Landslide', // FIXME
-        'Gaoler Tumult': 'Gaoler Tumult', // FIXME
         'Geocrush': '大地粉碎',
         '(?<! )Landslide': '地裂',
         'Mountain Buster': '山崩',
@@ -174,21 +168,16 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '바위폭탄',
         'Granite Gaoler': '화강암 감옥',
         'Titan': '타이탄',
       },
       'replaceText': {
-        '\\(all\\)': '(all)', // FIXME
-        '\\(clock\\)': '(clock)', // FIXME
-        '\\(one side\\)': '(one side)', // FIXME
         'Burst': '대폭발',
         'Bury': '충격',
         'Earthen Fury': '대지의 분노',
-        'Gaoler Adds': 'Gaoler Adds', // FIXME
-        'Gaoler Landslide': 'Gaoler Landslide', // FIXME
-        'Gaoler Tumult': 'Gaoler Tumult', // FIXME
         'Geocrush': '대지 붕괴',
         '(?<! )Landslide': '산사태',
         'Mountain Buster': '산 쪼개기',

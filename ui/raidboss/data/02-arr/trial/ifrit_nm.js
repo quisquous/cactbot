@@ -38,8 +38,6 @@
       'locale': 'de',
       'replaceSync': {
         'Ifrit': 'Ifrit',
-        'Succumb': 'Succumb', // FIXME
-        'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
         '\\(inner\\)': '(innen)',
@@ -47,7 +45,7 @@
         'Eruption': 'Eruption',
         'Hellfire': 'Höllenfeuer',
         'Incinerate': 'Einäschern',
-        'Nail Add': 'Nail Add', // FIXME
+        'Nail Add': 'Fessel Add',
         'Radiant Plume': 'Scheiterhaufen',
         'Vulcan Burst': 'Feuerstoß',
       },
@@ -56,8 +54,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Ifrit': 'Ifrit',
-        'Succumb': 'Succumb', // FIXME
-        'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
         '\\(inner\\)': '(intérieur)',
@@ -72,54 +68,42 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ifrit': 'イフリート',
-        'Succumb': 'Succumb', // FIXME
-        'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        '\\(inner\\)': '(inner)', // FIXME
-        '\\(outer\\)': '(outer)', // FIXME
         'Eruption': 'エラプション',
         'Hellfire': '地獄の火炎',
         'Incinerate': 'インシネレート',
-        'Nail Add': 'Nail Add', // FIXME
         'Radiant Plume': '光輝の炎柱',
         'Vulcan Burst': 'バルカンバースト',
       },
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Ifrit': '伊弗利特',
-        'Succumb': 'Succumb', // FIXME
-        'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        '\\(inner\\)': '(inner)', // FIXME
-        '\\(outer\\)': '(outer)', // FIXME
         'Eruption': '地火喷发',
         'Hellfire': '地狱之火炎',
         'Incinerate': '烈焰焚烧',
-        'Nail Add': 'Nail Add', // FIXME
         'Radiant Plume': '光辉炎柱',
         'Vulcan Burst': '火神爆裂',
       },
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Ifrit': '이프리트',
-        'Succumb': 'Succumb', // FIXME
-        'Surrender': 'Surrender', // FIXME
       },
       'replaceText': {
-        '\\(inner\\)': '(inner)', // FIXME
-        '\\(outer\\)': '(outer)', // FIXME
         'Eruption': '용암 분출',
         'Hellfire': '지옥의 화염',
         'Incinerate': '소각',
-        'Nail Add': 'Nail Add', // FIXME
         'Radiant Plume': '광휘의 불기둥',
         'Vulcan Burst': '폭렬 난사',
       },
