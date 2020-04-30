@@ -22,12 +22,12 @@
     {
       // Indiscriminate Hood Swing
       id: 'T1 Initiated',
-      regex: Regexes.ability({ source: 'Caduceus', id: '4B8', capture: false }),
-      regexDe: Regexes.ability({ source: 'Caduceus', id: '4B8', capture: false }),
-      regexFr: Regexes.ability({ source: 'Caducée', id: '4B8', capture: false }),
-      regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4B8', capture: false }),
-      regexCn: Regexes.ability({ source: '神杖巨蛇', id: '4B8', capture: false }),
-      regexKo: Regexes.ability({ source: '카두케우스', id: '4B8', capture: false }),
+      regex: Regexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
+      regexDe: Regexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
+      regexFr: Regexes.ability({ source: 'Caducée', id: '4B8.*?', capture: false }),
+      regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4B8.*?', capture: false }),
+      regexCn: Regexes.ability({ source: '神杖巨蛇', id: '4B8.*?', capture: false }),
+      regexKo: Regexes.ability({ source: '카두케우스', id: '4B8.*?', capture: false }),
       run: function(data) {
         data.started = true;
       },
@@ -52,12 +52,12 @@
     },
     {
       id: 'T1 Split',
-      regex: Regexes.addedCombatant({ name: 'Caduceus', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Caduceus', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Caducée', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'カドゥケウス', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '神杖巨蛇', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '카두케우스', capture: false }),
+      regex: Regexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Caducée.*?', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'カドゥケウス.*?', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '神杖巨蛇.*?', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '카두케우스.*?', capture: false }),
       condition: function(data) {
         return data.started;
       },
@@ -91,7 +91,7 @@
     },
     {
       id: 'T1 Slime Timer First',
-      regex: Regexes.message({ line: 'The Allagan megastructure will be sealed off', capture: false }),
+      regex: Regexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {
@@ -103,12 +103,12 @@
     },
     {
       id: 'T1 Slime Timer',
-      regex: Regexes.addedCombatant({ name: 'Dark Matter Slime', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Dunkelmaterien-Schleim', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Gluant De Matière Sombre', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'ダークマター・スライム', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '暗物质粘液怪', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '암흑물질 슬라임', capture: false }),
+      regex: Regexes.addedCombatant({ name: 'Dark Matter Slime.*?', capture: false }),
+      regexDe: Regexes.addedCombatant({ name: 'Dunkelmaterien-Schleim.*?', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Gluant De Matière Sombre.*?', capture: false }),
+      regexJa: Regexes.addedCombatant({ name: 'ダークマター・スライム.*?', capture: false }),
+      regexCn: Regexes.addedCombatant({ name: '暗物质粘液怪.*?', capture: false }),
+      regexKo: Regexes.addedCombatant({ name: '암흑물질 슬라임.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {

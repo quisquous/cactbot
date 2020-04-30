@@ -303,7 +303,7 @@ var Regexes = {
     let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', '0044') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + ':' +
-      Regexes.maybeCapture(capture, 'line', f.line, '.*');
+      Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
     return Regexes.parse(str);
   },
 
@@ -329,7 +329,7 @@ var Regexes = {
     let capture = Regexes.trueIfUndefined(f.capture);
     let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
-      Regexes.maybeCapture(capture, 'line', f.line, '.*');
+      Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
     return Regexes.parse(str);
   },
 
@@ -345,7 +345,7 @@ var Regexes = {
     let str = '\\y{Timestamp} 00:' +
       Regexes.maybeCapture(capture, 'code', f.code, '....') + ':' +
       Regexes.maybeCapture(capture, 'name', f.name, '[^:]*') + ':' +
-      Regexes.maybeCapture(capture, 'line', f.line, '.*');
+      Regexes.maybeCapture(capture, 'line', f.line, '.*') + '$';
     return Regexes.parse(str);
   },
 

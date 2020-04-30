@@ -318,7 +318,7 @@
     },
     {
       id: 'A11S Plasma Shield Shattered',
-      regex: Regexes.gameLog({ line: 'The plasma shield is shattered', capture: false }),
+      regex: Regexes.gameLog({ line: 'The plasma shield is shattered.*?', capture: false }),
 
       response: Responses.spread('info'),
     },

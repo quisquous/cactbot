@@ -65,11 +65,11 @@
   triggers: [
     {
       id: 'BA Falling Asleep',
-      regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity.', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen.', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes', capture: false }),
-      regexCn: Regexes.gameLog({ line: '已经5分钟没有进行任何操作', capture: false }),
-      regexKo: Regexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다.', capture: false }),
+      regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity..*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen..*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes.*?', capture: false }),
+      regexCn: Regexes.gameLog({ line: '已经5分钟没有进行任何操作.*?', capture: false }),
+      regexKo: Regexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
@@ -90,20 +90,20 @@
     },
     {
       id: 'BA Seal',
-      regex: Regexes.message({ line: '.*will be sealed off', capture: false }),
-      regexDe: Regexes.message({ line: '.*bis sich der Zugang', capture: false }),
-      regexCn: Regexes.message({ line: '距.*被封锁还有', capture: false }),
-      regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다', capture: false }),
+      regex: Regexes.message({ line: '.*will be sealed off.*?', capture: false }),
+      regexDe: Regexes.message({ line: '.*bis sich der Zugang.*?', capture: false }),
+      regexCn: Regexes.message({ line: '距.*被封锁还有.*?', capture: false }),
+      regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다.*?', capture: false }),
       run: function(data) {
         data.sealed = true;
       },
     },
     {
       id: 'BA Clear Data',
-      regex: Regexes.message({ line: '.*is no longer sealed', capture: false }),
-      regexDe: Regexes.message({ line: '.*öffnet sich wieder', capture: false }),
-      regexCn: Regexes.message({ line: '.*的封锁解除了', capture: false }),
-      regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다', capture: false }),
+      regex: Regexes.message({ line: '.*is no longer sealed.*?', capture: false }),
+      regexDe: Regexes.message({ line: '.*öffnet sich wieder.*?', capture: false }),
+      regexCn: Regexes.message({ line: '.*的封锁解除了.*?', capture: false }),
+      regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다.*?', capture: false }),
       run: function(data) {
         delete data.side;
         delete data.mythcall;
@@ -296,9 +296,9 @@
     },
     {
       id: 'BA Owain Fire Element',
-      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切', capture: false }),
+      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid.*?', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -319,9 +319,9 @@
     },
     {
       id: 'BA Owain Ice Element',
-      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn blood to ice', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物', capture: false }),
+      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen.*?', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },

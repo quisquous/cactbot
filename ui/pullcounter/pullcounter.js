@@ -14,7 +14,7 @@ class PullCounter {
     this.party = [];
     this.bosses = [];
 
-    this.resetRegex = Regexes.echo({ line: 'pullcounter reset' });
+    this.resetRegex = Regexes.echo({ line: '.*pullcounter reset.*?' });
 
     callOverlayHandler({
       call: 'cactbotLoadData',
