@@ -1,13 +1,13 @@
 'use strict';
 
 class CombatantJobSearch {
-  static GetJob(AbilityID) {
-    if (!CombatantJobSearch.AbilityMatchRegex.test(AbilityID))
+  static GetJob(abilityID) {
+    if (!CombatantJobSearch.AbilityMatchRegex.test(abilityID))
       return null;
 
-    AbilityID = Number('0x' + AbilityID);
+    abilityID = Number('0x' + abilityID);
     for (let Job in CombatantJobSearch.Abilities) {
-      if (CombatantJobSearch.Abilities[Job].includes(AbilityID))
+      if (CombatantJobSearch.Abilities[Job].includes(abilityID))
         return Job;
     }
     return null;

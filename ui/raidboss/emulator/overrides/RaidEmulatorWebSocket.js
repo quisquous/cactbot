@@ -41,13 +41,16 @@ class RaidEmulatorWebSocket {
         let tracker = this.emulator.currentEncounter.encounter.combatantTracker;
         let timestamp = this.emulator.currentEncounter.encounter.startTimestamp +
           this.timestampOffset;
-        for (let combatant of tracker.combatants) {
+
+        // Can't use `let combatant of` here because apparently tracker.combatants isn't iterable
+        for (let id in tracker.combatants) {
+          let combatant = tracker.combatants[id];
           // nextSignificatState is a bit inefficient but given that this isn't run every tick
           // we can afford to be a bit inefficient for readability's sake
           let combatantState = combatant.nextSignificantState(timestamp);
-          if (msg.ids && msg.ids.includes(ID))
+          if (msg.ids && msg.ids.includes(id))
             combatants.push(combatantState);
-          else if (msg.names && msg.names.includes(tracker.combatants[ID].name))
+          else if (msg.names && msg.names.includes(tracker.combatants[id].name))
             combatants.push(combatantState);
         }
         res({

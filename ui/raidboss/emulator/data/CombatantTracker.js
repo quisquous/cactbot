@@ -1,7 +1,8 @@
 'use strict';
 
 class CombatantTracker {
-  constructor(encounterDay, logLines) {
+  constructor(encounterDay, logLines, language) {
+    this.language = language;
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
     this.lastTimestamp = 0;
     this.combatants = {};
@@ -115,11 +116,12 @@ class CombatantTracker {
     }
 
     // Figure out party/enemy/other status
+    let petNames = EmulatorCommon.cactbotLanguages[this.language].kPetNames;
     this.others = this.others.filter((ID) => {
       if (this.combatants[ID].job !== null || ID.startsWith('1')) {
         this.partyMembers.push(ID);
         return false;
-      } else if (EmulatorCommon.petNames.includes(this.combatants[ID].name)) {
+      } else if (petNames.includes(this.combatants[ID].name)) {
         this.pets.push(ID);
         return false;
       } else if (eventTracker[ID] > 0) {
@@ -167,7 +169,7 @@ class CombatantTracker {
         case '15':
         case '16':
           if (eventParts.groups.source_id === ID && this.combatants[ID].job === null && !ID.startsWith('4'))
-            this.combatants[ID].job = CombatantJobSearch.GetJob(eventParts.groups.AbilityID);
+            this.combatants[ID].job = CombatantJobSearch.GetJob(eventParts.groups.abilityID);
           break;
         }
       }

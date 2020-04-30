@@ -49,8 +49,8 @@ let Options = {
     emulatedWebSocket = new RaidEmulatorWebSocket(emulator);
     logConverter = new NetworkLogConverter();
 
-    emulatedPartyInfo.on('SelectPerspective', (ID) => {
-      emulator.selectPerspective(ID);
+    emulatedPartyInfo.on('SelectPerspective', (id) => {
+      emulator.selectPerspective(id);
     });
 
     logEventHandler.on('fight', (day, zone, lines) => {
@@ -63,27 +63,27 @@ let Options = {
       encounterTab.refresh();
     });
 
-    encounterTab.on('load', (ID) => {
-      if (!emulator.setCurrentByID(ID)) {
-        persistor.loadEncounter(ID).then((enc) => {
+    encounterTab.on('load', (id) => {
+      if (!emulator.setCurrentByID(id)) {
+        persistor.loadEncounter(id).then((enc) => {
           emulator.addEncounter(enc);
-          emulator.setCurrentByID(ID);
+          emulator.setCurrentByID(id);
           if (!isNaN(emulator.currentEncounter.encounter.initialOffset))
             emulator.seek(emulator.currentEncounter.encounter.initialOffset);
         });
       }
     });
 
-    encounterTab.on('parse', (ID) => {
-      persistor.loadEncounter(ID).then(async (enc) => {
+    encounterTab.on('parse', (id) => {
+      persistor.loadEncounter(id).then(async (enc) => {
         enc.initialize();
         await persistor.persistEncounter(enc);
         encounterTab.refresh();
       });
     });
 
-    encounterTab.on('prune', (ID) => {
-      persistor.loadEncounter(ID).then(async (enc) => {
+    encounterTab.on('prune', (id) => {
+      persistor.loadEncounter(id).then(async (enc) => {
         let firstLine = 1;
         for (let i = 0; i < enc.logLines.length; ++i) {
           let l = enc.logLines[i];
@@ -103,8 +103,8 @@ let Options = {
       });
     });
 
-    encounterTab.on('delete', (ID) => {
-      persistor.deleteEncounter(ID).then(() => {
+    encounterTab.on('delete', (id) => {
+      persistor.deleteEncounter(id).then(() => {
         encounterTab.refresh();
       });
     });

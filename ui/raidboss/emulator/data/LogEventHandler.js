@@ -5,9 +5,8 @@ class LogEventHandler extends EventBus {
     for (let i in regexes) {
       let res = regexes[i].exec(line);
       if (res) {
-        if (gLang.kLanguage.includes(i)) {
+        if (gLang.kLanguage.includes(i))
           res.groups.language = i;
-        }
         return res;
       }
     }

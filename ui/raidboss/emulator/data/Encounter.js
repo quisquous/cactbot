@@ -43,6 +43,8 @@ class Encounter {
     this.firstPlayerAbility = Number.MAX_SAFE_INTEGER;
     this.firstEnemyAbility = Number.MAX_SAFE_INTEGER;
 
+    let petNames = EmulatorCommon.cactbotLanguages[this.language].kPetNames;
+
     for (let i = 0; i < this.logLines.length; ++i) {
       let line = this.logLines[i];
       let res = LogEventHandler.isMatchStart(line.line);
@@ -60,15 +62,15 @@ class Encounter {
             res = EmulatorCommon.EventDetailsRegexes['16'].exec(line.line);
           if (res) {
             if (res.groups.source_id.startsWith('1') ||
-              (res.groups.source_id.startsWith('4') && EmulatorCommon.petNames.includes(res.groups.source_name))) {
+              (res.groups.source_id.startsWith('4') && petNames.includes(res.groups.source_name))) {
               // Player or pet ability
-              if (res.groups.target_id.startsWith('4') && !EmulatorCommon.petNames.includes(res.groups.target_name)) {
+              if (res.groups.target_id.startsWith('4') && !petNames.includes(res.groups.target_name)) {
                 // Targetting non player or pet
                 this.firstPlayerAbility = Math.min(this.firstPlayerAbility, line.timestamp);
               }
-            } else if (res.groups.source_id.startsWith('4') && !EmulatorCommon.petNames.includes(res.groups.source_name)) {
+            } else if (res.groups.source_id.startsWith('4') && !petNames.includes(res.groups.source_name)) {
               // Non-player ability
-              if (res.groups.target_id.startsWith('1') || EmulatorCommon.petNames.includes(res.groups.target_name)) {
+              if (res.groups.target_id.startsWith('1') || petNames.includes(res.groups.target_name)) {
                 // Targetting player or pet
                 this.firstEnemyAbility = Math.min(this.firstEnemyAbility, line.timestamp);
               }
@@ -89,7 +91,7 @@ class Encounter {
     if (this.engageAt === Number.MAX_SAFE_INTEGER)
       this.engageAt = null;
 
-    this.combatantTracker = new CombatantTracker(this.encounterDay, this.logLines);
+    this.combatantTracker = new CombatantTracker(this.encounterDay, this.logLines, this.language);
     this.startTimestamp = this.combatantTracker.firstTimestamp;
     this.endTimestamp = this.combatantTracker.lastTimestamp;
     this.duration = this.endTimestamp - this.startTimestamp;
