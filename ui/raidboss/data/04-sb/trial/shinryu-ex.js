@@ -88,10 +88,10 @@
           };
         } else if (data.role == 'tank') {
           return {
-            en: 'Akh Morn on ' + matches.target,
-            de: 'Akh Morn auf ' + matches.target,
-            cn: '死亡轮回点' + matches.target,
-            ko: '"' + matches.target + '" 아크몬',
+            en: 'Akh Morn on ' + data.ShortName(matches.target),
+            de: 'Akh Morn auf ' + data.ShortName(matches.target),
+            cn: '死亡轮回点' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 아크몬',
           };
         }
       },
@@ -468,20 +468,20 @@
           };
         } else if (data.role == 'healer') {
           return {
-            en: 'Death Sentence on ' + matches.target,
-            de: 'Todesurteil auf ' + matches.target,
-            cn: '死刑点名' + matches.target,
-            ko: '"' + matches.target + '" 사형 선고',
+            en: 'Death Sentence on ' + data.ShortName(matches.target),
+            de: 'Todesurteil auf ' + data.ShortName(matches.target),
+            cn: '死刑点名' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 사형 선고',
           };
         }
       },
       infoText: function(data, matches) {
         if (matches.target != data.me && data.role == 'tank') {
           return {
-            en: 'Death Sentence on ' + matches.target,
-            de: 'Todesurteil auf ' + matches.target,
-            cn: '死刑点名' + matches.target,
-            ko: '"' + matches.target + '" 사형 선고',
+            en: 'Death Sentence on ' + data.ShortName(matches.target),
+            de: 'Todesurteil auf ' + data.ShortName(matches.target),
+            cn: '死刑点名' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 사형 선고',
           };
         }
       },

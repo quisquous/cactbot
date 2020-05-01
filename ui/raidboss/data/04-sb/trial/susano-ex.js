@@ -237,10 +237,10 @@
         // sound indicator for jumping rope back and forth.
         if (data.role == 'tank') {
           return {
-            en: 'Stun: ' + matches.target,
-            de: 'Paralyse ' + matches.target,
-            cn: '击晕' + matches.target,
-            ko: matches.target + '스턴',
+            en: 'Stun: ' + data.ShortName(matches.target),
+            de: 'Paralyse ' + data.ShortName(matches.target),
+            cn: '击晕' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '스턴',
           };
         }
       },
