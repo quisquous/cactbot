@@ -57,7 +57,7 @@
 }
 
 .info-text {
-  color: #2b2;
+  color: #fff;
   font-size: 140%;
   text-shadow: -2px 0 4px black, 0 2px 4px black, 2px 0 4px black, 0 -2px 4px black;
   will-change: transform;
