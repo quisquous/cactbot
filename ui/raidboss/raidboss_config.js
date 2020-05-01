@@ -1226,7 +1226,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Use Browser for Text to Speech',
         de: 'Verwenden Sie den Browser für Text zu Sprache', // Machine translation
         fr: 'Utiliser le navigateur pour la synthèse vocale', // Machine Translation
-        ko: '텍스트 음성 변환을위한 브라우저 사용', // Machine translation
+        ko: '웹브라우저를 이용해서 TTS 작동시키기',
         ja: 'ブラウザでTTS',
         cn: '使用浏览器进行文字转语音', // Machine translation
       },
@@ -1240,7 +1240,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Alex Ultimate: enable cactbot Wormhole strat',
         de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie',
-        ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
+        ko: '절 알렉: cactbot 웜홀 공략방식 활성화 (영구정지식)',
         ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック',
         cn: '亚历山大绝境战：cactbot灵泉辅助功能',
       },
