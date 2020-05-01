@@ -58,7 +58,10 @@ class CactbotConfigurator {
     let shortLocale = configOptions.Locale.substring(0, 2);
     if (shortLocale == 'zh')
       shortLocale = 'cn';
-    this.lang = shortLocale || 'en';
+    const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
+    if (supportedLanguage.indexOf(shortLocale) == -1)
+      shortLocale = 'en';
+    this.lang = shortLocale;
     this.savedConfig = savedConfig || {};
     this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
 
