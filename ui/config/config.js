@@ -55,7 +55,10 @@ class CactbotConfigurator {
       'jobs': [],
     };
     this.configOptions = configOptions;
-    this.lang = configOptions.Language || 'en';
+    let shortLocale = configOptions.Locale.substring(0, 2);
+    if (shortLocale == 'zh')
+      shortLocale = 'cn';
+    this.lang = shortLocale || 'en';
     this.savedConfig = savedConfig || {};
     this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
 

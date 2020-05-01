@@ -47,7 +47,7 @@ namespace Cactbot {
     private FateWatcher fate_watcher_;
 
     private string language_ = null;
-    private string pc_language = null;
+    private string pc_locale = null;
     private List<FileSystemWatcher> watchers;
 
     public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
@@ -237,10 +237,7 @@ namespace Cactbot {
 
       FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
       language_ = plugin_helper.GetLocaleString();
-      pc_language = System.Globalization.CultureInfo.CurrentUICulture.Name.Substring(0, 2);
-      // Force zh(chinese locale) to cn (Everything about China was already written as 'cn' locale)
-      if (pc_language == "zh")
-        pc_language = "cn";
+      pc_locale = System.Globalization.CultureInfo.CurrentUICulture.Name;
 
       var versions = new VersionChecker(this);
       Version local = versions.GetCactbotVersion();
@@ -259,11 +256,11 @@ namespace Cactbot {
       } else {
         LogInfo("Parsing Plugin Language: {0}", language_);
       }
-      if (pc_language == null){
-        LogInfo("PC Locale Language: {0}", "(unknown)");
+      if (pc_locale == null){
+        LogInfo("PC Locale: {0}", "(unknown)");
       }
       else{
-        LogInfo("PC Locale Language: {0}", pc_language);
+        LogInfo("PC Locale : {0}", pc_locale);
       }
 
       // Temporarily target cn if plugin is old v2.0.4.0
@@ -679,7 +676,8 @@ namespace Cactbot {
       result["userLocation"] = config_dir;
       result["localUserFiles"] = user_files == null ? null : JObject.FromObject(user_files);
 
-      result["language"] = pc_language;
+      result["language"] = language_;
+      result["locale"] = pc_locale;
 
       var response = new JObject();
       response["detail"] = result;

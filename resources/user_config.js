@@ -41,6 +41,8 @@ let UserConfig = {
       // If options files want to override it, they can for testing.
       if (e.detail.language)
         Options.Language = e.detail.language;
+      if (e.detail.locale)
+        Options.Locale = e.detail.locale;
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
