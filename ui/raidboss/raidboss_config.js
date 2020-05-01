@@ -63,7 +63,7 @@ let kDirectoryToCategory = {
   eureka: {
     en: 'Eureka',
     de: 'Eureka',
-    fr: 'Eureka',
+    fr: 'Eurêka',
     ja: '禁断の地エウレカ',
     cn: '禁地优雷卡',
     ko: '에우레카',
@@ -79,7 +79,7 @@ let kDirectoryToCategory = {
   pvp: {
     en: 'PVP',
     de: 'PvP',
-    fr: 'PvP',
+    fr: 'JcJ',
     ja: 'PvP',
     cn: 'PVP',
     ko: 'PvP',
@@ -95,7 +95,7 @@ let kDirectoryToCategory = {
   ultimate: {
     en: 'Ultimate',
     de: 'Fatale Raids',
-    fr: 'Ultimate',
+    fr: 'Raid fatal',
     ja: '絶シリーズ',
     cn: '绝境战',
     ko: '절 난이도',
@@ -108,7 +108,7 @@ let kTriggerOptions = {
     label: {
       en: '✔ Defaults',
       de: '✔ Standards',
-      fr: '✔ Défaut',
+      fr: '✔ Défauts',
       ja: '✔ 初期設定',
       cn: '✔ 默认',
       ko: '✔ 기본',
@@ -118,7 +118,7 @@ let kTriggerOptions = {
     label: {
       en: '🆙🔊 Text and Sound',
       de: '🆙🔊 Text und Ton',
-      fr: '🆙🔊 Textes et sons',
+      fr: '🆙🔊 Texte et son',
       ja: '🆙🔊 テキストと音声',
       cn: '🆙🔊 文字和语音',
       ko: '🆙🔊 텍스트와 소리',
@@ -128,7 +128,7 @@ let kTriggerOptions = {
     label: {
       en: '🆙💬 Text and TTS',
       de: '🆙💬 Text und TTS',
-      fr: '🆙💬 Textes et TTS',
+      fr: '🆙💬 Texte et TTS',
       ja: '🆙💬 テキストとTTS',
       cn: '🆙💬 文字和TTS',
       ko: '🆙💬 텍스트와 TTS',
@@ -796,7 +796,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Default alert output',
         de: 'Standard Alert Ausgabe',
-        fr: 'Alertes par défaut',
+        fr: 'Alerte par défaut',
         ja: '警告情報出力既定値',
         cn: '默认警报输出方式',
         ko: '기본 알람 출력 방식',
@@ -821,7 +821,7 @@ UserConfig.registerOptions('raidboss', {
           '🆙🔊 Texte et son': 'textAndSound',
           '🆙💬 Texte et TTS': 'ttsAndText',
           '💬 TTS seulement': 'ttsOnly',
-          '🆙 Text seulement': 'textOnly',
+          '🆙 Texte seulement': 'textOnly',
           '❌ Désactivé': 'disabled',
         },
         ja: {
@@ -929,7 +929,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Timeline language',
         de: 'Timeline Sprache',
-        fr: 'Langue des timeline',
+        fr: 'Langue de la timeline',
         ja: 'タイムラインの言語',
         cn: '时间轴语言',
         ko: '타임라인 언어',
@@ -1069,7 +1069,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Timer bar show window (seconds)',
         de: 'Timer-Bar Anzeigedauer (in Sekunden)',
-        fr: 'Affichage fenêtre ligne de temps (secondes)',
+        fr: 'Fenêtre d\'affichage de la barre de temps (secondes)',
         ja: 'タイムバーに時間表示 (秒)',
         cn: '计时条显示时间（秒）',
         ko: '타임라인을 표시할 기준 시간 (초 이하)',
@@ -1082,7 +1082,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Keep expired timer bar (seconds)',
         de: 'Behalte abgelaufene Timer-Bar (in Sekunden)',
-        fr: 'Garder les lignes de temps expirées (secondes)',
+        fr: 'Garder la barre de temps expirée (secondes)',
         ja: '終了したタイムバーが消えるまでの待ち時間 (秒)',
         cn: '保留失效计时条时间（秒）',
         ko: '만료된 타임라인이 사라지기까지의 시간 (초)',
@@ -1095,7 +1095,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Time to recolor timer as expiring soon (seconds)',
         de: 'Zeit bis ein bald auslaufender Timer umgefärbt wird (in Sekunden)',
-        fr: 'Durée de recolorisation du timer avant expiration (secondes)',
+        fr: 'Recolorisation de la barre de temps avant expiration (secondes)',
         ja: 'タイムバーが終了前に再度色付けの残り時間 (秒)',
         cn: '计时条即将失效重新着色时间（秒）',
         ko: '타임라인의 색상을 바꿀 기준 시간 (초 이하)',
@@ -1108,7 +1108,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Max number of timer bars',
         de: 'Max Anzahl an Timer-Bars',
-        fr: 'Nombre max de lignes de temps',
+        fr: 'Nombre max de barres de temps',
         ja: 'タイムバーの最大数',
         cn: '计时条最大数量',
         ko: '표시할 타임라인의 최대 개수',
@@ -1160,7 +1160,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Alarm sound volume (0-1)',
         de: 'Alarm Lautstärke (0-1)',
-        fr: 'Volume des alarmes (0-1)',
+        fr: 'Volume de l\'alarme (0-1)',
         ja: '警報音声の音量 (0-1)',
         cn: '警报声音音量（0-1）',
         ko: '경고 소리 크기 (0-1)',
@@ -1173,7 +1173,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Alert sound volume (0-1)',
         de: 'Alert Lautstärke (0-1)',
-        fr: 'Volume des alertes (0-1)',
+        fr: 'Volume de l\'alerte (0-1)',
         ja: '警告音声の音量 (0-1)',
         cn: '警告声音音量（0-1）',
         ko: '주의 소리 크기 (0-1)',
@@ -1186,7 +1186,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Info sound volume (0-1)',
         de: 'Info Lautstärke (0-1)',
-        fr: 'Volume des infos (0-1)',
+        fr: 'Volume de l\'info (0-1)',
         ja: '情報音声の音量 (0-1)',
         cn: '信息声音音量（0-1）',
         ko: '안내 소리 크기 (0-1)',
@@ -1199,7 +1199,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Long sound volume (0-1)',
         de: 'Langer Ton Lautstärke (0-1)',
-        fr: 'Volume des sons longs (0-1)',
+        fr: 'Volume du son long (0-1)',
         ja: '長い音声の音量 (0-1)',
         cn: '长声音音量（0-1）',
         ko: '긴 소리 크기 (0-1)',
@@ -1240,6 +1240,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'Alex Ultimate: enable cactbot Wormhole strat',
         de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie',
+        fr: 'Alex fatal : activer cactbot pour Wormhole strat',
         ko: '절 알렉: cactbot 웜홀 공략방식 활성화 (영구정지식)',
         ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック',
         cn: '亚历山大绝境战：cactbot灵泉辅助功能',
@@ -1252,6 +1253,7 @@ UserConfig.registerOptions('raidboss', {
       name: {
         en: 'e8s: enable cactbot Uptime Knockback strat',
         de: 'e8s: aktiviere cactbot Uptime Knockback Strategie',
+        fr: 'e8s : activer cactbot pour Uptime Knockback strat',
         ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
       },
       type: 'checkbox',

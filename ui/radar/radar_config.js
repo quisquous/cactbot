@@ -7,7 +7,7 @@ UserConfig.registerOptions('radar', {
       name: {
         en: 'Minimum distance to detect mobs (yalms)',
         de: 'Minimum Entfernung um Mobs zu erkennen (in Yalms)',
-        fr: 'Distance minimale pour détection des mobs (yalms)',
+        fr: 'Distance minimale de détection des mobs (yalms)',
         ja: '最短探測距離 (ヤルム)',
         cn: '探测目标最小距离（米）',
         ko: '몬스터를 탐지할 최소 거리 (미터)',
@@ -46,7 +46,7 @@ UserConfig.registerOptions('radar', {
       name: {
         en: 'Volume to play pop sound (0-1)',
         de: 'Lautstärke für den Popsound (0-1)',
-        fr: 'Volume du son (0-1)',
+        fr: 'Volume du son lors d\'une apparition (0-1)',
         ja: 'お知らせ音声の音量 (0-1)',
         cn: '播放声音音量（0-1）',
         ko: '소리 크기 (0-1)',

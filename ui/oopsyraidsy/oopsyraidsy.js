@@ -104,8 +104,8 @@ let Options = {
 let kEarlyPullText = {
   en: 'early pull',
   de: 'zu früh angegriffen',
-  // FIXME
   fr: 'early pull',
+  // FIXME
   ja: 'early pull',
   cn: '抢开',
   ko: '풀링 빠름',
@@ -114,8 +114,8 @@ let kEarlyPullText = {
 let kLatePullText = {
   en: 'late pull',
   de: 'zu spät angegriffen',
-  // FIXME
   fr: 'late pull',
+  // FIXME
   ja: 'late pull',
   cn: '晚开',
   ko: '풀링 늦음',

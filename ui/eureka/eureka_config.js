@@ -23,7 +23,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Volume of the nm pop sound (0-1)',
         de: 'Lautstärke des Popsounds bei erscheinen eines NM (0-1)',
-        fr: 'Volume des sons NM (0-1)',
+        fr: 'Volume du son d\'apparition d\'un NM (0-1)',
         ja: 'NM出現音量 (0-1)',
         cn: 'NM提示音量（0-1）',
         ko: '돌발임무 등장 알림 소리 크기 (0-1)',
@@ -52,7 +52,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Update rate of nm cooldowns (seconds)',
         de: 'Aktualisierung der NM cooldowns (in Sekunden)',
-        fr: 'Vitesse de rafraîchissement des cooldowns NM (s)',
+        fr: 'Rafraîchissement du temps de réapparition d\'un NM (s)',
         ja: 'NMの再沸き時間のリフレッシュ間隔 (秒)',
         cn: 'NM冷却刷新率（秒）',
         ko: '돌발 소환가능시간 갱신 주기 (초）',
