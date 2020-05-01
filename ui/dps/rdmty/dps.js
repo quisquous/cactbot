@@ -7,9 +7,9 @@ var EncountersArray = [];
 var React = window.React;
 var parseHealing = function(healing, percent) {
 	healing = parseFloat(healing, 10);
-	var max_pct = 100;
+	var maxPct = 100;
 	percent = parseInt(percent.replace('%', ''));
-	return formatNumber(healing * (max_pct - percent) / max_pct);
+	return formatNumber(healing * (maxPct - percent) / maxPct);
 };
 var formatNumber = function(number)  {
     number = parseFloat(number, 10);
@@ -135,10 +135,10 @@ var ____Class2=React.Component;for(var ____Class2____Key in ____Class2){if(____C
     Object.defineProperty(Header.prototype,"render",{writable:true,configurable:true,value:function() {"use strict";
         var encounter = this.props.encounter;
         var rdps = parseFloat(encounter.encdps);
-        var rdps_max = 0;
+        var rdpsMax = 0;
 
         if (!isNaN(rdps) && rdps !== Infinity) {
-            rdps_max = Math.max(rdps_max, rdps);
+            rdpsMax = Math.max(rdpsMax, rdps);
         }
 
         return (

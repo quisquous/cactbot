@@ -190,21 +190,21 @@ class TimerBox extends HTMLElement {
     this._bg = 'rgba(0, 0, 0, 0.8)';
     this._fg = 'red';
     this._scale = 1;
-    this._value_scale = 1;
-    this._toward_top = true;
-    this._style_fill = true;
-    this._hideafter = -1;
-    this._big_at_zero = true;
-    this._round_up_threshold = true;
+    this._valueScale = 1;
+    this._towardTop = true;
+    this._styleFill = true;
+    this._hideAfter = -1;
+    this._bigAtZero = true;
+    this._roundUpThreshold = true;
 
     if (this.duration != null) this._duration = Math.max(parseFloat(this.duration), 0);
     if (this.threshold != null) this._threshold = parseFloat(this.threshold);
     if (this.bg != null) this._bg = this.bg;
     if (this.fg != null) this._fg = this.fg;
     if (this.scale != null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.toward != null) this._toward_top = this.toward != 'bottom';
-    if (this.style != null) this._style_fill = this.style != 'empty';
-    if (this.hideafter != null && this.hideafter != '') this._hideafter = Math.max(parseFloat(this.hideafter), 0);
+    if (this.toward != null) this._towardTop = this.toward != 'bottom';
+    if (this.style != null) this._styleFill = this.style != 'empty';
+    if (this.hideafter != null && this.hideafter != '') this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
 
     this._connected = true;
     this.layout();
@@ -226,10 +226,10 @@ class TimerBox extends HTMLElement {
     if (name == 'threshold') {
       this._threshold = Math.max(parseFloat(newValue), 0);
     } else if (name == 'toward') {
-      this._toward_top = newValue != 'bottom';
+      this._towardTop = newValue != 'bottom';
       this.layout();
     } else if (name == 'style') {
-      this._style_fill = newValue != 'empty';
+      this._styleFill = newValue != 'empty';
       this.layout();
     } else if (name == 'bg') {
       this._bg = newValue;
@@ -238,17 +238,17 @@ class TimerBox extends HTMLElement {
       this._fg = newValue;
       this.layout();
     } else if (name == 'hideafter') {
-      this._hideafter = Math.max(parseFloat(this.hideafter), 0);
-      if (this._duration == 0 && this._hideafter >= 0)
+      this._hideAfter = Math.max(parseFloat(this.hideafter), 0);
+      if (this._duration == 0 && this._hideAfter >= 0)
         this.hide();
-      else if (this._hideafter < 0)
+      else if (this._hideAfter < 0)
         this.show();
     } else if (name == 'roundupthreshold') {
-      this._round_up_threshold = newValue;
+      this._roundUpThreshold = newValue;
     } else if (name == 'valuescale') {
-      this._value_scale = parseFloat(newValue);
+      this._valueScale = parseFloat(newValue);
     } else if (name == 'bigatzero') {
-      this._big_at_zero = newValue === 'true';
+      this._bigAtZero = newValue === 'true';
     }
 
     this.draw();
@@ -257,9 +257,9 @@ class TimerBox extends HTMLElement {
   layout() {
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    let toward_top = this._toward_top;
-    if (this._style_fill)
-      toward_top = !toward_top;
+    let towardTop = this._towardTop;
+    if (this._styleFill)
+      towardTop = !towardTop;
 
     let largeBackgroundStyle = this.largeBoxBackgroundElement.style;
     let smallBackgroundStyle = this.smallBoxBackgroundElement.style;
@@ -289,7 +289,7 @@ class TimerBox extends HTMLElement {
     this.timerElement.style.fontSize = '' + (this.kFontSize * this._scale) + 'px';
     this.timerElement.style.top = (this.kLargeSize - this.kFontSize) * this._scale / 2;
 
-    if (toward_top)
+    if (towardTop)
       largeForegroundStyle.transformOrigin = '0% 0%';
     else
       largeForegroundStyle.transformOrigin = '0% 100%';
@@ -301,14 +301,14 @@ class TimerBox extends HTMLElement {
     let elapsedSec = (new Date() - this._start) / 1000;
     let remainingSec = Math.max(0, this._duration - elapsedSec);
     let rounded;
-    if (this._round_up_threshold)
+    if (this._roundUpThreshold)
       rounded = Math.ceil(remainingSec);
     else
       rounded = remainingSec;
 
 
     if (rounded <= 0.000000001 || this._duration == 0) {
-      if (this._big_at_zero) {
+      if (this._bigAtZero) {
         this.largeBoxElement.style.display = 'block';
         this.smallBoxElement.style.display = 'none';
       } else {
@@ -327,20 +327,20 @@ class TimerBox extends HTMLElement {
       this.timerElement.style.display = 'block';
       let animStartValue = this._duration > this._threshold ? this._threshold : this._duration;
       let animPercent = (animStartValue - remainingSec) / animStartValue;
-      if (!this._style_fill)
+      if (!this._styleFill)
         animPercent = 1.0 - animPercent;
       this.largeBoxForegroundElement.style.transform = 'scale(1,' + animPercent + ')';
     }
 
-    this.timerElement.innerHTML = Math.ceil(remainingSec / this._value_scale);
+    this.timerElement.innerHTML = Math.ceil(remainingSec / this._valueScale);
   }
 
   reset() {
     if (!this._connected) return;
 
     this.show();
-    clearTimeout(this._hide_timer);
-    this._hide_timer = null;
+    clearTimeout(this._hideTimer);
+    this._hideTimer = null;
     clearTimeout(this._timer);
     this._timer = null;
 
@@ -354,9 +354,9 @@ class TimerBox extends HTMLElement {
       // Sets the attribute to 0 so users can see the counter is done, and
       // if they set the same duration again it will count.
       this._duration = 0;
-      if (this._hideafter > 0)
-        this._hide_timer = setTimeout(this.hide(), this._hideafter);
-      else if (this._hideafter == 0)
+      if (this._hideAfter > 0)
+        this._hideTimer = setTimeout(this.hide(), this._hideAfter);
+      else if (this._hideAfter == 0)
         this.hide();
 
       window.cancelAnimationFrame(this._animationFrame);

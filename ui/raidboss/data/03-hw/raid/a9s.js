@@ -18,7 +18,7 @@
       id: 'A9S Power Generator',
       regex: /Power Generator/,
       infoText: function(data) {
-        let nw1_se1 = {
+        let nw1se1 = {
           en: 'Place Generators NW/SE',
           de: 'Plaziere Generatoren NW/SO',
           cn: '搬运发电器到西北/东南',
@@ -40,7 +40,7 @@
         };
 
         return {
-          1: nw1_se1,
+          1: nw1se1,
           2: nw2,
           // 3: faust,
           4: nw1,

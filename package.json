@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^4.19.1",
+    "eslint": "^6.8.0",
     "eslint-config-google": "^0.9.1",
     "markdownlint-cli": "^0.20.0",
     "stylelint": "^12.0.1",
@@ -37,7 +37,12 @@
           "after": true
         }
       ],
-      "camelcase": "off",
+      "camelcase": [
+        "error",
+        {
+          "properties": "always"
+        }
+      ],
       "curly": [
         "error",
         "multi-or-nest",
@@ -124,6 +129,14 @@
       "space-in-parens": [
         "error",
         "never"
+      ],
+      "space-infix-ops": "error",
+      "space-unary-ops": [
+        "error",
+        {
+          "words": true,
+          "nonwords": false
+        }
       ],
       "strict": [
         "error",

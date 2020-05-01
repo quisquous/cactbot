@@ -244,7 +244,7 @@
       regexCn: Regexes.addedCombatantFull({ name: ['火角', '冰爪', '雷翼'] }),
       regexKo: Regexes.addedCombatantFull({ name: ['화염뿔', '얼음발톱', '번개날개'] }),
       run: function(data, matches) {
-        let all_names = {
+        let allNames = {
           en: ['Firehorn', 'Iceclaw', 'Thunderwing'],
           de: ['Feuerhorn', 'Eisklaue', 'Donnerschwinge'],
           fr: ['corne-de-feu', 'griffe-de-glace ', 'aile-de-foudre'],
@@ -252,7 +252,7 @@
           cn: ['火角', '冰爪', '雷翼'],
           ko: ['화염뿔', '얼음발톱', '번개날개'],
         };
-        let names = all_names[data.lang];
+        let names = allNames[data.lang];
         let idx = names.indexOf(matches.name);
         if (idx == -1)
           return;
@@ -262,7 +262,7 @@
 
         // Most dragons are out on a circle of radius=~28.
         // Ignore spurious dragons like "Pos: (0.000919255,0.006120025,2.384186E-07)"
-        if (x*x + y*y < 20*20)
+        if (x * x + y * y < 20 * 20)
           return;
 
         // Positions are the 8 cardinals + numerical slop on a radius=28 circle.
@@ -290,9 +290,9 @@
         // The first two are always split, so A is the first dragon + 1.
         // The last one is single, so B is the last dragon + 1.
         let dragons = data.dragons.sort();
-        let dir_names = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
+        let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
         data.naelMarks = [dragons[0], dragons[2]].map(function(i) {
-          return dir_names[(i + 1) % 8];
+          return dirNames[(i + 1) % 8];
         });
 
         // Safe zone is one to the left of the first dragon, unless
@@ -301,7 +301,7 @@
         let possibleSafe = (dragons[0] - 1 + 8) % 8;
         if ((dragons[2] + 2) % 8 == possibleSafe)
           possibleSafe = (dragons[1] + 1) % 8;
-        data.safeZone = dir_names[possibleSafe];
+        data.safeZone = dirNames[possibleSafe];
       },
     },
     {

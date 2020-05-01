@@ -162,7 +162,7 @@ class PopupText {
       if (Array.isArray(obj)) {
         for (let i = 0; i < obj.length; ++i)
           addTimeline(obj[i]);
-      } else if (typeof (obj) == 'function') {
+      } else if (typeof obj == 'function') {
         addTimeline(obj(this.data));
       } else if (obj) {
         timelines.push(obj);

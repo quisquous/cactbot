@@ -857,7 +857,7 @@ class DamageTracker {
     }
 
     let ValueOrFunction = (f, events) => {
-      return (typeof(f) == 'function') ? f(events, this.data, matches) : f;
+      return (typeof f == 'function') ? f(events, this.data, matches) : f;
     };
 
     let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds) : 0;

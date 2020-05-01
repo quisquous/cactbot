@@ -1119,15 +1119,15 @@
           console.error('Octet error: bad party list size: ' + JSON.stringify(partyList));
           return;
         }
-        let uniq_dict = {};
+        let uniqDict = {};
         for (let i = 0; i < data.octetMarker.length; ++i) {
-          uniq_dict[data.octetMarker[i]] = true;
+          uniqDict[data.octetMarker[i]] = true;
           if (partyList.indexOf(data.octetMarker[i]) < 0) {
             console.error('Octet error: could not find ' + data.octetMarker[i] + ' in ' + JSON.stringify(partyList));
             return;
           }
         }
-        let uniq = Object.keys(uniq_dict);
+        let uniq = Object.keys(uniqDict);
         // If the number of unique folks who took markers is not 7, then
         // somebody has died and somebody took two.  Could be on anybody.
         if (uniq.length != 7)

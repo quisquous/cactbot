@@ -30,7 +30,7 @@
             en: 'Hyperdrive on ' + data.ShortName(matches.target),
             fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
             de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
-            cn: '死刑点名'+ data.ShortName(matches.target),
+            cn: '死刑点名' + data.ShortName(matches.target),
           };
         }
       },

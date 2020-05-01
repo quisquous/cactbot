@@ -201,34 +201,34 @@ class ResourceBar extends HTMLElement {
 
     // Default values.
     this._value = 0;
-    this._maxvalue = 1;
+    this._maxValue = 1;
     this._width = 200;
     this._height = 20;
     this._bg = 'rgba(0, 0, 0, 0.7)';
     this._fg = 'green';
-    this._extra_color = 'yellow';
-    this._extra_value = 0;
+    this._extraColor = 'yellow';
+    this._extraValue = 0;
     this._scale = 1;
-    this._toward_right = true;
-    this._style_fill = true;
-    this._left_text = '';
-    this._center_text = '';
-    this._right_text = '';
+    this._towardRight = true;
+    this._styleFill = true;
+    this._leftText = '';
+    this._centerText = '';
+    this._rightText = '';
 
     if (this.value != null) this._value = Math.max(parseFloat(this.value), 0);
-    if (this.maxvalue != null) this._maxvalue = Math.max(parseFloat(this.maxvalue), 0);
-    if (this.extraValue != null) this._extra_value = Math.max(0, this.extraValue);
-    if (this.extraColor != null) this._extra_color = this.extraColor;
+    if (this.maxvalue != null) this._maxValue = Math.max(parseFloat(this.maxvalue), 0);
+    if (this.extraValue != null) this._extraValue = Math.max(0, this.extraValue);
+    if (this.extraColor != null) this._extraColor = this.extraColor;
     if (this.width != null) this._width = Math.max(parseInt(this.width), 1);
     if (this.height != null) this._height = Math.max(parseInt(this.height), 1);
     if (this.bg != null) this._bg = this.bg;
     if (this.fg != null) this._fg = this.fg;
     if (this.scale != null) this._scale = Math.max(parseFloat(this.scale), 0.01);
-    if (this.toward != null) this._toward_right = this.toward != 'left';
-    if (this.style != null) this._style_fill = this.style != 'empty';
-    if (this.lefttext != null) this._left_text = this.lefttext;
-    if (this.centertext != null) this._center_text = this.centertext;
-    if (this.righttext != null) this._right_text = this.righttext;
+    if (this.toward != null) this._towardRight = this.toward != 'left';
+    if (this.style != null) this._styleFill = this.style != 'empty';
+    if (this.lefttext != null) this._leftText = this.lefttext;
+    if (this.centertext != null) this._centerText = this.centertext;
+    if (this.righttext != null) this._rightText = this.righttext;
 
     this._connected = true;
     this.layout();
@@ -244,7 +244,7 @@ class ResourceBar extends HTMLElement {
     if (name == 'value') {
       this._value = Math.max(parseFloat(newValue), 0);
     } else if (name == 'maxvalue') {
-      this._maxvalue = Math.max(parseFloat(newValue), 0);
+      this._maxValue = Math.max(parseFloat(newValue), 0);
     } else if (name == 'width') {
       this._width = Math.max(parseInt(newValue), 1);
       this.layout();
@@ -258,27 +258,27 @@ class ResourceBar extends HTMLElement {
       this._fg = newValue;
       this.layout();
     } else if (name == 'toward') {
-      this._toward_right = newValue != 'left';
+      this._towardRight = newValue != 'left';
       this.layout();
     } else if (name == 'lefttext') {
-      let update = newValue != this._left_text && this._connected;
-      this._left_text = newValue;
+      let update = newValue != this._leftText && this._connected;
+      this._leftText = newValue;
       if (update)
         this.updateText();
     } else if (name == 'centertext') {
-      let update = newValue != this._center_text && this._connected;
-      this._center_text = newValue;
+      let update = newValue != this._centerText && this._connected;
+      this._centerText = newValue;
       if (update)
         this.updateText();
     } else if (name == 'righttext') {
-      let update = newValue != this._right_text && this._connected;
-      this._right_text = newValue;
+      let update = newValue != this._rightText && this._connected;
+      this._rightText = newValue;
       if (update)
         this.updateText();
     } else if (name == 'extravalue') {
-      this._extra_value = Math.max(parseInt(newValue), 0);
+      this._extraValue = Math.max(parseInt(newValue), 0);
     } else if (name == 'extracolor') {
-      this._extra_color = newValue;
+      this._extraColor = newValue;
       this.layout();
     }
 
@@ -292,8 +292,8 @@ class ResourceBar extends HTMLElement {
 
     // To start full and animate to empty, we animate backwards and flip
     // the direction.
-    if (!this._style_fill)
-      this._toward_right = !this._toward_right;
+    if (!this._styleFill)
+      this._towardRight = !this._towardRight;
 
     let backgroundStyle = this.backgroundElement.style;
     let foregroundStyle = this.foregroundElement.style;
@@ -305,8 +305,8 @@ class ResourceBar extends HTMLElement {
 
     backgroundStyle.backgroundColor = this._bg;
     foregroundStyle.backgroundColor = this._fg;
-    extraUnderStyle.backgroundColor = this._extra_color;
-    extraOverStyle.backgroundColor = this._extra_color;
+    extraUnderStyle.backgroundColor = this._extraColor;
+    extraOverStyle.backgroundColor = this._extraColor;
 
     backgroundStyle.opacity = this.kBackgroundOpacity;
 
@@ -318,7 +318,7 @@ class ResourceBar extends HTMLElement {
       style.height = (this._height - this.kBorderSize * 2) * this._scale;
       style.left = this.kBorderSize * this._scale;
       style.top = this.kBorderSize * this._scale;
-      if (this._toward_right)
+      if (this._towardRight)
         style.transformOrigin = '0% 0%';
       else
         style.transformOrigin = '100% 0%';
@@ -348,67 +348,67 @@ class ResourceBar extends HTMLElement {
 
   updateText() {
     // These values are filled in during draw() when the values change.
-    if (this._left_text != 'value' && this._left_text != 'maxvalue' &&
-        this._left_text != 'percent') {
+    if (this._leftText != 'value' && this._leftText != 'maxvalue' &&
+        this._leftText != 'percent') {
       // Otherwise the value is fixed so it can be set here.
-      this.leftTextElement.innerHTML = this._left_text;
+      this.leftTextElement.innerHTML = this._leftText;
     }
-    if (this._center_text != 'value' && this._center_text != 'maxvalue' &&
-        this._center_text != 'percent')
-      this.centerTextElement.innerHTML = this._center_text;
+    if (this._centerText != 'value' && this._centerText != 'maxvalue' &&
+        this._centerText != 'percent')
+      this.centerTextElement.innerHTML = this._centerText;
 
-    if (this._right_text != 'value' && this._right_text != 'maxvalue' &&
-        this._right_text != 'percent')
-      this.rightTextElement.innerHTML = this._right_text;
+    if (this._rightText != 'value' && this._rightText != 'maxvalue' &&
+        this._rightText != 'percent')
+      this.rightTextElement.innerHTML = this._rightText;
   }
 
   draw() {
-    let percent = this._maxvalue <= 0 ? 1 : this._value / this._maxvalue;
+    let percent = this._maxValue <= 0 ? 1 : this._value / this._maxValue;
     // Keep it between 0 and 1.
     percent = Math.min(1, Math.max(0, percent));
-    if (!this._style_fill)
+    if (!this._styleFill)
       percent = 1.0 - percent;
     this.foregroundElement.style.transform = 'scale(' + percent + ',1)';
 
     // Calculate extra bars.
-    let extra_under_percent =
-      Math.min(this._maxvalue - this._value, this._extra_value) / this._maxvalue;
-    let value_width = percent * this.foregroundElement.clientWidth * (this._toward_right ? 1 : -1);
-    this.extraUnderElement.style.transform = 'translate(' + value_width + 'px,0px)' +
-      ' scale(' + extra_under_percent + ',1)';
+    let extraUnderPercent =
+      Math.min(this._maxValue - this._value, this._extraValue) / this._maxValue;
+    let valueWidth = percent * this.foregroundElement.clientWidth * (this._towardRight ? 1 : -1);
+    this.extraUnderElement.style.transform = 'translate(' + valueWidth + 'px,0px)' +
+      ' scale(' + extraUnderPercent + ',1)';
 
-    let extra_over_percent =
-      Math.max(this._extra_value + this._value - this._maxvalue, 0) / this._maxvalue;
-    if (!this._maxvalue)
-      extra_over_percent = 0;
-    this.extraOverElement.style.transform = 'scale(' + extra_over_percent + ',1)';
+    let extraOverPercent =
+      Math.max(this._extraValue + this._value - this._maxValue, 0) / this._maxValue;
+    if (!this._maxValue)
+      extraOverPercent = 0;
+    this.extraOverElement.style.transform = 'scale(' + extraOverPercent + ',1)';
 
     // Text.
-    let total_value = this._value + this._extra_value;
-    let total_percent = total_value / this._maxvalue;
-    if (this._left_text != '') {
-      if (this._left_text == 'value')
-        this.leftTextElement.innerHTML = total_value;
-      else if (this._left_text == 'maxvalue')
-        this.leftTextElement.innerHTML = total_value + ' / ' + this._maxvalue;
-      else if (this._left_text == 'percent')
-        this.leftTextElement.innerHTML = parseInt(total_percent * 100) + ' %';
+    let totalValue = this._value + this._extraValue;
+    let totalPercent = totalValue / this._maxValue;
+    if (this._leftText != '') {
+      if (this._leftText == 'value')
+        this.leftTextElement.innerHTML = totalValue;
+      else if (this._leftText == 'maxvalue')
+        this.leftTextElement.innerHTML = totalValue + ' / ' + this._maxValue;
+      else if (this._leftText == 'percent')
+        this.leftTextElement.innerHTML = parseInt(totalPercent * 100) + ' %';
     }
-    if (this._center_text != '') {
-      if (this._center_text == 'value')
-        this.centerTextElement.innerHTML = total_value;
-      else if (this._center_text == 'maxvalue')
-        this.centerTextElement.innerHTML = total_value + ' / ' + this._maxvalue;
-      else if (this._center_text == 'percent')
-        this.centerTextElement.innerHTML = parseInt(total_percent * 100) + ' %';
+    if (this._centerText != '') {
+      if (this._centerText == 'value')
+        this.centerTextElement.innerHTML = totalValue;
+      else if (this._centerText == 'maxvalue')
+        this.centerTextElement.innerHTML = totalValue + ' / ' + this._maxValue;
+      else if (this._centerText == 'percent')
+        this.centerTextElement.innerHTML = parseInt(totalPercent * 100) + ' %';
     }
-    if (this._right_text != '') {
-      if (this._right_text == 'value')
-        this.rightTextElement.innerHTML = total_value;
-      else if (this._right_text == 'maxvalue')
-        this.rightTextElement.innerHTML = total_value + ' / ' + this._maxvalue;
-      else if (this._right_text == 'percent')
-        this.rightTextElement.innerHTML = parseInt(total_percent * 100) + ' %';
+    if (this._rightText != '') {
+      if (this._rightText == 'value')
+        this.rightTextElement.innerHTML = totalValue;
+      else if (this._rightText == 'maxvalue')
+        this.rightTextElement.innerHTML = totalValue + ' / ' + this._maxValue;
+      else if (this._rightText == 'percent')
+        this.rightTextElement.innerHTML = parseInt(totalPercent * 100) + ' %';
     }
   }
 }

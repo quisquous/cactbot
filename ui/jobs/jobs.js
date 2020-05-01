@@ -830,7 +830,7 @@ class BuffTracker {
       }
     }
 
-    const v5_20 = {
+    const v520 = {
       // identical with latest patch
       /* example
       trick: {
@@ -840,8 +840,8 @@ class BuffTracker {
     };
 
     let buffOverrides = {
-      ko: v5_20,
-      cn: v5_20,
+      ko: v520,
+      cn: v520,
     };
 
     for (let key in buffOverrides[this.options.Language]) {
@@ -2171,9 +2171,9 @@ class Bars {
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
     let TimeToShowWellFedWarning = function() {
-      let now_ms = Date.now();
-      let show_at_ms = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
-      return show_at_ms - now_ms;
+      let nowMs = Date.now();
+      let showAtMs = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
+      return showAtMs - nowMs;
     };
 
     window.clearTimeout(this.foodBuffTimer);
@@ -2229,11 +2229,11 @@ class Bars {
   SetPullCountdown(seconds) {
     if (this.o.pullCountdown == null) return;
 
-    let in_countdown = seconds > 0;
-    let showing_countdown = parseFloat(this.o.pullCountdown.duration) > 0;
-    if (in_countdown != showing_countdown) {
+    let inCountdown = seconds > 0;
+    let showingCountdown = parseFloat(this.o.pullCountdown.duration) > 0;
+    if (inCountdown != showingCountdown) {
       this.o.pullCountdown.duration = seconds;
-      if (in_countdown) {
+      if (inCountdown) {
         let audio = new Audio('../../resources/sounds/PowerAuras/sonar.ogg');
         audio.volume = 0.3;
         audio.play();

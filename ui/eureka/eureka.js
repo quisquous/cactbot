@@ -12,8 +12,6 @@ let bunnyLabel = {
 let Options = {
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
-  PopVolume: 1.0,
-  BunnyPopVolume: 0.3,
   // 20 minutes for Ovni?
   SuppressPopMs: 60 * 20 * 1000,
   ZoneName: {
@@ -1083,6 +1081,7 @@ let Options = {
           x: 28.9,
           y: 29.2,
           fateID: 1389,
+          weather: 'Thunder',
         },
         sophist: {
           label: {
@@ -1580,6 +1579,7 @@ let Options = {
           x: 28.9,
           y: 23.9,
           fateID: 1418,
+          time: 'Night',
         },
         leuke: {
           label: {

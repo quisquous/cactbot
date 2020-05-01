@@ -433,7 +433,7 @@ let Responses = {
       return {
         en: 'Look Away from ' + data.ShortName(target),
         de: 'Schau weg von ' + data.ShortName(target),
-        fr: 'Ne regardez pas '+ data.ShortName(target),
+        fr: 'Ne regardez pas ' + data.ShortName(target),
         ja: data.ShortName(target) + 'を見ない',
         ko: data.ShortName(target) + '에게서 뒤돌기',
         cn: '背对' + data.ShortName(target),

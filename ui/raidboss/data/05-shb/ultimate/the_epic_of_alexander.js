@@ -32,7 +32,7 @@
 let getHeadmarkerId = (data, matches) => {
   // If we naively just check !data.decOffset and leave it, it breaks if the first marker is 004F.
   // (This makes the offset 0, and !0 is true.)
-  if (typeof(data.decOffset) == 'undefined') {
+  if (typeof data.decOffset == 'undefined') {
     // The first 1B marker in the encounter is Limit Cut 1, ID 004F.
     data.decOffset = parseInt(matches.id, 16) - 79;
   }
@@ -415,7 +415,7 @@ let getHeadmarkerId = (data, matches) => {
             ja: data.ShortName(names[0]) + ' から ' + data.nisiNames[myNisi] + ' を取る',
             fr: 'Récupère ' + data.nisiNames[myNisi] + ' de ' + data.ShortName(names[0]),
             ko: '나이사이 가져오기: ' + data.nisiNames[myNisi] + ' ← ' + data.ShortName(names[0]),
-            cn: '从 '+ data.ShortName(names[0]) + '获得' + data.nisiNames[myNisi],
+            cn: '从 ' + data.ShortName(names[0]) + '获得' + data.nisiNames[myNisi],
           };
         };
       },

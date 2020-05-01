@@ -13,7 +13,7 @@ let kPrefixToCategory = {
     en: 'A Realm Reborn (ARR 2.x)',
     de: 'A Realm Reborn (ARR 2.x)',
     fr: 'A Realm Reborn (ARR 2.x)',
-    ja: '新生エオルゼア（2.x）',
+    ja: '新生エオルゼア (2.x)',
     cn: '重生之境（2.X）',
     ko: '신생 에오르제아 (2.x)',
   },
@@ -21,7 +21,7 @@ let kPrefixToCategory = {
     en: 'Heavensward (HW 3.x)',
     de: 'Heavensward (HW 3.x)',
     fr: 'Heavensward (HW 3.x)',
-    ja: '蒼天のイシュガルド（3.x）',
+    ja: '蒼天のイシュガルド (3.x)',
     cn: '苍穹之禁城（3.X）',
     ko: '창천의 이슈가르드 (3.x)',
   },
@@ -29,7 +29,7 @@ let kPrefixToCategory = {
     en: 'Stormblood (SB 4.x)',
     de: 'Stormblood (SB 4.x)',
     fr: 'Stormblood (SB 4.x)',
-    ja: '紅蓮のリベレーター（4.x）',
+    ja: '紅蓮のリベレーター (4.x)',
     cn: '红莲之狂潮（4.X）',
     ko: '홍련의 해방자 (4.x)',
   },
@@ -462,7 +462,7 @@ class RaidbossConfigurator {
 
   // This duplicates the raidboss function of the same name.
   valueOrFunction(f, data, matches) {
-    let result = (typeof(f) == 'function') ? f(data, matches) : f;
+    let result = (typeof f == 'function') ? f(data, matches) : f;
     if (result !== Object(result))
       return result;
     // TODO: somehow use the option for alert language here??
@@ -582,7 +582,7 @@ class RaidbossConfigurator {
         try {
           // Can't use ValueOrFunction here as r returns a non-localizable object.
           // FIXME: this hackily replicates some raidboss logic too.
-          let response = (typeof(r) == 'function') ? r(kFakeData[d], kFakeMatches) : r;
+          let response = (typeof r == 'function') ? r(kFakeData[d], kFakeMatches) : r;
           if (!response)
             continue;
           for (let i = 0; i < keys.length; ++i)
@@ -1070,7 +1070,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Timer bar show window (seconds)',
         de: 'Timer-Bar Anzeigedauer (in Sekunden)',
         fr: 'Fenêtre d\'affichage de la barre de temps (secondes)',
-        ja: 'タイムバーに時間表示（秒）',
+        ja: 'タイムバーに時間表示 (秒)',
         cn: '计时条显示时间（秒）',
         ko: '타임라인을 표시할 기준 시간 (초 이하)',
       },
@@ -1083,7 +1083,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Keep expired timer bar (seconds)',
         de: 'Behalte abgelaufene Timer-Bar (in Sekunden)',
         fr: 'Garder la barre de temps expirée (secondes)',
-        ja: '終了したタイムバーが消えるまでの待ち時間（秒）',
+        ja: '終了したタイムバーが消えるまでの待ち時間 (秒)',
         cn: '保留失效计时条时间（秒）',
         ko: '만료된 타임라인이 사라지기까지의 시간 (초)',
       },
@@ -1096,7 +1096,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Time to recolor timer as expiring soon (seconds)',
         de: 'Zeit bis ein bald auslaufender Timer umgefärbt wird (in Sekunden)',
         fr: 'Recolorisation de la barre de temps avant expiration (secondes)',
-        ja: 'タイムバーが終了前に再度色付けの残り時間（秒）',
+        ja: 'タイムバーが終了前に再度色付けの残り時間 (秒)',
         cn: '计时条即将失效重新着色时间（秒）',
         ko: '타임라인의 색상을 바꿀 기준 시간 (초 이하)',
       },
@@ -1122,7 +1122,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Alarm text display duration (seconds)',
         de: 'Alarm-Text Anzeigedauer (in Sekunden)',
         fr: 'Durée d\'affichage du texte d\'alarme (secondes)',
-        ja: '警報テキスト表示時間の長さ（秒）',
+        ja: '警報テキスト表示時間の長さ (秒)',
         cn: '警报文字显示持续时间（秒）',
         ko: '경고 텍스트를 표시할 시간 (초)',
       },
@@ -1135,7 +1135,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Alert text display duration (seconds)',
         de: 'Alert-Text Anzeigedauer (in Sekunden)',
         fr: 'Durée d\'affichage du texte d\'alerte (secondes)',
-        ja: '警告テキスト表示時間の長さ（秒）',
+        ja: '警告テキスト表示時間の長さ (秒)',
         cn: '警告文字显示持续时间（秒）',
         ko: '주의 텍스트를 표시할 시간 (초)',
       },
@@ -1148,7 +1148,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Info text display duration (seconds)',
         de: 'Info-Text Anzeigedauer (in Sekunden)',
         fr: 'Durée d\'affichage du texte d\'information (secondes)',
-        ja: '情報テキスト表示時間の長さ（秒）',
+        ja: '情報テキスト表示時間の長さ (秒)',
         cn: '信息文字显示持续时间（秒）',
         ko: '안내 텍스트를 표시할 시간 (초)',
       },
@@ -1161,7 +1161,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Alarm sound volume (0-1)',
         de: 'Alarm Lautstärke (0-1)',
         fr: 'Volume de l\'alarme (0-1)',
-        ja: '警報音声の音量（0-1）',
+        ja: '警報音声の音量 (0-1)',
         cn: '警报声音音量（0-1）',
         ko: '경고 소리 크기 (0-1)',
       },
@@ -1174,7 +1174,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Alert sound volume (0-1)',
         de: 'Alert Lautstärke (0-1)',
         fr: 'Volume de l\'alerte (0-1)',
-        ja: '警告音声の音量（0-1）',
+        ja: '警告音声の音量 (0-1)',
         cn: '警告声音音量（0-1）',
         ko: '주의 소리 크기 (0-1)',
       },
@@ -1187,7 +1187,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Info sound volume (0-1)',
         de: 'Info Lautstärke (0-1)',
         fr: 'Volume de l\'info (0-1)',
-        ja: '情報音声の音量（0-1）',
+        ja: '情報音声の音量 (0-1)',
         cn: '信息声音音量（0-1）',
         ko: '안내 소리 크기 (0-1)',
       },
@@ -1200,7 +1200,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Long sound volume (0-1)',
         de: 'Langer Ton Lautstärke (0-1)',
         fr: 'Volume du son long (0-1)',
-        ja: '長い音声の音量（0-1）',
+        ja: '長い音声の音量 (0-1)',
         cn: '长声音音量（0-1）',
         ko: '긴 소리 크기 (0-1)',
       },
@@ -1213,7 +1213,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Pull sound volume (0-1)',
         de: 'Pull Lautstärke (0-1)',
         fr: 'Volume du son de pull (0-1)',
-        ja: 'タゲ取る効果音の音量（0-1）',
+        ja: 'タゲ取る効果音の音量 (0-1)',
         cn: '开怪声音音量（0-1）',
         ko: '풀링 소리 크기 (0-1)',
       },
@@ -1226,7 +1226,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Use Browser for Text to Speech',
         de: 'Verwenden Sie den Browser für Text zu Sprache', // Machine translation
         fr: 'Utiliser le navigateur pour la synthèse vocale', // Machine Translation
-        ko: '텍스트 음성 변환을위한 브라우저 사용', // Machine translation
+        ko: '웹브라우저를 이용해서 TTS 작동시키기',
         ja: 'ブラウザでTTS',
         cn: '使用浏览器进行文字转语音', // Machine translation
       },
@@ -1241,7 +1241,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'Alex Ultimate: enable cactbot Wormhole strat',
         de: 'Alex Ultimate: aktiviere cactbot Wormhole Strategie',
         fr: 'Alex fatal : activer cactbot pour Wormhole strat',
-        ko: '절 알렉: cactbot 웜홀 공략방식 활성화',
+        ko: '절 알렉: cactbot 웜홀 공략방식 활성화 (영구정지식)',
         ja: '絶アレキサンダー討滅戦：cactbot「次元断絶のマーチ」ギミック',
         cn: '亚历山大绝境战：cactbot灵泉辅助功能',
       },
@@ -1254,7 +1254,7 @@ UserConfig.registerOptions('raidboss', {
         en: 'e8s: enable cactbot Uptime Knockback strat',
         de: 'e8s: aktiviere cactbot Uptime Knockback Strategie',
         fr: 'e8s : activer cactbot pour Uptime Knockback strat',
-        ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク（ノックバック）」ギミック',
+        ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
       },
       type: 'checkbox',
       default: false,

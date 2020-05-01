@@ -8,6 +8,7 @@ let kReloadText = {
   en: 'To apply configuration changes, reload cactbot overlays.',
   de: 'Um die Änderungen zu aktivieren, aktualisiere bitte die Cactbot Overlays.',
   fr: 'Afin d\'appliquer les modifications, il faut recharger l\'overlay Cactbot.',
+  ja: '設定を有効にする為、Cactbotオーバーレイを再読み込みしてください',
   cn: '要应用配置更改，请重新加载cactbot悬浮窗。',
   ko: '변경사항을 적용하려면, 오버레이를 새로고침 하십시오.',
 };
@@ -17,6 +18,7 @@ let kReloadButtonText = {
   en: 'Reload',
   de: 'Aktualisieren',
   fr: 'Recharger',
+  ja: '再読み込み',
   cn: '重新加载',
   ko: '새로고침',
 };
@@ -26,6 +28,7 @@ let kDirectoryChooseButtonText = {
   en: 'Choose Directory',
   de: 'Wähle ein Verzeichnis',
   fr: 'Choix du répertoire',
+  ja: 'ディレクトリを選択',
   cn: '选择目录',
   ko: '디렉터리 선택',
 };
@@ -35,6 +38,7 @@ let kDirectoryDefaultText = {
   en: '(Default)',
   de: '(Standard)',
   fr: '(Défaut)',
+  ja: '(初期設定)',
   cn: '(默认)',
   ko: '(기본)',
 };
