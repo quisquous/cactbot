@@ -583,7 +583,7 @@ class TimelineUI {
 
     this.root = document.getElementById('timeline-container');
     if (Options.Language)
-      this.root.classList.add('lang-' + Options.Language);
+      this.root.classList.add('lang-' + Options.TimelineLanguage);
     if (Options.Skin)
       this.root.classList.add('skin-' + Options.Skin);
 
