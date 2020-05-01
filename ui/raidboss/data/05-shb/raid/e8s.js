@@ -703,6 +703,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Luminous Aether': 'Lichtäther',
         'holy light': 'heilig(?:e|er|es|en) Licht',
@@ -799,6 +800,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'luminous Aether': 'éther de lumière',
         'holy light': 'lumière sacrée',
@@ -895,6 +897,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'luminous Aether': 'ライト・エーテル',
         'holy light': '聖なる光',
