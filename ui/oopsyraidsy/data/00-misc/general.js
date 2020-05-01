@@ -57,7 +57,7 @@
             en: 'bunny',
             de: 'Hase',
             fr: 'lapin',
-            ja: 'ウサギ',
+            ja: 'バニー',
             cn: '兔子',
             ko: '토끼',
           },
