@@ -55,9 +55,7 @@ class CactbotConfigurator {
       'jobs': [],
     };
     this.configOptions = configOptions;
-    let shortLocale = configOptions.Locale.substring(0, 2);
-    if (shortLocale == 'zh')
-      shortLocale = 'cn';
+    let shortLocale = configOptions.ShortLocale;
     const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
     if (supportedLanguage.indexOf(shortLocale) == -1)
       shortLocale = 'en';
