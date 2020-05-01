@@ -75,9 +75,11 @@ class EncounterTab extends EventBus {
 
     let clear = true;
 
-    for (let i in this.encounters) {
-      let $row = $('<div class="selectorRow border-bottom border-dark">' + i + '</div>');
-      if (i === this.currentZone) {
+    let zones = new Set(Object.keys(this.encounters));
+
+    for (let zone of [...zones].sort()) {
+      let $row = $('<div class="selectorRow border-bottom border-dark">' + zone + '</div>');
+      if (zone === this.currentZone) {
         clear = false;
         $row.addClass('selected');
       }
@@ -94,9 +96,10 @@ class EncounterTab extends EventBus {
     let clear = true;
 
     if (this.currentZone !== undefined) {
-      for (let i in this.encounters[this.currentZone]) {
-        let $row = $('<div class="selectorRow border-bottom border-dark">' + i + '</div>');
-        if (i === this.currentDate) {
+      let dates = new Set(Object.keys(this.encounters[this.currentZone]));
+      for (let date of [...dates].sort()) {
+        let $row = $('<div class="selectorRow border-bottom border-dark">' + date + '</div>');
+        if (date === this.currentDate) {
           clear = false;
           $row.addClass('selected');
         }
@@ -114,7 +117,10 @@ class EncounterTab extends EventBus {
     let clear = true;
 
     if (this.currentZone !== undefined && this.currentDate !== undefined) {
-      for (let i in this.encounters[this.currentZone][this.currentDate]) {
+      let sortedEncounters = this.encounters[this.currentZone][this.currentDate].sort((l, r) => {
+        return l.start.localeCompare(r.start);
+      });
+      for (let i in sortedEncounters) {
         let enc = this.encounters[this.currentZone][this.currentDate][i];
         let $enc = $('<div class="selectorRow border-bottom border-dark"></div>');
         $enc.data('index', i);
