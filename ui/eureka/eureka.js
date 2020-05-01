@@ -4,7 +4,7 @@ let bunnyLabel = {
   en: 'Bunny',
   de: 'Hase',
   fr: 'Lapin',
-  ja: 'バニー',
+  ja: 'うさぎ',
   ko: '토끼',
   cn: '兔子',
 };
