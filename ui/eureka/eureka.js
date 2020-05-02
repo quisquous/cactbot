@@ -65,7 +65,7 @@ let Options = {
       fr: (nowMs, stopTime) => {
         if (stopTime) {
           let min = (stopTime - nowMs) / 1000 / 60;
-          return ' pour ' + Math.ceil(min) + 'm';
+          return ' pour ' + Math.ceil(min) + ' min ';
         }
         return ' pour ???';
       },
@@ -102,7 +102,7 @@ let Options = {
       fr: (nowMs, startTime) => {
         if (startTime) {
           let min = (startTime - nowMs) / 1000 / 60;
-          return ' dans ' + Math.ceil(min) + 'm';
+          return ' dans ' + Math.ceil(min) + ' min ';
         }
         return ' dans ???';
       },
@@ -129,7 +129,7 @@ let Options = {
         return ' für ' + dayNightMin + 'min';
       },
       fr: (dayNightMin) => {
-        return ' pour ' + dayNightMin + 'm';
+        return ' pour ' + dayNightMin + ' min ';
       },
       ko: (dayNightMin) => {
         return ' ' + dayNightMin + '분 동안';
@@ -141,7 +141,7 @@ let Options = {
     minute: {
       en: 'm',
       de: 'min',
-      fr: 'm',
+      fr: ' min ',
       ko: '분',
       cn: '分',
     },
