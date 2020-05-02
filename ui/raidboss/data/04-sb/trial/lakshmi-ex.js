@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Emanation \(Extreme\)$/,
     cn: /^吉祥天女歼殛战$/,
+    ko: /^극 락슈미 토벌전$/,
   },
   timelineFile: 'lakshmi-ex.txt',
   timelineTriggers: [
@@ -81,6 +82,7 @@
         en: 'Vrill + Knockback',
         de: 'Vril + Rückstoß',
         cn: '完全拒绝',
+        ko: '락슈미 에테르 + 넉백',
       },
     },
     {
@@ -95,11 +97,13 @@
         en: 'Vrill + Be Outside',
         de: 'Vril + Außen',
         cn: '完全吸引',
+        ko: '락슈미 에테르 + 바깥으로',
       },
       tts: {
         en: 'vrill and outside',
         de: 'wriel und raus',
         cn: '完全吸引',
+        ko: '락슈미 에테르 바깥으로',
       },
     },
     {
@@ -114,11 +118,13 @@
         en: 'Vrill + Pair Up',
         de: 'Vril + Pärchen bilden',
         cn: '完全惑乱',
+        ko: '락슈미 에테르 + 파트너끼리',
       },
       tts: {
         en: 'vrill and buddy',
         de: 'wriel und zu partner',
         cn: '完全惑乱',
+        ko: '락슈미 에테르 파트너끼리',
       },
     },
     { // Stack marker
@@ -133,12 +139,14 @@
             en: 'Vrill + Stack on YOU',
             de: 'Vril + Stack auf DIR',
             cn: '元气攻击点名',
+            ko: '락슈미 에테르 + 쉐어징 대상자',
           };
         }
         return {
           en: 'Vrill + Stack',
           de: 'Vril + Stack',
           cn: '元气攻击',
+          ko: '락슈미 에테르 쉐어징',
         };
       },
       infoText: function(data, matches) {
@@ -150,6 +158,7 @@
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
             cn: '分摊点名',
+            ko: '쉐어징 대상자',
           };
         }
         return {
@@ -158,7 +167,7 @@
           fr: 'Stack',
           ja: '頭割り',
           cn: '集合',
-          ko: '집합',
+          ko: '쉐어',
         };
       },
       tts: function(data) {
@@ -167,12 +176,14 @@
             en: 'vrill and stack',
             de: 'vril und stek',
             cn: '元气攻击',
+            ko: '락슈미 에테르 + 쉐어',
           };
         }
         return {
           en: 'stack',
           de: 'stek',
           cn: '分摊',
+          ko: '쉐어',
         };
       },
     },
@@ -190,6 +201,7 @@
             en: 'Vrill for AOE',
             de: 'Vril fuer Flaechenangriff',
             cn: '元气AOE',
+            ko: '락슈미 에테르 (광딜)',
           };
         }
       },
@@ -205,6 +217,7 @@
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave on YOU',
           de: (data.chanchala ? 'Vril + ' : '') + 'Cleave auf DIR',
           cn: (data.chanchala ? '元气 ' : '') + '死刑点名',
+          ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '광역 탱버 대상자',
         };
       },
     },
@@ -219,6 +232,7 @@
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
           de: (data.chanchala ? 'Vril + ' : '') + 'Kreuz-Marker',
           cn: (data.chanchala ? '元气 ' : '') + '十字点名',
+          ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '십자 장판 징',
         };
       },
     },
@@ -233,6 +247,7 @@
           en: (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker',
           de: (data.chanchala ? 'Vril + ' : '') + 'Blumen-Marker',
           cn: (data.chanchala ? '元气 ' : '') + '花点名',
+          ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '원형 장판 징',
         };
       },
     },
@@ -442,7 +457,7 @@
       },
       'replaceText': {
         '/dance': '/춤',
-        'Adds Appear': 'Adds Appear', // FIXME
+        'Adds Appear': '쫄',
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '매혹적인 팔',
         'Alluring Embrace': '매혹적인 포옹',
@@ -456,7 +471,7 @@
         'Divine Doubt': '완전한 혼란',
         'Hand Of Beauty': '아름다운 왼손',
         'Hand Of Grace': '우아한 오른손',
-        'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME
+        'Hands Of Grace/Beauty': '아름다운 왼손/오른손',
         'Inner Demons': '내면의 악마',
         'Jagadishwari': '자가디슈와리',
         'Stotram': '스토트람',
@@ -467,6 +482,7 @@
         'Vril': '락슈미 에테르',
         'Water': '워터',
         'Water III': '워터가',
+        'over': '끝',
       },
       '~effectNames': {
         'Bleeding': '고통',

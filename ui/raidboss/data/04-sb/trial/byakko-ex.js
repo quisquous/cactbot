@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Jade Stoa \(Extreme\)$/,
     cn: /^白虎诗魂战$/,
+    ko: /^극 백호 토벌전$/,
   },
   timelineFile: 'byakko-ex.txt',
   triggers: [
@@ -65,6 +66,7 @@
         fr: 'Tonnerre Lointain',
         ja: '遠雷',
         cn: '远雷',
+        ko: '원뢰',
       },
       tts: {
         en: 'clap',
@@ -72,6 +74,7 @@
         fr: 'tonnerre',
         ja: '遠雷',
         cn: '远雷',
+        ko: '원뢰',
       },
     },
     {
@@ -91,6 +94,7 @@
         fr: 'Provoquez !',
         ja: '挑発',
         cn: '挑衅',
+        ko: '보스 도발',
       },
       tts: {
         en: 'Provoke',
@@ -98,6 +102,7 @@
         fr: 'provoquez',
         ja: '挑発',
         cn: '挑衅',
+        ko: '도발',
       },
     },
     {
@@ -118,6 +123,7 @@
         fr: 'Provoquez !',
         ja: '挑発',
         cn: '挑衅',
+        ko: '보스 도발',
       },
       tts: {
         en: 'Provoke',
@@ -125,6 +131,7 @@
         fr: 'provoquez',
         ja: '挑発',
         cn: '挑衅',
+        ko: '도발',
       },
     },
     {
@@ -160,6 +167,7 @@
             fr: 'LB Tank maintenant !',
             ja: '今タンクLB',
             cn: '坦克LB',
+            ko: '탱리밋',
           };
         }
       },
@@ -176,6 +184,7 @@
         fr: 'Déposez à l\'extérieur',
         ja: '外にマーカーを置く',
         cn: '边缘放点名',
+        ko: '장판 바깥에 깔기',
       },
       tts: {
         en: 'drop outside',
@@ -183,6 +192,7 @@
         fr: 'déposez extérieur',
         ja: '外にマーカー',
         cn: '边缘放点名',
+        ko: '장판 바깥으로',
       },
     },
     {
@@ -202,6 +212,7 @@
         fr: 'Bulle violette',
         ja: '祟り目',
         cn: '泡泡',
+        ko: '핑크 구슬',
       },
       tts: {
         en: 'bubble',
@@ -209,6 +220,7 @@
         fr: 'bulle',
         ja: '祟り目',
         cn: '泡泡',
+        ko: '구슬',
       },
     },
     {
@@ -223,6 +235,7 @@
         fr: 'Mare sur VOUS',
         ja: '自分に床範囲',
         cn: '点名',
+        ko: '장판 바깥에 깔기 (3번)',
       },
       tts: {
         en: 'puddles',
@@ -230,6 +243,7 @@
         fr: 'mare',
         ja: '床範囲',
         cn: '点名',
+        ko: '장판 바깥으로',
       },
     },
     {
@@ -244,6 +258,7 @@
         fr: 'Eloignez-vous',
         ja: '離れ',
         cn: '远离',
+        ko: '멀리가기',
       },
       tts: {
         en: 'get away',
@@ -251,6 +266,7 @@
         fr: 'eloignez vous',
         ja: '離れ',
         cn: '远离',
+        ko: '멀리가기',
       },
     },
     {
@@ -269,6 +285,7 @@
             fr: 'Add Tigre',
             ja: '虎分離',
             cn: '虎分离',
+            ko: '호랑이 쫄',
           };
         }
       },
@@ -313,6 +330,7 @@
           de: 'Stack #' + data.stakeCount,
           fr: 'Stack #' + data.stakeCount,
           cn: '集合 #' + data.stakeCount,
+          ko: '쉐어 #' + data.stakeCount,
         };
       },
     },
@@ -554,12 +572,10 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'All creation trembles before my might!': 'All creation trembles before my might!', // FIXME
-        'Aratama Force': '아라미타마 탄환',
-        'Aratama Soul': 'Aratama Soul', // FIXME
+        'All creation trembles before my might!': '천지를 뒤흔드는 힘을 보여주지!',
         'Byakko': '백호',
         'Hakutei': '하얀 제왕',
-        'There is no turning back!': 'There is no turning back!', // FIXME
+        'There is no turning back!': '오오오오오…… 이 충동, 더는 억누를 수 없다!',
       },
       'replaceText': {
         'Answer On High': '하늘의 번개',
@@ -568,35 +584,34 @@
         'Clutch': '장악',
         'Dance Of The Incomplete': '반수의 춤',
         'Distant Clap': '원뢰',
-        'Donut AOE': 'Donut AOE', // FIXME
+        'Donut AOE': '도넛 장판',
         'Fell Swoop': '신뢰풍렬파',
         'Fire And Lightning': '뇌화일섬',
         'Gale Force': '폭풍',
-        'Hakutei Add': 'Hakutei Add', // FIXME
+        'Add': '쫄',
         'Heavenly Strike': '천뢰장',
         'Highest Stakes': '건곤일척',
         'Hundredfold Havoc': '백뢰요란',
         'Imperial Guard': '제왕의 진격',
-        'Line AOE': 'Line AOE', // FIXME
+        'Line AOE': '직선 장판',
         'Ominous Wind': '불길한 바람',
-        'Orb Marker': 'Orb Marker', // FIXME
-        'Puddle Markers': 'Puddle Markers', // FIXME
-        'Roar Of Thunder': 'Roar Of Thunder', // FIXME
+        'Orb Marker': '장판 징',
+        'Puddle Markers': '장판 징',
+        'Roar Of Thunder': '뇌굉',
         'State Of Shock': '주박뢰',
         'Steel Claw': '강철 발톱',
         'Storm Pulse': '풍뢰파동',
         'Sweep The Leg': '돌려차기',
-        'TP Orbs': 'TP Orbs', // FIXME
-        'The Roar Of Thunder': '뇌굉',
+        'TP Orbs': '구슬',
         'The Voice Of Thunder': '뇌성',
-        'Tiger Cleave': 'Tiger Cleave', // FIXME
+        'Tiger Cleave': '호랑이 범위 탱버',
         'Unrelenting Anguish': '무간지옥',
         'Vacuum Claw': '진공 할퀴기',
         'White Herald': '제왕의 충격',
-        'leap middle': 'leap middle', // FIXME
-        'leap north': 'leap north', // FIXME
-        'tiger lands': 'tiger lands', // FIXME
-        'tiger untargetable': 'tiger untargetable', // FIXME
+        'leap middle': '보스 중앙으로 이동',
+        'leap north': '보스 북쪽으로 이동',
+        'tiger lands': '호랑이 착지',
+        'tiger untargetable': '호랑이 타겟 불가',
       },
       '~effectNames': {
         'Area Of Influence Up': '기술 범위 확대',

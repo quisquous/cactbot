@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Hells\' Kier \(Extreme\)$/,
     cn: /^朱雀诗魂战$/,
+    ko: /^극 주작 토벌전$/,
   },
   timelineFile: 'suzaku-ex.txt',
   triggers: [
@@ -23,6 +24,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑减伤',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -31,6 +33,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: '死刑->' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -51,6 +54,7 @@
         de: 'Tankbuster',
         fr: 'Tankbuster',
         cn: '死刑',
+        ko: '탱버',
       },
     },
     {
@@ -67,6 +71,7 @@
         fr: 'Allez au bord extérieur',
         ja: '誘引',
         cn: '远离',
+        ko: '밖으로',
       },
     },
     {
@@ -83,6 +88,7 @@
         fr: 'Allez au bord intérieur',
         ja: '拒絶',
         cn: '靠近',
+        ko: '안으로',
       },
     },
   ],
@@ -341,12 +347,12 @@
         'Pay The Piper': '꼭두각시의 노래',
         'Pay the Piper': '꼭두각시의 노래',
         'Phantom Flurry': '귀수각',
-        'Phantom Half': 'Phantom Half', // FIXME
+        'Phantom Half': '전방 피하기',
         'Phoenix Down': '재생의 깃털',
         'Rekindle': '재생의 불꽃',
         'Rout': '맹진',
         'Ruthless Refrain': '거절의 선율',
-        'Ruthless/Mesmerizing': 'Ruthless/Mesmerizing', // FIXME
+        'Ruthless/Mesmerizing': '거절/유인의 선율',
         'Scarlet Fever': '소멸천화',
         'Scarlet Hymn': '붉은 선율',
         'Scathing Net': '장수업화',
@@ -357,7 +363,7 @@
       },
       '~effectNames': {
         'Burns': '화상',
-        'Damage Up': 'ダメージ上昇',
+        'Damage Up': '주는 피해량 증가',
         'Fire Resistance Down II': '불속성 저항 감소[강]',
         'HP Boost': '최대 HP 증가',
         'Looming Crescendo': '꼭두각시의 음률',

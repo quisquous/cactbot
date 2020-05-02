@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Wreath Of Snakes \(Extreme\)$/,
     cn: /^青龙诗魂战$/,
+    ko: /^극 청룡 토벌전$/,
   },
   timelineFile: 'seiryu-ex.txt',
   timelineTriggers: [
@@ -18,6 +19,7 @@
         fr: 'Packé avec votre groupe',
         ja: 'グループ別にスタック',
         cn: '双组分摊',
+        ko: '쉐어징',
       },
     },
     {
@@ -31,6 +33,7 @@
         fr: 'Packé en ligne',
         ja: 'スタック',
         cn: '直线分摊',
+        ko: '직선 쉐어',
       },
     },
     {
@@ -46,6 +49,7 @@
         fr: 'Prenez le lien, pointez vers l\'extérieur',
         ja: '線取って外向ける',
         cn: '接线引导',
+        ko: '선 가로채고 멀리 떨어지기',
       },
     },
   ],
@@ -78,6 +82,7 @@
             fr: 'Tank Swap',
             ja: 'スイッチ',
             cn: '换T',
+            ko: '탱 교대',
           };
         }
         if (data.role == 'tank') {
@@ -87,6 +92,7 @@
             fr: 'Swap puis tankbuster',
             ja: 'スイッチ後強攻撃',
             cn: '换T+死刑',
+            ko: '교대 후 탱버',
           };
         }
       },
@@ -111,6 +117,7 @@
         fr: 'Ecartez-vous des tanks',
         ja: 'タンクから離れ',
         cn: '远离坦克',
+        ko: '탱커한테서 멀어지기',
       },
     },
     {
@@ -140,6 +147,7 @@
         fr: 'Packez-vous pour l\'aoe',
         ja: 'スタック',
         cn: '集合放置AOE',
+        ko: '중앙에 모이기',
       },
     },
     {
@@ -166,6 +174,7 @@
             fr: 'Ecartez-vous (pas sur la tour)',
             ja: '散開 (DPSが塔)',
             cn: '分散（DPS踩塔）',
+            ko: '산개 (딜러 기둥 처리)',
           };
         }
         return {
@@ -174,6 +183,7 @@
           fr: 'Ecartez-vous (pas sur la tour)',
           ja: '散開 (タンクヒラが塔)',
           cn: '分散（坦克/治疗踩塔）',
+          ko: '산개 (탱/힐 기둥 처리)',
         };
       },
     },
@@ -193,6 +203,7 @@
             fr: 'Sur votre tour',
             ja: '塔 (タンクヒラが塔)',
             cn: '踩塔（坦克/治疗踩塔）',
+            ko: '기둥 처리 (탱/힐)',
           };
         }
         return {
@@ -201,6 +212,7 @@
           fr: 'Sur votre tour',
           ja: '塔 (DPSが塔)',
           cn: '踩塔（DPS踩塔）',
+          ko: '기둥 처리 (딜러)',
         };
       },
     },
@@ -240,6 +252,7 @@
             fr: 'Allez vers les serpents',
             ja: '蛇側へ',
             cn: '靠近蛇蛇',
+            ko: '뱀쪽으로 이동',
           };
         }
         return {
@@ -248,6 +261,7 @@
           fr: 'Pas au centre, du côté des serpents',
           ja: '真ん中からずれて蛇向いて',
           cn: '靠近中心，面向蛇蛇',
+          ko: '중앙 피하고 뱀쪽으로 밀리기',
         };
       },
       run: function(data) {
@@ -283,6 +297,7 @@
             fr: 'Packez-vous au sud',
             ja: '南でスタック',
             cn: '南侧集合',
+            ko: '남쪽에서 모이기',
           };
         }
         return {
@@ -291,6 +306,7 @@
           fr: 'Packez-vous si pas de lien',
           ja: '線無しはスタック',
           cn: '未连线则集合',
+          ko: '징 없으면 모이기',
         };
       },
     },
@@ -363,6 +379,7 @@
         fr: 'Sprintez',
         ja: 'スプリント',
         cn: '冲冲冲',
+        ko: '전력 질주',
       },
     },
   ],
@@ -596,7 +613,7 @@
         'Yama-no-shiki': '산 사역귀',
       },
       'replaceText': {
-        '--rotate--': '--rotate--', // FIXME
+        '--rotate--': '--회전--',
         '100-tonze Swing': '100톤즈 휘두르기',
         'Blazing Aramitama': '아라미타마 연소',
         'Blue Bolt': '푸른 돌진',
@@ -611,13 +628,13 @@
         'Fortune-blade Sigil': '양의 칼',
         'Great Typhoon': '성난 파도',
         'Handprint': '압살장',
-        'In/Out': 'In/Out', // FIXME
+        'In/Out': '안/밖',
         'Infirm Soul': '허증탄',
         'Kanabo': '도깨비 방망이',
         'Karmic Curse': '저주 되돌리기',
         'Kuji-kiri': '구자호신법',
         'Onmyo Sigil': '음양의 인',
-        'Out/In': 'Out/In', // FIXME
+        'Out/In': '밖/안',
         'Red Rush': '붉은 돌진',
         'Serpent Ascending': '승천하는 뱀',
         'Serpent Descending': '강림하는 뱀',
