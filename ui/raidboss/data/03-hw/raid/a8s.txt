@@ -241,33 +241,28 @@ hideall "Brute Force"
 1339.2 "Hidden Minefield" sync /:Hidden Mine:165E:/ duration 9
 1340.3 "Flarethrower" sync /:Brute Justice:1662:/
 1341.4 "Long Needle" sync /:Brute Justice:166C:/
-
-# FIXME: recreate this final section from logs
-# This taken from Shasta Kota's timeline.
-1342.0 "Chakrams Spawn"
-1354.0 "Crashing Wave"
-1354.0 "Enumeration"
-1358.0 "Mega Beam"
-1364.0 "Super Jump"
-1371.0 "Flarethrower"
-1377.0 "Missile Command"
-1383.0 "Final Punch"
-1384.0 "Final Apocalypse"
-1391.0 "Final Beam"
-1397.0 "--untargetable--"
+1353.6 "Eye Of The Chakram" sync /:Steam Chakram:1654:/
+1354.6 "Enumeration" sync /:Brute Justice:1649:/
+1360.0 "Mega Beam" sync /:Brute Justice:1664:/
+1365.1 "Super Jump" sync /:Brute Justice:1665:/
+1371.3 "Flarethrower" sync /:Brute Justice:1662:/
+1376.4 "Missile Command" sync /:Brute Justice:1668:/
+1383.5 "Final Punch" sync /:Brute Justice:170C:/
+1385.0 "Final Apocalypse" sync /:Brute Justice:1716:/
+1391.1 "Final Beam" sync /:Brute Justice:1725:/
+1398.2 "--untargetable--"
 
 
 ### Phase 9: J-Storm
-# FIXME: how does this transition naturally from phase 8?
-# FIXME: recreate this final section from logs
-1500.0 "J Storm" sync /:Brute Justice:1674:/ window 1500,0
-1501.0 "--targetable--"
-1506.0 "J Wave" sync /:Brute Justice:1675:/ window 100,100
-1511.0 "J Wave"
-1516.0 "J Wave"
-1521.0 "J Wave"
-1526.0 "J Wave"
-1531.0 "J Wave"
-1536.0 "J Wave"
-1541.0 "J Wave"
-1546.0 "J Wave"
+1401.4 "J Storm" sync /:Brute Justice:1674:/ window 1500,1000
+1403.4 "--targetable--"
+1407.5 "J Wave" sync /:Brute Justice:1675:/ window 100,100
+1412.5 "J Wave" sync /:Brute Justice:1675:/
+1417.5 "J Wave" sync /:Brute Justice:1675:/
+1422.5 "J Wave" sync /:Brute Justice:1675:/
+1427.5 "J Wave" sync /:Brute Justice:1675:/
+1432.5 "J Wave" sync /:Brute Justice:1675:/
+1437.5 "J Wave" sync /:Brute Justice:1675:/
+1442.5 "J Wave" sync /:Brute Justice:1675:/
+1447.5 "J Wave" sync /:Brute Justice:1675:/
+1452.5 "J Wave" sync /:Brute Justice:1675:/
