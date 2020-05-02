@@ -122,6 +122,7 @@
       regexJa: Regexes.addedCombatant({ name: 'ブラスター・ミラージュ', capture: false }),
       regexCn: Regexes.addedCombatant({ name: '爆破者幻象', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '폭파자의 환영', capture: false }),
+      suppressSeconds: 99999,
       infoText: {
         en: 'Mirage',
         de: 'Mirage',
@@ -161,8 +162,8 @@
       regexCn: Regexes.gainsEffect({ effect: '算术：高度1' }),
       regexKo: Regexes.gainsEffect({ effect: '산술: 고도 1' }),
       condition: Conditions.targetIsYou(),
-      durationSeconds: 5,
-      suppressSeconds: 5,
+      durationSeconds: 10,
+      suppressSeconds: 10,
       alertText: {
         en: 'Get High',
         de: 'Geh nach Oben',
@@ -178,8 +179,8 @@
       regexCn: Regexes.gainsEffect({ effect: '算术：高度2' }),
       regexKo: Regexes.gainsEffect({ effect: '산술: 고도 2' }),
       condition: Conditions.targetIsYou(),
-      durationSeconds: 5,
-      suppressSeconds: 5,
+      durationSeconds: 10,
+      suppressSeconds: 10,
       alertText: {
         en: 'Get Down',
         de: 'Geh nach Unten',
