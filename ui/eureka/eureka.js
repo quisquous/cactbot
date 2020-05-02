@@ -28,10 +28,10 @@ let Options = {
       'Eureka Hydatos': 'Eureka Hydatos',
     },
     fr: {
-      'Eureka Anemos': 'Eurêka Anemos',
-      'Eureka Pagos': 'Eurêka Pagos',
-      'Eureka Pyros': 'Eurêka Pyros',
-      'Eureka Hydatos': 'Eurêka Hydatos',
+      'Eureka Anemos': 'Eureka Anemos',
+      'Eureka Pagos': 'Eureka Pagos',
+      'Eureka Pyros': 'Eureka Pyros',
+      'Eureka Hydatos': 'Eureka Hydatos',
     },
     cn: {
       'Eureka Anemos': '常风之地',
