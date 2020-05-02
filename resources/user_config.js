@@ -39,13 +39,16 @@ let UserConfig = {
 
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.
-      if (e.detail.language)
-        Options.Language = e.detail.language;
-      if (e.detail.locale) {
-        Options.Locale = e.detail.locale;
-        Options.ShortLocale = e.detail.locale.substring(0, 2);
+      if (e.detail.parserLanguage)
+        Options.Language = e.detail.parserLanguage;
+      if (e.detail.systemLocale) {
+        Options.systemLocale = e.detail.systemLocale;
+        Options.ShortLocale = e.detail.systemLocale.substring(0, 2);
         if (Options.ShortLocale == 'zh')
           Options.ShortLocale = 'cn';
+        const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
+        if (supportedLanguage.indexOf(Options.ShortLocale) == -1)
+          Options.ShortLocale = 'en';
       }
 
       // Handle processOptions after default language selection above,
