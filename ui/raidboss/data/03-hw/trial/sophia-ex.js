@@ -24,7 +24,7 @@
         'Arms of Wisdom': 'Arme der Weisheit',
         'Cintamani': 'Chintamani',
         'Cloudy Heavens': 'Nebulöse Himmel',
-        'Dischordant Damnation': 'Dissonante Verdammung',
+        'Dischordant Cleansing': 'Dissonante Buße',
         'Divine Spark': 'Göttlicher Funke',
         'Duplicate': 'Duplizieren',
         'Execute': 'Exekutieren',
