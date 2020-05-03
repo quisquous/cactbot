@@ -17,7 +17,7 @@ hideall "--sync--"
 22.4 "Gnosis" sync /:Barbelo:19C2:/
 41.4 "Arms Of Wisdom?" sync /:Sophia:19C4:/ # May be skipped depending on DPS
 
-# This section will be reached either at 63.6, or at the time she is pushed to 90%
+# This section will be reached either at 56.0, or at the time she is pushed to 90%
 56.0 "--Clones Appear?--" sync / 03:........:Added new combatant Aion Teleos/ window 56,5
 63.6 "Thunder II/Thunder III" sync /:Sophia:19(AC|B0):/
 63.6 "Duplicate" sync /:Aion Teleos:19AB:/ window 30,2.5
@@ -44,6 +44,7 @@ hideall "--sync--"
 # There's an introductory block leading into a rotation.
 250.0 "The Scales Of Wisdom" sync /:Sophia:1981:/ window 250,5
 267.5 "The Scales Of Wisdom" sync /:Sophia:1AE1:/
+272.9 "--Targetable--"
 280.8 "Quasar (Meteor Snapshot)" sync /:Sophia:19(6E|A7):/
 286.8 "Quasar (Meteor Detonate)" sync /:Sophia:1A87:/
 291.3 "Aero III/Thunder II/Thunder III" sync /:Sophia:19(A[CE]|BC):/ window 41.3,5
