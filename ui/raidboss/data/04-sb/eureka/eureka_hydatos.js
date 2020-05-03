@@ -1110,7 +1110,7 @@
         'Arsenal Centaur': 'Centaure de l\'Arsenal',
         'Art': 'Art',
         'Ball Lightning': 'Orbe de foudre',
-        'Cloudlarker': 'Urolithe De L\'arsenal',
+        'Cloudlarker': 'Urolithe de l\'Arsenal',
         'Ivory Palm': 'Paume d\'ivoire',
         'Orlasrach': 'Orlasrach',
         'Owain': 'Owain',
