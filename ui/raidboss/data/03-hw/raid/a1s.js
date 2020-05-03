@@ -100,7 +100,7 @@
     },
     {
       id: 'A1S Hypercompressed You',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\.5'] }),
+      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
       regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
@@ -111,7 +111,7 @@
     },
     {
       id: 'A1S Hypercompressed Other',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\.5'], capture: false }),
+      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
       regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
       regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
       regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'], capture: false }),
@@ -138,7 +138,7 @@
     },
     {
       id: 'A1S Hypercompressed Delete',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\.5'] }),
+      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
       regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
@@ -158,8 +158,8 @@
         'Faust': 'Faust',
         'Hangar 8': 'Lagerhalle 8',
         'Machinery Bay 44': 'Kampfmaschinen-Baracke 44',
-        'Oppressor': 'Unterdrücker',
-        'Oppressor 0.5': 'Unterdrücker 0,5',
+        'Oppressor 0\\.5': 'Unterdrücker 0,5',
+        'Oppressor(?! )': 'Unterdrücker',
       },
       'replaceText': {
         '3000-Tonze Missile': '3000-Tonzen-Geschoss',
@@ -179,6 +179,8 @@
         'Self-Destruct': 'Selbstzerstörung',
         'Sturm Doll': 'Sturmpuppe',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'fr',
@@ -187,8 +189,8 @@
         'Faust': 'faust',
         'Hangar 8': 'Grand hangar GH-8',
         'Machinery Bay 44': 'Hangar d\'armement HA-44',
-        'Oppressor': 'Oppresseur',
-        'Oppressor 0.5': 'Oppresseur 0.5',
+        'Oppressor 0\\.5': 'Oppresseur 0.5',
+        'Oppressor(?! )': 'Oppresseur',
       },
       'replaceText': {
         '3000-Tonze Missile': 'Missile de 3000 tonz',
@@ -208,6 +210,8 @@
         'Self-Destruct': 'Auto-destruction',
         'Sturm Doll Add': 'Add poupée sturm',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'ja',
@@ -216,8 +220,8 @@
         'Faust': 'ファウスト',
         'Hangar 8': '第8大型格納庫',
         'Machinery Bay 44': '第44機工兵格納庫',
-        'Oppressor': 'オプレッサー',
-        'Oppressor 0.5': 'オプレッサー・ゼロ',
+        'Oppressor 0\\.5': 'オプレッサー・ゼロ',
+        'Oppressor(?! )': 'オプレッサー',
       },
       'replaceText': {
         '3000-Tonze Missile': '超大型ミサイル',
@@ -237,6 +241,8 @@
         'Self-Destruct': '自爆',
         'Sturm Doll': 'シュツルムドール',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'cn',
@@ -245,8 +251,8 @@
         'Faust': '浮士德',
         'Hangar 8': '第8大型机库',
         'Machinery Bay 44': '第44机工兵仓库',
-        'Oppressor': '压迫者',
-        'Oppressor 0.5': '压迫者零号',
+        'Oppressor 0\\.5': '压迫者零号',
+        'Oppressor(?! )': '压迫者',
       },
       'replaceText': {
         '3000-Tonze Missile': '超大型导弹',
@@ -266,6 +272,8 @@
         'Self-Destruct': '自爆',
         'Sturm Doll': '风暴人偶',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'ko',
@@ -274,8 +282,8 @@
         'Faust': '파우스트',
         'Hangar 8': '제8 대형 격납고',
         'Machinery Bay 44': '제44 기공병 격납고',
-        'Oppressor': '억압자',
-        'Oppressor 0.5': '미완성 억압자',
+        'Oppressor 0\\.5': '미완성 억압자',
+        'Oppressor(?! )': '억압자',
       },
       'replaceText': {
         '3000-Tonze Missile': '초대형 미사일',
@@ -294,6 +302,8 @@
         'Royal Fount': '과열 분사',
         'Self-Destruct': '자폭',
         'Sturm Doll': '인형 폭기병',
+      },
+      '~effectNames': {
       },
     },
   ],

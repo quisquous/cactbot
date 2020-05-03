@@ -118,7 +118,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Boomtype Magitek Gobwalker G-VII': 'Gobumm-Stampfer VII',
         'Giant Bomb': 'Trumpfbombe',
@@ -130,7 +129,7 @@
         'Jagd Doll': 'Jagdpuppe',
         'King Gobtank G-IV': 'Königs-Gobmaschine IV',
         'Magitek Gobwidow G-IX': 'Gob-Witwe IX',
-        '(?<![ |Trumpf])Bomb': 'Bombe',
+        '(?<![Giant |Trumpf])Bomb': 'Bombe',
       },
       'replaceText': {
         'Bangyzoom': 'Auf sie mit Brüll',
@@ -148,8 +147,6 @@
         'Jagd Doll': 'Jagdpuppe',
         'Kaltstrahl': 'Kaltstrahl',
         'Massive Explosion': 'Detonation',
-        'NW': 'NW',
-        'SW': 'SW',
         'Sniper': 'Scharfschütze',
         'Soldier': 'Soldat',
         'Wave': 'Welle',
