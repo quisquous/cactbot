@@ -96,7 +96,7 @@ let commonReplacement = {
     fr: '--tounez--',
     ja: '--rotate--', // FIXME
     cn: '--龙回转--', // FIXME
-    ko: '--rotate--', // FIXME
+    ko: '--회전--', // FIXME
   },
   '--south--': {
     de: '--süden--',
