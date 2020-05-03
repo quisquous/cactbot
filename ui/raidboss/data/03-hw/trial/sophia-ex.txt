@@ -18,7 +18,7 @@ hideall "--sync--"
 41.4 "Arms Of Wisdom?" sync /:Sophia:19C4:/ # May be skipped depending on DPS
 
 # This section will be reached either at 56.0, or at the time she is pushed to 90%
-56.0 "--Clones Appear?--" sync / 03:........:Added new combatant Aion Teleos/ window 56,5
+56.0 "--Clones Appear--" sync / 03:........:Added new combatant Aion Teleos/ window 56,5
 63.6 "Thunder II/Thunder III" sync /:Sophia:19(AC|B0):/
 63.6 "Duplicate" sync /:Aion Teleos:19AB:/ window 30,2.5
 69.7 "Aero III" sync /:Sophia:19AE:/

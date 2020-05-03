@@ -73,6 +73,7 @@
         'Onrush': 'Charge',
         'Quasar': 'Quasar',
         'Ring of Pain': 'Anneau de douleur',
+        'The Scales Of Wisdom': 'Balance de la sagesse',
         'Thunder II(?!I)': 'Extra Foudre',
         'Thunder III': 'Méga Foudre',
         'Vertical Kenoma': 'Kenoma Vertical',
