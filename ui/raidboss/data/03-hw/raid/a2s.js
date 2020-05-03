@@ -17,7 +17,6 @@
     {
       id: 'A2S Breakblock',
       regex: /(?:Brainhurt|Bodyhurt) Breakblock/,
-      regexFr: /(?:Spirituel|Corporel) Blindage/,
       beforeSeconds: 10,
       suppressSeconds: 1,
       infoText: {

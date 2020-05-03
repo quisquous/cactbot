@@ -384,6 +384,25 @@ let testTriggerFieldsSorted = function(file, contents) {
   }
 };
 
+let testBadTimelineTriggerRegex = function(file, contents) {
+  let json = eval(contents);
+  if (!json[0].timelineTriggers)
+    return;
+
+  for (let trigger of json[0].timelineTriggers) {
+    let keys = Object.keys(trigger);
+    for (let key of keys) {
+      // regex is the only valid regular expression field on a timeline trigger.
+      if (key === 'regex')
+        continue;
+      if (regexLanguages.includes(key) || netRegexLanguages.includes(key)) {
+        console.error(`${file}: in ${trigger.id}, invalid field '${key}' in timelineTrigger`);
+        exitCode = 1;
+      }
+    }
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -401,6 +420,7 @@ let testTriggerFile = function(file) {
     testValidIds(file, contents);
     testResponseHasNoFriends(file, contents);
     testTriggerFieldsSorted(file, contents);
+    testBadTimelineTriggerRegex(file, contents);
   } catch (e) {
     console.error(`Trigger error in ${file}.`);
     console.error(e);

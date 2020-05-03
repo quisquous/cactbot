@@ -68,12 +68,12 @@
     },
     {
       id: 'BA Saved By Rememberance',
-      regex: Regexes.gameLog({ line: 'The memories of heroes past live on again', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscité', capture: false }),
-      regexJa: Regexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された', capture: false }),
-      regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来', capture: false }),
-      regexKo: Regexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다', capture: false }),
+      regex: Regexes.gameLog({ line: 'The memories of heroes past live on again.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscité.*?', capture: false }),
+      regexJa: Regexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された.*?', capture: false }),
+      regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来.*?', capture: false }),
+      regexKo: Regexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다.*?', capture: false }),
       sound: 'Long',
     },
     {
@@ -605,11 +605,11 @@
     {
       // Note: These use 00:329e: lines, without any proper "gains effect" lines.
       id: 'BA AV Eidos Relative Virtue Astral',
-      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Lumière', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕', capture: false }),
-      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔', capture: false }),
+      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Lumière.*?', capture: false }),
+      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕.*?', capture: false }),
+      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -622,11 +622,11 @@
     {
       // Note: These use 00:329e: lines, without any proper "gains effect" lines.
       id: 'BA AV Eidos Relative Virtue Umbral',
-      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Ténèbres', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕', capture: false }),
-      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔', capture: false }),
+      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Ténèbres.*?', capture: false }),
+      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕.*?', capture: false }),
+      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
