@@ -161,7 +161,7 @@
         'Earth Shaker': 'Erdstoß',
         'Flare Breath': 'Flare-Atem',
         'Flare Star': 'Flare-Stern',
-        'Flatten': 'Einstampfen',
+        'Flatten': 'Einebnen',
         'Gigaflare': 'Gigaflare',
         'Gust Add': 'Wind Add',
         'MF Pepperoni': 'MF Fläche',
