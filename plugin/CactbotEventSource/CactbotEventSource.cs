@@ -260,7 +260,7 @@ namespace Cactbot {
         LogInfo("System Locale: {0}", "(unknown)");
       }
       else{
-        LogInfo("System Locale : {0}", pc_locale_);
+        LogInfo("System Locale: {0}", pc_locale_);
       }
 
       // Temporarily target cn if plugin is old v2.0.4.0
