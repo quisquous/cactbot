@@ -42,7 +42,7 @@
         'Thunder II(?!I)': 'Blitzra',
         'Thunder III': 'Blitzga',
         'Vertical Kenoma': 'Vertikales Kenoma',
-        '--Clones Appear--': '--Klone erscheinen--',
+        'Clones Appear': 'Klone erscheinen',
       },
     },
     {
@@ -76,7 +76,7 @@
         'Thunder II(?!I)': 'Extra Foudre',
         'Thunder III': 'Méga Foudre',
         'Vertical Kenoma': 'Kenoma Vertical',
-        '--Clones Appear--': '--Apparition des clones--',
+        'Clones Appear': 'Apparition des clones',
       },
     },
     {
@@ -111,7 +111,7 @@
         'Thunder II(?!I)': 'サンダラ',
         'Thunder III': 'サンダガ',
         'Vertical Kenoma': '前後堅守',
-        '--Clones Appear--': '--幻影が現れる--',
+        'Clones Appear': '幻影が現れる',
       },
     },
     {
@@ -146,7 +146,7 @@
         'Thunder II(?!I)': '震雷',
         'Thunder III': '暴雷',
         'Vertical Kenoma': '前后坚守',
-        '--Clones Appear--': '--Clones Appear--',
+        'Clones Appear': 'Clones Appear',
       },
     },
     {
@@ -181,7 +181,7 @@
         'Thunder II(?!I)': '선더라',
         'Thunder III': '선더가',
         'Vertical Kenoma': '앞뒤 견제',
-        '--Clones Appear--': '--Clones Appear--',
+        'Clones Appear': 'Clones Appear',
       },
     },
   ],
