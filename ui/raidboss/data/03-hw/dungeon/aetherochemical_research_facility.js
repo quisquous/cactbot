@@ -142,6 +142,7 @@
         'Analysis and Proving': 'Prototypentest',
         'Ascian Prime': 'Prim-Ascian',
         'Blizzardsphere': 'Eissphäre',
+        'Chaosphere': 'Chaossphäre',
         'Evaluation and Authentication': 'Evaluation und Zertifikation',
         'Firesphere': 'Feuersphäre',
         'Harmachis': 'Harmachis',
@@ -151,7 +152,6 @@
         'Magitek Turret II': 'Magitek-Geschütz II',
         'Neurolink Nacelle': 'Neurolink-Zelle',
         'Regula van Hydrus': 'Regula van Hydrus',
-        'Chaosphere': 'Chaossphäre',
       },
       'replaceText': {
         'Aetherochemical Grenado': 'Magitek-Granate',
@@ -191,20 +191,23 @@
         'Universal Manipulation': 'Umwertung aller Werte',
         'Weighing of the Heart': 'Gewissensprüfung',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Analysis and Proving': 'Analyse et Essai',
         'Ascian Prime': 'Primo-Ascien',
-        'Blizzardsphere': 'Sphère de glace',
+        'Blizzardsphere': 'sphère de glace',
+        'Chaosphere': 'Sphère de chaos',
         'Evaluation and Authentication': 'Évaluation et Authentification',
-        'Firesphere': 'Sphère de feu',
+        'Firesphere': 'sphère de feu',
         'Harmachis': 'Horemakhet',
         'Igeyorhm': 'Igeyorhm',
         'Lahabrea': 'Lahabrea',
-        'Magitek Turret I': 'Tourelle magitek TM-I',
-        'Magitek Turret II': 'Tourelle magitek TM-II',
+        'Magitek Turret I': 'tourelle magitek TM-I',
+        'Magitek Turret II': 'tourelle magitek TM-II',
         'Neurolink Nacelle': 'Nacelle neurolien',
         'Regula van Hydrus': 'Regula van Hydrus',
       },
@@ -246,6 +249,8 @@
         'Universal Manipulation': 'Manipulation universelle',
         'Weighing of the Heart': 'Pesée du cœur',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'ja',
@@ -253,6 +258,7 @@
         'Analysis and Proving': '試作機実験庫',
         'Ascian Prime': 'アシエン・プライム',
         'Blizzardsphere': 'ブリザードスフィア',
+        'Chaosphere': 'カオススフィア',
         'Evaluation and Authentication': '評価試験場',
         'Firesphere': 'ファイアスフィア',
         'Harmachis': 'ハルマキス',
@@ -301,6 +307,8 @@
         'Universal Manipulation': '法則改変',
         'Weighing of the Heart': '転生の儀',
       },
+      '~effectNames': {
+      },
     },
     {
       'locale': 'cn',
@@ -308,6 +316,7 @@
         'Analysis and Proving': '试验机评测库',
         'Ascian Prime': '至尊无影',
         'Blizzardsphere': '寒冰晶球',
+        'Chaosphere': '混沌晶球',
         'Evaluation and Authentication': '评测场',
         'Firesphere': '烈火晶球',
         'Harmachis': '赫鲁玛奇斯',
@@ -320,13 +329,13 @@
       },
       'replaceText': {
         'Aetherochemical Grenado': '魔导榴弹',
-        'Ancient Circle': '', // FIXME
+        'Ancient Circle': '古代圆环',
         'Ancient Eruption': '古火喷发',
-        'Annihilation': '', // FIXME
+        'Annihilation': '湮灭',
         'Ballistic Missile': '导弹发射',
         'Bastardbluss': '重枪剑',
         'Blizzard Burst': '冰结球炸裂',
-        'Blizzard Sphere': '', // FIXME
+        'Blizzard Sphere': '冰结球',
         'Chthonic Hush': '地府安宁',
         'Circle of Flames': '地层断裂',
         'Dark Blizzard II': '暗冰冻',
@@ -335,9 +344,9 @@
         'End of Days': '末日之火',
         'Entropic Flame': '熵火',
         'Fire Burst': '火炎球炸裂',
-        'Fire Sphere': '', // FIXME
+        'Fire Sphere': '火炎球',
         'Gaseous Bomb': '气化炸弹',
-        'Height of Chaos': '', // FIXME
+        'Height of Chaos': '混沌之巅',
         'Hood Swing': '甩头攻击',
         'Inertia Stream': '惰性流',
         'Judgment': '制裁',
@@ -353,8 +362,10 @@
         'Self-detonate': '雾散爆发',
         'Shadow Flare': '暗影核爆',
         'Steel Scales': '钢鳞',
-        'Universal Manipulation': '', // FIXME
+        'Universal Manipulation': '法则变更',
         'Weighing of the Heart': '转生之仪',
+      },
+      '~effectNames': {
       },
     },
     {
@@ -363,6 +374,7 @@
         'Analysis and Proving': '견본 기체 실험고',
         'Ascian Prime': '아씨엔 프라임',
         'Blizzardsphere': '눈보라 구체',
+        'Chaosphere': '혼돈의 구체',
         'Evaluation and Authentication': '평가시험장',
         'Firesphere': '불의 구체',
         'Harmachis': '하르마키스',
@@ -375,13 +387,13 @@
       },
       'replaceText': {
         'Aetherochemical Grenado': '마도 유탄',
-        'Ancient Circle': '', // FIXME
+        'Ancient Circle': '고대의 고리',
         'Ancient Eruption': '고대의 불기둥',
-        'Annihilation': '', // FIXME
+        'Annihilation': '멸절',
         'Ballistic Missile': '미사일 발사',
         'Bastardbluss': '건바스타드',
         'Blizzard Burst': '블리자드 버스트',
-        'Blizzard Sphere': '', // FIXME
+        'Blizzard Sphere': '눈보라 구체',
         'Chthonic Hush': '지하신의 침묵',
         'Circle of Flames': '화염의 원',
         'Dark Blizzard II': '다크 블리자라',
@@ -390,9 +402,9 @@
         'End of Days': '메기도 플레임',
         'Entropic Flame': '불확실한 불꽃',
         'Fire Burst': '파이어 버스트',
-        'Fire Sphere': '', // FIXME
+        'Fire Sphere': '불의 구체',
         'Gaseous Bomb': '기화 폭탄',
-        'Height of Chaos': '', // FIXME
+        'Height of Chaos': '혼돈의 정점',
         'Hood Swing': '머리 휘두르기',
         'Inertia Stream': '관성 기류',
         'Judgment': '심판의 날',
@@ -408,8 +420,10 @@
         'Self-detonate': '자가폭발',
         'Shadow Flare': '섀도우 플레어',
         'Steel Scales': '강철 비늘',
-        'Universal Manipulation': '', // FIXME
+        'Universal Manipulation': '법칙 변조',
         'Weighing of the Heart': '윤회 의식',
+      },
+      '~effectNames': {
       },
     },
   ],
