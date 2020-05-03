@@ -6,6 +6,9 @@
 # Enrage is 1AE0, but it comes up immediately after the impossible Sin/Suffering.
 # There's no way to differentiate this in the timeline.
 
+# 1A4C is not a Quasar ability. It's instead one of two "unknown" abilities that
+# move the stage background and slide the player.
+
 hideall "--Reset--"
 hideall "--sync--"
 
@@ -19,7 +22,7 @@ hideall "--sync--"
 
 # This section will be reached either at 56.0, or at the time she is pushed to 90%
 56.0 "--clones appear--" sync / 03:........:Added new combatant Aion Teleos/ window 56,5
-63.6 "Thunder II/Thunder III" sync /:Sophia:19(AC|B0):/
+63.6 "Thunder II/III" sync /:Sophia:19(AC|B0):/
 63.6 "--sync--" sync /:Aion Teleos:19AB:/ window 30,2.5
 69.7 "Aero III" sync /:Sophia:19AE:/
 69.7 "--sync--" sync /:Aion Teleos:19AB:/
@@ -67,7 +70,7 @@ hideall "--sync--"
 379.0 "--clones appear--" sync / 03:........:Added new combatant Aion Teleos/ window 60,20
 382.0 "Cintamani x3" duration 6 # sync /:Sophia:19C5:/
 393.3 "--sync--" sync /:Aion Teleos:19AB:/
-393.3 "Thunder II/Thunder III" sync /:Sophia:19(AC|B0):/
+393.3 "Thunder II/III" sync /:Sophia:19(AC|B0):/
 399.4 "--sync--" sync /:Aion Teleos:19AB:/
 399.4 "Aero III" sync /:Sophia:19AE:/ window 30,5
 408.5 "Arms Of Wisdom" sync /:Sophia:19C4:/
@@ -103,7 +106,7 @@ hideall "--sync--"
 577.5 "--clones appear--" sync / 03:........:Added new combatant Aion Teleos/ window 60,5
 592.8 "Arms Of Wisdom" sync /:Sophia:19C4:/
 599.9 "--sync--" sync /:Aion Teleos:19AB:/ window 10,2.5
-599.9 "Thunder II/Thunder III" sync /:Sophia:19(AC|B0):/
+599.9 "Thunder II/III" sync /:Sophia:19(AC|B0):/
 606.1 "--sync--" sync /:Aion Teleos:19AB:/
 606.1 "Aero III" sync /:Sophia:19AE:/
 611.9 "Quasar (Snapshot)" sync /:Sophia:19(6E|A7):/
