@@ -331,7 +331,7 @@ let Responses = {
       fr: 'Packez les marquages',
       ja: 'マーカー付けた人とスタック',
       cn: '点名集合',
-      ko: '쉐어징으로 모이기',
+      ko: '징끼리 모이기',
     };
     return obj;
   },
