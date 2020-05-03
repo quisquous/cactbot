@@ -1166,7 +1166,7 @@
         'Mourning Star': 'Étoile du matin',
         'Mythcall': 'Invitation fantasmagorique',
         'Orb x5': 'Orbe x5',
-        'Ozma Ability': 'Aptitude Ozma',
+        'Ozma Ability': 'Aptitude d\'Ozma',
         'Piercing Dark': 'Lance des ténèbres',
         'Piercing Light': 'Lance de lumière',
         'Pitfall': 'Embûche',
