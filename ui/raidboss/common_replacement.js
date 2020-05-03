@@ -11,7 +11,7 @@ let commonReplacement = {
   },
   'is no longer sealed': {
     de: 'öffnet sich erneut',
-    fr: 'Ouverture ',
+    fr: 'Ouverture d(?:e|u|es) $1 dans',
     ja: 'の封鎖が解かれた',
     ko: '의 봉쇄가 해제되었습니다',
   },
@@ -90,6 +90,13 @@ let commonReplacement = {
     ja: '--北西--',
     cn: '--西北--',
     ko: '--북서--',
+  },
+  '--rotate--': {
+    de: '--rotate--', // FIXME
+    fr: '--tounez--',
+    ja: '--rotate--', // FIXME
+    cn: '--龙回转--', // FIXME
+    ko: '--rotate--', // FIXME
   },
   '--south--': {
     de: '--süden--',
