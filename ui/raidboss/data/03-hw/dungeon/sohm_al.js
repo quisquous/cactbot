@@ -47,4 +47,56 @@
       response: Responses.meteorOnYou(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Chyme Of The Mountain': 'Gebirgsbrei',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Chyme Of The Mountain': 'chyme des montagnes',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Chyme Of The Mountain': 'キームス・マウンテン',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Chyme Of The Mountain': '圣山之糜',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Chyme Of The Mountain': '산의 유미즙',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+  ],
 }];

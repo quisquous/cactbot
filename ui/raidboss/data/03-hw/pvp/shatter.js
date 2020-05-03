@@ -56,4 +56,64 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        'The icebound tomelith A1 activates and begins to emit heat': 'Vereister Echolith A1 activates and begins to emit heat',
+        'The icebound tomelith A2 activates and begins to emit heat': 'Vereister Echolith A2 activates and begins to emit heat',
+        'The icebound tomelith A3 activates and begins to emit heat': 'Vereister Echolith A3 activates and begins to emit heat',
+        'The icebound tomelith A4 activates and begins to emit heat': 'Vereister Echolith A4 activates and begins to emit heat',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'The icebound tomelith A1 activates and begins to emit heat': 'Mémolithe Congelé A1 activates and begins to emit heat',
+        'The icebound tomelith A2 activates and begins to emit heat': 'Mémolithe Congelé A2 activates and begins to emit heat',
+        'The icebound tomelith A3 activates and begins to emit heat': 'Mémolithe Congelé A3 activates and begins to emit heat',
+        'The icebound tomelith A4 activates and begins to emit heat': 'Mémolithe Congelé A4 activates and begins to emit heat',
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+      },
+      'replaceText': {
+      },
+      '~effectNames': {
+      },
+    },
+  ],
 }];
