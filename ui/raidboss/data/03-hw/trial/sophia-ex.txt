@@ -32,13 +32,13 @@ hideall "--sync--"
 # Gnostic Rant and Infusion are purely HP-based pushes.
 110.6 "Cloudy Heavens" sync /:Sophia:19BE:/ window 110.6
 111.6 "--Untargetable--"
-120.9 "Kenoma" sync /:The First Demiurge:19B[BC]:/
+120.9 "Horizontal Kenoma/Vertical Kenoma" sync /:The First Demiurge:19B[BC]:/
 121.9 "Gnostic Spear" sync /:The Third Demiurge:19B9:/
 125.9 "Divine Spark" # sync /:The Second Demiurge:19B6:/
 129.0 "Ring Of Pain" sync /:The Third Demiurge:19BA:/
-135.1 "Kenoma" sync /:The First Demiurge:19B[BC]:/
+135.1 "Horizontal Kenoma/Vertical Kenoma" sync /:The First Demiurge:19B[BC]:/
 147.3 "Gnostic Spear?" sync /:The Third Demiurge:19B9:/
-149.2 "Kenoma" sync /:The First Demiurge:19B[BC]:/
+149.2 "Horizontal Kenoma/Vertical Kenoma" sync /:The First Demiurge:19B[BC]:/
 191.6 "Zombification Enrage?"
 
 # There's an introductory block leading into a rotation.
