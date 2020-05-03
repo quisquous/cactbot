@@ -12,18 +12,12 @@
     {
       id: 'BA Art Geas',
       regex: /Legendary Geas/,
-      regexDe: /Wirbelsturm/,
-      regexCn: /妖枪乱击/,
-      regexKo: /요창난격/,
       beforeSeconds: 0,
       response: Responses.stopMoving(),
     },
     {
       id: 'BA Raiden Levinwhorl',
       regex: /Levinwhorl/,
-      regexDe: /Wirbelsturm/,
-      regexCn: /涡雷/,
-      regexKo: /와뢰/,
       beforeSeconds: 10,
       alertText: {
         en: 'Shields and Mitigation',
@@ -35,9 +29,6 @@
     {
       id: 'BA AV Eurekan Potion',
       regex: /Explosive Impulse/,
-      regexDe: /Explosiver Impuls/,
-      regexCn: /爆炸性冲击/,
-      regexKo: /폭발적 추진력/,
       beforeSeconds: 10,
       suppressSeconds: 60,
       infoText: {
@@ -50,9 +41,6 @@
     {
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
-      regexDe: /Schwarzes Loch/,
-      regexCn: /黑洞/,
-      regexKo: /블랙홀/,
       beforeSeconds: 12,
       infoText: {
         en: 'Black Hole Soon',
