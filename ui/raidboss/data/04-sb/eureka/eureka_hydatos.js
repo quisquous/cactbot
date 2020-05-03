@@ -12,20 +12,12 @@
     {
       id: 'BA Art Geas',
       regex: /Legendary Geas/,
-      regexDe: /Wirbelsturm/,
-      regexFr: /Tuerie spectrale/,
-      regexCn: /妖枪乱击/,
-      regexKo: /요창난격/,
       beforeSeconds: 0,
       response: Responses.stopMoving(),
     },
     {
       id: 'BA Raiden Levinwhorl',
       regex: /Levinwhorl/,
-      regexDe: /Wirbelsturm/,
-      regexFr: /Vortex de foudre/,
-      regexCn: /涡雷/,
-      regexKo: /와뢰/,
       beforeSeconds: 10,
       alertText: {
         en: 'Shields and Mitigation',
@@ -37,10 +29,6 @@
     {
       id: 'BA AV Eurekan Potion',
       regex: /Explosive Impulse/,
-      regexDe: /Explosiver Impuls/,
-      regexFr: /Impulsion explosive/,
-      regexCn: /爆炸性冲击/,
-      regexKo: /폭발적 추진력/,
       beforeSeconds: 10,
       suppressSeconds: 60,
       infoText: {
@@ -53,10 +41,6 @@
     {
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
-      regexDe: /Schwarzes Loch/,
-      regexFr: /Trou noir/,
-      regexCn: /黑洞/,
-      regexKo: /블랙홀/,
       beforeSeconds: 12,
       infoText: {
         en: 'Black Hole Soon',
@@ -96,7 +80,7 @@
       id: 'BA Seal',
       regex: Regexes.message({ line: '.*will be sealed off.*?', capture: false }),
       regexDe: Regexes.message({ line: '.*bis sich der Zugang.*?', capture: false }),
-      regexFr: Regexes.message({ line: '.*Fermeture de', capture: false }),
+      regexFr: Regexes.message({ line: '.*Fermeture de.*?', capture: false }),
       regexCn: Regexes.message({ line: '距.*被封锁还有.*?', capture: false }),
       regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다.*?', capture: false }),
       run: function(data) {
@@ -107,7 +91,7 @@
       id: 'BA Clear Data',
       regex: Regexes.message({ line: '.*is no longer sealed.*?', capture: false }),
       regexDe: Regexes.message({ line: '.*öffnet sich wieder.*?', capture: false }),
-      regexFr: Regexes.message({ line: '.*Ouverture de', capture: false }),
+      regexFr: Regexes.message({ line: '.*Ouverture de.*?', capture: false }),
       regexCn: Regexes.message({ line: '.*的封锁解除了.*?', capture: false }),
       regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다.*?', capture: false }),
       run: function(data) {
@@ -304,7 +288,7 @@
       id: 'BA Owain Fire Element',
       regex: Regexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
       regexDe: Regexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: '[^:]*:Oui... Munderg, sens le feu embraser nos âmes', capture: false }),
+      regexFr: Regexes.dialog({ line: '[^:]*:Oui... Munderg, sens le feu embraser nos âmes.*?', capture: false }),
       regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
@@ -328,7 +312,7 @@
       id: 'BA Owain Ice Element',
       regex: Regexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
       regexDe: Regexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: '[^:]*:C\'est bien, Munderg... Glace le sang de mes ennemis', capture: false }),
+      regexFr: Regexes.dialog({ line: '[^:]*:C\'est bien, Munderg... Glace le sang de mes ennemis.*?', capture: false }),
       regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
