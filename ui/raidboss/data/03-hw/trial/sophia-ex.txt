@@ -1,157 +1,146 @@
-# Containment Bay S1T6 (Extreme) - Sophia
-# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
-# Shasta's reddit: /u/shastaxc
-# Last Updated: 10/6/2016
+# Containment Bay S1-T6 (Extreme)
+# Sophia Extreme
 
-#############################################################
-########CUSTOMIZE your timeline. Remove the hashtag from 
-########the beginning of the following lines to prevent 
-########them from appearing on your timeline.
+# -ii 1983 1984 1989 19A8 19A9 19AD 19AF 19B1 1A4C 1ABE 1ABF
+
+# Enrage is 1AE0, but it comes up immediately after the impossible Sin/Suffering.
+# There's no way to differentiate this in the timeline.
 
 hideall "--Reset--"
-#########DPS CAN HIDE THESE
-#hideall "Cintamani"
-#hideall "Arms of Wisdom"
+hideall "--sync--"
 
-#########HEALERS CAN HIDE THESE
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
+0 "Start"
+1.8 "--sync--" sync /:Sophia:19C3:/ window 1.8,2
+12.0 "Thunder II" sync /:Sophia:19B0:/ window 12,5
+22.4 "Gnosis" sync /:Barbelo:19C2:/
+41.4 "Arms Of Wisdom?" sync /:Sophia:19C4:/ # May be skipped depending on DPS
 
-#########TANKS CAN HIDE THESE
+# This section will be reached either at 63.6, or at the time she is pushed to 90%
+56.0 "--Clones Appear?--" sync / 03:........:Added new combatant Aion Teleos/ window 56,5
+63.6 "Thunder II/Thunder III" sync /:Sophia:19(AC|B0):/
+63.6 "Duplicate" sync /:Aion Teleos:19AB:/ window 30,2.5
+69.7 "Aero III" sync /:Sophia:19AE:/
+69.7 "Duplicate" sync /:Aion Teleos:19AB:/
+79.8 "Execute" sync /:Sophia:19AA:/
+#79.8 "Execute" sync /:Aion Teleos:19AF:/
+90.2 "Arms Of Wisdom" sync /:Sophia:19C4:/
 
+# Intermission.
+# Divine Spark can be pushed and thus is not synced.
+# Gnostic Rant and Infusion are purely HP-based pushes.
+110.6 "Cloudy Heavens" sync /:Sophia:19BE:/ window 110.6
+111.6 "--Untargetable--"
+120.9 "Kenoma" sync /:The First Demiurge:19B[BC]:/
+121.9 "Gnostic Spear" sync /:The Third Demiurge:19B9:/
+125.9 "Divine Spark" # sync /:The Second Demiurge:19B6:/
+129.0 "Ring Of Pain" sync /:The Third Demiurge:19BA:/
+135.1 "Kenoma" sync /:The First Demiurge:19B[BC]:/
+147.3 "Gnostic Spear?" sync /:The Third Demiurge:19B9:/
+149.2 "Kenoma" sync /:The First Demiurge:19B[BC]:/
+191.6 "Zombification Enrage?"
 
-##############################################################
-################## Windows 8 & 10 Voices ##################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Zira Desktop" 0 100
-#define speaker "voice" "Microsoft David Desktop" 0 100
+# There's an introductory block leading into a rotation.
+250.0 "The Scales Of Wisdom" sync /:Sophia:1981:/ window 250,5
+267.5 "The Scales Of Wisdom" sync /:Sophia:1AE1:/
+280.8 "Quasar (Meteor Snapshot)" sync /:Sophia:19(6E|A7):/
+286.8 "Quasar (Meteor Detonate)" sync /:Sophia:1A87:/
+291.3 "Aero III/Thunder II/Thunder III" sync /:Sophia:19(A[CE]|BC):/ window 41.3,5
+297.1 "Quasar Tethers" sync /:Sophia:196E:/
+305.7 "Quasar (Tilt)" sync /:Sophia:1A4C:/
+310.7 "Cintamani x2" duration 3 # sync /:Sophia:19C5:/
+318.8 "Arms Of Wisdom" sync /:Sophia:19C4:/
+ 
+ # Potential landing point if DPS is high. Push seems to be 70%?
+328.3 "Thunder II" sync /:Sophia:19B0:/ window 68.8,5
+334.0 "Quasar Tethers" sync /:Sophia:19A7:/
+335.0 "--Untargetable--"
+341.2 "Onrush" sync /:Sophia:19C1:/
+341.8 "Quasar (Tilt)" # sync /:Sophia:1A4C:/
+345.4 "--Targetable--"
+361.5 "Dischordant Cleansing" # sync /:Sophia:19B[35]:/
+361.5 "Cintamani x2" duration 3 # sync /:Sophia:19C5:/
+370.8 "Arms Of Wisdom" sync /:Sophia:19C4:/ window 30,5
+379.0 "--Clones Appear--" sync / 03:........:Added new combatant Aion Teleos/ window 60,20
+382.0 "Cintamani x3" duration 6 # sync /:Sophia:19C5:/
+393.3 "Duplicate" sync /:Aion Teleos:19AB:/
+393.3 "Thunder III" sync /:Sophia:19AC:/
+399.4 "Duplicate" sync /:Aion Teleos:19AB:/
+399.4 "Aero III" sync /:Sophia:19AE:/ window 30,5
+408.5 "Arms Of Wisdom" sync /:Sophia:19C4:/
+419.8 "Light Dew" sync /:Barbelo:19BF:/
+420.5 "Execute" sync /:Sophia:19AA:/ window 10,10
 
-#################### Windows 7 Voices ####################
-########REMOVE THE HASTAG to select a voice
-#define speaker "voice" "Microsoft Anna" 0 100
+# Rotation block.
+# Technically it can loop, but unless party DPS is VERY high,
+# enrage will occur long before the second loop completes.
+429.3 "Cintamani x3" duration 6 # sync /:Sophia:19C5:/ duration 5
+440.7 "Arms Of Wisdom" sync /:Sophia:19C4:/
+446.5 "Quasar Tethers" sync /:Sophia:196E:/
+455.2 "Quasar (Tilt)" sync /:Sophia:1A4C:/
+457.7 "Light Dew" sync /:Barbelo:19BF:/ window 30,10
+470.0 "Thunder III" sync /:Sophia:19AC:/
+478.3 "Arms Of Wisdom" sync /:Sophia:19C4:/
+484.5 "Quasar Tethers" sync /:Sophia:19A7:/
+485.5 "--Untargetable--"
+493.2 "Quasar (Tilt)" sync /:Sophia:1A4C:/
+494.7 "Onrush" sync /:Sophia:19C1:/
+495.7 "Light Dew" sync /:Barbelo:19C0:/
+499.0 "--Targetable--"
+507.1 "Cintamani x3" duration 6 # sync /:Sophia:19C5:/
+518.3 "Arms Of Wisdom" sync /:Sophia:19C4:/
+525.4 "Thunder II" sync /:Sophia:19B0:/
+535.9 "Dischordant Cleansing" # sync /:Sophia:19B[35]:/
+539.7 "Gnosis" sync /:Barbelo:19C2:/ window 30,5
+552.2 "Arms Of Wisdom" sync /:Sophia:19C4:/
+567.0 "Quasar Tethers" sync /:Sophia:196E:/
+568.3 "Dischordant Cleansing" # sync /:Sophia:19B[35]:/
+575.7 "Quasar (Tilt)" # sync /:Sophia:1A4C:/
+581.5 "Cintamani x3" duration 6 # sync /:Sophia:19C5:/
+577.5 "--Clones Appear--" sync / 03:........:Added new combatant Aion Teleos/ window 60,5
+592.8 "Arms Of Wisdom" sync /:Sophia:19C4:/
+599.9 "Duplicate" sync /:Aion Teleos:19AB:/ window 10,2.5
+599.9 "Thunder II" sync /:Sophia:19B0:/
+606.1 "Duplicate" sync /:Aion Teleos:19AB:/
+606.1 "Aero III" sync /:Sophia:19AE:/
+611.9 "Quasar (Meteor Snapshot)" sync /:Sophia:19(6E|A7):/
+617.9 "Quasar (Meteor Detonate)" sync /:Sophia:1A87:/
+624.4 "Arms Of Wisdom" sync /:Sophia:19C4:/
+636.6 "Dischordant Cleansing" # sync /:Sophia:19B[35]:/
+639.0 "Execute" sync /:Sophia:19AA:/
 
-################ CUSTOMIZE Call Outs #####################
-########REMOVE THE HASHTAG to enable each call out
-#alertall "Gnosis" before 5 speak "voice" "Head Knockback"
-#alertall "Thunder III" before 3 speak "voice" "Move In"
-#alertall "Thunder II" before 3 speak "voice" "Front Cone"
-#alertall "Divine Spark" before 2 speak "voice" "Look Away"
-#alertall "Gnostic Rant" before 1 speak "voice" "Behind Dragoon"
-#alertall "Quasar (on arena)" before 12 speak "voice" "Bait Quasar"
-#alertall "Tilt" before 3 speak "voice" "Move Edge"
-#alertall "Dischordant Damnation" before 6 speak "voice" "Stack Partner"
-#alertall "Shadow Spawn Test" before 0 speak "voice" "haha haha haha"
-
-#alertall "Cintamani" before 4 speak "voice" "AoE"
-#alertall "Arms of Wisdom" before 4 speak "voice" "Tank Buster"
-
-##############################################################
-0 "--Reset--" sync /Removing combatant Sophia/ window 10000 jump 0
-
-################# Phase 1
-0	"--Start--" sync /Sophia readies Thunder/ window 10
-12	"Gnosis" #knockback
-24	"Shadows Spawn" sync /Added new combatant Aion Teleos/ window 35
-30	"Add Tethers" sync /The aion teleos readies Duplicate/ window 30
-29	"Thunder"
-35	"Aero III"
-38	"Duplicate"
-45	"Execute"
-55	"Cloudy Heavens"
-59	"Adds Spawn" sync /Added new combatant The Second Demiurge/ window 70,0
-70	"Divine Spark" #Look Away
-85	"Gnostic Rant" #Behind dragoon
-104	"Infusion"
-
-################# Phase 2
-200	"Scales of Wisdom" sync /Sophia uses The Scales of Wisdom/ window 200,0
-211	"Scale Tethers" #This set is always balanced
-220	"Quasar (on arena)" #before 10 stack
-223	"Aero III"
-226	"Scale Tethers"
-238	"Tilt"
-
-################# Phase 3; Phase change at 76%
-300	"Thunder II" sync /Sophia uses Thunder II/ window 100,0
-303	"Scale Tethers"
-313	"Onrush" sync /Sophia uses Onrush/ window 313,0 #half arena dash + vulnerability
-314	"Tilt"
-333	"Dischordant Damnation" #before 6 stack partner
-334	"Cintamani" #AoE
-336	"Cintamani" #AoE
-343	"Arms of Wisdom" #Tank Buster
-	
-################# Phase 4; Phase change at 67%
-500	"Shadows Spawn" sync /Added new combatant Aion Teleos/ window 200,0
-504	"Cintamani" #AoE
-506	"Cintamani" #AoE
-508	"Cintamani" #AoE
-510	"Add Tethers"
-513	"Thunder"
-518	"Aero III"
-521	"Duplicate"
-528	"Arms of Wisdom" #Tank Buster
-539	"Execute"
-
-
-################# Phase 5; loops until end
-551	"Cintamani" #AoE
-553	"Cintamani" #AoE
-555	"Cintamani" #AoE
-562	"Arms of Wisdom" #Tank Buster
-564	"Scale Tethers"
-576	"Tilt"
-589	"Thunder III"
-598	"Arms of Wisdom" #Tank Buster
-602	"Scale Tethers"
-612	"Tilt"
-614	"Onrush"
-626	"Cintamani" #AoE
-628	"Cintamani" #AoE
-630	"Cintamani" #AoE
-637	"Arms of Wisdom" #Tank Buster
-643	"Thunder II"
-653	"Dischordant Damnation" #before 6 stack partner
-658	"Gnosis" #knockback
-670	"Arms of Wisdom"
-681	"Scale Tethers"
-685	"Dischordant Damnation" #before 6 stack partner
-692	"Tilt"
-696	"Shadows Spawn"
-700	"Cintamani" #AoE
-702	"Cintamani" #AoE
-704	"Cintamani" #AoE
-710	"Arms of Wisdom" #Tank Buster
-714	"Add Tethers"
-716	"Thunder"
-719	"Duplicate"
-720	"Add Tethers"
-722	"Aero III"
-725	"Duplicate"
-735	"Quasar (on arena)" #before 10 stack
-742	"Arms of Wisdom"
-753	"Dischordant Damnation" #before 6 stack partner
-756	"Execute"
-
-#Repeat loop of phase 5
-768	"Cintamani" #AoE
-770	"Cintamani" #AoE
-772	"Cintamani" #AoE
-779	"Arms of Wisdom" #Tank Buster
-781	"Scale Tethers"
-792	"Tilt"
-806	"Thunder III"
-815	"Arms of Wisdom"
-817	"Scale Tethers"
-829	"Tilt"
-831	"Onrush" #half arena dash + vulnerability
-844	"Cintamani" #AoE
-846	"Cintamani" #AoE
-848	"Cintamani" #AoE
-854	"Arms of Wisdom" #Tank Buster
-860	"Thunder II"
-871	"Dischordant Damnation" #before 6 stack partner
-876	"Gnosis" #knockback, stack SE
-888	"Arms of Wisdom"
-899	"Scale Tethers"
-903	"Dischordant Damnation"
-910	"Tilt"
+650.9 "Cintamani x3" duration 6 # sync /:Sophia:19C5:/
+662.3 "Arms Of Wisdom" sync /:Sophia:19C4:/
+668.1 "Quasar Tethers" sync /:Sophia:196E:/
+676.9 "Quasar (Tilt)" sync /:Sophia:1A4C:/
+679.3 "Light Dew" sync /:Barbelo:19BF:/
+691.6 "Thunder III" sync /:Sophia:19AC:/
+699.9 "Arms Of Wisdom" sync /:Sophia:19C4:/
+706.1 "Quasar Tethers" sync /:Sophia:19A7:/
+707.1 "--Untargetable--"
+714.8 "Quasar (Tilt)" sync /:Sophia:1A4C:/
+716.3 "Onrush" sync /:Sophia:19C1:/
+717.3 "Light Dew" sync /:Barbelo:19C0:/
+720.6 "--Targetable--"
+728.7 "Cintamani x3" duration 6 # sync /:Sophia:19C5:/
+739.9 "Arms Of Wisdom" sync /:Sophia:19C4:/
+747.0 "Thunder II" sync /:Sophia:19B0:/
+757.5 "Dischordant Cleansing" # sync /:Sophia:19B[35]:/
+761.3 "Gnosis" sync /:Barbelo:19C2:/ window 30,5
+773.8 "Arms Of Wisdom" sync /:Sophia:19C4:/
+788.6 "Quasar Tethers" sync /:Sophia:196E:/
+795.5 "Quasar (Tilt)" sync /:Sophia:1A4C:/
+789.9 "Dischordant Cleansing" # sync /:Sophia:19B[35]:/
+803.1 "Cintamani x3" duration 6 # sync /:Sophia:19C5:/
+813.9 "--Clones Appear--" sync / 03:........:Added new combatant Aion Teleos/ window 60,5
+814.4 "Arms Of Wisdom" sync /:Sophia:19C4:/
+821.5 "Duplicate" sync /:Aion Teleos:19AB:/
+821.5 "Thunder II" sync /:Sophia:19B0:/
+827.7 "Duplicate" sync /:Aion Teleos:19AB:/
+827.7 "Aero III" sync /:Sophia:19AE:/
+833.5 "Quasar (Meteor Snapshot)" sync /:Sophia:19(6E|A7):/
+839.5 "Quasar (Meteor Detonate)" sync /:Sophia:1A87:/
+846.0 "Arms Of Wisdom" sync /:Sophia:19C4:/
+858.2 "Dischordant Cleansing" # sync /:Sophia:19B[35]:/
+860.2 "Execute" sync /:Sophia:19AA:/ jump 629.6
