@@ -331,6 +331,7 @@ let Responses = {
       fr: 'Packez les marquages',
       ja: 'マーカー付けた人とスタック',
       cn: '点名集合',
+      ko: '쉐어징으로 모이기',
     };
     return obj;
   },
@@ -572,6 +573,7 @@ let Responses = {
       de: 'in die Mitte gehen',
       ja: '中へ',
       cn: '去中间',
+      ko: '중앙으로',
     };
     return obj;
   },
@@ -771,6 +773,7 @@ let Responses = {
           fr: 'Éloignez-vous du groupe',
           ja: '外へ',
           cn: '远离人群',
+          ko: '다른 사람들이랑 떨어지기',
         };
       }
       return {
@@ -779,6 +782,7 @@ let Responses = {
         fr: 'Éloignez-vous de ' + data.ShortName(target),
         ja: data.ShortName(target) + 'から離れ',
         cn: '远离' + data.ShortName(target),
+        ko: '"' + data.ShortName(target) + '"에서 멀어지기',
       };
     };
     return obj;
