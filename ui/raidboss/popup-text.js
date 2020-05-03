@@ -390,7 +390,7 @@ class PopupText {
   OnTriggerInternal(trigger, matches) {
     let now = +new Date();
 
-    if (!this._onTriggerInternalCheckSuppressed(trigger, now))
+    if (this._onTriggerInternalCheckSuppressed(trigger, now))
       return;
 
     // If using named groups, treat matches.groups as matches
@@ -502,11 +502,11 @@ class PopupText {
   _onTriggerInternalCheckSuppressed(trigger, when) {
     if (trigger.id && trigger.id in this.triggerSuppress) {
       if (this.triggerSuppress[trigger.id] > when)
-        return false;
+        return true;
 
       delete this.triggerSuppress[trigger.id];
     }
-    return true;
+    return false;
   }
 
   _onTriggerInternalCondition(triggerHelper) {
