@@ -272,9 +272,8 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': 'Kondensatoranlage 9',
+        'Condensate Demineralizer \\.9': 'Kondensatoranlage 9',
         'Hydrate Core': 'Hydratkern',
         'Liquid Limb': 'belebt(?:e|er|es|en) Hand',
         'Liquid Rage': 'levitiert(?:e|er|es|en) Rage',
@@ -309,7 +308,7 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': 'Grand condensateur GC-9',
+        'Condensate Demineralizer \\.9': 'Grand condensateur GC-9',
         'Hydrate Core': 'noyau d\'hydrate',
         'Liquid Limb': 'membre liquide',
         'Liquid Rage': 'furie liquide',
@@ -344,7 +343,7 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': '第9大型復水器',
+        'Condensate Demineralizer \\.9': '第9大型復水器',
         'Hydrate Core': 'ハイドレードコア',
         'Liquid Limb': 'リキッドハンド',
         'Liquid Rage': 'リキッドレイジ',
@@ -379,7 +378,7 @@
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': '第9大型冷凝器',
+        'Condensate Demineralizer \\.9': '第9大型冷凝器',
         'Hydrate Core': '水合核心',
         'Liquid Limb': '活水之手',
         'Liquid Rage': '活水之怒',
@@ -414,7 +413,7 @@
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': '제9대형복수기',
+        'Condensate Demineralizer \\.9': '제9대형복수기',
         'Hydrate Core': '액화 핵',
         'Liquid Limb': '액체 손',
         'Liquid Rage': '분노한 액체',
