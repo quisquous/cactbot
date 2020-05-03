@@ -92,11 +92,11 @@ let commonReplacement = {
     ko: '--북서--',
   },
   '--rotate--': {
-    de: '--rotate--', // FIXME
-    fr: '--tounez--',
-    ja: '--rotate--', // FIXME
-    cn: '--龙回转--', // FIXME
-    ko: '--회전--', // FIXME
+    de: '--rotieren--',
+    fr: '--rotation--',
+    ja: '--回転--',
+    cn: '--龙回转--',
+    ko: '--회전--',
   },
   '--south--': {
     de: '--süden--',
