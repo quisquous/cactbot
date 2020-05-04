@@ -195,7 +195,7 @@ class PopupText {
         } else if ('en' in zoneRegex) {
           zoneRegex = zoneRegex['en'];
         } else {
-          console.error('unknown zoneRegex locale: ' + JSON.stringify(set.zoneRegex));
+          console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
           continue;
         }
 
@@ -212,7 +212,7 @@ class PopupText {
           else
             console.log('Loading user triggers for zone');
         }
-        // Adjust triggers for the locale.
+        // Adjust triggers for the parser language.
         if (set.triggers && this.options.AlertsEnabled) {
           // Filter out disabled triggers
           let enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
@@ -228,7 +228,7 @@ class PopupText {
               continue;
             }
 
-            // Locale-based regex takes precedence.
+            // parser-language-based regex takes precedence.
             let regex = trigger[regexParseLang] || trigger.regex;
             if (regex) {
               trigger.localRegex = Regexes.parse(regex);
@@ -462,8 +462,8 @@ class PopupText {
       valueOrFunction: (f) => {
         let result = (typeof (f) == 'function') ? f(this.data, triggerHelper.matches) : f;
         // All triggers return either a string directly, or an object
-        // whose keys are different locale names.  For simplicity, this is
-        // valid to do for any trigger entry that can handle a function.
+        // whose keys are different parser language based names.  For simplicity,
+        // this is valid to do for any trigger entry that can handle a function.
         // In case anybody wants to encapsulate any fancy grammar, the values
         // in this object can also be functions.
         if (typeof result !== 'object')
