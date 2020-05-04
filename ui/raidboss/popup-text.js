@@ -176,7 +176,7 @@ class PopupText {
 
     let parseLang = this.options.ParserLanguage || 'en';
     // construct something like regexEn or regexFr.
-    let localeSuffix = locale.charAt(0).toUpperCase() + locale.slice(1);
+    let localeSuffix = parseLang.charAt(0).toUpperCase() + parseLang.slice(1);
     let regexParseLang = 'regex' + localeSuffix;
     let netRegexParseLang = 'netRegex' + localeSuffix;
 
