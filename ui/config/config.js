@@ -91,7 +91,7 @@ class CactbotConfigurator {
     document.getElementById('butter-margin').classList.remove('hidden');
   }
 
-  // Helper translate function.  Takes in an object with locale keys
+  // Helper translate function.  Takes in an object with language keys
   // and returns a single entry based on available translations.
   translate(textObj) {
     if (textObj === null || typeof textObj !== 'object' || !textObj['en'])

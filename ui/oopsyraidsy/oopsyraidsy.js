@@ -985,7 +985,7 @@ class DamageTracker {
         } else if ('en' in zoneRegex) {
           zoneRegex = zoneRegex['en'];
         } else {
-          zoneError('unknown zoneRegex locale');
+          zoneError('unknown zoneRegex language');
           continue;
         }
 
