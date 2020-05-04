@@ -1725,7 +1725,7 @@ class EurekaTracker {
   }
 
   TransByParseLang(obj) {
-    return obj[this.options.Language] || obj['en'];
+    return obj[this.options.ParserLanguage] || obj['en'];
   }
 
   TransByLocale(obj) {
