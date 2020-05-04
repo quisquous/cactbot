@@ -114,8 +114,8 @@ class LogEventHandler extends EventBus {
       if (this.lastFightFirstTimestamp === null) {
         this.lastFightFirstTimestamp = firstTimestamp;
       } else {
-        if (this.lastFightFirstTimestamp - firstTimestamp > 1000*60*60*12) {
-          this.lastFightFirstTimestamp = firstTimestamp + 1000*60*60*24;
+        if (this.lastFightFirstTimestamp - firstTimestamp > 1000 * 60 * 60 * 12) {
+          this.lastFightFirstTimestamp = firstTimestamp + 1000 * 60 * 60 * 24;
           this.currentDate = timeToDateString(this.lastFightFirstTimestamp);
         }
       }

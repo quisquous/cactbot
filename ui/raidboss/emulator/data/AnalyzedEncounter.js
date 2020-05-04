@@ -14,7 +14,7 @@ class AnalyzedEncounter extends EventBus {
     this.popupText.OnPlayerChange({
       detail: {
         // @TODO: Move this split to combatant name assignment, with server stored
-        name: partyMember.name.split('(')[0],
+        name: partyMember.name,
         job: partyMember.job,
         currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
       },
@@ -34,7 +34,7 @@ class AnalyzedEncounter extends EventBus {
   async AnalyzeFor(ID) {
     let partyMember = this.encounter.combatantTracker.combatants[ID];
 
-    if(!partyMember.job) {
+    if (!partyMember.job) {
       this.perspectives[ID] = {
         initialData: {},
         triggers: [],
@@ -56,19 +56,19 @@ class AnalyzedEncounter extends EventBus {
       party: this.encounter.combatantTracker.partyMembers.map((ID) => {
         if (this.encounter.combatantTracker.combatants[ID].job) {
           return {
-            name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
+            name: this.encounter.combatantTracker.combatants[ID].name,
             job: Util.jobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
             inParty: true,
           };
-        } else {
-          return null;
         }
-      }).filter((c)=>c),
+
+        return null;
+      }).filter((c) => c),
     };
     popupText.partyTracker.onPartyChanged(PartyEvent);
     popupText.OnPlayerChange({
       detail: {
-        name: partyMember.name.split('(')[0],
+        name: partyMember.name,
         job: partyMember.job,
         currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
       },
@@ -100,7 +100,7 @@ class AnalyzedEncounter extends EventBus {
       if (this.encounter.combatantTracker.combatants[ID].hasState(log.timestamp)) {
         popupText.OnPlayerChange({
           detail: {
-            name: this.encounter.combatantTracker.combatants[ID].name.split('(')[0],
+            name: this.encounter.combatantTracker.combatants[ID].name,
             job: this.encounter.combatantTracker.combatants[ID].job,
             currentHP: this.encounter.combatantTracker.combatants[ID].getState(log.timestamp).HP,
           },

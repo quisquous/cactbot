@@ -105,11 +105,10 @@ class PopupTextAnalysis extends PopupText {
     this.currentFunction = '_onTriggerInternalCheckSuppressed';
     let ret = super._onTriggerInternalCheckSuppressed(trigger, when);
     this.currentTriggerStatus.suppressed = ret;
-    // @TODO: Fix this if PR 1411 gets merged
-    if (!ret) {
+    if (ret) {
       this.delayResolver();
       this.promiseResolver();
-      this.runResolver({trigger: trigger});
+      this.runResolver({ trigger: trigger });
     }
     return ret;
   }
@@ -140,7 +139,8 @@ class PopupTextAnalysis extends PopupText {
 
   _onTriggerInternalDelaySeconds(triggerHelper) {
     this.currentFunction = '_onTriggerInternalDelaySeconds';
-    // Can't inherit the default logic for delay since we don't want to delay for mass processing of the timeline
+    // Can't inherit the default logic for delay since we don't
+    // want to delay for mass processing of the timeline
     let delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
     this.currentTriggerStatus.delay = delay;
     return new Promise((res) => {

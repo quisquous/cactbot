@@ -3,12 +3,24 @@
 class Combatant {
   constructor(id, name) {
     this.id = id;
-    this.name = name.split('(')[0];
+    this.name = '';
+    this.server = '';
+    this.setName(name);
     this.states = {};
     this.significantStates = [];
     this.latestTimestamp = null;
     this.job = null;
     this.level = null;
+  }
+
+  setName(name) {
+    if (name === '')
+      return;
+
+    let parts = name.split('(');
+    this.name = parts[0];
+    if (parts.length > 1)
+      this.server = parts[1].replace(/\)$/, '');
   }
 
   hasState(timestamp) {
@@ -32,12 +44,11 @@ class Combatant {
         timestamp > this.significantStates[lastSignificantStateindex])
       return this.states[this.significantStates[lastSignificantStateindex]];
 
-    let i = 0;
-    for (; i < this.significantStates.length; ++i) {
+    for (let i = 0; i < this.significantStates.length; ++i) {
       if (this.significantStates[i] > timestamp)
         return this.states[this.significantStates[i]];
     }
-    return this.states[this.significantStates[i]];
+    return this.states[this.significantStates[this.significantStates.length - 1]];
   }
 
   pushPartialState(timestamp, props) {

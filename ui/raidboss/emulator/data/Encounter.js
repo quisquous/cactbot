@@ -14,8 +14,8 @@ class Encounter {
         let timestamp = +new Date(encounterDay + ' ' + matches[1]);
         // Probably not the best way to fix the midnight wraparound bug, but it should work
         if (firstTimestamp !== null) {
-          if (timestamp < firstTimestamp && firstTimestamp - timestamp > 1000*60*60*12)
-            timestamp = timestamp + 1000*60*60*24;
+          if (timestamp < firstTimestamp && firstTimestamp - timestamp > 1000 * 60 * 60 * 12)
+            timestamp = timestamp + 1000 * 60 * 60 * 24;
         }
         firstTimestamp = firstTimestamp || timestamp;
         firstTimestamp = Math.min(firstTimestamp, timestamp);

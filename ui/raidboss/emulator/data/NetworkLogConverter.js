@@ -40,13 +40,13 @@ class NetworkLogConverter {
     ret.explodedLine = ret.lineParts.groups.line.split('|');
     ret.timestamp = +new Date(ret.lineParts.groups.timestamp);
 
-    if (this['Extract_' + ret.lineEvent] !== undefined)
-      this['Extract_' + ret.lineEvent](ret);
+    if (this['extract' + ret.lineEvent] !== undefined)
+      this['extract' + ret.lineEvent](ret);
 
     return ret;
   }
 
-  AddCombatant(ID, Name) {
+  addCombatant(ID, Name) {
     if (ID && ID.length && this.Combatants[ID] === undefined) {
       ID = ID.toLowerCase();
       this.Combatants[ID] = {
@@ -60,7 +60,7 @@ class NetworkLogConverter {
     }
   }
 
-  AddAbility(ID, Name) {
+  addAbility(ID, Name) {
     if (ID && ID.length) {
       ID = ID.toLowerCase();
       this.Abilities[ID] = Name;
@@ -68,42 +68,42 @@ class NetworkLogConverter {
     }
   }
 
-  Extract_02(ret) {
-    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
+  extract02(ret) {
+    this.addCombatant(ret.explodedLine[0], ret.explodedLine[1]);
   }
 
-  Extract_03(ret) {
-    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
+  extract03(ret) {
+    this.addCombatant(ret.explodedLine[0], ret.explodedLine[1]);
     this.Combatants[ret.explodedLine[0]].Spawn =
       Math.max(this.Combatants[ret.explodedLine[0]].Spawn, ret.timestamp);
   }
 
-  Extract_04(ret) {
-    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
+  extract04(ret) {
+    this.addCombatant(ret.explodedLine[0], ret.explodedLine[1]);
     this.Combatants[ret.explodedLine[0]].Despawn =
       Math.min(this.Combatants[ret.explodedLine[0]].Despawn, ret.timestamp);
   }
 
-  Extract_14(ret) {
-    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
-    this.AddAbility(ret.explodedLine[2], ret.explodedLine[3]);
-    this.AddCombatant(ret.explodedLine[4], ret.explodedLine[5]);
+  extract14(ret) {
+    this.addCombatant(ret.explodedLine[0], ret.explodedLine[1]);
+    this.addAbility(ret.explodedLine[2], ret.explodedLine[3]);
+    this.addCombatant(ret.explodedLine[4], ret.explodedLine[5]);
   }
 
-  Extract_18(ret) {
-    this.AddCombatant(ret.explodedLine[0], ret.explodedLine[1]);
+  extract18(ret) {
+    this.addCombatant(ret.explodedLine[0], ret.explodedLine[1]);
   }
 
-  Extract_1A(ret) {
-    this.AddAbility(ret.explodedLine[0], ret.explodedLine[1]);
-    this.AddCombatant(ret.explodedLine[3], ret.explodedLine[4]);
-    this.AddCombatant(ret.explodedLine[5], ret.explodedLine[6]);
+  extract1A(ret) {
+    this.addAbility(ret.explodedLine[0], ret.explodedLine[1]);
+    this.addCombatant(ret.explodedLine[3], ret.explodedLine[4]);
+    this.addCombatant(ret.explodedLine[5], ret.explodedLine[6]);
   }
 
-  Extract_1E(ret) {
-    this.AddAbility(ret.explodedLine[0], ret.explodedLine[1]);
-    this.AddCombatant(ret.explodedLine[3], ret.explodedLine[4]);
-    this.AddCombatant(ret.explodedLine[5], ret.explodedLine[6]);
+  extract1E(ret) {
+    this.addAbility(ret.explodedLine[0], ret.explodedLine[1]);
+    this.addCombatant(ret.explodedLine[3], ret.explodedLine[4]);
+    this.addCombatant(ret.explodedLine[5], ret.explodedLine[6]);
   }
 
   convertLine(ret) {

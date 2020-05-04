@@ -83,7 +83,9 @@ class EmulatedPartyInfo extends EventBus {
       this.$triggerInfo.append(obj.$triggerElem);
       this.triggerBars[i].removeClass('tank healer dps');
       if (encounter.encounter.combatantTracker.combatants[id].job) {
-        this.triggerBars[i].addClass(Util.jobToRole(encounter.encounter.combatantTracker.combatants[id].job));
+        this.triggerBars[i].addClass(
+            Util.jobToRole(encounter.encounter.combatantTracker.combatants[id].job),
+        );
       }
 
       for (let triggerIndex in encounter.perspectives[id].triggers) {
@@ -237,15 +239,15 @@ class EmulatedPartyInfo extends EventBus {
   GetTriggerLabelText(trigger) {
     let ret = trigger.status.result || trigger.status.response;
 
-    if (typeof (ret) === 'object') {
+    if (typeof (ret) === 'object')
       ret = trigger.triggerHelper.valueOrFunction(ret);
-    } else if (typeof (ret) === 'boolean') {
+    else if (typeof (ret) === 'boolean')
       ret = '';
-    } else if (typeof (ret) === 'undefined') {
+    else if (typeof (ret) === 'undefined')
       ret = '';
-    } else if (typeof (ret) !== 'string') {
+    else if (typeof (ret) !== 'string')
       ret = 'Invalid Result?';
-    }
+
     return ret;
   }
 

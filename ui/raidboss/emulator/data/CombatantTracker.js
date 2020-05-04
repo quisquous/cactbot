@@ -30,8 +30,8 @@ class CombatantTracker {
       // Probably not the best way to fix the midnight wraparound bug, but it should work
       if (this.firstTimestamp !== Number.MAX_SAFE_INTEGER) {
         if (lineTimestamp < this.firstTimestamp &&
-            this.firstTimestamp - lineTimestamp > 1000*60*60*12)
-          lineTimestamp = lineTimestamp + 1000*60*60*24;
+            this.firstTimestamp - lineTimestamp > 1000 * 60 * 60 * 12)
+          lineTimestamp = lineTimestamp + 1000 * 60 * 60 * 24;
       }
 
       let lineEvent = line[2];
@@ -51,26 +51,26 @@ class CombatantTracker {
         eventParts = line[3].split(':', 2);
         let combatantParts = CombatantTracker.AddRemoveCombatantRegex.exec(rawLine);
         if (combatantParts !== null)
-          this.AddCombatant(lineTimestamp, eventParts[0], combatantParts[1], lineEvent, rawLine);
+          this.addCombatant(lineTimestamp, eventParts[0], combatantParts[1], lineEvent, rawLine);
         break;
       }
       case '15':
       case '16':
-        this.AddCombatant(lineTimestamp, eventParts[0], eventParts[1], lineEvent, rawLine);
-        this.AddCombatant(lineTimestamp, eventParts[4], eventParts[5], lineEvent, rawLine);
+        this.addCombatant(lineTimestamp, eventParts[0], eventParts[1], lineEvent, rawLine);
+        this.addCombatant(lineTimestamp, eventParts[4], eventParts[5], lineEvent, rawLine);
         break;
       case '1A':
       case '1B':
       case '1E':
-        this.AddCombatant(lineTimestamp, eventParts[0], eventParts[1].split(' ').slice(0, 2).join(' '), lineEvent, rawLine);
+        this.addCombatant(lineTimestamp, eventParts[0], eventParts[1].split(' ').slice(0, 2).join(' '), lineEvent, rawLine);
         break;
       case '22':
       case '23':
-        this.AddCombatant(lineTimestamp, eventParts[0], eventParts[1], lineEvent, rawLine);
-        this.AddCombatant(lineTimestamp, eventParts[2], eventParts[3], lineEvent, rawLine);
+        this.addCombatant(lineTimestamp, eventParts[0], eventParts[1], lineEvent, rawLine);
+        this.addCombatant(lineTimestamp, eventParts[2], eventParts[3], lineEvent, rawLine);
         break;
       case '26':
-        this.AddCombatant(lineTimestamp, eventParts[0], eventParts[1], lineEvent, rawLine);
+        this.addCombatant(lineTimestamp, eventParts[0], eventParts[1], lineEvent, rawLine);
         break;
       }
     }
@@ -137,7 +137,7 @@ class CombatantTracker {
     })[0] || null;
   }
 
-  AddCombatant(timestamp, ID, Name, Event, line) {
+  addCombatant(timestamp, ID, Name, Event, line) {
     if (this.combatants[ID] === undefined && ID !== '' && Name !== '') {
       this.combatants[ID] = new Combatant(ID, Name);
       this.others.push(ID);
@@ -200,6 +200,7 @@ class CombatantTracker {
       });
       let ID = Event.groups[Prefix + 'id'];
 
+      this.combatants[ID].setName(Event.groups[Prefix + 'name']);
       this.combatants[ID].pushPartialState(timestamp, props);
     }
   }
