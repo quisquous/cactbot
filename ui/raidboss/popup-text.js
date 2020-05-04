@@ -469,11 +469,7 @@ class PopupText {
         if (typeof result !== 'object')
           return result;
         let lang = this.options.AlertsLanguage || this.options.ParserLanguage || 'en';
-        if (result[lang])
-          return triggerHelper.valueOrFunction(result[lang]);
-        // For partially localized results where this localization doesn't
-        // exist, prefer English over nothing.
-        return triggerHelper.valueOrFunction(result['en']);
+        return triggerHelper.valueOrFunction(result[lang] || result['en']);
       },
       triggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
       triggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
