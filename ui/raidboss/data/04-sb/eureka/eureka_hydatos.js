@@ -12,18 +12,12 @@
     {
       id: 'BA Art Geas',
       regex: /Legendary Geas/,
-      regexDe: /Wirbelsturm/,
-      regexCn: /妖枪乱击/,
-      regexKo: /요창난격/,
       beforeSeconds: 0,
       response: Responses.stopMoving(),
     },
     {
       id: 'BA Raiden Levinwhorl',
       regex: /Levinwhorl/,
-      regexDe: /Wirbelsturm/,
-      regexCn: /涡雷/,
-      regexKo: /와뢰/,
       beforeSeconds: 10,
       alertText: {
         en: 'Shields and Mitigation',
@@ -35,9 +29,6 @@
     {
       id: 'BA AV Eurekan Potion',
       regex: /Explosive Impulse/,
-      regexDe: /Explosiver Impuls/,
-      regexCn: /爆炸性冲击/,
-      regexKo: /폭발적 추진력/,
       beforeSeconds: 10,
       suppressSeconds: 60,
       infoText: {
@@ -50,9 +41,6 @@
     {
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
-      regexDe: /Schwarzes Loch/,
-      regexCn: /黑洞/,
-      regexKo: /블랙홀/,
       beforeSeconds: 12,
       infoText: {
         en: 'Black Hole Soon',
@@ -65,11 +53,11 @@
   triggers: [
     {
       id: 'BA Falling Asleep',
-      regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity.', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen.', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes', capture: false }),
-      regexCn: Regexes.gameLog({ line: '已经5分钟没有进行任何操作', capture: false }),
-      regexKo: Regexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다.', capture: false }),
+      regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity..*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen..*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes.*?', capture: false }),
+      regexCn: Regexes.gameLog({ line: '已经5分钟没有进行任何操作.*?', capture: false }),
+      regexKo: Regexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
@@ -80,30 +68,30 @@
     },
     {
       id: 'BA Saved By Rememberance',
-      regex: Regexes.gameLog({ line: 'The memories of heroes past live on again', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscitée', capture: false }),
-      regexJa: Regexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された', capture: false }),
-      regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来', capture: false }),
-      regexKo: Regexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다', capture: false }),
+      regex: Regexes.gameLog({ line: 'The memories of heroes past live on again.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscitée.*?', capture: false }),
+      regexJa: Regexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された.*?', capture: false }),
+      regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来.*?', capture: false }),
+      regexKo: Regexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다.*?', capture: false }),
       sound: 'Long',
     },
     {
       id: 'BA Seal',
-      regex: Regexes.message({ line: '.*will be sealed off', capture: false }),
-      regexDe: Regexes.message({ line: '.*bis sich der Zugang', capture: false }),
-      regexCn: Regexes.message({ line: '距.*被封锁还有', capture: false }),
-      regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다', capture: false }),
+      regex: Regexes.message({ line: '.*will be sealed off.*?', capture: false }),
+      regexDe: Regexes.message({ line: '.*bis sich der Zugang.*?', capture: false }),
+      regexCn: Regexes.message({ line: '距.*被封锁还有.*?', capture: false }),
+      regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다.*?', capture: false }),
       run: function(data) {
         data.sealed = true;
       },
     },
     {
       id: 'BA Clear Data',
-      regex: Regexes.message({ line: '.*is no longer sealed', capture: false }),
-      regexDe: Regexes.message({ line: '.*öffnet sich wieder', capture: false }),
-      regexCn: Regexes.message({ line: '.*的封锁解除了', capture: false }),
-      regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다', capture: false }),
+      regex: Regexes.message({ line: '.*is no longer sealed.*?', capture: false }),
+      regexDe: Regexes.message({ line: '.*öffnet sich wieder.*?', capture: false }),
+      regexCn: Regexes.message({ line: '.*的封锁解除了.*?', capture: false }),
+      regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다.*?', capture: false }),
       run: function(data) {
         delete data.side;
         delete data.mythcall;
@@ -296,9 +284,9 @@
     },
     {
       id: 'BA Owain Fire Element',
-      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切', capture: false }),
+      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid.*?', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -319,9 +307,9 @@
     },
     {
       id: 'BA Owain Ice Element',
-      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn blood to ice', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物', capture: false }),
+      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen.*?', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -613,10 +601,10 @@
     {
       // Note: These use 00:329e: lines, without any proper "gains effect" lines.
       id: 'BA AV Eidos Relative Virtue Astral',
-      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕', capture: false }),
-      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔', capture: false }),
+      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts.*?', capture: false }),
+      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕.*?', capture: false }),
+      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -629,10 +617,10 @@
     {
       // Note: These use 00:329e: lines, without any proper "gains effect" lines.
       id: 'BA AV Eidos Relative Virtue Umbral',
-      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕', capture: false }),
-      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔', capture: false }),
+      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit.*?', capture: false }),
+      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕.*?', capture: false }),
+      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },

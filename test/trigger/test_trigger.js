@@ -8,6 +8,7 @@
 
 let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
+let NetRegexes = require('../../resources/netregexes.js');
 let Conditions = require('../../resources/conditions.js');
 let responseModule = require('../../resources/responses.js');
 let Responses = responseModule.responses;
@@ -25,6 +26,15 @@ const regexLanguages = [
   'regexFr',
   'regexJa',
   'regexKo',
+];
+
+const netRegexLanguages = [
+  'netRegex',
+  'netRegexCn',
+  'netRegexDe',
+  'netRegexFr',
+  'netRegexJa',
+  'netRegexKo',
 ];
 
 let testValidTriggerRegexLanguage = function(file, contents) {
@@ -164,9 +174,24 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
 
     let captures = -1;
 
-    // Check for inconsistencies between languages
-    for (let j = 0; j < regexLanguages.length; j++) {
-      let currentRegex = currentTrigger[regexLanguages[j]];
+    // Check for inconsistencies between languages in regexes.
+    for (let regexLang of regexLanguages) {
+      let currentRegex = currentTrigger[regexLang];
+      if (typeof currentRegex !== 'undefined') {
+        let currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
+        // Ignore first pass
+        if (captures !== -1 && captures !== currentCaptures) {
+          console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
+          exitCode = 1;
+          break;
+        }
+        captures = Math.max(captures, currentCaptures);
+      }
+    }
+
+    // Check for inconsistencies between languages in netRegexes.
+    for (let netRegexLang of netRegexLanguages) {
+      let currentRegex = currentTrigger[netRegexLang];
       if (typeof currentRegex !== 'undefined') {
         let currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
         // Ignore first pass
@@ -202,10 +227,14 @@ let testInvalidTriggerKeys = function(file, contents) {
   for (let i in json[0].triggers) {
     let currentTrigger = json[0].triggers[i];
     for (let key in currentTrigger) {
-      if (!triggerFunctions.includes(key) && !regexLanguages.includes(key)) {
-        console.error(`${file}: Found unknown key '${key}' in trigger id '${currentTrigger.id}'.`);
-        exitCode = 1;
-      }
+      if (triggerFunctions.includes(key))
+        continue;
+      if (regexLanguages.includes(key))
+        continue;
+      if (netRegexLanguages.includes(key))
+        continue;
+      console.error(`${file}: Found unknown key '${key}' in trigger id '${currentTrigger.id}'.`);
+      exitCode = 1;
     }
   }
 };
@@ -306,6 +335,8 @@ let testTriggerFieldsSorted = function(file, contents) {
   const triggerOrder = [
     'id',
     'disabled',
+    'netRegex',
+    // Other netRegexes are not important in ordering.
     'regex',
     // Other regexes are not important in ordering.
     'beforeSeconds',
@@ -353,6 +384,25 @@ let testTriggerFieldsSorted = function(file, contents) {
   }
 };
 
+let testBadTimelineTriggerRegex = function(file, contents) {
+  let json = eval(contents);
+  if (!json[0].timelineTriggers)
+    return;
+
+  for (let trigger of json[0].timelineTriggers) {
+    let keys = Object.keys(trigger);
+    for (let key of keys) {
+      // regex is the only valid regular expression field on a timeline trigger.
+      if (key === 'regex')
+        continue;
+      if (regexLanguages.includes(key) || netRegexLanguages.includes(key)) {
+        console.error(`${file}: in ${trigger.id}, invalid field '${key}' in timelineTrigger`);
+        exitCode = 1;
+      }
+    }
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -370,6 +420,7 @@ let testTriggerFile = function(file) {
     testValidIds(file, contents);
     testResponseHasNoFriends(file, contents);
     testTriggerFieldsSorted(file, contents);
+    testBadTimelineTriggerRegex(file, contents);
   } catch (e) {
     console.error(`Trigger error in ${file}.`);
     console.error(e);

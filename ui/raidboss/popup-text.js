@@ -24,6 +24,7 @@ class PopupText {
   constructor(options) {
     this.options = options;
     this.triggers = [];
+    this.netTriggers = [];
     this.timers = {};
     this.currentTriggerID = 0;
     this.inCombat = false;
@@ -69,6 +70,9 @@ class PopupText {
     });
     addOverlayListener('onLogEvent', (e) => {
       this.OnLog(e);
+    });
+    addOverlayListener('LogLine', (e) => {
+      this.OnNetLog(e);
     });
   }
 
@@ -149,6 +153,7 @@ class PopupText {
 
     // Drop the triggers and timelines from the previous zone, so we can add new ones.
     this.triggers = [];
+    this.netTriggers = [];
     let timelineFiles = [];
     let timelines = [];
     let replacements = [];
@@ -171,7 +176,9 @@ class PopupText {
 
     let parseLang = this.options.ParserLanguage || 'en';
     // construct something like regexEn or regexFr.
-    let regexParseLang = 'regex' + parseLang.charAt(0).toUpperCase() + parseLang.slice(1);
+    let localeSuffix = locale.charAt(0).toUpperCase() + locale.slice(1);
+    let regexParseLang = 'regex' + localeSuffix;
+    let netRegexParseLang = 'netRegex' + localeSuffix;
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
@@ -216,25 +223,29 @@ class PopupText {
             // load this, but that's ok.
             trigger.filename = set.filename;
 
-            if (!trigger.regex)
+            if (!trigger.regex && !trigger.netRegex) {
               console.error('Trigger ' + trigger.id + ': has no regex property specified');
+              continue;
+            }
 
             // Locale-based regex takes precedence.
             let regex = trigger[regexParseLang] ? trigger[regexParseLang] : trigger.regex;
-            if (!regex) {
-              console.error('Trigger ' + trigger.id + ': undefined ' + regexParseLang);
+            if (regex) {
+              trigger.localRegex = Regexes.parse(regex);
+              this.triggers.push(trigger);
+            }
+
+            let netRegex = trigger[netRegexParseLang] ? trigger[netRegexParseLang] : trigger.netRegex;
+            if (netRegex) {
+              trigger.localNetRegex = Regexes.parse(netRegex);
+              this.netTriggers.push(trigger);
+            }
+
+            if (!regex && !netRegex) {
+              console.error('Trigger ' + trigger.id + ': missing regex and netRegex');
               continue;
             }
-            trigger.localRegex = Regexes.parse(regex);
           }
-
-          // Don't bother tracking triggers that don't have a regex to match against
-          enabledTriggers = enabledTriggers.filter((trigger) => {
-            return trigger.localRegex !== undefined;
-          });
-
-          // Save the triggers from each set that matches.
-          this.triggers.push(...enabledTriggers);
         }
 
         // And set the timeline files/timelines from each set that matches.
@@ -347,17 +358,24 @@ class PopupText {
   }
 
   OnLog(e) {
-    for (let i = 0; i < e.detail.logs.length; i++) {
-      let log = e.detail.logs[i];
+    for (let log of e.detail.logs) {
       if (log.indexOf('00:0038:cactbot wipe') >= 0)
         this.SetInCombat(false);
 
-      for (let j = 0; j < this.triggers.length; ++j) {
-        let trigger = this.triggers[j];
+      for (let trigger of this.triggers) {
         let r = log.match(trigger.localRegex);
         if (r != null)
           this.OnTrigger(trigger, r);
       }
+    }
+  }
+
+  OnNetLog(e) {
+    let log = e.rawLine;
+    for (let trigger of this.netTriggers) {
+      let r = log.match(trigger.localNetRegex);
+      if (r != null)
+        this.OnTrigger(trigger, r);
     }
   }
 
@@ -372,7 +390,7 @@ class PopupText {
   OnTriggerInternal(trigger, matches) {
     let now = +new Date();
 
-    if (!this._onTriggerInternalCheckSuppressed(trigger, now))
+    if (this._onTriggerInternalCheckSuppressed(trigger, now))
       return;
 
     // If using named groups, treat matches.groups as matches
@@ -484,11 +502,11 @@ class PopupText {
   _onTriggerInternalCheckSuppressed(trigger, when) {
     if (trigger.id && trigger.id in this.triggerSuppress) {
       if (this.triggerSuppress[trigger.id] > when)
-        return false;
+        return true;
 
       delete this.triggerSuppress[trigger.id];
     }
-    return true;
+    return false;
   }
 
   _onTriggerInternalCondition(triggerHelper) {

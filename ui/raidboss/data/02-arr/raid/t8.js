@@ -14,12 +14,12 @@
     },
     {
       id: 'T8 Landmine Start',
-      regex: Regexes.message({ line: 'Landmines have been scattered', capture: false }),
-      regexDe: Regexes.message({ line: 'Die Landminen haben sich verteilt', capture: false }),
-      regexFr: Regexes.message({ line: 'Des mines ont été répandues', capture: false }),
-      regexJa: Regexes.message({ line: '地雷が散布された', capture: false }),
-      regexCn: Regexes.message({ line: '地雷分布在了各处', capture: false }),
-      regexKo: Regexes.message({ line: '지뢰가 뿌려졌습니다', capture: false }),
+      regex: Regexes.message({ line: 'Landmines have been scattered.*?', capture: false }),
+      regexDe: Regexes.message({ line: 'Die Landminen haben sich verteilt.*?', capture: false }),
+      regexFr: Regexes.message({ line: 'Des mines ont été répandues.*?', capture: false }),
+      regexJa: Regexes.message({ line: '地雷が散布された.*?', capture: false }),
+      regexCn: Regexes.message({ line: '地雷分布在了各处.*?', capture: false }),
+      regexKo: Regexes.message({ line: '지뢰가 뿌려졌습니다.*?', capture: false }),
       alertText: {
         en: 'Explode Landmines',
         de: 'Landminen explodieren',

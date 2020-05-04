@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Minstrel's Ballad: Tsukuyomi's Pain$/,
     cn: /^月读幽夜歼灭战$/,
+    ko: /^극 츠쿠요미 토벌전$/,
   },
   timelineFile: 'tsukuyomi-ex.txt',
   triggers: [
@@ -45,6 +46,7 @@
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
           cn: '换T！',
+          ko: '탱 교대',
         };
       },
       alertText: function(data, matches) {
@@ -54,6 +56,7 @@
             de: 'Tankbuster auf DIR',
             fr: 'Tankbuster sur VOUS',
             cn: '死刑减伤',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -62,6 +65,7 @@
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tankbuster sur ' + data.ShortName(matches.target),
             cn: '死刑->' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(target) + '" 탱버',
           };
         }
       },
@@ -74,6 +78,7 @@
           de: 'Weg von vorn',
           fr: 'Ne restez pas devant !',
           cn: '远离正面',
+          ko: '정면 피하기',
         };
       },
       tts: function(data) {
@@ -83,6 +88,7 @@
             de: 'basta',
             fr: 'tankbuster',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -101,6 +107,7 @@
           de: 'Raus',
           fr: 'Loin',
           cn: '远离',
+          ko: '밖',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
@@ -119,6 +126,7 @@
           de: 'Rein',
           fr: 'Près',
           cn: '靠近',
+          ko: '안',
         };
         data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
       },
@@ -137,6 +145,7 @@
           fr: 'Gauche + ' + data.moonInOut,
           de: 'Links + ' + data.moonInOut,
           cn: '左边 + ' + data.moonInOut,
+          ko: '왼쪽 + ' + data.moonInOut,
         };
       },
     },
@@ -154,6 +163,7 @@
           fr: 'Droite + ' + data.moonInOut,
           de: 'Rechts + ' + data.moonInOut,
           cn: '右边 + ' + data.moonInOut,
+          ko: '오른쪽 + ' + data.moonInOut,
         };
       },
     },
@@ -183,12 +193,12 @@
       // There's no "starts using" here.  She pushes at 35% to this ability.
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
-      regex: Regexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\.', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\.', capture: false }),
-      regexFr: Regexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\.', capture: false }),
-      regexJa: Regexes.dialog({ line: '[^:]*:嗚呼、まだ、あたしは…………。', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:我不能输.*我还没有.*', capture: false }),
-      regexKo: Regexes.dialog({ line: '[^:]*:아아, 나는 아직……\.', capture: false }),
+      regex: Regexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?', capture: false }),
+      regexDe: Regexes.dialog({ line: '[^:]*:Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\..*?', capture: false }),
+      regexFr: Regexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\..*?', capture: false }),
+      regexJa: Regexes.dialog({ line: '[^:]*:嗚呼、まだ、あたしは…………。.*?', capture: false }),
+      regexCn: Regexes.dialog({ line: '[^:]*:我不能输.*我还没有.*.*?', capture: false }),
+      regexKo: Regexes.dialog({ line: '[^:]*:아아, 나는 아직……\..*?', capture: false }),
       response: Responses.aoe(),
     },
     {
@@ -244,6 +254,7 @@
         de: 'In\'s schwarze laufen!',
         fr: 'Bougez en zone noire !',
         cn: '踩黑色！',
+        ko: '검정색으로 이동!',
       },
     },
     {
@@ -285,6 +296,7 @@
         de: 'In\'s weiße laufen!',
         fr: 'Bougez en zone blanche !',
         cn: '踩白色！',
+        ko: '흰색으로 이동!',
       },
     },
   ],
@@ -588,11 +600,11 @@
         'Dance Of The Dead': '황천의 춤',
         'Dark Blade': '상현달 베기',
         'Dispersivity': '검기 파동',
-        'Empire adds .SW->NW.': 'Empire adds .SW->NW.', // FIXME
+        'Empire adds .SW->NW.': '제국군 쫄 (남서->북서)',
         'Hagetsu': '파월',
-        'Homeland adds .E->W.': 'Homeland adds .E->W.', // FIXME
+        'Homeland adds .E->W.': '도마 쫄 (동->서)',
         'Lead Of The Underworld': '황천의 총탄',
-        'Lead/Steel': 'Lead/Steel', // FIXME
+        'Lead/Steel': '총탄/창',
         'Lunacy': '월하요란',
         'Lunar Halo': '백월광',
         'Lunar Rays': '잔월',
@@ -605,7 +617,7 @@
         'Perilune': '중천의 달',
         'Reprimand': '절함',
         'Steel Of The Underworld': '황천의 창끝',
-        'Steel/Lead': 'Steel/Lead', // FIXME
+        'Steel/Lead': '창/총탄',
         'Supreme Selenomancy': '궁극의 달읽기',
         'Torment Unto Death': '고문살인',
         'Tsuki-no-Kakera': '달조각',
@@ -614,6 +626,10 @@
         'Waning Grudge': '검은 원념',
         'Waxing Grudge': '하얀 원념',
         'Zashiki-asobi': '유흥',
+        'gun': '총',
+        'spear': '창',
+        'Bright': '하현달',
+        'Waning': '검은',
       },
       '~effectNames': {
         'Bleeding': '고통',

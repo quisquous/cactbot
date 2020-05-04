@@ -4,9 +4,9 @@
 let commonReplacement = {
   '(?<=00:0839:)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?': {
     de: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
-    cn: '距$1被封锁还有',
     fr: 'Fermeture d(?:e|u|es) $1 dans',
     ja: '$1の封鎖まであと',
+    cn: '距$1被封锁还有',
     ko: '15초 후에 $1(이|가) 봉쇄됩니다',
   },
   'is no longer sealed': {
@@ -90,6 +90,13 @@ let commonReplacement = {
     ja: '--北西--',
     cn: '--西北--',
     ko: '--북서--',
+  },
+  '--rotate--': {
+    de: '--rotieren--',
+    fr: '--rotation--',
+    ja: '--回転--',
+    cn: '--龙回转--',
+    ko: '--회전--',
   },
   '--south--': {
     de: '--süden--',

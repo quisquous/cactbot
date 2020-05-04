@@ -4,7 +4,7 @@ let bunnyLabel = {
   en: 'Bunny',
   de: 'Hase',
   fr: 'Lapin',
-  ja: 'バニー',
+  ja: 'うさぎ',
   ko: '토끼',
   cn: '兔子',
 };
@@ -22,6 +22,12 @@ let Options = {
       'Eureka Hydatos': 'Eureka Hydatos',
     },
     de: {
+      'Eureka Anemos': 'Eureka Anemos',
+      'Eureka Pagos': 'Eureka Pagos',
+      'Eureka Pyros': 'Eureka Pyros',
+      'Eureka Hydatos': 'Eureka Hydatos',
+    },
+    fr: {
       'Eureka Anemos': 'Eureka Anemos',
       'Eureka Pagos': 'Eureka Pagos',
       'Eureka Pyros': 'Eureka Pyros',
@@ -56,6 +62,13 @@ let Options = {
         }
         return ' für ???';
       },
+      fr: (nowMs, stopTime) => {
+        if (stopTime) {
+          let min = (stopTime - nowMs) / 1000 / 60;
+          return ' pour ' + Math.ceil(min) + ' min ';
+        }
+        return ' pour ???';
+      },
       ko: (nowMs, stopTime) => {
         if (stopTime) {
           let min = (stopTime - nowMs) / 1000 / 60;
@@ -86,6 +99,13 @@ let Options = {
         }
         return ' in ???';
       },
+      fr: (nowMs, startTime) => {
+        if (startTime) {
+          let min = (startTime - nowMs) / 1000 / 60;
+          return ' dans ' + Math.ceil(min) + ' min ';
+        }
+        return ' dans ???';
+      },
       ko: (nowMs, startTime) => {
         if (startTime) {
           let min = (startTime - nowMs) / 1000 / 60;
@@ -108,6 +128,9 @@ let Options = {
       de: (dayNightMin) => {
         return ' für ' + dayNightMin + 'min';
       },
+      fr: (dayNightMin) => {
+        return ' pour ' + dayNightMin + ' min ';
+      },
       ko: (dayNightMin) => {
         return ' ' + dayNightMin + '분 동안';
       },
@@ -118,6 +141,7 @@ let Options = {
     minute: {
       en: 'm',
       de: 'min',
+      fr: ' min ',
       ko: '분',
       cn: '分',
     },
@@ -166,6 +190,7 @@ let Options = {
       fairy: {
         en: 'Anemos Elemental',
         de: 'Anemos-Elementar',
+        fr: 'Élémentaire Anemos',
         cn: '常风元灵',
         ko: '아네모스 정령',
       },
@@ -237,7 +262,7 @@ let Options = {
           label: {
             en: 'Emp',
             de: 'Kaiser',
-            fr: 'Emp',
+            fr: 'Empereur',
             ja: 'アネモス',
             ko: '잠자리',
             cn: '蜻蜓',
@@ -302,7 +327,7 @@ let Options = {
           label: {
             en: 'Jaha',
             de: 'Jaha',
-            fr: 'Jaha',
+            fr: 'Jahann',
             ja: 'ジャハ',
             ko: '자하남',
             cn: '台风',
@@ -310,7 +335,7 @@ let Options = {
           trackerName: {
             en: 'Jaha',
             de: 'Jaha',
-            fr: 'Jaha',
+            fr: 'Jahann',
             ja: 'ジャハ',
             ko: '자하남',
             cn: '台风',
@@ -473,7 +498,7 @@ let Options = {
           label: {
             en: 'Strider',
             de: 'Simurghs',
-            fr: 'Simurgh',
+            fr: 'Trotteur',
             ja: 'シームルグ',
             ko: '즈',
             cn: '阔步西牟鸟',
@@ -617,6 +642,7 @@ let Options = {
       fairy: {
         en: 'Pagos Elemental',
         de: 'Pagos-Elementar',
+        fr: 'Élémentaire Pagos',
         cn: '恒冰元灵',
         ko: '파고스 정령',
       },
@@ -641,7 +667,7 @@ let Options = {
           label: {
             en: 'Queen',
             de: 'Schneekönigin',
-            fr: 'Snow Queen',
+            fr: 'Reine',
             ja: '女王',
             ko: '눈의 여왕',
             cn: '周冬雨',
@@ -684,7 +710,7 @@ let Options = {
           label: {
             en: 'Dragon',
             de: 'Aschedrache',
-            fr: 'Ash Dragon',
+            fr: 'Dragon',
             ja: 'ドラゴン',
             ko: '용',
             cn: '灰烬龙',
@@ -705,7 +731,7 @@ let Options = {
           label: {
             en: 'Glavoid',
             de: 'Glavoid',
-            fr: 'Glavoid',
+            fr: 'Graboïde',
             ja: 'グラヴォイド',
             ko: '지렁이',
             cn: '魔虫',
@@ -713,7 +739,7 @@ let Options = {
           trackerName: {
             en: 'Glavoid',
             de: 'Glavoid',
-            fr: 'Glaboïde',
+            fr: 'Graboïde',
             ja: 'グラヴォ',
             ko: '그라보이드',
             cn: '魔虫',
@@ -748,7 +774,7 @@ let Options = {
           label: {
             en: 'Haku',
             de: 'Hakutaku',
-            fr: 'Hakutaku',
+            fr: 'Haku',
             ja: 'ハクタク',
             ko: '백택',
             cn: '白泽',
@@ -756,7 +782,7 @@ let Options = {
           trackerName: {
             en: 'Haku',
             de: 'Haku',
-            fr: 'Hakutaku',
+            fr: 'Haku',
             ja: 'ハクタク',
             ko: '백택',
             cn: '白泽',
@@ -832,7 +858,7 @@ let Options = {
           label: {
             en: 'Arthro',
             de: 'König Athro',
-            fr: 'King Arthro',
+            fr: 'Arthro',
             ja: 'アースロ',
             ko: '게',
             cn: '螃蟹',
@@ -854,7 +880,7 @@ let Options = {
           label: {
             en: 'Minotaurs',
             de: 'Minotauren',
-            fr: 'Minotaurs',
+            fr: 'Minotaures',
             ja: 'ミノタウロス',
             ko: '미노타우루스',
             cn: '双牛',
@@ -875,7 +901,7 @@ let Options = {
           label: {
             en: 'Holy Cow',
             de: 'Heilsbringer',
-            fr: 'Holy Cow',
+            fr: 'Vache sacrée',
             ja: '聖牛',
             ko: '소',
             cn: '圣牛',
@@ -896,7 +922,7 @@ let Options = {
           label: {
             en: 'Hadha',
             de: 'Hadhayosh',
-            fr: 'Hadhayosh',
+            fr: 'Hadha',
             ja: 'ハダヨッシュ',
             ko: '하다요쉬',
             cn: '贝爷',
@@ -904,7 +930,7 @@ let Options = {
           trackerName: {
             en: 'Behe',
             de: 'Hadhayosh',
-            fr: 'Hadhayosh',
+            fr: 'Hadha',
             ja: 'ハダヨ',
             ko: '하다요쉬',
             cn: '贝爷',
@@ -1019,6 +1045,7 @@ let Options = {
       fairy: {
         en: 'Pyros Elemental',
         de: 'Pyros-Elementar',
+        fr: 'Élémentaire Pyros',
         cn: '涌火元灵',
         ko: '피로스 정령',
       },
@@ -1051,7 +1078,7 @@ let Options = {
           trackerName: {
             en: 'Leucosia',
             de: 'Leukosia',
-            fr: 'Leucosia',
+            fr: 'Leucosie',
             ja: 'レウコ',
             cn: '惨叫',
             ko: '레우',
@@ -1087,7 +1114,7 @@ let Options = {
           label: {
             en: 'Sophist',
             de: 'Sophist',
-            fr: 'Sophist',
+            fr: 'Sophiste',
             ja: 'ソフィスト',
             cn: '诡辩者',
             ko: '소피스트',
@@ -1129,7 +1156,7 @@ let Options = {
           label: {
             en: 'Askala',
             de: 'Askala',
-            fr: 'Askala',
+            fr: 'Ascala',
             ja: 'アスカラ',
             cn: '阿福',
             ko: '작은 부엉이',
@@ -1137,7 +1164,7 @@ let Options = {
           trackerName: {
             en: 'Owl',
             de: 'Askala',
-            fr: 'Askala',
+            fr: 'Ascala',
             ja: 'アスカラ',
             cn: '阿福',
             ko: '아스',
@@ -1151,7 +1178,7 @@ let Options = {
           label: {
             en: 'Batym',
             de: 'Batym',
-            fr: 'Batym',
+            fr: 'Bathim',
             ja: 'パティム',
             cn: '大公',
             ko: '대공',
@@ -1159,7 +1186,7 @@ let Options = {
           trackerName: {
             en: 'Batym',
             de: 'Batym',
-            fr: 'Duc Batym',
+            fr: 'Bathim',
             ja: 'デューク',
             cn: '大公',
             ko: '바팀',
@@ -1173,7 +1200,7 @@ let Options = {
           label: {
             en: 'Aetolus',
             de: 'Aetolus',
-            fr: 'Aetolus',
+            fr: 'Aetolos',
             ja: 'アイトロス',
             cn: '雷鸟',
             ko: '아이톨로스',
@@ -1181,7 +1208,7 @@ let Options = {
           trackerName: {
             en: 'Aetolus',
             de: 'Aetolus',
-            fr: 'Aetolus',
+            fr: 'Aetolos',
             ja: 'アイトロス',
             cn: '雷鸟',
             ko: '아이',
@@ -1300,7 +1327,7 @@ let Options = {
           label: {
             en: 'Jack',
             de: 'Weide',
-            fr: 'Jack',
+            fr: 'Bûcheron',
             ja: 'ジャック',
             cn: '树人',
             ko: '럼버잭',
@@ -1308,7 +1335,7 @@ let Options = {
           trackerName: {
             en: 'Jack',
             de: 'Holz',
-            fr: 'Jack',
+            fr: 'Bûcheron',
             ja: 'ジャック',
             cn: '树人',
             ko: '럼버잭',
@@ -1321,7 +1348,7 @@ let Options = {
           label: {
             en: 'Glauko',
             de: 'Glauko',
-            fr: 'Glauko',
+            fr: 'Glaukô',
             ja: 'グラウコピス',
             cn: '明眸',
             ko: '큰 부엉이',
@@ -1329,7 +1356,7 @@ let Options = {
           trackerName: {
             en: 'Glaukopis',
             de: 'Glaukopis',
-            fr: 'Glaukopis',
+            fr: 'Glaukôpis',
             ja: 'グラウコ',
             cn: '明眸',
             ko: '글라',
@@ -1342,7 +1369,7 @@ let Options = {
           label: {
             en: 'Ying-Yang',
             de: 'Yin-Yang',
-            fr: 'Ying-Yang',
+            fr: 'Yin-Yang',
             ja: 'イン・ヤン',
             cn: '阴·阳',
             ko: '음양',
@@ -1350,7 +1377,7 @@ let Options = {
           trackerName: {
             en: 'YY',
             de: 'Yin-Yang',
-            fr: 'Ying-Yang',
+            fr: 'Yin-Yang',
             ja: 'インヤン',
             cn: '阴·阳',
             ko: '음양',
@@ -1363,7 +1390,7 @@ let Options = {
           label: {
             en: 'Skoll',
             de: 'Skalli',
-            fr: 'Skoll',
+            fr: 'Sköll',
             ja: 'スコル',
             cn: '狼',
             ko: '스콜',
@@ -1371,7 +1398,7 @@ let Options = {
           trackerName: {
             en: 'Skoll',
             de: 'Skalli',
-            fr: 'Skoll',
+            fr: 'Sköll',
             ja: 'スコル',
             cn: '狼',
             ko: '스콜',
@@ -1385,7 +1412,7 @@ let Options = {
           label: {
             en: 'Penthe',
             de: 'Penthe',
-            fr: 'Penthe',
+            fr: 'Penthé',
             ja: 'ペンテ',
             cn: '彭女士',
             ko: '펜테',
@@ -1393,7 +1420,7 @@ let Options = {
           trackerName: {
             en: 'Penny',
             de: 'Penthe',
-            fr: 'Penthesilée',
+            fr: 'Penthé',
             ja: 'レイア',
             cn: '彭女士',
             ko: '펜테',
@@ -1421,6 +1448,7 @@ let Options = {
       fairy: {
         en: 'Hydatos Elemental',
         de: 'Hydatos-Elementar',
+        fr: 'Élémentaire d\'Hydatos',
         cn: '丰水元灵',
         ko: '히다토스 정령',
       },
@@ -1445,7 +1473,7 @@ let Options = {
           trackerName: {
             en: 'Khalamari',
             de: 'Kalamari',
-            fr: 'Khalamari',
+            fr: 'Khalamar',
             ja: 'カラマリ',
             cn: '墨鱼',
             ko: '칼라',
@@ -1521,7 +1549,7 @@ let Options = {
           label: {
             en: 'Frost',
             de: 'Frost',
-            fr: 'Frost',
+            fr: 'Crinière',
             ja: 'フロストメーン',
             cn: '老虎',
             ko: '서리갈기',
@@ -1563,7 +1591,7 @@ let Options = {
           label: {
             en: 'King',
             de: 'König',
-            fr: 'Roi',
+            fr: 'Goldemar',
             ja: 'King',
             cn: '马王',
             ko: '골데마르',
@@ -1571,7 +1599,7 @@ let Options = {
           trackerName: {
             en: 'King Goldemar',
             de: 'König Goldemar',
-            fr: 'Roi Goldemar',
+            fr: 'Golde',
             ja: 'キング・ゴルデマール',
             cn: '马王',
             ko: '골데마르',

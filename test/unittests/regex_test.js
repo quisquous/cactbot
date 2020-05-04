@@ -1,75 +1,8 @@
 'use strict';
 
 let Regexes = require('../../resources/regexes.js');
+let regexCaptureTest = require('../util/regex_util.js').regexCaptureTest;
 let assert = require('chai').assert;
-
-// Quite bogus.
-let bogusLine = 'using act is cheating';
-
-// An automated way to test standard regex functions that take a dictionary of fields.
-let regexCaptureTest = (func, lines) => {
-  // regex should not match the bogus line.
-  assert.isNull(bogusLine.match(func({})));
-
-  for (let i = 0; i < lines.length; ++i) {
-    let line = lines[i];
-
-    // Undefined params (default capture).
-    let undefinedParamsMatch = line.match(func());
-    assert.isNotNull(undefinedParamsMatch, '' + func() + ' did not match ' + line);
-    assert.notPropertyVal(undefinedParamsMatch, 'groups', undefined);
-
-    // Empty params (default capture).
-    let emptyParamsMatch = line.match(func({}));
-    assert.isNotNull(emptyParamsMatch, '' + func({}) + ' did not match ' + line);
-    assert.notPropertyVal(emptyParamsMatch, 'groups', undefined);
-
-    // No capture match.
-    let noCaptureMatch = line.match(func({ capture: false }));
-    assert.isNotNull(noCaptureMatch);
-    assert.propertyVal(noCaptureMatch, 'groups', undefined);
-
-    // Capture match.
-    let captureMatch = line.match(func({ capture: true }));
-    assert.isNotNull(captureMatch);
-    assert.notPropertyVal(captureMatch, 'groups', undefined);
-    assert.isObject(captureMatch.groups);
-
-    // Capture always needs at least one thing.
-    let keys = Object.keys(captureMatch.groups);
-    assert.isAbove(keys.length, 0);
-
-    let explicitFields = {};
-    explicitFields.capture = true;
-    for (let j = 0; j < keys.length; ++j) {
-      let key = keys[j];
-
-      // Because matched values may have special regex
-      // characters in it, escape these when specifying.
-      let value = captureMatch.groups[key];
-      let escaped = value;
-      if (typeof value !== 'undefined')
-        escaped = escaped.replace(/[.*+?^${}()]/g, '\\$&');
-      explicitFields[key] = escaped;
-    }
-
-    // Specifying all the fields explicitly and capturing should
-    // both match, and return the same thing.
-    // This verifies that input parameters to the regex fields and
-    // named matching groups are equivalent.
-    let explicitCaptureMatch = line.match(func(explicitFields));
-    assert.isNotNull(explicitCaptureMatch);
-    assert.notPropertyVal(explicitCaptureMatch, 'groups', undefined);
-    assert.isObject(explicitCaptureMatch.groups);
-    assert.deepEqual(explicitCaptureMatch.groups, captureMatch.groups);
-
-    // Not capturing with explicit fields should also work.
-    explicitFields.capture = false;
-    let explicitNoCaptureMatch = line.match(func(explicitFields));
-    assert.isNotNull(explicitNoCaptureMatch);
-    assert.propertyVal(explicitNoCaptureMatch, 'groups', undefined);
-  }
-};
 
 let tests = {
   startsUsing: () => {
@@ -79,6 +12,12 @@ let tests = {
       '[12:50:05.414] 14:04:T\'ini Poutini starts using Mount on T\'ini Poutini.',
     ];
     regexCaptureTest(Regexes.startsUsing, lines);
+
+    let matches = lines[0].match(Regexes.startsUsing()).groups;
+    assert.equal(matches.id, '5B2');
+    assert.equal(matches.source, 'Twintania');
+    assert.equal(matches.ability, 'Death Sentence');
+    assert.equal(matches.target, 'Potato Chippy');
   },
   ability: () => {
     let lines = [
@@ -98,6 +37,25 @@ let tests = {
     // matchers on source names.
     let abilityHallowed = Regexes.ability({ id: '1E' });
     assert.isNull(testBadMatch.match(abilityHallowed));
+
+    let matches = lines[1].match(Regexes.ability()).groups;
+    assert.equal(matches.source, 'Graffias');
+    assert.equal(matches.id, '366');
+    assert.equal(matches.ability, 'Attack');
+    assert.equal(matches.target, 'Tako Yaki');
+
+    matches = lines[1].match(Regexes.abilityFull()).groups;
+    assert.equal(matches.sourceId, '4007CA96');
+    assert.equal(matches.source, 'Graffias');
+    assert.equal(matches.id, '366');
+    assert.equal(matches.ability, 'Attack');
+    assert.equal(matches.targetId, '106E8400');
+    assert.equal(matches.target, 'Tako Yaki');
+    assert.equal(matches.flags, '710003');
+    assert.equal(matches.x, '225.452');
+    assert.equal(matches.y, '-145.6169');
+    assert.equal(matches.z, '-39.29175');
+    assert.equal(matches.heading, '-3.013695');
   },
   headMarker: () => {
     let lines = [
@@ -106,6 +64,11 @@ let tests = {
       '[12:14:44.048] 1B:102D9908:Au Gratin:0000:0000:0005:0000:0000:0000:',
     ];
     regexCaptureTest(Regexes.headMarker, lines);
+
+    let matches = lines[0].match(Regexes.headMarker()).groups;
+    assert.equal(matches.targetId, '107C73B8');
+    assert.equal(matches.target, 'Aloo Gobi');
+    assert.equal(matches.id, '00C0');
   },
   addedCombatant: () => {
     let lines = [
@@ -115,6 +78,23 @@ let tests = {
     ];
     regexCaptureTest(Regexes.addedCombatant, lines);
     regexCaptureTest(Regexes.addedCombatantFull, lines);
+
+    let matches = lines[0].match(Regexes.addedCombatant()).groups;
+    assert.equal(matches.name, 'Valar');
+
+    matches = lines[0].match(Regexes.addedCombatantFull()).groups;
+    assert.equal(matches.id, '4000226B');
+    assert.equal(matches.name, 'Valar');
+    assert.equal(matches.hp, '10195');
+    assert.equal(matches.x, '-461.2344');
+    assert.equal(matches.y, '269.7031');
+    assert.equal(matches.z, '41.6');
+    assert.equal(matches.npcId, '82100000002399');
+
+    matches = lines[1].match(Regexes.addedCombatantFull()).groups;
+    assert.equal(matches.id, '103410A1');
+    // Optional.
+    assert.isUndefined(matches.npcId);
   },
   removingCombatant: () => {
     let lines = [
@@ -123,6 +103,10 @@ let tests = {
       '[21:58:30.439] 04:40007FDF:Removing combatant Haurchefant Greystone.  Max HP: 68. Pos: (102.85,102.85,7.152558E-07).',
     ];
     regexCaptureTest(Regexes.removingCombatant, lines);
+
+    let matches = lines[0].match(Regexes.removingCombatant()).groups;
+    assert.equal(matches.name, 'Demi-Phoenix');
+    assert.equal(matches.hp, '561184');
   },
   gainsEffect: () => {
     let lines = [
@@ -131,6 +115,13 @@ let tests = {
       '[21:58:02.948] 1A:106CBE53:Potato Latke gains the effect of Aetherflow from Potato Latke for 9999.00 Seconds. (2)',
     ];
     regexCaptureTest(Regexes.gainsEffect, lines);
+
+    let matches = lines[0].match(Regexes.gainsEffect()).groups;
+    assert.equal(matches.targetId, '10595A8C');
+    assert.equal(matches.target, 'Papas Fritas');
+    assert.equal(matches.effect, 'Battle Litany');
+    assert.equal(matches.source, 'Potato Casserole');
+    assert.equal(matches.duration, '20.00');
   },
   statusEffectExplicit: () => {
     let lines = [
@@ -142,6 +133,19 @@ let tests = {
       '[23:24:15.679] 26:4000D3E6::0050501C:0:148000:0:0:0:0:84.83353:101.1907:-1.105378E-08:2.79271:0:A5:0:',
     ];
     regexCaptureTest(Regexes.statusEffectExplicit, lines);
+
+    let matches = lines[3].match(Regexes.statusEffectExplicit()).groups;
+    assert.equal(matches.targetId, '1067348B');
+    assert.equal(matches.target, 'Tini Poutini');
+    assert.equal(matches.x, '97.62768');
+    assert.equal(matches.y, '98.15999');
+    assert.equal(matches.z, '-0.0007705679');
+    assert.equal(matches.heading, '0.7312062');
+    assert.equal(matches.data0, '03E8');
+    assert.equal(matches.data1, '88');
+    assert.equal(matches.data2, '0');
+    assert.equal(matches.data3, '0A0168');
+    assert.equal(matches.data4, '41F00000');
   },
   losesEffect: () => {
     let lines = [
@@ -150,6 +154,17 @@ let tests = {
       '[21:48:12.191] 1E:40007FD4:Hades loses the effect of Biolysis from Potato Croquette.',
     ];
     regexCaptureTest(Regexes.losesEffect, lines);
+
+    let matches = lines[0].match(Regexes.losesEffect()).groups;
+    assert.equal(matches.targetId, '10686259');
+    assert.equal(matches.target, 'Hash Brown');
+    assert.equal(matches.effect, 'Light In The Dark');
+    assert.equal(matches.source, '');
+
+    matches = lines[1].match(Regexes.losesEffect()).groups;
+    assert.equal(matches.targetId, '1076C23F');
+    // Test valid source.
+    assert.equal(matches.source, 'Tater Tot');
   },
   tether: () => {
     let lines = [
@@ -158,6 +173,13 @@ let tests = {
       '[12:17:54.515] 23:1032A977:French Fry:4000229C:Magic Pot:03AC:0000:0003:4000229C:000F:7FF1:',
     ];
     regexCaptureTest(Regexes.tether, lines);
+
+    let matches = lines[0].match(Regexes.tether()).groups;
+    assert.equal(matches.sourceId, '4000804B');
+    assert.equal(matches.source, 'Shadow of the Ancients');
+    assert.equal(matches.targetId, '106CAF53');
+    assert.equal(matches.target, 'Dum Aloo');
+    assert.equal(matches.id, '0011');
   },
   wasDefeated: () => {
     let lines = [
@@ -166,6 +188,10 @@ let tests = {
       '[19:39:36.673] 19:Potato Chippy was defeated by Tater Tot.',
     ];
     regexCaptureTest(Regexes.wasDefeated, lines);
+
+    let matches = lines[0].match(Regexes.wasDefeated()).groups;
+    assert.equal(matches.target, 'Tini Poutini');
+    assert.equal(matches.source, 'Ovni');
   },
   hasHP: () => {
     let lines = [
@@ -174,6 +200,10 @@ let tests = {
       '[00:17:27.689] 0D:French Fry HP at 100%.',
     ];
     regexCaptureTest(Regexes.hasHP, lines);
+
+    let matches = lines[0].match(Regexes.hasHP()).groups;
+    assert.equal(matches.name, 'Tini Poutini');
+    assert.equal(matches.hp, '96');
   },
   gameLog: () => {
     let echoLines = [
@@ -183,6 +213,9 @@ let tests = {
     ];
     regexCaptureTest(Regexes.echo, echoLines);
 
+    let matches = echoLines[0].match(Regexes.echo()).groups;
+    assert.equal(matches.line, 'cactbot wipe');
+
     let dialogLines = [
       '[18:44:08.000] 00:0044:Rhitahtyn sas Arvina:My shields are impregnable! Join the countless challengers who have dashed themselves against them!',
       '[21:47:25.000] 00:0044:Hades:You are no match for my mastery of the arcane!',
@@ -190,11 +223,22 @@ let tests = {
     ];
     regexCaptureTest(Regexes.dialog, dialogLines);
 
+    matches = dialogLines[2].match(Regexes.dialog()).groups;
+    assert.equal(matches.line, 'There is no turning back!');
+
+    matches = dialogLines[2].match(Regexes.gameLog()).groups;
+    assert.equal(matches.line, 'Byakko:There is no turning back!');
+
     let namedLines = [
       '[17:56:54.000] 00:001d:Potato Chippy:You clap for the striking dummy.',
     ];
     regexCaptureTest(Regexes.gameNameLog, namedLines);
     regexCaptureTest(Regexes.gameNameLog, dialogLines);
+
+    matches = dialogLines[2].match(Regexes.gameNameLog()).groups;
+    assert.equal(matches.code, '0044');
+    assert.equal(matches.name, 'Byakko');
+    assert.equal(matches.line, 'There is no turning back!');
 
     let messageLines = [
       '[23:12:47.000] 00:0839:An avatar of Absolute Virtue has manifested somewhere in Hydatos!',
@@ -202,6 +246,9 @@ let tests = {
       '[12:10:44.000] 00:0839:The Pools of Folly will be sealed off in 15 seconds!',
     ];
     regexCaptureTest(Regexes.message, messageLines);
+
+    matches = messageLines[0].match(Regexes.message()).groups;
+    assert.equal(matches.line, 'An avatar of Absolute Virtue has manifested somewhere in Hydatos!');
 
     let allLines = [];
     allLines.push(...echoLines);
@@ -212,11 +259,39 @@ let tests = {
   },
   statchange: () => {
     let lines = [
-      '[20:29:29.752] 0C:Player Stats: 23:311:4093:4245:295:280:340:4093:2496:2675:295:280:2334:578:380:0:380',
+      '[20:29:29.752] 0C:Player Stats: 23:311:4093:4245:295:280:340:4094:2496:2675:295:282:2334:578:380:0:382',
       '[12:50:15.438] 0C:Player Stats: 17:311:348:1010:347:315:340:311:380:380:347:315:340:380:380:0:380',
       '[01:11:57.108] 0C:Player Stats: 23:305:844:793:290:275:340:844:780:755:290:275:340:380:380:0:380',
     ];
     regexCaptureTest(Regexes.statChange, lines);
+
+    let matches = lines[0].match(Regexes.statChange()).groups;
+    assert.equal(matches.job, '23');
+    assert.equal(matches.strength, '311');
+    assert.equal(matches.dexterity, '4093');
+    assert.equal(matches.vitality, '4245');
+    assert.equal(matches.intelligence, '295');
+    assert.equal(matches.mind, '280');
+    assert.equal(matches.piety, '340');
+    assert.equal(matches.attackPower, '4094');
+    assert.equal(matches.directHit, '2496');
+    assert.equal(matches.criticalHit, '2675');
+    assert.equal(matches.attackMagicPotency, '295');
+    assert.equal(matches.healMagicPotency, '282');
+    assert.equal(matches.determination, '2334');
+    assert.equal(matches.skillSpeed, '578');
+    assert.equal(matches.spellSpeed, '380');
+    assert.equal(matches.tenacity, '382');
+  },
+  changeZone: () => {
+    let lines = [
+      '[20:29:29.752] 01:Changed Zone to The Lavender Beds.',
+      '[12:50:15.438] 01:Changed Zone to The Unending Coil Of Bahamut (Ultimate).',
+    ];
+    regexCaptureTest(Regexes.changeZone, lines);
+
+    let matches = lines[0].match(Regexes.changeZone()).groups;
+    assert.equal(matches.name, 'The Lavender Beds');
   },
 };
 
