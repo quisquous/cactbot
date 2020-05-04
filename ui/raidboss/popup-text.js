@@ -229,13 +229,13 @@ class PopupText {
             }
 
             // Locale-based regex takes precedence.
-            let regex = trigger[regexParseLang] ? trigger[regexParseLang] : trigger.regex;
+            let regex = trigger[regexParseLang] || trigger.regex;
             if (regex) {
               trigger.localRegex = Regexes.parse(regex);
               this.triggers.push(trigger);
             }
 
-            let netRegex = trigger[netRegexParseLang] ? trigger[netRegexParseLang] : trigger.netRegex;
+            let netRegex = trigger[netRegexParseLang] || trigger.netRegex;
             if (netRegex) {
               trigger.localNetRegex = Regexes.parse(netRegex);
               this.netTriggers.push(trigger);
