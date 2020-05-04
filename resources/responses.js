@@ -387,7 +387,8 @@ let Responses = {
     };
 
     let otherFunc = (data, matches) => {
-      if (matches && getTarget(matches) != data.me) {
+      let target = getTarget(matches);
+      if (target != data.me) {
         return {
           en: 'Knockback on ' + data.ShortName(target),
           de: 'Rückstoß auf ' + data.ShortName(target),
@@ -748,7 +749,8 @@ let Responses = {
     };
 
     let otherFunc = (data, matches) => {
-      if (matches && getTarget(matches) != data.me) {
+      let target = getTarget(matches);
+      if (target != data.me) {
         return {
           en: 'Prey on ' + data.ShortName(target),
           de: 'Marker auf ' + data.ShortName(target),
