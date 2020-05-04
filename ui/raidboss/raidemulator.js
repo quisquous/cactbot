@@ -137,6 +137,7 @@ let Options = {
           gPopupText.OnDataFilesRead(e);
           // eslint-disable-next-line new-cap
           gPopupText.ReloadTimelines();
+          emulator.dataFilesEvent = e;
         });
         let gTimelineUI = new RaidEmulatorTimelineUI(Options);
         gTimelineUI.bindTo(emulator);

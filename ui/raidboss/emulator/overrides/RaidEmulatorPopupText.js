@@ -77,6 +77,14 @@ class RaidEmulatorPopupText extends PopupText {
     });
   }
 
+  OnDataFilesRead(e) {
+    // Work around Options.Triggers getting modified by the global scope here
+    let triggers = Options.Triggers;
+    Options.Triggers = EmulatorCommon.cloneData(triggers, []);
+    super.OnDataFilesRead(e);
+    Options.Triggers = triggers;
+  }
+
   _addTextFor(textType, triggerHelper) {
     let textTypeUpper = textType[0].toUpperCase() + textType.slice(1);
     // infoText

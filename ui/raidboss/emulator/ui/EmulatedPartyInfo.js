@@ -81,19 +81,20 @@ class EmulatedPartyInfo extends EventBus {
       this.UpdateCombatantInfo(encounter, id);
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
-      this.triggerBars[i]
-        .removeClass('tank healer dps')
-        .addClass(Util.jobToRole(encounter.encounter.combatantTracker.combatants[id].job));
+      this.triggerBars[i].removeClass('tank healer dps');
+      if (encounter.encounter.combatantTracker.combatants[id].job) {
+        this.triggerBars[i].addClass(Util.jobToRole(encounter.encounter.combatantTracker.combatants[id].job));
+      }
 
       for (let triggerIndex in encounter.perspectives[id].triggers) {
         let trigger = encounter.perspectives[id].triggers[triggerIndex];
-        if (!trigger.status.Executed || trigger.resolvedOffset > encounter.encounter.duration)
+        if (!trigger.status.executed || trigger.resolvedOffset > encounter.encounter.duration)
           continue;
 
         let $e = $('<div class="triggerItem"></div>');
         $e.css('left', ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%');
         $e.tooltip({
-          title: trigger.trigger.id,
+          title: trigger.triggerHelper.trigger.id,
           placement: 'bottom',
         });
         this.triggerBars[i].append($e);
@@ -107,6 +108,9 @@ class EmulatedPartyInfo extends EventBus {
 
   selectPerspective(id) {
     if (id === this.currentPerspective)
+      return;
+
+    if (!this.emulator.currentEncounter.encounter.combatantTracker.combatants[id].job)
       return;
 
     this.currentPerspective = id;
@@ -160,7 +164,7 @@ class EmulatedPartyInfo extends EventBus {
     };
 
     let combatant = encounter.encounter.combatantTracker.combatants[id];
-    ret.$rootElem.addClass(combatant.job.toUpperCase());
+    ret.$rootElem.addClass((combatant.job || '').toUpperCase());
     ret.$rootElem.append(ret.$iconElem);
     ret.$hpElem.children('.progress').append(ret.$hpProgElem, ret.$hpLabelElem);
     ret.$mpElem.children('.progress').append(ret.$mpProgElem, ret.$mpLabelElem);
@@ -198,7 +202,7 @@ class EmulatedPartyInfo extends EventBus {
     for (let i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
       let $triggerDataViewer = $('<pre class="json-viewer"></pre>');
       let buttonName = this.GetTriggerFiredLabelTime(per.triggers[i]) +
-        ' - ' + per.triggers[i].trigger.id;
+        ' - ' + per.triggers[i].triggerHelper.trigger.id;
       let $trigger = this._WrapCollapse(buttonName, $triggerDataViewer, () => {
         $triggerDataViewer.text(JSON.stringify(per.triggers[i], null, 2));
       });
@@ -210,7 +214,7 @@ class EmulatedPartyInfo extends EventBus {
       $labelTime.text(this.GetTriggerResolvedLabelTime(per.triggers[i]));
       $label.append($labelTime, $labelText);
       $buttonWrapper.append($label);
-      if (per.triggers[i].status.Executed)
+      if (per.triggers[i].status.executed)
         $trigger.addClass('trigger-executed');
       else
         $trigger.addClass('trigger-not-executed');
@@ -231,16 +235,10 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   GetTriggerLabelText(trigger) {
-    let ret = trigger.status.Result;
-    if (typeof (ret) === 'function')
-      ret = ret(AnalyzedEncounter.cloneData(trigger.postData, true), trigger.matches);
+    let ret = trigger.status.result || trigger.status.response;
 
     if (typeof (ret) === 'object') {
-      let lang = trigger.postData.lang;
-      if (ret[lang])
-        ret = ret[lang];
-      else
-        ret = JSON.stringify(ret); // Panic!
+      ret = trigger.triggerHelper.valueOrFunction(ret);
     } else if (typeof (ret) === 'boolean') {
       ret = '';
     } else if (typeof (ret) === 'undefined') {
@@ -252,7 +250,7 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   GetTriggerFiredLabelTime(Trigger) {
-    return timeToString(Trigger.offset, false);
+    return timeToString(Trigger.logLine.offset, false);
   }
 
   GetTriggerResolvedLabelTime(Trigger) {

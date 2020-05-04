@@ -14,7 +14,7 @@ class RaidEmulator extends EventBus {
     this.encounters.push(encounter);
   }
   setCurrent(index) {
-    this.currentEncounter = new AnalyzedEncounter(this.encounters[index]);
+    this.currentEncounter = new AnalyzedEncounter(this.encounters[index], this);
     this.currentEncounter.Analyze(this.popupText).then(() => {
       this.dispatch('currentEncounterChanged', this.currentEncounter);
     });

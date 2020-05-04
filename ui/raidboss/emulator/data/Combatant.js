@@ -11,6 +11,10 @@ class Combatant {
     this.level = null;
   }
 
+  hasState(timestamp) {
+    return this.states[timestamp] !== undefined;
+  }
+
   pushState(timestamp, State) {
     this.states[timestamp] = State;
     this.latestTimestamp = timestamp;
