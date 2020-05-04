@@ -169,9 +169,9 @@ class PopupText {
       }
     }).bind(this);
 
-    let locale = this.options.Language || 'en';
+    let parseLang = this.options.ParserLanguage || 'en';
     // construct something like regexEn or regexFr.
-    let regexLocale = 'regex' + locale.charAt(0).toUpperCase() + locale.slice(1);
+    let regexParseLang = 'regex' + parseLang.charAt(0).toUpperCase() + parseLang.slice(1);
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
@@ -182,9 +182,9 @@ class PopupText {
         console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
         continue;
       } else if (!(zoneRegex instanceof RegExp)) {
-        let locale = this.options.Language || 'en';
-        if (locale in zoneRegex) {
-          zoneRegex = zoneRegex[locale];
+        let parseLang = this.options.ParserLanguage || 'en';
+        if (parseLang in zoneRegex) {
+          zoneRegex = zoneRegex[parseLang];
         } else if ('en' in zoneRegex) {
           zoneRegex = zoneRegex['en'];
         } else {
@@ -220,9 +220,9 @@ class PopupText {
               console.error('Trigger ' + trigger.id + ': has no regex property specified');
 
             // Locale-based regex takes precedence.
-            let regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
+            let regex = trigger[regexParseLang] ? trigger[regexParseLang] : trigger.regex;
             if (!regex) {
-              console.error('Trigger ' + trigger.id + ': undefined ' + regexLocale);
+              console.error('Trigger ' + trigger.id + ': undefined ' + regexParseLang);
               continue;
             }
             trigger.localRegex = Regexes.parse(regex);
@@ -312,7 +312,7 @@ class PopupText {
   }
 
   Reset() {
-    let locale = this.options.Language || 'en';
+    let parseLang = this.options.ParserLanguage || 'en';
     let preserveHP = 0;
     if (this.data && this.data.currentHP)
       preserveHP = this.data.currentHP;
@@ -324,7 +324,7 @@ class PopupText {
       job: this.job,
       role: this.role,
       party: this.partyTracker,
-      lang: locale,
+      lang: parseLang,
       currentHP: preserveHP,
       options: Options,
       ShortName: this.ShortNamify,
@@ -450,7 +450,7 @@ class PopupText {
         // in this object can also be functions.
         if (typeof result !== 'object')
           return result;
-        let lang = this.options.AlertsLanguage || this.options.Language || 'en';
+        let lang = this.options.AlertsLanguage || this.options.ParserLanguage || 'en';
         if (result[lang])
           return triggerHelper.valueOrFunction(result[lang]);
         // For partially localized results where this localization doesn't
@@ -695,7 +695,7 @@ class PopupText {
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/[-=]>\s*$/g, '');
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/^\s*<[-=]/g, '');
       // * arrows in the middle are a sequence, e.g. "in => out => spread"
-      let lang = this.options.AlertsLanguage || this.options.Language || 'en';
+      let lang = this.options.AlertsLanguage || this.options.ParserLanguage || 'en';
       let arrowReplacement = {
         en: ' then ',
         cn: '然后',

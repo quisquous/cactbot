@@ -104,7 +104,7 @@ be matched against.
 
 **regexFr**
 Example of a locale-based regular expression for the 'fr' locale.
-If `Options.Language == 'fr'`, then `regexFr` (if it exists) takes precedence over `regex`.
+If `Options.ParserLanguage == 'fr'`, then `regexFr` (if it exists) takes precedence over `regex`.
 Otherwise, it is ignored.  This is only an example for french, but other locales behave the same, e.g. regexEn, regexKo.
 
 Locale regexes do not have a defined ordering.

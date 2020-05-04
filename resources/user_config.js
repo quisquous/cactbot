@@ -112,8 +112,8 @@ let UserConfig = {
       }
 
       // Post this callback so that the js and css can be executed first.
-      if (Options.Language && Options.Language in this.languageFuncs)
-        this.languageFuncs[Options.Language]();
+      if (Options.ParserLanguage && Options.ParserLanguage in this.languageFuncs)
+        this.languageFuncs[Options.ParserLanguage]();
       if (callback)
         callback();
 
