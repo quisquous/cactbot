@@ -186,7 +186,8 @@ def main(args):
     last_entry = {"time": 0, "ability_id": ""}
 
     output = []
-    output.append('0 "Start"')
+    # No reason not to automate syncing if there's a countdown.
+    output.append('0 "Start" sync /Engage!/ window 0,1')
 
     for entry in entries:
         # First up, check if it's an ignored entry
