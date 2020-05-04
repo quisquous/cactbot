@@ -1298,11 +1298,11 @@ let getHeadmarkerId = (data, matches) => {
       delaySeconds: 3,
       infoText: function(data, matches) {
         return {
-          en: 'Shared Sentence on ' + data.shortName(matches.target),
-          de: 'Urteil: Kollektivstrafe auf ' + data.shortName(matches.target),
-          ja: data.shortName(matches.target) + ' に集団罰',
-          ko: data.shortName(matches.target) + ' 에게 단체형',
-          cn: '集团罪->' + data.shortName(matches.target),
+          en: 'Shared Sentence on ' + data.ShortName(matches.target),
+          de: 'Urteil: Kollektivstrafe auf ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + ' に集団罰',
+          ko: data.ShortName(matches.target) + ' 에게 단체형',
+          cn: '集团罪->' + data.ShortName(matches.target),
         };
       },
     },
