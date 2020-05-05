@@ -508,9 +508,9 @@
         'Mark CXLIV Thermocoil Boilbuster': '마도 주전자 보글보글 CXLIV세',
         'Levinball': '뇌탄',
         'Cladoselache': '클라도셀라케',
-        'The Cornice': '개조 작업 거점',
+        'The Cornice': '차원 잠행 장치 중추',
         'Aetherial Observation': '에테르 관측대',
-        'Repurposing': '차원 잠행 장치 중추',
+        'Repurposing': '개조 작업 거점',
       },
       'replaceText': {
         'Wind Spout': '바람 분출',
