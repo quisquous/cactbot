@@ -50,7 +50,7 @@ let UserConfig = {
         if (Options.ShortLocale == 'zh')
           Options.ShortLocale = 'cn';
         const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
-        if (supportedLanguage.indexOf(Options.ShortLocale) == -1)
+        if (!supportedLanguage.includes(Options.ShortLocale))
           Options.ShortLocale = 'en';
       }
 

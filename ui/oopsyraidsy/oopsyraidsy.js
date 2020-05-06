@@ -399,7 +399,7 @@ class OopsyLiveList {
 class MistakeCollector {
   constructor(options, liveList) {
     this.options = options;
-    this.parseLang = this.options.ParserLanguage || 'en';
+    this.parserLang = this.options.ParserLanguage || 'en';
     this.liveList = liveList;
     this.baseTime = null;
     this.inACTCombat = false;
@@ -458,8 +458,8 @@ class MistakeCollector {
   Translate(obj) {
     if (obj !== Object(obj))
       return obj;
-    if (this.parseLang in obj)
-      return obj[this.parseLang];
+    if (this.parserLang in obj)
+      return obj[this.parserLang];
     return obj['en'];
   }
 
@@ -493,7 +493,7 @@ class MistakeCollector {
     }
     let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      let text = kEarlyPullText[this.parseLang] + ' (' + seconds.toFixed(1) + 's)';
+      let text = kEarlyPullText[this.parserLang] + ' (' + seconds.toFixed(1) + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
         this.OnMistakeText('pull', this.firstPuller, text);
     }
@@ -979,9 +979,9 @@ class DamageTracker {
         zoneError('zoneRegex must be translatable object or regexp');
         continue;
       } else if (!(zoneRegex instanceof RegExp)) {
-        let parseLang = this.options.ParserLanguage || 'en';
-        if (parseLang in zoneRegex) {
-          zoneRegex = zoneRegex[parseLang];
+        let parserLang = this.options.ParserLanguage || 'en';
+        if (parserLang in zoneRegex) {
+          zoneRegex = zoneRegex[parserLang];
         } else if ('en' in zoneRegex) {
           zoneRegex = zoneRegex['en'];
         } else {

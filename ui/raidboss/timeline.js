@@ -43,11 +43,11 @@ class Timeline {
       return text;
 
     let orig = text;
-    let parseLang = this.options.PraserLanguage || 'en';
+    let parserLang = this.options.PraserLanguage || 'en';
     if (replaceKey === 'replaceText')
-      parseLang = this.options.TimelineLanguage || this.options.PraserLanguage || 'en';
+      parserLang = this.options.TimelineLanguage || this.options.PraserLanguage || 'en';
     for (let r of this.replacements) {
-      if (r.parseLang && r.parseLang != parseLang)
+      if (r.parserLang && r.parserLang != parserLang)
         continue;
       if (!r[replaceKey])
         continue;
@@ -57,7 +57,7 @@ class Timeline {
     }
     // Common Replacements
     for (let key in commonReplacement) {
-      let repl = commonReplacement[key][parseLang];
+      let repl = commonReplacement[key][parserLang];
       if (!repl)
         continue;
       text = text.replace(Regexes.parse(key), repl);

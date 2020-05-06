@@ -174,11 +174,11 @@ class PopupText {
       }
     }).bind(this);
 
-    let parseLang = this.options.ParserLanguage || 'en';
+    let parserLang = this.options.ParserLanguage || 'en';
     // construct something like regexEn or regexFr.
-    let localeSuffix = parseLang.charAt(0).toUpperCase() + parseLang.slice(1);
-    let regexParseLang = 'regex' + localeSuffix;
-    let netRegexParseLang = 'netRegex' + localeSuffix;
+    let localeSuffix = parserLang.charAt(0).toUpperCase() + parserLang.slice(1);
+    let regexParserLang = 'regex' + localeSuffix;
+    let netRegexParserLang = 'netRegex' + localeSuffix;
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
@@ -189,9 +189,9 @@ class PopupText {
         console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
         continue;
       } else if (!(zoneRegex instanceof RegExp)) {
-        let parseLang = this.options.ParserLanguage || 'en';
-        if (parseLang in zoneRegex) {
-          zoneRegex = zoneRegex[parseLang];
+        let parserLang = this.options.ParserLanguage || 'en';
+        if (parserLang in zoneRegex) {
+          zoneRegex = zoneRegex[parserLang];
         } else if ('en' in zoneRegex) {
           zoneRegex = zoneRegex['en'];
         } else {
@@ -229,13 +229,13 @@ class PopupText {
             }
 
             // parser-language-based regex takes precedence.
-            let regex = trigger[regexParseLang] || trigger.regex;
+            let regex = trigger[regexParserLang] || trigger.regex;
             if (regex) {
               trigger.localRegex = Regexes.parse(regex);
               this.triggers.push(trigger);
             }
 
-            let netRegex = trigger[netRegexParseLang] || trigger.netRegex;
+            let netRegex = trigger[netRegexParserLang] || trigger.netRegex;
             if (netRegex) {
               trigger.localNetRegex = Regexes.parse(netRegex);
               this.netTriggers.push(trigger);
@@ -323,7 +323,7 @@ class PopupText {
   }
 
   Reset() {
-    let parseLang = this.options.ParserLanguage || 'en';
+    let parserLang = this.options.ParserLanguage || 'en';
     let preserveHP = 0;
     if (this.data && this.data.currentHP)
       preserveHP = this.data.currentHP;
@@ -335,7 +335,7 @@ class PopupText {
       job: this.job,
       role: this.role,
       party: this.partyTracker,
-      lang: parseLang,
+      lang: parserLang,
       currentHP: preserveHP,
       options: Options,
       ShortName: this.ShortNamify,
