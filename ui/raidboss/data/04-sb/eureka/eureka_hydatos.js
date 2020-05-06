@@ -70,7 +70,7 @@
       id: 'BA Saved By Rememberance',
       regex: Regexes.gameLog({ line: 'The memories of heroes past live on again.*?', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf.*?', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscitée.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscité.*?', capture: false }),
       regexJa: Regexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された.*?', capture: false }),
       regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来.*?', capture: false }),
       regexKo: Regexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다.*?', capture: false }),
@@ -80,6 +80,7 @@
       id: 'BA Seal',
       regex: Regexes.message({ line: '.*will be sealed off.*?', capture: false }),
       regexDe: Regexes.message({ line: '.*bis sich der Zugang.*?', capture: false }),
+      regexFr: Regexes.message({ line: '.*Fermeture de.*?', capture: false }),
       regexCn: Regexes.message({ line: '距.*被封锁还有.*?', capture: false }),
       regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다.*?', capture: false }),
       run: function(data) {
@@ -90,6 +91,7 @@
       id: 'BA Clear Data',
       regex: Regexes.message({ line: '.*is no longer sealed.*?', capture: false }),
       regexDe: Regexes.message({ line: '.*öffnet sich wieder.*?', capture: false }),
+      regexFr: Regexes.message({ line: '.*Ouverture de.*?', capture: false }),
       regexCn: Regexes.message({ line: '.*的封锁解除了.*?', capture: false }),
       regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다.*?', capture: false }),
       run: function(data) {
@@ -286,6 +288,7 @@
       id: 'BA Owain Fire Element',
       regex: Regexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
       regexDe: Regexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid.*?', capture: false }),
+      regexFr: Regexes.dialog({ line: '[^:]*:Oui... Munderg, sens le feu embraser nos âmes.*?', capture: false }),
       regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
@@ -309,6 +312,7 @@
       id: 'BA Owain Ice Element',
       regex: Regexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
       regexDe: Regexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen.*?', capture: false }),
+      regexFr: Regexes.dialog({ line: '[^:]*:C\'est bien, Munderg... Glace le sang de mes ennemis.*?', capture: false }),
       regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
@@ -480,7 +484,7 @@
       infoText: {
         en: 'Dark Bracelets',
         de: 'Dunkle Armreife',
-        fr: 'Bracelets sombres',
+        fr: 'Bracelets ténèbreux',
         cn: '黑光环',
         ko: '어두운 고리',
       },
@@ -536,7 +540,7 @@
             return {
               en: 'Away From Dark Circles',
               de: 'Weg von dunklen Kreisen',
-              fr: 'Éloignez-vous des cercles sombres',
+              fr: 'Éloignez-vous des cercles ténèbreux',
               cn: '远离黑圈',
               ko: '어두운 원에서 떨어지기',
             };
@@ -547,7 +551,7 @@
           return {
             en: 'Stand By Dark Circles',
             de: 'Zu den dunklen Kreisen',
-            fr: 'Tenez-vous près des cercles sombres',
+            fr: 'Tenez-vous près des cercles ténèbreux',
             cn: '靠近黑圈',
             ko: '어두운 원 옆에 서기',
           };
@@ -582,7 +586,7 @@
           return {
             en: 'Dark',
             de: 'Dunkel',
-            fr: 'Sombre',
+            fr: 'Ténèbres',
             cn: '黑',
             ko: '어둠',
           };
@@ -603,6 +607,7 @@
       id: 'BA AV Eidos Relative Virtue Astral',
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Lumière.*?', capture: false }),
       regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕.*?', capture: false }),
       regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔.*?', capture: false }),
       condition: function(data) {
@@ -619,6 +624,7 @@
       id: 'BA AV Eidos Relative Virtue Umbral',
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Ténèbres.*?', capture: false }),
       regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕.*?', capture: false }),
       regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔.*?', capture: false }),
       condition: function(data) {
@@ -649,7 +655,7 @@
           return {
             en: 'Dark',
             de: 'Dunkel',
-            fr: 'Sombre',
+            fr: 'Ténèbres',
             cn: '黑',
             ko: '어둠',
           };
@@ -789,7 +795,7 @@
       alertText: {
         en: 'Go Far',
         de: 'Weit weg',
-        fr: 'Allez loin',
+        fr: 'Éloignez-vous',
         cn: '远离',
         ko: '멀리가기',
       },
@@ -821,7 +827,7 @@
         return {
           en: 'Stack Up',
           de: 'Stacken',
-          fr: 'Packez-vous',
+          fr: 'Packez-vous en haut',
           cn: '集合',
           ko: '집합',
         };
@@ -865,7 +871,7 @@
           return {
             en: 'Offtanks Get Orbs',
             de: 'Offtanks holt Kugeln',
-            fr: 'Offtanks prenez les orbes',
+            fr: 'Offtanks, prenez les orbes',
             cn: 'ST撞球',
             ko: '섭탱 구슬 가져가기',
           };
@@ -938,7 +944,7 @@
       alertText: {
         en: 'Go Far',
         de: 'Weit weg',
-        fr: 'Allez loin',
+        fr: 'Éloignez-vous',
         cn: '远离',
         ko: '멀리',
       },
@@ -947,7 +953,7 @@
       id: 'BA Ozma Adds',
       regex: Regexes.ability({ source: 'Cloudlarker', id: '37B0', capture: false }),
       regexDe: Regexes.ability({ source: 'Wolkenlauerer', id: '37B0', capture: false }),
-      regexFr: Regexes.ability({ source: 'Rôdeur Des Nuages', id: '37B0', capture: false }),
+      regexFr: Regexes.ability({ source: 'Urolithe De L\'arsenal', id: '37B0', capture: false }),
       regexJa: Regexes.ability({ source: 'クラウドラーカー', id: '37B0', capture: false }),
       regexCn: Regexes.ability({ source: '翻云狮鹫', id: '37B0', capture: false }),
       regexKo: Regexes.ability({ source: '구름 잠복자', id: '37B0', capture: false }),
@@ -995,14 +1001,14 @@
         'Owain': 'Owain',
         '(?<! )Ozma(?!\\w)': 'Yadis',
         'Ozmashade': 'Yadis-Schatten',
-        'Proto Ozma': 'Proto-Yadis',
+        'Proto Ozma(?!\ containment)': 'Proto-Yadis',
         'Raiden': 'Raiden',
         'Relative Virtue': 'Relative Tugend',
         'Shadow': 'Proto-Yadis-Schatten',
         'Streak Lightning': 'Blitzladung',
-        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
-        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
-        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'The Lance of Virtue Containment Unit': 'The Lance of Virtue Containment Unit', // FIXME
+        'The Proto Ozma Containment Unit': 'The Proto Ozma Containment Unit', // FIXME
+        'The Shin-Zantetsuken Containment Unit': 'The Shin-Zantetsuken Containment Unit', // FIXME
         '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
         'The memories of heroes past live on again': 'Das Vermächtnis vergangener Helden lebt von Neuem auf',
         'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
@@ -1085,25 +1091,26 @@
       'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'Vertu absolue',
-        'Arsenal Centaur': 'centaure de l\'Arsenal',
+        'Arsenal Centaur': 'Centaure de l\'Arsenal',
         'Art': 'Art',
-        'Ball Lightning': 'orbe de foudre',
-        'Cloudlarker': 'rôdeur des nuages',
-        'Ivory Palm': 'paume d\'ivoire',
+        'Ball Lightning': 'Orbe de foudre',
+        'Cloudlarker': 'Urolithe de l\'Arsenal',
+        'Ivory Palm': 'Paume d\'ivoire',
         'Orlasrach': 'Orlasrach',
         'Owain': 'Owain',
         '(?<! )Ozma(?!\\w)': 'Ozma',
-        'Ozmashade': 'ombre d\'Ozma',
-        'Proto Ozma': 'Proto-Ozma',
+        'Ozmashade': 'Ombre d\'Ozma',
+        'Proto Ozma(?!\ containment)': 'Proto-Ozma',
         'Raiden': 'Raiden',
         'Relative Virtue': 'Vertu relative',
-        'Shadow': 'ombre de Proto-Ozma',
+        'Shadow': 'Ombre de Proto-Ozma',
         'Streak Lightning': 'Éclair chargeant',
-        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
-        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
-        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'The Lance of Virtue Containment Unit': 'l\'enceinte de confinement de la lance de la vertu',
+        'The Proto Ozma Containment Unit': 'l\'enceinte de confinement de Proto-Ozma',
+        'The Shin-Zantetsuken Containment Unit': 'l\'enceinte de confinement de Shin-Zantetsuken',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Acallam Na Senorach': 'Spirale sépulcrale',
         'Acceleration Bomb': 'Bombe accélératrice',
         'Adds': 'Adds',
@@ -1116,21 +1123,21 @@
         'Bleed Attack': 'Attaque saignement',
         'Booming Lament': 'Tonnerre du regret',
         'Call Wyvern': 'Appel de wyverne',
-        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Carver/Spinner': 'Taillade/Spirale',
         'Cloud to Ground': 'Attaque fulminante',
-        'Cube Form': 'Cube Form', // FIXME
+        'Cube Form': 'Forme cube',
         'Eidos': 'Sarva',
         'Elemental Magicks': 'Magie élémentaire',
         'Elemental Shift': 'Changement d\'élément',
         'Execration': 'Exécration',
-        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosion Enrage': 'Explosion Enrage',
         'Explosive Impulse': 'Impulsion explosive',
         'Flare Star': 'Astre flamboyant',
         'For Honor': 'Carnage martial',
         'Holy': 'Miracle',
         'Hostile Aspect': 'Onde polarisée',
         'Impact Stream': 'Courant d\'impact',
-        'Ivory Palm': 'paume d\'ivoire',
+        'Ivory Palm': 'Paume d\'ivoire',
         'Lancing Bolt': 'Lance fulminante',
         'Lateral Zantetsuken': 'Hen Zantetsuken',
         'Legendary Geas': 'Tuerie spectrale',
@@ -1143,24 +1150,24 @@
         'Mourning Star': 'Étoile du matin',
         'Mythcall': 'Invitation fantasmagorique',
         'Orb x5': 'Orbe x5',
-        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Ozma Ability': 'Aptitude d\'Ozma',
         'Piercing Dark': 'Lance des ténèbres',
         'Piercing Light': 'Lance de lumière',
         'Pitfall': 'Embûche',
-        'Pyramid Form': 'Pyramid Form', // FIXME
-        'Random Form': 'Random Form', // FIXME
-        'Random Shade': 'Random Shade', // FIXME
-        'Shade Ability': 'Shade Ability', // FIXME
+        'Pyramid Form': 'Forme pyramide',
+        'Random Form': 'Forme aléatoire',
+        'Random Shade': 'Ombre aléatoire',
+        'Shade Ability': 'Aptitude d\'Ombre',
         'Shingan': 'Impact oculaire',
         'Shooting Star': 'Étoile filante',
-        'Soak Attack': 'Soak Attack', // FIXME
-        'Spear Copy': 'Spear Copy', // FIXME
-        'Spear Shade': 'Spear Shade', // FIXME
-        'Sphere Form': 'Sphere Form', // FIXME
+        'Soak Attack': 'Absorbez l\'attaque',
+        'Spear Copy': 'Copie de lance',
+        'Spear Shade': 'Ombre de lance',
+        'Sphere Form': 'Forme sphère',
         'Spiritcull': 'Salve magique',
         'Spirits of the Fallen': 'Âme héroïque',
-        'Stack': 'Stack', // FIXME
-        'Star Form': 'Star Form', // FIXME
+        'Stack': 'Package',
+        'Star Form': 'Forme étoile',
         'Streak Lightning': 'Éclair chargeant',
         'Thricecull': 'Triple perforation',
         'Thundercall': 'Drain fulminant',
@@ -1168,7 +1175,7 @@
         'Ultimate Zantetsuken': 'Goku Zantetsuken',
         'Umbral Essence': 'Bras de Ténèbres',
         'Whirling Zantetsuken': 'Sen Zantetsuken',
-        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
+        'Wyvern Explosion': 'Wyverne Explosion',
       },
     },
     {
