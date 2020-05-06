@@ -678,6 +678,7 @@ namespace Cactbot {
 
       result["parserLanguage"] = language_;
       result["systemLocale"] = pc_locale_;
+      result["displayLanguage"] = Config.DisplayLanguage;
       // For backwards compatibility:
       result["language"] = language_;
 

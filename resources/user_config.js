@@ -44,14 +44,19 @@ let UserConfig = {
         // Backward compatibility, everything "Language" should be changed to "ParserLanguage"
         Options.Language = e.detail.parserLanguage;
       }
+      const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
       if (e.detail.systemLocale) {
         Options.SystemLocale = e.detail.systemLocale;
         Options.ShortLocale = e.detail.systemLocale.substring(0, 2);
         if (Options.ShortLocale == 'zh')
           Options.ShortLocale = 'cn';
-        const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
         if (!supportedLanguage.includes(Options.ShortLocale))
-          Options.ShortLocale = 'en';
+          Options.ShortLocale = Options.ParserLanguage;
+      }
+      if (e.detail.displayLanguage) {
+        Options.DisplayLanguage = e.detail.displayLanguage || 'en';
+        if (!supportedLanguage.includes(Options.DisplayLanguage))
+          Options.DisplayLanguage = Options.ParserLanguage;
       }
 
       // Handle processOptions after default language selection above,
