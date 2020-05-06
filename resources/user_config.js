@@ -46,7 +46,7 @@ let UserConfig = {
       }
       if (e.detail.systemLocale) {
         Options.SystemLocale = e.detail.systemLocale;
-        Options.ShortLocale = e.detail.SystemLocale.substring(0, 2);
+        Options.ShortLocale = e.detail.systemLocale.substring(0, 2);
         if (Options.ShortLocale == 'zh')
           Options.ShortLocale = 'cn';
         const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
