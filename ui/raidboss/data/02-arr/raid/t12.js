@@ -173,13 +173,13 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bennu': 'bénou',
+        'Bennu': 'Bénou',
         'Phoenix(?!-)': 'Phénix',
         'Phoenix-Egi': 'Phénix-Egi',
       },
       'replaceText': {
         '(?<! )Rebirth': 'Résurrection',
-        'Bennu Add': 'Bénou Add',
+        'Bennu Add': 'Add Bénou',
         'Blackfire': 'Flamme noire',
         'Bluefire': 'Flamme bleue',
         'Brand Of Purgatory': 'Tison du purgatoire',
