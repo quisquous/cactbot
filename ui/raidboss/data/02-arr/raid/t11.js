@@ -261,7 +261,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Electric Node': 'module d\'électrochoc',
+        'Electric Node': 'Module d\'électrochoc',
         'Kaliya': 'Kaliya',
         'The Core Override': 'l\'unité de contrôle du Cœur',
       },
