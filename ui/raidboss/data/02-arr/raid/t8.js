@@ -174,9 +174,9 @@
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
         'Allagan Mine': 'mine allagoise',
-        'Clockwork Dreadnaught': 'cuirassé Dreadnaught',
+        'Clockwork Dreadnaught': 'Cuirassé Dreadnaught',
         'Landmines have been scattered': 'Des mines ont été répandues',
-        'The Avatar': 'bio-tréant',
+        'The Avatar': 'Bio-tréant',
         'The central bow': 'l\'axe central - proue',
       },
       'replaceText': {

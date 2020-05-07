@@ -260,9 +260,9 @@
         'Bioweapon Storage': 'l\'entrepôt d\'armes biologiques',
         'Cursed Shriek': 'Cri maudit',
         'Cursed Voice': 'Voix maudite',
-        'Lamia Prosector': 'lamia dissectrice',
+        'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
-        'Proto-Chimera': 'protochimère',
+        'Proto-Chimera': 'Protochimère',
         'Renaud': 'Renaud',
       },
       'replaceText': {
