@@ -12,7 +12,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Cochma': 'Cochma',
         'Coronal Wind': 'Koronalwind',
         'Sephirot': 'Sephirot',
         'Storm Of Words': 'Wörtersturm',
@@ -43,7 +42,6 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Cochma': 'chokhmah',
         'Coronal Wind': 'vent coronaire',
         'Sephirot': 'Sephirot',
         'Storm Of Words': 'tempête de mots',
@@ -73,7 +71,6 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Cochma': 'コクマー',
         'Coronal Wind': 'コロナルウィンド',
         'Sephirot': 'セフィロト',
         'Storm Of Words': 'ストーム・オブ・ワード',
@@ -103,7 +100,6 @@
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
-        'Cochma': '智慧之灵',
         'Coronal Wind': '冠状气流',
         'Sephirot': '萨菲洛特',
         'Storm Of Words': '言语风暴',
@@ -133,7 +129,6 @@
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
-        'Cochma': '호크마',
         'Coronal Wind': '관상기류',
         'Sephirot': '세피로트',
         'Storm Of Words': '신언의 폭풍',
