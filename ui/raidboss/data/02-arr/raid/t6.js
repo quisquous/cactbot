@@ -271,7 +271,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Rafflesia': 'rafflesia',
+        'Rafflesia': 'Rafflesia',
         'Scar\'s Edge': 'l\'Huis de la Marque',
       },
       'replaceText': {
