@@ -928,7 +928,7 @@
         'Drachen Armor': 'ドラゴンアーマー',
         'Draconic Strike': 'ドラコニックストライク',
         'Driving/Biting Frost': 'フロストスラスト/フロストスラッシュ',
-        'Embittered/Spiteful Dance': 'Embittered/冷厳の舞踏技',
+        'Embittered/Spiteful Dance': '峻厳の舞踏技 / 冷厳の舞踏技',
         'Frigid Eruption': 'アイスエラプション',
         'Frigid Needle': 'アイスニードル',
         'Frigid Stone': 'アイスストーン',
@@ -957,11 +957,11 @@
         'Shock Spikes': 'ショックスパイク',
         'Skyfall': '世界消滅',
         'Stoneskin': 'ストンスキン',
-        'Spiteful/Embittered Dance': '冷厳の舞踏技/Embittered Dance',
+        'Spiteful/Embittered Dance': '冷厳の舞踏技 / 峻厳の舞踏技',
         'the Path of Light': '光の波動',
         'the House of Light': '光の津波',
-        'Twin Silence/Stillness': 'Twin Silence/静寂の双剣技',
-        'Twin Stillness/Silence': '静寂の双剣技/Silence',
+        'Twin Silence/Stillness': '静寂の双剣技 / 静寂の双剣技',
+        'Twin Stillness/Silence': '静寂の双剣技 /静寂の双剣技',
         'Wyrm\'s Lament': '聖竜の咆哮',
 
         // FIXME
