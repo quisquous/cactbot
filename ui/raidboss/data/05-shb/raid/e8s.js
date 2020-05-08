@@ -970,7 +970,7 @@
         'the House of Light': '光の津波',
         'Twin Silence/Stillness': '静寂の双剣技 / 静寂の双剣技',
         'Twin Stillness/Silence': '静寂の双剣技 /静寂の双剣技',
-        'Wyrm\'s Lament': '聖竜の咆哮',  
+        'Wyrm\'s Lament': '聖竜の咆哮',
       },
       '~effectNames': {
         'Damage Down': 'ダメージ低下',
