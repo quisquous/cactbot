@@ -692,7 +692,7 @@
       regexKo: Regexes.startsUsing({ source: '시바', id: '4D7F', capture: false }),
       condition: (data) => data.role == 'tank',
       alertText: {
-        en: 'Tank Spread in Tower',    
+        en: 'Tank Spread in Tower',
         de: 'Tank im Turm verteilen',
         fr: 'Dispersion tanks dans les tours',
         cn: '坦克塔内分散',
