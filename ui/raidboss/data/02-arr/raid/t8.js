@@ -166,8 +166,6 @@
         'Homing Missile': 'Lenkgeschoss',
         'Inertia Stream': 'Trägheitsstrom',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -189,8 +187,6 @@
         'Gaseous Bomb': 'Bombe gazeuse',
         'Homing Missile': 'Tête chercheuse',
         'Inertia Stream': 'Courant apathique',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -214,8 +210,6 @@
         'Homing Missile': 'ホーミングミサイル',
         'Inertia Stream': 'イナーシャストリーム',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'cn',
@@ -238,8 +232,6 @@
         'Homing Missile': '自控导弹',
         'Inertia Stream': '惰性流',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -261,8 +253,6 @@
         'Gaseous Bomb': '기화 폭탄',
         'Homing Missile': '유도 미사일',
         'Inertia Stream': '관성 기류',
-      },
-      '~effectNames': {
       },
     },
   ],

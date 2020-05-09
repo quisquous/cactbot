@@ -43,8 +43,6 @@
         'Vertical Kenoma': 'Vertikales Kenoma',
         'Zombification': 'Zombie',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -79,8 +77,6 @@
         'Thunder III': 'Méga Foudre',
         'Vertical Kenoma': 'Kenoma Vertical',
         'Zombification': 'Zombification',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -117,8 +113,6 @@
         'Vertical Kenoma': '前後堅守',
         'Zombification': 'ゾンビー',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'cn',
@@ -154,8 +148,6 @@
         'Vertical Kenoma': '前后坚守',
         'Zombification': '僵尸',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -190,8 +182,6 @@
         'Thunder III': '선더가',
         'Vertical Kenoma': '앞뒤 견제',
         'Zombification': '좀비',
-      },
-      '~effectNames': {
       },
     },
   ],

@@ -106,8 +106,6 @@
         'Spike Flail': 'Dornendresche',
         'Wild Charge': 'Wilde Rage',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -128,8 +126,6 @@
         'Spike Flail': 'Fléau à pointes',
         'Wild Charge': 'Charge sauvage',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ja',
@@ -146,8 +142,6 @@
         'Heat Lightning': 'ヒートライトニング',
         'Spike Flail': 'スパイクフレイル',
         'Wild Charge': 'ワイルドチャージ',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -166,8 +160,6 @@
         'Spike Flail': '刃尾横扫',
         'Wild Charge': '狂野冲锋',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -184,8 +176,6 @@
         'Heat Lightning': '뜨거운 번개',
         'Spike Flail': '가시 매타작',
         'Wild Charge': '야성의 돌진',
-      },
-      '~effectNames': {
       },
     },
   ],

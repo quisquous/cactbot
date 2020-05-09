@@ -268,8 +268,6 @@
         'Twister': 'Wirbelsturm',
         'Unwoven Will': 'Entwobener Wille',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -291,8 +289,6 @@
         'Plummet': 'Piqué',
         'Twister': 'Tornade',
         'Unwoven Will': 'Volonté dispersée',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -316,8 +312,6 @@
         'Twister': 'ツイスター',
         'Unwoven Will': 'アンウォーヴェンウィル',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'cn',
@@ -340,8 +334,6 @@
         'Twister': '旋风',
         'Unwoven Will': '破愿',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -363,8 +355,6 @@
         'Plummet': '곤두박질',
         'Twister': '회오리',
         'Unwoven Will': '짓밟힌 의지',
-      },
-      '~effectNames': {
       },
     },
   ],

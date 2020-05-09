@@ -152,8 +152,6 @@
         'Unholy': 'Unheilig',
         'Zoom': 'Heranholen',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -187,8 +185,6 @@
         'Unholy': 'Sombre miracle',
         'Zoom': 'Charge',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ja',
@@ -221,8 +217,6 @@
         'The Educator': 'エデュケーター',
         'Unholy': 'アンホーリー',
         'Zoom': 'ズームイン',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -258,8 +252,6 @@
         'Unholy': '邪圣',
         'Zoom': '放大',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -292,8 +284,6 @@
         'The Educator': '교육자',
         'Unholy': '부정함',
         'Zoom': '확대',
-      },
-      '~effectNames': {
       },
     },
   ],

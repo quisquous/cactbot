@@ -10,11 +10,6 @@
     {
       id: 'T6 Thorn Whip Collect',
       regex: Regexes.tether({ id: '0012' }),
-      regexDe: Regexes.tether({ id: '0012' }),
-      regexFr: Regexes.tether({ id: '0012' }),
-      regexJa: Regexes.tether({ id: '0012' }),
-      regexCn: Regexes.tether({ id: '0012' }),
-      regexKo: Regexes.tether({ id: '0012' }),
       run: function(data, matches) {
         data.thornMap = data.thornMap || {};
         data.thornMap[matches.source] = data.thornMap[matches.source] || [];

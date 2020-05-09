@@ -659,8 +659,6 @@
         'Void Sprite': 'Nichts-Exergon',
         'Wailing Atomos': 'Heul-Atomos',
       },
-      'replaceText': {
-      },
       '~effectNames': {
         'Fire Resistance Down Ii': 'Feuerresistenz - \\(stark\\)',
         'Noctoshield': 'Nachtschild',
@@ -686,8 +684,6 @@
         'Shadows gather on the floor': 'Le pouvoir des ombres se concentre sur le sol',
         'Void Sprite': 'élémentaire du vide',
         'Wailing Atomos': 'gueule gémissante',
-      },
-      'replaceText': {
       },
       '~effectNames': {
         'Fire Resistance Down Ii': 'Résistance au feu réduite\\+',
@@ -715,8 +711,6 @@
         'Void Sprite': 'ヴォイド・スプライト',
         'Wailing Atomos': '虚声のアトモス',
       },
-      'replaceText': {
-      },
       '~effectNames': {
         'Fire Resistance Down Ii': '火属性耐性低下\\[強\\]',
         'Noctoshield': 'ノクトシールド',
@@ -743,8 +737,6 @@
         'Void Sprite': '虚无元精',
         'Wailing Atomos': '虚声的阿托莫斯',
       },
-      'replaceText': {
-      },
       '~effectNames': {
         'Fire Resistance Down Ii': '火属性耐性大幅降低',
         'Noctoshield': '夜障',
@@ -770,8 +762,6 @@
         'Shadows gather on the floor': '바닥에 그림자의 힘이 모여듭니다',
         'Void Sprite': '보이드 정령',
         'Wailing Atomos': '허성의 아토모스',
-      },
-      'replaceText': {
       },
       '~effectNames': {
         'Fire Resistance Down Ii': '불속성 저항 감소[강]',

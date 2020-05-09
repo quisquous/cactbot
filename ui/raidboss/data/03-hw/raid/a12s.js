@@ -165,10 +165,10 @@
     {
       id: 'A12S Shared Sentence',
       regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
       condition: Conditions.targetIsYou(),
       infoText: {

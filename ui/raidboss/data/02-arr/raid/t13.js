@@ -178,8 +178,6 @@
         'Tempest Wing': 'Sturm-Schwinge',
         'Teraflare': 'Teraflare',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -222,8 +220,6 @@
         'Tempest Wing Tethers': 'Liens Aile de tempête',
         'Teraflare': 'TéraBrasier',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ja',
@@ -245,8 +241,6 @@
         'Rage Of Bahamut': '龍神の咆吼',
         'Tempest Wing': 'テンペストウィング',
         'Teraflare': 'テラフレア',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -270,8 +264,6 @@
         'Tempest Wing': '风暴之翼',
         'Teraflare': '万亿核爆',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -293,8 +285,6 @@
         'Rage Of Bahamut': '용신의 포효',
         'Tempest Wing': '폭풍우 날개',
         'Teraflare': '테라플레어',
-      },
-      '~effectNames': {
       },
     },
   ],

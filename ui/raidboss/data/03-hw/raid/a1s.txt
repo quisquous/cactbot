@@ -122,5 +122,5 @@ hideall "--sync--"
 
 ## Enrage
 3000.0 "--sync--" sync /:E49:Oppressor/ window 3000,0
-3000.0 "--sync--" sync /:E49:Oppressor 0.5/ window 3000,0
+3000.0 "--sync--" sync /:E49:Oppressor 0\.5/ window 3000,0
 3010.0 "Self-Destruct Enrage" sync /:Oppressor:E49:/
