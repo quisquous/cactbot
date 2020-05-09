@@ -679,7 +679,7 @@
         de: 'Auf Tank im Turm sammeln',
         fr: 'Package tanks dans les tours',
         cn: '坦克塔内分摊',
-        ko: '탱커 집합',
+        ko: '탱커 쉐어',
       },
     },
     {

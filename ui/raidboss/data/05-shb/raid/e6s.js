@@ -77,12 +77,14 @@
             en: 'north',
             de: 'nord',
             fr: 'nord',
+            ko: '북',
           };
         } else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116) {
           safeZoneObj1 = {
             en: 'south',
             de: 'süd',
             fr: 'sud',
+            ko: '남',
           };
         }
 
@@ -91,12 +93,14 @@
             en: 'west',
             de: 'west',
             fr: 'ouest',
+            ko: '서',
           };
         } else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116) {
           safeZoneObj2 = {
             en: 'east',
             de: 'ost',
             fr: 'est',
+            ko: '동',
           };
         }
 
@@ -104,6 +108,7 @@
           en: safeZoneObj1.en + safeZoneObj2.en,
           de: safeZoneObj1.de + safeZoneObj2.de,
           fr: safeZoneObj1.fr + safeZoneObj2.fr,
+          ko: safeZoneObj1.ko + safeZoneObj2.ko + '쪽으로',
         };
       },
       infoText: function(data) {
