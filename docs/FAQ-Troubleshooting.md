@@ -42,14 +42,14 @@ If the overlay doesn't register your casting/catches/reeling in your rod there a
 
 - **Ingame chat log filter**
 
-![image](https://user-images.githubusercontent.com/12807478/68880497-47da3300-0703-11ea-9cf2-2d785656bb04.png)
+![image](images/troubleshooting_chatlogfilter.png)
 
 You need to have at least one chat log set to show `Own Gathering Messages` You can find this option in
 `Character Configuration` -> `Log Window Settings` -> `Log Filters 1/2/3/4` -> `Announcements`
 
 - **ACT FFXIV Plugin options**
 
-![image](https://user-images.githubusercontent.com/12807478/68882607-693d1e00-0707-11ea-96d1-ede45644842a.png)
+![image](images/troubleshooting_hidechatlog.png)
 
 You must have the `Hide Chat Log (for privacy)` option disabled.
 
