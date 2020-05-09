@@ -249,7 +249,7 @@
         '--rocks fall--': '--Felsen fallen--',
         'Acid Rain': 'Säureregen',
         'Alarum': 'Alarm',
-        'Bomb': 'Bombe',
+        '(?<!Scrap )Bomb(?!e)': 'Bombe',
         'Explosion': 'Explosion',
         'Full-Metal Faust Add': 'Vollmetall-Faust Add',
         'Heat Shielding Reassembly': 'Hitzeschild-Regeneration',
@@ -284,7 +284,7 @@
       'replaceText': {
         'Acid Rain': 'Pluie acide',
         'Alarum': 'alarum',
-        'Bomb': 'bombe',
+        '(?<!Scrap )Bomb(?!e)': 'bombe',
         'Explosion': 'Explosion',
         'Heat Shielding Reassembly': 'Régénération du bouclier thermique',
         'Kaltstrahl': 'Kaltstrahl',
@@ -313,7 +313,7 @@
       'replaceText': {
         'Acid Rain': '酸性雨',
         'Alarum': 'アラーム',
-        'Bomb': '爆弾',
+        '(?<!Scrap )Bomb': '爆弾',
         'Explosion': '爆発',
         'Heat Shielding Reassembly': '装甲再生',
         'Kaltstrahl': 'カルトシュトラール',
@@ -342,7 +342,7 @@
       'replaceText': {
         'Acid Rain': '酸雨',
         'Alarum': '警报',
-        'Bomb': '炸弹',
+        '(?<!Scrap )Bomb': '炸弹',
         'Explosion': '爆炸',
         'Heat Shielding Reassembly': '装甲再生',
         'Kaltstrahl': '寒光',
@@ -371,7 +371,7 @@
       'replaceText': {
         'Acid Rain': '산성비',
         'Alarum': '경보기',
-        'Bomb': '폭탄',
+        '(?<!Scrap )Bomb': '폭탄',
         'Explosion': '폭발',
         'Heat Shielding Reassembly': '장갑 재생',
         'Kaltstrahl': '냉병기 공격',

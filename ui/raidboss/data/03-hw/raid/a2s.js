@@ -129,7 +129,7 @@
         'Jagd Doll': 'Jagdpuppe',
         'King Gobtank G-IV': 'Königs-Gobmaschine IV',
         'Magitek Gobwidow G-IX': 'Gob-Witwe IX',
-        '(?<![Giant |Trumpf])Bomb': 'Bombe',
+        '(?<!Giant )Bomb(?!e)': 'Bombe',
       },
       'replaceText': {
         'Blitzstrahl': 'Blitzstrahl',
