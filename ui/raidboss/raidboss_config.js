@@ -179,6 +179,13 @@ let kDetailKeys = {
     cls: 'regex-text',
     debugOnly: true,
   },
+  'triggerNetRegex': {
+    label: {
+      en: 'netregex',
+    },
+    cls: 'regex-text',
+    debugOnly: true,
+  },
   'timelineRegex': {
     label: {
       en: 'timeline',
@@ -606,20 +613,31 @@ class RaidbossConfigurator {
     trig.output = output;
 
     let lang = this.base.lang;
-    let regexLocale = 'regex' + lang.charAt(0).toUpperCase() + lang.slice(1);
-    let baseRegex = Regexes.parse(trig[regexLocale] || trig.regex);
-    // FIXME: the current \y{Name} is extremely verbose due to some unicode characters.
-    // It would be nice to replace it with something much simpler like `.*?`, as Regexes does.
-    // However, this doesn't work for all regexes yet until they are converted over.
-    // Once everything using \y{Name} is using Regexes, then get rid of this hack by making
-    // \y{Name} be `.*?` itself (or something much simpler along those lines).
-    baseRegex = baseRegex.source.replace(/\\y\{Name}/g, '.*?');
-    let parsedRegex = Regexes.parse(baseRegex);
 
-    if (trig.isTimelineTrigger)
-      trig.timelineRegex = parsedRegex;
-    else
-      trig.triggerRegex = parsedRegex;
+    let getRegex = (baseField) => {
+      let shortLanguage = lang.charAt(0).toUpperCase() + lang.slice(1);
+      let langSpecificRegex = trig[baseField + shortLanguage] || trig[baseField];
+      if (!langSpecificRegex)
+        return;
+      let baseRegex = Regexes.parse(langSpecificRegex);
+      // FIXME: the current \y{Name} is extremely verbose due to some unicode characters.
+      // It would be nice to replace it with something much simpler like `.*?`, as Regexes does.
+      // However, this doesn't work for all regexes yet until they are converted over.
+      // Once everything using \y{Name} is using Regexes, then get rid of this hack by making
+      // \y{Name} be `.*?` itself (or something much simpler along those lines).
+
+      if (!baseRegex)
+        return;
+      baseRegex = baseRegex.source.replace(/\\y\{Name}/g, '.*?');
+      return Regexes.parse(baseRegex);
+    };
+
+    if (trig.isTimelineTrigger) {
+      trig.timelineRegex = getRegex('regex');
+    } else {
+      trig.triggerRegex = getRegex('regex');
+      trig.triggerNetRegex = getRegex('netRegex');
+    }
 
     return trig;
   }
