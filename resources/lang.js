@@ -129,6 +129,15 @@ class CactbotLanguage {
       EurekaPyros: /(Eureka Pyros|Unknown Zone \(31B\))/,
       EurekaHydatos: /(Eureka Hydatos|Unknown Zone \(33B\))/,
     });
+
+    this.kLanguages = Object.freeze([
+      'ja',
+      'en',
+      'de',
+      'fr',
+      'cn',
+      'ko',
+    ]);
   }
 
   InitStrings() {

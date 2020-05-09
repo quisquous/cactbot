@@ -2352,7 +2352,7 @@ class Bars {
       if (log[15] == '0') {
         let r = log.match(gLang.countdownStartRegex());
         if (r != null) {
-          let seconds = parseFloat(r[1]);
+          let seconds = parseFloat(r.groups.time);
           this.SetPullCountdown(seconds);
           continue;
         }

@@ -84,20 +84,55 @@ class CactbotLanguageJa extends CactbotLanguage {
       Pull: 'タゲ取る',
     });
 
+    this.kPetNames = Object.freeze([
+      // Pulled from https://xivapi.com/Pet?pretty=true&language=ja
+      'カーバンクル・エメラルド',
+      'カーバンクル・トパーズ',
+      'イフリート・エギ',
+      'タイタン・エギ',
+      'ガルーダ・エギ',
+      'フェアリー・エオス',
+      'フェアリー・セレネ',
+      'オートタレット・ルーク',
+      'オートタレット・ビショップ',
+      'デミ・バハムート',
+      'デミ・フェニックス',
+      'セラフィム',
+      'カーバンクル・ムーンストーン',
+      '英雄の影身',
+      'オートマトン・クイーン',
+      '分身',
+    ]);
+
     this.countdownStartRegex = function() {
-      return Regexes.parse(/戦闘開始まで(\y{Float})秒！/);
+      return Regexes.gameLog({
+        capture: true,
+        line: '戦闘開始まで(?<time>\\y{Float})秒！',
+      });
     };
     this.countdownEngageRegex = function() {
-      return /:戦闘開始！/;
+      return Regexes.gameLog({
+        capture: true,
+        line: '戦闘開始！',
+      });
     };
     this.countdownCancelRegex = function() {
-      return /:(\y{Name})により、戦闘開始カウントがキャンセルされました。/;
+      return Regexes.gameLog({
+        capture: true,
+        line: '(?<name>\\y{Name})により、戦闘開始カウントがキャンセルされました。',
+      });
     };
     this.areaSealRegex = function() {
-      return /:(.*)の封鎖まであと(\y{float})秒/;
+      return Regexes.gameLog({
+        capture: true,
+        line: '(?<name>\\y{Name})の封鎖まであと(?<time>\\y{Float})秒.*?',
+      });
     };
     this.areaUnsealRegex = function() {
-      return /:(.*)の封鎖が解かれた……/;
+      return Regexes.gameLog({
+        capture: true,
+        line: '(?<name>\\y{Name})の封鎖が解かれた……',
+      });
     };
   }
 }
