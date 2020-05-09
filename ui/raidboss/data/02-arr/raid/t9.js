@@ -244,16 +244,17 @@
       regexCn: Regexes.addedCombatantFull({ name: ['火角', '冰爪', '雷翼'] }),
       regexKo: Regexes.addedCombatantFull({ name: ['화염뿔', '얼음발톱', '번개날개'] }),
       run: function(data, matches) {
+        // Lowercase all of the names here for case insensitive matching.
         let allNames = {
-          en: ['Firehorn', 'Iceclaw', 'Thunderwing'],
-          de: ['Feuerhorn', 'Eisklaue', 'Donnerschwinge'],
+          en: ['firehorn', 'iceclaw', 'thunderwing'],
+          de: ['feuerhorn', 'eisklaue', 'donnerschwinge'],
           fr: ['corne-de-feu', 'griffe-de-glace ', 'aile-de-foudre'],
           ja: ['ファイアホーン', 'アイスクロウ', 'サンダーウィング'],
           cn: ['火角', '冰爪', '雷翼'],
           ko: ['화염뿔', '얼음발톱', '번개날개'],
         };
         let names = allNames[data.lang];
-        let idx = names.indexOf(matches.name);
+        let idx = names.indexOf(matches.name.toLowerCase());
         if (idx == -1)
           return;
 
@@ -286,9 +287,17 @@
         data.tetherCount = 0;
         data.naelDiveMarkerCount = 0;
 
+        // Missing dragons??
+        if (!data.dragons || data.dragons.length != 3) {
+          data.naelMarks = ['?', '?'];
+          data.safeZone = '?';
+          return;
+        }
+
         // T9 normal dragons are easy.
         // The first two are always split, so A is the first dragon + 1.
         // The last one is single, so B is the last dragon + 1.
+
         let dragons = data.dragons.sort();
         let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
         data.naelMarks = [dragons[0], dragons[2]].map(function(i) {
