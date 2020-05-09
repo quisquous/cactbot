@@ -82,8 +82,6 @@
         'Rook': 'Drehturm',
         'Soldier': 'Soldat',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -108,8 +106,6 @@
         'Rook': 'Drone',
         'Soldier': 'Soldat',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ja',
@@ -123,8 +119,6 @@
       },
       'replaceText': {
         'Emergency Override': 'エマージェンシー・オーバーライド',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -141,8 +135,6 @@
         'Bug': '故障虫',
         'Emergency Override': '紧急超驰控制',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -157,8 +149,6 @@
       'replaceText': {
         'Bug': '버그',
         'Emergency Override': '긴급 체제 변환',
-      },
-      '~effectNames': {
       },
     },
   ],

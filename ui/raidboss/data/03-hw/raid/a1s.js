@@ -87,7 +87,7 @@
     },
     {
       id: 'A1S Hypercompressed Collect',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\.5'] }),
+      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
       regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
@@ -179,8 +179,6 @@
         'Self-Destruct': 'Selbstzerstörung',
         'Sturm Doll': 'Sturmpuppe',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -209,8 +207,6 @@
         'Royal Fount': 'Source royale',
         'Self-Destruct': 'Auto-destruction',
         'Sturm Doll Add': 'Add poupée sturm',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -241,8 +237,6 @@
         'Self-Destruct': '自爆',
         'Sturm Doll': 'シュツルムドール',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'cn',
@@ -272,8 +266,6 @@
         'Self-Destruct': '自爆',
         'Sturm Doll': '风暴人偶',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -302,8 +294,6 @@
         'Royal Fount': '과열 분사',
         'Self-Destruct': '자폭',
         'Sturm Doll': '인형 폭기병',
-      },
-      '~effectNames': {
       },
     },
   ],

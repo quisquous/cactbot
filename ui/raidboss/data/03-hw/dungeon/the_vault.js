@@ -219,8 +219,6 @@
         'Solid Ascension': 'Gipfelstürmer',
         'White Knight\'s Tour': 'Weißer Rösselsprung',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -266,8 +264,6 @@
         'Solid Ascension': 'Ascension solide',
         'White Knight\'s Tour': 'Tour de cavalier blanc',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ja',
@@ -311,8 +307,6 @@
         'Shining Blade': 'シャインブレード',
         'Solid Ascension': 'ソリッドライズ',
         'White Knight\'s Tour': 'ホワイトナイトツアー',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -358,8 +352,6 @@
         'Solid Ascension': '实体升天',
         'White Knight\'s Tour': '白骑士之旅',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -403,8 +395,6 @@
         'Shining Blade': '빛나는 칼날',
         'Solid Ascension': '불변의 승천',
         'White Knight\'s Tour': '백기사 행진',
-      },
-      '~effectNames': {
       },
     },
   ],

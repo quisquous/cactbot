@@ -97,19 +97,11 @@
       'replaceSync': {
         'Allagan Rot': 'Allagische Fäulnis',
       },
-      'replaceText': {
-      },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Allagan Rot': 'Pourriture allagoise',
-      },
-      'replaceText': {
-      },
-      '~effectNames': {
       },
     },
     {
@@ -117,29 +109,17 @@
       'replaceSync': {
         'Allagan Rot': 'アラガンロット',
       },
-      'replaceText': {
-      },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'cn',
       'replaceSync': {
         'Allagan Rot': '亚拉戈古病毒',
       },
-      'replaceText': {
-      },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
       'replaceSync': {
         'Allagan Rot': '알라그 부패',
-      },
-      'replaceText': {
-      },
-      '~effectNames': {
       },
     },
   ],

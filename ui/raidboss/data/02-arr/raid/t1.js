@@ -92,6 +92,11 @@
     {
       id: 'T1 Slime Timer First',
       regex: Regexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
+      regexDe: Regexes.message({ line: 'Allagische Superstruktur will be sealed off.*?', capture: false }),
+      regexFr: Regexes.message({ line: 'Mégastructure allagoise will be sealed off.*?', capture: false }),
+      regexJa: Regexes.message({ line: 'アラグの遺構 will be sealed off.*?', capture: false }),
+      regexCn: Regexes.message({ line: '亚拉戈遗构 will be sealed off.*?', capture: false }),
+      regexKo: Regexes.message({ line: '알라그 유적 will be sealed off.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {
@@ -128,10 +133,6 @@
         'Dark Matter Slime': 'Dunkelmaterien-Schleim',
         'The Allagan megastructure': 'Allagische Superstruktur',
       },
-      'replaceText': {
-      },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -140,10 +141,6 @@
         'Caduceus': 'Caducée',
         'Dark Matter Slime': 'Gluant de matière sombre',
         'The Allagan megastructure': 'Mégastructure allagoise',
-      },
-      'replaceText': {
-      },
-      '~effectNames': {
       },
     },
     {
@@ -154,10 +151,6 @@
         'Dark Matter Slime': 'ダークマター・スライム',
         'The Allagan megastructure': 'アラグの遺構',
       },
-      'replaceText': {
-      },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'cn',
@@ -167,10 +160,6 @@
         'Dark Matter Slime': '暗物质粘液怪',
         'The Allagan megastructure': '亚拉戈遗构',
       },
-      'replaceText': {
-      },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -179,10 +168,6 @@
         'Caduceus': '뱀 지팡이',
         'Dark Matter Slime': '암흑물질 슬라임',
         'The Allagan megastructure': '알라그 유적',
-      },
-      'replaceText': {
-      },
-      '~effectNames': {
       },
     },
   ],

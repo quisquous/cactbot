@@ -255,8 +255,6 @@
         'Seed Of The Sea/Rivers': 'Samen der See/Flüsse',
         'Stun': 'Betäubung',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -278,8 +276,6 @@
         'Seed Of The Sea/Rivers': 'Germe de la mer/rivière',
         'Stun': 'Étourdissement',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ja',
@@ -299,8 +295,6 @@
         'Resonance': 'レゾナンス',
         'Secondary Head': 'サブヘッド',
         'Stun': 'スタン',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -322,8 +316,6 @@
         'Secondary Head': '侧首',
         'Stun': '眩晕',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -343,8 +335,6 @@
         'Resonance': '공명',
         'Secondary Head': '옆 머리',
         'Stun': '기절',
-      },
-      '~effectNames': {
       },
     },
   ],

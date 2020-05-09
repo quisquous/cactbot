@@ -289,8 +289,6 @@
         'Slosh': 'Durchbläuen',
         'Triclip': 'Dreischnitt',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -336,8 +334,6 @@
         'Slosh': 'Ruée',
         'Triclip': 'Triclip',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ja',
@@ -379,8 +375,6 @@
         'Searing Wind': '熱風',
         'Slosh': '突進',
         'Triclip': 'トライクリップ',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -424,8 +418,6 @@
         'Slosh': '突进',
         'Triclip': '三连爪',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -467,8 +459,6 @@
         'Searing Wind': '열풍',
         'Slosh': '돌진',
         'Triclip': '삼단베기',
-      },
-      '~effectNames': {
       },
     },
   ],

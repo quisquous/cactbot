@@ -188,8 +188,6 @@
         'Universal Manipulation': 'Umwertung aller Werte',
         'Weighing of the Heart': 'Gewissensprüfung',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -242,8 +240,6 @@
         'Steel Scales': 'Écailles d\'acier',
         'Universal Manipulation': 'Manipulation universelle',
         'Weighing of the Heart': 'Pesée du cœur',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -298,8 +294,6 @@
         'Universal Manipulation': '法則改変',
         'Weighing of the Heart': '転生の儀',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'cn',
@@ -353,8 +347,6 @@
         'Universal Manipulation': '法则变更',
         'Weighing of the Heart': '转生之仪',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
@@ -407,8 +399,6 @@
         'Steel Scales': '강철 비늘',
         'Universal Manipulation': '법칙 변조',
         'Weighing of the Heart': '윤회 의식',
-      },
-      '~effectNames': {
       },
     },
   ],
