@@ -354,7 +354,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Armored Pauldron': 'Schulterplatte',
         'Claster': 'Claster-Mecha',
