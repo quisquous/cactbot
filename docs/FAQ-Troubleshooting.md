@@ -68,3 +68,29 @@ You will need to restart ACT for this setting to take effect.
 
 - ask in the [FFXIV ACT discord](https://discord.gg/ahFKcmx) #troubleshooting channel
 - open a [github issue](https://github.com/quisquous/cactbot/issues)
+
+## How To Find A Network Log
+
+If you are having issues with triggers or timelines,
+it can be useful to attach a network log from ACT
+so that the [network logs](LogGuide.md#network-log-lines)
+can be replayed and investigated for errors.
+
+To find your network logs, go to the **Plugins** tab in ACT,
+click the **FFXIV Settings** button,
+and then click **Open FFXIV Log Folder**.
+
+![image](images/troubleshooting_openlogfolder.png)
+
+This will open up a folder window with files in it.
+Select a file named something like **Network_etc.log**.
+The files are named with your FFXIV ACT Plugin version and the date.
+
+![image](images/troubleshooting_networklog.png)
+
+These files are often large, so zip them up first.
+
+You can attach these to github issues directly.
+Alternatively, find some file hosting site,
+upload the files there,
+and then attach the link.
