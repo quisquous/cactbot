@@ -769,7 +769,7 @@
           return;
         return {
           en: 'Water Soon on ' + data.ShortName(data.water),
-          de: 'Wasser bald auf ' + data.ShortName(matches.target),
+          de: 'Wasser bald auf ' + data.ShortName(data.water),
           cn: '马上水分摊' + data.ShortName(data.water),
         };
       },
