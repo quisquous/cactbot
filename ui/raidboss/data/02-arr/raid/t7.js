@@ -229,10 +229,12 @@
       'locale': 'de',
       'replaceSync': {
         'Bioweapon Storage': 'Biowaffen-Magazin',
-        'Lamia Prosector': 'Lamia-Prosektorin',
-        'Melusine': 'Melusine',
         'Cursed Shriek': 'Schrei der Verwünschung',
         'Cursed Voice': 'Stimme der Verwünschung',
+        'Lamia Prosector': 'Lamia-Prosektorin',
+        'Melusine': 'Melusine',
+        'Proto-Chimera': 'Proto-Chimära',
+        'Renaud': 'Renaud',
       },
       'replaceText': {
         'Circle Blade': 'Kreisklinge',
@@ -247,16 +249,23 @@
         'Tail Slap': 'Schweifklapser',
         'Venomous Tail': 'Venomschweif',
       },
+      '~effectNames': {
+        'Cursed Shriek': 'Schrei der Verwünschung',
+        'Cursed Voice': 'Stimme der Verwünschung',
+      },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Bioweapon Storage': 'l\'entrepôt d\'armes biologiques',
+        'Cursed Shriek': 'Cri maudit',
+        'Cursed Voice': 'Voix maudite',
         'Lamia Prosector': 'Lamia dissectrice',
         'Melusine': 'Mélusine',
+        'Proto-Chimera': 'Protochimère',
+        'Renaud': 'Renaud',
       },
       'replaceText': {
-        '\\(NW\\)': '(NO)',
         'Circle Blade': 'Lame circulaire',
         'Circle Of Flames': 'Cercle de flammes',
         'Cursed Shriek': 'Cri maudit',
@@ -269,13 +278,21 @@
         'Tail Slap': 'Gifle caudale',
         'Venomous Tail': 'Queue venimeuse',
       },
+      '~effectNames': {
+        'Cursed Shriek': 'Cri du maléfice',
+        'Cursed Voice': 'Voix du maléfice',
+      },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
+        'Bioweapon Storage': '生体管理区',
+        'Cursed Shriek': '呪詛の叫声',
+        'Cursed Voice': '呪詛の声',
         'Lamia Prosector': 'ラミア・プロセクター',
         'Melusine': 'メリュジーヌ',
+        'Proto-Chimera': 'プロトキマイラ',
+        'Renaud': 'ルノー',
       },
       'replaceText': {
         'Circle Blade': 'サークルブレード',
@@ -290,13 +307,21 @@
         'Tail Slap': 'テールスラップ',
         'Venomous Tail': 'ベノモステール',
       },
+      '~effectNames': {
+        'Cursed Shriek': '呪詛の叫声',
+        'Cursed Voice': '呪詛の声',
+      },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
+        'Bioweapon Storage': '生体管理区',
+        'Cursed Shriek': '诅咒之嚎',
+        'Cursed Voice': '诅咒之声',
         'Lamia Prosector': '拉米亚解剖女王',
         'Melusine': '美瑠姬奴',
+        'Proto-Chimera': '原型奇美拉',
+        'Renaud': '雷诺',
       },
       'replaceText': {
         'Circle Blade': '回旋斩',
@@ -311,13 +336,21 @@
         'Tail Slap': '尾部猛击',
         'Venomous Tail': '猛毒之尾',
       },
+      '~effectNames': {
+        'Cursed Shriek': '诅咒之嚎',
+        'Cursed Voice': '诅咒之声',
+      },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
+        'Bioweapon Storage': '생체 관리 구역',
+        'Cursed Shriek': '저주의 외침',
+        'Cursed Voice': '저주의 목소리',
         'Lamia Prosector': '라미아 시체해부자',
         'Melusine': '멜뤼진',
+        'Proto-Chimera': '프로토 키마이라',
+        'Renaud': '르노',
       },
       'replaceText': {
         'Circle Blade': '회전 베기',
@@ -331,6 +364,10 @@
         'Sacrifice': '제물',
         'Tail Slap': '꼬리치기',
         'Venomous Tail': '맹독 꼬리',
+      },
+      '~effectNames': {
+        'Cursed Shriek': '저주의 외침',
+        'Cursed Voice': '저주의 목소리',
       },
     },
   ],

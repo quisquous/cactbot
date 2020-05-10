@@ -11,7 +11,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'My shields are impregnable': 'Spür das Schild des Kaisers',
         'Rhitahtyn sas Arvina': 'Rhitahtyn sas Arvina',
