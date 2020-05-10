@@ -311,7 +311,7 @@
         'Brink of Death': 'Brink of Death',
         'Fetters': 'Fetters',
         'Heavy': 'Heavy',
-        'Summon Order': 'Summon Order', 
+        'Summon Order': 'Summon Order',
       },
     },
   ],
