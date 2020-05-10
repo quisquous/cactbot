@@ -272,9 +272,8 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': 'Kondensatoranlage 9',
+        'Condensate Demineralizer \\.9': 'Kondensatoranlage 9',
         'Hydrate Core': 'Hydratkern',
         'Liquid Limb': 'belebt(?:e|er|es|en) Hand',
         'Liquid Rage': 'levitiert(?:e|er|es|en) Rage',
@@ -292,7 +291,6 @@
         'Fluid Swing': 'Flüssiger Schwung',
         'Gear Lubricant': 'Getriebeschmiermittel',
         'Hand Of Pain': 'Qualhand',
-        'Hand Of Parting': 'Scheidende Hand',
         'Hand Of Prayer': 'Betende Hand',
         'Hydromorph': 'Hydromorphose',
         'Magnetism': 'Magnetismus',
@@ -309,7 +307,7 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': 'Grand condensateur GC-9',
+        'Condensate Demineralizer \\.9': 'Grand condensateur GC-9',
         'Hydrate Core': 'noyau d\'hydrate',
         'Liquid Limb': 'membre liquide',
         'Liquid Rage': 'furie liquide',
@@ -327,7 +325,6 @@
         'Fluid Swing': 'Coup fluide',
         'Gear Lubricant': 'lubrifiant d\'engrenage',
         'Hand Of Pain': 'Main de douleur',
-        'Hand Of Parting': 'Main de séparation',
         'Hand Of Prayer': 'Main de prière',
         'Hydromorph': 'Hydromorphe',
         'Magnetism': 'Magnétisme',
@@ -344,7 +341,7 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': '第9大型復水器',
+        'Condensate Demineralizer \\.9': '第9大型復水器',
         'Hydrate Core': 'ハイドレードコア',
         'Liquid Limb': 'リキッドハンド',
         'Liquid Rage': 'リキッドレイジ',
@@ -362,7 +359,6 @@
         'Fluid Swing': 'フルイドスイング',
         'Gear Lubricant': 'ギアオイル',
         'Hand Of Pain': 'ハンド・オブ・ペイン',
-        'Hand Of Parting': 'ハンド・オブ・パーティング',
         'Hand Of Prayer': 'ハンド・オブ・プレイヤー',
         'Hydromorph': 'ハイドロモーフ',
         'Magnetism': '磁力',
@@ -379,7 +375,7 @@
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': '第9大型冷凝器',
+        'Condensate Demineralizer \\.9': '第9大型冷凝器',
         'Hydrate Core': '水合核心',
         'Liquid Limb': '活水之手',
         'Liquid Rage': '活水之怒',
@@ -397,7 +393,6 @@
         'Fluid Swing': '流体摆动',
         'Gear Lubricant': '齿轮润滑剂',
         'Hand Of Pain': '苦痛之手',
-        'Hand Of Parting': '离别之手',
         'Hand Of Prayer': '祈祷之手',
         'Hydromorph': '水态转换',
         'Magnetism': '磁力',
@@ -414,7 +409,7 @@
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
-        'Condensate Demineralizer .9': '제9대형복수기',
+        'Condensate Demineralizer \\.9': '제9대형복수기',
         'Hydrate Core': '액화 핵',
         'Liquid Limb': '액체 손',
         'Liquid Rage': '분노한 액체',
@@ -432,7 +427,6 @@
         'Fluid Swing': '유체 타격',
         'Gear Lubricant': '기어 윤활유',
         'Hand Of Pain': '고통의 손길',
-        'Hand Of Parting': '작별의 손길',
         'Hand Of Prayer': '기도의 손길',
         'Hydromorph': '액상 변이',
         'Magnetism': '자력',
