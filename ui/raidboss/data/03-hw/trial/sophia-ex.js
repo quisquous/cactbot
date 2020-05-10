@@ -110,6 +110,8 @@
         // The center two clones aren't exactly on the centerline, so we round the X coordinates.
         if (Math.round(x) != 0)
           positionString += Math.round(x) < 0 ? 'W' : 'E';
+        // Yes, we have to specifically uppercase this for 03 log lines.
+        // No, I don't know why. Blame Square/Ravahn/Hydaelyn.
         data.cloneSpots[matches.id.toUpperCase()] = positionString;
       },
     },
