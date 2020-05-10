@@ -36,4 +36,34 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'missingTranslations': true,
+      'replaceSync': {
+        '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        '5 minutes have elapsed since your last activity': 'Votre personnage est inactif depuis 5 minutes',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        '5 minutes have elapsed since your last activity': '已经5分钟没有进行任何操作',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        '5 minutes have elapsed since your last activity': '5분 동안 아무 조작을 하지 않았습니다',
+      },
+    },
+  ],
 }];

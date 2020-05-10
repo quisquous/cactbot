@@ -606,7 +606,7 @@
       // Note: These use 00:329e: lines, without any proper "gains effect" lines.
       id: 'BA AV Eidos Relative Virtue Astral',
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relativ(?:e|er|es|en) Tugend gains the effect of Arm des Lichts.*?', capture: false }),
       regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Lumière.*?', capture: false }),
       regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕.*?', capture: false }),
       regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔.*?', capture: false }),
@@ -623,7 +623,7 @@
       // Note: These use 00:329e: lines, without any proper "gains effect" lines.
       id: 'BA AV Eidos Relative Virtue Umbral',
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Relativ(?:e|er|es|en) Tugend gains the effect of Arm der Dunkelheit.*?', capture: false }),
       regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Ténèbres.*?', capture: false }),
       regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕.*?', capture: false }),
       regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔.*?', capture: false }),
@@ -989,30 +989,28 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
+        '(?<! )Ozma(?!\\w)': 'Yadis',
+        '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
         'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
         'Arsenal Centaur': 'Arsenal-Zentaur',
         'Art': 'Art',
         'Ball Lightning': 'Elektrosphäre',
         'Cloudlarker': 'Wolkenlauerer',
         'Ivory Palm': 'weiß(?:e|er|es|en) Hand',
+        'Munderg, turn blood to ice': 'Munderg, das Eis der Ewigkeit soll sie für Äonen bannen',
+        'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
         'Orlasrach': 'Orlasrach',
         'Owain': 'Owain',
-        '(?<! )Ozma(?!\\w)': 'Yadis',
         'Ozmashade': 'Yadis-Schatten',
-        'Proto Ozma(?!\ containment)': 'Proto-Yadis',
+        'Proto Ozma(?! containment)': 'Proto-Yadis',
         'Raiden': 'Raiden',
-        'Relative Virtue': 'Relative Tugend',
+        'Relative Virtue': 'Relativ(?:e|er|es|en) Tugend',
         'Shadow': 'Proto-Yadis-Schatten',
         'Streak Lightning': 'Blitzladung',
-        'The Lance of Virtue Containment Unit': 'The Lance of Virtue Containment Unit', // FIXME
-        'The Proto Ozma Containment Unit': 'The Proto Ozma Containment Unit', // FIXME
-        'The Shin-Zantetsuken Containment Unit': 'The Shin-Zantetsuken Containment Unit', // FIXME
-        '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
+        'The Lance of Virtue Containment Unit': 'Lanze der Tugend-Quarantäneblock',
+        'The Shin-Zantetsuken Containment Unit': 'Shin-Zantetsuken-Quarantäneblock',
         'The memories of heroes past live on again': 'Das Vermächtnis vergangener Helden lebt von Neuem auf',
-        'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
-        'Munderg, turn blood to ice': 'Munderg, das Eis der Ewigkeit soll sie für Äonen bannen',
       },
       'replaceText': {
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
@@ -1021,20 +1019,19 @@
         'Ame-no-Sakahoko': 'Himmelsriposte',
         'Astral Essence': 'Arm des Lichts',
         'Auroral Wind': 'Aurorawind',
-        'Berserk': 'Berserker',
         'Bitter Barbs': 'Dornige Schuld',
         'Black Hole': 'Schwarzes Loch',
-        'Bleed Attack': 'Bleed Attack', // FIXME
+        'Bleed Attack': 'Blutungs-Angriff',
         'Booming Lament': 'Donnerschlag der Trauer',
         'Call Wyvern': 'Wyvernruf',
-        'Carver/Spinner': 'Carver/Spinner', // FIXME
+        'Carver/Spinner': 'Schnitzer/Spinner',
         'Cloud to Ground': 'Sturmkonzentration',
-        'Cube Form': 'Cube Form', // FIXME
+        'Cube Form': 'Würfel Form',
         'Eidos': 'Sarva',
         'Elemental Magicks': 'Elementmagie',
         'Elemental Shift': 'Elementwechsel',
         'Execration': 'Exsekration',
-        'Explosion Enrage': 'Explosion Enrage', // FIXME
+        'Explosion Enrage': 'Explosion Finalangriff',
         'Explosive Impulse': 'Explosiver Impuls',
         'Flare Star': 'Flare-Stern',
         'For Honor': 'Hieb der Gefallenen',
@@ -1053,25 +1050,25 @@
         'Meteor': 'Meteo',
         'Mourning Star': 'Morgenstern',
         'Mythcall': 'Mythenruf',
-        'Orb x5': 'Orb x5', // FIXME
-        'Ozma Ability': 'Ozma Ability', // FIXME
+        'Orb x5': 'Kugel x5',
+        'Ozma Ability': 'Yadis Fähigkeit',
         'Piercing Dark': 'Lanze der Finsternis',
         'Piercing Light': 'Lanze des Lichts',
         'Pitfall': 'Berstender Boden',
-        'Pyramid Form': 'Pyramid Form', // FIXME
-        'Random Form': 'Random Form', // FIXME
-        'Random Shade': 'Random Shade', // FIXME
-        'Shade Ability': 'Shade Ability', // FIXME
+        'Pyramid Form': 'Pyramiden Form',
+        'Random Form': 'Zufällige Form',
+        'Random Shade': 'Zufällige Schatten',
+        'Shade Ability': 'Schatten Fähigkeit',
         'Shingan': 'Betäubungsschlag',
         'Shooting Star': 'Sternschnuppe',
-        'Soak Attack': 'Soak Attack', // FIXME
-        'Spear Copy': 'Spear Copy', // FIXME
-        'Spear Shade': 'Spear Shade', // FIXME
-        'Sphere Form': 'Sphere Form', // FIXME
+        'Soak Attack': 'Angriff absorbieren',
+        'Spear Copy': 'Speer kopieren',
+        'Spear Shade': 'Speer Schatten',
+        'Sphere Form': 'Kugel Form',
         'Spiritcull': 'Kettendämon',
         'Spirits of the Fallen': 'Heroische Seele',
-        'Stack': 'Stack', // FIXME
-        'Star Form': 'Star Form', // FIXME
+        'Stack': 'Sammeln',
+        'Star Form': 'Stern Form',
         'Streak Lightning': 'Blitzladung',
         'Thricecull': 'Dreifachlanze',
         'Thundercall': 'Donnerruf',
@@ -1079,7 +1076,7 @@
         'Ultimate Zantetsuken': 'Goku-Zantetsuken',
         'Umbral Essence': 'Arm der Dunkelheit',
         'Whirling Zantetsuken': 'Sen-Zantetsuken',
-        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
+        'Wyvern Explosion': 'Wyvern Explosion',
       },
       '~effectNames': {
         'Astral Essence': 'Arm des Lichts',
@@ -1090,34 +1087,32 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        '(?<! )Ozma(?!\\w)': 'Ozma',
+        '5 minutes have elapsed since your last activity': 'Votre personnage est inactif depuis 5 minutes',
         'Absolute Virtue': 'Vertu absolue',
-        'Arsenal Centaur': 'Centaure de l\'Arsenal',
+        'Arsenal Centaur': 'centaure de l\'Arsenal',
         'Art': 'Art',
-        'Ball Lightning': 'Orbe de foudre',
-        'Cloudlarker': 'Urolithe de l\'Arsenal',
-        'Ivory Palm': 'Paume d\'ivoire',
+        'Ball Lightning': 'orbe de foudre',
+        'Cloudlarker': 'rôdeur des nuages',
+        'Ivory Palm': 'paume d\'ivoire',
         'Orlasrach': 'Orlasrach',
         'Owain': 'Owain',
-        '(?<! )Ozma(?!\\w)': 'Ozma',
-        'Ozmashade': 'Ombre d\'Ozma',
-        'Proto Ozma(?!\ containment)': 'Proto-Ozma',
+        'Ozmashade': 'ombre d\'Ozma',
+        'Proto Ozma(?! containment)': 'Proto-Ozma',
         'Raiden': 'Raiden',
         'Relative Virtue': 'Vertu relative',
-        'Shadow': 'Ombre de Proto-Ozma',
+        'Shadow': 'ombre de Proto-Ozma',
         'Streak Lightning': 'Éclair chargeant',
-        'The Lance of Virtue Containment Unit': 'l\'enceinte de confinement de la lance de la vertu',
-        'The Proto Ozma Containment Unit': 'l\'enceinte de confinement de Proto-Ozma',
-        'The Shin-Zantetsuken Containment Unit': 'l\'enceinte de confinement de Shin-Zantetsuken',
+        'The Lance of Virtue Containment Unit': 'Enceinte de confinement de la lance de la vertu',
+        'The Shin-Zantetsuken Containment Unit': 'Enceinte de confinement de Shin-Zantetsuken',
       },
       'replaceText': {
-        '\\?': ' ?',
         'Acallam Na Senorach': 'Spirale sépulcrale',
         'Acceleration Bomb': 'Bombe accélératrice',
         'Adds': 'Adds',
         'Ame-no-Sakahoko': 'Ama-no-sakahoko',
         'Astral Essence': 'Bras de Lumière',
         'Auroral Wind': 'Vent d\'aurore',
-        'Berserk': 'Furie',
         'Bitter Barbs': 'Ronce du péché',
         'Black Hole': 'Trou noir',
         'Bleed Attack': 'Attaque saignement',
@@ -1137,7 +1132,7 @@
         'Holy': 'Miracle',
         'Hostile Aspect': 'Onde polarisée',
         'Impact Stream': 'Courant d\'impact',
-        'Ivory Palm': 'Paume d\'ivoire',
+        'Ivory Palm': 'paume d\'ivoire',
         'Lancing Bolt': 'Lance fulminante',
         'Lateral Zantetsuken': 'Hen Zantetsuken',
         'Legendary Geas': 'Tuerie spectrale',
@@ -1177,11 +1172,17 @@
         'Whirling Zantetsuken': 'Sen Zantetsuken',
         'Wyvern Explosion': 'Wyverne Explosion',
       },
+      '~effectNames': {
+        'Astral Essence': 'Bras de Lumière',
+        'Umbral Essence': 'Bras de Ténèbres',
+      },
     },
     {
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
+        '(?<! )Ozma(?!\\w)': 'オズマ',
+        '5 minutes have elapsed since your last activity': '5 minutes have elapsed since your last activity', // FIXME
         'Absolute Virtue': 'アブソリュートヴァーチュー',
         'Arsenal Centaur': 'アーセナル・セントール',
         'Art': 'アルト',
@@ -1190,38 +1191,31 @@
         'Ivory Palm': '白き手',
         'Orlasrach': 'オールラスラッハ',
         'Owain': 'オーウェン',
-        '(?<! )Ozma(?!\\w)': 'オズマ',
         'Ozmashade': 'オズマの影',
-        'Proto Ozma': 'プロトオズマ',
+        'Proto Ozma(?! containment)': 'プロトオズマ',
         'Raiden': 'ライディーン',
         'Relative Virtue': 'レラティブヴァーチュー',
         'Shadow': 'プロトオズマの影',
         'Streak Lightning': 'ストリークライトニング',
-        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
-        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
-        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
+        'The Lance of Virtue Containment Unit': 'ランス・オブ・ヴァーチュー封印区',
+        'The Shin-Zantetsuken Containment Unit': '真・斬鉄剣封印区',
+        'The memories of heroes past live on again': 'The memories of heroes past live on again',
       },
       'replaceText': {
         'Acallam Na Senorach': '真妖槍旋',
         'Acceleration Bomb': '加速度爆弾',
-        'Adds': 'Adds', // FIXME
         'Ame-no-Sakahoko': '天逆鉾',
         'Astral Essence': '光の腕',
         'Auroral Wind': 'オーロラルウィンド',
-        'Berserk': 'ベルセルク',
         'Bitter Barbs': '罪の荊棘',
         'Black Hole': 'ブラックホール',
-        'Bleed Attack': 'Bleed Attack', // FIXME
         'Booming Lament': '哀惜の雷鳴',
         'Call Wyvern': 'コールワイバーン',
-        'Carver/Spinner': 'Carver/Spinner', // FIXME
         'Cloud to Ground': '襲雷',
-        'Cube Form': 'Cube Form', // FIXME
         'Eidos': '変異',
         'Elemental Magicks': 'エレメンタルマジック',
         'Elemental Shift': 'エレメントスイッチ',
         'Execration': 'エクセクレイション',
-        'Explosion Enrage': 'Explosion Enrage', // FIXME
         'Explosive Impulse': 'エクスプロシブインパルス',
         'Flare Star': 'フレアスター',
         'For Honor': '戦死撃',
@@ -1240,25 +1234,13 @@
         'Meteor': 'メテオ',
         'Mourning Star': 'モーニングスター',
         'Mythcall': '幻槍招来',
-        'Orb x5': 'Orb x5', // FIXME
-        'Ozma Ability': 'Ozma Ability', // FIXME
         'Piercing Dark': '闇の槍',
         'Piercing Light': '光の槍',
         'Pitfall': '強襲',
-        'Pyramid Form': 'Pyramid Form', // FIXME
-        'Random Form': 'Random Form', // FIXME
-        'Random Shade': 'Random Shade', // FIXME
-        'Shade Ability': 'Shade Ability', // FIXME
         'Shingan': '真眼撃',
         'Shooting Star': 'シューティングスター',
-        'Soak Attack': 'Soak Attack', // FIXME
-        'Spear Copy': 'Spear Copy', // FIXME
-        'Spear Shade': 'Spear Shade', // FIXME
-        'Sphere Form': 'Sphere Form', // FIXME
         'Spiritcull': '連装魔',
         'Spirits of the Fallen': '英霊魂',
-        'Stack': 'Stack', // FIXME
-        'Star Form': 'Star Form', // FIXME
         'Streak Lightning': 'ストリークライトニング',
         'Thricecull': '三連槍',
         'Thundercall': '招雷',
@@ -1266,12 +1248,18 @@
         'Ultimate Zantetsuken': '極・斬鉄剣',
         'Umbral Essence': '闇の腕',
         'Whirling Zantetsuken': '旋・斬鉄剣',
-        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
+      },
+      '~effectNames': {
+        'Astral Essence': '光の腕',
+        'Umbral Essence': '闇の腕',
       },
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
+        '(?<! )Ozma(?!\\w)': '奥兹玛',
+        '5 minutes have elapsed since your last activity': '已经5分钟没有进行任何操作',
         'Absolute Virtue': '绝对的美德',
         'Arsenal Centaur': '兵武半人马',
         'Art': '亚特',
@@ -1280,15 +1268,13 @@
         'Ivory Palm': '白手',
         'Orlasrach': '烈焰金枪',
         'Owain': '欧文',
-        '(?<! )Ozma(?!\\w)': '奥兹玛',
         'Ozmashade': '奥兹玛之影',
-        'Proto Ozma(?!\ Containment)': '奥兹玛原型',
+        'Proto Ozma(?! containment)': '奥兹玛原型',
         'Raiden': '莱丁',
         'Relative Virtue': '相对的美德',
         'Shadow': '奥兹玛原型之影',
         'Streak Lightning': '强袭雷光',
         'The Lance of Virtue Containment Unit': '美德之枪封印区',
-        'The Proto Ozma Containment Unit': '奥兹玛原型封印区',
         'The Shin-Zantetsuken Containment Unit': '真·斩铁剑封印区',
       },
       'replaceText': {
@@ -1298,7 +1284,6 @@
         'Ame-no-Sakahoko': '天逆矛',
         'Astral Essence': '光之腕',
         'Auroral Wind': '极光之风',
-        'Berserk': '狂暴',
         'Bitter Barbs': '罪恶荆棘',
         'Black Hole': '黑洞',
         'Bleed Attack': '流血攻击',
@@ -1358,10 +1343,17 @@
         'Whirling Zantetsuken': '旋·斩铁剑',
         'Wyvern ': '飞龙',
       },
+      '~effectNames': {
+        'Astral Essence': '光之腕',
+        'Umbral Essence': '暗之腕',
+      },
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
+        '(?<! )Ozma(?!\\w)': '오즈마',
+        '5 minutes have elapsed since your last activity': '5분 동안 아무 조작을 하지 않았습니다',
         'Absolute Virtue': '절대미덕',
         'Arsenal Centaur': '무기고 켄타우로스',
         'Art': '아르트',
@@ -1370,15 +1362,13 @@
         'Ivory Palm': '하얀 손',
         'Orlasrach': '오를라스라흐',
         'Owain': '오와인',
-        '(?<! )Ozma(?!\\w)': '오즈마',
         'Ozmashade': '오즈마의 그림자',
-        'Proto Ozma(?!\ Containment)': '프로토 오즈마',
+        'Proto Ozma(?! containment)': '프로토 오즈마',
         'Raiden': '라이딘',
         'Relative Virtue': '상대미덕',
         'Shadow': '프로토 오즈마의 그림자',
         'Streak Lightning': '연쇄 번개',
         'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
-        'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',
         'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
       },
       'replaceText': {
@@ -1388,7 +1378,6 @@
         'Ame-no-Sakahoko': '아메노사카호코',
         'Astral Essence': '빛의 팔',
         'Auroral Wind': '오로라 바람',
-        'Berserk': '광포',
         'Bitter Barbs': '죄의 가시',
         'Black Hole': '블랙홀',
         'Bleed Attack': '출혈 공격',
@@ -1447,6 +1436,10 @@
         'Umbral Essence': '어둠의 팔',
         'Whirling Zantetsuken': '선 참철검',
         'Wyvern Explosion': '와이번 폭발',
+      },
+      '~effectNames': {
+        'Astral Essence': '빛의 팔',
+        'Umbral Essence': '어둠의 팔',
       },
     },
   ],

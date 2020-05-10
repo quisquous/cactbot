@@ -130,4 +130,51 @@
       response: Responses.getIn(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Biomanufactured Minotaur': 'Biotech-Minotaurus',
+        'Servomechanical Chimera': 'servomechanisch(?:e|er|es|en) Chimära',
+        'Servomechanical Minotaur': 'servomechanisch(?:e|er|es|en) Minotaurus',
+        'The Ultima Beast': 'ultimativ(?:e|er|es|en) Bestie',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Biomanufactured Minotaur': 'minotaure biologique',
+        'Servomechanical Chimera': 'chimère servomécanique',
+        'Servomechanical Minotaur': 'minotaure servomécanique',
+        'The Ultima Beast': 'Ultima-monstre',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Biomanufactured Minotaur': 'バイオ・ミノタウロス',
+        'Servomechanical Chimera': 'サーヴォ・キマイラ',
+        'Servomechanical Minotaur': 'サーヴォ・ミノタウロス',
+        'The Ultima Beast': 'アルテマビースト',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Biomanufactured Minotaur': '生化弥诺陶洛斯',
+        'Servomechanical Chimera': '自控化奇美拉',
+        'Servomechanical Minotaur': '自控化弥诺陶洛斯',
+        'The Ultima Beast': '究极神兽',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Biomanufactured Minotaur': '양산체 미노타우로스',
+        'Servomechanical Chimera': '자동제어 키마이라',
+        'Servomechanical Minotaur': '자동제어 미노타우로스',
+        'The Ultima Beast': '알테마 비스트',
+      },
+    },
+  ],
 }];

@@ -68,4 +68,36 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Hrodric Poisontongue': 'Hrodric Giftzunge',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Hrodric Poisontongue': 'Hrodric le Médisant',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Hrodric Poisontongue': '直言のフロドリック',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Hrodric Poisontongue': '直言不讳 赫罗德里克',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Hrodric Poisontongue': '입바른 흐로드릭',
+      },
+    },
+  ],
 }];

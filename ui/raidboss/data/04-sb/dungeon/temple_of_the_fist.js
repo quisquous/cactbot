@@ -212,13 +212,13 @@
         'Tourmaline Pond': 'Turmalinteich',
       },
       'replaceText': {
-        '--Smriti Appears--': '--Smriti Appears--', // FIXME
+        '--Smriti Appears--': '--Smriti erscheint--',
         'Basic Instinct': 'Kampfinstinkt',
         'Cardinal Shift': 'Großrotation',
         'Coeurl Whisper': 'Coeurl-Flüstern',
         'Electric Burst': 'Stromstoß',
         'Fourfold Shear': 'Vierschere',
-        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
+        'Front/Back\\?Sides\\?': 'Vorne/Hinten?Seiten?',
         'Furious Fists': 'Todeskralle',
         'Heat Lightning': 'Hitzeblitz',
         'Hellseal': 'Höllensiegel',
@@ -282,13 +282,11 @@
         'Ivon Coeurlfist': '双豹のイヴォン',
       },
       'replaceText': {
-        '--Smriti Appears--': '--Smriti Appears--', // FIXME
         'Basic Instinct': '闘争本能',
         'Cardinal Shift': '四剣大回転',
         'Coeurl Whisper': '双豹招来',
         'Electric Burst': 'エレクトリックバースト',
         'Fourfold Shear': '四連双斬',
-        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
         'Furious Fists': '双豹蒼連撃',
         'Heat Lightning': 'ヒートライトニング',
         'Hellseal': '試練の刻印',
@@ -349,13 +347,11 @@
         'Ivon Coeurlfist': '쌍표범 이본',
       },
       'replaceText': {
-        '--Smriti Appears--': '--Smriti Appears--', // FIXME
         'Basic Instinct': '투쟁 본능',
         'Cardinal Shift': '사중 대회전',
         'Coeurl Whisper': '쌍표범 소환',
         'Electric Burst': '전하 폭발',
         'Fourfold Shear': '사연속 베기',
-        'Front/Back\\?Sides\\?': 'Front/Back?Sides?', // FIXME
         'Furious Fists': '쌍표창연격',
         'Heat Lightning': '뜨거운 번개',
         'Hellseal': '시련의 각인',
