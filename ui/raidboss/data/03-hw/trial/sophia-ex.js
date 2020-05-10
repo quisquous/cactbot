@@ -44,6 +44,14 @@
         ko: '흑백 파트너랑 모이기',
       },
     },
+    {
+      id: 'Sophia EX Quasar Bait',
+      regex: /Quasar \(Snapshot\)/,
+      beforeSeconds: 6,
+      infoText: {
+        en: 'Bait Quasar Meteors',
+      },
+    },
   ],
   triggers: [
     {
@@ -56,20 +64,32 @@
     },
     {
       id: 'Sophia EX Thunder 2',
-      netRegex: NetRegexes.startsUsing({ id: '19B0', source: 'Sophia' }),
+      netRegex: NetRegexes.startsUsing({ id: '19B0', source: 'Sophia', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'Sophia EX Thunder 3',
-      netRegex: NetRegexes.startsUsing({ id: '19AC', source: 'Sophia' }),
+      netRegex: NetRegexes.startsUsing({ id: '19AC', source: 'Sophia', capture: false }),
       response: Responses.getUnder(),
     },
     {
       // Technically this one does have a telegraph, but it feels really weird
       // to have Thunder 3 with popup text and this one not.
       id: 'Sophia EX Aero 3',
-      netRegex: NetRegexes.startsUsing({ id: '19AE', source: 'Sophia' }),
+      netRegex: NetRegexes.startsUsing({ id: '19AE', source: 'Sophia', capture: false }),
       response: Responses.getOut(),
+    },
+    {
+      id: 'Sophia EX Divine Spark',
+      netRegex: NetRegexes.startsUsing({ id: '19B6', source: 'The Second Demiurge', capture: false }),
+      response: Responses.lookAway(),
+    },
+    {
+      id: 'Sophia EX Gnostic Rant',
+      netRegex: NetRegexes.startsUsing({ id: '19B8', source: 'The Third Demiurge', capture: false }),
+      infoText: {
+        en: 'Get behind lancer',
+      },
     },
     {
       // The Aion Teleos clones have 10 fixed points where they can appear, but not all
@@ -90,7 +110,7 @@
         // The center two clones aren't exactly on the centerline, so we round the X coordinates.
         if (Math.round(x) != 0)
           positionString += Math.round(x) < 0 ? 'W' : 'E';
-        data.cloneSpots[matches.id] = positionString;
+        data.cloneSpots[matches.id.toUpperCase()] = positionString;
       },
     },
     {
@@ -147,7 +167,10 @@
     },
     {
       id: 'Sophia EX Execute',
-      netRegex: NetRegexes.startsUsing({ id: '19AA', source: 'Sophia', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '19AA', source: 'Sophia' }),
+      durationSeconds: function(data, matches) {
+        return parseInt(matches.castTime, 10);
+      },
       alertText: function(data) {
         const localeCompass = {
           'N': { en: 'North' },
@@ -161,7 +184,7 @@
         };
         if (data.thunderClones.length === 1)
           return localeCompass[data.thunderClones[0]];
-        let composite = localeCompass[data.thunderClones[0]][data.lang] + '/' + localeCompass[data.thunderClones[1]][data.lang];
+        const composite = localeCompass[data.thunderClones[0]][data.lang] + '/' + localeCompass[data.thunderClones[1]][data.lang];
         return composite;
       },
     },
@@ -213,7 +236,7 @@
           '-55.06373.523648': 3,
           '54.99073.387837': 4,
           '54.986999.576593': 5,
-          '54.99073.50686': 6,
+          '54.9907-3.50686': 6,
           '54.99068-10.14043': 7,
         };
         // Horrible, awful string manipulation, whyyy, Javascript?
@@ -222,7 +245,6 @@
           data.scaleSophias = data.scaleSophias || [];
           data.scaleSophias.push((seqStart + i).toString(16).toUpperCase());
         }
-        console.log('Scale Sophia Setup Succeeded: ' + data.scaleSophias);
       },
     },
     {
@@ -238,12 +260,11 @@
       netRegex: NetRegexes.tether({ id: '0011' }),
       condition: function(data) {
         // We shouldn't run this while Aion Teleos mechanics are active.
-        return !data.clonesActive;
+        return !data.clonesActive && data.scaleSophias;
       },
       run: function(data, matches) {
         data.quasarTethers = data.quasarTethers || [];
         data.quasarTethers.push(matches.sourceId);
-        console.log('Quasar Tether Collection Succeeded: ' + data.quasarTethers);
       },
     },
     {
@@ -274,7 +295,6 @@
           // We have to quit here and wait for the actual cast.
           return;
         }
-        console.log(safeDir);
         return {
           '2': { en: 'Go East (Hard Tilt)' },
           '1': { en: 'Go East (Soft Tilt)' },
@@ -302,7 +322,13 @@
       alertText: function(data, matches) {
         if (![2, 4, 6].includes(data.quasarTethers.length))
           return;
-        let safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? 'E' : 'W';
+        let balance = 0;
+        // It's possible a 6-tether group could be 4/2, so we have to eliminate that possibility.
+        for (let i = 0; i < data.quasarTethers.length; i++)
+          balance += data.scaleSophias.indexOf(data.quasarTethers[i]) < 4 ? -1 : 1;
+        if (balance != 0)
+          return;
+        const safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? 'E' : 'W';
         return {
           'W': { en: 'Go West (Hard Tilt)' },
           'E': { en: 'Go East (Hard Tilt)' },
