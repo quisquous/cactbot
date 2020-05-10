@@ -71,6 +71,10 @@
         'Spinner-rook': 'Drehturm',
       },
       'replaceText': {
+        '\\(E/W center\\)': '(O/W mitte)',
+        '\\(SE/NW\\)': '(SO/NW)',
+        '\\(center\\)': '(mitte)',
+        '\\(outside\\)': '(draußen)',
         'Bug': 'Wanze',
         'Dreadnaught': 'Brummonaut',
         'Emergency Override': 'Not-Übersteuerung',
@@ -105,6 +109,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Bug': 'アラガンワーク・バグ',
         'Clockwork Dreadnaught': 'ドレッドノート',
@@ -113,16 +118,12 @@
         'Spinner-rook': 'ルークスピナー',
       },
       'replaceText': {
-        'Bug': 'Bug', // FIXME
-        'Dreadnaught': 'Dreadnaught', // FIXME
         'Emergency Override': 'エマージェンシー・オーバーライド',
-        'Knight': 'Knight', // FIXME
-        'Rook': 'Rook', // FIXME
-        'Soldier': 'Soldier', // FIXME
       },
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Bug': '亚拉戈发条虫',
         'Clockwork Dreadnaught': '恐慌装甲',
@@ -132,15 +133,12 @@
       },
       'replaceText': {
         'Bug': '故障虫',
-        'Dreadnaught': 'Dreadnaught', // FIXME
         'Emergency Override': '紧急超驰控制',
-        'Knight': 'Knight', // FIXME
-        'Rook': 'Rook', // FIXME
-        'Soldier': 'Soldier', // FIXME
       },
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Bug': '알라그 태엽벌레',
         'Clockwork Dreadnaught': '드레드노트',
@@ -150,11 +148,7 @@
       },
       'replaceText': {
         'Bug': '버그',
-        'Dreadnaught': 'Dreadnaught', // FIXME
         'Emergency Override': '긴급 체제 변환',
-        'Knight': 'Knight', // FIXME
-        'Rook': 'Rook', // FIXME
-        'Soldier': 'Soldier', // FIXME
       },
     },
   ],

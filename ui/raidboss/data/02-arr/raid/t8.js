@@ -149,11 +149,11 @@
       'locale': 'de',
       'replaceSync': {
         'Allagan Field': 'Allagisches Feld',
+        'Allagan Mine': 'allagisch(?:e|er|es|en) Mine',
+        'Clockwork Dreadnaught': 'Brummonaut',
+        'Landmines have been scattered': 'Die Landminen haben sich verteilt',
         'The Avatar': 'Avatar',
         'The central bow': 'Rumpf-Zentralsektor',
-        'Landmines have been scattered': 'Die Landminen haben sich verteilt',
-        'Allagan Mine': 'Allagisch(?:e|er|es|en) Mine',
-        'Clockwork Dreadnaught': 'Brummonaut',
       },
       'replaceText': {
         'Allagan Field': 'Allagisches Feld',
@@ -171,6 +171,9 @@
       'locale': 'fr',
       'replaceSync': {
         'Allagan Field': 'Champ allagois',
+        'Allagan Mine': 'mine allagoise',
+        'Clockwork Dreadnaught': 'Cuirassé Dreadnaught',
+        'Landmines have been scattered': 'Des mines ont été répandues',
         'The Avatar': 'Bio-tréant',
         'The central bow': 'l\'axe central - proue',
       },
@@ -188,10 +191,13 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Allagan Field': 'アラガンフィールド',
+        'Allagan Mine': 'アラガンマイン',
+        'Clockwork Dreadnaught': 'ドレッドノート',
+        'Landmines have been scattered': '地雷が散布された',
         'The Avatar': 'アバター',
+        'The central bow': '中枢艦首区',
       },
       'replaceText': {
         'Allagan Field': 'アラガンフィールド',
@@ -207,10 +213,13 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Allagan Field': '亚拉戈领域',
+        'Allagan Mine': '亚拉戈机雷',
+        'Clockwork Dreadnaught': '恐慌装甲',
+        'Landmines have been scattered': '地雷分布在了各处',
         'The Avatar': '降世化身',
+        'The central bow': '中枢舰首区',
       },
       'replaceText': {
         'Allagan Field': '亚拉戈领域',
@@ -226,10 +235,13 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Allagan Field': '알라그 필드',
+        'Allagan Mine': '알라그 지뢰',
+        'Clockwork Dreadnaught': '드레드노트',
+        'Landmines have been scattered': '지뢰가 뿌려졌습니다',
         'The Avatar': '아바타',
+        'The central bow': '중추 함수 구역',
       },
       'replaceText': {
         'Allagan Field': '알라그 필드',

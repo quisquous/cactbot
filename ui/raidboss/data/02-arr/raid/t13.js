@@ -151,26 +151,30 @@
         'The Storm of Meracydia': 'Sturm von Meracydia',
       },
       'replaceText': {
+        '\\(center\\)': '(mitte)',
+        '\\(E/W\\)': '(O/W)',
+        '\\(E\\)': '(O)',
         'Akh Morn': 'Akh Morn',
-        'Blood Add': 'Blood Add', // FIXME
+        'Blood': 'Blut',
         'Dark Aether': 'Dunkeläther',
         'Double Dive': 'Doppelschwinge',
         'Earth Shaker': 'Erdstoß',
         'Flare Breath': 'Flare-Atem',
         'Flare Star': 'Flare-Stern',
-        'Flatten': 'Einstampfen',
+        'Flatten': 'Einebnen',
         'Gigaflare': 'Gigaflare',
-        'Gust Add': 'Gust Add', // FIXME
-        'MF Pepperoni': 'MF Pepperoni', // FIXME
-        'MF Share': 'MF Share', // FIXME
-        'MF Spread': 'MF Spread', // FIXME
-        'MF Tower': 'MF Tower', // FIXME
+        'Gust Add': 'Wind Add',
+        'MF Pepperoni': 'MF Fläche',
+        'MF Share': 'MF Sammeln',
+        'MF Spread': 'MF Verteilen',
+        'MF Tower\\(s\\)': 'MF Türme',
+        'MF Tower(?!\\(s)': 'MF Turm',
         'Megaflare': 'Megaflare',
-        'Pain Add': 'Pain Add', // FIXME
+        'Pain Add': 'Schmerz Add',
         'Rage Of Bahamut': 'Bahamuts Zorn',
-        'Shadow Add': 'Shadow Add', // FIXME
-        'Sin Add': 'Sin Add', // FIXME
-        'Storm Add': 'Storm Add', // FIXME
+        'Shadow Add': 'Schatten Add',
+        'Sin Add': 'Sünde Add',
+        'Storm Add': 'Sturm Add',
         'Tempest Wing': 'Sturm-Schwinge',
         'Teraflare': 'Teraflare',
       },
@@ -219,13 +223,13 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
         'The Storm of Meracydia': 'メラシディアン・ストーム',
       },
       'replaceText': {
         'Akh Morn': 'アク・モーン',
-        'Blood Add': 'Blood Add', // FIXME
         'Dark Aether': 'ダークエーテル',
         'Double Dive': 'ダブルダイブ',
         'Earth Shaker': 'アースシェイカー',
@@ -233,30 +237,21 @@
         'Flare Star': 'フレアスター',
         'Flatten': '押しつぶす',
         'Gigaflare': 'ギガフレア',
-        'Gust Add': 'Gust Add', // FIXME
-        'MF Pepperoni': 'MF Pepperoni', // FIXME
-        'MF Share': 'MF Share', // FIXME
-        'MF Spread': 'MF Spread', // FIXME
-        'MF Tower': 'MF Tower', // FIXME
         'Megaflare': 'メガフレア',
-        'Pain Add': 'Pain Add', // FIXME
         'Rage Of Bahamut': '龍神の咆吼',
-        'Shadow Add': 'Shadow Add', // FIXME
-        'Sin Add': 'Sin Add', // FIXME
-        'Storm Add': 'Storm Add', // FIXME
         'Tempest Wing': 'テンペストウィング',
         'Teraflare': 'テラフレア',
       },
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '至尊巴哈姆特',
         'The Storm of Meracydia': '美拉西迪亚的怒雨',
       },
       'replaceText': {
         'Akh Morn': '死亡轮回',
-        'Blood Add': 'Blood Add', // FIXME
         'Dark Aether': '暗以太',
         'Double Dive': '双重俯冲',
         'Earth Shaker': '大地摇动',
@@ -264,30 +259,21 @@
         'Flare Star': '耀星',
         'Flatten': '跺脚',
         'Gigaflare': '十亿核爆',
-        'Gust Add': 'Gust Add', // FIXME
-        'MF Pepperoni': 'MF Pepperoni', // FIXME
-        'MF Share': 'MF Share', // FIXME
-        'MF Spread': 'MF Spread', // FIXME
-        'MF Tower': 'MF Tower', // FIXME
         'Megaflare': '百万核爆',
-        'Pain Add': 'Pain Add', // FIXME
         'Rage Of Bahamut': '龙神咆哮',
-        'Shadow Add': 'Shadow Add', // FIXME
-        'Sin Add': 'Sin Add', // FIXME
-        'Storm Add': 'Storm Add', // FIXME
         'Tempest Wing': '风暴之翼',
         'Teraflare': '万亿核爆',
       },
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
         'The Storm of Meracydia': '메라시디아의 폭풍',
       },
       'replaceText': {
         'Akh Morn': '아크 몬',
-        'Blood Add': 'Blood Add', // FIXME
         'Dark Aether': '어둠의 에테르',
         'Double Dive': '이중 강하',
         'Earth Shaker': '요동치는 대지',
@@ -295,17 +281,8 @@
         'Flare Star': '타오르는 별',
         'Flatten': '압사',
         'Gigaflare': '기가플레어',
-        'Gust Add': 'Gust Add', // FIXME
-        'MF Pepperoni': 'MF Pepperoni', // FIXME
-        'MF Share': 'MF Share', // FIXME
-        'MF Spread': 'MF Spread', // FIXME
-        'MF Tower': 'MF Tower', // FIXME
         'Megaflare': '메가플레어',
-        'Pain Add': 'Pain Add', // FIXME
         'Rage Of Bahamut': '용신의 포효',
-        'Shadow Add': 'Shadow Add', // FIXME
-        'Sin Add': 'Sin Add', // FIXME
-        'Storm Add': 'Storm Add', // FIXME
         'Tempest Wing': '폭풍우 날개',
         'Teraflare': '테라플레어',
       },

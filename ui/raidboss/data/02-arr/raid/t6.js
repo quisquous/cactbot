@@ -10,11 +10,6 @@
     {
       id: 'T6 Thorn Whip Collect',
       regex: Regexes.tether({ id: '0012' }),
-      regexDe: Regexes.tether({ id: '0012' }),
-      regexFr: Regexes.tether({ id: '0012' }),
-      regexJa: Regexes.tether({ id: '0012' }),
-      regexCn: Regexes.tether({ id: '0012' }),
-      regexKo: Regexes.tether({ id: '0012' }),
       run: function(data, matches) {
         data.thornMap = data.thornMap || {};
         data.thornMap[matches.source] = data.thornMap[matches.source] || [];
@@ -247,9 +242,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Scar\'s Edge': 'Narbenrand',
         'Rafflesia': 'Rafflesia',
-        'Honey-Glazed': 'Honigsüß',
+        'Scar\'s Edge': 'Narbenrand',
       },
       'replaceText': {
         'Acid Rain': 'Säureregen',
@@ -265,12 +259,15 @@
         'Thorn Whip': 'Dornenpeitsche',
         'Viscid Emission': 'Klebsporen',
       },
+      '~effectNames': {
+        'Honey-Glazed': 'Honigsüß',
+      },
     },
     {
       'locale': 'fr',
       'replaceSync': {
-        'Scar\'s Edge': 'l\'Huis de la Marque',
         'Rafflesia': 'Rafflesia',
+        'Scar\'s Edge': 'l\'Huis de la Marque',
       },
       'replaceText': {
         'Acid Rain': 'Pluie acide',
@@ -286,12 +283,15 @@
         'Thorn Whip': 'Fouet de ronces',
         'Viscid Emission': 'Émission visqueuse',
       },
+      '~effectNames': {
+        'Honey-Glazed': 'Mielleux',
+      },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Rafflesia': 'ラフレシア',
+        'Scar\'s Edge': '傷跡の門戸',
       },
       'replaceText': {
         'Acid Rain': '酸性雨',
@@ -307,12 +307,15 @@
         'Thorn Whip': 'ソーンウィップ',
         'Viscid Emission': 'ヴィシドエミッション',
       },
+      '~effectNames': {
+        'Honey-Glazed': '蜂蜜',
+      },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Rafflesia': '大王花',
+        'Scar\'s Edge': '破损的门前',
       },
       'replaceText': {
         'Acid Rain': '酸雨',
@@ -328,12 +331,15 @@
         'Thorn Whip': '荆棘鞭',
         'Viscid Emission': '胶质排放物',
       },
+      '~effectNames': {
+        'Honey-Glazed': '蜂蜜',
+      },
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Rafflesia': '라플레시아',
+        'Scar\'s Edge': '상흔의 입구',
       },
       'replaceText': {
         'Acid Rain': '산성비',
@@ -348,6 +354,9 @@
         'Swarm': '벌레 떼',
         'Thorn Whip': '가시채찍',
         'Viscid Emission': '점액 배출',
+      },
+      '~effectNames': {
+        'Honey-Glazed': '벌꿀',
       },
     },
   ],

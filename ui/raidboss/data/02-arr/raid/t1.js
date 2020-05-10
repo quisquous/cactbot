@@ -92,6 +92,11 @@
     {
       id: 'T1 Slime Timer First',
       regex: Regexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
+      regexDe: Regexes.message({ line: 'Allagische Superstruktur will be sealed off.*?', capture: false }),
+      regexFr: Regexes.message({ line: 'Mégastructure allagoise will be sealed off.*?', capture: false }),
+      regexJa: Regexes.message({ line: 'アラグの遺構 will be sealed off.*?', capture: false }),
+      regexCn: Regexes.message({ line: '亚拉戈遗构 will be sealed off.*?', capture: false }),
+      regexKo: Regexes.message({ line: '알라그 유적 will be sealed off.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {
@@ -116,6 +121,53 @@
         de: 'Schleim bald',
         fr: 'Slime bientôt',
         cn: '软泥即将出现',
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Ads': 'Abwehrsystem',
+        'Caduceus': 'Caduceus',
+        'Dark Matter Slime': 'Dunkelmaterien-Schleim',
+        'The Allagan megastructure': 'Allagische Superstruktur',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Ads': 'Sphère de contrôle',
+        'Caduceus': 'Caducée',
+        'Dark Matter Slime': 'Gluant de matière sombre',
+        'The Allagan megastructure': 'Mégastructure allagoise',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Ads': '制御システム',
+        'Caduceus': '蛇杖撃',
+        'Dark Matter Slime': 'ダークマター・スライム',
+        'The Allagan megastructure': 'アラグの遺構',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Ads': '自卫系统',
+        'Caduceus': '蛇杖击',
+        'Dark Matter Slime': '暗物质粘液怪',
+        'The Allagan megastructure': '亚拉戈遗构',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Ads': '제어 시스템',
+        'Caduceus': '뱀 지팡이',
+        'Dark Matter Slime': '암흑물질 슬라임',
+        'The Allagan megastructure': '알라그 유적',
       },
     },
   ],

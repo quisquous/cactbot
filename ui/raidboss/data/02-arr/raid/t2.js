@@ -91,4 +91,36 @@
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Allagan Rot': 'Allagische Fäulnis',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Allagan Rot': 'Pourriture allagoise',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Allagan Rot': 'アラガンロット',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Allagan Rot': '亚拉戈古病毒',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Allagan Rot': '알라그 부패',
+      },
+    },
+  ],
 }];
