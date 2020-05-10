@@ -658,11 +658,11 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Voidwalker': 'ヴォイドウォーカー',
       },
       'replaceText': {
-        'Cleaver/Slicer': 'Cleaver/Slicer', //FIXME
         'Cycle Of ?': 'Cycle Of ?', //FIXME
         'Cycle of Chaos': '混沌の連続剣',
         'Cycle of Retribution': '復讐の連続剣',
@@ -675,14 +675,11 @@
         'Empty Rage': '虚ろなる害意',
         'Entropy': 'エントロピー',
         'Flare': 'フレア',
-        'Guillotine/Cleaver': 'Guillotine/Cleaver', //FIXME
         'Hell Wind': 'ヘルウィンド',
-        'Light/Dark Circles': 'Light/Dark Circles', //FIXME
         'Punishing Ray': 'パニッシュレイ',
         'Quietus': 'クワイタス',
         'Shadoweye': 'シャドウアイ',
         'Shadowflame': 'シャドーフレイム',
-        'Slicer/Guillotine': 'Slicer/Guillotine', //FIXME
         'Spell-In-Waiting': 'ディレイスペル',
         'Unholy Darkness': 'ダークホーリー',
       },
