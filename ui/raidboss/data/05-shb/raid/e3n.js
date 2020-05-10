@@ -97,7 +97,7 @@
       infoText: {
         en: 'Avoid Puddles and Dives',
         de: 'Flächen und Leviathan ausweichen',
-        fr: 'Évitez les zones au sol et les plongeons',
+        fr: 'Évitez les zones au sol et les piqués',
         cn: '躲圈闪避',
         ko: '돌진이랑 장판 피하세요',
       },
