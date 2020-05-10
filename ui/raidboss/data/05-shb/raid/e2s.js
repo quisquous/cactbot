@@ -663,7 +663,6 @@
         'Voidwalker': 'ヴォイドウォーカー',
       },
       'replaceText': {
-        'Cycle Of ?': 'Cycle Of ?', //FIXME
         'Cycle of Chaos': '混沌の連続剣',
         'Cycle of Retribution': '復讐の連続剣',
         'Dark Fire III': 'ダークファイガ',
