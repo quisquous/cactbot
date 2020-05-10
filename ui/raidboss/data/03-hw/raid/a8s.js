@@ -132,7 +132,10 @@
     {
       id: 'A8S Discoid',
       regex: Regexes.headMarker({ id: '0023' }),
-      condition: Conditions.targetIsYou(),
+      condition: function(data, matches) {
+        // Verdict comes with the same headmarker.
+        return data.me === matches.target && !seenLinkUp;
+      },
       infoText: {
         en: 'Orb on YOU',
         de: 'Orb auf DIR',
