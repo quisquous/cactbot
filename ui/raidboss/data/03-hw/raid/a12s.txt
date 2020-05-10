@@ -1,7 +1,7 @@
 ### A12S
 # Alexander - The Soul of the Creator (Savage)
 # http://clees.me/guides/a12s/
-# -p 19E8:7 19F7:116.7 19F3:150.4 1A18:300
+# -p 19E8:7 19F7:116.7 19F3:150.4 1A18:265.5
 # -ii 19E7 19F0 19F8 19F4 19F6 1A05 1A02 19EC 19FE 19FF 19FC 1A14 1A0F 1A0C
 
 hideall "--Reset--"
@@ -23,7 +23,7 @@ hideall "--sync--"
 40.8 "Mega Holy" sync /:Alexander Prime:19EE:/
 45.9 "--sync--" sync /:Alexander Prime:19F1:/
 51.9 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
-54.0 "Sacrament" sync /:Alexander Prime:19EB:/
+54.0 "(Radiant?) Sacrament" sync /:Alexander Prime:19E[BD]:/
 58.1 "Divine Spear" sync /:Alexander Prime:19E8:/
 65.2 "Punishing Heat" sync /:Alexander Prime:19E9:/
 67.2 "--untargetable--" sync / 22:........:Alexander Prime:........:Alexander Prime:00/ window 70,5
@@ -39,8 +39,8 @@ hideall "--sync--"
 124.9 "Almost Holy" sync /:The General's Wing:19F7:/
 133.2 "Almost Holy" sync /:The General's Wing:19F7:/
 
-140.5 "The General's Might (W)"
-140.5 "The General's Time (E)"
+139.2 "The General's Might (W)" sync / 03:........:Added new combatant The General's Might/ window 150,5
+139.2 "The General's Time (E)"
 141.6 "Almost Holy?" sync /:The General's Wing:19F7:/
 150.4 "Smash" sync /:The General's Might:19F3:/ window 151,3
 154.4 "Half Gravity" sync /:The General's Time:19F5:/
@@ -63,106 +63,108 @@ hideall "--sync--"
 228.8 "Half Gravity" sync /:The General's Time:19F5:/
 233.4 "Smash" sync /:The General's Might:19F3:/
 238.1 "Half Gravity" sync /:The General's Time:19F5:/
-
-### FIXME: when does divine judgment happen naturally? Maybe in the 235-260 range?
-
+241.7 "Smash" sync /:The General's Might:19F3:/
+247.4 "Half Gravity" sync /:The General's Time:19F5:/
+250.0 "Smash" sync /:The General's Might:19F3:/
+256.7 "Half Gravity" sync /:The General's Time:19F5:/
+258.3 "Smash" sync /:The General's Might:19F3:/
 
 ### Phase 3: Temporal Stasis
-300.0 "--sync--" sync /:Alexander:1A18:/ window 300,300
-309.7 "Divine Judgment" sync /:Alexander:19F9:/
-320.5 "--targetable--"
-323.5 "Chronofoil" sync /:Alexander Prime:19FA:/
+265.5 "--sync--" sync /:Alexander:1A18:/ window 300,300
+275.2 "Divine Judgment" sync /:Alexander:19F9:/
+286.0 "--targetable--"
+289.0 "Chronofoil" sync /:Alexander Prime:19FA:/
 
-342.6 "Temporal Stasis" sync /:Alexander Prime:19FB:/ window 350,10
-343.6 "--timestop--" duration 9
-350.7 "--sync--" sync /:Alexander Prime:19F1:/
-356.7 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
-358.8 "(Radiant?) Sacrament" sync /:Alexander Prime:19E[BD]:/
-363.9 "Mega Holy" sync /:Alexander Prime:19EE:/
-370.1 "Divine Spear" sync /:Alexander Prime:19E8:/
-377.2 "Punishing Heat" sync /:Alexander Prime:19E9:/
-380.4 "Divine Spear" sync /:Alexander Prime:19E8:/
+308.1 "Temporal Stasis" sync /:Alexander Prime:19FB:/ window 350,10
+309.1 "--timestop--" duration 9
+316.2 "--sync--" sync /:Alexander Prime:19F1:/
+322.2 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
+324.3 "(Radiant?) Sacrament" sync /:Alexander Prime:19E[BD]:/
+329.4 "Mega Holy" sync /:Alexander Prime:19EE:/
+335.6 "Divine Spear" sync /:Alexander Prime:19E8:/
+342.7 "Punishing Heat" sync /:Alexander Prime:19E9:/
+345.9 "Divine Spear" sync /:Alexander Prime:19E8:/
 
-395.6 "Temporal Stasis" sync /:Alexander Prime:19FB:/ window 30,30
-396.6 "--timestop--" duration 9
-403.7 "--sync--" sync /:Alexander Prime:19F1:/
-409.7 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
-411.8 "(Radiant?) Sacrament" sync /:Alexander Prime:19E[BD]:/
-416.9 "Mega Holy" sync /:Alexander Prime:19EE:/
-423.0 "Divine Spear" sync /:Alexander Prime:19E8:/
-430.1 "Punishing Heat" sync /:Alexander Prime:19E9:/
-433.3 "Divine Spear" sync /:Alexander Prime:19E8:/
+361.1 "Temporal Stasis" sync /:Alexander Prime:19FB:/ window 30,30
+362.1 "--timestop--" duration 9
+369.2 "--sync--" sync /:Alexander Prime:19F1:/
+375.2 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
+377.3 "(Radiant?) Sacrament" sync /:Alexander Prime:19E[BD]:/
+382.4 "Mega Holy" sync /:Alexander Prime:19EE:/
+388.5 "Divine Spear" sync /:Alexander Prime:19E8:/
+395.6 "Punishing Heat" sync /:Alexander Prime:19E9:/
+398.8 "Divine Spear" sync /:Alexander Prime:19E8:/
 
 
 ### Phase 4: Timegates, Judgment Crystals
 # FIXME: Add targetable/untargetable precise times here
-443.6 "Timegate" sync /:Alexander Prime:1A03:/ window 450,30
+409.1 "Timegate" sync /:Alexander Prime:1A03:/ window 450,30
 # FIXME: make this precise
-449.6 "--timegates active--"
-464.7 "Judgment Crystal 1" sync /:Alexander Prime:1A04:/
-478.3 "Judgment Crystal 2" sync /:Alexander Prime:1A04:/
-486.4 "(Radiant?) Sacrament" sync /:Alexander Prime:19E[BD]:/
-499.1 "Judgment Crystal 3" sync /:Alexander Prime:1A04:/
-505.2 "Punishing Heat" sync /:Alexander Prime:19E9:/
-518.8 "Judgment Crystal 4" sync /:Alexander Prime:1A04:/
+415.1 "--timegates active--"
+430.2 "Judgment Crystal 1" sync /:Alexander Prime:1A04:/
+443.8 "Judgment Crystal 2" sync /:Alexander Prime:1A04:/
+451.9 "(Radiant?) Sacrament" sync /:Alexander Prime:19E[BD]:/
+464.6 "Judgment Crystal 3" sync /:Alexander Prime:1A04:/
+470.7 "Punishing Heat" sync /:Alexander Prime:19E9:/
+484.3 "Judgment Crystal 4" sync /:Alexander Prime:1A04:/
 
 
 ### Phase 5: Inception
-535.9 "--untargetable--"
-535.9 "Inception" sync /:Alexander Prime:1A08:/ window 540,30
-542.1 "Tetrashatter" sync /:Judgment Crystal:1A06:/
-543.2 "--targetable--"
-543.2 "Sacrament" sync /:Alexander Prime:1A09:/
-551.3 "Radiant Sacrament" sync /:Alexander Prime:19ED:/
-562.4 "Punishing Heat" sync /:Alexander Prime:19E9:/
-566.6 "Divine Spear" sync /:Alexander Prime:19E8:/
-573.7 "--sync--" sync /:Alexander Prime:19F1:/
-579.7 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
-580.9 "Incinerating Heat" sync /:Alexander Prime:19EA:/
+501.4 "--untargetable--"
+501.4 "Inception" sync /:Alexander Prime:1A08:/ window 540,30
+507.6 "Tetrashatter" sync /:Judgment Crystal:1A06:/
+508.7 "--targetable--"
+508.7 "Sacrament" sync /:Alexander Prime:1A09:/
+516.8 "Radiant Sacrament" sync /:Alexander Prime:19ED:/
+527.9 "Punishing Heat" sync /:Alexander Prime:19E9:/
+532.1 "Divine Spear" sync /:Alexander Prime:19E8:/
+539.2 "--sync--" sync /:Alexander Prime:19F1:/
+545.2 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
+546.4 "Incinerating Heat" sync /:Alexander Prime:19EA:/
 
-592.1 "--untargetable--"
-592.1 "Inception" sync /:Alexander Prime:1A08:/ window 30,30
-598.2 "Tetrashatter" sync /:Judgment Crystal:1A06:/
-599.4 "--targetable--"
-599.4 "Sacrament" sync /:Alexander Prime:1A09:/
-607.5 "Radiant Sacrament" sync /:Alexander Prime:19ED:/
-618.6 "Punishing Heat" sync /:Alexander Prime:19E9:/
-622.8 "Divine Spear" sync /:Alexander Prime:19E8:/
-629.9 "--sync--" sync /:Alexander Prime:19F1:/
-635.9 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
-637.1 "Incinerating Heat" sync /:Alexander Prime:19EA:/
+557.6 "--untargetable--"
+557.6 "Inception" sync /:Alexander Prime:1A08:/ window 30,30
+563.7 "Tetrashatter" sync /:Judgment Crystal:1A06:/
+564.9 "--targetable--"
+564.9 "Sacrament" sync /:Alexander Prime:1A09:/
+573.0 "Radiant Sacrament" sync /:Alexander Prime:19ED:/
+584.1 "Punishing Heat" sync /:Alexander Prime:19E9:/
+588.3 "Divine Spear" sync /:Alexander Prime:19E8:/
+595.4 "--sync--" sync /:Alexander Prime:19F1:/
+601.4 "Gravitational Anomaly" sync /:Alexander Prime:19F2:/
+602.6 "Incinerating Heat" sync /:Alexander Prime:19EA:/
 
 
 ### Phase 6: Voids of Repentence
-646.3 "Summon Alexander" sync /:Alexander Prime:1A0A:/ window 650,10
-655.4 "Void Of Repentance" sync /:Alexander Prime:1A0E:/
-666.5 "Confession 1" sync /:Alexander Prime:1A12:/ window 2,2
-670.5 "Confession 2" sync /:Alexander Prime:1A12:/ window 2,2
-674.5 "Confession 3" sync /:Alexander Prime:1A12:/ window 2,2
-677.6 "Incinerating Heat" sync /:Alexander Prime:19EA:/ window 30,30
-683.4 "Holy Bleed" sync /:Alexander:1A13:/
-693.8 "Holy Scourge x4" sync /:Alexander Prime:1A0B:/ duration 5.9
-702.0 "Chastening Heat" sync /:Alexander Prime:1A0D:/
+611.8 "Summon Alexander" sync /:Alexander Prime:1A0A:/ window 650,10
+620.9 "Void Of Repentance" sync /:Alexander Prime:1A0E:/
+632.0 "Confession 1" sync /:Alexander Prime:1A12:/ window 2,2
+636.0 "Confession 2" sync /:Alexander Prime:1A12:/ window 2,2
+640.0 "Confession 3" sync /:Alexander Prime:1A12:/ window 2,2
+643.1 "Incinerating Heat" sync /:Alexander Prime:19EA:/ window 30,30
+648.9 "Holy Bleed" sync /:Alexander:1A13:/
+659.3 "Holy Scourge x4" sync /:Alexander Prime:1A0B:/ duration 5.9
+667.5 "Chastening Heat" sync /:Alexander Prime:1A0D:/
 
 # loop until enrage
-708.2 "Void Of Repentance" sync /:Alexander Prime:1A0E:/
-713.9 "Communion x6" sync /:Alexander:1A15:/ duration 13 window 2,2
-719.3 "Confession 1" sync /:Alexander Prime:1A12:/ window 2,2
-720.5 "Sacrament" sync /:Alexander Prime:19EB:/
-723.3 "Confession 2" sync /:Alexander Prime:1A12:/ window 2,2
-727.3 "Confession 3" sync /:Alexander Prime:1A12:/ window 2,2
-730.4 "Incinerating Heat" sync /:Alexander Prime:19EA:/ window 30,30
-736.2 "Holy Bleed" sync /:Alexander:1A13:/
-746.6 "Holy Scourge x4" sync /:Alexander Prime:1A0B:/ duration 5.9
-754.8 "Chastening Heat" sync /:Alexander Prime:1A0D:/
+673.7 "Void Of Repentance" sync /:Alexander Prime:1A0E:/
+679.4 "Communion x6" sync /:Alexander:1A15:/ duration 13 window 2,2
+684.8 "Confession 1" sync /:Alexander Prime:1A12:/ window 2,2
+686.0 "Sacrament" sync /:Alexander Prime:19EB:/
+688.8 "Confession 2" sync /:Alexander Prime:1A12:/ window 2,2
+692.8 "Confession 3" sync /:Alexander Prime:1A12:/ window 2,2
+695.9 "Incinerating Heat" sync /:Alexander Prime:19EA:/ window 30,30
+701.7 "Holy Bleed" sync /:Alexander:1A13:/
+712.1 "Holy Scourge x4" sync /:Alexander Prime:1A0B:/ duration 5.9
+720.3 "Chastening Heat" sync /:Alexander Prime:1A0D:/
 
-761.0 "Void Of Repentance" sync /:Alexander Prime:1A0E:/ window 40,40 jump 708.2
-766.7 "Communion x6"
-772.1 "Confession 1"
-773.3 "Sacrament"
-776.1 "Confession 2"
-780.1 "Confession 3"
-783.2 "Incinerating Heat"
-789.0 "Holy Bleed"
-799.4 "Holy Scourge x4"
-807.6 "Chastening Heat"
+726.5 "Void Of Repentance" sync /:Alexander Prime:1A0E:/ window 40,40 jump 673.7
+732.2 "Communion x6"
+737.6 "Confession 1"
+738.8 "Sacrament"
+741.6 "Confession 2"
+745.6 "Confession 3"
+748.7 "Incinerating Heat"
+754.5 "Holy Bleed"
+764.9 "Holy Scourge x4"
+773.1 "Chastening Heat"
