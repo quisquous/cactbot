@@ -468,7 +468,7 @@ class PopupText {
         // in this object can also be functions.
         if (typeof result !== 'object')
           return result;
-        let lang = this.options.AlertsLanguage || this.options.DisplayLanguage || 'en';
+        let lang = this.options.AlertsLanguage || this.options.DisplayLanguage || this.options.ParserLanguage || 'en';
         return triggerHelper.valueOrFunction(result[lang] || result['en']);
       },
       triggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
