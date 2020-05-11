@@ -57,6 +57,11 @@
     {
       id: 'SophiaEX Tank Buster',
       netRegex: NetRegexes.startsUsing({ id: '19C4', source: 'Sophia' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19C4', source: 'Sophia' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19C4', source: 'Sophia' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19C4', source: 'ソフィア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19C4', source: '索菲娅' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19C4', source: '소피아' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -65,11 +70,21 @@
     {
       id: 'SophiaEX Thunder 2',
       netRegex: NetRegexes.startsUsing({ id: '19B0', source: 'Sophia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19B0', source: 'Sophia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19B0', source: 'Sophia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19B0', source: 'ソフィア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19B0', source: '索菲娅', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19B0', source: '소피아', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'SophiaEX Thunder 3',
       netRegex: NetRegexes.startsUsing({ id: '19AC', source: 'Sophia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19AC', source: 'Sophia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19AC', source: 'Sophia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19AC', source: 'ソフィア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19AC', source: '索菲娅', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19AC', source: '소피아', capture: false }),
       response: Responses.getUnder(),
     },
     {
@@ -77,16 +92,31 @@
       // to have Thunder 3 with popup text and this one not.
       id: 'SophiaEX Aero 3',
       netRegex: NetRegexes.startsUsing({ id: '19AE', source: 'Sophia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19AE', source: 'Sophia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19AE', source: 'Sophia', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19AE', source: '索菲娅', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19AE', source: 'ソフィア', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19AE', source: '소피아', capture: false }),
       response: Responses.getOut(),
     },
     {
       id: 'SophiaEX Divine Spark',
       netRegex: NetRegexes.startsUsing({ id: '19B6', source: 'The Second Demiurge', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19B6', source: 'Zweit[a] Demiurg', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19B6', source: 'Second Démiurge', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19B6', source: '二の従者', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19B6', source: '信徒其二', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19B6', source: '제2신도', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'SophiaEX Gnostic Rant',
       netRegex: NetRegexes.startsUsing({ id: '19B8', source: 'The Third Demiurge', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19B8', source: 'Dritt[a] Demiurg', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19B8', source: 'Troisième Démiurge', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19B8', source: '三の従者', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19B8', source: '信徒其三', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19B8', source: '제3신도', capture: false }),
       infoText: {
         en: 'Get behind lancer',
       },
@@ -100,6 +130,11 @@
       // There can never be more than 3 clones North or South.
       id: 'SophiaEX Clone Collect',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
+      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
+      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
+      netRegexCn: NetRegexes.addedCombatantFull({ name: '移涌' }),
+      netRegexKo: NetRegexes.addedCombatantFull({ name: '아이온 소피아' }),
       run: function(data, matches) {
         data.cloneSpots = data.cloneSpots || {};
         const x = parseInt(matches.x, 10);
@@ -135,6 +170,11 @@
       // The ability here is Duplicate. The first Duplicate is always used alongside Thunder 2/3.
       id: 'SophiaEX Thunder Seen',
       netRegex: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19AB', source: '移涌', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19AB', source: '아이온 소피아', capture: false }),
       delaySeconds: 1,
       suppressSeconds: 5,
       run: function(data) {
@@ -148,6 +188,11 @@
       // our best way to call the mechanic is to check whether clones are active.
       id: 'SophiaEX Clones Active',
       netRegex: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '移涌', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '아이온 소피아', capture: false }),
       suppressSeconds: 5, // Not strictly necessary, but why not.
       run: function(data) {
         data.clonesActive = true;
@@ -160,6 +205,11 @@
       // Instead, we warn the user when Barbelo separates from Sophia, which is 1983.
       id: 'SophiaEX Light Dew',
       netRegex: NetRegexes.ability({ id: '1983', source: 'Sophia', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '1983', source: 'Sophia', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '1983', source: 'Sophia', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '1983', source: 'ソフィア', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '1983', source: '索菲娅', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '1983', source: '소피아', capture: false }),
       condition: function(data) {
         return data.clonesActive;
       },
@@ -170,6 +220,11 @@
     {
       id: 'SophiaEX Execute',
       netRegex: NetRegexes.startsUsing({ id: '19AA', source: 'Sophia' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19AA', source: 'Sophia' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19AA', source: 'Sophia' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19AA', source: 'ソフィア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19AA', source: '索菲娅' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19AA', source: '소피아' }),
       durationSeconds: function(data, matches) {
         return parseInt(matches.castTime, 10);
       },
@@ -193,6 +248,11 @@
     {
       id: 'SophiaEX Clone Cleanup',
       netRegex: NetRegexes.ability({ id: '19AA', source: 'Sophia', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '19AA', source: 'Sophia', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '19AA', source: 'Sophia', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '19AA', source: 'ソフィア', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '19AA', source: '索菲娅', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '19AA', source: '소피아', capture: false }),
       delaySeconds: 5,
       run: function(data) {
         const cloneData = [
@@ -314,6 +374,11 @@
       // so anytime one of these entities casts, we know where it is.
       id: 'SophiaEX Tilt Via Cast',
       netRegex: NetRegexes.startsUsing({ id: '19A9', source: 'Sophia' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19A9', source: 'Sophia' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '19A9', source: 'Sophia' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19A9', source: 'ソフィア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '19A9', source: '索菲娅' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '19A9', source: '소피아' }),
       condition: function(data) {
         // No platform tilts if clones are up, and no tilts if it's the first one.
         return !data.clonesActive && data.scaleSophias;
