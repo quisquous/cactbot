@@ -176,9 +176,9 @@ class PopupText {
 
     let parserLang = this.options.ParserLanguage || 'en';
     // construct something like regexEn or regexFr.
-    let localeSuffix = parserLang.charAt(0).toUpperCase() + parserLang.slice(1);
-    let regexParserLang = 'regex' + localeSuffix;
-    let netRegexParserLang = 'netRegex' + localeSuffix;
+    let langSuffix = parserLang.charAt(0).toUpperCase() + parserLang.slice(1);
+    let regexParserLang = 'regex' + langSuffix;
+    let netRegexParserLang = 'netRegex' + langSuffix;
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];

@@ -458,8 +458,8 @@ class MistakeCollector {
   Translate(obj) {
     if (obj !== Object(obj))
       return obj;
-    if (this.parserLang in obj)
-      return obj[this.parserLang];
+    if (this.options.DisplayLanguage in obj)
+      return obj[this.options.DisplayLanguage];
     return obj['en'];
   }
 
@@ -493,7 +493,7 @@ class MistakeCollector {
     }
     let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      let text = kEarlyPullText[this.parserLang] + ' (' + seconds.toFixed(1) + 's)';
+      let text = kEarlyPullText[this.options.DisplayLanguage] + ' (' + seconds.toFixed(1) + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
         this.OnMistakeText('pull', this.firstPuller, text);
     }

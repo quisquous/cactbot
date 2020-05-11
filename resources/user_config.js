@@ -39,6 +39,13 @@ let UserConfig = {
 
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.
+
+      // Backward compatibility (language is now separated to three types.)
+      if (e.detail.language) {
+        Options.ParserLanguage = e.detail.language;
+        Options.ShortLocale = e.detail.language;
+        Options.DisplayLanguage = e.detail.language;
+      }
       if (e.detail.parserLanguage) {
         Options.ParserLanguage = e.detail.parserLanguage;
         // Backward compatibility, everything "Language" should be changed to "ParserLanguage"

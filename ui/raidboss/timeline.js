@@ -43,11 +43,11 @@ class Timeline {
       return text;
 
     let orig = text;
-    let parserLang = this.options.PraserLanguage || 'en';
+    let replaceLang = this.options.PraserLanguage || 'en';
     if (replaceKey === 'replaceText')
-      parserLang = this.options.TimelineLanguage || this.options.PraserLanguage || 'en';
+      replaceLang = this.options.TimelineLanguage || this.options.PraserLanguage || 'en';
     for (let r of this.replacements) {
-      if (r.parserLang && r.parserLang != parserLang)
+      if (r.locale && r.locale != replaceLang)
         continue;
       if (!r[replaceKey])
         continue;
@@ -57,7 +57,7 @@ class Timeline {
     }
     // Common Replacements
     for (let key in commonReplacement) {
-      let repl = commonReplacement[key][parserLang];
+      let repl = commonReplacement[key][replaceLang];
       if (!repl)
         continue;
       text = text.replace(Regexes.parse(key), repl);
@@ -582,8 +582,7 @@ class TimelineUI {
     this.init = true;
 
     this.root = document.getElementById('timeline-container');
-    if (Options.TimelineLanguage)
-      this.root.classList.add('lang-' + Options.TimelineLanguage);
+    this.root.classList.add('lang-' + Options.TimelineLanguage || Options.ParserLanguage || 'en');
     if (Options.Skin)
       this.root.classList.add('skin-' + Options.Skin);
 
