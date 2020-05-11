@@ -10,14 +10,14 @@
     {
       // Gnosis does in fact have a cast time, but it's only 2.7 seconds.
       // It's safer to warn via the timeline.
-      id: 'Sophia EX Gnosis',
+      id: 'SophiaEX Gnosis',
       regex: /Gnosis/,
       beforeSeconds: 5,
       response: Responses.knockback(),
     },
     {
       // Onrush also has a 2.7 second cast time and thus is best notified from the timeline.
-      id: 'Sophia EX Onrush',
+      id: 'SophiaEX Onrush',
       regex: /Onrush/,
       beforeSeconds: 5,
       infoText: {
@@ -25,14 +25,14 @@
       },
     },
     {
-      id: 'Sophia EX Cintamani',
+      id: 'SophiaEX Cintamani',
       regex: /Cintamani/,
-      condition: Conditions.caresAboutAOE(),
       beforeSeconds: 4,
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
-      id: 'Sophia EX Dischordant Cleansing',
+      id: 'SophiaEX Dischordant Cleansing',
       regex: /Dischordant Cleansing/,
       beforeSeconds: 6,
       alertText: {
@@ -45,7 +45,7 @@
       },
     },
     {
-      id: 'Sophia EX Quasar Bait',
+      id: 'SophiaEX Quasar Bait',
       regex: /Quasar \(Snapshot\)/,
       beforeSeconds: 6,
       infoText: {
@@ -55,7 +55,7 @@
   ],
   triggers: [
     {
-      id: 'Sophia Ex Tank Buster',
+      id: 'SophiaEX Tank Buster',
       netRegex: NetRegexes.startsUsing({ id: '19C4', source: 'Sophia' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
@@ -63,29 +63,29 @@
       response: Responses.tankBusterSwap(),
     },
     {
-      id: 'Sophia EX Thunder 2',
+      id: 'SophiaEX Thunder 2',
       netRegex: NetRegexes.startsUsing({ id: '19B0', source: 'Sophia', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
-      id: 'Sophia EX Thunder 3',
+      id: 'SophiaEX Thunder 3',
       netRegex: NetRegexes.startsUsing({ id: '19AC', source: 'Sophia', capture: false }),
       response: Responses.getUnder(),
     },
     {
       // Technically this one does have a telegraph, but it feels really weird
       // to have Thunder 3 with popup text and this one not.
-      id: 'Sophia EX Aero 3',
+      id: 'SophiaEX Aero 3',
       netRegex: NetRegexes.startsUsing({ id: '19AE', source: 'Sophia', capture: false }),
       response: Responses.getOut(),
     },
     {
-      id: 'Sophia EX Divine Spark',
+      id: 'SophiaEX Divine Spark',
       netRegex: NetRegexes.startsUsing({ id: '19B6', source: 'The Second Demiurge', capture: false }),
       response: Responses.lookAway(),
     },
     {
-      id: 'Sophia EX Gnostic Rant',
+      id: 'SophiaEX Gnostic Rant',
       netRegex: NetRegexes.startsUsing({ id: '19B8', source: 'The Third Demiurge', capture: false }),
       infoText: {
         en: 'Get behind lancer',
@@ -98,7 +98,7 @@
       // Each quadrant can contain 0 or 1 clones, and the center can have 0-2.
       // There will always be 4 clones.
       // There can never be more than 3 clones North or South.
-      id: 'Sophia EX Clone Collect',
+      id: 'SophiaEX Clone Collect',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
       run: function(data, matches) {
         data.cloneSpots = data.cloneSpots || {};
@@ -119,7 +119,7 @@
       // Thunder is always cast first when the Aion Teleos spawn.
       // Because we don't know whether there will be one or two Thunder tethers,
       // we have to separate out the "seen Thunder" logic.
-      id: 'Sophia EX Duplicate Collect',
+      id: 'SophiaEX Duplicate Collect',
       netRegex: NetRegexes.tether({ id: '002D' }),
       run: function(data, matches) {
         if (data.seenThunder) {
@@ -133,7 +133,7 @@
     },
     {
       // The ability here is Duplicate. The first Duplicate is always used alongside Thunder 2/3.
-      id: 'Sophia EX Thunder Seen',
+      id: 'SophiaEX Thunder Seen',
       netRegex: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
       delaySeconds: 1,
       suppressSeconds: 5,
@@ -146,7 +146,7 @@
       // but the platform will not tilt while clones are active.
       // Since both have the same tethers and initial cast,
       // our best way to call the mechanic is to check whether clones are active.
-      id: 'Sophia EX Clones Active',
+      id: 'SophiaEX Clones Active',
       netRegex: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
       suppressSeconds: 5, // Not strictly necessary, but why not.
       run: function(data) {
@@ -158,7 +158,7 @@
       // Barbelo separates and makes one safespot dangerous with Light Dew, the orange laser.
       // Unfortunately Barbelo doesn't have a cast time on Light Dew, so we can't use that.
       // Instead, we warn the user when Barbelo separates from Sophia, which is 1983.
-      id: 'Sophia EX Light Dew',
+      id: 'SophiaEX Light Dew',
       netRegex: NetRegexes.ability({ id: '1983', source: 'Sophia', capture: false }),
       condition: function(data) {
         return data.clonesActive;
@@ -168,7 +168,7 @@
       },
     },
     {
-      id: 'Sophia EX Execute',
+      id: 'SophiaEX Execute',
       netRegex: NetRegexes.startsUsing({ id: '19AA', source: 'Sophia' }),
       durationSeconds: function(data, matches) {
         return parseInt(matches.castTime, 10);
@@ -191,7 +191,7 @@
       },
     },
     {
-      id: 'Sophia EX Clone Cleanup',
+      id: 'SophiaEX Clone Cleanup',
       netRegex: NetRegexes.ability({ id: '19AA', source: 'Sophia', capture: false }),
       delaySeconds: 5,
       run: function(data) {
@@ -221,7 +221,7 @@
       // 7: (54.99068, -10.14043)
 
       // Because of this, we need only see one entity use a 21 log line and we can find the rest.
-      id: 'Sophia EX Quasar Setup',
+      id: 'SophiaEX Quasar Setup',
       netRegex: NetRegexes.abilityFull({ id: '19A[89]' }),
       condition: function(data) {
         return !data.scaleSophias;
@@ -258,7 +258,7 @@
       // If the difference of the sum of weights on each side is 1, the tilt will be soft.
       // Otherwise it will be hard.
       // There will always be exactly one blue Quasar, unless the split is 4/2.
-      id: 'Sophia EX Quasar Tether Collect',
+      id: 'SophiaEX Quasar Tether Collect',
       netRegex: NetRegexes.tether({ id: '0011' }),
       condition: function(data) {
         // We shouldn't run this while Aion Teleos mechanics are active.
@@ -270,7 +270,7 @@
       },
     },
     {
-      id: 'Sophia EX Tilt Via Tether',
+      id: 'SophiaEX Tilt Via Tether',
       netRegex: NetRegexes.tether({ id: '0011', capture: false }),
       condition: function(data) {
         // No platform tilts if clones are up, and no tilts if it's the first one.
@@ -278,8 +278,8 @@
       },
       // We let the storage triggers catch up before calling.
       delaySeconds: .5,
-      suppressSeconds: 5,
       durationSeconds: 12, // Ensuring that forgetful people aren't forgotten.
+      suppressSeconds: 5,
       alertText: function(data) {
         // Tethers are ordered with all East tethers first. This *doesn't* mean that the East
         // or West tethers are themselves in order within their half!
@@ -312,7 +312,7 @@
       // The 20/startsUsing log lines don't actually have position data,
       // but we enumerated all the locations earlier,
       // so anytime one of these entities casts, we know where it is.
-      id: 'Sophia EX Tilt Via Cast',
+      id: 'SophiaEX Tilt Via Cast',
       netRegex: NetRegexes.startsUsing({ id: '19A9', source: 'Sophia' }),
       condition: function(data) {
         // No platform tilts if clones are up, and no tilts if it's the first one.
@@ -338,7 +338,7 @@
       },
     },
     {
-      id: 'Sophia EX Tether Cleanup',
+      id: 'SophiaEX Tether Cleanup',
       netRegex: NetRegexes.ability({ id: '1A4C', capture: false }),
       run: function(data) {
         delete data.quasarTethers;
