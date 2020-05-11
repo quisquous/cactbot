@@ -46,12 +46,14 @@ let UserConfig = {
         Options.ShortLocale = e.detail.language;
         Options.DisplayLanguage = e.detail.language;
       }
+      // Parser Language
       if (e.detail.parserLanguage) {
         Options.ParserLanguage = e.detail.parserLanguage;
         // Backward compatibility, everything "Language" should be changed to "ParserLanguage"
         Options.Language = e.detail.parserLanguage;
       }
       const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
+      // System Language
       if (e.detail.systemLocale) {
         Options.SystemLocale = e.detail.systemLocale;
         Options.ShortLocale = e.detail.systemLocale.substring(0, 2);
@@ -60,11 +62,10 @@ let UserConfig = {
         if (!supportedLanguage.includes(Options.ShortLocale))
           Options.ShortLocale = Options.ParserLanguage;
       }
-      if (e.detail.displayLanguage) {
-        Options.DisplayLanguage = e.detail.displayLanguage || 'en';
-        if (!supportedLanguage.includes(Options.DisplayLanguage))
-          Options.DisplayLanguage = Options.ParserLanguage;
-      }
+      // User's setting Language
+      Options.DisplayLanguage = e.detail.displayLanguage || 'en';
+      if (!supportedLanguage.includes(Options.DisplayLanguage))
+        Options.DisplayLanguage = Options.ParserLanguage;
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
