@@ -1,156 +1,229 @@
-# Alexander - The Burden of the Father (Savage) - A4S
-# Created by Shasta Kota of Death & Taxes (DnT) on Gilgamesh
-# Shasta's reddit: /u/shastaxc
+### A4S
+# Alexander - The Burden of the Father (Savage)
+# https://dtguilds.enjin.com/a4sguide
+# -p F5B:3 13E7:518.2 F64:1528.4 F5E:2033.3
+# -ii F67 F68 F6A F6F F70 F6E F78 F6D F6B F65 F71 F73 F6C F77
 
-0 "--Stop--" sync /Removing combatant The Manipulator/ window 10000 jump 0
+# Note: stun timing is a little bit suspect here.
+#       From most logs it seemed like ~5.8 seconds before the first ray.
+#       So, I applied that to all perpetual rays.
 
-# Phase 1 - Leg 1
-0 "Hydrothermal" sync /The Manipulator uses Hydrothermal Missile./ window 10
-12 "Balls"
-13 "Seed of the Sky"
-18 "Hydrothermal"
-19 "Seed of the Sky"
-21 "Stun" duration 5
-40 "Quarantine"
-43 "Hydrothermal"
-50 "Seed of the Sky"
-50 "Balls"
-55 "Stun" duration 5
-55 "Seed of the Sky"
-75 "Hydrothermal"
-################################Phase repeat unknown
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
-# Phase 2 - Leg 2
-120 "Phase 2" sync /Manipulator readies Mortal Revolution/ window 120,30
-138 "Quarantine"
-142 "Lasers" duration 5
-151 "Hydrothermal"
-152 "Stun" duration 5
-166 "Lasers" duration 5
-173 "Seed of the Sky"
-174 "Hydrothermal"
-187 "Stun" duration 5
-187 "Quarantine"
-200 "Hydrothermal"
-201 "Lasers" duration 5
-208 "Seed of the Sky"
-224 "Hydrothermal"
-238 "Quarantine" #Possible phase repeat
 
-# Phase 3 - Leg 3
-280 "Phase 3" sync /Manipulator readies Mortal Revolution/ window 150,30
-292 "Hydrothermal"
-292 "Lasers" duration 5
-304 "Dolls"
-308 "Stun" duration 5
-322 "Seed of the Sky"
-331 "Hydrothermal"
-333 "Lasers" duration 5
-341 "Stun" duration 5
-342 "Wirbelwind"
-364 "Hydrothermal"
-372 "Dolls"
-372 "Stun" duration 5
-385 "Seed of the Sky"
-386 "Lasers" duration 5
-394 "Seed of the Sky"
-398 "Hydrothermal"
-403 "Stun" duration 5
-410 "Wirbelwind"
-################################Phase repeat unknown
+### Leg 1
+0.0 "--sync--" sync /:Engage!/ window 0,1
+3.0 "Hydrothermal Missile" sync /:The Manipulator:F5B:/ window 3,13
+14.1 "Discoid" sync /:The Manipulator:F61:/
+21.2 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+21.2 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+26.3 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+26.4 "--stun--" duration 5
+32.2 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+41.3 "Emergency Quarantine" sync /:The Manipulator:F62:/
 
-# Phase 4 - Leg 4
-470 "Phase 4" sync /Manipulator readies Mortal Revolution/ window 170,30
-483 "Nisi"
-491 "Dolls"
-495 "Stun" duration 5
-507 "Seed of the Sky"
-518 "Hydrothermal"
-529 "Wirbelwind"
-530 "Balls"
-533 "Seed of the Sky"
-537 "Seed of the Sky"
-545 "Hydrothermal"
-554 "Dolls"
-558 "Stun" duration 5
-572 "Hydrothermal"
-577 "Balls"
-581 "Seed of the Sky"
-586 "Seed of the Sky"
-592 "Wirbelwind"
-597 "Hydrothermal"
-617 "Dolls" #Possible phase repeat
+43.4 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+48.5 "Discoid" sync /:The Manipulator:F61:/
+53.6 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+58.6 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+55.6 "--stun--" duration 5
+61.4 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+71.5 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
 
-# Phase 5 - Manipulator
-680 "Phase 5" sync /Manipulator readies Mortal Revolution/ window 200,200
-698 "Carnage Zero"
-708 "Balls"
-714 "Seed of the Sky"
-717 "Big Ball"
-719 "Hydrothermal"
-722 "Carnage Zero"
-740 "Royal Pentacle" duration 20
-751 "Hydrothermal"
-765 "Lasers" duration 5
-779 "Dolls"
-782 "Hydrothermal"
-785 "Seed of the Sky"
-787 "Carnage Zero"
-790 "Seed of the Sky"
-804 "Carnage Zero"
-814 "Hydrothermal"
-817 "Wirbelwind"
+85.6 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+96.7 "Discoid" sync /:The Manipulator:F61:/ window 20,20 jump 14.1
+103.8 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+103.8 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+108.9 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+109.0 "--stun--" duration 5
+114.8 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+123.9 "Emergency Quarantine" #sync /:The Manipulator:F62:/
 
-827 "Carnage Zero" sync /Manipulator readies Carnage Zero/ window 10
-836 "Balls"
-842 "Seed of the Sky"
-845 "Big Ball"
-848 "Hydrothermal"
-851 "Carnage Zero"
-869 "Royal Pentacle" duration 20
-880 "Hydrothermal"
-894 "Lasers" duration 5
-910 "Dolls"
-911 "Hydrothermal"
-914 "Seed of the Sky"
-916 "Carnage Zero"
-919 "Seed of the Sky"
-933 "Carnage Zero"
-943 "Hydrothermal"
-946 "Wirbelwind"
+126.0 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+131.1 "Discoid" #sync /:The Manipulator:F61:/
+136.2 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+141.2 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+138.2 "--stun--" duration 5
+144.0 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+154.1 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
 
-955 "Carnage Zero" sync /Manipulator readies Carnage Zero/ window 10
-966 "Balls"
-971 "Seed of the Sky"
-974 "Big Ball"
-976 "Hydrothermal"
-979 "Carnage Zero"
-997 "Royal Pentacle" duration 20
-1008 "Hydrothermal"
-1022 "Lasers" duration 5
-1036 "Dolls"
-1039 "Hydrothermal"
-1042 "Seed of the Sky"
-1044 "Carnage Zero"
-1047 "Seed of the Sky"
-1061 "Carnage Zero"
-1071 "Hydrothermal"
-1074 "Wirbelwind"
 
-1083 "Carnage Zero" sync /Manipulator readies Carnage Zero/ window 10
-1093 "Balls"
-1099 "Seed of the Sky"
-1102 "Big Ball"
-1104 "Hydrothermal"
-1107 "Carnage Zero"
-1125 "Royal Pentacle" duration 20
-1136 "Hydrothermal"
-1150 "Lasers" duration 5
-1164 "Dolls"
-1167 "Hydrothermal"
-1170 "Seed of the Sky"
-1172 "Carnage Zero"
-1175 "Seed of the Sky"
-1189 "Carnage Zero"
-1199 "Hydrothermal"
-1202 "Wirbelwind"
+### Leg 2
+500.0 "--sync--" sync / 22:........:The Manipulator:........:The Manipulator:01/ window 500,0
+512.1 "--untargetable--"
+516.2 "--sync--" sync /:13E7:The Manipulator/ window 517,5
+522.2 "Mortal Revolution" sync /:The Manipulator:13E7:/
+524.2 "--targetable--"
+532.3 "Emergency Quarantine" sync /:The Manipulator:F62:/
+543.4 "Carnage" sync /:The Manipulator:F63:/
+545.5 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+547.6 "--stun--" duration 5
+553.4 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+564.5 "Carnage" sync /:The Manipulator:F63:/
+566.6 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+569.6 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+
+578.7 "Emergency Quarantine" sync /:The Manipulator:F62:/
+580.8 "--stun--" duration 5
+586.6 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+590.7 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+597.8 "Carnage" sync /:The Manipulator:F63:/
+602.9 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+612.9 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+
+625.0 "Emergency Quarantine" sync /:The Manipulator:F62:/ window 30,30 jump 532.3
+636.1 "Carnage" #sync /:The Manipulator:F63:/
+638.2 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+640.3 "--stun--" duration 5
+646.1 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+657.2 "Carnage" #sync /:The Manipulator:F63:/
+659.3 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+662.3 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+
+671.4 "Emergency Quarantine" #sync /:The Manipulator:F62:/
+673.5 "--stun--" duration 5
+679.3 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+683.4 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+690.5 "Carnage" #sync /:The Manipulator:F63:/
+695.6 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+705.6 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+
+
+### Leg 3
+1000.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
+1012.1 "--untargetable--"
+1016.2 "--sync--" sync /:13E7:The Manipulator/ window 490,5
+1022.2 "Mortal Revolution" sync /:The Manipulator:13E7:/
+1024.2 "--targetable--"
+1027.4 "Hydrothermal Missile" sync /:The Manipulator:F5B:/ window 10,10
+1034.5 "Carnage" sync /:The Manipulator:F63:/
+1040.2 "Straf Doll x1"
+1040.2 "Jagd Doll x3"
+1044.6 "--stun--" duration 5
+1050.4 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+1057.6 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+1062.6 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+1071.7 "Carnage" sync /:The Manipulator:F63:/
+1075.4 "--stun--" duration 5
+1081.2 "Perpetual Ray x2" #sync /:The Manipulator:F5D:/
+
+1098.9 "Hydrothermal Missile" sync /:The Manipulator:F5B:/ window 10,10
+1107.5 "Straf Doll x1"
+1107.5 "Jagd Doll x3"
+1108.0 "--stun--" duration 5
+1113.8 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+1120.8 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+1124.8 "Carnage" sync /:The Manipulator:F63:/
+1129.9 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+1129.9 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+1135.6 "--stun--" duration 5
+1141.4 "Perpetual Ray x2" #sync /:The Manipulator:F5D:/
+
+1160.2 "Hydrothermal Missile" sync /:The Manipulator:F5B:/ window 10,10
+1167.3 "Carnage" sync /:The Manipulator:F63:/ window 20,20 jump 1034.5
+1173.0 "Straf Doll x1"
+1173.0 "Jagd Doll x3"
+1177.4 "--stun--" duration 5
+1183.2 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+1190.4 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+1195.4 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+1204.5 "Carnage" #sync /:The Manipulator:F63:/
+1208.2 "--stun--" duration 5
+1214.0 "Perpetual Ray x2" #sync /:The Manipulator:F5D:/
+
+1231.7 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+1240.3 "Straf Doll x1"
+1240.3 "Jagd Doll x3"
+1240.8 "--stun--" duration 5
+1246.6 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+1253.6 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+1257.6 "Carnage" #sync /:The Manipulator:F63:/
+1262.7 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+1262.7 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+1268.4 "--stun--" duration 5
+1274.2 "Perpetual Ray x2" #sync /:The Manipulator:F5D:/
+
+
+### Leg 4
+1500.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
+1512.1 "--untargetable--"
+1516.2 "--sync--" sync /:13E7:The Manipulator/ window 490,5
+1522.2 "Mortal Revolution" sync /:The Manipulator:13E7:/
+1524.2 "--targetable--"
+1528.4 "Judgment Nisi" sync /:The Manipulator:F64:/
+1535.9 "Straf Doll x1"
+1535.9 "Jagd Doll x3"
+1540.6 "--stun--" duration 5
+1546.4 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+1556.5 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+1563.5 "Hydrothermal Missile" sync /:The Manipulator:F5B:/ window 10,10
+
+1573.6 "Discoid" sync /:The Manipulator:F61:/
+1582.8 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+1587.8 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+1589.8 "Hydrothermal Missile" sync /:The Manipulator:F5B:/ window 10,10
+1598.0 "Straf Doll x1"
+1598.0 "Jagd Doll x3"
+1605.0 "--stun--" duration 5
+1610.8 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+1615.9 "Hydrothermal Missile" sync /:The Manipulator:F5B:/ window 10,10
+
+# ??? Guessing at this loop.
+1621.0 "Discoid" sync /:The Manipulator:F61:/ window 30,30 jump 1573.6
+1630.2 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+1635.2 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+1637.2 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/ window 10,10
+1645.4 "Straf Doll x1"
+1645.4 "Jagd Doll x3"
+1652.4 "--stun--" duration 5
+1658.2 "Perpetual Ray x2" #sync /:The Manipulator:F5F:/
+
+
+### Final Phase
+2000.0 "--sync--"  sync / 22:........:The Manipulator:........:The Manipulator:01/ window 490,0
+2012.1 "--untargetable--"
+2016.2 "--sync--" sync /:13E7:The Manipulator/ window 490,5
+2022.2 "Mortal Revolution" sync /:The Manipulator:13E7:/
+2024.2 "--targetable--"
+
+2033.3 "Carnage Zero" sync /:The Manipulator:F5E:/
+2041.4 "Discoid" sync /:The Manipulator:F61:/
+2052.5 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+2053.5 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+2058.6 "Carnage Zero" sync /:The Manipulator:F5E:/
+
+2072.8 "Royal Pentacle" sync /:The Manipulator:F66:/
+2074.9 "Perpetual Ray x5" duration 8.4 #sync /:The Manipulator:13B6:/
+2085.4 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+2105.6 "Carnage" sync /:The Manipulator:F63:/
+2114.6 "Straf Doll x1"
+2114.6 "Jagd Doll x3"
+2116.8 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+2122.9 "Carnage Zero" sync /:The Manipulator:F5E:/
+2122.9 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+2128.0 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+2140.0 "Carnage Zero" sync /:The Manipulator:F5E:/
+2148.2 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+
+2161.3 "Carnage Zero" sync /:The Manipulator:F5E:/
+2169.5 "Discoid" sync /:The Manipulator:F61:/
+2180.6 "Seed Of The Sky" sync /:The Manipulator:13D0:/
+2181.6 "Hydrothermal Missile" sync /:The Manipulator:F5B:/
+2186.7 "Carnage Zero" sync /:The Manipulator:F5E:/
+
+2200.9 "Royal Pentacle" sync /:The Manipulator:F66:/ window 40,40 jump 2072.8
+2203.0 "Perpetual Ray x5" duration 8.4 #sync /:The Manipulator:13B6:/
+2213.5 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+2233.7 "Carnage" #sync /:The Manipulator:F63:/
+2244.9 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+2251.0 "Carnage Zero" #sync /:The Manipulator:F5E:/
+2251.0 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+2256.1 "Seed Of The Sky" #sync /:The Manipulator:13D0:/
+2268.1 "Carnage Zero" #sync /:The Manipulator:F5E:/
+2276.3 "Hydrothermal Missile" #sync /:The Manipulator:F5B:/
+
+
+### Enrage
+# Note: Manipulator won't enrage until all legs have been killed.
+2500.0 "--sync--" sync /:13E7:The Manipulator/ window 480,480
+2506.0 "Mortal Revolution Enrage" sync /:The Manipulator:13E7:/
