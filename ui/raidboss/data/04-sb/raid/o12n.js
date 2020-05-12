@@ -143,9 +143,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Calculations indicate increased probability of defeat': 'Warnung. Erhöhte Wahrscheinlichkeit einer Niederlage',
         'Omega(?!-)': 'Omega',
-        'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
         'Progress to party combat': 'Initiiere Gruppenkampf',
@@ -179,7 +178,6 @@
         'Synthetic Shield': 'Synthetischer Schild',
       },
       '~effectNames': {
-        'Invincibility': 'Unverwundbar',
         'Local Resonance': 'Resonanzprogramm: Nah',
         'Omega': 'Omega',
         'Packet Filter F': 'Sicherungssystem W',
@@ -189,9 +187,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Calculations indicate increased probability of defeat': 'Alerte... Forte augmentation des probabilités de défaite...',
         'Omega(?!-)': 'Oméga',
-        'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'unité optique',
         'Progress to party combat': 'Limites du combat en solitaire atteintes',
@@ -225,7 +222,6 @@
         'Synthetic Shield': 'Bouclier optionnel',
       },
       '~effectNames': {
-        'Invincibility': 'Invulnérable',
         'Local Resonance': 'Programme de résonance: proximité',
         'Omega': 'Oméga',
         'Packet Filter F': 'Programme protecteur F',
@@ -235,9 +231,8 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Calculations indicate increased probability of defeat': '警告……敗北の危険性が上昇……',
         'Omega(?!-)': 'オメガ',
-        'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
         'Progress to party combat': '単独戦闘による限界を確認',
@@ -271,7 +266,6 @@
         'Synthetic Shield': 'シールドオプション',
       },
       '~effectNames': {
-        'Invincibility': '無敵',
         'Local Resonance': 'レゾナンスプログラム：ニアー',
         'Omega': 'オメガ',
         'Packet Filter F': 'ガードプログラムF',
@@ -283,7 +277,6 @@
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
         'Omega(?!-)': '欧米茄',
-        'Omega-F': '欧米茄F',
         'Omega-M': '欧米茄M',
         'Optical Unit': '视觉组',
         'Progress to party combat': '确认到单独战斗的极限',
@@ -317,7 +310,6 @@
         'Synthetic Shield': '合成盾',
       },
       '~effectNames': {
-        'Invincibility': '无敌',
         'Local Resonance': '共鸣程序：近',
         'Omega': '欧米茄',
         'Packet Filter F': '防护程序F',
@@ -327,9 +319,8 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
+        'Calculations indicate increased probability of defeat': '경고…… 패배 위험성 상승……',
         'Omega(?!-)': '오메가',
-        'Omega-F': '오메가 F',
         'Omega-M': '오메가 M',
         'Optical Unit': '광학 유닛',
         'Progress to party combat': '단독 전투 한계 확인',
@@ -363,7 +354,6 @@
         'Synthetic Shield': '방패 장착',
       },
       '~effectNames': {
-        'Invincibility': '무적',
         'Local Resonance': '공명 프로그램: 근거리',
         'Omega': '오메가',
         'Packet Filter F': '방어 프로그램 F',

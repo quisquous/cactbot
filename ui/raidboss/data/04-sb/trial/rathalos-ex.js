@@ -92,4 +92,41 @@
       response: Responses.killAdds(),
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Rathalos': 'Rathalos',
+        'Steppe Sheep': 'Steppenschaf',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Rathalos': 'Rathalos',
+        'Steppe Sheep': 'mouton de la steppe',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Rathalos': 'リオレウス',
+        'Steppe Sheep': 'ステップ・シープ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Rathalos': '火龙',
+        'Steppe Sheep': '草原绵羊',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Rathalos': '리오레우스',
+        'Steppe Sheep': '초원 양',
+      },
+    },
+  ],
 }];

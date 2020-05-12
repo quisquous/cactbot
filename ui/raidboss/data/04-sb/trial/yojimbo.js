@@ -62,8 +62,8 @@
         'Yojimbo': 'Yojinbo',
       },
       'replaceText': {
-        'A Giant Me': 'A Giant Me', // FIXME
-        'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
+        'A Giant Me': 'Dann wirf mal \'nen Blick hinter uns!',
+        'Ame-no-Murakumo': 'Ame no Murakumo',
         'Bitter End': 'Klingenschimmer',
         'Dragon Night': 'Drachennacht',
         'Dragon\'s Lair': 'Drachenhort',
@@ -72,7 +72,7 @@
         'Epic Stormsplitter': 'Fließende Welt',
         'Gekko': 'Gekko',
         'Giga Jump': 'Giga-Sprung',
-        'Hell\'s Gate': 'Hell\'s Gate', // FIXME
+        'Hell\'s Gate': 'Höllentor',
         'Inoshikacho': 'Ino-shika-cho',
         'Kasha': 'Kasha',
         'Masamune': 'Masamune',
@@ -94,8 +94,8 @@
         'Yojimbo': 'Yojimbo',
       },
       'replaceText': {
-        'A Giant Me': 'A Giant Me', // FIXME
-        'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
+        'A Giant Me': 'J\'ai toujours eu la folie des grandeurs!',
+        'Ame-no-Murakumo': 'Ame no Murakumo',
         'Bitter End': 'Éradication',
         'Dragon Night': 'Nuit du dragon',
         'Dragon\'s Lair': 'Fléau du dragon',
@@ -104,7 +104,7 @@
         'Epic Stormsplitter': 'Monde flottant',
         'Gekko': 'Gekkô',
         'Giga Jump': 'Giga saut',
-        'Hell\'s Gate': 'Hell\'s Gate', // FIXME
+        'Hell\'s Gate': 'Portes de l\'enfer',
         'Inoshikacho': 'Ino-shika-cho',
         'Kasha': 'Kasha',
         'Masamune': 'Masamune',
@@ -126,8 +126,8 @@
         'Yojimbo': 'ヨウジンボウ',
       },
       'replaceText': {
-        'A Giant Me': 'A Giant Me', // FIXME
-        'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
+        'A Giant Me': '巨身の術～！！',
+        'Ame-no-Murakumo': 'アメノムラクモ',
         'Bitter End': 'ヒット・ジ・エンド',
         'Dragon Night': '竜星撃',
         'Dragon\'s Lair': '雲蒸竜変',
@@ -136,7 +136,7 @@
         'Epic Stormsplitter': '我流海嵐斬',
         'Gekko': '月光',
         'Giga Jump': 'ギガジャンプ',
-        'Hell\'s Gate': 'Hell\'s Gate', // FIXME
+        'Hell\'s Gate': '獄門',
         'Inoshikacho': '猪鹿蝶',
         'Kasha': '花車',
         'Masamune': 'マサムネ',
@@ -159,7 +159,7 @@
       },
       'replaceText': {
         'A Giant Me': '巨大化之术',
-        'Ame-no-Murakamo': '天之丛云',
+        'Ame-no-Murakumo': '天之丛云',
         'Bitter End': '命尽于此',
         'Dragon Night': '龙星击',
         'Dragon\'s Lair': '云蒸龙变',
@@ -191,7 +191,7 @@
       },
       'replaceText': {
         'A Giant Me': '거대 길가메시',
-        'Ame-no-Murakamo': '아메노무라쿠모',
+        'Ame-no-Murakumo': '아메노무라쿠모',
         'Bitter End': '끝장타',
         'Dragon Night': '용성격',
         'Dragon\'s Lair': '운증용변',

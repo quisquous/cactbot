@@ -245,8 +245,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Potent Petrosphere': 'Petrosphäre[p] I',
-        '(?<! )Petrosphere': 'Petrosphäre[p] II',
+        'Potent Petrosphere': 'Petrosphäre I',
+        '(?<! )Petrosphere': 'Petrosphäre II',
         'Fleshy Member': 'Tentakel',
         'Catastrophe': 'Katastroph',
       },
@@ -270,6 +270,7 @@
         '-100 Gs': 'Minus 100 G',
       },
       '~effectNames': {
+        'Levitation': 'Levitation',
         'Six Fulms Under': 'Versinkend',
       },
     },
@@ -301,6 +302,7 @@
         '-100 Gs': 'Gravité -100',
       },
       '~effectNames': {
+        'Levitation': 'Lévitation',
         'Six Fulms Under': 'Enfoncement',
       },
     },
@@ -332,6 +334,7 @@
         '-100 Gs': '重力マイナス100',
       },
       '~effectNames': {
+        'Levitation': 'レビテト',
         'Six Fulms Under': '沈下',
       },
     },
@@ -363,6 +366,7 @@
         '-100 Gs': '重力-100',
       },
       '~effectNames': {
+        'Levitation': '浮空',
         'Six Fulms Under': '下陷',
       },
     },
@@ -394,6 +398,7 @@
         '-100 Gs': '중력 -100',
       },
       '~effectNames': {
+        'Levitation': '레비테트',
         'Six Fulms Under': '침하',
       },
     },

@@ -145,8 +145,6 @@
         'Breath Wing': 'Atemschwinge',
         'Blaze': 'Flamme',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'fr',
@@ -168,8 +166,6 @@
         'Burn': 'Combustion',
         'Breath Wing': 'Aile déferlante',
         'Blaze': 'Fournaise',
-      },
-      '~effectNames': {
       },
     },
     {
@@ -193,8 +189,6 @@
         'Breath Wing': 'ブレスウィング',
         'Blaze': '火炎',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'cn',
@@ -217,13 +211,11 @@
         'Breath Wing': '风息之翼',
         'Blaze': '炎爆',
       },
-      '~effectNames': {
-      },
     },
     {
       'locale': 'ko',
       'replaceSync': {
-        'Ball Of Fire': 'Ball Of Fire', // FIXME
+        'Ball Of Fire': '화염 구체',
         'Alte Roite': '알테 로이테',
       },
       'replaceText': {
@@ -240,8 +232,6 @@
         'Burn': '연소',
         'Breath Wing': '날개바람',
         'Blaze': '화염',
-      },
-      '~effectNames': {
       },
     },
   ],
