@@ -48,7 +48,7 @@
       },
       suppressSeconds: 1,
       infoText: {
-        en: 'Tank buster',
+        en: 'Tank Busters',
         de: 'Tank buster',
         fr: 'Tank buster',
         cn: '死刑',
