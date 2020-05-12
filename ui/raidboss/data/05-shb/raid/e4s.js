@@ -16,7 +16,7 @@
         return data.role == 'healer' || data.role == 'tank';
       },
       alertText: {
-        en: 'Tank buster',
+        en: 'Tank Busters',
         de: 'Tank buster',
         fr: 'Tank buster',
         ja: 'タンクバスター',
