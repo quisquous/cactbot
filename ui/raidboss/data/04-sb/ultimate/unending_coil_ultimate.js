@@ -1067,7 +1067,7 @@
         return {
           en: 'Go To ' + dir + ' with marker',
           de: 'Gehe nach ' + dir + ' mit dem Marker',
-          ko: dir+'에 서기',
+          ko: dir+'으로 이동',
         };
       },
     },
