@@ -102,7 +102,7 @@
     {
       id: 'SophiaEX Divine Spark',
       netRegex: NetRegexes.startsUsing({ id: '19B6', source: 'The Second Demiurge', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '19B6', source: 'Zweit[a] Demiurg', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19B6', source: 'Zweit(?:e|er|es|en) Demiurg', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '19B6', source: 'Second Démiurge', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '19B6', source: '二の従者', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '19B6', source: '信徒其二', capture: false }),
@@ -112,7 +112,7 @@
     {
       id: 'SophiaEX Gnostic Rant',
       netRegex: NetRegexes.startsUsing({ id: '19B8', source: 'The Third Demiurge', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '19B8', source: 'Dritt[a] Demiurg', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '19B8', source: 'Dritt(?:e|er|es|en) Demiurg', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '19B8', source: 'Troisième Démiurge', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '19B8', source: '三の従者', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '19B8', source: '信徒其三', capture: false }),
@@ -128,6 +128,26 @@
       // Each quadrant can contain 0 or 1 clones, and the center can have 0-2.
       // There will always be 4 clones.
       // There can never be more than 3 clones North or South.
+
+      // The full sequence for clones is:
+      // 1. Clones appear, alongside a Cintamani cast
+      // If it's the first clone set:
+      // 2. Sophia casts Thunder III
+      // 3. Sophia casts Aero
+      // 4. Sophia casts Arms of Wisdom
+      // 5. Barbelo moves to cast Light Dew
+      // 6. Barbelo casts Light Dew and Sophia casts Execute
+      // 7. Clones disappear
+
+      // If it's not the first clone set:
+      // 2. Sophia casts Arms Of Wisdom
+      // 3. Sophia casts Thunder
+      // 4. Sophia casts Aero
+      // 5. Quasars cast, snapshot, and resolve
+      // 6. Sophia casts Arms Of Wisdom again
+      // 7. Dischordant Cleansing circles go out and resolve
+      // 8. Sophia casts Execute
+      // 9. Clones disappear
       id: 'SophiaEX Clone Collect',
       netRegex: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
       netRegexDe: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
@@ -137,8 +157,8 @@
       netRegexKo: NetRegexes.addedCombatantFull({ name: '아이온 소피아' }),
       run: function(data, matches) {
         data.cloneSpots = data.cloneSpots || {};
-        const x = parseInt(matches.x, 10);
-        const y = parseInt(matches.y, 10);
+        const x = parseFloat(matches.x);
+        const y = parseFloat(matches.y);
         // We start with Y since it's a binary choice.
         // Note that Y-values are inverted! (In-game, 0,1 is one unit South from the origin)
         let positionString = y > 0 ? 'S' : 'N';
@@ -146,7 +166,7 @@
         if (Math.round(x) != 0)
           positionString += Math.round(x) < 0 ? 'W' : 'E';
         // Yes, we have to specifically uppercase this for 03 log lines.
-        // No, I don't know why. Blame Square/Ravahn/Hydaelyn.
+        // No, we don't know why. Blame Square/Ravahn/Hydaelyn.
         data.cloneSpots[matches.id.toUpperCase()] = positionString;
       },
     },
@@ -193,7 +213,6 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '移涌', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '아이온 소피아', capture: false }),
-      suppressSeconds: 5, // Not strictly necessary, but why not.
       run: function(data) {
         data.clonesActive = true;
       },
@@ -226,7 +245,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '19AA', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19AA', source: '소피아' }),
       durationSeconds: function(data, matches) {
-        return parseInt(matches.castTime, 10);
+        return parseFloat(matches.castTime);
       },
       alertText: function(data) {
         const localeCompass = {
@@ -262,8 +281,8 @@
           'thunderClones',
           'seenThunder',
         ];
-        for (let i in cloneData)
-          delete data[cloneData[i]];
+        for (let element of cloneData)
+          delete data[element];
       },
     },
     {
@@ -289,20 +308,24 @@
       // We *really* shouldn't have to suppress this...
       suppressSeconds: 5,
       run: function(data, matches) {
-        // This might be slightly more compact with a switch fallthrough,
-        // but it's somewhat clearer what's going on with a const enumeration.
-        const scaleMap = {
-          '-55.0637-3.496415': 0,
-          '-55.06367-10.1404': 1,
-          '-55.063639.5766': 2,
-          '-55.06373.523648': 3,
-          '54.99073.387837': 4,
-          '54.986999.576593': 5,
-          '54.9907-3.50686': 6,
-          '54.99068-10.14043': 7,
-        };
-        // Horrible, awful string manipulation, whyyy, Javascript?
-        const seqStart = parseInt(matches.sourceId, 16) - scaleMap[matches.x + matches.y];
+        let offset;
+        const yKey = Math.floor(parseFloat(matches.y)).toString();
+        if (parseFloat(matches.x) < 0) {
+          offset = {
+            '-4': 0,
+            '-11': 1,
+            '9': 2,
+            '3': 3,
+          }[yKey];
+        } else {
+          offset = {
+            '3': 4,
+            '9': 5,
+            '-4': 6,
+            '-11': 7,
+          }[yKey];
+        }
+        const seqStart = parseInt(matches.sourceId, 16) - offset;
         for (let i = 0; i < 8; i++) {
           data.scaleSophias = data.scaleSophias || [];
           data.scaleSophias.push((seqStart + i).toString(16).toUpperCase());
@@ -350,11 +373,12 @@
         // This will give us the tilt direction for all but the 1/1, 2/2, and 3/3 cases.
         // The safe side is represented here by whether safeDir is positive or negative.
         // (West/negative, East/positive.)
-        for (let i = 0; i < data.quasarTethers.length; i++)
-          safeDir += data.scaleSophias.indexOf(data.quasarTethers[i]) < 4 ? -1 : 1;
+        for (let tether of data.quasarTethers)
+          safeDir += data.scaleSophias.indexOf(tether) < 4 ? -1 : 1;
         if (safeDir == 0) {
           // If it's the 1/1, 2/2, or 3/3 case, we sadly don't have enough information.
           // We have to quit here and wait for the actual cast.
+          data.sadTethers = true;
           return;
         }
         return {
@@ -381,25 +405,19 @@
       netRegexKo: NetRegexes.startsUsing({ id: '19A9', source: '소피아' }),
       condition: function(data) {
         // No platform tilts if clones are up, and no tilts if it's the first one.
-        return !data.clonesActive && data.scaleSophias;
+        return !data.clonesActive && data.scaleSophias && data.sadTethers;
       },
-      // We let the storage triggers catch up before calling.
-      delaySeconds: .5,
+      durationSeconds: 10,
       suppressSeconds: 5,
       alertText: function(data, matches) {
-        if (![2, 4, 6].includes(data.quasarTethers.length))
-          return;
-        let balance = 0;
-        // It's possible a 6-tether group could be 4/2, so we have to eliminate that possibility.
-        for (let i = 0; i < data.quasarTethers.length; i++)
-          balance += data.scaleSophias.indexOf(data.quasarTethers[i]) < 4 ? -1 : 1;
-        if (balance != 0)
-          return;
         const safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? 'E' : 'W';
         return {
           'W': { en: 'Go West (Hard Tilt)' },
           'E': { en: 'Go East (Hard Tilt)' },
         }[safeDir];
+      },
+      run: function(data) {
+        delete data.sadTethers;
       },
     },
     {
@@ -417,35 +435,33 @@
         'Aion Teleos': 'Aion Teleos',
         'Barbelo': 'Barbelo',
         'Sophia': 'Sophia',
-        'The First Demiurge': 'Erst[a] Demiurg',
-        'The Second Demiurge': 'Zweit[a] Demiurg',
-        'The Third Demiurge': 'Dritt[a] Demiurg',
+        'The First Demiurge': 'Erst(?:e|er|es|en) Demiurg',
+        'The Second Demiurge': 'Zweit(?:e|er|es|en) Demiurg',
+        'The Third Demiurge': 'Dritt(?:e|er|es|en) Demiurg',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
+        '--clones appear--': '--klone erscheinen--',
         'Aero III': 'Windga',
         'Arms of Wisdom': 'Arme der Weisheit',
         'Cintamani': 'Chintamani',
         'Cloudy Heavens': 'Nebulöse Himmel',
         'Dischordant Cleansing': 'Dissonante Buße',
         'Divine Spark': 'Göttlicher Funke',
-        'Duplicate': 'Duplizieren',
         'Execute': 'Exekutieren',
         'Gnosis': 'Gnosis',
-        'Gnostic Rant': 'Gnostischer Gegenlauf',
         'Gnostic Spear': 'Gnostischer Speer',
         'Horizontal Kenoma': 'Horizontales Kenoma',
-        'Infusion': 'Schneisenschläger',
         'Light Dew': 'Lichttau',
         'Onrush': 'Heranstürmen',
         'Quasar': 'Quasar',
         'Ring of Pain': 'Ring des Schmerzes',
         'The Scales Of Wisdom': 'Waage der Weisheit',
-        'Thunder II\/III': 'Blitzra/Blitzga',
-        'Thunder II(?!(?:I|\/))': 'Blitzra',
+        'Thunder II\\/III': 'Blitzra/Blitzga',
+        'Thunder II(?!(?:I|\\/))': 'Blitzra',
         'Thunder III': 'Blitzga',
         'Vertical Kenoma': 'Vertikales Kenoma',
-        '--clones appear--': '--klone erscheinen--',
-        '--adds spawn--': '--adds spawn--',
+        'Zombification': 'Zombie',
       },
     },
     {
@@ -459,30 +475,28 @@
         'The Third Demiurge': 'Troisième Démiurge',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
+        '--clones appear--': '--apparition des clones--',
         'Aero III': 'Méga Vent',
         'Arms of Wisdom': 'Bras de la sagesse',
         'Cintamani': 'Chintamani',
         'Cloudy Heavens': 'Ciel nébuleux',
         'Dischordant Cleansing': 'Purification Discordante',
         'Divine Spark': 'Étincelle divine',
-        'Duplicate': 'Duplication',
         'Execute': 'Exécution',
         'Gnosis': 'Gnose',
-        'Gnostic Rant': 'Diatribe gnostique',
         'Gnostic Spear': 'Épieu Gnostique',
         'Horizontal Kenoma': 'Kenoma horizontal',
-        'Infusion': 'Infusion',
         'Light Dew': 'Rosée De Lumière',
         'Onrush': 'Charge',
         'Quasar': 'Quasar',
         'Ring of Pain': 'Anneau de douleur',
         'The Scales Of Wisdom': 'Balance de la sagesse',
-        'Thunder II\/III': 'Extra Foudre/Mega Foudre',
-        'Thunder II(?!(?:I|\/))': 'Extra Foudre',
+        'Thunder II\\/III': 'Extra Foudre/Mega Foudre',
+        'Thunder II(?!(?:I|\\/))': 'Extra Foudre',
         'Thunder III': 'Méga Foudre',
         'Vertical Kenoma': 'Kenoma Vertical',
-        '--clones appear--': '--apparition des clones--',
-        '--adds spawn--': '--adds spawn--',
+        'Zombification': 'Zombification',
       },
     },
     {
@@ -496,30 +510,28 @@
         'The Third Demiurge': '三の従者',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
+        '--clones appear--': '--幻影が現れる--',
         'Aero III': 'エアロガ',
         'Arms of Wisdom': 'ウィズダムアームズ',
         'Cintamani': 'チンターマニ',
         'Cloudy Heavens': 'クラウディヘヴン',
         'Dischordant Cleansing': '不調和の罰',
         'Divine Spark': '熱いまなざし',
-        'Duplicate': 'デュプリケイト',
         'Execute': 'エクセキュート',
         'Gnosis': 'グノーシス',
-        'Gnostic Rant': '魔槍乱舞',
         'Gnostic Spear': '魔槍突き',
         'Horizontal Kenoma': '側面堅守',
-        'Infusion': '猛突進',
         'Light Dew': 'ライトデュー',
         'Onrush': 'オンラッシュ',
         'Quasar': 'クエーサー',
         'Ring of Pain': 'リング・オブ・ペイン',
         'The Scales Of Wisdom': 'バランス・オブ・ウィズダム',
-        'Thunder II\/III': 'サンダー/サンダガ',
-        'Thunder II(?!(?:I|\/))': 'サンダラ',
+        'Thunder II\\/III': 'サンダー/サンダガ',
+        'Thunder II(?!(?:I|\\/))': 'サンダラ',
         'Thunder III': 'サンダガ',
         'Vertical Kenoma': '前後堅守',
-        '--clones appear--': '--幻影が現れる--',
-        '--adds spawn--': '--adds spawn--',
+        'Zombification': 'ゾンビー',
       },
     },
     {
@@ -533,30 +545,28 @@
         'The Third Demiurge': '信徒其三',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
+        '--clones appear--': '--clones appear--',
         'Aero III': '暴风',
         'Arms of Wisdom': '睿智之秤',
         'Cintamani': '如意宝珠',
         'Cloudy Heavens': '阴云天堂',
         'Dischordant Cleansing': '不平衡之罚',
         'Divine Spark': '灼热视线',
-        'Duplicate': '复制',
         'Execute': '处决',
         'Gnosis': '灵知',
-        'Gnostic Rant': '魔枪乱舞',
         'Gnostic Spear': '魔枪突刺',
         'Horizontal Kenoma': '侧面坚守',
-        'Infusion': '猛突进',
         'Light Dew': '光露',
         'Onrush': '突袭',
         'Quasar': '类星体',
         'Ring of Pain': '痛苦环刺',
         'The Scales Of Wisdom': '睿智之天平',
-        'Thunder II\/III': '震雷/暴雷',
-        'Thunder II(?!(?:I|\/))': '震雷',
+        'Thunder II\\/III': '震雷/暴雷',
+        'Thunder II(?!(?:I|\\/))': '震雷',
         'Thunder III': '暴雷',
         'Vertical Kenoma': '前后坚守',
-        '--clones appear--': '--clones appear--',
-        '--adds spawn--': '--adds spawn--',
+        'Zombification': '僵尸',
       },
     },
     {
@@ -570,30 +580,28 @@
         'The Third Demiurge': '제3신도',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
+        '--clones appear--': '--clones appear--',
         'Aero III': '에어로가',
         'Arms of Wisdom': '지혜의 무기',
         'Cintamani': '친타마니',
         'Cloudy Heavens': '흐린 낙원',
         'Dischordant Cleansing': '부조화의 벌',
         'Divine Spark': '뜨거운 시선',
-        'Duplicate': '복제',
         'Execute': '이행',
         'Gnosis': '영적 지혜',
-        'Gnostic Rant': '마창 난무',
         'Gnostic Spear': '마창 찌르기',
         'Horizontal Kenoma': '측면 견제',
-        'Infusion': '맹돌진',
         'Light Dew': '빛의 이슬',
         'Onrush': '돌진',
         'Quasar': '퀘이사',
         'Ring Of Pain': '고통의 소용돌이',
         'The Scales Of Wisdom': '지혜의 저울',
-        'Thunder II\/III': '선더라/선더가',
-        'Thunder II(?!(?:I|\/))': '선더라',
+        'Thunder II\\/III': '선더라/선더가',
+        'Thunder II(?!(?:I|\\/))': '선더라',
         'Thunder III': '선더가',
         'Vertical Kenoma': '앞뒤 견제',
-        '--clones appear--': '--clones appear--',
-        '--adds spawn--': '--adds spawn--',
+        'Zombification': '좀비',
       },
     },
   ],
