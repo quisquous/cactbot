@@ -115,7 +115,7 @@
         return data.role == 'healer';
       },
       infoText: {
-        en: 'Tank buster',
+        en: 'Tank Busters',
         de: 'Tank buster',
         fr: 'Tank buster',
         ja: 'タンクバスター',
