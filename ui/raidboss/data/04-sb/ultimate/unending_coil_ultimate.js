@@ -774,6 +774,7 @@
         fr: 'Feu en dedans',
         de: 'Feuer innen',
         ja: 'ファイアボール密着',
+        ko: '불 같이맞기',
       },
       run: function(data) {
         data.naelFireballCount = 1;
@@ -903,7 +904,7 @@
             de: 'feuer innen ausweichen',
             ja: 'ファイアボール密着: 自分に離れ',
             cn: '躲避火进',
-            ko: '불 같이맞으면 안됨',
+            ko: '불 피하기',
           };
         }
         return {
@@ -1066,6 +1067,7 @@
         return {
           en: 'Go To ' + dir + ' with marker',
           de: 'Gehe nach ' + dir + ' mit dem Marker',
+          ko: dir + '으로 이동',
         };
       },
     },
