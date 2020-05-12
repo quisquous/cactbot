@@ -3,9 +3,12 @@
 # TODO: this does not handle multi-line regexes.  You have to join them before running this.  <_<
 
 import argparse
+import demjson
 import json
 import os
 import re
+import sys
+import copy
 
 languages = ["en", "de", "fr", "ja", "cn", "ko"]
 regex_entries = {
@@ -142,8 +145,10 @@ def parse_translations(triggers):
     # oh god this whole section is a terrible hack, I'm so, so sorry.
     lines = ["["]
     line = fp.readline()
+    found_translation = False
     while line:
         if line.startswith("  timelineReplace: [") or line.startswith('  "timelineReplace": ['):
+            found_translation = True
             line = fp.readline()
             while line and not line.startswith("  ]"):
                 awful_json_trailing_comma_check = False
@@ -166,6 +171,10 @@ def parse_translations(triggers):
                     lines.append(",")
         line = fp.readline()
 
+    if not found_translation:
+        print("No timelineReplace element available! Exit!")
+        sys.exit(1)
+
     lines.append("]")
     try:
         ret_list = json.loads("".join(lines))
@@ -187,40 +196,43 @@ def parse_translations(triggers):
     return ret_dict
 
 
-def translate_timeline(line, trans):
+def translate_timeline(line, trans, not_used_trans):
     if not re.match(r"\s*[0-9.]+\s+", line):
-        return line
+        return line, not_used_trans
+
+    # get elements to skip in either text or sync
+    skip_text = get_common_raidboss_replacements()
 
     # handle replace text first
     did_work = False
     replace_text_re = re.compile(r'"[^"]*"')
     m = replace_text_re.search(line)
     if not m:
-        return line
+        return line, not_used_trans
     text = m.group(0)
     for old, new in trans["replaceText"].items():
         did_work = did_work or re.search(old, text, re.IGNORECASE)
+        if re.search(old, text, re.IGNORECASE) and not_used_trans["replaceText"].get(old, None):
+            del not_used_trans["replaceText"][old]
         text = re.sub(old, new, text)
     line = replace_text_re.sub(text, line)
-    skip_text = [
-        "--sync--",
-        "--Reset--",
-        "Start",
-    ]
     for skip in skip_text:
         did_work = did_work or re.search(skip, text, re.IGNORECASE)
     if not did_work:
         line = line + " #MISSINGTEXT"
 
+    # handle replace sync second
     did_work = False
     replace_sync_re = re.compile(r"sync /([^/]*)/")
     escape_backslash_re = re.compile(r"(?<!\\)\\(?!\\)")
     m = replace_sync_re.search(line)
     if not m:
-        return line
+        return line, not_used_trans
     text = m.group(1)
     for old, new in trans["replaceSync"].items():
         did_work = did_work or re.search(old, text, re.IGNORECASE)
+        if re.search(old, text, re.IGNORECASE) and not_used_trans["replaceSync"].get(old, None):
+            del not_used_trans["replaceSync"][old]
         text = re.sub(old, new, text)
         # Double escape any escaped characters that will break the
         # regex below.  The regex substitution will turn the
@@ -228,18 +240,43 @@ def translate_timeline(line, trans):
         # Not doing this causes a "bad escape" in the re engine.
         text = escape_backslash_re.sub(r"\\\\", text)
     line = replace_sync_re.sub("sync /%s/" % text, line)
+    for skip in skip_text:
+        did_work = did_work or re.search(skip, text, re.IGNORECASE)
     if not did_work:
         line = line + " #MISSINGSYNC"
 
-    return line
+    return line, not_used_trans
 
 
-def print_timeline(locale, timeline_file, trans, missing_filter):
-    if not locale in trans:
+def get_common_raidboss_replacements():
+    original_array = ["Start", "--Reset", "--sync--"]
+    original_array += [" 21:........:40000010:", " 21:........:40000003:"]
+    common_replacements_found = False
+    common_replacements = ""
+    try:
+        with open(base_triggers_path() + "../common_replacement.js", "r", encoding="utf-8") as f:
+            for line in f.readlines():
+                if line[:-1] == "let commonReplacement = {":
+                    common_replacements_found = True
+                elif line[:-1] == "};":
+                    common_replacements = demjson.decode("{" + common_replacements + "}")
+                    common_replacements_r = [key for key in common_replacements]
+                    return common_replacements_r + original_array
+                elif common_replacements_found:
+                    common_replacements += line[:-1]
+    except FileNotFoundError:
+        pass
+    return original_array
+
+
+def print_timeline(locale, timeline_file, trans, missing_filter, not_used_trans):
+    if locale not in trans:
         raise Exception("no translation for " + locale)
     with open(timeline_file, encoding="utf-8") as fp:
         for line in fp.readlines():
-            filter_print_timeline(translate_timeline(line.strip(), trans[locale]), missing_filter)
+            timeline_trans, not_used_trans = translate_timeline(line.strip(), trans[locale], not_used_trans)
+            filter_print_timeline(timeline_trans, missing_filter)
+    return not_used_trans
 
 
 def filter_print_timeline(text, missing_filter):
@@ -254,6 +291,58 @@ def filter_print_timeline(text, missing_filter):
             print(text)
     else:
         print(text)
+
+
+def find_duplicate_translations(trans, locale):
+    if trans.get(locale, None):
+        for category in ["replaceSync", "replaceText", "~effectNames"]:
+            already_found = []
+            remove = []
+            for old in trans[locale].get(category, []):
+                if not old.lower() in already_found:
+                    already_found.append(old.lower())
+                else:
+                    remove.append(old)
+                    print(f'Found duplicate entry for "{old}" in "{category}"!')
+            for entry in remove:
+                del trans[locale][category][entry]
+        print()
+    return trans
+
+
+def print_not_used_translations(not_used_trans):
+    text = "Please Note, that following elements might be false positives and need to be double checked"
+    print_missing_translation = True
+    for translation_category in not_used_trans:
+        if type(not_used_trans[translation_category]) == dict:
+            for translation in not_used_trans[translation_category]:
+                if print_missing_translation:
+                    print("\n" + "#" * len(text) + "\n" + text + "\n" + "#" * len(text) + "\n")
+                    print_missing_translation = False
+                print(f'"{translation_category}": Translation "{translation}" is never used!')
+
+
+def check_not_used_trans_in_regex(not_used_trans, lines):
+    for line in lines:
+        if "regex:" in line:
+            remove_trans = ""
+            remove_in_category = []
+            for category in not_used_trans:
+                if type(not_used_trans[category]) == dict:
+                    for trans in not_used_trans[category]:
+                        pattern = re.compile(trans, re.IGNORECASE)
+                        search_result = pattern.search(line)
+                        if search_result:
+                            if category not in remove_in_category:
+                                remove_in_category.append(category)
+                                remove_trans = trans
+                                break
+            for category in remove_in_category:
+                try:
+                    del not_used_trans[category][remove_trans]
+                except:
+                    print(f"Error for deleting {remove_trans} in {category}")
+    return not_used_trans
 
 
 def main(args):
@@ -279,11 +368,17 @@ def main(args):
         for line in lines:
             m = re.search(r"timelineFile:\s*'(.*?)',", line)
             if m:
+                trans = find_duplicate_translations(trans, args.timeline)
+                not_used_trans = copy.deepcopy(trans[args.timeline]) if not trans == {} else {}
                 timeline_dir = os.path.dirname(filename)
                 timeline_file = os.path.join(timeline_dir, m.group(1))
-                print_timeline(args.timeline, timeline_file, trans, args.grep_missing)
+                not_used_trans = print_timeline(args.timeline, timeline_file, trans, args.grep_missing, not_used_trans)
+                not_used_trans = check_not_used_trans_in_regex(not_used_trans, lines)
+                print_not_used_translations(not_used_trans)
                 return
-        raise Exception("unable to find timelineFile in %s" % args.file)
+
+        print(f"Unable to find timelineFile in {args.file}! Exit!")
+        sys.exit(1)
 
     # ...otherwise update triggers.
     updated = update_triggers(lines, trans)
@@ -295,6 +390,7 @@ def main(args):
 
 
 if __name__ == "__main__":
+    get_common_raidboss_replacements()
     example_usage = ""
 
     parser = argparse.ArgumentParser(
