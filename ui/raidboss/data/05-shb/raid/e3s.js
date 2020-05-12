@@ -115,7 +115,7 @@
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
-            en: 'Tank buster on YOU',
+            en: 'Tank Buster on YOU',
             de: 'Tank buster auf DIR',
             fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
@@ -125,7 +125,7 @@
         }
         if (data.role == 'healer') {
           return {
-            en: 'Tank buster',
+            en: 'Tank Busters',
             de: 'Tank buster',
             fr: 'Tank buster',
             ja: 'タンクバスター',
