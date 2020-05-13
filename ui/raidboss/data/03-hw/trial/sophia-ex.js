@@ -249,14 +249,12 @@
       },
       alertText: function(data) {
         const localeCompass = {
-          'N': { en: 'North' },
-          'S': { en: 'South' },
-          'W': { en: 'West' },
-          'E': { en: 'East' },
-          'NW': { en: 'Northwest' },
-          'NE': { en: 'Northeast' },
-          'SW': { en: 'Southwest' },
-          'SE': { en: 'Southeast' },
+          'N': { en: 'N', fr: 'Nord', de: 'Norde', ja: 'ノース', cn: '北', ko: '북쪽' },
+          'S': { en: 'S', fr: 'Sud', de: 'Süden', ja: '南', cn: '南面', ko: '남쪽' },
+          'NW': { en: 'NW', fr: 'N-O', de: 'NW', ja: '北西', cn: '西北', ko: '북서' },
+          'NE': { en: 'NE', fr: 'N-E', de: 'N-E', ja: '北東', cn: '东北', ko: '북동' },
+          'SW': { en: 'SW', fr: 'S-O', de: 'SW', ja: '南西', cn: '西南', ko: '남서' },
+          'SE': { en: 'SE', fr: 'S-E', de: 'SO', ja: '南東', cn: '东南', ko: '남동' },
         };
         if (data.thunderClones.length === 1)
           return localeCompass[data.thunderClones[0]];
