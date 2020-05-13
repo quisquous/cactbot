@@ -71,6 +71,21 @@ var Regexes = {
       'targetId',
       'target',
       'flags',
+      'flag0',
+      'flag1',
+      'flag2',
+      'flag3',
+      'flag4',
+      'flag5',
+      'flag6',
+      'flag7',
+      'flag8',
+      'flag9',
+      'flag10',
+      'flag11',
+      'flag12',
+      'flag13',
+      'flag14',
       'targetHp',
       'targetMaxHp',
       'targetMp',
@@ -99,28 +114,42 @@ var Regexes = {
       Regexes.maybeCapture(capture, 'targetId', f.targetId, '\\y{ObjectId}') + ':' +
       Regexes.maybeCapture(capture, 'target', f.target, '[^:]*?') + ':' +
       Regexes.maybeCapture(capture, 'flags', f.flags, '[^:]*?') + ':' +
-      '.*:' +
-      Regexes.maybeCapture(capture, 'targetHp', f.targetHp, '\\y{Float}') + ':' +
-      Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '\\y{Float}') + ':' +
-      Regexes.maybeCapture(capture, 'targetMp', f.targetMp, '\\y{Float}') + ':' +
-      Regexes.maybeCapture(capture, 'targetMaxMp', f.targetMaxMp, '\\y{Float}') + ':' +
-      '\\y{Float}:' +
-      '\\y{Float}:' +
-      Regexes.maybeCapture(capture, 'targetX', f.targetX, '\\y{Float}') + ':' +
-      Regexes.maybeCapture(capture, 'targetY', f.targetY, '\\y{Float}') + ':' +
-      Regexes.maybeCapture(capture, 'targetZ', f.targetZ, '\\y{Float}') + ':' +
-      Regexes.maybeCapture(capture, 'targetHeading', f.targetHeading, '\\y{Float}') + ':' +
+      Regexes.maybeCapture(capture, 'flag0', f.flag0, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag1', f.flag1, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag2', f.flag2, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag3', f.flag3, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag4', f.flag4, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag5', f.flag5, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag6', f.flag6, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag7', f.flag7, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag8', f.flag8, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag9', f.flag9, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag10', f.flag10, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag11', f.flag11, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag12', f.flag12, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag13', f.flag13, '[^:]*?') + ':' +
+      Regexes.maybeCapture(capture, 'flag14', f.flag13, '[^:]*?') + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetHp', f.targetHp, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetMaxHp', f.targetMaxHp, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetMp', f.targetMp, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetMaxMp', f.targetMaxMp, '\\y{Float}')) + ':' +
+      Regexes.optional('\\y{Float}') + ':' + // Target TP
+      Regexes.optional('\\y{Float}') + ':' + // Target Max TP
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetX', f.targetX, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetY', f.targetY, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetZ', f.targetZ, '\\y{Float}')) + ':' +
+      Regexes.optional(Regexes.maybeCapture(capture, 'targetHeading', f.targetHeading, '\\y{Float}')) + ':' +
       Regexes.maybeCapture(capture, 'hp', f.hp, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'maxHp', f.maxHp, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'mp', f.mp, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'maxMp', f.maxMp, '\\y{Float}') + ':' +
-      '\\y{Float}:' +
-      '\\y{Float}:' +
+      '\\y{Float}:' + // Source TP
+      '\\y{Float}:' + // Source Max TP
       Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ':' +
       Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + ':' +
-      Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') +
-      ':.*?:?$';
+      Regexes.maybeCapture(capture, 'heading', f.heading, '\\y{Float}') + ':' +
+      '.*?$'; // Unknown last field
     return Regexes.parse(str);
   },
 
@@ -157,13 +186,26 @@ var Regexes = {
   addedCombatantFull: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    Regexes.validateParams(f, 'addedCombatantFull', ['timestamp', 'id', 'name', 'hp', 'x', 'y', 'z', 'npcId', 'capture']);
+    Regexes.validateParams(f, 'addedCombatantFull', [
+      'timestamp',
+      'id',
+      'name',
+      'job',
+      'level',
+      'hp',
+      'x',
+      'y',
+      'z',
+      'npcId',
+      'capture',
+    ]);
     let capture = Regexes.trueIfUndefined(f.capture);
     let str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
       ' 03:' + Regexes.maybeCapture(capture, 'id', f.id, '\\y{ObjectId}') +
-      ':Added new combatant ' + Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
-      '.*?Max HP: ' +
-      Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
+      ':Added new combatant ' + Regexes.maybeCapture(capture, 'name', f.name, '[^:]*?') +
+      '\\. {2}Job: ' + Regexes.maybeCapture(capture, 'job', f.job, '[^:]*?') +
+      ' Level: ' + Regexes.maybeCapture(capture, 'level', f.level, '[^:]*?') +
+      ' Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
       '.*?Pos: \\(' +
       Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
       Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
@@ -177,13 +219,26 @@ var Regexes = {
   removingCombatant: (f) => {
     if (typeof f === 'undefined')
       f = {};
-    Regexes.validateParams(f, 'removingCombatant', ['timestamp', 'id', 'name', 'hp', 'capture']);
+    Regexes.validateParams(f, 'removingCombatant', [
+      'timestamp',
+      'id',
+      'name',
+      'hp',
+      'capture',
+      'x',
+      'y',
+      'z',
+    ]);
     let capture = Regexes.trueIfUndefined(f.capture);
     let str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
       ' 04:' + Regexes.maybeCapture(capture, 'id', '\\y{ObjectId}') +
       ':Removing combatant ' +
       Regexes.maybeCapture(capture, 'name', f.name, '.*?') + '\\.' +
-      '.*?Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.';
+      '.*?Max HP: ' + Regexes.maybeCapture(capture, 'hp', f.hp, '[0-9]+') + '\.' +
+      Regexes.optional('.*?Pos: \\(' +
+      Regexes.maybeCapture(capture, 'x', f.x, '\\y{Float}') + ',' +
+      Regexes.maybeCapture(capture, 'y', f.y, '\\y{Float}') + ',' +
+      Regexes.maybeCapture(capture, 'z', f.z, '\\y{Float}') + '\\)');
     return Regexes.parse(str);
   },
 
@@ -516,7 +571,7 @@ var Regexes = {
       NetTimestamp: '.{33}',
       NetField: '(?:.*?\\|)',
       LogType: '[0-9A-Fa-f]{2}',
-      AbilityCode: '[0-9A-Fa-f]{1,4}',
+      AbilityCode: '[0-9A-Fa-f]{1,8}',
       ObjectId: '[0-9A-F]{8}',
       Name: '(?:\\p{L}\\p{M}*|\\p{N}|\\p{Z}|[-_\'])*',
       // Floats can have comma as separator in FFXIV plugin output: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/137
