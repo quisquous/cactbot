@@ -112,7 +112,7 @@ def parse_file(args):
                 continue
             line_fields = line.split("|")
             # We aren't including targetable lines unless the user explicitly says to.
-            if line[0:2] == '34' and not line_fields[3] in args.includetargetable:
+            if line[0:2] == '34' and not line_fields[3] in args.include_targetable:
               continue
 
             # At this point, we have a combat line for the timeline.
@@ -219,7 +219,7 @@ def main(args):
           # Ignore aoe spam
           if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
               continue
-        elif entry["line_type"] == "34" and not args.includetargetable:
+        elif entry["line_type"] == "34" and not args.include_targetable:
           continue
 
         # Find out how long it's been since our last ability
@@ -265,7 +265,7 @@ def main(args):
         entry["position"] = timeline_position
 
         # Write the line
-        if entry["line_type"] == "34" and args.includetargetable:
+        if entry["line_type"] == "34" and args.include_targetable:
           print(entry)
           output_entry = '{position:.1f} "{targetable}"'.format(
               **entry
@@ -369,7 +369,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
       "-it",
-      "--includetargetable",
+      "--include_targetable",
       nargs="*",
       default=[],
       help="Set this flag to include '34' log lines when making the timeline",
