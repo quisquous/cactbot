@@ -249,8 +249,8 @@
       },
       alertText: function(data) {
         const localeCompass = {
-          'N': { en: 'N', fr: 'Nord', de: 'Norde', ja: 'ノース', cn: '北', ko: '북쪽' },
-          'S': { en: 'S', fr: 'Sud', de: 'Süden', ja: '南', cn: '南面', ko: '남쪽' },
+          'N': { en: 'North', fr: 'Nord', de: 'Norde', ja: 'ノース', cn: '北', ko: '북쪽' },
+          'S': { en: 'South', fr: 'Sud', de: 'Süden', ja: '南', cn: '南面', ko: '남쪽' },
           'NW': { en: 'NW', fr: 'N-O', de: 'NW', ja: '北西', cn: '西北', ko: '북서' },
           'NE': { en: 'NE', fr: 'N-E', de: 'N-E', ja: '北東', cn: '东北', ko: '북동' },
           'SW': { en: 'SW', fr: 'S-O', de: 'SW', ja: '南西', cn: '西南', ko: '남서' },
