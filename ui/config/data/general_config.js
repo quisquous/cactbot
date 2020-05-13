@@ -45,7 +45,7 @@ UserConfig.registerOptions('general', {
       id: 'DisplayLanguage',
       name: {
         en: 'Display language',
-        ko: 'UI 언어',
+        ko: '주 사용 언어',
       },
       type: 'select',
       options: {

@@ -862,7 +862,7 @@ UserConfig.registerOptions('raidboss', {
       type: 'select',
       options: {
         en: {
-          'Use FFXIV Plugin Language': 'default',
+          'Use Display Language': 'default',
           'English (en)': 'en',
           'Chinese (cn)': 'cn',
           'German (de)': 'de',
@@ -907,7 +907,7 @@ UserConfig.registerOptions('raidboss', {
           '朝鲜语 (ko)': 'ko',
         },
         ko: {
-          'FFXIV Plugin 언어 사용': 'default',
+          '주 사용 언어 사용': 'default',
           '영어 (en)': 'en',
           '중국어 (cn)': 'cn',
           '독일어 (de)': 'de',
