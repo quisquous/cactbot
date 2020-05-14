@@ -107,7 +107,7 @@ class CactbotLanguageEn extends CactbotLanguage {
     this.countdownStartRegex = function() {
       return Regexes.gameLog({
         capture: true,
-        line: 'Battle commencing in (?<time>\\y{Float}) seconds!',
+        line: 'Battle commencing in (?<time>\\y{Float}) seconds!.*?',
       });
     };
     this.countdownEngageRegex = function() {
