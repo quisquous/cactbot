@@ -22,6 +22,7 @@
       beforeSeconds: 5,
       infoText: {
         en: 'Avoid Dash Attack',
+        cn: '躲避击飞',
       },
     },
     {
@@ -50,6 +51,7 @@
       beforeSeconds: 6,
       infoText: {
         en: 'Bait Quasar Meteors',
+        cn: '诱导陨石',
       },
     },
   ],
@@ -119,6 +121,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: '19B8', source: '제3신도', capture: false }),
       infoText: {
         en: 'Get behind lancer',
+        cn: '躲在3号小怪后',
       },
     },
     {
@@ -234,6 +237,7 @@
       },
       infoText: {
         en: 'Avoid head laser',
+        cn: '躲避人头炮',
       },
     },
     {
@@ -380,10 +384,10 @@
           return;
         }
         return {
-          '2': { en: 'Go East (Hard Tilt)' },
-          '1': { en: 'Go East (Soft Tilt)' },
-          '-2': { en: 'Go West (Hard Tilt)' },
-          '-1': { en: 'Go West (Soft Tilt)' },
+          '2': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
+          '1': { en: 'Go East (Soft Tilt)', cn: '去东边（小倾斜）' },
+          '-2': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
+          '-1': { en: 'Go West (Soft Tilt)', cn: '去西边（小倾斜）' },
           // Stringified because Javascript doesn't do negative-integer key values.
         }[safeDir.toString()];
       },
@@ -410,8 +414,8 @@
       alertText: function(data, matches) {
         const safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? 'E' : 'W';
         return {
-          'W': { en: 'Go West (Hard Tilt)' },
-          'E': { en: 'Go East (Hard Tilt)' },
+          'W': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
+          'E': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
         }[safeDir];
       },
       run: function(data) {

@@ -22,6 +22,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Orbs on YOU',
+            cn: '球点名',
           };
         }
       },
@@ -29,6 +30,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Orbs on ' + data.ShortName(matches.target),
+            cn: '球点' + data.ShortName(matches.target),
           };
         }
       },
@@ -42,6 +44,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Stun ' + matches.target,
+          cn: '眩晕' + matches.target,
         };
       },
     },
@@ -57,6 +60,7 @@
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
       infoText: {
         en: 'Laser Tethers',
+        cn: '镭射连线',
       },
     },
     {
@@ -65,6 +69,7 @@
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Nisi A on YOU',
+        cn: '蓝BUFF点名',
       },
     },
     {
@@ -73,6 +78,7 @@
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Nisi B on YOU',
+        cn: '红BUFF点名',
       },
     },
     {
