@@ -88,7 +88,7 @@ function findMissingRegex() {
         let replace = Regexes.parse(regex);
         if (transRegex.match(replace))
           foundMatch = true;
-        transRegex = transRegex.replace(replace, set[regex]);
+        transRegex = transRegex.split(replace).join(set[regex]);
       }
     }
 
