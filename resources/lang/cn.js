@@ -119,7 +119,7 @@ class CactbotLanguageCn extends CactbotLanguage {
     this.countdownCancelRegex = function() {
       return Regexes.gameLog({
         capture: true,
-        line: '(?<name\\y{Name})取消了战斗开始倒计时。',
+        line: '(?<name>\\y{Name})取消了战斗开始倒计时。',
       });
     };
     this.areaSealRegex = function() {
