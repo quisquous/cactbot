@@ -254,7 +254,7 @@ def main(args):
             pass
 
         # Set the time, possibly adjusting to specified phase
-        if entry["line_type"] == "34" or entry["ability_id"] not in phases:
+        if entry["line_type"] not in ["21", "22"] or entry["ability_id"] not in phases:
             timeline_position += last_time_diff_sec
         else:
             timeline_position = phases[entry["ability_id"]]
@@ -265,8 +265,7 @@ def main(args):
         entry["position"] = timeline_position
 
         # Write the line
-        if entry["line_type"] == "34" and args.include_targetable:
-          print(entry)
+        if entry["line_type"] == "34":
           output_entry = '{position:.1f} "{targetable}"'.format(
               **entry
           )
