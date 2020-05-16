@@ -104,25 +104,32 @@ def parse_file(args):
                 started = True
                 last_ability_time = e_tools.parse_event_time(line)
 
-            # We're looking for enemy casts
-            # These lines will start with 21 or 22, and have an NPC ID (400#####)
+            # We're looking for enemy casts or enemies becoming targetable/untargetable.
+            # These lines will start with 21, 22, or 34, and have an NPC ID (400#####)
             # If this isn't one, skip the line
-            if not (line[0:2] == "21" or line[0:2] == "22") or not line[37:40] == "400":
+
+            if not (line[0:2] in ["21", "22", "34"]) or not line[37:40] == "400":
                 continue
+            line_fields = line.split("|")
+            # We aren't including targetable lines unless the user explicitly says to.
+            if line[0:2] == '34' and not line_fields[3] in args.include_targetable:
+              continue
 
             # At this point, we have a combat line for the timeline.
-            line_fields = line.split("|")
             entry = {
+                "line_type": line_fields[0],
                 "time": e_tools.parse_event_time(line),
                 "combatant": line_fields[3],
-                "ability_id": line_fields[4],
-                "ability_name": line_fields[5],
             }
+            if line[0:2] in ["21", "22"]:
+              entry["ability_id"] = line_fields[4]
+              entry["ability_name"] = line_fields[5]
 
-            # Unknown abilities should be hidden sync lines by default.
-            if line_fields[5].startswith("Unknown_"):
-                entry["ability_name"] = "--sync--"
-
+              # Unknown abilities should be hidden sync lines by default.
+              if line_fields[5].startswith("Unknown_"):
+                  entry["ability_name"] = "--sync--"
+            else:
+              entry["targetable"] = "--targetable--" if line_fields[6] == "01" else "--untargetable--"
             entries.append(entry)
 
     if not started:
@@ -186,30 +193,34 @@ def main(args):
     last_entry = {"time": 0, "ability_id": ""}
 
     output = []
-    # No reason not to automate syncing if there's a countdown.
     output.append('0 "Start" sync /Engage!/ window 0,1')
 
     for entry in entries:
-        # First up, check if it's an ignored entry
-        # Ignore autos, probably need a better rule than this
-        if entry["ability_name"] == "Attack":
-            continue
 
-        # Ignore abilities by NPC allies
-        if entry["combatant"] in npc_combatants:
-            continue
+        # Ignore targetable/untargetable while processing ignored entries
+        if entry["line_type"] in ["21", "22"]:
+          # First up, check if it's an ignored entry
+          # Ignore autos, probably need a better rule than this
+          if entry["ability_name"] == "Attack":
+              continue
 
-        # Ignore lines by arguments
-        if (
-            entry["ability_name"] in args.ignore_ability
-            or entry["ability_id"] in args.ignore_id
-            or entry["combatant"] in args.ignore_combatant
-        ):
-            continue
+          # Ignore abilities by NPC allies
+          if entry["combatant"] in npc_combatants:
+              continue
 
-        # Ignore aoe spam
-        if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
-            continue
+          # Ignore lines by arguments
+          if (
+              entry["ability_name"] in args.ignore_ability
+              or entry["ability_id"] in args.ignore_id
+              or entry["combatant"] in args.ignore_combatant
+          ):
+              continue
+
+          # Ignore aoe spam
+          if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
+              continue
+        elif entry["line_type"] == "34" and not args.include_targetable:
+          continue
 
         # Find out how long it's been since our last ability
         line_time = entry["time"]
@@ -243,7 +254,7 @@ def main(args):
             pass
 
         # Set the time, possibly adjusting to specified phase
-        if entry["ability_id"] not in phases:
+        if entry["line_type"] not in ["21", "22"] or entry["ability_id"] not in phases:
             timeline_position += last_time_diff_sec
         else:
             timeline_position = phases[entry["ability_id"]]
@@ -254,9 +265,14 @@ def main(args):
         entry["position"] = timeline_position
 
         # Write the line
-        output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
+        if entry["line_type"] == "34":
+          output_entry = '{position:.1f} "{targetable}"'.format(
+              **entry
+          )
+        else:
+          output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
             **entry
-        )
+          )
 
         output.append(output_entry.encode("ascii", "ignore").decode("utf8", "ignore"))
 
@@ -311,7 +327,10 @@ if __name__ == "__main__":
         help="Timestamp of the start, e.g. '12:34:56.789",
     )
     parser.add_argument(
-        "-e", "--end", type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789"
+        "-e",
+        "--end",
+        type=e_tools.timestamp_type,
+        help="Timestamp of the end, e.g. '12:34:56.789"
     )
     parser.add_argument(
         "-lf",
@@ -346,6 +365,13 @@ if __name__ == "__main__":
         nargs="*",
         default=[],
         help="Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000",
+    )
+    parser.add_argument(
+      "-it",
+      "--include_targetable",
+      nargs="*",
+      default=[],
+      help="Set this flag to include '34' log lines when making the timeline",
     )
 
     # Aggregate arguments
