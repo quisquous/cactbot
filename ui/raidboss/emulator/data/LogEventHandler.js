@@ -15,19 +15,19 @@ class LogEventHandler extends EventBus {
 
   static isMatchStart(line) {
     let res;
-    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.CountdownRegexes);
+    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.countdownRegexes);
     if (res) {
-      res.groups.StartIn = res.groups.Time * 1000;
+      res.groups.StartIn = res.groups.time * 1000;
       res.groups.StartType = 'Countdown';
       return res;
     }
-    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.SealRegexes);
+    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.sealRegexes);
     if (res) {
       res.groups.StartIn = 0;
       res.groups.StartType = 'Seal';
       return res;
     }
-    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.EngageRegexes);
+    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.engageRegexes);
     if (res) {
       res.groups.StartIn = 0;
       res.groups.StartType = 'Engage';
@@ -38,22 +38,22 @@ class LogEventHandler extends EventBus {
 
   static isMatchEnd(line) {
     let res;
-    res = LogEventHandler.doesLineMatch(line, [LogEventHandler.WinRegex]);
+    res = LogEventHandler.doesLineMatch(line, [EmulatorCommon.winRegex]);
     if (res) {
       res.groups.EndType = 'Win';
       return res;
     }
-    res = LogEventHandler.doesLineMatch(line, [LogEventHandler.WipeRegex]);
+    res = LogEventHandler.doesLineMatch(line, [EmulatorCommon.wipeRegex]);
     if (res) {
       res.groups.EndType = 'Wipe';
       return res;
     }
-    res = LogEventHandler.doesLineMatch(line, [LogEventHandler.CactbotWipeRegex]);
+    res = LogEventHandler.doesLineMatch(line, [EmulatorCommon.cactbotWipeRegex]);
     if (res) {
       res.groups.EndType = 'Cactbot Wipe';
       return res;
     }
-    res = LogEventHandler.doesLineMatch(line, LogEventHandler.UnsealRegexes);
+    res = LogEventHandler.doesLineMatch(line, EmulatorCommon.unsealRegexes);
     if (res) {
       res.groups.EndType = 'Unseal';
       return res;
@@ -88,9 +88,9 @@ class LogEventHandler extends EventBus {
       if (res) {
         this.endFight();
       } else {
-        res = LogEventHandler.doesLineMatch(line, [LogEventHandler.ZoneChangeRegex]);
+        res = LogEventHandler.doesLineMatch(line, [EmulatorCommon.zoneChangeRegex]);
         if (res) {
-          this.currentZone = res.groups.Zone;
+          this.currentZone = res.groups.zone;
           this.endFight();
         }
       }
@@ -130,18 +130,3 @@ Line Count: ${this.currentFight.length}
     this.currentFight = [];
   }
 }
-
-LogEventHandler.UnsealRegexes = {
-  ja: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)の封鎖が解かれた……/,
-  en: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*) is no longer sealed/,
-  de: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?:Der Zugang zu\w* |)(?<Zone>.*) öffnet sich (?:erneut|wieder)/,
-  fr: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:Ouverture (?<Zone>.*)/,
-  cn: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)的封锁解除了/,
-  ko: /\[(?<lineTimestamp>[^\]]+)\] 00:0839:(?<Zone>.*)의 봉쇄가 해제되었습니다\./,
-};
-
-LogEventHandler.WipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000010:/;
-LogEventHandler.WinRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000003:/;
-LogEventHandler.CactbotWipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
-
-LogEventHandler.ZoneChangeRegex = /\[(?<lineTimestamp>[^\]]+)\] 01:Changed Zone to (?<Zone>.*)\./;

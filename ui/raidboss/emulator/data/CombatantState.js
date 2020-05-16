@@ -13,16 +13,16 @@ class CombatantState {
     this.maxMP = maxMP;
   }
 
-  PartialClone(props) {
+  partialClone(props) {
     return new CombatantState(
-        props.posX || this.posX,
-        props.posY || this.posY,
-        props.posZ || this.posZ,
-        props.heading || this.heading,
+        Number(props.posX) || this.posX,
+        Number(props.posY) || this.posY,
+        Number(props.posZ) || this.posZ,
+        Number(props.heading) || this.heading,
         props.visible || this.visible,
-        props.HP || this.HP,
-        props.maxHP || this.maxHP,
-        props.MP || this.MP,
-        props.maxMP || this.maxMP);
+        Number(props.HP) || this.HP,
+        Number(props.maxHP) || this.maxHP,
+        Number(props.MP) || this.MP,
+        Number(props.maxMP) || this.maxMP);
   }
 }

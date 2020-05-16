@@ -62,7 +62,7 @@ class Combatant {
           this.states[timestamp][k] = Number(props[k]);
       });
     } else {
-      this.states[timestamp] = this.states[this.latestTimestamp].PartialClone(props);
+      this.states[timestamp] = this.states[this.latestTimestamp].partialClone(props);
       this.latestTimestamp = Math.max(this.latestTimestamp, timestamp);
     }
     let lastSignificantStatetimestamp = this.significantStates[this.significantStates.length - 1];

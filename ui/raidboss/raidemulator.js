@@ -109,7 +109,7 @@ let Options = {
       });
     });
 
-    emulator.on('EmitLogs', (logs) => {
+    emulator.on('emitLogs', (logs) => {
       emulatedWebSocket.dispatch({
         type: 'onLogEvent',
         detail: logs,

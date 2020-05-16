@@ -57,20 +57,20 @@ class Encounter {
         if (res) {
           this.endStatus = res.groups.EndType;
         } else {
-          res = EmulatorCommon.EventDetailsRegexes['15'].exec(line.line);
+          res = EmulatorCommon.eventDetailsRegexes['15'].exec(line.line);
           if (!res)
-            res = EmulatorCommon.EventDetailsRegexes['16'].exec(line.line);
+            res = EmulatorCommon.eventDetailsRegexes['16'].exec(line.line);
           if (res) {
-            if (res.groups.source_id.startsWith('1') ||
-              (res.groups.source_id.startsWith('4') && petNames.includes(res.groups.source_name))) {
+            if (res.groups.sourceId.startsWith('1') ||
+              (res.groups.sourceId.startsWith('4') && petNames.includes(res.groups.source))) {
               // Player or pet ability
-              if (res.groups.target_id.startsWith('4') && !petNames.includes(res.groups.target_name)) {
+              if (res.groups.targetId.startsWith('4') && !petNames.includes(res.groups.target)) {
                 // Targetting non player or pet
                 this.firstPlayerAbility = Math.min(this.firstPlayerAbility, line.timestamp);
               }
-            } else if (res.groups.source_id.startsWith('4') && !petNames.includes(res.groups.source_name)) {
+            } else if (res.groups.sourceId.startsWith('4') && !petNames.includes(res.groups.source)) {
               // Non-player ability
-              if (res.groups.target_id.startsWith('1') || petNames.includes(res.groups.target_name)) {
+              if (res.groups.targetId.startsWith('1') || petNames.includes(res.groups.target)) {
                 // Targetting player or pet
                 this.firstEnemyAbility = Math.min(this.firstEnemyAbility, line.timestamp);
               }

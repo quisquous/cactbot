@@ -72,7 +72,7 @@ class RaidEmulator extends EventBus {
     }
     this.currentTimestamp = time;
     if (logs.length)
-      await this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
+      await this.dispatch('emitLogs', { logs: logs, offsets: offsets });
 
     await this.dispatch('postSeek', time);
     await this.dispatch('tick', this.currentTimestamp, this.lastLogTimestamp);
@@ -100,7 +100,7 @@ class RaidEmulator extends EventBus {
     }
     this.currentTimestamp += RaidEmulator.playbackSpeed;
     if (logs.length)
-      await this.dispatch('EmitLogs', { logs: logs, offsets: offsets });
+      await this.dispatch('emitLogs', { logs: logs, offsets: offsets });
 
     await this.dispatch('tick', this.currentTimestamp, this.lastLogTimestamp);
   }

@@ -46,12 +46,11 @@ class AnalyzedEncounter extends EventBus {
     let gTimelineUI = new RaidEmulatorTimelineUI(Options);
     let gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
 
-    // eslint-disable-next-line new-cap
     gTimelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(gPopupText));
-    // eslint-disable-next-line new-cap
-    gTimelineController.SetDataFiles(this.emulator.dataFilesEvent);
+    gTimelineController.SetDataFiles(this.emulator.dataFilesEvent.detail.files);
     popupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(gTimelineController));
     popupText.OnDataFilesRead(this.emulator.dataFilesEvent);
+    popupText.ReloadTimelines();
     let PartyEvent = {
       party: this.encounter.combatantTracker.partyMembers.map((ID) => {
         if (this.encounter.combatantTracker.combatants[ID].job) {

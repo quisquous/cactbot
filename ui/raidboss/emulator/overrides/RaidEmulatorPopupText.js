@@ -1,6 +1,6 @@
 'use strict';
 
-class RaidEmulatorPopupText extends PopupText {
+class RaidEmulatorPopupText extends StubbedPopupText {
   constructor(options) {
     super(options);
     this.$popupTextContainerWrapper = $('.popup-text-container-outer');
@@ -41,6 +41,13 @@ class RaidEmulatorPopupText extends PopupText {
 
   bindTo(emulator) {
     this.emulator = emulator;
+    emulator.on('emitLogs', (event) => {
+      this.OnLog({
+        detail: {
+          logs:event.logs
+        }
+      });
+    });
     emulator.on('tick', async (timestampOffset) => {
       await this.doUpdate(timestampOffset);
     });
@@ -73,6 +80,11 @@ class RaidEmulatorPopupText extends PopupText {
       this.displayedText = this.displayedText.filter((t) => {
         t.element.remove();
         return false;
+      });
+      this.OnZoneChange({
+        detail: {
+          zoneName: emulator.currentEncounter.encounter.encounterZone,
+        },
       });
     });
   }
