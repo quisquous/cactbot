@@ -97,7 +97,7 @@
       alertText: {
         en: 'Voice Soon',
         de: 'Stimme Der Verwünschung bald',
-        fr: 'Voix du maléfice bientôt',
+        fr: 'Voix maudite bientôt',
         cn: '诅咒之声即将判定',
       },
     },
@@ -115,7 +115,7 @@
           return {
             en: 'Shriek on YOU',
             de: 'Schrei Der Verwünschung auf DIR',
-            fr: 'Cri du maléfice sur VOUS',
+            fr: 'Cri maudit sur VOUS',
             cn: '诅咒之嚎点名',
           };
         }
@@ -125,7 +125,7 @@
           return {
             en: 'Shriek on ' + data.ShortName(matches.target),
             de: 'Schrei Der Verwünschung auf ' + data.ShortName(matches.target),
-            fr: 'Cri du maléfice sur ' + data.ShortName(matches.target),
+            fr: 'Cri maudit sur ' + data.ShortName(matches.target),
             cn: '诅咒之嚎点' + data.ShortName(matches.target),
           };
         }
@@ -146,14 +146,14 @@
           return {
             en: 'Shriek Soon',
             de: 'Schrei Der Verwünschung bald',
-            fr: 'Cri du maléfice bientôt',
+            fr: 'Cri maudit bientôt',
             cn: '诅咒之嚎即将判定',
           };
         }
         return {
           en: 'Dodge Shriek',
           de: 'Schrei Der Verwünschung ausweichen',
-          fr: 'Esquivez le cri du maléfice',
+          fr: 'Esquivez le cri maudit',
           cn: '躲避诅咒之嚎',
         };
       },

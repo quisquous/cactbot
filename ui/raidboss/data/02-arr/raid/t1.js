@@ -102,7 +102,7 @@
       infoText: {
         en: 'Slime Soon',
         de: 'Schleim bald',
-        fr: 'Gluant bientôt',
+        fr: 'Slime bientôt',
         cn: '软泥即将出现',
       },
     },
@@ -119,7 +119,7 @@
       infoText: {
         en: 'Slime Soon',
         de: 'Schleim bald',
-        fr: 'Gluant bientôt',
+        fr: 'Slime bientôt',
         cn: '软泥即将出现',
       },
     },

@@ -129,7 +129,7 @@
         return {
           en: 'Avoid Devour',
           de: 'Weiche Verschlingen aus',
-          fr: 'Évitez Dévoration',
+          fr: 'Évitez dévoration',
           cn: '躲开吞食',
         };
       },

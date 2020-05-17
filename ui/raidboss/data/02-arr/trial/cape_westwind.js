@@ -17,7 +17,6 @@
         'Your defeat will bring': 'Du wirst nicht entkommen',
       },
       'replaceText': {
-        'Adds': 'Adds',
         'Drill Shot': 'Panzerschuss',
         'Firebomb': 'Feuerbombe',
         'Gate Of Tartarus': 'Tor des Tartarus',
@@ -25,17 +24,18 @@
         'Shield Skewer': 'Schildspieß',
         'Shrapnel Shell': 'Schrapnell-Geschoss',
         'Winds Of Tartarus': 'Wind des Tartarus',
+        'Adds': 'Adds',
       },
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'My shields are impregnable': 'Mes boucliers sont impénétrables',
         'Rhitahtyn sas Arvina': 'Rhitahtyn sas Arvina',
         'Your defeat will bring': 'Avec ta défaite, le général',
       },
       'replaceText': {
-        'Adds': 'Adds',
         'Drill Shot': 'Munition antiblindage',
         'Firebomb': 'Bombe de feu',
         'Gate Of Tartarus': 'Porte de Tartarus',
