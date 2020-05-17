@@ -310,6 +310,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Katastroph',
         'Fleshy Member': 'Tentakel',
@@ -319,7 +320,6 @@
         '(?<!-)100 Gs': '100 G',
         'Antilight': 'Dunkellicht',
         'Death\'s Gaze': 'Todesblick',
-        'Double Stack': 'Double Stack', // FIXME
         'Earthquake': 'Erdbeben',
         'Epicenter': 'Epizentrum',
         'Erosion': 'Erosion',
@@ -335,7 +335,6 @@
         'Main Quake': 'Hauptbeben',
         'Maniacal Probe': 'Tentakeltanz',
         'Paranormal Wave': 'Paranormale Welle',
-        'Probes': 'Probes', // FIXME
         'Tremblor': 'Erschütterung',
         'Unstable Gravity': 'Schwerkraftschwankung',
         'Weighted Wing': 'Schwere Schwinge',
@@ -352,6 +351,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Catastrophe',
         'Fleshy Member': 'tentacule',
@@ -361,7 +361,6 @@
         '(?<!-)100 Gs': 'Gravité 100',
         'Antilight': 'Lumière obscure',
         'Death\'s Gaze': 'Œil de la Mort',
-        'Double Stack': 'Double Stack', // FIXME
         'Earthquake': 'Grand séisme',
         'Epicenter': 'Épicentre',
         'Erosion': 'Érosion',
@@ -377,7 +376,6 @@
         'Main Quake': 'Secousse principale',
         'Maniacal Probe': 'Farandole de tentacules',
         'Paranormal Wave': 'Onde maudite',
-        'Probes': 'Probes', // FIXME
         'Tremblor': 'Tremblement de terre',
         'Unstable Gravity': 'Gravité instable',
         'Weighted Wing': 'Ailes antigravitationnelles',
@@ -394,6 +392,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'カタストロフィー',
         'Fleshy Member': '触手',
@@ -403,7 +402,6 @@
         '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黒光',
         'Death\'s Gaze': '死神の瞳',
-        'Double Stack': 'Double Stack', // FIXME
         'Earthquake': '大地震',
         'Epicenter': '震源生成',
         'Erosion': '浸食',
@@ -419,7 +417,6 @@
         'Main Quake': '本震',
         'Maniacal Probe': '触手乱舞',
         'Paranormal Wave': '呪詛波',
-        'Probes': 'Probes', // FIXME
         'Tremblor': '地震',
         'Unstable Gravity': 'グラビティバースト',
         'Weighted Wing': 'グラビティウィング',
@@ -478,6 +475,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': '카타스트로피',
         'Fleshy Member': '촉수',
@@ -487,7 +485,6 @@
         '(?<!-)100 Gs': '중력 100',
         'Antilight': '암흑광',
         'Death\'s Gaze': '사신의 눈동자',
-        'Double Stack': 'Double Stack', // FIXME
         'Earthquake': '대지진',
         'Epicenter': '진원 생성',
         'Erosion': '침식',
@@ -503,7 +500,6 @@
         'Main Quake': '본진',
         'Maniacal Probe': '촉수 난무',
         'Paranormal Wave': '저주 파동',
-        'Probes': 'Probes', // FIXME
         'Tremblor': '지진',
         'Unstable Gravity': '중력 폭발',
         'Weighted Wing': '중력 날개',

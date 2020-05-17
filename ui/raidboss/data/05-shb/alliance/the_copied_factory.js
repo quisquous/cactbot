@@ -912,7 +912,6 @@
         'Goliath Tank': '大型戦車',
         'Hobbes': 'ホッブス',
         'Marx': 'マルクス',
-        'Marx [LR]': 'Marx [LR]', // FIXME
         'Medium Exploder': '中型自爆',
         'Multi-leg Medium Model': '中型多脚',
         'Reverse-jointed Goliath': '大型逆関節',
@@ -923,15 +922,12 @@
       },
       'replaceText': {
         '360-Degree Bombing Maneuver': '攻撃：ミサイル円射',
-        'Adds': 'Adds', // FIXME
         'Anti-Personnel Missile': '対人ミサイル乱射',
         'Area Bombardment': 'ミサイル乱射',
         'Area Bombing Maneuver': '攻撃：ミサイル斉射',
         'Arm Laser': '腕部レーザー',
-        'Cannons': 'Cannons', // FIXME
         'Clanging Blow': '強攻撃',
         'Convenient Self-Destruction': '自爆攻撃',
-        'Crusher Adds': 'Crusher Adds', // FIXME
         'Crushing Wheel': '挟撃ホイール',
         'Demolish Structure': '地形破壊攻撃',
         'Diffuse Laser': '拡散レーザー',
@@ -942,8 +938,6 @@
         'Energy Ring': '全方位エネルギー弾',
         'Engage Goliath Tank Support': '支援要請：大型戦車',
         'Engage Marx Support': '支援要請：マルクス',
-        'Exploding Tethers': 'Exploding Tethers', // FIXME
-        'Floor': 'Floor', // FIXME
         'Forceful Impact': '大震動',
         'Frontal Somersault': 'ジャンプ攻撃',
         'Ground-To-Ground Missile': '地対地ミサイル',
@@ -979,7 +973,6 @@
         'Systematic Targeting': '照準陣形',
         'Total Annihilation Maneuver': '攻撃：殲滅爆撃',
         'Undock': 'ドッキング解除',
-        'Wall Mechanic': 'Wall Mechanic', // FIXME
       },
     },
     {

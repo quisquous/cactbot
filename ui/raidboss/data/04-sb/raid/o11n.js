@@ -426,6 +426,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Augmented Rocket Punch': '강화형 로켓 주먹',
         'Engaging Delta Attack protocol': '델타 공격의 필요성을 인정합니다',
@@ -469,8 +470,6 @@
         'Rush': '돌진',
         'Starboard Wave Cannon(?! )': '우현 사격: 파동포',
         'Starboard Wave Cannon Surge': '우현 사격: 0식 파동포',
-        'Starboard/Larboard Cannon': 'Starboard/Larboard Cannon', // FIXME
-        'Starboard/Larboard Surge': 'Starboard/Larboard Surge', // FIXME
         'Storage Violation': '기억 오염 제거 S',
         'Unmitigated Explosion': '대폭발',
         'Update Program': '프로그램 업데이트',

@@ -339,16 +339,6 @@
         'The heavens tremble in my wake': 'Mein Streitwagen donnert empor in luftige Höhen',
       },
       'replaceText': {
-        '--face--': '--face--', // FIXME
-        '--ice disappears--': '--ice disappears--', // FIXME
-        '--invulnerable--': '--invulnerable--', // FIXME
-        '--knockback--': '--knockback--', // FIXME
-        '--lock out--': '--lock out--', // FIXME
-        '--meteors--': '--meteors--', // FIXME
-        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
-        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
-        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
-        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
         'Blizzard IV': 'Eiska',
         'Chariot': 'Streitwagen',
         'Coldblood': 'Kaltblut',
@@ -363,27 +353,17 @@
         'Embrace': 'Attacke',
         'Extreme Edge': 'Extremkante',
         'Fire IV': 'Feuka',
-        'Frog Phase': 'Frog Phase', // FIXME
         'Frostwave': 'Polarlanze',
         'Gnawing Dread': 'Nagende Angst',
-        'Golem Adds': 'Golem Adds', // FIXME
         'Heavenly Subjugation': 'Himmelsgewalt',
-        'Hole In One': 'Hole In One', // FIXME
-        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
         'Judgment': 'Aburteilung',
         'Landwaster': 'Landverwüster',
-        'Line AOEs': 'Line AOEs', // FIXME
         'Maverick': 'Einzelgänger',
         'Pomp and Circumstance': 'Pauken und Trompeten',
-        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
         'Quake IV': 'Seiska',
         'Rock Cutter': 'Steinfräse',
         'Royal Blood': 'Blaues Blut',
-        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
-        'Shades Appear': 'Shades Appear', // FIXME
-        'Shard Adds': 'Shard Adds', // FIXME
         'Soulfix': 'Seelenspießer',
-        'Stack Damage': 'Stack Damage', // FIXME
         'Submission Tower': 'Turmdivision',
         'Trample': 'Mariden-Stampfer',
         'Trepidation': 'Beklemmung',
@@ -401,25 +381,12 @@
         'Archaeodemon': 'archéodémon',
         'command tower': 'tour de commandement',
         'Frostwave': 'Vague réfrigérante',
-        'I am Revelation': 'I am Revelation', // FIXME
-        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
-        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
         'Mateus, The Corrupt': 'Mateus le Corrompu',
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmal le Grand Ordonnateur',
         'Rofocale': 'Rofocale le Roi centaure',
       },
       'replaceText': {
-        '--face--': '--face--', // FIXME
-        '--ice disappears--': '--ice disappears--', // FIXME
-        '--invulnerable--': '--invulnerable--', // FIXME
-        '--knockback--': '--knockback--', // FIXME
-        '--lock out--': '--lock out--', // FIXME
-        '--meteors--': '--meteors--', // FIXME
-        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
-        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
-        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
-        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
         'Blizzard IV': 'Giga Glace',
         'Chariot': 'Charge centaure',
         'Coldblood': 'Sang-froid',
@@ -434,27 +401,17 @@
         'Embrace': 'Attaque',
         'Extreme Edge': 'Taille suprême',
         'Fire IV': 'Giga Feu',
-        'Frog Phase': 'Frog Phase', // FIXME
         'Frostwave': 'Vague réfrigérante',
         'Gnawing Dread': 'Peur calamiteuse',
-        'Golem Adds': 'Golem Adds', // FIXME
         'Heavenly Subjugation': 'Marche triomphale',
-        'Hole In One': 'Hole In One', // FIXME
-        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
         'Judgment': 'Jugement',
         'Landwaster': 'Dislocation terrestre',
-        'Line AOEs': 'Line AOEs', // FIXME
         'Maverick': 'Franc-tireur',
         'Pomp and Circumstance': 'La pompe et l’attirail',
-        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
         'Quake IV': 'Giga Séisme',
         'Rock Cutter': 'Trancheur rocheux',
         'Royal Blood': 'Sang royal',
-        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
-        'Shades Appear': 'Shades Appear', // FIXME
-        'Shard Adds': 'Shard Adds', // FIXME
         'Soulfix': 'Fixage d\'âme',
-        'Stack Damage': 'Stack Damage', // FIXME
         'Submission Tower': 'Tour de soumission',
         'Trample': 'Martèlement pachydermique',
         'Trepidation': 'Trépidation',
@@ -469,9 +426,6 @@
         'Archaeodemon': 'アルケオデーモン',
         'command tower': '支配の塔',
         'Frostwave': '凍てつく波動',
-        'I am Revelation': 'I am Revelation', // FIXME
-        'I am the truth from which you run': 'I am the truth from which you run', // FIXME
-        'I am the lies upon which you sup': 'I am the lies upon which you sup', // FIXME
         'Mateus, The Corrupt': '背徳の皇帝マティウス',
         'Argath Thadalfus': '冷血剣アルガス',
         'Hashmal, Bringer Of Order': '統制者ハシュマリム ',
@@ -479,16 +433,6 @@
         'The heavens tremble in my wake!': '“我が戦車の車輪は、天をも駆ける！ ゆくぞ……！”',
       },
       'replaceText': {
-        '--face--': '--face--', // FIXME
-        '--ice disappears--': '--ice disappears--', // FIXME
-        '--invulnerable--': '--invulnerable--', // FIXME
-        '--knockback--': '--knockback--', // FIXME
-        '--lock out--': '--lock out--', // FIXME
-        '--meteors--': '--meteors--', // FIXME
-        'Aqua Sphere Adds': 'Aqua Sphere Adds', // FIXME
-        'Archaeodemon Adds': 'Archaeodemon Adds', // FIXME
-        'Azure Guard Adds': 'Azure Guard Adds', // FIXME
-        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
         'Blizzard IV': 'ブリザジャ',
         'Chariot': '人馬戦車',
         'Coldblood': '冷血乱舞',
@@ -503,27 +447,17 @@
         'Embrace': '攻撃',
         'Extreme Edge': 'ブーストエッジ',
         'Fire IV': 'ファイジャ',
-        'Frog Phase': 'Frog Phase', // FIXME
         'Frostwave': '凍てつく波動',
         'Gnawing Dread': '喪失の恐怖',
-        'Golem Adds': 'Golem Adds', // FIXME
         'Heavenly Subjugation': '天将覇道撃',
-        'Hole In One': 'Hole In One', // FIXME
-        'Ice Cone Phase': 'Ice Cone Phase', // FIXME
         'Judgment': 'ジャッジメント',
         'Landwaster': 'ランドワスター',
-        'Line AOEs': 'Line AOEs', // FIXME
         'Maverick': '独立独行',
         'Pomp and Circumstance': '威風堂々',
-        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
         'Quake IV': 'クエイジャ',
         'Rock Cutter': 'ロックカッター',
         'Royal Blood': '高貴なる血脈',
-        'Sand Sphere Adds': 'Sand Sphere Adds', // FIXME
-        'Shades Appear': 'Shades Appear', // FIXME
-        'Shard Adds': 'Shard Adds', // FIXME
         'Soulfix': '呪槍串刺',
-        'Stack Damage': 'Stack Damage', // FIXME
         'Submission Tower': '服従の塔',
         'Trample': '踏みつけ',
         'Trepidation': '狐鶏鼠',
@@ -629,7 +563,6 @@
         'Aqua Sphere Adds': '물 구체 생성',
         'Archaeodemon Adds': '원시 악마 생성',
         'Azure Guard Adds': '푸른 파수꾼 생성',
-        'Blade, or putt putt': 'Blade, or putt putt', // FIXME
         'Blizzard IV': '블리자쟈',
         'Chariot': '인마전차',
         'Coldblood': '냉혈난무',
@@ -649,14 +582,11 @@
         'Gnawing Dread': '상실의 공포',
         'Golem Adds': '골렘 생성',
         'Heavenly Subjugation': '천장패도격',
-        'Hole In One': 'Hole In One', // FIXME
-        'Ice Cone Phase': 'Ice Cone 페이즈', // FIXME
         'Judgment': '심판의 날',
         'Landwaster': '대지 황폐화',
         'Line AOEs': '직선 장판',
         'Maverick': '독립독행',
         'Pomp and Circumstance': '위풍당당',
-        'Putt putt, or Blade': 'Putt putt, or Blade', // FIXME
         'Quake IV': '퀘이쟈',
         'Rock Cutter': '바위 가르기',
         'Royal Blood': '고귀한 혈통',

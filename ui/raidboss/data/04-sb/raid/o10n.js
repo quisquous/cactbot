@@ -124,13 +124,13 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'antik(?:e|er|es|en) Drache',
         'Immortal Key': 'unsterblich(?:e|er|es|en) Schlüssel',
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
-        'ready': 'ready', // FIXME
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Azurschwingen',
@@ -150,7 +150,6 @@
         'Frost Breath': 'Frostiger Atem',
         'Horrid Roar': 'Entsetzliches Brüllen',
         'Hot Tail': 'Schwelender Schweif',
-        '(?<!\\w)In(?!/)': 'In', // FIXME
         'In/Out': 'Rein/Raus',
         '(?<!/)Out': 'Raus',
         'Northern Cross': 'Kreuz des Nordens',
@@ -179,6 +178,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'dragon ancien',
         'Immortal Key': 'clef immortelle',
@@ -205,15 +205,12 @@
         'Frost Breath': 'Souffle glacé',
         'Horrid Roar': 'Rugissement horrible',
         'Hot Tail': 'Queue calorifique',
-        '(?<!\\w)In(?!/)': 'In', // FIXME
         'In/Out': 'Dedans/Dehors',
         '(?<!/)Out': 'Dehors',
         'Northern Cross': 'Croix du nord',
-        'Position': 'Position', // FIXME
         'Protostar': 'Proto-étoile',
         'Rime Wreath': 'Enveloppe de givre',
         'Shaker/Thunder': 'Secousse/Tempête',
-        'Signal': 'Signal', // FIXME
         'Spin': 'Tour horizontal',
         'Stygian Maw': 'Gueule ténébreuse',
         'Tail End': 'Pointe de queue',
@@ -234,21 +231,18 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'エンシェントドラゴン',
         'Immortal Key': '竜の楔',
         'Midgardsormr': 'ミドガルズオルム',
       },
       'replaceText': {
-        'ready': 'ready', // FIXME
         'Akh Morn': 'アク・モーン',
         'Akh Rhai': 'アク・ラーイ',
         'Azure Wings': '蒼翼の焔',
         'Bloodied Maw': '紅牙の焔',
-        'Cardinals': 'Cardinals', // FIXME
         'Cauterize': 'カータライズ',
-        'Coil': 'Coil', // FIXME
-        'Corners': 'Corners', // FIXME
         'Crimson Breath': 'クリムゾンブレス',
         'Crimson Wings': '紅翼の焔',
         'Dark Wave': 'ダークウェーブ',
@@ -256,19 +250,12 @@
         'Earth Shaker': 'アースシェイカー',
         'Exaflare': 'エクサフレア',
         'Flame Blast': 'フレイムブラスト',
-        'Flip': 'Flip', // FIXME
         'Frost Breath': 'フロストブレス',
         'Horrid Roar': 'ホリッドロア',
         'Hot Tail': 'ヒートテイル',
-        '(?<!\\w)In(?!/)': 'In', // FIXME
-        'In/Out': 'In/Out', // FIXME
-        '(?<!/)Out': 'Out', // FIXME
         'Northern Cross': 'ノーザンクロス',
-        'Position': 'Position', // FIXME
         'Protostar': 'プロトスター',
         'Rime Wreath': 'ライムリリース',
-        'Shaker/Thunder': 'Shaker/Thunder', // FIXME
-        'Signal': 'Signal', // FIXME
         'Spin': 'ぶん回す',
         'Stygian Maw': '黒牙の焔',
         'Tail End': 'テイルエンド',
@@ -344,21 +331,18 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': '고룡',
         'Immortal Key': '용의 말뚝',
         'Midgardsormr': '미드가르드오름',
       },
       'replaceText': {
-        'ready': 'ready', // FIXME
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',
         'Azure Wings': '창익의 불꽃',
         'Bloodied Maw': '홍아의 불꽃',
-        'Cardinals': 'Cardinals', // FIXME
         'Cauterize': '인두질',
-        'Coil': 'Coil', // FIXME
-        'Corners': 'Corners', // FIXME
         'Crimson Breath': '진홍빛 숨결',
         'Crimson Wings': '홍익의 불꽃',
         'Dark Wave': '어둠의 파동',
@@ -366,19 +350,12 @@
         'Earth Shaker': '요동치는 대지',
         'Exaflare': '엑사플레어',
         'Flame Blast': '화염 작렬',
-        'Flip': 'Flip', // FIXME
         'Frost Breath': '서리 숨결',
         'Horrid Roar': '소름끼치는 포효',
         'Hot Tail': '뜨거운 꼬리',
-        '(?<!\\w)In(?!/)': 'In', // FIXME
-        'In/Out': 'In/Out', // FIXME
-        '(?<!/)Out': 'Out', // FIXME
         'Northern Cross': '북십자성',
-        'Position': 'Position', // FIXME
         'Protostar': '원시별',
         'Rime Wreath': '분노의 서릿발',
-        'Shaker/Thunder': 'Shaker/Thunder', // FIXME
-        'Signal': 'Signal', // FIXME
         'Spin': 'Spin',
         'Stygian Maw': '흑아의 불꽃',
         'Tail End': '꼬리 쓸기',

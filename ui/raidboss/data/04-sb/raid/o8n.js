@@ -288,8 +288,8 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!', // FIXME
         'Graven Image': 'heilig(?:e|er|es|en) Statue',
         'Kefka': 'Kefka',
         'Light Of Consecration': 'Licht der Weihe',
@@ -347,8 +347,8 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!', // FIXME
         'Graven Image': 'Statue divine',
         'Kefka': 'Kefka',
         'Light Of Consecration': 'lumière de la consécration',
@@ -406,8 +406,8 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!', // FIXME
         'Graven Image': '神々の像',
         'Kefka': 'ケフカ',
         'Light Of Consecration': '聖別の光',
@@ -415,7 +415,6 @@
       },
       'replaceText': {
         'Aero Assault': 'ずんずんエアロガ',
-        'Aero/Ruin': 'Aero/Ruin', // FIXME
         'All Things Ending': '消滅の脚',
         'Blizzard Blitz': 'ぐるぐるブリザガ',
         'Blizzard III': 'ブリザガ',
@@ -429,7 +428,6 @@
         'Graven Image': '神々の像',
         'Gravitas': '重力弾',
         'Gravitational Wave': '重力波',
-        'Half Arena': 'Half Arena', // FIXME
         'Heartless Angel': '心ない天使',
         'Heartless Archangel': '心ない大天使',
         'Holy Ascent': '昇天',
@@ -449,7 +447,6 @@
         'Revolting Ruin': 'ばりばりルインガ',
         'Shockwave': '衝撃波',
         'Starstrafe': '妖星乱舞',
-        'Statue Gaze': 'Statue Gaze', // FIXME
         'The Path Of Light': '光の波動',
         'Thrumming Thunder': 'もりもりサンダガ',
         'Thunder III': 'サンダガ',
@@ -524,8 +521,8 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
-        'Destroy! Destroy! Destroy! I will destroy it all!': 'Destroy! Destroy! Destroy! I will destroy it all!', // FIXME
         'Graven Image': '신들의 상',
         'Kefka': '케프카',
         'Light Of Consecration': '정화의 빛',
@@ -533,7 +530,6 @@
       },
       'replaceText': {
         'Aero Assault': '갈기갈기 에어로가',
-        'Aero/Ruin': 'Aero/Ruin', // FIXME
         'All Things Ending': '소멸의 발차기',
         'Blizzard Blitz': '빙글빙글 블리자가',
         'Blizzard III': '블리자가',
@@ -547,7 +543,6 @@
         'Graven Image': '신들의 상',
         'Gravitas': '중력탄',
         'Gravitational Wave': '중력파',
-        'Half Arena': 'Half Arena', // FIXME
         'Heartless Angel': '비정한 천사',
         'Heartless Archangel': '비정한 대천사',
         'Holy Ascent': '승천',
@@ -567,7 +562,6 @@
         'Revolting Ruin': '파삭파삭 루인가',
         'Shockwave': '충격파',
         'Starstrafe': '요성난무',
-        'Statue Gaze': 'Statue Gaze', // FIXME
         'The Path Of Light': '빛의 파동',
         'Thrumming Thunder': '찌릿찌릿 선더가',
         'Thunder III': '선더가',

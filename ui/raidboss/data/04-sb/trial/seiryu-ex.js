@@ -492,6 +492,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Aka-no-shiki': '紅の式鬼',
         'Ao-no-shiki': '蒼の式鬼',
@@ -517,13 +518,11 @@
         'Fortune-blade Sigil': '陽の刀印',
         'Great Typhoon': '荒波',
         'Handprint': '圧殺掌',
-        'In/Out': 'In/Out', // FIXME
         'Infirm Soul': '虚証弾',
         'Kanabo': '鬼に金棒',
         'Karmic Curse': '呪い返し',
         'Kuji-kiri': '九字切り',
         'Onmyo Sigil': '陰陽の印',
-        'Out/In': 'Out/In', // FIXME
         'Red Rush': '赤の突進',
         'Serpent Ascending': '登り龍',
         'Serpent Descending': '降り蛇',
@@ -641,7 +640,6 @@
         'Yama-kagura': '산타령',
       },
       '~effectNames': {
-        'Being dragged under by the current. Unable to move or execute actions.': 'Being dragged under by the current. Unable to move or execute actions.', // FIXME
         'Blunt Resistance Down': '타격 저항 감소',
         'Cursekeeper': '저주 인형',
         'Fetters': '구속',

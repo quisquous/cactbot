@@ -2882,6 +2882,7 @@ let getHeadmarkerId = (data, matches) => {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Alexander(?! )': 'Alexander',
         'Alexander Prime': 'Prim-Alexander',
@@ -2944,9 +2945,7 @@ let getHeadmarkerId = (data, matches) => {
         'Link-Up': 'Zusammenschluss',
         'Liquid Gaol': 'Wasserkerker',
         'Mega Holy': 'Super-Sanctus',
-        'Middle Blaster': 'Middle Blaster', // FIXME
         'Missile Command': 'Raketenkommando',
-        'Obloquy': 'Obloquy', // FIXME
         'Optical Sight': 'Visier',
         'Ordained Capital Punishment': 'Gnadenlose Ahndung',
         'Ordained Motion': 'Bewegungsbefehl',
@@ -2958,7 +2957,6 @@ let getHeadmarkerId = (data, matches) => {
         'Propeller Wind': 'Luftschraube',
         'Protean Wave': 'Proteische Welle',
         'Punishing Wave': 'Strafende Welle',
-        'Rage Wave': 'Rage Wave', // FIXME
         '(?<! )Repentance': 'Reue',
         'Sacrament': 'Sakrament',
         'Severity': 'Erschwertes',
@@ -3015,8 +3013,8 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
-        '(?<! )Alexander(?! )': 'Alexander', // FIXME
         'Alexander Prime': 'Primo-Alexander',
         'Brute Justice': 'Justicier',
         'Cruise Chaser': 'Croiseur-chasseur',
@@ -3029,15 +3027,11 @@ let getHeadmarkerId = (data, matches) => {
         'Steam Chakram': 'chakram de vapeur',
       },
       'replaceText': {
-        '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
-        '--adds targetable--': '--adds targetable--', // FIXME
-        '--alex untargetable--': '--alex untargetable--', // FIXME
         'Aetheroplasm': 'Éthéroplasma',
         'Almighty Judgment': 'Sentence divine',
         'Alpha Sword': 'Épée alpha',
         'Apocalyptic Ray': 'Rayon apocalyptique',
         'Cascade': 'Cascade',
-        'Chakrams': 'Chakrams', // FIXME
         'Chastening Heat': 'Chaleur de l\'ordalie',
         'Collective Reprobation': 'Réprobation collective',
         'Crashing Wave': 'Vague percutante',
@@ -3051,8 +3045,6 @@ let getHeadmarkerId = (data, matches) => {
         'Enumeration': 'Compte',
         'Eternal Darkness': 'Ténèbres éternelles',
         'Exhaust': 'Échappement',
-        'Fate Calibration': 'Fate Calibration', // FIXME
-        'Fate Projection': 'Fate Projection', // FIXME
         'Final Sentence': 'Peine capitale',
         'Flarethrower': 'Lance-brasiers',
         'Fluid Strike': 'Frappe fluide',
@@ -3076,39 +3068,30 @@ let getHeadmarkerId = (data, matches) => {
         'Link-Up': 'Effort collectif',
         'Liquid Gaol': 'Geôle liquide',
         'Mega Holy': 'Méga Miracle',
-        'Middle Blaster': 'Middle Blaster', // FIXME
         'Missile Command': 'Commande missile',
-        'Obloquy': 'Obloquy', // FIXME
         'Optical Sight': 'Visée optique',
         'Ordained Capital Punishment': 'Châtiment exemplaire',
         'Ordained Motion': 'Défense de s\'arrêter',
         'Ordained Punishment': 'Châtiment',
         'Ordained Stillness': 'Défense de bouger',
         'Photon': 'Photon',
-        'Players Remaining': 'Players Remaining', // FIXME
         'Pressurize': 'Repressurisation',
         'Propeller Wind': 'Vent turbine',
         'Protean Wave': 'Vague inconstante',
         'Punishing Wave': 'Vague punitive',
-        'Rage Wave': 'Rage Wave', // FIXME
         '(?<! )Repentance': 'Repentir',
         'Sacrament': 'Sacrement',
-        'Severity': 'Severity', // FIXME
         'Sluice': 'Éclusage',
-        'Solidarity': 'Solidarity', // FIXME
         'Spin Crusher': 'Écrasement tournoyant',
         'Splash': 'Éclaboussement',
         'Summon Alexander': 'Invocation d\'Alexander',
         'Super Blassty Charge': 'Super charge Blassty',
         'Super Jump': 'Super saut',
-        'Surety': 'Surety', // FIXME
         'Temporal Interference': 'Interférences spatio-temporelles',
         'Temporal Prison': 'Geôle temporelle',
         'Temporal Stasis': 'Stase temporelle',
         'The Final Word': 'Prononcé du jugement',
-        'Throttles': 'Throttles', // FIXME
         'Void Of Repentance': 'Vide du repentir',
-        'Water and Thunder': 'Water and Thunder', // FIXME
         'Whirlwind': 'Tornade',
         'Wormhole Formation': 'Marche de la fracture dimensionnelle',
       },
@@ -3153,8 +3136,8 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        '(?<! )Alexander(?! )': 'Alexander', // FIXME
         'Alexander Prime': 'アレキサンダー・プライム',
         'Brute Justice': 'ブルートジャスティス',
         'Cruise Chaser': 'クルーズチェイサー',
@@ -3167,15 +3150,11 @@ let getHeadmarkerId = (data, matches) => {
         'Steam Chakram': 'スチームチャクラム',
       },
       'replaceText': {
-        '--Cruise Chaser Invincible--': '--Cruise Chaser Invincible--', // FIXME
-        '--adds targetable--': '--adds targetable--', // FIXME
-        '--alex untargetable--': '--alex untargetable--', // FIXME
         'Aetheroplasm': 'エーテル爆雷',
         'Almighty Judgment': '聖なる大審判',
         'Alpha Sword': 'アルファソード',
         'Apocalyptic Ray': 'アポカリプティクレイ',
         'Cascade': 'カスケード',
-        'Chakrams': 'Chakrams', // FIXME
         'Chastening Heat': '神罰の熱線',
         'Collective Reprobation': '群の断罪',
         'Crashing Wave': 'クラッシュウェーブ',
@@ -3189,8 +3168,6 @@ let getHeadmarkerId = (data, matches) => {
         'Enumeration': 'カウント',
         'Eternal Darkness': '暗黒の運命',
         'Exhaust': 'エグゾースト',
-        'Fate Calibration': 'Fate Calibration', // FIXME
-        'Fate Projection': 'Fate Projection', // FIXME
         'Final Sentence': '死刑判決',
         'Flarethrower': '大火炎放射',
         'Fluid Strike': 'フルイドストライク',
@@ -3214,39 +3191,30 @@ let getHeadmarkerId = (data, matches) => {
         'Link-Up': 'システムリンク',
         'Liquid Gaol': 'リキッドジェイル',
         'Mega Holy': 'メガホーリー',
-        'Middle Blaster': 'Middle Blaster', // FIXME
         'Missile Command': 'ミサイル全弾発射',
-        'Obloquy': 'Obloquy', // FIXME
         'Optical Sight': '照準',
         'Ordained Capital Punishment': '加重誅罰',
         'Ordained Motion': '行動命令',
         'Ordained Punishment': '誅罰',
         'Ordained Stillness': '静止命令',
         'Photon': 'フォトン',
-        'Players Remaining': 'Players Remaining', // FIXME
         'Pressurize': '水圧充填',
         'Propeller Wind': 'プロペラウィンド',
         'Protean Wave': 'プロティアンウェイブ',
         'Punishing Wave': 'パニッシュウェーブ',
-        'Rage Wave': 'Rage Wave', // FIXME
         '(?<! )Repentance': '罪の意識',
         'Sacrament': '十字の秘蹟',
-        'Severity': 'Severity', // FIXME
         'Sluice': 'スルース',
-        'Solidarity': 'Solidarity', // FIXME
         'Spin Crusher': 'スピンクラッシャー',
         'Splash': 'スプラッシュ',
         'Summon Alexander': 'アレキサンダー召喚',
         'Super Blassty Charge': 'スーパーブラスティ・チャージ',
         'Super Jump': 'スーパージャンプ',
-        'Surety': 'Surety', // FIXME
         'Temporal Interference': '時空干渉',
         'Temporal Prison': '時の牢獄',
         'Temporal Stasis': '時間停止',
         'The Final Word': '確定判決',
-        'Throttles': 'Throttles', // FIXME
         'Void Of Repentance': '懺悔の間',
-        'Water and Thunder': 'Water and Thunder', // FIXME
         'Whirlwind': '竜巻',
         'Wormhole Formation': '次元断絶のマーチ',
       },

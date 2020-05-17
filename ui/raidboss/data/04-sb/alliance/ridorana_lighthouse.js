@@ -797,8 +797,6 @@
         'Acceleration Bomb': '加速度爆弾',
         'Ancient Aero': 'エンシェントエアロ',
         'Annihilation Mode': 'ジェノサイドチップ',
-        'Archaeodemon spawn': 'Archaeodemon spawn', // FIXME
-        'Area Lockdown': 'Area Lockdown', // FIXME
         'Ballistic Missile': 'ミサイル発射',
         'Briny Cannonade': '蒼の砲撃',
         'Compress': '圧縮する',
@@ -816,17 +814,14 @@
         'Divide By Five': '算術：5倍数',
         'Divide By Four': '算術：4倍数',
         'Divide By Three': '算術：3倍数',
-        'Division': 'Division', // FIXME
         'Dust Storm': 'ダストストーム',
         '(?<![\\w| ])Eruption': 'エラプション',
         'Explosion': '爆発',
         'Face Off': 'フェイスオフ',
-        'Fast Hands': 'Fast Hands', // FIXME
         'Ferrofluid': 'マグネット',
         '(?<!\\w)Fire(?! )': 'ファイア',
         'Fire IV': 'ファイジャ',
         'Gale Gaol': '風牢',
-        'Gigas spawns': 'Gigas spawns', // FIXME
         'Growing Threat': '驚異',
         'Gust Front': 'ガストフロント',
         'Hellfire': '地獄の火炎',
@@ -842,7 +837,6 @@
         'Materialize': '実体化',
         'Pulverize': '粉砕する',
         '(?<!\\w)Rake': 'ひっかき',
-        'Slow Hands': 'Slow Hands', // FIXME
         'Solar Storm': 'ソーラーストーム',
         'Stone Breath': 'ペトロブレス',
         'Subtract': '減算する',

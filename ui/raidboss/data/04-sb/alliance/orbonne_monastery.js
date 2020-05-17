@@ -703,6 +703,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': 'Agrias',
         'Aspersory': 'Aspersorium',
@@ -813,8 +814,6 @@
         'Towerfall': 'Turmsturz',
         'Ultimate Illusion': 'Ultimative Illusion',
         'attack(?!\\w)': 'Attacke',
-        'crystal stun': 'crystal stun', // FIXME
-        'ghost stun': 'ghost stun', // FIXME
       },
       '~effectNames': {
         'Acceleration Bomb': 'Beschleunigungsbombe',
@@ -840,6 +839,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': 'Agrias',
         'Aspersory': 'aiguière bénie',
@@ -950,8 +950,6 @@
         'Towerfall': 'Écroulement',
         'Ultimate Illusion': 'Fantaisie finale',
         'attack(?!\\w)': 'Attaque',
-        'crystal stun': 'crystal stun', // FIXME
-        'ghost stun': 'ghost stun', // FIXME
       },
       '~effectNames': {
         'Acceleration Bomb': 'Bombe accélératrice',
@@ -992,7 +990,6 @@
         'Ephemeral Knight': '幻影の騎士',
         'Halidom': '模造聖域',
         'Harpy': 'ハーピー',
-        'I see it now': 'I see it now', // FIXME
         'Icewolf': '氷狼',
         'Iron Construct': '労働型鉄巨人',
         'Mustadio': '機工士ムスタディオ',
@@ -1027,17 +1024,11 @@
         'Demi-Aquarius': 'デミ・アクエリアス',
         'Demi-Aries': 'デミ・アリエス',
         'Demi-Leo': 'デミ・レオ',
-        'Demi-Virgo Feet': 'Demi-Virgo Feet', // FIXME
-        'Demi-Virgo Line(?!\/)': 'Demi-Virgo Line', // FIXME
-        'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether', // FIXME
-        'Demi-Virgo Tether(?!\/)': 'Demi-Virgo Tether', // FIXME
-        'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet', // FIXME
         'Devitalize': 'デヴァイタライズ',
         'Divine Light': '幻光波',
         'Divine Ruination': '聖光爆裂破',
         'Duskblade': '暗の剣',
         'Earth Hammer': '大地のハンマー',
-        'East/West March': 'East/West March', // FIXME
         'Eastward March': 'イーストワード・マーチ',
         'Embrace': '攻撃',
         'Energy Burst': 'エネルギーバースト',
@@ -1051,7 +1042,6 @@
         'Holy IV': 'ホーリジャ',
         'Infernal Wave': 'インファーナルウェーブ',
         'Judgment Blade': '不動無明剣',
-        'L/R Handgonne': 'L/R Handgonne', // FIXME
         'Last Testament': 'ファイナルテスタメント',
         'Left Handgonne': '左舷掃射',
         'Leg Shot': '足を狙う',
@@ -1072,19 +1062,12 @@
         'Searchlight': 'サーチライト',
         'Shadowblade': '闇の剣',
         'Shockwave': '衝撃波',
-        'Stack': 'Stack', // FIXME
-        'Sword In/Out': 'Sword In/Out', // FIXME
-        'Sword L/R': 'Sword L/R', // FIXME
-        'Sword Out/In': 'Sword Out/In', // FIXME
-        'Sword Three In A Row': 'Sword Three In A Row', // FIXME
         'T.G. Holy Sword': '雷神式聖剣技',
         'Thunder Slash': '雷鳴剣',
         'Time Eruption': 'タイムエラプション',
         'Towerfall': '倒壊',
         'Ultimate Illusion': '究極幻想',
         'attack(?!\\w)': '攻撃',
-        'crystal stun': 'crystal stun', // FIXME
-        'ghost stun': 'ghost stun', // FIXME
       },
       '~effectNames': {
         'Acceleration Bomb': '加速度爆弾',
@@ -1110,6 +1093,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '圣骑士阿格莉亚丝',
         'Aspersory': '圣云水瓶',
@@ -1124,7 +1108,6 @@
         'Ephemeral Knight': '幻影骑士',
         'Halidom': '仿制圣域',
         'Harpy': '哈比鸟',
-        'I see it now': 'I see it now', // FIXME
         'Icewolf': '冰狼',
         'Iron Construct': '劳动型铁巨人',
         'Mustadio': '机工士姆斯塔迪奥',
@@ -1297,11 +1280,6 @@
         'Demi-Aquarius': '데미아쿠아리우스',
         'Demi-Aries': '데미아리에스',
         'Demi-Leo': '데미레오',
-        'Demi-Virgo Feet': 'Demi-Virgo Feet', // FIXME
-        'Demi-Virgo Line(?!\/)': 'Demi-Virgo Line', // FIXME
-        'Demi-Virgo Line/Tether': 'Demi-Virgo Line/Tether', // FIXME
-        'Demi-Virgo Tether(?!\/)': 'Demi-Virgo Tether', // FIXME
-        'Demi-Virgo Tether/Feet': 'Demi-Virgo Tether/Feet', // FIXME
         'Devitalize': '활력 강탈',
         'Divine Light': '환광파',
         'Divine Ruination': '성광폭렬파',
