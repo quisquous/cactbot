@@ -208,7 +208,6 @@
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
-        'ready': 'ready', // FIXME
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Azurschwingen',
@@ -262,7 +261,6 @@
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
-        'ready': 'ready', // FIXME
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Ailes azur',
@@ -285,11 +283,9 @@
         'In/Out': 'Dedans/Dehors',
         '(?<!\/)Out': 'Dehors',
         'Northern Cross': 'Croix du nord',
-        'Position': 'Position', // FIXME
         'Protostar': 'Proto-étoile',
         'Rime Wreath': 'Enveloppe de givre',
         'Shaker/Thunder': 'Secousse/Tempête',
-        'Signal': 'Signal', // FIXME
         'Spin': 'Tour horizontal',
         'Stygian Maw': 'Gueule ténébreuse',
         'Tail End': 'Pointe de queue',
@@ -316,15 +312,12 @@
         'Midgardsormr': 'ミドガルズオルム',
       },
       'replaceText': {
-        'ready': 'ready', // FIXME
         'Akh Morn': 'アク・モーン',
         'Akh Rhai': 'アク・ラーイ',
         'Azure Wings': '蒼翼の焔',
         'Bloodied Maw': '紅牙の焔',
-        'Cardinals': 'Cardinals', // FIXME
         'Cauterize': 'カータライズ',
         'Coil': 'Coil',
-        'Corners': 'Corners', // FIXME
         'Crimson Breath': 'クリムゾンブレス',
         'Crimson Wings': '紅翼の焔',
         'Dark Wave': 'ダークウェーブ',
@@ -332,18 +325,12 @@
         'Earth Shaker': 'アースシェイカー',
         'Exaflare': 'エクサフレア',
         'Flame Blast': 'フレイムブラスト',
-        'Flip': 'Flip', // FIXME
         'Frost Breath': 'フロストブレス',
         'Horrid Roar': 'ホリッドロア',
         'Hot Tail': 'ヒートテイル',
-        'In/Out': 'In/Out', // FIXME
-        '(?<!\/)Out': 'Out', // FIXME
         'Northern Cross': 'ノーザンクロス',
-        'Position': 'Position', // FIXME
         'Protostar': 'プロトスター',
         'Rime Wreath': 'ライムリリース',
-        'Shaker/Thunder': 'Shaker/Thunder', // FIXME
-        'Signal': 'Signal', // FIXME
         'Spin': 'ぶん回す',
         'Stygian Maw': '黒牙の焔',
         'Tail End': 'テイルエンド',
@@ -431,7 +418,6 @@
         'Bloodied Maw': '홍아의 불꽃',
         'Cardinals': '맵 측면',
         'Cauterize': '인두질',
-        'Coil': 'Coil', // FIXME
         'Corners': '구석',
         'Crimson Breath': '진홍빛 숨결',
         'Crimson Wings': '홍익의 불꽃',

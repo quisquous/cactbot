@@ -807,10 +807,8 @@
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Atomic Ray': 'Rayon atomique',
-        'Benighting / Wormwail': 'Benighting / Wormwail', // FIXME
         'Benighting Breath': 'Souffle enténébrant',
         'Blazing Trail': 'Trace embrasée',
-        'Cocoon Markers': 'Cocoon Markers', // FIXME
         'Dark Matter': 'Matière sombre',
         'Death Sentence': 'Peine de mort',
         'Diamond Dust': 'Poussière de diamant',
@@ -819,7 +817,6 @@
         'Earth Breath': 'Souffle de terre',
         'Earthen Fury': 'Fureur tellurique',
         'Fireball': 'Boule de feu',
-        'First Wing': 'First Wing', // FIXME
         'Gyre Charge': 'Gyrocharge',
         'Hellfire': 'Flammes de l\'enfer',
         'Hypernova': 'Hypernova',
@@ -828,21 +825,15 @@
         'Judgment Bolt': 'Éclair du jugement',
         'Levinbolt': 'Fulguration',
         'Meteor Impact': 'Impact de météore',
-        'Phase': 'Phase', // FIXME
         'Protostar': 'Proto-étoile',
-        'Reiyu Adds': 'Reiyu Adds', // FIXME
-        'Second Wing': 'Second Wing', // FIXME
         'Shatter': 'Éclatement',
         'Spiked Tail': 'Queue barbelée',
         'Spikesicle': 'Stalactopointe',
         'Summon Icicle': 'Appel de stalactite',
         'Super Cyclone': 'Super cyclone',
-        'TAP BUTTON OR ELSE': 'TAP BUTTON OR ELSE', // FIXME
-        'Tail Marker': 'Tail Marker', // FIXME
         'Tail Slap': 'Gifle caudale',
         'Tail Spit': 'Broche caudale',
         'Tera Slash': 'TéraTaillade',
-        'Tethers': 'Tethers', // FIXME
         'Tidal Wave': 'Raz-de-marée',
         'Touchdown': 'Atterrissage',
       },
@@ -864,7 +855,6 @@
         'Rehabilitation': 'Recouvrement',
         'Sludge': 'Emboué',
         'Stun': 'Étourdissement',
-        'Tethers': 'Tethers', // FIXME
         'The Worm\'s Curse': 'Malédiction du dragon',
         'Thin Ice': 'Verglas',
       },
@@ -887,10 +877,8 @@
         'Akh Morn': 'アク・モーン',
         'Akh Rhai': 'アク・ラーイ',
         'Atomic Ray': 'アトミックレイ',
-        'Benighting / Wormwail': 'Benighting / Wormwail', // FIXME
         'Benighting Breath': 'ダークネスブレス',
         'Blazing Trail': 'ブレイジングトレイル',
-        'Cocoon Markers': 'Cocoon Markers', // FIXME
         'Dark Matter': 'ダークマター',
         'Death Sentence': 'デスセンテンス',
         'Diamond Dust': 'ダイアモンドダスト',
@@ -899,7 +887,6 @@
         'Earth Breath': 'アースブレス',
         'Earthen Fury': '大地の怒り',
         'Fireball': 'ファイアボール',
-        'First Wing': 'First Wing', // FIXME
         'Gyre Charge': 'ジャイヤチャージ',
         'Hellfire': '地獄の火炎',
         'Hypernova': 'スーパーノヴァ',
@@ -908,21 +895,15 @@
         'Judgment Bolt': '裁きの雷',
         'Levinbolt': '稲妻',
         'Meteor Impact': 'メテオインパクト',
-        'Phase': 'Phase', // FIXME
         'Protostar': 'プロトスター',
-        'Reiyu Adds': 'Reiyu Adds', // FIXME
-        'Second Wing': 'Second Wing', // FIXME
         'Shatter': '破砕',
         'Spiked Tail': 'スパイクテール',
         'Spikesicle': 'アイシクルスパイク',
         'Summon Icicle': 'サモン・アイシクル',
         'Super Cyclone': 'スーパーサイクロン',
-        'TAP BUTTON OR ELSE': 'TAP BUTTON OR ELSE', // FIXME
-        'Tail Marker': 'Tail Marker', // FIXME
         'Tail Slap': 'テールスラップ',
         'Tail Spit': 'テールスピット',
         'Tera Slash': 'テラスラッシュ',
-        'Tethers': 'Tethers', // FIXME
         'Tidal Wave': 'タイダルウェイブ',
         'Touchdown': 'タッチダウン',
       },
@@ -944,7 +925,6 @@
         'Rehabilitation': '徐々にＨＰ回復',
         'Sludge': '汚泥',
         'Stun': 'スタン',
-        'Tethers': 'Tethers', // FIXME
         'The Worm\'s Curse': '龍の呪言',
         'Thin Ice': '氷床',
       },

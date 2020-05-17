@@ -167,9 +167,7 @@
       },
       'replaceText': {
         'Acid Rain': '酸性雨',
-        'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '念力',
-        'Crossing Whistle': 'Crossing Whistle', // FIXME
         'Diabolic Chimney': '魔界の噴煙',
         'Diabolic Headlamp': '魔界の前照灯',
         'Diabolic Light': '魔界の光',
@@ -177,12 +175,9 @@
         'Diabolic Wind': '魔界の風',
         'Doom Strike': '魔霊撃',
         'Encumber': '進路妨害',
-        'Ghost Beams': 'Ghost Beams', // FIXME
-        'Ghosts': 'Ghosts', // FIXME
         'Head On': '追突',
         'Possess': '取り憑く',
         'Saintly Beam': 'セイントビーム',
-        'Tether Whistle': 'Tether Whistle', // FIXME
       },
       '~effectNames': {
         'Connectivity': '連結',
@@ -241,9 +236,7 @@
       },
       'replaceText': {
         'Acid Rain': '산성비',
-        'Add Wave': 'Add Wave', // FIXME
         'All In The Mind': '염력',
-        'Crossing Whistle': 'Crossing Whistle', // FIXME
         'Diabolic Chimney': '마계의 연기',
         'Diabolic Headlamp': '마계의 전조등',
         'Diabolic Light': '마계의 빛',
@@ -251,12 +244,9 @@
         'Diabolic Wind': '마계의 바람',
         'Doom Strike': '마령격',
         'Encumber': '진로 방해',
-        'Ghost Beams': 'Ghost Beams', // FIXME
-        'Ghosts': 'Ghosts', // FIXME
         'Head On': '추돌',
         'Possess': '빙의',
         'Saintly Beam': '성스러운 광선',
-        'Tether Whistle': 'Tether Whistle', // FIXME
       },
       '~effectNames': {
         'Connectivity': '연결',

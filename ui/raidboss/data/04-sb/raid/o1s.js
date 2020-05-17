@@ -94,9 +94,6 @@
         'Wyrm Tail': 'Antiker Drachenschweif',
       },
       'replaceText': {
-        '(safe)': '(safe)', // FIXME
-        '(spread)': '(spread)', // FIXME
-        '(stack)': '(stack)', // FIXME
         'Black Hole': 'Schwarzes Loch',
         'Black Spark': 'Schwarzer Funke',
         'Blaze': 'Flamme',
@@ -104,7 +101,6 @@
         'Breath Wing': 'Atemschwinge',
         'Charybdis': 'Charybdis',
         'Clamp': 'Klammer',
-        'Classical': 'Classical', // FIXME
         'Clearout': 'Kreisfeger',
         'Collision': 'Aufprall',
         'Doom': 'Verhängnis',
@@ -112,17 +108,14 @@
         'Fire III': 'Feuga',
         'Flare': 'Flare',
         'Holy': 'Sanctus',
-        'Inner Fireballs': 'Inner Fireballs', // FIXME
         'Levinbolt': 'Keraunisches Feld',
         'Meteor': 'Meteo',
-        'Outer Fireballs': 'Outer Fireballs', // FIXME
         'Roar': 'Brüllen',
         'Teleport': 'Teleport',
         'The Decisive Battle': 'Entscheidungsschlacht',
         'Thin Ice': 'Glatteis',
         'Thunder III': 'Blitzga',
         'Twin Bolt': 'Zwillingsschlag',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Vacuum Wave': 'Vakuumwelle',
         'Wyrm Tail': 'Antiker Drachenschweif',
         'Zombie Breath': 'Zombie-Atem',
@@ -145,9 +138,6 @@
         'Wyrm Tail': 'Queue du dragon ancestral',
       },
       'replaceText': {
-        '(safe)': '(safe)', // FIXME
-        '(spread)': '(spread)', // FIXME
-        '(stack)': '(stack)', // FIXME
         'Black Hole': 'Trou noir',
         'Black Spark': 'Étincelle noire',
         'Blaze': 'Fournaise',
@@ -155,7 +145,6 @@
         'Breath Wing': 'Aile déferlante',
         'Charybdis': 'Charybde',
         'Clamp': 'Pinçage',
-        'Classical': 'Classical', // FIXME
         'Clearout': 'Fauchage',
         'Collision': 'Impact',
         'Doom': 'Glas',
@@ -163,17 +152,14 @@
         'Fire III': 'Méga Feu',
         'Flare': 'Brasier',
         'Holy': 'Miracle',
-        'Inner Fireballs': 'Inner Fireballs', // FIXME
         'Levinbolt': 'Fulguration',
         'Meteor': 'Météore',
-        'Outer Fireballs': 'Outer Fireballs', // FIXME
         'Roar': 'Rugissement',
         'Teleport': 'Téléportation',
         'The Decisive Battle': 'Combat décisif',
         'Thin Ice': 'Verglas',
         'Thunder III': 'Méga Foudre',
         'Twin Bolt': 'Éclairs jumeaux',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Vacuum Wave': 'Vague de vide',
         'Wyrm Tail': 'Queue du dragon ancestral',
         'Zombie Breath': 'Haleine zombie',
@@ -196,9 +182,6 @@
         'Wyrm Tail': '太古の龍尾',
       },
       'replaceText': {
-        '(safe)': '(safe)', // FIXME
-        '(spread)': '(spread)', // FIXME
-        '(stack)': '(stack)', // FIXME
         'Black Hole': 'ブラックホール',
         'Black Spark': 'ブラックスパーク',
         'Blaze': '火炎',
@@ -206,7 +189,6 @@
         'Breath Wing': 'ブレスウィング',
         'Charybdis': 'ミールストーム',
         'Clamp': 'クランプ',
-        'Classical': 'Classical', // FIXME
         'Clearout': 'なぎ払い',
         'Collision': '衝撃',
         'Doom': '死の宣告',
@@ -214,17 +196,14 @@
         'Fire III': 'ファイガ',
         'Flare': 'フレア',
         'Holy': 'ホーリー',
-        'Inner Fireballs': 'Inner Fireballs', // FIXME
         'Levinbolt': '稲妻',
         'Meteor': 'メテオ',
-        'Outer Fireballs': 'Outer Fireballs', // FIXME
         'Roar': '咆哮',
         'Teleport': 'テレポ',
         'The Decisive Battle': '決戦',
         'Thin Ice': '氷床',
         'Thunder III': 'サンダガ',
         'Twin Bolt': 'ツインボルト',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Vacuum Wave': '真空波',
         'Wyrm Tail': '太古の龍尾',
         'Zombie Breath': 'ゾンビブレス',
@@ -297,9 +276,6 @@
         'Wyrm Tail': '태고의 용 꼬리',
       },
       'replaceText': {
-        '(safe)': '(safe)', // FIXME
-        '(spread)': '(spread)', // FIXME
-        '(stack)': '(stack)', // FIXME
         'Black Hole': '블랙홀',
         'Black Spark': '검은 불꽃',
         'Blaze': '화염',
@@ -307,7 +283,6 @@
         'Breath Wing': '날개바람',
         'Charybdis': '대소용돌이',
         'Clamp': '압박',
-        'Classical': 'Classical', // FIXME
         'Clearout': '휩쓸기',
         'Collision': '충격',
         'Doom': '죽음의 선고',
@@ -315,17 +290,14 @@
         'Fire III': '파이가',
         'Flare': '플레어',
         'Holy': '홀리',
-        'Inner Fireballs': 'Inner Fireballs', // FIXME
         'Levinbolt': '우레',
         'Meteor': '메테오',
-        'Outer Fireballs': 'Outer Fireballs', // FIXME
         'Roar': '포효',
         'Teleport': '텔레포',
         'The Decisive Battle': '결전',
         'Thin Ice': '얼음 바닥',
         'Thunder III': '선더가',
         'Twin Bolt': '이중 낙뢰',
-        'Unknown Ability': 'Unknown Ability', // FIXME
         'Vacuum Wave': '진공파',
         'Wyrm Tail': '태고의 용 꼬리',
         'Zombie Breath': '좀비 숨결',
@@ -336,7 +308,6 @@
         'Doom': '죽음의 선고',
         'Lightning Resistance Down': '번개속성 저항 감소',
         'Paralysis': '마비',
-        'Pyretic': '', // FIXME
       },
     },
   ],

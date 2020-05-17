@@ -464,11 +464,8 @@
         'Dance Of The Dead': '黄泉の舞',
         'Dark Blade': '月刀右近',
         'Dispersivity': '剣気波動',
-        'Empire adds .SW->NW.': 'Empire adds .SW->NW.', // FIXME
         'Hagetsu': '破月',
-        'Homeland adds .E->W.': 'Homeland adds .E->W.', // FIXME
         'Lead Of The Underworld': '黄泉の銃弾',
-        'Lead/Steel': 'Lead/Steel', // FIXME
         'Lunacy': '月下繚乱',
         'Lunar Halo': '百月光',
         'Lunar Rays': '残月',
@@ -481,7 +478,6 @@
         'Perilune': '月天心',
         'Reprimand': '折檻',
         'Steel Of The Underworld': '黄泉の穂先',
-        'Steel/Lead': 'Steel/Lead', // FIXME
         'Supreme Selenomancy': '極の月読',
         'Torment Unto Death': 'なぶり殺し',
         'Tsuki-no-Kakera': '月の欠片',

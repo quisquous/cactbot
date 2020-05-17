@@ -123,7 +123,6 @@
         'Pay The Piper': 'Lied des Fängers',
         'Pay the Piper': 'Lied des Fängers',
         'Phantom Flurry': 'Phantomhast',
-        'Phantom Half': 'Phantom Half', // FIXME
         'Phoenix Down': 'Phönixsturz',
         'Rekindle': 'Wiederaufleben',
         'Rout': 'Kolossgalopp',
@@ -184,7 +183,6 @@
         'Rekindle': 'Ravivement',
         'Rout': 'Irruption',
         'Ruthless Refrain': 'Refrain impitoyable',
-        'Ruthless/Mesmerizing': 'Ruthless/Mesmerizing', // FIXME
         'Scarlet Fever': 'Fièvre écarlate',
         'Scarlet Hymn': 'Hymne vermillon',
         'Scathing Net': 'Étoiles des enfers',
@@ -235,12 +233,10 @@
         'Pay The Piper': '傀儡詩',
         'Pay the Piper': '傀儡詩',
         'Phantom Flurry': '鬼宿脚',
-        'Phantom Half': 'Phantom Half', // FIXME
         'Phoenix Down': '再生の羽根',
         'Rekindle': '再生の炎',
         'Rout': '猛進',
         'Ruthless Refrain': '拒絶の旋律',
-        'Ruthless/Mesmerizing': 'Ruthless/Mesmerizing', // FIXME
         'Scarlet Fever': '焼滅天火',
         'Scarlet Hymn': '朱の旋律',
         'Scathing Net': '張宿業火',

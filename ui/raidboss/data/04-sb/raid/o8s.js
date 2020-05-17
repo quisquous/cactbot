@@ -883,7 +883,6 @@
         'All Things Ending': '消滅の脚',
         'Blizzard Blitz': 'ぐるぐるブリザガ',
         'Blizzard III': 'ブリザガ',
-        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
         'Celestriad': 'スリースターズ',
         'Explosion': '爆発',
         'Fire III': 'ファイガ',
@@ -894,7 +893,6 @@
         'Graven Image': '神々の像',
         'Gravitas': '重力弾',
         'Gravitational Wave': '重力波',
-        'Half Arena': 'Half Arena', // FIXME
         'Heartless Angel': '心ない天使',
         'Heartless Archangel': '心ない大天使',
         'Holy Ascent': '昇天',
@@ -905,22 +903,15 @@
         'Indulgent Will': '聖母の神気',
         'Inexorable Will': '無情の神気',
         'Intemperate Will': '撲殺の神気',
-        'Knockback Tethers': 'Knockback Tethers', // FIXME
         'Light Of Judgment': '裁きの光',
         'Mana Charge': 'マジックチャージ',
         'Mana Release': 'マジックアウト',
         'Meteor': 'メテオ',
-        'Past/Future(?! )': 'Past/Future', // FIXME
-        'Past/Future End': 'Past/Future End', // FIXME
         'Pasts Forgotten': '過去の破滅',
         'Pulse Wave': '波動弾',
         'Revolting Ruin': 'ばりばりルインガ',
         'Shockwave': '衝撃波',
-        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers', // FIXME
-        'Soak': 'Soak', // FIXME
         'Starstrafe': '妖星乱舞',
-        'Statue Gaze': 'Statue Gaze', // FIXME
-        'Statue Half Cleave': 'Statue Half Cleave', // FIXME
         'The Path Of Light': '光の波動',
         'Thrumming Thunder': 'もりもりサンダガ',
         'Thunder III': 'サンダガ',
@@ -1013,7 +1004,6 @@
         'All Things Ending': '소멸의 발차기',
         'Blizzard Blitz': '빙글빙글 블리자가',
         'Blizzard III': '블리자가',
-        'Blizzard\\+Thunder': 'Blizzard+Thunder', // FIXME
         'Celestriad': '세 개의 별',
         'Explosion': '폭발',
         'Fire III': '파이가',
@@ -1024,7 +1014,6 @@
         'Graven Image': '신들의 상',
         'Gravitas': '중력탄',
         'Gravitational Wave': '중력파',
-        'Half Arena': 'Half Arena', // FIXME
         'Heartless Angel': '비정한 천사',
         'Heartless Archangel': '비정한 대천사',
         'Holy Ascent': '승천',
@@ -1035,22 +1024,15 @@
         'Indulgent Will': '성모의 신기',
         'Inexorable Will': '무정의 신기',
         'Intemperate Will': '박살의 신기',
-        'Knockback Tethers': 'Knockback Tethers', // FIXME
         'Light Of Judgment': '심판의 빛',
         'Mana Charge': '마력 충전',
         'Mana Release': '마력 방출',
         'Meteor': '메테오',
-        'Past/Future(?! )': 'Past/Future', // FIXME
-        'Past/Future End': 'Past/Future End', // FIXME
         'Pasts Forgotten': '과거의 파멸',
         'Pulse Wave': '파동탄',
         'Revolting Ruin': '파삭파삭 루인가',
         'Shockwave': '충격파',
-        'Sleep/Confuse Tethers': 'Sleep/Confuse Tethers', // FIXME
-        'Soak': 'Soak', // FIXME
         'Starstrafe': '요성난무',
-        'Statue Gaze': 'Statue Gaze', // FIXME
-        'Statue Half Cleave': 'Statue Half Cleave', // FIXME
         'The Path Of Light': '빛의 파동',
         'Thrumming Thunder': '찌릿찌릿 선더가',
         'Thunder III': '선더가',

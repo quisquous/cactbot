@@ -1092,11 +1092,6 @@
         'Forked Lightning': 'Gabelblitz',
       },
       'replaceText': {
-        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
-        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
-        '--Boss Targetable--': '--Boss Targetable--', // FIXME
-        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
-        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
         'Aero III': 'Windga',
         'Almagest': 'Almagest',
         'Black Hole': 'Schwarzes Loch',
@@ -1110,11 +1105,9 @@
         'Delta Attack': 'Delta-Attacke',
         'Doom': 'Verhängnis',
         'Double Attack': 'Doppelangriff',
-        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
         'Dualcast': 'Doppelzauber',
         'Earth Shaker': 'Erdstoß',
         'Emptiness': 'Tobende Leere',
-        'Final Battle': 'Final Battle', // FIXME
         'Fire III': 'Feuga',
         'Flare': 'Flare',
         'Flood of Naught': 'Flut der Leere',
@@ -1124,13 +1117,10 @@
         'Grand Cross Alpha': 'Supernova Alpha',
         'Grand Cross Delta': 'Supernova Delta',
         'Grand Cross Omega': 'Supernova Omega',
-        'HP Down Debuff': 'HP Down Debuff', // FIXME
         'Holy': 'Sanctus',
-        'Knockback': 'Knockback', // FIXME
         'Light and Darkness': 'Licht und Dunkelheit',
         'Meteor': 'Meteo',
         'Neverwhere': 'Nirgendwann',
-        'Random Elemental': 'Random Elemental', // FIXME
         'The Decisive Battle': 'Entscheidungsschlacht',
         'Thunder III': 'Blitzga',
         'Vacuum Wave': 'Vakuumwelle',
@@ -1154,11 +1144,6 @@
         'Exdeath': 'Exdeath',
       },
       'replaceText': {
-        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
-        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
-        '--Boss Targetable--': '--Boss Targetable--', // FIXME
-        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
-        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
         'Aero III': 'Méga Vent',
         'Almagest': 'Almageste',
         'Black Hole': 'Trou noir',
@@ -1172,11 +1157,9 @@
         'Delta Attack': 'Attaque Delta',
         'Doom': 'Glas',
         'Double Attack': 'Double attaque',
-        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
         'Dualcast': 'Chaîne de sorts',
         'Earth Shaker': 'Secousse',
         'Emptiness': 'Désolation du néant',
-        'Final Battle': 'Final Battle', // FIXME
         'Fire III': 'Méga Feu',
         'Flare': 'Brasier',
         'Flood of Naught': 'Crue du néant',
@@ -1186,13 +1169,10 @@
         'Grand Cross Alpha': 'Croix suprême alpha',
         'Grand Cross Delta': 'Croix suprême delta',
         'Grand Cross Omega': 'Croix suprême oméga',
-        'HP Down Debuff': 'HP Down Debuff', // FIXME
         'Holy': 'Miracle',
-        'Knockback': 'Knockback', // FIXME
         'Light and Darkness': 'Clair-obscur',
         'Meteor': 'Météore',
         'Neverwhere': 'Anarchie',
-        'Random Elemental': 'Random Elemental', // FIXME
         'The Decisive Battle': 'Combat décisif',
         'Thunder III': 'Méga Foudre',
         'Vacuum Wave': 'Vague de vide',
@@ -1216,11 +1196,6 @@
         'Exdeath': 'エクスデス',
       },
       'replaceText': {
-        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
-        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
-        '--Boss Targetable--': '--Boss Targetable--', // FIXME
-        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
-        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
         'Aero III': 'エアロガ',
         'Almagest': 'アルマゲスト',
         'Black Hole': 'ブラックホール',
@@ -1234,11 +1209,9 @@
         'Delta Attack': 'デルタアタック',
         'Doom': '死の宣告',
         'Double Attack': 'ダブルアタック',
-        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
         'Dualcast': '連続魔',
         'Earth Shaker': 'アースシェイカー',
         'Emptiness': '無の暴走',
-        'Final Battle': 'Final Battle', // FIXME
         'Fire III': 'ファイガ',
         'Flare': 'フレア',
         'Flood of Naught': '無の氾濫',
@@ -1248,13 +1221,10 @@
         'Grand Cross Alpha': 'グランドクロス・アルファ',
         'Grand Cross Delta': 'グランドクロス・デルタ',
         'Grand Cross Omega': 'グランドクロス・オメガ',
-        'HP Down Debuff': 'HP Down Debuff', // FIXME
         'Holy': 'ホーリー',
-        'Knockback': 'Knockback', // FIXME
         'Light and Darkness': 'ライト・アンド・ダークネス',
         'Meteor': 'メテオ',
         'Neverwhere': '法則崩壊',
-        'Random Elemental': 'Random Elemental', // FIXME
         'The Decisive Battle': '決戦',
         'Thunder III': 'サンダガ',
         'Vacuum Wave': '真空波',
@@ -1340,11 +1310,6 @@
         'Exdeath': '엑스데스',
       },
       'replaceText': {
-        '--Acceleration Bomb Resolves--': '--Acceleration Bomb Resolves--', // FIXME
-        '--Allagan Field Explodes--': '--Allagan Field Explodes--', // FIXME
-        '--Boss Targetable--': '--Boss Targetable--', // FIXME
-        '--Boss Untargetable--': '--Boss Untargetable--', // FIXME
-        '--LB Gauge Resets--': '--LB Gauge Resets--', // FIXME
         'Aero III': '에어로가',
         'Almagest': '알마게스트',
         'Black Hole': '블랙홀',
@@ -1358,27 +1323,21 @@
         'Delta Attack': '델타 공격',
         'Doom': '죽음의 선고',
         'Double Attack': '이중 공격',
-        'Double Attack Tethers': 'Double Attack Tethers', // FIXME
         'Dualcast': '연속 마법',
         'Earth Shaker': '요동치는 대지',
         'Emptiness': '무의 폭주',
-        'Final Battle': 'Final Battle', // FIXME
         'Fire III': '파이가',
         'Flare': '플레어',
         'Flood of Naught': '무의 범람',
-        'Forked Lightning': '', // FIXME
         'Frenzied Fist': '광란의 주먹',
         'Frenzied Sphere': '광란의 극지',
         'Grand Cross Alpha': '그랜드크로스: 알파',
         'Grand Cross Delta': '그랜드크로스: 델타',
         'Grand Cross Omega': '그랜드크로스: 오메가',
-        'HP Down Debuff': 'HP Down Debuff', // FIXME
         'Holy': '홀리',
-        'Knockback': 'Knockback', // FIXME
         'Light and Darkness': '빛과 어둠',
         'Meteor': '메테오',
         'Neverwhere': '법칙 붕괴',
-        'Random Elemental': 'Random Elemental', // FIXME
         'The Decisive Battle': '결전',
         'Thunder III': '선더가',
         'Vacuum Wave': '진공파',
@@ -1391,7 +1350,6 @@
         'Doom': '죽음의 선고',
         'Lightning Resistance Down': '번개속성 저항 감소',
         'Paralysis': '마비',
-        'Pyretic': '', // FIXME
         'Zombification': '좀비',
       },
     },

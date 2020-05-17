@@ -432,7 +432,6 @@
         'Mistral Shriek': 'Mistral-Schrei',
         'Mistral Song': 'Mistral-Song',
         'Mountain Buster': 'Bergsprenger',
-        'Nail Adds': 'Nail Adds', // FIXME
         'Radiant Plume': 'Scheiterhaufen',
         'Rock Buster': 'Steinsprenger',
         'Rock Throw': 'Granitgefängnis',
@@ -499,7 +498,6 @@
         'Aetheric Boom': 'Onde d\'éther',
         'Aetherochemical Laser': 'Laser magismologique',
         '(?<! )Aetheroplasm': 'Éthéroplasma',
-        'Apply Viscous': 'Apply Viscous', // FIXME
         'Blight': 'Supplice',
         '(?<![\\w| ])Burst': 'Grosse Explosion',
         'Bury': 'Impact',
@@ -520,7 +518,6 @@
         'Fusion Burst': 'Fusion explosive',
         'Geocrush': 'Broie-terre',
         'Gigastorm': 'Giga tempête',
-        'Grand Whirlwind': 'Grand Whirlwind', // FIXME
         'Granite Impact': 'Impact de rocs',
         'Great Whirlwind': 'Grand tourbillon',
         'Hellfire': 'Flammes de l\'enfer',
@@ -535,14 +532,12 @@
         'Mistral Shriek': 'Cri du mistral',
         'Mistral Song': 'Chant du mistral',
         'Mountain Buster': 'Casse-montagnes',
-        'Nail Adds': 'Nail Adds', // FIXME
         'Radiant Plume': 'Panache radiant',
         'Rock Buster': 'Casse-roc',
         'Rock Throw': 'Jeté de rocs',
         'Searing Wind': 'Carbonisation',
         'Self-destruct': 'Auto-destruction',
         'Slipstream': 'Sillage',
-        'Summon Random Primal': 'Summon Random Primal', // FIXME
         'Super Cyclone': 'Super cyclone',
         'Tank Purge': 'Vidange de réservoir',
         'Tumult': 'Tumulte',
@@ -602,7 +597,6 @@
         'Aetheric Boom': 'エーテル波動',
         'Aetherochemical Laser': '魔科学レーザー',
         '(?<! )Aetheroplasm': 'エーテル爆雷',
-        'Apply Viscous': 'Apply Viscous', // FIXME
         'Blight': 'クラウダ',
         '(?<![\\w| ])Burst': '大爆発',
         'Bury': '衝撃',
@@ -623,7 +617,6 @@
         'Fusion Burst': '融合爆発',
         'Geocrush': 'ジオクラッシュ',
         'Gigastorm': 'ギガストーム',
-        'Grand Whirlwind': 'Grand Whirlwind', // FIXME
         'Granite Impact': 'グラナイトインパクト',
         'Great Whirlwind': '大旋風',
         'Hellfire': '地獄の火炎',
@@ -638,14 +631,12 @@
         'Mistral Shriek': 'ミストラルシュリーク',
         'Mistral Song': 'ミストラルソング',
         'Mountain Buster': 'マウンテンバスター',
-        'Nail Adds': 'Nail Adds', // FIXME
         'Radiant Plume': '光輝の炎柱',
         'Rock Buster': 'ロックバスター',
         'Rock Throw': 'グラナイト・ジェイル',
         'Searing Wind': '熱風',
         'Self-destruct': '自爆',
         'Slipstream': 'スリップストリーム',
-        'Summon Random Primal': 'Summon Random Primal', // FIXME
         'Super Cyclone': 'スーパーサイクロン',
         'Tank Purge': '魔導フレア',
         'Tumult': '激震',

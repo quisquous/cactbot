@@ -156,10 +156,8 @@
         'Storm, Swell, Sword': 'Wind, Sturm, Schwert',
         'Storm\\?/Swell\\?(?!/Sword)': 'Wind?/Sturm?',
         'Storm\\?/Swell\\?/Sword\\?': 'Wind?/Sturm?/Schwert?',
-        'Swell/Sword': 'Swell/Sword', // FIXME
         'Tail Laser': 'Schweiflaser',
         'Target Search': 'Zielsucher',
-        'Unknown_206E': 'Unknown_206E', // FIXME
         'Unmoving Troika': 'Unbewegte Troika',
         'Vein Splitter': 'Erdader-Spalter',
       },
@@ -199,7 +197,6 @@
         'Swell/Sword': 'Orage/Epée',
         'Tail Laser': 'Laser caudal',
         'Target Search': 'Recherche de cible',
-        'Unknown_206E': 'Unknown_206E', // FIXME
         'Unmoving Troika': 'Troïka immobile',
         'Vein Splitter': 'Fendeur du sol',
       },
@@ -234,12 +231,8 @@
         'Order To Charge': '出撃命令',
         'Order To Fire': '攻撃命令',
         'Storm, Swell, Sword': '秘剣風雷妖',
-        'Storm\\?/Swell\\?(?!/Sword)': 'Storm?/Swell?', // FIXME
-        'Storm\\?/Swell\\?/Sword\\?': 'Storm?/Swell?/Sword?', // FIXME
-        'Swell/Sword': 'Swell/Sword', // FIXME
         'Tail Laser': 'テイルレーザー',
         'Target Search': 'ターゲット・サーチ',
-        'Unknown_206E': 'Unknown_206E', // FIXME
         'Unmoving Troika': '不動三段',
         'Vein Splitter': '地脈断ち',
       },
@@ -281,7 +274,6 @@
         'Target Search': '寻找目标',
         'Unmoving Troika': '不动三段',
         'Vein Splitter': '地脉断',
-        'Unknown_206E': 'Unknown_206E', // FIXME
       },
     },
     {
@@ -293,7 +285,6 @@
         'Rhalgr\'s Gate': '파괴신의 문',
         'The Chamber of Knowledge': '아시나 가설 실험장',
         'The Hall of the Griffin': '그리핀 전당',
-        'The Storm': '', // FIXME
         'Zenos Yae Galvus': '제노스 예 갈부스',
       },
       'replaceText': {
@@ -309,17 +300,12 @@
         'Lock On': '조준',
         'Magitek Disruptor': '마도 교란기',
         'Magitek Ray': '마도 레이저',
-        'Mana Burst': '', // FIXME
         'Mindjack': '정신 장악',
         'Order To Charge': '출격 명령',
         'Order To Fire': '공격 명령',
         'Storm, Swell, Sword': '비검 풍뇌요',
-        'Storm\\?/Swell\\?(?!/Sword)': 'Storm?/Swell?', // FIXME
-        'Storm\\?/Swell\\?/Sword\\?': 'Storm?/Swell?/Sword?', // FIXME
-        'Swell/Sword': 'Swell/Sword', // FIXME
         'Tail Laser': '꼬리 레이저',
         'Target Search': '대상 찾기',
-        'Unknown_206E': 'Unknown_206E', // FIXME
         'Unmoving Troika': '부동삼단',
         'Vein Splitter': '지맥 끊기',
       },

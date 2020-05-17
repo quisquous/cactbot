@@ -574,27 +574,22 @@
         'Guardian': 'ガーディアン',
         'Interdimensional Bomb': '次元爆弾',
         'Ultros': 'オルトロス',
-        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
         'Aether Rot': 'エーテルロット',
         'Arm And Hammer': 'アームハンマー',
         'Atomic Ray': 'アトミックレイ',
         'Aura Cannon': 'オーラキャノン',
-        'Biblio': 'Biblio', // FIXME
         'Bomb Deployment': '爆弾設置',
         'Chain Cannon': 'チェーンガン',
         'Chakra Burst': 'チャクラバースト',
         'Copy Program': 'プログラム・コピー',
-        'Copy(?! Program)': 'Copy', // FIXME
-        'Dada': 'Dada', // FIXME
         'Demon Simulation': 'ローディング：デーモン',
         'Diffractive Laser': '拡散レーザー',
         'Diffractive Plasma': '拡散プラズマ',
         'Electric Pulse': 'エレクトリックパルス',
         'Explosion': '爆発',
         'Ink': '墨',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
         'Light Blast': '小規模爆発',
         'Load': 'ローディング',
         'Magitek Ray': '魔導レーザー',
@@ -603,19 +598,12 @@
         'Missile Simulation': 'ローディング：ミサイル',
         'Missile(?![ |\\w])': 'ミサイル',
         'Paste Program': 'プログラム・ペースト',
-        'Paste(?! Program)': 'Paste', // FIXME
-        'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
-        'Radar': 'Radar', // FIXME
         'Repel': '反発',
-        'Retrieve Air Force': 'Retrieve Air Force', // FIXME
         'Retrieve Program': 'リバース・ローディング',
-        'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '実体化プログラム',
-        'Run(?! Program)': 'Run', // FIXME
         'Shockwave': '衝撃波',
         'Skip Program': 'スキップ・ローディング',
-        'Skip(?! Program)': 'Skip', // FIXME
         '(?<! )Stoneskin': 'ストンスキン',
         'Temporary Misdirection': '心神喪失',
         'Tentacle(?! )': 'たこあし',
@@ -738,7 +726,6 @@
         'Guardian': '가디언',
         'Interdimensional Bomb': '차원 폭탄',
         'Ultros': '오르트로스',
-        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
         'Aether Rot': '에테르 부패',
@@ -772,9 +759,7 @@
         'Prey': 'プレイ',
         'Radar': '레이더',
         'Repel': '반발',
-        'Retrieve Air Force': 'Retrieve Air Force', // FIXME
         'Retrieve Program': '역순 불러오기',
-        'Retrieve Ultros': 'Retrieve Ultros', // FIXME
         'Run Program': '실체화 프로그램',
         'Run(?! Program)': '실체화',
         'Shockwave': '충격파',

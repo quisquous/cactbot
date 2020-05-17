@@ -127,7 +127,6 @@
         'Easterly': 'Ostwind',
         'Goddess Chadarnook': 'heilig(?:e|er|es|en) Chadarnook',
         'Haunt': 'Verfolgung',
-        'I have claimed the girl in the picture!': 'I have claimed the girl in the picture!', // FIXME
         'Portrayal of Earth': 'Erdgemälde',
         'Portrayal of Fire': 'Feuergemälde',
         'Portrayal of Water': 'Wassergemälde',
@@ -184,7 +183,6 @@
         'Easterly': 'rafale ultime',
         'Goddess Chadarnook': 'déesse Chadarnouk',
         'Haunt': 'Cauchemar corporel',
-        'I have claimed the girl in the picture!': 'I have claimed the girl in the picture!', // FIXME
         'Portrayal of Earth': 'peinture de la terre',
         'Portrayal of Fire': 'peinture du feu',
         'Portrayal of Water': 'peinture de l\'eau',
@@ -241,7 +239,6 @@
         'Easterly': '極風',
         'Goddess Chadarnook': 'チャダルヌーク・ゴッデス',
         'Haunt': '思念体',
-        'I have claimed the girl in the picture!': 'I have claimed the girl in the picture!', // FIXME
         'Portrayal of Earth': '土の絵画',
         'Portrayal of Fire': '火の絵画',
         'Portrayal of Water': '水の絵画',
@@ -355,7 +352,6 @@
         'Easterly': '극풍',
         'Goddess Chadarnook': '차다르누크 여신',
         'Haunt': '사념체',
-        'I have claimed the girl in the picture!': 'I have claimed the girl in the picture!', // FIXME
         'Portrayal of Earth': '땅의 그림',
         'Portrayal of Fire': '불의 그림',
         'Portrayal of Water': '물의 그림',
@@ -375,7 +371,6 @@
         'Downpour': '물고문',
         'Dull Pain': '약한 고통',
         'Earthquake': '대지진',
-        'Easterlies': 'Easterlies', // FIXME
         'Featherlance': '깃털창',
         'Flash Fire': '불바다',
         'Flash Flood': '급류',

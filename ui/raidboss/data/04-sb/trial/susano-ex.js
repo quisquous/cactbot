@@ -335,21 +335,17 @@
       },
       'replaceText': {
         'Ame No Murakumo': 'Ame No Murakumo',
-        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': 'Assaut',
         'Brightstorm': 'Claire tempête',
         'Churn': 'Agitation',
         'Churning Deep': 'Agitation profonde',
         'Dark Levin': 'foudre violette',
         'Electrocution': 'Électrocution',
-        'Knockback': 'Knockback', // FIXME
         'Levinbolt': 'Fulguration',
-        'Phase': 'Phase', // FIXME
         'Rasen Kaikyo': 'Rasen Kaikyo',
         'Seasplitter': 'Fendeur de mers',
         'Sheer Force': 'Force pure',
         'Shock': 'Décharge électrostatique',
-        'Stack': 'Stack', // FIXME
         'Stormsplitter': 'Fendeur de tempêtes',
         'The Altered Gate': 'Porte altérée',
         'The Hidden Gate': 'Porte cachée',
@@ -358,8 +354,6 @@
         'Ukehi': 'Ukehi',
         'Yasakani No Magatama': 'Yasakani No Magatama',
         'Yata No Kagami': 'Yata No Kagami',
-        'cloud': 'cloud', // FIXME
-        'dice': 'dice', // FIXME
       },
       '~effectNames': {
         'Churning': 'Agitation',
@@ -387,21 +381,17 @@
       },
       'replaceText': {
         'Ame No Murakumo': 'アメノムラクモ',
-        'Ame-No-Murakumo add': 'Ame-No-Murakumo add', // FIXME
         'Assail': '強撃',
         'Brightstorm': '晴嵐',
         'Churn': '禍泡付着',
         'Churning Deep': '禍泡',
         'Dark Levin': '紫電',
         'Electrocution': '感電',
-        'Knockback': 'Knockback', // FIXME
         'Levinbolt': '稲妻',
-        'Phase': 'Phase', // FIXME
         'Rasen Kaikyo': '螺旋海峡',
         'Seasplitter': '海割り',
         'Sheer Force': '剣圧',
         'Shock': '放電',
-        'Stack': 'Stack', // FIXME
         'Stormsplitter': '海嵐斬',
         'The Altered Gate': '岩戸返し',
         'The Hidden Gate': '岩戸隠れ',
@@ -410,8 +400,6 @@
         'Ukehi': '宇気比',
         'Yasakani No Magatama': 'ヤサカニノマガタマ',
         'Yata No Kagami': 'ヤタノカガミ',
-        'cloud': 'cloud', // FIXME
-        'dice': 'dice', // FIXME
       },
       '~effectNames': {
         'Churning': '禍泡',
@@ -431,7 +419,7 @@
         'Ama-No-Iwato': '天之岩户',
         'Ame-No-Murakumo': '天之丛云',
         'Dark Levin': '紫电',
-        'How our hearts sing in the chaos': '(有意思，真有意思|终于到了该使用神器的时候了吗)', // FIXME: they have the same english translation
+        'How our hearts sing in the chaos': '有意思，真有意思！',
         'Let the revels begin': '欢庆吧！跳舞吧！',
         'REJOICE!': '哇啊啊啊！',
         'Susano': '须佐之男',

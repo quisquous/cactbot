@@ -1865,7 +1865,6 @@
         'Morn Afah': 'Morn Afah',
         'Nael Dive': 'Nael Sturzflug',
         'Nael Marker': 'Nael Marker',
-        'Pepperoni': 'Pepperoni', // FIXME
         'Plummet(?!\/)': 'Herabstürzen',
         'Plummet/Claw': 'Herabstürzen/Klaue',
         'Quickmarch Trio': 'Todesmarsch-Trio',
@@ -1970,7 +1969,6 @@
         'Morn Afah': 'Morn Afah',
         'Nael Dive': 'Plongeon de Nael',
         'Nael Marker': 'Marqueur de Nael',
-        'Pepperoni': 'Pepperoni', // FIXME
         'Plummet(?!\/)': 'Piqué',
         'Plummet/Claw': 'Piqué/Griffe',
         'Quickmarch Trio': 'Trio de la marche militaire',
@@ -2027,10 +2025,8 @@
         'Twintania': 'ツインタニア',
       },
       'replaceText': {
-        '--push--': '--push--', // FIXME
         'Aetheric Profusion': 'エーテリックプロフュージョン',
         'Akh Morn': 'アク・モーン',
-        'Bahamut Marker': 'Bahamut Marker', // FIXME
         'Bahamut\'s Claw': 'バハムートクロウ',
         'Bahamut\'s Favor': '龍神の加護',
         'Blackfire Trio': '黒炎の三重奏',
@@ -2041,16 +2037,12 @@
         'Dalamud Dive': 'ダラガブダイブ',
         'Death Sentence': 'デスセンテンス',
         'Deathstorm': 'デスストーム',
-        'Dive . Dynamo/Chariot': 'Dive . Dynamo/Chariot', // FIXME
-        'Dive Dynamo Combo': 'Dive Dynamo Combo', // FIXME
         'Divebomb': 'ダイブボム',
         'Doom': '死の宣告',
-        'Dynamo . Beam/Chariot': 'Dynamo . Beam/Chariot', // FIXME
         'Earth Shaker': 'アースシェイカー',
         'Exaflare': 'エクサフレア',
         'Fellruin Trio': '厄災の三重奏',
         'Fireball(?! Soak)': 'ファイアボール',
-        'Fireball Soak': 'Fireball Soak', // FIXME
         'Flames Of Rebirth': '転生の炎',
         'Flare Breath': 'フレアブレス',
         'Flatten': 'フラッテン',
@@ -2066,36 +2058,21 @@
         'Liquid Hell': 'ヘルリキッド',
         'Lunar Dive': 'ルナダイブ',
         'Lunar Dynamo': 'ルナダイナモ',
-        '(?<! )Marker(?!\\w)': 'Marker', // FIXME
-        'Markers appear': 'Markers appear', // FIXME
         'Megaflare': 'メガフレア',
         'Megaflare Dive': 'メガフレアダイブ',
         'Meteor Stream': 'メテオストリーム',
-        'Meteor/Dive or Dive/Beam': 'Meteor/Dive or Dive/Beam', // FIXME
         'Morn Afah': 'モーン・アファー',
-        'Nael Dive': 'Nael Dive', // FIXME
-        'Nael Marker': 'Nael Marker', // FIXME
-        'Pepperoni': 'Pepperoni', // FIXME
         'Plummet(?!\/)': 'プラメット',
-        'Plummet/Claw': 'Plummet/Claw', // FIXME
         'Quickmarch Trio': '進軍の三重奏',
-        'Random Combo Attack': 'Random Combo Attack', // FIXME
         'Raven Dive': 'レイヴンダイブ',
         '(?<!\/)Ravensbeak': 'レイヴェンズビーク',
-        'Sentence/Ravensbeak': 'Sentence/Ravensbeak', // FIXME
         'Seventh Umbral Era': '第七霊災',
-        'Stack': 'Stack', // FIXME
-        'Targeted Fire': 'Targeted Fire', // FIXME
         'Tempest Wing': 'テンペストウィング',
         'Tenstrike Trio': '連撃の三重奏',
         'Teraflare': 'テラフレア',
-        'Thermionic . Dynamo/Chariot': 'Thermionic . Dynamo/Chariot', // FIXME
         'Thermionic Beam': 'サーミオニックビーム',
         'Thermionic Burst': 'サーミオニックバースト',
         'Thunderstruck': 'サンダーウィング',
-        'Towers': 'Towers', // FIXME
-        'Triple Nael Quote': 'Triple Nael Quote', // FIXME
-        'Twin Marker': 'Twin Marker', // FIXME
         'Twister': 'ツイスター',
         'Twisting Dive': 'ツイスターダイブ',
         'White Fury': 'ネールの憤怒',

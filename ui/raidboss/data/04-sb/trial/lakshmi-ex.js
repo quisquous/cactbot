@@ -277,7 +277,6 @@
       },
       'replaceText': {
         '/dance': '/tanz',
-        'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'Ätherabsorption',
         'Alluring Arm': 'Anziehender Arm',
         'Alluring Embrace': 'Lockende Umarmung',
@@ -322,7 +321,6 @@
       },
       'replaceText': {
         '/dance': '/danser',
-        'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'Absorption d\'éther',
         'Alluring Arm': 'Bras séduisants',
         'Alluring Embrace': 'Étreinte séduisante',
@@ -366,8 +364,6 @@
         'Lakshmi': 'ラクシュミ',
       },
       'replaceText': {
-        '/dance': '/dance', // FIXME
-        'Adds Appear': 'Adds Appear', // FIXME
         'Aether Drain': 'エーテル吸収',
         'Alluring Arm': '魅惑の腕',
         'Alluring Embrace': '魅惑の抱擁',
@@ -381,7 +377,6 @@
         'Divine Doubt': '完全なる惑乱',
         'Hand Of Beauty': '優美なる左手',
         'Hand Of Grace': '優雅なる右手',
-        'Hands Of Grace/Beauty': 'Hands Of Grace/Beauty', // FIXME
         'Inner Demons': 'イナーデーモン',
         'Jagadishwari': 'ジャガディッシュワリ',
         'Stotram': 'ストトラム',

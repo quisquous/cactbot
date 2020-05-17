@@ -223,7 +223,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Ball Of Fire': 'Ball Of Fire', // FIXME
         'Alte Roite': '알테 로이테',
       },
       'replaceText': {
