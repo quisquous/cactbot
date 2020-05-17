@@ -63,6 +63,7 @@ class EmulatedPartyInfo extends EventBus {
    * @param {AnalyzedEncounter} encounter
    */
   ResetPartyInfo(encounter) {
+    this.currentPerspective = null;
     this.displayedParty = {};
     this.latestDisplayedState = 0;
     this.$partyInfo.empty();

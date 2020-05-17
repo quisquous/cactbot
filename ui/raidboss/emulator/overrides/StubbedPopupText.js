@@ -20,4 +20,12 @@ class StubbedPopupText extends PopupText {
 
     return ret;
   }
+
+  OnDataFilesRead(e) {
+    // Work around Options.Triggers getting modified by the global scope here
+    let triggers = Options.Triggers;
+    Options.Triggers = EmulatorCommon.cloneData(triggers, []);
+    super.OnDataFilesRead(e);
+    Options.Triggers = triggers;
+  }
 }

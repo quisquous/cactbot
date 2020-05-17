@@ -120,7 +120,7 @@ class LogEventHandler extends EventBus {
         }
       }
     }
-    console.log(`Displatching new fight
+    console.debug(`Displatching new fight
 Date: ${this.currentDate}
 Zone: ${this.currentZone}
 Line Count: ${this.currentFight.length}

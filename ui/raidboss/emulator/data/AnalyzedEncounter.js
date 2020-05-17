@@ -13,7 +13,6 @@ class AnalyzedEncounter extends EventBus {
     let partyMember = this.encounter.combatantTracker.combatants[ID];
     this.popupText.OnPlayerChange({
       detail: {
-        // @TODO: Move this split to combatant name assignment, with server stored
         name: partyMember.name,
         job: partyMember.job,
         currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,

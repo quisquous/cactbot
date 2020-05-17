@@ -52,14 +52,6 @@ class PopupTextAnalysis extends StubbedPopupText {
     }
   }
 
-  OnDataFilesRead(e) {
-    // Work around Options.Triggers getting modified by the global scope here
-    let triggers = Options.Triggers;
-    Options.Triggers = EmulatorCommon.cloneData(triggers, []);
-    super.OnDataFilesRead(e);
-    Options.Triggers = triggers;
-  }
-
   _onTriggerInternalGetHelper(trigger, matches, now) {
     this.currentFunction = '_onTriggerInternalGetHelper';
     // Intercept triggerHelper to capture data state changes
