@@ -29,13 +29,13 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'My shields are impregnable': 'Mes boucliers sont impénétrables',
         'Rhitahtyn sas Arvina': 'Rhitahtyn sas Arvina',
         'Your defeat will bring': 'Avec ta défaite, le général',
       },
       'replaceText': {
+        'Adds': 'Adds',
         'Drill Shot': 'Munition antiblindage',
         'Firebomb': 'Bombe de feu',
         'Gate Of Tartarus': 'Porte de Tartarus',
