@@ -581,6 +581,7 @@
         'White Flame': '白焰',
       },
       'replaceText': {
+        '(The )?Queen\'s Waltz': '女王之舞',
         '--Apanda Spawns--': '--阿班达出现--',
         '--Great Dragon Spawns--': '--巨龙出现--',
         '--Ninjas \\+ Giant Spawn--': '--忍者 + 巨人出现--',
@@ -608,7 +609,6 @@
         'Place Token': '召唤魔形',
         'Pole Shift': '磁场转换',
         'Pummel': '殴打',
-        '(The )?Queen\'s Waltz': '女王之舞',
         'Random Elemental': '随机元灵',
         'Ray Of White': '苍白射击',
         'Ribbit': '呱呱呱呱呱！',

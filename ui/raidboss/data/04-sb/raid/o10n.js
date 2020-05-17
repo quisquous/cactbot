@@ -131,6 +131,7 @@
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
+        '(?<!/)Out': 'Raus',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Azurschwingen',
@@ -151,7 +152,6 @@
         'Horrid Roar': 'Entsetzliches Brüllen',
         'Hot Tail': 'Schwelender Schweif',
         'In/Out': 'Rein/Raus',
-        '(?<!/)Out': 'Raus',
         'Northern Cross': 'Kreuz des Nordens',
         'Position': 'Position',
         'Protostar': 'Protostern',
@@ -185,7 +185,7 @@
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
-        'ready': 'prêt',
+        '(?<!/)Out': 'Dehors',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Ailes azur',
@@ -206,7 +206,6 @@
         'Horrid Roar': 'Rugissement horrible',
         'Hot Tail': 'Queue calorifique',
         'In/Out': 'Dedans/Dehors',
-        '(?<!/)Out': 'Dehors',
         'Northern Cross': 'Croix du nord',
         'Protostar': 'Proto-étoile',
         'Rime Wreath': 'Enveloppe de givre',
@@ -217,6 +216,7 @@
         'Thunderstorm': 'Tempête de foudre',
         'Time Immemorial': 'Big bang',
         'Touchdown': 'Atterrissage',
+        'ready': 'prêt',
       },
       '~effectNames': {
         'Arcane Bulwark': 'Barrière magique',
@@ -282,7 +282,8 @@
         'Midgardsormr': '尘世幻龙',
       },
       'replaceText': {
-        'ready': '准备',
+        '(?<!/)Out': '远离',
+        '(?<!\\w)In(?!/)': '靠近',
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
         'Azure Wings': '苍翼之焰',
@@ -302,9 +303,7 @@
         'Frost Breath': '寒霜吐息',
         'Horrid Roar': '恐惧咆哮',
         'Hot Tail': '燃烧之尾',
-        '(?<!\\w)In(?!/)': '靠近',
         'In/Out': '靠近/远离',
-        '(?<!/)Out': '远离',
         'Northern Cross': '北十字星',
         'Position': '站位',
         'Protostar': '原恒星',
@@ -317,6 +316,7 @@
         'Thunderstorm': '闪雷风暴',
         'Time Immemorial': '开天辟地',
         'Touchdown': '空降',
+        'ready': '准备',
       },
       '~effectNames': {
         'Arcane Bulwark': '魔法障壁',

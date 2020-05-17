@@ -208,6 +208,7 @@
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
+        '(?<!/)Out': 'Raus',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Azurschwingen',
@@ -228,7 +229,6 @@
         'Horrid Roar': 'Entsetzliches Brüllen',
         'Hot Tail': 'Schwelender Schweif',
         'In/Out': 'Rein/Raus',
-        '(?<!\/)Out': 'Raus',
         'Northern Cross': 'Kreuz des Nordens',
         'Position': 'Position',
         'Protostar': 'Protostern',
@@ -262,6 +262,7 @@
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
+        '(?<!/)Out': 'Dehors',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Ailes azur',
@@ -282,7 +283,6 @@
         'Horrid Roar': 'Rugissement horrible',
         'Hot Tail': 'Queue calorifique',
         'In/Out': 'Dedans/Dehors',
-        '(?<!\/)Out': 'Dehors',
         'Northern Cross': 'Croix du nord',
         'Protostar': 'Proto-étoile',
         'Rime Wreath': 'Enveloppe de givre',
@@ -359,7 +359,7 @@
         'Midgardsormr': '尘世幻龙',
       },
       'replaceText': {
-        'ready': '准备',
+        '(?<!/)Out': '远离',
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
         'Azure Wings': '苍翼之焰',
@@ -380,7 +380,6 @@
         'Horrid Roar': '恐惧咆哮',
         'Hot Tail': '燃烧之尾',
         'In/Out': '靠近/远离',
-        '(?<!\/)Out': '远离',
         'Northern Cross': '北十字星',
         'Position': '站位',
         'Protostar': '原恒星',
@@ -393,6 +392,7 @@
         'Thunderstorm': '闪雷风暴',
         'Time Immemorial': '开天辟地',
         'Touchdown': '空降',
+        'ready': '准备',
       },
       '~effectNames': {
         'Arcane Bulwark': '魔法障壁',
@@ -408,12 +408,13 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Midgardsormr': '미드가르드오름',
         'Ancient Dragon': '고룡',
         'Immortal Key': '용의 말뚝',
+        'Midgardsormr': '미드가르드오름',
       },
       'replaceText': {
         ' ready': ' 준비 완료',
+        '(?<!/)Out': '밖',
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',
         'Azure Wings': '창익의 불꽃',
@@ -433,7 +434,6 @@
         'Horrid Roar': '소름끼치는 포효',
         'Hot Tail': '뜨거운 꼬리',
         'In/Out': '안/밖',
-        '(?<!\/)Out': '밖',
         'Northern Cross': '북십자성',
         'Position': '위치',
         'Protostar': '원시별',

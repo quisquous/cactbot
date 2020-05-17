@@ -556,6 +556,7 @@
         'There is no turning back!': '오오오오오…… 이 충동, 더는 억누를 수 없다!',
       },
       'replaceText': {
+        'Add': '쫄',
         'Answer On High': '하늘의 번개',
         'Aratama': '아라미타마 탄환',
         'Bombogenesis': '폭탄 저기압',
@@ -566,7 +567,6 @@
         'Fell Swoop': '신뢰풍렬파',
         'Fire And Lightning': '뇌화일섬',
         'Gale Force': '폭풍',
-        'Add': '쫄',
         'Heavenly Strike': '천뢰장',
         'Highest Stakes': '건곤일척',
         'Hundredfold Havoc': '백뢰요란',
