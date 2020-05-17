@@ -15,6 +15,16 @@ let findSafeDir = (data) => {
   return safeDir;
 };
 
+let callSafeDir = (callIndex) => {
+  return {
+    '2': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
+    '1': { en: 'Go East (Soft Tilt)', cn: '去东边（小倾斜）' },
+    '-2': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
+    '-1': { en: 'Go West (Soft Tilt)', cn: '去西边（小倾斜）' },
+    // Stringified because Javascript doesn't do negative-integer key values.
+  }[callIndex.toString()];
+};
+
 
 [{
   zoneRegex: {
@@ -414,17 +424,12 @@ let findSafeDir = (data) => {
           data.sadTethers = true;
           return;
         }
-        return {
-          '2': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
-          '1': { en: 'Go East (Soft Tilt)', cn: '去东边（小倾斜）' },
-          '-2': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
-          '-1': { en: 'Go West (Soft Tilt)', cn: '去西边（小倾斜）' },
-          // Stringified because Javascript doesn't do negative-integer key values.
-        }[safeDir.toString()];
+        return callSafeDir(safeDir);
       },
     },
     {
-      // This specifically calls the case where it's 1/1;2/2;3/3 tethers.
+      // This specifically calls the case where it's 1/1;2/2;3/3 tethers,
+      // or any tether combination if we skipped the first Meteor Quasars.
       // The blue Quasar, 19A9, is *alway* on the dangerous side.
       // The 20/startsUsing log lines don't actually have position data,
       // but we enumerated all the locations earlier,
@@ -437,29 +442,22 @@ let findSafeDir = (data) => {
       netRegexCn: NetRegexes.startsUsing({ id: '19A9', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19A9', source: '소피아' }),
       condition: function(data) {
-        return data.sadTethers && data.scaleSophias;
+        return data.sadTethers;
       },
-      delaySeconds: .3,
       durationSeconds: 10,
       suppressSeconds: 5,
       alertText: function(data, matches) {
         let safeDir = findSafeDir(data);
+        // If this is the first set of Meteor Quasars, there is no tilt.
+        if (data.quasarTethers.length == 4 && safeDir != 0)
+          return;
         if (safeDir == 0)
           safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? '2' : '-2';
-        return {
-          '2': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
-          '1': { en: 'Go East (Soft Tilt)', cn: '去东边（小倾斜）' },
-          '-2': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
-          '-1': { en: 'Go West (Soft Tilt)', cn: '去西边（小倾斜）' },
-          // Stringified because Javascript doesn't do negative-integer key values.
-        }[safeDir.toString()];
-      },
-      run: function(data) {
-        delete data.sadTethers;
+        return callSafeDir(safeDir);
       },
     },
     {
-      id: 'SophiaEX Tether Cleanup',
+      id: 'SophiaEX Quasar Cleanup',
       netRegex: NetRegexes.ability({ id: '19A9', capture: false }),
       run: function(data) {
         delete data.quasarTethers;
