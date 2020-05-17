@@ -492,6 +492,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Aka-no-shiki': '紅の式鬼',
         'Ao-no-shiki': '蒼の式鬼',

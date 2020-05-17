@@ -54,6 +54,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': 'Elektro-Kraft',
         'Embodiment': 'Gilgamesch-Doppelgänger',
@@ -83,6 +84,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': 'Force électrogénétique',
         'Embodiment': 'double de Gilgamesh',
@@ -112,6 +114,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': '電撃',
         'Embodiment': 'ギルガメッシュの分身',

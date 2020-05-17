@@ -95,6 +95,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         ':Tenzen': ':Tenzen',
         'Eastern Pyre': 'Ostflamme',
@@ -150,6 +151,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         ':Tenzen': ':Tenzen',
         'Eastern Pyre': 'flamme orientale',
@@ -205,6 +207,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         ':Tenzen': ':テンゼン',
         'Eastern Pyre': '東炎',

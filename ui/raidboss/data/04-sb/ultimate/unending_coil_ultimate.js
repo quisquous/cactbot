@@ -1789,6 +1789,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
         'Fang of Light': 'Lichtklaue',
@@ -1907,6 +1908,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
         'Fang of Light': 'croc de lumière',
@@ -2011,6 +2013,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'バハムート・プライム',
         'Fang of Light': 'ライトファング',

@@ -397,6 +397,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'All creation trembles before my might!': 'Tremblez devant mon pouvoir !',
         'Aratama Force': 'aramitama',
@@ -443,6 +444,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'All creation trembles before my might!': '震天動地の力を、見せてやろうッ！',
         'Aratama Force': '荒弾',

@@ -372,6 +372,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Aetheroplasm': 'Ätheroplasma',
         'Bomb Boulder': 'Bomber-Brocken',
@@ -474,6 +475,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Aetheroplasm': 'Éthéroplasma',
         'Bomb Boulder': 'bombo rocher',
@@ -573,6 +575,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Aetheroplasm': 'エーテル爆雷',
         'Bomb Boulder': 'ボムボルダ',

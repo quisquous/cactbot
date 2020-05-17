@@ -87,6 +87,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
         'Black Hole': 'Schwarzes Loch',
@@ -131,6 +132,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
         'Black Hole': 'Trou noir',
@@ -175,6 +177,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': 'アルテ・ロイテ',
         'Black Hole': 'ブラックホール',
@@ -269,6 +272,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '알테 로이테',
         'Black Hole': '블랙홀',

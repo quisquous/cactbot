@@ -41,6 +41,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': 'gefallen(?:e|er|es|en) Chadarnook',
         'Easterly': 'Ostwind',
@@ -96,6 +97,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': 'démon Chadarnouk',
         'Easterly': 'rafale ultime',
@@ -150,6 +152,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': 'チャダルヌーク・デーモン',
         'Easterly': '極風',
@@ -261,6 +264,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': '차다르누크 악령',
         'Easterly': '극풍',

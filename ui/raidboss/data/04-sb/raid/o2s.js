@@ -310,6 +310,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Katastroph',
         'Fleshy Member': 'Tentakel',
@@ -350,6 +351,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Catastrophe',
         'Fleshy Member': 'tentacule',
@@ -390,6 +392,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'カタストロフィー',
         'Fleshy Member': '触手',
@@ -472,6 +475,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': '카타스트로피',
         'Fleshy Member': '촉수',

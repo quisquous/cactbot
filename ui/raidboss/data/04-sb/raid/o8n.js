@@ -288,6 +288,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Graven Image': 'heilig(?:e|er|es|en) Statue',
         'Kefka': 'Kefka',
@@ -346,6 +347,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Graven Image': 'Statue divine',
         'Kefka': 'Kefka',
@@ -404,6 +406,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Graven Image': '神々の像',
         'Kefka': 'ケフカ',
@@ -518,6 +521,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Graven Image': '신들의 상',
         'Kefka': '케프카',

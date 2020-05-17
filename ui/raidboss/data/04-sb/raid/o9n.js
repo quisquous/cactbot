@@ -129,6 +129,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',
@@ -216,6 +217,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': '혼돈',
         'Chaosphere': '혼돈의 구체',

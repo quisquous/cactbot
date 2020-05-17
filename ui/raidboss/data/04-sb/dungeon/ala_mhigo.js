@@ -126,6 +126,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': 'Aulus mal Asina',
         'Magitek Scorpion': 'Wachskorpion',
@@ -164,6 +165,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': 'Aulus mal Asina',
         'Magitek Scorpion': 'Scorpion magitek',
@@ -203,6 +205,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': 'アウルス・マル・アシナ',
         'Magitek Scorpion': 'ガードスコーピオン',
@@ -239,6 +242,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': '奥卢斯·玛尔·亚希纳',
         'Magitek Scorpion': '守卫机蝎',
@@ -278,6 +282,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': '아울루스 말 아시나',
         'Magitek Scorpion': '경비 전갈',

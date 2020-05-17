@@ -703,6 +703,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': 'Agrias',
         'Aspersory': 'Aspersorium',
@@ -838,6 +839,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': 'Agrias',
         'Aspersory': 'aiguière bénie',
@@ -1091,6 +1093,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '圣骑士阿格莉亚丝',
         'Aspersory': '圣云水瓶',

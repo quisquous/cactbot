@@ -753,6 +753,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',

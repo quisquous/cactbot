@@ -202,6 +202,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Arbuda': 'Arbuda',
         'Coeurl Smriti': 'Coeurl Smriti',

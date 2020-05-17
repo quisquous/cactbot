@@ -228,6 +228,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Air Force': 'エアフォース',
         'Bibliotaph': 'ビブリオタフ',
@@ -384,6 +385,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Air Force': '에어포스',
         'Bibliotaph': '비블리오타프',

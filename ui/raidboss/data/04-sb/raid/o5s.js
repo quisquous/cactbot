@@ -137,6 +137,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Agony': 'Fantôme Souffrant',
         'Doom Chimney': 'cheminée maléfique',
@@ -174,6 +175,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Agony': '苦悶のゴースト',
         'Doom Chimney': '魔煙突',
@@ -244,6 +246,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Agony': '고뇌하는 유령',
         'Doom Chimney': '마열차 굴뚝',

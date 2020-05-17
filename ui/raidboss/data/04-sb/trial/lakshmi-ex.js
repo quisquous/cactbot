@@ -269,6 +269,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Brahmin': 'verträumt(?:e|er|es|en) Brahmin',
         'Dreaming Kshatriya': 'verträumt(?:e|er|es|en) Kshatriya',
@@ -313,6 +314,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Brahmin': 'brahmin rêveuse',
         'Dreaming Kshatriya': 'kshatriya rêveuse',
@@ -357,6 +359,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Brahmin': 'テンパード・ブラフミン',
         'Dreaming Kshatriya': 'テンパード・クシャトリア',

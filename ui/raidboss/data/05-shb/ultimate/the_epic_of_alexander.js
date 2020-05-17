@@ -2882,6 +2882,7 @@ let getHeadmarkerId = (data, matches) => {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Alexander(?! )': 'Alexander',
         'Alexander Prime': 'Prim-Alexander',
@@ -3012,6 +3013,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Alexander Prime': 'Primo-Alexander',
         'Brute Justice': 'Justicier',
@@ -3134,6 +3136,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Alexander Prime': 'アレキサンダー・プライム',
         'Brute Justice': 'ブルートジャスティス',

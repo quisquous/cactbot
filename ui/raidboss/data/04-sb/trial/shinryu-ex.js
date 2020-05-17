@@ -791,6 +791,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Cocoon': 'cocon de lumière',
         'Ginryu': 'ginryu',
@@ -861,6 +862,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Cocoon': '光の繭',
         'Ginryu': '銀龍',

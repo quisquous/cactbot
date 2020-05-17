@@ -567,6 +567,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Air Force': 'エアフォース',
         'Dadaluma': 'ダダルマー',
@@ -719,6 +720,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Air Force': '에어포스',
         'Dadaluma': '다다루마',

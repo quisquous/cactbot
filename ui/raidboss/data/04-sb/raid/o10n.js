@@ -124,6 +124,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'antik(?:e|er|es|en) Drache',
         'Immortal Key': 'unsterblich(?:e|er|es|en) Schlüssel',
@@ -177,6 +178,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'dragon ancien',
         'Immortal Key': 'clef immortelle',
@@ -229,6 +231,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'エンシェントドラゴン',
         'Immortal Key': '竜の楔',
@@ -328,6 +331,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': '고룡',
         'Immortal Key': '용의 말뚝',

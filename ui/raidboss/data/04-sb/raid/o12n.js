@@ -142,6 +142,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
@@ -187,6 +188,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
@@ -232,6 +234,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
@@ -323,6 +326,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': '오메가',
         'Omega-F': '오메가 F',

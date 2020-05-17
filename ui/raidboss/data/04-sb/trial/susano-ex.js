@@ -323,6 +323,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ama-No-Iwato': 'ama no iwato',
         'Ame-No-Murakumo': 'Ame no Murakumo',
@@ -369,6 +370,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ama-No-Iwato': '天岩戸',
         'Ame-No-Murakumo': 'アメノムラクモ',

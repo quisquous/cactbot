@@ -442,6 +442,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Dancing Fan': '舞扇',
         'Moondust': '月の欠片',

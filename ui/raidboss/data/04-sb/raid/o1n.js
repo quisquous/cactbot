@@ -222,6 +222,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '알테 로이테',
       },

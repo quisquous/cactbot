@@ -255,6 +255,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'dragon ancien',
         'Immortal Key': 'clef immortelle',
@@ -306,6 +307,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'エンシェントドラゴン',
         'Immortal Key': '竜の楔',

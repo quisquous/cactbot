@@ -871,6 +871,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Graven Image': '神々の像',
         'Kefka': 'ケフカ',
@@ -992,6 +993,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Graven Image': '신들의 상',
         'Kefka': '케프카',

@@ -426,6 +426,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Augmented Rocket Punch': '강화형 로켓 주먹',
         'Engaging Delta Attack protocol': '델타 공격의 필요성을 인정합니다',

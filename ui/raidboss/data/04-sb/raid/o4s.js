@@ -1078,6 +1078,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Hole': 'Schwarzes Loch',
         'Exdeath': 'Exdeath',
@@ -1139,6 +1140,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Hole': 'Trou noir',
         'Exdeath': 'Exdeath',
@@ -1191,6 +1193,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Hole': 'ブラックホール',
         'Exdeath': 'エクスデス',
@@ -1305,6 +1308,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Black Hole': '블랙홀',
         'Exdeath': '엑스데스',

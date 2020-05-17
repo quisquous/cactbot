@@ -383,6 +383,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Tome': 'uralt(?:e|er|es|en) Foliant',
         'Apanda': 'Apanda',
@@ -445,6 +446,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Tome': 'volume ancien',
         'Apanda': 'apanda',
@@ -507,6 +509,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Tome': '古代書',
         'Apanda': 'アパンダ',
@@ -641,6 +644,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Ancient Tome': '고대의 책',
         'Apanda': '아판다',

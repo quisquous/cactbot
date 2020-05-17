@@ -382,6 +382,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'luminous aether': 'éther de lumière',
         'holy light': 'lumière sacrée',
@@ -437,6 +438,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'luminous aether': 'ライト・エーテル',
         'holy light': '聖なる光',
