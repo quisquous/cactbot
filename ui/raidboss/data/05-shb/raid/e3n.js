@@ -164,6 +164,7 @@
         'Leviathan': 'Leviathan',
       },
       'replaceText': {
+        '(?<! )Tsunami': 'Sturzflut',
         'Crashing Pulse': 'Stürmische Wogen',
         'Drenching Pulse': 'Tosende Wogen',
         'Freak Wave': 'Gigantische Welle',
@@ -179,7 +180,6 @@
         'Temporary Current': 'Unstete Gezeiten',
         'Tidal Roar': 'Schrei der Gezeiten',
         'Tidal Wave': 'Flutwelle',
-        '(?<! )Tsunami': 'Sturzflut',
         'Undersea Quake': 'Unterwasserbeben',
       },
       '~effectNames': {
@@ -196,6 +196,7 @@
         'Leviathan': 'Léviathan',
       },
       'replaceText': {
+        '(?<! )Tsunami': 'Tsunami',
         'Crashing Pulse': 'Pulsation déchaînée',
         'Drenching Pulse': 'Pulsation sauvage',
         'Freak Wave': 'Vague gigantesque',
@@ -211,7 +212,6 @@
         'Temporary Current': 'Courant évanescent',
         'Tidal Roar': 'Vague rugissante',
         'Tidal Wave': 'Raz-de-marée',
-        '(?<! )Tsunami': 'Tsunami',
         'Undersea Quake': 'Séisme sous-marin',
       },
       '~effectNames': {
@@ -229,6 +229,7 @@
         'Leviathan': 'リヴァイアサン',
       },
       'replaceText': {
+        '(?<! )Tsunami': '大海嘯',
         'Crashing Pulse': '激烈なる波動',
         'Drenching Pulse': '猛烈なる波動',
         'Freak Wave': 'フリークウェイブ',
@@ -244,7 +245,6 @@
         'Temporary Current': 'テンポラリーカレント',
         'Tidal Roar': 'タイダルロア',
         'Tidal Wave': 'タイダルウェイブ',
-        '(?<! )Tsunami': '大海嘯',
         'Undersea Quake': 'アンダーシークエイク',
       },
       '~effectNames': {
@@ -261,6 +261,7 @@
         'Leviathan': '利维亚桑',
       },
       'replaceText': {
+        '(?<! )Tsunami': '大海啸',
         'Crashing Pulse': '激烈波动',
         'Drenching Pulse': '猛烈波动',
         'Freak Wave': '畸形波',
@@ -276,7 +277,6 @@
         'Temporary Current': '临时洋流',
         'Tidal Roar': '怒潮咆哮',
         'Tidal Wave': '巨浪',
-        '(?<! )Tsunami': '大海啸',
         'Undersea Quake': '海底地震',
       },
       '~effectNames': {
@@ -293,6 +293,7 @@
         'Leviathan': '리바이어선',
       },
       'replaceText': {
+        '(?<! )Tsunami': '대해일',
         'Crashing Pulse': '격렬한 파동',
         'Drenching Pulse': '맹렬한 파동',
         'Freak Wave': '기괴한 물결',
@@ -308,7 +309,6 @@
         'Temporary Current': '순간 해류',
         'Tidal Roar': '바다의 포효',
         'Tidal Wave': '해일',
-        '(?<! )Tsunami': '대해일',
         'Undersea Quake': '해저 지진',
       },
       '~effectNames': {

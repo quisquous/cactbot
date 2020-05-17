@@ -120,8 +120,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Eden(?! )': 'Eden',
         'Eden Prime': 'Prim-Eden',
+        'Eden(?! )': 'Eden',
         'Guardian of Paradise': 'Hüter von Eden',
       },
       'replaceText': {
@@ -159,8 +159,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Eden(?! )': 'Éden',
         'Eden Prime': 'Primo-Éden',
+        'Eden(?! )': 'Éden',
         'Guardian of Paradise': 'Gardien du jardin',
       },
       'replaceText': {
@@ -200,8 +200,8 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Eden(?! )': 'エデン',
         'Eden Prime': 'エデン・プライム',
+        'Eden(?! )': 'エデン',
         'Guardian of Paradise': 'エデン・ガーデナー',
       },
       'replaceText': {
@@ -239,8 +239,8 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Eden(?! )': '伊甸',
         'Eden Prime': '至尊伊甸',
+        'Eden(?! )': '伊甸',
         'Guardian of Paradise': '伊甸守护者',
       },
       'replaceText': {
@@ -278,8 +278,8 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Eden(?! )': '에덴',
         'Eden Prime': '에덴 프라임',
+        'Eden(?! )': '에덴',
         'Guardian of Paradise': '에덴 정원사',
       },
       'replaceText': {

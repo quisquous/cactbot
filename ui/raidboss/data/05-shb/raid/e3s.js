@@ -624,9 +624,10 @@
         'Leviathan': 'Leviathan',
       },
       'replaceText': {
+        '(?<! )Tsunami': 'Sturzflut',
+        '(?<!\\w)Breaking Wave': 'Schmetternde Welle',
         'Backbreaking Wave': 'Verwüstende Welle',
         'Black Smokers': 'Schwarzer Raucher',
-        '(?<!\\w)Breaking Wave': 'Schmetternde Welle',
         'Drenching Pulse': 'Tosende Wogen',
         'Freak Wave': 'Gigantische Welle',
         'Hot Water': 'Heißes Wasser',
@@ -653,7 +654,6 @@
         'Tidal Rage': 'Wütende Flut',
         'Tidal Roar': 'Schrei der Gezeiten',
         'Tidal Wave': 'Flutwelle',
-        '(?<! )Tsunami': 'Sturzflut',
         'Undersea Quake': 'Unterwasserbeben',
       },
       '~effectNames': {
@@ -674,9 +674,10 @@
         'Leviathan': 'Léviathan',
       },
       'replaceText': {
+        '(?<! )Tsunami': 'Tsunami',
+        '(?<!\\w)Breaking Wave': 'Vague brisante',
         'Backbreaking Wave': 'Vague dévastatrice',
         'Black Smokers': 'Fumeurs noirs',
-        '(?<!\\w)Breaking Wave': 'Vague brisante',
         'Drenching Pulse': 'Pulsation sauvage',
         'Freak Wave': 'Vague gigantesque',
         'Hot Water': 'Eau bouillante',
@@ -703,7 +704,6 @@
         'Tidal Rage': 'Furie des marées',
         'Tidal Roar': 'Vague rugissante',
         'Tidal Wave': 'Raz-de-marée',
-        '(?<! )Tsunami': 'Tsunami',
         'Undersea Quake': 'Séisme sous-marin',
       },
       '~effectNames': {
@@ -724,9 +724,10 @@
         'Leviathan': 'リヴァイアサン',
       },
       'replaceText': {
+        '(?<! )Tsunami': '大海嘯',
+        '(?<!\\w)Breaking Wave': 'ブレーキングウェイブ',
         'Backbreaking Wave': 'バックブレーキングウェイブ',
         'Black Smokers': 'ブラックスモーカー',
-        '(?<!\\w)Breaking Wave': 'ブレーキングウェイブ',
         'Drenching Pulse': '猛烈なる波動',
         'Freak Wave': 'フリークウェイブ',
         'Hot Water': '熱水',
@@ -753,7 +754,6 @@
         'Tidal Rage': 'タイダルレイジ',
         'Tidal Roar': 'タイダルロア',
         'Tidal Wave': 'タイダルウェイブ',
-        '(?<! )Tsunami': '大海嘯',
         'Undersea Quake': 'アンダーシークエイク',
       },
       '~effectNames': {
@@ -774,9 +774,10 @@
         'Leviathan': '利维亚桑',
       },
       'replaceText': {
+        '(?<! )Tsunami': '大海啸',
+        '(?<!\\w)Breaking Wave': '破碎波',
         'Backbreaking Wave': '返破碎波',
         'Black Smokers': '黑色烟柱',
-        '(?<!\\w)Breaking Wave': '破碎波',
         'Drenching Pulse': '猛烈波动',
         'Freak Wave': '畸形波',
         'Hot Water': '热水',
@@ -803,7 +804,6 @@
         'Tidal Rage': '怒潮肆虐',
         'Tidal Roar': '怒潮咆哮',
         'Tidal Wave': '巨浪',
-        '(?<! )Tsunami': '大海啸',
         'Undersea Quake': '海底地震',
       },
       '~effectNames': {
@@ -824,9 +824,10 @@
         'Leviathan': '리바이어선',
       },
       'replaceText': {
+        '(?<! )Tsunami': '대해일',
+        '(?<!\\w)Breaking Wave': '파괴의 물결',
         'Backbreaking Wave': '험난한 물결',
         'Black Smokers': '해저 간헐천',
-        '(?<!\\w)Breaking Wave': '파괴의 물결',
         'Drenching Pulse': '맹렬한 파동',
         'Freak Wave': '기괴한 물결',
         'Hot Water': '열수',
@@ -853,7 +854,6 @@
         'Tidal Rage': '바다의 분노',
         'Tidal Roar': '바다의 포효',
         'Tidal Wave': '해일',
-        '(?<! )Tsunami': '대해일',
         'Undersea Quake': '해저 지진',
       },
       '~effectNames': {

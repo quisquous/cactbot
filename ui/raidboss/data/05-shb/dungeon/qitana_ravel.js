@@ -214,8 +214,8 @@
         'Batsquatch': 'Fledersquatch',
         'Eros': 'Eros',
         'Lozatl': 'Lozatl',
-        'The Divine Threshold': 'Götterpforte',
         'Shadowed Hollow': 'Bildnishalle',
+        'The Divine Threshold': 'Götterpforte',
         'The Song of Ox\'Gatorl': 'Altar des Ox\'Gatorl',
       },
       'replaceText': {
@@ -245,8 +245,8 @@
         'Batsquatch': '배츠콰치',
         'Eros': '에로스',
         'Lozatl': '로차틀',
-        'The Divine Threshold': '신에게 가는 문',
         'Shadowed Hollow': '신 그림자 공터',
+        'The Divine Threshold': '신에게 가는 문',
         'The Song of Ox\'Gatorl': '가톨 신의 제단',
       },
       'replaceText': {
@@ -276,8 +276,8 @@
         'Batsquatch': '大脚野蝠',
         'Eros': '艾洛斯',
         'Lozatl': '洛查特尔',
-        'The Divine Threshold': '神前石门',
         'Shadowed Hollow': '映照神影之洞窟',
+        'The Divine Threshold': '神前石门',
         'The Song of Ox\'Gatorl': '奥奇斯加托尔之祭坛',
       },
       'replaceText': {
@@ -300,7 +300,6 @@
         'Towerfall': '崩塌',
         'Viper Poison': '尾蛇毒',
       },
-      '~effectNames': {},
     },
   ],
 }];

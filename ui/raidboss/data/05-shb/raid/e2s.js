@@ -615,9 +615,8 @@
         'Voidwalker': 'Marcheuse Du Néant',
       },
       'replaceText': {
-        '\\?': ' ?',
-        'Cleaver/Slicer': 'Couperet/Entaille',
         '(?<! )Cycle Of ?': 'Multi-taillade',
+        'Cleaver/Slicer': 'Couperet/Entaille',
         'Cycle of Chaos': 'Multi-taillade chaotique',
         'Cycle of Retribution': 'Multi-taillade vengeresse',
         'Dark Fire III': 'Méga Feu ténébreux',
@@ -639,6 +638,7 @@
         'Slicer/Guillotine': 'Entaille/Guillotine',
         'Spell-In-Waiting': 'Déphasage incantatoire',
         'Unholy Darkness': 'Miracle sombre',
+        '\\?': ' ?',
       },
       '~effectNames': {
         'Bleeding': 'Saignant',
@@ -705,9 +705,9 @@
       },
       'replaceText': {
         'Cleaver/Slicer?': '虚无劈/虚无切?',
+        'Cycle Of ?': '??连续剑',
         'Cycle [oO]f Chaos': '混沌连续剑',
         'Cycle [oO]f Retribution': '复仇连续剑',
-        'Cycle Of ?': '??连续剑',
         'Dark Fire III': '黑暗爆炎',
         'Doomvoid Cleaver': '末日虚无劈',
         'Doomvoid Guillotine': '末日虚无断',

@@ -123,6 +123,7 @@
         'Titan': 'Titan',
       },
       'replaceText': {
+        '(?<! )Landslide': 'Bergsturz',
         'Aftershock': 'Nachbeben',
         'Bomb Boulders': 'Tumulus',
         'Bury': 'Begraben',
@@ -137,7 +138,6 @@
         'Fault Line': 'Bruchlinie',
         'Fault Zone': 'Bruchzone',
         'Geocrush': 'Kraterschlag',
-        '(?<! )Landslide': 'Bergsturz',
         'Left/Right Landslide': 'Linker/Rechter Bergsturz',
         'Leftward Landslide': 'Linker Bergsturz',
         'Magnitude 5.0': 'Magnitude 5.0',
@@ -162,7 +162,7 @@
         'Titan': 'Titan',
       },
       'replaceText': {
-        '\\?': ' ?',
+        '(?<! )Landslide': 'Glissement de terrain',
         'Aftershock': 'Répercussion',
         'Bomb Boulders': 'Bombo rocher',
         'Bury': 'Ensevelissement',
@@ -177,7 +177,6 @@
         'Fault Line': 'Ligne de faille',
         'Fault Zone': 'Faille tectonique',
         'Geocrush': 'Broie-terre',
-        '(?<! )Landslide': 'Glissement de terrain',
         'Left/Right Landslide': 'Glissement senestre/dextre',
         'Leftward Landslide': 'Glissement senestre',
         'Magnitude 5.0': 'Magnitude 5',
@@ -187,6 +186,7 @@
         'Stonecrusher': 'Éruption tellurique',
         'Voice of the Land': 'Hurlement tellurique',
         'Weight of the Land': 'Poids de la terre',
+        '\\?': ' ?',
       },
       '~effectNames': {
         'Brink of Death': 'Mourant',
@@ -203,6 +203,7 @@
         'Titan': 'タイタン',
       },
       'replaceText': {
+        '(?<! )Landslide': 'ランドスライド',
         'Aftershock': '余波',
         'Bomb Boulders': 'ボムボルダー',
         'Bury': '衝撃',
@@ -217,7 +218,6 @@
         'Fault Line': 'フォールトライン',
         'Fault Zone': 'フォールトゾーン',
         'Geocrush': 'ジオクラッシュ',
-        '(?<! )Landslide': 'ランドスライド',
         'Left/Right Landslide': 'レフト/ライト・ランドスライド',
         'Leftward Landslide': 'レフト・ランドスライド',
         'Magnitude 5.0': 'マグニチュード5.0',
@@ -243,6 +243,7 @@
         'Titan': '泰坦',
       },
       'replaceText': {
+        '(?<! )Landslide': '地裂',
         'Aftershock': '余波',
         'Bomb Boulders': '爆破岩石',
         'Bury': '塌方',
@@ -257,7 +258,6 @@
         'Fault Line': '断层线',
         'Fault Zone': '断裂带',
         'Geocrush': '大地粉碎',
-        '(?<! )Landslide': '地裂',
         'Left/Right Landslide': '左/右侧地裂',
         'Leftward Landslide': '左侧地裂',
         'Magnitude 5.0': '震级5.0',
@@ -283,6 +283,7 @@
         'Titan': '타이탄',
       },
       'replaceText': {
+        '(?<! )Landslide': '산사태',
         'Aftershock': '여파',
         'Bomb Boulders': '바위폭탄',
         'Bury': '충격',
@@ -297,7 +298,6 @@
         'Fault Line': '단층선',
         'Fault Zone': '단층대',
         'Geocrush': '대지 붕괴',
-        '(?<! )Landslide': '산사태',
         'Left/Right Landslide': '좌/우측 산사태',
         'Leftward Landslide': '좌측 산사태',
         'Magnitude 5.0': '진도 5.0',
