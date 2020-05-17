@@ -382,6 +382,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'luminous aether': 'éther de lumière',
         'holy light': 'lumière sacrée',
@@ -423,13 +424,6 @@
         'Biting Frost': 'Taillade de givre',
         'Axe Kick': 'Jambe pourfendeuse',
         'Absolute Zero': 'Zéro absolu',
-
-        // FIXME
-        'Twin Silence/Stillness': 'Twin Silence/Stillness',
-        'Spiteful/Embittered Dance': 'Spiteful/Embittered Dance',
-        'Reflected Kick/Frost': 'Reflected Kick/Frost',
-        'Reflected Frost': 'Reflected Frost',
-        'Kick/Frost': 'Kick/Frost',
       },
       '~effectNames': {
         'Thin Ice': 'Verglas',
@@ -444,6 +438,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'luminous aether': 'ライト・エーテル',
         'holy light': '聖なる光',
@@ -486,13 +481,6 @@
         'Biting Frost': 'フロストスラッシュ',
         'Axe Kick': 'アクスキック',
         'Absolute Zero': '絶対零度',
-
-        // FIXME
-        'Twin Silence/Stillness': 'Twin Silence/Stillness',
-        'Spiteful/Embittered Dance': 'Spiteful/Embittered Dance',
-        'Reflected Kick/Frost': 'Reflected Kick/Frost',
-        'Reflected Frost': 'Reflected Frost',
-        'Kick/Frost': 'Kick/Frost',
       },
       '~effectNames': {
         'Thin Ice': '氷床',

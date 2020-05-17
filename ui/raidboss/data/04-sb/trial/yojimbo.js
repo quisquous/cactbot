@@ -54,6 +54,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': 'Elektro-Kraft',
         'Embodiment': 'Gilgamesch-Doppelgänger',
@@ -62,8 +63,6 @@
         'Yojimbo': 'Yojinbo',
       },
       'replaceText': {
-        'A Giant Me': 'A Giant Me', // FIXME
-        'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'Klingenschimmer',
         'Dragon Night': 'Drachennacht',
         'Dragon\'s Lair': 'Drachenhort',
@@ -72,7 +71,6 @@
         'Epic Stormsplitter': 'Fließende Welt',
         'Gekko': 'Gekko',
         'Giga Jump': 'Giga-Sprung',
-        'Hell\'s Gate': 'Hell\'s Gate', // FIXME
         'Inoshikacho': 'Ino-shika-cho',
         'Kasha': 'Kasha',
         'Masamune': 'Masamune',
@@ -86,6 +84,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': 'Force électrogénétique',
         'Embodiment': 'double de Gilgamesh',
@@ -94,8 +93,6 @@
         'Yojimbo': 'Yojimbo',
       },
       'replaceText': {
-        'A Giant Me': 'A Giant Me', // FIXME
-        'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'Éradication',
         'Dragon Night': 'Nuit du dragon',
         'Dragon\'s Lair': 'Fléau du dragon',
@@ -104,7 +101,6 @@
         'Epic Stormsplitter': 'Monde flottant',
         'Gekko': 'Gekkô',
         'Giga Jump': 'Giga saut',
-        'Hell\'s Gate': 'Hell\'s Gate', // FIXME
         'Inoshikacho': 'Ino-shika-cho',
         'Kasha': 'Kasha',
         'Masamune': 'Masamune',
@@ -118,6 +114,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': '電撃',
         'Embodiment': 'ギルガメッシュの分身',
@@ -126,8 +123,6 @@
         'Yojimbo': 'ヨウジンボウ',
       },
       'replaceText': {
-        'A Giant Me': 'A Giant Me', // FIXME
-        'Ame-no-Murakamo': 'Ame-no-Murakamo', // FIXME
         'Bitter End': 'ヒット・ジ・エンド',
         'Dragon Night': '竜星撃',
         'Dragon\'s Lair': '雲蒸竜変',
@@ -136,7 +131,6 @@
         'Epic Stormsplitter': '我流海嵐斬',
         'Gekko': '月光',
         'Giga Jump': 'ギガジャンプ',
-        'Hell\'s Gate': 'Hell\'s Gate', // FIXME
         'Inoshikacho': '猪鹿蝶',
         'Kasha': '花車',
         'Masamune': 'マサムネ',

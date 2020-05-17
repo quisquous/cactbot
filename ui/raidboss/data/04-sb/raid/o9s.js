@@ -753,6 +753,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',
@@ -771,7 +772,6 @@
         'Knock Down': '着弾せよ',
         'Knock(?! )': '着弾',
         'Latitudinal Implosion': 'ホリゾンタルインプロージョン',
-        'Long/Lat Implosion': 'Long/Lat Implosion', // FIXME
         'Longitudinal Implosion': 'ヴァーティカルインプロージョン',
         'Orbshadow': '追尾',
         'Shockwave': '衝撃波',
@@ -782,7 +782,6 @@
         'Stray Spray': '混沌の水',
         'Tsunami': 'つなみ',
         'Umbra Smash': 'アンブラスマッシュ',
-        '\\(ALL\\)': '\\(ALL\\)', // FIXME
       },
       '~effectNames': {
         'Accretion': '混沌の泥土',

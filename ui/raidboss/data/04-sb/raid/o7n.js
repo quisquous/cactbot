@@ -174,35 +174,27 @@
         'Chain Cannon': 'Canon automatique',
         'Chakra Burst': 'Explosion d\'aura',
         'Copy Program': 'Copie de programme',
-        'Copy(?! )': 'Copy', // FIXME
-        'Dada': 'Dada', // FIXME
         'Demon Simulation': 'Chargement : démon',
         'Diffractive Laser': 'Laser diffracteur',
         'Diffractive Plasma': 'Plasma diffracteur',
         'Electric Pulse': 'Impulsion électrique',
         'Explosion': 'Explosion',
         'Ink': 'Encre',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
         'Light Blast': 'Déflagration légère',
         'Load': 'Chargement',
         'Magitek Ray': 'Rayon magitek',
-        'Magnetism/Repel': 'Magnetism/Repel', // FIXME
         'Magnetism': 'Magnétisme',
         'Main Cannon': 'Canon principal',
         'Missile Simulation': 'Chargement : missiles',
         'Missile(?![ |\\w])': 'Missile',
         'Paste Program': 'Collage de programme',
-        'Paste(?! )': 'Paste', // FIXME
         'Plane Laser': 'Laser d\'avion',
         'Prey': 'Proie',
-        'Radar': 'Radar', // FIXME
         'Repel': 'Répulsion',
         'Retrieve Program': 'Programme précédent',
         'Run Program': 'Programme de matérialisation',
-        'Run(?! )': 'Run', // FIXME
         'Shockwave': 'Onde de choc',
         'Skip Program': 'Saut de programme',
-        'Skip(?! )': 'Skip', // FIXME
         'Stoneskin': 'Cuirasse',
         'Temporary Misdirection': 'Démence',
         'Tentacle Simulation': 'Chargement : tentacule',
@@ -236,6 +228,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Air Force': 'エアフォース',
         'Bibliotaph': 'ビブリオタフ',
@@ -252,45 +245,33 @@
         'Arm And Hammer': 'アームハンマー',
         'Atomic Ray': 'アトミックレイ',
         'Aura Cannon': 'オーラキャノン',
-        'Biblio': 'Biblio', // FIXME
         'Bomb Deployment': '爆弾設置',
-        'Burst/Darkness': 'Burst/Darkness', // FIXME
         'Chain Cannon': 'チェーンガン',
         'Chakra Burst': 'チャクラバースト',
         'Copy Program': 'プログラム・コピー',
-        'Copy(?! )': 'Copy', // FIXME
-        'Dada': 'Dada', // FIXME
         'Demon Simulation': 'ローディング：デーモン',
         'Diffractive Laser': '拡散レーザー',
         'Diffractive Plasma': '拡散プラズマ',
         'Electric Pulse': 'エレクトリックパルス',
         'Explosion': '爆発',
         'Ink': '墨',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
         'Light Blast': '小規模爆発',
         'Load': 'ローディング',
         'Magitek Ray': '魔導レーザー',
-        'Magnetism/Repel': 'Magnetism/Repel', // FIXME
         'Magnetism': '磁力',
         'Main Cannon': 'メインカノン',
         'Missile Simulation': 'ローディング：ミサイル',
         'Missile(?![ |\\w])': 'ミサイル',
         'Paste Program': 'プログラム・ペースト',
-        'Paste(?! )': 'Paste', // FIXME
-        'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
-        'Radar': 'Radar', // FIXME
         'Repel': '反発',
         'Retrieve Program': 'リバース・ローディング',
         'Run Program': '実体化プログラム',
-        'Run(?! )': 'Run', // FIXME
         'Shockwave': '衝撃波',
         'Skip Program': 'スキップ・ローディング',
-        'Skip(?! )': 'Skip', // FIXME
         'Stoneskin': 'ストンスキン',
         'Temporary Misdirection': '心神喪失',
         'Tentacle Simulation': 'ローディング：たこあし',
-        'Tentacle(?! )': 'Tentacle(?! )', // FIXME
         'The Heat': '熱風',
         'Viral Weapon': 'ウィルス兵器',
         '(?<!\\w)Virus': 'ウイルス',
@@ -404,6 +385,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Air Force': '에어포스',
         'Bibliotaph': '비블리오타프',
@@ -413,52 +395,39 @@
         'Interdimensional Bomb': '차원 폭탄',
         'Tentacle': '문어발',
         'Ultros': '오르트로스',
-        'WEAPON SYSTEMS ONLINE': 'WEAPON SYSTEMS ONLINE', // FIXME
       },
       'replaceText': {
         'Aether Rot': '에테르 부패',
         'Arm And Hammer': '양팔 내리치기',
         'Atomic Ray': '원자 파동',
         'Aura Cannon': '오라 포격',
-        'Biblio': 'Biblio', // FIXME
         'Bomb Deployment': '폭탄 설치',
-        'Burst/Darkness': 'Burst/Darkness', // FIXME
         'Chain Cannon': '기관총',
         'Chakra Burst': '차크라 폭발',
         'Copy Program': '프로그램 복사',
-        'Copy(?! )': 'Copy', // FIXME
-        'Dada': 'Dada', // FIXME
         'Demon Simulation': '불러오기: 악마',
         'Diffractive Laser': '확산 레이저',
         'Diffractive Plasma': '확산 플라스마',
         'Electric Pulse': '전기 충격',
         'Explosion': '폭발',
         'Ink': '먹물',
-        'Interrupt Stoneskin': 'Interrupt Stoneskin', // FIXME
         'Light Blast': '소규모 폭발',
         'Load': '불러오기',
         'Magitek Ray': '마도 레이저',
-        'Magnetism/Repel': 'Magnetism/Repel', // FIXME
         'Magnetism': '자력',
         'Main Cannon': '주포',
         'Missile Simulation': '불러오기: 미사일',
         'Missile(?![ |\\w])': '미사일',
         'Paste Program': '프로그램 붙여넣기',
-        'Paste(?! )': 'Paste', // FIXME
-        'Plane Laser': 'Plane Laser', // FIXME
         'Prey': 'プレイ',
-        'Radar': 'Radar', // FIXME
         'Repel': '반발',
         'Retrieve Program': '역순 불러오기',
         'Run Program': '실체화 프로그램',
-        'Run(?! )': 'Run', // FIXME
         'Shockwave': '충격파',
         'Skip Program': '건너뛰기',
-        'Skip(?! )': 'Skip', // FIXME
         'Stoneskin': '스톤스킨',
         'Temporary Misdirection': '심신상실',
         'Tentacle Simulation': '불러오기: 문어발',
-        'Tentacle(?! )': 'Tentacle(?! )', // FIXME
         'The Heat': '열풍',
         'Viral Weapon': '바이러스 병기',
         '(?<!\\w)Virus': '바이러스',

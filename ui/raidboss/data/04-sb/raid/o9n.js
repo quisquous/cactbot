@@ -70,7 +70,6 @@
         'Stray Spray': 'Chaosspritzer',
         'Tsunami': 'Tsunami',
         'Umbra Smash': 'Schattenschlag',
-        '\\(ALL\\)': '\\(ALL\\)', // FIXME
       },
       '~effectNames': {
         'Accretion': 'Chaossumpf',
@@ -130,10 +129,10 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'カオス',
         'Chaosphere': 'カオススフィア',
-        'YOU DARE!': 'YOU DARE!', // FIXME
         'dark crystal': '黒水晶',
       },
       'replaceText': {
@@ -149,7 +148,6 @@
         'Knock Down': '着弾せよ',
         'Knock(?! )': '着弾',
         'Latitudinal Implosion': 'ホリゾンタルインプロージョン',
-        'Long/Lat Implosion': 'Long/Lat Implosion', // FIXME
         'Longitudinal Implosion': 'ヴァーティカルインプロージョン',
         'Orbshadow': '追尾',
         'Shockwave': '衝撃波',
@@ -160,7 +158,6 @@
         'Stray Spray': '混沌の水',
         'Tsunami': 'つなみ',
         'Umbra Smash': 'アンブラスマッシュ',
-        '\\(ALL\\)': '\\(ALL\\)', // FIXME
       },
       '~effectNames': {
         'Accretion': '混沌の泥土',
@@ -220,10 +217,10 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Chaos': '혼돈',
         'Chaosphere': '혼돈의 구체',
-        'YOU DARE!': 'YOU DARE!', // FIXME
         'dark crystal': '흑수정',
       },
       'replaceText': {
@@ -237,9 +234,7 @@
         'Earthquake': '대지진',
         'Fiendish Orbs': '추격하라',
         'Knock Down': '착탄하라',
-        'Knock(?! )': 'Knock', // FIXME
         'Latitudinal Implosion': '가로 내파',
-        'Long/Lat Implosion': 'Long/Lat Implosion', // FIXME
         'Longitudinal Implosion': '세로 내파',
         'Orbshadow': '추격',
         'Shockwave': '충격파',
@@ -250,7 +245,6 @@
         'Stray Spray': '혼돈의 물',
         'Tsunami': '해일',
         'Umbra Smash': '그림자 타격',
-        '\\(ALL\\)': '\\(ALL\\)', // FIXME
       },
       '~effectNames': {
         'Accretion': '혼돈의 진흙',

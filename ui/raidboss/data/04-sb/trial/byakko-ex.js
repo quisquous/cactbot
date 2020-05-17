@@ -397,6 +397,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'All creation trembles before my might!': 'Tremblez devant mon pouvoir !',
         'Aratama Force': 'aramitama',
@@ -412,35 +413,23 @@
         'Clutch': 'Empoignement',
         'Dance Of The Incomplete': 'Danse semi-bestiale',
         'Distant Clap': 'Tonnerre lointain',
-        'Donut AOE': 'Donut AOE', // FIXME
         'Fell Swoop': 'Éléments déchaînés',
         'Fire And Lightning': 'Feu et foudre',
         'Gale Force': 'Coup de rafale',
-        'Hakutei Add': 'Hakutei Add', // FIXME
         'Heavenly Strike': 'Frappe céleste',
         'Highest Stakes': 'Tout pour le tout',
         'Hundredfold Havoc': 'Ravages centuples',
         'Imperial Guard': 'Garde impériale',
-        'Line AOE': 'Line AOE', // FIXME
         'Ominous Wind': 'Vent mauvais',
-        'Orb Marker': 'Orb Marker', // FIXME
-        'Puddle Markers': 'Puddle Markers', // FIXME
-        'Roar Of Thunder': 'Roar Of Thunder', // FIXME
         'State Of Shock': 'Foudroiement brutal',
         'Steel Claw': 'Griffe d\'acier',
         'Storm Pulse': 'Pulsion de tempête',
         'Sweep The Leg': 'Verticalité',
-        'TP Orbs': 'TP Orbs', // FIXME
         'The Roar Of Thunder': 'Rugissement du tonnerre',
         'The Voice Of Thunder': 'Voix du tonnerre',
-        'Tiger Cleave': 'Tiger Cleave', // FIXME
         'Unrelenting Anguish': 'Douleur continuelle',
         'Vacuum Claw': 'Griffe de vide',
         'White Herald': 'Héraut blanc',
-        'leap middle': 'leap middle', // FIXME
-        'leap north': 'leap north', // FIXME
-        'tiger lands': 'tiger lands', // FIXME
-        'tiger untargetable': 'tiger untargetable', // FIXME
       },
       '~effectNames': {
         'Area Of Influence Up': 'Aire D\'effet Augmentée',
@@ -455,6 +444,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'All creation trembles before my might!': '震天動地の力を、見せてやろうッ！',
         'Aratama Force': '荒弾',
@@ -470,35 +460,23 @@
         'Clutch': '掌握',
         'Dance Of The Incomplete': '半獣舞踏',
         'Distant Clap': '遠雷',
-        'Donut AOE': 'Donut AOE', // FIXME
         'Fell Swoop': '迅雷風烈波',
         'Fire And Lightning': '雷火一閃',
         'Gale Force': '暴風',
-        'Hakutei Add': 'Hakutei Add', // FIXME
         'Heavenly Strike': '天雷掌',
         'Highest Stakes': '乾坤一擲',
         'Hundredfold Havoc': '百雷繚乱',
         'Imperial Guard': '白帝一陣',
-        'Line AOE': 'Line AOE', // FIXME
         'Ominous Wind': '祟り風',
-        'Orb Marker': 'Orb Marker', // FIXME
-        'Puddle Markers': 'Puddle Markers', // FIXME
-        'Roar Of Thunder': 'Roar Of Thunder', // FIXME
         'State Of Shock': '呪縛雷',
         'Steel Claw': '鉄爪斬',
         'Storm Pulse': '風雷波動',
         'Sweep The Leg': '旋体脚',
-        'TP Orbs': 'TP Orbs', // FIXME
         'The Roar Of Thunder': '雷轟',
         'The Voice Of Thunder': '雷声',
-        'Tiger Cleave': 'Tiger Cleave', // FIXME
         'Unrelenting Anguish': '無間地獄',
         'Vacuum Claw': '真空爪',
         'White Herald': '白帝衝',
-        'leap middle': 'leap middle', // FIXME
-        'leap north': 'leap north', // FIXME
-        'tiger lands': 'tiger lands', // FIXME
-        'tiger untargetable': 'tiger untargetable', // FIXME
       },
       '~effectNames': {
         'Area Of Influence Up': 'アクション効果範囲拡大',

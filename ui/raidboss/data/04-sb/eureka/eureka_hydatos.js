@@ -1006,9 +1006,6 @@
         'Relative Virtue': 'Relative Tugend',
         'Shadow': 'Proto-Yadis-Schatten',
         'Streak Lightning': 'Blitzladung',
-        'The Lance of Virtue Containment Unit': 'The Lance of Virtue Containment Unit', // FIXME
-        'The Proto Ozma Containment Unit': 'The Proto Ozma Containment Unit', // FIXME
-        'The Shin-Zantetsuken Containment Unit': 'The Shin-Zantetsuken Containment Unit', // FIXME
         '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
         'The memories of heroes past live on again': 'Das Vermächtnis vergangener Helden lebt von Neuem auf',
         'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
@@ -1024,17 +1021,13 @@
         'Berserk': 'Berserker',
         'Bitter Barbs': 'Dornige Schuld',
         'Black Hole': 'Schwarzes Loch',
-        'Bleed Attack': 'Bleed Attack', // FIXME
         'Booming Lament': 'Donnerschlag der Trauer',
         'Call Wyvern': 'Wyvernruf',
-        'Carver/Spinner': 'Carver/Spinner', // FIXME
         'Cloud to Ground': 'Sturmkonzentration',
-        'Cube Form': 'Cube Form', // FIXME
         'Eidos': 'Sarva',
         'Elemental Magicks': 'Elementmagie',
         'Elemental Shift': 'Elementwechsel',
         'Execration': 'Exsekration',
-        'Explosion Enrage': 'Explosion Enrage', // FIXME
         'Explosive Impulse': 'Explosiver Impuls',
         'Flare Star': 'Flare-Stern',
         'For Honor': 'Hieb der Gefallenen',
@@ -1053,25 +1046,13 @@
         'Meteor': 'Meteo',
         'Mourning Star': 'Morgenstern',
         'Mythcall': 'Mythenruf',
-        'Orb x5': 'Orb x5', // FIXME
-        'Ozma Ability': 'Ozma Ability', // FIXME
         'Piercing Dark': 'Lanze der Finsternis',
         'Piercing Light': 'Lanze des Lichts',
         'Pitfall': 'Berstender Boden',
-        'Pyramid Form': 'Pyramid Form', // FIXME
-        'Random Form': 'Random Form', // FIXME
-        'Random Shade': 'Random Shade', // FIXME
-        'Shade Ability': 'Shade Ability', // FIXME
         'Shingan': 'Betäubungsschlag',
         'Shooting Star': 'Sternschnuppe',
-        'Soak Attack': 'Soak Attack', // FIXME
-        'Spear Copy': 'Spear Copy', // FIXME
-        'Spear Shade': 'Spear Shade', // FIXME
-        'Sphere Form': 'Sphere Form', // FIXME
         'Spiritcull': 'Kettendämon',
         'Spirits of the Fallen': 'Heroische Seele',
-        'Stack': 'Stack', // FIXME
-        'Star Form': 'Star Form', // FIXME
         'Streak Lightning': 'Blitzladung',
         'Thricecull': 'Dreifachlanze',
         'Thundercall': 'Donnerruf',
@@ -1079,7 +1060,6 @@
         'Ultimate Zantetsuken': 'Goku-Zantetsuken',
         'Umbral Essence': 'Arm der Dunkelheit',
         'Whirling Zantetsuken': 'Sen-Zantetsuken',
-        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
       },
       '~effectNames': {
         'Astral Essence': 'Arm des Lichts',
@@ -1197,31 +1177,23 @@
         'Relative Virtue': 'レラティブヴァーチュー',
         'Shadow': 'プロトオズマの影',
         'Streak Lightning': 'ストリークライトニング',
-        'The Lance of Virtue Containment Unit will be sealed off': 'The Lance of Virtue Containment Unit will be sealed off', // FIXME
-        'The Proto Ozma Containment Unit will be sealed off': 'The Proto Ozma Containment Unit will be sealed off', // FIXME
-        'The Shin-Zantetsuken Containment Unit will be sealed off': 'The Shin-Zantetsuken Containment Unit will be sealed off', // FIXME
       },
       'replaceText': {
         'Acallam Na Senorach': '真妖槍旋',
         'Acceleration Bomb': '加速度爆弾',
-        'Adds': 'Adds', // FIXME
         'Ame-no-Sakahoko': '天逆鉾',
         'Astral Essence': '光の腕',
         'Auroral Wind': 'オーロラルウィンド',
         'Berserk': 'ベルセルク',
         'Bitter Barbs': '罪の荊棘',
         'Black Hole': 'ブラックホール',
-        'Bleed Attack': 'Bleed Attack', // FIXME
         'Booming Lament': '哀惜の雷鳴',
         'Call Wyvern': 'コールワイバーン',
-        'Carver/Spinner': 'Carver/Spinner', // FIXME
         'Cloud to Ground': '襲雷',
-        'Cube Form': 'Cube Form', // FIXME
         'Eidos': '変異',
         'Elemental Magicks': 'エレメンタルマジック',
         'Elemental Shift': 'エレメントスイッチ',
         'Execration': 'エクセクレイション',
-        'Explosion Enrage': 'Explosion Enrage', // FIXME
         'Explosive Impulse': 'エクスプロシブインパルス',
         'Flare Star': 'フレアスター',
         'For Honor': '戦死撃',
@@ -1240,25 +1212,13 @@
         'Meteor': 'メテオ',
         'Mourning Star': 'モーニングスター',
         'Mythcall': '幻槍招来',
-        'Orb x5': 'Orb x5', // FIXME
-        'Ozma Ability': 'Ozma Ability', // FIXME
         'Piercing Dark': '闇の槍',
         'Piercing Light': '光の槍',
         'Pitfall': '強襲',
-        'Pyramid Form': 'Pyramid Form', // FIXME
-        'Random Form': 'Random Form', // FIXME
-        'Random Shade': 'Random Shade', // FIXME
-        'Shade Ability': 'Shade Ability', // FIXME
         'Shingan': '真眼撃',
         'Shooting Star': 'シューティングスター',
-        'Soak Attack': 'Soak Attack', // FIXME
-        'Spear Copy': 'Spear Copy', // FIXME
-        'Spear Shade': 'Spear Shade', // FIXME
-        'Sphere Form': 'Sphere Form', // FIXME
         'Spiritcull': '連装魔',
         'Spirits of the Fallen': '英霊魂',
-        'Stack': 'Stack', // FIXME
-        'Star Form': 'Star Form', // FIXME
         'Streak Lightning': 'ストリークライトニング',
         'Thricecull': '三連槍',
         'Thundercall': '招雷',
@@ -1266,7 +1226,6 @@
         'Ultimate Zantetsuken': '極・斬鉄剣',
         'Umbral Essence': '闇の腕',
         'Whirling Zantetsuken': '旋・斬鉄剣',
-        'Wyvern Explosion': 'Wyvern Explosion', // FIXME
       },
     },
     {

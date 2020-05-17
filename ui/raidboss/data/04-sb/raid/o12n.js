@@ -142,8 +142,8 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Omega(?!-)': 'Omega',
         'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
@@ -188,8 +188,8 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Omega(?!-)': 'Oméga',
         'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
@@ -234,8 +234,8 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Omega(?!-)': 'オメガ',
         'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
@@ -326,8 +326,8 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
-        'Calculations indicate increased probability of defeat': 'Calculations indicate increased probability of defeat', // FIXME
         'Omega(?!-)': '오메가',
         'Omega-F': '오메가 F',
         'Omega-M': '오메가 M',
