@@ -143,6 +143,8 @@
 04-sb/trial/rathalos-ex.js
 04-sb/trial/seiryu-ex.js
 04-sb/trial/seiryu-ex.txt
+04-sb/trial/shinryu.js
+04-sb/trial/shinryu.txt
 04-sb/trial/shinryu-ex.js
 04-sb/trial/shinryu-ex.txt
 04-sb/trial/susano-ex.js
