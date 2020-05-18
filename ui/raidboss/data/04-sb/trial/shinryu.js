@@ -68,21 +68,15 @@
         return matches.castTime - 4;
       },
       response: Responses.stopMoving(),
-      tts: {
-        en: 'stop',
-        de: 'stopp',
-        cn: '停止',
-        ko: '이동하지 않기',
-      },
     },
     {
       id: 'Shinryu Normal Dragonfist',
-      netRegex: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '24EF', source: '神龍' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '24EF', source: '神龙' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '24EF', source: '신룡' }),
+      netRegex: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '24EF', source: 'Shinryu', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '24EF', source: '神龍', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '24EF', source: '神龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '24EF', source: '신룡', capture: false }),
       infoText: {
         en: 'Out of middle',
         de: 'Raus aus der Mitte',
@@ -92,12 +86,12 @@
     },
     {
       id: 'Shinryu Normal Hellfire',
-      netRegex: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1FAB', source: '神龍' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1FAB', source: '神龙' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1FAB', source: '신룡' }),
+      netRegex: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1FAB', source: 'Shinryu', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1FAB', source: '神龍', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1FAB', source: '神龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1FAB', source: '신룡', capture: false }),
       durationSeconds: 7,
       alertText: {
         en: 'Get in water',
@@ -114,12 +108,12 @@
     },
     {
       id: 'Shinryu Normal Hypernova',
-      netRegex: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Right Wing' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Recht(?:e|er|es|en) Schwinge' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Aile Droite' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'ライトウィング' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: '右翼' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: '오른쪽 날개' }),
+      netRegex: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Right Wing', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'Aile Droite', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: 'ライトウィング', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: '右翼', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['1F99', '1F9A'], source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
       alertText: {
         en: 'Stack in water',
@@ -136,12 +130,12 @@
     },
     {
       id: 'Shinryu Normal Judgement Bolt',
-      netRegex: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1FAC', source: '神龍' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1FAC', source: '神龙' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1FAC', source: '신룡' }),
+      netRegex: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1FAC', source: 'Shinryu', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1FAC', source: '神龍', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1FAC', source: '神龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1FAC', source: '신룡', capture: false }),
       durationSeconds: 7,
       alertText: {
         en: 'out of water',
@@ -152,12 +146,12 @@
     },
     {
       id: 'Shinryu Normal Levinbolt',
-      netRegex: NetRegexes.startsUsing({ id: '1F9B', source: 'Right Wing', target: 'Right Wing' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1F9B', source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1F9B', source: 'Aile Droite', target: 'Aile Droite' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1F9B', source: 'ライトウィング', target: 'ライトウィング' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1F9B', source: '右翼', target: '右翼' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1F9B', source: '오른쪽 날개', target: '오른쪽 날개' }),
+      netRegex: NetRegexes.startsUsing({ id: '1F9B', source: 'Right Wing', target: 'Right Wing', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1F9B', source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1F9B', source: 'Aile Droite', target: 'Aile Droite', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1F9B', source: 'ライトウィング', target: 'ライトウィング', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1F9B', source: '右翼', target: '右翼', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1F9B', source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
       alertText: {
         en: 'Spread out, no water',
@@ -215,12 +209,12 @@
     },
     {
       id: 'Shinryu Normal Tail Slap',
-      netRegex: NetRegexes.startsUsing({ id: '1F93', source: 'Tail' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1F93', source: 'Schwanz' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1F93', source: 'Queue' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1F93', source: '神龍の尾' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1F93', source: '龙尾' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1F93', source: '신룡의 꼬리' }),
+      netRegex: NetRegexes.startsUsing({ id: '1F93', source: 'Tail', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1F93', source: 'Schwanz', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1F93', source: 'Queue', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1F93', source: '神龍の尾', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1F93', source: '龙尾', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1F93', source: '신룡의 꼬리', capture: false }),
       delaySeconds: 2,
       infoText: {
         en: 'Tail: Switch targets',
@@ -238,12 +232,12 @@
     {
       // Re-using the Gyre Charge triggers since they're convenient and already translated.
       id: 'Shinryu Normal Akh Rai Activation',
-      netRegex: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1FF4', source: '神龍' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡' }),
+      netRegex: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1FF4', source: '神龍', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡', capture: false }),
       condition: function(data) {
         return !data.finalPhase;
       },
@@ -253,12 +247,12 @@
     },
     {
       id: 'Shinryu Normal Divebomb',
-      netRegex: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1FF4', source: '神龍' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡' }),
+      netRegex: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1FF4', source: 'Shinryu', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1FF4', source: '神龍', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1FF4', source: '神龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1FF4', source: '신룡', capture: false }),
       alertText: {
         en: 'avoid divebomb',
         de: 'Divebomb ausweichen',
@@ -278,12 +272,6 @@
       condition: Conditions.targetIsYou(),
       delaySeconds: 3.8,
       response: Responses.breakChains(),
-      tts: {
-        en: 'break tethers',
-        de: 'Ketten zerreissen',
-        cn: '拉断锁链',
-        ko: '선 끊기',
-      },
     },
     {
       // There doesn't really seem to be any verified information about this marker.
@@ -310,6 +298,7 @@
         'Icicle': 'Eiszapfen',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': 'Windschlag',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
@@ -360,6 +349,7 @@
         'Tail': 'queue',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': 'Rafale aérienne',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
@@ -410,6 +400,7 @@
         'Tail': '神龍の尾',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': 'エリアルブラスト',
         'Akh Morn': 'アク・モーン',
         'Akh Rhai': 'アク・ラーイ',
@@ -452,6 +443,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Cocoon': '光茧',
         'Left Wing': '左翼',
@@ -460,6 +452,7 @@
         'Tail': '龙尾',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': '大气爆发',
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
@@ -483,6 +476,7 @@
         'Summon Icicle': '召唤冰柱',
         'Super Cyclone': '超级气旋',
         'TAP BUTTON OR ELSE': 'XJB按',
+        'Tail Slap': '尾部猛击',
         'Tidal Wave': '巨浪',
       },
       '~effectNames': {
@@ -510,6 +504,7 @@
         'Tail(?! )': '신룡의 꼬리',
       },
       'replaceText': {
+        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': '대기 폭발',
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',
