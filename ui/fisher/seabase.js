@@ -6,7 +6,7 @@ class SeaBase {
     this._dbVersion = 1;
     this._storeName = 'catches';
     this.db = null;
-    this.locale = Options.Language;
+    this.parserLang = Options.ParserLanguage;
   }
 
   findKey(obj, val) {
@@ -184,15 +184,15 @@ class SeaBase {
       if (value.id && !value.name) {
         info = {
           id: value.id,
-          name: this.firstIfArray(gFisherData[lookup][this.locale][value.id]),
+          name: this.firstIfArray(gFisherData[lookup][this.parserLang][value.id]),
         };
       } else if (!value.id && value.name) {
         // Return the first / primary name regardless of what is passed in
         // when doing a reverse lookup by name.
-        let key = this.findKey(gFisherData[lookup][this.locale], value.name);
+        let key = this.findKey(gFisherData[lookup][this.parserLang], value.name);
         info = {
           id: key,
-          name: this.firstIfArray(gFisherData[lookup][this.locale][key]),
+          name: this.firstIfArray(gFisherData[lookup][this.parserLang][key]),
         };
       } else {
         info = value;
@@ -200,16 +200,16 @@ class SeaBase {
     } else if (isNaN(value)) {
       // 2. String with the name
       // See note above about reverse lookups.
-      let key = this.findKey(gFisherData[lookup][this.locale], value);
+      let key = this.findKey(gFisherData[lookup][this.parserLang], value);
       info = {
         id: key,
-        name: this.firstIfArray(gFisherData[lookup][this.locale][key]),
+        name: this.firstIfArray(gFisherData[lookup][this.parserLang][key]),
       };
     } else {
       // 3. Number with the ID
       info = {
         id: value,
-        name: this.firstIfArray(gFisherData[lookup][this.locale][value]),
+        name: this.firstIfArray(gFisherData[lookup][this.parserLang][value]),
       };
     }
 

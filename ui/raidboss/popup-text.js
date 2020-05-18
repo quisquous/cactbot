@@ -174,11 +174,11 @@ class PopupText {
       }
     }).bind(this);
 
-    let locale = this.options.Language || 'en';
+    let parserLang = this.options.ParserLanguage || 'en';
     // construct something like regexEn or regexFr.
-    let localeSuffix = locale.charAt(0).toUpperCase() + locale.slice(1);
-    let regexLocale = 'regex' + localeSuffix;
-    let netRegexLocale = 'netRegex' + localeSuffix;
+    let langSuffix = parserLang.charAt(0).toUpperCase() + parserLang.slice(1);
+    let regexParserLang = 'regex' + langSuffix;
+    let netRegexParserLang = 'netRegex' + langSuffix;
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
@@ -189,13 +189,13 @@ class PopupText {
         console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
         continue;
       } else if (!(zoneRegex instanceof RegExp)) {
-        let locale = this.options.Language || 'en';
-        if (locale in zoneRegex) {
-          zoneRegex = zoneRegex[locale];
+        let parserLang = this.options.ParserLanguage || 'en';
+        if (parserLang in zoneRegex) {
+          zoneRegex = zoneRegex[parserLang];
         } else if ('en' in zoneRegex) {
           zoneRegex = zoneRegex['en'];
         } else {
-          console.error('unknown zoneRegex locale: ' + JSON.stringify(set.zoneRegex));
+          console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
           continue;
         }
 
@@ -212,7 +212,7 @@ class PopupText {
           else
             console.log('Loading user triggers for zone');
         }
-        // Adjust triggers for the locale.
+        // Adjust triggers for the parser language.
         if (set.triggers && this.options.AlertsEnabled) {
           // Filter out disabled triggers
           let enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
@@ -228,14 +228,14 @@ class PopupText {
               continue;
             }
 
-            // Locale-based regex takes precedence.
-            let regex = trigger[regexLocale] ? trigger[regexLocale] : trigger.regex;
+            // parser-language-based regex takes precedence.
+            let regex = trigger[regexParserLang] || trigger.regex;
             if (regex) {
               trigger.localRegex = Regexes.parse(regex);
               this.triggers.push(trigger);
             }
 
-            let netRegex = trigger[netRegexLocale] ? trigger[netRegexLocale] : trigger.netRegex;
+            let netRegex = trigger[netRegexParserLang] || trigger.netRegex;
             if (netRegex) {
               trigger.localNetRegex = Regexes.parse(netRegex);
               this.netTriggers.push(trigger);
@@ -323,7 +323,7 @@ class PopupText {
   }
 
   Reset() {
-    let locale = this.options.Language || 'en';
+    let parserLang = this.options.ParserLanguage || 'en';
     let preserveHP = 0;
     if (this.data && this.data.currentHP)
       preserveHP = this.data.currentHP;
@@ -335,7 +335,7 @@ class PopupText {
       job: this.job,
       role: this.role,
       party: this.partyTracker,
-      lang: locale,
+      lang: parserLang,
       currentHP: preserveHP,
       options: Options,
       ShortName: this.ShortNamify,
@@ -462,18 +462,14 @@ class PopupText {
       valueOrFunction: (f) => {
         let result = (typeof (f) == 'function') ? f(this.data, triggerHelper.matches) : f;
         // All triggers return either a string directly, or an object
-        // whose keys are different locale names.  For simplicity, this is
-        // valid to do for any trigger entry that can handle a function.
+        // whose keys are different parser language based names.  For simplicity,
+        // this is valid to do for any trigger entry that can handle a function.
         // In case anybody wants to encapsulate any fancy grammar, the values
         // in this object can also be functions.
         if (typeof result !== 'object')
           return result;
-        let lang = this.options.AlertsLanguage || this.options.Language || 'en';
-        if (result[lang])
-          return triggerHelper.valueOrFunction(result[lang]);
-        // For partially localized results where this localization doesn't
-        // exist, prefer English over nothing.
-        return triggerHelper.valueOrFunction(result['en']);
+        let lang = this.options.AlertsLanguage || this.options.DisplayLanguage || this.options.ParserLanguage || 'en';
+        return triggerHelper.valueOrFunction(result[lang] || result['en']);
       },
       triggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
       triggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
@@ -713,7 +709,7 @@ class PopupText {
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/[-=]>\s*$/g, '');
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/^\s*<[-=]/g, '');
       // * arrows in the middle are a sequence, e.g. "in => out => spread"
-      let lang = this.options.AlertsLanguage || this.options.Language || 'en';
+      let lang = this.options.AlertsLanguage || this.options.ParserLanguage || 'en';
       let arrowReplacement = {
         en: ' then ',
         cn: '然后',

@@ -399,7 +399,7 @@ class OopsyLiveList {
 class MistakeCollector {
   constructor(options, liveList) {
     this.options = options;
-    this.lang = this.options.Language || 'en';
+    this.parserLang = this.options.ParserLanguage || 'en';
     this.liveList = liveList;
     this.baseTime = null;
     this.inACTCombat = false;
@@ -458,8 +458,8 @@ class MistakeCollector {
   Translate(obj) {
     if (obj !== Object(obj))
       return obj;
-    if (this.lang in obj)
-      return obj[this.lang];
+    if (this.options.DisplayLanguage in obj)
+      return obj[this.options.DisplayLanguage];
     return obj['en'];
   }
 
@@ -493,7 +493,7 @@ class MistakeCollector {
     }
     let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      let text = kEarlyPullText[this.lang] + ' (' + seconds.toFixed(1) + 's)';
+      let text = kEarlyPullText[this.options.DisplayLanguage] + ' (' + seconds.toFixed(1) + 's)';
       if (!this.options.DisabledTriggers[kEarlyPullId])
         this.OnMistakeText('pull', this.firstPuller, text);
     }
@@ -513,7 +513,7 @@ class MistakeCollector {
       this.StartCombat();
       let seconds = ((Date.now() - this.engageTime) / 1000);
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
-        let text = kLatePullText[this.lang] + ' (' + seconds.toFixed(1) + 's)';
+        let text = kLatePullText[this.options.DisplayLanguage] + ' (' + seconds.toFixed(1) + 's)';
         if (!this.options.DisabledTriggers[kEarlyPullId])
           this.OnMistakeText('pull', this.firstPuller, text);
       }
@@ -552,7 +552,7 @@ class MistakeCollector {
     // wipe then (to make post-wipe deaths more obvious), however this
     // requires making liveList be able to insert items in a sorted
     // manner instead of just being append only.
-    this.OnFullMistakeText('wipe', null, kPartyWipeText[this.options.Language || 'en']);
+    this.OnFullMistakeText('wipe', null, kPartyWipeText[this.options.DisplayLanguage || 'en']);
     // Party wipe usually comes a few seconds after everybody dies
     // so this will clobber any late damage.
     this.StopCombat();
@@ -975,18 +975,17 @@ class DamageTracker {
       };
 
       let zoneRegex = set.zoneRegex;
-      let locale = this.options.Language || 'en';
       if (typeof zoneRegex !== 'object') {
         zoneError('zoneRegex must be translatable object or regexp');
         continue;
       } else if (!(zoneRegex instanceof RegExp)) {
-        let locale = this.options.Language || 'en';
-        if (locale in zoneRegex) {
-          zoneRegex = zoneRegex[locale];
+        let parserLang = this.options.ParserLanguage || 'en';
+        if (parserLang in zoneRegex) {
+          zoneRegex = zoneRegex[parserLang];
         } else if ('en' in zoneRegex) {
           zoneRegex = zoneRegex['en'];
         } else {
-          zoneError('unknown zoneRegex locale');
+          zoneError('unknown zoneRegex language');
           continue;
         }
 

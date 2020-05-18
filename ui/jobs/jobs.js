@@ -844,9 +844,9 @@ class BuffTracker {
       cn: v520,
     };
 
-    for (let key in buffOverrides[this.options.Language]) {
-      for (let key2 in buffOverrides[this.options.Language][key])
-        this.buffInfo[key][key2] = buffOverrides[this.options.Language][key][key2];
+    for (let key in buffOverrides[this.options.ParserLanguage]) {
+      for (let key2 in buffOverrides[this.options.ParserLanguage][key])
+        this.buffInfo[key][key2] = buffOverrides[this.options.ParserLanguage][key][key2];
     }
   }
 

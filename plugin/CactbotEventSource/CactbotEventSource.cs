@@ -47,6 +47,7 @@ namespace Cactbot {
     private FateWatcher fate_watcher_;
 
     private string language_ = null;
+    private string pc_locale_ = null;
     private List<FileSystemWatcher> watchers;
 
     public delegate void ForceReloadHandler(JSEvents.ForceReloadEvent e);
@@ -236,6 +237,7 @@ namespace Cactbot {
 
       FFXIVPlugin plugin_helper = new FFXIVPlugin(this);
       language_ = plugin_helper.GetLocaleString();
+      pc_locale_ = System.Globalization.CultureInfo.CurrentUICulture.Name;
 
       var versions = new VersionChecker(this);
       Version local = versions.GetCactbotVersion();
@@ -250,9 +252,15 @@ namespace Cactbot {
       LogInfo("FFXIV Plugin: {0} {1}", ffxiv.ToString(), versions.GetFFXIVPluginLocation());
       LogInfo("ACT: {0} {1}", act.ToString(), versions.GetACTLocation());
       if (language_ == null) {
-        LogInfo("Language: {0}", "(unknown)");
+        LogInfo("Parsing Plugin Language: {0}", "(unknown)");
       } else {
-        LogInfo("Language: {0}", language_);
+        LogInfo("Parsing Plugin Language: {0}", language_);
+      }
+      if (pc_locale_ == null){
+        LogInfo("System Locale: {0}", "(unknown)");
+      }
+      else{
+        LogInfo("System Locale: {0}", pc_locale_);
       }
 
       // Temporarily target cn if plugin is old v2.0.4.0
@@ -667,6 +675,11 @@ namespace Cactbot {
       var result = new JObject();
       result["userLocation"] = config_dir;
       result["localUserFiles"] = user_files == null ? null : JObject.FromObject(user_files);
+
+      result["parserLanguage"] = language_;
+      result["systemLocale"] = pc_locale_;
+      result["displayLanguage"] = Config.DisplayLanguage;
+      // For backwards compatibility:
       result["language"] = language_;
 
       var response = new JObject();

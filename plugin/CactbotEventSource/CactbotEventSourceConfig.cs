@@ -52,6 +52,21 @@ namespace Cactbot {
     public Dictionary<string, JToken> OverlayData = null;
     
     public DateTime LastUpdateCheck;
+
+    [JsonIgnore]
+    public string DisplayLanguage {
+      get {
+        if (!OverlayData.TryGetValue("options", out JToken options))
+          return null;
+        var general = options["general"];
+        if (general == null)
+          return null;
+        var dir = general["DisplayLanguage"];
+        if (dir == null)
+          return null;
+        return dir.ToString();
+      }
+    }
     
     [JsonIgnore]
     public string UserConfigFile {
