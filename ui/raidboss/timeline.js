@@ -43,9 +43,9 @@ class Timeline {
       return text;
 
     let orig = text;
-    let replaceLang = this.options.PraserLanguage || 'en';
+    let replaceLang = this.options.ParserLanguage || 'en';
     if (replaceKey === 'replaceText')
-      replaceLang = this.options.TimelineLanguage || this.options.PraserLanguage || 'en';
+      replaceLang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
     for (let r of this.replacements) {
       if (r.locale && r.locale != replaceLang)
         continue;
