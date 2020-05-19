@@ -126,6 +126,9 @@ let commonReplacement = {
     cn: '--分裂--',
     ko: '--분열--',
   },
+  '--stun--': {
+    fr: '--étourdissement--',
+  },
   '--sync--': {
     de: '--synchronisation--',
     fr: '--synchronisation--',
