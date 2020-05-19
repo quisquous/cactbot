@@ -104,6 +104,7 @@
       condition: function(data) {
         return !data.bangyzoom;
       },
+      suppressSeconds: 1,
       infoText: {
         en: 'Stun Soldier',
         de: 'unterbreche Soldat',
