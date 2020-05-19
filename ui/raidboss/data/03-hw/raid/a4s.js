@@ -93,7 +93,7 @@
       response: Responses.spread('alert'),
     },
   ],
-   timelineReplace: [
+  timelineReplace: [
     {
       'locale': 'fr',
       'replaceSync': {
