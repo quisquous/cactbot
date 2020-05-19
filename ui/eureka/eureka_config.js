@@ -39,7 +39,7 @@ UserConfig.registerOptions('eureka', {
       name: {
         en: 'Volume of the bunny pop sound (0-1)',
         ja: 'しあわせうさぎ出現音量 (0-1)',
-        cn: '幸运兔提示音量',
+        cn: '幸福兔提示音量',
         ko: '토끼 돌발 등장 알림 소리 크기 (0-1)',
       },
       type: 'float',
