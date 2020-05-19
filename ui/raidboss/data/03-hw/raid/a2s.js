@@ -101,6 +101,7 @@
       regexJa: Regexes.ability({ id: 'FD9', target: 'ゴルディオス・ソルジャー', capture: false }),
       regexCn: Regexes.ability({ id: 'FD9', target: '戈耳狄士兵', capture: false }),
       regexKo: Regexes.ability({ id: 'FD9', target: '고르디우스 병사', capture: false }),
+      suppressSeconds: 1,
       condition: function(data) {
         return !data.bangyzoom;
       },
