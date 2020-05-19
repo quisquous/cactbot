@@ -282,6 +282,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Bait onto unbroken squares',
+        ko: '꼬리 내리치기 유도',
       },
     },
   ],
@@ -495,7 +496,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Cocoon': '빛의 고치',
         'Left Wing': '왼쪽 날개',
@@ -504,7 +504,7 @@
         'Tail(?! )': '신룡의 꼬리',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
+        '--adds spawn--': '--쫄 소환--',
         'Aerial Blast': '대기 폭발',
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',
@@ -512,7 +512,7 @@
         'Diamond Dust': '다이아몬드 더스트',
         'Dragonfist': '용의 손바닥',
         'Dragonflight': '용의 비행',
-        'Elemental Attack': 'Elemental Attack',
+        'Elemental Attack': '원소 공격',
         'Earth Breath': '대지의 숨결',
         'Earthen Fury': '대지의 분노',
         'Gyre Charge': '회전 돌진',
