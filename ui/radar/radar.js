@@ -90,7 +90,7 @@ class Radar {
     this.table = element;
     this.options = Options;
     this.monsters = Object.assign({}, gMonster, Options.CustomMonsters);
-    this.lang = this.options.Language || 'en';
+    this.lang = this.options.ParserLanguage || 'en';
     this.nameToMonster = {};
     for (let i in this.monsters) {
       let monster = this.monsters[i];
@@ -244,7 +244,7 @@ class Radar {
   }
 
   OnLogEvent(e) {
-    let lang = this.options.Language;
+    let lang = this.options.ParserLanguage;
     for (let i = 0; i < e.detail.logs.length; i++) {
       // added new combatant
       let matches = e.detail.logs[i].match(Regexes.addedCombatantFull());

@@ -1,7 +1,6 @@
 'use strict';
 
 let Options = {
-  Language: 'en',
   IQRHookQuantity: 100,
   IQRTugQuantity: 10,
   Colors: {
@@ -218,7 +217,7 @@ class Fisher {
     this.fishing = true;
 
     // undiscovered fishing hole
-    if (this.regex[Options.Language]['undiscovered'].test(place)) {
+    if (this.regex[Options.ParserLanguage]['undiscovered'].test(place)) {
       // store this for now
       // if we catch anything we'll pull the data then
       // "data on 'x' is added to your fishing log" is printed before the catch
@@ -337,8 +336,8 @@ class Fisher {
   parseLine(log) {
     let result = null;
 
-    for (let type in this.regex[Options.Language]) {
-      result = this.regex[Options.Language][type].exec(log);
+    for (let type in this.regex[Options.ParserLanguage]) {
+      result = this.regex[Options.ParserLanguage][type].exec(log);
       if (result != null) {
         switch (type) {
         // case 'bait': this.handleBait(result[1]); break;

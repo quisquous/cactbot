@@ -1,5 +1,31 @@
 'use strict';
 
+let findSafeDir = (data) => {
+  // Tethers are ordered with all East tethers first. This *doesn't* mean that the East
+  // or West tethers are themselves in order within their half!
+  // The eight scale entities are listed in the data object, with West at indices 0-3,
+  // under data.scaleSophias.
+  let safeDir = 0;
+  // If there's a side with more tethers, we know for sure that's the safe side.
+  // This will give us the tilt direction for all but the 1/1, 2/2, and 3/3 cases.
+  // The safe side is represented here by whether safeDir is positive or negative.
+  // (West/negative, East/positive.)
+  for (let tether of data.quasarTethers)
+    safeDir += data.scaleSophias.indexOf(tether) < 4 ? -1 : 1;
+  return safeDir;
+};
+
+let callSafeDir = (callIndex) => {
+  return {
+    '2': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
+    '1': { en: 'Go East (Soft Tilt)', cn: '去东边（小倾斜）' },
+    '-2': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
+    '-1': { en: 'Go West (Soft Tilt)', cn: '去西边（小倾斜）' },
+    // Stringified because Javascript doesn't do negative-integer key values.
+  }[callIndex.toString()];
+};
+
+
 [{
   zoneRegex: {
     en: /^Containment Bay P1T6 \(Extreme\)$/,
@@ -122,6 +148,25 @@
       infoText: {
         en: 'Get behind lancer',
         cn: '躲在3号小怪后',
+      },
+    },
+    {
+      id: 'SophiaEX Infusion',
+      netRegex: NetRegexes.startsUsing({ id: '1988', source: 'The First Demiurge' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1988', source: 'Erst(?:e|er|es|en) Demiurg' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1988', source: 'Premier Démiurge' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1988', source: '一の従者' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1988', source: '信徒其一' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1988', source: '제1신도' }),
+      infoText: function(data, matches) {
+        if (Conditions.targetIsYou()) {
+          return {
+            en: 'Infusion on YOU',
+          };
+        }
+        return {
+          en: 'Infusion on ' + data.ShortName(matches.target),
+        };
       },
     },
     {
@@ -347,7 +392,7 @@
       netRegex: NetRegexes.tether({ id: '0011' }),
       condition: function(data) {
         // We shouldn't run this while Aion Teleos mechanics are active.
-        return !data.clonesActive && data.scaleSophias;
+        return !data.clonesActive;
       },
       run: function(data, matches) {
         data.quasarTethers = data.quasarTethers || [];
@@ -358,42 +403,33 @@
       id: 'SophiaEX Tilt Via Tether',
       netRegex: NetRegexes.tether({ id: '0011', capture: false }),
       condition: function(data) {
-        // No platform tilts if clones are up, and no tilts if it's the first one.
-        return !data.clonesActive && data.scaleSophias;
+        // No platform tilts if clones are up.
+        return !data.clonesActive;
       },
       // We let the storage triggers catch up before calling.
       delaySeconds: .5,
       durationSeconds: 12, // Ensuring that forgetful people aren't forgotten.
       suppressSeconds: 5,
       alertText: function(data) {
-        // Tethers are ordered with all East tethers first. This *doesn't* mean that the East
-        // or West tethers are themselves in order within their half!
-        // The eight scale entities are listed in the data object, with West at indices 0-3,
-        // under data.scaleSophias.
-        let safeDir = 0;
-        // If there's a side with more tethers, we know for sure that's the safe side.
-        // This will give us the tilt direction for all but the 1/1, 2/2, and 3/3 cases.
-        // The safe side is represented here by whether safeDir is positive or negative.
-        // (West/negative, East/positive.)
-        for (let tether of data.quasarTethers)
-          safeDir += data.scaleSophias.indexOf(tether) < 4 ? -1 : 1;
+        // If we somehow skipped the first set of Quasars, we won't know the locations of
+        // the scale entities. Activate the sadTethers flag and wait for the actual casts.
+        if (!data.scaleSophias) {
+          data.sadTethers = true;
+          return;
+        }
+        let safeDir = findSafeDir(data);
         if (safeDir == 0) {
           // If it's the 1/1, 2/2, or 3/3 case, we sadly don't have enough information.
           // We have to quit here and wait for the actual cast.
           data.sadTethers = true;
           return;
         }
-        return {
-          '2': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
-          '1': { en: 'Go East (Soft Tilt)', cn: '去东边（小倾斜）' },
-          '-2': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
-          '-1': { en: 'Go West (Soft Tilt)', cn: '去西边（小倾斜）' },
-          // Stringified because Javascript doesn't do negative-integer key values.
-        }[safeDir.toString()];
+        return callSafeDir(safeDir);
       },
     },
     {
-      // This specifically calls the case where it's 1/1;2/2;3/3 tethers.
+      // This specifically calls the case where it's 1/1;2/2;3/3 tethers,
+      // or any tether combination if we skipped the first Meteor Quasars.
       // The blue Quasar, 19A9, is *alway* on the dangerous side.
       // The 20/startsUsing log lines don't actually have position data,
       // but we enumerated all the locations earlier,
@@ -406,27 +442,26 @@
       netRegexCn: NetRegexes.startsUsing({ id: '19A9', source: '索菲娅' }),
       netRegexKo: NetRegexes.startsUsing({ id: '19A9', source: '소피아' }),
       condition: function(data) {
-        // No platform tilts if clones are up, and no tilts if it's the first one.
-        return !data.clonesActive && data.scaleSophias && data.sadTethers;
+        return data.sadTethers;
       },
       durationSeconds: 10,
       suppressSeconds: 5,
       alertText: function(data, matches) {
-        const safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? 'E' : 'W';
-        return {
-          'W': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
-          'E': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
-        }[safeDir];
-      },
-      run: function(data) {
-        delete data.sadTethers;
+        let safeDir = findSafeDir(data);
+        // If this is the first set of Meteor Quasars, there is no tilt.
+        if (data.quasarTethers.length == 4 && safeDir != 0)
+          return;
+        if (safeDir == 0)
+          safeDir = data.scaleSophias.indexOf(matches.sourceId) < 4 ? '2' : '-2';
+        return callSafeDir(safeDir);
       },
     },
     {
-      id: 'SophiaEX Tether Cleanup',
-      netRegex: NetRegexes.ability({ id: '1A4C', capture: false }),
+      id: 'SophiaEX Quasar Cleanup',
+      netRegex: NetRegexes.ability({ id: '19A9', capture: false }),
       run: function(data) {
         delete data.quasarTethers;
+        delete data.sadTethers;
       },
     },
   ],

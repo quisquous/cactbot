@@ -39,8 +39,33 @@ let UserConfig = {
 
       // The plugin auto-detects the language, so set this first.
       // If options files want to override it, they can for testing.
-      if (e.detail.language)
-        Options.Language = e.detail.language;
+
+      // Backward compatibility (language is now separated to three types.)
+      if (e.detail.language) {
+        Options.ParserLanguage = e.detail.language;
+        Options.ShortLocale = e.detail.language;
+        Options.DisplayLanguage = e.detail.language;
+      }
+      // Parser Language
+      if (e.detail.parserLanguage) {
+        Options.ParserLanguage = e.detail.parserLanguage;
+        // Backward compatibility, everything "Language" should be changed to "ParserLanguage"
+        Options.Language = e.detail.parserLanguage;
+      }
+      const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
+      // System Language
+      if (e.detail.systemLocale) {
+        Options.SystemLocale = e.detail.systemLocale;
+        Options.ShortLocale = e.detail.systemLocale.substring(0, 2);
+        if (Options.ShortLocale == 'zh')
+          Options.ShortLocale = 'cn';
+        if (!supportedLanguage.includes(Options.ShortLocale))
+          Options.ShortLocale = Options.ParserLanguage;
+      }
+      // User's setting Language
+      Options.DisplayLanguage = e.detail.displayLanguage || 'en';
+      if (!supportedLanguage.includes(Options.DisplayLanguage))
+        Options.DisplayLanguage = Options.ParserLanguage;
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
@@ -100,8 +125,8 @@ let UserConfig = {
       }
 
       // Post this callback so that the js and css can be executed first.
-      if (Options.Language && Options.Language in this.languageFuncs)
-        this.languageFuncs[Options.Language]();
+      if (Options.ParserLanguage && Options.ParserLanguage in this.languageFuncs)
+        this.languageFuncs[Options.ParserLanguage]();
       if (callback)
         callback();
 

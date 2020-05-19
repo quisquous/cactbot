@@ -53,16 +53,9 @@ You need to have at least one chat log set to show `Own Gathering Messages` You 
 
 You must have the `Hide Chat Log (for privacy)` option disabled.
 
-- **fisher.js language setting**
-If your game has a text language setting other than english you will need to open /ui/fisher/fisher.js and change the language option to your chosen language:
-  - `en` - English
-  - `de` - German
-  - `fr` - French
-  - `jp` - Japanese
-  - `cn` - Chinese
-
+- Supported language
 Korean is not supported at this time.
-You will need to restart ACT for this setting to take effect.
+You will need to restart ACT after you change parser language.
 
 ## Places To Get Help
 
