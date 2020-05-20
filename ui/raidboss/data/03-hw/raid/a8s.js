@@ -26,6 +26,7 @@
       infoText: {
         en: 'Swindler Soon',
         de: 'Bald Schwindler',
+        fr: 'Arnaqueur bientôt',
         cn: '欺诈者即将出现',
       },
     },
@@ -36,6 +37,7 @@
       infoText: {
         en: 'Vortexer Soon',
         de: 'Bald Vortexer',
+        fr: 'Tourbillonneur bientôt',
         cn: '环旋者即将出现',
       },
     },
@@ -52,6 +54,7 @@
       infoText: {
         en: 'Bait Super Jump',
         de: 'Supersprung ködern',
+        fr: 'Attirez le Super saut',
         cn: '引导超级跳',
       },
     },
@@ -69,6 +72,7 @@
       alertText: {
         en: 'Megabeamu~',
         de: 'Megalaser~',
+        fr: 'Mégarayon~',
         cn: '巨型光束炮~',
       },
     },
@@ -83,6 +87,7 @@
       alertText: {
         en: 'Megabeamu~!',
         de: 'Megalaser~!',
+        fr: 'Mégarayon~ !',
         cn: '巨型光束炮~!',
       },
     },
@@ -100,6 +105,7 @@
       infoText: {
         en: 'Kill Regulators',
         de: 'Dampfregler besiegen',
+        fr: 'Tuez les Régulateurs',
         cn: '击杀小怪',
       },
     },
@@ -118,7 +124,7 @@
       id: 'A8S Blaster Mirage',
       regex: Regexes.addedCombatant({ name: 'Blaster Mirage', capture: false }),
       regexDe: Regexes.addedCombatant({ name: 'Blaster-Replikant', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'réplique du Fracasseur', capture: false }),
+      regexFr: Regexes.addedCombatant({ name: 'Réplique Du Fracasseur', capture: false }),
       regexJa: Regexes.addedCombatant({ name: 'ブラスター・ミラージュ', capture: false }),
       regexCn: Regexes.addedCombatant({ name: '爆破者幻象', capture: false }),
       regexKo: Regexes.addedCombatant({ name: '폭파자의 환영', capture: false }),
@@ -126,6 +132,7 @@
       infoText: {
         en: 'Mirage',
         de: 'Mirage',
+        fr: 'Mirage',
         cn: '分身即',
       },
     },
@@ -139,6 +146,7 @@
       infoText: {
         en: 'Orb on YOU',
         de: 'Orb auf DIR',
+        fr: 'Orbe sur VOUS',
         cn: '球点名',
       },
     },
@@ -170,6 +178,7 @@
       alertText: {
         en: 'Get High',
         de: 'Geh nach Oben',
+        fr: 'Montez',
         cn: '上高台',
       },
     },
@@ -187,6 +196,7 @@
       alertText: {
         en: 'Get Down',
         de: 'Geh nach Unten',
+        fr: 'Descendez',
         cn: '下低台',
       },
     },
@@ -226,6 +236,7 @@
           return {
             en: 'Thunder on YOU',
             de: 'Blitz auf DIR',
+            fr: 'Foudre sur VOUS',
             cn: '雷点名',
           };
         }
@@ -235,6 +246,7 @@
           return {
             en: 'Thunder on ' + data.ShortName(matches.target),
             de: 'Blitz auf ' + data.ShortName(matches.target),
+            fr: 'Foudre sur ' + data.ShortName(matches.target),
             cn: '雷点' + data.ShortName(matches.target),
           };
         }
@@ -272,6 +284,7 @@
         return {
           en: 'Thunder Soon on ' + data.ShortName(data.lightning),
           de: 'Blitz bald auf ' + data.ShortName(data.lightning),
+          fr: 'Foudre bientôt sur ' + data.ShortName(data.lightning),
           cn: '马上雷分摊' + data.ShortName(data.lightning),
         };
       },
@@ -285,6 +298,7 @@
         return {
           en: data.ShortName(matches.target) + ': ' + count,
           de: data.ShortName(matches.target) + ': ' + count,
+          fr: data.ShortName(matches.target) + ': ' + count,
           cn: data.ShortName(matches.target) + '生命计算法: ' + count,
         };
       },
@@ -301,22 +315,22 @@
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
-            en: 'Shared Tankbuster on YOU',
-            de: 'geteilter Tankbuster auf DIR',
+            en: 'Shared Tank buster on YOU',
+            de: 'geteilter Tank buster auf DIR',
+            fr: 'Partagez le Tank buster sur VOUS',
             ja: '自分にタンクシェア',
-            fr: 'Tankbuster partagé sur vous',
-            ko: '나에게 쉐어 탱크버스터',
             cn: '分摊死刑点名',
+            ko: '나에게 쉐어 탱크버스터',
           };
         }
         if (data.role == 'tank' || data.role == 'healer') {
           return {
-            en: 'Shared Tankbuster on ' + data.ShortName(matches.target),
-            de: 'geteilter Tankbuster on ' + data.ShortName(matches.target),
+            en: 'Shared Tank buster on ' + data.ShortName(matches.target),
+            de: 'geteilter Tank buster on ' + data.ShortName(matches.target),
+            fr: 'Partagez le Tank buster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + ' にタンクシェア',
-            fr: 'Tankbuster partagé sur ' + data.ShortName(matches.target),
-            ko: '쉐어 탱크버스터 대상: ' + data.ShortName(matches.target),
             cn: '分摊死刑点 ' + data.ShortName(matches.target),
+            ko: '쉐어 탱크버스터 대상: ' + data.ShortName(matches.target),
           };
         }
       },
@@ -364,6 +378,7 @@
           return {
             en: 'Prey: Get Out',
             de: 'Makiert: Geh raus',
+            fr: 'Marquage : Sortez',
             cn: '红点名离开人群',
           };
         }
@@ -410,6 +425,7 @@
         return {
           en: 'Super Jump on YOU',
           de: 'Supersprung auf DIR',
+          fr: 'Super saut sur VOUS',
           cn: '超级跳点名',
         };
       },
@@ -419,6 +435,7 @@
         return {
           en: 'Super Jump on ' + data.ShortName(matches.target),
           de: 'Supersprung auf ' + data.ShortName(matches.target),
+          fr: 'Super saut sur ' + data.ShortName(matches.target),
           cn: '超级跳点' + data.ShortName(matches.target),
         };
       },
@@ -430,6 +447,7 @@
       alertText: {
         en: 'Mirage on YOU',
         de: 'Mirage auf DIR',
+        fr: 'Mirage sur VOUS',
         cn: '分身点名',
       },
     },
@@ -440,6 +458,7 @@
       infoText: {
         en: 'Ice Missile on YOU',
         de: 'Eis-Rakete auf DIR',
+        fr: 'Missile de glace sur VOUS',
         cn: '冰点名',
       },
     },
@@ -449,7 +468,7 @@
       // 165C only used for intermission
       regex: Regexes.ability({ source: 'Hidden Mine', id: '165E', capture: false }),
       regexDe: Regexes.ability({ source: 'Minenfalle', id: '165E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Mine Furtive', id: '165E', capture: false }),
+      regexFr: Regexes.ability({ source: 'Explosion De Mine', id: '165E', capture: false }),
       regexJa: Regexes.ability({ source: 'ステルス地雷', id: '165E', capture: false }),
       regexCn: Regexes.ability({ source: '隐形地雷', id: '165E', capture: false }),
       regexKo: Regexes.ability({ source: '은폐 지뢰', id: '165E', capture: false }),
@@ -476,7 +495,7 @@
       alertText: {
         en: 'Look Away from Mirage',
         de: 'Von Replikant wegschauen',
-        fr: 'Ne regardez pas la réplique',
+        fr: 'Ne regardez pas la Réplique',
         cn: '背对幻象',
       },
     },
@@ -492,7 +511,7 @@
       alertText: {
         en: 'Look Towards Mirage',
         de: 'Zu Replikant hinschauen',
-        fr: 'Regardez la réplique',
+        fr: 'Regardez la Réplique',
         cn: '面向幻象',
       },
     },
@@ -519,8 +538,9 @@
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       alertText: {
-        en: 'Min HP: Provoke Boss => Late NE Tornado',
+        en: 'Min HP: Provoke Boss => Late NW Tornado',
         de: 'Min HP: Boss herrausfordern => Später No Tornado',
+        fr: 'PV Min : Provocation Boss => Cyclone NO en retard',
         cn: '最少HP:挑衅BOSS=>东北龙卷风',
       },
     },
@@ -547,8 +567,9 @@
       condition: Conditions.targetIsYou(),
       delaySeconds: 27,
       alarmText: {
-        en: 'Get NE Tornado',
+        en: 'Get NW Tornado',
         de: 'Nimm NO Tornado',
+        fr: 'Prenez le Cyclone NO',
         cn: '去东北龙卷风',
       },
     },
@@ -576,6 +597,7 @@
       infoText: {
         en: 'Max HP: Provoke Boss Second',
         de: 'Max HP: Boss als Zweites herrausfordern',
+        fr: 'PV Max : Seconde Provocation Boss',
         cn: '最多HP:第二个挑衅BOSS',
       },
     },
@@ -593,6 +615,7 @@
       alertText: {
         en: 'Provoke Boss',
         de: 'Boss herrausfordern',
+        fr: 'Provocation Boss',
         cn: '挑衅BOSS',
       },
     },
@@ -611,6 +634,7 @@
       alarmText: {
         en: 'Use Devour',
         de: 'Benutze Verschlingen',
+        fr: 'Utilisez Dévoration',
         cn: '使用捕食',
       },
     },
@@ -629,6 +653,7 @@
       alertText: {
         en: 'Penalty 1: SW orb -> Share 2x North Orbs',
         de: 'Schwächung 1: SW orb -> 2x nördliche Orbs teilen',
+        fr: 'Altération 1 : Orbe SO -> Partagez 2x Orbes Nord',
         cn: '1号：吃西南球然后分摊北边双球',
       },
     },
@@ -644,6 +669,7 @@
       alertText: {
         en: 'Penalty 2: NW Tornado',
         de: 'Schwächung 2: NW Tornado',
+        fr: 'Altérations 2 : Cyclone NO',
         cn: '2号：西北龙卷风',
       },
     },
@@ -659,6 +685,7 @@
       alertText: {
         en: 'Penalty 3: Get a South Tornado',
         de: 'Schwächung 3: Nimm südlichen Tornado',
+        fr: 'Altérations 3 : Prenez le Cyclone Sud',
         cn: '2号：南边龙卷风',
       },
     },
@@ -677,6 +704,7 @@
       infoText: {
         en: 'Share last orb after gavel',
         de: 'Orn mach Prozessende teilen',
+        fr: 'Partagez l\'orbe après le procès',
         cn: '等待锤子判定后分摊最后球',
       },
     },
@@ -695,6 +723,7 @@
       infoText: {
         en: 'Blue Regulator -> Share 1x North Orb',
         de: 'Blauer Dampfregler -> 1x nördlichen Orb teilen',
+        fr: 'Régulateur bleu -> Partagez 1x Orbe Nord',
         cn: '蓝色小怪然后北边分摊球',
       },
     },
@@ -710,6 +739,7 @@
       infoText: {
         en: 'Red Regulator -> Share 1x North Orb',
         de: 'Roter Dampfregler -> 1x nördlichen Orb teilen',
+        fr: 'Régulateur rouge -> Partagez 1x Orbe Nord',
         cn: '红色小怪然后北边分摊球',
       },
     },
@@ -726,6 +756,7 @@
           return {
             en: 'Water on YOU',
             de: 'Wasser auf DIR',
+            fr: 'Eau sur VOUS',
             cn: '水点名',
           };
         }
@@ -735,6 +766,7 @@
           return {
             en: 'Water on ' + data.ShortName(matches.target),
             de: 'Wasser auf ' + data.ShortName(matches.target),
+            fr: 'Eau sur ' + data.ShortName(matches.target),
             cn: '水点' + data.ShortName(matches.target),
           };
         }
@@ -773,6 +805,7 @@
         return {
           en: 'Water Soon on ' + data.ShortName(data.water),
           de: 'Wasser bald auf ' + data.ShortName(matches.target),
+          fr: 'Eau bientôt sur ' + data.ShortName(data.water),
           cn: '马上水分摊' + data.ShortName(data.water),
         };
       },
@@ -800,6 +833,7 @@
       infoText: {
         en: 'Stack for Final Beam',
         de: 'Stack für Finaler Megastrahl',
+        fr: 'Packez-vous pour Mégarayon final',
         cn: '集合分摊',
       },
     },
@@ -820,8 +854,6 @@
         'Vortexer': 'Wirbler',
       },
       'replaceText': {
-        '--orbs--': '--Kugeln--',
-        '--regulator check--': '--Dampfregler check--',
         '100-Megatonze Shock': '100-Megatonzen-Schock',
         'Apocalyptic Ray': 'Apokalyptischer Strahl ',
         'Attachment': 'Anlegen',
@@ -898,13 +930,14 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Blaster Mirage': 'réplique du Fracasseur',
+        'Blaster Mirage': 'Réplique du Fracasseur',
+        'Blaster(?! Mirage)': 'Fracasseur',
         'Brawler': 'Bagarreur',
         'Brute Justice': 'Justicier',
         'Hidden Mine': 'Explosion de mine',
         'Onslaughter': 'Attaqueur',
-        'Steam Chakram': 'chakram de vapeur',
-        'Steam Regulator B': 'régulateur de vapeur β',
+        'Steam Chakram': 'Chakram de vapeur',
+        'Steam Regulator B': 'Régulateur de vapeur β',
         'Swindler': 'Arnaqueur',
         'Vortexer': 'Tourbillonneur',
       },
@@ -914,9 +947,10 @@
         'Attachment': 'Extension',
         'Auxiliary Power': 'Soutien énergétique',
         'Ballistic Missile': 'Missiles balistiques',
-        'Blaster': 'Électrochoc',
+        'Blaster \\(north\\)': 'Fracasseur (nord)',
         'Blinder': 'Missile aveuglant',
-        'Brawler': 'Bagarreur',
+        'Brawler \\(middle\\)': 'Bagarreur (milieu)',
+        'Brawler Mechanic': 'Mécanique du Bagarreur',
         'Brute Force': 'Force brute',
         'Crashing Thunder': 'Éclair percutant',
         'Discoid': 'Discoïde',
@@ -947,7 +981,7 @@
         'Long Needle': 'Gros missiles',
         'Magicked Mark': 'Tir magique',
         'Mega Beam': 'Mégarayon',
-        'Mind Blast': 'Explosion mentale',
+        'Mind Blast\\?': 'Explosion mentale ?',
         'Mirage': 'Mirage',
         'Missile Command': 'Commande missile',
         'Perpetual Ray': 'Rayon perpétuel',
@@ -959,11 +993,11 @@
         'Super Cyclone': 'Super cyclone',
         'Super Jump': 'Super saut',
         'Supercharge': 'Super charge',
-        'Swindler': 'Arnaqueur',
-        'Transform': 'Assemblage justicier',
+        'Swindler \\(east\\)': 'Arnaqueur (est)',
+        'Transform': 'Assemblage Justicier',
         'Ultra Flash': 'Ultraflash',
         'Verdict': 'Ouverture de procès',
-        'Vortexer': 'Tourbillonneur',
+        'Vortexer \\(south\\)': 'Tourbillonneur (sud)',
       },
       '~effectNames': {
         'Compressed Lightning': 'Compression électrique',
@@ -972,7 +1006,7 @@
         'Final Judgment: Decree Nisi B': 'Injonction : peine provisoire β',
         'Final Judgment: Max HP': 'Injonction : plus hauts PV',
         'Final Judgment: Min HP': 'Injonction : plus bas PV',
-        'Final Judgment: Penalty I(?!I)': 'Injonction : 1 altérations',
+        'Final Judgment: Penalty I(?!I)': 'Injonction : 1 altération',
         'Final Judgment: Penalty II(?!I)': 'Injonction : 2 altérations',
         'Final Judgment: Penalty III': 'Injonction : 3 altérations',
         'Final Punishment': 'Punition ultime',
@@ -1081,8 +1115,6 @@
         'Vortexer': '环旋者',
       },
       'replaceText': {
-        '--orbs--': '--球--',
-        '--regulator check--': '--调节器检查--',
         '100-Megatonze Shock': '亿万吨震荡',
         'Apocalyptic Ray': '末世宣言',
         'Attachment': '配件更换',

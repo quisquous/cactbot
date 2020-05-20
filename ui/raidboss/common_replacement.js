@@ -91,6 +91,20 @@ let commonReplacement = {
     cn: '--西北--',
     ko: '--북서--',
   },
+  '--orbs--': {
+    de: '--Kugeln--',
+    fr: '--orbes--',
+    ja: '--オーブ--',
+    cn: '--球--',
+    ko: '--오브--',
+  },
+  '--regulator check--': {
+    de: '--Dampfregler check--',
+    fr: 'vérification du régulateur',
+    ja: 'レギュレーターチェック',
+    cn: '--调节器检查--',
+    ko: '레귤레이터 점검',
+  },
   '--rotate--': {
     de: '--rotieren--',
     fr: '--rotation--',
