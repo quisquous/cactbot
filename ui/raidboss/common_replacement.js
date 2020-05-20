@@ -101,9 +101,9 @@ let commonReplacement = {
   '--regulator check--': {
     de: '--Dampfregler check--',
     fr: 'vérification du régulateur',
-    ja: 'レギュレーターチェック',
+    ja: '--レギュレーターチェック--',
     cn: '--调节器检查--',
-    ko: '레귤레이터 점검',
+    ko: '--레귤레이터 점검--',
   },
   '--rotate--': {
     de: '--rotieren--',
