@@ -450,7 +450,7 @@
         'Spread': 'Dispersion',
         '(?<! )Stacks': 'Package',
         'Stacks \\+(?! Height)': 'Package + Dénivellation',
-        'Tether Mirages': 'Lien Répliques'
+        'Tether Mirages': 'Lien Répliques',
       },
       '~effectNames': {
         'Compressed Lightning': 'Compression électrique',
