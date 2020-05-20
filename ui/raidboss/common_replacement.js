@@ -129,6 +129,7 @@ let commonReplacement = {
   '--stun--': {
     de: '--Betäubung--',
     fr: '--étourdissement--',
+    ja: '--スタン--',
     cn: '--击晕--',
     ko: '--기절--',
   },
