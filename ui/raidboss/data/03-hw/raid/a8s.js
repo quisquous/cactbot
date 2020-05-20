@@ -317,7 +317,7 @@
           return {
             en: 'Shared Tank buster on YOU',
             de: 'geteilter Tank buster auf DIR',
-            fr: 'Partagez le Tank buster sur VOUS',
+            fr: 'Tank buster à partager sur VOUS',
             ja: '自分にタンクシェア',
             cn: '分摊死刑点名',
             ko: '나에게 쉐어 탱크버스터',
@@ -327,7 +327,7 @@
           return {
             en: 'Shared Tank buster on ' + data.ShortName(matches.target),
             de: 'geteilter Tank buster on ' + data.ShortName(matches.target),
-            fr: 'Partagez le Tank buster sur ' + data.ShortName(matches.target),
+            fr: 'Tank buster à partager sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + ' にタンクシェア',
             cn: '分摊死刑点 ' + data.ShortName(matches.target),
             ko: '쉐어 탱크버스터 대상: ' + data.ShortName(matches.target),
