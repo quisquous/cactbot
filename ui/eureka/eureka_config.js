@@ -38,6 +38,7 @@ UserConfig.registerOptions('eureka', {
       id: 'BunnyPopVolume',
       name: {
         en: 'Volume of the bunny pop sound (0-1)',
+        fr: 'Volume du son d\'apparition des lapins (0-1)',
         ja: 'しあわせうさぎ出現音量 (0-1)',
         ko: '토끼 돌발 등장 알림 소리 크기 (0-1)',
       },
