@@ -96,14 +96,14 @@ let commonReplacement = {
     fr: '--orbes--',
     ja: '--オーブ--',
     cn: '--球--',
-    ko: '--오브--',
+    ko: '--구슬--',
   },
   '--regulator check--': {
     de: '--dampfregler check--',
     fr: '--vérification du régulateur--',
     ja: '--レギュレーターチェック--',
     cn: '--调节器检查--',
-    ko: '--레귤레이터 점검--',
+    ko: '--레귤레이터 확인--',
   },
   '--rotate--': {
     de: '--rotieren--',
