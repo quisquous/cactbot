@@ -24,13 +24,17 @@ hideall "--sync--"
 # Intermission.
 # The given times for Meteor Impact are the latest they can occur.
 119.0 "--sync--" sync /:Shinryu:1F8A:/ window 120,5
-129.1 "Meteor Impact" sync /:Cocoon:1F96:/ window 10,5
+125.4 "--sync--" sync /:1F96:Cocoon/ window 10,5
+129.1 "Meteor Impact" sync /:Cocoon:1F96:/
 130.6 "--adds spawn--" sync /:Cocoon:2142:/
-150.9 "Meteor Impact" sync /:Cocoon:1F96:/ window 15,5
+146.2 "--sync--" sync /:1F96:Cocoon/ window 15,5
+150.9 "Meteor Impact" sync /:Cocoon:1F96:/
 152.5 "--adds spawn--" sync /:Cocoon:2142:/
-180.8 "Meteor Impact" sync /:Cocoon:1F96:/ window 25,5
+176.1 "--sync--" sync /:1F96:Cocoon/ window 25,5
+180.8 "Meteor Impact" sync /:Cocoon:1F96:/
 182.4 "--adds spawn--" sync /:Cocoon:2142:/
-225.2 "Protostar" sync /:Shinryu:1F95:/ window 225.2,5
+219.7 "--sync--" sync /:1F95:Shinryu/ window 220,5
+225.2 "Protostar" sync /:Shinryu:1F95:/
 234.3 "Dark Matter" sync /:Shinryu:1F98:/
 240.5 "--sync--" sync /:Shinryu:2128:/
 244.9 "TAP BUTTON OR ELSE" # Doesn't seem to have an actual log line to sync

@@ -146,12 +146,12 @@
     },
     {
       id: 'Shinryu Normal Levinbolt',
-      netRegex: NetRegexes.startsUsing({ id: '1F9B', source: 'Right Wing', target: 'Right Wing', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1F9B', source: 'Recht(?:e|er|es|en) Schwinge', target: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1F9B', source: 'Aile Droite', target: 'Aile Droite', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1F9B', source: 'ライトウィング', target: 'ライトウィング', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1F9B', source: '右翼', target: '右翼', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1F9B', source: '오른쪽 날개', target: '오른쪽 날개', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1F9B', source: 'Right Wing', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1F9B', source: 'Recht(?:e|er|es|en) Schwinge', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1F9B', source: 'Aile Droite', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1F9B', source: 'ライトウィング', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1F9B', source: '右翼', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1F9B', source: '오른쪽 날개', capture: false }),
       durationSeconds: 7,
       alertText: {
         en: 'Spread out, no water',
