@@ -162,10 +162,12 @@ let callSafeDir = (callIndex) => {
         if (Conditions.targetIsYou()) {
           return {
             en: 'Infusion on YOU',
+            cn: '冲锋点名',
           };
         }
         return {
           en: 'Infusion on ' + data.ShortName(matches.target),
+          cn: '冲锋点' + data.ShortName(matches.target),
         };
       },
     },
