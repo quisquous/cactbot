@@ -468,7 +468,7 @@
       // 165C only used for intermission
       regex: Regexes.ability({ source: 'Hidden Mine', id: '165E', capture: false }),
       regexDe: Regexes.ability({ source: 'Minenfalle', id: '165E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Explosion De Mine', id: '165E', capture: false }),
+      regexFr: Regexes.ability({ source: 'Mine Furtive', id: '165E', capture: false }),
       regexJa: Regexes.ability({ source: 'ステルス地雷', id: '165E', capture: false }),
       regexCn: Regexes.ability({ source: '隐形地雷', id: '165E', capture: false }),
       regexKo: Regexes.ability({ source: '은폐 지뢰', id: '165E', capture: false }),
