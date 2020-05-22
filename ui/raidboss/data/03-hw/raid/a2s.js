@@ -155,9 +155,9 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bomb': 'Bombe',
+        '(?<!Giant )Bomb(?!e)': 'Bombe',
         'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Boumbardier',
-        'Giant(?! Bomb)': 'Bombe géante',
+        'Giant Bomb': 'Bombe géante',
         'Gordian Hardhelm': 'Casque-dur gordien',
         'Gordian Hardmind': 'Cerveau-dur gordien',
         'Gordian Sniper': 'Sniper gordien',
