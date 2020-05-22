@@ -538,9 +538,9 @@
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       alertText: {
-        en: 'Min HP: Provoke Boss => Late NW Tornado',
+        en: 'Min HP: Provoke Boss => Late NE Tornado',
         de: 'Min HP: Boss herrausfordern => Später No Tornado',
-        fr: 'PV Min : Provocation Boss => Cyclone NO en retard',
+        fr: 'PV Min : Provocation Boss => Cyclone NO ou NE en retard',
         cn: '最少HP:挑衅BOSS=>东北龙卷风',
       },
     },
@@ -567,9 +567,9 @@
       condition: Conditions.targetIsYou(),
       delaySeconds: 27,
       alarmText: {
-        en: 'Get NW Tornado',
+        en: 'Get NE Tornado',
         de: 'Nimm NO Tornado',
-        fr: 'Prenez le Cyclone NO',
+        fr: 'Prenez le Cyclone NO ou NE',
         cn: '去东北龙卷风',
       },
     },
@@ -854,6 +854,8 @@
         'Vortexer': 'Wirbler',
       },
       'replaceText': {
+        '--orbs--': '--kugeln--',
+        '--regulator check--': '--dampfregler check--',
         '100-Megatonze Shock': '100-Megatonzen-Schock',
         'Apocalyptic Ray': 'Apokalyptischer Strahl ',
         'Attachment': 'Anlegen',
@@ -942,6 +944,8 @@
         'Vortexer': 'Tourbillonneur',
       },
       'replaceText': {
+        '--orbs--': '--orbes--',
+        '--regulator check--': '--vérification du régulateur--',
         '100-Megatonze Shock': 'Choc de 100 mégatonz',
         'Apocalyptic Ray': 'Rayon apocalyptique',
         'Attachment': 'Extension',
@@ -1029,6 +1033,8 @@
         'Vortexer': 'ボルテッカー',
       },
       'replaceText': {
+        '--orbs--': '--オーブ--',
+        '--regulator check--': '--レギュレーターチェック--',
         '100-Megatonze Shock': '100メガトンズショック',
         'Apocalyptic Ray': 'アポカリプティクレイ',
         'Attachment': 'アタッチメント',
@@ -1115,6 +1121,8 @@
         'Vortexer': '环旋者',
       },
       'replaceText': {
+        '--orbs--': '--球--',
+        '--regulator check--': '--调节器检查--',
         '100-Megatonze Shock': '亿万吨震荡',
         'Apocalyptic Ray': '末世宣言',
         'Attachment': '配件更换',
@@ -1202,6 +1210,8 @@
         'Vortexer': '교반자',
       },
       'replaceText': {
+        '--orbs--': '--구슬--',
+        '--regulator check--': '--레귤레이터 확인--',
         '100-Megatonze Shock': '100메가톤즈 충격',
         'Apocalyptic Ray': '파멸 계시',
         'Attachment': '무기 장착',
