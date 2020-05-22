@@ -411,12 +411,14 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Ballistic Missile': 'Missile balistique',
         'Blaster(?! Mirage)': 'Électrochoc',
         'Blaster Mirage': 'réplique du Fracasseur',
         'Brawler': 'Bagarreur',
         'Elemental Jammer': 'Grippage élémentaire',
+        'Height': 'Dénivellation',
         'Machinery Bay 67': 'Hangar d\'armement HA-67',
         'Machinery Bay 68': 'Hangar d\'armement HA-68',
         'Machinery Bay 69': 'Hangar d\'armement HA-69',
