@@ -5,6 +5,8 @@
 function triggerUpperCase(str) {
   if (!str)
     return str;
+  if (typeof str === 'number')
+    return str;
   return str.replace(/[^αβγδ]/g, (x) => x.toUpperCase());
 }
 
