@@ -82,12 +82,12 @@
     },
     {
       id: 'T7 Voice',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C3', }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C3', }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C3', }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C3', }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C3', }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C3', }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
+      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C3' }),
+      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C3' }),
+      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C3' }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C3' }),
+      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -103,12 +103,12 @@
     },
     {
       id: 'T7 Shriek',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4', }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4' }),
       durationSeconds: 3,
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
@@ -133,12 +133,12 @@
     },
     {
       id: 'T7 Shriek Reminder',
-      netRegex: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4', }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4', }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4' }),
+      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: function(data, matches) {
