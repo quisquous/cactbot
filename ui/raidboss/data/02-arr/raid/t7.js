@@ -82,12 +82,12 @@
     },
     {
       id: 'T7 Voice',
-      regex: Regexes.gainsEffect({ effect: 'Cursed Voice' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Stimme Der Verwünschung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Voix Du Maléfice' }),
-      regexJa: Regexes.gainsEffect({ effect: '呪詛の声' }),
-      regexCn: Regexes.gainsEffect({ effect: '诅咒之声' }),
-      regexKo: Regexes.gainsEffect({ effect: '저주의 목소리' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C3', source: 'Melusine' }),
+      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C3', source: 'Melusine' }),
+      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C3', source: 'Mélusine' }),
+      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C3', source: 'メリュジーヌ' }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C3', source: '美瑠姬奴' }),
+      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C3', source: '멜뤼진' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -103,12 +103,12 @@
     },
     {
       id: 'T7 Shriek',
-      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
-      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
-      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
-      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C4', source: 'Melusine' }),
+      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4', source: 'Melusine' }),
+      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4', source: 'Mélusine' }),
+      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4', source: 'メリュジーヌ' }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4', source: '美瑠姬奴' }),
+      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4', source: '멜뤼진' }),
       durationSeconds: 3,
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
@@ -133,12 +133,12 @@
     },
     {
       id: 'T7 Shriek Reminder',
-      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
-      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
-      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
-      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C4', source: 'Melusine' }),
+      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4', source: 'Melusine' }),
+      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4', source: 'Mélusine' }),
+      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4', source: 'メリュジーヌ' }),
+      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4', source: '美瑠姬奴' }),
+      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4', source: '멜뤼진' }),
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: function(data, matches) {
