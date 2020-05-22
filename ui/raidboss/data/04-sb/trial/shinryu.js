@@ -282,6 +282,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Bait onto unbroken squares',
+        cn: '在未损坏方格上诱导',
         ko: '꼬리 내리치기 유도',
       },
     },
