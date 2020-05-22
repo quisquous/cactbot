@@ -418,7 +418,6 @@
         'Blaster Mirage': 'réplique du Fracasseur',
         'Brawler': 'Bagarreur',
         'Elemental Jammer': 'Grippage élémentaire',
-        'Height': 'Dénivellation',
         'Machinery Bay 67': 'Hangar d\'armement HA-67',
         'Machinery Bay 68': 'Hangar d\'armement HA-68',
         'Machinery Bay 69': 'Hangar d\'armement HA-69',
@@ -435,6 +434,7 @@
         'Attachment': 'Extension',
         'Brute Force': 'Force brute',
         'Elemental Jammer': 'Grippage élémentaire',
+        'Height': 'Dénivellation',
         'Mind Blast': 'Explosion mentale',
       },
       '~effectNames': {
