@@ -77,9 +77,8 @@
       },
     },
     {
-      // TODO: fill this id in
       id: 'A3S Digititis Damage',
-      regex: Regexes.headMarker({ id: '00XX' }),
+      regex: Regexes.headMarker({ id: '0024' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Damage Debuff',
