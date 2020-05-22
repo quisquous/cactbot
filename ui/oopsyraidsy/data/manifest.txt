@@ -17,6 +17,7 @@
 04-sb/raid/o7s.js
 04-sb/raid/o8s.js
 04-sb/trial/byakko-ex.js
+04-sb/trial/shinryu.js
 04-sb/trial/susano-ex.js
 04-sb/ultimate/ultima_weapon_ultimate.js
 04-sb/ultimate/unending_coil_ultimate.js
