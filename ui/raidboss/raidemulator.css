@@ -538,3 +538,7 @@ div.row.encountersRow {
 .wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-time {
   padding-left: 0.5rem;
 }
+
+templates, template {
+  display: none;
+}

@@ -3,7 +3,7 @@
 class RaidEmulatorPopupText extends StubbedPopupText {
   constructor(options) {
     super(options);
-    this.$popupTextContainerWrapper = $('.popup-text-container-outer');
+    this.$popupTextContainerWrapper = document.querySelector('.popup-text-container-outer');
     this.emulatedOffset = 0;
 
     this.emulator = null;
@@ -14,6 +14,7 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     this.seeking = false;
 
     this.lastSeekTo = 0;
+    this.$textElementTemplate = document.querySelector('template.textElement').content.firstElementChild;
   }
 
   async doUpdate(timestampOffset) {
@@ -31,7 +32,7 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     this.displayedText = this.displayedText.filter((t) => {
       let remaining = t.expires - timestampOffset;
       if (remaining > 0) {
-        t.element.find('.popup-text-remaining').text('(' + (remaining / 1000).toFixed(1) + ')');
+        t.element.querySelector('.popup-text-remaining').textContent = '(' + (remaining / 1000).toFixed(1) + ')';
         return true;
       }
       t.element.remove();
@@ -162,18 +163,15 @@ class RaidEmulatorPopupText extends StubbedPopupText {
   }
 
   _makeTextElement(text, className) {
-    let $ret = $('<div class="popup-text-container"></div>');
-    $ret.addClass(className);
-    let $text = $('<span class="popup-text"></span>');
-    $text.text(text);
-    let $rem = $('<span class="popup-text-remaining pl-1"></span>');
-    $ret.append($text, $rem);
+    let $ret = this.$textElementTemplate.cloneNode(true);
+    $ret.classList.add(className);
+    $ret.querySelector('.popup-text').textContent = text;
     return $ret;
   }
 
   addDisplayText($e, endTimestamp) {
     let remaining = (endTimestamp - this.emulatedOffset) / 1000;
-    $e.find('.popup-text-remaining').text('(' + remaining.toFixed(1) + ')');
+    $e.querySelector('.popup-text-remaining').textContent = '(' + remaining.toFixed(1) + ')';
     this.$popupTextContainerWrapper.append($e);
     this.displayedText.push({
       element: $e,
