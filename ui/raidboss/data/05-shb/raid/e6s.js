@@ -32,9 +32,9 @@
         // select the 4 most recent Ifrit or Raktapaksa's depending on phase
         let combatantName = null;
         if (data.phase === 'ifrit')
-          combatantName = ifritLocaleNames[data.lang];
+          combatantName = ifritLocaleNames[data.parserLang];
         else
-          combatantName = raktapaksaLocaleNames[data.lang];
+          combatantName = raktapaksaLocaleNames[data.parserLang];
 
         let combatantData = null;
         if (combatantName) {

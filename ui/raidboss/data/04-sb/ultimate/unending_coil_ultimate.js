@@ -880,9 +880,9 @@
           str += ' (' + tookTwo.map(function(n) {
             return data.ShortName(n);
           }).join(', ');
-          if (data.lang == 'fr')
+          if (data.displayLang == 'fr')
             str += ' éviter)';
-          else if (data.lang == 'de')
+          else if (data.displayLang == 'de')
             str += ' raus)';
           else
             str += ' out)';
@@ -1017,7 +1017,7 @@
           ko: ['12시', '1시', '3시', '5시', '6시', '7시', '9시', '11시'],
         };
 
-        let dirNames = langMap[data.lang] || langMap['en'];
+        let dirNames = langMap[data.displayLang] || langMap['en'];
         data.naelMarks = output.marks.map(function(i) {
           return dirNames[i];
         });

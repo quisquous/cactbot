@@ -309,7 +309,8 @@ let callSafeDir = (callIndex) => {
         };
         if (data.thunderClones.length === 1)
           return localeCompass[data.thunderClones[0]];
-        const composite = localeCompass[data.thunderClones[0]][data.lang] + '/' + localeCompass[data.thunderClones[1]][data.lang];
+        const composite = localeCompass[data.thunderClones[0]][data.displayLang] + '/' +
+            localeCompass[data.thunderClones[1]][data.displayLang];
         return composite;
       },
     },

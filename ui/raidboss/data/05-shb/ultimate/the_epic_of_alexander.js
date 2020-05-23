@@ -333,7 +333,7 @@ let getHeadmarkerId = (data, matches) => {
             2: '紫 γ',
             3: '绿 δ',
           },
-        }[data.lang];
+        }[data.displayLang];
 
         // Convenience function called for third and fourth nisi passes.
         data.namedNisiPass = (data) => {
@@ -2078,8 +2078,8 @@ let getHeadmarkerId = (data, matches) => {
       durationSeconds: 15,
       suppressSeconds: 20,
       infoText: function(data) {
-        let first = data.firstAlphaOrdainedText[data.lang];
-        let second = data.secondAlphaOrdainedText[data.lang];
+        let first = data.firstAlphaOrdainedText[data.displayLang];
+        let second = data.secondAlphaOrdainedText[data.displayLang];
         // For languages that haven't been translated, just return the second text.
         if (!first || !second)
           return data.secondAlphaOrdainedText;
@@ -2112,8 +2112,8 @@ let getHeadmarkerId = (data, matches) => {
       durationSeconds: 15,
       suppressSeconds: 20,
       infoText: function(data) {
-        let first = data.firstAlphaOrdainedText[data.lang];
-        let second = data.secondAlphaOrdainedText[data.lang];
+        let first = data.firstAlphaOrdainedText[data.displayLang];
+        let second = data.secondAlphaOrdainedText[data.displayLang];
         // For languages that haven't been translated, just return the second text.
         if (!first || !second)
           return data.secondAlphaOrdainedText;
@@ -2822,7 +2822,7 @@ let getHeadmarkerId = (data, matches) => {
               second: '北',
             },
           },
-        }[threeOne][data.lang];
+        }[threeOne][data.displayLang];
 
         // Save this for later.
         data.secondTrineResponse = responses.second;

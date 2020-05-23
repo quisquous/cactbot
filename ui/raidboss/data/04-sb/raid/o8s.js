@@ -505,7 +505,7 @@
           ko: '산개',
           ja: '散開',
           cn: '散开',
-        }[data.lang];
+        }[data.displayLang];
       },
     },
     {
@@ -528,7 +528,7 @@
           ko: '집합',
           ja: 'スタック',
           cn: '集合',
-        }[data.lang];
+        }[data.displayLang];
       },
     },
     {
@@ -550,7 +550,7 @@
           ko: '진실 선더가',
           ja: '真サンダガ',
           cn: '真雷',
-        }[data.lang];
+        }[data.displayLang];
       },
       suppressSeconds: 40,
       infoText: function(data) {
@@ -579,7 +579,7 @@
           ko: '거짓 선더가',
           ja: 'にせサンダガ',
           cn: '假雷',
-        }[data.lang];
+        }[data.displayLang];
       },
       suppressSeconds: 40,
       infoText: function(data) {
@@ -608,7 +608,7 @@
           ko: '거짓 블리자가',
           ja: 'にせブリザガ',
           cn: '假冰',
-        }[data.lang];
+        }[data.displayLang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
@@ -616,7 +616,7 @@
           ko: '밖으로',
           ja: '外へ',
           cn: '远离',
-        }[data.lang];
+        }[data.displayLang];
       },
       suppressSeconds: 40,
       infoText: function(data) {
@@ -645,7 +645,7 @@
           ko: '진실 블리자가',
           ja: '真ブリザガ',
           cn: '真冰',
-        }[data.lang];
+        }[data.displayLang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
@@ -653,7 +653,7 @@
           ko: '안으로',
           ja: '中へ',
           cn: '靠近',
-        }[data.lang];
+        }[data.displayLang];
       },
       suppressSeconds: 40,
       infoText: function(data) {
@@ -682,7 +682,7 @@
           ko: '거짓 블리자가',
           ja: 'にせブリザガ',
           cn: '假冰',
-        }[data.lang];
+        }[data.displayLang];
         data.lastIceDir = {
           en: 'Get In',
           fr: 'rentrer dedans',
@@ -690,7 +690,7 @@
           ko: '안으로',
           ja: '中へ',
           cn: '靠近',
-        }[data.lang];
+        }[data.displayLang];
       },
       suppressSeconds: 40,
       infoText: function(data) {
@@ -719,7 +719,7 @@
           ko: '진실 블리자가',
           ja: '真ブリザガ',
           cn: '真冰',
-        }[data.lang];
+        }[data.displayLang];
         data.lastIceDir = {
           en: 'Get Out',
           fr: 'sortir',
@@ -727,7 +727,7 @@
           ko: '밖으로',
           ja: '外へ',
           cn: '远离',
-        }[data.lang];
+        }[data.displayLang];
       },
       suppressSeconds: 40,
       infoText: function(data) {

@@ -253,7 +253,7 @@
           cn: ['火角', '冰爪', '雷翼'],
           ko: ['화염뿔', '얼음발톱', '번개날개'],
         };
-        let names = allNames[data.lang];
+        let names = allNames[data.parserLang];
         let idx = names.indexOf(matches.name.toLowerCase());
         if (idx == -1)
           return;
