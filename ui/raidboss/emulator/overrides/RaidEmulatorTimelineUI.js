@@ -6,7 +6,8 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     this.emulatedTimerBars = [];
     this.emulatedTimeOffset = 0;
     this.emulatedStatus = 'pause';
-    this.$barContainer = jQuery('.timer-bar-container');
+    this.$barContainer = document.querySelector('.timer-bar-container');
+    this.$progressTemplate = document.querySelector('template.progress').content.firstElementChild;
   }
 
   bindTo(emulator) {
@@ -74,10 +75,10 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     if (barProg >= 100)
       rightText = '';
 
-    bar.$leftLabel.text(bar.event.text);
-    bar.$rightLabel.text(rightText);
-    bar.$bar.attr('aria-valuenow', barElapsed);
-    bar.$bar.css('width', barProg + '%');
+    bar.$leftLabel.textContent = bar.event.text;
+    bar.$rightLabel.textContent = rightText;
+    bar.$bar.ariaValueNow = barElapsed;
+    bar.$bar.style.width = barProg + '%';
   }
 
   // Overrride
@@ -103,11 +104,12 @@ class RaidEmulatorTimelineUI extends TimelineUI {
 
     let end = (e.time - fightNow) * 1000;
     let start = end - (this.options.ShowTimerBarsAtSeconds * 1000);
+    let $progress = this.$progressTemplate.cloneNode(true);
     let bar = {
-      $progress: jQuery('<div class="progress mb-1"></div>'),
-      $bar: jQuery('<div class="progress-bar"></div>'),
-      $leftLabel: jQuery('<div class="timer-bar-left-label"></div>'),
-      $rightLabel: jQuery('<div class="timer-bar-right-label"></div>'),
+      $progress: $progress,
+      $bar: $progress.querySelector('.progress-bar'),
+      $leftLabel: $progress.querySelector('.timer-bar-left-label'),
+      $rightLabel: $progress.querySelector('.timer-bar-right-label'),
       start: this.emulatedTimeOffset + start,
       style: !channeling ? 'fill' : 'empty',
       duration: (channeling ? e.time - fightNow : this.options.ShowTimerBarsAtSeconds) * 1000,
@@ -120,8 +122,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     if (this.options.KeepExpiredTimerBarsForSeconds)
       bar.forceRemoveAt += this.options.KeepExpiredTimerBarsForSeconds * 1000;
 
-    bar.$progress.append(bar.$bar, bar.$leftLabel, bar.$rightLabel);
-    bar.$bar.attr('aria-valuemax', bar.duration);
+    bar.$bar.ariaValueMax = bar.duration;
     this.emulatedTimerBars.push(bar);
     this.$barContainer.append(bar.$progress);
     this.updateBar(bar, this.emulatedTimeOffset);
