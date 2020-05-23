@@ -569,7 +569,7 @@
       alarmText: {
         en: 'Get NE Tornado',
         de: 'Nimm NO Tornado',
-        fr: 'Prenez le Cyclone NO ou NE',
+        fr: 'Prenez le Cyclone NE',
         cn: '去东北龙卷风',
       },
     },
