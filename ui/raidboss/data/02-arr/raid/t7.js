@@ -81,7 +81,7 @@
       },
     },
     {
-      id: 'T7 Voice',
+      id: 'T7 Cursed Voice',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
       netRegexDe: NetRegexes.gainsEffect({ effectId: '1C3' }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: '1C3' }),
@@ -102,7 +102,7 @@
       },
     },
     {
-      id: 'T7 Shriek',
+      id: 'T7 Cursed Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4' }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4' }),
@@ -132,7 +132,7 @@
       },
     },
     {
-      id: 'T7 Shriek Reminder',
+      id: 'T7 Cursed Shriek Reminder',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4' }),
       netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4' }),
