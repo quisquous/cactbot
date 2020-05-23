@@ -315,8 +315,8 @@
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
-            en: 'Shared Tank buster on YOU',
-            de: 'geteilter Tank buster auf DIR',
+            en: 'Shared Tankbuster on YOU',
+            de: 'geteilter Tankbuster auf DIR',
             fr: 'Tank buster à partager sur VOUS',
             ja: '自分にタンクシェア',
             cn: '分摊死刑点名',
