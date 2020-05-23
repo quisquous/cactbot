@@ -331,7 +331,7 @@ ${convertedLine.line}`);
             }
             break;
           case '14':
-            clonedCL = $.extend(true, {}, convertedLine);
+            clonedCL = EmulatorCommon.cloneData(convertedLine, []);
             clonedCL.explodedLine[1] = this.Combatants[clonedCL.explodedLine[0]].Name;
             this.convert14(clonedCL);
             if (clonedCL.line === baseLine) {
@@ -352,7 +352,7 @@ ${baseLine}
 ${convertedLine.line}`);
               break;
             }
-            clonedCL = $.extend(true, {}, convertedLine);
+            clonedCL = EmulatorCommon.cloneData(convertedLine, []);
             clonedCL.explodedLine[5] = this.Combatants[clonedCL.explodedLine[4]].Name;
             this.convert14(clonedCL);
             if (clonedCL.line === baseLine) {

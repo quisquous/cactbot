@@ -64,7 +64,7 @@ class Persistor extends EventBus {
       ret = new Promise((res) => {
         resolver = res;
       });
-      let encounter = $.extend(true, {}, baseEncounter);
+      let encounter = EmulatorCommon.cloneData(baseEncounter, []);
       delete encounter.combatantTracker;
       let encountersStorage = this.encountersStorage;
       let req;
