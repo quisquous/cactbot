@@ -126,7 +126,7 @@
       infoText: {
         en: 'Mirage',
         de: 'Mirage',
-        cn: '分身即',
+        cn: '幻象',
       },
     },
     {
