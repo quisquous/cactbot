@@ -55,7 +55,9 @@ class CactbotConfigurator {
       'jobs': [],
     };
     this.configOptions = configOptions;
-    this.lang = configOptions.ShortLocale;
+    // If the user has set a display language, use that.
+    // Otherwise, use the operating system language as a default for the config tool.
+    this.lang = configOptions.DisplayLanguage || configOptions.ShortLocale;
     this.savedConfig = savedConfig || {};
     this.developerOptions = this.getOption('general', 'ShowDeveloperOptions', false);
 
