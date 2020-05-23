@@ -7,7 +7,12 @@ class EmulatorCommon {
   }
 
   static cloneData(data, exclude = ['options', 'party']) {
-    let ret = {};
+    let ret;
+    if (Array.isArray(data)) {
+      ret = [];
+    } else {
+      ret = {};
+    }
     // Use extra logic for top-level extend for property exclusion
     // This cut the execution time of this code from 41,000ms to 50ms when parsing a 12 minute pull
     for (let i in data) {
@@ -30,6 +35,10 @@ class EmulatorCommon {
           ret[i] = EmulatorCommon._cloneData(data[i]);
 
         return ret;
+      }
+
+      if (data instanceof RegExp) {
+        return new RegExp(data);
       }
 
       let ret = {};
@@ -69,7 +78,7 @@ EmulatorCommon.wipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000010:/;
 EmulatorCommon.winRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000003:/;
 EmulatorCommon.cactbotWipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
 
-EmulatorCommon.zoneChangeRegex = /\[(?<lineTimestamp>[^\]]+)\] 01:Changed Zone to (?<Zone>.*)\./;
+EmulatorCommon.zoneChangeRegex = /\[(?<lineTimestamp>[^\]]+)\] 01:Changed Zone to (?<zone>.*)\./;
 
 EmulatorCommon.eventDetailsRegexes = {
   '03': Regexes.addedCombatantFull({ capture: true }),
