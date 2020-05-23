@@ -325,8 +325,8 @@
         }
         if (data.role == 'tank' || data.role == 'healer') {
           return {
-            en: 'Shared Tank buster on ' + data.ShortName(matches.target),
-            de: 'geteilter Tank buster on ' + data.ShortName(matches.target),
+            en: 'Shared Tankbuster on ' + data.ShortName(matches.target),
+            de: 'geteilter Tankbuster on ' + data.ShortName(matches.target),
             fr: 'Tank buster à partager sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + ' にタンクシェア',
             cn: '分摊死刑点 ' + data.ShortName(matches.target),
@@ -540,7 +540,7 @@
       alertText: {
         en: 'Min HP: Provoke Boss => Late NE Tornado',
         de: 'Min HP: Boss herrausfordern => Später No Tornado',
-        fr: 'PV Min : Provocation Boss => Cyclone NO ou NE en retard',
+        fr: 'PV Min : Provocation Boss => Cyclone NE en retard',
         cn: '最少HP:挑衅BOSS=>东北龙卷风',
       },
     },
