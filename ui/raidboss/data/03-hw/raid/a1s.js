@@ -187,9 +187,9 @@
       'locale': 'fr',
       'replaceSync': {
         '3000-Tonze Missile': 'Missile de 3000 tonz',
-        'Faust': 'faust',
-        'Hangar 8': 'Grand hangar GH-8',
-        'Machinery Bay 44': 'Hangar d\'armement HA-44',
+        'Faust': 'Faust',
+        'Hangar 8': 'grand hangar GH-8',
+        'Machinery Bay 44': 'hangar d\'armement HA-44',
         'Oppressor': 'Oppresseur',
         'Oppressor 0.5': 'Oppresseur 0.5',
       },
@@ -209,7 +209,7 @@
         'Resin Bomb': 'Bombe de résine',
         'Royal Fount': 'Source royale',
         'Self-Destruct': 'Auto-destruction',
-        'Sturm Doll Add': 'Add poupée sturm',
+        'Sturm Doll Add': 'Add Poupée sturm',
       },
     },
     {

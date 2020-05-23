@@ -133,7 +133,7 @@
         en: 'Mirage',
         de: 'Mirage',
         fr: 'Mirage',
-        cn: '分身即',
+        cn: '幻象',
       },
     },
     {

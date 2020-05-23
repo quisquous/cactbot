@@ -22,6 +22,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Orbs on YOU',
+            fr: 'Orbes sur Vous',
             cn: '球点名',
           };
         }
@@ -30,6 +31,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Orbs on ' + data.ShortName(matches.target),
+            fr: 'Orbes sur ' + data.ShortName(matches.target),
             cn: '球点' + data.ShortName(matches.target),
           };
         }
@@ -44,6 +46,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Stun ' + matches.target,
+          fr: 'Stun ' + matches.target,
           cn: '眩晕' + matches.target,
         };
       },
@@ -60,6 +63,7 @@
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
       infoText: {
         en: 'Laser Tethers',
+        fr: 'Liens laser',
         cn: '镭射连线',
       },
     },
@@ -69,6 +73,7 @@
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Nisi A on YOU',
+        fr: 'Peine A sur VOUS',
         cn: '蓝BUFF点名',
       },
     },
@@ -78,6 +83,7 @@
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Nisi B on YOU',
+        fr: 'Peine B sur VOUS',
         cn: '红BUFF点名',
       },
     },
@@ -85,6 +91,31 @@
       id: 'A4S Carnage Zero',
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
       response: Responses.spread('alert'),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'The Manipulator': 'Manipulateur',
+      },
+      'replaceText': {
+        'Carnage': 'Carnage',
+        'Carnage Zero': 'Carnage Zéro',
+        'Discoid': 'Discoïde',
+        'Emergency Quarantine': 'Quarantaine d\'urgence',
+        'Hydrothermal Missile': 'Missile hydrothermique',
+        'Jagd Doll': 'Poupée jagd',
+        'Judgment Nisi': 'Jugement conditionnel',
+        'Mortal Revolution': 'Révolution mortelle',
+        'Perpetual Ray': 'Rayon perpétuel',
+        'Royal Pentacle': 'Pentacle royal',
+        'Seed Of The Sky': 'Graine du ciel',
+        'Straf Doll': 'Poupée straf',
+      },
+      '~effectNames': {
+        'Stun Resistance': 'Résistance à Étourdissement',
+      },
     },
   ],
 }];
