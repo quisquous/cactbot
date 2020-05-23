@@ -196,10 +196,10 @@
       regexKo: Regexes.echo({ line: 'cactbot 언어.*?', capture: false }),
       infoText: function(data) {
         return {
-          en: 'Language: ' + data.lang,
-          de: 'Sprache: ' + data.lang,
-          cn: '语言: ' + data.lang,
-          ko: '언어: ' + data.lang,
+          en: 'Language: ' + data.parserLang,
+          de: 'Sprache: ' + data.parserLang,
+          cn: '语言: ' + data.parserLang,
+          ko: '언어: ' + data.parserLang,
         };
       },
     },

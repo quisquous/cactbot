@@ -109,7 +109,7 @@
           cn: '远离',
           ko: '밖',
         };
-        data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
+        data.moonInOut = moonInOut[data.displayLang] || moonInOut['en'];
       },
     },
     {
@@ -128,7 +128,7 @@
           cn: '靠近',
           ko: '안',
         };
-        data.moonInOut = moonInOut[data.lang] || moonInOut['en'];
+        data.moonInOut = moonInOut[data.displayLang] || moonInOut['en'];
       },
     },
     {

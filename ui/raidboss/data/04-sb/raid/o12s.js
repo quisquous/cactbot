@@ -130,7 +130,7 @@
           ja: '四角',
           cn: '四角',
           ko: '짝수',
-        }[data.lang];
+        }[data.displayLang];
         let triangleName = {
           en: 'Triangle',
           de: 'Dreieck',
@@ -138,7 +138,7 @@
           ja: '三角',
           cn: '三角',
           ko: '홀수',
-        }[data.lang];
+        }[data.displayLang];
         return '#' + num + ' ' + (isTriangle ? triangleName : squareName);
       },
     },
@@ -675,7 +675,7 @@
             0b110: '남서쪽(7시)',
             0b111: '서쪽(9시)',
           },
-        }[data.lang][v];
+        }[data.displayLang][v];
       },
     },
   ],

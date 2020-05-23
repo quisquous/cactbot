@@ -52,7 +52,7 @@
           '我柜子动了等下再玩',
           'CG',
         ],
-      }[data.lang];
+      }[data.displayLang];
       if (!goofs)
         return;
 

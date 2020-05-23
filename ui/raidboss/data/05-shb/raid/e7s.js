@@ -432,7 +432,7 @@
       alertText: function(data) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
-        let color = colorTrans[data.lang];
+        let color = colorTrans[data.displayLang];
         if (!color)
           return;
         return {
@@ -513,7 +513,7 @@
       alertText: function(data) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
-        let color = colorTrans[data.lang];
+        let color = colorTrans[data.displayLang];
         if (!color)
           return;
         return {

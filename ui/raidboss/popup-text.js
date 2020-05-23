@@ -35,6 +35,9 @@ class PopupText {
     this.alertText = document.getElementById('popup-text-alert');
     this.alarmText = document.getElementById('popup-text-alarm');
 
+    this.parserLang = this.options.ParserLanguage || 'en';
+    this.displayLang = this.options.AlertsLanguage || this.options.DisplayLanguage || this.options.ParserLanguage || 'en';
+
     if (this.options.BrowserTTS) {
       this.ttsEngine = new BrowserTTSEngine();
       this.ttsSay = function(text) {
@@ -176,9 +179,8 @@ class PopupText {
       }
     }).bind(this);
 
-    let parserLang = this.options.ParserLanguage || 'en';
     // construct something like regexEn or regexFr.
-    let langSuffix = parserLang.charAt(0).toUpperCase() + parserLang.slice(1);
+    let langSuffix = this.parserLang.charAt(0).toUpperCase() + this.parserLang.slice(1);
     let regexParserLang = 'regex' + langSuffix;
     let netRegexParserLang = 'netRegex' + langSuffix;
 
@@ -191,9 +193,8 @@ class PopupText {
         console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
         continue;
       } else if (!(zoneRegex instanceof RegExp)) {
-        let parserLang = this.options.ParserLanguage || 'en';
-        if (parserLang in zoneRegex) {
-          zoneRegex = zoneRegex[parserLang];
+        if (this.parserLang in zoneRegex) {
+          zoneRegex = zoneRegex[this.parserLang];
         } else if ('en' in zoneRegex) {
           zoneRegex = zoneRegex['en'];
         } else {
@@ -325,7 +326,6 @@ class PopupText {
   }
 
   Reset() {
-    let parserLang = this.options.ParserLanguage || 'en';
     let preserveHP = 0;
     if (this.data && this.data.currentHP)
       preserveHP = this.data.currentHP;
@@ -337,7 +337,9 @@ class PopupText {
       job: this.job,
       role: this.role,
       party: this.partyTracker,
-      lang: parserLang,
+      lang: this.parserLang,
+      parserLang: this.parserLang,
+      displayLang: this.displayLang,
       currentHP: preserveHP,
       options: Options,
       ShortName: this.ShortNamify,
@@ -470,8 +472,7 @@ class PopupText {
         // in this object can also be functions.
         if (typeof result !== 'object')
           return result;
-        let lang = this.options.AlertsLanguage || this.options.DisplayLanguage || this.options.ParserLanguage || 'en';
-        return triggerHelper.valueOrFunction(result[lang] || result['en']);
+        return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
       },
       triggerOptions: trigger.id && this.options.PerTriggerOptions[trigger.id] || {},
       triggerAutoConfig: trigger.id && this.options.PerTriggerAutoConfig[trigger.id] || {},
@@ -711,7 +712,6 @@ class PopupText {
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/[-=]>\s*$/g, '');
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/^\s*<[-=]/g, '');
       // * arrows in the middle are a sequence, e.g. "in => out => spread"
-      let lang = this.options.AlertsLanguage || this.options.ParserLanguage || 'en';
       let arrowReplacement = {
         en: ' then ',
         cn: '然后',
@@ -720,7 +720,8 @@ class PopupText {
         ja: 'や',
         ko: ' 그리고 ',
       };
-      triggerHelper.ttsText = triggerHelper.ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g, arrowReplacement[lang]);
+      triggerHelper.ttsText = triggerHelper.ttsText.replace(/\s*(<[-=]|[=-]>)\s*/g,
+          arrowReplacement[this.displayLang]);
       this.ttsSay(triggerHelper.ttsText);
     } else if (triggerHelper.soundUrl && triggerHelper.soundAlertsEnabled) {
       this._playAudioFile(triggerHelper.soundUrl, triggerHelper.soundVol);
