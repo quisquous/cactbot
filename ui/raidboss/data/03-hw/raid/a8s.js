@@ -930,7 +930,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Blaster Mirage': 'Réplique du Fracasseur',
         'Blaster(?! Mirage)': 'Fracasseur',
@@ -991,7 +990,7 @@
         'Perpetual Ray': 'Rayon perpétuel',
         'Power Tackle': 'Tacle puissant',
         'Rocket Drill': 'Roquette-foreuse',
-        'Seed of the Sky': 'Graine du ciel',
+        'Seed Of The Sky': 'Graine du ciel',
         'Short Needle': 'Petits missiles',
         'Single Buster': 'Pulsoréacteur',
         'Super Cyclone': 'Super cyclone',
