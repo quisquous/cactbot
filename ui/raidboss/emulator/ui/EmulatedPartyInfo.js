@@ -4,16 +4,16 @@ class EmulatedPartyInfo extends EventBus {
   constructor(emulator) {
     super();
     this.emulator = emulator;
-    this.$partyInfo = $('.partyInfoColumn .party');
-    this.$triggerInfo = $('.triggerInfoColumn');
-    this.$triggerHideCheckbox = $('.triggerHideSkipped');
-    this.$triggerBar = $('.playerTriggers');
+    this.$partyInfo = document.querySelector('.partyInfoColumn .party');
+    this.$triggerInfo = document.querySelector('.triggerInfoColumn');
+    this.$triggerHideCheckbox = document.querySelector('.triggerHideSkipped');
+    this.$triggerBar = document.querySelector('.playerTriggers');
     this.triggerBars = [];
     this.latestDisplayedState = 0;
     this.displayedParty = {};
     this.currentPerspective = null;
     for (let i = 0; i < 8; ++i)
-      this.triggerBars[i] = this.$triggerBar.find('.player' + i);
+      this.triggerBars[i] = this.$triggerBar.querySelector('.player' + i);
 
     emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
       if (lastLogTimestamp) {
@@ -34,20 +34,31 @@ class EmulatedPartyInfo extends EventBus {
     });
     let me = this;
     this.UpdateTriggerState = () => {
-      if (me.$triggerHideCheckbox[0].checked)
+      if (me.$triggerHideCheckbox.checked)
         me.hideNonExecutedTriggers();
       else
         me.showNonExecutedTriggers();
     };
-    this.$triggerHideCheckbox.on('change', this.UpdateTriggerState);
+    this.$triggerHideCheckbox.onchange = this.UpdateTriggerState;
+
+    this.$triggerItemTemplate = document.querySelector('template.triggerItem').content.firstElementChild;
+    this.$playerInfoRowTemplate = document.querySelector('template.playerInfoRow').content.firstElementChild;
+    this.$playerTriggerInfoTemplate = document.querySelector('template.playerTriggerInfo').content.firstElementChild;
+    this.$jsonViewerTemplate = document.querySelector('template.jsonViewer').content.firstElementChild;
+    this.$triggerLabelTemplate = document.querySelector('template.triggerLabel').content.firstElementChild;
+    this.$wrapCollapseTemplate = document.querySelector('template.wrapCollapse').content.firstElementChild;
   }
 
   hideNonExecutedTriggers() {
-    this.$triggerInfo.find('.trigger-not-executed').addClass('d-none');
+    this.$triggerInfo.querySelectorAll('.trigger-not-executed').forEach((n) => {
+      n.classList.add('d-none');
+    });
   }
 
   showNonExecutedTriggers() {
-    this.$triggerInfo.find('.trigger-not-executed').removeClass('d-none');
+    this.$triggerInfo.querySelectorAll('.trigger-not-executed').forEach((n) => {
+      n.classList.remove('d-none');
+    });
   }
 
   /**
@@ -66,14 +77,18 @@ class EmulatedPartyInfo extends EventBus {
     this.currentPerspective = null;
     this.displayedParty = {};
     this.latestDisplayedState = 0;
-    this.$partyInfo.empty();
-    this.$triggerBar.find('.triggerItem').remove();
+    this.$partyInfo.innerHTML = '';
+    this.$triggerBar.querySelectorAll('.triggerItem').forEach((n) => {
+      n.remove();
+    });
     let membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
       let a = encounter.encounter.combatantTracker.combatants[l];
       let b = encounter.encounter.combatantTracker.combatants[r];
       return EmulatedPartyInfo.JobOrder.indexOf(a.job) - EmulatedPartyInfo.JobOrder.indexOf(b.job);
     }).slice(0, 8);
-    $('.playerTriggerInfo').remove();
+    document.querySelectorAll('.playerTriggerInfo').forEach((n) => {
+      n.remove();
+    });
 
     for (let i = 0; i < membersToDisplay.length; ++i) {
       let id = membersToDisplay[i];
@@ -82,9 +97,11 @@ class EmulatedPartyInfo extends EventBus {
       this.UpdateCombatantInfo(encounter, id);
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
-      this.triggerBars[i].removeClass('tank healer dps');
+      this.triggerBars[i].classList.remove('tank');
+      this.triggerBars[i].classList.remove('healer');
+      this.triggerBars[i].classList.remove('dps');
       if (encounter.encounter.combatantTracker.combatants[id].job) {
-        this.triggerBars[i].addClass(
+        this.triggerBars[i].classList.add(
             Util.jobToRole(encounter.encounter.combatantTracker.combatants[id].job),
         );
       }
@@ -94,9 +111,9 @@ class EmulatedPartyInfo extends EventBus {
         if (!trigger.status.executed || trigger.resolvedOffset > encounter.encounter.duration)
           continue;
 
-        let $e = $('<div class="triggerItem"></div>');
-        $e.css('left', ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%');
-        $e.tooltip({
+        let $e = this.$triggerItemTemplate.cloneNode(true);
+        $e.style.left = ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%';
+        jQuery($e).tooltip({
           title: trigger.triggerHelper.trigger.id,
           placement: 'bottom',
         });
@@ -117,10 +134,12 @@ class EmulatedPartyInfo extends EventBus {
       return;
 
     this.currentPerspective = id;
-    this.$triggerInfo.find('.playerTriggerInfo').addClass('d-none');
-    this.displayedParty[id].$triggerElem.removeClass('d-none');
-    this.$partyInfo.find('.playerInfoRow').removeClass('border border-success');
-    this.displayedParty[id].$rootElem.addClass('border border-success');
+    this.$triggerInfo.querySelector('.playerTriggerInfo').classList.add('d-none');
+    this.displayedParty[id].$triggerElem.classList.remove('d-none');
+    this.$partyInfo.querySelector('.playerInfoRow').classList.remove('border');
+    this.$partyInfo.querySelector('.playerInfoRow').classList.remove('border-success');
+    this.displayedParty[id].$rootElem.classList.add('border');
+    this.displayedParty[id].$rootElem.classList.add('border-success');
     this.dispatch('SelectPerspective', id);
   }
 
@@ -138,100 +157,96 @@ class EmulatedPartyInfo extends EventBus {
     let hpProg = (State.HP / State.maxHP) * 100;
     let hpLabel = State.HP + '/' + State.maxHP;
     hpLabel = spacePadLeft(hpLabel, (State.maxHP.toString().length * 2) + 1);
-    this.displayedParty[id].$hpProgElem.attr('aria-valuenow', State.HP);
-    this.displayedParty[id].$hpProgElem.attr('aria-valuemax', State.maxHP);
-    this.displayedParty[id].$hpProgElem.css('width', hpProg + '%');
-    this.displayedParty[id].$hpLabelElem.text(hpLabel);
+    this.displayedParty[id].$hpProgElem.ariaValueNow = State.HP;
+    this.displayedParty[id].$hpProgElem.ariaValueMax = State.maxHP;
+    this.displayedParty[id].$hpProgElem.style.width = hpProg + '%';
+    this.displayedParty[id].$hpLabelElem.textContent = hpLabel;
 
     let mpProg = (State.MP / State.maxMP) * 100;
     let mpLabel = State.MP + '/' + State.maxMP;
     mpLabel = spacePadLeft(mpLabel, (State.maxMP.toString().length * 2) + 1);
-    this.displayedParty[id].$mpProgElem.attr('aria-valuenow', State.MP);
-    this.displayedParty[id].$mpProgElem.attr('aria-valuemax', State.maxMP);
-    this.displayedParty[id].$mpProgElem.css('width', mpProg + '%');
-    this.displayedParty[id].$mpLabelElem.text(mpLabel);
+    this.displayedParty[id].$mpProgElem.ariaValueNow = State.MP;
+    this.displayedParty[id].$mpProgElem.ariaValueMax = State.maxMP;
+    this.displayedParty[id].$mpProgElem.style.width = mpProg + '%';
+    this.displayedParty[id].$mpLabelElem.textContent = mpLabel;
   }
 
   GetPartyInfoObjectFor(encounter, id) {
+    let $e = this.$playerInfoRowTemplate.cloneNode(true);
+    let $hp = $e.querySelector('.hp');
+    let $mp = $e.querySelector('.mp');
     let ret = {
-      $rootElem: $('<div class="playerInfoRow"></div>'),
-      $iconElem: $('<div class="jobicon"></div>'),
-      $hpElem: $('<div class="hp"><div class="progress"></div></div>'),
-      $hpLabelElem: $('<div class="label text-monospace"></div>'),
-      $hpProgElem: $('<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>'),
-      $mpElem: $('<div class="mp"><div class="progress"><div class="label"></div></div></div>'),
-      $mpLabelElem: $('<div class="label text-monospace"></div>'),
-      $mpProgElem: $('<div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>'),
+      $rootElem: $e,
+      $iconElem: $e.querySelector('jobicon'),
+      $hpElem: $hp,
+      $hpLabelElem: $hp.querySelector('.label'),
+      $hpProgElem: $hp.querySelector('.progress-bar'),
+      $mpElem: $mp,
+      $mpLabelElem: $mp.querySelector('.label'),
+      $mpProgElem: $mp.querySelector('.progress-bar'),
       id: id,
       $triggerElem: this.GetTriggerInfoObjectFor(encounter, id),
     };
 
     let combatant = encounter.encounter.combatantTracker.combatants[id];
-    ret.$rootElem.addClass((combatant.job || '').toUpperCase());
-    ret.$rootElem.append(ret.$iconElem);
-    ret.$hpElem.children('.progress').append(ret.$hpProgElem, ret.$hpLabelElem);
-    ret.$mpElem.children('.progress').append(ret.$mpProgElem, ret.$mpLabelElem);
-    ret.$rootElem.append(ret.$hpElem);
-    ret.$rootElem.append(ret.$mpElem);
-    ret.$rootElem.tooltip({
+    ret.$rootElem.classList.add((combatant.job || '').toUpperCase());
+    jQuery(ret.$rootElem).tooltip({
       animation: false,
       placement: 'left',
       title: combatant.name,
     });
     let me = this;
-    ret.$rootElem.on('click', (e) => {
+    ret.$rootElem.onclick = (e) => {
       me.selectPerspective(id);
-    });
-    ret.$triggerElem.data('id', id);
+    };
+    ret.$triggerElem.setAttribute('data-id', id);
     return ret;
   }
 
   GetTriggerInfoObjectFor(encounter, id) {
-    let $ret = $('<div class="playerTriggerInfo d-none"></div>');
-    let $container = $('<div class="d-flex flex-column"></div>');
-    $ret.append($container);
+    let $ret = this.$playerTriggerInfoTemplate.cloneNode(true);
+    let $container = $ret.querySelector('.d-flex.flex-column');
 
     let per = encounter.perspectives[id];
 
-    let $initDataViewer = $('<pre class="json-viewer"></pre>');
-    $initDataViewer.text(JSON.stringify(per.initialData, null, 2));
+    let $initDataViewer = this.$jsonViewerTemplate.cloneNode(true);
+    $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
 
     $container.append(this._WrapCollapse('Initial Data', $initDataViewer, () => {
-      $initDataViewer.text(JSON.stringify(per.initialData, null, 2));
+      $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
     }));
 
-    let $triggerContainer = $('<div class="d-flex flex-column"></div>');
+    let $triggerContainer = $container.querySelector('.d-flex.flex-column');
 
     for (let i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
-      let $triggerDataViewer = $('<pre class="json-viewer"></pre>');
+      let $triggerDataViewer = this.$jsonViewerTemplate.cloneNode(true);
       let buttonName = this.GetTriggerFiredLabelTime(per.triggers[i]) +
         ' - ' + per.triggers[i].triggerHelper.trigger.id;
       let $trigger = this._WrapCollapse(buttonName, $triggerDataViewer, () => {
-        $triggerDataViewer.text(JSON.stringify(per.triggers[i], null, 2));
+        $triggerDataViewer.textContent = JSON.stringify(per.triggers[i], null, 2);
       });
-      let $buttonWrapper = $trigger.children('.wrap-collapse-button');
-      let $label = $('<div class="trigger-label"></div>');
-      let $labelText = $('<div class="trigger-label-text"></div>');
-      let $labelTime = $('<div class="trigger-label-time"></div>');
-      $labelText.text(this.GetTriggerLabelText(per.triggers[i]));
-      $labelTime.text(this.GetTriggerResolvedLabelTime(per.triggers[i]));
-      $label.append($labelTime, $labelText);
+      let $buttonWrapper = $trigger.querySelector('.wrap-collapse-button');
+      let $label = this.$triggerLabelTemplate.cloneNode(true);
+      let $labelText = $label.querySelector('.trigger-label-text');
+      let $labelTime = $label.querySelector('.trigger-label-time');
+      $labelText.textContent = this.GetTriggerLabelText(per.triggers[i]);
+      $labelTime.textContent = this.GetTriggerResolvedLabelTime(per.triggers[i]);
       $buttonWrapper.append($label);
       if (per.triggers[i].status.executed)
-        $trigger.addClass('trigger-executed');
+        $trigger.classList.add('trigger-executed');
       else
-        $trigger.addClass('trigger-not-executed');
+        $trigger.classList.add('trigger-not-executed');
 
       $triggerContainer.append($trigger);
     }
 
     $container.append($triggerContainer);
 
-    let $finalDataViewer = $('<pre class="json-viewer"></pre>');
-    $finalDataViewer.text(JSON.stringify(per.finalData, null, 2));
+    let $finalDataViewer = this.$jsonViewerTemplate.cloneNode(true);
+    $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
 
     $container.append(this._WrapCollapse('Final Data', $finalDataViewer, () => {
-      $finalDataViewer.text(JSON.stringify(per.finalData, null, 2));
+      $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
     }));
 
     return $ret;
@@ -261,17 +276,18 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   _WrapCollapse(label, $obj, onclick) {
-    let $ret = $('<div class="wrap-collapse"></div>');
-    let $button = $('<button class="btn btn-outline-light btn-sm text-white" type="button">' + label + '</button>');
-    let $buttonContainer = $('<div class="wrap-collapse-button"></div>');
-    $buttonContainer.append($button);
-    let $wrapper = $('<div class="wrap-collapse-wrapper d-none"></div>');
-    $button.on('click', () => {
-      $wrapper.toggleClass('d-none');
+    let $ret = this.$wrapCollapseTemplate.cloneNode(true);
+    let $button = $ret.querySelector('.btn');
+    $button.textContent = label;
+    let $wrapper = $ret.querySelector('.wrap-collapse-wrapper');
+    $button.onclick = () => {
+      if ($wrapper.classList.contains('d-none'))
+        $wrapper.classList.remove('d-none');
+      else
+        $wrapper.classList.add('d-none');
       onclick && onclick();
-    });
+    };
     $wrapper.append($obj);
-    $ret.append($buttonContainer, $wrapper);
     return $ret;
   }
 }

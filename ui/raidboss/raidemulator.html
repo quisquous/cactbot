@@ -214,6 +214,75 @@
           <div class="timer-bar-right-label"></div>
         </div>
       </template>
+      <template class="triggerItem">
+        <div class="triggerItem"></div>
+      </template>
+      <template class="playerInfoRow">
+        <div class="playerInfoRow">
+          <div class="jobicon"></div>
+          <div class="hp">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>
+              <div class="label text-monospace"></div>
+            </div>
+          </div>
+          <div class="mp">
+            <div class="progress">
+              <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>
+              <div class="label text-monospace"></div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template class="playerTriggerInfo">
+        <div class="playerTriggerInfo d-none">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column"></div>
+          </div>
+        </div>
+      </template>
+      <template class="jsonViewer">
+        <pre class="json-viewer"></pre>
+      </template>
+      <template class="triggerLabel">
+        <div class="trigger-label">
+          <div class="trigger-label-time"></div>
+          <div class="trigger-label-text"></div>
+        </div>
+      </template>
+      <template class="wrapCollapse">
+        <div class="wrap-collapse">
+          <div class="wrap-collapse-button">
+            <button class="btn btn-outline-light btn-sm text-white" type="button"></button>
+          </div>
+          <div class="wrap-collapse-wrapper d-none"></div>
+        </div>
+      </template>
+      <template class="encounterTabRow">
+        <div class="selectorRow border-bottom border-dark"></div>
+      </template>
+      <template class="encounterTabEncounterRow">
+        <div class="selectorRow border-bottom border-dark">
+          <div class="encounterStart d-inline"></div>
+          <div class="encounterName d-inline mx-2"></div>
+          <div class="encounterDuration d-inline"></div>
+        </div>
+      </template>
+      <template class="encounterInfo">
+        <div class="encounterInfo">
+          <div class="encounterLoad btn btn-primary pull-right mb-1">Load Encounter</div>
+          <div class="encounterParse btn btn-primary pull-right mb-1">Reparse Encounter</div>
+          <div class="encounterPrune btn btn-primary pull-right mb-1">Prune Encounter</div>
+          <div class="encounterDelete btn btn-primary pull-right mb-1">Delete Encounter</div>
+          <div class="encounterZone">Zone: <span class="label"></span></div>
+          <div class="encounterStart">Start: <span class="label"></span></div>
+          <div class="encounterDuration">Duration: <span class="label"></span></div>
+          <div class="encounterOffset">Pull At: <span class="label"></span></div>
+          <div class="encounterName">Name: <span class="label"></span></div>
+          <div class="encounterStartStatus">Start Status: <span class="label"></span></div>
+          <div class="encounterEndStatus">End Status: <span class="label"></span></div>
+        </div>
+      </template>
     </templates>
   </body>
 </html>

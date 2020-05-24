@@ -4,40 +4,15 @@ class EncounterTab extends EventBus {
   constructor(persistor) {
     super();
     this.persistor = persistor;
-    let me = this;
-    // @TODO: This is really lazy, might want to *not* refresh the entire tab when changing
-    this.$zoneColumn = $('#encountersTab .zoneList').on('click', '.selectorRow', (ev) => {
-      let t = $(ev.currentTarget);
-      t.parent().children('.selectorRow.selected').removeClass('selected');
-      t.addClass('selected');
-      this.currentZone = t.text();
-      me.RefreshUI();
-    });
-    this.$dateColumn = $('#encountersTab .dateList').on('click', '.selectorRow', (ev) => {
-      let t = $(ev.currentTarget);
-      t.parent().children('.selectorRow.selected').removeClass('selected');
-      t.addClass('selected');
-      this.currentDate = t.text();
-      me.RefreshUI();
-    });
-    this.$encounterColumn = $('#encountersTab .encounterList').on('click', '.selectorRow', (ev) => {
-      let t = $(ev.currentTarget);
-      t.parent().children('.selectorRow.selected').removeClass('selected');
-      t.addClass('selected');
-      this.currentEncounter = t.data('index');
-      me.RefreshUI();
-    });
 
-    // @TODO: Probably a better way to do this...
-    this.$infoColumn = $('#encountersTab .encounterInfo').on('click', '.encounterLoad', (ev) => {
-      me.dispatch('load', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
-    }).on('click', '.encounterParse', (ev) => {
-      me.dispatch('parse', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
-    }).on('click', '.encounterPrune', (ev) => {
-      me.dispatch('prune', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
-    }).on('click', '.encounterDelete', (ev) => {
-      me.dispatch('delete', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
-    });
+    this.$zoneColumn = document.querySelector('#encountersTab .zoneList');
+    this.$dateColumn = document.querySelector('#encountersTab .dateList');
+    this.$encounterColumn = document.querySelector('#encountersTab .encounterList');
+    this.$infoColumn = document.querySelector('#encountersTab .encounterInfo');
+
+    this.$encounterTabRowTemplate = document.querySelector('template.encounterTabRow').content.firstElementChild;
+    this.$encounterTabEncounterRowTemplate = document.querySelector('template.encounterTabEncounterRow').content.firstElementChild;
+    this.$encounterInfoTemplate = document.querySelector('template.encounterInfo').content.firstElementChild;
   }
 
   refresh() {
@@ -71,18 +46,29 @@ class EncounterTab extends EventBus {
   }
 
   RefreshZones() {
-    this.$zoneColumn.empty();
+    this.$zoneColumn.innerHTML = '';
 
     let clear = true;
 
     let zones = new Set(Object.keys(this.encounters));
 
     for (let zone of [...zones].sort()) {
-      let $row = $('<div class="selectorRow border-bottom border-dark">' + zone + '</div>');
+      let $row = this.$encounterTabRowTemplate.cloneNode(true);
+      $row.innerText = zone;
       if (zone === this.currentZone) {
         clear = false;
-        $row.addClass('selected');
+        $row.classList.add('selected');
       }
+      let me = this;
+      $row.onclick = (ev) => {
+        let t = ev.currentTarget;
+        t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
+          n.classList.remove('selected');
+        });
+        t.classList.add('selected');
+        this.currentZone = t.textContent;
+        me.RefreshUI();
+      };
       this.$zoneColumn.append($row);
     }
 
@@ -91,18 +77,29 @@ class EncounterTab extends EventBus {
   }
 
   RefreshDates() {
-    this.$dateColumn.empty();
+    this.$dateColumn.innerHTML = '';
 
     let clear = true;
 
     if (this.currentZone !== undefined) {
       let dates = new Set(Object.keys(this.encounters[this.currentZone]));
       for (let date of [...dates].sort()) {
-        let $row = $('<div class="selectorRow border-bottom border-dark">' + date + '</div>');
+        let $row = this.$encounterTabRowTemplate.cloneNode(true);
+        $row.innerText = date;
         if (date === this.currentDate) {
           clear = false;
-          $row.addClass('selected');
+          $row.classList.add('selected');
         }
+        let me = this;
+        $row.onclick = (ev) => {
+          let t = ev.currentTarget;
+          t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
+            n.classList.remove('selected');
+          });
+          t.classList.add('selected');
+          this.currentDate = t.textContent;
+          me.RefreshUI();
+        };
         this.$dateColumn.append($row);
       }
     }
@@ -112,7 +109,7 @@ class EncounterTab extends EventBus {
   }
 
   RefreshEncounters() {
-    this.$encounterColumn.empty();
+    this.$encounterColumn.innerHTML = '';
 
     let clear = true;
 
@@ -122,16 +119,26 @@ class EncounterTab extends EventBus {
       });
       for (let i in sortedEncounters) {
         let enc = this.encounters[this.currentZone][this.currentDate][i];
-        let $enc = $('<div class="selectorRow border-bottom border-dark"></div>');
-        $enc.data('index', i);
-        $enc.append($('<div class="encounterStart d-inline">[' + enc.start + ']</div>'));
-        $enc.append($('<div class="encounterStart d-inline mx-2">' + enc.name + '</div>'));
-        $enc.append($('<div class="encounterStart d-inline">(' + enc.duration + ')</div>'));
+        let $row = this.$encounterTabEncounterRowTemplate.cloneNode(true);
+        $row.setAttribute('data-index', i);
         if (i === this.currentEncounter) {
           clear = false;
-          $enc.addClass('selected');
+          $row.classList.add('selected');
         }
-        this.$encounterColumn.append($enc);
+        $row.querySelector('.encounterStart').innerText = '[' + enc.start + ']';
+        $row.querySelector('.encounterName').innerText = enc.name;
+        $row.querySelector('.encounterDuration').innerText = '(' + enc.duration + ')';
+        let me = this;
+        $row.onclick = (ev) => {
+          let t = ev.currentTarget;
+          t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
+            n.classList.remove('selected');
+          });
+          t.classList.add('selected');
+          this.currentEncounter = t.getAttribute('data-index');
+          me.RefreshUI();
+        };
+        this.$encounterColumn.append($row);
       }
     }
 
@@ -140,7 +147,7 @@ class EncounterTab extends EventBus {
   }
 
   RefreshInfo() {
-    this.$infoColumn.empty();
+    this.$infoColumn.innerHTML = '';
 
     if (this.currentZone !== undefined && this.currentDate !== undefined &&
       this.currentEncounter !== undefined) {
@@ -154,18 +161,28 @@ class EncounterTab extends EventBus {
       if (!isNaN(enc.offset))
         pullAt = timeToString(enc.offset, false);
 
-      let $info = $('<div class="encounterInfo"></div>');
-      $info.append($('<div class="encounterLoad btn btn-primary pull-right mb-1">Load Encounter</div>'));
-      $info.append($('<div class="encounterParse btn btn-primary pull-right mb-1">Reparse Encounter</div>'));
-      $info.append($('<div class="encounterPrune btn btn-primary pull-right mb-1">Prune Encounter</div>'));
-      $info.append($('<div class="encounterDelete btn btn-primary pull-right mb-1">Delete Encounter</div>'));
-      $info.append($('<div class="encounterZone">Zone: ' + enc.zone + '</div>'));
-      $info.append($('<div class="encounterStart">Start: ' + dateTimeToString(enc.start) + '</div>'));
-      $info.append($('<div class="encounterDuration">Duration: ' + timeToString(enc.duration, false) + '</div>'));
-      $info.append($('<div class="encounterOffset">Pull At: ' + pullAt + '</div>'));
-      $info.append($('<div class="encounterName">Name: ' + enc.name + '</div>'));
-      $info.append($('<div class="encounterStartStatus">Start Status: ' + enc.startStatus + '</div>'));
-      $info.append($('<div class="encounterEndStatus">End Status: ' + enc.endStatus + '</div>'));
+      let me = this;
+
+      let $info = this.$encounterInfoTemplate.cloneNode(true);
+      $info.querySelector('.encounterLoad').onclick = () => {
+        me.dispatch('load', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
+      };
+      $info.querySelector('.encounterParse').onclick = () => {
+        me.dispatch('parse', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
+      };
+      $info.querySelector('.encounterPrune').onclick = () => {
+        me.dispatch('prune', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
+      };
+      $info.querySelector('.encounterDelete').onclick = () => {
+        me.dispatch('delete', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
+      };
+      $info.querySelector('.encounterZone .label').textContent = enc.zone;
+      $info.querySelector('.encounterStart .label').textContent = dateTimeToString(enc.start);
+      $info.querySelector('.encounterDuration .label').textContent = timeToString(enc.duration, false);
+      $info.querySelector('.encounterOffset .label').textContent = pullAt;
+      $info.querySelector('.encounterName .label').textContent = enc.name;
+      $info.querySelector('.encounterStartStatus .label').textContent = enc.startStatus;
+      $info.querySelector('.encounterEndStatus .label').textContent = enc.endStatus;
 
       this.$infoColumn.append($info);
     }

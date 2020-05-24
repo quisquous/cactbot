@@ -38,7 +38,7 @@ let Options = {
   let emulatedWebSocket;
   let logConverter;
 
-  $(() => {
+  document.addEventListener('DOMContentLoaded', () => {
     emulator = new RaidEmulator();
     progressBar = new ProgressBar(emulator);
     persistor = new Persistor();
@@ -114,10 +114,6 @@ let Options = {
         type: 'onLogEvent',
         detail: logs,
       });
-    });
-
-    $('.showEncountersButton').on('click', () => {
-      $('.encountersTabColumn').toggleClass('col-auto').toggleClass('col-3');
     });
 
     persistor.on('ready', () => {
@@ -200,11 +196,11 @@ let Options = {
           }
         };
 
-        $('body').on('dragenter dragover', (e) => {
+        document.body.ondragenter = document.body.ondragover = (e) => {
           e.preventDefault();
           e.stopPropagation();
-        });
-        $('body').on('drop', async (e) => {
+        };
+        document.body.ondrop = async (e) => {
           e.preventDefault();
           e.stopPropagation();
           let dt = e.originalEvent.dataTransfer;
@@ -213,15 +209,15 @@ let Options = {
             let file = files[i];
             await checkFile(file);
           }
-        });
+        };
 
-        let $exportButton = $('.exportDBButton');
+        let $exportButton = document.querySelector('.exportDBButton');
 
-        $exportButton.tooltip({
+        jQuery($exportButton).tooltip({
           title: 'Export DB is very slow and shows a 0 byte download, but it does work eventually.',
           placement: 'bottom',
         });
-        $exportButton.on('click', (e) => {
+        $exportButton.onclick = (e) => {
           persistor.exportDB().then((obj) => {
             // encounters can have unicode, can't use btoa for base64 encode
             let blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
@@ -234,27 +230,29 @@ let Options = {
               URL.revokeObjectURL(a.href);
             }, 1000);
           });
-        });
+        };
 
-        let $fileInput = $('.loadFileInput');
+        let $fileInput = document.querySelector('.loadFileInput');
 
-        $fileInput.on('change', async (e) => {
+        $fileInput.onchange = async (e) => {
           for (let i = 0; i < e.originalEvent.target.files.length; ++i) {
             let file = e.originalEvent.target.files[i];
             checkFile(file);
           }
+        };
+
+        document.querySelectorAll('.importDBButton, .loadNetworkLogButton').forEach((n) => {
+          n.onclick = (e) => {
+            $fileInput.trigger('click');
+          }
         });
 
-        $('.importDBButton, .loadNetworkLogButton').on('click', (e) => {
-          $fileInput.trigger('click');
-        });
-
-        $('.deleteDBModal .btn-primary').on('click', (e) => {
+        document.querySelector('.deleteDBModal .btn-primary').onclick = (e) => {
           persistor.clearDB().then(() => {
             encounterTab.refresh();
-            $('.deleteDBModal').modal('hide');
+            jQuery('.deleteDBModal').modal('hide');
           });
-        });
+        };
 
         // Debug code
         window.raidEmulatorDebug = {
@@ -267,4 +265,4 @@ let Options = {
       });
     });
   });
-})(jQuery);
+})();
