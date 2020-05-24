@@ -136,7 +136,7 @@ let Util = {
 };
 
 (function() {
-  let wsUrl = /[\?&]OVERLAY_WS=([^&]+)/.exec(location.href);
+  let wsUrl = /[\?&](OVERLAY_WS|HOST_PORT)=([^&]+)/.exec(location.href);
   let ws = null;
   let queue = [];
   let rseqCounter = 0;
@@ -153,7 +153,7 @@ let Util = {
     };
 
     let connectWs = function() {
-      ws = new WebSocket(wsUrl[1]);
+      ws = new WebSocket(wsUrl[2]);
 
       ws.addEventListener('error', (e) => {
         console.error(e);
