@@ -243,7 +243,7 @@ let Options = {
 
         document.querySelectorAll('.importDBButton, .loadNetworkLogButton').forEach((n) => {
           n.onclick = (e) => {
-            $fileInput.trigger('click');
+            $fileInput.click();
           }
         });
 
