@@ -225,7 +225,7 @@
           return {
             en: 'Knockback Cleave; Face Outside',
             de: 'Rückstoß Cleave; nach Außen schauen',
-            fr: 'Poussée Cleave; Regardez à l\'extérieur',
+            fr: 'Poussée Cleave; Regardez vers l\'extérieur',
             ja: 'ノックバック ソード; 外向く',
             cn: '击退顺劈; 面向外侧',
             ko: '넉백 소드; 바깥쪽 바라보기',
