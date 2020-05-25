@@ -195,7 +195,7 @@
       alarmText: {
         en: 'Defamation',
         de: 'Ehrenstrafe',
-        fr: 'diffamation',
+        fr: 'Diffamation',
         ja: '名誉罰',
         cn: '名誉罪',
         ko: '명예형: 보스 밑에서 나 홀로!!!',
@@ -323,7 +323,7 @@
       },
       'replaceText': {
         '(?<! )Sacrament': 'Sacrement',
-        '--timestop--': 'arrêt du temps',
+        '--timestop--': '--arrêt du temps--',
         '\\(Radiant\\?\\) Sacrament': 'Sacrement (rayonnant ?)',
         '\\(W\\)': '(O)',
         'Almost Holy(?!\\?)': 'Quasi-Miracle',
