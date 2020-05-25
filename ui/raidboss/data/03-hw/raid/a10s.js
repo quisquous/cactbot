@@ -26,6 +26,7 @@
       infoText: {
         en: 'Hit Adds With Weight Trap',
         de: 'Adds mit Gewichtsfalle treffen',
+        fr: 'Frappez les Adds avec le Piège à poids',
         cn: '使用铁锤陷阱击中小怪',
       },
     },
@@ -42,6 +43,7 @@
       infoText: {
         en: 'Floor Spikes',
         de: 'Boden-Stachel',
+        fr: 'Pics au sol',
         cn: '地刺陷阱',
       },
     },
@@ -56,6 +58,7 @@
       infoText: {
         en: 'Frost Lasers',
         de: 'Eislaser',
+        fr: 'Lasers de glace',
         cn: '冰晶陷阱',
       },
     },
@@ -70,6 +73,7 @@
       infoText: {
         en: 'Ceiling Weight',
         de: 'Gewichte von der Decke',
+        fr: 'Poids du plafond',
         cn: '铁球陷阱',
       },
     },
@@ -165,6 +169,7 @@
         return {
           en: 'Tank Swap, Get Away',
           de: 'Tankwechsel, geh weg',
+          fr: 'Tank swap, éloignez-vous',
           cn: '换T并且远离',
         };
       },
@@ -185,6 +190,7 @@
           return {
             en: 'Shield ' + data.ShortName(matches.target),
             de: 'Schild ' + data.ShortName(matches.target),
+            fr: 'Bouclier ' + data.ShortName(matches.target),
             cn: '单盾' + data.ShortName(matches.target),
           };
         }
@@ -234,6 +240,7 @@
       alertText: {
         en: 'Prey on YOU',
         de: 'Makierung auf DIR',
+        fr: 'Marquage sur VOUS',
         cn: '火圈点名',
       },
     },
@@ -248,6 +255,7 @@
       infoText: {
         en: 'Pass Prey',
         de: 'Makierung weitergeben',
+        fr: 'Passez le marquage',
         cn: '传递点名',
       },
     },
@@ -262,6 +270,7 @@
       infoText: {
         en: 'Hit Floor Trap',
         de: 'Aktiviere Bodenfalle',
+        fr: 'Activez le Piège au sol',
         cn: '踩地刺陷阱',
       },
     },
@@ -286,6 +295,7 @@
       infoText: {
         en: 'Hit Boss With Ice',
         de: 'Boss mit Eis treffen',
+        fr: 'Frappez le boss avec la Glace',
         cn: '踩冰晶陷阱',
       },
     },
@@ -333,25 +343,37 @@
         'Stoneskin': 'Steinhaut',
         'Triple Charge': 'Dreifachaufladung',
         'Weight Trap': 'Gewichts-Falle',
-        'Leghops\\?\\/Charge \\(In\\)\\?': 'Gob am Berg?/Aufladung (Rein)?',
+        'Leghops\\?/Charge \\(In\\)\\?': 'Gob am Berg?/Aufladung (Rein)?',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Buzzsaw': 'scie mécanique',
-        'Gobpress R-VI': 'gobrouleau compresseur G-VI',
+        'Buzzsaw': 'Scie mécanique',
+        'Gobpress R-VI': 'Gobrouleau compresseur G-VI',
         'Lamebrix Strikebocks': 'Lamebrix le Mercenaire',
         'Lameprix Strikedocks': 'Lamebrix le Diversif',
-        'The Excruciationator': 'Plate-forme de torture polyvalente',
+        'The Excruciationator': 'la plate-forme de torture polyvalente',
         'Weight Of The World': 'Poids du monde',
       },
       'replaceText': {
-        'Brighteyes': 'Œil vif',
+        '(?!--)mechanic': 'Mécanique',
+        '--in--': '--intérieur--',
+        '--in/out--': '--intérieur/extérieur--',
+        '--out--': '--extérieur--',
+        '--out/in--': '--extérieur/intérieur--',
+        '--spread/stack--': '--dispersion/package--',
+        '--stack/spread--': '--package/dispersion--',
+        '\\(Stack/Spread\\)': '(Package/Dispersion)',
+        'Brighteyes Markers': 'Marquage Œil vif',
+        'Brighteyes(?! Markers)': 'Œil vif',
+        'Clone Add': 'Add Clone',
         'Discharge': 'Mitraillage',
         'Double Charge': 'Rechargement double',
+        'Floor Trap': 'Piège au sol',
+        'Frost Trap': 'Piège de glace',
         'Frostbite': 'Gelure',
+        'Gobbie Adds x3 \\(NE\\)': 'Adds x3 Gob',
         'Goblin Rush': 'Charge gobeline',
         'Gobrush Rushgob': 'Gobcharge gobeline',
         'Gobslash Slicetops': 'Gobtranchant du vide',
@@ -363,10 +385,12 @@
         'Illuminati Hand Cannon': 'Main-canon indigo',
         'Impact': 'Impact',
         'Laceration': 'Lacération',
+        'Leghops\\?/Charge \\(In\\)\\?': 'Mortelle ?/Charge (intérieur) ?',
         'Single Charge': 'Rechargement simple',
         'Steam Roller': 'Compression',
         'Stoneskin': 'Cuirasse',
         'Triple Charge': 'Rechargement triple',
+        'Weight Trap': 'Piège à poids',
       },
     },
     {
