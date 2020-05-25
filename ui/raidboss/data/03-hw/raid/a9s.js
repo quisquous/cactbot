@@ -135,7 +135,7 @@
         return {
           en: 'Scrapline on YOU',
           de: 'Schrottlinie auf DIR',
-          fr: 'Corde à feraille sur VOUS',
+          fr: 'Corde à ferraille sur VOUS',
           cn: '死刑',
         };
         // ...probably, we hope...
