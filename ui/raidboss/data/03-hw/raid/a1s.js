@@ -48,9 +48,10 @@
     },
     {
       id: 'A1S Hydrothermal Healer',
-      regex: Regexes.headMarker({ id: '001E' }),
+      regex: Regexes.headMarker({ id: '001E', capture: false }),
       condition: Conditions.caresAboutMagical(),
-      infoText: function(data, matches) {
+      suppressSeconds: 2,
+      infoText: function(data) {
         data.hydro = data.hydro || [];
         if (data.hydro.length == 0)
           return;
@@ -64,9 +65,9 @@
     },
     {
       id: 'A1S Hydrothermal Cleanup',
-      regex: Regexes.headMarker({ id: '001E' }),
+      regex: Regexes.headMarker({ id: '001E', capture: false }),
       delaySeconds: 10,
-      run: function(data, matches) {
+      run: function(data) {
         delete data.hydro;
       },
     },
@@ -87,7 +88,7 @@
     },
     {
       id: 'A1S Hypercompressed Collect',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\.5'] }),
+      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
       regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
@@ -100,24 +101,26 @@
     },
     {
       id: 'A1S Hypercompressed You',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\.5'] }),
+      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
       regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
       regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
       regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
       regexCn: Regexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
       regexKo: Regexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
       condition: Conditions.targetIsYou(),
+      suppressSeconds: 2,
       response: Responses.tankBuster('alarm'),
     },
     {
       id: 'A1S Hypercompressed Other',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\.5'], capture: false }),
+      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
       regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
       regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
       regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'], capture: false }),
       regexCn: Regexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
       regexKo: Regexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 0.3,
+      suppressSeconds: 2,
       alertText: function(data) {
         data.hyper = data.hyper || [];
         if (data.hyper.includes(data.me))
@@ -138,14 +141,14 @@
     },
     {
       id: 'A1S Hypercompressed Delete',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\.5'] }),
-      regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
-      regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
-      regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
-      regexCn: Regexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
-      regexKo: Regexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
+      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
+      regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
+      regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
+      regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'], capture: false }),
+      regexCn: Regexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
+      regexKo: Regexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 10,
-      run: function(data, matches) {
+      run: function(data) {
         delete data.hyper;
       },
     },
@@ -184,9 +187,9 @@
       'locale': 'fr',
       'replaceSync': {
         '3000-Tonze Missile': 'Missile de 3000 tonz',
-        'Faust': 'faust',
-        'Hangar 8': 'Grand hangar GH-8',
-        'Machinery Bay 44': 'Hangar d\'armement HA-44',
+        'Faust': 'Faust',
+        'Hangar 8': 'grand hangar GH-8',
+        'Machinery Bay 44': 'hangar d\'armement HA-44',
         'Oppressor': 'Oppresseur',
         'Oppressor 0.5': 'Oppresseur 0.5',
       },
@@ -206,7 +209,7 @@
         'Resin Bomb': 'Bombe de résine',
         'Royal Fount': 'Source royale',
         'Self-Destruct': 'Auto-destruction',
-        'Sturm Doll Add': 'Add poupée sturm',
+        'Sturm Doll Add': 'Add Poupée sturm',
       },
     },
     {

@@ -45,7 +45,10 @@ UserConfig.registerOptions('general', {
       id: 'DisplayLanguage',
       name: {
         en: 'Display language',
+        de: 'Displaysprache',
         fr: 'Langue d\'affichage',
+        ja: '表示言語',
+        cn: '显示语言',
         ko: '주 사용 언어',
       },
       type: 'select',
