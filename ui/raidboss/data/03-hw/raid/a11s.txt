@@ -26,7 +26,7 @@ hideall "--sync--"
 40.6 "Spin Crusher" sync /:Cruise Chaser:1A85:/
 
 # skippable
-45.8 "E.D.D. Add" sync / 03:........:Added new combatant E\.D\.D\./ window 50,5
+45.8 "E.D.D. Add" sync / 03:........:Added new combatant E.D.D./ window 50,5
 
 # If we jump to this laser sword immediately after first, the timing is:
 # 9.2 (first sword) 21.7 (second sword)
@@ -139,7 +139,7 @@ hideall "--sync--"
 450.9 "Laser X Sword" sync /:Cruise Chaser:1A7F:/
 
 # maybe skippable
-458.7 "E.D.D. Add" sync / 03:........:Added new combatant E\.D\.D\./
+458.7 "E.D.D. Add" sync / 03:........:Added new combatant E.D.D./
 462.0 "Photon (dps)" sync /:Cruise Chaser:1A73:/
 470.2 "Whirlwind" sync /:Cruise Chaser:1A84:/
 
@@ -198,7 +198,7 @@ hideall "--sync--"
 683.0 "--targetable--"
 
 693.2 "Laser X Sword" sync /:Cruise Chaser:1A7F:/
-697.2 "E.D.D. Add" sync / 03:........:Added new combatant E\.D\.D\./
+697.2 "E.D.D. Add" sync / 03:........:Added new combatant E.D.D./
 705.4 "Photon (dps)" sync /:Cruise Chaser:1A73:/
 714.6 "Left/Right Laser Sword" sync /:Cruise Chaser:1A7[A9]:/
 722.7 "Photon (healer)" sync /:Cruise Chaser:1A73:/
