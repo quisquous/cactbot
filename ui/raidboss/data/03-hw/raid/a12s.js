@@ -323,7 +323,7 @@
       },
       'replaceText': {
         '(?<! )Sacrament': 'Sacrement',
-        '--timestop--': 'arrêt du temps', 
+        '--timestop--': 'arrêt du temps',
         '\\(Radiant\\?\\) Sacrament': 'Sacrement (rayonnant ?)',
         '\\(W\\)': '(O)',
         'Almost Holy(?!\\?)': 'Quasi-Miracle',
