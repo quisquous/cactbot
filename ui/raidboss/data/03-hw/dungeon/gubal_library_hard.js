@@ -65,14 +65,14 @@
             return {
               en: 'Close to boss',
               de: 'Nahe zum Boss',
-              fr: 'Près du boss',
+              fr: 'Rapprochez-vous du boss',
               cn: '靠近boss',
             };
           }
           return {
             en: 'Away from boss',
             de: 'Weg vom Boss',
-            fr: 'Eloignez-vous du boss',
+            fr: 'Éloignez-vous du boss',
             cn: '远离boss',
           };
         }
@@ -92,7 +92,7 @@
       infoText: {
         en: 'Away from boss',
         de: 'Weg vom Boss',
-        fr: 'Eloignez-vous du boss',
+        fr: 'Éloignez-vous du boss',
         cn: '远离boss',
       },
     },
@@ -110,7 +110,7 @@
       infoText: {
         en: 'Stand in red',
         de: 'Im Roten stehen',
-        fr: 'Restez dans le rouge',
+        fr: 'Tenez-vous dans le rouge',
         cn: '站在红色',
       },
     },
@@ -128,7 +128,7 @@
       infoText: {
         en: 'Stand in blue',
         de: 'Im Blauen stehen',
-        fr: 'Restez dans le bleu',
+        fr: 'Tenez-vous dans le bleu',
         cn: '站在蓝色',
       },
     },
@@ -154,7 +154,7 @@
           return {
             en: 'Stun Mechanoscribe',
             de: 'betäube Mechanoscholar',
-            fr: 'Etourdissez le Mécano-scribe',
+            fr: 'Étourdissez le Mécano-scribe',
             cn: '眩晕人偶',
           };
         }
@@ -171,7 +171,7 @@
       infoText: {
         en: 'Stand in light circle',
         de: 'Im hellen Kreis stehen',
-        fr: 'Restez dans le cercle blanc',
+        fr: 'Tenez-vous dans le cercle blanc',
         cn: '去白色区域',
       },
     },
@@ -186,7 +186,7 @@
       infoText: {
         en: 'Stand in dark circle',
         de: 'Im dunklen Kreis stehen',
-        fr: 'Restez dans le cercle noir',
+        fr: 'Tenez-vous dans le cercle noir',
         cn: '去黑色区域',
       },
     },
@@ -201,7 +201,7 @@
       infoText: {
         en: 'Cleanse in green circle',
         de: 'Im grünen Kreis reinigen',
-        fr: 'Nettoyez dans le cercle vert',
+        fr: 'Purifiez-vous dans le cercle vert',
         cn: '去绿色区域',
       },
     },
@@ -240,7 +240,7 @@
       alertText: {
         en: 'Hide behind boulder',
         de: 'Hinter dem Brocken verstecken',
-        fr: 'Derrière le rocher',
+        fr: 'Cachez-vous derrière le rocher',
         cn: '站在陨石后',
       },
     },
@@ -292,23 +292,23 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Behemoth Ward': 'béhémoth conjuré',
+        'Behemoth Ward': 'Béhémoth conjuré',
         'Demon of the Tome': 'Démon du Tome',
-        'Liquid Flame': 'flamme liquide',
-        'Mechanoscribe': 'mécano-scribe',
+        'Liquid Flame': 'Flamme liquide',
+        'Mechanoscribe': 'Mécano-scribe',
         'Meteor': 'Météore',
-        'Middle Shelf Tome': 'livre broché',
+        'Middle Shelf Tome': 'Livre broché',
         'Moonseal': 'Marque lunaire',
         'Strix': 'Strix',
         'Sunseal': 'Marque solaire',
-        'The Astrology and Astromancy Camera': 'Dôme d\'astrologie et d\'astromancie',
-        'The Hall of Magicks': 'Puits des magies',
-        'The Rare Tomes Room': 'Dôme des manuscrits rares',
-        'Top Shelf Tome': 'livre relié',
+        'The Astrology and Astromancy Camera': 'dôme d\'astrologie et d\'astromancie',
+        'The Hall of Magicks': 'puits des magies',
+        'The Rare Tomes Room': 'dôme des manuscrits rares',
+        'Top Shelf Tome': 'Livre relié',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Bibliocide': 'Bibliocide',
         'Book Drop': 'Laché de livre',
         'Check Out': 'Anthologie',
@@ -319,15 +319,15 @@
         'Frightful Roar': 'Rugissement effroyable',
         'Hand/Tornado': 'Main/Tornade',
         'Issue': 'Publication',
-        'Magnetism': 'Magnétisme',
+        'Magnetism/Repel': 'Attraction/Répulsion',
         'Meteor Impact': 'Impact de météore',
-        'Properties Of Darkness': 'Des propriétés d\'Obscurité',
-        'Properties Of Imps': 'Des propriétés de Coup du kappa',
-        'Properties Of Quakes': 'Des propriétés de Méga Séisme',
-        'Properties Of Thunder III': 'Des propriétés de Méga Foudre',
-        'Properties Of Tornados': 'Des propriétés de Tornade',
+        'Properties Of Darkness II': 'Propriétés d\'Extra Obscurité',
+        'Properties Of Darkness(?! II)': 'Propriétés d\'Obscurité',
+        'Properties Of Imps': 'Propriétés de Coup du kappa',
+        'Properties Of Quakes': 'Propriétés de Méga Séisme',
+        'Properties Of Thunder III': 'Propriétés de Méga Foudre',
+        'Properties Of Tornados': 'Propriétés de Tornade',
         'Quakes/Tornados': 'Séismes/Tornades',
-        'Repel': 'Répulsion',
         'Sea Of Flames': 'Mer de flammes',
         'Seal Of Night And Day': 'Gravure',
         'Searing Wind': 'Carbonisation',
