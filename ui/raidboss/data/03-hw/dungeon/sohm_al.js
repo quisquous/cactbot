@@ -30,7 +30,7 @@
       alertText: {
         en: 'Kill Chyme Add',
         de: 'Brei Add töten',
-        fr: 'Tuez l\'add',
+        fr: 'Tuez l\'add Chyme',
         cn: '击杀圣山之糜',
       },
       tts: {
@@ -57,7 +57,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Chyme Of The Mountain': 'chyme des montagnes',
+        'Chyme Of The Mountain': 'Chyme des montagnes',
       },
     },
     {
