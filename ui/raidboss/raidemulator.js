@@ -28,8 +28,8 @@ let Options = {
 (($) => {
   let emulator;
   let progressBar;
-  let gTimelineController;
-  let gPopupText;
+  let timelineController;
+  let popupText;
   let persistor;
   let logEventHandler;
   let encounterTab;
@@ -37,6 +37,7 @@ let Options = {
   let emulatedMap;
   let emulatedWebSocket;
   let logConverter;
+  let timelineUI;
 
   document.addEventListener('DOMContentLoaded', () => {
     emulator = new RaidEmulator();
@@ -117,10 +118,10 @@ let Options = {
     });
 
     persistor.on('ready', () => {
-      UserConfig.getUserConfigLocation('raidboss', function(e) {
-        addOverlayListener('onLogEvent', function(e) {
+      UserConfig.getUserConfigLocation('raidboss', function (e) {
+        addOverlayListener('onLogEvent', function (e) {
           // eslint-disable-next-line new-cap
-          gTimelineController.OnLogEvent(e);
+          timelineController.OnLogEvent(e);
         });
 
         callOverlayHandler({
@@ -128,26 +129,26 @@ let Options = {
           source: location.href,
         }).then((e) => {
           // eslint-disable-next-line new-cap
-          gTimelineController.SetDataFiles(e.detail.files);
+          timelineController.SetDataFiles(e.detail.files);
           // eslint-disable-next-line new-cap
-          gPopupText.OnDataFilesRead(e);
+          popupText.OnDataFilesRead(e);
           // eslint-disable-next-line new-cap
-          gPopupText.ReloadTimelines();
+          popupText.ReloadTimelines();
           emulator.dataFilesEvent = e;
         });
-        let gTimelineUI = new RaidEmulatorTimelineUI(Options);
-        gTimelineUI.bindTo(emulator);
-        gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
-        gTimelineController.bindTo(emulator);
-        gPopupText = new RaidEmulatorPopupText(Options);
-        gPopupText.bindTo(emulator);
+        timelineUI = new RaidEmulatorTimelineUI(Options);
+        timelineUI.bindTo(emulator);
+        timelineController = new RaidEmulatorTimelineController(Options, timelineUI);
+        timelineController.bindTo(emulator);
+        popupText = new RaidEmulatorPopupText(Options);
+        popupText.bindTo(emulator);
 
         // eslint-disable-next-line new-cap
-        gTimelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(gPopupText));
+        timelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(popupText));
         // eslint-disable-next-line new-cap
-        gPopupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(gTimelineController));
+        popupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(timelineController));
 
-        emulator.setPopupText(gPopupText);
+        emulator.setPopupText(popupText);
 
         encounterTab.refresh();
 
@@ -247,10 +248,33 @@ let Options = {
           }
         });
 
+        document.querySelectorAll('.modal button.close').forEach((n) => {
+          n.onclick = (e) => {
+            let target = e.currentTarget;
+            while (!target.classList.contains('modal') && target !== document.body) {
+              target = target.parentElement;
+            }
+            if (target !== document.body) {
+              hideModal('.' + [...target.classList].join('.'));
+            }
+          }
+        });
+
+        document.querySelectorAll('.modal').forEach((n) => {
+          n.onclick = (e) => {
+            if (e.target === n)
+              hideModal();
+          }
+        });
+
+        document.querySelector('.clearDBButton').onclick = (e) => {
+          showModal('.deleteDBModal');
+        };
+
         document.querySelector('.deleteDBModal .btn-primary').onclick = (e) => {
           persistor.clearDB().then(() => {
             encounterTab.refresh();
-            jQuery('.deleteDBModal').modal('hide');
+            hideModal('.deleteDBModal');
           });
         };
 
@@ -258,9 +282,16 @@ let Options = {
         window.raidEmulatorDebug = {
           emulator: emulator,
           progressBar: progressBar,
-          timelineController: gTimelineController,
-          popupText: gPopupText,
+          timelineController: timelineController,
+          popupText: popupText,
           persistor: persistor,
+          logEventHandler: logEventHandler,
+          encounterTab: encounterTab,
+          emulatedPartyInfo: emulatedPartyInfo,
+          emulatedMap: emulatedMap,
+          emulatedWebSocket: emulatedWebSocket,
+          logConverter: logConverter,
+          timelineUI: timelineUI,
         };
       });
     });

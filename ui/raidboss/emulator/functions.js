@@ -50,3 +50,25 @@ function properCase(str) {
 function spacePadLeft(str, len) {
   return str.padStart(len, ' ');
 }
+
+function showModal(selector) {
+  let modal = document.querySelector(selector);
+  let body = document.body;
+  let backdrop = document.querySelector('.modal-backdrop');
+  body.classList.add('modal-open');
+  backdrop.classList.add('show');
+  backdrop.classList.remove('hide');
+  modal.classList.add('show');
+  modal.style.display = 'block';
+}
+
+function hideModal(selector = '.modal.show') {
+  let modal = document.querySelector(selector);
+  let body = document.body;
+  let backdrop = document.querySelector('.modal-backdrop');
+  body.classList.remove('modal-open');
+  backdrop.classList.remove('show');
+  backdrop.classList.add('hide');
+  modal.classList.remove('show');
+  modal.style.display = '';
+}
