@@ -542,3 +542,11 @@ div.row.encountersRow {
 templates, template {
   display: none;
 }
+
+.tooltip {
+  pointer-events: none;
+  z-index: -1000;
+}
+.tooltip.show {
+  z-index: 1070;
+}

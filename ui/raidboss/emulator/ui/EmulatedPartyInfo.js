@@ -3,6 +3,7 @@
 class EmulatedPartyInfo extends EventBus {
   constructor(emulator) {
     super();
+    this.tooltips = [];
     this.emulator = emulator;
     this.$partyInfo = document.querySelector('.partyInfoColumn .party');
     this.$triggerInfo = document.querySelector('.triggerInfoColumn');
@@ -74,6 +75,11 @@ class EmulatedPartyInfo extends EventBus {
    * @param {AnalyzedEncounter} encounter
    */
   ResetPartyInfo(encounter) {
+    this.tooltips.map((tt) => {
+      tt.tooltip.remove();
+      return null;
+    });
+    this.tooltips = [];
     this.currentPerspective = null;
     this.displayedParty = {};
     this.latestDisplayedState = 0;
@@ -113,10 +119,7 @@ class EmulatedPartyInfo extends EventBus {
 
         let $e = this.$triggerItemTemplate.cloneNode(true);
         $e.style.left = ((trigger.resolvedOffset / encounter.encounter.duration) * 100) + '%';
-        jQuery($e).tooltip({
-          title: trigger.triggerHelper.trigger.id,
-          placement: 'bottom',
-        });
+        this.tooltips.push(new Tooltip($e, 'bottom', trigger.triggerHelper.trigger.id));
         this.triggerBars[i].append($e);
       }
     }
@@ -190,11 +193,7 @@ class EmulatedPartyInfo extends EventBus {
 
     let combatant = encounter.encounter.combatantTracker.combatants[id];
     ret.$rootElem.classList.add((combatant.job || '').toUpperCase());
-    jQuery(ret.$rootElem).tooltip({
-      animation: false,
-      placement: 'left',
-      title: combatant.name,
-    });
+    this.tooltips.push(new Tooltip(ret.$rootElem, 'left', combatant.name));
     let me = this;
     ret.$rootElem.onclick = (e) => {
       me.selectPerspective(id);

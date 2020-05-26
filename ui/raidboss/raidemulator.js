@@ -214,10 +214,22 @@ let Options = {
 
         let $exportButton = document.querySelector('.exportDBButton');
 
-        jQuery($exportButton).tooltip({
-          title: 'Export DB is very slow and shows a 0 byte download, but it does work eventually.',
-          placement: 'bottom',
+        new Tooltip($exportButton, 'bottom', 
+          'Export DB is very slow and shows a 0 byte download, but it does work eventually.');
+
+        document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
+          let target = document.querySelector(n.getAttribute('data-target'));
+          n.addEventListener('click', () => {
+            if (n.getAttribute('aria-expanded') === 'false') {
+              n.setAttribute('aria-expanded', 'true');
+              target.classList.add('show');
+            } else {
+              n.setAttribute('aria-expanded', 'false');
+              target.classList.remove('show');
+            }
+          });
         });
+
         $exportButton.onclick = (e) => {
           persistor.exportDB().then((obj) => {
             // encounters can have unicode, can't use btoa for base64 encode

@@ -3,28 +3,21 @@
 class ProgressBar {
   constructor(emulator) {
     let me = this;
-    this.$progressBarTooltip = jQuery('.encounterProgressBar').tooltip({
-      animation: false,
-      placement: 'bottom',
-    });
+    this.$progressBarTooltip = new Tooltip('.encounterProgressBar', 'bottom', '', false);
     this.$progressBarCurrent = document.querySelector('.current-timestamp');
     this.$progressBarDuration = document.querySelector('.duration-timestamp');
     this.$progress = document.querySelector('.encounterProgressBar');
     this.$progressBar = document.querySelector('.encounterProgressBar .progress-bar');
     this.$engageIndicator = document.querySelector('.progressBarRow .engageIndicator');
-    jQuery(this.$engageIndicator).tooltip({
-      animation: false,
-      placement: 'bottom',
-      title: 'Fight Begins',
-    });
+    new Tooltip(this.$engageIndicator, 'bottom', 'Fight Begins');
     this.emulator = emulator;
     this.$progress.onmousemove = (e) => {
       if (me.emulator.currentEncounter) {
         let percent = e.offsetX / e.currentTarget.offsetWidth;
         let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
-        me.$progressBarTooltip.data('bs.tooltip').config.offset = e.offsetX - (e.currentTarget.offsetWidth / 2);
-        me.$progressBarTooltip.data('bs.tooltip').config.title = timeToString(time);
-        me.$progressBarTooltip.tooltip('show');
+        this.$progressBarTooltip.offset.x = e.offsetX - (e.currentTarget.offsetWidth / 2);
+        this.$progressBarTooltip.setText(timeToString(time));
+        me.$progressBarTooltip.show();
       }
     };
     this.$progress.onclick = (e) => {
