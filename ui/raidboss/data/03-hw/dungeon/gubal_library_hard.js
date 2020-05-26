@@ -154,7 +154,7 @@
           return {
             en: 'Stun Mechanoscribe',
             de: 'betäube Mechanoscholar',
-            fr: 'Étourdissez le Mécano-scribe',
+            fr: 'Stun sur le Mécano-scribe',
             cn: '眩晕人偶',
           };
         }
