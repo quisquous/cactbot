@@ -9,11 +9,11 @@ class Persistor extends EventBus {
 
   initializeDB() {
     let request = window.indexedDB.open('RaidEmulatorEncounters', Persistor.DB_VERSION);
-    request.onsuccess = (ev) => {
+    request.addEventListener('success', (ev) => {
       this.DB = ev.target.result;
       this.dispatch('ready');
-    };
-    request.onupgradeneeded = (ev) => {
+    });
+    request.addEventListener('upgradeneeded', (ev) => {
       let promises = [];
       let encountersStorage;
       let encounterSummariesStorage;
@@ -34,14 +34,14 @@ class Persistor extends EventBus {
         encounterSummariesStorage.createIndex('zone_start', ['zone', 'start']);
       }
       promises.push(new Promise((res) => {
-        encountersStorage.transaction.oncomplete = (tev) => {
+        encountersStorage.transaction.addEventListener('complete', (tev) => {
           res();
-        };
+        });
       }));
       promises.push(new Promise((res) => {
-        encounterSummariesStorage.transaction.oncomplete = (tev) => {
+        encounterSummariesStorage.transaction.addEventListener('complete', (tev) => {
           res();
-        };
+        });
       }));
 
       let completed = 0;
@@ -54,7 +54,7 @@ class Persistor extends EventBus {
           }
         });
       }
-    };
+    });
   }
 
   persistEncounter(baseEncounter) {
@@ -74,15 +74,15 @@ class Persistor extends EventBus {
       } else {
         req = encountersStorage.put(encounter);
       }
-      req.onsuccess = (ev) => {
+      req.addEventListener('success', (ev) => {
         baseEncounter.id = encounter.id = ev.target.result;
         let encounterSummariesStorage = this.encounterSummariesStorage;
         let summary = new PersistorEncounter(baseEncounter);
         let req2 = encounterSummariesStorage.put(summary);
-        req2.onsuccess = (ev) => {
+        req2.addEventListener('success', (ev) => {
           resolver();
-        };
-      };
+        });
+      });
     } else {
       ret = new Promise((r) => r());
     }
@@ -94,12 +94,12 @@ class Persistor extends EventBus {
       if (this.DB !== null) {
         let encountersStorage = this.encountersStorage;
         let req = encountersStorage.get(id);
-        req.onsuccess = (ev) => {
+        req.addEventListener('success', (ev) => {
           let enc = req.result;
           let ret = new Encounter(enc.encounterDay, enc.encounterZone, enc.logLines);
           ret.id = enc.id;
           res(ret);
-        };
+        });
       } else {
         res(null);
       }
@@ -111,19 +111,19 @@ class Persistor extends EventBus {
       if (this.DB !== null) {
         let encountersStorage = this.encountersStorage;
         let req = encountersStorage.delete(id);
-        req.onsuccess = (ev) => {
+        req.addEventListener('success', (ev) => {
           let encounterSummariesStorage = this.encounterSummariesStorage;
           let req = encounterSummariesStorage.delete(id);
-          req.onsuccess = (ev) => {
+          req.addEventListener('success', (ev) => {
             res(true);
-          };
-          req.onerror = (ev) => {
+          });
+          req.addEventListener('error', (ev) => {
             res(false);
-          };
-        };
-        req.onerror = (ev) => {
+          });
+        });
+        req.addEventListener('error', (ev) => {
           res(false);
-        };
+        });
       } else {
         res(null);
       }
@@ -162,9 +162,9 @@ class Persistor extends EventBus {
         else
           req = encounterSummariesStorage.getAll();
 
-        req.onsuccess = (ev) => {
+        req.addEventListener('success', (ev) => {
           res(req.result);
-        };
+        });
       } else {
         res([]);
       }

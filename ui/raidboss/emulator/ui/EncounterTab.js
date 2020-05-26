@@ -60,7 +60,7 @@ class EncounterTab extends EventBus {
         $row.classList.add('selected');
       }
       let me = this;
-      $row.onclick = (ev) => {
+      $row.addEventListener('click', (ev) => {
         let t = ev.currentTarget;
         t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
           n.classList.remove('selected');
@@ -68,7 +68,7 @@ class EncounterTab extends EventBus {
         t.classList.add('selected');
         this.currentZone = t.textContent;
         me.RefreshUI();
-      };
+      });
       this.$zoneColumn.append($row);
     }
 
@@ -91,7 +91,7 @@ class EncounterTab extends EventBus {
           $row.classList.add('selected');
         }
         let me = this;
-        $row.onclick = (ev) => {
+        $row.addEventListener('click', (ev) => {
           let t = ev.currentTarget;
           t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
             n.classList.remove('selected');
@@ -99,7 +99,7 @@ class EncounterTab extends EventBus {
           t.classList.add('selected');
           this.currentDate = t.textContent;
           me.RefreshUI();
-        };
+        });
         this.$dateColumn.append($row);
       }
     }
@@ -129,7 +129,7 @@ class EncounterTab extends EventBus {
         $row.querySelector('.encounterName').innerText = enc.name;
         $row.querySelector('.encounterDuration').innerText = '(' + enc.duration + ')';
         let me = this;
-        $row.onclick = (ev) => {
+        $row.addEventListener('click', (ev) => {
           let t = ev.currentTarget;
           t.parentElement.querySelectorAll('.selectorRow.selected').forEach((n) => {
             n.classList.remove('selected');
@@ -137,7 +137,7 @@ class EncounterTab extends EventBus {
           t.classList.add('selected');
           this.currentEncounter = t.getAttribute('data-index');
           me.RefreshUI();
-        };
+        });
         this.$encounterColumn.append($row);
       }
     }
@@ -164,18 +164,18 @@ class EncounterTab extends EventBus {
       let me = this;
 
       let $info = this.$encounterInfoTemplate.cloneNode(true);
-      $info.querySelector('.encounterLoad').onclick = () => {
+      $info.querySelector('.encounterLoad').addEventListener('click', () => {
         me.dispatch('load', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
-      };
-      $info.querySelector('.encounterParse').onclick = () => {
+      });
+      $info.querySelector('.encounterParse').addEventListener('click', () => {
         me.dispatch('parse', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
-      };
-      $info.querySelector('.encounterPrune').onclick = () => {
+      });
+      $info.querySelector('.encounterPrune').addEventListener('click', () => {
         me.dispatch('prune', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
-      };
-      $info.querySelector('.encounterDelete').onclick = () => {
+      });
+      $info.querySelector('.encounterDelete').addEventListener('click', () => {
         me.dispatch('delete', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
-      };
+      });
       $info.querySelector('.encounterZone .label').textContent = enc.zone;
       $info.querySelector('.encounterStart .label').textContent = dateTimeToString(enc.start);
       $info.querySelector('.encounterDuration .label').textContent = timeToString(enc.duration, false);

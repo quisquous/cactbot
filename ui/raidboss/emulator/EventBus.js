@@ -1,11 +1,21 @@
 'use strict';
 
-// @TODO: more documentation for this
-// Simple event bus implementation to decouple things
+/**
+ * This is a base class that classes can extend to inherit event bus capabilities.
+ * This allows other classes to listen for events with the `on` function.
+ * The inheriting class can fire those events with the `dispatch` function.
+ */
 class EventBus {
   constructor() {
     this.listeners = {};
   }
+  /**
+   * Subscribe to an event
+   *
+   * @param {string} event The event to subscribe to
+   * @param {function} callback The callback to invoke
+   * @param {object} scope Optional. The scope to apply the function against
+   */
   on(event, callback = undefined, scope = undefined) {
     let events = event.split(' ');
     let ret = {};
@@ -22,17 +32,18 @@ class EventBus {
     else if (callback !== undefined)
       return ret;
   }
-  async dispatch(event) {
+  /**
+   * Dispatch an event to any subscribers
+   * @param {string} event The event to dispatch
+   * @param {...*} eventArguments The event arguments to pass to listeners
+   */
+  async dispatch(event, ...eventArguments) {
     if (this.listeners[event] === undefined)
       return;
 
-    let args = [];
-    for (let i = 1; i < arguments.length; ++i)
-      args.push(arguments[i]);
-
     for (let i = 0; i < this.listeners[event].length; ++i) {
       let l = this.listeners[event][i];
-      let res = l.callback.apply(l.scope, args);
+      let res = l.callback.apply(l.scope, eventArguments);
       if (Promise.resolve(res) === res)
         await res;
     }

@@ -40,7 +40,7 @@ class EmulatedPartyInfo extends EventBus {
       else
         me.showNonExecutedTriggers();
     };
-    this.$triggerHideCheckbox.onchange = this.UpdateTriggerState;
+    this.$triggerHideCheckbox.addEventListener('change', this.UpdateTriggerState);
 
     this.$triggerItemTemplate = document.querySelector('template.triggerItem').content.firstElementChild;
     this.$playerInfoRowTemplate = document.querySelector('template.playerInfoRow').content.firstElementChild;
@@ -195,9 +195,9 @@ class EmulatedPartyInfo extends EventBus {
     ret.$rootElem.classList.add((combatant.job || '').toUpperCase());
     this.tooltips.push(new Tooltip(ret.$rootElem, 'left', combatant.name));
     let me = this;
-    ret.$rootElem.onclick = (e) => {
+    ret.$rootElem.addEventListener('click', (e) => {
       me.selectPerspective(id);
-    };
+    });
     ret.$triggerElem.setAttribute('data-id', id);
     return ret;
   }
@@ -279,13 +279,13 @@ class EmulatedPartyInfo extends EventBus {
     let $button = $ret.querySelector('.btn');
     $button.textContent = label;
     let $wrapper = $ret.querySelector('.wrap-collapse-wrapper');
-    $button.onclick = () => {
+    $button.addEventListener('click', () => {
       if ($wrapper.classList.contains('d-none'))
         $wrapper.classList.remove('d-none');
       else
         $wrapper.classList.add('d-none');
       onclick && onclick();
-    };
+    });
     $wrapper.append($obj);
     return $ret;
   }

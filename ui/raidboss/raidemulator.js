@@ -196,12 +196,16 @@ let Options = {
             });
           }
         };
-
-        document.body.ondragenter = document.body.ondragover = (e) => {
+        
+        let ignoreEvent = (e) => {
           e.preventDefault();
           e.stopPropagation();
         };
-        document.body.ondrop = async (e) => {
+
+        document.body.addEventListener('dragenter', ignoreEvent);
+        document.body.addEventListener('dragover', ignoreEvent);
+
+        document.body.addEventListener('drop', async (e) => {
           e.preventDefault();
           e.stopPropagation();
           let dt = e.originalEvent.dataTransfer;
@@ -210,7 +214,7 @@ let Options = {
             let file = files[i];
             await checkFile(file);
           }
-        };
+        });
 
         let $exportButton = document.querySelector('.exportDBButton');
 
@@ -230,7 +234,7 @@ let Options = {
           });
         });
 
-        $exportButton.onclick = (e) => {
+        $exportButton.addEventListener('click', (e) => {
           persistor.exportDB().then((obj) => {
             // encounters can have unicode, can't use btoa for base64 encode
             let blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
@@ -243,25 +247,25 @@ let Options = {
               URL.revokeObjectURL(a.href);
             }, 1000);
           });
-        };
+        });
 
         let $fileInput = document.querySelector('.loadFileInput');
 
-        $fileInput.onchange = async (e) => {
+        $fileInput.addEventListener('change', async (e) => {
           for (let i = 0; i < e.originalEvent.target.files.length; ++i) {
             let file = e.originalEvent.target.files[i];
             checkFile(file);
           }
-        };
+        });
 
         document.querySelectorAll('.importDBButton, .loadNetworkLogButton').forEach((n) => {
-          n.onclick = (e) => {
+          n.addEventListener('click', (e) => {
             $fileInput.click();
-          }
+          });
         });
 
         document.querySelectorAll('.modal button.close').forEach((n) => {
-          n.onclick = (e) => {
+          n.addEventListener('click', (e) => {
             let target = e.currentTarget;
             while (!target.classList.contains('modal') && target !== document.body) {
               target = target.parentElement;
@@ -269,26 +273,26 @@ let Options = {
             if (target !== document.body) {
               hideModal('.' + [...target.classList].join('.'));
             }
-          }
+          });
         });
 
         document.querySelectorAll('.modal').forEach((n) => {
-          n.onclick = (e) => {
+          n.addEventListener('click', (e) => {
             if (e.target === n)
               hideModal();
-          }
+          });
         });
 
-        document.querySelector('.clearDBButton').onclick = (e) => {
+        document.querySelector('.clearDBButton').addEventListener('click', (e) => {
           showModal('.deleteDBModal');
-        };
+        });
 
-        document.querySelector('.deleteDBModal .btn-primary').onclick = (e) => {
+        document.querySelector('.deleteDBModal .btn-primary').addEventListener('click', (e) => {
           persistor.clearDB().then(() => {
             encounterTab.refresh();
             hideModal('.deleteDBModal');
           });
-        };
+        });
 
         // Debug code
         window.raidEmulatorDebug = {

@@ -11,7 +11,7 @@ class ProgressBar {
     this.$engageIndicator = document.querySelector('.progressBarRow .engageIndicator');
     new Tooltip(this.$engageIndicator, 'bottom', 'Fight Begins');
     this.emulator = emulator;
-    this.$progress.onmousemove = (e) => {
+    this.$progress.addEventListener('mousemove', (e) => {
       if (me.emulator.currentEncounter) {
         let percent = e.offsetX / e.currentTarget.offsetWidth;
         let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
@@ -19,14 +19,14 @@ class ProgressBar {
         this.$progressBarTooltip.setText(timeToString(time));
         me.$progressBarTooltip.show();
       }
-    };
-    this.$progress.onclick = (e) => {
+    });
+    this.$progress.addEventListener('click', (e) => {
       if (me.emulator.currentEncounter) {
         let percent = e.offsetX / e.currentTarget.offsetWidth;
         let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
         me.emulator.seek(time);
       }
-    };
+    });
     emulator.on('currentEncounterChanged', (encounter) => {
       me.$progressBarCurrent.textContent = timeToString(0, false);
       me.$progressBarDuration.textContent = timeToString(encounter.encounter.duration, false);
@@ -49,17 +49,17 @@ class ProgressBar {
     });
     let $play = document.querySelector('.progressBarRow button.play');
     let $pause = document.querySelector('.progressBarRow button.pause');
-    $play.onclick = () => {
+    $play.addEventListener('click', () => {
       if (me.emulator.play()) {
         $play.classList.add('d-none');
         $pause.classList.remove('d-none');
       }
-    };
-    $pause.onclick = () => {
+    });
+    $pause.addEventListener('click', () => {
       if (me.emulator.pause()) {
         $pause.classList.add('d-none');
         $play.classList.remove('d-none');
       }
-    };
+    });
   }
 }
