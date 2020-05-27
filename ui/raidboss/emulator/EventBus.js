@@ -12,9 +12,11 @@ class EventBus {
   /**
    * Subscribe to an event
    *
-   * @param {string} event The event to subscribe to
+   * @param {string} event The event(s) to subscribe to, space separated
    * @param {function} callback The callback to invoke
    * @param {object} scope Optional. The scope to apply the function against
+   *
+   * @return {any} The callbacks registered to the event(s)
    */
   on(event, callback = undefined, scope = undefined) {
     let events = event.split(' ');

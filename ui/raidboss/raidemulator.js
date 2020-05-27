@@ -50,31 +50,53 @@ let Options = {
     emulatedWebSocket = new RaidEmulatorWebSocket(emulator);
     logConverter = new NetworkLogConverter();
 
-    emulatedPartyInfo.on('SelectPerspective', (id) => {
+    // Listen for the user to click a player in the party list on the right
+    // and persist that over to the emulator
+    emulatedPartyInfo.on('selectPerspective', (id) => {
       emulator.selectPerspective(id);
     });
 
+    // Listen for the log parser to dispatch a fight
     logEventHandler.on('fight', (day, zone, lines) => {
       let enc = new Encounter(day, zone, lines);
+      // If there's not both a player and an enemy ability, don't persist the encounter
       if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
         return;
 
       emulator.addEncounter(enc);
-      persistor.persistEncounter(enc);
-      encounterTab.refresh();
+      persistor.persistEncounter(enc).then(() => {
+        encounterTab.refresh();
+      });
     });
 
+    // Listen for the user to attempt to load an encounter from the encounters pane
     encounterTab.on('load', (id) => {
+      let p;
+      // Attempt to set the current emulated encounter
       if (!emulator.setCurrentByID(id)) {
+        let resolver;
+        p = new Promise((res) => {
+          resolver = res;
+        });
+        // If that encounter isn't loaded, load it
         persistor.loadEncounter(id).then((enc) => {
           emulator.addEncounter(enc);
           emulator.setCurrentByID(id);
-          if (!isNaN(emulator.currentEncounter.encounter.initialOffset))
-            emulator.seek(emulator.currentEncounter.encounter.initialOffset);
+          resolver();
+        });
+      } else {
+        p = new Promise((res) => {
+          res();
         });
       }
+      // Once we've loaded the encounter, seek to the start of the encounter
+      p.then(() => {
+        if (!isNaN(emulator.currentEncounter.encounter.initialOffset))
+          emulator.seek(emulator.currentEncounter.encounter.initialOffset);
+      });
     });
 
+    // Listen for the user to select re-parse on the encounters tab, then refresh it in the DB
     encounterTab.on('parse', (id) => {
       persistor.loadEncounter(id).then(async (enc) => {
         enc.initialize();
@@ -83,8 +105,10 @@ let Options = {
       });
     });
 
+    // Listen for the user to select prune on the encounters tab
     encounterTab.on('prune', (id) => {
       persistor.loadEncounter(id).then(async (enc) => {
+        // Determine the first line of the log based on the timestamp for encounter start
         let firstLine = 1;
         for (let i = 0; i < enc.logLines.length; ++i) {
           let l = enc.logLines[i];
@@ -96,6 +120,7 @@ let Options = {
 
         firstLine = firstLine > 1 ? firstLine - 1 : 1;
 
+        // Trim log lines and re-persist in DB
         enc.logLines = enc.logLines.slice(firstLine - 1);
 
         enc.initialize();
@@ -104,38 +129,40 @@ let Options = {
       });
     });
 
+    // Listen for the user to select delete on the encounters tab, then do it.
     encounterTab.on('delete', (id) => {
       persistor.deleteEncounter(id).then(() => {
         encounterTab.refresh();
       });
     });
 
+    // Listen for the emulator to event log lines, then dispatch them to the timeline controller
+    // @TODO: Probably a better place to listen for this?
     emulator.on('emitLogs', (logs) => {
-      emulatedWebSocket.dispatch({
+      timelineController.OnLogEvent({
         type: 'onLogEvent',
         detail: logs,
       });
     });
 
+    // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.on('ready', () => {
-      UserConfig.getUserConfigLocation('raidboss', function (e) {
-        addOverlayListener('onLogEvent', function (e) {
-          // eslint-disable-next-line new-cap
-          timelineController.OnLogEvent(e);
-        });
-
+      UserConfig.getUserConfigLocation('raidboss', function(e) {
+        // This is the only remaining dependency on ACT itself.
+        // No way to get the text files/manifest other than through ACT.
         callOverlayHandler({
           call: 'cactbotReadDataFiles',
           source: location.href,
         }).then((e) => {
-          // eslint-disable-next-line new-cap
+          // Make sure timeline and alerts know about the data files
           timelineController.SetDataFiles(e.detail.files);
-          // eslint-disable-next-line new-cap
           popupText.OnDataFilesRead(e);
-          // eslint-disable-next-line new-cap
           popupText.ReloadTimelines();
+          // Store off the event for zone changes/etc
           emulator.dataFilesEvent = e;
         });
+
+        // Initialize the Raidboss components, bind them to the emulator for event listeners
         timelineUI = new RaidEmulatorTimelineUI(Options);
         timelineUI.bindTo(emulator);
         timelineController = new RaidEmulatorTimelineController(Options, timelineUI);
@@ -143,72 +170,67 @@ let Options = {
         popupText = new RaidEmulatorPopupText(Options);
         popupText.bindTo(emulator);
 
-        // eslint-disable-next-line new-cap
         timelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(popupText));
-        // eslint-disable-next-line new-cap
         popupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(timelineController));
 
         emulator.setPopupText(popupText);
 
+        // Load the encounter metadata from the DB
         encounterTab.refresh();
-
-        let importFile = (txt) => {
-          logConverter.convertFile(txt).then((lines) => {
-            let localLogHandler = new LogEventHandler();
-            localLogHandler.currentDate = timeToDateString(lines[0].timestamp);
-
-            localLogHandler.on('fight', async (day, zone, lines) => {
-              let enc = new Encounter(day, zone, lines);
-              if (enc.firstPlayerAbility === null && enc.firstEnemyAbility === null)
-                return;
-              emulator.addEncounter(enc);
-              await persistor.persistEncounter(enc);
-            });
-
-            localLogHandler.parseLogs(lines);
-            localLogHandler.endFight();
-            // Have to wait for a DOM update or something for the encouter tab refresh to work.
-            // No clue why.
-            window.setTimeout(() => {
-              encounterTab.refresh();
-            }, 100);
-          });
-        };
-
-        let importDB = (txt) => {
-          let DB = JSON.parse(txt);
-          persistor.importDB(DB).then(() => {
-            encounterTab.refresh();
-          });
-        };
 
         let checkFile = async (file) => {
           if (file.type === 'application/json') {
-            // Import DB?
+            // Import a DB file by passing it to Persistor
+            // DB files are just json representations of the DB
             file.text().then((txt) => {
-              importDB(txt);
-              encounterTab.refresh();
+              let DB = JSON.parse(txt);
+              persistor.importDB(DB).then(() => {
+                encounterTab.refresh();
+              });
             });
           } else {
             // Assume it's a log file?
             file.text().then((txt) => {
-              importFile(txt);
+              // Import a network file by passing it to LogEventHandler to convert it
+              logConverter.convertFile(txt).then((lines) => {
+                let localLogHandler = new LogEventHandler();
+                localLogHandler.currentDate = timeToDateString(lines[0].timestamp);
+
+                let promises = [];
+
+                // Listen for LogEventHandler to dispatch fights and persist them
+                localLogHandler.on('fight', async (day, zone, lines) => {
+                  let enc = new Encounter(day, zone, lines);
+                  if (enc.firstPlayerAbility === null && enc.firstEnemyAbility === null)
+                    return;
+                  emulator.addEncounter(enc);
+                  promises.push(persistor.persistEncounter(enc));
+                });
+
+                localLogHandler.parseLogs(lines);
+                localLogHandler.endFight();
+
+                Promise.all(promises).then(() => {
+                  encounterTab.refresh();
+                });
+              });
             });
           }
         };
-        
+
         let ignoreEvent = (e) => {
           e.preventDefault();
           e.stopPropagation();
         };
 
+        // Handle drag+drop of files. Have to ignore dragenter/dragover for compatability reasons.
         document.body.addEventListener('dragenter', ignoreEvent);
         document.body.addEventListener('dragover', ignoreEvent);
 
         document.body.addEventListener('drop', async (e) => {
           e.preventDefault();
           e.stopPropagation();
-          let dt = e.originalEvent.dataTransfer;
+          let dt = e.dataTransfer;
           let files = dt.files;
           for (let i = 0; i < files.length; ++i) {
             let file = files[i];
@@ -218,9 +240,10 @@ let Options = {
 
         let $exportButton = document.querySelector('.exportDBButton');
 
-        new Tooltip($exportButton, 'bottom', 
-          'Export DB is very slow and shows a 0 byte download, but it does work eventually.');
+        new Tooltip($exportButton, 'bottom',
+            'Export DB is very slow and shows a 0 byte download, but it does work eventually.');
 
+        // Auto initialize all collapse elements on the page
         document.querySelectorAll('[data-toggle="collapse"]').forEach((n) => {
           let target = document.querySelector(n.getAttribute('data-target'));
           n.addEventListener('click', () => {
@@ -234,15 +257,20 @@ let Options = {
           });
         });
 
+        // Handle DB export
         $exportButton.addEventListener('click', (e) => {
           persistor.exportDB().then((obj) => {
-            // encounters can have unicode, can't use btoa for base64 encode
+            // Convert encounter DB to json, then base64 encode it
+            // Encounters can have unicode, can't use btoa for base64 encode
             let blob = new Blob([JSON.stringify(obj)], { type: 'application/json' });
             obj = null;
+            // Offer download to user
             let a = document.createElement('a');
             a.href = URL.createObjectURL(blob);
             a.setAttribute('download', 'RaidEmulator_DBExport_' + (+new Date()) + '.json');
             a.click();
+            // After a second (so after user accepts/declines)
+            // remove the object URL to avoid memory issues
             window.setTimeout(() => {
               URL.revokeObjectURL(a.href);
             }, 1000);
@@ -251,42 +279,51 @@ let Options = {
 
         let $fileInput = document.querySelector('.loadFileInput');
 
+        // Handle the `Load Network Log` button when user selects files
         $fileInput.addEventListener('change', async (e) => {
-          for (let i = 0; i < e.originalEvent.target.files.length; ++i) {
-            let file = e.originalEvent.target.files[i];
+          for (let i = 0; i < e.target.files.length; ++i) {
+            let file = e.target.files[i];
             checkFile(file);
           }
         });
 
+        // Prompt user to select files if they click the `Load Network Log` or `Import DB` buttons.
+        // These buttons really do the same thing.
         document.querySelectorAll('.importDBButton, .loadNetworkLogButton').forEach((n) => {
           n.addEventListener('click', (e) => {
             $fileInput.click();
           });
         });
 
+        // Handle all modal close buttons
         document.querySelectorAll('.modal button.close').forEach((n) => {
           n.addEventListener('click', (e) => {
+            // Find the parent modal from the close button and close it
             let target = e.currentTarget;
-            while (!target.classList.contains('modal') && target !== document.body) {
+            while (!target.classList.contains('modal') && target !== document.body)
               target = target.parentElement;
-            }
-            if (target !== document.body) {
+
+            if (target !== document.body)
               hideModal('.' + [...target.classList].join('.'));
-            }
           });
         });
 
+        // Handle closing all modals if the user clicks outside the modal
         document.querySelectorAll('.modal').forEach((n) => {
           n.addEventListener('click', (e) => {
+            // Only close the modal if the user actually clicked outside it, not child clicks
             if (e.target === n)
               hideModal();
           });
         });
 
+        // Ask the user if they're really sure they want to clear the DB
         document.querySelector('.clearDBButton').addEventListener('click', (e) => {
           showModal('.deleteDBModal');
         });
 
+        // Handle user saying they're really sure they want to clear the DB by wiping it then
+        // refreshing the encounter tab
         document.querySelector('.deleteDBModal .btn-primary').addEventListener('click', (e) => {
           persistor.clearDB().then(() => {
             encounterTab.refresh();
@@ -294,8 +331,8 @@ let Options = {
           });
         });
 
-        // Debug code
-        window.raidEmulatorDebug = {
+        // Make the emulator state available for debugging
+        window.raidEmulator = {
           emulator: emulator,
           progressBar: progressBar,
           timelineController: timelineController,

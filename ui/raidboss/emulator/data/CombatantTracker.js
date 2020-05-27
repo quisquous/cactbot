@@ -256,7 +256,7 @@ class CombatantTracker {
 
     return state;
   }
-  
+
   addCombatantsFromAbility(timestamp, event, line) {
     let eventParts = EmulatorCommon.eventDetailsRegexes[event].exec(line);
     if (eventParts === null)

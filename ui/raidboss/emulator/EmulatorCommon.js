@@ -8,11 +8,11 @@ class EmulatorCommon {
 
   static cloneData(data, exclude = ['options', 'party']) {
     let ret;
-    if (Array.isArray(data)) {
+    if (Array.isArray(data))
       ret = [];
-    } else {
+    else
       ret = {};
-    }
+
     // Use extra logic for top-level extend for property exclusion
     // This cut the execution time of this code from 41,000ms to 50ms when parsing a 12 minute pull
     for (let i in data) {
@@ -37,9 +37,11 @@ class EmulatorCommon {
         return ret;
       }
 
-      if (data instanceof RegExp) {
+      if (data === null)
+        return null;
+
+      if (data instanceof RegExp)
         return new RegExp(data);
-      }
 
       let ret = {};
       for (let i in data)

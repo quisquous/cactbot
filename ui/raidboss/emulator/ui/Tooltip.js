@@ -1,7 +1,9 @@
+'use strict';
+
 class Tooltip {
   constructor(target, direction, text, autoShow = true, autoHide = true) {
     if (!Tooltip.validDirections.includes(direction))
-      throw new Error("Invalid direction for tooltip: " + direction);
+      throw new Error('Invalid direction for tooltip: ' + direction);
 
     if (typeof target === 'string')
       target = document.querySelector(target);
@@ -45,9 +47,9 @@ class Tooltip {
     };
     let tooltipRect = this.tooltip.getBoundingClientRect();
     // Middle of tooltip - half of arrow height
-    let lrArrowHeight = (tooltipRect.height / 2) - 
+    let lrArrowHeight = (tooltipRect.height / 2) -
       (this.tooltip.querySelector('.arrow').getBoundingClientRect().height / 2);
-    switch(this.direction) {
+    switch (this.direction) {
     case 'top':
       this.tooltip.style.left = (targetMiddle.x - (tooltipRect.width / 2)) + this.offset.x;
       this.tooltip.style.bottom = (targetRect.y - tooltipRect.height) + this.offset.y;
@@ -83,7 +85,6 @@ Tooltip.validDirections = [
   'bottom',
   'left',
 ];
-
 Tooltip.showEvents = [
   'mouseenter',
   'focus',

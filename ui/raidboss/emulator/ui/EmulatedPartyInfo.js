@@ -143,7 +143,7 @@ class EmulatedPartyInfo extends EventBus {
     this.$partyInfo.querySelector('.playerInfoRow').classList.remove('border-success');
     this.displayedParty[id].$rootElem.classList.add('border');
     this.displayedParty[id].$rootElem.classList.add('border-success');
-    this.dispatch('SelectPerspective', id);
+    this.dispatch('selectPerspective', id);
   }
 
   UpdateCombatantInfo(encounter, id, stateID = null) {

@@ -1,3 +1,5 @@
+'use strict';
+
 class StubbedPopupText extends PopupText {
   constructor(options) {
     // We don't want the super constructor registering event listeners so we use

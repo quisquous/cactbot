@@ -45,8 +45,8 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     emulator.on('emitLogs', (event) => {
       this.OnLog({
         detail: {
-          logs:event.logs
-        }
+          logs: event.logs,
+        },
       });
     });
     emulator.on('tick', async (timestampOffset) => {
