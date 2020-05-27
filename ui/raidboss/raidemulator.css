@@ -539,7 +539,8 @@ div.row.encountersRow {
   padding-left: 0.5rem;
 }
 
-templates, template {
+div.templates,
+template {
   display: none;
 }
 
@@ -547,6 +548,7 @@ templates, template {
   pointer-events: none;
   z-index: -1000;
 }
+
 .tooltip.show {
   z-index: 1070;
 }
