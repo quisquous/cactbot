@@ -46,6 +46,7 @@
       alertText: {
         en: 'Scourge on YOU',
         de: 'Licht auf DIR',
+        fr: 'Lumière sur VOUS',
         cn: '白光之鞭点名',
       },
     },
@@ -80,6 +81,7 @@
         return {
           en: 'Scourge: ' + names.join(', '),
           de: 'Licht: ' + names.join(', '),
+          fr: 'Lumière : ' + names.join(', '),
           cn: '白光之鞭点:' + names.join(', '),
         };
       },
@@ -111,6 +113,7 @@
       infoText: {
         en: 'Lasers',
         de: 'Laser',
+        fr: 'Lasers',
         cn: '十字圣礼',
       },
     },
@@ -166,7 +169,7 @@
       id: 'A12S Shared Sentence',
       regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement: peine collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
       regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
@@ -174,17 +177,17 @@
       infoText: {
         en: 'Shared Sentence',
         de: 'Urteil Kollektivstrafe',
+        fr: 'Partagez peine collective',
         ja: '集団罰',
-        fr: 'Peine collective',
-        ko: '집단형: 오른쪽/함께 맞기',
         cn: '集团罪',
+        ko: '집단형: 오른쪽/함께 맞기',
       },
     },
     {
       id: 'A12S Defamation',
       regex: Regexes.gainsEffect({ effect: 'Defamation' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Ehrenstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : diffamation' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement: diffamation' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：名誉罰' }),
       regexCn: Regexes.gainsEffect({ effect: '判决确定：名誉罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 명예형' }),
@@ -192,9 +195,10 @@
       alarmText: {
         en: 'Defamation',
         de: 'Ehrenstrafe',
+        fr: 'Diffamation',
         ja: '名誉罰',
-        ko: '명예형: 보스 밑에서 나 홀로!!!',
         cn: '名誉罪',
+        ko: '명예형: 보스 밑에서 나 홀로!!!',
       },
     },
     {
@@ -204,10 +208,10 @@
       alertText: {
         en: 'Crystal on YOU',
         de: 'Kristall auf DIR',
-        ja: '自分に結晶',
         fr: 'Cristal sur VOUS',
-        ko: '나에게 수정',
+        ja: '自分に結晶',
         cn: '结晶点名',
+        ko: '나에게 수정',
       },
     },
     {
@@ -223,10 +227,10 @@
           return {
             en: 'Shared Tankbuster',
             de: 'geteilter Tankbuster',
+            fr: 'Partagez le Tank buster',
             ja: 'タンクシェア',
-            fr: 'Tankbuster partagé',
-            ko: '쉐어 탱크버스터',
             cn: '分摊死刑',
+            ko: '쉐어 탱크버스터',
           };
         }
       },
@@ -253,6 +257,7 @@
       alertText: {
         en: 'Puddle Tether on YOU',
         de: 'Flächen-Verbindung auf dir',
+        fr: 'Lien Zone au sol sur VOUS',
         cn: '放圈连线点名',
       },
     },
@@ -308,19 +313,22 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Alexander(?! )': 'Alexander',
         'Alexander Prime': 'Primo-Alexander',
         'Judgment Crystal': 'Cristal du jugement',
-        'The General\'s Might': 'pouvoir d\'Arrhabée',
-        'The General\'s Time': 'temps d\'Arrhabée',
-        'The General\'s Wing': 'aile d\'Arrhabée',
+        'The General\'s Might': 'Pouvoir d\'Arrhabée',
+        'The General\'s Time': 'Temps d\'Arrhabée',
+        'The General\'s Wing': 'Aile d\'Arrhabée',
       },
       'replaceText': {
-        '(?<!Radiant )Sacrament': 'Sacrement',
-        'Almost Holy': 'Quasi-Miracle',
-        'Arrhidaeus\'s Lanner': 'messager d\'Arrhabée',
+        '(?<! )Sacrament': 'Sacrement',
+        '--timestop--': '--arrêt du temps--',
+        '\\(Radiant\\?\\) Sacrament': 'Sacrement (rayonnant ?)',
+        '\\(W\\)': '(O)',
+        'Almost Holy(?!\\?)': 'Quasi-Miracle',
+        'Almost Holy\\?': 'Quasi-Miracle ?',
+        'Arrhidaeus\'s Lanner': 'Messager d\'Arrhabée',
         'Blazing Scourge': 'Lumière fustigeante',
         'Chastening Heat': 'Chaleur de l\'ordalie',
         'Chronofoil': 'Ailes du temps',
@@ -342,9 +350,10 @@
         'Summon Alexander': 'Invocation d\'Alexander',
         'Temporal Stasis': 'Stase temporelle',
         'Tetrashatter': 'Rupture',
-        'The General\'s Might': 'pouvoir d\'Arrhabée',
-        'The General\'s Time': 'temps d\'Arrhabée',
-        'The General\'s Wing': 'aile d\'Arrhabée',
+        'The General\'s Might': 'Pouvoir d\'Arrhabée',
+        'The General\'s Time': 'Temps d\'Arrhabée',
+        'The General\'s Wing': 'Aile d\'Arrhabée',
+        'timegate': 'Porte temporelle',
         'Void Of Repentance': 'Vide du repentir',
       },
       '~effectNames': {

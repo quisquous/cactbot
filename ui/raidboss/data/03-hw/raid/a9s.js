@@ -21,21 +21,25 @@
         let nw1se1 = {
           en: 'Place Generators NW/SE',
           de: 'Plaziere Generatoren NW/SO',
+          fr: 'Placez les Générateurs NO/SE',
           cn: '搬运发电器到西北/东南',
         };
         let nw2 = {
           en: 'Place Generators NW',
           de: 'Plaziere Generatoren NW',
+          fr: 'Placez les Générateurs NO',
           cn: '搬运发电器到西北',
         };
         let nw1 = {
           en: 'Place Generator NW',
           de: 'Plaziere Generator NW',
+          fr: 'Placez les Générateurs NO',
           cn: '搬运发电器到西北',
         };
         let se2 = {
           en: 'Place Generators SE',
           de: 'Plaziere Generatoren SO',
+          fr: 'Placez les Générateurs SE',
           cn: '搬运发电器到东南',
         };
 
@@ -60,12 +64,14 @@
         let se = {
           en: 'Kill Alarum SE',
           de: 'SO Alarm besiegen',
+          fr: 'Tuez l\'Alarum SE',
           cn: '在东南击杀警报',
         };
         // ... or anywhere not NW/SE
         let sw = {
           en: 'Kill Alarum SW',
           de: 'SW Alarm besiegen',
+          fr: 'Tuez l\'Alarum SO',
           cn: '在西南击杀警报',
         };
 
@@ -84,6 +90,7 @@
       infoText: {
         en: 'Bombs Soon',
         de: 'Bomben bald',
+        fr: 'Bombes bientôt',
         cn: '炸弹马上爆炸',
       },
     },
@@ -116,7 +123,7 @@
         return {
           en: 'Get Behind',
           de: 'Hinter ihn',
-          fr: 'Derrière le boss',
+          fr: 'Passez derrière',
           ja: '背面へ',
           ko: '보스 뒤로',
           cn: '去背后',
@@ -128,6 +135,7 @@
         return {
           en: 'Scrapline on YOU',
           de: 'Schrottlinie auf DIR',
+          fr: 'Corde à ferraille sur VOUS',
           cn: '死刑',
         };
         // ...probably, we hope...
@@ -144,6 +152,7 @@
       alertText: {
         en: 'Stand in Alarum Puddle',
         de: 'In Alarm Fläche stehen',
+        fr: 'Tenez-vous dans la zone de l\'Alarum',
         cn: '站进紫色圈圈',
       },
     },
@@ -154,6 +163,7 @@
       infoText: {
         en: 'Rock on YOU',
         de: 'Stein auf DIR',
+        fr: 'Rocher sur VOUS',
         cn: '落石点名',
       },
     },
@@ -165,6 +175,7 @@
       alertText: {
         en: 'Hide Fully Behind Rock',
         de: 'Komplett hinter dem Stein verstecken',
+        fr: 'Cachez-vous derrière le rocher',
         cn: '躲在石头后',
       },
     },
@@ -204,21 +215,25 @@
         let ne = {
           en: 'Adds to NE Lava',
           de: 'Adds in NO Lava',
+          fr: 'Adds dans la lave NE',
           cn: '拉小怪到东北击杀',
         };
         let se = {
           en: 'Adds to SE Lava',
           de: 'Adds in SO Lava',
+          fr: 'Adds dans la lave SE',
           cn: '拉小怪到东南击杀',
         };
         let sw = {
           en: 'Adds to SW Lava',
           de: 'Adds in SW Lava',
+          fr: 'Adds dans la lave SO',
           cn: '拉小怪到西南击杀',
         };
         let nw = {
           en: 'Adds to NW Lava',
           de: 'Adds in NW Lava',
+          fr: 'Adds dans la lave NO',
           cn: '拉小怪到西北击杀',
         };
 
@@ -273,30 +288,40 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Bomb': 'bombe',
-        'Faust Z': 'endfaust',
-        'Full-Metal Faust': 'eisernfaust',
+        'Bomb': 'Bombe',
+        'Faust Z': 'Endfaust',
+        'Full-Metal Faust': 'Eisernfaust',
+        'Life Support': 'la chambre de recyclage CR',
         'Refurbisher 0': 'Récupérateur',
         'Scrap': 'Ferraille',
+        'The Cranial Plate': 'pont nasal',
       },
       'replaceText': {
+        '(?<!Double )Scrapline': 'Corde à ferraille',
+        '(?<!Scrap )Bomb(?!e)': 'Bombe',
+        '--rocks fall--': '--chute des rochers--',
+        '\\(NE/SW\\)': '(NE/SO)',
+        '\\(NW/SE\\)': '(NO/SE)',
+        '\\(NW\\)': '(NO)',
+        '\\(SW\\)': '(SO)',
         'Acid Rain': 'Pluie acide',
-        'Alarum': 'alarum',
-        '(?<!Scrap )Bomb(?!e)': 'bombe',
+        'Alarum': 'Alarum',
+        'Double Scrapline': 'Double corde à ferraille',
         'Explosion': 'Explosion',
+        'Full-Metal Faust Add': 'Add Eisernfaust',
         'Heat Shielding Reassembly': 'Régénération du bouclier thermique',
         'Kaltstrahl': 'Kaltstrahl',
+        'Lava': 'Lave',
         'Left Arm Reassembly': 'Régénération du bras gauche',
         'Panzer Vor': 'Panzer Vor',
         'Panzerschreck': 'Panzerschreck',
-        'Power Generator': 'générateur d\'énergie',
+        'Power Generator': 'Générateur d\'énergie',
         'Right Arm Reassembly': 'Régénération du bras droit',
         'Scrap Bomb': 'Bombe de ferraille',
         'Scrap Burst': 'Déflagration de ferraille',
         'Scrap Storm': 'Tempête de ferraille',
-        'Scrap(?! )': 'Ferraille',
+        'Scrap(?! |line)': 'Ferraille',
         'Stockpile': 'Agglomération',
       },
     },

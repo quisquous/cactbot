@@ -50,6 +50,7 @@
       infoText: {
         en: 'Clock',
         de: 'Uhr',
+        fr: 'Horloge',
         cn: '九连环',
       },
     },
@@ -74,6 +75,7 @@
       infoText: {
         en: 'Bait Optical Sight',
         de: 'Köder Visier',
+        fr: 'Attirez la Visée optique',
         cn: '诱导AOE',
       },
     },
@@ -115,6 +117,7 @@
       infoText: {
         en: 'Kill Add',
         de: 'Add besiegen',
+        fr: 'Tuez l\'Add',
         cn: '击杀小怪',
       },
     },
@@ -129,6 +132,7 @@
       infoText: {
         en: 'Break Pauldron',
         de: 'Schulterplatte zerstören',
+        fr: 'Brisez la Protection',
         cn: '击破护盾',
       },
     },
@@ -148,6 +152,7 @@
         return {
           en: 'GA-100 on YOU',
           de: 'GA-100 auf DIR',
+          fr: 'GA-100 sur VOUS',
           cn: 'GA-100点名',
         };
       },
@@ -157,6 +162,7 @@
         return {
           en: 'GA-100 on ' + data.ShortName(matches.target),
           de: 'GA-100 on ' + data.ShortName(matches.target),
+          fr: 'GA-100 sur ' + data.ShortName(matches.target),
           cn: 'GA-100点' + data.ShortName(matches.target),
         };
       },
@@ -219,10 +225,10 @@
           return {
             en: 'Knockback Cleave; Face Outside',
             de: 'Rückstoß Cleave; nach Außen schauen',
+            fr: 'Poussée Cleave; Regardez vers l\'extérieur',
             ja: 'ノックバック ソード; 外向く',
-            fr: 'Poussée Cleave; Regarde à l\'extérieur',
-            ko: '넉백 소드; 바깥쪽 바라보기',
             cn: '击退顺劈; 面向外侧',
+            ko: '넉백 소드; 바깥쪽 바라보기',
           };
         }
 
@@ -233,16 +239,17 @@
           return {
             en: 'Knockback Charge',
             de: 'Rückstoß Charge',
-            ja: 'ノックバック チャージ',
             fr: 'Poussée Charge',
-            ko: '넉백 차지',
+            ja: 'ノックバック チャージ',
             cn: '击退冲锋',
+            ko: '넉백 차지',
           };
         }
 
         return {
           en: 'Face ' + data.ShortName(partner),
           de: 'Schaue zu ' + data.ShortName(partner),
+          fr: 'Regardez ' + data.ShortName(partner),
           cn: '面向' + data.ShortName(partner),
         };
       },
@@ -275,6 +282,7 @@
           return {
             en: 'Shared Tankbuster on YOU',
             de: 'Geteilter Tankbuster auf DIR',
+            fr: 'Tank buster à partager sur VOUS',
             cn: '分摊死刑点名',
           };
         }
@@ -283,6 +291,7 @@
           return {
             en: 'Shared Tankbuster on' + data.ShortName(matches.target),
             de: 'Geteilter Tankbuster auf' + data.ShortName(matches.target),
+            fr: 'Tank buster à partager sur' + data.ShortName(matches.target),
             cn: '分摊死刑点' + data.ShortName(matches.target),
           };
         }
@@ -299,6 +308,7 @@
       alertText: {
         en: 'Hide Behind Tower',
         de: 'Hinter dem Tower verstecken',
+        fr: 'Cachez-vous derrière la tour',
         cn: '躲在塔后',
       },
     },
@@ -313,6 +323,7 @@
       alertText: {
         en: 'Break Shield From Front',
         de: 'Schild von vorne zerstören',
+        fr: 'Brisez le Bouclier par l\'avant',
         cn: '正面击破护盾',
       },
     },
@@ -337,6 +348,7 @@
         return {
           en: 'Charge on YOU',
           de: 'Ansturm auf DIR',
+          fr: 'Charge sur VOUS',
           cn: '冲锋点名',
         };
       },
@@ -346,8 +358,62 @@
         return {
           en: 'Charge on ' + data.ShortName(matches.target),
           de: 'Ansturm auf ' + data.ShortName(matches.target),
+          fr: 'Charge sur ' + data.ShortName(matches.target),
           cn: '冲锋点' + data.ShortName(matches.target),
         };
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Armored Pauldron': 'Protection d\'épaule',
+        'Claster': 'Éclateur',
+        'Cruise Chaser': 'Croiseur-chasseur',
+        'E\\\\.D\\\\.D\\\\.': 'E\\.D\\.D\\.',
+        'Multifield': 'Champ multistrate',
+        'Plasma Shield': 'Bouclier plasma',
+        'The Main Generators': 'la chambre du générateur principal',
+        'The plasma shield is shattered.*?': 'Le bouclier plasma se brise.*?',
+      },
+      'replaceText': {
+        '(?<! )Sword': 'Épée',
+        '(?<!Super )Hawk Blaster': 'Canon faucon',
+        '--invincible--': '--invulnérable--',
+        '\\(bait\\)': '(attirez)',
+        '\\(clock/out\\)': '(horloge/extérieur)',
+        '\\(everyone\\)': '(tout les joueurs)',
+        '\\(numbers\\)': '(nombres)',
+        '\\(orbs\\)': '(orbes)',
+        '\\(out/clock\\)': '(extérieur/horloge)',
+        '\\(shield\\)': '(bouclier)',
+        '\\?': ' ?',
+        'Assault Cannon': 'Canon d\'assaut',
+        'Blassty Blaster': 'Canon Blassty',
+        'Blassty Charge': 'Charge Blassty',
+        'Blastoff': 'Lancement',
+        'Charge': 'Charge',
+        'E\\.D\\.D\\. Add': 'Add E.D.D.',
+        'E\\.D\\.D\\. Armored Pauldron': 'E.D.D. Protection d\'épaule',
+        'Eternal Darkness': 'Ténèbres éternelles',
+        'GA-100': 'GA-100',
+        'Lapis Lazuli': 'Lapis-lazuli',
+        'Laser X Sword': 'Épée laser X',
+        'Left/Right Laser Sword': 'Épée laser gauche/droite',
+        'Limit Cut': 'Dépassement de limites',
+        'Markers': 'Marqueurs',
+        'Multifield': 'Champ multistrate',
+        'Optical Sight': 'Visée optique',
+        'Perfect Landing': 'Atterissage parfait',
+        'Photon': 'Photon',
+        'Plasma Shield': 'Bouclier plasma',
+        'Plasmasphere': 'Sphère de plasma',
+        'Propeller Wind': 'Vent turbine',
+        'Spin Crusher': 'Écrasement tournoyant',
+        'Super Hawk Blaster': 'Super canon faucon',
+        'Transform': 'Transformation',
+        'Whirlwind': 'Tourbillon',
       },
     },
   ],
