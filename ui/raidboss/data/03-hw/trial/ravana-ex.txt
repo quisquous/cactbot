@@ -81,10 +81,10 @@ hideall "--sync--"
 325.5 "The Seeing" sync /:Ravana:EA[012]:/
 330.7 "Atma-Linga x2" # sync /:Ravana:EA6:/
 
-# The intermission can have 0-10 Laughing Moon charges before Ravana using the Chandrahas ultimate.
+# The intermission can have 0-10 Laughing Moon charges before Ravana uses the Chandrahas ultimate.
 # The number is dependent on how many Gana are able to finish their Falling Laughter casts.
 # More than 1-2 is typically a wipe, as each inflicts a Vulnerability Up stack to the party.
-341.1 "Bloody Fuller" sync /:Ravana:EB3:/ window 341.1,5
+336.8 "Bloody Fuller" sync /:EB3:Ravana/ duration 4.7 window 336.8,5
 341.1 "--untargetable--"
 
 400.0 "Chandrahas" sync /:Ravana:EB5:/ window 400,5
@@ -134,9 +134,9 @@ hideall "--sync--"
 622.5 "The Seeing" sync /:Ravana:EA[012]:/
 626.7 "Atma-Linga" sync /:Ravana:EA6:/
 631.0 "The Seeing" sync /:Ravana:EA[012]:/
-640.2 "Warlord Flame" sync /:Ravana:EB2:/
+640.2 "Warlord Flame?" sync /:Ravana:EB2:/
 
-644.0 "Blinding Blade" sync /:Ravana:E9F:/
+644.0 "Blinding Blade" sync /:Ravana:E9F:/ window 30,5
 647.1 "Atma-Linga" sync /:Ravana:EA6:/
 649.9 "Tapasya x3" sync /:Ravana:EA4:/
 656.0 "Atma-Linga" sync /:Ravana:EA6:/
