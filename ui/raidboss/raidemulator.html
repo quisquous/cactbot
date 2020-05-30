@@ -91,6 +91,46 @@
         </div>
       </div>
     </div>
+    <div class="modal introModal text-dark" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Introduction</h5>
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Welcome to the Raid Emulator.</p>
+            <p>This tool replays encounters and shows what triggers were fired when, and allows you to view the encounter from any player's perspective.</p>
+            <p>This tool requires that ACT be running in the background with both ngld's OverlayPlugin and the Cactbot plugin loaded.</p>
+            <p>No overlays need to be created.</p>
+            <p>Current WebSocket status: <span class="d-none websocketConnected text-success">Connected</span><span class="websocketDisconnected text-error">Disconnected</span>.</p>
+            <p>To get started, you need to import an encounter via one of the following options:</p>
+            <p>
+              <ul>
+                <li>Drag and drop a network log file from <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code> on to the page</li>
+                <li>Click the <code>Load Network Log</code> button in the bottom drawer and select a network log file from <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code></li>
+                <li>Import a log in ACT via the <code>Import/Export</code> tab</li>
+              </ul>
+            </p>
+            <p>Then, select an encounter via the bottom drawer.</p>
+            <p>Once you have loaded an encounter, you can:</p>
+            <p>
+              <ul>
+                <li>Change the currrent perspective by selecting a party member on the right</li>
+                <li>Seek to any point in the encounter by clicking the bar at the top</li>
+                <li>Hover over trigger indicators in the top bar to see their names</li>
+                <li>See detailed information about triggers fired by clicking their button</li>
+              </ul>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="container-fluid d-flex flex-column flex-fill h-100">
       <div class="row my-3 progressBarRow">
         <div class="col-auto">

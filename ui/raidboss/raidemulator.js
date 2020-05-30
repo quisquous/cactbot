@@ -154,6 +154,9 @@ let Options = {
           call: 'cactbotReadDataFiles',
           source: location.href,
         }).then((e) => {
+          document.querySelector('.websocketConnected').classList.remove('d-none');
+          document.querySelector('.websocketDisconnected').classList.add('d-none');
+
           // Make sure timeline and alerts know about the data files
           timelineController.SetDataFiles(e.detail.files);
           popupText.OnDataFilesRead(e);
@@ -177,6 +180,12 @@ let Options = {
 
         // Load the encounter metadata from the DB
         encounterTab.refresh();
+
+        // If we don't have any encounters stored, show the intro modal
+        persistor.listEncounters().then((encounters) => {
+          if (encounters.length !== 0)
+            showModal('.introModal');
+        });
 
         let checkFile = async (file) => {
           if (file.type === 'application/json') {
@@ -296,7 +305,7 @@ let Options = {
         });
 
         // Handle all modal close buttons
-        document.querySelectorAll('.modal button.close').forEach((n) => {
+        document.querySelectorAll('.modal button.close, [data-dismiss="modal"]').forEach((n) => {
           n.addEventListener('click', (e) => {
             // Find the parent modal from the close button and close it
             let target = e.currentTarget;
