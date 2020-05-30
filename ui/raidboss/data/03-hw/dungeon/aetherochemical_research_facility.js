@@ -114,7 +114,7 @@
       alertText: {
         en: 'Stand in dark portal',
         de: 'Im dunklen Portal stehen',
-        fr: 'Allez dans le portail noir',
+        fr: 'Tenez-vous dans un portail noir',
         cn: '进入黑球',
       },
     },
@@ -130,7 +130,7 @@
       infoText: {
         en: 'Avoid your orb--pop others\'',
         de: 'Weiche deinem Orb aus - löse die Orbs der anderen aus',
-        fr: 'Evitez votre orbe, détruisez les autres',
+        fr: 'Évitez votre orbe, éclatez les autres',
         cn: '躲开圈圈',
       },
     },
@@ -206,6 +206,7 @@
         'Regula van Hydrus': 'Regula van Hydrus',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Aetherochemical Grenado': 'Grenade magitek',
         'Ancient Circle': 'Cercle ancien',
         'Ancient Eruption': 'Éruption ancienne',
