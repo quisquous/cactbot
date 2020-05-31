@@ -262,6 +262,23 @@
       },
     },
     {
+      // Hated of Levin debuff
+      id: 'E5S Stormcloud Cleanse',
+      regex: Regexes.headMarker({ id: '00D2' }),
+      condition: Conditions.targetIsYou(),
+      infoText: {
+        en: 'Cleanse In Cloud',
+      },
+    },
+    {
+      id: 'E5S Stormcloud Drop',
+      regex: Regexes.headMarker({ id: '006E' }),
+      condition: Conditions.targetIsYou(),
+      alertText: {
+        en: 'Drop Cloud Away',
+      },
+    },
+    {
       id: 'E5S Centaur\'s Charge',
       regex: Regexes.startsUsing({ id: '4BAD', source: 'Ramuh', capture: false }),
       regexDe: Regexes.startsUsing({ id: '4BAD', source: 'Ramuh', capture: false }),
