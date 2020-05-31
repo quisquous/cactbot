@@ -198,6 +198,7 @@
         return {
           en: 'Language: ' + data.parserLang,
           de: 'Sprache: ' + data.parserLang,
+          fr: 'Langage: ' + data.paserLang,
           cn: '语言: ' + data.parserLang,
           ko: '언어: ' + data.parserLang,
         };
