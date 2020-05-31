@@ -1030,17 +1030,18 @@
       },
     },
     {
+      // Called out after the 1st Ravensbeak.
       id: 'UCU Nael Dragon Placement',
-      regex: Regexes.ability({ source: 'Iceclaw', id: '26C6', capture: false }),
-      regexDe: Regexes.ability({ source: 'Eisklaue', id: '26C6', capture: false }),
-      regexFr: Regexes.ability({ source: 'Griffe-De-Glace', id: '26C6', capture: false }),
-      regexJa: Regexes.ability({ source: 'アイスクロウ', id: '26C6', capture: false }),
-      regexCn: Regexes.ability({ source: '冰爪', id: '26C6', capture: false }),
-      regexKo: Regexes.ability({ source: '얼음발톱', id: '26C6', capture: false }),
+      regex: Regexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
+      regexDe: Regexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
+      regexFr: Regexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
+      regexJa: Regexes.ability({ source: 'ネール・デウス・ダーナス', id: '26B6', capture: false }),
+      regexCn: Regexes.ability({ source: '奈尔·神·达纳斯', id: '26B6', capture: false }),
+      regexKo: Regexes.ability({ source: '넬 데우스 다르누스', id: '26B6', capture: false }),
       condition: function(data) {
         return data.naelMarks && !data.calledNaelDragons;
       },
-      durationSeconds: 20,
+      durationSeconds: 10,
       infoText: function(data) {
         data.calledNaelDragons = true;
         return {
