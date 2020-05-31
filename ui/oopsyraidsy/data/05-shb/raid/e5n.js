@@ -11,7 +11,6 @@
     'Gallop': '4B97', // Sideways add charge
     'Shock Strike': '4BA1', // Small AoE circles during Thunderstorm
     'Volt Strike': '4CF2', // Large AoE circles during Thunderstorm
-
   },
   damageFail: {
     'Judgment Jolt': '4B8F', // Stratospear explosions
@@ -54,7 +53,7 @@
       },
     },
     {
-      // This ability is seen only if players stacked the clounds instead of spreading them.
+      // This ability is seen only if players stacked the clouds instead of spreading them.
       id: 'E5N The Parting Clouds',
       damageRegex: '4B9D',
       suppressSeconds: 30,
