@@ -17,6 +17,7 @@
     'Shock Strike': '4BC1', // Small AoE circles during Thunderstorm
     'Stepped Leader Twister': '4BC7', // Twister stepped leader
     'Stepped Leader Donut': '4BC8', // Donut stepped leader
+    'Shock': '4E3D', // Hated of Levin Stormcloud-cleansable exploding debuff
   },
   damageFail: {
     'Judgment Jolt': '4BA7', // Stratospear explosions
