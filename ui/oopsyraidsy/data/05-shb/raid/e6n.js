@@ -8,10 +8,10 @@
   damageWarn: {
     'Thorns': '4BDA', // AoE markers after Enumeration
     'Ferostorm 1': '4BDD',
-    'Storm of Fury 1': '4BE0', // Circle AoE during tethers--Garuda
-    'Explosion': '4BE2', // AoE circles, Garuda orbs
     'Ferostorm 2': '4BE5',
+    'Storm Of Fury 1': '4BE0', // Circle AoE during tethers--Garuda
     'Storm Of Fury 2': '4BE6', // Circle AoE during tethers--Raktapaksa
+    'Explosion': '4BE2', // AoE circles, Garuda orbs
     'Heat Burst': '4BEC',
     'Conflag Strike': '4BEE', // 270-degree frontal AoE
     'Spike Of Flame': '4BF0', // Orb explosions after Strike Spark
