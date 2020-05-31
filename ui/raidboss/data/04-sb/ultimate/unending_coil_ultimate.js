@@ -1030,6 +1030,16 @@
       },
     },
     {
+      id: 'UCU Nael Ravensbeak',
+      regex: Regexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
+      regexDe: Regexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
+      regexFr: Regexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
+      regexJa: Regexes.startsUsing({ source: 'ネール・デウス・ダーナス', id: '26B6' }),
+      regexCn: Regexes.startsUsing({ source: '奈尔·神·达纳斯', id: '26B6' }),
+      regexKo: Regexes.startsUsing({ source: '넬 데우스 다르누스', id: '26B6' }),
+      response: Responses.tankBusterSwap('alert'),
+    },
+    {
       // Called out after the 1st Ravensbeak.
       id: 'UCU Nael Dragon Placement',
       regex: Regexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
