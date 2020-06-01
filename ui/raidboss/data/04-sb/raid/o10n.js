@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Alphascape \(V2\.0\)$/,
     cn: /^欧米茄时空狭缝 \(阿尔法幻境2\)$/,
+    ko: /^차원의 틈 오메가: 알파편 \(2\)$/,
   },
   timelineFile: 'o10n.txt',
   triggers: [
@@ -38,6 +39,7 @@
         de: 'Nächste Drehung: Rein oder raus',
         fr: 'Tour suivant : Dedans/Dehors',
         cn: '下一转:内圈/外圈',
+        ko: '다음: 안으로 혹은 밖으로',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = true;
@@ -56,6 +58,7 @@
         de: 'Nächste Drehung: Ecken',
         fr: 'Tour suivant : Plus',
         cn: '下一转:角落',
+        ko: '다음: 모서리로',
       },
       run: function(data) {
         data.lastSpinWasHorizontal = false;
@@ -80,6 +83,7 @@
             fr: 'Sortez',
             ja: '誘引',
             cn: '远离',
+            ko: '밖으로',
           };
         }
         // This shouldn't happen.
@@ -110,6 +114,7 @@
             fr: 'Allez sous le boss',
             ja: '拒絶',
             cn: '靠近',
+            ko: '안으로',
           };
         }
         return {
@@ -331,7 +336,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': '고룡',
         'Immortal Key': '용의 말뚝',
@@ -356,7 +360,7 @@
         'Northern Cross': '북십자성',
         'Protostar': '원시별',
         'Rime Wreath': '분노의 서릿발',
-        'Spin': 'Spin',
+        'Spin': '회전',
         'Stygian Maw': '흑아의 불꽃',
         'Tail End': '꼬리 쓸기',
         'Thunderstorm': '번개 폭풍',

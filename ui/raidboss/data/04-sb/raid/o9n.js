@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Alphascape \(V1\.0\)$/,
     cn: /^欧米茄时空狭缝 \(阿尔法幻境1\)$/,
+    ko: /^차원의 틈 오메가: 알파편 \(1\)$/,
   },
   timelineFile: 'o9n.txt',
   triggers: [
@@ -34,6 +35,7 @@
         de: 'Kugel-Verbindungen',
         fr: 'Attrapez les orbes',
         cn: '连线',
+        ko: '구슬 줄',
       },
     },
   ],
@@ -217,14 +219,13 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Chaos': '혼돈',
         'Chaosphere': '혼돈의 구체',
         'dark crystal': '흑수정',
       },
       'replaceText': {
-        'Big Bang': '顶起',
+        'Big Bang': '빅뱅?',
         'Blaze': '화염',
         'Bowels of Agony': '고통의 심핵',
         'Chaosphere': '혼돈의 구체',
