@@ -342,6 +342,10 @@
         'Midgardsormr': '미드가르드오름',
       },
       'replaceText': {
+        'Out': '밖으로',
+        '(?<!Sp)In': '안으로',
+        'Flip': '미드가르드오름 앞구르기',
+        'Corners': '모서리',
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',
         'Azure Wings': '창익의 불꽃',

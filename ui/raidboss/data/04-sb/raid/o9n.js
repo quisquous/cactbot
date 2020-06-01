@@ -220,12 +220,14 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Chaos': '혼돈',
+        'Chaos': '카오스',
         'Chaosphere': '혼돈의 구체',
         'dark crystal': '흑수정',
+        'YOU DARE!': '네 이노오오옴',
       },
       'replaceText': {
-        'Big Bang': '빅뱅?',
+        'Big Bang': '돌출',
+        'knock': '착탄',
         'Blaze': '화염',
         'Bowels of Agony': '고통의 심핵',
         'Chaosphere': '혼돈의 구체',
@@ -235,6 +237,7 @@
         'Earthquake': '대지진',
         'Fiendish Orbs': '추격하라',
         'Knock Down': '착탄하라',
+        'Long/Lat Implosion': '가로/세로 내파',
         'Latitudinal Implosion': '가로 내파',
         'Longitudinal Implosion': '세로 내파',
         'Orbshadow': '추격',
