@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Alphascape \(V4\.0\)$/,
     cn: /^欧米茄时空狭缝 \(阿尔法幻境4\)$/,
+    ko: /^차원의 틈 오메가: 알파편 \(4\)$/,
   },
   timelineFile: 'o12n.txt',
   timelineTriggers: [
@@ -12,12 +13,7 @@
       id: 'O12N Knockback',
       regex: /Discharger/,
       beforeSeconds: 5,
-      alertText: {
-        en: 'Knockback',
-        de: 'Rückstoß',
-        fr: 'Poussée',
-        cn: '击退',
-      },
+      response: Responses.knockback('alert'),
     },
   ],
   triggers: [
@@ -65,6 +61,7 @@
         de: 'Bosse auseinander ziehen',
         fr: 'Ecartez les boss',
         cn: '分开boss',
+        ko: '보스 서로 떨어뜨리기',
       },
     },
     {
@@ -87,6 +84,7 @@
           fr: 'Sortez',
           ja: '誘引',
           cn: '远离',
+          ko: '파티에서 멀어지기',
         };
       },
       infoText: function(data, matches) {
@@ -98,7 +96,7 @@
           fr: 'Packez vous',
           ja: '頭割り',
           cn: '集合',
-          ko: '집합',
+          ko: '쉐어징 대상자',
         };
       },
     },
@@ -118,6 +116,7 @@
         de: 'Omega-M angreifen',
         fr: 'Attaquez Oméga-M',
         cn: '攻击男性',
+        ko: '오메가 M 공격',
       },
     },
     {
@@ -136,6 +135,7 @@
         de: 'Omega-W angreifen',
         fr: 'Attaquez Oméga-F',
         cn: '攻击女性',
+        ko: '오메가 F 공격',
       },
     },
   ],
@@ -326,13 +326,13 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': '오메가',
         'Omega-F': '오메가 F',
         'Omega-M': '오메가 M',
         'Optical Unit': '광학 유닛',
         'Progress to party combat': '단독 전투 한계 확인',
+        'Calculations indicate increased probability of defeat': '패배 위험성 상승',
       },
       'replaceText': {
         'Beyond Strength': '방패 연격 G',

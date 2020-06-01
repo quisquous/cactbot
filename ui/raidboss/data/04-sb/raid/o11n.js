@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Alphascape \(V3\.0\)$/,
     cn: /^欧米茄时空狭缝 \(阿尔法幻境3\)$/,
+    ko: /^차원의 틈 오메가: 알파편 \(3\)$/,
   },
   timelineFile: 'o11n.txt',
   timelineTriggers: [
@@ -19,6 +20,7 @@
         en: 'Tank Tether',
         de: 'Tank Verbindung',
         cn: '坦克接线远离人群',
+        ko: '탱 블래스터 징',
       },
     },
   ],
@@ -104,6 +106,7 @@
             de: 'Bewegen (Links)',
             fr: 'Bougez (Gauche)',
             cn: '去左边',
+            ko: '이동 (왼쪽)',
           };
         }
         return {
@@ -111,6 +114,7 @@
           de: 'Stehenbleiben (Links)',
           fr: 'Restez ici (Gauche)',
           cn: '呆在左边',
+          ko: '멈추기 (왼쪽)',
         };
       },
     },
@@ -132,6 +136,7 @@
             de: 'Stehenbleiben (Rechts)',
             fr: 'Restez ici (Droite)',
             cn: '呆在右边',
+            ko: '멈추기 (오른쪽)',
           };
         }
         return {
@@ -139,6 +144,7 @@
           de: 'Bewegen (Rechts)',
           fr: 'Bougez (droite)',
           cn: '去右边',
+          ko: '이동 (오른쪽)',
         };
       },
     },
@@ -426,7 +432,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Augmented Rocket Punch': '강화형 로켓 주먹',
         'Engaging Delta Attack protocol': '델타 공격의 필요성을 인정합니다',
@@ -469,6 +474,8 @@
         'Reset': '초기화',
         'Rush': '돌진',
         'Starboard Wave Cannon(?! )': '우현 사격: 파동포',
+        'Starboard/Larboard Cannon': '좌/우현 사격 파동포',
+        'Starboard/Larboard Surge': '좌/우현 사격: 파동포',
         'Starboard Wave Cannon Surge': '우현 사격: 0식 파동포',
         'Storage Violation': '기억 오염 제거 S',
         'Unmitigated Explosion': '대폭발',
