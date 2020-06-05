@@ -1,9 +1,14 @@
 'use strict';
 
-// TODO: no orb on deadly discharge (4BB1 vs 4BAF, which is the one you need an orb?)
 // TODO: is there a different ability if the shield duty action isn't used properly?
 // TODO: is there an ability from Raiden (the bird) if you get eaten?
 // TODO: maybe chain lightning warning if you get hit while you have system shock (8B8)
+
+let noOrb = (str) => {
+  return {
+    en: str + ' (no orb)',
+  };
+};
 
 [{
   zoneRegex: {
@@ -12,7 +17,6 @@
   },
   damageWarn: {
     'Impact': '4E3B', // Stratospear landing AoE
-    'Lightning Bolt': '4BB9', // Stormcloud standard attack
     'Gallop': '4BB4', // Sideways add charge
     'Shock Strike': '4BC1', // Small AoE circles during Thunderstorm
     'Stepped Leader Twister': '4BC7', // Twister stepped leader
@@ -40,7 +44,7 @@
         return !data.hasOrb[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' (no orb)' };
+        return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
       },
     },
     {
@@ -62,7 +66,17 @@
         return !data.hasOrb[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' (no orb)' };
+        return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
+      },
+    },
+    {
+      id: 'E5S Deadly Discharge Big Knockback',
+      damageRegex: '4BB2',
+      condition: function(e, data) {
+        return !data.hasOrb[e.targetName];
+      },
+      mistake: function(e) {
+        return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
       },
     },
     {
@@ -74,6 +88,30 @@
       },
       mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'E5S Lightning Bolt',
+      damageRegex: '4BB9',
+      condition: function(e, data) {
+        // Having a non-idempotent condition function is a bit <_<
+        // Only consider lightning bolt damage if you have a debuff to clear.
+        if (!data.hated || !data.hated[e.targetName])
+          return true;
+
+        delete data.hated[e.targetName];
+        return false;
+      },
+      mistake: function(e, data) {
+        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'E5S Hated of Levin',
+      regex: Regexes.headMarker({ id: '00D2' }),
+      run: function(e, data) {
+        data.hated = data.hated || {};
+        data.hated[e.targetName] = true;
       },
     },
     {
@@ -102,9 +140,11 @@
     {
       id: 'E5S Stormcloud cleanup',
       regex: Regexes.headMarker({ id: '006E' }),
-      delaySeconds: 30, // Stormclouds resolve well before this.
+      // Stormclouds resolve well before this.
+      delaySeconds: 30,
       run: function(e, data) {
         delete data.cloudMarkers;
+        delete data.hated;
       },
     },
     {
