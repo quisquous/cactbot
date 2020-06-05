@@ -33,15 +33,13 @@
     'Reflected Driving Frost 1': '4DB8', // Cone AoE, Frozen Mirror
     'Reflected Driving Frost 2': '4DC4', // Cone AoE, Frozen Mirror
 
-    'Hallowed Wings 1': '4D75',
-    'Hallowed Wings 2': '4D76',
-    'Hallowed Wings 3': '4D77',
-    'Reflected Hallowed Wings 1': '4D90',
-    'Reflected Hallowed Wings 2': '4DBB',
-    'Reflected Hallowed Wings 3': '4DC7',
-    'Reflected Hallowed Wings 4': '4D91',
-    'Reflected Hallowed Wings 5': '4DBD',
-    'Reflected Hallowed Wings 6': '4DC9',
+    'Hallowed Wings 1': '4D75', // Left cleave
+    'Hallowed Wings 2': '4D76', // Right cleave
+    'Hallowed Wings 3': '4D77', // Knockback frontal cleave
+    'Reflected Hallowed Wings 1': '4D90', // Reflected left 2
+    'Reflected Hallowed Wings 2': '4DBB', // Reflected left 1
+    'Reflected Hallowed Wings 3': '4DC7', // Reflected right 2
+    'Reflected Hallowed Wings 4': '4D91', // Reflected right 1
     'Twin Stillness 1': '4D68',
     'Twin Stillness 2': '4D6B',
     'Twin Silence 1': '4D69',
