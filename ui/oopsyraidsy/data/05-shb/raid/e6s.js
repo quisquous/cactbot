@@ -3,6 +3,7 @@
 // TODO: check tethers being cut (when they shouldn't)
 // TODO: check for concussed debuff
 // TODO: check for taking tankbuster with lightheaded
+// TODO: check for one person taking multiple Storm Of Fury Tethers (4C01/4C08)
 
 [{
   zoneRegex: {
@@ -16,8 +17,8 @@
     'Thorns': '4BFA', // AoE markers after Enumeration
     'Ferostorm 1': '4BFD',
     'Ferostorm 2': '4C06',
-    'Storm Of Fury 1': '4C01', // Circle AoE during tethers--Garuda
-    'Storm Of Fury 2': '4C08', // Circle AoE during tethers--Raktapaksa
+    'Storm Of Fury 1': '4C00', // Circle AoE during tethers--Garuda
+    'Storm Of Fury 2': '4C07', // Circle AoE during tethers--Raktapaksa
     'Explosion': '4C03', // AoE circles, Garuda orbs
     'Heat Burst': '4C1F',
     'Conflag Strike': '4C10', // 270-degree frontal AoE
