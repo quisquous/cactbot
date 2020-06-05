@@ -8,6 +8,7 @@
 // TODO: stygian spear/silver spear with the wrong debuff
 // TODO: taking explosion from the wrong Chiaro/Scuro orb
 // TODO: missing the interrupt
+// TODO: handle 4C89 Silver Stake tankbuster 2nd hit, as it's ok to have two in.
 
 [{
   zoneRegex: {
@@ -25,23 +26,13 @@
   damageFail: {
     'Betwixt Worlds': '4C6B', // purple ground line aoes
     'Crusade': '4C58', // knockback
+    'Explosion': '4C6F', // didn't kill an add
   },
   triggers: [
     {
       // Laser tank buster 1
       id: 'E7S Stygian Stake',
       damageRegex: '4C34',
-      condition: function(e) {
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Laser tank buster 2
-      id: 'E7S Silver Stake',
-      damageRegex: '4C89',
       condition: function(e) {
         return e.type != '15';
       },
