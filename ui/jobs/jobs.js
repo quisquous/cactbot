@@ -2324,15 +2324,17 @@ class Bars {
     }
   }
 
-  OnTargetChanged(e) {
+  UpdateEnmityTargetData(e) {
+    let target = e.Target;
+
     let update = false;
-    if (e.detail.name == null) {
+    if (!target || !target.Name) {
       if (this.distance != -1) {
         this.distance = -1;
         update = true;
       }
-    } else if (e.detail.distance != this.distance, this.job) {
-      this.distance = e.detail.distance;
+    } else if (target.EffectiveDistance != this.distance) {
+      this.distance = target.EffectiveDistance;
       update = true;
     }
     if (update) {
@@ -2453,8 +2455,8 @@ UserConfig.getUserConfigLocation('jobs', function() {
   addOverlayListener('onPlayerChangedEvent', function(e) {
     gBars.OnPlayerChanged(e);
   });
-  addOverlayListener('onTargetChangedEvent', function(e) {
-    gBars.OnTargetChanged(e);
+  addOverlayListener('EnmityTargetData', function(e) {
+    gBars.UpdateEnmityTargetData(e);
   });
   addOverlayListener('onPartyWipe', function(e) {
     gBars.OnPartyWipe(e);

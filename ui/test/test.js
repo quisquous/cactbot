@@ -62,15 +62,16 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   document.getElementById('bait').innerText = e.detail.bait;
 });
 
-addOverlayListener('onTargetChangedEvent', function(e) {
-  if (!e.detail) {
+addOverlayListener('EnmityTargetData', function(e) {
+  let target = e.Target;
+  if (!target) {
     document.getElementById('target').innerText = '--';
     document.getElementById('tid').innerText = '';
     document.getElementById('tdistance').innerText = '';
   } else {
-    document.getElementById('target').innerText = e.detail.name;
-    document.getElementById('tid').innerText = e.detail.id.toString(16);
-    document.getElementById('tdistance').innerText = e.detail.distance;
+    document.getElementById('target').innerText = target.Name;
+    document.getElementById('tid').innerText = target.ID.toString(16);
+    document.getElementById('tdistance').innerText = target.Distance;
   }
 });
 
