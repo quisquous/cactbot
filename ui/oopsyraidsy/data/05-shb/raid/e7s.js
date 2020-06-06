@@ -1,14 +1,23 @@
 'use strict';
 
-// TODO: when it's ok to take a light's course or dark's course
-// TODO: figuring out when courses are colored or not
 // TODO: missing an orb during tornado phase
 // TODO: jumping in the tornado damage??
 // TODO: taking sungrace(4C80) or moongrace(4C82) with wrong debuff
 // TODO: stygian spear/silver spear with the wrong debuff
 // TODO: taking explosion from the wrong Chiaro/Scuro orb
-// TODO: missing the interrupt
 // TODO: handle 4C89 Silver Stake tankbuster 2nd hit, as it's ok to have two in.
+
+let wrongBuff = (str) => {
+  return {
+    en: str + ' (wrong buff)',
+  };
+};
+
+let noBuff = (str) => {
+  return {
+    en: str + ' (no buff)',
+  };
+};
 
 [{
   zoneRegex: {
@@ -79,6 +88,51 @@
       abilityRegex: '4C6E',
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
+      },
+    },
+    {
+      id: 'E7S Astral Tracking',
+      gainsEffectRegex: gLang.kEffect.AstralEffect,
+      losesEffectRegex: gLang.kEffect.AstralEffect,
+      run: function(e, data) {
+        data.hasAstral = data.hasAstral || {};
+        data.hasAstral[e.targetName] = e.gains;
+      },
+    },
+    {
+      id: 'E7S Umbral Tracking',
+      gainsEffectRegex: gLang.kEffect.UmbralEffect,
+      losesEffectRegex: gLang.kEffect.UmbralEffect,
+      run: function(e, data) {
+        data.hasUmbral = data.hasUmbral || {};
+        data.hasUmbral[e.targetName] = e.gains;
+      },
+    },
+    {
+      id: 'E7S Light\'s Course',
+      damageRegex: ['4C62', '4C63', '4C64', '4C5B', '4C5F'],
+      condition: function(e, data) {
+        return !data.hasUmbral || !data.hasUmbral[e.targetName];
+      },
+      mistake: function(e, data) {
+        if (data.hasAstral && data.hasAstral[e.targetName])
+          return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
+        return { type: 'warn', blame: e.targetName, text: noBuff(e.abilityName) };
+      },
+    },
+    {
+      id: 'E7S Darks\'s Course',
+      damageRegex: ['4C65', '4C66', '4C67', '4C5A', '4C60'],
+      condition: function(e, data) {
+        return !data.hasAstral || !data.hasAstral[e.targetName];
+      },
+      mistake: function(e) {
+        if (data.hasUmbral && data.hasUmbral[e.targetName])
+          return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
+        // This case is probably impossible, as the debuff ticks after death,
+        // but leaving it here in case there's some rez or disconnect timing
+        // that could lead to this.
+        return { type: 'warn', blame: e.targetName, text: noBuff(e.abilityName) };
       },
     },
   ],
