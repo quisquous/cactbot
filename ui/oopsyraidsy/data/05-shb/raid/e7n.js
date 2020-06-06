@@ -1,5 +1,17 @@
 'use strict';
 
+let wrongBuff = (str) => {
+  return {
+    en: str + ' (wrong buff)',
+  };
+};
+
+let noBuff = (str) => {
+  return {
+    en: str + ' (no buff)',
+  };
+};
+
 [{
   zoneRegex: {
     en: /^Eden's Verse: Iconoclasm$/,
@@ -34,23 +46,11 @@
       },
     },
     {
-      // If we don't set this up ahead of time, the Dark/Light Course triggers will fail
-      // on the first two uses of Light's Course, since the Astral/Umbral properties wouldn't exist.
-      id: 'E7N Debuff Setup',
-      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C2B' }),
-      condition: function(e, data) {
-        return !(data.hasAstral && data.hasUmbral);
-      },
-      run: function(e, data) {
-        data.hasAstral = data.hasAstral || {};
-        data.hasUmbral = data.hasUmbral || {};
-      },
-    },
-    {
       id: 'E7N Astral Tracking',
       gainsEffectRegex: gLang.kEffect.AstralEffect,
       losesEffectRegex: gLang.kEffect.AstralEffect,
       run: function(e, data) {
+        data.hasAstral = data.hasAstral || {};
         data.hasAstral[e.targetName] = e.gains;
       },
     },
@@ -59,6 +59,7 @@
       gainsEffectRegex: gLang.kEffect.UmbralEffect,
       losesEffectRegex: gLang.kEffect.UmbralEffect,
       run: function(e, data) {
+        data.hasUmbral = data.hasUmbral || {};
         data.hasUmbral[e.targetName] = e.gains;
       },
     },
@@ -66,22 +67,27 @@
       id: 'E7N Light\'s Course',
       damageRegex: ['4C3E', '4C40', '4C22', '4C3C', '4E63'],
       condition: function(e, data) {
-        return !data.hasUmbral[e.targetName];
+        return !data.hasUmbral || !data.hasUmbral[e.targetName];
       },
       mistake: function(e, data) {
-        if (data.hasAstral[e.targetName])
-          return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
-        return { type: 'warn', blame: e.targetName, text: e.abilityName + ' no buff' };
+        if (data.hasAstral && data.hasAstral[e.targetName])
+          return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
+        return { type: 'warn', blame: e.targetName, text: noBuff(e.abilityName) };
       },
     },
     {
       id: 'E7N Darks\'s Course',
       damageRegex: ['4C3D', '4C23', '4C41', '4C43'],
       condition: function(e, data) {
-        return data.hasUmbral[e.targetName];
+        return !data.hasAstral || !data.hasAstral[e.targetName];
       },
       mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName + ' wrong buff' };
+        if (data.hasUmbral && data.hasUmbral[e.targetName])
+          return { type: 'fail', blame: e.targetName, text: wrongBuff(e.abilityName) };
+        // This case is probably impossible, as the debuff ticks after death,
+        // but leaving it here in case there's some rez or disconnect timing
+        // that could lead to this.
+        return { type: 'warn', blame: e.targetName, text: noBuff(e.abilityName) };
       },
     },
   ],
