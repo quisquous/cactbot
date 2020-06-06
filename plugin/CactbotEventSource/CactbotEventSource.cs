@@ -190,18 +190,6 @@ namespace Cactbot {
       Config = CactbotEventSourceConfig.LoadConfig(config, logger);
       if (Config.OverlayData == null)
         Config.OverlayData = new Dictionary<string, JToken>();
-
-      Config.WatchFileChangesChanged += (o, e) => {
-        if (Config.WatchFileChanges) {
-          StartFileWatcher();
-        } else {
-          StopFileWatcher();
-        }
-      };
-
-      if (Config.WatchFileChanges) {
-        StartFileWatcher();
-      }
     }
 
     public override void SaveConfig(IPluginConfig config)
@@ -295,6 +283,19 @@ namespace Cactbot {
         LogError("Requires .NET 4.6 or above. Using " + net_version_str);
 
       versions.DoUpdateCheck(Config);
+
+      // Start watching files after the update check.
+      Config.WatchFileChangesChanged += (o, e) => {
+        if (Config.WatchFileChanges) {
+          StartFileWatcher();
+        } else {
+          StopFileWatcher();
+        }
+      };
+
+      if (Config.WatchFileChanges) {
+        StartFileWatcher();
+      }
     }
 
     public override void Stop() {
