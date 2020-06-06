@@ -46,8 +46,6 @@ namespace Cactbot {
 
     // Filled in by ReadSignatures().
     internal IntPtr player_ptr_addr_ = IntPtr.Zero;
-    internal IntPtr target_ptr_addr_ = IntPtr.Zero;
-    internal IntPtr focus_ptr_addr_ = IntPtr.Zero;
     internal IntPtr job_data_outer_addr_ = IntPtr.Zero;
     internal IntPtr in_combat_addr_ = IntPtr.Zero;
     internal IntPtr bait_addr_ = IntPtr.Zero;
@@ -233,8 +231,6 @@ namespace Cactbot {
       bool changed_pid = process_ != null && found_process != null && process_.Id != found_process.Id;
       if (changed_existance || changed_pid) {
         player_ptr_addr_ = IntPtr.Zero;
-        target_ptr_addr_ = IntPtr.Zero;
-        focus_ptr_addr_ = IntPtr.Zero;
         job_data_outer_addr_ = IntPtr.Zero;
         process_ = found_process != null ? new LimitedProcess(found_process) : null;
 
@@ -292,8 +288,6 @@ namespace Cactbot {
     }
     public unsafe abstract JObject GetJobSpecificData(EntityJob job);
     internal abstract EntityData GetEntityData(IntPtr entity_ptr);
-    public abstract EntityData GetTargetData();
-    public abstract EntityData GetFocusData();
     public abstract EntityData GetSelfData();
 
     /// Reads |count| bytes at |addr| in the |process_|. Returns null on error.

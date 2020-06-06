@@ -65,12 +65,6 @@ namespace Cactbot {
     public delegate void PlayerChangedHandler(JSEvents.PlayerChangedEvent e);
     public event PlayerChangedHandler OnPlayerChanged;
 
-    public delegate void TargetChangedHandler(JSEvents.TargetChangedEvent e);
-    public event TargetChangedHandler OnTargetChanged;
-
-    public delegate void FocusChangedHandler(JSEvents.FocusChangedEvent e);
-    public event FocusChangedHandler OnFocusChanged;
-
     public delegate void LogHandler(JSEvents.LogEvent e);
     public event LogHandler OnLogsChanged;
 
@@ -117,8 +111,6 @@ namespace Cactbot {
         "onPlayerDied",
         "onPartyWipe",
         "onPlayerChangedEvent",
-        "onFocusChangedEvent",
-        "onTargetChangedEvent",
         "onUserFileChanged",
       });
 
@@ -288,8 +280,6 @@ namespace Cactbot {
       OnLogsChanged += (e) => DispatchToJS(e);
       OnImportLogsChanged += (e) => DispatchToJS(e);
       OnPlayerChanged += (e) => DispatchToJS(e);
-      OnTargetChanged += (e) => DispatchToJS(e);
-      OnFocusChanged += (e) => DispatchToJS(e);
       OnInCombatChanged += (e) => DispatchToJS(e);
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
@@ -409,10 +399,6 @@ namespace Cactbot {
       DateTime now = DateTime.Now;
       // The |player| can be null, such as during a zone change.
       FFXIVProcess.EntityData player = ffxiv_.GetSelfData();
-      // The |target| can be null when no target is selected.
-      FFXIVProcess.EntityData target = ffxiv_.GetTargetData();
-      // The |focus| can be null when no focus target is selected.
-      FFXIVProcess.EntityData focus = ffxiv_.GetFocusData();
 
       // onPlayerDiedEvent: Fires when the player dies. All buffs/debuffs are
       // lost.
@@ -448,24 +434,6 @@ namespace Cactbot {
           // No job-specific data.
           OnPlayerChanged(new JSEvents.PlayerChangedEvent(player));
         }
-      }
-
-      // onTargetChangedEvent: Fires when current target or their state changes.
-      if (target != notify_state_.target) {
-        notify_state_.target = target;
-        if (target != null)
-          OnTargetChanged(new JSEvents.TargetChangedEvent(target));
-        else
-          OnTargetChanged(new JSEvents.TargetChangedEvent(null));
-      }
-
-      // onFocusChangedEvent: Fires when current focus target or their state changes.
-      if (focus != notify_state_.focus) {
-        notify_state_.focus = focus;
-        if (target != null)
-          OnFocusChanged(new JSEvents.FocusChangedEvent(focus));
-        else
-          OnFocusChanged(new JSEvents.FocusChangedEvent(null));
       }
 
       // onLogEvent: Fires when new combat log events from FFXIV are available. This fires after any
@@ -803,12 +771,6 @@ namespace Cactbot {
       public string zone_name = null;
       public JObject job_data = new JObject();
       public FFXIVProcess.EntityData player = null;
-      public FFXIVProcess.EntityData target = null;
-      public FFXIVProcess.EntityData focus = null;
-      public int target_cast_id = 0;
-      public DateTime target_cast_start = new DateTime();
-      public int focus_cast_id = 0;
-      public DateTime focus_cast_start = new DateTime();
     }
     private NotifyState notify_state_ = new NotifyState();
   }

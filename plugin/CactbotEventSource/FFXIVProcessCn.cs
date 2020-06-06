@@ -101,24 +101,6 @@ namespace Cactbot {
     // }
     private static int kCharmapStructOffsetPlayer = 0;
 
-    // A piece of code that reads the pointer to the target entity structure.
-    // The pointer is the second ???????? in the signature. At address
-    // ffxiv_dx11.exe+59AFB9 in August 3, 2017 version.
-    private static String kTargetSignature = "483935????????7520483935????????7517";
-    private static int kTargetSignatureOffset = -6;
-    // The signature finds a pointer in the executable code which uses RIP addressing.
-    private static bool kTargetSignatureRIP = true;
-    // The pointer is to an entity structure:
-    //
-    // TargetStruct* outer;  // This pointer found from the signature.
-    // TargetStruct {
-    //   0x00 bytes in: EntityStruct* target;
-    //   ...
-    //   0x78 bytes in: EntityStruct* focus;
-    // }
-    private static int kTargetStructOffsetTarget = 0;
-    private static int kTargetStructOffsetFocus = 0x78;
-
     // In combat boolean.
     // Variable is set at 83FA587D70534883EC204863C2410FB6D8381C08744E (offset=0)
     // via a mov [rax+rcx],bl line.
@@ -148,14 +130,6 @@ namespace Cactbot {
         logger_.LogError("Charmap signature found " + p.Count + " matches");
       } else {
         player_ptr_addr_ = IntPtr.Add(p[0], kCharmapStructOffsetPlayer);
-      }
-
-      p = SigScan(kTargetSignature, kTargetSignatureOffset, kTargetSignatureRIP);
-      if (p.Count != 1) {
-        logger_.LogError("Target signature found " + p.Count + " matches");
-      } else {
-        target_ptr_addr_ = IntPtr.Add(p[0], kTargetStructOffsetTarget);
-        focus_ptr_addr_ = IntPtr.Add(p[0], kTargetStructOffsetFocus);
       }
 
       p = SigScan(kJobDataSignature, kJobDataSignatureOffset, kJobDataSignatureRIP);
@@ -257,26 +231,6 @@ namespace Cactbot {
       if (data.job == EntityJob.FSH)
         data.bait = GetBait();
       return data;
-    }
-
-    public override EntityData GetTargetData() {
-      if (!HasProcess() || target_ptr_addr_ == IntPtr.Zero)
-        return null;
-
-      IntPtr entity_ptr = ReadIntPtr(target_ptr_addr_);
-      if (entity_ptr == IntPtr.Zero)
-        return null;
-      return GetEntityData(entity_ptr);
-    }
-
-    public override EntityData GetFocusData() {
-      if (!HasProcess() || focus_ptr_addr_ == IntPtr.Zero)
-        return null;
-
-      IntPtr entity_ptr = ReadIntPtr(focus_ptr_addr_);
-      if (entity_ptr == IntPtr.Zero)
-        return null;
-      return GetEntityData(entity_ptr);
     }
 
     public unsafe override JObject GetJobSpecificData(EntityJob job) {

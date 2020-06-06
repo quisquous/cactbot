@@ -167,16 +167,6 @@ namespace Cactbot {
       public int distance = 0;
     }
 
-    public class TargetChangedEvent : EntityChangedEvent, JSEvent {
-      public TargetChangedEvent(FFXIVProcess.EntityData e) : base(e) { }
-      public string EventName() { return "onTargetChangedEvent"; }
-    }
-
-    public class FocusChangedEvent : EntityChangedEvent, JSEvent {
-      public FocusChangedEvent(FFXIVProcess.EntityData e) : base(e) { }
-      public string EventName() { return "onFocusChangedEvent"; }
-    }
-
     public class SendSaveData : JSEvent {
       public SendSaveData(string data) {
         this.data = data;
