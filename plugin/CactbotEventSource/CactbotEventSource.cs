@@ -236,10 +236,9 @@ namespace Cactbot {
       } else {
         LogInfo("Parsing Plugin Language: {0}", language_);
       }
-      if (pc_locale_ == null){
+      if (pc_locale_ == null) {
         LogInfo("System Locale: {0}", "(unknown)");
-      }
-      else{
+      } else {
         LogInfo("System Locale: {0}", pc_locale_);
       }
 
