@@ -34,7 +34,7 @@ let noBuff = (str) => {
   },
   damageFail: {
     'Betwixt Worlds': '4C6B', // purple ground line aoes
-    'Crusade': '4C58', // knockback
+    'Crusade': '4C58', // blue knockback circle (standing in it)
     'Explosion': '4C6F', // didn't kill an add
   },
   triggers: [
@@ -133,6 +133,14 @@ let noBuff = (str) => {
         // but leaving it here in case there's some rez or disconnect timing
         // that could lead to this.
         return { type: 'warn', blame: e.targetName, text: noBuff(e.abilityName) };
+      },
+    },
+    {
+      id: 'E7S Crusade Knockback',
+      // 4C76 is the knockback damage, 4C58 is the damage for standing on the puck.
+      damageRegex: '4C76',
+      deathReason: function(e) {
+        return { type: 'fail', name: e.targetName, reason: { en: 'Knocked off' } };
       },
     },
   ],
