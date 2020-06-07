@@ -406,6 +406,7 @@
             infoText: {
               en: 'Avoid ' + data.ShortName(matches.target),
               de: 'Vermeide ' + data.ShortName(matches.target),
+              fr: 'Évitez ' + data.ShortName(matches.target),
             },
           };
         }
@@ -487,6 +488,7 @@
           return {
             en: 'Go South',
             de: 'Geh nach Süden',
+            fr: 'Allez au Sud',
             ko: '남쪽',
           };
         }
@@ -494,12 +496,14 @@
           return {
             en: 'Go Northwest',
             de: 'Geh nach Nordwesten',
+            fr: 'Allez au Nord-Ouest',
             ko: '북서쪽',
           };
         }
         return {
           en: 'Go Northeast',
           de: 'Geh nach Nordosten',
+          fr: 'Allez au Nord-Est',
           ko: '북동쪽',
         };
       },

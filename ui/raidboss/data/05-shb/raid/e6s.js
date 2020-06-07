@@ -67,8 +67,8 @@
         // south      x: 96-104   y: 107-115
         // southeast  x: 107-115  y: 107-115
         // southwest  x: 85-93    y: 107-115
-        let safeZoneObj1 = { en: '', de: '' };
-        let safeZoneObj2 = { en: '', de: '' };
+        let safeZoneObj1 = { en: '', de: '', fr: '' };
+        let safeZoneObj2 = { en: '', de: '', fr: '' };
 
         // don't need to go through all the posibilities,
         // only those 4 ifs do reflect the above positions

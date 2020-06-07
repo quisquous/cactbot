@@ -268,6 +268,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Cleanse In Cloud',
+        fr: 'Dissipez dans le nuage',
       },
     },
     {
@@ -276,6 +277,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Drop Cloud Away',
+        fr: 'Déposez le nuage à l\'extérieur',
       },
     },
     {
