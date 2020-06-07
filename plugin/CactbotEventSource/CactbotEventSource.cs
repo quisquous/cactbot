@@ -744,8 +744,9 @@ namespace Cactbot {
     }
 
     private void RegisterPresets() {
-      RegisterPreset("Raidboss", width:1100, height:300, "Raidboss Alerts", "raidboss_alerts_only");
-      RegisterPreset("Raidboss", width:320, height:220, "Raidboss Timeline", "raidboss_timeline_only");
+      RegisterPreset("Raidboss", width:1100, height:300, "Raidboss (Combined Alerts & Timeline)", "raidboss");
+      RegisterPreset("Raidboss", width:1100, height:300, "Raidboss Alerts Only", "raidboss_alerts_only");
+      RegisterPreset("Raidboss", width:320, height:220, "Raidboss Timeline Only", "raidboss_timeline_only");
       RegisterPreset("Jobs", width:600, height:300);
       RegisterPreset("Eureka", width:400, height:400);
       RegisterPreset("Fisher", width:500, height:500);
