@@ -67,8 +67,8 @@
         // south      x: 96-104   y: 107-115
         // southeast  x: 107-115  y: 107-115
         // southwest  x: 85-93    y: 107-115
-        let safeZoneObj1 = { en: '', de: '', fr: '' };
-        let safeZoneObj2 = { en: '', de: '', fr: '' };
+        let safeZoneObj1 = null;
+        let safeZoneObj2 = null;
 
         // don't need to go through all the posibilities,
         // only those 4 ifs do reflect the above positions
@@ -104,11 +104,17 @@
           };
         }
 
+        let concatSafeZones = (lang) => {
+          let str1 = safeZoneObj1 ? safeZoneObj1[lang] : '';
+          let str2 = safeZoneObj2 ? safeZoneObj2[lang] : '';
+          return str1 + str2;
+        };
+
         data.safeZone = {
-          en: safeZoneObj1.en + safeZoneObj2.en,
-          de: safeZoneObj1.de + safeZoneObj2.de,
-          fr: safeZoneObj1.fr + safeZoneObj2.fr,
-          ko: safeZoneObj1.ko + safeZoneObj2.ko + '쪽으로',
+          en: concatSafeZones('en'),
+          de: concatSafeZones('de'),
+          fr: concatSafeZones('fr'),
+          ko: concatSafeZones('ko') + '쪽으로',
         };
       },
       infoText: function(data) {
