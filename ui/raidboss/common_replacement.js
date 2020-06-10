@@ -63,6 +63,11 @@ let commonReplacement = {
     cn: '--跳--',
     ko: '--점프--',
   },
+  '--knockback--': {
+    fr: '--poussée--',
+    cn: '--击退--',
+    ko: '--넉백--',
+  },
   '--middle--': {
     de: '--mitte--',
     fr: '--milieu--',
