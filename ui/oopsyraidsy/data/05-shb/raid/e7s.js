@@ -17,7 +17,7 @@ let wrongBuff = (str) => {
 let noBuff = (str) => {
   return {
     en: str + ' (no buff)',
-    fr: str + ' (pas de buff)'
+    fr: str + ' (pas de buff)',
   };
 };
 
