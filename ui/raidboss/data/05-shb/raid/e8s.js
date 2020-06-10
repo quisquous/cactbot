@@ -392,7 +392,7 @@
           infoText: {
             en: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
             de: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
-            fr: 'Akh Morn : ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
+            fr: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
           },
         };
       },
@@ -660,7 +660,7 @@
       infoText: {
         en: 'Cleanse DPS Only',
         de: 'Nur DPS reinigen',
-        fr: 'Guérison sur les DPS seulement',
+        fr: 'Guérison => DPS seulement',
         cn: '驱散DPS',
         ko: '딜러만 에스나',
       },
@@ -869,8 +869,8 @@
         'Skyfall': 'Anéantissement',
         'Spiteful/Embittered Dance': 'Danse de la froideur/sévérité',
         'Stoneskin': 'Cuirasse',
-        'the Path of Light': 'Voie de lumière',
-        'the House of Light': 'Raz-de-lumière',
+        'The Path Of Light': 'Voie de lumière',
+        'The House Of Light': 'Raz-de-lumière',
         'Twin Silence/Stillness': 'Entaille de la tranquilité/quiétude',
         'Twin Stillness/Silence': 'Entaille de la quiétude/tranquilité',
         'Wyrm\'s Lament': 'Rugissement du Dragon divin',
