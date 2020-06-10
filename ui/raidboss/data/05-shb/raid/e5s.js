@@ -376,7 +376,7 @@
         'Will Of Ixion': 'Réplique d\'Ixion',
       },
       'replaceText': {
-      	'\\?': ' ?',
+        '\\?': ' ?',
         'Volt Strike': 'Frappe d\'éclair',
         'Tribunal Summons': 'Manifestations de l\'esprit',
         'Thunderstorm': 'Tempête de foudre',
