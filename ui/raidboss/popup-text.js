@@ -416,8 +416,9 @@ class PopupText {
     this._onTriggerInternalDurationSeconds(triggerHelper);
     this._onTriggerInternalSuppressSeconds(triggerHelper);
 
-    delayPromise.then(() => {
-      this._onTriggerInternalPromise(triggerHelper).then(() => {
+    let triggerPostDelay = () => {
+      let promise = this._onTriggerInternalPromise(triggerHelper);
+      let triggerPostPromise = () => {
         this._onTriggerInternalSound(triggerHelper);
         this._onTriggerInternalSoundVolume(triggerHelper);
         this._onTriggerInternalResponse(triggerHelper);
@@ -452,8 +453,20 @@ class PopupText {
         this._onTriggerInternalTTS(triggerHelper);
         this._onTriggerInternalPlayAudio(triggerHelper);
         this._onTriggerInternalRun(triggerHelper);
-      });
-    });
+      };
+
+      // The trigger body must run synchronously when there is no promise.
+      if (promise)
+        promise.then(triggerPostPromise);
+      else
+        triggerPostPromise();
+    };
+
+    // The trigger body must run synchronously when there is no delay.
+    if (delayPromise)
+      delayPromise.then(triggerPostDelay);
+    else
+      triggerPostDelay();
   }
 
   // Build a default triggerHelper object for this trigger
@@ -560,21 +573,19 @@ class PopupText {
 
   _onTriggerInternalDelaySeconds(triggerHelper) {
     let delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
+    if (!delay || delay <= 0)
+      return null;
+
     let triggerID = this.currentTriggerID++;
     this.timers[triggerID] = true;
     return new Promise((res, rej) => {
-      if (delay > 0) {
-        window.setTimeout(() => {
-          if (this.timers[triggerID])
-            res();
-          else
-            rej();
-          delete this.timers[triggerID];
-        }, delay * 1000);
-      } else {
+      window.setTimeout(() => {
+        if (this.timers[triggerID])
+          res();
+        else
+          rej();
         delete this.timers[triggerID];
-        res();
-      }
+      }, delay * 1000);
     });
   }
 
@@ -606,11 +617,6 @@ class PopupText {
       } else {
         console.error('Trigger ' + triggerHelper.trigger.id + ': promise defined but not a function');
       }
-    }
-    if (promise === null) {
-      promise = new Promise((res) => {
-        res();
-      });
     }
     return promise;
   }
