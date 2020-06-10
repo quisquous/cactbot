@@ -58,8 +58,8 @@
             en: 'Tether on YOU',
             de: 'Verbindung auf DIR',
             fr: 'Lien sur VOUS',
-            ko: '선 대상자',
             cn: '连线点名',
+            ko: '선 대상자',
           };
         }
       },
@@ -82,10 +82,10 @@
           return {
             en: 'Stack on YOU',
             de: 'Sammeln auf DIR',
-            ja: '自分にシェア',
             fr: 'Package sur VOUS',
-            ko: '나에게 모이기',
+            ja: '自分にシェア',
             cn: '分摊点名',
+            ko: '나에게 모이기',
           };
         }
         if (data.betwixtWorldsStack.length == 1)
@@ -95,8 +95,8 @@
           en: 'Stack (' + names.join(', ') + ')',
           de: 'Sammeln (' + names.join(', ') + ')',
           fr: 'Package (' + names.join(', ') + ')',
-          ko: '모이기 (' + names.join(', ') + ')',
           cn: '分摊 (' + names.join(', ') + ')',
+          ko: '모이기 (' + names.join(', ') + ')',
         };
       },
     },
@@ -111,8 +111,8 @@
         en: 'Teleporting Left',
         de: 'Teleportation Links',
         fr: 'Téléportation à gauche',
-        ko: '왼쪽으로 순간이동',
         cn: '向左传送',
+        ko: '왼쪽으로 순간이동',
       },
     },
     {
@@ -126,8 +126,8 @@
         en: 'Teleporting Right',
         de: 'Teleportation Rechts',
         fr: 'Téléportation à droite',
-        ko: '오른쪽으로 순간이동',
         cn: '向右传送',
+        ko: '오른쪽으로 순간이동',
       },
     },
     {
@@ -141,8 +141,8 @@
         en: 'Teleporting Forward',
         de: 'Teleportation Vorwärts',
         fr: 'Téléportation devant',
-        ko: '앞으로 순간이동',
         cn: '向前传送',
+        ko: '앞으로 순간이동',
       },
     },
     {
@@ -156,8 +156,8 @@
         en: 'Teleporting Back',
         de: 'Teleportation Rückwärts',
         fr: 'Téléportation derrière',
-        ko: '뒤로 순간이동',
         cn: '向后传送',
+        ko: '뒤로 순간이동',
       },
     },
     {
@@ -185,10 +185,10 @@
           return {
             en: 'Spread',
             de: 'Verteilen',
-            ja: '散開',
             fr: 'Dispersez-vous',
-            ko: '산개',
+            ja: '散開',
             cn: '分散',
+            ko: '산개',
           };
         }
       },
@@ -207,16 +207,16 @@
           return {
             en: 'Stack on YOU',
             de: 'Sammeln auf DIR',
-            ja: '自分にシェア',
             fr: 'Package sur VOUS',
-            ko: '나에게 모이기',
+            ja: '自分にシェア',
             cn: '分摊点名',
+            ko: '나에게 모이기',
           };
         }
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
+          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'にスタック',
           cn: '靠近 ' + data.ShortName(matches.target) + '集合',
           ko: '쉐어징 → ' + data.ShortName(matches.target),
@@ -259,10 +259,10 @@
           return {
             en: 'Stack on YOU',
             de: 'Sammeln auf DIR',
-            ja: '自分にシェア',
             fr: 'Package sur VOUS',
-            ko: '나에게 쉐어징',
+            ja: '自分にシェア',
             cn: '分摊点名',
+            ko: '나에게 쉐어징',
           };
         }
         if (data.insatiableLightStack.length == 1)
@@ -271,9 +271,9 @@
         return {
           en: 'Stack (' + names.join(', ') + ')',
           de: 'Sammeln (' + names.join(', ') + ')',
-          fr: 'Package (' + names.join(', ') + ')',
-          ko: '모이기 (' + names.join(', ') + ')',
+          fr: 'Packez-vous (' + names.join(', ') + ')',
           cn: '分摊 (' + names.join(', ') + ')',
+          ko: '모이기 (' + names.join(', ') + ')',
         };
       },
     },
@@ -339,15 +339,15 @@
           en: 'Dark',
           de: 'Dunkel',
           fr: 'Noir',
-          ko: '어둠',
           cn: '黑色',
+          ko: '어둠',
         };
         data.colorMap['dark'] = {
           en: 'Light',
           de: 'Licht',
           fr: 'Blanc',
-          ko: '빛',
           cn: '白色',
+          ko: '빛',
         };
       },
     },
@@ -440,8 +440,8 @@
           en: 'Get hit by ' + color,
           de: 'Lass dich treffen von ' + color,
           fr: 'Encaissez-le ' + color,
-          ko: color + ' 맞기',
           cn: '撞' + color,
+          ko: color + ' 맞기',
         };
       },
     },
@@ -469,9 +469,9 @@
       // Can't use knockback prevention for this, so say where to get knocked back.
       alertText: {
         en: 'Get Knocked Into Corner',
-        cn: '击退到角落',
         de: 'Lass dich in die Ecke zurückstoßen',
         fr: 'Faites-vous pousser dans les coins',
+        cn: '击退到角落',
         ko: '구석으로 넉백',
       },
     },
@@ -524,8 +524,8 @@
           en: 'Stand in ' + color,
           de: 'Stehe in ' + color,
           fr: 'Restez sur ' + color,
-          ko: color + '에 서기',
           cn: '站进' + color,
+          ko: color + '에 서기',
         };
       },
     },
@@ -533,6 +533,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Unforgiven Idolatry': 'ungeläutert(?:e|er|es|en) Götzenverehrung',
         'The Idol Of Darkness': 'Götzenbild der Dunkelheit',
@@ -603,21 +604,21 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'unforgiven idolatry': 'Nuée d\'idolâtries impardonnables',
-        'the Idol of Darkness': 'Idole des Ténèbres',
-        'scuro': 'Amas de clarté',
-        '(?<! )idolatry': 'Vol d\'idolâtries impardonnables',
-        'chiaro': 'Amas de noirceur',
-        'blasphemy': 'Vol d\'idolâtries impardonnables',
+        'Unforgiven Idolatry': 'Nuée D\'idolâtries Impardonnables',
+        'The Idol Of Darkness': 'Idole des Ténèbres',
+        'Scuro': 'Amas De Clarté',
+        '(?<! )Idolatry': 'Vol D\'idolâtries Impardonnables',
+        'Chiaro': 'Amas De Noirceur',
+        'Blasphemy': 'Vol D\'idolâtries Impardonnables',
       },
       'replaceText': {
-        'Words of Unity': 'Ordre d\'assaut',
-        'Words of Spite': 'Ordre de visée',
-        'Words of Night': 'Ordre d\'attaque-surprise',
-        'Words of Motion': 'Ordre de déferlement',
-        'Words of Fervor': 'Ordre de virevolte',
-        'Words of Entrapment': 'Ordre d\'encerclement',
-        'White Smoke': 'Brûlure immaculée',
+        'Words Of Unity': 'Ordre d\'assaut',
+        'Words Of Spite': 'Ordre de visée',
+        'Words Of Night': 'Ordre d\'attaque-surprise',
+        'Words Of Motion': 'Ordre de déferlement',
+        'Words Of Fervor': 'Ordre de virevolte',
+        'Words Of Entrapment': 'Ordre d\'encerclement',
+        'White/Black Smoke': 'Brûlure immaculée/ténébreuse',
         'Unshadowed Stake': 'Poinçon clair-obscur',
         'Unjoined Aspect': 'Transition élémentaire',
         'Unearned Envy': 'Mécanisme de défense',
@@ -626,7 +627,7 @@
         'Stygian Sword': 'Épée ténébreuse',
         'Stygian Stake': 'Poinçon ténébreux',
         'Stygian Spear': 'Lance ténébreuse',
-        'Strength in Numbers': 'Murmuration offensive',
+        'Strength In Numbers': 'Murmuration offensive',
         'Silver Sword': 'Épée immaculée',
         'Silver Stake': 'Poinçon immaculé',
         'Silver Spear': 'Lance immaculée',
@@ -643,18 +644,17 @@
         'False Moonlight': 'Murmuration du jour polaire',
         'False Midnight': 'Murmuration de la nuit polaire',
         'False Dawn': 'Murmuration de l\'aube',
-        'Explosion': 'Explosion',
+        'Explosion?': 'Explosion ?',
         'Empty Wave': 'Onde de néant',
         'Empty Flood': 'Déluge de néant',
-        'Dark\'s Course': 'Déferlement immaculé',
+        'Dark\'s Course': 'Déferlement ténébreux',
         'Crusade': 'Plongeon de la nuée',
         'Buffet': 'Rafale',
         'Boundless Light': 'Flot immaculé',
         'Boundless Dark': 'Flot ténébreux',
-        'Black Smoke': 'Brûlure ténébreuse',
         'Betwixt Worlds': 'Brèche dimensionnelle',
-        'Away with Thee': 'Translation forcée',
-        'Advent of Light': 'Plénitude lumineuse',
+        'Away With Thee': 'Translation forcée',
+        'Advent Of Light': 'Plénitude lumineuse',
       },
       '~effectNames': {
         'Waymark': 'Cible d\'une ruée',
@@ -671,6 +671,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'unforgiven idolatry': 'アンフォーギヴン・アイドラトリー',
         'the Idol of Darkness': 'ダークアイドル',
