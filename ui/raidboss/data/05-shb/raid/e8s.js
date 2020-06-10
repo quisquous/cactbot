@@ -392,7 +392,7 @@
           infoText: {
             en: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
             de: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
-            fr: 'Akh Morn: ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
+            fr: 'Akh Morn : ' + data.akhMornTargets.map((x) => data.ShortName(x)).join(', '),
           },
         };
       },
