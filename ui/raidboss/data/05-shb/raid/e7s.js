@@ -439,7 +439,7 @@
         return {
           en: 'Get hit by ' + color,
           de: 'Lass dich treffen von ' + color,
-          fr: 'Encaissez-le ' + color,
+          fr: 'Encaissez le ' + color,
           cn: '撞' + color,
           ko: color + ' 맞기',
         };
