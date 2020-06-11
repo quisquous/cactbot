@@ -68,8 +68,8 @@
         en: 'Teleporting Forward',
         de: 'Teleportation Vorwärts',
         fr: 'Téléportation devant',
-        ko: '앞으로 순간이동',
         cn: '向前传送',
+        ko: '앞으로 순간이동',
       },
     },
     {
@@ -83,8 +83,8 @@
         en: 'Teleporting Back',
         de: 'Teleportation Rückwärts',
         fr: 'Téléportation derrière',
-        ko: '뒤로 순간이동',
         cn: '向后传送',
+        ko: '뒤로 순간이동',
       },
     },
     {
@@ -173,6 +173,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Unforgiven Idolatry': 'ungeläuterte Götzenverehrung',
         'The Idol Of Darkness': 'Götzenbild der Dunkelheit',
@@ -220,9 +221,9 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'unforgiven idolatry': 'Nuée d\'idolâtries impardonnables',
+        'unforgiven idolatry': 'Nuée D\'idolâtries Impardonnables',
         'the Idol of Darkness': 'Idole des Ténèbres',
-        '(?<! )idolatry': 'Vol d\'idolâtries impardonnables',
+        '(?<! )idolatry': 'Vol D\'idolâtries Impardonnables',
       },
       'replaceText': {
         'Words of Night': 'Ordre d\'attaque-surprise',
@@ -234,12 +235,12 @@
         'Strength in Numbers': 'Murmuration offensive',
         'Silver Sledge': 'Pilon immaculé',
         'Silver Shot': 'Trait immaculé',
-        'Light\'s Course': 'Déferlement immaculé',
+        '(?<!Dark\'s Course/)Light\'s Course': 'Déferlement immaculé',
         'False Twilight': 'Murmuration du crépuscule',
         'Explosion': 'Explosion',
         'Empty Wave': 'Onde de néant',
         'Empty Flood': 'Déluge de néant',
-        'Dark\'s Course': 'Déferlement immaculé',
+        'Dark\'s Course/Light\'s Course': 'Déferlement ténébreux/immaculé',
         'Boundless Light': 'Flot immaculé',
         'Boundless Dark': 'Flot ténébreux',
         'Black Smoke': 'Brûlure ténébreuse',
@@ -254,11 +255,15 @@
         'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
         'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
         'Left with Thee': 'Translation gauche',
+        'Forward with Thee': 'Translation avant',
+        'Back with Thee': 'Translation arrière',
+        'Away With Thee': 'Translation forcée',
         'Astral Effect': 'Corruption de Lumière',
       },
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'unforgiven idolatry': 'アンフォーギヴン・アイドラトリー',
         'the Idol of Darkness': 'ダークアイドル',
@@ -295,6 +300,9 @@
         'Physical Vulnerability Up': '被物理ダメージ増加',
         'Magic Vulnerability Up': '被魔法ダメージ増加',
         'Left with Thee': '強制転移：左',
+        'Forward with Thee': '強制転移：前',
+        'Back with Thee': '強制転移：後',
+        'Away With Thee': '強制転移',
         'Astral Effect': '偏属性：光',
       },
     },
