@@ -37,8 +37,8 @@
       infoText: {
         en: 'Avoid green nails',
         de: 'Weiche den grünen Nägeln aus',
+        fr: 'Évitez les griffes',
         cn: '躲避风牙',
-        fr: 'Evitez les clous',
         ko: '초록 발톱 피하기',
       },
     },
@@ -50,17 +50,17 @@
         if (data.me == matches.target) {
           return {
             en: 'Enumeration on YOU',
-            cn: '蓝圈分摊点名',
             de: 'Enumeration aud DIR',
-            fr: 'Enumération sur VOUS',
+            fr: 'Énumération sur VOUS',
+            cn: '蓝圈分摊点名',
             ko: '2인 장판 대상자',
           };
         }
         return {
           en: 'Enumeration',
-          cn: '蓝圈分摊',
           de: 'Enumeration',
-          fr: 'Enumération',
+          fr: 'Énumération',
+          cn: '蓝圈分摊',
           ko: '2인 장판',
         };
       },
@@ -97,9 +97,9 @@
         if (data.me == matches.target) {
           return {
             en: 'Charge on YOU',
-            cn: '冲锋点名',
             de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
+            cn: '冲锋点名',
             ko: '돌진 대상자',
           };
         }
@@ -107,9 +107,9 @@
           return;
         return {
           en: 'Tank Swap',
-          cn: '换坦克',
           de: 'Tank Swap',
           fr: 'Tank Swap',
+          cn: '换坦克',
           ko: '탱 교대',
         };
       },
@@ -140,9 +140,9 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Tether Marker on YOU',
-        cn: '连线点名',
         de: 'Verbindung auf DIR',
         fr: 'Marque de lien sur VOUS',
+        cn: '连线点名',
         ko: '징 대상자',
       },
     },
@@ -161,8 +161,8 @@
       alertText: {
         en: 'Move to Ifrit',
         de: 'Zu Ifrit bewegen',
-        cn: '踢球 集合待机',
         fr: 'Allez sur Ifrit',
+        cn: '踢球 集合待机',
         ko: '이프리트로 이동',
       },
       run: function(data) {
@@ -216,7 +216,7 @@
         'Eruption': 'Eruption',
         'Downburst': 'Fallböe',
         'Conflag Strike': 'Feuersbrunst',
-        'Call of the Inferno': 'Flimmernde Hitze',
+        'Call Of The Inferno': 'Flimmernde Hitze',
         'Blaze': 'Flamme',
         'Air Bump': 'Aufsteigende Böe',
         'Storm Of Fury': 'Wütender Sturm',
@@ -246,9 +246,9 @@
         'Thorns': 'Lardoir',
         'Superstorm': 'Tempête dévastatrice',
         'Strike Spark': 'Ignescences',
-        'Storm of Fury': 'Tempête déchaînée',
-        'Spread of Fire': 'Océan de feu',
-        'Spike of Flame': 'Explosion de feu',
+        'Storm Of Fury': 'Tempête déchaînée',
+        'Spread Of Fire': 'Océan de feu',
+        'Spike Of Flame': 'Explosion de feu',
         'Radiant Plume': 'Panache radiant',
         'Occluded Front': 'Front occlus',
         'Meteor Strike': 'Frappe de météore',
@@ -257,15 +257,15 @@
         'Inferno Howl': 'Rugissement ardent',
         'Hot Foot': 'Jet d\'ignescence',
         'Heat Burst': 'Vague de chaleur',
-        'Hands of Hell': 'Frappe purgatrice',
-        'Hands of Flame': 'Frappe enflammée',
+        'Hands Of Hell': 'Frappe purgatrice',
+        'Hands Of Flame': 'Frappe enflammée',
         'Firestorm': 'Tempête de feu',
         'Ferostorm': 'Tempête déchaînée',
         'Explosion': 'Explosion de vent',
         'Eruption': 'Éruption',
         'Downburst': 'Rafale descendante',
         'Conflag Strike': 'Ekpurosis',
-        'Call of the Inferno': 'Mirage de chaleur',
+        'Call Of The Inferno': 'Mirage de chaleur',
         'Blaze': 'Fournaise',
         'Air Bump': 'Rafale ascendante',
       },
@@ -277,6 +277,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'twisting blaze': '火炎旋風',
         'tumultuous nexus': '暴風球',
@@ -292,9 +293,9 @@
         'Thorns': '早贄',
         'Superstorm': 'スーパーストーム',
         'Strike Spark': 'ファイアスパーク',
-        'Storm of Fury': 'フューリアスストーム',
-        'Spread of Fire': 'スプレッド・オブ・ファイア',
-        'Spike of Flame': '爆炎',
+        'Storm Of Fury': 'フューリアスストーム',
+        'Spread Of Fire': 'スプレッド・オブ・ファイア',
+        'Spike Of Flame': '爆炎',
         'Radiant Plume': '光輝の炎柱',
         'Occluded Front': 'オクルーデッドフロント',
         'Meteor Strike': 'メテオストライク',
@@ -303,15 +304,15 @@
         'Inferno Howl': '灼熱の咆哮',
         'Hot Foot': '飛び火',
         'Heat Burst': '熱波',
-        'Hands of Hell': '業炎拳',
-        'Hands of Flame': '火炎拳',
+        'Hands Of Hell': '業炎拳',
+        'Hands Of Flame': '火炎拳',
         'Firestorm': 'ファイアストーム',
         'Ferostorm': 'フィアスストーム',
         'Explosion': '爆散',
         'Eruption': 'エラプション',
         'Downburst': 'ダウンバースト',
         'Conflag Strike': 'コンフラグレーションストライク',
-        'Call of the Inferno': '陽炎召喚',
+        'Call Of The Inferno': '陽炎召喚',
         'Blaze': '火炎',
         'Air Bump': 'エアーバンプ',
       },
