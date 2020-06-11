@@ -65,6 +65,7 @@ let commonReplacement = {
   },
   '--knockback--': {
     fr: '--poussée--',
+    ja: '--ノックバック--',
     cn: '--击退--',
     ko: '--넉백--',
   },
