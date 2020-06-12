@@ -533,7 +533,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Unforgiven Idolatry': 'ungeläutert(?:e|er|es|en) Götzenverehrung',
         'The Idol Of Darkness': 'Götzenbild der Dunkelheit',
@@ -671,7 +670,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'unforgiven idolatry': 'アンフォーギヴン・アイドラトリー',
         'the Idol of Darkness': 'ダークアイドル',
