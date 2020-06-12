@@ -277,7 +277,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'twisting blaze': '火炎旋風',
         'tumultuous nexus': '暴風球',
