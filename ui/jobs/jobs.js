@@ -2162,6 +2162,8 @@ class Bars {
       return;
 
     let CanShowWellFedWarning = function() {
+      if (!this.options.HideWellFedAboveSeconds)
+        return false;
       if (this.inCombat)
         return false;
       if (this.level < this.options.MaxLevel)
