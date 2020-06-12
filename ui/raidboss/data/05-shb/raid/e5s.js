@@ -326,7 +326,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Stormcloud': 'Cumulonimbus-Wolke',
         'Ramuh': 'Ramuh',
@@ -412,7 +411,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'stormcloud': '積乱雲',
         'Ramuh': 'ラムウ',
