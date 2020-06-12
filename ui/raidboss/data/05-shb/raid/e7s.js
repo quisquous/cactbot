@@ -644,7 +644,7 @@
         'False Moonlight': 'Murmuration du jour polaire',
         'False Midnight': 'Murmuration de la nuit polaire',
         'False Dawn': 'Murmuration de l\'aube',
-        'Explosion?': 'Explosion ?',
+        'Explosion\\?': 'Explosion ?',
         'Empty Wave': 'Onde de néant',
         'Empty Flood': 'Déluge de néant',
         'Dark\'s Course': 'Déferlement ténébreux',
