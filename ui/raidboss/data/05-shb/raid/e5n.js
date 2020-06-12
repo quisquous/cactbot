@@ -202,6 +202,7 @@
       'replaceSync': {
         'stormcloud': '積乱雲',
         'Ramuh': 'ラムウ',
+        'Will Of Ramuh': 'ラムウ・ミラージュ',
         'Will Of Ixion': 'イクシオン・ミラージュ',
       },
       'replaceText': {
