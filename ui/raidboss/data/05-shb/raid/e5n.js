@@ -198,10 +198,9 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'stormcloud': '積乱雲',
-        'Ramuh': 'ラムウ',
+        '(?<! )Ramuh': 'ラムウ',
         'Will Of Ramuh': 'ラムウ・ミラージュ',
         'Will Of Ixion': 'イクシオン・ミラージュ',
       },
