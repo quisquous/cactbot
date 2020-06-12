@@ -177,10 +177,7 @@
       'replaceSync': {
         'Unforgiven Idolatry': 'ungeläuterte Götzenverehrung',
         'The Idol Of Darkness': 'Götzenbild der Dunkelheit',
-        'scuro': 'verdichtetes Licht',
         '(?<! )Idolatry': 'Idolatrie',
-        'chiaro': 'verdichtetes Dunkel',
-        'blasphemy': 'Blasphemie',
       },
       'replaceText': {
         'Words of Night': 'Kommando: Nächtlicher Angriff',
