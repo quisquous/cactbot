@@ -134,41 +134,45 @@ hideall "--sync--"
 622.5 "The Seeing" sync /:Ravana:EA[012]:/
 626.7 "Atma-Linga" sync /:Ravana:EA6:/
 631.0 "The Seeing" sync /:Ravana:EA[012]:/
-640.2 "Warlord Flame?" sync /:Ravana:EB2:/
-
-644.0 "Blinding Blade" sync /:Ravana:E9F:/ window 30,5
-647.1 "Atma-Linga" sync /:Ravana:EA6:/
-649.9 "Tapasya x3" sync /:Ravana:EA4:/
 656.0 "Atma-Linga" sync /:Ravana:EA6:/
-659.1 "Blinding Blade" sync /:Ravana:E9F:/
-662.2 "Atma-Linga x2" # sync /:Ravana:EA6:/
-666.9 "Tapasya x3" sync /:Ravana:EA4:/
-673.0 "Blinding Blade" sync /:Ravana:E9F:/
-676.1 "Atma-Linga" sync /:Ravana:EA6:/
 
-683.3 "Blinding Blade" sync /:Ravana:E9F:/
-686.4 "Atma-Linga" sync /:Ravana:EA6:/
-688.8 "Tapasya x3" sync /:Ravana:EA4:/
-695.0 "Atma-Linga" sync /:Ravana:EA6:/
-698.1 "Blinding Blade" sync /:Ravana:E9F:/
-701.2 "Atma-Linga x2" # sync /:Ravana:EA6:/
-705.5 "Tapasya x3" sync /:Ravana:EA4:/
-711.9 "Blinding Blade" sync /:Ravana:E9F:/
-715.0 "Atma-Linga" sync /:Ravana:EA6:/
-722.1 "Blinding Blade" sync /:Ravana:E9F:/
+# If Blessing of Earth is not damaged off Ravana, he uses Warlord Flame at 640.2.
+# If it is, Flame is skipped and things go directly to Blinding Blade.
+# We assume the skip, and re-sync if it doesn't happen.
+636.4 "--sync--" sync /:Ravana:EB2:/ window 15,15
+640.2 "Blinding Blade/Warlord Flame?" sync /:Ravana:E9F:/ window 30,2.5
+643.3 "Atma-Linga" sync /:Ravana:EA6:/
+646.1 "Tapasya x3" sync /:Ravana:EA4:/
+652.2 "Atma-Linga" sync /:Ravana:EA6:/
+655.3 "Blinding Blade" sync /:Ravana:E9F:/
+658.4 "Atma-Linga x2" # sync /:Ravana:EA6:/
+663.1 "Tapasya x3" sync /:Ravana:EA4:/
+669.2 "Blinding Blade" sync /:Ravana:E9F:/
+672.3 "Atma-Linga" sync /:Ravana:EA6:/
 
-725.2 "Atma-Linga" sync /:Ravana:EA6:/
-727.7 "Tapasya x3" sync /:Ravana:EA4:/
-733.8 "Atma-Linga" sync /:Ravana:EA6:/
+679.5 "Blinding Blade" sync /:Ravana:E9F:/
+682.6 "Atma-Linga" sync /:Ravana:EA6:/
+685.0 "Tapasya x3" sync /:Ravana:EA4:/
+691.2 "Atma-Linga" sync /:Ravana:EA6:/
+694.3 "Blinding Blade" sync /:Ravana:E9F:/
+697.4 "Atma-Linga x2" # sync /:Ravana:EA6:/
+701.7 "Tapasya x3" sync /:Ravana:EA4:/
+708.1 "Blinding Blade" sync /:Ravana:E9F:/
+711.2 "Atma-Linga" sync /:Ravana:EA6:/
+718.3 "Blinding Blade" sync /:Ravana:E9F:/
 
-740.3 "Beetle Avatar" sync /:Ravana:E82:/ window 130,10 jump 413.9
-748.4 "Pillars Of Heaven"
-755.5 "Laughing Rose"
-771.8 "Surpanakha x4"
+721.4 "Atma-Linga" sync /:Ravana:EA6:/
+723.9 "Tapasya x3" sync /:Ravana:EA4:/
+730.0 "Atma-Linga" sync /:Ravana:EA6:/
+
+736.5 "Beetle Avatar" sync /:Ravana:E82:/ window 130,10 jump 413.9
+744.6 "Pillars Of Heaven"
+751.7 "Laughing Rose"
+768.0 "Surpanakha x4"
 
 # Enrage follows this sequence, but unfortunately there's no way to sync to it.
-# 1785.4 "Dragonfly Avatar" sync /:Ravana:E80:/
-# 1785.5 "--sync--" sync /:Ravana:1299:/
-# 1790.5 "--untargetable--"
-# 1795.6 "Bloody Fuller" sync /:Ravana:EB3:/
+# 1781.6 "Dragonfly Avatar" sync /:Ravana:E80:/
+# 1781.7 "--sync--" sync /:Ravana:1299:/
+# 1786.7 "--untargetable--"
+# 1791.8 "Bloody Fuller" sync /:Ravana:EB3:/
 # Laughing Moon until wipe
