@@ -134,7 +134,6 @@ hideall "--sync--"
 622.5 "The Seeing" sync /:Ravana:EA[012]:/
 626.7 "Atma-Linga" sync /:Ravana:EA6:/
 631.0 "The Seeing" sync /:Ravana:EA[012]:/
-656.0 "Atma-Linga" sync /:Ravana:EA6:/
 
 # If Blessing of Earth is not damaged off Ravana, he uses Warlord Flame at 640.2.
 # If it is, Flame is skipped and things go directly to Blinding Blade.
