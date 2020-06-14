@@ -103,6 +103,7 @@
         text: {
           en: 'Bosses Too Close',
           de: 'Bosses zu Nahe',
+          fr: 'Boss trop proches',
           cn: 'BOSS靠太近了',
           ko: '쫄들이 너무 가까움',
         },
