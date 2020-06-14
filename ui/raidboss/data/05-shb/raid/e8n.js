@@ -95,7 +95,7 @@
       alertText: {
         en: 'Get behind, then South',
         de: 'Gehe nach Hinten, danach in den Süden',
-        fr: 'Passer derrière, puis au Sud',
+        fr: 'Passez derrière, puis au Sud',
         ko: '보스 뒤로 => 남쪽으로',
       },
     },
@@ -251,7 +251,7 @@
         return {
           en: 'Stand in a tower',
           de: 'Im Turm stehen',
-          fr: 'Se tenir dans une tour',
+          fr: 'Tenez-vous dans une tour',
           ko: '장판 들어가기',
         };
       },
@@ -382,7 +382,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'luminous aether': 'éther de lumière',
         'holy light': 'lumière sacrée',
@@ -396,6 +395,7 @@
       'replaceText': {
         'The Path of Light': 'Voie de lumière',
         'Twin Stillness': 'Entaille de la quiétude',
+        'Twin Silence': 'Entaille de la tranquilité',
         'Stoneskin': 'Cuirasse',
         'Spiteful Dance': 'Danse de la froideur',
         'Skyfall': 'Anéantissement',
@@ -404,19 +404,21 @@
         'Shattered World': 'Monde fracassé',
         'Scythe Kick': 'Jambe faucheuse',
         'Rush': 'Jaillissement',
-        'Reflected Scythe Kick': 'Réverbération : Jambe faucheuse',
-        'Reflected Biting Frost': 'Réverbération : Taillade de givre',
+        'Reflected Kick/Frost': 'Jambe/Givre Réverbéré',
+        'Reflected Frost': 'Givre Réverbéré',
         'Redress': 'Parure',
         'Mirror, Mirror': 'Monde des miroirs',
+        '(?<! )Kick/Frost': 'Jambe/Givre',
         'Light Rampant': 'Débordement de Lumière',
         'Icicle Impact': 'Impact de stalactite',
         'Holy': 'Miracle',
         'Heavenly Strike': 'Frappe céleste',
         'Heart Asunder': 'Cœur déchiré',
-        'Frost Armor(?! )': 'Armure de givre',
+        'Frost Armor': 'Armure de givre',
         'Frigid Water': 'Cataracte gelée',
         'Frigid Stone': 'Rocher de glace',
         'Frigid Eruption': 'Éruption de glace',
+        'Embittered Dance': 'Danse de la sévérité',
         'Driving Frost': 'Percée de givre',
         'Double Slap': 'Gifle redoublée',
         'Diamond Frost': 'Poussière de diamant',
