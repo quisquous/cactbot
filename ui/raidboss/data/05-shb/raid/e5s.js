@@ -55,8 +55,8 @@
         en: 'Look for small spear',
         de: 'Halt nach kleinem Speer ausschau',
         fr: 'Allez sur la petite lance',
-        ko: '작은 지팡이 확인',
         cn: '找短矛',
+        ko: '작은 지팡이 확인',
       },
       run: function(data) {
         data.seenFirstSpear = true;
@@ -76,24 +76,24 @@
             en: 'Look for adds',
             de: 'Halt nach dem Add ausschau',
             fr: 'Cherchez les adds',
-            ko: '쫄 위치 확인',
             cn: '冲锋',
+            ko: '쫄 위치 확인',
           };
         }
         if (data.furysBoltActive) {
           return {
             en: 'Big Knockback',
-            cn: '长击退',
             de: 'Weiter Rückstoß',
             fr: 'Forte poussée',
+            cn: '长击退',
             ko: '긴 넉백',
           };
         }
         return {
           en: 'Short Knockback',
-          cn: '短击退',
           de: 'Kurzer Rückstoß',
           fr: 'Faible poussée',
+          cn: '短击退',
           ko: '짧은 넉백',
         };
       },
@@ -116,8 +116,8 @@
             en: 'Grab an orb',
             de: 'Einen Orb nehmen',
             fr: 'Prenez un orbe',
-            ko: '구슬 줍기',
             cn: '吃球',
+            ko: '구슬 줍기',
           };
         }
       },
@@ -159,8 +159,8 @@
             en: 'Grab an orb',
             de: 'Einen Orb nehmen',
             fr: 'Prenez un orbe',
-            ko: '구슬 줍기',
             cn: '吃球',
+            ko: '구슬 줍기',
           };
         }
       },
@@ -195,16 +195,16 @@
             en: 'Ready Spread',
             de: 'Bereitmachen zum Verteilen',
             fr: 'Dispersion bientôt',
-            ko: '산개 준비',
             cn: '准备分散',
+            ko: '산개 준비',
           };
         }
         return {
           en: 'donut AoE',
           de: 'Donut AoE',
           fr: 'AoE en donut',
-          ko: '도넛 장판',
           cn: '环形AoE',
+          ko: '도넛 장판',
         };
       },
     },
@@ -257,8 +257,8 @@
         en: 'Position for Stormcloud',
         de: 'Position für die Wolke',
         fr: 'Position pour les nuages',
-        ko: '번개 구름 위치 잡기',
         cn: '雷云站位',
+        ko: '번개 구름 위치 잡기',
       },
     },
     {
@@ -268,7 +268,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Cleanse In Cloud',
-        fr: 'Dissipez dans le nuage',
+        fr: 'Purifiez-vous dans le nuage',
       },
     },
     {
@@ -291,9 +291,9 @@
       infoText: {
         en: 'Be in your position',
         de: 'Befinde dich auf deiner Position!',
-        fr: 'Soyez en place',
-        ko: '자기 위치에 있기',
+        fr: 'Soyez à votre position',
         cn: '冲锋站位',
+        ko: '자기 위치에 있기',
       },
     },
     {
@@ -375,6 +375,7 @@
         'Will Of Ixion': 'Réplique d\'Ixion',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Volt Strike': 'Frappe d\'éclair',
         'Tribunal Summons': 'Manifestations de l\'esprit',
         'Thunderstorm': 'Tempête de foudre',
@@ -401,7 +402,9 @@
       },
       '~effectNames': {
         'System Shock': 'Électro-choc',
+        'Surge Protection': 'Parafoudre',
         'Hated of Levin': 'Malédiction du Patriarche fulgurant',
+        'Fury\'s Bolt': 'Boules de foudre',
         'Electrified': 'Électrocution irradiante',
         'Damage Down': 'Malus de dégâts',
       },
