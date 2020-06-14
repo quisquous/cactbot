@@ -23,7 +23,7 @@
       infoText: {
         en: 'Comet Towers',
         de: 'Türme',
-        fr: 'Tours',
+        fr: 'Tours de comète',
         ja: 'コメットを処理',
         cn: '踩塔',
         ko: '혜성 기둥',
@@ -94,7 +94,7 @@
       infoText: {
         en: 'Then Right',
         de: 'Dann Rechts',
-        fr: 'Droite',
+        fr: 'À Droite',
         ja: 'そして右へ',
         cn: '然后右',
         ko: '다음 오른쪽',
@@ -122,7 +122,7 @@
       infoText: {
         en: 'Then Left',
         de: 'Dann Links',
-        fr: 'Gauche',
+        fr: 'À Gauche',
         ja: 'そして左へ',
         cn: '然后左',
         ko: '다음 왼쪽',
@@ -194,7 +194,7 @@
       alertText: {
         en: 'Point Tether Out',
         de: 'Verbindung nach draußen richten',
-        fr: 'Liens vers l\'extérieur',
+        fr: 'Lien vers l\'extérieur',
         ja: '線を外に引く',
         cn: '连线',
         ko: '선 연결 바깥으로 빼기',
@@ -209,7 +209,7 @@
       infoText: {
         en: 'Healer Stacks',
         de: 'Bei dem Heiler sammeln',
-        fr: 'Package sur les heals',
+        fr: 'Packages sur les heals',
         ja: 'ヒーラーに集合',
         cn: '治疗集合',
         ko: '힐러 모이기',
@@ -227,7 +227,7 @@
       alertText: {
         en: 'Tank Spread',
         de: 'Tanks verteilen',
-        fr: 'Tanks : dispersion',
+        fr: 'Tanks, dispersez-vous',
         ja: 'タンクは外に',
         cn: '坦克散开',
         ko: '탱 산개',
@@ -247,7 +247,7 @@
         return {
           en: 'Healer Stacks',
           de: 'Bei den Heilern sammeln',
-          fr: 'Package sur les heals',
+          fr: 'Packages sur les heals',
           ja: 'ヒーラーに集合',
           cn: '治疗集合',
           ko: '힐러 모이기',
@@ -269,7 +269,7 @@
       alarmText: {
         en: 'Move Shades Apart',
         de: 'Schatten auseinander ziehen',
-        fr: 'Ecartez les spectres',
+        fr: 'Écartez les spectres',
         ja: 'アシエンを引き離す',
         cn: '拉开无影',
         ko: '분신 서로 떨어뜨리기',
@@ -402,7 +402,7 @@
       alertText: {
         en: 'Tank Busters',
         de: 'Tankbuster',
-        fr: 'Tankbuster',
+        fr: 'Tank buster',
         ja: 'タンクバスター',
         cn: '坦克死刑',
         ko: '탱버',
@@ -423,7 +423,7 @@
       alertText: {
         en: 'Heal T/H to Full',
         de: 'Heile T/H voll',
-        fr: 'T/H full vie',
+        fr: 'Soignez T/H max vie',
         ja: 'タンク／ヒーラーを満タンさせ',
         cn: '奶满T奶',
         ko: '탱/힐 풀피로 만들기',
@@ -504,7 +504,7 @@
       alertText: {
         en: 'Stay Out',
         de: 'Draußen stehen',
-        fr: 'Restez éloigné',
+        fr: 'Restez éloigner',
         ja: 'ライトニングを外に安置',
         cn: '外侧放雷',
         ko: '바깥에 있기',
@@ -525,7 +525,7 @@
       infoText: {
         en: 'aoe + bleed',
         de: 'AoE + Blutung',
-        fr: 'Dégâts de zone + saignement',
+        fr: 'AoE + saignement',
         ja: 'AoE + DoT',
         cn: 'AOE + 流血',
         ko: '전체 공격 + 출혈',
@@ -544,7 +544,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
             ko: '탱버 대상자',
@@ -554,7 +554,7 @@
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            fr: 'Tank buster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑点 ' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 탱버',
@@ -563,7 +563,7 @@
         return {
           en: 'Away from ' + data.ShortName(matches.target),
           de: 'Weg von ' + data.ShortName(matches.target),
-          fr: 'Eloignez-vous de ' + data.ShortName(matches.target),
+          fr: 'Éloignez-vous de ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'から離れ',
           cn: '远离 ' + data.ShortName(matches.target),
           ko: '"' + data.ShortName(matches.target) + '" 탱버',
@@ -582,7 +582,7 @@
       infoText: {
         en: 'Healer Stacks',
         de: 'Bei den Heilern sammeln',
-        fr: 'Package sur les heals',
+        fr: 'Packages sur les heals',
         ja: 'ヒーラーに集合',
         cn: '治疗集合',
         ko: '힐러 모이기',
@@ -675,7 +675,7 @@
           return {
             en: 'Knockback + Stack With Partner',
             de: 'Rückstoß + sammeln beim Partner',
-            fr: 'Poussée + package avec votre partenaire',
+            fr: 'Poussée + packez-vous avec votre partenaire',
             ja: 'パートナーと ノックバック + 頭割り',
             cn: '与伙伴 击退 + 集合',
             ko: '넉백 + 파트너랑 모이기',
@@ -715,7 +715,7 @@
       infoText: {
         en: 'Healer Stacks',
         de: 'Bei dem Heiler sammeln',
-        fr: 'Package sur les heals',
+        fr: 'Packages sur les heals',
         ja: 'ヒーラーに集合',
         cn: '治疗集合',
         ko: '힐러 모이기',
@@ -761,7 +761,7 @@
       infoText: {
         en: 'Exoflares',
         de: 'Exa-Flares',
-        fr: 'Exaflares',
+        fr: 'Exabrasiers',
         ja: 'ダークストリーム',
         cn: '地火',
         ko: '엑사플레어',
@@ -810,7 +810,7 @@
           return {
             en: 'Get Towers',
             de: 'Türme nehmen',
-            fr: 'Dans les tours',
+            fr: 'Allez dans les tours',
             ja: '塔を踏む',
             cn: '踩塔',
             ko: '기둥 들어가기',
@@ -822,7 +822,7 @@
           return {
             en: 'tank busters',
             de: 'Tank buster',
-            fr: 'Tank busters',
+            fr: 'Tank buster',
             ja: 'タンクバスター',
             cn: '坦克死刑',
             ko: '탱버',
@@ -846,7 +846,7 @@
       infoText: {
         en: 'aoe + bleed',
         de: 'AoE + Blutung',
-        fr: 'Dégâts de zone + saignement',
+        fr: 'AoE + saignement',
         ja: 'AoE + DoT',
         cn: 'AOE + 流血',
         ko: '전체 공격 + 출혈',
@@ -873,7 +873,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Font': 'Arkan(?:e|er|es|en) Körper',
         'Arcane Globe': 'Arkan(?:e|er|es|en) Kugel',
@@ -949,7 +948,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Arcane Font': 'Solide Arcanique',
         'Arcane Globe': 'Globe Arcanique',
@@ -991,8 +989,9 @@
         'Forked Lightning': 'Éclair ramifié',
         'Gigantomachy': 'Gigantomachie',
         'Height Of Chaos': 'Apogée du chaos',
-        'Magic Chakram(?!/)': 'Chakram magique',
-        'Magic Spear(?!/)': 'Lance magique',
+        'Life In Captivity': 'Vie de captivité',
+        'Magic Chakram/Spear': 'Chakram/Lance magique',
+        'Magic Spear/Chakram': 'Lance/Chakram magique',
         'Megiddo Flame': 'Flamme de Megiddo',
         'Nether Blast': 'Détonation infernale',
         'Purgation': 'Assaut du Polydegmon',
@@ -1006,6 +1005,18 @@
         'Wail Of The Lost': 'Lamentation des disparus',
         'Comet': 'Comète',
         'Quadrastrike(?! [^0-9])': 'Frappe quadruplée',
+        'Quadrastrike Bleed': 'Frappe quadruplée Saignement',
+        'Quadrastrike Tower': 'Frappe quadruplée Tour',
+      },
+      '~effectNames': {
+        'Cursed Shriek': 'Cri du maléfice',
+        'Forked Lightning': 'Éclair ramifié',
+        'Aetherial Gaol': 'Geôle éthérée',
+        'Beyond Death': 'Outre-mort',
+        'Ancient Circle': 'Cercle ancien',
+        'Freezing Brand': 'Marque de glace',
+        'Burning Brand': 'Marque de feu',
+        'Doom': 'Glas',
       },
     },
     {

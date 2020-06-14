@@ -33,20 +33,20 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            fr: 'Tank buster sur VOUS',
+            ja: '自分にタンクバスター',
             cn: '死刑',
             ko: '탱크버스터 -> YOU',
-            ja: '自分にタンクバスター',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            fr: 'Tank buster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 ->' + data.ShortName(matches.target),
             ko: '탱버 ->' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
           };
         }
       },
@@ -56,7 +56,7 @@
         return {
           en: 'Away From ' + data.ShortName(matches.target),
           de: 'Weg von ' + data.ShortName(matches.target),
-          fr: 'Loin de ' + data.ShortName(matches.target),
+          fr: 'Éloignez-vous de ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + ' から離れ',
           cn: '远离 ' + data.ShortName(matches.target),
           ko: data.ShortName(matches.target) + ' 한테서 피하세요',
@@ -94,7 +94,7 @@
       alertText: {
         en: 'Dodge Giant Circles',
         de: 'Weiche dem großen Kreis aus',
-        fr: 'Evitez les cercles géants',
+        fr: 'Évitez les cercles géants',
         ja: '降ったサークルを避け',
         cn: '躲避大圈',
         ko: '대형장판피하기',
@@ -167,7 +167,7 @@
       infoText: {
         en: 'Cleanse Doom In Circle',
         de: 'Entferne Verhängnis mit den Kreisen',
-        fr: 'Dispell le Glas',
+        fr: 'Purifiez-vous du Glas dans le cercle',
         ja: '光った輪を踏む、死の宣告を消す',
         cn: '踩光圈',
         ko: '모든 장판을 밟으세요',
@@ -221,7 +221,7 @@
       infoText: {
         en: 'Tank Busters',
         de: 'Tank Buster',
-        fr: 'Tank busters',
+        fr: 'Tank buster',
         ja: 'タンクバスター',
         cn: '坦克死刑',
         ko: '탱크버스터',
@@ -236,7 +236,7 @@
       alertText: {
         en: 'Tank Buster Spread',
         de: 'Tank Buster verteilen',
-        fr: 'Tankbuster, séparez-vous',
+        fr: 'Tank buster, dispersez-vous',
         ja: 'タンクバスター、散開',
         cn: '坦克死刑分散',
         ko: '탱버 산개',
@@ -251,7 +251,7 @@
       alertText: {
         en: 'Drop Marker Outside',
         de: 'Marker außen ablegen',
-        fr: 'Posez la marque à l\'extérieur',
+        fr: 'Déposez la marque à l\'extérieur',
         ja: '外周に安置',
         cn: '外侧放点名',
         ko: '외곽으로',
@@ -266,6 +266,7 @@
       alarmText: {
         en: 'Fetters on YOU',
         de: 'Fessel auf DIR',
+        fr: 'Entraves sur VOUS',
         ja: '自分に拘束',
         cn: '锁链点名',
         ko: '선대상자 -> YOU',
@@ -300,7 +301,7 @@
       infoText: {
         en: 'Kill Jail',
         de: 'Gefängniss zerstören',
-        fr: 'Dégommez la prison',
+        fr: 'Tuez la prison',
         ja: 'ジェイルに攻撃',
         cn: '攻击牢狱',
         ko: '감옥',
@@ -323,7 +324,7 @@
       alertText: {
         en: 'Spread (Don\'t Stack!)',
         de: 'Verteilen (Ohne stacken)',
-        fr: 'Dispersez-vous (non packé)',
+        fr: 'Dispersez-vous (Pas de package !)',
         ja: '散開（重ならないように）',
         cn: '分散（不要重合!）',
         ko: '산개（모이지마세요!）',
@@ -359,7 +360,7 @@
         return {
           en: 'Stack on ' + data.ShortName(name),
           de: 'Sammeln auf ' + data.ShortName(name),
-          fr: 'Package sur ' + data.ShortName(name),
+          fr: 'Packez-vous sur ' + data.ShortName(name),
           ja: data.ShortName(name) + ' に集合',
           cn: '靠近 ' + data.ShortName(name) + ' 集合',
           ko: '쉐어징대상자 -> ' + data.ShortName(name),
@@ -414,6 +415,48 @@
       },
       '~effectNames': {
         'Doom': 'Verhängnis',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Hades': 'Hadès',
+        'Shadow .f .he Ancients': 'Spectre d\'Ascien',
+      },
+      'replaceText': {
+        '--fetters--': '--entraves--',
+        '\\(E/W\\)': '(E/O)',
+        '\\(NE/SW\\)': '(NE/SO)',
+        'Adds': 'Adds',
+        'Ancient Aero': 'Vent ancien',
+        'Ancient Dark IV': 'Giga Ténèbres anciennes',
+        'Ancient Darkness': 'Ténèbres anciennes',
+        'Ancient Water III': 'Méga Eau ancienne',
+        'Bad Faith': 'Mauvaise foi',
+        'Black Cauldron': 'Chaudron noir',
+        'Broken Faith': 'Foi brisée',
+        '(?<! )Captivity': 'Captivité',
+        'Chorus Of The Lost': 'Refrain des disparus',
+        'Dark Eruption': 'Éruption ténébreuse',
+        'Doom': 'Glas',
+        'Double': 'Double',
+        'Dual Strike': 'Frappe redoublée',
+        'Echo Of The Lost': 'Écho des disparus',
+        'Gaol Add': 'Add Geôle',
+        'Hellborn Yawp': 'Braillement infernal',
+        'Life In Captivity': 'Vie de captivité',
+        'Nether Blast': 'Détonation infernale',
+        'Polydegmon\'s Purgation': 'Assaut du Polydegmon',
+        'Ravenous Assault': 'Assaut acharné',
+        'Shadow Spread': 'Diffusion d\'ombre',
+        'Shadow Stream': 'Flux de Ténèbres',
+        'Stream/Purgation\\?': 'Flux/Assaut ?',
+        'The Dark Devours': 'Ténèbres rongeuses',
+        'Titanomachy': 'Titanomachie',
+        'Wail Of The Lost': 'Lamentation des disparus',
+      },
+      '~effectNames': {
+        'Doom': 'Glas',
       },
     },
     {
