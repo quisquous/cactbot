@@ -169,9 +169,12 @@ def choose_fight_times(args, encounters):
 
 
 # Timeline test/translate functions
-def clean_and_split_tl_line(line):
+def clean_tl_line(line):
+    return line.split('#')[0]
+
+def split_tl_line(line):
     return re.search(
-        r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line.split("#")[0]
+        r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line
     )
 
 

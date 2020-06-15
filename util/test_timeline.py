@@ -21,7 +21,11 @@ def load_timeline(timeline):
             entry = {}
             # Remove trailing comment, if any,
             # then split the line into sections
-            match = e_tools.clean_and_split_tl_line(line)
+
+            cleaned_line = e_tools.clean_tl_line(line)
+
+            match = e_tools.split_tl_line(cleaned_line)
+
             if not match:
                 continue
 
