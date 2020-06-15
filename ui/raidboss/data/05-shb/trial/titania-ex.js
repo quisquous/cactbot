@@ -65,7 +65,7 @@
           return {
             en: 'In/Out, then Water Positions',
             de: 'Rein/Raus, danach Wasser Positionen',
-            fr: 'Dedans/Dehors puis positions pour l\'eau',
+            fr: 'Intérieur/Extérieur, puis positions pour l\'eau',
             ja: '中/外避けてポジションへ',
             cn: '靠近/远离, 水圈站位',
             ko: '안/밖 -> 물 장판 위치',
