@@ -504,7 +504,7 @@
       alertText: {
         en: 'Stay Out',
         de: 'Draußen stehen',
-        fr: 'Restez éloigner',
+        fr: 'Restez éloigné',
         ja: 'ライトニングを外に安置',
         cn: '外侧放雷',
         ko: '바깥에 있기',
