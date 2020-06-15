@@ -62,7 +62,7 @@
       infoText: {
         en: 'Water Positions',
         de: 'Wasser Positionen',
-        fr: 'Position pour l\'eau',
+        fr: 'Positions pour l\'eau',
         ja: 'ポジションへ',
         cn: '水毒',
       },
@@ -79,7 +79,7 @@
       alertText: {
         en: 'Stack In Puddles',
         de: 'In einer Fläche sammeln',
-        fr: 'Packez dans les Flaques d\'eau',
+        fr: 'Packez-vous dans les Flaques d\'eau',
         ja: '水の輪に集合',
         cn: '水圈集合',
       },
@@ -105,7 +105,7 @@
       infoText: {
         en: 'Get Middle, Shiva Circles',
         de: 'In die Mitte, Shiva Kreise',
-        fr: 'Allez au milieu, comme sur Shiva',
+        fr: 'Allez au milieu, cercles de Shiva',
         ja: 'シヴァの輪っか',
         cn: '中间集合, 九连环',
         ko: '시바 얼음 장판',
@@ -144,7 +144,7 @@
       infoText: {
         en: 'Avoid Roots',
         de: 'Ranken vermeiden',
-        fr: 'Evitez les Racines',
+        fr: 'Évitez les Racines',
         ja: '根系から避け',
         cn: '躲避树根',
       },
@@ -257,6 +257,7 @@
       'replaceSync': {
         'Titania': 'Titania',
         'Puck': 'Puck',
+        'Spirit Of Dew': 'Esprit Des Rosées',
         'Spirit of Flame': 'Esprit Des Flammes',
         'Peaseblossom': 'Fleur-de-pois',
         'Mustardseed': 'Pousse-de-moutarde',
@@ -292,6 +293,7 @@
       'replaceSync': {
         'Titania': 'ティターニア',
         'Puck': 'パック',
+        'Spirit Of Dew': '水の精',
         'Spirit of Flame': '火の精',
         'Peaseblossom': 'ピーズブロッサム',
         'Mustardseed': 'マスタードシード',
@@ -327,6 +329,7 @@
       'replaceSync': {
         'Titania': '缇坦妮雅',
         'Puck': '帕克',
+        'Spirit Of Dew': '水精',
         'Spirit of Flame': '炎精',
         'Peaseblossom': '豌豆花',
         'Mustardseed': '芥子',
