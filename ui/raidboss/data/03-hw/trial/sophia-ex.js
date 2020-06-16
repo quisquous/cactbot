@@ -480,8 +480,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': 'Dritt(?:e|er|es|en) Demiurg',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--klone erscheinen--',
         'Aero III': 'Windga',
         'Arms of Wisdom': 'Arme der Weisheit',
         'Cintamani': 'Chintamani',
@@ -515,8 +513,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': 'Troisième Démiurge',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--apparition des clones--',
         'Aero III': 'Méga Vent',
         'Arms of Wisdom': 'Bras de la sagesse',
         'Cintamani': 'Chintamani',
@@ -550,8 +546,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': '三の従者',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--幻影が現れる--',
         'Aero III': 'エアロガ',
         'Arms of Wisdom': 'ウィズダムアームズ',
         'Cintamani': 'チンターマニ',
@@ -585,8 +579,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': '信徒其三',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--clones appear--',
         'Aero III': '暴风',
         'Arms of Wisdom': '睿智之秤',
         'Cintamani': '如意宝珠',
@@ -620,8 +612,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': '제3신도',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--clones appear--',
         'Aero III': '에어로가',
         'Arms of Wisdom': '지혜의 무기',
         'Cintamani': '친타마니',
