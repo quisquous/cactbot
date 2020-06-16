@@ -65,8 +65,8 @@
           return {
             en: 'In/Out, then Water Positions',
             de: 'Rein/Raus, danach Wasser Positionen',
+            fr: 'Intérieur/Extérieur, puis positions pour l\'eau',
             ja: '中/外避けてポジションへ',
-            fr: 'Dedans/Dehors puis position pour l\'eau',
             cn: '靠近/远离, 水圈站位',
             ko: '안/밖 -> 물 장판 위치',
           };
@@ -74,8 +74,8 @@
         return {
           en: 'Water Positions',
           de: 'Wasser Positionen',
+          fr: 'Positions pour l\'eau',
           ja: 'ポジションへ',
-          fr: 'Position pour l\'eau',
           cn: '水圈站位',
           ko: '물 장판',
         };
@@ -99,8 +99,8 @@
           return {
             en: 'Stack (maybe rotate?)',
             de: 'Sammeln (evtl rotieren?)',
-            ja: 'シェア (多分時計回り?)',
             fr: 'Packez-vous (rotation ?)',
+            ja: '集合 (多分時計回り?)',
             cn: '左右集合 (可能旋转?)',
             ko: '쉐어징 모이기',
           };
@@ -108,8 +108,8 @@
         return {
           en: 'Stack Positions',
           de: 'Sammel-Positionen',
-          ja: 'シェア',
-          fr: 'Packez-vous',
+          fr: 'Packez-vous, positions',
+          ja: '頭割り集合',
           cn: '左右集合',
           ko: '쉐어징 모이기',
         };
@@ -139,8 +139,8 @@
       infoText: {
         en: 'Wait For Tethers In Center',
         de: 'Auf die Verbindung in der Mitte warten',
+        fr: 'Attendez les liens au centre',
         ja: '中央で待機',
-        fr: 'Attente des liens au centre',
         cn: '中间集合等待荆棘',
         ko: '가시 연결되기 전에 중앙으로',
       },
@@ -167,8 +167,8 @@
       alertText: {
         en: 'Diagonal Knockback Soon',
         de: 'diagonaler Knockback bald',
-        ja: '対角に飛ぶ',
         fr: 'Poussée en diagonale bientôt',
+        ja: '対角に飛ぶ',
         cn: '对角击退准备',
         ko: '곧 대각선 넉백',
       },
@@ -210,8 +210,8 @@
       infoText: {
         en: 'Get Middle, Shiva Circles',
         de: 'In die Mitte, Shiva Kreise',
+        fr: 'Allez au milieu, cercles de Shiva',
         ja: 'シヴァの輪っか',
-        fr: 'Allez au milieu, comme sur Shiva',
         cn: '中间集合, 九连环',
         ko: '시바 얼음 장판',
       },
@@ -249,8 +249,8 @@
       infoText: {
         en: 'Roots',
         de: 'Ranken',
-        ja: '根のルーン',
         fr: 'Racines',
+        ja: '根のルーン',
         cn: '根系生长',
         ko: '뿌리 나옴',
       },
@@ -295,8 +295,8 @@
         return {
           en: 'Pummel ' + data.pummelCount,
           de: 'Deftige Dachtel ' + data.pummelCount,
-          ja: '殴打 ' + data.pummelCount,
           fr: 'Torgnole ' + data.pummelCount,
+          ja: '殴打 ' + data.pummelCount,
           cn: '殴打 ' + data.pummelCount,
           ko: '구타 ' + data.pummelCount,
         };
@@ -335,8 +335,8 @@
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
-            ja: '自分にシェア',
             fr: 'Package sur VOUS',
+            ja: '自分に集合',
             cn: '集合点名',
             ko: '쉐어징 대상자',
           };
@@ -366,8 +366,8 @@
       alertText: {
         en: 'Initial Thunder Tether',
         de: 'initiale Blitz Verbindung',
-        ja: '線一人目',
         fr: 'Lien de foudre initial',
+        ja: '線一人目',
         cn: '初始雷连线',
         ko: '첫 번개 징 대상자',
       },
@@ -388,8 +388,8 @@
         return {
           en: 'Thunder ' + data.thunderCount,
           de: 'Blitz ' + data.thunderCount,
-          ja: '線' + data.thunderCount + '人目',
           fr: 'Foudre ' + data.thunderCount,
+          ja: '線' + data.thunderCount + '人目',
           cn: '雷连线 #' + data.thunderCount,
           ko: data.thunderCount + '번째 번개',
         };
@@ -414,7 +414,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Spirit of Flame': 'Feuerfee',
         'Spirit of Wood': 'Holzfee',
@@ -427,10 +426,8 @@
       'replaceText': {
         'Wood\'s Embrace': 'Umarmung des Waldes',
         'Whispering Wind': 'Flüsternde Winde',
-        'War and Pease': 'Bohnenkrieg',
         'Wallop': 'Eindreschen',
         'Uplift': 'Feenring',
-        'Unknown Ability': 'Unknown Ability',
         'Thunder Rune': 'Donnerrune',
         'Pummel': 'Deftige Dachtel',
         'Puck\'s Rebuke': 'Pucks Tadel',
@@ -441,7 +438,6 @@
         '(?<! )Pease(?!\\w)': 'Bohne',
         'Mist Rune': 'Nebelrune',
         'Midsummer Night\'s Dream': 'Mittsommernachtstraum',
-        'Love-in-Idleness': 'Liebevoller Müßiggang',
         'Leafstorm': 'Blättersturm',
         'Hard Swipe': 'Harter Hieb',
         'Growth Rune': 'Wachstumsrune',
@@ -471,9 +467,10 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
+        'Spirit Of Dew': 'Esprit Des Rosées',
         'spirit of flame': 'Esprit Des Flammes',
+        'Spirit of Wood': 'Esprit Des Bois',
         'Titania': 'Titania',
         'Puck': 'Puck',
         'Peaseblossom': 'Fleur-de-pois',
@@ -483,26 +480,28 @@
       'replaceText': {
         'Wood\'s Embrace': 'Étreinte de la nature',
         'Whispering Wind': 'Vent susurrant',
-        'War and Pease': 'La fin des haricots',
+        'War And Pease': 'La fin des haricots',
         'Wallop': 'Rossée',
         'Uplift': 'Exhaussement',
-        'Unknown Ability': 'Unknown Ability',
         'Thunder Rune': 'Rune de foudre',
         'Pummel': 'Torgnole',
         'Puck\'s Rebuke': 'Réprimande de Puck',
         'Puck\'s Caprice': 'Toquade de Puck',
         'Puck\'s Breath': 'Haleine de Puck',
         'Phantom Rune(?! )': 'Rune d\'illusion',
+        'Phantom Rune In': 'Rune d\'illusion intérieur',
+        'Phantom Rune Out': 'Rune d\'illusion extérieur',
         'Peasebomb': 'Haricot explosif',
         '(?<! )Pease(?!\\w)': 'Explosion de haricot',
         'Mist Rune': 'Rune d\'eau',
         'Midsummer Night\'s Dream': 'Songe d\'une nuit d\'été',
-        'Love-in-Idleness': 'Pensées sauvages',
+        'Love-In-Idleness': 'Pensées sauvages',
         'Leafstorm': 'Tempête de feuilles',
         'Hard Swipe': 'Fauchage brutal',
         'Growth Rune': 'Rune de racine',
         'Gentle Breeze': 'Douce brise',
-        'Frost Rune': 'Rune de gel',
+        'Frost Rune(?! )': 'Rune de gel',
+        'Frost Rune Middle': 'Rune de gel au milieu',
         'Flame Rune': 'Rune de feu',
         'Flame Hammer': 'Marteau de feu',
         'Fae Light': 'Lueur féérique',
@@ -524,6 +523,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
+        'Spirit Of Dew': '水の精',
         'Spirit of Flame': '火の精',
         'Spirit of Wood': '木の精',
         'Titania': 'ティターニア',
@@ -535,7 +535,7 @@
       'replaceText': {
         'Wood\'s Embrace': '絡みつき',
         'Whispering Wind': 'ウィスパリング・ウィンド',
-        'War and Pease': '大豆爆発',
+        'War And Pease': '大豆爆発',
         'Wallop': '叩きつけ',
         'Uplift': '隆起',
         'Thunder Rune': '雷のルーン',
@@ -577,7 +577,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'spirit of flame': '炎精',
+        'Spirit Of Dew': '水精',
         'Spirit of Flame': '炎精',
         'Spirit of Wood': '木精',
         'Titania': '缇坦妮雅',
@@ -590,7 +590,6 @@
         'Wood\'s Embrace': '缠绕',
         'Whispering Wind': '细语微风',
         'War And Pease': '豌豆大爆炸',
-        'War and Pease': '豌豆大爆炸',
         'Wallop': '敲击',
         'Uplift': '隆起',
         'Thunder Rune': '雷之符文',
@@ -605,7 +604,6 @@
         '(?<! )Pease(?!\\w)': '豌豆爆炸',
         'Mist Rune': '水之符文',
         'Midsummer Night\'s Dream': '仲夏夜之梦',
-        'Love-in-Idleness': '爱懒花',
         'Love-In-Idleness': '爱懒花',
         'Leafstorm': '绿叶风暴',
         'Hard Swipe': '强烈重击',
@@ -634,6 +632,7 @@
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
+        'Spirit Of Dew': '물의 정령',
         'Spirit of Flame': '불의 정령',
         'Titania': '티타니아',
         'Puck': '요정의 권속',
@@ -643,7 +642,7 @@
       'replaceText': {
         'Wood\'s Embrace': '휘감기',
         'Whispering Wind': '속삭이는 바람',
-        'War and Pease': '큰콩 폭발',
+        'War And Pease': '큰콩 폭발',
         'Wallop': '매질',
         'Uplift': '융기',
         'Thunder Rune': '번개의 룬',
@@ -658,7 +657,7 @@
         '(?<! )Pease(?!\\w)': '콩 폭발',
         'Mist Rune': '물의 룬',
         'Midsummer Night\'s Dream': '한여름 밤의 꿈',
-        'Love-in-Idleness': '삼색제비꽃',
+        'Love-In-Idleness': '삼색제비꽃',
         'Leafstorm': '잎사귀 폭풍',
         'Hard Swipe': '강력한 후려치기',
         'Growth Rune': '뿌리의 룬',
