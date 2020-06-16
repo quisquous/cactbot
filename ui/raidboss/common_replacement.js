@@ -15,12 +15,26 @@ let commonReplacement = {
     ja: 'の封鎖が解かれた',
     ko: '의 봉쇄가 해제되었습니다',
   },
+  '--adds spawn--': {
+    de: '--adds spawn--',
+    fr: '--apparition d\'adds--',
+    ja: '--adds spawn--',
+    cn: '--adds spawn--',
+    ko: '--쫄 소환--',
+  },
   '--center--': {
     de: '--mitte--',
     fr: '--centre--',
     ja: '--センター--',
     cn: '--中央--',
     ko: '--중앙--',
+  },
+  '--clones appear--': {
+    de: '--klone erscheinen--',
+    fr: '--apparition des clones--',
+    ja: '--幻影が現れる--',
+    cn: '--clones appear--',
+    ko: '--clones appear--',
   },
   '--corner--': {
     de: '--ecke--',
