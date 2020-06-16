@@ -54,6 +54,7 @@
             alertText: {
               en: 'Dodge Clones + Stack',
               de: 'Klonen ausweichen und Sammeln',
+              fr: 'Évitez les Clones + packez-vous',
               ja: 'ターミナス・エストを避け／頭割り集合',
               cn: '躲避剑气 + 集合分摊',
               ko: '분신 피하기 + 집합',
@@ -71,7 +72,7 @@
       infoText: {
         en: 'Spread Soon',
         de: 'Bald verteilen',
-        fr: 'Écartez-vous bientôt',
+        fr: 'Dispersez-vous bientôt',
         ja: 'まもなく散開',
         cn: '即将散开',
         ko: '잠시후 산개',
@@ -147,7 +148,7 @@
           return {
             en: 'Avoid tank cleave',
             de: 'Tank Cleave ausweichen',
-            fr: 'Évitez le cleave sur le tank',
+            fr: 'Évitez le tank cleave',
             ja: '前方範囲攻撃を避け',
             cn: '远离顺劈',
             ko: '광역 탱버 피하기',
@@ -184,7 +185,7 @@
       infoText: {
         en: 'Go Front',
         de: 'Nach Vorne gehen',
-        fr: 'Allez devant le boss',
+        fr: 'Allez devant',
         ja: '前へ',
         cn: '到正面',
         ko: '앞으로',
@@ -257,7 +258,7 @@
           return {
             en: 'Grab Tethers',
             de: 'Verbindung nehmen',
-            fr: 'Prenez un lien',
+            fr: 'Prenez les liens',
             ja: '線を取る',
             cn: '接线',
             ko: '선 가로채기',
@@ -299,7 +300,7 @@
         return {
           en: 'Dodge Clones',
           de: 'Klonen ausweichen',
-          fr: 'Esquivez les clones',
+          fr: 'Esquivez les Clones',
           ja: 'ターミナス・エストを避け',
           cn: '躲避剑气',
           ko: '클론 피하기',
@@ -337,7 +338,7 @@
       alertText: {
         en: 'Bait Puddles Out',
         de: 'Flächen nach draußen ködern',
-        fr: 'Attirez les taillades en dehors',
+        fr: 'Attirez les zones au sol à l\'extérieur',
         ja: '外周に安置',
         cn: '外圈放黑泥',
         ko: '장판 바깥쪽으로 유도',
@@ -359,10 +360,9 @@
         'Ventus Est': 'Ventus Est',
       },
       'replaceText': {
+        '\\?': '?',
         '(?!< )Action': 'Aktion',
         '(?!< )Ready': 'Fertig',
-        '--clones appear--': '--Klone erscheinen--',
-        '--clones appear\\?--': '--Klone erscheinen?--',
         'Aetherochemical Grenado': 'Magitek-Granate',
         'Alea Iacta Est': 'Alea Iacta Est',
         'Altius': 'Altius',
@@ -371,7 +371,7 @@
         'Electrified Gunshield': 'Gewehrschild: Magitek-Schock',
         'Festina Lente': 'Festina Lente',
         'Fortius': 'Fortius',
-        '(?<! )Gunshield(?! )': 'Gewehrschild',
+        '(?<! )Gunshield': 'Gewehrschild',
         'Gunshield Actions': 'Gewehrschild Aktionen',
         'Ignis Est': 'Ignis Est',
         'Loaded Gunshield': 'Gewehrschild: Magitek-Knall',
@@ -393,7 +393,7 @@
       'replaceSync': {
         'Bladesblood': 'Onde De Choc',
         'Gunshield': 'bouclier-canon',
-        'I shall not yield!': 'Mon pavois est infrangible!',
+        'I shall not yield!': 'Mon pavois est infrangible !',
         'Ignis Est': 'Ignis Est',
         'Magitek Turret II': 'tourelle magitek TM-II',
         'Phantom Varis': 'Double De Varis',
@@ -403,7 +403,6 @@
       },
       'replaceText': {
         '\\?': ' ?',
-        '--clones appear--': '--Apparition des clones--',
         'Aetherochemical Grenado': 'Grenade Magitek',
         'Alea Iacta Est': 'Alea Jacta Est',
         'Altius': 'Altius',
@@ -413,7 +412,7 @@
         'Ignis Est': 'Ignis Est',
         'Festina Lente': 'Festina Lente',
         'Fortius': 'Fortius',
-        '(?<! )Gunshield(?! )': 'bouclier-canon',
+        '(?<! )Gunshield': 'bouclier-canon',
         'Loaded Gunshield': 'Bouclier-canon : Explosion magitek',
         'Magitek Burst': 'Explosion magitek',
         'Magitek Shielding': 'Contre magitek',
@@ -442,8 +441,7 @@
         'Ventus Est': 'ウェントゥス・エスト',
       },
       'replaceText': {
-        '\\?': ' ?',
-        '--clones appear--': '--幻影が現れる--',
+        '\\?': '?',
         'Aetherochemical Grenado': '魔導榴弾',
         'Alea Iacta Est': 'アーレア・ヤクタ・エスト',
         'Altius': 'アルティウス',
@@ -452,7 +450,7 @@
         'Electrified Gunshield': 'ガンシールド：魔導ショック',
         'Festina Lente': 'フェスティナ・レンテ',
         'Fortius': 'フォルティウス',
-        '(?<! )Gunshield(?! )': 'ガンシールド',
+        '(?<! )Gunshield': 'ガンシールド',
         'Ignis Est': 'イグニス・エスト',
         'Loaded Gunshield': 'ガンシールド：魔導バースト',
         'Magitek Burst': '魔導バースト',
