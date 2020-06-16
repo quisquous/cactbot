@@ -13,6 +13,7 @@ let commonReplacement = {
     de: 'öffnet sich erneut',
     fr: 'Ouverture ',
     ja: 'の封鎖が解かれた',
+    cn: 'fixme',
     ko: '의 봉쇄가 해제되었습니다',
   },
   '--center--': {
@@ -53,6 +54,7 @@ let commonReplacement = {
   'Enrage': {
     de: 'Finalangriff',
     fr: 'Enrage',
+    ja: 'fixme',
     cn: '狂暴',
     ko: '전멸기',
   },
@@ -149,6 +151,7 @@ let commonReplacement = {
   '--targetable--': {
     de: '--anvisierbar--',
     fr: '--ciblable--',
+    ja: 'fixme',
     cn: '--可选中--',
     ko: '--타겟 가능--',
   },
@@ -162,6 +165,7 @@ let commonReplacement = {
   '--untargetable--': {
     de: '--nich anvisierbar--',
     fr: '--non ciblable--',
+    ja: 'fixme',
     cn: '--无法选中--',
     ko: '--타겟 불가능--',
   },
