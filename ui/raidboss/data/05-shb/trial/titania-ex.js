@@ -100,7 +100,7 @@
             en: 'Stack (maybe rotate?)',
             de: 'Sammeln (evtl rotieren?)',
             fr: 'Packez-vous (rotation ?)',
-            ja: 'シェア (多分時計回り?)',
+            ja: '集合 (多分時計回り?)',
             cn: '左右集合 (可能旋转?)',
             ko: '쉐어징 모이기',
           };
@@ -109,7 +109,7 @@
           en: 'Stack Positions',
           de: 'Sammel-Positionen',
           fr: 'Packez-vous, positions',
-          ja: 'シェア',
+          ja: '頭割り集合',
           cn: '左右集合',
           ko: '쉐어징 모이기',
         };
@@ -336,7 +336,7 @@
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
-            ja: '自分にシェア',
+            ja: '自分に集合',
             cn: '集合点名',
             ko: '쉐어징 대상자',
           };
