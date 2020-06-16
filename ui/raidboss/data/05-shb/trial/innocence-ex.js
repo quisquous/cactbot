@@ -36,8 +36,8 @@
       infoText: {
         en: 'Swords!',
         de: 'Schwerter!',
+        fr: 'Épées !',
         ja: '剣くるよ',
-        fr: 'Epées !',
         cn: '剑!',
         ko: '검 돌아옴!',
       },
@@ -55,8 +55,8 @@
           return {
             en: 'Starbirth: Corner',
             de: 'Sternengeburt: Ecken',
-            ja: 'スターバース: 角へ',
             fr: 'Accouchement Stellaire : Coin',
+            ja: 'スターバース: 角へ',
             cn: '创星：角落躲避',
             ko: '별생성: 구석으로',
           };
@@ -64,8 +64,8 @@
           return {
             en: 'Starbirth: Avoid + Charge',
             de: 'Sternengeburt: Ausweichen + Charge',
+            fr: 'Accouchement Stellaire : Évitez + Charge',
             ja: 'スターバース: 玉のない隅へ',
-            fr: 'Accouchement Stellaire : Evitez + Charge',
             cn: '创星：躲避 + 冲锋',
             ko: '별 생성: 별 피해서 징 맞기 + 돌진',
           };
@@ -73,8 +73,8 @@
           return {
             en: 'Starbirth: Explode',
             de: 'Sternengeburt: Explosion',
-            ja: 'スターバース: 爆発',
             fr: 'Accouchement Stellaire : Explosion',
+            ja: 'スターバース: 爆発',
             cn: '创星：爆炸',
             ko: '별 생성: 별 터뜨리기',
           };
@@ -82,8 +82,8 @@
           return {
             en: 'Starbirth: Charge',
             de: 'Sternengeburt: Charge',
-            ja: 'スターバース: 突進',
             fr: 'Accouchement Stellaire : Charge',
+            ja: 'スターバース: 突進',
             cn: '创星：冲锋',
             ko: '별 생성: 돌진',
           };
@@ -91,8 +91,8 @@
           return {
             en: 'Starbirth: Enrage',
             de: 'Sternengeburt: Finalangriff',
-            ja: 'スターバース: 時間切れ',
             fr: 'Accouchement Stellaire : Enrage',
+            ja: 'スターバース: 時間切れ',
             cn: '创星：狂暴',
             ko: '별 생성: 전멸기',
           };
@@ -139,7 +139,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
             ko: '나에게 탱버',
@@ -149,7 +149,7 @@
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            fr: 'Tank buster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 -> ' + data.ShortName(matches.target),
             ko: '탱버 -> ' + data.ShortName(matches.target),
@@ -172,8 +172,8 @@
       infoText: {
         en: 'Tank Busters',
         de: 'Tank Buster',
+        fr: 'Tank buster',
         ja: 'タンクバスター',
-        fr: 'Tankbusters',
         cn: '死刑',
         ko: '탱버',
       },
@@ -204,8 +204,8 @@
           return {
             en: 'Avoid Charge and Orbs',
             de: 'Charge und Orbs ausweichen',
+            fr: 'Évitez les charges et les orbes',
             ja: '玉と突進避けて',
-            fr: 'Evitez les charges et les orbes',
             cn: '躲避冲锋与晶石',
             ko: '돌진이랑 구슬 폭발을 피하세요',
           };
@@ -213,8 +213,8 @@
         return {
           en: 'Avoid Charge',
           de: 'Charge ausweichen',
+          fr: 'Évitez les charges',
           ja: '突進避けて',
-          fr: 'Evitez les charges',
           cn: '躲避冲锋',
           ko: '돌진을 피하세요',
         };
@@ -235,8 +235,8 @@
       alertText: {
         en: 'Get to Safe Corner',
         de: 'Geh in die sichere Ecke',
+        fr: 'Allez au coin sûr',
         ja: '安置へ',
-        fr: 'Allez sur le coin sûr',
         cn: '去安全角落',
         ko: '안전한 구석으로 이동',
       },
@@ -255,8 +255,8 @@
       infoText: {
         en: 'Grab East/West Venery Adds',
         de: 'Nehme östliches/westliches Wollust Add',
-        ja: '雑魚のタゲ取って',
         fr: 'Attrapez les adds en Est/Ouest',
+        ja: '雑魚のタゲ取って',
         cn: '接小怪仇恨',
         ko: '동/서 쫄 잡으세요',
       },
@@ -281,8 +281,8 @@
           return {
             en: 'Aim Line At Back Orb',
             de: 'Ziehle mit der Linie auf den entferntesten Orb',
+            fr: 'Visez avec la ligne à l\'arrière de l\'orbe',
             ja: '後ろの玉に当てて',
-            fr: 'Visez l\'orbe arrière avec la ligne',
             cn: '分摊瞄准后方晶石',
             ko: '멀리 있는 구슬 하나 맞추세요',
           };
@@ -290,8 +290,8 @@
         return {
           en: 'Avoid Orbs With Line',
           de: 'Ziehle nicht auf einen Orb',
+          fr: 'Évitez l\'orbe avec la ligne',
           ja: '玉に当てるな',
-          fr: 'Evitez l\'orbe avec la ligne',
           cn: '躲开晶石与直线',
           ko: '쉐어징이 구슬에 맞지 않게 하세요',
         };
@@ -302,8 +302,8 @@
         return {
           en: 'Line Stack',
           de: 'Sammeln in einer Linie',
-          ja: 'シェア',
           fr: 'Packez-vous en ligne',
+          ja: 'シェア',
           cn: '直线分摊',
           ko: '쉐어징 모이세요',
         };
@@ -324,7 +324,7 @@
       alertText: {
         en: 'Get to Safe Corner',
         de: 'Geh in die sichere Ecke',
-        fr: 'Allez sur le coin sûr',
+        fr: 'Allez au coin sûr',
         cn: '去安全角落',
         ko: '안전한 구석으로 이동하세요',
       },
@@ -355,7 +355,7 @@
           return {
             en: 'Circle, Avoid Orbs',
             de: 'Kreis, vermeide Orbs',
-            fr: 'Cercle, Evitez les orbes',
+            fr: 'Cercle, Évitez les orbes',
             ja: 'オーブに当てないで',
             cn: '圆圈点名，远离晶石',
             ko: '원형 징, 구슬 피하세요',
@@ -383,7 +383,7 @@
       infoText: {
         en: 'Avoid Swords then Ray',
         de: 'Weiche den Schwertern aus, danach Strahl',
-        fr: 'Evitez l\'épée puis le rayon',
+        fr: 'Évitez l\'épée puis le rayon',
         ja: '剣避けてからピザカット',
         cn: '躲避剑与激光',
         ko: '칼 먼저 피하고 장판 피하세요',
@@ -489,7 +489,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Innocence': 'Innozenz',
         'Nail of Condemnation': 'Nagel des Urteils',
@@ -499,9 +498,8 @@
       },
       'replaceText': {
         'Winged Reprobation': 'Schwinge des Urteils',
-        'Unknown Ability': 'Unknown Ability',
         'Starbirth(?! )': 'Sternengeburt',
-        'Soul and Body': 'Seele und Körper',
+        'Soul And Body': 'Seele und Körper',
         'Shadowreaver': 'Schattenplünderer',
         'Scold\'s Bridle': 'Schandmal',
         'Rightful Reprobation': 'Rechtmäßige Verurteilung',
@@ -515,14 +513,12 @@
         'Flaming Sword': 'Flammenschwert',
         'Explosion': 'Explosion',
         'Duel Descent': 'Doppelter Sinkflug',
-        'Drop of Light': 'Lichtabfall',
         'Dream of the Rood': 'Traum des Kreuzes',
         'Beatific Vision': 'Seligmachende Schau',
         'Forgiven venery': 'Geläuterte Wollust',
         'Forgiven shame': 'Geläuterte Schande',
         'Drop Of Light': 'Lichtabfall',
         'Winged Rep': 'Schwinge des Urteils',
-        'Soul And Body': 'Seele und Körper',
         'Starbirth Corner': 'Sternengeburt Ecke',
         'Starbirth Explode': 'Sternengeburt Explosion',
         'Starbirth Charge': 'Sternengeburt Charge',
@@ -538,9 +534,9 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Sword Of Condemnation': 'Épée De Condamnation',
+        'Sword of Condemnation': 'Épée De Condamnation',
+        'Nail of Condemnation': 'Clou De Condamnation',
         'Forgiven Venery': 'Débauche Pardonnée',
         'Forgiven Shame': 'Déshonneur Pardonné',
         'Innocence': 'Innocence',
@@ -550,9 +546,13 @@
         'Winged Rep Trident': 'Trident ailée',
         'Winged Rep Tethers': 'Liens ailée',
         'Winged Rep Rotate': 'Rotation ailée',
-        'Unknown Ability': 'Unknown Ability',
+        'Starbirth Final': 'Accouchement stellaire final',
+        'Starbirth Explode': 'Accouchement stellaire explose',
+        'Starbirth Corner': 'Accouchement stellaire au coin',
+        'Starbirth Charge': 'Accouchement stellaire charge',
+        'Starbirth Avoid': 'Accouchement stellaire à éviter',
         'Starbirth(?! )': 'Accouchement stellaire',
-        'Soul and Body': 'Âme et corps',
+        'Soul And Body': 'Âme et corps',
         'Shadowreaver': 'Pilleur d\'ombre',
         'Scold\'s Bridle': 'Bride-bavarde',
         'Rightful Reprobation': 'Réprobation légitime',
@@ -566,7 +566,7 @@
         'Flaming Sword': 'Épée du feu des cieux',
         'Explosion': 'Explosion',
         'Duel Descent': 'Double plongeon',
-        'Drop of Light': 'Goutte de lumière',
+        'Drop Of Light': 'Goutte de lumière',
         'Dream of the Rood': 'Le Rêve de la Croix',
         'Beatific Vision': 'Vision béatifique',
         'Forgiven venery': 'débauche pardonnée',
@@ -599,7 +599,7 @@
         'Starbirth Charge': 'スターバース: 突進',
         'Starbirth Explode': 'スターバース: 爆発',
         'Starbirth Final': 'スターバース: 時間切れ',
-        'Soul and Body': 'ソウル・アンド・ボディー',
+        'Soul And Body': 'ソウル・アンド・ボディー',
         'Shadowreaver': 'シャドウリーヴァー',
         'Scold\'s Bridle': 'スコルドブライダル',
         'Rightful Reprobation': '断罪の旋回',
@@ -613,7 +613,7 @@
         'Flaming Sword': '回転せし炎の剣',
         'Explosion': '爆散',
         'Duel Descent': 'デュアルディセント',
-        'Drop of Light': 'ドロップ・オブ・ライト',
+        'Drop Of Light': 'ドロップ・オブ・ライト',
         'Dream of the Rood': 'ドリーム・オブ・ザ・ルード',
         'Beatific Vision': 'ビーティフィックビジョン',
         'Forgiven venery': 'フォーギヴン・ヴェナリー',
@@ -644,7 +644,7 @@
         'Starbirth Avoid': '创星躲避',
         'Starbirth Explode': '创星爆炸',
         'Starbirth(?! )': '创星',
-        'Soul [aA]nd Body': '身心',
+        'Soul And Body': '身心',
         'Shadowreaver': '夺影',
         'Scold\'s Bridle': '毒舌钩',
         'Rightful Reprobation': '断罪回旋',
@@ -658,7 +658,6 @@
         'Flaming Sword': '回转火焰剑',
         'Explosion': '爆炸',
         'Duel Descent': '斗争降临',
-        'Drop of Light': '落光',
         'Drop Of Light': '落光',
         'Dream of the Rood': '十字架之梦',
         'Beatific Vision': '荣福直观',
@@ -701,7 +700,7 @@
         'Flaming Sword': '회전 화염검',
         'Explosion': '폭발',
         'Duel Descent': '이단 낙하',
-        'Drop of Light': '빛내림',
+        'Drop Of Light': '빛내림',
         'Dream of the Rood': '수난의 꿈',
         'Beatific Vision': '지복직관',
         'Forgiven venery': '면죄된 정욕',
