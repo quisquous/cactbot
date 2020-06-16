@@ -80,10 +80,7 @@ hideall "--sync--"
 280.9 "Hydromorph" sync /:Hydrate Core:F29:/
 282.9 "--sync--" sync /:Hydrate Core:1040:/
 
-
 ### Phase 4: Jiggly Again
-280.9 "Hydromorph" sync /:Hydrate Core:F29:/
-282.9 "--sync--" sync /:Hydrate Core:1040:/
 284.5 "--targetable--"
 284.5 "--sync--" sync /:Living Liquid:EFD:/
 
