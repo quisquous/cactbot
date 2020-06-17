@@ -18,7 +18,7 @@ let commonReplacement = {
   '--adds spawn--': {
     de: '--adds spawn--',
     fr: '--apparition d\'adds--',
-    ja: '--adds spawn--',
+    ja: '--雑魚出現--',
     cn: '--adds spawn--',
     ko: '--쫄 소환--',
   },
@@ -32,9 +32,9 @@ let commonReplacement = {
   '--clones appear--': {
     de: '--klone erscheinen--',
     fr: '--apparition des clones--',
-    ja: '--幻影が現れる--',
+    ja: '--幻影出現--',
     cn: '--clones appear--',
-    ko: '--clones appear--',
+    ko: '--분신 소환--',
   },
   '--corner--': {
     de: '--ecke--',
