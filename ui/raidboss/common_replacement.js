@@ -13,7 +13,7 @@ let commonReplacement = {
     de: 'öffnet sich erneut',
     fr: 'Ouverture ',
     ja: 'の封鎖が解かれた',
-    cn: 'fixme',
+    cn: '的封锁解除了',
     ko: '의 봉쇄가 해제되었습니다',
   },
   '--center--': {
@@ -54,7 +54,7 @@ let commonReplacement = {
   'Enrage': {
     de: 'Finalangriff',
     fr: 'Enrage',
-    ja: 'fixme',
+    ja: '時間切れ',
     cn: '狂暴',
     ko: '전멸기',
   },
