@@ -320,12 +320,6 @@
         'Ultimum': 'Ende der Dimension',
         'Uplift': 'Erhöhung',
       },
-      '~effectNames': {
-        'Forced March': 'Zwangsmarsch',
-        'Out Of The Action': 'Außer Gefecht',
-        'Stun': 'Betäubung',
-        'Toad': 'Frosch',
-      },
     },
     {
       'locale': 'fr',
@@ -359,12 +353,6 @@
         'The Queen\'s Waltz': 'Danse de la reine',
         'Ultimum': 'Déclin dimensionnel',
         'Uplift': 'Exhaussement',
-      },
-      '~effectNames': {
-        'Forced March': 'Marche forcée',
-        'Out Of The Action': 'Actions bloquées',
-        'Stun': 'Étourdissement',
-        'Toad': 'Crapaud',
       },
     },
     {
@@ -400,12 +388,6 @@
         'Ultimum': '次元の終焉',
         'Uplift': '隆起',
       },
-      '~effectNames': {
-        'Forced March': '強制移動',
-        'Out Of The Action': 'アクション実行不可',
-        'Stun': 'スタン',
-        'Toad': 'トード',
-      },
     },
     {
       'locale': 'cn',
@@ -440,12 +422,6 @@
         'Ultimum': '次元终结',
         'Uplift': '隆起',
       },
-      '~effectNames': {
-        'Forced March': '强制移动',
-        'Out Of The Action': '无法发动技能',
-        'Stun': '眩晕',
-        'Toad': '蛙变',
-      },
     },
     {
       'locale': 'ko',
@@ -479,12 +455,6 @@
         'The Queen\'s Waltz': '여왕의 춤',
         'Ultimum': '차원의 종언',
         'Uplift': '융기',
-      },
-      '~effectNames': {
-        'Forced March': '강제 이동',
-        'Out Of The Action': '기술 실행 불가',
-        'Stun': '기절',
-        'Toad': '두꺼비',
       },
     },
   ],
