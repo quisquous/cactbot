@@ -110,17 +110,17 @@ let noOrb = (str) => {
     {
       id: 'E5S Hated of Levin',
       regex: Regexes.headMarker({ id: '00D2' }),
-      run: function(e, data) {
+      run: function(e, data, matches) {
         data.hated = data.hated || {};
-        data.hated[e.targetName] = true;
+        data.hated[matches.target] = true;
       },
     },
     {
       id: 'E5S Stormcloud Target Tracking',
       regex: Regexes.headMarker({ id: '006E' }),
-      run: function(e, data) {
+      run: function(e, data, matches) {
         data.cloudMarkers = data.cloudMarkers || [];
-        data.cloudMarkers.push(e.targetName);
+        data.cloudMarkers.push(matches.target);
       },
     },
     {

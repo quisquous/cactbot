@@ -47,9 +47,9 @@
     {
       id: 'E5N Stormcloud Target Tracking',
       regex: Regexes.headMarker({ id: '006E' }),
-      run: function(e, data) {
+      run: function(e, data, matches) {
         data.cloudMarkers = data.cloudMarkers || [];
-        data.cloudMarkers.push(e.targetName);
+        data.cloudMarkers.push(matches.target);
       },
     },
     {
