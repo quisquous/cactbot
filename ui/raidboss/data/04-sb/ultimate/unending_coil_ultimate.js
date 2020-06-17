@@ -1897,6 +1897,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
         'Fang of Light': 'croc de lumière',
