@@ -144,14 +144,14 @@ let commonReplacement = {
   '--sync--': {
     de: '--synchronisation--',
     fr: '--synchronisation--',
-    ja: '--sync--',
+    ja: '--シンク--',
     cn: '--同步化--',
     ko: '--동기화--',
   },
   '--targetable--': {
     de: '--anvisierbar--',
     fr: '--ciblable--',
-    ja: 'fixme',
+    ja: '--ターゲット可能--',
     cn: '--可选中--',
     ko: '--타겟 가능--',
   },
@@ -165,7 +165,7 @@ let commonReplacement = {
   '--untargetable--': {
     de: '--nich anvisierbar--',
     fr: '--non ciblable--',
-    ja: 'fixme',
+    ja: '--ターゲット不可--',
     cn: '--无法选中--',
     ko: '--타겟 불가능--',
   },
