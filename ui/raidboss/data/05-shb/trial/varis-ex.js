@@ -392,10 +392,10 @@
       'locale': 'fr',
       'replaceSync': {
         'Bladesblood': 'Onde De Choc',
-        'Gunshield': 'bouclier-canon',
+        'Gunshield': 'Bouclier-Canon',
         'I shall not yield!': 'Mon pavois est infrangible !',
         'Ignis Est': 'Ignis Est',
-        'Magitek Turret II': 'tourelle magitek TM-II',
+        'Magitek Turret II': 'Tourelle Magitek TM-II',
         'Phantom Varis': 'Double De Varis',
         'Terminus Est': 'Terminus Est',
         'Varis Yae Galvus': 'Varis yae Galvus',
