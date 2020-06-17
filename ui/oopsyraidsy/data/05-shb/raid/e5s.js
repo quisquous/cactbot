@@ -42,7 +42,7 @@ let noOrb = (str) => {
       id: 'E5S Divine Judgement Volts',
       damageRegex: '4BB7',
       condition: function(e, data) {
-        return !data.hasOrb[e.targetName];
+        return !data.hasOrb || !data.hasOrb[e.targetName];
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
@@ -64,7 +64,7 @@ let noOrb = (str) => {
       id: 'E5S Volt Strike Orb',
       damageRegex: '4BC3',
       condition: function(e, data) {
-        return !data.hasOrb[e.targetName];
+        return !data.hasOrb || !data.hasOrb[e.targetName];
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
@@ -74,7 +74,7 @@ let noOrb = (str) => {
       id: 'E5S Deadly Discharge Big Knockback',
       damageRegex: '4BB2',
       condition: function(e, data) {
-        return !data.hasOrb[e.targetName];
+        return !data.hasOrb || !data.hasOrb[e.targetName];
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
