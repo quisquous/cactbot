@@ -137,9 +137,9 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Ads': 'Sphère de contrôle',
+        'Ads': 'Sphère De Contrôle',
         'Caduceus': 'Caducée',
-        'Dark Matter Slime': 'Gluant de matière sombre',
+        'Dark Matter Slime': 'Gluant De Matière Sombre',
         'The Allagan megastructure': 'Mégastructure allagoise',
       },
     },

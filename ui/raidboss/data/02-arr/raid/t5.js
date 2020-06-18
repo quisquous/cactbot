@@ -273,7 +273,7 @@
       'locale': 'fr',
       'replaceSync': {
         'The Right Hand of Bahamut': 'la Serre droite de Bahamut',
-        'The Scourge Of Meracydia': 'Fléau de Méracydia',
+        'The Scourge Of Meracydia': 'Fléau De Méracydia',
         'Twintania': 'Gémellia',
       },
       'replaceText': {

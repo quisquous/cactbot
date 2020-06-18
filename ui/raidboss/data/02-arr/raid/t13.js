@@ -183,7 +183,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Bahamut Prime': 'Primo-Bahamut',
-        'The Storm of Meracydia': 'Tempête de Méracydia',
+        'The Storm of Meracydia': 'Tempête De Méracydia',
       },
       'replaceText': {
         '\\(center\\)': '(centre)',

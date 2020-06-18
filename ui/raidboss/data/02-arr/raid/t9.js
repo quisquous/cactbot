@@ -483,17 +483,17 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Astral Debris': 'Débris astral',
-        'Dalamud Fragment': 'Débris de Dalamud',
-        'Dalamud Spawn': 'Golem de Dalamud',
-        'Firehorn': 'Corne-de-feu',
-        'Iceclaw': 'Griffe-de-glace',
+        'Astral Debris': 'Débris Astral',
+        'Dalamud Fragment': 'Débris De Dalamud',
+        'Dalamud Spawn': 'Golem De Dalamud',
+        'Firehorn': 'Corne-De-Feu',
+        'Iceclaw': 'Griffe-De-Glace',
         'Nael Geminus': 'Nael Geminus',
-        'Nael deus Darnus': 'Nael deus Darnus',
+        'Nael deus Darnus': 'Nael Deus Darnus',
         'Ragnarok': 'Ragnarok',
         'The Ghost Of Meracydia': 'Fantôme Méracydien',
-        'Thunderwing': 'Aile-de-foudre',
-        'Umbral Debris': 'Débris ombral',
+        'Thunderwing': 'Aile-De-Foudre',
+        'Umbral Debris': 'Débris Ombral',
       },
       'replaceText': {
         '(?<! )Meteor(?! Stream)': 'Météore',
@@ -525,8 +525,8 @@
         '\\(South\\)': '(Sud)',
       },
       '~effectNames': {
-        'Garrote Twist': 'Sangle accélérée',
-        'Raven Blight': 'Bile de rapace',
+        'Garrote Twist': 'Sangle Accélérée',
+        'Raven Blight': 'Bile De Rapace',
       },
     },
     {
