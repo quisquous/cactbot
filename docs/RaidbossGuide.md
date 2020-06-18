@@ -64,7 +64,7 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 {
   id: 'id string',
   disabled: false,
-  // Note: prefer to use the regex helpers from [regexes.js](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js)
+  // Note: prefer to use the regex helpers from [regexes.js](https://github.com/quisquous/cactbot/blob/main/resources/regexes.js)
   netRegex: /trigger-regex-for-network-log-lines/,
   netRegexFr: /trigger-regex-for-network-log-lines-but-in-French/
   regex: /trigger-regex-for-act-log-lines/,
@@ -109,8 +109,8 @@ The `netRegex` version matches against network log lines,
 while the `regex` version matches against regular ACT log lines.
 
 More commonly, however, a regex replacement is used instead of a bare regex.
-Helper functions defined in [regexes.js](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js)
-and in [netregexes.js](https://github.com/quisquous/cactbot/blob/master/resources/netregexes.js)
+Helper functions defined in [regexes.js](https://github.com/quisquous/cactbot/blob/main/resources/regexes.js)
+and in [netregexes.js](https://github.com/quisquous/cactbot/blob/main/resources/netregexes.js)
 take the parameters that would otherwise be extracted via match groups.
 From here, the functions automatically construct the regex that should
 be matched against.
@@ -135,7 +135,7 @@ We're not there yet, but there's always someday.)
 
 **condition: function(data, matches)**
 Activates the trigger if the function returns `true`. If it does not return `true`, nothing is shown/sounded/run. If multiple functions are present on the trigger, this has first priority to run.
-(Pre-made "canned" conditions are available within [conditions.js](https://github.com/quisquous/cactbot/blob/master/resources/conditions.js).
+(Pre-made "canned" conditions are available within [conditions.js](https://github.com/quisquous/cactbot/blob/main/resources/conditions.js).
 Generally speaking it's best to use one of these if it fits the situation.)
 
 **preRun: function(data, matches)**
@@ -164,7 +164,7 @@ A way to return infoText/alertText/alarmText/tts all from a single entrypoint.
 Also used by `resources/responses.js`.
 Response has less priority than an explicitly specified text or tts,
 and so can be overridden.
-(As with `regex` and `condition`, "canned" responses are available within [responses.js](https://github.com/quisquous/cactbot/blob/master/resources/responses.js).)
+(As with `regex` and `condition`, "canned" responses are available within [responses.js](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).)
 
 **alarmText**
 Displays a text popup with Alarm importance when the trigger activates. This is for high-priority events where failure is guaranteed to kill you, is likely to wipe the encounter, or will otherwise make successful completion much more difficult. (Examples include Allagan Rot in T2, Cursed Shriek in T7, or Ultros' Stoneskin cast in O7s. ) May be a string or a `function(data, matches)` that returns a string.
@@ -222,7 +222,7 @@ Use of these helpers makes automated testing significantly easier,
 and allows humans to catch errors and inconsistencies more easily when reviewing pull requests.
 
 Currently, three separate elements have pre-made structures defined:
-[Condition](https://github.com/quisquous/cactbot/blob/master/resources/conditions.js), [Regex](https://github.com/quisquous/cactbot/blob/master/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/master/resources/responses.js).
+[Condition](https://github.com/quisquous/cactbot/blob/main/resources/conditions.js), [Regex](https://github.com/quisquous/cactbot/blob/main/resources/regexes.js), and [Response](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).
 `Condition` functions take no arguments. Almost all `Response` functions take one optional argument, `severity`,
 used to determine what level of popup text to display to the user when the trigger activates.
 `Regex` functions can take several arguments [(`gainsEffect()` is a good example)](https://github.com/quisquous/cactbot/blob/dcdf3ee4cd1b6d5bdfb9a8052cc9e4c9b10844d8/resources/regexes.js#L176) depending on which log line is being matched against,

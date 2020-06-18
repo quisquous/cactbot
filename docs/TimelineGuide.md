@@ -199,11 +199,11 @@ This is done by adding a `timelineTriggers` section to the triggers file.
 
 Examples:
 
-* [Orbonne Monastery](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/04-sb/alliance/orbonne_monastery.js)
-* [T9](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/02-arr/raid/t9.js)
-* [O12 normal](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/04-sb/raid/o12n.js)
+* [Orbonne Monastery](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/alliance/orbonne_monastery.js)
+* [T9](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/02-arr/raid/t9.js)
+* [O12 normal](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/04-sb/raid/o12n.js)
 
-These triggers have the [same syntax](https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/README.txt) as normal triggers.
+These triggers have the [same syntax](https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/README.txt) as normal triggers.
 They still allow you to use functions if you want to return something.
 You can use a [condition](https://github.com/quisquous/cactbot/blob/5a7011c662d65f44c12c2fbff255484f2d31b8ef/ui/raidboss/data/02-arr/raid/t9.js#L10) to have it only trigger for a particular job or role.
 
@@ -274,7 +274,7 @@ Good guidelines for getting good logs are:
 ### Software prerequisites
 
 * [Python 3](https://www.python.org/downloads/release/python-373/)
-* A copy of cactbot's [source code](https://github.com/quisquous/cactbot/archive/master.zip)
+* A copy of cactbot's [source code](https://github.com/quisquous/cactbot/archive/main.zip)
 
 You should do a system-wide installation of Python 3 if you can,
 as this will put Python into your Windows PATH so that you can easily run it from the command line.
