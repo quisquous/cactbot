@@ -73,7 +73,7 @@ var Regexes;
 var NetRegexes = {
 /* eslint-enable */
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#14-networkstartscasting
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
   startsUsing: (params) => {
     return parseHelper(params, 'startsUsing', {
       0: '20',
@@ -88,8 +88,8 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
   ability: (params) => {
     return parseHelper(params, 'ability', {
       0: '2[12]',
@@ -103,8 +103,8 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
   abilityFull: (params) => {
     return parseHelper(params, 'abilityFull', {
       0: '2[12]',
@@ -123,7 +123,7 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1b-networktargeticon-head-markers
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
   headMarker: (params) => {
     return parseHelper(params, 'headMarker', {
       0: '27',
@@ -136,7 +136,7 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
   addedCombatant: (params) => {
     return parseHelper(params, 'addedCombatant', {
       0: '03',
@@ -147,7 +147,7 @@ var NetRegexes = {
   },
 
   // fields: id, name, job, level, world, npcNameId, npcBaseId, hp, x, y, z, heading, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
   addedCombatantFull: (params) => {
     return parseHelper(params, 'addedCombatantFull', {
       0: '03',
@@ -167,7 +167,7 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#04-removecombatant
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
   removingCombatant: (params) => {
     return parseHelper(params, 'removingCombatant', {
       0: '04',
@@ -178,7 +178,7 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1a-networkbuff
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
   gainsEffect: (params) => {
     return parseHelper(params, 'gainsEffect', {
       0: '26',
@@ -195,7 +195,7 @@ var NetRegexes = {
   },
 
   // Prefer gainsEffect over this function unless you really need extra data.
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#26-networkstatuseffects
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
   statusEffectExplicit: (params) => {
     return parseHelper(params, 'statusEffectExplicit', {
       0: '38',
@@ -216,7 +216,7 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
   losesEffect: (params) => {
     return parseHelper(params, 'losesEffect', {
       0: '30',
@@ -231,7 +231,7 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#23-networktether
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
   tether: (params) => {
     return parseHelper(params, 'tether', {
       0: '35',
@@ -247,7 +247,7 @@ var NetRegexes = {
   },
 
   // 'target' was defeated by 'source'
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#19-networkdeath
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
   wasDefeated: (params) => {
     return parseHelper(params, 'tether', {
       0: '25',
@@ -259,7 +259,7 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   echo: (params) => {
     if (typeof params === 'undefined')
       params = {};
@@ -268,7 +268,7 @@ var NetRegexes = {
     return NetRegexes.gameLog(params);
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   dialog: (params) => {
     if (typeof params === 'undefined')
       params = {};
@@ -277,7 +277,7 @@ var NetRegexes = {
     return NetRegexes.gameLog(params);
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   message: (params) => {
     if (typeof params === 'undefined')
       params = {};
@@ -287,7 +287,7 @@ var NetRegexes = {
   },
 
   // fields: code, name, line, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   gameLog: (params) => {
     return parseHelper(params, 'gameLog', {
       0: '00',
@@ -298,13 +298,13 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   gameNameLog: (params) => {
     // for compat with Regexes.
     return NetRegexes.gameLog(params);
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0c-playerstats
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
   statChange: (params) => {
     return parseHelper(params, 'statChange', {
       0: '12',
@@ -328,7 +328,7 @@ var NetRegexes = {
     });
   },
 
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#01-changezone
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
   changeZone: (params) => {
     return parseHelper(params, 'changeZone', {
       0: '01',

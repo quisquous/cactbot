@@ -44,7 +44,7 @@ If you want your changes to be in separate commits.
 
 If you haven't used git before,
 it is recommended that you do your work inside of feature branches.
-This will let you keep your master branch cleanly tracking the upstream cactbot remote.
+This will let you keep your main branch cleanly tracking the upstream cactbot remote.
 All of your local changes (and possibly fixup commits, etc)
 can live inside your feature branch,
 which you can delete after the feature has landed.
@@ -54,7 +54,7 @@ Here's two resources that explain how this "feature branch workflow" can work:
 * <https://medium.com/@s.kang919/my-git-feature-branch-workflow-a4b9647ea459>
 * <https://gist.github.com/vlandham/3b2b79c40bc7353ae95a>
 
-If you do all of your work on the master branch
+If you do all of your work on the main branch
 and then merge in the upstream cactbot changes,
 this will cause pull requests to become harder to read.
 git will think there are many different commits to merge in

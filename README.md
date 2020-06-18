@@ -1,8 +1,8 @@
 # cactbot (ffxiv raiding overlay)
 
-<img align="right" src="https://raw.githubusercontent.com/quisquous/cactbot/master/screenshots/cactbot-logo-320x320.png">
+<img align="right" src="https://raw.githubusercontent.com/quisquous/cactbot/main/screenshots/cactbot-logo-320x320.png">
 
-[![build status](https://travis-ci.org/quisquous/cactbot.svg?branch=master)](https://travis-ci.org/quisquous/cactbot)
+[![build status](https://travis-ci.org/quisquous/cactbot.svg?branch=main)](https://travis-ci.org/quisquous/cactbot)
 
 1. [About](#about)
 1. [Installing](#installing)

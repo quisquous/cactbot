@@ -7,7 +7,7 @@ var Regexes = {
 /* eslint-enable */
 
   // fields: source, id, ability, target, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#14-networkstartscasting
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
   startsUsing: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -30,8 +30,8 @@ var Regexes = {
   },
 
   // fields: sourceId, source, id, ability, targetId, target, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
   ability: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -57,8 +57,8 @@ var Regexes = {
   },
 
   // fields: sourceId, source, id, ability, targetId, target, flags, x, y, z, heading, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#15-networkability
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#16-networkaoeability
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#15-networkability
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
   abilityFull: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -154,7 +154,7 @@ var Regexes = {
   },
 
   // fields: targetId, target, id, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1b-networktargeticon-head-markers
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
   headMarker: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -169,7 +169,7 @@ var Regexes = {
   },
 
   // fields: name, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
   addedCombatant: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -182,7 +182,7 @@ var Regexes = {
   },
 
   // fields: id, name, hp, x, y, z, npcId, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#03-addcombatant
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
   addedCombatantFull: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -215,7 +215,7 @@ var Regexes = {
   },
 
   // fields: id, name, hp, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#04-removecombatant
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
   removingCombatant: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -243,7 +243,7 @@ var Regexes = {
   },
 
   // fields: targetId, target, effect, source, duration, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1a-networkbuff
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
   gainsEffect: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -266,7 +266,7 @@ var Regexes = {
   // Prefer gainsEffect over this function unless you really need extra data.
   // fields: targetId, target, job, hp, maxHp, mp, maxMp, x, y, z, heading,
   //         data0, data1, data2, data3, data4
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#26-networkstatuseffects
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
   statusEffectExplicit: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -320,7 +320,7 @@ var Regexes = {
   },
 
   // fields: targetId, target, effect, source, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
   losesEffect: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -338,7 +338,7 @@ var Regexes = {
   },
 
   // fields: source, sourceId, target, targetId, id, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#23-networktether
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
   tether: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -357,7 +357,7 @@ var Regexes = {
 
   // 'target' was defeated by 'source'
   // fields: target, source, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#19-networkdeath
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
   wasDefeated: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -372,7 +372,7 @@ var Regexes = {
   },
 
   // fields: name, hp, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0d-combatanthp
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0d-combatanthp
   hasHP: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -387,7 +387,7 @@ var Regexes = {
   },
 
   // fields: code, line, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   echo: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -400,7 +400,7 @@ var Regexes = {
   },
 
   // fields: code, line, name, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   dialog: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -415,7 +415,7 @@ var Regexes = {
   },
 
   // fields: code, line, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   message: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -428,7 +428,7 @@ var Regexes = {
   },
 
   // fields: code, line, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   gameLog: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -442,7 +442,7 @@ var Regexes = {
   },
 
   // fields: code, name, line, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#00-logline
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   // Some game log lines have names in them, but not all.  All network log lines for these
   // have empty fields, but these get dropped by the ACT FFXV plugin.
   gameNameLog: (f) => {
@@ -461,7 +461,7 @@ var Regexes = {
   // fields: job, strength, dexterity, vitality, intelligence, mind, piety, attackPower,
   //         directHit, criticalHit, attackMagicPotency, healMagicPotency, determination,
   //         skillSpeed, spellSpeed, tenacity, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#0c-playerstats
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
   statChange: (f) => {
     if (typeof f === 'undefined')
       f = {};
@@ -509,7 +509,7 @@ var Regexes = {
   },
 
   // fields: name, capture
-  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#01-changezone
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
   changeZone: (f) => {
     if (typeof f === 'undefined')
       f = {};

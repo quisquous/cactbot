@@ -40,7 +40,7 @@ Options.PlayerNicks = {
 // the value should be true if the trigger is to be ignored, whereas false
 // will have no effect.  The trigger ids can be found in the trigger files for
 // each fight in the files inside of this directory:
-// https://github.com/quisquous/cactbot/tree/master/ui/raidboss/data/triggers
+// https://github.com/quisquous/cactbot/tree/main/ui/raidboss/data/triggers
 Options.DisabledTriggers = {
   // Disable the /psych trigger from `test.js` in Summerford Farms.
   'Test Psych': true,
@@ -50,7 +50,7 @@ Options.DisabledTriggers = {
 
 
 // An array of user-defined triggers, in the format defined in the readme:
-// https://github.com/quisquous/cactbot/tree/master/docs/RaidbossGuide.md
+// https://github.com/quisquous/cactbot/tree/main/docs/RaidbossGuide.md
 Options.Triggers = [
 
   // (1) Simple example trigger: show text on screen when you die.
@@ -83,7 +83,7 @@ Options.Triggers = [
   // (3) Maybe you want to modify some existing timeline and triggers:
   //
   // Add some extra triggers to the test timeline.  To use it, see:
-  // https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/timelines/test.txt
+  // https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/timelines/test.txt
   {
     // The zone this should apply to.
     // This should match the zoneRegex in the triggers file.
@@ -150,7 +150,7 @@ Options.Triggers = [
 //
 // Here's some example per trigger options that modify the test triggers
 // in Summerford Farms:
-// https://github.com/quisquous/cactbot/blob/master/ui/raidboss/data/00-misc/test.js
+// https://github.com/quisquous/cactbot/blob/main/ui/raidboss/data/00-misc/test.js
 
 Options.PerTriggerOptions = {
   // Just like Options.DisabledTriggers, this is the trigger id to apply to.
