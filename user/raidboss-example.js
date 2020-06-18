@@ -50,7 +50,7 @@ Options.DisabledTriggers = {
 
 
 // An array of user-defined triggers, in the format defined in the readme:
-// https://github.com/quisquous/cactbot/tree/master/ui/raidboss/data/triggers
+// https://github.com/quisquous/cactbot/tree/master/docs/RaidbossGuide.md
 Options.Triggers = [
 
   // (1) Simple example trigger: show text on screen when you die.
