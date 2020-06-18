@@ -12,7 +12,7 @@ function computeBackgroundColorFrom(element, classList) {
 }
 
 // This class reads the format of ACT Timeline plugin, described in
-// data/README.txt.
+// docs/TimelineGuide.md
 class Timeline {
   constructor(text, replacements, triggers, styles, options) {
     this.options = options;
