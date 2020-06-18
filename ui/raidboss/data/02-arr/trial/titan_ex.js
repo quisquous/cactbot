@@ -94,8 +94,8 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bomb Boulder': 'bombo rocher',
-        'Granite Gaoler': 'Geôlier de granite',
+        'Bomb Boulder': 'Bombo Rocher',
+        'Granite Gaoler': 'Geôlier De Granite',
         'Titan': 'Titan',
       },
       'replaceText': {

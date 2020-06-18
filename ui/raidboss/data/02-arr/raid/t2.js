@@ -101,7 +101,7 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Allagan Rot': 'Pourriture allagoise',
+        'Allagan Rot': 'Pourriture Allagoise',
       },
     },
     {

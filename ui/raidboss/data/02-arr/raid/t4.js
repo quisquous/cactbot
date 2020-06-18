@@ -86,11 +86,11 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Clockwork Bug': 'Insecte mécanique',
+        'Clockwork Bug': 'Insecte Mécanique',
         'Clockwork Dreadnaught': 'Cuirassé Dreadnaught',
-        'Clockwork Knight': 'Chevalier mécanique',
-        'Drive Cylinder': 'Cylindre propulseur',
-        'Spinner-rook': 'Drone-drille',
+        'Clockwork Knight': 'Chevalier Mécanique',
+        'Drive Cylinder': 'Cylindre Propulseur',
+        'Spinner-rook': 'Drone-Drille',
       },
       'replaceText': {
         '\\(E/W center\\)': '(E/O centre)',

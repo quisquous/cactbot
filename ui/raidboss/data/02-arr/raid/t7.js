@@ -258,9 +258,9 @@
       'locale': 'fr',
       'replaceSync': {
         'Bioweapon Storage': 'l\'entrepôt d\'armes biologiques',
-        'Cursed Shriek': 'Cri maudit',
-        'Cursed Voice': 'Voix maudite',
-        'Lamia Prosector': 'Lamia dissectrice',
+        'Cursed Shriek': 'Cri Maudit',
+        'Cursed Voice': 'Voix Maudite',
+        'Lamia Prosector': 'Lamia Dissectrice',
         'Melusine': 'Mélusine',
         'Proto-Chimera': 'Protochimère',
         'Renaud': 'Renaud',
@@ -279,8 +279,8 @@
         'Venomous Tail': 'Queue venimeuse',
       },
       '~effectNames': {
-        'Cursed Shriek': 'Cri du maléfice',
-        'Cursed Voice': 'Voix du maléfice',
+        'Cursed Shriek': 'Cri Du Maléfice',
+        'Cursed Voice': 'Voix Du Maléfice',
       },
     },
     {
