@@ -604,11 +604,7 @@
       'locale': 'fr',
       'replaceSync': {
         'Unforgiven Idolatry': 'Nuée D\'idolâtries Impardonnables',
-<<<<<<< Updated upstream
-        'The Idol Of Darkness': 'Idole des Ténèbres',
-=======
         'The Idol Of Darkness': 'Idole Des Ténèbres',
->>>>>>> Stashed changes
         'Scuro': 'Amas De Clarté',
         '(?<! )Idolatry': 'Vol D\'idolâtries Impardonnables',
         'Chiaro': 'Amas De Noirceur',
