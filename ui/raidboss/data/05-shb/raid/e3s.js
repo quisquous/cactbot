@@ -206,7 +206,7 @@
       infoText: {
         en: 'Drop Puddles Outside',
         de: 'Flächen drausen ablegen',
-        fr: 'Placez les zones au sol à l\'extérieur',
+        fr: 'Déposez les zones au sol à l\'extérieur',
         ja: '散開',
         cn: '散开',
         ko: '산개',
