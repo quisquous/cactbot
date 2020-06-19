@@ -604,7 +604,11 @@
       'locale': 'fr',
       'replaceSync': {
         'Unforgiven Idolatry': 'Nuée D\'idolâtries Impardonnables',
+<<<<<<< Updated upstream
         'The Idol Of Darkness': 'Idole des Ténèbres',
+=======
+        'The Idol Of Darkness': 'Idole Des Ténèbres',
+>>>>>>> Stashed changes
         'Scuro': 'Amas De Clarté',
         '(?<! )Idolatry': 'Vol D\'idolâtries Impardonnables',
         'Chiaro': 'Amas De Noirceur',
@@ -671,12 +675,12 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'unforgiven idolatry': 'アンフォーギヴン・アイドラトリー',
-        'the Idol of Darkness': 'ダークアイドル',
-        'scuro': '清光塊',
-        '(?<! )idolatry': 'アイドラトリー',
-        'chiaro': '闇影塊',
-        'blasphemy': 'ブラスヒーム',
+        'Unforgiven Idolatry': 'アンフォーギヴン・アイドラトリー',
+        'The Idol Of Darkness': 'ダークアイドル',
+        'Scuro': '清光塊',
+        '(?<! )Idolatry': 'アイドラトリー',
+        'Chiaro': '闇影塊',
+        'Blasphemy': 'ブラスヒーム',
       },
       'replaceText': {
         'Words of Unity': '強襲の号令',
