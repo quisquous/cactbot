@@ -167,8 +167,8 @@
       'replaceSync': {
         'stormcloud': 'Cumulonimbus',
         'Ramuh': 'Ramuh',
-        'Will Of Ramuh': 'Réplique de Ramuh',
-        'Will Of Ixion': 'Réplique d\'Ixion',
+        'Will Of Ramuh': 'Réplique De Ramuh',
+        'Will Of Ixion': 'Réplique D\'Ixion',
       },
       'replaceText': {
         'Volt Strike': 'Frappe d\'éclair',
