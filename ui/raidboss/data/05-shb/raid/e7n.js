@@ -217,9 +217,9 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'unforgiven idolatry': 'Nuée D\'idolâtries Impardonnables',
-        'the Idol of Darkness': 'Idole des Ténèbres',
-        '(?<! )idolatry': 'Vol D\'idolâtries Impardonnables',
+        'Unforgiven Idolatry': 'Nuée D\'idolâtries Impardonnables',
+        'The Idol Of Darkness': 'Idole Des Ténèbres',
+        '(?<! )Idolatry': 'Vol D\'idolâtries Impardonnables',
       },
       'replaceText': {
         'Words of Night': 'Ordre d\'attaque-surprise',
@@ -260,9 +260,9 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'unforgiven idolatry': 'アンフォーギヴン・アイドラトリー',
-        'the Idol of Darkness': 'ダークアイドル',
-        '(?<! )idolatry': 'アイドラトリー',
+        'Unforgiven Idolatry': 'アンフォーギヴン・アイドラトリー',
+        'The Idol Of Darkness': 'ダークアイドル',
+        '(?<! )Idolatry': 'アイドラトリー',
       },
       'replaceText': {
         'Words of Night': '夜襲の号令',
