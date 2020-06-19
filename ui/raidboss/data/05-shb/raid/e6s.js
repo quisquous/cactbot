@@ -397,7 +397,7 @@
       'replaceSync': {
         'Twisting Blaze': 'Feuersturm',
         'Tumultuous Nexus': 'Orkankugel',
-        'great ball of fire': 'Flammenkugel',
+        'Great Ball Of Fire': 'Flammenkugel',
         'Raktapaksa': 'Raktapaksa',
         'Ifrit': 'Ifrit',
         'Garuda': 'Garuda',
@@ -447,7 +447,7 @@
       'replaceSync': {
         'twisting blaze': 'Vortex enflammé',
         'tumultuous nexus': 'Rafale',
-        'great ball of fire': 'Ignescence',
+        'Great Ball Of Fire': 'Ignescence',
         'Raktapaksa': 'Raktapaksa',
         'Ifrit': 'Ifrit',
         'Garuda': 'Garuda',
@@ -496,7 +496,7 @@
       'replaceSync': {
         'twisting blaze': '火炎旋風',
         'tumultuous nexus': '暴風球',
-        'great ball of fire': '火焔球',
+        'Great Ball Of Fire': '火焔球',
         'Raktapaksa': 'ラクタパクシャ',
         'Ifrit': 'イフリート',
         'Garuda': 'ガルーダ',
