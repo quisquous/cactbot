@@ -372,7 +372,7 @@
         'stormcloud': 'Cumulonimbus',
         'Ramuh': 'Ramuh',
         'Raiden': 'Raiden',
-        'Will Of Ixion': 'Réplique d\'Ixion',
+        'Will Of Ixion': 'Réplique D\'Ixion',
       },
       'replaceText': {
         '\\?': ' ?',
