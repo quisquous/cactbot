@@ -1037,6 +1037,7 @@
       regexJa: Regexes.startsUsing({ source: 'ネール・デウス・ダーナス', id: '26B6' }),
       regexCn: Regexes.startsUsing({ source: '奈尔·神·达纳斯', id: '26B6' }),
       regexKo: Regexes.startsUsing({ source: '넬 데우스 다르누스', id: '26B6' }),
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap('alert'),
     },
     {
