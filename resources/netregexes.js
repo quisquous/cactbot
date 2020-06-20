@@ -249,7 +249,7 @@ var NetRegexes = {
   // 'target' was defeated by 'source'
   // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#19-networkdeath
   wasDefeated: (params) => {
-    return parseHelper(params, 'tether', {
+    return parseHelper(params, 'wasDefeated', {
       0: '25',
       1: { field: 'timestamp' },
       2: { field: 'targetId' },
