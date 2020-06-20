@@ -98,7 +98,7 @@
       alertText: {
         en: 'Drop Puddle, Run Middle',
         de: 'Flächen ablegen, danach in die Mitte',
-        fr: 'Placez les zones au sol, courez au milieu',
+        fr: 'Déposez les zones au sol, courez au milieu',
         cn: '放圈，回中央',
         ko: '장판 깔고 중앙으로',
       },
