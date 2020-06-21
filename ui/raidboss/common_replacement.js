@@ -29,12 +29,12 @@ let commonReplacement = {
     cn: '--中央--',
     ko: '--중앙--',
   },
-  '--clones appear(\\?)?--': {
-    de: '--klone erscheinen$1--',
-    fr: '--apparition des clones$1--',
-    ja: '--幻影出現$1--',
-    cn: '--克隆 体 出现$1--',
-    ko: '--분신 소환$1--',
+  '--clones appear--': {
+    de: '--klone erscheinen--',
+    fr: '--apparition des clones--',
+    ja: '--幻影出現--',
+    cn: '--克隆 体 出现--',
+    ko: '--분신 소환--',
   },
   '--corner--': {
     de: '--ecke--',
