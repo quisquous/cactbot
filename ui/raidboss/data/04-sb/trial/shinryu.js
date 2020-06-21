@@ -300,7 +300,6 @@
         'Icicle': 'Eiszapfen',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
         'Akh Morn': 'Akh Morn',
         'Elemental Attack': 'Elemental Attack',
         'Dark Matter': 'Dunkelmaterie',
@@ -333,7 +332,6 @@
         'Tail': 'queue',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
         'Akh Morn': 'Akh Morn',
         'Elemental Attack': 'Elemental Attack',
         'Dark Matter': 'Matière sombre',
@@ -366,7 +364,6 @@
         'Tail': '神龍の尾',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
         'Akh Morn': 'アク・モーン',
         'Elemental Attack': 'Elemental Attack',
         'Dark Matter': 'ダークマター',
@@ -399,7 +396,6 @@
         'Tail': '龙尾',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
         'Akh Morn': '死亡轮回',
         'Elemental Attack': '大气爆发/制裁之雷/钻石星尘/地狱之火炎/大地之怒/巨浪',
         'Dark Matter': '暗物质',
@@ -431,7 +427,6 @@
         'Tail(?! )': '신룡의 꼬리',
       },
       'replaceText': {
-        '--adds spawn--': '--쫄 소환--',
         'Akh Morn': '아크 몬',
         'Dark Matter': '암흑물질',
         'Dragonfist': '용의 손바닥',
