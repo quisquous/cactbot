@@ -444,7 +444,11 @@ for more details about user javascript and css files.
 
 ## Supported Languages
 
-cactbot is tested and works with the English, German and French versions of Final Fantasy XIV.
+cactbot is tested and works with the current
+international (English, German, French, Japanese) version,
+the current Chinese version,
+and the current Korean version.
+Some translations are still a work in progress.
 
 Unicode characters are supported thoughout, through the use of the helpers in the
 [resources/regexes.js](resources/regexes.js) file. However [timelines](ui/raidboss/data/timelines)
