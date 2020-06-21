@@ -13,6 +13,7 @@ let commonReplacement = {
     de: 'öffnet sich erneut',
     fr: 'Ouverture ',
     ja: 'の封鎖が解かれた',
+    cn: '的封锁解除了',
     ko: '의 봉쇄가 해제되었습니다',
   },
   '--center--': {
@@ -53,6 +54,7 @@ let commonReplacement = {
   'Enrage': {
     de: 'Finalangriff',
     fr: 'Enrage',
+    ja: '時間切れ',
     cn: '狂暴',
     ko: '전멸기',
   },
@@ -142,15 +144,16 @@ let commonReplacement = {
   '--sync--': {
     de: '--synchronisation--',
     fr: '--synchronisation--',
-    ja: '--sync--',
+    ja: '--シンク--',
     cn: '--同步化--',
     ko: '--동기화--',
   },
-  '--targetable--': {
-    de: '--anvisierbar--',
-    fr: '--ciblable--',
-    cn: '--可选中--',
-    ko: '--타겟 가능--',
+  '--([0-9]+x )?targetable--': {
+    de: '--$1anvisierbar--',
+    fr: '--$1ciblable--',
+    ja: '--$1ターゲット可能--',
+    cn: '--$1可选中--',
+    ko: '--$1타겟 가능--',
   },
   '--teleport--': {
     de: '--teleportation--',
@@ -162,6 +165,7 @@ let commonReplacement = {
   '--untargetable--': {
     de: '--nich anvisierbar--',
     fr: '--non ciblable--',
+    ja: '--ターゲット不可--',
     cn: '--无法选中--',
     ko: '--타겟 불가능--',
   },
