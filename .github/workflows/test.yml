@@ -3,6 +3,7 @@ name: Test
 on:
   push:
     paths:
+      - '**/*.js'
       - '**/*.py'
       - 'ui/raidboss/**'
   pull_request:
@@ -11,6 +12,7 @@ on:
       - reopened
       - synchronize
     paths:
+      - '**/*.js'
       - '**/*.py'
       - 'ui/raidboss/**'
 
