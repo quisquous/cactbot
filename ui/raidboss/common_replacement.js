@@ -148,12 +148,12 @@ let commonReplacement = {
     cn: '--同步化--',
     ko: '--동기화--',
   },
-  '--targetable--': {
-    de: '--anvisierbar--',
-    fr: '--ciblable--',
-    ja: '--ターゲット可能--',
-    cn: '--可选中--',
-    ko: '--타겟 가능--',
+  '--([0-9]+x )?targetable--': {
+    de: '--$1anvisierbar--',
+    fr: '--$1ciblable--',
+    ja: '--$1ターゲット可能--',
+    cn: '--$1可选中--',
+    ko: '--$1타겟 가능--',
   },
   '--teleport--': {
     de: '--teleportation--',
