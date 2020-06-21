@@ -68,7 +68,7 @@ def parse_data(monsters, csvfile, lang="en", name_map=None):
             rank = "B"
 
         if nm_id in monsters:
-            assert monsters[nm_id]['id'] == name_id
+            assert monsters[nm_id]["id"] == name_id
             assert monsters[nm_id]["rank"] == rank
         else:
             monsters[nm_id] = {"id": name_id, "rank": rank, "name": {}}
