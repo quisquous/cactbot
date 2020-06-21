@@ -1,0 +1,33 @@
+name: Python Lint
+
+on:
+  push:
+    paths:
+      - '**/*.py'
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - '**/*.py'
+
+jobs:
+  black:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - run: pip install black==19.10b0 PyYAML==5.1.2 requests==2.22.0  
+      - run: black **/*.py --line-length 100 --check --diff
+  pylint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - run: pip install pylint==2.2.3 PyYAML==5.1.2 requests==2.22.0
+      - run: pylint **/*.py --errors-only
