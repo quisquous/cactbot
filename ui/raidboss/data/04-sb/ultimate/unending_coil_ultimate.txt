@@ -66,9 +66,11 @@ hideall "--sync--"
 208.5 "Meteor Stream x4" sync /:Nael Geminus:26C0:/
 211.0 "Thermionic Burst" sync /:Ragnarok:26B9:/
 211.5 "Dalamud Dive" sync /:Nael deus Darnus:26C1:/
+
 213.5 "--targetable--"
 213.6 "Bahamut's Claw x5" duration 2.8 #sync /:Nael deus Darnus:26B5:/
 222.1 "Bahamut's Favor" sync /:Nael deus Darnus:26C2:/
+
 230.6 "Dynamo + Beam/Chariot" duration 8
 235.1 "Chain Lightning x2" sync /:Thunderwing:26C8:/
 #235.1 "Lunar Dynamo" sync /:Nael deus Darnus:26BC:/
@@ -78,6 +80,7 @@ hideall "--sync--"
 242.1 "Wings Of Salvation x2" duration 4 sync /:Fang of Light:26CA:/
 249.3 "Bahamut's Claw x5" duration 2.8 #sync /:Nael deus Darnus:26B5:/
 256.0 "Fireball (2)" sync /:Firehorn:26C5:/
+
 258.0 "Thermionic + Dynamo/Chariot" duration 8
 260.0 "Chain Lightning" sync /:Thunderwing:26C8:/
 #262.8 "Thermionic Beam" sync /:Nael deus Darnus:26BD:/
@@ -86,6 +89,7 @@ hideall "--sync--"
 270.0 "Wings Of Salvation x3" duration 8 sync /:Fang of Light:26CA:/
 278.9 "Chain Lightning x2" sync /:Thunderwing:26C8:/
 281.9 "Fireball (3)" sync /:Firehorn:26C5:/
+
 290.4 "Dive + Dynamo/Chariot" duration 8
 284.7 "Bahamut's Claw x5" duration 2.8 sync /:Nael deus Darnus:26B5:/
 #295.3 "Raven Dive" sync /:Nael deus Darnus:26BE:/
@@ -96,6 +100,7 @@ hideall "--sync--"
 306.0 "Wings Of Salvation x3" duration 8 sync /:Fang of Light:26CA:/
 323.3 "Ravensbeak" sync /:Nael deus Darnus:26B6:/
 333.5 "Hypernova x4" duration 6 #sync /:Nael deus Darnus:26BF:/
+
 328.5 "Marker 1"
 332.5 "Marker 2"
 336.5 "Marker 3"
@@ -108,13 +113,17 @@ hideall "--sync--"
 #345.7 "Dalamud Dive" sync /:Nael deus Darnus:26C1:/
 347.4 "Cauterize" #sync /:Iceclaw:26CC:/
 #347.5 "Cauterize" #sync /:Fang of Light:26CF:/
+
 349.7 "Bahamut's Claw x5" duration 2.8 #sync /:Nael deus Darnus:26B5:/
+
 361.2 "Random Combo Attack" duration 8
 #366.2 "Thermionic Beam" sync /:Nael deus Darnus:26BD:/
 #369.2 "Lunar Dynamo" sync /:Nael deus Darnus:26BC:/
+
 372.7 "Random Combo Attack" duration 8
 #377.3 "Raven Dive" sync /:Nael deus Darnus:26BE:/
 #380.3 "Lunar Dynamo" sync /:Nael deus Darnus:26BC:/
+
 388.7 "Ravensbeak" sync /:Nael deus Darnus:26B6:/
 395.7 "Bahamut's Claw x5" duration 2.8 #sync /:Nael deus Darnus:26B5:/
 403.2 "--untargetable--"
@@ -234,6 +243,7 @@ hideall "--sync--"
 844.9 "--targetable--"
 852.9 "Bahamut's Claw x5" duration 2.8 #sync /:Nael deus Darnus:26B5:/
 852.9 "Plummet" sync /:Twintania:26A8:/
+
 856.0 "Liquid Hell x5" duration 4.5 #sync /:Twintania:26AD:/
 864.5 "Generate x3" sync /:Twintania:26AE:/
 868.6 "Twister" sync /:Twintania:26AA:/
@@ -242,11 +252,13 @@ hideall "--sync--"
 #879.3 "Thermionic Beam" sync /:Nael deus Darnus:26BD:/
 #882.4 "Raven Dive" sync /:Nael deus Darnus:26BE:/
 885.5 "Twister" sync /:Twintania:26AA:/
+
 896.5 "Megaflare" sync /:Nael deus Darnus:26BA:/
 904.6 "Death Sentence" sync /:Twintania:26A9:/
 904.6 "Ravensbeak" sync /:Nael deus Darnus:26B6:/
 908.6 "Plummet" sync /:Twintania:26A8:/
 908.6 "Bahamut's Claw x5" duration 2.8 #sync /:Nael deus Darnus:26B5:/
+
 917.7 "Liquid Hell x5" duration 4.5 #sync /:Twintania:26AD:/
 926.5 "Generate x3" sync /:Twintania:26AE:/
 930.7 "Twister" sync /:Twintania:26AA:/
@@ -255,6 +267,7 @@ hideall "--sync--"
 #941.4 "Iron Chariot" sync /:Nael deus Darnus:26BB:/
 #944.6 "Raven Dive" sync /:Nael deus Darnus:26BE:/
 947.9 "Twister" sync /:Twintania:26AA:/
+
 960.1 "Death Sentence" sync /:Twintania:26A9:/
 960.7 "Ravensbeak" sync /:Nael deus Darnus:26B6:/
 973.0 "Megaflare" sync /:Nael deus Darnus:26BA:/
