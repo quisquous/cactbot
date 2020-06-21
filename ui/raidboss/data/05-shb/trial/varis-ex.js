@@ -360,7 +360,6 @@
         'Ventus Est': 'Ventus Est',
       },
       'replaceText': {
-        '\\?': '?',
         '(?!< )Action': 'Aktion',
         '(?!< )Ready': 'Fertig',
         'Aetherochemical Grenado': 'Magitek-Granate',
@@ -441,7 +440,6 @@
         'Ventus Est': 'ウェントゥス・エスト',
       },
       'replaceText': {
-        '\\?': '?',
         'Aetherochemical Grenado': '魔導榴弾',
         'Alea Iacta Est': 'アーレア・ヤクタ・エスト',
         'Altius': 'アルティウス',
