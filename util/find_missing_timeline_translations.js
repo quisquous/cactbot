@@ -32,7 +32,7 @@ let triggers = triggerSet.triggers;
 
 let translations = triggerSet.timelineReplace;
 if (!translations)
-  process.exit(-1);
+  process.exit(0);
 
 let kEffectNames = '~effectNames';
 let trans = {
@@ -133,6 +133,10 @@ function findMissingRegex() {
 }
 
 function findMissingTimeline() {
+  // Don't bother translating timelines that are old.
+  if (triggerSet.timelineNeedsFixing)
+    return;
+
   // TODO: merge this with test_timeline.js??
   let testCases = [
     {

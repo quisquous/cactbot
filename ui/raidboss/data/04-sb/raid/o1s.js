@@ -6,6 +6,7 @@
     en: /^Deltascape V1\.0 \(Savage\)$/,
     cn: /^欧米茄零式时空狭缝 \(德尔塔幻境1\)$/,
   },
+  timelineNeedsFixing: true,
   timelineFile: 'o1s.txt',
   triggers: [
     {
