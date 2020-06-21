@@ -402,7 +402,7 @@
         'Ventus Est': 'Ventus Est',
       },
       'replaceText': {
-        '\\?(?!--)': ' ?',
+        '(?<! )\\?(?!--)',
         '--clones appear\\?--': 'apparition des clones ?',
         'Aetherochemical Grenado': 'Grenade Magitek',
         'Alea Iacta Est': 'Alea Jacta Est',
