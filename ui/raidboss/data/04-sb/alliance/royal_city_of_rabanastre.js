@@ -6,6 +6,7 @@
     cn: /^失落之都拉巴纳斯塔$/,
     ko: /^왕도 라바나스터$/,
   },
+  timelineNeedsFixing: true,
   timelineFile: 'royal_city_of_rabanastre.txt',
   triggers: [
     {

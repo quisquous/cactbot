@@ -5,6 +5,7 @@
     en: /^Dun Scaith$/,
     cn: /^影之国$/,
   },
+  timelineNeedsFixing: true,
   timelineFile: 'dun_scaith.txt',
   triggers: [
     // Basic stack occurs across all encounters except Deathgaze.
