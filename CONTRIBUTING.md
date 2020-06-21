@@ -113,17 +113,30 @@ Running `npm run lintfix` will fix many of them automatically
 and will help you not get hassled by the continuous integration travis bot.
 
 When a build fails,
-you will get a red X by a commit in your pull request.
+you will get a red ✕ by a commit in your pull request.
 It's a little bit confusing to find these errors,
 as you have to navigate through several pages to find them.
 Click the details link after the
-"Travis CI - Pull Request Failing after 45s — Build Failed"
+"Test / test (pull_request)"
 text to get to the details page.
-From there, scroll to the "Jobs and Stages" section.
-Click on any jobs with an X by them,
-and this will bring you to a page with the actual errors on them.
-If you search for the word "error" in that page,
-it will bring you to the problems themselves.
+From there, navigate the left-hand menu to find which specific job failed.
+Click on any jobs with an ✕ by them,
+and this will open the workflow execution page in the middle of your screen.
+This page should show multiple steps with ✓ and ✕ symbols.
+If you click the ▶ arrow next to any failed (✕) steps,
+it will display the errors within the steps themselves.
+
+If there are errors in the build, such as lint failings,
+the complete list of commands being run in CI are found within
+[.github/workflows](.github/workflows/README.md)
+and can be run locally without needing to commit changes just to test them.
+If it is not obvious _which_ command is failing,
+you can click the workflow in the
+[GitHub Actions](https://github.com/quisquous/cactbot/actions)
+page and click `Workflow file` to see the exact list of commands being run.
+The majority of this file is setting up the workflow runner, and the command
+that is failing is most likely going to be found at the bottom,
+such as `npm run lint`.
 
 cactbot files should all be in UTF-8.
 If you get a BOM error,
