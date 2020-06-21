@@ -300,7 +300,6 @@
         'Icicle': 'Eiszapfen',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': 'Windschlag',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
@@ -351,7 +350,6 @@
         'Tail': 'queue',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': 'Rafale aérienne',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
@@ -402,7 +400,6 @@
         'Tail': '神龍の尾',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': 'エリアルブラスト',
         'Akh Morn': 'アク・モーン',
         'Akh Rhai': 'アク・ラーイ',
@@ -454,7 +451,6 @@
         'Tail': '龙尾',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
         'Aerial Blast': '大气爆发',
         'Akh Morn': '死亡轮回',
         'Akh Rhai': '天光轮回',
@@ -505,7 +501,6 @@
         'Tail(?! )': '신룡의 꼬리',
       },
       'replaceText': {
-        '--adds spawn--': '--쫄 소환--',
         'Aerial Blast': '대기 폭발',
         'Akh Morn': '아크 몬',
         'Akh Rhai': '아크 라이',
