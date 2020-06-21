@@ -154,7 +154,14 @@
   "stylelint": {
     "extends": "stylelint-config-standard"
   },
+  "husky": {
+    "hooks": {
+      "pre-push": "node_modules/.bin/npm-run-all lint stylelint markdownlint test"
+    }
+  },
   "dependencies": {
-    "markdownlint": "^0.18.0"
+    "husky": "^4.2.5",
+    "markdownlint": "^0.18.0",
+    "npm-run-all": "^4.1.5"
   }
 }
