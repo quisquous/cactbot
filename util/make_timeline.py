@@ -112,8 +112,8 @@ def parse_file(args):
                 continue
             line_fields = line.split("|")
             # We aren't including targetable lines unless the user explicitly says to.
-            if line[0:2] == '34' and not line_fields[3] in args.include_targetable:
-              continue
+            if line[0:2] == "34" and not line_fields[3] in args.include_targetable:
+                continue
 
             # At this point, we have a combat line for the timeline.
             entry = {
@@ -122,14 +122,16 @@ def parse_file(args):
                 "combatant": line_fields[3],
             }
             if line[0:2] in ["21", "22"]:
-              entry["ability_id"] = line_fields[4]
-              entry["ability_name"] = line_fields[5]
+                entry["ability_id"] = line_fields[4]
+                entry["ability_name"] = line_fields[5]
 
-              # Unknown abilities should be hidden sync lines by default.
-              if line_fields[5].startswith("Unknown_"):
-                  entry["ability_name"] = "--sync--"
+            # Unknown abilities should be hidden sync lines by default.
+            if line_fields[5].startswith("Unknown_"):
+                entry["ability_name"] = "--sync--"
             else:
-              entry["targetable"] = "--targetable--" if line_fields[6] == "01" else "--untargetable--"
+                entry["targetable"] = (
+                    "--targetable--" if line_fields[6] == "01" else "--untargetable--"
+                )
             entries.append(entry)
 
     if not started:
@@ -199,28 +201,28 @@ def main(args):
 
         # Ignore targetable/untargetable while processing ignored entries
         if entry["line_type"] in ["21", "22"]:
-          # First up, check if it's an ignored entry
-          # Ignore autos, probably need a better rule than this
-          if entry["ability_name"] == "Attack":
-              continue
+            # First up, check if it's an ignored entry
+            # Ignore autos, probably need a better rule than this
+            if entry["ability_name"] == "Attack":
+                continue
 
-          # Ignore abilities by NPC allies
-          if entry["combatant"] in npc_combatants:
-              continue
+        # Ignore abilities by NPC allies
+        if entry["combatant"] in npc_combatants:
+            continue
 
-          # Ignore lines by arguments
-          if (
-              entry["ability_name"] in args.ignore_ability
-              or entry["ability_id"] in args.ignore_id
-              or entry["combatant"] in args.ignore_combatant
-          ):
-              continue
+        # Ignore lines by arguments
+        if (
+            entry["ability_name"] in args.ignore_ability
+            or entry["ability_id"] in args.ignore_id
+            or entry["combatant"] in args.ignore_combatant
+        ):
+            continue
 
-          # Ignore aoe spam
-          if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
-              continue
+        # Ignore aoe spam
+        if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
+            continue
         elif entry["line_type"] == "34" and not args.include_targetable:
-          continue
+            continue
 
         # Find out how long it's been since our last ability
         line_time = entry["time"]
@@ -266,13 +268,11 @@ def main(args):
 
         # Write the line
         if entry["line_type"] == "34":
-          output_entry = '{position:.1f} "{targetable}"'.format(
-              **entry
-          )
+            output_entry = '{position:.1f} "{targetable}"'.format(**entry)
         else:
-          output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
-            **entry
-          )
+            output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
+                **entry
+            )
 
         output.append(output_entry.encode("ascii", "ignore").decode("utf8", "ignore"))
 
@@ -327,10 +327,7 @@ if __name__ == "__main__":
         help="Timestamp of the start, e.g. '12:34:56.789",
     )
     parser.add_argument(
-        "-e",
-        "--end",
-        type=e_tools.timestamp_type,
-        help="Timestamp of the end, e.g. '12:34:56.789"
+        "-e", "--end", type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789'"
     )
     parser.add_argument(
         "-lf",
@@ -367,11 +364,11 @@ if __name__ == "__main__":
         help="Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000",
     )
     parser.add_argument(
-      "-it",
-      "--include_targetable",
-      nargs="*",
-      default=[],
-      help="Set this flag to include '34' log lines when making the timeline",
+        "-it",
+        "--include_targetable",
+        nargs="*",
+        default=[],
+        help="Set this flag to include '34' log lines when making the timeline",
     )
 
     # Aggregate arguments

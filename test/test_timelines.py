@@ -62,7 +62,9 @@ def main():
 
         # Run individual timeline tests
         for test_file in TIMELINE_TEST_DIRECTORY.iterdir():
-            exit_status |= subprocess.call(["node", str(test_file), str(filepath), str(trigger_filename)])
+            exit_status |= subprocess.call(
+                ["node", str(test_file), str(filepath), str(trigger_filename)]
+            )
 
     return exit_status
 

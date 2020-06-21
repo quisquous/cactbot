@@ -22,4 +22,4 @@ matrix:
       - pip install pylint==2.2.3 requests==2.22.0 PyYAML==5.1.2 black==19.10b0
     script:
       - pylint **/*.py --errors-only
-      - black **/*.py --line-length 100 --diff
+      - black **/*.py --line-length 100 --check --diff
