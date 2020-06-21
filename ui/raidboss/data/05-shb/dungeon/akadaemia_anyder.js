@@ -194,7 +194,6 @@
         'Phantomology': 'Phantomologie',
       },
       'replaceText': {
-        '--(?<![^0-9]x)': '--',
         'Worse Breath': 'Schlimmer Atem ',
         'Winding Current': 'Spulenstrom',
         'Waterspout': 'Wasserrinne',
@@ -245,7 +244,6 @@
         'Phantomology': 'département de phantasmagénie',
       },
       'replaceText': {
-        '--(?<![^0-9]x)': '--',
         'Worse Breath': 'Haleine pestilentielle',
         'Winding Current': 'Volte-courant',
         'Waterspout': 'Jet d\'eau',
@@ -296,7 +294,6 @@
         'Phantomology': '幻想生物創造場',
       },
       'replaceText': {
-        '--(?<![^0-9]x)': '--',
         'Worse Breath': '悪臭い息',
         'Winding Current': 'ループカレント',
         'Waterspout': 'ウォータースパウト',
@@ -347,7 +344,6 @@
         'Phantomology': '幻想生物创造场',
       },
       'replaceText': {
-        '--(?<![^0-9]x)': '--',
         'Worse Breath': '恶臭吐息',
         'Winding Current': '绕组电流',
         'Waterspout': '喷射水波',
@@ -398,7 +394,6 @@
         'Phantomology': '환상 생물 창조장',
       },
       'replaceText': {
-        '--(?<![^0-9]x)': '--',
         'Worse Breath': '악취 숨결',
         'Winding Current': '원형전류',
         'Waterspout': '물 분출',
