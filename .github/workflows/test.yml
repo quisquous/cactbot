@@ -1,0 +1,29 @@
+name: Test
+
+on:
+  push:
+    paths:
+      - '**/*.py'
+      - 'ui/raidboss/**'
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - '**/*.py'
+      - 'ui/raidboss/**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - run: npm install
+      - run: npm test
