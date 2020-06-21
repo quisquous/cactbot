@@ -21,28 +21,10 @@
   damageFail: {
     'Holminster Aethersup': '3DE9',
   },
-  triggers: [
-    {
-      id: 'Holminster Flagellation',
-      damageRegex: '3DD6',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Holminster Taphephobia',
-      damageRegex: '4181',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareWarn: {
+    'Holminster Flagellation': '3DD6',
+  },
+  shareFail: {
+    'Holminster Taphephobia': '4181',
+  },
 }];

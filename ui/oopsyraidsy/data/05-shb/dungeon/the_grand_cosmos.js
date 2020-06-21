@@ -32,58 +32,13 @@
     'Cosmos Otherwordly Heat': '475C',
     'Cosmos Fire\'s Ire': '4761',
     'Cosmos Plummet': '4767',
+
+    'Cosmos Fire\'s Domain Tether': '475F',
   },
-  triggers: [
-    {
-      id: 'Cosmos Dark Well',
-      damageRegex: '476D',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Cosmos Far Wind Spread',
-      damageRegex: '4724',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Cosmos Black Flame',
-      damageRegex: '475D',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Cosmos Fire\'s Domain Tether',
-      damageRegex: '475F',
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Cosmos Fire\'s Domain',
-      damageRegex: '4760',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareWarn: {
+    'Cosmos Dark Well': '476D',
+    'Cosmos Far Wind Spread': '4724',
+    'Cosmos Black Flame': '475D',
+    'Cosmos Fire\'s Domain': '4760',
+  },
 }];

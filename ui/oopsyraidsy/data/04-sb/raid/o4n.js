@@ -12,6 +12,15 @@
     'Clearout': '24CC', // Overlapping cone AoEs, Deathly Vine (tentacles alongside tree head)
     'Black Spark': '24C9', // Exploding Black Hole
   },
+  shareWarn: {
+    // Empowered Fire III inflicts the Pyretic debuff, which deals damage if the player
+    // moves or acts before the debuff falls. Unfortunately it doesn't look like there's
+    // currently a log line for this, so the only way to check for this is to collect
+    // the debuffs and then warn if a player takes an action during that time. Not worth it
+    // for Normal.
+    'O4N Standard Fire': '24BA',
+    'O4N Buster Thunder': '24BE', // A cleaving tank buster
+  },
   triggers: [
     {
       id: 'O4N Doom', // Kills target if not cleansed
@@ -25,33 +34,6 @@
       damageRegex: '24B8',
       deathReason: function(e) {
         return { type: 'fail', name: e.targetName, reason: { en: 'Pushed off!' } };
-      },
-    },
-    {
-      // Empowered Fire III inflicts the Pyretic debuff, which deals damage if the player
-      // moves or acts before the debuff falls. Unfortunately it doesn't look like there's
-      // currently a log line for this, so the only way to check for this is to collect
-      // the debuffs and then warn if a player takes an action during that time. Not worth it
-      // for Normal.
-      id: 'O4N Standard Fire',
-      damageRegex: '24BA',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', name: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'O4N Buster Thunder', // A cleaving tank buster
-      damageRegex: '24BE',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', name: e.targetName, text: { en: e.abilityName + ' (Buster)' } };
       },
     },
     {

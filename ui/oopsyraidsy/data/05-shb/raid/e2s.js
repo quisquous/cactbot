@@ -16,18 +16,10 @@
     'E3S Empty Rage': '3E6C',
     'E3S Doomvoid Guillotine': '3E4F',
   },
+  shareWarn: {
+    'E2S Doomvoid Cleaver': '3E64',
+  },
   triggers: [
-    {
-      id: 'E2S Doomvoid Cleaver',
-      damageRegex: '3E64',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       id: 'E2S Shadoweye',
       gainsEffectRegex: gLang.kEffect.StoneCurse,

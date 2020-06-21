@@ -34,46 +34,15 @@
     'Ancient Eruption': '1104', // Self-targeted circle AoE, boss 4
     'Entropic Flame': '1108', // Line AoEs,  boss 4
   },
+  shareWarn: {
+    'Facility Chthonic Hush': '10E7', // Instant tank cleave, boss 2
+    'Facility Height Of Chaos': '1101', // Tank cleave, boss 4
+    'Facility Ancient Circle': '1102', // Targeted donut AoEs, boss 4
+  },
   triggers: [
-    {
-      // Instant tank cleave, boss 2
-      id: 'Facility Chthonic Hush',
-      damageRegex: '10E7',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       id: 'Facility Petrifaction',
       gainsEffectRegex: gLang.kEffect.Petrification,
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Tank cleave, boss 4
-      id: 'Facility Height Of Chaos',
-      damageRegex: '1101',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Targeted donut AoEs, boss 4
-      id: 'Facility Ancient Circle',
-      damageRegex: '1102',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
       mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },

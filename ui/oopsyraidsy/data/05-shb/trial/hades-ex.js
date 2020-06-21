@@ -31,29 +31,14 @@
     'HadesEx Shadow Stream': '47EA',
     'HadesEx Dead Space': '47EE',
   },
+  shareWarn: {
+    'HadesEx Shadow Spread Initial': '47A9',
+    'HadesEx Ravenous Assault': '(?:47A6|47A7)',
+    'HadesEx Dark Flame 1': '47C6',
+    'HadesEx Dark Freeze 1': '47C4',
+    'HadesEx Dark Freeze 2': '47DF',
+  },
   triggers: [
-    {
-      id: 'HadesEx Shadow Spread Initial',
-      damageRegex: '47A9',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'HadesEx Ravenous Assault',
-      damageRegex: '(?:47A6|47A7)',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       id: 'HadesEx Dark II Tether',
       regex: Regexes.tether({ source: 'Shadow of the Ancients', id: '0011' }),
@@ -71,28 +56,6 @@
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'HadesEx Dark Flame 1',
-      damageRegex: '47C6',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'HadesEx Dark Freeze 1',
-      damageRegex: '47C4',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
@@ -169,17 +132,6 @@
           name: e.targetName,
           reason: e.effectName,
         };
-      },
-    },
-    {
-      id: 'HadesEx Dark Freeze 2',
-      damageRegex: '47DF',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
   ],

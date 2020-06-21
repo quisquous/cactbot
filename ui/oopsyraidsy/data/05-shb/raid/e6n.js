@@ -22,18 +22,8 @@
     'Vacuum Slice': '4BD5', // Dark line AoE from Garuda
     'Downburst': '4BDB', // Blue knockback circle. Actual knockback is unknown ability 4C20
   },
-  triggers: [
-    {
-      id: 'E6N Instant Incineration',
-      damageRegex: '4BED',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        // Kills non-tanks who get hit by it.
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareFail: {
+    // Kills non-tanks who get hit by it.
+    'E6N Instant Incineration': '4BED',
+  },
 }];

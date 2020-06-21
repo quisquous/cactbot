@@ -23,30 +23,8 @@
     'Qitana Hound out of Heaven': '42B8', // Tether extension failure, boss three; 42B7 is correct execution
     'Qitana Ronkan Abyss': '43EB', // Ground AoE from mini-bosses before first boss
   },
-  triggers: [
-    {
-      // AoE from the 00AB poison head marker, boss three
-      id: 'Qitana Viper Poison 1',
-      damageRegex: '3C9D',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Overlapped circles failure on the spread circles version of the mechanic
-      id: 'Qitana Confession of Faith 2',
-      damageRegex: '3CA3',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareWarn: {
+    'Qitana Viper Poison 1': '3C9D', // AoE from the 00AB poison head marker, boss three
+    'Qitana Confession of Faith 2': '3CA3', // Overlapped circles failure on the spread circles version of the mechanic
+  },
 }];
