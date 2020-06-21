@@ -164,9 +164,12 @@ function findMissingTimeline() {
         testCase.replace[key] = key;
         continue;
       }
-      // This shouldn't happen.
-      if (key in testCase.replace)
+
+      if (key in testCase.replace) {
+        console.log(`${triggersFile}: duplicated common translation of '${key}`);
         continue;
+      }
+
       testCase.replace[key] = commonReplacement[key][trans.locale];
     }
   }
