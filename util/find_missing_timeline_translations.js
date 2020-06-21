@@ -139,13 +139,13 @@ function findMissingTimeline() {
       type: 'replaceSync',
       items: new Set(timeline.syncStarts.map((x) =>
         ({ text: x.regex.source, line: x.lineNumber }))),
-      replace: trans.replaceSync,
+      replace: trans.replaceSync || {},
       label: 'sync',
     },
     {
       type: 'replaceText',
       items: new Set(timeline.events.map((x) => ({ text: x.text, line: x.lineNumber }))),
-      replace: trans.replaceText,
+      replace: trans.replaceText || {},
       label: 'text',
     },
   ];
