@@ -362,7 +362,7 @@
       'replaceText': {
         '(?!< )Action': 'Aktion',
         '(?!< )Ready': 'Fertig',
-        '--clones appear?--': '--klone erscheinen?--',
+        '--clones appear\\?--': '--klone erscheinen?--',
         'Aetherochemical Grenado': 'Magitek-Granate',
         'Alea Iacta Est': 'Alea Iacta Est',
         'Altius': 'Altius',
@@ -403,7 +403,6 @@
       },
       'replaceText': {
         '\\?': ' ?',
-        '--clones appear?--': '--apparition des clones ?--',
         'Aetherochemical Grenado': 'Grenade Magitek',
         'Alea Iacta Est': 'Alea Jacta Est',
         'Altius': 'Altius',
@@ -442,7 +441,7 @@
         'Ventus Est': 'ウェントゥス・エスト',
       },
       'replaceText': {
-        '--clones appear?--': '--幻影出現?--',
+        '--clones appear\\?--': '--幻影出現?--',
         'Aetherochemical Grenado': '魔導榴弾',
         'Alea Iacta Est': 'アーレア・ヤクタ・エスト',
         'Altius': 'アルティウス',
