@@ -610,6 +610,7 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
+    this.netTriggers = [];
 
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
@@ -640,6 +641,17 @@ class DamageTracker {
     for (let i = 0; i < this.timers.length; ++i)
       window.clearTimeout(this.timers[i]);
     this.timers = [];
+  }
+
+  OnNetLog(e) {
+    if (this.ignoreZone)
+      return;
+    let line = e.rawLine;
+    for (let trigger of this.netTriggers) {
+      let matches = line.match(trigger.netRegex);
+      if (matches != null)
+        this.OnTrigger(trigger, { line: line }, matches);
+    }
   }
 
   OnLogEvent(e) {
@@ -958,6 +970,7 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
+    this.netTriggers = [];
 
     this.ignoreZone = false;
     for (let i = 0; i < Options.IgnoreZones.length; ++i) {
@@ -1028,6 +1041,10 @@ class DamageTracker {
           trigger.idRegex = Regexes.parse('^' + Regexes.anyOf(trigger.healRegex) + '$');
           this.healTriggers.push(trigger);
         }
+        if ('netRegex' in trigger) {
+          trigger.netRegex = Regexes.parse(Regexes.anyOf(trigger.netRegex));
+          this.netTriggers.push(trigger);
+        }
       }
     }
   }
@@ -1095,6 +1112,9 @@ UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
 
   addOverlayListener('onLogEvent', function(e) {
     gDamageTracker.OnLogEvent(e);
+  });
+  addOverlayListener('LogLine', function(e) {
+    gDamageTracker.OnNetLog(e);
   });
   addOverlayListener('onPartyWipe', function(e) {
     gDamageTracker.OnPartyWipeEvent(e);
