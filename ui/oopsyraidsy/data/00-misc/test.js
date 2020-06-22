@@ -68,6 +68,16 @@
       },
     },
     {
+      id: 'Test Leaden Fist',
+      netRegex: NetRegexes.gainsEffect({ effectId: '745' }),
+      condition: function(e, data, matches) {
+        return matches.source === data.me;
+      },
+      mistake: function(e, data, matches) {
+        return { type: 'good', blame: data.me, text: matches.effect };
+      },
+    },
+    {
       id: 'Test Oops',
       regex: Regexes.echo({ line: '.*oops.*' }),
       mistake: function(e, data, matches) {
