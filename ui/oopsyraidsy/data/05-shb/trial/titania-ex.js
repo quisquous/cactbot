@@ -19,29 +19,9 @@
     'TitaniaEx Phantom Rune 1': '3D4C',
     'TitaniaEx Phantom Rune 2': '3D4D',
   },
-  triggers: [
-    {
-      // TODO: This could maybe blame the person with the tether?
-      id: 'TitaniaEx Thunder Rune',
-      damageRegex: '3D29',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TitaniaEx Divination Rune',
-      damageRegex: '3D4A',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareFail: {
+    // TODO: This could maybe blame the person with the tether?
+    'TitaniaEx Thunder Rune': '3D29',
+    'TitaniaEx Divination Rune': '3D4A',
+  },
 }];

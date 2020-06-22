@@ -38,51 +38,21 @@
     'TEA Apocalyptic Ray': '484C',
     'TEA Propeller Wind': '4832',
   },
+  shareWarn: {
+    'TEA Protean Wave Double 1': '49B6',
+    'TEA Protean Wave Double 2': '4825',
+    'TEA Fluid Swing': '49B0',
+    'TEA Fluid Strike': '49B7',
+    'TEA Hidden Mine': '4852',
+    'TEA Alpha Sword': '486B',
+    'TEA Flarethrower': '486B',
+    'TEA Chastening Heat': '4A80',
+    'TEA Divine Spear': '4A82',
+    'TEA Ordained Punishment': '4891',
+    // Optical Spread
+    'TEA Individual Reprobation': '488C',
+  },
   triggers: [
-    {
-      id: 'TEA Protean Wave Double 1',
-      damageRegex: '49B6',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Protean Wave Double 2',
-      damageRegex: '4825',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Fluid Swing',
-      damageRegex: '49B0',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Fluid Strike',
-      damageRegex: '49B7',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       // Balloon Popping.  It seems like the person who pops it is the
       // first person listed damage-wise, so they are likely the culprit.
@@ -180,72 +150,6 @@
       },
     },
     {
-      id: 'TEA Hidden Mine',
-      damageRegex: '4852',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Alpha Sword',
-      damageRegex: '486B',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Flarethrower',
-      damageRegex: '486B',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Chastening Heat',
-      damageRegex: '4A80',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Divine Spear',
-      damageRegex: '4A82',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'TEA Ordained Punishment',
-      damageRegex: '4891',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
       // Optical Stack
       id: 'TEA Collective Reprobation',
       damageRegex: '488D',
@@ -255,18 +159,6 @@
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Optical Spread
-      id: 'TEA Individual Reprobation',
-      damageRegex: '488C',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
   ],

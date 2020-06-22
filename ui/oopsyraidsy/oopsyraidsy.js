@@ -941,12 +941,33 @@ class DamageTracker {
     if (!dict)
       return;
     let keys = Object.keys(dict);
-    for (let j = 0; j < keys.length; ++j) {
-      let key = keys[j];
+    for (let key of keys) {
       let id = dict[key];
       let trigger = {
         id: key,
         damageRegex: id,
+        idRegex: Regexes.parse('^' + id + '$'),
+        mistake: function(e, data) {
+          return { type: type, blame: e.targetName, text: e.abilityName };
+        },
+      };
+      this.damageTriggers.push(trigger);
+    }
+  }
+
+  // Helper function for "double tap" shares where multiple players share
+  // damage when it should only be on one person, such as a spread mechanic.
+  AddShareTriggers(type, dict) {
+    if (!dict)
+      return;
+    let keys = Object.keys(dict);
+    let condFunc = (e) => e.type != 15;
+    for (let key of keys) {
+      let id = dict[key];
+      let trigger = {
+        id: key,
+        damageRegex: id,
+        condition: condFunc,
         idRegex: Regexes.parse('^' + id + '$'),
         mistake: function(e, data) {
           return { type: type, blame: e.targetName, text: e.abilityName };
@@ -1012,6 +1033,8 @@ class DamageTracker {
         continue;
       this.AddSimpleTriggers('warn', set.damageWarn);
       this.AddSimpleTriggers('fail', set.damageFail);
+      this.AddShareTriggers('warn', set.shareWarn);
+      this.AddShareTriggers('fail', set.shareFail);
 
       if (!set.triggers)
         set.triggers = [];

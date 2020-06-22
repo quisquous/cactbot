@@ -18,18 +18,10 @@
     'Spikesicle': '1FA`', // Blue-green line attacks from behind.
     'Tail Slap': '1F93', // Red squares indicating the tail's landing spots.
   },
+  shareWarn: {
+    'Shinryu Normal Levinbolt': '1F9C',
+  },
   triggers: [
-    {
-      id: 'Shinryu Normal Levinbolt',
-      damageRegex: '1F9C',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       // Icy floor attack.
       id: 'Shinryu Normal Diamond Dust',
