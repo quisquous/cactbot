@@ -32,6 +32,12 @@
     'Downburst 2': '4BFC', // Blue knockback circle (Raktapaksa).
     'Meteor Strike': '4C0F', // Frontal avoidable tank buster
   },
+  shareWarn: {
+    'E6S Hands of Hell': '4C0[BC]', // Tether charge
+    'E6S Hands of Flame': '4C0A', // First Tankbuster
+    'E6S Instant Incineration': '4C0E', // Second Tankbuster
+    'E6S Blaze': '4C1B', // Flame Tornado Cleave
+  },
   triggers: [
     {
       id: 'E6S Air Bump',
@@ -43,54 +49,6 @@
       },
       mistake: function(e, data) {
         return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Tether charge
-      id: 'E6S Hands of Hell',
-      damageRegex: '4C0[BC]',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // First Tankbuster
-      id: 'E6S Hands of Flame',
-      damageRegex: '4C0A',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Seconds Tankbuster
-      id: 'E6S Instant Incineration',
-      damageRegex: '4C0E',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // Flame Tornado Cleave
-      id: 'E6S Blaze',
-      damageRegex: '4C1B',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
   ],

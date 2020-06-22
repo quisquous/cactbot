@@ -9,6 +9,9 @@
     'O2N Main Quake': '24A5', // Non-telegraphed circle AoE, Fleshy Member
     'O2N Erosion': '2590', // Small circle AoEs, Fleshy Member
   },
+  shareWarn: {
+    'O2N Paranormal Wave': '250E', // Instant tank cleave
+  },
   triggers: [
     {
       // We could try to separate out the mistake that led to the player being petrified.
@@ -20,18 +23,6 @@
       suppressSeconds: 10,
       mistake: function(e) {
         return { type: 'warn', name: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      // Instant tank cleave
-      id: 'O2N Paranormal Wave',
-      damageRegex: '250E',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', name: e.targetName, text: e.abilityName };
       },
     },
     {

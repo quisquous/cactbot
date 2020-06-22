@@ -27,6 +27,11 @@ let noOrb = (str) => {
   damageFail: {
     'Judgment Jolt': '4BA7', // Stratospear explosions
   },
+  shareWarn: {
+    'E5S Volt Strike Double': '4BC3', // Large AoE circles during Thunderstorm
+    'E5S Crippling Blow': '4BCA',
+    'E5S Chain Lightning Double': '4BC5',
+  },
   triggers: [
     {
       // Helper for orb pickup failures
@@ -49,18 +54,6 @@ let noOrb = (str) => {
       },
     },
     {
-      // Large AoE circles during Thunderstorm
-      id: 'E5S Volt Strike Double',
-      damageRegex: '4BC3',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
       id: 'E5S Volt Strike Orb',
       damageRegex: '4BC3',
       condition: function(e, data) {
@@ -78,17 +71,6 @@ let noOrb = (str) => {
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
-      },
-    },
-    {
-      id: 'E5S Crippling Blow',
-      damageRegex: '4BCA',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
@@ -146,17 +128,6 @@ let noOrb = (str) => {
       run: function(e, data) {
         delete data.cloudMarkers;
         delete data.hated;
-      },
-    },
-    {
-      id: 'E5S Chain Lightning Double',
-      damageRegex: '4BC5',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
   ],

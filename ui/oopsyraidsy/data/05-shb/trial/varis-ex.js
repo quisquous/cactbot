@@ -21,46 +21,20 @@
     // Don't hit the shields!
     'VarisEx Repay': '4CDD',
   },
+  shareWarn: {
+    // This is the "protean" fortius.
+    'VarisEx Fortius Protean': '4CE7',
+  },
+  shareFail: {
+    'VarisEx Magitek Burst': '4CDF',
+    'VarisEx Aetherochemical Grenado': '4CED',
+  },
   triggers: [
     {
       id: 'VarisEx Terminus Est',
       damageRegex: '4CB4',
       // TODO: actually implement suppressSeconds.
       suppressSeconds: 1,
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'VarisEx Magitek Burst',
-      damageRegex: '4CDF',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'VarisEx Aetherochemical Grenado',
-      damageRegex: '4CED',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      // This is the "protean" fortius.
-      id: 'VarisEx Fortius Protean',
-      damageRegex: '4CE7',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
       mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },

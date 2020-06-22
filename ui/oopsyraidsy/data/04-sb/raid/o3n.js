@@ -17,18 +17,10 @@
   damageFail: {
     'Ultimum': '2477', // Instant kill. Used if the player does not exit the sand maze fast enough.
   },
+  shareWarn: {
+    'O3N Holy Blur': 2463, // Spread circles.
+  },
   triggers: [
-    {
-      id: 'O3N Holy Blur', // Spread circles.
-      damageRegex: '2463',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       id: 'O3N Phase Tracker',
       regex: Regexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),

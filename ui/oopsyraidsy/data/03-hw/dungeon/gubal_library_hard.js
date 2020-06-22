@@ -34,34 +34,16 @@
   damageFail: {
     'Gubal Hard Ecliptic Meteor': '195C', // LoS mechanic, boss 3
   },
+  shareWarn: {
+    'Gubal Hard Searing Wind': '1944', // Tank cleave, boss 2
+    'Gubal Hard Thunder': '19[AB]', // Spread marker, boss 3
+  },
   triggers: [
     {
       id: 'Gubal Hard Burns', // Fire gate in hallway to boss 2, magnet failure on boss 2
       gainsEffectRegex: gLang.kEffect.Burns,
       mistake: function(e, data) {
         return { type: 'warn', blame: e.targetName, text: e.effectName };
-      },
-    },
-    {
-      id: 'Gubal Hard Searing Wind', // Tank cleave, boss 2
-      damageRegex: '1944',
-      condition: function(e) {
-        // Double taps only, but tanks are always hit by this
-        e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Gubal Hard Thunder', // Spread marker, boss 3
-      damageRegex: '195[AB]',
-      condition: function(e, data) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
