@@ -174,15 +174,15 @@ Follow the same process but select a different cactbot preset.
 ## Building from source
 
 Follow all the steps above for installing cactbot first.
-To install dependencies there are 2 methods: **per script** and **manualy**
+To install dependencies there are 2 methods: **per script** and **manually**
 
-### Dependancies: Script Method
+### Dependencies: Script Method
 
 1. `curl` MUST be installed (this is used to download dependencies)
-1. Execute the `./tools/fetch_deps.py` script
+1. Execute the `./utils/fetch_deps.py` script
 1. Continue with **Steps to build**
 
-### Dependancies: Manual Method
+### Dependencies: Manual Method
 
 1. Please download the latest Zip file from <https://github.com/EQAditu/AdvancedCombatTracker/releases/>
 1. Extract the `Advanced Combat Tracker.exe` to `cactbot/plugin/ThirdParty/ACT/`
