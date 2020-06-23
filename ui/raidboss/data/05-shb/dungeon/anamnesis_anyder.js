@@ -278,10 +278,14 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Sinister Bubble': '不気味な泡',
-        'Rukshs Dheem': 'ルクスィー・ディーマ',
-        'Unknown': '正体不明',
+        'Depth Grip': 'ハンド・オブ・オーシャン',
+        'Doxa': 'ドクサの広間',
+        'Katharsis': 'カタルシスの広場',
         'Kyklops': 'クリュプス',
+        'Noesis': 'ノエシスの間',
+        'Rukshs Dheem': 'ルクスィー・ディーマ',
+        'Sinister Bubble': '不気味な泡',
+        'Unknown': '正体不明',
       },
       'replaceText': {
         'The Final Verse': '恐怖の最終章',
