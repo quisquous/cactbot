@@ -152,6 +152,7 @@
         'Damning Edict': '파멸 포고',
         'Earthquake': '대지진',
         'Fiendish Orbs': '추격하라',
+        'Knock': '착탄',
         'Long/Lat Implosion': '가로/세로 내파',
         'Soul of Chaos': '혼돈의 영혼',
         'Stray Flames': '혼돈의 불',
