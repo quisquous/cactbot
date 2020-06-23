@@ -63,9 +63,9 @@ let UserConfig = {
           Options.ShortLocale = Options.ParserLanguage;
       }
       // User's setting Language
-      Options.DisplayLanguage = e.detail.displayLanguage || 'en';
+      Options.DisplayLanguage = e.detail.displayLanguage;
       if (!supportedLanguage.includes(Options.DisplayLanguage))
-        Options.DisplayLanguage = Options.ParserLanguage;
+        Options.DisplayLanguage = Options.ParserLanguage || 'en';
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
