@@ -53,6 +53,11 @@ class CactbotLanguageEn extends CactbotLanguage {
       UmbralAttenuation: 'Umbral Attenuation',
       PhysicalAttenuation: 'Physical Attenuation',
 
+      //MCH
+      Peloton: 'Peloton',
+      Wildfire: 'Wildfire',
+      Reassemble: 'Reassembled',
+
       SurgeProtection: 'Surge Protection',
 
       Paralysis: 'Paralysis',

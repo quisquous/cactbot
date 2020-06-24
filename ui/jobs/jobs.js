@@ -57,22 +57,22 @@ let kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
 // Source: http://theoryjerks.akhmorning.com/resources/levelmods/
 const kLevelMod = [[0, 0],
-  [56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
-  [68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
-  [82, 82], [85, 85], [89, 89], [93, 93], [96, 96],
-  [100, 100], [104, 104], [109, 109], [113, 113], [116, 116],
-  [122, 122], [127, 127], [133, 133], [138, 138], [144, 144],
-  [150, 150], [155, 155], [162, 162], [168, 168], [173, 173],
-  [181, 181], [188, 188], [194, 194], [202, 202], [209, 209],
-  [215, 215], [223, 223], [229, 229], [236, 236], [244, 244],
-  [253, 253], [263, 263], [272, 272], [283, 283], [292, 292],
-  [302, 302], [311, 311], [322, 322], [331, 331], [341, 341],
-  [342, 393], [344, 444], [345, 496], [346, 548], [347, 600],
-  [349, 651], [350, 703], [351, 755], [352, 806], [354, 858],
-  [355, 941], [356, 1032], [357, 1133], [358, 1243], [369, 1364],
-  [360, 1497], [361, 1643], [362, 1802], [363, 1978], [364, 2170],
-  [365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
-  [372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
+[56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
+[68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
+[82, 82], [85, 85], [89, 89], [93, 93], [96, 96],
+[100, 100], [104, 104], [109, 109], [113, 113], [116, 116],
+[122, 122], [127, 127], [133, 133], [138, 138], [144, 144],
+[150, 150], [155, 155], [162, 162], [168, 168], [173, 173],
+[181, 181], [188, 188], [194, 194], [202, 202], [209, 209],
+[215, 215], [223, 223], [229, 229], [236, 236], [244, 244],
+[253, 253], [263, 263], [272, 272], [283, 283], [292, 292],
+[302, 302], [311, 311], [322, 322], [331, 331], [341, 341],
+[342, 393], [344, 444], [345, 496], [346, 548], [347, 600],
+[349, 651], [350, 703], [351, 755], [352, 806], [354, 858],
+[355, 941], [356, 1032], [357, 1133], [358, 1243], [369, 1364],
+[360, 1497], [361, 1643], [362, 1802], [363, 1978], [364, 2170],
+[365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
+[372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
 
 let kGainSecondsRegex = Regexes.parse('for (\\y{Float}) Seconds\\.');
 function gainSecondsFromLog(log) {
@@ -231,6 +231,11 @@ function setupComboTracker(callback) {
     gLang.kAbility.RiotBlade,
     gLang.kAbility.GoringBlade,
   ]);
+  comboTracker.AddCombo([
+    gLang.kAbility.HeatedSplitShot,
+    gLang.kAbility.HeatedSlugShot,
+    gLang.kAbility.HeatedCleanShot,
+  ]);
   return comboTracker;
 }
 
@@ -291,6 +296,11 @@ function setupRegexes(playerName) {
     gLang.kAbility.HolySpirit,
     gLang.kAbility.HolyCircle,
     gLang.kAbility.Confiteor,
+    // MCH
+    gLang.kAbility.SpreadShot,
+    gLang.kAbility.HeatedSplitShot,
+    gLang.kAbility.HeatedSlugShot,
+    gLang.kAbility.HeatedCleanShot,
   ]);
 }
 
@@ -310,7 +320,7 @@ function computeBackgroundColorFrom(element, classList) {
 }
 
 function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
-    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
+  barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
   let div = document.createElement('div');
   div.style.opacity = opacity;
 
@@ -405,7 +415,7 @@ class Buff {
     };
 
     this.cooldown[source] = this.makeAura(cooldownKey, this.cooldownList, showSeconds,
-        secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
+      secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
   }
 
   addReady(source) {
@@ -426,11 +436,11 @@ class Buff {
 
     let readyKey = 'r:' + this.name + ':' + source;
     this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
-        this.readySortKeyBase, color, txt, 0.6);
+      this.readySortKeyBase, color, txt, 0.6);
   }
 
   makeAura(key, list, seconds, secondsUntilShow,
-      adjustSort, textColor, txt, opacity, expireCallback) {
+    adjustSort, textColor, txt, opacity, expireCallback) {
     let aura = {};
     aura.removeCallback = () => {
       list.removeElement(key);
@@ -445,14 +455,14 @@ class Buff {
     };
     aura.addCallback = () => {
       let elem = makeAuraTimerIcon(
-          key, seconds, opacity,
-          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-          txt,
-          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-          textColor,
-          this.options.BigBuffBorderSize,
-          this.info.borderColor, this.info.borderColor,
-          this.info.icon);
+        key, seconds, opacity,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        txt,
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        textColor,
+        this.options.BigBuffBorderSize,
+        this.info.borderColor, this.info.borderColor,
+        this.info.icon);
       list.addElement(key, elem, this.info.sortKey + adjustSort);
       aura.addTimeout = null;
 
@@ -792,6 +802,14 @@ class BuffTracker {
         sortKey: 13,
         cooldown: 120,
       },
+      peloton: {
+        gainEffect: gLang.kEffect.Peloton,
+        loseEffect: gLang.kEffect.Peloton,
+        useEffectDuration: true,
+        icon: '../../resources/icon/status/peloton.png',
+        borderColor: '#4cb128',
+        sortKey: 0,
+      }
     };
 
     let keys = Object.keys(this.buffInfo);
@@ -1356,7 +1374,7 @@ class Bars {
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
       if (eyeBox.value >= oldThreshold &&
-          eyeBox.value >= newThreshold)
+        eyeBox.value >= newThreshold)
         eyeBox.threshold = newThreshold;
       else
         eyeBox.threshold = oldThreshold;
@@ -2012,18 +2030,18 @@ class Bars {
     } else if (this.job == 'BRD') {
       type2Buffs += 4 * this.paeonStacks;
       switch (this.museStacks) {
-      case 1:
-        type2Buffs += 1;
-        break;
-      case 2:
-        type2Buffs += 2;
-        break;
-      case 3:
-        type2Buffs += 4;
-        break;
-      case 4:
-        type2Buffs += 12;
-        break;
+        case 1:
+          type2Buffs += 1;
+          break;
+        case 2:
+          type2Buffs += 2;
+          break;
+        case 3:
+          type2Buffs += 4;
+          break;
+        case 4:
+          type2Buffs += 12;
+          break;
       }
     }
     // TODO: this probably isn't useful to track
@@ -2150,7 +2168,7 @@ class Bars {
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-        Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
+      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
       opacityContainer.style.opacity = 1.0;
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
@@ -2190,14 +2208,14 @@ class Bars {
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
       let div = makeAuraTimerIcon(
-          'foodbuff', -1, 1,
-          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-          '',
-          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-          'white',
-          this.options.BigBuffBorderSize,
-          'yellow', 'yellow',
-          '../../resources/icon/status/food.png');
+        'foodbuff', -1, 1,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        '',
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        'white',
+        this.options.BigBuffBorderSize,
+        'yellow', 'yellow',
+        '../../resources/icon/status/food.png');
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }
@@ -2307,7 +2325,7 @@ class Bars {
       this.UpdateOpacity();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
+        this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
     }
     if (updateHp)
       this.UpdateHealth();

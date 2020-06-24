@@ -96,6 +96,25 @@ class CactbotLanguage {
       Thunder4: '1CFC',
       Divination: '40A8',
       LucidDreaming: '1D8A',
+
+      //Machinist
+      //Shot: '08' //Autoattack
+      HeatedSplitShot: '1CF3',
+      HeatedSlugShot: '1CF4',
+      HeatedCleanShot: '1CF5',
+      GaussRound: 'B3A',
+      Ricochet: 'B4A',
+      Drill: '4072',
+      AirAnchor: '4074',
+      Hypercharge: '4339',
+      HeatBlast: '1CF2',
+      Wildfire: 'B3E',
+      AutomatonQueen: '4075',
+      Reassemble: 'B3C',
+      BarrelStabilizer: '1CF6',
+      SpreadShot: 'B36',
+      AutoCrossbow: '4071',
+      Bioblaster: '4073',
     });
 
     this.kZone = Object.freeze({
