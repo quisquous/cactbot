@@ -199,6 +199,10 @@
       condition: function(data) {
         return data.phase == 'falseMidnight';
       },
+      // The stack marker is in the middle of spreads,
+      // so delay a tiny bit to call out stack so that
+      // it is not called out on spreads.
+      delaySeconds: 0.5,
       alertText: function(data, matches) {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         if (data.falseMidnightSpread.includes(data.me))
