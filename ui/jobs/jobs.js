@@ -436,7 +436,7 @@ class Buff {
 
     let readyKey = 'r:' + this.name + ':' + source;
     this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
-      this.readySortKeyBase, color, txt, 0.6);
+        this.readySortKeyBase, color, txt, 0.6);
   }
 
   makeAura(key, list, seconds, secondsUntilShow,
