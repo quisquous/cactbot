@@ -76,14 +76,14 @@
           safeZoneObj1 = {
             en: 'north',
             de: 'nord',
-            fr: 'nord',
+            fr: 'nord ',
             ko: '북',
           };
         } else if (currentHighestCombatant.PosY > 106 && currentHighestCombatant.PosY < 116) {
           safeZoneObj1 = {
             en: 'south',
             de: 'süd',
-            fr: 'sud',
+            fr: 'sud ',
             ko: '남',
           };
         }
@@ -92,14 +92,14 @@
           safeZoneObj2 = {
             en: 'west',
             de: 'west',
-            fr: 'ouest',
+            fr: 'ouest ',
             ko: '서',
           };
         } else if (currentHighestCombatant.PosX > 106 && currentHighestCombatant.PosX < 116) {
           safeZoneObj2 = {
             en: 'east',
             de: 'ost',
-            fr: 'est',
+            fr: 'est ',
             ko: '동',
           };
         }
