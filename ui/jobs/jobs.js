@@ -320,7 +320,7 @@ function computeBackgroundColorFrom(element, classList) {
 }
 
 function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
-  barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
+    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
   let div = document.createElement('div');
   div.style.opacity = opacity;
 
@@ -415,7 +415,7 @@ class Buff {
     };
 
     this.cooldown[source] = this.makeAura(cooldownKey, this.cooldownList, showSeconds,
-      secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
+        secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
   }
 
   addReady(source) {
@@ -440,7 +440,7 @@ class Buff {
   }
 
   makeAura(key, list, seconds, secondsUntilShow,
-    adjustSort, textColor, txt, opacity, expireCallback) {
+      adjustSort, textColor, txt, opacity, expireCallback) {
     let aura = {};
     aura.removeCallback = () => {
       list.removeElement(key);
@@ -455,14 +455,14 @@ class Buff {
     };
     aura.addCallback = () => {
       let elem = makeAuraTimerIcon(
-        key, seconds, opacity,
-        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        txt,
-        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-        textColor,
-        this.options.BigBuffBorderSize,
-        this.info.borderColor, this.info.borderColor,
-        this.info.icon);
+          key, seconds, opacity,
+          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+          txt,
+          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+          textColor,
+          this.options.BigBuffBorderSize,
+          this.info.borderColor, this.info.borderColor,
+          this.info.icon);
       list.addElement(key, elem, this.info.sortKey + adjustSort);
       aura.addTimeout = null;
 
@@ -1374,7 +1374,7 @@ class Bars {
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
       if (eyeBox.value >= oldThreshold &&
-        eyeBox.value >= newThreshold)
+          eyeBox.value >= newThreshold)
         eyeBox.threshold = newThreshold;
       else
         eyeBox.threshold = oldThreshold;
@@ -2030,18 +2030,18 @@ class Bars {
     } else if (this.job == 'BRD') {
       type2Buffs += 4 * this.paeonStacks;
       switch (this.museStacks) {
-        case 1:
-          type2Buffs += 1;
-          break;
-        case 2:
-          type2Buffs += 2;
-          break;
-        case 3:
-          type2Buffs += 4;
-          break;
-        case 4:
-          type2Buffs += 12;
-          break;
+      case 1:
+        type2Buffs += 1;
+        break;
+      case 2:
+        type2Buffs += 2;
+        break;
+      case 3:
+        type2Buffs += 4;
+        break;
+      case 4:
+        type2Buffs += 12;
+        break;
       }
     }
     // TODO: this probably isn't useful to track
@@ -2168,7 +2168,7 @@ class Bars {
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
+        Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
       opacityContainer.style.opacity = 1.0;
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
@@ -2208,14 +2208,14 @@ class Bars {
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
       let div = makeAuraTimerIcon(
-        'foodbuff', -1, 1,
-        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-        '',
-        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-        'white',
-        this.options.BigBuffBorderSize,
-        'yellow', 'yellow',
-        '../../resources/icon/status/food.png');
+          'foodbuff', -1, 1,
+          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+          '',
+          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+          'white',
+          this.options.BigBuffBorderSize,
+          'yellow', 'yellow',
+          '../../resources/icon/status/food.png');
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }
@@ -2325,7 +2325,7 @@ class Bars {
       this.UpdateOpacity();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-        this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
+          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
     }
     if (updateHp)
       this.UpdateHealth();
