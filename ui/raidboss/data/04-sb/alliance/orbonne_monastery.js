@@ -328,7 +328,7 @@
       regexCn: Regexes.startsUsing({ id: '3752', source: '雷神西德', capture: false }),
       regexKo: Regexes.startsUsing({ id: '3752', source: '뇌신 시드', capture: false }),
       condition: function(data) {
-        return data.canFeint();
+        return data.CanFeint();
       },
       infoText: {
         en: 'Feint Tank Buster',
