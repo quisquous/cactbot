@@ -1,6 +1,7 @@
 import argparse
 import io
 import os
+from pathlib import Path
 import re
 import subprocess
 
@@ -23,7 +24,7 @@ non_zoneregex_locales = all_locales - zoneregex_locales
 
 # Where to start looking for files.
 def base_path():
-    return os.path.relpath(os.path.join(os.path.dirname(__file__), "..\\"))
+    return Path(__file__).resolve().parent.parent
 
 
 # Return a list of all javascript filenames found under base_path()
