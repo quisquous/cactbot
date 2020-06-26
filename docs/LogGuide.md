@@ -651,7 +651,7 @@ See the example below.
 It is also to be noted that this value has slowly increased over time and was
 `3C` back in 2017.
 
-The other shift is that plenary indulgance lists the number of stacks in the flags as `113`, `213`, or `313` respectively.
+The other shift is that plenary indulgence lists the number of stacks in the flags as `113`, `213`, or `313` respectively.
 These are always followed by `4C3`.
 Therefore, these should also be shifted over two to find the real flags.
 
@@ -740,7 +740,7 @@ This message is the "gains effect" message for players and mobs gaining effects 
 Structure:
 `1A:[ObjectId]:[Target Name] gains the effect of [Status] from [Source Name] for [Float_Value] Seconds`
 
-Exampless:
+Examples:
 
 ```log
 1A:105EDD08:Tini Poutini gains the effect of Sprint from Tini Poutini for 20.00 Seconds.
