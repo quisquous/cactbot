@@ -16,9 +16,18 @@ jobs:
   markdownlint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
-      - run: npm install
-      - run: npm run markdownlint
+      - name: Add Custom Problem Matcher
+        run: |
+          echo "::add-matcher::.github/matchers/${{ github.job }}.json"
+      - name: Install Dependencies
+        run: |
+          npm install
+      - name: npm run markdownlint
+        run: |
+          npm run markdownlint

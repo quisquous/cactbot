@@ -20,12 +20,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2-beta
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
         with:
           node-version: '12'
-      - uses: actions/setup-python@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
           python-version: '3.7'
-      - run: npm install
-      - run: npm test
+      - name: Install Dependencies
+        run: |
+          npm install
+      - name: npm test
+        run: |
+          npm test
