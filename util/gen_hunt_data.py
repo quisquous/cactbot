@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import csv
 import urllib.request
 import os

@@ -1,5 +1,6 @@
-# Helper for automating SaintCoinach
-# https://github.com/ufx/SaintCoinach
+#!/usr/bin/env python
+
+"""Helper for automating SaintCoinach -- https://github.com/ufx/SaintCoinach"""
 
 import json
 import re

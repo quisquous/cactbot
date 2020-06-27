@@ -1,4 +1,6 @@
-# Generates en/de/fr/ja translations for a given fflogs report.
+#!/usr/bin/env python
+
+"""Generates en/de/fr/ja translations for a given fflogs report"""
 
 import argparse
 from collections import defaultdict
