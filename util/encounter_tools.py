@@ -169,8 +169,8 @@ def clean_tl_line(line):
     # Any lines containing # before any quote marks
     # should be returned with anything following # stripped.
     if re.search(r'^[^"]*#.*$', line):
-        return line.split('#')[0]
-    
+        return line.split("#")[0]
+
     # If a timeline text entry contains a "#" character as a string literal, this function breaks
     # unless we do this little dance.
     line_groups = line.split('"')
