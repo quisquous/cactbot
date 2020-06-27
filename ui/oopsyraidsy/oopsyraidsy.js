@@ -492,8 +492,6 @@ class MistakeCollector {
 
   AddDamage(fields, line) {
     if (!this.firstPuller) {
-      if (this.options.Debug)
-        console.log('Pull: ' + line);
       if (IsPlayerId(fields[kFieldAttackerId]))
         this.firstPuller = fields[kFieldAttackerName];
       else if (IsPlayerId(fields[kFieldTargetId]))
