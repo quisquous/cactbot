@@ -141,7 +141,7 @@
       regex: Regexes.headMarker({ id: '0023' }),
       condition: function(data, matches) {
         // Verdict comes with the same headmarker.
-        return data.me === matches.target && !seenLinkUp;
+        return data.me === matches.target && !data.seenLinkUp;
       },
       infoText: {
         en: 'Orb on YOU',
@@ -804,7 +804,7 @@
           return;
         return {
           en: 'Water Soon on ' + data.ShortName(data.water),
-          de: 'Wasser bald auf ' + data.ShortName(matches.target),
+          de: 'Wasser bald auf ' + data.ShortName(data.water),
           fr: 'Eau bientôt sur ' + data.ShortName(data.water),
           cn: '马上水分摊' + data.ShortName(data.water),
         };
