@@ -625,6 +625,7 @@ class DamageTracker {
       ParseLocaleFloat: parseFloat,
     };
     this.lastDamage = {};
+    // Trigger ID -> { events: [], matches: [] }
     this.activeTriggers = {};
 
     for (let i = 0; i < this.timers.length; ++i)
@@ -863,8 +864,8 @@ class DamageTracker {
 
     let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds) : 0;
     let collectMultipleEvents = 'collectSeconds' in trigger;
-    if (collectMultipleEvents && trigger in this.activeTriggers) {
-      this.activeTriggers[trigger].push(evt);
+    if (collectMultipleEvents && trigger.id in this.activeTriggers) {
+      this.activeTriggers[trigger.id].push(evt);
       return;
     }
     let delay;
@@ -876,8 +877,8 @@ class DamageTracker {
 
     let triggerTime = Date.now();
     let f = (function() {
-      let eventOrEvents = collectMultipleEvents ? this.activeTriggers[trigger] : evt;
-      delete this.activeTriggers[trigger];
+      let eventOrEvents = collectMultipleEvents ? this.activeTriggers[trigger.id] : evt;
+      delete this.activeTriggers[trigger.id];
       if ('mistake' in trigger) {
         let m = ValueOrFunction(trigger.mistake, eventOrEvents);
         if (Array.isArray(m)) {
@@ -900,8 +901,13 @@ class DamageTracker {
 
     // Even if delay = 0, if collectMultipleEvents is specified,
     // then set this here so that events can be passed as an array for consistency.
-    if (collectMultipleEvents)
-      this.activeTriggers[trigger] = [evt];
+    if (collectMultipleEvents) {
+      if (!trigger.id) {
+        console.error('Missing trigger id with collectSeconds specified.');
+        return;
+      }
+      this.activeTriggers[trigger.id] = [evt];
+    }
 
     if (!delay)
       f();
