@@ -36,6 +36,7 @@
       },
     },
     {
+      id: 'General Well Fed',
       gainsEffectRegex: gLang.kEffect.WellFed,
       run: function(e, data) {
         if (!data.lostFood)
