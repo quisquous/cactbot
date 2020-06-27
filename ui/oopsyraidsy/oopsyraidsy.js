@@ -858,29 +858,36 @@ class DamageTracker {
         return;
     }
 
-    let ValueOrFunction = (f, events) => {
+    let ValueOrFunction = (f, events, matches) => {
       return (typeof f == 'function') ? f(events, this.data, matches) : f;
     };
 
-    let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds) : 0;
+    let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
     let collectMultipleEvents = 'collectSeconds' in trigger;
     if (collectMultipleEvents && trigger.id in this.activeTriggers) {
-      this.activeTriggers[trigger.id].push(evt);
+      this.activeTriggers[trigger.id].events.push(evt);
+      this.activeTriggers[trigger.id].matches.push(matches);
       return;
     }
     let delay;
     if (collectMultipleEvents)
       delay = collectSeconds || 0;
     else
-      delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt) : 0;
+      delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt, matches) : 0;
 
 
     let triggerTime = Date.now();
     let f = (function() {
-      let eventOrEvents = collectMultipleEvents ? this.activeTriggers[trigger.id] : evt;
-      delete this.activeTriggers[trigger.id];
+      let eventParam = evt;
+      let matchesParam = matches;
+      if (collectMultipleEvents) {
+        eventParam = this.activeTriggers[trigger.id].events;
+        matchesParam = this.activeTriggers[trigger.id].matches;
+        delete this.activeTriggers[trigger.id];
+      }
+
       if ('mistake' in trigger) {
-        let m = ValueOrFunction(trigger.mistake, eventOrEvents);
+        let m = ValueOrFunction(trigger.mistake, eventParam, matchesParam);
         if (Array.isArray(m)) {
           for (let i = 0; i < m.length; ++i)
             this.collector.OnMistakeObj(m[i]);
@@ -889,14 +896,14 @@ class DamageTracker {
         }
       }
       if ('deathReason' in trigger) {
-        let ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
+        let ret = ValueOrFunction(trigger.deathReason, eventParam, matchesParam);
         if (ret) {
           ret.reason = this.collector.Translate(ret.reason);
           this.AddImpliedDeathReason(ret);
         }
       }
       if ('run' in trigger)
-        ValueOrFunction(trigger.run, eventOrEvents);
+        ValueOrFunction(trigger.run, eventParam, matchesParam);
     }).bind(this);
 
     // Even if delay = 0, if collectMultipleEvents is specified,
@@ -906,7 +913,10 @@ class DamageTracker {
         console.error('Missing trigger id with collectSeconds specified.');
         return;
       }
-      this.activeTriggers[trigger.id] = [evt];
+      this.activeTriggers[trigger.id] = {
+        events: [evt],
+        matches: [matches],
+      };
     }
 
     if (!delay)
