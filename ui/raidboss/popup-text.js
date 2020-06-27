@@ -357,8 +357,7 @@ class PopupText {
   }
 
   StopTimers() {
-    for (let i in this.timers.length)
-      this.timers[i] = false;
+    this.timers = {};
   }
 
   OnLog(e) {
@@ -457,14 +456,14 @@ class PopupText {
 
       // The trigger body must run synchronously when there is no promise.
       if (promise)
-        promise.then(triggerPostPromise);
+        promise.then(triggerPostPromise, () => {});
       else
         triggerPostPromise();
     };
 
     // The trigger body must run synchronously when there is no delay.
     if (delayPromise)
-      delayPromise.then(triggerPostDelay);
+      delayPromise.then(triggerPostDelay, () => {});
     else
       triggerPostDelay();
   }
@@ -582,7 +581,7 @@ class PopupText {
       window.setTimeout(() => {
         if (this.timers[triggerID])
           res();
-        else
+        else if (rej)
           rej();
         delete this.timers[triggerID];
       }, delay * 1000);
