@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import coinach
 import csv
 import os

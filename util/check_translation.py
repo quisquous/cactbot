@@ -1,4 +1,6 @@
-# Checks a trigger file and timeline for translations.
+#!/usr/bin/env python
+
+"""Checks a trigger file and timeline for translations."""
 
 # TODO: this does not handle multi-line regexes.  You have to join them before running this.  <_<
 
