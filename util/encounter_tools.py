@@ -166,10 +166,13 @@ def choose_fight_times(args, encounters):
 
 # Timeline test/translate functions
 def clean_tl_line(line):
-    # If a timeline text entry has a "#" character, this function breaks
+    # Any lines containing # before any quote marks
+    # should be returned with anything following # stripped.
+    if re.search(r'^[^"]*#.*$', line):
+        return line.split('#')[0]
+    
+    # If a timeline text entry contains a "#" character as a string literal, this function breaks
     # unless we do this little dance.
-    if line[0] is "#" or not re.search(r'"', line):
-        return line
     line_groups = line.split('"')
     line_groups[2] = line_groups[2].split("#")[0]
     return '"'.join(line_groups[i] for i in range(0, 3))
