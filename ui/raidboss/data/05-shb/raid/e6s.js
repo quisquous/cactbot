@@ -107,6 +107,9 @@
         let concatSafeZones = (lang) => {
           let str1 = safeZoneObj1 ? safeZoneObj1[lang] : '';
           let str2 = safeZoneObj2 ? safeZoneObj2[lang] : '';
+
+          if (lang === 'fr' && str1 && str2)
+            return str1 + ' ' + str2;
           return str1 + str2;
         };
 
