@@ -27,6 +27,8 @@
 02-arr/trial/cape_westwind.txt
 02-arr/trial/ifrit_nm.js
 02-arr/trial/ifrit_nm.txt
+02-arr/trial/titan_hm.js
+02-arr/trial/titan_hm.txt
 02-arr/trial/titan_ex.js
 02-arr/trial/titan_ex.txt
 03-hw/alliance/dun_scaith.js
