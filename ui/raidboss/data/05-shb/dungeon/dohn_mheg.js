@@ -210,7 +210,7 @@
         'Aenc Thon, Lord of the Lingering Gaze': 'Aenc Thon L\'Envoûtant',
         'Griaule': 'Griaule',
         'Painted Sapling': 'Pousse de Griaule',
-        'Shade of Fear': 'Schatten der Angst',
+        'Shade of Fear': 'Illusion terrifiante',
         'Teag Gye': 'la Teag Gye',
         'The Atelier': 'Repos de Griaule',
         'The throne room': 'la salle du trésor',
