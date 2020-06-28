@@ -16,18 +16,33 @@ jobs:
   black:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
           python-version: '3.7'
-      - run: pip install black==19.10b0 PyYAML==5.1.2 requests==2.22.0  
-      - run: black **/*.py --line-length 100 --check --diff
+      - name: Install Dependencies
+        run: |
+          pip install black==19.10b0 PyYAML==5.1.2 requests==2.22.0
+      - name: black **/*.py --line-length 100 --check --diff
+        run: |
+          black **/*.py --line-length 100 --check --diff
   pylint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v2
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup Python
+        uses: actions/setup-python@v2
         with:
           python-version: '3.7'
-      - run: pip install pylint==2.2.3 PyYAML==5.1.2 requests==2.22.0
-      - run: pylint **/*.py --errors-only
+      - name: Add Custom Problem Matcher
+        run: |
+          echo "::add-matcher::.github/matchers/${{ github.job }}.json"
+      - name: Install Dependencies
+        run: |
+          pip install pylint==2.2.3 PyYAML==5.1.2 requests==2.22.0
+      - name: pylint **/*.py --errors-only
+        run: |
+          pylint **/*.py --errors-only
