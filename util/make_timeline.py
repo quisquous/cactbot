@@ -9,6 +9,31 @@ import timeline_aggregator
 import encounter_tools as e_tools
 
 
+"""FFLogs returns battle events in a list of dicts that looks something like this:
+    {
+      "timestamp": 4816719,
+      "type": "cast",
+      "sourceID": 113,
+      "sourceIsFriendly": false,
+      "targetID": 95,
+      "targetIsFriendly": true,
+      "ability": {
+        "name": "attack",
+        "guid": 870,
+        "type": 128,
+        "abilityIcon": "000000-000405.png"
+      },
+      "pin": "0"
+    },
+We map from the type property here to ACT network log line numbers.
+Technically there are both 21 and 22 log lines,
+but for the purposes of this script it doesn't matter which one we map to."""
+
+log_event_types = {
+    "cast": "21",
+}
+
+
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
 
@@ -68,6 +93,7 @@ def parse_report(args):
             "combatant": enemies[event["sourceID"]],
             "ability_id": hex(event["ability"]["guid"])[2:].upper(),
             "ability_name": event["ability"]["name"],
+            "line_type": log_event_types[event["type"]],
         }
 
         entries.append(entry)
