@@ -6,6 +6,7 @@
     en: /Aetherochemical Research Facility/,
     ko: /^마과학 연구소$/,
   },
+  zoneId: ZoneId.TheAetherochemicalResearchFacility,
   damageWarn: {
     'Facility Grand Sword': '216', // Conal AoE, Scrambled Iron Giant trash
     'Facility Cermet Drill': '20E', // Line AoE, 6th Legion Magitek Vanguard trash

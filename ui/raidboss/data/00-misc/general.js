@@ -3,6 +3,7 @@
 // Triggers for all occasions and zones.
 [{
   zoneRegex: /.*/,
+  zoneId: ZoneId.MatchAll,
   triggers: [
     {
       id: 'General Provoke',

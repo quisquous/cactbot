@@ -6,6 +6,7 @@
     cn: /^中拉诺西亚$/,
     ko: /^중부 라노시아$/,
   },
+  zoneId: ZoneId.MiddleLaNoscea,
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can
   // be strings, or arrays of strings, or functions that

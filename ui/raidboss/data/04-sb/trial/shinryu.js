@@ -7,6 +7,7 @@
     cn: /^阿拉米格王宫屋顶庭园$/,
     ko: /^알라미고 왕궁 옥상정원$/,
   },
+  zoneId: ZoneId.TheRoyalMenagerie,
   timelineFile: 'shinryu.txt',
   triggers: [
     {

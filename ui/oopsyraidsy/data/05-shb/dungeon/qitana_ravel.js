@@ -5,6 +5,7 @@
     en: /^[tT]he Qitana Ravel$/,
     ko: /^키타나 신굴$/,
   },
+  zoneId: ZoneId.TheQitanaRavel,
   damageWarn: {
     'Qitana Sun Toss': '3C8A', // Ground AoE, boss one
     'Qitana Ronkan Light 1': '3C8C', // Statue attack, boss one

@@ -7,6 +7,7 @@
     en: /^Sohm Al$/,
     cn: /^天山绝顶索姆阿尔灵峰$/,
   },
+  zoneId: ZoneId.SohmAl,
   triggers: [
     {
       id: 'Sohm Al Myath Stack',

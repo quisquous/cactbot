@@ -5,6 +5,7 @@
     en: /^Alexander - The Eyes Of The Creator \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(天动之章1\)$/,
   },
+  zoneId: ZoneId.AlexanderTheEyesOfTheCreatorSavage,
   timelineFile: 'a9s.txt',
   timelineTriggers: [
     {

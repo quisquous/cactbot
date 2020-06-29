@@ -6,6 +6,7 @@
     cn: /^伊甸希望乐园 \(觉醒之章3\)$/,
     ko: /^희망의 낙원 에덴: 각성편 \(3\)$/,
   },
+  zoneId: ZoneId.EdensGateInundation,
   damageWarn: {
     'E3N Monster Wave 1': '3FCA',
     'E3N Monster Wave 2': '3FE9',

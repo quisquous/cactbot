@@ -6,6 +6,7 @@
     cn: /^避暑离宫马利卡大井$/,
     ko: /^말리카 큰우물$/,
   },
+  zoneId: ZoneId.MalikahsWell,
   timelineFile: 'malikahs_well.txt',
   triggers: [
     {

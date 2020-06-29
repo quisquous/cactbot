@@ -10,6 +10,7 @@
     en: /^Sigmascape V2\.0 \(Savage\)$/,
     cn: /^欧米茄零式时空狭缝 \(西格玛幻境2\)$/,
   },
+  zoneId: ZoneId.SigmascapeV20Savage,
   timelineFile: 'o6s.txt',
   triggers: [
     {

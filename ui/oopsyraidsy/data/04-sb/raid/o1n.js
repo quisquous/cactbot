@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Deltascape V1\.0$/,
   },
+  zoneId: ZoneId.DeltascapeV10,
   damageWarn: {
     'O1N Burn': '23D5', // Fireball explosion circle AoEs
     'O1N Clamp': '23E2', // Frontal rectangle knockback AoE, Alte Roite

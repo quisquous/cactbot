@@ -5,6 +5,7 @@
     en: /Ala Mhigo/,
     cn: /^鏖战红莲阿拉米格$/,
   },
+  zoneId: ZoneId.AlaMhigo,
   timelineFile: 'ala_mhigo.txt',
   timelineTriggers: [
     {

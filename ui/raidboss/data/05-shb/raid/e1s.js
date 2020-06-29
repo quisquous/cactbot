@@ -6,6 +6,7 @@
     cn: /^伊甸零式希望乐园 \(觉醒之章1\)$/,
     ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(1\)$/,
   },
+  zoneId: ZoneId.EdensGateResurrectionSavage,
   timelineFile: 'e1s.txt',
   timeline: [
     function(data) {

@@ -5,6 +5,7 @@
     en: /^Holminster Switch$/,
     ko: /^홀민스터$/,
   },
+  zoneId: ZoneId.HolminsterSwitch,
   damageWarn: {
     'Holminster Thumbscrew': '3DC6',
     'Holminster Wooden horse': '3DC7',

@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Anamnesis Anyder$/,
   },
+  zoneId: ZoneId.AnamnesisAnyder,
   timelineFile: 'anamnesis_anyder.txt',
   timelineTriggers: [
   ],

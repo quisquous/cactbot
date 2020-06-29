@@ -7,6 +7,7 @@
     cn: /^哈迪斯歼灭战$/,
     ko: /^하데스 토벌전$/,
   },
+  zoneId: ZoneId.TheDyingGasp,
   damageWarn: {
     'Hades Bad Faith 1': '414B',
     'Hades Bad Faith 2': '414C',

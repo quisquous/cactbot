@@ -10,6 +10,7 @@
     en: /^Eden's Verse: Furor \(Savage\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(2\)$/,
   },
+  zoneId: ZoneId.EdensVerseFurorSavage,
   damageWarn: {
     // It's common to just ignore futbol mechanics, so don't warn on Strike Spark.
     // 'Spike Of Flame': '4C13', // Orb explosions after Strike Spark

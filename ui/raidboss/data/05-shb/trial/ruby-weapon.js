@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Cinder Drift$/,
   },
+  zoneId: ZoneId.CinderDrift,
   timelineFile: 'ruby-weapon.txt',
   timelineTriggers: [
     {

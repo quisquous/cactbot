@@ -26,6 +26,7 @@ let noBuff = (str) => {
     en: /^Eden's Verse: Iconoclasm \(Savage\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(3\)$/,
   },
+  zoneId: ZoneId.EdensVerseIconoclasmSavage,
   damageWarn: {
     'Silver Sword': '4C8E', // ground aoe
     'Overwhelming Force': '4C73', // add phase ground aoe

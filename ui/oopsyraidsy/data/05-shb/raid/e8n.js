@@ -5,6 +5,7 @@
     en: /^Eden's Verse: Refulgence$/,
     ko: /^희망의 낙원 에덴: 공명편 \(4\)$/,
   },
+  zoneId: ZoneId.EdensVerseRefulgence,
   damageWarn: {
     'Biting Frost': '4DDB', // 270-degree frontal AoE, Shiva
     'Driving Frost': '4DDC', // Rear cone AoE, Shiva

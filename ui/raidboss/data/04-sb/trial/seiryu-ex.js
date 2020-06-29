@@ -7,6 +7,7 @@
     cn: /^青龙诗魂战$/,
     ko: /^극 청룡 토벌전$/,
   },
+  zoneId: ZoneId.TheWreathOfSnakesExtreme,
   timelineFile: 'seiryu-ex.txt',
   timelineTriggers: [
     {

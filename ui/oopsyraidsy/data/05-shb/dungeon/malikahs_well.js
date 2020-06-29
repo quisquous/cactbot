@@ -5,6 +5,7 @@
     en: /^Malikah's Well$/,
     ko: /^말리카 큰우물$/,
   },
+  zoneId: ZoneId.MalikahsWell,
   damageWarn: {
     'Malikah Falling Rock': '3CEA',
     'Malikah Wellbore': '3CED',

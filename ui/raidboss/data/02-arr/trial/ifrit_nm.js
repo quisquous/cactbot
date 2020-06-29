@@ -5,6 +5,7 @@
     en: /^The Bowl Of Embers$/,
     cn: /^伊弗利特讨伐战$/,
   },
+  zoneId: ZoneId.TheBowlOfEmbers,
   timelineFile: 'ifrit_nm.txt',
   timelineTriggers: [
     {

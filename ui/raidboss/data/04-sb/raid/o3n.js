@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Deltascape \(V3\.0\)$/,
   },
+  zoneId: ZoneId.DeltascapeV30,
   timelineFile: 'o3n.txt',
   timelineTriggers: [
     {

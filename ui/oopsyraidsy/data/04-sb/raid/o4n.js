@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Deltascape \(V4\.0\)$/,
   },
+  zoneId: ZoneId.DeltascapeV40,
   damageWarn: {
     'Blizzard III': '24BC', // Targeted circle AoEs, Exdeath
     'Empowered Thunder III': '24C1', // Untelegraphed large circle AoE, Exdeath

@@ -19,6 +19,7 @@ let noBuff = (str) => {
     en: /^Eden's Verse: Iconoclasm$/,
     ko: /^희망의 낙원 에덴: 공명편 \(3\)$/,
   },
+  zoneId: ZoneId.EdensVerseIconoclasm,
   damageWarn: {
     'Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
     'Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission

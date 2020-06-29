@@ -5,6 +5,7 @@
     en: /^Alexander - The Fist Of The Father \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(启动之章1\)$/,
   },
+  zoneId: ZoneId.AlexanderTheFistOfTheFatherSavage,
   timelineFile: 'a1s.txt',
   timelineTriggers: [
     {

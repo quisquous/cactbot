@@ -31,6 +31,7 @@ let callSafeDir = (callIndex) => {
     en: /^Containment Bay P1T6 \(Extreme\)$/,
     cn: /^索菲娅歼殛战$/,
   },
+  zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
   timelineTriggers: [
     {

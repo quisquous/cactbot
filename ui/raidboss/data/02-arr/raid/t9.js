@@ -5,6 +5,7 @@
     en: /^The Second Coil Of Bahamut - Turn \(4\)$/,
     cn: /^巴哈姆特大迷宫 \(入侵之章4\)$/,
   },
+  zoneId: ZoneId.TheSecondCoilOfBahamutTurn4,
   timelineFile: 't9.txt',
   timelineTriggers: [
     {

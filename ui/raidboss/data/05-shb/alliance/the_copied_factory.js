@@ -12,6 +12,7 @@
     cn: /^复制工厂废墟$/,
     ko: /^복제된 공장 폐허$/,
   },
+  zoneId: ZoneId.TheCopiedFactory,
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [
     {

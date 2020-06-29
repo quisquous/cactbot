@@ -6,6 +6,7 @@
     cn: /恒冰之地/,
     ko: /^금단의 땅 에우레카: 파고스편$/,
   },
+  zoneId: ZoneId.TheForbiddenLandEurekaPagos,
   resetWhenOutOfCombat: false,
   triggers: [
     {

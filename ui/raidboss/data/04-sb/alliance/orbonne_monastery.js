@@ -10,6 +10,7 @@
     cn: /^乐欲之所瓯博讷修道院$/,
     ko: /^오본느 수도원$/,
   },
+  zoneId: ZoneId.TheOrbonneMonastery,
   timelineFile: 'orbonne_monastery.txt',
   timelineTriggers: [
     {

@@ -5,6 +5,7 @@
     en: /^The Navel \(Extreme\)$/,
     cn: /^泰坦歼殛战$/,
   },
+  zoneId: ZoneId.TheNavelExtreme,
   timelineFile: 'titan_ex.txt',
   timelineTriggers: [
     {

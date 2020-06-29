@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Navel \(Hard\)$/,
   },
+  zoneId: ZoneId.TheNavelHard,
   damageWarn: {
     'TitanHm Weight Of The Land': '553',
     'TitanHm Burst': '41C',

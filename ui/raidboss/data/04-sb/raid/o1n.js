@@ -6,6 +6,7 @@
     en: /^Deltascape \(V1\.0\)$/,
     cn: /^欧米茄时空狭缝 \(德尔塔幻境1\)$/,
   },
+  zoneId: ZoneId.DeltascapeV10,
   timelineFile: 'o1n.txt',
   timelineTriggers: [
     {
