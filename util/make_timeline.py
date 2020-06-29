@@ -226,12 +226,23 @@ def main(args):
     output.append('0 "Start" sync /Engage!/ window 0,1')
 
     for entry in entries:
-
-        # Ignore targetable/untargetable while processing ignored entries
+        # Ignore targetable/untargetable while processing ability checks
         if entry["line_type"] in ["21", "22"]:
             # First up, check if it's an ignored entry
             # Ignore autos, probably need a better rule than this
             if entry["ability_name"] == "Attack":
+                continue
+            if (
+                entry["ability_name"] in args.ignore_ability
+                or entry["ability_id"] in args.ignore_id
+            ):
+                continue
+
+            # Ignore aoe spam
+            if (
+                entry["time"] == last_entry["time"]
+                and entry["ability_id"] == last_entry["ability_id"]
+            ):
                 continue
 
         # Ignore abilities by NPC allies
@@ -239,17 +250,10 @@ def main(args):
             continue
 
         # Ignore lines by arguments
-        if (
-            entry["ability_name"] in args.ignore_ability
-            or entry["ability_id"] in args.ignore_id
-            or entry["combatant"] in args.ignore_combatant
-        ):
+        if entry["combatant"] in args.ignore_combatant:
             continue
 
-        # Ignore aoe spam
-        if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
-            continue
-        elif entry["line_type"] == "34" and not args.include_targetable:
+        if entry["line_type"] == "34" and not args.include_targetable:
             continue
 
         # Find out how long it's been since our last ability
