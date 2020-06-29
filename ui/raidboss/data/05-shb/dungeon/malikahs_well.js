@@ -145,7 +145,7 @@
         'Unquestioned Acceptance': 'l\'aven oublié',
       },
       'replaceText': {
-      	'\\?': ' ?',
+        '\\?': ' ?',
         'Breaking Wheel': 'Roue de la torture',
         'Censure': 'Blâme',
         'Crystal Nail': 'Clou de cristal',
