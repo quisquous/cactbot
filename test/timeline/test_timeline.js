@@ -5,6 +5,7 @@ let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
 let NetRegexes = require('../../resources/netregexes.js');
 let Conditions = require('../../resources/conditions.js');
+let ZoneId = require('../../resources/zone_id.js');
 let responseExports = require('../../resources/responses.js');
 let Responses = responseExports.responses;
 let Timeline = require('../../ui/raidboss/timeline.js');

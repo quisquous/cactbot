@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^The Navel \(Hard\)$/,
   },
+  zoneId: ZoneId.TheNavelHard,
   timelineFile: 'titan_hm.txt',
   timelineTriggers: [
     {
