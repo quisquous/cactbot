@@ -32,7 +32,7 @@
       infoText: {
         en: 'Ambition Tail Smash',
         de: 'Begierde Schweifschlag',
-        fr: 'Evitez la queue',
+        fr: 'Ambition, Queue fracassante',
         cn: '尾巴横扫',
         ko: '꼬리 휘두르기 주의',
       },
