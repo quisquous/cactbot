@@ -6,6 +6,7 @@
     en: /^Sigmascape \(V4\.0\)$/,
     cn: /^欧米茄时空狭缝 \(西格玛幻境4\)$/,
   },
+  zoneId: ZoneId.SigmascapeV40,
   timelineFile: 'o8n.txt',
   triggers: [
     {

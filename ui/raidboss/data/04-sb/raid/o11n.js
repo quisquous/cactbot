@@ -7,6 +7,7 @@
     cn: /^欧米茄时空狭缝 \(阿尔法幻境3\)$/,
     ko: /^차원의 틈 오메가: 알파편 \(3\)$/,
   },
+  zoneId: ZoneId.AlphascapeV30,
   timelineFile: 'o11n.txt',
   timelineTriggers: [
     {

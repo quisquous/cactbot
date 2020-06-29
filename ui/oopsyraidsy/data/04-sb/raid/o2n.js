@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Deltascape \(V2\.0\)$/,
   },
+  zoneId: ZoneId.DeltascapeV20,
   damageWarn: {
     'O2N Main Quake': '24A5', // Non-telegraphed circle AoE, Fleshy Member
     'O2N Erosion': '2590', // Small circle AoEs, Fleshy Member

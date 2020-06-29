@@ -6,6 +6,7 @@
     en: /Great Gubal Library \(Hard\)/,
     cn: /^秘本宝库迦巴勒幻想图书馆$/,
   },
+  zoneId: ZoneId.TheGreatGubalLibraryHard,
   timelineFile: 'gubal_library_hard.txt',
   timelineTriggers: [
     {

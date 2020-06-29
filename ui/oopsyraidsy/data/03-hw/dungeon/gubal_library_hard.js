@@ -6,6 +6,7 @@
     en: /Great Gubal Library \(Hard\)/,
     ko: /^구브라 환상도서관\(어려움\)$/,
   },
+  zoneId: ZoneId.TheGreatGubalLibraryHard,
   damageWarn: {
     'Gubal Hard Terror Eye': '930', // Circle AoE, Spine Breaker trash
     'Gubal Hard Batter': '198A', // Circle AoE, trash before boss 1

@@ -6,6 +6,7 @@
     cn: /^哈迪斯歼灭战$/,
     ko: /^하데스 토벌전$/,
   },
+  zoneId: ZoneId.TheDyingGasp,
   timelineFile: 'hades.txt',
   triggers: [
     {

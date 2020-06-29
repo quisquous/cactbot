@@ -7,6 +7,7 @@
     cn: /^欧米茄零式时空狭缝 \(阿尔法幻境1\)$/,
     ko: /^차원의 틈 오메가: 알파편\(영웅\) \(1\)$/,
   },
+  zoneId: ZoneId.AlphascapeV10Savage,
   timelineFile: 'o9s.txt',
   triggers: [
     // General actions

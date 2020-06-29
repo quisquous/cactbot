@@ -6,6 +6,7 @@
     en: /^Sigmascape \(V1\.0\)$/,
     cn: /^欧米茄时空狭缝 \(西格玛幻境1\)$/,
   },
+  zoneId: ZoneId.SigmascapeV10,
   timelineFile: 'o5n.txt',
   resetWhenOutOfCombat: false,
   triggers: [

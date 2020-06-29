@@ -7,6 +7,7 @@
     cn: /^须佐之男歼殛战$/,
     ko: /^극 스사노오 토벌전$/,
   },
+  zoneId: ZoneId.ThePoolOfTributeExtreme,
   timelineFile: 'susano-ex.txt',
   timelineTriggers: [
     {

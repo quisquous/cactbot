@@ -6,6 +6,7 @@
     en: /^The Temple Of The Fist$/,
     cn: /^修行古刹星导寺$/,
   },
+  zoneId: ZoneId.TheTempleOfTheFist,
   timelineFile: 'temple_of_the_fist.txt',
   timelineTriggers: [
     {

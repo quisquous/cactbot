@@ -6,6 +6,7 @@
     cn: /^伪造天界格鲁格火山$/,
     ko: /^굴그 화산$/,
   },
+  zoneId: ZoneId.MtGulg,
   timelineFile: 'mt_gulg.txt',
   triggers: [
     {

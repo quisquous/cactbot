@@ -7,6 +7,7 @@
     cn: /^月读幽夜歼灭战$/,
     ko: /^극 츠쿠요미 토벌전$/,
   },
+  zoneId: ZoneId.TheMinstrelsBalladTsukuyomisPain,
   timelineFile: 'tsukuyomi-ex.txt',
   triggers: [
     {

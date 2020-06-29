@@ -6,6 +6,7 @@
     en: /^Deltascape V4\.0 \(Savage\)$/,
     cn: /^欧米茄零式时空狭缝 \(德尔塔幻境4\)$/,
   },
+  zoneId: ZoneId.DeltascapeV40Savage,
   timelineNeedsFixing: true,
   timelineFile: 'o4s.txt',
   timelineTriggers: [

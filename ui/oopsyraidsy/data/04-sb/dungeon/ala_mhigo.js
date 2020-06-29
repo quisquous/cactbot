@@ -6,6 +6,7 @@
     en: /Ala Mhigo/,
     ko: /^알라미고$/,
   },
+  zoneId: ZoneId.AlaMhigo,
   damageWarn: {
     'Ala Mhigo Magitek Ray': '24CE', // Line AoE, Legion Predator trash, before boss 1
     'Ala Mhigo Lock On': '2047', // Homing circles, boss 1

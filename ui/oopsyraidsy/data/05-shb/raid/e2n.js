@@ -11,6 +11,7 @@
     cn: /^伊甸希望乐园 \(觉醒之章2\)$/,
     ko: /^희망의 낙원 에덴: 각성편 \(2\)$/,
   },
+  zoneId: ZoneId.EdensGateDescent,
   damageWarn: {
     'E2S Doomvoid Slicer': '3E3C',
     'E3S Doomvoid Guillotine': '3E3B',

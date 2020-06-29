@@ -6,6 +6,7 @@
     en: /^The Fields Of Glory \(Shatter\)$/,
     cn: /^荣誉野（碎冰战）$/,
   },
+  zoneId: ZoneId.TheFieldsOfGloryShatter,
   triggers: [
     {
       id: 'Shatter Big Ice Center',

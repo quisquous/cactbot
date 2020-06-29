@@ -6,6 +6,7 @@
     cn: /涌火之地/,
     ko: /^금단의 땅 에우레카: 피로스편$/,
   },
+  zoneId: ZoneId.TheForbiddenLandEurekaPyros,
   resetWhenOutOfCombat: false,
   triggers: [
     {

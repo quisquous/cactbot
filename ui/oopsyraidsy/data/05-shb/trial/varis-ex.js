@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Memoria Misera \(Extreme\)$/,
   },
+  zoneId: ZoneId.MemoriaMiseraExtreme,
   damageWarn: {
     'VarisEx Alea Iacta Est 1': '4CD2',
     'VarisEx Alea Iacta Est 2': '4CD3',

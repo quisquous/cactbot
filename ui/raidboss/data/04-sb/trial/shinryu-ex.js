@@ -7,6 +7,7 @@
     cn: /^神龙梦幻歼灭战$/,
     ko: /^극 신룡 토벌전$/,
   },
+  zoneId: ZoneId.TheMinstrelsBalladShinryusDomain,
   timelineFile: 'shinryu-ex.txt',
   triggers: [
     {

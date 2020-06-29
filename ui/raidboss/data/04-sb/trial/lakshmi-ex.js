@@ -7,6 +7,7 @@
     cn: /^吉祥天女歼殛战$/,
     ko: /^극 락슈미 토벌전$/,
   },
+  zoneId: ZoneId.EmanationExtreme,
   timelineFile: 'lakshmi-ex.txt',
   timelineTriggers: [
     {

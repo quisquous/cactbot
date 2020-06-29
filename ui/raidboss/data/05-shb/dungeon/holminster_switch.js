@@ -6,6 +6,7 @@
     ko: /^홀민스터$/,
     cn: /^遇袭集落水滩村$/,
   },
+  zoneId: ZoneId.HolminsterSwitch,
   timelineFile: 'holminster_switch.txt',
   triggers: [
     {

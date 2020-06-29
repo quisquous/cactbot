@@ -6,6 +6,7 @@
     cn: /丰水之地/,
     ko: /^금단의 땅 에우레카: 히다토스편$/,
   },
+  zoneId: ZoneId.TheForbiddenLandEurekaHydatos,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,
   timelineTriggers: [

@@ -6,6 +6,7 @@
     cn: /常风之地/,
     ko: /^금단의 땅 에우레카: 아네모스편$/,
   },
+  zoneId: ZoneId.TheForbiddenLandEurekaAnemos,
   resetWhenOutOfCombat: false,
   triggers: [
     {

@@ -6,6 +6,7 @@
     cn: /^伊甸希望乐园 \(觉醒之章1\)$/,
     ko: /^희망의 낙원 에덴: 각성편 \(1\)$/,
   },
+  zoneId: ZoneId.EdensGateResurrection,
   damageWarn: {
     'E1N Eden\'s Thunder III': '44ED',
     'E1N Eden\'s Blizzard III': '44EC',

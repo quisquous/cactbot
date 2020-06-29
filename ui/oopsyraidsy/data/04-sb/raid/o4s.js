@@ -6,6 +6,7 @@
     en: /^Deltascape V4\.0 \(Savage\)$/,
     ko: /^차원의 틈 오메가: 델타편\(영웅\) \(4\)$/,
   },
+  zoneId: ZoneId.DeltascapeV40Savage,
   damageWarn: {
     'O4S2 Neo Vacuum Wave': '241D',
     'O4S2 Acceleration Bomb': '2431',

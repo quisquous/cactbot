@@ -5,6 +5,7 @@
     en: /^Eden's Verse: Furor$/,
     ko: /^희망의 낙원 에덴: 공명편 \(2\)$/,
   },
+  zoneId: ZoneId.EdensVerseFuror,
   damageWarn: {
     'Thorns': '4BDA', // AoE markers after Enumeration
     'Ferostorm 1': '4BDD',

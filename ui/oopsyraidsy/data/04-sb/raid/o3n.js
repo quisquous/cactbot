@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Deltascape \(V3\.0\)$/,
   },
+  zoneId: ZoneId.DeltascapeV30,
   damageWarn: {
     'Spellblade Fire III': '2460', // Donut AoE, Halicarnassus
     'Spellblade Blizzard III': '2461', // Circle AoE, Halicarnassus

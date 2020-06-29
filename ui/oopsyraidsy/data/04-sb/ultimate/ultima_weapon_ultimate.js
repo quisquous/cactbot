@@ -6,6 +6,7 @@
     en: /^The Weapon's Refrain \(Ultimate\)$/,
     ko: /^절 알테마 웨폰 파괴작전$/,
   },
+  zoneId: ZoneId.TheWeaponsRefrainUltimate,
   damageWarn: {
     'UWU Searing Wind': '2B5C',
     'UWU Eruption': '2B5A',

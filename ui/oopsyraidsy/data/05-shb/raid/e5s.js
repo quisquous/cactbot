@@ -16,6 +16,7 @@ let noOrb = (str) => {
     en: /^Eden's Verse: Fulmination \(Savage\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(1\)$/,
   },
+  zoneId: ZoneId.EdensVerseFulminationSavage,
   damageWarn: {
     'Impact': '4E3B', // Stratospear landing AoE
     'Gallop': '4BB4', // Sideways add charge

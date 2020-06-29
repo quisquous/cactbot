@@ -5,6 +5,7 @@
     en: /^The Drowned City Of Skalla$/,
     cn: /^沉没神殿斯卡拉遗迹$/,
   },
+  zoneId: ZoneId.TheDrownedCityOfSkalla,
   triggers: [
     {
       id: 'Hrodric Tank',

@@ -6,6 +6,7 @@
     cn: /^伊甸希望乐园 \(觉醒之章2\)$/,
     ko: /^희망의 낙원 에덴: 각성편 \(2\)$/,
   },
+  zoneId: ZoneId.EdensGateDescent,
   timelineFile: 'e2n.txt',
   timelineTriggers: [
     {

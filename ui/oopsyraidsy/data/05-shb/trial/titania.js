@@ -5,6 +5,7 @@
     en: /^The Dancing Plague$/,
     ko: /^티타니아 토벌전$/,
   },
+  zoneId: ZoneId.TheDancingPlague,
   damageWarn: {
     'Titania Wood\'s Embrace': '3D50',
     // 'Titania Frost Rune': '3D4E',

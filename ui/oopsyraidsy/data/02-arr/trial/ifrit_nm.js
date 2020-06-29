@@ -6,6 +6,7 @@
     en: /^The Bowl Of Embers$/,
     ko: /^이프리트 토벌전$/,
   },
+  zoneId: ZoneId.TheBowlOfEmbers,
   damageWarn: {
     'Ifrit NM Radiant Plume': '2DE',
   },

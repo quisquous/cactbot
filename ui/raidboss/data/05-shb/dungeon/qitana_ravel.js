@@ -6,6 +6,7 @@
     ko: /^키타나 신굴$/,
     cn: /^文明古迹奇坦那神影洞$/,
   },
+  zoneId: ZoneId.TheQitanaRavel,
   timelineFile: 'qitana_ravel.txt',
   triggers: [
     {

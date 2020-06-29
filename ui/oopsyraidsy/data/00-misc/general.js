@@ -3,6 +3,7 @@
 // General mistakes; these apply everywhere.
 [{
   zoneRegex: /.*/,
+  zoneId: ZoneId.MatchAll,
   triggers: [
     {
       // Trigger id for internally generated early pull warning.

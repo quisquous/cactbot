@@ -6,6 +6,7 @@
     en: /^The Navel \(Extreme\)$/,
     ko: /^극 타이탄 토벌전$/,
   },
+  zoneId: ZoneId.TheNavelExtreme,
   damageWarn: {
     'TitanEx Weight Of The Land': '5BE',
     'TitanEx Burst': '5BF',

@@ -7,6 +7,7 @@
     cn: /^白虎诗魂战$/,
     ko: /^극 백호 토벌전$/,
   },
+  zoneId: ZoneId.TheJadeStoaExtreme,
   timelineFile: 'byakko-ex.txt',
   triggers: [
     {

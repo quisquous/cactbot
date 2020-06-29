@@ -5,6 +5,7 @@
     en: /^Eden's Verse: Fulmination$/,
     ko: /^희망의 낙원 에덴: 공명편 \(1\)$/,
   },
+  zoneId: ZoneId.EdensVerseFulmination,
   damageWarn: {
     'Impact': '4E3A', // Stratospear landing AoE
     'Lightning Bolt': '4B9C', // Stormcloud standard attack

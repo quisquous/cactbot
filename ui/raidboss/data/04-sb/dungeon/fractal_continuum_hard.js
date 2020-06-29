@@ -6,6 +6,7 @@
     en: /^The Fractal Continuum \(Hard\)$/,
     cn: /^疯狂战舰无限回廊$/,
   },
+  zoneId: ZoneId.TheFractalContinuum,
   triggers: [
     {
       id: 'Fractal Swipe Servo',

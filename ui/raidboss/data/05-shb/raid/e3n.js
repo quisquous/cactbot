@@ -6,6 +6,7 @@
     cn: /^伊甸希望乐园 \(觉醒之章3\)$/,
     ko: /^희망의 낙원 에덴: 각성편 \(3\)$/,
   },
+  zoneId: ZoneId.EdensGateInundation,
   timelineFile: 'e3n.txt',
   triggers: [
     {

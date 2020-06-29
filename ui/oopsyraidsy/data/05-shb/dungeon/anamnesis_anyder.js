@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Anamnesis Anyder$/,
   },
+  zoneId: ZoneId.AnamnesisAnyder,
   damageWarn: {
   },
   damageFail: {

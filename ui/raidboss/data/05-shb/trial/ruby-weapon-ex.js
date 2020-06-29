@@ -8,6 +8,7 @@
   zoneRegex: {
     en: /^Cinder Drift \(Extreme\)$/,
   },
+  zoneId: ZoneId.CinderDriftExtreme,
   timelineFile: 'ruby-weapon-ex.txt',
   timelineTriggers: [
     {
