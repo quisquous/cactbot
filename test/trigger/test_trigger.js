@@ -10,6 +10,7 @@ let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
 let NetRegexes = require('../../resources/netregexes.js');
 let Conditions = require('../../resources/conditions.js');
+let ZoneId = require('../../resources/zone_id.js');
 let responseModule = require('../../resources/responses.js');
 let Responses = responseModule.responses;
 let triggerFunctions = responseModule.triggerFunctions;
