@@ -164,7 +164,7 @@ It will now appear in the list of overlays in the `Plugins` -> `OverlayPlugin.dl
 1. In the `General` tab of the `Raidboss` overlay, click the `Lock Overlay` and `Enable Clickthrough` checkboxes.
 The test bars, debug text, and shaded blue background will disappear once the overlay has been locked.
 
-![raidboss plugin config](screenshots/overlay_plugin_new_raidboss_locked.png)
+    ![raidboss plugin config](screenshots/overlay_plugin_new_raidboss_locked.png)
 
 1. If you want to test the raidboss plugin, teleport to Summerford Farms, and do a `/countdown 5`.
 
