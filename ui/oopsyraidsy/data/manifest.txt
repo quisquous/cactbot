@@ -1,6 +1,7 @@
 00-misc/general.js
 00-misc/test.js
 02-arr/trial/ifrit_nm.js
+02-arr/trial/titan_hm.js
 02-arr/trial/titan_ex.js
 03-hw/dungeon/aetherochemical_research_facility.js
 03-hw/dungeon/fractal_continuum.js
