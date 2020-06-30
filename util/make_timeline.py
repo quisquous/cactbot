@@ -34,6 +34,18 @@ log_event_types = {
 }
 
 
+def make_entry(overrides):
+    # This should include all of the fields that any entry uses.
+    base_entry = {
+        "time": 0,
+        "combatant": None,
+        "ability_id": None,
+        "ability_name": None,
+        "line_type": None,
+    }
+    return {**base_entry, **overrides}
+
+
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
 
@@ -88,13 +100,15 @@ def parse_report(args):
         if "sourceID" not in event:
             event["sourceID"] = event["source"]["id"]
 
-        entry = {
-            "time": datetime.fromtimestamp((report_start_time + event["timestamp"]) / 1000),
-            "combatant": enemies[event["sourceID"]],
-            "ability_id": hex(event["ability"]["guid"])[2:].upper(),
-            "ability_name": event["ability"]["name"],
-            "line_type": log_event_types[event["type"]],
-        }
+        entry = make_entry(
+            {
+                "time": datetime.fromtimestamp((report_start_time + event["timestamp"]) / 1000),
+                "combatant": enemies[event["sourceID"]],
+                "ability_id": hex(event["ability"]["guid"])[2:].upper(),
+                "ability_name": event["ability"]["name"],
+                "line_type": log_event_types[event["type"]],
+            }
+        )
 
         entries.append(entry)
 
@@ -144,11 +158,13 @@ def parse_file(args):
                 continue
 
             # At this point, we have a combat line for the timeline.
-            entry = {
-                "line_type": line_fields[0],
-                "time": e_tools.parse_event_time(line),
-                "combatant": line_fields[3],
-            }
+            entry = make_entry(
+                {
+                    "line_type": line_fields[0],
+                    "time": e_tools.parse_event_time(line),
+                    "combatant": line_fields[3],
+                }
+            )
             if line[0:2] in ["21", "22"]:
                 entry["ability_id"] = line_fields[4]
                 entry["ability_name"] = line_fields[5]
@@ -220,29 +236,18 @@ def main(args):
         entries, start_time = parse_file(args)
 
     last_ability_time = start_time
-    last_entry = {"time": 0, "ability_id": ""}
+    last_entry = make_entry({})
 
     output = []
     output.append('0 "Start" sync /Engage!/ window 0,1')
 
     for entry in entries:
-        # Ignore targetable/untargetable while processing ability checks
+
+        # Ignore targetable/untargetable while processing ignored entries
         if entry["line_type"] in ["21", "22"]:
             # First up, check if it's an ignored entry
             # Ignore autos, probably need a better rule than this
             if entry["ability_name"] == "Attack":
-                continue
-            if (
-                entry["ability_name"] in args.ignore_ability
-                or entry["ability_id"] in args.ignore_id
-            ):
-                continue
-
-            # Ignore aoe spam
-            if (
-                entry["time"] == last_entry["time"]
-                and entry["ability_id"] == last_entry["ability_id"]
-            ):
                 continue
 
         # Ignore abilities by NPC allies
@@ -250,10 +255,17 @@ def main(args):
             continue
 
         # Ignore lines by arguments
-        if entry["combatant"] in args.ignore_combatant:
+        if (
+            entry["ability_name"] in args.ignore_ability
+            or entry["ability_id"] in args.ignore_id
+            or entry["combatant"] in args.ignore_combatant
+        ):
             continue
 
-        if entry["line_type"] == "34" and not args.include_targetable:
+        # Ignore aoe spam
+        if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
+            continue
+        elif entry["line_type"] == "34" and not args.include_targetable:
             continue
 
         # Find out how long it's been since our last ability
