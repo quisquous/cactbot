@@ -1,8 +1,8 @@
 00-misc/general.js
 00-misc/test.js
-02-arr/trial/ifrit_nm.js
-02-arr/trial/titan_hm.js
-02-arr/trial/titan_ex.js
+02-arr/trial/ifrit-nm.js
+02-arr/trial/titan-hm.js
+02-arr/trial/titan-ex.js
 03-hw/dungeon/aetherochemical_research_facility.js
 03-hw/dungeon/fractal_continuum.js
 03-hw/dungeon/gubal_library_hard.js
@@ -53,8 +53,8 @@
 05-shb/trial/hades.js
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence.js
-05-shb/trial/ruby-weapon.js
-05-shb/trial/ruby-weapon-ex.js
+05-shb/trial/ruby_weapon.js
+05-shb/trial/ruby_weapon-ex.js
 05-shb/trial/titania-ex.js
 05-shb/trial/titania.js
 05-shb/trial/varis-ex.js

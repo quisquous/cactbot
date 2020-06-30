@@ -159,6 +159,21 @@ These are guidelines that cactbot tries to follow for timelines.
 * comment out syncs from any abilities that are within 7 seconds of each other
 (This preserves the ability ID for future maintainers.)
 
+### Trigger Filenames
+
+For filenames, use underscores to separate words.
+For trials like `nm` (normal mode), `hm` (hard mode), and `ex` (extreme mode),
+separate with a hyphen.
+Dungeons with hard in the name can spell out "Hard" as a full word.
+Articles like `The` can be dropped.
+
+Examples to be consistent with:
+
+* The Grand Cosmos: `grand_cosmos`
+* Titan Extreme: `titan-ex`
+* Ruby Weapon Extreme: `ruby_weapon-ex`
+* The Great Gubal Library (Hard): `great_gubal_library_hard`
+
 ## Timeline Triggers
 
 Trigger files in cactbot support adding timeline triggers.

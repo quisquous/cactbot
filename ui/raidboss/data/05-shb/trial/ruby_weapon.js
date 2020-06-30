@@ -5,7 +5,7 @@
     en: /^Cinder Drift$/,
   },
   zoneId: ZoneId.CinderDrift,
-  timelineFile: 'ruby-weapon.txt',
+  timelineFile: 'ruby_weapon.txt',
   timelineTriggers: [
     {
       id: 'Ruby Magitek Meteor Behind',

@@ -9,7 +9,7 @@
     en: /^Cinder Drift \(Extreme\)$/,
   },
   zoneId: ZoneId.CinderDriftExtreme,
-  timelineFile: 'ruby-weapon-ex.txt',
+  timelineFile: 'ruby_weapon-ex.txt',
   timelineTriggers: [
     {
       id: 'RubyEx Magitek Meteor Behind',
