@@ -397,7 +397,6 @@
         'Storm Of Color': '春风',
         'Tribulation': '苦难',
       },
-      '~effectNames': {},
     },
     {
       'locale': 'ko',
