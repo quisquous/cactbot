@@ -294,6 +294,7 @@
       'replaceSync': {
         'Enslaved Love': 'Amour Asservi',
         'Leannan Sith': 'Leannan Sith',
+        'Lover\'s Ring': 'Bague De L\'Amoureux',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Ermite du Palais',
         'The Martial Court': 'La Cour martiale',
