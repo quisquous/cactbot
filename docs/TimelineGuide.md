@@ -161,18 +161,32 @@ These are guidelines that cactbot tries to follow for timelines.
 
 ### Trigger Filenames
 
+The general goal of filenames is to be consistent
+with what the community calls these raids.
+Trials get called by the name of the boss,
+raids get abbreviated and numbered,
+dungeons are called by their zone.
+
 For filenames, use underscores to separate words.
 For trials like `nm` (normal mode), `hm` (hard mode), and `ex` (extreme mode),
 separate with a hyphen.
 Dungeons with hard in the name can spell out "Hard" as a full word.
 Articles like `The` can be dropped.
+Raids are numbered through the tier,
+e.g. `t1` through `t13` and `a1s` through `a12s`.
+Savage fights should have an `s` suffix
+while normal fights have an 'n' suffix.
+(However, this does not apply to coil raids.)
 
-Examples to be consistent with:
+Examples:
 
 * The Grand Cosmos: `grand_cosmos`
 * Titan Extreme: `titan-ex`
 * Ruby Weapon Extreme: `ruby_weapon-ex`
 * The Great Gubal Library (Hard): `great_gubal_library_hard`
+* Sigmascape V2.0 (Savage): `o6s`
+* Alexander - The Arm of the Father: `a3n`
+* The Final Coil of Bahamut: `t13`
 
 ## Timeline Triggers
 
