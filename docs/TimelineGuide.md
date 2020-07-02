@@ -162,7 +162,7 @@ These are guidelines that cactbot tries to follow for timelines.
 ### Trigger Filenames
 
 The general goal of filenames is to be consistent
-with what the community calls these raids.
+with what the community calls these fights.
 Trials get called by the name of the boss,
 raids get abbreviated and numbered,
 dungeons are called by their zone.
