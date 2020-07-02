@@ -6,7 +6,7 @@
     cn: /^泰坦歼殛战$/,
   },
   zoneId: ZoneId.TheNavelExtreme,
-  timelineFile: 'titan_ex.txt',
+  timelineFile: 'titan-ex.txt',
   timelineTriggers: [
     {
       id: 'TitanEx Mountain Buster',

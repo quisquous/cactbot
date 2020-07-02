@@ -6,7 +6,7 @@
     cn: /^伊弗利特讨伐战$/,
   },
   zoneId: ZoneId.TheBowlOfEmbers,
-  timelineFile: 'ifrit_nm.txt',
+  timelineFile: 'ifrit-nm.txt',
   timelineTriggers: [
     {
       id: 'IfritNM Inner',

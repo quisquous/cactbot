@@ -5,7 +5,7 @@
     en: /^The Navel \(Hard\)$/,
   },
   zoneId: ZoneId.TheNavelHard,
-  timelineFile: 'titan_hm.txt',
+  timelineFile: 'titan-hm.txt',
   timelineTriggers: [
     {
       id: 'TitanHm Mountain Buster',
