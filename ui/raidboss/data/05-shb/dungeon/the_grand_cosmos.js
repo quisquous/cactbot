@@ -61,9 +61,9 @@
       alertText: {
         en: 'Avoid Brooms',
         de: 'Besen ausweichen',
-        fr: 'Evitez les balais',
-        ko: '빗자루 피하기',
+        fr: 'Évitez les balais',
         cn: '躲扫把',
+        ko: '빗자루 피하기',
       },
     },
     {
@@ -113,9 +113,9 @@
       infoText: {
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
-        fr: 'Placez les graines sur la terre',
-        ko: '씨앗 자라지 못하게 하기',
+        fr: 'Mettez les graines sur la terre',
         cn: '种子搬离AOE',
+        ko: '씨앗 자라지 못하게 하기',
       },
     },
     {
@@ -172,9 +172,9 @@
       infoText: {
         en: 'Dodge Crosses',
         de: 'Den Kreuzen ausweichen',
-        fr: 'Evitez les croix',
-        ko: '십자 장판 피하기',
+        fr: 'Esquivez les croix',
         cn: '躲避交叉',
+        ko: '십자 장판 피하기',
       },
     },
     {
@@ -195,9 +195,9 @@
       infoText: {
         en: 'Touch Furniture',
         de: 'Einrichtung berühren',
-        fr: 'Touchez un élément de décor',
-        ko: '가구에 불 옮기기',
+        fr: 'Touchez un meuble',
         cn: '传火家具',
+        ko: '가구에 불 옮기기',
       },
     },
     {
@@ -234,17 +234,17 @@
           return {
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
-            fr: 'Placez le liens loin des décors',
-            ko: '징: 장판이 가구에 닿지 않게 하기',
+            fr: 'Pointez le lien éloigné des meubles',
             cn: '连线不要打到家具',
+            ko: '징: 장판이 가구에 닿지 않게 하기',
           };
         }
         return {
           en: 'Tether on YOU',
           de: 'Verbindung auf DIR',
-          fr: 'Lien sur vous',
-          ko: '징 대상자',
+          fr: 'Lien sur VOUS',
           ja: '線ついた',
+          ko: '징 대상자',
           cn: '连线点名',
         };
       },
@@ -294,6 +294,7 @@
       'replaceSync': {
         'Enslaved Love': 'Amour Asservi',
         'Leannan Sith': 'Leannan Sith',
+        'Lover\'s Ring': 'Bague De L\'Amoureux',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Ermite du Palais',
         'The Martial Court': 'La Cour martiale',
@@ -320,7 +321,7 @@
         'Ode To Lost Love': 'Rhapsodie de l\'amour fou',
         'Otherworldly Heat': 'Croix de feu',
         'Plummet': 'Piqué',
-        'Scorching Left/Right': 'Scrutement Gauche/Droite',
+        'Scorching Left/Right': 'Scrutement senestre/dextre',
         'Shadowbolt': 'Éclair ombreux',
         'Storm Of Color': 'Orage de printemps',
         'Tribulation': 'Tribulation',
@@ -396,7 +397,6 @@
         'Storm Of Color': '春风',
         'Tribulation': '苦难',
       },
-      '~effectNames': {},
     },
     {
       'locale': 'ko',
