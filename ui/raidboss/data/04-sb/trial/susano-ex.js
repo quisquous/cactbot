@@ -8,6 +8,7 @@
     ko: /^극 스사노오 토벌전$/,
   },
   zoneId: ZoneId.ThePoolOfTributeExtreme,
+  timelineNeedsFixing: true,
   timelineFile: 'susano-ex.txt',
   timelineTriggers: [
     {
@@ -85,48 +86,15 @@
       },
     },
     {
-      id: 'SusEx Tankbuster',
-      regex: Regexes.ability({ source: 'Susano', id: '2033', capture: false }),
-      regexDe: Regexes.ability({ source: 'Susano', id: '2033', capture: false }),
-      regexFr: Regexes.ability({ source: 'Susano', id: '2033', capture: false }),
-      regexJa: Regexes.ability({ source: 'スサノオ', id: '2033', capture: false }),
-      regexCn: Regexes.ability({ source: '须佐之男', id: '2033', capture: false }),
-      regexKo: Regexes.ability({ source: '스사노오', id: '2033', capture: false }),
-      alertText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Tank Swap',
-            de: 'Tank Wechsel',
-            ja: 'スイッチ',
-            fr: 'Tank Swap',
-            cn: '换T',
-            ko: '탱 교대',
-          };
-        }
-        return false;
-      },
-      infoText: function(data) {
-        if (data.role == 'healer') {
-          return {
-            en: 'Tank Buster',
-            de: 'Tank Buster',
-            fr: 'Tankbuster',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-        return false;
-      },
-      tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'tank buster',
-            de: 'tenkbasta',
-            cn: '坦克死刑',
-            ko: '탱버',
-          };
-        }
-      },
+      id: 'SusEx Stormsplitter',
+      regex: Regexes.startsUsing({ source: 'Susano', id: '2033', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Susano', id: '2033', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Susano', id: '2033', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'スサノオ', id: '2033', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '须佐之男', id: '2033', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '스사노오', id: '2033', capture: false }),
+      condition: Conditions.caresAboutPhysical(),
+      response: Responses.tankBusterSwap('alert', 'info'),
     },
     {
       // Red knockback marker indicator
@@ -260,13 +228,7 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 3;
       },
-      alertText: {
-        en: 'Stop',
-        de: 'Stopp',
-        cn: '停止动作',
-        ko: '가만히 있기',
-      },
-
+      response: Responses.stopEverything('alert'),
     },
   ],
   timelineReplace: [
