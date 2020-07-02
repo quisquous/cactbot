@@ -796,7 +796,7 @@ class PopupText {
 
   _playAudioFile(url, volume) {
     let audio = new Audio(url);
-    audio.volume = volume;
+    audio.volume = volume || 1;
     audio.play();
   }
 
