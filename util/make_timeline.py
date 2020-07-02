@@ -34,6 +34,18 @@ log_event_types = {
 }
 
 
+def make_entry(overrides):
+    # This should include all of the fields that any entry uses.
+    base_entry = {
+        "time": 0,
+        "combatant": None,
+        "ability_id": None,
+        "ability_name": None,
+        "line_type": None,
+    }
+    return {**base_entry, **overrides}
+
+
 def parse_report(args):
     """Reads an fflogs report and return a list of entries"""
 
@@ -88,13 +100,15 @@ def parse_report(args):
         if "sourceID" not in event:
             event["sourceID"] = event["source"]["id"]
 
-        entry = {
-            "time": datetime.fromtimestamp((report_start_time + event["timestamp"]) / 1000),
-            "combatant": enemies[event["sourceID"]],
-            "ability_id": hex(event["ability"]["guid"])[2:].upper(),
-            "ability_name": event["ability"]["name"],
-            "line_type": log_event_types[event["type"]],
-        }
+        entry = make_entry(
+            {
+                "time": datetime.fromtimestamp((report_start_time + event["timestamp"]) / 1000),
+                "combatant": enemies[event["sourceID"]],
+                "ability_id": hex(event["ability"]["guid"])[2:].upper(),
+                "ability_name": event["ability"]["name"],
+                "line_type": log_event_types[event["type"]],
+            }
+        )
 
         entries.append(entry)
 
@@ -144,11 +158,13 @@ def parse_file(args):
                 continue
 
             # At this point, we have a combat line for the timeline.
-            entry = {
-                "line_type": line_fields[0],
-                "time": e_tools.parse_event_time(line),
-                "combatant": line_fields[3],
-            }
+            entry = make_entry(
+                {
+                    "line_type": line_fields[0],
+                    "time": e_tools.parse_event_time(line),
+                    "combatant": line_fields[3],
+                }
+            )
             if line[0:2] in ["21", "22"]:
                 entry["ability_id"] = line_fields[4]
                 entry["ability_name"] = line_fields[5]
@@ -220,7 +236,7 @@ def main(args):
         entries, start_time = parse_file(args)
 
     last_ability_time = start_time
-    last_entry = {"time": 0, "ability_id": ""}
+    last_entry = make_entry({})
 
     output = []
     output.append('0 "Start" sync /Engage!/ window 0,1')
