@@ -57,9 +57,9 @@
       infoText: {
         en: 'Spread (avoid cages)',
         de: 'Verteilen (Vermeide "Käfige")',
-        fr: 'Dispersez vous (évitez les cages)',
-        ko: '산개 (몬스터 우리 피하기)',
+        fr: 'Dispersez-vous (évitez les cages)',
         cn: '分散（躲避笼子）',
+        ko: '산개 (몬스터 우리 피하기)',
       },
     },
     {
@@ -130,8 +130,8 @@
         en: 'cardinal lasers',
         de: 'Himmelrichtungs-Lasers',
         fr: 'Lasers cardinaux',
-        ko: '십자 레이저',
         cn: '正点激光',
+        ko: '십자 레이저',
       },
     },
     {
@@ -147,8 +147,8 @@
         en: 'outer lasers',
         de: 'Lasers am Rand',
         fr: 'Lasers extérieurs',
-        ko: '외곽 레이저',
         cn: '外侧激光',
+        ko: '외곽 레이저',
       },
     },
     {
@@ -266,7 +266,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'vitalized shabti': 'Chaouabti vitalisé',
         'vitalized reptoid': 'Reptoïde vitalisé',
@@ -315,6 +314,7 @@
         'High-Tension Discharger': 'Déchargeur haute tension',
         'High Gravity': 'Haute gravité',
         'Heave': 'Projection',
+        '(?<! )Gravity/(?! )Crossray\\?\\?': 'Gravité/Rayon ??',
         'Forlorn Impact': 'Déflagration affligeante',
         'Electric Discharge': 'Décharge électrique',
         'Defensive Array': 'Rayon protecteur magitek',
