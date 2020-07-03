@@ -913,6 +913,8 @@ Unused.
 
 ### 21: Network6D (Actor Control Lines)
 
+See also: [nari directory update documentation](https://nonowazu.github.io/nari/types/event/directorupdate.html)
+
 Actor control lines are for several miscellaneous zone commands:
 
 * changing the music
@@ -921,7 +923,7 @@ Actor control lines are for several miscellaneous zone commands:
 * updates on time remaining (periodically, and after a clear)
 
 Structure:
-`21:ZoneID (4 bytes):Command (4 bytes):Data (4x 4? byte extra data)`
+`21:TypeAndInstanceContentId:Command (4 bytes):Data (4x 4? byte extra data)`
 
 Examples:
 
@@ -931,8 +933,10 @@ Examples:
 21:80037543:80000004:257:00:00:00
 ```
 
-The ZoneID is constant for a particular zone across games,
-but does not necessarily reflect the same ZoneID from the [ChangeZone](#01-changezone) message.
+`TypeAndContentId` is 2 bytes of a type enum,
+where `8003` is the update type for instanced content.
+It's then followed by 2 bytes of a content id.
+This is the ID from the InstanceContent table.
 
 Wipes on most raids and primals these days can be detected via this regex:
 `21:........:40000010:`.  However, this does not occur on some older fights,
@@ -940,18 +944,21 @@ such as coil turns where there is a zone seal.
 
 Known types:
 
-* Initial commence: `21:zone:40000001:time:` (time is the lockout time in seconds)
-* Recommence: `21:zone:40000006:time:00:00:00`
-* Lockout time adjust: `21:zone:80000004:time:00:00:00`
-* Charge boss limit break: `21:zone:8000000C:value1:value2:00:00`
-* Music change: `21:zone:80000001:value:00:00:00`
-* Wipe 1: `21:zone:40000010:00:00:00:00` (always comes before Wipe 2)
-* Wipe 2: `21:zone:40000012:00:00:00:00` (always comes after Wipe 1)
+* Initial commence: `21:content:40000001:time:` (time is the lockout time in seconds)
+* Recommence: `21:content:40000006:time:00:00:00`
+* Lockout time adjust: `21:content:80000004:time:00:00:00`
+* Charge boss limit break: `21:content:8000000C:value1:value2:00:00`
+* Music change: `21:content:80000001:value:00:00:00`
+* Fade out: `21:content:40000005:00:00:00:00` (wipe)
+* Fade in: `21:content:40000010:00:00:00:00` (always paired with barrier up)
+* Barrier up: `21:content:40000012:00:00:00:00` (always comes after fade in)
+* Victory: `21:zone:40000003:00:00:00:00`
+
+Note: cactbot uses "fade in" as the wipe trigger,
+but probably should switch to "fade out" after testing.
 
 Still unknown:
 
-* `21:zone:40000003:00:00:00:00` (victory?)
-* `21:zone:40000005:00:00:00:00` (fade to black during wipe?)
 * `21:zone:40000007:00:00:00:00`
 
 ### 22: NetworkNameToggle
