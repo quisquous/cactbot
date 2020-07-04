@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^The Navel \(Hard\)$/,
+    cn: /^泰坦歼灭战$/,
   },
   zoneId: ZoneId.TheNavelHard,
   timelineFile: 'titan-hm.txt',
@@ -51,6 +52,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Cleanse ' + data.ShortName(matches.target),
+          cn: '康复' + data.ShortName(matches.target),
         };
       },
     },
