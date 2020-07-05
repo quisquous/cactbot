@@ -99,6 +99,7 @@ def parse_report(args):
     for event in event_data["events"]:
         if "sourceID" not in event:
             event["sourceID"] = event["source"]["id"]
+            enemies[event["sourceID"]] = event["source"]["name"]
 
         entry = make_entry(
             {
