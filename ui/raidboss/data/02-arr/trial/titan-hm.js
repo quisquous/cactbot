@@ -52,7 +52,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Cleanse ' + data.ShortName(matches.target),
-          fr: 'Guérison ' + data.ShortName(matches.target),
+          fr: 'Guérison sur ' + data.ShortName(matches.target),
           cn: '康复' + data.ShortName(matches.target),
         };
       },
