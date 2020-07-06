@@ -88,7 +88,7 @@
         'Titan': 'Titan',
       },
       'replaceText': {
-        '\\(clock\\)': '(horloge)',
+        '\\(clock\\)': '(sens horaire)',
         '\\(diamond\\)': '(diamant)',
         '\\(line\\)': '(ligne)',
         'Burst': 'Explosion',
