@@ -101,7 +101,7 @@
       },
       'replaceText': {
         '\\(all\\)': '(tous)',
-        '\\(clock\\)': '(horloge)',
+        '\\(clock\\)': '(sens horaire)',
         '\\(E/W\\)': '(E/O)',
         '\\(one side\\)': '(un côté)',
         '\\(row 1\\)': '(rangée 1)',
