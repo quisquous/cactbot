@@ -41,8 +41,8 @@ jobs:
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
       - name: Install Dependencies
-        run: |
-          pip install pylint==2.2.3 PyYAML==5.1.2 requests==2.22.0
+        run: | # TODO: Update pylint version to one that natively caps isort dependency
+          pip install pylint==2.2.3 isort==4.3.21 PyYAML==5.1.2 requests==2.22.0
       - name: pylint **/*.py --errors-only
         run: |
           pylint **/*.py --errors-only
