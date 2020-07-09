@@ -71,20 +71,20 @@ let getHeadmarkerId = (data, matches) => {
             return {
               en: 'Tank Busters',
               de: 'Tank buster',
-              fr: 'Tank busters',
+              fr: 'Tank buster',
               ja: 'タンクバスター',
-              ko: '탱크버스터',
               cn: '死刑',
+              ko: '탱크버스터',
             };
           }
           if (data.liquidTank) {
             return {
               en: 'Tank Buster on ' + data.ShortName(data.liquidTank),
               de: 'Tank buster',
-              fr: 'Tank buster',
+              fr: 'Tank buster sur ' + data.ShortName(data.liquidTank),
               ja: 'タンクバスター',
-              ko: '탱크버스터',
               cn: '死刑 -> ' + data.ShortName(data.liquidTank),
+              ko: '탱크버스터',
             };
           }
           return {
@@ -92,8 +92,8 @@ let getHeadmarkerId = (data, matches) => {
             de: 'Tank buster',
             fr: 'Tank buster',
             ja: 'タンクバスター',
-            ko: '탱크버스터',
             cn: '死刑',
+            ko: '탱크버스터',
           };
         }
 
@@ -102,10 +102,10 @@ let getHeadmarkerId = (data, matches) => {
             return {
               en: 'Tank Buster on YOU',
               de: 'Tankbuster auf DIR',
-              ja: '自分にタンクバスター',
               fr: 'Tank buster sur VOUS',
-              ko: '나에게 탱크버스터',
+              ja: '自分にタンクバスター',
               cn: '死刑点名',
+              ko: '나에게 탱크버스터',
             };
           }
         }
@@ -119,10 +119,10 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Tank Cleave',
           de: 'Tank Cleave',
-          ja: 'タンククリーブ',
           fr: 'Tank Cleave',
-          ko: '탱크 범위 공격',
+          ja: 'タンククリーブ',
           cn: '坦克顺劈',
+          ko: '탱크 범위 공격',
         };
       },
     },
@@ -140,9 +140,10 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Move Bosses',
         de: 'Bosse bewegen',
+        fr: 'Déplacez les Boss',
         ja: 'ボス動かして',
-        ko: '보스 이동 주차',
         cn: '移动Boss',
+        ko: '보스 이동 주차',
       },
     },
     {
@@ -156,7 +157,7 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'aoe',
         de: 'AoE',
-        fr: 'Dégâts de zone',
+        fr: 'AoE',
         ja: 'AoE',
         cn: 'AOE',
         ko: '전체 공격',
@@ -169,10 +170,10 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Water/Thunder in 3',
         de: 'Wasser/Blitz in 3',
+        fr: 'Eau/Foudre dans 3s',
         ja: '水/雷まで3秒',
-        fr: 'Eau/Foudre dans 3',
-        ko: '물/번개까지 3초',
         cn: '3秒后水/雷',
+        ko: '물/번개까지 3초',
       },
     },
     {
@@ -186,9 +187,10 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Face Brute Towards Water',
         de: 'Drehe Brute zum Wasser',
+        fr: 'Tournez Justicier vers l\'eau',
         ja: 'ジャスを竜巻に向ける',
-        ko: '심판자가 물을 바라보게 유도',
         cn: '残暴正义号拉向水龙卷',
+        ko: '심판자가 물을 바라보게 유도',
       },
     },
     {
@@ -198,10 +200,10 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Hide Behind Ice',
         de: 'Hinter dem Eis verstecken',
+        fr: 'Cachez-vous derrière la glace',
         ja: '氷の後ろへ',
-        fr: 'Derrière la glace',
-        ko: '얼음 뒤로 피하기',
         cn: '冰块后躲避',
+        ko: '얼음 뒤로 피하기',
       },
     },
     {
@@ -224,10 +226,10 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Soak This Puddle (#' + matches[1] + ')',
             de: 'Fläche nehmen (#' + matches[1] + ')',
+            fr: 'Absorbez cette zone au sol (#' + matches[1] + ')',
             ja: '懺悔踏む (#' + matches[1] + ')',
-            fr: 'Absorbe cette flaque (#' + matches[1] + ')',
-            ko: '참회 밟기 (#' + matches[1] + ')',
             cn: '踩水圈 (#' + matches[1] + ')',
+            ko: '참회 밟기 (#' + matches[1] + ')',
           };
         }
       },
@@ -237,10 +239,10 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Puddle #' + matches[1],
           de: 'Fläche #' + matches[1],
+          fr: 'Zone au sol #' + matches[1],
           ja: '懺悔 #' + matches[1],
-          fr: 'Flaque #' + matches[1],
-          ko: '참회 #' + matches[1],
           cn: '水圈 #' + matches[1],
+          ko: '참회 #' + matches[1],
         };
       },
       tts: function(data, matches) {
@@ -248,6 +250,7 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Soak This Puddle',
             de: 'Fläche nehmen',
+            fr: 'Absorbez cette zone au sol',
             ja: '沼踏んで',
             ko: '웅덩이 밟기',
             cn: '踩水圈',
@@ -267,10 +270,10 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Shared Tankbuster',
             de: 'geteilter Tankbuster',
+            fr: 'Partagez le Tank buster',
             ja: 'タンクシェア',
-            fr: 'Tankbuster partagé',
-            ko: '쉐어 탱크버스터',
             cn: '分摊死刑',
+            ko: '쉐어 탱크버스터',
           };
         }
       },
@@ -280,10 +283,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Brute Phase',
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '483E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483E', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '483E', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '483E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '483E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483E', capture: false }),
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '483E', capture: false }),
       run: function(data) {
         data.phase = 'brute';
@@ -343,10 +346,10 @@ let getHeadmarkerId = (data, matches) => {
             return {
               en: 'Get Final Nisi (?)',
               de: 'Nehme letzten Nisi (?)',
+              fr: 'Prenez Peine finale (?)',
               ja: '最後のナイサイを取得 (?)',
-              fr: 'Récupère Nisi Final (?)',
-              ko: '마지막 나이사이 받기 (?)',
               cn: '取得最后审判 (?)',
+              ko: '마지막 나이사이 받기 (?)',
             };
           }
 
@@ -371,10 +374,10 @@ let getHeadmarkerId = (data, matches) => {
               return {
                 en: 'Pass ' + data.nisiNames[myNisi] + ' Nisi',
                 de: 'Gebe ' + data.nisiNames[myNisi] + ' Nisi',
+                fr: 'Passez ' + data.nisiNames[myNisi] + ' Peine',
                 ja: data.nisiNames[myNisi] + ' を渡す',
-                fr: 'Passe ' + data.nisiNames[myNisi] + ' Nisi',
-                ko: '나이사이 건네기: ' + data.nisiNames[myNisi],
                 cn: '传递 ' + data.nisiNames[myNisi] + '审判',
+                ko: '나이사이 건네기: ' + data.nisiNames[myNisi],
               };
             }
 
@@ -385,14 +388,14 @@ let getHeadmarkerId = (data, matches) => {
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', or '),
               de: 'Gebe ' + data.nisiNames[myNisi] + ' zu ' +
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', oder '),
+              fr: 'Passez ' + data.nisiNames[myNisi] + ' à ' +
+                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', ou '),
               ja: data.nisiNames[myNisi] + ' を ' +
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', か ') + ' に渡す',
-              fr: 'Passe ' + data.nisiNames[myNisi] + ' à ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', ou '),
-              ko: '나이사이 건네기: ' + data.nisiNames[myNisi] + ' → ' +
-                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', 또는 '),
               cn: '将 ' + data.nisiNames[myNisi] + ' 传给 ' +
                   namesWithoutNisi.map((x) => data.ShortName(x)).join(', 或 '),
+              ko: '나이사이 건네기: ' + data.nisiNames[myNisi] + ' → ' +
+                  namesWithoutNisi.map((x) => data.ShortName(x)).join(', 또는 '),
             };
           }
 
@@ -404,19 +407,19 @@ let getHeadmarkerId = (data, matches) => {
             return {
               en: 'Get ' + data.nisiNames[myNisi],
               de: 'Nimm ' + data.nisiNames[myNisi],
+              fr: 'Prenez ' + data.nisiNames[myNisi],
               ja: data.nisiNames[myNisi] + ' を取る',
-              fr: 'Récupère ' + data.nisiNames[myNisi],
-              ko: '나이사이 가져오기: ' + data.nisiNames[myNisi],
               cn: '获得 ' + data.nisiNames[myNisi],
+              ko: '나이사이 가져오기: ' + data.nisiNames[myNisi],
             };
           }
           return {
             en: 'Get ' + data.nisiNames[myNisi] + ' from ' + data.ShortName(names[0]),
             de: 'Nimm ' + data.nisiNames[myNisi] + ' von ' + data.ShortName(names[0]),
+            fr: 'Prenez ' + data.nisiNames[myNisi] + ' de ' + data.ShortName(names[0]),
             ja: data.ShortName(names[0]) + ' から ' + data.nisiNames[myNisi] + ' を取る',
-            fr: 'Récupère ' + data.nisiNames[myNisi] + ' de ' + data.ShortName(names[0]),
-            ko: '나이사이 가져오기: ' + data.nisiNames[myNisi] + ' ← ' + data.ShortName(names[0]),
             cn: '从 ' + data.ShortName(names[0]) + '获得' + data.nisiNames[myNisi],
+            ko: '나이사이 가져오기: ' + data.nisiNames[myNisi] + ' ← ' + data.ShortName(names[0]),
           };
         };
       },
@@ -424,10 +427,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Inception Phase',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '486F', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486F', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486F', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '486F', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486F', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486F', capture: false }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '486F', capture: false }),
       run: function(data) {
         data.phase = 'inception';
@@ -437,10 +440,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Wormhole Phase',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '486E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486E', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486E', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '486E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486E', capture: false }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '486E', capture: false }),
       run: function(data) {
         data.phase = 'wormhole';
@@ -450,10 +453,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Fate Alpha Phase',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487B', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487B', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487B', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487B', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Alexander Parfait', id: '487B', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487B', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487B', capture: false }),
       regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487B', capture: false }),
       run: function(data) {
         data.phase = 'alpha';
@@ -463,10 +466,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Fate Beta Phase',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4B13', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4B13', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4B13', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4B13', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Alexander Parfait', id: '4B13', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4B13', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4B13', capture: false }),
       regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '4B13', capture: false }),
       run: function(data) {
         data.phase = 'beta';
@@ -476,10 +479,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Liquid Tank',
       regex: Regexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
-      regexCn: Regexes.abilityFull({ source: '有生命活水', id: '4978' }),
       regexDe: Regexes.abilityFull({ source: 'belebtes Wasser', id: '4978' }),
-      regexFr: Regexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
+      regexFr: Regexes.abilityFull({ source: 'Liquide Vivant', id: '4978' }),
       regexJa: Regexes.abilityFull({ source: 'リビングリキッド', id: '4978' }),
+      regexCn: Regexes.abilityFull({ source: '有生命活水', id: '4978' }),
       regexKo: Regexes.abilityFull({ source: '살아있는 액체', id: '4978' }),
       run: function(data, matches) {
         data.liquidTank = matches.target;
@@ -488,10 +491,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Hand Tank',
       regex: Regexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
-      regexCn: Regexes.abilityFull({ source: '活水之手', id: '4979' }),
       regexDe: Regexes.abilityFull({ source: 'belebte Hand', id: '4979' }),
-      regexFr: Regexes.abilityFull({ source: 'membre liquide', id: '4979' }),
+      regexFr: Regexes.abilityFull({ source: 'Membre Liquide', id: '4979' }),
       regexJa: Regexes.abilityFull({ source: 'リキッドハンド', id: '4979' }),
+      regexCn: Regexes.abilityFull({ source: '活水之手', id: '4979' }),
       regexKo: Regexes.abilityFull({ source: '액체 손', id: '4979' }),
       run: function(data, matches) {
         data.handTank = matches.target;
@@ -500,10 +503,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Cruise Chaser Tank',
       regex: Regexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
-      regexCn: Regexes.abilityFull({ source: '巡航驱逐者', id: '497A' }),
       regexDe: Regexes.abilityFull({ source: 'Chaser-Mecha', id: '497A' }),
-      regexFr: Regexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
+      regexFr: Regexes.abilityFull({ source: 'Croiseur-Chasseur', id: '497A' }),
       regexJa: Regexes.abilityFull({ source: 'クルーズチェイサー', id: '497A' }),
+      regexCn: Regexes.abilityFull({ source: '巡航驱逐者', id: '497A' }),
       regexKo: Regexes.abilityFull({ source: '순항추격기', id: '497A' }),
       run: function(data, matches) {
         data.cruiseTank = matches.target;
@@ -512,10 +515,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Brute Tank',
       regex: Regexes.abilityFull({ source: 'Brute Justice', id: '497B' }),
-      regexCn: Regexes.abilityFull({ source: '残暴正义号', id: '497B' }),
       regexDe: Regexes.abilityFull({ source: 'Brutalus', id: '497B' }),
       regexFr: Regexes.abilityFull({ source: 'Justicier', id: '497B' }),
       regexJa: Regexes.abilityFull({ source: 'ブルートジャスティス', id: '497B' }),
+      regexCn: Regexes.abilityFull({ source: '残暴正义号', id: '497B' }),
       regexKo: Regexes.abilityFull({ source: '포악한 심판자', id: '497B' }),
       run: function(data, matches) {
         data.bruteTank = matches.target;
@@ -524,10 +527,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Cascade',
       regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4826', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4826', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Liquide Vivant', id: '4826', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
       regexKo: Regexes.startsUsing({ source: '살아있는 액체', id: '4826', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
@@ -535,45 +538,47 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Protean Wave',
       regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4822', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4822', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Liquide Vivant', id: '4822', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
       regexKo: Regexes.startsUsing({ source: '살아있는 액체', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
         de: 'Proteische Welle',
+        fr: 'Vague inconstante',
         ja: 'プロティアン',
-        ko: '변화의 물결',
         cn: '万变水波',
+        ko: '변화의 물결',
       },
     },
     {
       id: 'TEA Drainage Tether',
       regex: Regexes.tether({ source: 'Liquid Rage', id: '0003' }),
-      regexCn: Regexes.tether({ source: '活水之怒', id: '0003' }),
       regexDe: Regexes.tether({ source: 'levitierte Rage', id: '0003' }),
-      regexFr: Regexes.tether({ source: 'furie liquide', id: '0003' }),
+      regexFr: Regexes.tether({ source: 'Furie Liquide', id: '0003' }),
       regexJa: Regexes.tether({ source: 'リキッドレイジ', id: '0003' }),
+      regexCn: Regexes.tether({ source: '活水之怒', id: '0003' }),
       regexKo: Regexes.tether({ source: '분노한 액체', id: '0003' }),
       condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
       alertText: {
         en: 'Drainage tether on YOU',
-        ja: '自分にドレナージ',
         de: 'Entwässerungsverbindung auf DIR',
-        ko: '나에게 물줄기',
+        fr: 'Lien Drainage sur VOUS',
+        ja: '自分にドレナージ',
         cn: '连线点名',
+        ko: '나에게 물줄기',
       },
     },
     {
       id: 'TEA Hand of Pain 5',
       regex: Regexes.startsUsing({ source: 'Liquid Hand', id: '482D', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '活水之手', id: '482D', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'belebte Hand', id: '482D', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'membre liquide', id: '482D', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Membre Liquide', id: '482D', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'リキッドハンド', id: '482D', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '活水之手', id: '482D', capture: false }),
       regexKo: Regexes.startsUsing({ source: '액체 손', id: '482D', capture: false }),
       preRun: function(data) {
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
@@ -583,9 +588,10 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Focus Living Liquid',
             de: 'belebtes Wasser fokussieren',
+            fr: 'Focus sur Membre liquide',
             ja: 'リビングリキッドを攻撃',
-            ko: '인간형 집중 공격',
             cn: '攻击水基佬',
+            ko: '인간형 집중 공격',
           };
         }
       },
@@ -593,10 +599,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Throttle',
       regex: Regexes.gainsEffect({ effect: 'Throttle', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '窒息', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Erstickung', capture: false }),
       regexFr: Regexes.gainsEffect({ effect: 'Suffocation', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '窒息', capture: false }),
+      regexCn: Regexes.gainsEffect({ effect: '窒息', capture: false }),
       regexKo: Regexes.gainsEffect({ effect: '질식', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
@@ -605,9 +611,10 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Cleanse Throttle',
         de: 'Erstickung entfernen',
+        fr: 'Purifiez Suffocation',
         ja: '窒息',
-        ko: '질식',
         cn: '窒息',
+        ko: '질식',
       },
     },
     {
@@ -664,10 +671,10 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: '#' + data.limitCutNumber,
           de: '#' + data.limitCutNumber,
-          ja: data.limitCutNumber + '番',
           fr: '#' + data.limitCutNumber,
-          ko: data.limitCutNumber + '번째',
+          ja: data.limitCutNumber + '番',
           cn: '#' + data.limitCutNumber,
+          ko: data.limitCutNumber + '번째',
         };
       },
     },
@@ -689,37 +696,37 @@ let getHeadmarkerId = (data, matches) => {
             return {
               en: 'Knockback Cleave; Face Outside',
               de: 'Rückstoß Cleave; nach Außen schauen',
+              fr: 'Poussée Cleave; Regardez à l\'extérieur',
               ja: 'ノックバック ソード; 外向く',
-              fr: 'Poussée Cleave; Regarde à l\'extérieur',
-              ko: '넉백 소드; 바깥쪽 바라보기',
               cn: '击退顺劈; 面向外侧',
+              ko: '넉백 소드; 바깥쪽 바라보기',
             };
           }
           return {
             en: 'Knockback Charge; Face Middle',
             de: 'Rückstoß Charge; zur Mitte schauen',
+            fr: 'Poussée Charge; Regardez à l\'intérieur',
             ja: 'ノックバック チャージ; 中央向く',
-            fr: 'Poussée Charge; Regarde à l\'intérieur',
-            ko: '넉백 차지; 안쪽 바라보기',
             cn: '击退冲锋; 面向中间',
+            ko: '넉백 차지; 안쪽 바라보기',
           };
         }
         if (isOddNumber) {
           return {
             en: 'Knockback Cleave on YOU',
             de: 'Rückstoß Cleave auf DIR',
-            fr: 'Cleave sur VOUS',
+            fr: 'Poussée Cleave sur VOUS',
             ja: '自分にクリーブ',
-            ko: '나에게 넉백 공격',
             cn: '击退顺劈点名',
+            ko: '나에게 넉백 공격',
           };
         }
         return {
           en: 'Knockback',
           de: 'Rückstoß',
           fr: 'Poussée',
-          cn: '击退',
           ja: 'ノックバック',
+          cn: '击退',
           ko: '넉백',
         };
       },
@@ -728,10 +735,10 @@ let getHeadmarkerId = (data, matches) => {
       id: 'TEA Chakrams Out',
       // Link Up
       regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '483F', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '483F', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
       condition: function(data) {
         return data.phase == 'brute';
@@ -739,25 +746,26 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Out, Dodge Chakrams',
         de: 'Raus, Chakrams ausweichen',
+        fr: 'À l\'extérieur, évitez les Chakrams',
         ja: '外へ',
-        fr: 'Dehors, évite les Chakrams',
-        ko: '바깥으로 차크람 피하기',
         cn: '远离，躲避轮轮',
+        ko: '바깥으로 차크람 피하기',
       },
     },
     {
       id: 'TEA Chakrams In',
       // Optical Sight
       regex: Regexes.ability({ source: 'Cruise Chaser', id: '482F', capture: false }),
-      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
       regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '482F', capture: false }),
-      regexFr: Regexes.ability({ source: 'Croiseur-chasseur', id: '482F', capture: false }),
+      regexFr: Regexes.ability({ source: 'Croiseur-Chasseur', id: '482F', capture: false }),
       regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '482F', capture: false }),
+      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
       regexKo: Regexes.ability({ source: '순항추격기', id: '482F', capture: false }),
       suppressSeconds: 1,
       alertText: {
         en: 'Run In',
         de: 'Rein',
+        fr: 'Courez à l\'intérieur',
         ja: '中へ',
         ko: '가운데로',
         cn: '靠近',
@@ -766,10 +774,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Whirlwind',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '49C2', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '49C2', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
       regexKo: Regexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
@@ -779,10 +787,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Spin Crusher',
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '4A72', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4A72', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '4A72', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '4A72', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '4A72', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '4A72', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4A72', capture: false }),
       regexKo: Regexes.startsUsing({ source: '순항추격기', id: '4A72', capture: false }),
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
@@ -792,9 +800,10 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Dodge Spin Crusher',
         de: 'Rotorbrecher ausweichen',
+        fr: 'Esquivez Écrasement tournoyant',
         ja: 'スピンクラッシャー避けて',
-        ko: '회전 분쇄 피하기',
         cn: '躲避回旋碎踢',
+        ko: '회전 분쇄 피하기',
       },
     },
     {
@@ -806,19 +815,19 @@ let getHeadmarkerId = (data, matches) => {
       alarmText: {
         en: 'Freeze Tornado',
         de: 'Tornado einfrieren',
+        fr: 'Gelez la tornade',
         ja: '竜巻凍らせる',
-        fr: 'Gèle la tornade',
-        ko: '물 회오리 얼리기',
         cn: '冰冻龙卷风',
+        ko: '물 회오리 얼리기',
       },
     },
     {
       id: 'TEA Hidden Minefield',
       regex: Regexes.ability({ source: 'Brute Justice', id: '4851', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '4851', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '4851', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '4851', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '4851', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
@@ -827,10 +836,10 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Mines',
         de: 'Minen',
-        ja: '地雷',
         fr: 'Mines',
-        ko: '지뢰',
+        ja: '地雷',
         cn: '地雷',
+        ko: '지뢰',
       },
     },
     {
@@ -842,10 +851,10 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Enumeration on YOU',
         de: 'Enumeration auf DIR',
+        fr: 'Énumeration sur VOUS',
         ja: '自分にカウント',
-        fr: 'Enumeration sur VOUS',
-        ko: '나에게 인원수',
         cn: '计数点名',
+        ko: '나에게 인원수',
       },
     },
     {
@@ -865,38 +874,38 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
           de: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
+          fr: 'Énumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
           ja: 'カウント: ' + names.map((x) => data.ShortName(x)).join(', '),
-          fr: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
-          ko: '인원수 대상: ' + names.map((x) => data.ShortName(x)).join(', '),
           cn: '计数' + names.map((x) => data.ShortName(x)).join(', '),
+          ko: '인원수 대상: ' + names.map((x) => data.ShortName(x)).join(', '),
         };
       },
     },
     {
       id: 'TEA Limit Cut Shield',
       regex: Regexes.ability({ source: 'Cruise Chaser', id: '4833', capture: false }),
-      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
       regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '4833', capture: false }),
-      regexFr: Regexes.ability({ source: 'Croiseur-chasseur', id: '4833', capture: false }),
+      regexFr: Regexes.ability({ source: 'Croiseur-Chasseur', id: '4833', capture: false }),
       regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '4833', capture: false }),
+      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
       regexKo: Regexes.ability({ source: '순항추격기', id: '4833', capture: false }),
       delaySeconds: 2,
       infoText: {
         en: 'Break Shield From Front',
         de: 'Schild von Vorne zerstören',
+        fr: 'Brisez le bouclier du devant',
         ja: '正面からシールド壊して',
-        fr: 'Détruis le bouclier en face',
-        ko: '정면에서 실드를 부수기',
         cn: '从前面击破盾牌',
+        ko: '정면에서 실드를 부수기',
       },
     },
     {
       id: 'TEA Compressed Water Initial',
       regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
       regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
       regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -904,19 +913,19 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Water on YOU',
         de: 'Wasser auf DIR',
-        ja: '自分に水',
         fr: 'Eau sur VOUS',
-        ko: '나에게 물',
+        ja: '自分に水',
         cn: '水点名',
+        ko: '나에게 물',
       },
     },
     {
       id: 'TEA Compressed Water Explode',
       regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
       regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
       regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
       regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -931,20 +940,20 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Drop Water Soon',
           de: 'Gleich Wasser ablegen',
+          fr: 'Déposez l\'eau bientôt',
           ja: '水来るよ',
-          fr: 'Dépose l\'eau bientôt',
-          ko: '물이 곧 옵니다',
           cn: '马上放水',
+          ko: '물이 곧 옵니다',
         };
       },
     },
     {
       id: 'TEA Compressed Lightning Initial',
       regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
-      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
       regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Compression Électrique' }),
       regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
       regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -952,19 +961,19 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Lightning on YOU',
         de: 'Blitz auf DIR',
-        ja: '自分に雷',
         fr: 'Foudre sur VOUS',
-        ko: '나에게 번개',
+        ja: '自分に雷',
         cn: '雷点名',
+        ko: '나에게 번개',
       },
     },
     {
       id: 'TEA Compressed Lightning Explode',
       regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
-      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
       regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Compression Électrique' }),
       regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
+      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
       regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -979,10 +988,10 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Drop Lightning Soon',
           de: 'Gleich Blitz ablegen',
+          fr: 'Déposez la foudre bientôt',
           ja: '雷来るよ',
-          fr: 'Passe la foudre bientôt',
-          ko: '번개가 곧 옵니다',
           cn: '马上放雷',
+          ko: '번개가 곧 옵니다',
         };
       },
     },
@@ -990,20 +999,20 @@ let getHeadmarkerId = (data, matches) => {
       id: 'TEA Pass Nisi 1',
       // 4 seconds after Photon cast starts.
       regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '4836', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4836', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '4836', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '4836', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Croiseur-Chasseur', id: '4836', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '4836', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4836', capture: false }),
       regexKo: Regexes.startsUsing({ source: '순항추격기', id: '4836', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 10000,
       alertText: {
         en: 'Pass Nisi',
         de: 'Nisi weitergeben',
+        fr: 'Passez la Peine',
         ja: 'ナイサイ渡して',
-        fr: 'Passe Nisi',
-        ko: '나이사이 건네기',
         cn: '传递审判',
+        ko: '나이사이 건네기',
       },
     },
     {
@@ -1011,10 +1020,10 @@ let getHeadmarkerId = (data, matches) => {
       // 1 second after enumeration.
       // TODO: find a startsUsing instead of matching an action.
       regex: Regexes.ability({ source: 'Brute Justice', id: '4850', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '4850', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '4850', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '4850', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '4850', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '4850', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '4850', capture: false }),
       // Ignore enumerations later in the fight.
       condition: (data) => data.phase == 'brute',
@@ -1023,20 +1032,20 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Pass Nisi',
         de: 'Nisi weitergeben',
+        fr: 'Passez la Peine',
         ja: 'ナイサイ渡して',
-        fr: 'Passe Nisi',
-        ko: '나이사이 건네기',
         cn: '传递审判',
+        ko: '나이사이 건네기',
       },
     },
     {
       id: 'TEA Pass Nisi 3',
       // 8 seconds after Flarethrower cast starts.
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4845', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4845', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4845', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4845', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4845', capture: false }),
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '4845', capture: false }),
       delaySeconds: 8,
       durationSeconds: 9,
@@ -1047,10 +1056,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Decree Nisi Gain',
       regex: Regexes.gainsEffect({ effect: 'Final Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.gainsEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexDe: Regexes.gainsEffect({ effect: 'Letztes Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Peine Provisoire (?<sym>[ΑΒΓΔαβγδ]) Ultime' }),
       regexJa: Regexes.gainsEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.gainsEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexKo: Regexes.gainsEffect({ effect: '최후의 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
         let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
@@ -1061,10 +1070,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Decree Nisi Lose',
       regex: Regexes.losesEffect({ effect: 'Final Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.losesEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexDe: Regexes.losesEffect({ effect: 'Letztes Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexFr: Regexes.losesEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
+      regexFr: Regexes.losesEffect({ effect: 'Peine Provisoire (?<sym>[ΑΒΓΔαβγδ]) Ultime' }),
       regexJa: Regexes.losesEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.losesEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexKo: Regexes.losesEffect({ effect: '최후의 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
         data.nisiMap = data.nisiMap || {};
@@ -1074,10 +1083,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Final Judgment Nisi Gain',
       regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexDe: Regexes.gainsEffect({ effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Injonction : Peine Provisoire (?<sym>[ΑΒΓΔαβγδ])' }),
       regexJa: Regexes.gainsEffect({ effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.gainsEffect({ effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       run: function(data, matches) {
         let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
@@ -1088,10 +1097,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Final Judgment Nisi Verdict',
       regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexDe: Regexes.gainsEffect({ effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Injonction : Peine Provisoire (?<sym>[ΑΒΓΔαβγδ])' }),
       regexJa: Regexes.gainsEffect({ effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
+      regexCn: Regexes.gainsEffect({ effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])' }),
       regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -1104,20 +1113,20 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Verdict: ' + data.nisiNames[num] + ' Nisi',
           de: 'Prozesseröffnung: ' + data.nisiNames[num] + ' Nisi',
+          fr: 'Ouverture de procès: ' + data.nisiNames[num] + ' Peine',
           ja: '最終: ' + data.nisiNames[num],
-          fr: 'Verdict: ' + data.nisiNames[num] + ' Nisi',
-          ko: '최종: ' + data.nisiNames[num],
           cn: '最终: ' + data.nisiNames[num],
+          ko: '최종: ' + data.nisiNames[num],
         };
       },
     },
     {
       id: 'TEA Gavel',
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '483C', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483C', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '483C', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '483C', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '483C', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483C', capture: false }),
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '483C', capture: false }),
       run: function(data) {
         data.seenGavel = true;
@@ -1126,30 +1135,30 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Double Rocket Punch',
       regex: Regexes.startsUsing({ source: 'Brute Justice', id: '4847' }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4847' }),
       regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4847' }),
       regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4847' }),
       regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
+      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4847' }),
       regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
             en: 'Shared Tankbuster on YOU',
             de: 'geteilter Tankbuster auf DIR',
+            fr: 'Tank buster à partager sur VOUS',
             ja: '自分にタンクシェア',
-            fr: 'Tankbuster partagé sur vous',
-            ko: '나에게 쉐어 탱크버스터',
             cn: '分摊死刑点名',
+            ko: '나에게 쉐어 탱크버스터',
           };
         }
         if (data.role == 'tank' || data.role == 'healer') {
           return {
             en: 'Shared Tankbuster on ' + data.ShortName(matches.target),
             de: 'geteilter Tankbuster on ' + data.ShortName(matches.target),
+            fr: 'Tank buster à partager sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + ' にタンクシェア',
-            fr: 'Tankbuster partagé sur ' + data.ShortName(matches.target),
-            ko: '쉐어 탱크버스터 대상: ' + data.ShortName(matches.target),
             cn: '分摊死刑点 ' + data.ShortName(matches.target),
+            ko: '쉐어 탱크버스터 대상: ' + data.ShortName(matches.target),
           };
         }
       },
@@ -1159,37 +1168,38 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Bait Super Jump?',
           de: 'Supersprung anlocken?',
+          fr: 'Attirez le Super saut ?',
           ja: 'スパジャン誘導',
-          ko: '슈퍼 점프 유도',
           cn: '引导超级跳跃',
+          ko: '슈퍼 점프 유도',
         };
       },
     },
     {
       id: 'TEA Brute Ray',
       regex: Regexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '484A', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: (data) => data.phase == 'brute',
       infoText: {
         en: 'avoid ray',
         de: 'Strahl ausweichen',
+        fr: 'Évitez le rayon',
         ja: 'アポカリ避けて',
-        fr: 'Evitez le rayon',
-        ko: '파멸 계시 피하기',
         cn: '躲避激光',
+        ko: '파멸 계시 피하기',
       },
     },
     {
       id: 'TEA Buff Collection',
       regex: Regexes.gainsEffect({ effect: ['Restraining Order', 'House Arrest', 'Aggravated Assault', 'Shared Sentence'] }),
-      regexCn: Regexes.gainsEffect({ effect: ['判决确定：禁止接近命令', '判决确定：强制接近命令', '判决确定：加重罪', '判决确定：集团罪'] }),
       regexDe: Regexes.gainsEffect({ effect: ['Urteil: Näherungsverbot', 'Urteil: Freiheitsstrafe', 'Urteil: Erschwerte Strafe', 'Urteil: Kollektivstrafe'] }),
-      regexFr: Regexes.gainsEffect({ effect: ['Jugement : éloignement', 'Jugement : Rapprochement', 'Jugement : Peine Sévère', 'Jugement : Peine Collective'] }),
+      regexFr: Regexes.gainsEffect({ effect: ['Jugement : Éloignement', 'Jugement : Rapprochement', 'Jugement : Peine Sévère', 'Jugement : Peine Collective'] }),
       regexJa: Regexes.gainsEffect({ effect: ['確定判決：接近禁止命令', '確定判決：接近強制命令', '確定判決：加重罰', '確定判決：集団罰'] }),
+      regexCn: Regexes.gainsEffect({ effect: ['判决确定：禁止接近命令', '判决确定：强制接近命令', '判决确定：加重罪', '判决确定：集团罪'] }),
       regexKo: Regexes.gainsEffect({ effect: ['확정 판결: 접근금지 명령', '확정 판결: 강제접근 명령', '확정 판결: 가중형', '확정 판결: 단체형'] }),
       run: function(data, matches) {
         data.buffMap = data.buffMap || {};
@@ -1201,7 +1211,7 @@ let getHeadmarkerId = (data, matches) => {
       regex: Regexes.gainsEffect({ effect: 'Restraining Order', capture: false }),
       regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令', capture: false }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Näherungsverbot', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : éloignement', capture: false }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Éloignement', capture: false }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令', capture: false }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령', capture: false }),
       condition: function(data) {
@@ -1218,19 +1228,20 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'No Debuff',
           de: 'Kein Debuff',
+          fr: 'Pas de Debuff',
           ja: 'デバフ無し',
-          ko: '디버프 없음',
           cn: '无 Debuff',
+          ko: '디버프 없음',
         };
       },
     },
     {
       id: 'TEA Restraining Order',
       regex: Regexes.gainsEffect({ effect: 'Restraining Order' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Näherungsverbot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : éloignement' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Éloignement' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -1239,7 +1250,7 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Far Tethers',
         de: 'Entfernte Verbindungen',
-        fr: 'Liens éloignés',
+        fr: 'Éloignez les liens',
         ja: 'ファー',
         cn: '远离连线',
         ko: '접근금지: 상대와 떨어지기',
@@ -1260,7 +1271,7 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Close Tethers',
         de: 'Nahe Verbindungen',
-        fr: 'Liens proches',
+        fr: 'Rapprochez les liens',
         ja: 'ニアー',
         cn: '靠近连线',
         ko: '강제접근: 상대와 가까이 붙기',
@@ -1269,10 +1280,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Shared Sentence',
       regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -1281,19 +1292,19 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Shared Sentence',
         de: 'Urteil: Kollektivstrafe',
-        ja: '集団罰',
         fr: 'Peine collective',
-        ko: '단체형: 무직과 함께 맞기',
+        ja: '集団罰',
         cn: '集团罪',
+        ko: '단체형: 무직과 함께 맞기',
       },
     },
     {
       id: 'TEA Shared Sentence Inception',
       regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
       condition: (data) => data.phase == 'inception',
       delaySeconds: 3,
@@ -1301,6 +1312,7 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Shared Sentence on ' + data.ShortName(matches.target),
           de: 'Urteil: Kollektivstrafe auf ' + data.ShortName(matches.target),
+          fr: 'Peine collective sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + ' に集団罰',
           ko: data.ShortName(matches.target) + ' 에게 단체형',
           cn: '集团罪->' + data.ShortName(matches.target),
@@ -1310,10 +1322,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Aggravated Assault',
       regex: Regexes.gainsEffect({ effect: 'Aggravated Assault' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：加重罪' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Erschwerte Strafe' }),
       regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Sévère' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：加重罰' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：加重罪' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 가중형' }),
       condition: function(data, matches) {
         return data.me == matches.target;
@@ -1322,39 +1334,39 @@ let getHeadmarkerId = (data, matches) => {
       alarmText: {
         en: 'Thunder',
         de: 'Blitz',
+        fr: 'Peine sévère',
         ja: '加重罰',
-        fr: 'Peine Sévère',
-        ko: '가중형: 가중형끼리 모이기',
         cn: '加重罪',
+        ko: '가중형: 가중형끼리 모이기',
       },
     },
     {
       id: 'TEA Chastening Heat',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A80' }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A80' }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A80' }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A80' }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A80' }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
-            ko: '나에게 탱크버스터',
             cn: '死刑点名',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            fr: 'Tank buster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
             cn: '死刑点 ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -1369,10 +1381,10 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Buster on ' + data.ShortName(matches.target),
           de: 'Tankbuster auf ' + data.ShortName(matches.target),
-          fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+          fr: 'Tank buster sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'にタンクバスター',
-          ko: data.ShortName(matches.target) + '에게 탱크버스터',
           cn: '死刑点 ' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '에게 탱크버스터',
         };
       },
     },
@@ -1385,55 +1397,56 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Crystal on YOU',
         de: 'Kristall auf DIR',
-        ja: '自分に結晶',
         fr: 'Cristal sur VOUS',
-        ko: '나에게 결정체',
+        ja: '自分に結晶',
         cn: '结晶点名',
+        ko: '나에게 결정체',
       },
     },
     {
       id: 'TEA Judgment Crystal Placement',
       regex: Regexes.ability({ source: 'Alexander Prime', id: '485C', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485C', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485C', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485C', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
       regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '485C', capture: false }),
       suppressSeconds: 100,
       infoText: {
         en: 'Get Away From Crystals',
         de: 'Geh weg vom Kristall',
+        fr: 'Éloignez-vous des Cristaux',
         ja: '結晶から離れ',
-        fr: 'Eloignez-vous des Cristaux',
-        ko: '결정체로부터 멀어질 것',
         cn: '远离结晶',
+        ko: '결정체로부터 멀어질 것',
       },
     },
     {
       id: 'TEA Terashatter Flarethrower',
       regex: Regexes.ability({ source: 'Judgment Crystal', id: '4A88', capture: false }),
-      regexCn: Regexes.ability({ source: '审判结晶', id: '4A88', capture: false }),
       regexDe: Regexes.ability({ source: 'Urteilskristall', id: '4A88', capture: false }),
-      regexFr: Regexes.ability({ source: 'Cristal du jugement', id: '4A88', capture: false }),
+      regexFr: Regexes.ability({ source: 'Cristal Du Jugement', id: '4A88', capture: false }),
       regexJa: Regexes.ability({ source: '審判の結晶', id: '4A88', capture: false }),
+      regexCn: Regexes.ability({ source: '审判结晶', id: '4A88', capture: false }),
       regexKo: Regexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
       delaySeconds: 1,
       suppressSeconds: 100,
       infoText: {
         en: 'Bait Brute\'s Flarethrower',
         de: 'Locke Brute\'s Großflammenwerfer',
+        fr: 'Attirez le Lance-brasiers de Justicier',
         ja: '火炎放射を誘導',
-        ko: '화염 방사 유도',
         cn: '引导火炎放射',
+        ko: '화염 방사 유도',
       },
     },
     {
       id: 'TEA Inception Vuln Collection',
       regex: Regexes.gainsEffect({ effect: 'Physical Vulnerability Up' }),
-      regexCn: Regexes.gainsEffect({ effect: '物理受伤加重' }),
       regexDe: Regexes.gainsEffect({ effect: 'Erhöhte Physische Verwundbarkeit' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Vulnérabilité physique augmentée' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Vulnérabilité Physique Augmentée' }),
       regexJa: Regexes.gainsEffect({ effect: '被物理ダメージ増加' }),
+      regexCn: Regexes.gainsEffect({ effect: '物理受伤加重' }),
       regexKo: Regexes.gainsEffect({ effect: '받는 물리 피해량 증가' }),
       condition: (data) => data.phase == 'inception',
       run: function(data, matches) {
@@ -1444,10 +1457,10 @@ let getHeadmarkerId = (data, matches) => {
       id: 'TEA Inception Alpha Sword',
       // Sacrament cast.
       regex: Regexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485F', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485F', capture: false }),
       regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
       condition: (data) => data.phase == 'inception',
       alarmText: function(data) {
@@ -1459,9 +1472,10 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Bait Jump With Cooldowns',
             de: 'Köder Sprung mit Cooldowns',
+            fr: 'Attirez le Saut avec des Cooldowns',
             ja: 'スパジャン誘導',
-            ko: '슈퍼 점프 유도',
             cn: '引导冷却跳跃',
+            ko: '슈퍼 점프 유도',
           };
         }
       },
@@ -1475,9 +1489,10 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Bait Sword',
             de: 'Locke Chaser-Mecha Schwert',
+            fr: 'Attirez l\'Épée',
             ja: 'ソード誘導',
-            ko: '검 유도',
             cn: '引导剑',
+            ko: '검 유도',
           };
         }
 
@@ -1485,9 +1500,10 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Bait Sword or Jump?',
           de: 'Köder Schwert oder Sprung?',
+          fr: 'Attirez l\'Épée ou le Saut',
           ja: 'ソードかジャンプ誘導?',
-          ko: '검 또는 슈퍼 점프 유도?',
           cn: '引导剑或跳?',
+          ko: '검 또는 슈퍼 점프 유도?',
         };
       },
       infoText: function(data) {
@@ -1500,9 +1516,10 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Vuln: Avoid cleaves and jump',
             de: 'Vuln: Cleaves und Sprung ausweichen',
+            fr: 'Vuln: évitez les cleaves et saut',
             ja: '被ダメ増加',
-            ko: '받는 데미지 증가: 공격과 점프 피할것',
             cn: '易伤：躲避顺劈和跳',
+            ko: '받는 데미지 증가: 공격과 점프 피할것',
           };
         }
       },
@@ -1510,27 +1527,29 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Wormhole',
       regex: Regexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '486E', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '486E', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '486E', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '486E', capture: false }),
       regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
       infoText: function(data) {
         if (data.options.cactbotWormholeStrat) {
           return {
             en: 'Bait Chakrams mid; Look opposite Alex',
             de: 'Locke Chakrams mittig; schau weg von Alex',
+            fr: 'Attirez les Chakrams au milieu; Regardez à l\'opposé d\'Alex',
             ja: '中央にチャクラム誘導; アレキの反対見て',
-            ko: '가운데로 차크람 유도; 알렉 반대쪽이 북쪽',
             cn: '中间引导轮轮，背对亚历山大',
+            ko: '가운데로 차크람 유도; 알렉 반대쪽이 북쪽',
           };
         }
         return {
           en: 'Bait Chakrams',
           de: 'Köder Chakrams',
+          fr: 'Attirez les Chakrams',
           ja: 'チャクラム誘導',
-          ko: '차크람 유도',
           cn: '引导轮轮',
+          ko: '차크람 유도',
         };
       },
     },
@@ -1565,58 +1584,66 @@ let getHeadmarkerId = (data, matches) => {
           '004F': {
             en: 'Left To Robot; Look Outside; 3rd Puddle',
             de: 'Links vom Robot; Nach Außen schauen; 3. Fläche',
+            fr: 'À gauche du Robot; Regardez à l\'extérieur; 3rd zone au sol',
             ja: '右上 外向き 懺悔3回目',
-            ko: '왼쪽 위 / 참회 #3',
             cn: '左-->机器人; 面向外侧; 水圈#3',
+            ko: '왼쪽 위 / 참회 #3',
           },
           '0050': {
             en: 'Back Right Opposite Robot; Look Middle; 3rd Puddle',
             de: 'Hinten Rechts gegenüber vom Robot; zur Mitte schauen; 3. Fläche',
+            fr: 'Revenez à l\'opposé droite du Robot; Regardez au milieu; 3rd zone au sol',
             ja: '左下 内向き 懺悔3回目',
-            ko: '오른쪽 위 / 참회 #3',
             cn: '右后<--机器人; 面向中间; 水圈#3',
+            ko: '오른쪽 위 / 참회 #3',
           },
           '0051': {
             en: 'Back Left Opposite Robot; No Puddle',
             de: 'Hinten Links gegenüber vom Robot; keine Fläche',
+            fr: 'Revenez à l\'opposé gauche du Robot; Pas de zone au sol',
             ja: '左上',
-            ko: '왼쪽 아래',
             cn: '左后<--机器人; 无水圈',
+            ko: '왼쪽 아래',
           },
           '0052': {
             en: 'Right To Robot; No puddle',
             de: 'Rechts vom Robot; keine Fläche',
+            fr: 'À droite du Robot; Pas de zone au sol',
             ja: '右下',
-            ko: '오른쪽 아래',
             cn: '右-->机器人; 无水圈',
+            ko: '오른쪽 아래',
           },
           '0053': {
             en: 'Left Robot Side -> 1st Puddle',
             de: 'Linke Robot Seite -> 1. Fläche',
+            fr: 'Côté gauche du Robot-> 1st zone au sol',
             ja: '右ちょい上 懺悔1回目',
-            ko: '왼쪽 / 참회 #1',
             cn: '机器人左侧 --> 水圈#1',
+            ko: '왼쪽 / 참회 #1',
           },
           '0054': {
             en: 'Right Robot Side -> 1st Puddle',
             de: 'Rechte Robot Seite -> 1. Fläche',
+            fr: 'Côté droit du Robot-> 1st zone au sol',
             ja: '左ちょい上 懺悔1回目',
-            ko: '오른쪽 / 참회 #1',
             cn: '机器人右侧 --> 水圈#1',
+            ko: '오른쪽 / 참회 #1',
           },
           '0055': {
             en: 'Left Robot Side -> cardinal; 2nd Puddle',
             de: 'Linke Robot Seite -> cardinal; 2. Fläche',
+            fr: 'Côté gauche du Robot -> cardinal; 2nd zone au sol',
             ja: '右ちょい上 懺悔2回目',
-            ko: '왼쪽 / 참회 #2',
             cn: '机器人左侧 --> 边; 水圈#2',
+            ko: '왼쪽 / 참회 #2',
           },
           '0056': {
             en: 'Right Robot Side -> cardinal; 2nd Puddle',
             de: 'Rechte Robot Seite -> cardinal; 2. Fläche',
+            fr: 'Côté droit du Robot -> cardinal; 2nd zone au sol',
             ja: '左ちょい上 懺悔2回目',
-            ko: '오른쪽 / 참회 #2',
             cn: '机器人右侧 --> 边; 水圈#2',
+            ko: '오른쪽 / 참회 #2',
           },
         }[getHeadmarkerId(data, matches)];
       },
@@ -1624,10 +1651,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Cactbot Wormhole 4 Super Jump',
       regex: Regexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       regexDe: Regexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
       regexFr: Regexes.ability({ source: 'Justicier', id: '484A', capture: false }),
       regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
+      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
       regexKo: Regexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: function(data) {
         if (!data.options.cactbotWormholeStrat)
@@ -1639,9 +1666,10 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Move Behind Brute Justice?',
         de: 'Geh hinter Brutalus?',
+        fr: 'Déplacez-vous derière Justicier ?',
         ja: 'ジャスティスの背面へ',
-        ko: '심판자 등 뒤로 이동?',
         cn: '残暴正义号背后躲避?',
+        ko: '심판자 등 뒤로 이동?',
       },
     },
     {
@@ -1653,52 +1681,53 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Stack Middle',
         de: 'mittig sammeln',
+        fr: 'Packez-vous au milieu',
         ja: '中央へ',
-        ko: '가운데로 모이기',
         cn: '中间集合',
+        ko: '가운데로 모이기',
       },
     },
     {
       id: 'TEA Mega Holy',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
       alertText: {
         en: 'big aoe',
         de: 'große AoE',
         fr: 'Grosse AoE',
-        ko: '거대 전체 공격',
         cn: '高伤AOE',
+        ko: '거대 전체 공격',
       },
     },
     {
       id: 'TEA Summon Alexander',
       regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A55', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A55', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A55', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A55', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
       regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A55', capture: false }),
       delaySeconds: 10.4,
       infoText: {
         en: 'Kill Cruise Chaser First',
         de: 'Chaser-Mecha zuerst besiegen',
-        ja: 'チェイサーから倒す',
         fr: 'Tuez Croiseur-chasseur en premier',
-        ko: '순항추격기부터 처치하기',
+        ja: 'チェイサーから倒す',
         cn: '先杀巡航驱逐者',
+        ko: '순항추격기부터 처치하기',
       },
     },
     {
       id: 'TEA Divine Judgment',
       regex: Regexes.ability({ source: 'Alexander Prime', id: '4879', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '4879', capture: false }),
       regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '4879', capture: false }),
       regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '4879', capture: false }),
       regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
+      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '4879', capture: false }),
       regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
@@ -1707,19 +1736,19 @@ let getHeadmarkerId = (data, matches) => {
       alarmText: {
         en: 'TANK LB!!',
         de: 'TANK LB!!',
+        fr: 'LB TANK !!',
         ja: 'タンクLB!!',
-        fr: 'TANK LB!!',
-        ko: '탱크 LIMITE BREAK!!',
         cn: '坦克LB!!',
+        ko: '탱크 LIMITE BREAK!!',
       },
     },
     {
       id: 'TEA Perfect Optical Sight Spread',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '488A', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '488A', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '488A', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '488A', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Alexander Parfait', id: '488A', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '488A', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '488A', capture: false }),
       regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '488A', capture: false }),
       infoText: {
         en: 'Spread',
@@ -1745,10 +1774,10 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Stack on YOU',
             de: 'Sammeln auf DIR',
+            fr: 'Package sur VOUS',
             ja: '自分にシェア',
-            fr: 'Stack sur VOUS',
-            ko: '나에게 모이기',
             cn: '集合点名',
+            ko: '나에게 모이기',
           };
         }
       },
@@ -1759,134 +1788,134 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Optical Stack (' + names.join(', ') + ')',
           de: 'Optischer Stack (' + names.join(', ') + ')',
+          fr: 'Package optique (' + names.join(', ') + ')',
           ja: 'シェア (' + names.join(', ') + ')',
-          fr: 'Stack Optical (' + names.join(', ') + ')',
-          ko: '조준 대상: ' + names.join(', '),
           cn: '照准集合 (' + names.join(', ') + ')',
+          ko: '조준 대상: ' + names.join(', '),
         };
       },
     },
     {
       id: 'TEA Ordained Motion',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487E', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487E', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487E', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Alexander Parfait', id: '487E', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487E', capture: false }),
       regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487E', capture: false }),
       durationSeconds: 4,
       alertText: {
         en: 'Keep Moving',
         de: 'weiter bewegen',
+        fr: 'Continuez à bouger',
         ja: '動く',
-        fr: 'Bougez',
-        ko: '움직여!!!',
         cn: '保持移动',
+        ko: '움직여!!!',
       },
     },
     {
       id: 'TEA Ordained Stillness',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487F', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487F', capture: false }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487F', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487F', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Alexander Parfait', id: '487F', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487F', capture: false }),
       regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487F', capture: false }),
       alarmText: {
         en: 'STOP LITERALLY EVERYTHING',
         de: 'STOP WIRKLICH ALLES',
-        ja: '止まる',
         fr: 'ARRÊTEZ TOUT',
-        ko: '멈춰!!!',
+        ja: '止まる',
         cn: '停止一切动作',
+        ko: '멈춰!!!',
       },
     },
     {
       id: 'TEA Contact Prohibition',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Prohibition' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：接触禁止命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontaktverbot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact prohibé' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Contact Prohibé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触禁止命令' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：接触禁止命令' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접촉금지 명령' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Orange (Attract)',
         de: 'Orange (Anziehen)',
-        ja: '接触禁止',
         fr: 'Orange (Attraction)',
-        ko: '노랑/접촉금지',
+        ja: '接触禁止',
         cn: '接触禁止',
+        ko: '노랑/접촉금지',
       },
       tts: {
         en: 'Orange',
         de: 'Orange',
-        ja: '接触禁止',
         fr: 'Orange',
-        ko: '접촉금지',
+        ja: '接触禁止',
         cn: '接触禁止',
+        ko: '접촉금지',
       },
     },
     {
       id: 'TEA Contact Regulation',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Regulation' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：接触保护命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontakt-Order' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact forcé' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Contact Forcé' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：接触保護命令' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：接触保护命令' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접촉보호 명령' }),
       condition: (data, matches) => data.me == matches.target,
       alarmText: {
         en: 'Orange Bait: Get Away',
         de: 'Orange locken: Geh Weg',
+        fr: 'Attirez l\'orange : Éloignez-vous',
         ja: '接触保護',
-        fr: 'Appât Orange: Eloignez-vous',
-        ko: '노랑/접촉보호; 유도역할/혼자 멀리 있기',
         cn: '接触保护',
+        ko: '노랑/접촉보호; 유도역할/혼자 멀리 있기',
       },
     },
     {
       id: 'TEA Escape Prohibition',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Prohibition' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：逃亡禁止命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtverbot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite prohibée' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Fuite Prohibée' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡禁止命令' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：逃亡禁止命令' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 도망금지 명령' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Purple (Repel)',
         de: 'Lila (Abstoßen)',
-        ja: '逃亡禁止',
         fr: 'Violet (Répulsion)',
-        ko: '보라/도망금지',
+        ja: '逃亡禁止',
         cn: '逃亡禁止',
+        ko: '보라/도망금지',
       },
       tts: {
         en: 'Purple',
         de: 'Lila',
-        ja: '逃亡禁止',
         fr: 'Violet',
-        ko: '도망금지',
+        ja: '逃亡禁止',
         cn: '逃亡禁止',
+        ko: '도망금지',
       },
     },
     {
       id: 'TEA Escape Detection',
       regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Detection' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：逃亡监察命令' }),
       regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtbeobachtung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite forcée' }),
+      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Fuite Forcée' }),
       regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡監察命令' }),
+      regexCn: Regexes.gainsEffect({ effect: '判决确定：逃亡监察命令' }),
       regexKo: Regexes.gainsEffect({ effect: '확정 판결: 도망감찰 명령' }),
       condition: (data, matches) => data.me == matches.target,
       alertText: {
         en: 'Purple Bait: Be In Back Of Group',
         de: 'Lila locken: Hinter der Gruppe sein',
+        fr: 'Attirez le violet : Soyez derrière le groupe',
         ja: '逃亡監察',
-        fr: 'Appât Violet: Placez-vous derrière le groupe',
-        ko: '보라/도망감찰; 유도역할/사람들 뒤에 있기',
         cn: '逃亡监察',
+        ko: '보라/도망감찰; 유도역할/사람들 뒤에 있기',
       },
     },
     {
@@ -1917,18 +1946,18 @@ let getHeadmarkerId = (data, matches) => {
         let kNoDebuff = {
           en: 'No debuff: shared stack',
           de: 'Kein debuff: geteilter stack',
+          fr: 'Pas de debuff : package partagé',
           ja: 'デバフ無し',
-          fr: 'Aucun debuff: stack partagé',
-          ko: '디버프 없음; 오른쪽/함께 맞기',
           cn: '无Debuff：分组分摊',
+          ko: '디버프 없음; 오른쪽/함께 맞기',
         };
         let kSeverity = {
           en: 'Severity: avoid shared stack',
           de: 'Erschwertes: geteilter stack ausweichen',
+          fr: 'Sévérité : éloignez-vous du package',
           ja: '加重罰',
-          fr: 'Sévérité: éloignez-vous du stack',
-          ko: '가중형; 왼쪽/가중형끼리 모이기',
           cn: '加重罪：远离分摊',
+          ko: '가중형; 왼쪽/가중형끼리 모이기',
         };
 
         let kUnknown;
@@ -1936,19 +1965,19 @@ let getHeadmarkerId = (data, matches) => {
           kUnknown = {
             en: 'No clone: probably stack?',
             de: 'keine Klone: warscheinlich kein debuff + stack?',
+            fr: 'Pas de clone : package ?',
             ja: 'クローン無し: 多分シェア?',
-            fr: 'Pas de clone: stack?',
-            ko: '클론 없음: 아마도 오른쪽/함께 맞기?',
             cn: '没有分身: 或许要集合?',
+            ko: '클론 없음: 아마도 오른쪽/함께 맞기?',
           };
         } else {
           kUnknown = {
             en: 'No clone: ???',
             de: 'keine Klone: ???',
+            fr: 'Pas de clone : ???',
             ja: 'クローン無し: ???',
-            fr: 'Pas de clone: ???',
-            ko: '클론 없음: ???',
             cn: '没有分身: ¿¿¿',
+            ko: '클론 없음: ???',
           };
         }
 
@@ -1957,17 +1986,18 @@ let getHeadmarkerId = (data, matches) => {
           '0': {
             en: 'Shared Sentence: stack',
             de: 'Urteil Kollektivstrafe: stack',
+            fr: 'Peine collective : packez-vous',
             ja: '集団罰: ',
-            fr: 'Peine collective: stack',
-            ko: '집단형: 오른쪽/함께 맞기',
             cn: '集团罪',
+            ko: '집단형: 오른쪽/함께 맞기',
           },
           '1': {
             en: 'Defamation on YOU',
             de: 'Ehrenstrafe aud DIR',
+            fr: 'Diffamation sur VOUS',
             ja: '名誉罰',
-            ko: '명예형: 보스 밑에서 나 홀로!!!',
             cn: '名誉罪',
+            ko: '명예형: 보스 밑에서 나 홀로!!!',
           },
           '2': kSeverity,
           '3': kSeverity,
@@ -2011,19 +2041,19 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Alpha Ordained Motion 1',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B0D', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B0D', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0D', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
+      regexFr: Regexes.ability({ source: 'Alexander Parfait', id: '4B0D', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B0D', capture: false }),
       regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B0D', capture: false }),
       preRun: function(data) {
         data.firstAlphaOrdainedText = {
           en: 'Motion first',
           de: 'Bewegungsbefehl zuerst',
-          ja: '最初は動く',
           fr: 'Mouvement en premier',
-          ko: '우선 움직이기',
+          ja: '最初は動く',
           cn: '首先移动',
+          ko: '우선 움직이기',
         };
       },
       durationSeconds: 8,
@@ -2036,19 +2066,19 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Alpha Ordained Stillness 1',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B0E', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B0E', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
+      regexFr: Regexes.ability({ source: 'Alexander Parfait', id: '4B0E', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B0E', capture: false }),
       regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B0E', capture: false }),
       preRun: function(data) {
         data.firstAlphaOrdainedText = {
           en: 'Stillness first',
           de: 'Stillstandsbefehl zuerst',
-          ja: '最初は止まる',
           fr: 'Immobilité en premier',
-          ko: '우선 멈추기',
+          ja: '最初は止まる',
           cn: '首先静止',
+          ko: '우선 멈추기',
         };
       },
       durationSeconds: 8,
@@ -2061,19 +2091,19 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Alpha Ordained Motion 2',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '4899', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
+      regexFr: Regexes.abilityFull({ source: 'Alexander Parfait', id: '4899', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '4899', capture: false }),
       regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '4899', capture: false }),
       preRun: function(data) {
         data.secondAlphaOrdainedText = {
           en: 'Motion second',
           de: 'Bewegungsbefehl als Zweites',
-          ja: '最後は動く',
           fr: 'Mouvement en deuxième',
-          ko: '마지막엔 움직이기',
+          ja: '最後は動く',
           cn: '最后移动',
+          ko: '마지막엔 움직이기',
         };
       },
       durationSeconds: 15,
@@ -2097,17 +2127,17 @@ let getHeadmarkerId = (data, matches) => {
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
       regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '489A', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
+      regexFr: Regexes.abilityFull({ source: 'Alexander Parfait', id: '489A', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
       regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '489A', capture: false }),
       preRun: function(data) {
         data.secondAlphaOrdainedText = {
           en: 'Stillness second',
           de: 'Stillstandsbefehl als Zweites',
-          ja: '最後は止まる',
           fr: 'Immobilité en deuxième',
-          ko: '마지막엔 멈추기',
+          ja: '最後は止まる',
           cn: '最后静止',
+          ko: '마지막엔 멈추기',
         };
       },
       durationSeconds: 15,
@@ -2130,10 +2160,10 @@ let getHeadmarkerId = (data, matches) => {
       id: 'TEA Alpha Safe Spot',
       // The non-safe alexanders use 489F.
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '49AA' }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '49AA' }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '49AA' }),
+      regexFr: Regexes.abilityFull({ source: 'Alexander Parfait', id: '49AA' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '49AA' }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '49AA' }),
       regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '49AA' }),
       durationSeconds: 10,
       infoText: function(data, matches) {
@@ -2172,16 +2202,18 @@ let getHeadmarkerId = (data, matches) => {
             {
               en: 'Defamation: front left',
               de: 'Ehrenstrafe: vorne links',
+              fr: 'Diffamation : devant à gauche',
               ja: '名誉: 左前',
-              ko: '명예: 왼쪽 앞!!!',
               cn: '名誉罪: 左前',
+              ko: '명예: 왼쪽 앞!!!',
             },
             {
               en: 'Defamation: front right',
               de: 'Ehrenstrafe: vorne rechts',
+              fr: 'Diffamation : devant à droite',
               ja: '名誉: 右前',
-              ko: '명예: 오른쪽 앞!!!',
               cn: '名誉罪: 右前',
+              ko: '명예: 오른쪽 앞!!!',
             },
           ][idx - 1];
         }
@@ -2190,18 +2222,18 @@ let getHeadmarkerId = (data, matches) => {
           {
             en: 'Party: back right',
             de: 'Gruppe: hinten rechts',
+            fr: 'Groupe : arrière droite',
             ja: '右後ろ',
-            fr: 'Groupe: arrière droite',
-            ko: '오른쪽 뒤!!!',
             cn: '右后',
+            ko: '오른쪽 뒤!!!',
           },
           {
             en: 'Party: back left',
             de: 'Gruppe: hinten links',
+            fr: 'Groupe : arrière gauche',
             ja: '左後ろ',
-            fr: 'Groupe: arrière gauche',
-            ko: '왼쪽 뒤!!!',
             cn: '左后',
+            ko: '왼쪽 뒤!!!',
           },
         ][idx - 1];
       },
@@ -2209,10 +2241,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Alpha Resolve First Motion',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
+      regexFr: Regexes.ability({ source: 'Alexander Parfait', id: '487C', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
       regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // 5 seconds until mechanic
       delaySeconds: 2.2,
@@ -2221,29 +2253,29 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Move First',
             de: 'Zuerst bewegen',
-            ja: '最初は動く',
             fr: 'Bougez en premier',
-            ko: '우선 움직이기',
+            ja: '最初は動く',
             cn: '首先移动',
+            ko: '우선 움직이기',
           };
         }
         return {
           en: 'Stillness First',
           de: 'Zuerst Stillstehen',
-          ja: '最初は止まる',
           fr: 'Restez immobile en premier',
-          ko: '우선 멈추기',
+          ja: '最初は止まる',
           cn: '首先静止',
+          ko: '우선 멈추기',
         };
       },
     },
     {
       id: 'TEA Alpha Resolve Second Motion',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
+      regexFr: Regexes.ability({ source: 'Alexander Parfait', id: '487C', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
       regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // ~4 seconds until mechanic (to avoid overlapping with first)
       delaySeconds: 7.2,
@@ -2252,19 +2284,19 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Keep Moving',
             de: 'weiter bewegen',
-            ja: '最後は動く',
             fr: 'Continuez à bouger',
-            ko: '마지막엔 움직이기',
+            ja: '最後は動く',
             cn: '保持移动',
+            ko: '마지막엔 움직이기',
           };
         }
         return {
           en: 'Stop Everything',
           de: 'Alles stoppen',
-          ja: '最後は止まる',
           fr: 'Arrêtez tout',
-          ko: '마지막엔 멈추기',
+          ja: '最後は止まる',
           cn: '保持静止',
+          ko: '마지막엔 멈추기',
         };
       },
     },
@@ -2289,75 +2321,75 @@ let getHeadmarkerId = (data, matches) => {
           '-1': {
             en: 'No Clone: maybe purple E->S ???',
             de: 'Keine Klone: vielleicht Lila O->S ???',
+            fr: 'Pas de Clone : peut-être E->S ???',
             ja: 'クローン無し: 多分東から南???',
-            fr: 'Pas de Clone: peut-être E->S ???',
-            ko: '클론 없음: 아마도 동→남 ???',
             cn: '没有分身: 可能紫色 东->南 ???',
+            ko: '클론 없음: 아마도 동→남 ???',
           },
           '0': {
             en: 'Purple Bait: bait E',
             de: 'Lila Köder: locke O',
+            fr: 'Attirez le Violet : attirez à l\'E',
             ja: '逃亡監察: 東へ',
-            fr: 'Appât Violet: placez-vous E',
-            ko: '보라/도망감찰: 유도역할/동쪽',
             cn: '紫色引导: 东',
+            ko: '보라/도망감찰: 유도역할/동쪽',
           },
           '1': {
             en: 'Orange Bait: bait N',
             de: 'Orange Köder: locke N',
+            fr: 'Attirez l\'Orange : attirez au N',
             ja: '接触保護: 北へ',
-            fr: 'Appât Orange: placez-vous N',
-            ko: '노랑/접촉보호: 유도역할/북쪽',
             cn: '橙色引导: 北',
+            ko: '노랑/접촉보호: 유도역할/북쪽',
           },
           '2': {
             en: 'Purple, no tether: E->W',
             de: 'Lila, keine Verbindung: O->W',
+            fr: 'Violet, pas de lien : E->O',
             ja: '接触禁止, 線無し: 東から西へ',
-            fr: 'Violet, pas de lien: E->O',
-            ko: '보라/접촉금지/선없음: 동→서',
             cn: '紫色, 无连线: 东->西',
+            ko: '보라/접촉금지/선없음: 동→서',
           },
           // This person also has the shared sentence.
           '3': {
             en: 'Orange, no tether: E->N',
             de: 'Orange, keine Verbindung: O->N',
+            fr: 'Orange, pas de lien : E->N',
             ja: '接触禁止, 線無し: 東から北へ',
-            fr: 'Orange, pas de lien: E->N',
-            ko: '노랑/접촉금지/선없음: 동→북',
             cn: '橙色, 无连线: 东->北',
+            ko: '노랑/접촉금지/선없음: 동→북',
           },
           '4': {
             en: 'Purple, close tether: E->N',
             de: 'Lila, nahe Verbindungr: O->N',
+            fr: 'Violet, lien rapproché : E->N',
             ja: '逃亡禁止, 接近強制: 東から北へ',
-            fr: 'Violet, lien rapproché: E->N',
-            ko: '보라/도망금지/강제접근: 동→북',
             cn: '紫色, 接近连线: 东->北',
+            ko: '보라/도망금지/강제접근: 동→북',
           },
           '5': {
             en: 'Orange, close tether: E->N',
             de: 'Orange, nahe Verbindung: O->N',
+            fr: 'Orange, lien rapproché : E->N',
             ja: '接触禁止, 接近強制: 東から北へ',
-            fr: 'Orange, lien rapproché: E->N',
-            ko: '노랑/접촉금지/강제접근: 동→북',
             cn: '橙色, 接近连线: 东->北',
+            ko: '노랑/접촉금지/강제접근: 동→북',
           },
           '6': {
             en: 'Purple, far tether: E->S',
             de: 'Lila, entfernte Verbindung: O->S',
+            fr: 'Violet, lien éloigné : E->S',
             ja: '逃亡禁止, 接近禁止: 東から南へ',
-            fr: 'Violet, lien éloigné: E->S',
-            ko: '보라/도망금지/접근금지: 동→남',
             cn: '紫色, 远离连线: 东->南',
+            ko: '보라/도망금지/접근금지: 동→남',
           },
           '7': {
             en: 'Orange, far tether: E->N',
             de: 'Orange, entfernte Verbindung: O->N',
+            fr: 'Orange, lien éloigné : E->N',
             ja: '接触禁止, 接近禁止: 東から北へ',
-            fr: 'Orange, lien éloigné: E->N',
-            ko: '노랑/접촉금지/접근금지: 동→북',
             cn: '橙色, 远离连线: 东->北',
+            ko: '노랑/접촉금지/접근금지: 동→북',
           },
         }[sortedNames.indexOf(data.me)];
       },
@@ -2394,10 +2426,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Beta Radiant',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '489E' }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '489E' }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489E' }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
+      regexFr: Regexes.abilityFull({ source: 'Alexander Parfait', id: '489E' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489E' }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '489E' }),
       regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '489E' }),
       preRun: function(data, matches) {
         // Track which perfect alexander clone did this.
@@ -2414,34 +2446,34 @@ let getHeadmarkerId = (data, matches) => {
           0: {
             en: 'Sacrament North',
             de: 'Sacrement Norden',
-            ja: '拝火は北',
             fr: 'Sacrement Nord',
-            ko: '성례: 북',
+            ja: '拝火は北',
             cn: '拜火 北',
+            ko: '성례: 북',
           },
           1: {
             en: 'Sacrament East',
             de: 'Sacrement Osten',
-            ja: '拝火は東',
             fr: 'Sacrement Est',
-            ko: '성례: 동',
+            ja: '拝火は東',
             cn: '拜火 东',
+            ko: '성례: 동',
           },
           2: {
             en: 'Sacrament South',
             de: 'Sacrement Süden',
-            ja: '拝火は南',
             fr: 'Sacrement Sud',
-            ko: '성례: 남',
+            ja: '拝火は南',
             cn: '拜火 南',
+            ko: '성례: 남',
           },
           3: {
             en: 'Sacrament West',
             de: 'Sacrement Westen',
-            ja: '拝火は西',
             fr: 'Sacrement Ouest',
-            ko: '성례: 서',
+            ja: '拝火は西',
             cn: '拜火 西',
+            ko: '성례: 서',
           },
         }[idx];
       },
@@ -2457,17 +2489,18 @@ let getHeadmarkerId = (data, matches) => {
       // Stack (two people) is 48A3.
       id: 'TEA Beta Optical Spread',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '48A0', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '48A0', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
+      regexFr: Regexes.abilityFull({ source: 'Alexander Parfait', id: '48A0', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '48A0', capture: false }),
       regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '48A0', capture: false }),
       infoText: {
         en: 'Optical Spread',
         de: 'Visier verteilen',
+        fr: 'Dispersion optique',
         ja: '散開',
-        ko: '옵티컬: 산개',
         cn: '分散',
+        ko: '옵티컬: 산개',
       },
       run: function(data) {
         data.betaIsOpticalStack = false;
@@ -2476,17 +2509,18 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Beta Optical Stack',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A1', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '48A1', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '48A1', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
+      regexFr: Regexes.abilityFull({ source: 'Alexander Parfait', id: '48A1', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '48A1', capture: false }),
       regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '48A1', capture: false }),
       infoText: {
         en: 'Optical Stack',
         de: 'Visier sammeln',
+        fr: 'Package optique',
         ja: 'シェア',
-        ko: '옵티컬: 모이기',
         cn: '分摊',
+        ko: '옵티컬: 모이기',
       },
       run: function(data) {
         data.betaIsOpticalStack = true;
@@ -2495,10 +2529,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Beta Optical Final',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
+      regexFr: Regexes.ability({ source: 'Alexander Parfait', id: '4B14', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
       regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 12.2,
       alertText: function(data) {
@@ -2506,18 +2540,20 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Optical Spread',
             de: 'Visier verteilen',
+            fr: 'Dispersion optique',
             ja: '散開',
-            ko: '옵티컬: 산개',
             cn: '分散',
+            ko: '옵티컬: 산개',
           };
         }
         if (data.betaBait.includes(data.me)) {
           return {
             en: 'Optical Stack on YOU',
             de: 'Visier sammeln auf DIR',
+            fr: 'Package optique sur VOUS',
             ja: '自分にシェア',
-            ko: '옵티컬: 나에게 모이기',
             cn: '集合点名',
+            ko: '옵티컬: 나에게 모이기',
           };
         }
       },
@@ -2530,26 +2566,29 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Optical Stack',
             de: 'Visier sammeln',
-            ko: '옵티컬: 모이기',
+            fr: 'Package optique',
+            ja: 'シェア',
             cn: '集合',
+            ko: '옵티컬: 모이기',
           };
         }
         let names = data.betaBait.map((x) => data.ShortName(x)).sort();
         return {
           en: 'Optical Stack (' + names.join(', ') + ')',
           de: 'Visier sammeln (' + names.join(', ') + ')',
-          ko: '옵티컬: 모이기 (' + names.join(', ') + ')',
+          fr: 'Package optique (' + names.join(', ') + ')',
           cn: '集合 (' + names.join(', ') + ')',
+          ko: '옵티컬: 모이기 (' + names.join(', ') + ')',
         };
       },
     },
     {
       id: 'TEA Beta Radiant Final',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
+      regexFr: Regexes.ability({ source: 'Alexander Parfait', id: '4B14', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
       regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 16,
       alertText: function(data) {
@@ -2559,18 +2598,19 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Ordained Punishment',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4891' }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4891' }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4891' }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
+      regexFr: Regexes.startsUsing({ source: 'Alexander Parfait', id: '4891' }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4891' }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4891' }),
       regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '4891' }),
       alarmText: function(data, matches) {
         if (data.role == 'tank' && data.me != matches.target) {
           return {
             en: 'Tank Swap!',
             de: 'Tank Wechsel!',
-            ko: '탱크 교대!!!',
+            fr: 'Tank Swap !',
             cn: '换T!',
+            ko: '탱크 교대!!!',
           };
         }
       },
@@ -2580,20 +2620,20 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
-            ko: '나에게 탱크버스터',
             cn: '死刑点名',
+            ko: '나에게 탱크버스터',
           };
         }
         if (data.role == 'healer') {
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            fr: 'Tank buster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
             cn: '死刑点 ' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + '에게 탱크버스터',
           };
         }
       },
@@ -2601,26 +2641,27 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Trine Get Middle',
       regex: Regexes.ability({ source: 'Perfect Alexander', id: '488E', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '488E', capture: false }),
       regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '488E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '488E', capture: false }),
+      regexFr: Regexes.ability({ source: 'Alexander Parfait', id: '488E', capture: false }),
       regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
+      regexCn: Regexes.ability({ source: '完美亚历山大', id: '488E', capture: false }),
       regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '488E', capture: false }),
       alertText: {
         en: 'Stack Middle for Trine',
         de: 'Mittig sammeln für Trine',
+        fr: 'Packez-vous au milieu pour Trine',
         ja: '大審判来るよ',
-        ko: '대심판이 옵니다, 가운데로',
         cn: '大审判 中间集合',
+        ko: '대심판이 옵니다, 가운데로',
       },
     },
     {
       id: 'TEA Trine Initial',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '488F', x: '100', y: '(?:92|100|108)' }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      regexFr: Regexes.abilityFull({ source: 'Alexander Parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '488F', x: '100', y: '(?:92|100|108)' }),
       regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '488F', x: '100', y: '(?:92|100|108)' }),
       preRun: function(data, matches) {
         data.trine = data.trine || [];
@@ -2700,17 +2741,21 @@ let getHeadmarkerId = (data, matches) => {
               first: 'Warte in der Mitte, ausweichen nach Norden',
               second: 'Norden',
             },
+            fr: {
+              first: 'Attendez au milieu, esquivez au Nord',
+              second: 'Nord',
+            },
             ja: {
               first: '中央から北へ',
               second: '北へ',
             },
-            ko: {
-              first: '가운데서 북쪽으로',
-              second: '북쪽으로',
-            },
             cn: {
               first: '中间 -> 北',
               second: '北',
+            },
+            ko: {
+              first: '가운데서 북쪽으로',
+              second: '북쪽으로',
             },
           },
           'rg': {
@@ -2722,17 +2767,21 @@ let getHeadmarkerId = (data, matches) => {
               first: 'Geh nach Norden, ausweichen nach Süden',
               second: 'Süden',
             },
+            fr: {
+              first: 'Allez 1 au Nord, esquivez au Sud',
+              second: 'Sud',
+            },
             ja: {
               first: '北から中央へ',
               second: '中央へ',
             },
-            ko: {
-              first: '북쪽에서 가운데로',
-              second: '가운데로',
-            },
             cn: {
               first: '北 -> 中间',
               second: '中间',
+            },
+            ko: {
+              first: '북쪽에서 가운데로',
+              second: '가운데로',
             },
           },
           'ry': {
@@ -2744,17 +2793,21 @@ let getHeadmarkerId = (data, matches) => {
               first: 'Geh nach Norden, ausweichen nach Westen',
               second: 'Westen',
             },
+            fr: {
+              first: 'Allez 1 au Nord, esquivez à l\'Ouest',
+              second: 'Ouest',
+            },
             ja: {
               first: '北から西へ',
               second: '西へ',
             },
-            ko: {
-              first: '북쪽에서 서쪽으로',
-              second: '서쪽으로',
-            },
             cn: {
               first: '北 -> 西',
               second: '西',
+            },
+            ko: {
+              first: '북쪽에서 서쪽으로',
+              second: '서쪽으로',
             },
           },
           'yr': {
@@ -2766,17 +2819,21 @@ let getHeadmarkerId = (data, matches) => {
               first: 'Geh nach Süden, ausweichen nach Osten',
               second: 'Osten',
             },
+            fr: {
+              first: 'Allez 1 au Sud, esquivez à l\'Est',
+              second: 'Est',
+            },
             ja: {
               first: '南から東へ',
               second: '東へ',
             },
-            ko: {
-              first: '남쪽에서 동쪽으로',
-              second: '동쪽으로',
-            },
             cn: {
               first: '南 -> 东',
               second: '东',
+            },
+            ko: {
+              first: '남쪽에서 동쪽으로',
+              second: '동쪽으로',
             },
           },
           'gy': {
@@ -2788,17 +2845,21 @@ let getHeadmarkerId = (data, matches) => {
               first: 'Warte in der Mitte, ausweichen nach Süden',
               second: 'Süden',
             },
+            fr: {
+              first: 'Attendez au milieu, esquivez au Sud',
+              second: 'Sud',
+            },
             ja: {
               first: '中央から南へ',
               second: '南へ',
             },
-            ko: {
-              first: '가운데서 남쪽으로',
-              second: '남쪽으로',
-            },
             cn: {
               first: '中间 -> 南',
               second: '南',
+            },
+            ko: {
+              first: '가운데서 남쪽으로',
+              second: '남쪽으로',
             },
           },
           'yg': {
@@ -2810,17 +2871,21 @@ let getHeadmarkerId = (data, matches) => {
               first: 'Geh nach Süden, ausweichen nach Norden',
               second: 'Norden',
             },
+            fr: {
+              first: 'Allez 1 au Sud, esquivez au Nord',
+              second: 'Nord',
+            },
             ja: {
               first: '南から北へ',
               second: '北へ',
             },
-            ko: {
-              first: '남쪽에서 북쪽으로',
-              second: '북쪽으로',
-            },
             cn: {
               first: '南 -> 北',
               second: '北',
+            },
+            ko: {
+              first: '남쪽에서 북쪽으로',
+              second: '북쪽으로',
             },
           },
         }[threeOne][data.displayLang];
@@ -2834,10 +2899,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Trine Second',
       regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '4890', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '4890', capture: false }),
       regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4890', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4890', capture: false }),
+      regexFr: Regexes.abilityFull({ source: 'Alexander Parfait', id: '4890', capture: false }),
       regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4890', capture: false }),
+      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '4890', capture: false }),
       regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
       suppressSeconds: 15,
       alertText: function(data) {
@@ -2847,10 +2912,10 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Irresistible Grace',
       regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4894' }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4894' }),
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4894' }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4894' }),
+      regexFr: Regexes.startsUsing({ source: 'Alexander Parfait', id: '4894' }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4894' }),
+      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4894' }),
       regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487B' }),
       // Don't collide with trine.
       delaySeconds: 2,
@@ -2859,8 +2924,8 @@ let getHeadmarkerId = (data, matches) => {
           return {
             en: 'Stack on YOU',
             de: 'Auf DIR sammeln',
-            ja: '自分にシェア',
             fr: 'Package sur VOUS',
+            ja: '自分にシェア',
             cn: '集合点名',
             ko: '나에게 모이기',
           };
@@ -2868,9 +2933,9 @@ let getHeadmarkerId = (data, matches) => {
         return {
           en: 'Stack on ' + data.ShortName(matches.target),
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Package sur ' + data.ShortName(matches.target),
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
+          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + ' にシェア',
+          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
           ko: data.ShortName(matches.target) + '에게 모이기',
         };
       },
@@ -3016,25 +3081,30 @@ let getHeadmarkerId = (data, matches) => {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        '(?<! )Alexander(?! )': 'Alexander',
         'Alexander Prime': 'Primo-Alexander',
         'Brute Justice': 'Justicier',
-        'Cruise Chaser': 'Croiseur-chasseur',
-        'Jagd Doll': 'poupée jagd',
-        'Liquid Hand': 'membre liquide',
-        'Liquid Rage': 'furie liquide',
-        'Living Liquid': 'liquide vivant',
-        'Perfect Alexander': 'Alexander parfait',
-        'Plasmasphere': 'sphère de plasma',
-        'Steam Chakram': 'chakram de vapeur',
+        'Cruise Chaser': 'Croiseur-Chasseur',
+        'Jagd Doll': 'Poupée Jagd',
+        'Judgment Crystal': 'Cristal Du Jugement',
+        'Liquid Hand': 'Membre Liquide',
+        'Liquid Rage': 'Furie Liquide',
+        'Living Liquid': 'Liquide Vivant',
+        'Perfect Alexander': 'Alexander Parfait',
+        'Plasmasphere': 'Sphère De Plasma',
+        'Steam Chakram': 'Chakram De Vapeur',
       },
       'replaceText': {
+        '--adds targetable--': '--adds ciblables--',
+        '--alex untargetable--': '--alex non ciblable--',
+        '--Cruise Chaser Invincible--': '--Croiseur-chasseur Invincible--',
         'Aetheroplasm': 'Éthéroplasma',
         'Almighty Judgment': 'Sentence divine',
         'Alpha Sword': 'Épée alpha',
         'Apocalyptic Ray': 'Rayon apocalyptique',
         'Cascade': 'Cascade',
+        'Chakrams': 'Chakrams',
         'Chastening Heat': 'Chaleur de l\'ordalie',
-        'Collective Reprobation': 'Réprobation collective',
         'Crashing Wave': 'Vague percutante',
         'Divine Judgment': 'Jugement divin',
         'Divine Spear': 'Épieu divin',
@@ -3042,46 +3112,55 @@ let getHeadmarkerId = (data, matches) => {
         'Down for the Count': 'Au tapis',
         'Drainage': 'Drainage',
         'Earth Missile': 'Missile de terre',
-        'Embolus': 'caillot',
+        'Embolus': 'Caillot',
         'Enumeration': 'Compte',
         'Eternal Darkness': 'Ténèbres éternelles',
         'Exhaust': 'Échappement',
+        'Fate:': 'Sorts :',
+        'Fate Calibration': 'Bilan futurologique',
+        'Fate Projection': 'Étude futurologique',
         'Final Sentence': 'Peine capitale',
         'Flarethrower': 'Lance-brasiers',
         'Fluid Strike': 'Frappe fluide',
         'Fluid Swing': 'Coup fluide',
         'Gavel': 'Conclusion de procès',
         'Hand of Pain': 'Main de douleur',
-        'Hand of Prayer': 'Main de prière',
+        'Hand of Prayer/Parting': 'Main de prière/séparation',
         'Hawk Blaster': 'Canon faucon',
         'Hidden Minefield': 'Champ de mines caché',
         'Inception(?! )': 'Commencement',
         'Inception Formation': 'Marche du commencement',
         'Incinerating Heat': 'Chaleur purifiante',
-        'Individual Reprobation': 'Réprobation individuelle',
+        'Individual/Collective Reprobation': 'Réprobation individuelle/collective',
         'Irresistible Grace': 'Peines interdépendantes',
         'J Jump': 'Bond justicier',
         'J Kick': 'Pied justicier',
-        'J Storm': 'Tempête justicière',
+        'J Storm \\+ Waves': 'Tempête justicière + Vagues',
         'Judgment Crystal': 'Cristal du jugement',
         'Judgment Nisi': 'Jugement conditionnel',
         'Limit Cut': 'Dépassement de limites',
         'Link-Up': 'Effort collectif',
         'Liquid Gaol': 'Geôle liquide',
         'Mega Holy': 'Méga Miracle',
+        'Middle Blaster': 'Canon au milieu',
         'Missile Command': 'Commande missile',
+        'Obloquy, Solidarity and 3x Severity': 'Infamie, Solidarité et 3x Sévérité',
         'Optical Sight': 'Visée optique',
         'Ordained Capital Punishment': 'Châtiment exemplaire',
-        'Ordained Motion': 'Défense de s\'arrêter',
+        'Ordained Motion/Stillness': 'Défense de s\'arrêter/de bouger',
         'Ordained Punishment': 'Châtiment',
-        'Ordained Stillness': 'Défense de bouger',
         'Photon': 'Photon',
+        'Players Remaining': 'Joueurs restants',
         'Pressurize': 'Repressurisation',
         'Propeller Wind': 'Vent turbine',
         'Protean Wave': 'Vague inconstante',
         'Punishing Wave': 'Vague punitive',
+        'Rage Wave': 'Vague inconstante',
         '(?<! )Repentance': 'Repentir',
         'Sacrament': 'Sacrement',
+        'Surety and Severity': 'Serment et Sévérité',
+        'Surety and Solidarity': 'Serment et Solidarité',
+        'Surety, Solidarity and Severity': 'Serment, Solidarité et Sévérité',
         'Sluice': 'Éclusage',
         'Spin Crusher': 'Écrasement tournoyant',
         'Splash': 'Éclaboussement',
@@ -3092,47 +3171,44 @@ let getHeadmarkerId = (data, matches) => {
         'Temporal Prison': 'Geôle temporelle',
         'Temporal Stasis': 'Stase temporelle',
         'The Final Word': 'Prononcé du jugement',
+        'Throttle': 'Cadence Améliorée',
+        'True Heart': 'Affection féline',
         'Void Of Repentance': 'Vide du repentir',
+        'Water and Thunder': 'Eau et Foudre',
         'Whirlwind': 'Tornade',
         'Wormhole Formation': 'Marche de la fracture dimensionnelle',
       },
       '~effectNames': {
-        'Aggravated Assault': 'Jugement : peine sévère',
-        'Compressed Lightning': 'Compression électrique',
-        'Compressed Water': 'Compression aqueuse',
-        'Contact Regulation Ordained': 'Contact forcé',
+        'Aggravated Assault': 'Jugement : Peine Sévère',
+        'Compressed Lightning': 'Compression Électrique',
+        'Compressed Water': 'Compression Aqueuse',
+        'Contact Regulation Ordained': 'Contact Forcé',
         'Devotion': 'Dévouement',
-        'Down for the Count': 'Au tapis',
+        'Down for the Count': 'Au Tapis',
         'Embolden': 'Enhardissement',
         'Enigma Codex': 'Enigma Codex',
-        'Escape Detection Ordained': 'Fuite forcée',
-        'Final Decree Nisi α': 'Peine provisoire α ultime',
-        'Final Decree Nisi β': 'Peine provisoire β ultime',
-        'Final Decree Nisi γ': 'Peine provisoire γ ultime',
-        'Final Decree Nisi δ': 'Peine provisoire δ ultime',
-        'Final Judgment: Decree Nisi α': 'Injonction : peine provisoire α',
-        'Final Judgment: Decree Nisi β': 'Injonction : peine provisoire β',
-        'Final Judgment: Decree Nisi γ': 'Injonction : peine provisoire γ',
-        'Final Judgment: Decree Nisi δ': 'Injonction : peine provisoire δ',
-        'Final Judgment: Penalty III': 'Injonction : 3 altérations',
-        'Final Word: Contact Prohibition': 'Jugement : contact prohibé',
-        'Final Word: Contact Regulation': 'Jugement : contact forcé',
-        'Final Word: Escape Detection': 'Jugement : fuite forcée',
-        'Final Word: Escape Prohibition': 'Jugement : fuite prohibée',
-        'Fire Resistance Down II': 'Résistance au feu réduite+',
+        'Escape Detection Ordained': 'Fuite Forcée',
+        'Final Decree Nisi': 'Peine Provisoire Ultime',
+        'Final Judgment: Decree Nisi': 'Injonction : Peine Provisoire',
+        'Final Judgment: Penalty III': 'Injonction : 3 Altérations',
+        'Final Word: Contact Prohibition': 'Jugement : Contact Prohibé',
+        'Final Word: Contact Regulation': 'Jugement : Contact Forcé',
+        'Final Word: Escape Detection': 'Jugement : Fuite Forcée',
+        'Final Word: Escape Prohibition': 'Jugement : fuite Prohibée',
+        'Fire Resistance Down II': 'Résistance Au Feu Réduite+',
         'Heavy': 'Pesanteur',
-        'House Arrest': 'Jugement : rapprochement',
-        'Lightning Resistance Down II': 'Résistance à la foudre réduite+',
-        'Luminous Aetheroplasm': 'Éthéroplasma lumineux',
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
-        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
-        'Restraining Order': 'Jugement : éloignement',
-        'Shared Sentence': 'Jugement : peine collective',
-        'Summon Order': 'Action en attente : 1',
-        'Summon Order III': 'Actions en attente : 3',
-        'Temporal Displacement': 'Stase temporelle',
-        'Throttle': 'Cadence améliorée',
-        'Water Resistance Down II': 'Résistance à l\'eau réduite+',
+        'House Arrest': 'Jugement : Rapprochement',
+        'Lightning Resistance Down II': 'Résistance À La Foudre Réduite+',
+        'Luminous Aetheroplasm': 'Éthéroplasma Lumineux',
+        'Magic Vulnerability Up': 'Vulnérabilité Magique Augmentée',
+        'Physical Vulnerability Up': 'Vulnérabilité Physique Augmentée',
+        'Restraining Order': 'Jugement : Éloignement',
+        'Shared Sentence': 'Jugement : Peine Collective',
+        'Summon Order': 'Action En Attente : 1',
+        'Summon Order III': 'Actions En Attente : 3',
+        'Temporal Displacement': 'Stase Temporelle',
+        'Throttle': 'Suffocation',
+        'Water Resistance Down II': 'Résistance À L\'eau Réduite+',
       },
     },
     {
