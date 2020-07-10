@@ -24,7 +24,7 @@ jobs:
           python-version: '3.7'
       - name: Install Dependencies
         run: |
-          pip install black==19.10b0 PyYAML==5.1.2 requests==2.22.0
+          pip install black==19.10b0
       - name: black **/*.py --line-length 100 --check --diff
         run: |
           black **/*.py --line-length 100 --check --diff
@@ -42,7 +42,7 @@ jobs:
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
       - name: Install Dependencies
         run: | # TODO: Update pylint version to one that natively caps isort dependency
-          pip install pylint==2.2.3 isort==4.3.21 PyYAML==5.1.2 requests==2.22.0
+          pip install pylint==2.2.3 isort==4.3.21 PyYAML requests
       - name: pylint **/*.py --errors-only
         run: |
           pylint **/*.py --errors-only
