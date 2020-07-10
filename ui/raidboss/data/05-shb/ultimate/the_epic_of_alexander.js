@@ -3078,7 +3078,6 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Alexander(?! )': 'Alexander',
         'Alexander Prime': 'Primo-Alexander',
