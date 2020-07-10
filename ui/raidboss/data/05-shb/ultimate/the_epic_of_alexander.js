@@ -1250,7 +1250,7 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Far Tethers',
         de: 'Entfernte Verbindungen',
-        fr: 'Éloignez les liens',
+        fr: 'Liens éloignés',
         ja: 'ファー',
         cn: '远离连线',
         ko: '접근금지: 상대와 떨어지기',
@@ -1271,7 +1271,7 @@ let getHeadmarkerId = (data, matches) => {
       alertText: {
         en: 'Close Tethers',
         de: 'Nahe Verbindungen',
-        fr: 'Rapprochez les liens',
+        fr: 'Liens proches',
         ja: 'ニアー',
         cn: '靠近连线',
         ko: '강제접근: 상대와 가까이 붙기',
