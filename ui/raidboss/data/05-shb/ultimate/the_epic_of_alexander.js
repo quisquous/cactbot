@@ -893,7 +893,7 @@ let getHeadmarkerId = (data, matches) => {
       infoText: {
         en: 'Break Shield From Front',
         de: 'Schild von Vorne zerstören',
-        fr: 'Brisez le bouclier du devant',
+        fr: 'Brisez le bouclier par devant',
         ja: '正面からシールド壊して',
         cn: '从前面击破盾牌',
         ko: '정면에서 실드를 부수기',
