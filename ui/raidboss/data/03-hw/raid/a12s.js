@@ -168,12 +168,7 @@
     },
     {
       id: 'A12S Shared Sentence',
-      regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: peine collective' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Shared Sentence',
@@ -186,12 +181,7 @@
     },
     {
       id: 'A12S Defamation',
-      regex: Regexes.gainsEffect({ effect: 'Defamation' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Ehrenstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: diffamation' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：名誉罰' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：名誉罪' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 명예형' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '460' }),
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Defamation',
@@ -307,10 +297,6 @@
         'timegates active': 'Zeittore Aktiv',
         'timestop': 'Zeitstopp',
       },
-      '~effectNames': {
-        'Defamation': 'Urteil: Ehrenstrafe',
-        'Shared Sentence': 'Urteil: Kollektivstrafe',
-      },
     },
     {
       'locale': 'fr',
@@ -357,10 +343,6 @@
         'timegate': 'Porte temporelle',
         'Void Of Repentance': 'Vide du repentir',
       },
-      '~effectNames': {
-        'Defamation': 'Jugement: diffamation',
-        'Shared Sentence': 'Jugement: peine collective',
-      },
     },
     {
       'locale': 'ja',
@@ -402,10 +384,6 @@
         'The General\'s Time': 'アリダイオス・タイム',
         'The General\'s Wing': 'アリダイオス・ウィング',
         'Void Of Repentance': '懺悔の間',
-      },
-      '~effectNames': {
-        'Defamation': '確定判決：名誉罰',
-        'Shared Sentence': '確定判決：集団罰',
       },
     },
     {
@@ -451,10 +429,6 @@
         'timegates active': '时空门激活',
         'timestop': '时停',
       },
-      '~effectNames': {
-        'Defamation': '判决确定：名誉罪',
-        'Shared Sentence': '判决确定：集团罪',
-      },
     },
     {
       'locale': 'ko',
@@ -496,10 +470,6 @@
         'The General\'s Time': '아리다이오스의 시간',
         'The General\'s Wing': '아리다이오스의 날개',
         'Void Of Repentance': '참회의 방',
-      },
-      '~effectNames': {
-        'Defamation': '확정 판결: 명예형',
-        'Shared Sentence': '확정 판결: 단체형',
       },
     },
   ],

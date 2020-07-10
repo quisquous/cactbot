@@ -68,13 +68,9 @@
       },
     },
     {
+      // Honey-Glazed
       id: 'T6 Honey On',
-      regex: Regexes.gainsEffect({ effect: 'Honey-Glazed' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Honigsüß' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Mielleux' }),
-      regexJa: Regexes.gainsEffect({ effect: '蜂蜜' }),
-      regexCn: Regexes.gainsEffect({ effect: '蜂蜜' }),
-      regexKo: Regexes.gainsEffect({ effect: '벌꿀' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -84,12 +80,7 @@
     },
     {
       id: 'T6 Honey Off',
-      regex: Regexes.losesEffect({ effect: 'Honey-Glazed' }),
-      regexDe: Regexes.losesEffect({ effect: 'Honigsüß' }),
-      regexFr: Regexes.losesEffect({ effect: 'Mielleux' }),
-      regexJa: Regexes.losesEffect({ effect: '蜂蜜' }),
-      regexCn: Regexes.losesEffect({ effect: '蜂蜜' }),
-      regexKo: Regexes.losesEffect({ effect: '벌꿀' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -260,9 +251,6 @@
         'Thorn Whip': 'Dornenpeitsche',
         'Viscid Emission': 'Klebsporen',
       },
-      '~effectNames': {
-        'Honey-Glazed': 'Honigsüß',
-      },
     },
     {
       'locale': 'fr',
@@ -283,9 +271,6 @@
         'Swarm': 'Nuée',
         'Thorn Whip': 'Fouet de ronces',
         'Viscid Emission': 'Émission visqueuse',
-      },
-      '~effectNames': {
-        'Honey-Glazed': 'Mielleux',
       },
     },
     {
@@ -308,9 +293,6 @@
         'Thorn Whip': 'ソーンウィップ',
         'Viscid Emission': 'ヴィシドエミッション',
       },
-      '~effectNames': {
-        'Honey-Glazed': '蜂蜜',
-      },
     },
     {
       'locale': 'cn',
@@ -332,9 +314,6 @@
         'Thorn Whip': '荆棘鞭',
         'Viscid Emission': '胶质排放物',
       },
-      '~effectNames': {
-        'Honey-Glazed': '蜂蜜',
-      },
     },
     {
       'locale': 'ko',
@@ -355,9 +334,6 @@
         'Swarm': '벌레 떼',
         'Thorn Whip': '가시채찍',
         'Viscid Emission': '점액 배출',
-      },
-      '~effectNames': {
-        'Honey-Glazed': '벌꿀',
       },
     },
   ],

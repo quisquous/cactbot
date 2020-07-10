@@ -148,12 +148,7 @@
     },
     {
       id: 'General Walking',
-      regex: Regexes.gainsEffect({ effect: 'Walking Dead' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Erweckter' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marcheur des limbes' }),
-      regexJa: Regexes.gainsEffect({ effect: 'ウォーキングデッド' }),
-      regexCn: Regexes.gainsEffect({ effect: '死而不僵' }),
-      regexKo: Regexes.gainsEffect({ effect: '움직이는 시체' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '32B' }),
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;

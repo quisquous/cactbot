@@ -39,8 +39,9 @@
       },
     },
     {
+      // Stun Resistance.
       id: 'A4S Stun Leg',
-      regex: Regexes.losesEffect({ effect: 'Stun Resistance' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '27' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -113,9 +114,6 @@
         'Royal Pentacle': 'Pentacle royal',
         'Seed Of The Sky': 'Graine du ciel',
         'Straf Doll': 'Poupée straf',
-      },
-      '~effectNames': {
-        'Stun Resistance': 'Résistance à Étourdissement',
       },
     },
   ],

@@ -113,13 +113,9 @@
       },
     },
     {
+      // Chain Of Purgatory
       id: 'T12 Chain',
-      regex: Regexes.gainsEffect({ effect: 'Chain Of Purgatory' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Kette Der Purgation' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Souffle Du Purgatoire' }),
-      regexJa: Regexes.gainsEffect({ effect: '誘爆' }),
-      regexCn: Regexes.gainsEffect({ effect: '引爆' }),
-      regexKo: Regexes.gainsEffect({ effect: '유폭' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '24D' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -167,9 +163,6 @@
         'Summon': 'Beschwörung',
         'Whitefire': 'Weißfeuer',
       },
-      '~effectNames': {
-        'Chain Of Purgatory': 'Kette der Purgation',
-      },
     },
     {
       'locale': 'fr',
@@ -194,9 +187,6 @@
         'Scorched Pinion': 'Aile embrasante',
         'Summon': 'Invocation',
         'Whitefire': 'Flamme blanche',
-      },
-      '~effectNames': {
-        'Chain Of Purgatory': 'Souffle du purgatoire',
       },
     },
     {
@@ -223,9 +213,6 @@
         'Summon': '召喚',
         'Whitefire': '白熱の炎',
       },
-      '~effectNames': {
-        'Chain Of Purgatory': '誘爆',
-      },
     },
     {
       'locale': 'cn',
@@ -251,9 +238,6 @@
         'Summon': '召唤',
         'Whitefire': '白热之炎',
       },
-      '~effectNames': {
-        'Chain Of Purgatory': '引爆',
-      },
     },
     {
       'locale': 'ko',
@@ -278,9 +262,6 @@
         'Scorched Pinion': '타오르는 날개',
         'Summon': '소환',
         'Whitefire': '백열의 불꽃',
-      },
-      '~effectNames': {
-        'Chain Of Purgatory': '유폭',
       },
     },
   ],

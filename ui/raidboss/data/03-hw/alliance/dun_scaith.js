@@ -225,12 +225,7 @@
     {
       // https://xivapi.com/Status/1137
       id: 'Dun Scaith Debilitator Fire',
-      regex: Regexes.gainsEffect({ effect: 'Fire Resistance Down Ii', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Feuerresistenz - \\(Stark\\)', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Résistance Au Feu Réduite\\+', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '火属性耐性低下\\[強\\]', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '火属性耐性大幅降低', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '불속성 저항 감소\\[강\\]', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '471', capture: false }),
       suppressSeconds: 10,
       alertText: {
         en: 'Change puddles to water',
@@ -242,12 +237,7 @@
     {
       // https://xivapi.com/Status/1157
       id: 'Dun Scaith Debilitator Water',
-      regex: Regexes.gainsEffect({ effect: 'Water Resistance Down Ii', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserresistenz - \\(Stark\\)', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Résistance À L\'Eau Réduite\\+', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性耐性低下［強］', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性耐性大幅降低', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 저항 감소\\[강\\]', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '485', capture: false }),
       suppressSeconds: 10,
       alertText: {
         en: 'Change puddles to fire',
@@ -290,12 +280,7 @@
     },
     {
       id: 'Dun Scaith Prey Markers',
-      regex: Regexes.gainsEffect({ effect: 'Prey' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Markiert' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marquage' }),
-      regexJa: Regexes.gainsEffect({ effect: 'マーキング' }),
-      regexCn: Regexes.gainsEffect({ effect: '猎物' }),
-      regexKo: Regexes.gainsEffect({ effect: '표식' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '232' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -535,12 +520,7 @@
     },
     {
       id: 'Dun Scaith Noctoshield',
-      regex: Regexes.gainsEffect({ target: 'Diabolos', effect: 'Noctoshield', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Diabolos', effect: 'Nachtschild', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Diabolos', effect: 'Nocto-Bouclier', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'ディアボロス', effect: 'ノクトシールド', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '迪亚波罗斯', effect: '夜障', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '디아볼로스', effect: '밤의 방패', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Diabolos', effectId: '1AA', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -661,12 +641,6 @@
         'Void Sprite': 'Nichts-Exergon',
         'Wailing Atomos': 'Heul-Atomos',
       },
-      '~effectNames': {
-        'Fire Resistance Down Ii': 'Feuerresistenz - \\(stark\\)',
-        'Noctoshield': 'Nachtschild',
-        'Prey': 'Markiert',
-        'Water Resistance Down Ii': 'Wasserresistenz - \\(stark\\)',
-      },
     },
     {
       'locale': 'fr',
@@ -686,12 +660,6 @@
         'Shadows gather on the floor': 'Le pouvoir des ombres se concentre sur le sol',
         'Void Sprite': 'élémentaire du vide',
         'Wailing Atomos': 'gueule gémissante',
-      },
-      '~effectNames': {
-        'Fire Resistance Down Ii': 'Résistance au feu réduite\\+',
-        'Noctoshield': 'Nocto-bouclier',
-        'Prey': 'Marquage',
-        'Water Resistance Down Ii': 'Résistance à l\'eau réduite\\+',
       },
     },
     {
@@ -713,12 +681,6 @@
         'Void Sprite': 'ヴォイド・スプライト',
         'Wailing Atomos': '虚声のアトモス',
       },
-      '~effectNames': {
-        'Fire Resistance Down Ii': '火属性耐性低下\\[強\\]',
-        'Noctoshield': 'ノクトシールド',
-        'Prey': 'マーキング',
-        'Water Resistance Down Ii': '水属性耐性低下［強］',
-      },
     },
     {
       'locale': 'cn',
@@ -739,12 +701,6 @@
         'Void Sprite': '虚无元精',
         'Wailing Atomos': '虚声的阿托莫斯',
       },
-      '~effectNames': {
-        'Fire Resistance Down Ii': '火属性耐性大幅降低',
-        'Noctoshield': '夜障',
-        'Prey': '猎物',
-        'Water Resistance Down Ii': '水属性耐性大幅降低',
-      },
     },
     {
       'locale': 'ko',
@@ -764,12 +720,6 @@
         'Shadows gather on the floor': '바닥에 그림자의 힘이 모여듭니다',
         'Void Sprite': '보이드 정령',
         'Wailing Atomos': '허성의 아토모스',
-      },
-      '~effectNames': {
-        'Fire Resistance Down Ii': '불속성 저항 감소[강]',
-        'Noctoshield': '밤의 방패',
-        'Prey': '표식',
-        'Water Resistance Down Ii': '물속성 저항 감소[강]',
       },
     },
   ],

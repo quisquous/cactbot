@@ -92,12 +92,7 @@
     },
     {
       id: 'Fractal Aetherochemical Bomb',
-      regex: Regexes.gainsEffect({ effect: 'Aetherochemical Bomb', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Ätherochemischer Sprengkörper', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Magismobombe', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '魔爆弾', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '魔炸弹', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '마폭탄', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '2D3', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },

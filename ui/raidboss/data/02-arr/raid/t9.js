@@ -43,12 +43,7 @@
   triggers: [
     {
       id: 'T9 Raven Blight You',
-      regex: Regexes.gainsEffect({ effect: 'Raven Blight' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace' }),
-      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気' }),
-      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气' }),
-      regexKo: Regexes.gainsEffect({ effect: '흉조의 독' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -65,12 +60,7 @@
     },
     {
       id: 'T9 Raven Blight Not You',
-      regex: Regexes.gainsEffect({ effect: 'Raven Blight' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Pestschwinge' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bile De Rapace' }),
-      regexJa: Regexes.gainsEffect({ effect: '凶鳥毒気' }),
-      regexCn: Regexes.gainsEffect({ effect: '凶鸟毒气' }),
-      regexKo: Regexes.gainsEffect({ effect: '흉조의 독' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1CA' }),
       condition: function(data, matches) {
         return data.me != matches.target;
       },
@@ -168,12 +158,7 @@
     },
     {
       id: 'T9 Garotte Twist Gain',
-      regex: Regexes.gainsEffect({ effect: 'Garrote Twist' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Leicht Fixierbar' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Sangle Accélérée' }),
-      regexJa: Regexes.gainsEffect({ effect: '拘束加速' }),
-      regexCn: Regexes.gainsEffect({ effect: '拘束加速' }),
-      regexKo: Regexes.gainsEffect({ effect: '구속 가속' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1CE' }),
       condition: function(data, matches) {
         return data.me == matches.target && !data.garotte;
       },
@@ -207,12 +192,7 @@
     },
     {
       id: 'T9 Garotte Twist Lose',
-      regex: Regexes.losesEffect({ effect: 'Garrote Twist' }),
-      regexDe: Regexes.losesEffect({ effect: 'Leicht Fixierbar' }),
-      regexFr: Regexes.losesEffect({ effect: 'Sangle Accélérée' }),
-      regexJa: Regexes.losesEffect({ effect: '拘束加速' }),
-      regexCn: Regexes.losesEffect({ effect: '拘束加速' }),
-      regexKo: Regexes.losesEffect({ effect: '구속 가속' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '1CE' }),
       condition: function(data, matches) {
         return data.me == matches.target && data.garotte;
       },
@@ -476,10 +456,6 @@
         '\\(Out\\)': '(Raus)',
         '\\(South\\)': '(Süden)',
       },
-      '~effectNames': {
-        'Garrote Twist': 'Leicht fixierbar',
-        'Raven Blight': 'Pestschwinge',
-      },
     },
     {
       'locale': 'fr',
@@ -525,10 +501,6 @@
         '\\(Out\\)': '(Extérieur)',
         '\\(South\\)': '(Sud)',
       },
-      '~effectNames': {
-        'Garrote Twist': 'Sangle Accélérée',
-        'Raven Blight': 'Bile De Rapace',
-      },
     },
     {
       'locale': 'ja',
@@ -568,10 +540,6 @@
         'Stardust': 'スターダスト',
         'Super Nova': 'スーパーノヴァ',
         'Thermionic Beam': 'サーミオニックビーム',
-      },
-      '~effectNames': {
-        'Garrote Twist': '拘束加速',
-        'Raven Blight': '凶鳥毒気',
       },
     },
     {
@@ -613,10 +581,6 @@
         'Super Nova': '超新星',
         'Thermionic Beam': '热离子光束',
       },
-      '~effectNames': {
-        'Garrote Twist': '拘束加速',
-        'Raven Blight': '凶鸟毒气',
-      },
     },
     {
       'locale': 'ko',
@@ -656,10 +620,6 @@
         'Stardust': '별조각',
         'Super Nova': '초신성',
         'Thermionic Beam': '열전자 광선',
-      },
-      '~effectNames': {
-        'Garrote Twist': '구속 가속',
-        'Raven Blight': '흉조의 독',
       },
     },
   ],

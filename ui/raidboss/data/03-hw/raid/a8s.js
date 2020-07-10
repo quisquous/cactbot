@@ -167,12 +167,7 @@
     {
       id: 'A8S Low Arithmeticks',
       // Note: both high and low use '0025' headmarker
-      regex: Regexes.gainsEffect({ effect: 'Low Arithmeticks' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Biomathematik-Ebene 1' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Calcul De Dénivelé 1' }),
-      regexJa: Regexes.gainsEffect({ effect: '算術：ハイト1' }),
-      regexCn: Regexes.gainsEffect({ effect: '算术：高度1' }),
-      regexKo: Regexes.gainsEffect({ effect: '산술: 고도 1' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '3FD' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
@@ -185,12 +180,7 @@
     },
     {
       id: 'A8S High Arithmeticks',
-      regex: Regexes.gainsEffect({ effect: 'High Arithmeticks' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Biomathematik-Ebene 2' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Calcul De Dénivelé 2' }),
-      regexJa: Regexes.gainsEffect({ effect: '算術：ハイト2' }),
-      regexCn: Regexes.gainsEffect({ effect: '算术：高度2' }),
-      regexKo: Regexes.gainsEffect({ effect: '산술: 고도 2' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '3FE' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       suppressSeconds: 10,
@@ -225,12 +215,7 @@
     {
       id: 'A8S Compressed Lightning',
       // Note: also the 0045 headmarker.
-      regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression Électrique' }),
-      regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
-      regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       // TODO: do we need a Responses.effectOn() that uses matches.effect?
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
@@ -258,24 +243,14 @@
     },
     {
       id: 'A8S Compressed Lightning Lose',
-      regex: Regexes.losesEffect({ effect: 'Compressed Lightning', capture: false }),
-      regexDe: Regexes.losesEffect({ effect: 'Blitzkompression', capture: false }),
-      regexFr: Regexes.losesEffect({ effect: 'Compression Électrique', capture: false }),
-      regexJa: Regexes.losesEffect({ effect: '雷属性圧縮', capture: false }),
-      regexCn: Regexes.losesEffect({ effect: '雷属性压缩', capture: false }),
-      regexKo: Regexes.losesEffect({ effect: '번개속성 압축', capture: false }),
+      netRegex: NetRegexes.losesEffect({ effectId: '400', capture: false }),
       run: function(data) {
         delete data.lightning;
       },
     },
     {
       id: 'A8S Compressed Lightning Soon',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression Électrique' }),
-      regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
-      regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '400' }),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
@@ -530,12 +505,7 @@
     },
     {
       id: 'A8S Verdict Min HP',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Min Hp' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Minimal-Lp' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : plus bas PV' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：Hp最小' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：体力最小' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: Hp 최소' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 8,
       alertText: {
@@ -547,24 +517,14 @@
     },
     {
       id: 'A8S Verdict Min HP Collect',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Min Hp' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Minimal-Lp' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : plus bas PV' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：Hp最小' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：体力最小' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: Hp 최소' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       run: function(data, matches) {
         data.verdictMin = matches.target;
       },
     },
     {
       id: 'A8S Verdict Min HP Tornado',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Min Hp' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Minimal-Lp' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : plus bas PV' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：Hp最小' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：体力最小' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: Hp 최소' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '408' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 27,
       alarmText: {
@@ -576,24 +536,14 @@
     },
     {
       id: 'A8S Verdict Max HP Collect',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Max Hp' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Maximal-Lp' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : plus hauts PV' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：Hp最大' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：体力最大' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: Hp 최대' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       run: function(data, matches) {
         data.verdictMax = matches.target;
       },
     },
     {
       id: 'A8S Verdict Max HP',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Max Hp' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Maximal-Lp' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : plus hauts PV' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：Hp最大' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：体力最大' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: Hp 최대' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Max HP: Provoke Boss Second',
@@ -603,13 +553,9 @@
       },
     },
     {
+      // Final Punishment effect falling off due to auto.
       id: 'A8S Verdict Max HP Provoke',
-      regex: Regexes.losesEffect({ effect: 'Final Punishment' }),
-      regexDe: Regexes.losesEffect({ effect: 'Letzte Züchtigung' }),
-      regexFr: Regexes.losesEffect({ effect: 'Punition Ultime' }),
-      regexJa: Regexes.losesEffect({ effect: '最後の体罰' }),
-      regexCn: Regexes.losesEffect({ effect: '最终体罚' }),
-      regexKo: Regexes.losesEffect({ effect: '최후의 체벌' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '403' }),
       condition: function(data, matches) {
         return matches.target == data.verdictMin && data.me == data.verdictMax;
       },
@@ -622,12 +568,7 @@
     },
     {
       id: 'A8S Verdict Max HP Blu Devour',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Max Hp' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Maximal-Lp' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : plus hauts PV' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：Hp最大' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：体力最大' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: Hp 최대' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: function(data, matches) {
         return data.me == matches.target && data.job == 'blu';
       },
@@ -641,12 +582,7 @@
     },
     {
       id: 'A8S Verdict Penalty 1',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Penalty I' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Schwächung 1' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : 1 altération' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：デバフ1' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：弱化状态1' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 약화 1' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '409' }),
       condition: Conditions.targetIsYou(),
       durationSeconds: 10,
       // TODO: we could say who to share north orbs with?
@@ -660,12 +596,7 @@
     },
     {
       id: 'A8S Verdict Penalty 2',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Penalty II' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Schwächung 2' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : 2 altérations' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：デバフ2' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：弱化状态2' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 약화 2' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '40A' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Penalty 2: NW Tornado',
@@ -676,12 +607,7 @@
     },
     {
       id: 'A8S Verdict Penalty 3',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Penalty III' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Schwächung 3' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : 3 altérations' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：デバフ3' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：弱化状态3' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 약화 3' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Penalty 3: Get a South Tornado',
@@ -692,12 +618,7 @@
     },
     {
       id: 'A8S Verdict Penalty 3 Orb',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Penalty III' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Schwächung 3' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : 3 altérations' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：デバフ3' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：弱化状态3' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 약화 3' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '40B' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 28,
       // TODO: we could collect who else has penalty 3 to share the orb with?
@@ -711,12 +632,7 @@
     },
     {
       id: 'A8S Verdict Nisi A',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi A' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Vorläufiges Urteil Α' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : peine provisoire α' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：仮判決Α' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：判决Α' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 임시 판결 Α' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '40C' }),
       condition: Conditions.targetIsYou(),
       // TODO: we could say east or west here after the regulators spawn?
       // TODO: we could also say who to share north orb with.
@@ -730,12 +646,7 @@
     },
     {
       id: 'A8S Verdict Nisi B',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi B' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess Über Vorläufiges Urteil Β' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : peine provisoire β' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：仮判決Β' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：判决Β' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 임시 판결 Β' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '40D' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Red Regulator -> Share 1x North Orb',
@@ -746,12 +657,7 @@
     },
     {
       id: 'A8S Compressed Water',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -778,12 +684,7 @@
     },
     {
       id: 'A8S Compressed Water Lose',
-      regex: Regexes.losesEffect({ effect: 'Compressed Water', capture: false }),
-      regexDe: Regexes.losesEffect({ effect: 'Wasserkompression', capture: false }),
-      regexFr: Regexes.losesEffect({ effect: 'Compression Aqueuse', capture: false }),
-      regexJa: Regexes.losesEffect({ effect: '水属性圧縮', capture: false }),
-      regexCn: Regexes.losesEffect({ effect: '水属性压缩', capture: false }),
-      regexKo: Regexes.losesEffect({ effect: '물속성 압축', capture: false }),
+      netRegex: NetRegexes.losesEffect({ effectId: '3FF', capture: false }),
       run: function(data) {
         // rip, valiant mine sac
         delete data.water;
@@ -791,12 +692,7 @@
     },
     {
       id: 'A8S Compressed Water Soon',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
@@ -914,20 +810,6 @@
         'Verdict': 'Prozesseröffnung',
         'Vortexer': 'Wirbler',
       },
-      '~effectNames': {
-        'Compressed Lightning': 'Blitzkompression',
-        'Compressed Water': 'Wasserkompression',
-        'Final Judgment: Decree Nisi A': 'Prozess über Vorläufiges Urteil α',
-        'Final Judgment: Decree Nisi B': 'Prozess über Vorläufiges Urteil β',
-        'Final Judgment: Max HP': 'Prozess über Maximal-LP',
-        'Final Judgment: Min HP': 'Prozess über Minimal-LP',
-        'Final Judgment: Penalty I(?!I)': 'Prozess über Schwächung 1',
-        'Final Judgment: Penalty II(?!I)': 'Prozess über Schwächung 2',
-        'Final Judgment: Penalty III': 'Prozess über Schwächung 3',
-        'Final Punishment': 'Letzte Züchtigung',
-        'High Arithmeticks': 'Biomathematik-Ebene 2',
-        'Low Arithmeticks': 'Biomathematik-Ebene 1',
-      },
     },
     {
       'locale': 'fr',
@@ -1003,20 +885,6 @@
         'Verdict': 'Ouverture de procès',
         'Vortexer \\(south\\)': 'Tourbillonneur (sud)',
       },
-      '~effectNames': {
-        'Compressed Lightning': 'Compression électrique',
-        'Compressed Water': 'Compression aqueuse',
-        'Final Judgment: Decree Nisi A': 'Injonction : peine provisoire α',
-        'Final Judgment: Decree Nisi B': 'Injonction : peine provisoire β',
-        'Final Judgment: Max HP': 'Injonction : plus hauts PV',
-        'Final Judgment: Min HP': 'Injonction : plus bas PV',
-        'Final Judgment: Penalty I(?!I)': 'Injonction : 1 altération',
-        'Final Judgment: Penalty II(?!I)': 'Injonction : 2 altérations',
-        'Final Judgment: Penalty III': 'Injonction : 3 altérations',
-        'Final Punishment': 'Punition ultime',
-        'High Arithmeticks': 'Calcul de dénivelé 2',
-        'Low Arithmeticks': 'Calcul de dénivelé 1',
-      },
     },
     {
       'locale': 'ja',
@@ -1090,20 +958,6 @@
         'Ultra Flash': 'ウルトラフラッシュ',
         'Verdict': '最後の審判：開廷',
         'Vortexer': 'ボルテッカー',
-      },
-      '~effectNames': {
-        'Compressed Lightning': '雷属性圧縮',
-        'Compressed Water': '水属性圧縮',
-        'Final Judgment: Decree Nisi A': '最後の審判：仮判決α',
-        'Final Judgment: Decree Nisi B': '最後の審判：仮判決β',
-        'Final Judgment: Max HP': '最後の審判：HP最大',
-        'Final Judgment: Min HP': '最後の審判：HP最小',
-        'Final Judgment: Penalty I(?!I)': '最後の審判：デバフ1',
-        'Final Judgment: Penalty II(?!I)': '最後の審判：デバフ2',
-        'Final Judgment: Penalty III': '最後の審判：デバフ3',
-        'Final Punishment': '最後の体罰',
-        'High Arithmeticks': '算術：ハイト2',
-        'Low Arithmeticks': '算術：ハイト1',
       },
     },
     {
@@ -1180,20 +1034,6 @@
         'Verdict': '终审开庭',
         'Vortexer': '环旋者',
       },
-      '~effectNames': {
-        'Compressed Lightning': '雷属性压缩',
-        'Compressed Water': '水属性压缩',
-        'Final Judgment: Decree Nisi A': '终审：判决α',
-        'Final Judgment: Decree Nisi B': '终审：判决β',
-        'Final Judgment: Max HP': '终审：体力最大',
-        'Final Judgment: Min HP': '终审：体力最小',
-        'Final Judgment: Penalty I(?!I)': '终审：弱化状态1',
-        'Final Judgment: Penalty II(?!I)': '终审：弱化状态2',
-        'Final Judgment: Penalty III': '终审：弱化状态3',
-        'Final Punishment': '最终体罚',
-        'High Arithmeticks': '算术：高度2',
-        'Low Arithmeticks': '算术：高度1',
-      },
     },
     {
       'locale': 'ko',
@@ -1267,20 +1107,6 @@
         'Ultra Flash': '초섬광',
         'Verdict': '최후의 심판: 개정',
         'Vortexer': '교반자',
-      },
-      '~effectNames': {
-        'Compressed Lightning': '번개속성 압축',
-        'Compressed Water': '물속성 압축',
-        'Final Judgment: Decree Nisi A': '최후의 심판: 임시 판결 α',
-        'Final Judgment: Decree Nisi B': '최후의 심판: 임시 판결 β',
-        'Final Judgment: Max HP': '최후의 심판: HP 최대',
-        'Final Judgment: Min HP': '최후의 심판: HP 최소',
-        'Final Judgment: Penalty I(?!I)': '최후의 심판: 약화 1',
-        'Final Judgment: Penalty II(?!I)': '최후의 심판: 약화 2',
-        'Final Judgment: Penalty III': '최후의 심판: 약화 3',
-        'Final Punishment': '최후의 체벌',
-        'High Arithmeticks': '산술: 고도 2',
-        'Low Arithmeticks': '산술: 고도 1',
       },
     },
   ],

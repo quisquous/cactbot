@@ -99,12 +99,7 @@
     },
     {
       id: 'Gubal Hard Sunseal',
-      regex: Regexes.gainsEffect({ effect: 'Sunseal' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Sonnensiegel' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque Solaire' }),
-      regexJa: Regexes.gainsEffect({ effect: '太陽の刻印' }),
-      regexCn: Regexes.gainsEffect({ effect: '太阳刻印' }),
-      regexKo: Regexes.gainsEffect({ effect: '태양의 각인' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '46F' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -117,12 +112,7 @@
     },
     {
       id: 'Gubal Hard Moonseal',
-      regex: Regexes.gainsEffect({ effect: 'Moonseal' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondsiegel' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque Lunaire' }),
-      regexJa: Regexes.gainsEffect({ effect: '月の刻印' }),
-      regexCn: Regexes.gainsEffect({ effect: '月亮刻印' }),
-      regexKo: Regexes.gainsEffect({ effect: '달의 각인' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '470' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
