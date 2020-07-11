@@ -14,6 +14,7 @@
       'locale': 'de',
       'missingTranslations': true,
       'replaceSync': {
+        'Ravana': 'Ravana',
         'Dance to the song of ringing steel': 'Ein Tanz im Takt des singenden Stahls',
       },
       'replaceText': {
@@ -25,6 +26,8 @@
         'Blinding Blade': 'Blendende Klinge',
         'Bloody Fuller': 'Blutrille',
         'Chandrahas': 'Chandrahas',
+        'Clone Spawn': 'Klon erscheint #',
+        'Clone Dash': 'Klon stürmt #',
         'Dragonfly Avatar': 'Libellen-Inkarnation',
         'Final Liberation': 'Endgültige Befreiung',
         'Inner AOE': 'AoE innen',

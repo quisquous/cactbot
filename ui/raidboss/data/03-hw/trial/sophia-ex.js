@@ -49,6 +49,7 @@ let callSafeDir = (callIndex) => {
       beforeSeconds: 5,
       infoText: {
         en: 'Avoid Dash Attack',
+        de: 'Ansturm-Angriff ausweichen',
         cn: '躲避击飞',
       },
     },
@@ -78,6 +79,7 @@ let callSafeDir = (callIndex) => {
       beforeSeconds: 6,
       infoText: {
         en: 'Bait Quasar Meteors',
+        de: 'Quasar Meteore ködern',
         cn: '诱导陨石',
       },
     },
@@ -148,6 +150,7 @@ let callSafeDir = (callIndex) => {
       netRegexKo: NetRegexes.startsUsing({ id: '19B8', source: '제3신도', capture: false }),
       infoText: {
         en: 'Get behind lancer',
+        de: 'Geh hinter dem 3. Demiurg',
         cn: '躲在3号小怪后',
       },
     },
@@ -163,11 +166,13 @@ let callSafeDir = (callIndex) => {
         if (Conditions.targetIsYou()) {
           return {
             en: 'Infusion on YOU',
+            de: 'Schneisenschläger auf DIR',
             cn: '冲锋点名',
           };
         }
         return {
           en: 'Infusion on ' + data.ShortName(matches.target),
+          de: 'Schneisenschläger auf ' + data.ShortName(matches.target),
           cn: '冲锋点' + data.ShortName(matches.target),
         };
       },
@@ -285,6 +290,7 @@ let callSafeDir = (callIndex) => {
       },
       infoText: {
         en: 'Avoid head laser',
+        de: 'Kopflaser ausweichen',
         cn: '躲避人头炮',
       },
     },
@@ -304,7 +310,7 @@ let callSafeDir = (callIndex) => {
           'N': { en: 'North', fr: 'Nord', de: 'Norde', ja: 'ノース', cn: '北', ko: '북쪽' },
           'S': { en: 'South', fr: 'Sud', de: 'Süden', ja: '南', cn: '南面', ko: '남쪽' },
           'NW': { en: 'NW', fr: 'N-O', de: 'NW', ja: '北西', cn: '西北', ko: '북서' },
-          'NE': { en: 'NE', fr: 'N-E', de: 'N-E', ja: '北東', cn: '东北', ko: '북동' },
+          'NE': { en: 'NE', fr: 'N-E', de: 'NO', ja: '北東', cn: '东北', ko: '북동' },
           'SW': { en: 'SW', fr: 'S-O', de: 'SW', ja: '南西', cn: '西南', ko: '남서' },
           'SE': { en: 'SE', fr: 'S-E', de: 'SO', ja: '南東', cn: '东南', ko: '남동' },
         };
