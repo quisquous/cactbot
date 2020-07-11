@@ -10,7 +10,7 @@ let commonReplacement = {
     ko: '15초 후에 $1(이|가) 봉쇄됩니다',
   },
   'is no longer sealed': {
-    de: 'öffnet sich erneut',
+    de: 'öffnet sich (?:wieder|erneut)',
     fr: 'Ouverture ',
     ja: 'の封鎖が解かれた',
     cn: '的封锁解除了',

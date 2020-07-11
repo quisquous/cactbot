@@ -157,7 +157,7 @@
       },
       'replaceText': {
         'A Giant Me': '巨大化之术',
-        'Ame-no-Murakamo': '天之丛云',
+        'Ame-no-Murakumo': '天之丛云',
         'Bitter End': '命尽于此',
         'Dragon Night': '龙星击',
         'Dragon\'s Lair': '云蒸龙变',
@@ -189,7 +189,7 @@
       },
       'replaceText': {
         'A Giant Me': '거대 길가메시',
-        'Ame-no-Murakamo': '아메노무라쿠모',
+        'Ame-no-Murakumo': '아메노무라쿠모',
         'Bitter End': '끝장타',
         'Dragon Night': '용성격',
         'Dragon\'s Lair': '운증용변',
