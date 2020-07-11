@@ -203,7 +203,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Arbuda': 'Arbuda',
         'Coeurl Smriti': 'Coeurl Smriti',
@@ -214,11 +213,13 @@
         'Tourmaline Pond': 'Turmalinteich',
       },
       'replaceText': {
+        '--Smriti Appears--': '--Smriti erscheint--',
         'Basic Instinct': 'Kampfinstinkt',
         'Cardinal Shift': 'Großrotation',
         'Coeurl Whisper': 'Coeurl-Flüstern',
         'Electric Burst': 'Stromstoß',
         'Fourfold Shear': 'Vierschere',
+        'Front/Back\\?Sides\\?': 'Vorne/Hinten?Seiten?',
         'Furious Fists': 'Todeskralle',
         'Heat Lightning': 'Hitzeblitz',
         'Hellseal': 'Höllensiegel',

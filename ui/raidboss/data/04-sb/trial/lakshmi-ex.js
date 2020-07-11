@@ -270,13 +270,13 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'verträumt(?:e|er|es|en) Kshatriya',
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {
         '/dance': '/tanz',
+        'Adds Appear': 'Adds erscheinen',
         'Alluring Arm': 'Anziehender Arm',
         'Blissful Spear': 'Speer der Gnade',
         'Chanchala': 'Chanchala',

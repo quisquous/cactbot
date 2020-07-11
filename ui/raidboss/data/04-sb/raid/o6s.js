@@ -123,12 +123,12 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': 'gefallen(?:e|er|es|en) Chadarnook',
         'Easterly': 'Ostwind',
         'Goddess Chadarnook': 'heilig(?:e|er|es|en) Chadarnook',
         'Haunt': 'Verfolgung',
+        'I have claimed the girl in the picture!': 'Das Mädchen in diesem Bildnis gehört mir!',
         'Portrayal of Earth': 'Erdgemälde',
         'Portrayal of Fire': 'Feuergemälde',
         'Portrayal of Water': 'Wassergemälde',

@@ -127,7 +127,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': 'Aulus mal Asina',
         'Magitek Scorpion': 'Wachskorpion',
@@ -158,8 +157,10 @@
         'Storm, Swell, Sword': 'Wind, Sturm, Schwert',
         'Storm\\?/Swell\\?(?!/Sword)': 'Wind?/Sturm?',
         'Storm\\?/Swell\\?/Sword\\?': 'Wind?/Sturm?/Schwert?',
+        'Swell/Sword': 'Sturm/Win',
         'Tail Laser': 'Schweiflaser',
         'Target Search': 'Zielsucher',
+        'Unknown_206E': 'Unknown_206E',
         'Unmoving Troika': 'Unbewegte Troika',
         'Vein Splitter': 'Erdader-Spalter',
       },

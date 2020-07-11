@@ -64,6 +64,8 @@
         'Yojimbo': 'Yojinbo',
       },
       'replaceText': {
+        'A Giant Me': 'Dann wirf mal \'nen Blick hinter uns!',
+        'Ame-no-Murakumo': 'Ame no Murakumo',
         'Bitter End': 'Klingenschimmer',
         'Dragon Night': 'Drachennacht',
         'Dragon\'s Lair': 'Drachenhort',
@@ -72,6 +74,7 @@
         'Epic Stormsplitter': 'Fließende Welt',
         'Gekko': 'Gekko',
         'Giga Jump': 'Giga-Sprung',
+        'Hell\'s Gate': 'Höllentor',
         'Inoshikacho': 'Ino-shika-cho',
         'Kasha': 'Kasha',
         'Masamune': 'Masamune',
