@@ -115,7 +115,7 @@
     },
     {
       id: 'Test Psych',
-      regex: Regexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*.*?', capture: false }),
+      regex: Regexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*?', capture: false }),
       regexDe: Regexes.gameNameLog({ line: 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen.*?', capture: false }),
       regexFr: Regexes.gameNameLog({ line: 'Vous vous motivez devant le mannequin d\'entraînement.*?', capture: false }),
       regexCn: Regexes.gameNameLog({ line: '.*激励木人.*?', capture: false }),
@@ -230,7 +230,7 @@
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
-        'You psych yourself up alongside the striking dummy.*': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
+        'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
         'You poke the striking dummy': 'Du stupst die Trainingspuppe an',
       },
       replaceText: {

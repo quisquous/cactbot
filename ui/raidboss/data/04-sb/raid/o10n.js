@@ -130,13 +130,14 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Ancient Dragon': 'antik(?:e|er|es|en) Drache',
         'Immortal Key': 'unsterblich(?:e|er|es|en) Schlüssel',
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
+        '(?<!\\/)Out': 'Raus',
+        '(?<!\\w)In(?!/)': 'Rein',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
         'Azure Wings': 'Azurschwingen',

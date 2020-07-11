@@ -182,6 +182,7 @@ let kDetailKeys = {
   'triggerNetRegex': {
     label: {
       en: 'netregex',
+      de: 'netregex',
     },
     cls: 'regex-text',
     debugOnly: true,

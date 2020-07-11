@@ -539,7 +539,7 @@
         'Dark Rain': 'Dunkler Regen',
         'Echoes from Time\'s Garden': 'Garten ewiger Zeit',
         'Famfrit, The Darkening Cloud': 'Dunkelfürst Famfrit',
-        '(?<! )Gigas': 'Diener von Belias',
+        '(?<!Belias, The )Gigas': 'Diener von Belias',
         'Heart of the Dragon': 'Herz des Drachen',
         'The Cleft of Profaning Wind': 'Kluft entweihender Winde',
         'The Clockwork Coliseum': 'Kolosseum von Gog',

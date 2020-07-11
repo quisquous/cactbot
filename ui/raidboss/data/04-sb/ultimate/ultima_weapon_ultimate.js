@@ -373,7 +373,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'Bomber-Brocken',
         'Chirada': 'Chirada',
@@ -418,6 +417,7 @@
         'Mistral Shriek': 'Mistral-Schrei',
         'Mistral Song': 'Mistral-Song',
         'Mountain Buster': 'Bergsprenger',
+        'Nail Adds': 'Fessel Adds',
         'Radiant Plume': 'Scheiterhaufen',
         'Rock Buster': 'Steinsprenger',
         'Rock Throw': 'Granitgefängnis',

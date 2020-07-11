@@ -96,7 +96,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         ':Tenzen': ':Tenzen',
         'Scarlet Tail Feather': 'Schwanzfeder',
@@ -112,6 +111,7 @@
         'Mesmerizing Melody': 'Bezaubernde Melodie',
         'Pay The Piper': 'Lied des Fängers',
         'Phantom Flurry': 'Phantomhast',
+        'Phantom Half': 'Phantom Hälfte',
         'Phoenix Down': 'Phönixsturz',
         'Rekindle': 'Wiederaufleben',
         'Rout': 'Kolossgalopp',

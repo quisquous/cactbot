@@ -704,7 +704,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Agrias': 'Agrias',
         'Aspersory': 'Aspersorium',
@@ -732,6 +731,8 @@
         'Ultima, the High Seraph': 'Cherub Ultima',
       },
       'replaceText': {
+        '--ghost stun--': '--Geist unterbrechen--',
+        '--crystal stun--': '--Kristall unterbrechen--',
         'Analysis': 'Analyse',
         'Arm Shot': 'Armschuss',
         'Auralight': 'Aurastrahl',

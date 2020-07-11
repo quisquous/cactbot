@@ -2947,7 +2947,6 @@ let getHeadmarkerId = (data, matches) => {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Alexander(?! )': 'Alexander',
         'Alexander Prime': 'Prim-Alexander',
@@ -3010,6 +3009,7 @@ let getHeadmarkerId = (data, matches) => {
         'Link-Up': 'Zusammenschluss',
         'Liquid Gaol': 'Wasserkerker',
         'Mega Holy': 'Super-Sanctus',
+        'Middle Blaster': 'Mitte - Blaster',
         'Missile Command': 'Raketenkommando',
         'Optical Sight': 'Visier',
         'Ordained Capital Punishment': 'Gnadenlose Ahndung',
@@ -3023,6 +3023,7 @@ let getHeadmarkerId = (data, matches) => {
         'Protean Wave': 'Proteische Welle',
         'Punishing Wave': 'Strafende Welle',
         '(?<! )Repentance': 'Reue',
+        'Rage Wave': 'Rage - Welle',
         'Sacrament': 'Sakrament',
         'Severity': 'Erschwertes',
         'Sluice': 'Schleusenöffnung',

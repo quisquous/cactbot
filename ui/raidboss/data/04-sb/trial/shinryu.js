@@ -283,6 +283,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Bait onto unbroken squares',
+        de: 'Auf nicht kaputter Fläche ködern',
         cn: '在未损坏方格上诱导',
         ko: '꼬리 내리치기 유도',
       },
@@ -291,7 +292,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Cocoon': 'Lichtsphäre',
         'Left Wing': 'link(?:e|er|es|en) Schwinge',

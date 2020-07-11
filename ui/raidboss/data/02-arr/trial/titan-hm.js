@@ -52,6 +52,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Cleanse ' + data.ShortName(matches.target),
+          de: 'Reinige ' + data.ShortName(matches.target),
           fr: 'Guérison sur ' + data.ShortName(matches.target),
           cn: '康复' + data.ShortName(matches.target),
         };
