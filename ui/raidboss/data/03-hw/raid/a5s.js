@@ -58,6 +58,7 @@ let bombLocation = (matches) => {
       suppressSeconds: 1,
       alertText: {
         en: 'Bird Soon (Purple)',
+        de: 'Vogel bald (Lila)',
       },
     },
     {
@@ -67,6 +68,7 @@ let bombLocation = (matches) => {
       suppressSeconds: 1,
       alertText: {
         en: 'Gorilla Soon (Red)',
+        de: 'Gorilla bald (Rot)',
       },
     },
     {
@@ -76,6 +78,7 @@ let bombLocation = (matches) => {
       suppressSeconds: 1,
       infoText: {
         en: 'refresh debuff in puddle soon',
+        de: 'Debuff in der Fläsche bald erneuern',
       },
     },
   ],
@@ -109,10 +112,12 @@ let bombLocation = (matches) => {
         if (data.bombCount == 1) {
           return {
             en: 'Knock Bombs Into Spikey',
+            de: 'Bombe in die Spike-Bombe stoßen',
           };
         }
         return {
           en: 'Knock Bombs Opposite Spikey',
+          de: 'Bombe gegnüber der Spike-Bombe stoßen',
         };
       },
     },
@@ -141,15 +146,19 @@ let bombLocation = (matches) => {
           return {
             0: {
               en: 'NW first',
+              de: 'NW zuerst',
             },
             3: {
               en: 'NE first',
+              de: 'NO zuerst',
             },
             12: {
               en: 'SW first',
+              de: 'SW zuerst',
             },
             15: {
               en: 'SE first',
+              de: 'SO zuerst',
             },
           }[index];
         }
@@ -166,6 +175,7 @@ let bombLocation = (matches) => {
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Get Away',
+        de: 'Weg gehen',
       },
     },
     {
@@ -177,6 +187,7 @@ let bombLocation = (matches) => {
       infoText: function(data, matches) {
         return {
           en: 'Shield ' + data.ShortName(matches.target),
+          de: 'Schild ' + data.ShortName(matches.target),
         };
       },
     },
@@ -186,6 +197,7 @@ let bombLocation = (matches) => {
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'GLOOPYGLOOP~',
+        de: 'GLOOPYGLOOP~',
       },
     },
     {
@@ -211,6 +223,7 @@ let bombLocation = (matches) => {
       suppressSeconds: 30,
       alertText: {
         en: 'Cleanse (Green)',
+        de: 'Reinigen (Grün)',
       },
     },
     {
@@ -223,6 +236,7 @@ let bombLocation = (matches) => {
       suppressSeconds: 100,
       alertText: {
         en: 'Break Tether (Blue)',
+        de: 'Verbindungen brechen (Blau)',
       },
     },
     {

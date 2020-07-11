@@ -162,8 +162,8 @@
         'Faust': 'Faust',
         'Hangar 8': 'Lagerhalle 8',
         'Machinery Bay 44': 'Kampfmaschinen-Baracke 44',
-        'Oppressor': 'Unterdrücker',
-        'Oppressor 0.5': 'Unterdrücker 0,5',
+        'Oppressor(?! 0)': 'Unterdrücker',
+        'Oppressor 0\\\\.5': 'Unterdrücker 0,5',
       },
       'replaceText': {
         '3000-Tonze Missile': '3000-Tonzen-Geschoss',
