@@ -7,6 +7,7 @@
 let noOrb = (str) => {
   return {
     en: str + ' (no orb)',
+    de: str + ' (kein Orb)',
     fr: str + ' (pas d\'orbe)',
   };
 };

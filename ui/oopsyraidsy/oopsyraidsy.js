@@ -117,6 +117,7 @@ let kLatePullText = {
 
 const kPartyWipeText = {
   en: 'Party Wipe',
+  de: 'Gruppe ausgelöscht',
   cn: '团灭',
   ko: '파티 전멸',
 };
