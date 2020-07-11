@@ -117,7 +117,7 @@ let bombLocation = (matches) => {
         }
         return {
           en: 'Knock Bombs Opposite Spikey',
-         de: 'Bombe gegnüber der Spike-Bombe stoßen',
+          de: 'Bombe gegnüber der Spike-Bombe stoßen',
         };
       },
     },

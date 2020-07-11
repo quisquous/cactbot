@@ -108,7 +108,7 @@
         'The Manipulator': 'Manipulator',
       },
       'replaceText': {
-        'Carnage': 'Carnage',
+        'Carnage(?! Zero)': 'Carnage',
         'Carnage Zero': 'Carnage Zero',
         'Discoid': 'Diskoid',
         'Emergency Quarantine': 'Notquarantäne',
@@ -128,7 +128,7 @@
         'The Manipulator': 'Manipulateur',
       },
       'replaceText': {
-        'Carnage': 'Carnage',
+        'Carnage(?! Zero)': 'Carnage',
         'Carnage Zero': 'Carnage Zéro',
         'Discoid': 'Discoïde',
         'Emergency Quarantine': 'Quarantaine d\'urgence',
@@ -148,7 +148,7 @@
         'The Manipulator': 'マニピュレーター',
       },
       'replaceText': {
-        'Carnage': 'カーネイジ',
+        'Carnage(?! Zero)': 'カーネイジ',
         'Carnage Zero': 'カーネイジ・ゼロ',
         'Discoid': 'ディスコイド',
         'Emergency Quarantine': '緊急隔離',
@@ -168,7 +168,7 @@
         'The Manipulator': '操纵者',
       },
       'replaceText': {
-        'Carnage': '灭绝',
+        'Carnage(?! Zero)': '灭绝',
         'Carnage Zero': '零式灭绝',
         'Discoid': '圆盘',
         'Emergency Quarantine': '紧急隔离',
@@ -188,7 +188,7 @@
         'The Manipulator': '조종자',
       },
       'replaceText': {
-        'Carnage': '대학살',
+        'Carnage(?! Zero)': '대학살',
         'Carnage Zero': '대학살의 근원',
         'Discoid': '원반',
         'Emergency Quarantine': '긴급 격리',
