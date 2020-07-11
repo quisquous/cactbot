@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**/*.css'
+      - '.github/workflows/css-lint.yml'
   pull_request:
     types:
       - opened
@@ -11,6 +12,7 @@ on:
       - synchronize
     paths:
       - '**/*.css'
+      - '.github/workflows/css-lint.yml'
 
 jobs:
   stylelint:
