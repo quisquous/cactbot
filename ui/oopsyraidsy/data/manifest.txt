@@ -6,6 +6,7 @@
 03-hw/dungeon/aetherochemical_research_facility.js
 03-hw/dungeon/fractal_continuum.js
 03-hw/dungeon/gubal_library_hard.js
+03-hw/dungeon/sohm_al_hard.js
 04-sb/dungeon/ala_mhigo.js
 04-sb/dungeon/temple_of_the_fist.js
 04-sb/raid/o1n.js

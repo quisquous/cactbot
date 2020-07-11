@@ -39,9 +39,11 @@
 03-hw/dungeon/fractal_continuum.txt
 03-hw/dungeon/gubal_library_hard.js
 03-hw/dungeon/gubal_library_hard.txt
+03-hw/dungeon/sohm_al.js
+03-hw/dungeon/sohm_al_hard.js
+03-hw/dungeon/sohm_al_hard.txt
 03-hw/dungeon/the_vault.js
 03-hw/dungeon/the_vault.txt
-03-hw/dungeon/sohm_al.js
 03-hw/pvp/shatter.js
 03-hw/raid/a10s.js
 03-hw/raid/a10s.txt
