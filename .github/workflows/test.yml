@@ -6,6 +6,7 @@ on:
       - '**/*.js'
       - '**/*.py'
       - 'ui/raidboss/**'
+      - '.github/workflows/test.yml'
   pull_request:
     types:
       - opened
@@ -15,6 +16,7 @@ on:
       - '**/*.js'
       - '**/*.py'
       - 'ui/raidboss/**'
+      - '.github/workflows/test.yml'
 
 jobs:
   test:

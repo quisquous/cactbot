@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '**/*.py'
+      - '.github/workflows/python-lint.yml'
   pull_request:
     types:
       - opened
@@ -11,6 +12,7 @@ on:
       - synchronize
     paths:
       - '**/*.py'
+      - '.github/workflows/python-lint.yml'
 
 jobs:
   black:
