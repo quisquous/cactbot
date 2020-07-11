@@ -35,7 +35,7 @@
     {
       // Warns if players step into the lava puddles. There is unfortunately no direct damage event.
       id: 'Sohm Al Hard Burns',
-      netRegex: NetRegexes.gainsEffect('11C'),
+      netRegex: NetRegexes.gainsEffect({ effectId: '11C' }),
       mistake: function(e) {
         return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },

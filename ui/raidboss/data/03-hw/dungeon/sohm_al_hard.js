@@ -47,7 +47,7 @@
     {
       // The actual effect being checked here is Heavy.
       id: 'Sohm Al Hard Excretion',
-      netRegex: NetRegexes.gainsEffect({ id: '0e' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '0e' }),
       condition: function(data) {
         return data.CanCleanse();
       },

@@ -4,7 +4,7 @@
 hideall "--sync--"
 hideall "--Reset--"
 
-"--Reset--" sync /is no longer sealed/ window 0,10000
+0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 100000 jump 0
 
 #~~~~~~~~~~~~~~~~~~#
 # THE LEIGHTONWARD #
