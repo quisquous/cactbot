@@ -332,12 +332,7 @@
     },
     {
       id: 'E3S Surging Waters',
-      regex: Regexes.gainsEffect({ effect: 'Surging Waters' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Erdrückung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Écrasantes' }),
-      regexJa: Regexes.gainsEffect({ effect: '強圧の兆し' }),
-      regexCn: Regexes.gainsEffect({ effect: '强压之兆' }),
-      regexKo: Regexes.gainsEffect({ effect: '강압의 징조' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '73A' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -354,12 +349,7 @@
       // TODO probably need to call out knockbacks later
       // TODO maybe tell other people about stacking for knockbacks
       id: 'E3S Sundering Waters',
-      regex: Regexes.gainsEffect({ effect: 'Sundering Waters' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Zerstörung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Fracturantes' }),
-      regexJa: Regexes.gainsEffect({ effect: '断絶の兆し' }),
-      regexCn: Regexes.gainsEffect({ effect: '断绝之兆' }),
-      regexKo: Regexes.gainsEffect({ effect: '단절의 징조' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '73E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -403,12 +393,7 @@
     {
       // 29 seconds
       id: 'E3S Scouring Waters Defamation',
-      regex: Regexes.gainsEffect({ effect: 'Scouring Waters' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices' }),
-      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し' }),
-      regexCn: Regexes.gainsEffect({ effect: '暴风之兆' }),
-      regexKo: Regexes.gainsEffect({ effect: '폭풍의 징조' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -423,12 +408,7 @@
     },
     {
       id: 'E3S Scouring Waters Avoid Knockback',
-      regex: Regexes.gainsEffect({ effect: 'Scouring Waters' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices' }),
-      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し' }),
-      regexCn: Regexes.gainsEffect({ effect: '暴风之兆' }),
-      regexKo: Regexes.gainsEffect({ effect: '폭풍의 징조' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -444,12 +424,7 @@
     },
     {
       id: 'E3S Smothering Waters',
-      regex: Regexes.gainsEffect({ effect: 'Smothering Waters' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Ertränkung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Submergeantes' }),
-      regexJa: Regexes.gainsEffect({ effect: '溺没の兆し' }),
-      regexCn: Regexes.gainsEffect({ effect: '溺没之兆' }),
-      regexKo: Regexes.gainsEffect({ effect: '익몰의 징조' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '73D' }),
       condition: function(data, matches) {
         // first tsunami stack is 25 seconds
         // second tsunami stack is 13 seconds
@@ -464,12 +439,7 @@
     },
     {
       id: 'E3S Scouring Waters',
-      regex: Regexes.gainsEffect({ effect: 'Scouring Waters' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Böen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Dévastatrices' }),
-      regexJa: Regexes.gainsEffect({ effect: '暴風の兆し' }),
-      regexCn: Regexes.gainsEffect({ effect: '暴风之兆' }),
-      regexKo: Regexes.gainsEffect({ effect: '폭풍의 징조' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '765' }),
       condition: function(data, matches) {
         return data.me != matches.target;
       },
@@ -485,12 +455,7 @@
     },
     {
       id: 'E3S Sweeping Waters Gain',
-      regex: Regexes.gainsEffect({ effect: 'Sweeping Waters' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes' }),
-      regexJa: Regexes.gainsEffect({ effect: '拡散の兆し' }),
-      regexCn: Regexes.gainsEffect({ effect: '扩散之兆' }),
-      regexKo: Regexes.gainsEffect({ effect: '확산의 징조' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -505,12 +470,7 @@
     },
     {
       id: 'E3S Sweeping Waters',
-      regex: Regexes.gainsEffect({ effect: 'Sweeping Waters' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Omen Der Auflösung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Pulvérisantes' }),
-      regexJa: Regexes.gainsEffect({ effect: '拡散の兆し' }),
-      regexCn: Regexes.gainsEffect({ effect: '扩散之兆' }),
-      regexKo: Regexes.gainsEffect({ effect: '확산의 징조' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '73F' }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'tank';
       },
@@ -657,17 +617,6 @@
         '(?<! )Tsunami': 'Sturzflut',
         'Undersea Quake': 'Unterwasserbeben',
       },
-      '~effectNames': {
-        'Heavy': 'Gewicht',
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Scouring Waters': 'Omen der Böen',
-        'Smothering Waters': 'Omen der Ertränkung',
-        'Splashing Waters': 'Omen des Sturms',
-        'Sundering Waters': 'Omen der Zerstörung',
-        'Surging Waters': 'Omen der Erdrückung',
-        'Sweeping Waters': 'Omen der Auflösung',
-        'Swirling Waters': 'Omen des Wasserwirbels',
-      },
     },
     {
       'locale': 'fr',
@@ -706,17 +655,6 @@
         'Tidal Wave': 'Raz-de-marée',
         '(?<! )Tsunami': 'Tsunami',
         'Undersea Quake': 'Séisme sous-marin',
-      },
-      '~effectNames': {
-        'Heavy': 'Pesanteur',
-        'Magic Vulnerability Up': 'Vulnérabilité Magique Augmentée',
-        'Scouring Waters': 'Eaux dévastatrices',
-        'Smothering Waters': 'Eaux submergeantes',
-        'Splashing Waters': 'Eaux déferlantes',
-        'Sundering Waters': 'Eaux fracturantes',
-        'Surging Waters': 'Eaux écrasantes',
-        'Sweeping Waters': 'Eaux pulvérisantes',
-        'Swirling Waters': 'Eaux tournoyantes',
       },
     },
     {
@@ -757,17 +695,6 @@
         '(?<! )Tsunami': '大海嘯',
         'Undersea Quake': 'アンダーシークエイク',
       },
-      '~effectNames': {
-        'Heavy': 'ヘヴィ',
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Scouring Waters': '暴風の兆し',
-        'Smothering Waters': '溺没の兆し',
-        'Splashing Waters': '強風の兆し',
-        'Sundering Waters': '断絶の兆し',
-        'Surging Waters': '強圧の兆し',
-        'Sweeping Waters': '拡散の兆し',
-        'Swirling Waters': '渦動の兆し',
-      },
     },
     {
       'locale': 'cn',
@@ -807,17 +734,6 @@
         '(?<! )Tsunami': '大海啸',
         'Undersea Quake': '海底地震',
       },
-      '~effectNames': {
-        'Heavy': '加重',
-        'Magic Vulnerability Up': '魔法受伤加重',
-        'Scouring Waters': '暴风之兆',
-        'Smothering Waters': '溺没之兆',
-        'Splashing Waters': '强风之兆',
-        'Sundering Waters': '断绝之兆',
-        'Surging Waters': '强压之兆',
-        'Sweeping Waters': '扩散之兆',
-        'Swirling Waters': '涡动之兆',
-      },
     },
     {
       'locale': 'ko',
@@ -856,17 +772,6 @@
         'Tidal Wave': '해일',
         '(?<! )Tsunami': '대해일',
         'Undersea Quake': '해저 지진',
-      },
-      '~effectNames': {
-        'Heavy': '과중력',
-        'Magic Vulnerability Up': '받는 마법 피해량 증가',
-        'Scouring Waters': '폭풍의 징조',
-        'Smothering Waters': '익몰의 징조',
-        'Splashing Waters': '강풍의 징조',
-        'Sundering Waters': '단절의 징조',
-        'Surging Waters': '강압의 징조',
-        'Sweeping Waters': '확산의 징조',
-        'Swirling Waters': '소용돌이의 징조',
       },
     },
   ],

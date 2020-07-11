@@ -103,10 +103,7 @@
     },
     {
       id: 'E7S Left With Thee',
-      regex: Regexes.gainsEffect({ effect: 'Left With Thee' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Deportation: Links' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Translation Gauche' }),
-      regexJa: Regexes.gainsEffect({ effect: '強制転移：左' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Left',
@@ -117,11 +114,8 @@
       },
     },
     {
-      id: 'E7S Left With Right',
-      regex: Regexes.gainsEffect({ effect: 'Right With Thee' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Deportation: Rechts' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Translation Droite' }),
-      regexJa: Regexes.gainsEffect({ effect: '強制転移：右' }),
+      id: 'E7S Right With Thee',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Right',
@@ -133,10 +127,7 @@
     },
     {
       id: 'E7S Forward With Thee',
-      regex: Regexes.gainsEffect({ effect: 'Forward With Thee' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Deportation: Vorne' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Translation Avant' }),
-      regexJa: Regexes.gainsEffect({ effect: '強制転移：前' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Forward',
@@ -148,10 +139,7 @@
     },
     {
       id: 'E7S Back With Thee',
-      regex: Regexes.gainsEffect({ effect: 'Back With Thee' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Deportation: Hinten' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Translation Arrière' }),
-      regexJa: Regexes.gainsEffect({ effect: '強制転移：後' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Back',
@@ -358,10 +346,7 @@
     },
     {
       id: 'E7S Astral Effect',
-      regex: Regexes.gainsEffect({ effect: 'Astral Effect' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Denaturation Licht' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Corruption De Lumière' }),
-      regexJa: Regexes.gainsEffect({ effect: '偏属性：光' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.color = 'light';
@@ -369,10 +354,7 @@
     },
     {
       id: 'E7S Umbral Effect',
-      regex: Regexes.gainsEffect({ effect: 'Umbral Effect' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Denaturation Dunkelheit' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Corruption De Ténèbres' }),
-      regexJa: Regexes.gainsEffect({ effect: '偏属性：闇' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.color = 'dark';
@@ -592,18 +574,6 @@
         'Away With Thee': 'Zwangsumwandlung',
         'Advent Of Light': 'Lichtsaturation',
       },
-      '~effectNames': {
-        'Waymark': 'Ziel des Ansturms',
-        'Umbral Effect': 'Denaturation Dunkelheit',
-        'Stun': 'Betäubung',
-        'Right with Thee': 'Deportation: rechts',
-        'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Left with Thee': 'Deportation: links',
-        'Forward with Thee': 'Deportation: vorne',
-        'Back with Thee': 'Deportation: hinten',
-        'Astral Effect': 'Denaturation Licht',
-      },
     },
     {
       'locale': 'fr',
@@ -659,18 +629,6 @@
         'Betwixt Worlds': 'Brèche dimensionnelle',
         'Away With Thee': 'Translation forcée',
         'Advent Of Light': 'Plénitude lumineuse',
-      },
-      '~effectNames': {
-        'Waymark': 'Cible d\'une ruée',
-        'Umbral Effect': 'Corruption de Ténèbres',
-        'Stun': 'Étourdissement',
-        'Right with Thee': 'Translation droite',
-        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
-        'Left with Thee': 'Translation gauche',
-        'Forward with Thee': 'Translation avant',
-        'Back with Thee': 'Translation arrière',
-        'Astral Effect': 'Corruption de Lumière',
       },
     },
     {
@@ -729,18 +687,6 @@
         'Betwixt Worlds': '次元孔',
         'Away with Thee': '強制転移',
         'Advent of Light': '光の飽和',
-      },
-      '~effectNames': {
-        'Waymark': '突進標的',
-        'Umbral Effect': '偏属性：闇',
-        'Stun': 'スタン',
-        'Right with Thee': '強制転移：右',
-        'Physical Vulnerability Up': '被物理ダメージ増加',
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Left with Thee': '強制転移：左',
-        'Forward with Thee': '強制転移：前',
-        'Back with Thee': '強制転移：後',
-        'Astral Effect': '偏属性：光',
       },
     },
   ],

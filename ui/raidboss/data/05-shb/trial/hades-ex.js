@@ -318,12 +318,7 @@
     },
     {
       id: 'HadesEx Burning Brand',
-      regex: Regexes.gainsEffect({ effect: 'Burning Brand' }),
-      regexCn: Regexes.gainsEffect({ effect: '火之烙印' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Feuers' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque De Feu' }),
-      regexJa: Regexes.gainsEffect({ effect: '火の烙印' }),
-      regexKo: Regexes.gainsEffect({ effect: '불의 낙인' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '850' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -341,12 +336,7 @@
     },
     {
       id: 'HadesEx Freezing Brand',
-      regex: Regexes.gainsEffect({ effect: 'Freezing Brand' }),
-      regexCn: Regexes.gainsEffect({ effect: '冰之烙印' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Eises' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque De Glace' }),
-      regexJa: Regexes.gainsEffect({ effect: '氷の烙印' }),
-      regexKo: Regexes.gainsEffect({ effect: '얼음의 낙인' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '851' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -411,12 +401,7 @@
     },
     {
       id: 'HadesEx Doom',
-      regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '6E9', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -432,12 +417,7 @@
     },
     {
       id: 'HadesEx Shriek',
-      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
-      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
-      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
-      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 2;
       },
@@ -446,12 +426,7 @@
     },
     {
       id: 'HadesEx Beyond Death',
-      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
-      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -467,12 +442,7 @@
     },
     {
       id: 'HadesEx Ancient Circle',
-      regex: Regexes.gainsEffect({ effect: 'Ancient Circle' }),
-      regexCn: Regexes.gainsEffect({ effect: '古代圆环' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Orbis Antiquus' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cercle Ancien' }),
-      regexJa: Regexes.gainsEffect({ effect: 'エンシェントリング' }),
-      regexKo: Regexes.gainsEffect({ effect: '고대의 고리' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '83E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -490,12 +460,7 @@
     },
     {
       id: 'HadesEx Forked Lightning',
-      regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
-      regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié' }),
-      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング' }),
-      regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -936,16 +901,6 @@
         'Quadrastrike Tower': 'Quadraschlag Turm',
         'Quadrastrike Bleed': 'Quadraschlag Blutung',
       },
-      '~effectNames': {
-        'Cursed Shriek': 'Schrei Der Verwünschung',
-        'Forked Lightning': 'Gabelblitz',
-        'Aetherial Gaol': 'Ätherkerker',
-        'Beyond Death': 'Jenseits Des Jenseits',
-        'Ancient Circle': 'Orbis Antiquus',
-        'Freezing Brand': 'Brandmal Des Eises',
-        'Burning Brand': 'Brandmal Des Feuers',
-        'Doom': 'Verhängnis',
-      },
     },
     {
       'locale': 'fr',
@@ -1008,16 +963,6 @@
         'Quadrastrike(?! [^0-9])': 'Frappe quadruplée',
         'Quadrastrike Bleed': 'Frappe quadruplée Saignement',
         'Quadrastrike Tower': 'Frappe quadruplée Tour',
-      },
-      '~effectNames': {
-        'Cursed Shriek': 'Cri du maléfice',
-        'Forked Lightning': 'Éclair ramifié',
-        'Aetherial Gaol': 'Geôle éthérée',
-        'Beyond Death': 'Outre-mort',
-        'Ancient Circle': 'Cercle ancien',
-        'Freezing Brand': 'Marque de glace',
-        'Burning Brand': 'Marque de feu',
-        'Doom': 'Glas',
       },
     },
     {

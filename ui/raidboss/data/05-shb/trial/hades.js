@@ -156,12 +156,7 @@
     },
     {
       id: 'Hades Doom',
-      regex: Regexes.gainsEffect({ effect: 'Doom' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -414,9 +409,6 @@
         '--fetters--': '--fesseln--',
         'Wail Of The Lost': 'Wehklagen der Verlorenen',
       },
-      '~effectNames': {
-        'Doom': 'Verhängnis',
-      },
     },
     {
       'locale': 'fr',
@@ -455,9 +447,6 @@
         'The Dark Devours': 'Ténèbres rongeuses',
         'Titanomachy': 'Titanomachie',
         'Wail Of The Lost': 'Lamentation des disparus',
-      },
-      '~effectNames': {
-        'Doom': 'Glas',
       },
     },
     {

@@ -157,10 +157,7 @@
     },
     {
       id: 'RubyEx Pall of Rage',
-      regex: Regexes.gainsEffect({ effect: 'Pall of Rage' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Zorn' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Fureur' }),
-      regexJa: Regexes.gainsEffect({ effect: '憤怒' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8A2' }),
       preRun: function(data, matches) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'blue';
@@ -179,10 +176,7 @@
     },
     {
       id: 'RubyEx Pall of Grief',
-      regex: Regexes.gainsEffect({ effect: 'Pall of Grief' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Trauer' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Angoisse' }),
-      regexJa: Regexes.gainsEffect({ effect: '悲嘆' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8A3' }),
       preRun: function(data, matches) {
         data.colors = data.colors || [];
         data.colors[matches.target] = 'red';
@@ -222,10 +216,7 @@
     },
     {
       id: 'RubyEx Raven Death',
-      regex: Regexes.losesEffect({ effect: 'Pall of Rage', capture: false }),
-      regexDe: Regexes.losesEffect({ effect: 'Zorn', capture: false }),
-      regexFr: Regexes.losesEffect({ effect: 'Fureur', capture: false }),
-      regexJa: Regexes.losesEffect({ effect: '憤怒', capture: false }),
+      netRegex: NetRegexes.losesEffect({ effectId: '8A3', capture: false }),
       suppressSeconds: 10,
       run: function(data) {
         // This effect persists through death, and is removed off of everybody

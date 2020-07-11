@@ -32,10 +32,7 @@
     },
     {
       id: 'E7N Left With Thee',
-      regex: Regexes.gainsEffect({ effect: 'Left With Thee' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Deportation: Links' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Translation Gauche' }),
-      regexJa: Regexes.gainsEffect({ effect: '強制転移：左' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Left',
@@ -46,10 +43,7 @@
     },
     {
       id: 'E7N Right With Thee',
-      regex: Regexes.gainsEffect({ effect: 'Right With Thee' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Deportation: Rechts' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Translation Droite' }),
-      regexJa: Regexes.gainsEffect({ effect: '強制転移：右' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Right',
@@ -60,10 +54,7 @@
     },
     {
       id: 'E7N Forward With Thee',
-      regex: Regexes.gainsEffect({ effect: 'Forward With Thee' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Deportation: Vorne' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Translation Avant' }),
-      regexJa: Regexes.gainsEffect({ effect: '強制転移：前' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Forward',
@@ -75,10 +66,7 @@
     },
     {
       id: 'E7N Back With Thee',
-      regex: Regexes.gainsEffect({ effect: 'Back With Thee' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Deportation: Hinten' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Translation Arrière' }),
-      regexJa: Regexes.gainsEffect({ effect: '強制転移：後' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Teleporting Back',
@@ -117,10 +105,7 @@
       // For this and the following trigger, we warn the user only if they
       // will be struck by a color before their debuff expires.
       id: 'E7N Astral Effect',
-      regex: Regexes.gainsEffect({ effect: 'Astral Effect' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Denaturation Licht' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Corruption De Lumière' }),
-      regexJa: Regexes.gainsEffect({ effect: '偏属性：光' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: function(data) {
@@ -139,10 +124,7 @@
     },
     {
       id: 'E7N Umbral Effect',
-      regex: Regexes.gainsEffect({ effect: 'Umbral Effect' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Denaturation Dunkelheit' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Corruption De Ténèbres' }),
-      regexJa: Regexes.gainsEffect({ effect: '偏属性：闇' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
       infoText: function(data) {
@@ -201,19 +183,6 @@
         'Betwixt Worlds': 'Dimensionsloch',
         'Away with Thee': 'Zwangsumwandlung',
       },
-      '~effectNames': {
-        'Waymark': 'Ziel des Ansturms',
-        'Umbral Effect': 'Denaturation Dunkelheit',
-        'Stun': 'Betäubung',
-        'Away With Thee': 'Zwangsumwandlung',
-        'Right with Thee': 'Deportation: rechts',
-        'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Left with Thee': 'Deportation: links',
-        'Forward With Thee': 'Deportation: Vorne',
-        'Back With Thee': 'Deportation: Hinten',
-        'Astral Effect': 'Denaturation Licht',
-      },
     },
     {
       'locale': 'fr',
@@ -243,19 +212,6 @@
         'Black Smoke': 'Brûlure ténébreuse',
         'Betwixt Worlds': 'Brèche dimensionnelle',
         'Away with Thee': 'Translation forcée',
-      },
-      '~effectNames': {
-        'Waymark': 'Cible d\'une ruée',
-        'Umbral Effect': 'Corruption de Ténèbres',
-        'Stun': 'Étourdissement',
-        'Right with Thee': 'Translation droite',
-        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
-        'Left with Thee': 'Translation gauche',
-        'Forward with Thee': 'Translation avant',
-        'Back with Thee': 'Translation arrière',
-        'Away With Thee': 'Translation forcée',
-        'Astral Effect': 'Corruption de Lumière',
       },
     },
     {
@@ -287,19 +243,6 @@
         'Black Smoke': '黒闇の火',
         'Betwixt Worlds': '次元孔',
         'Away with Thee': '強制転移',
-      },
-      '~effectNames': {
-        'Waymark': '突進標的',
-        'Umbral Effect': '偏属性：闇',
-        'Stun': 'スタン',
-        'Right with Thee': '強制転移：右',
-        'Physical Vulnerability Up': '被物理ダメージ増加',
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Left with Thee': '強制転移：左',
-        'Forward with Thee': '強制転移：前',
-        'Back with Thee': '強制転移：後',
-        'Away With Thee': '強制転移',
-        'Astral Effect': '偏属性：光',
       },
     },
   ],

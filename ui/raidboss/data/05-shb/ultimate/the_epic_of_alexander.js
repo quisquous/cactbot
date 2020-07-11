@@ -598,12 +598,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Throttle',
-      regex: Regexes.gainsEffect({ effect: 'Throttle', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '窒息', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Erstickung', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Suffocation', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '窒息', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '질식', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '2BC', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
@@ -901,12 +896,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Compressed Water Initial',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -921,12 +911,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Compressed Water Explode',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression aqueuse' }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '85E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -949,12 +934,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Compressed Lightning Initial',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
-      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
-      regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
-      regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -969,12 +949,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Compressed Lightning Explode',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Lightning' }),
-      regexCn: Regexes.gainsEffect({ effect: '雷属性压缩' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Blitzkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression électrique' }),
-      regexJa: Regexes.gainsEffect({ effect: '雷属性圧縮' }),
-      regexKo: Regexes.gainsEffect({ effect: '번개속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '85F' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1055,26 +1030,16 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Decree Nisi Gain',
-      regex: Regexes.gainsEffect({ effect: 'Final Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.gainsEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Letztes Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['8AE', '8AF', '859', '85A'] }),
       run: function(data, matches) {
-        let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
+        let num = ['8AE', '8AF', '859', '85A'].indexOf(matches.effectId);
         data.nisiMap = data.nisiMap || {};
         data.nisiMap[matches.target] = num;
       },
     },
     {
       id: 'TEA Decree Nisi Lose',
-      regex: Regexes.losesEffect({ effect: 'Final Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.losesEffect({ effect: '最终判决(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexDe: Regexes.losesEffect({ effect: 'Letztes Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexFr: Regexes.losesEffect({ effect: 'Peine provisoire (?<sym>[ΑΒΓΔαβγδ]) ultime' }),
-      regexJa: Regexes.losesEffect({ effect: '最後の仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexKo: Regexes.losesEffect({ effect: '최후의 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
+      netRegex: NetRegexes.losesEffect({ effectId: ['8AE', '8AF', '859', '85A'] }),
       run: function(data, matches) {
         data.nisiMap = data.nisiMap || {};
         delete data.nisiMap[matches.target];
@@ -1082,34 +1047,23 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Final Judgment Nisi Gain',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
       run: function(data, matches) {
-        let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
+        let num = ['8B0', '8B1', '85B', '85C'].indexOf(matches.effectId);
         data.finalNisiMap = data.finalNisiMap || {};
         data.finalNisiMap[matches.target] = num;
       },
     },
     {
       id: 'TEA Final Judgment Nisi Verdict',
-      regex: Regexes.gainsEffect({ effect: 'Final Judgment: Decree Nisi (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexCn: Regexes.gainsEffect({ effect: '终审：判决(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Prozess über Vorläufiges Urteil (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Injonction : peine provisoire (?<sym>[ΑΒΓΔαβγδ])' }),
-      regexJa: Regexes.gainsEffect({ effect: '最後の審判：仮判決(?<sym>[ΑΒΓΔαβγδ])' }),
-      regexKo: Regexes.gainsEffect({ effect: '최후의 심판: 임시 판결 (?<sym>[ΑΒΓΔαβγδ])' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
       infoText: function(data, matches) {
-        // NOTE: these characters are not 'A' and 'B'.
-        let num = 'ΑΒΓΔαβγδ'.indexOf(matches.sym) % 4;
+        let num = ['8B0', '8B1', '85B', '85C'].indexOf(matches.effectId);
         return {
           en: 'Verdict: ' + data.nisiNames[num] + ' Nisi',
           de: 'Prozesseröffnung: ' + data.nisiNames[num] + ' Nisi',
@@ -1195,12 +1149,8 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Buff Collection',
-      regex: Regexes.gainsEffect({ effect: ['Restraining Order', 'House Arrest', 'Aggravated Assault', 'Shared Sentence'] }),
-      regexCn: Regexes.gainsEffect({ effect: ['判决确定：禁止接近命令', '判决确定：强制接近命令', '判决确定：加重罪', '判决确定：集团罪'] }),
-      regexDe: Regexes.gainsEffect({ effect: ['Urteil: Näherungsverbot', 'Urteil: Freiheitsstrafe', 'Urteil: Erschwerte Strafe', 'Urteil: Kollektivstrafe'] }),
-      regexFr: Regexes.gainsEffect({ effect: ['Jugement : éloignement', 'Jugement : Rapprochement', 'Jugement : Peine Sévère', 'Jugement : Peine Collective'] }),
-      regexJa: Regexes.gainsEffect({ effect: ['確定判決：接近禁止命令', '確定判決：接近強制命令', '確定判決：加重罰', '確定判決：集団罰'] }),
-      regexKo: Regexes.gainsEffect({ effect: ['확정 판결: 접근금지 명령', '확정 판결: 강제접근 명령', '확정 판결: 가중형', '확정 판결: 단체형'] }),
+      // Aggravated Assault, Shared Sentence, House Arrest, Restraining Order.
+      netRegex: NetRegexes.gainsEffect({ effectId: '46[1234]' }),
       run: function(data, matches) {
         data.buffMap = data.buffMap || {};
         data.buffMap[matches.target] = matches.effect;
@@ -1208,12 +1158,8 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Temporal Stasis No Buff',
-      regex: Regexes.gainsEffect({ effect: 'Restraining Order', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Näherungsverbot', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : éloignement', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령', capture: false }),
+      // This id is "restraining order".
+      netRegex: NetRegexes.gainsEffect({ effectId: '464', capture: false }),
       condition: function(data) {
         // NOTE: due to timings the "temporal" phase does not start until after debuffs are out.
         // So consider the "temporal" no debuff to be "brute" no debuff here.
@@ -1237,12 +1183,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Restraining Order',
-      regex: Regexes.gainsEffect({ effect: 'Restraining Order' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：禁止接近命令' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Näherungsverbot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : éloignement' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：接近禁止命令' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접근금지 명령' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '464' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1258,12 +1199,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA House Arrest',
-      regex: Regexes.gainsEffect({ effect: 'House Arrest' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：强制接近命令' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Freiheitsstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Rapprochement' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：接近強制命令' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 강제접근 명령' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '463' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1279,12 +1215,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Shared Sentence',
-      regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1300,12 +1231,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Shared Sentence Inception',
-      regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Collective' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: (data) => data.phase == 'inception',
       delaySeconds: 3,
       infoText: function(data, matches) {
@@ -1321,12 +1247,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Aggravated Assault',
-      regex: Regexes.gainsEffect({ effect: 'Aggravated Assault' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：加重罪' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Erschwerte Strafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : Peine Sévère' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：加重罰' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 가중형' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '461' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1442,12 +1363,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Inception Vuln Collection',
-      regex: Regexes.gainsEffect({ effect: 'Physical Vulnerability Up' }),
-      regexCn: Regexes.gainsEffect({ effect: '物理受伤加重' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Erhöhte Physische Verwundbarkeit' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Vulnérabilité physique augmentée' }),
-      regexJa: Regexes.gainsEffect({ effect: '被物理ダメージ増加' }),
-      regexKo: Regexes.gainsEffect({ effect: '받는 물리 피해량 증가' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '2B7' }),
       condition: (data) => data.phase == 'inception',
       run: function(data, matches) {
         data.vuln[matches.target] = true;
@@ -1832,12 +1748,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Contact Prohibition',
-      regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Prohibition' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：接触禁止命令' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontaktverbot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact prohibé' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：接触禁止命令' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접촉금지 명령' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '868' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Orange (Attract)',
@@ -1858,12 +1769,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Contact Regulation',
-      regex: Regexes.gainsEffect({ effect: 'Final Word: Contact Regulation' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：接触保护命令' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kontakt-Order' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : contact forcé' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：接触保護命令' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 접촉보호 명령' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '869' }),
       condition: (data, matches) => data.me == matches.target,
       alarmText: {
         en: 'Orange Bait: Get Away',
@@ -1876,12 +1782,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Escape Prohibition',
-      regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Prohibition' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：逃亡禁止命令' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtverbot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite prohibée' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡禁止命令' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 도망금지 명령' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '86A' }),
       condition: (data, matches) => data.me == matches.target,
       infoText: {
         en: 'Purple (Repel)',
@@ -1902,12 +1803,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Escape Detection',
-      regex: Regexes.gainsEffect({ effect: 'Final Word: Escape Detection' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：逃亡监察命令' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Fluchtbeobachtung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement : fuite forcée' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：逃亡監察命令' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 도망감찰 명령' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '86B' }),
       condition: (data, matches) => data.me == matches.target,
       alertText: {
         en: 'Purple Bait: Be In Back Of Group',
@@ -3044,38 +2940,6 @@ let getHeadmarkerId = (data, matches) => {
         'Whirlwind': 'Wirbelwind',
         'Wormhole Formation': 'Dimensionsspaltungsformation',
       },
-      '~effectNames': {
-        'Water Resistance Down II': 'Wasserresistenz - (stark)',
-        'Throttle': 'Erstickung',
-        'Temporal Displacement': 'Zeitstillstand',
-        'Summon Order III': 'Egi-Attacke III',
-        'Summon Order': 'Egi-Attacke I',
-        'Shared Sentence': 'Urteil: Kollektivstrafe',
-        'Restraining Order': 'Urteil: Näherungsverbot',
-        'Physical Vulnerability Up': 'Erhöhte Physische Verwundbarkeit',
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Luminous Aetheroplasm': 'Luminiszentes Ätheroplasma',
-        'Lightning Resistance Down II': 'Blitzresistenz - (stark)',
-        'House Arrest': 'Urteil: Freiheitsstrafe',
-        'Heavy': 'Gewicht',
-        'Fire Resistance Down II': 'Feuerresistenz - (stark)',
-        'Final Word: Escape Prohibition': 'Urteil: Fluchtverbot',
-        'Final Word: Escape Detection': 'Urteil: Fluchtbeobachtung',
-        'Final Word: Contact Regulation': 'Urteil: Kontakt-Order',
-        'Final Word: Contact Prohibition': 'Urteil: Kontaktverbot',
-        'Final Judgment: Penalty III': 'Prozess über Schwächung 3',
-        'Final Judgment: Decree Nisi': 'Prozess über Vorläufiges Urteil',
-        'Final Decree Nisi': 'Letztes Vorläufiges Urteil',
-        'Escape Detection Ordained': 'Fluchtbeobachtung',
-        'Enigma Codex': 'Enigma-Kodex',
-        'Embolden': 'Ermutigen',
-        'Down for the Count': 'Am Boden',
-        'Devotion': 'Hingabe',
-        'Contact Regulation Ordained': 'Kontakt-Order',
-        'Compressed Water': 'Wasserkompression',
-        'Compressed Lightning': 'Blitzkompression',
-        'Aggravated Assault': 'Urteil: Erschwerte Strafe',
-      },
     },
     {
       'locale': 'fr',
@@ -3177,38 +3041,6 @@ let getHeadmarkerId = (data, matches) => {
         'Whirlwind': 'Tornade',
         'Wormhole Formation': 'Marche de la fracture dimensionnelle',
       },
-      '~effectNames': {
-        'Aggravated Assault': 'Jugement : Peine Sévère',
-        'Compressed Lightning': 'Compression électrique',
-        'Compressed Water': 'Compression aqueuse',
-        'Contact Regulation Ordained': 'Contact forcé',
-        'Devotion': 'Dévouement',
-        'Down for the Count': 'Au tapis',
-        'Embolden': 'Enhardissement',
-        'Enigma Codex': 'Enigma Codex',
-        'Escape Detection Ordained': 'Fuite forcée',
-        'Final Decree Nisi': 'Peine provisoire ultime',
-        'Final Judgment: Decree Nisi': 'Injonction : peine provisoire',
-        'Final Judgment: Penalty III': 'Injonction : 3 altérations',
-        'Final Word: Contact Prohibition': 'Jugement : contact prohibé',
-        'Final Word: Contact Regulation': 'Jugement : contact forcé',
-        'Final Word: Escape Detection': 'Jugement : fuite forcée',
-        'Final Word: Escape Prohibition': 'Jugement : fuite prohibée',
-        'Fire Resistance Down II': 'Résistance au feu réduite+',
-        'Heavy': 'Pesanteur',
-        'House Arrest': 'Jugement : Rapprochement',
-        'Lightning Resistance Down II': 'Résistance à la foudre réduite+',
-        'Luminous Aetheroplasm': 'Éthéroplasma lumineux',
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
-        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
-        'Restraining Order': 'Jugement : éloignement',
-        'Shared Sentence': 'Jugement : Peine Collective',
-        'Summon Order': 'Action en attente : 1',
-        'Summon Order III': 'Actions en attente : 3',
-        'Temporal Displacement': 'Stase temporelle',
-        'Throttle': 'Suffocation',
-        'Water Resistance Down II': 'Résistance à l\'eau réduite+',
-      },
     },
     {
       'locale': 'ja',
@@ -3293,44 +3125,6 @@ let getHeadmarkerId = (data, matches) => {
         'Void Of Repentance': '懺悔の間',
         'Whirlwind': '竜巻',
         'Wormhole Formation': '次元断絶のマーチ',
-      },
-      '~effectNames': {
-        'Aggravated Assault': '確定判決：加重罰',
-        'Compressed Lightning': '雷属性圧縮',
-        'Compressed Water': '水属性圧縮',
-        'Contact Regulation Ordained': '接触保護命令',
-        'Devotion': 'エギの加護',
-        'Down for the Count': 'ノックダウン',
-        'Embolden': 'エンボルデン',
-        'Enigma Codex': 'エニグマ・コーデックス',
-        'Escape Detection Ordained': '逃亡監察命令',
-        'Final Decree Nisi α': '最後の仮判決α',
-        'Final Decree Nisi β': '最後の仮判決β',
-        'Final Decree Nisi γ': '最後の仮判決γ',
-        'Final Decree Nisi δ': '最後の仮判決δ',
-        'Final Judgment: Decree Nisi α': '最後の審判：仮判決α',
-        'Final Judgment: Decree Nisi β': '最後の審判：仮判決β',
-        'Final Judgment: Decree Nisi γ': '最後の審判：仮判決γ',
-        'Final Judgment: Decree Nisi δ': '最後の審判：仮判決δ',
-        'Final Judgment: Penalty III': '最後の審判：デバフ3',
-        'Final Word: Contact Prohibition': '確定判決：接触禁止命令',
-        'Final Word: Contact Regulation': '確定判決：接触保護命令',
-        'Final Word: Escape Detection': '確定判決：逃亡監察命令',
-        'Final Word: Escape Prohibition': '確定判決：逃亡禁止命令',
-        'Fire Resistance Down II': '火属性耐性低下[強]',
-        'Heavy': 'ヘヴィ',
-        'House Arrest': '確定判決：接近強制命令',
-        'Lightning Resistance Down II': '雷属性耐性低下［強］',
-        'Luminous Aetheroplasm': '光性爆雷',
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Physical Vulnerability Up': '被物理ダメージ増加',
-        'Restraining Order': '確定判決：接近禁止命令',
-        'Shared Sentence': '確定判決：集団罰',
-        'Summon Order': 'アクション実行待機I',
-        'Summon Order III': 'アクション実行待機III',
-        'Temporal Displacement': '時間停止',
-        'Throttle': 'スロットル',
-        'Water Resistance Down II': '水属性耐性低下［強］',
       },
     },
     {
@@ -3442,44 +3236,6 @@ let getHeadmarkerId = (data, matches) => {
         'Whirlwind': '旋风',
         'Wormhole Formation': '次元断绝阵列',
       },
-      '~effectNames': {
-        'Aggravated Assault': '判决确定：加重罪',
-        'Compressed Lightning': '雷属性压缩',
-        'Compressed Water': '水属性压缩',
-        'Contact Regulation Ordained': '接触保护命令',
-        'Devotion': '灵护',
-        'Down for the Count': '击倒',
-        'Embolden': '鼓励',
-        'Enigma Codex': '英格玛秘典',
-        'Escape Detection Ordained': '逃亡监察命令',
-        'Final Decree Nisi α': '最终判决α',
-        'Final Decree Nisi β': '最终判决β',
-        'Final Decree Nisi γ': '最终判决γ',
-        'Final Decree Nisi δ': '最终判决δ',
-        'Final Judgment: Decree Nisi α': '终审：判决α',
-        'Final Judgment: Decree Nisi β': '终审：判决β',
-        'Final Judgment: Decree Nisi γ': '终审：判决γ',
-        'Final Judgment: Decree Nisi δ': '终审：判决δ',
-        'Final Judgment: Penalty III': '终审：弱化状态3',
-        'Final Word: Contact Prohibition': '判决确定：接触禁止命令',
-        'Final Word: Contact Regulation': '判决确定：接触保护命令',
-        'Final Word: Escape Detection': '判决确定：逃亡监察命令',
-        'Final Word: Escape Prohibition': '判决确定：逃亡禁止命令',
-        'Fire Resistance Down II': '火属性耐性大幅降低',
-        'Heavy': '加重',
-        'House Arrest': '判决确定：强制接近命令',
-        'Lightning Resistance Down II': '雷属性耐性大幅降低',
-        'Luminous Aetheroplasm': '光性爆雷',
-        'Magic Vulnerability Up': '魔法受伤加重',
-        'Physical Vulnerability Up': '物理受伤加重',
-        'Restraining Order': '判决确定：禁止接近命令',
-        'Shared Sentence': '判决确定：集团罪',
-        'Summon Order': '发动技能待命I',
-        'Summon Order III': '发动技能待命III',
-        'Temporal Displacement': '时间停止',
-        'Throttle': '窒息',
-        'Water Resistance Down II': '水属性耐性大幅降低',
-      },
     },
     {
       'locale': 'ko',
@@ -3587,44 +3343,6 @@ let getHeadmarkerId = (data, matches) => {
         'Water and Thunder': '물+번개 징',
         'Whirlwind': '회오리바람',
         'Wormhole Formation': '차원 단절 대형',
-      },
-      '~effectNames': {
-        'Aggravated Assault': '확정 판결: 가중형',
-        'Compressed Lightning': '번개속성 압축',
-        'Compressed Water': '물속성 압축',
-        'Contact Regulation Ordained': '접촉보호 명령',
-        'Devotion': '에기의 가호',
-        'Down for the Count': '넉다운',
-        'Embolden': '성원',
-        'Enigma Codex': '에니그마 코덱스',
-        'Escape Detection Ordained': '도망감찰 명령',
-        'Final Decree Nisi α': '최후의 임시 판결 α',
-        'Final Decree Nisi β': '최후의 임시 판결 β',
-        'Final Decree Nisi γ': '최후의 임시 판결 γ',
-        'Final Decree Nisi δ': '최후의 임시 판결 δ',
-        'Final Judgment: Decree Nisi α': '최후의 심판: 임시 판결 α',
-        'Final Judgment: Decree Nisi β': '최후의 심판: 임시 판결 β',
-        'Final Judgment: Decree Nisi γ': '최후의 심판: 임시 판결 γ',
-        'Final Judgment: Decree Nisi δ': '최후의 심판: 임시 판결 δ',
-        'Final Judgment: Penalty III': '최후의 심판: 약화 3',
-        'Final Word: Contact Prohibition': '확정 판결: 접촉금지 명령',
-        'Final Word: Contact Regulation': '확정 판결: 접촉보호 명령',
-        'Final Word: Escape Detection': '확정 판결: 도망감찰 명령',
-        'Final Word: Escape Prohibition': '확정 판결: 도망금지 명령',
-        'Fire Resistance Down II': '불속성 저항 감소[강]',
-        'Heavy': '과중력',
-        'House Arrest': '확정 판결: 강제접근 명령',
-        'Lightning Resistance Down II': '번개속성 저항 감소[강]',
-        'Luminous Aetheroplasm': '빛의 폭뢰',
-        'Magic Vulnerability Up': '받는 마법 피해량 증가',
-        'Physical Vulnerability Up': '받는 물리 피해량 증가',
-        'Restraining Order': '확정 판결: 접근금지 명령',
-        'Shared Sentence': '확정 판결: 단체형',
-        'Summon Order': '기술 실행 대기 1',
-        'Summon Order III': '기술 실행 대기 3',
-        'Temporal Displacement': '시간 정지',
-        'Throttle': '질식',
-        'Water Resistance Down II': '물속성 저항 감소[강]',
       },
     },
   ],

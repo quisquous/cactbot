@@ -290,10 +290,7 @@
     },
     {
       id: 'E6S Hated of the Vortex Effect',
-      regex: Regexes.gainsEffect({ effect: 'Hated of the Vortex' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Fluch Des Windes' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Malédiction de la Souffleuse de rafales' }),
-      regexJa: Regexes.gainsEffect({ effect: '嵐神の呪い' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BB' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Garuda',
@@ -305,10 +302,7 @@
     },
     {
       id: 'E6S Hated of the Embers Effect',
-      regex: Regexes.gainsEffect({ effect: 'Hated of Embers' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Fluch der Flammen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Malédiction du Seigneur des flammes' }),
-      regexJa: Regexes.gainsEffect({ effect: '焔神の呪い' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BC' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Attack Ifrit',
@@ -438,13 +432,6 @@
         'Blaze': 'Flamme',
         'Air Bump': 'Aufsteigende Böe',
       },
-      '~effectNames': {
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Lightheaded': 'Auf wackeligen Beinen',
-        'Irons of Purgatory': 'Höllenfessel',
-        'Hated of the Vortex': 'Fluch des Windes',
-        'Hated of Embers': 'Fluch der Flammen',
-      },
     },
     {
       'locale': 'fr',
@@ -486,13 +473,6 @@
         'Call Of The Inferno': 'Mirage de chaleur',
         'Blaze': 'Fournaise',
         'Air Bump': 'Rafale ascendante',
-      },
-      '~effectNames': {
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
-        'Lightheaded': 'Titubation',
-        'Irons of Purgatory': 'Chaîne du purgatoire',
-        'Hated of the Vortex': 'Malédiction de la Souffleuse de rafales',
-        'Hated of Embers': 'Malédiction du Seigneur des flammes',
       },
     },
     {
@@ -536,13 +516,6 @@
         'Call Of The Inferno': '陽炎召喚',
         'Blaze': '火炎',
         'Air Bump': 'エアーバンプ',
-      },
-      '~effectNames': {
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Lightheaded': 'ふらつき',
-        'Irons of Purgatory': '煉獄の鎖',
-        'Hated of the Vortex': '嵐神の呪い',
-        'Hated of Embers': '焔神の呪い',
       },
     },
   ],

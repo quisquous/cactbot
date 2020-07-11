@@ -20,10 +20,7 @@
   triggers: [
     {
       id: 'E5S Surge Protection Gain',
-      regex: Regexes.gainsEffect({ effect: 'Surge Protection' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Überspannungsschutz' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Parafoudre' }),
-      regexJa: Regexes.gainsEffect({ effect: '避雷' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.surgeProtection = true;
@@ -31,10 +28,7 @@
     },
     {
       id: 'E5S Surge Protection Loss',
-      regex: Regexes.losesEffect({ effect: 'Surge Protection' }),
-      regexDe: Regexes.losesEffect({ effect: 'Überspannungsschutz' }),
-      regexFr: Regexes.losesEffect({ effect: 'Parafoudre' }),
-      regexJa: Regexes.losesEffect({ effect: '避雷' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.surgeProtection = false;
@@ -125,20 +119,14 @@
     },
     {
       id: 'E5S Fury\'s Bolt Gain',
-      regex: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Wütender Blitz', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Ramuh', effect: 'Boules de foudre', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8B7', capture: false }),
       run: function(data) {
         data.furysBoltActive = true;
       },
     },
     {
       id: 'E5S Fury\'s Bolt Lose',
-      regex: Regexes.losesEffect({ target: 'Ramuh', effect: 'Fury\'s Bolt', capture: false }),
-      regexDe: Regexes.losesEffect({ target: 'Ramuh', effect: 'Wütender Blitz', capture: false }),
-      regexFr: Regexes.losesEffect({ target: 'Ramuh', effect: 'Boules de foudre', capture: false }),
-      regexJa: Regexes.losesEffect({ target: 'ラムウ', effect: 'チャージボルト', capture: false }),
+      netRegex: NetRegexes.losesEffect({ effectId: '8B7', capture: false }),
       run: function(data) {
         data.furysBoltActive = false;
       },
@@ -360,14 +348,6 @@
         'Chain Lightning': 'Kettenblitz',
         'Centaur\'s Charge': 'Zentaurenansturm',
       },
-      '~effectNames': {
-        'System Shock': 'Elektrisiert',
-        'Hated of Levin': 'Fluch des Blitzes',
-        'Electrified': 'Stromleiter',
-        'Damage Down': 'Schaden -',
-        'Surge Protection': 'Überspannungsschutz',
-        'Fury\'s Bolt': 'Wütender Blitz',
-      },
     },
     {
       'locale': 'fr',
@@ -403,14 +383,6 @@
         'Chain Lightning': 'Chaîne d\'éclairs',
         'Centaur\'s Charge': 'Charge centaure',
       },
-      '~effectNames': {
-        'System Shock': 'Électro-choc',
-        'Surge Protection': 'Parafoudre',
-        'Hated of Levin': 'Malédiction du Patriarche fulgurant',
-        'Fury\'s Bolt': 'Boules de foudre',
-        'Electrified': 'Électrocution irradiante',
-        'Damage Down': 'Malus de dégâts',
-      },
     },
     {
       'locale': 'ja',
@@ -444,12 +416,6 @@
         'Chaos Strike': 'カオスストライク',
         'Chain Lightning': 'チェインライトニング',
         'Centaur\'s Charge': 'セントールチャージ',
-      },
-      '~effectNames': {
-        'System Shock': '電気ショック',
-        'Hated of Levin': '雷神の呪い',
-        'Electrified': '過剰帯電',
-        'Damage Down': 'ダメージ低下',
       },
     },
   ],

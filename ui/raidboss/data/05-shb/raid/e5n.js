@@ -10,13 +10,18 @@
   triggers: [
     {
       id: 'E5N Surge Protection Gain',
-      regex: Regexes.gainsEffect({ effect: 'Surge Protection' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Überspannungsschutz' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Parafoudre' }),
-      regexJa: Regexes.gainsEffect({ effect: '避雷' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.surgeProtection = true;
+      },
+    },
+    {
+      id: 'E5N Surge Protection Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
+      condition: Conditions.targetIsYou(),
+      run: function(data) {
+        data.surgeProtection = false;
       },
     },
     {
@@ -29,17 +34,6 @@
       regexCn: Regexes.startsUsing({ id: '4BA3', source: '拉姆' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
-    },
-    {
-      id: 'E5N Surge Protection Lose',
-      regex: Regexes.losesEffect({ effect: 'Surge Protection' }),
-      regexDe: Regexes.losesEffect({ effect: 'Überspannungsschutz' }),
-      regexFr: Regexes.losesEffect({ effect: 'Parafoudre' }),
-      regexJa: Regexes.losesEffect({ effect: '避雷' }),
-      condition: Conditions.targetIsYou(),
-      run: function(data) {
-        data.surgeProtection = false;
-      },
     },
     {
       id: 'E5N Stratospear Summons',
@@ -157,11 +151,6 @@
         'Chaos Strike': 'Chaosschlag',
         'Centaur\'s Charge': 'Zentaurenansturm',
       },
-      '~effectNames': {
-        'Electrified': 'Stromleiter',
-        'Damage Down': 'Schaden -',
-        'Surge Protection': 'Überspannungsschutz',
-      },
     },
     {
       'locale': 'fr',
@@ -191,11 +180,6 @@
         'Chaos Strike': 'Frappe chaotique',
         'Centaur\'s Charge': 'Charge centaure',
       },
-      '~effectNames': {
-        'Surge Protection': 'Parafoudre',
-        'Electrified': 'Électrocution irradiante',
-        'Damage Down': 'Malus de dégâts',
-      },
     },
     {
       'locale': 'ja',
@@ -224,10 +208,6 @@
         'Crippling Blow': '痛打',
         'Chaos Strike': 'カオスストライク',
         'Centaur\'s Charge': 'セントールチャージ',
-      },
-      '~effectNames': {
-        'Electrified': '過剰帯電',
-        'Damage Down': 'ダメージ低下',
       },
     },
   ],
