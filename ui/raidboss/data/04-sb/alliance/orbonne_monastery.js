@@ -731,7 +731,6 @@
         'Ultima, the High Seraph': 'Cherub Ultima',
       },
       'replaceText': {
-
         '--ghost stun--': '--Geist unterbrechen--',
         '--crystal stun--': '--Kristall unterbrechen--',
         'Analysis': 'Analyse',
