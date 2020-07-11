@@ -198,12 +198,7 @@
     },
     {
       id: 'ByaEx Ominous Wind',
-      regex: Regexes.gainsEffect({ effect: 'Ominous Wind' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Unheilvoller Wind' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Vent Mauvais' }),
-      regexJa: Regexes.gainsEffect({ effect: '祟り風' }),
-      regexCn: Regexes.gainsEffect({ effect: '妖风' }),
-      regexKo: Regexes.gainsEffect({ effect: '불길한 바람' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '5C9' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -370,9 +365,6 @@
         'tiger lands': 'Tiger landet',
         'tiger untargetable': 'Tiger nicht anvisierbar',
       },
-      '~effectNames': {
-        'Ominous Wind': 'Unheilvoller Wind',
-      },
     },
     {
       'locale': 'fr',
@@ -395,9 +387,6 @@
         'Sweep The Leg': 'Verticalité',
         'Unrelenting Anguish': 'Douleur continuelle',
       },
-      '~effectNames': {
-        'Ominous Wind': 'Vent Mauvais',
-      },
     },
     {
       'locale': 'ja',
@@ -419,9 +408,6 @@
         'Storm Pulse': '風雷波動',
         'Sweep The Leg': '旋体脚',
         'Unrelenting Anguish': '無間地獄',
-      },
-      '~effectNames': {
-        'Ominous Wind': '祟り風',
       },
     },
     {
@@ -456,9 +442,6 @@
         'tiger lands': '白帝落地',
         'tiger untargetable': '白帝无法选中',
       },
-      '~effectNames': {
-        'Ominous Wind': '妖风',
-      },
     },
     {
       'locale': 'ko',
@@ -491,9 +474,6 @@
         'leap north': '보스 북쪽으로 이동',
         'tiger lands': '호랑이 착지',
         'tiger untargetable': '호랑이 타겟 불가',
-      },
-      '~effectNames': {
-        'Ominous Wind': '불길한 바람',
       },
     },
   ],

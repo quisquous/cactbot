@@ -200,12 +200,7 @@
     },
     {
       id: 'O3S Right Face',
-      regex: Regexes.gainsEffect({ effect: 'Right Face' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rechts' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Droite' }),
-      regexJa: Regexes.gainsEffect({ effect: '移動命令：右' }),
-      regexCn: Regexes.gainsEffect({ effect: '移动命令：右' }),
-      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 우' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '510' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -218,12 +213,7 @@
     },
     {
       id: 'O3S Forward March',
-      regex: Regexes.gainsEffect({ effect: 'Forward March' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Vorwärts' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Avancer' }),
-      regexJa: Regexes.gainsEffect({ effect: '移動命令：前' }),
-      regexCn: Regexes.gainsEffect({ effect: '移动命令：前' }),
-      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 전' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '50D' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -236,12 +226,7 @@
     },
     {
       id: 'O3S Left Face',
-      regex: Regexes.gainsEffect({ effect: 'Left Face' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Links' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Virage À Gauche' }),
-      regexJa: Regexes.gainsEffect({ effect: '移動命令：左' }),
-      regexCn: Regexes.gainsEffect({ effect: '移动命令：左' }),
-      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 좌' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '50F' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -254,12 +239,7 @@
     },
     {
       id: 'O3S About Face',
-      regex: Regexes.gainsEffect({ effect: 'About Face' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Geistlenkung Rückwärts' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Contrainte Mentale: Reculer' }),
-      regexJa: Regexes.gainsEffect({ effect: '移動命令：後' }),
-      regexCn: Regexes.gainsEffect({ effect: '移动命令：后' }),
-      regexKo: Regexes.gainsEffect({ effect: '이동 명령: 후' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '50E' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -409,12 +389,6 @@
         'The Queen\'s Waltz': 'Tanz der Königin',
         'Thunder': 'Blitz',
       },
-      '~effectNames': {
-        'About Face': 'Geistlenkung rückwärts',
-        'Forward March': 'Geistlenkung vorwärts',
-        'Left Face': 'Geistlenkung links',
-        'Right Face': 'Geistlenkung rechts',
-      },
     },
     {
       'locale': 'fr',
@@ -442,12 +416,6 @@
         'The Queen\'s Waltz': 'Danse de la reine',
         'Thunder': 'Foudre',
       },
-      '~effectNames': {
-        'About Face': 'Contrainte mentale: reculer',
-        'Forward March': 'Contrainte mentale: avancer',
-        'Left Face': 'Contrainte mentale: virage à gauche',
-        'Right Face': 'Contrainte mentale: virage à droite',
-      },
     },
     {
       'locale': 'ja',
@@ -474,12 +442,6 @@
         'The Playing Field': 'ゲームボード',
         'The Queen\'s Waltz': '女王の舞い',
         'Thunder': 'サンダー',
-      },
-      '~effectNames': {
-        'About Face': '移動命令：後',
-        'Forward March': '移動命令：前',
-        'Left Face': '移動命令：左',
-        'Right Face': '移動命令：右',
       },
     },
     {
@@ -517,12 +479,6 @@
         'The Playing Field': '游戏盘面',
         'Thunder': '闪雷',
       },
-      '~effectNames': {
-        'About Face': '移动命令：后',
-        'Forward March': '移动命令：前',
-        'Left Face': '移动命令：左',
-        'Right Face': '移动命令：右',
-      },
     },
     {
       'locale': 'ko',
@@ -549,12 +505,6 @@
         'The Playing Field': '게임판',
         'The Queen\'s Waltz': '여왕의 춤',
         'Thunder': '선더',
-      },
-      '~effectNames': {
-        'About Face': '이동 명령: 후',
-        'Forward March': '이동 명령: 전',
-        'Left Face': '이동 명령: 좌',
-        'Right Face': '이동 명령: 우',
       },
     },
   ],

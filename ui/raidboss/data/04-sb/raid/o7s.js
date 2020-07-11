@@ -1,10 +1,6 @@
 'use strict';
 
 // O7S - Sigmascape 3.0 Savage
-// localization:
-//   de: timeline done, partial triggers
-//   fr: partial timeline, partial triggers
-//   ja: partial timeline, partial triggers
 [{
   zoneRegex: {
     en: /^Sigmascape V3\.0 \(Savage\)$/,
@@ -16,12 +12,7 @@
     // State
     {
       id: 'O7S Aether Rot Gain',
-      regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
-      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット' }),
-      regexCn: Regexes.gainsEffect({ effect: '以太病毒' }),
-      regexKo: Regexes.gainsEffect({ effect: '에테르 부패' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -31,12 +22,7 @@
     },
     {
       id: 'O7S Aether Rot Lose',
-      regex: Regexes.losesEffect({ effect: 'Aether Rot' }),
-      regexDe: Regexes.losesEffect({ effect: 'Ätherfäule' }),
-      regexFr: Regexes.losesEffect({ effect: 'Pourriture Éthéréenne' }),
-      regexJa: Regexes.losesEffect({ effect: 'エーテルロット' }),
-      regexCn: Regexes.losesEffect({ effect: '以太病毒' }),
-      regexKo: Regexes.losesEffect({ effect: '에테르 부패' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '5C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -46,12 +32,12 @@
     },
     {
       id: 'O7S Dadaluma Simulation',
-      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Dadaluma Simulation', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Dadarma-Kampfprogramm', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Dadaluma', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ダダルマー・プログラム', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '达达鲁玛模拟程序', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '다다루마 프로그램', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D3', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D3', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D3', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D3', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D3', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D3', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -64,12 +50,12 @@
     },
     {
       id: 'O7S Bibliotaph Simulation',
-      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Bibliotaph Simulation', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Bibliotaph-Kampfprogramm', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Bibliotaphe', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ビブリオタフ・プログラム', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '永世珍本模拟程序', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '비블리오타프 프로그램', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D4', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D4', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D4', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D4', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D4', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D4', capture: false }),
       condition: function(data) {
         return !data.first || data.seenVirus && !data.second;
       },
@@ -82,12 +68,12 @@
     },
     {
       id: 'O7S Virus Tracker',
-      regex: Regexes.gainsEffect({ target: 'Guardian', effect: 'Virus', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Wächter', effect: 'Virus', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'gardien', effect: 'Programme Virus', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'ガーディアン', effect: 'ウィルス・プログラム', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '守护者', effect: '病毒模拟程序', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '가디언', effect: '바이러스 프로그램', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Guardian', effectId: '5D5', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Wächter', effectId: '5D5', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'gardien', effectId: '5D5', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'ガーディアン', effectId: '5D5', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '守护者', effectId: '5D5', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '가디언', effectId: '5D5', capture: false }),
       run: function(data) {
         data.seenVirus = true;
       },
@@ -197,12 +183,7 @@
     },
     {
       id: 'O7S Searing Wind',
-      regex: Regexes.gainsEffect({ effect: 'Searing Wind' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gluthitze' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Fournaise' }),
-      regexJa: Regexes.gainsEffect({ effect: '灼熱' }),
-      regexCn: Regexes.gainsEffect({ effect: '灼热' }),
-      regexKo: Regexes.gainsEffect({ effect: '작열' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '178' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -210,12 +191,7 @@
     },
     {
       id: 'O7S Abandonment',
-      regex: Regexes.gainsEffect({ effect: 'Abandonment' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verlassen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Isolement' }),
-      regexJa: Regexes.gainsEffect({ effect: '孤独感' }),
-      regexCn: Regexes.gainsEffect({ effect: '孤独感' }),
-      regexKo: Regexes.gainsEffect({ effect: '고독감' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '58A' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -237,13 +213,9 @@
       },
     },
     {
+      // Aether Rot
       id: 'O7S Rot',
-      regex: Regexes.gainsEffect({ effect: 'Aether Rot' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Ätherfäule' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pourriture Éthéréenne' }),
-      regexJa: Regexes.gainsEffect({ effect: 'エーテルロット' }),
-      regexCn: Regexes.gainsEffect({ effect: '以太病毒' }),
-      regexKo: Regexes.gainsEffect({ effect: '에테르 부패' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -448,14 +420,6 @@
         '(?<!\\w)Virus': 'Virus',
         'Wallop': 'Tentakelklatsche',
       },
-      '~effectNames': {
-        'Abandonment': 'Verlassen',
-        'Aether Rot': 'Ätherfäule',
-        'Bibliotaph Simulation': 'Bibliotaph-Kampfprogramm',
-        'Dadaluma Simulation': 'Dadarma-Kampfprogramm',
-        'Searing Wind': 'Versengen',
-        '(?<!\\w)Virus': 'Virus',
-      },
     },
     {
       'locale': 'fr',
@@ -504,14 +468,6 @@
         '(?<!\\w)Virus': 'Virus',
         'Wallop': 'Taloche tentaculaire',
       },
-      '~effectNames': {
-        'Abandonment': 'Isolement',
-        'Aether Rot': 'Pourriture éthéréenne',
-        'Bibliotaph Simulation': 'Programme bibliotaphe',
-        'Dadaluma Simulation': 'Programme Dadaluma',
-        'Searing Wind': 'Carbonisation',
-        '(?<!\\w)Virus': 'Virus',
-      },
     },
     {
       'locale': 'ja',
@@ -548,14 +504,6 @@
         'Viral Weapon': 'ウィルス兵器',
         '(?<!\\w)Virus': 'ウイルス',
         'Wallop': '叩きつけ',
-      },
-      '~effectNames': {
-        'Abandonment': '孤独感',
-        'Aether Rot': 'エーテルロット',
-        'Bibliotaph Simulation': 'ビブリオタフ・プログラム',
-        'Dadaluma Simulation': 'ダダルマー・プログラム',
-        'Searing Wind': '熱風',
-        '(?<!\\w)Virus': 'ウイルス',
       },
     },
     {
@@ -605,14 +553,6 @@
         '(?<!\\w)Virus': '病毒',
         'Wallop': '敲击',
       },
-      '~effectNames': {
-        'Abandonment': '孤独感',
-        'Aether Rot': '以太病毒',
-        'Bibliotaph Simulation': '永世珍本模拟程序',
-        'Dadaluma Simulation': '达达鲁玛模拟程序',
-        'Searing Wind': '热风',
-        '(?<!\\w)Virus': '病毒',
-      },
     },
     {
       'locale': 'ko',
@@ -658,14 +598,6 @@
         'Viral Weapon': '바이러스 병기',
         '(?<!\\w)Virus': '바이러스',
         'Wallop': '매질',
-      },
-      '~effectNames': {
-        'Abandonment': '고독감',
-        'Aether Rot': '에테르 부패',
-        'Bibliotaph Simulation': '비블리오타프 프로그램',
-        'Dadaluma Simulation': '다다루마 프로그램',
-        'Searing Wind': '작열',
-        '(?<!\\w)Virus': '바이러스 프로그램',
       },
     },
   ],

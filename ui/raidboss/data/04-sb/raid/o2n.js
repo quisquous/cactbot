@@ -18,12 +18,7 @@
   triggers: [
     {
       id: 'O2N Levitation Gain',
-      regex: Regexes.gainsEffect({ effect: 'Levitation' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Levitation' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Lévitation' }),
-      regexJa: Regexes.gainsEffect({ effect: 'レビテト' }),
-      regexCn: Regexes.gainsEffect({ effect: '浮空' }),
-      regexKo: Regexes.gainsEffect({ effect: '레비테트' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.levitating = true;
@@ -31,12 +26,7 @@
     },
     {
       id: 'O2N Levitation Lose',
-      regex: Regexes.losesEffect({ effect: 'Levitation' }),
-      regexDe: Regexes.losesEffect({ effect: 'Levitation' }),
-      regexFr: Regexes.losesEffect({ effect: 'Lévitation' }),
-      regexJa: Regexes.losesEffect({ effect: 'レビテト' }),
-      regexCn: Regexes.losesEffect({ effect: '浮空' }),
-      regexKo: Regexes.losesEffect({ effect: '레비테트' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '556' }),
       condition: Conditions.targetIsYou(),
       run: function(data) {
         data.levitating = false;
@@ -155,12 +145,7 @@
     },
     {
       id: 'O2N Six Fulms Under',
-      regex: Regexes.gainsEffect({ effect: 'Six Fulms Under' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Versinkend' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Enfoncement' }),
-      regexJa: Regexes.gainsEffect({ effect: '沈下' }),
-      regexCn: Regexes.gainsEffect({ effect: '下陷' }),
-      regexKo: Regexes.gainsEffect({ effect: '침하' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 5,
       suppressSeconds: 10,
@@ -270,9 +255,6 @@
         '(?<!-)100 Gs': '100 G',
         '-100 Gs': 'Minus 100 G',
       },
-      '~effectNames': {
-        'Six Fulms Under': 'Versinkend',
-      },
     },
     {
       'locale': 'fr',
@@ -300,9 +282,6 @@
         'Antilight': 'Lumière obscure',
         '(?<!-)100 Gs': 'Gravité 100',
         '-100 Gs': 'Gravité -100',
-      },
-      '~effectNames': {
-        'Six Fulms Under': 'Enfoncement',
       },
     },
     {
@@ -332,9 +311,6 @@
         '(?<!-)100 Gs': '重力100',
         '-100 Gs': '重力マイナス100',
       },
-      '~effectNames': {
-        'Six Fulms Under': '沈下',
-      },
     },
     {
       'locale': 'cn',
@@ -363,9 +339,6 @@
         '(?<!-)100 Gs': '重力100',
         '-100 Gs': '重力-100',
       },
-      '~effectNames': {
-        'Six Fulms Under': '下陷',
-      },
     },
     {
       'locale': 'ko',
@@ -393,9 +366,6 @@
         'Antilight': '암흑광',
         '(?<!-)100 Gs': '중력 100',
         '-100 Gs': '중력 -100',
-      },
-      '~effectNames': {
-        'Six Fulms Under': '침하',
       },
     },
   ],

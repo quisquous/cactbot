@@ -186,12 +186,7 @@
     },
     {
       id: 'O9S Entropy Spread',
-      regex: Regexes.gainsEffect({ effect: 'Entropy' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos' }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の炎' }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之炎' }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -242,12 +237,7 @@
     },
     {
       id: 'O9S Entropy Avoid Hit',
-      regex: Regexes.gainsEffect({ effect: 'Entropy' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos' }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の炎' }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之炎' }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: function(data, matches) {
         return matches.target == data.me && data.phaseType == 'fire';
       },
@@ -308,12 +298,7 @@
     },
     {
       id: 'O9S Dynamic Fluid 1',
-      regex: Regexes.gainsEffect({ effect: 'Dynamic Fluid', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosspritzer', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Du Chaos', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の水', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之水', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 물', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: function(data) {
         return data.phaseType == 'water';
       },
@@ -331,12 +316,7 @@
     },
     {
       id: 'O9S Dynamic Fluid 2',
-      regex: Regexes.gainsEffect({ effect: 'Dynamic Fluid', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosspritzer', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Du Chaos', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の水', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之水', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 물', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: function(data) {
         return data.phaseType == 'water';
       },
@@ -354,12 +334,7 @@
     },
     {
       id: 'O9S Dynamic Fluid 3',
-      regex: Regexes.gainsEffect({ effect: 'Dynamic Fluid', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosspritzer', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Du Chaos', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の水', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之水', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 물', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '641', capture: false }),
       condition: function(data) {
         return data.phaseType == 'enrage';
       },
@@ -419,12 +394,7 @@
     },
     {
       id: 'O9S Headwind',
-      regex: Regexes.gainsEffect({ effect: 'Headwind' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosböen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Vent Du Chaos' }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の風' }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之风' }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 바람' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '642' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -434,12 +404,7 @@
     },
     {
       id: 'O9S Tailwind',
-      regex: Regexes.gainsEffect({ effect: 'Tailwind' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaossturm' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Vent Contraire Du Chaos' }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の逆風' }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之逆风' }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 역풍' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '643' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -495,12 +460,7 @@
     },
     {
       id: 'O9S Accretion',
-      regex: Regexes.gainsEffect({ effect: 'Accretion', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaossumpf', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bourbier Du Chaos', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の泥土', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之泥土', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 진흙', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '644', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -528,12 +488,7 @@
     },
     {
       id: 'O9S Primordial Crust',
-      regex: Regexes.gainsEffect({ effect: 'Primordial Crust' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaoserde' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Terre Du Chaos' }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の土' }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之土' }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 흙' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
       condition: function(data, matches) {
         return data.me == matches.target && data.phaseType != 'orb';
       },
@@ -551,12 +506,7 @@
     },
     {
       id: 'O9S Primordial Crust Cleanup',
-      regex: Regexes.gainsEffect({ effect: 'Primordial Crust' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaoserde' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Terre Du Chaos' }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の土' }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之土' }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 흙' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '645' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -593,12 +543,7 @@
     },
     {
       id: 'O9S Orb Entropy',
-      regex: Regexes.gainsEffect({ effect: 'Entropy' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosflammen' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Flammes Du Chaos' }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の炎' }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之炎' }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 불' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '640' }),
       condition: function(data, matches) {
         return matches.target != data.me && data.phaseType == 'orb';
       },
@@ -624,12 +569,7 @@
     },
     {
       id: 'O9S Orb Dynamic Fluid',
-      regex: Regexes.gainsEffect({ effect: 'Dynamic Fluid' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Chaosspritzer' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Eaux Du Chaos' }),
-      regexJa: Regexes.gainsEffect({ effect: '混沌の水' }),
-      regexCn: Regexes.gainsEffect({ effect: '混沌之水' }),
-      regexKo: Regexes.gainsEffect({ effect: '혼돈의 물' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '641' }),
       condition: function(data, matches) {
         return matches.target == data.me && data.phaseType == 'orb';
       },
@@ -689,14 +629,6 @@
         'Umbra Smash': 'Schattenschlag',
         '\\(ALL\\)': '(ALLE)',
       },
-      '~effectNames': {
-        'Accretion': 'Chaossumpf',
-        'Dynamic Fluid': 'Chaosspritzer',
-        'Entropy': 'Chaosflammen',
-        'Headwind': 'Chaosböen',
-        'Primordial Crust': 'Chaoserde',
-        'Tailwind': 'Chaossturm',
-      },
     },
     {
       'locale': 'fr',
@@ -723,14 +655,6 @@
         'Umbra Smash': 'Fracas ombral',
         '\\(ALL\\)': '(Tous)',
       },
-      '~effectNames': {
-        'Accretion': 'Bourbier du chaos',
-        'Dynamic Fluid': 'Eaux du chaos',
-        'Entropy': 'Flammes du chaos',
-        'Headwind': 'Vent du chaos',
-        'Primordial Crust': 'Terre du chaos',
-        'Tailwind': 'Vent contraire du chaos',
-      },
     },
     {
       'locale': 'ja',
@@ -755,14 +679,6 @@
         'Stray Spray': '混沌の水',
         'Tsunami': 'つなみ',
         'Umbra Smash': 'アンブラスマッシュ',
-      },
-      '~effectNames': {
-        'Accretion': '混沌の泥土',
-        'Dynamic Fluid': '混沌の水',
-        'Entropy': '混沌の炎',
-        'Headwind': '混沌の風',
-        'Primordial Crust': '混沌の土',
-        'Tailwind': '混沌の逆風',
       },
     },
     {
@@ -790,14 +706,6 @@
         'Umbra Smash': '本影爆碎',
         '\\(ALL\\)': '\\(全部\\)',
       },
-      '~effectNames': {
-        'Accretion': '混沌之泥土',
-        'Dynamic Fluid': '混沌之水',
-        'Entropy': '混沌之炎',
-        'Headwind': '混沌之风',
-        'Primordial Crust': '混沌之土',
-        'Tailwind': '混沌之逆风',
-      },
     },
     {
       'locale': 'ko',
@@ -823,14 +731,6 @@
         'Tsunami': '해일',
         'Umbra Smash': '그림자 타격',
         '\\(ALL\\)': '(모두)',
-      },
-      '~effectNames': {
-        'Accretion': '혼돈의 진흙',
-        'Dynamic Fluid': '혼돈의 물',
-        'Entropy': '혼돈의 불',
-        'Headwind': '혼돈의 바람',
-        'Primordial Crust': '혼돈의 흙',
-        'Tailwind': '바람몰이',
       },
     },
   ],

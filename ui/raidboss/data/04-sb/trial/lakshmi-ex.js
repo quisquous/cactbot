@@ -35,12 +35,12 @@
     },
     {
       id: 'Lakshmi Chanchala Lose',
-      regex: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
-      regexDe: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
-      regexFr: Regexes.losesEffect({ target: 'Lakshmi', effect: 'Chanchala', capture: false }),
-      regexJa: Regexes.losesEffect({ target: 'ラクシュミ', effect: 'チャンチャラー', capture: false }),
-      regexCn: Regexes.losesEffect({ target: '吉祥天女', effect: '反复无常', capture: false }),
-      regexKo: Regexes.losesEffect({ target: '락슈미', effect: '찬찰라', capture: false }),
+      netRegex: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
+      netRegexDe: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
+      netRegexFr: NetRegexes.losesEffect({ target: 'Lakshmi', effectId: '582', capture: false }),
+      netRegexJa: NetRegexes.losesEffect({ target: 'ラクシュミ', effectId: '582', capture: false }),
+      netRegexCn: NetRegexes.losesEffect({ target: '吉祥天女', effectId: '582', capture: false }),
+      netRegexKo: NetRegexes.losesEffect({ target: '락슈미', effectId: '582', capture: false }),
       run: function(data) {
         data.chanchala = false;
       },

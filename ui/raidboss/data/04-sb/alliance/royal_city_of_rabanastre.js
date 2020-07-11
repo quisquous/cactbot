@@ -35,13 +35,10 @@
       },
     },
     {
+      // Note: this could probably use |matches.count| directly instead of
+      // using data.breathless to count the stacks.
       id: 'Rab Mateus Breathless Gain',
-      regex: Regexes.gainsEffect({ effect: 'Breathless' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Atemnot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Suffocation' }),
-      regexJa: Regexes.gainsEffect({ effect: '呼吸困難' }),
-      regexCn: Regexes.gainsEffect({ effect: '呼吸困难' }),
-      regexKo: Regexes.gainsEffect({ effect: '호흡곤란' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -85,12 +82,7 @@
     },
     {
       id: 'Rab Mateus Breathless Lose',
-      regex: Regexes.losesEffect({ effect: 'Breathless' }),
-      regexDe: Regexes.losesEffect({ effect: 'Atemnot' }),
-      regexFr: Regexes.losesEffect({ effect: 'Suffocation' }),
-      regexJa: Regexes.losesEffect({ effect: '呼吸困難' }),
-      regexCn: Regexes.losesEffect({ effect: '呼吸困难' }),
-      regexKo: Regexes.losesEffect({ effect: '호흡곤란' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '595' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -371,9 +363,6 @@
         'Trepidation': 'Beklemmung',
         'Unbind': 'Loseisen',
         'Unrelenting': 'Unerbittliche Klinge',
-      },
-      '~effectNames': {
-        'Breathless': 'Atemnot',
       },
     },
     {

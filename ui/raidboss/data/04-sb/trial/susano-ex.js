@@ -54,12 +54,7 @@
     },
     {
       id: 'SusEx Churning Gain',
-      regex: Regexes.gainsEffect({ effect: 'Churning', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schäumend', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Agitation', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '禍泡', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '祸泡', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '재앙거품', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '4F6', capture: false }),
       condition: function(data) {
         return !data.churning;
       },
@@ -72,12 +67,7 @@
       // that seems a bit fragile.  This might not work if somebody dies
       // while having churning, but is probably ok in most cases.
       id: 'SusEx Churning Lose',
-      regex: Regexes.losesEffect({ effect: 'Churning', capture: false }),
-      regexDe: Regexes.losesEffect({ effect: 'Schäumend', capture: false }),
-      regexFr: Regexes.losesEffect({ effect: 'Agitation', capture: false }),
-      regexJa: Regexes.losesEffect({ effect: '禍泡', capture: false }),
-      regexCn: Regexes.losesEffect({ effect: '祸泡', capture: false }),
-      regexKo: Regexes.losesEffect({ effect: '재앙거품', capture: false }),
+      netRegex: NetRegexes.losesEffect({ effectId: '4F6', capture: false }),
       condition: function(data) {
         return data.churning;
       },
@@ -216,12 +206,7 @@
     },
     {
       id: 'SusEx Churning',
-      regex: Regexes.gainsEffect({ effect: 'Churning', capture: true }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schäumend', capture: true }),
-      regexFr: Regexes.gainsEffect({ effect: 'Agitation', capture: true }),
-      regexJa: Regexes.gainsEffect({ effect: '禍泡', capture: true }),
-      regexCn: Regexes.gainsEffect({ effect: '祸泡', capture: true }),
-      regexKo: Regexes.gainsEffect({ effect: '재앙거품', capture: true }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '4F6' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -261,9 +246,6 @@
         'cloud': 'Wolke',
         'dice': 'Würfel (Bombe)',
       },
-      '~effectNames': {
-        'Churning': 'Schäumend',
-      },
     },
     {
       'locale': 'fr',
@@ -289,9 +271,6 @@
         'The Sealed Gate': 'Porte scellée',
         'Ukehi': 'Ukehi',
       },
-      '~effectNames': {
-        'Churning': 'Agitation',
-      },
     },
     {
       'locale': 'ja',
@@ -316,9 +295,6 @@
         'The Hidden Gate': '岩戸隠れ',
         'The Sealed Gate': '岩戸閉め',
         'Ukehi': '宇気比',
-      },
-      '~effectNames': {
-        'Churning': '禍泡',
       },
     },
     {
@@ -350,9 +326,6 @@
         'cloud': '云',
         'dice': '骰点',
       },
-      '~effectNames': {
-        'Churning': '祸泡',
-      },
     },
     {
       'locale': 'ko',
@@ -383,9 +356,6 @@
         'Ukehi': '내기 선언',
         'cloud': '구름',
         'dice': '주사위',
-      },
-      '~effectNames': {
-        'Churning': '재앙거품',
       },
     },
   ],

@@ -13,12 +13,7 @@
     // --- State ---
     {
       id: 'UCU Firescorched Gain',
-      regex: Regexes.gainsEffect({ effect: 'Firescorched' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Feuerhorn' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Corne-De-Feu' }),
-      regexJa: Regexes.gainsEffect({ effect: 'ファイアホーン' }),
-      regexCn: Regexes.gainsEffect({ effect: '火角' }),
-      regexKo: Regexes.gainsEffect({ effect: '화염뿔' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -28,12 +23,7 @@
     },
     {
       id: 'UCU Firescorched Lose',
-      regex: Regexes.losesEffect({ effect: 'Firescorched' }),
-      regexDe: Regexes.losesEffect({ effect: 'Feuerhorn' }),
-      regexFr: Regexes.losesEffect({ effect: 'Corne-De-Feu' }),
-      regexJa: Regexes.losesEffect({ effect: 'ファイアホーン' }),
-      regexCn: Regexes.losesEffect({ effect: '火角' }),
-      regexKo: Regexes.losesEffect({ effect: '화염뿔' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -43,12 +33,7 @@
     },
     {
       id: 'UCU Icebitten Gain',
-      regex: Regexes.gainsEffect({ effect: 'Icebitten' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Eisklaue' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Griffe-De-Glace' }),
-      regexJa: Regexes.gainsEffect({ effect: 'アイスクロウ' }),
-      regexCn: Regexes.gainsEffect({ effect: '冰爪' }),
-      regexKo: Regexes.gainsEffect({ effect: '얼음발톱' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -58,12 +43,7 @@
     },
     {
       id: 'UCU Icebitten Lose',
-      regex: Regexes.losesEffect({ effect: 'Icebitten' }),
-      regexDe: Regexes.losesEffect({ effect: 'Eisklaue' }),
-      regexFr: Regexes.losesEffect({ effect: 'Griffe-De-Glace' }),
-      regexJa: Regexes.losesEffect({ effect: 'アイスクロウ' }),
-      regexCn: Regexes.losesEffect({ effect: '冰爪' }),
-      regexKo: Regexes.losesEffect({ effect: '얼음발톱' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -618,12 +598,7 @@
     },
     {
       id: 'UCU Nael Your Doom',
-      regex: Regexes.gainsEffect({ effect: 'Doom' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -685,12 +660,7 @@
     },
     {
       id: 'UCU Doom Init',
-      regex: Regexes.gainsEffect({ effect: 'Doom' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -714,12 +684,7 @@
     },
     {
       id: 'UCU Doom Cleanup',
-      regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D2', capture: false }),
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
@@ -1891,11 +1856,6 @@
         'Twisting Dive': 'Spiralschwinge',
         'Wings of Salvation': 'Rettende Schwinge',
       },
-      '~effectNames': {
-        'Doom': 'Verhängnis',
-        'Firescorched': 'Feuerhorn',
-        'Icebitten': 'Eisklaue',
-      },
     },
     {
       'locale': 'fr',
@@ -1974,11 +1934,6 @@
         'Twisting Dive': 'Plongeon-trombe',
         'Wings of Salvation': 'Aile de la salvation',
       },
-      '~effectNames': {
-        'Doom': 'Glas',
-        'Firescorched': 'Corne-de-feu',
-        'Icebitten': 'Griffe-de-glace',
-      },
     },
     {
       'locale': 'ja',
@@ -2039,11 +1994,6 @@
         'Twister': 'ツイスター',
         'Twisting Dive': 'ツイスターダイブ',
         'Wings of Salvation': 'サルヴェーションウィング',
-      },
-      '~effectNames': {
-        'Doom': '死の宣告',
-        'Firescorched': 'ファイアホーン',
-        'Icebitten': 'アイスクロウ',
       },
     },
     {
@@ -2123,11 +2073,6 @@
         'Twisting Dive': '旋风冲',
         'Wings of Salvation': '救世之翼',
       },
-      '~effectNames': {
-        'Doom': '死亡宣告',
-        'Firescorched': '火角',
-        'Icebitten': '冰爪',
-      },
     },
     {
       'locale': 'ko',
@@ -2205,11 +2150,6 @@
         'Twister': '회오리',
         'Twisting Dive': '회오리 강하',
         'Wings of Salvation': '구원의 날개',
-      },
-      '~effectNames': {
-        'Doom': '죽음의 선고',
-        'Firescorched': '화염뿔',
-        'Icebitten': '얼음발톱',
       },
     },
   ],

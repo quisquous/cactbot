@@ -48,12 +48,12 @@
     },
     {
       id: 'O12N Local Resonance',
-      regex: Regexes.gainsEffect({ target: 'Omega', effect: 'Local Resonance', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Omega', effect: 'Resonanzprogramm: Nah', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Oméga', effect: 'Programme De Résonance: Proximité', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'オメガ', effect: 'レゾナンスプログラム：ニアー', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '欧米茄', effect: '共鸣程序：近', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '오메가', effect: '공명 프로그램: 근거리', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Oméga', effectId: '67E', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67E', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67E', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67E', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -103,12 +103,7 @@
     },
     {
       id: 'O12N Packet Filter F',
-      regex: Regexes.gainsEffect({ effect: 'Packet Filter F' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem W' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur F' }),
-      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムF' }),
-      regexCn: Regexes.gainsEffect({ effect: '防护程序F' }),
-      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 F' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -122,12 +117,7 @@
     },
     {
       id: 'O12N Packet Filter M',
-      regex: Regexes.gainsEffect({ effect: 'Packet Filter M' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem M' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur M' }),
-      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムM' }),
-      regexCn: Regexes.gainsEffect({ effect: '防护程序M' }),
-      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 M' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -179,13 +169,6 @@
         'Synthetic Blades': 'Synthetische Klinge',
         'Synthetic Shield': 'Synthetischer Schild',
       },
-      '~effectNames': {
-        'Invincibility': 'Unverwundbar',
-        'Local Resonance': 'Resonanzprogramm: Nah',
-        'Omega': 'Omega',
-        'Packet Filter F': 'Sicherungssystem W',
-        'Packet Filter M': 'Sicherungssystem M',
-      },
     },
     {
       'locale': 'fr',
@@ -224,13 +207,6 @@
         'Suppression': 'Programme d\'assistance F',
         'Synthetic Blades': 'Lame optionnelle',
         'Synthetic Shield': 'Bouclier optionnel',
-      },
-      '~effectNames': {
-        'Invincibility': 'Invulnérable',
-        'Local Resonance': 'Programme de résonance: proximité',
-        'Omega': 'Oméga',
-        'Packet Filter F': 'Programme protecteur F',
-        'Packet Filter M': 'Programme protecteur M',
       },
     },
     {
@@ -271,13 +247,6 @@
         'Synthetic Blades': 'ブレードオプション',
         'Synthetic Shield': 'シールドオプション',
       },
-      '~effectNames': {
-        'Invincibility': '無敵',
-        'Local Resonance': 'レゾナンスプログラム：ニアー',
-        'Omega': 'オメガ',
-        'Packet Filter F': 'ガードプログラムF',
-        'Packet Filter M': 'ガードプログラムM',
-      },
     },
     {
       'locale': 'cn',
@@ -317,13 +286,6 @@
         'Synthetic Blades': '合成剑',
         'Synthetic Shield': '合成盾',
       },
-      '~effectNames': {
-        'Invincibility': '无敌',
-        'Local Resonance': '共鸣程序：近',
-        'Omega': '欧米茄',
-        'Packet Filter F': '防护程序F',
-        'Packet Filter M': '防护程序M',
-      },
     },
     {
       'locale': 'ko',
@@ -362,13 +324,6 @@
         'Suppression': '지원 프로그램 F',
         'Synthetic Blades': '칼날 장착',
         'Synthetic Shield': '방패 장착',
-      },
-      '~effectNames': {
-        'Invincibility': '무적',
-        'Local Resonance': '공명 프로그램: 근거리',
-        'Omega': '오메가',
-        'Packet Filter F': '방어 프로그램 F',
-        'Packet Filter M': '방어 프로그램 M',
       },
     },
   ],

@@ -237,12 +237,7 @@
     },
     {
       id: 'O4S Neo White Wound Gain',
-      regex: Regexes.gainsEffect({ effect: 'White Wound' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wunde Des Lebenden' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Lésion Du Vivant' }),
-      regexJa: Regexes.gainsEffect({ effect: '生者の傷' }),
-      regexCn: Regexes.gainsEffect({ effect: '生者之伤' }),
-      regexKo: Regexes.gainsEffect({ effect: '산 자의 상처' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '564' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -252,12 +247,7 @@
     },
     {
       id: 'O4S Neo White Wound Lost',
-      regex: Regexes.losesEffect({ effect: 'White Wound' }),
-      regexDe: Regexes.losesEffect({ effect: 'Wunde Des Lebenden' }),
-      regexFr: Regexes.losesEffect({ effect: 'Lésion Du Vivant' }),
-      regexJa: Regexes.losesEffect({ effect: '生者の傷' }),
-      regexCn: Regexes.losesEffect({ effect: '生者之伤' }),
-      regexKo: Regexes.losesEffect({ effect: '산 자의 상처' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '564' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -267,12 +257,7 @@
     },
     {
       id: 'O4S Neo Black Wound Gain',
-      regex: Regexes.gainsEffect({ effect: 'Black Wound' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wunde Des Toten' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Lésion Du Défunt' }),
-      regexJa: Regexes.gainsEffect({ effect: '死者の傷' }),
-      regexCn: Regexes.gainsEffect({ effect: '死者之伤' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽은 자의 상처' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '565' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -282,12 +267,7 @@
     },
     {
       id: 'O4S Neo Black Wound Lost',
-      regex: Regexes.losesEffect({ effect: 'Black Wound' }),
-      regexDe: Regexes.losesEffect({ effect: 'Wunde Des Toten' }),
-      regexFr: Regexes.losesEffect({ effect: 'Lésion Du Défunt' }),
-      regexJa: Regexes.losesEffect({ effect: '死者の傷' }),
-      regexCn: Regexes.losesEffect({ effect: '死者之伤' }),
-      regexKo: Regexes.losesEffect({ effect: '죽은 자의 상처' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '565' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -297,12 +277,7 @@
     },
     {
       id: 'O4S Neo Beyond Death Gain',
-      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
-      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -312,12 +287,7 @@
     },
     {
       id: 'O4S Neo Beyond Death Lost',
-      regex: Regexes.losesEffect({ effect: 'Beyond Death' }),
-      regexDe: Regexes.losesEffect({ effect: 'Jenseits Des Jenseits' }),
-      regexFr: Regexes.losesEffect({ effect: 'Outre-Mort' }),
-      regexJa: Regexes.losesEffect({ effect: '死の超越' }),
-      regexCn: Regexes.losesEffect({ effect: '超越死亡' }),
-      regexKo: Regexes.losesEffect({ effect: '죽음 초월' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '566' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -327,12 +297,7 @@
     },
     {
       id: 'O4S Neo Allagan Field Gain',
-      regex: Regexes.gainsEffect({ effect: 'Allagan Field' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Allagisches Feld' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Champ Allagois' }),
-      regexJa: Regexes.gainsEffect({ effect: 'アラガンフィールド' }),
-      regexCn: Regexes.gainsEffect({ effect: '亚拉戈领域' }),
-      regexKo: Regexes.gainsEffect({ effect: '알라그 필드' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C6' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -342,12 +307,7 @@
     },
     {
       id: 'O4S Neo Allagan Field Lost',
-      regex: Regexes.losesEffect({ effect: 'Allagan Field' }),
-      regexDe: Regexes.losesEffect({ effect: 'Allagisches Feld' }),
-      regexFr: Regexes.losesEffect({ effect: 'Champ Allagois' }),
-      regexJa: Regexes.losesEffect({ effect: 'アラガンフィールド' }),
-      regexCn: Regexes.losesEffect({ effect: '亚拉戈领域' }),
-      regexKo: Regexes.losesEffect({ effect: '알라그 필드' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '1C6' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -752,12 +712,7 @@
     },
     {
       id: 'O4S Neo Forked Lightning',
-      regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié' }),
-      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング' }),
-      regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
-      regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -766,12 +721,7 @@
     },
     {
       id: 'O4S Neo Acceleration Bomb',
-      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
-      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾' }),
-      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹' }),
-      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -795,12 +745,7 @@
     },
     {
       id: 'O4S Neo Acceleration Bomb Delta',
-      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
-      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾' }),
-      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹' }),
-      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
       condition: function(data, matches) {
         return matches.target == data.me && data.phase == 'delta';
       },
@@ -817,12 +762,7 @@
     },
     {
       id: 'O4S Neo Omega Shriek',
-      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
-      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
-      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
-      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       condition: function(data, matches) {
         return matches.target == data.me && data.phase == 'omega';
       },
@@ -842,12 +782,7 @@
     },
     {
       id: 'O4S Neo Water Tracker',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       run: function(data, matches) {
         data.waterHealer = matches.target;
       },
@@ -855,12 +790,7 @@
     {
       // Water Me (Delta/Omega)
       id: 'O4S Neo Water Me',
-      regex: Regexes.gainsEffect({ effect: 'Compressed Water' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Wasserkompression' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Compression Aqueuse' }),
-      regexJa: Regexes.gainsEffect({ effect: '水属性圧縮' }),
-      regexCn: Regexes.gainsEffect({ effect: '水属性压缩' }),
-      regexKo: Regexes.gainsEffect({ effect: '물속성 압축' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '3FF' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -890,12 +820,7 @@
     {
       // Beyond Death Tank (Delta)
       id: 'O4S Neo Beyond Death Delta Tank',
-      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
-      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
         return data.phase == 'delta' && matches.target == data.me && data.role == 'tank';
       },
@@ -925,12 +850,7 @@
     {
       // Beyond Death (Delta)
       id: 'O4S Neo Beyond Death Delta Initial',
-      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
-      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
         return data.phase == 'delta' && matches.target == data.me && data.role != 'tank';
       },
@@ -948,12 +868,7 @@
     {
       // Off Balance (Omega)
       id: 'O4S Neo Off Balance Omega',
-      regex: Regexes.gainsEffect({ effect: 'Off-Balance' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gleichgewichtsverlust' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Perte D\'Équilibre' }),
-      regexJa: Regexes.gainsEffect({ effect: 'ノックバック確定' }),
-      regexCn: Regexes.gainsEffect({ effect: '弱不禁风' }),
-      regexKo: Regexes.gainsEffect({ effect: '밀쳐내기 확정' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '569' }),
       condition: function(data, matches) {
         return data.phase == 'omega' && matches.target == data.me;
       },

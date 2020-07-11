@@ -91,12 +91,7 @@
     },
     {
       id: 'O6S Last Kiss',
-      regex: Regexes.gainsEffect({ effect: 'Last Kiss' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Letzter Kuss' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Baiser Fatal' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の口づけ' }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡之吻' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 입맞춤' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '5BF' }),
       condition: function(data, matches) {
         // The person who gets the marker briefly gets the effect, so
         // don't tell them twice.
@@ -160,9 +155,6 @@
         'Rock Hard': 'Felsspalter',
         'The Price': 'Tödliche Versuchung',
       },
-      '~effectNames': {
-        'Last Kiss': 'Letzter Kuss',
-      },
     },
     {
       'locale': 'fr',
@@ -202,9 +194,6 @@
         'Release': 'Libération',
         'Rock Hard': 'Brise-roc',
         'The Price': 'Tentation mortelle',
-      },
-      '~effectNames': {
-        'Last Kiss': 'Baiser fatal',
       },
     },
     {
@@ -246,9 +235,6 @@
         'Rock Hard': 'ロッククラッシャー',
         'The Price': '死の誘い',
       },
-      '~effectNames': {
-        'Last Kiss': '死の口づけ',
-      },
     },
     {
       'locale': 'cn',
@@ -289,9 +275,6 @@
         'Rock Hard': '碎岩',
         'The Price': '死亡诱惑',
       },
-      '~effectNames': {
-        'Last Kiss': '死亡之吻',
-      },
     },
     {
       'locale': 'ko',
@@ -330,9 +313,6 @@
         'Release': '빙의 해제',
         'Rock Hard': '암석 분쇄',
         'The Price': '죽음의 유혹',
-      },
-      '~effectNames': {
-        'Last Kiss': '죽음의 입맞춤',
       },
     },
   ],

@@ -153,13 +153,9 @@
       },
     },
     {
+      // Burns effect.
       id: 'Ridorana Belias Hand of Time',
-      regex: Regexes.gainsEffect({ effect: 'Burns' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Brandwunde' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Brûlure' }),
-      regexJa: Regexes.gainsEffect({ effect: '火傷' }),
-      regexCn: Regexes.gainsEffect({ effect: '火伤' }),
-      regexKo: Regexes.gainsEffect({ effect: '화상' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '212' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -297,13 +293,9 @@
       },
     },
     {
+      // Hp Penalty effect.
       id: 'Ridorana Construct Math HP Check 1',
-      regex: Regexes.gainsEffect({ effect: 'Hp Penalty' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits' }),
-      regexJa: Regexes.gainsEffect({ effect: '最大Ｈｐダウン' }),
-      regexCn: Regexes.gainsEffect({ effect: '最大体力减少' }),
-      regexKo: Regexes.gainsEffect({ effect: '최대 Hp 감소' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -318,12 +310,7 @@
       // will apply.  So, hope for the best by testing at t=0.5 as well, but not
       // overwriting any results from t=0 if that was valid.
       id: 'Ridorana Construct Math HP Check 2',
-      regex: Regexes.gainsEffect({ effect: 'Hp Penalty' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Lp-Malus' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pv Maximum Réduits' }),
-      regexJa: Regexes.gainsEffect({ effect: '最大Ｈｐダウン' }),
-      regexCn: Regexes.gainsEffect({ effect: '最大体力减少' }),
-      regexKo: Regexes.gainsEffect({ effect: '최대 Hp 감소' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '615' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -416,12 +403,7 @@
     },
     {
       id: 'Ridorana Construct Acceleration Bomb',
-      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
-      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾' }),
-      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹' }),
-      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '568' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -463,12 +445,7 @@
     },
     {
       id: 'Ridorana Yiazmat Magnetic Negative',
-      regex: Regexes.gainsEffect({ effect: 'Magnetic Lysis -' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Negatives Magnetfeld' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Charge Négative' }),
-      regexJa: Regexes.gainsEffect({ effect: '磁場崩壊【－】' }),
-      regexCn: Regexes.gainsEffect({ effect: '磁场崩坏 负极' }),
-      regexKo: Regexes.gainsEffect({ effect: '자기장 붕괴\\[-\\]' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '60F' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -600,12 +577,6 @@
         'Water IV': 'Giga-Aqua',
         'White Breath': 'Kalkatem',
       },
-      '~effectNames': {
-        'Acceleration Bomb': 'Beschleunigungsbombe',
-        'Burns': 'Brandwunde',
-        'HP Penalty': 'LP-Malus',
-        'Magnetic Lysis -': 'Negatives Magnetfeld',
-      },
     },
     {
       'locale': 'fr',
@@ -677,12 +648,6 @@
         'Water IV': 'Giga eau',
         'White Breath': 'Souffle blanc',
       },
-      '~effectNames': {
-        'Acceleration Bomb': 'Bombe accélératrice',
-        'Burns': 'Brûlure',
-        'HP Penalty': 'PV maximum réduits',
-        'Magnetic Lysis -': 'Charge négative',
-      },
     },
     {
       'locale': 'ja',
@@ -744,12 +709,6 @@
         'Ventilate': '冷却する',
         'Water IV': 'ウォタジャ',
         'White Breath': 'ホワイトブレス',
-      },
-      '~effectNames': {
-        'Acceleration Bomb': '加速度爆弾',
-        'Burns': '火傷',
-        'HP Penalty': '最大ＨＰダウン',
-        'Magnetic Lysis -': '磁場崩壊【－】',
       },
     },
     {
@@ -817,12 +776,6 @@
         'Ventilate': '执行冷却',
         'Water IV': '骇水',
         'White Breath': '苍白吐息',
-      },
-      '~effectNames': {
-        'Acceleration Bomb': '加速度炸弹',
-        'Burns': '火伤',
-        'HP Penalty': '最大体力减少',
-        'Magnetic Lysis -': '磁场崩坏 负极',
       },
     },
     {
@@ -901,12 +854,6 @@
         'far': '멀리',
         'combo': '콤보',
         'single': '1회',
-      },
-      '~effectNames': {
-        'Acceleration Bomb': '가속도 폭탄',
-        'Burns': '화상',
-        'HP Penalty': '최대 HP 감소',
-        'Magnetic Lysis -': '자기장 붕괴[-]',
       },
     },
   ],

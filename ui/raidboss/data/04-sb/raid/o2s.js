@@ -38,12 +38,7 @@
     },
     {
       id: 'O2S Levitation Gain',
-      regex: Regexes.gainsEffect({ effect: 'Levitation' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Levitation' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Lévitation' }),
-      regexJa: Regexes.gainsEffect({ effect: 'レビテト' }),
-      regexCn: Regexes.gainsEffect({ effect: '浮空' }),
-      regexKo: Regexes.gainsEffect({ effect: '레비테트' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '556' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -53,12 +48,7 @@
     },
     {
       id: 'O2S Levitation Lose',
-      regex: Regexes.losesEffect({ effect: 'Levitation' }),
-      regexDe: Regexes.losesEffect({ effect: 'Levitation' }),
-      regexFr: Regexes.losesEffect({ effect: 'Lévitation' }),
-      regexJa: Regexes.losesEffect({ effect: 'レビテト' }),
-      regexCn: Regexes.losesEffect({ effect: '浮空' }),
-      regexKo: Regexes.losesEffect({ effect: '레비테트' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '556' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -133,12 +123,7 @@
     },
     {
       id: 'O2S Elevated',
-      regex: Regexes.gainsEffect({ effect: 'Elevated', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Erhöht', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Élévation', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '高度固定：高', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '固定高位', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '고도 고정: 위', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '54E', capture: false }),
       alarmText: function(data) {
         if (data.role.startsWith('dps') && !data.levitating) {
           return {
@@ -233,12 +218,7 @@
     },
     {
       id: 'O2S Unstable Gravity',
-      regex: Regexes.gainsEffect({ effect: 'Unstable Gravity' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schwerkraftschwankung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Gravité Instable' }),
-      regexJa: Regexes.gainsEffect({ effect: 'グラビティバースト' }),
-      regexCn: Regexes.gainsEffect({ effect: '重力爆发' }),
-      regexKo: Regexes.gainsEffect({ effect: '중력 폭발' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '550' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -256,12 +236,7 @@
     },
     {
       id: 'O2S 6 Fulms Under Gain',
-      regex: Regexes.gainsEffect({ effect: '6 Fulms Under' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Versinkend' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Enfoncement' }),
-      regexJa: Regexes.gainsEffect({ effect: '沈下' }),
-      regexCn: Regexes.gainsEffect({ effect: '下陷' }),
-      regexKo: Regexes.gainsEffect({ effect: '침하' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '237' }),
       condition: function(data, matches) {
         return !data.under && matches.target == data.me;
       },
@@ -295,12 +270,7 @@
     },
     {
       id: 'O2S 6 Fulms Under Lose',
-      regex: Regexes.losesEffect({ effect: '6 Fulms Under' }),
-      regexDe: Regexes.losesEffect({ effect: 'Versinkend' }),
-      regexFr: Regexes.losesEffect({ effect: 'Enfoncement' }),
-      regexJa: Regexes.losesEffect({ effect: '沈下' }),
-      regexCn: Regexes.losesEffect({ effect: '下陷' }),
-      regexKo: Regexes.losesEffect({ effect: '침하' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '237' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -330,11 +300,6 @@
         'Paranormal Wave': 'Paranormale Welle',
         'Unstable Gravity': 'Schwerkraftschwankung',
       },
-      '~effectNames': {
-        '6 Fulms Under': 'Versinkend',
-        'Elevated': 'Erhöht',
-        'Unstable Gravity': 'Schwerkraftschwankung',
-      },
     },
     {
       'locale': 'fr',
@@ -356,11 +321,6 @@
         'Paranormal Wave': 'Onde maudite',
         'Unstable Gravity': 'Gravité instable',
       },
-      '~effectNames': {
-        '6 Fulms Under': 'Enfoncement',
-        'Elevated': 'Élévation',
-        'Unstable Gravity': 'Gravité instable',
-      },
     },
     {
       'locale': 'ja',
@@ -380,11 +340,6 @@
         'Gravitational Wave': '重力波',
         'Long Drop': '自由落下',
         'Paranormal Wave': '呪詛波',
-        'Unstable Gravity': 'グラビティバースト',
-      },
-      '~effectNames': {
-        '6 Fulms Under': '沈下',
-        'Elevated': '高度固定：高',
         'Unstable Gravity': 'グラビティバースト',
       },
     },
@@ -409,11 +364,6 @@
         'Probes': '引导',
         'Unstable Gravity': '重力爆发',
       },
-      '~effectNames': {
-        '6 Fulms Under': '下陷',
-        'Elevated': '固定高位',
-        'Unstable Gravity': '重力爆发',
-      },
     },
     {
       'locale': 'ko',
@@ -433,11 +383,6 @@
         'Gravitational Wave': '중력파',
         'Long Drop': '자유낙하',
         'Paranormal Wave': '저주 파동',
-        'Unstable Gravity': '중력 폭발',
-      },
-      '~effectNames': {
-        '6 Fulms Under': '침하',
-        'Elevated': '고도 고정: 위',
         'Unstable Gravity': '중력 폭발',
       },
     },

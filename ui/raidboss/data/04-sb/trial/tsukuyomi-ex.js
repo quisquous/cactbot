@@ -96,12 +96,12 @@
     },
     {
       id: 'Tsukuyomi Full Moon',
-      regex: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Full Moon', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Vollmond', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Force De La Pleine Lune', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'ツクヨミ', effect: '満月流', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '月读', effect: '满月流', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '츠쿠요미', effect: '보름달', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '5FF', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'ツクヨミ', effectId: '5FF', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '5FF', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '5FF', capture: false }),
       run: function(data) {
         let moonInOut = {
           en: 'Out',
@@ -115,12 +115,12 @@
     },
     {
       id: 'Tsukuyomi New Moon',
-      regex: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'New Moon', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Neumond', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Tsukuyomi', effect: 'Force De La Nouvelle Lune', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'ツクヨミ', effect: '新月流', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '月读', effect: '新月流', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '츠쿠요미', effect: '그믐달', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Tsukuyomi', effectId: '600', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'ツクヨミ', effectId: '600', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '月读', effectId: '600', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '츠쿠요미', effectId: '600', capture: false }),
       run: function(data) {
         let moonInOut = {
           en: 'In',
@@ -218,12 +218,7 @@
     },
     {
       id: 'Tsukuyomi Moonlit Debuff Logic',
-      regex: Regexes.gainsEffect({ effect: 'Moonlit' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondschein' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pleine Lune' }),
-      regexJa: Regexes.gainsEffect({ effect: '満月下' }),
-      regexCn: Regexes.gainsEffect({ effect: '满月下' }),
-      regexKo: Regexes.gainsEffect({ effect: '보름달빛' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -241,12 +236,7 @@
     },
     {
       id: 'Tsukuyomi Moonlit Debuff',
-      regex: Regexes.gainsEffect({ effect: 'Moonlit' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondschein' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Pleine Lune' }),
-      regexJa: Regexes.gainsEffect({ effect: '満月下' }),
-      regexCn: Regexes.gainsEffect({ effect: '满月下' }),
-      regexKo: Regexes.gainsEffect({ effect: '보름달빛' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '602' }),
       condition: function(data, matches) {
         return matches.target == data.me && data.moonlitCount >= 4;
       },
@@ -260,12 +250,7 @@
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff Logic',
-      regex: Regexes.gainsEffect({ effect: 'Moonshadowed' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondschatten' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Nouvelle Lune' }),
-      regexJa: Regexes.gainsEffect({ effect: '新月下' }),
-      regexCn: Regexes.gainsEffect({ effect: '新月下' }),
-      regexKo: Regexes.gainsEffect({ effect: '그믐달빛' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -283,12 +268,7 @@
     },
     {
       id: 'Tsukuyomi Moonshadowed Debuff',
-      regex: Regexes.gainsEffect({ effect: 'Moonshadowed' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Mondschatten' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Nouvelle Lune' }),
-      regexJa: Regexes.gainsEffect({ effect: '新月下' }),
-      regexCn: Regexes.gainsEffect({ effect: '新月下' }),
-      regexKo: Regexes.gainsEffect({ effect: '그믐달빛' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '603' }),
       condition: function(data, matches) {
         return matches.target == data.me && data.moonshadowedCount >= 4;
       },
@@ -348,10 +328,6 @@
         'Waxing Grudge': 'Wachsender Groll',
         'Zashiki-asobi': 'Zashiki-Asobi',
       },
-      '~effectNames': {
-        'Moonlit': 'Mondschein',
-        'Moonshadowed': 'Mondschatten',
-      },
     },
     {
       'locale': 'fr',
@@ -396,10 +372,6 @@
         'Waxing Grudge': 'Rancœur blafarde',
         'Zashiki-asobi': 'Zashiki asobi',
       },
-      '~effectNames': {
-        'Moonlit': 'Pleine lune',
-        'Moonshadowed': 'Nouvelle lune',
-      },
     },
     {
       'locale': 'ja',
@@ -440,10 +412,6 @@
         'Tsuki-no-Maiogi': '月の舞扇',
         'Waxing Grudge': '白き怨念',
         'Zashiki-asobi': '座敷遊び',
-      },
-      '~effectNames': {
-        'Moonlit': '満月下',
-        'Moonshadowed': '新月下',
       },
     },
     {
@@ -488,10 +456,6 @@
         'Tsuki-no-Maiogi': '月下舞扇',
         'Waxing Grudge': '纯白怨念',
         'Zashiki-asobi': '宴会游乐',
-      },
-      '~effectNames': {
-        'Moonlit': '满月下',
-        'Moonshadowed': '新月下',
       },
     },
     {
@@ -540,10 +504,6 @@
         'spear': '창',
         'Bright': '하현달',
         'Waning': '검은',
-      },
-      '~effectNames': {
-        'Moonlit': '보름달빛',
-        'Moonshadowed': '그믐달빛',
       },
     },
   ],

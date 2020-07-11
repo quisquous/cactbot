@@ -51,12 +51,12 @@
     },
     {
       id: 'O12S Local Resonance',
-      regex: Regexes.gainsEffect({ target: 'Omega', effect: 'Local Resonance', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Omega', effect: 'Resonanzprogramm: Nah', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Oméga', effect: 'Programme De Résonance: Proximité', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'オメガ', effect: 'レゾナンスプログラム：ニアー', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '欧米茄', effect: '共鸣程序：近', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '오메가', effect: '공명 프로그램: 근거리', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67E', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Oméga', effectId: '67E', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67E', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67E', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67E', capture: false }),
       infoText: {
         en: 'Keep Bosses Apart',
         de: 'Bosse auseinander ziehen',
@@ -68,12 +68,12 @@
     },
     {
       id: 'O12S Remote Resonance',
-      regex: Regexes.gainsEffect({ target: 'Omega', effect: 'Remote Resonance', capture: false }),
-      regexDe: Regexes.gainsEffect({ target: 'Omega', effect: 'Resonanzprogramm: Fern', capture: false }),
-      regexFr: Regexes.gainsEffect({ target: 'Oméga', effect: 'Programme De Résonance: Distance', capture: false }),
-      regexJa: Regexes.gainsEffect({ target: 'オメガ', effect: 'レゾナンスプログラム：ファー', capture: false }),
-      regexCn: Regexes.gainsEffect({ target: '欧米茄', effect: '共鸣程序：远', capture: false }),
-      regexKo: Regexes.gainsEffect({ target: '오메가', effect: '공명 프로그램: 원거리', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67F', capture: false }),
+      netRegexDe: NetRegexes.gainsEffect({ target: 'Omega', effectId: '67F', capture: false }),
+      netRegexFr: NetRegexes.gainsEffect({ target: 'Oméga', effectId: '67F', capture: false }),
+      netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67F', capture: false }),
+      netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67F', capture: false }),
+      netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67F', capture: false }),
       alertText: {
         en: 'Move Bosses Together',
         de: 'Bosse zusammenziehen',
@@ -162,12 +162,7 @@
     },
     {
       id: 'O12S Packet Filter F',
-      regex: Regexes.gainsEffect({ effect: 'Packet Filter F' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem W' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur F' }),
-      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムF' }),
-      regexCn: Regexes.gainsEffect({ effect: '防护程序F' }),
-      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 F' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '67D' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -182,12 +177,7 @@
     },
     {
       id: 'O12S Packet Filter M',
-      regex: Regexes.gainsEffect({ effect: 'Packet Filter M' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Sicherungssystem M' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Programme Protecteur M' }),
-      regexJa: Regexes.gainsEffect({ effect: 'ガードプログラムM' }),
-      regexCn: Regexes.gainsEffect({ effect: '防护程序M' }),
-      regexKo: Regexes.gainsEffect({ effect: '방어 프로그램 M' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '67C' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -303,13 +293,9 @@
       },
     },
     {
+      // Local Regression
       id: 'O12S Local Tethers',
-      regex: Regexes.gainsEffect({ effect: 'Local Regression' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Regression: Nah' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bogue Intentionnel: Proximité' }),
-      regexJa: Regexes.gainsEffect({ effect: 'エンバグ：ニアー' }),
-      regexCn: Regexes.gainsEffect({ effect: '回归方程：近' }),
-      regexKo: Regexes.gainsEffect({ effect: '연쇄 오류: 근거리' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '688' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -323,13 +309,9 @@
       },
     },
     {
+      // Remote Regression
       id: 'O12S Far Tethers',
-      regex: Regexes.gainsEffect({ effect: 'Remote Regression' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Regression: Fern' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bogue Intentionnel: Distance' }),
-      regexJa: Regexes.gainsEffect({ effect: 'エンバグ：ファー' }),
-      regexCn: Regexes.gainsEffect({ effect: '回归方程：远' }),
-      regexKo: Regexes.gainsEffect({ effect: '연쇄 오류: 원거리' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '689' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -343,13 +325,9 @@
       },
     },
     {
+      // Critical Overflow Bug
       id: 'O12S Defamation',
-      regex: Regexes.gainsEffect({ effect: 'Critical Overflow Bug' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Kritischer Bug: Überlauf' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bogue Critique: Boucle' }),
-      regexJa: Regexes.gainsEffect({ effect: 'クリティカルバグ：サークル' }),
-      regexCn: Regexes.gainsEffect({ effect: '严重错误：上溢' }),
-      regexKo: Regexes.gainsEffect({ effect: '치명적 오류: 광역' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '681' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -364,12 +342,7 @@
     },
     {
       id: 'O12S Latent Defect',
-      regex: Regexes.gainsEffect({ effect: 'Latent Defect' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Latenter Bug' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bogue Latent' }),
-      regexJa: Regexes.gainsEffect({ effect: 'レイテントバグ' }),
-      regexCn: Regexes.gainsEffect({ effect: '潜在错误' }),
-      regexKo: Regexes.gainsEffect({ effect: '잠재적 오류' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '686' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -383,13 +356,9 @@
       },
     },
     {
+      // Critical Underflow Bug
       id: 'O12S Rot',
-      regex: Regexes.gainsEffect({ effect: 'Critical Underflow Bug' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Kritischer Bug: Unterlauf' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bogue Critique: Dégradation' }),
-      regexJa: Regexes.gainsEffect({ effect: 'クリティカルバグ：デグレード' }),
-      regexCn: Regexes.gainsEffect({ effect: '严重错误：下溢' }),
-      regexKo: Regexes.gainsEffect({ effect: '치명적 오류: 전이' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '682' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -403,13 +372,9 @@
       },
     },
     {
+      // Critical Synchronization Bug
       id: 'O12S Hello World Stack',
-      regex: Regexes.gainsEffect({ effect: 'Critical Synchronization Bug' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Kritischer Bug: Synchronisierung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bogue Critique: Partage' }),
-      regexJa: Regexes.gainsEffect({ effect: 'クリティカルバグ：シェア' }),
-      regexCn: Regexes.gainsEffect({ effect: '严重错误：同步' }),
-      regexKo: Regexes.gainsEffect({ effect: '치명적 오류: 분배' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '680' }),
       delaySeconds: function(data, matches) {
         return matches.target == data.me ? 0 : 1;
       },
@@ -462,12 +427,8 @@
     },
     {
       id: 'O12S Hello World No Marker',
-      regex: Regexes.gainsEffect({ effect: '(?:Critical Overflow Bug|Latent Defect|Critical Synchronization Bug)' }),
-      regexDe: Regexes.gainsEffect({ effect: '(?:Kritischer Bug: Überlauf|Latenter Bug|Kritischer Bug: Synchronisierung)' }),
-      regexFr: Regexes.gainsEffect({ effect: '(?:Bogue Critique: Boucle|Bogue Latent|Bogue Critique: Partage)' }),
-      regexJa: Regexes.gainsEffect({ effect: '(?:クリティカルバグ：サークル|レイテントバグ|クリティカルバグ：シェア)' }),
-      regexCn: Regexes.gainsEffect({ effect: '(?:严重错误：上溢|潜在错误|严重错误：同步)' }),
-      regexKo: Regexes.gainsEffect({ effect: '(?:치명적 오류: 광역|잠재적 오류|치명적 오류: 분배)' }),
+      // Track Critical Synchronization Bug / Critical Overflow Bug / Latent Defect
+      netRegex: NetRegexes.gainsEffect({ effectId: ['680', '681', '686'] }),
       preRun: function(data, matches) {
         data.helloDebuffs[matches.target] = true;
       },
@@ -490,13 +451,9 @@
       },
     },
     {
+      // Cascading Latent Defect
       id: 'O12S Hello World Tower Complete',
-      regex: Regexes.gainsEffect({ effect: 'Cascading Latent Defect' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Latenter Bug: Unterlauf' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bogue Latent: Dégradation' }),
-      regexJa: Regexes.gainsEffect({ effect: 'レイテントバグ：デグレード' }),
-      regexCn: Regexes.gainsEffect({ effect: '潜在错误：下溢' }),
-      regexKo: Regexes.gainsEffect({ effect: '잠재적 오류: 전이' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '687' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -747,26 +704,6 @@
         'Target Analysis': 'Wellenkanone',
         '(?<! )Wave Cannon': 'Wellenkanone',
       },
-      '~effectNames': {
-        'Cascading Latent Defect': 'Latenter Defekt: Zersetzung',
-        'Critical Overflow Bug': 'Kritischer Bug: Überlauf',
-        'Critical Synchronization Bug': 'Kritischer Bug: Synchronisierung',
-        'Critical Underflow Bug': 'Kritischer Bug: Unterlauf',
-        'Infinite Limit': 'Grenzüberschreitung',
-        'Latent Defect': 'Latenter Defekt',
-        'Local Regression': 'Regression: Nah',
-        'Local Resonance': 'Resonanzprogramm: Nah',
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Overflow Debugger': 'Bug-Korrektur: Überlauf',
-        'Packet Filter F': 'Sicherungssystem W',
-        'Packet Filter M': 'Sicherungssystem M',
-        'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
-        'Prey': 'Beute',
-        'Remote Regression': 'Regression: Fern',
-        'Remote Resonance': 'Resonanzprogramm: Fern',
-        'Synchronization Debugger': 'Bug-Korrektur: Synchronisierung',
-        'Underflow Debugger': 'Bug-Korrektur: Unterlauf',
-      },
     },
     {
       'locale': 'fr',
@@ -831,26 +768,6 @@
         'Synthetic Shield': 'Bouclier optionnel',
         'Target Analysis': 'Analyse de cible',
         '(?<! )Wave Cannon': 'Canon plasma',
-      },
-      '~effectNames': {
-        'Cascading Latent Defect': 'Bogue latent : dégradation',
-        'Critical Overflow Bug': 'Bogue critique : boucle',
-        'Critical Synchronization Bug': 'Bogue critique : partage',
-        'Critical Underflow Bug': 'Bogue critique : dégradation',
-        'Infinite Limit': 'Dépassement de limites',
-        'Latent Defect': 'Bogue latent',
-        'Local Regression': 'Bogue intentionnel: proximité',
-        'Local Resonance': 'Programme de résonance: proximité',
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
-        'Overflow Debugger': 'Déboguage: boucle',
-        'Packet Filter F': 'Programme protecteur F',
-        'Packet Filter M': 'Programme protecteur M',
-        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
-        'Prey': 'Proie',
-        'Remote Regression': 'Bogue intentionnel: distance',
-        'Remote Resonance': 'Programme de résonance: distance',
-        'Synchronization Debugger': 'Déboguage: partage',
-        'Underflow Debugger': 'Déboguage: dégradation',
       },
     },
     {
@@ -917,26 +834,6 @@
         'Target Analysis': '標的識別',
         '(?<! )Wave Cannon': '波動砲',
       },
-      '~effectNames': {
-        'Cascading Latent Defect': 'レイテンドバグ：デグレード',
-        'Critical Overflow Bug': 'クリティカルバグ：サークル',
-        'Critical Synchronization Bug': 'クリティカルバグ：シェア',
-        'Critical Underflow Bug': 'クリティカルバグ：デグレード',
-        'Infinite Limit': '限界超越',
-        'Latent Defect': 'レイテンドバグ',
-        'Local Regression': 'エンバグ：ニアー',
-        'Local Resonance': 'レゾナンスプログラム：ニアー',
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Overflow Debugger': 'バグフィックス：サークル',
-        'Packet Filter F': 'ガードプログラムF',
-        'Packet Filter M': 'ガードプログラムM',
-        'Physical Vulnerability Up': '被物理ダメージ増加',
-        'Prey': 'プレイ',
-        'Remote Regression': 'エンバグ：ファー',
-        'Remote Resonance': 'レゾナンスプログラム：ファー',
-        'Synchronization Debugger': 'バグフィックス：シェア',
-        'Underflow Debugger': 'バグフィックス：デグレード',
-      },
     },
     {
       'locale': 'cn',
@@ -1002,26 +899,6 @@
         'Target Analysis': '目标识别',
         '(?<! )Wave Cannon': '波动炮',
       },
-      '~effectNames': {
-        'Cascading Latent Defect': '潜在错误：下溢',
-        'Critical Overflow Bug': '严重错误：上溢',
-        'Critical Synchronization Bug': '严重错误：同步',
-        'Critical Underflow Bug': '严重错误：下溢',
-        'Infinite Limit': '超越界限',
-        'Latent Defect': '潜在错误',
-        'Local Regression': '回归方程：近',
-        'Local Resonance': '共鸣程序：近',
-        'Magic Vulnerability Up': '魔法受伤加重',
-        'Overflow Debugger': '修复错误：上溢',
-        'Packet Filter F': '防护程序F',
-        'Packet Filter M': '防护程序M',
-        'Physical Vulnerability Up': '物理受伤加重',
-        'Prey': '猎物',
-        'Remote Regression': '回归方程：远',
-        'Remote Resonance': '共鸣程序：远',
-        'Synchronization Debugger': '修复错误：同步',
-        'Underflow Debugger': '修复错误：下溢',
-      },
     },
     {
       'locale': 'ko',
@@ -1086,26 +963,6 @@
         'Synthetic Shield': '방패 장착',
         'Target Analysis': '표적 식별',
         '(?<! )Wave Cannon': '파동포',
-      },
-      '~effectNames': {
-        'Cascading Latent Defect': '잠재적 오류: 전이',
-        'Critical Overflow Bug': '치명적 오류: 광역',
-        'Critical Synchronization Bug': '치명적 오류: 분배',
-        'Critical Underflow Bug': '치명적 오류: 전이',
-        'Infinite Limit': '한계 초월',
-        'Latent Defect': '잠재적 오류',
-        'Local Regression': '연쇄 오류: 근거리',
-        'Local Resonance': '공명 프로그램: 근거리',
-        'Magic Vulnerability Up': '받는 마법 피해량 증가',
-        'Overflow Debugger': '오류 수정: 광역',
-        'Packet Filter F': '방어 프로그램 F',
-        'Packet Filter M': '방어 프로그램 M',
-        'Physical Vulnerability Up': '받는 물리 피해량 증가',
-        'Prey': '표식',
-        'Remote Regression': '연쇄 오류: 원거리',
-        'Remote Resonance': '공명 프로그램: 원거리',
-        'Synchronization Debugger': '오류 수정: 분배',
-        'Underflow Debugger': '오류 수정: 전이',
       },
     },
   ],

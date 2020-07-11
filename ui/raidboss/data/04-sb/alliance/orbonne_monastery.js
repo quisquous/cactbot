@@ -686,12 +686,7 @@
     },
     {
       id: 'Orbonne Ultima Acceleration Bomb',
-      regex: Regexes.gainsEffect({ effect: 'Acceleration Bomb' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Beschleunigungsbombe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Bombe À Accélération' }),
-      regexJa: Regexes.gainsEffect({ effect: '加速度爆弾' }),
-      regexCn: Regexes.gainsEffect({ effect: '加速度炸弹' }),
-      regexKo: Regexes.gainsEffect({ effect: '가속도 폭탄' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '430' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -803,9 +798,6 @@
         'Towerfall': 'Turmsturz',
         'Ultimate Illusion': 'Ultimative Illusion',
       },
-      '~effectNames': {
-        'Acceleration Bomb': 'Beschleunigungsbombe',
-      },
     },
     {
       'locale': 'fr',
@@ -907,9 +899,6 @@
         'Towerfall': 'Écroulement',
         'Ultimate Illusion': 'Fantaisie finale',
       },
-      '~effectNames': {
-        'Acceleration Bomb': 'Bombe accélératrice',
-      },
     },
     {
       'locale': 'ja',
@@ -992,9 +981,6 @@
         'Time Eruption': 'タイムエラプション',
         'Towerfall': '倒壊',
         'Ultimate Illusion': '究極幻想',
-      },
-      '~effectNames': {
-        'Acceleration Bomb': '加速度爆弾',
       },
     },
     {
@@ -1093,9 +1079,6 @@
         'crystal stun': '水晶击晕',
         'ghost stun': '幽灵击晕',
       },
-      '~effectNames': {
-        'Acceleration Bomb': '加速度炸弹',
-      },
     },
     {
       'locale': 'ko',
@@ -1193,9 +1176,6 @@
         'Ultimate Illusion': '궁극의 환상',
         'crystal stun': '크리스탈 스턴',
         'ghost stun': '유령 스턴',
-      },
-      '~effectNames': {
-        'Acceleration Bomb': '가속도 폭탄',
       },
     },
   ],
