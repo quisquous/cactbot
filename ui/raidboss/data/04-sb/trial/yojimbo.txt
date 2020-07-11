@@ -13,7 +13,7 @@
 # Dragon's Lair: summon dragons
 # Dragon Night: raidwide aoe
 # Tiny Song: dorito stack
-# Ame-no-Murakamo: susano-esque sword attack
+# Ame-no-Murakumo: susano-esque sword attack
 # Giga Jump: GA-100 proxmity head marker
 # Electrogenetic Force: lightning floor aoes
 # Enchain: distance-based gaols
@@ -81,7 +81,7 @@ hideall "--sync--"
 # ???
 
 296.0 "--sync--" sync /:383D:Gilgamesh/ window 100,0
-300.0 "Ame-no-Murakamo" sync /:Gilgamesh:383D:/ window 300,300
+300.0 "Ame-no-Murakumo" sync /:Gilgamesh:383D:/ window 300,300
 316.4 "Giga Jump" sync /:Yojimbo:383E:/ # drift -0.048
 316.4 "--targetable--"
 319.0 "Electrogenetic Force" sync /:Yojimbo:383F:/ duration 9.6
