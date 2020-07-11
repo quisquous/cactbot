@@ -63,6 +63,7 @@
         if (matches.target === data.me) {
           return {
             en: 'Sizzlebeam on YOU',
+            de: 'Gobpartikelstrahl auf DIR',
           };
         }
       },
@@ -70,6 +71,7 @@
         if (matches.target !== data.me) {
           return {
             en: 'Sizzlebeam on ' + data.ShortName(matches.target),
+            de: 'Gobpartikelstrahl auf ' + data.ShortName(matches.target),
           };
         }
       },
@@ -86,6 +88,7 @@
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Bomb Spread',
+        de: 'Bomben verteilen',
       },
     },
     {
@@ -94,6 +97,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Jail Prey',
+        de: 'Gefängnis Markierung',
       },
     },
     {
@@ -105,6 +109,7 @@
       suppressSeconds: 10,
       infoText: {
         en: 'Jail Tether',
+        de: 'Gefängnis Verbindung',
       },
     },
     {
@@ -149,6 +154,7 @@
       },
       infoText: {
         en: 'Break Padlock',
+        de: 'Schloss zerstören',
       },
     },
     {
@@ -156,6 +162,7 @@
       netRegex: NetRegexes.ability({ source: 'Shanoa', id: '15EC', capture: false }),
       alertText: {
         en: 'Kill Heart',
+        de: 'Herz besiegen',
       },
     },
     {
@@ -164,6 +171,7 @@
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Searing Wind on YOU',
+        de: 'Versengen auf DIR',
       },
     },
   ],

@@ -23,6 +23,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Orbs on YOU',
+            de: 'Orbs auf DIR',
             fr: 'Orbes sur Vous',
             cn: '球点名',
           };
@@ -32,6 +33,7 @@
         if (data.me == matches.target) {
           return {
             en: 'Orbs on ' + data.ShortName(matches.target),
+            de: 'Orbs auf ' + data.ShortName(matches.target),
             fr: 'Orbes sur ' + data.ShortName(matches.target),
             cn: '球点' + data.ShortName(matches.target),
           };
@@ -48,6 +50,7 @@
       alertText: function(data, matches) {
         return {
           en: 'Stun ' + matches.target,
+          de: 'Unterbreche ' + matches.target,
           fr: 'Stun ' + matches.target,
           cn: '眩晕' + matches.target,
         };
@@ -65,6 +68,7 @@
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
       infoText: {
         en: 'Laser Tethers',
+        de: 'Laser Verbindungen',
         fr: 'Liens laser',
         cn: '镭射连线',
       },
@@ -75,6 +79,7 @@
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Nisi A on YOU',
+        de: 'Nisi A auf DIR',
         fr: 'Peine A sur VOUS',
         cn: '蓝BUFF点名',
       },
@@ -85,6 +90,7 @@
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Nisi B on YOU',
+        de: 'Nisi B auf DIR',
         fr: 'Peine B sur VOUS',
         cn: '红BUFF点名',
       },
@@ -96,6 +102,26 @@
     },
   ],
   timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'The Manipulator': 'Manipulator',
+      },
+      'replaceText': {
+        'Carnage': 'Carnage',
+        'Carnage Zero': 'Carnage Zero',
+        'Discoid': 'Diskoid',
+        'Emergency Quarantine': 'Notquarantäne',
+        'Hydrothermal Missile': 'Hydrothermales Geschoss',
+        'Jagd Doll': 'Jagdpuppe',
+        'Judgment Nisi': 'Vorläufige Vollstreckung',
+        'Mortal Revolution': 'Rechte Retribution',
+        'Perpetual Ray': 'Perpetueller Strahl',
+        'Royal Pentacle': 'Penta-Kaustik',
+        'Seed Of The Sky': 'Samen des Himmels',
+        'Straf Doll': 'Strafpuppe',
+      },
+    },
     {
       'locale': 'fr',
       'replaceSync': {
@@ -114,6 +140,66 @@
         'Royal Pentacle': 'Pentacle royal',
         'Seed Of The Sky': 'Graine du ciel',
         'Straf Doll': 'Poupée straf',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'The Manipulator': 'マニピュレーター',
+      },
+      'replaceText': {
+        'Carnage': 'カーネイジ',
+        'Carnage Zero': 'カーネイジ・ゼロ',
+        'Discoid': 'ディスコイド',
+        'Emergency Quarantine': '緊急隔離',
+        'Hydrothermal Missile': '蒸気ミサイル',
+        'Jagd Doll': 'ヤークトドール',
+        'Judgment Nisi': 'ジャッジメントナイサイ',
+        'Mortal Revolution': 'モータルレボリューション',
+        'Perpetual Ray': 'パーペチュアルレイ',
+        'Royal Pentacle': 'スチームジャッジ',
+        'Seed Of The Sky': 'シード・オブ・スカイ',
+        'Straf Doll': 'ストラッフドール',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'The Manipulator': '操纵者',
+      },
+      'replaceText': {
+        'Carnage': '灭绝',
+        'Carnage Zero': '零式灭绝',
+        'Discoid': '圆盘',
+        'Emergency Quarantine': '紧急隔离',
+        'Hydrothermal Missile': '蒸汽导弹',
+        'Jagd Doll': '狩猎人偶',
+        'Judgment Nisi': '非最终审判',
+        'Mortal Revolution': '致命进化',
+        'Perpetual Ray': '永恒射线',
+        'Royal Pentacle': '蒸汽审判',
+        'Seed Of The Sky': '天空之种',
+        'Straf Doll': '惩罚人偶',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'The Manipulator': '조종자',
+      },
+      'replaceText': {
+        'Carnage': '대학살',
+        'Carnage Zero': '대학살의 근원',
+        'Discoid': '원반',
+        'Emergency Quarantine': '긴급 격리',
+        'Hydrothermal Missile': '증기 미사일',
+        'Jagd Doll': '인형 수렵병',
+        'Judgment Nisi': '임시처분',
+        'Mortal Revolution': '필멸의 격변',
+        'Perpetual Ray': '영원한 빛줄기',
+        'Royal Pentacle': '증기 심판',
+        'Seed Of The Sky': '하늘의 원천',
+        'Straf Doll': '인형 기총병',
       },
     },
   ],
