@@ -212,14 +212,30 @@ let missedMitigationAbility = missedHeal;
     // missedDamageBuff({ id: 'Mage\'s Ballad', effectId: '8A9', ignoreSelf: true }),
     // missedDamageBuff({ id: 'Army\'s Paeon', effectId: '8AA', ignoreSelf: true }),
 
+    missedMitigationAbility({ id: 'Troubadour', abilityId: '1CED' }),
+    missedMitigationAbility({ id: 'Tactician', abilityId: '41F9' }),
+    missedMitigationAbility({ id: 'Shield Samba', abilityId: '3E8C' }),
+
     // TODO: need a person->pet mapping for blame
     missedDamageAbility({ id: 'Devotion', abilityId: '1D1A' }),
 
     missedHeal({ id: 'Medica', abilityId: '7C' }),
     missedHeal({ id: 'Medica II', abilityId: '85' }),
-    missedHeal({ id: 'Succor', abilityId: 'BA' }),
     missedHeal({ id: 'Afflatus Rapture', abilityId: '4096' }),
-    missedHeal({ id: 'Deployment Tactics', abilityId: 'E01' }),
     missedHeal({ id: 'Temperance', abilityId: '751' }),
+    missedHeal({ id: 'Plenary Indulgence', abilityId: '1D09' }),
+
+    missedHeal({ id: 'Succor', abilityId: 'BA' }),
+    missedHeal({ id: 'Indomitability', abilityId: 'DFF' }),
+    missedHeal({ id: 'Deployment Tactics', abilityId: 'E01' }),
+    missedHeal({ id: 'Whispering Dawn', abilityId: '323' }),
+    missedHeal({ id: 'Fey Blessing', abilityId: '409F' }),
+    missedHeal({ id: 'Consolation', abilityId: '40A3' }),
+    missedHeal({ id: 'Angel\'s Whisper', abilityId: '40A6' }),
+
+    missedHeal({ id: 'Helios', abilityId: 'E10' }),
+    missedHeal({ id: 'Aspected Helios', abilityId: 'E11' }),
+    missedHeal({ id: 'Aspected Helios', abilityId: '3200' }),
+    missedHeal({ id: 'Celestial Opposition', abilityId: '40A9' }),
   ],
 }];
