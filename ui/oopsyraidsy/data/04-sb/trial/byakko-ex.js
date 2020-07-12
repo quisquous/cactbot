@@ -38,6 +38,7 @@
           text: {
             en: 'bubble collision',
             de: 'Blasen sind zusammengestoßen',
+            fr: 'collision de bulles',
             ko: '장판 겹쳐서 터짐',
           },
         };
