@@ -1076,10 +1076,6 @@
         'Wyvern Explosion': 'Wyvern Explosion',
 
       },
-      '~effectNames': {
-        'Astral Essence': 'Arm des Lichts',
-        'Umbral Essence': 'Arm der Dunkelheit',
-      },
     },
     {
       'locale': 'fr',

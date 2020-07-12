@@ -147,10 +147,6 @@
         'Apokalypsis': 'Apokalypse',
         'Aetherspike': 'Ätherstachel',
       },
-      '~effectNames': {
-        'Healing Magic Down': 'Heilmagie -',
-        'Fire Resistance Down': 'Feuerresistenz -',
-      },
     },
     {
       'locale': 'fr',
@@ -200,10 +196,6 @@
         'Aetherspike': 'Pic d\'éther',
         'Adds': 'Adds',
       },
-      '~effectNames': {
-        'Healing Magic Down': 'Malus De Soin',
-        'Fire Resistance Down': 'Résistance Au Feu Réduite',
-      },
     },
     {
       'locale': 'ja',
@@ -251,10 +243,6 @@
         'Burst': '爆発',
         'Apokalypsis': 'アポカリュプシス',
         'Aetherspike': 'エーテルスパイク',
-      },
-      '~effectNames': {
-        'Healing Magic Down': '回復魔法効果低下',
-        'Fire Resistance Down': '火属性耐性低下',
       },
     },
     {
@@ -304,10 +292,6 @@
         'Apokalypsis': '启示录',
         'Aetherspike': '以太钉刺',
       },
-      '~effectNames': {
-        'Healing Magic Down': '治疗魔法效果降低',
-        'Fire Resistance Down': '火属性耐性降低',
-      },
     },
     {
       'locale': 'ko',
@@ -355,10 +339,6 @@
         'Burst': '대폭발',
         'Apokalypsis': '묵시록',
         'Aetherspike': '에테르 강타',
-      },
-      '~effectNames': {
-        'Healing Magic Down': '회복마법 효과 감소',
-        'Fire Resistance Down': '불속성 저항 감소',
       },
     },
   ],

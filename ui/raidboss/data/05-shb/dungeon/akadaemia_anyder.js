@@ -227,10 +227,6 @@
         'Acrid Stream': 'Ätzende Strömung',
         'Carcharian Verve': 'Haifischschwung',
       },
-      '~effectNames': {
-        'Stun': 'Betäubung',
-        'Damage Up': 'Schaden +',
-      },
     },
     {
       'locale': 'fr',
@@ -276,10 +272,6 @@
         'Aqua Spear': 'Épieu aquatique',
         'Acrid Stream': 'Projection âcre',
         'Carcharian Verve': 'Verve carcharienne',
-      },
-      '~effectNames': {
-        'Stun': 'Étourdissement',
-        'Damage Up': 'Bonus de dégâts',
       },
     },
     {
@@ -327,10 +319,6 @@
         'Acrid Stream': 'アクリッドストリーム',
         'Carcharian Verve': 'カルカリアンヴァーヴ',
       },
-      '~effectNames': {
-        'Stun': 'スタン',
-        'Damage Up': 'ダメージ上昇',
-      },
     },
     {
       'locale': 'cn',
@@ -377,10 +365,6 @@
         'Acrid Stream': '苦涩水流',
         'Carcharian Verve': '鲨之气魄',
       },
-      '~effectNames': {
-        'Stun': '眩晕',
-        'Damage Up': '伤害提高',
-      },
     },
     {
       'locale': 'ko',
@@ -426,10 +410,6 @@
         'Aqua Spear': '물의 창',
         'Acrid Stream': '매캐한 냇물',
         'Carcharian Verve': '상어의 기백',
-      },
-      '~effectNames': {
-        'Stun': '기절',
-        'Damage Up': '주는 피해량 증가',
       },
     },
   ],

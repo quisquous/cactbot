@@ -187,12 +187,6 @@
         'Exalted Plumes': 'Exaltierte Schwaden',
         '--add Phase--': '--Add Phase--',
       },
-      '~effectNames': {
-        'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
-        'Lightning Resistance Down II': 'Blitzresistenz - (stark)',
-        'Embolden': 'Ermutigen',
-        'Damage Down': 'Schaden -',
-      },
     },
     {
       'locale': 'fr',
@@ -230,12 +224,6 @@
         'Daybreak': 'Point du jour',
         'Beatific Vision': 'Vision béatifique',
         '--add Phase--': '--add phase--',
-      },
-      '~effectNames': {
-        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
-        'Lightning Resistance Down II': 'Résistance à La Foudre Réduite+',
-        'Embolden': 'Enhardissement',
-        'Damage Down': 'Malus de dégâts',
       },
     },
     {
@@ -275,12 +263,6 @@
         'Exalted Plumes': 'エクロージョン',
         '--add Phase--': '--雑魚フェイス--',
       },
-      '~effectNames': {
-        'Physical Vulnerability Up': '被物理ダメージ増加',
-        'Lightning Resistance Down II': '雷属性耐性低下［強］',
-        'Embolden': 'エンボルデン',
-        'Damage Down': 'ダメージ低下',
-      },
     },
     {
       'locale': 'cn',
@@ -318,12 +300,6 @@
         'Exalted Plumes': '羽化',
         'Drop Of Light': '落光',
         '--add Phase--': '--小怪--',
-      },
-      '~effectNames': {
-        'Physical Vulnerability Up': '物理受伤加重',
-        'Lightning Resistance Down II': '雷属性耐性大幅降低',
-        'Embolden': '鼓励',
-        'Damage Down': '伤害降低',
       },
     },
   ],

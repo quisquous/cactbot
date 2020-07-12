@@ -183,13 +183,6 @@
         '(?<! )Tsunami': 'Sturzflut',
         'Undersea Quake': 'Unterwasserbeben',
       },
-      '~effectNames': {
-        'Dropsy': 'Wassersucht',
-        'Smothering Waters': 'Omen der Ertränkung',
-        'Splashing Waters': 'Omen des Sturms',
-        'Surging Waters': 'Omen der Erdrückung',
-        'Swirling Waters': 'Omen des Wasserwirbels',
-      },
     },
     {
       'locale': 'fr',
@@ -214,13 +207,6 @@
         'Tidal Wave': 'Raz-de-marée',
         '(?<! )Tsunami': 'Tsunami',
         'Undersea Quake': 'Séisme sous-marin',
-      },
-      '~effectNames': {
-        'Dropsy': 'Œdème',
-        'Smothering Waters': 'Eaux submergeantes',
-        'Splashing Waters': 'Eaux déferlantes',
-        'Surging Waters': 'Eaux écrasantes',
-        'Swirling Waters': 'Eaux tournoyantes',
       },
     },
     {
@@ -248,13 +234,6 @@
         '(?<! )Tsunami': '大海嘯',
         'Undersea Quake': 'アンダーシークエイク',
       },
-      '~effectNames': {
-        'Dropsy': '水毒',
-        'Smothering Waters': '溺没の兆し',
-        'Splashing Waters': '強風の兆し',
-        'Surging Waters': '強圧の兆し',
-        'Swirling Waters': '渦動の兆し',
-      },
     },
     {
       'locale': 'cn',
@@ -280,13 +259,6 @@
         '(?<! )Tsunami': '大海啸',
         'Undersea Quake': '海底地震',
       },
-      '~effectNames': {
-        'Dropsy': '水毒',
-        'Smothering Waters': '溺没之兆',
-        'Splashing Waters': '强风之兆',
-        'Surging Waters': '强压之兆',
-        'Swirling Waters': '涡动之兆',
-      },
     },
     {
       'locale': 'ko',
@@ -311,13 +283,6 @@
         'Tidal Wave': '해일',
         '(?<! )Tsunami': '대해일',
         'Undersea Quake': '해저 지진',
-      },
-      '~effectNames': {
-        'Dropsy': '물독',
-        'Smothering Waters': '익몰의 징조',
-        'Splashing Waters': '강풍의 징조',
-        'Surging Waters': '강압의 징조',
-        'Swirling Waters': '소용돌이의 징조',
       },
     },
   ],

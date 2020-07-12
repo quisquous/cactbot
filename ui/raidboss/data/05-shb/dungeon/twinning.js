@@ -259,11 +259,6 @@
         '(?<! )Gravity': 'Gravitation',
         '(?<! )Crossray': 'Kreuzlaser',
       },
-      '~effectNames': {
-        'Summon Order II': 'Egi-Attacke II',
-        'Summon Order': 'Egi-Attacke I',
-        'Burns': 'Brandwunde',
-      },
     },
     {
       'locale': 'fr',
@@ -332,11 +327,6 @@
         '32-tonze Swipe': 'Swing de 32 tonz',
         '128-tonze Swing': 'Swing de 128 tonz',
       },
-      '~effectNames': {
-        'Summon Order II': 'Actions en attente: 2',
-        'Summon Order': 'Action en attente: 1',
-        'Burns': 'Brûlure',
-      },
     },
     {
       'locale': 'ja',
@@ -404,11 +394,6 @@
         'Aetherochemical Amplification': '魔科学レーザー',
         '32-tonze Swipe': '32トンズ・スワイプ',
         '128-tonze Swing': '128トンズ・スイング',
-      },
-      '~effectNames': {
-        'Summon Order II': 'アクション実行待機II',
-        'Summon Order': 'アクション実行待機I',
-        'Burns': '火傷',
       },
     },
     {
@@ -480,11 +465,6 @@
         '(?<! )Gravity': '(?<! )重力',
         '(?<! )Crossray': '(?<! )交叉激光',
       },
-      '~effectNames': {
-        'Summon Order II': '发动技能待命II',
-        'Summon Order': '发动技能待命I',
-        'Burns': '火伤',
-      },
     },
     {
       'locale': 'ko',
@@ -553,11 +533,6 @@
         '128-tonze Swing': '128톤즈 휘두르기',
         '(?<! )Gravity': '그라비데',
         '(?<! )Crossray': '십자 레이저',
-      },
-      '~effectNames': {
-        'Summon Order II': '기술 실행 대기 2',
-        'Summon Order': '기술 실행 대기 1',
-        'Burns': '화상',
       },
     },
   ],

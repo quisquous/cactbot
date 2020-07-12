@@ -232,13 +232,6 @@
         'Bradamante': 'Bradamante',
         '--cutscene--': '--Zwischensequenz--',
       },
-      '~effectNames': {
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Burns': 'Brandwunde',
-        'Brink of Death': 'Sterbenselend',
-        'Blunt Resistance Down': 'Schlagresistenz -',
-        '6 Fulms Under': 'Versinkend',
-      },
     },
     {
       'locale': 'fr',
@@ -282,13 +275,6 @@
         'Burst': 'Explosion',
         'Bradamante': 'Bradamante',
       },
-      '~effectNames': {
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
-        'Burns': 'Brûlure',
-        'Brink of Death': 'Mourant',
-        'Blunt Resistance Down': 'Résistance au contondant réduite',
-        '6 Fulms Under': 'Enfoncement',
-      },
     },
     {
       'locale': 'ja',
@@ -329,13 +315,6 @@
         'Burst': '大爆発',
         'Bradamante': 'ブラダマンテ',
         'Outrage': 'アウトレイジ',
-      },
-      '~effectNames': {
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Burns': '火傷',
-        'Brink of Death': '衰弱［強］',
-        'Blunt Resistance Down': '打属性耐性低下',
-        '6 Fulms Under': '沈下',
       },
     },
   ],

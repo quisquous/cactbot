@@ -225,7 +225,6 @@
         'Armadillo': '犰狳',
         'Pack': '',
       },
-      '~effectNames': {},
     },
   ],
 }];

@@ -360,7 +360,6 @@
         'Uplift': '隆起',
         'War And Pease': '豌豆大爆炸',
       },
-      '~effectNames': {},
     },
   ],
 }];

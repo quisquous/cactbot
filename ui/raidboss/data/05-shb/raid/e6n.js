@@ -221,11 +221,6 @@
         'Blaze': 'Flamme',
         'Air Bump': 'Aufsteigende Böe',
       },
-      '~effectNames': {
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-        'Lightheaded': 'Auf wackeligen Beinen',
-        'Irons of Purgatory': 'Höllenfessel',
-      },
     },
     {
       'locale': 'fr',
@@ -267,11 +262,6 @@
         'Blaze': 'Fournaise',
         'Air Bump': 'Rafale ascendante',
       },
-      '~effectNames': {
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
-        'Lightheaded': 'Titubation',
-        'Irons of Purgatory': 'Chaîne du purgatoire',
-      },
     },
     {
       'locale': 'ja',
@@ -312,11 +302,6 @@
         'Call Of The Inferno': '陽炎召喚',
         'Blaze': '火炎',
         'Air Bump': 'エアーバンプ',
-      },
-      '~effectNames': {
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-        'Lightheaded': 'ふらつき',
-        'Irons of Purgatory': '煉獄の鎖',
       },
     },
   ],

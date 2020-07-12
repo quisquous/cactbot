@@ -526,12 +526,6 @@
         'Starbirth Avoid': 'vermeide Sternengeburt',
         'Starbirth Final': 'Finale Sternengeburt',
       },
-      '~effectNames': {
-        'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
-        'Lightning Resistance Down II': 'Blitzresistenz - (stark)',
-        'Embolden': 'Ermutigen',
-        'Damage Down': 'Schaden -',
-      },
     },
     {
       'locale': 'fr',
@@ -572,12 +566,6 @@
         'Beatific Vision': 'Vision béatifique',
         'Forgiven venery': 'débauche pardonnée',
         'Forgiven shame': 'déshonneur pardonné',
-      },
-      '~effectNames': {
-        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
-        'Lightning Resistance Down II': 'Résistance à La Foudre Réduite+',
-        'Embolden': 'Enhardissement',
-        'Damage Down': 'Malus de dégâts',
       },
     },
     {
@@ -620,12 +608,6 @@
         'Forgiven venery': 'フォーギヴン・ヴェナリー',
         'Forgiven shame': 'フォーギヴン・シェイム',
       },
-      '~effectNames': {
-        'Physical Vulnerability Up': '被物理ダメージ増加',
-        'Lightning Resistance Down II': '雷属性耐性低下［強］',
-        'Embolden': 'エンボルデン',
-        'Damage Down': 'ダメージ低下',
-      },
     },
     {
       'locale': 'cn',
@@ -664,12 +646,6 @@
         'Beatific Vision': '荣福直观',
         'Forgiven venery': '得到宽恕的情欲',
         'Forgiven shame': '得到宽恕的耻辱',
-      },
-      '~effectNames': {
-        'Physical Vulnerability Up': '物理受伤加重',
-        'Lightning Resistance Down II': '雷属性耐性大幅降低',
-        'Embolden': '鼓励',
-        'Damage Down': '伤害降低',
       },
     },
     {
@@ -710,12 +686,6 @@
         ' Explode': ' (터뜨리기)',
         ' Charge': ' (돌진)',
         ' Final': ' (마지막)',
-      },
-      '~effectNames': {
-        'Physical Vulnerability Up': '받는 물리 피해량 증가',
-        'Lightning Resistance Down II': '번개속성 저항 감소[강]',
-        'Embolden': '성원',
-        'Damage Down': '주는 피해량 감소',
       },
     },
   ],

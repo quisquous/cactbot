@@ -250,10 +250,6 @@
         'Tail Slap': 'Schweifklapser',
         'Venomous Tail': 'Venomschweif',
       },
-      '~effectNames': {
-        'Cursed Shriek': 'Schrei der Verwünschung',
-        'Cursed Voice': 'Stimme der Verwünschung',
-      },
     },
     {
       'locale': 'fr',
@@ -278,10 +274,6 @@
         'Sacrifice': 'Sacrifice',
         'Tail Slap': 'Gifle caudale',
         'Venomous Tail': 'Queue venimeuse',
-      },
-      '~effectNames': {
-        'Cursed Shriek': 'Cri Du Maléfice',
-        'Cursed Voice': 'Voix Du Maléfice',
       },
     },
     {
@@ -308,10 +300,6 @@
         'Tail Slap': 'テールスラップ',
         'Venomous Tail': 'ベノモステール',
       },
-      '~effectNames': {
-        'Cursed Shriek': '呪詛の叫声',
-        'Cursed Voice': '呪詛の声',
-      },
     },
     {
       'locale': 'cn',
@@ -337,10 +325,6 @@
         'Tail Slap': '尾部猛击',
         'Venomous Tail': '猛毒之尾',
       },
-      '~effectNames': {
-        'Cursed Shriek': '诅咒之嚎',
-        'Cursed Voice': '诅咒之声',
-      },
     },
     {
       'locale': 'ko',
@@ -365,10 +349,6 @@
         'Sacrifice': '제물',
         'Tail Slap': '꼬리치기',
         'Venomous Tail': '맹독 꼬리',
-      },
-      '~effectNames': {
-        'Cursed Shriek': '저주의 외침',
-        'Cursed Voice': '저주의 목소리',
       },
     },
   ],

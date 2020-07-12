@@ -150,12 +150,6 @@
         'Vice Of Apathy': 'Laster der Apathie',
         'Vice Of Vanity': 'Laster der Eitelkeit',
       },
-      '~effectNames': {
-        'Brink of Death': 'Sterbenselend',
-        'Fetters': 'Gefesselt',
-        'Heavy': 'Gewicht',
-        'Summon Order': 'Egi-Attacke I',
-      },
     },
     {
       'locale': 'fr',
@@ -189,12 +183,6 @@
         'Vice and Virtue': 'Vice et vertue',
         'Vice of Apathy': 'Péché d\'apathie',
         'Vice of Vanity': 'Péché de vanité',
-      },
-      '~effectNames': {
-        'Brink of Death': 'Mourant',
-        'Fetters': 'Attache',
-        'Heavy': 'Pesanteur',
-        'Summon Order': 'Action en attente: 1',
       },
     },
     {
@@ -230,12 +218,6 @@
         'Vice of Apathy': 'ヴァイス・オブ・アパシー',
         'Vice of Vanity': 'ヴァイス・オブ・ヴァニティー',
       },
-      '~effectNames': {
-        'Brink of Death': '衰弱［強］',
-        'Fetters': '拘束',
-        'Heavy': 'ヘヴィ',
-        'Summon Order': 'アクション実行待機I',
-      },
     },
     {
       'locale': 'cn',
@@ -269,12 +251,6 @@
         'Vice [oO]f Apathy': '冷漠之恶',
         'Vice [oO]f Vanity': '虚荣之恶',
       },
-      '~effectNames': {
-        'Brink of Death': '濒死',
-        'Fetters': '拘束',
-        'Heavy': '加重',
-        'Summon Order': '发动技能待命I',
-      },
     },
     {
       'locale': 'ko',
@@ -307,12 +283,6 @@
         'Vice [aA]nd Virtue': '선과 악',
         'Vice [oO]f Apathy': '냉담의 악덕',
         'Vice [oO]f Vanity': '허영의 악덕',
-      },
-      '~effectNames': {
-        'Brink of Death': 'Brink of Death',
-        'Fetters': 'Fetters',
-        'Heavy': 'Heavy',
-        'Summon Order': 'Summon Order',
       },
     },
   ],

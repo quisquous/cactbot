@@ -202,10 +202,6 @@
         'Pyre/Hearth': 'Schreckensstachel/flammen',
         'Unknown Add': 'Unbekanntes Add',
       },
-      '~effectNames': {
-        'Dropsy': 'Wassersucht',
-        'Bleeding': 'Blutung',
-      },
     },
     {
       'locale': 'fr',
@@ -270,10 +266,6 @@
         'Arise': 'Apparition',
         'Acrid Stream': 'Projection âcre',
       },
-      '~effectNames': {
-        'Dropsy': 'Œdème',
-        'Bleeding': 'Saignant',
-      },
     },
     {
       'locale': 'ja',
@@ -336,10 +328,6 @@
         'Acrid Stream': 'アクリッドストリーム',
         '2,000-mina swipe': '2000ミナ・スワイプ',
         '2,000-mina swing': '2000ミナ・スイング',
-      },
-      '~effectNames': {
-        'Dropsy': '水毒',
-        'Bleeding': 'ペイン',
       },
     },
   ],

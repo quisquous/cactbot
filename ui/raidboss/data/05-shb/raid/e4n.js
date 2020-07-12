@@ -149,11 +149,6 @@
         'Voice Of The Land': 'Aufschrei der Erde',
         'Weight Of The Land': 'Gaias Gewicht',
       },
-      '~effectNames': {
-        'Brink of Death': 'Sterbenselend',
-        'Filthy': 'Dreck',
-        'Physical Vulnerability Up': 'Erhöhte physische Verwundbarkeit',
-      },
     },
     {
       'locale': 'fr',
@@ -188,11 +183,6 @@
         'Stonecrusher': 'Éruption tellurique',
         'Voice of the Land': 'Hurlement tellurique',
         'Weight of the Land': 'Poids de la terre',
-      },
-      '~effectNames': {
-        'Brink of Death': 'Mourant',
-        'Filthy': 'Embourbement',
-        'Physical Vulnerability Up': 'Vulnérabilité physique augmentée',
       },
     },
     {
@@ -229,12 +219,6 @@
         'Voice of the Land': '大地の叫び',
         'Weight of the Land': '大地の重み',
       },
-      '~effectNames': {
-        'Brink of Death': '衰弱［強］',
-        'Dropsy': '水毒',
-        'Filthy': '汚泥',
-        'Physical Vulnerability Up': '被物理ダメージ増加',
-      },
     },
     {
       'locale': 'cn',
@@ -269,12 +253,6 @@
         'Voice [oO]f [tT]he Land': '大地之号',
         'Weight [oO]f [tT]he Land': '大地之重',
       },
-      '~effectNames': {
-        'Brink of Death': '濒死',
-        'Dropsy': '水毒',
-        'Filthy': '污泥',
-        'Physical Vulnerability Up': '物理受伤加重',
-      },
     },
     {
       'locale': 'ko',
@@ -308,12 +286,6 @@
         'Stonecrusher': '암석 붕괴',
         'Voice [oO]f [tT]he Land': '대지의 외침',
         'Weight [oO]f [tT]he Land': '대지의 무게',
-      },
-      '~effectNames': {
-        'Brink of Death': '쇠약강',
-        'Dropsy': '물독',
-        'Filthy': '진흙탕',
-        'Physical Vulnerability Up': '받는 물리 피해량 증가',
       },
     },
   ],

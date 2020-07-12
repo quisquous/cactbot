@@ -396,13 +396,6 @@
         'Tether Mirages': 'Replikant-Verbindungen',
         'Ultra Flash': 'Ultrablitz',
       },
-      '~effectNames': {
-        'Compressed Lightning': 'Blitzkompression',
-        'Compressed Water': 'Wasserkompression',
-        'High Arithmeticks': 'Biomathematik-Ebene 2',
-        'Low Arithmeticks': 'Biomathematik-Ebene 1',
-        'Magic Vulnerability Up': 'Erhöhte Magie-Verwundbarkeit',
-      },
     },
     {
       'locale': 'fr',
@@ -455,13 +448,6 @@
         'Stacks': 'Les Rondins',
         'Super Cyclone': 'Super cyclone',
         'Ultra Flash': 'Ultraflash',
-      },
-      '~effectNames': {
-        'Compressed Lightning': 'Compression électrique',
-        'Compressed Water': 'Compression aqueuse',
-        'High Arithmeticks': 'Calcul de dénivelé 2',
-        'Low Arithmeticks': 'Calcul de dénivelé 1',
-        'Magic Vulnerability Up': 'Vulnérabilité magique augmentée',
       },
     },
     {
@@ -516,13 +502,6 @@
         'Super Cyclone': 'スーパーサイクロン',
         'Ultra Flash': 'ウルトラフラッシュ',
       },
-      '~effectNames': {
-        'Compressed Lightning': '雷属性圧縮',
-        'Compressed Water': '水属性圧縮',
-        'High Arithmeticks': '算術：ハイト2',
-        'Low Arithmeticks': '算術：ハイト1',
-        'Magic Vulnerability Up': '被魔法ダメージ増加',
-      },
     },
     {
       'locale': 'cn',
@@ -576,13 +555,6 @@
         'Super Cyclone': '超级气旋',
         'Ultra Flash': '究极闪光',
       },
-      '~effectNames': {
-        'Compressed Lightning': '雷属性压缩',
-        'Compressed Water': '水属性压缩',
-        'High Arithmeticks': '算术：高度2',
-        'Low Arithmeticks': '算术：高度1',
-        'Magic Vulnerability Up': '魔法受伤加重',
-      },
     },
     {
       'locale': 'ko',
@@ -635,13 +607,6 @@
         'Stacks': '장작마을 옛터',
         'Super Cyclone': '대형 돌개바람',
         'Ultra Flash': '초섬광',
-      },
-      '~effectNames': {
-        'Compressed Lightning': '번개속성 압축',
-        'Compressed Water': '물속성 압축',
-        'High Arithmeticks': '산술: 고도 2',
-        'Low Arithmeticks': '산술: 고도 1',
-        'Magic Vulnerability Up': '받는 마법 피해량 증가',
       },
     },
   ],
