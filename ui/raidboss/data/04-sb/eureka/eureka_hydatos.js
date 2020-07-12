@@ -604,13 +604,13 @@
       },
     },
     {
-      // Note: These use 00:329e: lines, without any proper "gains effect" lines.
+      // Note: These use 00:3...: lines, without any proper "gains effect" lines.
+      // In other words, they need to be the fully translated in game log.
+      // There are no "gainsEffect" lines for the clones, only for Absolute Virtue directly.
+      // Ideally parser logic could be added for this case, but this is where we are.
       id: 'BA AV Eidos Relative Virtue Astral',
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts.*?', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Lumière.*?', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕.*?', capture: false }),
-      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -621,13 +621,10 @@
       },
     },
     {
-      // Note: These use 00:329e: lines, without any proper "gains effect" lines.
+      // See note above for `BA AV Eidos Relative Virtue Astral`.
       id: 'BA AV Eidos Relative Virtue Umbral',
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit.*?', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Ténèbres.*?', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕.*?', capture: false }),
-      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔.*?', capture: false }),
+      regexDe: Regexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -1003,13 +1000,15 @@
         'Ozmashade': 'Yadis-Schatten',
         'Proto Ozma(?! containment)': 'Proto-Yadis',
         'Raiden': 'Raiden',
-        'Relative Virtue': 'Relative Tugend',
+        'Relative Virtue(?! gains)': 'Relative Tugend',
         'Shadow': 'Proto-Yadis-Schatten',
         'Streak Lightning': 'Blitzladung',
         '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
         'The memories of heroes past live on again': 'Das Vermächtnis vergangener Helden lebt von Neuem auf',
         'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
         'Munderg, turn blood to ice': 'Munderg, das Eis der Ewigkeit soll sie für Äonen bannen',
+        'Relative Virtue gains the effect of Astral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts',
+        'Relative Virtue gains the effect of Umbral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit',
       },
       'replaceText': {
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
