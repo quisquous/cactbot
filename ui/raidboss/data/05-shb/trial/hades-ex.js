@@ -840,6 +840,7 @@
     {
       'locale': 'de',
       'replaceSync': {
+        'Aetherial Gaol': 'Ätherkerker',
         'Arcane Font': 'Arkan(?:e|er|es|en) Körper',
         'Arcane Globe': 'Arkan(?:e|er|es|en) Kugel',
         'Ascian Prime\'s Shade': 'Schatten des Prim-Ascian',

@@ -91,7 +91,7 @@
     {
       id: 'BA Clear Data',
       regex: Regexes.message({ line: '.*is no longer sealed.*?', capture: false }),
-      regexDe: Regexes.message({ line: '.*öffnet sich wieder.*?', capture: false }),
+      regexDe: Regexes.message({ line: '.*öffnet sich (?:wieder|erneut).*?', capture: false }),
       regexFr: Regexes.message({ line: '.*Ouverture de.*?', capture: false }),
       regexCn: Regexes.message({ line: '.*的封锁解除了.*?', capture: false }),
       regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다.*?', capture: false }),
