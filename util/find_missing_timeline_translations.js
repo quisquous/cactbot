@@ -221,6 +221,9 @@ function findMissingTimeline() {
   let keys = Object.keys(output).sort();
   for (let key of keys)
     console.log(output[key]);
+
+  if (keys.length === 0 && trans.missingTranslations)
+    console.log(`${triggersFile}: missingTranslations set true when not needed`);
 }
 
 findMissingRegex();
