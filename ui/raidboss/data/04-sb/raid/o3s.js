@@ -375,7 +375,7 @@
         '--White Flame Spawns--': '--weiße Flamme erscheint--',
         'Blizzard': 'Eis',
         'Books': 'Bücher',
-        'Clock': 'Positions'
+        'Clock': 'Positions',
         'Critical Hit': 'Kritischer Treffer',
         'Crystals': 'Kristalle',
         'DPS Morph': 'DPS-Verwandlung',
