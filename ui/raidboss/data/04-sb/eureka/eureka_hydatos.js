@@ -79,11 +79,12 @@
     },
     {
       id: 'BA Seal',
-      regex: Regexes.message({ line: '.*will be sealed off.*?', capture: false }),
-      regexDe: Regexes.message({ line: '.*bis sich der Zugang.*?', capture: false }),
-      regexFr: Regexes.message({ line: '.*Fermeture de.*?', capture: false }),
-      regexCn: Regexes.message({ line: '距.*被封锁还有.*?', capture: false }),
-      regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다.*?', capture: false }),
+      regex: Regexes.message({ line: '.* will be sealed off.*?', capture: false }),
+      regexDe: Regexes.message({ line: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?.* schließt.*?', capture: false }),
+      regexFr: Regexes.message({ line: 'Fermeture d(?:e|u|es) $1 dans.*?', capture: false }),
+      regexJa: Regexes.message({ line: '$1の封鎖まであと', capture: false }),
+      regexCn: Regexes.message({ line: '距$1被封锁还有.*?', capture: false }),
+      regexKo: Regexes.message({ line: '15초 후에 $1(이|가) 봉쇄됩니다.*?', capture: false }),
       run: function(data) {
         data.sealed = true;
       },
@@ -92,9 +93,10 @@
       id: 'BA Clear Data',
       regex: Regexes.message({ line: '.*is no longer sealed.*?', capture: false }),
       regexDe: Regexes.message({ line: '.*öffnet sich (?:wieder|erneut).*?', capture: false }),
-      regexFr: Regexes.message({ line: '.*Ouverture de.*?', capture: false }),
+      regexFr: Regexes.message({ line: '.*Ouverture .*?', capture: false }),
+      regexJa: Regexes.message({ line: '.*の封鎖が解かれた.*?', capture: false }),
       regexCn: Regexes.message({ line: '.*的封锁解除了.*?', capture: false }),
-      regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다.*?', capture: false }),
+      regexKo: Regexes.message({ line: '.*의 봉쇄가 해제되었습니다.*?', capture: false }),
       run: function(data) {
         delete data.side;
         delete data.mythcall;
