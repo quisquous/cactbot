@@ -159,6 +159,11 @@
     {
       id: 'A6S Midan Hardhelm',
       netRegex: NetRegexes.startsUsing({ source: 'Midan Hardhelm', id: '1612' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Midas-Harthelm', id: '1612' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Casque-Dur Midin', id: '1612' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ミダース・ハードヘルム', id: '1612' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '미다스 강화투구', id: '1612' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '弥达斯硬盔兵', id: '1612' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -167,6 +172,11 @@
     {
       id: 'A6S Midan Hardmind',
       netRegex: NetRegexes.startsUsing({ source: 'Midan Hardhelm', id: '1613' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Midas-Harthelm', id: '1613' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Casque-Dur Midin', id: '1613' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ミダース・ハードヘルム', id: '1613' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '미다스 강화투구', id: '1613' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '弥达斯硬盔兵', id: '1613' }),
       condition: function(data) {
         return data.CanStun();
       },

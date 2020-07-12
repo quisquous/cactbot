@@ -208,7 +208,7 @@ let callSafeDir = (callIndex) => {
       netRegex: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
       netRegexDe: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
-      netRegexJa: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: 'アイオーン・ソフィア' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '移涌' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '아이온 소피아' }),
       run: function(data, matches) {
@@ -248,7 +248,7 @@ let callSafeDir = (callIndex) => {
       netRegex: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19AB', source: 'アイオーン・ソフィア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '19AB', source: '移涌', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '19AB', source: '아이온 소피아', capture: false }),
       delaySeconds: 1,
@@ -266,7 +266,7 @@ let callSafeDir = (callIndex) => {
       netRegex: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'アイオーン・ソフィア', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '移涌', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '아이온 소피아', capture: false }),
       run: function(data) {

@@ -27,6 +27,7 @@
       netRegexDe: NetRegexes.ability({ id: '1C30', source: 'Hortigolem', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '1C30', source: 'Chortocyon', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '1C30', source: 'レイトンワード', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '1C30', source: '레이튼워드', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -39,6 +40,7 @@
       netRegexDe: NetRegexes.startsUsing({ id: '1C32', source: 'Sporensack', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '1C32', source: 'Sac de spores', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C32', source: 'スポアサック', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C32', source: '포자 주머니', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Away from large pod',
@@ -69,6 +71,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C37', source: 'Gowrow', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C37', source: 'ガウロウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C37', source: '高牢怪龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C37', source: '가우로우', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -81,6 +84,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C35', source: 'Gowrow', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C35', source: 'ガウロウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C35', source: '高牢怪龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C35', source: '가우로우', capture: false }),
       response: Responses.goFrontOrSides(),
     },
     {
@@ -92,6 +96,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C36', source: 'Gowrow', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C36', source: 'ガウロウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C36', source: '高牢怪龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C36', source: '가우로우', capture: false }),
       response: Responses.getOut(),
     },
     {
@@ -102,6 +107,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C39', source: 'Gowrow', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C39', source: 'ガウロウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C39', source: '高牢怪龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C39', source: '가우로우', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -112,6 +118,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C3A', source: 'Gowrow', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C3A', source: 'ガウロウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C3A', source: '高牢怪龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C3A', source: '가우로우', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -122,6 +129,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C3B', source: 'Gowrow', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C3B', source: 'ガウロウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C3B', source: '高牢怪龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C3B', source: '가우로우', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -132,6 +140,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C3C', source: 'Gowrow', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C3C', source: 'ガウロウ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C3C', source: '高牢怪龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C3C', source: '가우로우', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -143,6 +152,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C3E', source: 'scorpion de lave' }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C3E', source: 'ラーヴァ・スコーピオン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C3E', source: '熔岩蝎' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C3E', source: '용암 전갈' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Drop puddle outside',
@@ -154,8 +164,9 @@
       netRegex: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['Lava Scorpion', 'The Scorpion\'s Tail'] }),
       netRegexDe: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['Lavaskorpion', 'Schwanzskorpion'] }),
       netRegexFr: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['scorpion de lave', 'queue du scorpion'] }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['ラーヴァ・スコーピオン', 'Tテイル・スコーピオン'] }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['ラーヴァ・スコーピオン', 'テイル・スコーピオン'] }),
       netRegexCn: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['熔岩蝎', '尖尾蝎'] }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['1C40', '1C48'], source: ['용암 전갈', '꼬리 전갈'] }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'tank' || data.role == 'healer';
       },
@@ -168,6 +179,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1C45', source: 'scorpion de lave', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1C45', source: 'ラーヴァ・スコーピオン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C45', source: '熔岩蝎', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1C45', source: '용암 전갈', capture: false }),
       response: Responses.killAdds(),
     },
   ],
@@ -310,4 +322,3 @@
     },
   ],
 }];
-
