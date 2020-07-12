@@ -35,12 +35,10 @@ let translations = triggerSet.timelineReplace;
 if (!translations)
   process.exit(0);
 
-let kEffectNames = '~effectNames';
 let trans = {
   replaceSync: {},
   replaceText: {},
 };
-trans[kEffectNames] = {};
 
 for (let transBlock of translations) {
   if (!transBlock.locale || transBlock.locale !== locale)
@@ -85,13 +83,11 @@ function findMissingRegex() {
     let foundMatch = false;
 
     let transRegex = origRegex;
-    for (let set of [trans.replaceSync, trans[kEffectNames]]) {
-      for (let regex in set) {
-        let replace = Regexes.parseGlobal(regex);
-        if (transRegex.match(replace))
-          foundMatch = true;
-        transRegex = transRegex.replace(replace, set[regex]);
-      }
+    for (let regex in trans.replaceSync) {
+      let replace = Regexes.parseGlobal(regex);
+      if (transRegex.match(replace))
+        foundMatch = true;
+      transRegex = transRegex.replace(replace, trans.replaceSync[regex]);
     }
     for (let regex in commonReplacement.replaceSync) {
       let replace = Regexes.parseGlobal(regex);

@@ -63,18 +63,6 @@ def translate_regex(regex, trans):
     # language to show that it's been translated.
 
     did_work = False
-    effectLines = [
-        "gains the effect",
-        "loses the effect",
-        "gainsEffect",
-        "losesEffect",
-    ]
-    for effectLine in effectLines:
-        if line.find(effectLine):
-            for old, new in trans["~effectNames"].items():
-                did_work = did_work or re.search(old, line)
-                line = re.sub(old, new, line)
-            break
     for old, new in trans["replaceText"].items():
         did_work = did_work or re.search(old, line)
         line = re.sub(old, new, line)
@@ -180,7 +168,6 @@ def parse_translations(triggers):
         add_if_missing = [
             "replaceText",
             "replaceSync",
-            "~effectNames",
         ]
         for key in add_if_missing:
             if key not in entry:
