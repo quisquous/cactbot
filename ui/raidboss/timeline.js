@@ -56,8 +56,8 @@ class Timeline {
         text = text.replace(Regexes.parse(key), r[replaceKey][key]);
     }
     // Common Replacements
-    for (let key in commonReplacement) {
-      let repl = commonReplacement[key][replaceLang];
+    for (let key in commonReplacement[replaceKey]) {
+      let repl = commonReplacement[replaceKey][key][replaceLang];
       if (!repl)
         continue;
       text = text.replace(Regexes.parse(key), repl);

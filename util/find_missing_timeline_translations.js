@@ -160,10 +160,11 @@ function findMissingTimeline() {
   // Add all common replacements, so they can be checked for collisions as well.
   // As of now they apply to both replaceSync and replaceText, so add them to both.
   for (let testCase of testCases) {
-    for (let key in commonReplacement) {
+    let common = commonReplacement[testCase.type];
+    for (let key in common) {
       if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
         continue;
-      if (!commonReplacement[key][trans.locale]) {
+      if (!common[key][trans.locale]) {
         // To avoid throwing a "missing translation" error for
         // every single common translation, automatically add noops.
         testCase.replace[key] = key;
@@ -175,7 +176,7 @@ function findMissingTimeline() {
         continue;
       }
 
-      testCase.replace[key] = commonReplacement[key][trans.locale];
+      testCase.replace[key] = common[key][trans.locale];
     }
   }
 
