@@ -611,6 +611,7 @@
       id: 'BA AV Eidos Relative Virtue Astral',
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Lumière.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -625,6 +626,7 @@
       id: 'BA AV Eidos Relative Virtue Umbral',
       regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
       regexDe: Regexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit.*?', capture: false }),
+      regexFr: Regexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Ténèbres.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
