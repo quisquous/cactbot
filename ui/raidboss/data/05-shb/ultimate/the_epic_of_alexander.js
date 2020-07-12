@@ -2811,7 +2811,7 @@ let getHeadmarkerId = (data, matches) => {
       regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4894' }),
       regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4894' }),
       regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4894' }),
-      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487B' }),
+      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '4894' }),
       // Don't collide with trine.
       delaySeconds: 2,
       infoText: function(data, matches) {

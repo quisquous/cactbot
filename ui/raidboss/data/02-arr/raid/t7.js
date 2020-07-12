@@ -84,11 +84,6 @@
     {
       id: 'T7 Cursed Voice',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -105,11 +100,6 @@
     {
       id: 'T7 Cursed Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4' }),
       durationSeconds: 3,
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
@@ -135,11 +125,6 @@
     {
       id: 'T7 Cursed Shriek Reminder',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: function(data, matches) {
@@ -230,8 +215,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bioweapon Storage': 'Biowaffen-Magazin',
-        'Cursed Shriek': 'Schrei der Verwünschung',
-        'Cursed Voice': 'Stimme der Verwünschung',
         'Lamia Prosector': 'Lamia-Prosektorin',
         'Melusine': 'Melusine',
         'Proto-Chimera': 'Proto-Chimära',
@@ -255,8 +238,6 @@
       'locale': 'fr',
       'replaceSync': {
         'Bioweapon Storage': 'l\'entrepôt d\'armes biologiques',
-        'Cursed Shriek': 'Cri Maudit',
-        'Cursed Voice': 'Voix Maudite',
         'Lamia Prosector': 'Lamia Dissectrice',
         'Melusine': 'Mélusine',
         'Proto-Chimera': 'Protochimère',
@@ -280,8 +261,6 @@
       'locale': 'ja',
       'replaceSync': {
         'Bioweapon Storage': '生体管理区',
-        'Cursed Shriek': '呪詛の叫声',
-        'Cursed Voice': '呪詛の声',
         'Lamia Prosector': 'ラミア・プロセクター',
         'Melusine': 'メリュジーヌ',
         'Proto-Chimera': 'プロトキマイラ',
@@ -305,8 +284,6 @@
       'locale': 'cn',
       'replaceSync': {
         'Bioweapon Storage': '生体管理区',
-        'Cursed Shriek': '诅咒之嚎',
-        'Cursed Voice': '诅咒之声',
         'Lamia Prosector': '拉米亚解剖女王',
         'Melusine': '美瑠姬奴',
         'Proto-Chimera': '原型奇美拉',
@@ -330,8 +307,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Bioweapon Storage': '생체 관리 구역',
-        'Cursed Shriek': '저주의 외침',
-        'Cursed Voice': '저주의 목소리',
         'Lamia Prosector': '라미아 시체해부자',
         'Melusine': '멜뤼진',
         'Proto-Chimera': '프로토 키마이라',

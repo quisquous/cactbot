@@ -951,7 +951,7 @@
       id: 'BA Ozma Adds',
       regex: Regexes.ability({ source: 'Cloudlarker', id: '37B0', capture: false }),
       regexDe: Regexes.ability({ source: 'Wolkenlauerer', id: '37B0', capture: false }),
-      regexFr: Regexes.ability({ source: 'Urolithe De L\'arsenal', id: '37B0', capture: false }),
+      regexFr: Regexes.ability({ source: 'Rôdeur Des Nuages', id: '37B0', capture: false }),
       regexJa: Regexes.ability({ source: 'クラウドラーカー', id: '37B0', capture: false }),
       regexCn: Regexes.ability({ source: '翻云狮鹫', id: '37B0', capture: false }),
       regexKo: Regexes.ability({ source: '구름 잠복자', id: '37B0', capture: false }),

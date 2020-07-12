@@ -51,6 +51,11 @@
     {
       id: 'A7S Phase Counter',
       netRegex: NetRegexes.addedCombatant({ name: 'Shanoa', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Schwarz(?:e|er|es|en) Katze', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Chat-Noir', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'シャノア', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '샤노아', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '夏诺雅', capture: false }),
       run: function(data) {
         data.phase = data.phase || 0;
         data.phase++;
@@ -79,12 +84,22 @@
     {
       id: 'A7S Sizzlespark',
       netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F8', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Denkfix', id: '16F8', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Quickthinx Le Cerveau', id: '16F8', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '万能のクイックシンクス', id: '16F8', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F8', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '万事通 奎克辛克斯', id: '16F8', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe('info'),
     },
     {
       id: 'A7S Bomb Tether',
       netRegex: NetRegexes.tether({ source: 'Bomb', id: '001F' }),
+      netRegexDe: NetRegexes.tether({ source: 'Bombe', id: '001F' }),
+      netRegexFr: NetRegexes.tether({ source: 'Bombe', id: '001F' }),
+      netRegexJa: NetRegexes.tether({ source: '爆弾', id: '001F' }),
+      netRegexKo: NetRegexes.tether({ source: '폭탄', id: '001F' }),
+      netRegexCn: NetRegexes.tether({ source: '炸弹', id: '001F' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Bomb Spread',
@@ -105,6 +120,11 @@
       // This does not include the initial tether, unfortunately.
       // This is another case of "added combatant with initial tether".
       netRegex: NetRegexes.tether({ source: 'Boomtype Magitek Gobwalker G-VII', id: '0011' }),
+      netRegexDe: NetRegexes.tether({ source: 'Gobumm-Stampfer Vii', id: '0011' }),
+      netRegexFr: NetRegexes.tether({ source: 'Gobblindé Magitek G-Vii Boumbardier', id: '0011' }),
+      netRegexJa: NetRegexes.tether({ source: 'Vii号ゴブリウォーカーB型', id: '0011' }),
+      netRegexKo: NetRegexes.tether({ source: 'Vii호 고블린워커 B형', id: '0011' }),
+      netRegexCn: NetRegexes.tether({ source: '爆破型7号哥布林战车', id: '0011' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       infoText: {
@@ -115,6 +135,11 @@
     {
       id: 'A7S Kugelblitz',
       netRegex: NetRegexes.startsUsing({ source: 'Sturm Doll', id: '16FE' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Sturmpuppe', id: '16FE' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Poupée Sturm', id: '16FE' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'シュツルムドール', id: '16FE' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '인형 폭기병', id: '16FE' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '风暴人偶', id: '16FE' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -123,6 +148,11 @@
     {
       id: 'A7S Zoomdoom Clear',
       netRegex: NetRegexes.startsUsing({ source: 'Quickthinx Allthoughts', id: '16F4', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Denkfix', id: '16F4', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Quickthinx Le Cerveau', id: '16F4', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '万能のクイックシンクス', id: '16F4', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '만능의 퀵싱크스', id: '16F4', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '万事通 奎克辛克斯', id: '16F4', capture: false }),
       run: function(data) {
         delete data.grabbed;
         delete data.stickyloom;
@@ -131,6 +161,11 @@
     {
       id: 'A7S Gobbie Grab',
       netRegex: NetRegexes.ability({ source: 'Quickthinx Allthoughts', id: '15C0' }),
+      netRegexDe: NetRegexes.ability({ source: 'Denkfix', id: '15C0' }),
+      netRegexFr: NetRegexes.ability({ source: 'Quickthinx Le Cerveau', id: '15C0' }),
+      netRegexJa: NetRegexes.ability({ source: '万能のクイックシンクス', id: '15C0' }),
+      netRegexKo: NetRegexes.ability({ source: '만능의 퀵싱크스', id: '15C0' }),
+      netRegexCn: NetRegexes.ability({ source: '万事通 奎克辛克斯', id: '15C0' }),
       run: function(data, matches) {
         data.grabbed = data.grabbed || [];
         data.grabbed.push(matches.target);
@@ -139,6 +174,11 @@
     {
       id: 'A7S Stickyloom',
       netRegex: NetRegexes.ability({ source: 'Boomtype Magitek Gobwalker G-VII', id: '16F2' }),
+      netRegexDe: NetRegexes.ability({ source: 'Gobumm-Stampfer Vii', id: '16F2' }),
+      netRegexFr: NetRegexes.ability({ source: 'Gobblindé Magitek G-Vii Boumbardier', id: '16F2' }),
+      netRegexJa: NetRegexes.ability({ source: 'Vii号ゴブリウォーカーB型', id: '16F2' }),
+      netRegexKo: NetRegexes.ability({ source: 'Vii호 고블린워커 B형', id: '16F2' }),
+      netRegexCn: NetRegexes.ability({ source: '爆破型7号哥布林战车', id: '16F2' }),
       run: function(data, matches) {
         data.stickyloom = matches.target;
       },
@@ -146,6 +186,11 @@
     {
       id: 'A7S Padlock',
       netRegex: NetRegexes.addedCombatant({ name: 'Padlock', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Vorhängeschloss', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Cadenas', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: '錠前', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '자물쇠', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '牢门的锁', capture: false }),
       condition: function(data) {
         if (!data.grabbed)
           return false;
@@ -160,6 +205,11 @@
     {
       id: 'A7S True Heart',
       netRegex: NetRegexes.ability({ source: 'Shanoa', id: '15EC', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Schwarz(?:e|er|es|en) Katze', id: '15EC', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Chat-Noir', id: '15EC', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'シャノア', id: '15EC', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '샤노아', id: '15EC', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '夏诺雅', id: '15EC', capture: false }),
       alertText: {
         en: 'Kill Heart',
         de: 'Herz besiegen',

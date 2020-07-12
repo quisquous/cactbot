@@ -293,6 +293,8 @@
       regexDe: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       regexFr: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
       regexJa: Regexes.startsUsing({ source: 'ターミナス・エスト', id: '4CB4', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '파멸의 종착역', id: '4CB4', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '恩惠终结', id: '4CB4', capture: false }),
       condition: (data) => data.clonesActive,
       infoText: function(data) {
         // Sometimes this is called out with the stack mechanic.

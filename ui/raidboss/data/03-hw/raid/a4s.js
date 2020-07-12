@@ -59,6 +59,11 @@
     {
       id: 'A4S Mortal Revolution',
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: '13E7', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Manipulator', id: '13E7', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Manipulateur', id: '13E7', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'マニピュレーター', id: '13E7', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '조종자', id: '13E7', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '操纵者', id: '13E7', capture: false }),
       response: Responses.aoe('alert'),
     },
     {
@@ -66,6 +71,11 @@
       // as a set of tethers come out from bits and some may be pre-intercepted.
       id: 'A4S Carnage',
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Manipulator', id: 'F5E', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Manipulateur', id: 'F5E', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'マニピュレーター', id: 'F5E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '操纵者', id: 'F5E', capture: false }),
       infoText: {
         en: 'Laser Tethers',
         de: 'Laser Verbindungen',
@@ -76,6 +86,11 @@
     {
       id: 'A4S Judgment Nisi A',
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: 'F64' }),
+      regexDe: Regexes.startsUsing({ source: 'Manipulator', id: 'F64' }),
+      regexFr: Regexes.startsUsing({ source: 'Manipulateur', id: 'F64' }),
+      regexJa: Regexes.startsUsing({ source: 'マニピュレーター', id: 'F64' }),
+      regexKo: Regexes.startsUsing({ source: '조종자', id: 'F64' }),
+      regexCn: Regexes.startsUsing({ source: '操纵者', id: 'F64' }),
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Nisi A on YOU',
@@ -87,6 +102,11 @@
     {
       id: 'A4S Judgment Nisi B',
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: 'F65' }),
+      regexDe: Regexes.startsUsing({ source: 'Manipulator', id: 'F65' }),
+      regexFr: Regexes.startsUsing({ source: 'Manipulateur', id: 'F65' }),
+      regexJa: Regexes.startsUsing({ source: 'マニピュレーター', id: 'F65' }),
+      regexKo: Regexes.startsUsing({ source: '조종자', id: 'F65' }),
+      regexCn: Regexes.startsUsing({ source: '操纵者', id: 'F65' }),
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Nisi B on YOU',
@@ -98,6 +118,11 @@
     {
       id: 'A4S Carnage Zero',
       regex: Regexes.startsUsing({ source: 'The Manipulator', id: 'F5E', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Manipulator', id: 'F5E', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Manipulateur', id: 'F5E', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'マニピュレーター', id: 'F5E', capture: false }),
+      regexKo: Regexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
+      regexCn: Regexes.startsUsing({ source: '操纵者', id: 'F5E', capture: false }),
       response: Responses.spread('alert'),
     },
   ],
