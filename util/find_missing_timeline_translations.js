@@ -93,6 +93,12 @@ function findMissingRegex() {
         transRegex = transRegex.replace(replace, set[regex]);
       }
     }
+    for (let regex in commonReplacement.replaceSync) {
+      let replace = Regexes.parseGlobal(regex);
+      if (transRegex.match(replace))
+        foundMatch = true;
+      transRegex = transRegex.replace(replace, commonReplacement.replaceSync[regex][locale]);
+    }
 
     transRegex = transRegex.toLowerCase();
 
