@@ -555,7 +555,6 @@
         'Pure Light': 'ピュアライト',
         'Spear of Paradise': 'スピア・オブ・パラダイス',
         'Vice and Virtue': 'ヴァイス・アンド・ヴァーチュー',
-
       },
     },
     {
@@ -565,8 +564,6 @@
         'Guardian of Paradise': '伊甸守护者',
       },
       'replaceText': {
-        'Delta Attack (Cross)': '三角攻击(角落)',
-        'Delta Attack (Donut)': '三角攻击(月环)',
         'Delta Attack': '三角攻击',
         'Dimensional Shift': '空间转换',
         'Eden\'s Flare': '伊甸核爆',
@@ -581,14 +578,7 @@
         'Paradise Regained': '复乐园',
         'Pure Beam': '净土射线',
         'Pure Light': '净土之光',
-        'Spear [oO]f Paradise': '乐园之枪',
-        'Vice [oO]f Vanity': '虚荣之恶',
-        'Vice And Virtue (D)': '恶习与美德(DPS)',
-        'Vice And Virtue (H)': '恶习与美德(奶妈)',
-        'Vice And Virtue (T)': '恶习与美德(坦克)',
-        'Vice And Virtue! (D)': '恶习与美德！(DPS)',
-        'Vice And Virtue! (H)': '恶习与美德！(奶妈)',
-        'Vice And Virtue! (T)': '恶习与美德！(坦克)',
+        'Spear of Paradise': '乐园之枪',
         'Vice and Virtue': '恶习与美德',
       },
     },

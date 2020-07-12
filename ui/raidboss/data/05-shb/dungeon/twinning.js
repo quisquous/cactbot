@@ -242,7 +242,6 @@
         'The Tycoon': 'Le Magnat',
         'surplus Kaliya': 'Kaliya de surplus',
         'alpha zaghnal': 'Zaghnal alpha',
-        '(?<! )Zaghnal': 'Zaghnal',
         'Servomechanical Minotaur': 'Minotaure Servomécanique',
         'Mithridates': 'Mithridate',
         'Levinball': 'boule foudroyante',
@@ -276,7 +275,6 @@
         'Augurium': 'Coup de tarière',
         'Artificial Gravity': 'Gravité artificielle',
         'Allagan Thunder': 'Foudre d\'Allag',
-
       },
     },
     {
@@ -287,7 +285,6 @@
         'The Tycoon': 'タイクーン',
         'surplus Kaliya': '量産型カーリア',
         'alpha zaghnal': 'アルファ・ザグナル',
-        '(?<! )Zaghnal': '賞金首：ザグナル',
         'Servomechanical Minotaur': 'サーヴォ・ミノタウロス',
         'Mithridates': 'ミトリダテス',
         'Levinball': '雷弾',
@@ -329,7 +326,6 @@
         'The Tycoon': '泰空',
         'surplus Kaliya': '量产型卡利亚',
         'alpha zaghnal': '扎戈斧龙一型',
-        '(?<! )Zaghnal': '(?<! )Zaghnal(FIXME)',
         'Servomechanical Minotaur': '自控化弥诺陶洛斯',
         'Mithridates': '米特里达梯',
         'Levinball': '雷弹',
@@ -337,7 +333,6 @@
         'Aetherial Observation': '以太观测台',
         'Repurposing': '改造据点',
         'Cladoselache': '裂口鲨',
-        'Leviathan': '利维亚桑',
       },
       'replaceText': {
         'Thunder Beam': '电光束',
@@ -374,7 +369,6 @@
         'The Tycoon': '타이쿤',
         'surplus Kaliya': '양산형 칼리아',
         'alpha zaghnal': '알파 자그날',
-        '(?<! )Zaghnal': '자그날',
         'Servomechanical Minotaur': '자동제어 미노타우로스',
         'Mithridates': '미트리다테스',
         'Levinball': '뇌탄',
