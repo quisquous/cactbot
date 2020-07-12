@@ -30,6 +30,7 @@
           text: {
             en: 'Twister Pop',
             de: 'Wirbelsturm berührt',
+            fr: 'Apparition des tornades',
             ko: '회오리 밟음',
           },
         };
@@ -48,6 +49,7 @@
           text: {
             en: 'Pizza Slice',
             de: 'Pizzastück',
+            fr: 'Parts de pizza',
             ko: e.abilityName,
           },
         };
@@ -69,6 +71,7 @@
           text: {
             en: 'hit by lightning',
             de: 'vom Blitz getroffen',
+            fr: 'frappé par la foudre',
             ko: '번개 맞음',
           },
         };

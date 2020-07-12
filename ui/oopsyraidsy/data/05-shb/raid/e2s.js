@@ -37,11 +37,10 @@
           blame: e.targetName,
           text: {
             en: 'Booped',
-            // FIXME: ability name here is "Attack", which isn't great.
             de: e.abilityName,
-            fr: e.abilityName,
-            cn: '攻击伤害降低',
+            fr: 'Malus de dégâts',
             ja: e.abilityName,
+            cn: '攻击伤害降低',
             ko: '닉스',
           },
         };
