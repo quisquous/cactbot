@@ -62,7 +62,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'Bomber-Brocken',
         'Titan': 'Titan',

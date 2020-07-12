@@ -231,8 +231,8 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Potent Petrosphere': 'Petrosphäre[p] I',
-        '(?<! )Petrosphere': 'Petrosphäre[p] II',
+        'Potent Petrosphere': 'Petrosphäre I',
+        '(?<! )Petrosphere': 'Petrosphäre II',
         'Fleshy Member': 'Tentakel',
         'Catastrophe': 'Katastroph',
       },

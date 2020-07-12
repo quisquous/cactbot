@@ -89,18 +89,23 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
         'Wyrm Tail': 'Antiker Drachenschweif',
       },
       'replaceText': {
+        '\\(safe\\)': '(sicher)',
+        '\\(spread\\)': '(verteilen)',
+        '\\(stack\\)': '(sammeln)',
         'Blaze': 'Flamme',
         'Breath Wing': 'Atemschwinge',
         'Charybdis': 'Charybdis',
         'Clamp': 'Klammer',
+        'Classical': 'Klassisch',
         'Downburst': 'Fallböe',
+        'Inner Fireballs': 'Innere Feuerbälle',
         'Levinbolt': 'Keraunisches Feld',
+        'Outer Fireballs': 'Äusere Feuerbälle',
         'Roar': 'Brüllen',
         'Teleport': 'Teleport',
         'Thin Ice': 'Glatteis',

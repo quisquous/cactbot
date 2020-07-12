@@ -282,7 +282,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'Katastroph',
       },
@@ -291,6 +290,7 @@
         '(?<!-)100 Gs': '100 G',
         'Antilight': 'Dunkellicht',
         'Death\'s Gaze': 'Todesblick',
+        'Double Stack': 'Doppelt Sammeln',
         'Earthquake': 'Erdbeben',
         'Epicenter': 'Epizentrum',
         'Evilsphere': 'Sphäre des Bösen',
@@ -298,6 +298,7 @@
         'Gravitational Wave': 'Gravitationswelle',
         'Long Drop': 'Tiefer Fall',
         'Paranormal Wave': 'Paranormale Welle',
+        'Probes': 'Sonden',
         'Unstable Gravity': 'Schwerkraftschwankung',
       },
     },

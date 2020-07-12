@@ -178,7 +178,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Tear': 'Ätherspalt',
         'Dawn Knight': 'Dämmerross',

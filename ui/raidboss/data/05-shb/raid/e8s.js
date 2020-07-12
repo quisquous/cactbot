@@ -695,7 +695,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Aqueous Aether': 'Wasseräther',
         'Earthen Aether': 'Erdäther',

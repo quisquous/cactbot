@@ -42,6 +42,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'Away from large pod',
+        de: 'Weg vom großen Pod',
       },
     },
     {
@@ -54,6 +55,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Cleanse ' + data.shortName(matches.target),
+          de: 'Reinige ' + data.shortName(matches.target),
         };
       },
     },
@@ -144,6 +146,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Drop puddle outside',
+        de: 'Fläche draußen ablegen',
       },
     },
     {
@@ -175,7 +178,6 @@
         'The Wound': 'Wunde',
         'The Fever': 'Das Fieber',
         'The Lava Tube': 'Lavagrotte',
-
         'The Scorpion\'s Tail': 'Schwanzskorpion',
         'The Leightonward': 'Hortigolem',
         '(?<! )Spore Sac': 'Sporensack',
@@ -210,7 +212,6 @@
         'The Wound': 'La Plaie',
         'The Fever': 'La Fièvre',
         'The Lava Tube': 'Tunnel de lave',
-
         'The Scorpion\'s Tail': 'queue du scorpion',
         'The Leightonward': 'Chortocyon',
         '(?<! )Spore Sac': 'sac de spores',
@@ -245,7 +246,6 @@
         'The Wound': '霊峰の傷',
         'The Fever': '炎獣の縄張り',
         'The Lava Tube': '大溶岩窟',
-
         'The Scorpion\'s Tail': 'テイル・スコーピオン',
         'The Leightonward': 'レイトンワード',
         '(?<! )Spore Sac': 'スポアサック',
@@ -280,7 +280,6 @@
         'The Wound': '灵伤',
         'The Fever': '炎兽的领地',
         'The Lava Tube': '大熔岩窟',
-
         'The Scorpion\'s Tail': '尖尾蝎',
         'The Leightonward': '莱顿瓦德',
         '(?<! )Spore Sac': '孢囊',
