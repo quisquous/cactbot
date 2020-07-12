@@ -76,5 +76,23 @@
         'The icebound tomelith A4 activates and begins to emit heat': 'Mémolithe Congelé A4 e et la glace s\'est fragilisée',
       },
     },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+      },
+    },
   ],
 }];
