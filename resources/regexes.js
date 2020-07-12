@@ -594,6 +594,14 @@ var Regexes = {
     return new RegExp(Regexes.withUnicodeClasses(regexpString), modifiers);
   },
 
+  // Like Regex.parse, but force global flag.
+  parseGlobal: (regexpString) => {
+    let regex = Regexes.parse(regexpString);
+    let modifiers = 'gi';
+    modifiers += (regexpString.multiline ? 'm' : '');
+    return new RegExp(regex.source, modifiers);
+  },
+
   trueIfUndefined: (value) => {
     if (typeof (value) === 'undefined')
       return true;

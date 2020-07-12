@@ -87,10 +87,10 @@ function findMissingRegex() {
     let transRegex = origRegex;
     for (let set of [trans.replaceSync, trans[kEffectNames]]) {
       for (let regex in set) {
-        let replace = Regexes.parse(regex);
+        let replace = Regexes.parseGlobal(regex);
         if (transRegex.match(replace))
           foundMatch = true;
-        transRegex = transRegex.split(replace).join(set[regex]);
+        transRegex = transRegex.replace(replace, set[regex]);
       }
     }
 
