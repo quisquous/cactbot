@@ -219,7 +219,6 @@
         'Words of Night': '夜襲の号令',
         'Words of Motion': '波状の号令',
         'Unshadowed Stake': '闇光の釘',
-        'Unknown Ability': 'Unknown Ability',
         'Unjoined Aspect': '属性変動',
         'Stygian Sword': '黒闇の剣',
         'Strength in Numbers': '攻撃機動',

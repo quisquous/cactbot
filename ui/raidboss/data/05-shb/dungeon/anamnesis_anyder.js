@@ -249,7 +249,6 @@
         'Rising Tide': '上げ潮',
         'Raging Glower': 'レイジング・グラワー',
         'Plain Weirdness': '原理不明',
-        'Open Hearth': '恐怖の火焔',
         'Luminous Ray': 'ルミナスレイ',
         'Inscrutability': '意味不明',
         'Flying Fount': '飛泉',
