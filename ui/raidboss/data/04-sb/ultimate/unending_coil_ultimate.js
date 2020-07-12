@@ -1767,7 +1767,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
         'Fang of Light': 'Lichtklaue',

@@ -55,7 +55,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': 'Elektro-Kraft',
         'Embodiment': 'Gilgamesch-Doppelgänger',

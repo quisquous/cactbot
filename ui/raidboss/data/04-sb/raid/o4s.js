@@ -995,7 +995,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Exdeath': 'Exdeath',
         'White Wound': 'Wunde Des Lebenden',
@@ -1009,6 +1008,11 @@
         'Forked Lightning': 'Gabelblitz',
       },
       'replaceText': {
+        '--Acceleration Bomb Resolves--': '--Beschleunigungsbombe löst sich auf--',
+        '--Allagan Field Explodes--': '--Allagisches Feld explodiert--',
+        '--Boss Targetable--': '--Boss anvisierbar--',
+        '--Boss Untargetable--': '--Boss nicht anvisierbar--',
+        '--LB Gauge Resets--': '--LB Leiste reset--',
         'Aero III': 'Windga',
         'Almagest': 'Almagest',
         'Black Hole': 'Schwarzes Loch',
@@ -1021,6 +1025,7 @@
         'Dualcast': 'Doppelzauber',
         'Earth Shaker': 'Erdstoß',
         'Emptiness': 'Tobende Leere',
+        'Final Battle': 'Finaler Kampf',
         'Fire III': 'Feuga',
         'Flare': 'Flare',
         'Flood of Naught': 'Flut der Leere',
@@ -1030,10 +1035,13 @@
         'Grand Cross Alpha': 'Supernova Alpha',
         'Grand Cross Delta': 'Supernova Delta',
         'Grand Cross Omega': 'Supernova Omega',
+        'HP Down Debuff': 'Verringerte HP Debuff',
         'Holy': 'Sanctus',
+        'Knockback': 'Rückstoß',
         'Light and Darkness': 'Licht und Dunkelheit',
         'Meteor': 'Meteo',
         'Neverwhere': 'Nirgendwann',
+        'Random Elemental': 'Zufälliges Elementar',
         'Thunder III': 'Blitzga',
         'Vacuum Wave': 'Vakuumwelle',
         'Water': 'Aqua',
