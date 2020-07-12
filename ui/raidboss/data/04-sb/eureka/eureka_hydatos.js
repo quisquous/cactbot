@@ -84,7 +84,7 @@
       regexFr: Regexes.message({ line: 'Fermeture d(?:e|u|es) $1 dans.*?', capture: false }),
       regexJa: Regexes.message({ line: '$1の封鎖まであと', capture: false }),
       regexCn: Regexes.message({ line: '距$1被封锁还有.*?', capture: false }),
-      regexKo: Regexes.message({ line: '15초 후에 $1(이|가) 봉쇄됩니다.*?', capture: false }),
+      regexKo: Regexes.message({ line: '15초 후에 $1(?:이|가) 봉쇄됩니다.*?', capture: false }),
       run: function(data) {
         data.sealed = true;
       },

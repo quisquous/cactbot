@@ -8,7 +8,7 @@ let commonReplacement = {
       fr: 'Fermeture d(?:e|u|es) $1 dans',
       ja: '$1の封鎖まであと',
       cn: '距$1被封锁还有',
-      ko: '15초 후에 $1(이|가) 봉쇄됩니다',
+      ko: '15초 후에 $1(?:이|가) 봉쇄됩니다',
     },
     'is no longer sealed': {
       de: 'öffnet sich (?:wieder|erneut)',
