@@ -1392,7 +1392,7 @@ let Options = {
             de: 'Skalli',
             fr: 'Sköll',
             ja: 'スコル',
-            cn: '斯库尔',
+            cn: '狼',
             ko: '스콜',
           },
           trackerName: {
@@ -1400,7 +1400,7 @@ let Options = {
             de: 'Skalli',
             fr: 'Sköll',
             ja: 'スコル',
-            cn: '斯库尔',
+            cn: '狼',
             ko: '스콜',
           },
           x: 24.3,
