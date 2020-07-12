@@ -135,7 +135,7 @@
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
-        '(?<!\\/)Out': 'Raus',
+        '(?<!/)Out': 'Raus',
         '(?<!\\w)In(?!/)': 'Rein',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',
@@ -225,6 +225,7 @@
         'Horrid Roar': '恐惧咆哮',
         '(?<!\\w)In(?!/)': '靠近',
         'In/Out': '靠近/远离',
+        '(?<!/)Out': '远离',
         'Northern Cross': '北十字星',
         'Protostar': '原恒星',
         'Spin': '回转',

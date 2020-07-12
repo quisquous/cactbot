@@ -354,7 +354,6 @@
       'replaceSync': {
         'Bladesblood': 'Bastardramme',
         'Gunshield': 'Gewehrschild',
-        'I shall not yield!': 'Keine Kraft der Welt kann diesen Schild durchdringen!',
         'Ignis Est': 'Ignis Est',
         'Magitek Turret II': 'Magitek-Geschütz II',
         'Phantom Varis': 'Varis-Doppelgänger',
@@ -363,8 +362,6 @@
         'Ventus Est': 'Ventus Est',
       },
       'replaceText': {
-        '(?!< )Action': 'Aktion',
-        '(?!< )Ready': 'Fertig',
         '--clones appear\\?--': '--klone erscheinen?--',
         'Aetherochemical Grenado': 'Magitek-Granate',
         'Alea Iacta Est': 'Alea Iacta Est',
@@ -375,7 +372,6 @@
         'Festina Lente': 'Festina Lente',
         'Fortius': 'Fortius',
         '(?<! )Gunshield': 'Gewehrschild',
-        'Gunshield Actions': 'Gewehrschild Aktionen',
         'Ignis Est': 'Ignis Est',
         'Loaded Gunshield': 'Gewehrschild: Magitek-Knall',
         'Magitek Burst': 'Magitek-Knall',
@@ -396,7 +392,6 @@
       'replaceSync': {
         'Bladesblood': 'Onde De Choc',
         'Gunshield': 'Bouclier-Canon',
-        'I shall not yield!': 'Mon pavois est infrangible !',
         'Ignis Est': 'Ignis Est',
         'Magitek Turret II': 'Tourelle Magitek TM-II',
         'Phantom Varis': 'Double De Varis',
@@ -436,7 +431,6 @@
       'replaceSync': {
         'Bladesblood': '剣気',
         'Gunshield': 'ガンシールド',
-        'I shall not yield!': '我が大盾に、防げぬものなし',
         'Ignis Est': 'イグニス・エスト',
         'Magitek Turret II': '魔導タレットII',
         'Phantom Varis': 'ヴァリスの幻影',

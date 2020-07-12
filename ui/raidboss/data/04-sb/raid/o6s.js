@@ -128,7 +128,6 @@
         'Portrayal of Fire': 'Feuergemälde',
         'Portrayal of Water': 'Wassergemälde',
         'Portrayal of Wind': 'Windgemälde',
-        'The Storm\'s Grip': 'Sturmgebiet',
       },
       'replaceText': {
         'Demonic Howl': 'Dämonisches Heulen',
@@ -168,7 +167,6 @@
         'Portrayal of Fire': 'peinture du feu',
         'Portrayal of Water': 'peinture de l\'eau',
         'Portrayal of Wind': 'peinture du vent',
-        'The Storm\'s Grip': 'Emprise de la tempête',
       },
       'replaceText': {
         'Demonic Howl': 'Hurlement démoniaque',
@@ -208,7 +206,6 @@
         'Portrayal of Fire': '火の絵画',
         'Portrayal of Water': '水の絵画',
         'Portrayal of Wind': '風の絵画',
-        'The Storm\'s Grip': '暴風域',
       },
       'replaceText': {
         'Demonic Howl': 'デモニックハウル',
@@ -248,7 +245,6 @@
         'Portrayal of Fire': '火之画作',
         'Portrayal of Water': '水之画作',
         'Portrayal of Wind': '风之画作',
-        'The Storm\'s Grip': '暴风域',
       },
       'replaceText': {
         'Demonic Howl': '恶魔啸',
@@ -288,7 +284,6 @@
         'Portrayal of Fire': '불의 그림',
         'Portrayal of Water': '물의 그림',
         'Portrayal of Wind': '바람의 그림',
-        'The Storm\'s Grip': '폭풍 영역',
       },
       'replaceText': {
         'Demonic Howl': '악령의 외침',
