@@ -554,7 +554,7 @@ namespace Cactbot {
     }
 
     private Dictionary<string, string> GetLocalUserFiles(string config_dir) {
-      if (config_dir == null || config_dir == "")
+      if (String.IsNullOrEmpty(config_dir))
         return null;
 
       // TODO: It's not great to have to load every js and css file in the user dir.
@@ -663,7 +663,7 @@ namespace Cactbot {
       paths.Add(Config.UserConfigFile);
 
       foreach (var path in paths) {
-        if (path == "" || path == null)
+        if (String.IsNullOrEmpty(path))
           continue;
 
         var watchDir = "";
