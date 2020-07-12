@@ -136,7 +136,6 @@
       'replaceSync': {
         'Calculations indicate increased probability of defeat': 'Warnung. Erhöhte Wahrscheinlichkeit einer Niederlage',
         'Omega(?!-)': 'Omega',
-        'Omega-F': 'Omega-W',
         'Omega-M': 'Omega-M',
         'Optical Unit': 'Optikmodul',
         'Progress to party combat': 'Initiiere Gruppenkampf',
@@ -175,7 +174,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'Oméga',
-        'Omega-F': 'Oméga-F',
         'Omega-M': 'Oméga-M',
         'Optical Unit': 'unité optique',
         'Progress to party combat': 'Limites du combat en solitaire atteintes',
@@ -214,7 +212,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Omega(?!-)': 'オメガ',
-        'Omega-F': 'オメガF',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',
         'Progress to party combat': '単独戦闘による限界を確認',
@@ -253,7 +250,6 @@
       'replaceSync': {
         'Calculations indicate increased probability of defeat': '警告……警告……失败的危险性上升……',
         'Omega(?!-)': '欧米茄',
-        'Omega-F': '欧米茄F',
         'Omega-M': '欧米茄M',
         'Optical Unit': '视觉组',
         'Progress to party combat': '确认到单独战斗的极限',
@@ -291,7 +287,6 @@
       'locale': 'ko',
       'replaceSync': {
         'Omega(?!-)': '오메가',
-        'Omega-F': '오메가 F',
         'Omega-M': '오메가 M',
         'Optical Unit': '광학 유닛',
         'Progress to party combat': '단독 전투 한계 확인',

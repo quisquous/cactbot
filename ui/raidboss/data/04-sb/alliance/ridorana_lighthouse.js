@@ -525,7 +525,6 @@
       },
       'replaceText': {
         'Accelerate': 'Beschleunigen',
-        'Acceleration Bomb': 'Beschleunigungsbombe',
         'Annihilation Mode': 'Auslöschungsmodul',
         'Archaeodemon spawn': 'Archaeodämon erscheint',
         'Area Lockdown': 'Gebiet geschlossen',
@@ -596,7 +595,6 @@
       },
       'replaceText': {
         'Accelerate': 'Aplatir',
-        'Acceleration Bomb': 'Bombe accélératrice',
         'Annihilation Mode': 'Module Exterminator',
         'Archaeodemon spawn': 'Apparition des Archéodémons',
         'Area Lockdown': 'Verrouillage de la zone',
@@ -664,7 +662,6 @@
       },
       'replaceText': {
         'Accelerate': '突貫する',
-        'Acceleration Bomb': '加速度爆弾',
         'Annihilation Mode': 'ジェノサイドチップ',
         'Briny Cannonade': '蒼の砲撃',
         'Compress': '圧縮する',
@@ -725,7 +722,6 @@
       },
       'replaceText': {
         'Accelerate': '执行贯穿',
-        'Acceleration Bomb': '加速度炸弹',
         'Annihilation Mode': '灭绝芯片',
         'Archaeodemon spawn': '古恶魔出现',
         'Area Lockdown': '区域封锁',
@@ -797,7 +793,6 @@
       },
       'replaceText': {
         'Accelerate': '관통',
-        'Acceleration Bomb': '가속도 폭탄',
         'Annihilation Mode': '제노사이드 칩',
         'Archaeodemon spawn': '원시 악마 생성',
         'Area Lockdown': '지역 봉쇄',
