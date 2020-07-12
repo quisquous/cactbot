@@ -289,6 +289,7 @@ let bombLocation = (matches) => {
         '(?<!Hummel)Faust': 'Faust',
         '(?<!Smart)Bomb': 'Bombe',
         'Hummelfaust': 'Hummelfaust',
+        'Gobbledygroper': 'Gobgreifer',
         'Ratfinx Twinkledinks': 'Ratfix Blinkdings',
         'Smartbomb': 'Best(?:e|er|es|en) Sprengenkörper',
       },
