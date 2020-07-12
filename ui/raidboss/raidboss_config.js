@@ -4,7 +4,7 @@ let kPrefixToCategory = {
   '00-misc': {
     en: 'General Triggers',
     de: 'General Trigger',
-    fr: 'Général',
+    fr: 'Général Triggers',
     ja: '汎用',
     cn: '通用触发器',
     ko: '공용 트리거',
@@ -183,6 +183,7 @@ let kDetailKeys = {
     label: {
       en: 'netregex',
       de: 'netregex',
+      fr: 'netregex',
     },
     cls: 'regex-text',
     debugOnly: true,
