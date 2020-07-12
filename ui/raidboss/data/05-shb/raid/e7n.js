@@ -143,11 +143,11 @@
     },
     {
       // Safety in case the user dies during Dark/Light Course.
-      id: 'E7N Color Cleanup',
-      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', ability: 'Away With Thee', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C39', ability: 'Zwangsumwandlung', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C39', ability: 'Translation Forcée', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ダークアイドル', id: '4C39', ability: '強制転移', capture: false }),
+      id: 'E7N Away With Thee Color Cleanup',
+      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', capture: false }),
+      regexDe: Regexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C39', capture: false }),
+      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C39', capture: false }),
+      regexJa: Regexes.startsUsing({ source: 'ダークアイドル', id: '4C39', capture: false }),
       run: function(data) {
         delete data.colorCount;
       },
