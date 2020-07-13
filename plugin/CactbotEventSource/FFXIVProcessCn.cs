@@ -245,70 +245,50 @@ namespace Cactbot {
       job_inner_ptr = IntPtr.Add(job_inner_ptr, kJobDataInnerStructOffset);
 
       fixed (byte* p = Read8(job_inner_ptr, kJobDataInnerStructSize)) {
-        if (p == null)
+        if (p == null) {
           return null;
-        else {
+        } else {
           switch (job) {
-            case EntityJob.RDM: {
+            case EntityJob.RDM:
                 return JObject.FromObject(*(RedMageJobMemory*)&p[0]);
-              };
-            case EntityJob.WAR: {
+            case EntityJob.WAR:
                 return JObject.FromObject(*(WarriorJobMemory*)&p[0]);
-              };
-            case EntityJob.DRK: {
+            case EntityJob.DRK:
                 return JObject.FromObject(*(DarkKnightJobMemory*)&p[0]);
-              };
-            case EntityJob.PLD: {
+            case EntityJob.PLD:
                 return JObject.FromObject(*(PaladinJobMemory*)&p[0]);
-              };
-            case EntityJob.GNB: {
+            case EntityJob.GNB:
                 return JObject.FromObject(*(GunbreakerJobMemory*)&p[0]);
-              };
-            case EntityJob.BRD: {
+            case EntityJob.BRD:
                 return JObject.FromObject(*(BardJobMemory*)&p[0]);
-              }
-            case EntityJob.DNC: {
+            case EntityJob.DNC:
                 return JObject.FromObject(*(DancerJobMemory*)&p[0]);
-              };
-            case EntityJob.DRG: {
+            case EntityJob.DRG:
                 return JObject.FromObject(*(DragoonJobMemory*)&p[0]);
-              };
-            case EntityJob.NIN: {
+            case EntityJob.NIN:
                 return JObject.FromObject(*(NinjaJobMemory*)&p[0]);
-              };
-            case EntityJob.THM: {
+            case EntityJob.THM:
                 return JObject.FromObject(*(ThaumaturgeJobMemory*)&p[0]);
-              }
-            case EntityJob.BLM: {
+            case EntityJob.BLM:
                 return JObject.FromObject(*(BlackMageJobMemory*)&p[0]);
-              };
-            case EntityJob.WHM: {
+            case EntityJob.WHM:
                 return JObject.FromObject(*(WhiteMageJobMemory*)&p[0]);
-              };
-            case EntityJob.ACN: {
+            case EntityJob.ACN:
                 return JObject.FromObject(*(ArcanistJobMemory*)&p[0]);
-              };
-            case EntityJob.SMN: {
+            case EntityJob.SMN:
                 return JObject.FromObject(*(SummonerJobMemory*)&p[0]);
-              };
-            case EntityJob.SCH: {
+            case EntityJob.SCH:
                 return JObject.FromObject(*(ScholarJobMemory*)&p[0]);
-              };
-            case EntityJob.PGL: {
+            case EntityJob.PGL:
                 return JObject.FromObject(*(PuglistJobMemory*)&p[0]);
-              };
-            case EntityJob.MNK: {
+            case EntityJob.MNK:
                 return JObject.FromObject(*(MonkJobMemory*)&p[0]);
-              };
-            case EntityJob.MCH: {
+            case EntityJob.MCH:
                 return JObject.FromObject(*(MachinistJobMemory*)&p[0]);
-              };
-            case EntityJob.AST: {
+            case EntityJob.AST:
                 return JObject.FromObject(*(AstrologianJobMemory*)&p[0]);
-              };
-            case EntityJob.SAM: {
+            case EntityJob.SAM:
                 return JObject.FromObject(*(SamuraiJobMemory*)&p[0]);
-              };
           }
           return null;
         }
