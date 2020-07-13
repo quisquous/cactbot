@@ -37,7 +37,7 @@ let kPrefixToCategory = {
     en: 'Shadowbringers (ShB 5.x)',
     de: 'Shadowbringers (ShB 5.x)',
     fr: 'Shadowbringers (ShB 5.x)',
-    ja: '漆黒のヴィランズ',
+    ja: '漆黒のヴィランズ (5.x)',
     cn: '暗影之逆焰 (5.x)',
     ko: '칠흑의 반역자 (5.x)',
   },
