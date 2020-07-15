@@ -218,7 +218,6 @@
       'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '알테 로이테',
-        'Ball Of Fire': '화염 구체',
       },
       'replaceText': {
         'Wyrm Tail': '태고의 용 꼬리',

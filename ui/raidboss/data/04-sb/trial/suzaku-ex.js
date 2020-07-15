@@ -97,7 +97,7 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Tenzen': 'Tenzen',
+        ':Tenzen': ':Tenzen',
         'Scarlet Tail Feather': 'Schwanzfeder',
         'Suzaku': 'Suzaku',
       },
@@ -130,7 +130,7 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Tenzen': 'Tenzen',
+        ':Tenzen': ':Tenzen',
         'Scarlet Tail Feather': 'plume de queue de Suzaku',
         'Suzaku': 'Suzaku',
       },
@@ -162,7 +162,7 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
-        'Tenzen': 'テンゼン',
+        ':Tenzen': ':テンゼン',
         'Scarlet Tail Feather': '朱雀の尾羽根',
         'Suzaku': '朱雀',
       },
@@ -192,7 +192,7 @@
     {
       'locale': 'cn',
       'replaceSync': {
-        'Tenzen': '典膳',
+        ':Tenzen': ':典膳',
         'Scarlet Tail Feather': '朱雀的尾羽',
         'Suzaku': '朱雀',
       },
@@ -224,7 +224,7 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Tenzen': '텐젠',
+        ':Tenzen': ':텐젠',
         'Scarlet Tail Feather': '주작의 꽁지깃',
         'Suzaku': '주작',
       },

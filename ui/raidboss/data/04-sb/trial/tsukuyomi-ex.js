@@ -293,7 +293,7 @@
         'Specter Of The Patriarch': 'Yotsuyus Ziehvater',
         'Specter Of Zenos': 'Zenos',
         'Tsukuyomi': 'Tsukuyomi',
-        'No\\\\. No\\\\.\\\\.\\\\. Not yet\\\\. Not\\\\. Yet\\\\.': 'Meine Rache ... Ich will... meine Rache...',
+        'No\. No\.\.\. Not yet\. Not\. Yet\.': 'Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\.',
       },
       'replaceText': {
         'Antitwilight': 'Schönheit der Nacht',
