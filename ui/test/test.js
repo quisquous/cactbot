@@ -57,7 +57,7 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   else
     document.getElementById('jobinfo').innerText = '';
 
-  document.getElementById('pos').innerText = e.detail.pos.x + ',' + e.detail.pos.y + ',' + e.detail.pos.z;
+  document.getElementById('pos').innerText = e.detail.pos.x.toFixed(2) + ',' + e.detail.pos.y.toFixed(2) + ',' + e.detail.pos.z.toFixed(2);
   document.getElementById('rotation').innerText = e.detail.rotation;
   document.getElementById('bait').innerText = e.detail.bait;
 });
