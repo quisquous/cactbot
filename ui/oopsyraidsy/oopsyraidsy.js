@@ -964,6 +964,23 @@ class DamageTracker {
     }
   }
 
+  AddGainsEffectTriggers(type, dict) {
+    if (!dict)
+      return;
+    let keys = Object.keys(dict);
+    for (let key of keys) {
+      let id = dict[key];
+      let trigger = {
+        id: key,
+        netRegex: NetRegexes.gainsEffect({ effectId: id }),
+        mistake: function(e, data, matches) {
+          return { type: type, blame: matches.target, text: matches.effect };
+        },
+      };
+      this.netTriggers.push(trigger);
+    }
+  }
+
   // Helper function for "double tap" shares where multiple players share
   // damage when it should only be on one person, such as a spread mechanic.
   AddShareTriggers(type, dict) {
@@ -1040,8 +1057,11 @@ class DamageTracker {
 
       if (this.zoneName.search(zoneRegex) < 0)
         continue;
+
       this.AddSimpleTriggers('warn', set.damageWarn);
       this.AddSimpleTriggers('fail', set.damageFail);
+      this.AddGainsEffectTriggers('warn', set.gainsEffectWarn);
+      this.AddGainsEffectTriggers('fail', set.gainsEffectFail);
       this.AddShareTriggers('warn', set.shareWarn);
       this.AddShareTriggers('fail', set.shareFail);
 
