@@ -2,6 +2,8 @@
 
 // TODO: handle subfields
 // TODO: add post-anonymizing `validateNames` as well
+// TODO: replace the hash on non-anonymized lines
+// TODO: replace IP addresses???
 
 // TODO: is the first byte of ids always flags, such that "..000000" is always empty?
 const emptyIds = ['E0000000', '80000000'];
