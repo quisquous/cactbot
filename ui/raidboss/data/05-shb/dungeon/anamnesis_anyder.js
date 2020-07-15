@@ -174,7 +174,6 @@
         'Command Current': 'Flutenruf',
         'Clearout': 'Kreisfeger',
         'Bonebreaker': 'Knochenbrecher',
-
         'Swing/Swipe/Cyclone': 'Hiebe/Schwung/Zyklons',
         'Hammer/Blade Mark': 'Hammer/Klingenmarkierung',
         'Blade/Hammer Mark': 'Klinge/Hammermarkierung',

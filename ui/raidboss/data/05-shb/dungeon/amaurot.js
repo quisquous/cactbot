@@ -164,7 +164,6 @@
         'Cosmic Kiss': 'Impact',
         'Burst': 'Explosion',
         'Apokalypsis': 'Apokalypsis',
-
         'Adds': 'Adds',
       },
     },

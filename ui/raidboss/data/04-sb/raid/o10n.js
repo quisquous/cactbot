@@ -135,7 +135,7 @@
         'Midgardsormr': 'Midgardsormr',
       },
       'replaceText': {
-        '(?<!/)Out': 'Raus',
+        '(?<!\\/)Out': 'Raus',
         '(?<!\\w)In(?!/)': 'Rein',
         'Akh Morn': 'Akh Morn',
         'Akh Rhai': 'Akh Rhai',

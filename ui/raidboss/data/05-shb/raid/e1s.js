@@ -578,7 +578,7 @@
         'Paradise Regained': '复乐园',
         'Pure Beam': '净土射线',
         'Pure Light': '净土之光',
-        'Spear of Paradise': '乐园之枪',
+        'Spear [oO]f Paradise': '乐园之枪',
         'Vice and Virtue': '恶习与美德',
       },
     },
