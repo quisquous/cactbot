@@ -337,6 +337,20 @@ var NetRegexes = {
       3: { field: 'name' },
     });
   },
+
+  // matches: https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#21-network6d-actor-control-lines
+  network6d: (params) => {
+    return parseHelper(params, 'network6d', {
+      0: '33',
+      1: { field: 'timestamp' },
+      2: { field: 'instance' },
+      3: { field: 'command' },
+      4: { field: 'data0' },
+      5: { field: 'data1' },
+      6: { field: 'data2' },
+      7: { field: 'data3' },
+    });
+  },
 };
 
 if (typeof module !== 'undefined') {
