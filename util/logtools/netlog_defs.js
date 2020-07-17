@@ -555,7 +555,7 @@ const logDefinitions = {
   '251': {
     type: 'Debug',
     globalInclude: true,
-    canAnonymize: true,
+    canAnonymize: false,
   },
   '252': {
     type: 'PacketDump',
