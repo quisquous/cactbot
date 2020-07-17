@@ -64,6 +64,18 @@ Additionally, doing work in feature branches
 allows you to do two parallel pull requests at the same time,
 without entangling them together in the same commits and pull.
 
+#### Commit Validation, Testing, and Linting
+
+Cactbot uses a combination of [husky](https://github.com/typicode/husky)
+and [lint-staged](https://github.com/okonet/lint-staged),
+along with a suite of linters and tests to ensure code quality.
+These validations are done both on a client-side (your computer)
+and on the server-side (GitHub).
+
+To cut down on pre-commit check times,
+it is recommended to install `lint-staged` globally via `npm -g lint-staged`,
+as that will reduce the operation time for each commit.
+
 ### Code Review Culture
 
 Ideally, all changes should get code review.
