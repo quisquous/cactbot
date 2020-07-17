@@ -60,7 +60,7 @@ class Anonymizer {
 
     // If nothing to anonymize, we're done.
     if (!type.playerIds)
-      return line;
+      return splitLine.join('|');
 
     // Anonymize fields.
     for (let idIdx in type.playerIds) {
