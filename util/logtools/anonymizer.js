@@ -20,7 +20,8 @@ class Anonymizer {
 
     this.lastPlayerIdx = 0x10FF0000;
 
-    this.fakeHash = '01234567012345670123456701234567';
+    // About 20% of any log is hashes, so just clear instead of faking.
+    this.fakeHash = '';
 
     for (let id of emptyIds) {
       // Empty ids have already been anonymized (to themselves).
