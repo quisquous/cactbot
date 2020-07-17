@@ -14,6 +14,10 @@ class EncounterFinder {
   constructor() {
     this.currentZone = null;
     this.currentFight = null;
+    this.currentSeal = null;
+
+    this.haveWon = false;
+    this.haveSeenSeals = false;
 
     this.regex = {
       changeZone: NetRegexes.changeZone(),
@@ -25,7 +29,14 @@ class EncounterFinder {
       mobAttackingPlayer: NetRegexes.ability({ sourceId: '4.{7}', targetId: '1.{7}' }),
     };
 
-    // TODO: handle sealing / unsealing properly, use this to start/stop fights / pick names
+    this.sealRegexes = [
+      NetRegexes.gameLog({ line: '(?<seal>.*?) will be sealed off.*?' }),
+    ];
+    this.unsealRegexes = [
+      NetRegexes.gameLog({ line: '.*? is no longer sealed.*?' }),
+    ];
+
+    // TODO: handle sealing / unsealing properly, use this to start/ end fights / pick names
     for (const keyName in syncKeys) {
       const key = syncKeys[keyName];
       this.regex[keyName] = {
@@ -48,6 +59,8 @@ class EncounterFinder {
       if (this.currentZone !== null)
         this.onEndZone(line, this.currentZone, m.groups);
 
+      this.haveWon = false;
+      this.haveSeenSeals = false;
       this.currentZone = m.groups.name;
       this.onStartZone(line, this.currentZone, m.groups);
       return;
@@ -74,28 +87,63 @@ class EncounterFinder {
     m = line.match(this.regex.win);
     if (m) {
       if (this.currentFight !== null) {
+        this.haveWon = true;
         this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'Win' });
         this.currentFight = null;
       }
       return;
     }
 
-    if (this.currentFight === null) {
+    if (this.currentFight === null && !this.haveWon && !this.haveSeenSeals) {
       m = line.match(this.regex.playerAttackingMob);
       if (!m)
         m = line.match(this.regex.mobAttackingPlayer);
       if (m) {
+        // TODO: maybe we should come up with a better name here?
         this.currentFight = this.currentZone;
         this.onStartFight(line, this.currentFight, m.groups);
         return;
       }
     }
+
+    for (let regex of this.sealRegexes) {
+      m = line.match(regex);
+      if (m) {
+        this.haveSeenSeals = true;
+        this.currentSeal = m.groups.seal;
+        this.onSeal(line, this.currentSeal, m.groups);
+
+        this.currentFight = this.currentZone;
+        this.onStartFight(line, this.currentFight, m.groups);
+        return;
+      }
+    }
+
+    for (let regex of this.unsealRegexes) {
+      m = line.match(regex);
+      if (m) {
+        this.onUnseal(line, this.currentSeal, m.groups);
+        this.currentSeal = null;
+
+        if (this.currentFight) {
+          this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'Unseal' });
+          this.currentFight = null;
+        }
+        return;
+      }
+    }
   }
 
+  // start/endZone always bracket all fights and seals.
+  // All starts and ends of the same type are ordered and do not nest.
+  // Fights and seal start/end may interleave with each other.
+  // TODO: probably this should follow an "event bus" model instead of requiring derived classes.
   onStartZone(line, name, matches) {}
   onEndZone(line, name, matches) {}
   onStartFight(line, name, matches) {}
   onEndFight(line, name, matches) {}
+  onSeal(line, name, matches) {}
+  onUnseal(line, name, matches) {}
 }
 
 class EncounterCollector extends EncounterFinder {
@@ -106,6 +154,7 @@ class EncounterCollector extends EncounterFinder {
 
     this.lastZone = null;
     this.lastFight = null;
+    this.lastSeal = null;
   }
 
   dateFromMatches(matches) {
@@ -134,18 +183,29 @@ class EncounterCollector extends EncounterFinder {
       name: name,
       startLine: line,
       startTime: this.dateFromMatches(matches),
+      zoneId: this.lastZone.zoneId,
+      sealName: this.lastSeal,
     };
+    this.lastSeal = null;
   }
 
   onEndFight(line, name, matches) {
     this.lastFight.endLine = line;
     this.lastFight.endTime = this.dateFromMatches(matches);
     this.lastFight.endType = matches.endType;
-    // In case we found something better.
-    this.lastFight.name = name;
 
     this.fights.push(this.lastFight);
     this.lastFight = null;
+  }
+
+  onSeal(line, name, matches) {
+    this.lastSeal = name;
+    if (this.lastFight)
+      this.lastFight.sealName = this.lastSeal;
+  }
+
+  onUnseal(line, name, matches) {
+    this.lastSeal = null;
   }
 }
 

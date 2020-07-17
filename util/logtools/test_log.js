@@ -152,13 +152,21 @@ const printCollectedZones = (collector) => {
 const printCollectedFights = (collector) => {
   let idx = 1;
   let outputRows = [];
+  let seenSeal = false;
   for (const fight of collector.fights) {
+    // Add a zone name row when there's seal messages for clarity.
+    if (!seenSeal && fight.sealName) {
+      outputRows.push(['', '', '', '', '~' + fight.name + '~', '']);
+      seenSeal = true;
+    } else if (seenSeal && !fight.sealName) {
+      seenSeal = false;
+    }
     outputRows.push([
       idx.toString(),
       dayFromDate(fight.startTime),
       timeFromDate(fight.startTime),
       durationFromDates(fight.startTime, fight.endTime),
-      fight.name,
+      fight.sealName ? fight.sealName : fight.name,
       fight.endType,
     ]);
     idx++;
@@ -169,17 +177,17 @@ const printCollectedFights = (collector) => {
   const dateIdx = 1;
   let lastDate = null;
   for (const row of outputRows) {
-    if (row[dateIdx] !== lastDate) {
+    if (row[dateIdx] && row[dateIdx] !== lastDate) {
       lastDate = row[dateIdx];
       console.log(lastDate);
     }
 
     console.log('  ' +
-      leftExtendStr(row, lengths, 0) + ') ' +
+      leftExtendStr(row, lengths, 0) + (row[0] ? ') ' : '  ') +
       leftExtendStr(row, lengths, 2) + ' ' +
       leftExtendStr(row, lengths, 3) + ' ' +
-      rightExtendStr(row, lengths, 4) + ' ' +
-      '[' + row[5] + ']');
+      rightExtendStr(row, lengths, 4) +
+      (row[5] ? (' ' + '[' + row[5] + ']') : ''));
   }
 };
 
