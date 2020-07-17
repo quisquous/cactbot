@@ -1,10 +1,5 @@
 'use strict';
 
-// TODO: handle subfields
-// TODO: add post-anonymizing `validateNames` as well
-// TODO: replace the hash on non-anonymized lines
-// TODO: replace IP addresses???
-
 // TODO: is the first byte of ids always flags, such that "..000000" is always empty?
 const emptyIds = ['E0000000', '80000000'];
 
@@ -54,9 +49,40 @@ class Anonymizer {
       return;
     }
 
+    // Check subfields first before canAnonymize.
+    // Subfields override the main type, if present.
+    let canAnonymizeSubField = false;
+    if (type.subFields) {
+      for (const subFieldName in type.subFields) {
+        // Find field idx.
+        let fieldIdx = -1;
+        for (const idx in type.fields) {
+          if (type.fields[idx] === subFieldName) {
+            fieldIdx = idx;
+            break;
+          }
+        }
+        if (fieldIdx === -1) {
+          notifier.warn('internal error: invalid subfield: ' + subFieldName, splitLine);
+          return;
+        }
+        const value = splitLine[fieldIdx];
+        let subValues = type.subFields[subFieldName];
+
+        // Unhandled values inherit the field's value.
+        if (value in subValues) {
+          const subType = subValues[value];
+          canAnonymizeSubField = subType.canAnonymize;
+          if (!canAnonymizeSubField)
+            return;
+        }
+      }
+    }
+
     // Drop any lines that can't be handled.
-    if (!type.canAnonymize)
+    if (!canAnonymizeSubField && !type.canAnonymize)
       return;
+
 
     // If nothing to anonymize, we're done.
     if (!type.playerIds)
