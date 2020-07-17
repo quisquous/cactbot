@@ -64,7 +64,7 @@ With updates for:
   * [22: NetworkNameToggle](#22-networknametoggle)
   * [23: NetworkTether](#23-networktether)
   * [24: LimitBreak](#24-limitbreak)
-  * [25: NetworkEffectResult](#25-networkeffectresult)
+  * [25: NetworkActionSync](#25-NetworkActionSync)
   * [26: NetworkStatusEffects](#26-networkstatuseffects)
   * [27: NetworkUpdateHP](#27-networkupdatehp)
   * [FB: Debug](#fb-debug)
@@ -1029,12 +1029,21 @@ Examples:
 24:Limit Break: 7530
 ```
 
-## 25: NetworkEffectResult
+## 25: NetworkActionSync
 
-This log line appears to be recorded at any time an actor is targeted by a hostile action.
-It appears that the action must hit and must deal non-zero damage,
-OR must inflict its effect in order to generate this log line.
-Individual DoT ticks do not appear to generate separate lines.
+This log line is a sync packet that tells the client to render an action that has previously resolved.
+(This can be an animation or text in one of the game text logs.)
+It seems that it is emitted at the moment an action actually occurs in-game,
+while the `14/15` line is emitted before, at the moment the action is "locked in".
+[As Ravahn explains it](https://discordapp.com/channels/551474815727304704/551476873717088279/733336512443187231):
+
+> "If I cast a spell, I will get [a `NetworkAbility`] packet (line type [`14/15`]) showing the damage amount,
+but the target isn't expected to actually take that damage yet.
+"The [`25` log line]  has a unique identifier in it which refers back to the [`14/15`] line[,]
+and indicates that the damage should now take effect on the target.
+> "FFXIV plugin doesn't use these lines currently, they are used by FFLogs.
+It would help though if I did, but ACT doesn't do multi-line parsing very easily[,]
+so I would need to do a lot of work-arounds."
 
 Structure:
 `25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
@@ -1050,7 +1059,7 @@ Examples:
 For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
 For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove),
 [1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove),
- and [25:NetworkEffectResult](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#25-networkeffectresult).
+ and [25:NetworkActionSync](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#25-NetworkActionSync).
 
 Structure:
 `26:[Target Id]:[Target Name]:[Job Levels]:[Current HP]:[Max Hp]:[Current Mp]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:<status list; format unknown>`
