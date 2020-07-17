@@ -29,21 +29,21 @@ class EncounterFinder {
       mobAttackingPlayer: NetRegexes.ability({ sourceId: '4.{7}', targetId: '1.{7}' }),
     };
 
-    this.sealRegexes = [
-      NetRegexes.gameLog({ line: '(?<seal>.*?) will be sealed off.*?' }),
-    ];
-    this.unsealRegexes = [
-      NetRegexes.gameLog({ line: '.*? is no longer sealed.*?' }),
-    ];
+    // TODO: consider also doing this with lang? But lang only deals with Regexes???
+    // Sorry, this is quite a bit of a hack.
+    this.sealRegexes = [];
+    this.unsealRegexes = [];
 
-    // TODO: handle sealing / unsealing properly, use this to start/ end fights / pick names
-    for (const keyName in syncKeys) {
-      const key = syncKeys[keyName];
-      this.regex[keyName] = {
-        en: key,
-      };
-      for (const lang in commonReplacement[key])
-        this.regex[keyName][lang] = commonReplacement[key][lang];
+    const sealReplace = commonReplacement.replaceSync[syncKeys.seal];
+    for (const lang in sealReplace) {
+      const line = sealReplace[lang].replace('$1', '(?<seal>.*?)') + '.*?';
+      this.sealRegexes.push(NetRegexes.message({ line: line }));
+    }
+
+    const unsealReplace = commonReplacement.replaceSync[syncKeys.unseal];
+    for (const lang in unsealReplace) {
+      const line = '.*?' + unsealReplace[lang] + '.*?';
+      this.unsealRegexes.push(NetRegexes.message({ line: line }));
     }
   }
 

@@ -12,6 +12,7 @@ const syncKeys = {
 const commonReplacement = {
   replaceSync: {
     [syncKeys.seal]: {
+      en: '$1 will be sealed off',
       de: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
       fr: 'Fermeture d(?:e|u|es) $1 dans',
       ja: '$1の封鎖まであと',
@@ -19,6 +20,7 @@ const commonReplacement = {
       ko: '15초 후에 $1(?:이|가) 봉쇄됩니다',
     },
     [syncKeys.unseal]: {
+      en: 'is no longer sealed',
       de: 'öffnet sich (?:wieder|erneut)',
       fr: 'Ouverture ',
       ja: 'の封鎖が解かれた',
@@ -26,6 +28,7 @@ const commonReplacement = {
       ko: '의 봉쇄가 해제되었습니다',
     },
     [syncKeys.engage]: {
+      en: 'Engage!',
       de: 'Start!',
       fr: 'À l\'attaque',
       ja: '戦闘開始！',
