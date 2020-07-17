@@ -1033,7 +1033,7 @@ Examples:
 
 This log line is a sync packet that tells the client to render an action that has previously resolved.
 (This can be an animation or text in one of the game text logs.)
-It seems that it is emitted at the moment an action actually occurs in-game,
+It seems that it is emitted at the moment an action "actually happens" in-game,
 while the `14/15` line is emitted before, at the moment the action is "locked in".
 [As Ravahn explains it](https://discordapp.com/channels/551474815727304704/551476873717088279/733336512443187231):
 
