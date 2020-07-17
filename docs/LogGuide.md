@@ -1039,9 +1039,9 @@ while the `14/15` line is emitted before, at the moment the action is "locked in
 
 > "If I cast a spell, I will get [a `NetworkAbility`] packet (line type [`14/15`]) showing the damage amount,
 but the target isn't expected to actually take that damage yet.
-"The [`25` log line]  has a unique identifier in it which refers back to the [`14/15`] line[,]
+The [`25` log line]  has a unique identifier in it which refers back to the [`14/15`] line[,]
 and indicates that the damage should now take effect on the target.
-> "FFXIV plugin doesn't use these lines currently, they are used by FFLogs.
+> [The] FFXIV plugin doesn't use these lines currently, they are used by FFLogs.
 It would help though if I did, but ACT doesn't do multi-line parsing very easily[,]
 so I would need to do a lot of work-arounds."
 
