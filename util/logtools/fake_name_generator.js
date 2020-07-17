@@ -3,17 +3,10 @@
 const fakePlayerNames = [
   'Tini Poutini',
   'Potato Chippy',
-  'Baked Potato',
-  'Au Gratin',
   'Papas Fritas',
-  'Potato Latke',
-  'Patatas Bravas',
-  'Potato Casserole',
   'Tater Tot',
   'Hash Brown',
   'French Fry',
-  'Mashed Potatoes',
-  'Dum Aloo',
 ];
 
 function randomFromArray(array) {
