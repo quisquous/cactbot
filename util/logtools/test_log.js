@@ -1,11 +1,11 @@
 'use strict';
 
 let fs = require('fs');
-let path = require('path');
 let Anonymizer = require('./anonymizer.js');
 let Splitter = require('./splitter.js');
 let encounterTools = require('./encounter_tools.js');
 let EncounterCollector = encounterTools.EncounterCollector;
+let ZoneId = require('../../resources/zone_id.js');
 let argparse = require('argparse');
 
 // TODO: add options for not splitting / not anonymizing.
@@ -71,6 +71,27 @@ const durationFromDates = (start, end) => {
     str += totalMinutes + 'm';
   str += (totalSeconds % 60) + 's';
   return str;
+};
+
+
+const generateFileName = (fightOrZone) => {
+  const zoneId = parseInt(fightOrZone.zoneId, 16);
+  const dateStr = dayFromDate(fightOrZone.startTime).replace(/-/g, '');
+  const timeStr = timeFromDate(fightOrZone.startTime).replace(/:/g, '');
+  const duration = durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
+  let seal = fightOrZone.sealName;
+  if (seal)
+    seal = '_' + seal.replace(/[^A-z0-9]/g, '');
+  else
+    seal = '';
+
+  let idToZoneName = {};
+  for (let zoneName in ZoneId)
+    idToZoneName[ZoneId[zoneName]] = zoneName;
+  const zoneName = idToZoneName[zoneId];
+
+  const wipeStr = fightOrZone.endType === 'Wipe' ? '_wipe' : '';
+  return `${zoneName}${seal}_${dateStr}_${timeStr}_${duration}${wipeStr}.log`;
 };
 
 // For an array of arrays, return an array where each value is the max length at that index
@@ -205,16 +226,26 @@ const printCollectedFights = (collector) => {
 
   let startLine = null;
   let endLine = null;
+  let outputFile = null;
   // This utility prints 1-indexed fights and zones, so adjust - 1.
   if (args['search_fights'] !== -1) {
     let fight = collector.fights[args['search_fights'] - 1];
     startLine = fight.startLine;
     endLine = fight.endLine;
+    outputFile = generateFileName(fight);
   } else {
     let zone = collector.zones[args['search_zones'] - 1];
     startLine = zone.startLine;
     endLine = zone.endLine;
+    outputFile = generateFileName(zone);
   }
+
+  // This will fail if the file already exists.
+  let writer = fs.createWriteStream(outputFile, { flags: 'wx' });
+  writer.on('error', (err) => {
+    errorFunc(err);
+    process.exit(-1);
+  });
 
   let splitter = new Splitter(startLine, endLine);
 
@@ -226,7 +257,8 @@ const printCollectedFights = (collector) => {
         return;
 
       lines.push(anonLine);
-      console.log(anonLine);
+      writer.write(anonLine);
+      writer.write('\n');
     });
 
     if (splitter.isDone())
@@ -234,6 +266,9 @@ const printCollectedFights = (collector) => {
   });
 
   lineReader.on('close', () => {
+    writer.end();
+    console.log('Wrote: ' + outputFile);
+
     anonymizer.validateIds();
     for (const line of lines)
       anonymizer.validateLine(line);

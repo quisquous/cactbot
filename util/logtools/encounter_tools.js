@@ -7,10 +7,8 @@ let replacements = require('../../ui/raidboss/common_replacement.js');
 let commonReplacement = replacements.commonReplacement;
 let syncKeys = replacements.syncKeys;
 
-let idToZoneName = {};
-for (let zoneName in ZoneId)
-  idToZoneName[ZoneId[zoneName]] = zoneName;
-
+// TODO: add some error checking that a zone has been found before a fight.
+// This can happen on partial logs.
 
 class EncounterFinder {
   constructor() {
@@ -118,7 +116,7 @@ class EncounterCollector extends EncounterFinder {
     this.lastZone = {
       name: name,
       startLine: line,
-      id: matches.id,
+      zoneId: matches.id,
       startTime: this.dateFromMatches(matches),
     };
   }
