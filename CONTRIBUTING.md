@@ -76,6 +76,16 @@ To cut down on pre-commit check times,
 it is recommended to install `lint-staged` globally via `npm -g lint-staged`,
 as that will reduce the operation time for each commit.
 
+Additionally, if the pre-commit validations are causing you significant problems,
+feel free to bypass the checks with `--no-verify` flag,
+such as `git commit --no-verify`,
+and open a pull request even if not everything is passing on your end.
+We can try to help with any tests that are failing
+and it helps us find any potentially confusing areas in the code.
+
+New contributors are always welcome
+and we definitely don't expect anyone to know everything right away.
+
 ### Code Review Culture
 
 Ideally, all changes should get code review.
