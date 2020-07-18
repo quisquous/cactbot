@@ -1171,6 +1171,7 @@ class Bars {
       'DRK': this.setupDrk,
       'PLD': this.setupPld,
       'AST': this.setupAst,
+      'SCH': this.setupSch,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
       'BLM': this.setupBlm,
@@ -1540,17 +1541,17 @@ class Bars {
     });
 
     // Sorry, no differentation for noct asts here.  <_<
-    this.abilityFuncMap[gLang.kAbility.Combust2] = () => {
+    this.abilityFuncMap[gLang.kAbility.Combust3] = () => {
       combustBox.duration = 0;
       combustBox.duration = 30;
     };
     this.abilityFuncMap[gLang.kAbility.AspectedBenefic] = () => {
       beneficBox.duration = 0;
-      beneficBox.duration = 18;
+      beneficBox.duration = 15;
     };
     this.abilityFuncMap[gLang.kAbility.AspectedHelios] = () => {
       heliosBox.duration = 0;
-      heliosBox.duration = 30;
+      heliosBox.duration = 15;
     };
 
     this.statChangeFuncMap['AST'] = () => {
@@ -1560,6 +1561,73 @@ class Bars {
       beneficBox.threshold = this.gcdSpell() * 3;
       heliosBox.valuescale = this.gcdSpell();
       heliosBox.threshold = this.gcdSpell() * 3;
+    };
+  }
+
+  // (In Progress) (Need Help)
+  setupSch() {
+    let gcd = kUnknownGCD;
+
+    let BioBox = this.addProcBox({
+      id: 'sch-procs-bio',
+      fgColor: 'sch-color-bio',
+      scale: gcd,
+      threshold: gcd + 1,
+    });
+
+    let AetherflowBox = this.addProcBox({
+      id: 'sch-procs-aetherflow',
+      fgColor: 'sch-color-aetherflow',
+      scale: gcd,
+      threshold: gcd * 3, // you need at most 3 gcd to cast all 3 stacks out
+    });
+
+    let AetherflowRescourceBox = this.addResourceBox({
+      classList: ['sch-color-aetherflow'],
+    });
+
+    let LucidDreamingBox = this.addProcBox({
+      id: 'sch-procs-luciddreaming',
+      fgColor: 'sch-color-lucid',
+      scale: gcd,
+      threshold: gcd + 1,
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      let aetherflow = jobDetail.aetherflowStacks;
+      AetherflowRescourceBox.innerText = aetherflow;
+      AetherflowBox.threshold = gcd * aetherflow;
+
+      let p = AetherflowRescourceBox.parentNode;
+      if (aetherflow == 3 && AetherflowBox.duration <= 15) {
+        // then to red when under 15 seconds
+        // but you even have 3 aetherflow stacks
+        p.classList.add('need-to-throw');
+      } else {
+        p.classList.remove('need-to-throw');
+      }
+    });
+
+    this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
+      BioBox.duration = 0;
+      BioBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.Aetherflow] = () => {
+      AetherflowBox.duration = 0;
+      AetherflowBox.duration = 60;
+    };
+    this.abilityFuncMap[gLang.kAbility.LucidDreaming] = () => {
+      LucidDreamingBox.duration = 0;
+      LucidDreamingBox.duration = 60;
+    };
+
+    this.statChangeFuncMap['SCH'] = () => {
+      gcd = this.gcdSpell();
+      BioBox.valuescale = this.gcdSpell();
+      BioBox.threshold = this.gcdSpell() + 1;
+      AetherflowBox.valuescale = this.gcdSpell();
+      LucidDreamingBox.valuescale = this.gcdSpell();
+      LucidDreamingBox.threshold = this.gcdSpell() + 1;
     };
   }
 
@@ -1647,7 +1715,9 @@ class Bars {
     };
     this.abilityFuncMap[gLang.kAbility.Demolish] = () => {
       demolishBox.duration = 0;
-      demolishBox.duration = 18;
+      // it start counting down when you cast demolish
+      // but DOT appears on target about 1 second later
+      demolishBox.duration = 19;
     };
     this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = () => {
       dragonKickBox.duration = 0;
