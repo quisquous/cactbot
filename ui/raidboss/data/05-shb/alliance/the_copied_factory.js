@@ -143,7 +143,7 @@
     },
     {
       id: 'Copied Hobbes Right Arm',
-      netRegex: NetRegexes.message({ line: 'The wall-mounted right arm begins to move\.\.\..*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The wall-mounted right arm begins to move.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '墙面的右臂开始运作…….*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Der wandmontierte rechte Arm ist aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le bras mural droit s\'active!.*?', capture: false }),
@@ -181,7 +181,7 @@
     },
     {
       id: 'Copied Hobbes Left Arm 1',
-      netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move\.\.\..*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '墙面的左臂开始运作…….*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le bras mural gauche s\'active!.*?', capture: false }),
@@ -195,7 +195,7 @@
     },
     {
       id: 'Copied Hobbes Left Arm 2',
-      netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move\.\.\..*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '墙面的左臂开始运作…….*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le bras mural gauche s\'active!.*?', capture: false }),
@@ -212,7 +212,7 @@
     },
     {
       id: 'Copied Hobbes Left Arm 3',
-      netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move\.\.\..*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The wall-mounted left arm begins to move.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '墙面的左臂开始运作…….*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Der wandmontierte linke Arm ist aktiv!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le bras mural gauche s\'active!.*?', capture: false }),
@@ -247,7 +247,7 @@
     },
     {
       id: 'Copied Hobbes Electric Floor',
-      netRegex: NetRegexes.message({ line: 'You hear frenzied movement from machines beneath\.\.\..*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'You hear frenzied movement from machines beneath.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '地板下的机械生物动作很可疑…….*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Die Maschinenwesen zu deinen Füßen bewegen sich!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Les formes de vie mécaniques sous vos pieds s\'activent!.*?', capture: false }),
@@ -281,7 +281,7 @@
     },
     {
       id: 'Copied Hobbes Oil 1',
-      netRegex: NetRegexes.message({ line: 'Flammable oil is leaking from the floor\.\.\..*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'Flammable oil is leaking from the floor.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '地板下开始充满可燃性液体…….*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le sol s\'imbibe de liquide inflammable!.*?', capture: false }),
@@ -299,7 +299,7 @@
     },
     {
       id: 'Copied Hobbes Oil 2',
-      netRegex: NetRegexes.message({ line: 'Flammable oil is leaking from the floor\.\.\..*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'Flammable oil is leaking from the floor.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '地板下开始充满可燃性液体…….*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Le sol s\'imbibe de liquide inflammable!.*?', capture: false }),
@@ -747,12 +747,12 @@
         'Warehouse A': 'Warenlager A',
         'Warehouse B': 'Warenlager B',
         'Warehouse C': 'Warenlager C',
-        'The wall-mounted right arm begins to move\.\.\.': 'Der wandmontierte rechte Arm ist aktiv!',
-        'The wall-mounted flamethrowers activate\.': 'Die wandmontierten Flammenwerfer sind aktiv!',
-        'The wall-mounted left arm begins to move\.\.\.': 'Der wandmontierte linke Arm ist aktiv!',
-        'You hear frenzied movement from machines beneath\.\.\.': 'Die Maschinenwesen zu deinen Füßen bewegen sich!',
+        'The wall-mounted right arm begins to move': 'Der wandmontierte rechte Arm ist aktiv!',
+        'The wall-mounted flamethrowers activate': 'Die wandmontierten Flammenwerfer sind aktiv!',
+        'The wall-mounted left arm begins to move': 'Der wandmontierte linke Arm ist aktiv!',
+        'You hear frenzied movement from machines beneath': 'Die Maschinenwesen zu deinen Füßen bewegen sich!',
         'The conveyer belts whirr to life!': 'Die Fließbänder sind aktiv!',
-        'Flammable oil is leaking from the floor\.\.\.': 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!',
+        'Flammable oil is leaking from the floor': 'Zu deinen Füßen wird brennbare Flüssigkeit eingelassen!',
       },
       'replaceText': {
         '360-Degree Bombing Maneuver': 'Offensive: Raketenring',
