@@ -1,23 +1,34 @@
 'use strict';
 
 // TODO: maybe this should be structured identically to a timelineReplace section.
-let commonReplacement = {
+
+// It's awkward to refer to these string keys, so name them as replaceSync[keys.sealKey].
+const syncKeys = {
+  seal: '(?<=00:0839:)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?',
+  unseal: 'is no longer sealed',
+  engage: 'Engage!',
+};
+
+const commonReplacement = {
   replaceSync: {
-    '(?<=00:0839:)(.*) will be sealed off(?: in (?:[0-9]+ seconds)?)?': {
+    [syncKeys.seal]: {
+      en: '$1 will be sealed off',
       de: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?$1 schließt',
       fr: 'Fermeture d(?:e|u|es) $1 dans',
       ja: '$1の封鎖まであと',
       cn: '距$1被封锁还有',
       ko: '15초 후에 $1(?:이|가) 봉쇄됩니다',
     },
-    'is no longer sealed': {
+    [syncKeys.unseal]: {
+      en: 'is no longer sealed',
       de: 'öffnet sich (?:wieder|erneut)',
       fr: 'Ouverture ',
       ja: 'の封鎖が解かれた',
       cn: '的封锁解除了',
       ko: '의 봉쇄가 해제되었습니다',
     },
-    'Engage!': {
+    [syncKeys.engage]: {
+      en: 'Engage!',
       de: 'Start!',
       fr: 'À l\'attaque',
       ja: '戦闘開始！',
@@ -192,7 +203,7 @@ let commonReplacement = {
 // Keys into commonReplacement objects that represent "partial" translations,
 // in the sense that even if it applies, there still needs to be another
 // translation for it to be complete.
-let partialCommonReplacementKeys = [
+const partialCommonReplacementKeys = [
   // Because the zone name needs to be translated here, this is partial.
   ':([0-9]{4}):(.*) will be sealed off',
 ];
@@ -201,5 +212,6 @@ if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
     commonReplacement: commonReplacement,
     partialCommonReplacementKeys: partialCommonReplacementKeys,
+    syncKeys: syncKeys,
   };
 }

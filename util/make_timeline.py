@@ -402,7 +402,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "-lf",
-        "--search_fights",
+        "--search-fights",
         nargs="?",
         const=-1,
         type=int,
@@ -436,7 +436,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "-it",
-        "--include_targetable",
+        "--include-targetable",
         nargs="*",
         default=[],
         help="Set this flag to include '34' log lines when making the timeline",
