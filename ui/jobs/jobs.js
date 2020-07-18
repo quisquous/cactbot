@@ -1564,7 +1564,6 @@ class Bars {
     };
   }
 
-  // (In Progress) (Need Help)
   setupSch() {
     let gcd = kUnknownGCD;
 
@@ -1609,6 +1608,14 @@ class Bars {
     });
 
     this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
+      bioBox.duration = 0;
+      bioBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.Bio] = () => {
+      bioBox.duration = 0;
+      bioBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.Bio2] = () => {
       bioBox.duration = 0;
       bioBox.duration = 30;
     };

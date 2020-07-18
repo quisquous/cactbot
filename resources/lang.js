@@ -81,6 +81,8 @@ class CactbotLanguage {
       Combust3: '40AA',
       AspectedBenefic: 'E0B',
       AspectedHelios: 'E11',
+      Bio: '45C8',
+      Bio2: '45C9',
       Biolysis: '409C',
       Contagion: '31B',
       OffGuard: '2C93',
