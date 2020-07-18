@@ -15,22 +15,22 @@
   triggers: [
     {
       id: 'O6S Demonic Shear',
-      regex: Regexes.startsUsing({ id: '2829', source: 'Demon Chadarnook' }),
-      regexDe: Regexes.startsUsing({ id: '2829', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
-      regexFr: Regexes.startsUsing({ id: '2829', source: 'Démon Chadarnouk' }),
-      regexJa: Regexes.startsUsing({ id: '2829', source: 'チャダルヌーク・デーモン' }),
-      regexCn: Regexes.startsUsing({ id: '2829', source: '恶魔查达奴克' }),
-      regexKo: Regexes.startsUsing({ id: '2829', source: '차다르누크 악령' }),
+      netRegex: NetRegexes.startsUsing({ id: '2829', source: 'Demon Chadarnook' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2829', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2829', source: 'Démon Chadarnouk' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2829', source: 'チャダルヌーク・デーモン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2829', source: '恶魔查达奴克' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2829', source: '차다르누크 악령' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'O6S Storms Grip',
-      regex: Regexes.addedCombatant({ name: 'The Storm\'s Grip', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Sturmgebiet', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Zone De Tempête', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: '暴風域', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '暴风领域', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '폭풍 영역', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'The Storm\'s Grip', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Sturmgebiet', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Zone De Tempête', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: '暴風域', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '暴风领域', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '폭풍 영역', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -45,7 +45,7 @@
     },
     {
       id: 'O6S Demonic Stone',
-      regex: Regexes.headMarker({ id: '0001' }),
+      netRegex: NetRegexes.headMarker({ id: '0001' }),
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -61,14 +61,14 @@
     },
     {
       id: 'O6S Last Kiss Tracker',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       run: function(data, matches) {
         data.lastKiss = matches.target;
       },
     },
     {
       id: 'O6S Last Kiss Marker',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },

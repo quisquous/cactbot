@@ -10,12 +10,12 @@
   triggers: [
     {
       id: 'T5 Death Sentence',
-      regex: Regexes.startsUsing({ source: 'Twintania', id: '5B2' }),
-      regexDe: Regexes.startsUsing({ source: 'Twintania', id: '5B2' }),
-      regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '5B2' }),
-      regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
-      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '5B2' }),
-      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '5B2' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Gémellia', id: '5B2' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2' }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
       },
@@ -23,12 +23,12 @@
     },
     {
       id: 'T5 Death Sentence Warning',
-      regex: Regexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '5B2', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Twintania', id: '5B2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Gémellia', id: '5B2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '5B2', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '5B2', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '5B2', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer' || data.job == 'BLU';
       },
@@ -43,12 +43,12 @@
     },
     {
       id: 'T5 Liquid Hell',
-      regex: Regexes.startsUsing({ source: 'The Scourge Of Meracydia', id: '4DB', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Fackel Von Meracydia', id: '4DB', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Fléau De Méracydia', id: '4DB', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '美拉西迪亚祸龙', id: '4DB', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Scourge Of Meracydia', id: '4DB', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Fackel Von Meracydia', id: '4DB', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fléau De Méracydia', id: '4DB', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '美拉西迪亚祸龙', id: '4DB', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
       infoText: {
         en: 'Liquid Hell',
         de: 'Höllenschmelze',
@@ -68,12 +68,12 @@
     },
     {
       id: 'T5 Fireball',
-      regex: Regexes.ability({ source: 'Twintania', id: '5AC' }),
-      regexDe: Regexes.ability({ source: 'Twintania', id: '5AC' }),
-      regexFr: Regexes.ability({ source: 'Gémellia', id: '5AC' }),
-      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AC' }),
-      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AC' }),
-      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AC' }),
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AC' }),
+      netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5AC' }),
+      netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5AC' }),
+      netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AC' }),
+      netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AC' }),
+      netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AC' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -97,12 +97,12 @@
     },
     {
       id: 'T5 Conflagration',
-      regex: Regexes.ability({ source: 'Twintania', id: '5AB' }),
-      regexDe: Regexes.ability({ source: 'Twintania', id: '5AB' }),
-      regexFr: Regexes.ability({ source: 'Gémellia', id: '5AB' }),
-      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AB' }),
-      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AB' }),
-      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AB' }),
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AB' }),
+      netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5AB' }),
+      netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5AB' }),
+      netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AB' }),
+      netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AB' }),
+      netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AB' }),
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -136,12 +136,12 @@
     },
     {
       id: 'T5 Divebomb',
-      regex: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
-      regexDe: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
-      regexFr: Regexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
-      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
-      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
-      regexKo: Regexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       alertText: {
         en: 'DIVEBOMB',
         de: 'STURZBOMBE',
@@ -151,12 +151,12 @@
     },
     {
       id: 'T5 Divebomb Set Two',
-      regex: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
-      regexDe: Regexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
-      regexFr: Regexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
-      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
-      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
-      regexKo: Regexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5B0', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5B0', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
       infoText: {
@@ -169,12 +169,12 @@
     {
       // Unwoven Will
       id: 'T5 Dreadknight',
-      regex: Regexes.ability({ source: 'Twintania', id: '4E3' }),
-      regexDe: Regexes.ability({ source: 'Twintania', id: '4E3' }),
-      regexFr: Regexes.ability({ source: 'Gémellia', id: '4E3' }),
-      regexJa: Regexes.ability({ source: 'ツインタニア', id: '4E3' }),
-      regexCn: Regexes.ability({ source: '双塔尼亚', id: '4E3' }),
-      regexKo: Regexes.ability({ source: '트윈타니아', id: '4E3' }),
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '4E3' }),
+      netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '4E3' }),
+      netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '4E3' }),
+      netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '4E3' }),
+      netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '4E3' }),
+      netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '4E3' }),
       infoText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -194,12 +194,12 @@
     },
     {
       id: 'T5 Twister',
-      regex: Regexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Gémellia', id: '4E1', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '双塔尼亚', id: '4E1', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Twintania', id: '4E1', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Gémellia', id: '4E1', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '4E1', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
       alertText: {
         en: 'Twister!',
         de: 'Wirbelsturm!',
@@ -219,12 +219,12 @@
     },
     {
       id: 'T5 Hatch',
-      regex: Regexes.ability({ source: 'Twintania', id: '5AD' }),
-      regexDe: Regexes.ability({ source: 'Twintania', id: '5AD' }),
-      regexFr: Regexes.ability({ source: 'Gémellia', id: '5AD' }),
-      regexJa: Regexes.ability({ source: 'ツインタニア', id: '5AD' }),
-      regexCn: Regexes.ability({ source: '双塔尼亚', id: '5AD' }),
-      regexKo: Regexes.ability({ source: '트윈타니아', id: '5AD' }),
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '5AD' }),
+      netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '5AD' }),
+      netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '5AD' }),
+      netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5AD' }),
+      netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5AD' }),
+      netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5AD' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {

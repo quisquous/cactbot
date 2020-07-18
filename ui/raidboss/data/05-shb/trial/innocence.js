@@ -11,12 +11,12 @@
   triggers: [
     {
       id: 'Inno Realmrazer',
-      regex: Regexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E9A', source: 'Innozenz', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E9A', source: 'イノセンス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E9A', source: '无瑕灵君', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E9A', source: '이노센스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E9A', source: 'Innozenz', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E9A', source: 'Innocence', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E9A', source: 'イノセンス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E9A', source: '无瑕灵君', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E9A', source: '이노센스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -24,12 +24,12 @@
     },
     {
       id: 'Inno Enthrall',
-      regex: Regexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E99', source: 'Innozenz', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E99', source: 'イノセンス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E99', source: '无瑕灵君', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E99', source: '이노센스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E99', source: 'Innozenz', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E99', source: 'Innocence', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E99', source: 'イノセンス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E99', source: '无瑕灵君', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E99', source: '이노센스', capture: false }),
       alertText: {
         en: 'Look Away, Get Towers',
         de: 'Weg schauen, Türme nehmen',
@@ -39,12 +39,12 @@
     },
     {
       id: 'Inno Reprobation Swords 2',
-      regex: Regexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3EDC', source: 'Innozenz', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3EDC', source: 'イノセンス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3EDC', source: '无瑕灵君', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3EDC', source: 'Innozenz', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3EDC', source: 'Innocence', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3EDC', source: 'イノセンス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3EDC', source: '无瑕灵君', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
       // 3 seconds cast time + 9.5 seconds until next sword.
       delaySeconds: 9.5,
       infoText: {
@@ -59,12 +59,12 @@
 
     {
       id: 'Inno Shadowreaver',
-      regex: Regexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3EEA', source: 'Innozenz', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3EEA', source: 'Innocence', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3EEA', source: 'イノセンス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3EEA', source: '无瑕灵君', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3EEA', source: '이노센스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -72,12 +72,12 @@
     },
     {
       id: 'Inno Righteous Bolt',
-      regex: Regexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
-      regexDe: Regexes.startsUsing({ id: '3EA3', source: 'Innozenz' }),
-      regexFr: Regexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
-      regexJa: Regexes.startsUsing({ id: '3EA3', source: 'イノセンス' }),
-      regexCn: Regexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
-      regexKo: Regexes.startsUsing({ id: '3EA3', source: '이노센스' }),
+      netRegex: NetRegexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3EA3', source: 'Innozenz' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3EA3', source: 'Innocence' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3EA3', source: 'イノセンス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3EA3', source: '无瑕灵君' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3EA3', source: '이노센스' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -85,12 +85,12 @@
     },
     {
       id: 'Inno Charge',
-      regex: Regexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3EC7', source: 'Innozenz', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3EC7', source: 'イノセンス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3EC7', source: '无瑕灵君', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3EC7', source: '이노센스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3EC7', source: 'Innozenz', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3EC7', source: 'Innocence', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3EC7', source: 'イノセンス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3EC7', source: '无瑕灵君', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3EC7', source: '이노센스', capture: false }),
       alertText: {
         en: 'Avoid Charge',
         de: 'ausweichen',
@@ -101,12 +101,12 @@
     },
     {
       id: 'Inno Light Pillar',
-      regex: Regexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
-      regexDe: Regexes.ability({ id: '38FC', source: 'Innozenz', capture: false }),
-      regexFr: Regexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
-      regexJa: Regexes.ability({ id: '38FC', source: 'イノセンス', capture: false }),
-      regexCn: Regexes.ability({ id: '38FC', source: '无瑕灵君', capture: false }),
-      regexKo: Regexes.ability({ id: '38FC', source: '이노센스', capture: false }),
+      netRegex: NetRegexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '38FC', source: 'Innozenz', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '38FC', source: 'Innocence', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '38FC', source: 'イノセンス', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '38FC', source: '无瑕灵君', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '38FC', source: '이노센스', capture: false }),
       infoText: {
         en: 'Line Stack',
         de: 'In einer Linie sammeln',
@@ -118,7 +118,7 @@
     },
     {
       id: 'Inno Winged Drop Of Light',
-      regex: Regexes.headMarker({ id: '008A' }),
+      netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -133,12 +133,12 @@
     {
       // TODO: is there a left, or do all normal modes rotate right??
       id: 'Inno Soul And Body Right',
-      regex: Regexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3EB1', source: 'Innozenz', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3EB1', source: 'イノセンス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3EB1', source: '无瑕灵君', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3EB1', source: '이노센스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3EB1', source: 'Innozenz', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3EB1', source: 'Innocence', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3EB1', source: 'イノセンス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3EB1', source: '无瑕灵君', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3EB1', source: '이노센스', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Rotate Right',

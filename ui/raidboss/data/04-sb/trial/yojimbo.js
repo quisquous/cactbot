@@ -11,7 +11,7 @@
   triggers: [
     {
       id: 'Yojimbo Giga Jump',
-      regex: Regexes.headMarker({ id: '0057' }),
+      netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -24,7 +24,7 @@
     },
     {
       id: 'Yojimbo Dorito',
-      regex: Regexes.headMarker({ id: '0037' }),
+      netRegex: NetRegexes.headMarker({ id: '0037' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -32,7 +32,7 @@
     },
     {
       id: 'Yojimbo Gekko',
-      regex: Regexes.headMarker({ id: '0090' }),
+      netRegex: NetRegexes.headMarker({ id: '0090' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -45,7 +45,7 @@
     },
     {
       id: 'Yojimbo Enchain',
-      regex: Regexes.headMarker({ id: '0005' }),
+      netRegex: NetRegexes.headMarker({ id: '0005' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },

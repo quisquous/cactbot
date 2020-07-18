@@ -84,40 +84,40 @@
     {
       id: 'VarisEx Phase 2',
       // 4CCC: Vivere Militare Est
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CCC', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
       run: function(data) {
         data.phase = 2;
       },
     },
     {
       id: 'VarisEx Phase 5',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CE2', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE2', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CE2', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE2', capture: false }),
       run: function(data) {
         data.phase = 5;
       },
     },
     {
       id: 'VarisEx Clones',
-      regex: Regexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis-Doppelgänger', id: '4CB3', capture: false }),
-      regexFr: Regexes.ability({ source: 'double de Varis', id: '4CB3', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリスの幻影', id: '4CB3', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Phantom Varis', id: '4CB3', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis-Doppelgänger', id: '4CB3', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'double de Varis', id: '4CB3', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリスの幻影', id: '4CB3', capture: false }),
       run: function(data) {
         data.clonesActive = true;
       },
     },
     {
       id: 'VarisEx Altius',
-      regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCA', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CCA', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
       infoText: {
         en: 'Bait Slashes',
         de: 'Schnitte ködern',
@@ -129,10 +129,10 @@
     },
     {
       id: 'VarisEx Citius',
-      regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CF0' }),
-      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
-      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
-      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CF0' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CF0' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CF0' }),
       alertText: function(data, matches) {
         const target = matches.target;
         if (data.me == target) {
@@ -167,20 +167,20 @@
     },
     {
       id: 'VarisEx Alea Iacta Est',
-      regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD2', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CD2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD2', capture: false }),
       response: Responses.getBehind('alert'),
     },
     {
       // This trigger match the fourth Alea Iacta Est that Varis used.
       // The player should go front to avoid the fifth one, which hits back.
       id: 'VarisEx Alea Iacta Est Front',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD5', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD5', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD5', capture: false }),
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
       infoText: {
@@ -194,19 +194,19 @@
     },
     {
       id: 'VarisEx Electrified Gunshield',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD7', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD7', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD7', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD7', capture: false }),
       delaySeconds: 21.5,
       response: Responses.knockback('alert'),
     },
     {
       id: 'VarisEx Reinforced Gunshield',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
       delaySeconds: function(data) {
         return data.phase == 2 ? 20 : 10;
       },
@@ -221,27 +221,27 @@
     },
     {
       id: 'VarisEx Reinforced Gunshield Sides',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDC', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDC', capture: false }),
       response: Responses.goFrontBack('info'),
     },
     {
       id: 'VarisEx Reinforced Gunshield Front',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDB', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDB', capture: false }),
       response: Responses.goSides('info'),
     },
     {
       id: 'VarisEx Loaded Gunshield Final Warning',
       // This ability id occurs ~3 seconds before the Magitek Burst spread damage.
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CDE', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDE', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDE', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDE', capture: false }),
       response: function(data) {
         // This is easily forgetable after dodging and seems to get people killed.
         // This also differentiates spread from the spread => stack in the last phase.
@@ -250,10 +250,10 @@
     },
     {
       id: 'VarisEx Reinforcements',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CEA', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CEA', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CEA', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CEA', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -278,10 +278,10 @@
     {
       // The warning is taken care of above with a timeline trigger.  See notes.
       id: 'VarisEx Festina Lente Cleanup',
-      regex: Regexes.ability({ source: 'Varis Yae Galvus', id: '4CC9', capture: false }),
-      regexDe: Regexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
-      regexFr: Regexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
-      regexJa: Regexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CC9', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CC9', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CC9', capture: false }),
       delaySeconds: 10,
       run: function(data) {
         delete data.suppressDodgeCloneCall;
@@ -289,12 +289,12 @@
     },
     {
       id: 'VarisEx Terminus Est Clones',
-      regex: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ターミナス・エスト', id: '4CB4', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '파멸의 종착역', id: '4CB4', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '恩惠终结', id: '4CB4', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Terminus Est', id: '4CB4', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ターミナス・エスト', id: '4CB4', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '파멸의 종착역', id: '4CB4', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '恩惠终结', id: '4CB4', capture: false }),
       condition: (data) => data.clonesActive,
       infoText: function(data) {
         // Sometimes this is called out with the stack mechanic.
@@ -316,28 +316,28 @@
     },
     {
       id: 'VarisEx Magitek Torch',
-      regex: Regexes.startsUsing({ source: 'Gunshield', id: '4E4F', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Gewehrschild', id: '4E4F', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ガンシールド', id: '4E4F', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Gunshield', id: '4E4F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gewehrschild', id: '4E4F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E4F', capture: false }),
       response: Responses.stack('info'),
     },
     {
       id: 'VarisEx Magitek Spark',
-      regex: Regexes.startsUsing({ source: 'Gunshield', id: '4E50', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Gewehrschild', id: '4E50', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Gunshield', id: '4E50', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Gewehrschild', id: '4E50', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
       // TODO: This is technicallly a spread, but it's more like "protean" spread?
       // Not sure how to make this more clear.
       response: Responses.spread('alert'),
     },
     {
       id: 'VarisEx Fortius',
-      regex: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
       alertText: {
         en: 'Bait Puddles Out',
         de: 'Flächen nach draußen ködern',

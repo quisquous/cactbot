@@ -28,12 +28,12 @@
   triggers: [
     {
       id: 'O11N Mustard Bomb',
-      regex: Regexes.startsUsing({ id: '3287', source: 'Omega' }),
-      regexDe: Regexes.startsUsing({ id: '3287', source: 'Omega' }),
-      regexFr: Regexes.startsUsing({ id: '3287', source: 'Oméga' }),
-      regexJa: Regexes.startsUsing({ id: '3287', source: 'オメガ' }),
-      regexCn: Regexes.startsUsing({ id: '3287', source: '欧米茄' }),
-      regexKo: Regexes.startsUsing({ id: '3287', source: '오메가' }),
+      netRegex: NetRegexes.startsUsing({ id: '3287', source: 'Omega' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3287', source: 'Omega' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3287', source: 'Oméga' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3287', source: 'オメガ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3287', source: '欧米茄' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3287', source: '오메가' }),
       response: Responses.tankBuster('alarm'),
     },
     {
@@ -46,12 +46,12 @@
       // that if a log entry for the first is dropped for some reason, it
       // will at least say left/right for the second.
       id: 'O11N Cannon Cleanup',
-      regex: Regexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '328[13]', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '328[13]', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '328[13]', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '328[13]', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '328[13]', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '328[13]', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '328[13]', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '328[13]', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '328[13]', source: '오메가', capture: false }),
       delaySeconds: 15,
       run: function(data) {
         delete data.lastWasStarboard;
@@ -59,12 +59,12 @@
     },
     {
       id: 'O11N Starboard Cannon 1',
-      regex: Regexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '328[12]', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '328[12]', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '328[12]', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '328[12]', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '328[12]', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '328[12]', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '328[12]', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '328[12]', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '328[12]', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
@@ -75,12 +75,12 @@
     },
     {
       id: 'O11N Larboard Cannon 1',
-      regex: Regexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '328[34]', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '328[34]', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '328[34]', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '328[34]', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '328[34]', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '328[34]', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '328[34]', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '328[34]', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '328[34]', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard === undefined;
       },
@@ -91,12 +91,12 @@
     },
     {
       id: 'O11N Starboard Cannon 2',
-      regex: Regexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3282', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3282', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3282', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3282', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3282', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3282', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3282', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3282', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3282', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },
@@ -121,12 +121,12 @@
     },
     {
       id: 'O11N Larboard Cannon 2',
-      regex: Regexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3284', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3284', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3284', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3284', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3284', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3284', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3284', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3284', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3284', source: '오메가', capture: false }),
       condition: function(data) {
         return data.lastWasStarboard !== undefined;
       },

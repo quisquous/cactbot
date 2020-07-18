@@ -10,12 +10,12 @@
   triggers: [
     {
       id: 'T4 Gravity Thrust',
-      regex: Regexes.startsUsing({ source: 'Spinner-Rook', id: '4D4' }),
-      regexDe: Regexes.startsUsing({ source: 'Drehturm', id: '4D4' }),
-      regexFr: Regexes.startsUsing({ source: 'Drone-Drille', id: '4D4' }),
-      regexJa: Regexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
-      regexCn: Regexes.startsUsing({ source: '转盘堡', id: '4D4' }),
-      regexKo: Regexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D4' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Drehturm', id: '4D4' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Drone-Drille', id: '4D4' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D4' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D4' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D4' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -28,12 +28,12 @@
     },
     {
       id: 'T4 Pox',
-      regex: Regexes.startsUsing({ source: 'Spinner-Rook', id: '4D5' }),
-      regexDe: Regexes.startsUsing({ source: 'Drehturm', id: '4D5' }),
-      regexFr: Regexes.startsUsing({ source: 'Drone-Drille', id: '4D5' }),
-      regexJa: Regexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
-      regexCn: Regexes.startsUsing({ source: '转盘堡', id: '4D5' }),
-      regexKo: Regexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Spinner-Rook', id: '4D5' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Drehturm', id: '4D5' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Drone-Drille', id: '4D5' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルークスピナー', id: '4D5' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '转盘堡', id: '4D5' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '보루형 회전전차', id: '4D5' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -46,12 +46,12 @@
     },
     {
       id: 'T4 Reminder',
-      regex: Regexes.addedCombatant({ name: 'Clockwork Knight', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Uhrwerk-Ritter', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Chevalier Mécanique', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'アラガンワーク・ナイト', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '亚拉戈发条骑士', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '알라그 태엽기사', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Clockwork Knight', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Uhrwerk-Ritter', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Chevalier Mécanique', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'アラガンワーク・ナイト', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '亚拉戈发条骑士', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '알라그 태엽기사', capture: false }),
       suppressSeconds: 100000,
       infoText: {
         en: 'Magic on Soldier, Physical on Knights',

@@ -31,12 +31,12 @@
   triggers: [
     {
       id: 'A2S Bomb',
-      regex: Regexes.addedCombatant({ name: 'Bomb', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Bombe', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Bombe', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: '爆弾', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '炸弹', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '폭탄', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Bomb', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Bombe', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Bombe', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: '爆弾', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '炸弹', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '폭탄', capture: false }),
       alertText: {
         en: 'Bomb',
         de: 'Bombe',
@@ -46,12 +46,12 @@
     },
     {
       id: 'A2S Prey',
-      regex: Regexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
-      regexDe: Regexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
-      regexFr: Regexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
-      regexJa: Regexes.ability({ source: 'Ix号ゴブリウィドー', id: '1413' }),
-      regexCn: Regexes.ability({ source: '9号哥布林黑寡妇', id: '1413' }),
-      regexKo: Regexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
+      netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
+      netRegexDe: NetRegexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
+      netRegexFr: NetRegexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
+      netRegexJa: NetRegexes.ability({ source: 'Ix号ゴブリウィドー', id: '1413' }),
+      netRegexCn: NetRegexes.ability({ source: '9号哥布林黑寡妇', id: '1413' }),
+      netRegexKo: NetRegexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: function(data) {
         return data.role == 'healer' || data.job == 'blu';
       },
@@ -67,12 +67,12 @@
     },
     {
       id: 'A2S Prey You',
-      regex: Regexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
-      regexDe: Regexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
-      regexFr: Regexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
-      regexJa: Regexes.ability({ source: 'Ix号ゴブリウィドー', id: '1413' }),
-      regexCn: Regexes.ability({ source: '9号哥布林黑寡妇', id: '1413' }),
-      regexKo: Regexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
+      netRegex: NetRegexes.ability({ source: 'Magitek Gobwidow G-IX', id: '1413' }),
+      netRegexDe: NetRegexes.ability({ source: 'Gob-Witwe Ix', id: '1413' }),
+      netRegexFr: NetRegexes.ability({ source: 'Gobmygale Magitek G-IX', id: '1413' }),
+      netRegexJa: NetRegexes.ability({ source: 'Ix号ゴブリウィドー', id: '1413' }),
+      netRegexCn: NetRegexes.ability({ source: '9号哥布林黑寡妇', id: '1413' }),
+      netRegexKo: NetRegexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
       alertText: {
@@ -84,24 +84,24 @@
     },
     {
       id: 'A2S Soldier Spawn',
-      regex: Regexes.addedCombatant({ name: 'Gordian Soldier', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Gordios-Soldat', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Soldat Gordien', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'ゴルディオス・ソルジャー', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '戈耳狄士兵', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '고르디우스 병사', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Gordian Soldier', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Gordios-Soldat', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Soldat Gordien', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ゴルディオス・ソルジャー', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '戈耳狄士兵', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '고르디우스 병사', capture: false }),
       run: function(data) {
         delete data.bangyzoom;
       },
     },
     {
       id: 'A2S Bangyzoom',
-      regex: Regexes.ability({ id: 'FD9', target: 'Gordian Soldier', capture: false }),
-      regexDe: Regexes.ability({ id: 'FD9', target: 'Gordios-Soldat', capture: false }),
-      regexFr: Regexes.ability({ id: 'FD9', target: 'Soldat Gordien', capture: false }),
-      regexJa: Regexes.ability({ id: 'FD9', target: 'ゴルディオス・ソルジャー', capture: false }),
-      regexCn: Regexes.ability({ id: 'FD9', target: '戈耳狄士兵', capture: false }),
-      regexKo: Regexes.ability({ id: 'FD9', target: '고르디우스 병사', capture: false }),
+      netRegex: NetRegexes.ability({ id: 'FD9', target: 'Gordian Soldier', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: 'FD9', target: 'Gordios-Soldat', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: 'FD9', target: 'Soldat Gordien', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: 'FD9', target: 'ゴルディオス・ソルジャー', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: 'FD9', target: '戈耳狄士兵', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: 'FD9', target: '고르디우스 병사', capture: false }),
       condition: function(data) {
         return !data.bangyzoom;
       },

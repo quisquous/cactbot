@@ -282,12 +282,12 @@ let getHeadmarkerId = (data, matches) => {
   triggers: [
     {
       id: 'TEA Brute Phase',
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '483E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483E', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '483E', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '483E', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '483E', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '483E', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '483E', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '483E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '483E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '483E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '483E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '483E', capture: false }),
       run: function(data) {
         data.phase = 'brute';
         data.resetState = function() {
@@ -426,12 +426,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Inception Phase',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '486F', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486F', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486F', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '486F', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486F', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '486F', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '486F', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '486F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '486F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '486F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '486F', capture: false }),
       run: function(data) {
         data.phase = 'inception';
         data.resetState();
@@ -439,12 +439,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Wormhole Phase',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '486E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '486E', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '486E', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '486E', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '486E', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '486E', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '486E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '486E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '486E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '486E', capture: false }),
       run: function(data) {
         data.phase = 'wormhole';
         data.resetState();
@@ -452,12 +452,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Fate Alpha Phase',
-      regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487B', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487B', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487B', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487B', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487B', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487B', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487B', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '487B', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487B', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487B', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487B', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487B', capture: false }),
       run: function(data) {
         data.phase = 'alpha';
         data.resetState();
@@ -465,12 +465,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Fate Beta Phase',
-      regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4B13', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4B13', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4B13', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4B13', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4B13', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '4B13', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4B13', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '4B13', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4B13', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4B13', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4B13', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4B13', capture: false }),
       run: function(data) {
         data.phase = 'beta';
         data.resetState();
@@ -478,71 +478,71 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Liquid Tank',
-      regex: Regexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
-      regexCn: Regexes.abilityFull({ source: '有生命活水', id: '4978' }),
-      regexDe: Regexes.abilityFull({ source: 'belebtes Wasser', id: '4978' }),
-      regexFr: Regexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
-      regexJa: Regexes.abilityFull({ source: 'リビングリキッド', id: '4978' }),
-      regexKo: Regexes.abilityFull({ source: '살아있는 액체', id: '4978' }),
+      netRegex: NetRegexes.abilityFull({ source: 'Living Liquid', id: '4978' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '有生命活水', id: '4978' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'belebtes Wasser', id: '4978' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'liquide vivant', id: '4978' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'リビングリキッド', id: '4978' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '살아있는 액체', id: '4978' }),
       run: function(data, matches) {
         data.liquidTank = matches.target;
       },
     },
     {
       id: 'TEA Hand Tank',
-      regex: Regexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
-      regexCn: Regexes.abilityFull({ source: '活水之手', id: '4979' }),
-      regexDe: Regexes.abilityFull({ source: 'belebte Hand', id: '4979' }),
-      regexFr: Regexes.abilityFull({ source: 'membre liquide', id: '4979' }),
-      regexJa: Regexes.abilityFull({ source: 'リキッドハンド', id: '4979' }),
-      regexKo: Regexes.abilityFull({ source: '액체 손', id: '4979' }),
+      netRegex: NetRegexes.abilityFull({ source: 'Liquid Hand', id: '4979' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '活水之手', id: '4979' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'belebte Hand', id: '4979' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'membre liquide', id: '4979' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'リキッドハンド', id: '4979' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '액체 손', id: '4979' }),
       run: function(data, matches) {
         data.handTank = matches.target;
       },
     },
     {
       id: 'TEA Cruise Chaser Tank',
-      regex: Regexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
-      regexCn: Regexes.abilityFull({ source: '巡航驱逐者', id: '497A' }),
-      regexDe: Regexes.abilityFull({ source: 'Chaser-Mecha', id: '497A' }),
-      regexFr: Regexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
-      regexJa: Regexes.abilityFull({ source: 'クルーズチェイサー', id: '497A' }),
-      regexKo: Regexes.abilityFull({ source: '순항추격기', id: '497A' }),
+      netRegex: NetRegexes.abilityFull({ source: 'Cruise Chaser', id: '497A' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '巡航驱逐者', id: '497A' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Chaser-Mecha', id: '497A' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Croiseur-chasseur', id: '497A' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'クルーズチェイサー', id: '497A' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '순항추격기', id: '497A' }),
       run: function(data, matches) {
         data.cruiseTank = matches.target;
       },
     },
     {
       id: 'TEA Brute Tank',
-      regex: Regexes.abilityFull({ source: 'Brute Justice', id: '497B' }),
-      regexCn: Regexes.abilityFull({ source: '残暴正义号', id: '497B' }),
-      regexDe: Regexes.abilityFull({ source: 'Brutalus', id: '497B' }),
-      regexFr: Regexes.abilityFull({ source: 'Justicier', id: '497B' }),
-      regexJa: Regexes.abilityFull({ source: 'ブルートジャスティス', id: '497B' }),
-      regexKo: Regexes.abilityFull({ source: '포악한 심판자', id: '497B' }),
+      netRegex: NetRegexes.abilityFull({ source: 'Brute Justice', id: '497B' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '残暴正义号', id: '497B' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Brutalus', id: '497B' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Justicier', id: '497B' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'ブルートジャスティス', id: '497B' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '포악한 심판자', id: '497B' }),
       run: function(data, matches) {
         data.bruteTank = matches.target;
       },
     },
     {
       id: 'TEA Cascade',
-      regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4826', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4826', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '살아있는 액체', id: '4826', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: '4826', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: '4826', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'belebtes Wasser', id: '4826', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'liquide vivant', id: '4826', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: '4826', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: '4826', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'TEA Protean Wave',
-      regex: Regexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'belebtes Wasser', id: '4822', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'liquide vivant', id: '4822', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '살아있는 액체', id: '4822', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Living Liquid', id: '4822', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '有生命活水', id: '4822', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'belebtes Wasser', id: '4822', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'liquide vivant', id: '4822', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: '4822', capture: false }),
       infoText: {
         en: 'Protean Wave',
         de: 'Proteische Welle',
@@ -554,12 +554,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Drainage Tether',
-      regex: Regexes.tether({ source: 'Liquid Rage', id: '0003' }),
-      regexCn: Regexes.tether({ source: '活水之怒', id: '0003' }),
-      regexDe: Regexes.tether({ source: 'levitierte Rage', id: '0003' }),
-      regexFr: Regexes.tether({ source: 'furie liquide', id: '0003' }),
-      regexJa: Regexes.tether({ source: 'リキッドレイジ', id: '0003' }),
-      regexKo: Regexes.tether({ source: '분노한 액체', id: '0003' }),
+      netRegex: NetRegexes.tether({ source: 'Liquid Rage', id: '0003' }),
+      netRegexCn: NetRegexes.tether({ source: '活水之怒', id: '0003' }),
+      netRegexDe: NetRegexes.tether({ source: 'levitierte Rage', id: '0003' }),
+      netRegexFr: NetRegexes.tether({ source: 'furie liquide', id: '0003' }),
+      netRegexJa: NetRegexes.tether({ source: 'リキッドレイジ', id: '0003' }),
+      netRegexKo: NetRegexes.tether({ source: '분노한 액체', id: '0003' }),
       condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
@@ -574,12 +574,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Hand of Pain 5',
-      regex: Regexes.startsUsing({ source: 'Liquid Hand', id: '482D', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '活水之手', id: '482D', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'belebte Hand', id: '482D', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'membre liquide', id: '482D', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'リキッドハンド', id: '482D', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '액체 손', id: '482D', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Liquid Hand', id: '482D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '活水之手', id: '482D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'belebte Hand', id: '482D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'membre liquide', id: '482D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リキッドハンド', id: '482D', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '액체 손', id: '482D', capture: false }),
       preRun: function(data) {
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
       },
@@ -615,7 +615,7 @@ let getHeadmarkerId = (data, matches) => {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Numbers',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         // Here and elsewhere, it's probably best to check for whether the user is the target first,
         // as that should short-circuit more often.
@@ -676,7 +676,7 @@ let getHeadmarkerId = (data, matches) => {
     {
       // Applies to both limit cuts.
       id: 'TEA Limit Cut Knockback',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         return data.me == matches.target && (/00(?:4F|5[0-6])/).test(getHeadmarkerId(data, matches));
       },
@@ -729,12 +729,12 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Chakrams Out',
       // Link Up
-      regex: Regexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '483F', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '483F', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
-      regexKo: Regexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '483F', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '483F', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '483F', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '483F', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '483F', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '483F', capture: false }),
       condition: function(data) {
         return data.phase == 'brute';
       },
@@ -750,12 +750,12 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Chakrams In',
       // Optical Sight
-      regex: Regexes.ability({ source: 'Cruise Chaser', id: '482F', capture: false }),
-      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
-      regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '482F', capture: false }),
-      regexFr: Regexes.ability({ source: 'Croiseur-chasseur', id: '482F', capture: false }),
-      regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '482F', capture: false }),
-      regexKo: Regexes.ability({ source: '순항추격기', id: '482F', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '482F', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '巡航驱逐者', id: '482F', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Chaser-Mecha', id: '482F', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Croiseur-chasseur', id: '482F', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'クルーズチェイサー', id: '482F', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '482F', capture: false }),
       suppressSeconds: 1,
       alertText: {
         en: 'Run In',
@@ -768,12 +768,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Whirlwind',
-      regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '49C2', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '49C2', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '49C2', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '49C2', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '49C2', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '49C2', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '49C2', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -781,12 +781,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Spin Crusher',
-      regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '4A72', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4A72', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '4A72', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '4A72', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '4A72', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '4A72', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '4A72', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '4A72', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '4A72', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '4A72', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '4A72', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '4A72', capture: false }),
       // Nobody should be in front of cruise chaser but the tank, and this is close to
       // water thunder handling, so only tell the tank.
       condition: function(data) {
@@ -803,7 +803,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Ice Marker',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         return data.me == matches.target && getHeadmarkerId(data, matches) == '0043';
       },
@@ -818,12 +818,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Hidden Minefield',
-      regex: Regexes.ability({ source: 'Brute Justice', id: '4851', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '4851', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '4851', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '4851', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
-      regexKo: Regexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '4851', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '4851', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '4851', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '4851', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4851', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4851', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -839,7 +839,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Enumeration YOU',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         return data.me == matches.target && getHeadmarkerId(data, matches) == '0041';
       },
@@ -854,7 +854,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Enumeration Everyone',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) == '0041';
       },
@@ -878,12 +878,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Limit Cut Shield',
-      regex: Regexes.ability({ source: 'Cruise Chaser', id: '4833', capture: false }),
-      regexCn: Regexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
-      regexDe: Regexes.ability({ source: 'Chaser-Mecha', id: '4833', capture: false }),
-      regexFr: Regexes.ability({ source: 'Croiseur-chasseur', id: '4833', capture: false }),
-      regexJa: Regexes.ability({ source: 'クルーズチェイサー', id: '4833', capture: false }),
-      regexKo: Regexes.ability({ source: '순항추격기', id: '4833', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Cruise Chaser', id: '4833', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '巡航驱逐者', id: '4833', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Chaser-Mecha', id: '4833', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Croiseur-chasseur', id: '4833', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'クルーズチェイサー', id: '4833', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '4833', capture: false }),
       delaySeconds: 2,
       infoText: {
         en: 'Break Shield From Front',
@@ -973,12 +973,12 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Pass Nisi 1',
       // 4 seconds after Photon cast starts.
-      regex: Regexes.startsUsing({ source: 'Cruise Chaser', id: '4836', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '巡航驱逐者', id: '4836', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Chaser-Mecha', id: '4836', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Croiseur-chasseur', id: '4836', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'クルーズチェイサー', id: '4836', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '순항추격기', id: '4836', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Cruise Chaser', id: '4836', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '4836', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Chaser-Mecha', id: '4836', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Croiseur-chasseur', id: '4836', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '4836', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '4836', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 10000,
       alertText: {
@@ -994,12 +994,12 @@ let getHeadmarkerId = (data, matches) => {
       id: 'TEA Pass Nisi 2',
       // 1 second after enumeration.
       // TODO: find a startsUsing instead of matching an action.
-      regex: Regexes.ability({ source: 'Brute Justice', id: '4850', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '4850', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '4850', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '4850', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '4850', capture: false }),
-      regexKo: Regexes.ability({ source: '포악한 심판자', id: '4850', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '4850', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '4850', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '4850', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '4850', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '4850', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '4850', capture: false }),
       // Ignore enumerations later in the fight.
       condition: (data) => data.phase == 'brute',
       delaySeconds: 1,
@@ -1016,12 +1016,12 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Pass Nisi 3',
       // 8 seconds after Flarethrower cast starts.
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4845', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4845', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4845', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4845', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '4845', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '4845', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '4845', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '4845', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '4845', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '4845', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4845', capture: false }),
       delaySeconds: 8,
       durationSeconds: 9,
       alertText: function(data) {
@@ -1076,24 +1076,24 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Gavel',
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '483C', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '483C', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '483C', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '483C', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '483C', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '483C', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '483C', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '483C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '483C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '483C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '483C', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '483C', capture: false }),
       run: function(data) {
         data.seenGavel = true;
       },
     },
     {
       id: 'TEA Double Rocket Punch',
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '4847' }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '4847' }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '4847' }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '4847' }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '4847' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '4847' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '4847' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '4847' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -1131,12 +1131,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Brute Ray',
-      regex: Regexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '484A', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
-      regexKo: Regexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '484A', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: (data) => data.phase == 'brute',
       infoText: {
         en: 'avoid ray',
@@ -1263,12 +1263,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Chastening Heat',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A80' }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A80' }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A80' }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A80' }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A80' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '4A80' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A80' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A80' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -1311,7 +1311,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Judgment Crystal',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         return data.me == matches.target && getHeadmarkerId(data, matches) == '0060';
       },
@@ -1326,12 +1326,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Judgment Crystal Placement',
-      regex: Regexes.ability({ source: 'Alexander Prime', id: '485C', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
-      regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485C', capture: false }),
-      regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485C', capture: false }),
-      regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485C', capture: false }),
-      regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '485C', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '485C', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '485C', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '485C', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '485C', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '485C', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485C', capture: false }),
       suppressSeconds: 100,
       infoText: {
         en: 'Get Away From Crystals',
@@ -1344,12 +1344,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Terashatter Flarethrower',
-      regex: Regexes.ability({ source: 'Judgment Crystal', id: '4A88', capture: false }),
-      regexCn: Regexes.ability({ source: '审判结晶', id: '4A88', capture: false }),
-      regexDe: Regexes.ability({ source: 'Urteilskristall', id: '4A88', capture: false }),
-      regexFr: Regexes.ability({ source: 'Cristal du jugement', id: '4A88', capture: false }),
-      regexJa: Regexes.ability({ source: '審判の結晶', id: '4A88', capture: false }),
-      regexKo: Regexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Judgment Crystal', id: '4A88', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '审判结晶', id: '4A88', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Urteilskristall', id: '4A88', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Cristal du jugement', id: '4A88', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '審判の結晶', id: '4A88', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
       delaySeconds: 1,
       suppressSeconds: 100,
       infoText: {
@@ -1372,12 +1372,12 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Inception Alpha Sword',
       // Sacrament cast.
-      regex: Regexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '485F', capture: false }),
-      regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
-      regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
-      regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
-      regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '485F', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '485F', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '485F', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '485F', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
       condition: (data) => data.phase == 'inception',
       alarmText: function(data) {
         let numVulns = Object.keys(data.vuln).length;
@@ -1442,12 +1442,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Wormhole',
-      regex: Regexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '486E', capture: false }),
-      regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '486E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '486E', capture: false }),
-      regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
-      regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '486E', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '486E', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '486E', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '486E', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
       infoText: function(data) {
         if (data.options.cactbotWormholeStrat) {
           return {
@@ -1471,7 +1471,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Cactbot Wormhole Strat',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1566,12 +1566,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Cactbot Wormhole 4 Super Jump',
-      regex: Regexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '484A', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
-      regexKo: Regexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '484A', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '484A', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '484A', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '484A', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: function(data) {
         if (!data.options.cactbotWormholeStrat)
           return false;
@@ -1590,7 +1590,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Incinerating Heat',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) == '005D';
       },
@@ -1605,12 +1605,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Mega Holy',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A83', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '4A83', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A83', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
       alertText: {
         en: 'big aoe',
         de: 'große AoE',
@@ -1621,12 +1621,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Summon Alexander',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '4A55', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '4A55', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '4A55', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A55', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '4A55', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '4A55', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '4A55', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '4A55', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A55', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A55', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A55', capture: false }),
       delaySeconds: 10.4,
       infoText: {
         en: 'Kill Cruise Chaser First',
@@ -1639,12 +1639,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Divine Judgment',
-      regex: Regexes.ability({ source: 'Alexander Prime', id: '4879', capture: false }),
-      regexCn: Regexes.ability({ source: '至尊亚历山大', id: '4879', capture: false }),
-      regexDe: Regexes.ability({ source: 'Prim-Alexander', id: '4879', capture: false }),
-      regexFr: Regexes.ability({ source: 'Primo-Alexander', id: '4879', capture: false }),
-      regexJa: Regexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
-      regexKo: Regexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Alexander Prime', id: '4879', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '至尊亚历山大', id: '4879', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Prim-Alexander', id: '4879', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '4879', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '4879', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '4879', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -1660,12 +1660,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Perfect Optical Sight Spread',
-      regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '488A', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '488A', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '488A', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '488A', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '488A', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '488A', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '488A', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '488A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '488A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '488A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '488A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '488A', capture: false }),
       infoText: {
         en: 'Spread',
         de: 'Verteilen',
@@ -1677,7 +1677,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Perfect Optical Sight Stack',
-      regex: Regexes.headMarker({ }),
+      netRegex: NetRegexes.headMarker({ }),
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) == '003E';
       },
@@ -1713,12 +1713,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Ordained Motion',
-      regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487E', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487E', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487E', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487E', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487E', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487E', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '487E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487E', capture: false }),
       durationSeconds: 4,
       alertText: {
         en: 'Keep Moving',
@@ -1731,12 +1731,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Ordained Stillness',
-      regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '487F', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '487F', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '487F', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '487F', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '487F', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '487F', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '487F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '487F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487F', capture: false }),
       alarmText: {
         en: 'STOP LITERALLY EVERYTHING',
         de: 'STOP WIRKLICH ALLES',
@@ -1816,7 +1816,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Fate Tether Bois',
-      regex: Regexes.tether({ id: '0062' }),
+      netRegex: NetRegexes.tether({ id: '0062' }),
       run: function(data, matches) {
         data.tetherBois = data.tetherBois || {};
         data.tetherBois[matches.targetId] = matches.source;
@@ -1824,7 +1824,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Alpha Instructions',
-      regex: Regexes.tether({ id: '0062', capture: false }),
+      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'alpha',
       delaySeconds: 1,
       suppressSeconds: 10,
@@ -1906,7 +1906,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Alpha Instructions Callout',
-      regex: Regexes.tether({ id: '0062', capture: false }),
+      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'alpha',
       delaySeconds: 2,
       durationSeconds: 28,
@@ -1936,12 +1936,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Alpha Ordained Motion 1',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B0D', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B0D', capture: false }),
-      regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0D', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
-      regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
-      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B0D', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B0D', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B0D', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B0D', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B0D', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0D', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B0D', capture: false }),
       preRun: function(data) {
         data.firstAlphaOrdainedText = {
           en: 'Motion first',
@@ -1961,12 +1961,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Alpha Ordained Stillness 1',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B0E', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B0E', capture: false }),
-      regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B0E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
-      regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
-      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B0E', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B0E', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B0E', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B0E', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B0E', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B0E', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B0E', capture: false }),
       preRun: function(data) {
         data.firstAlphaOrdainedText = {
           en: 'Stillness first',
@@ -1986,12 +1986,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Alpha Ordained Motion 2',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '4899', capture: false }),
-      regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
-      regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
-      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '4899', capture: false }),
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4899', capture: false }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '4899', capture: false }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '4899', capture: false }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4899', capture: false }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4899', capture: false }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4899', capture: false }),
       preRun: function(data) {
         data.secondAlphaOrdainedText = {
           en: 'Motion second',
@@ -2020,12 +2020,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Alpha Ordained Stillness 2',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '489A', capture: false }),
-      regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
-      regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
-      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '489A', capture: false }),
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489A', capture: false }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '489A', capture: false }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489A', capture: false }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489A', capture: false }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489A', capture: false }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489A', capture: false }),
       preRun: function(data) {
         data.secondAlphaOrdainedText = {
           en: 'Stillness second',
@@ -2055,12 +2055,12 @@ let getHeadmarkerId = (data, matches) => {
     {
       id: 'TEA Alpha Safe Spot',
       // The non-safe alexanders use 489F.
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '49AA' }),
-      regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '49AA' }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '49AA' }),
-      regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '49AA' }),
-      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '49AA' }),
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '49AA' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '49AA' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '49AA' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '49AA' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '49AA' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '49AA' }),
       durationSeconds: 10,
       infoText: function(data, matches) {
         // TODO: this is overly complicated.
@@ -2136,12 +2136,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Alpha Resolve First Motion',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
-      regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
-      regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
-      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // 5 seconds until mechanic
       delaySeconds: 2.2,
       alertText: function(data) {
@@ -2167,12 +2167,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Alpha Resolve Second Motion',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
-      regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
-      regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
-      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '487C', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '487C', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '487C', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '487C', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '487C', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // ~4 seconds until mechanic (to avoid overlapping with first)
       delaySeconds: 7.2,
       alertText: function(data) {
@@ -2198,7 +2198,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Beta Instructions',
-      regex: Regexes.tether({ id: '0062', capture: false }),
+      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'beta',
       delaySeconds: 1,
       suppressSeconds: 10,
@@ -2292,7 +2292,7 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Beta Instructions Callout',
-      regex: Regexes.tether({ id: '0062', capture: false }),
+      netRegex: NetRegexes.tether({ id: '0062', capture: false }),
       condition: (data) => data.phase == 'beta',
       delaySeconds: 2,
       durationSeconds: 35,
@@ -2321,12 +2321,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Beta Radiant',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '489E' }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '489E' }),
-      regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '489E' }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
-      regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489E' }),
-      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '489E' }),
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '489E' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '489E' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '489E' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '489E' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '489E' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '489E' }),
       preRun: function(data, matches) {
         // Track which perfect alexander clone did this.
         data.radiantSourceId = matches.sourceId;
@@ -2384,12 +2384,12 @@ let getHeadmarkerId = (data, matches) => {
       // Spread (per person) is 48A2.
       // Stack (two people) is 48A3.
       id: 'TEA Beta Optical Spread',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '48A0', capture: false }),
-      regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '48A0', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
-      regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
-      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '48A0', capture: false }),
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A0', capture: false }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '48A0', capture: false }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '48A0', capture: false }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A0', capture: false }),
       infoText: {
         en: 'Optical Spread',
         de: 'Visier verteilen',
@@ -2404,12 +2404,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Beta Optical Stack',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '48A1', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '48A1', capture: false }),
-      regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '48A1', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
-      regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
-      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '48A1', capture: false }),
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '48A1', capture: false }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '48A1', capture: false }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '48A1', capture: false }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A1', capture: false }),
       infoText: {
         en: 'Optical Stack',
         de: 'Visier sammeln',
@@ -2424,12 +2424,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Beta Optical Final',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
-      regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
-      regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
-      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 12.2,
       alertText: function(data) {
         if (!data.betaIsOpticalStack) {
@@ -2479,12 +2479,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Beta Radiant Final',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
-      regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
-      regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
-      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '4B14', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '4B14', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '4B14', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '4B14', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 16,
       alertText: function(data) {
         return data.radiantText;
@@ -2492,12 +2492,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Ordained Punishment',
-      regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4891' }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4891' }),
-      regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4891' }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
-      regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4891' }),
-      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '4891' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4891' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '4891' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4891' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4891' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4891' }),
       alarmText: function(data, matches) {
         if (data.role == 'tank' && data.me != matches.target) {
           return {
@@ -2535,12 +2535,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Trine Get Middle',
-      regex: Regexes.ability({ source: 'Perfect Alexander', id: '488E', capture: false }),
-      regexCn: Regexes.ability({ source: '完美亚历山大', id: '488E', capture: false }),
-      regexDe: Regexes.ability({ source: 'Perfekter Alexander', id: '488E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Alexander parfait', id: '488E', capture: false }),
-      regexJa: Regexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
-      regexKo: Regexes.ability({ source: '완전체 알렉산더', id: '488E', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Perfect Alexander', id: '488E', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '完美亚历山大', id: '488E', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Perfekter Alexander', id: '488E', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '488E', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '488E', capture: false }),
       alertText: {
         en: 'Stack Middle for Trine',
         de: 'Mittig sammeln für Trine',
@@ -2552,12 +2552,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Trine Initial',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '488F', x: '100', y: '(?:92|100|108)' }),
-      regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
-      regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '488F', x: '100', y: '(?:92|100|108)' }),
-      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '488F', x: '100', y: '(?:92|100|108)' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '488F', x: '100', y: '(?:92|100|108)' }),
       preRun: function(data, matches) {
         data.trine = data.trine || [];
         // See: https://imgur.com/a/l1n9MhS
@@ -2793,12 +2793,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Trine Second',
-      regex: Regexes.abilityFull({ source: 'Perfect Alexander', id: '4890', capture: false }),
-      regexCn: Regexes.abilityFull({ source: '完美亚历山大', id: '4890', capture: false }),
-      regexDe: Regexes.abilityFull({ source: 'Perfekter Alexander', id: '4890', capture: false }),
-      regexFr: Regexes.abilityFull({ source: 'Alexander parfait', id: '4890', capture: false }),
-      regexJa: Regexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4890', capture: false }),
-      regexKo: Regexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
+      netRegex: NetRegexes.abilityFull({ source: 'Perfect Alexander', id: '4890', capture: false }),
+      netRegexCn: NetRegexes.abilityFull({ source: '完美亚历山大', id: '4890', capture: false }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Perfekter Alexander', id: '4890', capture: false }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '4890', capture: false }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '4890', capture: false }),
+      netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '4890', capture: false }),
       suppressSeconds: 15,
       alertText: function(data) {
         return data.secondTrineResponse;
@@ -2806,12 +2806,12 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Irresistible Grace',
-      regex: Regexes.startsUsing({ source: 'Perfect Alexander', id: '4894' }),
-      regexCn: Regexes.startsUsing({ source: '完美亚历山大', id: '4894' }),
-      regexDe: Regexes.startsUsing({ source: 'Perfekter Alexander', id: '4894' }),
-      regexFr: Regexes.startsUsing({ source: 'Alexander parfait', id: '4894' }),
-      regexJa: Regexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4894' }),
-      regexKo: Regexes.startsUsing({ source: '완전체 알렉산더', id: '4894' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Perfect Alexander', id: '4894' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '完美亚历山大', id: '4894' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Perfekter Alexander', id: '4894' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4894' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4894' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4894' }),
       // Don't collide with trine.
       delaySeconds: 2,
       infoText: function(data, matches) {

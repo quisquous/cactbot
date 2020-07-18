@@ -28,12 +28,12 @@
     // Phases
     {
       id: 'UWU Suppression Phase',
-      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
-      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
-      regexCn: Regexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
-      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
       run: function(data) {
         data.phase = 'suppression';
       },
@@ -41,12 +41,12 @@
     {
       // Wait after suppression for primal triggers at the end.
       id: 'UWU Finale Phase',
-      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
-      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
-      regexCn: Regexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
-      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2D4D', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2D4D', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2D4D', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2D4D', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2D4D', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2D4D', capture: false }),
       delaySeconds: 74,
       run: function(data) {
         data.phase = 'finale';
@@ -54,12 +54,12 @@
     },
     {
       id: 'UWU Garuda Slipstream',
-      regex: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2B53', source: 'ガルーダ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2B53', source: '迦楼罗', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2B53', source: '가루다', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2B53', source: 'Garuda', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2B53', source: 'ガルーダ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2B53', source: '迦楼罗', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2B53', source: '가루다', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -74,7 +74,7 @@
     },
     {
       id: 'UWU Garuda Mistral Song Marker',
-      regex: Regexes.headMarker({ id: '0010' }),
+      netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -89,7 +89,7 @@
     },
     {
       id: 'UWU Garuda Mistral Song Tank',
-      regex: Regexes.headMarker({ id: '0010', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0010', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -105,12 +105,12 @@
     },
     {
       id: 'UWU Garuda Spiny Plume',
-      regex: Regexes.addedCombatant({ name: 'Spiny Plume', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Dornig(?:e|er|es|en) Federsturm', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Plume Perforante', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'スパイニープルーム', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '刺羽', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '가시돋힌 깃털', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Spiny Plume', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Dornig(?:e|er|es|en) Federsturm', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Plume Perforante', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'スパイニープルーム', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '刺羽', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '가시돋힌 깃털', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -149,12 +149,12 @@
     },
     {
       id: 'UWU Searing Wind',
-      regex: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
-      regexDe: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
-      regexFr: Regexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
-      regexJa: Regexes.startsUsing({ id: '2B5B', source: 'イフリート' }),
-      regexCn: Regexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
-      regexKo: Regexes.startsUsing({ id: '2B5B', source: '이프리트' }),
+      netRegex: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2B5B', source: 'Ifrit' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2B5B', source: 'イフリート' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2B5B', source: '伊弗利特' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2B5B', source: '이프리트' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -177,7 +177,7 @@
     },
     {
       id: 'UWU Ifrit Flaming Crush',
-      regex: Regexes.headMarker({ id: '0075', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0075', capture: false }),
       alertText: {
         en: 'Stack',
         de: 'Stack',
@@ -219,12 +219,12 @@
     },
     {
       id: 'UWU Titan Gaols',
-      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
-      regexDe: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
-      regexFr: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
-      regexJa: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'] }),
-      regexCn: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
-      regexKo: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
+      netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      netRegexDe: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      netRegexFr: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'] }),
+      netRegexJa: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'] }),
+      netRegexCn: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'] }),
+      netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'] }),
       preRun: function(data, matches) {
         data.titanGaols = data.titanGaols || [];
         data.titanGaols.push(matches.target);
@@ -252,12 +252,12 @@
     {
       // If anybody dies to bombs (WHY) and a rock is on them, then glhf.
       id: 'UWU Titan Bomb Failure',
-      regex: Regexes.ability({ id: '2B6A', source: 'Bomb Boulder' }),
-      regexDe: Regexes.ability({ id: '2B6A', source: 'Bomber-Brocken' }),
-      regexFr: Regexes.ability({ id: '2B6A', source: 'Bombo Rocher' }),
-      regexJa: Regexes.ability({ id: '2B6A', source: 'ボムボルダー' }),
-      regexCn: Regexes.ability({ id: '2B6A', source: '爆破岩石' }),
-      regexKo: Regexes.ability({ id: '2B6A', source: '바위폭탄' }),
+      netRegex: NetRegexes.ability({ id: '2B6A', source: 'Bomb Boulder' }),
+      netRegexDe: NetRegexes.ability({ id: '2B6A', source: 'Bomber-Brocken' }),
+      netRegexFr: NetRegexes.ability({ id: '2B6A', source: 'Bombo Rocher' }),
+      netRegexJa: NetRegexes.ability({ id: '2B6A', source: 'ボムボルダー' }),
+      netRegexCn: NetRegexes.ability({ id: '2B6A', source: '爆破岩石' }),
+      netRegexKo: NetRegexes.ability({ id: '2B6A', source: '바위폭탄' }),
       infoText: function(data, matches) {
         if (!data.titanGaols)
           return;
@@ -273,12 +273,12 @@
     },
     {
       id: 'UWU Gaol Cleanup',
-      regex: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
-      regexCn: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'], capture: false }),
-      regexDe: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
-      regexFr: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
-      regexJa: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'], capture: false }),
-      regexKo: Regexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'], capture: false }),
+      netRegex: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      netRegexCn: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['迦楼罗', '泰坦'], capture: false }),
+      netRegexDe: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      netRegexFr: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['Garuda', 'Titan'], capture: false }),
+      netRegexJa: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['ガルーダ', 'タイタン'], capture: false }),
+      netRegexKo: NetRegexes.ability({ id: ['2B6C', '2B6B'], source: ['가루다', '타이탄'], capture: false }),
       delaySeconds: 15,
       run: function(data) {
         delete data.titanGaols;
@@ -286,12 +286,12 @@
     },
     {
       id: 'UWU Suppression Gaol',
-      regex: Regexes.ability({ id: '2B6B', source: 'Titan' }),
-      regexDe: Regexes.ability({ id: '2B6B', source: 'Titan' }),
-      regexFr: Regexes.ability({ id: '2B6B', source: 'Titan' }),
-      regexJa: Regexes.ability({ id: '2B6B', source: 'タイタン' }),
-      regexCn: Regexes.ability({ id: '2B6B', source: '泰坦' }),
-      regexKo: Regexes.ability({ id: '2B6B', source: '타이탄' }),
+      netRegex: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
+      netRegexDe: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
+      netRegexFr: NetRegexes.ability({ id: '2B6B', source: 'Titan' }),
+      netRegexJa: NetRegexes.ability({ id: '2B6B', source: 'タイタン' }),
+      netRegexCn: NetRegexes.ability({ id: '2B6B', source: '泰坦' }),
+      netRegexKo: NetRegexes.ability({ id: '2B6B', source: '타이탄' }),
       condition: function(data, matches) {
         return data.phase == 'suppression' && data.me == matches.target;
       },
@@ -306,12 +306,12 @@
     },
     {
       id: 'UWU Garuda Finale',
-      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD3', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD3', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD3', capture: false }),
-      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD3', capture: false }),
-      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD3', capture: false }),
-      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD3', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD3', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD3', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD3', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2CD3', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD3', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD3', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -326,12 +326,12 @@
     },
     {
       id: 'UWU Ifrit Finale',
-      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD4', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD4', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD4', capture: false }),
-      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD4', capture: false }),
-      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD4', capture: false }),
-      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD4', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD4', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD4', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD4', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2CD4', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD4', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD4', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },
@@ -346,12 +346,12 @@
     },
     {
       id: 'UWU Titan Finale',
-      regex: Regexes.ability({ source: 'The Ultima Weapon', id: '2CD5', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ultima-Waffe', id: '2CD5', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ultima Arma', id: '2CD5', capture: false }),
-      regexJa: Regexes.ability({ source: 'アルテマウェポン', id: '2CD5', capture: false }),
-      regexCn: Regexes.ability({ source: '究极神兵', id: '2CD5', capture: false }),
-      regexKo: Regexes.ability({ source: '알테마 웨폰', id: '2CD5', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'The Ultima Weapon', id: '2CD5', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ultima-Waffe', id: '2CD5', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ultima Arma', id: '2CD5', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'アルテマウェポン', id: '2CD5', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '究极神兵', id: '2CD5', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '알테마 웨폰', id: '2CD5', capture: false }),
       condition: function(data) {
         return data.phase == 'finale';
       },

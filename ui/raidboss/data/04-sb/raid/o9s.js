@@ -13,22 +13,22 @@
     // General actions
     {
       id: 'O9S Chaotic Dispersion',
-      regex: Regexes.startsUsing({ id: '3170', source: 'Chaos' }),
-      regexDe: Regexes.startsUsing({ id: '3170', source: 'Chaos' }),
-      regexFr: Regexes.startsUsing({ id: '3170', source: 'Chaos' }),
-      regexJa: Regexes.startsUsing({ id: '3170', source: 'カオス' }),
-      regexCn: Regexes.startsUsing({ id: '3170', source: '卡奥斯' }),
-      regexKo: Regexes.startsUsing({ id: '3170', source: '카오스' }),
+      netRegex: NetRegexes.startsUsing({ id: '3170', source: 'Chaos' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3170', source: 'Chaos' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3170', source: 'Chaos' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3170', source: 'カオス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3170', source: '卡奥斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3170', source: '카오스' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'O9S Longitudinal Implosion',
-      regex: Regexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3172', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3172', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3172', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3172', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3172', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3172', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3172', source: '카오스', capture: false }),
       alertText: function(data) {
         if (data.primordialCrust) {
           return {
@@ -76,12 +76,12 @@
     },
     {
       id: 'O9S Latitudinal Implosion',
-      regex: Regexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3173', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3173', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3173', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3173', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3173', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3173', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3173', source: '카오스', capture: false }),
       alertText: function(data) {
         if (data.primordialCrust) {
           return {
@@ -129,22 +129,22 @@
     },
     {
       id: 'O9S Damning Edict',
-      regex: Regexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3171', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3171', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3171', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3171', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3171', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3171', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3171', source: '카오스', capture: false }),
       response: Responses.getBehind(),
     },
     {
       id: 'O9S Orbs Fiend',
-      regex: Regexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '317D', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '317D', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '317D', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '317D', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '317D', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '317D', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '317D', source: '카오스', capture: false }),
       alarmText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -173,12 +173,12 @@
     // Fire Path
     {
       id: 'O9S Fire Phase Tracking',
-      regex: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3186', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3186', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'fire';
@@ -262,12 +262,12 @@
     },
     {
       id: 'O9S Fire Big Bang',
-      regex: Regexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3180', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3180', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3180', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3180', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3180', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3180', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3180', source: '카오스', capture: false }),
       condition: function(data) {
         return data.phaseType == 'fire';
       },
@@ -285,12 +285,12 @@
     // Water Path
     {
       id: 'O9S Water Phase Tracking',
-      regex: Regexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3187', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3187', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3187', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3187', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3187', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3187', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3187', source: '카오스', capture: false }),
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'water';
@@ -352,7 +352,7 @@
     },
     {
       id: 'O9S Knock Down Marker',
-      regex: Regexes.headMarker({ id: '0057' }),
+      netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -381,12 +381,12 @@
     // Wind Path
     {
       id: 'O9S Wind Phase Tracking',
-      regex: Regexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3188', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3188', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3188', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3188', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3188', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3188', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3188', source: '카오스', capture: false }),
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'wind';
@@ -414,12 +414,12 @@
     },
     {
       id: 'O9S Cyclone Knockback',
-      regex: Regexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '318F', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '318F', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '318F', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '318F', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '318F', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '318F', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '318F', source: '카오스', capture: false }),
       alarmText: function(data) {
         if (data.wind == 'head') {
           return {
@@ -447,12 +447,12 @@
     // Earth Path
     {
       id: 'O9S Earth Phase Tracking',
-      regex: Regexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3189', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3189', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3189', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3189', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3189', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3189', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3189', source: '카오스', capture: false }),
       run: function(data) {
         if (data.phaseType != 'enrage')
           data.phaseType = 'earth';
@@ -517,7 +517,7 @@
     },
     {
       id: 'O9S Earth Stack Marker',
-      regex: Regexes.headMarker({ id: '003E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Stack with partner',
@@ -531,12 +531,12 @@
     // Orb Phase
     {
       id: 'O9S Orb Phase Tracking',
-      regex: Regexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '318A', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '318A', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '318A', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '318A', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '318A', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '318A', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '318A', source: '카오스', capture: false }),
       preRun: function(data) {
         data.phaseType = 'orb';
       },
@@ -589,12 +589,12 @@
     // Enrage Phase
     {
       id: 'O9S Enrage Phase Tracking',
-      regex: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3186', source: 'カオス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3186', source: 'Chaos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3186', source: 'カオス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3186', source: '卡奥斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3186', source: '카오스', capture: false }),
       run: function(data) {
         data.blazeCount = data.blazeCount || 0;
         data.blazeCount++;

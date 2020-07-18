@@ -13,12 +13,12 @@
   triggers: [
     {
       id: 'O12S Phase Init',
-      regex: Regexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3357', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3357', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3357', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3357', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3357', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3357', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3357', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3357', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3357', source: '오메가', capture: false }),
       run: function(data) {
         data.isFinalOmega = true;
 
@@ -31,12 +31,12 @@
     },
     {
       id: 'O12S Beyond Defense',
-      regex: Regexes.ability({ id: '332C', source: 'Omega-M' }),
-      regexDe: Regexes.ability({ id: '332C', source: 'Omega-M' }),
-      regexFr: Regexes.ability({ id: '332C', source: 'Oméga-M' }),
-      regexJa: Regexes.ability({ id: '332C', source: 'オメガM' }),
-      regexCn: Regexes.ability({ id: '332C', source: '欧米茄M' }),
-      regexKo: Regexes.ability({ id: '332C', source: '오메가 M' }),
+      netRegex: NetRegexes.ability({ id: '332C', source: 'Omega-M' }),
+      netRegexDe: NetRegexes.ability({ id: '332C', source: 'Omega-M' }),
+      netRegexFr: NetRegexes.ability({ id: '332C', source: 'Oméga-M' }),
+      netRegexJa: NetRegexes.ability({ id: '332C', source: 'オメガM' }),
+      netRegexCn: NetRegexes.ability({ id: '332C', source: '欧米茄M' }),
+      netRegexKo: NetRegexes.ability({ id: '332C', source: '오메가 M' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -85,12 +85,12 @@
     },
     {
       id: 'O12S Solar Ray',
-      regex: Regexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
-      regexDe: Regexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
-      regexFr: Regexes.startsUsing({ id: ['3350', '3351'], source: ['Oméga', 'Oméga-M'] }),
-      regexJa: Regexes.startsUsing({ id: ['3350', '3351'], source: ['オメガ', 'オメガM'] }),
-      regexCn: Regexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
-      regexKo: Regexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
+      netRegex: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Omega', 'Omega-M'] }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['Oméga', 'Oméga-M'] }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['オメガ', 'オメガM'] }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['欧米茄', '欧米茄M'] }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['3350', '3351'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer';
       },
@@ -99,12 +99,12 @@
     },
     {
       id: 'O12S Optimized Blade Dance',
-      regex: Regexes.startsUsing({ id: ['334B', '334C'], source: ['Omega', 'Omega-M'] }),
-      regexDe: Regexes.startsUsing({ id: ['334B', '334C'], source: ['Omega', 'Omega-M'] }),
-      regexFr: Regexes.startsUsing({ id: ['334B', '334C'], source: ['Oméga', 'Oméga-M'] }),
-      regexJa: Regexes.startsUsing({ id: ['334B', '334C'], source: ['オメガ', 'オメガM'] }),
-      regexCn: Regexes.startsUsing({ id: ['334B', '334C'], source: ['欧米茄', '欧米茄M'] }),
-      regexKo: Regexes.startsUsing({ id: ['334B', '334C'], source: ['오메가', '오메가 M'] }),
+      netRegex: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['Omega', 'Omega-M'] }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['Omega', 'Omega-M'] }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['Oméga', 'Oméga-M'] }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['オメガ', 'オメガM'] }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['欧米茄', '欧米茄M'] }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['334B', '334C'], source: ['오메가', '오메가 M'] }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer';
       },
@@ -113,7 +113,7 @@
     },
     {
       id: 'O12S Electric Slide Marker',
-      regex: Regexes.headMarker({ id: '009[12345678]' }),
+      netRegex: NetRegexes.headMarker({ id: '009[12345678]' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -145,7 +145,7 @@
     },
     {
       id: 'O12S MF Stack Marker',
-      regex: Regexes.headMarker({ id: '003E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: function(data) {
         return !data.isFinalOmega;
       },
@@ -154,7 +154,7 @@
     },
     {
       id: 'O12S Optimized Meteor',
-      regex: Regexes.headMarker({ id: '0057' }),
+      netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -192,32 +192,32 @@
     },
     {
       id: 'O12S Diffuse Wave Cannon Sides',
-      regex: Regexes.startsUsing({ id: '3367', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3367', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3367', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3367', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3367', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3367', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3367', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3367', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3367', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3367', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3367', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3367', source: '오메가', capture: false }),
       response: Responses.goSides('info'),
     },
     {
       id: 'O12S Diffuse Wave Cannon Front/Back',
-      regex: Regexes.startsUsing({ id: '3368', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3368', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3368', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3368', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3368', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3368', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3368', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3368', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3368', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3368', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3368', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3368', source: '오메가', capture: false }),
       response: Responses.goFrontBack('info'),
     },
     {
       id: 'O12S Oversampled Wave Cannon Right',
-      regex: Regexes.startsUsing({ id: '3364', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3364', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3364', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3364', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3364', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3364', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3364', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3364', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3364', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3364', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3364', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3364', source: '오메가', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -239,12 +239,12 @@
     },
     {
       id: 'O12S Oversampled Wave Cannon Left',
-      regex: Regexes.startsUsing({ id: '3365', source: 'Omega', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3365', source: 'Omega', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3365', source: 'Oméga', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3365', source: 'オメガ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3365', source: '欧米茄', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3365', source: '오메가', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3365', source: 'Omega', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3365', source: 'Omega', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3365', source: 'Oméga', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3365', source: 'オメガ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3365', source: '欧米茄', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3365', source: '오메가', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -266,7 +266,7 @@
     },
     {
       id: 'O12S Target Analysis Target',
-      regex: Regexes.headMarker({ id: '000E' }),
+      netRegex: NetRegexes.headMarker({ id: '000E' }),
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -468,7 +468,7 @@
     },
     {
       id: 'O12S Archive All Marker Tracking',
-      regex: Regexes.headMarker({ id: ['003E', '0060'] }),
+      netRegex: NetRegexes.headMarker({ id: ['003E', '0060'] }),
       condition: function(data) {
         return data.isFinalOmega;
       },
@@ -478,7 +478,7 @@
     },
     {
       id: 'O12S Archive All No Marker',
-      regex: Regexes.headMarker({ id: ['003E', '0060'], capture: false }),
+      netRegex: NetRegexes.headMarker({ id: ['003E', '0060'], capture: false }),
       condition: function(data) {
         // 4 fire markers, 1 stack marker.
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;
@@ -502,7 +502,7 @@
     },
     {
       id: 'O12S Archive All Stack Marker',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
         return data.isFinalOmega && matches.target == data.me;
       },
@@ -510,7 +510,7 @@
     },
     {
       id: 'O12S Archive All Spread Marker',
-      regex: Regexes.headMarker({ id: '0060' }),
+      netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
         return data.isFinalOmega && matches.target == data.me;
       },
@@ -518,12 +518,12 @@
     },
     {
       id: 'O12S Archive All Blue Arrow',
-      regex: Regexes.headMarker({ target: 'Rear Power Unit', id: '009D', capture: false }),
-      regexDe: Regexes.headMarker({ target: 'hinter(?:e|er|es|en) Antriebseinheit', id: '009D', capture: false }),
-      regexFr: Regexes.headMarker({ target: 'unité arrière', id: '009D', capture: false }),
-      regexJa: Regexes.headMarker({ target: 'リアユニット', id: '009D', capture: false }),
-      regexCn: Regexes.headMarker({ target: '尾部组', id: '009D', capture: false }),
-      regexKo: Regexes.headMarker({ target: '후면 유닛', id: '009D', capture: false }),
+      netRegex: NetRegexes.headMarker({ target: 'Rear Power Unit', id: '009D', capture: false }),
+      netRegexDe: NetRegexes.headMarker({ target: 'hinter(?:e|er|es|en) Antriebseinheit', id: '009D', capture: false }),
+      netRegexFr: NetRegexes.headMarker({ target: 'unité arrière', id: '009D', capture: false }),
+      netRegexJa: NetRegexes.headMarker({ target: 'リアユニット', id: '009D', capture: false }),
+      netRegexCn: NetRegexes.headMarker({ target: '尾部组', id: '009D', capture: false }),
+      netRegexKo: NetRegexes.headMarker({ target: '후면 유닛', id: '009D', capture: false }),
       alertText: {
         en: 'Back Left',
         de: 'Hinten Links',
@@ -535,12 +535,12 @@
     },
     {
       id: 'O12S Archive All Red Arrow',
-      regex: Regexes.headMarker({ target: 'Rear Power Unit', id: '009C', capture: false }),
-      regexDe: Regexes.headMarker({ target: 'hinter(?:e|er|es|en) Antriebseinheit', id: '009C', capture: false }),
-      regexFr: Regexes.headMarker({ target: 'unité arrière', id: '009C', capture: false }),
-      regexJa: Regexes.headMarker({ target: 'リアユニット', id: '009C', capture: false }),
-      regexCn: Regexes.headMarker({ target: '尾部组', id: '009C', capture: false }),
-      regexKo: Regexes.headMarker({ target: '후면 유닛', id: '009C', capture: false }),
+      netRegex: NetRegexes.headMarker({ target: 'Rear Power Unit', id: '009C', capture: false }),
+      netRegexDe: NetRegexes.headMarker({ target: 'hinter(?:e|er|es|en) Antriebseinheit', id: '009C', capture: false }),
+      netRegexFr: NetRegexes.headMarker({ target: 'unité arrière', id: '009C', capture: false }),
+      netRegexJa: NetRegexes.headMarker({ target: 'リアユニット', id: '009C', capture: false }),
+      netRegexCn: NetRegexes.headMarker({ target: '尾部组', id: '009C', capture: false }),
+      netRegexKo: NetRegexes.headMarker({ target: '후면 유닛', id: '009C', capture: false }),
       alertText: {
         en: 'Back Right',
         de: 'Hinten Rechts',
@@ -552,12 +552,12 @@
     },
     {
       id: 'O12S Archive  Peripheral Tracking',
-      regex: Regexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'] }),
-      regexDe: Regexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'] }),
-      regexFr: Regexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'] }),
-      regexJa: Regexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'] }),
-      regexCn: Regexes.headMarker({ target: '右臂组', id: ['009C', '009D'] }),
-      regexKo: Regexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'] }),
+      netRegex: NetRegexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'] }),
+      netRegexDe: NetRegexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'] }),
+      netRegexFr: NetRegexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'] }),
+      netRegexJa: NetRegexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'] }),
+      netRegexCn: NetRegexes.headMarker({ target: '右臂组', id: ['009C', '009D'] }),
+      netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'] }),
       run: function(data, matches) {
         // Create a 3 digit binary value, R = 0, B = 1.
         // e.g. BBR = 110 = 6
@@ -569,12 +569,12 @@
     },
     {
       id: 'O12S Archive Peripheral',
-      regex: Regexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'], capture: false }),
-      regexDe: Regexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'], capture: false }),
-      regexFr: Regexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'], capture: false }),
-      regexJa: Regexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'], capture: false }),
-      regexCn: Regexes.headMarker({ target: '右臂组', id: ['009C', '009D'], capture: false }),
-      regexKo: Regexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'], capture: false }),
+      netRegex: NetRegexes.headMarker({ target: 'Right Arm Unit', id: ['009C', '009D'], capture: false }),
+      netRegexDe: NetRegexes.headMarker({ target: 'Rechter Arm', id: ['009C', '009D'], capture: false }),
+      netRegexFr: NetRegexes.headMarker({ target: 'Unité Bras Droit', id: ['009C', '009D'], capture: false }),
+      netRegexJa: NetRegexes.headMarker({ target: 'ライトアームユニット', id: ['009C', '009D'], capture: false }),
+      netRegexCn: NetRegexes.headMarker({ target: '右臂组', id: ['009C', '009D'], capture: false }),
+      netRegexKo: NetRegexes.headMarker({ target: '오른팔 유닛', id: ['009C', '009D'], capture: false }),
       condition: function(data) {
         return data.numArms == 3;
       },

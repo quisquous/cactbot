@@ -11,12 +11,12 @@
   triggers: [
     {
       id: 'Qitana Stonefist',
-      regex: Regexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
-      regexDe: Regexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
-      regexFr: Regexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
-      regexJa: Regexes.startsUsing({ id: '3C89', source: 'ロツァトル' }),
-      regexCn: Regexes.startsUsing({ id: '3C89', source: '洛查特尔' }),
-      regexKo: Regexes.startsUsing({ id: '3C89', source: '로차틀' }),
+      netRegex: NetRegexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C89', source: 'Lozatl' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C89', source: 'ロツァトル' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C89', source: '洛查特尔' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C89', source: '로차틀' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -24,12 +24,12 @@
     },
     {
       id: 'Qitana Scorn',
-      regex: Regexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3C8B', source: 'ロツァトル', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3C8B', source: '洛查特尔', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3C8B', source: '로차틀', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C8B', source: 'ロツァトル', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C8B', source: '洛查特尔', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C8B', source: '로차틀', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -37,12 +37,12 @@
     },
     {
       id: 'Qitana Eerie Pillar',
-      regex: Regexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3C8B', source: 'ロツァトル', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3C8B', source: '洛查特尔', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3C8B', source: '로차틀', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C8B', source: 'Lozatl', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C8B', source: 'ロツァトル', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C8B', source: '洛查特尔', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C8B', source: '로차틀', capture: false }),
       delaySeconds: 5,
       infoText: {
         en: 'Look for pillar',
@@ -54,12 +54,12 @@
     },
     {
       id: 'Qitana Heat Up Right',
-      regex: Regexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3C8D', source: 'ロツァトル', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3C8D', source: '洛查特尔', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3C8D', source: '로차틀', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C8D', source: 'Lozatl', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C8D', source: 'ロツァトル', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C8D', source: '洛查特尔', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C8D', source: '로차틀', capture: false }),
       delaySeconds: 6,
       durationSeconds: 6,
       infoText: {
@@ -72,12 +72,12 @@
     },
     {
       id: 'Qitana Heat Up Left',
-      regex: Regexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3C8E', source: 'ロツァトル', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3C8E', source: '洛查特尔', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3C8E', source: '로차틀', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C8E', source: 'Lozatl', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C8E', source: 'ロツァトル', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C8E', source: '洛查特尔', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C8E', source: '로차틀', capture: false }),
       delaySeconds: 6,
       durationSeconds: 6,
       infoText: {
@@ -90,12 +90,12 @@
     },
     {
       id: 'Qitana Ripper Fang',
-      regex: Regexes.startsUsing({ id: '3C91', source: 'Batsquatch' }),
-      regexDe: Regexes.startsUsing({ id: '3C91', source: 'Fledersquatch' }),
-      regexFr: Regexes.startsUsing({ id: '3C91', source: 'Batsquatch' }),
-      regexJa: Regexes.startsUsing({ id: '3C91', source: 'バッツカッチ' }),
-      regexCn: Regexes.startsUsing({ id: '3C91', source: '大脚野蝠' }),
-      regexKo: Regexes.startsUsing({ id: '3C91', source: '배츠콰치' }),
+      netRegex: NetRegexes.startsUsing({ id: '3C91', source: 'Batsquatch' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C91', source: 'Fledersquatch' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C91', source: 'Batsquatch' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C91', source: 'バッツカッチ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C91', source: '大脚野蝠' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C91', source: '배츠콰치' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -103,12 +103,12 @@
     },
     {
       id: 'Qitana Soundwave',
-      regex: Regexes.startsUsing({ id: '3C92', source: 'Batsquatch', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3C92', source: 'Fledersquatch', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3C92', source: 'Batsquatch', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3C92', source: 'バッツカッチ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3C92', source: '大脚野蝠', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3C92', source: '배츠콰치', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3C92', source: 'Batsquatch', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C92', source: 'Fledersquatch', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C92', source: 'Batsquatch', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C92', source: 'バッツカッチ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C92', source: '大脚野蝠', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C92', source: '배츠콰치', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -116,12 +116,12 @@
     },
     {
       id: 'Qitana Subsonics',
-      regex: Regexes.startsUsing({ id: '3C93', source: 'Batsquatch', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3C93', source: 'Fledersquatch', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3C93', source: 'Batsquatch', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3C93', source: 'バッツカッチ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3C93', source: '大脚野蝠', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3C93', source: '배츠콰치', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3C93', source: 'Batsquatch', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C93', source: 'Fledersquatch', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C93', source: 'Batsquatch', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C93', source: 'バッツカッチ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C93', source: '大脚野蝠', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C93', source: '배츠콰치', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -129,12 +129,12 @@
     },
     {
       id: 'Qitana Rend',
-      regex: Regexes.startsUsing({ id: '3C99', source: 'Eros' }),
-      regexDe: Regexes.startsUsing({ id: '3C99', source: 'Eros' }),
-      regexFr: Regexes.startsUsing({ id: '3C99', source: 'Éros' }),
-      regexJa: Regexes.startsUsing({ id: '3C99', source: 'エロース' }),
-      regexCn: Regexes.startsUsing({ id: '3C99', source: '艾洛斯' }),
-      regexKo: Regexes.startsUsing({ id: '3C99', source: '에로스' }),
+      netRegex: NetRegexes.startsUsing({ id: '3C99', source: 'Eros' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C99', source: 'Eros' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C99', source: 'Éros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C99', source: 'エロース' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C99', source: '艾洛斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C99', source: '에로스' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -142,12 +142,12 @@
     },
     {
       id: 'Qitana Glossolalia',
-      regex: Regexes.startsUsing({ id: '3C9B', source: 'Eros', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3C9B', source: 'Eros', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3C9B', source: 'Éros', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3C9B', source: 'エロース', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3C9B', source: '艾洛斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3C9B', source: '에로스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3C9B', source: 'Eros', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3C9B', source: 'Eros', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3C9B', source: 'Éros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3C9B', source: 'エロース', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3C9B', source: '艾洛斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3C9B', source: '에로스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -155,12 +155,12 @@
     },
     {
       id: 'Qitana Hound Tether',
-      regex: Regexes.tether({ id: '0039', source: 'Eros' }),
-      regexDe: Regexes.tether({ id: '0039', source: 'Eros' }),
-      regexFr: Regexes.tether({ id: '0039', source: 'Éros' }),
-      regexJa: Regexes.tether({ id: '0039', source: 'エロース' }),
-      regexCn: Regexes.tether({ id: '0039', source: '艾洛斯' }),
-      regexKo: Regexes.tether({ id: '0039', source: '에로스' }),
+      netRegex: NetRegexes.tether({ id: '0039', source: 'Eros' }),
+      netRegexDe: NetRegexes.tether({ id: '0039', source: 'Eros' }),
+      netRegexFr: NetRegexes.tether({ id: '0039', source: 'Éros' }),
+      netRegexJa: NetRegexes.tether({ id: '0039', source: 'エロース' }),
+      netRegexCn: NetRegexes.tether({ id: '0039', source: '艾洛斯' }),
+      netRegexKo: NetRegexes.tether({ id: '0039', source: '에로스' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -174,7 +174,7 @@
     },
     {
       id: 'Qitana Viper Poison',
-      regex: Regexes.headMarker({ id: '00AB' }),
+      netRegex: NetRegexes.headMarker({ id: '00AB' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -188,17 +188,17 @@
     },
     {
       id: 'Qitana Confession of Faith Stack',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn('alert'),
     },
     {
       id: 'Qitana Confession of Faith Spread',
-      regex: Regexes.startsUsing({ id: '3CA1', source: 'Eros', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3CA1', source: 'Eros', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3CA1', source: 'Éros', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3CA1', source: 'エロース', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3CA1', source: '艾洛斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3CA1', source: '에로스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3CA1', source: 'Eros', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3CA1', source: 'Eros', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3CA1', source: 'Éros', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3CA1', source: 'エロース', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3CA1', source: '艾洛斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3CA1', source: '에로스', capture: false }),
       alertText: {
         en: 'Spread to Sides',
         de: 'Auf die Seiten verteilen',

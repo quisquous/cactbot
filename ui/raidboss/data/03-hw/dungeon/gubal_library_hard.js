@@ -37,12 +37,12 @@
   triggers: [
     {
       id: 'Gubal Hard Bibliocide',
-      regex: Regexes.startsUsing({ id: '1945', source: 'Liquid Flame', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '1945', source: 'flüssig(?:e|er|es|en) Flamme', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '1945', source: 'Flamme Liquide', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '1945', source: 'リクイドフレイム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1945', source: 'Liquid Flame', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1945', source: 'flüssig(?:e|er|es|en) Flamme', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1945', source: 'Flamme Liquide', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1945', source: 'リクイドフレイム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1945', source: '液态火焰', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1945', source: '액체 불꽃', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -50,7 +50,7 @@
     },
     {
       id: 'Gubal Hard Ferrofluid',
-      regex: Regexes.headMarker({ id: ['0030', '0031'] }),
+      netRegex: NetRegexes.headMarker({ id: ['0030', '0031'] }),
       condition: function(data, matches) {
         return data.me == matches.target || matches.targetId.slice(0, 1) == '4';
       },
@@ -81,12 +81,12 @@
     },
     {
       id: 'Gubal Hard Slosh',
-      regex: Regexes.tether({ id: '0039', source: 'Liquid Flame' }),
-      regexDe: Regexes.tether({ id: '0039', source: 'Flüssig(?:e|er|es|en) Flamme' }),
-      regexFr: Regexes.tether({ id: '0039', source: 'Flamme Liquide' }),
-      regexJa: Regexes.tether({ id: '0039', source: 'リクイドフレイム' }),
-      regexCn: Regexes.tether({ id: '0039', source: '液态火焰' }),
-      regexKo: Regexes.tether({ id: '0039', source: '액체 불꽃' }),
+      netRegex: NetRegexes.tether({ id: '0039', source: 'Liquid Flame' }),
+      netRegexDe: NetRegexes.tether({ id: '0039', source: 'Flüssig(?:e|er|es|en) Flamme' }),
+      netRegexFr: NetRegexes.tether({ id: '0039', source: 'Flamme Liquide' }),
+      netRegexJa: NetRegexes.tether({ id: '0039', source: 'リクイドフレイム' }),
+      netRegexCn: NetRegexes.tether({ id: '0039', source: '液态火焰' }),
+      netRegexKo: NetRegexes.tether({ id: '0039', source: '액체 불꽃' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -126,12 +126,12 @@
     {
       // This inflicts a vulnerability stack on the tank if not interrupted
       id: 'Gubal Hard Condensed Libra',
-      regex: Regexes.startsUsing({ id: '198D', source: 'Mechanoscribe', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '198D', source: 'Mechanoscholar', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '198D', source: 'Mécano-Scribe', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '198D', source: 'メカノスクライブ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '198D', source: '自走人偶抄写员', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '198D', source: '기계 서기', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '198D', source: 'Mechanoscribe', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '198D', source: 'Mechanoscholar', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '198D', source: 'Mécano-Scribe', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '198D', source: 'メカノスクライブ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '198D', source: '自走人偶抄写员', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '198D', source: '기계 서기', capture: false }),
       infoText: function(data) {
         if (data.CanSilence()) {
           return {
@@ -153,12 +153,12 @@
     },
     {
       id: 'Gubal Hard Properties of Quakes',
-      regex: Regexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '1956', source: 'ストリックス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '1956', source: '博学林鸮', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '1956', source: '스트릭스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1956', source: 'Strix', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1956', source: 'ストリックス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1956', source: '博学林鸮', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1956', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Stand in light circle',
         de: 'Im hellen Kreis stehen',
@@ -168,12 +168,12 @@
     },
     {
       id: 'Gubal Hard Properties of Tornadoes',
-      regex: Regexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '1957', source: 'ストリックス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '1957', source: '博学林鸮', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '1957', source: '스트릭스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1957', source: 'Strix', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1957', source: 'ストリックス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1957', source: '博学林鸮', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1957', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Stand in dark circle',
         de: 'Im dunklen Kreis stehen',
@@ -183,12 +183,12 @@
     },
     {
       id: 'Gubal Hard Properties of Imps',
-      regex: Regexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '1959', source: 'ストリックス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '1959', source: '博学林鸮', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '1959', source: '스트릭스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1959', source: 'Strix', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1959', source: 'ストリックス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1959', source: '博学林鸮', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1959', source: '스트릭스', capture: false }),
       infoText: {
         en: 'Cleanse in green circle',
         de: 'Im grünen Kreis reinigen',
@@ -198,22 +198,22 @@
     },
     {
       id: 'Gubal Hard Properties of Thunder',
-      regex: Regexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '195A', source: 'ストリックス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '195A', source: '博学林鸮', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '195A', source: '스트릭스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '195A', source: 'Strix', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '195A', source: 'ストリックス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '195A', source: '博学林鸮', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '195A', source: '스트릭스', capture: false }),
       response: Responses.spread(),
     },
     {
       id: 'Gubal Hard Properties of Darkness II',
-      regex: Regexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '1955', source: 'ストリックス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1955', source: 'Strix', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1955', source: 'ストリックス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1955', source: '博学林鸮', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1955', source: '스트릭스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -221,12 +221,12 @@
     },
     {
       id: 'Gubal Hard Ecliptic Meteor',
-      regex: Regexes.startsUsing({ id: '195D', source: 'Behemoth Ward', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '195D', source: 'Buch-Behemoth', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '195D', source: 'Béhémoth Conjuré', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '195D', source: 'ベヒーモス・ワード', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '195D', source: '贝希摩斯护卫', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '195D', source: '고서의 베히모스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '195D', source: 'Behemoth Ward', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '195D', source: 'Buch-Behemoth', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '195D', source: 'Béhémoth Conjuré', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '195D', source: 'ベヒーモス・ワード', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '195D', source: '贝希摩斯护卫', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '195D', source: '고서의 베히모스', capture: false }),
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
       alertText: {
         en: 'Hide behind boulder',

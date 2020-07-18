@@ -12,32 +12,32 @@
   triggers: [
     {
       id: 'Tsukuyomi Nightfall Gun',
-      regex: Regexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2BBC', source: 'ツクヨミ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2BBC', source: '月读', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2BBC', source: '츠쿠요미', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2BBC', source: 'Tsukuyomi', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2BBC', source: 'ツクヨミ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2BBC', source: '月读', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2BBC', source: '츠쿠요미', capture: false }),
       response: Responses.stack(),
     },
     {
       id: 'Tsukuyomi Nightfall Spear',
-      regex: Regexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2BBD', source: 'ツクヨミ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2BBD', source: '月读', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2BBD', source: '츠쿠요미', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2BBD', source: 'Tsukuyomi', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2BBD', source: 'ツクヨミ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2BBD', source: '月读', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2BBD', source: '츠쿠요미', capture: false }),
       response: Responses.spread(),
     },
     {
       id: 'Tsukuyomi Torment',
-      regex: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
-      regexDe: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
-      regexFr: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
-      regexJa: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'ツクヨミ' }),
-      regexCn: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: '月读' }),
-      regexKo: Regexes.startsUsing({ id: ['2BBB', '2EB2'], source: '츠쿠요미' }),
+      netRegex: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'Tsukuyomi' }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'ツクヨミ' }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '月读' }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '츠쿠요미' }),
       alarmText: function(data, matches) {
         if (matches.target == data.me || data.role != 'tank')
           return;
@@ -134,12 +134,12 @@
     },
     {
       id: 'Tsukuyomi Dark Blade',
-      regex: Regexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2BDA', source: 'ツクヨミ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2BDA', source: '月读', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2BDA', source: 'Tsukuyomi', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2BDA', source: 'ツクヨミ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2BDA', source: '月读', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
       infoText: function(data) {
         return {
           en: 'Left + ' + data.moonInOut,
@@ -152,12 +152,12 @@
     },
     {
       id: 'Tsukuyomi Bright Blade',
-      regex: Regexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2BDB', source: 'ツクヨミ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2BDB', source: '月读', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2BDB', source: 'Tsukuyomi', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2BDB', source: 'ツクヨミ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2BDB', source: '月读', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
       infoText: function(data) {
         return {
           en: 'Right + ' + data.moonInOut,
@@ -170,7 +170,7 @@
     },
     {
       id: 'Tsukuyomi Meteor Marker',
-      regex: Regexes.headMarker({ id: '0083' }),
+      netRegex: NetRegexes.headMarker({ id: '0083' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -178,12 +178,12 @@
     },
     {
       id: 'Tsukuyomi Lunacy',
-      regex: Regexes.headMarker({ id: '003E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       response: Responses.stack(),
     },
     {
       id: 'Tsukuyomi Hagetsu',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -194,22 +194,22 @@
       // There's no "starts using" here.  She pushes at 35% to this ability.
       // This happens after 2nd meteors naturally, but if dps is good
       // then this could push unexpectedly earlier (or paired with buster).
-      regex: Regexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\..*?', capture: false }),
-      regexFr: Regexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\..*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '[^:]*:嗚呼、まだ、あたしは…………。.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:我不能输.*我还没有.*.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '[^:]*:아아, 나는 아직……\..*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: '[^:]*:No\. No\.\.\. Not yet\. Not\. Yet\..*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: '[^:]*:Meine Rache \.\.\. Ich will\.\.\. meine Rache\.\.\..*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: '[^:]*:Non\, je ne peux pas\.\.\. échouer\.\.\..*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '[^:]*:嗚呼、まだ、あたしは…………。.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '[^:]*:我不能输.*我还没有.*.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '[^:]*:아아, 나는 아직……\..*?', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'Tsukuyomi Supreme Selenomancy',
-      regex: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
-      regexDe: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
-      regexFr: Regexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
-      regexJa: Regexes.ability({ source: 'ツクヨミ', id: '2EB0', capture: false }),
-      regexCn: Regexes.ability({ source: '月读', id: '2EB0', capture: false }),
-      regexKo: Regexes.ability({ source: '츠쿠요미', id: '2EB0', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Tsukuyomi', id: '2EB0', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ツクヨミ', id: '2EB0', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '月读', id: '2EB0', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '츠쿠요미', id: '2EB0', capture: false }),
       suppressSeconds: 5,
       run: function(data) {
         delete data.moonlitCount;

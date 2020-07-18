@@ -11,23 +11,23 @@
   triggers: [
     {
       id: 'Sohm Al Myath Stack',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       response: Responses.stackOn(),
     },
     {
       id: 'Sohm Al Myath Spread',
-      regex: Regexes.headMarker({ id: '00AE' }),
+      netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'Sohm Al Myath Chyme',
-      regex: Regexes.addedCombatant({ name: 'Chyme Of The Mountain', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Gebirgsbrei', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Chyme Des Montagnes', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'キームス・マウンテン', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '圣山之糜', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '산의 유미즙', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Chyme Of The Mountain', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Gebirgsbrei', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Chyme Des Montagnes', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'キームス・マウンテン', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '圣山之糜', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '산의 유미즙', capture: false }),
       alertText: {
         en: 'Kill Chyme Add',
         de: 'Brei Add töten',
@@ -43,7 +43,7 @@
     },
     {
       id: 'Sohm Al Tioman Meteor',
-      regex: Regexes.headMarker({ id: '0007' }),
+      netRegex: NetRegexes.headMarker({ id: '0007' }),
       condition: Conditions.targetIsYou(),
       response: Responses.meteorOnYou(),
     },

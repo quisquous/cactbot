@@ -9,7 +9,7 @@
   triggers: [
     {
       id: 'T2 High Voltage',
-      regex: Regexes.startsUsing({ id: '4C0' }),
+      netRegex: NetRegexes.startsUsing({ id: '4C0' }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -17,7 +17,7 @@
     },
     {
       id: 'T2 Ballast',
-      regex: Regexes.startsUsing({ id: '4C5', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4C5', capture: false }),
       suppressSeconds: 3,
       response: Responses.getBehind(),
     },

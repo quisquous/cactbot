@@ -25,19 +25,19 @@
   triggers: [
     {
       id: 'A12S Punishing Heat',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19E9' }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19E9' }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19E9' }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19E9' }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19E9' }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19E9' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19E9' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19E9' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19E9' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19E9' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19E9' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19E9' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
       // Applies to both holy and blazing scourge.
       id: 'A12S Holy Blazing Scourge You',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: function(data, matches) {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
@@ -53,7 +53,7 @@
     },
     {
       id: 'A12S Blazing Scourge Collect',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: function(data, matches) {
         data.scourge = data.scourge || [];
         data.scourge.push(matches.target);
@@ -61,7 +61,7 @@
     },
     {
       id: 'A12S Blazing Scourge Report',
-      regex: Regexes.headMarker({ id: '001E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: function(data) {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
@@ -89,28 +89,28 @@
     },
     {
       id: 'A12S Mega Holy',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19EE', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19EE', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19EE', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EE', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19EE', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19EE', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19EE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19EE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EE', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19EE', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19EE', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'A12S Incinerating Heat',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn(),
     },
     {
       id: 'A12S Laser Sacrament',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19EB', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19EB', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EB', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19EB', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19EB', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19EB', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19EB', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EB', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19EB', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19EB', capture: false }),
       infoText: {
         en: 'Lasers',
         de: 'Laser',
@@ -120,17 +120,17 @@
     },
     {
       id: 'A12S Radiant Sacrament',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19ED', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19ED', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19ED', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19ED', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19ED', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19ED', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19ED', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19ED', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19ED', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19ED', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19ED', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19ED', capture: false }),
       response: Responses.getUnder('alert'),
     },
     {
       id: 'A12S House Arrest',
-      regex: Regexes.tether({ id: '001C' }),
+      netRegex: NetRegexes.tether({ id: '001C' }),
       condition: function(data, matches) {
         return matches.source == data.me || matches.target == data.me;
       },
@@ -149,7 +149,7 @@
     },
     {
       id: 'A12S Restraining Order',
-      regex: Regexes.tether({ id: '001D' }),
+      netRegex: NetRegexes.tether({ id: '001D' }),
       condition: function(data, matches) {
         return matches.source == data.me || matches.target == data.me;
       },
@@ -194,7 +194,7 @@
     },
     {
       id: 'A12S Judgment Crystal',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Crystal on YOU',
@@ -207,12 +207,12 @@
     },
     {
       id: 'A12S Holy Scourge',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '1A0B', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '1A0B', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '1A0B', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0B', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1A0B', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1A0B', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer' || data.job == 'blu') {
           return {
@@ -228,22 +228,22 @@
     },
     {
       id: 'A12S Chastening Heat',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '1A0D' }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '1A0D' }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '1A0D' }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0D' }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '1A0D' }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '1A0D' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0D' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1A0D' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1A0D' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0D' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0D' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0D' }),
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'A12S Communion Tether',
-      regex: Regexes.tether({ source: 'Alexander', id: '0036' }),
-      regexDe: Regexes.tether({ source: 'Alexander', id: '0036' }),
-      regexFr: Regexes.tether({ source: 'Alexander', id: '0036' }),
-      regexJa: Regexes.tether({ source: 'アレキサンダー', id: '0036' }),
-      regexCn: Regexes.tether({ source: '亚历山大', id: '0036' }),
-      regexKo: Regexes.tether({ source: '알렉산더', id: '0036' }),
+      netRegex: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
+      netRegexDe: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
+      netRegexFr: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
+      netRegexJa: NetRegexes.tether({ source: 'アレキサンダー', id: '0036' }),
+      netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
+      netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Puddle Tether on YOU',

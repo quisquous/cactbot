@@ -11,12 +11,12 @@
   triggers: [
     {
       id: 'E1N Eden\'s Gravity',
-      regex: Regexes.startsUsing({ id: '3D94', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D94', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D94', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D94', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D94', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D94', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D94', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D94', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D94', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D94', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D94', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D94', source: '에덴 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -24,12 +24,12 @@
     },
     {
       id: 'E1N Fragor Maximus',
-      regex: Regexes.startsUsing({ id: '3DA4', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DA4', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DA4', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DA4', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DA4', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DA4', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DA4', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DA4', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DA4', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DA4', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DA4', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DA4', source: '에덴 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -37,12 +37,12 @@
     },
     {
       id: 'E1N Dimensional Shift',
-      regex: Regexes.startsUsing({ id: '3D9C', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D9C', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D9C', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D9C', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D9C', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D9C', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D9C', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D9C', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D9C', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D9C', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D9C', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D9C', source: '에덴 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -50,22 +50,22 @@
     },
     {
       id: 'E1N Eden\'s Flare',
-      regex: Regexes.startsUsing({ id: '3D97', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D97', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D97', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D97', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D97', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D97', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D97', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D97', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D97', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D97', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D97', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D97', source: '에덴 프라임', capture: false }),
       response: Responses.getUnder('alert'),
     },
     {
       id: 'E1N Vice of Vanity You',
-      regex: Regexes.tether({ id: '0011', target: 'Eden Prime' }),
-      regexDe: Regexes.tether({ id: '0011', target: 'Prim-Eden' }),
-      regexFr: Regexes.tether({ id: '0011', target: 'Primo-Éden' }),
-      regexJa: Regexes.tether({ id: '0011', target: 'エデン・プライム' }),
-      regexCn: Regexes.tether({ id: '0011', target: '至尊伊甸' }),
-      regexKo: Regexes.tether({ id: '0011', target: '에덴 프라임' }),
+      netRegex: NetRegexes.tether({ id: '0011', target: 'Eden Prime' }),
+      netRegexDe: NetRegexes.tether({ id: '0011', target: 'Prim-Eden' }),
+      netRegexFr: NetRegexes.tether({ id: '0011', target: 'Primo-Éden' }),
+      netRegexJa: NetRegexes.tether({ id: '0011', target: 'エデン・プライム' }),
+      netRegexCn: NetRegexes.tether({ id: '0011', target: '至尊伊甸' }),
+      netRegexKo: NetRegexes.tether({ id: '0011', target: '에덴 프라임' }),
       condition: function(data, matches) {
         return data.me == matches.source;
       },
@@ -79,12 +79,12 @@
     },
     {
       id: 'E1N Spear Of Paradise',
-      regex: Regexes.startsUsing({ id: '3DA1', source: 'Eden Prime' }),
-      regexDe: Regexes.startsUsing({ id: '3DA1', source: 'Prim-Eden' }),
-      regexFr: Regexes.startsUsing({ id: '3DA1', source: 'Primo-Éden' }),
-      regexJa: Regexes.startsUsing({ id: '3DA1', source: 'エデン・プライム' }),
-      regexCn: Regexes.startsUsing({ id: '3DA1', source: '至尊伊甸' }),
-      regexKo: Regexes.startsUsing({ id: '3DA1', source: '에덴 프라임' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DA1', source: 'Eden Prime' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DA1', source: 'Prim-Eden' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DA1', source: 'Primo-Éden' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DA1', source: 'エデン・プライム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DA1', source: '至尊伊甸' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DA1', source: '에덴 프라임' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
@@ -92,7 +92,7 @@
     },
     {
       id: 'E1N Vice of Apathy Mark',
-      regex: Regexes.headMarker({ id: '001C' }),
+      netRegex: NetRegexes.headMarker({ id: '001C' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -107,12 +107,12 @@
     {
       // 10.5 second cast, maybe warn 6 seconds ahead so that folks bait outside.
       id: 'E1N Pure Light',
-      regex: Regexes.startsUsing({ id: '3DA3', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DA3', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DA3', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DA3', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DA3', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DA3', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DA3', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DA3', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DA3', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DA3', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DA3', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DA3', source: '에덴 프라임', capture: false }),
       delaySeconds: 4.5,
       response: Responses.getBehind(),
     },

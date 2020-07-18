@@ -11,17 +11,17 @@
   triggers: [
     {
       id: 'O6N Demonic Shear',
-      regex: Regexes.startsUsing({ id: '282A', source: 'Demon Chadarnook' }),
-      regexDe: Regexes.startsUsing({ id: '282A', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
-      regexFr: Regexes.startsUsing({ id: '282A', source: 'Démon Chadarnouk' }),
-      regexJa: Regexes.startsUsing({ id: '282A', source: 'チャダルヌーク・デーモン' }),
-      regexCn: Regexes.startsUsing({ id: '282A', source: '恶魔查达奴克' }),
-      regexKo: Regexes.startsUsing({ id: '282A', source: '차다르누크 악령' }),
+      netRegex: NetRegexes.startsUsing({ id: '282A', source: 'Demon Chadarnook' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '282A', source: 'Gefallen(?:e|er|es|en) Chadarnook' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '282A', source: 'Démon Chadarnouk' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '282A', source: 'チャダルヌーク・デーモン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '282A', source: '恶魔查达奴克' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '282A', source: '차다르누크 악령' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'O6N Meteors',
-      regex: Regexes.headMarker({ id: '0001' }),
+      netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },

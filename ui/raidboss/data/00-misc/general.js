@@ -7,7 +7,7 @@
   triggers: [
     {
       id: 'General Provoke',
-      regex: Regexes.ability({ id: '1D6D' }),
+      netRegex: NetRegexes.ability({ id: '1D6D' }),
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -27,7 +27,7 @@
     },
     {
       id: 'General Frog Legs',
-      regex: Regexes.ability({ id: '4783' }),
+      netRegex: NetRegexes.ability({ id: '4783' }),
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -48,7 +48,7 @@
     },
     {
       id: 'General Shirk',
-      regex: Regexes.ability({ id: '1D71' }),
+      netRegex: NetRegexes.ability({ id: '1D71' }),
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -68,7 +68,7 @@
     },
     {
       id: 'General Holmgang',
-      regex: Regexes.ability({ id: '2B' }),
+      netRegex: NetRegexes.ability({ id: '2B' }),
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -88,7 +88,7 @@
     },
     {
       id: 'General Hallowed',
-      regex: Regexes.ability({ id: '1E' }),
+      netRegex: NetRegexes.ability({ id: '1E' }),
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -108,7 +108,7 @@
     },
     {
       id: 'General Superbolide',
-      regex: Regexes.ability({ id: '3F18' }),
+      netRegex: NetRegexes.ability({ id: '3F18' }),
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -128,7 +128,7 @@
     },
     {
       id: 'General Living',
-      regex: Regexes.ability({ id: 'E36' }),
+      netRegex: NetRegexes.ability({ id: 'E36' }),
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
@@ -168,12 +168,12 @@
     },
     {
       id: 'General Ready Check',
-      regex: Regexes.gameLog({ line: '(?:\\y{Name} has initiated|You have commenced) a ready check\..*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: '(?:\\y{Name} hat|Du hast) eine Bereitschaftsanfrage gestellt\..*?', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Un appel de préparation a été lancé par \y{Name}\..*?', capture: false }),
-      regexJa: Regexes.gameLog({ line: '(?:\\y{Name}が)?レディチェックを開始しました。.*?', capture: false }),
-      regexCn: Regexes.gameLog({ line: '\\y{Name}?发起了准备确认.*?', capture: false }),
-      regexKo: Regexes.gameLog({ line: '\\y{Name} 님이 준비 확인을 시작했습니다\.|준비 확인을 시작합니다\..*?', capture: false }),
+      netRegex: NetRegexes.gameLog({ line: '(?:\\y{Name} has initiated|You have commenced) a ready check\..*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: '(?:\\y{Name} hat|Du hast) eine Bereitschaftsanfrage gestellt\..*?', capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'Un appel de préparation a été lancé par \y{Name}\..*?', capture: false }),
+      netRegexJa: NetRegexes.gameLog({ line: '(?:\\y{Name}が)?レディチェックを開始しました。.*?', capture: false }),
+      netRegexCn: NetRegexes.gameLog({ line: '\\y{Name}?发起了准备确认.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '\\y{Name} 님이 준비 확인을 시작했습니다\.|준비 확인을 시작합니다\..*?', capture: false }),
       sound: '../../resources/sounds/Overwatch/D.Va_-_Game_on.ogg',
       soundVolume: 0.6,
     },
