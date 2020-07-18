@@ -572,8 +572,6 @@
       'replaceText': {
         'Cleaver/Slicer': 'Schlachter/Sense',
         'Cycle Of ?': '? Chaos',
-        'Cycle of Chaos': 'Chronisches Chaos',
-        'Cycle of Retribution': 'Vergeltendes Chaos',
         'Dark Fire III': 'Dunkel-Feuga',
         'Doomvoid Cleaver': 'Nichtsmarter-Schlachter',
         'Doomvoid Guillotine': 'Nichtsmarter-Fallbeil',
@@ -604,8 +602,6 @@
         '\\?': ' ?',
         'Cleaver/Slicer': 'Couperet/Entaille',
         '(?<! )Cycle Of ?': 'Multi-taillade',
-        'Cycle of Chaos': 'Multi-taillade chaotique',
-        'Cycle of Retribution': 'Multi-taillade vengeresse',
         'Dark Fire III': 'Méga Feu ténébreux',
         'Doomvoid Cleaver': 'Couperet du néant ravageur',
         'Doomvoid Guillotine': 'Guillotine du néant ravageur',
@@ -634,8 +630,6 @@
         'Voidwalker': 'ヴォイドウォーカー',
       },
       'replaceText': {
-        'Cycle of Chaos': '混沌の連続剣',
-        'Cycle of Retribution': '復讐の連続剣',
         'Dark Fire III': 'ダークファイガ',
         'Doomvoid Cleaver': 'ドゥームヴォイド・クリーバー',
         'Doomvoid Guillotine': 'ドゥームヴォイド・ギロチン',
@@ -661,8 +655,6 @@
       },
       'replaceText': {
         'Cleaver/Slicer?': '虚无劈/虚无切?',
-        'Cycle [oO]f Chaos': '混沌连续剑',
-        'Cycle [oO]f Retribution': '复仇连续剑',
         'Cycle Of ?': '??连续剑',
         'Dark Fire III': '黑暗爆炎',
         'Doomvoid Cleaver': '末日虚无劈',
@@ -693,8 +685,6 @@
       'replaceText': {
         'Cleaver/Slicer': '살육/베기',
         'Cycle Of ?': '? 연속검',
-        'Cycle of Chaos': '혼돈의 연속검',
-        'Cycle of Retribution': '복수의 연속검',
         'Dark Fire III': '다크 파이가',
         'Doomvoid Cleaver': '파멸의 보이드 살육',
         'Doomvoid Guillotine': '파멸의 보이드 절단',

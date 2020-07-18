@@ -321,7 +321,6 @@
       'replaceSync': {
         'Archaeodemon': 'Archaeodämon',
         'command tower': 'Kommandoturm',
-        'Frostwave': 'Polarlanze',
         'I am Revelation': 'Seht die Offenbarung',
         'I am the truth from which you run': 'Die Maske zeigt euch die Macht des wahren Gottes! Fügt euch der Offenbarung!',
         'I am the lies upon which you sup': 'Die Maske zeigt euch die Macht des falschen Gottes! Fügt euch der Offenbarung!',
@@ -389,7 +388,6 @@
       'replaceSync': {
         'Archaeodemon': 'archéodémon',
         'command tower': 'tour de commandement',
-        'Frostwave': 'Vague réfrigérante',
         'Mateus, The Corrupt': 'Mateus le Corrompu',
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmal le Grand Ordonnateur',
@@ -434,12 +432,10 @@
       'replaceSync': {
         'Archaeodemon': 'アルケオデーモン',
         'command tower': '支配の塔',
-        'Frostwave': '凍てつく波動',
         'Mateus, The Corrupt': '背徳の皇帝マティウス',
         'Argath Thadalfus': '冷血剣アルガス',
         'Hashmal, Bringer Of Order': '統制者ハシュマリム ',
         'Rofocale': '人馬王ロフォカレ',
-        'The heavens tremble in my wake!': '“我が戦車の車輪は、天をも駆ける！ ゆくぞ……！”',
       },
       'replaceText': {
         'Blizzard IV': 'ブリザジャ',
@@ -479,7 +475,6 @@
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'command tower': '支配之塔',
-        'Frostwave': '寒冰波动',
         'I am Revelation': '遵从朕的神谕',
         'I am the truth from which you run': '此乃真神之力！',
         'I am the lies upon which you sup': '此乃伪神之力！',
@@ -547,7 +542,6 @@
       'replaceSync': {
         'Archaeodemon': '원시 악마',
         'command tower': '지배의 탑',
-        'Frostwave': '얼어붙은 파동',
         'I am Revelation': '신벌을 받아라',
         'I am the truth from which you run': '가면의 계시에 따라라',
         'I am the lies upon which you sup': '계시를 내리겠다',

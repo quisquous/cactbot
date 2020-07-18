@@ -425,7 +425,6 @@
         'Mustardseed': 'Senfsamen',
       },
       'replaceText': {
-        'Wood\'s Embrace': 'Umarmung des Waldes',
         'Whispering Wind': 'Flüsternde Winde',
         'Wallop': 'Eindreschen',
         'Uplift': 'Feenring',
@@ -467,10 +466,8 @@
         'Puck': 'Puck',
         'Peaseblossom': 'Fleur-de-pois',
         'Mustardseed': 'Pousse-de-moutarde',
-        'Innocence': 'Innocence',
       },
       'replaceText': {
-        'Wood\'s Embrace': 'Étreinte de la nature',
         'Whispering Wind': 'Vent susurrant',
         'War And Pease': 'La fin des haricots',
         'Wallop': 'Rossée',
@@ -513,10 +510,8 @@
         'Puck': 'パック',
         'Peaseblossom': 'ピーズブロッサム',
         'Mustardseed': 'マスタードシード',
-        'Innocence': 'イノセンス',
       },
       'replaceText': {
-        'Wood\'s Embrace': '絡みつき',
         'Whispering Wind': 'ウィスパリング・ウィンド',
         'War And Pease': '大豆爆発',
         'Wallop': '叩きつけ',
@@ -558,10 +553,8 @@
         'Puck': '帕克',
         'Peaseblossom': '豌豆花',
         'Mustardseed': '芥子',
-        'Innocence': '无瑕灵君',
       },
       'replaceText': {
-        'Wood\'s Embrace': '缠绕',
         'Whispering Wind': '细语微风',
         'War And Pease': '豌豆大爆炸',
         'Wallop': '敲击',
@@ -605,7 +598,6 @@
         'Mustardseed': '겨자씨',
       },
       'replaceText': {
-        'Wood\'s Embrace': '휘감기',
         'Whispering Wind': '속삭이는 바람',
         'War And Pease': '큰콩 폭발',
         'Wallop': '매질',

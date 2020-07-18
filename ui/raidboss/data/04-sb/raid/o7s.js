@@ -380,7 +380,6 @@
         'Guardian': 'Wächter',
         'Ultros': 'Ultros',
         'WEAPON SYSTEMS ONLINE': 'Feuerkontrollsystem aktiviert',
-        'Searing Wind': 'Gluthitze',
       },
       'replaceText': {
         'Aether Rot': 'Ätherfäule',

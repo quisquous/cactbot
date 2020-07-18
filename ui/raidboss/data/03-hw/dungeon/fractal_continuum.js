@@ -119,7 +119,6 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Aetherochemical Bomb': 'Ätherochemischer Sprengkörper',
         'Clockwork Alarum': 'Uhrwerk-Alarm',
         'Exhibit level III': 'Ausstellungssektor III',
         'Minotaur': 'Minotaurus',
@@ -152,7 +151,6 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Aetherochemical Bomb': 'Magismobombe',
         'Clockwork Alarum': 'Alarum mécanique',
         'Exhibit level III': 'secteur d\'exposition III',
         'Minotaur': 'Minotaure',
@@ -186,7 +184,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        'Aetherochemical Bomb': '魔爆弾',
         'Clockwork Alarum': 'アラガンワーク・アラーム',
         'Exhibit level III': '第III展示区',
         'Minotaur': 'ミノタウロス',
@@ -220,7 +217,6 @@
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
-        'Aetherochemical Bomb': '魔炸弹',
         'Clockwork Alarum': '发条报警虫',
         'Exhibit level III': '第三展示区',
         'Minotaur': '弥诺陶洛斯',
@@ -253,7 +249,6 @@
     {
       'locale': 'ko',
       'replaceSync': {
-        'Aetherochemical Bomb': '마폭탄',
         'Clockwork Alarum': '알라그 태엽경보장치',
         'Exhibit level III': '제III전시구역',
         'Minotaur': '미노타우로스',

@@ -262,7 +262,6 @@
         'The Chamber of Celestial Song': 'Großen Vergnügungen',
         'The Font of Quintessence': 'Broderieparterre',
         'The Martial Court': 'Kleinen Stufenarkade',
-        'Lover\'s Ring': 'Keim Des Geliebten',
       },
       'replaceText': {
         'Black Flame': 'Finsterer Flammenwind',
@@ -295,7 +294,6 @@
       'replaceSync': {
         'Enslaved Love': 'Amour Asservi',
         'Leannan Sith': 'Leannan Sith',
-        'Lover\'s Ring': 'Bague De L\'Amoureux',
         'Lugus': 'Lugus',
         'Seeker of Solitude': 'Ermite du Palais',
         'The Martial Court': 'La Cour martiale',

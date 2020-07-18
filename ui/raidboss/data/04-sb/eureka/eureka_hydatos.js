@@ -1077,7 +1077,6 @@
         'Umbral Essence': 'Arm der Dunkelheit',
         'Whirling Zantetsuken': 'Sen-Zantetsuken',
         'Wyvern Explosion': 'Wyvern Explosion',
-
       },
     },
     {
