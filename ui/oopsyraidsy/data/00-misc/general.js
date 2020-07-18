@@ -49,6 +49,7 @@ let missedFunc = (args) => {
           blame: sourceName,
           text: {
             en: thingName + ' missed ' + missed.map((x) => data.ShortName(x)).join(', '),
+            de: thingName + ' verfehlt ' + missed.map((x) => data.ShortName(x)).join(', '),
           },
         };
       }
@@ -59,6 +60,7 @@ let missedFunc = (args) => {
         blame: sourceName,
         text: {
           en: thingName + ' missed ' + missed.length + ' people',
+          de: thingName + ' verfehlte ' + missed.length + ' Personen',
         },
       };
     },
