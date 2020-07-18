@@ -1568,28 +1568,28 @@ class Bars {
   // I know that part is really poor, but better than nothing.
   setupSch() {
     let gcd = kUnknownGCD;
-  
+
     let BioBox = this.addProcBox({
       id: 'sch-procs-Bio',
       fgColor: 'sch-color-bio',
       scale: gcd,
       threshold: gcd + 1,
     });
-  
+
     let AetherflowBox = this.addProcBox({
       id: 'sch-procs-Aetherflow',
       fgColor: 'sch-color-aetherflow',
       scale: gcd,
-      threshold: gcd * 3, //you need at most 3 gcd to cast all 3 stacks out
+      threshold: gcd * 3, // you need at most 3 gcd to cast all 3 stacks out
     });
-  
+
     let LucidDreamingBox = this.addProcBox({
       id: 'sch-procs-LucidDreaming',
       fgColor: 'sch-color-lucid',
       scale: gcd,
       threshold: gcd + 1,
     });
-  
+
     this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
       BioBox.duration = 0;
       BioBox.duration = 30;
@@ -1602,7 +1602,7 @@ class Bars {
       LucidDreamingBox.duration = 0;
       LucidDreamingBox.duration = 60;
     };
-  
+
     this.statChangeFuncMap['SCH'] = () => {
       BioBox.valuescale = this.gcdSpell();
       BioBox.threshold = this.gcdSpell() + 1;
@@ -1612,7 +1612,7 @@ class Bars {
       LucidDreamingBox.threshold = this.gcdSpell() + 1;
     };
   }
-  
+
   setupMnk() {
     let lightningTimer = this.addTimerBar({
       id: 'mnk-timers-lightning',
@@ -1697,7 +1697,8 @@ class Bars {
     };
     this.abilityFuncMap[gLang.kAbility.Demolish] = () => {
       demolishBox.duration = 0;
-      //it start counting down when you cast demolish, but DOT appears on enemy about 1 second later.
+      // it start counting down when you cast demolish, 
+      // but DOT appears on target about 1 second later.
       demolishBox.duration = 19; 
     };
     this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = () => {
