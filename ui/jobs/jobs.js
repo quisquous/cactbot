@@ -1595,7 +1595,7 @@ class Bars {
     this.jobFuncs.push((jobDetail) => {
       let aetherflow = jobDetail.aetherflowStacks;
       aetherflowstackBox.innerText = aetherflow;
-
+      aetherflowBox.threshold = gcd * aetherflow;
 
       let p = aetherflowstackBox.parentNode;
       let s = parseFloat(aetherflowBox.duration) - parseFloat(aetherflowBox.elapsed);
@@ -1632,7 +1632,6 @@ class Bars {
       bioBox.valuescale = this.gcdSpell();
       bioBox.threshold = this.gcdSpell() + 1;
       aetherflowBox.valuescale = this.gcdSpell();
-      aetherflowBox.threshold = gcd * aetherflow;
       luciddreamingBox.valuescale = this.gcdSpell();
       luciddreamingBox.threshold = this.gcdSpell() + 1;
     };
