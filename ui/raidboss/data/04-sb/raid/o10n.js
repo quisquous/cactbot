@@ -175,6 +175,7 @@
         'Frost Breath': 'Souffle glacé',
         'Horrid Roar': 'Rugissement horrible',
         'In/Out': 'Dedans/Dehors',
+        '(?<!/)Out': 'Dehors',
         'Northern Cross': 'Croix du nord',
         'Protostar': 'Proto-étoile',
         'Spin': 'Tour horizontal',

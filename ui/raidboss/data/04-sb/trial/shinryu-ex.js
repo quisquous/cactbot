@@ -717,6 +717,7 @@
         'Right Wing': 'recht(?:e|er|es|en) Schwinge',
         'Shinryu': 'Shinryu',
         'Tail': 'Schwanz',
+        'The Worm\'s Heart': 'Shinryus Herz',
         'Icicle': 'Eiszapfen',
       },
       'replaceText': {
@@ -761,6 +762,7 @@
         'Left Wing': 'aile gauche',
         'Right Wing': 'aile droite',
         'Shinryu': 'Shinryu',
+        'The Worm\'s Heart': 'cœur du dragon',
         'Tail': 'queue',
       },
       'replaceText': {
@@ -797,6 +799,7 @@
         'Right Wing': 'ライトウィング',
         'Shinryu': '神龍',
         'Tail': '神龍の尾',
+        'The Worm\'s Heart': '神龍の心核',
       },
       'replaceText': {
         'Aerial Blast': 'エリアルブラスト',
@@ -831,6 +834,7 @@
         'Right Wing': '右翼',
         'Shinryu': '神龙',
         'Tail': '龙尾',
+        'The Worm\'s Heart': '神龙的核心',
       },
       'replaceText': {
         'Aerial Blast': '大气爆发',
@@ -874,6 +878,7 @@
         'Right Wing': '오른쪽 날개',
         'Shinryu': '신룡',
         'Tail(?! )': '신룡의 꼬리',
+        'The Worm\'s Heart': '신룡의 심핵',
       },
       'replaceText': {
         'T\\/H': '탱/힐',
