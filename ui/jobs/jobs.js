@@ -1599,9 +1599,8 @@ class Bars {
       AetherflowBox.threshold = gcd * aetherflow;
 
       let p = AetherflowRescourceBox.parentNode;
-      if (aetherflow == 3 && AetherflowBox.duration <= 15) {
-        // then to red when under 15 seconds
-        // but you even have 3 aetherflow stacks
+      if (parseFloat(aetherflow) *5 >= parseFloat(AetherflowBox.duration) - parseFloat(AetherflowBox.elapsed)) {
+        // turn red when stacks are too much before AF ready
         p.classList.add('need-to-throw');
       } else {
         p.classList.remove('need-to-throw');

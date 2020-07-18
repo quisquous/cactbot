@@ -158,6 +158,7 @@
 /* Relative to #bars */
 #rdm-boxes,
 #war-boxes,
+#sch-boxes,
 #mnk-boxes,
 #pld-boxes,
 #drk-boxes,
@@ -171,6 +172,7 @@
 
 #rdm-boxes > div,
 #war-boxes > div,
+#sch-boxes > div,
 #mnk-boxes > div,
 #pld-boxes > div,
 #drk-boxes > div,
@@ -193,6 +195,7 @@
 }
 
 #drk-boxes > div,
+#sch-boxes > div,
 #pld-boxes > div {
   width: 35px;
   height: 35px;
@@ -210,6 +213,7 @@
 
 #rdm-boxes .text,
 #war-boxes .text,
+#sch-boxes .text,
 #mnk-boxes .text,
 #pld-boxes .text,
 #drk-boxes .text,
