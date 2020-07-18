@@ -550,6 +550,10 @@
   background-color: rgb(255, 96, 207);
 }
 
+.sch-color-aetherflow.need-to-throw {
+  background-color: rgb(240, 30, 30);
+}
+
 .sch-color-lucid {
   background-color: rgb(227, 148, 210);
 }

@@ -1582,11 +1582,30 @@ class Bars {
       threshold: gcd * 3, // you need at most 3 gcd to cast all 3 stacks out
     });
 
+    let AetherflowRescourceBox = this.addResourceBox({
+      classList: ['sch-color-aetherflow'],
+    });
+
     let LucidDreamingBox = this.addProcBox({
       id: 'sch-procs-luciddreaming',
       fgColor: 'sch-color-lucid',
       scale: gcd,
       threshold: gcd + 1,
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      let aetherflow = jobDetail.aetherflowStacks;
+      AetherflowRescourceBox.innerText = aetherflow;
+      AetherflowBox.threshold = gcd * aetherflow;
+
+      let p = AetherflowRescourceBox.parentNode;
+      if (aetherflow == 3 && AetherflowBox.duration <= 15) {
+        // then to red when under 15 seconds
+        // but you even have 3 aetherflow stacks
+        p.classList.add('need-to-throw');
+      } else {
+        p.classList.remove('need-to-throw');
+      }
     });
 
     this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
@@ -1603,10 +1622,10 @@ class Bars {
     };
 
     this.statChangeFuncMap['SCH'] = () => {
+      gcd = this.gcdSpell();
       BioBox.valuescale = this.gcdSpell();
       BioBox.threshold = this.gcdSpell() + 1;
       AetherflowBox.valuescale = this.gcdSpell();
-      AetherflowBox.threshold = this.gcdSpell() * 3;
       LucidDreamingBox.valuescale = this.gcdSpell();
       LucidDreamingBox.threshold = this.gcdSpell() + 1;
     };

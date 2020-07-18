@@ -522,7 +522,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "-lf",
-        "--search_fights",
+        "--search-fights",
         nargs="?",
         const=-1,
         type=int,
