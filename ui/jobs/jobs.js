@@ -1564,7 +1564,7 @@ class Bars {
     };
   }
 
-  // (In Progress)(Need Help)this part is based on ast part, 
+  // (In Progress) (Need Help) this part is based on ast part,
   // I know that part is really poor, but better than nothing.
   setupSch() {
     let gcd = kUnknownGCD;
@@ -1697,9 +1697,9 @@ class Bars {
     };
     this.abilityFuncMap[gLang.kAbility.Demolish] = () => {
       demolishBox.duration = 0;
-      // it start counting down when you cast demolish, 
+      // it start counting down when you cast demolish,
       // but DOT appears on target about 1 second later.
-      demolishBox.duration = 19; 
+      demolishBox.duration = 19;
     };
     this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = () => {
       dragonKickBox.duration = 0;
