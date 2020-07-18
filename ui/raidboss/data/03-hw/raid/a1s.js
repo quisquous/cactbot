@@ -30,7 +30,7 @@
   triggers: [
     {
       id: 'A1S Hydrothermal Collect',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: function(data, matches) {
         data.hydro = data.hydro || [];
         data.hydro.push(matches.target);
@@ -38,7 +38,7 @@
     },
     {
       id: 'A1S Hydrothermal You',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Hydrothermal on You',
@@ -49,7 +49,7 @@
     },
     {
       id: 'A1S Hydrothermal Healer',
-      regex: Regexes.headMarker({ id: '001E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: Conditions.caresAboutMagical(),
       suppressSeconds: 2,
       infoText: function(data) {
@@ -66,7 +66,7 @@
     },
     {
       id: 'A1S Hydrothermal Cleanup',
-      regex: Regexes.headMarker({ id: '001E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       delaySeconds: 10,
       run: function(data) {
         delete data.hydro;
@@ -74,12 +74,12 @@
     },
     {
       id: 'A1S Resin Bomb',
-      regex: Regexes.startsUsing({ id: 'E46', source: 'Oppressor', capture: false }),
-      regexDe: Regexes.startsUsing({ id: 'E46', source: 'Unterdrücker', capture: false }),
-      regexFr: Regexes.startsUsing({ id: 'E46', source: 'Oppresseur', capture: false }),
-      regexJa: Regexes.startsUsing({ id: 'E46', source: 'オプレッサー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: 'E46', source: '压迫者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: 'E46', source: '억압자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: 'E46', source: 'Oppressor', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'E46', source: 'Unterdrücker', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'E46', source: 'Oppresseur', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'E46', source: 'オプレッサー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'E46', source: '压迫者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'E46', source: '억압자', capture: false }),
       infoText: {
         en: 'Bait Resin Bomb',
         de: 'Köder Pechbombe',
@@ -89,12 +89,12 @@
     },
     {
       id: 'A1S Hypercompressed Collect',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
-      regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
-      regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
-      regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
-      regexCn: Regexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
-      regexKo: Regexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
+      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
       run: function(data, matches) {
         data.hyper = data.hyper || [];
         data.hyper.push(matches.target);
@@ -102,24 +102,24 @@
     },
     {
       id: 'A1S Hypercompressed You',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
-      regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
-      regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
-      regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
-      regexCn: Regexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
-      regexKo: Regexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
+      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'] }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'] }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'] }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'] }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'] }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'] }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 2,
       response: Responses.tankBuster('alarm'),
     },
     {
       id: 'A1S Hypercompressed Other',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
-      regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
-      regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
-      regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'], capture: false }),
-      regexCn: Regexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
-      regexKo: Regexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 0.3,
       suppressSeconds: 2,
       alertText: function(data) {
@@ -142,12 +142,12 @@
     },
     {
       id: 'A1S Hypercompressed Delete',
-      regex: Regexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
-      regexDe: Regexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
-      regexFr: Regexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
-      regexJa: Regexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'], capture: false }),
-      regexCn: Regexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
-      regexKo: Regexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppressor', 'Oppressor 0\\.5'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'E4A', source: ['Unterdrücker', 'Unterdrücker 0,5'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'E4A', source: ['Oppresseur', 'Oppresseur 0\\.5'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'E4A', source: ['オプレッサー', 'オプレッサー・ゼロ'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'E4A', source: ['压迫者', '压迫者零号'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'E4A', source: ['억압자', '미완성 억압자'], capture: false }),
       delaySeconds: 10,
       run: function(data) {
         delete data.hyper;

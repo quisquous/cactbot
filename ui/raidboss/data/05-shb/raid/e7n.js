@@ -10,10 +10,10 @@
   triggers: [
     {
       id: 'E7N Empty Wave',
-      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C52', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C52', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C52', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ダークアイドル', id: '4C52', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C52', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C52', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C52', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C52', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -21,10 +21,10 @@
     },
     {
       id: 'E7N Unshadowed Stake',
-      regex: Regexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
-      regexDe: Regexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0025' }),
-      regexFr: Regexes.tether({ source: 'Idole Des Ténèbres', id: '0025' }),
-      regexJa: Regexes.tether({ source: 'ダークアイドル', id: '0025' }),
+      netRegex: NetRegexes.tether({ source: 'The Idol Of Darkness', id: '0025' }),
+      netRegexDe: NetRegexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0025' }),
+      netRegexFr: NetRegexes.tether({ source: 'Idole Des Ténèbres', id: '0025' }),
+      netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0025' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -78,10 +78,10 @@
     },
     {
       id: 'E7N Strength In Numbers Donut',
-      regex: Regexes.startsUsing({ source: 'Idolatry', id: '4C4C', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Idolatrie', id: '4C4C', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4C', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アイドラトリー', id: '4C4C', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C4C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C4C', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Teleport into donut',
@@ -94,10 +94,10 @@
       // Ordinarily we might not warn on ground AoE markers. However, there are player-dropped
       // markers just before this, so it might be difficult to see.
       id: 'E7N Strength In Numbers Circle',
-      regex: Regexes.startsUsing({ source: 'Idolatry', id: '4C4D', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Idolatrie', id: '4C4D', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4D', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アイドラトリー', id: '4C4D', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Idolatry', id: '4C4D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C4D', capture: false }),
       suppressSeconds: 1,
       response: Responses.getOut(),
     },
@@ -144,10 +144,10 @@
     {
       // Safety in case the user dies during Dark/Light Course.
       id: 'E7N Away With Thee Color Cleanup',
-      regex: Regexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C39', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C39', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ダークアイドル', id: '4C39', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Idol Of Darkness', id: '4C39', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C39', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C39', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C39', capture: false }),
       run: function(data) {
         delete data.colorCount;
       },

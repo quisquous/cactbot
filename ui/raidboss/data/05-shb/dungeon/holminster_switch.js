@@ -11,12 +11,12 @@
   triggers: [
     {
       id: 'Holminster Path of Light',
-      regex: Regexes.startsUsing({ id: '3DC5', source: 'Forgiven Dissonance', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DC5', source: 'Geläutert(?:e|er|es|en) Widerspruch', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DC5', source: 'Dissonance Pardonnée', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DC5', source: 'フォーギヴン・ディソナンス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DC5', source: '得到宽恕的失调', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DC5', source: '면죄된 불화', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DC5', source: 'Forgiven Dissonance', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DC5', source: 'Geläutert(?:e|er|es|en) Widerspruch', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DC5', source: 'Dissonance Pardonnée', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DC5', source: 'フォーギヴン・ディソナンス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DC5', source: '得到宽恕的失调', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DC5', source: '면죄된 불화', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -24,12 +24,12 @@
     },
     {
       id: 'Holminster Pillory',
-      regex: Regexes.startsUsing({ id: '3DC4', source: 'Forgiven Dissonance' }),
-      regexDe: Regexes.startsUsing({ id: '3DC4', source: 'Geläutert(?:e|er|es|en) Widerspruch' }),
-      regexFr: Regexes.startsUsing({ id: '3DC4', source: 'Dissonance Pardonnée' }),
-      regexJa: Regexes.startsUsing({ id: '3DC4', source: 'フォーギヴン・ディソナンス' }),
-      regexCn: Regexes.startsUsing({ id: '3DC4', source: '得到宽恕的失调' }),
-      regexKo: Regexes.startsUsing({ id: '3DC4', source: '면죄된 불화' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DC4', source: 'Forgiven Dissonance' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DC4', source: 'Geläutert(?:e|er|es|en) Widerspruch' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DC4', source: 'Dissonance Pardonnée' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DC4', source: 'フォーギヴン・ディソナンス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DC4', source: '得到宽恕的失调' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DC4', source: '면죄된 불화' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -37,12 +37,12 @@
     },
     {
       id: 'Holminster Tickler',
-      regex: Regexes.startsUsing({ id: '3DCF', source: 'Tesleen, The Forgiven' }),
-      regexDe: Regexes.startsUsing({ id: '3DCF', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)' }),
-      regexFr: Regexes.startsUsing({ id: '3DCF', source: 'Tesleen Pardonnée' }),
-      regexJa: Regexes.startsUsing({ id: '3DCF', source: 'フォーギヴン・テスリーン' }),
-      regexCn: Regexes.startsUsing({ id: '3DCF', source: '得到宽恕的泰丝琳' }),
-      regexKo: Regexes.startsUsing({ id: '3DCF', source: '면죄된 테슬린' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen, The Forgiven' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DCF', source: 'Tesleen Pardonnée' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DCF', source: 'フォーギヴン・テスリーン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DCF', source: '得到宽恕的泰丝琳' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DCF', source: '면죄된 테슬린' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -50,12 +50,12 @@
     },
     {
       id: 'Holminster Bridle',
-      regex: Regexes.startsUsing({ id: '3DD0', source: 'Tesleen, The Forgiven', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DD0', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DD0', source: 'Tesleen Pardonnée', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DD0', source: 'フォーギヴン・テスリーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DD0', source: '得到宽恕的泰丝琳', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DD0', source: '면죄된 테슬린', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen, The Forgiven', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DD0', source: 'Tesleen Pardonnée', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DD0', source: 'フォーギヴン・テスリーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DD0', source: '得到宽恕的泰丝琳', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DD0', source: '면죄된 테슬린', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -63,27 +63,27 @@
     },
     {
       id: 'Holminster Flagellation',
-      regex: Regexes.startsUsing({ id: '3DD5', source: 'Tesleen, The Forgiven', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DD5', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DD5', source: 'Tesleen Pardonnée', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DD5', source: 'フォーギヴン・テスリーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DD5', source: '得到宽恕的泰丝琳', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DD5', source: '면죄된 테슬린', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen, The Forgiven', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen (?:der|die|das) Bekehrt(?:e|er|es|en)', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DD5', source: 'Tesleen Pardonnée', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DD5', source: 'フォーギヴン・テスリーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DD5', source: '得到宽恕的泰丝琳', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DD5', source: '면죄된 테슬린', capture: false }),
       response: Responses.spread(),
     },
     {
       id: 'Holminster Exorcise Stack',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn(),
     },
     {
       id: 'Holminster Scavenger',
-      regex: Regexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DD8', source: 'フィリア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DD8', source: '斐利亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DD8', source: '필리아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DD8', source: 'Philia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DD8', source: 'フィリア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DD8', source: '斐利亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DD8', source: '필리아', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -91,12 +91,12 @@
     },
     {
       id: 'Holminster Head Crusher',
-      regex: Regexes.startsUsing({ id: '3DD7', source: 'Philia' }),
-      regexDe: Regexes.startsUsing({ id: '3DD7', source: 'Philia' }),
-      regexFr: Regexes.startsUsing({ id: '3DD7', source: 'Philia' }),
-      regexJa: Regexes.startsUsing({ id: '3DD7', source: 'フィリア' }),
-      regexCn: Regexes.startsUsing({ id: '3DD7', source: '斐利亚' }),
-      regexKo: Regexes.startsUsing({ id: '3DD7', source: '필리아' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DD7', source: 'Philia' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DD7', source: 'フィリア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DD7', source: '斐利亚' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DD7', source: '필리아' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -104,7 +104,7 @@
     },
     {
       id: 'Holminster Chain Down',
-      regex: Regexes.headMarker({ id: '005C' }),
+      netRegex: NetRegexes.headMarker({ id: '005C' }),
       condition: function(data, matches) {
         return data.me != matches.target;
       },
@@ -120,7 +120,7 @@
     },
     {
       id: 'Holminster Taphephobia',
-      regex: Regexes.headMarker({ id: '008B' }),
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -128,12 +128,12 @@
     },
     {
       id: 'Holminster Into The Light',
-      regex: Regexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4350', source: 'フィリア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4350', source: '斐利亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4350', source: '필리아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4350', source: 'Philia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4350', source: 'フィリア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4350', source: '斐利亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4350', source: '필리아', capture: false }),
       infoText: {
         en: 'Line Stack',
         de: 'Sammeln in einer Linie',
@@ -144,22 +144,22 @@
     },
     {
       id: 'Holminster Left Knout',
-      regex: Regexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DE7', source: 'フィリア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DE7', source: '斐利亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DE7', source: '필리아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DE7', source: 'Philia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DE7', source: 'フィリア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DE7', source: '斐利亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DE7', source: '필리아', capture: false }),
       response: Responses.goRight(),
     },
     {
       id: 'Holminster Right Knout',
-      regex: Regexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DE6', source: 'フィリア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DE6', source: '斐利亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DE6', source: '필리아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DE6', source: 'Philia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DE6', source: 'フィリア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DE6', source: '斐利亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DE6', source: '필리아', capture: false }),
       response: Responses.goLeft(),
     },
   ],

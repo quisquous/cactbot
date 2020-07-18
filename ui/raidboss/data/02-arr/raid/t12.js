@@ -10,12 +10,12 @@
   triggers: [
     {
       id: 'T12 Phase 3',
-      regex: Regexes.ability({ id: 'B96', source: 'Phoenix', capture: false }),
-      regexDe: Regexes.ability({ id: 'B96', source: 'Phönix', capture: false }),
-      regexFr: Regexes.ability({ id: 'B96', source: 'Phénix', capture: false }),
-      regexJa: Regexes.ability({ id: 'B96', source: 'フェニックス', capture: false }),
-      regexCn: Regexes.ability({ id: 'B96', source: '不死鸟', capture: false }),
-      regexKo: Regexes.ability({ id: 'B96', source: '피닉스', capture: false }),
+      netRegex: NetRegexes.ability({ id: 'B96', source: 'Phoenix', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: 'B96', source: 'Phönix', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: 'B96', source: 'Phénix', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: 'B96', source: 'フェニックス', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: 'B96', source: '不死鸟', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: 'B96', source: '피닉스', capture: false }),
       sound: 'Long',
       run: function(data) {
         data.phase = 3;
@@ -23,12 +23,12 @@
     },
     {
       id: 'T12 Bennu',
-      regex: Regexes.addedCombatant({ name: 'Bennu', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Bennu', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Bénou', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'ベンヌ', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '贝努鸟', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '벤누', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Bennu', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Bennu', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Bénou', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ベンヌ', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '贝努鸟', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '벤누', capture: false }),
       delaySeconds: 55,
       durationSeconds: 4.5,
       infoText: function(data) {
@@ -44,12 +44,12 @@
     },
     {
       id: 'T12 Revelation',
-      regex: Regexes.startsUsing({ id: 'B87', source: 'Phoenix' }),
-      regexDe: Regexes.startsUsing({ id: 'B87', source: 'Phönix' }),
-      regexFr: Regexes.startsUsing({ id: 'B87', source: 'Phénix' }),
-      regexJa: Regexes.startsUsing({ id: 'B87', source: 'フェニックス' }),
-      regexCn: Regexes.startsUsing({ id: 'B87', source: '不死鸟' }),
-      regexKo: Regexes.startsUsing({ id: 'B87', source: '피닉스' }),
+      netRegex: NetRegexes.startsUsing({ id: 'B87', source: 'Phoenix' }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'B87', source: 'Phönix' }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'B87', source: 'Phénix' }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'B87', source: 'フェニックス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'B87', source: '不死鸟' }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'B87', source: '피닉스' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -73,12 +73,12 @@
     },
     {
       id: 'T12 Blackfire',
-      regex: Regexes.startsUsing({ id: 'B8C', source: 'Phoenix', capture: false }),
-      regexDe: Regexes.startsUsing({ id: 'B8C', source: 'Phönix', capture: false }),
-      regexFr: Regexes.startsUsing({ id: 'B8C', source: 'Phénix', capture: false }),
-      regexJa: Regexes.startsUsing({ id: 'B8C', source: 'フェニックス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: 'B8C', source: '不死鸟', capture: false }),
-      regexKo: Regexes.startsUsing({ id: 'B8C', source: '피닉스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: 'B8C', source: 'Phoenix', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'B8C', source: 'Phönix', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'B8C', source: 'Phénix', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'B8C', source: 'フェニックス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'B8C', source: '不死鸟', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'B8C', source: '피닉스', capture: false }),
       infoText: {
         en: 'Blackfire Spread',
         de: 'Schwarzfeuer verteilen',
@@ -88,7 +88,7 @@
     },
     {
       id: 'T12 Whitefire',
-      regex: Regexes.headMarker({ id: '0020' }),
+      netRegex: NetRegexes.headMarker({ id: '0020' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -101,7 +101,7 @@
     },
     {
       id: 'T12 Bluefire',
-      regex: Regexes.headMarker({ id: '0021' }),
+      netRegex: NetRegexes.headMarker({ id: '0021' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },

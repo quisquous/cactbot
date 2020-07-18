@@ -63,12 +63,12 @@
   triggers: [
     {
       id: 'A8S Megabeam Onslaughter',
-      regex: Regexes.startsUsing({ source: 'Onslaughter', id: '162E', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Schlachter', id: '162E', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Attaqueur', id: '162E', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'オンスローター', id: '162E', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '突击者', id: '162E', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '맹습자', id: '162E', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '162E', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '162E', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Attaqueur', id: '162E', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'オンスローター', id: '162E', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '162E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '162E', capture: false }),
       // Insert sound effect from Arthars here.
       alertText: {
         en: 'Megabeamu~',
@@ -79,12 +79,12 @@
     },
     {
       id: 'A8S Megabeam Brute Justice',
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '1664', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '1664', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '1664', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '1664', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '1664', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '1664', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1664', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1664', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1664', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1664', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1664', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1664', capture: false }),
       alertText: {
         en: 'Megabeamu~!',
         de: 'Megalaser~!',
@@ -94,12 +94,12 @@
     },
     {
       id: 'A8S Execution',
-      regex: Regexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
-      regexDe: Regexes.ability({ source: 'Schlachter', id: '1632', capture: false }),
-      regexFr: Regexes.ability({ source: 'Attaqueur', id: '1632', capture: false }),
-      regexJa: Regexes.ability({ source: 'オンスローター', id: '1632', capture: false }),
-      regexCn: Regexes.ability({ source: '突击者', id: '1632', capture: false }),
-      regexKo: Regexes.ability({ source: '맹습자', id: '1632', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Onslaughter', id: '1632', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Schlachter', id: '1632', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Attaqueur', id: '1632', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'オンスローター', id: '1632', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
       condition: function(data) {
         return data.role == 'dps' || data.job == 'blu';
       },
@@ -112,23 +112,23 @@
     },
     {
       id: 'A8S Perpetual Ray',
-      regex: Regexes.startsUsing({ source: 'Onslaughter', id: '162B' }),
-      regexDe: Regexes.startsUsing({ source: 'Schlachter', id: '162B' }),
-      regexFr: Regexes.startsUsing({ source: 'Attaqueur', id: '162B' }),
-      regexJa: Regexes.startsUsing({ source: 'オンスローター', id: '162B' }),
-      regexCn: Regexes.startsUsing({ source: '突击者', id: '162B' }),
-      regexKo: Regexes.startsUsing({ source: '맹습자', id: '162B' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '162B' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '162B' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Attaqueur', id: '162B' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'オンスローター', id: '162B' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '突击者', id: '162B' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '맹습자', id: '162B' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'A8S Blaster Mirage',
-      regex: Regexes.addedCombatant({ name: 'Blaster Mirage', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Blaster-Replikant', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Réplique Du Fracasseur', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'ブラスター・ミラージュ', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '爆破者幻象', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '폭파자의 환영', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Blaster Mirage', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Blaster-Replikant', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Réplique Du Fracasseur', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ブラスター・ミラージュ', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '爆破者幻象', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '폭파자의 환영', capture: false }),
       suppressSeconds: 99999,
       infoText: {
         en: 'Mirage',
@@ -139,7 +139,7 @@
     },
     {
       id: 'A8S Discoid',
-      regex: Regexes.headMarker({ id: '0023' }),
+      netRegex: NetRegexes.headMarker({ id: '0023' }),
       condition: function(data, matches) {
         // Verdict comes with the same headmarker.
         return data.me === matches.target && !data.seenLinkUp;
@@ -153,12 +153,12 @@
     },
     {
       id: 'A8S Mind Blast',
-      regex: Regexes.startsUsing({ source: 'Blaster', id: '1639' }),
-      regexDe: Regexes.startsUsing({ source: 'Blaster', id: '1639' }),
-      regexFr: Regexes.startsUsing({ source: 'Fracasseur', id: '1639' }),
-      regexJa: Regexes.startsUsing({ source: 'ブラスター', id: '1639' }),
-      regexCn: Regexes.startsUsing({ source: '爆破者', id: '1639' }),
-      regexKo: Regexes.startsUsing({ source: '폭파자', id: '1639' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Blaster', id: '1639' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Blaster', id: '1639' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Fracasseur', id: '1639' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター', id: '1639' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '爆破者', id: '1639' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '폭파자', id: '1639' }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -193,23 +193,23 @@
     },
     {
       id: 'A8S Bio-Arithmeticks',
-      regex: Regexes.startsUsing({ source: 'Swindler', id: '164A', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Schwindler', id: '164A', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arnaqueur', id: '164A', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'スウィンドラー', id: '164A', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '欺诈者', id: '164A', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '조작자', id: '164A', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Swindler', id: '164A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Schwindler', id: '164A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arnaqueur', id: '164A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'スウィンドラー', id: '164A', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '欺诈者', id: '164A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '조작자', id: '164A', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'A8S Super Cyclone',
-      regex: Regexes.startsUsing({ source: 'Vortexer', id: '1657', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Wirbler', id: '1657', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Tourbillonneur', id: '1657', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ボルテッカー', id: '1657', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '环旋者', id: '1657', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '교반자', id: '1657', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Vortexer', id: '1657', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Wirbler', id: '1657', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Tourbillonneur', id: '1657', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ボルテッカー', id: '1657', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '环旋者', id: '1657', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '교반자', id: '1657', capture: false }),
       response: Responses.knockback('alarm'),
     },
     {
@@ -267,7 +267,7 @@
     },
     {
       id: 'A8S Enumeration',
-      regex: Regexes.headMarker({ id: ['0040', '0041', '0042'] }),
+      netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
       infoText: function(data, matches) {
         // 0040 = 2, 0041 = 3, 0042 = 4
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);
@@ -281,12 +281,12 @@
     },
     {
       id: 'A8S Double Rocket Punch',
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '1663' }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '1663' }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '1663' }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '1663' }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '1663' }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '1663' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1663' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1663' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1663' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1663' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1663' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1663' }),
       condition: Conditions.caresAboutPhysical(),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
@@ -313,14 +313,14 @@
     },
     {
       id: 'A8S Long Needle Stack Collect',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       run: function(data, matches) {
         data.longNeedleStack = matches.target;
       },
     },
     {
       id: 'A8S Long Needle Prey Collect',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: function(data, matches) {
         data.longNeedlePrey = data.longNeedlePrey || [];
         data.longNeedlePrey.push(matches.target);
@@ -328,23 +328,23 @@
     },
     {
       id: 'A8S Short Needle',
-      regex: Regexes.ability({ source: 'Brute Justice', id: '1668', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '1668', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '1668', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '1668', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '1668', capture: false }),
-      regexKo: Regexes.ability({ source: '포악한 심판자', id: '1668', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1668', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1668', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1668', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1668', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1668', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1668', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'A8S Long Needle',
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '166A', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '166A', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '166A', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '166A', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '166A', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '166A', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '166A', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '166A', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '166A', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '166A', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '166A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '166A', capture: false }),
       condition: function(data) {
         return data.longNeedleStack && data.longNeedlePrey;
       },
@@ -389,12 +389,12 @@
     },
     {
       id: 'A8S Super Jump',
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '1665' }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '1665' }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '1665' }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '1665' }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '1665' }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '1665' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '1665' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '1665' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '1665' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '1665' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '1665' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '1665' }),
       alertText: function(data, matches) {
         if (data.me != matches.target)
           return;
@@ -418,7 +418,7 @@
     },
     {
       id: 'A8S Mirage Marker',
-      regex: Regexes.headMarker({ id: '0008' }),
+      netRegex: NetRegexes.headMarker({ id: '0008' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Mirage on YOU',
@@ -429,7 +429,7 @@
     },
     {
       id: 'A8S Ice Missile Marker',
-      regex: Regexes.headMarker({ id: '0043' }),
+      netRegex: NetRegexes.headMarker({ id: '0043' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Ice Missile on YOU',
@@ -442,12 +442,12 @@
       id: 'A8S Hidden Minefield Intermission',
       // 165E used in both intermission and in final phase
       // 165C only used for intermission
-      regex: Regexes.ability({ source: 'Hidden Mine', id: '165E', capture: false }),
-      regexDe: Regexes.ability({ source: 'Minenfalle', id: '165E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Mine Furtive', id: '165E', capture: false }),
-      regexJa: Regexes.ability({ source: 'ステルス地雷', id: '165E', capture: false }),
-      regexCn: Regexes.ability({ source: '隐形地雷', id: '165E', capture: false }),
-      regexKo: Regexes.ability({ source: '은폐 지뢰', id: '165E', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Hidden Mine', id: '165E', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Minenfalle', id: '165E', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Mine Furtive', id: '165E', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ステルス地雷', id: '165E', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '隐形地雷', id: '165E', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '은폐 지뢰', id: '165E', capture: false }),
       condition: function(data) {
         return !data.seenLinkUp;
       },
@@ -461,12 +461,12 @@
     },
     {
       id: 'A8S Mirage Blinder',
-      regex: Regexes.startsUsing({ source: 'Blaster Mirage', id: '165A' }),
-      regexDe: Regexes.startsUsing({ source: 'Blaster-Replikant', id: '165A' }),
-      regexFr: Regexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '165A' }),
-      regexJa: Regexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '165A' }),
-      regexCn: Regexes.startsUsing({ source: '爆破者幻象', id: '165A' }),
-      regexKo: Regexes.startsUsing({ source: '폭파자의 환영', id: '165A' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '165A' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '165A' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '165A' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '165A' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165A' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165A' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Look Away from Mirage',
@@ -477,12 +477,12 @@
     },
     {
       id: 'A8S Mirage Power Tackle',
-      regex: Regexes.startsUsing({ source: 'Blaster Mirage', id: '165B' }),
-      regexDe: Regexes.startsUsing({ source: 'Blaster-Replikant', id: '165B' }),
-      regexFr: Regexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '165B' }),
-      regexJa: Regexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '165B' }),
-      regexCn: Regexes.startsUsing({ source: '爆破者幻象', id: '165B' }),
-      regexKo: Regexes.startsUsing({ source: '폭파자의 환영', id: '165B' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Blaster Mirage', id: '165B' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Blaster-Replikant', id: '165B' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Réplique Du Fracasseur', id: '165B' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブラスター・ミラージュ', id: '165B' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '165B' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '165B' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Look Towards Mirage',
@@ -493,12 +493,12 @@
     },
     {
       id: 'A8S Link Up',
-      regex: Regexes.ability({ source: 'Brute Justice', id: '1673', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '1673', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '1673', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '1673', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '1673', capture: false }),
-      regexKo: Regexes.ability({ source: '포악한 심판자', id: '1673', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1673', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1673', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1673', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1673', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1673', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1673', capture: false }),
       run: function(data) {
         data.seenLinkUp = true;
       },
@@ -709,24 +709,24 @@
     },
     {
       id: 'A8S Final Punch',
-      regex: Regexes.startsUsing({ source: 'Brute Justice', id: '170C' }),
-      regexDe: Regexes.startsUsing({ source: 'Brutalus', id: '170C' }),
-      regexFr: Regexes.startsUsing({ source: 'Justicier', id: '170C' }),
-      regexJa: Regexes.startsUsing({ source: 'ブルートジャスティス', id: '170C' }),
-      regexCn: Regexes.startsUsing({ source: '残暴正义号', id: '170C' }),
-      regexKo: Regexes.startsUsing({ source: '포악한 심판자', id: '170C' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Brute Justice', id: '170C' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Brutalus', id: '170C' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '170C' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '170C' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '残暴正义号', id: '170C' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '170C' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'A8S Final Beam',
       // id is for Final Apocalypse Ability
-      regex: Regexes.ability({ source: 'Brute Justice', id: '1716', capture: false }),
-      regexDe: Regexes.ability({ source: 'Brutalus', id: '1716', capture: false }),
-      regexFr: Regexes.ability({ source: 'Justicier', id: '1716', capture: false }),
-      regexJa: Regexes.ability({ source: 'ブルートジャスティス', id: '1716', capture: false }),
-      regexCn: Regexes.ability({ source: '残暴正义号', id: '1716', capture: false }),
-      regexKo: Regexes.ability({ source: '포악한 심판자', id: '1716', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '1716', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '1716', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '1716', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '1716', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '1716', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '1716', capture: false }),
       infoText: {
         en: 'Stack for Final Beam',
         de: 'Stack für Finaler Megastrahl',

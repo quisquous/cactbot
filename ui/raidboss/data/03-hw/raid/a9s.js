@@ -99,12 +99,12 @@
   triggers: [
     {
       id: 'A9S Stockpile Count',
-      regex: Regexes.startsUsing({ source: 'Refurbisher 0', id: '1A38', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rekompositor', id: '1A38', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Récupérateur', id: '1A38', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'リファビッシャー', id: '1A38', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '废品翻新装置', id: '1A38', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '재생자', id: '1A38', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A38', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A38', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A38', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A38', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A38', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A38', capture: false }),
       run: function(data) {
         data.stockpileCount = data.stockpileCount || 0;
         data.stockpileCount++;
@@ -112,12 +112,12 @@
     },
     {
       id: 'A9S Scrapline',
-      regex: Regexes.startsUsing({ source: 'Refurbisher 0', id: '1A3C', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rekompositor', id: '1A3C', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Récupérateur', id: '1A3C', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'リファビッシャー', id: '1A3C', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '废品翻新装置', id: '1A3C', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '재생자', id: '1A3C', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3C', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A3C', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A3C', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A3C', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3C', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3C', capture: false }),
       alertText: function(data) {
         if (data.mainTank == data.me)
           return;
@@ -144,12 +144,12 @@
     },
     {
       id: 'A9S Double Scrapline',
-      regex: Regexes.startsUsing({ source: 'Refurbisher 0', id: '1A3D', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rekompositor', id: '1A3D', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Récupérateur', id: '1A3D', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'リファビッシャー', id: '1A3D', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '废品翻新装置', id: '1A3D', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '재생자', id: '1A3D', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Refurbisher 0', id: '1A3D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rekompositor', id: '1A3D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Récupérateur', id: '1A3D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'リファビッシャー', id: '1A3D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '废品翻新装置', id: '1A3D', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '재생자', id: '1A3D', capture: false }),
       alertText: {
         en: 'Stand in Alarum Puddle',
         de: 'In Alarm Fläche stehen',
@@ -159,7 +159,7 @@
     },
     {
       id: 'A9S Scrap Rock',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Rock on YOU',
@@ -170,7 +170,7 @@
     },
     {
       id: 'A9S Scrap Burst',
-      regex: Regexes.headMarker({ id: '0017', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0017', capture: false }),
       delaySeconds: 5,
       suppressSeconds: 1,
       alertText: {
@@ -182,32 +182,32 @@
     },
     {
       id: 'A9S Scrap Bomb Stack',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       // TODO: dubious to tell the person tanking to do it here.
       // But maybe fine to inform.
       response: Responses.stackOn(),
     },
     {
       id: 'A9S Spread',
-      regex: Regexes.headMarker({ id: '000E' }),
+      netRegex: NetRegexes.headMarker({ id: '000E' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'A9S Auto',
-      regex: Regexes.ability({ source: 'Refurbisher 0', id: '1AFE' }),
-      regexDe: Regexes.ability({ source: 'Rekompositor', id: '1AFE' }),
-      regexFr: Regexes.ability({ source: 'Récupérateur', id: '1AFE' }),
-      regexJa: Regexes.ability({ source: 'リファビッシャー', id: '1AFE' }),
-      regexCn: Regexes.ability({ source: '废品翻新装置', id: '1AFE' }),
-      regexKo: Regexes.ability({ source: '재생자', id: '1AFE' }),
+      netRegex: NetRegexes.ability({ source: 'Refurbisher 0', id: '1AFE' }),
+      netRegexDe: NetRegexes.ability({ source: 'Rekompositor', id: '1AFE' }),
+      netRegexFr: NetRegexes.ability({ source: 'Récupérateur', id: '1AFE' }),
+      netRegexJa: NetRegexes.ability({ source: 'リファビッシャー', id: '1AFE' }),
+      netRegexCn: NetRegexes.ability({ source: '废品翻新装置', id: '1AFE' }),
+      netRegexKo: NetRegexes.ability({ source: '재생자', id: '1AFE' }),
       run: function(data, matches) {
         data.mainTank = matches.target;
       },
     },
     {
       id: 'A9S Power Generator Add Tether',
-      regex: Regexes.tether({ id: '0011', capture: false }),
+      netRegex: NetRegexes.tether({ id: '0011', capture: false }),
 
       suppressSeconds: 30,
       infoText: function(data) {

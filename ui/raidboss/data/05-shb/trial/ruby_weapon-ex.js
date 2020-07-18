@@ -39,10 +39,10 @@
   triggers: [
     {
       id: 'RubyEx Optimized Ultima',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4ABE', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4ABE', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4ABE', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4ABE', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ABE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4ABE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4ABE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ABE', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -50,10 +50,10 @@
     },
     {
       id: 'RubyEx Stamp',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B03' }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4B03' }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B03' }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4B03' }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B03' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B03' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B03' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B03' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -61,10 +61,10 @@
     },
     {
       id: 'RubyEx Undermine',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD0', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD0', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD0', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AD0', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AD0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD0', capture: false }),
       infoText: {
         en: 'Away from Lines',
         de: 'Weg von den Linien',
@@ -75,10 +75,10 @@
     },
     {
       id: 'RubyEx Liquefaction',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACF', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4ACF', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4ACF', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4ACF', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4ACF', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4ACF', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4ACF', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ACF', capture: false }),
       alertText: {
         en: 'Get On Lines',
         de: 'Auf die Linien gehen',
@@ -89,44 +89,44 @@
     },
     {
       id: 'RubyEx Ruby Ray',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B02', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4B02', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B02', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4B02', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B02', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B02', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B02', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B02', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'RubyEx Cut And Run',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B05', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4B05', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B05', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4B05', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B05', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B05', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B05', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B05', capture: false }),
       response: Responses.goSides(),
     },
     {
       id: 'RubyEx High-Powered Homing Lasers You',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8' }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8' }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
       condition: Conditions.targetIsYou(),
       response: Responses.stackOn('alert'),
     },
     {
       id: 'RubyEx High-Powered Homing Lasers',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8' }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8' }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AD8' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
       condition: Conditions.targetIsNotYou(),
       response: Responses.stack('info'),
     },
     {
       id: 'RubyEx Raven\'s Image',
-      regex: Regexes.addedCombatantFull({ name: 'Raven\'s Image' }),
-      regexDe: Regexes.addedCombatantFull({ name: 'Naels Trugbild' }),
-      regexFr: Regexes.addedCombatantFull({ name: 'Spectre De Nael' }),
-      regexJa: Regexes.addedCombatantFull({ name: 'ネールの幻影' }),
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Raven\'s Image' }),
+      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Naels Trugbild' }),
+      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Spectre De Nael' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: 'ネールの幻影' }),
       run: function(data, matches) {
         // 112,108 (east)
         // 88,108 (west)
@@ -143,10 +143,10 @@
       // Enrage can start casting before Ruby Weapon has finished their rotation
       // Give a friendly reminder to pop LB3 if you haven't already
       id: 'RubyEx Optimized Ultima Enrage',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B2D', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4B2D', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B2D', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4B2D', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B2D', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B2D', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B2D', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B2D', capture: false }),
       infoText: {
         en: 'Enrage!',
         de: 'Finalangriff!',
@@ -195,16 +195,16 @@
     },
     {
       id: 'RubyEx Meteor Stream',
-      regex: Regexes.headMarker({ id: '00E0' }),
+      netRegex: NetRegexes.headMarker({ id: '00E0' }),
       condition: Conditions.targetIsYou(),
       response: Responses.spread(),
     },
     {
       id: 'RubyEx Ruby Claw',
-      regex: Regexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
-      regexDe: Regexes.startsUsing({ source: 'Naels Trugbild', id: '4AFF' }),
-      regexFr: Regexes.startsUsing({ source: 'Spectre De Nael', id: '4AFF' }),
-      regexJa: Regexes.startsUsing({ source: 'ネールの幻影', id: '4AFF' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Raven\'s Image', id: '4AFF' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Naels Trugbild', id: '4AFF' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Nael', id: '4AFF' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ネールの幻影', id: '4AFF' }),
       condition: function(data, matches) {
         if (data.role != 'healer' || data.role != 'tank')
           return false;
@@ -227,10 +227,10 @@
     },
     {
       id: 'RubyEx Change of Heart',
-      regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
-      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
-      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AFC', capture: false }),
-      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AFC', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AFC', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AFC', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AFC', capture: false }),
       preRun: function(data) {
         for (color of data.colors) {
           if (color == 'blue')
@@ -270,15 +270,15 @@
     },
     {
       id: 'RubyEx Negative Aura',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AFE', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AFE', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AFE', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AFE', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AFE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AFE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AFE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AFE', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'RubyEx Meteor',
-      regex: Regexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
+      netRegex: NetRegexes.headMarker({ id: '00(?:C[A-F]|D0|D1)' }),
       condition: Conditions.targetIsYou(),
       infoText: function(data, matches) {
         return parseInt(matches.id, 16) - parseInt('00CA', 16) + 1;
@@ -286,18 +286,18 @@
     },
     {
       id: 'RubyEx Screech',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEE', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEE', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AEE', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AEE', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AEE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AEE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AEE', capture: false }),
       response: Responses.knockback(),
     },
     {
       id: 'RubyEx Magitek Meteor Burst',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4AF0', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4AF0', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4AF0', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4AF0', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AF0', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AF0', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
       infoText: {
         en: 'Away from Meteor!',
         de: 'Weg vom Meteor!',
@@ -308,10 +308,10 @@
     },
     {
       id: 'RubyEx Mark II Magitek Comet Tank',
-      regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
-      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
-      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
-      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
       condition: (data) => data.role == 'tank',
       delaySeconds: 11.5,
       alarmText: {
@@ -324,10 +324,10 @@
     },
     {
       id: 'RubyEx Mark II Magitek Comet Other',
-      regex: Regexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
-      regexDe: Regexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
-      regexFr: Regexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
-      regexJa: Regexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'The Ruby Weapon', id: '4AB6', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
       condition: (data) => data.role != 'tank',
       delaySeconds: 13,
       alertText: {
@@ -340,7 +340,7 @@
     },
     {
       id: 'RubyEx Bradamante',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Avoid tanks with laser',
@@ -352,12 +352,12 @@
     },
     {
       id: 'RubyEx Mark II Magitek Comet Directions',
-      regex: Regexes.addedCombatantFull({ name: 'Comet' }),
-      regexDe: Regexes.addedCombatantFull({ name: 'Komet' }),
-      regexFr: Regexes.addedCombatantFull({ name: 'Comète' }),
-      regexJa: Regexes.addedCombatantFull({ name: 'コメット' }),
-      regexCn: Regexes.addedCombatantFull({ name: '彗星' }),
-      regexKo: Regexes.addedCombatantFull({ name: '혜성' }),
+      netRegex: NetRegexes.addedCombatantFull({ name: 'Comet' }),
+      netRegexDe: NetRegexes.addedCombatantFull({ name: 'Komet' }),
+      netRegexFr: NetRegexes.addedCombatantFull({ name: 'Comète' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: 'コメット' }),
+      netRegexCn: NetRegexes.addedCombatantFull({ name: '彗星' }),
+      netRegexKo: NetRegexes.addedCombatantFull({ name: '혜성' }),
       infoText: function(data, matches) {
         // Possible positions:
         // 85.16,100.131 and 115.16,100.131
@@ -383,10 +383,10 @@
     },
     {
       id: 'RubyEx Outrage',
-      regex: Regexes.startsUsing({ source: 'The Ruby Weapon', id: '4B04', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Rubin-Waffe', id: '4B04', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Arme Rubis', id: '4B04', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ルビーウェポン', id: '4B04', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'The Ruby Weapon', id: '4B04', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B04', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B04', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B04', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },

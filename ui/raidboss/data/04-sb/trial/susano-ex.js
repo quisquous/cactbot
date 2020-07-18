@@ -26,12 +26,12 @@
   triggers: [
     {
       id: 'SusEx Thundercloud Tracker',
-      regex: Regexes.addedCombatant({ name: 'Thunderhead', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Gewitterwolke', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Nuage Orageux', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: '雷雲', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '雷云', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '번개구름', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Thunderhead', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Gewitterwolke', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Nuage Orageux', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: '雷雲', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '雷云', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '번개구름', capture: false }),
       run: function(data) {
         data.cloud = true;
       },
@@ -42,12 +42,12 @@
       // levinbolts with the same cloud, but only one levinbolt has
       // lightning attached to it.
       id: 'SusEx Thundercloud Cleanup',
-      regex: Regexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2041', source: 'Gewitterwolke', target: 'Gewitterwolke', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2041', source: 'Nuage Orageux', target: 'Nuage Orageux', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2041', source: '雷雲', target: '雷雲', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2041', source: '雷云', target: '雷云', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2041', source: '번개구름', target: '번개구름', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2041', source: 'Thunderhead', target: 'Thunderhead', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2041', source: 'Gewitterwolke', target: 'Gewitterwolke', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2041', source: 'Nuage Orageux', target: 'Nuage Orageux', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2041', source: '雷雲', target: '雷雲', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2041', source: '雷云', target: '雷云', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2041', source: '번개구름', target: '번개구름', capture: false }),
       run: function(data) {
         data.cloud = false;
       },
@@ -77,19 +77,19 @@
     },
     {
       id: 'SusEx Stormsplitter',
-      regex: Regexes.startsUsing({ source: 'Susano', id: '2033' }),
-      regexDe: Regexes.startsUsing({ source: 'Susano', id: '2033' }),
-      regexFr: Regexes.startsUsing({ source: 'Susano', id: '2033' }),
-      regexJa: Regexes.startsUsing({ source: 'スサノオ', id: '2033' }),
-      regexCn: Regexes.startsUsing({ source: '须佐之男', id: '2033' }),
-      regexKo: Regexes.startsUsing({ source: '스사노오', id: '2033' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Susano', id: '2033' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'スサノオ', id: '2033' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '须佐之男', id: '2033' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '스사노오', id: '2033' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap('alert', 'info'),
     },
     {
       // Red knockback marker indicator
       id: 'SusEx Knockback',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -143,7 +143,7 @@
     },
     {
       id: 'SusEx Levinbolt',
-      regex: Regexes.headMarker({ id: '006E' }),
+      netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
         return (matches.target == data.me);
       },
@@ -182,7 +182,7 @@
     },
     {
       id: 'SusEx Levinbolt Debug',
-      regex: Regexes.headMarker({ id: '006E' }),
+      netRegex: NetRegexes.headMarker({ id: '006E' }),
       condition: function(data, matches) {
         data.levinbolt = matches.target;
         return (matches.target != data.me);
@@ -190,7 +190,7 @@
     },
     {
       id: 'SusEx Levinbolt Stun',
-      regex: Regexes.headMarker({ id: '006F' }),
+      netRegex: NetRegexes.headMarker({ id: '006F' }),
       infoText: function(data, matches) {
         // It's sometimes hard for tanks to see the line, so just give a
         // sound indicator for jumping rope back and forth.

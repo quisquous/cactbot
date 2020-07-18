@@ -13,12 +13,12 @@
   triggers: [
     {
       id: 'Twinning Main Head',
-      regex: Regexes.startsUsing({ id: '3DBC', source: 'Surplus Kaliya' }),
-      regexDe: Regexes.startsUsing({ id: '3DBC', source: 'Massengefertigt(?:e|er|es|en) Kaliya' }),
-      regexFr: Regexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus' }),
-      regexJa: Regexes.startsUsing({ id: '3DBC', source: '量産型カーリア' }),
-      regexCn: Regexes.startsUsing({ id: '3DBC', source: '量产型卡利亚' }),
-      regexKo: Regexes.startsUsing({ id: '3DBC', source: '양산형 칼리아' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DBC', source: 'Surplus Kaliya' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DBC', source: 'Massengefertigt(?:e|er|es|en) Kaliya' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DBC', source: 'Kaliya De Surplus' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DBC', source: '量産型カーリア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DBC', source: '量产型卡利亚' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DBC', source: '양산형 칼리아' }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -26,12 +26,12 @@
     },
     {
       id: 'Twinning Berserk',
-      regex: Regexes.startsUsing({ id: '3DC0', source: 'Vitalized Reptoid' }),
-      regexDe: Regexes.startsUsing({ id: '3DC0', source: 'Gestärkt(?:e|er|es|en) Reptoid' }),
-      regexFr: Regexes.startsUsing({ id: '3DC0', source: 'Reptoïde Vitalisé' }),
-      regexJa: Regexes.startsUsing({ id: '3DC0', source: 'ヴァイタライズ・レプトイド' }),
-      regexCn: Regexes.startsUsing({ id: '3DC0', source: '活力化爬虫半人马' }),
-      regexKo: Regexes.startsUsing({ id: '3DC0', source: '활성된 파충류' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DC0', source: 'Vitalized Reptoid' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DC0', source: 'Gestärkt(?:e|er|es|en) Reptoid' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DC0', source: 'Reptoïde Vitalisé' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DC0', source: 'ヴァイタライズ・レプトイド' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DC0', source: '活力化爬虫半人马' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DC0', source: '활성된 파충류' }),
       condition: function(data) {
         return data.CanStun() || data.CanSilence();
       },
@@ -39,12 +39,12 @@
     },
     {
       id: 'Twinning 128 Tonze Swing',
-      regex: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanical Minotaur' }),
-      regexDe: Regexes.startsUsing({ id: '3DBA', source: 'Servomechanisch(?:e|er|es|en) Minotaurus' }),
-      regexFr: Regexes.startsUsing({ id: '3DBA', source: 'Minotaure Servomécanique' }),
-      regexJa: Regexes.startsUsing({ id: '3DBA', source: 'サーヴォ・ミノタウロス' }),
-      regexCn: Regexes.startsUsing({ id: '3DBA', source: '自控化弥诺陶洛斯' }),
-      regexKo: Regexes.startsUsing({ id: '3DBA', source: '자동제어 미노타우로스' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DBA', source: 'Servomechanical Minotaur' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DBA', source: 'Servomechanisch(?:e|er|es|en) Minotaurus' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DBA', source: 'Minotaure Servomécanique' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DBA', source: 'サーヴォ・ミノタウロス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DBA', source: '自控化弥诺陶洛斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DBA', source: '자동제어 미노타우로스' }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -53,7 +53,7 @@
     {
       // The handling for these mechanics is similar enough it makes sense to combine the trigger
       id: 'Twinning Impact + Pounce',
-      regex: Regexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
+      netRegex: NetRegexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Spread (avoid cages)',
@@ -65,12 +65,12 @@
     },
     {
       id: 'Twinning Beastly Roar',
-      regex: Regexes.startsUsing({ id: '3D64', source: 'Alpha Zaghnal', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D64', source: 'Alpha-Zaghnal', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D64', source: 'Zaghnal Alpha', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D64', source: 'アルファ・ザグナル', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D64', source: '扎戈斧龙一型', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D64', source: '알파 자그날', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D64', source: 'Alpha Zaghnal', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D64', source: 'Alpha-Zaghnal', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D64', source: 'Zaghnal Alpha', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D64', source: 'アルファ・ザグナル', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D64', source: '扎戈斧龙一型', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D64', source: '알파 자그날', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -78,27 +78,27 @@
     },
     {
       id: 'Twinning Augurium',
-      regex: Regexes.startsUsing({ id: '3D65', source: 'Alpha Zaghnal' }),
-      regexDe: Regexes.startsUsing({ id: '3D65', source: 'Alpha-Zaghnal' }),
-      regexFr: Regexes.startsUsing({ id: '3D65', source: 'Zaghnal Alpha' }),
-      regexJa: Regexes.startsUsing({ id: '3D65', source: 'アルファ・ザグナル' }),
-      regexCn: Regexes.startsUsing({ id: '3D65', source: '扎戈斧龙一型' }),
-      regexKo: Regexes.startsUsing({ id: '3D65', source: '알파 자그날' }),
+      netRegex: NetRegexes.startsUsing({ id: '3D65', source: 'Alpha Zaghnal' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D65', source: 'Alpha-Zaghnal' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D65', source: 'Zaghnal Alpha' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D65', source: 'アルファ・ザグナル' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D65', source: '扎戈斧龙一型' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D65', source: '알파 자그날' }),
       response: Responses.tankCleave(),
     },
     {
       id: 'Twinning Charge Eradicated',
-      regex: Regexes.headMarker({ id: '005D' }),
+      netRegex: NetRegexes.headMarker({ id: '005D' }),
       response: Responses.stackOn(),
     },
     {
       id: 'Twinning Thunder Beam',
-      regex: Regexes.startsUsing({ id: '3DED', source: 'Mithridates' }),
-      regexDe: Regexes.startsUsing({ id: '3DED', source: 'Mithridates' }),
-      regexFr: Regexes.startsUsing({ id: '3DED', source: 'Mithridate' }),
-      regexJa: Regexes.startsUsing({ id: '3DED', source: 'ミトリダテス' }),
-      regexCn: Regexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
-      regexKo: Regexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DED', source: 'Mithridates' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DED', source: 'Mithridates' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DED', source: 'Mithridate' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DED', source: 'ミトリダテス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DED', source: '米特里达梯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DED', source: '미트리다테스' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -107,12 +107,12 @@
     {
       // Alternatively, we could use 1B:\y{ObjectId}:(\y{Name}):....:....:00A0
       id: 'Twinning Allagan Thunder',
-      regex: Regexes.startsUsing({ id: '3DEF', source: 'Mithridates' }),
-      regexDe: Regexes.startsUsing({ id: '3DEF', source: 'Mithridates' }),
-      regexFr: Regexes.startsUsing({ id: '3DEF', source: 'Mithridate' }),
-      regexJa: Regexes.startsUsing({ id: '3DEF', source: 'ミトリダテス' }),
-      regexCn: Regexes.startsUsing({ id: '3DEF', source: '米特里达梯' }),
-      regexKo: Regexes.startsUsing({ id: '3DEF', source: '미트리다테스' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DEF', source: 'Mithridates' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DEF', source: 'Mithridates' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DEF', source: 'Mithridate' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DEF', source: 'ミトリダテス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DEF', source: '米特里达梯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DEF', source: '미트리다테스' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -120,12 +120,12 @@
     },
     {
       id: 'Twinning Magitek Crossray',
-      regex: Regexes.startsUsing({ id: '3DF8', source: 'The Tycoon', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DF8', source: 'Tycoon', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DF8', source: 'Le Magnat', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DF8', source: 'タイクーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DF8', source: '泰空', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DF8', source: '타이쿤', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DF8', source: 'The Tycoon', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DF8', source: 'Tycoon', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DF8', source: 'Le Magnat', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DF8', source: 'タイクーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DF8', source: '泰空', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DF8', source: '타이쿤', capture: false }),
       suppressSeconds: 15,
       infoText: {
         en: 'cardinal lasers',
@@ -137,12 +137,12 @@
     },
     {
       id: 'Twinning Defensive Array',
-      regex: Regexes.startsUsing({ id: '3DF2', source: 'The Tycoon', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DF2', source: 'Tycoon', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DF2', source: 'Le Magnat', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DF2', source: 'タイクーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DF2', source: '泰空', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DF2', source: '타이쿤', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DF2', source: 'The Tycoon', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DF2', source: 'Tycoon', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DF2', source: 'Le Magnat', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DF2', source: 'タイクーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DF2', source: '泰空', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DF2', source: '타이쿤', capture: false }),
       suppressSeconds: 15,
       infoText: {
         en: 'outer lasers',
@@ -154,12 +154,12 @@
     },
     {
       id: 'Twinning Rail Cannon',
-      regex: Regexes.startsUsing({ id: '3DFB', source: 'The Tycoon' }),
-      regexDe: Regexes.startsUsing({ id: '3DFB', source: 'Tycoon' }),
-      regexFr: Regexes.startsUsing({ id: '3DFB', source: 'Le Magnat' }),
-      regexJa: Regexes.startsUsing({ id: '3DFB', source: 'タイクーン' }),
-      regexCn: Regexes.startsUsing({ id: '3DFB', source: '泰空' }),
-      regexKo: Regexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DFB', source: 'The Tycoon' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DFB', source: 'Tycoon' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DFB', source: 'Le Magnat' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DFB', source: 'タイクーン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DFB', source: '泰空' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DFB', source: '타이쿤' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -168,22 +168,22 @@
     {
       // An alternative is 1B:\y{ObjectId}:\y{Name}:....:....:00A9
       id: 'Twinning Magicrystal',
-      regex: Regexes.startsUsing({ id: '3E0C', source: 'The Tycoon', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E0C', source: 'Tycoon', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E0C', source: 'Le Magnat', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E0C', source: 'タイクーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E0C', source: '泰空', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E0C', source: '타이쿤', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3E0C', source: 'The Tycoon', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E0C', source: 'Tycoon', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E0C', source: 'Le Magnat', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E0C', source: 'タイクーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E0C', source: '泰空', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E0C', source: '타이쿤', capture: false }),
       response: Responses.spread('alert'),
     },
     {
       id: 'Twinning Discharger',
-      regex: Regexes.startsUsing({ id: '3DFC', source: 'The Tycoon', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3DFC', source: 'Tycoon', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3DFC', source: 'Le Magnat', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3DFC', source: 'タイクーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3DFC', source: '泰空', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3DFC', source: '타이쿤', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3DFC', source: 'The Tycoon', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DFC', source: 'Tycoon', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DFC', source: 'Le Magnat', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DFC', source: 'タイクーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DFC', source: '泰空', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DFC', source: '타이쿤', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },

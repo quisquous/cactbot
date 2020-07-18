@@ -64,12 +64,12 @@
   triggers: [
     {
       id: 'E1S Initial',
-      regex: Regexes.startsUsing({ id: '3D70', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D70', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D70', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D70', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D70', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D70', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D70', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D70', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D70', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D70', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D70', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D70', source: '에덴 프라임', capture: false }),
       run: function(data) {
         if (!data.viceCount) {
           data.viceCount = 1;
@@ -103,12 +103,12 @@
     },
     {
       id: 'E1S Eden\'s Gravity',
-      regex: Regexes.startsUsing({ id: '3D70', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D70', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D70', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D70', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D70', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D70', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D70', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D70', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D70', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D70', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D70', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D70', source: '에덴 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -116,12 +116,12 @@
     },
     {
       id: 'E1S Fragor Maximus',
-      regex: Regexes.startsUsing({ id: '3D8B', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D8B', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D8B', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D8B', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D8B', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D8B', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D8B', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D8B', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D8B', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D8B', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D8B', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D8B', source: '에덴 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -129,12 +129,12 @@
     },
     {
       id: 'E1S Dimensional Shift',
-      regex: Regexes.startsUsing({ id: '3D7F', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D7F', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D7F', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D7F', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D7F', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D7F', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D7F', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D7F', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D7F', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D7F', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D7F', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D7F', source: '에덴 프라임', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -142,12 +142,12 @@
     },
     {
       id: 'E1S Spear Of Paradise',
-      regex: Regexes.startsUsing({ id: '3D88', source: 'Eden Prime' }),
-      regexDe: Regexes.startsUsing({ id: '3D88', source: 'Prim-Eden' }),
-      regexFr: Regexes.startsUsing({ id: '3D88', source: 'Primo-Éden' }),
-      regexJa: Regexes.startsUsing({ id: '3D88', source: 'エデン・プライム' }),
-      regexCn: Regexes.startsUsing({ id: '3D88', source: '至尊伊甸' }),
-      regexKo: Regexes.startsUsing({ id: '3D88', source: '에덴 프라임' }),
+      netRegex: NetRegexes.startsUsing({ id: '3D88', source: 'Eden Prime' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D88', source: 'Prim-Eden' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D88', source: 'Primo-Éden' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D88', source: 'エデン・プライム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D88', source: '至尊伊甸' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D88', source: '에덴 프라임' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
@@ -155,22 +155,22 @@
     },
     {
       id: 'E1S Eden\'s Flare',
-      regex: Regexes.startsUsing({ id: '3D73', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D73', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D73', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D73', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D73', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D73', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D73', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D73', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D73', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D73', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D73', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D73', source: '에덴 프라임', capture: false }),
       response: Responses.getUnder('alert'),
     },
     {
       id: 'E1S Delta Attack 1',
-      regex: Regexes.startsUsing({ id: '44F4', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '44F4', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '44F4', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '44F4', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '44F4', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '44F4', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '44F4', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '44F4', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '44F4', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '44F4', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '44F4', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '44F4', source: '에덴 프라임', capture: false }),
       alertText: {
         en: 'Cross Spread',
         de: 'Verteilen',
@@ -182,12 +182,12 @@
     },
     {
       id: 'E1S Delta Attack 2',
-      regex: Regexes.startsUsing({ id: '44F8', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '44F8', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '44F8', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '44F8', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '44F8', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '44F8', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '44F8', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '44F8', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '44F8', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '44F8', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '44F8', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '44F8', source: '에덴 프라임', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -217,12 +217,12 @@
       // 44F0: healer1
       // 3D7D: healer2
       id: 'E1S Vice and Virtue Tracker',
-      regex: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['44EF', '3D7A', '44EE', '3D78', '44F0', '3D7D'], source: '에덴 프라임', capture: false }),
       run: function(data) {
         // Note: this happens *after* the marks, so is setting up vice for the next marks.
         data.viceCount++;
@@ -249,67 +249,67 @@
     },
     {
       id: 'E1S Vice and Virtue DPS 2 Tracker',
-      regex: Regexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D7A', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D7A', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D7A', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D7A', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D7A', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D7A', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D7A', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D7A', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D7A', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D7A', source: '에덴 프라임', capture: false }),
       run: function(data) {
         data.vice = 'dps';
       },
     },
     {
       id: 'E1S Vice and Virtue Tank 1',
-      regex: Regexes.startsUsing({ id: '44EE', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '44EE', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '44EE', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '44EE', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '44EE', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '44EE', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '44EE', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '44EE', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '44EE', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '44EE', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '44EE', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '44EE', source: '에덴 프라임', capture: false }),
       run: function(data) {
         data.vice = 'healer';
       },
     },
     {
       id: 'E1S Vice and Virtue Tank 2',
-      regex: Regexes.startsUsing({ id: '3D78', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D78', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D78', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D78', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D78', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D78', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D78', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D78', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D78', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D78', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D78', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D78', source: '에덴 프라임', capture: false }),
       run: function(data) {
         data.vice = 'dps';
       },
     },
     {
       id: 'E1S Vice and Virtue Healer 1',
-      regex: Regexes.startsUsing({ id: '44F0', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '44F0', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '44F0', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '44F0', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '44F0', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '44F0', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '44F0', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '44F0', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '44F0', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '44F0', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '44F0', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '44F0', source: '에덴 프라임', capture: false }),
       run: function(data) {
         data.vice = 'tank';
       },
     },
     {
       id: 'E1S Vice and Virtue Healer 2',
-      regex: Regexes.startsUsing({ id: '3D7D', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D7D', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D7D', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D7D', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D7D', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D7D', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D7D', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D7D', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D7D', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D7D', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D7D', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D7D', source: '에덴 프라임', capture: false }),
       run: function(data) {
         data.vice = 'tank';
       },
     },
     {
       id: 'E1S Vice and Virtue DPS 1',
-      regex: Regexes.headMarker({ id: '00AE' }),
+      netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: function(data, matches) {
         return !data.paradise && data.vice == 'dps' && data.me == matches.target;
       },
@@ -324,12 +324,12 @@
     },
     {
       id: 'E1S Vice and Virtue DPS 2',
-      regex: Regexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D7A', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D7A', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D7A', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D7A', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D7A', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D7A', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D7A', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D7A', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D7A', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D7A', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D7A', source: '에덴 프라임', capture: false }),
       alertText: {
         en: 'Stack With Partner',
         de: 'Mit Partner stacken',
@@ -341,7 +341,7 @@
     },
     {
       id: 'E1S Vice and Virtue Tank Mark',
-      regex: Regexes.headMarker({ id: '00AE' }),
+      netRegex: NetRegexes.headMarker({ id: '00AE' }),
       condition: function(data, matches) {
         return data.vice == 'tank' && data.me == matches.target;
       },
@@ -356,12 +356,12 @@
     },
     {
       id: 'E1S Vice and Virtue Tank Stack',
-      regex: Regexes.startsUsing({ id: '3D78', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D78', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D78', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D78', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D78', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D78', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D78', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D78', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D78', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D78', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D78', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D78', source: '에덴 프라임', capture: false }),
       condition: function(data) {
         return data.role != 'tank';
       },
@@ -423,12 +423,12 @@
     },
     {
       id: 'E1S Mana Boost',
-      regex: Regexes.startsUsing({ id: '3D8D', source: 'Guardian Of Paradise' }),
-      regexDe: Regexes.startsUsing({ id: '3D8D', source: 'Hüter Von Eden' }),
-      regexFr: Regexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin' }),
-      regexJa: Regexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー' }),
-      regexCn: Regexes.startsUsing({ id: '3D8D', source: '伊甸守护者' }),
-      regexKo: Regexes.startsUsing({ id: '3D8D', source: '에덴 정원사' }),
+      netRegex: NetRegexes.startsUsing({ id: '3D8D', source: 'Guardian Of Paradise' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D8D', source: 'Hüter Von Eden' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D8D', source: '伊甸守护者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D8D', source: '에덴 정원사' }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -437,22 +437,22 @@
     },
     {
       id: 'E1S Pure Light',
-      regex: Regexes.startsUsing({ id: '3D8A', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D8A', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D8A', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D8A', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D8A', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D8A', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D8A', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D8A', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D8A', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D8A', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D8A', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D8A', source: '에덴 프라임', capture: false }),
       response: Responses.getBehind(),
     },
     {
       id: 'E1S Pure Beam 1',
-      regex: Regexes.startsUsing({ id: '3D80', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D80', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D80', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D80', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D80', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D80', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D80', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D80', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D80', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D80', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D80', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D80', source: '에덴 프라임', capture: false }),
       infoText: {
         en: 'Get Outside Your Orb',
         de: 'Geh zu deinem Orb',
@@ -464,12 +464,12 @@
     },
     {
       id: 'E1S Pure Beam 2',
-      regex: Regexes.startsUsing({ id: '3D82', source: 'Eden Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3D82', source: 'Prim-Eden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3D82', source: 'Primo-Éden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3D82', source: 'エデン・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3D82', source: '至尊伊甸', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3D82', source: '에덴 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3D82', source: 'Eden Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3D82', source: 'Prim-Eden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3D82', source: 'Primo-Éden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3D82', source: 'エデン・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3D82', source: '至尊伊甸', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D82', source: '에덴 프라임', capture: false }),
       infoText: {
         en: 'Bait Orb Lasers Outside',
         de: 'Laser nach drausen ködern',

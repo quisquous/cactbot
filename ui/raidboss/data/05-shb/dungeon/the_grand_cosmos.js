@@ -13,12 +13,12 @@
   triggers: [
     {
       id: 'Cosmos Shadowbolt',
-      regex: Regexes.startsUsing({ id: '4769', source: 'Seeker Of Solitude' }),
-      regexDe: Regexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
-      regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
-      regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
-      regexCn: Regexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
-      regexKo: Regexes.startsUsing({ id: '4769', source: '궁전의 은자' }),
+      netRegex: NetRegexes.startsUsing({ id: '4769', source: 'Seeker Of Solitude' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4769', source: '궁전의 은자' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -26,12 +26,12 @@
     },
     {
       id: 'Cosmos Dark Pulse',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn('info'),
     },
     {
       id: 'Cosmos Dark Well Far Winds',
-      regex: Regexes.headMarker({ id: '0060' }),
+      netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -39,12 +39,12 @@
     },
     {
       id: 'Cosmos Immortal Anathema',
-      regex: Regexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '49A3', source: 'Einsiedler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '49A3', source: 'Ermite Du Palais', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '49A3', source: '宫殿的隐者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '49A3', source: '궁전의 은자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '49A3', source: 'Einsiedler', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '49A3', source: 'Ermite Du Palais', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '49A3', source: '宫殿的隐者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '49A3', source: '궁전의 은자', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -52,12 +52,12 @@
     },
     {
       id: 'Cosmos Tribulation',
-      regex: Regexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '476B', source: 'Einsiedler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '476B', source: 'Ermite Du Palais', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '476B', source: '宮殿の隠者', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '476B', source: '宫殿的隐者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '476B', source: '궁전의 은자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '476B', source: 'Einsiedler', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '476B', source: 'Ermite Du Palais', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '476B', source: '宮殿の隠者', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '476B', source: '宫殿的隐者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '476B', source: '궁전의 은자', capture: false }),
       delaySeconds: 8,
       alertText: {
         en: 'Avoid Brooms',
@@ -69,22 +69,22 @@
     },
     {
       id: 'Cosmos Storm of Color',
-      regex: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
-      regexDe: Regexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
-      regexFr: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
-      regexJa: Regexes.startsUsing({ id: '471B', source: 'リャナンシー' }),
-      regexCn: Regexes.startsUsing({ id: '471B', source: '凉南希' }),
-      regexKo: Regexes.startsUsing({ id: '471B', source: '랴난시' }),
+      netRegex: NetRegexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '471B', source: 'リャナンシー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '471B', source: '凉南希' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '471B', source: '랴난시' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Ode To Lost Love',
-      regex: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '471C', source: 'Leanan Sidhe', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '471C', source: '凉南希', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '471C', source: '랴난시', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '471C', source: 'Leanan Sidhe', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '471C', source: '凉南希', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '471C', source: '랴난시', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -94,23 +94,23 @@
       // Can't use added combatant here as all these adds exist.
       // So, just trigger on first auto.
       id: 'Cosmos Direct Seeding Mistake',
-      regex: Regexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
-      regexDe: Regexes.ability({ id: '368', source: 'Keim Des Geliebten', capture: false }),
-      regexFr: Regexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
-      regexJa: Regexes.ability({ id: '368', source: 'ラヴァーズリング', capture: false }),
-      regexCn: Regexes.ability({ id: '368', source: '恋人之戒', capture: false }),
-      regexKo: Regexes.ability({ id: '368', source: '연인의 반지', capture: false }),
+      netRegex: NetRegexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '368', source: 'Keim Des Geliebten', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '368', source: 'ラヴァーズリング', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '368', source: '恋人之戒', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '368', source: '연인의 반지', capture: false }),
       suppressSeconds: 60,
       response: Responses.killExtraAdd(),
     },
     {
       id: 'Cosmos Gardener\'s Hymn',
-      regex: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '471E', source: 'Leanan Sidhe', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '471E', source: '凉南希', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '471E', source: '랴난시', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '471E', source: 'Leanan Sidhe', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '471E', source: '凉南希', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '471E', source: '랴난시', capture: false }),
       infoText: {
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
@@ -121,12 +121,12 @@
     },
     {
       id: 'Cosmos Ronkan Cure II',
-      regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
-      regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
-      regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
-      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス' }),
-      regexCn: Regexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯' }),
-      regexKo: Regexes.startsUsing({ id: '4931', source: '환영기사 하몬스' }),
+      netRegex: NetRegexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4931', source: '환영기사 하몬스' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -134,22 +134,22 @@
     },
     {
       id: 'Cosmos Captive Bolt',
-      regex: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
-      regexDe: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
-      regexFr: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
-      regexJa: Regexes.startsUsing({ id: '4764', source: 'ルゴス' }),
-      regexCn: Regexes.startsUsing({ id: '4764', source: '卢格斯' }),
-      regexKo: Regexes.startsUsing({ id: '4764', source: '루구스' }),
+      netRegex: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4764', source: 'ルゴス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4764', source: '卢格斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4764', source: '루구스' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Culling Blade',
-      regex: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4765', source: '루구스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4765', source: '루구스', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -157,7 +157,7 @@
     },
     {
       id: 'Cosmos Black Flame 1',
-      regex: Regexes.headMarker({ id: '0019' }),
+      netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -165,7 +165,7 @@
     },
     {
       id: 'Cosmos Black Flame 2',
-      regex: Regexes.headMarker({ id: '0019' }),
+      netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -180,7 +180,7 @@
     },
     {
       id: 'Cosmos Mortal Flame 1',
-      regex: Regexes.headMarker({ id: '00C3' }),
+      netRegex: NetRegexes.headMarker({ id: '00C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -188,7 +188,7 @@
     },
     {
       id: 'Cosmos Mortal Flame 2',
-      regex: Regexes.headMarker({ id: '00C3' }),
+      netRegex: NetRegexes.headMarker({ id: '00C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -203,27 +203,27 @@
     },
     {
       id: 'Cosmos Scorching Left',
-      regex: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4763', source: '卢格斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4763', source: '루구스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4763', source: '卢格斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4763', source: '루구스', capture: false }),
       response: Responses.goLeft('info'),
     },
     {
       id: 'Cosmos Scorching Right',
-      regex: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4762', source: '卢格斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4762', source: '루구스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4762', source: '卢格斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4762', source: '루구스', capture: false }),
       response: Responses.goRight('info'),
     },
     {
       id: 'Cosmos Fire\'s Domain',
-      regex: Regexes.headMarker({ id: '003[2345]' }),
+      netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },

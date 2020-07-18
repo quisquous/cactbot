@@ -12,12 +12,12 @@
   triggers: [
     {
       id: 'O5N Stop Combat',
-      regex: Regexes.removingCombatant({ name: 'Phantom Train', capture: false }),
-      regexDe: Regexes.removingCombatant({ name: 'Phantomzug', capture: false }),
-      regexFr: Regexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
-      regexJa: Regexes.removingCombatant({ name: '魔列車', capture: false }),
-      regexCn: Regexes.removingCombatant({ name: '魔列车', capture: false }),
-      regexKo: Regexes.removingCombatant({ name: '마열차', capture: false }),
+      netRegex: NetRegexes.removingCombatant({ name: 'Phantom Train', capture: false }),
+      netRegexDe: NetRegexes.removingCombatant({ name: 'Phantomzug', capture: false }),
+      netRegexFr: NetRegexes.removingCombatant({ name: 'Train Fantôme', capture: false }),
+      netRegexJa: NetRegexes.removingCombatant({ name: '魔列車', capture: false }),
+      netRegexCn: NetRegexes.removingCombatant({ name: '魔列车', capture: false }),
+      netRegexKo: NetRegexes.removingCombatant({ name: '마열차', capture: false }),
       run: function(data) {
         data.StopCombat();
       },
@@ -25,37 +25,37 @@
 
     {
       id: 'O5N Doom Strike',
-      regex: Regexes.startsUsing({ source: 'Phantom Train', id: '28A3' }),
-      regexDe: Regexes.startsUsing({ source: 'Phantomzug', id: '28A3' }),
-      regexFr: Regexes.startsUsing({ source: 'Train Fantôme', id: '28A3' }),
-      regexJa: Regexes.startsUsing({ source: '魔列車', id: '28A3' }),
-      regexCn: Regexes.startsUsing({ source: '魔列车', id: '28A3' }),
-      regexKo: Regexes.startsUsing({ source: '마열차', id: '28A3' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Phantom Train', id: '28A3' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Phantomzug', id: '28A3' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Train Fantôme', id: '28A3' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '魔列車', id: '28A3' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '魔列车', id: '28A3' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '마열차', id: '28A3' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'O5N Head On',
-      regex: Regexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '28A4', source: '魔列車', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '28A4', source: '魔列车', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '28A4', source: '마열차', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '28A4', source: 'Phantom Train', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '28A4', source: 'Phantomzug', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '28A4', source: 'Train Fantôme', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '28A4', source: '魔列車', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '28A4', source: '魔列车', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '28A4', source: '마열차', capture: false }),
       response: Responses.getOut(),
     },
     {
       id: 'O5N Diabolic Headlamp',
-      regex: Regexes.startsUsing({ id: '28A6', source: 'Phantom Train', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '28A6', source: 'Phantomzug', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '28A6', source: 'Train Fantôme', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '28A6', source: '魔列車', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '28A6', source: '魔列车', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '28A6', source: '마열차', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '28A6', source: 'Phantom Train', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '28A6', source: 'Phantomzug', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '28A6', source: 'Train Fantôme', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '28A6', source: '魔列車', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '28A6', source: '魔列车', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '28A6', source: '마열차', capture: false }),
       response: Responses.stackMiddle(),
     },
     {
       id: 'O5N Diabolic Light',
-      regex: Regexes.headMarker({ id: '0001' }),
+      netRegex: NetRegexes.headMarker({ id: '0001' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -68,7 +68,7 @@
     },
     {
       id: 'O5N Diabolic Wind',
-      regex: Regexes.headMarker({ id: '0046' }),
+      netRegex: NetRegexes.headMarker({ id: '0046' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },

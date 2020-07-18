@@ -26,12 +26,12 @@
     {
       // Phase Tracker: Thunder III not after Decisive Battle.
       id: 'O4S Exdeath Thunder III Counter',
-      regex: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
       run: function(data) {
         data.thunderCount = (data.thunderCount || 0) + 1;
       },
@@ -39,12 +39,12 @@
     {
       // Fire III not after Decisive Battle.
       id: 'O4S Exdeath Fire III Counter',
-      regex: Regexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '23F5', source: 'エクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '23F5', source: '艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '23F5', source: '엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '23F5', source: 'Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '23F5', source: 'エクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '23F5', source: '艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '23F5', source: '엑스데스', capture: false }),
       infoText: {
         en: 'Fire III',
         de: 'Feuga',
@@ -54,12 +54,12 @@
     {
       // Blizzard III not after Decisive Battle.
       id: 'O4S Exdeath Blizzard III',
-      regex: Regexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '23F7', source: 'エクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '23F7', source: '艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '23F7', source: '엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '23F7', source: 'Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '23F7', source: 'エクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '23F7', source: '艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '23F7', source: '엑스데스', capture: false }),
       infoText: {
         en: 'Blizzard III',
         de: 'Eisga',
@@ -69,12 +69,12 @@
     {
       // Thunder III not after Decisive Battle.
       id: 'O4S Exdeath Thunder III',
-      regex: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '23F9', source: 'Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '23F9', source: 'エクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '23F9', source: '艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '23F9', source: '엑스데스', capture: false }),
       alertText: function(data) {
         // Tanks/healers always get an alert.
         if (data.role == 'tank' || data.role == 'healer') {
@@ -107,45 +107,45 @@
     {
       // Fire III after Decisive Battle.
       id: 'O4S Exdeath Ultimate Fire III',
-      regex: Regexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '23FB', source: 'エクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '23FB', source: '艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '23FB', source: '엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '23FB', source: 'Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '23FB', source: 'エクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '23FB', source: '艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '23FB', source: '엑스데스', capture: false }),
       response: Responses.stopMoving(),
     },
     {
       // Blizzard III after Decisive Battle.
       id: 'O4S Exdeath Ultimate Blizzard III',
-      regex: Regexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '23FC', source: 'エクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '23FC', source: '艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '23FC', source: '엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '23FC', source: 'Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '23FC', source: 'エクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '23FC', source: '艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '23FC', source: '엑스데스', capture: false }),
       response: Responses.move(),
     },
     {
       // Thunder III after Decisive Battle.
       id: 'O4S Exdeath Ultimate Thunder III',
-      regex: Regexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '23FD', source: 'エクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '23FD', source: '艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '23FD', source: '엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '23FD', source: 'Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '23FD', source: 'エクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '23FD', source: '艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '23FD', source: '엑스데스', capture: false }),
       response: Responses.getOut(),
     },
     {
       // Flare
       id: 'O4S Exdeath Flare',
-      regex: Regexes.startsUsing({ id: '2401', source: 'Exdeath' }),
-      regexDe: Regexes.startsUsing({ id: '2401', source: 'Exdeath' }),
-      regexFr: Regexes.startsUsing({ id: '2401', source: 'Exdeath' }),
-      regexJa: Regexes.startsUsing({ id: '2401', source: 'エクスデス' }),
-      regexCn: Regexes.startsUsing({ id: '2401', source: '艾克斯迪司' }),
-      regexKo: Regexes.startsUsing({ id: '2401', source: '엑스데스' }),
+      netRegex: NetRegexes.startsUsing({ id: '2401', source: 'Exdeath' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2401', source: 'Exdeath' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2401', source: 'Exdeath' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2401', source: 'エクスデス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2401', source: '艾克斯迪司' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2401', source: '엑스데스' }),
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches.target);
@@ -168,12 +168,12 @@
     // Part 2
     {
       id: 'O4S Neo Grand Cross Alpha Tracker',
-      regex: Regexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '242B', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '242B', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '242B', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '242B', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
       run: function(data) {
         data.phase = 'alpha';
         data.alphaCount = (data.alphaCount || 0) + 1;
@@ -198,12 +198,12 @@
     },
     {
       id: 'O4S Neo Grand Cross Delta Tracker',
-      regex: Regexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '242C', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '242C', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '242C', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '242C', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
       run: function(data) {
         data.phase = 'delta';
         data.waterHealer = null;
@@ -211,12 +211,12 @@
     },
     {
       id: 'O4S Neo Grand Cross Omega Tracker',
-      regex: Regexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '242D', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '242D', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '242D', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '242D', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '242D', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '242D', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '242D', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '242D', source: '네오 엑스데스', capture: false }),
       run: function(data) {
         data.phase = 'omega';
         data.waterHealer = null;
@@ -225,12 +225,12 @@
     },
     {
       id: 'O4S Neo Neverwhere Tracker',
-      regex: Regexes.startsUsing({ id: '2426', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2426', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2426', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2426', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2426', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2426', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2426', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2426', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2426', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2426', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2426', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2426', source: '네오 엑스데스', capture: false }),
       run: function(data) {
         data.finalphase = true;
       },
@@ -317,12 +317,12 @@
     },
     {
       id: 'O4S Neo Flood of Naught: Inside',
-      regex: Regexes.startsUsing({ id: '240E', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '240E', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '240E', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '240E', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '240E', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '240E', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '240E', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '240E', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '240E', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '240E', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '240E', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '240E', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
       sound: function(data) {
         if (data.shouldDieOnLaser())
@@ -363,12 +363,12 @@
     },
     {
       id: 'O4S Neo Flood of Naught: Outside',
-      regex: Regexes.startsUsing({ id: '240F', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '240F', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '240F', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '240F', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '240F', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '240F', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '240F', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '240F', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '240F', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '240F', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '240F', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '240F', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
       sound: function(data) {
         if (data.shouldDieOnLaser())
@@ -409,12 +409,12 @@
     },
     {
       id: 'O4S Neo Flood of Naught: Colors Purple Blue',
-      regex: Regexes.startsUsing({ id: '2411', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2411', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2411', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2411', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2411', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2411', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2411', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2411', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2411', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2411', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2411', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2411', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
       sound: function(data) {
         if (data.shouldDieOnLaser())
@@ -473,12 +473,12 @@
     },
     {
       id: 'O4S Neo Flood of Naught: Colors Blue Purple',
-      regex: Regexes.startsUsing({ id: '2412', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2412', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2412', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2412', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2412', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2412', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2412', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2412', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2412', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2412', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2412', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2412', source: '네오 엑스데스', capture: false }),
       durationSeconds: 6,
       sound: function(data) {
         if (data.shouldDieOnLaser())
@@ -538,12 +538,12 @@
     },
     {
       id: 'O4S Neo Laser Counter',
-      regex: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['240E', '240F', '2411', '2412'], source: '네오 엑스데스', capture: false }),
       run: function(data) {
         if (data.phase != 'omega')
           return;
@@ -562,12 +562,12 @@
     },
     {
       id: 'O4S Neo Flood of Naught: Charge',
-      regex: Regexes.startsUsing({ id: '2416', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2416', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2416', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2416', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2416', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2416', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2416', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2416', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2416', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2416', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2416', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2416', source: '네오 엑스데스', capture: false }),
       infoText: function(data) {
         if (data.allaganField) {
           if (data.role == 'tank') {
@@ -604,12 +604,12 @@
     },
     {
       id: 'O4S Neo Double Attack',
-      regex: Regexes.startsUsing({ id: '241C', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '241C', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '241C', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '241C', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '241C', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '241C', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '241C', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '241C', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '241C', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '241C', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '241C', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '241C', source: '네오 엑스데스', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -632,12 +632,12 @@
     },
     { // Grand Cross Alpha.
       id: 'O4S Neo Grand Cross Alpha',
-      regex: Regexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '242B', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '242B', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '242B', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '242B', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '242B', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '242B', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '242B', source: '네오 엑스데스', capture: false }),
       infoText: {
         en: 'Grand Cross Alpha: Go to middle',
         de: 'Supernova Alpha: In die Mitte',
@@ -651,12 +651,12 @@
     },
     {
       id: 'O4S Neo Grand Cross Delta',
-      regex: Regexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '242C', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '242C', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '242C', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '242C', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '242C', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '242C', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '242C', source: '네오 엑스데스', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -702,12 +702,12 @@
     },
     {
       id: 'O4S Neo Grand Cross Omega',
-      regex: Regexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '242D', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '242D', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '242D', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '242D', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '242D', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '242D', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '242D', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '242D', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '242D', source: '네오 엑스데스', capture: false }),
       response: Responses.goMiddle(),
     },
     {
@@ -896,7 +896,7 @@
     },
     {
       id: 'O4S Neo Earthshaker on Tank',
-      regex: Regexes.headMarker({ id: '0028' }),
+      netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
         return matches.target == data.me && data.role == 'tank';
       },
@@ -904,7 +904,7 @@
     },
     {
       id: 'O4S Neo Earthshaker on not Tank',
-      regex: Regexes.headMarker({ id: '0028' }),
+      netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
         return matches.target == data.me && data.role != 'tank';
       },
@@ -912,22 +912,22 @@
     },
     {
       id: 'O4S Neo Delta Attack',
-      regex: Regexes.startsUsing({ id: '241E', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '241E', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '241E', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '241E', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '241E', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '241E', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '241E', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '241E', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '241E', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '241E', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '241E', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '241E', source: '네오 엑스데스', capture: false }),
       response: Responses.stack(),
     },
     {
       id: 'O4S Neo Almagest',
-      regex: Regexes.startsUsing({ id: '2417', source: 'Neo Exdeath', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2417', source: 'Neo Exdeath', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2417', source: 'Néo-Exdeath', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2417', source: 'ネオエクスデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2417', source: '新生艾克斯迪司', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2417', source: '네오 엑스데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2417', source: 'Neo Exdeath', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2417', source: 'Neo Exdeath', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2417', source: 'Néo-Exdeath', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2417', source: 'ネオエクスデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2417', source: '新生艾克斯迪司', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2417', source: '네오 엑스데스', capture: false }),
       alertText: {
         en: 'Almagest',
         de: 'Almagest',
@@ -944,12 +944,12 @@
     },
     {
       id: 'O4S Neo Flare',
-      regex: Regexes.startsUsing({ id: '2401', source: 'Neo Exdeath' }),
-      regexDe: Regexes.startsUsing({ id: '2401', source: 'Neo Exdeath' }),
-      regexFr: Regexes.startsUsing({ id: '2401', source: 'Néo-Exdeath' }),
-      regexJa: Regexes.startsUsing({ id: '2401', source: 'ネオエクスデス' }),
-      regexCn: Regexes.startsUsing({ id: '2401', source: '新生艾克斯迪司' }),
-      regexKo: Regexes.startsUsing({ id: '2401', source: '네오 엑스데스' }),
+      netRegex: NetRegexes.startsUsing({ id: '2401', source: 'Neo Exdeath' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2401', source: 'Neo Exdeath' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2401', source: 'Néo-Exdeath' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2401', source: 'ネオエクスデス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2401', source: '新生艾克斯迪司' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2401', source: '네오 엑스데스' }),
       condition: function(data, matches) {
         data.flareTargets = data.flareTargets || [];
         data.flareTargets.push(matches.target);

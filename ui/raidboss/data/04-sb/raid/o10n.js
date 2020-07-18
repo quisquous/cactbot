@@ -16,12 +16,12 @@
       // 31C7 + 31CB = 31CF (horiz + vert = in)
       // 31C8 + 31CB = 31D0 (vert + vert = +)
       id: 'O10N Spin Cleanup',
-      regex: Regexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
-      regexDe: Regexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
-      regexFr: Regexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
-      regexJa: Regexes.ability({ id: '31C[78]', source: 'ミドガルズオルム', capture: false }),
-      regexCn: Regexes.ability({ id: '31C[78]', source: '尘世幻龙', capture: false }),
-      regexKo: Regexes.ability({ id: '31C[78]', source: '미드가르드오름', capture: false }),
+      netRegex: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '31C[78]', source: 'Midgardsormr', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '31C[78]', source: 'ミドガルズオルム', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '31C[78]', source: '尘世幻龙', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '31C[78]', source: '미드가르드오름', capture: false }),
       delaySeconds: 10,
       run: function(data) {
         delete data.lastSpinWasHorizontal;
@@ -29,12 +29,12 @@
     },
     {
       id: 'O10N Horizontal Spin 1',
-      regex: Regexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
-      regexDe: Regexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
-      regexFr: Regexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
-      regexJa: Regexes.ability({ id: '31C7', source: 'ミドガルズオルム', capture: false }),
-      regexCn: Regexes.ability({ id: '31C7', source: '尘世幻龙', capture: false }),
-      regexKo: Regexes.ability({ id: '31C7', source: '미드가르드오름', capture: false }),
+      netRegex: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '31C7', source: 'Midgardsormr', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '31C7', source: 'ミドガルズオルム', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '31C7', source: '尘世幻龙', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '31C7', source: '미드가르드오름', capture: false }),
       infoText: {
         en: 'Next Spin: In or Out',
         de: 'Nächste Drehung: Rein oder raus',
@@ -48,12 +48,12 @@
     },
     {
       id: 'O10N Vertical Spin 1',
-      regex: Regexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
-      regexDe: Regexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
-      regexFr: Regexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
-      regexJa: Regexes.ability({ id: '31C8', source: 'ミドガルズオルム', capture: false }),
-      regexCn: Regexes.ability({ id: '31C8', source: '尘世幻龙', capture: false }),
-      regexKo: Regexes.ability({ id: '31C8', source: '미드가르드오름', capture: false }),
+      netRegex: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '31C8', source: 'Midgardsormr', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '31C8', source: 'ミドガルズオルム', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '31C8', source: '尘世幻龙', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '31C8', source: '미드가르드오름', capture: false }),
       infoText: {
         en: 'Next Spin: Corners',
         de: 'Nächste Drehung: Ecken',
@@ -67,12 +67,12 @@
     },
     {
       id: 'O10N Horizontal Spin 2',
-      regex: Regexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
-      regexDe: Regexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
-      regexFr: Regexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
-      regexJa: Regexes.ability({ id: '31C9', source: 'ミドガルズオルム', capture: false }),
-      regexCn: Regexes.ability({ id: '31C9', source: '尘世幻龙', capture: false }),
-      regexKo: Regexes.ability({ id: '31C9', source: '미드가르드오름', capture: false }),
+      netRegex: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '31C9', source: 'Midgardsormr', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '31C9', source: 'ミドガルズオルム', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '31C9', source: '尘世幻龙', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '31C9', source: '미드가르드오름', capture: false }),
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },
@@ -98,12 +98,12 @@
     },
     {
       id: 'O10N Vertical Spin 2',
-      regex: Regexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
-      regexDe: Regexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
-      regexFr: Regexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
-      regexJa: Regexes.ability({ id: '31CB', source: 'ミドガルズオルム', capture: false }),
-      regexCn: Regexes.ability({ id: '31CB', source: '尘世幻龙', capture: false }),
-      regexKo: Regexes.ability({ id: '31CB', source: '미드가르드오름', capture: false }),
+      netRegex: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '31CB', source: 'Midgardsormr', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '31CB', source: 'ミドガルズオルム', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '31CB', source: '尘世幻龙', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '31CB', source: '미드가르드오름', capture: false }),
       condition: function(data) {
         return data.lastSpinWasHorizontal !== undefined;
       },

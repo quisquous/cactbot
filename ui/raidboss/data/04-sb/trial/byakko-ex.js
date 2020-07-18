@@ -12,12 +12,12 @@
   triggers: [
     {
       id: 'ByaEx Heavenly Strike',
-      regex: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
-      regexDe: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
-      regexFr: Regexes.startsUsing({ id: '27DA', source: 'Byakko' }),
-      regexJa: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
-      regexCn: Regexes.startsUsing({ id: '27DA', source: '白虎' }),
-      regexKo: Regexes.startsUsing({ id: '27DA', source: '백호' }),
+      netRegex: NetRegexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27DA', source: 'Byakko' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27DA', source: '白虎' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27DA', source: '백호' }),
       condition: function(data, matches) {
         return data.role == 'healer';
       },
@@ -25,42 +25,42 @@
     },
     {
       id: 'ByaEx Flying Donut',
-      regex: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27F4', source: '백호', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27F4', source: 'Byakko', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27F4', source: '白虎', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27F4', source: '백호', capture: false }),
       response: Responses.getIn(),
     },
     {
       id: 'ByaEx Sweep The Leg',
-      regex: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27DB', source: '백호', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27DB', source: 'Byakko', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27DB', source: '白虎', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27DB', source: '백호', capture: false }),
       response: Responses.getBehind(),
     },
     {
       id: 'ByaEx Storm Pulse',
-      regex: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27DC', source: '백호', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27DC', source: 'Byakko', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27DC', source: '白虎', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27DC', source: '백호', capture: false }),
       response: Responses.aoe(),
     },
     {
       id: 'ByaEx Distant Clap',
-      regex: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27DD', source: '백호', target: '백호', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27DD', source: 'Byakko', target: 'Byakko', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27DD', source: '白虎', target: '白虎', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27DD', source: '백호', target: '백호', capture: false }),
       alertText: {
         en: 'Distant Clap',
         de: 'Donnergrollen',
@@ -80,12 +80,12 @@
     },
     {
       id: 'ByaEx State Of Shock Tank 1',
-      regex: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
-      regexDe: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
-      regexFr: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
-      regexJa: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
-      regexCn: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
-      regexKo: Regexes.startsUsing({ id: '27E0', source: '백호' }),
+      netRegex: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: function(data, matches) {
         return data.role == 'tank' && matches.target != data.me;
       },
@@ -108,12 +108,12 @@
     },
     {
       id: 'ByaEx State Of Shock Tank 2',
-      regex: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
-      regexDe: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
-      regexFr: Regexes.startsUsing({ id: '27E0', source: 'Byakko' }),
-      regexJa: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
-      regexCn: Regexes.startsUsing({ id: '27E0', source: '白虎' }),
-      regexKo: Regexes.startsUsing({ id: '27E0', source: '백호' }),
+      netRegex: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27E0', source: 'Byakko' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27E0', source: '白虎' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27E0', source: '백호' }),
       condition: function(data, matches) {
         return data.role == 'tank' && matches.target == data.me;
       },
@@ -137,12 +137,12 @@
     },
     {
       id: 'ByaEx Roar Counter',
-      regex: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       run: function(data) {
         data.roarCount = data.roarCount || 0;
         data.roarCount += 1;
@@ -150,12 +150,12 @@
     },
     {
       id: 'ByaEx Roar of Thunder',
-      regex: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27F9', source: 'Hakutei', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27F9', source: '白帝', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27F9', source: '하얀 제왕', capture: false }),
       delaySeconds: 14,
       alarmText: function(data) {
         if (data.roarCount != 2)
@@ -175,7 +175,7 @@
     },
     {
       id: 'ByaEx Bubble',
-      regex: Regexes.headMarker({ id: '0065' }),
+      netRegex: NetRegexes.headMarker({ id: '0065' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -221,7 +221,7 @@
     },
     {
       id: 'ByaEx Puddle Marker',
-      regex: Regexes.headMarker({ id: '0004' }),
+      netRegex: NetRegexes.headMarker({ id: '0004' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -244,7 +244,7 @@
     },
     {
       id: 'ByaEx G100',
-      regex: Regexes.headMarker({ id: '0057' }),
+      netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -267,12 +267,12 @@
     },
     {
       id: 'ByaEx Tiger Add',
-      regex: Regexes.dialog({ line: '[^:]*:Twofold is my wrath, twice-cursed my foes!.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:半身分离，助我杀敌！向胆敢抵抗的家伙们露出你的爪牙！.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Stürmt los, meine zwei Gesichter!.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: '[^:]*:Ma colère devient double.*?!.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: '[^:]*:Twofold is my wrath, twice-cursed my foes!.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '[^:]*:半身分离，助我杀敌！向胆敢抵抗的家伙们露出你的爪牙！.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: '[^:]*:Stürmt los, meine zwei Gesichter!.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: '[^:]*:Ma colère devient double.*?!.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '[^:]*:駆けろ、我が半身ッ！歯向かう者どもに、牙と爪を突き立ててやれ！.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '[^:]*:달려라! 나의 반신이여! 맞서는 자들에게 이빨과 발톱을 찔러넣어라!.*?', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -288,12 +288,12 @@
     },
     {
       id: 'ByaEx Stake Counter',
-      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       run: function(data) {
         data.stakeCount = data.stakeCount || 0;
         data.stakeCount += 1;
@@ -301,12 +301,12 @@
     },
     {
       id: 'ByaEx Stake Counter Cleanup',
-      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       delaySeconds: 20,
       run: function(data) {
         delete data.stakeCount;
@@ -314,12 +314,12 @@
     },
     {
       id: 'ByaEx Highest Stakes',
-      regex: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '27E2', source: 'Byakko', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '27E2', source: '白虎', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '27E2', source: '백호', capture: false }),
       infoText: function(data) {
         return {
           en: 'Stack #' + data.stakeCount,

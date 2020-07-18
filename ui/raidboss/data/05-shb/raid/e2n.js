@@ -25,12 +25,12 @@
   triggers: [
     {
       id: 'E2N Shadowflame Tank',
-      regex: Regexes.startsUsing({ id: '3E4D', source: 'Voidwalker' }),
-      regexDe: Regexes.startsUsing({ id: '3E4D', source: 'Nichtswandler' }),
-      regexFr: Regexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant' }),
-      regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー' }),
-      regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
-      regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
+      netRegex: NetRegexes.startsUsing({ id: '3E4D', source: 'Voidwalker' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E4D', source: 'Nichtswandler' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커' }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -38,12 +38,12 @@
     },
     {
       id: 'E2N Shadowflame Healer',
-      regex: Regexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E4D', source: 'Nichtswandler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3E4D', source: 'Voidwalker', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E4D', source: 'Nichtswandler', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E4D', source: 'Marcheuse Du Néant', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E4D', source: 'ヴォイドウォーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E4D', source: '虚无行者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E4D', source: '보이드워커', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -58,12 +58,12 @@
     },
     {
       id: 'E2N Entropy',
-      regex: Regexes.startsUsing({ id: '3E6D', source: 'Voidwalker', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E6D', source: 'Nichtswandler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E6D', source: 'Marcheuse Du Néant', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E6D', source: 'ヴォイドウォーカー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E6D', source: '虚无行者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E6D', source: '보이드워커', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3E6D', source: 'Voidwalker', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E6D', source: 'Nichtswandler', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E6D', source: 'Marcheuse Du Néant', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E6D', source: 'ヴォイドウォーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E6D', source: '虚无行者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E6D', source: '보이드워커', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -71,32 +71,32 @@
     },
     {
       id: 'E2N Doomvoid Slicer',
-      regex: Regexes.startsUsing({ id: '3E3C', source: 'Voidwalker', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E3C', source: 'Nichtswandler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E3C', source: 'Marcheuse Du Néant', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E3C', source: 'ヴォイドウォーカー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E3C', source: '虚无行者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E3C', source: '보이드워커', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3E3C', source: 'Voidwalker', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E3C', source: 'Nichtswandler', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E3C', source: 'Marcheuse Du Néant', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E3C', source: 'ヴォイドウォーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E3C', source: '虚无行者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E3C', source: '보이드워커', capture: false }),
       response: Responses.getUnder(),
     },
     {
       id: 'E2N Empty Hate',
-      regex: Regexes.startsUsing({ id: '3E46', source: 'The Hand Of Erebos', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E46', source: 'Arm Des Erebos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E46', source: 'Bras D\'Érèbe', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E46', source: 'エレボスの巨腕', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E46', source: '厄瑞玻斯的巨腕', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E46', source: '에레보스의 팔', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3E46', source: 'The Hand Of Erebos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E46', source: 'Arm Des Erebos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E46', source: 'Bras D\'Érèbe', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E46', source: 'エレボスの巨腕', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E46', source: '厄瑞玻斯的巨腕', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E46', source: '에레보스의 팔', capture: false }),
       response: Responses.knockback('info'),
     },
     {
       id: 'E2N Darkfire Counter',
-      regex: Regexes.startsUsing({ id: '3E42', source: 'Voidwalker', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3E42', source: 'Nichtswandler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3E42', source: 'Marcheuse Du Néant', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3E42', source: 'ヴォイドウォーカー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3E42', source: '虚无行者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3E42', source: '보이드워커', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3E42', source: 'Voidwalker', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3E42', source: 'Nichtswandler', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3E42', source: 'Marcheuse Du Néant', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3E42', source: 'ヴォイドウォーカー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3E42', source: '虚无行者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3E42', source: '보이드워커', capture: false }),
       run: function(data) {
         data.fireCount = data.fireCount || 0;
         data.fireCount++;
@@ -104,7 +104,7 @@
     },
     {
       id: 'E2N Dark Fire No Waiting',
-      regex: Regexes.headMarker({ id: '004C' }),
+      netRegex: NetRegexes.headMarker({ id: '004C' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -112,17 +112,17 @@
     },
     {
       id: 'E2N Unholy Darkness No Waiting',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn(),
     },
     {
       id: 'E2N Shadoweye No Waiting',
-      regex: Regexes.headMarker({ id: '00B3' }),
+      netRegex: NetRegexes.headMarker({ id: '00B3' }),
       response: Responses.lookAwayFrom(),
     },
     {
       id: 'E2N Dark Fire Collect',
-      regex: Regexes.headMarker({ id: '00B5' }),
+      netRegex: NetRegexes.headMarker({ id: '00B5' }),
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'fire';
@@ -130,7 +130,7 @@
     },
     {
       id: 'E2N Dark Fire Waiting',
-      regex: Regexes.headMarker({ id: '00B5' }),
+      netRegex: NetRegexes.headMarker({ id: '00B5' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -144,7 +144,7 @@
     },
     {
       id: 'E2N Countdown Marker Fire',
-      regex: Regexes.headMarker({ id: '00B8' }),
+      netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         return data.me == matches.target && data.spell[data.me] == 'fire';
       },
@@ -169,7 +169,7 @@
     },
     {
       id: 'E2N Unholy Darkness Collect',
-      regex: Regexes.headMarker({ id: '00B4' }),
+      netRegex: NetRegexes.headMarker({ id: '00B4' }),
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'stack';
@@ -177,7 +177,7 @@
     },
     {
       id: 'E2N Unholy Darkness Waiting',
-      regex: Regexes.headMarker({ id: '00B4' }),
+      netRegex: NetRegexes.headMarker({ id: '00B4' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -191,7 +191,7 @@
     },
     {
       id: 'E2N Countdown Marker Unholy Darkness',
-      regex: Regexes.headMarker({ id: '00B8' }),
+      netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         // The third fire coincides with stack.
         // These people should avoid.
@@ -203,7 +203,7 @@
     },
     {
       id: 'E2N Shadoweye Collect',
-      regex: Regexes.headMarker({ id: '00B7' }),
+      netRegex: NetRegexes.headMarker({ id: '00B7' }),
       run: function(data, matches) {
         data.spell = data.spell || {};
         data.spell[matches.target] = 'eye';
@@ -211,7 +211,7 @@
     },
     {
       id: 'E2N Shadoweye Waiting',
-      regex: Regexes.headMarker({ id: '00B7' }),
+      netRegex: NetRegexes.headMarker({ id: '00B7' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -225,7 +225,7 @@
     },
     {
       id: 'E2N Countdown Marker Shadoweye',
-      regex: Regexes.headMarker({ id: '00B8' }),
+      netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         return data.spell[matches.target] == 'eye';
       },
@@ -234,7 +234,7 @@
     },
     {
       id: 'E2N Countdown Marker Shadoweye You',
-      regex: Regexes.headMarker({ id: '00B8' }),
+      netRegex: NetRegexes.headMarker({ id: '00B8' }),
       condition: function(data, matches) {
         return data.spell[matches.target] == 'eye';
       },
@@ -253,7 +253,7 @@
     },
     {
       id: 'E2N Countdown Marker Cleanup',
-      regex: Regexes.headMarker({ id: '00B8' }),
+      netRegex: NetRegexes.headMarker({ id: '00B8' }),
       delaySeconds: 10,
       run: function(data, matches) {
         delete data.spell[matches.target];

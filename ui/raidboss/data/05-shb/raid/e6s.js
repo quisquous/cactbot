@@ -10,10 +10,10 @@
   triggers: [
     {
       id: 'E6S Strike Spark',
-      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
-      regexDe: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
-      regexFr: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
-      regexJa: Regexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BD3', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BD3', capture: false }),
       delaySeconds: 11,
       promise: async (data) => {
         const ifritLocaleNames = {
@@ -127,12 +127,12 @@
     },
     {
       id: 'E6S Superstorm',
-      regex: Regexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ガルーダ', id: '4BF7', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '迦楼罗', id: '4BF7', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '가루다', id: '4BF7', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garuda', id: '4BF7', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガルーダ', id: '4BF7', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '迦楼罗', id: '4BF7', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '가루다', id: '4BF7', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
       run: function(data) {
@@ -141,10 +141,10 @@
     },
     {
       id: 'E6S Ferostorm',
-      regex: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
-      regexDe: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
-      regexFr: Regexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
-      regexJa: Regexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
         de: 'Weiche den grünen Nägeln aus',
@@ -154,7 +154,7 @@
     },
     {
       id: 'E6S Air Bump',
-      regex: Regexes.headMarker({ id: '00D3' }),
+      netRegex: NetRegexes.headMarker({ id: '00D3' }),
       suppressSeconds: 1,
       infoText: function(data, matches) {
         if (data.me == matches.target) {
@@ -177,32 +177,32 @@
     },
     {
       id: 'E6S Touchdown',
-      regex: Regexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'イフリート', id: '4C09', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '伊弗利特', id: '4C09', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '이프리트', id: '4C09', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Ifrit', id: '4C09', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'イフリート', id: '4C09', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '伊弗利特', id: '4C09', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '이프리트', id: '4C09', capture: false }),
       run: function(data) {
         data.phase = 'ifrit';
       },
     },
     {
       id: 'E6S Inferno Howl',
-      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
-      regexDe: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
-      regexFr: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
-      regexJa: Regexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C14', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C14', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
     {
       // Save ability state since the generic tether used has multiple uses in this fight
       id: 'E6S Hands of Flame Start',
-      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
-      regexDe: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
-      regexFr: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
-      regexJa: Regexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
       preRun: function(data) {
         data.handsOfFlame = true;
       },
@@ -211,7 +211,7 @@
       // Tank swap if you're not the target
       // Break tether if you're the target during Ifrit+Garuda phase
       id: 'E6S Hands of Flame Tether',
-      regex: Regexes.tether({ id: '0068' }),
+      netRegex: NetRegexes.tether({ id: '0068' }),
       condition: function(data) {
         return data.handsOfFlame;
       },
@@ -238,10 +238,10 @@
     },
     {
       id: 'E6S Hands of Flame Cast',
-      regex: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
-      regexDe: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
-      regexFr: Regexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
-      regexJa: Regexes.ability({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
+      netRegex: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
       preRun: function(data) {
         data.handsOfFlame = false;
       },
@@ -249,24 +249,24 @@
     },
     {
       id: 'E6S Instant Incineration',
-      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
-      regexDe: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
-      regexFr: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
-      regexJa: Regexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0E' }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0E' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
       id: 'E6S Meteor Strike',
-      regex: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
-      regexDe: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
-      regexFr: Regexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
-      regexJa: Regexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0F', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0F', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'E6S Hands of Hell',
-      regex: Regexes.headMarker({ id: '0016' }),
+      netRegex: NetRegexes.headMarker({ id: '0016' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Tether Marker on YOU',
@@ -278,12 +278,12 @@
     },
     {
       id: 'E6S Hated of the Vortex',
-      regex: Regexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ガルーダ', id: '4F9F', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '迦楼罗', id: '4F9F', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '가루다', id: '4F9F', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garuda', id: '4F9F', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガルーダ', id: '4F9F', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '迦楼罗', id: '4F9F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '가루다', id: '4F9F', capture: false }),
       run: function(data) {
         data.phase = 'both';
       },
@@ -314,38 +314,38 @@
     },
     {
       id: 'E6S Raktapaksa Spawn',
-      regex: Regexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
-      regexDe: Regexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
-      regexFr: Regexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
-      regexJa: Regexes.ability({ source: 'ラクタパクシャ', id: '4D55', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ラクタパクシャ', id: '4D55', capture: false }),
       run: function(data) {
         data.phase = 'raktapaksa';
       },
     },
     {
       id: 'E6S Downburst Knockback 1',
-      regex: Regexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ガルーダ', id: '4BFB', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '迦楼罗', id: '4BFB', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '가루다', id: '4BFB', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Garuda', id: '4BFB', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ガルーダ', id: '4BFB', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '迦楼罗', id: '4BFB', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '가루다', id: '4BFB', capture: false }),
       response: Responses.knockback(),
     },
     {
       id: 'E6S Downburst Knockback 2',
-      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ラクタパクシャ', id: '4BFC', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4BFC', capture: false }),
       response: Responses.knockback(),
     },
     {
       id: 'E6S Conflag Strike',
-      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ラクタパクシャ', id: '4C10', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4C10', capture: false }),
       infoText: {
         en: 'go to spots for chains',
         de: 'Gehe zu den Stellen für die Kette',
@@ -356,7 +356,7 @@
     },
     {
       id: 'E6S Irons Of Purgatory',
-      regex: Regexes.tether({ id: '006C' }),
+      netRegex: NetRegexes.tether({ id: '006C' }),
       condition: function(data, matches) {
         return data.me == matches.target || data.me == matches.source;
       },
@@ -381,10 +381,10 @@
     },
     {
       id: 'E6S Conflag Strike Behind',
-      regex: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'ラクタパクシャ', id: '4C10', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4C10', capture: false }),
       delaySeconds: 31,
       response: Responses.getBehind(),
     },

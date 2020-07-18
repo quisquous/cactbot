@@ -80,12 +80,12 @@
     },
     {
       id: 'O7S Magitek Ray',
-      regex: Regexes.startsUsing({ id: '2788', source: 'Guardian', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2788', source: 'Wächter', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2788', source: 'Gardien', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2788', source: 'ガーディアン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2788', source: '守护者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2788', source: '가디언', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2788', source: 'Guardian', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2788', source: 'Wächter', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2788', source: 'Gardien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2788', source: 'ガーディアン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2788', source: '守护者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2788', source: '가디언', capture: false }),
       alertText: {
         en: 'Magitek Ray',
         de: 'Magitek-Laser',
@@ -105,17 +105,17 @@
     },
     {
       id: 'O7S Arm And Hammer',
-      regex: Regexes.startsUsing({ id: '2789', source: 'Guardian' }),
-      regexDe: Regexes.startsUsing({ id: '2789', source: 'Wächter' }),
-      regexFr: Regexes.startsUsing({ id: '2789', source: 'Gardien' }),
-      regexJa: Regexes.startsUsing({ id: '2789', source: 'ガーディアン' }),
-      regexCn: Regexes.startsUsing({ id: '2789', source: '守护者' }),
-      regexKo: Regexes.startsUsing({ id: '2789', source: '가디언' }),
+      netRegex: NetRegexes.startsUsing({ id: '2789', source: 'Guardian' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2789', source: 'Wächter' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2789', source: 'Gardien' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2789', source: 'ガーディアン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2789', source: '守护者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2789', source: '가디언' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'O7S Orb Marker',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -138,7 +138,7 @@
     },
     {
       id: 'O7S Blue Marker',
-      regex: Regexes.headMarker({ id: '000E' }),
+      netRegex: NetRegexes.headMarker({ id: '000E' }),
       alarmText: function(data, matches) {
         if (data.me != matches.target)
           return;
@@ -178,7 +178,7 @@
     },
     {
       id: 'O7S Prey',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn('info'),
     },
     {
@@ -251,12 +251,12 @@
     },
     {
       id: 'O7S Stoneskin',
-      regex: Regexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
-      regexDe: Regexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
-      regexFr: Regexes.startsUsing({ id: '2AB5', source: 'Orthros' }),
-      regexJa: Regexes.startsUsing({ id: '2AB5', source: 'オルトロス' }),
-      regexCn: Regexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯' }),
-      regexKo: Regexes.startsUsing({ id: '2AB5', source: '오르트로스' }),
+      netRegex: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2AB5', source: 'Ultros' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2AB5', source: 'Orthros' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2AB5', source: 'オルトロス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2AB5', source: '奥尔特罗斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2AB5', source: '오르트로스' }),
       response: Responses.interrupt('alarm'),
     },
     {
@@ -265,12 +265,12 @@
       // Skip: 2773
       // Retrieve: 2774
       // Paste: 2776
-      regex: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Guardian', capture: false }),
-      regexDe: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Wächter', capture: false }),
-      regexFr: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Gardien', capture: false }),
-      regexJa: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'ガーディアン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Guardian', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Wächter', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'Gardien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: 'ガーディアン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '守护者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['275C', '2773', '2774', '2776'], source: '가디언', capture: false }),
       preRun: function(data) {
         data.loadCount = ++data.loadCount || 1;
         data.thisLoad = undefined;
@@ -330,12 +330,12 @@
     },
     {
       id: 'O7S Run',
-      regex: Regexes.startsUsing({ id: '276F', source: 'Guardian', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '276F', source: 'Wächter', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '276F', source: 'Gardien', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '276F', source: 'ガーディアン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '276F', source: 'Guardian', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '276F', source: 'Wächter', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '276F', source: 'Gardien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '276F', source: 'ガーディアン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '276F', source: '守护者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '276F', source: '가디언', capture: false }),
       preRun: function(data) {
         data.runCount = ++data.runCount || 1;
         data.thisRunText = undefined;

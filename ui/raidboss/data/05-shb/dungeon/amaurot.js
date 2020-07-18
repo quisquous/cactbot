@@ -11,7 +11,7 @@
   triggers: [
     {
       id: 'Amaurot Meteor',
-      regex: Regexes.headMarker({ id: '0039' }),
+      netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -47,7 +47,7 @@
     },
     {
       id: 'Amaurot Spread',
-      regex: Regexes.headMarker({ id: '008B' }),
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -55,12 +55,12 @@
     },
     {
       id: 'Amaurot Final Sky',
-      regex: Regexes.startsUsing({ id: '3CCB', source: 'The First Beast', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3CCB', source: '(?:der|die|das) Erst(?:e|er|es|en) Unheil', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3CCB', source: 'Annélide De L\'Apocalypse', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3CCB', source: 'ファースト・ビースト', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3CCB', source: '第一之兽', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3CCB', source: '최초의 야수', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3CCB', source: 'The First Beast', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3CCB', source: '(?:der|die|das) Erst(?:e|er|es|en) Unheil', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3CCB', source: 'Annélide De L\'Apocalypse', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3CCB', source: 'ファースト・ビースト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3CCB', source: '第一之兽', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3CCB', source: '최초의 야수', capture: false }),
       alertText: {
         en: 'Hide Behind Boulder',
         de: 'Hinter einem Felsen verstecken',
@@ -71,12 +71,12 @@
     },
     {
       id: 'Amaurot Shadow Wreck',
-      regex: Regexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3CE3', source: 'Mégatherion', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3CE3', source: 'メガセリオン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3CE3', source: '至大灾兽', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3CE3', source: '메가테리온', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3CE3', source: 'Therion', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3CE3', source: 'Mégatherion', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3CE3', source: 'メガセリオン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3CE3', source: '至大灾兽', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3CE3', source: '메가테리온', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -84,12 +84,12 @@
     },
     {
       id: 'Amaurot Apokalypsis',
-      regex: Regexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3CD7', source: 'Mégatherion', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3CD7', source: 'メガセリオン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3CD7', source: '至大灾兽', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3CD7', source: '메가테리온', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3CD7', source: 'Therion', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3CD7', source: 'Mégatherion', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3CD7', source: 'メガセリオン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3CD7', source: '至大灾兽', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3CD7', source: '메가테리온', capture: false }),
       alertText: {
         en: 'Get Off',
         de: 'Runter gehen',

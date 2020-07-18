@@ -9,12 +9,12 @@
   triggers: [
     {
       id: 'T1 High Voltage',
-      regex: Regexes.startsUsing({ source: 'Ads', id: '5A7' }),
-      regexDe: Regexes.startsUsing({ source: 'Abwehrsystem', id: '5A7' }),
-      regexFr: Regexes.startsUsing({ source: 'Sphère De Contrôle', id: '5A7' }),
-      regexJa: Regexes.startsUsing({ source: '制御システム', id: '5A7' }),
-      regexCn: Regexes.startsUsing({ source: '自卫系统', id: '5A7' }),
-      regexKo: Regexes.startsUsing({ source: '제어 시스템', id: '5A7' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Ads', id: '5A7' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Abwehrsystem', id: '5A7' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Sphère De Contrôle', id: '5A7' }),
+      netRegexJa: NetRegexes.startsUsing({ source: '制御システム', id: '5A7' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '自卫系统', id: '5A7' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '제어 시스템', id: '5A7' }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -23,24 +23,24 @@
     {
       // Indiscriminate Hood Swing
       id: 'T1 Initiated',
-      regex: Regexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
-      regexDe: Regexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
-      regexFr: Regexes.ability({ source: 'Caducée', id: '4B8.*?', capture: false }),
-      regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4B8.*?', capture: false }),
-      regexCn: Regexes.ability({ source: '神杖巨蛇', id: '4B8.*?', capture: false }),
-      regexKo: Regexes.ability({ source: '카두케우스', id: '4B8.*?', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4B8.*?', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Caducée', id: '4B8.*?', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4B8.*?', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4B8.*?', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4B8.*?', capture: false }),
       run: function(data) {
         data.started = true;
       },
     },
     {
       id: 'T1 Regorge',
-      regex: Regexes.ability({ source: 'Caduceus', id: '4BA' }),
-      regexDe: Regexes.ability({ source: 'Caduceus', id: '4BA' }),
-      regexFr: Regexes.ability({ source: 'Caducée', id: '4BA' }),
-      regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4BA' }),
-      regexCn: Regexes.ability({ source: '神杖巨蛇', id: '4BA' }),
-      regexKo: Regexes.ability({ source: '카두케우스', id: '4BA' }),
+      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4BA' }),
+      netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4BA' }),
+      netRegexFr: NetRegexes.ability({ source: 'Caducée', id: '4BA' }),
+      netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4BA' }),
+      netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4BA' }),
+      netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4BA' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -53,12 +53,12 @@
     },
     {
       id: 'T1 Split',
-      regex: Regexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Caducée.*?', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'カドゥケウス.*?', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '神杖巨蛇.*?', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '카두케우스.*?', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Caduceus.*?', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Caducée.*?', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'カドゥケウス.*?', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '神杖巨蛇.*?', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '카두케우스.*?', capture: false }),
       condition: function(data) {
         return data.started;
       },
@@ -72,12 +72,12 @@
     },
     {
       id: 'T1 Hood Swing',
-      regex: Regexes.ability({ source: 'Caduceus', id: '4B8' }),
-      regexDe: Regexes.ability({ source: 'Caduceus', id: '4B8' }),
-      regexFr: Regexes.ability({ source: 'Caducée', id: '4B8' }),
-      regexJa: Regexes.ability({ source: 'カドゥケウス', id: '4B8' }),
-      regexCn: Regexes.ability({ source: '神杖巨蛇', id: '4B8' }),
-      regexKo: Regexes.ability({ source: '카두케우스', id: '4B8' }),
+      netRegex: NetRegexes.ability({ source: 'Caduceus', id: '4B8' }),
+      netRegexDe: NetRegexes.ability({ source: 'Caduceus', id: '4B8' }),
+      netRegexFr: NetRegexes.ability({ source: 'Caducée', id: '4B8' }),
+      netRegexJa: NetRegexes.ability({ source: 'カドゥケウス', id: '4B8' }),
+      netRegexCn: NetRegexes.ability({ source: '神杖巨蛇', id: '4B8' }),
+      netRegexKo: NetRegexes.ability({ source: '카두케우스', id: '4B8' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -92,12 +92,12 @@
     },
     {
       id: 'T1 Slime Timer First',
-      regex: Regexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
-      regexDe: Regexes.message({ line: 'Allagische Superstruktur will be sealed off.*?', capture: false }),
-      regexFr: Regexes.message({ line: 'Mégastructure allagoise will be sealed off.*?', capture: false }),
-      regexJa: Regexes.message({ line: 'アラグの遺構 will be sealed off.*?', capture: false }),
-      regexCn: Regexes.message({ line: '亚拉戈遗构 will be sealed off.*?', capture: false }),
-      regexKo: Regexes.message({ line: '알라그 유적 will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The Allagan megastructure will be sealed off.*?', capture: false }),
+      netRegexDe: NetRegexes.message({ line: 'Allagische Superstruktur will be sealed off.*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'Mégastructure allagoise will be sealed off.*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: 'アラグの遺構 will be sealed off.*?', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '亚拉戈遗构 will be sealed off.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '알라그 유적 will be sealed off.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {
@@ -109,12 +109,12 @@
     },
     {
       id: 'T1 Slime Timer',
-      regex: Regexes.addedCombatant({ name: 'Dark Matter Slime.*?', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Dunkelmaterien-Schleim.*?', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Gluant De Matière Sombre.*?', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'ダークマター・スライム.*?', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '暗物质粘液怪.*?', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '암흑물질 슬라임.*?', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Dark Matter Slime.*?', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Dunkelmaterien-Schleim.*?', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Gluant De Matière Sombre.*?', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ダークマター・スライム.*?', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '暗物质粘液怪.*?', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '암흑물질 슬라임.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
       infoText: {

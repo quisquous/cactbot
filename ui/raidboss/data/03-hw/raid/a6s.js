@@ -184,7 +184,7 @@
     },
     {
       id: 'A6S Enumeration',
-      regex: Regexes.headMarker({ id: ['0040', '0041', '0042'] }),
+      netRegex: NetRegexes.headMarker({ id: ['0040', '0041', '0042'] }),
       infoText: function(data, matches) {
         // 0040 = 2, 0041 = 3, 0042 = 4
         let count = 2 + parseInt(matches.id, 16) - parseInt('0040', 16);

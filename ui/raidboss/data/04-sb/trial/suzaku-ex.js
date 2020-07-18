@@ -12,12 +12,12 @@
   triggers: [
     {
       id: 'SuzEx Cremate',
-      regex: Regexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
-      regexDe: Regexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
-      regexFr: Regexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
-      regexJa: Regexes.startsUsing({ id: '32D1', source: '朱雀' }),
-      regexCn: Regexes.startsUsing({ id: '32D1', source: '朱雀' }),
-      regexKo: Regexes.startsUsing({ id: '32D1', source: '주작' }),
+      netRegex: NetRegexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '32D1', source: 'Suzaku' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '32D1', source: '朱雀' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '32D1', source: '朱雀' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '32D1', source: '주작' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -41,12 +41,12 @@
     },
     {
       id: 'SuzEx Phantom Flurry',
-      regex: Regexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '32DC', source: '주작', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '32DC', source: 'Suzaku', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '32DC', source: '朱雀', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '32DC', source: '주작', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -60,12 +60,12 @@
     },
     {
       id: 'SuzEx Mesmerizing Melody',
-      regex: Regexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '32DA', source: '주작', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '32DA', source: 'Suzaku', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '32DA', source: '주작', capture: false }),
       alertText: {
         en: 'Get Out',
         de: 'Raus da',
@@ -77,12 +77,12 @@
     },
     {
       id: 'SuzEx Ruthless Refrain',
-      regex: Regexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '32DB', source: '주작', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '32DB', source: 'Suzaku', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '32DB', source: '주작', capture: false }),
       alertText: {
         en: 'Get In',
         de: 'Rein da',

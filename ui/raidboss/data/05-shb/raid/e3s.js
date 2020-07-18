@@ -42,12 +42,12 @@
   triggers: [
     {
       id: 'E3S Tidal Roar',
-      regex: Regexes.startsUsing({ id: '3FDC', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FDC', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FDC', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FDC', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FDC', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FDC', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FDC', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FDC', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FDC', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FDC', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FDC', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FDC', source: '리바이어선', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -55,12 +55,12 @@
     },
     {
       id: 'E3S Tidal Rage',
-      regex: Regexes.startsUsing({ id: '3FDE', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FDE', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FDE', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FDE', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FDE', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FDE', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FDE', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FDE', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FDE', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FDE', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FDE', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FDE', source: '리바이어선', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -68,12 +68,12 @@
     },
     {
       id: 'E3S Tidal Wave Look',
-      regex: Regexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FF1', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FF1', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FF1', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FF1', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FF1', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FF1', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FF1', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FF1', source: '리바이어선', capture: false }),
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
@@ -86,12 +86,12 @@
     },
     {
       id: 'E3S Tidal Wave Knockback',
-      regex: Regexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FF1', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FF1', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FF1', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FF1', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FF1', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FF1', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FF1', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FF1', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FF1', source: '리바이어선', capture: false }),
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -99,7 +99,7 @@
     },
     {
       id: 'E3S Rip Current',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       suppressSeconds: 10,
       alarmText: function(data, matches) {
         if (matches.target != data.me && data.role == 'tank') {
@@ -138,12 +138,12 @@
     },
     {
       id: 'E3S Undersea Quake Outside',
-      regex: Regexes.startsUsing({ id: '3FEF', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FEF', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FEF', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FEF', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FEF', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FEF', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FEF', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FEF', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FEF', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FEF', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FEF', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FEF', source: '리바이어선', capture: false }),
       alertText: {
         en: 'Get Middle',
         de: 'Geh in die Mitte',
@@ -155,17 +155,17 @@
     },
     {
       id: 'E3S Undersea Quake Inside',
-      regex: Regexes.startsUsing({ id: '3FEE', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FEE', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FEE', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FEE', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FEE', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FEE', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FEE', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FEE', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FEE', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FEE', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FEE', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FEE', source: '리바이어선', capture: false }),
       response: Responses.goSides('alarm'),
     },
     {
       id: 'E3S Flare',
-      regex: Regexes.headMarker({ id: '0057' }),
+      netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -180,12 +180,12 @@
     },
     {
       id: 'E3S Drenching Pulse',
-      regex: Regexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FE2', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FE2', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FE2', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FE2', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FE2', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FE2', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FE2', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FE2', source: '리바이어선', capture: false }),
       infoText: {
         en: 'Stack, Bait Puddles',
         de: 'Sammeln, Flächen ködern',
@@ -197,12 +197,12 @@
     },
     {
       id: 'E3S Drenching Pulse Puddles',
-      regex: Regexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FE2', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FE2', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FE2', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FE2', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FE2', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FE2', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FE2', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FE2', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FE2', source: '리바이어선', capture: false }),
       delaySeconds: 2.9,
       infoText: {
         en: 'Drop Puddles Outside',
@@ -215,12 +215,12 @@
     },
     {
       id: 'E3S Roiling Pulse',
-      regex: Regexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FE4', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FE4', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FE4', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FE4', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FE4', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FE4', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FE4', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FE4', source: '리바이어선', capture: false }),
       infoText: {
         en: 'Stack, Bait Puddles',
         de: 'Sammeln, Flächen ködern',
@@ -232,12 +232,12 @@
     },
     {
       id: 'E3S Roiling Pulse Abilities',
-      regex: Regexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FE4', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FE4', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FE4', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FE4', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FE4', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FE4', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FE4', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FE4', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FE4', source: '리바이어선', capture: false }),
       delaySeconds: 2.9,
       infoText: function(data) {
         if (data.role == 'tank') {
@@ -262,12 +262,12 @@
     },
     {
       id: 'E3S Stormy Horizon',
-      regex: Regexes.startsUsing({ id: '3FFE', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FFE', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FFE', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FFE', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FFE', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FFE', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FFE', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FFE', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FFE', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FFE', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FFE', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FFE', source: '리바이어선', capture: false }),
       infoText: {
         en: 'Panto Puddles x5',
         de: 'Panto Flächen x5',
@@ -279,12 +279,12 @@
     },
     {
       id: 'E3S Hydrothermal Vent Tether',
-      regex: Regexes.tether({ id: '005A', target: 'Leviathan' }),
-      regexDe: Regexes.tether({ id: '005A', target: 'Leviathan' }),
-      regexFr: Regexes.tether({ id: '005A', target: 'Léviathan' }),
-      regexJa: Regexes.tether({ id: '005A', target: 'リヴァイアサン' }),
-      regexCn: Regexes.tether({ id: '005A', target: '利维亚桑' }),
-      regexKo: Regexes.tether({ id: '005A', target: '리바이어선' }),
+      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan' }),
+      netRegexDe: NetRegexes.tether({ id: '005A', target: 'Leviathan' }),
+      netRegexFr: NetRegexes.tether({ id: '005A', target: 'Léviathan' }),
+      netRegexJa: NetRegexes.tether({ id: '005A', target: 'リヴァイアサン' }),
+      netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑' }),
+      netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선' }),
       condition: function(data, matches) {
         return data.me == matches.source;
       },
@@ -299,12 +299,12 @@
     },
     {
       id: 'E3S Hydrothermal Vent Collect',
-      regex: Regexes.tether({ id: '005A', target: 'Leviathan' }),
-      regexDe: Regexes.tether({ id: '005A', target: 'Leviathan' }),
-      regexFr: Regexes.tether({ id: '005A', target: 'Léviathan' }),
-      regexJa: Regexes.tether({ id: '005A', target: 'リヴァイアサン' }),
-      regexCn: Regexes.tether({ id: '005A', target: '利维亚桑' }),
-      regexKo: Regexes.tether({ id: '005A', target: '리바이어선' }),
+      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan' }),
+      netRegexDe: NetRegexes.tether({ id: '005A', target: 'Leviathan' }),
+      netRegexFr: NetRegexes.tether({ id: '005A', target: 'Léviathan' }),
+      netRegexJa: NetRegexes.tether({ id: '005A', target: 'リヴァイアサン' }),
+      netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑' }),
+      netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선' }),
       run: function(data, matches) {
         data.vent = data.vent || [];
         data.vent.push(matches.source);
@@ -312,12 +312,12 @@
     },
     {
       id: 'E3S Hydrothermal Vent',
-      regex: Regexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
-      regexDe: Regexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
-      regexFr: Regexes.tether({ id: '005A', target: 'Léviathan', capture: false }),
-      regexJa: Regexes.tether({ id: '005A', target: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.tether({ id: '005A', target: '利维亚桑', capture: false }),
-      regexKo: Regexes.tether({ id: '005A', target: '리바이어선', capture: false }),
+      netRegex: NetRegexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.tether({ id: '005A', target: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.tether({ id: '005A', target: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.tether({ id: '005A', target: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선', capture: false }),
       condition: function(data) {
         return data.vent.length == 2 && data.vent.indexOf(data.me) == -1 && data.role != 'tank';
       },
@@ -487,24 +487,24 @@
     },
     {
       id: 'E3S Refreshed',
-      regex: Regexes.startsUsing({ id: '400F', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '400F', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '400F', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '400F', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '400F', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '400F', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '400F', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '400F', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '400F', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '400F', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '400F', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '400F', source: '리바이어선', capture: false }),
       run: function(data) {
         data.refreshed = true;
       },
     },
     {
       id: 'E3S Front Left Temporary Current',
-      regex: Regexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FEB', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FEB', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FEB', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FEB', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FEB', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FEB', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FEB', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FEB', source: '리바이어선', capture: false }),
       infoText: {
         en: 'Front left / Back right',
         de: 'Vorne Links / Hinten Rechts',
@@ -516,12 +516,12 @@
     },
     {
       id: 'E3S Front Right Temporary Current',
-      regex: Regexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FEA', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FEA', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FEA', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FEA', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FEA', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FEA', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FEA', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FEA', source: '리바이어선', capture: false }),
       infoText: {
         en: 'Front right / Back left',
         de: 'Vorne Rechts / Hinten Links',
@@ -537,12 +537,12 @@
       // The original has a 6 second cast time and 4 seconds before
       // the next one.
       id: 'E3S Front Left Temporary Current 2',
-      regex: Regexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FEA', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FEA', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FEA', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FEA', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FEA', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FEA', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FEA', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FEA', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FEA', source: '리바이어선', capture: false }),
       condition: function(data) {
         return data.refreshed;
       },
@@ -558,12 +558,12 @@
     },
     {
       id: 'E3S Front Right Temporary Current 2',
-      regex: Regexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FEB', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FEB', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FEB', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FEB', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FEB', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FEB', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FEB', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FEB', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FEB', source: '리바이어선', capture: false }),
       condition: function(data) {
         return data.refreshed;
       },
