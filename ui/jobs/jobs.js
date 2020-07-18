@@ -1564,28 +1564,31 @@ class Bars {
     };
   }
 
-  // (In Progress)(Need Help)this part is based on ast part
-  // I know that part is really poor, but better than nothing.
+  // (In Progress) (Need Help)
   setupSch() {
     let gcd = kUnknownGCD;
+
     let BioBox = this.addProcBox({
-      id: 'sch-procs-Bio',
+      id: 'sch-procs-bio',
       fgColor: 'sch-color-bio',
       scale: gcd,
       threshold: gcd + 1,
     });
+
     let AetherflowBox = this.addProcBox({
-      id: 'sch-procs-Aetherflow',
+      id: 'sch-procs-aetherflow',
       fgColor: 'sch-color-aetherflow',
       scale: gcd,
       threshold: gcd * 3, // you need at most 3 gcd to cast all 3 stacks out
     });
+
     let LucidDreamingBox = this.addProcBox({
-      id: 'sch-procs-LucidDreaming',
+      id: 'sch-procs-luciddreaming',
       fgColor: 'sch-color-lucid',
       scale: gcd,
       threshold: gcd + 1,
     });
+
     this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
       BioBox.duration = 0;
       BioBox.duration = 30;
@@ -1693,9 +1696,9 @@ class Bars {
     };
     this.abilityFuncMap[gLang.kAbility.Demolish] = () => {
       demolishBox.duration = 0;
-      // it start counting down when you cast demolish, 
-      // but DOT appears on enemy about 1 second later.
-      demolishBox.duration = 19; 
+      // it start counting down when you cast demolish
+      // but DOT appears on target about 1 second later
+      demolishBox.duration = 19;
     };
     this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = () => {
       dragonKickBox.duration = 0;
