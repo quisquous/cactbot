@@ -1568,25 +1568,25 @@ class Bars {
   setupSch() {
     let gcd = kUnknownGCD;
 
-    let BioBox = this.addProcBox({
+    let bioBox = this.addProcBox({
       id: 'sch-procs-bio',
       fgColor: 'sch-color-bio',
       scale: gcd,
       threshold: gcd + 1,
     });
 
-    let AetherflowBox = this.addProcBox({
+    let aetherflowBox = this.addProcBox({
       id: 'sch-procs-aetherflow',
       fgColor: 'sch-color-aetherflow',
       scale: gcd,
-      threshold: gcd * 3, // you need at most 3 gcd to cast all 3 stacks out
+      threshold: gcd * 3,
     });
 
-    let AetherflowRescourceBox = this.addResourceBox({
+    let aetherflowstackBox = this.addResourceBox({
       classList: ['sch-color-aetherflow'],
     });
 
-    let LucidDreamingBox = this.addProcBox({
+    let luciddreamingBox = this.addProcBox({
       id: 'sch-procs-luciddreaming',
       fgColor: 'sch-color-lucid',
       scale: gcd,
@@ -1595,11 +1595,12 @@ class Bars {
 
     this.jobFuncs.push((jobDetail) => {
       let aetherflow = jobDetail.aetherflowStacks;
-      AetherflowRescourceBox.innerText = aetherflow;
-      AetherflowBox.threshold = gcd * aetherflow;
+      aetherflowstackBox.innerText = aetherflow;
 
-      let p = AetherflowRescourceBox.parentNode;
-      if (parseFloat(aetherflow) *5 >= parseFloat(AetherflowBox.duration) - parseFloat(AetherflowBox.elapsed)) {
+
+      let p = aetherflowstackBox.parentNode;
+      let s = parseFloat(aetherflowBox.duration) - parseFloat(aetherflowBox.elapsed)
+      if (parseFloat(aetherflow) * 5 >= s ) {
         // turn red when stacks are too much before AF ready
         p.classList.add('need-to-throw');
       } else {
@@ -1608,25 +1609,25 @@ class Bars {
     });
 
     this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
-      BioBox.duration = 0;
-      BioBox.duration = 30;
+      bioBox.duration = 0;
+      bioBox.duration = 30;
     };
     this.abilityFuncMap[gLang.kAbility.Aetherflow] = () => {
-      AetherflowBox.duration = 0;
-      AetherflowBox.duration = 60;
+      aetherflowBox.duration = 0;
+      aetherflowBox.duration = 60;
     };
     this.abilityFuncMap[gLang.kAbility.LucidDreaming] = () => {
-      LucidDreamingBox.duration = 0;
-      LucidDreamingBox.duration = 60;
+      luciddreamingBox.duration = 0;
+      luciddreamingBox.duration = 60;
     };
 
     this.statChangeFuncMap['SCH'] = () => {
-      gcd = this.gcdSpell();
-      BioBox.valuescale = this.gcdSpell();
-      BioBox.threshold = this.gcdSpell() + 1;
-      AetherflowBox.valuescale = this.gcdSpell();
-      LucidDreamingBox.valuescale = this.gcdSpell();
-      LucidDreamingBox.threshold = this.gcdSpell() + 1;
+      bioBox.valuescale = this.gcdSpell();
+      bioBox.threshold = this.gcdSpell() + 1;
+      aetherflowBox.valuescale = this.gcdSpell();
+      aetherflowBox.threshold = gcd * aetherflow;
+      luciddreamingBox.valuescale = this.gcdSpell();
+      luciddreamingBox.threshold = this.gcdSpell() + 1;
     };
   }
 
