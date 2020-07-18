@@ -153,6 +153,7 @@ const printCollectedFights = (collector) => {
   let idx = 1;
   let outputRows = [];
   let seenSeal = false;
+  let lastDate = null;
   for (const fight of collector.fights) {
     // Add a zone name row when there's seal messages for clarity.
     if (!seenSeal && fight.sealName) {
@@ -161,6 +162,8 @@ const printCollectedFights = (collector) => {
     } else if (seenSeal && !fight.sealName) {
       seenSeal = false;
     }
+    if (!lastDate)
+      lastDate = dayFromDate(fight.startTime);
     outputRows.push([
       idx.toString(),
       dayFromDate(fight.startTime),
@@ -175,7 +178,8 @@ const printCollectedFights = (collector) => {
   const lengths = maxLengthPerIndex(outputRows);
 
   const dateIdx = 1;
-  let lastDate = null;
+  console.log(lastDate);
+
   for (const row of outputRows) {
     if (row[dateIdx] && row[dateIdx] !== lastDate) {
       lastDate = row[dateIdx];
