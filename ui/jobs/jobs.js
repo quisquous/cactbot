@@ -1171,6 +1171,7 @@ class Bars {
       'DRK': this.setupDrk,
       'PLD': this.setupPld,
       'AST': this.setupAst,
+      'SCH': this.setupSch,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
       'BLM': this.setupBlm,
@@ -1540,17 +1541,17 @@ class Bars {
     });
 
     // Sorry, no differentation for noct asts here.  <_<
-    this.abilityFuncMap[gLang.kAbility.Combust2] = () => {
+    this.abilityFuncMap[gLang.kAbility.Combust3] = () => {
       combustBox.duration = 0;
       combustBox.duration = 30;
     };
     this.abilityFuncMap[gLang.kAbility.AspectedBenefic] = () => {
       beneficBox.duration = 0;
-      beneficBox.duration = 18;
+      beneficBox.duration = 15;
     };
     this.abilityFuncMap[gLang.kAbility.AspectedHelios] = () => {
       heliosBox.duration = 0;
-      heliosBox.duration = 30;
+      heliosBox.duration = 15;
     };
 
     this.statChangeFuncMap['AST'] = () => {
@@ -1563,6 +1564,54 @@ class Bars {
     };
   }
 
+    // (In Progress)(Need Help)this part is based on ast part, I know that part is really poor, but better than nothing.
+    setupSch() {
+      let gcd = kUnknownGCD;
+  
+      let BioBox = this.addProcBox({
+        id: 'sch-procs-Bio',
+        fgColor: 'sch-color-bio',
+        scale: gcd,
+        threshold: gcd + 1,
+      });
+  
+      let AetherflowBox = this.addProcBox({
+        id: 'sch-procs-Aetherflow',
+        fgColor: 'sch-color-aetherflow',
+        scale: gcd,
+        threshold: gcd * 3, //you need at most 3 gcd to cast all 3 stacks out
+      });
+  
+      let LucidDreamingBox = this.addProcBox({
+        id: 'sch-procs-LucidDreaming',
+        fgColor: 'sch-color-lucid',
+        scale: gcd,
+        threshold: gcd + 1,
+      });
+  
+      this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
+        BioBox.duration = 0;
+        BioBox.duration = 30;
+      };
+      this.abilityFuncMap[gLang.kAbility.Aetherflow] = () => {
+        AetherflowBox.duration = 0;
+        AetherflowBox.duration = 60;
+      };
+      this.abilityFuncMap[gLang.kAbility.LucidDreaming] = () => {
+        LucidDreamingBox.duration = 0;
+        LucidDreamingBox.duration = 60;
+      };
+  
+      this.statChangeFuncMap['SCH'] = () => {
+        BioBox.valuescale = this.gcdSpell();
+        BioBox.threshold = this.gcdSpell() + 1;
+        AetherflowBox.valuescale = this.gcdSpell();
+        AetherflowBox.threshold = this.gcdSpell() * 3;
+        LucidDreamingBox.valuescale = this.gcdSpell();
+        LucidDreamingBox.threshold = this.gcdSpell() + 1;
+      };
+    }
+  
   setupMnk() {
     let lightningTimer = this.addTimerBar({
       id: 'mnk-timers-lightning',
@@ -1647,7 +1696,7 @@ class Bars {
     };
     this.abilityFuncMap[gLang.kAbility.Demolish] = () => {
       demolishBox.duration = 0;
-      demolishBox.duration = 18;
+      demolishBox.duration = 19; //it start counting down when you cast demolish, but DOT appears on enemy about 1 second later.
     };
     this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = () => {
       dragonKickBox.duration = 0;
