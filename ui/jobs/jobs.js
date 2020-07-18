@@ -1599,8 +1599,8 @@ class Bars {
 
 
       let p = aetherflowstackBox.parentNode;
-      let s = parseFloat(aetherflowBox.duration) - parseFloat(aetherflowBox.elapsed)
-      if (parseFloat(aetherflow) * 5 >= s ) {
+      let s = parseFloat(aetherflowBox.duration) - parseFloat(aetherflowBox.elapsed);
+      if (parseFloat(aetherflow) * 5 >= s) {
         // turn red when stacks are too much before AF ready
         p.classList.add('need-to-throw');
       } else {
