@@ -311,7 +311,7 @@
         'Hailstorm': '冰雹',
         'Heavenly Strike': '天雷掌',
         'Icebrand': '冰印剑',
-        'Icicle Impact': '', // FIXME
+        'Icicle Impact': '冰柱冲击',
         'Melt': '武器融化',
         'Permafrost': '永久冻土',
         'Whiteout': '白化视界',
@@ -337,7 +337,7 @@
         'Hailstorm': '우박 폭풍',
         'Heavenly Strike': '천뢰장',
         'Icebrand': '얼음의 낙인',
-        'Icicle Impact': '', // FIXME
+        'Icicle Impact': '고드름 낙하',
         'Melt': '무기 용해',
         'Permafrost': '영구동토',
         'Whiteout': '폭설',
