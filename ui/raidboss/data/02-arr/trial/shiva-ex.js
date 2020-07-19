@@ -25,6 +25,7 @@
       beforeSeconds: 5,
       alertText: {
         en: 'Party Share Tankbuster',
+        de: 'Tankbuster mit der Gruppe Teilen',
       },
     },
   ],
@@ -38,6 +39,7 @@
             return {
               alertText: {
                 en: 'Staff (Tank Swap)',
+                de: 'Stab (Tankwechsel)',
               },
             };
           }
@@ -46,6 +48,7 @@
         return {
           infoText: {
             en: 'Staff',
+            de: 'Stab',
           },
         };
       },
@@ -62,6 +65,7 @@
             return {
               alertText: {
                 en: 'Sword (Tank Swap)',
+                de: 'Schwert (Tankwechsel)',
               },
             };
           }
@@ -70,6 +74,7 @@
         return {
           infoText: {
             en: 'Sword',
+            de: 'Schwert',
           },
         };
       },
@@ -163,6 +168,7 @@
       // Responses.knockback does not quite give the 'laser cleave' aspect here.
       alarmText: {
         en: 'Knockback Laser on YOU',
+        de: 'Rückstoß-Laser auf DIR',
       },
     },
     {
@@ -171,6 +177,7 @@
       condition: Conditions.targetIsNotYou(),
       infoText: {
         en: 'Avoid Laser',
+        de: 'Laser ausweichen',
       },
     },
     {
@@ -199,7 +206,141 @@
       infoText: function(data, matches) {
         return {
           en: 'Free ' + data.ShortName(matches.target),
+          de: 'Befreie ' + data.ShortName(matches.target),
         };
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Ice Soldier': 'Eissoldat',
+        'Shiva': 'Shiva',
+      },
+      'replaceText': {
+        '--adds targetable--': '--Adds erscheinen--',
+        '--frozen--': '--eingefroren--',
+        'Absolute Zero': 'Absoluter Nullpunkt',
+        'Avalanche': 'Lawine',
+        'Diamond Dust': 'Diamantenstaub',
+        'Dreams Of Ice': 'Eisige Träume',
+        'Frost Blade': 'Frostklinge',
+        'Frost Bow': 'Frostbogen',
+        'Frost Staff': 'Froststab',
+        'Glacier Bash': 'Gletscherlauf',
+        'Glass Dance': 'Gläserner Tanz',
+        'Hailstorm': 'Hagelsturm',
+        'Heavenly Strike': 'Himmlischer Schlag',
+        'Icebrand': 'Eisbrand',
+        'Icicle Impact': 'Eiszapfen-Schlag',
+        'Melt': 'Schmelzen',
+        'Permafrost': 'Permafrost',
+        'Whiteout': 'Schneeblindheit',
+      },
+    },
+    {
+      'locale': 'fr',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Ice Soldier': 'soldat de glace',
+        'Shiva': 'Shiva',
+      },
+      'replaceText': {
+        'Absolute Zero': 'Zéro absolu',
+        'Avalanche': 'Avalanche',
+        'Diamond Dust': 'Poussière de diamant',
+        'Dreams Of Ice': 'Illusions glacées',
+        'Frost Blade': 'Lame glaciale',
+        'Frost Bow': 'Arc glacial',
+        'Frost Staff': 'Bâton glacial',
+        'Glacier Bash': 'Effondrement de glacier',
+        'Glass Dance': 'Danse de glace',
+        'Hailstorm': 'Averse de grêle',
+        'Heavenly Strike': 'Frappe céleste',
+        'Icebrand': 'Épée de glace',
+        'Icicle Impact': 'Impact de stalactite',
+        'Melt': 'Fonte',
+        'Permafrost': 'Permafrost',
+        'Whiteout': 'Fusion Glaciation',
+      },
+    },
+    {
+      'locale': 'ja',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Ice Soldier': 'アイスソルジャー',
+        'Shiva': 'シヴァ',
+      },
+      'replaceText': {
+        'Absolute Zero': '絶対零度',
+        'Avalanche': 'アバランチ',
+        'Diamond Dust': 'ダイアモンドダスト',
+        'Dreams Of Ice': '氷結の幻想',
+        'Frost Blade': '凍てつく剣',
+        'Frost Bow': '凍てつく弓',
+        'Frost Staff': '凍てつく杖',
+        'Glacier Bash': 'グレイシャーバッシュ',
+        'Glass Dance': '氷雪乱舞',
+        'Hailstorm': 'ヘイルストーム',
+        'Heavenly Strike': '天雷掌',
+        'Icebrand': 'アイスブランド',
+        'Icicle Impact': 'アイシクルインパクト',
+        'Melt': 'ウェポンメルト',
+        'Permafrost': 'パーマフロスト',
+        'Whiteout': 'ホワイトアウト',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Ice Soldier': '寒冰士兵',
+        'Shiva': '希瓦',
+      },
+      'replaceText': {
+        'Absolute Zero': '绝对零度',
+        'Avalanche': '雪崩',
+        'Diamond Dust': '钻石星尘',
+        'Dreams Of Ice': '寒冰的幻想',
+        'Frost Blade': '冰霜之剑',
+        'Frost Bow': '冰霜之弓',
+        'Frost Staff': '冰霜之杖',
+        'Glacier Bash': '冰河怒击',
+        'Glass Dance': '冰雪乱舞',
+        'Hailstorm': '冰雹',
+        'Heavenly Strike': '天雷掌',
+        'Icebrand': '冰印剑',
+        'Icicle Impact': '', // FIXME
+        'Melt': '武器融化',
+        'Permafrost': '永久冻土',
+        'Whiteout': '白化视界',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Ice Soldier': '얼음 병사',
+        'Shiva': '시바',
+      },
+      'replaceText': {
+        'Absolute Zero': '절대영도',
+        'Avalanche': '눈사태',
+        'Diamond Dust': '다이아몬드 더스트',
+        'Dreams Of Ice': '빙결의 환상',
+        'Frost Blade': '얼어붙은 검',
+        'Frost Bow': '얼어붙은 활',
+        'Frost Staff': '얼어붙은 지팡이',
+        'Glacier Bash': '빙하 강타',
+        'Glass Dance': '빙설난무',
+        'Hailstorm': '우박 폭풍',
+        'Heavenly Strike': '천뢰장',
+        'Icebrand': '얼음의 낙인',
+        'Icicle Impact': '', // FIXME
+        'Melt': '무기 용해',
+        'Permafrost': '영구동토',
+        'Whiteout': '폭설',
       },
     },
   ],
