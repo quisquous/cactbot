@@ -33,6 +33,11 @@
     {
       id: 'ShivaEx Staff Phase',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '995', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '995', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '995', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '995', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '시바', id: '995', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '希瓦', id: '995', capture: false }),
       response: function(data) {
         if (data.role === 'tank') {
           if (data.currentTank && data.blunt && data.blunt[data.currentTank]) {
@@ -59,6 +64,11 @@
     {
       id: 'ShivaEx Sword Phase',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '993', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '993', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '993', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '993', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '시바', id: '993', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '希瓦', id: '993', capture: false }),
       response: function(data) {
         if (data.role === 'tank') {
           if (data.currentTank && data.slashing && data.slashing[data.currentTank]) {
@@ -85,6 +95,11 @@
     {
       id: 'ShivaEx Weapon Change Delayed',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: ['993', '995'], capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Shiva', id: ['993', '995'], capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Shiva', id: ['993', '995'], capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: ['993', '995'], capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '시바', id: ['993', '995'], capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '希瓦', id: ['993', '995'], capture: false }),
       delaySeconds: 30,
       run: function(data) {
         data.soonAfterWeaponChange = false;
@@ -125,6 +140,11 @@
     {
       id: 'ShivaEx Current Tank',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: 'BE5' }),
+      netRegexDe: NetRegexes.ability({ source: 'Shiva', id: 'BE5' }),
+      netRegexFr: NetRegexes.ability({ source: 'Shiva', id: 'BE5' }),
+      netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: 'BE5' }),
+      netRegexKo: NetRegexes.ability({ source: '시바', id: 'BE5' }),
+      netRegexCn: NetRegexes.ability({ source: '希瓦', id: 'BE5' }),
       run: function(data, matches) {
         data.currentTank = matches.target;
       },
@@ -148,6 +168,11 @@
     {
       id: 'ShivaEx Diamond Dust',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: '98A', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Shiva', id: '98A', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Shiva', id: '98A', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '98A', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '시바', id: '98A', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '希瓦', id: '98A', capture: false }),
       run: function(data) {
         data.seenDiamondDust = true;
       },
@@ -155,6 +180,11 @@
     {
       id: 'ShivaEx Frost Bow',
       netRegex: NetRegexes.ability({ source: 'Shiva', id: 'BDD', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Shiva', id: 'BDD', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Shiva', id: 'BDD', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: 'BDD', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '시바', id: 'BDD', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '希瓦', id: 'BDD', capture: false }),
       response: Responses.getBehind('alarm'),
       run: function(data) {
         // Just in case ACT has crashed or something, make sure this state is correct.
@@ -183,6 +213,11 @@
     {
       id: 'ShivaEx Shiva Circles',
       netRegex: NetRegexes.abilityFull({ source: 'Shiva', id: 'BEB' }),
+      netRegexDe: NetRegexes.abilityFull({ source: 'Shiva', id: 'BEB' }),
+      netRegexFr: NetRegexes.abilityFull({ source: 'Shiva', id: 'BEB' }),
+      netRegexJa: NetRegexes.abilityFull({ source: 'シヴァ', id: 'BEB' }),
+      netRegexKo: NetRegexes.abilityFull({ source: '시바', id: 'BEB' }),
+      netRegexCn: NetRegexes.abilityFull({ source: '希瓦', id: 'BEB' }),
       condition: function(data, matches) {
         // Ignore other middle circles and try to only target the Icicle Impact x9.
         if (!data.seenDiamondDust || data.soonAfterWeaponChange)
