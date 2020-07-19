@@ -30,6 +30,10 @@
   left: 278px;
 }
 
+.sch #right-side-icons {
+  left: 278px;
+}
+
 .drk #right-side-icons {
   left: 250px;
 }
@@ -157,8 +161,8 @@
 
 /* Relative to #bars */
 #rdm-boxes,
-#war-boxes,
 #sch-boxes,
+#war-boxes,
 #mnk-boxes,
 #pld-boxes,
 #drk-boxes,
@@ -171,8 +175,8 @@
 }
 
 #rdm-boxes > div,
-#war-boxes > div,
 #sch-boxes > div,
+#war-boxes > div,
 #mnk-boxes > div,
 #pld-boxes > div,
 #drk-boxes > div,
@@ -195,12 +199,12 @@
 }
 
 #drk-boxes > div,
-#sch-boxes > div,
 #pld-boxes > div {
   width: 35px;
   height: 35px;
 }
 
+#sch-boxes > div,
 #rdm-boxes > div {
   width: 28px;
   height: 28px;
@@ -212,8 +216,8 @@
 }
 
 #rdm-boxes .text,
-#war-boxes .text,
 #sch-boxes .text,
+#war-boxes .text,
 #mnk-boxes .text,
 #pld-boxes .text,
 #drk-boxes .text,
@@ -229,6 +233,7 @@
   top: 7px;
 }
 
+#sch-boxes .text,
 #rdm-boxes .text {
   top: 5px;
 }
@@ -554,8 +559,16 @@
   background-color: rgb(255, 96, 207);
 }
 
-.sch-color-aetherflow.need-to-throw {
+.sch-color-aetherflow.too-much-stacks {
   background-color: rgb(240, 30, 30);
+}
+
+.sch-color-fairygauge {
+  background-color: rgb(62, 224, 170);
+}
+
+.sch-color-fairygauge.bright {
+  background-color: rgb(120, 170, 250);
 }
 
 .sch-color-lucid {
