@@ -211,7 +211,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Leviathan': 'リヴァイアサン',
       },
