@@ -254,6 +254,8 @@
         'Shiva': 'Shiva',
       },
       'replaceText': {
+        '\\(circle\\)': '(Kreis)',
+        '\\(cross\\)': '(Kreuz)',
         '--adds targetable--': '--Adds erscheinen--',
         '--frozen--': '--eingefroren--',
         'Absolute Zero': 'Absoluter Nullpunkt',
