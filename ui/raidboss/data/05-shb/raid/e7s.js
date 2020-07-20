@@ -240,7 +240,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C6E' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C6E' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C6E' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '崇拜心象', id: '4C6E' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C6E' }),
       condition: (data) => data.CanSilence(),
       suppressSeconds: 1,
       response: Responses.interrupt('alarm'),
@@ -284,7 +284,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Idolatrie', id: '4C6D', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C6D', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アイドラトリー', id: '4C6D', capture: false }),
-      netRegexCn: NetRegexes.ability({ source: '崇拜心象', id: '4C6D', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '盲崇', id: '4C6D', capture: false }),
       run: function(data) {
         data.insatiableLightStack = [];
       },
@@ -295,7 +295,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C70', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'idolâtries Impardonnables', id: '4C70', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C70', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '崇拜心象', id: '4C70', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C70', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Get under vertical add',
@@ -379,7 +379,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '4C5[CD]' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '重罪心象', id: '4C5[CD]' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
       run: function(data, matches) {
         data.boundless = data.boundless || {};
         let oppositeColor = matches.id == '4C5C' ? 'dark' : 'light';
@@ -392,7 +392,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '重罪心象', id: '4C5[CD]' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
       condition: function(data, matches) {
         if (Object.keys(data.boundless).length != 2)
           return false;
@@ -423,7 +423,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '4C5[CD]' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
-      netRegexCn: NetRegexes.startsUsing({ source: '重罪心象', id: '4C5[CD]' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
       delaySeconds: 20,
       run: function(data, matches) {
         delete data.boundless;
@@ -435,7 +435,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Ungeläutert(?:e|er|es|en) Götzenverehrung', id: '(?:4C2C|4C65)', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '(?:4C2C|4C65)', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '(?:4C2C|4C65)', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '重罪心象', id: '(?:4C2C|4C65)', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '(?:4C2C|4C65)', capture: false }),
       alertText: function(data) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
@@ -689,9 +689,9 @@
       'locale': 'cn',
       'replaceSync': {
         'The Idol Of Darkness': '暗黑心象',
-        'Unforgiven Idolatry': '重罪心象',
+        'Unforgiven Idolatry': '未被宽恕的盲崇',
         'Blasphemy': '亵渎',
-        '(?<! )Idolatry': '崇拜心象',
+        '(?<! )Idolatry': '盲崇',
       },
       'replaceText': {
         'Empty Wave': '虚无波动',

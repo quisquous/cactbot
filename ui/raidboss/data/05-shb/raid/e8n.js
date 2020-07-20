@@ -470,7 +470,7 @@
         'Shiva': '希瓦',
         'Frozen Mirror': '冰面镜',
         'Mothercrystal': '母水晶',
-        'Earthen Aether': '大地以太',
+        'Earthen Aether': '土以太',
         'Electric Aether': '雷以太',
         'Luminous Aether': '光以太',
       },

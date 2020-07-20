@@ -87,7 +87,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C4C', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '崇拜心象', id: '4C4C', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C4C', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Teleport into donut',
@@ -105,7 +105,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C4D', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ source: '崇拜心象', id: '4C4D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C4D', capture: false }),
       suppressSeconds: 1,
       response: Responses.getOut(),
     },
@@ -250,8 +250,8 @@
       'locale': 'cn',
       'replaceSync': {
         'The Idol Of Darkness': '暗黑心象',
-        'Unforgiven Idolatry': '重罪心象',
-        '(?<! )Idolatry': '崇拜心象',
+        'Unforgiven Idolatry': '未被宽恕的盲崇',
+        '(?<! )Idolatry': '盲崇',
       },
       'replaceText': {
         'Empty Wave': '虚无波动',

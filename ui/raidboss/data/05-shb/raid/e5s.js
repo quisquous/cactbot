@@ -420,7 +420,7 @@
         'stormcloud': '雷暴云',
         '(?<! )Ramuh': '拉姆',
         'Will Of Ramuh': '拉姆幻影',
-        'Raiden': '雷电',
+        'Raiden': '莱丁',
         'Will Of Ixion': '伊克西翁幻影',
       },
       'replaceText': {
