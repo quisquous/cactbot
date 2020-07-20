@@ -1611,10 +1611,11 @@ class Bars {
         fairyGaugeBox.innerText = fairygauge;
       }
 
-      aetherflowBox.threshold = gcd * aetherflow;
+      // dynamically annouce user depends on their aetherflow stacks right now
+      aetherflowBox.threshold = this.gcdSpell() * aetherflow + 1;
 
       let p = aetherflowStackBox.parentNode;
-      let s = parseFloat(aetherflowBox.duration) - parseFloat(aetherflowBox.elapsed);
+      let s = parseFloat(aetherflowBox.duration || 0) - parseFloat(aetherflowBox.elapsed);
       if (parseFloat(aetherflow) * 5 >= s) {
         // turn red when stacks are too much before AF ready
         p.classList.add('too-much-stacks');
@@ -1638,6 +1639,7 @@ class Bars {
     this.abilityFuncMap[gLang.kAbility.Aetherflow] = () => {
       aetherflowBox.duration = 0;
       aetherflowBox.duration = 60;
+      aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
     };
     this.abilityFuncMap[gLang.kAbility.LucidDreaming] = () => {
       lucidBox.duration = 0;
