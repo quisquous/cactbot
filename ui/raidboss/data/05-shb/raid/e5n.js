@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Fulmination$/,
+    cn: /^伊甸希望乐园 \(共鸣之章1\)$/,
     ko: /^희망의 낙원 에덴: 공명편 \(1\)$/,
   },
   zoneId: ZoneId.EdensVerseFulmination,
@@ -108,6 +109,7 @@
         de: 'Einen Orb nehmen',
         fr: 'Prenez un orbe',
         ko: '구슬 줍기',
+        cn: '吃球',
       },
     },
     {
@@ -119,6 +121,7 @@
         de: 'Wolken draußen ablegen',
         fr: 'Déposez le nuage à l\'extérieur',
         ko: '바깥으로 구름 유도',
+        cn: '外侧放雷云',
       },
     },
   ],
@@ -190,6 +193,29 @@
         'Divine Judgment Volts': '裁きの熱雷・天帝',
         'Deadly Discharge': 'デッドリーディスチャージ',
         'Crippling Blow': '痛打',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        '(?<! )Ramuh': '拉姆',
+        'Will Of Ramuh': '拉姆幻影',
+        'Will Of Ixion': '伊克西翁幻影',
+      },
+      'replaceText': {
+        'Crippling Blow': '痛击',
+        'Stratospear Summons': '生成武具',
+        'Impact': '冲击',
+        'Judgment Jolt': '制裁之界雷',
+        'Stormcloud Summons': '生成雷暴云',
+        '(?<! )Judgment Volts': '制裁之热雷',
+        'Fury\'s Bolt': '蓄雷',
+        'Divine Judgment Volts': '制裁之热雷·天帝',
+        'Tribunal Summons': '生成幻影',
+        'Deadly Discharge': '死亡冲锋',
+        'Gallop': '飞驰',
+        'Thunderstorm': '雷暴',
+        'Volt Strike': '雷电强袭',
       },
     },
   ],

@@ -49,9 +49,9 @@ class CactbotLanguageCn extends CactbotLanguage {
       PresenceOfMind: '神速咏唱',
       Shifu: '士风',
       CircleOfPower: '魔纹环',
-      AstralAttenuation: 'Astral Attenuation', // FIXME
-      UmbralAttenuation: 'Umbral Attenuation', // FIXME
-      PhysicalAttenuation: 'Physical Attenuation', // FIXME
+      AstralAttenuation: '星极性耐性降低',
+      UmbralAttenuation: '灵极性耐性降低',
+      PhysicalAttenuation: '物理受伤加重',
 
       SurgeProtection: '避雷',
 
