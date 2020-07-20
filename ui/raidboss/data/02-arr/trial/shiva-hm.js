@@ -62,6 +62,8 @@
         'Shiva': 'Shiva',
       },
       'replaceText': {
+        '\\(circle\\)': '(Kreis)',
+        '\\(cross\\)': '(Kreuz)',
         '--adds targetable--': '--Adds erscheinen--',
         '--frozen--': '--eingefroren--',
         'Absolute Zero': 'Absoluter Nullpunkt',
@@ -86,8 +88,8 @@
         'Shiva': 'Shiva',
       },
       'replaceText': {
-        '\\(circle\\)': '(Kreis)',
-        '\\(cross\\)': '(Kreuz)',
+        '\\(circle\\)': '(cercle)',
+        '\\(cross\\)': '(croix)',
         'Absolute Zero': 'Zéro absolu',
         'Diamond Dust': 'Poussière de diamant',
         'Dreams Of Ice': 'Illusions glacées',
