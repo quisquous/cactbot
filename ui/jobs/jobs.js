@@ -1171,6 +1171,7 @@ class Bars {
       'DRK': this.setupDrk,
       'PLD': this.setupPld,
       'AST': this.setupAst,
+      'SCH': this.setupSch,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
       'BLM': this.setupBlm,
@@ -1540,17 +1541,17 @@ class Bars {
     });
 
     // Sorry, no differentation for noct asts here.  <_<
-    this.abilityFuncMap[gLang.kAbility.Combust2] = () => {
+    this.abilityFuncMap[gLang.kAbility.Combust3] = () => {
       combustBox.duration = 0;
       combustBox.duration = 30;
     };
     this.abilityFuncMap[gLang.kAbility.AspectedBenefic] = () => {
       beneficBox.duration = 0;
-      beneficBox.duration = 18;
+      beneficBox.duration = 15;
     };
     this.abilityFuncMap[gLang.kAbility.AspectedHelios] = () => {
       heliosBox.duration = 0;
-      heliosBox.duration = 30;
+      heliosBox.duration = 15;
     };
 
     this.statChangeFuncMap['AST'] = () => {
@@ -1560,6 +1561,97 @@ class Bars {
       beneficBox.threshold = this.gcdSpell() * 3;
       heliosBox.valuescale = this.gcdSpell();
       heliosBox.threshold = this.gcdSpell() * 3;
+    };
+  }
+
+  setupSch() {
+    let gcd = kUnknownGCD;
+
+    let aetherflowStackBox = this.addResourceBox({
+      classList: ['sch-color-aetherflow'],
+    });
+
+    let fairyGaugeBox = this.addResourceBox({
+      classList: ['sch-color-fairygauge'],
+    });
+
+    let bioBox = this.addProcBox({
+      id: 'sch-procs-bio',
+      fgColor: 'sch-color-bio',
+      scale: gcd,
+      threshold: gcd + 1,
+    });
+
+    let aetherflowBox = this.addProcBox({
+      id: 'sch-procs-aetherflow',
+      fgColor: 'sch-color-aetherflow',
+      scale: gcd,
+      threshold: gcd * 3,
+    });
+
+    let lucidBox = this.addProcBox({
+      id: 'sch-procs-luciddreaming',
+      fgColor: 'sch-color-lucid',
+      scale: gcd,
+      threshold: gcd + 1,
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      let aetherflow = jobDetail.aetherflowStacks;
+      let fairygauge = jobDetail.fairyGauge;
+      let milli = (jobDetail.fairyMilliseconds / 1000).toFixed(0);
+      aetherflowStackBox.innerText = aetherflow;
+      fairyGaugeBox.innerText = fairygauge;
+      let f = fairyGaugeBox.parentNode;
+      if (milli != 0) {
+        f.classList.add('bright');
+        fairyGaugeBox.innerText = milli;
+      } else {
+        f.classList.remove('bright');
+        fairyGaugeBox.innerText = fairygauge;
+      }
+
+      // dynamically annouce user depends on their aetherflow stacks right now
+      aetherflowBox.threshold = this.gcdSpell() * (aetherflow || 1) + 1;
+
+      let p = aetherflowStackBox.parentNode;
+      let s = parseFloat(aetherflowBox.duration || 0) - parseFloat(aetherflowBox.elapsed);
+      if (parseFloat(aetherflow) * 5 >= s) {
+        // turn red when stacks are too much before AF ready
+        p.classList.add('too-much-stacks');
+      } else {
+        p.classList.remove('too-much-stacks');
+      }
+    });
+
+    this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
+      bioBox.duration = 0;
+      bioBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.Bio] = () => {
+      bioBox.duration = 0;
+      bioBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.Bio2] = () => {
+      bioBox.duration = 0;
+      bioBox.duration = 30;
+    };
+    this.abilityFuncMap[gLang.kAbility.Aetherflow] = () => {
+      aetherflowBox.duration = 0;
+      aetherflowBox.duration = 60;
+      aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+    };
+    this.abilityFuncMap[gLang.kAbility.LucidDreaming] = () => {
+      lucidBox.duration = 0;
+      lucidBox.duration = 60;
+    };
+
+    this.statChangeFuncMap['SCH'] = () => {
+      bioBox.valuescale = this.gcdSpell();
+      bioBox.threshold = this.gcdSpell() + 1;
+      aetherflowBox.valuescale = this.gcdSpell();
+      lucidBox.valuescale = this.gcdSpell();
+      lucidBox.threshold = this.gcdSpell() + 1;
     };
   }
 
@@ -1647,7 +1739,9 @@ class Bars {
     };
     this.abilityFuncMap[gLang.kAbility.Demolish] = () => {
       demolishBox.duration = 0;
-      demolishBox.duration = 18;
+      // it start counting down when you cast demolish
+      // but DOT appears on target about 1 second later
+      demolishBox.duration = 19;
     };
     this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = () => {
       dragonKickBox.duration = 0;
