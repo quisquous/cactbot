@@ -67,9 +67,9 @@
         en: 'Away from Lines',
         de: 'Weg von den Linien',
         fr: 'En dehors des sillons',
-        ko: '선 피하기',
         ja: '線から離れ',
         cn: '远离线',
+        ko: '선 피하기',
       },
     },
     {
@@ -82,9 +82,9 @@
         en: 'Get On Lines',
         de: 'Auf die Linien gehen',
         fr: 'Sur les sillons',
-        ko: '선 위로 올라가기',
         ja: '線の上へ',
         cn: '靠近线',
+        ko: '선 위로 올라가기',
       },
     },
     {

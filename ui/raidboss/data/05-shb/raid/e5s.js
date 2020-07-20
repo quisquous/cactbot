@@ -259,6 +259,7 @@
         en: 'Cleanse In Cloud',
         de: 'In der Wolke reinigen',
         fr: 'Purifiez-vous dans le nuage',
+        ko: '디버프 제거하기',
       },
     },
     {
@@ -269,6 +270,7 @@
         en: 'Drop Cloud Away',
         de: 'Wolke drausen ablegen',
         fr: 'Déposez le nuage à l\'extérieur',
+        ko: '번개 구름 소환자',
       },
     },
     {
@@ -299,8 +301,8 @@
         en: 'Ready for Chain',
         de: 'Bereit für Kettenblitz',
         fr: 'Préparez-vous pour la chaine',
-        ko: '번개 돌려막기 준비',
         cn: '闪电链',
+        ko: '체인 라이트닝 준비',
       },
     },
     {

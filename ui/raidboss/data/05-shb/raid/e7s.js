@@ -291,8 +291,8 @@
         en: 'Get under vertical add',
         de: 'Unter das vertikale Add gehen',
         fr: 'Allez sous l\'add vertical',
-        ko: '똑바로 서 있는 쫄 아래로',
         cn: '去垂直小怪脚下',
+        ko: '세로로 도는 쫄 아래로',
       },
     },
     {
@@ -394,6 +394,7 @@
               en: 'Avoid ' + data.ShortName(matches.target),
               de: 'Vermeide ' + data.ShortName(matches.target),
               fr: 'Évitez ' + data.ShortName(matches.target),
+              ko: data.ShortName(matches.target) + '피하기',
             },
           };
         }
