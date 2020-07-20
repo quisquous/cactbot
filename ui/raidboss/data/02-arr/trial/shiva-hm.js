@@ -82,7 +82,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': 'soldat de glace',
         'Shiva': 'Shiva',
@@ -90,6 +89,8 @@
       'replaceText': {
         '\\(circle\\)': '(cercle)',
         '\\(cross\\)': '(croix)',
+        '--adds targetable--': '--adds ciblable--',
+        '--frozen--': '--gelé--',
         'Absolute Zero': 'Zéro absolu',
         'Diamond Dust': 'Poussière de diamant',
         'Dreams Of Ice': 'Illusions glacées',
