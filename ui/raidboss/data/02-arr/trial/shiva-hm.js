@@ -49,6 +49,7 @@
       infoText: function(data, matches) {
         return {
           en: 'Free ' + data.ShortName(matches.target),
+          de: 'Befreie ' + data.ShortName(matches.target),
         };
       },
     },
