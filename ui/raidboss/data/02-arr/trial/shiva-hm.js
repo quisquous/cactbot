@@ -57,7 +57,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': 'Eissoldat',
         'Shiva': 'Shiva',
