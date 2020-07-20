@@ -1612,7 +1612,7 @@ class Bars {
       }
 
       // dynamically annouce user depends on their aetherflow stacks right now
-      aetherflowBox.threshold = this.gcdSpell() * aetherflow + 1;
+      aetherflowBox.threshold = this.gcdSpell() * (aetherflow || 1) + 1;
 
       let p = aetherflowStackBox.parentNode;
       let s = parseFloat(aetherflowBox.duration || 0) - parseFloat(aetherflowBox.elapsed);
