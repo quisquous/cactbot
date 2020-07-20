@@ -7,6 +7,7 @@
 [{
   zoneRegex: {
     en: /^Cinder Drift \(Extreme\)$/,
+    cn: /^红宝石神兵狂想作战$/,
   },
   zoneId: ZoneId.CinderDriftExtreme,
   timelineFile: 'ruby_weapon-ex.txt',
@@ -43,6 +44,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4ABE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4ABE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ABE', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ABE', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -54,6 +56,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B03' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B03' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B03' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B03' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -65,6 +68,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AD0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD0', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD0', capture: false }),
       infoText: {
         en: 'Away from Lines',
         de: 'Weg von den Linien',
@@ -79,6 +83,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4ACF', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4ACF', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4ACF', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4ACF', capture: false }),
       alertText: {
         en: 'Get On Lines',
         de: 'Auf die Linien gehen',
@@ -93,6 +98,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B02', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B02', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B02', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B02', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -101,6 +107,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B05', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B05', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B05', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B05', capture: false }),
       response: Responses.goSides(),
     },
     {
@@ -109,6 +116,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD8' }),
       condition: Conditions.targetIsYou(),
       response: Responses.stackOn('alert'),
     },
@@ -118,6 +126,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AD8' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AD8' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AD8' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD8' }),
       condition: Conditions.targetIsNotYou(),
       response: Responses.stack('info'),
     },
@@ -127,6 +136,7 @@
       netRegexDe: NetRegexes.addedCombatantFull({ name: 'Naels Trugbild' }),
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Spectre De Nael' }),
       netRegexJa: NetRegexes.addedCombatantFull({ name: 'ネールの幻影' }),
+      netRegexCn: NetRegexes.addedCombatantFull({ name: '奈尔的幻影' }),
       run: function(data, matches) {
         // 112,108 (east)
         // 88,108 (west)
@@ -147,6 +157,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B2D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B2D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B2D', capture: false }),
       infoText: {
         en: 'Enrage!',
         de: 'Finalangriff!',
@@ -231,6 +242,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AFC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AFC', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AFC', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AFC', capture: false }),
       preRun: function(data) {
         for (color of data.colors) {
           if (color == 'blue')
@@ -274,6 +286,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AFE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AFE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AFE', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AFE', capture: false }),
       response: Responses.lookAway(),
     },
     {
@@ -290,6 +303,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AEE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AEE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AEE', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AEE', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -298,6 +312,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4AF0', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AF0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AF0', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AF0', capture: false }),
       infoText: {
         en: 'Away from Meteor!',
         de: 'Weg vom Meteor!',
@@ -312,6 +327,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AB6', capture: false }),
       condition: (data) => data.role == 'tank',
       delaySeconds: 11.5,
       alarmText: {
@@ -328,6 +344,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Rubin-Waffe', id: '4AB6', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Arme Rubis', id: '4AB6', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ルビーウェポン', id: '4AB6', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '红宝石神兵', id: '4AB6', capture: false }),
       condition: (data) => data.role != 'tank',
       delaySeconds: 13,
       alertText: {
@@ -387,6 +404,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Rubin-Waffe', id: '4B04', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4B04', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4B04', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4B04', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -520,6 +538,56 @@
         'Helicoclaw': 'スパイラルクロー',
         'Flexiclaw': 'フレキシブルクロー',
         'Cut and Run': 'クロースラッシュ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'The Ruby Weapon': '红宝石神兵',
+        'Ruby Bit': '红宝石浮游炮',
+        'Raven\'s Image': '奈尔的幻影',
+        'Meteor': '陨石',
+      },
+      'replaceText': {
+        '--cutscene--': '--过场动画--',
+        'Optimized Ultima': '魔导究极',
+        'Magitek Bit': '浮游炮射出',
+        'Flexiclaw': '潜地爪',
+        'Magitek Ray': '魔导射线',
+        'Helicoclaw': '螺旋爪',
+        'Spike Of Flame': '爆炎柱',
+        'Stamp': '重踏',
+        'Ruby Sphere': '红宝石能量球',
+        'Ravensclaw': '凶鸟爪',
+        'Undermine': '掘地雷',
+        'Ruby Ray': '红宝石射线',
+        'Liquefaction': '地面液化',
+        'Ravensflight': '凶鸟冲',
+        'Ruby Dynamics': '红宝石电圈',
+        'High-Powered Homing Lasers': '高功率诱导射线',
+        'Cut And Run': '利爪突进',
+        '(?<! )Homing Lasers': '诱导射线',
+        'Magitek Charge': '魔导炸弹',
+        'Meteor Project': '陨石计划',
+        'Negative Personae': '消极人格',
+        'Meteor Stream': '陨石流',
+        'Greater Memory': '记忆增幅',
+        'Chariot': '月流电圈',
+        'Dynamo': '钢铁战车',
+        'Negative Affect': '消极情感',
+        'Ruby Claw x5': '红宝石之爪',
+        'Change Of Heart': '感情变化',
+        'Negative Aura': '消极视线',
+        'Dalamud Impact': '卫月冲击',
+        'Meteor Mine': '陨石雷',
+        'Landing x8': '落地',
+        'Screech': '嘶嚎',
+        'Burst x8': '爆炸',
+        'Magitek Meteor': '魔导陨石',
+        'Mark II Magitek Comet': '魔导彗星II',
+        'Tank Comets': '坦克彗星',
+        'Bradamante': '布拉达曼特',
+        'Outrage': '震怒',
       },
     },
   ],

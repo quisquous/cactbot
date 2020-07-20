@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Iconoclasm$/,
+    cn: /^伊甸希望乐园 \(共鸣之章3\)$/,
     ko: /^희망의 낙원 에덴: 공명편 \(3\)$/,
   },
   zoneId: ZoneId.EdensVerseIconoclasm,
@@ -14,6 +15,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C52', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C52', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C52', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C52', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -25,6 +27,7 @@
       netRegexDe: NetRegexes.tether({ source: 'Götzenbild Der Dunkelheit', id: '0025' }),
       netRegexFr: NetRegexes.tether({ source: 'Idole Des Ténèbres', id: '0025' }),
       netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0025' }),
+      netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -38,6 +41,7 @@
         en: 'Teleporting Left',
         de: 'Nach Links teleportieren',
         fr: 'Téléportation à gauche',
+        cn: '向左传送',
         ko: '왼쪽으로 순간이동',
       },
     },
@@ -49,6 +53,7 @@
         en: 'Teleporting Right',
         de: 'Nach Rechts teleportieren',
         fr: 'Téléportation à droite',
+        cn: '向右传送',
         ko: '오른쪽으로 순간이동',
       },
     },
@@ -82,11 +87,13 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C4C', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C4C', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Teleport into donut',
         de: 'In den Donut teleportieren',
         fr: 'Téléportez vous dans le donut',
+        cn: '传送进月环',
         ko: '도넛 장판 안으로 순간이동하기',
       },
     },
@@ -98,6 +105,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Idolatrie', id: '4C4D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C4D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C4D', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C4D', capture: false }),
       suppressSeconds: 1,
       response: Responses.getOut(),
     },
@@ -118,6 +126,7 @@
           en: 'Get hit by dark',
           de: 'Vom Dunklen treffen lassen',
           fr: 'Encaissez le noir',
+          cn: '被黑色打',
           ko: '어둠 맞기',
         };
       },
@@ -137,6 +146,7 @@
           en: 'Get hit by light',
           de: 'Vom Hellen treffen lassen',
           fr: 'Encaissez le blanc',
+          cn: '被白色打',
           ko: '빛 맞기',
         };
       },
@@ -148,6 +158,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Götzenbild Der Dunkelheit', id: '4C39', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C39', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C39', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C39', capture: false }),
       run: function(data) {
         delete data.colorCount;
       },
@@ -233,6 +244,33 @@
         'Black Smoke': '黒闇の火',
         'Betwixt Worlds': '次元孔',
         'Away with Thee': '強制転移',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'The Idol Of Darkness': '暗黑心象',
+        'Unforgiven Idolatry': '未被宽恕的盲崇',
+        '(?<! )Idolatry': '盲崇',
+      },
+      'replaceText': {
+        'Empty Wave': '虚无波动',
+        'Unshadowed Stake': '暗光钉',
+        'Words of Motion': '波状号令',
+        'Light\'s Course': '白光奔流',
+        'Dark\'s Course': '黑暗奔流',
+        'Betwixt Worlds': '次元孔',
+        'Away with Thee': '强制传送',
+        'False Twilight': '薄暮机动',
+        'Stygian Sword': '黑暗之剑',
+        'Silver Sledge': '白光之锤',
+        'Unjoined Aspect': '属性变动',
+        'Words of Night': '夜袭号令',
+        'Strength in Numbers': '攻击机动',
+        'Silver Shot': '白光之矢',
+        'Explosion': '爆炸',
+        'Empty Flood': '虚无泛滥',
+        'Black Smoke': '黑暗之火',
       },
     },
   ],
