@@ -10,7 +10,8 @@
     "lintfix": "node_modules/.bin/eslint --fix resources ui user test util",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css",
     "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
-    "test": "python test/run_tests.py"
+    "test": "python test/run_tests.py",
+    "lint-staged": "node_modules/.bin/lint-staged"
   },
   "devDependencies": {
     "chai": "^4.2.0",
@@ -158,7 +159,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npx lint-staged"
+      "pre-commit": "npm run lint-staged"
     }
   },
   "lint-staged": {
