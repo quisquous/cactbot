@@ -32,15 +32,14 @@ let Options = {
   BlmLowMPThreshold: 2399,
 };
 
-let kMeleeWithMpJobs = ['DRK', 'PLD'];
+const kMeleeWithMpJobs = ['DRK', 'PLD'];
 
-let kMPNormalRate = 0.06;
-let kMPCombatRate = 0.02;
-let kMPUI1Rate = 0.30;
-let kMPUI2Rate = 0.45;
-let kMPUI3Rate = 0.60;
-let kMPTickInterval = 3.0;
-let kUnknownGCD = 2.5;
+const kMPNormalRate = 0.06;
+const kMPCombatRate = 0.02;
+const kMPUI1Rate = 0.30;
+const kMPUI2Rate = 0.45;
+const kMPUI3Rate = 0.60;
+const kMPTickInterval = 3.0;
 
 // Regexes to be filled out once we know the player's name.
 let kComboBreakers = null;
@@ -1183,6 +1182,10 @@ class Bars {
     };
     if (setup[this.job])
       setup[this.job].bind(this)();
+
+    // Many jobs use the gcd to calculate thresholds and value scaling.
+    // Run this initially to set those values.
+    this.UpdateJobBarGCDs();
   }
 
   addJobBarContainer() {
@@ -1288,8 +1291,6 @@ class Bars {
   }
 
   setupWar() {
-    let gcd = kUnknownGCD;
-
     let textBox = this.addResourceBox({
       classList: ['war-color-beast'],
     });
@@ -1314,7 +1315,6 @@ class Bars {
 
     let eyeBox = this.addProcBox({
       fgColor: 'war-color-eye',
-      scale: gcd,
     });
 
     this.comboFuncs.push((skill) => {
@@ -1413,8 +1413,6 @@ class Bars {
   }
 
   setupPld() {
-    let gcd = kUnknownGCD;
-
     let textBox = this.addResourceBox({
       classList: ['pld-color-oath'],
     });
@@ -1439,8 +1437,6 @@ class Bars {
 
     let goreBox = this.addProcBox({
       fgColor: 'pld-color-gore',
-      scale: gcd,
-      threshold: gcd * 3 + 0.3,
     });
 
     this.comboFuncs.push((skill) => {
@@ -1463,18 +1459,6 @@ class Bars {
   }
 
   setupBlu() {
-    let bluGcd = (timeMs) => {
-      // If you've reloaded the jobs overlay since the last time an `0C` line went by,
-      // then spellSpeed will be 0.  Assume that you have at least the default spell speed
-      // at level 60.
-      let defaultLevel = 60;
-      let spellSpeed = Math.max(this.spellSpeed, kLevelMod[defaultLevel][0]);
-
-      return this.CalcGCDFromStat(spellSpeed, timeMs);
-    };
-
-    let gcd = bluGcd(2500);
-
     let offguardBox = this.addProcBox({
       id: 'blu-procs-offguard',
       fgColor: 'blu-color-offguard',
@@ -1495,15 +1479,14 @@ class Bars {
       tormentBox.threshold = this.gcdSpell() * 3;
       lucidBox.threshold = this.gcdSpell() * 4;
     };
-    this.statChangeFuncMap['BLU']();
 
     this.abilityFuncMap[gLang.kAbility.OffGuard] = () => {
       offguardBox.duration = 0;
-      offguardBox.duration = bluGcd(60000);
+      offguardBox.duration = this.CalcGCDFromStat(this.spellSpeed, 60000);
     };
     this.abilityFuncMap[gLang.kAbility.PeculiarLight] = () => {
       offguardBox.duration = 0;
-      offguardBox.duration = bluGcd(60000);
+      offguardBox.duration = this.CalcGCDFromStat(this.spellSpeed, 60000);
     };
     this.abilityFuncMap[gLang.kAbility.SongOfTorment] = () => {
       tormentBox.duration = 0;
@@ -1517,27 +1500,19 @@ class Bars {
 
   // TODO: none of this is actually super useful.
   setupAst() {
-    let gcd = kUnknownGCD;
-
     let combustBox = this.addProcBox({
       id: 'ast-procs-combust',
       fgColor: 'ast-color-combust',
-      scale: gcd,
-      threshold: gcd * 3,
     });
 
     let beneficBox = this.addProcBox({
       id: 'ast-procs-benefic',
       fgColor: 'ast-color-benefic',
-      scale: gcd,
-      threshold: gcd * 3,
     });
 
     let heliosBox = this.addProcBox({
       id: 'ast-procs-helios',
       fgColor: 'ast-color-helios',
-      scale: gcd,
-      threshold: gcd * 3,
     });
 
     // Sorry, no differentation for noct asts here.  <_<
@@ -1565,8 +1540,6 @@ class Bars {
   }
 
   setupSch() {
-    let gcd = kUnknownGCD;
-
     let aetherflowStackBox = this.addResourceBox({
       classList: ['sch-color-aetherflow'],
     });
@@ -1578,22 +1551,16 @@ class Bars {
     let bioBox = this.addProcBox({
       id: 'sch-procs-bio',
       fgColor: 'sch-color-bio',
-      scale: gcd,
-      threshold: gcd + 1,
     });
 
     let aetherflowBox = this.addProcBox({
       id: 'sch-procs-aetherflow',
       fgColor: 'sch-color-aetherflow',
-      scale: gcd,
-      threshold: gcd * 3,
     });
 
     let lucidBox = this.addProcBox({
       id: 'sch-procs-luciddreaming',
       fgColor: 'sch-color-lucid',
-      scale: gcd,
-      threshold: gcd + 1,
     });
 
     this.jobFuncs.push((jobDetail) => {
@@ -2081,9 +2048,14 @@ class Bars {
   }
 
   // Source: http://theoryjerks.akhmorning.com/guide/speed/
-  CalcGCDFromStat(stat, actiondelay) {
+  CalcGCDFromStat(stat, actionDelay) {
     // default calculates for a 2.50s recast
-    actiondelay = actiondelay || 2500;
+    actionDelay = actionDelay || 2500;
+
+    // If stats haven't been updated, use a reasonable default value.
+    if (stat === 0)
+      return actionDelay / 1000;
+
 
     let type1Buffs = 0;
     let type2Buffs = 0;
@@ -2121,14 +2093,14 @@ class Bars {
       }
     }
     // TODO: this probably isn't useful to track
-    let astralUmbralMod = 100;
+    const astralUmbralMod = 100;
 
-    let GCDms = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[this.level][0]) /
-      kLevelMod[this.level][1])) * actiondelay / 1000;
-    let A = (100 - type1Buffs) / 100;
-    let B = (100 - type2Buffs) / 100;
-    let GCDc = Math.floor(Math.floor((A * B) * GCDms / 10) * astralUmbralMod / 100);
-    return GCDc / 100;
+    const gcdMs = Math.floor(1000 - Math.floor(130 * (stat - kLevelMod[this.level][0]) /
+      kLevelMod[this.level][1])) * actionDelay / 1000;
+    const a = (100 - type1Buffs) / 100;
+    const b = (100 - type2Buffs) / 100;
+    const gcdC = Math.floor(Math.floor((a * b) * gcdMs / 10) * astralUmbralMod / 100);
+    return gcdC / 100;
   }
 
   UpdateJobBarGCDs() {
