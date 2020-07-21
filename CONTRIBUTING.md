@@ -72,11 +72,7 @@ along with a suite of linters and tests to ensure code quality.
 These validations are done both on a client-side (your computer)
 and on the server-side (GitHub).
 
-To cut down on pre-commit check times,
-it is recommended to install `lint-staged` globally via `npm install -g lint-staged`,
-as that will reduce the operation time for each commit.
-
-Additionally, if the pre-commit validations are causing you significant problems,
+If the pre-commit validations are causing you significant problems,
 feel free to bypass the checks with `--no-verify` flag,
 such as `git commit --no-verify`,
 and open a pull request even if not everything is passing on your end.

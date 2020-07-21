@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^Eden's Verse: Furor$/,
+    cn: /^伊甸希望乐园 \(共鸣之章2\)$/,
     ko: /^희망의 낙원 에덴: 공명편 \(2\)$/,
   },
   zoneId: ZoneId.EdensVerseFuror,
@@ -35,6 +36,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: ['迦楼罗', '赤翼罗羯坨博叉'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
         de: 'Weiche den grünen Nägeln aus',
@@ -72,6 +74,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BF1', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BF1', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BF1', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BF1', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
@@ -82,6 +85,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4CFE', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4CFE', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4CFE', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4CFE', capture: false }),
       preRun: function(data) {
         data.handsOfFlame = true;
       },
@@ -121,6 +125,7 @@
       netRegexDe: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4BE9', capture: false }),
       netRegexJa: NetRegexes.ability({ source: ['イフリート', 'ラクタパクシャ'], id: '4BE9', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BE9', capture: false }),
       preRun: function(data) {
         data.handsOfFlame = false;
       },
@@ -132,6 +137,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BED' }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BED' }),
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BED' }),
+      netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BED' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
@@ -177,6 +183,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BE6', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BE6', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4BE6', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '赤翼罗羯坨博叉', id: '4BE6', capture: false }),
       response: Responses.stackThenSpread(),
     },
   ],
@@ -272,6 +279,37 @@
         'Downburst': 'ダウンバースト',
         'Conflag Strike': 'コンフラグレーションストライク',
         'Air Bump': 'エアーバンプ',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Garuda': '迦楼罗',
+        'Ifrit': '伊弗利特',
+        'Raktapaksa': '赤翼罗羯坨博叉',
+      },
+      'replaceText': {
+        'Ferostorm': '凶猛风暴',
+        'Superstorm': '超级风暴',
+        'Air Bump': '空气弹垫',
+        'Thorns': '血祭',
+        'Downburst': '下行突风',
+        'Storm Of Fury': '暴怒风暴',
+        'Vacuum Slice': '真空斩',
+        'Occluded Front': '锢囚锋',
+        'Irresistible Pull': '吸引力',
+        'Touchdown': '空降',
+        'Hands Of Flame': '火焰拳',
+        'Hands Of Hell': '业火拳',
+        'Instant Incineration': '爆裂炎',
+        'Eruption': '地火喷发',
+        'Strike Spark': '火花爆',
+        'Hot Foot': '飞火',
+        'Inferno Howl': '灼热的咆哮',
+        'Firestorm': '火焰流',
+        'Radiant Plume': '光辉炎柱',
+        'Heat Burst': '热波',
+        'Conflag Strike': '瞬燃强袭',
       },
     },
   ],

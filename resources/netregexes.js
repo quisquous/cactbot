@@ -6,6 +6,7 @@
 // * gameLog always splits name into its own field (but previously wouldn't)
 
 const separator = '\\|';
+const matchDefault = '[^|]*';
 
 let parseHelper = (params, funcName, fields) => {
   // Validate params's field names vs the ones in fields.
@@ -54,7 +55,7 @@ let parseHelper = (params, funcName, fields) => {
     if (typeof value === 'object') {
       let fieldName = fields[key].field;
       // TODO: the field object here could also manage different defaults, if we wanted?
-      str += Regexes.maybeCapture(capture, fieldName, params[fieldName], '.*?') + separator;
+      str += Regexes.maybeCapture(capture, fieldName, params[fieldName], matchDefault) + separator;
     } else {
       str += fields[key].toString() + separator;
     }
