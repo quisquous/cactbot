@@ -301,7 +301,7 @@
         en: 'Get under vertical add',
         de: 'Unter das vertikale Add gehen',
         fr: 'Allez sous l\'add vertical',
-        ko: '똑바로 서 있는 쫄 아래로',
+        ko: '세로로 도는 쫄 아래로',
         cn: '去竖转小怪脚下',
       },
     },

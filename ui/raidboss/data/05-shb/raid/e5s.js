@@ -304,7 +304,7 @@
         en: 'Ready for Chain',
         de: 'Bereit für Kettenblitz',
         fr: 'Préparez-vous pour la chaine',
-        ko: '번개 돌려막기 준비',
+        ko: '체인 라이트닝 준비',
         cn: '雷光链',
       },
     },
