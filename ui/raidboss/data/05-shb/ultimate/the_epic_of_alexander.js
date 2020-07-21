@@ -42,6 +42,9 @@ let getHeadmarkerId = (data, matches) => {
   return '00' + (parseInt(matches.id, 16) - data.decOffset).toString(16).toUpperCase();
 };
 
+const kDecreeNisi = ['8AE', '8AF', '859', '85A'];
+const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
+
 [{
   zoneRegex: {
     en: /^The Epic [Oo]f Alexander \(Ultimate\)$/,
@@ -1030,16 +1033,16 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Decree Nisi Gain',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['8AE', '8AF', '859', '85A'] }),
+      netRegex: NetRegexes.gainsEffect({ effectId: kDecreeNisi }),
       run: function(data, matches) {
-        let num = ['8AE', '8AF', '859', '85A'].indexOf(matches.effectId);
+        const num = kDecreeNisi.indexOf(matches.effectId.toUpperCase());
         data.nisiMap = data.nisiMap || {};
         data.nisiMap[matches.target] = num;
       },
     },
     {
       id: 'TEA Decree Nisi Lose',
-      netRegex: NetRegexes.losesEffect({ effectId: ['8AE', '8AF', '859', '85A'] }),
+      netRegex: NetRegexes.losesEffect({ effectId: kDecreeNisi }),
       run: function(data, matches) {
         data.nisiMap = data.nisiMap || {};
         delete data.nisiMap[matches.target];
@@ -1047,9 +1050,9 @@ let getHeadmarkerId = (data, matches) => {
     },
     {
       id: 'TEA Final Judgment Nisi Gain',
-      netRegex: NetRegexes.gainsEffect({ effectId: ['8B0', '8B1', '85B', '85C'] }),
+      netRegex: NetRegexes.gainsEffect({ effectId: kFinalJudgementNisi }),
       run: function(data, matches) {
-        let num = ['8B0', '8B1', '85B', '85C'].indexOf(matches.effectId);
+        const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
         data.finalNisiMap = data.finalNisiMap || {};
         data.finalNisiMap[matches.target] = num;
       },
@@ -1063,7 +1066,7 @@ let getHeadmarkerId = (data, matches) => {
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
       infoText: function(data, matches) {
-        let num = ['8B0', '8B1', '85B', '85C'].indexOf(matches.effectId);
+        const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
         return {
           en: 'Verdict: ' + data.nisiNames[num] + ' Nisi',
           de: 'Prozesseröffnung: ' + data.nisiNames[num] + ' Nisi',
@@ -1153,6 +1156,7 @@ let getHeadmarkerId = (data, matches) => {
       netRegex: NetRegexes.gainsEffect({ effectId: '46[1234]' }),
       run: function(data, matches) {
         data.buffMap = data.buffMap || {};
+        // The values are for debugging; the logic is just about presence in the map.
         data.buffMap[matches.target] = matches.effect;
       },
     },
