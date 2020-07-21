@@ -50,7 +50,7 @@ let missedFunc = (args) => {
           text: {
             en: thingName + ' missed ' + missed.map((x) => data.ShortName(x)).join(', '),
             de: thingName + ' verfehlt ' + missed.map((x) => data.ShortName(x)).join(', '),
-            fr: thingName + ' manqué ' + missed.map((x) => data.ShortName(x)).join(', '),
+            fr: thingName + ' manqué(e) sur ' + missed.map((x) => data.ShortName(x)).join(', '),
           },
         };
       }
@@ -62,7 +62,7 @@ let missedFunc = (args) => {
         text: {
           en: thingName + ' missed ' + missed.length + ' people',
           de: thingName + ' verfehlte ' + missed.length + ' Personen',
-          fr: thingName + ' manqué ' + missed.length + ' personnes',
+          fr: thingName + ' manqué(e) sur ' + missed.length + ' personnes',
         },
       };
     },
