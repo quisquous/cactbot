@@ -5,12 +5,8 @@ using Newtonsoft.Json.Linq;
 
 namespace Cactbot {
   public class FFXIVProcessCn : FFXIVProcess {
-    //
-    // for FFXIV CN version: 5.1
-    //
-    // Latest CN version can be found at:
-    // http://ff.sdo.com/web8/index.html#/patchnote
-    //
+    // Last updated for FFXIV 5.2
+
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct EntityMemory {
       public static int Size => Marshal.SizeOf(typeof(EntityMemory));
@@ -42,7 +38,7 @@ namespace Cactbot {
       [FieldOffset(0xB0)]
       public Single rotation;
 
-      [FieldOffset(0x18B8)]
+      [FieldOffset(0x1898)]
       public CharacterDetails charDetails;
     }
 
@@ -58,9 +54,6 @@ namespace Cactbot {
       [FieldOffset(0x08)]
       public int mp;
 
-      [FieldOffset(0x0C)]
-      public int max_mp;
-
       [FieldOffset(0x12)]
       public short gp;
 
@@ -73,13 +66,13 @@ namespace Cactbot {
       [FieldOffset(0x18)]
       public short max_cp;
 
-      [FieldOffset(0x3C)]
+      [FieldOffset(0x3E)]
       public EntityJob job;
 
-      [FieldOffset(0x3E)]
+      [FieldOffset(0x40)]
       public byte level;
 
-      [FieldOffset(0x5F)]
+      [FieldOffset(0x61)]
       public short shieldPercentage;
     }
     public FFXIVProcessCn(ILogger logger) : base(logger) { }
@@ -89,8 +82,8 @@ namespace Cactbot {
 
     // A piece of code that reads the pointer to the list of all entities, that we
     // refer to as the charmap. The pointer is the 4 byte ?????????.
-    private static String kCharmapSignature = "488B1D????????488BFA33D2488BCF";
-    private static int kCharmapSignatureOffset = -12;
+    private static String kCharmapSignature = "574883EC??488B1D????????488BF233D2";
+    private static int kCharmapSignatureOffset = -9;
     // The signature finds a pointer in the executable code which uses RIP addressing.
     private static bool kCharmapSignatureRIP = true;
     // The pointer is to a structure as:
@@ -187,7 +180,9 @@ namespace Cactbot {
           entity.hp = mem.charDetails.hp;
           entity.max_hp = mem.charDetails.max_hp;
           entity.mp = mem.charDetails.mp;
-          entity.max_mp = mem.charDetails.max_mp;
+          // This doesn't exist in memory, so just send the right value.
+          // As there are other versions that still have it, don't change the event.
+          entity.max_mp = 10000;
           entity.shield_value = mem.charDetails.shieldPercentage * entity.max_hp / 100;
 
           if (IsGatherer(entity.job)) {
