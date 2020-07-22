@@ -107,7 +107,7 @@ class CactbotLanguageCn extends CactbotLanguage {
     this.countdownStartRegex = function() {
       return Regexes.gameLog({
         capture: true,
-        line: '距离战斗开始还有(?<time>\y{Float})秒！',
+        line: '距离战斗开始还有(?<time>\\y{Float})秒！',
       });
     };
     this.countdownEngageRegex = function() {
