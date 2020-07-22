@@ -50,6 +50,7 @@
         de: 'Halt nach kleinem Speer ausschau',
         fr: 'Allez sur la petite lance',
         ko: '작은 지팡이 확인',
+        cn: '找短矛',
       },
     },
     {
@@ -65,6 +66,7 @@
         de: 'Halt nach dem Add ausschau',
         fr: 'Cherchez les adds',
         ko: '쫄 위치 확인',
+        cn: '注意小怪',
       },
     },
     {
@@ -80,6 +82,7 @@
         de: 'Wütender Blitz',
         fr: 'Boule de foudre',
         ko: '라무 강화',
+        cn: '蓄雷',
       },
     },
     {
