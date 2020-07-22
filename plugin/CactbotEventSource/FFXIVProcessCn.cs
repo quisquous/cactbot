@@ -6,6 +6,9 @@ using Newtonsoft.Json.Linq;
 namespace Cactbot {
   public class FFXIVProcessCn : FFXIVProcess {
     // Last updated for FFXIV 5.2
+    //
+    // Latest CN version can be found at:
+    // http://ff.sdo.com/web8/index.html#/patchnote
 
     [StructLayout(LayoutKind.Explicit)]
     public unsafe struct EntityMemory {
