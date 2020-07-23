@@ -31,6 +31,10 @@
     {
       id: 'Bardam\'s Mettle War Cry',
       netRegex: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1EFA', source: 'ガルラ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1EFA', source: '加鲁拉', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -48,11 +52,19 @@
     {
       id: 'Bardam\'s Mettle Empty Gaze',
       netRegex: NetRegexes.startsUsing({ id: '1F04', source: 'Hunter Of Bardam', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1F04', source: 'Bardams Jäger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1F04', source: 'chasseur de Bardam', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1F04', source: 'バルダムズ・ハンター', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1F04', source: '巴儿达木的猎人', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'Bardam\'s Mettle Sacrifice',
       netRegex: NetRegexes.startsUsing({ id: '1F01', source: 'Bardam', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1F01', source: 'Bardams Statue', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1F01', source: 'Bardam', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1F01', source: 'バルダムの巨像', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1F01', source: '巴儿达木巨像', capture: false }),
       infoText: {
         en: 'Stand in a tower',
         de: 'Im Turm stehen',
@@ -65,6 +77,10 @@
       // but 257D is used only once. The others are 257E.
       id: 'Bardam\'s Mettle Comet',
       netRegex: NetRegexes.startsUsing({ id: '257D', source: 'Bardam', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '257D', source: 'Bardams Statue', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '257D', source: 'Bardam', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '257D', source: 'バルダムの巨像', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '257D', source: '巴儿达木巨像', capture: false }),
       alertText: {
         en: '8x puddles on YOU',
         de: '8x Fläche auf DIR',
@@ -74,6 +90,10 @@
     {
       id: 'Bardam\'s Mettle Meteor Impact',
       netRegex: NetRegexes.startsUsing({ id: '2582', source: 'Looming Shadow' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2582', source: 'Lauernd[a] Schatten' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2582', source: 'ombre grandissante' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2582', source: '落下地点' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2582', source: '坠落地点' }),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.castTime) - 7;
       },
@@ -87,6 +107,10 @@
     {
       id: 'Bardam\'s Mettle Wind Unbound',
       netRegex: NetRegexes.startsUsing({ id: '1F0A', source: 'Yol', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1F0A', source: 'Yol', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1F0A', source: 'Yol', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1F0A', source: 'ヨル', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1F0A', source: '胡鹰', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -101,6 +125,10 @@
     {
       id: 'Bardam\'s Mettle Eye Of The Fierce',
       netRegex: NetRegexes.startsUsing({ id: '1F0D', source: 'Yol', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1F0D', source: 'Yol', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1F0D', source: 'Yol', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1F0D', source: 'ヨル', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1F0D', source: '胡鹰', capture: false }),
       response: Responses.lookAway(),
     },
     {
@@ -134,7 +162,7 @@
         'Hunter Of Bardam': 'Bardams Jäger',
         'Corpsecleaner Eagle': 'Leichenputzer',
         'Garula': 'Garula',
-        'Bardam': 'Bardams Statue',
+        '(?<! )Bardam': 'Bardams Statue',
       },
       'replaceText': {
         'Wingbeat': 'Flügelschlag',
@@ -172,7 +200,7 @@
         'Hunter Of Bardam': 'chasseur de Bardam',
         'Corpsecleaner Eagle': 'aigle charognard',
         'Garula': 'Garula',
-        'Bardam': 'Bardam',
+        '(?<! )Bardam': 'Bardam',
       },
       'replaceText': {
         'Wingbeat': 'Battement d\'ailes',
@@ -210,7 +238,7 @@
         'Hunter Of Bardam': 'バルダムズ・ハンター',
         'Corpsecleaner Eagle': 'スカヴェンジング・イーグル',
         'Garula': 'ガルラ',
-        'Bardam': 'バルダムの巨像',
+        '(?<! )Bardam': 'バルダムの巨像',
       },
       'replaceText': {
         'Wingbeat': 'ウィングガスト',
@@ -248,7 +276,7 @@
         'Hunter Of Bardam': '巴儿达木的猎人',
         'Corpsecleaner Eagle': '清道雄鹰',
         'Garula': '加鲁拉',
-        'Bardam': '巴儿达木巨像',
+        '(?<! )Bardam': '巴儿达木巨像',
       },
       'replaceText': {
         'Wingbeat': '翼唤狂风',
