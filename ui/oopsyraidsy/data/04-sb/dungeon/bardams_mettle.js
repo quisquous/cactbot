@@ -1,6 +1,6 @@
 'use strict';
 
-// Ala Mhigo
+// Bardam's Mettle
 [{
   zoneRegex: {
     en: /^Bardam's Mettle$/,

@@ -1,5 +1,7 @@
 'use strict';
 
+// Bardam's Mettle
+
 [{
   zoneRegex: {
     en: /^Bardam's Mettle$/,
