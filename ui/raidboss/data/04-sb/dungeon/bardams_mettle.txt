@@ -86,7 +86,7 @@ hideall "--sync--"
 2060.9 "Pinion" sync /:Yol Feather:1F11:/
 2069.3 "Wind Unbound" sync /:Yol:1F0A:/
 2071.4 "--untargetable--"
-2071.4 "--add spawn--" sync /03:........:Added new combatant Corpsecleaner Eagle/ window 71.4,5
+2071.4 "--adds spawn--" sync /03:........:Added new combatant Corpsecleaner Eagle/ window 71.4,5
 2078.0 "Pinion" sync /:Yol Feather:1F11:/
 2088.0 "Pinion" sync /:Yol Feather:1F11:/
 2098.0 "Pinion" sync /:Yol Feather:1F11:/
