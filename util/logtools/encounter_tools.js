@@ -183,7 +183,7 @@ class EncounterCollector extends EncounterFinder {
       name: name,
       startLine: line,
       startTime: this.dateFromMatches(matches),
-      zoneId: this.lastZone.zoneId,
+      zoneId: this.lastZone ? this.lastZone.zoneId : 0,
       sealName: this.lastSeal,
     };
     this.lastSeal = null;
