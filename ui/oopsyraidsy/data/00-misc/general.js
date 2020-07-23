@@ -222,6 +222,8 @@ let missedMitigationAbility = missedHeal;
     missedMitigationAbility({ id: 'Tactician', abilityId: '41F9' }),
     missedMitigationAbility({ id: 'Shield Samba', abilityId: '3E8C' }),
 
+    missedMitigationAbility({ id: 'Mantra', abilityId: '41' }),
+
     // TODO: need a person->pet mapping for blame
     missedDamageAbility({ id: 'Devotion', abilityId: '1D1A' }),
 
@@ -238,6 +240,8 @@ let missedMitigationAbility = missedHeal;
     missedHeal({ id: 'Fey Blessing', abilityId: '409F' }),
     missedHeal({ id: 'Consolation', abilityId: '40A3' }),
     missedHeal({ id: 'Angel\'s Whisper', abilityId: '40A6' }),
+    missedMitigationAbility({ id: 'Fey Illumination', abilityId: '325' }),
+    missedMitigationAbility({ id: 'Seraphic Illumination', abilityId: '40A7' }),
 
     missedHeal({ id: 'Helios', abilityId: 'E10' }),
     missedHeal({ id: 'Aspected Helios', abilityId: 'E11' }),
