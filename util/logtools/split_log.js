@@ -18,30 +18,51 @@ parser.addArgument(['-f', '--file'], {
 });
 parser.addArgument(['-lf', '--search-fights'], {
   nargs: '?',
-  defaultValue: '-1',
+  defaultValue: -1,
   type: 'int',
   help: 'Fight in log to use, e.g. \'1\'. ' +
     'If no number is specified, returns a list of fights.',
 });
 parser.addArgument(['-lz', '--search-zones'], {
   nargs: '?',
-  defaultValue: '-1',
+  defaultValue: -1,
   type: 'int',
   help: 'Zone in log to use, e.g. \'1\'. ' +
     'If no number is specified, returns a list of zones.',
 });
+parser.addArgument(['-fr', '--fight-regex'], {
+  nargs: '?',
+  defaultValue: -1,
+  type: 'string',
+  help: 'Export all fights that match this regex',
+});
+parser.addArgument(['-zr', '--zone-regex'], {
+  nargs: '?',
+  defaultValue: -1,
+  type: 'string',
+  help: 'Export all zones that match this regex',
+});
 
 const args = parser.parseArgs();
 
-// -1 implies not included
-// null implies included but no value
-if (args['search_fights'] === -1 && args['search_zones'] === -1) {
-  console.error('Error: Must specify one of -lf or -lz\n');
+let numExclusiveArgs = 0;
+for (const opt of ['search_fights', 'search_zones', 'fight_regex', 'zone_regex']) {
+  if (args[opt] !== -1)
+    numExclusiveArgs++;
+}
+if (numExclusiveArgs !== 1) {
+  console.error('Error: Must specify exactly one of -lf, -lz, -fr\n');
   parser.printHelp();
   process.exit(-1);
 }
-if (args['search_fights'] !== -1 && args['search_zones'] !== -1) {
-  console.error('Error: Must specify exactly one of -lf or -lz\n');
+
+if (args['fight_regex'] === null) {
+  console.error('Error: -fr must specify a regex\n');
+  parser.printHelp();
+  process.exit(-1);
+}
+if (args['zone_regex'] === null) {
+  console.error('Error: -zr must specify a regex\n');
   parser.printHelp();
   process.exit(-1);
 }
@@ -200,6 +221,63 @@ const printCollectedFights = (collector) => {
   }
 };
 
+class ConsoleNotifier {
+  warn(reason, splitLine) {
+    if (typeof splitLine === 'undefined')
+      errorFunc(this.fileName + ': ' + reason);
+    else
+      errorFunc(this.fileName + ': ' + reason + ': ' + splitLine.join('|'));
+  }
+}
+
+const writeFile = (outputFile, startLine, endLine) => {
+  return new Promise((resolve, reject) => {
+    let notifier = new ConsoleNotifier();
+    let anonymizer = new Anonymizer();
+
+    let lineReader = require('readline').createInterface({
+      input: fs.createReadStream(logFileName),
+    });
+
+    // This will fail if the file already exists.
+    let writer = fs.createWriteStream(outputFile, { flags: 'wx' });
+    writer.on('error', (err) => {
+      errorFunc(err);
+      process.exit(-1);
+      reject();
+    });
+
+    let splitter = new Splitter(startLine, endLine);
+
+    let lines = [];
+    lineReader.on('line', (line) => {
+      splitter.processWithCallback(line, (line) => {
+        const anonLine = anonymizer.process(line, notifier);
+        if (typeof anonLine === 'undefined')
+          return;
+
+        lines.push(anonLine);
+        writer.write(anonLine);
+        writer.write('\n');
+      });
+
+      if (splitter.isDone())
+        lineReader.close();
+    });
+
+    lineReader.on('close', () => {
+      writer.end();
+      console.log('Wrote: ' + outputFile);
+
+      anonymizer.validateIds();
+      for (const line of lines)
+        anonymizer.validateLine(line);
+
+      resolve();
+    });
+  });
+};
+
 // No top-level await, so wrap everything an async function.  <_<
 (async function() {
   const makeCollectorFromPrepass = async (filename) => {
@@ -225,71 +303,37 @@ const printCollectedFights = (collector) => {
     process.exit(0);
   }
 
-  class ConsoleNotifier {
-    warn(reason, splitLine) {
-      if (typeof splitLine === 'undefined')
-        errorFunc(this.fileName + ': ' + reason);
-      else
-        errorFunc(this.fileName + ': ' + reason + ': ' + splitLine.join('|'));
-    }
-  }
-
-  let notifier = new ConsoleNotifier();
-  let anonymizer = new Anonymizer();
-
-  let lineReader = require('readline').createInterface({
-    input: require('fs').createReadStream(logFileName),
-  });
-
-  let startLine = null;
-  let endLine = null;
-  let outputFile = null;
   // This utility prints 1-indexed fights and zones, so adjust - 1.
   if (args['search_fights'] !== -1) {
     let fight = collector.fights[args['search_fights'] - 1];
-    startLine = fight.startLine;
-    endLine = fight.endLine;
-    outputFile = generateFileName(fight);
-  } else {
-    let zone = collector.zones[args['search_zones'] - 1];
-    startLine = zone.startLine;
-    endLine = zone.endLine;
-    outputFile = generateFileName(zone);
-  }
-
-  // This will fail if the file already exists.
-  let writer = fs.createWriteStream(outputFile, { flags: 'wx' });
-  writer.on('error', (err) => {
-    errorFunc(err);
-    process.exit(-1);
-  });
-
-  let splitter = new Splitter(startLine, endLine);
-
-  let lines = [];
-  lineReader.on('line', (line) => {
-    splitter.processWithCallback(line, (line) => {
-      const anonLine = anonymizer.process(line, notifier);
-      if (typeof anonLine === 'undefined')
-        return;
-
-      lines.push(anonLine);
-      writer.write(anonLine);
-      writer.write('\n');
-    });
-
-    if (splitter.isDone())
-      lineReader.close();
-  });
-
-  lineReader.on('close', () => {
-    writer.end();
-    console.log('Wrote: ' + outputFile);
-
-    anonymizer.validateIds();
-    for (const line of lines)
-      anonymizer.validateLine(line);
-
+    await writeFile(generateFileName(fight), fight.startLine, fight.endLine);
     process.exit(exitCode);
-  });
+  } else if (args['search_zones'] !== -1) {
+    let zone = collector.zones[args['search_zones'] - 1];
+    await writeFile(generateFileName(zone), zone.startLine, zone.endLine);
+    process.exit(exitCode);
+  } else if (args['fight_regex'] !== -1) {
+    const regex = new RegExp(args['fight_regex'], 'i');
+    for (const fight of collector.fights) {
+      if (fight.sealName) {
+        if (!fight.sealName.match(regex))
+          continue;
+      } else if (!fight.name.match(regex)) {
+        continue;
+      }
+      await writeFile(generateFileName(fight), fight.startLine, fight.endLine);
+    }
+    process.exit(exitCode);
+  } else if (args['zone_regex'] !== -1) {
+    const regex = new RegExp(args['zone_regex'], 'i');
+    for (const zone of collector.zones) {
+      if (!zone.name.match(regex))
+        continue;
+      await writeFile(generateFileName(zone), zone.startLine, zone.endLine);
+    }
+    process.exit(exitCode);
+  } else {
+    console.error('Internal error');
+    process.exit(-1);
+  }
 }());
