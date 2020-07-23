@@ -16,6 +16,10 @@ parser.addArgument(['-f', '--file'], {
   required: true,
   help: 'File to analyze',
 });
+parser.addArgument(['--force'], {
+  nargs: 0,
+  help: 'Overwrite files when exporting',
+});
 parser.addArgument(['-lf', '--search-fights'], {
   nargs: '?',
   defaultValue: -1,
@@ -239,8 +243,9 @@ const writeFile = (outputFile, startLine, endLine) => {
       input: fs.createReadStream(logFileName),
     });
 
-    // This will fail if the file already exists.
-    let writer = fs.createWriteStream(outputFile, { flags: 'wx' });
+    // If --force is not passed, this will fail if the file already exists.
+    const flags = args.force === null ? 'wx' : 'w';
+    let writer = fs.createWriteStream(outputFile, { flags: flags });
     writer.on('error', (err) => {
       errorFunc(err);
       process.exit(-1);
