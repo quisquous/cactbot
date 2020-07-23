@@ -26,8 +26,12 @@
       id: 'Bardam\'s Mettle Rush',
       netRegex: NetRegexes.tether({ id: '0039' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Extend the tether',
+      alertText: {
+        en: 'Run Away From Boss',
+        de: 'Renn weg vom Boss',
+        fr: 'Courez loin du boss',
+        cn: '远离Boss',
+        ko: '보스와 거리 벌리기',
       },
     },
     {
@@ -37,9 +41,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '1EFA', source: 'Garula', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '1EFA', source: 'ガルラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1EFA', source: '加鲁拉', capture: false }),
-      condition: function(data) {
-        return data.role == 'healer';
-      },
+      condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
@@ -187,7 +189,7 @@
         'Earthquake': 'Erdbeben',
         'Crumbling Crust': 'Zerberstende Erde',
         'Comet Impact': 'Kometeneinschlag',
-        'Comet(?! )': 'Komet',
+        'Comet(?! Impact)': 'Komet',
         'Charge': 'Sturm',
         'Bardam\'s Ring': 'Bardams Ring',
       },
@@ -226,7 +228,7 @@
         'Earthquake': 'Tremblement de terre',
         'Crumbling Crust': 'Croûte croulante',
         'Comet Impact': 'Impact de comète',
-        'Comet(?! )': 'Comète',
+        'Comet(?! Impact)': 'Comète',
         'Charge': 'Charge',
         'Bardam\'s Ring': 'Anneau de Bardam',
       },
@@ -265,7 +267,7 @@
         'Earthquake': '地震',
         'Crumbling Crust': '地盤崩し',
         'Comet Impact': 'コメットインパクト',
-        'Comet(?! )': 'コメット',
+        'Comet(?! Impact)': 'コメット',
         'Charge': 'チャージ',
         'Bardam\'s Ring': 'バルダムリング',
       },
@@ -304,7 +306,7 @@
         'Earthquake': '地震',
         'Crumbling Crust': '地面崩裂',
         'Comet Impact': '星屑冲击',
-        'Comet(?! )': '彗星',
+        'Comet(?! Impact)': '彗星',
         'Charge': '刺冲',
         'Bardam\'s Ring': '巴儿达木之环',
       },

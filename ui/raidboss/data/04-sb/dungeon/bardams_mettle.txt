@@ -1,5 +1,7 @@
 hideall "--Reset--"
 hideall "--sync--"
+hideall "Travail"
+hideall "Reconstruct"
 
 0.0 "--Reset--" sync / 00:0839:.*is no longer sealed/ window 5000 jump 0
 
@@ -11,18 +13,17 @@ hideall "--sync--"
 
 0 "Start" sync / 00:0839:Bardam's Hunt will be sealed off/
 11.7 "Heave" sync /:Garula:1EF7:/ window 11.7,5
-20.9 "Crumbling Crust (cast)" sync /:Garula:1EF8:/
-22.4 "Crumbling Crust (circles)" sync /:Garula:1F13:/
+20.9 "--sync--" sync /:Garula:1EF8:/
+22.4 "Crumbling Crust" sync /:Garula:1F13:/
 34.1 "Rush" sync /:Garula:1EF9:/
 36.2 "War Cry" sync /:Garula:1EFA:/
 38.9 "Earthquake" sync /:Garula:1EFB:/ window 15,15
 49.5 "Heave" sync /:Garula:1EF7:/
-58.7 "Crumbling Crust (cast)" sync /:Garula:1EF8:/
-60.2 "Crumbling Crust (circles)" sync /:Garula:1F13:/
+58.7 "--sync--" sync /:Garula:1EF8:/
+60.2 "Crumbling Crust" sync /:Garula:1F13:/
 
 66.6 "Heave" sync /:Garula:1EF7:/ jump 11.7
-75.8 "Crumbling Crust (cast)"
-77.3 "Crumbling Crust (circles)"
+77.3 "Crumbling Crust"
 89.0 "Rush"
 91.1 "War Cry"
 93.8 "Earthquake"
@@ -78,7 +79,7 @@ hideall "--sync--"
 2027.2 "Feathercut" sync /:Yol:1F09:/
 2033.9 "Pinion" sync /:Yol Feather:1F11:/
 2034.7 "Flutterfall" sync /:Yol:1F0C:/
-2042.2 "Wind Unbound" sync /:Yol:1F0A:/
+2042.2 "Wind Unbound" sync /:Yol:1F0A:/ window 15,15
 2046.4 "Feathercut" sync /:Yol:1F09:/
 2050.9 "Pinion" sync /:Yol Feather:1F11:/
 2054.0 "Eye Of The Fierce" sync /:Yol:1F0D:/
@@ -99,14 +100,14 @@ hideall "--sync--"
 # Unfortunately, because there are two Corpsecleaner Eagles,
 # we can't just sync to a 04 log line.
 2189.7 "--targetable--" sync /22:........:Yol:........:Yol:01/ window 120,5
-2196.8 "Feathercut" sync /:Yol:1F09:/
+2196.8 "Feathercut" sync /:Yol:1F09:/ window 125,5
 2204.0 "Wind Unbound" sync /:Yol:1F0A:/
 2212.7 "Pinion" sync /:Yol Feather:1F11:/
 2214.5 "Flutterfall" sync /:Yol:1F0C:/
 2215.8 "Feathercut" sync /:Yol:1F09:/
 2222.6 "Pinion" sync /:Yol Feather:1F11:/
 2223.3 "Flutterfall" sync /:Yol:1F0C:/
-2230.7 "Wind Unbound" sync /:Yol:1F0A:/
+2230.7 "Wind Unbound" sync /:Yol:1F0A:/ window 15,15
 2234.9 "Feathercut" sync /:Yol:1F09:/
 2239.4 "Pinion" sync /:Yol Feather:1F11:/
 2242.5 "Eye Of The Fierce" sync /:Yol:1F0D:/
@@ -114,7 +115,7 @@ hideall "--sync--"
 2249.4 "Pinion" sync /:Yol Feather:1F11:/
 
 2253.8 "--untargetable--" sync /22:........:Yol:........:Yol:00/ window 60,5
-2260.3 "Flutterfall" sync /:Yol:1F10:/
+2260.3 "Flutterfall" sync /:Yol:1F10:/ window 60,5
 2267.5 "Wingbeat" sync /:Yol:1F0F:/
 2276.9 "Flutterfall" sync /:Yol:1F0C:/
 2284.3 "Wingbeat" sync /:Yol:1F0F:/
@@ -134,27 +135,27 @@ hideall "--sync--"
 
 
 2361.7 "--targetable--" sync /22:........:Yol:........:Yol:01/ window 110,5
-2368.8 "Feathercut" sync /:Yol:1F09:/
+2368.8 "Feathercut" sync /:Yol:1F09:/ window 110,5
 2376.0 "Wind Unbound" sync /:Yol:1F0A:/
 2384.7 "Pinion" sync /:Yol Feather:1F11:/
 2386.6 "Flutterfall" sync /:Yol:1F0C:/
 2388.0 "Feathercut" sync /:Yol:1F09:/
 2394.7 "Pinion" sync /:Yol Feather:1F11:/
 2395.5 "Flutterfall" sync /:Yol:1F0C:/
-2402.9 "Wind Unbound" sync /:Yol:1F0A:/
+2402.9 "Wind Unbound" sync /:Yol:1F0A:/ window 15,15
 2407.1 "Feathercut" sync /:Yol:1F09:/
 2411.6 "Pinion" sync /:Yol Feather:1F11:/
 2414.7 "Eye Of The Fierce" sync /:Yol:1F0D:/
 2419.9 "Feathercut" sync /:Yol:1F09:/
 2421.5 "Pinion" sync /:Yol Feather:1F11:/
 2433.1 "Feathercut" sync /:Yol:1F09:/
-2440.2 "Wind Unbound" sync /:Yol:1F0A:/
+2440.2 "Wind Unbound" sync /:Yol:1F0A:/ window 15,15
 2448.9 "Pinion" sync /:Yol Feather:1F11:/
 2450.7 "Flutterfall" sync /:Yol:1F0C:/
 2452.1 "Feathercut" sync /:Yol:1F09:/
 2458.9 "Pinion" sync /:Yol Feather:1F11:/
 2459.6 "Flutterfall" sync /:Yol:1F0C:/
-2467.0 "Wind Unbound" sync /:Yol:1F0A:/
+2467.0 "Wind Unbound" sync /:Yol:1F0A:/ window 15,15
 2471.1 "Feathercut" sync /:Yol:1F09:/
 2475.7 "Pinion" sync /:Yol Feather:1F11:/
 2478.7 "Eye Of The Fierce" sync /:Yol:1F0D:/
