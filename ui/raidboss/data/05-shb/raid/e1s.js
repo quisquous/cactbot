@@ -533,7 +533,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': 'エデン・プライム',
         'Guardian of Paradise': 'エデン・ガーデナー',
@@ -584,7 +583,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Eden Prime': '에덴 프라임',
         'Guardian of Paradise': '에덴 정원사',

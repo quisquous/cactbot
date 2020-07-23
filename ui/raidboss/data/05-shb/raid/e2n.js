@@ -301,7 +301,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'The Hand of Erebos': 'エレボスの巨腕',
         'Voidwalker': 'ヴォイドウォーカー',
@@ -334,7 +333,7 @@
         'Punishing Ray': '惩戒之光',
         'Shadoweye': '暗影之眼',
         'Shadowflame': '暗影炎',
-        'Spell-[iI]n-Waiting': '延迟咏唱',
+        'Spell-in-Waiting': '延迟咏唱',
         'Unholy Darkness': '黑暗神圣',
       },
     },
@@ -353,7 +352,7 @@
         'Punishing Ray': '응징의 빛줄기',
         'Shadoweye': '그림자 시선',
         'Shadowflame': '그림자 불꽃',
-        'Spell-[iI]n-Waiting': '지연술',
+        'Spell-in-Waiting': '지연술',
         'Unholy Darkness': '다크 홀리',
       },
     },

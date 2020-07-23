@@ -601,7 +601,7 @@
       'replaceText': {
         '\\?': ' ?',
         'Cleaver/Slicer': 'Couperet/Entaille',
-        '(?<! )Cycle Of ?': 'Multi-taillade',
+        'Cycle Of ?': 'Multi-taillade',
         'Dark Fire III': 'Méga Feu ténébreux',
         'Doomvoid Cleaver': 'Couperet du néant ravageur',
         'Doomvoid Guillotine': 'Guillotine du néant ravageur',

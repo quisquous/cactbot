@@ -177,7 +177,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
         'Massive Boulder': 'ジャイアントボルダー',
@@ -230,8 +229,8 @@
         'Massive Landslide': '百万地裂',
         'Seismic Wave': '地震波',
         'Stonecrusher': '崩岩',
-        'Voice [oO]f [tT]he Land': '大地之号',
-        'Weight [oO]f [tT]he Land': '大地之重',
+        'Voice of the Land': '大地之号',
+        'Weight of the Land': '大地之重',
       },
     },
     {
@@ -259,8 +258,8 @@
         'Massive Landslide': '대규모 산사태',
         'Seismic Wave': '지진파',
         'Stonecrusher': '암석 붕괴',
-        'Voice [oO]f [tT]he Land': '대지의 외침',
-        'Weight [oO]f [tT]he Land': '대지의 무게',
+        'Voice of the Land': '대지의 외침',
+        'Weight of the Land': '대지의 무게',
       },
     },
   ],
