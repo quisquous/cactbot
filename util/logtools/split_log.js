@@ -274,9 +274,9 @@ const writeFile = (outputFile, startLine, endLine) => {
       writer.end();
       console.log('Wrote: ' + outputFile);
 
-      anonymizer.validateIds();
+      anonymizer.validateIds(notifier);
       for (const line of lines)
-        anonymizer.validateLine(line);
+        anonymizer.validateLine(line, notifier);
 
       resolve();
     });
