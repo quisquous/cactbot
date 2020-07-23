@@ -73,6 +73,11 @@ const durationFromDates = (start, end) => {
   return str;
 };
 
+const toProperCase = (str) => {
+  return str.split(' ').map((str) => {
+    return str[0].toUpperCase() + str.slice(1);
+  }).join(' ');
+};
 
 const generateFileName = (fightOrZone) => {
   const zoneId = parseInt(fightOrZone.zoneId, 16);
@@ -81,7 +86,7 @@ const generateFileName = (fightOrZone) => {
   const duration = durationFromDates(fightOrZone.startTime, fightOrZone.endTime);
   let seal = fightOrZone.sealName;
   if (seal)
-    seal = '_' + seal.replace(/[^A-z0-9]/g, '');
+    seal = '_' + toProperCase(seal).replace(/[^A-z0-9]/g, '');
   else
     seal = '';
 
