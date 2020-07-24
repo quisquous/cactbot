@@ -73,6 +73,7 @@
         en: 'Stand in a tower',
         de: 'Im Turm stehen',
         fr: 'Tenez-vous dans une tour',
+        cn: '踩塔',
         ko: '장판 들어가기',
       },
     },
@@ -89,6 +90,7 @@
         en: '8x puddles on YOU',
         de: '8x Fläche auf DIR',
         fr: '8x Zones au sol sur vous',
+        cn: '躲避8连追踪AOE',
       },
     },
     {
@@ -142,6 +144,7 @@
       alertText: {
         en: 'Knockback Laser on YOU',
         de: 'Rückstoß-Laser auf DIR',
+        cn: '击退点名',
       },
     },
     {
@@ -151,6 +154,7 @@
       infoText: {
         en: 'Avoid Laser',
         de: 'Laser ausweichen',
+        cn: '躲避击退点名',
       },
     },
   ],
