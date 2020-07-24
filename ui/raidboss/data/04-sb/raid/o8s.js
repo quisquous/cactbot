@@ -8,8 +8,8 @@
 [{
   zoneRegex: {
     en: /^Sigmascape V4\.0 \(Savage\)$/,
-    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(4\)$/,
     cn: /^欧米茄零式时空狭缝 \(西格玛幻境4\)$/,
+    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(4\)$/,
   },
   zoneId: ZoneId.SigmascapeV40Savage,
   timelineFile: 'o8s.txt',
@@ -352,7 +352,7 @@
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
           de: 'Hyperantrieb auf DIR',
-          ko: '하이퍼드라이브 → 나',
+          ko: '하이퍼드라이브 대상자',
           ja: 'ハイパードライブ on YOU',
           cn: '死刑点名',
         };
@@ -366,7 +366,7 @@
             en: 'Hyperdrive on ' + data.ShortName(matches.target),
             fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
             de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
-            ko: '하이퍼드라이브 → ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(target) + '" 하이퍼드라이브',
             ja: 'ハイパードライブ on ' + data.ShortName(matches.target),
             cn: '死刑点名' + data.ShortName(matches.target),
           };

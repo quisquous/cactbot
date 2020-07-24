@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Fractal Continuum \(Hard\)$/,
     cn: /^疯狂战舰无限回廊$/,
+    ko: /^무한연속 박물함\(어려움\)$/,
   },
   zoneId: ZoneId.TheFractalContinuum,
   triggers: [
@@ -21,6 +22,7 @@
         de: 'Hieb',
         fr: 'Fauche',
         cn: '去目标背后',
+        ko: '전방 피하기',
       },
     },
     {
@@ -36,6 +38,7 @@
         de: 'Hieb',
         fr: 'Fauche',
         cn: '去目标背后',
+        ko: '전방 피하기',
       },
     },
     {
@@ -51,6 +54,7 @@
         de: 'Schwung',
         fr: 'Swing',
         cn: '远离目标',
+        ko: '밖으로',
       },
     },
     {
@@ -66,6 +70,7 @@
         de: 'Schwung',
         fr: 'Swing',
         cn: '远离目标',
+        ko: '밖으로',
       },
     },
     {
@@ -81,12 +86,14 @@
         de: 'Stimme Des Drachen',
         fr: 'Voix Du Dragon',
         cn: '靠近奇美拉',
+        ko: '뇌전의 포효',
       },
       tts: {
         en: 'dragon',
         de: 'drache',
         fr: 'dragon',
         cn: '靠近奇美拉',
+        ko: '뇌전의 포효',
       },
     },
     {
@@ -102,12 +109,14 @@
         de: 'Stimme Des Widders',
         fr: 'Voix Du Bélier',
         cn: '远离奇美拉',
+        ko: '빙결의 포효',
       },
       tts: {
         en: 'ram',
         de: 'widder',
         fr: 'bélier',
         cn: '远离奇美拉',
+        ko: '빙결의 포효',
       },
     },
     {

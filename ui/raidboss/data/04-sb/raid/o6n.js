@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Sigmascape \(V2\.0\)$/,
     cn: /^欧米茄时空狭缝 \(西格玛幻境2\)$/,
+    ko: /^차원의 틈 오메가: 시그마편 \(2\)$/,
   },
   zoneId: ZoneId.SigmascapeV20,
   timelineFile: 'o6n.txt',
@@ -30,12 +31,14 @@
         de: 'AoEs weglocken',
         fr: 'Posez les AoE au loin',
         cn: '远离放置AOE',
+        ko: '장판 멀리빼기',
       },
       tts: {
         en: 'aoes',
         de: 'Flächen',
         fr: 'aoe',
         cn: 'AOE',
+        ko: '장판',
       },
     },
   ],

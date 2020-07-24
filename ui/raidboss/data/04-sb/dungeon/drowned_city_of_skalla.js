@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^The Drowned City Of Skalla$/,
     cn: /^沉没神殿斯卡拉遗迹$/,
+    ko: /^스칼라 유적$/,
   },
   zoneId: ZoneId.TheDrownedCityOfSkalla,
   triggers: [
@@ -36,6 +37,7 @@
         de: 'schweifattacke',
         fr: 'attaque queue',
         cn: '尾巴攻击',
+        ko: '꼬리쓸기',
       },
     },
     {
@@ -61,11 +63,13 @@
         de: 'Augenlaser ausweichen',
         fr: 'Evitez les lasers',
         cn: '避开眼部激光',
+        ko: '레이저 피하기',
       },
       tts: {
         en: 'eye laser',
         de: 'augen lesa',
         fr: 'laser',
+        ko: '레이저',
       },
     },
   ],
