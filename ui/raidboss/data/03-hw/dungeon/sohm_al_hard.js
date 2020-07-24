@@ -45,6 +45,7 @@
       infoText: {
         en: 'Away from large pod',
         de: 'Weg vom großen Pod',
+        ko: '큰 포자 주머니에게서 떨어지기',
       },
     },
     {
@@ -58,6 +59,7 @@
         return {
           en: 'Cleanse ' + data.shortName(matches.target),
           de: 'Reinige ' + data.shortName(matches.target),
+          ko: '' + data.shortName(matches.target) + '에스나',
         };
       },
     },
@@ -157,6 +159,7 @@
       alertText: {
         en: 'Drop puddle outside',
         de: 'Fläche draußen ablegen',
+        ko: '용암지대 생성 대상자',
       },
     },
     {
