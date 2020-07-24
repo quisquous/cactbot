@@ -23,6 +23,7 @@ jobs:
     - uses: actions/checkout@v2
 
     - name: Set artifact name
+      shell: bash
       run: |
         sha=$(echo ${{ github.sha }} | cut -c 1-8)
         echo "::set-env name=artifact_sha::$sha"
