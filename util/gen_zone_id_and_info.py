@@ -182,7 +182,7 @@ def generate_ZONE_INFO(
 
         place_name = territory_map[territory_id]["place_name"]
 
-        output["weatherRate"] = territory_map[territory_id]["weather_rate"]
+        output["weatherRate"] = int(territory_map[territory_id]["weather_rate"])
 
         cfc_id = territory_to_cfc_map[territory_id]
         if cfc_id == None:
@@ -192,9 +192,9 @@ def generate_ZONE_INFO(
 
         if place_name in map_map:
             map_info = map_map[place_name]
-            output["sizeFactor"] = map_info["size_factor"]
-            output["offsetX"] = map_info["offset_x"]
-            output["offsetY"] = map_info["offset_y"]
+            output["sizeFactor"] = int(map_info["size_factor"])
+            output["offsetX"] = int(map_info["offset_x"])
+            output["offsetY"] = int(map_info["offset_y"])
 
     return map
 
