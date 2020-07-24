@@ -147,7 +147,7 @@
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
           fr: 'Marque Bleue sur VOUS',
-          ko: '파란징 대상자',
+          ko: '파란징 → 나',
           ja: '青玉 on YOU',
           cn: '蓝球点名',
         };
@@ -223,7 +223,7 @@
             en: 'Rot on you',
             de: 'Fäule auf DIR',
             fr: 'Pourriture sur VOUS',
-            ko: '에테르 대상자',
+            ko: '에테르 → 나',
             ja: 'ロット on YOU',
             cn: '以太病毒点名',
           };
