@@ -5,20 +5,35 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: windows-latest
+
     strategy:
       matrix:
         python-version: [3.8]
     steps:
     - uses: actions/checkout@v2
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Fetch dependencies
       run: |
         python .\util\fetch_deps.py
+
     - name: Set up msbuild
       uses: microsoft/setup-msbuild@v1.0.1
+
     - name: MSBuild
-      run: msbuild plugin/Cactbot.sln
+      run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
       shell: cmd
+
+    - name: Generate artifact
+      shell: bash
+      run: ./util/publish.sh
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: cactbot
+        path: publish/cactbot-release/
