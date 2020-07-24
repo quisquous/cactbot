@@ -22,6 +22,11 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
+    - name: Set artifact name
+      run: |
+        sha=$(echo ${{ github.sha }} | cut -c 1-8)
+        echo "::set-env name=artifact_sha::$sha"
+
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
@@ -49,5 +54,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: cactbot.zip
+        name: cactbot-${{ env.artifact_sha }}
         path: publish/cactbot-release/
