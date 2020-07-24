@@ -83,8 +83,6 @@ namespace Cactbot {
     public delegate void FateEventHandler(JSEvents.FateEvent e);
     public event FateEventHandler OnFateEvent;
 
-    // test
-
     public void Wipe() {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
       OnPartyWipe(new JSEvents.PartyWipeEvent());
