@@ -5,7 +5,7 @@ import csv
 import os
 import re
 
-_OUTPUT_FILE = "zone_id.js"
+_ZONE_ID_OUTPUT_FILE = "zone_id.js"
 
 # Turn names from ContentFinderCondition into JavaScript-safe string keys.
 def clean_name(str):
@@ -37,59 +37,44 @@ def clean_name(str):
     return str
 
 
-def make_territory_map(territory_file):
+# inputs[0] is the key column for the returned map
+def make_map(file, inputs, outputs):
     map = {}
 
-    reader = csv.reader(territory_file)
+    reader = csv.reader(file)
     next(reader)
     keys = next(reader)
     next(reader)
 
-    content_id_idx = keys.index("#")
-    cfc_id_idx = 11
-    place_name_idx = keys.index("PlaceName")
-    name_idx = keys.index("Name")
+    indices = []
+    for input in inputs:
+        if isinstance(input, int):
+            indices.append(input)
+            continue
+        indices.append(keys.index(input))
 
     for row in reader:
-        content_id = row[content_id_idx]
-        cfc_id = row[cfc_id_idx]
-        place_name = row[place_name_idx]
-        name = row[name_idx]
-        map[content_id] = {
-            "cfc_id": cfc_id,
-            "name": name,
-            "place_name": place_name,
-        }
+        output = {}
+        for i in range(1, len(indices)):
+            output[outputs[i]] = row[indices[i]]
+        map[row[indices[0]]] = output
+
     return map
+
+
+def make_territory_map(territory_file):
+    inputs = ["#", 11, "PlaceName", "Name"]
+    outputs = ["content_id", "cfc_id", "place_name", "name"]
+    return make_map(territory_file, inputs, outputs)
 
 
 def make_cfc_map(cfc_file):
-    map = {}
-
-    reader = csv.reader(cfc_file)
-    next(reader)
-    keys = next(reader)
-    next(reader)
-
-    cfc_id_idx = keys.index("#")
-    name_idx = keys.index("Name")
-    territory_type_idx = keys.index("TerritoryType")
-
-    for row in reader:
-        cfc_id = row[cfc_id_idx]
-        name = row[name_idx]
-        territory_type = row[territory_type_idx]
-        map[cfc_id] = {
-            "name": name,
-            "territory_type": territory_type,
-        }
-    return map
+    inputs = ["#", "Name", "TerritoryType"]
+    outputs = ["cfc_id", "name", "territory_type"]
+    return make_map(cfc_file, inputs, outputs)
 
 
-def parse_data(territory_file, cfc_file):
-    territory_map = make_territory_map(territory_file)
-    cfc_map = make_cfc_map(cfc_file)
-
+def parse_data(territory_map, cfc_map):
     map = {}
     map["MatchAll"] = None
     cfc_names = set()
@@ -168,11 +153,12 @@ if __name__ == "__main__":
     reader = coinach.CoinachReader(verbose=True)
     writer = coinach.CoinachWriter(verbose=True)
 
-    territory = reader.exd("TerritoryType")
-    cfc = reader.exd("ContentFinderCondition")
+    territory_map = make_territory_map(reader.exd("TerritoryType"))
+    cfc_map = make_cfc_map(reader.exd("ContentFinderCondition"))
+
     writer.write(
-        os.path.join("resources", _OUTPUT_FILE),
+        os.path.join("resources", _ZONE_ID_OUTPUT_FILE),
         os.path.basename(os.path.abspath(__file__)),
         "ZoneId",
-        parse_data(territory, cfc),
+        parse_data(territory_map, cfc_map),
     )
