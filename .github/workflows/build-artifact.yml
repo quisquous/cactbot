@@ -49,5 +49,5 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        name: cactbot
+        name: cactbot.zip
         path: publish/cactbot-release/
