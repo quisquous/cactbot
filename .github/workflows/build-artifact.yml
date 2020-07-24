@@ -1,6 +1,16 @@
 name: Build artifact
 
-on: [push, pull_request]
+on:
+  push:
+    paths:
+      - 'plugin/**'
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - 'plugin/**'
 
 jobs:
   build:
@@ -23,6 +33,10 @@ jobs:
 
     - name: Set up msbuild
       uses: microsoft/setup-msbuild@v1.0.1
+
+    - name: Add Custom Problem Matcher
+      run: |
+        echo "::add-matcher::.github/matchers/msbuild.json"
 
     - name: MSBuild
       run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
