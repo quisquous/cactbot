@@ -12,40 +12,6 @@ let bunnyLabel = {
 let Options = {
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
-  // 20 minutes for Ovni?
-  SuppressPopMs: 60 * 20 * 1000,
-  ZoneName: {
-    en: {
-      'Eureka Anemos': 'Eureka Anemos',
-      'Eureka Pagos': 'Eureka Pagos',
-      'Eureka Pyros': 'Eureka Pyros',
-      'Eureka Hydatos': 'Eureka Hydatos',
-    },
-    de: {
-      'Eureka Anemos': 'Eureka Anemos',
-      'Eureka Pagos': 'Eureka Pagos',
-      'Eureka Pyros': 'Eureka Pyros',
-      'Eureka Hydatos': 'Eureka Hydatos',
-    },
-    fr: {
-      'Eureka Anemos': 'Eureka Anemos',
-      'Eureka Pagos': 'Eureka Pagos',
-      'Eureka Pyros': 'Eureka Pyros',
-      'Eureka Hydatos': 'Eureka Hydatos',
-    },
-    cn: {
-      'Eureka Anemos': '常风之地',
-      'Eureka Pagos': '恒冰之地',
-      'Eureka Pyros': '涌火之地',
-      'Eureka Hydatos': '丰水之地',
-    },
-    ko: {
-      'Eureka Anemos': '아네모스편',
-      'Eureka Pagos': '파고스편',
-      'Eureka Pyros': '피로스편',
-      'Eureka Hydatos': '히다토스편',
-    },
-  },
   timeStrings: {
     weatherFor: {
       en: (nowMs, stopTime) => {
@@ -172,7 +138,7 @@ let Options = {
     // Pagos:   https://xivapi.com/search?indexes=Fate&filters=ID>=1351,ID<=1369&columns=Description,Name,Url
     // Pyros:   https://xivapi.com/search?indexes=Fate&filters=ID>=1388,ID<=1408&columns=Description,Name,Url
     // Hydatos: https://xivapi.com/search?indexes=Fate&filters=ID>=1412,ID<=1425&columns=Description,Name,Url
-    'Eureka Anemos': {
+    [ZoneId.TheForbiddenLandEurekaAnemos]: {
       mapImage: 'anemos.png',
       mapWidth: 1300,
       mapHeight: 950,
@@ -626,7 +592,7 @@ let Options = {
         },
       },
     },
-    'Eureka Pagos': {
+    [ZoneId.TheForbiddenLandEurekaPagos]: {
       mapImage: 'pagos.png',
       mapWidth: 1500,
       mapHeight: 950,
@@ -1029,7 +995,7 @@ let Options = {
         },
       },
     },
-    'Eureka Pyros': {
+    [ZoneId.TheForbiddenLandEurekaPyros]: {
       mapImage: 'pyros.png',
       mapWidth: 1350,
       mapHeight: 1450,
@@ -1432,7 +1398,7 @@ let Options = {
         },
       },
     },
-    'Eureka Hydatos': {
+    [ZoneId.TheForbiddenLandEurekaHydatos]: {
       mapImage: 'hydatos.png',
       mapWidth: 1500,
       mapHeight: 800,
@@ -1819,7 +1785,7 @@ class EurekaTracker {
   }
 
   InitNMs() {
-    this.nms = this.options.ZoneInfo[this.zoneName].nms;
+    this.nms = this.zoneInfo.nms;
     // Anemos has no bunny fates
     this.nmKeys = Object.keys(this.nms);
 
@@ -1829,7 +1795,7 @@ class EurekaTracker {
       this.AddElement(container, this.nms[this.nmKeys[i]]);
 
 
-    this.fairy = this.options.ZoneInfo[this.zoneName].fairy;
+    this.fairy = this.zoneInfo.fairy;
     let fairyName = this.TransByParserLang(this.fairy);
     this.fairy.regex = Regexes.parse('03:\\y{ObjectId}:Added new combatant (' + fairyName + ')\\. .* ' +
                                      'Pos: \\(([^,]+),([^,]+),([^,]+)\\)');
@@ -1851,18 +1817,10 @@ class EurekaTracker {
     this.SetStyleFromEntity(this.playerElement.style, e.detail.pos.x, e.detail.pos.y);
   }
 
-  OnZoneChange(e) {
-    this.zoneName = e.detail.zoneName.replace('The Forbidden Land, ', '');
-    this.zoneName = this.zoneName.replace('禁地优雷卡 ', '');
-    this.zoneName = this.zoneName.replace('금단의 땅 에우레카: ', '');
-    let zones = this.TransByParserLang(this.options.ZoneName);
-    for (let zone in zones) {
-      this.zoneName = this.zoneName.replace(
-          zones[zone],
-          zone);
-    }
-    this.zoneName = this.zoneName.replace('Unknown Zone (33B)', 'Eureka Hydatos');
-    this.zoneInfo = this.options.ZoneInfo[this.zoneName];
+  OnChangeZone(e) {
+    this.zoneId = e.zoneID;
+
+    this.zoneInfo = this.options.ZoneInfo[this.zoneId];
     let container = document.getElementById('container');
     if (this.zoneInfo) {
       this.ResetZone();
@@ -1944,7 +1902,7 @@ class EurekaTracker {
   UpdateTimes() {
     let nowMs = +new Date();
 
-    let primaryWeatherList = this.options.ZoneInfo[this.zoneName].primaryWeather;
+    let primaryWeatherList = this.zoneInfo.primaryWeather;
     if (primaryWeatherList) {
       for (let i = 0; i < 5 && i < primaryWeatherList.length; ++i) {
         let primaryWeather = primaryWeatherList[i];
@@ -1952,22 +1910,22 @@ class EurekaTracker {
           document.getElementById('label-weather' + i).innerHTML = '';
           continue;
         }
-        let weather = getWeather(nowMs, this.zoneName);
+        let weather = getWeather(nowMs, this.zoneId);
         let weatherIcon = gWeatherIcons[primaryWeather];
         let weatherStr;
         if (weather == primaryWeather) {
-          let stopTime = findNextWeatherNot(nowMs, this.zoneName, primaryWeather);
+          let stopTime = findNextWeatherNot(nowMs, this.zoneId, primaryWeather);
           weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
         } else {
-          let startTime = findNextWeather(nowMs, this.zoneName, primaryWeather);
+          let startTime = findNextWeather(nowMs, this.zoneId, primaryWeather);
           weatherStr = this.TransByDispLang(this.options.timeStrings.weatherIn)(nowMs, startTime);
         }
         document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
         document.getElementById('label-weather-text' + i).innerHTML = weatherStr;
       }
     } else {
-      let currentWeather = getWeather(nowMs, this.zoneName);
-      let stopTime = findNextWeatherNot(nowMs, this.zoneName, currentWeather);
+      let currentWeather = getWeather(nowMs, this.zoneId);
+      let stopTime = findNextWeatherNot(nowMs, this.zoneId, currentWeather);
       let weatherIcon = gWeatherIcons[currentWeather];
       let weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
       document.getElementById('label-weather-icon0').innerHTML = weatherIcon;
@@ -1977,8 +1935,8 @@ class EurekaTracker {
       let lastTime = nowMs;
       let lastWeather = currentWeather;
       for (let i = 1; i < 5; ++i) {
-        let startTime = findNextWeatherNot(lastTime, this.zoneName, lastWeather);
-        let weather = getWeather(startTime + 1, this.zoneName);
+        let startTime = findNextWeatherNot(lastTime, this.zoneId, lastWeather);
+        let weather = getWeather(startTime + 1, this.zoneId);
         let weatherIcon = gWeatherIcons[weather];
         weatherStr = this.TransByDispLang(this.options.timeStrings.weatherIn)(nowMs, startTime);
         document.getElementById('label-weather-icon' + i).innerHTML = weatherIcon;
@@ -2020,10 +1978,10 @@ class EurekaTracker {
       let respawnIcon = '';
 
       if (nm.weather) {
-        let respawnWeather = getWeather(respawnMs, this.zoneName);
+        let respawnWeather = getWeather(respawnMs, this.zoneId);
         if (respawnWeather != nm.weather) {
           let weatherStartTime =
-            findNextWeather(respawnMs, this.zoneName, nm.weather);
+            findNextWeather(respawnMs, this.zoneId, nm.weather);
           if (weatherStartTime > respawnMs) {
             respawnIcon = gWeatherIcons[nm.weather];
             respawnMs = weatherStartTime;
@@ -2046,7 +2004,7 @@ class EurekaTracker {
       if (remainingMs <= 0) {
         let openUntil = null;
         if (nm.weather) {
-          let weatherStartTime = findNextWeatherNot(nowMs, this.zoneName, nm.weather);
+          let weatherStartTime = findNextWeatherNot(nowMs, this.zoneId, nm.weather);
           respawnIcon = gWeatherIcons[nm.weather];
           openUntil = weatherStartTime;
         }
@@ -2269,8 +2227,8 @@ UserConfig.getUserConfigLocation('eureka', function(e) {
   addOverlayListener('onPlayerChangedEvent', function(e) {
     gTracker.OnPlayerChange(e);
   });
-  addOverlayListener('onZoneChangedEvent', function(e) {
-    gTracker.OnZoneChange(e);
+  addOverlayListener('ChangeZone', function(e) {
+    gTracker.OnChangeZone(e);
   });
   addOverlayListener('onLogEvent', function(e) {
     gTracker.OnLog(e);
