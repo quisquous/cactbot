@@ -97,7 +97,7 @@
         de: 'Weg vom Boss',
         fr: 'Éloignez-vous du boss',
         cn: '远离boss',
-        ko: '멀어지기'
+        ko: '멀어지기',
       },
     },
     {
