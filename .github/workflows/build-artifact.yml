@@ -4,6 +4,10 @@ on:
   push:
     paths:
       - 'plugin/**'
+      - 'util/publish.sh'
+      - '.github/workflows/build-artifact.yml'
+      - 'util/DEPS.py'
+      - 'util/fetch_deps.py'
   pull_request:
     types:
       - opened
@@ -13,12 +17,9 @@ on:
       - 'plugin/**'
 
 jobs:
-  build:
+  msbuild:
     runs-on: windows-latest
 
-    strategy:
-      matrix:
-        python-version: [3.8]
     steps:
     - uses: actions/checkout@v2
 
@@ -28,10 +29,10 @@ jobs:
         sha=$(echo ${{ github.sha }} | cut -c 1-8)
         echo "::set-env name=artifact_sha::$sha"
 
-    - name: Set up Python ${{ matrix.python-version }}
+    - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
-        python-version: ${{ matrix.python-version }}
+        python-version: 3.8
 
     - name: Fetch dependencies
       run: |
@@ -42,7 +43,7 @@ jobs:
 
     - name: Add Custom Problem Matcher
       run: |
-        echo "::add-matcher::.github/matchers/msbuild.json"
+        echo "::add-matcher::.github/matchers/${{ github.job }}.json"
 
     - name: MSBuild
       run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
