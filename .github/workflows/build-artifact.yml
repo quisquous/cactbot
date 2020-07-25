@@ -3,9 +3,9 @@ name: Build artifact
 on:
   push:
     paths:
+      - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
       - 'util/publish.sh'
-      - '.github/workflows/build-artifact.yml'
       - 'util/DEPS.py'
       - 'util/fetch_deps.py'
   pull_request:
@@ -14,7 +14,11 @@ on:
       - reopened
       - synchronize
     paths:
+      - '.github/workflows/build-artifact.yml'
       - 'plugin/**'
+      - 'util/publish.sh'
+      - 'util/DEPS.py'
+      - 'util/fetch_deps.py'
 
 jobs:
   msbuild:
