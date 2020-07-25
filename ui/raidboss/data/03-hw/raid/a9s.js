@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Alexander - The Eyes Of The Creator \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(天动之章1\)$/,
+    ko: /^기공성 알렉산더: 천동편\(영웅\) \(1\)$/,
   },
   zoneId: ZoneId.AlexanderTheEyesOfTheCreatorSavage,
   timelineFile: 'a9s.txt',
@@ -24,24 +25,28 @@
           de: 'Plaziere Generatoren NW/SO',
           fr: 'Placez les Générateurs NO/SE',
           cn: '搬运发电器到西北/东南',
+          ko: '발전기 놓기: 북서/남동',
         };
         let nw2 = {
           en: 'Place Generators NW',
           de: 'Plaziere Generatoren NW',
           fr: 'Placez les Générateurs NO',
           cn: '搬运发电器到西北',
+          ko: '발전기 놓기: 북서',
         };
         let nw1 = {
           en: 'Place Generator NW',
           de: 'Plaziere Generator NW',
           fr: 'Placez les Générateurs NO',
           cn: '搬运发电器到西北',
+          ko: '발전기 놓기: 북서/남동',
         };
         let se2 = {
           en: 'Place Generators SE',
           de: 'Plaziere Generatoren SO',
           fr: 'Placez les Générateurs SE',
           cn: '搬运发电器到东南',
+          ko: '발전기 놓기: 남동',
         };
 
         return {
@@ -67,6 +72,7 @@
           de: 'SO Alarm besiegen',
           fr: 'Tuez l\'Alarum SE',
           cn: '在东南击杀警报',
+          ko: '남동쪽 경보기 없애기',
         };
         // ... or anywhere not NW/SE
         let sw = {
@@ -74,6 +80,7 @@
           de: 'SW Alarm besiegen',
           fr: 'Tuez l\'Alarum SO',
           cn: '在西南击杀警报',
+          ko: '남서쪽 경보기 없애기',
         };
 
         return {
@@ -93,6 +100,7 @@
         de: 'Bomben bald',
         fr: 'Bombes bientôt',
         cn: '炸弹马上爆炸',
+        ko: '곧 폭탄 폭발',
       },
     },
   ],
@@ -138,6 +146,7 @@
           de: 'Schrottlinie auf DIR',
           fr: 'Corde à ferraille sur VOUS',
           cn: '死刑',
+          ko: '후려갈기기 대상자',
         };
         // ...probably, we hope...
       },
@@ -155,6 +164,7 @@
         de: 'In Alarm Fläche stehen',
         fr: 'Tenez-vous dans la zone de l\'Alarum',
         cn: '站进紫色圈圈',
+        ko: '경보기 장판 밟기',
       },
     },
     {
@@ -166,6 +176,7 @@
         de: 'Stein auf DIR',
         fr: 'Rocher sur VOUS',
         cn: '落石点名',
+        ko: '돌 징 대상자',
       },
     },
     {
@@ -178,6 +189,7 @@
         de: 'Komplett hinter dem Stein verstecken',
         fr: 'Cachez-vous derrière le rocher',
         cn: '躲在石头后',
+        ko: '돌 뒤에 숨기',
       },
     },
     {
@@ -218,24 +230,28 @@
           de: 'Adds in NO Lava',
           fr: 'Adds dans la lave NE',
           cn: '拉小怪到东北击杀',
+          ko: '쫄을 북동쪽 용암으로',
         };
         let se = {
           en: 'Adds to SE Lava',
           de: 'Adds in SO Lava',
           fr: 'Adds dans la lave SE',
           cn: '拉小怪到东南击杀',
+          ko: '쫄을 남동쪽 용암으로',
         };
         let sw = {
           en: 'Adds to SW Lava',
           de: 'Adds in SW Lava',
           fr: 'Adds dans la lave SO',
           cn: '拉小怪到西南击杀',
+          ko: '쫄을 남서쪽 용암으로',
         };
         let nw = {
           en: 'Adds to NW Lava',
           de: 'Adds in NW Lava',
           fr: 'Adds dans la lave NO',
           cn: '拉小怪到西北击杀',
+          ko: '쫄을 북서쪽 용암으로',
         };
 
         return {
@@ -386,21 +402,31 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': '폭탄',
         'Faust Z': '최종형 파우스트',
         'Full-Metal Faust': '완전무장 파우스트',
+        'Life Support': '재생처리실',
         'Refurbisher 0': '재생자',
-        'Scrap': '고철 주먹',
+        'Scrap': '고물',
+        'The Cranial Plate': '머리 갑판',
       },
       'replaceText': {
+        '(?<!Double )Scrapline': '한팔 후려갈기기',
+        '--rocks fall--': '--바위 낙하--',
+        '\\(NE/SW\\)': '(북동/남서)',
+        '\\(NW/SE\\)': '(북서/남동)',
+        '\\(NW\\)': '(북서)',
+        '\\(SW\\)': '(남서)',
         'Acid Rain': '산성비',
         'Alarum': '경보기',
         '(?<!Scrap )Bomb': '폭탄',
+        'Double Scrapline': '양팔 후려갈기기',
         'Explosion': '폭발',
+        'Full-Metal Faust Add': '파우스트 등장',
         'Heat Shielding Reassembly': '장갑 재생',
         'Kaltstrahl': '냉병기 공격',
+        'Lava': '용암',
         'Left Arm Reassembly': '왼팔 재생',
         'Panzer Vor': '기갑 전진',
         'Panzerschreck': '대전차포',
@@ -409,7 +435,7 @@
         'Scrap Bomb': '고철 폭탄',
         'Scrap Burst': '고철 폭발',
         'Scrap Storm': '고철 폭풍',
-        'Scrap(?! )': '고철 주먹',
+        'Scrap(?! |line)': '고철 주먹',
         'Stockpile': '흡수',
       },
     },
