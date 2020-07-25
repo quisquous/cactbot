@@ -454,6 +454,8 @@ let bombLocation = (matches) => {
         'Smartbomb': '초고성능 폭탄',
       },
       'replaceText': {
+        '--big--': '--커짐--',
+        '--small--': '--작아짐--',
         '10-Tonze Slash': '10톤즈 베기',
         'Big Burst': '대폭발',
         'Bomb\'s Away': '폭탄 투하',
