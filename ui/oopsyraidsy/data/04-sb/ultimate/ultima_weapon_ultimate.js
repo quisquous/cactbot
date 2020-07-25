@@ -30,5 +30,17 @@
         return { type: 'warn', blame: e.targetName, text: e.effectName };
       },
     },
+    {
+      // Featherlance explosion.  It seems like the person who pops it is the
+      // first person listed damage-wise, so they are likely the culprit.
+      id: 'UWU Featherlance',
+      damageRegex: '2B43',
+      collectSeconds: 0.5,
+      // TODO: implement suppress
+      suppressSeconds: 5,
+      mistake: function(e) {
+        return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };
+      },
+    },
   ],
 }];
