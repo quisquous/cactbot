@@ -250,7 +250,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 B형',
         'Giant Bomb': '대형 폭탄',
