@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Alexander - The Fist Of The Father \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(启动之章1\)$/,
+    ko: /^기공성 알렉산더: 기동편\(영웅\) \(1\)$/,
   },
   zoneId: ZoneId.AlexanderTheFistOfTheFatherSavage,
   timelineFile: 'a1s.txt',
@@ -17,6 +18,7 @@
         de: 'Bald abheben',
         fr: 'Décollage bientôt',
         cn: '上升',
+        ko: '긴급 상승',
       },
     },
     {
@@ -45,6 +47,7 @@
         de: 'Hydrothermales auf DIR',
         fr: 'Missile hydrothermique sur Vous',
         cn: '导弹点名',
+        ko: '증기 미사일 대상자',
       },
     },
     {
@@ -61,6 +64,7 @@
           de: 'Hydrothermales auf ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
           fr: 'Missile hydrothermique sur ' + data.hydro.map((x) => data.ShortName(x)).join(', '),
           cn: '导弹点' + data.hydro.map((x) => data.ShortName(x)).join(', '),
+          ko: '"' + data.hydro.map((x) => data.ShortName(x)).join(', ') + '" 증기 미사일',
         };
       },
     },
@@ -85,6 +89,7 @@
         de: 'Köder Pechbombe',
         fr: 'Placez-vous pour Bombe de résine',
         cn: '粘着弹',
+        ko: '점착탄',
       },
     },
     {
