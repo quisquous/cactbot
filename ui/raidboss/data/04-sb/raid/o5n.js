@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Sigmascape \(V1\.0\)$/,
     cn: /^欧米茄时空狭缝 \(西格玛幻境1\)$/,
+    ko: /^차원의 틈 오메가: 시그마편 \(1\)$/,
   },
   zoneId: ZoneId.SigmascapeV10,
   timelineFile: 'o5n.txt',
@@ -64,6 +65,7 @@
         de: 'Licht',
         fr: 'Lumière',
         cn: '光点名',
+        ko: '빛장판',
       },
     },
     {
@@ -77,6 +79,7 @@
         de: 'Wind',
         fr: 'Vent',
         cn: '圆圈点名',
+        ko: '초록징',
       },
     },
   ],

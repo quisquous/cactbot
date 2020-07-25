@@ -24,7 +24,7 @@
         en: 'Get to your pads',
         de: 'Geh auf Dein Feld',
         fr: 'Allez sur votre tour',
-        ko: '패드 밟기',
+        ko: '장판 밟기',
         cn: '踩塔',
       },
     },

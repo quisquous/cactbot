@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Fractal Continuum$/,
     cn: /^博物战舰无限回廊$/,
+    ko: /^무한연속 박물함$/,
   },
   zoneId: ZoneId.TheFractalContinuum,
   timelineFile: 'fractal_continuum.txt',
@@ -88,6 +89,7 @@
         de: 'Benutze einen Käfig',
         fr: 'Utilisez un incubateur',
         cn: '打开笼子',
+        ko: '감옥 해제',
       },
     },
     {
@@ -101,6 +103,7 @@
         de: 'Reinige Bomben-Debuff',
         fr: 'Guérison => Debuff bombe',
         cn: '康复魔炸弹',
+        ko: '폭탄 디버프 해제',
       },
     },
     {
