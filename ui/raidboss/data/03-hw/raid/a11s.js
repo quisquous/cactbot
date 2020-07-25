@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Alexander - The Heart Of The Creator \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(天动之章3\)$/,
+    ko: /^기공성 알렉산더: 천동편\(영웅\) \(3\)$/,
   },
   zoneId: ZoneId.AlexanderTheHeartOfTheCreatorSavage,
   timelineFile: 'a11s.txt',
@@ -53,6 +54,7 @@
         de: 'Uhr',
         fr: 'Sens horaire',
         cn: '九连环',
+        ko: '시계방향',
       },
     },
     {
@@ -78,6 +80,7 @@
         de: 'Köder Visier',
         fr: 'Attirez la Visée optique',
         cn: '诱导AOE',
+        ko: '유도 장판',
       },
     },
     {
@@ -120,6 +123,7 @@
         de: 'Add besiegen',
         fr: 'Tuez l\'Add',
         cn: '击杀小怪',
+        ko: '쫄 없애기',
       },
     },
     {
@@ -135,6 +139,7 @@
         de: 'Schulterplatte zerstören',
         fr: 'Brisez la Protection',
         cn: '击破护盾',
+        ko: '견갑부 부수기',
       },
     },
     {
@@ -155,6 +160,7 @@
           de: 'GA-100 auf DIR',
           fr: 'GA-100 sur VOUS',
           cn: 'GA-100点名',
+          ko: 'GA-100 대상자',
         };
       },
       infoText: function(data, matches) {
@@ -165,6 +171,7 @@
           de: 'GA-100 on ' + data.ShortName(matches.target),
           fr: 'GA-100 sur ' + data.ShortName(matches.target),
           cn: 'GA-100点' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" GA-100',
         };
       },
     },
@@ -252,6 +259,7 @@
           de: 'Schaue zu ' + data.ShortName(partner),
           fr: 'Regardez ' + data.ShortName(partner),
           cn: '面向' + data.ShortName(partner),
+          ko: '"' + data.ShortName(partner) + '" 바라보기',
         };
       },
     },
@@ -285,6 +293,7 @@
             de: 'Geteilter Tankbuster auf DIR',
             fr: 'Tank buster à partager sur VOUS',
             cn: '分摊死刑点名',
+            ko: '쉐어 탱버 대상자',
           };
         }
 
@@ -294,6 +303,7 @@
             de: 'Geteilter Tankbuster auf' + data.ShortName(matches.target),
             fr: 'Tank buster à partager sur' + data.ShortName(matches.target),
             cn: '分摊死刑点' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 쉐어 탱버',
           };
         }
       },
@@ -311,6 +321,7 @@
         de: 'Hinter dem Tower verstecken',
         fr: 'Cachez-vous derrière la tour',
         cn: '躲在塔后',
+        ko: '기둥 뒤에 숨기',
       },
     },
     {
@@ -326,6 +337,7 @@
         de: 'Schild von vorne zerstören',
         fr: 'Brisez le Bouclier par l\'avant',
         cn: '正面击破护盾',
+        ko: '정면에서 방어막 부수기',
       },
     },
     {
@@ -351,6 +363,7 @@
           de: 'Ansturm auf DIR',
           fr: 'Charge sur VOUS',
           cn: '冲锋点名',
+          ko: '돌진 대상자',
         };
       },
       alertText: function(data, matches) {
@@ -361,6 +374,7 @@
           de: 'Ansturm auf ' + data.ShortName(matches.target),
           fr: 'Charge sur ' + data.ShortName(matches.target),
           cn: '冲锋点' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 돌진',
         };
       },
     },
@@ -540,26 +554,40 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Armored Pauldron': '견갑부',
         'Claster': '클래스터',
         'Cruise Chaser': '순항추격기',
+        'E\\\\.D\\\\.D\\\\.': 'E\\.D\\.D\\.',
         'Multifield': '적층과학 필드',
         'Plasma Shield': '플라스마 방어막',
         'The Main Generators': '중추 대동력실',
       },
       'replaceText': {
+        '(?<! )Sword': '알파검',
+        '(?<!Super )Hawk Blaster': '호크 블래스터',
+        '--invincible--': '--무적--',
+        '\\(bait\\)': '(유도)',
+        '\\(clock/out\\)': '(시계방향/밖)',
+        '\\(everyone\\)': '(모두)',
+        '\\(numbers\\)': '(주사위)',
+        '\\(orbs\\)': '(구슬)',
+        '\\(out/clock\\)': '(밖/시계방향)',
+        '\\(shield\\)': '(방어막)',
         'Assault Cannon': '맹공포',
         'Blassty Blaster': '블래스티 블래스터',
         'Blassty Charge': '블래스티 돌진',
         'Blastoff': '발진',
         '(?<!Blassty )Charge': '돌격',
+        'E\\.D\\.D\\. Add': 'E.D.D. 등장',
+        'E\\.D\\.D\\. Armored Pauldron': 'E.D.D. 견갑부',
         'Eternal Darkness': '암흑의 운명',
         'GA-100': 'GA-100',
         'Lapis Lazuli': '청금석',
         'Laser X Sword': '레이저 교차베기',
+        'Left/Right Laser Sword': '왼쪽/오른쪽 레이저 베기',
         'Limit Cut': '리미터 해제',
+        'Markers': '징',
         'Multifield': '적층과학 필드',
         'Optical Sight': '조준',
         'Perfect Landing': '착륙',
