@@ -1,7 +1,9 @@
 name: Update gh-pages
+
 on:
   push:
     branches: [ master ]
+
 jobs:
   update-gh-pages:
     runs-on: ubuntu-latest
