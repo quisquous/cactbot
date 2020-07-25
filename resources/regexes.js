@@ -588,7 +588,7 @@ var Regexes = {
     let kCactbotCategories = {
       Timestamp: '^.{14}',
       NetTimestamp: '.{33}',
-      NetField: '(?:.*?\\|)',
+      NetField: '(?:[^|]*\\|)',
       LogType: '[0-9A-Fa-f]{2}',
       AbilityCode: '[0-9A-Fa-f]{1,8}',
       ObjectId: '[0-9A-F]{8}',
