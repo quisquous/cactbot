@@ -256,5 +256,8 @@ let missedMitigationAbility = missedHeal;
     missedHeal({ id: 'Aspected Helios', abilityId: '3200' }),
     missedHeal({ id: 'Celestial Opposition', abilityId: '40A9' }),
     missedHeal({ id: 'Astral Stasis', abilityId: '1098' }),
+
+    missedHeal({ id: 'White Wind', abilityId: '2C8E' }),
+    missedHeal({ id: 'Gobskin', abilityId: '4780' }),
   ],
 }];
