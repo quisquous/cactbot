@@ -52,6 +52,7 @@ let missedFunc = (args) => {
             de: thingName + ' verfehlt ' + missed.map((x) => data.ShortName(x)).join(', '),
             fr: thingName + ' manqué(e) sur ' + missed.map((x) => data.ShortName(x)).join(', '),
             cn: thingName + ' 没奶到 ' + missed.map((x) => data.ShortName(x)).join(', '),
+            ko: thingName + ' 적용되지 않음 : ' + missed.map((x) => data.ShortName(x)).join(', '),
           },
         };
       }
@@ -65,6 +66,7 @@ let missedFunc = (args) => {
           de: thingName + ' verfehlte ' + missed.length + ' Personen',
           fr: thingName + ' manqué(e) sur ' + missed.length + ' personnes',
           cn: thingName + ' 没奶到 ' + missed.length + ' 人',
+          ko: thingName + ' 적용되지 않음 : ' + missed.length + ' 명',
         },
       };
     },
@@ -222,14 +224,21 @@ let missedMitigationAbility = missedHeal;
     missedMitigationAbility({ id: 'Tactician', abilityId: '41F9' }),
     missedMitigationAbility({ id: 'Shield Samba', abilityId: '3E8C' }),
 
+    missedMitigationAbility({ id: 'Mantra', abilityId: '41' }),
+
     // TODO: need a person->pet mapping for blame
     missedDamageAbility({ id: 'Devotion', abilityId: '1D1A' }),
+
+    // Maybe using a healer LB1/LB2 should be an error for the healer. O:)
+    // missedHeal({ id: 'Healing Wind', abilityId: 'CE' }),
+    // missedHeal({ id: 'Breath of the Earth', abilityId: 'CF' }),
 
     missedHeal({ id: 'Medica', abilityId: '7C' }),
     missedHeal({ id: 'Medica II', abilityId: '85' }),
     missedHeal({ id: 'Afflatus Rapture', abilityId: '4096' }),
     missedHeal({ id: 'Temperance', abilityId: '751' }),
     missedHeal({ id: 'Plenary Indulgence', abilityId: '1D09' }),
+    missedHeal({ id: 'Pulse of Life', abilityId: 'D0' }),
 
     missedHeal({ id: 'Succor', abilityId: 'BA' }),
     missedHeal({ id: 'Indomitability', abilityId: 'DFF' }),
@@ -238,10 +247,14 @@ let missedMitigationAbility = missedHeal;
     missedHeal({ id: 'Fey Blessing', abilityId: '409F' }),
     missedHeal({ id: 'Consolation', abilityId: '40A3' }),
     missedHeal({ id: 'Angel\'s Whisper', abilityId: '40A6' }),
+    missedMitigationAbility({ id: 'Fey Illumination', abilityId: '325' }),
+    missedMitigationAbility({ id: 'Seraphic Illumination', abilityId: '40A7' }),
+    missedHeal({ id: 'Angel Feathers', abilityId: '1097' }),
 
     missedHeal({ id: 'Helios', abilityId: 'E10' }),
     missedHeal({ id: 'Aspected Helios', abilityId: 'E11' }),
     missedHeal({ id: 'Aspected Helios', abilityId: '3200' }),
     missedHeal({ id: 'Celestial Opposition', abilityId: '40A9' }),
+    missedHeal({ id: 'Astral Stasis', abilityId: '1098' }),
   ],
 }];

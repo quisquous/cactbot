@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Vault$/,
     cn: /^圣教中枢伊修加德教皇厅$/,
+    ko: /^이슈가르드 교황청$/,
   },
   zoneId: ZoneId.TheVault,
   timelineFile: 'the_vault.txt',
@@ -25,6 +26,7 @@
         de: 'Sprint ausweichen',
         fr: 'Évitez les ruées',
         cn: '躲开冲锋',
+        ko: '돌진 피하기',
       },
     },
     {
@@ -72,6 +74,7 @@
             de: 'Heilung + Schild ' + data.ShortName(matches.target),
             fr: 'Soin + bouclier ' + data.ShortName(matches.target),
             cn: '马上治疗' + data.ShortName(matches.target),
+            ko: data.ShortName(matches.target) + ' 강타 대상자',
           };
         }
       },
@@ -121,6 +124,7 @@
         de: 'Weg von de Ätherspalten',
         fr: 'Éloignez-vous des déchirures',
         cn: '远离黑圈',
+        ko: '장판 피하기',
       },
     },
     {
@@ -172,6 +176,7 @@
         de: 'Marschierenden Rittern ausweichen',
         fr: 'Esquivez la marche chevaliers',
         cn: '躲开人马',
+        ko: '자동기사 피하기',
       },
     },
   ],

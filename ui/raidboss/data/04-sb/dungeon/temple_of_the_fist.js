@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^The Temple Of The Fist$/,
     cn: /^修行古刹星导寺$/,
+    ko: /^성도산 사원$/,
   },
   zoneId: ZoneId.TheTempleOfTheFist,
   timelineFile: 'temple_of_the_fist.txt',
@@ -76,6 +77,7 @@
         de: 'Im Blauen stehen',
         fr: 'Allez dans le bleu',
         cn: '站在蓝色区域',
+        ko: '파랑장판에 서기',
       },
     },
     {
@@ -89,6 +91,7 @@
         de: 'Im Roten stehen',
         fr: 'Allez dans le rouge',
         cn: '站在红色区域',
+        ko: '빨강장판에 서기',
       },
     },
     {
@@ -124,6 +127,7 @@
         de: 'nach sicherer Position schauen',
         fr: 'trouvez une zone safe',
         cn: '前往安全区',
+        ko: '안전지대 찾기',
       },
     },
     {
@@ -156,6 +160,7 @@
           de: 'Bald ' + data.shortName(matches.target) + ' heilen',
           fr: 'Soignez ' + data.shortName(matches.target) + ' bientôt',
           cn: '马上奶 ' + data.shortName(matches.target),
+          ko: '' + data.shortName(matches.target) + '힐 준비',
         };
       },
     },
@@ -172,6 +177,7 @@
         de: 'Weiche den fliegenden Köpfen aus',
         fr: 'Evitez les têtes',
         cn: '避开漂浮的头',
+        ko: '커얼머리 피하기',
       },
     },
     {
@@ -187,6 +193,7 @@
         de: 'Weg von den Markierungen',
         fr: 'Loin de la marque',
         cn: '远离标记',
+        ko: '마커에게서 멀어지기',
       },
     },
     {

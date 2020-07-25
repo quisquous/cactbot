@@ -68,6 +68,7 @@
               de: 'Nahe zum Boss',
               fr: 'Rapprochez-vous du boss',
               cn: '靠近boss',
+              ko: '보스와 가까이 서기',
             };
           }
           return {
@@ -75,6 +76,7 @@
             de: 'Weg vom Boss',
             fr: 'Éloignez-vous du boss',
             cn: '远离boss',
+            ko: '보스와 떨어지기',
           };
         }
       },
@@ -95,6 +97,7 @@
         de: 'Weg vom Boss',
         fr: 'Éloignez-vous du boss',
         cn: '远离boss',
+        ko: '멀어지기',
       },
     },
     {
@@ -108,6 +111,7 @@
         de: 'Im Roten stehen',
         fr: 'Tenez-vous dans le rouge',
         cn: '站在红色',
+        ko: '빨강장판에 서기',
       },
     },
     {
@@ -121,6 +125,7 @@
         de: 'Im Blauen stehen',
         fr: 'Tenez-vous dans le bleu',
         cn: '站在蓝色',
+        ko: '파랑장판에 서기',
       },
     },
     {
@@ -139,6 +144,7 @@
             de: 'unterbreche Mechanoscholar',
             fr: 'Interrompez le Mécano-scribe',
             cn: '打断人偶',
+            ko: '기계 서기 차단',
           };
         }
         if (data.CanStun()) {
@@ -147,6 +153,7 @@
             de: 'betäube Mechanoscholar',
             fr: 'Stun sur le Mécano-scribe',
             cn: '眩晕人偶',
+            ko: '기계 서기 기절',
           };
         }
       },
@@ -164,6 +171,7 @@
         de: 'Im hellen Kreis stehen',
         fr: 'Tenez-vous dans le cercle blanc',
         cn: '去白色区域',
+        ko: '빛 장판으로',
       },
     },
     {
@@ -179,6 +187,7 @@
         de: 'Im dunklen Kreis stehen',
         fr: 'Tenez-vous dans le cercle noir',
         cn: '去黑色区域',
+        ko: '어둠 장판으로',
       },
     },
     {
@@ -194,6 +203,7 @@
         de: 'Im grünen Kreis reinigen',
         fr: 'Purifiez-vous dans le cercle vert',
         cn: '去绿色区域',
+        ko: '초록 장판으로',
       },
     },
     {
@@ -233,6 +243,7 @@
         de: 'Hinter dem Brocken verstecken',
         fr: 'Cachez-vous derrière le rocher',
         cn: '站在陨石后',
+        ko: '운석 뒤에 숨기',
       },
     },
   ],

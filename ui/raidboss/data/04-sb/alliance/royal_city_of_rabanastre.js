@@ -137,7 +137,7 @@
         de: 'Weg da',
         fr: 'Eloignez-vous',
         cn: '远离大锤落点',
-        ko: '피하기',
+        ko: '기둥으로부터 피하기',
       },
       tts: {
         en: 'move away',
@@ -183,7 +183,7 @@
         de: 'Stimme Des Drachen: Rein',
         fr: 'Voix Du Dragon : Packez-vous',
         cn: '雷电咆哮: 靠近',
-        ko: '뇌전 포효: 안으로',
+        ko: '뇌전의 포효: 안으로',
       },
       tts: {
         en: 'dragon voice',
@@ -206,7 +206,7 @@
         de: 'Stimme Des Widders: Raus',
         fr: 'Voix Du Bélier : Eloignez-vous',
         cn: '寒冰咆哮: 远离',
-        ko: '빙결 포효: 바깥으로',
+        ko: '빙결의 포효: 바깥으로',
       },
       tts: {
         en: 'rams voice',

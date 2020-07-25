@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /Ala Mhigo/,
     cn: /^鏖战红莲阿拉米格$/,
+    ko: /^알라미고$/,
   },
   zoneId: ZoneId.AlaMhigo,
   timelineFile: 'ala_mhigo.txt',
@@ -65,6 +66,7 @@
         de: 'Raus aus dem blauen Kreis',
         fr: 'Hors du cercle bleu',
         cn: '离开蓝圈',
+        ko: '파란 원 바깥으로',
       },
     },
     {
@@ -90,6 +92,7 @@
         de: 'Um den Boss verteilen',
         fr: 'Changement',
         cn: '和队友分散路径',
+        ko: '산개',
       },
     },
     {
@@ -108,6 +111,7 @@
         de: 'Verbindung nach draußen richten',
         fr: 'Lien vers l\'extérieur',
         cn: '离开人群背对连线',
+        ko: '본진 바깥으로 유도하기',
       },
     },
     {

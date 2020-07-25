@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Sigmascape \(V4\.0\)$/,
     cn: /^欧米茄时空狭缝 \(西格玛幻境4\)$/,
+    ko: /^차원의 틈 오메가: 시그마편 \(4\)$/,
   },
   zoneId: ZoneId.SigmascapeV40,
   timelineFile: 'o8n.txt',
@@ -24,6 +25,7 @@
             fr: 'Colonne de feu sur VOUS',
             de: 'Hyperantrieb auf DIR',
             cn: '死刑点名',
+            ko: '하이퍼드라이브 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -32,6 +34,7 @@
             fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
             de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
             cn: '死刑点名' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 하이퍼드라이브',
           };
         }
       },
@@ -42,6 +45,7 @@
             fr: 'Colonne de feu',
             de: 'hyperantrieb',
             cn: '死刑',
+            ko: '탱버',
           };
         }
       },
@@ -90,12 +94,14 @@
         fr: 'Regardez la statue',
         de: 'Statue anschauen',
         cn: '面对神像',
+        ko: '시선 바라보기',
       },
       tts: {
         en: 'look towards',
         fr: 'Regardez la statue',
         de: 'anschauen',
         cn: '面对神像',
+        ko: '쳐다보기',
       },
     },
     {
@@ -111,12 +117,14 @@
         fr: 'Ne regardez pas la statue',
         de: 'Von Statue wegschauen',
         cn: '背对神像',
+        ko: '시선 피하기',
       },
       tts: {
         en: 'look away',
         fr: 'Ne regardez pas la statue',
         de: 'weckschauen',
         cn: '背对神像',
+        ko: '뒤돌기',
       },
     },
     {
@@ -167,12 +175,14 @@
         fr: 'Vraie foudre',
         de: 'Wahrer Blitz',
         cn: '真雷',
+        ko: '진실 선더가',
       },
       tts: {
         en: 'True',
         fr: 'Vrai',
         de: 'Wahr',
         cn: '真',
+        ko: '진실',
       },
     },
     {
@@ -189,12 +199,14 @@
         fr: 'Fausse foudre',
         de: 'Falscher Blitz',
         cn: '假雷',
+        ko: '거짓 선더가',
       },
       tts: {
         en: 'Fake',
         fr: 'Fausse',
         de: 'Falsch',
         cn: '假',
+        ko: '거짓',
       },
     },
     {
@@ -211,12 +223,14 @@
         fr: 'Fausse glace : Sortez',
         de: 'Falsches Eis: Rausgehen',
         cn: '假冰：远离',
+        ko: '거짓 블리자가: 밖으로',
       },
       tts: {
         en: 'Get out',
         fr: 'Sortez',
         de: 'Rausgehen',
         cn: '远离',
+        ko: '밖으로',
       },
     },
     {
@@ -233,12 +247,14 @@
         fr: 'Vraie glace: Rentrez dedans',
         de: 'Wahre Eis: Reingehen',
         cn: '真冰：靠近',
+        ko: '진실 블리자가: 안으로',
       },
       tts: {
         en: 'Get in',
         fr: 'rentrez dedans',
         de: 'Reingehen',
         cn: '靠近',
+        ko: '안으로',
       },
     },
     {
@@ -255,12 +271,14 @@
         fr: 'Fausse glace: Rentrez dedans',
         de: 'Falsches Eis: Reingehen',
         cn: '假冰：靠近',
+        ko: '거짓 블리자가: 안으로',
       },
       tts: {
         en: 'Get in',
         fr: 'rentrez dedans',
         de: 'Reingehen',
         cn: '靠近',
+        ko: '안으로',
       },
     },
     {
@@ -277,12 +295,14 @@
         fr: 'Vraie glace: Sortez',
         de: 'Wahres Eis: Rausgehen',
         cn: '真冰：远离',
+        ko: '진실 블리자가: 밖으로',
       },
       tts: {
         en: 'Get out',
         fr: 'Sortez',
         de: 'raus da',
         cn: '远离',
+        ko: '밖으로',
       },
     },
   ],

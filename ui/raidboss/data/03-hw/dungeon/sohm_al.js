@@ -33,12 +33,14 @@
         de: 'Brei Add töten',
         fr: 'Tuez l\'add Chyme',
         cn: '击杀圣山之糜',
+        ko: '산의 유미즙 처치',
       },
       tts: {
         en: 'kill chyme',
         de: 'brei töten',
         fr: 'tuez lad',
         cn: '击杀圣山之糜',
+        ko: '초록 슬라임 잡기',
       },
     },
     {

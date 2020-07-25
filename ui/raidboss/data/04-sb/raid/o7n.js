@@ -5,6 +5,7 @@
   zoneRegex: {
     en: /^Sigmascape \(V3\.0\)$/,
     cn: /^欧米茄时空狭缝 \(西格玛幻境3\)$/,
+    ko: /^차원의 틈 오메가: 시그마편 \(3\)$/,
   },
   zoneId: ZoneId.SigmascapeV30,
   timelineFile: 'o7n.txt',
@@ -22,12 +23,14 @@
         de: 'Magitek-Laser',
         fr: 'Rayon Magitek',
         cn: '直线AOE',
+        ko: '마도 레이저',
       },
       tts: {
         en: 'beam',
         de: 'les er strahl',
         fr: 'laser',
         cn: '直线AOE',
+        ko: '레이저',
       },
     },
     {

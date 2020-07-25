@@ -81,6 +81,7 @@ let callSafeDir = (callIndex) => {
         en: 'Bait Quasar Meteors',
         de: 'Quasar Meteore ködern',
         cn: '诱导陨石',
+        ko: '운석 유도하기',
       },
     },
   ],
@@ -152,6 +153,7 @@ let callSafeDir = (callIndex) => {
         en: 'Get behind lancer',
         de: 'Geh hinter dem 3. Demiurg',
         cn: '躲在3号小怪后',
+        ko: '제3신도 뒤로 가기',
       },
     },
     {
@@ -168,12 +170,14 @@ let callSafeDir = (callIndex) => {
             en: 'Infusion on YOU',
             de: 'Schneisenschläger auf DIR',
             cn: '冲锋点名',
+            ko: '맹돌진 대상자',
           };
         }
         return {
           en: 'Infusion on ' + data.ShortName(matches.target),
           de: 'Schneisenschläger auf ' + data.ShortName(matches.target),
           cn: '冲锋点' + data.ShortName(matches.target),
+          ko: '' + data.ShortName(matches.target) + ' 에게 맹돌진',
         };
       },
     },
@@ -292,6 +296,7 @@ let callSafeDir = (callIndex) => {
         en: 'Avoid head laser',
         de: 'Kopflaser ausweichen',
         cn: '躲避人头炮',
+        ko: '머리 레이저 피하기',
       },
     },
     {

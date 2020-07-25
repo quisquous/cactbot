@@ -117,6 +117,7 @@
         de: 'Im dunklen Portal stehen',
         fr: 'Tenez-vous dans un portail noir',
         cn: '进入黑球',
+        ko: '검은 포탈에 들어가기',
       },
     },
     {
@@ -133,6 +134,7 @@
         de: 'Weiche deinem Orb aus - löse die Orbs der anderen aus',
         fr: 'Évitez votre orbe, éclatez les autres',
         cn: '躲开圈圈',
+        ko: '내 구체는 피하고, 다른 구체 터트리기',
       },
     },
   ],
