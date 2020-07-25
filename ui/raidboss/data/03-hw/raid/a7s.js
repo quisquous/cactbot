@@ -43,6 +43,7 @@
   zoneRegex: {
     en: /^Alexander - The Arm Of The Son \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(律动之章3\)$/,
+    ko: /^기공성 알렉산더: 율동편\(영웅\) \(3\)$/,
   },
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
@@ -69,6 +70,7 @@
           return {
             en: 'Sizzlebeam on YOU',
             de: 'Gobpartikelstrahl auf DIR',
+            ko: '고블린식 파동포 대상자',
           };
         }
       },
@@ -77,6 +79,7 @@
           return {
             en: 'Sizzlebeam on ' + data.ShortName(matches.target),
             de: 'Gobpartikelstrahl auf ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 고블린식 파동포',
           };
         }
       },
@@ -104,6 +107,7 @@
       infoText: {
         en: 'Bomb Spread',
         de: 'Bomben verteilen',
+        ko: '폭탄 뿌리기',
       },
     },
     {
@@ -113,6 +117,7 @@
       alertText: {
         en: 'Jail Prey',
         de: 'Gefängnis Markierung',
+        ko: '감옥 징 대상자',
       },
     },
     {
@@ -130,6 +135,7 @@
       infoText: {
         en: 'Jail Tether',
         de: 'Gefängnis Verbindung',
+        ko: '감옥 줄 대상자',
       },
     },
     {
@@ -200,6 +206,7 @@
       infoText: {
         en: 'Break Padlock',
         de: 'Schloss zerstören',
+        ko: '자물쇠 부수기',
       },
     },
     {
@@ -213,6 +220,7 @@
       alertText: {
         en: 'Kill Heart',
         de: 'Herz besiegen',
+        ko: '진심 없애기',
       },
     },
     {
@@ -222,6 +230,7 @@
       alarmText: {
         en: 'Searing Wind on YOU',
         de: 'Versengen auf DIR',
+        ko: '뜨거운 바람 대상자',
       },
     },
   ],
@@ -320,7 +329,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': '폭탄',
         'Boomtype Magitek Gobwalker G-VII': 'VII호 고블린워커 B형',
@@ -330,10 +338,21 @@
         'Sturm Doll': '인형 폭기병',
       },
       'replaceText': {
-        'Bomb': '폭탄',
+        'Big Doll': '큰 인형',
+        'Bomb(?!s)': '폭탄',
+        'Bombs': '폭탄',
+        '(?<![Big|Small] )Doll': '인형',
         'Flamethrower': '화염 방사',
+        'Get Prey': '인형뽑기',
+        'Get Tether': '밧줄',
+        'Hammertime': '장판',
+        'Jails': '감옥',
+        'Kill Heart': '진심 없애기',
+        'Small Doll(?!s)': '작은 인형',
+        'Small Dolls': '작은 인형',
         'Sizzlebeam': '고블린식 파동포',
         'Sizzlespark': '고블린 불꽃',
+        'Stun Heart': '진심 기절시키기',
         'Uplander Doom': '일제 사격',
         'Zoomdoom': '고블린 로켓',
       },
