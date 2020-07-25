@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Alexander - The Burden Of The Father \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(启动之章4\)$/,
+    ko: /^기공성 알렉산더: 기동편\(영웅\) \(4\)$/,
   },
   zoneId: ZoneId.AlexanderTheBurdenOfTheFatherSavage,
   timelineFile: 'a4s.txt',
@@ -26,6 +27,7 @@
             de: 'Orbs auf DIR',
             fr: 'Orbes sur Vous',
             cn: '球点名',
+            ko: '구슬 대상자',
           };
         }
       },
@@ -36,6 +38,7 @@
             de: 'Orbs auf ' + data.ShortName(matches.target),
             fr: 'Orbes sur ' + data.ShortName(matches.target),
             cn: '球点' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 구슬',
           };
         }
       },
@@ -53,6 +56,7 @@
           de: 'Unterbreche ' + matches.target,
           fr: 'Stun ' + matches.target,
           cn: '眩晕' + matches.target,
+          ko: matches.target + '기절 시키기',
         };
       },
     },
@@ -81,6 +85,7 @@
         de: 'Laser Verbindungen',
         fr: 'Liens laser',
         cn: '镭射连线',
+        ko: '레이저 선',
       },
     },
     {
@@ -97,6 +102,7 @@
         de: 'Nisi A auf DIR',
         fr: 'Peine A sur VOUS',
         cn: '蓝BUFF点名',
+        ko: '임시 판결 A 대상자',
       },
     },
     {
@@ -113,6 +119,7 @@
         de: 'Nisi B auf DIR',
         fr: 'Peine B sur VOUS',
         cn: '红BUFF点名',
+        ko: '임시 판결 B 대상자',
       },
     },
     {
