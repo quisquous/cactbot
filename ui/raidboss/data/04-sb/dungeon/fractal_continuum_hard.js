@@ -7,7 +7,7 @@
     cn: /^疯狂战舰无限回廊$/,
     ko: /^무한연속 박물함\(어려움\)$/,
   },
-  zoneId: ZoneId.TheFractalContinuum,
+  zoneId: ZoneId.TheFractalContinuumHard,
   triggers: [
     {
       id: 'Fractal Swipe Servo',
