@@ -149,10 +149,6 @@ let Options = {
       mapToPixelXConstant: -224.7,
       mapToPixelYScalar: 41.09,
       mapToPixelYConstant: -457.67,
-      entityToMapXScalar: .02002870754,
-      entityToMapXConstant: 21.45210725,
-      entityToMapYScalar: .02000892816,
-      entityToMapYConstant: 21.4665545,
       fairy: {
         en: 'Anemos Elemental',
         de: 'Anemos-Elementar',
@@ -601,10 +597,6 @@ let Options = {
       mapToPixelXConstant: -85.28333,
       mapToPixelYScalar: 41.09158,
       mapToPixelYConstant: -370.196,
-      entityToMapXScalar: 0.02,
-      entityToMapXConstant: 21.48,
-      entityToMapYScalar: 0.02,
-      entityToMapYConstant: 21.48,
       fairy: {
         en: 'Pagos Elemental',
         de: 'Pagos-Elementar',
@@ -1004,10 +996,6 @@ let Options = {
       mapToPixelXConstant: -344.064,
       mapToPixelYScalar: 42.486,
       mapToPixelYConstant: -202.628,
-      entityToMapXScalar: 0.02,
-      entityToMapXConstant: 21.48,
-      entityToMapYScalar: 0.02,
-      entityToMapYConstant: 21.48,
       fairy: {
         en: 'Pyros Elemental',
         de: 'Pyros-Elementar',
@@ -1407,10 +1395,6 @@ let Options = {
       mapToPixelXConstant: -48.160,
       mapToPixelYScalar: 37.419,
       mapToPixelYConstant: -414.761,
-      entityToMapXScalar: 0.02,
-      entityToMapXConstant: 21.48,
-      entityToMapYScalar: 0.02,
-      entityToMapYConstant: 30.977,
       fairy: {
         en: 'Hydatos Elemental',
         de: 'Hydatos-Elementar',
@@ -1740,10 +1724,30 @@ class EurekaTracker {
     style.top = (py / zi.mapHeight * 100) + '%';
   }
 
+  // TODO: maybe this should be in a more shared location.
+  EntityToMap(coord, sizeFactor, offset) {
+    // Relicensed from MIT License, by viion / Vekien
+    // https://github.com/xivapi/xivapi-mappy/blob/3ea58cc5431db6808053bd3164a1b7859e3bcee1/Mappy/Helpers/MapHelper.cs#L10-L15
+
+    const scale = sizeFactor / 100;
+    const val = (coord + offset) * scale;
+    return ((41 / scale) * ((val + 1024) / 2048)) + 1;
+  }
+
+  EntityToMapX(x) {
+    // TODO: it's kind of awkard to have this.zoneInfo and ZoneInfo simultaneously.
+    const zoneInfo = ZoneInfo[this.zoneId];
+    return this.EntityToMap(x, zoneInfo.sizeFactor, zoneInfo.offsetX);
+  }
+
+  EntityToMapY(y) {
+    const zoneInfo = ZoneInfo[this.zoneId];
+    return this.EntityToMap(y, zoneInfo.sizeFactor, zoneInfo.offsetY);
+  }
+
   SetStyleFromEntity(style, ex, ey) {
-    let zi = this.zoneInfo;
-    let mx = zi.entityToMapXScalar * ex + zi.entityToMapXConstant;
-    let my = zi.entityToMapYScalar * ey + zi.entityToMapYConstant;
+    const mx = this.EntityToMapX(ex);
+    const my = this.EntityToMapY(ey);
     this.SetStyleFromMap(style, mx, my);
   }
 
@@ -2216,9 +2220,8 @@ class EurekaTracker {
   }
 
   AddFairy(name, ex, ey) {
-    let zi = this.zoneInfo;
-    let mx = zi.entityToMapXScalar * ex + zi.entityToMapXConstant;
-    let my = zi.entityToMapYScalar * ey + zi.entityToMapYConstant;
+    const mx = this.EntityToMapX(ex);
+    const my = this.EntityToMapY(ey);
     this.AddFlag(mx, my, this.TransByParserLang(this.zoneInfo.fairy), '');
   }
 }
