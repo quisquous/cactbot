@@ -21,7 +21,7 @@ jobs:
         id: check-gh-pages
         shell: bash
         run: |
-          GITHUB_URL="https://github.com/${{ steps.setup-vars.outputs.owner }}/${{ steps.setup-vars.outputs.repo }}"
+          GITHUB_URL="https://github.com/${{ github.repository }}"
           if git ls-remote --exit-code --heads $GITHUB_URL gh-pages; then
             echo "::set-output name=found::true"
             echo "gh-pages branch found. Updating..."
