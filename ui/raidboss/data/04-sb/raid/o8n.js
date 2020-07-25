@@ -34,7 +34,7 @@
             fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
             de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
             cn: '死刑点名' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(target) + '" 하이퍼드라이브',
+            ko: '"' + data.ShortName(matches.target) + '" 하이퍼드라이브',
           };
         }
       },
