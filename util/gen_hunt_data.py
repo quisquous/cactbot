@@ -1,17 +1,12 @@
 #!/usr/bin/env python
 
-import csv
-import urllib.request
-import os
-import io
-import coinach
 import argparse
+import coinach
+import csv
+import csv_util
+import os
 
 _OUTPUT_FILE = "hunt.js"
-
-_BASE_GITHUB = "https://raw.githubusercontent.com/"
-_CN_GITHUB = "thewakingsands/ffxiv-datamining-cn/master/"
-_KO_GITHUB = "Ra-Workspace/ffxiv-datamining-ko/master/csv/"
 
 
 def update_german(list, search, replace):
@@ -25,23 +20,20 @@ def update_german(list, search, replace):
     return output
 
 
-def parse_data(monsters, csvfile, lang="en", name_map=None):
+def parse_data(monsters, notorious, lang, name_map):
     print(f"Processing {lang} hunt names language...")
 
-    reader = csv.reader(csvfile)
-    # skip the first three header lines
-    next(reader)
-    next(reader)
-    next(reader)
-    for row in reader:
-        nm_id, base, rank_id, name_id = row[:-1]
+    for nm_id, nm_info in notorious.items():
+        base = nm_info["BNpcBase"]
+        rank_id = nm_info["Rank"]
+        name_id = nm_info["BNpcName"]
         if not name_id:
             continue
 
         if name_map is None:
             name = name_id
         else:
-            name = name_map[name_id]
+            name = name_map[name_id]["Singular"]
 
         if not name:
             continue
@@ -79,30 +71,21 @@ def parse_data(monsters, csvfile, lang="en", name_map=None):
 
 
 def update_coinach(monsters, reader):
-    print("Reading Notorious Monster list...")
+    notorious_keys = ["#", "BNpcBase", "Rank", "BNpcName"]
+    notorious = csv_util.make_map(reader.rawexd("NotoriousMonster"), notorious_keys)
 
-    nm_csv = reader.rawexd("NotoriousMonster")
     languages = ["en", "de", "fr", "ja"]
     for locale in languages:
-        name_map = process_npc_names(reader.exd("BNpcName", lang=locale))
-        parse_data(monsters, nm_csv, lang=locale, name_map=name_map)
+        name_map = csv_util.make_map(reader.exd("BNpcName", lang=locale), ["#", "Singular"])
+        parse_data(monsters, notorious, locale, name_map)
     return monsters
 
 
-def process_npc_names(csvfile):
-    data = {}
-    reader = csv.reader(csvfile)
-    for row in reader:
-        data[row[0]] = row[1]
-    return data
-
-
-def update_raw_csv(monsters, url, locale):
-    with urllib.request.urlopen(url + "NotoriousMonster.csv") as nm_response:
-        with urllib.request.urlopen(url + "BNpcName.csv") as names_response:
-            notorious = io.StringIO(nm_response.read().decode("utf-8"))
-            names = io.StringIO(names_response.read().decode("utf-8"))
-            parse_data(monsters, notorious, locale, process_npc_names(names))
+def update_raw_csv(monsters, locale):
+    notorious_keys = ["#", "BNpcBase", "Rank", "BNpcName"]
+    notorious = csv_util.get_locale_table("NotoriousMonster", locale, notorious_keys)
+    name_map = csv_util.get_locale_table("BNpcName", locale, ["#", "Singular"])
+    parse_data(monsters, notorious, locale, name_map)
 
 
 def get_from_coinach(_ffxiv_game_path, _saint_conainch_cmd_path, _cactbot_path):
@@ -111,8 +94,8 @@ def get_from_coinach(_ffxiv_game_path, _saint_conainch_cmd_path, _cactbot_path):
     )
     monsters = {}
     update_coinach(monsters, reader)
-    update_raw_csv(monsters, _BASE_GITHUB + _CN_GITHUB, "cn")
-    update_raw_csv(monsters, _BASE_GITHUB + _KO_GITHUB, "ko")
+    update_raw_csv(monsters, "cn")
+    update_raw_csv(monsters, "ko")
 
     all_monsters = {}
     for (_, info) in monsters.items():

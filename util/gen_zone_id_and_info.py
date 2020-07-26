@@ -2,6 +2,7 @@
 
 import coinach
 import csv
+import csv_util
 import json
 import os
 import re
@@ -58,33 +59,6 @@ def clean_name(str):
     return str
 
 
-# inputs[0] is the key column for the returned map
-def make_map(file, inputs, outputs):
-    map = {}
-
-    reader = csv.reader(file)
-    next(reader)
-    keys = next(reader)
-    next(reader)
-
-    indices = []
-    for input in inputs:
-        if isinstance(input, int):
-            indices.append(input)
-            continue
-        indices.append(keys.index(input))
-
-    for row in reader:
-        output = {}
-        for i in range(0, len(indices)):
-            output[outputs[i]] = row[indices[i]]
-        if indices[0] in row:
-            print("key collision for %s, %s" % (inputs, outputs))
-        map[row[indices[0]]] = output
-
-    return map
-
-
 def make_territory_map(contents):
     inputs = ["#", 11, "PlaceName", "Name", "WeatherRate", "Map", "TerritoryIntendedUse"]
     outputs = [
@@ -96,32 +70,32 @@ def make_territory_map(contents):
         "map_id",
         "territory_intended_use",
     ]
-    return make_map(contents, inputs, outputs)
+    return csv_util.make_map(contents, inputs, outputs)
 
 
 def make_place_name_map(contents):
     inputs = ["#", "Name"]
     outputs = ["place_id", "place_name"]
-    return make_map(contents, inputs, outputs)
+    return csv_util.make_map(contents, inputs, outputs)
 
 
 def make_cfc_map(contents):
     inputs = ["#", "TerritoryType", "Name", "ContentType"]
     outputs = ["cfc_id", "territory_id", "name", "content_type_id"]
-    return make_map(contents, inputs, outputs)
+    return csv_util.make_map(contents, inputs, outputs)
 
 
 # :eyes:
 def make_map_map(contents):
     inputs = ["#", "SizeFactor", "Offset{X}", "Offset{Y}"]
     outputs = ["map_id", "size_factor", "offset_x", "offset_y"]
-    return make_map(contents, inputs, outputs)
+    return csv_util.make_map(contents, inputs, outputs)
 
 
 def make_content_type_map(contents):
     inputs = ["#", "Name"]
     outputs = ["content_type_id", "name"]
-    return make_map(contents, inputs, outputs)
+    return csv_util.make_map(contents, inputs, outputs)
 
 
 def print_error(header, what, map, key):
