@@ -244,7 +244,9 @@ let missedMitigationAbility = missedHeal;
     missedHeal({ id: 'Indomitability', abilityId: 'DFF' }),
     missedHeal({ id: 'Deployment Tactics', abilityId: 'E01' }),
     missedHeal({ id: 'Whispering Dawn', abilityId: '323' }),
-    missedHeal({ id: 'Fey Blessing', abilityId: '409F' }),
+    // TODO: need a person->pet mapping for these as well
+    // because otherwise the fairy is not a party member.
+    missedHeal({ id: 'Fey Blessing', abilityId: '40A0' }),
     missedHeal({ id: 'Consolation', abilityId: '40A3' }),
     missedHeal({ id: 'Angel\'s Whisper', abilityId: '40A6' }),
     missedMitigationAbility({ id: 'Fey Illumination', abilityId: '325' }),
