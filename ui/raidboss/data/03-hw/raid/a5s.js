@@ -297,7 +297,6 @@ let bombLocation = (matches) => {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<!Hummel)Faust': 'Faust',
         '(?<!Smart)Bomb': 'Bombe',
@@ -305,6 +304,7 @@ let bombLocation = (matches) => {
         'Gobbledygroper': 'Gobgreifer',
         'Ratfinx Twinkledinks': 'Ratfix Blinkdings',
         'Smartbomb': 'Best(?:e|er|es|en) Sprengenkörper',
+        'The Clevering': 'Forschenraum',
       },
       'replaceText': {
         '--big--': '--Groß--',

@@ -270,13 +270,14 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': 'Bombe',
         'Faust Z': 'Endfaust',
         'Full-Metal Faust': 'Vollmetall-Faust',
         'Refurbisher 0': 'Rekompositor',
         'Scrap': 'Verschrotten',
+        'The Cranial Plate': 'Schädeldecke',
+        'Life Support': 'Wiederaufbereitungsanlage',
       },
       'replaceText': {
         '--rocks fall--': '--Felsen fallen--',
