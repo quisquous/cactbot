@@ -253,7 +253,7 @@ def generate_content_type(content_type_map):
         name = content_type["name"]
         if not name:
             continue
-        map[clean_name(name)] = id
+        map[clean_name(name)] = int(id)
     return map
 
 
