@@ -12,6 +12,7 @@ import re
 # about Territory.  Hence, "zone" as a short-to-type catch-all.
 _ZONE_ID_OUTPUT_FILE = "zone_id.js"
 _ZONE_INFO_OUTPUT_FILE = "zone_info.js"
+_CONTENT_TYPE_OUTPUT_FILE = "content_type.js"
 
 # Notes: use rawexd here instead of exd to get place ids / territory ids
 # instead of the lookups for PlaceName / TerritoryType that are not unique.
@@ -96,8 +97,8 @@ def make_place_name_map(contents):
 
 
 def make_cfc_map(contents):
-    inputs = ["#", "TerritoryType", "Name"]
-    outputs = ["cfc_id", "territory_id", "name"]
+    inputs = ["#", "TerritoryType", "Name", "ContentType"]
+    outputs = ["cfc_id", "territory_id", "name", "content_type_id"]
     return make_map(contents, inputs, outputs)
 
 
@@ -105,6 +106,12 @@ def make_cfc_map(contents):
 def make_map_map(contents):
     inputs = ["#", "SizeFactor", "Offset{X}", "Offset{Y}"]
     outputs = ["map_id", "size_factor", "offset_x", "offset_y"]
+    return make_map(contents, inputs, outputs)
+
+
+def make_content_type_map(contents):
+    inputs = ["#", "Name"]
+    outputs = ["content_type_id", "name"]
     return make_map(contents, inputs, outputs)
 
 
@@ -204,7 +211,9 @@ def generate_zone_info(territory_map, cfc_map, map_map, territory_to_cfc_map, pl
         if cfc_id == None:
             output["name"] = {"en": place_name}
         else:
-            output["name"] = {"en": cfc_map[cfc_id]["name"]}
+            cfc = cfc_map[cfc_id]
+            output["name"] = {"en": cfc["name"]}
+            output["contentType"] = int(cfc["content_type_id"])
 
         map_id = territory["map_id"]
         if map_id in map_map:
@@ -215,6 +224,16 @@ def generate_zone_info(territory_map, cfc_map, map_map, territory_to_cfc_map, pl
         else:
             print("missing map: %s" % territory_id)
 
+    return map
+
+
+def generate_content_type(content_type_map):
+    map = {}
+    for id, content_type in content_type_map.items():
+        name = content_type["name"]
+        if not name:
+            continue
+        map[clean_name(name)] = id
     return map
 
 
@@ -247,4 +266,12 @@ if __name__ == "__main__":
         os.path.basename(os.path.abspath(__file__)),
         "ZoneInfo",
         territory_info,
+    )
+
+    content_type_map = make_content_type_map(reader.rawexd("ContentType"))
+    writer.write(
+        os.path.join("resources", _CONTENT_TYPE_OUTPUT_FILE),
+        os.path.basename(os.path.abspath(__file__)),
+        "ContentType",
+        generate_content_type(content_type_map),
     )

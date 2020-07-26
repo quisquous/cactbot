@@ -131,6 +131,7 @@ const ZoneInfo = {
     'weatherRate': 10,
   },
   142: {
+    'contentType': 4,
     'name': {
       'en': 'the Dragon\'s Neck',
     },
@@ -140,6 +141,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   143: {
+    'contentType': 4,
     'name': {
       'en': 'the Steps of Faith',
     },
@@ -194,6 +196,7 @@ const ZoneInfo = {
     'weatherRate': 3,
   },
   150: {
+    'contentType': 2,
     'name': {
       'en': 'the Keeper of the Lake',
     },
@@ -203,6 +206,7 @@ const ZoneInfo = {
     'weatherRate': 74,
   },
   151: {
+    'contentType': 5,
     'name': {
       'en': 'the World of Darkness',
     },
@@ -257,6 +261,7 @@ const ZoneInfo = {
     'weatherRate': 22,
   },
   157: {
+    'contentType': 2,
     'name': {
       'en': 'Sastasha',
     },
@@ -266,6 +271,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   158: {
+    'contentType': 2,
     'name': {
       'en': 'Brayflox\'s Longstop',
     },
@@ -275,6 +281,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   159: {
+    'contentType': 2,
     'name': {
       'en': 'the Wanderer\'s Palace',
     },
@@ -284,6 +291,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   160: {
+    'contentType': 2,
     'name': {
       'en': 'Pharos Sirius',
     },
@@ -293,6 +301,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   161: {
+    'contentType': 2,
     'name': {
       'en': 'Copperbell Mines',
     },
@@ -302,6 +311,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   162: {
+    'contentType': 2,
     'name': {
       'en': 'Halatali',
     },
@@ -311,6 +321,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   163: {
+    'contentType': 2,
     'name': {
       'en': 'the Sunken Temple of Qarn',
     },
@@ -320,6 +331,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   164: {
+    'contentType': 2,
     'name': {
       'en': 'the Tam\u2013Tara Deepcroft',
     },
@@ -329,6 +341,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   166: {
+    'contentType': 2,
     'name': {
       'en': 'Haukke Manor',
     },
@@ -338,6 +351,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   167: {
+    'contentType': 2,
     'name': {
       'en': 'Amdapor Keep',
     },
@@ -347,6 +361,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   168: {
+    'contentType': 2,
     'name': {
       'en': 'the Stone Vigil',
     },
@@ -356,6 +371,7 @@ const ZoneInfo = {
     'weatherRate': 27,
   },
   169: {
+    'contentType': 2,
     'name': {
       'en': 'the Thousand Maws of Toto\u2013Rak',
     },
@@ -365,6 +381,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   170: {
+    'contentType': 2,
     'name': {
       'en': 'Cutter\'s Cry',
     },
@@ -374,6 +391,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   171: {
+    'contentType': 2,
     'name': {
       'en': 'Dzemael Darkhold',
     },
@@ -383,6 +401,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   172: {
+    'contentType': 2,
     'name': {
       'en': 'the Aurum Vale',
     },
@@ -392,6 +411,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   174: {
+    'contentType': 5,
     'name': {
       'en': 'the Labyrinth of the Ancients',
     },
@@ -455,6 +475,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   188: {
+    'contentType': 2,
     'name': {
       'en': 'the Wanderer\'s Palace (Hard)',
     },
@@ -464,6 +485,7 @@ const ZoneInfo = {
     'weatherRate': 40,
   },
   189: {
+    'contentType': 2,
     'name': {
       'en': 'Amdapor Keep (Hard)',
     },
@@ -473,6 +495,7 @@ const ZoneInfo = {
     'weatherRate': 40,
   },
   190: {
+    'contentType': 3,
     'name': {
       'en': 'Under the Armor',
     },
@@ -482,6 +505,7 @@ const ZoneInfo = {
     'weatherRate': 3,
   },
   191: {
+    'contentType': 3,
     'name': {
       'en': 'Pulling Poison Posies',
     },
@@ -491,6 +515,7 @@ const ZoneInfo = {
     'weatherRate': 4,
   },
   192: {
+    'contentType': 3,
     'name': {
       'en': 'Stinging Back',
     },
@@ -500,6 +525,7 @@ const ZoneInfo = {
     'weatherRate': 5,
   },
   193: {
+    'contentType': 5,
     'name': {
       'en': 'the Final Coil of Bahamut - Turn 1',
     },
@@ -509,6 +535,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   194: {
+    'contentType': 5,
     'name': {
       'en': 'the Final Coil of Bahamut - Turn 2',
     },
@@ -518,6 +545,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   195: {
+    'contentType': 5,
     'name': {
       'en': 'the Final Coil of Bahamut - Turn 3',
     },
@@ -527,6 +555,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   196: {
+    'contentType': 5,
     'name': {
       'en': 'the Final Coil of Bahamut - Turn 4',
     },
@@ -545,6 +574,7 @@ const ZoneInfo = {
     'weatherRate': 14,
   },
   202: {
+    'contentType': 4,
     'name': {
       'en': 'the Bowl of Embers',
     },
@@ -572,6 +602,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   206: {
+    'contentType': 4,
     'name': {
       'en': 'the Navel',
     },
@@ -581,6 +612,7 @@ const ZoneInfo = {
     'weatherRate': 23,
   },
   207: {
+    'contentType': 4,
     'name': {
       'en': 'Thornmarch (Hard)',
     },
@@ -590,6 +622,7 @@ const ZoneInfo = {
     'weatherRate': 30,
   },
   208: {
+    'contentType': 4,
     'name': {
       'en': 'the Howling Eye',
     },
@@ -617,6 +650,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   214: {
+    'contentType': 3,
     'name': {
       'en': 'Basic Training: Enemy Parties',
     },
@@ -626,6 +660,7 @@ const ZoneInfo = {
     'weatherRate': 16,
   },
   215: {
+    'contentType': 3,
     'name': {
       'en': 'Basic Training: Enemy Strongholds',
     },
@@ -635,6 +670,7 @@ const ZoneInfo = {
     'weatherRate': 9,
   },
   216: {
+    'contentType': 3,
     'name': {
       'en': 'Hero on the Half Shell',
     },
@@ -644,6 +680,7 @@ const ZoneInfo = {
     'weatherRate': 10,
   },
   217: {
+    'contentType': 2,
     'name': {
       'en': 'Castrum Meridianum',
     },
@@ -653,6 +690,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   219: {
+    'contentType': 3,
     'name': {
       'en': 'Flicking Sticks and Taking Names',
     },
@@ -662,6 +700,7 @@ const ZoneInfo = {
     'weatherRate': 3,
   },
   220: {
+    'contentType': 3,
     'name': {
       'en': 'All\'s Well that Ends in the Well',
     },
@@ -671,6 +710,7 @@ const ZoneInfo = {
     'weatherRate': 5,
   },
   221: {
+    'contentType': 3,
     'name': {
       'en': 'More than a Feeler',
     },
@@ -680,6 +720,7 @@ const ZoneInfo = {
     'weatherRate': 20,
   },
   222: {
+    'contentType': 3,
     'name': {
       'en': 'Annoy the Void',
     },
@@ -689,6 +730,7 @@ const ZoneInfo = {
     'weatherRate': 17,
   },
   223: {
+    'contentType': 3,
     'name': {
       'en': 'Shadow and Claw',
     },
@@ -698,6 +740,7 @@ const ZoneInfo = {
     'weatherRate': 21,
   },
   224: {
+    'contentType': 2,
     'name': {
       'en': 'the Praetorium',
     },
@@ -707,6 +750,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   241: {
+    'contentType': 5,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 1',
     },
@@ -716,6 +760,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   242: {
+    'contentType': 5,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 2',
     },
@@ -725,6 +770,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   243: {
+    'contentType': 5,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 3',
     },
@@ -734,6 +780,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   244: {
+    'contentType': 5,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 4',
     },
@@ -743,6 +790,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   245: {
+    'contentType': 5,
     'name': {
       'en': 'the Binding Coil of Bahamut - Turn 5',
     },
@@ -788,6 +836,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   281: {
+    'contentType': 4,
     'name': {
       'en': 'the <Emphasis>Whorleater</Emphasis> (Hard)',
     },
@@ -824,6 +873,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   292: {
+    'contentType': 4,
     'name': {
       'en': 'the Bowl of Embers (Hard)',
     },
@@ -833,6 +883,7 @@ const ZoneInfo = {
     'weatherRate': 25,
   },
   293: {
+    'contentType': 4,
     'name': {
       'en': 'the Navel (Hard)',
     },
@@ -842,6 +893,7 @@ const ZoneInfo = {
     'weatherRate': 23,
   },
   294: {
+    'contentType': 4,
     'name': {
       'en': 'the Howling Eye (Hard)',
     },
@@ -851,6 +903,7 @@ const ZoneInfo = {
     'weatherRate': 26,
   },
   295: {
+    'contentType': 4,
     'name': {
       'en': 'the Bowl of Embers (Extreme)',
     },
@@ -860,6 +913,7 @@ const ZoneInfo = {
     'weatherRate': 25,
   },
   296: {
+    'contentType': 4,
     'name': {
       'en': 'the Navel (Extreme)',
     },
@@ -869,6 +923,7 @@ const ZoneInfo = {
     'weatherRate': 23,
   },
   297: {
+    'contentType': 4,
     'name': {
       'en': 'the Howling Eye (Extreme)',
     },
@@ -878,6 +933,7 @@ const ZoneInfo = {
     'weatherRate': 26,
   },
   298: {
+    'contentType': 3,
     'name': {
       'en': 'Long Live the Queen',
     },
@@ -887,6 +943,7 @@ const ZoneInfo = {
     'weatherRate': 21,
   },
   299: {
+    'contentType': 3,
     'name': {
       'en': 'Ward Up',
     },
@@ -896,6 +953,7 @@ const ZoneInfo = {
     'weatherRate': 22,
   },
   300: {
+    'contentType': 3,
     'name': {
       'en': 'Solemn Trinity',
     },
@@ -905,6 +963,7 @@ const ZoneInfo = {
     'weatherRate': 22,
   },
   332: {
+    'contentType': 4,
     'name': {
       'en': 'Cape Westwind',
     },
@@ -995,6 +1054,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   348: {
+    'contentType': 4,
     'name': {
       'en': 'the Minstrel\'s Ballad: Ultima\'s Bane',
     },
@@ -1004,6 +1064,7 @@ const ZoneInfo = {
     'weatherRate': 31,
   },
   349: {
+    'contentType': 2,
     'name': {
       'en': 'Copperbell Mines (Hard)',
     },
@@ -1013,6 +1074,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   350: {
+    'contentType': 2,
     'name': {
       'en': 'Haukke Manor (Hard)',
     },
@@ -1031,6 +1093,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   353: {
+    'contentType': 4,
     'name': {
       'en': 'Special Event I',
     },
@@ -1040,6 +1103,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   354: {
+    'contentType': 4,
     'name': {
       'en': 'Special Event II',
     },
@@ -1049,6 +1113,7 @@ const ZoneInfo = {
     'weatherRate': 103,
   },
   355: {
+    'contentType': 5,
     'name': {
       'en': 'the Second Coil of Bahamut - Turn 1',
     },
@@ -1058,6 +1123,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   356: {
+    'contentType': 5,
     'name': {
       'en': 'the Second Coil of Bahamut - Turn 2',
     },
@@ -1067,6 +1133,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   357: {
+    'contentType': 5,
     'name': {
       'en': 'the Second Coil of Bahamut - Turn 3',
     },
@@ -1076,6 +1143,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   358: {
+    'contentType': 5,
     'name': {
       'en': 'the Second Coil of Bahamut - Turn 4',
     },
@@ -1085,6 +1153,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   359: {
+    'contentType': 4,
     'name': {
       'en': 'the <Emphasis>Whorleater</Emphasis> (Extreme)',
     },
@@ -1094,6 +1163,7 @@ const ZoneInfo = {
     'weatherRate': 38,
   },
   360: {
+    'contentType': 2,
     'name': {
       'en': 'Halatali (Hard)',
     },
@@ -1103,6 +1173,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   361: {
+    'contentType': 2,
     'name': {
       'en': 'Hullbreaker Isle',
     },
@@ -1112,6 +1183,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   362: {
+    'contentType': 2,
     'name': {
       'en': 'Brayflox\'s Longstop (Hard)',
     },
@@ -1121,6 +1193,7 @@ const ZoneInfo = {
     'weatherRate': 37,
   },
   363: {
+    'contentType': 2,
     'name': {
       'en': 'the Lost City of Amdapor',
     },
@@ -1130,6 +1203,7 @@ const ZoneInfo = {
     'weatherRate': 40,
   },
   364: {
+    'contentType': 4,
     'name': {
       'en': 'Thornmarch (Extreme)',
     },
@@ -1139,6 +1213,7 @@ const ZoneInfo = {
     'weatherRate': 30,
   },
   365: {
+    'contentType': 2,
     'name': {
       'en': 'the Stone Vigil (Hard)',
     },
@@ -1148,6 +1223,7 @@ const ZoneInfo = {
     'weatherRate': 42,
   },
   366: {
+    'contentType': 4,
     'name': {
       'en': 'Battle on the Big Bridge',
     },
@@ -1157,6 +1233,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   367: {
+    'contentType': 2,
     'name': {
       'en': 'the Sunken Temple of Qarn (Hard)',
     },
@@ -1166,6 +1243,7 @@ const ZoneInfo = {
     'weatherRate': 41,
   },
   368: {
+    'contentType': 4,
     'name': {
       'en': 'A Relic Reborn: the Chimera',
     },
@@ -1175,6 +1253,7 @@ const ZoneInfo = {
     'weatherRate': 21,
   },
   369: {
+    'contentType': 4,
     'name': {
       'en': 'A Relic Reborn: the Hydra',
     },
@@ -1193,6 +1272,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   371: {
+    'contentType': 2,
     'name': {
       'en': 'Snowcloak',
     },
@@ -1202,6 +1282,7 @@ const ZoneInfo = {
     'weatherRate': 42,
   },
   372: {
+    'contentType': 5,
     'name': {
       'en': 'Syrcus Tower',
     },
@@ -1211,6 +1292,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   373: {
+    'contentType': 2,
     'name': {
       'en': 'the Tam\u2013Tara Deepcroft (Hard)',
     },
@@ -1220,6 +1302,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   374: {
+    'contentType': 4,
     'name': {
       'en': 'the Striking Tree (Hard)',
     },
@@ -1229,6 +1312,7 @@ const ZoneInfo = {
     'weatherRate': 43,
   },
   375: {
+    'contentType': 4,
     'name': {
       'en': 'the Striking Tree (Extreme)',
     },
@@ -1238,6 +1322,7 @@ const ZoneInfo = {
     'weatherRate': 43,
   },
   376: {
+    'contentType': 6,
     'name': {
       'en': 'the Borderland Ruins (Secure)',
     },
@@ -1247,6 +1332,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   377: {
+    'contentType': 4,
     'name': {
       'en': 'Akh Afah Amphitheatre (Hard)',
     },
@@ -1256,6 +1342,7 @@ const ZoneInfo = {
     'weatherRate': 46,
   },
   378: {
+    'contentType': 4,
     'name': {
       'en': 'Akh Afah Amphitheatre (Extreme)',
     },
@@ -1265,6 +1352,7 @@ const ZoneInfo = {
     'weatherRate': 46,
   },
   380: {
+    'contentType': 5,
     'name': {
       'en': 'the Second Coil of Bahamut (Savage) - Turn 1',
     },
@@ -1274,6 +1362,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   381: {
+    'contentType': 5,
     'name': {
       'en': 'the Second Coil of Bahamut (Savage) - Turn 2',
     },
@@ -1283,6 +1372,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   382: {
+    'contentType': 5,
     'name': {
       'en': 'the Second Coil of Bahamut (Savage) - Turn 3',
     },
@@ -1292,6 +1382,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   383: {
+    'contentType': 5,
     'name': {
       'en': 'the Second Coil of Bahamut (Savage) - Turn 4',
     },
@@ -1328,6 +1419,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   387: {
+    'contentType': 2,
     'name': {
       'en': 'Sastasha (Hard)',
     },
@@ -1346,6 +1438,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   389: {
+    'contentType': 19,
     'name': {
       'en': 'Chocobo Race: Costa del Sol',
     },
@@ -1355,6 +1448,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   390: {
+    'contentType': 19,
     'name': {
       'en': 'Chocobo Race: Sagolii Road',
     },
@@ -1364,6 +1458,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   391: {
+    'contentType': 19,
     'name': {
       'en': 'Chocobo Race: Tranquil Paths',
     },
@@ -1382,6 +1477,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   394: {
+    'contentType': 4,
     'name': {
       'en': 'Urth\'s Fount',
     },
@@ -1400,6 +1496,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   396: {
+    'contentType': 4,
     'name': {
       'en': 'Battle in the Big Keep',
     },
@@ -1463,6 +1560,7 @@ const ZoneInfo = {
     'weatherRate': 54,
   },
   403: {
+    'contentType': 7,
     'name': {
       'en': 'Return of the Bull',
     },
@@ -1472,6 +1570,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   416: {
+    'contentType': 2,
     'name': {
       'en': 'the Great Gubal Library',
     },
@@ -1481,6 +1580,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   417: {
+    'contentType': 19,
     'name': {
       'en': 'Chocobo Race: Tutorial',
     },
@@ -1508,6 +1608,7 @@ const ZoneInfo = {
     'weatherRate': 48,
   },
   420: {
+    'contentType': 2,
     'name': {
       'en': 'Neverreap',
     },
@@ -1517,6 +1618,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   421: {
+    'contentType': 2,
     'name': {
       'en': 'the Vault',
     },
@@ -1553,6 +1655,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   426: {
+    'contentType': 4,
     'name': {
       'en': 'the Chrysalis',
     },
@@ -1589,6 +1692,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   430: {
+    'contentType': 2,
     'name': {
       'en': 'the Fractal Continuum',
     },
@@ -1598,6 +1702,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   431: {
+    'contentType': 6,
     'name': {
       'en': 'Seal Rock (Seize)',
     },
@@ -1607,6 +1712,7 @@ const ZoneInfo = {
     'weatherRate': 59,
   },
   432: {
+    'contentType': 4,
     'name': {
       'en': 'Thok ast Thok (Hard)',
     },
@@ -1625,6 +1731,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   434: {
+    'contentType': 2,
     'name': {
       'en': 'the Dusk Vigil',
     },
@@ -1634,6 +1741,7 @@ const ZoneInfo = {
     'weatherRate': 42,
   },
   435: {
+    'contentType': 2,
     'name': {
       'en': 'the Aery',
     },
@@ -1643,6 +1751,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   436: {
+    'contentType': 4,
     'name': {
       'en': 'the Limitless Blue (Hard)',
     },
@@ -1652,6 +1761,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   437: {
+    'contentType': 4,
     'name': {
       'en': 'the Singularity Reactor',
     },
@@ -1661,6 +1771,7 @@ const ZoneInfo = {
     'weatherRate': 56,
   },
   438: {
+    'contentType': 2,
     'name': {
       'en': 'the Aetherochemical Research Facility',
     },
@@ -1688,6 +1799,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   441: {
+    'contentType': 2,
     'name': {
       'en': 'Sohm Al',
     },
@@ -1697,6 +1809,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   442: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Fist of the Father',
     },
@@ -1706,6 +1819,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   443: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Cuff of the Father',
     },
@@ -1715,6 +1829,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   444: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Arm of the Father',
     },
@@ -1724,6 +1839,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   445: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Burden of the Father',
     },
@@ -1733,6 +1849,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   446: {
+    'contentType': 4,
     'name': {
       'en': 'Thok ast Thok (Extreme)',
     },
@@ -1742,6 +1859,7 @@ const ZoneInfo = {
     'weatherRate': 57,
   },
   447: {
+    'contentType': 4,
     'name': {
       'en': 'the Limitless Blue (Extreme)',
     },
@@ -1751,6 +1869,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   448: {
+    'contentType': 4,
     'name': {
       'en': 'the Minstrel\'s Ballad: Thordan\'s Reign',
     },
@@ -1760,6 +1879,7 @@ const ZoneInfo = {
     'weatherRate': 56,
   },
   449: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Fist of the Father (Savage)',
     },
@@ -1769,6 +1889,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   450: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Cuff of the Father (Savage)',
     },
@@ -1778,6 +1899,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   451: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Arm of the Father (Savage)',
     },
@@ -1787,6 +1909,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   452: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Burden of the Father (Savage)',
     },
@@ -1841,6 +1964,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   506: {
+    'contentType': 19,
     'name': {
       'en': 'LoVM: Master Tournament',
     },
@@ -1859,6 +1983,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   508: {
+    'contentType': 5,
     'name': {
       'en': 'the Void Ark',
     },
@@ -1868,6 +1993,7 @@ const ZoneInfo = {
     'weatherRate': 37,
   },
   509: {
+    'contentType': 4,
     'name': {
       'en': 'Special Event III',
     },
@@ -1877,6 +2003,7 @@ const ZoneInfo = {
     'weatherRate': 23,
   },
   510: {
+    'contentType': 2,
     'name': {
       'en': 'Pharos Sirius (Hard)',
     },
@@ -1886,6 +2013,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   511: {
+    'contentType': 2,
     'name': {
       'en': 'Saint Mocianne\'s Arboretum',
     },
@@ -1895,6 +2023,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   512: {
+    'contentType': 23,
     'name': {
       'en': 'the Diadem (Easy)',
     },
@@ -1904,6 +2033,7 @@ const ZoneInfo = {
     'weatherRate': 60,
   },
   514: {
+    'contentType': 23,
     'name': {
       'en': 'the Diadem',
     },
@@ -1913,6 +2043,7 @@ const ZoneInfo = {
     'weatherRate': 61,
   },
   515: {
+    'contentType': 23,
     'name': {
       'en': 'the Diadem (Hard)',
     },
@@ -1922,6 +2053,7 @@ const ZoneInfo = {
     'weatherRate': 62,
   },
   516: {
+    'contentType': 2,
     'name': {
       'en': 'the Antitower',
     },
@@ -1931,6 +2063,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   517: {
+    'contentType': 4,
     'name': {
       'en': 'Containment Bay S1T7',
     },
@@ -1940,6 +2073,7 @@ const ZoneInfo = {
     'weatherRate': 66,
   },
   519: {
+    'contentType': 2,
     'name': {
       'en': 'the Lost City of Amdapor (Hard)',
     },
@@ -1949,6 +2083,7 @@ const ZoneInfo = {
     'weatherRate': 63,
   },
   520: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Fist of the Son',
     },
@@ -1958,6 +2093,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   521: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Cuff of the Son',
     },
@@ -1967,6 +2103,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   522: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Arm of the Son',
     },
@@ -1976,6 +2113,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   523: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Burden of the Son',
     },
@@ -1985,6 +2123,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   524: {
+    'contentType': 4,
     'name': {
       'en': 'Containment Bay S1T7 (Extreme)',
     },
@@ -1994,6 +2133,7 @@ const ZoneInfo = {
     'weatherRate': 66,
   },
   525: {
+    'contentType': 6,
     'name': {
       'en': 'the Feast (4 on 4 - Training)',
     },
@@ -2003,6 +2143,7 @@ const ZoneInfo = {
     'weatherRate': 65,
   },
   527: {
+    'contentType': 6,
     'name': {
       'en': 'the Feast (4 on 4 - Ranked)',
     },
@@ -2012,6 +2153,7 @@ const ZoneInfo = {
     'weatherRate': 65,
   },
   529: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Fist of the Son (Savage)',
     },
@@ -2021,6 +2163,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   530: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Cuff of the Son (Savage)',
     },
@@ -2030,6 +2173,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   531: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Arm of the Son (Savage)',
     },
@@ -2039,6 +2183,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   532: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Burden of the Son (Savage)',
     },
@@ -2048,6 +2193,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   533: {
+    'contentType': 7,
     'name': {
       'en': 'a Spectacle for the Ages',
     },
@@ -2084,6 +2230,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   537: {
+    'contentType': 20,
     'name': {
       'en': 'Avoid Area of Effect Attacks',
     },
@@ -2093,6 +2240,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   538: {
+    'contentType': 20,
     'name': {
       'en': 'Execute a Combo to Increase Enmity',
     },
@@ -2102,6 +2250,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   539: {
+    'contentType': 20,
     'name': {
       'en': 'Execute a Combo in Battle',
     },
@@ -2111,6 +2260,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   540: {
+    'contentType': 20,
     'name': {
       'en': 'Accrue Enmity from Multiple Targets',
     },
@@ -2120,6 +2270,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   541: {
+    'contentType': 20,
     'name': {
       'en': 'Engage Multiple Targets',
     },
@@ -2129,6 +2280,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   542: {
+    'contentType': 20,
     'name': {
       'en': 'Execute a Ranged Attack to Increase Enmity',
     },
@@ -2138,6 +2290,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   543: {
+    'contentType': 20,
     'name': {
       'en': 'Engage Enemy Reinforcements',
     },
@@ -2147,6 +2300,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   544: {
+    'contentType': 20,
     'name': {
       'en': 'Assist Allies in Defeating a Target',
     },
@@ -2156,6 +2310,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   545: {
+    'contentType': 20,
     'name': {
       'en': 'Defeat an Occupied Target',
     },
@@ -2165,6 +2320,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   546: {
+    'contentType': 20,
     'name': {
       'en': 'Avoid Engaged Targets',
     },
@@ -2174,6 +2330,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   548: {
+    'contentType': 20,
     'name': {
       'en': 'Interact with the Battlefield',
     },
@@ -2183,6 +2340,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   549: {
+    'contentType': 20,
     'name': {
       'en': 'Heal an Ally',
     },
@@ -2192,6 +2350,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   550: {
+    'contentType': 20,
     'name': {
       'en': 'Heal Multiple Allies',
     },
@@ -2201,6 +2360,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   552: {
+    'contentType': 20,
     'name': {
       'en': 'Final Exercise',
     },
@@ -2210,6 +2370,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   554: {
+    'contentType': 6,
     'name': {
       'en': 'the Fields of Glory (Shatter)',
     },
@@ -2219,6 +2380,7 @@ const ZoneInfo = {
     'weatherRate': 67,
   },
   555: {
+    'contentType': 2,
     'name': {
       'en': 'Sohr Khai',
     },
@@ -2228,6 +2390,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   556: {
+    'contentType': 5,
     'name': {
       'en': 'the Weeping City of Mhach',
     },
@@ -2237,6 +2400,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   557: {
+    'contentType': 2,
     'name': {
       'en': 'Hullbreaker Isle (Hard)',
     },
@@ -2246,6 +2410,7 @@ const ZoneInfo = {
     'weatherRate': 68,
   },
   558: {
+    'contentType': 9,
     'name': {
       'en': 'the Aquapolis',
     },
@@ -2255,6 +2420,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   559: {
+    'contentType': 4,
     'name': {
       'en': 'the Final Steps of Faith',
     },
@@ -2264,6 +2430,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   560: {
+    'contentType': 7,
     'name': {
       'en': 'a Bloody Reunion',
     },
@@ -2273,6 +2440,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   561: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 1-10)',
     },
@@ -2282,6 +2450,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   562: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 11-20)',
     },
@@ -2291,6 +2460,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   563: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 21-30)',
     },
@@ -2300,6 +2470,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   564: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 31-40)',
     },
@@ -2309,6 +2480,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   565: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 41-50)',
     },
@@ -2318,6 +2490,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   566: {
+    'contentType': 4,
     'name': {
       'en': 'the Minstrel\'s Ballad: Nidhogg\'s Rage',
     },
@@ -2363,6 +2536,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   571: {
+    'contentType': 22,
     'name': {
       'en': 'the Haunted Manor',
     },
@@ -2372,6 +2546,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   572: {
+    'contentType': 2,
     'name': {
       'en': 'Xelphatol',
     },
@@ -2408,6 +2583,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   576: {
+    'contentType': 4,
     'name': {
       'en': 'Containment Bay P1T6',
     },
@@ -2417,6 +2593,7 @@ const ZoneInfo = {
     'weatherRate': 69,
   },
   577: {
+    'contentType': 4,
     'name': {
       'en': 'Containment Bay P1T6 (Extreme)',
     },
@@ -2426,6 +2603,7 @@ const ZoneInfo = {
     'weatherRate': 69,
   },
   578: {
+    'contentType': 2,
     'name': {
       'en': 'the Great Gubal Library (Hard)',
     },
@@ -2435,6 +2613,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   579: {
+    'contentType': 19,
     'name': {
       'en': 'the Triple Triad Battlehall',
     },
@@ -2444,6 +2623,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   580: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Eyes of the Creator',
     },
@@ -2453,6 +2633,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   581: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Breath of the Creator',
     },
@@ -2462,6 +2643,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   582: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Heart of the Creator',
     },
@@ -2471,6 +2653,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   583: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Soul of the Creator',
     },
@@ -2480,6 +2663,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   584: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Eyes of the Creator (Savage)',
     },
@@ -2489,6 +2673,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   585: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Breath of the Creator (Savage)',
     },
@@ -2498,6 +2683,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   586: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Heart of the Creator (Savage)',
     },
@@ -2507,6 +2693,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   587: {
+    'contentType': 5,
     'name': {
       'en': 'Alexander - The Soul of the Creator (Savage)',
     },
@@ -2525,6 +2712,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   589: {
+    'contentType': 19,
     'name': {
       'en': 'LoVM: Player Battle (RP)',
     },
@@ -2534,6 +2722,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   590: {
+    'contentType': 19,
     'name': {
       'en': 'LoVM: Tournament',
     },
@@ -2543,6 +2732,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   591: {
+    'contentType': 19,
     'name': {
       'en': 'LoVM: Player Battle (Non-RP)',
     },
@@ -2552,6 +2742,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   592: {
+    'contentType': 7,
     'name': {
       'en': 'One Life for One World',
     },
@@ -2561,6 +2752,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   593: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 51-60)',
     },
@@ -2570,6 +2762,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   594: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 61-70)',
     },
@@ -2579,6 +2772,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   595: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 71-80)',
     },
@@ -2588,6 +2782,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   596: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 81-90)',
     },
@@ -2597,6 +2792,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   597: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 91-100)',
     },
@@ -2606,6 +2802,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   598: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 101-110)',
     },
@@ -2615,6 +2812,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   599: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 111-120)',
     },
@@ -2624,6 +2822,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   600: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 121-130)',
     },
@@ -2633,6 +2832,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   601: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 131-140)',
     },
@@ -2642,6 +2842,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   602: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 141-150)',
     },
@@ -2651,6 +2852,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   603: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 151-160)',
     },
@@ -2660,6 +2862,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   604: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 161-170)',
     },
@@ -2669,6 +2872,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   605: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 171-180)',
     },
@@ -2678,6 +2882,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   606: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 181-190)',
     },
@@ -2687,6 +2892,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   607: {
+    'contentType': 21,
     'name': {
       'en': 'the Palace of the Dead (Floors 191-200)',
     },
@@ -2759,6 +2965,7 @@ const ZoneInfo = {
     'weatherRate': 84,
   },
   615: {
+    'contentType': 2,
     'name': {
       'en': 'Baelsar\'s Wall',
     },
@@ -2768,6 +2975,7 @@ const ZoneInfo = {
     'weatherRate': 40,
   },
   616: {
+    'contentType': 2,
     'name': {
       'en': 'Shisui of the Violet Tides',
     },
@@ -2777,6 +2985,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   617: {
+    'contentType': 2,
     'name': {
       'en': 'Sohm Al (Hard)',
     },
@@ -2786,6 +2995,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   619: {
+    'contentType': 6,
     'name': {
       'en': 'the Feast (Custom Match - Feasting Grounds)',
     },
@@ -2822,6 +3032,7 @@ const ZoneInfo = {
     'weatherRate': 85,
   },
   623: {
+    'contentType': 2,
     'name': {
       'en': 'Bardam\'s Mettle',
     },
@@ -2831,6 +3042,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   624: {
+    'contentType': 23,
     'name': {
       'en': 'the Diadem Hunting Grounds (Easy)',
     },
@@ -2840,6 +3052,7 @@ const ZoneInfo = {
     'weatherRate': 60,
   },
   625: {
+    'contentType': 23,
     'name': {
       'en': 'the Diadem Hunting Grounds',
     },
@@ -2849,6 +3062,7 @@ const ZoneInfo = {
     'weatherRate': 61,
   },
   626: {
+    'contentType': 2,
     'name': {
       'en': 'The Sirensong Sea',
     },
@@ -2858,6 +3072,7 @@ const ZoneInfo = {
     'weatherRate': 36,
   },
   627: {
+    'contentType': 5,
     'name': {
       'en': 'Dun Scaith',
     },
@@ -2885,6 +3100,7 @@ const ZoneInfo = {
     'weatherRate': 82,
   },
   630: {
+    'contentType': 23,
     'name': {
       'en': 'the Diadem - Trials of the Fury',
     },
@@ -2894,6 +3110,7 @@ const ZoneInfo = {
     'weatherRate': 71,
   },
   633: {
+    'contentType': 7,
     'name': {
       'en': 'The Carteneau Flats: Heliodrome',
     },
@@ -2921,6 +3138,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   637: {
+    'contentType': 4,
     'name': {
       'en': 'Containment Bay Z1T9',
     },
@@ -2930,6 +3148,7 @@ const ZoneInfo = {
     'weatherRate': 75,
   },
   638: {
+    'contentType': 4,
     'name': {
       'en': 'Containment Bay Z1T9 (Extreme)',
     },
@@ -2957,6 +3176,7 @@ const ZoneInfo = {
     'weatherRate': 82,
   },
   646: {
+    'contentType': 6,
     'name': {
       'en': 'the Feast (Custom Match - Lichenweed)',
     },
@@ -3029,6 +3249,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   656: {
+    'contentType': 23,
     'name': {
       'en': 'the Diadem - Trials of the Matron',
     },
@@ -3038,6 +3259,7 @@ const ZoneInfo = {
     'weatherRate': 71,
   },
   660: {
+    'contentType': 2,
     'name': {
       'en': 'Doma Castle',
     },
@@ -3047,6 +3269,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   661: {
+    'contentType': 2,
     'name': {
       'en': 'Castrum Abania',
     },
@@ -3056,6 +3279,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   662: {
+    'contentType': 2,
     'name': {
       'en': 'Kugane Castle',
     },
@@ -3065,6 +3289,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   663: {
+    'contentType': 2,
     'name': {
       'en': 'The Temple of the Fist',
     },
@@ -3074,6 +3299,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   665: {
+    'contentType': 7,
     'name': {
       'en': 'It\'s Probably a Trap',
     },
@@ -3083,6 +3309,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   674: {
+    'contentType': 4,
     'name': {
       'en': 'the Pool of Tribute',
     },
@@ -3092,6 +3319,7 @@ const ZoneInfo = {
     'weatherRate': 77,
   },
   677: {
+    'contentType': 4,
     'name': {
       'en': 'the Pool of Tribute (Extreme)',
     },
@@ -3101,6 +3329,7 @@ const ZoneInfo = {
     'weatherRate': 77,
   },
   679: {
+    'contentType': 4,
     'name': {
       'en': 'the Royal Menagerie',
     },
@@ -3146,6 +3375,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   684: {
+    'contentType': 7,
     'name': {
       'en': 'The Resonant',
     },
@@ -3155,6 +3385,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   688: {
+    'contentType': 7,
     'name': {
       'en': 'Naadam',
     },
@@ -3164,6 +3395,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   689: {
+    'contentType': 2,
     'name': {
       'en': 'Ala Mhigo',
     },
@@ -3173,6 +3405,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   690: {
+    'contentType': 7,
     'name': {
       'en': 'Interdimensional Rift',
     },
@@ -3182,6 +3415,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   691: {
+    'contentType': 5,
     'name': {
       'en': 'Deltascape V1.0',
     },
@@ -3191,6 +3425,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   692: {
+    'contentType': 5,
     'name': {
       'en': 'Deltascape V2.0',
     },
@@ -3200,6 +3435,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   693: {
+    'contentType': 5,
     'name': {
       'en': 'Deltascape V3.0',
     },
@@ -3209,6 +3445,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   694: {
+    'contentType': 5,
     'name': {
       'en': 'Deltascape V4.0',
     },
@@ -3218,6 +3455,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   695: {
+    'contentType': 5,
     'name': {
       'en': 'Deltascape V1.0 (Savage)',
     },
@@ -3227,6 +3465,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   696: {
+    'contentType': 5,
     'name': {
       'en': 'Deltascape V2.0 (Savage)',
     },
@@ -3236,6 +3475,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   697: {
+    'contentType': 5,
     'name': {
       'en': 'Deltascape V3.0 (Savage)',
     },
@@ -3245,6 +3485,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   698: {
+    'contentType': 5,
     'name': {
       'en': 'Deltascape V4.0 (Savage)',
     },
@@ -3254,6 +3495,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   705: {
+    'contentType': 7,
     'name': {
       'en': 'In Thal\'s Name',
     },
@@ -3263,6 +3505,7 @@ const ZoneInfo = {
     'weatherRate': 8,
   },
   706: {
+    'contentType': 7,
     'name': {
       'en': 'Raising the Sword',
     },
@@ -3272,6 +3515,7 @@ const ZoneInfo = {
     'weatherRate': 8,
   },
   707: {
+    'contentType': 7,
     'name': {
       'en': 'With Heart and Steel',
     },
@@ -3281,6 +3525,7 @@ const ZoneInfo = {
     'weatherRate': 37,
   },
   708: {
+    'contentType': 7,
     'name': {
       'en': 'Blood on the Deck',
     },
@@ -3290,6 +3535,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   709: {
+    'contentType': 7,
     'name': {
       'en': 'The Face of True Evil',
     },
@@ -3299,6 +3545,7 @@ const ZoneInfo = {
     'weatherRate': 49,
   },
   710: {
+    'contentType': 7,
     'name': {
       'en': 'Matsuba Mayhem',
     },
@@ -3308,6 +3555,7 @@ const ZoneInfo = {
     'weatherRate': 82,
   },
   711: {
+    'contentType': 7,
     'name': {
       'en': 'The Battle on Bekko',
     },
@@ -3317,6 +3565,7 @@ const ZoneInfo = {
     'weatherRate': 83,
   },
   712: {
+    'contentType': 9,
     'name': {
       'en': 'the Lost Canals of Uznair',
     },
@@ -3326,6 +3575,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   713: {
+    'contentType': 7,
     'name': {
       'en': 'Dark as the Night Sky',
     },
@@ -3335,6 +3585,7 @@ const ZoneInfo = {
     'weatherRate': 85,
   },
   714: {
+    'contentType': 7,
     'name': {
       'en': 'Dragon Sound',
     },
@@ -3344,6 +3595,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   715: {
+    'contentType': 7,
     'name': {
       'en': 'The Orphans and the Broken Blade',
     },
@@ -3353,6 +3605,7 @@ const ZoneInfo = {
     'weatherRate': 86,
   },
   716: {
+    'contentType': 7,
     'name': {
       'en': 'Our Compromise',
     },
@@ -3362,6 +3615,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   717: {
+    'contentType': 7,
     'name': {
       'en': 'Curious Gorge Meets His Match',
     },
@@ -3371,6 +3625,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   718: {
+    'contentType': 7,
     'name': {
       'en': 'The Heart of the Problem',
     },
@@ -3380,6 +3635,7 @@ const ZoneInfo = {
     'weatherRate': 85,
   },
   719: {
+    'contentType': 4,
     'name': {
       'en': 'Emanation',
     },
@@ -3389,6 +3645,7 @@ const ZoneInfo = {
     'weatherRate': 87,
   },
   720: {
+    'contentType': 4,
     'name': {
       'en': 'Emanation (Extreme)',
     },
@@ -3398,6 +3655,7 @@ const ZoneInfo = {
     'weatherRate': 87,
   },
   722: {
+    'contentType': 7,
     'name': {
       'en': 'Our Unsung Heroes',
     },
@@ -3407,6 +3665,7 @@ const ZoneInfo = {
     'weatherRate': 63,
   },
   723: {
+    'contentType': 7,
     'name': {
       'en': 'When Clans Collide',
     },
@@ -3425,6 +3684,7 @@ const ZoneInfo = {
     'weatherRate': 88,
   },
   725: {
+    'contentType': 9,
     'name': {
       'en': 'the Hidden Canals of Uznair',
     },
@@ -3434,6 +3694,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   729: {
+    'contentType': 6,
     'name': {
       'en': 'Astragalos',
     },
@@ -3443,6 +3704,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   730: {
+    'contentType': 4,
     'name': {
       'en': 'the Minstrel\'s Ballad: Shinryu\'s Domain',
     },
@@ -3452,6 +3714,7 @@ const ZoneInfo = {
     'weatherRate': 76,
   },
   731: {
+    'contentType': 2,
     'name': {
       'en': 'the Drowned City of Skalla',
     },
@@ -3461,6 +3724,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   732: {
+    'contentType': 26,
     'name': {
       'en': 'the Forbidden Land, Eureka Anemos',
     },
@@ -3470,6 +3734,7 @@ const ZoneInfo = {
     'weatherRate': 91,
   },
   733: {
+    'contentType': 28,
     'name': {
       'en': 'the Unending Coil of Bahamut (Ultimate)',
     },
@@ -3479,6 +3744,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   734: {
+    'contentType': 5,
     'name': {
       'en': 'the Royal City of Rabanastre',
     },
@@ -3524,6 +3790,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   741: {
+    'contentType': 22,
     'name': {
       'en': 'the Valentione\'s Ceremony',
     },
@@ -3533,6 +3800,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   742: {
+    'contentType': 2,
     'name': {
       'en': 'Hells\' Lid',
     },
@@ -3542,6 +3810,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   743: {
+    'contentType': 2,
     'name': {
       'en': 'the Fractal Continuum (Hard)',
     },
@@ -3560,6 +3829,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   745: {
+    'contentType': 6,
     'name': {
       'en': 'the Feast (Team Ranked)',
     },
@@ -3569,6 +3839,7 @@ const ZoneInfo = {
     'weatherRate': 90,
   },
   746: {
+    'contentType': 4,
     'name': {
       'en': 'the Jade Stoa',
     },
@@ -3578,6 +3849,7 @@ const ZoneInfo = {
     'weatherRate': 93,
   },
   748: {
+    'contentType': 5,
     'name': {
       'en': 'Sigmascape V1.0',
     },
@@ -3587,6 +3859,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   749: {
+    'contentType': 5,
     'name': {
       'en': 'Sigmascape V2.0',
     },
@@ -3596,6 +3869,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   750: {
+    'contentType': 5,
     'name': {
       'en': 'Sigmascape V3.0',
     },
@@ -3605,6 +3879,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   751: {
+    'contentType': 5,
     'name': {
       'en': 'Sigmascape V4.0',
     },
@@ -3614,6 +3889,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   752: {
+    'contentType': 5,
     'name': {
       'en': 'Sigmascape V1.0 (Savage)',
     },
@@ -3623,6 +3899,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   753: {
+    'contentType': 5,
     'name': {
       'en': 'Sigmascape V2.0 (Savage)',
     },
@@ -3632,6 +3909,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   754: {
+    'contentType': 5,
     'name': {
       'en': 'Sigmascape V3.0 (Savage)',
     },
@@ -3641,6 +3919,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   755: {
+    'contentType': 5,
     'name': {
       'en': 'Sigmascape V4.0 (Savage)',
     },
@@ -3650,6 +3929,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   758: {
+    'contentType': 4,
     'name': {
       'en': 'the Jade Stoa (Extreme)',
     },
@@ -3659,6 +3939,7 @@ const ZoneInfo = {
     'weatherRate': 93,
   },
   761: {
+    'contentType': 4,
     'name': {
       'en': 'the Great Hunt',
     },
@@ -3668,6 +3949,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   762: {
+    'contentType': 4,
     'name': {
       'en': 'the Great Hunt (Extreme)',
     },
@@ -3677,6 +3959,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   763: {
+    'contentType': 26,
     'name': {
       'en': 'the Forbidden Land, Eureka Pagos',
     },
@@ -3695,6 +3978,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   765: {
+    'contentType': 6,
     'name': {
       'en': 'the Feast (Ranked)',
     },
@@ -3704,6 +3988,7 @@ const ZoneInfo = {
     'weatherRate': 90,
   },
   766: {
+    'contentType': 6,
     'name': {
       'en': 'the Feast (Training)',
     },
@@ -3713,6 +3998,7 @@ const ZoneInfo = {
     'weatherRate': 90,
   },
   767: {
+    'contentType': 6,
     'name': {
       'en': 'the Feast (Custom Match - Crystal Tower)',
     },
@@ -3722,6 +4008,7 @@ const ZoneInfo = {
     'weatherRate': 90,
   },
   768: {
+    'contentType': 2,
     'name': {
       'en': 'the Swallow\'s Compass',
     },
@@ -3731,6 +4018,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   769: {
+    'contentType': 7,
     'name': {
       'en': 'Emissary of the Dawn',
     },
@@ -3740,6 +4028,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   770: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 1-10)',
     },
@@ -3749,6 +4038,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   771: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 11-20)',
     },
@@ -3758,6 +4048,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   772: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 21-30)',
     },
@@ -3767,6 +4058,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   773: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 41-50)',
     },
@@ -3776,6 +4068,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   774: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 61-70)',
     },
@@ -3785,6 +4078,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   775: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 81-90)',
     },
@@ -3794,6 +4088,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   776: {
+    'contentType': 5,
     'name': {
       'en': 'the Ridorana Lighthouse',
     },
@@ -3803,6 +4098,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   777: {
+    'contentType': 28,
     'name': {
       'en': 'the Weapon\'s Refrain (Ultimate)',
     },
@@ -3812,6 +4108,7 @@ const ZoneInfo = {
     'weatherRate': 26,
   },
   778: {
+    'contentType': 4,
     'name': {
       'en': 'Castrum Fluminis',
     },
@@ -3821,6 +4118,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   779: {
+    'contentType': 4,
     'name': {
       'en': 'the Minstrel\'s Ballad: Tsukuyomi\'s Pain',
     },
@@ -3839,6 +4137,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   782: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 31-40)',
     },
@@ -3848,6 +4147,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   783: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 51-60)',
     },
@@ -3857,6 +4157,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   784: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 71-80)',
     },
@@ -3866,6 +4167,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   785: {
+    'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 91-100)',
     },
@@ -3884,6 +4186,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   788: {
+    'contentType': 2,
     'name': {
       'en': 'Saint Mocianne\'s Arboretum (Hard)',
     },
@@ -3893,6 +4196,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   789: {
+    'contentType': 2,
     'name': {
       'en': 'the Burn',
     },
@@ -3902,6 +4206,7 @@ const ZoneInfo = {
     'weatherRate': 97,
   },
   790: {
+    'contentType': 22,
     'name': {
       'en': 'the Calamity Retold',
     },
@@ -3911,6 +4216,7 @@ const ZoneInfo = {
     'weatherRate': 95,
   },
   791: {
+    'contentType': 6,
     'name': {
       'en': 'Hidden Gorge',
     },
@@ -3920,6 +4226,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   792: {
+    'contentType': 19,
     'name': {
       'en': 'Leap of Faith',
     },
@@ -3929,6 +4236,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   793: {
+    'contentType': 2,
     'name': {
       'en': 'the Ghimlyt Dark',
     },
@@ -3938,6 +4246,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   794: {
+    'contentType': 9,
     'name': {
       'en': 'the Shifting Altars of Uznair',
     },
@@ -3947,6 +4256,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   795: {
+    'contentType': 26,
     'name': {
       'en': 'the Forbidden Land, Eureka Pyros',
     },
@@ -3956,6 +4266,7 @@ const ZoneInfo = {
     'weatherRate': 96,
   },
   796: {
+    'contentType': 27,
     'name': {
       'en': 'All\'s Well That Starts Well',
     },
@@ -3965,6 +4276,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   797: {
+    'contentType': 7,
     'name': {
       'en': 'The Will of the Moon',
     },
@@ -3974,6 +4286,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   798: {
+    'contentType': 5,
     'name': {
       'en': 'Alphascape V1.0',
     },
@@ -3983,6 +4296,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   799: {
+    'contentType': 5,
     'name': {
       'en': 'Alphascape V2.0',
     },
@@ -3992,6 +4306,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   800: {
+    'contentType': 5,
     'name': {
       'en': 'Alphascape V3.0',
     },
@@ -4001,6 +4316,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   801: {
+    'contentType': 5,
     'name': {
       'en': 'Alphascape V4.0',
     },
@@ -4010,6 +4326,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   802: {
+    'contentType': 5,
     'name': {
       'en': 'Alphascape V1.0 (Savage)',
     },
@@ -4019,6 +4336,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   803: {
+    'contentType': 5,
     'name': {
       'en': 'Alphascape V2.0 (Savage)',
     },
@@ -4028,6 +4346,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   804: {
+    'contentType': 5,
     'name': {
       'en': 'Alphascape V3.0 (Savage)',
     },
@@ -4037,6 +4356,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   805: {
+    'contentType': 5,
     'name': {
       'en': 'Alphascape V4.0 (Savage)',
     },
@@ -4046,6 +4366,7 @@ const ZoneInfo = {
     'weatherRate': 92,
   },
   806: {
+    'contentType': 4,
     'name': {
       'en': 'Kugane Ohashi',
     },
@@ -4064,6 +4385,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   810: {
+    'contentType': 4,
     'name': {
       'en': 'Hells\' Kier',
     },
@@ -4073,6 +4395,7 @@ const ZoneInfo = {
     'weatherRate': 98,
   },
   811: {
+    'contentType': 4,
     'name': {
       'en': 'Hells\' Kier (Extreme)',
     },
@@ -4154,6 +4477,7 @@ const ZoneInfo = {
     'weatherRate': 113,
   },
   821: {
+    'contentType': 2,
     'name': {
       'en': 'Dohn Mheg',
     },
@@ -4163,6 +4487,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   822: {
+    'contentType': 2,
     'name': {
       'en': 'Mt. Gulg',
     },
@@ -4172,6 +4497,7 @@ const ZoneInfo = {
     'weatherRate': 102,
   },
   823: {
+    'contentType': 2,
     'name': {
       'en': 'the Qitana Ravel',
     },
@@ -4181,6 +4507,7 @@ const ZoneInfo = {
     'weatherRate': 102,
   },
   824: {
+    'contentType': 4,
     'name': {
       'en': 'the Wreath of Snakes',
     },
@@ -4190,6 +4517,7 @@ const ZoneInfo = {
     'weatherRate': 99,
   },
   825: {
+    'contentType': 4,
     'name': {
       'en': 'the Wreath of Snakes (Extreme)',
     },
@@ -4199,6 +4527,7 @@ const ZoneInfo = {
     'weatherRate': 99,
   },
   826: {
+    'contentType': 5,
     'name': {
       'en': 'the Orbonne Monastery',
     },
@@ -4208,6 +4537,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   827: {
+    'contentType': 26,
     'name': {
       'en': 'the Forbidden Land, Eureka Hydatos',
     },
@@ -4226,6 +4556,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   830: {
+    'contentType': 7,
     'name': {
       'en': 'a Requiem for Heroes',
     },
@@ -4235,6 +4566,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   831: {
+    'contentType': 19,
     'name': {
       'en': 'Four-player Mahjong (Kuitan Disabled)',
     },
@@ -4244,6 +4576,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   832: {
+    'contentType': 19,
     'name': {
       'en': 'Air Force One',
     },
@@ -4253,6 +4586,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   834: {
+    'contentType': 7,
     'name': {
       'en': 'Messenger of the Winds',
     },
@@ -4262,6 +4596,7 @@ const ZoneInfo = {
     'weatherRate': 101,
   },
   836: {
+    'contentType': 2,
     'name': {
       'en': 'Malikah\'s Well',
     },
@@ -4271,6 +4606,7 @@ const ZoneInfo = {
     'weatherRate': 102,
   },
   837: {
+    'contentType': 2,
     'name': {
       'en': 'Holminster Switch',
     },
@@ -4280,6 +4616,7 @@ const ZoneInfo = {
     'weatherRate': 102,
   },
   838: {
+    'contentType': 2,
     'name': {
       'en': 'Amaurot',
     },
@@ -4289,6 +4626,7 @@ const ZoneInfo = {
     'weatherRate': 105,
   },
   840: {
+    'contentType': 2,
     'name': {
       'en': 'the Twinning',
     },
@@ -4298,6 +4636,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   841: {
+    'contentType': 2,
     'name': {
       'en': 'Akadaemia Anyder',
     },
@@ -4334,6 +4673,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   845: {
+    'contentType': 4,
     'name': {
       'en': 'The Dancing Plague',
     },
@@ -4343,6 +4683,7 @@ const ZoneInfo = {
     'weatherRate': 103,
   },
   846: {
+    'contentType': 4,
     'name': {
       'en': 'The Crown of the Immaculate',
     },
@@ -4352,6 +4693,7 @@ const ZoneInfo = {
     'weatherRate': 104,
   },
   847: {
+    'contentType': 4,
     'name': {
       'en': 'The Dying Gasp',
     },
@@ -4361,6 +4703,7 @@ const ZoneInfo = {
     'weatherRate': 105,
   },
   848: {
+    'contentType': 4,
     'name': {
       'en': 'the Crown of the Immaculate (Extreme)',
     },
@@ -4370,6 +4713,7 @@ const ZoneInfo = {
     'weatherRate': 104,
   },
   849: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Gate: Resurrection',
     },
@@ -4379,6 +4723,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   850: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Gate: Descent',
     },
@@ -4388,6 +4733,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   851: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Gate: Inundation',
     },
@@ -4397,6 +4743,7 @@ const ZoneInfo = {
     'weatherRate': 38,
   },
   852: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Gate: Sepulture',
     },
@@ -4406,6 +4753,7 @@ const ZoneInfo = {
     'weatherRate': 23,
   },
   853: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Gate: Resurrection (Savage)',
     },
@@ -4415,6 +4763,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   854: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Gate: Descent (Savage)',
     },
@@ -4424,6 +4773,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   855: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Gate: Inundation (Savage)',
     },
@@ -4433,6 +4783,7 @@ const ZoneInfo = {
     'weatherRate': 38,
   },
   856: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Gate: Sepulture (Savage)',
     },
@@ -4451,6 +4802,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   858: {
+    'contentType': 4,
     'name': {
       'en': 'the Dancing Plague (Extreme)',
     },
@@ -4460,6 +4812,7 @@ const ZoneInfo = {
     'weatherRate': 103,
   },
   859: {
+    'contentType': 7,
     'name': {
       'en': 'Legend of the Not-so-hidden Temple',
     },
@@ -4469,6 +4822,7 @@ const ZoneInfo = {
     'weatherRate': 102,
   },
   860: {
+    'contentType': 7,
     'name': {
       'en': 'Coming Clean',
     },
@@ -4478,6 +4832,7 @@ const ZoneInfo = {
     'weatherRate': 102,
   },
   873: {
+    'contentType': 7,
     'name': {
       'en': 'The Hardened Heart',
     },
@@ -4487,6 +4842,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   874: {
+    'contentType': 7,
     'name': {
       'en': 'The Lost and the Found',
     },
@@ -4496,6 +4852,7 @@ const ZoneInfo = {
     'weatherRate': 110,
   },
   875: {
+    'contentType': 7,
     'name': {
       'en': 'The Hunter\'s Legacy',
     },
@@ -4505,6 +4862,7 @@ const ZoneInfo = {
     'weatherRate': 63,
   },
   876: {
+    'contentType': 7,
     'name': {
       'en': 'Nyelbert\'s Lament',
     },
@@ -4523,6 +4881,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   879: {
+    'contentType': 9,
     'name': {
       'en': 'The Dungeons of Lyhe Ghiah',
     },
@@ -4532,6 +4891,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   882: {
+    'contentType': 5,
     'name': {
       'en': 'The Copied Factory',
     },
@@ -4541,6 +4901,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   884: {
+    'contentType': 2,
     'name': {
       'en': 'The Grand Cosmos',
     },
@@ -4550,6 +4911,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   885: {
+    'contentType': 4,
     'name': {
       'en': 'The Minstrel\'s Ballad: Hades\'s Elegy',
     },
@@ -4568,6 +4930,7 @@ const ZoneInfo = {
     'weatherRate': 47,
   },
   887: {
+    'contentType': 28,
     'name': {
       'en': 'The Epic of Alexander (Ultimate)',
     },
@@ -4577,6 +4940,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   888: {
+    'contentType': 6,
     'name': {
       'en': 'Onsal Hakair (Danshig Naadam)',
     },
@@ -4595,6 +4959,7 @@ const ZoneInfo = {
     'weatherRate': 40,
   },
   893: {
+    'contentType': 7,
     'name': {
       'en': 'Vows of Virtue, Deeds of Cruelty',
     },
@@ -4604,6 +4969,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   894: {
+    'contentType': 7,
     'name': {
       'en': 'As the Heart Bids',
     },
@@ -4622,6 +4988,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   897: {
+    'contentType': 4,
     'name': {
       'en': 'Cinder Drift',
     },
@@ -4631,6 +4998,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   898: {
+    'contentType': 2,
     'name': {
       'en': 'Anamnesis Anyder',
     },
@@ -4640,6 +5008,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   900: {
+    'contentType': 16,
     'name': {
       'en': 'Ocean Fishing',
     },
@@ -4649,6 +5018,7 @@ const ZoneInfo = {
     'weatherRate': 14,
   },
   902: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Verse: Fulmination',
     },
@@ -4658,6 +5028,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   903: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Verse: Furor',
     },
@@ -4667,6 +5038,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   904: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Verse: Iconoclasm',
     },
@@ -4676,6 +5048,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   905: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Verse: Refulgence',
     },
@@ -4685,6 +5058,7 @@ const ZoneInfo = {
     'weatherRate': 46,
   },
   906: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Verse: Fulmination (Savage)',
     },
@@ -4694,6 +5068,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   907: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Verse: Furor (Savage)',
     },
@@ -4703,6 +5078,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   908: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Verse: Iconoclasm (Savage)',
     },
@@ -4712,6 +5088,7 @@ const ZoneInfo = {
     'weatherRate': 0,
   },
   909: {
+    'contentType': 5,
     'name': {
       'en': 'Eden\'s Verse: Refulgence (Savage)',
     },
@@ -4721,6 +5098,7 @@ const ZoneInfo = {
     'weatherRate': 46,
   },
   911: {
+    'contentType': 7,
     'name': {
       'en': 'the Bozja Incident',
     },
@@ -4730,6 +5108,7 @@ const ZoneInfo = {
     'weatherRate': 123,
   },
   912: {
+    'contentType': 4,
     'name': {
       'en': 'Cinder Drift (Extreme)',
     },
@@ -4739,6 +5118,7 @@ const ZoneInfo = {
     'weatherRate': 28,
   },
   913: {
+    'contentType': 4,
     'name': {
       'en': 'Memoria Misera (Extreme)',
     },
@@ -4748,6 +5128,7 @@ const ZoneInfo = {
     'weatherRate': 123,
   },
   914: {
+    'contentType': 7,
     'name': {
       'en': 'A Sleep Disturbed',
     },
