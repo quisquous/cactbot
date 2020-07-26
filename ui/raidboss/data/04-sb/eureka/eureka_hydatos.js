@@ -1013,7 +1013,7 @@
         'Munderg, turn blood to ice': 'Munderg, das Eis der Ewigkeit soll sie für Äonen bannen',
         'The Shin-Zantetsuken Containment Unit': 'Shin-Zantetsuken-Quarantäneblock',
         'The Lance of Virtue Containment Unit': 'Lanze der Tugend-Quarantäneblock',
-        'The Proto-Yadis Containment Unit': 'Proto-Yadis-Quarantäneblock',
+        'The Proto Ozma Containment Unit': 'Proto-Yadis-Quarantäneblock',
         'Relative Virtue gains the effect of Astral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts',
         'Relative Virtue gains the effect of Umbral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit',
       },
@@ -1100,6 +1100,7 @@
         'Shadow': 'Ombre de Proto-Ozma',
         'Streak Lightning': 'Éclair chargeant',
         'The Lance of Virtue Containment Unit': 'l\'enceinte de confinement de la lance de la vertu',
+        'The Proto Ozma Containment Unit': 'l\'enceinte de confinement de Proto-Ozma',
         'The Shin-Zantetsuken Containment Unit': 'l\'enceinte de confinement de Shin-Zantetsuken',
       },
       'replaceText': {
