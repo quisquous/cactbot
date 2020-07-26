@@ -2,6 +2,7 @@
 
 import coinach
 import csv
+import json
 import os
 import re
 
@@ -75,7 +76,7 @@ def make_map(file, inputs, outputs):
 
     for row in reader:
         output = {}
-        for i in range(1, len(indices)):
+        for i in range(0, len(indices)):
             output[outputs[i]] = row[indices[i]]
         if indices[0] in row:
             print("key collision for %s, %s" % (inputs, outputs))
@@ -85,8 +86,16 @@ def make_map(file, inputs, outputs):
 
 
 def make_territory_map(contents):
-    inputs = ["#", 11, "PlaceName", "Name", "WeatherRate", "Map"]
-    outputs = ["territory_id", "cfc_id", "place_id", "name", "weather_rate", "map_id"]
+    inputs = ["#", 11, "PlaceName", "Name", "WeatherRate", "Map", "TerritoryIntendedUse"]
+    outputs = [
+        "territory_id",
+        "cfc_id",
+        "place_id",
+        "name",
+        "weather_rate",
+        "map_id",
+        "territory_intended_use",
+    ]
     return make_map(contents, inputs, outputs)
 
 
@@ -113,6 +122,10 @@ def make_content_type_map(contents):
     inputs = ["#", "Name"]
     outputs = ["content_type_id", "name"]
     return make_map(contents, inputs, outputs)
+
+
+def print_error(header, what, map, key):
+    print("%s %s: %s" % (header, what, json.dumps(map[key])))
 
 
 def generate_name_data(territory_map, cfc_map, place_name_map):
@@ -154,13 +167,16 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
 
         cfc_id_for_name = None
 
+        is_town_zone = territory["territory_intended_use"] == "0"
+        is_overworld_zone = territory["territory_intended_use"] == "1"
+
         if cfc_id != "0":
             cfc_id_for_name = cfc_id
             name_key = clean_name(cfc_map[cfc_id]["name"])
         elif territory_id in territory_to_cfc and territory_to_cfc[territory_id]:
             cfc_id_for_name = territory_to_cfc[territory_id]
             name_key = clean_name(cfc_map[cfc_id_for_name]["name"])
-        else:
+        elif is_town_zone or is_overworld_zone:
             # World zones like Middle La Noscea are not in CFC.
             name_key = clean_name(place_name)
             # Names from ContentFinderCondition take precedence over
@@ -168,21 +184,25 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
             # The Copied Factory version you can walk around in.
             if name_key in cfc_names:
                 continue
+        else:
+            # TODO: add a verbose option
+            # print_error("skipping", place_name, territory_map, territory_id)
+            continue
 
         if not name_key:
             continue
 
         # If we've already seen this twice, ignore.
         if name_key in collision_names:
-            print("collision: %s: %d" % (name_key, int(territory_id)))
+            print_error("collision", name_key, territory_map, territory_id)
             continue
 
         # If this is a collision with an existing name,
         # remove the old one.
         if name_key in map:
             collision_names.add(name_key)
-            print("collision: %s: %d" % (name_key, map[name_key]))
-            print("collision: %s: %d" % (name_key, int(territory_id)))
+            print_error("collision", name_key, territory_map, str(map[name_key]))
+            print_error("collision", name_key, territory_map, territory_id)
             map.pop(name_key)
             continue
 

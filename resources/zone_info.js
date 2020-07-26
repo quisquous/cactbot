@@ -150,15 +150,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 28,
   },
-  144: {
-    'name': {
-      'en': 'The Gold Saucer',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
   145: {
     'name': {
       'en': 'Eastern Thanalan',
@@ -420,42 +411,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
-  176: {
-    'name': {
-      'en': 'Mordion Gaol',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
-  177: {
-    'name': {
-      'en': 'Mizzenmast Inn',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
-    'weatherRate': 0,
-  },
-  178: {
-    'name': {
-      'en': 'The Hourglass',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
-    'weatherRate': 0,
-  },
-  179: {
-    'name': {
-      'en': 'The Roost',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
-    'weatherRate': 0,
-  },
   180: {
     'name': {
       'en': 'Outer La Noscea',
@@ -464,15 +419,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 100,
     'weatherRate': 24,
-  },
-  181: {
-    'name': {
-      'en': 'Limsa Lominsa',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 200,
-    'weatherRate': 0,
   },
   188: {
     'contentType': 2,
@@ -564,15 +510,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 44,
   },
-  198: {
-    'name': {
-      'en': 'Command Room',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
-    'weatherRate': 14,
-  },
   202: {
     'contentType': 4,
     'name': {
@@ -582,24 +519,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 400,
     'weatherRate': 25,
-  },
-  204: {
-    'name': {
-      'en': 'Seat of the First Bow',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
-    'weatherRate': 0,
-  },
-  205: {
-    'name': {
-      'en': 'Lotus Stand',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   206: {
     'contentType': 4,
@@ -630,24 +549,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 400,
     'weatherRate': 26,
-  },
-  210: {
-    'name': {
-      'en': 'Heart of the Sworn',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  212: {
-    'name': {
-      'en': 'The Waking Sands',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   214: {
     'contentType': 3,
@@ -799,24 +700,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
-  246: {
-    'name': {
-      'en': 'IC-04 Main Bridge',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
-  247: {
-    'name': {
-      'en': 'Ragnarok Main Bridge',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
   250: {
     'name': {
       'en': 'Wolves\' Den Pier',
@@ -825,15 +708,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 400,
     'weatherRate': 29,
-  },
-  276: {
-    'name': {
-      'en': 'Hall of Summoning',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
   },
   281: {
     'contentType': 4,
@@ -844,33 +718,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 400,
     'weatherRate': 38,
-  },
-  282: {
-    'name': {
-      'en': 'Private Cottage - Mist',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  283: {
-    'name': {
-      'en': 'Private House - Mist',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  284: {
-    'name': {
-      'en': 'Private Mansion - Mist',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   292: {
     'contentType': 4,
@@ -972,87 +819,6 @@ const ZoneInfo = {
     'sizeFactor': 100,
     'weatherRate': 9,
   },
-  338: {
-    'name': {
-      'en': 'Eorzean Subterrane',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
-  340: {
-    'name': {
-      'en': 'The Lavender Beds',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 200,
-    'weatherRate': 34,
-  },
-  341: {
-    'name': {
-      'en': 'The Goblet',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 200,
-    'weatherRate': 33,
-  },
-  342: {
-    'name': {
-      'en': 'Private Cottage - The Lavender Beds',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  343: {
-    'name': {
-      'en': 'Private House - The Lavender Beds',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  344: {
-    'name': {
-      'en': 'Private Mansion - The Lavender Beds',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  345: {
-    'name': {
-      'en': 'Private Cottage - The Goblet',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  346: {
-    'name': {
-      'en': 'Private House - The Goblet',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  347: {
-    'name': {
-      'en': 'Private Mansion - The Goblet',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
   348: {
     'contentType': 4,
     'name': {
@@ -1081,15 +847,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 0,
     'sizeFactor': 200,
-    'weatherRate': 0,
-  },
-  351: {
-    'name': {
-      'en': 'The Rising Stones',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
     'weatherRate': 0,
   },
   353: {
@@ -1262,15 +1019,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
-  370: {
-    'name': {
-      'en': 'Main Bridge',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
   371: {
     'contentType': 2,
     'name': {
@@ -1391,33 +1139,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
-  384: {
-    'name': {
-      'en': 'Private Chambers - Mist',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  385: {
-    'name': {
-      'en': 'Private Chambers - The Lavender Beds',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  386: {
-    'name': {
-      'en': 'Private Chambers - The Goblet',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
   387: {
     'contentType': 2,
     'name': {
@@ -1426,15 +1147,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 0,
     'sizeFactor': 200,
-    'weatherRate': 0,
-  },
-  388: {
-    'name': {
-      'en': 'Chocobo Square',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
     'weatherRate': 0,
   },
   389: {
@@ -1467,15 +1179,6 @@ const ZoneInfo = {
     'sizeFactor': 100,
     'weatherRate': 0,
   },
-  392: {
-    'name': {
-      'en': 'Sanctum of the Twelve',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 200,
-    'weatherRate': 0,
-  },
   394: {
     'contentType': 4,
     'name': {
@@ -1485,15 +1188,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 100,
     'weatherRate': 45,
-  },
-  395: {
-    'name': {
-      'en': 'Intercessory',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   396: {
     'contentType': 4,
@@ -1627,33 +1321,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
-  423: {
-    'name': {
-      'en': 'Company Workshop - Mist',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  424: {
-    'name': {
-      'en': 'Company Workshop - The Goblet',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  425: {
-    'name': {
-      'en': 'Company Workshop - The Lavender Beds',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
   426: {
     'contentType': 4,
     'name': {
@@ -1662,33 +1329,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 0,
     'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  427: {
-    'name': {
-      'en': 'Saint Endalim\'s Scholasticate',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  428: {
-    'name': {
-      'en': 'Seat of the Lord Commander',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  429: {
-    'name': {
-      'en': 'Cloud Nine',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
     'weatherRate': 0,
   },
   430: {
@@ -1720,15 +1360,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 400,
     'weatherRate': 57,
-  },
-  433: {
-    'name': {
-      'en': 'Fortemps Manor',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   434: {
     'contentType': 2,
@@ -1778,24 +1409,6 @@ const ZoneInfo = {
     'offsetX': -18,
     'offsetY': 149,
     'sizeFactor': 200,
-    'weatherRate': 0,
-  },
-  439: {
-    'name': {
-      'en': 'The Lightfeather Proving Grounds',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  440: {
-    'name': {
-      'en': 'Ruling Chamber',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
     'weatherRate': 0,
   },
   441: {
@@ -1918,24 +1531,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
-  462: {
-    'name': {
-      'en': 'Sacrificial Chamber',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  463: {
-    'name': {
-      'en': 'Matoya\'s Cave',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
   478: {
     'name': {
       'en': 'Idyllshire',
@@ -1945,24 +1540,6 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 55,
   },
-  504: {
-    'name': {
-      'en': 'The Eighteenth Floor',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
-  505: {
-    'name': {
-      'en': 'Alexander',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
   506: {
     'contentType': 19,
     'name': {
@@ -1971,15 +1548,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 0,
     'sizeFactor': 100,
-    'weatherRate': 0,
-  },
-  507: {
-    'name': {
-      'en': 'Central Azys Lla',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
     'weatherRate': 0,
   },
   508: {
@@ -2200,33 +1768,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 0,
     'sizeFactor': 100,
-    'weatherRate': 0,
-  },
-  534: {
-    'name': {
-      'en': 'Twin Adder Barracks',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  535: {
-    'name': {
-      'en': 'Flame Barracks',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  536: {
-    'name': {
-      'en': 'Maelstrom Barracks',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
     'weatherRate': 0,
   },
   537: {
@@ -2499,42 +2040,6 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 28,
   },
-  567: {
-    'name': {
-      'en': 'The Parrock',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  568: {
-    'name': {
-      'en': 'Leofard\'s Chambers',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
-    'weatherRate': 0,
-  },
-  569: {
-    'name': {
-      'en': 'Steps of Faith',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 28,
-  },
-  570: {
-    'name': {
-      'en': 'The Palace of the Dead',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
   571: {
     'contentType': 22,
     'name': {
@@ -2554,33 +2059,6 @@ const ZoneInfo = {
     'offsetY': 35,
     'sizeFactor': 200,
     'weatherRate': 40,
-  },
-  573: {
-    'name': {
-      'en': 'Topmast Apartment Lobby',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  574: {
-    'name': {
-      'en': 'Lily Hills Apartment Lobby',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  575: {
-    'name': {
-      'en': 'Sultana\'s Breath Apartment Lobby',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   576: {
     'contentType': 4,
@@ -2700,15 +2178,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 0,
     'sizeFactor': 200,
-    'weatherRate': 0,
-  },
-  588: {
-    'name': {
-      'en': 'Heart of the Creator',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
     'weatherRate': 0,
   },
   589: {
@@ -2901,42 +2370,6 @@ const ZoneInfo = {
     'sizeFactor': 100,
     'weatherRate': 0,
   },
-  608: {
-    'name': {
-      'en': 'Topmast Apartment',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  609: {
-    'name': {
-      'en': 'Lily Hills Apartment',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  610: {
-    'name': {
-      'en': 'Sultana\'s Breath Apartment',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  611: {
-    'name': {
-      'en': 'Frondale\'s Home for Friendless Foundlings',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
-    'weatherRate': 0,
-  },
   612: {
     'name': {
       'en': 'The Fringes',
@@ -3090,15 +2523,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 82,
   },
-  629: {
-    'name': {
-      'en': 'Bokairo Inn',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 82,
-  },
   630: {
     'contentType': 23,
     'name': {
@@ -3128,15 +2552,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 78,
   },
-  636: {
-    'name': {
-      'en': 'Omega Control',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
   637: {
     'contentType': 4,
     'name': {
@@ -3157,24 +2572,6 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 75,
   },
-  639: {
-    'name': {
-      'en': 'Ruby Bazaar Offices',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  641: {
-    'name': {
-      'en': 'Shirogane',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 200,
-    'weatherRate': 82,
-  },
   646: {
     'contentType': 6,
     'name': {
@@ -3184,69 +2581,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 200,
     'weatherRate': 73,
-  },
-  649: {
-    'name': {
-      'en': 'Private Cottage - Shirogane',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  650: {
-    'name': {
-      'en': 'Private House - Shirogane',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  651: {
-    'name': {
-      'en': 'Private Mansion - Shirogane',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  652: {
-    'name': {
-      'en': 'Private Chambers - Shirogane',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  653: {
-    'name': {
-      'en': 'Company Workshop - Shirogane',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  654: {
-    'name': {
-      'en': 'Kobai Goten Apartment Lobby',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  655: {
-    'name': {
-      'en': 'Kobai Goten Apartment',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   656: {
     'contentType': 23,
@@ -3337,42 +2671,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 400,
     'weatherRate': 76,
-  },
-  680: {
-    'name': {
-      'en': 'The <Emphasis>Misery</Emphasis>',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 36,
-  },
-  681: {
-    'name': {
-      'en': 'The House of the Fierce',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 84,
-  },
-  682: {
-    'name': {
-      'en': 'The Doman Enclave',
-    },
-    'offsetX': -60,
-    'offsetY': -46,
-    'sizeFactor': 400,
-    'weatherRate': 84,
-  },
-  683: {
-    'name': {
-      'en': 'The First Altar of Djanan Qhat',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   684: {
     'contentType': 7,
@@ -3674,15 +2972,6 @@ const ZoneInfo = {
     'sizeFactor': 100,
     'weatherRate': 85,
   },
-  724: {
-    'name': {
-      'en': 'The Interdimensional Rift',
-    },
-    'offsetX': -1000,
-    'offsetY': -1000,
-    'sizeFactor': 100,
-    'weatherRate': 88,
-  },
   725: {
     'contentType': 9,
     'name': {
@@ -3753,42 +3042,6 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
-  735: {
-    'name': {
-      'en': 'The <Emphasis>Prima Vista</Emphasis> Tiring Room',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  736: {
-    'name': {
-      'en': 'The <Emphasis>Prima Vista</Emphasis> Bridge',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  737: {
-    'name': {
-      'en': 'Royal Palace',
-    },
-    'offsetX': -250,
-    'offsetY': 128,
-    'sizeFactor': 200,
-    'weatherRate': 0,
-  },
-  738: {
-    'name': {
-      'en': 'The Resonatorium',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 200,
-    'weatherRate': 0,
-  },
   741: {
     'contentType': 22,
     'name': {
@@ -3817,15 +3070,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 350,
     'sizeFactor': 200,
-    'weatherRate': 0,
-  },
-  744: {
-    'name': {
-      'en': 'Kienkan',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
     'weatherRate': 0,
   },
   745: {
@@ -3938,6 +3182,15 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 93,
   },
+  759: {
+    'name': {
+      'en': 'The Doman Enclave',
+    },
+    'offsetX': 23,
+    'offsetY': 34,
+    'sizeFactor': 400,
+    'weatherRate': 84,
+  },
   761: {
     'contentType': 4,
     'name': {
@@ -3967,15 +3220,6 @@ const ZoneInfo = {
     'offsetY': 0,
     'sizeFactor': 100,
     'weatherRate': 94,
-  },
-  764: {
-    'name': {
-      'en': 'Reisen Temple',
-    },
-    'offsetX': -62,
-    'offsetY': 475,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   765: {
     'contentType': 6,
@@ -4127,15 +3371,6 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 0,
   },
-  780: {
-    'name': {
-      'en': 'Heaven-on-High',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
   782: {
     'contentType': 21,
     'name': {
@@ -4170,15 +3405,6 @@ const ZoneInfo = {
     'contentType': 21,
     'name': {
       'en': 'Heaven-on-High  (Floors 91-100)',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
-  787: {
-    'name': {
-      'en': 'The Ridorana Cataract',
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -4375,15 +3601,6 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 0,
   },
-  809: {
-    'name': {
-      'en': 'Haunted Manor',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 200,
-    'weatherRate': 0,
-  },
   810: {
     'contentType': 4,
     'name': {
@@ -4546,15 +3763,6 @@ const ZoneInfo = {
     'sizeFactor': 100,
     'weatherRate': 100,
   },
-  829: {
-    'name': {
-      'en': 'Eorzean Alliance Headquarters',
-    },
-    'offsetX': 480,
-    'offsetY': -130,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
   830: {
     'contentType': 7,
     'name': {
@@ -4643,33 +3851,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 30,
     'sizeFactor': 200,
-    'weatherRate': 0,
-  },
-  842: {
-    'name': {
-      'en': 'The Syrcus Trench',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
-  843: {
-    'name': {
-      'en': 'The Pendants Personal Suite',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 800,
-    'weatherRate': 112,
-  },
-  844: {
-    'name': {
-      'en': 'The Ocular',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
     'weatherRate': 0,
   },
   845: {
@@ -4792,15 +3973,6 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 23,
   },
-  857: {
-    'name': {
-      'en': 'The Core',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 100,
-    'weatherRate': 0,
-  },
   858: {
     'contentType': 4,
     'name': {
@@ -4871,15 +4043,6 @@ const ZoneInfo = {
     'sizeFactor': 100,
     'weatherRate': 0,
   },
-  878: {
-    'name': {
-      'en': 'The Empty',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
-  },
   879: {
     'contentType': 9,
     'name': {
@@ -4920,15 +4083,6 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 105,
   },
-  886: {
-    'name': {
-      'en': 'The Firmament',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 200,
-    'weatherRate': 47,
-  },
   887: {
     'contentType': 28,
     'name': {
@@ -4949,15 +4103,6 @@ const ZoneInfo = {
     'sizeFactor': 100,
     'weatherRate': 117,
   },
-  889: {
-    'name': {
-      'en': 'Lyhe Mheg',
-    },
-    'offsetX': -12,
-    'offsetY': 50,
-    'sizeFactor': 400,
-    'weatherRate': 40,
-  },
   893: {
     'contentType': 7,
     'name': {
@@ -4977,15 +4122,6 @@ const ZoneInfo = {
     'offsetY': 50,
     'sizeFactor': 400,
     'weatherRate': 40,
-  },
-  895: {
-    'name': {
-      'en': 'Excavation Tunnels',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
-    'weatherRate': 0,
   },
   897: {
     'contentType': 4,
@@ -5135,15 +4271,6 @@ const ZoneInfo = {
     'offsetX': 0,
     'offsetY': 0,
     'sizeFactor': 100,
-    'weatherRate': 0,
-  },
-  915: {
-    'name': {
-      'en': 'Gangos',
-    },
-    'offsetX': 0,
-    'offsetY': 0,
-    'sizeFactor': 400,
     'weatherRate': 0,
   },
 };
