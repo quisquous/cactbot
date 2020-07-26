@@ -25,6 +25,7 @@ let bombLocation = (matches) => {
   zoneRegex: {
     en: /^Alexander - The Fist Of The Son \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(律动之章1\)$/,
+    ko: /^기공성 알렉산더: 율동편\(영웅\) \(1\)$/,
   },
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
@@ -118,11 +119,13 @@ let bombLocation = (matches) => {
           return {
             en: 'Knock Bombs Into Spikey',
             de: 'Bombe in die Spike-Bombe stoßen',
+            ko: '지뢰쪽으로 폭탄 밀기',
           };
         }
         return {
           en: 'Knock Bombs Opposite Spikey',
           de: 'Bombe gegnüber der Spike-Bombe stoßen',
+          ko: '지뢰 반대쪽으로 폭탄 밀기',
         };
       },
     },
@@ -162,18 +165,22 @@ let bombLocation = (matches) => {
             0: {
               en: 'NW first',
               de: 'NW zuerst',
+              ko: '북서쪽 먼저',
             },
             3: {
               en: 'NE first',
               de: 'NO zuerst',
+              ko: '북동쪽 먼저',
             },
             12: {
               en: 'SW first',
               de: 'SW zuerst',
+              ko: '남서쪽 먼저',
             },
             15: {
               en: 'SE first',
               de: 'SO zuerst',
+              ko: '남동쪽 먼저',
             },
           }[index];
         }
@@ -191,6 +198,7 @@ let bombLocation = (matches) => {
       alertText: {
         en: 'Get Away',
         de: 'Weg gehen',
+        ko: '멀리 떨어지기',
       },
     },
     {
@@ -203,6 +211,7 @@ let bombLocation = (matches) => {
         return {
           en: 'Shield ' + data.ShortName(matches.target),
           de: 'Schild ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 에게 보호막',
         };
       },
     },
@@ -213,6 +222,7 @@ let bombLocation = (matches) => {
       alarmText: {
         en: 'GLOOPYGLOOP~',
         de: 'GLOOPYGLOOP~',
+        ko: '강산성 극약',
       },
     },
     {
@@ -249,6 +259,7 @@ let bombLocation = (matches) => {
       alertText: {
         en: 'Cleanse (Green)',
         de: 'Reinigen (Grün)',
+        ko: '디버프 해제 (초록)',
       },
     },
     {
@@ -267,6 +278,7 @@ let bombLocation = (matches) => {
       alertText: {
         en: 'Break Tether (Blue)',
         de: 'Verbindungen brechen (Blau)',
+        ko: '선 끊기 (파랑)',
       },
     },
     {
@@ -433,35 +445,51 @@ let bombLocation = (matches) => {
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
+        '(?<!Hummel)Faust': '파우스트',
+        '(?<!Smart)Bomb': '폭탄',
         'Hummelfaust': '네오 파우스트',
+        'Gobbledygroper': '고블키마이라',
         'Ratfinx Twinkledinks': '재주꾼 랫핑크스',
         'Smartbomb': '초고성능 폭탄',
       },
       'replaceText': {
+        '--big--': '--커짐--',
+        '--small--': '--작아짐--',
         '10-Tonze Slash': '10톤즈 베기',
         'Big Burst': '대폭발',
         'Bomb\'s Away': '폭탄 투하',
         'Boost': '힘 모으기',
+        'Cobra': '코브라',
         'Disorienting Groan': '우렁찬 외침',
         'Feast': '사육제',
         'Glupgloop': '강산성 극약',
+        'Gobbledygawker': '고블주시자',
+        'Gobbledygroper Add': '고블주시자 등장',
+        'Gobcut/Straight': '올려치기/직격타',
         'Gobdash': '노도의 접근 강타',
         'Gobhook': '저력의 옆치기',
         'Gobjab': '견제타',
         'Gobswing': '격진의 주먹 휘두르기',
         'Guzzle': '들이켜기',
+        'Gobstraight/Cut': '직격타/올려치기',
         'Kaltstrahl': '냉병기 공격',
+        'Minotaur': '미노타우로스',
         'Oogle': '석화 시선',
         'Panzer Vor': '기갑 전진',
         'Panzerschreck': '대전차포',
         'Regorge': '게워내기',
         'Relaxant': '약효 소진',
+        'Shabti': '샤브티',
         'Shock Therapy': '감전 충격',
         'Steel Scales': '강철 비늘',
         'Tetra Burst': '사방 폭발',
         'The Lion\'s Breath': '화염 숨결',
+        'Yorn Pig': '모르모트',
+        '\\(NE\\)': '(북동)',
+        '\\(SE\\)': '(남동)',
+        '\\(NE/SE\\)': '(북동/남동)',
+        '\\(SE/SW\\)': '(남동/남서)',
       },
     },
   ],

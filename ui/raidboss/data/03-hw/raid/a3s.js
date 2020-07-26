@@ -6,6 +6,7 @@
   zoneRegex: {
     en: /^Alexander - The Arm Of The Father \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(启动之章3\)$/,
+    ko: /^기공성 알렉산더: 기동편\(영웅\) \(3\)$/,
   },
   zoneId: ZoneId.AlexanderTheArmOfTheFatherSavage,
   timelineFile: 'a3s.txt',
@@ -53,6 +54,7 @@
         de: 'Schleusenöffnung auf DIR',
         fr: 'Éclusage sur Vous',
         cn: '蓝点名',
+        ko: '봇물 대상자',
       },
     },
     {
@@ -64,6 +66,7 @@
         de: 'Tank Debuff',
         fr: 'Debuff vulnérabilité',
         cn: '坦克 Debuff',
+        ko: '탱커 디버프',
       },
     },
     {
@@ -75,6 +78,7 @@
         de: 'Heiler Debuff',
         fr: 'Debuff soins',
         cn: '奶妈 Debuff',
+        ko: '힐러 디버프',
       },
     },
     {
@@ -86,6 +90,7 @@
         de: 'DD Debuff',
         fr: 'Debuff dégats',
         cn: 'DPS Debuff',
+        ko: '딜러 디버프',
       },
     },
     {
@@ -101,6 +106,7 @@
         de: 'Fokusiere Hand mit mehr HP',
         fr: 'Burn sur la main au PV le plus élevée',
         cn: '转火血多手',
+        ko: 'HP 더 많은 손에 집중',
       },
     },
     {
@@ -119,6 +125,7 @@
         de: 'Entwässerung auf DIR',
         fr: 'Drainage sur VOUS',
         cn: '连线点名',
+        ko: '하수로 대상자',
       },
     },
     {
@@ -138,6 +145,7 @@
         de: 'Hole die Entwässerungs-Verbindung',
         fr: 'Prenez un lien drainage',
         cn: '接线',
+        ko: '하수로 선 가져오기',
       },
     },
     {
@@ -182,6 +190,7 @@
             de: 'Abstoß: nahe bei ' + data.ShortName(partner),
             fr: 'Répulsion : Rapprochez-vous de ' + data.ShortName(partner),
             cn: '同极：靠近' + data.ShortName(partner),
+            ko: '반발: ' + data.ShortName(partner) + '와 가까이 붙기',
           };
         }
 
@@ -190,6 +199,7 @@
           de: 'Anziehung: weg von ' + data.ShortName(partner),
           fr: 'Attraction : Eloignez-vous de ' + data.ShortName(partner),
           cn: '异极：远离' + data.ShortName(partner),
+          ko: '자력: ' + data.ShortName(partner) + '와 떨어지기',
         };
       },
     },
@@ -222,6 +232,7 @@
           de: 'Vollgas auf ' + data.ShortName(matches.target),
           fr: 'Geôle liquide sur ' + data.ShortName(matches.target),
           cn: '窒息点' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 액체 감옥',
         };
       },
     },
@@ -235,6 +246,7 @@
             de: 'Klaue auf DIR',
             fr: 'Griffe sur VOUS',
             cn: '抓奶手点名',
+            ko: '액체 발톱 대상자',
           };
         }
       },
@@ -245,6 +257,7 @@
             de: 'Klaue auf ' + data.ShortName(matches.target),
             fr: 'Griffe sur ' + data.ShortName(matches.target),
             cn: '抓奶手点' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 액체 발톱',
           };
         }
       },
@@ -266,6 +279,7 @@
         de: 'Pfropfen: Boss bewegen',
         fr: 'Caillot : Déplacez le boss',
         cn: '水球出现：拉走BOSS',
+        ko: '물구슬: 보스 주차 옮기기',
       },
     },
   ],
@@ -405,7 +419,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Condensate Demineralizer \\.9': '제9대형복수기',
         'Hydrate Core': '액화 핵',
@@ -414,7 +427,7 @@
         'Living Liquid': '살아있는 액체',
       },
       'replaceText': {
-        'Cascade': '캐스케이드',
+        'Cascade': '폭포수',
         'Digititis': '지목',
         'Drainage': '하수로',
         'Embolus': '응고체',
@@ -425,7 +438,7 @@
         'Fluid Swing': '유체 타격',
         'Gear Lubricant': '기어 윤활유',
         'Hand Of Pain': '고통의 손길',
-        'Hand Of Prayer': '기도의 손길',
+        'Hand Of Prayer/Parting': '기도/작별의 손길',
         'Hydromorph': '액상 변이',
         'Magnetism': '자력',
         'Piston Lubricant': '피스톤 윤활유',
@@ -433,7 +446,7 @@
         'Repel': '반발',
         'Sluice': '봇물',
         'Splash': '물장구',
-        'Throttle': '고속 주행',
+        'Throttle': '액체 감옥',
         'Wash Away': '싹쓸이',
       },
     },

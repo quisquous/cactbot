@@ -7,6 +7,7 @@
   zoneRegex: {
     en: /^Alexander - The Breath Of The Creator \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(天动之章2\)$/,
+    ko: /^기공성 알렉산더: 천동편\(영웅\) \(2\)$/,
   },
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
@@ -29,6 +30,7 @@
         de: 'Adds mit Gewichtsfalle treffen',
         fr: 'Frappez les Adds avec le Piège à poids',
         cn: '使用铁锤陷阱击中小怪',
+        ko: '철퇴 함정으로 쫄 맞추기',
       },
     },
   ],
@@ -46,6 +48,7 @@
         de: 'Boden-Stachel',
         fr: 'Pics au sol',
         cn: '地刺陷阱',
+        ko: '가시 함정',
       },
     },
     {
@@ -61,6 +64,7 @@
         de: 'Eislaser',
         fr: 'Lasers de glace',
         cn: '冰晶陷阱',
+        ko: '얼음화살 함정',
       },
     },
     {
@@ -76,6 +80,7 @@
         de: 'Gewichte von der Decke',
         fr: 'Poids du plafond',
         cn: '铁球陷阱',
+        ko: '철퇴 함정',
       },
     },
     {
@@ -172,6 +177,7 @@
           de: 'Tankwechsel, geh weg',
           fr: 'Tank swap, éloignez-vous',
           cn: '换T并且远离',
+          ko: '탱 교대, 멀리가기',
         };
       },
       alertText: function(data, matches) {
@@ -193,6 +199,7 @@
             de: 'Schild ' + data.ShortName(matches.target),
             fr: 'Bouclier ' + data.ShortName(matches.target),
             cn: '单盾' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 보호막',
           };
         }
       },
@@ -243,6 +250,7 @@
         de: 'Makierung auf DIR',
         fr: 'Marquage sur VOUS',
         cn: '火圈点名',
+        ko: '징 대상자',
       },
     },
     {
@@ -258,6 +266,7 @@
         de: 'Makierung weitergeben',
         fr: 'Passez le marquage',
         cn: '传递点名',
+        ko: '징 넘김',
       },
     },
     {
@@ -273,6 +282,7 @@
         de: 'Aktiviere Bodenfalle',
         fr: 'Activez le Piège au sol',
         cn: '踩地刺陷阱',
+        ko: '가시함정 밟기',
       },
     },
     {
@@ -298,6 +308,7 @@
         de: 'Boss mit Eis treffen',
         fr: 'Frappez le boss avec la Glace',
         cn: '踩冰晶陷阱',
+        ko: '보스에게 얼음함정 맞히기',
       },
     },
   ],
@@ -462,20 +473,31 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Buzzsaw': '회전톱',
         'Gobpress R-VI': 'VI호 고블린롤러',
         'Lamebrix Strikebocks': '용병 레임브릭스',
         'Lameprix Strikedocks': '가짜 용병 레임프릭스',
         'The Excruciationator': '과학적 만능처형장',
-        'Weight Of The World': '대륙의 무게',
+        'Weight Of The World': '쇠구슬',
       },
       'replaceText': {
+        '(?!--)mechanic': '기믹',
+        '--in--': '--안--',
+        '--out--': '--밖--',
+        '--in/out--': '--안/밖--',
+        '--out/in--': '--밖/안--',
+        '--spread/stack--': '--산개/쉐어--',
+        '--stack/spread--': '--쉐어/산개--',
         'Brighteyes': '표적',
+        'Clone Add': '분신 등장',
         'Discharge': '총격',
+
         'Double Charge': '2연속 충전',
+        'Floor Trap': '가시 함정',
+        'Frost Trap': '얼음화살 함정',
         'Frostbite': '동상',
+        'Gobbie Adds': '고블린 등장',
         'Goblin Rush': '고블린 돌진',
         'Gobrush Rushgob': '고브류 고블린 돌진',
         'Gobslash Slicetops': '고브류 진공베기',
@@ -485,12 +507,14 @@
         'Gobsway Rumblerocks': '고브류 대격진',
         'Gobswish Spraymops': '고브류 물보라베기',
         'Illuminati Hand Cannon': '푸른손 화포',
-        'Impact': '임팩트',
+        'Impact': '충격',
         'Laceration': '참격',
         'Single Charge': '단발 충전',
         'Steam Roller': '롤러 프레스',
         'Stoneskin': '스톤스킨',
         'Triple Charge': '3연속 충전',
+        'Weight Trap': '철퇴 함정',
+        'Leghops\\?/Charge \\(In\\)\\?': '되받아치기?/충전 (안)?',
       },
     },
   ],

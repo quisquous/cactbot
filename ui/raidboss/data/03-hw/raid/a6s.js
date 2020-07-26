@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Alexander - The Cuff Of The Son \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(律动之章2\)$/,
+    ko: /^기공성 알렉산더: 율동편\(영웅\) \(2\)$/,
   },
   zoneId: ZoneId.AlexanderTheCuffOfTheSonSavage,
   timelineFile: 'a6s.txt',
@@ -56,6 +57,7 @@
             de: 'Mienen nehmen',
             fr: 'Prenez les mines',
             cn: '踩雷',
+            ko: '지뢰 밟기',
           };
         }
         return {
@@ -63,6 +65,7 @@
           de: 'Mienen vermeiden',
           fr: 'Evitez les mines',
           cn: '躲开地雷',
+          ko: '지뢰 피하기',
         };
       },
     },
@@ -80,6 +83,7 @@
         de: 'Superladung ausweichen',
         fr: 'Esquivez la charge de la réplique',
         cn: '躲开冲锋',
+        ko: '환영 돌진 피하기',
       },
     },
     {
@@ -98,6 +102,7 @@
         de: 'Von Replikant wegschauen',
         fr: 'Ne regardez pas la réplique',
         cn: '背对幻象',
+        ko: '환영 쳐다보지 않기',
       },
     },
     {
@@ -116,6 +121,7 @@
         de: 'Von Replikant hinschauen',
         fr: 'Regardez la réplique',
         cn: '面向幻象',
+        ko: '환영 쳐다보기',
       },
     },
     {
@@ -130,6 +136,7 @@
         de: 'Geh Hoch',
         fr: 'Allez en haut',
         cn: '上高台',
+        ko: '높은곳으로',
       },
     },
     {
@@ -144,6 +151,7 @@
         de: 'Geh Runter',
         fr: 'Allez en bas',
         cn: '下低台',
+        ko: '낮은곳으로',
       },
     },
     {
@@ -192,6 +200,7 @@
           en: data.ShortName(matches.target) + ': ' + count,
           de: data.ShortName(matches.target) + ': ' + count,
           cn: data.ShortName(matches.target) + '生命计算法: ' + count,
+          ko: data.ShortName(matches.target) + ': ' + count,
         };
       },
     },
@@ -216,6 +225,7 @@
       alertText: {
         en: 'Hide Behind Ice',
         de: 'Hinter dem Eis verstecken',
+        ko: '얼음 뒤에 숨기',
       },
     },
     {
@@ -227,6 +237,7 @@
       alarmText: {
         en: 'Ice: Freeze Tornado',
         de: 'Eis: Tornado einfrieren',
+        ko: '얼음: 물기둥 얼리기',
       },
     },
     {
@@ -239,6 +250,7 @@
       infoText: {
         en: 'Fire Beam on YOU',
         de: 'Feuer Strahl auf DIR',
+        ko: '화염 광선 대상자',
       },
     },
     {
@@ -253,6 +265,7 @@
         fr: 'Eau sur VOUS',
         ja: '自分に水',
         cn: '水点名',
+        ko: '물징 대상자',
       },
       run: function(data) {
         data.haveWater = true;
@@ -287,6 +300,7 @@
           fr: 'Posez l\'eau bientôt',
           ja: '水来るよ',
           cn: '马上水分摊',
+          ko: '곧 물징 폭발',
         };
       },
     },
@@ -302,6 +316,7 @@
         fr: 'Eclair sur VOUS',
         ja: '自分に雷',
         cn: '雷点名',
+        ko: '번개징 대상자',
       },
       run: function(data) {
         data.haveLightning = true;
@@ -336,6 +351,7 @@
           fr: 'Déposez l\'éclair bientôt',
           ja: '雷来るよ',
           cn: '马上雷分摊',
+          ko: '곧 번개징 폭발',
         };
       },
     },
@@ -529,9 +545,8 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
-        'Blaster(?! Mirage)': '블래스터',
+        'Blaster(?! Mirage)': '폭파자',
         'Blaster Mirage': '폭파자의 환영',
         'Brawler': '폭격자',
         'Machinery Bay 67': '제67기공병 격납고',
@@ -544,17 +559,20 @@
         'Vortexer': '교반자',
       },
       'replaceText': {
+        '--unseal--': '--봉인 해제--',
         'Attachment': '무기 장착',
         'Auxiliary Power': '에너지 지원',
         'Ballistic Missile': '미사일 발사',
         'Bio-Arithmeticks': '생명계산술',
         'Brute Force': '폭력적인 주먹',
+        'Brawler Mechanic': '한손/양손 버스터/드릴',
         'Crashing Thunder': '충격의 번개',
         'Crashing Wave': '충격의 파도',
         'Earth Missile': '대지 미사일',
         'Elemental Jammer': '원소 간섭',
         'Enumeration': '계산',
         'Fire Beam': '화염 광선',
+        'Gobwalker': '고블린워커',
         'Height': '고도',
         'Hidden Minefield': '은폐 지뢰 살포',
         'Ice Missile': '얼음 미사일',
@@ -564,7 +582,7 @@
         'Midan Hardmind': '미다스 강화두뇌',
         'Midan Soldier': '미다스 병사',
         'Mind Blast': '정신파괴',
-        'Mirage': '신기루',
+        'Mirage': '환영',
         'Power Plasma Alpha': '파워 플라스마 α',
         'Power Plasma Beta': '파워 플라스마 β',
         'Power Plasma Gamma': '파워 플라스마 γ',

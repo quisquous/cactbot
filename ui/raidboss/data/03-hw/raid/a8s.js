@@ -10,6 +10,7 @@
   zoneRegex: {
     en: /^Alexander - The Burden Of The Son \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(律动之章4\)$/,
+    ko: /^기공성 알렉산더: 율동편\(영웅\) \(4\)$/,
   },
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
@@ -29,6 +30,7 @@
         de: 'Bald Schwindler',
         fr: 'Arnaqueur bientôt',
         cn: '欺诈者即将出现',
+        ko: '곧 조작자 등장',
       },
     },
     {
@@ -40,6 +42,7 @@
         de: 'Bald Vortexer',
         fr: 'Tourbillonneur bientôt',
         cn: '环旋者即将出现',
+        ko: '곧 교반자 등장',
       },
     },
     {
@@ -57,6 +60,7 @@
         de: 'Supersprung ködern',
         fr: 'Attirez le Super saut',
         cn: '引导超级跳',
+        ko: '슈퍼 점프',
       },
     },
   ],
@@ -75,6 +79,7 @@
         de: 'Megalaser~',
         fr: 'Mégarayon~',
         cn: '巨型光束炮~',
+        ko: '고출력 광선~',
       },
     },
     {
@@ -90,6 +95,7 @@
         de: 'Megalaser~!',
         fr: 'Mégarayon~ !',
         cn: '巨型光束炮~!',
+        ko: '고출력 광선~!',
       },
     },
     {
@@ -108,6 +114,7 @@
         de: 'Dampfregler besiegen',
         fr: 'Tuez les Régulateurs',
         cn: '击杀小怪',
+        ko: '증기 감독 없애기',
       },
     },
     {
@@ -135,6 +142,7 @@
         de: 'Mirage',
         fr: 'Mirage',
         cn: '幻象',
+        ko: '환영',
       },
     },
     {
@@ -149,6 +157,7 @@
         de: 'Orb auf DIR',
         fr: 'Orbe sur VOUS',
         cn: '球点名',
+        ko: '구슬 대상자',
       },
     },
     {
@@ -176,6 +185,7 @@
         de: 'Geh nach Oben',
         fr: 'Montez',
         cn: '上高台',
+        ko: '높은곳으로',
       },
     },
     {
@@ -189,6 +199,7 @@
         de: 'Geh nach Unten',
         fr: 'Descendez',
         cn: '下低台',
+        ko: '낮은곳으로',
       },
     },
     {
@@ -224,6 +235,7 @@
             de: 'Blitz auf DIR',
             fr: 'Foudre sur VOUS',
             cn: '雷点名',
+            ko: '번개징 대상자',
           };
         }
       },
@@ -234,6 +246,7 @@
             de: 'Blitz auf ' + data.ShortName(matches.target),
             fr: 'Foudre sur ' + data.ShortName(matches.target),
             cn: '雷点' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 번개징',
           };
         }
       },
@@ -262,6 +275,7 @@
           de: 'Blitz bald auf ' + data.ShortName(data.lightning),
           fr: 'Foudre bientôt sur ' + data.ShortName(data.lightning),
           cn: '马上雷分摊' + data.ShortName(data.lightning),
+          ko: '"' + data.ShortName(data.lightning) + '" 번개징 곧 터짐',
         };
       },
     },
@@ -276,6 +290,7 @@
           de: data.ShortName(matches.target) + ': ' + count,
           fr: data.ShortName(matches.target) + ': ' + count,
           cn: data.ShortName(matches.target) + '生命计算法: ' + count,
+          ko: data.ShortName(matches.target) + ': ' + count,
         };
       },
     },
@@ -356,6 +371,7 @@
             de: 'Makiert: Geh raus',
             fr: 'Marquage : Sortez',
             cn: '红点名离开人群',
+            ko: '빨간징: 밖으로',
           };
         }
       },
@@ -403,6 +419,7 @@
           de: 'Supersprung auf DIR',
           fr: 'Super saut sur VOUS',
           cn: '超级跳点名',
+          ko: '슈퍼 점프 대상자',
         };
       },
       infoText: function(data, matches) {
@@ -413,6 +430,7 @@
           de: 'Supersprung auf ' + data.ShortName(matches.target),
           fr: 'Super saut sur ' + data.ShortName(matches.target),
           cn: '超级跳点' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 슈퍼 점프',
         };
       },
     },
@@ -425,6 +443,7 @@
         de: 'Mirage auf DIR',
         fr: 'Mirage sur VOUS',
         cn: '分身点名',
+        ko: '환영 징 대상자',
       },
     },
     {
@@ -436,6 +455,7 @@
         de: 'Eis-Rakete auf DIR',
         fr: 'Missile de glace sur VOUS',
         cn: '冰点名',
+        ko: '얼음 미사일 대상자',
       },
     },
     {
@@ -457,6 +477,7 @@
         de: 'Mienen nehmen',
         fr: 'Prenez les mines',
         cn: '踩雷',
+        ko: '지뢰 밟기',
       },
     },
     {
@@ -473,6 +494,7 @@
         de: 'Von Replikant wegschauen',
         fr: 'Ne regardez pas la Réplique',
         cn: '背对幻象',
+        ko: '환영 쳐다보지 않기',
       },
     },
     {
@@ -489,6 +511,7 @@
         de: 'Zu Replikant hinschauen',
         fr: 'Regardez la Réplique',
         cn: '面向幻象',
+        ko: '환영 쳐다보기',
       },
     },
     {
@@ -513,6 +536,7 @@
         de: 'Min HP: Boss herrausfordern => Später No Tornado',
         fr: 'PV Min : Provocation Boss => Cyclone NE en retard',
         cn: '最少HP:挑衅BOSS=>东北龙卷风',
+        ko: 'HP 최소: 보스 도발 => 북동쪽 회오리',
       },
     },
     {
@@ -532,6 +556,7 @@
         de: 'Nimm NO Tornado',
         fr: 'Prenez le Cyclone NE',
         cn: '去东北龙卷风',
+        ko: '북동쪽 회오리 밟기',
       },
     },
     {
@@ -550,6 +575,7 @@
         de: 'Max HP: Boss als Zweites herrausfordern',
         fr: 'PV Max : Seconde Provocation Boss',
         cn: '最多HP:第二个挑衅BOSS',
+        ko: 'HP 최대: 두번째로 보스 도발',
       },
     },
     {
@@ -564,6 +590,7 @@
         de: 'Boss herrausfordern',
         fr: 'Provocation Boss',
         cn: '挑衅BOSS',
+        ko: '보스 도발',
       },
     },
     {
@@ -578,6 +605,7 @@
         de: 'Benutze Verschlingen',
         fr: 'Utilisez Dévoration',
         cn: '使用捕食',
+        ko: '포식 사용하기',
       },
     },
     {
@@ -592,6 +620,7 @@
         de: 'Schwächung 1: SW orb -> 2x nördliche Orbs teilen',
         fr: 'Altération 1 : Orbe SO -> Partagez 2x Orbes Nord',
         cn: '1号：吃西南球然后分摊北边双球',
+        ko: '약화 1: 남서쪽 구슬 -> 북쪽 구슬 2개',
       },
     },
     {
@@ -603,6 +632,7 @@
         de: 'Schwächung 2: NW Tornado',
         fr: 'Altérations 2 : Cyclone NO',
         cn: '2号：西北龙卷风',
+        ko: '약화 2: 북서쪽 회오리',
       },
     },
     {
@@ -613,7 +643,8 @@
         en: 'Penalty 3: Get a South Tornado',
         de: 'Schwächung 3: Nimm südlichen Tornado',
         fr: 'Altérations 3 : Prenez le Cyclone Sud',
-        cn: '2号：南边龙卷风',
+        cn: '3号：南边龙卷风',
+        ko: '약화 3: 남쪽 회오리 중 하나 밟기',
       },
     },
     {
@@ -628,6 +659,7 @@
         de: 'Orn mach Prozessende teilen',
         fr: 'Partagez l\'orbe après le procès',
         cn: '等待锤子判定后分摊最后球',
+        ko: '폐정 이후 구슬 남은거 처리',
       },
     },
     {
@@ -642,6 +674,7 @@
         de: 'Blauer Dampfregler -> 1x nördlichen Orb teilen',
         fr: 'Régulateur bleu -> Partagez 1x Orbe Nord',
         cn: '蓝色小怪然后北边分摊球',
+        ko: '파란색 쫄 -> 북쪽 구슬 하나 처리',
       },
     },
     {
@@ -653,6 +686,7 @@
         de: 'Roter Dampfregler -> 1x nördlichen Orb teilen',
         fr: 'Régulateur rouge -> Partagez 1x Orbe Nord',
         cn: '红色小怪然后北边分摊球',
+        ko: '빨간색 쫄 -> 북쪽 구슬 하나 처리',
       },
     },
     {
@@ -665,6 +699,7 @@
             de: 'Wasser auf DIR',
             fr: 'Eau sur VOUS',
             cn: '水点名',
+            ko: '물징 대상자',
           };
         }
       },
@@ -675,6 +710,7 @@
             de: 'Wasser auf ' + data.ShortName(matches.target),
             fr: 'Eau sur ' + data.ShortName(matches.target),
             cn: '水点' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 물징',
           };
         }
       },
@@ -704,6 +740,7 @@
           de: 'Wasser bald auf ' + data.ShortName(data.water),
           fr: 'Eau bientôt sur ' + data.ShortName(data.water),
           cn: '马上水分摊' + data.ShortName(data.water),
+          ko: '"' + data.ShortName(data.water) + '" 물징 곧 터짐',
         };
       },
     },
@@ -732,6 +769,7 @@
         de: 'Stack für Finaler Megastrahl',
         fr: 'Packez-vous pour Mégarayon final',
         cn: '集合分摊',
+        ko: '최후의 고출력 광선 쉐어',
       },
     },
   ],
@@ -1037,9 +1075,9 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Blaster Mirage': '폭파자의 환영',
+        'Blaster(?! Mirage)': '폭파자',
         'Brawler': '폭격자',
         'Brute Justice': '포악한 심판자',
         'Hidden Mine': '지뢰 폭발',
@@ -1051,15 +1089,16 @@
       },
       'replaceText': {
         '--orbs--': '--구슬--',
-        '--regulator check--': '--레귤레이터 확인--',
+        '--regulator check--': '--증기 감옥 확인--',
         '100-Megatonze Shock': '100메가톤즈 충격',
         'Apocalyptic Ray': '파멸 계시',
         'Attachment': '무기 장착',
         'Auxiliary Power': '에너지 지원',
         'Ballistic Missile': '미사일 발사',
-        'Blaster': '블래스터',
+        'Blaster \\(north\\)': '폭파자 (북쪽)',
         'Blinder': '섬광 미사일',
-        'Brawler': '폭격자',
+        'Brawler \\(middle\\)': '폭격자 (중앙)',
+        'Brawler Mechanic': '한손/양손 버스터/드릴',
         'Brute Force': '폭력적인 주먹',
         'Crashing Thunder': '충격의 번개',
         'Discoid': '원반',
@@ -1091,7 +1130,7 @@
         'Magicked Mark': '마법 발사',
         'Mega Beam': '고출력 광선',
         'Mind Blast': '정신파괴',
-        'Mirage': '신기루',
+        'Mirage': '환영',
         'Missile Command': '미사일 전탄 발사',
         'Perpetual Ray': '영원한 빛줄기',
         'Power Tackle': '강력 들이받기',

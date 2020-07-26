@@ -4,6 +4,7 @@
   zoneRegex: {
     en: /^Alexander - The Soul Of The Creator \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(天动之章4\)$/,
+    ko: /^기공성 알렉산더: 천동편\(영웅\) \(4\)$/,
   },
   zoneId: ZoneId.AlexanderTheSoulOfTheCreatorSavage,
   timelineFile: 'a12s.txt',
@@ -49,6 +50,7 @@
         de: 'Licht auf DIR',
         fr: 'Lumière sur VOUS',
         cn: '白光之鞭点名',
+        ko: '성광의 채찍 대상자',
       },
     },
     {
@@ -84,6 +86,7 @@
           de: 'Licht: ' + names.join(', '),
           fr: 'Lumière : ' + names.join(', '),
           cn: '白光之鞭点:' + names.join(', '),
+          ko: '성광의 채찍:' + names.join(', '),
         };
       },
     },
@@ -116,6 +119,7 @@
         de: 'Laser',
         fr: 'Lasers',
         cn: '十字圣礼',
+        ko: '십자 성례',
       },
     },
     {
@@ -176,7 +180,7 @@
         fr: 'Partagez peine collective',
         ja: '集団罰',
         cn: '集团罪',
-        ko: '집단형: 오른쪽/함께 맞기',
+        ko: '집단형: 쉐어',
       },
     },
     {
@@ -189,7 +193,7 @@
         fr: 'Diffamation',
         ja: '名誉罰',
         cn: '名誉罪',
-        ko: '명예형: 보스 밑에서 나 홀로!!!',
+        ko: '명예형: 멀리가기',
       },
     },
     {
@@ -250,6 +254,7 @@
         de: 'Flächen-Verbindung auf dir',
         fr: 'Lien Zone au sol sur VOUS',
         cn: '放圈连线点名',
+        ko: '장판 남기는 선 대상자',
       },
     },
   ],
@@ -462,7 +467,7 @@
         'Mega Holy': '메가 홀리',
         'Punishing Heat': '징벌의 열선',
         'Radiant Sacrament': '원형 성례',
-        'Smash': '매타작',
+        'Smash': '박살',
         'Summon Alexander': '알렉산더 소환',
         'Temporal Stasis': '시간 정지',
         'Tetrashatter': '결정체 파열',
@@ -470,6 +475,9 @@
         'The General\'s Time': '아리다이오스의 시간',
         'The General\'s Wing': '아리다이오스의 날개',
         'Void Of Repentance': '참회의 방',
+        'timegate(?!s)': '시간 차원문',
+        'timegates active': '시간 차원문 활성화',
+        'timestop': '시간 정지',
       },
     },
   ],
