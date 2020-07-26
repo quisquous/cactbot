@@ -324,7 +324,7 @@ const ZoneInfo = {
   164: {
     'contentType': 2,
     'name': {
-      'en': 'the Tam\u2013Tara Deepcroft',
+      'en': 'the Tam–Tara Deepcroft',
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -364,7 +364,7 @@ const ZoneInfo = {
   169: {
     'contentType': 2,
     'name': {
-      'en': 'the Thousand Maws of Toto\u2013Rak',
+      'en': 'the Thousand Maws of Toto–Rak',
     },
     'offsetX': 0,
     'offsetY': 0,
@@ -1042,7 +1042,7 @@ const ZoneInfo = {
   373: {
     'contentType': 2,
     'name': {
-      'en': 'the Tam\u2013Tara Deepcroft (Hard)',
+      'en': 'the Tam–Tara Deepcroft (Hard)',
     },
     'offsetX': 0,
     'offsetY': 0,
