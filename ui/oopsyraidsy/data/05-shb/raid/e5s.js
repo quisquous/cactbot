@@ -37,12 +37,19 @@ let noOrb = (str) => {
   triggers: [
     {
       // Helper for orb pickup failures
-      id: 'E5S Orb Tracking',
-      gainsEffectRegex: gLang.kEffect.SurgeProtection,
-      losesEffectRegex: gLang.kEffect.SurgeProtection,
-      run: function(e, data) {
+      id: 'E5S Orb Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
+      run: function(e, data, matches) {
         data.hasOrb = data.hasOrb || {};
-        data.hasOrb[e.targetName] = e.gains;
+        data.hasOrb[matches.target] = true;
+      },
+    },
+    {
+      id: 'E5S Orb Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
+      run: function(e, data, matches) {
+        data.hasOrb = data.hasOrb || {};
+        data.hasOrb[matches.target] = false;
       },
     },
     {

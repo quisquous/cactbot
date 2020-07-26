@@ -23,9 +23,10 @@
   triggers: [
     {
       id: 'E2S Shadoweye',
-      gainsEffectRegex: gLang.kEffect.StoneCurse,
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.effectName };
+      // Stone Curse
+      netRegex: NetRegexes.gainsEffect({ effectId: '589' }),
+      mistake: function(e, data, matches) {
+        return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },
     {

@@ -84,54 +84,68 @@
       },
     },
     {
-      id: 'HadesEx Beyond Death Track',
-      gainsEffectRegex: gLang.kEffect.BeyondDeath,
-      losesEffectRegex: gLang.kEffect.BeyondDeath,
-      run: function(e, data) {
+      id: 'HadesEx Beyond Death Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
+      run: function(e, data, matches) {
         data.hasBeyondDeath = data.hasBeyondDeath || {};
-        data.hasBeyondDeath[e.targetName] = e.gains;
+        data.hasBeyondDeath[matches.target] = true;
+      },
+    },
+    {
+      id: 'HadesEx Beyond Death Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '566' }),
+      run: function(e, data, matches) {
+        data.hasBeyondDeath = data.hasBeyondDeath || {};
+        data.hasBeyondDeath[matches.target] = false;
       },
     },
     {
       id: 'HadesEx Beyond Death',
-      gainsEffectRegex: gLang.kEffect.BeyondDeath,
-      delaySeconds: function(e) {
-        return e.durationSeconds - 0.5;
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
+      delaySeconds: function(e, data, matches) {
+        return parseFloat(matches.duration) - 0.5;
       },
-      deathReason: function(e, data) {
+      deathReason: function(e, data, matches) {
         if (!data.hasBeyondDeath)
           return;
-        if (!data.hasBeyondDeath[e.targetName])
+        if (!data.hasBeyondDeath[matches.target])
           return;
         return {
-          name: e.targetName,
-          reason: e.effectName,
+          name: matches.target,
+          reason: matches.effect,
         };
       },
     },
     {
-      id: 'HadesEx Doom Track',
-      gainsEffectRegex: gLang.kEffect.Doom,
-      losesEffectRegex: gLang.kEffect.Doom,
-      run: function(e, data) {
+      id: 'HadesEx Doom Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '6E9' }),
+      run: function(e, data, matches) {
         data.hasDoom = data.hasDoom || {};
-        data.hasDoom[e.targetName] = e.gains;
+        data.hasDoom[matches.target] = true;
+      },
+    },
+    {
+      id: 'HadesEx Doom Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '6E9' }),
+      run: function(e, data, matches) {
+        data.hasDoom = data.hasDoom || {};
+        data.hasDoom[matches.target] = false;
       },
     },
     {
       id: 'HadesEx Doom',
-      gainsEffectRegex: gLang.kEffect.Doom,
-      delaySeconds: function(e) {
-        return e.durationSeconds - 0.5;
+      netRegex: NetRegexes.gainsEffect({ effectId: '6E9' }),
+      delaySeconds: function(e, data, matches) {
+        return parseFloat(matches.duration) - 0.5;
       },
-      deathReason: function(e, data) {
+      deathReason: function(e, data, matches) {
         if (!data.hasDoom)
           return;
-        if (!data.hasDoom[e.targetName])
+        if (!data.hasDoom[matches.target])
           return;
         return {
-          name: e.targetName,
-          reason: e.effectName,
+          name: matches.target,
+          reason: matches.effect,
         };
       },
     },

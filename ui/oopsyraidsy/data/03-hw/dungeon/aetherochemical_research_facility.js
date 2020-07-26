@@ -43,9 +43,9 @@
   triggers: [
     {
       id: 'Facility Petrifaction',
-      gainsEffectRegex: gLang.kEffect.Petrification,
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      netRegex: NetRegexes.gainsEffect({ effectId: '01' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
   ],

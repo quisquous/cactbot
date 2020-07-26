@@ -25,9 +25,9 @@
   triggers: [
     {
       id: 'O4N Doom', // Kills target if not cleansed
-      gainsEffectRegex: gLang.kEffect.Doom,
-      deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Cleansers missed Doom!' } };
+      netRegex: NetRegexes.gainsEffect({ effectId: '38E' }),
+      deathReason: function(e, data, matches) {
+        return { type: 'fail', name: e.target, reason: { en: 'Cleansers missed Doom!' } };
       },
     },
     {
@@ -39,9 +39,9 @@
     },
     {
       id: 'O4N Empowered Blizzard', // Room-wide AoE, freezes non-moving targets
-      gainsEffectRegex: gLang.kEffect.DeepFreeze,
-      mistake: function(e) {
-        return { type: 'warn', name: e.targetName, text: e.effectName };
+      netRegex: NetRegexes.gainsEffect({ effectId: '4E6' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
   ],

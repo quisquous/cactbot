@@ -26,23 +26,23 @@
   triggers: [
     {
       id: 'Dohn Mheg Imp Choir',
-      gainsEffectRegex: gLang.kEffect.Imp,
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
+      netRegex: NetRegexes.gainsEffect({ effectId: '46E' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'Dohn Mheg Toad Choir',
-      gainsEffectRegex: gLang.kEffect.Toad,
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
+      netRegex: NetRegexes.gainsEffect({ effectId: '1B7' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       id: 'Dohn Mheg Fool\'s Tumble',
-      gainsEffectRegex: gLang.kEffect.FoolsTumble,
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
+      netRegex: NetRegexes.gainsEffect({ effectId: '183' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
   ],

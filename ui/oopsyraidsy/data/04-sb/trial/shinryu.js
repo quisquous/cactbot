@@ -26,9 +26,10 @@
     {
       // Icy floor attack.
       id: 'Shinryu Normal Diamond Dust',
-      gainsEffectRegex: gLang.kEffect.ThinIce,
-      deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Slid off!' } };
+      // Thin Ice
+      netRegex: NetRegexes.gainsEffect({ effectId: '38F' }),
+      deathReason: function(e, data, matches) {
+        return { type: 'fail', name: matches.target, reason: { en: 'Slid off!' } };
       },
     },
     {

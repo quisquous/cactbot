@@ -23,11 +23,11 @@
   triggers: [
     {
       id: 'UWU Windburn',
-      gainsEffectRegex: gLang.kEffect.Windburn,
+      netRegex: NetRegexes.gainsEffect({ effectId: 'EB' }),
       // TODO: implement suppressSeconds <_<
       suppressSeconds: 2,
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
     {

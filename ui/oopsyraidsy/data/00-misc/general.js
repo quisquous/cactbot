@@ -137,21 +137,22 @@ let missedMitigationAbility = missedHeal;
     },
     {
       id: 'General Food Buff',
-      losesEffectRegex: gLang.kEffect.WellFed,
-      condition: function(e, data) {
+      // Well Fed
+      netRegex: NetRegexes.losesEffect({ effectId: '48' }),
+      condition: function(e, data, matches) {
         // Prevent "Eos loses the effect of Well Fed from Critlo Mcgee"
-        return e.targetName == e.attackerName;
+        return matches.target === matches.source;
       },
-      mistake: function(e, data) {
+      mistake: function(e, data, matches) {
         data.lostFood = data.lostFood || {};
         // Well Fed buff happens repeatedly when it falls off (WHY),
         // so suppress multiple occurrences.
-        if (!data.inCombat || data.lostFood[e.targetName])
+        if (!data.inCombat || data.lostFood[matches.target])
           return;
-        data.lostFood[e.targetName] = true;
+        data.lostFood[matches.target] = true;
         return {
           type: 'warn',
-          blame: e.targetName,
+          blame: matches.target,
           text: {
             en: 'lost food buff',
             de: 'Nahrungsbuff verloren',
@@ -164,11 +165,11 @@ let missedMitigationAbility = missedHeal;
     },
     {
       id: 'General Well Fed',
-      gainsEffectRegex: gLang.kEffect.WellFed,
-      run: function(e, data) {
+      netRegex: NetRegexes.gainsEffect({ effectId: '48' }),
+      run: function(e, data, matches) {
         if (!data.lostFood)
           return;
-        delete data.lostFood[e.targetName];
+        delete data.lostFood[matches.target];
       },
     },
     {
