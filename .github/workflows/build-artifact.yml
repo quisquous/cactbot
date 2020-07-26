@@ -33,12 +33,24 @@ jobs:
         sha=$(echo ${{ github.sha }} | cut -c 1-8)
         echo "::set-env name=artifact_sha::$sha"
 
+    - name: Check dependencies cache
+      id: cache-dependencies
+      uses: actions/cache@v2
+      with:
+        path: ./plugin/ThirdParty
+        key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.py', './util/DEPS.py') }}
+        restore-keys: |
+          ${{ runner.os }}-cactbot-
+
+    # Fetch dependencies only if cache-hit is false
     - name: Set up Python 3.8
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
       uses: actions/setup-python@v2
       with:
         python-version: 3.8
 
     - name: Fetch dependencies
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
       run: |
         python .\util\fetch_deps.py
 
