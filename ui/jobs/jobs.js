@@ -73,27 +73,6 @@ const kLevelMod = [[0, 0],
   [365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
   [372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
 
-let kGainSecondsRegex = Regexes.parse('for (\\y{Float}) Seconds\\.');
-function gainSecondsFromLog(log) {
-  let m = log.match(kGainSecondsRegex);
-  if (m)
-    return m[1];
-  return 0;
-}
-let kGainSourceRegex = Regexes.parse(' from (\\y{Name}) for');
-function gainSourceFromLog(log) {
-  let m = log.match(kGainSourceRegex);
-  if (m)
-    return m[1];
-  return null;
-}
-let kAbilitySourceRegex = Regexes.parse(' 1[56]:\\y{ObjectId}:(\\y{Name}):');
-function abilitySourceFromLog(log) {
-  let m = log.match(kAbilitySourceRegex);
-  if (m)
-    return m[1];
-  return null;
-}
 
 class ComboTracker {
   constructor(comboBreakers, callback) {
@@ -238,12 +217,12 @@ function setupRegexes(playerName) {
     return gLang.kZone[x];
   }));
 
-  kYouGainEffectRegex = Regexes.gainsEffect({ target: playerName });
-  kYouLoseEffectRegex = Regexes.losesEffect({ target: playerName });
-  kYouUseAbilityRegex = Regexes.ability({ source: playerName });
-  kAnybodyAbilityRegex = Regexes.ability();
-  kMobGainsEffectRegex = Regexes.gainsEffect({ targetId: '4.......' });
-  kMobLosesEffectRegex = Regexes.losesEffect({ targetId: '4.......' });
+  kYouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
+  kYouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
+  kYouUseAbilityRegex = NetRegexes.ability({ source: playerName });
+  kAnybodyAbilityRegex = NetRegexes.ability();
+  kMobGainsEffectRegex = NetRegexes.gainsEffect({ targetId: '4.{7}' });
+  kMobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -520,8 +499,8 @@ class BuffTracker {
 
     this.buffInfo = {
       potion: {
-        gainEffect: gLang.kEffect.Medicated,
-        loseEffect: gLang.kEffect.Medicated,
+        gainEffect: EffectId.Medicated,
+        loseEffect: EffectId.Medicated,
         useEffectDuration: true,
         icon: '../../resources/icon/status/potion.png',
         borderColor: '#AA41B2',
@@ -529,40 +508,40 @@ class BuffTracker {
         cooldown: 270,
       },
       astralAttenuationWind: {
-        mobGainsEffect: gLang.kEffect.AstralAttenuation,
-        mobLosesEffect: gLang.kEffect.AstralAttenuation,
+        mobGainsEffect: EffectId.AstralAttenuation,
+        mobLosesEffect: EffectId.AstralAttenuation,
         useEffectDuration: true,
         icon: '../../resources/icon/status/wind.png',
         borderColor: '#9bdec0',
         sortKey: 0,
       },
       astralAttenuationLightning: {
-        mobGainsEffect: gLang.kEffect.AstralAttenuation,
-        mobLosesEffect: gLang.kEffect.AstralAttenuation,
+        mobGainsEffect: EffectId.AstralAttenuation,
+        mobLosesEffect: EffectId.AstralAttenuation,
         useEffectDuration: true,
         icon: '../../resources/icon/status/lightning.png',
         borderColor: '#e0cb5c',
         sortKey: 0,
       },
       umbralAttenuationEarth: {
-        mobGainsEffect: gLang.kEffect.UmbralAttenuation,
-        mobLosesEffect: gLang.kEffect.UmbralAttenuation,
+        mobGainsEffect: EffectId.UmbralAttenuation,
+        mobLosesEffect: EffectId.UmbralAttenuation,
         useEffectDuration: true,
         icon: '../../resources/icon/status/earth.png',
         borderColor: '#96855a',
         sortKey: 0,
       },
       umbralAttenuationWater: {
-        mobGainsEffect: gLang.kEffect.UmbralAttenuation,
-        mobLosesEffect: gLang.kEffect.UmbralAttenuation,
+        mobGainsEffect: EffectId.UmbralAttenuation,
+        mobLosesEffect: EffectId.UmbralAttenuation,
         useEffectDuration: true,
         icon: '../../resources/icon/status/water.png',
         borderColor: '#4d8bc9',
         sortKey: 0,
       },
       physicalAttenuation: {
-        mobGainsEffect: gLang.kEffect.PhysicalAttenuation,
-        mobLosesEffect: gLang.kEffect.PhysicalAttenuation,
+        mobGainsEffect: EffectId.PhysicalAttenuation,
+        mobLosesEffect: EffectId.PhysicalAttenuation,
         useEffectDuration: true,
         icon: '../../resources/icon/status/physical.png',
         borderColor: '#fff712',
@@ -588,7 +567,6 @@ class BuffTracker {
       },
       trick: {
         gainAbility: gLang.kAbility.TrickAttack,
-        gainRegex: Regexes.ability({ id: gLang.kAbility.TrickAttack }),
         durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.
@@ -597,8 +575,8 @@ class BuffTracker {
         cooldown: 60,
       },
       litany: {
-        gainEffect: gLang.kEffect.BattleLitany,
-        loseEffect: gLang.kEffect.BattleLitany,
+        gainEffect: EffectId.BattleLitany,
+        loseEffect: EffectId.BattleLitany,
         useEffectDuration: true,
         icon: '../../resources/icon/status/battle-litany.png',
         // Cyan.
@@ -612,8 +590,7 @@ class BuffTracker {
         // Instead, use somebody using the effect on you:
         //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
         gainAbility: gLang.kAbility.Embolden,
-        gainRegex: Regexes.abilityFull({ id: gLang.kAbility.Embolden, target: this.playerName }),
-        loseEffect: gLang.kEffect.Embolden,
+        loseEffect: EffectId.Embolden,
         durationSeconds: 20,
         icon: '../../resources/icon/status/embolden.png',
         // Lime.
@@ -622,8 +599,8 @@ class BuffTracker {
         cooldown: 120,
       },
       arrow: {
-        gainEffect: gLang.kEffect.Arrow,
-        loseEffect: gLang.kEffect.Arrow,
+        gainEffect: EffectId.TheArrow,
+        loseEffect: EffectId.TheArrow,
         useEffectDuration: true,
         icon: '../../resources/icon/status/arrow.png',
         // Light Blue.
@@ -631,8 +608,8 @@ class BuffTracker {
         sortKey: 4,
       },
       balance: {
-        gainEffect: gLang.kEffect.Balance,
-        loseEffect: gLang.kEffect.Balance,
+        gainEffect: EffectId.TheBalance,
+        loseEffect: EffectId.TheBalance,
         useEffectDuration: true,
         icon: '../../resources/icon/status/balance.png',
         // Orange.
@@ -640,8 +617,8 @@ class BuffTracker {
         sortKey: 4,
       },
       bole: {
-        gainEffect: gLang.kEffect.Bole,
-        loseEffect: gLang.kEffect.Bole,
+        gainEffect: EffectId.TheBole,
+        loseEffect: EffectId.TheBole,
         useEffectDuration: true,
         icon: '../../resources/icon/status/bole.png',
         // Green.
@@ -649,8 +626,8 @@ class BuffTracker {
         sortKey: 4,
       },
       ewer: {
-        gainEffect: gLang.kEffect.Ewer,
-        loseEffect: gLang.kEffect.Ewer,
+        gainEffect: EffectId.TheEwer,
+        loseEffect: EffectId.TheEwer,
         useEffectDuration: true,
         icon: '../../resources/icon/status/ewer.png',
         // Light Blue.
@@ -658,8 +635,8 @@ class BuffTracker {
         sortKey: 4,
       },
       spear: {
-        gainEffect: gLang.kEffect.Spear,
-        loseEffect: gLang.kEffect.Spear,
+        gainEffect: EffectId.TheSpear,
+        loseEffect: EffectId.TheSpear,
         useEffectDuration: true,
         icon: '../../resources/icon/status/spear.png',
         // Dark Blue.
@@ -667,8 +644,8 @@ class BuffTracker {
         sortKey: 4,
       },
       spire: {
-        gainEffect: gLang.kEffect.Spire,
-        loseEffect: gLang.kEffect.Spire,
+        gainEffect: EffectId.TheSpire,
+        loseEffect: EffectId.TheSpire,
         useEffectDuration: true,
         icon: '../../resources/icon/status/spire.png',
         // Yellow.
@@ -676,8 +653,8 @@ class BuffTracker {
         sortKey: 4,
       },
       ladyOfCrowns: {
-        gainEffect: gLang.kEffect.LadyOfCrowns,
-        loseEffect: gLang.kEffect.LadyOfCrowns,
+        gainEffect: EffectId.LadyOfCrowns,
+        loseEffect: EffectId.LadyOfCrowns,
         useEffectDuration: true,
         icon: '../../resources/icon/status/lady-of-crowns.png',
         // Purple.
@@ -685,8 +662,8 @@ class BuffTracker {
         sortKey: 4,
       },
       lordOfCrowns: {
-        gainEffect: gLang.kEffect.LordOfCrowns,
-        loseEffect: gLang.kEffect.LordOfCrowns,
+        gainEffect: EffectId.LordOfCrowns,
+        loseEffect: EffectId.LordOfCrowns,
         useEffectDuration: true,
         icon: '../../resources/icon/status/lord-of-crowns.png',
         // Dark Red.
@@ -694,8 +671,8 @@ class BuffTracker {
         sortKey: 4,
       },
       devilment: {
-        gainEffect: gLang.kEffect.Devilment,
-        loseEffect: gLang.kEffect.Devilment,
+        gainEffect: EffectId.Devilment,
+        loseEffect: EffectId.Devilment,
         durationSeconds: 20,
         icon: '../../resources/icon/status/devilment.png',
         // Dark Green.
@@ -704,8 +681,8 @@ class BuffTracker {
         cooldown: 120,
       },
       standardFinish: {
-        gainEffect: gLang.kEffect.StandardFinish,
-        loseEffect: gLang.kEffect.StandardFinish,
+        gainEffect: EffectId.StandardFinish,
+        loseEffect: EffectId.StandardFinish,
         durationSeconds: 60,
         icon: '../../resources/icon/status/standard-finish.png',
         // Green.
@@ -713,8 +690,8 @@ class BuffTracker {
         sortKey: 6,
       },
       technicalFinish: {
-        gainEffect: gLang.kEffect.TechnicalFinish,
-        loseEffect: gLang.kEffect.TechnicalFinish,
+        gainEffect: EffectId.TechnicalFinish,
+        loseEffect: EffectId.TechnicalFinish,
         durationSeconds: 20,
         icon: '../../resources/icon/status/technical-finish.png',
         // Dark Peach.
@@ -723,8 +700,8 @@ class BuffTracker {
         cooldown: 120,
       },
       battlevoice: {
-        gainEffect: gLang.kEffect.BattleVoice,
-        loseEffect: gLang.kEffect.BattleVoice,
+        gainEffect: EffectId.BattleVoice,
+        loseEffect: EffectId.BattleVoice,
         useEffectDuration: true,
         icon: '../../resources/icon/status/battlevoice.png',
         // Red.
@@ -742,8 +719,8 @@ class BuffTracker {
         cooldown: 120,
       },
       lefteye: {
-        gainEffect: gLang.kEffect.LeftEye,
-        loseEffect: gLang.kEffect.LeftEye,
+        gainEffect: EffectId.LeftEye,
+        loseEffect: EffectId.LeftEye,
         useEffectDuration: true,
         icon: '../../resources/icon/status/dragon-sight.png',
         // Orange.
@@ -752,8 +729,8 @@ class BuffTracker {
         cooldown: 120,
       },
       righteye: {
-        gainEffect: gLang.kEffect.RightEye,
-        loseEffect: gLang.kEffect.RightEye,
+        gainEffect: EffectId.RightEye,
+        loseEffect: EffectId.RightEye,
         useEffectDuration: true,
         icon: '../../resources/icon/status/dragon-sight.png',
         // Orange.
@@ -762,8 +739,8 @@ class BuffTracker {
         cooldown: 120,
       },
       brotherhood: {
-        gainEffect: gLang.kEffect.Brotherhood,
-        loseEffect: gLang.kEffect.Brotherhood,
+        gainEffect: EffectId.Brotherhood,
+        loseEffect: EffectId.Brotherhood,
         useEffectDuration: true,
         icon: '../../resources/icon/status/brotherhood.png',
         // Dark Orange.
@@ -772,8 +749,8 @@ class BuffTracker {
         cooldown: 90,
       },
       devotion: {
-        gainEffect: gLang.kEffect.Devotion,
-        loseEffect: gLang.kEffect.Devotion,
+        gainEffect: EffectId.Devotion,
+        loseEffect: EffectId.Devotion,
         useEffectDuration: true,
         icon: '../../resources/icon/status/devotion.png',
         // Yellow.
@@ -782,8 +759,8 @@ class BuffTracker {
         cooldown: 180,
       },
       divination: {
-        gainEffect: gLang.kEffect.Divination,
-        loseEffect: gLang.kEffect.Divination,
+        gainEffect: EffectId.Divination,
+        loseEffect: EffectId.Divination,
         useEffectDuration: true,
         icon: '../../resources/icon/status/divination.png',
         // Dark purple.
@@ -820,9 +797,14 @@ class BuffTracker {
       buff.hide = overrides.hide === undefined ? buff.hide : overrides.hide;
 
       for (let prop in propToMapMap) {
-        let key = buff[prop];
-        if (!key)
+        if (!(prop in buff))
           continue;
+        let key = buff[prop];
+        if (typeof key === 'undefined') {
+          console.error('undefined value for key ' + prop + ' for buff ' + buff.name);
+          continue;
+        }
+
         let map = propToMapMap[prop];
         map[key] = map[key] || [];
         map[key].push(buff);
@@ -849,57 +831,50 @@ class BuffTracker {
     }
   }
 
-  onUseAbility(id, log) {
+  onUseAbility(id, matches) {
     let buffs = this.gainAbilityMap[id];
     if (!buffs)
       return;
 
-    for (let b of buffs) {
-      if (b.gainRegex && !log.match(b.gainRegex))
-        continue;
-
-      let seconds = b.durationSeconds;
-      let source = abilitySourceFromLog(log);
-      this.onBigBuff(b.name, seconds, b, source);
-    }
+    for (let b of buffs)
+      this.onBigBuff(b.name, b.durationSeconds, b, matches.source);
   }
 
-  onGainEffect(buffs, log) {
+  onGainEffect(buffs, matches) {
     if (!buffs)
       return;
     for (let b of buffs) {
       let seconds = -1;
       if (b.useEffectDuration)
-        seconds = gainSecondsFromLog(log);
+        seconds = parseFloat(matches.duration);
       else if ('durationSeconds' in b)
         seconds = b.durationSeconds;
 
-      let source = gainSourceFromLog(log);
-      this.onBigBuff(b.name, seconds, b, source);
+      this.onBigBuff(b.name, seconds, b, matches.source);
     }
   }
 
-  onLoseEffect(buffs, log) {
+  onLoseEffect(buffs, matches) {
     if (!buffs)
       return;
     for (let b of buffs)
       this.onLoseBigBuff(b.name, b);
   }
 
-  onYouGainEffect(name, log) {
-    this.onGainEffect(this.gainEffectMap[name], log);
+  onYouGainEffect(name, matches) {
+    this.onGainEffect(this.gainEffectMap[name], matches);
   }
 
-  onYouLoseEffect(name, log) {
-    this.onLoseEffect(this.loseEffectMap[name], log);
+  onYouLoseEffect(name, matches) {
+    this.onLoseEffect(this.loseEffectMap[name], matches);
   }
 
-  onMobGainsEffect(name, log) {
-    this.onGainEffect(this.mobGainsEffectMap[name], log);
+  onMobGainsEffect(name, matches) {
+    this.onGainEffect(this.mobGainsEffectMap[name], matches);
   }
 
-  onMobLosesEffect(name, log) {
-    this.onLoseEffect(this.mobLosesEffectMap[name], log);
+  onMobLosesEffect(name, matches) {
+    this.onLoseEffect(this.mobLosesEffectMap[name], matches);
   }
 
   onBigBuff(name, seconds, info, source) {
@@ -993,8 +968,8 @@ class Bars {
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
 
-    this.gainEffectFuncMap[gLang.kEffect.WellFed] = (name, log) => {
-      let seconds = gainSecondsFromLog(log);
+    this.gainEffectFuncMap[EffectId.WellFed] = (name, matches) => {
+      let seconds = parseFloat(matches.duration);
       let now = Date.now(); // This is in ms.
       this.foodBuffExpiresTimeMs = now + (seconds * 1000);
       this.UpdateFoodBuff();
@@ -1183,9 +1158,28 @@ class Bars {
     if (setup[this.job])
       setup[this.job].bind(this)();
 
+    this.validateKeys();
+
     // Many jobs use the gcd to calculate thresholds and value scaling.
     // Run this initially to set those values.
     this.UpdateJobBarGCDs();
+  }
+
+  validateKeys() {
+    // Keys in JavaScript are converted to strings, so test string equality
+    // here to verify that effects and abilities have been spelled correctly.
+    for (const key in this.abilityFuncMap) {
+      if (key === 'undefined')
+        console.error('undefined key in abilityFuncMap');
+    }
+    for (const key in this.gainEffectFuncMap) {
+      if (key === 'undefined')
+        console.error('undefined key in gainEffectFuncMap');
+    }
+    for (const key in this.loseEffectFuncMap) {
+      if (key === 'undefined')
+        console.error('undefined key in loseEffectFuncMap');
+    }
   }
 
   addJobBarContainer() {
@@ -1363,7 +1357,7 @@ class Bars {
         eyeBox.threshold = oldThreshold;
     });
 
-    this.loseEffectFuncMap[gLang.kEffect.StormsEye] = () => {
+    this.loseEffectFuncMap[EffectId.StormsEye] = () => {
       // Because storm's eye is tracked from the hit, and the ability is delayed,
       // you can have the sequence: Storm's Eye (ability), loses effect, gains effect.
       // To fix this, don't "lose" unless it's been going on a bit.
@@ -1710,25 +1704,25 @@ class Bars {
       // but DOT appears on target about 1 second later
       demolishBox.duration = 19;
     };
-    this.gainEffectFuncMap[gLang.kEffect.LeadenFist] = () => {
+    this.gainEffectFuncMap[EffectId.LeadenFist] = () => {
       dragonKickBox.duration = 0;
       dragonKickBox.duration = 30;
     };
-    this.loseEffectFuncMap[gLang.kEffect.LeadenFist] = () => dragonKickBox.duration = 0;
-    this.gainEffectFuncMap[gLang.kEffect.PerfectBalance] = (name, log) => {
+    this.loseEffectFuncMap[EffectId.LeadenFist] = () => dragonKickBox.duration = 0;
+    this.gainEffectFuncMap[EffectId.PerfectBalance] = (name, matches) => {
       formTimer.duration = 0;
-      formTimer.duration = gainSecondsFromLog(log);
+      formTimer.duration = parseFloat(matches.duration);
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-pb');
     };
 
-    let changeFormFunc = (name, log) => {
+    let changeFormFunc = (name, matches) => {
       formTimer.duration = 0;
-      formTimer.duration = gainSecondsFromLog(log);
+      formTimer.duration = parseFloat(matches.duration);
       formTimer.fg = computeBackgroundColorFrom(formTimer, 'mnk-color-form');
     };
-    this.gainEffectFuncMap[gLang.kEffect.OpoOpoForm] = changeFormFunc;
-    this.gainEffectFuncMap[gLang.kEffect.RaptorForm] = changeFormFunc;
-    this.gainEffectFuncMap[gLang.kEffect.CoeurlForm] = changeFormFunc;
+    this.gainEffectFuncMap[EffectId.OpoOpoForm] = changeFormFunc;
+    this.gainEffectFuncMap[EffectId.RaptorForm] = changeFormFunc;
+    this.gainEffectFuncMap[EffectId.CoeurlForm] = changeFormFunc;
   }
 
   setupRdm() {
@@ -1808,21 +1802,21 @@ class Bars {
       }
     });
 
-    this.gainEffectFuncMap[gLang.kEffect.VerstoneReady] = (name, log) => {
+    this.gainEffectFuncMap[EffectId.VerstoneReady] = (name, matches) => {
       whiteProc.duration = 0;
-      whiteProc.duration = gainSecondsFromLog(log) - this.gcdSpell();
+      whiteProc.duration = parseFloat(matches.duration) - this.gcdSpell();
     };
-    this.loseEffectFuncMap[gLang.kEffect.VerstoneReady] = () => whiteProc.duration = 0;
-    this.gainEffectFuncMap[gLang.kEffect.VerfireReady] = (name, log) => {
+    this.loseEffectFuncMap[EffectId.VerstoneReady] = () => whiteProc.duration = 0;
+    this.gainEffectFuncMap[EffectId.VerfireReady] = (name, matches) => {
       blackProc.duration = 0;
-      blackProc.duration = gainSecondsFromLog(log) - this.gcdSpell();
+      blackProc.duration = parseFloat(matches.duration) - this.gcdSpell();
     };
-    this.loseEffectFuncMap[gLang.kEffect.VerfireReady] = () => blackProc.duration = 0;
-    this.gainEffectFuncMap[gLang.kEffect.Impactful] = (name, log) => {
+    this.loseEffectFuncMap[EffectId.VerfireReady] = () => blackProc.duration = 0;
+    this.gainEffectFuncMap[EffectId.Impactful] = (name, matches) => {
       impactfulProc.duration = 0;
-      impactfulProc = gainSecondsFromLog(log) - this.gcdSpell();
+      impactfulProc = parseFloat(matches.duration) - this.gcdSpell();
     };
-    this.loseEffectFuncMap[gLang.kEffect.Impactful] = () => impactfulProc.duration = 0;
+    this.loseEffectFuncMap[EffectId.Impactful] = () => impactfulProc.duration = 0;
   }
 
   setupBlm() {
@@ -1864,20 +1858,20 @@ class Bars {
       thunderDot.duration = 18;
     };
 
-    this.gainEffectFuncMap[gLang.kEffect.Thundercloud] = (name, log) => {
+    this.gainEffectFuncMap[EffectId.Thundercloud] = (name, matches) => {
       thunderProc.duration = 0;
-      thunderProc.duration = gainSecondsFromLog(log);
+      thunderProc.duration = parseFloat(matches.duration);
     };
-    this.loseEffectFuncMap[gLang.kEffect.Thundercloud] = () => thunderProc.duration = 0;
+    this.loseEffectFuncMap[EffectId.Thundercloud] = () => thunderProc.duration = 0;
 
-    this.gainEffectFuncMap[gLang.kEffect.Firestarter] = (name, log) => {
+    this.gainEffectFuncMap[EffectId.Firestarter] = (name, duration) => {
       fireProc.duration = 0;
-      fireProc.duration = gainSecondsFromLog(log);
+      fireProc.duration = parseFloat(matches.duration);
     };
-    this.loseEffectFuncMap[gLang.kEffect.Firestarter] = () => fireProc.duration = 0;
+    this.loseEffectFuncMap[EffectId.Firestarter] = () => fireProc.duration = 0;
 
-    this.gainEffectFuncMap[gLang.kEffect.CircleOfPower] = () => this.circleOfPower = 1;
-    this.loseEffectFuncMap[gLang.kEffect.CircleOfPower] = () => this.circleOfPower = 0;
+    this.gainEffectFuncMap[EffectId.CircleOfPower] = () => this.circleOfPower = 1;
+    this.loseEffectFuncMap[EffectId.CircleOfPower] = () => this.circleOfPower = 0;
 
     // It'd be super nice to use grid here.
     // Maybe some day when cactbot uses new cef.
@@ -1974,23 +1968,23 @@ class Bars {
     // Paeon -> runs out -> ethos -> within 30s -> Minuet/Ballad -> muse -> muse ends
     // Paeon -> runs out -> ethos -> ethos runs out
     // Track Paeon Stacks through to next song GCD buff
-    this.gainEffectFuncMap[gLang.kEffect.ArmysMuse] = (name, log) => {
+    this.gainEffectFuncMap[EffectId.ArmysMuse] = () => {
       // We just entered Minuet/Ballad, add muse effect
       // If we let paeon run out, get the temp stacks from ethos
       this.museStacks = ethosStacks ? ethosStacks : this.paeonStacks;
       this.paeonStacks = 0;
     };
-    this.loseEffectFuncMap[gLang.kEffect.ArmysMuse] = () => {
+    this.loseEffectFuncMap[EffectId.ArmysMuse] = () => {
       // Muse effect ends
       this.museStacks = 0;
       this.paeonStacks = 0;
     };
-    this.gainEffectFuncMap[gLang.kEffect.ArmysEthos] = (name, log) => {
+    this.gainEffectFuncMap[EffectId.ArmysEthos] = () => {
       // Not under muse or paeon, so store the stacks
       ethosStacks = this.paeonStacks;
       this.paeonStacks = 0;
     };
-    this.loseEffectFuncMap[gLang.kEffect.ArmysEthos] = () => {
+    this.loseEffectFuncMap[EffectId.ArmysEthos] = () => {
       // Didn't use a song and ethos ran out
       ethosStacks = 0;
       this.museStacks = 0;
@@ -2004,10 +1998,10 @@ class Bars {
   }
 
   setupWhm() {
-    this.gainEffectFuncMap[gLang.kEffect.PresenceOfMind] = (name, log) => {
+    this.gainEffectFuncMap[EffectId.PresenceOfMind] = () => {
       this.presenceOfMind = 1;
     };
-    this.loseEffectFuncMap[gLang.kEffect.PresenceOfMind] = () => {
+    this.loseEffectFuncMap[EffectId.PresenceOfMind] = () => {
       this.presenceOfMind = 0;
     };
   }
@@ -2024,10 +2018,10 @@ class Bars {
   }
 
   setupSam() {
-    this.gainEffectFuncMap[gLang.kEffect.Shifu] = (name, log) => {
+    this.gainEffectFuncMap[EffectId.Shifu] = () => {
       this.shifu = 1;
     };
-    this.loseEffectFuncMap[gLang.kEffect.Shifu] = () => {
+    this.loseEffectFuncMap[EffectId.Shifu] = () => {
       this.shifu = 0;
     };
   }
@@ -2411,6 +2405,58 @@ class Bars {
     }
   }
 
+  OnNetLog(e) {
+    if (!this.init)
+      return;
+    const line = e.line;
+    const log = e.rawLine;
+
+    const type = line[0];
+    if (type === '26') {
+      let m = log.match(kYouGainEffectRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        let f = this.gainEffectFuncMap[effectId];
+        if (f)
+          f(name, m.groups);
+        this.buffTracker.onYouGainEffect(effectId, m.groups);
+      }
+      m = log.match(kMobGainsEffectRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        this.buffTracker.onMobGainsEffect(effectId, m.groups);
+      }
+    } else if (type === '30') {
+      let m = log.match(kYouLoseEffectRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        let f = this.loseEffectFuncMap[effectId];
+        if (f)
+          f(name, m.groups);
+        this.buffTracker.onYouLoseEffect(effectId, m.groups);
+      }
+      m = log.match(kMobLosesEffectRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        this.buffTracker.onMobLosesEffect(effectId, m.groups);
+      }
+    } else if (type === '21' || type === '22') {
+      let m = log.match(kYouUseAbilityRegex);
+      if (m) {
+        let id = m.groups.id;
+        this.combo.HandleAbility(id);
+        let f = this.abilityFuncMap[id];
+        if (f)
+          f(id, m.groups);
+        this.buffTracker.onUseAbility(id, m.groups);
+      } else {
+        let m = log.match(kAnybodyAbilityRegex);
+        if (m)
+          this.buffTracker.onUseAbility(m.groups.id, m.groups);
+      }
+    }
+  }
+
   OnLogEvent(e) {
     if (!this.init)
       return;
@@ -2442,47 +2488,9 @@ class Bars {
           continue;
         }
       } else if (log[15] == '1') {
-        if (log[16] == 'A') {
-          let m = log.match(kYouGainEffectRegex);
-          if (m) {
-            let name = m.groups.effect;
-            let f = this.gainEffectFuncMap[name];
-            if (f)
-              f(name, log);
-            this.buffTracker.onYouGainEffect(name, log);
-          }
-          m = log.match(kMobGainsEffectRegex);
-          if (m)
-            this.buffTracker.onMobGainsEffect(m.groups.effect, log);
-        } else if (log[16] == 'E') {
-          let m = log.match(kYouLoseEffectRegex);
-          if (m) {
-            let name = m.groups.effect;
-            let f = this.loseEffectFuncMap[name];
-            if (f)
-              f(name, log);
-            this.buffTracker.onYouLoseEffect(name, log);
-          }
-          m = log.match(kMobLosesEffectRegex);
-          if (m)
-            this.buffTracker.onMobLosesEffect(m.groups.effect, log);
-        }
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
         if (log[16] == '5' || log[16] == '6') {
-          let m = log.match(kYouUseAbilityRegex);
-          if (m) {
-            let id = m.groups.id;
-            this.combo.HandleAbility(id);
-            let f = this.abilityFuncMap[id];
-            if (f)
-              f(id);
-            this.buffTracker.onUseAbility(id, log);
-          } else {
-            let m = log.match(kAnybodyAbilityRegex);
-            if (m)
-              this.buffTracker.onUseAbility(m.groups.id, log);
-          }
           // use of GP Potion
           let cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
           if (log.match(cordialRegex)) {
@@ -2537,6 +2545,9 @@ UserConfig.getUserConfigLocation('jobs', function() {
   });
   addOverlayListener('onLogEvent', function(e) {
     gBars.OnLogEvent(e);
+  });
+  addOverlayListener('LogLine', (e) => {
+    gBars.OnNetLog(e);
   });
 
   gBars = new Bars(Options);
