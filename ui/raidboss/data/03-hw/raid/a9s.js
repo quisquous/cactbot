@@ -270,6 +270,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Bomb': 'Bombe',
         'Faust Z': 'Endfaust',

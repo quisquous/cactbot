@@ -328,6 +328,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Enslaved Love': 'エンスレイブド・ラヴ',
         'Leannan Sith': 'リャナンシー',

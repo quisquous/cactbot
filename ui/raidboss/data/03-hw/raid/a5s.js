@@ -297,6 +297,7 @@ let bombLocation = (matches) => {
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<!Hummel)Faust': 'Faust',
         '(?<!Smart)Bomb': 'Bombe',
@@ -445,6 +446,7 @@ let bombLocation = (matches) => {
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         '(?<!Hummel)Faust': '파우스트',
         '(?<!Smart)Bomb': '폭탄',

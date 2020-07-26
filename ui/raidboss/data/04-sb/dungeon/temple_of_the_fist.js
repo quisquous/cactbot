@@ -314,6 +314,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Arbuda': '额部陀',
         'Coeurl Smriti': '凶豹所忆',

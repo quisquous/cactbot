@@ -202,10 +202,11 @@ const commonReplacement = {
 
 // Keys into commonReplacement objects that represent "partial" translations,
 // in the sense that even if it applies, there still needs to be another
-// translation for it to be complete.
+// translation for it to be complete.  These keys should be exactly the same
+// as the keys from the commonReplacement block above.
 const partialCommonReplacementKeys = [
   // Because the zone name needs to be translated here, this is partial.
-  ':([0-9]{4}):(.*) will be sealed off',
+  syncKeys.seal,
 ];
 
 if (typeof module !== 'undefined' && module.exports) {

@@ -160,7 +160,6 @@ function findMissingTimeline() {
   const skipPartialCommon = true;
 
   // Add all common replacements, so they can be checked for collisions as well.
-  // As of now they apply to both replaceSync and replaceText, so add them to both.
   for (let testCase of testCases) {
     let common = commonReplacement[testCase.type];
     for (let key in common) {

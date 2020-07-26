@@ -991,6 +991,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
         'Arsenal Centaur': 'Arsenal-Zentaur',
@@ -1240,6 +1241,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': '绝对的美德',
         'Arsenal Centaur': '兵武半人马',
@@ -1328,6 +1330,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': '절대미덕',
         'Arsenal Centaur': '무기고 켄타우로스',

@@ -318,6 +318,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': 'Archaeodämon',
         'command tower': 'Kommandoturm',
@@ -472,6 +473,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'command tower': '支配之塔',
