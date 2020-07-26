@@ -1,18 +1,23 @@
 #!/usr/bin/env python
 
+import argparse
 import csv
+import csv_util
 import coinach
+import io
 import json
-import yaml
-from pathlib import Path
 import os
 import re
 import requests
 import sys
-import argparse
+import urllib
+import yaml
+
+from pathlib import Path
 
 locales = ["de", "en", "fr", "ja"]
 tackle_id = 30
+seafood_id = 47
 base = "https://xivapi.com/"
 fishTrackerBase = (
     "https://raw.githubusercontent.com/icykoneko/ff14-fish-tracker-app/master/private/fishData.yaml"
@@ -284,6 +289,38 @@ def get_cn_data():
     return places, fishes, tackle
 
 
+def get_ko_data():
+    item_keys = ["#", "Singular", "ItemSearchCategory"]
+    items = csv_util.get_ko_table("Item", item_keys)
+
+    tackle = {}
+    fishes = {}
+    for id, item in items.items():
+        # no plurals
+        if item["ItemSearchCategory"] == str(tackle_id):
+            tackle[int(id)] = item["Singular"]
+        elif item["ItemSearchCategory"] == str(seafood_id):
+            fishes[int(id)] = item["Singular"]
+
+    # Sorry, this is an unfortunate duplication of get_fish_data
+    # xivapi has data in a different way than the csvs do.
+    # This does mean that there are more keys here.
+    place_keys = ["#", "Name"]
+    place_names = csv_util.get_ko_table("PlaceName", place_keys)
+
+    spot_keys = ["#", "PlaceName", "Item[0]"]
+    spots = csv_util.get_ko_table("FishingSpot", spot_keys)
+
+    places = {}
+    for id, spot in spots.items():
+        place_id = spot["PlaceName"]
+        if place_id == "0":
+            continue
+        places[int(place_id)] = place_names[place_id]["Name"]
+
+    return {"ko": places}, {"ko": fishes}, {"ko": tackle}
+
+
 if __name__ == "__main__":
     example_usage = "python3 gen_fisher_data.py"
     parser = argparse.ArgumentParser(
@@ -302,6 +339,11 @@ if __name__ == "__main__":
     tackle.update({"cn": cn_tackle["chs"]})
     places.update({"cn": cn_places["chs"]})
     fishes.update({"cn": cn_fishes["chs"]})
+
+    ko_places, ko_fishes, ko_tackle = get_ko_data()
+    tackle.update(ko_tackle)
+    places.update(ko_places)
+    fishes.update(ko_fishes)
 
     data = {
         "tackle": tackle,
