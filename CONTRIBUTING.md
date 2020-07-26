@@ -82,6 +82,29 @@ and it helps us find any potentially confusing areas in the code.
 New contributors are always welcome
 and we definitely don't expect anyone to know everything right away.
 
+#### Validating Changes via Remote URLs
+
+Cactbot has the ability to reference remote GitHub URLs
+in place of referencing the HTML file on your computer.
+In order to use the main cactbot repository as your cactbot's source URL,
+simply enter the cactbot module's full HTML filepath
+instead of the HTML file included in the cactbot download.
+
+For example, <https://quisquous.github.io/cactbot/ui/raidboss/raidboss.html>
+will use the latest changes for the `raidboss` module pushed to GitHub.
+
+When making changes, it may be helpful to reference your personal fork
+via the same methods listed above.
+To leverage this free GitHub feature, enable
+[GitHub Pages](https://docs.github.com/en/github/working-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites)
+on your personal repository fork,
+and configure the source to point to either your `master` or `gh-pages` branch.
+From there, any change you'd like to test
+can be added to the branch you've selected
+and tested in real time by pointing cactbot to use
+`<username>.github.io/cactbot/ui/<module>/<module>.html`
+as its source.
+
 ### Code Review Culture
 
 Ideally, all changes should get code review.
