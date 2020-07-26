@@ -29,35 +29,6 @@ _CONTENT_TYPE_OUTPUT_FILE = "content_type.js"
 # else if CFC has a TerritoryType that matches: use that
 # else: use PlaceName
 
-# Turn names from ContentFinderCondition into JavaScript-safe string keys.
-def clean_name(str):
-    if not str:
-        return str
-
-    # The Tam\u2013Tara Deepcroft
-    str = re.sub(r"\u2013", "-", str)
-
-    # The <Emphasis>Whorleater</Emphasis> Extreme
-    str = re.sub(r"</?Emphasis>", "", str)
-
-    # Various symbols to get rid of.
-    str = re.sub(r"[':(),]", "", str)
-
-    # Sigmascape V4.0 (Savage)
-    str = re.sub(r"\.", "", str)
-
-    # Common case hyphen: TheSecondCoilOfBahamutTurn1
-    # Special case hyphen: ThePalaceOfTheDeadFloors1_10
-    str = re.sub(r"([0-9])-([0-9])", r"\1_\2", str)
-    str = re.sub(r"[-]", " ", str)
-
-    # Of course capitalization isn't consistent, that'd be ridiculous.
-    str = str.title()
-
-    # collapse remaining whitespace
-    str = re.sub(r"\s+", "", str)
-    return str
-
 
 def make_territory_map(contents):
     inputs = ["#", 11, "PlaceName", "Name", "WeatherRate", "Map", "TerritoryIntendedUse"]
@@ -127,7 +98,7 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
         if cfc_id == "0":
             continue
         raw_name = cfc_map[cfc_id]["name"]
-        name_key = clean_name(raw_name)
+        name_key = csv_util.clean_name(raw_name)
         if not name_key:
             continue
         cfc_names.add(name_key)
@@ -146,13 +117,13 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
 
         if cfc_id != "0":
             cfc_id_for_name = cfc_id
-            name_key = clean_name(cfc_map[cfc_id]["name"])
+            name_key = csv_util.clean_name(cfc_map[cfc_id]["name"])
         elif territory_id in territory_to_cfc and territory_to_cfc[territory_id]:
             cfc_id_for_name = territory_to_cfc[territory_id]
-            name_key = clean_name(cfc_map[cfc_id_for_name]["name"])
+            name_key = csv_util.clean_name(cfc_map[cfc_id_for_name]["name"])
         elif is_town_zone or is_overworld_zone:
             # World zones like Middle La Noscea are not in CFC.
-            name_key = clean_name(place_name)
+            name_key = csv_util.clean_name(place_name)
             # Names from ContentFinderCondition take precedence over
             # territory names.  There are some duplicates, such as
             # The Copied Factory version you can walk around in.
@@ -227,7 +198,7 @@ def generate_content_type(content_type_map):
         name = content_type["name"]
         if not name:
             continue
-        map[clean_name(name)] = int(id)
+        map[csv_util.clean_name(name)] = int(id)
     return map
 
 

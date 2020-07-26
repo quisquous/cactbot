@@ -2,12 +2,47 @@
 
 import csv
 import io
+import re
 import urllib.request
 
 _BASE_GITHUB = "https://raw.githubusercontent.com/"
 _INTL_GITHUB = "xivapi/ffxiv-datamining/master/csv/"
 _CN_GITHUB = "thewakingsands/ffxiv-datamining-cn/master/"
 _KO_GITHUB = "Ra-Workspace/ffxiv-datamining-ko/master/csv/"
+
+
+# Turn names from tables into JavaScript-safe ascii string keys.
+def clean_name(str):
+    if not str:
+        return str
+
+    # The Tam\u2013Tara Deepcroft
+    str = re.sub(r"\u2013", "-", str)
+
+    # The <Emphasis>Whorleater</Emphasis> Extreme
+    str = re.sub(r"</?Emphasis>", "", str)
+
+    # Various symbols to get rid of.
+    str = re.sub(r"[':(),]", "", str)
+
+    # Sigmascape V4.0 (Savage)
+    str = re.sub(r"\.", "", str)
+
+    # Common case hyphen: TheSecondCoilOfBahamutTurn1
+    # Special case hyphen: ThePalaceOfTheDeadFloors1_10
+    str = re.sub(r"([0-9])-([0-9])", r"\1_\2", str)
+    str = re.sub(r"[-]", " ", str)
+
+    # Of course capitalization isn't consistent, that'd be ridiculous.
+    str = str.title()
+
+    # collapse remaining whitespace
+    str = re.sub(r"\s+", "", str)
+
+    # remove non-ascii characters
+    str = re.sub(r"[^0-9A-z_]", "", str)
+    return str
+
 
 # inputs[0] is the key column for the returned map
 def make_map(contents, inputs, outputs=None):
