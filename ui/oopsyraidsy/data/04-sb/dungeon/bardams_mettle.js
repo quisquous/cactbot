@@ -1,6 +1,29 @@
 'use strict';
 
 // Bardam's Mettle
+
+
+// For reasons not completely understood at the time this was merged,
+// but likely related to the fact that no nameplates are visible during the encounter,
+// and that nothing in the encounter actually does damage,
+// we can't use damageWarn or gainsEffect helpers on the Bardam fight.
+// Instead, we use this helper function to look for failure flags.
+// If the flag is present,a full trigger object is returned that drops in seamlessly.
+function abilityWarn(args) {
+  if (!args.abilityId)
+    console.error('Missing ability ' + JSON.stringify(args));
+  return {
+    id: args.id,
+    netRegex: NetRegexes.abilityFull({ abilityId: args.abilityId }),
+    condition: function(e, data, matches) {
+      return matches.flags.substr(-2) == '0E';
+    },
+    mistake: function(e, data, matches) {
+      return { type: 'warn', blame: matches.target, text: matches.ability };
+    },
+  };
+}
+
 [{
   zoneRegex: {
     en: /^Bardam's Mettle$/,
@@ -47,4 +70,26 @@
   gainsEffectFail: {
     'Bardam Fetters': '56A', // Failing two mechanics in any one phase on Bardam, second boss.
   },
+  triggers: [
+    // 1 of 3 270-degree ring AoEs, Bardam, second boss
+    abilityWarn({ id: 'Bardam Heavy Strike 1', abilityId: '2578' }),
+    // 2 of 3 270-degree ring AoEs, Bardam, second boss
+    abilityWarn({ id: 'Bardam Heavy Strike 2', abilityId: '2579' }),
+    // 3 of 3 270-degree ring AoEs, Bardam, second boss
+    abilityWarn({ id: 'Bardam Heavy Strike 3', abilityId: '257A' }),
+    // 1 of 2 concentric ring AoEs, Bardam, second boss
+    abilityWarn({ id: 'Bardam Tremblor 1', abilityId: '257B' }),
+    // 2 of 2 concentric ring AoEs, Bardam, second boss
+    abilityWarn({ id: 'Bardam Tremblor 2', abilityId: '257C' }),
+    // Checkerboard AoE, Throwing Spear, second boss
+    abilityWarn({ id: 'Bardam Throwing Spear', abilityId: '257F' }),
+    // Gaze attack, Warrior of Bardam, second boss
+    abilityWarn({ id: 'Bardam Empty Gaze', abilityId: '1F04' }),
+    // Donut AoE headmarkers, Bardam, second boss
+    abilityWarn({ id: 'Bardam\'s Ring', abilityId: '2581' }),
+    // Targeted circle AoEs, Bardam, second boss
+    abilityWarn({ id: 'Bardam Comet', abilityId: '257D' }),
+    // Circle AoEs, Star Shard, second boss
+    abilityWarn({ id: 'Bardam Comet Impact', abilityId: '2580' }),
+  ],
 }];
