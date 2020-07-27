@@ -216,6 +216,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Naels Trugbild', id: '4AFF' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Nael', id: '4AFF' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ネールの幻影', id: '4AFF' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4AFF' }),
       condition: function(data, matches) {
         if (data.role != 'healer' || data.role != 'tank')
           return false;
