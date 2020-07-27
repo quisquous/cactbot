@@ -88,7 +88,7 @@
       alertText: {
         en: '8x puddles on YOU',
         de: '8x Fläche auf DIR',
-        fr: '8x Zones au sol sur vous',
+        fr: '8x Zones au sol sur VOUS',
       },
     },
     {
@@ -142,6 +142,7 @@
       alertText: {
         en: 'Knockback Laser on YOU',
         de: 'Rückstoß-Laser auf DIR',
+        fr: 'Poussée-laser sur VOUS',
       },
     },
     {
@@ -151,6 +152,7 @@
       infoText: {
         en: 'Avoid Laser',
         de: 'Laser ausweichen',
+        fr: 'Évitez le laser',
       },
     },
   ],
@@ -197,15 +199,19 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Yol': 'Yol',
+        'Yol(?! )': 'Yol',
+        'Yol Feather': 'plume de Yol',
         'Warrior Of Bardam': 'guerrier de Bardam',
+        'Voiceless Muse': 'la Muse sans voix',
         'Throwing Spear': 'lance de jet',
         'Star Shard': 'éclat d\'étoile',
+        'Rebirth of Bardam the Brave': 'la Renaissance de Bardam le Brave',
         'Looming Shadow': 'ombre grandissante',
         'Hunter Of Bardam': 'chasseur de Bardam',
         'Corpsecleaner Eagle': 'aigle charognard',
         'Garula': 'Garula',
         '(?<! )Bardam(?!( |s))': 'Bardam',
+        'Bardam\'s Hunt': 'la Chasse de Bardam',
       },
       'replaceText': {
         'Wingbeat': 'Battement d\'ailes',
