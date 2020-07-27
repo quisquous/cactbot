@@ -1801,9 +1801,7 @@ class EurekaTracker {
 
     this.fairy = this.zoneInfo.fairy;
     let fairyName = this.TransByParserLang(this.fairy);
-    this.fairy.regex = Regexes.parse('03:\\y{ObjectId}:Added new combatant (' + fairyName + ')\\. .* ' +
-                                     'Pos: \\(([^,]+),([^,]+),([^,]+)\\)');
-
+    this.fairy.regex = Regexes.addedCombatantFull({ name: fairyName });
     this.playerElement = document.createElement('div');
     this.playerElement.classList.add('player');
     container.appendChild(this.playerElement);
@@ -2093,7 +2091,7 @@ class EurekaTracker {
       if (log.indexOf(' 03:') >= 0 || log.indexOf('00:0839:') >= 0) {
         match = log.match(this.fairy.regex);
         if (match)
-          this.AddFairy(match[1], match[2], match[3]);
+          this.AddFairy(match.groups);
       }
     }
   }
@@ -2219,9 +2217,9 @@ class EurekaTracker {
     }, this.options.FlagTimeoutMs);
   }
 
-  AddFairy(name, ex, ey) {
-    const mx = this.EntityToMapX(ex);
-    const my = this.EntityToMapY(ey);
+  AddFairy(matches) {
+    const mx = this.EntityToMapX(parseFloat(matches.x));
+    const my = this.EntityToMapY(parseFloat(matches.y));
     this.AddFlag(mx, my, this.TransByParserLang(this.zoneInfo.fairy), '');
   }
 }
