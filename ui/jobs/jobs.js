@@ -1864,7 +1864,7 @@ class Bars {
     };
     this.loseEffectFuncMap[EffectId.Thundercloud] = () => thunderProc.duration = 0;
 
-    this.gainEffectFuncMap[EffectId.Firestarter] = (name, duration) => {
+    this.gainEffectFuncMap[EffectId.Firestarter] = (name, matches) => {
       fireProc.duration = 0;
       fireProc.duration = parseFloat(matches.duration);
     };
