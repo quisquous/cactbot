@@ -6,11 +6,6 @@ class CactbotLanguageKo extends CactbotLanguage {
   }
 
   InitStrings() {
-    this.kUIStrings = Object.freeze({
-      // jobs: text on the pull countdown.
-      Pull: '풀링',
-    });
-
     this.countdownStartRegex = function() {
       return Regexes.gameLog({
         capture: true,
