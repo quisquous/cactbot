@@ -32,6 +32,14 @@ let Options = {
   BlmLowMPThreshold: 2399,
 };
 
+// text on the pull countdown.
+const kPullText = {
+  en: 'Pull',
+  ja: 'タゲ取る',
+  cn: '开怪',
+  ko: '풀링',
+};
+
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
 
 const kMPNormalRate = 0.06;
@@ -1021,7 +1029,7 @@ class Bars {
 
     this.o.pullCountdown.width = window.getComputedStyle(pullCountdownContainer).width;
     this.o.pullCountdown.height = window.getComputedStyle(pullCountdownContainer).height;
-    this.o.pullCountdown.lefttext = gLang.kUIStrings.Pull;
+    this.o.pullCountdown.lefttext = kPullText[this.options.DisplayLanguage] || kPullText['en'];
     this.o.pullCountdown.righttext = 'remain';
     this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = 'rgb(255, 120, 120)';
