@@ -59,7 +59,7 @@
     },
     {
       id: 'Gubal Hard Imp Lose',
-      netRegex: NetRegexes.loseEffect({ effectId: '46E' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '46E' }),
       run: function(e, data, matches) {
         data.hasImp = data.hasImp || {};
         data.hasImp[matches.target] = false;
