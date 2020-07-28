@@ -40,6 +40,99 @@ const kPullText = {
   ko: '풀링',
 };
 
+const kAbility = {
+  DragonKick: '4A',
+  TwinSnakes: '3D',
+  Demolish: '42',
+  Verstone: '1D57',
+  Verfire: '1D56',
+  Veraero: '1D53',
+  Verthunder: '1D51',
+  Verholy: '1D66',
+  Verflare: '1D65',
+  Jolt2: '1D64',
+  Jolt: '1D4F',
+  Impact: '1D62',
+  Scatter: '1D55',
+  Vercure: '1D5A',
+  Verraise: '1D63',
+  Riposte: '1D50',
+  Zwerchhau: '1D58',
+  Redoublement: '1D5C',
+  Moulinet: '1D59',
+  EnchantedRiposte: '1D67',
+  EnchantedZwerchhau: '1D68',
+  EnchantedRedoublement: '1D69',
+  EnchantedMoulinet: '1D6A',
+  Tomahawk: '2E',
+  Overpower: '29',
+  HeavySwing: '1F',
+  SkullSunder: '23',
+  ButchersBlock: '2F',
+  Maim: '25',
+  StormsEye: '2D',
+  StormsPath: '2A',
+  TrickAttack: '8D2',
+  Embolden: '1D60',
+  Aetherflow: 'A6',
+  ChainStratagem: '1D0C',
+  Hypercharge: 'B45',
+  Adloquium: 'B9',
+  RabbitMedium: '8E0',
+  OneIlmPunch: '48',
+  Bootshine: '35',
+  FastBlade: '09',
+  RiotBlade: '0F',
+  GoringBlade: 'DD2',
+  RoyalAuthority: 'DD3',
+  RageOfHalone: '15',
+  SavageBlade: '0B',
+  ShieldLob: '18',
+  Requiescat: '1CD7',
+  HolySpirit: '1CD8',
+  TotalEclipse: '1CD5',
+  Clemency: 'DD5',
+  ShieldBash: '10',
+  ShieldSwipe: '19',
+  FightOrFlight: '14',
+  BloodWeapon: 'E29',
+  Souleater: 'E30',
+  SyphonStrike: 'E27',
+  HardSlash: 'E21',
+  CarveAndSpit: 'E3B',
+  Plunge: 'E38',
+  Unmend: 'E28',
+  AbyssalDrain: 'E39',
+  PowerSlash: 'E2B',
+  SpinningSlash: 'E23',
+  BloodPrice: 'E2F',
+  TheBlackestNight: '1CE1',
+  Delirium: '1CDE',
+  Combust2: 'E18',
+  Combust3: '40AA',
+  AspectedBenefic: 'E0B',
+  AspectedHelios: 'E11',
+  Bio: '45C8',
+  Bio2: '45C9',
+  Biolysis: '409C',
+  Contagion: '31B',
+  OffGuard: '2C93',
+  SongOfTorment: '2C7A',
+  PeculiarLight: '2C9D',
+  MythrilTempest: '404E',
+  Prominence: '4049',
+  HolyCircle: '404A',
+  Confiteor: '404B',
+  FourPointFury: '4059',
+  TechnicalFinish: '3F44',
+  Thunder1: '90',
+  Thunder2: '94',
+  Thunder3: '99',
+  Thunder4: '1CFC',
+  Divination: '40A8',
+  LucidDreaming: '1D8A',
+};
+
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
 
 const kMPNormalRate = 0.06;
@@ -159,63 +252,63 @@ class ComboTracker {
 function setupComboTracker(callback) {
   let comboTracker = new ComboTracker(kComboBreakers, callback);
   comboTracker.AddCombo([
-    gLang.kAbility.EnchantedRiposte,
-    gLang.kAbility.EnchantedZwerchhau,
-    gLang.kAbility.EnchantedRedoublement,
-    gLang.kAbility.Verflare,
+    kAbility.EnchantedRiposte,
+    kAbility.EnchantedZwerchhau,
+    kAbility.EnchantedRedoublement,
+    kAbility.Verflare,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.EnchantedRiposte,
-    gLang.kAbility.EnchantedZwerchhau,
-    gLang.kAbility.EnchantedRedoublement,
-    gLang.kAbility.Verholy,
+    kAbility.EnchantedRiposte,
+    kAbility.EnchantedZwerchhau,
+    kAbility.EnchantedRedoublement,
+    kAbility.Verholy,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.HeavySwing,
-    gLang.kAbility.SkullSunder,
-    gLang.kAbility.ButchersBlock,
+    kAbility.HeavySwing,
+    kAbility.SkullSunder,
+    kAbility.ButchersBlock,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.HeavySwing,
-    gLang.kAbility.Maim,
-    gLang.kAbility.StormsEye,
+    kAbility.HeavySwing,
+    kAbility.Maim,
+    kAbility.StormsEye,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.HeavySwing,
-    gLang.kAbility.Maim,
-    gLang.kAbility.StormsPath,
+    kAbility.HeavySwing,
+    kAbility.Maim,
+    kAbility.StormsPath,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.Overpower,
-    gLang.kAbility.MythrilTempest,
+    kAbility.Overpower,
+    kAbility.MythrilTempest,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.FastBlade,
-    gLang.kAbility.SavageBlade,
-    gLang.kAbility.RageofHalone,
+    kAbility.FastBlade,
+    kAbility.SavageBlade,
+    kAbility.RageofHalone,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.FastBlade,
-    gLang.kAbility.RiotBlade,
-    gLang.kAbility.RoyalAuthority,
+    kAbility.FastBlade,
+    kAbility.RiotBlade,
+    kAbility.RoyalAuthority,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.FastBlade,
-    gLang.kAbility.RiotBlade,
-    gLang.kAbility.FightOrFlight,
-    gLang.kAbility.GoringBlade,
+    kAbility.FastBlade,
+    kAbility.RiotBlade,
+    kAbility.FightOrFlight,
+    kAbility.GoringBlade,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.FastBlade,
-    gLang.kAbility.FightOrFlight,
-    gLang.kAbility.RiotBlade,
-    gLang.kAbility.GoringBlade,
+    kAbility.FastBlade,
+    kAbility.FightOrFlight,
+    kAbility.RiotBlade,
+    kAbility.GoringBlade,
   ]);
   comboTracker.AddCombo([
-    gLang.kAbility.FightOrFlight,
-    gLang.kAbility.FastBlade,
-    gLang.kAbility.RiotBlade,
-    gLang.kAbility.GoringBlade,
+    kAbility.FightOrFlight,
+    kAbility.FastBlade,
+    kAbility.RiotBlade,
+    kAbility.GoringBlade,
   ]);
   return comboTracker;
 }
@@ -236,47 +329,47 @@ function setupRegexes(playerName) {
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
   kComboBreakers = Object.freeze([
     // rdm
-    gLang.kAbility.Verstone,
-    gLang.kAbility.Verfire,
-    gLang.kAbility.Veraero,
-    gLang.kAbility.Verthunder,
-    gLang.kAbility.Verholy,
-    gLang.kAbility.Verflare,
-    gLang.kAbility.Jolt2,
-    gLang.kAbility.Jolt,
-    gLang.kAbility.Impact,
-    gLang.kAbility.Scatter,
-    gLang.kAbility.Vercure,
-    gLang.kAbility.Verraise,
-    gLang.kAbility.Riposte,
-    gLang.kAbility.Zwerchhau,
-    gLang.kAbility.Redoublement,
-    gLang.kAbility.Moulinet,
-    gLang.kAbility.EnchantedRiposte,
-    gLang.kAbility.EnchantedZwerchhau,
-    gLang.kAbility.EnchantedRedoublement,
-    gLang.kAbility.EnchantedMoulinet,
+    kAbility.Verstone,
+    kAbility.Verfire,
+    kAbility.Veraero,
+    kAbility.Verthunder,
+    kAbility.Verholy,
+    kAbility.Verflare,
+    kAbility.Jolt2,
+    kAbility.Jolt,
+    kAbility.Impact,
+    kAbility.Scatter,
+    kAbility.Vercure,
+    kAbility.Verraise,
+    kAbility.Riposte,
+    kAbility.Zwerchhau,
+    kAbility.Redoublement,
+    kAbility.Moulinet,
+    kAbility.EnchantedRiposte,
+    kAbility.EnchantedZwerchhau,
+    kAbility.EnchantedRedoublement,
+    kAbility.EnchantedMoulinet,
     // war
-    gLang.kAbility.Tomahawk,
-    gLang.kAbility.Overpower,
-    gLang.kAbility.SkullSunder,
-    gLang.kAbility.ButchersBlock,
-    gLang.kAbility.Maim,
-    gLang.kAbility.StormsEye,
-    gLang.kAbility.StormsPath,
-    gLang.kAbility.MythrilTempest,
+    kAbility.Tomahawk,
+    kAbility.Overpower,
+    kAbility.SkullSunder,
+    kAbility.ButchersBlock,
+    kAbility.Maim,
+    kAbility.StormsEye,
+    kAbility.StormsPath,
+    kAbility.MythrilTempest,
     // pld
-    gLang.kAbility.ShieldLob,
-    gLang.kAbility.TotalEclipse,
-    gLang.kAbility.SavageBlade,
-    gLang.kAbility.RageofHalone,
-    gLang.kAbility.RiotBlade,
-    gLang.kAbility.RoyalAuthority,
-    gLang.kAbility.GoringBlade,
-    gLang.kAbility.Prominence,
-    gLang.kAbility.HolySpirit,
-    gLang.kAbility.HolyCircle,
-    gLang.kAbility.Confiteor,
+    kAbility.ShieldLob,
+    kAbility.TotalEclipse,
+    kAbility.SavageBlade,
+    kAbility.RageofHalone,
+    kAbility.RiotBlade,
+    kAbility.RoyalAuthority,
+    kAbility.GoringBlade,
+    kAbility.Prominence,
+    kAbility.HolySpirit,
+    kAbility.HolyCircle,
+    kAbility.Confiteor,
   ]);
 }
 
@@ -556,7 +649,7 @@ class BuffTracker {
         sortKey: 0,
       },
       offguard: {
-        gainAbility: gLang.kAbility.OffGuard,
+        gainAbility: kAbility.OffGuard,
         durationSeconds: 15,
         icon: '../../resources/icon/status/offguard.png',
         borderColor: '#47bf41',
@@ -565,7 +658,7 @@ class BuffTracker {
         sharesCooldownWith: ['peculiar'],
       },
       peculiar: {
-        gainAbility: gLang.kAbility.PeculiarLight,
+        gainAbility: kAbility.PeculiarLight,
         durationSeconds: 15,
         icon: '../../resources/icon/status/peculiar-light.png',
         borderColor: '#F28F7B',
@@ -574,7 +667,7 @@ class BuffTracker {
         sharesCooldownWith: ['offguard'],
       },
       trick: {
-        gainAbility: gLang.kAbility.TrickAttack,
+        gainAbility: kAbility.TrickAttack,
         durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.
@@ -597,7 +690,7 @@ class BuffTracker {
         // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
         // Instead, use somebody using the effect on you:
         //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
-        gainAbility: gLang.kAbility.Embolden,
+        gainAbility: kAbility.Embolden,
         loseEffect: EffectId.Embolden,
         durationSeconds: 20,
         icon: '../../resources/icon/status/embolden.png',
@@ -718,7 +811,7 @@ class BuffTracker {
         cooldown: 180,
       },
       chain: {
-        gainAbility: gLang.kAbility.ChainStratagem,
+        gainAbility: kAbility.ChainStratagem,
         durationSeconds: 15,
         icon: '../../resources/icon/status/chain-stratagem.png',
         // Blue.
@@ -1322,7 +1415,7 @@ class Bars {
     this.comboFuncs.push((skill) => {
       // TODO: handle flags where you don't hit something.
       // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-      if (skill == gLang.kAbility.MythrilTempest) {
+      if (skill == kAbility.MythrilTempest) {
         if (eyeBox.duration > 0) {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
@@ -1330,7 +1423,7 @@ class Bars {
         }
         return;
       }
-      if (skill == gLang.kAbility.StormsEye) {
+      if (skill == kAbility.StormsEye) {
         eyeBox.duration = 0;
         // Storm's Eye applies with some animation delay here, and on the next
         // Storm's Eye, it snapshots the damage when the gcd is started, so
@@ -1340,11 +1433,11 @@ class Bars {
 
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
-      if (skill == gLang.kAbility.HeavySwing) {
+      if (skill == kAbility.HeavySwing) {
         minSkillsUntilEye = 2;
-      } else if (skill == gLang.kAbility.SkullSunder) {
+      } else if (skill == kAbility.SkullSunder) {
         minSkillsUntilEye = 4;
-      } else if (skill == gLang.kAbility.Maim) {
+      } else if (skill == kAbility.Maim) {
         minSkillsUntilEye = 1;
       } else {
         // End of combo, or broken combo.
@@ -1442,7 +1535,7 @@ class Bars {
     });
 
     this.comboFuncs.push((skill) => {
-      if (skill == gLang.kAbility.GoringBlade) {
+      if (skill == kAbility.GoringBlade) {
         goreBox.duration = 0;
         // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
         // have the box show 21, it looks like you're awfully late with
@@ -1482,19 +1575,19 @@ class Bars {
       lucidBox.threshold = this.gcdSpell() * 4;
     };
 
-    this.abilityFuncMap[gLang.kAbility.OffGuard] = () => {
+    this.abilityFuncMap[kAbility.OffGuard] = () => {
       offguardBox.duration = 0;
       offguardBox.duration = this.CalcGCDFromStat(this.spellSpeed, 60000);
     };
-    this.abilityFuncMap[gLang.kAbility.PeculiarLight] = () => {
+    this.abilityFuncMap[kAbility.PeculiarLight] = () => {
       offguardBox.duration = 0;
       offguardBox.duration = this.CalcGCDFromStat(this.spellSpeed, 60000);
     };
-    this.abilityFuncMap[gLang.kAbility.SongOfTorment] = () => {
+    this.abilityFuncMap[kAbility.SongOfTorment] = () => {
       tormentBox.duration = 0;
       tormentBox.duration = 30;
     };
-    this.abilityFuncMap[gLang.kAbility.LucidDreaming] = () => {
+    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
       lucidBox.duration = 0;
       lucidBox.duration = 60;
     };
@@ -1518,15 +1611,15 @@ class Bars {
     });
 
     // Sorry, no differentation for noct asts here.  <_<
-    this.abilityFuncMap[gLang.kAbility.Combust3] = () => {
+    this.abilityFuncMap[kAbility.Combust3] = () => {
       combustBox.duration = 0;
       combustBox.duration = 30;
     };
-    this.abilityFuncMap[gLang.kAbility.AspectedBenefic] = () => {
+    this.abilityFuncMap[kAbility.AspectedBenefic] = () => {
       beneficBox.duration = 0;
       beneficBox.duration = 15;
     };
-    this.abilityFuncMap[gLang.kAbility.AspectedHelios] = () => {
+    this.abilityFuncMap[kAbility.AspectedHelios] = () => {
       heliosBox.duration = 0;
       heliosBox.duration = 15;
     };
@@ -1593,24 +1686,24 @@ class Bars {
       }
     });
 
-    this.abilityFuncMap[gLang.kAbility.Biolysis] = () => {
+    this.abilityFuncMap[kAbility.Biolysis] = () => {
       bioBox.duration = 0;
       bioBox.duration = 30;
     };
-    this.abilityFuncMap[gLang.kAbility.Bio] = () => {
+    this.abilityFuncMap[kAbility.Bio] = () => {
       bioBox.duration = 0;
       bioBox.duration = 30;
     };
-    this.abilityFuncMap[gLang.kAbility.Bio2] = () => {
+    this.abilityFuncMap[kAbility.Bio2] = () => {
       bioBox.duration = 0;
       bioBox.duration = 30;
     };
-    this.abilityFuncMap[gLang.kAbility.Aetherflow] = () => {
+    this.abilityFuncMap[kAbility.Aetherflow] = () => {
       aetherflowBox.duration = 0;
       aetherflowBox.duration = 60;
       aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
     };
-    this.abilityFuncMap[gLang.kAbility.LucidDreaming] = () => {
+    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
       lucidBox.duration = 0;
       lucidBox.duration = 60;
     };
@@ -1695,18 +1788,18 @@ class Bars {
       threshold: 5,
     });
 
-    this.abilityFuncMap[gLang.kAbility.TwinSnakes] = () => {
+    this.abilityFuncMap[kAbility.TwinSnakes] = () => {
       twinSnakesBox.duration = 0;
       twinSnakesBox.duration = 15;
     };
-    this.abilityFuncMap[gLang.kAbility.FourPointFury] = () => {
+    this.abilityFuncMap[kAbility.FourPointFury] = () => {
       // FIXME: using this at zero.
       let old = parseFloat(twinSnakesBox.duration) - parseFloat(twinSnakesBox.elapsed);
       twinSnakesBox.duration = 0;
       if (old > 0)
         twinSnakesBox.duration = Math.min(old + 10, 15);
     };
-    this.abilityFuncMap[gLang.kAbility.Demolish] = () => {
+    this.abilityFuncMap[kAbility.Demolish] = () => {
       demolishBox.duration = 0;
       // it start counting down when you cast demolish
       // but DOT appears on target about 1 second later
@@ -1849,19 +1942,19 @@ class Bars {
     // This could have two boxes here for the rare case where you
     // have two long-lived enemies, but it's an edge case that
     // maybe only makes sense in ucob?
-    this.abilityFuncMap[gLang.kAbility.Thunder1] = () => {
+    this.abilityFuncMap[kAbility.Thunder1] = () => {
       thunderDot.duration = 0;
       thunderDot.duration = 18;
     };
-    this.abilityFuncMap[gLang.kAbility.Thunder2] = () => {
+    this.abilityFuncMap[kAbility.Thunder2] = () => {
       thunderDot.duration = 0;
       thunderDot.duration = 12;
     };
-    this.abilityFuncMap[gLang.kAbility.Thunder3] = () => {
+    this.abilityFuncMap[kAbility.Thunder3] = () => {
       thunderDot.duration = 0;
       thunderDot.duration = 24;
     };
-    this.abilityFuncMap[gLang.kAbility.Thunder4] = () => {
+    this.abilityFuncMap[kAbility.Thunder4] = () => {
       thunderDot.duration = 0;
       thunderDot.duration = 18;
     };
