@@ -1059,6 +1059,10 @@ class Bars {
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
+
+    const lang = this.options.ParserLanguage;
+    this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
+    this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
   }
 
   UpdateJob() {
@@ -2567,13 +2571,13 @@ class Bars {
 
       // TODO: only consider this when not in battle.
       if (log[15] == '0') {
-        let r = log.match(gLang.countdownStartRegex());
+        let r = log.match(this.countdownStartRegex);
         if (r != null) {
           let seconds = parseFloat(r.groups.time);
           this.SetPullCountdown(seconds);
           continue;
         }
-        if (log.search(gLang.countdownCancelRegex()) >= 0) {
+        if (log.search(this.countdownCancelRegex) >= 0) {
           this.SetPullCountdown(0);
           continue;
         }

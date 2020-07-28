@@ -610,6 +610,14 @@ class DamageTracker {
       this.partyTracker.onPartyChanged(e);
     });
 
+    const lang = this.options.ParserLanguage;
+    this.countdownEngageRegex = LocaleRegex.countdownEngage[lang] ||
+      LocaleRegex.countdownEngage['en'];
+    this.countdownStartRegex = LocaleRegex.countdownStart[lang] ||
+      LocaleRegex.countdownStart['en'];
+    this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] ||
+      LocaleRegex.countdownCancel['en'];
+
     this.Reset();
   }
 
@@ -661,11 +669,11 @@ class DamageTracker {
       }
 
       if (line[kTypeOffset0] == '0' && line[kTypeOffset1] == '0') {
-        if (line.match(gLang.countdownEngageRegex())) {
+        if (line.match(this.countdownEngageRegex)) {
           this.collector.AddEngage();
           continue;
         }
-        if (line.match(gLang.countdownStartRegex()) || line.match(gLang.countdownCancelRegex())) {
+        if (line.match(this.countdownStartRegex) || line.match(this.countdownCancelRegex)) {
           this.collector.Reset();
           continue;
         }

@@ -15,6 +15,8 @@ class PullCounter {
     this.bosses = [];
 
     this.resetRegex = Regexes.echo({ line: '.*pullcounter reset.*?' });
+    this.countdownEngageRegex = LocaleRegex.countdownEngage[Options.ParserLanguage] ||
+      LocaleRegex.countdownEngage['en'];
 
     callOverlayHandler({
       call: 'cactbotLoadData',
@@ -52,7 +54,7 @@ class PullCounter {
       let log = e.detail.logs[i];
       if (log.match(this.resetRegex))
         this.ResetPullCounter();
-      if (log.match(gLang.countdownEngageRegex())) {
+      if (log.match(this.countdownEngageRegex)) {
         if (this.countdownBoss)
           this.OnFightStart(this.countdownBoss);
         else

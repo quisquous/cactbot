@@ -20,7 +20,7 @@ let gCurrentZone = null;
 let gIgnoreZones = [];
 let gInCombat = false;
 
-function InitDpsModule(config, updateFunc, hideFunc) {
+function InitDpsModule(config, updateFunc, hideFunc, initCallback) {
   UserConfig.getUserConfigLocation(config, function(e) {
     addOverlayListener('CombatData', function(e) {
       // DPS numbers in large pvp is not useful and hella noisy.
@@ -78,5 +78,8 @@ function InitDpsModule(config, updateFunc, hideFunc) {
     gIgnoreZones = Options.IgnoreZones.map(function(z) {
       return gLang.kZone[z];
     });
+
+    if (initCallback)
+      initCallback(Options);
   });
 }

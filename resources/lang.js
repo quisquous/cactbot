@@ -4,8 +4,6 @@ let gLang = null;
 
 class CactbotLanguage {
   constructor(lang) {
-    this.InitStrings();
-
     this.kZone = Object.freeze({
       O1S: /Deltascape V1\.0 \(Savage\)/,
       O2S: /Deltascape V2\.0 \(Savage\)/,
@@ -37,9 +35,5 @@ class CactbotLanguage {
       EurekaPyros: /(Eureka Pyros|Unknown Zone \(31B\))/,
       EurekaHydatos: /(Eureka Hydatos|Unknown Zone \(33B\))/,
     });
-  }
-
-  InitStrings() {
-    console.error('Derived language class must implement InitStrings');
   }
 }

@@ -4,7 +4,7 @@ let kTestPhaseStart = 'cactbot phase start';
 let kTestPhaseEnd = 'cactbot phase end';
 
 class DpsPhaseTracker {
-  constructor() {
+  constructor(options) {
     // Ordered list of phases.  Each phase is:
     // {
     //   name: display name string
@@ -30,6 +30,13 @@ class DpsPhaseTracker {
 
     this.defaultPhase = null;
     this.defaultPhaseIdx = 0;
+
+    this.lang = options.ParserLanguage;
+
+    this.areaSealRegex = LocaleRegex.areaSeal[this.lang] || LocaleRegex.areaSeal['en'];
+    this.areaUnsealRegex = LocaleRegex.areaUnseal[this.lang] || LocaleRegex.areaUnseal['en'];
+    this.countdownStartRegex = LocaleRegex.countdownStart[this.lang] ||
+      LocaleRegex.countdownStart['en'];
   }
 
   onLogEvent(logs) {
@@ -41,7 +48,7 @@ class DpsPhaseTracker {
       if (!this.defaultPhase) {
         for (let i = 0; i < logs.length; ++i) {
           let log = logs[i];
-          if (log.match(gLang.areaSealRegex()) || log.indexOf(kTestPhaseStart) >= 0) {
+          if (log.match(this.areaSealRegex) || log.indexOf(kTestPhaseStart) >= 0) {
             this.defaultPhaseIdx++;
             this.defaultPhase = 'B' + this.defaultPhaseIdx;
             this.onFightPhaseStart(this.defaultPhase, this.lastData);
@@ -51,7 +58,7 @@ class DpsPhaseTracker {
       } else {
         for (let i = 0; i < logs.length; ++i) {
           let log = logs[i];
-          if (log.match(gLang.areaUnsealRegex()) || log.indexOf(kTestPhaseEnd) >= 0) {
+          if (log.match(this.areaUnsealRegex) || log.indexOf(kTestPhaseEnd) >= 0) {
             this.onFightPhaseEnd(this.defaultPhase, this.lastData);
             this.defaultPhase = 0;
             return;
@@ -63,7 +70,7 @@ class DpsPhaseTracker {
     if (!this.currentBoss) {
       for (let i = 0; i < logs.length; ++i) {
         let log = logs[i];
-        if (this.countdownBoss && log.match(gLang.countdownStartRegex())) {
+        if (this.countdownBoss && log.match(this.countdownStartRegex)) {
           this.onFightStart(this.countdownBoss);
           return;
         }
