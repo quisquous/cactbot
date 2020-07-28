@@ -125,18 +125,12 @@ let UserConfig = {
       }
 
       // Post this callback so that the js and css can be executed first.
-      if (Options.ParserLanguage && Options.ParserLanguage in this.languageFuncs)
-        this.languageFuncs[Options.ParserLanguage]();
       if (callback)
         callback();
 
       callOverlayHandler({ call: 'cactbotRequestState' });
     });
   },
-  registerLanguage: function(lang, func) {
-    this.languageFuncs[lang] = func;
-  },
-  languageFuncs: {},
   handleSkin: function(skinName) {
     if (!skinName || skinName == 'default')
       return;
