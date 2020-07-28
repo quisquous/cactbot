@@ -11,26 +11,6 @@ class CactbotLanguageDe extends CactbotLanguage {
       Pull: 'Pull',
     });
 
-    this.kPetNames = Object.freeze([
-      // Pulled from https://xivapi.com/Pet?pretty=true&language=de
-      'Smaragd-Karfunkel',
-      'Topas-Karfunkel',
-      'Ifrit-Egi',
-      'Titan-Egi',
-      'Garuda-Egi',
-      'Eos',
-      'Selene',
-      'Selbstschuss-Gyrocopter TURM',
-      'Selbstschuss-Gyrocopter LÄUFER',
-      'Demi-Bahamut',
-      'Demi-Phönix',
-      'Seraph',
-      'Mondstein-Karfunkel',
-      'Schattenschemen',
-      'Automaton DAME',
-      'Gedoppeltes Ich',
-    ]);
-
     this.countdownStartRegex = function() {
       return Regexes.gameLog({
         capture: true,

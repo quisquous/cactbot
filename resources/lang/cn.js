@@ -11,26 +11,6 @@ class CactbotLanguageCn extends CactbotLanguage {
       Pull: '开怪',
     });
 
-    this.kPetNames = Object.freeze([
-      // Pulled from http://cafemaker.wakingsands.com/Pet?pretty=true
-      '绿宝石兽',
-      '黄宝石兽',
-      '伊弗利特之灵',
-      '泰坦之灵',
-      '迦楼罗之灵',
-      '朝日小仙女',
-      '夕月小仙女',
-      '车式浮空炮塔',
-      '象式浮空炮塔',
-      '亚灵神巴哈姆特',
-      '亚灵神不死鸟',
-      '炽天使',
-      '月长宝石兽',
-      '英雄的掠影',
-      '后式自走人偶',
-      '分身',
-    ]);
-
     this.countdownStartRegex = function() {
       return Regexes.gameLog({
         capture: true,
