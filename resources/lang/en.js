@@ -11,26 +11,6 @@ class CactbotLanguageEn extends CactbotLanguage {
       Pull: 'Pull',
     });
 
-    this.kPetNames = Object.freeze([
-      // Pulled from https://xivapi.com/Pet?pretty=true&language=en
-      'Emerald Carbuncle',
-      'Topaz Carbuncle',
-      'Ifrit-Egi',
-      'Titan-Egi',
-      'Garuda-Egi',
-      'Eos',
-      'Selene',
-      'Rook Autoturret',
-      'Bishop Autoturret',
-      'Demi-Bahamut',
-      'Demi-Phoenix',
-      'Seraph',
-      'Moonstone Carbuncle',
-      'Esteem',
-      'Automaton Queen',
-      'Bunshin',
-    ]);
-
     this.countdownStartRegex = function() {
       return Regexes.gameLog({
         capture: true,

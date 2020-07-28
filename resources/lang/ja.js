@@ -11,26 +11,6 @@ class CactbotLanguageJa extends CactbotLanguage {
       Pull: 'タゲ取る',
     });
 
-    this.kPetNames = Object.freeze([
-      // Pulled from https://xivapi.com/Pet?pretty=true&language=ja
-      'カーバンクル・エメラルド',
-      'カーバンクル・トパーズ',
-      'イフリート・エギ',
-      'タイタン・エギ',
-      'ガルーダ・エギ',
-      'フェアリー・エオス',
-      'フェアリー・セレネ',
-      'オートタレット・ルーク',
-      'オートタレット・ビショップ',
-      'デミ・バハムート',
-      'デミ・フェニックス',
-      'セラフィム',
-      'カーバンクル・ムーンストーン',
-      '英雄の影身',
-      'オートマトン・クイーン',
-      '分身',
-    ]);
-
     this.countdownStartRegex = function() {
       return Regexes.gameLog({
         capture: true,

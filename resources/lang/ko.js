@@ -11,26 +11,6 @@ class CactbotLanguageKo extends CactbotLanguage {
       Pull: '풀링',
     });
 
-    this.kPetNames = Object.freeze([
-      // Pulled from https://github.com/Ra-Workspace/ffxiv-datamining-ko/blob/master/csv/Pet.csv
-      '카벙클 에메랄드',
-      '카벙클 토파즈',
-      '이프리트 에기',
-      '타이탄 에기',
-      '가루다 에기',
-      '요정 에오스',
-      '요정 셀레네',
-      '자동포탑 룩',
-      '자동포탑 비숍',
-      '데미바하무트',
-      '데미피닉스',
-      '세라핌',
-      '카벙클 문스톤',
-      '영웅의 환영',
-      '자동인형 퀸',
-      '분신',
-    ]);
-
     this.countdownStartRegex = function() {
       return Regexes.gameLog({
         capture: true,
