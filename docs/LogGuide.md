@@ -76,7 +76,7 @@ With updates for:
 
 ## Data Flow
 
-![Alt text](https://g.gravizo.com/source/data_flow?https%3A%2F%2Fraw.githubusercontent.com%2Fquisquous%2Fcactbot%2Fmaster%2Fdocs%2FLogGuide.md)
+![Alt text](https://g.gravizo.com/source/data_flow?https%3A%2F%2Fraw.githubusercontent.com%2Fquisquous%2Fcactbot%2Fmain%2Fdocs%2FLogGuide.md)
 
 <!-- markdownlint-disable MD033 -->
 <details>
@@ -1057,9 +1057,9 @@ Examples:
 ## 26: NetworkStatusEffects
 
 For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
-For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove),
-[1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#1e-networkbuffremove),
- and [25:NetworkActionSync](https://github.com/quisquous/cactbot/blob/master/docs/LogGuide.md#25-NetworkActionSync).
+For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
+[1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
+ and [25:NetworkActionSync](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#25-NetworkActionSync).
 
 Structure:
 `26:[Target Id]:[Target Name]:[Job Levels]:[Current HP]:[Max Hp]:[Current Mp]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:<status list; format unknown>`
