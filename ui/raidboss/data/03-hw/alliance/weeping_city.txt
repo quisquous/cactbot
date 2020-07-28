@@ -1,0 +1,118 @@
+### THE WEEPING CITY OF MHACH
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 100000 jump 0
+
+#~~~~~~~~~~~~~#
+# ARACHNE EVE #
+#~~~~~~~~~~~~~#
+
+# -ii 368 1835 1836
+# -ic "Webmaiden" "Spitting Spider" "Skittering Spider" "Earth Aether"
+
+0 "Start" sync /Engage!/ window 0,1
+0 "--sync--" sync / 00:0839:.*Queen's Room will be sealed off/
+9.8 "Dark Spike" sync /:Arachne Eve:1823:/
+21.6 "Silken Spray" sync /:Arachne Eve:1824:/
+30.4 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
+41.9 "Tremblor x3" sync /:Arachne Eve:1837:/ # 3 separate abilities, 1837/1836/1835
+48.4 "--sync--" sync /:Arachne Eve:1889:/
+49.9 "Pitfall" sync /:Arachne Eve:1825:/
+52.1 "--sync--" sync /:Arachne Eve:1847:/ # Sticky Wicket windup
+55.7 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+64.1 "Silken Spray" sync /:Arachne Eve:1824:/
+
+# Intermission up in her web. There's a LOT of stuff going on here,
+# but the add spawns and abilities are dependent on what the team kills.
+# Implosion is the only real consistency we have through the intermission.
+95.7 "Implosion" sync /:Arachne Eve:1833:/ window 95.7,2.5
+113.9 "Implosion" sync /:Arachne Eve:1833:/
+132.1 "Implosion" sync /:Arachne Eve:1833:/
+150.3 "Implosion" sync /:Arachne Eve:1833:/ jump 95.7
+168.5 "Implosion"
+186.7 "Implosion"
+
+# Back on the ground for a relatively short bridge block
+200.0 "Dark Spike" sync /:Arachne Eve:1823:/ window 200,5
+206.3 "--sync--" sync /:Arachne Eve:1847:/
+210.5 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+216.7 "Tremblor x3" sync /:Arachne Eve:1837:/
+223.9 "--sync--" sync /:Arachne Eve:1889:/
+225.5 "Pitfall" sync /:Arachne Eve:1825:/
+233.2 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
+246.3 "Shadow Burst" sync /:Arachne Eve:1838:/
+253.0 "Dark Spike" sync /:Arachne Eve:1823:/
+264.4 "Frond Affeared" sync /:Arachne Eve:183A:/ window 30,30
+271.1 "Silken Spray" sync /:Arachne Eve:1824:/
+277.9 "Dark Spike" sync /:Arachne Eve:1823:/
+287.7 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
+297.9 "the Widow's Kiss" duration 5 # sync /:Arachne Eve:1842:/
+305.9 "the Widow's Embrace" sync /:Arachne Eve:1888:/
+308.5 "Pitfall" sync /:Arachne Eve:1845:/
+317.2 "Dark Spike" sync /:Arachne Eve:1823:/
+
+# And up we go again.
+347.2 "Implosion" sync /:Arachne Eve:1833:/ window 147,5
+365.4 "Implosion" sync /:Arachne Eve:1833:/
+383.6 "Implosion" sync /:Arachne Eve:1833:/ jump 347.2
+401.8 "Implosion"
+420.0 "Implosion"
+
+# Back down again for another bridge block
+464.9 "Dark Spike" sync /:Arachne Eve:1823:/ window 120,5
+476.4 "Arachne Web" sync /:Arachne Eve:185E:/
+479.0 "Arachne Web" sync /:Arachne Eve:185E:/
+483.8 "--sync--" sync /:Arachne Eve:1847:/
+487.4 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+494.4 "Tremblor x3" sync /:Arachne Eve:1837:/
+501.3 "the Widow's Kiss x3" duration 5 # sync /:Arachne Eve:1842:/
+509.3 "the Widow's Embrace" sync /:Arachne Eve:1888:/
+511.9 "Pitfall" sync /:Arachne Eve:1845:/
+520.6 "Dark Spike" sync /:Arachne Eve:1823:/
+526.4 "Silken Spray" sync /:Arachne Eve:1824:/
+535.0 "Dark Spike" sync /:Arachne Eve:1823:/
+546.3 "Frond Affeared" sync /:Arachne Eve:183A:/ window 30,30
+559.7 "Shadow Burst" sync /:Arachne Eve:1838:/
+565.2 "Dark Spike" sync /:Arachne Eve:1823:/
+572.2 "--sync--" sync /:Arachne Eve:1847:/
+575.9 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+582.9 "Tremblor x3" sync /:Arachne Eve:1837:/
+
+# And *finally* we get to rotation blocks!
+# It may not be necessary to sync so widely, but it's probably a safe bet,
+# since we don't have any network logs that get this far to verify.
+589.4 "--sync--" sync /:Arachne Eve:1889:/ window 100,5
+590.9 "Pitfall" sync /:Arachne Eve:1825:/
+604.6 "Arachne Web" sync /:Arachne Eve:185E:/
+609.3 "Arachne Web" sync /:Arachne Eve:185E:/
+617.8 "Dark Spike" sync /:Arachne Eve:1823:/
+623.3 "Silken Spray" sync /:Arachne Eve:1824:/
+631.8 "Dark Spike" sync /:Arachne Eve:1823:/
+642.8 "Frond Affeared" sync /:Arachne Eve:183A:/ window 30,30
+656.5 "Shadow Burst" sync /:Arachne Eve:1838:/
+662.0 "Dark Spike" sync /:Arachne Eve:1823:/
+677.0 "Arachne Web" sync /:Arachne Eve:185E:/
+679.4 "Arachne Web" sync /:Arachne Eve:185E:/
+684.9 "the Widow's Kiss x3" duration 5 # sync /:Arachne Eve:1842:/
+692.9 "the Widow's Embrace" sync /:Arachne Eve:1888:/
+695.4 "Pitfall" sync /:Arachne Eve:1845:/
+703.4 "--sync--" sync /:Arachne Eve:1847:/
+707.1 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+716.1 "Dark Spike" sync /:Arachne Eve:1823:/
+721.6 "Silken Spray" sync /:Arachne Eve:1824:/
+730.1 "Dark Spike" sync /:Arachne Eve:1823:/
+741.1 "Frond Affeared" sync /:Arachne Eve:183A:/ window 30,30
+754.7 "Shadow Burst" sync /:Arachne Eve:1838:/
+760.2 "Dark Spike" sync /:Arachne Eve:1823:/
+767.2 "--sync--" sync /:Arachne Eve:1847:/
+770.8 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+777.6 "Tremblor x3" # sync /:Arachne Eve:1837:/
+
+784.1 "--sync--" sync /:Arachne Eve:1889:/ jump 589.4
+785.6 "Pitfall"
+799.3 "Arachne Web"
+804.0 "Arachne Web"
+812.5 "Dark Spike"
+818.0 "Silken Spray"
