@@ -137,7 +137,7 @@ hideall "--Reset--"
 
 
 ### Phase 5: Ultima ###
-1000 "--targetable--" sync /:2B87:The Ultima Weapon/ window 1000,100
+1000 "--targetable--" sync /:The Ultima Weapon:2B87:/ window 1000,100
 1004 "Tank Purge" sync /:The Ultima Weapon:2B87:/ # drift -0.314001
 1006 "Apply Viscous" sync /:The Ultima Weapon:2B79:/ # drift 0.430001
 1012 "Homing Lasers" sync /:The Ultima Weapon:2B7B:/ # drift 0.220999
