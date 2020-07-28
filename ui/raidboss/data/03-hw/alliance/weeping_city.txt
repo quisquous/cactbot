@@ -12,8 +12,7 @@ hideall "--sync--"
 # -ii 368 1835 1836
 # -ic "Webmaiden" "Spitting Spider" "Skittering Spider" "Earth Aether"
 
-0 "Start" sync /Engage!/ window 0,1
-0 "--sync--" sync / 00:0839:.*Queen's Room will be sealed off/
+0 "--sync--" sync /00:0839:.*Queen's Room will be sealed off/
 9.8 "Dark Spike" sync /:Arachne Eve:1823:/
 21.6 "Silken Spray" sync /:Arachne Eve:1824:/
 30.4 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
@@ -48,8 +47,8 @@ hideall "--sync--"
 271.1 "Silken Spray" sync /:Arachne Eve:1824:/
 277.9 "Dark Spike" sync /:Arachne Eve:1823:/
 287.7 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
-297.9 "the Widow's Kiss" duration 5 # sync /:Arachne Eve:1842:/
-305.9 "the Widow's Embrace" sync /:Arachne Eve:1888:/
+297.9 "The Widow's Kiss" duration 5 # sync /:Arachne Eve:1842:/
+305.9 "The Widow's Embrace" sync /:Arachne Eve:1888:/
 308.5 "Pitfall" sync /:Arachne Eve:1845:/
 317.2 "Dark Spike" sync /:Arachne Eve:1823:/
 
@@ -62,13 +61,12 @@ hideall "--sync--"
 
 # Back down again for another bridge block
 464.9 "Dark Spike" sync /:Arachne Eve:1823:/ window 120,5
-476.4 "Arachne Web" sync /:Arachne Eve:185E:/
-479.0 "Arachne Web" sync /:Arachne Eve:185E:/
+476.4 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
 483.8 "--sync--" sync /:Arachne Eve:1847:/
 487.4 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
 494.4 "Tremblor x3" sync /:Arachne Eve:1837:/
-501.3 "the Widow's Kiss x3" duration 5 # sync /:Arachne Eve:1842:/
-509.3 "the Widow's Embrace" sync /:Arachne Eve:1888:/
+501.3 "The Widow's Kiss x3" duration 5 # sync /:Arachne Eve:1842:/
+509.3 "The Widow's Embrace" sync /:Arachne Eve:1888:/
 511.9 "Pitfall" sync /:Arachne Eve:1845:/
 520.6 "Dark Spike" sync /:Arachne Eve:1823:/
 526.4 "Silken Spray" sync /:Arachne Eve:1824:/
@@ -85,18 +83,16 @@ hideall "--sync--"
 # since we don't have any network logs that get this far to verify.
 589.4 "--sync--" sync /:Arachne Eve:1889:/ window 100,5
 590.9 "Pitfall" sync /:Arachne Eve:1825:/
-604.6 "Arachne Web" sync /:Arachne Eve:185E:/
-609.3 "Arachne Web" sync /:Arachne Eve:185E:/
+604.6 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
 617.8 "Dark Spike" sync /:Arachne Eve:1823:/
 623.3 "Silken Spray" sync /:Arachne Eve:1824:/
 631.8 "Dark Spike" sync /:Arachne Eve:1823:/
 642.8 "Frond Affeared" sync /:Arachne Eve:183A:/ window 30,30
 656.5 "Shadow Burst" sync /:Arachne Eve:1838:/
 662.0 "Dark Spike" sync /:Arachne Eve:1823:/
-677.0 "Arachne Web" sync /:Arachne Eve:185E:/
-679.4 "Arachne Web" sync /:Arachne Eve:185E:/
-684.9 "the Widow's Kiss x3" duration 5 # sync /:Arachne Eve:1842:/
-692.9 "the Widow's Embrace" sync /:Arachne Eve:1888:/
+677.0 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
+684.9 "The Widow's Kiss x3" duration 5 # sync /:Arachne Eve:1842:/
+692.9 "The Widow's Embrace" sync /:Arachne Eve:1888:/
 695.4 "Pitfall" sync /:Arachne Eve:1845:/
 703.4 "--sync--" sync /:Arachne Eve:1847:/
 707.1 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
@@ -113,6 +109,57 @@ hideall "--sync--"
 784.1 "--sync--" sync /:Arachne Eve:1889:/ jump 589.4
 785.6 "Pitfall"
 799.3 "Arachne Web"
-804.0 "Arachne Web"
 812.5 "Dark Spike"
 818.0 "Silken Spray"
+
+#~~~~~~~~~#
+# FORGALL #
+#~~~~~~~~~#
+
+# -ii 366 17D5 17C1 17D6
+
+1000.0 "--sync--" sync /00:0839:.*Shrine of the Goetic will be sealed off/ window 1000,5
+1014.4 "Necropurge" sync /:Shriveled Talon:17D7:/
+1024.2 "Megiddo Flame" sync /:Forgall:17C0:/
+1032.4 "Necropurge" sync /:Forgall:17BE:/
+1060.7 "Megiddo Flame" sync /:Forgall:17C0:/
+1066.7 "Punishing Ray" sync /:Forgall:17C4:/
+1081.0 "Brand of the Fallen" sync /:Forgall:17CC:/ window 20,20
+1090.3 "Evil Mist" sync /:Forgall:17C5:/
+1101.3 "Necropurge" sync /:Shriveled Talon:17D7:/
+1118.5 "Necropurge" sync /:Forgall:17BE:/
+1131.6 "Necropurge" sync /:Forgall:17BF:/
+1132.8 "Brand of the Fallen" sync /:Forgall:17CC:/ window 20,20
+1141.1 "--sync--" sync /:Forgall:17C2:/ # Dark Eruption markers go out.
+1146.3 "Dark Eruption x3" # sync /:Forgall:17C3:/
+1163.2 "--sync--" sync /:Forgall:17C7:/ window 163.2 # Pushes at 50% HP.
+
+# We don't know how long the intermission goes.
+# There's no data available to tell us what, if anything,
+# happens if the three adds aren't killed in time.
+# It could even be nothing.
+# If the intermission goes longer than 3 minutes, something is WRONG.
+
+1350.0 "Mana Eruption" sync /:Forgall:17C9:/ window 350,5
+
+1360.2 "Necropurge" sync /:Forgall:17BE:/
+1373.4 "Necropurge" sync /:Forgall:17BF:/
+1373.4 "--sync--" sync /:Poison Mist:17D8:/
+1377.4 "Mega Death" sync /:Forgall:17CA:/ window 20,20
+1388.5 "--sync--" sync /:Forgall:17C2:/
+1393.7 "Dark Eruption x3" # sync /:Forgall:17C3:/
+1395.7 "Megiddo Flame" sync /:Forgall:17C0:/
+1400.9 "Evil Mist" sync /:Forgall:17C5:/
+1414.9 "Necropurge" sync /:Forgall:17BF:/
+1414.9 "--sync--" sync /:Poison Mist:17D8:/
+1419.1 "Mega Death" sync /:Forgall:17CA:/ window 20,20
+1439.2 "Hell Wind" sync /:Forgall:17CB:/
+1453.3 "Brand of the Fallen" sync /:Forgall:17CC:/
+1459.5 "Punishing Ray" sync /:Forgall:17C4:/
+1465.6 "Brand of the Fallen" sync /:Forgall:17CC:/
+
+1481.9 "Necropurge" sync /:Forgall:17BE:/ jump 1360.2
+1495.1 "Necropurge"
+1499.1 "Mega Death"
+1515.4 "Dark Eruption x3"
+
