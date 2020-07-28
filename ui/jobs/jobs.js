@@ -1126,7 +1126,7 @@ class Bars {
     this.o.pullCountdown.righttext = 'remain';
     this.o.pullCountdown.hideafter = 0;
     this.o.pullCountdown.fg = 'rgb(255, 120, 120)';
-    this.o.pullCountdown.classList.add('lang-' + (gLang.lang || 'en'));
+    this.o.pullCountdown.classList.add('lang-' + this.options.DisplayLanguage);
 
     this.o.rightBuffsContainer = document.createElement('div');
     this.o.rightBuffsContainer.id = 'right-side-icons';
