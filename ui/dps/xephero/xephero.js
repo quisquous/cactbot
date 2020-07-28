@@ -3,8 +3,6 @@
 let rows = 10;
 let rdpsMax = 0;
 
-let tracker = new DpsPhaseTracker;
-
 function hideOverlay() {
   $('#overlay').addClass('hide');
 }
@@ -152,21 +150,24 @@ function updatePhase(phase, dpsOrder) {
     maxPhaseDPS.row.addClass('highestdps');
 }
 
-function onOverlayDataUpdateEvent(e) {
+let tracker = null;
+const onOverlayDataUpdateEvent = (e) => {
   tracker.onOverlayDataUpdate(e.detail);
   update(e.detail);
-}
+};
 
-addOverlayListener('onZoneChangedEvent', function(e) {
-  let currentZone = e.detail.zoneName;
-  tracker.onZoneChange(currentZone);
-});
-addOverlayListener('onLogEvent', function(e) {
-  tracker.onLogEvent(e.detail.logs);
-});
-addOverlayListener('onInCombatChangedEvent', function(e) {
-  // Only clear phases when ACT starts a new encounter for consistency.
-  tracker.inCombatChanged(e.detail.inACTCombat);
-});
+InitDpsModule('xephero', onOverlayDataUpdateEvent, hideOverlay, (options) => {
+  tracker = new DpsPhaseTracker(options);
 
-InitDpsModule('xephero', onOverlayDataUpdateEvent, hideOverlay);
+  addOverlayListener('onZoneChangedEvent', (e) => {
+    const currentZone = e.detail.zoneName;
+    tracker.onZoneChange(currentZone);
+  });
+  addOverlayListener('onLogEvent', (e) => {
+    tracker.onLogEvent(e.detail.logs);
+  });
+  addOverlayListener('onInCombatChangedEvent', (e) => {
+    // Only clear phases when ACT starts a new encounter for consistency.
+    tracker.inCombatChanged(e.detail.inACTCombat);
+  });
+});
