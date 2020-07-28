@@ -20,19 +20,26 @@
     {
       // This happens when a player gets 4+ stacks of orbs. Don't be greedy!
       id: 'E5N Static Condensation',
-      gainsEffectRegex: gLang.kEffect.StaticCondensation,
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
+      netRegex: NetRegexes.gainsEffect({ effectId: '8B5' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
       // Helper for orb pickup failures
-      id: 'E5N Orb Tracking',
-      gainsEffectRegex: gLang.kEffect.SurgeProtection,
-      losesEffectRegex: gLang.kEffect.SurgeProtection,
-      run: function(e, data) {
+      id: 'E5N Orb Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
+      run: function(e, data, matches) {
         data.hasOrb = data.hasOrb || {};
-        data.hasOrb[e.targetName] = e.gains;
+        data.hasOrb[matches.target] = true;
+      },
+    },
+    {
+      id: 'E5N Orb Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
+      run: function(e, data, matches) {
+        data.hasOrb = data.hasOrb || {};
+        data.hasOrb[matches.target] = false;
       },
     },
     {

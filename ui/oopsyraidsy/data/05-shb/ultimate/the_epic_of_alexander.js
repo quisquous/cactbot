@@ -85,9 +85,9 @@
     },
     {
       id: 'TEA Dropsy',
-      gainsEffectRegex: gLang.kEffect.Dropsy,
-      mistake: function(e, data) {
-        return { type: 'warn', name: e.targetName, text: e.effectName };
+      netRegex: NetRegexes.gainsEffect({ effectId: '121' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
@@ -125,28 +125,35 @@
       },
     },
     {
-      id: 'TEA Throttle Tracking',
-      gainsEffectRegex: gLang.kEffect.Throttle,
-      losesEffectRegex: gLang.kEffect.Throttle,
-      run: function(e, data) {
+      id: 'TEA Throttle Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '2BC' }),
+      run: function(e, data, matches) {
         data.hasThrottle = data.hasThrottle || {};
-        data.hasThrottle[e.targetName] = e.gains;
+        data.hasThrottle[matches.target] = true;
+      },
+    },
+    {
+      id: 'TEA Throttle Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '2BC' }),
+      run: function(e, data, matches) {
+        data.hasThrottle = data.hasThrottle || {};
+        data.hasThrottle[matches.target] = false;
       },
     },
     {
       id: 'TEA Throttle',
-      gainsEffectRegex: gLang.kEffect.Throttle,
-      delaySeconds: function(e) {
-        return e.durationSeconds - 0.5;
+      netRegex: NetRegexes.gainsEffect({ effectId: '2BC' }),
+      delaySeconds: function(e, data, matches) {
+        return parseFloat(matches.duration) - 0.5;
       },
-      deathReason: function(e, data) {
+      deathReason: function(e, data, matches) {
         if (!data.hasThrottle)
           return;
-        if (!data.hasThrottle[e.targetName])
+        if (!data.hasThrottle[matches.target])
           return;
         return {
-          name: e.targetName,
-          reason: e.effectName,
+          name: matches.target,
+          reason: matches.effect,
         };
       },
     },

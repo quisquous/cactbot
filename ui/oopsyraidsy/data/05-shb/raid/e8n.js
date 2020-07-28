@@ -24,9 +24,9 @@
   triggers: [
     {
       id: 'E8N Shining Armor',
-      gainsEffectRegex: gLang.kEffect.Stun,
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, reason: gLang.kEffect.Stun };
+      netRegex: NetRegexes.gainsEffect({ effectId: '95' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: matches.target, text: matches.effect };
       },
     },
     {
@@ -38,9 +38,10 @@
     },
     {
       id: 'E8N Frost Armor',
-      gainsEffectRegex: gLang.kEffect.ThinIce,
-      deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Slid off!' } };
+      // Thin Ice
+      netRegex: NetRegexes.gainsEffect({ effectId: '38F' }),
+      deathReason: function(e, data, matches) {
+        return { type: 'fail', name: matches.target, reason: { en: 'Slid off!' } };
       },
     },
   ],

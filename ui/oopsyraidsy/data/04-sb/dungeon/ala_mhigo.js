@@ -37,9 +37,10 @@
       // It's possible players might just wander into the bad on the outside,
       // but normally people get pushed into it.
       id: 'Ala Mhigo Art Of The Swell',
-      gainsEffectRegex: gLang.kEffect.DamageDown,
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      // Damage Down
+      netRegex: NetRegexes.gainsEffect({ effectId: '2B8' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
   ],

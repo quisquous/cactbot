@@ -61,13 +61,13 @@
     },
     {
       id: 'O4S2 Petrified',
-      gainsEffectRegex: gLang.kEffect.Petrification,
-      mistake: function(e, data) {
+      netRegex: NetRegexes.gainsEffect({ effectId: '262' }),
+      mistake: function(e, data, matches) {
         // On Neo, being petrified is because you looked at Shriek, so your fault.
         if (data.isNeoExdeath)
-          return { type: 'fail', blame: e.targetName, text: e.effectName };
+          return { type: 'fail', blame: matches.target, text: matches.effect };
         // On normal ExDeath, this is due to White Hole.
-        return { type: 'warn', name: e.targetName, text: e.effectName };
+        return { type: 'warn', name: matches.target, text: matches.effect };
       },
     },
     {
@@ -97,28 +97,35 @@
       },
     },
     {
-      id: 'O4S2 Beyond Death Collect',
-      gainsEffectRegex: gLang.kEffect.BeyondDeath,
-      losesEffectRegex: gLang.kEffect.BeyondDeath,
-      run: function(e, data) {
+      id: 'O4S2 Beyond Death Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
+      run: function(e, data, matches) {
         data.hasBeyondDeath = data.hasBeyondDeath || {};
-        data.hasBeyondDeath[e.targetName] = e.gains;
+        data.hasBeyondDeath[matches.target] = true;
+      },
+    },
+    {
+      id: 'O4S2 Beyond Death Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '566' }),
+      run: function(e, data, matches) {
+        data.hasBeyondDeath = data.hasBeyondDeath || {};
+        data.hasBeyondDeath[matches.target] = false;
       },
     },
     {
       id: 'O4S2 Beyond Death',
-      gainsEffectRegex: gLang.kEffect.BeyondDeath,
-      delaySeconds: function(e) {
-        return e.durationSeconds - 1;
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
+      delaySeconds: function(e, data, matches) {
+        return parseFloat(matches.duration) - 0.5;
       },
-      deathReason: function(e, data) {
+      deathReason: function(e, data, matches) {
         if (!data.hasBeyondDeath)
           return;
-        if (!data.hasBeyondDeath[e.targetName])
+        if (!data.hasBeyondDeath[matches.target])
           return;
         return {
-          name: e.targetName,
-          reason: e.effectName,
+          name: matches.target,
+          reason: matches.effect,
         };
       },
     },

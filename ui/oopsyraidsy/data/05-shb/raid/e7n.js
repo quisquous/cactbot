@@ -51,21 +51,35 @@ let noBuff = (str) => {
       },
     },
     {
-      id: 'E7N Astral Tracking',
-      gainsEffectRegex: gLang.kEffect.AstralEffect,
-      losesEffectRegex: gLang.kEffect.AstralEffect,
-      run: function(e, data) {
+      id: 'E7N Astral Effect Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
+      run: function(e, data, matches) {
         data.hasAstral = data.hasAstral || {};
-        data.hasAstral[e.targetName] = e.gains;
+        data.hasAstral[matches.target] = true;
       },
     },
     {
-      id: 'E7N Umbral Tracking',
-      gainsEffectRegex: gLang.kEffect.UmbralEffect,
-      losesEffectRegex: gLang.kEffect.UmbralEffect,
-      run: function(e, data) {
+      id: 'E7N Astral Effect Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8BE' }),
+      run: function(e, data, matches) {
+        data.hasAstral = data.hasAstral || {};
+        data.hasAstral[matches.target] = false;
+      },
+    },
+    {
+      id: 'E7N Umbral Effect Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
+      run: function(e, data, matches) {
         data.hasUmbral = data.hasUmbral || {};
-        data.hasUmbral[e.targetName] = e.gains;
+        data.hasUmbral[matches.target] = true;
+      },
+    },
+    {
+      id: 'E7N Umbral Effect Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8BF' }),
+      run: function(e, data, matches) {
+        data.hasUmbral = data.hasUmbral || {};
+        data.hasUmbral[matches.target] = false;
       },
     },
     {

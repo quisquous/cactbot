@@ -41,20 +41,28 @@
   },
   triggers: [
     {
-      id: 'Gubal Hard Burns', // Fire gate in hallway to boss 2, magnet failure on boss 2
-      gainsEffectRegex: gLang.kEffect.Burns,
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
+      // Fire gate in hallway to boss 2, magnet failure on boss 2
+      id: 'Gubal Hard Burns',
+      netRegex: NetRegexes.gainsEffect({ effectId: '10B' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
     {
       // Helper for Thunder 3 failures
-      id: 'Gubal Hard Imp Tracking',
-      gainsEffectRegex: gLang.kEffect.Imp,
-      losesEffectRegex: gLang.kEffect.Imp,
-      run: function(e, data) {
+      id: 'Gubal Hard Imp Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '46E' }),
+      run: function(e, data, matches) {
         data.hasImp = data.hasImp || {};
-        data.hasImp[e.targetName] = e.gains;
+        data.hasImp[matches.target] = true;
+      },
+    },
+    {
+      id: 'Gubal Hard Imp Lose',
+      netRegex: NetRegexes.loseEffect({ effectId: '46E' }),
+      run: function(e, data, matches) {
+        data.hasImp = data.hasImp || {};
+        data.hasImp[matches.target] = false;
       },
     },
     {

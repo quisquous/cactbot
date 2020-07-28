@@ -61,9 +61,10 @@
   triggers: [
     {
       id: 'E8S Shining Armor',
-      gainsEffectRegex: gLang.kEffect.Stun,
-      mistake: function(e) {
-        return { type: 'fail', blame: e.targetName, reason: gLang.kEffect.Stun };
+      // Stun
+      netRegex: NetRegexes.gainsEffect({ effectId: '95' }),
+      mistake: function(e, data, matches) {
+        return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },
     {
