@@ -14,7 +14,7 @@ function abilityWarn(args) {
     console.error('Missing ability ' + JSON.stringify(args));
   return {
     id: args.id,
-    netRegex: NetRegexes.abilityFull({ abilityId: args.abilityId }),
+    netRegex: NetRegexes.abilityFull({ id: args.abilityId }),
     condition: function(e, data, matches) {
       return matches.flags.substr(-2) == '0E';
     },
@@ -68,7 +68,7 @@ function abilityWarn(args) {
     'Bardam Confused': '0B', // Failed gaze attack, Yol, third boss
   },
   gainsEffectFail: {
-    'Bardam Fetters': '56A', // Failing two mechanics in any one phase on Bardam, second boss.
+    'Bardam Fetters': '56F', // Failing two mechanics in any one phase on Bardam, second boss.
   },
   triggers: [
     // 1 of 3 270-degree ring AoEs, Bardam, second boss
