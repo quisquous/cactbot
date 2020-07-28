@@ -6,9 +6,6 @@ class CactbotLanguage {
   constructor(lang) {
     this.InitStrings();
 
-    this.lang = lang;
-    this.playerName = null;
-
     this.kZone = Object.freeze({
       O1S: /Deltascape V1\.0 \(Savage\)/,
       O2S: /Deltascape V2\.0 \(Savage\)/,
@@ -40,15 +37,6 @@ class CactbotLanguage {
       EurekaPyros: /(Eureka Pyros|Unknown Zone \(31B\))/,
       EurekaHydatos: /(Eureka Hydatos|Unknown Zone \(33B\))/,
     });
-
-    this.kLanguages = Object.freeze([
-      'ja',
-      'en',
-      'de',
-      'fr',
-      'cn',
-      'ko',
-    ]);
   }
 
   InitStrings() {
