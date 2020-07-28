@@ -50,6 +50,11 @@
       // If we're in the Yol encounter, we're obviously not fighting Bardam.
       id: 'Bardam\'s Mettle Dead Bardam',
       netRegex: NetRegexes.message({ line: '.*Voiceless Muse will be sealed off.*?', capture: false }),
+      netRegexDe: NetRegexes.message({ line: '.*Stumme Muse will be sealed off.*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: '.*la Muse sans voix will be sealed off.*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '.*物言わぬ語り部 will be sealed off.*?', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '.*无声的叙事者 will be sealed off.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '.*말 없는 이야기꾼 will be sealed off.*?', capture: false }),
       run: function(data) {
         data.deadBardam = true;
       },
