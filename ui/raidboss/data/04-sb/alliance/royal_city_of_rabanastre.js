@@ -302,7 +302,7 @@
             de: 'Wegschauen',
             fr: 'Regardez ailleurs',
             cn: '背对BOSS',
-            ko: '바라보기',
+            ko: '바라보지 말기',
           };
         }
         return {
@@ -310,7 +310,7 @@
           de: 'Anschauen',
           fr: 'Regardez le boss',
           cn: '面对BOSS',
-          ko: '바라보지 말기',
+          ko: '바라보기',
         };
       },
     },
