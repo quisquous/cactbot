@@ -115,19 +115,19 @@ let Options = {
   Regex: {
     en: {
       'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
-      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([0-9A-Za-z_-]{6})(?:[^0-9A-Za-z_-]|$)/),
+      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
     },
     cn: {
       'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
-      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([0-9A-Za-z_-]{6})(?:[^0-9A-Za-z_-]|$)/),
+      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)冷却中的NM: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)分(钟*)\)/),
     },
     ko: {
       'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)에우레카: (?:아네모스|파고스|피로스|히다토스) 지대 \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
-      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([0-9A-Za-z_-]{6})(?:[^0-9A-Za-z_-]|$)/),
+      'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)토벌한 마물: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)분\)/),
     },
