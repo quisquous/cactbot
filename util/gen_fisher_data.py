@@ -16,7 +16,7 @@ import yaml
 from pathlib import Path
 
 locales = ["de", "en", "fr", "ja"]
-tackle_id = 30
+tackle_id = 33
 seafood_id = 47
 base = "https://xivapi.com/"
 fishTrackerBase = (
@@ -189,11 +189,10 @@ def get_fish_data():
 def get_tackle():
     # Also get fishing tackle
     response = xivapi(
-        "ItemSearchCategory",
-        {"id": tackle_id, "columns": ["GameContentLinks.Item.ItemSearchCategory"]},
+        "ItemUICategory", {"id": tackle_id, "columns": ["GameContentLinks.Item.ItemUICategory"]},
     )
 
-    item_ids = response["GameContentLinks"]["Item"]["ItemSearchCategory"]
+    item_ids = response["GameContentLinks"]["Item"]["ItemUICategory"]
     columns = ["ID"] + [f"Singular_{locale}" for locale in locales]
 
     results = xivapi("Item", {"columns": columns, "ids": item_ids})
@@ -290,16 +289,16 @@ def get_cn_data():
 
 
 def get_ko_data():
-    item_keys = ["#", "Singular", "ItemSearchCategory"]
+    item_keys = ["#", "Singular", "ItemUICategory"]
     items = csv_util.get_ko_table("Item", item_keys)
 
     tackle = {}
     fishes = {}
     for id, item in items.items():
         # no plurals
-        if item["ItemSearchCategory"] == str(tackle_id):
+        if item["ItemUICategory"] == str(tackle_id):
             tackle[int(id)] = item["Singular"]
-        elif item["ItemSearchCategory"] == str(seafood_id):
+        elif item["ItemUICategory"] == str(seafood_id):
             fishes[int(id)] = item["Singular"]
 
     # Sorry, this is an unfortunate duplication of get_fish_data
