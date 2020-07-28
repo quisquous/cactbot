@@ -315,7 +315,7 @@ function setupComboTracker(callback) {
 
 function setupRegexes(playerName) {
   kWellFedZoneRegex = Regexes.anyOf(Options.WellFedZones.map(function(x) {
-    return gLang.kZone[x];
+    return IntlZoneNames[x];
   }));
 
   kYouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
