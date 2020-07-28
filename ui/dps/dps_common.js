@@ -76,7 +76,7 @@ function InitDpsModule(config, updateFunc, hideFunc, initCallback) {
     });
 
     gIgnoreZones = Options.IgnoreZones.map(function(z) {
-      return gLang.kZone[z];
+      return IntlZoneNames[z];
     });
 
     if (initCallback)

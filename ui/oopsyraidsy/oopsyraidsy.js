@@ -1029,7 +1029,7 @@ class DamageTracker {
 
     this.ignoreZone = false;
     for (let i = 0; i < Options.IgnoreZones.length; ++i) {
-      if (this.zoneName.match(gLang.kZone[Options.IgnoreZones[i]])) {
+      if (this.zoneName.match(IntlZoneNames[Options.IgnoreZones[i]])) {
         this.ignoreZone = true;
         return;
       }
@@ -1126,8 +1126,6 @@ class DamageTracker {
 
   ProcessDataFiles() {
     if (this.triggerSets)
-      return;
-    if (!gLang)
       return;
     if (!this.me)
       return;
