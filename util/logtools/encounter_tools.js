@@ -1,11 +1,12 @@
 'use strict';
 
-let ZoneId = require('../../resources/zone_id.js');
-let NetRegexes = require('../../resources/netregexes.js');
+const NetRegexes = require('../../resources/netregexes.js');
+const ZoneInfo = require('../../resources/zone_info.js');
+const ContentType = require('../../resources/content_type.js');
 
-let replacements = require('../../ui/raidboss/common_replacement.js');
-let commonReplacement = replacements.commonReplacement;
-let syncKeys = replacements.syncKeys;
+const replacements = require('../../ui/raidboss/common_replacement.js');
+const commonReplacement = replacements.commonReplacement;
+const syncKeys = replacements.syncKeys;
 
 // TODO: add some error checking that a zone has been found before a fight.
 // This can happen on partial logs.
@@ -15,6 +16,8 @@ class EncounterFinder {
     this.currentZone = null;
     this.currentFight = null;
     this.currentSeal = null;
+    // May be null for some zones.
+    this.zoneInfo = null;
 
     this.haveWon = false;
     this.haveSeenSeals = false;
@@ -47,6 +50,27 @@ class EncounterFinder {
     }
   }
 
+  skipZone() {
+    if (!this.zoneInfo)
+      return false;
+    const contentType = this.zoneInfo.contentType;
+    if (!contentType)
+      return false;
+
+    // There are some seal messages in older raids, but not consistently.
+    // Therefore, we can't require them.
+    const keepTypes = [
+      ContentType.Dungeons,
+      ContentType.Eureka,
+      ContentType.Raids,
+      ContentType.Trials,
+      ContentType.UltimateRaids,
+      ContentType.DeepDungeons,
+    ];
+
+    return !keepTypes.includes(contentType);
+  }
+
   process(line) {
     let m;
 
@@ -68,9 +92,17 @@ class EncounterFinder {
       this.haveWon = false;
       this.haveSeenSeals = false;
       this.currentZone = m.groups.name;
+      this.zoneInfo = ZoneInfo[parseInt(m.groups.id, 16)];
+
+      if (this.skipZone())
+        return;
+
       this.onStartZone(line, this.currentZone, m.groups);
       return;
     }
+
+    if (this.skipZone())
+      return;
 
     m = line.match(this.regex.cactbotWipe);
     if (m) {
