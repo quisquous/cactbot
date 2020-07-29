@@ -232,6 +232,13 @@ class ConsoleNotifier {
     else
       errorFunc(this.fileName + ': ' + reason + ': ' + splitLine.join('|'));
   }
+
+  error(reason, splitLine) {
+    if (typeof splitLine === 'undefined')
+      errorFunc(this.fileName + ': ' + reason);
+    else
+      errorFunc(this.fileName + ': ' + reason + ': ' + splitLine.join('|'));
+  }
 }
 
 const writeFile = (outputFile, startLine, endLine) => {
@@ -252,7 +259,7 @@ const writeFile = (outputFile, startLine, endLine) => {
       reject();
     });
 
-    let splitter = new Splitter(startLine, endLine);
+    let splitter = new Splitter(startLine, endLine, notifier);
 
     let lines = [];
     lineReader.on('line', (line) => {

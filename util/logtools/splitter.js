@@ -4,14 +4,15 @@ const logDefinitions = require('./netlog_defs.js');
 
 class Splitter {
   // startLine and stopLine are both inclusive.
-  constructor(startLine, stopLine) {
+  constructor(startLine, stopLine, notifier) {
     this.logTypes = logDefinitions;
 
     this.startLine = startLine;
     this.stopLine = stopLine;
+    this.notifier = notifier;
+
     this.haveStarted = false;
     this.haveStopped = false;
-
     this.haveFoundFirstNonIncludeLine = false;
 
     this.globalLines = [];
@@ -37,6 +38,11 @@ class Splitter {
     const splitLine = line.split('|');
     const typeField = splitLine[0];
     const type = this.logTypes[typeField];
+    if (!type) {
+      this.notifier.error(`Unknown type: ${typeField}: ${line}`);
+      return;
+    }
+
     // Hang onto every globalInclude line, and the last instance of each lastInclude line.
     if (type.globalInclude)
       this.globalLines.push(line);
