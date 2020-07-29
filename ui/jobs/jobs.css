@@ -46,6 +46,10 @@
   left: 204px;
 }
 
+.pld #right-side-icons {
+  left: 288px;
+}
+
 /* Relative to #bars */
 #pull-bar,
 #hp-bar,
@@ -477,6 +481,14 @@
 
 .pld-color-oath.low {
   background-color: rgb(255, 255, 200);
+}
+
+.pld-color-atonement {
+  background-color: rgb(214, 237, 255);
+}
+
+.pld-color-atonement.any {
+  background-color: rgb(25, 156, 255);
 }
 
 .drk-color-blood {

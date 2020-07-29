@@ -1018,6 +1018,7 @@ const EffectId = {
   'SwiftL': '66C',
   'SwiftkicksGoblixer': '3E7',
   'SwirlingWaters': '73C',
+  'SwordOath': '76E',
   'SwordOfTheHeavens': '3B0',
   'Swordbearer': '6C6',
   'SynchronizationDebugger': '683',

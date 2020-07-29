@@ -1407,16 +1407,19 @@ class Bars {
   }
 
   setupPld() {
-    let textBox = this.addResourceBox({
+    let oathBox = this.addResourceBox({
       classList: ['pld-color-oath'],
+    });
+    let atonementBox = this.addResourceBox({
+      classList: ['pld-color-atonement'],
     });
 
     this.jobFuncs.push((jobDetail) => {
       let oath = jobDetail.oath;
-      if (textBox.innerText === oath)
+      if (oathBox.innerText === oath)
         return;
-      textBox.innerText = oath;
-      let p = textBox.parentNode;
+      oathBox.innerText = oath;
+      let p = oathBox.parentNode;
       if (oath < 50) {
         p.classList.add('low');
         p.classList.remove('mid');
@@ -1445,6 +1448,24 @@ class Bars {
         goreBox.duration = 22;
       }
     });
+
+    const setAtonement = (stacks) => {
+      atonementBox.innerText = stacks;
+      let p = atonementBox.parentNode;
+      if (stacks === 0)
+        p.classList.remove('any');
+      else
+        p.classList.add('any');
+    };
+    setAtonement(0);
+
+    // As atonement counts down, the player gets successive "gains effects"
+    // for the same effect, but with different counts.  When the last stack
+    // falls off, then there's a "lose effect" line.
+    this.gainEffectFuncMap[EffectId.SwordOath] = (name, matches) => {
+      setAtonement(parseInt(matches.count));
+    };
+    this.loseEffectFuncMap[EffectId.SwordOath] = () => setAtonement(0);
 
     this.statChangeFuncMap['PLD'] = () => {
       goreBox.valuescale = this.gcdSkill();
