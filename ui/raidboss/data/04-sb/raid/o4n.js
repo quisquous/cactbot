@@ -26,6 +26,7 @@
         en: 'Cleanse Doom soon',
         de: 'Reinige Verhängnis bald',
         cn: '驱散死宣',
+        ko: '죽음의 선고 해제하기',
       },
     },
     {
@@ -61,6 +62,7 @@
         en: 'Move around',
         de: 'Bewegen',
         cn: '不停移动',
+        ko: '움직이기',
       },
     },
     {
@@ -117,6 +119,7 @@
         en: 'Behind head--Avoid zombie breath',
         de: 'Hinter den Kopf - Vermeide den Zombie-Atem',
         cn: '站头后方',
+        ko: '머리 뒤로 - 좀비 숨결 피하기',
       },
     },
     {
@@ -131,6 +134,7 @@
         en: 'Avoid black holes',
         de: 'Weiche den Schwarzen Löchern aus',
         cn: '远离黑洞',
+        ko: '블랙홀 피하기',
       },
     },
     {
@@ -151,6 +155,7 @@
         en: 'Flare on YOU',
         de: 'Flare auf DIR',
         cn: '核爆点名',
+        ko: '플레어 대상자',
       },
     },
     {
