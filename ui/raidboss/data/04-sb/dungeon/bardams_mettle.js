@@ -100,6 +100,7 @@
         de: '8x Fläche auf DIR',
         fr: '8x Zones au sol sur VOUS',
         cn: '躲避8连追踪AOE',
+        ko: '8장판 준비',
 
       },
     },
@@ -119,6 +120,7 @@
         de: 'Hinter dem Brocken verstecken',
         fr: 'Cachez-vous derrière le rocher',
         cn: '站在陨石后',
+        ko: '운석 뒤에 숨기',
       },
     },
     {
@@ -159,6 +161,7 @@
         de: 'Rückstoß-Laser auf DIR',
         fr: 'Poussée-laser sur VOUS',
         cn: '击退点名',
+        ko: '날갯짓 대상자',
       },
     },
     {
@@ -170,6 +173,7 @@
         de: 'Laser ausweichen',
         fr: 'Évitez le laser',
         cn: '躲避击退点名',
+        ko: '날갯짓 피하기',
       },
     },
   ],
