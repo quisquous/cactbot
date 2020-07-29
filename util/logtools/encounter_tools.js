@@ -52,6 +52,12 @@ class EncounterFinder {
 
     m = line.match(this.regex.changeZone);
     if (m) {
+      if (this.currentZone === m.groups.name) {
+        // Zoning into the same zone, possibly a d/c situation.
+        // Don't stop anything?
+        return;
+      }
+
       if (this.currentFight !== null) {
         this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'Zone' });
         this.currentFight = null;
