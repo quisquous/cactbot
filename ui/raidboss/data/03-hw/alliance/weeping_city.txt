@@ -16,10 +16,12 @@ hideall "--sync--"
 9.8 "Dark Spike" sync /:Arachne Eve:1823:/
 21.6 "Silken Spray" sync /:Arachne Eve:1824:/
 30.4 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
+36.8 "--untargetable--"
 41.9 "Tremblor x3" sync /:Arachne Eve:1837:/ # 3 separate abilities, 1837/1836/1835
 48.4 "--sync--" sync /:Arachne Eve:1889:/
 49.9 "Pitfall" sync /:Arachne Eve:1825:/
-52.1 "--sync--" sync /:Arachne Eve:1847:/ # Sticky Wicket windup
+51.9 "--targetable--"
+52.1 "--sync--" sync /:Arachne Eve:1847:/ # Sticky Wicket head markers
 55.7 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
 64.1 "Silken Spray" sync /:Arachne Eve:1824:/
 
@@ -37,9 +39,11 @@ hideall "--sync--"
 200.0 "Dark Spike" sync /:Arachne Eve:1823:/ window 100,5
 206.3 "--sync--" sync /:Arachne Eve:1847:/
 210.5 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+212.1 "--untargetable--"
 216.7 "Tremblor x3" sync /:Arachne Eve:1837:/
 223.9 "--sync--" sync /:Arachne Eve:1889:/
 225.5 "Pitfall" sync /:Arachne Eve:1825:/
+227.5 "--targetable--"
 233.2 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
 246.3 "Shadow Burst" sync /:Arachne Eve:1838:/
 253.0 "Dark Spike" sync /:Arachne Eve:1823:/
@@ -47,9 +51,11 @@ hideall "--sync--"
 271.1 "Silken Spray" sync /:Arachne Eve:1824:/
 277.9 "Dark Spike" sync /:Arachne Eve:1823:/
 287.7 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
+294.2 "--untargetable--"
 297.9 "The Widow's Kiss" duration 5 # sync /:Arachne Eve:1842:/
 305.9 "The Widow's Embrace" sync /:Arachne Eve:1888:/
 308.5 "Pitfall" sync /:Arachne Eve:1845:/
+310.5 "--targetable--"
 317.2 "Dark Spike" sync /:Arachne Eve:1823:/
 
 # And up we go again.
@@ -64,10 +70,12 @@ hideall "--sync--"
 476.4 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
 483.8 "--sync--" sync /:Arachne Eve:1847:/
 487.4 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+489.8 "--untargetable--"
 494.4 "Tremblor x3" sync /:Arachne Eve:1837:/
 501.3 "The Widow's Kiss x3" duration 5 # sync /:Arachne Eve:1842:/
 509.3 "The Widow's Embrace" sync /:Arachne Eve:1888:/
 511.9 "Pitfall" sync /:Arachne Eve:1845:/
+513.9 "--targetable--"
 520.6 "Dark Spike" sync /:Arachne Eve:1823:/
 526.4 "Silken Spray" sync /:Arachne Eve:1824:/
 535.0 "Dark Spike" sync /:Arachne Eve:1823:/
@@ -76,6 +84,7 @@ hideall "--sync--"
 565.2 "Dark Spike" sync /:Arachne Eve:1823:/
 572.2 "--sync--" sync /:Arachne Eve:1847:/
 575.9 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+578.3 "--untargetable--"
 582.9 "Tremblor x3" sync /:Arachne Eve:1837:/
 
 # And *finally* we get to rotation blocks!
@@ -83,6 +92,7 @@ hideall "--sync--"
 # since we don't have any network logs that get this far to verify.
 589.4 "--sync--" sync /:Arachne Eve:1889:/ window 100,5
 590.9 "Pitfall" sync /:Arachne Eve:1825:/
+592.9 "--targetable--"
 604.6 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
 617.8 "Dark Spike" sync /:Arachne Eve:1823:/
 623.3 "Silken Spray" sync /:Arachne Eve:1824:/
@@ -91,9 +101,11 @@ hideall "--sync--"
 656.5 "Shadow Burst" sync /:Arachne Eve:1838:/
 662.0 "Dark Spike" sync /:Arachne Eve:1823:/
 677.0 "Arachne Web x3" duration 5 # sync /:Arachne Eve:185E:/
+681.2 "--untargetable--"
 684.9 "The Widow's Kiss x3" duration 5 # sync /:Arachne Eve:1842:/
 692.9 "The Widow's Embrace" sync /:Arachne Eve:1888:/
 695.4 "Pitfall" sync /:Arachne Eve:1845:/
+697.4 "--targetable--"
 703.4 "--sync--" sync /:Arachne Eve:1847:/
 707.1 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
 716.1 "Dark Spike" sync /:Arachne Eve:1823:/
@@ -104,10 +116,12 @@ hideall "--sync--"
 760.2 "Dark Spike" sync /:Arachne Eve:1823:/
 767.2 "--sync--" sync /:Arachne Eve:1847:/
 770.8 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
+773.0 "--untargetable--"
 777.6 "Tremblor x3" # sync /:Arachne Eve:1837:/
 
 784.1 "--sync--" sync /:Arachne Eve:1889:/ jump 589.4
 785.6 "Pitfall"
+787.6 "--targetable--"
 799.3 "Arachne Web"
 812.5 "Dark Spike"
 818.0 "Silken Spray"
@@ -270,3 +284,106 @@ hideall "--sync--"
 3242.0 "Flare Star"
 3248.8 "Explosion x5"
 3254.3 "Holy"
+
+#~~~~~~~~~~~~~#
+# CALOFISTERI #
+#~~~~~~~~~~~~~#
+
+# -ii 181B 181C 181D 181E
+
+# 1811 and 180D are releasing hair after Haircut and Split End cleaves
+
+4000.0 "--sync--" sync /00:0839:.*Tomb Of The Nullstone will be sealed off/ window 4000,5
+4004.1 "Bloodied Nail x4" # sync /:Calofisteri:181F:/
+4018.8 "Coif Change" sync /:Calofisteri:180[AE]:/ window 18.8,5
+4027.8 "Haircut" sync /:Calofisteri:180[BF]:/
+4030.8 "Split End" sync /:Calofisteri:18(0C|10):/
+4035.8 "Split End" sync /:Calofisteri:18(0C|10):/
+4040.8 "Extension" sync /:Calofisteri:1812:/
+4043.8 "Split End" sync /:Calofisteri:18(0C|10):/
+4047.8 "Split End" sync /:Calofisteri:18(0C|10):/
+4051.9 "--sync--" sync /:Calofisteri:18(0D|11):/ window 51,5
+4054.9 "Coif Change" sync /:Calofisteri:180[AE]:/
+4063.9 "Haircut" sync /:Calofisteri:180[BF]:/
+4066.9 "Split End" sync /:Calofisteri:18(0C|10):/
+4071.9 "Split End" sync /:Calofisteri:18(0C|10):/
+4076.9 "Extension" sync /:Calofisteri:1812:/
+4079.9 "Split End" sync /:Calofisteri:18(0C|10):/
+4083.9 "Split End" sync /:Calofisteri:18(0C|10):/
+4090.9 "Haircut" sync /:Calofisteri:180[BF]:/
+4093.9 "Split End" sync /:Calofisteri:18(0C|10):/
+4096.9 "Aura Burst" sync /:Calofisteri:1821:/
+4099.8 "--sync--" sync /:Calofisteri:18(0D|11):/ window 40,5
+4101.4 "--untargetable--"
+4103.8 "Dancing Mad" sync /:Calofisteri:1818:/ window 103.8,5
+
+# An intermission full of SKY LASERS
+4112.3 "Feint Particle Beam x16" sync /:Calofisteri:1927:/ duration 10
+4131.6 "Feint Particle Beam x16" sync /:Calofisteri:1927:/ duration 10
+4140.9 "Feint Particle Beam x16" jump 4112.3
+4160.8 "Feint Particle Beam x16"
+
+
+# Returning to a broken bridge block.
+# It doesn't look like time taken on the intermission affects how many times
+# Dancing Mad strikes.
+
+4200.0 "Mana Drain" sync /:Calofisteri:1819:/ window 80,5
+4204.0 "Dancing Mad" sync /:Calofisteri:181A:/
+4212.9 "--targetable--"
+4215.0 "Coif Change" sync /:Calofisteri:180[AE]:/
+4224.0 "Haircut" sync /:Calofisteri:180[BF]:/
+4227.0 "--sync--" sync /:Calofisteri:18(0D|11):/
+4232.0 "Extension" sync /:Calofisteri:1812:/
+4237.0 "--sync--" sync /:Calofisteri:1813:/
+4238.0 "Bloodied Nail x3" # sync /:Calofisteri:181F:/
+4249.0 "Evil Curl/Evil Tress" sync /:Living Lock:181[67]:/
+4251.5 "Extension" sync /:Calofisteri:1812:/
+4253.5 "Coif Change" sync /:Calofisteri:180[AE]:/ window 15,15
+
+# This section of the bridge may be skipped depending on DPS. HP% for push is unknown.
+4262.5 "Haircut" sync /:Calofisteri:180[BF]:/
+4268.5 "Aura Burst" sync /:Calofisteri:1821:/
+4273.5 "Split End" sync /:Calofisteri:18(0C|10):/
+4278.5 "Split End" sync /:Calofisteri:18(0C|10):/
+
+4280.5 "--sync--" sync /:Calofisteri:18(0D|11):/ window 27,15
+4285.5 "Extension" sync /:Calofisteri:1812:/
+4290.5 "--sync--" sync /:Calofisteri:1813:/
+4293.4 "Penetration" sync /:Calofisteri:1822:/
+
+# Rotation block to 0%
+4296.9 "Coif Change" sync /:Calofisteri:180[AE]:/ window 15,15
+4307.2 "Depth Charge" sync /:Calofisteri:1820:/
+4311.2 "Haircut" sync /:Calofisteri:180[BF]:/
+4317.2 "--sync--" sync /:Calofisteri:18(0D|11):/
+4322.2 "Extension" sync /:Calofisteri:1812:/
+4325.2 "Bloodied Nail x3" # sync /:Calofisteri:181F:/
+4332.2 "Aura Burst" sync /:Calofisteri:1821:/
+4338.7 "Coif Change" sync /:Calofisteri:180[AE]:/ window 15,15
+4339.2 "Evil Switch" sync /:Living Lock:1815:/
+4345.7 "Haircut" sync /:Calofisteri:180[BF]:/
+4351.7 "Extension" sync /:Calofisteri:1812:/
+4356.7 "Split End" sync /:Calofisteri:18(0C|10):/
+4358.7 "--sync--" sync /:Calofisteri:18(0D|11):/
+4363.7 "Extension" sync /:Calofisteri:1812:/
+4367.7 "Bloodied Nail x3" # sync /:Calofisteri:181F:/
+4377.2 "Aura Burst" sync /:Calofisteri:1821:/
+4379.2 "Coif Change" sync /:Calofisteri:180[AE]:/ window 15,15
+4380.7 "Evil Curl/Evil Tress" sync /:Living Lock:181[67]:/
+4386.3 "Haircut" sync /:Calofisteri:180[BF]:/
+4392.3 "Split End" sync /:Calofisteri:18(0C|10):/
+4397.3 "Split End" sync /:Calofisteri:18(0C|10):/
+4402.3 "Aura Burst" sync /:Calofisteri:1821:/
+4404.3 "--sync--" sync /:Calofisteri:18(0D|11):/
+4409.3 "Extension" sync /:Calofisteri:1812:/
+4414.3 "--sync--" sync /:Calofisteri:1813:/
+4417.7 "Penetration" sync /:Calofisteri:1822:/
+4421.2 "Evil Curl/Evil Tress" sync /:Living Lock:181[67]:/
+
+4421.2 "Coif Change" sync /:Calofisteri:180[AE]:/ window 15,15 jump 4296.9
+4431.5 "Depth Charge"
+4435.5 "Haircut"
+4446.5 "Extension"
+4449.5 "Bloodied Nail x3"
+4456.5 "Aura Burst"
