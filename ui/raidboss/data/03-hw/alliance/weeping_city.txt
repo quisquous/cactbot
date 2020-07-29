@@ -34,7 +34,7 @@ hideall "--sync--"
 186.7 "Implosion"
 
 # Back on the ground for a relatively short bridge block
-200.0 "Dark Spike" sync /:Arachne Eve:1823:/ window 200,5
+200.0 "Dark Spike" sync /:Arachne Eve:1823:/ window 100,5
 206.3 "--sync--" sync /:Arachne Eve:1847:/
 210.5 "Sticky Wicket x3" # sync /:Arachne Eve:183F:/
 216.7 "Tremblor x3" sync /:Arachne Eve:1837:/
@@ -140,9 +140,9 @@ hideall "--sync--"
 # It could even be nothing.
 # If the intermission goes longer than 3 minutes, something is WRONG.
 
-1350.0 "Mana Eruption" sync /:Forgall:17C9:/ window 350,5
+1350.0 "Mana Explosion" sync /:Forgall:17C8:/ window 350,5
 
-1360.2 "Necropurge" sync /:Forgall:17BE:/
+1360.2 "Necropurge" sync /:Forgall:17BE:/ window 200,5
 1373.4 "Necropurge" sync /:Forgall:17BF:/
 1373.4 "--sync--" sync /:Poison Mist:17D8:/
 1377.4 "Mega Death" sync /:Forgall:17CA:/ window 20,20
@@ -163,3 +163,110 @@ hideall "--sync--"
 1499.1 "Mega Death"
 1515.4 "Dark Eruption x3"
 
+#~~~~~~#
+# OZMA #
+#~~~~~~#
+
+# -ii 366 367 368 1806 1829 1830 1831 1832
+
+# Ozma is based on an A/B timeline pattern.
+# She begins in Sphere form and can morph into Cube or Pyramid stance.
+# Whichever she chooses sets the path for the remainder of the encounter.
+
+2000.0 "--sync--" sync /00:0839:.*Gloriole will be sealed off/ window 2000,5
+2015.0 "Meteor Headmarkers"
+2024.0 "Meteor Impact" sync /:Singularity Fragment:1935:/
+
+2045.5 "Transfiguration (Pyramid)" sync /:Ozma:1826:/
+2045.5 "--sync--" sync /:Ozma:1803:/
+2052.6 "Execration?"
+2052.6 "Flare Star?"
+2059.0 "Explosion x5?"
+2073.9 "Acceleration Bomb?"
+
+# Pyramid-first path
+
+2150.0 "Transfiguration (Pyramid)" sync /:Ozma:1826:/
+2157.1 "Execration" sync /:Ozma:1828:/
+2178.4 "Acceleration Bomb" sync /:Ozma:182F:/
+2195.7 "Transfiguration (Sphere)" sync /:Ozma:1827:/
+2203.8 "Black Hole" sync /:Ozma:1800:/
+
+# Cube-first path
+
+2250.0 "Transfiguration (Cube)" sync /:Ozma:1803:/
+2257.0 "Flare Star" sync /:Ozma:1805:/
+2263.5 "Explosion x5" # sync /:Ozmasphere:1807:/
+2288.0 "Holy" sync /:Ozma:182E:/
+2300.0 "Transfiguration (Sphere)" sync /:Ozma:1804:/
+2308.0 "Black Hole" sync /:Ozma:1800:/ window 300,5 jump 2400.0
+
+# Intermission
+
+2400.0 "Black Hole" # seems to be a 55% HP push.
+# We can't really do anything with this intermission.
+# The only real repetition is the Singularity Echoes casting stuff.
+# But they die well before the intermission ends, so no point.
+# Instead, we just let the timeline play on dead space.
+# The intermission's enrage is probably under 3 minutes, but we have no way to know.
+
+2600.0 "--sync--" sync /:Ozma:1826:/ window 200,5 jump 2700.0
+2600.0 "--sync--" sync /:Ozma:1803:/ window 200,5 jump 3000.0
+
+
+# Pyramid-first continued
+2700.0 "Transfiguration (Pyramid)" sync /:Ozma:1826:/
+2707.0 "Execration" sync /:Ozma:1828:/
+2728.0 "Acceleration Bomb" sync /:Ozma:182F:/
+2745.0 "Transfiguration (Sphere)" sync /:Ozma:1827:/
+2763.0 "Meteor Impact" sync /:Singularity Fragment:1935:/
+
+2790.8 "Transfiguration (Pyramid)" sync /:Ozma:1826:/
+2797.8 "Execration" sync /:Ozma:1828:/
+2813.8 "Acceleration Bomb" sync /:Ozma:182F:/
+2816.8 "Meteor Impact" sync /:Singularity Fragment:1935:/
+2837.3 "Meteor" # sync /:Ozma:182D:/
+2851.8 "Acceleration Bomb" sync /:Ozma:182F:/
+2853.8 "Transfiguration (Sphere)" sync /:Ozma:1827:/
+2865.8 "Transfiguration (Cube)" sync /:Ozma:1803:/
+2872.8 "Flare Star" sync /:Ozma:1805:/
+2879.3 "Explosion x5" # sync /:Ozmasphere:1807:/
+2884.8 "Holy" sync /:Ozma:182E:/
+2900.9 "Meteor Impact" sync /:Singularity Fragment:1935:/
+2906.9 "Holy" sync /:Ozma:182E:/
+2922.4 "Meteor" # sync /:Ozma:182D:/
+2929.0 "Transfiguration (Sphere)" sync /:Ozma:1804:/
+
+2941.0 "Transfiguration (Pyramid)" sync /:Ozma:1826:/ jump 2790.8
+2948.0 "Execration"
+2964.0 "Acceleration Bomb"
+2967.0 "Meteor Impact"
+
+# Cube-first continued
+
+3000.0 "Transfiguration (Cube)" sync /:Ozma:1803:/
+3007.0 "Flare Star" sync /:Ozma:1805:/
+3013.6 "Explosion x5" # sync /:Ozmasphere:1807:/
+3029.7 "Transfiguration (Sphere)" sync /:Ozma:1804:/
+3047.9 "Meteor Impact" sync /:Singularity Fragment:1935:/
+
+3080.7 "Transfiguration (Cube)" sync /:Ozma:1803:/
+3087.8 "Flare Star" sync /:Ozma:1805:/
+3094.6 "Explosion x5" # sync /:Ozmasphere:1807:/
+3100.1 "Holy" sync /:Ozma:182E:/
+3116.3 "Meteor Impact" sync /:Singularity Fragment:1935:/
+3122.7 "Holy" sync /:Ozma:182E:/
+3138.7 "Meteor" # sync /:Ozma:182D:/
+3145.7 "Transfiguration (Sphere)" sync /:Ozma:1804:/
+3157.9 "Transfiguration (Pyramid)" sync /:Ozma:1826:/
+3165.0 "Execration" sync /:Ozma:1828:/
+3181.5 "Acceleration Bomb" sync /:Ozma:182F:/
+3184.2 "Meteor Impact" sync /:Singularity Fragment:1935:/
+3205.2 "Meteor" # sync /:Ozma:182D:/
+3220.3 "Acceleration Bomb" sync /:Ozma:182F:/
+3222.4 "Transfiguration (Sphere)" sync /:Ozma:1827:/
+
+3234.9 "Transfiguration (Cube)" sync /:Ozma:1803:/ jump 3080.7
+3242.0 "Flare Star"
+3248.8 "Explosion x5"
+3254.3 "Holy"
