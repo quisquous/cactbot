@@ -161,6 +161,9 @@ const printCollectedZones = (collector) => {
     idx++;
   }
 
+  if (outputRows.length === 0)
+    return;
+
   const lengths = maxLengthPerIndex(outputRows);
 
   const dateIdx = 1;
@@ -204,6 +207,9 @@ const printCollectedFights = (collector) => {
     ]);
     idx++;
   }
+
+  if (outputRows.length === 0)
+    return;
 
   const lengths = maxLengthPerIndex(outputRows);
 
