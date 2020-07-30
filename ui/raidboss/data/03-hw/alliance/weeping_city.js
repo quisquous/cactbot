@@ -189,7 +189,7 @@
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
-            en: 'Explosion--Avoid party',
+            en: 'Tank lasers--Avoid party',
           };
         }
         if (data.role == 'healer') {
