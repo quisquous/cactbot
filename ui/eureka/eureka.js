@@ -1547,7 +1547,7 @@ let Options = {
             ko: '골데마르',
           },
           trackerName: {
-            en: 'King Goldemar',
+            en: 'Golde',
             de: 'König Goldemar',
             fr: 'Golde',
             ja: 'キング・ゴルデマール',
