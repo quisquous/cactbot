@@ -289,7 +289,7 @@ hideall "--sync--"
 # CALOFISTERI #
 #~~~~~~~~~~~~~#
 
-# -ii 181B 181C 181D 181E
+# -ii 181B 181C 181D 181E 1928
 
 # 1811 and 180D are releasing hair after Haircut and Split End cleaves
 
@@ -320,7 +320,7 @@ hideall "--sync--"
 # An intermission full of SKY LASERS
 4112.3 "Feint Particle Beam x16" sync /:Calofisteri:1927:/ duration 10
 4131.6 "Feint Particle Beam x16" sync /:Calofisteri:1927:/ duration 10
-4140.9 "Feint Particle Beam x16" jump 4112.3
+4140.9 "Feint Particle Beam x16" sync /:Calofisteri:1927:/ jump 4112.3
 4160.8 "Feint Particle Beam x16"
 
 
