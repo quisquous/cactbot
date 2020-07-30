@@ -40,10 +40,8 @@ If you get lost, see the [HALP](#halp) section.
 
 OverlayPlugin runs a server which accepts [WebSocket](https://en.wikipedia.org/wiki/WebSocket) connections
 that allows other applications to use ACT's data.
-This is different from [ACTWebSocket](https://github.com/ZCube/ACTWebSocket/releases)
-which is no longer maintained.
-It is recommended that you use OverlayPlugin's built-in WebSocket support
-instead of using ACTWebSocket.
+(This is different from ACTWebSocket which is no longer maintained
+and cactbot does not support.)
 
 To set this up in ACT,
 go to **Plugins** -> **OverlayPlugin WSServer**.
@@ -103,8 +101,9 @@ but this guide will not cover them.
 
 ### Download And Install
 
-Once you've logged in, click the "Download for Windows" button.
-This will give you a zip file.
+Go to [https://ngrok.com/download](https://ngrok.com/download),
+and then click the "Download for Windows" button.
+
 Place the `ngrok.exe` file somewhere in your path.
 
 The rest of this section assumes you're not that comfy with a command line.
@@ -136,7 +135,7 @@ Authtoken saved to configuration file: C:\Users\tinipoutini/.ngrok2/ngrok.yml
 Next, start up the ngrok server via a command like this:
 
 ```Batchfile
-ngrok http -host-header=rewrite -inspect=false --bind-tls "true" https://localhost/10501
+ngrok http -host-header=rewrite -inspect=false --bind-tls "true" https://localhost:10501
 ```
 
 This will create a window with server information.
@@ -223,28 +222,14 @@ You can use <https://meyerweb.com/eric/tools/dencoder/>
 to encode a string as a url parameter.
 For example, `P'otato Chippy` becomes `P%27otato%20Chippy`.
 
-### Configure cactbot user/
+### Configure cactbot
 
-Users can have custom files in their [user directory](AdvancedCactbot.md#user-directory)
-that modify the way that cactbot behaves.
+Unfortunately at the moment,
+all of the cactbot customization is local
+and any remote player will inherit the customization of the host.
 
-cactbot loads user/ directories in the following order,
-finding the first directory that works.
-
-1) The `cactbot user directory` set in the **Plugins** -> **OverlayPlugin.dll** -> **Cactbot** config panel
-1) Relative to the html file, e.g. trying to find `cactbot/user/` adjacent to `cactbot/ui/raidboss/raidboss.html`.
-1) Relative to the plugin, e.g. trying to find `cactbot/user/` adjacent to `cactbot/CactbotOverlay.dll`.
-
-If the remote player wants their own customization,
-they should set the `cactbot user directory` setting.
-
-If the remote player wants to share the customization of the player hosting ACT,
-the easiest thing to do is to share that user/ directory
-and have each remote player copy that locally and set it as their `cactbot user directory`.
-Alternatively, you can have the host player put all of their customization relative to their `CactbotOverlay.dll`.
-
-If you have custom triggers with custom sounds,
-those custom sounds will need to have a remotely accessible url.
+In the future, it may be possible to append some additional parameters to
+load your own user directory, but not currently.
 
 ## HALP
 
