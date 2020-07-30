@@ -196,7 +196,7 @@ hideall "--sync--"
 2015.0 "Meteor Headmarkers"
 2024.0 "Meteor Impact" sync /:Singularity Fragment:1935:/
 
-2045.5 "Transfiguration (Pyramid)" sync /:Ozma:1826:/ jump 2150.0
+2045.5 "Transfiguration (Pyramid/Cube?)" sync /:Ozma:1826:/ jump 2150.0
 2045.5 "--sync--" sync /:Ozma:1803:/ jump 2250.0
 2052.6 "Execration?"
 2052.6 "Flare Star?"
@@ -295,9 +295,9 @@ hideall "--sync--"
 3400.0 "Transfiguration (Cube)" sync /:Ozma:1803:/
 3407.0 "Flare Star" sync /:Ozma:1805:/
 3411.0 "Tank Lasers" # sync /:Ozma:1831:/
-3419.0 "Holy" sync /:Ozma:182E:/
+3419.2 "Holy" sync /:Ozma:182E:/
 3435.1 "Meteor Impact" sync /:Singularity Fragment:1935:/
-3441.1 "Holy" sync /:Ozma:182E:/
+3441.3 "Holy" sync /:Ozma:182E:/
 3456.6 "Meteor" # sync /:Ozma:182D:/
 3463.2 "Transfiguration (Sphere)" sync /:Ozma:1804:/ window 50,5
 
