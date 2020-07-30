@@ -181,11 +181,16 @@ hideall "--sync--"
 # OZMA #
 #~~~~~~#
 
-# -ii 366 367 368 1806 1829 1830 1832
+# -ii 366 367 368 1802 1806 1807 1829 1830 1832
+# -ic "Singularity Ripple" "Singularity Trace"
 
 # Ozma is based on an A/B timeline pattern.
 # She begins in Sphere form and can morph into Cube or Pyramid stance.
-# Whichever she chooses sets the path for the remainder of the encounter.
+# The complete flow looks like:
+
+# Sphere opening block -->              --> Cube   bridge block -->       . - - - - - - - - - - ---
+#                                                                         V                       |
+# Cube   opening block --> Intermission --> Sphere bridge block --> (Cube|Sphere) rotation blocks |
 
 2000.0 "--sync--" sync /00:0839:.*Gloriole will be sealed off/ window 2000,5
 2015.0 "Meteor Headmarkers"
@@ -210,7 +215,6 @@ hideall "--sync--"
 
 2250.0 "Transfiguration (Cube)" sync /:Ozma:1803:/
 2257.0 "Flare Star" sync /:Ozma:1805:/
-2263.5 "Explosion x5" # sync /:Ozmasphere:1807:/
 2288.0 "Holy" sync /:Ozma:182E:/
 2300.0 "Transfiguration (Sphere)" sync /:Ozma:1804:/
 2308.0 "Black Hole" sync /:Ozma:1800:/ window 300,5 jump 2400.0
@@ -224,12 +228,14 @@ hideall "--sync--"
 # Instead, we just let the timeline play on dead space.
 # The intermission's enrage is probably under 3 minutes, but we have no way to know.
 
+2594.4 "--sync--" sync /:Ozma:182D:/ window 194.4,0
 2600.0 "--sync--" sync /:Ozma:1826:/ window 200,5 jump 2700.0
 2600.0 "--sync--" sync /:Ozma:1803:/ window 200,5 jump 3000.0
 
 # The continuation from the intermission is dependent on whichever was first.
 # Each has its own bridge block, each one leading into a pair of rotation blocks.
 # Because of this, it's necessary to jump around way more than we should have to.
+# Each block seems? to be full of tiny HP pushes back into Sphere form.
 
 
 # Cube-first continued
@@ -260,37 +266,35 @@ hideall "--sync--"
 3080.8 "--sync--" sync /:Ozma:1803:/ window 50,5 jump 3400
 3087.8 "Execration?"
 3087.8 "Flare Star?"
+3091.8 "Tank Lasers?"
 3099.8 "Holy?"
 3103.8 "Acceleration Bomb?"
-3106.8 "Meteor Impact?"
-3116.8 "Meteor Impact?"
 
 
 # Pyramid standard rotation
 
 3200.0 "Transfiguration (Pyramid)" sync /:Ozma:1826:/
 3207.0 "Execration" sync /:Ozma:1828:/
-3211.0 "Tank Lasers" # sync /:Ozma:1831:/
 3223.0 "Acceleration Bomb" sync /:Ozma:182F:/
 3226.0 "Meteor Impact" sync /:Singularity Fragment:1935:/
 3246.5 "Meteor" # sync /:Ozma:182D:/
 3261.0 "Acceleration Bomb" sync /:Ozma:182F:/
-3263.0 "Transfiguration (Sphere)" sync /:Ozma:1827:/window 50,5
+3263.0 "Transfiguration (Sphere)" sync /:Ozma:1827:/ window 50,5
 
 3275.0 "Transfiguration (Cube/Pyramid?)" sync /:Ozma:1826:/ window 50,5 jump 3200
 3275.0 "--sync--" sync /:Ozma:1803:/ jump 3400
 3282.0 "Execration?"
 3282.0 "Flare Star?"
+3286.0 "Tank Lasers?"
 3294.0 "Holy?"
 3298.0 "Acceleration Bomb?"
-3301.0 "Meteor Impact?"
 
 
 # Cube standard rotation
 
 3400.0 "Transfiguration (Cube)" sync /:Ozma:1803:/
 3407.0 "Flare Star" sync /:Ozma:1805:/
-3411.0 "Tank Lasers"
+3411.0 "Tank Lasers" # sync /:Ozma:1831:/
 3419.0 "Holy" sync /:Ozma:182E:/
 3435.1 "Meteor Impact" sync /:Singularity Fragment:1935:/
 3441.1 "Holy" sync /:Ozma:182E:/
@@ -301,9 +305,10 @@ hideall "--sync--"
 3475.2 "--sync--" sync /:Ozma:1803:/ window 50,5 jump 3400
 3482.2 "Execration?"
 3482.2 "Flare Star?"
+3486.2 "Tank Lasers?"
 3494.2 "Holy?"
 3498.2 "Acceleration Bomb?"
-3501.2 "Meteor Impact?"
+
 
 
 

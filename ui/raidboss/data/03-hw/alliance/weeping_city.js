@@ -40,8 +40,8 @@
       id: 'Weeping City Bloodied Nail',
       regex: /Bloodied Nail/,
       beforeSeconds: 4,
-      suppressSeconds: 10,
       condition: Conditions.caresAboutPhysical(),
+      suppressSeconds: 10,
       response: Responses.tankBuster(),
     },
     {
@@ -184,8 +184,8 @@
     {
       // The ability used here is Ozma entering Cube form.
       // Flare Star and Explosion follow shortly.
-      id: 'Weeping City Execration',
-      netRegex: NetRegexes.ability({ id: '1826', source: 'Ozma', capture: false }),
+      id: 'Weeping City Flare Star',
+      netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
