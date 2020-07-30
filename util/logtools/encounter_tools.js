@@ -86,17 +86,21 @@ class EncounterFinder {
         this.onEndFight(line, this.currentFight, { ...m.groups, endType: 'Zone' });
         this.currentFight = null;
       }
-      if (this.currentZone !== null)
+      if (this.currentZone !== null) {
         this.onEndZone(line, this.currentZone, m.groups);
+        this.currentZone = null;
+      }
 
       this.haveWon = false;
       this.haveSeenSeals = false;
-      this.currentZone = m.groups.name;
+
       this.zoneInfo = ZoneInfo[parseInt(m.groups.id, 16)];
-
-      if (this.skipZone())
+      if (this.skipZone()) {
+        this.zoneInfo = null;
         return;
+      }
 
+      this.currentZone = m.groups.name;
       this.onStartZone(line, this.currentZone, m.groups);
       return;
     }
