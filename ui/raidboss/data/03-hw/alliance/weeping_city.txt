@@ -133,15 +133,15 @@ hideall "--sync--"
 # -ii 366 17D5 17C1 17D6
 
 1000.0 "--sync--" sync /00:0839:.*Shrine of the Goetic will be sealed off/ window 1000,5
-1014.4 "Necropurge" sync /:Shriveled Talon:17D7:/
-1024.2 "Megiddo Flame" sync /:Forgall:17C0:/
+1014.2 "Necropurge" sync /:Shriveled Talon:17D7:/
+1024.4 "Megiddo Flame" sync /:Forgall:17C0:/
 1032.4 "Necropurge" sync /:Forgall:17BE:/
 1060.7 "Megiddo Flame" sync /:Forgall:17C0:/
 1066.7 "Punishing Ray" sync /:Forgall:17C4:/
 1081.0 "Brand of the Fallen" sync /:Forgall:17CC:/ window 20,20
 1090.3 "Evil Mist" sync /:Forgall:17C5:/
 1101.3 "Necropurge" sync /:Shriveled Talon:17D7:/
-1118.5 "Necropurge" sync /:Forgall:17BE:/
+1118.3 "Necropurge" sync /:Forgall:17BE:/
 1131.6 "Necropurge" sync /:Forgall:17BF:/
 1132.8 "Brand of the Fallen" sync /:Forgall:17CC:/ window 20,20
 1141.1 "--sync--" sync /:Forgall:17C2:/ # Dark Eruption markers go out.
@@ -159,7 +159,7 @@ hideall "--sync--"
 1360.2 "Necropurge" sync /:Forgall:17BE:/ window 200,5
 1373.4 "Necropurge" sync /:Forgall:17BF:/
 1373.4 "--sync--" sync /:Poison Mist:17D8:/
-1377.4 "Mega Death" sync /:Forgall:17CA:/ window 20,20
+1377.5 "Mega Death" sync /:Forgall:17CA:/ window 20,20
 1388.5 "--sync--" sync /:Forgall:17C2:/
 1393.7 "Dark Eruption x3" # sync /:Forgall:17C3:/
 1395.7 "Megiddo Flame" sync /:Forgall:17C0:/
