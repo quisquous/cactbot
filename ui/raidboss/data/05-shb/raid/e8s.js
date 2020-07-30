@@ -770,7 +770,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'frozen mirror': 'Miroir de glace',
         'great wyrm': 'Dragon divin',
@@ -788,6 +787,7 @@
         'Banish III': 'Méga Bannissement',
         'Biting/Driving Frost': 'Taillade/Percée de givre',
         'Bright Hunger': 'Lumière dévorante',
+        'Diamond Frost': 'Poussière de diamant',
         'Double Slap': 'Gifle redoublée',
         'Drachen Armor': 'Armure des dragons',
         'Draconic Strike': 'Frappe draconique',
