@@ -146,7 +146,7 @@
     {
       id: 'Weeping City Mortal Ray',
       netRegex: NetRegexes.startsUsing({ id: '17D4', source: 'Summoned Haagenti', capture: false }),
-      response: Responses.lookAway(),
+      response: Responses.lookAwayFrom(),
     },
     {
       id: 'Weeping City Hell Wind',
