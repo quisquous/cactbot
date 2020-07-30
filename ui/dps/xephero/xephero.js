@@ -11,7 +11,7 @@ function showOverlay() {
   $('#overlay').removeClass('hide');
 }
 
-function update(dps) {
+function update(dps, tracker) {
   let encounter = dps.Encounter;
   let rdps = parseFloat(encounter.encdps);
   if (isNaN(rdps) || rdps == Infinity)
@@ -150,14 +150,14 @@ function updatePhase(phase, dpsOrder) {
     maxPhaseDPS.row.addClass('highestdps');
 }
 
-let tracker = null;
-const onOverlayDataUpdateEvent = (e) => {
-  tracker.onOverlayDataUpdate(e.detail);
-  update(e.detail);
-};
+UserConfig.getUserConfigLocation('xephero', function(e) {
+  let tracker = new DpsPhaseTracker(Options);
+  const onOverlayDataUpdateEvent = (e) => {
+    tracker.onOverlayDataUpdate(e.detail);
+    update(e.detail, tracker);
+  };
 
-InitDpsModule('xephero', onOverlayDataUpdateEvent, hideOverlay, (options) => {
-  tracker = new DpsPhaseTracker(options);
+  InitDpsModule(onOverlayDataUpdateEvent, hideOverlay);
 
   addOverlayListener('onZoneChangedEvent', (e) => {
     const currentZone = e.detail.zoneName;
