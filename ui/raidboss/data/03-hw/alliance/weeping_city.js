@@ -184,8 +184,8 @@
     {
       // The ability used here is Ozma entering Cube form.
       // Flare Star and Explosion follow shortly.
-      id: 'Weeping City Execration',
-      netRegex: NetRegexes.ability({ id: '1826', source: 'Ozma', capture: false }),
+      id: 'Weeping City Flare Star',
+      netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
