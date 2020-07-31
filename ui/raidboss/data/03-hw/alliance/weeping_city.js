@@ -161,7 +161,7 @@
       id: 'Weeping City Mega Death',
       netRegex: NetRegexes.startsUsing({ id: '17CA', source: 'Forgall', capture: false }),
       alertText: {
-        en: 'Get 1 Stack In Puddle',
+        en: 'Stand in one puddle',
       },
     },
     {
@@ -183,23 +183,40 @@
     },
     {
       // The ability used here is Ozma entering Cube form.
-      // Flare Star and Explosion follow shortly.
-      id: 'Weeping City Flare Star',
+      // Flare Star and tank lasers follow shortly.
+      id: 'Weeping City Flare Star Ring',
       netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
+      response: Responses.getIn(),
+    },
+    {
+      // The ability used here is Ozma entering Cube form. The actual laser ability, 1831,
+      // is literally named "attack". Ozma zaps the 3 highest-threat targets. (Not always tanks!)
+      // This continues until the next Sphere form, whether by time or by HP push.
+      id: 'Weeping City Tank Lasers',
+      netRegex: NetRegexes.ability({ id: '1803', source: 'Ozma', capture: false }),
+      // Delaying here to avoid colliding with other Flare Star triggers.
+      delaySeconds: 4,
       alertText: function(data) {
         if (data.role == 'tank') {
           return {
             en: 'Tank lasers--Avoid party',
           };
         }
-        if (data.role == 'healer') {
-          return {
-            en: 'Avoid tanks, get orbs',
-          };
-        }
         return {
-          en: 'Avoid tanks and healers',
+          en: 'Avoid tanks',
         };
+      },
+    },
+    {
+      // The NPC name is Ozmasphere. These need to be popped just like any other Flare Star.
+      // Failing to pop an orb means it will explode, dealing damage with 1808 Aethernova.
+      id: 'Weeping City Flare Star Orbs',
+      netRegex: NetRegexes.addedCombatantFull({ npcBaseId: '4889', capture: false }),
+      condition: function(data) {
+        return data.role == 'tank' || data.role == 'healer';
+      },
+      infoText: {
+        en: 'Get orbs',
       },
     },
     {
