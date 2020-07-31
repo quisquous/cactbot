@@ -6,6 +6,7 @@
 02-arr/trial/shiva-ex.js
 02-arr/trial/titan-hm.js
 02-arr/trial/titan-ex.js
+03-hw/alliance/weeping_city.js
 03-hw/dungeon/aetherochemical_research_facility.js
 03-hw/dungeon/fractal_continuum.js
 03-hw/dungeon/gubal_library_hard.js
