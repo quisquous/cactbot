@@ -1,3 +1,4 @@
+00-misc/buffs.js
 00-misc/general.js
 00-misc/test.js
 02-arr/trial/ifrit-nm.js

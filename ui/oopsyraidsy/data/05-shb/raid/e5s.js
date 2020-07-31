@@ -19,15 +19,15 @@ let noOrb = (str) => {
   },
   zoneId: ZoneId.EdensVerseFulminationSavage,
   damageWarn: {
-    'Impact': '4E3B', // Stratospear landing AoE
-    'Gallop': '4BB4', // Sideways add charge
-    'Shock Strike': '4BC1', // Small AoE circles during Thunderstorm
-    'Stepped Leader Twister': '4BC7', // Twister stepped leader
-    'Stepped Leader Donut': '4BC8', // Donut stepped leader
-    'Shock': '4E3D', // Hated of Levin Stormcloud-cleansable exploding debuff
+    'E5S Impact': '4E3B', // Stratospear landing AoE
+    'E5S Gallop': '4BB4', // Sideways add charge
+    'E5S Shock Strike': '4BC1', // Small AoE circles during Thunderstorm
+    'E5S Stepped Leader Twister': '4BC7', // Twister stepped leader
+    'E5S Stepped Leader Donut': '4BC8', // Donut stepped leader
+    'E5S Shock': '4E3D', // Hated of Levin Stormcloud-cleansable exploding debuff
   },
   damageFail: {
-    'Judgment Jolt': '4BA7', // Stratospear explosions
+    'E5S Judgment Jolt': '4BA7', // Stratospear explosions
   },
   shareWarn: {
     'E5S Volt Strike Double': '4BC3', // Large AoE circles during Thunderstorm

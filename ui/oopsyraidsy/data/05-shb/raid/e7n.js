@@ -23,9 +23,9 @@ let noBuff = (str) => {
   },
   zoneId: ZoneId.EdensVerseIconoclasm,
   damageWarn: {
-    'Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
-    'Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission
-    'Strength In Numbers 2': '4C4D', // Large circle ground AoEs, intermission
+    'E7N Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
+    'E7N Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission
+    'E7N Strength In Numbers 2': '4C4D', // Large circle ground AoEs, intermission
   },
   damageFail: {
   },

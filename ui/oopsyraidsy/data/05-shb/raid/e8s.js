@@ -20,43 +20,43 @@
   },
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
   damageWarn: {
-    'Biting Frost': '4D66', // 270-degree frontal AoE, Shiva
-    'Driving Frost': '4D67', // Rear cone AoE, Shiva
-    'Axe Kick': '4D6D', // Large circle AoE, Shiva
-    'Scythe Kick': '4D6E', // Donut AoE, Shiva
-    'Reflected Axe Kick': '4DB9', // Large circle AoE, Frozen Mirror
-    'Reflected Scythe Kick': '4DBA', // Donut AoE, Frozen Mirror
-    'Frigid Eruption': '4D9F', // Small circle AoE puddles, phase 1
-    'Frigid Needle': '4D9D', // 8-way "flower" explosion
-    'Icicle Impact': '4DA0', // Large circle AoE puddles, phase 1
-    'Reflected Biting Frost 1': '4DB7', // 270-degree frontal AoE, Frozen Mirror
-    'Reflected Biting Frost 2': '4DC3', // 270-degree frontal AoE, Frozen Mirror
-    'Reflected Driving Frost 1': '4DB8', // Cone AoE, Frozen Mirror
-    'Reflected Driving Frost 2': '4DC4', // Cone AoE, Frozen Mirror
+    'E8S Biting Frost': '4D66', // 270-degree frontal AoE, Shiva
+    'E8S Driving Frost': '4D67', // Rear cone AoE, Shiva
+    'E8S Axe Kick': '4D6D', // Large circle AoE, Shiva
+    'E8S Scythe Kick': '4D6E', // Donut AoE, Shiva
+    'E8S Reflected Axe Kick': '4DB9', // Large circle AoE, Frozen Mirror
+    'E8S Reflected Scythe Kick': '4DBA', // Donut AoE, Frozen Mirror
+    'E8S Frigid Eruption': '4D9F', // Small circle AoE puddles, phase 1
+    'E8S Frigid Needle': '4D9D', // 8-way "flower" explosion
+    'E8S Icicle Impact': '4DA0', // Large circle AoE puddles, phase 1
+    'E8S Reflected Biting Frost 1': '4DB7', // 270-degree frontal AoE, Frozen Mirror
+    'E8S Reflected Biting Frost 2': '4DC3', // 270-degree frontal AoE, Frozen Mirror
+    'E8S Reflected Driving Frost 1': '4DB8', // Cone AoE, Frozen Mirror
+    'E8S Reflected Driving Frost 2': '4DC4', // Cone AoE, Frozen Mirror
 
-    'Hallowed Wings 1': '4D75', // Left cleave
-    'Hallowed Wings 2': '4D76', // Right cleave
-    'Hallowed Wings 3': '4D77', // Knockback frontal cleave
-    'Reflected Hallowed Wings 1': '4D90', // Reflected left 2
-    'Reflected Hallowed Wings 2': '4DBB', // Reflected left 1
-    'Reflected Hallowed Wings 3': '4DC7', // Reflected right 2
-    'Reflected Hallowed Wings 4': '4D91', // Reflected right 1
-    'Twin Stillness 1': '4D68',
-    'Twin Stillness 2': '4D6B',
-    'Twin Silence 1': '4D69',
-    'Twin Silence 2': '4D6A',
-    'Akh Rhai': '4D99',
-    'Embittered Dance 1': '4D70',
-    'Embittered Dance 2': '4D71',
-    'Spiteful Dance 1': '4D6F',
-    'Spiteful Dance 2': '4D72',
+    'E8S Hallowed Wings 1': '4D75', // Left cleave
+    'E8S Hallowed Wings 2': '4D76', // Right cleave
+    'E8S Hallowed Wings 3': '4D77', // Knockback frontal cleave
+    'E8S Reflected Hallowed Wings 1': '4D90', // Reflected left 2
+    'E8S Reflected Hallowed Wings 2': '4DBB', // Reflected left 1
+    'E8S Reflected Hallowed Wings 3': '4DC7', // Reflected right 2
+    'E8S Reflected Hallowed Wings 4': '4D91', // Reflected right 1
+    'E8S Twin Stillness 1': '4D68',
+    'E8S Twin Stillness 2': '4D6B',
+    'E8S Twin Silence 1': '4D69',
+    'E8S Twin Silence 2': '4D6A',
+    'E8S Akh Rhai': '4D99',
+    'E8S Embittered Dance 1': '4D70',
+    'E8S Embittered Dance 2': '4D71',
+    'E8S Spiteful Dance 1': '4D6F',
+    'E8S Spiteful Dance 2': '4D72',
   },
   damageFail: {
     // Broken tether.
     // TODO: add suppressSeconds to oopsy.
-    'Refulgent Fate': '4DA4',
+    'E8S Refulgent Fate': '4DA4',
     // Shared orb, correct is Bright Pulse (4D95)
-    'Blinding Pulse': '4D96',
+    'E8S Blinding Pulse': '4D96',
   },
   triggers: [
     {

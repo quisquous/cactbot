@@ -7,17 +7,17 @@
   },
   zoneId: ZoneId.EdensVerseRefulgence,
   damageWarn: {
-    'Biting Frost': '4DDB', // 270-degree frontal AoE, Shiva
-    'Driving Frost': '4DDC', // Rear cone AoE, Shiva
-    'Frigid Stone': '4E66', // Small spread circles, phase 1
-    'Reflected Axe Kick': '4E00', // Large circle AoE, Frozen Mirror
-    'Reflected Scythe Kick': '4E01', // Donut AoE, Frozen Mirror
-    'Frigid Eruption': '4E09', // Small circle AoE puddles, phase 1
-    'Icicle Impact': '4E0A', // Large circle AoE puddles, phase 1
-    'Axe Kick': '4DE2', // Large circle AoE, Shiva
-    'Scythe Kick': '4DE3', // Donut AoE, Shiva
-    'Reflected Biting Frost': '4DFE', // 270-degree frontal AoE, Frozen Mirror
-    'Reflected Driving Frost': '4DFF', // Cone AoE, Frozen Mirror
+    'E8N Biting Frost': '4DDB', // 270-degree frontal AoE, Shiva
+    'E8N Driving Frost': '4DDC', // Rear cone AoE, Shiva
+    'E8N Frigid Stone': '4E66', // Small spread circles, phase 1
+    'E8N Reflected Axe Kick': '4E00', // Large circle AoE, Frozen Mirror
+    'E8N Reflected Scythe Kick': '4E01', // Donut AoE, Frozen Mirror
+    'E8N Frigid Eruption': '4E09', // Small circle AoE puddles, phase 1
+    'E8N Icicle Impact': '4E0A', // Large circle AoE puddles, phase 1
+    'E8N Axe Kick': '4DE2', // Large circle AoE, Shiva
+    'E8N Scythe Kick': '4DE3', // Donut AoE, Shiva
+    'E8N Reflected Biting Frost': '4DFE', // 270-degree frontal AoE, Frozen Mirror
+    'E8N Reflected Driving Frost': '4DFF', // Cone AoE, Frozen Mirror
   },
   damageFail: {
   },

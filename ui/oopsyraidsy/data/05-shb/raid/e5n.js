@@ -7,14 +7,14 @@
   },
   zoneId: ZoneId.EdensVerseFulmination,
   damageWarn: {
-    'Impact': '4E3A', // Stratospear landing AoE
-    'Lightning Bolt': '4B9C', // Stormcloud standard attack
-    'Gallop': '4B97', // Sideways add charge
-    'Shock Strike': '4BA1', // Small AoE circles during Thunderstorm
-    'Volt Strike': '4CF2', // Large AoE circles during Thunderstorm
+    'E5N Impact': '4E3A', // Stratospear landing AoE
+    'E5N Lightning Bolt': '4B9C', // Stormcloud standard attack
+    'E5N Gallop': '4B97', // Sideways add charge
+    'E5N Shock Strike': '4BA1', // Small AoE circles during Thunderstorm
+    'E5N Volt Strike': '4CF2', // Large AoE circles during Thunderstorm
   },
   damageFail: {
-    'Judgment Jolt': '4B8F', // Stratospear explosions
+    'E5N Judgment Jolt': '4B8F', // Stratospear explosions
   },
   triggers: [
     {

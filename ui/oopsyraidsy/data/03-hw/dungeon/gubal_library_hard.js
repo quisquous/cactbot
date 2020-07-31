@@ -8,41 +8,41 @@
   },
   zoneId: ZoneId.TheGreatGubalLibraryHard,
   damageWarn: {
-    'Gubal Hard Terror Eye': '930', // Circle AoE, Spine Breaker trash
-    'Gubal Hard Batter': '198A', // Circle AoE, trash before boss 1
-    'Gubal Hard Condemnation': '390', // Conal AoE, Bibliovore trash
-    'Gubal Hard Discontinue 1': '1943', // Falling book shadow, boss 1
-    'Gubal Hard Discontinue 2': '1940', // Rush AoE from ends, boss 1
-    'Gubal Hard Discontinue 3': '1942', // Rush AoE across, boss 1
-    'Gubal Hard Frightful Roar': '193B', // Get-Out AoE, boss 1
-    'Gubal Hard Issue 1': '193D', // Initial end book warning AoE, boss 1
-    'Gubal Hard Issue 2': '193F', // Initial end book warning AoE, boss 1
-    'Gubal Hard Issue 3': '1941', // Initial side book warning AoE, boss 1
-    'Gubal Hard Desolation': '198C', // Line AoE, Biblioclast trash
-    'Gubal Hard Double Smash': '26A', // Conal AoE, Biblioclast trash
-    'Gubal Hard Darkness': '3A0', // Conal AoE, Inkstain trash
-    'Gubal Hard Firewater': '3BA', // Circle AoE, Biblioclast trash
-    'Gubal Hard Elbow Drop': 'CBA', // Conal AoE, Biblioclast trash
-    'Gubal Hard Dark': '19DF', // Large circle AoE, Inkstain trash
-    'Gubal Hard Seals': '194A', // Sun/Moonseal failure, boss 2
-    'Gubal Hard Water III': '1C67', // Large circle AoE, Porogo Pegist trash
-    'Gubal Hard Raging Axe': '1703', // Small conal AoE, Mechanoservitor trash
-    'Gubal Hard Magic Hammer': '1990', // Large circle AoE, Apanda mini-boss
-    'Gubal Hard Properties Of Gravity': '1950', // Circle AoE from gravity puddles, boss 3
-    'Gubal Hard Properties Of Levitation': '194F', // Circle AoE from levitation puddles, boss 3
-    'Gubal Hard Comet': '1969', // Small circle AoE, intermission, boss 3
+    'GubalHm Terror Eye': '930', // Circle AoE, Spine Breaker trash
+    'GubalHm Batter': '198A', // Circle AoE, trash before boss 1
+    'GubalHm Condemnation': '390', // Conal AoE, Bibliovore trash
+    'GubalHm Discontinue 1': '1943', // Falling book shadow, boss 1
+    'GubalHm Discontinue 2': '1940', // Rush AoE from ends, boss 1
+    'GubalHm Discontinue 3': '1942', // Rush AoE across, boss 1
+    'GubalHm Frightful Roar': '193B', // Get-Out AoE, boss 1
+    'GubalHm Issue 1': '193D', // Initial end book warning AoE, boss 1
+    'GubalHm Issue 2': '193F', // Initial end book warning AoE, boss 1
+    'GubalHm Issue 3': '1941', // Initial side book warning AoE, boss 1
+    'GubalHm Desolation': '198C', // Line AoE, Biblioclast trash
+    'GubalHm Double Smash': '26A', // Conal AoE, Biblioclast trash
+    'GubalHm Darkness': '3A0', // Conal AoE, Inkstain trash
+    'GubalHm Firewater': '3BA', // Circle AoE, Biblioclast trash
+    'GubalHm Elbow Drop': 'CBA', // Conal AoE, Biblioclast trash
+    'GubalHm Dark': '19DF', // Large circle AoE, Inkstain trash
+    'GubalHm Seals': '194A', // Sun/Moonseal failure, boss 2
+    'GubalHm Water III': '1C67', // Large circle AoE, Porogo Pegist trash
+    'GubalHm Raging Axe': '1703', // Small conal AoE, Mechanoservitor trash
+    'GubalHm Magic Hammer': '1990', // Large circle AoE, Apanda mini-boss
+    'GubalHm Properties Of Gravity': '1950', // Circle AoE from gravity puddles, boss 3
+    'GubalHm Properties Of Levitation': '194F', // Circle AoE from levitation puddles, boss 3
+    'GubalHm Comet': '1969', // Small circle AoE, intermission, boss 3
   },
   damageFail: {
-    'Gubal Hard Ecliptic Meteor': '195C', // LoS mechanic, boss 3
+    'GubalHm Ecliptic Meteor': '195C', // LoS mechanic, boss 3
   },
   shareWarn: {
-    'Gubal Hard Searing Wind': '1944', // Tank cleave, boss 2
-    'Gubal Hard Thunder': '19[AB]', // Spread marker, boss 3
+    'GubalHm Searing Wind': '1944', // Tank cleave, boss 2
+    'GubalHm Thunder': '19[AB]', // Spread marker, boss 3
   },
   triggers: [
     {
       // Fire gate in hallway to boss 2, magnet failure on boss 2
-      id: 'Gubal Hard Burns',
+      id: 'GubalHm Burns',
       netRegex: NetRegexes.gainsEffect({ effectId: '10B' }),
       mistake: function(e, data, matches) {
         return { type: 'warn', blame: e.target, text: e.effect };
@@ -50,7 +50,7 @@
     },
     {
       // Helper for Thunder 3 failures
-      id: 'Gubal Hard Imp Gain',
+      id: 'GubalHm Imp Gain',
       netRegex: NetRegexes.gainsEffect({ effectId: '46E' }),
       run: function(e, data, matches) {
         data.hasImp = data.hasImp || {};
@@ -58,7 +58,7 @@
       },
     },
     {
-      id: 'Gubal Hard Imp Lose',
+      id: 'GubalHm Imp Lose',
       netRegex: NetRegexes.losesEffect({ effectId: '46E' }),
       run: function(e, data, matches) {
         data.hasImp = data.hasImp || {};
@@ -67,7 +67,7 @@
     },
     {
       // Targets with Imp when Thunder III resolves receive a vulnerability stack and brief stun
-      id: 'Gubal Hard Imp Thunder',
+      id: 'GubalHm Imp Thunder',
       damageRegex: '195[AB]',
       condition: function(e, data) {
         return data.hasImp[e.targetName];
@@ -77,7 +77,7 @@
       },
     },
     {
-      id: 'Gubal Hard Quake',
+      id: 'GubalHm Quake',
       damageRegex: '1956',
       condition: function(e) {
         // Always hits target, but if correctly resolved will deal 0 damage
@@ -88,7 +88,7 @@
       },
     },
     {
-      id: 'Gubal Hard Tornado',
+      id: 'GubalHm Tornado',
       damageRegex: '195[78]',
       condition: function(e) {
         // Always hits target, but if correctly resolved will deal 0 damage

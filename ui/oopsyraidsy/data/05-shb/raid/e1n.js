@@ -20,7 +20,7 @@
   triggers: [
     // Things that should only hit one person.
     {
-      id: 'E1S Fire III',
+      id: 'E1N Fire III',
       damageRegex: '44EB',
       condition: function(e, data) {
         return e.type != '15';
@@ -30,7 +30,7 @@
       },
     },
     {
-      id: 'E1S Tank Lasers',
+      id: 'E1N Tank Lasers',
       // Vice Of Vanity
       damageRegex: '44E7',
       condition: function(e, data) {
@@ -41,7 +41,7 @@
       },
     },
     {
-      id: 'E1S DPS Puddles',
+      id: 'E1N DPS Puddles',
       // Vice Of Apathy
       damageRegex: '44E8',
       condition: function(e, data) {

@@ -7,11 +7,11 @@
   },
   zoneId: ZoneId.DeltascapeV40,
   damageWarn: {
-    'Blizzard III': '24BC', // Targeted circle AoEs, Exdeath
-    'Empowered Thunder III': '24C1', // Untelegraphed large circle AoE, Exdeath
-    'Zombie Breath': '24CB', // Conal, tree head after Decisive Battle
-    'Clearout': '24CC', // Overlapping cone AoEs, Deathly Vine (tentacles alongside tree head)
-    'Black Spark': '24C9', // Exploding Black Hole
+    'O4N Blizzard III': '24BC', // Targeted circle AoEs, Exdeath
+    'O4N Empowered Thunder III': '24C1', // Untelegraphed large circle AoE, Exdeath
+    'O4N Zombie Breath': '24CB', // Conal, tree head after Decisive Battle
+    'O4N Clearout': '24CC', // Overlapping cone AoEs, Deathly Vine (tentacles alongside tree head)
+    'O4N Black Spark': '24C9', // Exploding Black Hole
   },
   shareWarn: {
     // Empowered Fire III inflicts the Pyretic debuff, which deals damage if the player

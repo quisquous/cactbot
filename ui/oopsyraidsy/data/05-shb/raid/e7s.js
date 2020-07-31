@@ -30,17 +30,17 @@ let noBuff = (str) => {
   },
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   damageWarn: {
-    'Silver Sword': '4C8E', // ground aoe
-    'Overwhelming Force': '4C73', // add phase ground aoe
-    'Strength in Numbers 1': '4C70', // add get under
-    'Strength in Numbers 2': '4C71', // add get out
-    'Paper Cut': '4C7D', // tornado ground aoes
-    'Buffet': '4C77', // tornado ground aoes also??
+    'E7S Silver Sword': '4C8E', // ground aoe
+    'E7S Overwhelming Force': '4C73', // add phase ground aoe
+    'E7S Strength in Numbers 1': '4C70', // add get under
+    'E7S Strength in Numbers 2': '4C71', // add get out
+    'E7S Paper Cut': '4C7D', // tornado ground aoes
+    'E7S Buffet': '4C77', // tornado ground aoes also??
   },
   damageFail: {
-    'Betwixt Worlds': '4C6B', // purple ground line aoes
-    'Crusade': '4C58', // blue knockback circle (standing in it)
-    'Explosion': '4C6F', // didn't kill an add
+    'E7S Betwixt Worlds': '4C6B', // purple ground line aoes
+    'E7S Crusade': '4C58', // blue knockback circle (standing in it)
+    'E7S Explosion': '4C6F', // didn't kill an add
   },
   triggers: [
     {

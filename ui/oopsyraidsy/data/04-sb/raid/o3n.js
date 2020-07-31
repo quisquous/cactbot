@@ -7,16 +7,16 @@
   },
   zoneId: ZoneId.DeltascapeV30,
   damageWarn: {
-    'Spellblade Fire III': '2460', // Donut AoE, Halicarnassus
-    'Spellblade Blizzard III': '2461', // Circle AoE, Halicarnassus
-    'Spellblade Thunder III': '2462', // Line AoE, Halicarnassus
-    'Cross Reaper': '246B', // Circle AoE, Soul Reaper
-    'Gusting Gouge': '246C', // Green line AoE, Soul Reaper
-    'Sword Dance': '2470', // Targeted thin cone AoE, Halicarnassus
-    'Uplift': '2473', // Ground spears, Queen's Waltz effect, Halicarnassus
+    'O3N Spellblade Fire III': '2460', // Donut AoE, Halicarnassus
+    'O3N Spellblade Blizzard III': '2461', // Circle AoE, Halicarnassus
+    'O3N Spellblade Thunder III': '2462', // Line AoE, Halicarnassus
+    'O3N Cross Reaper': '246B', // Circle AoE, Soul Reaper
+    'O3N Gusting Gouge': '246C', // Green line AoE, Soul Reaper
+    'O3N Sword Dance': '2470', // Targeted thin cone AoE, Halicarnassus
+    'O3N Uplift': '2473', // Ground spears, Queen's Waltz effect, Halicarnassus
   },
   damageFail: {
-    'Ultimum': '2477', // Instant kill. Used if the player does not exit the sand maze fast enough.
+    'O3N Ultimum': '2477', // Instant kill. Used if the player does not exit the sand maze fast enough.
   },
   shareWarn: {
     'O3N Holy Blur': 2463, // Spread circles.

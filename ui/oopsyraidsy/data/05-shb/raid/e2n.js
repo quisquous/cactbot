@@ -13,12 +13,12 @@
   },
   zoneId: ZoneId.EdensGateDescent,
   damageWarn: {
-    'E2S Doomvoid Slicer': '3E3C',
-    'E3S Doomvoid Guillotine': '3E3B',
+    'E2N Doomvoid Slicer': '3E3C',
+    'E2N Doomvoid Guillotine': '3E3B',
   },
   triggers: [
     {
-      id: 'E2S Nyx',
+      id: 'E2N Nyx',
       damageRegex: '3E3D',
       mistake: function(e, data) {
         return {
