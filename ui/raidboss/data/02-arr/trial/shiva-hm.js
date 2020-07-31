@@ -50,6 +50,7 @@
         return {
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
+          fr: 'Libérez ' + data.ShortName(matches.target),
         };
       },
     },
@@ -64,7 +65,6 @@
       'replaceText': {
         '\\(circle\\)': '(Kreis)',
         '\\(cross\\)': '(Kreuz)',
-        '--adds targetable--': '--Adds erscheinen--',
         '--frozen--': '--eingefroren--',
         'Absolute Zero': 'Absoluter Nullpunkt',
         'Diamond Dust': 'Diamantenstaub',
@@ -87,9 +87,9 @@
         'Shiva': 'Shiva',
       },
       'replaceText': {
+        '\\?': ' ?',
         '\\(circle\\)': '(cercle)',
         '\\(cross\\)': '(croix)',
-        '--adds targetable--': '--adds ciblable--',
         '--frozen--': '--gelé--',
         'Absolute Zero': 'Zéro absolu',
         'Diamond Dust': 'Poussière de diamant',
