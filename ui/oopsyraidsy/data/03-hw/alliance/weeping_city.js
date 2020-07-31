@@ -14,6 +14,7 @@
     'Weeping Tremblor 3': '1835', // Arachne Eve disappear circle aoe 3
     'Weeping Spider Thread': '1839', // Arachne Eve spider line aoe
     'Weeping Fire II': '184E', // Black Mage Corpse circle aoe
+    'Weeping Necropurge': '17D7', // Forgall Shriveled Talon line aoe
     'Weeping Rotten Breath': '17D0', // Forgall Dahak cone aoe
     'Weeping Mow': '17D2', // Forgall Haagenti unmarked cleave
     'Weeping Mortal Ray': '17D4', // Forgall Haagenti look-away
