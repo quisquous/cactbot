@@ -44,6 +44,13 @@ const commonReplacement = {
       cn: '--小怪出现--',
       ko: '--쫄 소환--',
     },
+    '--adds targetable--': {
+      de: '--adds anvisierbar--',
+      fr: '--adds ciblables--',
+      ja: '--fixme--',
+      cn: '--小怪可选中--',
+      ko: '--쫄 타겟 가능--',
+    },
     '--center--': {
       de: '--mitte--',
       fr: '--centre--',
