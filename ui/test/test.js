@@ -1,7 +1,7 @@
 'use strict';
 
-addOverlayListener('onZoneChangedEvent', function(e) {
-  document.getElementById('currentZone').innerText = 'currentZone: ' + e.detail.zoneName;
+addOverlayListener('ChangeZone', function(e) {
+  document.getElementById('currentZone').innerText = `currentZone: ${e.zoneName} (${e.zoneID})`;
 });
 
 addOverlayListener('onInCombatChangedEvent', function(e) {

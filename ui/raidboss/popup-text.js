@@ -67,8 +67,8 @@ class PopupText {
     addOverlayListener('onPlayerChangedEvent', (e) => {
       this.OnPlayerChange(e);
     });
-    addOverlayListener('onZoneChangedEvent', (e) => {
-      this.OnZoneChange(e);
+    addOverlayListener('ChangeZone', (e) => {
+      this.OnChangeZone(e);
     });
     addOverlayListener('onInCombatChangedEvent', (e) => {
       this.OnInCombatChange(e.detail.inGameCombat);
@@ -143,9 +143,9 @@ class PopupText {
     }
   }
 
-  OnZoneChange(e) {
-    if (this.zoneName !== e.detail.zoneName) {
-      this.zoneName = e.detail.zoneName;
+  OnChangeZone(e) {
+    if (this.zoneName !== e.zoneName) {
+      this.zoneName = e.zoneName;
       this.ReloadTimelines();
     }
   }
@@ -802,7 +802,7 @@ class PopupText {
 
   Test(zone, log) {
     this.OnPlayerChange({ detail: { name: 'ME' } });
-    this.OnZoneChange({ detail: { zoneName: zone } });
+    this.OnChangeZone({ zoneName: zone });
     this.OnLog({ detail: { logs: ['abcdefgh', log, 'hgfedcba'] } });
   }
 }

@@ -2407,8 +2407,8 @@ class Bars {
     this.UpdateMPTicker();
   }
 
-  OnZoneChanged(e) {
-    this.zone = e.detail.zoneName;
+  OnChangeZone(e) {
+    this.zone = e.zoneName;
     this.UpdateFoodBuff();
     if (this.buffTracker)
       this.buffTracker.clear();
@@ -2666,8 +2666,8 @@ UserConfig.getUserConfigLocation('jobs', function() {
   addOverlayListener('onInCombatChangedEvent', function(e) {
     gBars.OnInCombatChanged(e);
   });
-  addOverlayListener('onZoneChangedEvent', function(e) {
-    gBars.OnZoneChanged(e);
+  addOverlayListener('ChangeZone', function(e) {
+    gBars.OnChangeZone(e);
   });
   addOverlayListener('onLogEvent', function(e) {
     gBars.OnLogEvent(e);

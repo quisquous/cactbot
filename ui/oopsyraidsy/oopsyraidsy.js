@@ -597,7 +597,7 @@ class MistakeCollector {
     }
   }
 
-  OnZoneChangeEvent(e) {
+  OnChangeZone(e) {
     this.Reset();
   }
 }
@@ -956,8 +956,8 @@ class DamageTracker {
     this.collector.OnPartyWipeEvent(e);
   }
 
-  OnZoneChangeEvent(e) {
-    this.zoneName = e.detail.zoneName;
+  OnChangeZone(e) {
+    this.zoneName = e.zoneName;
     this.ReloadTriggers();
   }
 
@@ -1189,9 +1189,9 @@ UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
   addOverlayListener('onPartyWipe', function(e) {
     gDamageTracker.OnPartyWipeEvent(e);
   });
-  addOverlayListener('onZoneChangedEvent', function(e) {
-    gDamageTracker.OnZoneChangeEvent(e);
-    gMistakeCollector.OnZoneChangeEvent(e);
+  addOverlayListener('ChangeZone', function(e) {
+    gDamageTracker.OnChangeZone(e);
+    gMistakeCollector.OnChangeZone(e);
   });
   addOverlayListener('onInCombatChangedEvent', function(e) {
     gDamageTracker.OnInCombatChangedEvent(e);

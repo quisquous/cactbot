@@ -159,9 +159,9 @@ UserConfig.getUserConfigLocation('xephero', function(e) {
 
   InitDpsModule(onOverlayDataUpdateEvent, hideOverlay);
 
-  addOverlayListener('onZoneChangedEvent', (e) => {
-    const currentZone = e.detail.zoneName;
-    tracker.onZoneChange(currentZone);
+  addOverlayListener('ChangeZone', (e) => {
+    const currentZone = e.zoneName;
+    tracker.onChangeZone(currentZone);
   });
   addOverlayListener('onLogEvent', (e) => {
     tracker.onLogEvent(e.detail.logs);
