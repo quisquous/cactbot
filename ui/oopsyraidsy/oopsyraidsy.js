@@ -301,6 +301,18 @@ function IsPlayerId(id) {
   return id[0] < 4;
 }
 
+
+function IsTriggerEnabled(options, id) {
+  if (id in options.DisabledTriggers)
+    return false;
+
+  const autoConfig = options.PerTriggerAutoConfig[id];
+  if (autoConfig)
+    return autoConfig.enabled;
+
+  return true;
+}
+
 class OopsyLiveList {
   constructor(options, element) {
     this.options = options;
@@ -489,7 +501,7 @@ class MistakeCollector {
     let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
       let text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
-      if (!this.options.DisabledTriggers[kEarlyPullId])
+      if (!IsTriggerEnabled(this.options, kEarlyPullId))
         this.OnMistakeText('pull', this.firstPuller, text);
     }
   }
@@ -507,7 +519,7 @@ class MistakeCollector {
       let seconds = ((Date.now() - this.engageTime) / 1000);
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
         let text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
-        if (!this.options.DisabledTriggers[kEarlyPullId])
+        if (!IsTriggerEnabled(this.options, kEarlyPullId))
           this.OnMistakeText('pull', this.firstPuller, text);
       }
     }
@@ -862,7 +874,7 @@ class DamageTracker {
     if ((matches != undefined) && (matches.groups != undefined))
       matches = matches.groups;
 
-    if (trigger.id && this.options.DisabledTriggers[trigger.id])
+    if (trigger.id && !IsTriggerEnabled(this.options, trigger.id))
       return;
 
     if ('condition' in trigger) {
