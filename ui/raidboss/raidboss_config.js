@@ -1,107 +1,5 @@
 'use strict';
 
-let kPrefixToCategory = {
-  '00-misc': {
-    en: 'General Triggers',
-    de: 'General Trigger',
-    fr: 'Général Triggers',
-    ja: '汎用',
-    cn: '通用触发器',
-    ko: '공용 트리거',
-  },
-  '02-arr': {
-    en: 'A Realm Reborn (ARR 2.x)',
-    de: 'A Realm Reborn (ARR 2.x)',
-    fr: 'A Realm Reborn (ARR 2.x)',
-    ja: '新生エオルゼア (2.x)',
-    cn: '重生之境 (2.x)',
-    ko: '신생 에오르제아 (2.x)',
-  },
-  '03-hw': {
-    en: 'Heavensward (HW 3.x)',
-    de: 'Heavensward (HW 3.x)',
-    fr: 'Heavensward (HW 3.x)',
-    ja: '蒼天のイシュガルド (3.x)',
-    cn: '苍穹之禁城 (3.x)',
-    ko: '창천의 이슈가르드 (3.x)',
-  },
-  '04-sb': {
-    en: 'Stormblood (SB 4.x)',
-    de: 'Stormblood (SB 4.x)',
-    fr: 'Stormblood (SB 4.x)',
-    ja: '紅蓮のリベレーター (4.x)',
-    cn: '红莲之狂潮 (4.x)',
-    ko: '홍련의 해방자 (4.x)',
-  },
-  '05-shb': {
-    en: 'Shadowbringers (ShB 5.x)',
-    de: 'Shadowbringers (ShB 5.x)',
-    fr: 'Shadowbringers (ShB 5.x)',
-    ja: '漆黒のヴィランズ (5.x)',
-    cn: '暗影之逆焰 (5.x)',
-    ko: '칠흑의 반역자 (5.x)',
-  },
-};
-
-let kDirectoryToCategory = {
-  alliance: {
-    en: 'Alliance Raid',
-    de: 'Allianz-Raid',
-    fr: 'Raid en Alliance',
-    ja: 'アライアンスレイド',
-    cn: '团队任务',
-    ko: '연합 레이드',
-  },
-  dungeon: {
-    en: 'Dungeon',
-    de: 'Dungeon',
-    fr: 'Donjon',
-    ja: 'ダンジョン',
-    cn: '迷宫挑战',
-    ko: '던전',
-  },
-  eureka: {
-    en: 'Eureka',
-    de: 'Eureka',
-    fr: 'Eurêka',
-    ja: '禁断の地エウレカ',
-    cn: '禁地优雷卡',
-    ko: '에우레카',
-  },
-  raid: {
-    en: 'Raid',
-    de: 'Raid',
-    fr: 'Raid',
-    ja: 'レイド',
-    cn: '大型任务',
-    ko: '레이드',
-  },
-  pvp: {
-    en: 'PVP',
-    de: 'PvP',
-    fr: 'JcJ',
-    ja: 'PvP',
-    cn: 'PvP',
-    ko: 'PvP',
-  },
-  trial: {
-    en: 'Trial',
-    de: 'Prüfung',
-    fr: 'Défi',
-    ja: '討伐・討滅戦',
-    cn: '讨伐歼灭战',
-    ko: '토벌전',
-  },
-  ultimate: {
-    en: 'Ultimate',
-    de: 'Fatale Raids',
-    fr: 'Raid fatal',
-    ja: '絶シリーズ',
-    cn: '绝境战',
-    ko: '절 난이도',
-  },
-};
-
 // No sound only option, because that's silly.
 let kTriggerOptions = {
   default: {
@@ -325,24 +223,6 @@ function setOptionsFromOutputValue(options, value) {
   }
 }
 
-// TODO: maybe we should also sort all the filenames properly too?
-// TODO: maybe each set of triggers should have a translated zone name
-// instead of this extremely hacky filename to english function?
-function fileNameToTitle(filename) {
-  // Strip directory and extension.
-  let file = filename.replace(/^.*\//, '').replace('.js', '');
-  // Remove non-name characters (probably).
-  let name = file.replace(/[_-]/g, ' ');
-  // Capitalize the first letter of every word.
-  let capitalized = name.replace(/(?:^| )\w/g, (c) => c.toUpperCase());
-
-  // Fully capitalize acronyms like e4n.
-  if (capitalized.match(/^\w[0-9]+\w$/))
-    capitalized = capitalized.toUpperCase();
-
-  return capitalized;
-}
-
 class RaidbossConfigurator {
   constructor(cactbotConfigurator) {
     this.base = cactbotConfigurator;
@@ -355,15 +235,12 @@ class RaidbossConfigurator {
   }
 
   buildUI(container, raidbossFiles) {
-    let group = 'raidboss';
-    let files = this.processRaidbossFiles(raidbossFiles);
+    const fileMap = this.processRaidbossFiles(raidbossFiles);
 
     let expansionDivs = {};
 
-    for (let k in files) {
-      let info = files[k];
-      let expansion = this.base.translate(kPrefixToCategory[info.prefix]);
-      let type = this.base.translate(kDirectoryToCategory[info.type]);
+    for (const [key, info] of Object.entries(fileMap)) {
+      const expansion = info.prefix;
 
       if (Object.keys(info.triggers).length == 0)
         continue;
@@ -394,7 +271,7 @@ class RaidbossConfigurator {
         triggerContainer.classList.toggle('collapsed');
       };
 
-      let parts = [fileNameToTitle(info.filename), type, expansion];
+      let parts = [info.title, info.type, expansion];
       for (let i = 0; i < parts.length; ++i) {
         if (!parts[i])
           continue;
@@ -644,56 +521,25 @@ class RaidbossConfigurator {
     return trig;
   }
 
-  processRaidbossFiles(raidbossFiles) {
-    let map = {};
-    for (let filename in raidbossFiles) {
-      if (!filename.endsWith('.js'))
-        continue;
-
-      let prefix = '00-misc';
-      for (let str in kPrefixToCategory) {
-        if (!filename.startsWith(str))
-          continue;
-        prefix = str;
-        break;
-      }
-
-      let type = 'general';
-      for (let str in kDirectoryToCategory) {
-        if (filename.indexOf('/' + str + '/') == -1)
-          continue;
-        type = str;
-        break;
-      }
-
-      // TODO: maybe raidboss should expose a bunch of its
-      let json;
-      try {
-        json = eval(raidbossFiles[filename]);
-      } catch (exception) {
-        console.log('Error parsing JSON from ' + filename + ': ' + exception);
-        continue;
-      }
-
+  processRaidbossFiles(files) {
+    let map = this.base.processFiles(files);
+    for (let [key, item] of Object.entries(map)) {
       // TODO: maybe each trigger set needs a zone name, and we should
       // use that instead of the filename???
       let rawTriggers = {
         trigger: [],
         timeline: [],
       };
-      for (let i = 0; i < json.length; ++i) {
-        let triggerSet = json[i];
+      for (const triggerSet of item.json) {
         if (triggerSet.triggers)
           rawTriggers.trigger.push(...triggerSet.triggers);
         if (triggerSet.timelineTriggers)
           rawTriggers.timeline.push(...triggerSet.timelineTriggers);
       }
 
-      let triggers = {};
-      for (let key in rawTriggers) {
-        let triggerList = rawTriggers[key];
-        for (let i = 0; i < triggerList.length; ++i) {
-          let trig = triggerList[i];
+      item.triggers = {};
+      for (const key in rawTriggers) {
+        for (const trig of rawTriggers[key]) {
           if (!trig.id) {
             // TODO: add testing that all triggers have a globally unique id.
             // console.error('missing trigger id in ' + filename + ': ' + JSON.stringify(trig));
@@ -701,19 +547,9 @@ class RaidbossConfigurator {
           }
 
           trig.isTimelineTrigger = key === 'timeline';
-          triggers[trig.id] = this.processTrigger(trig);
+          item.triggers[trig.id] = this.processTrigger(trig);
         }
       }
-
-      let fileKey = filename.replace(/\//g, '-').replace(/.js$/, '');
-      map[fileKey] = {
-        filename: filename,
-        fileKey: fileKey,
-        prefix: prefix,
-        type: type,
-        json: json,
-        triggers: triggers,
-      };
     }
     return map;
   }
