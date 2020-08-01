@@ -1,12 +1,6 @@
 'use strict';
 
-// The Temple of the Fist
 [{
-  zoneRegex: {
-    en: /^The Temple Of The Fist$/,
-    cn: /^修行古刹星导寺$/,
-    ko: /^성도산 사원$/,
-  },
   zoneId: ZoneId.TheTempleOfTheFist,
   timelineFile: 'temple_of_the_fist.txt',
   timelineTriggers: [

@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Dohn Mheg$/,
-    cn: /^水妖幻园多恩美格禁园$/,
-    ko: /^도느 메그$/,
-  },
   zoneId: ZoneId.DohnMheg,
   timelineFile: 'dohn_mheg.txt',
   timelineTriggers: [

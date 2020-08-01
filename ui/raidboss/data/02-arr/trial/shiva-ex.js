@@ -4,10 +4,6 @@
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 
 [{
-  zoneRegex: {
-    en: /^Akh Afah Amphitheatre \(Extreme\)$/,
-    cn: /^希瓦歼殛战$/,
-  },
   zoneId: ZoneId.AkhAfahAmphitheatreExtreme,
   timelineFile: 'shiva-ex.txt',
   timelineTriggers: [

@@ -4,15 +4,10 @@
 // Nothing in the logs for when you get in, other than removing combatanat.
 // FDE, FDF, FE0, FE1 are all skills you use when inside.
 // 12C0, FE2 are exploding it and getting out.
-// There aren't may triggers, so maybe worth just keeping the global callouts
+// There aren't many triggers, so maybe worth just keeping the global callouts
 // for bombs and stuns.
 
 [{
-  zoneRegex: {
-    en: /^Alexander - The Cuff Of The Father \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(启动之章2\)$/,
-    ko: /^기공성 알렉산더: 기동편\(영웅\) \(2\)$/,
-  },
   zoneId: ZoneId.AlexanderTheCuffOfTheFatherSavage,
   timelineFile: 'a2s.txt',
   timelineTriggers: [

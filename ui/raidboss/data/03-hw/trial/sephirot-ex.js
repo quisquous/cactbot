@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Containment Bay S1T7 \(Extreme\)$/,
-    cn: /^萨菲洛特歼殛战$/,
-  },
   zoneId: ZoneId.ContainmentBayS1T7Extreme,
   timelineFile: 'sephirot-ex.txt',
   triggers: [

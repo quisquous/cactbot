@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Alexander - The Eyes Of The Creator \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(天动之章1\)$/,
-    ko: /^기공성 알렉산더: 천동편\(영웅\) \(1\)$/,
-  },
   zoneId: ZoneId.AlexanderTheEyesOfTheCreatorSavage,
   timelineFile: 'a9s.txt',
   timelineTriggers: [

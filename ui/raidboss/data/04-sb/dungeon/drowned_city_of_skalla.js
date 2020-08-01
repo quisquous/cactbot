@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Drowned City Of Skalla$/,
-    cn: /^沉没神殿斯卡拉遗迹$/,
-    ko: /^스칼라 유적$/,
-  },
   zoneId: ZoneId.TheDrownedCityOfSkalla,
   triggers: [
     {

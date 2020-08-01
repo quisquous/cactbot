@@ -2,10 +2,6 @@
 
 // Innocence Normal
 [{
-  zoneRegex: {
-    en: /^The Crown Of The Immaculate$/,
-    cn: /^无瑕灵君歼灭战$/,
-  },
   zoneId: ZoneId.TheCrownOfTheImmaculate,
   timelineFile: 'innocence.txt',
   triggers: [

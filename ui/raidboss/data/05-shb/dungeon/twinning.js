@@ -1,13 +1,6 @@
 'use strict';
 
-// The Twinning
-
 [{
-  zoneRegex: {
-    en: /^The Twinning$/,
-    cn: /^异界遗构希尔科斯孪晶塔$/,
-    ko: /^쌍둥이 시르쿠스$/,
-  },
   zoneId: ZoneId.TheTwinning,
   timelineFile: 'twinning.txt',
   triggers: [

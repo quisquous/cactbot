@@ -2,10 +2,6 @@
 
 // Titania Normal Mode
 [{
-  zoneRegex: {
-    en: /^The Dancing Plague$/,
-    cn: /^缇坦妮雅歼灭战$/,
-  },
   zoneId: ZoneId.TheDancingPlague,
   timelineFile: 'titania.txt',
   triggers: [

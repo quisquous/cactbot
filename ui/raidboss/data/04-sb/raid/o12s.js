@@ -3,11 +3,6 @@
 // O12S - Alphascape 4.0 Savage
 
 [{
-  zoneRegex: {
-    en: /^Alphascape V4.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 \(阿尔法幻境4\)$/,
-    ko: /^차원의 틈 오메가: 알파편\(영웅\) \(4\)$/,
-  },
   zoneId: ZoneId.AlphascapeV40Savage,
   timelineFile: 'o12s.txt',
   triggers: [

@@ -384,6 +384,9 @@ let testBadZoneId = function(file, contents) {
     errorFunc(`${file}: missing zone id`);
   else if (typeof triggerSet.zoneId === 'undefined')
     errorFunc(`${file}: unknown zone id`);
+
+  if ('zoneRegex' in triggerSet)
+    errorFunc(`${file}: use zoneId instead of zoneRegex`);
 };
 
 let testTriggerFile = function(file) {

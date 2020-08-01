@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Iconoclasm$/,
-    cn: /^伊甸希望乐园 \(共鸣之章3\)$/,
-    ko: /^희망의 낙원 에덴: 공명편 \(3\)$/,
-  },
   zoneId: ZoneId.EdensVerseIconoclasm,
   timelineFile: 'e7n.txt',
   triggers: [

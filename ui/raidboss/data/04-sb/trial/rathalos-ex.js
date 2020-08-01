@@ -4,11 +4,6 @@
 
 // Rathalos Extreme
 [{
-  zoneRegex: {
-    en: /^The Great Hunt \(Extreme\)$/,
-    ko: /^극 리오레우스 수렵전$/,
-    cn: /^火龙上位狩猎战$/,
-  },
   zoneId: ZoneId.TheGreatHuntExtreme,
   triggers: [
     {

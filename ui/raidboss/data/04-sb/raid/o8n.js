@@ -2,11 +2,6 @@
 
 // O8N - Sigmascape 4.0 Normal
 [{
-  zoneRegex: {
-    en: /^Sigmascape \(V4\.0\)$/,
-    cn: /^欧米茄时空狭缝 \(西格玛幻境4\)$/,
-    ko: /^차원의 틈 오메가: 시그마편 \(4\)$/,
-  },
   zoneId: ZoneId.SigmascapeV40,
   timelineFile: 'o8n.txt',
   triggers: [

@@ -1,13 +1,6 @@
 'use strict';
 
-// TODO: need headmarker for damage down digititis
-
 [{
-  zoneRegex: {
-    en: /^Alexander - The Arm Of The Father \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(启动之章3\)$/,
-    ko: /^기공성 알렉산더: 기동편\(영웅\) \(3\)$/,
-  },
   zoneId: ZoneId.AlexanderTheArmOfTheFatherSavage,
   timelineFile: 'a3s.txt',
   timelineTriggers: [
