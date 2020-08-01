@@ -71,9 +71,9 @@ class PullCounter {
     }
   }
 
-  OnZoneChange(e) {
+  OnChangeZone(e) {
     this.element.innerText = '';
-    this.zone = e.detail.zoneName;
+    this.zone = e.zoneName;
     this.ReloadTriggers();
   }
 
@@ -162,7 +162,7 @@ UserConfig.getUserConfigLocation('pullcounter', function() {
   gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
 
   addOverlayListener('onLogEvent', (e) => gPullCounter.OnLogEvent(e));
-  addOverlayListener('onZoneChangedEvent', (e) => gPullCounter.OnZoneChange(e));
+  addOverlayListener('ChangeZone', (e) => gPullCounter.OnChangeZone(e));
   addOverlayListener('onInCombatChangedEvent', (e) => gPullCounter.OnInCombatChange(e));
   addOverlayListener('onPartyWipe', () => gPullCounter.OnPartyWipe());
   addOverlayListener('PartyChanged', (e) => gPullCounter.OnPartyChange(e));

@@ -93,7 +93,7 @@ class DpsPhaseTracker {
     }
   }
 
-  onZoneChange(zone) {
+  onChangeZone(zone) {
     this.clearPhases();
     this.zone = zone;
     this.rebuildBossList();

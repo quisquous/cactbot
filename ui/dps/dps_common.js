@@ -41,8 +41,8 @@ function InitDpsModule(updateFunc, hideFunc) {
     updateFunc({ detail: e });
   });
 
-  addOverlayListener('onZoneChangedEvent', function(e) {
-    let newZone = e.detail.zoneName;
+  addOverlayListener('ChangeZone', function(e) {
+    let newZone = e.zoneName;
     if (gCurrentZone == newZone)
       return;
     // Always hide on switching zones.

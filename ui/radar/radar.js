@@ -303,7 +303,7 @@ class Radar {
       this.UpdateMonsterDom(this.targetMonsters[i]);
   }
 
-  OnZoneChange(e) {
+  OnChangeZone(e) {
     this.ClearTargetMonsters();
   }
 
@@ -327,8 +327,8 @@ UserConfig.getUserConfigLocation('radar', function() {
     gRadar.OnPlayerChange(e);
   });
 
-  addOverlayListener('onZoneChangedEvent', (e) => {
-    gRadar.OnZoneChange(e);
+  addOverlayListener('ChangeZone', (e) => {
+    gRadar.OnChangeZone(e);
   });
 
   gRadar = new Radar(document.getElementById('radar-table'));
