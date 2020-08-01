@@ -5,11 +5,12 @@
     en: /^The Second Coil Of Bahamut - Turn \(1\)$/,
     cn: /^巴哈姆特大迷宫 \(入侵之章1\)$/,
   },
+  zoneId: ZoneId.TheSecondCoilOfBahamutTurn1,
   timelineFile: 't6.txt',
   triggers: [
     {
       id: 'T6 Thorn Whip Collect',
-      regex: Regexes.tether({ id: '0012' }),
+      netRegex: NetRegexes.tether({ id: '0012' }),
       run: function(data, matches) {
         data.thornMap = data.thornMap || {};
         data.thornMap[matches.source] = data.thornMap[matches.source] || [];
@@ -20,12 +21,12 @@
     },
     {
       id: 'T6 Thorn Whip',
-      regex: Regexes.ability({ id: '879', source: 'Rafflesia' }),
-      regexDe: Regexes.ability({ id: '879', source: 'Rafflesia' }),
-      regexFr: Regexes.ability({ id: '879', source: 'Rafflesia' }),
-      regexJa: Regexes.ability({ id: '879', source: 'ラフレシア' }),
-      regexCn: Regexes.ability({ id: '879', source: '大王花' }),
-      regexKo: Regexes.ability({ id: '879', source: '라플레시아' }),
+      netRegex: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
+      netRegexDe: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
+      netRegexFr: NetRegexes.ability({ id: '879', source: 'Rafflesia' }),
+      netRegexJa: NetRegexes.ability({ id: '879', source: 'ラフレシア' }),
+      netRegexCn: NetRegexes.ability({ id: '879', source: '大王花' }),
+      netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -67,13 +68,9 @@
       },
     },
     {
+      // Honey-Glazed
       id: 'T6 Honey On',
-      regex: Regexes.gainsEffect({ effect: 'Honey-Glazed' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Honigsüß' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Mielleux' }),
-      regexJa: Regexes.gainsEffect({ effect: '蜂蜜' }),
-      regexCn: Regexes.gainsEffect({ effect: '蜂蜜' }),
-      regexKo: Regexes.gainsEffect({ effect: '벌꿀' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -83,12 +80,7 @@
     },
     {
       id: 'T6 Honey Off',
-      regex: Regexes.losesEffect({ effect: 'Honey-Glazed' }),
-      regexDe: Regexes.losesEffect({ effect: 'Honigsüß' }),
-      regexFr: Regexes.losesEffect({ effect: 'Mielleux' }),
-      regexJa: Regexes.losesEffect({ effect: '蜂蜜' }),
-      regexCn: Regexes.losesEffect({ effect: '蜂蜜' }),
-      regexKo: Regexes.losesEffect({ effect: '벌꿀' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -98,7 +90,7 @@
     },
     {
       id: 'T6 Flower',
-      regex: Regexes.headMarker({ id: '000D' }),
+      netRegex: NetRegexes.headMarker({ id: '000D' }),
       alarmText: function(data) {
         if (data.honey) {
           return {
@@ -146,22 +138,22 @@
     },
     {
       id: 'T6 Blighted',
-      regex: Regexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '79D', source: 'ラフレシア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '79D', source: '大王花', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '79D', source: 'Rafflesia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '79D', source: 'ラフレシア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '79D', source: '大王花', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '79D', source: '라플레시아', capture: false }),
       response: Responses.stopEverything(),
     },
     {
       id: 'T6 Phase 3',
-      regex: Regexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '79E', source: 'ラフレシア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '79E', source: '大王花', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '79E', source: '라플레시아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '79E', source: 'Rafflesia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '79E', source: 'ラフレシア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '79E', source: '大王花', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '79E', source: '라플레시아', capture: false }),
       condition: function(data) {
         return !data.seenLeafstorm;
       },
@@ -172,12 +164,12 @@
     },
     {
       id: 'T6 Swarm Stack',
-      regex: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '86C', source: 'Rafflesia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
       infoText: {
         en: 'Stack for Acid',
         de: 'Sammeln für Säure-Blubberblase',
@@ -187,12 +179,12 @@
     },
     {
       id: 'T6 Swarm',
-      regex: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
-      regexDe: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
-      regexFr: Regexes.ability({ id: '7A0', source: 'Rafflesia' }),
-      regexJa: Regexes.ability({ id: '7A0', source: 'ラフレシア' }),
-      regexCn: Regexes.ability({ id: '7A0', source: '大王花' }),
-      regexKo: Regexes.ability({ id: '7A0', source: '라플레시아' }),
+      netRegex: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      netRegexDe: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      netRegexFr: NetRegexes.ability({ id: '7A0', source: 'Rafflesia' }),
+      netRegexJa: NetRegexes.ability({ id: '7A0', source: 'ラフレシア' }),
+      netRegexCn: NetRegexes.ability({ id: '7A0', source: '大王花' }),
+      netRegexKo: NetRegexes.ability({ id: '7A0', source: '라플레시아' }),
       condition: function(data, matches) {
         return data.me == matches.target || data.role == 'healer' || data.job == 'BLU';
       },
@@ -219,7 +211,7 @@
     },
     {
       id: 'T6 Rotten Stench',
-      regex: Regexes.headMarker({ id: '000E' }),
+      netRegex: NetRegexes.headMarker({ id: '000E' }),
       alertText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -259,9 +251,6 @@
         'Thorn Whip': 'Dornenpeitsche',
         'Viscid Emission': 'Klebsporen',
       },
-      '~effectNames': {
-        'Honey-Glazed': 'Honigsüß',
-      },
     },
     {
       'locale': 'fr',
@@ -282,9 +271,6 @@
         'Swarm': 'Nuée',
         'Thorn Whip': 'Fouet de ronces',
         'Viscid Emission': 'Émission visqueuse',
-      },
-      '~effectNames': {
-        'Honey-Glazed': 'Mielleux',
       },
     },
     {
@@ -307,9 +293,6 @@
         'Thorn Whip': 'ソーンウィップ',
         'Viscid Emission': 'ヴィシドエミッション',
       },
-      '~effectNames': {
-        'Honey-Glazed': '蜂蜜',
-      },
     },
     {
       'locale': 'cn',
@@ -331,9 +314,6 @@
         'Thorn Whip': '荆棘鞭',
         'Viscid Emission': '胶质排放物',
       },
-      '~effectNames': {
-        'Honey-Glazed': '蜂蜜',
-      },
     },
     {
       'locale': 'ko',
@@ -354,9 +334,6 @@
         'Swarm': '벌레 떼',
         'Thorn Whip': '가시채찍',
         'Viscid Emission': '점액 배출',
-      },
-      '~effectNames': {
-        'Honey-Glazed': '벌꿀',
       },
     },
   ],

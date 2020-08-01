@@ -1,4 +1,6 @@
-# Checks a trigger file and timeline for translations.
+#!/usr/bin/env python
+
+"""Checks a trigger file and timeline for translations."""
 
 # TODO: this does not handle multi-line regexes.  You have to join them before running this.  <_<
 
@@ -61,24 +63,12 @@ def translate_regex(regex, trans):
     # language to show that it's been translated.
 
     did_work = False
-    effectLines = [
-        "gains the effect",
-        "loses the effect",
-        "gainsEffect",
-        "losesEffect",
-    ]
-    for effectLine in effectLines:
-        if line.find(effectLine):
-            for old, new in trans["~effectNames"].items():
-                did_work = did_work or re.search(old, line)
-                line = re.sub(old, new, line)
-            break
     for old, new in trans["replaceText"].items():
         did_work = did_work or re.search(old, line)
-        line = re.sub(old, new, line)
+        line = re.sub(old, new, line, flags=re.IGNORECASE)
     for old, new in trans["replaceSync"].items():
         did_work = did_work or re.search(old, line)
-        line = re.sub(old, new, line)
+        line = re.sub(old, new, line, flags=re.IGNORECASE)
 
     if did_work:
         return line
@@ -178,7 +168,6 @@ def parse_translations(triggers):
         add_if_missing = [
             "replaceText",
             "replaceSync",
-            "~effectNames",
         ]
         for key in add_if_missing:
             if key not in entry:
@@ -200,7 +189,7 @@ def translate_timeline(line, trans):
     text = m.group(0)
     for old, new in trans["replaceText"].items():
         did_work = did_work or re.search(old, text, re.IGNORECASE)
-        text = re.sub(old, new, text)
+        text = re.sub(old, new, text, flags=re.IGNORECASE)
     line = replace_text_re.sub(text, line)
     skip_text = [
         "--sync--",
@@ -221,7 +210,7 @@ def translate_timeline(line, trans):
     text = m.group(1)
     for old, new in trans["replaceSync"].items():
         did_work = did_work or re.search(old, text, re.IGNORECASE)
-        text = re.sub(old, new, text)
+        text = re.sub(old, new, text, flags=re.IGNORECASE)
         # Double escape any escaped characters that will break the
         # regex below.  The regex substitution will turn the
         # double backslashes back into single backslashes.

@@ -6,6 +6,7 @@
     en: /^The Copied Factory$/,
     ko: /^복제된 공장 폐허$/,
   },
+  zoneId: ZoneId.TheCopiedFactory,
   damageWarn: {
     'Copied Serial Energy Bomb': '48B4',
     // Make sure enemies are ignored on these
@@ -93,17 +94,7 @@
     'Copied 9S Serial Spin 2': '48A7',
 
   },
-  triggers: [
-    {
-      id: 'Copied Hobbes Short-Range Missile',
-      damageRegex: '4815',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareWarn: {
+    'Copied Hobbes Short-Range Missile': '4815',
+  },
 }];

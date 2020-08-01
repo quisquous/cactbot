@@ -1,0 +1,76 @@
+name: Build artifact
+
+on:
+  push:
+    paths:
+      - '.github/workflows/build-artifact.yml'
+      - 'plugin/**'
+      - 'util/publish.sh'
+      - 'util/DEPS.py'
+      - 'util/fetch_deps.py'
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - '.github/workflows/build-artifact.yml'
+      - 'plugin/**'
+      - 'util/publish.sh'
+      - 'util/DEPS.py'
+      - 'util/fetch_deps.py'
+
+jobs:
+  msbuild:
+    runs-on: windows-latest
+
+    steps:
+    - uses: actions/checkout@v1
+
+    - name: Set artifact name
+      shell: bash
+      run: |
+        sha=$(echo ${{ github.sha }} | cut -c 1-8)
+        echo "::set-env name=artifact_sha::$sha"
+
+    - name: Check dependencies cache
+      id: cache-dependencies
+      uses: actions/cache@v2
+      with:
+        path: ./plugin/ThirdParty
+        key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.py', './util/DEPS.py') }}
+        restore-keys: |
+          ${{ runner.os }}-cactbot-
+
+    # Fetch dependencies only if cache-hit is false
+    - name: Set up Python 3.8
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+
+    - name: Fetch dependencies
+      if: steps.cache-dependencies.outputs.cache-hit != 'true'
+      run: |
+        python .\util\fetch_deps.py
+
+    - name: Set up msbuild
+      uses: microsoft/setup-msbuild@v1.0.1
+
+    - name: Add Custom Problem Matcher
+      run: |
+        echo "::add-matcher::.github/matchers/${{ github.job }}.json"
+
+    - name: MSBuild
+      run: msbuild /p:Configuration=Release /p:Platform=x64 plugin/Cactbot.sln
+      shell: cmd
+
+    - name: Generate artifact
+      shell: bash
+      run: ./util/publish.sh
+
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        name: cactbot-${{ env.artifact_sha }}
+        path: publish/cactbot-release/

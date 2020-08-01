@@ -130,7 +130,7 @@ hideall "--Reset--"
 
 
 ### Phase 4: Snacks ###
-800 "Freefire" sync /:Titan:2CF5:/ window 800,0
+800 "Freefire" sync /:The Ultima Weapon:2CF5:/ window 800,0
 815 "Blight" sync /:Lahabrea:2B73:/
 840 "Dark IV"
 848 "Ultima" sync /:The Ultima Weapon:2B8B:/ window 50,10 jump 961

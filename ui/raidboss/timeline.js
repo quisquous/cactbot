@@ -38,14 +38,11 @@ class Timeline {
     this.Stop();
   }
 
-  GetReplacedHelper(text, replaceKey) {
+  GetReplacedHelper(text, replaceKey, replaceLang, isGlobal) {
     if (!this.replacements)
       return text;
 
     let orig = text;
-    let replaceLang = this.options.ParserLanguage || 'en';
-    if (replaceKey === 'replaceText')
-      replaceLang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
     for (let r of this.replacements) {
       if (r.locale && r.locale != replaceLang)
         continue;
@@ -56,21 +53,32 @@ class Timeline {
         text = text.replace(Regexes.parse(key), r[replaceKey][key]);
     }
     // Common Replacements
-    for (let key in commonReplacement) {
-      let repl = commonReplacement[key][replaceLang];
+    for (let key in commonReplacement[replaceKey]) {
+      let repl = commonReplacement[replaceKey][key][replaceLang];
       if (!repl)
         continue;
-      text = text.replace(Regexes.parse(key), repl);
+      let regex = isGlobal ? Regexes.parseGlobal(key) : Regexes.parse(key);
+      text = text.replace(regex, repl);
     }
     return text;
   }
 
   GetReplacedText(text) {
-    return this.GetReplacedHelper(text, 'replaceText');
+    if (!this.replacements)
+      return text;
+
+    const replaceLang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
+    const isGlobal = false;
+    return this.GetReplacedHelper(text, 'replaceText', replaceLang, isGlobal);
   }
 
   GetReplacedSync(sync) {
-    return this.GetReplacedHelper(sync, 'replaceSync');
+    if (!this.replacements)
+      return sync;
+
+    const replaceLang = this.options.ParserLanguage || 'en';
+    const isGlobal = true;
+    return this.GetReplacedHelper(sync, 'replaceSync', replaceLang, isGlobal);
   }
 
   GetMissingTranslationsToIgnore() {

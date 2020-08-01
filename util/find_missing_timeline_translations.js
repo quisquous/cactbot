@@ -8,6 +8,7 @@ let fs = require('fs');
 let Regexes = require('../resources/regexes.js');
 let NetRegexes = require('../resources/netregexes.js');
 let Conditions = require('../resources/conditions.js');
+let ZoneId = require('../resources/zone_id.js');
 let responseModule = require('../resources/responses.js');
 let Responses = responseModule.responses;
 let Timeline = require('../ui/raidboss/timeline.js');
@@ -32,14 +33,12 @@ let triggers = triggerSet.triggers;
 
 let translations = triggerSet.timelineReplace;
 if (!translations)
-  process.exit(-1);
+  process.exit(0);
 
-let kEffectNames = '~effectNames';
 let trans = {
   replaceSync: {},
   replaceText: {},
 };
-trans[kEffectNames] = {};
 
 for (let transBlock of translations) {
   if (!transBlock.locale || transBlock.locale !== locale)
@@ -84,13 +83,17 @@ function findMissingRegex() {
     let foundMatch = false;
 
     let transRegex = origRegex;
-    for (let set of [trans.replaceSync, trans[kEffectNames]]) {
-      for (let regex in set) {
-        let replace = Regexes.parse(regex);
-        if (transRegex.match(replace))
-          foundMatch = true;
-        transRegex = transRegex.split(replace).join(set[regex]);
-      }
+    for (let regex in trans.replaceSync) {
+      let replace = Regexes.parseGlobal(regex);
+      if (transRegex.match(replace))
+        foundMatch = true;
+      transRegex = transRegex.replace(replace, trans.replaceSync[regex]);
+    }
+    for (let regex in commonReplacement.replaceSync) {
+      let replace = Regexes.parseGlobal(regex);
+      if (transRegex.match(replace))
+        foundMatch = true;
+      transRegex = transRegex.replace(replace, commonReplacement.replaceSync[regex][locale]);
     }
 
     transRegex = transRegex.toLowerCase();
@@ -133,19 +136,23 @@ function findMissingRegex() {
 }
 
 function findMissingTimeline() {
+  // Don't bother translating timelines that are old.
+  if (triggerSet.timelineNeedsFixing)
+    return;
+
   // TODO: merge this with test_timeline.js??
   let testCases = [
     {
       type: 'replaceSync',
       items: new Set(timeline.syncStarts.map((x) =>
         ({ text: x.regex.source, line: x.lineNumber }))),
-      replace: trans.replaceSync,
+      replace: trans.replaceSync || {},
       label: 'sync',
     },
     {
       type: 'replaceText',
       items: new Set(timeline.events.map((x) => ({ text: x.text, line: x.lineNumber }))),
-      replace: trans.replaceText,
+      replace: trans.replaceText || {},
       label: 'text',
     },
   ];
@@ -153,21 +160,24 @@ function findMissingTimeline() {
   const skipPartialCommon = true;
 
   // Add all common replacements, so they can be checked for collisions as well.
-  // As of now they apply to both replaceSync and replaceText, so add them to both.
   for (let testCase of testCases) {
-    for (let key in commonReplacement) {
+    let common = commonReplacement[testCase.type];
+    for (let key in common) {
       if (skipPartialCommon && partialCommonReplacementKeys.includes(key))
         continue;
-      if (!commonReplacement[key][trans.locale]) {
+      if (!common[key][trans.locale]) {
         // To avoid throwing a "missing translation" error for
         // every single common translation, automatically add noops.
         testCase.replace[key] = key;
         continue;
       }
-      // This shouldn't happen.
-      if (key in testCase.replace)
+
+      if (key in testCase.replace) {
+        console.log(`${triggersFile}: duplicated common translation of '${key}`);
         continue;
-      testCase.replace[key] = commonReplacement[key][trans.locale];
+      }
+
+      testCase.replace[key] = common[key][trans.locale];
     }
   }
 
@@ -206,6 +216,9 @@ function findMissingTimeline() {
   let keys = Object.keys(output).sort();
   for (let key of keys)
     console.log(output[key]);
+
+  if (keys.length === 0 && trans.missingTranslations)
+    console.log(`${triggersFile}: missingTranslations set true when not needed`);
 }
 
 findMissingRegex();

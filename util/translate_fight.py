@@ -1,4 +1,6 @@
-# Generates en/de/fr/ja translations for a given fflogs report.
+#!/usr/bin/env python
+
+"""Generates en/de/fr/ja translations for a given fflogs report"""
 
 import argparse
 from collections import defaultdict
@@ -20,13 +22,6 @@ prefixes = {
 }
 default_language = "en"
 ignore_abilities = ["Attack"]
-ignore_effects = [
-    "Brink Of Death",
-    "Sprint",
-    "Regen",
-    "Vulnerability Up",
-    "Weakness",
-]
 
 
 def find_start_end_time(report, args):
@@ -165,29 +160,9 @@ def main(args):
             ability = event["ability"]
             abilities[(actor, ability["guid"])][lang] = ability["name"]
 
-    # Finally, get boss debuff names.  These aren't used directly in timeline replacement
-    # but are helpful to have listed when writing other triggers.
-    options = {
-        "api_key": args.key,
-        "start": start_time,
-        "end": end_time,
-        "filter": 'source.type="NPC" and (type="applydebuffstack" or type="applydebuff" or type="refreshdebuff")',
-        "translate": "true",
-    }
-    effects = defaultdict(dict)
-    for lang in languages:
-        events = fflogs.api("events", args.report, prefixes[lang], options)["events"]
-        for event in events:
-            actor = 0
-            if "targetID" in event:
-                actor = event["targetID"]
-            ability = event["ability"]
-            effects[(actor, ability["guid"])][lang] = ability["name"]
-
     # Generate mappings of english => locale names.
     mob_replace = build_mapping(enemies)
     ability_replace = build_mapping(abilities, ignore_abilities)
-    effect_replace = build_mapping(effects, ignore_effects)
 
     add_default_sync_mappings(mob_replace)
     add_default_ability_mappings(ability_replace)
@@ -202,8 +177,6 @@ def main(args):
                 "locale": lang,
                 "replaceSync": dict(sorted(mob_replace[lang].items(), reverse=True)),
                 "replaceText": dict(sorted(ability_replace[lang].items(), reverse=True)),
-                # sort this last <_<
-                "~effectNames": dict(sorted(effect_replace[lang].items(), reverse=True)),
             }
         )
     output = {"timelineReplace": timeline_replace}

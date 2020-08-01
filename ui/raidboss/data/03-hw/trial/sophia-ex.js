@@ -31,6 +31,7 @@ let callSafeDir = (callIndex) => {
     en: /^Containment Bay P1T6 \(Extreme\)$/,
     cn: /^索菲娅歼殛战$/,
   },
+  zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
   timelineTriggers: [
     {
@@ -48,6 +49,7 @@ let callSafeDir = (callIndex) => {
       beforeSeconds: 5,
       infoText: {
         en: 'Avoid Dash Attack',
+        de: 'Ansturm-Angriff ausweichen',
         cn: '躲避击飞',
       },
     },
@@ -77,7 +79,9 @@ let callSafeDir = (callIndex) => {
       beforeSeconds: 6,
       infoText: {
         en: 'Bait Quasar Meteors',
+        de: 'Quasar Meteore ködern',
         cn: '诱导陨石',
+        ko: '운석 유도하기',
       },
     },
   ],
@@ -147,7 +151,9 @@ let callSafeDir = (callIndex) => {
       netRegexKo: NetRegexes.startsUsing({ id: '19B8', source: '제3신도', capture: false }),
       infoText: {
         en: 'Get behind lancer',
+        de: 'Geh hinter dem 3. Demiurg',
         cn: '躲在3号小怪后',
+        ko: '제3신도 뒤로 가기',
       },
     },
     {
@@ -162,12 +168,16 @@ let callSafeDir = (callIndex) => {
         if (Conditions.targetIsYou()) {
           return {
             en: 'Infusion on YOU',
+            de: 'Schneisenschläger auf DIR',
             cn: '冲锋点名',
+            ko: '맹돌진 대상자',
           };
         }
         return {
           en: 'Infusion on ' + data.ShortName(matches.target),
+          de: 'Schneisenschläger auf ' + data.ShortName(matches.target),
           cn: '冲锋点' + data.ShortName(matches.target),
+          ko: '' + data.ShortName(matches.target) + ' 에게 맹돌진',
         };
       },
     },
@@ -202,7 +212,7 @@ let callSafeDir = (callIndex) => {
       netRegex: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
       netRegexDe: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
       netRegexFr: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
-      netRegexJa: NetRegexes.addedCombatantFull({ name: 'Aion Teleos' }),
+      netRegexJa: NetRegexes.addedCombatantFull({ name: 'アイオーン・ソフィア' }),
       netRegexCn: NetRegexes.addedCombatantFull({ name: '移涌' }),
       netRegexKo: NetRegexes.addedCombatantFull({ name: '아이온 소피아' }),
       run: function(data, matches) {
@@ -242,7 +252,7 @@ let callSafeDir = (callIndex) => {
       netRegex: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '19AB', source: 'Aion Teleos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '19AB', source: 'アイオーン・ソフィア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '19AB', source: '移涌', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '19AB', source: '아이온 소피아', capture: false }),
       delaySeconds: 1,
@@ -260,7 +270,7 @@ let callSafeDir = (callIndex) => {
       netRegex: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
       netRegexDe: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
       netRegexFr: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'Aion Teleos', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'アイオーン・ソフィア', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '移涌', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '아이온 소피아', capture: false }),
       run: function(data) {
@@ -284,7 +294,9 @@ let callSafeDir = (callIndex) => {
       },
       infoText: {
         en: 'Avoid head laser',
+        de: 'Kopflaser ausweichen',
         cn: '躲避人头炮',
+        ko: '머리 레이저 피하기',
       },
     },
     {
@@ -303,7 +315,7 @@ let callSafeDir = (callIndex) => {
           'N': { en: 'North', fr: 'Nord', de: 'Norde', ja: 'ノース', cn: '北', ko: '북쪽' },
           'S': { en: 'South', fr: 'Sud', de: 'Süden', ja: '南', cn: '南面', ko: '남쪽' },
           'NW': { en: 'NW', fr: 'N-O', de: 'NW', ja: '北西', cn: '西北', ko: '북서' },
-          'NE': { en: 'NE', fr: 'N-E', de: 'N-E', ja: '北東', cn: '东北', ko: '북동' },
+          'NE': { en: 'NE', fr: 'N-E', de: 'NO', ja: '北東', cn: '东北', ko: '북동' },
           'SW': { en: 'SW', fr: 'S-O', de: 'SW', ja: '南西', cn: '西南', ko: '남서' },
           'SE': { en: 'SE', fr: 'S-E', de: 'SO', ja: '南東', cn: '东南', ko: '남동' },
         };
@@ -480,8 +492,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': 'Dritt(?:e|er|es|en) Demiurg',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--klone erscheinen--',
         'Aero III': 'Windga',
         'Arms of Wisdom': 'Arme der Weisheit',
         'Cintamani': 'Chintamani',
@@ -515,8 +525,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': 'Troisième Démiurge',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--apparition des clones--',
         'Aero III': 'Méga Vent',
         'Arms of Wisdom': 'Bras de la sagesse',
         'Cintamani': 'Chintamani',
@@ -550,8 +558,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': '三の従者',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--幻影が現れる--',
         'Aero III': 'エアロガ',
         'Arms of Wisdom': 'ウィズダムアームズ',
         'Cintamani': 'チンターマニ',
@@ -585,8 +591,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': '信徒其三',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--clones appear--',
         'Aero III': '暴风',
         'Arms of Wisdom': '睿智之秤',
         'Cintamani': '如意宝珠',
@@ -620,8 +624,6 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': '제3신도',
       },
       'replaceText': {
-        '--adds spawn--': '--adds spawn--',
-        '--clones appear--': '--clones appear--',
         'Aero III': '에어로가',
         'Arms of Wisdom': '지혜의 무기',
         'Cintamani': '친타마니',

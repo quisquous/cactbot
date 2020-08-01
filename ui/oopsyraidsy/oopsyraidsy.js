@@ -4,14 +4,9 @@ let Options = {
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},
-  IgnoreZones: [
-    'PvpSeize',
-    'PvpSecure',
-    'PvpShatter',
-    'EurekaAnemos',
-    'EurekaPagos',
-    'EurekaPyros',
-    'EurekaHydatos',
+  IgnoreContentTypes: [
+    ContentType.Pvp,
+    ContentType.Eureka,
   ],
 
   AbilityIdNameMap: {
@@ -105,8 +100,6 @@ let kEarlyPullText = {
   en: 'early pull',
   de: 'zu früh angegriffen',
   fr: 'early pull',
-  // FIXME
-  ja: 'early pull',
   cn: '抢开',
   ko: '풀링 빠름',
 };
@@ -115,17 +108,14 @@ let kLatePullText = {
   en: 'late pull',
   de: 'zu spät angegriffen',
   fr: 'late pull',
-  // FIXME
-  ja: 'late pull',
   cn: '晚开',
   ko: '풀링 늦음',
 };
 
 const kPartyWipeText = {
   en: 'Party Wipe',
-  de: 'Party Wipe',
+  de: 'Gruppe ausgelöscht',
   fr: 'Party Wipe',
-  ja: 'Party Wipe',
   cn: '团灭',
   ko: '파티 전멸',
 };
@@ -304,6 +294,18 @@ function IsDirectHitDamage(flags) {
 
 function IsPlayerId(id) {
   return id[0] < 4;
+}
+
+
+function IsTriggerEnabled(options, id) {
+  if (id in options.DisabledTriggers)
+    return false;
+
+  const autoConfig = options.PerTriggerAutoConfig[id];
+  if (autoConfig)
+    return autoConfig.enabled;
+
+  return true;
 }
 
 class OopsyLiveList {
@@ -493,16 +495,14 @@ class MistakeCollector {
     }
     let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
-      let text = kEarlyPullText[this.options.DisplayLanguage] + ' (' + seconds.toFixed(1) + 's)';
-      if (!this.options.DisabledTriggers[kEarlyPullId])
+      let text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
+      if (!IsTriggerEnabled(this.options, kEarlyPullId))
         this.OnMistakeText('pull', this.firstPuller, text);
     }
   }
 
   AddDamage(fields, line) {
     if (!this.firstPuller) {
-      if (this.options.Debug)
-        console.log('Pull: ' + line);
       if (IsPlayerId(fields[kFieldAttackerId]))
         this.firstPuller = fields[kFieldAttackerName];
       else if (IsPlayerId(fields[kFieldTargetId]))
@@ -513,8 +513,8 @@ class MistakeCollector {
       this.StartCombat();
       let seconds = ((Date.now() - this.engageTime) / 1000);
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
-        let text = kLatePullText[this.options.DisplayLanguage] + ' (' + seconds.toFixed(1) + 's)';
-        if (!this.options.DisabledTriggers[kEarlyPullId])
+        let text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
+        if (!IsTriggerEnabled(this.options, kEarlyPullId))
           this.OnMistakeText('pull', this.firstPuller, text);
       }
     }
@@ -552,7 +552,7 @@ class MistakeCollector {
     // wipe then (to make post-wipe deaths more obvious), however this
     // requires making liveList be able to insert items in a sorted
     // manner instead of just being append only.
-    this.OnFullMistakeText('wipe', null, kPartyWipeText[this.options.DisplayLanguage || 'en']);
+    this.OnFullMistakeText('wipe', null, this.Translate(kPartyWipeText));
     // Party wipe usually comes a few seconds after everybody dies
     // so this will clobber any late damage.
     this.StopCombat();
@@ -592,7 +592,7 @@ class MistakeCollector {
     }
   }
 
-  OnZoneChangeEvent(e) {
+  OnChangeZone(e) {
     this.Reset();
   }
 }
@@ -610,11 +610,20 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
+    this.netTriggers = [];
 
     this.partyTracker = new PartyTracker();
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
     });
+
+    const lang = this.options.ParserLanguage;
+    this.countdownEngageRegex = LocaleRegex.countdownEngage[lang] ||
+      LocaleRegex.countdownEngage['en'];
+    this.countdownStartRegex = LocaleRegex.countdownStart[lang] ||
+      LocaleRegex.countdownStart['en'];
+    this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] ||
+      LocaleRegex.countdownCancel['en'];
 
     this.Reset();
   }
@@ -635,11 +644,23 @@ class DamageTracker {
       ParseLocaleFloat: parseFloat,
     };
     this.lastDamage = {};
+    // Trigger ID -> { events: [], matches: [] }
     this.activeTriggers = {};
 
     for (let i = 0; i < this.timers.length; ++i)
       window.clearTimeout(this.timers[i]);
     this.timers = [];
+  }
+
+  OnNetLog(e) {
+    if (this.ignoreZone)
+      return;
+    let line = e.rawLine;
+    for (let trigger of this.netTriggers) {
+      let matches = line.match(trigger.netRegex);
+      if (matches != null)
+        this.OnTrigger(trigger, { line: line }, matches);
+    }
   }
 
   OnLogEvent(e) {
@@ -655,11 +676,11 @@ class DamageTracker {
       }
 
       if (line[kTypeOffset0] == '0' && line[kTypeOffset1] == '0') {
-        if (line.match(gLang.countdownEngageRegex())) {
+        if (line.match(this.countdownEngageRegex)) {
           this.collector.AddEngage();
           continue;
         }
-        if (line.match(gLang.countdownStartRegex()) || line.match(gLang.countdownCancelRegex())) {
+        if (line.match(this.countdownStartRegex) || line.match(this.countdownCancelRegex)) {
           this.collector.Reset();
           continue;
         }
@@ -848,7 +869,7 @@ class DamageTracker {
     if ((matches != undefined) && (matches.groups != undefined))
       matches = matches.groups;
 
-    if (trigger.id && this.options.DisabledTriggers[trigger.id])
+    if (trigger.id && !IsTriggerEnabled(this.options, trigger.id))
       return;
 
     if ('condition' in trigger) {
@@ -856,29 +877,36 @@ class DamageTracker {
         return;
     }
 
-    let ValueOrFunction = (f, events) => {
+    let ValueOrFunction = (f, events, matches) => {
       return (typeof f == 'function') ? f(events, this.data, matches) : f;
     };
 
-    let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds) : 0;
+    let collectSeconds = 'collectSeconds' in trigger ? ValueOrFunction(trigger.collectSeconds, matches) : 0;
     let collectMultipleEvents = 'collectSeconds' in trigger;
-    if (collectMultipleEvents && trigger in this.activeTriggers) {
-      this.activeTriggers[trigger].push(evt);
+    if (collectMultipleEvents && trigger.id in this.activeTriggers) {
+      this.activeTriggers[trigger.id].events.push(evt);
+      this.activeTriggers[trigger.id].matches.push(matches);
       return;
     }
     let delay;
     if (collectMultipleEvents)
       delay = collectSeconds || 0;
     else
-      delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt) : 0;
+      delay = 'delaySeconds' in trigger ? ValueOrFunction(trigger.delaySeconds, evt, matches) : 0;
 
 
     let triggerTime = Date.now();
     let f = (function() {
-      let eventOrEvents = collectMultipleEvents ? this.activeTriggers[trigger] : evt;
-      delete this.activeTriggers[trigger];
+      let eventParam = evt;
+      let matchesParam = matches;
+      if (collectMultipleEvents) {
+        eventParam = this.activeTriggers[trigger.id].events;
+        matchesParam = this.activeTriggers[trigger.id].matches;
+        delete this.activeTriggers[trigger.id];
+      }
+
       if ('mistake' in trigger) {
-        let m = ValueOrFunction(trigger.mistake, eventOrEvents);
+        let m = ValueOrFunction(trigger.mistake, eventParam, matchesParam);
         if (Array.isArray(m)) {
           for (let i = 0; i < m.length; ++i)
             this.collector.OnMistakeObj(m[i]);
@@ -887,20 +915,28 @@ class DamageTracker {
         }
       }
       if ('deathReason' in trigger) {
-        let ret = ValueOrFunction(trigger.deathReason, eventOrEvents);
+        let ret = ValueOrFunction(trigger.deathReason, eventParam, matchesParam);
         if (ret) {
           ret.reason = this.collector.Translate(ret.reason);
           this.AddImpliedDeathReason(ret);
         }
       }
       if ('run' in trigger)
-        ValueOrFunction(trigger.run, eventOrEvents);
+        ValueOrFunction(trigger.run, eventParam, matchesParam);
     }).bind(this);
 
     // Even if delay = 0, if collectMultipleEvents is specified,
     // then set this here so that events can be passed as an array for consistency.
-    if (collectMultipleEvents)
-      this.activeTriggers[trigger] = [evt];
+    if (collectMultipleEvents) {
+      if (!trigger.id) {
+        console.error('Missing trigger id with collectSeconds specified.');
+        return;
+      }
+      this.activeTriggers[trigger.id] = {
+        events: [evt],
+        matches: [matches],
+      };
+    }
 
     if (!delay)
       f();
@@ -915,8 +951,12 @@ class DamageTracker {
     this.collector.OnPartyWipeEvent(e);
   }
 
-  OnZoneChangeEvent(e) {
-    this.zoneName = e.detail.zoneName;
+  OnChangeZone(e) {
+    this.zoneName = e.zoneName;
+
+    const zoneInfo = ZoneInfo[e.zoneID];
+    this.contentType = zoneInfo ? zoneInfo.contentType : 0;
+
     this.ReloadTriggers();
   }
 
@@ -929,12 +969,50 @@ class DamageTracker {
     if (!dict)
       return;
     let keys = Object.keys(dict);
-    for (let j = 0; j < keys.length; ++j) {
-      let key = keys[j];
+    for (let key of keys) {
       let id = dict[key];
       let trigger = {
         id: key,
         damageRegex: id,
+        idRegex: Regexes.parse('^' + id + '$'),
+        mistake: function(e, data) {
+          return { type: type, blame: e.targetName, text: e.abilityName };
+        },
+      };
+      this.damageTriggers.push(trigger);
+    }
+  }
+
+  AddGainsEffectTriggers(type, dict) {
+    if (!dict)
+      return;
+    let keys = Object.keys(dict);
+    for (let key of keys) {
+      let id = dict[key];
+      let trigger = {
+        id: key,
+        netRegex: NetRegexes.gainsEffect({ effectId: id }),
+        mistake: function(e, data, matches) {
+          return { type: type, blame: matches.target, text: matches.effect };
+        },
+      };
+      this.netTriggers.push(trigger);
+    }
+  }
+
+  // Helper function for "double tap" shares where multiple players share
+  // damage when it should only be on one person, such as a spread mechanic.
+  AddShareTriggers(type, dict) {
+    if (!dict)
+      return;
+    let keys = Object.keys(dict);
+    let condFunc = (e) => e.type != 15;
+    for (let key of keys) {
+      let id = dict[key];
+      let trigger = {
+        id: key,
+        damageRegex: id,
+        condition: condFunc,
         idRegex: Regexes.parse('^' + id + '$'),
         mistake: function(e, data) {
           return { type: type, blame: e.targetName, text: e.abilityName };
@@ -958,14 +1036,11 @@ class DamageTracker {
     this.abilityTriggers = [];
     this.effectTriggers = [];
     this.healTriggers = [];
+    this.netTriggers = [];
 
-    this.ignoreZone = false;
-    for (let i = 0; i < Options.IgnoreZones.length; ++i) {
-      if (this.zoneName.match(gLang.kZone[Options.IgnoreZones[i]])) {
-        this.ignoreZone = true;
-        return;
-      }
-    }
+    this.ignoreZone = Options.IgnoreContentTypes.includes(this.contentType);
+    if (this.ignoreZone)
+      return;
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
@@ -997,8 +1072,13 @@ class DamageTracker {
 
       if (this.zoneName.search(zoneRegex) < 0)
         continue;
+
       this.AddSimpleTriggers('warn', set.damageWarn);
       this.AddSimpleTriggers('fail', set.damageFail);
+      this.AddGainsEffectTriggers('warn', set.gainsEffectWarn);
+      this.AddGainsEffectTriggers('fail', set.gainsEffectFail);
+      this.AddShareTriggers('warn', set.shareWarn);
+      this.AddShareTriggers('fail', set.shareFail);
 
       if (!set.triggers)
         set.triggers = [];
@@ -1028,6 +1108,10 @@ class DamageTracker {
           trigger.idRegex = Regexes.parse('^' + Regexes.anyOf(trigger.healRegex) + '$');
           this.healTriggers.push(trigger);
         }
+        if ('netRegex' in trigger) {
+          trigger.netRegex = Regexes.parse(Regexes.anyOf(trigger.netRegex));
+          this.netTriggers.push(trigger);
+        }
       }
     }
   }
@@ -1049,8 +1133,6 @@ class DamageTracker {
 
   ProcessDataFiles() {
     if (this.triggerSets)
-      return;
-    if (!gLang)
       return;
     if (!this.me)
       return;
@@ -1096,12 +1178,15 @@ UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
   addOverlayListener('onLogEvent', function(e) {
     gDamageTracker.OnLogEvent(e);
   });
+  addOverlayListener('LogLine', function(e) {
+    gDamageTracker.OnNetLog(e);
+  });
   addOverlayListener('onPartyWipe', function(e) {
     gDamageTracker.OnPartyWipeEvent(e);
   });
-  addOverlayListener('onZoneChangedEvent', function(e) {
-    gDamageTracker.OnZoneChangeEvent(e);
-    gMistakeCollector.OnZoneChangeEvent(e);
+  addOverlayListener('ChangeZone', function(e) {
+    gDamageTracker.OnChangeZone(e);
+    gMistakeCollector.OnChangeZone(e);
   });
   addOverlayListener('onInCombatChangedEvent', function(e) {
     gDamageTracker.OnInCombatChangedEvent(e);

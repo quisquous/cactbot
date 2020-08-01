@@ -5,6 +5,7 @@
     en: /^The Twinning$/,
     ko: /^쌍둥이 시르쿠스$/,
   },
+  zoneId: ZoneId.TheTwinning,
   damageWarn: {
     'Twinning Auto Cannons': '43A9',
     'Twinning Heave': '3DB9',

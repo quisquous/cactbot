@@ -6,6 +6,7 @@
     en: /^Sigmascape V3\.0 \(Savage\)$/,
     ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(3\)$/,
   },
+  zoneId: ZoneId.SigmascapeV30Savage,
   damageFail: {
     'O7S Missile': '2782',
     'O7S Chain Cannon': '278F',

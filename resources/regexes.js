@@ -521,6 +521,25 @@ var Regexes = {
     return Regexes.parse(str);
   },
 
+  // fields: instance, command, data0, data1, data2, data3
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
+  network6d: (f) => {
+    if (typeof f === 'undefined')
+      f = {};
+    Regexes.validateParams(f, 'network6d',
+        ['timestamp', 'instance', 'command', 'data0', 'data1', 'data2', 'data3', 'capture']);
+    let capture = Regexes.trueIfUndefined(f.capture);
+    let str = Regexes.maybeCapture(capture, 'timestamp', '\\y{Timestamp}') +
+      ' 21:' +
+      Regexes.maybeCapture(capture, 'instance', f.instance, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'command', f.command, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'data0', f.data0, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'data1', f.data1, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'data2', f.data2, '.*?') + ':' +
+      Regexes.maybeCapture(capture, 'data3', f.data3, '.*?') + '$';
+    return Regexes.parse(str);
+  },
+
   // Helper function for building named capture group regexes.
   maybeCapture: (capture, name, value, defaultValue) => {
     if (!value)
@@ -569,7 +588,7 @@ var Regexes = {
     let kCactbotCategories = {
       Timestamp: '^.{14}',
       NetTimestamp: '.{33}',
-      NetField: '(?:.*?\\|)',
+      NetField: '(?:[^|]*\\|)',
       LogType: '[0-9A-Fa-f]{2}',
       AbilityCode: '[0-9A-Fa-f]{1,8}',
       ObjectId: '[0-9A-F]{8}',
@@ -592,6 +611,14 @@ var Regexes = {
       return kCactbotCategories[group] || match;
     });
     return new RegExp(Regexes.withUnicodeClasses(regexpString), modifiers);
+  },
+
+  // Like Regex.parse, but force global flag.
+  parseGlobal: (regexpString) => {
+    let regex = Regexes.parse(regexpString);
+    let modifiers = 'gi';
+    modifiers += (regexpString.multiline ? 'm' : '');
+    return new RegExp(regex.source, modifiers);
   },
 
   trueIfUndefined: (value) => {

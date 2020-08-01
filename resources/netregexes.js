@@ -6,6 +6,7 @@
 // * gameLog always splits name into its own field (but previously wouldn't)
 
 const separator = '\\|';
+const matchDefault = '[^|]*';
 
 let parseHelper = (params, funcName, fields) => {
   // Validate params's field names vs the ones in fields.
@@ -54,7 +55,7 @@ let parseHelper = (params, funcName, fields) => {
     if (typeof value === 'object') {
       let fieldName = fields[key].field;
       // TODO: the field object here could also manage different defaults, if we wanted?
-      str += Regexes.maybeCapture(capture, fieldName, params[fieldName], '.*?') + separator;
+      str += Regexes.maybeCapture(capture, fieldName, params[fieldName], matchDefault) + separator;
     } else {
       str += fields[key].toString() + separator;
     }
@@ -249,7 +250,7 @@ var NetRegexes = {
   // 'target' was defeated by 'source'
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
   wasDefeated: (params) => {
-    return parseHelper(params, 'tether', {
+    return parseHelper(params, 'wasDefeated', {
       0: '25',
       1: { field: 'timestamp' },
       2: { field: 'targetId' },
@@ -335,6 +336,20 @@ var NetRegexes = {
       1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
+    });
+  },
+
+  // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
+  network6d: (params) => {
+    return parseHelper(params, 'network6d', {
+      0: '33',
+      1: { field: 'timestamp' },
+      2: { field: 'instance' },
+      3: { field: 'command' },
+      4: { field: 'data0' },
+      5: { field: 'data1' },
+      6: { field: 'data2' },
+      7: { field: 'data3' },
     });
   },
 };

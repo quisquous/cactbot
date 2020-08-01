@@ -5,6 +5,7 @@
     en: /^Mt\. Gulg$/,
     ko: /^굴그 화산$/,
   },
+  zoneId: ZoneId.MtGulg,
   damageWarn: {
     'Gulg Immolation': '41AA',
     'Gulg Tail Smash': '41AB',

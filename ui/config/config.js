@@ -4,7 +4,7 @@ let Options = {};
 let gConfig = null;
 
 // Text in the butter bar, to prompt the user to reload after a config change.
-let kReloadText = {
+const kReloadText = {
   en: 'To apply configuration changes, reload cactbot overlays.',
   de: 'Um die Änderungen zu aktivieren, aktualisiere bitte die Cactbot Overlays.',
   fr: 'Afin d\'appliquer les modifications, il faut recharger l\'overlay Cactbot.',
@@ -14,7 +14,7 @@ let kReloadText = {
 };
 
 // Text in the butter bar reload button.
-let kReloadButtonText = {
+const kReloadButtonText = {
   en: 'Reload',
   de: 'Aktualisieren',
   fr: 'Recharger',
@@ -24,7 +24,7 @@ let kReloadButtonText = {
 };
 
 // Text on the directory choosing button.
-let kDirectoryChooseButtonText = {
+const kDirectoryChooseButtonText = {
   en: 'Choose Directory',
   de: 'Wähle ein Verzeichnis',
   fr: 'Choix du répertoire',
@@ -34,13 +34,134 @@ let kDirectoryChooseButtonText = {
 };
 
 // What to show when a directory hasn't been chosen.
-let kDirectoryDefaultText = {
+const kDirectoryDefaultText = {
   en: '(Default)',
   de: '(Standard)',
   fr: '(Défaut)',
   ja: '(初期設定)',
   cn: '(默认)',
   ko: '(기본)',
+};
+
+// Translating data folders to a category name.
+const kPrefixToCategory = {
+  '00-misc': {
+    en: 'General Triggers',
+    de: 'General Trigger',
+    fr: 'Général Triggers',
+    ja: '汎用',
+    cn: '通用触发器',
+    ko: '공용 트리거',
+  },
+  '02-arr': {
+    en: 'A Realm Reborn (ARR 2.x)',
+    de: 'A Realm Reborn (ARR 2.x)',
+    fr: 'A Realm Reborn (ARR 2.x)',
+    ja: '新生エオルゼア (2.x)',
+    cn: '重生之境 (2.x)',
+    ko: '신생 에오르제아 (2.x)',
+  },
+  '03-hw': {
+    en: 'Heavensward (HW 3.x)',
+    de: 'Heavensward (HW 3.x)',
+    fr: 'Heavensward (HW 3.x)',
+    ja: '蒼天のイシュガルド (3.x)',
+    cn: '苍穹之禁城 (3.x)',
+    ko: '창천의 이슈가르드 (3.x)',
+  },
+  '04-sb': {
+    en: 'Stormblood (SB 4.x)',
+    de: 'Stormblood (SB 4.x)',
+    fr: 'Stormblood (SB 4.x)',
+    ja: '紅蓮のリベレーター (4.x)',
+    cn: '红莲之狂潮 (4.x)',
+    ko: '홍련의 해방자 (4.x)',
+  },
+  '05-shb': {
+    en: 'Shadowbringers (ShB 5.x)',
+    de: 'Shadowbringers (ShB 5.x)',
+    fr: 'Shadowbringers (ShB 5.x)',
+    ja: '漆黒のヴィランズ (5.x)',
+    cn: '暗影之逆焰 (5.x)',
+    ko: '칠흑의 반역자 (5.x)',
+  },
+};
+
+// Translating data subfolders to encounter type.
+const kDirectoryToCategory = {
+  alliance: {
+    en: 'Alliance Raid',
+    de: 'Allianz-Raid',
+    fr: 'Raid en Alliance',
+    ja: 'アライアンスレイド',
+    cn: '团队任务',
+    ko: '연합 레이드',
+  },
+  dungeon: {
+    en: 'Dungeon',
+    de: 'Dungeon',
+    fr: 'Donjon',
+    ja: 'ダンジョン',
+    cn: '迷宫挑战',
+    ko: '던전',
+  },
+  eureka: {
+    en: 'Eureka',
+    de: 'Eureka',
+    fr: 'Eurêka',
+    ja: '禁断の地エウレカ',
+    cn: '禁地优雷卡',
+    ko: '에우레카',
+  },
+  raid: {
+    en: 'Raid',
+    de: 'Raid',
+    fr: 'Raid',
+    ja: 'レイド',
+    cn: '大型任务',
+    ko: '레이드',
+  },
+  pvp: {
+    en: 'PVP',
+    de: 'PvP',
+    fr: 'JcJ',
+    ja: 'PvP',
+    cn: 'PvP',
+    ko: 'PvP',
+  },
+  trial: {
+    en: 'Trial',
+    de: 'Prüfung',
+    fr: 'Défi',
+    ja: '討伐・討滅戦',
+    cn: '讨伐歼灭战',
+    ko: '토벌전',
+  },
+  ultimate: {
+    en: 'Ultimate',
+    de: 'Fatale Raids',
+    fr: 'Raid fatal',
+    ja: '絶シリーズ',
+    cn: '绝境战',
+    ko: '절 난이도',
+  },
+};
+
+// TODO: maybe we should also sort all the filenames properly too?
+// TODO: use ZoneId to get this
+const fileNameToTitle = (filename) => {
+  // Strip directory and extension.
+  let file = filename.replace(/^.*\//, '').replace('.js', '');
+  // Remove non-name characters (probably).
+  let name = file.replace(/[_-]/g, ' ');
+  // Capitalize the first letter of every word.
+  let capitalized = name.replace(/(?:^| )\w/g, (c) => c.toUpperCase());
+
+  // Fully capitalize acronyms like e4n.
+  if (capitalized.match(/^\w[0-9]+\w$/))
+    capitalized = capitalized.toUpperCase();
+
+  return capitalized;
 };
 
 class CactbotConfigurator {
@@ -357,6 +478,52 @@ class CactbotConfigurator {
 
     parent.appendChild(this.buildNameDiv(opt));
     parent.appendChild(div);
+  }
+
+  processFiles(files) {
+    let map = {};
+    for (const filename in files) {
+      if (!filename.endsWith('.js'))
+        continue;
+
+      let prefixKey = '00-misc';
+      for (const str in kPrefixToCategory) {
+        if (!filename.startsWith(str))
+          continue;
+        prefixKey = str;
+        break;
+      }
+
+      let typeKey = 'general';
+      for (const str in kDirectoryToCategory) {
+        if (filename.indexOf('/' + str + '/') == -1)
+          continue;
+        typeKey = str;
+        break;
+      }
+
+      let json;
+      try {
+        json = eval(files[filename]);
+      } catch (exception) {
+        console.log('Error parsing JSON from ' + filename + ': ' + exception);
+        continue;
+      }
+
+      const fileKey = filename.replace(/\//g, '-').replace(/.js$/, '');
+      map[fileKey] = {
+        filename: filename,
+        fileKey: fileKey,
+        prefixKey: prefixKey,
+        typeKey: typeKey,
+        prefix: this.translate(kPrefixToCategory[prefixKey]),
+        type: this.translate(kDirectoryToCategory[typeKey]),
+        title: fileNameToTitle(filename),
+        json: json,
+      };
+    }
+
+    return map;
   }
 }
 

@@ -63,9 +63,9 @@ let UserConfig = {
           Options.ShortLocale = Options.ParserLanguage;
       }
       // User's setting Language
-      Options.DisplayLanguage = e.detail.displayLanguage || 'en';
+      Options.DisplayLanguage = e.detail.displayLanguage;
       if (!supportedLanguage.includes(Options.DisplayLanguage))
-        Options.DisplayLanguage = Options.ParserLanguage;
+        Options.DisplayLanguage = Options.ParserLanguage || 'en';
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
@@ -125,18 +125,12 @@ let UserConfig = {
       }
 
       // Post this callback so that the js and css can be executed first.
-      if (Options.ParserLanguage && Options.ParserLanguage in this.languageFuncs)
-        this.languageFuncs[Options.ParserLanguage]();
       if (callback)
         callback();
 
       callOverlayHandler({ call: 'cactbotRequestState' });
     });
   },
-  registerLanguage: function(lang, func) {
-    this.languageFuncs[lang] = func;
-  },
-  languageFuncs: {},
   handleSkin: function(skinName) {
     if (!skinName || skinName == 'default')
       return;

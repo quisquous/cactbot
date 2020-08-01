@@ -5,16 +5,17 @@
     en: /^The Final Coil Of Bahamut - Turn \(2\)$/,
     cn: /^巴哈姆特大迷宫 \(真源之章2\)$/,
   },
+  zoneId: ZoneId.TheFinalCoilOfBahamutTurn2,
   timelineFile: 't11.txt',
   triggers: [
     {
       id: 'T11 Secondary Head',
-      regex: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
-      regexDe: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
-      regexFr: Regexes.ability({ source: 'Kaliya', id: 'B73' }),
-      regexJa: Regexes.ability({ source: 'カーリア', id: 'B73' }),
-      regexCn: Regexes.ability({ source: '卡利亚', id: 'B73' }),
-      regexKo: Regexes.ability({ source: '칼리야', id: 'B73' }),
+      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
+      netRegexDe: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
+      netRegexFr: NetRegexes.ability({ source: 'Kaliya', id: 'B73' }),
+      netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B73' }),
+      netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B73' }),
+      netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B73' }),
       alertText: function(data, matches) {
         return {
           en: 'Stun on ' + data.ShortName(matches.target),
@@ -26,12 +27,12 @@
     },
     {
       id: 'T11 Seed River First',
-      regex: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
-      regexDe: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
-      regexFr: Regexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
-      regexJa: Regexes.ability({ source: 'カーリア', id: 'B74', capture: false }),
-      regexCn: Regexes.ability({ source: '卡利亚', id: 'B74', capture: false }),
-      regexKo: Regexes.ability({ source: '칼리야', id: 'B74', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Kaliya', id: 'B74', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'カーリア', id: 'B74', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '卡利亚', id: 'B74', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '칼리야', id: 'B74', capture: false }),
       condition: function(data) {
         return !data.firstSeed;
       },
@@ -43,12 +44,12 @@
     },
     {
       id: 'T11 Seed Sea First',
-      regex: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
-      regexDe: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
-      regexFr: Regexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
-      regexJa: Regexes.ability({ id: 'B75', source: 'カーリア', capture: false }),
-      regexCn: Regexes.ability({ id: 'B75', source: '卡利亚', capture: false }),
-      regexKo: Regexes.ability({ id: 'B75', source: '칼리야', capture: false }),
+      netRegex: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: 'B75', source: 'Kaliya', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: 'B75', source: 'カーリア', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: 'B75', source: '卡利亚', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: 'B75', source: '칼리야', capture: false }),
       condition: function(data) {
         return !data.firstSeed;
       },
@@ -60,12 +61,12 @@
     },
     {
       id: 'T11 Seed River Second',
-      regex: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
-      regexDe: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
-      regexFr: Regexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
-      regexJa: Regexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
-      regexCn: Regexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
-      regexKo: Regexes.ability({ id: 'B76', source: '칼리야', capture: false }),
+      netRegex: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: 'B76', source: 'Kaliya', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: 'B76', source: 'カーリア', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: 'B76', source: '卡利亚', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: 'B76', source: '칼리야', capture: false }),
       condition: function(data) {
         return !data.firstSeed;
       },
@@ -76,12 +77,12 @@
     },
     {
       id: 'T11 Seed Sea Second',
-      regex: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
-      regexDe: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
-      regexFr: Regexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
-      regexJa: Regexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
-      regexCn: Regexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
-      regexKo: Regexes.ability({ id: 'B77', source: '칼리야', capture: false }),
+      netRegex: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: 'B77', source: 'Kaliya', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: 'B77', source: 'カーリア', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: 'B77', source: '卡利亚', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: 'B77', source: '칼리야', capture: false }),
       condition: function(data) {
         return !data.firstSeed;
       },
@@ -108,12 +109,12 @@
     },
     {
       id: 'T11 Forked Lightning',
-      regex: Regexes.ability({ id: 'B85', source: 'Electric Node' }),
-      regexDe: Regexes.ability({ id: 'B85', source: 'Elektrisch(?:e|er|es|en) Modul' }),
-      regexFr: Regexes.ability({ id: 'B85', source: 'Module D\'Électrochoc' }),
-      regexJa: Regexes.ability({ id: 'B85', source: '雷撃システム' }),
-      regexCn: Regexes.ability({ id: 'B85', source: '雷击系统' }),
-      regexKo: Regexes.ability({ id: 'B85', source: '뇌격 시스템' }),
+      netRegex: NetRegexes.ability({ id: 'B85', source: 'Electric Node' }),
+      netRegexDe: NetRegexes.ability({ id: 'B85', source: 'Elektrisch(?:e|er|es|en) Modul' }),
+      netRegexFr: NetRegexes.ability({ id: 'B85', source: 'Module D\'Électrochoc' }),
+      netRegexJa: NetRegexes.ability({ id: 'B85', source: '雷撃システム' }),
+      netRegexCn: NetRegexes.ability({ id: 'B85', source: '雷击系统' }),
+      netRegexKo: NetRegexes.ability({ id: 'B85', source: '뇌격 시스템' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -126,12 +127,12 @@
     },
     {
       id: 'T11 Phase 3',
-      regex: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
-      regexDe: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
-      regexFr: Regexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
-      regexJa: Regexes.ability({ id: 'B78', source: 'カーリア', capture: false }),
-      regexCn: Regexes.ability({ id: 'B78', source: '卡利亚', capture: false }),
-      regexKo: Regexes.ability({ id: 'B78', source: '칼리야', capture: false }),
+      netRegex: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: 'B78', source: 'Kaliya', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: 'B78', source: 'カーリア', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: 'B78', source: '卡利亚', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: 'B78', source: '칼리야', capture: false }),
       sound: 'Long',
       infoText: {
         en: 'Final Phase',
@@ -142,12 +143,12 @@
     },
     {
       id: 'T11 Tether Accumulate A',
-      regex: Regexes.tether({ id: '001C', target: 'Kaliya' }),
-      regexDe: Regexes.tether({ id: '001C', target: 'Kaliya' }),
-      regexFr: Regexes.tether({ id: '001C', target: 'Kaliya' }),
-      regexJa: Regexes.tether({ id: '001C', target: 'カーリア' }),
-      regexCn: Regexes.tether({ id: '001C', target: '卡利亚' }),
-      regexKo: Regexes.tether({ id: '001C', target: '칼리야' }),
+      netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
+      netRegexDe: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
+      netRegexFr: NetRegexes.tether({ id: '001C', target: 'Kaliya' }),
+      netRegexJa: NetRegexes.tether({ id: '001C', target: 'カーリア' }),
+      netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚' }),
+      netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야' }),
       run: function(data, matches) {
         data.tetherA = data.tetherA || [];
         data.tetherA.push(matches.source);
@@ -155,12 +156,12 @@
     },
     {
       id: 'T11 Tether Accumulate B',
-      regex: Regexes.tether({ id: '001D', target: 'Kaliya' }),
-      regexDe: Regexes.tether({ id: '001D', target: 'Kaliya' }),
-      regexFr: Regexes.tether({ id: '001D', target: 'Kaliya' }),
-      regexJa: Regexes.tether({ id: '001D', target: 'カーリア' }),
-      regexCn: Regexes.tether({ id: '001D', target: '卡利亚' }),
-      regexKo: Regexes.tether({ id: '001D', target: '칼리야' }),
+      netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
+      netRegexDe: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
+      netRegexFr: NetRegexes.tether({ id: '001D', target: 'Kaliya' }),
+      netRegexJa: NetRegexes.tether({ id: '001D', target: 'カーリア' }),
+      netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚' }),
+      netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야' }),
       run: function(data, matches) {
         data.tetherB = data.tetherB || [];
         data.tetherB.push(matches.source);
@@ -168,12 +169,12 @@
     },
     {
       id: 'T11 Tether A',
-      regex: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
-      regexDe: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
-      regexFr: Regexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
-      regexJa: Regexes.tether({ id: '001C', target: 'カーリア', capture: false }),
-      regexCn: Regexes.tether({ id: '001C', target: '卡利亚', capture: false }),
-      regexKo: Regexes.tether({ id: '001C', target: '칼리야', capture: false }),
+      netRegex: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      netRegexDe: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      netRegexFr: NetRegexes.tether({ id: '001C', target: 'Kaliya', capture: false }),
+      netRegexJa: NetRegexes.tether({ id: '001C', target: 'カーリア', capture: false }),
+      netRegexCn: NetRegexes.tether({ id: '001C', target: '卡利亚', capture: false }),
+      netRegexKo: NetRegexes.tether({ id: '001C', target: '칼리야', capture: false }),
       condition: function(data) {
         return data.tetherA.length == 2;
       },
@@ -195,12 +196,12 @@
     },
     {
       id: 'T11 Tether B',
-      regex: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
-      regexDe: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
-      regexFr: Regexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
-      regexJa: Regexes.tether({ id: '001D', target: 'カーリア', capture: false }),
-      regexCn: Regexes.tether({ id: '001D', target: '卡利亚', capture: false }),
-      regexKo: Regexes.tether({ id: '001D', target: '칼리야', capture: false }),
+      netRegex: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      netRegexDe: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      netRegexFr: NetRegexes.tether({ id: '001D', target: 'Kaliya', capture: false }),
+      netRegexJa: NetRegexes.tether({ id: '001D', target: 'カーリア', capture: false }),
+      netRegexCn: NetRegexes.tether({ id: '001D', target: '卡利亚', capture: false }),
+      netRegexKo: NetRegexes.tether({ id: '001D', target: '칼리야', capture: false }),
       condition: function(data) {
         return data.tetherB.length == 2;
       },
@@ -222,12 +223,12 @@
     },
     {
       id: 'T11 Tether Cleanup',
-      regex: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
-      regexDe: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
-      regexFr: Regexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
-      regexJa: Regexes.ability({ id: 'B7B', source: 'カーリア', capture: false }),
-      regexCn: Regexes.ability({ id: 'B7B', source: '卡利亚', capture: false }),
-      regexKo: Regexes.ability({ id: 'B7B', source: '칼리야', capture: false }),
+      netRegex: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: 'B7B', source: 'Kaliya', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: 'B7B', source: 'カーリア', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: 'B7B', source: '卡利亚', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: 'B7B', source: '칼리야', capture: false }),
       run: function(data) {
         delete data.tetherA;
         delete data.tetherB;

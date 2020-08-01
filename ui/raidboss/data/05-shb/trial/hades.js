@@ -6,28 +6,29 @@
     cn: /^哈迪斯歼灭战$/,
     ko: /^하데스 토벌전$/,
   },
+  zoneId: ZoneId.TheDyingGasp,
   timelineFile: 'hades.txt',
   triggers: [
     {
       id: 'Hades Phase Tracker',
-      regex: Regexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4180', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4180', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4180', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4180', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
       run: function(data) {
         data.neoHades = true;
       },
     },
     {
       id: 'Hades Ravenous Assault',
-      regex: Regexes.startsUsing({ id: '4158', source: 'Hades' }),
-      regexDe: Regexes.startsUsing({ id: '4158', source: 'Hades' }),
-      regexFr: Regexes.startsUsing({ id: '4158', source: 'Hadès' }),
-      regexJa: Regexes.startsUsing({ id: '4158', source: 'ハーデス' }),
-      regexCn: Regexes.startsUsing({ id: '4158', source: '哈迪斯' }),
-      regexKo: Regexes.startsUsing({ id: '4158', source: '하데스' }),
+      netRegex: NetRegexes.startsUsing({ id: '4158', source: 'Hades' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4158', source: 'Hades' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4158', source: 'Hadès' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4158', source: 'ハーデス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4158', source: '哈迪斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4158', source: '하데스' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -65,32 +66,32 @@
     },
     {
       id: 'Hades Bad Faith Left',
-      regex: Regexes.startsUsing({ id: '4149', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4149', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4149', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4149', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4149', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4149', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4149', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4149', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4149', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4149', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4149', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4149', source: '하데스', capture: false }),
       response: Responses.goLeft('info'),
     },
     {
       id: 'Hades Bad Faith Right',
-      regex: Regexes.startsUsing({ id: '414A', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '414A', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '414A', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '414A', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '414A', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '414A', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '414A', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '414A', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '414A', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '414A', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '414A', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '414A', source: '하데스', capture: false }),
       response: Responses.goRight('info'),
     },
     {
       id: 'Hades Broken Faith',
-      regex: Regexes.startsUsing({ id: '414D', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '414D', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '414D', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '414D', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '414D', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '414D', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '414D', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '414D', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '414D', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '414D', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '414D', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '414D', source: '하데스', capture: false }),
       alertText: {
         en: 'Dodge Giant Circles',
         de: 'Weiche dem großen Kreis aus',
@@ -102,32 +103,32 @@
     },
     {
       id: 'Hades Echo Right',
-      regex: Regexes.startsUsing({ id: '4164', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4164', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4164', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4164', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4164', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4164', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4164', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4164', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4164', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4164', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4164', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4164', source: '하데스', capture: false }),
       response: Responses.goRight('info'),
     },
     {
       id: 'Hades Echo Left',
-      regex: Regexes.startsUsing({ id: '4163', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4163', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4163', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4163', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4163', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4163', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4163', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4163', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4163', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4163', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4163', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4163', source: '하데스', capture: false }),
       response: Responses.goLeft('info'),
     },
     {
       id: 'Hades Titanomachy',
-      regex: Regexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4180', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4180', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4180', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4180', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4180', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4180', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4180', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -135,32 +136,27 @@
     },
     {
       id: 'Hades Shadow Stream',
-      regex: Regexes.startsUsing({ id: '415C', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '415C', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '415C', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '415C', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '415C', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '415C', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '415C', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '415C', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '415C', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '415C', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '415C', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '415C', source: '하데스', capture: false }),
       response: Responses.goSides(),
     },
     {
       id: 'Hades Purgation',
-      regex: Regexes.startsUsing({ id: '4170', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4170', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4170', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4170', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4170', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4170', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4170', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4170', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4170', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4170', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4170', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4170', source: '하데스', capture: false }),
       response: Responses.goMiddle(),
     },
     {
       id: 'Hades Doom',
-      regex: Regexes.gainsEffect({ effect: 'Doom' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -175,12 +171,12 @@
     },
     {
       id: 'Hades Wail of the Lost Right',
-      regex: Regexes.startsUsing({ id: '4166', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4166', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4166', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4166', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4166', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4166', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4166', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4166', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4166', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4166', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4166', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4166', source: '하데스', capture: false }),
       infoText: {
         en: 'Right Knockback',
         de: 'Rechter Knockback',
@@ -192,12 +188,12 @@
     },
     {
       id: 'Hades Wail of the Lost Left',
-      regex: Regexes.startsUsing({ id: '4165', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4165', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4165', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4165', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4165', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4165', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4165', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4165', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4165', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4165', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4165', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4165', source: '하데스', capture: false }),
       infoText: {
         en: 'Left Knockback',
         de: 'Linker Knockback',
@@ -209,12 +205,12 @@
     },
     {
       id: 'Hades Dual Strike Healer',
-      regex: Regexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4161', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4161', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4161', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4161', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4161', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4161', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4161', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4161', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4161', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -229,7 +225,7 @@
     },
     {
       id: 'Hades Dual Strike',
-      regex: Regexes.headMarker({ id: '0060' }),
+      netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
         return data.neoHades && data.me == matches.target;
       },
@@ -244,7 +240,7 @@
     },
     {
       id: 'Hades Hellborn Yawp',
-      regex: Regexes.headMarker({ id: '0028' }),
+      netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -259,7 +255,7 @@
     },
     {
       id: 'Hades Fetters',
-      regex: Regexes.headMarker({ id: '0078' }),
+      netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -274,24 +270,24 @@
     },
     {
       id: 'Hades Life In Captivity',
-      regex: Regexes.ability({ id: '4175', source: 'Hades', capture: false }),
-      regexDe: Regexes.ability({ id: '4175', source: 'Hades', capture: false }),
-      regexFr: Regexes.ability({ id: '4175', source: 'Hadès', capture: false }),
-      regexJa: Regexes.ability({ id: '4175', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.ability({ id: '4175', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.ability({ id: '4175', source: '하데스', capture: false }),
+      netRegex: NetRegexes.ability({ id: '4175', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '4175', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '4175', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '4175', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '4175', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '4175', source: '하데스', capture: false }),
       run: function(data) {
         data.seenLifeInCaptivity = true;
       },
     },
     {
       id: 'Hades Gaol',
-      regex: Regexes.ability({ id: '417F', source: 'Hades', capture: false }),
-      regexDe: Regexes.ability({ id: '417F', source: 'Hades', capture: false }),
-      regexFr: Regexes.ability({ id: '417F', source: 'Hadès', capture: false }),
-      regexJa: Regexes.ability({ id: '417F', source: 'ハーデス', capture: false }),
-      regexCn: Regexes.ability({ id: '417F', source: '哈迪斯', capture: false }),
-      regexKo: Regexes.ability({ id: '417F', source: '하데스', capture: false }),
+      netRegex: NetRegexes.ability({ id: '417F', source: 'Hades', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '417F', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '417F', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '417F', source: 'ハーデス', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '417F', source: '哈迪斯', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '417F', source: '하데스', capture: false }),
       condition: function(data) {
         // There can be multiple gaols (if the phase loops), but ability also
         // gets used during the finall phase transition.  Ignore that one.
@@ -309,7 +305,7 @@
     },
     {
       id: 'Hades Nether Blast / Dark Eruption',
-      regex: Regexes.headMarker({ id: '008B' }),
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -317,7 +313,7 @@
     },
     {
       id: 'Hades Ancient Darkness',
-      regex: Regexes.headMarker({ id: '0060' }),
+      netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
         return !data.neoHades && data.me == matches.target;
       },
@@ -332,7 +328,7 @@
     },
     {
       id: 'Hades Ancient Water III',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -340,7 +336,7 @@
     },
     {
       id: 'Hades Ancient Collect',
-      regex: Regexes.headMarker({ id: ['0060', '003E'] }),
+      netRegex: NetRegexes.headMarker({ id: ['0060', '003E'] }),
       condition: function(data) {
         return !data.neoHades;
       },
@@ -351,7 +347,7 @@
     },
     {
       id: 'Hades Ancient No Marker',
-      regex: Regexes.headMarker({ id: '003E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 0.5,
       infoText: function(data) {
         if (data.ancient[data.me])
@@ -369,7 +365,7 @@
     },
     {
       id: 'Hades Ancient Cleanup',
-      regex: Regexes.headMarker({ id: '003E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       delaySeconds: 10,
       run: function(data) {
         delete data.ancient;
@@ -413,9 +409,6 @@
         '--fetters--': '--fesseln--',
         'Wail Of The Lost': 'Wehklagen der Verlorenen',
       },
-      '~effectNames': {
-        'Doom': 'Verhängnis',
-      },
     },
     {
       'locale': 'fr',
@@ -454,9 +447,6 @@
         'The Dark Devours': 'Ténèbres rongeuses',
         'Titanomachy': 'Titanomachie',
         'Wail Of The Lost': 'Lamentation des disparus',
-      },
-      '~effectNames': {
-        'Doom': 'Glas',
       },
     },
     {
@@ -498,13 +488,13 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Hades': '哈迪斯',
         'Shadow .f .he Ancients': '古代人之影',
       },
       'replaceText': {
         'Adds': '小怪',
-        'Gaol Add': '',
         'Ancient Aero': '古代疾风',
         'Ancient Dark IV': '古代冥暗',
         'Ancient Darkness': '古代黑暗',

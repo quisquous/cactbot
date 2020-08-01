@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse
 from datetime import datetime
 import re
@@ -5,6 +7,69 @@ import re
 import fflogs
 import timeline_aggregator
 import encounter_tools as e_tools
+
+
+"""FFLogs returns battle events in a list of dicts that looks something like this:
+    {
+      "timestamp": 4816719,
+      "type": "cast",
+      "sourceID": 113,
+      "sourceIsFriendly": false,
+      "targetID": 95,
+      "targetIsFriendly": true,
+      "ability": {
+        "name": "attack",
+        "guid": 870,
+        "type": 128,
+        "abilityIcon": "000000-000405.png"
+      },
+      "pin": "0"
+    },
+We map from the type property here to ACT network log line numbers.
+Technically there are both 21 and 22 log lines,
+but for the purposes of this script it doesn't matter which one we map to.
+
+Sometimes there's an environmental actor that doesn't have the same layout.
+These are assigned a GUID of 9020. They will have a "source" property:
+{
+  "timestamp": 5308320,
+  "type": "cast",
+  "source": {
+    "name": "Leviathan",
+    "id": 31,
+    "guid": 9020,
+    "type": "NPC",
+    "icon": "NPC"
+  },
+  "sourceInstance": 1,
+  "sourceIsFriendly": false,
+  "targetID": 1,
+  "targetIsFriendly": true,
+  "ability": {
+    "name": "Rip Current",
+    "guid": 16353,
+    "type": 1024,
+    "abilityIcon": "000000-000405.png"
+  },
+  "pin": "0"
+}
+"""
+
+log_event_types = {
+    "cast": "21",
+}
+
+
+def make_entry(overrides):
+    # This should include all of the fields that any entry uses.
+    base_entry = {
+        "time": 0,
+        "combatant": None,
+        "ability_id": None,
+        "ability_name": None,
+        "line_type": None,
+    }
+    return {**base_entry, **overrides}
 
 
 def parse_report(args):
@@ -60,13 +125,17 @@ def parse_report(args):
     for event in event_data["events"]:
         if "sourceID" not in event:
             event["sourceID"] = event["source"]["id"]
+            enemies[event["sourceID"]] = event["source"]["name"]
 
-        entry = {
-            "time": datetime.fromtimestamp((report_start_time + event["timestamp"]) / 1000),
-            "combatant": enemies[event["sourceID"]],
-            "ability_id": hex(event["ability"]["guid"])[2:].upper(),
-            "ability_name": event["ability"]["name"],
-        }
+        entry = make_entry(
+            {
+                "time": datetime.fromtimestamp((report_start_time + event["timestamp"]) / 1000),
+                "combatant": enemies[event["sourceID"]],
+                "ability_id": hex(event["ability"]["guid"])[2:].upper(),
+                "ability_name": event["ability"]["name"],
+                "line_type": log_event_types[event["type"]],
+            }
+        )
 
         entries.append(entry)
 
@@ -112,24 +181,28 @@ def parse_file(args):
                 continue
             line_fields = line.split("|")
             # We aren't including targetable lines unless the user explicitly says to.
-            if line[0:2] == '34' and not line_fields[3] in args.include_targetable:
-              continue
+            if line[0:2] == "34" and not line_fields[3] in args.include_targetable:
+                continue
 
             # At this point, we have a combat line for the timeline.
-            entry = {
-                "line_type": line_fields[0],
-                "time": e_tools.parse_event_time(line),
-                "combatant": line_fields[3],
-            }
+            entry = make_entry(
+                {
+                    "line_type": line_fields[0],
+                    "time": e_tools.parse_event_time(line),
+                    "combatant": line_fields[3],
+                }
+            )
             if line[0:2] in ["21", "22"]:
-              entry["ability_id"] = line_fields[4]
-              entry["ability_name"] = line_fields[5]
+                entry["ability_id"] = line_fields[4]
+                entry["ability_name"] = line_fields[5]
 
-              # Unknown abilities should be hidden sync lines by default.
-              if line_fields[5].startswith("Unknown_"):
-                  entry["ability_name"] = "--sync--"
+            # Unknown abilities should be hidden sync lines by default.
+            if line_fields[5].startswith("Unknown_"):
+                entry["ability_name"] = "--sync--"
             else:
-              entry["targetable"] = "--targetable--" if line_fields[6] == "01" else "--untargetable--"
+                entry["targetable"] = (
+                    "--targetable--" if line_fields[6] == "01" else "--untargetable--"
+                )
             entries.append(entry)
 
     if not started:
@@ -190,7 +263,7 @@ def main(args):
         entries, start_time = parse_file(args)
 
     last_ability_time = start_time
-    last_entry = {"time": 0, "ability_id": ""}
+    last_entry = make_entry({})
 
     output = []
     output.append('0 "Start" sync /Engage!/ window 0,1')
@@ -199,28 +272,28 @@ def main(args):
 
         # Ignore targetable/untargetable while processing ignored entries
         if entry["line_type"] in ["21", "22"]:
-          # First up, check if it's an ignored entry
-          # Ignore autos, probably need a better rule than this
-          if entry["ability_name"] == "Attack":
-              continue
+            # First up, check if it's an ignored entry
+            # Ignore autos, probably need a better rule than this
+            if entry["ability_name"] == "Attack":
+                continue
 
-          # Ignore abilities by NPC allies
-          if entry["combatant"] in npc_combatants:
-              continue
+        # Ignore abilities by NPC allies
+        if entry["combatant"] in npc_combatants:
+            continue
 
-          # Ignore lines by arguments
-          if (
-              entry["ability_name"] in args.ignore_ability
-              or entry["ability_id"] in args.ignore_id
-              or entry["combatant"] in args.ignore_combatant
-          ):
-              continue
+        # Ignore lines by arguments
+        if (
+            entry["ability_name"] in args.ignore_ability
+            or entry["ability_id"] in args.ignore_id
+            or entry["combatant"] in args.ignore_combatant
+        ):
+            continue
 
-          # Ignore aoe spam
-          if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
-              continue
+        # Ignore aoe spam
+        if entry["time"] == last_entry["time"] and entry["ability_id"] == last_entry["ability_id"]:
+            continue
         elif entry["line_type"] == "34" and not args.include_targetable:
-          continue
+            continue
 
         # Find out how long it's been since our last ability
         line_time = entry["time"]
@@ -266,13 +339,11 @@ def main(args):
 
         # Write the line
         if entry["line_type"] == "34":
-          output_entry = '{position:.1f} "{targetable}"'.format(
-              **entry
-          )
+            output_entry = '{position:.1f} "{targetable}"'.format(**entry)
         else:
-          output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
-            **entry
-          )
+            output_entry = '{position:.1f} "{ability_name}" sync /:{combatant}:{ability_id}:/'.format(
+                **entry
+            )
 
         output.append(output_entry.encode("ascii", "ignore").decode("utf8", "ignore"))
 
@@ -327,14 +398,11 @@ if __name__ == "__main__":
         help="Timestamp of the start, e.g. '12:34:56.789",
     )
     parser.add_argument(
-        "-e",
-        "--end",
-        type=e_tools.timestamp_type,
-        help="Timestamp of the end, e.g. '12:34:56.789"
+        "-e", "--end", type=e_tools.timestamp_type, help="Timestamp of the end, e.g. '12:34:56.789'"
     )
     parser.add_argument(
         "-lf",
-        "--search_fights",
+        "--search-fights",
         nargs="?",
         const=-1,
         type=int,
@@ -367,11 +435,11 @@ if __name__ == "__main__":
         help="Abilities that indicate a new phase, and the time to jump to, e.g. 28EC:1000",
     )
     parser.add_argument(
-      "-it",
-      "--include_targetable",
-      nargs="*",
-      default=[],
-      help="Set this flag to include '34' log lines when making the timeline",
+        "-it",
+        "--include-targetable",
+        nargs="*",
+        default=[],
+        help="Set this flag to include '34' log lines when making the timeline",
     )
 
     # Aggregate arguments

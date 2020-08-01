@@ -151,7 +151,7 @@ An amount of time, in seconds, to wait from the time the regex match is detected
 Time, in seconds, to display the trigger text. May be a number or a `function(data, matches)` that returns a number. If not specified, defaults to 3.
 
 **suppressSeconds**
-Time to wait, in seconds, before showing this trigger again.  May be a number or a function(data, matches).  The time to wait begins at the time of the initial regex match, and is unaffected by presense or absence of a delaySeconds value. Once a trigger with this element activates, it will not activate again until after its timeout period is over.
+Time to wait, in seconds, before showing this trigger again.  May be a number or a function(data, matches).  The time to wait begins at the time of the initial regex match, and is unaffected by presence or absence of a delaySeconds value. Once a trigger with this element activates, it will not activate again until after its timeout period is over.
 
 **sound**
 Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'. Paths to sound files are relative to the ui/raidboss/ directory.
@@ -162,7 +162,7 @@ Volume between 0 and 1 to play the sound associated with the trigger.
 **response**
 A way to return infoText/alertText/alarmText/tts all from a single entrypoint.
 Also used by `resources/responses.js`.
-Response has less priority than an explicity specified text or tts,
+Response has less priority than an explicitly specified text or tts,
 and so can be overridden.
 (As with `regex` and `condition`, "canned" responses are available within [responses.js](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).)
 
@@ -195,7 +195,7 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 - netRegex (and netRegexDe, netRegexFr, etc)
 - regex (and regexDe, regexFr, etc)
 - beforeSeconds (for timelineTriggers)
-- (supressed triggers early out here)
+- (suppressed triggers early out here)
 - condition
 - preRun
 - delaySeconds
@@ -293,7 +293,7 @@ Cactbot implements some extensions to the original format. These extensions can 
 itself or in the `timeline` field in the triggers:
 
 **infotext "event name" before 1**
-Show a info-priority text popup on screen before an event will occur. The `event name` matches a timed event in the file and will be shown before each occurance of events with that name. By default the name of the event will be shown, but you may specify the text to be shown at the end of the line if it should be different. The `before` parameter must be present, but can be 0 if the text should be shown at the same time the event happens. Negative values can be used to show the text after the event.
+Show a info-priority text popup on screen before an event will occur. The `event name` matches a timed event in the file and will be shown before each occurrence of events with that name. By default the name of the event will be shown, but you may specify the text to be shown at the end of the line if it should be different. The `before` parameter must be present, but can be 0 if the text should be shown at the same time the event happens. Negative values can be used to show the text after the event.
 
 **Example infotext which shows the event name 1s before the event happens**
 `infotext "event name" before 1`

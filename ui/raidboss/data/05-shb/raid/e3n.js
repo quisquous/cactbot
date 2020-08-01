@@ -6,16 +6,17 @@
     cn: /^伊甸希望乐园 \(觉醒之章3\)$/,
     ko: /^희망의 낙원 에덴: 각성편 \(3\)$/,
   },
+  zoneId: ZoneId.EdensGateInundation,
   timelineFile: 'e3n.txt',
   triggers: [
     {
       id: 'E3N Tidal Roar',
-      regex: Regexes.startsUsing({ id: '3FC4', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FC4', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FC4', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FC4', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FC4', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FC4', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FC4', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FC4', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FC4', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FC4', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FC4', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FC4', source: '리바이어선', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -23,7 +24,7 @@
     },
     {
       id: 'E3N Rip Current',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
@@ -31,12 +32,12 @@
     },
     {
       id: 'E3N Tidal Wave Look',
-      regex: Regexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FD2', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FD2', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FD2', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FD2', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FD2', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FD2', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FD2', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FD2', source: '리바이어선', capture: false }),
       delaySeconds: 3,
       infoText: {
         en: 'Look for Wave',
@@ -48,12 +49,12 @@
     },
     {
       id: 'E3N Tidal Wave Knockback',
-      regex: Regexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FD2', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FD2', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FD2', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FD2', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FD2', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FD2', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FD2', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FD2', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FD2', source: '리바이어선', capture: false }),
       // 3 seconds of cast, 10 seconds of delay.
       // This gives a warning within 5 seconds, so you can hit arm's length.
       delaySeconds: 8,
@@ -61,12 +62,12 @@
     },
     {
       id: 'E3N Undersea Quake Outside',
-      regex: Regexes.startsUsing({ id: '3FD0', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FD0', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FD0', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FD0', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FD0', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FD0', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FD0', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FD0', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FD0', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FD0', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FD0', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FD0', source: '리바이어선', capture: false }),
       alertText: {
         en: 'Get Middle',
         de: 'In die Mitte gehen',
@@ -77,22 +78,22 @@
     },
     {
       id: 'E3N Undersea Quake Inside',
-      regex: Regexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FCF', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FCF', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FCF', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FCF', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FCF', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FCF', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FCF', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FCF', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FCF', source: '리바이어선', capture: false }),
       response: Responses.goSides('alarm'),
     },
     {
       id: 'E3N Maelstrom',
-      regex: Regexes.startsUsing({ id: '3FD8', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FD8', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FD8', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FD8', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FD8', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FD8', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FD8', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FD8', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FD8', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FD8', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FD8', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FD8', source: '리바이어선', capture: false }),
       delaySeconds: 8,
       infoText: {
         en: 'Avoid Puddles and Dives',
@@ -104,7 +105,7 @@
     },
     {
       id: 'E3N Drenching Pulse Spread',
-      regex: Regexes.headMarker({ id: '00A9' }),
+      netRegex: NetRegexes.headMarker({ id: '00A9' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -112,12 +113,12 @@
     },
     {
       id: 'E3N Tsunami',
-      regex: Regexes.startsUsing({ id: '3FD4', source: 'Leviathan', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3FD4', source: 'Leviathan', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3FD4', source: 'Léviathan', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3FD4', source: 'リヴァイアサン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3FD4', source: '利维亚桑', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3FD4', source: '리바이어선', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3FD4', source: 'Leviathan', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3FD4', source: 'Leviathan', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3FD4', source: 'Léviathan', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3FD4', source: 'リヴァイアサン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3FD4', source: '利维亚桑', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3FD4', source: '리바이어선', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -126,17 +127,17 @@
     {
       // Crashing Pulse and Smothering Waters
       id: 'E3N Stack',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn(),
     },
     {
       id: 'E3N Surging Waters Marker',
-      regex: Regexes.headMarker({ id: '00AD' }),
+      netRegex: NetRegexes.headMarker({ id: '00AD' }),
       response: Responses.knockbackOn(),
     },
     {
       id: 'E3N Splashing Waters Spread',
-      regex: Regexes.headMarker({ id: '0082' }),
+      netRegex: NetRegexes.headMarker({ id: '0082' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -144,7 +145,7 @@
     },
     {
       id: 'E3N Swirling Waters Donut',
-      regex: Regexes.headMarker({ id: '0099' }),
+      netRegex: NetRegexes.headMarker({ id: '0099' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -182,13 +183,6 @@
         '(?<! )Tsunami': 'Sturzflut',
         'Undersea Quake': 'Unterwasserbeben',
       },
-      '~effectNames': {
-        'Dropsy': 'Wassersucht',
-        'Smothering Waters': 'Omen der Ertränkung',
-        'Splashing Waters': 'Omen des Sturms',
-        'Surging Waters': 'Omen der Erdrückung',
-        'Swirling Waters': 'Omen des Wasserwirbels',
-      },
     },
     {
       'locale': 'fr',
@@ -214,17 +208,9 @@
         '(?<! )Tsunami': 'Tsunami',
         'Undersea Quake': 'Séisme sous-marin',
       },
-      '~effectNames': {
-        'Dropsy': 'Œdème',
-        'Smothering Waters': 'Eaux submergeantes',
-        'Splashing Waters': 'Eaux déferlantes',
-        'Surging Waters': 'Eaux écrasantes',
-        'Swirling Waters': 'Eaux tournoyantes',
-      },
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Leviathan': 'リヴァイアサン',
       },
@@ -246,13 +232,6 @@
         'Tidal Wave': 'タイダルウェイブ',
         '(?<! )Tsunami': '大海嘯',
         'Undersea Quake': 'アンダーシークエイク',
-      },
-      '~effectNames': {
-        'Dropsy': '水毒',
-        'Smothering Waters': '溺没の兆し',
-        'Splashing Waters': '強風の兆し',
-        'Surging Waters': '強圧の兆し',
-        'Swirling Waters': '渦動の兆し',
       },
     },
     {
@@ -279,13 +258,6 @@
         '(?<! )Tsunami': '大海啸',
         'Undersea Quake': '海底地震',
       },
-      '~effectNames': {
-        'Dropsy': '水毒',
-        'Smothering Waters': '溺没之兆',
-        'Splashing Waters': '强风之兆',
-        'Surging Waters': '强压之兆',
-        'Swirling Waters': '涡动之兆',
-      },
     },
     {
       'locale': 'ko',
@@ -310,13 +282,6 @@
         'Tidal Wave': '해일',
         '(?<! )Tsunami': '대해일',
         'Undersea Quake': '해저 지진',
-      },
-      '~effectNames': {
-        'Dropsy': '물독',
-        'Smothering Waters': '익몰의 징조',
-        'Splashing Waters': '강풍의 징조',
-        'Surging Waters': '강압의 징조',
-        'Swirling Waters': '소용돌이의 징조',
       },
     },
   ],

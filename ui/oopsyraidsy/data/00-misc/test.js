@@ -7,6 +7,7 @@
     cn: /^中拉诺西亚$/,
     ko: /^중부 라노시아$/,
   },
+  zoneId: ZoneId.MiddleLaNoscea,
   triggers: [
     {
       id: 'Test Bow',
@@ -65,6 +66,16 @@
         data.bootCount++;
         let text = e.abilityName + ' (' + data.bootCount + '): ' + e.damageStr;
         return { type: 'warn', blame: data.me, text: text };
+      },
+    },
+    {
+      id: 'Test Leaden Fist',
+      netRegex: NetRegexes.gainsEffect({ effectId: '745' }),
+      condition: function(e, data, matches) {
+        return matches.source === data.me;
+      },
+      mistake: function(e, data, matches) {
+        return { type: 'good', blame: data.me, text: matches.effect };
       },
     },
     {

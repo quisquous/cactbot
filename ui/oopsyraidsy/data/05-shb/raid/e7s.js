@@ -10,6 +10,7 @@
 let wrongBuff = (str) => {
   return {
     en: str + ' (wrong buff)',
+    de: str + ' (falscher Buff)',
     fr: str + ' (mauvais buff)',
   };
 };
@@ -17,6 +18,7 @@ let wrongBuff = (str) => {
 let noBuff = (str) => {
   return {
     en: str + ' (no buff)',
+    de: str + ' (kein Buff)',
     fr: str + ' (pas de buff)',
   };
 };
@@ -26,18 +28,19 @@ let noBuff = (str) => {
     en: /^Eden's Verse: Iconoclasm \(Savage\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(3\)$/,
   },
+  zoneId: ZoneId.EdensVerseIconoclasmSavage,
   damageWarn: {
-    'Silver Sword': '4C8E', // ground aoe
-    'Overwhelming Force': '4C73', // add phase ground aoe
-    'Strength in Numbers 1': '4C70', // add get under
-    'Strength in Numbers 2': '4C71', // add get out
-    'Paper Cut': '4C7D', // tornado ground aoes
-    'Buffet': '4C77', // tornado ground aoes also??
+    'E7S Silver Sword': '4C8E', // ground aoe
+    'E7S Overwhelming Force': '4C73', // add phase ground aoe
+    'E7S Strength in Numbers 1': '4C70', // add get under
+    'E7S Strength in Numbers 2': '4C71', // add get out
+    'E7S Paper Cut': '4C7D', // tornado ground aoes
+    'E7S Buffet': '4C77', // tornado ground aoes also??
   },
   damageFail: {
-    'Betwixt Worlds': '4C6B', // purple ground line aoes
-    'Crusade': '4C58', // blue knockback circle (standing in it)
-    'Explosion': '4C6F', // didn't kill an add
+    'E7S Betwixt Worlds': '4C6B', // purple ground line aoes
+    'E7S Crusade': '4C58', // blue knockback circle (standing in it)
+    'E7S Explosion': '4C6F', // didn't kill an add
   },
   triggers: [
     {
@@ -93,21 +96,35 @@ let noBuff = (str) => {
       },
     },
     {
-      id: 'E7S Astral Tracking',
-      gainsEffectRegex: gLang.kEffect.AstralEffect,
-      losesEffectRegex: gLang.kEffect.AstralEffect,
-      run: function(e, data) {
+      id: 'E7S Astral Effect Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
+      run: function(e, data, matches) {
         data.hasAstral = data.hasAstral || {};
-        data.hasAstral[e.targetName] = e.gains;
+        data.hasAstral[matches.target] = true;
       },
     },
     {
-      id: 'E7S Umbral Tracking',
-      gainsEffectRegex: gLang.kEffect.UmbralEffect,
-      losesEffectRegex: gLang.kEffect.UmbralEffect,
-      run: function(e, data) {
+      id: 'E7S Astral Effect Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8BE' }),
+      run: function(e, data, matches) {
+        data.hasAstral = data.hasAstral || {};
+        data.hasAstral[matches.target] = false;
+      },
+    },
+    {
+      id: 'E7S Umbral Effect Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
+      run: function(e, data, matches) {
         data.hasUmbral = data.hasUmbral || {};
-        data.hasUmbral[e.targetName] = e.gains;
+        data.hasUmbral[matches.target] = true;
+      },
+    },
+    {
+      id: 'E7S Umbral Effect Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8BF' }),
+      run: function(e, data, matches) {
+        data.hasUmbral = data.hasUmbral || {};
+        data.hasUmbral[matches.target] = false;
       },
     },
     {

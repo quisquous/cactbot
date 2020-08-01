@@ -6,6 +6,7 @@
     cn: /丰水之地/,
     ko: /^금단의 땅 에우레카: 히다토스편$/,
   },
+  zoneId: ZoneId.TheForbiddenLandEurekaHydatos,
   timelineFile: 'eureka_hydatos.txt',
   resetWhenOutOfCombat: false,
   timelineTriggers: [
@@ -53,11 +54,11 @@
   triggers: [
     {
       id: 'BA Falling Asleep',
-      regex: Regexes.gameLog({ line: '5 minutes have elapsed since your last activity..*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen..*?', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes.*?', capture: false }),
-      regexCn: Regexes.gameLog({ line: '已经5分钟没有进行任何操作.*?', capture: false }),
-      regexKo: Regexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
+      netRegex: NetRegexes.gameLog({ line: '5 minutes have elapsed since your last activity..*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Seit deiner letzten Aktivität sind 5 Minuten vergangen..*?', capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'Votre personnage est inactif depuis 5 minutes.*?', capture: false }),
+      netRegexCn: NetRegexes.gameLog({ line: '已经5分钟没有进行任何操作.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '5분 동안 아무 조작을 하지 않았습니다..*?', capture: false }),
       alarmText: {
         en: 'WAKE UP',
         de: 'AUFWACHEN',
@@ -68,32 +69,34 @@
     },
     {
       id: 'BA Saved By Rememberance',
-      regex: Regexes.gameLog({ line: 'The memories of heroes past live on again.*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf.*?', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscité.*?', capture: false }),
-      regexJa: Regexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された.*?', capture: false }),
-      regexCn: Regexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来.*?', capture: false }),
-      regexKo: Regexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다.*?', capture: false }),
+      netRegex: NetRegexes.gameLog({ line: 'The memories of heroes past live on again.*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Das Vermächtnis vergangener Helden lebt von Neuem auf.*?', capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'L\'égide des héros vaillants vous a ressuscité.*?', capture: false }),
+      netRegexJa: NetRegexes.gameLog({ line: '英傑の加護の効果が発揮され、蘇生された.*?', capture: false }),
+      netRegexCn: NetRegexes.gameLog({ line: '发动了英杰的加护效果，重新苏醒了过来.*?', capture: false }),
+      netRegexKo: NetRegexes.gameLog({ line: '영걸의 가호의 효과가 발휘되어 부활했습니다.*?', capture: false }),
       sound: 'Long',
     },
     {
       id: 'BA Seal',
-      regex: Regexes.message({ line: '.*will be sealed off.*?', capture: false }),
-      regexDe: Regexes.message({ line: '.*bis sich der Zugang.*?', capture: false }),
-      regexFr: Regexes.message({ line: '.*Fermeture de.*?', capture: false }),
-      regexCn: Regexes.message({ line: '距.*被封锁还有.*?', capture: false }),
-      regexKo: Regexes.message({ line: '.*(?:이|가) 봉쇄됩니다.*?', capture: false }),
+      netRegex: NetRegexes.message({ line: '.* will be sealed off.*?', capture: false }),
+      netRegexDe: NetRegexes.message({ line: 'Noch 15 Sekunden, bis sich (?:(?:der|die|das) )?(?:Zugang zu(?:[rm]| den)? )?.* schließt.*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'Fermeture d(?:e|u|es) $1 dans.*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '$1の封鎖まであと', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '距$1被封锁还有.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '15초 후에 $1(?:이|가) 봉쇄됩니다.*?', capture: false }),
       run: function(data) {
         data.sealed = true;
       },
     },
     {
       id: 'BA Clear Data',
-      regex: Regexes.message({ line: '.*is no longer sealed.*?', capture: false }),
-      regexDe: Regexes.message({ line: '.*öffnet sich wieder.*?', capture: false }),
-      regexFr: Regexes.message({ line: '.*Ouverture de.*?', capture: false }),
-      regexCn: Regexes.message({ line: '.*的封锁解除了.*?', capture: false }),
-      regexKo: Regexes.message({ line: '의 봉쇄가 해제되었습니다.*?', capture: false }),
+      netRegex: NetRegexes.message({ line: '.*is no longer sealed.*?', capture: false }),
+      netRegexDe: NetRegexes.message({ line: '.*öffnet sich (?:wieder|erneut).*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: '.*Ouverture .*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '.*の封鎖が解かれた.*?', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '.*的封锁解除了.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '.*의 봉쇄가 해제되었습니다.*?', capture: false }),
       run: function(data) {
         delete data.side;
         delete data.mythcall;
@@ -106,12 +109,12 @@
     },
     {
       id: 'BA West Side',
-      regex: Regexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
-      regexDe: Regexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
-      regexFr: Regexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
-      regexJa: Regexes.abilityFull({ id: '3956', source: 'アルト', target: '[^:]+', capture: false }),
-      regexCn: Regexes.abilityFull({ id: '3956', source: '亚特', target: '[^:]+', capture: false }),
-      regexKo: Regexes.abilityFull({ id: '3956', source: '아르트', target: '[^:]+', capture: false }),
+      netRegex: NetRegexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      netRegexDe: NetRegexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      netRegexFr: NetRegexes.abilityFull({ id: '3956', source: 'Art', target: '[^:]+', capture: false }),
+      netRegexJa: NetRegexes.abilityFull({ id: '3956', source: 'アルト', target: '[^:]+', capture: false }),
+      netRegexCn: NetRegexes.abilityFull({ id: '3956', source: '亚特', target: '[^:]+', capture: false }),
+      netRegexKo: NetRegexes.abilityFull({ id: '3956', source: '아르트', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: function(data) {
         data.side = 'west';
@@ -119,12 +122,12 @@
     },
     {
       id: 'BA East Side',
-      regex: Regexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
-      regexDe: Regexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
-      regexFr: Regexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
-      regexJa: Regexes.abilityFull({ id: '3957', source: 'オーウェン', target: '[^:]+', capture: false }),
-      regexCn: Regexes.abilityFull({ id: '3957', source: '欧文', target: '[^:]+', capture: false }),
-      regexKo: Regexes.abilityFull({ id: '3957', source: '오와인', target: '[^:]+', capture: false }),
+      netRegex: NetRegexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      netRegexDe: NetRegexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      netRegexFr: NetRegexes.abilityFull({ id: '3957', source: 'Owain', target: '[^:]+', capture: false }),
+      netRegexJa: NetRegexes.abilityFull({ id: '3957', source: 'オーウェン', target: '[^:]+', capture: false }),
+      netRegexCn: NetRegexes.abilityFull({ id: '3957', source: '欧文', target: '[^:]+', capture: false }),
+      netRegexKo: NetRegexes.abilityFull({ id: '3957', source: '오와인', target: '[^:]+', capture: false }),
       suppressSeconds: 1000,
       run: function(data) {
         data.side = 'east';
@@ -132,12 +135,12 @@
     },
     {
       id: 'BA Art Mythcall',
-      regex: Regexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3927', source: 'アルト', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3927', source: '亚特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3927', source: '아르트', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3927', source: 'Art', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3927', source: 'アルト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3927', source: '亚特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3927', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -147,12 +150,12 @@
     },
     {
       id: 'BA Art Tankbuster',
-      regex: Regexes.startsUsing({ id: '3934', source: 'Art' }),
-      regexDe: Regexes.startsUsing({ id: '3934', source: 'Art' }),
-      regexFr: Regexes.startsUsing({ id: '3934', source: 'Art' }),
-      regexJa: Regexes.startsUsing({ id: '3934', source: 'アルト' }),
-      regexCn: Regexes.startsUsing({ id: '3934', source: '亚特' }),
-      regexKo: Regexes.startsUsing({ id: '3934', source: '아르트' }),
+      netRegex: NetRegexes.startsUsing({ id: '3934', source: 'Art' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3934', source: 'Art' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3934', source: 'Art' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3934', source: 'アルト' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3934', source: '亚特' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3934', source: '아르트' }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -160,7 +163,7 @@
     },
     {
       id: 'BA Art Orb Marker',
-      regex: Regexes.headMarker({ id: '005C' }),
+      netRegex: NetRegexes.headMarker({ id: '005C' }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -189,7 +192,7 @@
     },
     {
       id: 'BA Art Piercing Dark Marker',
-      regex: Regexes.headMarker({ id: '008B' }),
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
         return data.side == 'west' && data.me == matches.target;
       },
@@ -197,12 +200,12 @@
     },
     {
       id: 'BA Art Legendcarver',
-      regex: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3928', source: 'アルト', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3928', source: 'アルト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -210,12 +213,12 @@
     },
     {
       id: 'BA Art Legendspinner',
-      regex: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3929', source: 'アルト', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3929', source: 'アルト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -223,12 +226,12 @@
     },
     {
       id: 'BA Art Mythcall Legendcarver',
-      regex: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3928', source: 'アルト', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3928', source: 'Art', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3928', source: 'アルト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3928', source: '亚特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3928', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west' && data.mythcall;
       },
@@ -237,12 +240,12 @@
     },
     {
       id: 'BA Art Mythcall Legendspinner',
-      regex: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3929', source: 'アルト', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3929', source: 'Art', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3929', source: 'アルト', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3929', source: '亚特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3929', source: '아르트', capture: false }),
       condition: function(data) {
         return data.side == 'west' && data.mythcall;
       },
@@ -257,12 +260,12 @@
     },
     {
       id: 'BA Owain Tankbuster',
-      regex: Regexes.startsUsing({ id: '3945', source: 'Owain' }),
-      regexDe: Regexes.startsUsing({ id: '3945', source: 'Owain' }),
-      regexFr: Regexes.startsUsing({ id: '3945', source: 'Owain' }),
-      regexJa: Regexes.startsUsing({ id: '3945', source: 'オーウェン' }),
-      regexCn: Regexes.startsUsing({ id: '3945', source: '欧文' }),
-      regexKo: Regexes.startsUsing({ id: '3945', source: '오와인' }),
+      netRegex: NetRegexes.startsUsing({ id: '3945', source: 'Owain' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3945', source: 'Owain' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3945', source: 'Owain' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3945', source: 'オーウェン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3945', source: '欧文' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3945', source: '오와인' }),
       condition: function(data) {
         return data.side == 'west';
       },
@@ -270,7 +273,7 @@
     },
     {
       id: 'BA Owain Piercing Light Marker',
-      regex: Regexes.headMarker({ id: '008B' }),
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches.target;
       },
@@ -278,7 +281,7 @@
     },
     {
       id: 'BA Owain Dorito Stack',
-      regex: Regexes.headMarker({ id: '008B' }),
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches.target;
       },
@@ -286,10 +289,10 @@
     },
     {
       id: 'BA Owain Fire Element',
-      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: '[^:]*:Oui... Munderg, sens le feu embraser nos âmes.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: '[^:]*:Munderg, turn flesh to ash.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: '[^:]*:Munderg, entfessele den Flammeneid.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: '[^:]*:Oui... Munderg, sens le feu embraser nos âmes.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，点燃一切.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -310,10 +313,10 @@
     },
     {
       id: 'BA Owain Ice Element',
-      regex: Regexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: '[^:]*:C\'est bien, Munderg... Glace le sang de mes ennemis.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: '[^:]*:Munderg, turn blood to ice.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: '[^:]*:Munderg, das Eis der Ewigkeit soll sie für Äonen bannen.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: '[^:]*:C\'est bien, Munderg... Glace le sang de mes ennemis.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '[^:]*:红颈妖枪，冻结万物.*?', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -334,12 +337,12 @@
     },
     {
       id: 'BA Owain Ivory Palm',
-      regex: Regexes.ability({ id: '3941', source: 'Ivory Palm' }),
-      regexDe: Regexes.ability({ id: '3941', source: 'Weiß(?:e|er|es|en) Hand' }),
-      regexFr: Regexes.ability({ id: '3941', source: 'Paume D\'Ivoire' }),
-      regexJa: Regexes.ability({ id: '3941', source: '白き手' }),
-      regexCn: Regexes.ability({ id: '3941', source: '白手' }),
-      regexKo: Regexes.ability({ id: '3941', source: '하얀 손' }),
+      netRegex: NetRegexes.ability({ id: '3941', source: 'Ivory Palm' }),
+      netRegexDe: NetRegexes.ability({ id: '3941', source: 'Weiß(?:e|er|es|en) Hand' }),
+      netRegexFr: NetRegexes.ability({ id: '3941', source: 'Paume D\'Ivoire' }),
+      netRegexJa: NetRegexes.ability({ id: '3941', source: '白き手' }),
+      netRegexCn: NetRegexes.ability({ id: '3941', source: '白手' }),
+      netRegexKo: NetRegexes.ability({ id: '3941', source: '하얀 손' }),
       condition: function(data, matches) {
         return data.side == 'east' && data.me == matches.target;
       },
@@ -347,12 +350,12 @@
     },
     {
       id: 'BA Owain Pitfall',
-      regex: Regexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '394D', source: 'オーウェン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '394D', source: '欧文', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '394D', source: '오와인', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '394D', source: 'Owain', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '394D', source: 'オーウェン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '394D', source: '欧文', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '394D', source: '오와인', capture: false }),
       condition: function(data) {
         return data.side == 'east';
       },
@@ -360,12 +363,12 @@
     },
     {
       id: 'BA Silence Centaur',
-      regex: Regexes.startsUsing({ id: '3BFE', source: 'Arsenal Centaur' }),
-      regexDe: Regexes.startsUsing({ id: '3BFE', source: 'Arsenal-Zentaur' }),
-      regexFr: Regexes.startsUsing({ id: '3BFE', source: 'Centaure De L\'Arsenal' }),
-      regexJa: Regexes.startsUsing({ id: '3BFE', source: 'アーセナル・セントール' }),
-      regexCn: Regexes.startsUsing({ id: '3BFE', source: '兵武半人马' }),
-      regexKo: Regexes.startsUsing({ id: '3BFE', source: '무기고 켄타우로스' }),
+      netRegex: NetRegexes.startsUsing({ id: '3BFE', source: 'Arsenal Centaur' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3BFE', source: 'Arsenal-Zentaur' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3BFE', source: 'Centaure De L\'Arsenal' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3BFE', source: 'アーセナル・セントール' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3BFE', source: '兵武半人马' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3BFE', source: '무기고 켄타우로스' }),
       condition: function(data) {
         return data.CanSleep();
       },
@@ -373,12 +376,12 @@
     },
     {
       id: 'BA Raiden Tankbuster',
-      regex: Regexes.startsUsing({ id: '387B', source: 'Raiden' }),
-      regexDe: Regexes.startsUsing({ id: '387B', source: 'Raiden' }),
-      regexFr: Regexes.startsUsing({ id: '387B', source: 'Raiden' }),
-      regexJa: Regexes.startsUsing({ id: '387B', source: 'ライディーン' }),
-      regexCn: Regexes.startsUsing({ id: '387B', source: '莱丁' }),
-      regexKo: Regexes.startsUsing({ id: '387B', source: '라이딘' }),
+      netRegex: NetRegexes.startsUsing({ id: '387B', source: 'Raiden' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '387B', source: 'Raiden' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '387B', source: 'Raiden' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '387B', source: 'ライディーン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '387B', source: '莱丁' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '387B', source: '라이딘' }),
       condition: function(data) {
         return data.sealed;
       },
@@ -386,7 +389,7 @@
     },
     {
       id: 'BA Raiden Lancing Bolt',
-      regex: Regexes.headMarker({ id: '008A' }),
+      netRegex: NetRegexes.headMarker({ id: '008A' }),
       condition: function(data, matches) {
         return data.sealed && data.me == matches.target;
       },
@@ -394,12 +397,12 @@
     },
     {
       id: 'BA Raiden Ame',
-      regex: Regexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3868', source: 'ライディーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3868', source: '莱丁', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3868', source: '라이딘', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3868', source: 'Raiden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3868', source: 'ライディーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3868', source: '莱丁', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3868', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -407,12 +410,12 @@
     },
     {
       id: 'BA Raiden Whirling',
-      regex: Regexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '386A', source: 'ライディーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '386A', source: '莱丁', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '386A', source: '라이딘', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '386A', source: 'Raiden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '386A', source: 'ライディーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '386A', source: '莱丁', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '386A', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -420,12 +423,12 @@
     },
     {
       id: 'BA Raiden For Honor',
-      regex: Regexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '387C', source: 'ライディーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '387C', source: '莱丁', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '387C', source: '라이딘', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '387C', source: 'Raiden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '387C', source: 'ライディーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '387C', source: '莱丁', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '387C', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -433,12 +436,12 @@
     },
     {
       id: 'BA Raiden Lateral 1',
-      regex: Regexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '386C', source: 'ライディーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '386C', source: '莱丁', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '386C', source: '라이딘', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '386C', source: 'Raiden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '386C', source: 'ライディーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '386C', source: '莱丁', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '386C', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -446,12 +449,12 @@
     },
     {
       id: 'BA Raiden Lateral 2',
-      regex: Regexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '386B', source: 'ライディーン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '386B', source: '莱丁', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '386B', source: '라이딘', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '386B', source: 'Raiden', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '386B', source: 'ライディーン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '386B', source: '莱丁', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '386B', source: '라이딘', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -459,12 +462,12 @@
     },
     {
       id: 'BA AV Tankbuster',
-      regex: Regexes.startsUsing({ id: '379A', source: 'Absolute Virtue' }),
-      regexDe: Regexes.startsUsing({ id: '379A', source: 'Absolut(?:e|er|es|en) Tugend' }),
-      regexFr: Regexes.startsUsing({ id: '379A', source: 'Vertu Absolue' }),
-      regexJa: Regexes.startsUsing({ id: '379A', source: 'アブソリュートヴァーチュー' }),
-      regexCn: Regexes.startsUsing({ id: '379A', source: '绝对的美德' }),
-      regexKo: Regexes.startsUsing({ id: '379A', source: '절대미덕' }),
+      netRegex: NetRegexes.startsUsing({ id: '379A', source: 'Absolute Virtue' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '379A', source: 'Absolut(?:e|er|es|en) Tugend' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '379A', source: 'Vertu Absolue' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '379A', source: 'アブソリュートヴァーチュー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '379A', source: '绝对的美德' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '379A', source: '절대미덕' }),
       condition: function(data) {
         return data.sealed;
       },
@@ -472,12 +475,12 @@
     },
     {
       id: 'BA AV Eidos Dark Bracelets',
-      regex: Regexes.startsUsing({ id: '3787', source: 'Absolute Virtue', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3787', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3787', source: 'Vertu Absolue', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3787', source: 'アブソリュートヴァーチュー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3787', source: '绝对的美德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3787', source: '절대미덕', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3787', source: 'Absolute Virtue', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3787', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3787', source: 'Vertu Absolue', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3787', source: 'アブソリュートヴァーチュー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3787', source: '绝对的美德', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3787', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -494,12 +497,12 @@
     },
     {
       id: 'BA AV Eidos Light Bracelets',
-      regex: Regexes.startsUsing({ id: '3786', source: 'Absolute Virtue', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3786', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3786', source: 'Vertu Absolue', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3786', source: 'アブソリュートヴァーチュー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3786', source: '绝对的美德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3786', source: '절대미덕', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3786', source: 'Absolute Virtue', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3786', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3786', source: 'Vertu Absolue', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3786', source: 'アブソリュートヴァーチュー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3786', source: '绝对的美德', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3786', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -516,12 +519,12 @@
     },
     {
       id: 'BA AV Eidos Hostile Aspect',
-      regex: Regexes.startsUsing({ id: '378B', source: 'Absolute Virtue', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '378B', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '378B', source: 'Vertu Absolue', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '378B', source: 'アブソリュートヴァーチュー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '378B', source: '绝对的美德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '378B', source: '절대미덕', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '378B', source: 'Absolute Virtue', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '378B', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '378B', source: 'Vertu Absolue', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '378B', source: 'アブソリュートヴァーチュー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '378B', source: '绝对的美德', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '378B', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -572,12 +575,12 @@
     },
     {
       id: 'BA AV Eidos Impact Stream',
-      regex: Regexes.startsUsing({ id: '3788', source: 'Absolute Virtue', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3788', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3788', source: 'Vertu Absolue', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3788', source: 'アブソリュートヴァーチュー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3788', source: '绝对的美德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3788', source: '절대미덕', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3788', source: 'Absolute Virtue', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3788', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3788', source: 'Vertu Absolue', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3788', source: 'アブソリュートヴァーチュー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3788', source: '绝对的美德', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3788', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -603,13 +606,14 @@
       },
     },
     {
-      // Note: These use 00:329e: lines, without any proper "gains effect" lines.
+      // Note: These use 00:3...: lines, without any proper "gains effect" lines.
+      // In other words, they need to be the fully translated in game log.
+      // There are no "gainsEffect" lines for the clones, only for Absolute Virtue directly.
+      // Ideally parser logic could be added for this case, but this is where we are.
       id: 'BA AV Eidos Relative Virtue Astral',
-      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm des Lichts.*?', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Lumière.*?', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 光之腕.*?', capture: false }),
-      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 빛의 팔.*?', capture: false }),
+      netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Astral Essence.*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts.*?', capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Lumière.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -620,13 +624,11 @@
       },
     },
     {
-      // Note: These use 00:329e: lines, without any proper "gains effect" lines.
+      // See note above for `BA AV Eidos Relative Virtue Astral`.
       id: 'BA AV Eidos Relative Virtue Umbral',
-      regex: Regexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
-      regexDe: Regexes.gameLog({ line: 'Relative Tugend gains the effect of Arm der Dunkelheit.*?', capture: false }),
-      regexFr: Regexes.gameLog({ line: 'Vertu relative gains the effect of Bras de Ténèbres.*?', capture: false }),
-      regexCn: Regexes.gameLog({ line: '相对的美德 gains the effect of 暗之腕.*?', capture: false }),
-      regexKo: Regexes.gameLog({ line: '상대미덕 gains the effect of 어둠의 팔.*?', capture: false }),
+      netRegex: NetRegexes.gameLog({ line: 'Relative Virtue gains the effect of Umbral Essence.*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit.*?', capture: false }),
+      netRegexFr: NetRegexes.gameLog({ line: 'Vertu relative bénéficie de l\'effet.*?Bras de Ténèbres.*?', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -638,12 +640,12 @@
     },
     {
       id: 'BA AV Triple Impact Stream',
-      regex: Regexes.startsUsing({ id: '3797', source: 'Absolute Virtue', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '3797', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '3797', source: 'Vertu Absolue', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '3797', source: 'アブソリュートヴァーチュー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '3797', source: '绝对的美德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '3797', source: '절대미덕', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '3797', source: 'Absolute Virtue', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3797', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3797', source: 'Vertu Absolue', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3797', source: 'アブソリュートヴァーチュー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3797', source: '绝对的美德', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3797', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -673,12 +675,12 @@
     },
     {
       id: 'BA AV Eidos Turbulent Aether',
-      regex: Regexes.ability({ id: '3790', source: 'Absolute Virtue', capture: false }),
-      regexDe: Regexes.ability({ id: '3790', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
-      regexFr: Regexes.ability({ id: '3790', source: 'Vertu Absolue', capture: false }),
-      regexJa: Regexes.ability({ id: '3790', source: 'アブソリュートヴァーチュー', capture: false }),
-      regexCn: Regexes.ability({ id: '3790', source: '绝对的美德', capture: false }),
-      regexKo: Regexes.ability({ id: '3790', source: '절대미덕', capture: false }),
+      netRegex: NetRegexes.ability({ id: '3790', source: 'Absolute Virtue', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '3790', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '3790', source: 'Vertu Absolue', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '3790', source: 'アブソリュートヴァーチュー', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '3790', source: '绝对的美德', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '3790', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -692,12 +694,12 @@
     },
     {
       id: 'BA AV Call Wyvern',
-      regex: Regexes.ability({ id: '3798', source: 'Absolute Virtue', capture: false }),
-      regexDe: Regexes.ability({ id: '3798', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
-      regexFr: Regexes.ability({ id: '3798', source: 'Vertu Absolue', capture: false }),
-      regexJa: Regexes.ability({ id: '3798', source: 'アブソリュートヴァーチュー', capture: false }),
-      regexCn: Regexes.ability({ id: '3798', source: '绝对的美德', capture: false }),
-      regexKo: Regexes.ability({ id: '3798', source: '절대미덕', capture: false }),
+      netRegex: NetRegexes.ability({ id: '3798', source: 'Absolute Virtue', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '3798', source: 'Absolut(?:e|er|es|en) Tugend', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '3798', source: 'Vertu Absolue', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '3798', source: 'アブソリュートヴァーチュー', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '3798', source: '绝对的美德', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '3798', source: '절대미덕', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -705,12 +707,12 @@
     },
     {
       id: 'BA Ozma Sphere Form',
-      regex: Regexes.ability({ source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
-      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: ['37B3', '37A5', '379F'], capture: false }),
-      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
-      regexJa: Regexes.ability({ source: 'プロトオズマ', id: ['37B3', '37A5', '379F'], capture: false }),
-      regexCn: Regexes.ability({ source: '奥兹玛原型', id: ['37B3', '37A5', '379F'], capture: false }),
-      regexKo: Regexes.ability({ source: '프로토 오즈마', id: ['37B3', '37A5', '379F'], capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Proto-Yadis', id: ['37B3', '37A5', '379F'], capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Proto-Ozma', id: ['37B3', '37A5', '379F'], capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: ['37B3', '37A5', '379F'], capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: ['37B3', '37A5', '379F'], capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: ['37B3', '37A5', '379F'], capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -744,12 +746,12 @@
     // FIXME: need callouts for knockback, and maybe "holy soon"?
     {
       id: 'BA Ozma Pyramid Form',
-      regex: Regexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
-      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37A4', capture: false }),
-      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37A4', capture: false }),
-      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
-      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
-      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Proto-Yadis', id: '37A4', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Proto-Ozma', id: '37A4', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -763,12 +765,12 @@
     },
     {
       id: 'BA Ozma Pyramid Form 2',
-      regex: Regexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
-      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37A4', capture: false }),
-      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37A4', capture: false }),
-      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
-      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
-      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37A4', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Proto-Yadis', id: '37A4', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Proto-Ozma', id: '37A4', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '37A4', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '37A4', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '37A4', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -783,12 +785,12 @@
     },
     {
       id: 'BA Ozma Star Form',
-      regex: Regexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
-      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37B2', capture: false }),
-      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37B2', capture: false }),
-      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
-      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
-      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Proto-Yadis', id: '37B2', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Proto-Ozma', id: '37B2', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -802,12 +804,12 @@
     },
     {
       id: 'BA Ozma Star Form 2',
-      regex: Regexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
-      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '37B2', capture: false }),
-      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '37B2', capture: false }),
-      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
-      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
-      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '37B2', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Proto-Yadis', id: '37B2', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Proto-Ozma', id: '37B2', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '37B2', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '37B2', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '37B2', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -835,12 +837,12 @@
     },
     {
       id: 'BA Ozma Cube Form',
-      regex: Regexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
-      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '379E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '379E', capture: false }),
-      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
-      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
-      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Proto-Yadis', id: '379E', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Proto-Ozma', id: '379E', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -854,12 +856,12 @@
     },
     {
       id: 'BA Ozma Cube Form 2',
-      regex: Regexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
-      regexDe: Regexes.ability({ source: 'Proto-Yadis', id: '379E', capture: false }),
-      regexFr: Regexes.ability({ source: 'Proto-Ozma', id: '379E', capture: false }),
-      regexJa: Regexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
-      regexCn: Regexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
-      regexKo: Regexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Proto Ozma', id: '379E', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Proto-Yadis', id: '379E', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Proto-Ozma', id: '379E', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'プロトオズマ', id: '379E', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '奥兹玛原型', id: '379E', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '프로토 오즈마', id: '379E', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -891,12 +893,12 @@
     },
     {
       id: 'BA Ozma Pyramid Shade',
-      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37A4', capture: false }),
-      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '37A4', capture: false }),
-      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '37A4', capture: false }),
-      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37A4', capture: false }),
-      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37A4', capture: false }),
-      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37A4', capture: false }),
+      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37A4', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '37A4', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '37A4', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37A4', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37A4', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37A4', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -911,12 +913,12 @@
     },
     {
       id: 'BA Ozma Star Shade',
-      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37B2', capture: false }),
-      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '37B2', capture: false }),
-      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '37B2', capture: false }),
-      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37B2', capture: false }),
-      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37B2', capture: false }),
-      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37B2', capture: false }),
+      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '37B2', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '37B2', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '37B2', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '37B2', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '37B2', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '37B2', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -931,12 +933,12 @@
     },
     {
       id: 'BA Ozma Cube Shade',
-      regex: Regexes.ability({ source: ['Ozmashade', 'Shadow'], id: '379E', capture: false }),
-      regexDe: Regexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '379E', capture: false }),
-      regexFr: Regexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '379E', capture: false }),
-      regexJa: Regexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '379E', capture: false }),
-      regexCn: Regexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '379E', capture: false }),
-      regexKo: Regexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '379E', capture: false }),
+      netRegex: NetRegexes.ability({ source: ['Ozmashade', 'Shadow'], id: '379E', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: ['Yadis-Schatten', 'Proto-Yadis-Schatten'], id: '379E', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: ['Ombre D\'Ozma', 'Ombre De Proto-Ozma'], id: '379E', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: ['オズマの影', 'プロトオズマの影'], id: '379E', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: ['奥兹玛之影', '奥兹玛原型之影'], id: '379E', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: ['오즈마의 그림자', '프로토 오즈마의 그림자'], id: '379E', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -951,12 +953,12 @@
     },
     {
       id: 'BA Ozma Adds',
-      regex: Regexes.ability({ source: 'Cloudlarker', id: '37B0', capture: false }),
-      regexDe: Regexes.ability({ source: 'Wolkenlauerer', id: '37B0', capture: false }),
-      regexFr: Regexes.ability({ source: 'Urolithe De L\'arsenal', id: '37B0', capture: false }),
-      regexJa: Regexes.ability({ source: 'クラウドラーカー', id: '37B0', capture: false }),
-      regexCn: Regexes.ability({ source: '翻云狮鹫', id: '37B0', capture: false }),
-      regexKo: Regexes.ability({ source: '구름 잠복자', id: '37B0', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Cloudlarker', id: '37B0', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Wolkenlauerer', id: '37B0', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Urolithe De L\'arsenal', id: '37B0', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'クラウドラーカー', id: '37B0', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '翻云狮鹫', id: '37B0', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '구름 잠복자', id: '37B0', capture: false }),
       condition: function(data) {
         return data.sealed;
       },
@@ -966,12 +968,12 @@
     },
     {
       id: 'BA Ozma Acceleration Bomb',
-      regex: Regexes.ability({ id: '37AA', source: 'Proto Ozma' }),
-      regexDe: Regexes.ability({ id: '37AA', source: 'Proto-Yadis' }),
-      regexFr: Regexes.ability({ id: '37AA', source: 'Proto-Ozma' }),
-      regexJa: Regexes.ability({ id: '37AA', source: 'プロトオズマ' }),
-      regexCn: Regexes.ability({ id: '37AA', source: '奥兹玛原型' }),
-      regexKo: Regexes.ability({ id: '37AA', source: '프로토 오즈마' }),
+      netRegex: NetRegexes.ability({ id: '37AA', source: 'Proto Ozma' }),
+      netRegexDe: NetRegexes.ability({ id: '37AA', source: 'Proto-Yadis' }),
+      netRegexFr: NetRegexes.ability({ id: '37AA', source: 'Proto-Ozma' }),
+      netRegexJa: NetRegexes.ability({ id: '37AA', source: 'プロトオズマ' }),
+      netRegexCn: NetRegexes.ability({ id: '37AA', source: '奥兹玛原型' }),
+      netRegexKo: NetRegexes.ability({ id: '37AA', source: '프로토 오즈마' }),
       condition: function(data, matches) {
         return data.sealed && data.me == matches.target;
       },
@@ -979,7 +981,7 @@
     },
     {
       id: 'BA Ozma Meteor',
-      regex: Regexes.headMarker({ id: '0039' }),
+      netRegex: NetRegexes.headMarker({ id: '0039' }),
       condition: function(data, matches) {
         return data.sealed && data.me == matches.target;
       },
@@ -989,7 +991,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'Absolut(?:e|er|es|en) Tugend',
         'Arsenal Centaur': 'Arsenal-Zentaur',
@@ -1001,29 +1002,35 @@
         'Owain': 'Owain',
         '(?<! )Ozma(?!\\w)': 'Yadis',
         'Ozmashade': 'Yadis-Schatten',
-        'Proto Ozma(?!\ containment)': 'Proto-Yadis',
+        'Proto Ozma(?! containment)': 'Proto-Yadis',
         'Raiden': 'Raiden',
-        'Relative Virtue': 'Relative Tugend',
+        'Relative Virtue(?! gains)': 'Relative Tugend',
         'Shadow': 'Proto-Yadis-Schatten',
         'Streak Lightning': 'Blitzladung',
         '5 minutes have elapsed since your last activity': 'Seit deiner letzten Aktivität sind 5 Minuten vergangen',
         'The memories of heroes past live on again': 'Das Vermächtnis vergangener Helden lebt von Neuem auf',
         'Munderg, turn flesh to ash': 'Munderg, entfessele den Flammeneid',
         'Munderg, turn blood to ice': 'Munderg, das Eis der Ewigkeit soll sie für Äonen bannen',
+        'The Shin-Zantetsuken Containment Unit': 'Shin-Zantetsuken-Quarantäneblock',
+        'The Lance of Virtue Containment Unit': 'Lanze der Tugend-Quarantäneblock',
+        'The Proto Ozma Containment Unit': 'Proto-Yadis-Quarantäneblock',
+        'Relative Virtue gains the effect of Astral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Lichts',
+        'Relative Virtue gains the effect of Umbral Essence': 'Die Relative Tugend erhält den Effekt von.*?Arm der Dunkelheit',
       },
       'replaceText': {
         'Acallam Na Senorach': 'Legendärer Lanzenwirbel',
         'Acceleration Bomb': 'Beschleunigungsbombe',
         'Adds': 'Adds',
         'Ame-no-Sakahoko': 'Himmelsriposte',
-        'Astral Essence': 'Arm des Lichts',
         'Auroral Wind': 'Aurorawind',
-        'Berserk': 'Berserker',
         'Bitter Barbs': 'Dornige Schuld',
         'Black Hole': 'Schwarzes Loch',
+        'Bleed Attack': 'Blutungs-Angriff',
         'Booming Lament': 'Donnerschlag der Trauer',
         'Call Wyvern': 'Wyvernruf',
+        'Carver/Spinner': 'Schnitzer/Spinner',
         'Cloud to Ground': 'Sturmkonzentration',
+        'Cube Form': 'Würfel Form',
         'Eidos': 'Sarva',
         'Elemental Magicks': 'Elementmagie',
         'Elemental Shift': 'Elementwechsel',
@@ -1046,29 +1053,35 @@
         'Meteor': 'Meteo',
         'Mourning Star': 'Morgenstern',
         'Mythcall': 'Mythenruf',
+        'Orb x5': 'Kugel x5',
+        'Ozma Ability': 'Yadis Fähigkeit',
         'Piercing Dark': 'Lanze der Finsternis',
         'Piercing Light': 'Lanze des Lichts',
         'Pitfall': 'Berstender Boden',
+        'Pyramid Form': 'Pyramiden Form',
+        'Random Form': 'Zufällige Form',
+        'Random Shade': 'Zufällige Schatten',
+        'Shade Ability': 'Schatten Fähigkeit',
         'Shingan': 'Betäubungsschlag',
         'Shooting Star': 'Sternschnuppe',
+        'Soak Attack': 'Angriff absorbieren',
+        'Spear Copy': 'Speer kopieren',
+        'Spear Shade': 'Speer Schatten',
+        'Sphere Form': 'Kugel Form',
         'Spiritcull': 'Kettendämon',
         'Spirits of the Fallen': 'Heroische Seele',
+        'Star Form': 'Stern Form',
         'Streak Lightning': 'Blitzladung',
         'Thricecull': 'Dreifachlanze',
         'Thundercall': 'Donnerruf',
         'Turbulent Aether': 'Äthersturm',
         'Ultimate Zantetsuken': 'Goku-Zantetsuken',
-        'Umbral Essence': 'Arm der Dunkelheit',
         'Whirling Zantetsuken': 'Sen-Zantetsuken',
-      },
-      '~effectNames': {
-        'Astral Essence': 'Arm des Lichts',
-        'Umbral Essence': 'Arm der Dunkelheit',
+        'Wyvern Explosion': 'Wyvern Explosion',
       },
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': 'Vertu absolue',
         'Arsenal Centaur': 'Centaure de l\'Arsenal',
@@ -1080,7 +1093,7 @@
         'Owain': 'Owain',
         '(?<! )Ozma(?!\\w)': 'Ozma',
         'Ozmashade': 'Ombre d\'Ozma',
-        'Proto Ozma(?!\ containment)': 'Proto-Ozma',
+        'Proto Ozma(?! containment)': 'Proto-Ozma',
         'Raiden': 'Raiden',
         'Relative Virtue': 'Vertu relative',
         'Shadow': 'Ombre de Proto-Ozma',
@@ -1097,7 +1110,6 @@
         'Ame-no-Sakahoko': 'Ama-no-sakahoko',
         'Astral Essence': 'Bras de Lumière',
         'Auroral Wind': 'Vent d\'aurore',
-        'Berserk': 'Furie',
         'Bitter Barbs': 'Ronce du péché',
         'Black Hole': 'Trou noir',
         'Bleed Attack': 'Attaque saignement',
@@ -1184,7 +1196,6 @@
         'Ame-no-Sakahoko': '天逆鉾',
         'Astral Essence': '光の腕',
         'Auroral Wind': 'オーロラルウィンド',
-        'Berserk': 'ベルセルク',
         'Bitter Barbs': '罪の荊棘',
         'Black Hole': 'ブラックホール',
         'Booming Lament': '哀惜の雷鳴',
@@ -1230,6 +1241,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': '绝对的美德',
         'Arsenal Centaur': '兵武半人马',
@@ -1241,13 +1253,12 @@
         'Owain': '欧文',
         '(?<! )Ozma(?!\\w)': '奥兹玛',
         'Ozmashade': '奥兹玛之影',
-        'Proto Ozma(?!\ Containment)': '奥兹玛原型',
+        'Proto Ozma(?! Containment)': '奥兹玛原型',
         'Raiden': '莱丁',
         'Relative Virtue': '相对的美德',
         'Shadow': '奥兹玛原型之影',
         'Streak Lightning': '强袭雷光',
         'The Lance of Virtue Containment Unit': '美德之枪封印区',
-        'The Proto Ozma Containment Unit': '奥兹玛原型封印区',
         'The Shin-Zantetsuken Containment Unit': '真·斩铁剑封印区',
       },
       'replaceText': {
@@ -1257,7 +1268,6 @@
         'Ame-no-Sakahoko': '天逆矛',
         'Astral Essence': '光之腕',
         'Auroral Wind': '极光之风',
-        'Berserk': '狂暴',
         'Bitter Barbs': '罪恶荆棘',
         'Black Hole': '黑洞',
         'Bleed Attack': '流血攻击',
@@ -1320,6 +1330,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': '절대미덕',
         'Arsenal Centaur': '무기고 켄타우로스',
@@ -1331,13 +1342,12 @@
         'Owain': '오와인',
         '(?<! )Ozma(?!\\w)': '오즈마',
         'Ozmashade': '오즈마의 그림자',
-        'Proto Ozma(?!\ Containment)': '프로토 오즈마',
+        'Proto Ozma(?! Containment)': '프로토 오즈마',
         'Raiden': '라이딘',
         'Relative Virtue': '상대미덕',
         'Shadow': '프로토 오즈마의 그림자',
         'Streak Lightning': '연쇄 번개',
         'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
-        'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',
         'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
       },
       'replaceText': {
@@ -1347,7 +1357,6 @@
         'Ame-no-Sakahoko': '아메노사카호코',
         'Astral Essence': '빛의 팔',
         'Auroral Wind': '오로라 바람',
-        'Berserk': '광포',
         'Bitter Barbs': '죄의 가시',
         'Black Hole': '블랙홀',
         'Bleed Attack': '출혈 공격',

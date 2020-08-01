@@ -2,7 +2,8 @@
 
 <img align="right" src="https://raw.githubusercontent.com/quisquous/cactbot/main/screenshots/cactbot-logo-320x320.png">
 
-[![build status](https://travis-ci.org/quisquous/cactbot.svg?branch=main)](https://travis-ci.org/quisquous/cactbot)
+[![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/quisquous/cactbot/Test/main)](https://github.com/quisquous/cactbot/actions?query=workflow%3ATest+branch%3Amain)
+[![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/quisquous/cactbot?color=brightgreen&sort=semver)](https://github.com/quisquous/cactbot/releases/latest)
 
 1. [About](#about)
 1. [Installing](#installing)
@@ -163,7 +164,7 @@ It will now appear in the list of overlays in the `Plugins` -> `OverlayPlugin.dl
 1. In the `General` tab of the `Raidboss` overlay, click the `Lock Overlay` and `Enable Clickthrough` checkboxes.
 The test bars, debug text, and shaded blue background will disappear once the overlay has been locked.
 
-![raidboss plugin config](screenshots/overlay_plugin_new_raidboss_locked.png)
+    ![raidboss plugin config](screenshots/overlay_plugin_new_raidboss_locked.png)
 
 1. If you want to test the raidboss plugin, teleport to Summerford Farms, and do a `/countdown 5`.
 
@@ -173,15 +174,15 @@ Follow the same process but select a different cactbot preset.
 ## Building from source
 
 Follow all the steps above for installing cactbot first.
-To install dependencies there are 2 methods: **per script** and **manualy**
+To install dependencies there are 2 methods: **per script** and **manually**
 
-### Dependancies: Script Method
+### Dependencies: Script Method
 
 1. `curl` MUST be installed (this is used to download dependencies)
-1. Execute the `./tools/fetch_deps.py` script
+1. Execute the `./utils/fetch_deps.py` script
 1. Continue with **Steps to build**
 
-### Dependancies: Manual Method
+### Dependencies: Manual Method
 
 1. Please download the latest Zip file from <https://github.com/EQAditu/AdvancedCombatTracker/releases/>
 1. Extract the `Advanced Combat Tracker.exe` to `cactbot/plugin/ThirdParty/ACT/`
@@ -443,9 +444,13 @@ for more details about user javascript and css files.
 
 ## Supported Languages
 
-cactbot is tested and works with the English, German and French versions of Final Fantasy XIV.
+cactbot is tested and works with the current
+international (English, German, French, Japanese) version,
+the current Chinese version,
+and the current Korean version.
+Some translations are still a work in progress.
 
-Unicode characters are supported thoughout, through the use of the helpers in the
+Unicode characters are supported throughout, through the use of the helpers in the
 [resources/regexes.js](resources/regexes.js) file. However [timelines](ui/raidboss/data/timelines)
 and log event [triggers](ui/raidboss/data/triggers) may be incorrect if names that appear in the
 ACT log events are different.

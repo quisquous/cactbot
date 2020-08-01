@@ -6,6 +6,7 @@
     en: /Temple Of The Fist/,
     ko: /^성도산 사원$/,
   },
+  zoneId: ZoneId.TheTempleOfTheFist,
   damageWarn: {
     'Temple Fire Break': '21ED', // Conal AoE, Bloodglider Monk trash
     'Temple Radial Blaster': '1FD3', // Circle AoE, boss 1
@@ -23,17 +24,7 @@
     'Temple Silent Roar': '1FEB', // Frontal line AoE, boss 3
     'Temple Mighty Blow': '1FEA', // Contact with coeurl head, boss 3
   },
-  triggers: [
-    {
-      id: 'Temple Heat Lightning', // Purple spread circles, boss 1
-      damageRegex: '1FD7',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareWarn: {
+    'Temple Heat Lightning': '1FD7', // Purple spread circles, boss 1
+  },
 }];

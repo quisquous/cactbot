@@ -5,35 +5,26 @@
     en: /^Eden's Verse: Furor$/,
     ko: /^희망의 낙원 에덴: 공명편 \(2\)$/,
   },
+  zoneId: ZoneId.EdensVerseFuror,
   damageWarn: {
-    'Thorns': '4BDA', // AoE markers after Enumeration
-    'Ferostorm 1': '4BDD',
-    'Ferostorm 2': '4BE5',
-    'Storm Of Fury 1': '4BE0', // Circle AoE during tethers--Garuda
-    'Storm Of Fury 2': '4BE6', // Circle AoE during tethers--Raktapaksa
-    'Explosion': '4BE2', // AoE circles, Garuda orbs
-    'Heat Burst': '4BEC',
-    'Conflag Strike': '4BEE', // 270-degree frontal AoE
-    'Spike Of Flame': '4BF0', // Orb explosions after Strike Spark
-    'Radiant Plume': '4BF2',
-    'Eruption': '4BF4',
+    'E6N Thorns': '4BDA', // AoE markers after Enumeration
+    'E6N Ferostorm 1': '4BDD',
+    'E6N Ferostorm 2': '4BE5',
+    'E6N Storm Of Fury 1': '4BE0', // Circle AoE during tethers--Garuda
+    'E6N Storm Of Fury 2': '4BE6', // Circle AoE during tethers--Raktapaksa
+    'E6N Explosion': '4BE2', // AoE circles, Garuda orbs
+    'E6N Heat Burst': '4BEC',
+    'E6N Conflag Strike': '4BEE', // 270-degree frontal AoE
+    'E6N Spike Of Flame': '4BF0', // Orb explosions after Strike Spark
+    'E6N Radiant Plume': '4BF2',
+    'E6N Eruption': '4BF4',
   },
   damageFail: {
-    'Vacuum Slice': '4BD5', // Dark line AoE from Garuda
-    'Downburst': '4BDB', // Blue knockback circle. Actual knockback is unknown ability 4C20
+    'E6N Vacuum Slice': '4BD5', // Dark line AoE from Garuda
+    'E6N Downburst': '4BDB', // Blue knockback circle. Actual knockback is unknown ability 4C20
   },
-  triggers: [
-    {
-      id: 'E6N Instant Incineration',
-      damageRegex: '4BED',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        // Kills non-tanks who get hit by it.
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareFail: {
+    // Kills non-tanks who get hit by it.
+    'E6N Instant Incineration': '4BED',
+  },
 }];

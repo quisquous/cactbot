@@ -6,6 +6,7 @@
     cn: /^水妖幻园多恩美格禁园$/,
     ko: /^도느 메그$/,
   },
+  zoneId: ZoneId.DohnMheg,
   timelineFile: 'dohn_mheg.txt',
   timelineTriggers: [
     {
@@ -22,12 +23,12 @@
     {
       id: 'Dohn Mheg Watering Wheel',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath' }),
-      regexDe: Regexes.startsUsing({ id: '3DAA', source: 'Dohn-Fuath' }),
-      regexFr: Regexes.startsUsing({ id: '3DAA', source: 'Fuath De Dohn Mheg' }),
-      regexJa: Regexes.startsUsing({ id: '3DAA', source: 'ドォーヌ・フーア' }),
-      regexCn: Regexes.startsUsing({ id: '3DAA', source: '禁园水妖' }),
-      regexKo: Regexes.startsUsing({ id: '3DAA', source: '도느 푸아' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DAA', source: 'Dohnfast Fuath' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DAA', source: 'Dohn-Fuath' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DAA', source: 'Fuath De Dohn Mheg' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DAA', source: 'ドォーヌ・フーア' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DAA', source: '禁园水妖' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DAA', source: '도느 푸아' }),
       condition: function(data) {
         return data.CanSilence();
       },
@@ -36,12 +37,12 @@
     {
       id: 'Dohn Mheg Straight Punch',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket' }),
-      regexDe: Regexes.startsUsing({ id: '3DAB', source: 'Dohn-Blumenkorb' }),
-      regexFr: Regexes.startsUsing({ id: '3DAB', source: 'Panier De Dohn Mheg' }),
-      regexJa: Regexes.startsUsing({ id: '3DAB', source: 'ドォーヌ・バスケット' }),
-      regexCn: Regexes.startsUsing({ id: '3DAB', source: '禁园篮筐' }),
-      regexKo: Regexes.startsUsing({ id: '3DAB', source: '도느 바구니' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DAB', source: 'Dohnfast Basket' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DAB', source: 'Dohn-Blumenkorb' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DAB', source: 'Panier De Dohn Mheg' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DAB', source: 'ドォーヌ・バスケット' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DAB', source: '禁园篮筐' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DAB', source: '도느 바구니' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -50,12 +51,12 @@
     {
       id: 'Dohn Mheg Proboscis',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth' }),
-      regexDe: Regexes.startsUsing({ id: '3DAF', source: 'Dohn-Edianmotte' }),
-      regexFr: Regexes.startsUsing({ id: '3DAF', source: 'Noctuétain De Dohn Mheg' }),
-      regexJa: Regexes.startsUsing({ id: '3DAF', source: 'ドォーヌ・エーディンモス' }),
-      regexCn: Regexes.startsUsing({ id: '3DAF', source: '禁园爱蒂恩蛾' }),
-      regexKo: Regexes.startsUsing({ id: '3DAF', source: '도느 에다인나방' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DAF', source: 'Dohnfast Etainmoth' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DAF', source: 'Dohn-Edianmotte' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DAF', source: 'Noctuétain De Dohn Mheg' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DAF', source: 'ドォーヌ・エーディンモス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DAF', source: '禁园爱蒂恩蛾' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DAF', source: '도느 에다인나방' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -64,12 +65,12 @@
     {
       id: 'Dohn Mheg Torpedo',
       // TODO: double check this with an import, is there a The??
-      regex: Regexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie' }),
-      regexDe: Regexes.startsUsing({ id: '3DB5', source: 'Dohn-Kelpie' }),
-      regexFr: Regexes.startsUsing({ id: '3DB5', source: 'Kelpie De Dohn Mheg' }),
-      regexJa: Regexes.startsUsing({ id: '3DB5', source: 'ドォーヌ・ケルピー' }),
-      regexCn: Regexes.startsUsing({ id: '3DB5', source: '禁园凯尔派' }),
-      regexKo: Regexes.startsUsing({ id: '3DB5', source: '도느 켈피' }),
+      netRegex: NetRegexes.startsUsing({ id: '3DB5', source: 'Dohnfast Kelpie' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '3DB5', source: 'Dohn-Kelpie' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3DB5', source: 'Kelpie De Dohn Mheg' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '3DB5', source: 'ドォーヌ・ケルピー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '3DB5', source: '禁园凯尔派' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3DB5', source: '도느 켈피' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -77,12 +78,12 @@
     },
     {
       id: 'Dohn Mheg Candy Cane',
-      regex: Regexes.startsUsing({ id: '2299', source: 'Aenc Thon, Lord Of The Lingering Gaze' }),
-      regexDe: Regexes.startsUsing({ id: '2299', source: 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)' }),
-      regexFr: Regexes.startsUsing({ id: '2299', source: 'Aenc Thon L\'Envoûtant' }),
-      regexJa: Regexes.startsUsing({ id: '2299', source: '美眼のインク＝ゾン' }),
-      regexCn: Regexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
-      regexKo: Regexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
+      netRegex: NetRegexes.startsUsing({ id: '2299', source: 'Aenc Thon, Lord Of The Lingering Gaze' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2299', source: 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2299', source: 'Aenc Thon L\'Envoûtant' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2299', source: '美眼のインク＝ゾン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2299', source: '美眼 因克·佐恩' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2299', source: '눈이 예쁜 잉크 돈' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -90,12 +91,12 @@
     },
     {
       id: 'Dohn Mheg Landsblood',
-      regex: Regexes.startsUsing({ id: '1E8E', source: 'Aenc Thon, Lord Of The Lingering Gaze', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '1E8E', source: 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '1E8E', source: 'Aenc Thon L\'Envoûtant', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '1E8E', source: '美眼のインク＝ゾン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '1E8E', source: '美眼 因克·佐恩', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '1E8E', source: '눈이 예쁜 잉크 돈', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1E8E', source: 'Aenc Thon, Lord Of The Lingering Gaze', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1E8E', source: 'Aenc Thon (?:der|die|das) Glupschäugig(?:e|er|es|en)', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1E8E', source: 'Aenc Thon L\'Envoûtant', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1E8E', source: '美眼のインク＝ゾン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1E8E', source: '美眼 因克·佐恩', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1E8E', source: '눈이 예쁜 잉크 돈', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -103,17 +104,17 @@
     },
     {
       id: 'Dohn Mheg Leap Stack',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn(),
     },
     {
       id: 'Dohn Mheg Timber',
-      regex: Regexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '22D3', source: 'グリオール', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '22D3', source: '格里奥勒', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '22D3', source: '그리올', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '22D3', source: 'Griaule', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '22D3', source: 'グリオール', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '22D3', source: '格里奥勒', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '22D3', source: '그리올', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -121,12 +122,12 @@
     },
     {
       id: 'Dohn Mheg Crippling Blow',
-      regex: Regexes.startsUsing({ id: '35A4', source: 'Aenc Thon, Lord Of The Lengthsome Gait' }),
-      regexDe: Regexes.startsUsing({ id: '35A4', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)' }),
-      regexFr: Regexes.startsUsing({ id: '35A4', source: 'Aenc Thon Le Virtuose' }),
-      regexJa: Regexes.startsUsing({ id: '35A4', source: '楽聖のインク＝ゾン' }),
-      regexCn: Regexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
-      regexKo: Regexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
+      netRegex: NetRegexes.startsUsing({ id: '35A4', source: 'Aenc Thon, Lord Of The Lengthsome Gait' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '35A4', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '35A4', source: 'Aenc Thon Le Virtuose' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '35A4', source: '楽聖のインク＝ゾン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '35A4', source: '乐圣 因克·佐恩' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '35A4', source: '대음악가 잉크 돈' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -134,32 +135,32 @@
     },
     {
       id: 'Dohn Mheg Imp Choir',
-      regex: Regexes.startsUsing({ id: '34F0', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '34F0', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '34F0', source: 'Aenc Thon Le Virtuose', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '34F0', source: '楽聖のインク＝ゾン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '34F0', source: '乐圣 因克·佐恩', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '34F0', source: '대음악가 잉크 돈', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '34F0', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '34F0', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '34F0', source: 'Aenc Thon Le Virtuose', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '34F0', source: '楽聖のインク＝ゾン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '34F0', source: '乐圣 因克·佐恩', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '34F0', source: '대음악가 잉크 돈', capture: false }),
       response: Responses.lookAway('alert'),
     },
     {
       id: 'Dohn Mheg Toad Choir',
-      regex: Regexes.startsUsing({ id: '34EF', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '34EF', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '34EF', source: 'Aenc Thon Le Virtuose', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '34EF', source: '楽聖のインク＝ゾン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '34EF', source: '乐圣 因克·佐恩', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '34EF', source: '대음악가 잉크 돈', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '34EF', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '34EF', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '34EF', source: 'Aenc Thon Le Virtuose', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '34EF', source: '楽聖のインク＝ゾン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '34EF', source: '乐圣 因克·佐恩', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '34EF', source: '대음악가 잉크 돈', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
       id: 'Dohn Mheg Virtuosic Cappriccio',
-      regex: Regexes.startsUsing({ id: '358C', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '358C', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '358C', source: 'Aenc Thon Le Virtuose', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '358C', source: '楽聖のインク＝ゾン', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '358C', source: '乐圣 因克·佐恩', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '358C', source: '대음악가 잉크 돈', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '358C', source: 'Aenc Thon, Lord Of The Lengthsome Gait', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '358C', source: 'Aenc Thon (?:der|die|das) Langbeinig(?:e|er|es|en)', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '358C', source: 'Aenc Thon Le Virtuose', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '358C', source: '楽聖のインク＝ゾン', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '358C', source: '乐圣 因克·佐恩', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '358C', source: '대음악가 잉크 돈', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -201,6 +202,42 @@
         'Changeling\'s Fantasia': 'Wechselbalg-Fantasie',
         'Virtuosic Capriccio': 'Virtuoses Capriccio',
         'Rake': 'Prankenhieb',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Aenc Thon, Lord of the Lengthsome Gait': 'Aenc Thon Le Virtuose',
+        'Aenc Thon, Lord of the Lingering Gaze': 'Aenc Thon L\'Envoûtant',
+        'Griaule': 'Griaule',
+        'Painted Sapling': 'Pousse de Griaule',
+        'Shade of Fear': 'Illusion terrifiante',
+        'Teag Gye': 'la Teag Gye',
+        'The Atelier': 'Repos de Griaule',
+        'The throne room': 'la salle du trésor',
+      },
+      'replaceText': {
+        'Bile Bombardment': 'Bombardement bilieux',
+        'Candy Cane': 'Canne en sucre d\'orge',
+        'Changeling\'s Fantasia': 'Fantaisie du changelin',
+        'Coiling Ivy': 'Étreinte de lierre',
+        'Corrosive Bile': 'Bile corrosive',
+        'Crippling Blow': 'Coup handicapant',
+        'Feeding Time': 'Moisson',
+        'Flailing Tentacles': 'Tentacules flagellants',
+        'Fodder': 'Culture',
+        'Funambulist\'s Fantasia': 'Fantaisie du funambule',
+        'Geyser': 'Geyser',
+        'Hydrofall': 'Pilonnage hydrique',
+        'Imp Choir': 'Mélodie du kappa',
+        'Landsblood': 'Pulsation phréatique',
+        'Laughing Leap': 'Bond soudain',
+        'Malaise': 'Malaise',
+        'Rake': 'Griffes',
+        'Swinge': 'Brutalité',
+        'Tiiimbeeer': 'Ça tooombe',
+        'Toad Choir': 'Mélodie du crapeau',
+        'Virtuosic Capriccio': 'Capriccio effréné',
       },
     },
     {
@@ -274,7 +311,6 @@
         'Virtuosic Capriccio': '残酷狂想曲',
         'Rake': '利爪',
       },
-      '~effectNames': {},
     },
   ],
 }];

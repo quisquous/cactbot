@@ -6,16 +6,18 @@
     cn: /^失落之都拉巴纳斯塔$/,
     ko: /^왕도 라바나스터$/,
   },
+  zoneId: ZoneId.TheRoyalCityOfRabanastre,
+  timelineNeedsFixing: true,
   timelineFile: 'royal_city_of_rabanastre.txt',
   triggers: [
     {
       id: 'Rab Mateus Aqua Sphere',
-      regex: Regexes.startsUsing({ id: '2633', source: 'Mateus, The Corrupt', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2633', source: 'Mateus (?:der|die|das) Peiniger', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2633', source: 'Mateus Le Corrompu', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2633', source: '背徳の皇帝マティウス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2633', source: '背德皇帝马提乌斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2633', source: '배덕의 황제 마티우스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2633', source: 'Mateus, The Corrupt', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2633', source: 'Mateus (?:der|die|das) Peiniger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2633', source: 'Mateus Le Corrompu', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2633', source: '背徳の皇帝マティウス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2633', source: '背德皇帝马提乌斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2633', source: '배덕의 황제 마티우스', capture: false }),
       delaySeconds: 11,
       infoText: {
         en: 'Kill Aqua Spheres',
@@ -33,13 +35,10 @@
       },
     },
     {
+      // Note: this could probably use |matches.count| directly instead of
+      // using data.breathless to count the stacks.
       id: 'Rab Mateus Breathless Gain',
-      regex: Regexes.gainsEffect({ effect: 'Breathless' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Atemnot' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Suffocation' }),
-      regexJa: Regexes.gainsEffect({ effect: '呼吸困難' }),
-      regexCn: Regexes.gainsEffect({ effect: '呼吸困难' }),
-      regexKo: Regexes.gainsEffect({ effect: '호흡곤란' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '595' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -83,12 +82,7 @@
     },
     {
       id: 'Rab Mateus Breathless Lose',
-      regex: Regexes.losesEffect({ effect: 'Breathless' }),
-      regexDe: Regexes.losesEffect({ effect: 'Atemnot' }),
-      regexFr: Regexes.losesEffect({ effect: 'Suffocation' }),
-      regexJa: Regexes.losesEffect({ effect: '呼吸困難' }),
-      regexCn: Regexes.losesEffect({ effect: '呼吸困难' }),
-      regexKo: Regexes.losesEffect({ effect: '호흡곤란' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '595' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -98,12 +92,12 @@
     },
     {
       id: 'Rab Mateus Blizzard IV',
-      regex: Regexes.startsUsing({ id: '263D', source: 'Mateus, The Corrupt', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '263D', source: 'Mateus (?:der|die|das) Peiniger', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '263D', source: 'Mateus Le Corrompu', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '263D', source: '背徳の皇帝マティウス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '263D', source: '背德皇帝马提乌斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '263D', source: '배덕의 황제 마티우스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '263D', source: 'Mateus, The Corrupt', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '263D', source: 'Mateus (?:der|die|das) Peiniger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '263D', source: 'Mateus Le Corrompu', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '263D', source: '背徳の皇帝マティウス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '263D', source: '背德皇帝马提乌斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '263D', source: '배덕의 황제 마티우스', capture: false }),
       alertText: {
         en: 'Move To Safe Spot',
         de: 'Zur sicheren Zone',
@@ -121,29 +115,29 @@
     },
     {
       id: 'Rab Hashmal Rock Cutter',
-      regex: Regexes.startsUsing({ id: '25D7', source: 'Hashmal, Bringer Of Order' }),
-      regexDe: Regexes.startsUsing({ id: '25D7', source: 'Hashmallim der Einiger' }),
-      regexFr: Regexes.startsUsing({ id: '25D7', source: 'Hashmal Le Grand Ordonnateur' }),
-      regexJa: Regexes.startsUsing({ id: '25D7', source: '統制者ハシュマリム' }),
-      regexCn: Regexes.startsUsing({ id: '25D7', source: '统治者哈修马利姆' }),
-      regexKo: Regexes.startsUsing({ id: '25D7', source: '통제자 하쉬말림' }),
+      netRegex: NetRegexes.startsUsing({ id: '25D7', source: 'Hashmal, Bringer Of Order' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '25D7', source: 'Hashmallim der Einiger' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '25D7', source: 'Hashmal Le Grand Ordonnateur' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '25D7', source: '統制者ハシュマリム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '25D7', source: '统治者哈修马利姆' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '25D7', source: '통제자 하쉬말림' }),
       response: Responses.tankCleave(),
 
     },
     {
       id: 'Rab Hashmal Earth Hammer',
-      regex: Regexes.startsUsing({ id: '25CB', source: 'Hashmal, Bringer Of Order', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '25CB', source: 'Hashmallim der Einiger', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '25CB', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '25CB', source: '統制者ハシュマリム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '25CB', source: '统治者哈修马利姆', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '25CB', source: '통제자 하쉬말림', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '25CB', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '25CB', source: 'Hashmallim der Einiger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '25CB', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '25CB', source: '統制者ハシュマリム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '25CB', source: '统治者哈修马利姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '25CB', source: '통제자 하쉬말림', capture: false }),
       alertText: {
         en: 'Move Away',
         de: 'Weg da',
         fr: 'Eloignez-vous',
         cn: '远离大锤落点',
-        ko: '피하기',
+        ko: '기둥으로부터 피하기',
       },
       tts: {
         en: 'move away',
@@ -154,12 +148,12 @@
     },
     {
       id: 'Rab Hashmal Golems',
-      regex: Regexes.startsUsing({ id: '25D4', source: 'Hashmal, Bringer Of Order', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '25D4', source: 'Hashmallim der Einiger', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '25D4', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '25D4', source: '統制者ハシュマリム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '25D4', source: '统治者哈修马利姆', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '25D4', source: '통제자 하쉬말림', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '25D4', source: 'Hashmal, Bringer Of Order', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '25D4', source: 'Hashmallim der Einiger', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '25D4', source: 'Hashmal Le Grand Ordonnateur', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '25D4', source: '統制者ハシュマリム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '25D4', source: '统治者哈修马利姆', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '25D4', source: '통제자 하쉬말림', capture: false }),
       delaySeconds: 5,
       infoText: {
         en: 'Kill Golems',
@@ -178,18 +172,18 @@
     },
     {
       id: 'Rab Trash Dragon Voice',
-      regex: Regexes.startsUsing({ id: 'D10', source: 'Archaeolion', capture: false }),
-      regexDe: Regexes.startsUsing({ id: 'D10', source: 'Archaeolöwe', capture: false }),
-      regexFr: Regexes.startsUsing({ id: 'D10', source: 'Archéochimère', capture: false }),
-      regexJa: Regexes.startsUsing({ id: 'D10', source: 'アルケオキマイラ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: 'D10', source: '古奇美拉', capture: false }),
-      regexKo: Regexes.startsUsing({ id: 'D10', source: '원시 키마이라', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: 'D10', source: 'Archaeolion', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'D10', source: 'Archaeolöwe', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'D10', source: 'Archéochimère', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'D10', source: 'アルケオキマイラ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'D10', source: '古奇美拉', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'D10', source: '원시 키마이라', capture: false }),
       alertText: {
         en: 'Dragon Voice: Move In',
         de: 'Stimme Des Drachen: Rein',
         fr: 'Voix Du Dragon : Packez-vous',
         cn: '雷电咆哮: 靠近',
-        ko: '뇌전 포효: 안으로',
+        ko: '뇌전의 포효: 안으로',
       },
       tts: {
         en: 'dragon voice',
@@ -201,18 +195,18 @@
     },
     {
       id: 'Rab Trash Ram Voice',
-      regex: Regexes.startsUsing({ id: ['D0F', '273B'], source: 'Archaeolion', capture: false }),
-      regexDe: Regexes.startsUsing({ id: ['D0F', '273B'], source: 'Archaeolöwe', capture: false }),
-      regexFr: Regexes.startsUsing({ id: ['D0F', '273B'], source: 'Archéochimère', capture: false }),
-      regexJa: Regexes.startsUsing({ id: ['D0F', '273B'], source: 'アルケオキマイラ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: ['D0F', '273B'], source: '古奇美拉', capture: false }),
-      regexKo: Regexes.startsUsing({ id: ['D0F', '273B'], source: '원시 키마이라', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'Archaeolion', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'Archaeolöwe', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'Archéochimère', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'アルケオキマイラ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '古奇美拉', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '원시 키마이라', capture: false }),
       alertText: {
         en: 'Ram Voice: Move Out',
         de: 'Stimme Des Widders: Raus',
         fr: 'Voix Du Bélier : Eloignez-vous',
         cn: '寒冰咆哮: 远离',
-        ko: '빙결 포효: 바깥으로',
+        ko: '빙결의 포효: 바깥으로',
       },
       tts: {
         en: 'rams voice',
@@ -224,7 +218,7 @@
     },
     {
       id: 'Rab Rofocale Chariot',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -232,12 +226,12 @@
     },
     {
       id: 'Rab Rofocale Trample',
-      regex: Regexes.startsUsing({ id: '2676', source: 'Rofocale', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2676', source: 'Rofocale', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2676', source: 'Rofocale Le Roi Centaure', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2676', source: '人馬王ロフォカレ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2676', source: '人马王洛弗卡勒', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2676', source: '인마왕 로포칼레', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2676', source: 'Rofocale', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2676', source: 'Rofocale', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2676', source: 'Rofocale Le Roi Centaure', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2676', source: '人馬王ロフォカレ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2676', source: '人马王洛弗卡勒', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2676', source: '인마왕 로포칼레', capture: false }),
       alertText: {
         en: 'Trample',
         de: 'Zertrampeln',
@@ -248,31 +242,31 @@
     },
     {
       id: 'Rab Argath Mask of Truth',
-      regex: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
-      regexDe: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
-      regexFr: Regexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
-      regexJa: Regexes.ability({ source: '冷血剣アルガス', id: '261A', capture: false }),
-      regexCn: Regexes.ability({ source: '冷血剑阿加斯', id: '261A', capture: false }),
-      regexKo: Regexes.ability({ source: '냉혈검 아르가스', id: '261A', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Argath Thadalfus', id: '261A', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '冷血剣アルガス', id: '261A', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '冷血剑阿加斯', id: '261A', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '냉혈검 아르가스', id: '261A', capture: false }),
       run: function(data) {
         data.maskValue = true;
       },
     },
     {
       id: 'Rab Argath Mask of Lies',
-      regex: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
-      regexDe: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
-      regexFr: Regexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
-      regexJa: Regexes.ability({ source: '冷血剣アルガス', id: '2619', capture: false }),
-      regexCn: Regexes.ability({ source: '冷血剑阿加斯', id: '2619', capture: false }),
-      regexKo: Regexes.ability({ source: '냉혈검 아르가스', id: '2619', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Argath Thadalfus', id: '2619', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '冷血剣アルガス', id: '2619', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '冷血剑阿加斯', id: '2619', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '냉혈검 아르가스', id: '2619', capture: false }),
       run: function(data) {
         data.maskValue = false;
       },
     },
     {
       id: 'Rab Argath Command Scatter',
-      regex: Regexes.headMarker({ id: '007B' }),
+      netRegex: NetRegexes.headMarker({ id: '007B' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -297,7 +291,7 @@
     },
     {
       id: 'Rab Argath Command Turn',
-      regex: Regexes.headMarker({ id: '007C' }),
+      netRegex: NetRegexes.headMarker({ id: '007C' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -308,7 +302,7 @@
             de: 'Wegschauen',
             fr: 'Regardez ailleurs',
             cn: '背对BOSS',
-            ko: '바라보기',
+            ko: '바라보지 말기',
           };
         }
         return {
@@ -316,7 +310,7 @@
           de: 'Anschauen',
           fr: 'Regardez le boss',
           cn: '面对BOSS',
-          ko: '바라보지 말기',
+          ko: '바라보기',
         };
       },
     },
@@ -328,7 +322,6 @@
       'replaceSync': {
         'Archaeodemon': 'Archaeodämon',
         'command tower': 'Kommandoturm',
-        'Frostwave': 'Polarlanze',
         'I am Revelation': 'Seht die Offenbarung',
         'I am the truth from which you run': 'Die Maske zeigt euch die Macht des wahren Gottes! Fügt euch der Offenbarung!',
         'I am the lies upon which you sup': 'Die Maske zeigt euch die Macht des falschen Gottes! Fügt euch der Offenbarung!',
@@ -339,6 +332,15 @@
         'The heavens tremble in my wake': 'Mein Streitwagen donnert empor in luftige Höhen',
       },
       'replaceText': {
+        '--face--': '--Gesicht--',
+        '--ice disappears--': '--Eis verschwindet--',
+        '--invulnerable--': '--unverwundbar--',
+        '--lock out--': '--ausgesperrt--',
+        '--meteors--': '--Meteore--',
+        'Aqua Sphere Adds': 'Wasserblase Adds',
+        'Archaeodemon Adds': 'Archaeodämon Adds',
+        'Azure Guard Adds': 'Azurwächter Adds',
+        'Blade, or putt putt': 'Schwert oder putt putt',
         'Blizzard IV': 'Eiska',
         'Chariot': 'Streitwagen',
         'Coldblood': 'Kaltblut',
@@ -353,25 +355,32 @@
         'Embrace': 'Attacke',
         'Extreme Edge': 'Extremkante',
         'Fire IV': 'Feuka',
+        'Frog Phase': 'Frisch Phase',
         'Frostwave': 'Polarlanze',
         'Gnawing Dread': 'Nagende Angst',
+        'Golem Adds': 'Sandstein-Golem Adds',
         'Heavenly Subjugation': 'Himmelsgewalt',
+        'Hole In One': 'Hole In One',
+        'Ice Cone Phase': 'Eis-Flächen Phase',
         'Judgment': 'Aburteilung',
         'Landwaster': 'Landverwüster',
+        'Line AOEs': 'Linien AoEs',
         'Maverick': 'Einzelgänger',
         'Pomp and Circumstance': 'Pauken und Trompeten',
+        'Putt putt, or Blade': 'Putt putt oder Schwert',
         'Quake IV': 'Seiska',
         'Rock Cutter': 'Steinfräse',
         'Royal Blood': 'Blaues Blut',
+        'Sand Sphere Adds': 'Sandwirbel Adds',
+        'Shades Appear': 'Schatten erscheinen',
+        'Shard Adds': 'Nichtskristall Adds',
         'Soulfix': 'Seelenspießer',
+        'Stack Damage': 'Sammel-Schaden',
         'Submission Tower': 'Turmdivision',
         'Trample': 'Mariden-Stampfer',
         'Trepidation': 'Beklemmung',
         'Unbind': 'Loseisen',
         'Unrelenting': 'Unerbittliche Klinge',
-      },
-      '~effectNames': {
-        'Breathless': 'Atemnot',
       },
     },
     {
@@ -380,7 +389,6 @@
       'replaceSync': {
         'Archaeodemon': 'archéodémon',
         'command tower': 'tour de commandement',
-        'Frostwave': 'Vague réfrigérante',
         'Mateus, The Corrupt': 'Mateus le Corrompu',
         'Argath Thadalfus': 'Argath Thadalfus',
         'Hashmal, Bringer Of Order': 'Hashmal le Grand Ordonnateur',
@@ -425,12 +433,10 @@
       'replaceSync': {
         'Archaeodemon': 'アルケオデーモン',
         'command tower': '支配の塔',
-        'Frostwave': '凍てつく波動',
         'Mateus, The Corrupt': '背徳の皇帝マティウス',
         'Argath Thadalfus': '冷血剣アルガス',
         'Hashmal, Bringer Of Order': '統制者ハシュマリム ',
         'Rofocale': '人馬王ロフォカレ',
-        'The heavens tremble in my wake!': '“我が戦車の車輪は、天をも駆ける！ ゆくぞ……！”',
       },
       'replaceText': {
         'Blizzard IV': 'ブリザジャ',
@@ -467,10 +473,10 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'command tower': '支配之塔',
-        'Frostwave': '寒冰波动',
         'I am Revelation': '遵从朕的神谕',
         'I am the truth from which you run': '此乃真神之力！',
         'I am the lies upon which you sup': '此乃伪神之力！',
@@ -538,7 +544,6 @@
       'replaceSync': {
         'Archaeodemon': '원시 악마',
         'command tower': '지배의 탑',
-        'Frostwave': '얼어붙은 파동',
         'I am Revelation': '신벌을 받아라',
         'I am the truth from which you run': '가면의 계시에 따라라',
         'I am the lies upon which you sup': '계시를 내리겠다',

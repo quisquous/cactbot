@@ -10,6 +10,7 @@ let assert = require('chai').assert;
 let Regexes = require('../../resources/regexes.js');
 let NetRegexes = require('../../resources/netregexes.js');
 let Conditions = require('../../resources/conditions.js');
+let ZoneId = require('../../resources/zone_id.js');
 let responseModule = require('../../resources/responses.js');
 let Responses = responseModule.responses;
 let triggerFunctions = responseModule.triggerFunctions;
@@ -403,6 +404,20 @@ let testBadTimelineTriggerRegex = function(file, contents) {
   }
 };
 
+
+let testBadZoneId = function(file, contents) {
+  let json = eval(contents);
+  if (!('zoneId' in json[0])) {
+    console.error(`${file}: missing zone id`);
+    return;
+  }
+
+  if (typeof json[0].zoneId === 'undefined') {
+    console.error(`${file}: unknown zone id`);
+    exitCode = 1;
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -421,6 +436,7 @@ let testTriggerFile = function(file) {
     testResponseHasNoFriends(file, contents);
     testTriggerFieldsSorted(file, contents);
     testBadTimelineTriggerRegex(file, contents);
+    testBadZoneId(file, contents);
   } catch (e) {
     console.error(`Trigger error in ${file}.`);
     console.error(e);

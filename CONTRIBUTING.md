@@ -64,6 +64,47 @@ Additionally, doing work in feature branches
 allows you to do two parallel pull requests at the same time,
 without entangling them together in the same commits and pull.
 
+#### Commit Validation, Testing, and Linting
+
+Cactbot uses a combination of [husky](https://github.com/typicode/husky)
+and [lint-staged](https://github.com/okonet/lint-staged),
+along with a suite of linters and tests to ensure code quality.
+These validations are done both on a client-side (your computer)
+and on the server-side (GitHub).
+
+If the pre-commit validations are causing you significant problems,
+feel free to bypass the checks with `--no-verify` flag,
+such as `git commit --no-verify`,
+and open a pull request even if not everything is passing on your end.
+We can try to help with any tests that are failing
+and it helps us find any potentially confusing areas in the code.
+
+New contributors are always welcome
+and we definitely don't expect anyone to know everything right away.
+
+#### Validating Changes via Remote URLs
+
+Cactbot has the ability to reference remote GitHub URLs
+in place of referencing the HTML file on your computer.
+In order to use the main cactbot repository as your cactbot's source URL,
+simply enter the cactbot module's full HTML filepath
+instead of the HTML file included in the cactbot download.
+
+For example, <https://quisquous.github.io/cactbot/ui/raidboss/raidboss.html>
+will use the latest changes for the `raidboss` module pushed to GitHub.
+
+When making changes, it may be helpful to reference your personal fork
+via the same methods listed above.
+To leverage this free GitHub feature, enable
+[GitHub Pages](https://docs.github.com/en/github/working-with-github-pages/about-github-pages#publishing-sources-for-github-pages-sites)
+on your personal repository fork,
+and configure the source to point to either your `master` or `gh-pages` branch.
+From there, any change you'd like to test
+can be added to the branch you've selected
+and tested in real time by pointing cactbot to use
+`<username>.github.io/cactbot/ui/<module>/<module>.html`
+as its source.
+
 ### Code Review Culture
 
 Ideally, all changes should get code review.
@@ -113,17 +154,30 @@ Running `npm run lintfix` will fix many of them automatically
 and will help you not get hassled by the continuous integration travis bot.
 
 When a build fails,
-you will get a red X by a commit in your pull request.
+you will get a red ✕ by a commit in your pull request.
 It's a little bit confusing to find these errors,
 as you have to navigate through several pages to find them.
 Click the details link after the
-"Travis CI - Pull Request Failing after 45s — Build Failed"
+"Test / test (pull_request)"
 text to get to the details page.
-From there, scroll to the "Jobs and Stages" section.
-Click on any jobs with an X by them,
-and this will bring you to a page with the actual errors on them.
-If you search for the word "error" in that page,
-it will bring you to the problems themselves.
+From there, navigate the left-hand menu to find which specific job failed.
+Click on any jobs with an ✕ by them,
+and this will open the workflow execution page in the middle of your screen.
+This page should show multiple steps with ✓ and ✕ symbols.
+If you click the ▶ arrow next to any failed (✕) steps,
+it will display the errors within the steps themselves.
+
+If there are errors in the build, such as lint failings,
+the complete list of commands being run in CI are found within
+[.github/workflows](.github/workflows/README.md)
+and can be run locally without needing to commit changes just to test them.
+If it is not obvious _which_ command is failing,
+you can click the workflow in the
+[GitHub Actions](https://github.com/quisquous/cactbot/actions)
+page and click `Workflow file` to see the exact list of commands being run.
+The majority of this file is setting up the workflow runner, and the command
+that is failing is most likely going to be found at the bottom,
+such as `npm run lint`.
 
 cactbot files should all be in UTF-8.
 If you get a BOM error,

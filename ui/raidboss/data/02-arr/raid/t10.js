@@ -5,31 +5,32 @@
     en: /^The Final Coil Of Bahamut - Turn \(1\)$/,
     cn: /^巴哈姆特大迷宫 \(真源之章1\)$/,
   },
+  zoneId: ZoneId.TheFinalCoilOfBahamutTurn1,
   timelineFile: 't10.txt',
   triggers: [
     {
       id: 'T10 Phase Change',
-      regex: Regexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
-      regexDe: Regexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
-      regexFr: Regexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
-      regexJa: Regexes.startsUsing({ id: 'B5D', source: 'イムドゥグド', capture: false }),
-      regexCn: Regexes.startsUsing({ id: 'B5D', source: '伊姆都古德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: 'B5D', source: '임두구드', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'B5D', source: 'Imdugud', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'B5D', source: 'イムドゥグド', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'B5D', source: '伊姆都古德', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'B5D', source: '임두구드', capture: false }),
       sound: 'Long',
     },
     {
       id: 'T10 Heat Lightning',
-      regex: Regexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
-      regexDe: Regexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
-      regexFr: Regexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
-      regexJa: Regexes.startsUsing({ id: 'B5F', source: 'イムドゥグド', capture: false }),
-      regexCn: Regexes.startsUsing({ id: 'B5F', source: '伊姆都古德', capture: false }),
-      regexKo: Regexes.startsUsing({ id: 'B5F', source: '임두구드', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'B5F', source: 'Imdugud', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'B5F', source: 'イムドゥグド', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'B5F', source: '伊姆都古德', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'B5F', source: '임두구드', capture: false }),
       response: Responses.spread(),
     },
     {
       id: 'T10 Wild Charge',
-      regex: Regexes.headMarker({ id: '001F' }),
+      netRegex: NetRegexes.headMarker({ id: '001F' }),
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
           return {
@@ -53,17 +54,17 @@
     },
     {
       id: 'T10 Prey',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       response: Responses.preyOn(),
     },
     {
       id: 'T10 Cyclonic Tether',
-      regex: Regexes.tether({ id: '0015', source: 'Imdugud' }),
-      regexDe: Regexes.tether({ id: '0015', source: 'Imdugud' }),
-      regexFr: Regexes.tether({ id: '0015', source: 'Imdugud' }),
-      regexJa: Regexes.tether({ id: '0015', source: 'イムドゥグド' }),
-      regexCn: Regexes.tether({ id: '0015', source: '伊姆都古德' }),
-      regexKo: Regexes.tether({ id: '0015', source: '임두구드' }),
+      netRegex: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
+      netRegexDe: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
+      netRegexFr: NetRegexes.tether({ id: '0015', source: 'Imdugud' }),
+      netRegexJa: NetRegexes.tether({ id: '0015', source: 'イムドゥグド' }),
+      netRegexCn: NetRegexes.tether({ id: '0015', source: '伊姆都古德' }),
+      netRegexKo: NetRegexes.tether({ id: '0015', source: '임두구드' }),
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
           return {

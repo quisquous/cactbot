@@ -30,6 +30,10 @@
   left: 278px;
 }
 
+.sch #right-side-icons {
+  left: 278px;
+}
+
 .drk #right-side-icons {
   left: 250px;
 }
@@ -40,6 +44,10 @@
 
 .blu #right-side-icons {
   left: 204px;
+}
+
+.pld #right-side-icons {
+  left: 288px;
 }
 
 /* Relative to #bars */
@@ -157,6 +165,7 @@
 
 /* Relative to #bars */
 #rdm-boxes,
+#sch-boxes,
 #war-boxes,
 #mnk-boxes,
 #pld-boxes,
@@ -170,6 +179,7 @@
 }
 
 #rdm-boxes > div,
+#sch-boxes > div,
 #war-boxes > div,
 #mnk-boxes > div,
 #pld-boxes > div,
@@ -198,6 +208,7 @@
   height: 35px;
 }
 
+#sch-boxes > div,
 #rdm-boxes > div {
   width: 28px;
   height: 28px;
@@ -209,6 +220,7 @@
 }
 
 #rdm-boxes .text,
+#sch-boxes .text,
 #war-boxes .text,
 #mnk-boxes .text,
 #pld-boxes .text,
@@ -225,6 +237,7 @@
   top: 7px;
 }
 
+#sch-boxes .text,
 #rdm-boxes .text {
   top: 5px;
 }
@@ -280,6 +293,7 @@
 #pld-procs,
 #mnk-procs,
 #ast-procs,
+#sch-procs,
 #blu-procs,
 #drk-procs,
 #blm-procs {
@@ -290,6 +304,7 @@
 
 #mnk-procs-dragonkick,
 #ast-procs-combust,
+#sch-procs-bio,
 #blu-procs-offguard,
 #blm-procs-fire {
   position: relative;
@@ -299,6 +314,7 @@
 
 #mnk-procs-twinsnakes,
 #ast-procs-benefic,
+#sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
   position: relative;
@@ -308,6 +324,7 @@
 
 #mnk-procs-demolish,
 #ast-procs-helios,
+#sch-procs-luciddreaming,
 #blm-procs-thunder,
 #blu-procs-lucid {
   position: relative;
@@ -466,6 +483,14 @@
   background-color: rgb(255, 255, 200);
 }
 
+.pld-color-atonement {
+  background-color: rgb(214, 237, 255);
+}
+
+.pld-color-atonement.any {
+  background-color: rgb(25, 156, 255);
+}
+
 .drk-color-blood {
   background-color: rgb(255, 0, 10);
 }
@@ -536,6 +561,30 @@
 
 .mnk-color-demolish {
   background-color: rgb(60, 80, 200);
+}
+
+.sch-color-bio {
+  background-color: rgb(60, 80, 200);
+}
+
+.sch-color-aetherflow {
+  background-color: rgb(255, 96, 207);
+}
+
+.sch-color-aetherflow.too-much-stacks {
+  background-color: rgb(240, 30, 30);
+}
+
+.sch-color-fairygauge {
+  background-color: rgb(62, 224, 170);
+}
+
+.sch-color-fairygauge.bright {
+  background-color: rgb(120, 170, 250);
+}
+
+.sch-color-lucid {
+  background-color: rgb(227, 148, 210);
 }
 
 .ast-color-combust {

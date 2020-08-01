@@ -7,6 +7,7 @@
 let noOrb = (str) => {
   return {
     en: str + ' (no orb)',
+    de: str + ' (kein Orb)',
     fr: str + ' (pas d\'orbe)',
   };
 };
@@ -16,26 +17,39 @@ let noOrb = (str) => {
     en: /^Eden's Verse: Fulmination \(Savage\)$/,
     ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(1\)$/,
   },
+  zoneId: ZoneId.EdensVerseFulminationSavage,
   damageWarn: {
-    'Impact': '4E3B', // Stratospear landing AoE
-    'Gallop': '4BB4', // Sideways add charge
-    'Shock Strike': '4BC1', // Small AoE circles during Thunderstorm
-    'Stepped Leader Twister': '4BC7', // Twister stepped leader
-    'Stepped Leader Donut': '4BC8', // Donut stepped leader
-    'Shock': '4E3D', // Hated of Levin Stormcloud-cleansable exploding debuff
+    'E5S Impact': '4E3B', // Stratospear landing AoE
+    'E5S Gallop': '4BB4', // Sideways add charge
+    'E5S Shock Strike': '4BC1', // Small AoE circles during Thunderstorm
+    'E5S Stepped Leader Twister': '4BC7', // Twister stepped leader
+    'E5S Stepped Leader Donut': '4BC8', // Donut stepped leader
+    'E5S Shock': '4E3D', // Hated of Levin Stormcloud-cleansable exploding debuff
   },
   damageFail: {
-    'Judgment Jolt': '4BA7', // Stratospear explosions
+    'E5S Judgment Jolt': '4BA7', // Stratospear explosions
+  },
+  shareWarn: {
+    'E5S Volt Strike Double': '4BC3', // Large AoE circles during Thunderstorm
+    'E5S Crippling Blow': '4BCA',
+    'E5S Chain Lightning Double': '4BC5',
   },
   triggers: [
     {
       // Helper for orb pickup failures
-      id: 'E5S Orb Tracking',
-      gainsEffectRegex: gLang.kEffect.SurgeProtection,
-      losesEffectRegex: gLang.kEffect.SurgeProtection,
-      run: function(e, data) {
+      id: 'E5S Orb Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8B4' }),
+      run: function(e, data, matches) {
         data.hasOrb = data.hasOrb || {};
-        data.hasOrb[e.targetName] = e.gains;
+        data.hasOrb[matches.target] = true;
+      },
+    },
+    {
+      id: 'E5S Orb Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8B4' }),
+      run: function(e, data, matches) {
+        data.hasOrb = data.hasOrb || {};
+        data.hasOrb[matches.target] = false;
       },
     },
     {
@@ -46,18 +60,6 @@ let noOrb = (str) => {
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
-      },
-    },
-    {
-      // Large AoE circles during Thunderstorm
-      id: 'E5S Volt Strike Double',
-      damageRegex: '4BC3',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
@@ -78,17 +80,6 @@ let noOrb = (str) => {
       },
       mistake: function(e) {
         return { type: 'fail', blame: e.targetName, text: noOrb(e.abilityName) };
-      },
-    },
-    {
-      id: 'E5S Crippling Blow',
-      damageRegex: '4BCA',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
     {
@@ -146,17 +137,6 @@ let noOrb = (str) => {
       run: function(e, data) {
         delete data.cloudMarkers;
         delete data.hated;
-      },
-    },
-    {
-      id: 'E5S Chain Lightning Double',
-      damageRegex: '4BC5',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
       },
     },
   ],

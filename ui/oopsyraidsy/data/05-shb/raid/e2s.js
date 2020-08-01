@@ -11,28 +11,22 @@
     cn: /^伊甸零式希望乐园 \(觉醒之章2\)$/,
     ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(2\)$/,
   },
+  zoneId: ZoneId.EdensGateDescentSavage,
   damageWarn: {
     'E2S Doomvoid Slicer': '3E50',
     'E3S Empty Rage': '3E6C',
     'E3S Doomvoid Guillotine': '3E4F',
   },
+  shareWarn: {
+    'E2S Doomvoid Cleaver': '3E64',
+  },
   triggers: [
     {
-      id: 'E2S Doomvoid Cleaver',
-      damageRegex: '3E64',
-      condition: function(e, data) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
       id: 'E2S Shadoweye',
-      gainsEffectRegex: gLang.kEffect.StoneCurse,
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.effectName };
+      // Stone Curse
+      netRegex: NetRegexes.gainsEffect({ effectId: '589' }),
+      mistake: function(e, data, matches) {
+        return { type: 'fail', blame: matches.target, text: matches.effect };
       },
     },
     {
@@ -44,11 +38,10 @@
           blame: e.targetName,
           text: {
             en: 'Booped',
-            // FIXME: ability name here is "Attack", which isn't great.
             de: e.abilityName,
-            fr: e.abilityName,
-            cn: '攻击伤害降低',
+            fr: 'Malus de dégâts',
             ja: e.abilityName,
+            cn: '攻击伤害降低',
             ko: '닉스',
           },
         };

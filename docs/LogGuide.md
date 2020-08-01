@@ -64,7 +64,7 @@ With updates for:
   * [22: NetworkNameToggle](#22-networknametoggle)
   * [23: NetworkTether](#23-networktether)
   * [24: LimitBreak](#24-limitbreak)
-  * [25: NetworkEffectResult](#25-networkeffectresult)
+  * [25: NetworkActionSync](#25-NetworkActionSync)
   * [26: NetworkStatusEffects](#26-networkstatuseffects)
   * [27: NetworkUpdateHP](#27-networkupdatehp)
   * [FB: Debug](#fb-debug)
@@ -651,7 +651,7 @@ See the example below.
 It is also to be noted that this value has slowly increased over time and was
 `3C` back in 2017.
 
-The other shift is that plenary indulgance lists the number of stacks in the flags as `113`, `213`, or `313` respectively.
+The other shift is that plenary indulgence lists the number of stacks in the flags as `113`, `213`, or `313` respectively.
 These are always followed by `4C3`.
 Therefore, these should also be shifted over two to find the real flags.
 
@@ -740,7 +740,7 @@ This message is the "gains effect" message for players and mobs gaining effects 
 Structure:
 `1A:[ObjectId]:[Target Name] gains the effect of [Status] from [Source Name] for [Float_Value] Seconds`
 
-Exampless:
+Examples:
 
 ```log
 1A:105EDD08:Tini Poutini gains the effect of Sprint from Tini Poutini for 20.00 Seconds.
@@ -913,6 +913,8 @@ Unused.
 
 ### 21: Network6D (Actor Control Lines)
 
+See also: [nari directory update documentation](https://nonowazu.github.io/nari/types/event/directorupdate.html)
+
 Actor control lines are for several miscellaneous zone commands:
 
 * changing the music
@@ -921,7 +923,7 @@ Actor control lines are for several miscellaneous zone commands:
 * updates on time remaining (periodically, and after a clear)
 
 Structure:
-`21:ZoneID (4 bytes):Command (4 bytes):Data (4x 4? byte extra data)`
+`21:TypeAndInstanceContentId:Command (4 bytes):Data (4x 4? byte extra data)`
 
 Examples:
 
@@ -931,8 +933,10 @@ Examples:
 21:80037543:80000004:257:00:00:00
 ```
 
-The ZoneID is constant for a particular zone across games,
-but does not necessarily reflect the same ZoneID from the [ChangeZone](#01-changezone) message.
+`TypeAndContentId` is 2 bytes of a type enum,
+where `8003` is the update type for instanced content.
+It's then followed by 2 bytes of a content id.
+This is the ID from the InstanceContent table.
 
 Wipes on most raids and primals these days can be detected via this regex:
 `21:........:40000010:`.  However, this does not occur on some older fights,
@@ -940,18 +944,21 @@ such as coil turns where there is a zone seal.
 
 Known types:
 
-* Initial commence: `21:zone:40000001:time:` (time is the lockout time in seconds)
-* Recommence: `21:zone:40000006:time:00:00:00`
-* Lockout time adjust: `21:zone:80000004:time:00:00:00`
-* Charge boss limit break: `21:zone:8000000C:value1:value2:00:00`
-* Music change: `21:zone:80000001:value:00:00:00`
-* Wipe 1: `21:zone:40000010:00:00:00:00` (always comes before Wipe 2)
-* Wipe 2: `21:zone:40000012:00:00:00:00` (always comes after Wipe 1)
+* Initial commence: `21:content:40000001:time:` (time is the lockout time in seconds)
+* Recommence: `21:content:40000006:time:00:00:00`
+* Lockout time adjust: `21:content:80000004:time:00:00:00`
+* Charge boss limit break: `21:content:8000000C:value1:value2:00:00`
+* Music change: `21:content:80000001:value:00:00:00`
+* Fade out: `21:content:40000005:00:00:00:00` (wipe)
+* Fade in: `21:content:40000010:00:00:00:00` (always paired with barrier up)
+* Barrier up: `21:content:40000012:00:00:00:00` (always comes after fade in)
+* Victory: `21:zone:40000003:00:00:00:00`
+
+Note: cactbot uses "fade in" as the wipe trigger,
+but probably should switch to "fade out" after testing.
 
 Still unknown:
 
-* `21:zone:40000003:00:00:00:00` (victory?)
-* `21:zone:40000005:00:00:00:00` (fade to black during wipe?)
 * `21:zone:40000007:00:00:00:00`
 
 ### 22: NetworkNameToggle
@@ -1022,12 +1029,21 @@ Examples:
 24:Limit Break: 7530
 ```
 
-## 25: NetworkEffectResult
+## 25: NetworkActionSync
 
-This log line appears to be recorded at any time an actor is targeted by a hostile action.
-It appears that the action must hit and must deal non-zero damage,
-OR must inflict its effect in order to generate this log line.
-Individual DoT ticks do not appear to generate separate lines.
+This log line is a sync packet that tells the client to render an action that has previously resolved.
+(This can be an animation or text in one of the game text logs.)
+It seems that it is emitted at the moment an action "actually happens" in-game,
+while the `14/15` line is emitted before, at the moment the action is "locked in".
+[As Ravahn explains it](https://discordapp.com/channels/551474815727304704/551476873717088279/733336512443187231):
+
+> "If I cast a spell, I will get [a `NetworkAbility`] packet (line type [`14/15`]) showing the damage amount,
+but the target isn't expected to actually take that damage yet.
+The [`25` log line]  has a unique identifier in it which refers back to the [`14/15`] line[,]
+and indicates that the damage should now take effect on the target.
+> [The] FFXIV plugin doesn't use these lines currently, they are used by FFLogs.
+It would help though if I did, but ACT doesn't do multi-line parsing very easily[,]
+so I would need to do a lot of work-arounds."
 
 Structure:
 `25:[Player ObjectId]:[Sequence Number]:[Current HP]:[Max HP]:[Current MP]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:[packet data thereafter]`
@@ -1041,9 +1057,9 @@ Examples:
 ## 26: NetworkStatusEffects
 
 For NPC opponents (and possibly PvP) this log line is generated alongside `18:NetworkDoT` lines.
-For non-fairy allies, it is generated alongside [1A: NetworkBuff](#1a-networkbuff),
-[1E: NetworkBuffRemove](#1e-networkbuffremove),
- and [25:NetworkEffectResult](#25-networkeffectresult).
+For non-fairy allies, it is generated alongside [1A: NetworkBuff](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
+[1E: NetworkBuffRemove](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove),
+ and [25:NetworkActionSync](https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#25-NetworkActionSync).
 
 Structure:
 `26:[Target Id]:[Target Name]:[Job Levels]:[Current HP]:[Max Hp]:[Current Mp]:[Max MP]:[Current TP]:[Max TP]:[Position X]:[Position Y]:[Position Z]:[Facing]:<status list; format unknown>`

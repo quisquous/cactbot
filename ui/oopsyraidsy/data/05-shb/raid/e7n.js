@@ -3,6 +3,7 @@
 let wrongBuff = (str) => {
   return {
     en: str + ' (wrong buff)',
+    de: str + ' (falscher Buff)',
     fr: str + ' (mauvais buff)',
   };
 };
@@ -10,6 +11,7 @@ let wrongBuff = (str) => {
 let noBuff = (str) => {
   return {
     en: str + ' (no buff)',
+    de: str + ' (kein Buff)',
     fr: str + ' (pas de buff)',
   };
 };
@@ -19,10 +21,11 @@ let noBuff = (str) => {
     en: /^Eden's Verse: Iconoclasm$/,
     ko: /^희망의 낙원 에덴: 공명편 \(3\)$/,
   },
+  zoneId: ZoneId.EdensVerseIconoclasm,
   damageWarn: {
-    'Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
-    'Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission
-    'Strength In Numbers 2': '4C4D', // Large circle ground AoEs, intermission
+    'E7N Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
+    'E7N Strength In Numbers Donut': '4C4C', // Large donut ground AoEs, intermission
+    'E7N Strength In Numbers 2': '4C4D', // Large circle ground AoEs, intermission
   },
   damageFail: {
   },
@@ -48,21 +51,35 @@ let noBuff = (str) => {
       },
     },
     {
-      id: 'E7N Astral Tracking',
-      gainsEffectRegex: gLang.kEffect.AstralEffect,
-      losesEffectRegex: gLang.kEffect.AstralEffect,
-      run: function(e, data) {
+      id: 'E7N Astral Effect Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
+      run: function(e, data, matches) {
         data.hasAstral = data.hasAstral || {};
-        data.hasAstral[e.targetName] = e.gains;
+        data.hasAstral[matches.target] = true;
       },
     },
     {
-      id: 'E7N Umbral Tracking',
-      gainsEffectRegex: gLang.kEffect.UmbralEffect,
-      losesEffectRegex: gLang.kEffect.UmbralEffect,
-      run: function(e, data) {
+      id: 'E7N Astral Effect Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8BE' }),
+      run: function(e, data, matches) {
+        data.hasAstral = data.hasAstral || {};
+        data.hasAstral[matches.target] = false;
+      },
+    },
+    {
+      id: 'E7N Umbral Effect Gain',
+      netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
+      run: function(e, data, matches) {
         data.hasUmbral = data.hasUmbral || {};
-        data.hasUmbral[e.targetName] = e.gains;
+        data.hasUmbral[matches.target] = true;
+      },
+    },
+    {
+      id: 'E7N Umbral Effect Lose',
+      netRegex: NetRegexes.losesEffect({ effectId: '8BF' }),
+      run: function(e, data, matches) {
+        data.hasUmbral = data.hasUmbral || {};
+        data.hasUmbral[matches.target] = false;
       },
     },
     {

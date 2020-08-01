@@ -362,8 +362,8 @@ class Fisher {
       e.detail.logs.forEach(this.parseLine, this);
   }
 
-  OnZoneChange(e) {
-    this.zone = e.detail.zoneName;
+  OnChangeZone(e) {
+    this.zone = e.zoneName;
     this.place = null;
     this.ui.setPlace(null);
   }
@@ -387,8 +387,8 @@ UserConfig.getUserConfigLocation('fisher', function() {
     gFisher.OnLogEvent(e);
   });
 
-  addOverlayListener('onZoneChangedEvent', function(e) {
-    gFisher.OnZoneChange(e);
+  addOverlayListener('ChangeZone', function(e) {
+    gFisher.OnChangeZone(e);
   });
 
   addOverlayListener('onPlayerChangedEvent', function(e) {

@@ -67,8 +67,8 @@ class PopupText {
     addOverlayListener('onPlayerChangedEvent', (e) => {
       this.OnPlayerChange(e);
     });
-    addOverlayListener('onZoneChangedEvent', (e) => {
-      this.OnZoneChange(e);
+    addOverlayListener('ChangeZone', (e) => {
+      this.OnChangeZone(e);
     });
     addOverlayListener('onInCombatChangedEvent', (e) => {
       this.OnInCombatChange(e.detail.inGameCombat);
@@ -143,9 +143,9 @@ class PopupText {
     }
   }
 
-  OnZoneChange(e) {
-    if (this.zoneName !== e.detail.zoneName) {
-      this.zoneName = e.detail.zoneName;
+  OnChangeZone(e) {
+    if (this.zoneName !== e.zoneName) {
+      this.zoneName = e.zoneName;
       this.ReloadTimelines();
     }
   }
@@ -357,8 +357,7 @@ class PopupText {
   }
 
   StopTimers() {
-    for (let i in this.timers.length)
-      this.timers[i] = false;
+    this.timers = {};
   }
 
   OnLog(e) {
@@ -457,14 +456,14 @@ class PopupText {
 
       // The trigger body must run synchronously when there is no promise.
       if (promise)
-        promise.then(triggerPostPromise);
+        promise.then(triggerPostPromise, () => {});
       else
         triggerPostPromise();
     };
 
     // The trigger body must run synchronously when there is no delay.
     if (delayPromise)
-      delayPromise.then(triggerPostDelay);
+      delayPromise.then(triggerPostDelay, () => {});
     else
       triggerPostDelay();
   }
@@ -582,7 +581,7 @@ class PopupText {
       window.setTimeout(() => {
         if (this.timers[triggerID])
           res();
-        else
+        else if (rej)
           rej();
         delete this.timers[triggerID];
       }, delay * 1000);
@@ -797,13 +796,13 @@ class PopupText {
 
   _playAudioFile(url, volume) {
     let audio = new Audio(url);
-    audio.volume = volume;
+    audio.volume = volume || 1;
     audio.play();
   }
 
   Test(zone, log) {
     this.OnPlayerChange({ detail: { name: 'ME' } });
-    this.OnZoneChange({ detail: { zoneName: zone } });
+    this.OnChangeZone({ zoneName: zone });
     this.OnLog({ detail: { logs: ['abcdefgh', log, 'hgfedcba'] } });
   }
 }

@@ -5,6 +5,7 @@
     en: /^The Final Coil Of Bahamut - Turn \(4\)$/,
     cn: /^巴哈姆特大迷宫 \(真源之章4\)$/,
   },
+  zoneId: ZoneId.TheFinalCoilOfBahamutTurn4,
   timelineFile: 't13.txt',
   timelineTriggers: [
     {
@@ -17,12 +18,12 @@
   triggers: [
     {
       id: 'T13 Gigaflare Phase Change',
-      regex: Regexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: 'BB9', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: 'BB9', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: 'BB9', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: 'BB9', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: 'BB9', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: 'BB9', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'BB9', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'BB9', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'BB9', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'BB9', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'BB9', source: '바하무트 프라임', capture: false }),
       condition: function(data) {
         // Only the first two gigas are phase changes, the rest are in final phase.
         return !(data.gigaflare > 1);
@@ -45,12 +46,12 @@
     },
     {
       id: 'T13 Flatten',
-      regex: Regexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
-      regexDe: Regexes.startsUsing({ id: 'BAE', source: 'Prim-Bahamut' }),
-      regexFr: Regexes.startsUsing({ id: 'BAE', source: 'Primo-Bahamut' }),
-      regexJa: Regexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
-      regexCn: Regexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
-      regexKo: Regexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
+      netRegex: NetRegexes.startsUsing({ id: 'BAE', source: 'Bahamut Prime' }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'BAE', source: 'Prim-Bahamut' }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'BAE', source: 'Primo-Bahamut' }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'BAE', source: 'バハムート・プライム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'BAE', source: '至尊巴哈姆特' }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'BAE', source: '바하무트 프라임' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -76,7 +77,7 @@
     },
     {
       id: 'T13 Megaflare Share',
-      regex: Regexes.headMarker({ id: '0027' }),
+      netRegex: NetRegexes.headMarker({ id: '0027' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -89,7 +90,7 @@
     },
     {
       id: 'T13 Earthshaker',
-      regex: Regexes.headMarker({ id: '0028' }),
+      netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -97,12 +98,12 @@
     },
     {
       id: 'T13 Tempest Wing',
-      regex: Regexes.tether({ id: '0004', target: 'Bahamut Prime' }),
-      regexDe: Regexes.tether({ id: '0004', target: 'Prim-Bahamut' }),
-      regexFr: Regexes.tether({ id: '0004', target: 'Primo-Bahamut' }),
-      regexJa: Regexes.tether({ id: '0004', target: 'バハムート・プライム' }),
-      regexCn: Regexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
-      regexKo: Regexes.tether({ id: '0004', target: '바하무트 프라임' }),
+      netRegex: NetRegexes.tether({ id: '0004', target: 'Bahamut Prime' }),
+      netRegexDe: NetRegexes.tether({ id: '0004', target: 'Prim-Bahamut' }),
+      netRegexFr: NetRegexes.tether({ id: '0004', target: 'Primo-Bahamut' }),
+      netRegexJa: NetRegexes.tether({ id: '0004', target: 'バハムート・プライム' }),
+      netRegexCn: NetRegexes.tether({ id: '0004', target: '至尊巴哈姆特' }),
+      netRegexKo: NetRegexes.tether({ id: '0004', target: '바하무트 프라임' }),
       condition: function(data, matches) {
         return data.me == matches.source;
       },
@@ -115,12 +116,12 @@
     },
     {
       id: 'T13 Akh Morn',
-      regex: Regexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
-      regexDe: Regexes.startsUsing({ id: 'BC2', source: 'Prim-Bahamut' }),
-      regexFr: Regexes.startsUsing({ id: 'BC2', source: 'Primo-Bahamut' }),
-      regexJa: Regexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
-      regexCn: Regexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
-      regexKo: Regexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
+      netRegex: NetRegexes.startsUsing({ id: 'BC2', source: 'Bahamut Prime' }),
+      netRegexDe: NetRegexes.startsUsing({ id: 'BC2', source: 'Prim-Bahamut' }),
+      netRegexFr: NetRegexes.startsUsing({ id: 'BC2', source: 'Primo-Bahamut' }),
+      netRegexJa: NetRegexes.startsUsing({ id: 'BC2', source: 'バハムート・プライム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: 'BC2', source: '至尊巴哈姆特' }),
+      netRegexKo: NetRegexes.startsUsing({ id: 'BC2', source: '바하무트 프라임' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {

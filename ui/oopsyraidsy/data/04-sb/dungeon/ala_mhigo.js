@@ -6,6 +6,7 @@
     en: /Ala Mhigo/,
     ko: /^알라미고$/,
   },
+  zoneId: ZoneId.AlaMhigo,
   damageWarn: {
     'Ala Mhigo Magitek Ray': '24CE', // Line AoE, Legion Predator trash, before boss 1
     'Ala Mhigo Lock On': '2047', // Homing circles, boss 1
@@ -25,58 +26,21 @@
     'Ala Mhigo Vein Splitter 2': '206C', // Proximity circle AoE, helper entity, boss 3
     'Ala Mhigo Lightless Spark': '206B', // Conal AoE, boss 3
   },
+  shareWarn: {
+    'Ala Mhigo Demimagicks': '205E',
+    'Ala Mhigo Unmoving Troika': '2060',
+    'Ala Mhigo Art Of The Sword 1': '2069',
+    'Ala Mhigo Art Of The Sword 2': '2589',
+  },
   triggers: [
-    {
-      id: 'Ala Mhigo Demimagicks',
-      damageRegex: '205E',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Ala Mhigo Unmoving Troika',
-      damageRegex: '2060',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Ala Mhigo Art Of The Sword 1',
-      damageRegex: '2069',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Ala Mhigo Art Of The Sword 2',
-      damageRegex: '2589',
-      condition: function(e) {
-        // Double taps only
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
     {
       // It's possible players might just wander into the bad on the outside,
       // but normally people get pushed into it.
       id: 'Ala Mhigo Art Of The Swell',
-      gainsEffectRegex: gLang.kEffect.DamageDown,
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
+      // Damage Down
+      netRegex: NetRegexes.gainsEffect({ effectId: '2B8' }),
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: e.target, text: e.effect };
       },
     },
   ],

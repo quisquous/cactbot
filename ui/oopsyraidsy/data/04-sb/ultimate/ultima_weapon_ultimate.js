@@ -6,6 +6,7 @@
     en: /^The Weapon's Refrain \(Ultimate\)$/,
     ko: /^절 알테마 웨폰 파괴작전$/,
   },
+  zoneId: ZoneId.TheWeaponsRefrainUltimate,
   damageWarn: {
     'UWU Searing Wind': '2B5C',
     'UWU Eruption': '2B5A',
@@ -22,11 +23,23 @@
   triggers: [
     {
       id: 'UWU Windburn',
-      gainsEffectRegex: gLang.kEffect.Windburn,
+      netRegex: NetRegexes.gainsEffect({ effectId: 'EB' }),
       // TODO: implement suppressSeconds <_<
       suppressSeconds: 2,
+      mistake: function(e, data, matches) {
+        return { type: 'warn', blame: e.target, text: e.effect };
+      },
+    },
+    {
+      // Featherlance explosion.  It seems like the person who pops it is the
+      // first person listed damage-wise, so they are likely the culprit.
+      id: 'UWU Featherlance',
+      damageRegex: '2B43',
+      collectSeconds: 0.5,
+      // TODO: implement suppress
+      suppressSeconds: 5,
       mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.effectName };
+        return { type: 'fail', blame: e[0].targetName, text: e[0].attackerName };
       },
     },
   ],

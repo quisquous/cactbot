@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import argparse
 from datetime import datetime
 from pathlib import Path
@@ -520,7 +522,7 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "-lf",
-        "--search_fights",
+        "--search-fights",
         nargs="?",
         const=-1,
         type=int,
@@ -542,7 +544,9 @@ if __name__ == "__main__":
         raise parser.error("Automatic encounter listing requires an input file")
 
     if args.search_fights > -1 and not args.timeline:
-        raise parser.error("You must specify a timeline file before testing against a specific encounter.")
+        raise parser.error(
+            "You must specify a timeline file before testing against a specific encounter."
+        )
 
     if args.file and not ((args.start and args.end) or args.search_fights):
         raise parser.error("Log file input requires start and end timestamps")

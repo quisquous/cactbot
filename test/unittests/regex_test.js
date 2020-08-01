@@ -293,6 +293,23 @@ let tests = {
     let matches = lines[0].match(Regexes.changeZone()).groups;
     assert.equal(matches.name, 'The Lavender Beds');
   },
+  network6D: () => {
+    let lines = [
+      '[23:12:47.000] 21:8003757D:80000004:1AF3:01:02:03',
+      '[19:39:13.000] 21:8003753A:8000000C:1C:19F:00:00',
+      '[12:10:44.000] 21:80037543:40000007:01:00:00:00',
+    ];
+
+    regexCaptureTest(Regexes.network6d, lines);
+
+    let matches = lines[0].match(Regexes.network6d()).groups;
+    assert.equal(matches.instance, '8003757D');
+    assert.equal(matches.command, '80000004');
+    assert.equal(matches.data0, '1AF3');
+    assert.equal(matches.data1, '01');
+    assert.equal(matches.data2, '02');
+    assert.equal(matches.data3, '03');
+  },
 };
 
 let keys = Object.keys(tests);

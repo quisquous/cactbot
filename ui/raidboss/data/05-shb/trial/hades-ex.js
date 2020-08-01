@@ -11,6 +11,7 @@
     cn: /^哈迪斯孤念歼灭战$/,
     ko: /^극 하데스 토벌전$/,
   },
+  zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
   timelineFile: 'hades-ex.txt',
   timelineTriggers: [
     {
@@ -33,12 +34,12 @@
   triggers: [
     {
       id: 'HadesEx Shadow Spread 1',
-      regex: Regexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47A8', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47A8', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
       alertText: {
         en: 'Protean',
         de: 'Himmelsrichtungen',
@@ -50,23 +51,23 @@
     },
     {
       id: 'HadesEx Shadow Spread 2',
-      regex: Regexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47A8', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47A8', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47A8', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
       delaySeconds: 5.5,
       response: Responses.move('alert'),
     },
     {
       id: 'HadesEx Ravenous Assault',
-      regex: Regexes.startsUsing({ id: '47A6', source: 'Hades' }),
-      regexCn: Regexes.startsUsing({ id: '47A6', source: '哈迪斯' }),
-      regexDe: Regexes.startsUsing({ id: '47A6', source: 'Hades' }),
-      regexFr: Regexes.startsUsing({ id: '47A6', source: 'Hadès' }),
-      regexJa: Regexes.startsUsing({ id: '47A6', source: 'ハーデス' }),
-      regexKo: Regexes.startsUsing({ id: '47A6', source: '하데스' }),
+      netRegex: NetRegexes.startsUsing({ id: '47A6', source: 'Hades' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47A6', source: '哈迪斯' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47A6', source: 'Hades' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47A6', source: 'Hadès' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47A6', source: 'ハーデス' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47A6', source: '하데스' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'tank' || data.role == 'healer';
       },
@@ -74,22 +75,22 @@
     },
     {
       id: 'HadesEx Bad Faith Left 1',
-      regex: Regexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47AB', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47AB', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47AB', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47AB', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47AB', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47AB', source: '하데스', capture: false }),
       response: Responses.goLeft('info'),
     },
     {
       id: 'HadesEx Bad Faith Left 2',
-      regex: Regexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47AB', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47AB', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47AB', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47AB', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47AB', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47AB', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47AB', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47AB', source: '하데스', capture: false }),
       delaySeconds: 5,
       infoText: {
         en: 'Then Right',
@@ -102,22 +103,22 @@
     },
     {
       id: 'HadesEx Bad Faith Right 1',
-      regex: Regexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47AC', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47AC', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47AC', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47AC', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47AC', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47AC', source: '하데스', capture: false }),
       response: Responses.goRight('info'),
     },
     {
       id: 'HadesEx Bad Faith Right 2',
-      regex: Regexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47AC', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47AC', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47AC', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47AC', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47AC', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47AC', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47AC', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47AC', source: '하데스', capture: false }),
       delaySeconds: 5,
       infoText: {
         en: 'Then Left',
@@ -130,12 +131,12 @@
     },
     {
       id: 'HadesEx Arcane Control Orbs',
-      regex: Regexes.addedCombatant({ name: 'Arcane Globe', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '球体魔法阵', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Kugel', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Globe Arcanique', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: '球体魔法陣', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '구체 마법진', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Arcane Globe', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '球体魔法阵', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Kugel', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Globe Arcanique', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: '球体魔法陣', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '구체 마법진', capture: false }),
       durationSeconds: 6,
       suppressSeconds: 2,
       infoText: {
@@ -149,12 +150,12 @@
     },
     {
       id: 'HadesEx Arcane Control Doors',
-      regex: Regexes.addedCombatant({ name: 'Arcane Font', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '立体魔法阵', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Körper', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Solide Arcanique', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: '立体魔法陣', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '입체 마법진', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Arcane Font', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '立体魔法阵', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Arkan(?:e|er|es|en) Körper', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Solide Arcanique', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: '立体魔法陣', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '입체 마법진', capture: false }),
       durationSeconds: 6,
       suppressSeconds: 2,
       infoText: {
@@ -168,12 +169,12 @@
     },
     {
       id: 'HadesEx Quake III',
-      regex: Regexes.startsUsing({ id: '47B8', source: 'Nabriales\'s Shade', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47B8', source: 'Nabriales\' Schatten', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47B8', source: 'Spectre De Nabriales', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47B8', source: '那布里亚勒斯之影', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47B8', source: '나브리알레스의 그림자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47B8', source: 'Nabriales\'s Shade', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47B8', source: 'Nabriales\' Schatten', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47B8', source: 'Spectre De Nabriales', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47B8', source: 'ナプリアレスの影', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47B8', source: '那布里亚勒斯之影', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47B8', source: '나브리알레스의 그림자', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -182,12 +183,12 @@
     },
     {
       id: 'HadesEx Dark II Tether',
-      regex: Regexes.tether({ id: '0011', source: 'Shadow Of The Ancients' }),
-      regexCn: Regexes.tether({ id: '0011', source: '古代人之影' }),
-      regexDe: Regexes.tether({ id: '0011', source: 'Schatten Der Alten' }),
-      regexFr: Regexes.tether({ id: '0011', source: 'Spectre D\'Ascien' }),
-      regexJa: Regexes.tether({ id: '0011', source: '古代人の影' }),
-      regexKo: Regexes.tether({ id: '0011', source: '고대인의 그림자' }),
+      netRegex: NetRegexes.tether({ id: '0011', source: 'Shadow Of The Ancients' }),
+      netRegexCn: NetRegexes.tether({ id: '0011', source: '古代人之影' }),
+      netRegexDe: NetRegexes.tether({ id: '0011', source: 'Schatten Der Alten' }),
+      netRegexFr: NetRegexes.tether({ id: '0011', source: 'Spectre D\'Ascien' }),
+      netRegexJa: NetRegexes.tether({ id: '0011', source: '古代人の影' }),
+      netRegexKo: NetRegexes.tether({ id: '0011', source: '고대인의 그림자' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -202,7 +203,7 @@
     },
     {
       id: 'HadesEx Ancient Water 3',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -220,7 +221,7 @@
     },
     {
       id: 'HadesEx Ancient Darkness',
-      regex: Regexes.headMarker({ id: '0060' }),
+      netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -238,7 +239,7 @@
     },
     {
       id: 'HadesEx Ancient Water Unmarked',
-      regex: Regexes.headMarker({ id: ['0030', '0060'], capture: false }),
+      netRegex: NetRegexes.headMarker({ id: ['0030', '0060'], capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
       infoText: function(data) {
@@ -256,12 +257,12 @@
     },
     {
       id: 'HadesEx Shades Too Close',
-      regex: Regexes.tether({ id: '000E', source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
-      regexCn: Regexes.tether({ id: '000E', source: ['以格约姆之影', '拉哈布雷亚之影'], target: ['以格约姆之影', '拉哈布雷亚之影'], capture: false }),
-      regexDe: Regexes.tether({ id: '000E', source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], target: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
-      regexFr: Regexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
-      regexJa: Regexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
-      regexKo: Regexes.tether({ id: '000E', source: ['이게요름의 그림자', '라하브레아의 그림자'], target: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
+      netRegex: NetRegexes.tether({ id: '000E', source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], target: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
+      netRegexCn: NetRegexes.tether({ id: '000E', source: ['以格约姆之影', '拉哈布雷亚之影'], target: ['以格约姆之影', '拉哈布雷亚之影'], capture: false }),
+      netRegexDe: NetRegexes.tether({ id: '000E', source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], target: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
+      netRegexFr: NetRegexes.tether({ id: '000E', source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], target: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
+      netRegexJa: NetRegexes.tether({ id: '000E', source: ['イゲオルムの影', 'ラハブレアの影'], target: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
+      netRegexKo: NetRegexes.tether({ id: '000E', source: ['이게요름의 그림자', '라하브레아의 그림자'], target: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -277,12 +278,12 @@
     },
     {
       id: 'HadesEx Spheres',
-      regex: Regexes.startsUsing({ id: '47BD', source: 'Igeyorhm\'s Shade', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47BD', source: '以格约姆之影', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47BD', source: 'Igeyorhms Schatten', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47BD', source: 'Spectre D\'Igeyorhm', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47BD', source: 'イゲオルムの影', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47BD', source: '이게요름의 그림자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47BD', source: 'Igeyorhm\'s Shade', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47BD', source: '以格约姆之影', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47BD', source: 'Igeyorhms Schatten', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47BD', source: 'Spectre D\'Igeyorhm', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47BD', source: 'イゲオルムの影', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47BD', source: '이게요름의 그림자', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -304,12 +305,12 @@
     },
     {
       id: 'HadesEx Annihilation',
-      regex: Regexes.startsUsing({ id: '47BF', source: 'Lahabrea\'s And Igeyorhm\'s Shades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47BF', source: '拉哈布雷亚与以格约姆之影', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47BF', source: 'Lahabrea Und Igeyorhm', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47BF', source: 'Duo D\'Asciens', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47BF', source: 'ラハブレアとイゲオルム', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47BF', source: '라하브레아와 이게요름', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47BF', source: 'Lahabrea\'s And Igeyorhm\'s Shades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47BF', source: '拉哈布雷亚与以格约姆之影', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47BF', source: 'Lahabrea Und Igeyorhm', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47BF', source: 'Duo D\'Asciens', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47BF', source: 'ラハブレアとイゲオルム', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47BF', source: '라하브레아와 이게요름', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -317,12 +318,7 @@
     },
     {
       id: 'HadesEx Burning Brand',
-      regex: Regexes.gainsEffect({ effect: 'Burning Brand' }),
-      regexCn: Regexes.gainsEffect({ effect: '火之烙印' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Feuers' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque De Feu' }),
-      regexJa: Regexes.gainsEffect({ effect: '火の烙印' }),
-      regexKo: Regexes.gainsEffect({ effect: '불의 낙인' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '850' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -340,12 +336,7 @@
     },
     {
       id: 'HadesEx Freezing Brand',
-      regex: Regexes.gainsEffect({ effect: 'Freezing Brand' }),
-      regexCn: Regexes.gainsEffect({ effect: '冰之烙印' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Brandmal Des Eises' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Marque De Glace' }),
-      regexJa: Regexes.gainsEffect({ effect: '氷の烙印' }),
-      regexKo: Regexes.gainsEffect({ effect: '얼음의 낙인' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '851' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -363,12 +354,12 @@
     },
     {
       id: 'HadesEx Blizzard IV',
-      regex: Regexes.startsUsing({ id: '47C3', source: 'Igeyorhm\'s Shade' }),
-      regexCn: Regexes.startsUsing({ id: '47C3', source: '以格约姆之影' }),
-      regexDe: Regexes.startsUsing({ id: '47C3', source: 'Igeyorhms Schatten' }),
-      regexFr: Regexes.startsUsing({ id: '47C3', source: 'Spectre D\'Igeyorhm' }),
-      regexJa: Regexes.startsUsing({ id: '47C3', source: 'イゲオルムの影' }),
-      regexKo: Regexes.startsUsing({ id: '47C3', source: '이게요름의 그림자' }),
+      netRegex: NetRegexes.startsUsing({ id: '47C3', source: 'Igeyorhm\'s Shade' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47C3', source: '以格约姆之影' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47C3', source: 'Igeyorhms Schatten' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47C3', source: 'Spectre D\'Igeyorhm' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47C3', source: 'イゲオルムの影' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47C3', source: '이게요름의 그림자' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -376,12 +367,12 @@
     },
     {
       id: 'HadesEx Fire IV',
-      regex: Regexes.startsUsing({ id: '47C2', source: 'Lahabrea\'s Shade' }),
-      regexCn: Regexes.startsUsing({ id: '47C2', source: '拉哈布雷亚之影' }),
-      regexDe: Regexes.startsUsing({ id: '47C2', source: 'Lahabreas Schatten' }),
-      regexFr: Regexes.startsUsing({ id: '47C2', source: 'Spectre De Lahabrea' }),
-      regexJa: Regexes.startsUsing({ id: '47C2', source: 'ラハブレアの影' }),
-      regexKo: Regexes.startsUsing({ id: '47C2', source: '라하브레아의 그림자' }),
+      netRegex: NetRegexes.startsUsing({ id: '47C2', source: 'Lahabrea\'s Shade' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47C2', source: '拉哈布雷亚之影' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47C2', source: 'Lahabreas Schatten' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47C2', source: 'Spectre De Lahabrea' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47C2', source: 'ラハブレアの影' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47C2', source: '라하브레아의 그림자' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -389,12 +380,12 @@
     },
     {
       id: 'HadesEx Healers Blizzard/Fire IV',
-      regex: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
-      regexCn: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['以格约姆之影', '拉哈布雷亚之影'], capture: false }),
-      regexDe: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
-      regexFr: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
-      regexJa: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
-      regexKo: Regexes.startsUsing({ id: ['47C3', '47C2'], source: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['以格约姆之影', '拉哈布雷亚之影'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['Igeyorhms Schatten', 'Lahabreas Schatten'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['Spectre d\'Igeyorhm', 'Spectre De Lahabrea'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['イゲオルムの影', 'ラハブレアの影'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['47C3', '47C2'], source: ['이게요름의 그림자', '라하브레아의 그림자'], capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -410,12 +401,7 @@
     },
     {
       id: 'HadesEx Doom',
-      regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '6E9', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -431,12 +417,7 @@
     },
     {
       id: 'HadesEx Shriek',
-      regex: Regexes.gainsEffect({ effect: 'Cursed Shriek' }),
-      regexCn: Regexes.gainsEffect({ effect: '诅咒之嚎' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Schrei Der Verwünschung' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cri Du Maléfice' }),
-      regexJa: Regexes.gainsEffect({ effect: '呪詛の叫声' }),
-      regexKo: Regexes.gainsEffect({ effect: '저주의 외침' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 2;
       },
@@ -445,12 +426,7 @@
     },
     {
       id: 'HadesEx Beyond Death',
-      regex: Regexes.gainsEffect({ effect: 'Beyond Death' }),
-      regexCn: Regexes.gainsEffect({ effect: '超越死亡' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Jenseits Des Jenseits' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Outre-Mort' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の超越' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음 초월' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '566' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -466,12 +442,7 @@
     },
     {
       id: 'HadesEx Ancient Circle',
-      regex: Regexes.gainsEffect({ effect: 'Ancient Circle' }),
-      regexCn: Regexes.gainsEffect({ effect: '古代圆环' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Orbis Antiquus' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Cercle Ancien' }),
-      regexJa: Regexes.gainsEffect({ effect: 'エンシェントリング' }),
-      regexKo: Regexes.gainsEffect({ effect: '고대의 고리' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '83E' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -489,12 +460,7 @@
     },
     {
       id: 'HadesEx Forked Lightning',
-      regex: Regexes.gainsEffect({ effect: 'Forked Lightning' }),
-      regexCn: Regexes.gainsEffect({ effect: '叉形闪电' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Gabelblitz' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Éclair Ramifié' }),
-      regexJa: Regexes.gainsEffect({ effect: 'フォークライトニング' }),
-      regexKo: Regexes.gainsEffect({ effect: '갈래 번개' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '24B' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -504,7 +470,7 @@
       alertText: {
         en: 'Stay Out',
         de: 'Draußen stehen',
-        fr: 'Restez éloigner',
+        fr: 'Restez éloigné',
         ja: 'ライトニングを外に安置',
         cn: '外侧放雷',
         ko: '바깥에 있기',
@@ -512,12 +478,12 @@
     },
     {
       id: 'HadesEx Blight',
-      regex: Regexes.startsUsing({ id: '47CC', source: 'Ascian Prime\'s Shade', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47CC', source: '至尊无影之影', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47CC', source: 'Schatten Des Prim-Ascian', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47CC', source: 'Spectre De Primo-Ascien', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47CC', source: 'アシエン・プライムの影', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47CC', source: '아씨엔 프라임의 그림자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47CC', source: 'Ascian Prime\'s Shade', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47CC', source: '至尊无影之影', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47CC', source: 'Schatten Des Prim-Ascian', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47CC', source: 'Spectre De Primo-Ascien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47CC', source: 'アシエン・プライムの影', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47CC', source: '아씨엔 프라임의 그림자', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -533,12 +499,12 @@
     },
     {
       id: 'HadesEx Height Of Chaos',
-      regex: Regexes.startsUsing({ id: '47D1', source: 'Ascian Prime\'s Shade' }),
-      regexCn: Regexes.startsUsing({ id: '47D1', source: '至尊无影之影' }),
-      regexDe: Regexes.startsUsing({ id: '47D1', source: 'Schatten Des Prim-Ascian' }),
-      regexFr: Regexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
-      regexJa: Regexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
-      regexKo: Regexes.startsUsing({ id: '47D1', source: '아씨엔 프라임의 그림자' }),
+      netRegex: NetRegexes.startsUsing({ id: '47D1', source: 'Ascian Prime\'s Shade' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47D1', source: '至尊无影之影' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47D1', source: 'Schatten Des Prim-Ascian' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47D1', source: '아씨엔 프라임의 그림자' }),
       alertText: function(data, matches) {
         if (matches.target == data.me) {
           return {
@@ -572,12 +538,12 @@
     },
     {
       id: 'HadesEx Megiddo Flame',
-      regex: Regexes.startsUsing({ id: '47CD', source: 'Ascian Prime\'s Shade', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47CD', source: '至尊无影之影', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47CD', source: 'Schatten Des Prim-Ascian', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47CD', source: 'Spectre De Primo-Ascien', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47CD', source: 'アシエン・プライムの影', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47CD', source: '아씨엔 프라임의 그림자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47CD', source: 'Ascian Prime\'s Shade', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47CD', source: '至尊无影之影', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47CD', source: 'Schatten Des Prim-Ascian', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47CD', source: 'Spectre De Primo-Ascien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47CD', source: 'アシエン・プライムの影', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47CD', source: '아씨엔 프라임의 그림자', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Healer Stacks',
@@ -590,12 +556,12 @@
     },
     {
       id: 'HadesEx Shadow Flare',
-      regex: Regexes.startsUsing({ id: '47D0', source: 'Ascian Prime\'s Shade', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47D0', source: '至尊无影之影', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47D0', source: 'Schatten Des Prim-Ascian', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47D0', source: 'Spectre De Primo-Ascien', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47D0', source: 'アシエン・プライムの影', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47D0', source: '아씨엔 프라임의 그림자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47D0', source: 'Ascian Prime\'s Shade', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47D0', source: '至尊无影之影', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47D0', source: 'Schatten Des Prim-Ascian', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47D0', source: 'Spectre De Primo-Ascien', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47D0', source: 'アシエン・プライムの影', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47D0', source: '아씨엔 프라임의 그림자', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -603,7 +569,7 @@
     },
     {
       id: 'HadesEx Captivity',
-      regex: Regexes.headMarker({ id: '0078' }),
+      netRegex: NetRegexes.headMarker({ id: '0078' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -611,12 +577,12 @@
     },
     {
       id: 'HadesEx Aetherial Gaol',
-      regex: Regexes.addedCombatant({ name: 'Aetherial Gaol', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '以太牢狱', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Ätherkerker', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Geôle Éthérée', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'エーテリアル・ジェイル', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '에테르 감옥', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Aetherial Gaol', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '以太牢狱', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Ätherkerker', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Geôle Éthérée', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'エーテリアル・ジェイル', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '에테르 감옥', capture: false }),
       infoText: {
         en: 'Break Aetherial Gaol',
         de: 'Zerstöre Ätherkerker',
@@ -628,7 +594,7 @@
     },
     {
       id: 'HadesEx Dark Flame',
-      regex: Regexes.headMarker({ id: '0064' }),
+      netRegex: NetRegexes.headMarker({ id: '0064' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -646,7 +612,7 @@
     },
     {
       id: 'HadesEx Dark Freeze',
-      regex: Regexes.headMarker({ id: '00C1' }),
+      netRegex: NetRegexes.headMarker({ id: '00C1' }),
       condition: function(data, matches) {
         return matches.target == data.me;
       },
@@ -664,12 +630,12 @@
     },
     {
       id: 'HadesEx Wail Of The Lost',
-      regex: Regexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47E1', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47E1', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47E1', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47E1', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47E1', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47E1', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47E1', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47E1', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47E1', source: '하데스', capture: false }),
       infoText: function(data) {
         if (!data.flame && !data.freeze) {
           return {
@@ -685,7 +651,7 @@
     },
     {
       id: 'HadesEx Nether Blast',
-      regex: Regexes.headMarker({ id: '008B' }),
+      netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -703,12 +669,12 @@
     },
     {
       id: 'HadesEx Bident',
-      regex: Regexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47E3', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47E3', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47E3', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47E3', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47E3', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47E3', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47E3', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47E3', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47E3', source: '하데스', capture: false }),
       condition: function(data) {
         return !data.netherBlast;
       },
@@ -723,22 +689,22 @@
     },
     {
       id: 'HadesEx Shadow Stream',
-      regex: Regexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47EA', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47EA', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47EA', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47EA', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47EA', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47EA', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47EA', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47EA', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47EA', source: '하데스', capture: false }),
       response: Responses.goSides(),
     },
     {
       id: 'HadesEx Polydegmon\'s Purgation',
-      regex: Regexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47EB', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47EB', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47EB', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47EB', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47EB', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47EB', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47EB', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47EB', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47EB', source: '하데스', capture: false }),
       alertText: {
         en: 'Front and Center',
         de: 'Vorne und Mitte',
@@ -750,12 +716,12 @@
     },
     {
       id: 'HadesEx Dark Current',
-      regex: Regexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47F1', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47F1', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47F1', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47F1', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47F1', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47F1', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47F1', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47F1', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47F1', source: '하데스', capture: false }),
       durationSeconds: 12,
       suppressSeconds: 10,
       infoText: {
@@ -769,12 +735,12 @@
     },
     {
       id: 'HadesEx Gigantomachy',
-      regex: Regexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47F3', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47F3', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47F3', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47F3', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47F3', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47F3', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47F3', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47F3', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47F3', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -782,12 +748,12 @@
     },
     {
       id: 'HadesEx Quadrastrike 1',
-      regex: Regexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47F4', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47F4', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47F4', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47F4', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47F4', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47F4', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47F4', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47F4', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47F4', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -795,12 +761,12 @@
     },
     {
       id: 'HadesEx Quadrastrike 2',
-      regex: Regexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47F6', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47F6', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47F6', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47F6', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47F6', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47F6', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47F6', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47F6', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47F6', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -832,12 +798,12 @@
     },
     { // After tanks take tower damage
       id: 'HadesEx Quadrastrike 3',
-      regex: Regexes.ability({ id: '47F6', source: 'Hades', capture: false }),
-      regexCn: Regexes.ability({ id: '47F6', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.ability({ id: '47F6', source: 'Hades', capture: false }),
-      regexFr: Regexes.ability({ id: '47F6', source: 'Hadès', capture: false }),
-      regexJa: Regexes.ability({ id: '47F6', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.ability({ id: '47F6', source: '하데스', capture: false }),
+      netRegex: NetRegexes.ability({ id: '47F6', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '47F6', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '47F6', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '47F6', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '47F6', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '47F6', source: '하데스', capture: false }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -854,12 +820,12 @@
     },
     {
       id: 'HadesEx Enrage Gigantomachy',
-      regex: Regexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '47F9', source: '哈迪斯', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '47F9', source: 'Hadès', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '47F9', source: 'ハーデス', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '47F9', source: '하데스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '47F9', source: '哈迪斯', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '47F9', source: 'Hades', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '47F9', source: 'Hadès', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '47F9', source: 'ハーデス', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '47F9', source: '하데스', capture: false }),
       infoText: {
         en: 'Enrage',
         de: 'Finalangriff',
@@ -874,6 +840,7 @@
     {
       'locale': 'de',
       'replaceSync': {
+        'Aetherial Gaol': 'Ätherkerker',
         'Arcane Font': 'Arkan(?:e|er|es|en) Körper',
         'Arcane Globe': 'Arkan(?:e|er|es|en) Kugel',
         'Ascian Prime\'s Shade': 'Schatten des Prim-Ascian',
@@ -914,8 +881,6 @@
         'Forked Lightning': 'Gabelblitz',
         'Gigantomachy': 'Gigantomachie',
         'Height Of Chaos': 'Klimax des Chaos',
-        'Magic Chakram(?!/)': 'Magisches Chakram',
-        'Magic Spear(?!/)': 'Magischer Speer',
         'Megiddo Flame': 'Megiddoflamme',
         'Nether Blast': 'Schattenausbruch',
         'Purgation': 'Schlag des Polydegmon',
@@ -934,16 +899,6 @@
         'Life In Captivity': 'Leben in Gefangenschaft',
         'Quadrastrike Tower': 'Quadraschlag Turm',
         'Quadrastrike Bleed': 'Quadraschlag Blutung',
-      },
-      '~effectNames': {
-        'Cursed Shriek': 'Schrei Der Verwünschung',
-        'Forked Lightning': 'Gabelblitz',
-        'Aetherial Gaol': 'Ätherkerker',
-        'Beyond Death': 'Jenseits Des Jenseits',
-        'Ancient Circle': 'Orbis Antiquus',
-        'Freezing Brand': 'Brandmal Des Eises',
-        'Burning Brand': 'Brandmal Des Feuers',
-        'Doom': 'Verhängnis',
       },
     },
     {
@@ -1008,16 +963,6 @@
         'Quadrastrike Bleed': 'Frappe quadruplée Saignement',
         'Quadrastrike Tower': 'Frappe quadruplée Tour',
       },
-      '~effectNames': {
-        'Cursed Shriek': 'Cri du maléfice',
-        'Forked Lightning': 'Éclair ramifié',
-        'Aetherial Gaol': 'Geôle éthérée',
-        'Beyond Death': 'Outre-mort',
-        'Ancient Circle': 'Cercle ancien',
-        'Freezing Brand': 'Marque de glace',
-        'Burning Brand': 'Marque de feu',
-        'Doom': 'Glas',
-      },
     },
     {
       'locale': 'ja',
@@ -1062,8 +1007,6 @@
         'Forked Lightning': 'フォークライトニング',
         'Gigantomachy': 'ギガントマキア',
         'Height Of Chaos': 'ハイト・オブ・カオス',
-        'Magic Chakram(?!/)': 'マジックチャクラム',
-        'Magic Spear(?!/)': 'マジックスピア',
         'Magic Chakram/Spear': 'マジックチャクラム／マジックスピア',
         'Magic Spear/Chakram': 'マジックスピア／マジックチャクラム',
         'Megiddo Flame': 'メギドフレイム',
@@ -1129,8 +1072,6 @@
         'Height Of Chaos': '混沌之巅',
         'Magic Chakram/Spear': '魔法轮/矛',
         'Magic Spear/Chakram': '魔法矛/轮',
-        'Magic Chakram(?!/)': '魔法轮',
-        'Magic Spear(?!/)': '魔法矛',
         'Megiddo Flame': '米吉多烈焰',
         'Nether Blast': '幽冥冲击',
         'Purgation': '冥王净化',

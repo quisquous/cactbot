@@ -144,6 +144,17 @@
   content: '\2714';
 }
 
+.mistake-icon.damage::before {
+  color: white;
+  content: '\1F52A';
+  font-weight: bold;
+}
+
+.mistake-icon.heal::before {
+  color: cyan;
+  content: '\1F3E5';
+}
+
 .resizeHandle .hide-if-resizing {
   display: none;
 }

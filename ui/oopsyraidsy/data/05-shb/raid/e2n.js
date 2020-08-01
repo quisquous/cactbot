@@ -11,13 +11,14 @@
     cn: /^伊甸希望乐园 \(觉醒之章2\)$/,
     ko: /^희망의 낙원 에덴: 각성편 \(2\)$/,
   },
+  zoneId: ZoneId.EdensGateDescent,
   damageWarn: {
-    'E2S Doomvoid Slicer': '3E3C',
-    'E3S Doomvoid Guillotine': '3E3B',
+    'E2N Doomvoid Slicer': '3E3C',
+    'E2N Doomvoid Guillotine': '3E3B',
   },
   triggers: [
     {
-      id: 'E2S Nyx',
+      id: 'E2N Nyx',
       damageRegex: '3E3D',
       mistake: function(e, data) {
         return {
@@ -25,11 +26,10 @@
           blame: e.targetName,
           text: {
             en: 'Booped',
-            // FIXME: ability name here is "Attack", which isn't great.
             de: e.abilityName,
-            fr: e.abilityName,
-            cn: e.abilityName,
+            fr: 'Malus de dégâts',
             ja: e.abilityName,
+            cn: e.abilityName,
             ko: '닉스',
           },
         };

@@ -1,10 +1,10 @@
 'use strict';
 
-function getWeather(timeMs, zone) {
+function getWeather(timeMs, zoneId) {
   let chance = getWeatherChanceValue(timeMs);
 
   // See weather_rate.js and territory_type.js for details.
-  let rateIdx = gTerritoryWeather[zone];
+  let rateIdx = ZoneInfo[zoneId].weatherRate;
   let entry = gWeatherRates[rateIdx];
   if (!entry)
     return;
@@ -41,22 +41,22 @@ function floorTimeToStartOfWeather(timeMs) {
   return Math.floor(timeMs / eightHours) * eightHours;
 }
 
-function findNextWeather(timeMs, zone, searchWeather, maxTimeMs) {
+function findNextWeather(timeMs, zoneId, searchWeather, maxTimeMs) {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
-    let weather = getWeather(timeMs, zone);
+    let weather = getWeather(timeMs, zoneId);
     if (weather == searchWeather)
       return floorTimeToStartOfWeather(timeMs);
   }
   return undefined;
 }
 
-function findNextWeatherNot(timeMs, zone, searchWeather, maxTimeMs) {
+function findNextWeatherNot(timeMs, zoneId, searchWeather, maxTimeMs) {
   maxTimeMs = (maxTimeMs || 1000 * 60 * 1000) + timeMs;
 
   for (; timeMs < maxTimeMs; timeMs += 8 * 175 * 1000) {
-    let weather = getWeather(timeMs, zone);
+    let weather = getWeather(timeMs, zoneId);
     if (weather != searchWeather)
       return floorTimeToStartOfWeather(timeMs);
   }

@@ -12,7 +12,7 @@ hideall "--sync--"
 # Any displayed phase lengths are the maximum that could occur with no "extra" Bloodlust.
 
 0 "Start" sync /Engage!/ window 0,1
-1.2 "--sync--" sync /:Ravana/13E4:/ window 1.2,1
+1.2 "--sync--" sync /:Ravana:13E4:/ window 1.2,1
 7.1 "Blinding Blade" sync /:Ravana:E9F:/ window 7.1,10
 11.9 "The Seeing" sync /:Ravana:EA[012]:/
 16.0 "Atma-Linga" sync /:Ravana:EA6:/

@@ -7,17 +7,13 @@
     cn: /^巴哈姆特绝境战$/,
     ko: /^절 바하무트 토벌전$/,
   },
+  zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   timelineFile: 'unending_coil_ultimate.txt',
   triggers: [
     // --- State ---
     {
       id: 'UCU Firescorched Gain',
-      regex: Regexes.gainsEffect({ effect: 'Firescorched' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Feuerhorn' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Corne-De-Feu' }),
-      regexJa: Regexes.gainsEffect({ effect: 'ファイアホーン' }),
-      regexCn: Regexes.gainsEffect({ effect: '火角' }),
-      regexKo: Regexes.gainsEffect({ effect: '화염뿔' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1D0' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -27,12 +23,7 @@
     },
     {
       id: 'UCU Firescorched Lose',
-      regex: Regexes.losesEffect({ effect: 'Firescorched' }),
-      regexDe: Regexes.losesEffect({ effect: 'Feuerhorn' }),
-      regexFr: Regexes.losesEffect({ effect: 'Corne-De-Feu' }),
-      regexJa: Regexes.losesEffect({ effect: 'ファイアホーン' }),
-      regexCn: Regexes.losesEffect({ effect: '火角' }),
-      regexKo: Regexes.losesEffect({ effect: '화염뿔' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '1D0' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -42,12 +33,7 @@
     },
     {
       id: 'UCU Icebitten Gain',
-      regex: Regexes.gainsEffect({ effect: 'Icebitten' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Eisklaue' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Griffe-De-Glace' }),
-      regexJa: Regexes.gainsEffect({ effect: 'アイスクロウ' }),
-      regexCn: Regexes.gainsEffect({ effect: '冰爪' }),
-      regexKo: Regexes.gainsEffect({ effect: '얼음발톱' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '1D1' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -57,12 +43,7 @@
     },
     {
       id: 'UCU Icebitten Lose',
-      regex: Regexes.losesEffect({ effect: 'Icebitten' }),
-      regexDe: Regexes.losesEffect({ effect: 'Eisklaue' }),
-      regexFr: Regexes.losesEffect({ effect: 'Griffe-De-Glace' }),
-      regexJa: Regexes.losesEffect({ effect: 'アイスクロウ' }),
-      regexCn: Regexes.losesEffect({ effect: '冰爪' }),
-      regexKo: Regexes.losesEffect({ effect: '얼음발톱' }),
+      netRegex: NetRegexes.losesEffect({ effectId: '1D1' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -72,96 +53,96 @@
     },
     {
       id: 'UCU Fireball Counter',
-      regex: Regexes.ability({ id: '26C5', source: 'Firehorn' }),
-      regexDe: Regexes.ability({ id: '26C5', source: 'Feuerhorn' }),
-      regexFr: Regexes.ability({ id: '26C5', source: 'Corne-De-Feu' }),
-      regexJa: Regexes.ability({ id: '26C5', source: 'ファイアホーン' }),
-      regexCn: Regexes.ability({ id: '26C5', source: '火角' }),
-      regexKo: Regexes.ability({ id: '26C5', source: '화염뿔' }),
+      netRegex: NetRegexes.ability({ id: '26C5', source: 'Firehorn' }),
+      netRegexDe: NetRegexes.ability({ id: '26C5', source: 'Feuerhorn' }),
+      netRegexFr: NetRegexes.ability({ id: '26C5', source: 'Corne-De-Feu' }),
+      netRegexJa: NetRegexes.ability({ id: '26C5', source: 'ファイアホーン' }),
+      netRegexCn: NetRegexes.ability({ id: '26C5', source: '火角' }),
+      netRegexKo: NetRegexes.ability({ id: '26C5', source: '화염뿔' }),
       run: function(data, matches) {
         data.fireballs[data.naelFireballCount].push(matches.target);
       },
     },
     {
       id: 'UCU Quickmarch Phase',
-      regex: Regexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26E2', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26E2', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26E2', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26E2', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26E2', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26E2', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26E2', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26E2', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26E2', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26E2', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26E2', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('quickmarch');
       },
     },
     {
       id: 'UCU Blackfire Phase',
-      regex: Regexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26E3', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26E3', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26E3', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26E3', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26E3', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26E3', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26E3', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26E3', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26E3', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26E3', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26E3', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('blackfire');
       },
     },
     {
       id: 'UCU Fellruin Phase',
-      regex: Regexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26E4', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26E4', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26E4', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26E4', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26E4', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26E4', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26E4', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26E4', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26E4', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26E4', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26E4', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('fellruin');
       },
     },
     {
       id: 'UCU Heavensfall Phase',
-      regex: Regexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26E5', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26E5', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26E5', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26E5', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26E5', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26E5', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26E5', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26E5', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26E5', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26E5', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26E5', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('heavensfall');
       },
     },
     {
       id: 'UCU Tenstrike Phase',
-      regex: Regexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26E6', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26E6', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26E6', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26E6', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26E6', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26E6', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26E6', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26E6', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26E6', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26E6', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26E6', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('tenstrike');
       },
     },
     {
       id: 'UCU Octet Phase',
-      regex: Regexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26E7', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26E7', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26E7', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26E7', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26E7', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26E7', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26E7', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26E7', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26E7', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26E7', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26E7', source: '바하무트 프라임', capture: false }),
       run: function(data) {
         if (data.resetTrio) data.resetTrio('octet');
       },
     },
     {
       id: 'UCU Ragnarok Party Tracker',
-      regex: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
-      regexDe: Regexes.ability({ id: '26B8', source: 'Ragnarök' }),
-      regexFr: Regexes.ability({ id: '26B8', source: 'Ragnarok' }),
-      regexJa: Regexes.ability({ id: '26B8', source: 'ラグナロク' }),
-      regexCn: Regexes.ability({ id: '26B8', source: '诸神黄昏' }),
-      regexKo: Regexes.ability({ id: '26B8', source: '라그나로크' }),
+      netRegex: NetRegexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      netRegexDe: NetRegexes.ability({ id: '26B8', source: 'Ragnarök' }),
+      netRegexFr: NetRegexes.ability({ id: '26B8', source: 'Ragnarok' }),
+      netRegexJa: NetRegexes.ability({ id: '26B8', source: 'ラグナロク' }),
+      netRegexCn: NetRegexes.ability({ id: '26B8', source: '诸神黄昏' }),
+      netRegexKo: NetRegexes.ability({ id: '26B8', source: '라그나로크' }),
       run: function(data, matches) {
         // This happens once during the nael transition and again during
         // the heavensfall trio.  This should proooobably hit all 8
@@ -174,12 +155,12 @@
     // --- Twintania ---
     {
       id: 'UCU Twisters',
-      regex: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
@@ -191,12 +172,12 @@
     },
     {
       id: 'UCU Death Sentence',
-      regex: Regexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26A9', source: 'Gémellia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26A9', source: 'ツインタニア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26A9', source: '双塔尼亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26A9', source: '트윈타니아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26A9', source: 'Twintania', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26A9', source: 'Gémellia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26A9', source: 'ツインタニア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26A9', source: '双塔尼亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26A9', source: '트윈타니아', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {
           return {
@@ -224,7 +205,7 @@
     },
     {
       id: 'UCU Hatch Collect',
-      regex: Regexes.headMarker({ id: '0076' }),
+      netRegex: NetRegexes.headMarker({ id: '0076' }),
       run: function(data, matches) {
         data.hatch = data.hatch || [];
         data.hatch.push(matches.target);
@@ -232,7 +213,7 @@
     },
     {
       id: 'UCU Hatch Marker YOU',
-      regex: Regexes.headMarker({ id: '0076' }),
+      netRegex: NetRegexes.headMarker({ id: '0076' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -255,7 +236,7 @@
     },
     {
       id: 'UCU Hatch Callouts',
-      regex: Regexes.headMarker({ id: '0076', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 0.25,
       infoText: function(data) {
         if (!data.hatch)
@@ -276,7 +257,7 @@
     },
     {
       id: 'UCU Hatch Cleanup',
-      regex: Regexes.headMarker({ id: '0076', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0076', capture: false }),
       delaySeconds: 5,
       run: function(data) {
         delete data.hatch;
@@ -323,12 +304,12 @@
     {
       // https://xivapi.com/NpcYell/6497?pretty=true
       id: 'UCU Nael Quote 1',
-      regex: Regexes.dialog({ line: 'From on high I descend, the hallowed moon to call.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Seht, ich steige herab, vom rotglühenden Monde.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Des cieux je vais descendre et révérer la lune.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\\s*\u6708\u3092\u4ef0\u304c\u3093\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\\s*\u5bf9\u6708\u957f\u5578\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '흉조가 내려와 달을 올려다보리라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'From on high I descend, the hallowed moon to call.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Seht, ich steige herab, vom rotglühenden Monde.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Des cieux je vais descendre et révérer la lune.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\\s*\u6708\u3092\u4ef0\u304c\u3093\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\\s*\u5bf9\u6708\u957f\u5578\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '흉조가 내려와 달을 올려다보리라!.*?', capture: false }),
       durationSeconds: 6,
       infoText: {
         en: 'Spread => In',
@@ -342,12 +323,12 @@
     {
       // https://xivapi.com/NpcYell/6496?pretty=true
       id: 'UCU Nael Quote 2',
-      regex: Regexes.dialog({ line: 'From on high I descend, the iron path to walk.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Seht, ich steige herab, um euch zu beherrschen.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Du haut des cieux, je vais descendre pour conquérir.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\\s*\u5f81\u6218\u94c1\u8840\u9738\u9053\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '흉조가 내려와 강철의 패도를 걸으리라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'From on high I descend, the iron path to walk.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Seht, ich steige herab, um euch zu beherrschen.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Du haut des cieux, je vais descendre pour conquérir.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\\s*\u9244\u306e\u8987\u9053\u3092\u5f81\u304f\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\uff0c\\s*\u5f81\u6218\u94c1\u8840\u9738\u9053\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '흉조가 내려와 강철의 패도를 걸으리라!.*?', capture: false }),
       durationSeconds: 6,
       infoText: {
         en: 'Spread => Out',
@@ -361,12 +342,12 @@
     {
       // https://xivapi.com/NpcYell/6495?pretty=true
       id: 'UCU Nael Quote 3',
-      regex: Regexes.dialog({ line: 'Take fire, O hallowed moon.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Flammender Pfad, geschaffen vom roten Mond.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Baignez dans la bénédiction de la lune incandescente.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u8d64\u71b1\u305b\u3057\\s*\u6708\u306e\u795d\u798f\u3092\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u70bd\u70ed\u71c3\u70e7\uff01\\s*\u7ed9\u4e88\u6211\u6708\u4eae\u7684\u795d\u798f\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '붉게 타오른 달의 축복을!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'Take fire, O hallowed moon.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Flammender Pfad, geschaffen vom roten Mond.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Baignez dans la bénédiction de la lune incandescente.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u8d64\u71b1\u305b\u3057\\s*\u6708\u306e\u795d\u798f\u3092\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u70bd\u70ed\u71c3\u70e7\uff01\\s*\u7ed9\u4e88\u6211\u6708\u4eae\u7684\u795d\u798f\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '붉게 타오른 달의 축복을!.*?', capture: false }),
       durationSeconds: 6,
       infoText: {
         en: 'Stack => In',
@@ -380,12 +361,12 @@
     {
       // https://xivapi.com/NpcYell/6494?pretty=true
       id: 'UCU Nael Quote 4',
-      regex: Regexes.dialog({ line: 'Blazing path, lead me to iron rule.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Umloderter Pfad, führe mich zur Herrschaft.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'La voie marquée par l\'incandescence mène à la domination.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\\s*\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u88ab\u70bd\u70ed\u707c\u70e7\u8fc7\u7684\u8f68\u8ff9\\s*\u4e43\u6210\u94c1\u8840\u9738\u9053\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '붉게 타오른 길을 강철의 패도로 만들겠노라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'Blazing path, lead me to iron rule.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Umloderter Pfad, führe mich zur Herrschaft.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'La voie marquée par l\'incandescence mène à la domination.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u8d64\u71b1\u3057\u3001\u713c\u304b\u308c\u3057\u9053\u3092\\s*\u9244\u306e\u8987\u9053\u3068\u6210\u3059\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u88ab\u70bd\u70ed\u707c\u70e7\u8fc7\u7684\u8f68\u8ff9\\s*\u4e43\u6210\u94c1\u8840\u9738\u9053\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '붉게 타오른 길을 강철의 패도로 만들겠노라!.*?', capture: false }),
       infoText: {
         en: 'Stack => Out',
         fr: 'Se rassembler => Dehors',
@@ -398,12 +379,12 @@
     {
       // https://xivapi.com/NpcYell/6493?pretty=true
       id: 'UCU Nael Quote 5',
-      regex: Regexes.dialog({ line: 'O hallowed moon, take fire and scorch my foes.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'O roter Mond! Umlodere meinen Pfad.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Que l\'incandescence de la lune brûle mes ennemis.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u6708\u3088\uff01\\s*\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u6708\u5149\u554a\uff01\\s*\u7528\u4f60\u7684\u70bd\u70ed\u70e7\u5c3d\u654c\u4eba\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '달이여! 붉게 타올라 신의 적을 태워버려라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'O hallowed moon, take fire and scorch my foes.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'O roter Mond! Umlodere meinen Pfad.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Que l\'incandescence de la lune brûle mes ennemis.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u6708\u3088\uff01\\s*\u8d64\u71b1\u3057\u3001\u795e\u6575\u3092\u713c\u3051\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u6708\u5149\u554a\uff01\\s*\u7528\u4f60\u7684\u70bd\u70ed\u70e7\u5c3d\u654c\u4eba\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '달이여! 붉게 타올라 신의 적을 태워버려라!.*?', capture: false }),
       infoText: {
         en: 'In => Stack',
         fr: 'Dedans => Se rassembler',
@@ -416,12 +397,12 @@
     {
       // https://xivapi.com/NpcYell/6492?pretty=true
       id: 'UCU Nael Quote 6',
-      regex: Regexes.dialog({ line: 'O hallowed moon, shine you the iron path.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'O roter Mond! Führe mich zur Herrschaft.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Ô lune! Éclaire la voie de la domination.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u6708\u3088\uff01\\s*\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u6708\u5149\u554a\uff01\\s*\u7167\u4eae\u94c1\u8840\u9738\u9053\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '달이여! 강철의 패도를 비춰라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'O hallowed moon, shine you the iron path.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'O roter Mond! Führe mich zur Herrschaft.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Ô lune! Éclaire la voie de la domination.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u6708\u3088\uff01\\s*\u9244\u306e\u8987\u9053\u3092\u7167\u3089\u305b\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u6708\u5149\u554a\uff01\\s*\u7167\u4eae\u94c1\u8840\u9738\u9053\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '달이여! 강철의 패도를 비춰라!.*?', capture: false }),
       infoText: {
         en: 'In => Out',
         fr: 'Dedans => Dehors',
@@ -434,12 +415,12 @@
     {
       // https://xivapi.com/NpcYell/6501?pretty=true
       id: 'UCU Nael Quote 7',
-      regex: Regexes.dialog({ line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Neues Gestirn! Glühe herab und umlodere meinen Pfad.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Supernova, brille de tout ton feu et irradie la terre rougie.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\\s*\u7167\u4eae\u7ea2\u6708\u4e0b\u70bd\u70ed\u4e4b\u5730\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'Fleeting light! \'Neath the red moon, scorch you the earth.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Neues Gestirn! Glühe herab und umlodere meinen Pfad.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Supernova, brille de tout ton feu et irradie la terre rougie.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\\s*\u7d05\u6708\u4e0b\u306e\u8d64\u71b1\u305b\u3057\u5730\u3092\u7167\u3089\u305b\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\\s*\u7167\u4eae\u7ea2\u6708\u4e0b\u70bd\u70ed\u4e4b\u5730\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!.*?', capture: false }),
       delaySeconds: 4,
       durationSeconds: 6,
       infoText: {
@@ -454,12 +435,12 @@
     {
       // https://xivapi.com/NpcYell/6500?pretty=true
       id: 'UCU Nael Quote 8',
-      regex: Regexes.dialog({ line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Neues Gestirn! Überstrahle jede Sternschnuppe.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Supernova, brille de tout ton feu et glorifie la lune rouge.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\\s*\u5728\u661f\u964d\u4e4b\u591c\uff0c\u79f0\u8d5e\u7ea2\u6708\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'Fleeting light! Amid a rain of stars, exalt you the red moon.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Neues Gestirn! Überstrahle jede Sternschnuppe.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Supernova, brille de tout ton feu et glorifie la lune rouge.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u8d85\u65b0\u661f\u3088\u3001\u8f1d\u304d\u3092\u5897\u305b\uff01\\s*\u661f\u964d\u308a\u306e\u591c\u306b\u3001\u7d05\u6708\u3092\u79f0\u3048\u3088\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u8d85\u65b0\u661f\u554a\uff0c\u66f4\u52a0\u95ea\u8000\u5427\uff01\\s*\u5728\u661f\u964d\u4e4b\u591c\uff0c\u79f0\u8d5e\u7ea2\u6708\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!.*?', capture: false }),
       delaySeconds: 4,
       durationSeconds: 6,
       infoText: {
@@ -474,12 +455,12 @@
     {
       // https://xivapi.com/NpcYell/6502?pretty=true
       id: 'UCU Nael Quote 9',
-      regex: Regexes.dialog({ line: 'From on high I descend, the moon and stars to bring.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Du haut des cieux, j\'appelle une pluie d\'étoiles.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\u5bf9\u6708\u957f\u5578\uff01\\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'From on high I descend, the moon and stars to bring.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Ich steige herab zu Ehre des roten Mondes! Einer Sternschnuppe gleich.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Du haut des cieux, j\'appelle une pluie d\'étoiles.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u6211\u3001\u821e\u3044\u964d\u308a\u3066\u6708\u3092\u4ef0\u304e\\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u6211\u964d\u4e34\u4e8e\u6b64\u5bf9\u6708\u957f\u5578\uff01\\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!.*?', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'Spread => In',
@@ -493,12 +474,12 @@
     {
       // https://xivapi.com/NpcYell/6503?pretty=true
       id: 'UCU Nael Quote 10',
-      regex: Regexes.dialog({ line: 'From hallowed moon I descend, a rain of stars to bring.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Depuis la lune, j\'invoque une pluie d\'étoiles.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I descend, a rain of stars to bring.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'O roter Mond, sieh mich herabsteigen! Einer Sternschnuppe gleich.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Depuis la lune, j\'invoque une pluie d\'étoiles.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\\s*\u661f\u964d\u308a\u306e\u591c\u3092\u62db\u304b\u3093\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\\s*\u53ec\u5524\u661f\u964d\u4e4b\u591c\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!.*?', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread',
@@ -512,12 +493,12 @@
     {
       // https://xivapi.com/NpcYell/6507?pretty=true
       id: 'UCU Nael Quote 11',
-      regex: Regexes.dialog({ line: 'From hallowed moon I bare iron, in my descent to wield.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'O roter Mond, als Künder deiner Herrschaft stieg ich herab.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'De la lune je m\'arme d\'acier et descends.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\\s*\u821e\u3044\u964d\u308a\u3093\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u643a\u94a2\u94c1\u964d\u4e34\u4e8e\u6b64\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '달로부터 강철의 패도를 거쳐 흉조가 내려오리라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I bare iron, in my descent to wield.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'O roter Mond, als Künder deiner Herrschaft stieg ich herab.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'De la lune je m\'arme d\'acier et descends.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u9244\u3092\u5099\u3048\\s*\u821e\u3044\u964d\u308a\u3093\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u643a\u94a2\u94c1\u964d\u4e34\u4e8e\u6b64\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '달로부터 강철의 패도를 거쳐 흉조가 내려오리라!.*?', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'In => Out => Spread',
@@ -531,12 +512,12 @@
     {
       // https://xivapi.com/NpcYell/6506?pretty=true
       id: 'UCU Nael Quote 12',
-      regex: Regexes.dialog({ line: 'From hallowed moon I descend, upon burning earth to tread.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'De la lune, je descends et marche sur la terre ardente.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\\s*\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\\s*\u8e0f\u8fc7\u70bd\u70ed\u4e4b\u5730\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'From hallowed moon I descend, upon burning earth to tread.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'O roter Mond! Ich stieg herab, um deine Herrschaft zu bringen.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'De la lune, je descends et marche sur la terre ardente.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u6211\u3001\u6708\u3088\u308a\u821e\u3044\u964d\u308a\u3066\\s*\u8d64\u71b1\u305b\u3057\u5730\u3092\u6b69\u307e\u3093\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u6211\u81ea\u6708\u800c\u6765\u964d\u4e34\u4e8e\u6b64\uff0c\\s*\u8e0f\u8fc7\u70bd\u70ed\u4e4b\u5730\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!.*?', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'In => Spread => Stack',
@@ -550,12 +531,12 @@
     {
       // https://xivapi.com/NpcYell/6504?pretty=true
       id: 'UCU Nael Quote 13',
-      regex: Regexes.dialog({ line: 'Unbending iron, take fire and descend.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Ô noble acier! Rougis ardemment et deviens ma lame transperçante.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\\s*\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u94a2\u94c1\u71c3\u70e7\u5427\uff01\\s*\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u5200\u5251\u5427\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'Unbending iron, take fire and descend.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Zur Herrschaft führt mein umloderter Pfad! Auf diesen steige ich herab.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Ô noble acier! Rougis ardemment et deviens ma lame transperçante.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u9244\u3088\u3001\u8d64\u71b1\u305b\u3088\uff01\\s*\u821e\u3044\u964d\u308a\u3057\u6211\u304c\u5203\u3068\u306a\u308c\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u94a2\u94c1\u71c3\u70e7\u5427\uff01\\s*\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u5200\u5251\u5427\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!.*?', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'Out => Stack => Spread',
@@ -569,12 +550,12 @@
     {
       // https://xivapi.com/NpcYell/6505?pretty=true
       id: 'UCU Nael Quote 14',
-      regex: Regexes.dialog({ line: 'Unbending iron, descend with fiery edge.*?', capture: false }),
-      regexDe: Regexes.dialog({ line: 'Zur Herrschaft steige ich herab, auf umlodertem Pfad.*?', capture: false }),
-      regexFr: Regexes.dialog({ line: 'Fier acier! Sois ma lame plongeante et deviens incandescent.*?', capture: false }),
-      regexJa: Regexes.dialog({ line: '\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01.*?', capture: false }),
-      regexCn: Regexes.dialog({ line: '\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01.*?', capture: false }),
-      regexKo: Regexes.dialog({ line: '강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!.*?', capture: false }),
+      netRegex: NetRegexes.dialog({ line: 'Unbending iron, descend with fiery edge.*?', capture: false }),
+      netRegexDe: NetRegexes.dialog({ line: 'Zur Herrschaft steige ich herab, auf umlodertem Pfad.*?', capture: false }),
+      netRegexFr: NetRegexes.dialog({ line: 'Fier acier! Sois ma lame plongeante et deviens incandescent.*?', capture: false }),
+      netRegexJa: NetRegexes.dialog({ line: '\u9244\u3088\u3001\u821e\u3044\u964d\u308a\u3057\\s*\u6211\u306e\u5203\u3068\u306a\u308a\u8d64\u71b1\u305b\u3088\uff01.*?', capture: false }),
+      netRegexCn: NetRegexes.dialog({ line: '\u94a2\u94c1\u6210\u4e3a\u6211\u964d\u4e34\u4e8e\u6b64\u7684\u71c3\u70e7\u4e4b\u5251\uff01.*?', capture: false }),
+      netRegexKo: NetRegexes.dialog({ line: '강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!.*?', capture: false }),
       durationSeconds: 9,
       infoText: {
         en: 'Out => Spread => Stack',
@@ -589,12 +570,12 @@
       id: 'UCU Nael Thunderstruck',
       // Note: The 0A event happens before 'gains the effect' and 'starts
       // casting on' only includes one person.
-      regex: Regexes.ability({ source: 'Thunderwing', id: '26C7' }),
-      regexDe: Regexes.ability({ source: 'Donnerschwinge', id: '26C7' }),
-      regexFr: Regexes.ability({ source: 'Aile-De-Foudre', id: '26C7' }),
-      regexJa: Regexes.ability({ source: 'サンダーウィング', id: '26C7' }),
-      regexCn: Regexes.ability({ source: '雷翼', id: '26C7' }),
-      regexKo: Regexes.ability({ source: '번개날개', id: '26C7' }),
+      netRegex: NetRegexes.ability({ source: 'Thunderwing', id: '26C7' }),
+      netRegexDe: NetRegexes.ability({ source: 'Donnerschwinge', id: '26C7' }),
+      netRegexFr: NetRegexes.ability({ source: 'Aile-De-Foudre', id: '26C7' }),
+      netRegexJa: NetRegexes.ability({ source: 'サンダーウィング', id: '26C7' }),
+      netRegexCn: NetRegexes.ability({ source: '雷翼', id: '26C7' }),
+      netRegexKo: NetRegexes.ability({ source: '번개날개', id: '26C7' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -617,12 +598,7 @@
     },
     {
       id: 'UCU Nael Your Doom',
-      regex: Regexes.gainsEffect({ effect: 'Doom' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -684,12 +660,7 @@
     },
     {
       id: 'UCU Doom Init',
-      regex: Regexes.gainsEffect({ effect: 'Doom' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas' }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告' }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告' }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D2' }),
       condition: function(data, matches) {
         // FIXME: temporary workaround for "gains the effect for 9999.00"
         // https://github.com/ravahn/FFXIV_ACT_Plugin/issues/223
@@ -713,12 +684,7 @@
     },
     {
       id: 'UCU Doom Cleanup',
-      regex: Regexes.gainsEffect({ effect: 'Doom', capture: false }),
-      regexDe: Regexes.gainsEffect({ effect: 'Verhängnis', capture: false }),
-      regexFr: Regexes.gainsEffect({ effect: 'Glas', capture: false }),
-      regexJa: Regexes.gainsEffect({ effect: '死の宣告', capture: false }),
-      regexCn: Regexes.gainsEffect({ effect: '死亡宣告', capture: false }),
-      regexKo: Regexes.gainsEffect({ effect: '죽음의 선고', capture: false }),
+      netRegex: NetRegexes.gainsEffect({ effectId: 'D2', capture: false }),
       delaySeconds: 20,
       run: function(data) {
         delete data.dooms;
@@ -727,12 +693,12 @@
     },
     {
       id: 'UCU Nael Cleanse Callout',
-      regex: Regexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
-      regexDe: Regexes.ability({ source: 'Lichtklaue', id: '26CA', capture: false }),
-      regexFr: Regexes.ability({ source: 'Croc De Lumière', id: '26CA', capture: false }),
-      regexJa: Regexes.ability({ source: 'ライトファング', id: '26CA', capture: false }),
-      regexCn: Regexes.ability({ source: '光牙', id: '26CA', capture: false }),
-      regexKo: Regexes.ability({ source: '빛의 송곳니', id: '26CA', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Fang Of Light', id: '26CA', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Lichtklaue', id: '26CA', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Croc De Lumière', id: '26CA', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ライトファング', id: '26CA', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '光牙', id: '26CA', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '빛의 송곳니', id: '26CA', capture: false }),
       infoText: function(data) {
         data.doomCount = data.doomCount || 0;
         let name;
@@ -753,12 +719,12 @@
     },
     {
       id: 'UCU Nael Fireball 1',
-      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
-      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
-      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 99999,
       infoText: {
@@ -782,12 +748,12 @@
     },
     {
       id: 'UCU Nael Fireball 2',
-      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
-      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
-      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 51,
       suppressSeconds: 99999,
       alertText: function(data) {
@@ -846,12 +812,12 @@
     },
     {
       id: 'UCU Nael Fireball 3',
-      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
-      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
-      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 77,
       suppressSeconds: 99999,
       alertText: function(data) {
@@ -922,12 +888,12 @@
     },
     {
       id: 'UCU Nael Fireball 4',
-      regex: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      regexDe: Regexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
-      regexFr: Regexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
-      regexJa: Regexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
-      regexCn: Regexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
-      regexKo: Regexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       preRun: function(data) {
         let tookTwo = data.fireballs[1].filter(function(p) {
           return data.fireballs[2].indexOf(p) >= 0;
@@ -980,12 +946,12 @@
     },
     {
       id: 'UCU Dragon Tracker',
-      regex: Regexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
-      regexDe: Regexes.abilityFull({ source: ['Eisklaue', 'Donnerschwinge', 'Lichtklaue', 'Dunkelschweif', 'Feuerhorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
-      regexFr: Regexes.abilityFull({ source: ['Griffe-De-Glace', 'Aile-De-Foudre', 'Croc De Lumière', 'Queue De Ténèbres', 'Corne-De-Feu'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
-      regexJa: Regexes.abilityFull({ source: ['アイスクロウ', 'サンダーウィング', 'ライトファング', 'ダークテイル', 'ファイアホーン'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
-      regexCn: Regexes.abilityFull({ source: ['冰爪', '雷翼', '光牙', '暗尾', '火角'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
-      regexKo: Regexes.abilityFull({ source: ['얼음발톱', '번개날개', '빛의 송곳니', '어둠의 꼬리', '화염뿔'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegex: NetRegexes.abilityFull({ source: ['Iceclaw', 'Thunderwing', 'Fang Of Light', 'Tail Of Darkness', 'Firehorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegexDe: NetRegexes.abilityFull({ source: ['Eisklaue', 'Donnerschwinge', 'Lichtklaue', 'Dunkelschweif', 'Feuerhorn'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegexFr: NetRegexes.abilityFull({ source: ['Griffe-De-Glace', 'Aile-De-Foudre', 'Croc De Lumière', 'Queue De Ténèbres', 'Corne-De-Feu'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegexJa: NetRegexes.abilityFull({ source: ['アイスクロウ', 'サンダーウィング', 'ライトファング', 'ダークテイル', 'ファイアホーン'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegexCn: NetRegexes.abilityFull({ source: ['冰爪', '雷翼', '光牙', '暗尾', '火角'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
+      netRegexKo: NetRegexes.abilityFull({ source: ['얼음발톱', '번개날개', '빛의 송곳니', '어둠의 꼬리', '화염뿔'], id: ['26C6', '26C7', '26CA', '26C9', '26C5'] }),
       condition: function(data, matches) {
         return !data.seenDragon || !(matches.source in data.seenDragon);
       },
@@ -1031,23 +997,24 @@
     },
     {
       id: 'UCU Nael Ravensbeak',
-      regex: Regexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
-      regexDe: Regexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
-      regexFr: Regexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
-      regexJa: Regexes.startsUsing({ source: 'ネール・デウス・ダーナス', id: '26B6' }),
-      regexCn: Regexes.startsUsing({ source: '奈尔·神·达纳斯', id: '26B6' }),
-      regexKo: Regexes.startsUsing({ source: '넬 데우스 다르누스', id: '26B6' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Nael deus Darnus', id: '26B6' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ネール・デウス・ダーナス', id: '26B6' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '奈尔·神·达纳斯', id: '26B6' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '넬 데우스 다르누스', id: '26B6' }),
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBusterSwap('alert'),
     },
     {
       // Called out after the 1st Ravensbeak.
       id: 'UCU Nael Dragon Placement',
-      regex: Regexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
-      regexDe: Regexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
-      regexFr: Regexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
-      regexJa: Regexes.ability({ source: 'ネール・デウス・ダーナス', id: '26B6', capture: false }),
-      regexCn: Regexes.ability({ source: '奈尔·神·达纳斯', id: '26B6', capture: false }),
-      regexKo: Regexes.ability({ source: '넬 데우스 다르누스', id: '26B6', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Nael deus Darnus', id: '26B6', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ネール・デウス・ダーナス', id: '26B6', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '奈尔·神·达纳斯', id: '26B6', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '넬 데우스 다르누스', id: '26B6', capture: false }),
       condition: function(data) {
         return data.naelMarks && !data.calledNaelDragons;
       },
@@ -1066,7 +1033,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Me',
-      regex: Regexes.headMarker({ id: '0014' }),
+      netRegex: NetRegexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return !data.trio;
       },
@@ -1084,7 +1051,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Others',
-      regex: Regexes.headMarker({ id: '0014' }),
+      netRegex: NetRegexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return !data.trio;
       },
@@ -1105,7 +1072,7 @@
     },
     {
       id: 'UCU Nael Dragon Dive Marker Counter',
-      regex: Regexes.headMarker({ id: '0014', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0014', capture: false }),
       condition: function(data) {
         return !data.trio;
       },
@@ -1116,7 +1083,7 @@
     {
       // Octet marker tracking (77=nael, 14=dragon, 29=baha, 2A=twin)
       id: 'UCU Octet Marker Tracking',
-      regex: Regexes.headMarker({ id: ['0077', '0014', '0029'] }),
+      netRegex: NetRegexes.headMarker({ id: ['0077', '0014', '0029'] }),
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1161,7 +1128,7 @@
     },
     {
       id: 'UCU Octet Nael Marker',
-      regex: Regexes.headMarker({ id: '0077' }),
+      netRegex: NetRegexes.headMarker({ id: '0077' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1178,7 +1145,7 @@
     },
     {
       id: 'UCU Octet Dragon Marker',
-      regex: Regexes.headMarker({ id: '0014' }),
+      netRegex: NetRegexes.headMarker({ id: '0014' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1194,7 +1161,7 @@
     },
     {
       id: 'UCU Octet Baha Marker',
-      regex: Regexes.headMarker({ id: '0029' }),
+      netRegex: NetRegexes.headMarker({ id: '0029' }),
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1211,7 +1178,7 @@
     },
     {
       id: 'UCU Octet Twin Marker',
-      regex: Regexes.headMarker({ id: '0029', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0029', capture: false }),
       condition: function(data) {
         return data.trio == 'octet';
       },
@@ -1267,12 +1234,12 @@
     },
     {
       id: 'UCU Twister Dives',
-      regex: Regexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
-      regexDe: Regexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
-      regexFr: Regexes.ability({ source: 'Gémellia', id: '26B2', capture: false }),
-      regexJa: Regexes.ability({ source: 'ツインタニア', id: '26B2', capture: false }),
-      regexCn: Regexes.ability({ source: '双塔尼亚', id: '26B2', capture: false }),
-      regexKo: Regexes.ability({ source: '트윈타니아', id: '26B2', capture: false }),
+      netRegex: NetRegexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Twintania', id: '26B2', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Gémellia', id: '26B2', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '26B2', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '26B2', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '26B2', capture: false }),
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
@@ -1292,12 +1259,12 @@
     },
     {
       id: 'UCU Bahamut Gigaflare',
-      regex: Regexes.startsUsing({ id: '26D6', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26D6', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26D6', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26D6', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26D6', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26D6', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26D6', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26D6', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26D6', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26D6', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26D6', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26D6', source: '바하무트 프라임', capture: false }),
       alertText: {
         en: 'Gigaflare',
         fr: 'GigaBrasier',
@@ -1317,7 +1284,7 @@
     },
     {
       id: 'UCU Megaflare Stack Me',
-      regex: Regexes.headMarker({ id: '0027' }),
+      netRegex: NetRegexes.headMarker({ id: '0027' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1340,14 +1307,14 @@
     },
     {
       id: 'UCU Megaflare Stack Tracking',
-      regex: Regexes.headMarker({ id: '0027' }),
+      netRegex: NetRegexes.headMarker({ id: '0027' }),
       run: function(data, matches) {
         data.megaStack.push(matches.target);
       },
     },
     {
       id: 'UCU Megaflare Tower',
-      regex: Regexes.headMarker({ id: '0027', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
       infoText: function(data) {
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
@@ -1402,7 +1369,7 @@
     },
     {
       id: 'UCU Megaflare Twin Tower',
-      regex: Regexes.headMarker({ id: '0027', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0027', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 1,
       infoText: function(data) {
@@ -1431,7 +1398,7 @@
     },
     {
       id: 'UCU Earthshaker Me',
-      regex: Regexes.headMarker({ id: '0028' }),
+      netRegex: NetRegexes.headMarker({ id: '0028' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -1454,14 +1421,14 @@
     },
     {
       id: 'UCU Earthshaker Tracking',
-      regex: Regexes.headMarker({ id: '0028' }),
+      netRegex: NetRegexes.headMarker({ id: '0028' }),
       run: function(data, matches) {
         data.shakers.push(matches.target);
       },
     },
     {
       id: 'UCU Earthshaker Not Me',
-      regex: Regexes.headMarker({ id: '0028', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '0028', capture: false }),
       alertText: function(data) {
         if (data.trio == 'quickmarch') {
           if (data.shakers.length != 3)
@@ -1554,12 +1521,12 @@
     },
     {
       id: 'UCU Morn Afah',
-      regex: Regexes.startsUsing({ id: '26EC', source: 'Bahamut Prime' }),
-      regexDe: Regexes.startsUsing({ id: '26EC', source: 'Prim-Bahamut' }),
-      regexFr: Regexes.startsUsing({ id: '26EC', source: 'Primo-Bahamut' }),
-      regexJa: Regexes.startsUsing({ id: '26EC', source: 'バハムート・プライム' }),
-      regexCn: Regexes.startsUsing({ id: '26EC', source: '至尊巴哈姆特' }),
-      regexKo: Regexes.startsUsing({ id: '26EC', source: '바하무트 프라임' }),
+      netRegex: NetRegexes.startsUsing({ id: '26EC', source: 'Bahamut Prime' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26EC', source: 'Prim-Bahamut' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26EC', source: 'Primo-Bahamut' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26EC', source: 'バハムート・プライム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26EC', source: '至尊巴哈姆特' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26EC', source: '바하무트 프라임' }),
       preRun: function(data) {
         data.mornAfahCount = data.mornAfahCount || 0;
         data.mornAfahCount++;
@@ -1596,12 +1563,12 @@
     },
     {
       id: 'UCU Akh Morn',
-      regex: Regexes.startsUsing({ id: '26EA', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26EA', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26EA', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26EA', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26EA', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26EA', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26EA', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26EA', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26EA', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26EA', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26EA', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26EA', source: '바하무트 프라임', capture: false }),
       preRun: function(data) {
         data.akhMornCount = data.akhMornCount || 0;
         data.akhMornCount++;
@@ -1617,12 +1584,12 @@
     },
     {
       id: 'UCU Exaflare',
-      regex: Regexes.startsUsing({ id: '26EF', source: 'Bahamut Prime', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26EF', source: 'Prim-Bahamut', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26EF', source: 'Primo-Bahamut', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26EF', source: 'バハムート・プライム', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26EF', source: '至尊巴哈姆特', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26EF', source: '바하무트 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26EF', source: 'Bahamut Prime', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26EF', source: 'Prim-Bahamut', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26EF', source: 'Primo-Bahamut', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26EF', source: 'バハムート・プライム', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26EF', source: '至尊巴哈姆特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26EF', source: '바하무트 프라임', capture: false }),
       preRun: function(data) {
         data.exaflareCount = data.exaflareCount || 0;
         data.exaflareCount++;
@@ -1641,12 +1608,12 @@
     {
       // One time setup.
       id: 'UCU Initial Setup',
-      regex: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '26AA', source: 'Twintania', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '26AA', source: 'Gémellia', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
       suppressSeconds: 99999,
       run: function(data) {
         // TODO: a late white puddle can cause dragons to get seen for the next
@@ -1800,7 +1767,6 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': 'Prim-Bahamut',
         'Fang of Light': 'Lichtklaue',
@@ -1808,7 +1774,6 @@
         'Iceclaw': 'Eisklaue',
         'Nael Deus Darnus': 'Nael deus Darnus',
         'Nael Geminus': 'Nael Geminus',
-        'Oviform': 'Magiekompressor',
         'Ragnarok': 'Ragnarök',
         'Tail of Darkness': 'Dunkelschweif',
         'Thunderwing': 'Donnerschwinge',
@@ -1842,49 +1807,39 @@
         'Chain Lightning': 'Kettenblitz',
         'Dalamud Dive': 'Dalamud-Sturzflug',
         'Death Sentence': 'Todesurteil',
-        'Deathstorm': 'Todessturm',
         'Dive . Dynamo/Chariot': 'Sturzflug + Dynamo/Streitwagen',
         'Dive Dynamo Combo': 'Sturzflug Dynamo Kombo',
-        'Divebomb': 'Sturzbombe',
         'Doom': 'Verhängnis',
         'Dynamo . Beam/Chariot': 'Dynamo + Strahl/Streitwagen',
         'Earth Shaker': 'Erdstoß',
         'Exaflare': 'Exaflare',
         'Fellruin Trio': 'Untergangs-Trio',
         'Fireball(?! Soak)': 'Feuerball',
-        'Fireball Soak': 'Feuerball aufsaugen',
         'Flames Of Rebirth': 'Flammen der Wiedergeburt',
         'Flare Breath': 'Flare-Atem',
         'Flatten': 'Einebnen',
         'Generate': 'Formung',
         'Gigaflare': 'Gigaflare',
         'Grand Octet': 'Großes Oktett',
-        'Hatch': 'Austritt',
         'Heavensfall Trio': 'Himmelssturz-Trio',
         'Heavensfall(?! )': 'Himmelssturz',
         'Hypernova': 'Supernova',
-        'Iceball': 'Eisball',
-        'Iron Chariot': 'Eiserner Streitwagen',
         'Liquid Hell': 'Höllenschmelze',
         'Lunar Dive': 'Lunarer Sturz',
-        'Lunar Dynamo': 'Lunarer Dynamo',
         '(?<! )Marker(?!\\w)': 'Marker',
-        'Markers appear': 'Marker escheinen',
-        'Megaflare': 'Megaflare',
+        'Megaflare(?! Dive)': 'Megaflare',
         'Megaflare Dive': 'Megaflare-Sturz',
         'Meteor Stream': 'Meteorflug',
         'Meteor/Dive or Dive/Beam': 'Meteor/Sturzflug oder Sturzflug/Strahl',
         'Morn Afah': 'Morn Afah',
-        'Nael Dive': 'Nael Sturzflug',
         'Nael Marker': 'Nael Marker',
+        'Pepperoni': 'Salami',
         'Plummet(?!\/)': 'Herabstürzen',
-        'Plummet/Claw': 'Herabstürzen/Klaue',
         'Quickmarch Trio': 'Todesmarsch-Trio',
         'Random Combo Attack': 'Zufälliger Komboangriff',
-        'Raven Dive': 'Bahamuts Schwinge',
         '(?<!\/)Ravensbeak': 'Bradamante',
-        'Sentence/Ravensbeak': 'Urteil/Bradamante',
         'Seventh Umbral Era': 'Siebte Ära des Schattens',
+        'Spread': 'Verteilen',
         'Stack': 'Sammeln',
         'Targeted Fire': 'Feuer auf Ziel',
         'Tempest Wing': 'Sturm-Schwinge',
@@ -1893,28 +1848,12 @@
         'Thermionic . Dynamo/Chariot': 'Thermo + Dynamo/Streitwagen',
         'Thermionic Beam': 'Thermionischer Strahl',
         'Thermionic Burst': 'Thermionische Eruption',
-        'Thunderstruck': 'Donnerschwinge',
         'Towers': 'Türme',
         'Triple Nael Quote': 'Drei Nael Zitate',
         'Twin Marker': 'Twin Marker',
         'Twister': 'Wirbelsturm',
         'Twisting Dive': 'Spiralschwinge',
-        'White Fury': 'Naels Zorn',
         'Wings of Salvation': 'Rettende Schwinge',
-      },
-      '~effectNames': {
-        'Doom': 'Verhängnis',
-        'Down For The Count': 'Am Boden',
-        'Earth Resistance Down II': 'Erdresistenz - (stark)',
-        'Firescorched': 'Feuerhorn',
-        'Icebitten': 'Eisklaue',
-        'Lohs Daih': 'Lohs Daih',
-        'Mana Hypersensitivity': 'Magieempfindlichkeit',
-        'Neurolink': 'Neurolink',
-        'Phoenix\'s Blessing': 'Stärke des Phönix',
-        'Piercing Resistance Down II': 'Stichresistenz - (stark)',
-        'Slashing Resistance Down II': 'Hiebresistenz - (stark)',
-        'Thunderstruck': 'Donnerschwinge',
       },
     },
     {
@@ -1927,7 +1866,6 @@
         'Iceclaw': 'griffe-de-glace',
         'Nael Deus Darnus': 'Nael deus Darnus',
         'Nael Geminus': 'Nael Geminus',
-        'Oviform': 'oviforme',
         'Ragnarok': 'Ragnarok',
         'Tail of Darkness': 'queue de ténèbres',
         'Thunderwing': 'aile-de-foudre',
@@ -1947,49 +1885,39 @@
         'Chain Lightning': 'Chaîne d\'éclairs',
         'Dalamud Dive': 'Chute de Dalamud',
         'Death Sentence': 'Peine de mort',
-        'Deathstorm': 'Tempête de la mort',
         'Dive . Dynamo/Chariot': 'Plongeon + Dynamo/Char',
         'Dive Dynamo Combo': 'Plongeon Dynamo Combo',
-        'Divebomb': 'Bombe plongeante',
         'Doom': 'Glas',
         'Dynamo . Beam/Chariot': 'Dynamo + Rayon/Char',
         'Earth Shaker': 'Secousse',
         'Exaflare': 'ExaBrasier',
         'Fellruin Trio': 'Trio du désastre',
         'Fireball(?! Soak)': 'Boule de feu',
-        'Fireball Soak': 'Absorption Boule De Feu',
         'Flames Of Rebirth': 'Feu résurrecteur',
         'Flare Breath': 'Souffle brasier',
         'Flatten': 'Compression',
         'Generate': 'Synthèse de mana',
         'Gigaflare': 'GigaBrasier',
         'Grand Octet': 'Octuors des dragons',
-        'Hatch': 'Éclosion',
         'Heavensfall Trio': 'Trio de l\'univers',
         'Heavensfall(?! )': 'Destruction Universelle',
         'Hypernova': 'Hypernova',
-        'Iceball': 'Orbe de glace',
-        'Iron Chariot': 'Char de fer',
         'Liquid Hell': 'Enfer liquide',
         'Lunar Dive': 'Plongeon lunaire',
-        'Lunar Dynamo': 'Dynamo lunaire',
         '(?<! )Marker(?!\\w)': 'Marqueur',
-        'Markers appear': 'Apparition des marqueurs',
-        'Megaflare': 'MégaBrasier',
+        'Megaflare(?! Dive)': 'MégaBrasier',
         'Megaflare Dive': 'Plongeon MégaBrasier',
         'Meteor Stream': 'Rayon météore',
         'Meteor/Dive or Dive/Beam': 'Météore/Plongeon ou Plongeon/Rayon',
         'Morn Afah': 'Morn Afah',
-        'Nael Dive': 'Plongeon de Nael',
         'Nael Marker': 'Marqueur de Nael',
+        'Pepperoni': 'Zones au sol',
         'Plummet(?!\/)': 'Piqué',
-        'Plummet/Claw': 'Piqué/Griffe',
         'Quickmarch Trio': 'Trio de la marche militaire',
         'Random Combo Attack': 'Attaque combo aléatoire',
-        'Raven Dive': 'Fonte du rapace',
         '(?<!\/)Ravensbeak': 'Bec du rapace',
-        'Sentence/Ravensbeak': 'Peine De Mort/Bec Du Rapace',
         'Seventh Umbral Era': '7e fléau',
+        'Spread': 'Se disperser',
         'Stack': 'Se rassembler',
         'Targeted Fire': 'Feu ciblé',
         'Tempest Wing': 'Aile de tempête',
@@ -1998,28 +1926,12 @@
         'Thermionic . Dynamo/Chariot': 'Rayon + Dynamo/Char',
         'Thermionic Beam': 'Rayon thermoïonique',
         'Thermionic Burst': 'Rafale thermoïonique',
-        'Thunderstruck': 'Aile-de-foudre',
         'Towers': 'Tours',
         'Triple Nael Quote': 'Triple citation de Nael',
         'Twin Marker': 'Marqueur de Gémellia',
         'Twister': 'Grande trombe',
         'Twisting Dive': 'Plongeon-trombe',
-        'White Fury': 'Colère de Nael',
         'Wings of Salvation': 'Aile de la salvation',
-      },
-      '~effectNames': {
-        'Doom': 'Glas',
-        'Down For The Count': 'Au tapis',
-        'Earth Resistance Down II': 'Résistance à la terre réduite+',
-        'Firescorched': 'Corne-de-feu',
-        'Icebitten': 'Griffe-de-glace',
-        'Lohs Daih': 'Lohs Daih',
-        'Mana Hypersensitivity': 'Hypersensibilité à la mana',
-        'Neurolink': 'Neurolien',
-        'Phoenix\'s Blessing': 'Protection de Phénix',
-        'Piercing Resistance Down II': 'Résistance au perforant réduite+',
-        'Slashing Resistance Down II': 'Résistance au tranchant réduite+',
-        'Thunderstruck': 'Aile-de-foudre',
       },
     },
     {
@@ -2032,7 +1944,6 @@
         'Iceclaw': 'アイスクロウ',
         'Nael Deus Darnus': 'ネール・デウス・ダーナス',
         'Nael Geminus': 'ネール・ジェミナス',
-        'Oviform': '魔力圧縮体',
         'Ragnarok': 'ラグナロク',
         'Tail of Darkness': 'ダークテイル',
         'Thunderwing': 'サンダーウィング',
@@ -2050,8 +1961,6 @@
         'Chain Lightning': 'チェインライトニング',
         'Dalamud Dive': 'ダラガブダイブ',
         'Death Sentence': 'デスセンテンス',
-        'Deathstorm': 'デスストーム',
-        'Divebomb': 'ダイブボム',
         'Doom': '死の宣告',
         'Earth Shaker': 'アースシェイカー',
         'Exaflare': 'エクサフレア',
@@ -2063,22 +1972,17 @@
         'Generate': '魔力錬成',
         'Gigaflare': 'ギガフレア',
         'Grand Octet': '群竜の八重奏',
-        'Hatch': '魔力爆散',
         'Heavensfall Trio': '天地の三重奏',
         'Heavensfall(?! )': '天地崩壊',
         'Hypernova': 'スーパーノヴァ',
-        'Iceball': 'アイスボール',
-        'Iron Chariot': 'アイアンチャリオット',
         'Liquid Hell': 'ヘルリキッド',
         'Lunar Dive': 'ルナダイブ',
-        'Lunar Dynamo': 'ルナダイナモ',
-        'Megaflare': 'メガフレア',
+        'Megaflare(?! Dive)': 'メガフレア',
         'Megaflare Dive': 'メガフレアダイブ',
         'Meteor Stream': 'メテオストリーム',
         'Morn Afah': 'モーン・アファー',
         'Plummet(?!\/)': 'プラメット',
         'Quickmarch Trio': '進軍の三重奏',
-        'Raven Dive': 'レイヴンダイブ',
         '(?<!\/)Ravensbeak': 'レイヴェンズビーク',
         'Seventh Umbral Era': '第七霊災',
         'Tempest Wing': 'テンペストウィング',
@@ -2086,29 +1990,14 @@
         'Teraflare': 'テラフレア',
         'Thermionic Beam': 'サーミオニックビーム',
         'Thermionic Burst': 'サーミオニックバースト',
-        'Thunderstruck': 'サンダーウィング',
         'Twister': 'ツイスター',
         'Twisting Dive': 'ツイスターダイブ',
-        'White Fury': 'ネールの憤怒',
         'Wings of Salvation': 'サルヴェーションウィング',
-      },
-      '~effectNames': {
-        'Doom': '死の宣告',
-        'Down For The Count': 'ノックダウン',
-        'Earth Resistance Down II': '土属性耐性低下［強］',
-        'Firescorched': 'ファイアホーン',
-        'Icebitten': 'アイスクロウ',
-        'Lohs Daih': 'ロース・ダイ',
-        'Mana Hypersensitivity': '魔力過敏症',
-        'Neurolink': '拘束装置',
-        'Phoenix\'s Blessing': 'フェニックスの加護',
-        'Piercing Resistance Down II': '突属性耐性低下[強]',
-        'Slashing Resistance Down II': '斬属性耐性低下［強］',
-        'Thunderstruck': 'サンダーウィング',
       },
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '至尊巴哈姆特',
         'Fang of Light': '光牙',
@@ -2116,7 +2005,6 @@
         'Iceclaw': '冰爪',
         'Nael Deus Darnus': '奈尔·神·达纳斯',
         'Nael Geminus': '奈尔双生子',
-        'Oviform': '魔力压缩体',
         'Ragnarok': '诸神黄昏',
         'Tail of Darkness': '暗尾',
         'Thunderwing': '雷翼',
@@ -2136,50 +2024,39 @@
         'Chain Lightning': '雷光链',
         'Dalamud Dive': '月华冲',
         'Death Sentence': '死刑',
-        'Deathstorm': '死亡风暴',
         'Dive . Dynamo/Chariot': '冲 + 月环/钢铁',
         'Dive Dynamo Combo': '冲月环连招',
-        'Divebomb': '爆破俯冲',
         'Doom': '死亡宣告',
         'Dynamo . Beam/Chariot': '月环 + 光束/钢铁',
         'Earth Shaker': '大地摇动',
         'Exaflare': '百京核爆',
         'Fellruin Trio': '灾厄的三重奏',
         'Fireball(?! Soak)': '火球',
-        'Fireball Soak': '火球分摊',
         'Flames Of Rebirth': '转生之炎',
         'Flare Breath': '核爆吐息',
         'Flatten': '平击',
         'Generate': '魔力炼成',
         'Gigaflare': '十亿核爆',
         'Grand Octet': '群龙的八重奏',
-        'Hatch': '魔力爆散',
         'Heavensfall Trio': '天地的三重奏',
         'Heavensfall(?! )': '天崩地裂',
         'Hypernova': '超新星',
-        'Iceball': '寒冰球',
-        'Iron Chariot': '钢铁战车',
         'Liquid Hell': '液体地狱',
         'Lunar Dive': '月流冲',
-        'Lunar Dynamo': '月流电圈',
         '(?<! )Marker(?!\\w)': '标记',
-        'Markers appear': '标记出现',
-        'Megaflare': '百万核爆',
+        'Megaflare(?! Dive)': '百万核爆',
         'Megaflare Dive': '百万核爆冲',
         'Meteor Stream': '陨石流',
         'Meteor/Dive or Dive/Beam': '陨石/冲 或 冲/光束',
         'Morn Afah': '无尽顿悟',
-        'Nael Dive': '奈尔冲',
         'Nael Marker': '奈尔标记',
         'Pepperoni': '大圈',
         'Plummet(?!\/)': '垂直下落',
-        'Plummet/Claw': '垂直下落/爪',
         'Quickmarch Trio': '进军的三重奏',
         'Random Combo Attack': '随机连招',
-        'Raven Dive': '凶鸟冲',
         '(?<!\/)Ravensbeak': '凶鸟尖喙',
-        'Sentence/Ravensbeak': '死刑/凶鸟尖喙',
         'Seventh Umbral Era': '第七灵灾',
+        'Spread': '分散',
         'Stack': '集合',
         'Targeted Fire': '火球点名',
         'Tempest Wing': '风暴之翼',
@@ -2188,32 +2065,17 @@
         'Thermionic . Dynamo/Chariot': '离子 + 月环/钢铁',
         'Thermionic Beam': '热离子光束',
         'Thermionic Burst': '热离子爆发',
-        'Thunderstruck': '雷翼',
         'Towers': '塔',
         'Triple Nael Quote': '三黑球',
         'Twin Marker': '双塔标记',
         'Twister': '旋风',
         'Twisting Dive': '旋风冲',
-        'White Fury': '奈尔之怒',
         'Wings of Salvation': '救世之翼',
-      },
-      '~effectNames': {
-        'Doom': '死亡宣告',
-        'Down For The Count': '击倒',
-        'Earth Resistance Down II': '土属性耐性大幅降低',
-        'Firescorched': '火角',
-        'Icebitten': '冰爪',
-        'Lohs Daih': '真力解放',
-        'Mana Hypersensitivity': '魔力过敏',
-        'Neurolink': '拘束装置',
-        'Phoenix\'s Blessing': '不死鸟的加护',
-        'Piercing Resistance Down II': '突刺耐性大幅降低',
-        'Slashing Resistance Down II': '斩击耐性大幅降低',
-        'Thunderstruck': '雷翼',
       },
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '바하무트 프라임',
         'Fang of Light': '빛의 송곳니',
@@ -2221,7 +2083,6 @@
         'Iceclaw': '얼음발톱',
         'Nael Deus Darnus': '넬 데우스 다르누스',
         'Nael Geminus': '넬 게미누스',
-        'Oviform': '마력 압축체',
         'Ragnarok': '라그나로크',
         'Tail of Darkness': '어둠의 꼬리',
         'Thunderwing': '번개날개',
@@ -2241,50 +2102,39 @@
         'Chain Lightning': '번개 사슬',
         'Dalamud Dive': '달라가브 강하',
         'Death Sentence': '사형 선고',
-        'Deathstorm': '죽음의 폭풍',
         'Dive . Dynamo/Chariot': '강하 + 달/강철',
         'Dive Dynamo Combo': '강하 달 콤보',
-        'Divebomb': '급강하 폭격',
         'Doom': '죽음의 선고',
         'Dynamo . Beam/Chariot': '달 + 광선/강철',
         'Earth Shaker': '요동치는 대지',
         'Exaflare': '엑사플레어',
         'Fellruin Trio': '재앙의 3중주',
         'Fireball(?! Soak)': '화염구',
-        'Fireball Soak': '화염구 쉐어',
         'Flames Of Rebirth': '윤회의 불꽃',
         'Flare Breath': '타오르는 숨결',
         'Flatten': '짓뭉개기',
         'Generate': '마력 연성',
         'Gigaflare': '기가플레어',
         'Grand Octet': '용들의 8중주',
-        'Hatch': '마력 방출',
         'Heavensfall Trio': '천지의 3중주',
         'Heavensfall(?! )': '천지붕괴(?! )',
         'Hypernova': '초신성',
-        'Iceball': '얼음구',
-        'Iron Chariot': '강철 전차',
         'Liquid Hell': '지옥의 늪',
         'Lunar Dive': '달 강하',
-        'Lunar Dynamo': '달의 원동력',
         '(?<! )Marker(?!\\w)': '징',
-        'Markers appear': '징 표시',
-        'Megaflare': '메가플레어',
+        'Megaflare(?! Dive)': '메가플레어',
         'Megaflare Dive': '메가플레어 다이브',
         'Meteor Stream': '유성 폭풍',
         'Meteor/Dive or Dive/Beam': '유성/강하 or 강하/광선',
         'Morn Afah': '몬 아파',
-        'Nael Dive': '넬 강하',
         'Nael Marker': '넬 징',
         'Pepperoni': '메가플레어 장판',
         'Plummet(?!\/)': '곤두박질',
-        'Plummet/Claw': '곤두박질/발톱',
         'Quickmarch Trio': '진군의 3중주',
         'Random Combo Attack': '랜덤 콤보 공격',
-        'Raven Dive': '흉조의 강하',
         '(?<!\/)Ravensbeak': '흉조의 부리',
-        'Sentence/Ravensbeak': '선고/부리',
         'Seventh Umbral Era': '제7재해',
+        'Spread': '산개',
         'Stack': '모이기',
         'Targeted Fire': '대상자 화염구',
         'Tempest Wing': '폭풍우 날개',
@@ -2293,28 +2143,12 @@
         'Thermionic . Dynamo/Chariot': '열전자 + 달/강철',
         'Thermionic Beam': '열전자 광선',
         'Thermionic Burst': '열전자 폭발',
-        'Thunderstruck': '번개날개',
         'Towers': '기둥',
         'Triple Nael Quote': '넬 3회 대사',
         'Twin Marker': '트윈 징',
         'Twister': '회오리',
         'Twisting Dive': '회오리 강하',
-        'White Fury': '넬의 분노',
         'Wings of Salvation': '구원의 날개',
-      },
-      '~effectNames': {
-        'Doom': '죽음의 선고',
-        'Down For The Count': '넉다운',
-        'Earth Resistance Down II': '땅속성 저항 감소[강]',
-        'Firescorched': '화염뿔',
-        'Icebitten': '얼음발톱',
-        'Lohs Daih': '로스 다이',
-        'Mana Hypersensitivity': '마력 과민증',
-        'Neurolink': '구속 장치',
-        'Phoenix\'s Blessing': '피닉스의 가호',
-        'Piercing Resistance Down II': '찌르기 저항 감소[강]',
-        'Slashing Resistance Down II': '베기 저항 감소[강]',
-        'Thunderstruck': '번개날개',
       },
     },
   ],

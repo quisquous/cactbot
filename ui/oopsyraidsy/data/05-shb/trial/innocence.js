@@ -6,6 +6,7 @@
     en: /^The Crown Of The Immaculate$/,
     ko: /^이노센스 토벌전$/,
   },
+  zoneId: ZoneId.TheCrownOfTheImmaculate,
   damageWarn: {
     'Inno Daybreak': '3E9D',
     'Inno Holy Trinity': '3EB3',

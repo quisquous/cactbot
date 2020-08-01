@@ -5,6 +5,7 @@
     en: /^Cape Westwind$/,
     cn: /^里塔提恩强攻战$/,
   },
+  zoneId: ZoneId.CapeWestwind,
   timelineFile: 'cape_westwind.txt',
   triggers: [
   ],

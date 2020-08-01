@@ -6,6 +6,7 @@
     cn: /^中拉诺西亚$/,
     ko: /^중부 라노시아$/,
   },
+  zoneId: ZoneId.MiddleLaNoscea,
   timelineFile: 'test.txt',
   // timeline here is additions to the timeline.  They can
   // be strings, or arrays of strings, or functions that
@@ -114,11 +115,11 @@
     },
     {
       id: 'Test Psych',
-      regex: Regexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*.*?', capture: false }),
-      regexDe: Regexes.gameNameLog({ line: 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen.*?', capture: false }),
-      regexFr: Regexes.gameNameLog({ line: 'Vous vous motivez devant le mannequin d\'entraînement.*?', capture: false }),
-      regexCn: Regexes.gameNameLog({ line: '.*激励木人.*?', capture: false }),
-      regexKo: Regexes.gameNameLog({ line: '.*나무인형에게 힘을 불어넣습니다.*?', capture: false }),
+      netRegex: NetRegexes.gameNameLog({ line: 'You psych yourself up alongside the striking dummy.*?', capture: false }),
+      netRegexDe: NetRegexes.gameNameLog({ line: 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen.*?', capture: false }),
+      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous motivez devant le mannequin d\'entraînement.*?', capture: false }),
+      netRegexCn: NetRegexes.gameNameLog({ line: '.*激励木人.*?', capture: false }),
+      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 힘을 불어넣습니다.*?', capture: false }),
       alertText: {
         en: 'PSYCH!!!',
         de: 'AUF GEHTS!!!',
@@ -143,11 +144,11 @@
     },
     {
       id: 'Test Laugh',
-      regex: Regexes.gameNameLog({ line: 'You burst out laughing at the striking dummy.*?', capture: false }),
-      regexDe: Regexes.gameNameLog({ line: 'Du lachst herzlich mit der Trainingspuppe.*?', capture: false }),
-      regexFr: Regexes.gameNameLog({ line: 'Vous vous esclaffez devant le mannequin d\'entraînement.*?', capture: false }),
-      regexCn: Regexes.gameNameLog({ line: '.*看着木人高声大笑.*?', capture: false }),
-      regexKo: Regexes.gameNameLog({ line: '.*나무인형을 보고 폭소를 터뜨립니다.*?', capture: false }),
+      netRegex: NetRegexes.gameNameLog({ line: 'You burst out laughing at the striking dummy.*?', capture: false }),
+      netRegexDe: NetRegexes.gameNameLog({ line: 'Du lachst herzlich mit der Trainingspuppe.*?', capture: false }),
+      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous esclaffez devant le mannequin d\'entraînement.*?', capture: false }),
+      netRegexCn: NetRegexes.gameNameLog({ line: '.*看着木人高声大笑.*?', capture: false }),
+      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 보고 폭소를 터뜨립니다.*?', capture: false }),
       suppressSeconds: 5,
       alarmText: {
         en: 'hahahahaha',
@@ -173,11 +174,11 @@
     },
     {
       id: 'Test Clap',
-      regex: Regexes.gameNameLog({ line: 'You clap for the striking dummy.*?', capture: false }),
-      regexDe: Regexes.gameNameLog({ line: 'Du klatschst begeistert Beifall für die Trainingspuppe.*?', capture: false }),
-      regexFr: Regexes.gameNameLog({ line: 'Vous applaudissez le mannequin d\'entraînement.*?', capture: false }),
-      regexCn: Regexes.gameNameLog({ line: '.*向木人送上掌声.*?', capture: false }),
-      regexKo: Regexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
+      netRegex: NetRegexes.gameNameLog({ line: 'You clap for the striking dummy.*?', capture: false }),
+      netRegexDe: NetRegexes.gameNameLog({ line: 'Du klatschst begeistert Beifall für die Trainingspuppe.*?', capture: false }),
+      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous applaudissez le mannequin d\'entraînement.*?', capture: false }),
+      netRegexCn: NetRegexes.gameNameLog({ line: '.*向木人送上掌声.*?', capture: false }),
+      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 박수를 보냅니다.*?', capture: false }),
       sound: '../../resources/sounds/WeakAuras/Applause.ogg',
       soundVolume: 0.3,
       tts: {
@@ -191,9 +192,9 @@
     {
       id: 'Test Lang',
       // In game: /echo cactbot lang
-      regex: Regexes.echo({ line: 'cactbot lang.*?', capture: false }),
-      regexDe: Regexes.echo({ line: 'cactbot sprache.*?', capture: false }),
-      regexKo: Regexes.echo({ line: 'cactbot 언어.*?', capture: false }),
+      netRegex: NetRegexes.echo({ line: 'cactbot lang.*?', capture: false }),
+      netRegexDe: NetRegexes.echo({ line: 'cactbot sprache.*?', capture: false }),
+      netRegexKo: NetRegexes.echo({ line: 'cactbot 언어.*?', capture: false }),
       infoText: function(data) {
         return {
           en: 'Language: ' + data.parserLang,
@@ -206,8 +207,8 @@
     },
     {
       id: 'Test Response',
-      regex: Regexes.echo({ line: 'cactbot test response.*?', capture: false }),
-      regexDe: Regexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
+      netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
+      netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
       response: function(data) {
         return {
           alarmText: '1',
@@ -229,7 +230,7 @@
         'cactbot lang': 'cactbot sprache',
         'cactbot test response': 'cactbot test antwort',
         'You clap for the striking dummy': 'Du klatschst begeistert Beifall für die Trainingspuppe',
-        'You psych yourself up alongside the striking dummy.*': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
+        'You psych yourself up alongside the striking dummy': 'Du willst wahren Kampfgeist in der Trainingspuppe entfachen',
         'You poke the striking dummy': 'Du stupst die Trainingspuppe an',
       },
       replaceText: {

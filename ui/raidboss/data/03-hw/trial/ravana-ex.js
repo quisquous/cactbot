@@ -5,31 +5,30 @@
     en: /^Thok Ast Thok \(Extreme\)$/,
     cn: /^罗波那歼殛战$/,
   },
+  zoneId: ZoneId.ThokAstThokExtreme,
   timelineFile: 'ravana-ex.txt',
   triggers: [
   ],
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
-        'Dance to the song of ringing steel': 'Ein Tanz im Takt des singenden Stahls',
+        'Ravana': 'Ravana',
       },
       'replaceText': {
-        '1st Double Prey': '1st Double Prey', // FIXME
-        '2nd Double Prey': '2nd Double Prey', // FIXME
         'Atma-Linga': 'Atma-Linga',
         'Beetle Avatar': 'Käfer-Inkarnation',
         'Blades of Carnage and Liberation': 'Klingen des Gemetzels und der Befreiung',
         'Blinding Blade': 'Blendende Klinge',
         'Bloody Fuller': 'Blutrille',
         'Chandrahas': 'Chandrahas',
+        'Clone Spawn': 'Klon erscheint #',
+        'Clone Dash': 'Klon stürmt #',
         'Dragonfly Avatar': 'Libellen-Inkarnation',
         'Final Liberation': 'Endgültige Befreiung',
         'Inner AOE': 'AoE innen',
         'Laughing Rose': 'Lachende Rose',
         '(?<! )Liberation': 'Befreiung',
-        'Orbs': 'Orbs', // FIXME
         'Outer AOE': 'AoE außen',
         'Pillars of Heaven': 'Säulen des Himmels',
         'Prelude to Liberation': 'Auftakt zur Befreiung',
@@ -49,11 +48,9 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Dance to the song of ringing steel': 'Dance to the song of ringing steel', // FIXME
+        'Ravana': 'Ravana',
       },
       'replaceText': {
-        '1st Double Prey': '1st Double Prey', // FIXME
-        '2nd Double Prey': '2nd Double Prey', // FIXME
         'Atma-Linga': 'Atma-Linga',
         'Beetle Avatar': 'Incarnation du scarabée',
         'Blades of Carnage and Liberation': 'Lames ardentes',
@@ -62,11 +59,8 @@
         'Chandrahas': 'Chandrahas',
         'Dragonfly Avatar': 'Incarnation de la libellule',
         'Final Liberation': 'Libération rapide',
-        'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': 'Rose rieuse',
         '(?<! )Liberation': 'Libération',
-        'Orbs': 'Orbs', // FIXME
-        'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': 'Piliers du ciel',
         'Prelude to Liberation': 'Prélude de la libération',
         'Scorpion Avatar': 'Incarnation du scorpion',
@@ -76,7 +70,7 @@
         'The Rose Of Conquest': 'Rose de la conquête',
         'The Rose Of Conviction': 'Rose de la conviction',
         'The Rose Of Hate': 'Rose de la célérité',
-        'The Seeing': 'Élytre\(s\)',
+        'The Seeing': 'Élytre(s)',
         'Warlord Flame': 'Flamme du Maître des lames',
         'Warlord Shell': 'Bouclier du Maître des lames',
       },
@@ -88,8 +82,6 @@
         'Ravana': 'ラーヴァナ',
       },
       'replaceText': {
-        '1st Double Prey': '1st Double Prey', // FIXME
-        '2nd Double Prey': '2nd Double Prey', // FIXME
         'Atma-Linga': 'アートマリンガ',
         'Beetle Avatar': '甲殻の化身',
         'Blades of Carnage and Liberation': '焔剣',
@@ -98,11 +90,8 @@
         'Chandrahas': 'チャンドラハース',
         'Dragonfly Avatar': '武辺の化身',
         'Final Liberation': '光焔【滅】',
-        'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': '月気弾',
         '(?<! )Liberation': '光焔【破】',
-        'Orbs': 'Orbs', // FIXME
-        'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': '衝天撃',
         'Prelude to Liberation': '光焔【序】',
         'Scorpion Avatar': '光焔の化身',
@@ -124,8 +113,6 @@
         'Ravana': '罗波那',
       },
       'replaceText': {
-        '1st Double Prey': '1st Double Prey', // FIXME
-        '2nd Double Prey': '2nd Double Prey', // FIXME
         'Atma-Linga': '武神魂',
         'Beetle Avatar': '甲壳化身',
         'Blades of Carnage and Liberation': '焰剑',
@@ -134,11 +121,8 @@
         'Chandrahas': '明月之笑',
         'Dragonfly Avatar': '武毅化身',
         'Final Liberation': '光焰【灭】',
-        'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': '月气弹',
         '(?<! )Liberation': '光焰【破】',
-        'Orbs': 'Orbs', // FIXME
-        'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': '冲天击',
         'Prelude to Liberation': '光焰【序】',
         'Scorpion Avatar': '光焰化身',
@@ -160,8 +144,6 @@
         'Ravana': '라바나',
       },
       'replaceText': {
-        '1st Double Prey': '1st Double Prey', // FIXME
-        '2nd Double Prey': '2nd Double Prey', // FIXME
         'Atma-Linga': '불멸혼',
         'Beetle Avatar': '갑각의 화신',
         'Blades of Carnage and Liberation': '불꽃검',
@@ -170,11 +152,8 @@
         'Chandrahas': '찬드라하스',
         'Dragonfly Avatar': '무도의 화신',
         'Final Liberation': '광염: 파멸',
-        'Inner AOE': 'Inner AOE', // FIXME
         'Laughing Rose': '월기탄',
         '(?<! )Liberation': '광염: 전개',
-        'Orbs': 'Orbs', // FIXME
-        'Outer AOE': 'Outer AOE', // FIXME
         'Pillars of Heaven': '충천격',
         'Prelude to Liberation': '광염: 발단',
         'Scorpion Avatar': '광염의 화신',

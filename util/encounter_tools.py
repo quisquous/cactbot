@@ -41,7 +41,7 @@ def str_time(timestamp):
 
 
 def is_line_end(line_fields):
-    if is_zone_unseal(line_fields) or is_limit_reset(line_fields):
+    if is_zone_unseal(line_fields):
         return True
     return is_encounter_end_code(line_fields)
 
@@ -57,10 +57,6 @@ def is_zone_unseal(line_fields):
 def is_line_attack(line_fields):
     # We want only situations where a friendly attacks an enemy
     return line_fields[0] in ("21", "22") and line_fields[6].startswith("4")
-
-
-def is_limit_reset(line_fields):
-    return line_fields[4] == "The limit gauge resets!"
 
 
 def is_instance_begun(line_fields):
@@ -170,12 +166,20 @@ def choose_fight_times(args, encounters):
 
 # Timeline test/translate functions
 def clean_tl_line(line):
-    return line.split('#')[0]
+    # Any lines containing # before any quote marks
+    # should be returned with anything following # stripped.
+    if re.search(r'^[^"]*#.*$', line):
+        return line.split("#")[0]
+
+    # If a timeline text entry contains a "#" character as a string literal, this function breaks
+    # unless we do this little dance.
+    line_groups = line.split('"')
+    line_groups[2] = line_groups[2].split("#")[0]
+    return '"'.join(line_groups[i] for i in range(0, 3))
+
 
 def split_tl_line(line):
-    return re.search(
-        r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line
-    )
+    return re.search(r'^(?P<time>[\d\.]+)\s+"(?P<label>[^"]+)"\s+(?P<options>.+)', line)
 
 
 def is_tl_line_syncmatch(line):

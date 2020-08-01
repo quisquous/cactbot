@@ -8,16 +8,17 @@
     cn: /^魔法宫殿宇宙宫$/,
     ko: /^그랑 코스모스$/,
   },
+  zoneId: ZoneId.TheGrandCosmos,
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [
     {
       id: 'Cosmos Shadowbolt',
-      regex: Regexes.startsUsing({ id: '4769', source: 'Seeker Of Solitude' }),
-      regexDe: Regexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
-      regexFr: Regexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
-      regexJa: Regexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
-      regexCn: Regexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
-      regexKo: Regexes.startsUsing({ id: '4769', source: '궁전의 은자' }),
+      netRegex: NetRegexes.startsUsing({ id: '4769', source: 'Seeker Of Solitude' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4769', source: 'Einsiedler' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4769', source: 'Ermite Du Palais' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4769', source: '宮殿の隠者' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4769', source: '宫殿的隐者' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4769', source: '궁전의 은자' }),
       condition: function(data, matches) {
         return matches.target == data.me || data.role == 'healer';
       },
@@ -25,12 +26,12 @@
     },
     {
       id: 'Cosmos Dark Pulse',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn('info'),
     },
     {
       id: 'Cosmos Dark Well Far Winds',
-      regex: Regexes.headMarker({ id: '0060' }),
+      netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -38,12 +39,12 @@
     },
     {
       id: 'Cosmos Immortal Anathema',
-      regex: Regexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '49A3', source: 'Einsiedler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '49A3', source: 'Ermite Du Palais', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '49A3', source: '宫殿的隐者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '49A3', source: '궁전의 은자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '49A3', source: 'Seeker Of Solitude', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '49A3', source: 'Einsiedler', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '49A3', source: 'Ermite Du Palais', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '49A3', source: '宮殿の隠者', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '49A3', source: '宫殿的隐者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '49A3', source: '궁전의 은자', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -51,39 +52,39 @@
     },
     {
       id: 'Cosmos Tribulation',
-      regex: Regexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '476B', source: 'Einsiedler', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '476B', source: 'Ermite Du Palais', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '476B', source: '宮殿の隠者', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '476B', source: '宫殿的隐者', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '476B', source: '궁전의 은자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '476B', source: 'Seeker Of Solitude', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '476B', source: 'Einsiedler', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '476B', source: 'Ermite Du Palais', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '476B', source: '宮殿の隠者', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '476B', source: '宫殿的隐者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '476B', source: '궁전의 은자', capture: false }),
       delaySeconds: 8,
       alertText: {
         en: 'Avoid Brooms',
         de: 'Besen ausweichen',
-        fr: 'Evitez les balais',
-        ko: '빗자루 피하기',
+        fr: 'Évitez les balais',
         cn: '躲扫把',
+        ko: '빗자루 피하기',
       },
     },
     {
       id: 'Cosmos Storm of Color',
-      regex: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
-      regexDe: Regexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
-      regexFr: Regexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
-      regexJa: Regexes.startsUsing({ id: '471B', source: 'リャナンシー' }),
-      regexCn: Regexes.startsUsing({ id: '471B', source: '凉南希' }),
-      regexKo: Regexes.startsUsing({ id: '471B', source: '랴난시' }),
+      netRegex: NetRegexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '471B', source: 'Leanan Sidhe' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '471B', source: 'Leannan Sith' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '471B', source: 'リャナンシー' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '471B', source: '凉南希' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '471B', source: '랴난시' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Ode To Lost Love',
-      regex: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '471C', source: 'Leanan Sidhe', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '471C', source: '凉南希', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '471C', source: '랴난시', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '471C', source: 'Leanan Sidhe', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '471C', source: 'Leannan Sith', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '471C', source: 'リャナンシー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '471C', source: '凉南希', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '471C', source: '랴난시', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -93,39 +94,39 @@
       // Can't use added combatant here as all these adds exist.
       // So, just trigger on first auto.
       id: 'Cosmos Direct Seeding Mistake',
-      regex: Regexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
-      regexDe: Regexes.ability({ id: '368', source: 'Keim Des Geliebten', capture: false }),
-      regexFr: Regexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
-      regexJa: Regexes.ability({ id: '368', source: 'ラヴァーズリング', capture: false }),
-      regexCn: Regexes.ability({ id: '368', source: '恋人之戒', capture: false }),
-      regexKo: Regexes.ability({ id: '368', source: '연인의 반지', capture: false }),
+      netRegex: NetRegexes.ability({ id: '368', source: 'Lover\'s Ring', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '368', source: 'Keim Des Geliebten', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '368', source: 'Bague De L\'Amoureux', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '368', source: 'ラヴァーズリング', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '368', source: '恋人之戒', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '368', source: '연인의 반지', capture: false }),
       suppressSeconds: 60,
       response: Responses.killExtraAdd(),
     },
     {
       id: 'Cosmos Gardener\'s Hymn',
-      regex: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '471E', source: 'Leanan Sidhe', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '471E', source: '凉南希', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '471E', source: '랴난시', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '471E', source: 'Leanan Sidhe', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '471E', source: 'Leannan Sith', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '471E', source: '凉南希', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '471E', source: '랴난시', capture: false }),
       infoText: {
         en: 'put seeds on dirt',
         de: 'Samen auf den nicht bewachsenen Boden legen',
-        fr: 'Placez les graines sur la terre',
-        ko: '씨앗 자라지 못하게 하기',
+        fr: 'Mettez les graines sur la terre',
         cn: '种子搬离AOE',
+        ko: '씨앗 자라지 못하게 하기',
       },
     },
     {
       id: 'Cosmos Ronkan Cure II',
-      regex: Regexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
-      regexDe: Regexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
-      regexFr: Regexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
-      regexJa: Regexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス' }),
-      regexCn: Regexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯' }),
-      regexKo: Regexes.startsUsing({ id: '4931', source: '환영기사 하몬스' }),
+      netRegex: NetRegexes.startsUsing({ id: '4931', source: 'Ser Hamonth' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4931', source: 'Sir Hamonth' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4931', source: 'Sire Hamonth' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4931', source: '幻影騎士ハモンス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4931', source: '幻影骑士哈蒙斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4931', source: '환영기사 하몬스' }),
       condition: function(data) {
         return data.CanStun();
       },
@@ -133,22 +134,22 @@
     },
     {
       id: 'Cosmos Captive Bolt',
-      regex: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
-      regexDe: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
-      regexFr: Regexes.startsUsing({ id: '4764', source: 'Lugus' }),
-      regexJa: Regexes.startsUsing({ id: '4764', source: 'ルゴス' }),
-      regexCn: Regexes.startsUsing({ id: '4764', source: '卢格斯' }),
-      regexKo: Regexes.startsUsing({ id: '4764', source: '루구스' }),
+      netRegex: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4764', source: 'Lugus' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4764', source: 'ルゴス' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4764', source: '卢格斯' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4764', source: '루구스' }),
       response: Responses.tankBuster(),
     },
     {
       id: 'Cosmos Culling Blade',
-      regex: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4765', source: '루구스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4765', source: 'Lugus', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4765', source: 'ルゴス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4765', source: '卢格斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4765', source: '루구스', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -156,7 +157,7 @@
     },
     {
       id: 'Cosmos Black Flame 1',
-      regex: Regexes.headMarker({ id: '0019' }),
+      netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -164,7 +165,7 @@
     },
     {
       id: 'Cosmos Black Flame 2',
-      regex: Regexes.headMarker({ id: '0019' }),
+      netRegex: NetRegexes.headMarker({ id: '0019' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -172,14 +173,14 @@
       infoText: {
         en: 'Dodge Crosses',
         de: 'Den Kreuzen ausweichen',
-        fr: 'Evitez les croix',
-        ko: '십자 장판 피하기',
+        fr: 'Esquivez les croix',
         cn: '躲避交叉',
+        ko: '십자 장판 피하기',
       },
     },
     {
       id: 'Cosmos Mortal Flame 1',
-      regex: Regexes.headMarker({ id: '00C3' }),
+      netRegex: NetRegexes.headMarker({ id: '00C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -187,7 +188,7 @@
     },
     {
       id: 'Cosmos Mortal Flame 2',
-      regex: Regexes.headMarker({ id: '00C3' }),
+      netRegex: NetRegexes.headMarker({ id: '00C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -195,34 +196,34 @@
       infoText: {
         en: 'Touch Furniture',
         de: 'Einrichtung berühren',
-        fr: 'Touchez un élément de décor',
-        ko: '가구에 불 옮기기',
+        fr: 'Touchez un meuble',
         cn: '传火家具',
+        ko: '가구에 불 옮기기',
       },
     },
     {
       id: 'Cosmos Scorching Left',
-      regex: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4763', source: '卢格斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4763', source: '루구스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4763', source: 'Lugus', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4763', source: 'ルゴス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4763', source: '卢格斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4763', source: '루구스', capture: false }),
       response: Responses.goLeft('info'),
     },
     {
       id: 'Cosmos Scorching Right',
-      regex: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '4762', source: '卢格斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '4762', source: '루구스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '4762', source: 'Lugus', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '4762', source: 'ルゴス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '4762', source: '卢格斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '4762', source: '루구스', capture: false }),
       response: Responses.goRight('info'),
     },
     {
       id: 'Cosmos Fire\'s Domain',
-      regex: Regexes.headMarker({ id: '003[2345]' }),
+      netRegex: NetRegexes.headMarker({ id: '003[2345]' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -234,17 +235,17 @@
           return {
             en: 'Point Tether Away From Furniture',
             de: 'Verbindung weg von der Einrichtung zeigen',
-            fr: 'Placez le liens loin des décors',
-            ko: '징: 장판이 가구에 닿지 않게 하기',
+            fr: 'Pointez le lien éloigné des meubles',
             cn: '连线不要打到家具',
+            ko: '징: 장판이 가구에 닿지 않게 하기',
           };
         }
         return {
           en: 'Tether on YOU',
           de: 'Verbindung auf DIR',
-          fr: 'Lien sur vous',
-          ko: '징 대상자',
+          fr: 'Lien sur VOUS',
           ja: '線ついた',
+          ko: '징 대상자',
           cn: '连线点名',
         };
       },
@@ -261,7 +262,6 @@
         'The Chamber of Celestial Song': 'Großen Vergnügungen',
         'The Font of Quintessence': 'Broderieparterre',
         'The Martial Court': 'Kleinen Stufenarkade',
-        'Lover\'s Ring': 'Keim Des Geliebten',
       },
       'replaceText': {
         'Black Flame': 'Finsterer Flammenwind',
@@ -320,7 +320,7 @@
         'Ode To Lost Love': 'Rhapsodie de l\'amour fou',
         'Otherworldly Heat': 'Croix de feu',
         'Plummet': 'Piqué',
-        'Scorching Left/Right': 'Scrutement Gauche/Droite',
+        'Scorching Left/Right': 'Scrutement senestre/dextre',
         'Shadowbolt': 'Éclair ombreux',
         'Storm Of Color': 'Orage de printemps',
         'Tribulation': 'Tribulation',
@@ -328,6 +328,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Enslaved Love': 'エンスレイブド・ラヴ',
         'Leannan Sith': 'リャナンシー',
@@ -396,7 +397,6 @@
         'Storm Of Color': '春风',
         'Tribulation': '苦难',
       },
-      '~effectNames': {},
     },
     {
       'locale': 'ko',

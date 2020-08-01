@@ -5,6 +5,7 @@
     en: /^Holminster Switch$/,
     ko: /^홀민스터$/,
   },
+  zoneId: ZoneId.HolminsterSwitch,
   damageWarn: {
     'Holminster Thumbscrew': '3DC6',
     'Holminster Wooden horse': '3DC7',
@@ -21,28 +22,10 @@
   damageFail: {
     'Holminster Aethersup': '3DE9',
   },
-  triggers: [
-    {
-      id: 'Holminster Flagellation',
-      damageRegex: '3DD6',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e) {
-        return { type: 'warn', blame: e.targetName, text: e.abilityName };
-      },
-    },
-    {
-      id: 'Holminster Taphephobia',
-      damageRegex: '4181',
-      condition: function(e) {
-        // Double taps only.
-        return e.type != '15';
-      },
-      mistake: function(e, data) {
-        return { type: 'fail', blame: e.targetName, text: e.abilityName };
-      },
-    },
-  ],
+  shareWarn: {
+    'Holminster Flagellation': '3DD6',
+  },
+  shareFail: {
+    'Holminster Taphephobia': '4181',
+  },
 }];

@@ -5,16 +5,17 @@
     en: /^The Second Coil Of Bahamut - Turn \(2\)$/,
     cn: /^巴哈姆特大迷宫 \(入侵之章2\)$/,
   },
+  zoneId: ZoneId.TheSecondCoilOfBahamutTurn2,
   timelineFile: 't7.txt',
   triggers: [
     {
       id: 'T7 Ram',
-      regex: Regexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '860', source: 'Proto-Chimära', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '860', source: 'Protochimère', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '860', source: 'プロトキマイラ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '860', source: '原型奇美拉', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '860', source: '프로토 키마이라', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '860', source: 'Proto-Chimera', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '860', source: 'Proto-Chimära', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '860', source: 'Protochimère', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '860', source: 'プロトキマイラ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '860', source: '原型奇美拉', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '860', source: '프로토 키마이라', capture: false }),
       condition: function(data) {
         // TODO: is this silenceable in 5.0?
         return data.CanStun() || data.CanSilence();
@@ -28,12 +29,12 @@
     },
     {
       id: 'T7 Dragon',
-      regex: Regexes.startsUsing({ id: '861', source: 'Proto-Chimera', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '861', source: 'Proto-Chimära', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '861', source: 'Protochimère', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '861', source: 'プロトキマイラ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '861', source: '原型奇美拉', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '861', source: '프로토 키마이라', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '861', source: 'Proto-Chimera', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '861', source: 'Proto-Chimära', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '861', source: 'Protochimère', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '861', source: 'プロトキマイラ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '861', source: '原型奇美拉', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '861', source: '프로토 키마이라', capture: false }),
       condition: function(data) {
         // TODO: is this silenceable in 5.0?
         return data.CanStun() || data.CanSilence();
@@ -47,12 +48,12 @@
     },
     {
       id: 'T7 Tail Slap',
-      regex: Regexes.ability({ id: '7A8', source: 'Melusine' }),
-      regexDe: Regexes.ability({ id: '7A8', source: 'Melusine' }),
-      regexFr: Regexes.ability({ id: '7A8', source: 'Mélusine' }),
-      regexJa: Regexes.ability({ id: '7A8', source: 'メリュジーヌ' }),
-      regexCn: Regexes.ability({ id: '7A8', source: '美瑠姬奴' }),
-      regexKo: Regexes.ability({ id: '7A8', source: '멜뤼진' }),
+      netRegex: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
+      netRegexDe: NetRegexes.ability({ id: '7A8', source: 'Melusine' }),
+      netRegexFr: NetRegexes.ability({ id: '7A8', source: 'Mélusine' }),
+      netRegexJa: NetRegexes.ability({ id: '7A8', source: 'メリュジーヌ' }),
+      netRegexCn: NetRegexes.ability({ id: '7A8', source: '美瑠姬奴' }),
+      netRegexKo: NetRegexes.ability({ id: '7A8', source: '멜뤼진' }),
       condition: function(data, matches) {
         return data.me == matches.target && data.job == 'BLU';
       },
@@ -67,12 +68,12 @@
     },
     {
       id: 'T7 Renaud',
-      regex: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
-      regexDe: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
-      regexFr: Regexes.addedCombatant({ name: 'Renaud', capture: false }),
-      regexJa: Regexes.addedCombatant({ name: 'ルノー', capture: false }),
-      regexCn: Regexes.addedCombatant({ name: '雷诺', capture: false }),
-      regexKo: Regexes.addedCombatant({ name: '르노', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Renaud', capture: false }),
+      netRegexDe: NetRegexes.addedCombatant({ name: 'Renaud', capture: false }),
+      netRegexFr: NetRegexes.addedCombatant({ name: 'Renaud', capture: false }),
+      netRegexJa: NetRegexes.addedCombatant({ name: 'ルノー', capture: false }),
+      netRegexCn: NetRegexes.addedCombatant({ name: '雷诺', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '르노', capture: false }),
       infoText: {
         en: 'Renaud Add',
         de: 'Renaud Add',
@@ -83,11 +84,6 @@
     {
       id: 'T7 Cursed Voice',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C3' }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C3' }),
       condition: function(data, matches) {
         return data.me == matches.target;
       },
@@ -104,11 +100,6 @@
     {
       id: 'T7 Cursed Shriek',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4' }),
       durationSeconds: 3,
       alarmText: function(data, matches) {
         if (data.me == matches.target) {
@@ -134,11 +125,6 @@
     {
       id: 'T7 Cursed Shriek Reminder',
       netRegex: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexDe: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexFr: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexJa: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexCn: NetRegexes.gainsEffect({ effectId: '1C4' }),
-      netRegexKo: NetRegexes.gainsEffect({ effectId: '1C4' }),
       delaySeconds: 7,
       durationSeconds: 3,
       infoText: function(data, matches) {
@@ -190,32 +176,32 @@
     },
     {
       id: 'T7 Petrifaction 1',
-      regex: Regexes.startsUsing({ id: '7BB', source: 'Lamia Prosector', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '7BB', source: 'Lamia-Prosektorin', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '7BB', source: 'Lamia Dissectrice', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '7BB', source: 'ラミア・プロセクター', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '7BB', source: '拉米亚解剖女王', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '7BB', source: '라미아 시체해부자', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '7BB', source: 'Lamia Prosector', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '7BB', source: 'Lamia-Prosektorin', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '7BB', source: 'Lamia Dissectrice', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '7BB', source: 'ラミア・プロセクター', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '7BB', source: '拉米亚解剖女王', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '7BB', source: '라미아 시체해부자', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'T7 Petrifaction 2',
-      regex: Regexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '7B1', source: 'Mélusine', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '7B1', source: 'メリュジーヌ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '7B1', source: '美瑠姬奴', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '7B1', source: '멜뤼진', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '7B1', source: 'Melusine', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '7B1', source: 'Mélusine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '7B1', source: 'メリュジーヌ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '7B1', source: '美瑠姬奴', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '7B1', source: '멜뤼진', capture: false }),
       response: Responses.lookAway(),
     },
     {
       id: 'T7 Tail',
-      regex: Regexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '7B2', source: 'Mélusine', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '7B2', source: 'メリュジーヌ', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '7B2', source: '美瑠姬奴', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '7B2', source: '멜뤼진', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '7B2', source: 'Melusine', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '7B2', source: 'Mélusine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '7B2', source: 'メリュジーヌ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '7B2', source: '美瑠姬奴', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '7B2', source: '멜뤼진', capture: false }),
       alertText: {
         en: 'Venomous Tail',
         de: 'Venomschweif',
@@ -229,8 +215,6 @@
       'locale': 'de',
       'replaceSync': {
         'Bioweapon Storage': 'Biowaffen-Magazin',
-        'Cursed Shriek': 'Schrei der Verwünschung',
-        'Cursed Voice': 'Stimme der Verwünschung',
         'Lamia Prosector': 'Lamia-Prosektorin',
         'Melusine': 'Melusine',
         'Proto-Chimera': 'Proto-Chimära',
@@ -249,17 +233,11 @@
         'Tail Slap': 'Schweifklapser',
         'Venomous Tail': 'Venomschweif',
       },
-      '~effectNames': {
-        'Cursed Shriek': 'Schrei der Verwünschung',
-        'Cursed Voice': 'Stimme der Verwünschung',
-      },
     },
     {
       'locale': 'fr',
       'replaceSync': {
         'Bioweapon Storage': 'l\'entrepôt d\'armes biologiques',
-        'Cursed Shriek': 'Cri Maudit',
-        'Cursed Voice': 'Voix Maudite',
         'Lamia Prosector': 'Lamia Dissectrice',
         'Melusine': 'Mélusine',
         'Proto-Chimera': 'Protochimère',
@@ -278,17 +256,11 @@
         'Tail Slap': 'Gifle caudale',
         'Venomous Tail': 'Queue venimeuse',
       },
-      '~effectNames': {
-        'Cursed Shriek': 'Cri Du Maléfice',
-        'Cursed Voice': 'Voix Du Maléfice',
-      },
     },
     {
       'locale': 'ja',
       'replaceSync': {
         'Bioweapon Storage': '生体管理区',
-        'Cursed Shriek': '呪詛の叫声',
-        'Cursed Voice': '呪詛の声',
         'Lamia Prosector': 'ラミア・プロセクター',
         'Melusine': 'メリュジーヌ',
         'Proto-Chimera': 'プロトキマイラ',
@@ -307,17 +279,11 @@
         'Tail Slap': 'テールスラップ',
         'Venomous Tail': 'ベノモステール',
       },
-      '~effectNames': {
-        'Cursed Shriek': '呪詛の叫声',
-        'Cursed Voice': '呪詛の声',
-      },
     },
     {
       'locale': 'cn',
       'replaceSync': {
         'Bioweapon Storage': '生体管理区',
-        'Cursed Shriek': '诅咒之嚎',
-        'Cursed Voice': '诅咒之声',
         'Lamia Prosector': '拉米亚解剖女王',
         'Melusine': '美瑠姬奴',
         'Proto-Chimera': '原型奇美拉',
@@ -336,17 +302,11 @@
         'Tail Slap': '尾部猛击',
         'Venomous Tail': '猛毒之尾',
       },
-      '~effectNames': {
-        'Cursed Shriek': '诅咒之嚎',
-        'Cursed Voice': '诅咒之声',
-      },
     },
     {
       'locale': 'ko',
       'replaceSync': {
         'Bioweapon Storage': '생체 관리 구역',
-        'Cursed Shriek': '저주의 외침',
-        'Cursed Voice': '저주의 목소리',
         'Lamia Prosector': '라미아 시체해부자',
         'Melusine': '멜뤼진',
         'Proto-Chimera': '프로토 키마이라',
@@ -364,10 +324,6 @@
         'Sacrifice': '제물',
         'Tail Slap': '꼬리치기',
         'Venomous Tail': '맹독 꼬리',
-      },
-      '~effectNames': {
-        'Cursed Shriek': '저주의 외침',
-        'Cursed Voice': '저주의 목소리',
       },
     },
   ],

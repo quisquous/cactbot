@@ -4,7 +4,9 @@
   zoneRegex: {
     en: /^Alexander - The Soul Of The Creator \(Savage\)$/,
     cn: /^亚历山大零式机神城 \(天动之章4\)$/,
+    ko: /^기공성 알렉산더: 천동편\(영웅\) \(4\)$/,
   },
+  zoneId: ZoneId.AlexanderTheSoulOfTheCreatorSavage,
   timelineFile: 'a12s.txt',
   timelineTriggers: [
     {
@@ -24,19 +26,19 @@
   triggers: [
     {
       id: 'A12S Punishing Heat',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19E9' }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19E9' }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19E9' }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19E9' }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19E9' }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19E9' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19E9' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19E9' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19E9' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19E9' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19E9' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19E9' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
       // Applies to both holy and blazing scourge.
       id: 'A12S Holy Blazing Scourge You',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: function(data, matches) {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
@@ -48,11 +50,12 @@
         de: 'Licht auf DIR',
         fr: 'Lumière sur VOUS',
         cn: '白光之鞭点名',
+        ko: '성광의 채찍 대상자',
       },
     },
     {
       id: 'A12S Blazing Scourge Collect',
-      regex: Regexes.headMarker({ id: '001E' }),
+      netRegex: NetRegexes.headMarker({ id: '001E' }),
       run: function(data, matches) {
         data.scourge = data.scourge || [];
         data.scourge.push(matches.target);
@@ -60,7 +63,7 @@
     },
     {
       id: 'A12S Blazing Scourge Report',
-      regex: Regexes.headMarker({ id: '001E', capture: false }),
+      netRegex: NetRegexes.headMarker({ id: '001E', capture: false }),
       condition: function(data) {
         // Ignore Holy Scourge later in the fight.
         if (data.scourge && data.scourge.length > 2)
@@ -83,53 +86,55 @@
           de: 'Licht: ' + names.join(', '),
           fr: 'Lumière : ' + names.join(', '),
           cn: '白光之鞭点:' + names.join(', '),
+          ko: '성광의 채찍:' + names.join(', '),
         };
       },
     },
     {
       id: 'A12S Mega Holy',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19EE', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19EE', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19EE', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EE', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19EE', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19EE', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EE', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19EE', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19EE', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EE', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19EE', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19EE', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'A12S Incinerating Heat',
-      regex: Regexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
       response: Responses.stackOn(),
     },
     {
       id: 'A12S Laser Sacrament',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19EB', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19EB', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EB', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19EB', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19EB', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19EB', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19EB', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19EB', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EB', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19EB', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19EB', capture: false }),
       infoText: {
         en: 'Lasers',
         de: 'Laser',
         fr: 'Lasers',
         cn: '十字圣礼',
+        ko: '십자 성례',
       },
     },
     {
       id: 'A12S Radiant Sacrament',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '19ED', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '19ED', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '19ED', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19ED', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '19ED', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '19ED', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '19ED', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '19ED', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '19ED', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19ED', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19ED', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19ED', capture: false }),
       response: Responses.getUnder('alert'),
     },
     {
       id: 'A12S House Arrest',
-      regex: Regexes.tether({ id: '001C' }),
+      netRegex: NetRegexes.tether({ id: '001C' }),
       condition: function(data, matches) {
         return matches.source == data.me || matches.target == data.me;
       },
@@ -148,7 +153,7 @@
     },
     {
       id: 'A12S Restraining Order',
-      regex: Regexes.tether({ id: '001D' }),
+      netRegex: NetRegexes.tether({ id: '001D' }),
       condition: function(data, matches) {
         return matches.source == data.me || matches.target == data.me;
       },
@@ -167,12 +172,7 @@
     },
     {
       id: 'A12S Shared Sentence',
-      regex: Regexes.gainsEffect({ effect: 'Shared Sentence' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Kollektivstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: peine collective' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：集団罰' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：集团罪' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 단체형' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: Conditions.targetIsYou(),
       infoText: {
         en: 'Shared Sentence',
@@ -180,17 +180,12 @@
         fr: 'Partagez peine collective',
         ja: '集団罰',
         cn: '集团罪',
-        ko: '집단형: 오른쪽/함께 맞기',
+        ko: '집단형: 쉐어',
       },
     },
     {
       id: 'A12S Defamation',
-      regex: Regexes.gainsEffect({ effect: 'Defamation' }),
-      regexDe: Regexes.gainsEffect({ effect: 'Urteil: Ehrenstrafe' }),
-      regexFr: Regexes.gainsEffect({ effect: 'Jugement: diffamation' }),
-      regexJa: Regexes.gainsEffect({ effect: '確定判決：名誉罰' }),
-      regexCn: Regexes.gainsEffect({ effect: '判决确定：名誉罪' }),
-      regexKo: Regexes.gainsEffect({ effect: '확정 판결: 명예형' }),
+      netRegex: NetRegexes.gainsEffect({ effectId: '460' }),
       condition: Conditions.targetIsYou(),
       alarmText: {
         en: 'Defamation',
@@ -198,12 +193,12 @@
         fr: 'Diffamation',
         ja: '名誉罰',
         cn: '名誉罪',
-        ko: '명예형: 보스 밑에서 나 홀로!!!',
+        ko: '명예형: 멀리가기',
       },
     },
     {
       id: 'A12S Judgment Crystal',
-      regex: Regexes.headMarker({ id: '0017' }),
+      netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Crystal on YOU',
@@ -216,12 +211,12 @@
     },
     {
       id: 'A12S Holy Scourge',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '1A0B', capture: false }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '1A0B', capture: false }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '1A0B', capture: false }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0B', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1A0B', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1A0B', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0B', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
       alertText: function(data) {
         if (data.role == 'tank' || data.role == 'healer' || data.job == 'blu') {
           return {
@@ -237,28 +232,29 @@
     },
     {
       id: 'A12S Chastening Heat',
-      regex: Regexes.startsUsing({ source: 'Alexander Prime', id: '1A0D' }),
-      regexDe: Regexes.startsUsing({ source: 'Prim-Alexander', id: '1A0D' }),
-      regexFr: Regexes.startsUsing({ source: 'Primo-Alexander', id: '1A0D' }),
-      regexJa: Regexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0D' }),
-      regexCn: Regexes.startsUsing({ source: '至尊亚历山大', id: '1A0D' }),
-      regexKo: Regexes.startsUsing({ source: '알렉산더 프라임', id: '1A0D' }),
+      netRegex: NetRegexes.startsUsing({ source: 'Alexander Prime', id: '1A0D' }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Prim-Alexander', id: '1A0D' }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '1A0D' }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1A0D' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0D' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0D' }),
       response: Responses.tankBusterSwap(),
     },
     {
       id: 'A12S Communion Tether',
-      regex: Regexes.tether({ source: 'Alexander', id: '0036' }),
-      regexDe: Regexes.tether({ source: 'Alexander', id: '0036' }),
-      regexFr: Regexes.tether({ source: 'Alexander', id: '0036' }),
-      regexJa: Regexes.tether({ source: 'アレキサンダー', id: '0036' }),
-      regexCn: Regexes.tether({ source: '亚历山大', id: '0036' }),
-      regexKo: Regexes.tether({ source: '알렉산더', id: '0036' }),
+      netRegex: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
+      netRegexDe: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
+      netRegexFr: NetRegexes.tether({ source: 'Alexander', id: '0036' }),
+      netRegexJa: NetRegexes.tether({ source: 'アレキサンダー', id: '0036' }),
+      netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
+      netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Puddle Tether on YOU',
         de: 'Flächen-Verbindung auf dir',
         fr: 'Lien Zone au sol sur VOUS',
         cn: '放圈连线点名',
+        ko: '장판 남기는 선 대상자',
       },
     },
   ],
@@ -306,10 +302,6 @@
         'timegates active': 'Zeittore Aktiv',
         'timestop': 'Zeitstopp',
       },
-      '~effectNames': {
-        'Defamation': 'Urteil: Ehrenstrafe',
-        'Shared Sentence': 'Urteil: Kollektivstrafe',
-      },
     },
     {
       'locale': 'fr',
@@ -356,10 +348,6 @@
         'timegate': 'Porte temporelle',
         'Void Of Repentance': 'Vide du repentir',
       },
-      '~effectNames': {
-        'Defamation': 'Jugement: diffamation',
-        'Shared Sentence': 'Jugement: peine collective',
-      },
     },
     {
       'locale': 'ja',
@@ -401,10 +389,6 @@
         'The General\'s Time': 'アリダイオス・タイム',
         'The General\'s Wing': 'アリダイオス・ウィング',
         'Void Of Repentance': '懺悔の間',
-      },
-      '~effectNames': {
-        'Defamation': '確定判決：名誉罰',
-        'Shared Sentence': '確定判決：集団罰',
       },
     },
     {
@@ -450,10 +434,6 @@
         'timegates active': '时空门激活',
         'timestop': '时停',
       },
-      '~effectNames': {
-        'Defamation': '判决确定：名誉罪',
-        'Shared Sentence': '判决确定：集团罪',
-      },
     },
     {
       'locale': 'ko',
@@ -487,7 +467,7 @@
         'Mega Holy': '메가 홀리',
         'Punishing Heat': '징벌의 열선',
         'Radiant Sacrament': '원형 성례',
-        'Smash': '매타작',
+        'Smash': '박살',
         'Summon Alexander': '알렉산더 소환',
         'Temporal Stasis': '시간 정지',
         'Tetrashatter': '결정체 파열',
@@ -495,10 +475,9 @@
         'The General\'s Time': '아리다이오스의 시간',
         'The General\'s Wing': '아리다이오스의 날개',
         'Void Of Repentance': '참회의 방',
-      },
-      '~effectNames': {
-        'Defamation': '확정 판결: 명예형',
-        'Shared Sentence': '확정 판결: 단체형',
+        'timegate(?!s)': '시간 차원문',
+        'timegates active': '시간 차원문 활성화',
+        'timestop': '시간 정지',
       },
     },
   ],

@@ -1,0 +1,40 @@
+name: Test
+
+on:
+  push:
+    paths:
+      - '**/*.js'
+      - '**/*.py'
+      - 'ui/raidboss/**'
+      - '.github/workflows/test.yml'
+  pull_request:
+    types:
+      - opened
+      - reopened
+      - synchronize
+    paths:
+      - '**/*.js'
+      - '**/*.py'
+      - 'ui/raidboss/**'
+      - '.github/workflows/test.yml'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v2-beta
+        with:
+          node-version: '12'
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      - name: Install Dependencies
+        run: |
+          npm install
+      - name: npm test
+        run: |
+          npm test

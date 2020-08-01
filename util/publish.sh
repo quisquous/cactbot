@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 BASE=$(dirname "$0")/../
 BIN=$BASE/bin/x64/Release
 OUT=$BASE/publish/cactbot-release/cactbot

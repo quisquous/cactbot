@@ -9,13 +9,16 @@
     "lint": "node_modules/.bin/eslint resources ui user test util",
     "lintfix": "node_modules/.bin/eslint --fix resources ui user test util",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css",
-    "markdownlint": "node_modules/.bin/markdownlint **/*.md --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
-    "test": "python test/run_tests.py"
+    "markdownlint": "node_modules/.bin/markdownlint . --ignore node_modules --ignore publish --ignore CactbotOverlay/ThirdParty",
+    "test": "python test/run_tests.py",
+    "lint-staged": "node_modules/.bin/lint-staged"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.9.1",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.0.8",
     "markdownlint-cli": "^0.20.0",
     "stylelint": "^12.0.1",
     "stylelint-config-standard": "^19.0.0"
@@ -154,7 +157,18 @@
   "stylelint": {
     "extends": "stylelint-config-standard"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.css": "stylelint",
+    "*.js": "eslint",
+    "*.md": "markdownlint",
+    "*.py": "python -m pylint --errors-only"
+  },
   "dependencies": {
-    "markdownlint": "^0.18.0"
+    "argparse": "^1.0.10"
   }
 }
