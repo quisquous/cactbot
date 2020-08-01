@@ -92,7 +92,7 @@
     },
     {
       id: 'Weeping City HeadMarker Calofisteri',
-      netRegex: NetRegexes.message({ line: 'Tomb Of The Nullstone will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The Tomb Of The Nullstone will be sealed off.*?', capture: false }),
       netRegexDe: NetRegexes.message({ line: 'Kammer des Nullsteins will be sealed off.*?', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'Tombeau de la Clef de voûte will be sealed off.*?', capture: false }),
       netRegexJa: NetRegexes.message({ line: '要の玄室 will be sealed off.*?', capture: false }),
@@ -445,7 +445,7 @@
         'The Gloriole': 'Aureole',
         'The Queen\'s Room': 'Spinnenfalle',
         'The Shrine Of The Goetic': 'Altar der Goëtie',
-        'Tomb Of The Nullstone': 'Kammer des Nullsteins',
+        'The Tomb Of The Nullstone': 'Kammer des Nullsteins',
       },
       'replaceText': {
         'Acceleration Bomb': 'Beschleunigungsbombe',
@@ -512,7 +512,7 @@
         'The Gloriole': 'Hauteurs de la pyramide',
         'The Queen\'s Room': 'Domaine de la Tisseuse',
         'The Shrine Of The Goetic': 'Sanctuaire du Goétique',
-        'Tomb Of The Nullstone': 'Tombeau de la Clef de voûte',
+        'The Tomb Of The Nullstone': 'Tombeau de la Clef de voûte',
       },
       'replaceText': {
         'Acceleration Bomb': 'Bombe accélératrice',
@@ -577,7 +577,7 @@
         'The Gloriole': 'ピラミッド上部層',
         'The Queen\'s Room': '蜘蛛女の狩場',
         'The Shrine Of The Goetic': '神託の祭壇',
-        'Tomb Of The Nullstone': '要の玄室',
+        'The Tomb Of The Nullstone': '要の玄室',
       },
       'replaceText': {
         'Acceleration Bomb': '加速度爆弾',
@@ -642,7 +642,7 @@
         'The Gloriole': '金字塔上层',
         'The Queen\'s Room': '女王蛛猎场',
         'The Shrine Of The Goetic': '神谕祭坛',
-        'Tomb Of The Nullstone': '契约石玄室',
+        'The Tomb Of The Nullstone': '契约石玄室',
       },
       'replaceText': {
         'Acceleration Bomb': '加速度炸弹',
@@ -707,7 +707,7 @@
         'The Gloriole': '피라미드 상층부',
         'The Queen\'s Room': '거미 여왕의 사냥터',
         'The Shrine Of The Goetic': '신탁의 제단',
-        'Tomb Of The Nullstone': '쐐기 안치소',
+        'The Tomb Of The Nullstone': '쐐기 안치소',
       },
       'replaceText': {
         'Acceleration Bomb': '가속도 폭탄',
