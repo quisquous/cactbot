@@ -4,14 +4,9 @@ let Options = {
   Triggers: [],
   PlayerNicks: {},
   DisabledTriggers: {},
-  IgnoreZones: [
-    'PvpSeize',
-    'PvpSecure',
-    'PvpShatter',
-    'EurekaAnemos',
-    'EurekaPagos',
-    'EurekaPyros',
-    'EurekaHydatos',
+  IgnoreContentTypes: [
+    ContentType.Pvp,
+    ContentType.Eureka,
   ],
 
   AbilityIdNameMap: {
@@ -958,6 +953,10 @@ class DamageTracker {
 
   OnChangeZone(e) {
     this.zoneName = e.zoneName;
+
+    const zoneInfo = ZoneInfo[e.zoneID];
+    this.contentType = zoneInfo ? zoneInfo.contentType : 0;
+
     this.ReloadTriggers();
   }
 
@@ -1039,13 +1038,9 @@ class DamageTracker {
     this.healTriggers = [];
     this.netTriggers = [];
 
-    this.ignoreZone = false;
-    for (let i = 0; i < Options.IgnoreZones.length; ++i) {
-      if (this.zoneName.match(IntlZoneNames[Options.IgnoreZones[i]])) {
-        this.ignoreZone = true;
-        return;
-      }
-    }
+    this.ignoreZone = Options.IgnoreContentTypes.includes(this.contentType);
+    if (this.ignoreZone)
+      return;
 
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];

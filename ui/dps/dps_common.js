@@ -2,14 +2,9 @@
 
 let Options = {
   Language: 'en',
-  IgnoreZones: [
-    'PvpSeize',
-    'PvpSecure',
-    'PvpShatter',
-    'EurekaAnemos',
-    'EurekaPagos',
-    'EurekaPyros',
-    'EurekaHydatos',
+  IgnoreContentTypes: [
+    ContentType.Pvp,
+    ContentType.Eureka,
   ],
 };
 
@@ -17,7 +12,6 @@ let gIgnoreCurrentZone = false;
 let gIgnoreCurrentJob = false;
 let gCurrentJob = null;
 let gCurrentZone = null;
-let gIgnoreZones = [];
 let gInCombat = false;
 
 function InitDpsModule(updateFunc, hideFunc) {
@@ -48,13 +42,10 @@ function InitDpsModule(updateFunc, hideFunc) {
     // Always hide on switching zones.
     hideFunc();
     gCurrentZone = newZone;
-    gIgnoreCurrentZone = false;
-    for (let i = 0; i < gIgnoreZones.length; ++i) {
-      if (gCurrentZone.match(gIgnoreZones[i])) {
-        gIgnoreCurrentZone = true;
-        return;
-      }
-    }
+
+    const zoneInfo = ZoneInfo[e.zoneID];
+    const contentType = zoneInfo ? zoneInfo.contentType : 0;
+    gIgnoreCurrentZone = Options.IgnoreContentTypes.includes(contentType);
   });
 
   addOverlayListener('onInCombatChangedEvent', function(e) {
@@ -72,9 +63,5 @@ function InitDpsModule(updateFunc, hideFunc) {
     }
     gIgnoreCurrentJob = true;
     hideFunc();
-  });
-
-  gIgnoreZones = Options.IgnoreZones.map(function(z) {
-    return IntlZoneNames[z];
   });
 }

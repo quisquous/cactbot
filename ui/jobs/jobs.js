@@ -2,10 +2,12 @@
 
 // See user/jobs-example.js for documentation.
 let Options = {
-  WellFedZones: [
-    'O1S', 'O2S', 'O3S', 'O4S', 'O5S', 'O6S', 'O7S', 'O8S', 'O9S', 'O10S', 'O11S', 'O12S', 'UCU', 'UWU',
-    'E1S', 'E2S', 'E3S', 'E4S', 'E5S', 'E6S', 'E7S', 'E8S',
+  WellFedContentTypes: [
+    ContentType.Trials,
+    ContentType.Raids,
+    ContentType.UltimateRaids,
   ],
+
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
@@ -144,7 +146,6 @@ const kMPTickInterval = 3.0;
 
 // Regexes to be filled out once we know the player's name.
 let kComboBreakers = null;
-let kWellFedZoneRegex = null;
 
 let kYouGainEffectRegex = null;
 let kYouLoseEffectRegex = null;
@@ -314,10 +315,6 @@ function setupComboTracker(callback) {
 }
 
 function setupRegexes(playerName) {
-  kWellFedZoneRegex = Regexes.anyOf(Options.WellFedZones.map(function(x) {
-    return IntlZoneNames[x];
-  }));
-
   kYouGainEffectRegex = NetRegexes.gainsEffect({ target: playerName });
   kYouLoseEffectRegex = NetRegexes.losesEffect({ target: playerName });
   kYouUseAbilityRegex = NetRegexes.ability({ source: playerName });
@@ -1059,6 +1056,8 @@ class Bars {
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
+
+    this.contentType = 0;
 
     const lang = this.options.ParserLanguage;
     this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
@@ -2344,7 +2343,7 @@ class Bars {
 
   UpdateFoodBuff() {
     // Non-combat jobs don't set up the left buffs list.
-    if (!this.init || !this.o.leftBuffsList || !this.zone)
+    if (!this.init || !this.o.leftBuffsList)
       return;
 
     let CanShowWellFedWarning = function() {
@@ -2354,7 +2353,8 @@ class Bars {
         return false;
       if (this.level < this.options.MaxLevel)
         return true;
-      return this.zone.search(kWellFedZoneRegex) >= 0;
+
+      return this.options.WellFedContentTypes.includes(this.contentType);
     };
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
@@ -2408,7 +2408,9 @@ class Bars {
   }
 
   OnChangeZone(e) {
-    this.zone = e.zoneName;
+    const zoneInfo = ZoneInfo[e.zoneID];
+    this.contentType = zoneInfo ? zoneInfo.contentType : 0;
+
     this.UpdateFoodBuff();
     if (this.buffTracker)
       this.buffTracker.clear();
