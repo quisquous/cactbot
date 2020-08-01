@@ -237,7 +237,9 @@ def test_match(event, entry):
             # Matching this format generically:
             # 00|2019-01-12T18:08:14.0000000-05:00|0839||The Realm of the Machinists will be sealed off in 15 seconds!|
             log_match = re.search(
-                "^00\|[^\|]*\|{}\|[^\|]*\|{}".format(entry["logid"], entry["line"]), event, re.IGNORECASE
+                "^00\|[^\|]*\|{}\|[^\|]*\|{}".format(entry["logid"], entry["line"]),
+                event,
+                re.IGNORECASE,
             )
             if log_match:
                 return True
