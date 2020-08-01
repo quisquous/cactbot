@@ -9,6 +9,7 @@
     'Weeping Critical Bite': '1848', // Sarsuchus cone aoe
     'Weeping Realm Shaker': '183E', // First Daughter circle aoe
     'Weeping Silkscreen': '183C', // First Daughter line aoe
+    'Weeping Silken Spray': '1824', // Arachne Eve rear conal aoe
     'Weeping Tremblor 1': '1837', // Arachne Eve disappear circle aoe 1
     'Weeping Tremblor 2': '1836', // Arachne Eve disappear circle aoe 2
     'Weeping Tremblor 3': '1835', // Arachne Eve disappear circle aoe 3
@@ -23,12 +24,13 @@
     'Weeping Flare Star 1': '1805', // Ozma cube phase donut 1?
     'Weeping Flare Star 2': '1806', // Ozma cube phase donut 2?
     'Weeping Execration': '1829', // Ozma triangle laser
+    'Weeping Haircut 1': '180B', // Calofisteri 180 cleave 1
+    'Weeping Haircut 2': '180F', // Calofisteri 180 cleave 2
     'Weeping Entanglement': '181D', // Calofisteri landmine puddle
     'Weeping Evil Curl': '1816', // Calofisteri axe
     'Weeping Evil Tress': '1817', // Calofisteri mace
     'Weeping Depth Charge': '1820', // Calofisteri charge to edge
-    'Weeping Haircut 1': '180B', // Calofisteri 180 cleave 1
-    'Weeping Haircut 2': '180F', // Calofisteri 180 cleave 2
+    'Weeping Feint Particle Beam': '1928', // Calofisteri sky laser
     'Weeping Evil Switch': '1815', // Calofisteri lasers
   },
   shareWarn: {
@@ -40,13 +42,13 @@
     'Weeping Split End 1': '180C', // Calofisteri tank cleave 1
     'Weeping Split End 2': '1810', // Calofisteri tank cleave 2
     'Weeping Bloodied Nail': '181F', // Calofisteri tank buster
-    'Weeping Feint Particle Beam': '1928', // Calofisteri sky laser
   },
   gainsEffectWarn: {
     'Weeping Hysteria': '128', // Arachne Eve Frond Affeard
     'Weeping Zombification': '173', // Forgall too many zombie puddles
     'Weeping Toad': '1B7', // Forgall Brand of the Fallen failure
-    'Weeping Assimilation': '42C', // Ozmashade Assimilation lookaway
+    'Weeping Assimilation': '42C', // Ozmashade Assimilation look-away
+    'Weeping Stun': '95', // Calofisteri Penetration look-away
   },
   triggers: [
     {
@@ -112,6 +114,19 @@
           blame: matches.target,
           text: {
             en: 'Tank Laser',
+          },
+        };
+      },
+    },
+    {
+      id: 'Weeping Ozma Holy',
+      netRegex: NetRegexes.ability({ id: '182E' }),
+      deathReason: function(e, data, matches) {
+        return {
+          type: 'fail',
+          name: matches.target,
+          reason: {
+            en: 'Slid off!',
           },
         };
       },
