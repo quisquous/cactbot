@@ -220,7 +220,7 @@ hideall "--sync--"
 2257.0 "Flare Star" sync /:Ozma:1805:/
 2288.0 "Holy" sync /:Ozma:182E:/
 2300.0 "Transfiguration (Sphere)" sync /:Ozma:1804:/
-2303.3 "--sync-- /:1800:Ozma/ window 53.3,5
+2303.3 "--sync--" sync /:1800:Ozma/ window 53.3,5
 2308.0 "Black Hole" sync /:Ozma:1800:/ window 58,5 jump 2400.0
 
 # Intermission
