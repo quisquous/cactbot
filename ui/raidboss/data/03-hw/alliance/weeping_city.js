@@ -67,24 +67,24 @@
       // Because of this, we restrict those triggers for each boss to activate
       // only when that boss is in progress.
       id: 'Weeping City HeadMarker Arachne',
-      netRegex: NetRegexes.message({ line: '.*Queen\'s Room will be sealed off.*?', capture: false }),
-      netRegexDe: NetRegexes.message({ line: '.*Spinnenfalle will be sealed off.*?', capture: false }),
-      netRegexFr: NetRegexes.message({ line: '.*Domaine de la Tisseuse will be sealed off.*?', capture: false }),
-      netRegexJa: NetRegexes.message({ line: '.*蜘蛛女の狩場 will be sealed off.*?', capture: false }),
-      netRegexCn: NetRegexes.message({ line: '.*女王蛛猎场 will be sealed off.*?', capture: false }),
-      netRegexKo: NetRegexes.message({ line: '.*거미 여왕의 사냥터 will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The Queen\'s Room will be sealed off.*?', capture: false }),
+      netRegexDe: NetRegexes.message({ line: 'Spinnenfalle will be sealed off.*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'Domaine de la Tisseuse will be sealed off.*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '蜘蛛女の狩場 will be sealed off.*?', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '女王蛛猎场 will be sealed off.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '거미 여왕의 사냥터 will be sealed off.*?', capture: false }),
       run: function(data) {
         data.arachneStarted = true;
       },
     },
     {
       id: 'Weeping City HeadMarker Ozma',
-      netRegex: NetRegexes.message({ line: '.*Gloriole will be sealed off.*?', capture: false }),
-      netRegexDe: NetRegexes.message({ line: '.*金字塔上层 will be sealed off.*?', capture: false }),
-      netRegexFr: NetRegexes.message({ line: '.*Aureole will be sealed off.*?', capture: false }),
-      netRegexJa: NetRegexes.message({ line: '.*Hauteurs de la pyramide will be sealed off.*?', capture: false }),
-      netRegexCn: NetRegexes.message({ line: '.*ピラミッド上部層 will be sealed off.*?', capture: false }),
-      netRegexKo: NetRegexes.message({ line: '.*피라미드 상층부 will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'The Gloriole will be sealed off.*?', capture: false }),
+      netRegexDe: NetRegexes.message({ line: '金字塔上层 will be sealed off.*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'Aureole will be sealed off.*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: 'Hauteurs de la pyramide will be sealed off.*?', capture: false }),
+      netRegexCn: NetRegexes.message({ line: 'ピラミッド上部層 will be sealed off.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '피라미드 상층부 will be sealed off.*?', capture: false }),
       run: function(data) {
         data.arachneStarted = false;
         data.ozmaStarted = true;
@@ -92,12 +92,12 @@
     },
     {
       id: 'Weeping City HeadMarker Calofisteri',
-      netRegex: NetRegexes.message({ line: '.*Tomb Of The Nullstone will be sealed off.*?', capture: false }),
-      netRegexDe: NetRegexes.message({ line: '.*Kammer des Nullsteins will be sealed off.*?', capture: false }),
-      netRegexFr: NetRegexes.message({ line: '.*Tombeau de la Clef de voûte will be sealed off.*?', capture: false }),
-      netRegexJa: NetRegexes.message({ line: '.*要の玄室 will be sealed off.*?', capture: false }),
-      netRegexCn: NetRegexes.message({ line: '.*契约石玄室 will be sealed off.*?', capture: false }),
-      netRegexKo: NetRegexes.message({ line: '.*쐐기 안치소 will be sealed off.*?', capture: false }),
+      netRegex: NetRegexes.message({ line: 'Tomb Of The Nullstone will be sealed off.*?', capture: false }),
+      netRegexDe: NetRegexes.message({ line: 'Kammer des Nullsteins will be sealed off.*?', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'Tombeau de la Clef de voûte will be sealed off.*?', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '要の玄室 will be sealed off.*?', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '契约石玄室 will be sealed off.*?', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '쐐기 안치소 will be sealed off.*?', capture: false }),
       run: function(data) {
         data.ozmaStarted = false;
         data.calStarted = true;
