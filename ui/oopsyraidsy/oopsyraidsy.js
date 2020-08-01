@@ -1070,7 +1070,7 @@ class DamageTracker {
         }
       }
 
-      if (this.zoneName.search(zoneRegex) < 0)
+      if (this.zoneName.search(Regexes.parse(zoneRegex)) < 0)
         continue;
 
       this.AddSimpleTriggers('warn', set.damageWarn);

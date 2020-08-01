@@ -108,7 +108,7 @@ class DpsPhaseTracker {
 
     for (let i = 0; i < gBossFightTriggers.length; ++i) {
       let boss = gBossFightTriggers[i];
-      if (!this.zone.match(boss.zoneRegex))
+      if (!this.zone.match(Regexes.parse(boss.zoneRegex)))
         continue;
       this.bosses.push(boss);
       if (boss.countdownStarts) {

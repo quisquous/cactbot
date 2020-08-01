@@ -208,7 +208,7 @@ class PopupText {
         }
       }
 
-      if (this.zoneName.search(zoneRegex) >= 0) {
+      if (this.zoneName.search(Regexes.parse(zoneRegex)) >= 0) {
         if (this.options.Debug) {
           if (set.filename)
             console.log('Loading ' + set.filename);
