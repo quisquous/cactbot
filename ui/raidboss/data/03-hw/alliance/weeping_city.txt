@@ -324,7 +324,7 @@ hideall "--sync--"
 
 # 1811 and 180D are releasing hair after Haircut and Split End cleaves
 
-4000.0 "--sync--" sync /00:0839:Tomb Of The Nullstone will be sealed off/ window 4000,5
+4000.0 "--sync--" sync /00:0839:The Tomb Of The Nullstone will be sealed off/ window 4000,5
 4004.1 "Bloodied Nail x4" # sync /:Calofisteri:181F:/
 4018.8 "Coif Change" sync /:Calofisteri:180[AE]:/ window 18.8,5
 4027.8 "Haircut" sync /:Calofisteri:180[BF]:/
