@@ -49,7 +49,7 @@ class OopsyConfigurator {
     for (const [key, info] of Object.entries(fileMap)) {
       const expansion = info.prefix;
 
-      if (info.ids.length == 0)
+      if (info.triggers.length === 0)
         continue;
 
       if (!expansionDivs[expansion]) {
@@ -94,10 +94,10 @@ class OopsyConfigurator {
       triggerOptions.classList.add('trigger-file-options');
       triggerContainer.appendChild(triggerOptions);
 
-      for (const id of info.ids) {
+      for (const trigger of info.triggers) {
         // Build the trigger label.
         let triggerDiv = document.createElement('div');
-        triggerDiv.innerHTML = id;
+        triggerDiv.innerHTML = trigger.id;
         triggerDiv.classList.add('trigger');
         triggerOptions.appendChild(triggerDiv);
 
@@ -106,7 +106,7 @@ class OopsyConfigurator {
         triggerDetails.classList.add('trigger-details');
         triggerOptions.appendChild(triggerDetails);
 
-        triggerDetails.appendChild(this.buildTriggerOptions(id, triggerDiv));
+        triggerDetails.appendChild(this.buildTriggerOptions(trigger.id, triggerDiv));
       }
     }
   }
@@ -153,20 +153,25 @@ class OopsyConfigurator {
     let map = this.base.processFiles(files);
 
     for (let [key, item] of Object.entries(map)) {
-      item.ids = [];
+      item.triggers = [];
       for (const triggerSet of item.json) {
         for (const prop of oopsyHelpers) {
           if (!triggerSet[prop])
             continue;
-          item.ids.push(...Object.keys(triggerSet[prop]));
+          for (const id in triggerSet[prop])
+            item.triggers.push({ id: id });
         }
 
         if (!triggerSet.triggers)
           continue;
 
         for (const trigger of triggerSet.triggers) {
-          if (trigger.id)
-            item.ids.push(trigger.id);
+          if (!trigger.id)
+            continue;
+          // Skip triggers that just set data.
+          if (!trigger.mistake)
+            continue;
+          item.triggers.push(trigger);
         }
       }
     }
