@@ -139,7 +139,7 @@
       id: 'Weeping City Beguiling Mist',
       netRegex: NetRegexes.startsUsing({ id: '17CE', source: 'Summoned Succubus' }),
       condition: function(data) {
-        return data.canSilence();
+        return data.CanSilence();
       },
       response: Responses.interrupt(),
     },
@@ -263,7 +263,7 @@
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['4899', '4900'], capture: false }),
       suppressSeconds: 5,
       infoText: {
-        en: 'Close to axes, far from bulbs',
+        en: 'Close to axes, avoid bulbs',
       },
     },
     {
@@ -288,6 +288,7 @@
       // The actual ability here is an Unknown ability, but it begins slightly before Garrotte.
       id: 'Weeping City Garrotte',
       netRegex: NetRegexes.ability({ id: '181D', source: 'Entanglement', capture: false }),
+      suppressSeconds: 5,
       response: Responses.killExtraAdd(),
     },
     {

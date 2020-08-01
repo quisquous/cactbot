@@ -211,7 +211,8 @@ hideall "--sync--"
 2157.1 "Execration" sync /:Ozma:1828:/
 2178.4 "Acceleration Bomb" sync /:Ozma:182F:/
 2195.7 "Transfiguration (Sphere)" sync /:Ozma:1827:/
-2203.8 "Black Hole"
+2199.1 "--sync--" sync /:1800:Ozma/ window 48.8,5
+2203.8 "Black Hole" sync /:Ozma:1800:/ window 53,5 jump 2400.0
 
 # Cube-first path
 
@@ -219,7 +220,8 @@ hideall "--sync--"
 2257.0 "Flare Star" sync /:Ozma:1805:/
 2288.0 "Holy" sync /:Ozma:182E:/
 2300.0 "Transfiguration (Sphere)" sync /:Ozma:1804:/
-2308.0 "Black Hole" sync /:Ozma:1800:/ window 300,5 jump 2400.0
+2303.3 "--sync-- /:1800:Ozma/ window 53.3,5
+2308.0 "Black Hole" sync /:Ozma:1800:/ window 58,5 jump 2400.0
 
 # Intermission
 
