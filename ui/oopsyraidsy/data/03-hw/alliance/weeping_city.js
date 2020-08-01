@@ -18,17 +18,15 @@
     'Weeping Necropurge': '17D7', // Forgall Shriveled Talon line aoe
     'Weeping Rotten Breath': '17D0', // Forgall Dahak cone aoe
     'Weeping Mow': '17D2', // Forgall Haagenti unmarked cleave
-    'Weeping Mortal Ray': '17D4', // Forgall Haagenti look-away
     'Weeping Dark Eruption': '17C3', // Forgall puddle marker
-    'Weeping Trembling Epigraph': '1855', // Headstone line aoe?
-    'Weeping Flare Star 1': '1805', // Ozma cube phase donut 1?
-    'Weeping Flare Star 2': '1806', // Ozma cube phase donut 2?
+    // 1806 is also Flare Star, but if you get by 1805 you also get hit by 1806?
+    'Weeping Flare Star': '1805', // Ozma cube phase donut
     'Weeping Execration': '1829', // Ozma triangle laser
     'Weeping Haircut 1': '180B', // Calofisteri 180 cleave 1
     'Weeping Haircut 2': '180F', // Calofisteri 180 cleave 2
-    'Weeping Entanglement': '181D', // Calofisteri landmine puddle
+    'Weeping Entanglement': '181D', // Calofisteri landmine puddle proc
     'Weeping Evil Curl': '1816', // Calofisteri axe
-    'Weeping Evil Tress': '1817', // Calofisteri mace
+    'Weeping Evil Tress': '1817', // Calofisteri bulb
     'Weeping Depth Charge': '1820', // Calofisteri charge to edge
     'Weeping Feint Particle Beam': '1928', // Calofisteri sky laser
     'Weeping Evil Switch': '1815', // Calofisteri lasers
@@ -36,17 +34,18 @@
   shareWarn: {
     'Weeping Arachne Web': '185E', // Arachne Eve headmarker web aoe
     'Weeping Earth Aether': '1841', // Arachne Eve orbs
-    'Weeping Epigraph': '1852', // Headstone cleave
+    'Weeping Epigraph': '1852', // Headstone untelegraphed laser line tank attack
     // This is too noisy.  Better to pop the balloons than worry about friends.
     // 'Weeping Explosion': '1807', // Ozmasphere Cube orb explosion
     'Weeping Split End 1': '180C', // Calofisteri tank cleave 1
     'Weeping Split End 2': '1810', // Calofisteri tank cleave 2
-    'Weeping Bloodied Nail': '181F', // Calofisteri tank buster
+    'Weeping Bloodied Nail': '181F', // Calofisteri axe/bulb appearing
   },
   gainsEffectWarn: {
     'Weeping Hysteria': '128', // Arachne Eve Frond Affeard
     'Weeping Zombification': '173', // Forgall too many zombie puddles
     'Weeping Toad': '1B7', // Forgall Brand of the Fallen failure
+    'Weeping Doom': '38E', // Forgall Haagenti Mortal Ray
     'Weeping Assimilation': '42C', // Ozmashade Assimilation look-away
     'Weeping Stun': '95', // Calofisteri Penetration look-away
   },
@@ -68,8 +67,8 @@
       },
     },
     {
-      id: 'Weeping Forgall Megadeath',
-      netRegex: NetRegexes.ability({ id: '183A' }),
+      id: 'Weeping Forgall Mega Death',
+      netRegex: NetRegexes.ability({ id: '17CA' }),
       condition: function(e, data, matches) {
         return data.zombie && !data.zombie[matches.target];
       },
