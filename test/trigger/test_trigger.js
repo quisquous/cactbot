@@ -38,14 +38,17 @@ const netRegexLanguages = [
   'netRegexKo',
 ];
 
+const errorFunc = (str) => {
+  console.error(str);
+  exitCode = 1;
+};
+
 let testValidTriggerRegexLanguage = function(file, contents) {
   let unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja).*?:/g;
   let results = contents.match(unsupportedRegexLanguage);
   if (results && results.length > 0) {
-    for (const result of results) {
-      console.error(`${file}: invalid regex language '${result}'`);
-      exitCode = 1;
-    }
+    for (const result of results)
+      errorFunc(`${file}: invalid regex language '${result}'`);
   }
 };
 
@@ -58,10 +61,8 @@ let testWellFormedNewCombatantTriggerRegex = function(file, contents) {
   let newCombatantRegex = createTriggerRegexString('(?! ?03:\\\\y{ObjectId}:)(.*:)?Added new combatant.*');
   let results = contents.match(newCombatantRegex);
   if (results) {
-    for (const result of results) {
-      console.error(`${file}: 'Added new combatant' regex should begin with '03:\\y{ObjectId}:', found '${result}'`);
-      exitCode = 1;
-    }
+    for (const result of results)
+      errorFunc(`${file}: 'Added new combatant' regex should begin with '03:\\y{ObjectId}:', found '${result}'`);
   }
 };
 
@@ -69,10 +70,8 @@ let testWellFormedStartsUsingTriggerRegex = function(file, contents) {
   let startsUsingRegex = createTriggerRegexString('(?! ?14:)(.* )?starts using.*');
   let results = contents.match(startsUsingRegex);
   if (results) {
-    for (const result of results) {
-      console.error(`${file}: 'starts using' regex should begin with '14:', found '${result}'`);
-      exitCode = 1;
-    }
+    for (const result of results)
+      errorFunc(`${file}: 'starts using' regex should begin with '14:', found '${result}'`);
   }
 };
 
@@ -82,10 +81,8 @@ let testWellFormedGainsEffectTriggerRegex = function(file, contents) {
   let gainsEffectRegex = createTriggerRegexString('(?! (?:1A:\\\\y{ObjectId}|00:332e):)(.* )?gains the effect of.*');
   let results = contents.match(gainsEffectRegex);
   if (results) {
-    for (const result of results) {
-      console.error(`${file}: 'gains the effect of' regex should begin with '1A:\\y{ObjectId}:', found '${result}'`);
-      exitCode = 1;
-    }
+    for (const result of results)
+      errorFunc(`${file}: 'gains the effect of' regex should begin with '1A:\\y{ObjectId}:', found '${result}'`);
   }
 };
 
@@ -93,10 +90,8 @@ let testWellFormedLosesEffectTriggerRegex = function(file, contents) {
   let losesEffectRegex = createTriggerRegexString('(?! ?1E:\\\\y{ObjectId}:)(.* )?loses the effect of.*');
   let results = contents.match(losesEffectRegex);
   if (results) {
-    for (const result of results) {
-      console.error(`${file}: 'loses the effect of' regex should begin with '1E:\\y{ObjectId}:', found '${result}'`);
-      exitCode = 1;
-    }
+    for (const result of results)
+      errorFunc(`${file}: 'loses the effect of' regex should begin with '1E:\\y{ObjectId}:', found '${result}'`);
   }
 };
 
@@ -105,10 +100,8 @@ let testBadCatchAllRegex = function(file, contents) {
   let badCatchAllRegex = createTriggerRegexString('.*:(\\.{3}(\\.{2,4})?|\\.{9,}):.*');
   let results = contents.match(badCatchAllRegex);
   if (results) {
-    for (const result of results) {
-      console.error(`${file}: Invalid number of '.' operators, found '${result}'`);
-      exitCode = 1;
-    }
+    for (const result of results)
+      errorFunc(`${file}: Invalid number of '.' operators, found '${result}'`);
   }
 };
 
@@ -116,10 +109,8 @@ let testObjectIdRegex = function(file, contents) {
   let objectIdRegex = createTriggerRegexString('.*:\\.{8}:.*');
   let results = contents.match(objectIdRegex);
   if (results) {
-    for (const result of results) {
-      console.error(`${file}: ObjectId should be used in favor of literal '........', found '${result}'`);
-      exitCode = 1;
-    }
+    for (const result of results)
+      errorFunc(`${file}: ObjectId should be used in favor of literal '........', found '${result}'`);
   }
 };
 
@@ -127,10 +118,8 @@ let testUnnecessaryGroupRegex = function(file, contents) {
   let unnecessaryGroupRegex = createTriggerRegexString('.*\\(\\?:.\\|.\\).*');
   let results = contents.match(unnecessaryGroupRegex);
   if (results) {
-    for (const result of results) {
-      console.error(`${file}: Match single character from set '[ab]' should be used in favor of group matching '(?:a|b)' for single characters, found '${result}'`);
-      exitCode = 1;
-    }
+    for (const result of results)
+      errorFunc(`${file}: Match single character from set '[ab]' should be used in favor of group matching '(?:a|b)' for single characters, found '${result}'`);
   }
 };
 
@@ -182,8 +171,7 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         let currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
         // Ignore first pass
         if (captures !== -1 && captures !== currentCaptures) {
-          console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
-          exitCode = 1;
+          errorFunc(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
           break;
         }
         captures = Math.max(captures, currentCaptures);
@@ -197,8 +185,7 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         let currentCaptures = new RegExp('(?:' + currentRegex.toString() + ')?').exec('').length - 1;
         // Ignore first pass
         if (captures !== -1 && captures !== currentCaptures) {
-          console.error(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
-          exitCode = 1;
+          errorFunc(`${file}: Found inconsistent capturing groups between languages for trigger id '${currentTrigger.id}'.`);
           break;
         }
         captures = Math.max(captures, currentCaptures);
@@ -206,18 +193,13 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     }
 
     if (captures > 0) {
-      if (!containsMatches) {
-        console.error(`${file}: Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
-        exitCode = 1;
-      } else if (!containsMatchesParam) {
-        console.error(`${file}: Missing matches param for '${currentTrigger.id}'.`);
-        exitCode = 1;
-      }
+      if (!containsMatches)
+        errorFunc(`${file}: Found unnecessary regex capturing group for trigger id '${currentTrigger.id}'.`);
+      else if (!containsMatchesParam)
+        errorFunc(`${file}: Missing matches param for '${currentTrigger.id}'.`);
     } else {
-      if (containsMatches) {
-        console.error(`${file}: Found 'matches' as a function parameter without regex capturing group for trigger id '${currentTrigger.id}'.`);
-        exitCode = 1;
-      }
+      if (containsMatches)
+        errorFunc(`${file}: Found 'matches' as a function parameter without regex capturing group for trigger id '${currentTrigger.id}'.`);
     }
   }
 };
@@ -234,8 +216,7 @@ let testInvalidTriggerKeys = function(file, contents) {
         continue;
       if (netRegexLanguages.includes(key))
         continue;
-      console.error(`${file}: Found unknown key '${key}' in trigger id '${currentTrigger.id}'.`);
-      exitCode = 1;
+      errorFunc(`${file}: Found unknown key '${key}' in trigger id '${currentTrigger.id}'.`);
     }
   }
 };
@@ -252,16 +233,14 @@ let testValidIds = function(file, contents) {
       continue;
     for (let trigger of set) {
       if (!trigger.id) {
-        console.error(`${file}: Missing id field in trigger ${trigger.regex}`);
-        exitCode = 1;
+        errorFunc(`${file}: Missing id field in trigger ${trigger.regex}`);
         continue;
       }
 
       // Triggers must be unique.
-      if (ids.has(trigger.id)) {
-        console.error(`${file}: duplicate id: '${trigger.id}`);
-        exitCode = 1;
-      }
+      if (ids.has(trigger.id))
+        errorFunc(`${file}: duplicate id: '${trigger.id}`);
+
       ids.add(trigger.id);
 
       // Only show one broken prefix per file.
@@ -281,8 +260,7 @@ let testValidIds = function(file, contents) {
           break;
       }
       if (idx == 0) {
-        console.error(`${file}: No common id prefix in '${prefix}' and '${trigger.id}'`);
-        exitCode = 1;
+        errorFunc(`${file}: No common id prefix in '${prefix}' and '${trigger.id}'`);
         brokenPrefixes = true;
         continue;
       }
@@ -296,10 +274,8 @@ let testValidIds = function(file, contents) {
   // as the prefix "O4" is not a full word (and have a space after it,
   // as "Prefix " does.  This is a bit rigid, but prevents many typos.
   if (ids.size > 1 && !brokenPrefixes && prefix && prefix.length > 0) {
-    if (prefix[prefix.length - 1] != ' ') {
-      console.error(`${file}: id prefix '${prefix}' is not a full word, must end in a space`);
-      exitCode = 1;
-    }
+    if (prefix[prefix.length - 1] != ' ')
+      errorFunc(`${file}: id prefix '${prefix}' is not a full word, must end in a space`);
   }
 };
 
@@ -320,10 +296,8 @@ let testResponseHasNoFriends = function(file, contents) {
       if (!trigger.response)
         continue;
       for (let item of bannedItems) {
-        if (trigger[item]) {
-          console.error(`${file}: ${trigger.id} cannot have both 'response' and '${item}'`);
-          exitCode = 1;
-        }
+        if (trigger[item])
+          errorFunc(`${file}: ${trigger.id} cannot have both 'response' and '${item}'`);
       }
     }
   }
@@ -375,10 +349,9 @@ let testTriggerFieldsSorted = function(file, contents) {
         let thisIdx = keys.indexOf(field);
         if (thisIdx === -1)
           continue;
-        if (thisIdx <= lastIdx) {
-          console.error(`${file}: in ${trigger.id}, field '${keys[lastIdx]}' must precede '${keys[thisIdx]}'`);
-          exitCode = 1;
-        }
+        if (thisIdx <= lastIdx)
+          errorFunc(`${file}: in ${trigger.id}, field '${keys[lastIdx]}' must precede '${keys[thisIdx]}'`);
+
         lastIdx = thisIdx;
       }
     }
@@ -396,10 +369,8 @@ let testBadTimelineTriggerRegex = function(file, contents) {
       // regex is the only valid regular expression field on a timeline trigger.
       if (key === 'regex')
         continue;
-      if (regexLanguages.includes(key) || netRegexLanguages.includes(key)) {
-        console.error(`${file}: in ${trigger.id}, invalid field '${key}' in timelineTrigger`);
-        exitCode = 1;
-      }
+      if (regexLanguages.includes(key) || netRegexLanguages.includes(key))
+        errorFunc(`${file}: in ${trigger.id}, invalid field '${key}' in timelineTrigger`);
     }
   }
 };
@@ -407,15 +378,12 @@ let testBadTimelineTriggerRegex = function(file, contents) {
 
 let testBadZoneId = function(file, contents) {
   let json = eval(contents);
-  if (!('zoneId' in json[0])) {
-    console.error(`${file}: missing zone id`);
-    return;
-  }
+  let triggerSet = json[0];
 
-  if (typeof json[0].zoneId === 'undefined') {
-    console.error(`${file}: unknown zone id`);
-    exitCode = 1;
-  }
+  if (!('zoneId' in triggerSet))
+    errorFunc(`${file}: missing zone id`);
+  else if (typeof triggerSet.zoneId === 'undefined')
+    errorFunc(`${file}: unknown zone id`);
 };
 
 let testTriggerFile = function(file) {
@@ -438,9 +406,8 @@ let testTriggerFile = function(file) {
     testBadTimelineTriggerRegex(file, contents);
     testBadZoneId(file, contents);
   } catch (e) {
-    console.error(`Trigger error in ${file}.`);
+    errorFunc(`Trigger error in ${file}.`);
     console.error(e);
-    exitCode = 1;
   }
 };
 
