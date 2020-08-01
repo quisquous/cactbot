@@ -145,7 +145,7 @@
     },
     {
       id: 'Weeping City Mortal Ray',
-      netRegex: NetRegexes.startsUsing({ id: '17D4', source: 'Summoned Haagenti' }),
+      netRegex: NetRegexes.startsUsing({ id: '17D4', source: 'Summoned Haagenti', capture: false }),
       response: Responses.lookAway(),
     },
     {
