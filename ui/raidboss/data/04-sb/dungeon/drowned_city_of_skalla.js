@@ -69,6 +69,7 @@
         en: 'eye laser',
         de: 'augen lesa',
         fr: 'laser',
+        en: '离开正面',
         ko: '레이저',
       },
     },
