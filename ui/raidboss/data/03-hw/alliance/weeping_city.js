@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^The Weeping City Of Mhach$/,
+    cn: /^禁忌城邦玛哈$/,
   },
   zoneId: ZoneId.TheWeepingCityOfMhach,
   timelineFile: 'weeping_city.txt',
@@ -22,6 +23,7 @@
       alertText: {
         en: 'Stand on webs',
         de: 'Auf den Spinnennetzen stehen',
+        cn: '站在网上',
       },
     },
     {
@@ -136,6 +138,7 @@
       infoText: {
         en: 'Drop Web Outside',
         de: 'Spinnennetz draußen ablegen',
+        cn: '蛛网点名，放在场边',
       },
     },
     {
@@ -153,7 +156,7 @@
         de: 'Pfützen auf DIR',
         fr: 'Mare sur VOUS',
         ja: '自分に床範囲',
-        cn: '点名',
+        cn: '圈圈点名',
         ko: '장판 바깥에 깔기',
       },
     },
@@ -205,6 +208,7 @@
       alertText: {
         en: 'Stand in one puddle',
         de: 'In einer Fläche stehen',
+        cn: '站在圈里',
       },
     },
     {
@@ -214,6 +218,7 @@
       alertText: {
         en: 'Drop meteor back or left',
         de: 'Meteor hinten oder links ablegen',
+        cn: '流星点名，放在背后或左边',
       },
     },
     {
@@ -229,6 +234,7 @@
       alertText: {
         en: 'Get off rectangle platform',
         de: 'Von der plattform runter gehen',
+        cn: '离开平台',
       },
     },
     {
@@ -261,11 +267,13 @@
           return {
             en: 'Tank lasers--Avoid party',
             de: 'Tank lasers--Weg von der Party',
+            cn: '坦克激光--远离人群',
           };
         }
         return {
           en: 'Avoid tanks',
           de: 'Weg von den Tanks',
+          cn: '远离坦克',
         };
       },
     },
@@ -280,6 +288,7 @@
       infoText: {
         en: 'Get orbs',
         de: 'Kugeln nehmen',
+        cn: '撞球',
       },
     },
     {
@@ -343,6 +352,7 @@
       infoText: {
         en: 'Close to axes, avoid bulbs',
         de: 'Nahe den Äxten, vermeide Knospen',
+        cn: '靠近斧状发，远离球状发',
       },
     },
     {
@@ -352,6 +362,7 @@
       alertText: {
         en: 'Avoid scythe line AoEs',
         de: 'Weiche den Sensen AOEs aus',
+        cn: '躲避镰刀直线AOE',
       },
     },
     {
@@ -362,6 +373,7 @@
       infoText: {
         en: 'Avoid purple circles',
         de: 'Vermeide die lilanen Flächen',
+        cn: '远离紫圈',
       },
     },
     {
@@ -388,11 +400,13 @@
           return {
             en: '16x Sky Laser on YOU!',
             de: '16x Himmelslaser auf DIR!',
+            cn: '16连追踪AOE点名',
           };
         }
         return {
           en: 'Avoid Sky Lasers',
           de: 'Himmelslaser ausweichen',
+          cn: '躲避追踪AOE',
         };
       },
     },

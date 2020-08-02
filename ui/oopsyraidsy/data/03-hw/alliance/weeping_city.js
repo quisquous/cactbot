@@ -3,6 +3,7 @@
 [{
   zoneRegex: {
     en: /^The Weeping City Of Mhach$/,
+    cn: /^禁忌城邦玛哈$/,
   },
   zoneId: ZoneId.TheWeepingCityOfMhach,
   damageWarn: {
@@ -114,6 +115,7 @@
           text: {
             en: 'Tank Laser',
             de: 'Tank Laser',
+            cn: '坦克激光',
           },
         };
       },
@@ -128,6 +130,7 @@
           reason: {
             en: 'Slid off!',
             de: 'ist runtergerutscht!',
+            cn: '击退！',
           },
         };
       },
