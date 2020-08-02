@@ -47,7 +47,7 @@ const commonReplacement = {
     '--adds targetable--': {
       de: '--adds anvisierbar--',
       fr: '--adds ciblables--',
-      ja: '--fixme--',
+      ja: '--雑魚ターゲット可能--',
       cn: '--小怪可选中--',
       ko: '--쫄 타겟 가능--',
     },
