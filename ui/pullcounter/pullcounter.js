@@ -74,6 +74,17 @@ class PullCounter {
   OnChangeZone(e) {
     this.element.innerText = '';
     this.zone = e.zoneName;
+
+    // Network log zone names that start with "the" are lowercase.
+    // Adjust this here to match saved pull counts for zones which
+    // do not have this property and originally used zone names
+    // coming from the ffxiv parser plugin.
+
+    // TODO: add some backwards compatible way to turn zone names into
+    // zone ids when we load that zone and a pull count exists?
+    if (this.zone.length > 0)
+      this.zone = this.zone[0].toUpperCase() + this.zone.substr(1);
+
     this.ReloadTriggers();
   }
 
