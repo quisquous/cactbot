@@ -111,8 +111,10 @@ const kAbility = {
   BloodPrice: 'E2F',
   TheBlackestNight: '1CE1',
   Delirium: '1CDE',
+  Combust: 'E0F',
   Combust2: 'E18',
   Combust3: '40AA',
+  Draw: 'E06',
   AspectedBenefic: 'E0B',
   AspectedHelios: 'E11',
   Bio: '45C8',
@@ -1618,44 +1620,123 @@ class Bars {
     };
   }
 
-  // TODO: none of this is actually super useful.
   setupAst() {
     let combustBox = this.addProcBox({
       id: 'ast-procs-combust',
       fgColor: 'ast-color-combust',
     });
 
-    let beneficBox = this.addProcBox({
-      id: 'ast-procs-benefic',
-      fgColor: 'ast-color-benefic',
+    let drawBox = this.addProcBox({
+      id: 'ast-procs-draw',
+      fgColor: 'ast-color-draw',
     });
 
-    let heliosBox = this.addProcBox({
-      id: 'ast-procs-helios',
-      fgColor: 'ast-color-helios',
+    let lucidBox = this.addProcBox({
+      id: 'ast-procs-luciddreaming',
+      fgColor: 'ast-color-lucid',
     });
 
-    // Sorry, no differentation for noct asts here.  <_<
+    let cardBox = this.addResourceBox({
+      classList: ['ast-color-card'],
+    });
+
+    let sealBox = this.addResourceBox({
+      classList: ['ast-color-seal'],
+    });
+    
+    this.jobFuncs.push((jobDetail) => {
+      let Card = jobDetail.heldCard
+      let seal = jobDetail.arcanums
+
+      // Show on which kind of jobs your card plays better by color
+      // Blue on melee, purple on ranged, and grey when no card
+      let c = cardBox.parentNode;
+      c.classList.remove('melee');
+      c.classList.remove('range');
+      if (Card == "Arrow" || Card == "Spear" || Card == "Balance") {
+        c.classList.add('melee');
+      }
+      if (Card == "Bole" || Card == "Spire" || Card == "Ewer") {
+        c.classList.add('range');
+      }
+      
+      // Show whether you already have this seal
+      // O means it's OK to play this card
+      // X means don't play this card directly if time permits
+      if (Card == 'Balance' || Card == 'Bole') {
+        if (seal.indexOf("Solar") != -1) {
+          cardBox.innerText = "X"
+        } else {
+          cardBox.innerText = "O"
+        }}
+      if (Card == 'Arrow' || Card == 'Ewer') {
+        if (seal.indexOf("Lunar") != -1) {
+          cardBox.innerText = "X"
+        } else {
+          cardBox.innerText = "O"
+        }}
+      if (Card == 'Spear' || Card == 'Spire') {
+        if (seal.indexOf("Celestial") != -1) {
+          cardBox.innerText = "X"
+        } else {
+          cardBox.innerText = "O"
+        }}
+      if (seal == 'None') {
+        if (Card != 'None'){
+          cardBox.innerText = "O"
+        }}
+      if (Card == 'None') {
+        cardBox.innerText = ""
+      }
+
+      // Show how many kind of seals you already have
+      // Turn green when you have all 3 kinds of seal
+      let sealcount = 0
+      if (seal.indexOf("Solar") != -1) {
+        sealcount =sealcount + 1
+      }
+      if (seal.indexOf("Lunar") != -1) {
+        sealcount = sealcount + 1
+      }
+      if (seal.indexOf("Celestial") != -1) {
+        sealcount = sealcount + 1
+      }      
+      sealBox.innerText = sealcount
+      if (sealcount == 3) {
+        sealBox.parentNode.classList.add('ready')
+      } else {
+        sealBox.parentNode.classList.remove('ready')
+      }
+    });
+
     this.abilityFuncMap[kAbility.Combust3] = () => {
       combustBox.duration = 0;
       combustBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.AspectedBenefic] = () => {
-      beneficBox.duration = 0;
-      beneficBox.duration = 15;
+    this.abilityFuncMap[kAbility.Combust2] = () => {
+      combustBox.duration = 0;
+      combustBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.AspectedHelios] = () => {
-      heliosBox.duration = 0;
-      heliosBox.duration = 15;
+    this.abilityFuncMap[kAbility.Combust] = () => {
+      combustBox.duration = 0;
+      combustBox.duration = 18;
+    };
+    this.abilityFuncMap[kAbility.Draw] = () => {
+      drawBox.duration = 0;
+      drawBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+      lucidBox.duration = 0;
+      lucidBox.duration = 60;
     };
 
     this.statChangeFuncMap['AST'] = () => {
       combustBox.valuescale = this.gcdSpell();
-      combustBox.threshold = this.gcdSpell() * 3;
-      beneficBox.valuescale = this.gcdSpell();
-      beneficBox.threshold = this.gcdSpell() * 3;
-      heliosBox.valuescale = this.gcdSpell();
-      heliosBox.threshold = this.gcdSpell() * 3;
+      combustBox.threshold = this.gcdSpell() + 1;
+      drawBox.valuescale = this.gcdSpell();
+      drawBox.threshold = this.gcdSpell() + 1;
+      lucidBox.valuescale = this.gcdSpell();
+      lucidBox.threshold = this.gcdSpell() + 1;
     };
   }
 
