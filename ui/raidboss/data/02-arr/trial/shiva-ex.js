@@ -28,7 +28,7 @@
         en: 'Party Share Tankbuster',
         de: 'Tankbuster mit der Gruppe Teilen',
         fr: 'Partagez le Tank buster avec le groupe',
-        en: '团队分摊死刑',
+        cn: '团队分摊死刑',
       },
     },
   ],
