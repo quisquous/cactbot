@@ -5,6 +5,7 @@
 [{
   zoneRegex: {
     en: /^Akh Afah Amphitheatre \(Hard\)$/,
+    cn: /^希瓦歼灭战$/,
   },
   zoneId: ZoneId.AkhAfahAmphitheatreHard,
   timelineFile: 'shiva-hm.txt',
@@ -51,6 +52,7 @@
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
           fr: 'Libérez ' + data.ShortName(matches.target),
+          cn: '解救' + data.ShortName(matches.target),
         };
       },
     },
@@ -142,7 +144,7 @@
         'Frost Staff': '冰霜之杖',
         'Glacier Bash': '冰河怒击',
         'Hailstorm': '冰雹',
-        'Heavenly Strike': '天雷掌',
+        'Heavenly Strike': '天降一击',
         'Icebrand': '冰印剑',
         'Icicle Impact': '冰柱冲击',
         'Melt': '武器融化',
