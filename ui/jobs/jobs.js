@@ -1675,7 +1675,7 @@ class Bars {
         else
           cardBox.innerText = 'O';
       }
-      if (seal == 'None' && card != 'None')
+      if (seals == 'None' && card != 'None')
         cardBox.innerText = 'O';
 
       // Show how many kind of seals you already have
