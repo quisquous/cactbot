@@ -1683,18 +1683,18 @@ class Bars {
         if (Card != 'None')
           cardBox.innerText = 'O';
       }
-      if (Card == 'None') 
+      if (Card == 'None')
         cardBox.innerText = '';
 
       // Show how many kind of seals you already have
       // Turn green when you have all 3 kinds of seal
       let sealcount = 0;
-      if (seal.indexOf("Solar") != -1)
-        sealcount =sealcount + 1;
-      if (seal.indexOf("Lunar") != -1)
+      if (seal.indexOf('Solar') != -1)
         sealcount = sealcount + 1;
-      if (seal.indexOf("Celestial") != -1)
-        sealcount = sealcount + 1 ;  
+      if (seal.indexOf('Lunar') != -1)
+        sealcount = sealcount + 1;
+      if (seal.indexOf('Celestial') != -1)
+        sealcount = sealcount + 1;
       sealBox.innerText = sealcount;
       if (sealcount == 3)
         sealBox.parentNode.classList.add('ready');
