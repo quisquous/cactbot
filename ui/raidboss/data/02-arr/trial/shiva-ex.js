@@ -26,6 +26,7 @@
       alertText: {
         en: 'Party Share Tankbuster',
         de: 'Tankbuster mit der Gruppe Teilen',
+        fr: 'Partagez le Tank buster avec le groupe',
       },
     },
   ],
@@ -45,6 +46,7 @@
               alertText: {
                 en: 'Staff (Tank Swap)',
                 de: 'Stab (Tankwechsel)',
+                fr: 'Bâton (Tank Swap)',
               },
             };
           }
@@ -54,6 +56,7 @@
           infoText: {
             en: 'Staff',
             de: 'Stab',
+            fr: 'Bâton',
           },
         };
       },
@@ -76,6 +79,7 @@
               alertText: {
                 en: 'Sword (Tank Swap)',
                 de: 'Schwert (Tankwechsel)',
+                fr: 'Épée (Tank Swap)',
               },
             };
           }
@@ -85,6 +89,7 @@
           infoText: {
             en: 'Sword',
             de: 'Schwert',
+            fr: 'Épée',
           },
         };
       },
@@ -199,6 +204,7 @@
       alarmText: {
         en: 'Knockback Laser on YOU',
         de: 'Rückstoß-Laser auf DIR',
+        fr: 'Poussée-Laser sur VOUS',
       },
     },
     {
@@ -208,6 +214,7 @@
       infoText: {
         en: 'Avoid Laser',
         de: 'Laser ausweichen',
+        fr: 'Évitez le laser',
       },
     },
     {
@@ -242,6 +249,7 @@
         return {
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
+          fr: 'Libérez ' + data.ShortName(matches.target),
         };
       },
     },
@@ -256,7 +264,6 @@
       'replaceText': {
         '\\(circle\\)': '(Kreis)',
         '\\(cross\\)': '(Kreuz)',
-        '--adds targetable--': '--Adds erscheinen--',
         '--frozen--': '--eingefroren--',
         'Absolute Zero': 'Absoluter Nullpunkt',
         'Avalanche': 'Lawine',
@@ -278,12 +285,15 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': 'soldat de glace',
         'Shiva': 'Shiva',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(circle\\)': '(cercle)',
+        '\\(cross\\)': '(croix)',
+        '--frozen--': '--gelé--',
         'Absolute Zero': 'Zéro absolu',
         'Avalanche': 'Avalanche',
         'Diamond Dust': 'Poussière de diamant',

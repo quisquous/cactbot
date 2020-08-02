@@ -2862,7 +2862,6 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       },
       'replaceText': {
         '--Cruise Chaser Invincible--': '--Chaser-Mecha unverwundbar--',
-        '--adds targetable--': '--adds anvisierbar--',
         '--alex untargetable--': '--alex nich anvisierbar--',
         'Almighty Judgment': 'Göttliches Letzturteil',
         'Alpha Sword': 'Alpha-Schwert',
@@ -2953,7 +2952,6 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         'Steam Chakram': 'chakram de vapeur',
       },
       'replaceText': {
-        '--adds targetable--': '--adds ciblables--',
         '--alex untargetable--': '--alex non ciblable--',
         '--Cruise Chaser Invincible--': '--Croiseur-chasseur Invincible--',
         'Almighty Judgment': 'Sentence divine',
@@ -3125,7 +3123,6 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       },
       'replaceText': {
         '--Cruise Chaser Invincible--': '--巡航驱逐者无敌--',
-        '--adds targetable--': '--小怪可选中--',
         '--alex untargetable--': '--亚历山大无法选中--',
         'True Heart': '真心',
         'Waves': '水波',
@@ -3227,7 +3224,6 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       },
       'replaceText': {
         '--Cruise Chaser Invincible--': '--순항추격기 무적--',
-        '--adds targetable--': '--쫄 타겟 가능--',
         '--alex untargetable--': '--알렉산더 타겟 불가능--',
         'True Heart': '진심',
         'Reveal': '예고',
