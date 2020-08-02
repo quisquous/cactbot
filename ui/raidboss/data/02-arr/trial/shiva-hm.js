@@ -144,7 +144,7 @@
         'Frost Staff': '冰霜之杖',
         'Glacier Bash': '冰河怒击',
         'Hailstorm': '冰雹',
-        'Heavenly Strike': '天雷掌',
+        'Heavenly Strike': '天降一击',
         'Icebrand': '冰印剑',
         'Icicle Impact': '冰柱冲击',
         'Melt': '武器融化',
