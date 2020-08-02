@@ -1621,6 +1621,15 @@ class Bars {
   }
 
   setupAst() {
+    const cardsMap = {
+      'Balance': { 'bonus': 'melee', 'seal': 'Solar' },
+      'Bole': { 'bonus': 'range', 'seal': 'Solar' },
+      'Arrow': { 'bonus': 'melee', 'seal': 'Lunar' },
+      'Ewer': { 'bonus': 'range', 'seal': 'Lunar' },
+      'Spear': { 'bonus': 'melee', 'seal': 'Celestial' },
+      'Spire': { 'bonus': 'range', 'seal': 'Celestial' },
+    };
+
     let combustBox = this.addProcBox({
       id: 'ast-procs-combust',
       fgColor: 'ast-color-combust',
@@ -1645,56 +1654,37 @@ class Bars {
     });
 
     this.jobFuncs.push((jobDetail) => {
-      let Card = jobDetail.heldCard;
-      let seal = jobDetail.arcanums;
+      let card = jobDetail.heldCard;
+      let seals = jobDetail.arcanums;
 
       // Show on which kind of jobs your card plays better by color
       // Blue on melee, purple on ranged, and grey when no card
-      let c = cardBox.parentNode;
-      c.classList.remove('melee');
-      c.classList.remove('range');
-      if (Card == 'Arrow' || Card == 'Spear' || Card == 'Balance')
-        c.classList.add('melee');
-      if (Card == 'Bole' || Card == 'Spire' || Card == 'Ewer')
-        c.classList.add('range');
+      let cardParent = cardBox.parentNode;
+      cardParent.classList.remove('melee', 'range');
+      if (card in cardsMap)
+        cardParent.classList.add(cardsMap[card].bonus);
 
       // Show whether you already have this seal
       // O means it's OK to play this card
       // X means don't play this card directly if time permits
-      if (Card == 'Balance' || Card == 'Bole') {
-        if (seal.indexOf('Solar') != -1)
+      cardBox.innerText = '';
+      if (card in cardsMap) {
+        const seal = cardsMap[card].seal;
+        if (seals.includes(seal))
           cardBox.innerText = 'X';
         else
           cardBox.innerText = 'O';
       }
-      if (Card == 'Arrow' || Card == 'Ewer') {
-        if (seal.indexOf('Lunar') != -1)
-          cardBox.innerText = 'X';
-        else
-          cardBox.innerText = 'O';
-      }
-      if (Card == 'Spear' || Card == 'Spire') {
-        if (seal.indexOf('Celestial') != -1)
-          cardBox.innerText = 'X';
-        else
-          cardBox.innerText = 'O';
-      }
-      if (seal == 'None') {
-        if (Card != 'None')
-          cardBox.innerText = 'O';
-      }
-      if (Card == 'None')
-        cardBox.innerText = '';
+      if (seal == 'None' && card != 'None')
+        cardBox.innerText = 'O';
 
       // Show how many kind of seals you already have
       // Turn green when you have all 3 kinds of seal
       let sealcount = 0;
-      if (seal.indexOf('Solar') != -1)
-        sealcount = sealcount + 1;
-      if (seal.indexOf('Lunar') != -1)
-        sealcount = sealcount + 1;
-      if (seal.indexOf('Celestial') != -1)
-        sealcount = sealcount + 1;
+      ['Solar', 'Lunar', 'Celestial'].forEach((value) => {
+        if (seals.includes(value))
+          sealcount++;
+      });
       sealBox.innerText = sealcount;
       if (sealcount == 3)
         sealBox.parentNode.classList.add('ready');
