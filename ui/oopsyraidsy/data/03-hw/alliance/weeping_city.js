@@ -113,6 +113,7 @@
           blame: matches.target,
           text: {
             en: 'Tank Laser',
+            de: 'Tank Laser',
           },
         };
       },
@@ -126,6 +127,7 @@
           name: matches.target,
           reason: {
             en: 'Slid off!',
+            de: 'ist runtergerutscht!',
           },
         };
       },

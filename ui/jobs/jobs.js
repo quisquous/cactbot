@@ -37,6 +37,7 @@ let Options = {
 // text on the pull countdown.
 const kPullText = {
   en: 'Pull',
+  de: 'Start',
   ja: 'タゲ取る',
   cn: '开怪',
   ko: '풀링',
