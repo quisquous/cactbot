@@ -8,7 +8,7 @@ Each file should look something like this:
 
 ```javascript
 [{
-  zoneRegex: /match for the zone/,
+  zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   triggers: [
     { /* ..trigger 1.. */ },
     { /* ..trigger 2.. */ },
@@ -16,7 +16,7 @@ Each file should look something like this:
   ]
 },
 {
-  zoneRegex: /match for another zone/,
+  zoneId: ZoneId.TheFinalCoilOfBahamutTurn4,
   triggers: [
     { /* ..trigger 1.. */ },
     { /* ..trigger 2.. */ },
@@ -25,14 +25,21 @@ Each file should look something like this:
 }]
 ```
 
-Each file should evaluate to an array of trigger sets.  A trigger set has a `zoneRegex` that matches against the current zone for whether all of its triggers should be applied.  If the zone matches, then the triggers will be valid in that zone, otherwise ignored.  `triggers` holds an array of triggers in the trigger set.  See below for the
-format of each of individual triggers.
+Each file should evaluate to an array of trigger sets.
+A trigger set has either a `zoneId` or a `zoneRegex` that matches against the current zone for whether all of its triggers should be applied.
+The set of `ZoneId` constants come from [zone_id.js](../resources/zone_id.js).
+`zoneRegex` is a regex that matches against the name of the zone,
+and is still available as backwards compatibility
+with how zones used to be specified.
+If the zone matches, then the triggers will be valid in that zone, otherwise ignored.
+`triggers` holds an array of triggers in the trigger set.
+See below for the format of each of individual triggers.
 
 ## Oopsy Trigger format
 
 Each trigger is an object with the following fields.  All fields are optional.
 
-* `id`: a string representing this trigger, for use in disabling triggers.  See **user/oopsyraidsy-example.js**.
+* `id`: a string representing this trigger, for use in disabling triggers.  See [oopsyraidsy-example.js](../users/oopsyraidsy-example.js).
 * `condition`: function returning bool for whether or not to run this trigger.
 * `regex`: regex matching the whole line.
 * `damageRegex`: regex that will only match the ids of abilities that do damage.

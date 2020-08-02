@@ -2,9 +2,6 @@
 
 // O2N - Deltascape 2.0 Normal
 [{
-  zoneRegex: {
-    en: /^Deltascape \(V2\.0\)$/,
-  },
   zoneId: ZoneId.DeltascapeV20,
   damageWarn: {
     'O2N Main Quake': '24A5', // Non-telegraphed circle AoE, Fleshy Member

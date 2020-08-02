@@ -1,11 +1,6 @@
 'use strict';
 
-// Ala Mhigo
 [{
-  zoneRegex: {
-    en: /Ala Mhigo/,
-    ko: /^알라미고$/,
-  },
   zoneId: ZoneId.AlaMhigo,
   damageWarn: {
     'Ala Mhigo Magitek Ray': '24CE', // Line AoE, Legion Predator trash, before boss 1

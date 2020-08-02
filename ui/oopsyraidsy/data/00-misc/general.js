@@ -2,7 +2,6 @@
 
 // General mistakes; these apply everywhere.
 [{
-  zoneRegex: /.*/,
   zoneId: ZoneId.MatchAll,
   triggers: [
     {

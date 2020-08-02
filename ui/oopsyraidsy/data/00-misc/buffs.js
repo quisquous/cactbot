@@ -128,7 +128,6 @@ let missedHeal = (args) => {
 let missedMitigationAbility = missedHeal;
 
 [{
-  zoneRegex: /.*/,
   zoneId: ZoneId.MatchAll,
   triggers: [
 

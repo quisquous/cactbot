@@ -1,11 +1,6 @@
 'use strict';
 
-// Great Gubal Library (Hard)
 [{
-  zoneRegex: {
-    en: /Great Gubal Library \(Hard\)/,
-    ko: /^구브라 환상도서관\(어려움\)$/,
-  },
   zoneId: ZoneId.TheGreatGubalLibraryHard,
   damageWarn: {
     'GubalHm Terror Eye': '930', // Circle AoE, Spine Breaker trash

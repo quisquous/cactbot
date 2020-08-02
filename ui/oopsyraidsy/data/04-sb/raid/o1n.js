@@ -2,9 +2,6 @@
 
 // O1N - Deltascape 1.0 Normal
 [{
-  zoneRegex: {
-    en: /^Deltascape V1\.0$/,
-  },
   zoneId: ZoneId.DeltascapeV10,
   damageWarn: {
     'O1N Burn': '23D5', // Fireball explosion circle AoEs

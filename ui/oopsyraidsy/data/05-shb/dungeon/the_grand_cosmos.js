@@ -2,10 +2,6 @@
 
 // The Grand Cosmos
 [{
-  zoneRegex: {
-    en: /^The Grand Cosmos$/,
-    ko: /^그랑 코스모스$/,
-  },
   zoneId: ZoneId.TheGrandCosmos,
   damageWarn: {
     'Cosmos Iron Justice': '491F',

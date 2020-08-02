@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Holminster Switch$/,
-    ko: /^홀민스터$/,
-  },
   zoneId: ZoneId.HolminsterSwitch,
   damageWarn: {
     'Holminster Thumbscrew': '3DC6',

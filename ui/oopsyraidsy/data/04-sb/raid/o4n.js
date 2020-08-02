@@ -2,9 +2,6 @@
 
 // O4N - Deltascape 4.0 Normal
 [{
-  zoneRegex: {
-    en: /^Deltascape \(V4\.0\)$/,
-  },
   zoneId: ZoneId.DeltascapeV40,
   damageWarn: {
     'O4N Blizzard III': '24BC', // Targeted circle AoEs, Exdeath

@@ -953,8 +953,9 @@ class DamageTracker {
 
   OnChangeZone(e) {
     this.zoneName = e.zoneName;
+    this.zoneId = e.zoneID;
 
-    const zoneInfo = ZoneInfo[e.zoneID];
+    const zoneInfo = ZoneInfo[this.zoneId];
     this.contentType = zoneInfo ? zoneInfo.contentType : 0;
 
     this.ReloadTriggers();
@@ -1045,33 +1046,45 @@ class DamageTracker {
     for (let i = 0; i < this.triggerSets.length; ++i) {
       let set = this.triggerSets[i];
 
-      let zoneError = (s) => {
-        console.error(s + ': ' + JSON.stringify(set.zoneRegex) + ' in ' + set.filename);
-      };
-
-      let zoneRegex = set.zoneRegex;
-      if (typeof zoneRegex !== 'object') {
-        zoneError('zoneRegex must be translatable object or regexp');
-        continue;
-      } else if (!(zoneRegex instanceof RegExp)) {
-        let parserLang = this.options.ParserLanguage || 'en';
-        if (parserLang in zoneRegex) {
-          zoneRegex = zoneRegex[parserLang];
-        } else if ('en' in zoneRegex) {
-          zoneRegex = zoneRegex['en'];
-        } else {
-          zoneError('unknown zoneRegex language');
+      if ('zoneID' in set) {
+        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId)
           continue;
+      } else if ('zoneRegex' in set) {
+        const zoneError = (s) => {
+          console.error(s + ': ' + JSON.stringify(set.zoneRegex) + ' in ' + set.filename);
+        };
+
+        let zoneRegex = set.zoneRegex;
+        if (typeof zoneRegex !== 'object') {
+          zoneError('zoneRegex must be translatable object or regexp');
+          continue;
+        } else if (!(zoneRegex instanceof RegExp)) {
+          const parserLang = this.options.ParserLanguage || 'en';
+          if (parserLang in zoneRegex) {
+            zoneRegex = zoneRegex[parserLang];
+          } else if ('en' in zoneRegex) {
+            zoneRegex = zoneRegex['en'];
+          } else {
+            zoneError('unknown zoneRegex language');
+            continue;
+          }
+
+          if (!(zoneRegex instanceof RegExp)) {
+            zoneError('zoneRegex must be regexp');
+            continue;
+          }
         }
 
-        if (!(zoneRegex instanceof RegExp)) {
-          zoneError('zoneRegex must be regexp');
+        if (this.zoneName.search(Regexes.parse(zoneRegex)) < 0)
           continue;
-        }
       }
 
-      if (this.zoneName.search(Regexes.parse(zoneRegex)) < 0)
-        continue;
+      if (this.options.Debug) {
+        if (set.filename)
+          console.log('Loading ' + set.filename);
+        else
+          console.log('Loading user triggers for zone');
+      }
 
       this.AddSimpleTriggers('warn', set.damageWarn);
       this.AddSimpleTriggers('fail', set.damageFail);
@@ -1151,14 +1164,17 @@ class DamageTracker {
         console.error('Unexpected JSON from ' + filename + ', expected an array');
         continue;
       }
-      for (let i = 0; i < json.length; ++i) {
-        if (!('zoneRegex' in json[i])) {
-          console.error('Unexpected JSON from ' + filename + ', expected a zoneRegex');
+      for (const triggerSet of json) {
+        const hasZoneRegex = 'zoneRegex' in triggerSet;
+        const hasZoneId = 'zoneId' in triggerSet;
+        if (!hasZoneRegex && !hasZoneId || hasZoneId && hasZoneId) {
+          console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
           continue;
         }
-        json[i].filename = filename;
+
+        triggerSet.filename = filename;
         if ('triggers' in json[i]) {
-          if (typeof json[i].triggers != 'object' || !(json[i].triggers.length >= 0)) {
+          if (typeof triggerSet.triggers != 'object' || !(triggerSet.triggers.length >= 0)) {
             console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
             continue;
           }
