@@ -27,6 +27,7 @@
         en: 'Party Share Tankbuster',
         de: 'Tankbuster mit der Gruppe Teilen',
         fr: 'Partagez le Tank buster avec le groupe',
+        en: '团队分摊死刑',
       },
     },
   ],
@@ -47,6 +48,7 @@
                 en: 'Staff (Tank Swap)',
                 de: 'Stab (Tankwechsel)',
                 fr: 'Bâton (Tank Swap)',
+                cn: '权杖（换T）',
               },
             };
           }
@@ -57,6 +59,7 @@
             en: 'Staff',
             de: 'Stab',
             fr: 'Bâton',
+            cn: '权杖',
           },
         };
       },
@@ -80,6 +83,7 @@
                 en: 'Sword (Tank Swap)',
                 de: 'Schwert (Tankwechsel)',
                 fr: 'Épée (Tank Swap)',
+                cn: '剑（换T）',
               },
             };
           }
@@ -90,6 +94,7 @@
             en: 'Sword',
             de: 'Schwert',
             fr: 'Épée',
+            cn: '剑',
           },
         };
       },
@@ -205,6 +210,7 @@
         en: 'Knockback Laser on YOU',
         de: 'Rückstoß-Laser auf DIR',
         fr: 'Poussée-Laser sur VOUS',
+        cn: '击退激光点名',
       },
     },
     {
@@ -215,6 +221,7 @@
         en: 'Avoid Laser',
         de: 'Laser ausweichen',
         fr: 'Évitez le laser',
+        cn: '躲避击退激光',
       },
     },
     {
@@ -250,6 +257,7 @@
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
           fr: 'Libérez ' + data.ShortName(matches.target),
+          en: '解救' + data.ShortName(matches.target),
         };
       },
     },
