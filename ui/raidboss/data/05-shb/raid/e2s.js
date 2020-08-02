@@ -278,7 +278,7 @@
       condition: function(data) {
         return !data.waiting;
       },
-      response: Responses.lookAwayFrom('alert'),
+      response: Responses.lookAwayFromTarget('alert'),
     },
     {
       id: 'E2S Shadoweye No Waiting You',
@@ -352,7 +352,7 @@
       suppressSeconds: 10,
       // Let's just assume these people are stacked.
       // We could call out both names, but it's probably unnecessary.
-      response: Responses.lookAwayFrom(),
+      response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'E2S Flare No Waiting',

@@ -426,11 +426,11 @@ let Responses = {
     };
     return obj;
   },
-  lookAwayFrom: (sev) => {
+  lookAwayFromTarget: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
-      let target = getTarget(matches);
-      if (target == data.me)
+      const target = getTarget(matches);
+      if (target === data.me)
         return;
       return {
         en: 'Look Away from ' + data.ShortName(target),
@@ -439,6 +439,24 @@ let Responses = {
         ja: data.ShortName(target) + 'を見ない',
         ko: data.ShortName(target) + '에게서 뒤돌기',
         cn: '背对' + data.ShortName(target),
+      };
+    };
+    return obj;
+  },
+  lookAwayFromSource: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = (data, matches) => {
+      const source = getSource(matches);
+      if (source === data.me)
+        return;
+      // Note: this is usually a mob, so don't use the short name.
+      return {
+        en: 'Look Away from ' + source,
+        de: 'Schau weg von ' + source,
+        fr: 'Ne regardez pas ' + source,
+        ja: source + 'を見ない',
+        ko: source + '에게서 뒤돌기',
+        cn: '背对' + source,
       };
     };
     return obj;
