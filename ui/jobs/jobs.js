@@ -1680,13 +1680,13 @@ class Bars {
 
       // Show how many kind of seals you already have
       // Turn green when you have all 3 kinds of seal
-      let sealcount = 0;
+      let sealCount = 0;
       ['Solar', 'Lunar', 'Celestial'].forEach((value) => {
         if (seals.includes(value))
-          sealcount++;
+          sealCount++;
       });
-      sealBox.innerText = sealcount;
-      if (sealcount == 3)
+      sealBox.innerText = sealCount;
+      if (sealCount == 3)
         sealBox.parentNode.classList.add('ready');
       else
         sealBox.parentNode.classList.remove('ready');
