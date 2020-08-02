@@ -258,7 +258,7 @@
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
           fr: 'Libérez ' + data.ShortName(matches.target),
-          en: '解救' + data.ShortName(matches.target),
+          cn: '解救' + data.ShortName(matches.target),
         };
       },
     },
