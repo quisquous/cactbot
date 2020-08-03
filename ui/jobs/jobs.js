@@ -499,7 +499,7 @@ class Buff {
     else
       // These icon can hold only 2 CN/KR charactors. 3 will escape out of box
       txt = initials[0].slice(0, 2);
-      
+
     let color = this.info.borderColor;
 
     let readyKey = 'r:' + this.name + ':' + source;
