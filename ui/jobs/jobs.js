@@ -1655,7 +1655,7 @@ class Bars {
 
     this.jobFuncs.push((jobDetail) => {
       let card = jobDetail.heldCard;
-      let seals = jobDetail.arcanums;
+      let seals = jobDetail.arcanums.split(', ').filter((seal) => seal !== 'None');
 
       // Show on which kind of jobs your card plays better by color
       // Blue on melee, purple on ranged, and grey when no card
@@ -1667,15 +1667,11 @@ class Bars {
       // Show whether you already have this seal
       // O means it's OK to play this card
       // X means don't play this card directly if time permits
-      cardBox.innerText = '';
-      if (card in cardsMap) {
-        const seal = cardsMap[card].seal;
-        if (seals.includes(seal))
-          cardBox.innerText = 'X';
-        else
-          cardBox.innerText = 'O';
-      }
-      if (seals == 'None' && card != 'None')
+      if (card === 'None')
+        cardBox.innerText = '';
+      else if (seals.includes(cardsMap[card].seal))
+        cardBox.innerText = 'X';
+      else
         cardBox.innerText = 'O';
 
       // Show how many kind of seals you already have
