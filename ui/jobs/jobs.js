@@ -1654,8 +1654,8 @@ class Bars {
     });
 
     this.jobFuncs.push((jobDetail) => {
-      let card = jobDetail.heldCard;
-      let seals = jobDetail.arcanums.split(', ').filter((seal) => seal !== 'None');
+      const card = jobDetail.heldCard;
+      const seals = jobDetail.arcanums.split(', ').filter((seal) => seal !== 'None');
 
       // Show on which kind of jobs your card plays better by color
       // Blue on melee, purple on ranged, and grey when no card
@@ -1676,11 +1676,7 @@ class Bars {
 
       // Show how many kind of seals you already have
       // Turn green when you have all 3 kinds of seal
-      let sealCount = 0;
-      ['Solar', 'Lunar', 'Celestial'].forEach((value) => {
-        if (seals.includes(value))
-          sealCount++;
-      });
+      const sealCount = new Set(seals).size;
       sealBox.innerText = sealCount;
       if (sealCount == 3)
         sealBox.parentNode.classList.add('ready');
