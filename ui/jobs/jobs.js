@@ -1857,17 +1857,17 @@ class Bars {
       let p = aetherflowStackBox.parentNode;
       let s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
       if ((stack == 2) && (s <= 8))
-        p.classList.add('too-much-stacks')
+        p.classList.add('too-much-stacks');
       else
-        p.classList.remove('too-much-stacks')
+        p.classList.remove('too-much-stacks');
 
       // Turn red when only 7s remain, to alarm that use the second Enkindle.
       // Also alarm that don't cast a spell that has cast time, or a WW will be missed.
       let pp = demiSummomingBox.parentNode;
       if (time <= 7 && summoned == 3)
-        pp.classList.add('last')
+        pp.classList.add('last');
       else
-        pp.classList.remove('last')
+        pp.classList.remove('last');
     });
     
     // Boxes are not enough so we can only trace the latetest one DoT.
@@ -1902,7 +1902,7 @@ class Bars {
       energyDrainBox.duration = 30;
       aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
     };
-    // Trance cooldown is 55s, 
+    // Trance cooldown is 55s,
     // but wait till 60s will be better on matching raidbuffs.
     // Threshold will be used to tell real cooldown.
     this.abilityFuncMap[kAbility.DreadwyrmTrance] = () => {
@@ -1921,7 +1921,7 @@ class Bars {
       energyDrainBox.threshold = this.gcdSpell() + 1;
       tranceBox.valuescale = this.gcdSpell();
       tranceBox.threshold = this.gcdSpell() + 7;
-    }
+    };
   }
 
   setupMnk() {
