@@ -246,7 +246,7 @@
         'Floral Trap': 'Saugfalle',
         'Leafstorm': 'Blättersturm',
         'Rotten Stench': 'Fauler Gestank',
-        'Spit': 'Ausspeien',
+        'Spit': 'Hypersekretion',
         'Swarm': 'Fähenfurz',
         'Thorn Whip': 'Dornenpeitsche',
         'Viscid Emission': 'Klebsporen',
