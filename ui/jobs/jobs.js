@@ -1869,7 +1869,7 @@ class Bars {
       else
         pp.classList.remove('last');
     });
-    
+
     // Boxes are not enough so we can only trace the latetest one DoT.
     // Make sure you always cast two DoT at the same time!
     this.abilityFuncMap[kAbility.miasma] = () => {
