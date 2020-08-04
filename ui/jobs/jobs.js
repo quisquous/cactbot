@@ -499,7 +499,7 @@ class Buff {
     if (initials.length == 2) {
       txt = initials[0][0] + initials[1][0];
     } else {
-      const pattern = /[\u21-\u7e]{2,}/g;
+      const pattern = /[\u21-\u7e]{2}/g;
       if (pattern.test(initials[0].substr(0, 3)))
         txt = initials[0].slice(0, 3);
       else
