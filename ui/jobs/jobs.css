@@ -34,6 +34,10 @@
   left: 278px;
 }
 
+.smn #right-side-icons {
+  left: 278px;
+}
+
 .ast #right-side-icons {
   left: 278px;
 }
@@ -170,6 +174,7 @@
 /* Relative to #bars */
 #rdm-boxes,
 #sch-boxes,
+#smn-boxes,
 #ast-boxes,
 #war-boxes,
 #mnk-boxes,
@@ -185,6 +190,7 @@
 
 #rdm-boxes > div,
 #sch-boxes > div,
+#smn-boxes > div,
 #ast-boxes > div,
 #war-boxes > div,
 #mnk-boxes > div,
@@ -215,6 +221,7 @@
 }
 
 #sch-boxes > div,
+#smn-boxes > div,
 #ast-boxes > div,
 #rdm-boxes > div {
   width: 28px;
@@ -228,6 +235,7 @@
 
 #rdm-boxes .text,
 #sch-boxes .text,
+#smn-boxes .text,
 #ast-boxes .text,
 #war-boxes .text,
 #mnk-boxes .text,
@@ -246,6 +254,7 @@
 }
 
 #sch-boxes .text,
+#smn-boxes .text,
 #ast-boxes .text,
 #rdm-boxes .text {
   top: 5px;
@@ -303,6 +312,7 @@
 #mnk-procs,
 #ast-procs,
 #sch-procs,
+#smn-procs,
 #blu-procs,
 #drk-procs,
 #blm-procs {
@@ -314,6 +324,7 @@
 #mnk-procs-dragonkick,
 #ast-procs-combust,
 #sch-procs-bio,
+#smn-procs-dot,
 #blu-procs-offguard,
 #blm-procs-fire {
   position: relative;
@@ -324,6 +335,7 @@
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
 #sch-procs-aetherflow,
+#smn-procs-energydrain,
 #blu-procs-torment,
 #blm-dot-thunder {
   position: relative;
@@ -334,6 +346,7 @@
 #mnk-procs-demolish,
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
+#smn-procs-trance,
 #blm-procs-thunder,
 #blu-procs-lucid {
   position: relative;
@@ -524,10 +537,6 @@
   background-color: rgb(150, 233, 140);
 }
 
-.smn-color-aetherflow {
-  background-color: rgb(255, 96, 207);
-}
-
 .mnk-color-chakra {
   background-color: rgb(230, 20, 20);
 }
@@ -594,6 +603,42 @@
 
 .sch-color-lucid {
   background-color: rgb(227, 148, 210);
+}
+
+.smn-color-aetherflow {
+  background-color: rgb(255, 96, 207);
+}
+
+.smn-color-aetherflow.too-much-stacks {
+  background-color: rgb(240, 30, 30);
+}
+
+.smn-color-dot {
+  background-color: olivedrab;
+}
+
+.smn-color-energydrain {
+  background-color: orange;
+}
+
+.smn-color-trance {
+  background-color: rgb(60, 80, 200);
+}
+
+.smn-color-demisummom {
+  background-color: rgb(180, 200, 220);
+}
+
+.smn-color-demisummom.bahamutready {
+  background-color: rgb(64, 65, 163);
+}
+
+.smn-color-demisummom.firebirdready {
+  background-color: orange;
+}
+
+.smn-color-demisummom.last {
+  background-color: rgb(240, 30, 30);
 }
 
 .ast-color-combust {

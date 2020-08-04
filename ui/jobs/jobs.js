@@ -136,6 +136,15 @@ const kAbility = {
   Thunder4: '1CFC',
   Divination: '40A8',
   LucidDreaming: '1D8A',
+  miasma: 'A8',
+  miasma3: '1D01',
+  smnBio: 'A4',
+  smnBio2: 'B2',
+  Bio3: '1D00',
+  Tridisaster: 'DFC',
+  EnergyDrain: '407C',
+  DreadwyrmTrance: 'DFD',
+  FirebirdTrance: '40A5',
 };
 
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
@@ -1258,6 +1267,7 @@ class Bars {
       'PLD': this.setupPld,
       'AST': this.setupAst,
       'SCH': this.setupSch,
+      'SMN': this.setupSmn,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
       'BLM': this.setupBlm,
@@ -1802,6 +1812,116 @@ class Bars {
       lucidBox.valuescale = this.gcdSpell();
       lucidBox.threshold = this.gcdSpell() + 1;
     };
+  }
+
+  setupSmn() {
+    let aetherflowStackBox = this.addResourceBox({
+      classList: ['smn-color-aetherflow'],
+    });
+
+    let demiSummomingBox = this.addResourceBox({
+      classList: ['smn-color-demisummom'],
+    });
+
+    let dotBox = this.addProcBox({
+      id: 'smn-procs-dot',
+      fgColor: 'smn-color-dot',
+    });
+
+    let energyDrainBox = this.addProcBox({
+      id: 'smn-procs-energydrain',
+      fgColor: 'smn-color-energydrain',
+    });
+
+    let tranceBox = this.addProcBox({
+      id: 'smn-procs-trance',
+      fgColor: 'smn-color-trance',
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      let stack = jobDetail.aetherflowStacks;
+      let summoned = jobDetail.bahamutSummoned;
+      let time = (jobDetail.stanceMilliseconds / 1000).toFixed(0);
+
+      aetherflowStackBox.innerText = stack;
+      demiSummomingBox.innerText = '';
+      demiSummomingBox.parentNode.classList.remove('bahamutready', 'firebirdready');
+      if (time > 0)
+        demiSummomingBox.innerText = time;
+      else if (jobDetail.dreadwyrmStacks == 2)
+        demiSummomingBox.parentNode.classList.add('bahamutready');
+      else if (jobDetail.phoenixReady == true)
+        demiSummomingBox.parentNode.classList.add('firebirdready');
+
+      // turn red when you have too much stacks before EnergyDrain ready.
+      let p = aetherflowStackBox.parentNode;
+      let s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
+      if ((stack == 2) && (s <= 8))
+        p.classList.add('too-much-stacks')
+      else
+        p.classList.remove('too-much-stacks')
+
+      // Turn red when only 7s remain, to alarm that use the second Enkindle.
+      // Also alarm that don't cast a spell that has cast time, or a WW will be missed.
+      let pp = demiSummomingBox.parentNode;
+      if (time <= 7 && summoned == 3)
+        pp.classList.add('last')
+      else
+        pp.classList.remove('last')
+    });
+    
+    // Boxes are not enough so we can only trace the latetest one DoT.
+    // Make sure you always cast two DoT at the same time!
+    this.abilityFuncMap[kAbility.miasma] = () => {
+      dotBox.duration = 0;
+      dotBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.miasma3] = () => {
+      dotBox.duration = 0;
+      dotBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.smnBio] = () => {
+      dotBox.duration = 0;
+      dotBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.smnBio2] = () => {
+      dotBox.duration = 0;
+      dotBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.Bio3] = () => {
+      dotBox.duration = 0;
+      dotBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.Tridisaster] = () => {
+      dotBox.duration = 0;
+      dotBox.duration = 30;
+    };
+
+    this.abilityFuncMap[kAbility.EnergyDrain] = () => {
+      energyDrainBox.duration = 0;
+      energyDrainBox.duration = 30;
+      aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+    };
+    // Trance cooldown is 55s, 
+    // but wait till 60s will be better on matching raidbuffs.
+    // Threshold will be used to tell real cooldown.
+    this.abilityFuncMap[kAbility.DreadwyrmTrance] = () => {
+      tranceBox.duration = 0;
+      tranceBox.duration = 60;
+    };
+    this.abilityFuncMap[kAbility.FirebirdTrance] = () => {
+      tranceBox.duration = 0;
+      tranceBox.duration = 60;
+    };
+
+    this.statChangeFuncMap['SMN'] = () => {
+      dotBox.valuescale = this.gcdSpell();
+      dotBox.threshold = this.gcdSpell() + 1;
+      energyDrainBox.valuescale = this.gcdSpell();
+      energyDrainBox.threshold = this.gcdSpell() + 1;
+      tranceBox.valuescale = this.gcdSpell();
+      tranceBox.threshold = this.gcdSpell() + 7;
+    }
   }
 
   setupMnk() {
