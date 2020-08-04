@@ -494,7 +494,7 @@ class Buff {
     // TODO: could consider looking at the party list to make initials unique?
     let txt = '';
     let initials = source.split(' ');
-    if (initials.length == 2)
+    if (initials.length == 2) 
       txt = initials[0][0] + initials[1][0];
     else {
       const pattern = /[\u21-\u7e]+/g;
@@ -502,7 +502,7 @@ class Buff {
         txt = initials[0].slice(0, 3);
       else
         txt = initials[0].slice(0, 2);
-      }
+    }
 
     let color = this.info.borderColor;
 
