@@ -41,16 +41,18 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Coronal Wind': 'vent coronaire',
         'Sephirot': 'Sephirot',
         'Storm Of Words': 'tempête de mots',
       },
       'replaceText': {
+        'Adds Spawn': 'Apparition d\'adds',
         'Ascension': 'Ascension',
         'Chesed': 'Chesed',
-        'Da\'at': 'Da\'at',
+        'Chesed Gevurah': 'Chesed Gevurah',
+        'Da\'at Tethers': 'Liens Da\'at',
+        'Da\'at spread': 'Dispersion Da\'at',
         'Earth Shaker': 'Secousse',
         'Ein Sof': 'Ein Sof',
         'Fiendish Rage': 'Colère de Sephirot',
