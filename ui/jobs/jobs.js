@@ -496,9 +496,13 @@ class Buff {
     let initials = source.split(' ');
     if (initials.length == 2)
       txt = initials[0][0] + initials[1][0];
-    else
-      // These icon can hold only 2 CN/KR charactors. 3 will escape out of box
-      txt = initials[0].slice(0, 2);
+      else {
+        const pattern = /[\u21-\u7e]+/g;
+        if (pattern.test(initials[0].substr(0, 3)))
+          txt = initials[0].slice(0, 3);
+        else
+          txt = initials[0].slice(0, 2);
+      }
 
     let color = this.info.borderColor;
 
