@@ -310,7 +310,7 @@ let bombLocation = (matches) => {
         '--big--': '--Groß--',
         '--small--': '--Klein--',
         '10-Tonze Slash': '11-Tonzen-Schlag',
-        'Big Burst': 'Großeknall',
+        'Big Burst': 'Detonation',
         'Bomb\'s Away': 'Plumpsbombe',
         'Boost': 'Starksammeln',
         'Cobra': 'Kobra',
