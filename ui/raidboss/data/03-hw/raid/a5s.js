@@ -310,7 +310,7 @@ let bombLocation = (matches) => {
         '--big--': '--Groß--',
         '--small--': '--Klein--',
         '10-Tonze Slash': '11-Tonzen-Schlag',
-        'Big Burst': 'Detonation',
+        'Big Burst': 'Großeknall',
         'Bomb\'s Away': 'Plumpsbombe',
         'Boost': 'Starksammeln',
         'Cobra': 'Kobra',
@@ -355,7 +355,7 @@ let bombLocation = (matches) => {
       },
       'replaceText': {
         '10-Tonze Slash': 'Taillade de 10 tonz',
-        'Big Burst': 'Grosse explosion',
+        'Big Burst': 'Grande explosion',
         'Bomb\'s Away': 'Lâcher de bombe',
         'Boost': 'Contraction musculaire',
         'Disorienting Groan': 'Cri désorientant',
