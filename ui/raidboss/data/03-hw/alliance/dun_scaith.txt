@@ -143,7 +143,8 @@ hideall "--sync--"
 # There are Atomos teleports, but only if Fools aren't alive.
 # The Fool actions don't seem to have strict timers.
 # It's all a mess, but Ferdiad is guaranteed to do his half-circle on time.
-1095.9 "--untargetable--" sync /:Wailing Atomos:1C9E:/ window 95.9,5
+1089.9 "--untargetable--"
+1095.9 "--sync--" sync /:Wailing Atomos:1C9E:/ window 95.9,5
 1131.1 "Jester's Reward" sync /:Ferdiad Hollow:1CA3:/
 
 
@@ -225,7 +226,7 @@ hideall "--sync--"
 2160.7 "Light Pillar x10" # sync /:Proto Ultima:1DA5:/
 2194.7 "Aether Bend" sync /:Proto Ultima:1D99:/ window 30,5
 2200.7 "Aetherochemical Flare" sync /:Proto Ultima:1E52:/
-2204.4 "Aetherochemical Laser 1" sync /:Proto Ultima:1D96:/
+2204.4 "Aetherochemical Laser 1" sync /:Proto Ultima:1D96:/ window 45,5
 2208.4 "Aetherochemical Laser 2" sync /:Proto Ultima:1D97:/
 2213.4 "Aetherochemical Laser 3" sync /:Proto Ultima:1D98:/
 2214.4 "Diffractive Laser" # sync /:Proto Ultima:1DAA:/
@@ -248,9 +249,9 @@ hideall "--sync--"
 
 3000.0 "--sync--" sync /00:0839:The Queen's Graces will be sealed off/ window 3000,5
 3013.1 "Thirty Thorns" sync /:Scathach:1D2B:/
-3030.2 "Thirty Arrows" sync /:Scathach:1D2F:/
-3037.4 "Manos" sync /:Scathach:1CD3:/
-3047.7 "Shadespin" sync /:Scathach:1D1E:/
+3030.2 "Thirty Arrows" sync /:Scathach:1D2F:/ window 30,5
+3037.4 "Manos" sync /:Scathach:1CD3:/ window 30,5
+3047.7 "--sync--" sync /:Scathach:(1D1[EF]):/
 3049.0 "Shadespin" sync /:Scathach:1D20:/
 3052.8 "Thirty Sickles" sync /:Scathach:1D31:/
 3056.0 "Soar" sync /:Scathach:1D1B:/
@@ -258,20 +259,20 @@ hideall "--sync--"
 3061.0 "Shadesmite" sync /:Scathach:1D1D:/
 
 3070.8 "--shadows gather--"
-3084.8 "Thirty Souls" sync /:Scathach:1D32:/
-3088.0 "Shadow Release" sync /:Scathach:1CD4:/
+3084.8 "Thirty Souls" sync /:Scathach:1D32:/ window 30,5
+3088.0 "Shadow Release" sync /:Scathach:1CD4:/ window 90,5
 3095.1 "--sync--" sync /:Connla:1CD0:/
 3095.1 "Pitfall" sync /:Connla:1CD1:/
 3101.1 "Thirty Thorns" sync /:Scathach:1D2B:/
 3117.3 "Thirty Arrows" sync /:Scathach:1D2F:/
-3130.4 "Thirty Souls" sync /:Scathach:1D32:/
-3133.6 "Manos" sync /:Scathach:1CD3:/
-3143.7 "Shadespin" sync /:Scathach:1D1F:/
-3144.9 "--sync--" sync /:Scathach:1D20:/ # Another Shadespin
+3130.4 "Thirty Souls" sync /:Scathach:1D32:/ window 30,5
+3133.6 "Manos" sync /:Scathach:1CD3:/ window 30,5
+3143.7 "--sync--" sync /:Scathach:1D1[EF]:/
+3144.9 "Shadespin" sync /:Scathach:1D20:/
 3151.9 "Nox x5" sync /:Scathach:1D22:/
 3164.1 "Shadethrust" sync /:Scathach:1D23:/
 3182.2 "Thirty Souls" sync /:Scathach:1D32:/
-3197.4 "Thirty Sickles" sync /:Scathach:1D31:/
+3197.4 "Thirty Sickles" sync /:Scathach:1D31:/ window 45,5
 3199.4 "--shadows gather--"
 3203.6 "Soar" sync /:Scathach:1D1B:/
 3207.8 "--sync--" sync /:Scathach:1D1C:/
@@ -287,59 +288,60 @@ hideall "--sync--"
 
 
 # Intermission at 45% HP. Might be a time push too? but it's uncertain.
-3190.8 "--untargetable--" sync /22:........:Scathach:........:Scathach:00/
-3214.4 "--towers appear--"
-3224.4 "Particle Beam" sync /:Scathach:1D28:/
+3300.0 "--untargetable--" sync /22:........:Scathach:........:Scathach:00/ window 300,5
+3302.2 "--sync--" sync /03:........:Added new combatant Shadowcourt Jester/ window 300,5
+3323.6 "--towers appear--"
+3333.6 "Particle Beam" sync /:Scathach:1D2[78]:/
 
 
-3291.3 "--sync--" sync /:1D34:Scathach/ window 300,5
-# 3296.0 "Blinding Shadow" sync /:Scathach:1D34:/
-3300.0 "Blinding Shadow" sync /:Scathach:1DAE:/
+3400.5 "--sync--" sync /:1D34:Scathach/ window 100,5
+# 3405.2 "Blinding Shadow" sync /:Scathach:1D34:/
+3409.2 "Blinding Shadow" sync /:Scathach:1DAE:/
 
 # A very long rotation, approximately 192 seconds.
 # Add spawns and shadows gathering are approximate,
 # as nothing shows up for them in the log.
-3302.2 "Shadow Release" sync /:Scathach:1CD4:/
-3312.3 "Thirty Souls" sync /:Scathach:1D32:/
-3319.4 "Thirty Arrows" sync /:Scathach:1D2F:/
-3326.4 "Particle Beam" sync /:Scathach:1D2[78]:/
-3335.6 "Thirty Souls" sync /:Scathach:1D32:/
-3343.9 "Thirty Souls" sync /:Scathach:1D32:/
-3349.9 "Thirty Arrows" sync /:Scathach:1D2F:/
-3360.2 "Thirty Cries" sync /:Scathach:1D33:/
-3362.3 "Particle Beam" sync /:Scathach:1D2[78]:/
-3371.5 "--sync--" sync /:Connla:1CD0:/
-3371.5 "Pitfall" sync /:Connla:1CD1:/
-3382.6 "Thirty Cries" sync /:Scathach:1D33:/
-3385.7 "Thirty Thorns" sync /:Scathach:1D2B:/
-3396.9 "Thirty Souls" sync /:Scathach:1D32:/
-3401.2 "Manos" sync /:Scathach:1CD3:/
-3411.3 "Shadespin" sync /:Scathach:1D1F:/
-3412.4 "--sync--" sync /:Scathach:1D20:/
-3414.4 "--shadows gather--"
-3417.5 "Thirty Sickles" sync /:Scathach:1D31:/
-3419.5 "--adds spawn--"
-3426.7 "Nox x5" sync /:Scathach:1D22:/
-3434.9 "Shadethrust" sync /:Scathach:1D23:/
-3443.0 "Thirty Souls" sync /:Scathach:1D32:/
-3444.0 "--shadows gather--"
-3448.2 "Soar" sync /:Scathach:1D1B:/
-3452.2 "--sync--" sync /:Scathach:1D1C:/
-3453.2 "Shadesmite" sync /:Scathach:1D1D:/
-3462.3 "Shadethrust" sync /:Scathach:1D23:/
-3466.3 "--shadows gather--"
-3471.4 "Shadespin" sync /:Scathach:1D1E:/
-3472.5 "--sync--" sync /:Scathach:1D20:/
-3479.6 "Thirty Souls" sync /:Scathach:1D32:/
-3489.8 "Thirty Souls" sync /:Scathach:1D32:/
+3411.4 "Shadow Release" sync /:Scathach:1CD4:/
+3421.5 "Thirty Souls" sync /:Scathach:1D32:/
+3428.6 "Thirty Arrows" sync /:Scathach:1D2F:/
+3435.6 "Particle Beam" sync /:Scathach:1D2[78]:/
+3444.8 "Thirty Souls" sync /:Scathach:1D32:/
+3453.1 "Thirty Souls" sync /:Scathach:1D32:/
+3459.1 "Thirty Arrows" sync /:Scathach:1D2F:/
+3469.4 "Thirty Cries" sync /:Scathach:1D33:/
+3471.5 "Particle Beam" sync /:Scathach:1D2[78]:/
+3480.7 "--sync--" sync /:Connla:1CD0:/
+3480.7 "Pitfall" sync /:Connla:1CD1:/
+3491.8 "Thirty Cries" sync /:Scathach:1D33:/
+3494.9 "Thirty Thorns" sync /:Scathach:1D2B:/
+3506.1 "Thirty Souls" sync /:Scathach:1D32:/
+3510.4 "Manos" sync /:Scathach:1CD3:/
+3520.5 "--sync--" sync /:Scathach:1D1[EF]:/
+3521.6 "--Shadespin--" sync /:Scathach:1D20:/
+3523.6 "--shadows gather--"
+3526.7 "Thirty Sickles" sync /:Scathach:1D31:/
+3528.7 "--adds spawn--"
+3535.9 "Nox x5" sync /:Scathach:1D22:/
+3544.1 "Shadethrust" sync /:Scathach:1D23:/
+3552.2 "Thirty Souls" sync /:Scathach:1D32:/
+3553.2 "--shadows gather--"
+3557.4 "Soar" sync /:Scathach:1D1B:/
+3561.4 "--sync--" sync /:Scathach:1D1C:/
+3562.4 "Shadesmite" sync /:Scathach:1D1D:/
+3571.5 "Shadethrust" sync /:Scathach:1D23:/
+3575.5 "--shadows gather--"
+3580.6 "--sync--" sync /:Scathach:1D1[EF]:/
+3581.7 "--Shadespin--" sync /:Scathach:1D20:/
+3588.8 "Thirty Souls" sync /:Scathach:1D32:/
+3599.0 "Thirty Souls" sync /:Scathach:1D32:/
 
 # Again, this is presumed based on what we have.
 # There might be extra adds/shadows.
-3494.1 "Shadow Release" sync /:Scathach:1CD4:/
-3504.2 "Thirty Souls"
-3511.3 "Thirty Arrows"
-3518.3 "Particle Beam"
-3527.5 "Thirty Souls"
+3603.3 "Shadow Release" sync /:Scathach:1CD4:/ jump 3409.2
+3613.4 "Thirty Souls"
+3620.5 "Thirty Arrows"
+3627.5 "Particle Beam"
+3636.7 "Thirty Souls"
 
 
 #~~~~~~~~~~#
@@ -358,17 +360,17 @@ hideall "--sync--"
 4022.1 "Nightmare" sync /:Diabolos:1C0E:/
 4032.3 "Ultimate Terror" sync /:Diabolos:1C12:/ window 15,5
 4050.5 "Camisado" sync /:Diabolos:1C0D:/
-4053.5 "Noctoshield?" sync /:Diabolos:1C0F:/ window 10,5
+4053.5 "Noctoshield" sync /:Diabolos:1C0F:/ window 10,5
 4058.7 "Nightmare" sync /:Diabolos:1C0E:/ window 10,5
 
 # This seems like a possible rotation? Maybe?
 4064.9 "Camisado" sync /:Diabolos:1C0D:/
-4075.2 "Camisado?" sync /:Diabolos:1C0D:/
+4075.2 "Camisado" sync /:Diabolos:1C0D:/
 4078.4 "Noctoshield" sync /:Diabolos:1C0F:/
 4083.4 "Nightmare" sync /:Diabolos:1C0E:/ window 10,5 jump 4058.7
 
 4089.6 "Camisado"
-4099.9 "Camisado?"
+4099.9 "Camisado"
 4103.1 "Noctoshield"
 4108.1 "Nightmare"
 
@@ -395,6 +397,17 @@ hideall "--sync--"
 4255.5 "Camisado"
 4262.0 "Camisado"
 
+# This section leads directly into Diabolos Hollow the first time after Diabolos is defeated.
+# This is the dueling-lasers part where the party kills the big deathgate and two small ones.
+
+4274.0 "--sync--" sync /22:........:Diabolos:........:Diabolos:00/ window 100,5
+4286.2 "--lifegate spawn--" sync /03:........:Added new combatant Lifegate/ window 300,5
+4300.0 "--sync--" sync /:Diabolos:1C16:/ window 300,5
+4320.0 "--deathgate--spawn--" sync /03:........:Added new combatant Deathgate/ window 50,5
+4477.1 "--sync--" sync /:Diabolos:1AFB:/ window 177,5
+4488.5 "--sync--" sync /:Diabolos:1AFD:/
+4494.6 "Dream Shroud" sync /:Diabolos Hollow:1DB1:/ window 194,5
+
 
 #~~~~~~~~~~~~~~~~~#
 # DIABOLOS HOLLOW #
@@ -407,28 +420,24 @@ hideall "--sync--"
 # However, if an encounter with Diabolos Hollow fails,
 # the fight will resume here, rather than back at Diabolos.
 
-4300.0 "--sync--" sync /:Diabolos:1C16:/ window 300,5
-4377.1 "--sync--" sync /:Diabolos:1AFB:/
-4388.5 "--sync--" sync /:Diabolos:1AFD:/
-4394.6 "Dream Shroud" sync /:Diabolos Hollow:1DB1:/
 
 # As with Diabolos, we sync to an attack to start the timeline.
 # The attacks aren't always so cleanly distributed,
 # so we sync with wider windows than normal.
 
 # This first rotation block last until the initial zero-damage shield breaks.
-4400.9 "--sync--" sync /:Diabolos Hollow:1E3E:/ window 4000,1
-4407.9 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 5,5
-4416.2 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 5,5
-4423.6 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 5,5
-4430.8 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 5,5
+4500.9 "--sync--" sync /:Diabolos Hollow:1E3E:/ window 4500,1
+4507.9 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 5,5
+4516.2 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 5,5
+4523.6 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 5,5
+4530.8 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 5,5
 
-4440.1 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 5,5 jump 4407.9
-4447.2 "Shadethrust"
-4454.6 "Hollow Camisado"
-4461.8 "Shadethrust"
-4471.1 "Hollow Camisado"
-4478.2 "Shadethrust"
+4540.1 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 5,5 jump 4507.9
+4547.2 "Shadethrust"
+4554.6 "Hollow Camisado"
+4561.8 "Shadethrust"
+4571.1 "Hollow Camisado"
+4578.2 "Shadethrust"
 
 # Presumably Nox is the first indication of Diabolos' shield breaking.
 # At 75%, Diabolos Hollow pushes Hollowshield,
@@ -436,47 +445,48 @@ hideall "--sync--"
 
 # Lots of possible pushes here, unknown what triggers them.
 # If not pushed, it *appears* this section flows naturally.
-4500.0 "Nox x5" sync /:Diabolos Hollow:1C1C:/ window 100,5
-4504.2 "Hollow Night" sync /:Diabolos Hollow:1C1D:/
-4513.6 "Shadethrust" sync /:Diabolos Hollow:1C1A:/
-4520.4 "Particle Beam" sync /:Diabolos Hollow:1C2[456]:/
-4520.8 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
-4527.1 "Hollowshield" sync /:Diabolos Hollow:1C1E:/ window 27.1,5
-4537.5 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
-4546.8 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 20,10
+4600.0 "Nox x5" sync /:Diabolos Hollow:1C1C:/ window 100,5
+4604.2 "Hollow Night" sync /:Diabolos Hollow:1C1D:/
+4613.6 "Shadethrust" sync /:Diabolos Hollow:1C1A:/
+4620.4 "Particle Beam" sync /:Diabolos Hollow:1C2[456]:/
+4620.8 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
+4624.1 "--deathgate--spawn--" sync /03:........:Added new combatant Deathgate/ window 25,5
+4627.1 "Hollowshield" sync /:Diabolos Hollow:1C1E:/ window 27.1,5
+4637.5 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
+4646.8 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 20,10
 
-4554.9 "Pavor Inanis" sync /:Diabolos Hollow:1C1F:/ window 55,5
-4565.3 "Hollow Night" sync /:Diabolos Hollow:1C1D:/
-4577.4 "Hollow Nightmare" sync /:Diabolos Hollow:1C20:/
-4590.9 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 30,5
-4600.2 "Nox x5" sync /:Diabolos Hollow:1C1C:/ window 30,5
-4605.2 "Hollow Nightmare" sync /:Diabolos Hollow:1C20:/
-4618.4 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
-4627.6 "Hollow Terror" sync /:Diabolos Hollow:1C21:/
-4637.2 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 20,5
-4651.0 "Shadethrust" sync /:Diabolos Hollow:1C1A:/
-4653.5 "Particle Beam" sync /:Diabolos Hollow:1C2[456]:/
-4660.3 "Pavor Inanis" sync /:Diabolos Hollow:1C1F:/
-4666.6 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
-4674.9 "Nightmare/Terror" sync /:Diabolos Hollow:1C2[01]:/
+4654.9 "Pavor Inanis" sync /:Diabolos Hollow:1C1F:/ window 55,5
+4665.3 "Hollow Night" sync /:Diabolos Hollow:1C1D:/
+4677.4 "Hollow Nightmare" sync /:Diabolos Hollow:1C20:/
+4690.9 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 30,5
+4700.2 "Nox x5" sync /:Diabolos Hollow:1C1C:/ window 30,5
+4705.2 "Hollow Nightmare" sync /:Diabolos Hollow:1C20:/
+4718.4 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
+4727.6 "Hollow Terror" sync /:Diabolos Hollow:1C21:/
+4737.2 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 20,5
+4751.0 "Shadethrust" sync /:Diabolos Hollow:1C1A:/
+4753.5 "Particle Beam" sync /:Diabolos Hollow:1C2[456]:/
+4760.3 "Pavor Inanis" sync /:Diabolos Hollow:1C1F:/ window 30,30
+4766.6 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
+4774.9 "Nightmare/Terror" sync /:Diabolos Hollow:1C2[01]:/
 
 
 # Can push early at 50% HP
-4685.3 "--sync--" sync /:Diabolos Hollow:1C18:/ window 685,5
-4704.1 "--sync--" sync /:Diabolos Hollow:1C22:/
-4709.2 "Hollow Omen" sync /:Diabolos Hollow:1C23:/
-4718.3 "Double Edge" sync /:Diabolos Hollow:1C2B:/
+4785.3 "--sync--" sync /:Diabolos Hollow:1C18:/ window 785,5
+4804.1 "--sync--" sync /:Diabolos Hollow:1C22:/
+4809.2 "Hollow Omen" sync /:Diabolos Hollow:1C23:/
+4818.3 "Double Edge" sync /:Diabolos Hollow:1C2B:/
 
-4725.6 "Blindside" sync /:Diabolos Hollow:1C28:/
-4728.7 "--sync--" sync /:Diabolos Hollow:1C18:/
-4736.0 "Earth Shaker" sync /:Diabolos Hollow:1C29:/ window 15,15
-4744.0 "Blindside" sync /:Diabolos Hollow:1C28:/
-4752.2 "Blindside" sync /:Diabolos Hollow:1C28:/
-4755.4 "--sync--" sync /:Diabolos Hollow:1C18:/
-4762.7 "Earth Shaker" sync /:Diabolos Hollow:1C29:/
+4825.6 "Blindside" sync /:Diabolos Hollow:1C28:/
+4828.7 "--sync--" sync /:Diabolos Hollow:1C18:/
+4836.0 "Earth Shaker" sync /:Diabolos Hollow:1C29:/ window 15,15
+4844.0 "Blindside" sync /:Diabolos Hollow:1C28:/
+4852.2 "Blindside" sync /:Diabolos Hollow:1C28:/
+4855.4 "--sync--" sync /:Diabolos Hollow:1C18:/
+4862.7 "Earth Shaker" sync /:Diabolos Hollow:1C29:/
 
-4770.8 "Blindside" sync /:Diabolos Hollow:1C28:/ jump 4725.6
-4781.2 "Earth Shaker"
-4789.2 "Blindside"
-4797.4 "Blindside"
-4807.9 "Earth Shaker"
+4870.8 "Blindside" sync /:Diabolos Hollow:1C28:/ jump 4825.6
+4881.2 "Earth Shaker"
+4889.2 "Blindside"
+4897.4 "Blindside"
+4907.9 "Earth Shaker"
