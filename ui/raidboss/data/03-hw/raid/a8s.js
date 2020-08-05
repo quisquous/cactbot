@@ -1127,7 +1127,7 @@
         'Legislation': '법률 정비',
         'Link-Up': '시스템 연결',
         'Long Needle': '대형 미사일',
-        'Magicked Mark': '마법 발사',
+        'Magicked Mark': '마법 사격',
         'Mega Beam': '고출력 광선',
         'Mind Blast': '정신파괴',
         'Mirage': '환영 시스템',
