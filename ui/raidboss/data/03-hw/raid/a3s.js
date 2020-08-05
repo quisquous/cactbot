@@ -345,7 +345,7 @@
         'Protean Wave': 'Vague inconstante',
         'Sluice': 'Éclusage',
         'Splash': 'Éclaboussement',
-        'Throttle': 'Suffocation',
+        'Throttle': 'Geôle liquide',
         'Wash Away': 'Lessivage',
       },
     },
