@@ -141,9 +141,9 @@
       },
       'replaceText': {
         'Blitzstrahl': 'Blitzstrahl',
-        'Bodyhurt Breakblock': 'Dickewand für Großeschmerz',
+        'Bodyhurt Breakblock': 'Wand für Großeschmerz',
         'Boomcannon': 'Großeknall',
-        'Brainhurt Breakblock': 'Dickewand für Zaubernschmerz',
+        'Brainhurt Breakblock': 'Wand für Zaubersache',
         'Carpet Bomb': 'Flächenbombardement',
         'Explosion': 'Explosion',
         'Gobwalker': 'Gob-Stampfer',
