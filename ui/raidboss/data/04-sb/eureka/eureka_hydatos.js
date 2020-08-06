@@ -1045,7 +1045,7 @@
         'Legendspinner': 'Legendenspinner',
         'Levinwhorl': 'Wirbelsturm',
         'Medusa Javelin': 'Medusenspeer',
-        'Meteor': 'Meteo',
+        'Meteor': 'Meteor',
         'Mourning Star': 'Morgenstern',
         'Mythcall': 'Mythenruf',
         'Orb x5': 'Kugel x5',
