@@ -118,7 +118,7 @@
     {
       id: 'E2N Shadoweye No Waiting',
       netRegex: NetRegexes.headMarker({ id: '00B3' }),
-      response: Responses.lookAwayFrom(),
+      response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'E2N Dark Fire Collect',
@@ -230,7 +230,7 @@
         return data.spell[matches.target] == 'eye';
       },
       delaySeconds: 2,
-      response: Responses.lookAwayFrom('alarm'),
+      response: Responses.lookAwayFromTarget('alarm'),
     },
     {
       id: 'E2N Countdown Marker Shadoweye You',
