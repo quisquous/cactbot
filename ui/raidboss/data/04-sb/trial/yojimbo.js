@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Kugane Ohashi$/,
-    cn: /^保镖歼灭战$/,
-    ko: /^진 요우진보 토벌전$/,
-  },
   zoneId: ZoneId.KuganeOhashi,
   timelineFile: 'yojimbo.txt',
   triggers: [

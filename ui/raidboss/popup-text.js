@@ -125,10 +125,6 @@ class PopupText {
         continue;
       }
       for (let i = 0; i < json.length; ++i) {
-        if (!('zoneRegex' in json[i])) {
-          console.log('Unexpected JSON from ' + filename + ', expected a zoneRegex');
-          continue;
-        }
         if (!('triggers' in json[i])) {
           console.log('Unexpected JSON from ' + filename + ', expected a triggers');
           continue;
@@ -146,6 +142,7 @@ class PopupText {
   OnChangeZone(e) {
     if (this.zoneName !== e.zoneName) {
       this.zoneName = e.zoneName;
+      this.zoneId = e.zoneID;
       this.ReloadTimelines();
     }
   }
@@ -184,93 +181,103 @@ class PopupText {
     let regexParserLang = 'regex' + langSuffix;
     let netRegexParserLang = 'netRegex' + langSuffix;
 
-    for (let i = 0; i < this.triggerSets.length; ++i) {
-      let set = this.triggerSets[i];
-
-      // zoneRegex can be either a regular expression
-      let zoneRegex = set.zoneRegex;
-      if (typeof zoneRegex !== 'object') {
-        console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
+    for (const set of this.triggerSets) {
+      // zoneRegex can be undefined, a regex, or translatable object of regex.
+      const haveZoneRegex = 'zoneRegex' in set;
+      const haveZoneId = 'zoneId' in set;
+      if (!haveZoneRegex && !haveZoneId || haveZoneRegex && haveZoneId) {
+        console.error(`Trigger set must include exactly one of zoneRegex or zoneId property`);
         continue;
-      } else if (!(zoneRegex instanceof RegExp)) {
-        if (this.parserLang in zoneRegex) {
-          zoneRegex = zoneRegex[this.parserLang];
-        } else if ('en' in zoneRegex) {
-          zoneRegex = zoneRegex['en'];
-        } else {
-          console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
-          continue;
-        }
-
-        if (!(zoneRegex instanceof RegExp)) {
-          console.error('zoneRegex must be regexp: ' + JSON.stringify(set.zoneRegex));
-          continue;
-        }
       }
 
-      if (this.zoneName.search(Regexes.parse(zoneRegex)) >= 0) {
-        if (this.options.Debug) {
-          if (set.filename)
-            console.log('Loading ' + set.filename);
-          else
-            console.log('Loading user triggers for zone');
-        }
-        // Adjust triggers for the parser language.
-        if (set.triggers && this.options.AlertsEnabled) {
-          // Filter out disabled triggers
-          let enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
-
-          for (let trigger of enabledTriggers) {
-            // Add an additional resolved regex here to save
-            // time later.  This will clobber each time we
-            // load this, but that's ok.
-            trigger.filename = set.filename;
-
-            if (!trigger.regex && !trigger.netRegex) {
-              console.error('Trigger ' + trigger.id + ': has no regex property specified');
-              continue;
-            }
-
-            // parser-language-based regex takes precedence.
-            let regex = trigger[regexParserLang] || trigger.regex;
-            if (regex) {
-              trigger.localRegex = Regexes.parse(regex);
-              this.triggers.push(trigger);
-            }
-
-            let netRegex = trigger[netRegexParserLang] || trigger.netRegex;
-            if (netRegex) {
-              trigger.localNetRegex = Regexes.parse(netRegex);
-              this.netTriggers.push(trigger);
-            }
-
-            if (!regex && !netRegex) {
-              console.error('Trigger ' + trigger.id + ': missing regex and netRegex');
-              continue;
-            }
-          }
-        }
-
-        // And set the timeline files/timelines from each set that matches.
-        if (set.timelineFile) {
-          if (set.filename) {
-            let dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
-            timelineFiles.push(dir + '/' + set.timelineFile);
+      if (set.zoneId) {
+        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId)
+          continue;
+      } else if (set.zoneRegex) {
+        let zoneRegex = set.zoneRegex;
+        if (typeof zoneRegex !== 'object') {
+          console.error('zoneRegex must be translatable object or regexp: ' + JSON.stringify(set.zoneRegex));
+          continue;
+        } else if (!(zoneRegex instanceof RegExp)) {
+          if (this.parserLang in zoneRegex) {
+            zoneRegex = zoneRegex[this.parserLang];
+          } else if ('en' in zoneRegex) {
+            zoneRegex = zoneRegex['en'];
           } else {
-            console.error('Can\'t specify timelineFile in non-manifest file:' + set.timelineFile);
+            console.error('unknown zoneRegex parser language: ' + JSON.stringify(set.zoneRegex));
+            continue;
+          }
+
+          if (!(zoneRegex instanceof RegExp)) {
+            console.error('zoneRegex must be regexp: ' + JSON.stringify(set.zoneRegex));
+            continue;
           }
         }
-        if (set.timeline)
-          addTimeline(set.timeline);
-        if (set.timelineReplace)
-          replacements.push(...set.timelineReplace);
-        if (set.timelineTriggers)
-          timelineTriggers.push(...set.timelineTriggers);
-        if (set.timelineStyles)
-          timelineStyles.push(...set.timelineStyles);
-        if (set.resetWhenOutOfCombat !== undefined)
-          this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
+        if (this.zoneName.search(Regexes.parse(zoneRegex)) < 0)
+          continue;
       }
+
+      if (this.options.Debug) {
+        if (set.filename)
+          console.log('Loading ' + set.filename);
+        else
+          console.log('Loading user triggers for zone');
+      }
+      // Adjust triggers for the parser language.
+      if (set.triggers && this.options.AlertsEnabled) {
+        // Filter out disabled triggers
+        let enabledTriggers = set.triggers.filter((trigger) => !('disabled' in trigger && trigger.disabled));
+
+        for (let trigger of enabledTriggers) {
+          // Add an additional resolved regex here to save
+          // time later.  This will clobber each time we
+          // load this, but that's ok.
+          trigger.filename = set.filename;
+
+          if (!trigger.regex && !trigger.netRegex) {
+            console.error('Trigger ' + trigger.id + ': has no regex property specified');
+            continue;
+          }
+
+          // parser-language-based regex takes precedence.
+          let regex = trigger[regexParserLang] || trigger.regex;
+          if (regex) {
+            trigger.localRegex = Regexes.parse(regex);
+            this.triggers.push(trigger);
+          }
+
+          let netRegex = trigger[netRegexParserLang] || trigger.netRegex;
+          if (netRegex) {
+            trigger.localNetRegex = Regexes.parse(netRegex);
+            this.netTriggers.push(trigger);
+          }
+
+          if (!regex && !netRegex) {
+            console.error('Trigger ' + trigger.id + ': missing regex and netRegex');
+            continue;
+          }
+        }
+      }
+
+      // And set the timeline files/timelines from each set that matches.
+      if (set.timelineFile) {
+        if (set.filename) {
+          let dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
+          timelineFiles.push(dir + '/' + set.timelineFile);
+        } else {
+          console.error('Can\'t specify timelineFile in non-manifest file:' + set.timelineFile);
+        }
+      }
+      if (set.timeline)
+        addTimeline(set.timeline);
+      if (set.timelineReplace)
+        replacements.push(...set.timelineReplace);
+      if (set.timelineTriggers)
+        timelineTriggers.push(...set.timelineTriggers);
+      if (set.timelineStyles)
+        timelineStyles.push(...set.timelineStyles);
+      if (set.resetWhenOutOfCombat !== undefined)
+        this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
     }
 
     this.timelineLoader.SetTimelines(

@@ -2,10 +2,6 @@
 
 // O1S - Deltascape 1.0 Savage
 [{
-  zoneRegex: {
-    en: /^Deltascape V1\.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 \(德尔塔幻境1\)$/,
-  },
   zoneId: ZoneId.DeltascapeV10Savage,
   timelineNeedsFixing: true,
   timelineFile: 'o1s.txt',

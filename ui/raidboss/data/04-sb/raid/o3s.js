@@ -2,10 +2,6 @@
 
 // O3S - Deltascape 3.0 Savage
 [{
-  zoneRegex: {
-    en: /^Deltascape V3\.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 \(德尔塔幻境3\)$/,
-  },
   zoneId: ZoneId.DeltascapeV30Savage,
   timelineNeedsFixing: true,
   timelineFile: 'o3s.txt',

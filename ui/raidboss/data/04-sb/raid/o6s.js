@@ -1,16 +1,7 @@
 'use strict';
 
 // O6S - Sigmascape 2.0 Savage
-// localization:
-//   de: timeline done, triggers incomplete
-//   fr: timeline done, triggers incomplete
-//   ja: timeline done, triggers incomplete
 [{
-  zoneRegex: {
-    en: /^Sigmascape V2\.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 \(西格玛幻境2\)$/,
-    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(2\)$/,
-  },
   zoneId: ZoneId.SigmascapeV20Savage,
   timelineFile: 'o6s.txt',
   triggers: [

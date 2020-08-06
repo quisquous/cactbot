@@ -1,13 +1,6 @@
 'use strict';
 
-// Bardam's Mettle
-
 [{
-  zoneRegex: {
-    en: /^Bardam's Mettle$/,
-    cn: /^巴儿达木霸道$/,
-    ko: /^바르담 패도$/,
-  },
   zoneId: ZoneId.BardamsMettle,
   timelineFile: 'bardams_mettle.txt',
   timelineTriggers: [

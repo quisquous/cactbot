@@ -1,8 +1,5 @@
 'use strict';
 [{
-  zoneRegex: {
-    en: /^Memoria Misera \(Extreme\)$/,
-  },
   zoneId: ZoneId.MemoriaMiseraExtreme,
   timelineFile: 'varis-ex.txt',
   timelineTriggers: [

@@ -2,11 +2,6 @@
 
 // O9N - Alphascape 1.0
 [{
-  zoneRegex: {
-    en: /^Alphascape \(V1\.0\)$/,
-    cn: /^欧米茄时空狭缝 \(阿尔法幻境1\)$/,
-    ko: /^차원의 틈 오메가: 알파편 \(1\)$/,
-  },
   zoneId: ZoneId.AlphascapeV10,
   timelineFile: 'o9n.txt',
   triggers: [

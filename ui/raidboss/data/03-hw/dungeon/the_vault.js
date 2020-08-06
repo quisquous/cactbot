@@ -2,11 +2,6 @@
 
 // The Vault
 [{
-  zoneRegex: {
-    en: /^The Vault$/,
-    cn: /^圣教中枢伊修加德教皇厅$/,
-    ko: /^이슈가르드 교황청$/,
-  },
   zoneId: ZoneId.TheVault,
   timelineFile: 'the_vault.txt',
   timelineTriggers: [

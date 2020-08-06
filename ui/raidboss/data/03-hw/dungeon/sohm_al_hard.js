@@ -1,9 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Sohm Al \(Hard\)$/,
-  },
   zoneId: ZoneId.SohmAlHard,
   timelineFile: 'sohm_al_hard.txt',
   timelineTriggers: [

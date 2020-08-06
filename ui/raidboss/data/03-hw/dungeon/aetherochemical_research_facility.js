@@ -2,10 +2,6 @@
 
 // Aetherochemical Research Facility
 [{
-  zoneRegex: {
-    en: /Aetherochemical Research Facility/,
-    cn: /^血战苍穹魔科学研究所$/,
-  },
   zoneId: ZoneId.TheAetherochemicalResearchFacility,
   timelineFile: 'aetherochemical_research_facility.txt',
   timelineTriggers: [

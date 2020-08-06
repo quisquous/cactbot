@@ -40,11 +40,6 @@
 //     green tether / purple prey
 
 [{
-  zoneRegex: {
-    en: /^Alexander - The Arm Of The Son \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(律动之章3\)$/,
-    ko: /^기공성 알렉산더: 율동편\(영웅\) \(3\)$/,
-  },
   zoneId: ZoneId.AlexanderTheArmOfTheSonSavage,
   timelineNeedsFixing: true,
   timelineFile: 'a7s.txt',

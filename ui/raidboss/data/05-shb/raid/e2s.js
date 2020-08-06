@@ -5,11 +5,6 @@
 // tank provoke messages when cotank has flare
 
 [{
-  zoneRegex: {
-    en: /^Eden's Gate: Descent \(Savage\)$/,
-    cn: /^伊甸零式希望乐园 \(觉醒之章2\)$/,
-    ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(2\)$/,
-  },
   zoneId: ZoneId.EdensGateDescentSavage,
   timelineFile: 'e2s.txt',
   timelineTriggers: [

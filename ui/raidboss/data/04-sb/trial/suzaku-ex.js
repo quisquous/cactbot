@@ -2,11 +2,6 @@
 
 // Suzaku Extreme
 [{
-  zoneRegex: {
-    en: /^Hells\' Kier \(Extreme\)$/,
-    cn: /^朱雀诗魂战$/,
-    ko: /^극 주작 토벌전$/,
-  },
   zoneId: ZoneId.HellsKierExtreme,
   timelineFile: 'suzaku-ex.txt',
   triggers: [

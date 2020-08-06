@@ -1,16 +1,7 @@
 'use strict';
 
 // O5S - Sigmascape 1.0 Savage
-// localization:
-//   de: done
-//   fr: missing replaceText, triggers
-//   ja: missing replaceText, triggers
 [{
-  zoneRegex: {
-    en: /^Sigmascape V1\.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 \(西格玛幻境1\)$/,
-    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(1\)$/,
-  },
   zoneId: ZoneId.SigmascapeV10Savage,
   timelineFile: 'o5s.txt',
   resetWhenOutOfCombat: false,

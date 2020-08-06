@@ -23,11 +23,6 @@
 // TODO: icelit dragonsong callouts?
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Refulgence \(Savage\)$/,
-    cn: /^伊甸零式希望乐园 \(共鸣之章4\)$/,
-    ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(4\)$/,
-  },
   zoneId: ZoneId.EdensVerseRefulgenceSavage,
   timelineFile: 'e8s.txt',
   timelineTriggers: [

@@ -2,11 +2,6 @@
 
 // O7S - Sigmascape 3.0 Savage
 [{
-  zoneRegex: {
-    en: /^Sigmascape V3\.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 \(西格玛幻境3\)$/,
-    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(3\)$/,
-  },
   zoneId: ZoneId.SigmascapeV30Savage,
   timelineFile: 'o7s.txt',
   triggers: [

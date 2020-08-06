@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Alexander - The Burden Of The Father \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(启动之章4\)$/,
-    ko: /^기공성 알렉산더: 기동편\(영웅\) \(4\)$/,
-  },
   zoneId: ZoneId.AlexanderTheBurdenOfTheFatherSavage,
   timelineFile: 'a4s.txt',
   timelineTriggers: [

@@ -2,11 +2,6 @@
 
 // Fractal Continuum
 [{
-  zoneRegex: {
-    en: /^The Fractal Continuum$/,
-    cn: /^博物战舰无限回廊$/,
-    ko: /^무한연속 박물함$/,
-  },
   zoneId: ZoneId.TheFractalContinuum,
   timelineFile: 'fractal_continuum.txt',
   timelineTriggers: [

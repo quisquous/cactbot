@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Fulmination \(Savage\)$/,
-    cn: /^伊甸零式希望乐园 \(共鸣之章1\)$/,
-    ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(1\)$/,
-  },
   zoneId: ZoneId.EdensVerseFulminationSavage,
   timelineFile: 'e5s.txt',
   timelineTriggers: [

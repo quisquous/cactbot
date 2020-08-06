@@ -1,13 +1,6 @@
 'use strict';
 
-// The Grand Cosmos
-
 [{
-  zoneRegex: {
-    en: /^The Grand Cosmos$/,
-    cn: /^魔法宫殿宇宙宫$/,
-    ko: /^그랑 코스모스$/,
-  },
   zoneId: ZoneId.TheGrandCosmos,
   timelineFile: 'the_grand_cosmos.txt',
   triggers: [

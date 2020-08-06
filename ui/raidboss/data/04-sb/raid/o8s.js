@@ -1,16 +1,7 @@
 'use strict';
 
 // O8S - Sigmascape 4.0 Savage
-// localization:
-//   de: partial timeline, partial triggers
-//   fr: partial timeline, partial triggers
-//   ja: partial timeline, partial triggers
 [{
-  zoneRegex: {
-    en: /^Sigmascape V4\.0 \(Savage\)$/,
-    cn: /^欧米茄零式时空狭缝 \(西格玛幻境4\)$/,
-    ko: /^차원의 틈 오메가: 시그마편\(영웅\) \(4\)$/,
-  },
   zoneId: ZoneId.SigmascapeV40Savage,
   timelineFile: 'o8s.txt',
   triggers: [

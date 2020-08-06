@@ -2,11 +2,6 @@
 
 // Titania Extreme
 [{
-  zoneRegex: {
-    en: /^The Dancing Plague \(Extreme\)$/,
-    cn: /^缇坦妮雅歼殛战$/,
-    ko: /^극 티타니아 토벌전$/,
-  },
   zoneId: ZoneId.TheDancingPlagueExtreme,
   timelineFile: 'titania-ex.txt',
   triggers: [

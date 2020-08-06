@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Dun Scaith$/,
-    cn: /^影之国$/,
-  },
   zoneId: ZoneId.DunScaith,
   timelineNeedsFixing: true,
   timelineFile: 'dun_scaith.txt',

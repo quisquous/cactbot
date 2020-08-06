@@ -46,11 +46,6 @@ const kDecreeNisi = ['8AE', '8AF', '859', '85A'];
 const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
 
 [{
-  zoneRegex: {
-    en: /^The Epic [Oo]f Alexander \(Ultimate\)$/,
-    cn: /^亚历山大绝境战$/,
-    ko: /^절 알렉산더 토벌전$/,
-  },
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   timelineFile: 'the_epic_of_alexander.txt',
   timelineTriggers: [

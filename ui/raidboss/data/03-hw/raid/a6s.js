@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Alexander - The Cuff Of The Son \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(律动之章2\)$/,
-    ko: /^기공성 알렉산더: 율동편\(영웅\) \(2\)$/,
-  },
   zoneId: ZoneId.AlexanderTheCuffOfTheSonSavage,
   timelineFile: 'a6s.txt',
   triggers: [

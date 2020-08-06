@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Ridorana Lighthouse$/,
-    cn: /^封闭圣塔黎铎拉纳大灯塔$/,
-    ko: /^대등대 리도르아나$/,
-  },
   zoneId: ZoneId.TheRidoranaLighthouse,
   timelineFile: 'ridorana_lighthouse.txt',
   timelineTriggers: [

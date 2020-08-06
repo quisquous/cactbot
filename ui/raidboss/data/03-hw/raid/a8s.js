@@ -7,11 +7,6 @@
 // TODO: chakram safe spots lol?
 
 [{
-  zoneRegex: {
-    en: /^Alexander - The Burden Of The Son \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(律动之章4\)$/,
-    ko: /^기공성 알렉산더: 율동편\(영웅\) \(4\)$/,
-  },
   zoneId: ZoneId.AlexanderTheBurdenOfTheSonSavage,
   timelineFile: 'a8s.txt',
   timelineTriggers: [
