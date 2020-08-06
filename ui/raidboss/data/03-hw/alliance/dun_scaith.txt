@@ -158,18 +158,18 @@ hideall "--sync--"
 1327.8 "--sync--" sync /:(Cursing Atomos|Wailing Atomos):1C49:/
 1328.0 "Juggling Sphere" sync /:(Aether|Aetherial Chakram):1C(9F|A0):/
 1329.6 "--sync--" sync /:(Cursing Atomos|Wailing Atomos):1C9[CD]:/
-1333.0 "Explosion" sync /:(Aether|Aetherial Chakram):1CA[12]:/
+1333.0 "Explosion" sync /:(Aether|Aetherial Chakram):1CA[12]:/ window 15,15
 1338.1 "Jester's Reap" sync /:Ferdiad Hollow:1E41:/
 1348.8 "Black Wind" # sync /:Ferdiad Hollow:1CAC:/
 1362.4 "Blackfire" sync /:Ferdiad Hollow:1CAA:/
 1372.7 "Jester's Reap" sync /:Ferdiad Hollow:1E41:/
-1380.9 "Jongleur's X" sync /:Ferdiad Hollow:1C98:/
+1380.9 "Jongleur's X" sync /:Ferdiad Hollow:1C98:/ window 15,15
 1387.2 "Debilitator" sync /:Ferdiad Hollow:1CA6:/
 1394.7 "Blackbolt" sync /:Ferdiad Hollow:1CAD:/
 1405.2 "Flameflow" sync /:Ferdiad Hollow:1CA7:/
 1411.4 "Jester's Reap" sync /:Ferdiad Hollow:1E41:/
 
-1420.4 "Sleight" sync /:Ferdiad Hollow:1C99:/ jump 1319.0
+1420.4 "Sleight" sync /:Ferdiad Hollow:1C99:/ window 15,15 jump 1319.0
 1428.9 "Wormhole"
 1429.4 "Juggling Sphere"
 1434.4 "Explosion"
@@ -196,13 +196,13 @@ hideall "--sync--"
 2026.4 "Aetherochemical Laser 3" sync /:Proto Ultima:1D97:/
 2033.4 "Aetherochemical Flare" sync /:Proto Ultima:1E52:/
 2034.6 "Diffractive Laser" # sync /:Proto Ultima:1DAA:/
-2036.6 "--sync--" sync /:Proto Ultima:1D9A:/ window 36,5
+2036.6 "--sync--" sync /:Proto Ultima:1D9A:/ window 36,5 # Logs exist where this is first.
 2042.6 "Light Pillar x8" duration 10 # sync /:Proto Ultima:1DA8:/
 2053.4 "Aetherochemical Flare" sync /:Proto Ultima:1E52:/
 
 # We don't know about this part. Maybe it does this?
 # Timing might be a little different?
-2060.0 "Aether Bend" sync /:Proto Ultima:1D99:/ jump 2007.8
+2060.0 "Aether Bend" sync /:Proto Ultima:1D99:/ window 30,15 jump 2007.8
 2070.6 "Aetherochemical Laser 1"
 2074.6 "Aetherochemical Laser 2" 
 2078.6 "Aetherochemical Laser 3"
@@ -232,7 +232,7 @@ hideall "--sync--"
 2214.4 "Diffractive Laser" # sync /:Proto Ultima:1DAA:/
 
 # We don't know, but it seems likely.
-2216.4 "--sync--" sync /:Proto Ultima:1D9A:/ jump 2156.6
+2216.4 "--sync--" sync /:Proto Ultima:1D9A:/ window 30,30 jump 2156.6
 2220.5 "Light Pillar x10"
 
 # Enrage is a LOOOONG cast alongside Aether Collectors.
@@ -276,7 +276,7 @@ hideall "--sync--"
 3199.4 "--shadows gather--"
 3203.6 "Soar" sync /:Scathach:1D1B:/
 3207.8 "--sync--" sync /:Scathach:1D1C:/
-3208.7 "Shadesmite" sync /:Scathach:1D1D:/ jump 3061.0
+3208.7 "Shadesmite" sync /:Scathach:1D1D:/ window 30,30 jump 3061.0
 
 # We don't know 100% that this is the correct rotation,
 # but based on the available logs and video, it seems likely.
@@ -337,7 +337,7 @@ hideall "--sync--"
 
 # Again, this is presumed based on what we have.
 # There might be extra adds/shadows.
-3603.3 "Shadow Release" sync /:Scathach:1CD4:/ jump 3409.2
+3603.3 "Shadow Release" sync /:Scathach:1CD4:/ window 30,30 jump 3409.2
 3613.4 "Thirty Souls"
 3620.5 "Thirty Arrows"
 3627.5 "Particle Beam"
@@ -390,7 +390,7 @@ hideall "--sync--"
 4219.3 "Camisado" sync /:Diabolos:1C0D:/
 4225.8 "Camisado" sync /:Diabolos:1C0D:/
 
-4233.8 "Ultimate Terror" sync /:Diabolos:1C12:/ jump 4185.8
+4233.8 "Ultimate Terror" sync /:Diabolos:1C12:/ window 15,15 jump 4185.8
 4238.9 "Camisado"
 4244.0 "Camisado"
 4252.4 "Nightmare"
@@ -403,7 +403,7 @@ hideall "--sync--"
 4274.0 "--sync--" sync /22:........:Diabolos:........:Diabolos:00/ window 100,5
 4286.2 "--lifegate spawn--" sync /03:........:Added new combatant Lifegate/ window 300,5
 4300.0 "--sync--" sync /:Diabolos:1C16:/ window 300,5
-4320.0 "--deathgate--spawn--" sync /03:........:Added new combatant Deathgate/ window 50,5
+4320.0 "--deathgate spawn--" sync /03:........:Added new combatant Deathgate/ window 50,5
 4477.1 "--sync--" sync /:Diabolos:1AFB:/ window 177,5
 4488.5 "--sync--" sync /:Diabolos:1AFD:/
 4494.6 "Dream Shroud" sync /:Diabolos Hollow:1DB1:/ window 194,5
@@ -426,7 +426,7 @@ hideall "--sync--"
 # so we sync with wider windows than normal.
 
 # This first rotation block last until the initial zero-damage shield breaks.
-4500.9 "--sync--" sync /:Diabolos Hollow:1E3E:/ window 4500,1
+4500.9 "--sync--" sync /:Diabolos Hollow:1E3E:/ window 4501,1
 4507.9 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 5,5
 4516.2 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 5,5
 4523.6 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/ window 5,5
@@ -450,7 +450,7 @@ hideall "--sync--"
 4613.6 "Shadethrust" sync /:Diabolos Hollow:1C1A:/
 4620.4 "Particle Beam" sync /:Diabolos Hollow:1C2[456]:/
 4620.8 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
-4624.1 "--deathgate--spawn--" sync /03:........:Added new combatant Deathgate/ window 25,5
+4624.1 "--deathgate spawn--" sync /03:........:Added new combatant Deathgate/ window 25,5
 4627.1 "Hollowshield" sync /:Diabolos Hollow:1C1E:/ window 27.1,5
 4637.5 "Hollow Camisado" sync /:Diabolos Hollow:1C19:/
 4646.8 "Shadethrust" sync /:Diabolos Hollow:1C1A:/ window 20,10
@@ -485,7 +485,7 @@ hideall "--sync--"
 4855.4 "--sync--" sync /:Diabolos Hollow:1C18:/
 4862.7 "Earth Shaker" sync /:Diabolos Hollow:1C29:/
 
-4870.8 "Blindside" sync /:Diabolos Hollow:1C28:/ jump 4825.6
+4870.8 "Blindside" sync /:Diabolos Hollow:1C28:/ window 10,5 jump 4825.6
 4881.2 "Earth Shaker"
 4889.2 "Blindside"
 4897.4 "Blindside"
