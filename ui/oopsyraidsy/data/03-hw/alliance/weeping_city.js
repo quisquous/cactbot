@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Weeping City Of Mhach$/,
-    cn: /^禁忌城邦玛哈$/,
-  },
   zoneId: ZoneId.TheWeepingCityOfMhach,
   damageWarn: {
     'Weeping Critical Bite': '1848', // Sarsuchus cone aoe

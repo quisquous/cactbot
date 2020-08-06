@@ -1,9 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Sohm Al \(Hard\)$/,
-  },
   zoneId: ZoneId.SohmAlHard,
   damageWarn: {
     'SohmAlHm Deadly Vapor': '1DC9', // Environmental circle AoEs

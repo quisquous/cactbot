@@ -17,11 +17,6 @@
 // TODO: ordained capital punishment hitting non-tanks
 
 [{
-  zoneRegex: {
-    en: /^The Epic [Oo]f Alexander \(Ultimate\)$/,
-    cn: /^亚历山大绝境战$/,
-    ko: /^절 알렉산더 토벌전$/,
-  },
   zoneId: ZoneId.TheEpicOfAlexanderUltimate,
   damageWarn: {
     'TEA Sluice': '49B1',

@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Fulmination$/,
-    ko: /^희망의 낙원 에덴: 공명편 \(1\)$/,
-  },
   zoneId: ZoneId.EdensVerseFulmination,
   damageWarn: {
     'E5N Impact': '4E3A', // Stratospear landing AoE

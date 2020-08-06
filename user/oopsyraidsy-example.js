@@ -39,7 +39,7 @@ Options.AbilityIdNameMap['26CA'] = 'White Swirly';
 // you crit adlo yourself in Summerford Farms.
 Options.Triggers = [
   {
-    zoneRegex: /^Middle La Noscea$/,
+    zoneId: ZoneId.MiddleLaNoscea,
     triggers: [
       {
         id: 'Test Self Crit Adlo',

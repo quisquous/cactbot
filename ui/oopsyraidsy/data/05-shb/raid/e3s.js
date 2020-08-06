@@ -7,11 +7,6 @@
 // TODO: failing to cleanse Splashing Waters
 // TODO: does getting hit by undersea quake cause an ability?
 [{
-  zoneRegex: {
-    en: /^Eden's Gate: Inundation \(Savage\)$/,
-    cn: /^伊甸零式希望乐园 \(觉醒之章3\)$/,
-    ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(3\)$/,
-  },
   zoneId: ZoneId.EdensGateInundationSavage,
   damageWarn: {
     'E3S Monster Wave 1': '3FE5',

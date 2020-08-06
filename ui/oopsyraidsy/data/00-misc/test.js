@@ -2,11 +2,6 @@
 
 // Test mistake triggers.
 [{
-  zoneRegex: {
-    en: /^Middle La Noscea$/,
-    cn: /^中拉诺西亚$/,
-    ko: /^중부 라노시아$/,
-  },
   zoneId: ZoneId.MiddleLaNoscea,
   triggers: [
     {

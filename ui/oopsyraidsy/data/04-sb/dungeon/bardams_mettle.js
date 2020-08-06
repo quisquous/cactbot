@@ -25,11 +25,6 @@ function abilityWarn(args) {
 }
 
 [{
-  zoneRegex: {
-    en: /^Bardam's Mettle$/,
-    cn: /^巴儿达木霸道$/,
-    ko: /^바르담 패도$/,
-  },
   zoneId: ZoneId.BardamsMettle,
   damageWarn: {
     'Bardam Dirty Claw': '21A8', // Frontal cleave, Gulo Gulo trash

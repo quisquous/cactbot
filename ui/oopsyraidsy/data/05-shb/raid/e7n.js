@@ -17,10 +17,6 @@ let noBuff = (str) => {
 };
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Iconoclasm$/,
-    ko: /^희망의 낙원 에덴: 공명편 \(3\)$/,
-  },
   zoneId: ZoneId.EdensVerseIconoclasm,
   damageWarn: {
     'E7N Stygian Sword': '4C55', // Circle ground AoEs after False Twilight
