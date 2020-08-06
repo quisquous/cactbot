@@ -2,10 +2,6 @@
 
 // UCU - The Unending Coil Of Bahamut (Ultimate)
 [{
-  zoneRegex: {
-    en: /^The Unending Coil Of Bahamut \(Ultimate\)$/,
-    ko: /^절 바하무트 토벌전$/,
-  },
   zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
   damageFail: {
     'UCU Lunar Dynamo': '26BC',

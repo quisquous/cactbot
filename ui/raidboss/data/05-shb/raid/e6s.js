@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Furor \(Savage\)$/,
-    cn: /^伊甸零式希望乐园 \(共鸣之章2\)$/,
-    ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(2\)$/,
-  },
   zoneId: ZoneId.EdensVerseFurorSavage,
   timelineFile: 'e6s.txt',
   triggers: [

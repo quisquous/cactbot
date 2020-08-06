@@ -2,10 +2,6 @@
 
 // Aetherochemical Research Facility
 [{
-  zoneRegex: {
-    en: /Aetherochemical Research Facility/,
-    ko: /^마과학 연구소$/,
-  },
   zoneId: ZoneId.TheAetherochemicalResearchFacility,
   damageWarn: {
     'ARF Grand Sword': '216', // Conal AoE, Scrambled Iron Giant trash

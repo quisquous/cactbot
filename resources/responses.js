@@ -92,6 +92,10 @@ let combineFuncs = function(text1, func1, text2, func2) {
   return obj;
 };
 
+let isPlayerId = (id) => {
+  return id[0] !== '4';
+};
+
 let Responses = {
   tankBuster: (targetSev, otherSev) => {
     let noTargetText = {
@@ -426,19 +430,38 @@ let Responses = {
     };
     return obj;
   },
-  lookAwayFrom: (sev) => {
+  lookAwayFromTarget: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
-      let target = getTarget(matches);
-      if (target == data.me)
+      const target = getTarget(matches);
+      if (target === data.me)
         return;
+      const name = isPlayerId(matches.targetId) ? data.ShortName(target) : target;
       return {
-        en: 'Look Away from ' + data.ShortName(target),
-        de: 'Schau weg von ' + data.ShortName(target),
-        fr: 'Ne regardez pas ' + data.ShortName(target),
-        ja: data.ShortName(target) + 'を見ない',
-        ko: data.ShortName(target) + '에게서 뒤돌기',
-        cn: '背对' + data.ShortName(target),
+        en: 'Look Away from ' + name,
+        de: 'Schau weg von ' + name,
+        fr: 'Ne regardez pas ' + name,
+        ja: name + 'を見ない',
+        ko: name + '에게서 뒤돌기',
+        cn: '背对' + name,
+      };
+    };
+    return obj;
+  },
+  lookAwayFromSource: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = (data, matches) => {
+      const source = getSource(matches);
+      if (source === data.me)
+        return;
+      const name = isPlayerId(matches.sourceId) ? data.ShortName(source) : source;
+      return {
+        en: 'Look Away from ' + name,
+        de: 'Schau weg von ' + name,
+        fr: 'Ne regardez pas ' + name,
+        ja: name + 'を見ない',
+        ko: name + '에게서 뒤돌기',
+        cn: '背对' + name,
       };
     };
     return obj;

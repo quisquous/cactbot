@@ -2,10 +2,6 @@
 
 // The Copied Factory
 [{
-  zoneRegex: {
-    en: /^The Copied Factory$/,
-    ko: /^복제된 공장 폐허$/,
-  },
   zoneId: ZoneId.TheCopiedFactory,
   damageWarn: {
     'Copied Serial Energy Bomb': '48B4',

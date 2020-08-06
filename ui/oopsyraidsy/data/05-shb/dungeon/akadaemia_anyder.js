@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Akadaemia Anyder$/,
-    ko: /^애나이더 아카데미아$/,
-  },
   zoneId: ZoneId.AkadaemiaAnyder,
   damageWarn: {
     'Anyder Acrid Stream': '4304',

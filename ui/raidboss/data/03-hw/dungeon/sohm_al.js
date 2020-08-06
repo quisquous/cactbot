@@ -1,12 +1,7 @@
 'use strict';
 
 // Sohm Al (normal)
-// Nobody remembers what to do here, so here's triggers.
 [{
-  zoneRegex: {
-    en: /^Sohm Al$/,
-    cn: /^天山绝顶索姆阿尔灵峰$/,
-  },
   zoneId: ZoneId.SohmAl,
   triggers: [
     {

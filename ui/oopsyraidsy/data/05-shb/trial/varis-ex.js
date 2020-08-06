@@ -1,9 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Memoria Misera \(Extreme\)$/,
-  },
   zoneId: ZoneId.MemoriaMiseraExtreme,
   damageWarn: {
     'VarisEx Alea Iacta Est 1': '4CD2',

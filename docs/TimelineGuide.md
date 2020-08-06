@@ -301,7 +301,7 @@ An initial triggers file should look like the following:
 'use strict';
 
 [{
-  zoneRegex: /Cape Westwind/,
+  zoneId: ZoneId.CapeWestwind,
   timelineFile: 'cape_westwind.txt',
   triggers: [
   ],

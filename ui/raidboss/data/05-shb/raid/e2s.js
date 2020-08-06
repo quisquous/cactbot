@@ -5,11 +5,6 @@
 // tank provoke messages when cotank has flare
 
 [{
-  zoneRegex: {
-    en: /^Eden's Gate: Descent \(Savage\)$/,
-    cn: /^伊甸零式希望乐园 \(觉醒之章2\)$/,
-    ko: /^희망의 낙원 에덴: 각성편\(영웅\) \(2\)$/,
-  },
   zoneId: ZoneId.EdensGateDescentSavage,
   timelineFile: 'e2s.txt',
   timelineTriggers: [
@@ -278,7 +273,7 @@
       condition: function(data) {
         return !data.waiting;
       },
-      response: Responses.lookAwayFrom('alert'),
+      response: Responses.lookAwayFromTarget('alert'),
     },
     {
       id: 'E2S Shadoweye No Waiting You',
@@ -352,7 +347,7 @@
       suppressSeconds: 10,
       // Let's just assume these people are stacked.
       // We could call out both names, but it's probably unnecessary.
-      response: Responses.lookAwayFrom(),
+      response: Responses.lookAwayFromTarget(),
     },
     {
       id: 'E2S Flare No Waiting',

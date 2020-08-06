@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^[tT]he Qitana Ravel$/,
-    ko: /^키타나 신굴$/,
-  },
   zoneId: ZoneId.TheQitanaRavel,
   damageWarn: {
     'Qitana Sun Toss': '3C8A', // Ground AoE, boss one

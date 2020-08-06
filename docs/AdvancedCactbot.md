@@ -96,7 +96,11 @@ Options.DisabledTriggers = {
 
 ### Per Trigger Options
 
-If you want to customize when and what triggers say, there are a few options.  For example, you want to change how the twisters callout works in ucob.  To start, look up the id for the trigger in the [triggers file](../ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L139).  This is `UCU Twisters`.  The `zoneRegex` for this zone is at the top of this file, and is `zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,`.
+If you want to customize when and what triggers say, there are a few options.
+For example, you want to change how the twisters callout works in ucob.
+To start, look up the id for the trigger in the [triggers file](../ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L139).
+This is `UCU Twisters`.
+The `zoneId` for this zone is at the top of this file, and is `zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,`.
 
 #### Option 1: disable the original, write your own
 
@@ -110,7 +114,7 @@ Options.DisabledTriggers = {
 };
 Options.Triggers = [
   {
-    zoneRegex: /The Unending Coil Of Bahamut \(Ultimate\)/,
+    zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
     triggers: [
       {
         regex: Regexes.ability({ source: 'Twintania', id: '26AA' }),
@@ -161,7 +165,8 @@ To add a sound alert that can be activated in any zone, for example, add the fol
 
 ```javascript
 Options.Triggers = [
-  { zoneRegex: /./,
+  {
+    zoneId: ZoneId.MatchAll,
     triggers: [
       // Trick Attack used.
       {
@@ -184,7 +189,8 @@ only when the player's character name appears in the FFXIV log message:
 Options.Triggers = [
   // .. other zones here ..
 
-  { zoneRegex: /./,
+  {
+    zoneId: ZoneId.MatchAll,
     triggers: [
       // .. other triggers here ..
 

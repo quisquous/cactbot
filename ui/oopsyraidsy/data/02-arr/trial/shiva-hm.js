@@ -2,9 +2,6 @@
 
 // Shiva Hard
 [{
-  zoneRegex: {
-    en: /^Akh Afah Amphitheatre \(Hard\)$/,
-  },
   zoneId: ZoneId.AkhAfahAmphitheatreHard,
   damageWarn: {
     // Large white circles.

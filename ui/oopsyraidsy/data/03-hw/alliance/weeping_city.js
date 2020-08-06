@@ -1,9 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Weeping City Of Mhach$/,
-  },
   zoneId: ZoneId.TheWeepingCityOfMhach,
   damageWarn: {
     'Weeping Critical Bite': '1848', // Sarsuchus cone aoe
@@ -113,6 +110,8 @@
           blame: matches.target,
           text: {
             en: 'Tank Laser',
+            de: 'Tank Laser',
+            cn: '坦克激光',
           },
         };
       },
@@ -126,6 +125,8 @@
           name: matches.target,
           reason: {
             en: 'Slid off!',
+            de: 'ist runtergerutscht!',
+            cn: '击退！',
           },
         };
       },

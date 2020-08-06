@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Final Coil Of Bahamut - Turn \(4\)$/,
-    cn: /^巴哈姆特大迷宫 \(真源之章4\)$/,
-  },
   zoneId: ZoneId.TheFinalCoilOfBahamutTurn4,
   timelineFile: 't13.txt',
   timelineTriggers: [
@@ -236,7 +232,7 @@
         'Earth Shaker': 'アースシェイカー',
         'Flare Breath': 'フレアブレス',
         'Flare Star': 'フレアスター',
-        'Flatten': '押しつぶす',
+        'Flatten': 'フラッテン',
         'Gigaflare': 'ギガフレア',
         'Megaflare': 'メガフレア',
         'Rage Of Bahamut': '龍神の咆吼',
@@ -258,7 +254,7 @@
         'Earth Shaker': '大地摇动',
         'Flare Breath': '核爆吐息',
         'Flare Star': '耀星',
-        'Flatten': '跺脚',
+        'Flatten': '平击',
         'Gigaflare': '十亿核爆',
         'Megaflare': '百万核爆',
         'Rage Of Bahamut': '龙神咆哮',
@@ -280,7 +276,7 @@
         'Earth Shaker': '요동치는 대지',
         'Flare Breath': '타오르는 숨결',
         'Flare Star': '타오르는 별',
-        'Flatten': '압사',
+        'Flatten': '짓뭉개기',
         'Gigaflare': '기가플레어',
         'Megaflare': '메가플레어',
         'Rage Of Bahamut': '용신의 포효',

@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Dancing Plague \(Extreme\)$/,
-    cn: /^缇坦妮雅歼殛战$/,
-    ko: /^극 티타니아 토벌전$/,
-  },
   zoneId: ZoneId.TheDancingPlagueExtreme,
   damageWarn: {
     'TitaniaEx Wood\'s Embrace': '3D2F',

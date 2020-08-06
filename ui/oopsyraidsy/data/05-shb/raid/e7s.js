@@ -24,10 +24,6 @@ let noBuff = (str) => {
 };
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Iconoclasm \(Savage\)$/,
-    ko: /^희망의 낙원 에덴: 공명편\(영웅\) \(3\)$/,
-  },
   zoneId: ZoneId.EdensVerseIconoclasmSavage,
   damageWarn: {
     'E7S Silver Sword': '4C8E', // ground aoe

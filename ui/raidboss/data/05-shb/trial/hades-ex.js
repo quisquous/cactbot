@@ -6,11 +6,6 @@
 // TODO: fire/ice tethers (0060|0061)
 
 [{
-  zoneRegex: {
-    en: /^The Minstrel's Ballad: Hades's Elegy$/,
-    cn: /^哈迪斯孤念歼灭战$/,
-    ko: /^극 하데스 토벌전$/,
-  },
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
   timelineFile: 'hades-ex.txt',
   timelineTriggers: [

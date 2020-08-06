@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Final Coil Of Bahamut - Turn \(3\)$/,
-    cn: /^巴哈姆特大迷宫 \(真源之章3\)$/,
-  },
   zoneId: ZoneId.TheFinalCoilOfBahamutTurn3,
   timelineFile: 't12.txt',
   triggers: [
@@ -185,7 +181,7 @@
         'Redfire(?! )': 'Flambée rouge',
         'Revelation': 'Révélation',
         'Scorched Pinion': 'Aile embrasante',
-        'Summon': 'Invocation',
+        'Summon': 'Incidence',
         'Whitefire': 'Flamme blanche',
       },
     },
@@ -210,7 +206,7 @@
         'Redfire(?! )': '紅蓮の炎',
         'Revelation': 'リヴァレーション',
         'Scorched Pinion': '炎の翼',
-        'Summon': '召喚',
+        'Summon': '招来',
         'Whitefire': '白熱の炎',
       },
     },

@@ -5,10 +5,6 @@
 // TODO: there's no 23: message for tethers, so is likely part of add spawn?
 
 [{
-  zoneRegex: {
-    en: /^Cinder Drift \(Extreme\)$/,
-    cn: /^红宝石神兵狂想作战$/,
-  },
   zoneId: ZoneId.CinderDriftExtreme,
   timelineFile: 'ruby_weapon-ex.txt',
   timelineTriggers: [

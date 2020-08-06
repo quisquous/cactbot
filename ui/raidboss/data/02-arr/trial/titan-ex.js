@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Navel \(Extreme\)$/,
-    cn: /^泰坦歼殛战$/,
-  },
   zoneId: ZoneId.TheNavelExtreme,
   timelineFile: 'titan-ex.txt',
   timelineTriggers: [

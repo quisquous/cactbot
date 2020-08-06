@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Second Coil Of Bahamut - Turn \(2\)$/,
-    cn: /^巴哈姆特大迷宫 \(入侵之章2\)$/,
-  },
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn2,
   timelineFile: 't7.txt',
   triggers: [
@@ -229,7 +225,7 @@
         'Frenzy': 'Verve',
         'Petrifaction': 'Versteinerung',
         'Red Lotus Blade': 'Rote Lotosklinge',
-        'Sacrifice': 'Opferung',
+        'Sacrifice': 'Aufopferung',
         'Tail Slap': 'Schweifklapser',
         'Venomous Tail': 'Venomschweif',
       },
@@ -275,7 +271,7 @@
         'Frenzy': '熱狂',
         'Petrifaction': 'ペトリファクション',
         'Red Lotus Blade': 'レッドロータス',
-        'Sacrifice': '生贄',
+        'Sacrifice': 'サクリファイス',
         'Tail Slap': 'テールスラップ',
         'Venomous Tail': 'ベノモステール',
       },
@@ -321,7 +317,7 @@
         'Frenzy': '열광',
         'Petrifaction': '석화',
         'Red Lotus Blade': '홍련의 칼날',
-        'Sacrifice': '제물',
+        'Sacrifice': '희생',
         'Tail Slap': '꼬리치기',
         'Venomous Tail': '맹독 꼬리',
       },

@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Thok Ast Thok \(Extreme\)$/,
-    cn: /^罗波那歼殛战$/,
-  },
   zoneId: ZoneId.ThokAstThokExtreme,
   timelineFile: 'ravana-ex.txt',
   triggers: [
@@ -46,17 +42,25 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Ravana': 'Ravana',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(1st Double Prey\\)': '(1er Double marquage)',
+        '\\(2nd Double Prey\\)': '(2ème Double marquage)',
+        '\\(Circles\\)': '(Cercles)',
+        '\\(Flames\\)': '(Flammes) ',
+        '\\(Inner AoE\\)': '(AoE intérieur)',
+        '\\(Outer AoE\\)': '(AoE extérieur)',
         'Atma-Linga': 'Atma-Linga',
         'Beetle Avatar': 'Incarnation du scarabée',
         'Blades of Carnage and Liberation': 'Lames ardentes',
         'Blinding Blade': 'Lame aveuglante',
         'Bloody Fuller': 'Entaille sanglante',
         'Chandrahas': 'Chandrahas',
+        'Clone Spawn': 'Apparition du clone',
+        'Clone Dash': 'Ruée du clone',
         'Dragonfly Avatar': 'Incarnation de la libellule',
         'Final Liberation': 'Libération rapide',
         'Laughing Rose': 'Rose rieuse',
@@ -65,7 +69,8 @@
         'Prelude to Liberation': 'Prélude de la libération',
         'Scorpion Avatar': 'Incarnation du scorpion',
         'Surpanakha': 'Surpanakha',
-        'Swift Liberation': 'Libération rapide',
+        'Swift Liberation(?! Dash)': 'Libération rapide',
+        'Swift Liberation Dash': 'Libération rapide + Ruée',
         'Tapasya': 'Tapasya',
         'The Rose Of Conquest': 'Rose de la conquête',
         'The Rose Of Conviction': 'Rose de la conviction',

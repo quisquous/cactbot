@@ -2,11 +2,6 @@
 
 // Hades Ex
 [{
-  zoneRegex: {
-    en: /^The Minstrel's Ballad: Hades's Elegy$/,
-    cn: /^哈迪斯孤念歼灭战$/,
-    ko: /^극 하데스 토벌전$/,
-  },
   zoneId: ZoneId.TheMinstrelsBalladHadessElegy,
   damageWarn: {
     'HadesEx Shadow Spread 2': '47AA',

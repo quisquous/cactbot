@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Anamnesis Anyder$/,
-    cn: /^黑风海底 阿尼德罗追忆馆$/,
-  },
   zoneId: ZoneId.AnamnesisAnyder,
   timelineFile: 'anamnesis_anyder.txt',
   timelineTriggers: [

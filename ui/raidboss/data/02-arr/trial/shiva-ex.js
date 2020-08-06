@@ -4,9 +4,6 @@
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 
 [{
-  zoneRegex: {
-    en: /^Akh Afah Amphitheatre \(Extreme\)$/,
-  },
   zoneId: ZoneId.AkhAfahAmphitheatreExtreme,
   timelineFile: 'shiva-ex.txt',
   timelineTriggers: [
@@ -26,6 +23,8 @@
       alertText: {
         en: 'Party Share Tankbuster',
         de: 'Tankbuster mit der Gruppe Teilen',
+        fr: 'Partagez le Tank buster avec le groupe',
+        cn: '团队分摊死刑',
       },
     },
   ],
@@ -45,6 +44,8 @@
               alertText: {
                 en: 'Staff (Tank Swap)',
                 de: 'Stab (Tankwechsel)',
+                fr: 'Bâton (Tank Swap)',
+                cn: '权杖（换T）',
               },
             };
           }
@@ -54,6 +55,8 @@
           infoText: {
             en: 'Staff',
             de: 'Stab',
+            fr: 'Bâton',
+            cn: '权杖',
           },
         };
       },
@@ -76,6 +79,8 @@
               alertText: {
                 en: 'Sword (Tank Swap)',
                 de: 'Schwert (Tankwechsel)',
+                fr: 'Épée (Tank Swap)',
+                cn: '剑（换T）',
               },
             };
           }
@@ -85,6 +90,8 @@
           infoText: {
             en: 'Sword',
             de: 'Schwert',
+            fr: 'Épée',
+            cn: '剑',
           },
         };
       },
@@ -199,6 +206,8 @@
       alarmText: {
         en: 'Knockback Laser on YOU',
         de: 'Rückstoß-Laser auf DIR',
+        fr: 'Poussée-Laser sur VOUS',
+        cn: '击退激光点名',
       },
     },
     {
@@ -208,6 +217,8 @@
       infoText: {
         en: 'Avoid Laser',
         de: 'Laser ausweichen',
+        fr: 'Évitez le laser',
+        cn: '躲避击退激光',
       },
     },
     {
@@ -242,6 +253,8 @@
         return {
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
+          fr: 'Libérez ' + data.ShortName(matches.target),
+          cn: '解救' + data.ShortName(matches.target),
         };
       },
     },
@@ -256,7 +269,6 @@
       'replaceText': {
         '\\(circle\\)': '(Kreis)',
         '\\(cross\\)': '(Kreuz)',
-        '--adds targetable--': '--Adds erscheinen--',
         '--frozen--': '--eingefroren--',
         'Absolute Zero': 'Absoluter Nullpunkt',
         'Avalanche': 'Lawine',
@@ -268,7 +280,7 @@
         'Glacier Bash': 'Gletscherlauf',
         'Glass Dance': 'Gläserner Tanz',
         'Hailstorm': 'Hagelsturm',
-        'Heavenly Strike': 'Himmlischer Schlag',
+        'Heavenly Strike': 'Himmelszorn',
         'Icebrand': 'Eisbrand',
         'Icicle Impact': 'Eiszapfen-Schlag',
         'Melt': 'Schmelzen',
@@ -278,12 +290,15 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': 'soldat de glace',
         'Shiva': 'Shiva',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(circle\\)': '(cercle)',
+        '\\(cross\\)': '(croix)',
+        '--frozen--': '--gelé--',
         'Absolute Zero': 'Zéro absolu',
         'Avalanche': 'Avalanche',
         'Diamond Dust': 'Poussière de diamant',
@@ -320,7 +335,7 @@
         'Glacier Bash': 'グレイシャーバッシュ',
         'Glass Dance': '氷雪乱舞',
         'Hailstorm': 'ヘイルストーム',
-        'Heavenly Strike': '天雷掌',
+        'Heavenly Strike': 'ヘヴンリーストライク',
         'Icebrand': 'アイスブランド',
         'Icicle Impact': 'アイシクルインパクト',
         'Melt': 'ウェポンメルト',
@@ -346,7 +361,7 @@
         'Glacier Bash': '冰河怒击',
         'Glass Dance': '冰雪乱舞',
         'Hailstorm': '冰雹',
-        'Heavenly Strike': '天雷掌',
+        'Heavenly Strike': '天降一击',
         'Icebrand': '冰印剑',
         'Icicle Impact': '冰柱冲击',
         'Melt': '武器融化',
@@ -372,7 +387,7 @@
         'Glacier Bash': '빙하 강타',
         'Glass Dance': '빙설난무',
         'Hailstorm': '우박 폭풍',
-        'Heavenly Strike': '천뢰장',
+        'Heavenly Strike': '천상의 일격',
         'Icebrand': '얼음의 낙인',
         'Icicle Impact': '고드름 낙하',
         'Melt': '무기 용해',

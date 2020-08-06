@@ -56,7 +56,7 @@ Options.Triggers = [
   // (1) Simple example trigger: show text on screen when you die.
   {
     // Match every zone.
-    zoneRegex: /./,
+    zoneId: ZoneId.MatchAll,
     triggers: [
       {
         regex: Regexes.gameLog({ line: 'You are defeated by.*?' }),
@@ -87,7 +87,7 @@ Options.Triggers = [
   {
     // The zone this should apply to.
     // This should match the zoneRegex in the triggers file.
-    zoneRegex: /^Middle La Noscea$/,
+    zoneId: ZoneId.MiddleLaNoscea,
 
     // Add some additional timeline events to the test timeline.
     timeline: `

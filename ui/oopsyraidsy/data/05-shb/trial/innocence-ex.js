@@ -2,11 +2,6 @@
 
 // Innocence Extreme
 [{
-  zoneRegex: {
-    en: /^The Crown Of The Immaculate \(Extreme\)$/,
-    cn: /^无瑕灵君歼殛战$/,
-    ko: /^극 이노센스 토벌전$/,
-  },
   zoneId: ZoneId.TheCrownOfTheImmaculateExtreme,
   damageWarn: {
     'InnoEx Duel Descent': '3ED2',

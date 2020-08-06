@@ -3,9 +3,6 @@
 // TODO: should the post-staff "spread" happen unconditionally prior to marker?
 
 [{
-  zoneRegex: {
-    en: /^Akh Afah Amphitheatre \(Hard\)$/,
-  },
   zoneId: ZoneId.AkhAfahAmphitheatreHard,
   timelineFile: 'shiva-hm.txt',
   timelineTriggers: [
@@ -50,6 +47,8 @@
         return {
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
+          fr: 'Libérez ' + data.ShortName(matches.target),
+          cn: '解救' + data.ShortName(matches.target),
         };
       },
     },
@@ -64,7 +63,6 @@
       'replaceText': {
         '\\(circle\\)': '(Kreis)',
         '\\(cross\\)': '(Kreuz)',
-        '--adds targetable--': '--Adds erscheinen--',
         '--frozen--': '--eingefroren--',
         'Absolute Zero': 'Absoluter Nullpunkt',
         'Diamond Dust': 'Diamantenstaub',
@@ -73,7 +71,7 @@
         'Frost Staff': 'Froststab',
         'Glacier Bash': 'Gletscherlauf',
         'Hailstorm': 'Hagelsturm',
-        'Heavenly Strike': 'Himmlischer Schlag',
+        'Heavenly Strike': 'Himmelszorn',
         'Icebrand': 'Eisbrand',
         'Icicle Impact': 'Eiszapfen-Schlag',
         'Melt': 'Schmelzen',
@@ -87,9 +85,9 @@
         'Shiva': 'Shiva',
       },
       'replaceText': {
+        '\\?': ' ?',
         '\\(circle\\)': '(cercle)',
         '\\(cross\\)': '(croix)',
-        '--adds targetable--': '--adds ciblable--',
         '--frozen--': '--gelé--',
         'Absolute Zero': 'Zéro absolu',
         'Diamond Dust': 'Poussière de diamant',
@@ -120,7 +118,7 @@
         'Frost Staff': '凍てつく杖',
         'Glacier Bash': 'グレイシャーバッシュ',
         'Hailstorm': 'ヘイルストーム',
-        'Heavenly Strike': '天雷掌',
+        'Heavenly Strike': 'ヘヴンリーストライク',
         'Icebrand': 'アイスブランド',
         'Icicle Impact': 'アイシクルインパクト',
         'Melt': 'ウェポンメルト',
@@ -142,7 +140,7 @@
         'Frost Staff': '冰霜之杖',
         'Glacier Bash': '冰河怒击',
         'Hailstorm': '冰雹',
-        'Heavenly Strike': '天雷掌',
+        'Heavenly Strike': '天降一击',
         'Icebrand': '冰印剑',
         'Icicle Impact': '冰柱冲击',
         'Melt': '武器融化',
@@ -164,7 +162,7 @@
         'Frost Staff': '얼어붙은 지팡이',
         'Glacier Bash': '빙하 강타',
         'Hailstorm': '우박 폭풍',
-        'Heavenly Strike': '천뢰장',
+        'Heavenly Strike': '천상의 일격',
         'Icebrand': '얼음의 낙인',
         'Icicle Impact': '고드름 낙하',
         'Melt': '무기 용해',

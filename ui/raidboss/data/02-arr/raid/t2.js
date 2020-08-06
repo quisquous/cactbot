@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Binding Coil Of Bahamut - Turn \(2\)$/,
-    cn: /^巴哈姆特大迷宫 \(邂逅之章2\)$/,
-  },
   zoneId: ZoneId.TheBindingCoilOfBahamutTurn2,
   triggers: [
     {

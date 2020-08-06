@@ -2,9 +2,6 @@
 
 // O3 - Deltascape 3.0 Normal
 [{
-  zoneRegex: {
-    en: /^Deltascape \(V3\.0\)$/,
-  },
   zoneId: ZoneId.DeltascapeV30,
   timelineFile: 'o3n.txt',
   timelineTriggers: [

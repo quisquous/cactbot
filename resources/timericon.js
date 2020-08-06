@@ -147,6 +147,8 @@ class TimerIcon extends HTMLElement {
         }
         #text {
           position: absolute;
+          overflow: hidden;
+          word-break: break-all;
         }
       </style>
       <div id="root" style="position: relative">
@@ -284,7 +286,8 @@ class TimerIcon extends HTMLElement {
     textStyle.top = iconTop + (iconHeight - textHeight) / 2;
     textStyle.left = iconLeft;
     textStyle.width = iconWidth;
-    textStyle.height = textHeight;
+    // Other languages' character can be higher, +5 to make them display completely.
+    textStyle.height = textHeight + 5;
     textStyle.fontSize = textHeight;
     textStyle.textAlign = 'center';
     textStyle.fontWeight = 'bold';

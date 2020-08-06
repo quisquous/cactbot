@@ -34,6 +34,10 @@
   left: 278px;
 }
 
+.ast #right-side-icons {
+  left: 278px;
+}
+
 .drk #right-side-icons {
   left: 250px;
 }
@@ -166,6 +170,7 @@
 /* Relative to #bars */
 #rdm-boxes,
 #sch-boxes,
+#ast-boxes,
 #war-boxes,
 #mnk-boxes,
 #pld-boxes,
@@ -180,6 +185,7 @@
 
 #rdm-boxes > div,
 #sch-boxes > div,
+#ast-boxes > div,
 #war-boxes > div,
 #mnk-boxes > div,
 #pld-boxes > div,
@@ -209,6 +215,7 @@
 }
 
 #sch-boxes > div,
+#ast-boxes > div,
 #rdm-boxes > div {
   width: 28px;
   height: 28px;
@@ -221,6 +228,7 @@
 
 #rdm-boxes .text,
 #sch-boxes .text,
+#ast-boxes .text,
 #war-boxes .text,
 #mnk-boxes .text,
 #pld-boxes .text,
@@ -238,6 +246,7 @@
 }
 
 #sch-boxes .text,
+#ast-boxes .text,
 #rdm-boxes .text {
   top: 5px;
 }
@@ -313,7 +322,7 @@
 }
 
 #mnk-procs-twinsnakes,
-#ast-procs-benefic,
+#ast-procs-draw,
 #sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
@@ -323,7 +332,7 @@
 }
 
 #mnk-procs-demolish,
-#ast-procs-helios,
+#ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
 #blm-procs-thunder,
 #blu-procs-lucid {
@@ -597,6 +606,34 @@
 
 .ast-color-helios {
   background-color: rgb(175, 235, 215);
+}
+
+.ast-color-draw {
+  background-color: rgb(64, 65, 163);
+}
+
+.ast-color-card {
+  background-color: rgb(180, 200, 220);
+}
+
+.ast-color-card.range {
+  background-color: rgb(255, 96, 207);
+}
+
+.ast-color-card.melee {
+  background-color: rgb(120, 170, 250);
+}
+
+.ast-color-seal {
+  background-color: rgb(180, 200, 220);
+}
+
+.ast-color-seal.ready {
+  background-color: rgb(62, 224, 170);
+}
+
+.ast-color-lucid {
+  background-color: rgb(227, 148, 210);
 }
 
 .blu-color-offguard {

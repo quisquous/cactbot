@@ -22,11 +22,6 @@ let bombLocation = (matches) => {
 };
 
 [{
-  zoneRegex: {
-    en: /^Alexander - The Fist Of The Son \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(律动之章1\)$/,
-    ko: /^기공성 알렉산더: 율동편\(영웅\) \(1\)$/,
-  },
   zoneId: ZoneId.AlexanderTheFistOfTheSonSavage,
   timelineFile: 'a5s.txt',
   timelineTriggers: [
@@ -355,7 +350,7 @@ let bombLocation = (matches) => {
       },
       'replaceText': {
         '10-Tonze Slash': 'Taillade de 10 tonz',
-        'Big Burst': 'Grosse explosion',
+        'Big Burst': 'Grande explosion',
         'Bomb\'s Away': 'Lâcher de bombe',
         'Boost': 'Contraction musculaire',
         'Disorienting Groan': 'Cri désorientant',

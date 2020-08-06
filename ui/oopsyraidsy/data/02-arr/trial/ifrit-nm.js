@@ -2,10 +2,6 @@
 
 // Ifrit Story Mode
 [{
-  zoneRegex: {
-    en: /^The Bowl Of Embers$/,
-    ko: /^이프리트 토벌전$/,
-  },
   zoneId: ZoneId.TheBowlOfEmbers,
   damageWarn: {
     'IfritNm Radiant Plume': '2DE',

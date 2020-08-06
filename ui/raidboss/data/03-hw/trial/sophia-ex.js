@@ -27,10 +27,6 @@ let callSafeDir = (callIndex) => {
 
 
 [{
-  zoneRegex: {
-    en: /^Containment Bay P1T6 \(Extreme\)$/,
-    cn: /^索菲娅歼殛战$/,
-  },
   zoneId: ZoneId.ContainmentBayP1T6Extreme,
   timelineFile: 'sophia-ex.txt',
   timelineTriggers: [
@@ -50,6 +46,7 @@ let callSafeDir = (callIndex) => {
       infoText: {
         en: 'Avoid Dash Attack',
         de: 'Ansturm-Angriff ausweichen',
+        fr: 'Évitez l\'attaque Ruée',
         cn: '躲避击飞',
       },
     },
@@ -80,6 +77,7 @@ let callSafeDir = (callIndex) => {
       infoText: {
         en: 'Bait Quasar Meteors',
         de: 'Quasar Meteore ködern',
+        fr: 'Attirez les météores du Quasar',
         cn: '诱导陨石',
         ko: '운석 유도하기',
       },
@@ -152,6 +150,7 @@ let callSafeDir = (callIndex) => {
       infoText: {
         en: 'Get behind lancer',
         de: 'Geh hinter dem 3. Demiurg',
+        fr: 'Passez derrière le lancier',
         cn: '躲在3号小怪后',
         ko: '제3신도 뒤로 가기',
       },
@@ -169,6 +168,7 @@ let callSafeDir = (callIndex) => {
           return {
             en: 'Infusion on YOU',
             de: 'Schneisenschläger auf DIR',
+            fr: 'Infusion sur VOUS',
             cn: '冲锋点名',
             ko: '맹돌진 대상자',
           };
@@ -176,6 +176,7 @@ let callSafeDir = (callIndex) => {
         return {
           en: 'Infusion on ' + data.ShortName(matches.target),
           de: 'Schneisenschläger auf ' + data.ShortName(matches.target),
+          fr: 'Infusion sur ' + data.ShortName(matches.target),
           cn: '冲锋点' + data.ShortName(matches.target),
           ko: '' + data.ShortName(matches.target) + ' 에게 맹돌진',
         };
@@ -295,6 +296,7 @@ let callSafeDir = (callIndex) => {
       infoText: {
         en: 'Avoid head laser',
         de: 'Kopflaser ausweichen',
+        fr: 'Évitez la tête laser',
         cn: '躲避人头炮',
         ko: '머리 레이저 피하기',
       },
@@ -525,6 +527,10 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': 'Troisième Démiurge',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(Meteor Detonate\\)': '(Explosion des météores)',
+        '\\(Snapshot\\)': '(Instantané)',
+        '\\(Tilt\\)': '(Inclinaison)',
         'Aero III': 'Méga Vent',
         'Arms of Wisdom': 'Bras de la sagesse',
         'Cintamani': 'Chintamani',
@@ -538,6 +544,7 @@ let callSafeDir = (callIndex) => {
         'Light Dew': 'Rosée De Lumière',
         'Onrush': 'Charge',
         'Quasar': 'Quasar',
+        'Quasar Tethers': 'Liens Quasar',
         'Ring of Pain': 'Anneau de douleur',
         'The Scales Of Wisdom': 'Balance de la sagesse',
         'Thunder II\\/III': 'Extra Foudre/Mega Foudre',

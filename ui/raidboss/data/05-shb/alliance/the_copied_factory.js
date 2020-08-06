@@ -7,11 +7,6 @@
 // TODO: Tell people where to go for 9S tethered tank
 
 [{
-  zoneRegex: {
-    en: /^The Copied Factory$/,
-    cn: /^复制工厂废墟$/,
-    ko: /^복제된 공장 폐허$/,
-  },
   zoneId: ZoneId.TheCopiedFactory,
   timelineFile: 'the_copied_factory.txt',
   timelineTriggers: [

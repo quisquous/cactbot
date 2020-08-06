@@ -2,9 +2,6 @@
 
 // O2N - Deltascape 2.0 Normal
 [{
-  zoneRegex: {
-    en: /^Deltascape \(V2\.0\)$/,
-  },
   zoneId: ZoneId.DeltascapeV20,
   timelineFile: 'o2n.txt',
   timelineTriggers: [

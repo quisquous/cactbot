@@ -1,13 +1,6 @@
 'use strict';
 
-// TODO: need headmarker for damage down digititis
-
 [{
-  zoneRegex: {
-    en: /^Alexander - The Arm Of The Father \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(启动之章3\)$/,
-    ko: /^기공성 알렉산더: 기동편\(영웅\) \(3\)$/,
-  },
   zoneId: ZoneId.AlexanderTheArmOfTheFatherSavage,
   timelineFile: 'a3s.txt',
   timelineTriggers: [
@@ -294,12 +287,12 @@
         'Living Liquid': 'belebt(?:e|er|es|en) Wasser',
       },
       'replaceText': {
-        'Cascade': 'Cascade',
+        'Cascade': 'Kaskade',
         'Digititis': 'Digititis',
         'Drainage': 'Entwässerung',
         'Embolus': 'Pfropfen',
         'Equal Concentration': 'Isotonie',
-        'Ferrofluid': 'Magnet',
+        'Ferrofluid': 'Ferrofluid',
         'Fluid Claw': 'Amorphe Klaue',
         'Fluid Strike': 'Flüssiger Schlag',
         'Fluid Swing': 'Flüssiger Schwung',
@@ -310,10 +303,10 @@
         'Magnetism': 'Magnetismus',
         'Piston Lubricant': 'Kolbenschmiermittel',
         'Protean Wave': 'Proteische Welle',
-        'Repel': 'Abstoßung',
+        'Repel': 'Repulsion',
         'Sluice': 'Schleusenöffnung',
         'Splash': 'Schwall',
-        'Throttle': 'Gas geben',
+        'Throttle': 'Erstickung',
         'Wash Away': 'Wegspülen',
       },
     },
@@ -379,7 +372,7 @@
         'Repel': '反発',
         'Sluice': 'スルース',
         'Splash': 'スプラッシュ',
-        'Throttle': 'スロットル',
+        'Throttle': '窒息',
         'Wash Away': 'ウォッシュアウェイ',
       },
     },
@@ -394,12 +387,12 @@
         'Living Liquid': '有生命活水',
       },
       'replaceText': {
-        'Cascade': '瀑泻',
+        'Cascade': '倾泻',
         'Digititis': '指尖',
         'Drainage': '排水',
         'Embolus': '栓塞',
         'Equal Concentration': '水量均等化',
-        'Ferrofluid': '磁铁',
+        'Ferrofluid': '磁石',
         'Fluid Claw': '流体之爪',
         'Fluid Strike': '流体强袭',
         'Fluid Swing': '流体摆动',
@@ -413,7 +406,7 @@
         'Repel': '相斥',
         'Sluice': '冲洗',
         'Splash': '溅开',
-        'Throttle': '轰油起步',
+        'Throttle': '窒息',
         'Wash Away': '冲净',
       },
     },
@@ -446,7 +439,7 @@
         'Repel': '반발',
         'Sluice': '봇물',
         'Splash': '물장구',
-        'Throttle': '액체 감옥',
+        'Throttle': '질식',
         'Wash Away': '싹쓸이',
       },
     },

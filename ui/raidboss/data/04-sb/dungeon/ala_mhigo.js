@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /Ala Mhigo/,
-    cn: /^鏖战红莲阿拉米格$/,
-    ko: /^알라미고$/,
-  },
   zoneId: ZoneId.AlaMhigo,
   timelineFile: 'ala_mhigo.txt',
   timelineTriggers: [

@@ -2,10 +2,6 @@
 
 // Byakko Extreme
 [{
-  zoneRegex: {
-    en: /^The Jade Stoa \(Extreme\)$/,
-    ko: /^극 백호 토벌전$/,
-  },
   zoneId: ZoneId.TheJadeStoaExtreme,
   damageWarn: {
     // Popping Unrelenting Anguish bubbles

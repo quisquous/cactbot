@@ -2,10 +2,6 @@
 
 // The Great Gubal Library--Hard
 [{
-  zoneRegex: {
-    en: /Great Gubal Library \(Hard\)/,
-    cn: /^秘本宝库迦巴勒幻想图书馆$/,
-  },
   zoneId: ZoneId.TheGreatGubalLibraryHard,
   timelineFile: 'gubal_library_hard.txt',
   timelineTriggers: [
@@ -255,7 +251,7 @@
         'Demon of the Tome': 'Bücherdämon',
         'Liquid Flame': 'flüssig(?:e|er|es|en) Flamme',
         'Mechanoscribe': 'Mechanoscholar',
-        'Meteor': 'Meteo',
+        'Meteor': 'Meteor',
         'Middle Shelf Tome': 'Pappband',
         'Strix': 'Strix',
         'The Astrology and Astromancy Camera': 'Astrologische und Astronomische Gewölbe',

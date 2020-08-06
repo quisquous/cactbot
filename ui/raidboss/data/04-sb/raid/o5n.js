@@ -2,11 +2,6 @@
 
 // O5N - Sigmascape 1.0 Normal
 [{
-  zoneRegex: {
-    en: /^Sigmascape \(V1\.0\)$/,
-    cn: /^欧米茄时空狭缝 \(西格玛幻境1\)$/,
-    ko: /^차원의 틈 오메가: 시그마편 \(1\)$/,
-  },
   zoneId: ZoneId.SigmascapeV10,
   timelineFile: 'o5n.txt',
   resetWhenOutOfCombat: false,

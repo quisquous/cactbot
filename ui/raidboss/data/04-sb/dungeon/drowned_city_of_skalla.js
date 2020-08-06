@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Drowned City Of Skalla$/,
-    cn: /^沉没神殿斯卡拉遗迹$/,
-    ko: /^스칼라 유적$/,
-  },
   zoneId: ZoneId.TheDrownedCityOfSkalla,
   triggers: [
     {
@@ -69,6 +64,7 @@
         en: 'eye laser',
         de: 'augen lesa',
         fr: 'laser',
+        cn: '离开正面',
         ko: '레이저',
       },
     },

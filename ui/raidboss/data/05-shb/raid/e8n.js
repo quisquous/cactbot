@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Refulgence$/,
-    cn: /^伊甸希望乐园 \(共鸣之章4\)$/,
-    ko: /^희망의 낙원 에덴: 공명편 \(4\)$/,
-  },
   zoneId: ZoneId.EdensVerseRefulgence,
   timelineFile: 'e8n.txt',
   timelineTriggers: [

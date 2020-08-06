@@ -1,10 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^The Second Coil Of Bahamut - Turn \(3\)$/,
-    cn: /^巴哈姆特大迷宫 \(入侵之章3\)$/,
-  },
   zoneId: ZoneId.TheSecondCoilOfBahamutTurn3,
   timelineFile: 't8.txt',
   triggers: [
@@ -203,7 +199,7 @@
       'replaceText': {
         'Allagan Field': 'アラガンフィールド',
         'Atomic Ray': 'アトミックレイ',
-        'Ballistic Missile': 'ミサイル発射',
+        'Ballistic Missile': 'バリスティックミサイル',
         'Brainjack': 'ブレインジャック',
         'Critical Surge': '臨界突破',
         'Diffusion Ray': 'ディフュージョンレイ',
@@ -225,7 +221,7 @@
       'replaceText': {
         'Allagan Field': '亚拉戈领域',
         'Atomic Ray': '原子射线',
-        'Ballistic Missile': '导弹发射',
+        'Ballistic Missile': '弹道导弹',
         'Brainjack': '洗脑',
         'Critical Surge': '临界突破',
         'Diffusion Ray': '扩散射线',
@@ -247,7 +243,7 @@
       'replaceText': {
         'Allagan Field': '알라그 필드',
         'Atomic Ray': '원자 파동',
-        'Ballistic Missile': '미사일 발사',
+        'Ballistic Missile': '탄도 미사일',
         'Brainjack': '두뇌 장악',
         'Critical Surge': '임계 돌파',
         'Diffusion Ray': '확산 광선',

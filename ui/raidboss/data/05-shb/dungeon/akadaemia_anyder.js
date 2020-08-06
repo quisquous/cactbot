@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Akadaemia Anyder$/,
-    cn: /^创造机构阿尼德罗学院$/,
-    ko: /^애나이더 아카데미아$/,
-  },
   zoneId: ZoneId.AkadaemiaAnyder,
   timelineFile: 'akadaemia_anyder.txt',
   timelineTriggers: [

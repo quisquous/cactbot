@@ -4,11 +4,6 @@
 // Ignoring Gobsway Rumblerocks (1AA0) aoe trigger, as it is small and frequent.
 
 [{
-  zoneRegex: {
-    en: /^Alexander - The Breath Of The Creator \(Savage\)$/,
-    cn: /^亚历山大零式机神城 \(天动之章2\)$/,
-    ko: /^기공성 알렉산더: 천동편\(영웅\) \(2\)$/,
-  },
   zoneId: ZoneId.AlexanderTheBreathOfTheCreatorSavage,
   timelineFile: 'a10s.txt',
   timelineTriggers: [
@@ -430,7 +425,7 @@
         'Gobsway Rumblerocks': 'ゴブ流大激震',
         'Gobswish Spraymops': 'ゴブ流飛水断ち',
         'Illuminati Hand Cannon': 'イルミナティ・ハンドカノン',
-        'Impact': 'インパクト',
+        'Impact': '衝撃',
         'Laceration': '斬撃',
         'Single Charge': '単発充填',
         'Steam Roller': 'ローラープレス',
@@ -463,7 +458,7 @@
         'Gobsway Rumblerocks': '哥布流大怒震',
         'Gobswish Spraymops': '哥布流断瀑斩',
         'Illuminati Hand Cannon': '青蓝手炮',
-        'Impact': '冲击',
+        'Impact': '锤击',
         'Laceration': '斩击',
         'Single Charge': '单发填充',
         'Steam Roller': '蒸汽滚轮',

@@ -2,9 +2,6 @@
 
 // O3N - Deltascape 3.0 Normal
 [{
-  zoneRegex: {
-    en: /^Deltascape \(V3\.0\)$/,
-  },
   zoneId: ZoneId.DeltascapeV30,
   damageWarn: {
     'O3N Spellblade Fire III': '2460', // Donut AoE, Halicarnassus

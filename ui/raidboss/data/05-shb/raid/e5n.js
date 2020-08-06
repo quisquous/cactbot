@@ -1,11 +1,6 @@
 'use strict';
 
 [{
-  zoneRegex: {
-    en: /^Eden's Verse: Fulmination$/,
-    cn: /^伊甸希望乐园 \(共鸣之章1\)$/,
-    ko: /^희망의 낙원 에덴: 공명편 \(1\)$/,
-  },
   zoneId: ZoneId.EdensVerseFulmination,
   timelineFile: 'e5n.txt',
   triggers: [

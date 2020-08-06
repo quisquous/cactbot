@@ -4,7 +4,7 @@
 
 ```javascript
 [{
-  zoneRegex: /match for the zone/,
+  zoneId: ZoneId.TheWeaponsRefrainUltimate,
   timelineFile: 'filename.txt',
   timeline: `hideall`,
   timelineReplace: [
@@ -26,7 +26,7 @@
   ]
 },
 {
-  zoneRegex: /match for another zone/,
+  zoneRegex: /Eureka Hydatos/,
   triggers: [
     { /* ..trigger 1.. */ },
     { /* ..trigger 2.. */ },
@@ -37,8 +37,16 @@
 
 ### Elements
 
+**zoneId**
+A shortened name for the zone to use these triggers in.
+The set of id names can be found in [zone_id.js](../resources/zone_id.js).
+Prefer using this over zoneRegex.
+A trigger set must have one of zoneId or zoneRegex to specify the zone
+(but not both).
+
 **zoneRegex**
-Largely self-explanatory. For most situations you will want to match the encounter zone as reported by ACT and nothing else.
+A regular expression that matches against the zone name (coming from ACT).
+If the regular expression matches, then the triggers will apply to that zone.
 
 **timelineFile**
 An optional timeline file to load for this zone. These files live alongside their parent trigger file in the appropriate folder. (As for example `raidboss/data/04-sb/raid/`).
