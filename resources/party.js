@@ -12,59 +12,66 @@ class PartyTracker {
 
     // original event data
     this.details = e.party;
-    // array of names in party
-    this.party = [];
-    // array of names in alliance
-    this.alliance = [];
-    // name -> role
-    this.nameToRole = {};
-    // role -> [names] but only for party
-    this.roleToPartyNames = kAllRoles.reduce((obj, role) => {
-      obj[role] = [];
-      return obj;
-    }, {});
 
-    for (let i = 0; i < e.party.length; ++i) {
-      let p = e.party[i];
-      this.allianceNames.push(p.name);
-      let jobName = Util.jobEnumToJob(p.job);
-      let role = Util.jobToRole(jobName);
-      this.nameToRole[p.name] = role;
+    this.partyNames_ = [];
+    this.partyIds_ = [];
+    this.allianceNames_ = [];
+    this.allianceIds_ = [];
+    this.nameToRole_ = {};
+    this.idToName_ = {};
+
+    // role -> [names] but only for party
+    this.roleToPartyNames_ = {};
+    for (const role of kAllRoles)
+      this.roleToPartyNames_[role] = [];
+
+    for (const p of e.party) {
+      this.allianceIds_.push(p.id);
+      this.allianceNames_.push(p.name);
+      const jobName = Util.jobEnumToJob(p.job);
+      const role = Util.jobToRole(jobName);
+      this.idToName_[p.id] = p.name;
+      this.nameToRole_[p.name] = role;
       if (p.inParty) {
-        this.partyNames.push(p.name);
-        this.roleToPartyNames[role].push(p.name);
+        this.partyIds_.push(p.id);
+        this.partyNames_.push(p.name);
+        this.roleToPartyNames_[role].push(p.name);
       }
     }
   }
 
   // returns an array of the names of players in your immediate party
   get partyNames() {
-    return this.party;
+    return this.partyNames_;
+  }
+
+  get partyIds() {
+    return this.partyIds_;
   }
 
   // returns an array of the names of players in your alliance
   get allianceNames() {
-    return this.alliance;
+    return this.allianceNames_;
   }
 
   // returns an array of the names of tanks in your immediate party
   get tankNames() {
-    return this.roleToPartyNames['tank'];
+    return this.roleToPartyNames_['tank'];
   }
 
   // returns an array of the names of healers in your immediate party
   get healerNames() {
-    return this.roleToPartyNames['healer'];
+    return this.roleToPartyNames_['healer'];
   }
 
   // returns an array of the names of dps players in your immediate party
   get dpsNames() {
-    return this.roleToPartyNames['dps'];
+    return this.roleToPartyNames_['dps'];
   }
 
   // returns true iff the named player in your alliance is a particular role
   isRole(name, role) {
-    return this.nameToRole[name] === role;
+    return this.nameToRole_[name] === role;
   }
 
   // returns true iff the named player in your alliance is a tank
@@ -84,19 +91,19 @@ class PartyTracker {
 
   // returns true iff the named player is in your immediate party
   inParty(name) {
-    return this.partyNames.indexOf(name) >= 0;
+    return this.partyNames.includes(name);
   }
 
   // returns true iff the named player is in your alliance
   inAlliance(name) {
-    return this.allianceNames.indexOf(name) >= 0;
+    return this.allianceNames.includes(name);
   }
 
   // for a named player, returns the other tank in your immediate party
   // if named player is not a tank, or there's not exactly two tanks
   // in your immediate party, returns null.
   otherTank(name) {
-    let names = this.roleToPartyNames['tank'];
+    let names = this.tankNames;
     if (names.length != 2)
       return null;
     if (names[0] == name)
@@ -124,5 +131,9 @@ class PartyTracker {
     if (partyIndex >= 0)
       return Util.jobEnumToJob(this.details[partyIndex].job);
     return null;
+  }
+
+  nameFromId(id) {
+    return this.idToName_[id];
   }
 }

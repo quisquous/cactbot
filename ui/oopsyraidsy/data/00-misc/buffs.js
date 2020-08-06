@@ -12,7 +12,17 @@ let missedFunc = (args) => {
     id: 'Buff ' + args.triggerId,
     netRegex: args.netRegex,
     condition: function(evt, data, matches) {
-      return data.party.partyNames.includes(matches.source);
+      const sourceId = matches.sourceId.toUpperCase();
+      if (data.party.partyIds.includes(sourceId))
+        return true;
+
+      if (data.petIdToOwnerId) {
+        const ownerId = data.petIdToOwnerId[sourceId];
+        if (ownerId && data.party.partyIds.includes(ownerId))
+          return true;
+      }
+
+      return false;
     },
     collectSeconds: args.collectSeconds,
     mistake: function(allEvents, data, allMatches) {
@@ -23,15 +33,29 @@ let missedFunc = (args) => {
       for (let name of partyNames)
         gotBuffMap[name] = false;
 
-      const sourceName = allMatches[0].source;
+      const firstMatch = allMatches[0];
+      let sourceName = firstMatch.source;
+      // Blame pet mistakes on owners.
+      if (data.petIdToOwnerId) {
+        const petId = firstMatch.sourceId.toUpperCase();
+        const ownerId = data.petIdToOwnerId[petId];
+        if (ownerId) {
+          const ownerName = data.party.nameFromId(ownerId);
+          if (ownerName)
+            sourceName = ownerName;
+          else
+            console.error(`Couldn't find name for ${ownerId} from pet ${petId}`);
+        }
+      }
+
       if (args.ignoreSelf)
         gotBuffMap[sourceName] = true;
 
-      const thingName = allMatches[0][args.field];
+      const thingName = firstMatch[args.field];
       for (let matches of allMatches) {
         // In case you have multiple party members who hit the same cooldown at the same
         // time (lol?), then ignore anybody who wasn't the first.
-        if (matches.source !== sourceName)
+        if (matches.source !== firstMatch.source)
           continue;
 
         gotBuffMap[matches.target] = true;
@@ -131,6 +155,26 @@ let missedMitigationAbility = missedHeal;
   zoneRegex: /.*/,
   zoneId: ZoneId.MatchAll,
   triggers: [
+    {
+      id: 'Buff Pet To Owner Mapper',
+      netRegex: NetRegexes.addedCombatantFull(),
+      run: function(e, data, matches) {
+        if (matches.ownerId === '0')
+          return;
+
+        data.petIdToOwnerId = data.petIdToOwnerId || {};
+        // Fix any lowercase ids.
+        data.petIdToOwnerId[matches.id.toUpperCase()] = matches.ownerId.toUpperCase();
+      },
+    },
+    {
+      id: 'Buff Pet To Owner Clearer',
+      netRegex: NetRegexes.changeZone(),
+      run: function() {
+        // Clear this hash periodically so it doesn't have false positives.
+        data.petIdToOwnerId = {};
+      },
+    },
 
     // Prefer abilities to effects, as effects take longer to roll through the party.
     // However, some things are only effects and so there is no choice.
@@ -165,7 +209,6 @@ let missedMitigationAbility = missedHeal;
 
     missedMitigationAbility({ id: 'Mantra', abilityId: '41' }),
 
-    // TODO: need a person->pet mapping for blame
     missedDamageAbility({ id: 'Devotion', abilityId: '1D1A' }),
 
     // Maybe using a healer LB1/LB2 should be an error for the healer. O:)
@@ -183,8 +226,6 @@ let missedMitigationAbility = missedHeal;
     missedHeal({ id: 'Indomitability', abilityId: 'DFF' }),
     missedHeal({ id: 'Deployment Tactics', abilityId: 'E01' }),
     missedHeal({ id: 'Whispering Dawn', abilityId: '323' }),
-    // TODO: need a person->pet mapping for these as well
-    // because otherwise the fairy is not a party member.
     missedHeal({ id: 'Fey Blessing', abilityId: '40A0' }),
     missedHeal({ id: 'Consolation', abilityId: '40A3' }),
     missedHeal({ id: 'Angel\'s Whisper', abilityId: '40A6' }),

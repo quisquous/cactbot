@@ -147,7 +147,6 @@ var NetRegexes = {
     });
   },
 
-  // fields: id, name, job, level, world, npcNameId, npcBaseId, hp, x, y, z, heading, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
   addedCombatantFull: (params) => {
     return parseHelper(params, 'addedCombatantFull', {
@@ -157,6 +156,7 @@ var NetRegexes = {
       3: { field: 'name' },
       4: { field: 'job' },
       5: { field: 'level' },
+      6: { field: 'ownerId' },
       8: { field: 'world' },
       9: { field: 'npcNameId' },
       10: { field: 'npcBaseId' },
