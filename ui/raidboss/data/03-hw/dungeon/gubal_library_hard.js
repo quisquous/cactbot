@@ -255,7 +255,7 @@
         'Demon of the Tome': 'Bücherdämon',
         'Liquid Flame': 'flüssig(?:e|er|es|en) Flamme',
         'Mechanoscribe': 'Mechanoscholar',
-        'Meteor': 'Meteo',
+        'Meteor': 'Meteor',
         'Middle Shelf Tome': 'Pappband',
         'Strix': 'Strix',
         'The Astrology and Astromancy Camera': 'Astrologische und Astronomische Gewölbe',

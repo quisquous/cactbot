@@ -238,7 +238,7 @@
         'Aetherochemical Mine': '魔科学地雷',
         'Atmospheric Compression': '剑压',
         'Atmospheric Displacement': '剑风',
-        'Damage Up': '易伤',
+        'Damage Up': '伤害提高',
         'Disorienting Groan': '吼叫',
         'Double Sever': '多重斩击',
         'Feast': '飨宴',
