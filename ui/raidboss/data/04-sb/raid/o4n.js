@@ -185,7 +185,7 @@
         'Flare': 'Flare',
         'Holy': 'Sanctus',
         'Mega Blizzard/Fire/Thunder': 'Eisga/Feuga/Blitzga ++',
-        'Meteor': 'Meteo',
+        'Meteor': 'Meteor',
         'The Decisive Battle': 'Entscheidungsschlacht',
         '(?<!/)Thunder III': 'Blitzga',
         'Vacuum Wave': 'Vakuumwelle',
