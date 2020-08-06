@@ -317,7 +317,7 @@ hideall "--sync--"
 3506.1 "Thirty Souls" sync /:Scathach:1D32:/
 3510.4 "Manos" sync /:Scathach:1CD3:/
 3520.5 "--sync--" sync /:Scathach:1D1[EF]:/
-3521.6 "--Shadespin--" sync /:Scathach:1D20:/
+3521.6 "Shadespin" sync /:Scathach:1D20:/
 3523.6 "--shadows gather--"
 3526.7 "Thirty Sickles" sync /:Scathach:1D31:/
 3528.7 "--adds spawn--"
@@ -331,7 +331,7 @@ hideall "--sync--"
 3571.5 "Shadethrust" sync /:Scathach:1D23:/
 3575.5 "--shadows gather--"
 3580.6 "--sync--" sync /:Scathach:1D1[EF]:/
-3581.7 "--Shadespin--" sync /:Scathach:1D20:/
+3581.7 "Shadespin" sync /:Scathach:1D20:/
 3588.8 "Thirty Souls" sync /:Scathach:1D32:/
 3599.0 "Thirty Souls" sync /:Scathach:1D32:/
 
