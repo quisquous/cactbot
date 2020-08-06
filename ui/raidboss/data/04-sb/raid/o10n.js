@@ -226,7 +226,7 @@
         'Protostar': '原恒星',
         'Spin': '回转',
         'Tail End': '煞尾',
-        'Thunderstorm': '闪雷风暴',
+        'Thunderstorm': '雷暴',
       },
     },
     {
