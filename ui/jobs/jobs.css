@@ -324,7 +324,7 @@
 #mnk-procs-dragonkick,
 #ast-procs-combust,
 #sch-procs-bio,
-#smn-procs-dot,
+#smn-procs-miasma,
 #blu-procs-offguard,
 #blm-procs-fire {
   position: relative;
@@ -332,10 +332,21 @@
   left: 0;
 }
 
+#smn-procs-biosmn {
+  position: relative;
+  display: inline-block;
+  left: calc(142px / 3);
+}
+
+#smn-procs-energydrain {
+  position: relative;
+  display: inline-block;
+  left: calc(142px / 3 * 2);
+}
+
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
 #sch-procs-aetherflow,
-#smn-procs-energydrain,
 #blu-procs-torment,
 #blm-dot-thunder {
   position: relative;
@@ -613,12 +624,16 @@
   background-color: rgb(240, 30, 30);
 }
 
-.smn-color-dot {
+.smn-color-biosmn {
   background-color: olivedrab;
 }
 
+.smn-color-miasma {
+  background-color: cornflowerblue;
+}
+
 .smn-color-energydrain {
-  background-color: orange;
+  background-color: brown;
 }
 
 .smn-color-trance {
