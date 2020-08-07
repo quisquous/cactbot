@@ -1875,7 +1875,7 @@ class Bars {
       if (time <= 7 && summoned == 3)
         pp.classList.add('last');
       else if (time > 0 && time <= 2 && summoned == 0)
-        pp.classList.add('last');     
+        pp.classList.add('last');
       else
         pp.classList.remove('last');
     });
