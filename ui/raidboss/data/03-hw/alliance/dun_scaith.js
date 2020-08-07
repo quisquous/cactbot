@@ -620,6 +620,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Aether Collector': 'Ätherakkumulator',
         'Connla': 'Connla',
@@ -640,6 +641,7 @@
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Aether Collector': 'accumulateur d\'éther',
         'Connla': 'Connla',
@@ -660,6 +662,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Aether Collector': 'エーテル集積器',
         'Connla': 'コンラ',
@@ -680,6 +683,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Aether Collector': '以太收集器',
         'Connla': '康拉',
@@ -700,6 +704,7 @@
     },
     {
       'locale': 'ko',
+      'missingTranslations': true,
       'replaceSync': {
         'Aether Collector': '에테르 집적기',
         'Connla': '콘라',
