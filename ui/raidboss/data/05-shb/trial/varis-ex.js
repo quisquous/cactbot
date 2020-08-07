@@ -387,11 +387,11 @@
     {
       'locale': 'fr',
       'replaceSync': {
-        'Bladesblood': 'onde de choc',
-        'Gunshield': 'bouclier-canon',
+        'Bladesblood': 'Onde De Choc',
+        'Gunshield': 'Bouclier-Canon',
         'Ignis Est': 'Ignis Est',
-        'Magitek Turret II': 'tourelle magitek TM-II',
-        'Phantom Varis': 'double de Varis',
+        'Magitek Turret II': 'Tourelle Magitek TM-II',
+        'Phantom Varis': 'Double De Varis',
         'Terminus Est': 'Terminus Est',
         'Varis Yae Galvus': 'Varis yae Galvus',
         'Ventus Est': 'Ventus Est',
@@ -399,7 +399,7 @@
       'replaceText': {
         '(?<! )\\?(?!--)': ' ?',
         '--clones appear\\?--': 'apparition des clones ?',
-        'Aetherochemical Grenado': 'Grenade magitek',
+        'Aetherochemical Grenado': 'Grenade Magitek',
         'Alea Iacta Est': 'Alea Jacta Est',
         'Altius': 'Altius',
         'Blade\'s Pulse': 'Duel d\'armes',
@@ -416,6 +416,7 @@
         'Magitek Spark/Torch': 'Étincelle/Flammes magitek',
         'Magitek Torch/Spark': 'Flammes/Étincelle magitek',
         'Reinforcements': 'Demande de renforts',
+        'Reinforced Gunshield': 'Bouclier-canon : Contre magitek',
         'Shockwave': 'Onde de choc',
         'Terminus Est': 'Terminus Est',
         'Ventus Est': 'Ventus Est',
