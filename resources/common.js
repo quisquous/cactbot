@@ -13,7 +13,7 @@ let kSleepJobs = ['BLM', 'WHM'];
 let kFeintJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL'];
 let kAddleJobs = ['BLU', 'RDM', 'SMN', 'ACN', 'BLM', 'THM'];
 let kCleanseJobs = ['AST', 'BRD', 'CNJ', 'SCH', 'WHM'];
-let kAllRoles = ['tank', 'healer', 'dps', 'crafter', 'gatherer'];
+let kAllRoles = ['tank', 'healer', 'dps', 'crafter', 'gatherer', 'none'];
 
 let kJobEnumToName = {
   0: 'NONE',
@@ -80,6 +80,8 @@ let Util = {
       role = 'crafter';
     } else if (job.search(/^(MIN|BTN|FSH)$/) >= 0) {
       role = 'gatherer';
+    } else if (job === 'NONE') {
+      role = 'none';
     } else {
       role = '';
       console.log('Unknown job role');
