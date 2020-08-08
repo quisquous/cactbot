@@ -178,7 +178,7 @@
         'Fierce Beating': 'Gnadenlose Geißel',
         'Gibbet Cage': 'Eiserne Jungfrau',
         'Head Crusher': 'Knochenmalmer',
-        'Heretic\'s Fork': 'Ketzerspieß',
+        'Heretic\'s Fork': 'Blutadler',
         'Holy Water': 'Segenszeichen',
         'Into The Light': 'Läuterndes Licht',
         'Left/Right Knout': 'Linker/Rechter Staupenschlag',
