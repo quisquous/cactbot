@@ -28,12 +28,12 @@
   triggers: [
     {
       id: 'E4S Fault Line Collect',
-      regex: Regexes.startsUsing({ id: '411E', source: 'Titan' }),
-      regexDe: Regexes.startsUsing({ id: '411E', source: 'Titan' }),
-      regexFr: Regexes.startsUsing({ id: '411E', source: 'Titan' }),
-      regexJa: Regexes.startsUsing({ id: '411E', source: 'タイタン' }),
-      regexCn: Regexes.startsUsing({ id: '411E', source: '泰坦' }),
-      regexKo: Regexes.startsUsing({ id: '411E', source: '타이탄' }),
+      netRegex: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '411E', source: 'タイタン' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '411E', source: '泰坦' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '411E', source: '타이탄' }),
       run: function(e, data, matches) {
         data.faultLineTarget = matches.target;
       },
