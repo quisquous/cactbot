@@ -374,7 +374,7 @@
         'Thunder Beam': '번개 광선',
         'Temporal Paradox': '시간 역설',
         'Temporal Flow': '시간 해동',
-        'Shock': '전격',
+        'Shock': '방전',
         'Shattered Crystal': '크리스탈 파열',
         'Rail Cannon': '전자기포',
         'Pounce Errant': 'XXX 덮치기',
