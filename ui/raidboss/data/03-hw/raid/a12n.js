@@ -8,10 +8,7 @@
       id: 'A12N Tank Limit Break',
       regex: /Divine Judgment/,
       beforeSeconds: 5,
-      condition: function(data) {
-        // Let's not spam tanks if they are unlucky enough to see enrage.
-        return !data.judgment && data.role == 'tank';
-      },
+      suppressSeconds: 9999, // Let's not spam tanks if they are unlucky enough to see enrage.
       alarmText: {
         en: 'Limit break now!',
       },
