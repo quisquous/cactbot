@@ -1,107 +1,128 @@
-# Omega - Deltascape V1.0 (Savage) - O1S
-# Created by Paprika Rika on Balmung
-# Times originally from http://i.imgur.com/PF21Fnh.png
+### Omega 1 (Savage)
+# Omega - Deltascape V1.0 (Savage)
+# -p 1ECE:6.9
+# -ii 1ED0 1EDA 1ED9 2584 1ED2
 
-##############################################################
-0	"--Reset--" sync /Removing combatant Alte Roite/ window 10000 jump 0
+hideall "--sync--"
+hideall "--Reset--"
+hideall "Flame"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 ###### 1st Classical Elements
-0 "Start" sync /:Engage!/ window 0,1
-6.8 "Wyrm Tail" sync /:Alte Roite:1ECE:Wyrm Tail:/ window 7,3
-12.8 "Wyrm Tail"
-14.8 "Twin Bolt" duration 5
-
 # spread: knockback => in => spread+lightning
-28.7 "Classical (spread)" sync /:1EDC:Alte Roite/ window 10,10
-51.2 "Thin Ice"
-52.2 "Downburst"
-56 "Outer Fireballs"
-59.7 "Levinbolt"
-65.2 "Roar"
-72.5 "Wyrm Tail"
-78.5 "Wyrm Tail"
-83.7 "Twin Bolt" duration 5
-90.7 "Clamp"
-109.7 "Wyrm Tail"
-115.7 "Outer Fireballs"
-118.7 "Levinbolt"
-120.7 "Inner Fireballs"
-121.0 "Blaze" duration 6
-134.1 "Wyrm Tail"
-140.1 "Wyrm Tail"
-141.5 "Twin Bolt" duration 5
-156.5 "Roar"
-162.5 "Roar"
-169.9 "Wyrm Tail"
-175.9 "Charybdis"
-182.9 "Roar"
+
+0 "Start" sync /:Engage!/ window 0,1
+2.5 "--sync--" sync /:Alte Roite:368:/ window 2.5,0
+6.9 "Wyrm Tail" sync /:Alte Roite:1ECE:/ window 7,3
+13.0 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+20.1 "Twin Bolt" sync /:Alte Roite:1ECF:/
+
+34.6 "Classical (spread)" sync /:Alte Roite:1EDC:/ window 80,80
+37.7 "Flame" sync /:Alte Roite:1ED5:/
+41.8 "Flash Freeze" sync /:Alte Roite:1ED7:/
+51.9 "Downburst" sync /:Alte Roite:1ED8:/
+57.2 "Outer Fireballs" sync /:Ball Of Fire:1ECB:/
+60.5 "Levinbolt" sync /:Alte Roite:1ED1:/
+66.6 "Roar" sync /:Alte Roite:1ED4:/
+72.8 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+78.9 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+90.0 "Twin Bolt" sync /:Alte Roite:1ECF:/
+96.1 "Clamp" sync /:Alte Roite:1EDE:/
+98.2 "Flame" sync /:Alte Roite:1ED5:/
+103.3 "Flame" sync /:Alte Roite:1ED5:/
+109.4 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+117.4 "Outer Fireballs" sync /:Ball Of Fire:1ECB:/
+120.5 "Levinbolt" sync /:Alte Roite:1ED1:/
+122.5 "Inner Fireballs" sync /:Ball Of Fire:1ECB:/
+127.6 "Blaze" sync /:Alte Roite:1EDD:/
+134.8 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+140.9 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+148.0 "Twin Bolt" sync /:Alte Roite:1ECF:/
+158.1 "Roar" sync /:Alte Roite:1ED4:/
+164.2 "Roar" sync /:Alte Roite:1ED4:/
+170.4 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+177.5 "Charybdis" sync /:Alte Roite:1ED3:/
+184.7 "Roar" sync /:Alte Roite:1ED4:/
+
 
 ###### 2nd Classical Elements
 # safe: knockback safe spot => spread+lightning
-188.1 "Classical (safe)" sync /:1EDC:Alte Roite/ window 10,10
-213.2 "Downburst"
-213.6 "Thin Ice"
-215.6 "Outer Fireballs"
-221.4 "Levinbolt"
-231.9 "Teleport"
-239.1 "Thin Ice"
-240.1 "Breath Wing"
-#240.4 "Fireballs"
-248.8 "Clamp"
-247.2 "Blaze" duration 6
-260.6 "Roar"
-267.9 "Wyrm Tail"
-273.9 "Wyrm Tail"
-284.0 "Charybdis"
-### TODO
-287.5 "Twin Bolt" duration 5
-316.1 "Levinbolt"
-317.6 "Inner Fireballs"
-321.7 "Clamp"
-326.0 "Outer Fireballs"
-331.6 "Roar"
-337.6 "Roar"
 
-# *** NOTE ***
-# Timings from this point need readjusting from video.
-# 3rd section is likely 1-3 seconds off.
-# 4th section has never been adjusted from video.
+195.1 "Classical (safe)" sync /:Alte Roite:1EDC:/ window 80,80
+198.2 "Flame" sync /:Alte Roite:1ED5:/
+204.8 "Flash Freeze" sync /:Alte Roite:1ED7:/
+213.9 "Downburst" sync /:Alte Roite:1ED8:/
+217.7 "Outer Fireballs" sync /:Ball Of Fire:1ECB:/
+223.0 "Levinbolt" sync /:Alte Roite:1ED1:/
+225.2 "Flame" sync /:Alte Roite:1ED5:/
+230.3 "Flash Freeze" sync /:Alte Roite:1ED7:/
+240.7 "Breath Wing" sync /:Alte Roite:1ED6:/
+244.8 "Inner Fireballs" sync /:Ball Of Fire:1ECB:/
+248.6 "Clamp" sync /:Alte Roite:1EDE:/
+255.7 "Blaze" sync /:Alte Roite:1EDD:/
+262.8 "Roar" sync /:Alte Roite:1ED4:/
+269.0 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+275.1 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+286.2 "Charybdis" sync /:Alte Roite:1ED3:/
+294.3 "Twin Bolt" sync /:Alte Roite:1ECF:/
+300.5 "Flame" sync /:Alte Roite:1ED5:/
+308.6 "Flame" sync /:Alte Roite:1ED5:/
+317.7 "Levinbolt" sync /:Alte Roite:1ED1:/
+319.7 "Inner Fireballs" sync /:Ball Of Fire:1ECB:/
+327.4 "Clamp" sync /:Alte Roite:1EDE:/
+327.8 "Outer Fireballs" sync /:Ball Of Fire:1ECB:/
+333.5 "Roar" sync /:Alte Roite:1ED4:/
+339.6 "Roar" sync /:Alte Roite:1ED4:/
+
 
 ###### 3rd Classical Elements
 # stack: knockback => in => blaze stack
-343.6 "Classical (stack)" sync /:1EDC:Alte Roite/ window 10,10
-369.9 "Outer Fireballs"
-370.0 "Thin Ice"
-370.4 "Downburst"
-373.0 "Outer Fireballs"
-373.9 "Blaze" duration 6
-385.4 "Roar"
-392.4 "Wyrm Tail"
-398.5 "Wyrm Tail"
-403.8 "Twin Bolt" duration 5
-410.8 "Clamp"
-428.6 "Wyrm Tail"
-435.4 "Outer Fireballs"
-438.4 "Levinbolt"
-440.2 "Inner Fireballs"
-440.9 "Blaze" duration 6
+
+350.0 "Classical (stack)" sync /:Alte Roite:1EDC:/ window 80,80
+353.1 "Flame" sync /:Alte Roite:1ED5:/
+356.2 "Flame" sync /:Alte Roite:1ED5:/
+361.3 "Flash Freeze" sync /:Alte Roite:1ED7:/
+371.4 "Downburst" sync /:Alte Roite:1ED8:/
+372.3 "Outer Fireballs" sync /:Ball Of Fire:1ECB:/
+375.8 "Inner Fireballs" sync /:Ball Of Fire:1ECB:/
+380.6 "Blaze" sync /:Alte Roite:1EDD:/
+387.7 "Roar" sync /:Alte Roite:1ED4:/
+393.9 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+400.0 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+411.1 "Twin Bolt" sync /:Alte Roite:1ECF:/
+417.2 "Clamp" sync /:Alte Roite:1EDE:/
+419.4 "Flame" sync /:Alte Roite:1ED5:/
+424.5 "Flame" sync /:Alte Roite:1ED5:/
+430.6 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+438.6 "Outer Fireballs" sync /:Ball Of Fire:1ECB:/
+441.7 "Levinbolt" sync /:Alte Roite:1ED1:/
+443.7 "Inner Fireballs" sync /:Ball Of Fire:1ECB:/
+448.9 "Blaze" sync /:Alte Roite:1EDD:/
+
 
 ##### 4th Classical Elements
 # spread: knockback => in => spread+lightning
-453.0 "Classical (spread)" sync /:1EDC:Alte Roite/ window 10,10
-469.0 "Thin Ice"
-470.0 "Downburst"
-475.0 "Outer Fireballs"
-478.0 "Levinbolt"
-484.0 "Roar"
-490.0 "Wyrm Tail"
-496.0 "Wyrm Tail"
-507.0 "Charybdis"
-515.0 "Twin Bolt"
-538.0 "Levinbolt"
-540.0 "Inner Fireballs"
-547.0 "Clamp"
-548.0 "Outer Fireballs"
-554.0 "Roar"
-560.0 "Roar"
-579.0 "Enrage"
+
+460.3 "Classical (spread)" sync /:Alte Roite:1EDC:/ window 80,80
+463.4 "Flame" sync /:Alte Roite:1ED5:/
+467.5 "Flash Freeze" sync /:Alte Roite:1ED7:/
+477.6 "Downburst" sync /:Alte Roite:1ED8:/
+483.0 "Outer Fireballs" sync /:Ball Of Fire:1ECB:/
+486.3 "Levinbolt" sync /:Alte Roite:1ED1:/
+492.4 "Roar" sync /:Alte Roite:1ED4:/
+498.6 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+504.7 "Wyrm Tail" sync /:Alte Roite:1ECE:/
+515.8 "Charybdis" sync /:Alte Roite:1ED3:/
+523.9 "Twin Bolt" sync /:Alte Roite:1ECF:/
+530.1 "Flame" sync /:Alte Roite:1ED5:/
+538.3 "Flame" sync /:Alte Roite:1ED5:/
+547.4 "Levinbolt" sync /:Alte Roite:1ED1:/
+549.4 "Inner Fireballs" sync /:Ball Of Fire:1ECB:/
+557.1 "Clamp" sync /:Alte Roite:1EDE:/
+557.6 "Outer Fireballs" sync /:Ball Of Fire:1ECB:/
+563.3 "Roar" sync /:Alte Roite:1ED4:/
+569.5 "Roar" sync /:Alte Roite:1ED4:/
+
+571.7 "Flame" sync /:Alte Roite:1ED5:/
+589.0 "Enrage" sync /:Ball Of Fire:23E4:/

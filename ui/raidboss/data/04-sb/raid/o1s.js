@@ -3,7 +3,6 @@
 // O1S - Deltascape 1.0 Savage
 [{
   zoneId: ZoneId.DeltascapeV10Savage,
-  timelineNeedsFixing: true,
   timelineFile: 'o1s.txt',
   triggers: [
     {
@@ -85,6 +84,7 @@
   timelineReplace: [
     {
       'locale': 'de',
+      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
         'Wyrm Tail': 'Antiker Drachenschweif',
@@ -153,6 +153,7 @@
     },
     {
       'locale': 'cn',
+      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '老者',
         'Wyrm Tail': '太古龙尾',
