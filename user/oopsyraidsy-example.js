@@ -44,8 +44,8 @@ Options.Triggers = [
       {
         id: 'Test Self Crit Adlo',
         healRegex: 'B9', // Adloquium ability id
-        condition: function(e, data) {
-          return e.targetName == data.me && e.damageStr.substr(-1) == '!';
+        condition: function(e, data, matches) {
+          return e.targetName == data.me && matches.flags === '10004';
         },
         mistake: function(e, data) {
           let text = e.abilityName + ': ' + e.damageStr;
