@@ -169,7 +169,7 @@ let missedMitigationAbility = missedHeal;
     {
       id: 'Buff Pet To Owner Clearer',
       netRegex: NetRegexes.changeZone(),
-      run: function() {
+      run: function(e, data, matches) {
         // Clear this hash periodically so it doesn't have false positives.
         data.petIdToOwnerId = {};
       },
