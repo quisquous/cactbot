@@ -9,7 +9,7 @@ let gPullCounter;
 class PullCounter {
   constructor(element) {
     this.element = element;
-    this.zone = null;
+    this.zoneName = null;
     this.bossStarted = false;
     this.party = [];
     this.bosses = [];
@@ -73,7 +73,8 @@ class PullCounter {
 
   OnChangeZone(e) {
     this.element.innerText = '';
-    this.zone = e.zoneName;
+    this.zoneName = e.zoneName;
+    this.zoneId = e.zoneID;
 
     // Network log zone names that start with "the" are lowercase.
     // Adjust this here to match saved pull counts for zones which
@@ -82,9 +83,8 @@ class PullCounter {
 
     // TODO: add some backwards compatible way to turn zone names into
     // zone ids when we load that zone and a pull count exists?
-
     // Proper-case zone names to match ACT.
-    this.zone = this.zone.split(' ').map((word) => {
+    this.zoneName = this.zoneName.split(' ').map((word) => {
       if (!word || word.length === 0)
         return '';
       return word[0].toUpperCase() + word.substr(1);
@@ -95,14 +95,14 @@ class PullCounter {
 
   ResetPullCounter() {
     if (this.bosses.length > 0) {
-      for (let i = 0; i < this.bosses.length; ++i) {
-        let id = this.bosses[i].id;
+      for (const boss of this.bosses) {
+        const id = boss.id;
         this.pullCounts[id] = 0;
         console.log('resetting pull count of: ' + id);
         this.ShowElementFor(id);
       }
     } else {
-      let id = this.zone;
+      const id = this.zoneName;
       console.log('resetting pull count of: ' + id);
       this.ShowElementFor(id);
     }
@@ -113,12 +113,12 @@ class PullCounter {
   ReloadTriggers() {
     this.bosses = [];
     this.countdownBoss = null;
-    if (!this.zone || !this.pullCounts)
+    if (!this.zoneName || !this.pullCounts)
       return;
 
     for (let i = 0; i < gBossFightTriggers.length; ++i) {
       let boss = gBossFightTriggers[i];
-      if (!this.zone.match(Regexes.parse(boss.zoneRegex)))
+      if (this.zoneId !== boss.zoneId)
         continue;
       this.bosses.push(boss);
       if (boss.countdownStarts) {
@@ -148,7 +148,7 @@ class PullCounter {
     if (this.party.length != 8)
       return;
     this.OnFightStart({
-      id: this.zone,
+      id: this.zoneName,
       countdownStarts: true,
     });
   }
