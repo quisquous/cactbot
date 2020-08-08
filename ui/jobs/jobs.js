@@ -1859,14 +1859,18 @@ class Bars {
 
       // Show time remain when summoming/trancing.
       // Turn blue when buhamut ready, and turn orange when firebird ready.
+      // Also change tramceBox color.
       demiSummomingBox.innerText = '';
       demiSummomingBox.parentNode.classList.remove('bahamutready', 'firebirdready');
-      if (time > 0)
+      tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-trance');
+      if (time > 0) {
         demiSummomingBox.innerText = time;
-      else if (jobDetail.dreadwyrmStacks == 2)
+      } else if (jobDetail.dreadwyrmStacks == 2) {
         demiSummomingBox.parentNode.classList.add('bahamutready');
-      else if (jobDetail.phoenixReady == true)
+      } else if (jobDetail.phoenixReady == true) {
         demiSummomingBox.parentNode.classList.add('firebirdready');
+        tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-demisummom.firebirdready');
+      }
 
       // Turn red when only 7s summoming time remain, to alarm that cast the second Enkindle.
       // Also alarm that don't cast a spell that has cast time, or a WW/SF will be missed.
