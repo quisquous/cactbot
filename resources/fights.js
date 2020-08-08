@@ -1,145 +1,117 @@
 'use strict';
 
-let gBossFightTriggers = [
+// NOTE: do not add more fights to this data structure.
+// These exist for testing pullcounter and for backwards compatibility
+// with pullcounter keys.  None of these were translated in the past,
+// and so it's also not worth going back and adding these as there is
+// no backwards compatibility issue for other languages.
+
+const gBossFightTriggers = [
   {
     id: 'test',
     zoneId: ZoneId.MiddleLaNoscea,
     startRegex: /:You bow courteously to the striking dummy/,
-    endRegex: /:You bid farewell to the striking dummy/,
     countdownStarts: true,
+    preventAutoStart: true,
   },
   {
     id: 'o1s',
     zoneId: ZoneId.DeltascapeV10Savage,
-    startRegex: /:Alte Roite uses Wyrm Tail/,
-    countdownStarts: true,
   },
   {
     id: 'o2s',
     zoneId: ZoneId.DeltascapeV20Savage,
-    startRegex: /:Catastrophe uses Earthquake/,
-    countdownStarts: true,
   },
   {
     id: 'o3s',
     zoneId: ZoneId.DeltascapeV30Savage,
-    startRegex: /:Halicarnassus uses Critical Hit/,
-    countdownStarts: true,
   },
   {
     id: 'o4s-exdeath',
     zoneId: ZoneId.DeltascapeV40Savage,
     startRegex: /:Exdeath uses Dualcast/,
-    endRegex: /:The limit gauge resets!/,
-    countdownStarts: false,
+    preventAutoStart: true,
   },
   {
     id: 'o4s-neo',
     zoneId: ZoneId.DeltascapeV40Savage,
     startRegex: /:Neo Exdeath uses Almagest/,
-    countdownStarts: false,
+    preventAutoStart: true,
   },
   {
     id: 'Unending Coil',
     zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
-    startRegex: /:Twintania:26A7:/,
-    countdownStarts: true,
   },
   {
     id: 'Shinryu Ex',
     zoneId: ZoneId.TheMinstrelsBalladShinryusDomain,
-    startRegex: /:Shinryu starts using Earthen Fury/,
-    countdownStarts: true,
   },
   {
     id: 'o5s',
     zoneId: ZoneId.SigmascapeV10Savage,
-    startRegex: /:Wroth Ghost:28B6:/,
-    countdownStarts: true,
   },
   {
     id: 'o6s',
     zoneId: ZoneId.SigmascapeV20Savage,
-    startRegex: /14:2829:Demon Chadarnook starts using Demonic Shear/,
-    countdownStarts: true,
   },
   {
     id: 'o7s',
     zoneId: ZoneId.SigmascapeV30Savage,
-    startRegex: /00:0044:[^:]*:WEAPON SYSTEMS ONLINE/,
-    countdownStarts: true,
   },
   {
     id: 'o8s-kefka',
     zoneId: ZoneId.SigmascapeV40Savage,
     startRegex: / 15:........:Kefka:28C2:/,
-    endRegex: /:Kekfa was defeated by/,
-    countdownStarts: false,
+    preventAutoStart: true,
   },
   {
     id: 'o8s-god kefka',
     zoneId: ZoneId.SigmascapeV40Savage,
     startRegex: / 15:........:Kefka:28EC:/,
-    countdownStarts: false,
+    preventAutoStart: true,
   },
   {
     id: 'Byakko Ex',
     zoneId: ZoneId.TheJadeStoaExtreme,
-    startRegex: /:Byakko starts using Storm Pulse/,
-    countdownStarts: true,
   },
   {
     id: 'Tsukuyomi Ex',
     zoneId: ZoneId.TheMinstrelsBalladTsukuyomisPain,
-    startRegex: /:Tsukuyomi:2BBA:/,
-    countdownStarts: true,
   },
   {
     id: 'UwU',
     zoneId: ZoneId.TheWeaponsRefrainUltimate,
-    startRegex: /:Garuda:2B53:/,
-    countdownStarts: true,
   },
   {
     id: 'Suzaku Ex',
     zoneId: ZoneId.HellsKierExtreme,
-    startRegex: /:Suzaku:367:/,
-    countdownStarts: true,
   },
   {
     id: 'Seiryu Ex',
     zoneId: ZoneId.TheWreathOfSnakesExtreme,
-    startRegex: /:Seiryu:366:/,
-    countdownStarts: true,
   },
   {
     id: 'o9s',
     zoneId: ZoneId.AlphascapeV10Savage,
-    startRegex: /:Chaos:316F:/,
-    countdownStarts: true,
   },
   {
     id: 'o10s',
     zoneId: ZoneId.AlphascapeV20Savage,
-    startRegex: /:Midgardsormr:31F9:/,
-    countdownStarts: true,
   },
   {
     id: 'o11s',
     zoneId: ZoneId.AlphascapeV30Savage,
-    startRegex: /:Omega:368:/,
-    countdownStarts: true,
   },
   {
     id: 'o12s-door',
     zoneId: ZoneId.AlphascapeV40Savage,
     startRegex: /:Omega-M:337D:/,
-    countdownStarts: false,
+    preventAutoStart: true,
   },
   {
     id: 'o12s-final',
     zoneId: ZoneId.AlphascapeV40Savage,
     startRegex: /:Omega:336C:/,
-    countdownStarts: false,
+    preventAutoStart: true,
   },
 ];
