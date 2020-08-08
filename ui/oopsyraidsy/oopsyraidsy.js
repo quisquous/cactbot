@@ -1043,10 +1043,8 @@ class DamageTracker {
     if (this.ignoreZone)
       return;
 
-    for (let i = 0; i < this.triggerSets.length; ++i) {
-      let set = this.triggerSets[i];
-
-      if ('zoneID' in set) {
+    for (const set of this.triggerSets) {
+      if ('zoneId' in set) {
         if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId)
           continue;
       } else if ('zoneRegex' in set) {
@@ -1077,6 +1075,8 @@ class DamageTracker {
 
         if (this.zoneName.search(Regexes.parse(zoneRegex)) < 0)
           continue;
+      } else {
+        return;
       }
 
       if (this.options.Debug) {
@@ -1167,13 +1167,13 @@ class DamageTracker {
       for (const triggerSet of json) {
         const hasZoneRegex = 'zoneRegex' in triggerSet;
         const hasZoneId = 'zoneId' in triggerSet;
-        if (!hasZoneRegex && !hasZoneId || hasZoneId && hasZoneId) {
+        if (!hasZoneRegex && !hasZoneId || hasZoneRegex && hasZoneId) {
           console.error('Unexpected JSON from ' + filename + ', need one of zoneRegex/zoneID');
           continue;
         }
 
         triggerSet.filename = filename;
-        if ('triggers' in json[i]) {
+        if ('triggers' in json) {
           if (typeof triggerSet.triggers != 'object' || !(triggerSet.triggers.length >= 0)) {
             console.error('Unexpected JSON from ' + filename + ', expected triggers to be an array');
             continue;
