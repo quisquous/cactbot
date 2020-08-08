@@ -79,8 +79,9 @@ hideall "--sync--"
 # Summon Alexander seems to push at 30% HP.
 # It appears that Alexander has to complete at least a part of the Timegate section first?
 # (Pushes of anywhere from 5% to 30% have been seen.)
-# Technically everything immediately after is a loop.
-# However, there's a fixed enrage after a set number of loops.
+# Enrage happens after loop 4 if there have been no phase pushes.
+# Whether this is the case with pushes is unknown.
+
 436.0 "Summon Alexander" sync /:Alexander Prime:1A0A:/ window 412.8,5
 446.2 "Divine Spear" sync /:Alexander Prime:1AE3:/
 454.3 "Mega Holy" sync /:Alexander Prime:1AE7:/
@@ -91,50 +92,14 @@ hideall "--sync--"
 477.9 "--targetable--"
 481.4 "Communion x4" # sync /:Alexander:1AFC:/
 483.0 "Sacrament" sync /:Alexander Prime:1AE5:/
-499.2 "Punishing Heat" sync /:Alexander Prime:1AE4:/
+499.2 "Punishing Heat" sync /:Alexander Prime:1AE4:/ window 30,30
 503.4 "Divine Spear" sync /:Alexander Prime:1AE3:/
 511.5 "Mega Holy" sync /:Alexander Prime:1AE7:/
 
-521.7 "Divine Spear" sync /:Alexander Prime:1AE3:/
-529.8 "Mega Holy" sync /:Alexander Prime:1AE7:/
-536.6 "Communion x4" # sync /:Alexander:1AFC:/
-546.0 "Temporal Stasis" sync /:Alexander Prime:1AF0:/ window 30,30
-550.1 "--untargetable--"
-550.1 "Plaint Of Solidarity" sync /:Alexander Prime:1AF2:/
-553.3 "--targetable--"
-556.7 "Communion x4" # sync /:Alexander:1AFC:/
-558.4 "Sacrament" sync /:Alexander Prime:1AE5:/
-574.5 "Punishing Heat" sync /:Alexander Prime:1AE4:/
-578.7 "Divine Spear" sync /:Alexander Prime:1AE3:/
-586.8 "Mega Holy" sync /:Alexander Prime:1AE7:/
-
-597.0 "Divine Spear" sync /:Alexander Prime:1AE3:/
-605.1 "Mega Holy" sync /:Alexander Prime:1AE7:/
-612.0 "Communion x4" # sync /:Alexander:1AFC:/
-621.4 "Temporal Stasis" sync /:Alexander Prime:1AF0:/ window 30,30
-625.5 "--untargetable--"
-625.5 "Plaint Of Solidarity" sync /:Alexander Prime:1AF2:/
-628.7 "--targetable--"
-632.2 "Communion x4" # sync /:Alexander:1AFC:/
-633.8 "Sacrament" sync /:Alexander Prime:1AE5:/
-649.9 "Punishing Heat" sync /:Alexander Prime:1AE4:/
-654.0 "Divine Spear" sync /:Alexander Prime:1AE3:/
-662.1 "Mega Holy" sync /:Alexander Prime:1AE7:/
-
-672.3 "Divine Spear" sync /:Alexander Prime:1AE3:/
-680.4 "Mega Holy" sync /:Alexander Prime:1AE7:/
-687.3 "Communion x4" # sync /:Alexander:1AFC:/
-696.7 "Temporal Stasis" sync /:Alexander Prime:1AF0:/ window 30,30
-700.8 "--untargetable--"
-700.8 "Plaint Of Solidarity" sync /:Alexander Prime:1AF2:/
-704.0 "--targetable--"
-707.5 "Communion x4" # sync /:Alexander:1AFC:/
-709.2 "Sacrament" sync /:Alexander Prime:1AE5:/
-725.4 "Punishing Heat" sync /:Alexander Prime:1AE4:/
-729.5 "Divine Spear" sync /:Alexander Prime:1AE3:/
-737.6 "Mega Holy" sync /:Alexander Prime:1AE7:/
-
-747.8 "Divine Spear" sync /:Alexander Prime:1AE3:/
-750.5 "Divine Judgment" sync /:Alexander:1A18:/
-755.9 "Mega Holy" sync /:Alexander Prime:1AE7:/
-760.3 "Divine Judgment (Enrage)" sync /:Alexander:1AEF:/
+521.7 "Divine Spear" sync /:Alexander Prime:1AE3:/ jump 446.2
+529.8 "Mega Holy"
+536.7 "Communion x4"
+546.1 "Temporal Stasis"
+550.2 "--untargetable--"
+550.2 "Plaint Of Solidarity"
+553.4 "--targetable--"
