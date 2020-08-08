@@ -6,9 +6,9 @@
   triggers: [
     {
       id: 'Test Bow',
-      regex: Regexes.gameNameLog({ line: 'You bow courteously to the striking dummy.*?' }),
-      regexFr: Regexes.gameNameLog({ line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?' }),
-      regexKo: Regexes.gameNameLog({ line: '.*나무인형에게 공손하게 인사합니다.*?' }),
+      netRegex: NetRegexes.gameNameLog({ line: 'You bow courteously to the striking dummy.*?' }),
+      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?' }),
+      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 공손하게 인사합니다.*?' }),
       mistake: function(e, data) {
         return {
           type: 'pull',
@@ -25,9 +25,9 @@
     },
     {
       id: 'Test Wipe',
-      regex: Regexes.gameNameLog({ line: 'You bid farewell to the striking dummy.*?' }),
-      regexFr: Regexes.gameNameLog({ line: 'Vous faites vos adieux au mannequin d\'entraînement.*?' }),
-      regexKo: Regexes.gameNameLog({ line: '.*나무인형에게 작별 인사를 합니다.*?' }),
+      netRegex: NetRegexes.gameNameLog({ line: 'You bid farewell to the striking dummy.*?' }),
+      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous faites vos adieux au mannequin d\'entraînement.*?' }),
+      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 작별 인사를 합니다.*?' }),
       mistake: function(e, data) {
         return {
           type: 'wipe',
@@ -75,16 +75,16 @@
     },
     {
       id: 'Test Oops',
-      regex: Regexes.echo({ line: '.*oops.*' }),
+      netRegex: NetRegexes.echo({ line: '.*oops.*' }),
       mistake: function(e, data, matches) {
         return { type: 'fail', blame: data.me, text: matches.line };
       },
     },
     {
       id: 'Test Poke',
-      regex: Regexes.gameNameLog({ line: 'You poke the striking dummy.*?' }),
-      regexFr: Regexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?' }),
-      regexKo: Regexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
+      netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?' }),
+      netRegexFr: NetRegexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?' }),
+      netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
       collectSeconds: 5,
       mistake: function(events, data) {
         // When collectSeconds is specified, events are passed as an array.

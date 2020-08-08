@@ -21,12 +21,12 @@
   triggers: [
     {
       id: 'O3N Phase Tracker',
-      regex: Regexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
-      regexDe: Regexes.startsUsing({ id: '2304', source: 'Halikarnassos', capture: false }),
-      regexFr: Regexes.startsUsing({ id: '2304', source: 'Halicarnasse', capture: false }),
-      regexJa: Regexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
-      regexCn: Regexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
-      regexKo: Regexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnassus', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2304', source: 'Halikarnassos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2304', source: 'Halicarnasse', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2304', source: 'ハリカルナッソス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2304', source: '哈利卡纳苏斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2304', source: '할리카르나소스', capture: false }),
       run: function(e, data) {
         data.phaseNumber += 1;
       },
@@ -35,12 +35,12 @@
       // There's a lot to track, and in order to make it all clean, it's safest just to
       // initialize it all up front instead of trying to guard against undefined comparisons.
       id: 'O3N Initializing',
-      regex: Regexes.ability({ id: '367', source: 'Halicarnassus', capture: false }),
-      regexDe: Regexes.ability({ id: '367', source: 'Halikarnassos', capture: false }),
-      regexFr: Regexes.ability({ id: '367', source: 'Halicarnasse', capture: false }),
-      regexJa: Regexes.ability({ id: '367', source: 'ハリカルナッソス', capture: false }),
-      regexCn: Regexes.ability({ id: '367', source: '哈利卡纳苏斯', capture: false }),
-      regexKo: Regexes.ability({ id: '367', source: '할리카르나소스', capture: false }),
+      netRegex: NetRegexes.ability({ id: '367', source: 'Halicarnassus', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '367', source: 'Halikarnassos', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '367', source: 'Halicarnasse', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: '367', source: 'ハリカルナッソス', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: '367', source: '哈利卡纳苏斯', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '367', source: '할리카르나소스', capture: false }),
       condition: function(e, data) {
         return !data.initialized;
       },

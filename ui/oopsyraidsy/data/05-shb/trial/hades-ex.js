@@ -37,7 +37,7 @@
   triggers: [
     {
       id: 'HadesEx Dark II Tether',
-      regex: Regexes.tether({ source: 'Shadow of the Ancients', id: '0011' }),
+      netRegex: NetRegexes.tether({ source: 'Shadow of the Ancients', id: '0011' }),
       run: function(e, data, matches) {
         data.hasDark = data.hasDark || [];
         data.hasDark.push(matches.target);
@@ -56,7 +56,7 @@
     },
     {
       id: 'HadesEx Boss Tether',
-      regex: Regexes.tether({ source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], id: '000E', capture: false }),
+      netRegex: NetRegexes.tether({ source: ['Igeyorhm\'s Shade', 'Lahabrea\'s Shade'], id: '000E', capture: false }),
       mistake: {
         type: 'warn',
         text: {
