@@ -50,8 +50,7 @@ class PullCounter {
   OnLogEvent(e) {
     if (this.bossStarted)
       return;
-    for (let i = 0; i < e.detail.logs.length; ++i) {
-      let log = e.detail.logs[i];
+    for (const log of e.detail.logs) {
       if (log.match(this.resetRegex))
         this.ResetPullCounter();
       if (log.match(this.countdownEngageRegex)) {
@@ -61,9 +60,8 @@ class PullCounter {
           this.AutoStartBossIfNeeded();
         return;
       }
-      for (let b = 0; b < this.bosses.length; ++b) {
-        let boss = this.bosses[b];
-        if (log.match(boss.startRegex)) {
+      for (const boss of this.bosses) {
+        if (boss.startRegex && log.match(boss.startRegex)) {
           this.OnFightStart(boss);
           return;
         }
@@ -113,11 +111,11 @@ class PullCounter {
   ReloadTriggers() {
     this.bosses = [];
     this.countdownBoss = null;
+
     if (!this.zoneName || !this.pullCounts)
       return;
 
-    for (let i = 0; i < gBossFightTriggers.length; ++i) {
-      let boss = gBossFightTriggers[i];
+    for (const boss of gBossFightTriggers) {
       if (this.zoneId !== boss.zoneId)
         continue;
       this.bosses.push(boss);
@@ -140,13 +138,22 @@ class PullCounter {
 
   AutoStartBossIfNeeded() {
     // Start an implicit boss fight for this zone in parties of 8 people
-    // where no other bosses have been specified.
-    if (this.bosses.length > 0)
+    // unless there's a door fight that specifies otherwise.
+    if (this.bosses.length > 1)
       return;
     if (this.bossStarted)
       return;
     if (this.party.length != 8)
       return;
+
+    if (this.bosses.length === 1) {
+      const boss = this.bosses[0];
+      if (boss.preventAutoStart)
+        return;
+      this.OnFightStart(boss);
+      return;
+    }
+
     this.OnFightStart({
       id: this.zoneName,
       countdownStarts: true,
