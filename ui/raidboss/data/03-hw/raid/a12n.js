@@ -12,9 +12,6 @@
       alarmText: {
         en: 'Limit break now!',
       },
-      run: function(data) {
-        data.judgment = true;
-      },
     },
     {
       id: 'A12N Divine Spear',
