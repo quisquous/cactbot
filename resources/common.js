@@ -9,7 +9,7 @@ let kGatheringJobs = ['MIN', 'BTN', 'FSH'];
 
 let kStunJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL', 'WAR', 'MRD', 'PLD', 'GLA', 'DRK', 'GNB'];
 let kSilenceJobs = ['MCH', 'BRD', 'ARC', 'DNC', 'BLU', 'GLA', 'PLD', 'MRD', 'WAR', 'DRK', 'GNB'];
-let kSleepJobs = ['BLM', 'WHM'];
+let kSleepJobs = ['BLM', 'WHM', 'SCH', 'AST'];
 let kFeintJobs = ['SAM', 'NIN', 'ROG', 'DRG', 'LNC', 'MNK', 'PGL'];
 let kAddleJobs = ['BLU', 'RDM', 'SMN', 'ACN', 'BLM', 'THM'];
 let kCleanseJobs = ['AST', 'BRD', 'CNJ', 'SCH', 'WHM'];

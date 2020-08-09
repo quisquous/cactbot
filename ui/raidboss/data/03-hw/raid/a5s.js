@@ -55,6 +55,7 @@ let bombLocation = (matches) => {
       alertText: {
         en: 'Bird Soon (Purple)',
         de: 'Vogel bald (Lila)',
+        fr: 'Oiseau bientôt (Violet)',
       },
     },
     {
@@ -65,6 +66,7 @@ let bombLocation = (matches) => {
       alertText: {
         en: 'Gorilla Soon (Red)',
         de: 'Gorilla bald (Rot)',
+        fr: 'Gorille bientôt (Rouge)',
       },
     },
     {
@@ -75,6 +77,7 @@ let bombLocation = (matches) => {
       infoText: {
         en: 'refresh debuff in puddle soon',
         de: 'Debuff in der Fläsche bald erneuern',
+        fr: 'Rafraîchissez le debuff dans la zone au sol bientôt',
       },
     },
   ],
@@ -114,12 +117,14 @@ let bombLocation = (matches) => {
           return {
             en: 'Knock Bombs Into Spikey',
             de: 'Bombe in die Spike-Bombe stoßen',
+            fr: 'Poussez les bombes dans la bombe à pointe',
             ko: '지뢰쪽으로 폭탄 밀기',
           };
         }
         return {
           en: 'Knock Bombs Opposite Spikey',
           de: 'Bombe gegnüber der Spike-Bombe stoßen',
+          fr: 'Poussez les bombes à l\'opposé de la bombe à pointe',
           ko: '지뢰 반대쪽으로 폭탄 밀기',
         };
       },
@@ -160,21 +165,25 @@ let bombLocation = (matches) => {
             0: {
               en: 'NW first',
               de: 'NW zuerst',
+              fr: 'NO en premier',
               ko: '북서쪽 먼저',
             },
             3: {
               en: 'NE first',
               de: 'NO zuerst',
+              fr: 'NE en premier',
               ko: '북동쪽 먼저',
             },
             12: {
               en: 'SW first',
               de: 'SW zuerst',
+              fr: 'SO en premier',
               ko: '남서쪽 먼저',
             },
             15: {
               en: 'SE first',
               de: 'SO zuerst',
+              fr: 'SE en premier',
               ko: '남동쪽 먼저',
             },
           }[index];
@@ -193,6 +202,7 @@ let bombLocation = (matches) => {
       alertText: {
         en: 'Get Away',
         de: 'Weg gehen',
+        fr: 'Éloignez-vous',
         ko: '멀리 떨어지기',
       },
     },
@@ -206,6 +216,7 @@ let bombLocation = (matches) => {
         return {
           en: 'Shield ' + data.ShortName(matches.target),
           de: 'Schild ' + data.ShortName(matches.target),
+          fr: 'Bouclier sur ' + data.ShortName(matches.target),
           ko: '"' + data.ShortName(matches.target) + '" 에게 보호막',
         };
       },
@@ -217,6 +228,7 @@ let bombLocation = (matches) => {
       alarmText: {
         en: 'GLOOPYGLOOP~',
         de: 'GLOOPYGLOOP~',
+        fr: 'Gobacide gluant',
         ko: '강산성 극약',
       },
     },
@@ -254,6 +266,7 @@ let bombLocation = (matches) => {
       alertText: {
         en: 'Cleanse (Green)',
         de: 'Reinigen (Grün)',
+        fr: 'Purifiez-vous (Vert)',
         ko: '디버프 해제 (초록)',
       },
     },
@@ -273,6 +286,7 @@ let bombLocation = (matches) => {
       alertText: {
         en: 'Break Tether (Blue)',
         de: 'Verbindungen brechen (Blau)',
+        fr: 'Cassez le lien (Bleu)',
         ko: '선 끊기 (파랑)',
       },
     },
@@ -342,35 +356,52 @@ let bombLocation = (matches) => {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Hummelfaust': 'hummelfaust',
+        '(?<!Smart)Bomb(?!e)': 'Bombe',
+        '(?<!Hummel)Faust': 'Faust',
+        'Glassy-Eyed Minotaur': 'Minotaure au regard vide',
+        'Gobbledygawker': 'Gobœil',
+        'Gobbledygroper': 'Gobchimère',
+        'Hummelfaust': 'Hummelfaust',
         'Ratfinx Twinkledinks': 'Ratfinx le Génie',
         'Smartbomb': 'mégagobbombe',
+        'The Clevering': 'la gobexpérimentation super-avancée',
       },
       'replaceText': {
+        '\\(NW\\)': '(NO)',
+        '\\(SE/SW\\)': '(SE/SO)',
+        '--big--': '--grand--',
+        '--small--': '--petit--',
         '10-Tonze Slash': 'Taillade de 10 tonz',
         'Big Burst': 'Grande explosion',
         'Bomb\'s Away': 'Lâcher de bombe',
         'Boost': 'Contraction musculaire',
+        'Cobra': 'Cobra',
         'Disorienting Groan': 'Cri désorientant',
         'Feast': 'Festin',
         'Glupgloop': 'Gobacide gluant',
+        'Gobbledygawker': 'Gobœil',
+        'Gobbledygroper Add': 'Add Gobchimère',
+        'Gobcut/Straight': 'Uppercut/Direct du droit',
         'Gobdash': 'Gobcharge',
         'Gobhook': 'Gobcrochet',
         'Gobjab': 'Gobcoup du gauche',
+        'Gobstraight/Cut': 'Direct du droit/Uppercut',
         'Gobswing': 'Gobcrochet plongeant',
         'Guzzle': 'Glouglou',
         'Kaltstrahl': 'Kaltstrahl',
+        'Minotaur': 'Minotaure',
         'Oogle': 'Vue pétrifiante',
         'Panzer Vor': 'Panzer Vor',
         'Panzerschreck': 'Panzerschreck',
         'Regorge': 'Vomissure',
         'Relaxant': 'Décontracturant',
+        'Shabti': 'Chaouabti',
         'Shock Therapy': 'Thérapie de choc',
         'Steel Scales': 'Écailles d\'acier',
         'Tetra Burst': 'Explosion en croix',
         'The Lion\'s Breath': 'Souffle du lion',
+        'Yorn Pig': 'Cochon de Yorn',
       },
     },
     {

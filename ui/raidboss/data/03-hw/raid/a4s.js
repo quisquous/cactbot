@@ -20,7 +20,7 @@
           return {
             en: 'Orbs on YOU',
             de: 'Orbs auf DIR',
-            fr: 'Orbes sur Vous',
+            fr: 'Orbes sur VOUS',
             cn: '球点名',
             ko: '구슬 대상자',
           };

@@ -82,8 +82,13 @@ class PullCounter {
 
     // TODO: add some backwards compatible way to turn zone names into
     // zone ids when we load that zone and a pull count exists?
-    if (this.zone.length > 0)
-      this.zone = this.zone[0].toUpperCase() + this.zone.substr(1);
+
+    // Proper-case zone names to match ACT.
+    this.zone = this.zone.split(' ').map((word) => {
+      if (!word || word.length === 0)
+        return '';
+      return word[0].toUpperCase() + word.substr(1);
+    }).join(' ');
 
     this.ReloadTriggers();
   }
