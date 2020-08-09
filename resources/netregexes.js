@@ -52,13 +52,17 @@ let parseHelper = (params, funcName, fields) => {
     lastKey = key;
 
     let value = fields[key];
-    if (typeof value === 'object') {
-      let fieldName = fields[key].field;
-      // TODO: the field object here could also manage different defaults, if we wanted?
-      str += Regexes.maybeCapture(capture, fieldName, params[fieldName], matchDefault) + separator;
-    } else {
-      str += fields[key].toString() + separator;
-    }
+    if (typeof value !== 'object')
+      throw new Error(`${funcName}: invalid value: ${JSON.stringify(value)}`);
+
+    const fieldName = fields[key].field;
+    const fieldValue = 'value' in fields[key] ? fields[key].value.toString() : matchDefault;
+
+    if (fieldName)
+      str += Regexes.maybeCapture(capture, fieldName, params[fieldName], fieldValue) + separator;
+    else
+      str += fieldValue + separator;
+
 
     // Stop if we're not capturing and don't care about future fields.
     if (key >= maxKey)
@@ -77,7 +81,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
   startsUsing: (params) => {
     return parseHelper(params, 'startsUsing', {
-      0: '20',
+      0: { field: 'type', value: '20' },
       1: { field: 'timestamp' },
       2: { field: 'sourceId' },
       3: { field: 'source' },
@@ -93,7 +97,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
   ability: (params) => {
     return parseHelper(params, 'ability', {
-      0: '2[12]',
+      0: { field: 'type', value: '2[12]' },
       1: { field: 'timestamp' },
       2: { field: 'sourceId' },
       3: { field: 'source' },
@@ -108,7 +112,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#16-networkaoeability
   abilityFull: (params) => {
     return parseHelper(params, 'abilityFull', {
-      0: '2[12]',
+      0: { field: 'type', value: '2[12]' },
       1: { field: 'timestamp' },
       2: { field: 'sourceId' },
       3: { field: 'source' },
@@ -127,12 +131,10 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1b-networktargeticon-head-markers
   headMarker: (params) => {
     return parseHelper(params, 'headMarker', {
-      0: '27',
+      0: { field: 'type', value: '27' },
       1: { field: 'timestamp' },
       2: { field: 'targetId' },
       3: { field: 'target' },
-      4: '....',
-      5: '....',
       6: { field: 'id' },
     });
   },
@@ -140,7 +142,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
   addedCombatant: (params) => {
     return parseHelper(params, 'addedCombatant', {
-      0: '03',
+      0: { field: 'type', value: '03' },
       1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
@@ -150,7 +152,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#03-addcombatant
   addedCombatantFull: (params) => {
     return parseHelper(params, 'addedCombatantFull', {
-      0: '03',
+      0: { field: 'type', value: '03' },
       1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
@@ -171,7 +173,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#04-removecombatant
   removingCombatant: (params) => {
     return parseHelper(params, 'removingCombatant', {
-      0: '04',
+      0: { field: 'type', value: '04' },
       1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
@@ -182,7 +184,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1a-networkbuff
   gainsEffect: (params) => {
     return parseHelper(params, 'gainsEffect', {
-      0: '26',
+      0: { field: 'type', value: '26' },
       1: { field: 'timestamp' },
       2: { field: 'effectId' },
       3: { field: 'effect' },
@@ -199,7 +201,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#26-networkstatuseffects
   statusEffectExplicit: (params) => {
     return parseHelper(params, 'statusEffectExplicit', {
-      0: '38',
+      0: { field: 'type', value: '38' },
       1: { field: 'timestamp' },
       2: { field: 'targetId' },
       3: { field: 'target' },
@@ -220,7 +222,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#1e-networkbuffremove
   losesEffect: (params) => {
     return parseHelper(params, 'losesEffect', {
-      0: '30',
+      0: { field: 'type', value: '30' },
       1: { field: 'timestamp' },
       2: { field: 'effectId' },
       3: { field: 'effect' },
@@ -235,14 +237,12 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#23-networktether
   tether: (params) => {
     return parseHelper(params, 'tether', {
-      0: '35',
+      0: { field: 'type', value: '35' },
       1: { field: 'timestamp' },
       2: { field: 'sourceId' },
       3: { field: 'source' },
       4: { field: 'targetId' },
       5: { field: 'target' },
-      6: '....',
-      7: '....',
       8: { field: 'id' },
     });
   },
@@ -251,7 +251,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#19-networkdeath
   wasDefeated: (params) => {
     return parseHelper(params, 'wasDefeated', {
-      0: '25',
+      0: { field: 'type', value: '25' },
       1: { field: 'timestamp' },
       2: { field: 'targetId' },
       3: { field: 'target' },
@@ -264,7 +264,7 @@ var NetRegexes = {
   echo: (params) => {
     if (typeof params === 'undefined')
       params = {};
-    Regexes.validateParams(params, 'echo', ['timestamp', 'code', 'name', 'line', 'capture']);
+    Regexes.validateParams(params, 'echo', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0038';
     return NetRegexes.gameLog(params);
   },
@@ -273,7 +273,7 @@ var NetRegexes = {
   dialog: (params) => {
     if (typeof params === 'undefined')
       params = {};
-    Regexes.validateParams(params, 'dialog', ['timestamp', 'code', 'name', 'line', 'capture']);
+    Regexes.validateParams(params, 'dialog', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0044';
     return NetRegexes.gameLog(params);
   },
@@ -282,7 +282,7 @@ var NetRegexes = {
   message: (params) => {
     if (typeof params === 'undefined')
       params = {};
-    Regexes.validateParams(params, 'message', ['timestamp', 'code', 'name', 'line', 'capture']);
+    Regexes.validateParams(params, 'message', ['type', 'timestamp', 'code', 'name', 'line', 'capture']);
     params.code = '0839';
     return NetRegexes.gameLog(params);
   },
@@ -291,7 +291,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#00-logline
   gameLog: (params) => {
     return parseHelper(params, 'gameLog', {
-      0: '00',
+      0: { field: 'type', value: '00' },
       1: { field: 'timestamp' },
       2: { field: 'code' },
       3: { field: 'name' },
@@ -308,7 +308,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#0c-playerstats
   statChange: (params) => {
     return parseHelper(params, 'statChange', {
-      0: '12',
+      0: { field: 'type', value: '12' },
       1: { field: 'timestamp' },
       2: { field: 'job' },
       3: { field: 'strength' },
@@ -332,7 +332,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#01-changezone
   changeZone: (params) => {
     return parseHelper(params, 'changeZone', {
-      0: '01',
+      0: { field: 'type', value: '01' },
       1: { field: 'timestamp' },
       2: { field: 'id' },
       3: { field: 'name' },
@@ -342,7 +342,7 @@ var NetRegexes = {
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#21-network6d-actor-control-lines
   network6d: (params) => {
     return parseHelper(params, 'network6d', {
-      0: '33',
+      0: { field: 'type', value: '33' },
       1: { field: 'timestamp' },
       2: { field: 'instance' },
       3: { field: 'command' },

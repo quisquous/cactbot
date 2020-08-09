@@ -19,10 +19,7 @@
 04-sb/raid/o3n.js
 04-sb/raid/o4n.js
 04-sb/raid/o4s.js
-04-sb/raid/o5s.js
-04-sb/raid/o6s.js
 04-sb/raid/o7s.js
-04-sb/raid/o8s.js
 04-sb/trial/byakko-ex.js
 04-sb/trial/shinryu.js
 04-sb/trial/susano-ex.js
@@ -30,7 +27,6 @@
 04-sb/ultimate/unending_coil_ultimate.js
 05-shb/alliance/the_copied_factory.js
 05-shb/dungeon/akadaemia_anyder.js
-05-shb/dungeon/anamnesis_anyder.js
 05-shb/dungeon/amaurot.js
 05-shb/dungeon/dohn_mheg.js
 05-shb/dungeon/holminster_switch.js
@@ -59,8 +55,6 @@
 05-shb/trial/hades.js
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence.js
-05-shb/trial/ruby_weapon.js
-05-shb/trial/ruby_weapon-ex.js
 05-shb/trial/titania-ex.js
 05-shb/trial/titania.js
 05-shb/trial/varis-ex.js
