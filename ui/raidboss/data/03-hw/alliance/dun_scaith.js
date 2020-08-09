@@ -375,12 +375,7 @@
       // Triggering off the Bit appearance
       // The cast time on Aetheromodulator is under 3 seconds
       id: 'Dun Scaith Bit Circles',
-      netRegex: NetRegexes.addedCombatant({ name: 'Proto Bit', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Proto-Drohne', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Proto-Foret', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'プロトビット', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '原型浮游炮', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '프로토 비트', capture: false }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3782', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid Bit AoEs',
@@ -391,12 +386,7 @@
     },
     {
       id: 'Dun Scaith Aether Collectors',
-      netRegex: NetRegexes.addedCombatant({ name: 'Aether Collector', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Ätherakkumulator', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Accumulateur D\'Éther', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'エーテル集積器', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '以太收集器', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '에테르 집적기', capture: false }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3781', capture: false }),
       suppressSeconds: 5,
       alertText: {
         en: 'Kill collectors',
