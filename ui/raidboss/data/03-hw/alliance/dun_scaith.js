@@ -156,7 +156,7 @@
       response: Responses.tankBuster(),
     },
     {
-      // 5510 is Wailing Atomos, 5511 is Cursing Atomos.
+      // 5510 is Wailing Atomos (blue), 5511 is Cursing Atomos(yellow).
       // Sometimes it will happen that Aether/Chakrams will start casting before
       // the addedCombatant line that contains the Atomos.
       // When this happens, a simple startsCasting trigger will silently fail.
@@ -170,18 +170,19 @@
       },
     },
     {
-      // Wailing Atomos is blue, Cursed Atomos is yellow.
+      // Wailing Atomos is blue, Cursing Atomos is yellow.
       // 1C9F:Aether is the circle AoE, 1CA0:Aetherial Chakram is the donut AoE
       id: 'Dun Scaith Atomos Compile',
       netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'] }),
       delaySeconds: .5,
       run: function(data, matches) {
-        data.atomos = data.atomos || 0;
-        const multiplier = data.wailing.includes(matches.targetId) ? 10 : 1;
-        if (matches.id == '1C9F')
-          data.atomos += 1 * multiplier;
-        else if (matches.id == '1CA0')
-          data.atomos += 2 * multiplier;
+        data.sphere = data.sphere || [];
+        data.donut = data.donut || [];
+        const target = data.wailing.includes(matches.targetId) ? 'wailing' : 'cursing';
+        if (matches.id === '1C9F')
+          data.sphere.push(target);
+        else
+          data.donut.push(target);
       },
     },
     {
@@ -190,55 +191,54 @@
       delaySeconds: 1,
       suppressSeconds: 5,
       alertText: function(data) {
-        // 0 indicates no ability, 01 indicates Sphere, 02 indicates Chakram.
-        // 10s digit is blue/wailing, 1s digit is yellow/cursed.
-        // Whether or not there's a Sphere on the field,
-        // handling for exactly one Chakram is the same.
-        if (data.atomos < 10)
-          data.atomos = data.atomos.toString().padStart(2, '0');
-        if (data.atomos == 12)
-          data.atomos = '02';
-        if (data.atomos == 21)
-          data.atomos = '20';
-        return {
-          '01': {
-            en: 'Avoid Untethered Yellow',
-            de: 'Weiche dem nicht verbundenen gelben Atomos aus',
-            fr: 'Evitez Gueule jaune non-liée',
-            cn: '远离黄色小怪',
-          },
-          '02': {
+        if (data.donut.length === 2) {
+          return {
+            en: 'Go To Any Untethered',
+          };
+        } else if (data.sphere.length === 2) {
+          return {
+            en: 'Avoid All Untethered',
+          };
+        } else if (data.donut.length === 1) {
+          // Wailing Atomos is blue, Cursing Atomos is yellow.
+          // If there's exactly 1 Chakram, the other Atomos is irrelevant.
+          // (Any Chakram Atomos is guaranteed to be safe.)
+          if (data.donut[0] === 'wailing') {
+            return {
+              en: 'Go to Untethered Blue',
+              de: 'Gehe zu dem nicht verbundenen blauem Atomos',
+              fr: 'Allez vers la Gueule bleue non-liée',
+              cn: '靠近蓝色小怪',
+            };
+          }
+          return {
             en: 'Go to Untethered Yellow',
             de: 'Gehe zu dem nicht verbundenen gelben Atomos',
             fr: 'Allez vers la Gueule jaune non-liée',
             cn: '靠近黄色小怪',
-          },
-          '10': {
+          };
+        }
+        if (data.sphere[0] === 'wailing') {
+          return {
             en: 'Avoid Untethered Blue',
             de: 'Weiche dem nicht verbundenen blauem Atomos aus',
             fr: 'Evitez Gueule bleue non-liée',
             cn: '远离蓝色小怪',
-          },
-          '20': {
-            en: 'Go to Untethered Blue',
-            de: 'Gehe zu dem nicht verbundenen blauem Atomos',
-            fr: 'Allez vers la Gueule bleue non-liée',
-            cn: '靠近蓝色小怪',
-          },
-          '11': {
-            en: 'Avoid All Untethered',
-          },
-          '22': {
-            en: 'Go To Any Untethered',
-          },
-        }[data.atomos.toString()];
+          };
+        }
+        return {
+          en: 'Avoid Untethered Yellow',
+          de: 'Weiche dem nicht verbundenen gelben Atomos aus',
+          fr: 'Evitez Gueule jaune non-liée',
+          cn: '远离黄色小怪',
+        };
       },
     },
     {
       id: 'Dun Scaith Atomos Cleanup',
       netRegex: NetRegexes.ability({ id: ['1CA1', '1CA2'], capture: false }),
       run: function(data) {
-        for (let el of ['atomos', 'cursing', 'wailing'])
+        for (let el of ['atomos', 'cursing', 'wailing', 'sphere', 'donut'])
           delete data[el];
       },
     },
@@ -283,7 +283,7 @@
     },
     // PROTO-ULTIMA
     {
-      // Handles both 1E52 Aetherochemical Flare and 1D9D Supernova
+      // Covers both 1E52 Aetherochemical Flare and 1D9D Supernova. Response to both is the same.
       id: 'Dun Scaith Proto-Ultima Raid Damage',
       netRegex: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'Proto Ultima', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'Proto-Ultima', capture: false }),
@@ -430,8 +430,8 @@
         cn: '躲避AOE后击杀康拉',
       },
     },
-    // These triggers are common to both Scathach and Diabolos
     {
+      // This trigger is common to both Scathach and Diabolos, since handling is 100$ identical.
       id: 'Dun Scaith Nox Orbs',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       suppressSeconds: 5,
@@ -447,6 +447,7 @@
       },
     },
     {
+      // This trigger is common to both Scathach and Diabolos, since handling is 100$ identical.
       id: 'Dun Scaith Shadethrust',
       netRegex: NetRegexes.startsUsing({ id: ['1D23', '1C1A'], source: ['Scathach', 'Diabolos Hollow'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['1D23', '1C1A'], source: ['Scathach', 'Nihil-Diabolos'], capture: false }),
