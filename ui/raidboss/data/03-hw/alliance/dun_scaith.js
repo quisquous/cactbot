@@ -156,59 +156,90 @@
       response: Responses.tankBuster(),
     },
     {
-      // Wailing Atomos is blue, Cursed Atomos is yellow.
-      // 1C9F:Aether is the circle AoE, 1CA0:Aetherial Chakram is the donut AoE
-      id: 'Dun Scaith Blue Atomos',
-      netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: 'Wailing Atomos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: 'Heul-Atomos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: 'Gueule Gémissante' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: '虚声のアトモス' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: '虚声的阿托莫斯' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: '허성의 아토모스' }),
-      alertText: function(data, matches) {
-        if (matches.id == '1C9F') {
-          return {
-            en: 'Avoid Untethered Blue',
-            de: 'Weiche dem nicht verbundenen blauem Atomos aus',
-            fr: 'Evitez Gueule bleue non-liée',
-            cn: '远离蓝色小怪',
-          };
-        }
-        if (matches.id == '1CA0') {
-          return {
-            en: 'Go to Untethered Blue',
-            de: 'Gehe zu dem nicht verbundenen blauem Atomos',
-            fr: 'Allez vers la Gueule bleue non-liée',
-            cn: '靠近蓝色小怪',
-          };
-        }
+      // 5510 is Wailing Atomos, 5511 is Cursing Atomos.
+      // Sometimes it will happen that Aether/Chakrams will start casting before
+      // the addedCombatant line that contains the Atomos.
+      // When this happens, a simple startsCasting trigger will silently fail.
+      // To avoid this, we store the IDs of Atomos for later comparison.
+      id: 'Dun Scaith Atomos Setup',
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: ['5510', '5511'] }),
+      run: function(data, matches) {
+        data.cursing = data.cursing || [];
+        data.wailing = data.wailing || [];
+        matches.npcNameId == '5510' ? data.wailing.push(matches.id) : data.cursing.push(matches.id);
       },
     },
     {
-      id: 'Dun Scaith Yellow Atomos',
-      netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: 'Cursing Atomos' }),
-      netRegexDe: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: 'Fluch-Atomos' }),
-      netRegexFr: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: 'Gueule Maudissante' }),
-      netRegexJa: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: '怨声のアトモス' }),
-      netRegexCn: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: '怨声的阿托莫斯' }),
-      netRegexKo: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], target: '원성의 아토모스' }),
-      alertText: function(data, matches) {
-        if (matches.id == '1C9F') {
-          return {
+      // Wailing Atomos is blue, Cursed Atomos is yellow.
+      // 1C9F:Aether is the circle AoE, 1CA0:Aetherial Chakram is the donut AoE
+      id: 'Dun Scaith Atomos Compile',
+      netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'] }),
+      delaySeconds: .5,
+      run: function(data, matches) {
+        data.atomos = data.atomos || 0;
+        const multiplier = data.wailing.includes(matches.targetId) ? 10 : 1;
+        if (matches.id == '1C9F')
+          data.atomos += 1 * multiplier;
+        else if (matches.id == '1CA0')
+          data.atomos += 2 * multiplier;
+      },
+    },
+    {
+      id: 'Dun Scaith Atomos Response',
+      netRegex: NetRegexes.startsUsing({ id: ['1C9F', '1CA0'], capture: false }),
+      delaySeconds: 1,
+      suppressSeconds: 5,
+      alertText: function(data) {
+        // 0 indicates no ability, 01 indicates Sphere, 02 indicates Chakram.
+        // 10s digit is blue/wailing, 1s digit is yellow/cursed.
+        // Whether or not there's a Sphere on the field,
+        // handling for exactly one Chakram is the same.
+        if (data.atomos < 10)
+          data.atomos = data.atomos.toString().padStart(2, '0');
+        if (data.atomos == 12)
+          data.atomos = '02';
+        if (data.atomos == 21)
+          data.atomos = '20';
+        return {
+          '01': {
             en: 'Avoid Untethered Yellow',
             de: 'Weiche dem nicht verbundenen gelben Atomos aus',
             fr: 'Evitez Gueule jaune non-liée',
             cn: '远离黄色小怪',
-          };
-        }
-        if (matches.id == '1CA0') {
-          return {
+          },
+          '02': {
             en: 'Go to Untethered Yellow',
             de: 'Gehe zu dem nicht verbundenen gelben Atomos',
             fr: 'Allez vers la Gueule jaune non-liée',
             cn: '靠近黄色小怪',
-          };
-        }
+          },
+          '10': {
+            en: 'Avoid Untethered Blue',
+            de: 'Weiche dem nicht verbundenen blauem Atomos aus',
+            fr: 'Evitez Gueule bleue non-liée',
+            cn: '远离蓝色小怪',
+          },
+          '20': {
+            en: 'Go to Untethered Blue',
+            de: 'Gehe zu dem nicht verbundenen blauem Atomos',
+            fr: 'Allez vers la Gueule bleue non-liée',
+            cn: '靠近蓝色小怪',
+          },
+          '11': {
+            en: 'Avoid All Untethered',
+          },
+          '22': {
+            en: 'Go To Any Untethered',
+          },
+        }[data.atomos.toString()];
+      },
+    },
+    {
+      id: 'Dun Scaith Atomos Cleanup',
+      netRegex: NetRegexes.ability({ id: ['1CA1', '1CA2'], capture: false }),
+      run: function(data) {
+        for (let el of ['atomos', 'cursing', 'wailing'])
+          delete data[el];
       },
     },
     {
