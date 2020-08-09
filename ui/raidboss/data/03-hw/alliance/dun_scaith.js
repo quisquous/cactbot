@@ -218,6 +218,8 @@
             cn: '靠近黄色小怪',
           };
         }
+        // If there's only a Sphere on the field, the other Atomos color isn't guaranteed safe.
+        // Therefore we need to specify staying away from the Sphere-tethered Atomos.
         if (data.sphere[0] === 'wailing') {
           return {
             en: 'Avoid Untethered Blue',
@@ -238,7 +240,7 @@
       id: 'Dun Scaith Atomos Cleanup',
       netRegex: NetRegexes.ability({ id: ['1CA1', '1CA2'], capture: false }),
       run: function(data) {
-        for (let el of ['atomos', 'cursing', 'wailing', 'sphere', 'donut'])
+        for (let el of ['cursing', 'wailing', 'sphere', 'donut'])
           delete data[el];
       },
     },
@@ -431,7 +433,7 @@
       },
     },
     {
-      // This trigger is common to both Scathach and Diabolos, since handling is 100$ identical.
+      // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Nox Orbs',
       netRegex: NetRegexes.headMarker({ id: '005C' }),
       suppressSeconds: 5,
@@ -447,7 +449,7 @@
       },
     },
     {
-      // This trigger is common to both Scathach and Diabolos, since handling is 100$ identical.
+      // This trigger is common to both Scathach and Diabolos, since handling is 100% identical.
       id: 'Dun Scaith Shadethrust',
       netRegex: NetRegexes.startsUsing({ id: ['1D23', '1C1A'], source: ['Scathach', 'Diabolos Hollow'], capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: ['1D23', '1C1A'], source: ['Scathach', 'Nihil-Diabolos'], capture: false }),
