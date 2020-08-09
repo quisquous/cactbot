@@ -11,6 +11,7 @@
 03-hw/dungeon/fractal_continuum.js
 03-hw/dungeon/gubal_library_hard.js
 03-hw/dungeon/sohm_al_hard.js
+03-hw/raid/a12n.js
 04-sb/dungeon/ala_mhigo.js
 04-sb/dungeon/bardams_mettle.js
 04-sb/dungeon/temple_of_the_fist.js
