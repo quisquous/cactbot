@@ -4,6 +4,15 @@
   zoneId: ZoneId.DunScaith,
   timelineNeedsFixing: true,
   timelineFile: 'dun_scaith.txt',
+  timelineTriggers: [
+    {
+      id: 'Dun Scaith Spike Of Darkness',
+      regex: /Spike Of Darkness/,
+      beforeSeconds: 4,
+      condition: Conditions.caresAboutMagical(),
+      response: Responses.tankBuster(),
+    },
+  ],
   triggers: [
     // Basic stack occurs across all encounters except Deathgaze.
     {
@@ -33,12 +42,12 @@
       // Or use / 16:\y{ObjectId}:Deathgaze Hollow:1C85:Doomsay:\y{ObjectId}:(\y{Name})
       // This would allow for notifying who needs cleansing directly, but might be spammy
       id: 'Dun Scaith Doom',
-      netRegex: NetRegexes.startsUsing({ id: '1C8[45]', source: 'Deathgaze Hollow', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1C8[45]', source: 'Nihil-Thanatos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1C8[45]', source: 'Mortalis Nihil', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1C8[45]', source: 'デスゲイズ・ホロー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1C8[45]', source: '虚空死亡凝视', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1C8[45]', source: '공허의 저승파수꾼', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C84', '1C85'], source: 'Deathgaze Hollow', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['1C84', '1C85'], source: 'Nihil-Thanatos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['1C84', '1C85'], source: 'Mortalis Nihil', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['1C84', '1C85'], source: 'デスゲイズ・ホロー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['1C84', '1C85'], source: '虚空死亡凝视', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['1C84', '1C85'], source: '공허의 저승파수꾼', capture: false }),
       condition: function(data) {
         return data.CanCleanse();
       },
@@ -64,12 +73,7 @@
     },
     {
       id: 'Dun Scaith Void Sprite',
-      netRegex: NetRegexes.addedCombatant({ name: 'Void Sprite', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Nichts-Exergon', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Élémentaire Du Vide', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: 'ヴォイド・スプライト', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '虚无元精', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '보이드 정령', capture: false }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5508', capture: false }),
       suppressSeconds: 10,
       infoText: {
         en: 'Kill sprites',
@@ -106,13 +110,16 @@
       response: Responses.knockback(),
     },
     {
+      // It's not certain what causes Deathgaze to choose which ability.
+      // Both are present with cast times of 2.7 seconds,
+      // and neither seems to target players directly.
       id: 'Dun Scaith Void Death Squares',
-      netRegex: NetRegexes.startsUsing({ id: '1C82', source: 'Deathgaze Hollow', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1C82', source: 'Nihil-Thanatos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1C82', source: 'Mortalis Nihil', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1C82', source: 'デスゲイズ・ホロー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1C82', source: '虚空死亡凝视', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1C82', source: '공허의 저승파수꾼', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: 'Deathgaze Hollow', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: 'Nihil-Thanatos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: 'Mortalis Nihil', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: 'デスゲイズ・ホロー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: '虚空死亡凝视', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: '공허의 저승파수꾼', capture: false }),
       suppressSeconds: 5,
       alertText: {
         en: 'Avoid death squares',
@@ -145,6 +152,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1C98', source: 'フェルディア・ホロー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1C98', source: '虚空弗迪亚' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1C98', source: '공허의 페르디아' }),
+      condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
     {
@@ -386,12 +394,12 @@
     },
     {
       id: 'Dun Scaith Thirty Thorns',
-      netRegex: NetRegexes.ability({ id: '1D[12]B', source: 'Scathach', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '1D[12]B', source: 'Scathach', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '1D[12]B', source: 'Scáthach', capture: false }),
-      netRegexJa: NetRegexes.ability({ id: '1D[12]B', source: 'スカアハ', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '1D[12]B', source: '斯卡哈', capture: false }),
-      netRegexKo: NetRegexes.ability({ id: '1D[12]B', source: '스카하크', capture: false }),
+      netRegex: NetRegexes.ability({ id: ['1D1B', '1D2B'], source: 'Scathach', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: ['1D1B', '1D2B'], source: 'Scathach', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: ['1D1B', '1D2B'], source: 'Scáthach', capture: false }),
+      netRegexJa: NetRegexes.ability({ id: ['1D1B', '1D2B'], source: 'スカアハ', capture: false }),
+      netRegexCn: NetRegexes.ability({ id: ['1D1B', '1D2B'], source: '斯卡哈', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: ['1D1B', '1D2B'], source: '스카하크', capture: false }),
       suppressSeconds: 5,
       response: Responses.outOfMelee(),
     },
@@ -438,12 +446,7 @@
     },
     {
       id: 'Dun Scaith Shadow Limb Spawn',
-      netRegex: NetRegexes.addedCombatant({ name: 'Shadow Limb', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Schattenhand', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Main Ombrale', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: '影の手', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '影之手', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '그림자 손', capture: false }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5516', capture: false }),
       suppressSeconds: 5,
       alertText: {
         en: 'Kill the hands',
@@ -530,12 +533,12 @@
     },
     {
       id: 'Dun Scaith Ruinous Omen',
-      netRegex: NetRegexes.startsUsing({ id: '1C1[01]', source: 'Diabolos', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1C1[01]', source: 'Diabolos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1C1[01]', source: 'Diabolos', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1C1[01]', source: 'ディアボロス', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1C1[01]', source: '迪亚波罗斯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1C1[01]', source: '디아볼로스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: 'Diabolos', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: 'Diabolos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: 'Diabolos', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: 'ディアボロス', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: '迪亚波罗斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['1C10', '1C11'], source: '디아볼로스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -544,12 +547,7 @@
     },
     {
       id: 'Dun Scaith Deathgates',
-      netRegex: NetRegexes.addedCombatant({ name: 'Deathgate', capture: false }),
-      netRegexDe: NetRegexes.addedCombatant({ name: 'Tor Des Todes', capture: false }),
-      netRegexFr: NetRegexes.addedCombatant({ name: 'Porte De Mort', capture: false }),
-      netRegexJa: NetRegexes.addedCombatant({ name: '召喚の扉', capture: false }),
-      netRegexCn: NetRegexes.addedCombatant({ name: '召唤之门', capture: false }),
-      netRegexKo: NetRegexes.addedCombatant({ name: '소환의 문', capture: false }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5523', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Kill the deathgates',
@@ -590,12 +588,12 @@
     },
     {
       id: 'Dun Scaith Hollow Omen',
-      netRegex: NetRegexes.startsUsing({ id: '1C2[23]', source: 'Diabolos Hollow', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1C2[23]', source: 'Nihil-Diabolos', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1C2[23]', source: 'Diabolos Nihil', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1C2[23]', source: 'ディアボロス・ホロー', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1C2[23]', source: '虚空迪亚波罗斯', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1C2[23]', source: '공허의 디아볼로스', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: 'Diabolos Hollow', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: 'Nihil-Diabolos', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: 'Diabolos Nihil', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: 'ディアボロス・ホロー', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: '虚空迪亚波罗斯', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: ['1C22', '1C23'], source: '공허의 디아볼로스', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
