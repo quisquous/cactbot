@@ -283,23 +283,6 @@
     },
     // PROTO-ULTIMA
     {
-      // The trident laser is a series of three separate casts
-      // Each has an incremental ID: 1D96, 1D97, 1D98
-      id: 'Dun Scaith Aetherochemical Laser',
-      netRegex: NetRegexes.startsUsing({ id: '1D96', source: 'Proto Ultima', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1D96', source: 'Proto-Ultima', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1D96', source: 'Proto-Ultima', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1D96', source: 'プロトアルテマ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1D96', source: '究极神兵原型', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1D96', source: '프로토 알테마', capture: false }),
-      infoText: {
-        en: 'Dodge trident laser',
-        de: 'Weiche dem Laser aus',
-        fr: 'Evitez le laser',
-        cn: '躲避三向激光',
-      },
-    },
-    {
       // Handles both 1E52 Aetherochemical Flare and 1D9D Supernova
       id: 'Dun Scaith Proto-Ultima Raid Damage',
       netRegex: NetRegexes.startsUsing({ id: ['1E52', '1D9D'], source: 'Proto Ultima', capture: false }),
@@ -325,50 +308,6 @@
             cn: '离开人群并保持移动',
           };
         }
-      },
-    },
-    {
-      id: 'Dun Scaith Flare Star',
-      netRegex: NetRegexes.startsUsing({ id: '1DA4', source: 'Proto Ultima', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1DA4', source: 'Proto-Ultima', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1DA4', source: 'Proto-Ultima', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1DA4', source: 'プロトアルテマ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1DA4', source: '究极神兵原型', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1DA4', source: '프로토 알테마', capture: false }),
-      preRun: function(data) {
-        data.flareStarCount = (data.flareStarCount || 0) + 1;
-      },
-      suppressSeconds: 1,
-      alertText: function(data) {
-        if (data.flareStarCount == 1) {
-          return {
-            en: 'Out of center--Wait for outer ring then keep going',
-            de: 'Raus aus der Mitte - Warte auf den äuseren Ring',
-            fr: 'Loin du centre - Attendez l\'anneau extérieur et continuez',
-            cn: '远离中心--在外圈内等待再进行移动',
-          };
-        }
-        return {
-          en: 'Avoid flares--Wait for outer ring then keep going',
-          de: 'Flares ausweichen - Warte auf den äuseren Ring',
-          fr: 'Evitez les explosions - Attendez l\'anneau extérieur et continuez',
-          cn: '避免爆炸--在外圈内等待再进行移动',
-        };
-      },
-    },
-    {
-      id: 'Dun Scaith Citadel Buster',
-      netRegex: NetRegexes.startsUsing({ id: '1DAB', source: 'Proto Ultima', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1DAB', source: 'Proto-Ultima', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1DAB', source: 'Proto-Ultima', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1DAB', source: 'プロトアルテマ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1DAB', source: '究极神兵原型', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1DAB', source: '프로토 알테마', capture: false }),
-      alertText: {
-        en: 'Avoid line AoE',
-        de: 'Weiche der Linien AoE aus',
-        fr: 'Evitez l\'AoE en ligne',
-        cn: '躲避直线AOE',
       },
     },
     {
