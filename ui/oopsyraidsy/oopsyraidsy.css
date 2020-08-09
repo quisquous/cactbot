@@ -78,15 +78,23 @@
 
 .mistake-row {
   display: flex;
-  justify-content: space-between;
   height: 18px;
 }
 
-.mistake-row:nth-child(even) {
+.livelist .mistake-row {
+  justify-content: space-between;
+}
+
+.summary .mistake-row {
+  height: 25px;
+  align-items: center;
+}
+
+.livelist .mistake-row:nth-child(even) {
   background-color: rgba(20, 20, 20, 0.3);
 }
 
-.mistake-row:nth-child(odd) {
+.livelist .mistake-row:nth-child(odd) {
   background-color: rgba(50, 50, 50, 0.3);
 }
 
@@ -94,19 +102,69 @@
   text-align: center;
   text-shadow: -1px 0 1px grey, 0 1px 1px grey;
   width: 20px;
-  flex: 0 0 auto;
 }
 
 .mistake-text {
-  flex: 1 1 auto;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.mistake-time {
+.livelist .mistake-icon {
+  flex: 0 0 auto;
+  order: 1;
+}
+
+.livelist .mistake-text {
+  flex: 1 1 auto;
+  order: 2;
+}
+
+.livelist .mistake-time {
   align-self: flex-end;
   padding-right: 3px;
+  order: 3;
+}
+
+.summary .mistake-icon {
+  order: 2;
+  margin-right: 3px;
+  font-size: 20px;
+}
+
+.summary .mistake-text {
+  order: 3;
+}
+
+.summary .mistake-time {
+  order: 1;
+  margin-right: 5px;
+}
+
+.summary {
+  margin: 5px;
+  font-family: "Meiryo", sans-serif;
+  font-size: 16;
+}
+
+.section {
+  margin-bottom: 20px;
+  max-width: 800px;
+}
+
+.section-header {
+  display: flex;
+  font-weight: bold;
+  font-size: 18;
+}
+
+.section-header > div {
+  margin-right: 5px;
+}
+
+.section-rows {
+  padding-left: 10px;
+  max-width: 500px;
 }
 
 .mistake-icon.pull::before {
