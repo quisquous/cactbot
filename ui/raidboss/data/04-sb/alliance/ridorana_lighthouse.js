@@ -662,7 +662,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': 'アルケオデーモン',
         'Belias, The Gigas': '魔人ベリアス',

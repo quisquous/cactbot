@@ -925,7 +925,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Agrias': '聖騎士アグリアス',
         'Aspersory': '聖雲の水瓶',

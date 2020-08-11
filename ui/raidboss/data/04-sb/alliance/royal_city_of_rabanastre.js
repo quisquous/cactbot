@@ -444,7 +444,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': 'アルケオデーモン',
         'command tower': '支配の塔',
