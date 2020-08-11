@@ -705,7 +705,7 @@
         'Hot Water': '热水',
         'Hydrothermal Vent': '海底热泉',
         'Killer Wave': '杀人浪',
-        'Maelstrom': '漩涡',
+        'Maelstrom': '巨漩涡',
         'Monster Wave': '疯狗浪',
         'Plunging Wave': '卷跃波',
         'Refreshing Shower': '水之觉醒',

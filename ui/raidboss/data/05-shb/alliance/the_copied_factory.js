@@ -799,7 +799,7 @@
         'Shockwave': 'Schockwelle',
         'Short-Range Missile': 'Kurzstreckenrakete',
         'Shrapnel Impact': 'Wrackteilregen',
-        'Spin': 'Verwirbeln',
+        'Spin': 'Rotation',
         'Surface Missile': 'Raketenschlag',
         'Systematic Airstrike': 'Luftformation',
         'Systematic Siege': 'Kesselformation',

@@ -68,7 +68,7 @@
       },
       'replaceText': {
         'Big Bang': 'Saillie',
-        'Blaze': 'Fournaise',
+        'Blaze': 'Flammes',
         'Bowels of Agony': 'Entrailles de l\'agonie',
         'Chaosphere': 'Sphère de chaos',
         'Chaotic Dispersion': 'Dispersion chaotique',
@@ -91,7 +91,7 @@
         'Chaos': 'カオス',
       },
       'replaceText': {
-        'Big Bang': '突出',
+        'Big Bang': '突出せよ',
         'Blaze': 'ほのお',
         'Bowels of Agony': 'バウル・オブ・アゴニー',
         'Chaosphere': 'カオススフィア',
@@ -114,8 +114,8 @@
         'YOU DARE!': '居然……把黑水晶给……',
       },
       'replaceText': {
-        'Big Bang': '돌출',
-        'Blaze': '炎爆',
+        'Big Bang': '顶起',
+        'Blaze': '烈焰',
         'Bowels of Agony': '深层痛楚',
         'Chaosphere': '混沌晶球',
         'Chaotic Dispersion': '散布混沌',
@@ -139,7 +139,7 @@
         'YOU DARE!': '네 이노오오옴',
       },
       'replaceText': {
-        'Big Bang': '돌출',
+        'Big Bang': '돌출하라',
         'Blaze': '화염',
         'Bowels of Agony': '고통의 심핵',
         'Chaosphere': '혼돈의 구체',
