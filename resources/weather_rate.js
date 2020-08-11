@@ -1602,6 +1602,38 @@ const gWeatherRates = {
       'Delirium',
     ],
   },
+  124: {
+    'rates': [
+      52,
+      64,
+      76,
+      88,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Rain',
+      'Wind',
+      'Thunder',
+      'Dust Storms',
+    ],
+  },
+  125: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Starshower',
+    ],
+  },
+  126: {
+    'rates': [
+      100,
+    ],
+    'weathers': [
+      'Climactic',
+    ],
+  },
 };
 
 if (typeof module !== 'undefined')
