@@ -11,6 +11,7 @@
       suppressSeconds: 9999, // Let's not spam tanks if they are unlucky enough to see enrage.
       alarmText: {
         en: 'Limit break now!',
+        cn: '坦克LB！',
       },
     },
     {
@@ -83,7 +84,7 @@
             de: 'Auf DIR sammeln',
             fr: 'Package sur VOUS',
             ja: '自分にスタック',
-            cn: '集合点名',
+            cn: '分摊点名',
             ko: '쉐어징 대상자',
           };
         }
