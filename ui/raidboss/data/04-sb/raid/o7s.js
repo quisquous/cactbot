@@ -390,7 +390,7 @@
         'Copy(?! Program)': 'Kopieren',
         'Dada': 'Dadarma',
         'Demon Simulation': 'Dämonensimulation',
-        'Diffractive Laser': 'Diffraktiver Laser',
+        'Diffractive Laser': 'Diffusionslaser',
         'Diffractive Plasma': 'Diffusionsplasma',
         'Ink': 'Tinte',
         'Interrupt Stoneskin': 'Steinhaut unterbrechen',

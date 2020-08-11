@@ -251,7 +251,7 @@
         'Heat Up': 'Incandescence',
         'Heaving Breath': 'Souffle nauséeux',
         'Hound Out Of Heaven': 'Charge céleste',
-        'Inhale': 'Inhalation',
+        'Inhale': 'Aspiration',
         'Jump': 'Saut',
         'Lozatl\'s Fury': 'Furie de Lozatl',
         'Lozatl\'s Scorn': 'Injure de Lozatl',

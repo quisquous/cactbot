@@ -632,7 +632,7 @@
       },
       'replaceText': {
         'Big Bang': 'Saillie',
-        'Blaze': 'Fournaise',
+        'Blaze': 'Flammes',
         'Bowels of Agony': 'Entrailles de l\'agonie',
         'Chaotic Dispersion': 'Dispersion chaotique',
         'Cyclone': 'Tornade',

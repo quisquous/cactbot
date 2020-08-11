@@ -324,7 +324,7 @@
         'Signal': '信号',
         'Spin': '回转',
         'Tail End': '煞尾',
-        'Thunderstorm': '闪雷风暴',
+        'Thunderstorm': '雷暴',
         'Time Immemorial': '开天辟地',
         'Touchdown': '空降',
       },

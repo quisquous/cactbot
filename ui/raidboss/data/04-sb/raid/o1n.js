@@ -132,7 +132,7 @@
         'Twin Bolt': 'Zwillingsschlag',
         'The Classical Elements': 'Klassisches Element',
         'Roar': 'Brüllen',
-        'Levinbolt': 'Keraunisches Feld',
+        'Levinbolt': 'Blitzschlag',
         'Flash Freeze': 'Blitzeis',
         'Flame': 'Flamme',
         'Downburst': 'Fallböe',
@@ -140,7 +140,7 @@
         'Charybdis': 'Charybdis',
         'Burn': 'Verbrennung',
         'Breath Wing': 'Atemschwinge',
-        'Blaze': 'Flamme',
+        'Blaze': 'Frost',
       },
     },
     {
@@ -162,7 +162,7 @@
         'Charybdis': 'Charybde',
         'Burn': 'Combustion',
         'Breath Wing': 'Aile déferlante',
-        'Blaze': 'Fournaise',
+        'Blaze': 'Givre',
       },
     },
     {
@@ -184,7 +184,7 @@
         'Charybdis': 'ミールストーム',
         'Burn': '燃焼',
         'Breath Wing': 'ブレスウィング',
-        'Blaze': '火炎',
+        'Blaze': 'ブレイズ',
       },
     },
     {
@@ -197,7 +197,7 @@
         'Wyrm Tail': '太古龙尾',
         'Twin Bolt': '双重落雷',
         'The Classical elements': '经典元素',
-        'Roar': '咆啸',
+        'Roar': '咆哮',
         'Levinbolt': '闪电',
         'Flash Freeze': '闪耀冻结',
         'Flame': '火焰',
@@ -206,7 +206,7 @@
         'Charybdis': '大漩涡',
         'Burn': '燃烧',
         'Breath Wing': '风息之翼',
-        'Blaze': '炎爆',
+        'Blaze': '冰焰',
       },
     },
     {

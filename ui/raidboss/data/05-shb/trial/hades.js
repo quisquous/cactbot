@@ -393,7 +393,7 @@
         'Echo Of The Lost': 'Echo der Verlorenen',
         'Hellborn Yawp': 'Höllenschrei',
         'Life In Captivity': 'Leben in Gefangenschaft',
-        'Nether Blast': 'Schattenböe',
+        'Nether Blast': 'Schattenausbruch',
         'Polydegmon\'s Purgation': 'Schlag des Polydegmon',
         'Ravenous Assault': 'Fegefeuer der Helden',
         'Shadow Spread': 'Dunkle Schatten',

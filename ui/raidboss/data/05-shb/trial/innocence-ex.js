@@ -648,7 +648,7 @@
         'Holy Sword': '성스러운 검',
         'Guiding Light': '인도하는 빛',
         'God Ray': '신의 광선',
-        'Explosion': '폭발',
+        'Explosion': '폭산',
         'Duel Descent': '이단 낙하',
         'Drop Of Light': '빛내림',
         'Beatific Vision': '지복직관',
