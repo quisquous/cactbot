@@ -65,6 +65,7 @@
           return {
             en: 'Sizzlebeam on YOU',
             de: 'Gobpartikelstrahl auf DIR',
+            fr: 'Gobrayon sur VOUS',
             ko: '고블린식 파동포 대상자',
           };
         }
@@ -74,6 +75,7 @@
           return {
             en: 'Sizzlebeam on ' + data.ShortName(matches.target),
             de: 'Gobpartikelstrahl auf ' + data.ShortName(matches.target),
+            fr: 'Gobrayon sur ' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 고블린식 파동포',
           };
         }
@@ -102,6 +104,7 @@
       infoText: {
         en: 'Bomb Spread',
         de: 'Bomben verteilen',
+        fr: 'Bombe, dispersez-vous',
         ko: '폭탄 뿌리기',
       },
     },
@@ -112,6 +115,7 @@
       alertText: {
         en: 'Jail Prey',
         de: 'Gefängnis Markierung',
+        fr: 'Marquage prison',
         ko: '감옥 징 대상자',
       },
     },
@@ -130,6 +134,7 @@
       infoText: {
         en: 'Jail Tether',
         de: 'Gefängnis Verbindung',
+        fr: 'Lien prison',
         ko: '감옥 줄 대상자',
       },
     },
@@ -201,6 +206,7 @@
       infoText: {
         en: 'Break Padlock',
         de: 'Schloss zerstören',
+        fr: 'Cassez le cadenas',
         ko: '자물쇠 부수기',
       },
     },
@@ -215,6 +221,7 @@
       alertText: {
         en: 'Kill Heart',
         de: 'Herz besiegen',
+        fr: 'Tuez le cœur',
         ko: '진심 없애기',
       },
     },
@@ -225,6 +232,7 @@
       alarmText: {
         en: 'Searing Wind on YOU',
         de: 'Versengen auf DIR',
+        fr: 'Fournaise sur VOUS',
         ko: '뜨거운 바람 대상자',
       },
     },
@@ -264,20 +272,33 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': 'bombe',
         'Boomtype Magitek Gobwalker G-VII': 'gobblindé magitek G-VII Boumbardier',
+        'electrocution gallery': 'square d\'exécution publique',
+        'Frostbite': 'gelure',
         'Padlock': 'cadenas',
+        'Pyretic': 'chaleur',
         'Quickthinx Allthoughts': 'Quickthinx le Cerveau',
         'Shanoa': 'Chat-noir',
         'Sturm Doll': 'poupée sturm',
       },
       'replaceText': {
+        'Big Doll': 'Grande poupée',
         'Bomb': 'bombe',
+        'Bombs': 'Bombes',
+        'Doll': 'Poupée',
+        'Enrage': 'Enrage',
         'Flamethrower': 'Lance-flammes',
+        'Hammertime': 'Temps de marteau',
+        'Jails': 'Prisons',
+        'Kill Heart': 'Tuez le cœur',
+        'Resync': 'Resynchronisation',
         'Sizzlebeam': 'Gobrayon',
         'Sizzlespark': 'Gobétincelle',
+        'Small Doll': 'Petite poupée',
+        'Small Dolls': 'Petites poupées',
+        'Stun Heart': 'Étourdisez le cœur',
         'Uplander Doom': 'Fusillade',
         'Zoomdoom': 'Gobroquette',
       },
