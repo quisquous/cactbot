@@ -26,18 +26,9 @@
   left: 242px;
 }
 
-.rdm #right-side-icons {
-  left: 278px;
-}
-
-.sch #right-side-icons {
-  left: 278px;
-}
-
-.smn #right-side-icons {
-  left: 278px;
-}
-
+.rdm #right-side-icons,
+.sch #right-side-icons,
+.smn #right-side-icons,
 .ast #right-side-icons {
   left: 278px;
 }
