@@ -19,7 +19,7 @@
       infoText: {
         en: 'Avoid dashes',
         de: 'Sprint ausweichen',
-        fr: 'Évitez les ruées',
+        fr: 'Évitez les charges',
         cn: '躲开冲锋',
         ko: '돌진 피하기',
       },
