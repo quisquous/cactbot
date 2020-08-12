@@ -199,12 +199,12 @@ hideall "--Reset--"
 1159.5 "Permafrost?" sync /:Shiva:BE3:/
 1163.7 "Dreams Of Ice" sync /:Shiva:BEA:/ window 20,20
 
-1200.4 "Frost Bow" sync /:Shiva:BDD:/ window 100,20 jump 942.8
-1205.5 "Glass Dance" #sync /:Shiva:BDF:/
-1228.1 "Avalanche" #sync /:Shiva:BE0:/
-1232.2 "Permafrost?" #sync /:Shiva:BE3:/
-1243.7 "Melt" #sync /:Shiva:C7E:/ window 20,20
-1245.9 "Dreams Of Ice" #sync /:Shiva:BEA:/
+1166.9 "Frost Bow" sync /:Shiva:BDD:/ window 100,20 jump 942.8
+1172.0 "Glass Dance" #sync /:Shiva:BDF:/
+1194.6 "Avalanche" #sync /:Shiva:BE0:/
+1198.7 "Permafrost?" #sync /:Shiva:BE3:/
+1210.2 "Melt" #sync /:Shiva:C7E:/ window 20,20
+1212.4 "Dreams Of Ice" #sync /:Shiva:BEA:/
 
 
 
