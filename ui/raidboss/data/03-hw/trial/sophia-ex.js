@@ -46,7 +46,7 @@ let callSafeDir = (callIndex) => {
       infoText: {
         en: 'Avoid Dash Attack',
         de: 'Ansturm-Angriff ausweichen',
-        fr: 'Évitez l\'attaque Ruée',
+        fr: 'Évitez l\'attaque Charge',
         cn: '躲避击飞',
       },
     },
