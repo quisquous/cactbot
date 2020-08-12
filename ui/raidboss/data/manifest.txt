@@ -183,6 +183,8 @@
 05-shb/dungeon/anamnesis_anyder.txt
 05-shb/dungeon/dohn_mheg.js
 05-shb/dungeon/dohn_mheg.txt
+05-shb/dungeon/heroes_gauntlet.js
+05-shb/dungeon/heroes_gauntlet.txt
 05-shb/dungeon/holminster_switch.js
 05-shb/dungeon/holminster_switch.txt
 05-shb/dungeon/malikahs_well.js
