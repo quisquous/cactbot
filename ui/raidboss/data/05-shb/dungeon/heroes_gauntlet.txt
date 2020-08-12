@@ -87,7 +87,7 @@ hideall "--sync--"
 1238.7 "Necromancy"
 1244.9 "Necromancy"
 1256.0 "Dark Deluge"
-1257.3 "Death Throes
+1257.3 "Death Throes"
 1263.4 "Necroburst"
 
 #~~~~~~~~~~~~~~~~~~~~#
