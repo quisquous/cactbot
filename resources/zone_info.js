@@ -4273,6 +4273,76 @@ const ZoneInfo = {
     'sizeFactor': 100,
     'weatherRate': 0,
   },
+  916: {
+    'contentType': 2,
+    'name': {
+      'en': 'the Heroes\' Gauntlet',
+    },
+    'offsetX': 626,
+    'offsetY': -611,
+    'sizeFactor': 200,
+    'weatherRate': 125,
+  },
+  917: {
+    'contentType': 5,
+    'name': {
+      'en': 'the Puppets\' Bunker',
+    },
+    'offsetX': 290,
+    'offsetY': -190,
+    'sizeFactor': 200,
+    'weatherRate': 0,
+  },
+  922: {
+    'contentType': 4,
+    'name': {
+      'en': 'the Seat of Sacrifice',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 125,
+  },
+  923: {
+    'contentType': 4,
+    'name': {
+      'en': 'the Seat of Sacrifice (Extreme)',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 126,
+  },
+  925: {
+    'contentType': 7,
+    'name': {
+      'en': 'Sleep Now in Sapphire',
+    },
+    'offsetX': 15,
+    'offsetY': -610,
+    'sizeFactor': 400,
+    'weatherRate': 0,
+  },
+  930: {
+    'contentType': 4,
+    'name': {
+      'en': 'the Akh Afah Amphitheatre (Unreal)',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 400,
+    'weatherRate': 46,
+  },
+  932: {
+    'contentType': 7,
+    'name': {
+      'en': 'Faded Memories',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 100,
+    'weatherRate': 114,
+  },
 };
 
 if (typeof module !== 'undefined')

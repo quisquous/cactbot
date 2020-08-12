@@ -366,7 +366,7 @@
         'War Cry': '우렁찬 외침',
         'Tremblor': '지진',
         'Travail': '시련',
-        'Sacrifice': '제물',
+        'Sacrifice': '희생',
         'Rush': '돌진',
         'Reconstruct': '파괴 재생',
         'Pinion': '깃털 쏘기',

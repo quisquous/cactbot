@@ -372,7 +372,7 @@
         'Ignis Est': 'Ignis Est',
         'Loaded Gunshield': 'Gewehrschild: Magitek-Knall',
         'Magitek Burst': 'Magitek-Knall',
-        'Magitek Shielding': 'Magitek-Knall',
+        'Magitek Shielding': 'Magitek-Konter',
         'Magitek Shock': 'Magitek-Schock',
         'Magitek Spark/Torch': 'Magitek-Funke/Flamme ',
         'Magitek Torch/Spark': 'Magitek Flamme/Funke',

@@ -84,7 +84,7 @@
         'Chain Cannon': 'Kettenkanone',
         'Chakra Burst': 'Chakra-Ausbruch',
         'Demon Simulation': 'Dämonensimulation',
-        'Diffractive Laser': 'Diffraktiver Laser',
+        'Diffractive Laser': 'Diffusionslaser',
         'Diffractive Plasma': 'Diffusionsplasma',
         'Ink': 'Tinte',
         'Load': 'Laden',

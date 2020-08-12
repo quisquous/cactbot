@@ -239,7 +239,7 @@
         'Drenching Pulse': '猛烈波动',
         'Freak Wave': '畸形波',
         'Killer Wave': '杀人浪',
-        'Maelstrom': '漩涡',
+        'Maelstrom': '巨漩涡',
         'Monster Wave': '疯狗浪',
         'Rip Current': '裂流',
         'Smothering Tsunami': '溺没大海啸',

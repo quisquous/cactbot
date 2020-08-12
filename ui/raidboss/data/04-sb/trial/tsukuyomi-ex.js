@@ -282,7 +282,7 @@
       'replaceSync': {
         'Moondust': 'Mondfragment',
         'Moonlight': 'Mondlicht',
-        'Specter(?! )': 'Schemen',
+        'Specter(?! )': 'Trugbild',
         'Specter Of Asahi': 'Asahi',
         'Specter of Gosetsu': 'Gosetsu',
         'Specter Of The Patriarch': 'Yotsuyus Ziehvater',
@@ -327,7 +327,7 @@
       'replaceSync': {
         'Moondust': 'fragment de lune',
         'Moonlight': 'Clair de lune',
-        'Specter(?! )': 'spector',
+        'Specter(?! )': 'Illusion protectrice',
         'Specter Of Asahi': 'apparition d\'Asahi',
         'Specter of Gosetsu': 'apparition de Gosetsu',
         'Specter Of The Patriarch': 'spectre du parâtre',
@@ -372,7 +372,7 @@
       'replaceSync': {
         'Moondust': '月の欠片',
         'Moonlight': '月光',
-        'Specter(?! )': 'スペクター',
+        'Specter(?! )': '幻影',
         'Specter Of Asahi': 'アサヒの幻影',
         'Specter of Gosetsu': 'ゴウセツの幻影',
         'Specter Of The Patriarch': '養父の幻影',
@@ -412,7 +412,7 @@
       'replaceSync': {
         'Moondust': '月之碎片',
         'Moonlight': '月光',
-        'Specter(?! )': '妖影',
+        'Specter(?! )': '幻影',
         'Specter Of Asahi': '朝阳的幻影',
         'Specter of Gosetsu': '豪雪的幻影',
         'Specter Of The Patriarch': '养父的幻影',
@@ -456,7 +456,7 @@
       'replaceSync': {
         'Moondust': '달조각',
         'Moonlight': '월광',
-        'Specter(?! )': '그림자요괴',
+        'Specter(?! )': '환영',
         'Specter Of Asahi': '아사히의 환영',
         'Specter of Gosetsu': '고우세츠의 환영',
         'Specter Of The Patriarch': '양아버지의 환영',
