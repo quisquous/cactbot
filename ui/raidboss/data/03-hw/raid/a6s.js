@@ -58,7 +58,7 @@
         return {
           en: 'Avoid Mines',
           de: 'Mienen vermeiden',
-          fr: 'Evitez les mines',
+          fr: 'Évitez les mines',
           cn: '躲开地雷',
           ko: '지뢰 피하기',
         };
@@ -194,6 +194,7 @@
         return {
           en: data.ShortName(matches.target) + ': ' + count,
           de: data.ShortName(matches.target) + ': ' + count,
+          fr: data.ShortName(matches.target) + ': ' + count,
           cn: data.ShortName(matches.target) + '生命计算法: ' + count,
           ko: data.ShortName(matches.target) + ': ' + count,
         };
@@ -220,6 +221,7 @@
       alertText: {
         en: 'Hide Behind Ice',
         de: 'Hinter dem Eis verstecken',
+        fr: 'Cachez-vous derrière la glace',
         ko: '얼음 뒤에 숨기',
       },
     },
@@ -232,6 +234,7 @@
       alarmText: {
         en: 'Ice: Freeze Tornado',
         de: 'Eis: Tornado einfrieren',
+        fr: 'Glace : Gelez la tornade',
         ko: '얼음: 물기둥 얼리기',
       },
     },
@@ -245,6 +248,7 @@
       infoText: {
         en: 'Fire Beam on YOU',
         de: 'Feuer Strahl auf DIR',
+        fr: 'Rayon de feu sur VOUS',
         ko: '화염 광선 대상자',
       },
     },
@@ -292,7 +296,7 @@
         return {
           en: 'Drop Water Soon',
           de: 'Gleich Wasser ablegen',
-          fr: 'Posez l\'eau bientôt',
+          fr: 'Déposez l\'eau bientôt',
           ja: '水来るよ',
           cn: '马上水分摊',
           ko: '곧 물징 폭발',
@@ -308,7 +312,7 @@
       infoText: {
         en: 'Lightning on YOU',
         de: 'Blitz auf DIR',
-        fr: 'Eclair sur VOUS',
+        fr: 'Éclair sur VOUS',
         ja: '自分に雷',
         cn: '雷点名',
         ko: '번개징 대상자',
@@ -402,9 +406,8 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
-        'Blaster(?! Mirage)': 'Électrochoc',
+        'Blaster(?! Mirage)': 'Fracasseur',
         'Blaster Mirage': 'réplique du Fracasseur',
         'Brawler': 'Bagarreur',
         'Machinery Bay 67': 'Hangar d\'armement HA-67',
@@ -417,10 +420,12 @@
         'Vortexer': 'Tourbillonneur',
       },
       'replaceText': {
+        '--unseal--': '--descellement--',
         'Attachment': 'Extension',
         'Auxiliary Power': 'Soutien énergétique',
         'Ballistic Missile': 'Missiles balistiques',
         'Bio-Arithmeticks': 'Biomathématiques',
+        'Brawler Mechanic': 'Mécanique du Bagarreur',
         'Brute Force': 'Force brute',
         'Crashing Thunder': 'Éclair percutant',
         'Crashing Wave': 'Vague percutante',
@@ -428,6 +433,7 @@
         'Elemental Jammer': 'Grippage élémentaire',
         'Enumeration': 'Compte',
         'Fire Beam': 'Rayon de feu',
+        'Gobwalker': 'Gobblindé',
         'Height': 'Dénivellation',
         'Hidden Minefield': 'Champ de mines caché',
         'Ice Missile': 'Missile de glace',
