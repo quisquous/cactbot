@@ -32,14 +32,6 @@
       },
     },
     {
-      id: 'Heroes Gauntlet Small Zombie Tether',
-      netRegex: NetRegexes.tether({ id: '0011' }),
-      condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Zombies away from boss',
-      },
-    },
-    {
       id: 'Heroes Gauntlet Large Zombie Tether',
       netRegex: NetRegexes.tether({ id: '004F' }),
       condition: Conditions.targetIsYou(),
