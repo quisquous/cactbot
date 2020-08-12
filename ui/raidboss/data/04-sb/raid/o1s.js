@@ -56,12 +56,12 @@
     },
     {
       id: 'O1S Roar',
-      netRegex: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1ED8', source: 'Alte Roite', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1ED8', source: 'アルテ・ロイテ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1ED8', source: '老者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1ED8', source: '알테 로이테', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1ED4', source: 'アルテ・ロイテ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1ED4', source: '老者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1ED4', source: '알테 로이테', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
@@ -69,12 +69,12 @@
     },
     {
       id: 'O1S Charybdis',
-      netRegex: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1ED4', source: 'Alte Roite', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1ED4', source: 'アルテ・ロイテ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1ED4', source: '老者', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1ED4', source: '알테 로이테', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1ED3', source: 'Alte Roite', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1ED3', source: 'Alte Roite', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1ED3', source: 'Alte Roite', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1ED3', source: 'アルテ・ロイテ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1ED3', source: '老者', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1ED3', source: '알테 로이테', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
