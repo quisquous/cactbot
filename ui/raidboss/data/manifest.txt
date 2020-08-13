@@ -251,5 +251,7 @@
 05-shb/trial/varis-ex.txt
 05-shb/trial/wol.js
 05-shb/trial/wol.txt
+05-shb/trial/wol-ex.js
+05-shb/trial/wol-ex.txt
 05-shb/ultimate/the_epic_of_alexander.js
 05-shb/ultimate/the_epic_of_alexander.txt
