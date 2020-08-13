@@ -84,9 +84,9 @@
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
+        'Ball Of Fire': 'Feuerball',
         'Wyrm Tail': 'Antiker Drachenschweif',
       },
       'replaceText': {
@@ -99,6 +99,8 @@
         'Clamp': 'Klammer',
         'Classical': 'Klassisch',
         'Downburst': 'Fallböe',
+        'Flash Freeze': 'Blitzeis',
+        'Flame': 'Flamme',
         'Inner Fireballs': 'Innere Feuerbälle',
         'Levinbolt': 'Blitzschlag',
         'Outer Fireballs': 'Äusere Feuerbälle',
@@ -114,6 +116,7 @@
       'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': 'Alte Roite',
+        'Ball Of Fire': 'Boule de flammes',
         'Wyrm Tail': 'Queue du dragon ancestral',
       },
       'replaceText': {
@@ -122,6 +125,8 @@
         'Charybdis': 'Charybde',
         'Clamp': 'Pinçage',
         'Downburst': 'Rafale descendante',
+        'Flash Freeze': 'Glaciation instantanée',
+        'Flame': 'Flamme',
         'Levinbolt': 'Fulguration',
         'Roar': 'Rugissement',
         'Teleport': 'Téléportation',
@@ -135,6 +140,7 @@
       'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': 'アルテ・ロイテ',
+        'Ball Of Fire': '火炎球',
         'Wyrm Tail': '太古の龍尾',
       },
       'replaceText': {
@@ -143,6 +149,8 @@
         'Charybdis': 'ミールストーム',
         'Clamp': 'クランプ',
         'Downburst': 'ダウンバースト',
+        'Flash Freeze': 'フラッシュフリーズ',
+        'Flame': '炎',
         'Levinbolt': '稲妻',
         'Roar': '咆哮',
         'Teleport': 'テレポ',
@@ -156,6 +164,7 @@
       'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '老者',
+        'Ball Of Fire': '火球',
         'Wyrm Tail': '太古龙尾',
       },
       'replaceText': {
@@ -168,6 +177,8 @@
         'Clamp': '压迫',
         'Classical': '经典',
         'Downburst': '下行突风',
+        'Flash Freeze': '闪耀冻结',
+        'Flame': '火焰',
         'Inner Fireballs': '内圈火球',
         'Levinbolt': '闪电',
         'Outer Fireballs': '外圈火球',
@@ -183,6 +194,7 @@
       'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '알테 로이테',
+        'Ball Of Fire': '화염 구체',
         'Wyrm Tail': '태고의 용 꼬리',
       },
       'replaceText': {
@@ -191,6 +203,8 @@
         'Charybdis': '대소용돌이',
         'Clamp': '압박',
         'Downburst': '하강 기류',
+        'Flash Freeze': '급속 동결',
+        'Flame': '불꽃',
         'Levinbolt': '우레',
         'Roar': '포효',
         'Teleport': '텔레포',
