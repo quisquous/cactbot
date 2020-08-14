@@ -11,6 +11,7 @@
       suppressSeconds: 9999, // Let's not spam tanks if they are unlucky enough to see enrage.
       alarmText: {
         en: 'Limit break now!',
+        de: 'Limit break jetzt!',
         cn: '坦克LB！',
       },
     },
