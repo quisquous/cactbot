@@ -63,7 +63,7 @@
       infoText: {
         en: 'Fire Breath on YOU',
         de: 'Feueratem auf DIR',
-        fr: 'Souffle enflammé sur Vous',
+        fr: 'Souffle enflammé sur VOUS',
         ko: '화염 숨결 대상자',
         cn: '火点名',
       },

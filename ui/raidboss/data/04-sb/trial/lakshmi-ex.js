@@ -77,6 +77,7 @@
       alertText: {
         en: 'Vrill + Knockback',
         de: 'Vril + Rückstoß',
+        fr: 'Vril + Poussée',
         cn: '完全拒绝',
         ko: '락슈미 에테르 + 넉백',
       },
@@ -92,12 +93,14 @@
       alertText: {
         en: 'Vrill + Be Outside',
         de: 'Vril + Außen',
+        fr: 'Vril + Extérieur',
         cn: '完全吸引',
         ko: '락슈미 에테르 + 바깥으로',
       },
       tts: {
         en: 'vrill and outside',
         de: 'wriel und raus',
+        fr: 'vril et à l\'extérieur',
         cn: '完全吸引',
         ko: '락슈미 에테르 바깥으로',
       },
@@ -113,12 +116,14 @@
       alertText: {
         en: 'Vrill + Pair Up',
         de: 'Vril + Pärchen bilden',
+        fr: 'Vril + Formé une paire',
         cn: '完全惑乱',
         ko: '락슈미 에테르 + 파트너끼리',
       },
       tts: {
         en: 'vrill and buddy',
         de: 'wriel und zu partner',
+        fr: 'vril et formé une paire',
         cn: '完全惑乱',
         ko: '락슈미 에테르 파트너끼리',
       },
@@ -134,6 +139,7 @@
           return {
             en: 'Vrill + Stack on YOU',
             de: 'Vril + Stack auf DIR',
+            fr: 'vril + Package sur VOUS',
             cn: '元气攻击点名',
             ko: '락슈미 에테르 + 쉐어징 대상자',
           };
@@ -141,6 +147,7 @@
         return {
           en: 'Vrill + Stack',
           de: 'Vril + Stack',
+          fr: 'Vril + Packez-vous',
           cn: '元气攻击',
           ko: '락슈미 에테르 쉐어징',
         };
@@ -153,6 +160,7 @@
           return {
             en: 'Stack on YOU',
             de: 'Stack auf DIR',
+            fr: 'Package sur VOUS',
             cn: '分摊点名',
             ko: '쉐어징 대상자',
           };
@@ -160,7 +168,7 @@
         return {
           en: 'Stack',
           de: 'Stack',
-          fr: 'Stack',
+          fr: 'Packez-vous',
           ja: '頭割り',
           cn: '集合',
           ko: '쉐어',
@@ -171,6 +179,7 @@
           return {
             en: 'vrill and stack',
             de: 'vril und stek',
+            fr: 'Vril + Packez-vous',
             cn: '元气攻击',
             ko: '락슈미 에테르 + 쉐어',
           };
@@ -178,6 +187,7 @@
         return {
           en: 'stack',
           de: 'stek',
+          fr: 'Packez-vous',
           cn: '分摊',
           ko: '쉐어',
         };
@@ -196,6 +206,7 @@
           return {
             en: 'Vrill for AOE',
             de: 'Vril fuer Flaechenangriff',
+            fr: 'Vril pour AoE',
             cn: '元气AOE',
             ko: '락슈미 에테르 (광딜)',
           };
@@ -212,6 +223,7 @@
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cleave on YOU',
           de: (data.chanchala ? 'Vril + ' : '') + 'Cleave auf DIR',
+          fr: (data.chanchala ? 'Vril + ' : '') + 'Cleave sur VOUS',
           cn: (data.chanchala ? '元气 ' : '') + '死刑点名',
           ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '광역 탱버 대상자',
         };
@@ -227,6 +239,7 @@
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Cross Marker',
           de: (data.chanchala ? 'Vril + ' : '') + 'Kreuz-Marker',
+          fr: (data.chanchala ? 'Vril + ' : '') + 'Marqueur croix',
           cn: (data.chanchala ? '元气 ' : '') + '十字点名',
           ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '십자 장판 징',
         };
@@ -242,6 +255,7 @@
         return {
           en: (data.chanchala ? 'Vrill + ' : '') + 'Flower Marker',
           de: (data.chanchala ? 'Vril + ' : '') + 'Blumen-Marker',
+          fr: (data.chanchala ? 'Vril + ' : '') + 'Marqueur fleur',
           cn: (data.chanchala ? '元气 ' : '') + '花点名',
           ko: (data.chanchala ? '락슈미 에테르 + ' : '') + '원형 장판 징',
         };
@@ -256,7 +270,7 @@
       alertText: {
         en: 'Move Away',
         de: 'Weg da',
-        fr: 'Eloignez-vous',
+        fr: 'Éloignez-vous',
         cn: '远离大锤落点',
         ko: '피하기',
       },
@@ -290,13 +304,16 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Dreaming Kshatriya': 'kshatriya rêveuse',
         'Lakshmi': 'Lakshmi',
       },
       'replaceText': {
-        '/dance': '/danser',
+        '--Chanchala over--': '--Chanchala terminé--',
+        '/dance': '/danse',
+        '\\(mid\\)': '(milieu)',
+        '\\(out\\)': '(extérieur)',
+        'Adds Appear': 'Apparition d\'adds',
         'Alluring Arm': 'Bras séduisants',
         'Blissful Spear': 'Épieu béatifiant',
         'Chanchala': 'Chanchala',
