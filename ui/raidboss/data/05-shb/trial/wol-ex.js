@@ -328,7 +328,7 @@
       netRegex: NetRegexes.headMarker({ id: '0067' }),
       condition: Conditions.targetIsYou(),
       alertText: {
-        en: 'puddle on you',
+        en: 'Puddle on YOU',
         de: 'Fläche auf DIR',
         fr: 'Zone au sol sur VOUS',
         ja: '自分に水溜り',
