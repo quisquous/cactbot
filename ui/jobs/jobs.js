@@ -75,6 +75,7 @@ const kAbility = {
   Maim: '25',
   StormsEye: '2D',
   StormsPath: '2A',
+  InnerRelease: '1CDD',
   TrickAttack: '8D2',
   Embolden: '1D60',
   Aetherflow: 'A6',
@@ -1425,17 +1426,31 @@ class Bars {
         if (eyeBox.duration > 0) {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
-          eyeBox.duration = Math.min(old + 10, 30);
+          eyeBox.duration = Math.min(old + 30, 59.5);
         }
         return;
       }
       if (skill == kAbility.StormsEye) {
-        eyeBox.duration = 0;
+        if (eyeBox.duration > 0) {
+          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 30, 59.5);
         // Storm's Eye applies with some animation delay here, and on the next
         // Storm's Eye, it snapshots the damage when the gcd is started, so
         // add some of a gcd here in duration time from when it's applied.
-        eyeBox.duration = 30 + 1;
+        } else {
+          eyeBox.duration = 0;
+          eyeBox.duration = 30 + 1;
+        }
       }
+      this.abilityFuncMap[kAbility.InnerRelease] = () => {
+        if (eyeBox.duration > 0) {
+          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 15, 59.5);
+        }
+        return;
+      };
 
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
