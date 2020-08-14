@@ -22,6 +22,7 @@
         de: 'Sturz auf den Main Tank',
         fr: 'Plongeon sur le Main Tank',
         cn: '凶鸟跳点MT',
+        ko: '광역 탱버',
       },
     },
     {
@@ -33,6 +34,8 @@
         de: 'Köder Supernova draußen',
         fr: 'Attirez les Supernovas à l\'extérieur',
         cn: '人群外放黑洞',
+        ko: '초신성 외곽으로 유도',
+
       },
     },
   ],
@@ -52,6 +55,7 @@
         de: 'Pestschwinge auf DIR',
         fr: 'Bile de rapace sur VOUS',
         cn: '毒气点名',
+        ko: '5초후 디버프 폭발',
       },
     },
     {
@@ -70,6 +74,7 @@
           de: 'Pestschwinge auf ' + data.ShortName(matches.target),
           fr: 'Bile de rapace sur ' + data.ShortName(matches.target),
           cn: '毒气点' + data.ShortName(matches.target),
+          ko: '광역폭발 디버프 ' + data.ShortName(matches.target),
         };
       },
     },
@@ -99,6 +104,7 @@
             de: 'Thermo auf DIR',
             fr: 'Thermo sur VOUS',
             cn: '分摊点名',
+            ko: '쉐어징 대상자',
           };
         }
         return {
@@ -106,6 +112,7 @@
           de: 'Sammeln auf ' + data.ShortName(matches.target),
           fr: 'Packez-vous sur ' + data.ShortName(matches.target),
           cn: '靠近' + data.ShortName(matches.target) + '分摊',
+          ko: '쉐어징 ' + data.ShortName(matches.target),
         };
       },
     },
@@ -135,6 +142,7 @@
         de: 'Blauen Golem verstummen',
         fr: 'Interrompez le Golem bleu',
         cn: '沉默蓝色小怪',
+        ko: '파란골렘 기술끊기',
       },
     },
     {
@@ -150,6 +158,7 @@
         de: 'Himmelssturz',
         fr: 'Destruction universelle',
         cn: '击退AOE',
+        ko: '천지붕괴',
       },
     },
     {
@@ -163,6 +172,7 @@
         de: 'Leicht fixierbar auf DIR',
         fr: 'Sangle accélérée sur VOUS',
         cn: '连坐点名',
+        ko: '구속 가속',
       },
       run: function(data) {
         data.garotte = true;
@@ -184,6 +194,7 @@
         de: 'reinige Leicht fixierbar',
         fr: 'Dissipez Sangle accélérée',
         cn: '踩白圈',
+        ko: '흰색 장판 밟기',
       },
     },
     {
@@ -306,6 +317,7 @@
           fr: 'Marque : ' + data.naelMarks.join(', '),
           ja: 'マーカー: ' + data.naelMarks.join(', '),
           cn: '标记： ' + data.naelMarks.join(', '),
+          ko: '카탈징: ' + data.naelMarks.join(', '),
         };
       },
     },
@@ -330,6 +342,7 @@
             de: data.tetherDir + ' (auf DIR)',
             fr: data.tetherDir + ' (sur VOUS)',
             cn: data.tetherDir + ' (点名)',
+            ko: data.tetherDir + ' (대상자)',
           };
         }
       },
@@ -340,6 +353,7 @@
             de: data.tetherDir + ' (auf ' + data.ShortName(matches.target) + ')',
             fr: data.tetherDir + ' (sur ' + data.ShortName(matches.target) + ')',
             cn: data.tetherDir + ' (点 ' + data.ShortName(matches.target) + ')',
+            ko: data.tetherDir + ' (on ' + data.ShortName(matches.target) + ')',
           };
         }
       },
@@ -361,6 +375,7 @@
         fr: 'Foudre sur VOUS',
         ja: '自分にサンダー',
         cn: '雷点名',
+        ko: '번개 대상자',
       },
     },
     {
@@ -391,6 +406,7 @@
           fr: 'Allez en ' + marker + ' (au ' + dir + ')',
           ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
           cn: '去' + marker + ' (在 ' + dir + '秒)',
+          ko: '이동 → ' + marker + ' (in ' + dir + ')',
         };
       },
       tts: function(data, matches) {
@@ -403,6 +419,7 @@
           fr: 'Allez en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
           cn: '去' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+          ko: '이동 → ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
         };
       },
     },
@@ -435,7 +452,7 @@
         'Fireball': 'Feuerball',
         'Ghost': 'Geist',
         'Golem Meteors': 'Golem Meteore',
-        'Heavensfall': 'Himmelssturz',
+        'Heavensfall': 'Himmelsfall',
         'Iron Chariot': 'Eiserner Streitwagen',
         'Lunar Dynamo': 'Lunarer Dynamo',
         'Megaflare': 'Megaflare',
@@ -525,7 +542,7 @@
         'Divebomb': 'ダイブボム',
         'Fireball': 'ファイアボール',
         'Ghost': 'ゴースト',
-        'Heavensfall': '天地崩壊',
+        'Heavensfall': 'ヘヴンスフォール',
         'Iron Chariot': 'アイアンチャリオット',
         'Lunar Dynamo': 'ルナダイナモ',
         'Megaflare': 'メガフレア',
@@ -563,9 +580,9 @@
         'Chain Lightning': '雷光链',
         'Dalamud Dive': '月华冲',
         'Divebomb': '爆破俯冲',
-        'Fireball': '烈火球',
+        'Fireball': '火球',
         'Ghost': '幽灵',
-        'Heavensfall': '天崩地裂',
+        'Heavensfall': '惊天动地',
         'Iron Chariot': '钢铁战车',
         'Lunar Dynamo': '月流电圈',
         'Megaflare': '百万核爆',
@@ -605,7 +622,7 @@
         'Divebomb': '급강하 폭격',
         'Fireball': '화염구',
         'Ghost': '유령',
-        'Heavensfall': '천지붕괴',
+        'Heavensfall': '천지 붕괴',
         'Iron Chariot': '강철 전차',
         'Lunar Dynamo': '달의 원동력',
         'Megaflare': '메가플레어',

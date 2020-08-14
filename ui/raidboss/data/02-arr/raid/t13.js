@@ -32,6 +32,7 @@
             de: 'In der Mitte sammeln für Sturzbombe',
             fr: 'Packez-vous au centre pour les plongeons',
             cn: '中间集合等待俯冲',
+            ko: '기가플레어 집합',
           };
         }
       },
@@ -55,6 +56,7 @@
             de: 'Einebnen auf DIR',
             fr: 'Compression sur VOUS',
             cn: '死刑',
+            ko: '짓뭉개기',
           };
         }
       },
@@ -67,6 +69,7 @@
             de: 'Einebnen auf ' + data.ShortName(matches.target),
             fr: 'Compression sur ' + data.ShortName(matches.target),
             cn: '死刑点' + data.ShortName(matches.target),
+            ko: '짓뭉개기 ' + data.ShortName(matches.target),
           };
         }
       },
@@ -82,6 +85,7 @@
         de: 'Megaflare Sammeln',
         fr: 'MégaBrasier, Packez-vous',
         cn: '百万核爆集合',
+        ko: '메가플레어 쉐어',
       },
     },
     {
@@ -108,6 +112,7 @@
         de: 'Sturm Verbindung auf DIR',
         fr: 'Liens de tempête sur VOUS',
         cn: '风圈点名',
+        ko: '폭풍 줄 대상자',
       },
     },
     {
@@ -125,6 +130,7 @@
             de: 'Akh Morn auf DIR',
             fr: 'Akh Morn sur VOUS',
             cn: '死亡轮回点名',
+            ko: '아크몬 대상자',
           };
         }
       },
@@ -135,6 +141,7 @@
             de: 'Akh Morn auf ' + data.ShortName(matches.target),
             fr: 'Akh Morn sur ' + data.ShortName(matches.target),
             cn: '死亡轮回点' + data.ShortName(matches.target),
+            ko: '아크몬 ' + data.ShortName(matches.target),
           };
         }
       },
