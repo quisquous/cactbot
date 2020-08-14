@@ -1450,7 +1450,7 @@ class Bars {
           eyeBox.duration = Math.min(old + 15, 59.5);
         }
         return;
-      }
+      };
 
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
