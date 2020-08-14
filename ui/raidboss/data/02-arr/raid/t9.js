@@ -406,7 +406,7 @@
           fr: 'Allez en ' + marker + ' (au ' + dir + ')',
           ja: marker + 'に行く' + ' (あと ' + dir + '秒)',
           cn: '去' + marker + ' (在 ' + dir + '秒)',
-          ko: '이동 → ' + marker + ' (in ' + dir + ')',
+          ko: marker + '로 이동' + ' (in ' + dir + ')',
         };
       },
       tts: function(data, matches) {
@@ -419,7 +419,7 @@
           fr: 'Allez en ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
           ja: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '行くよ',
           cn: '去' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
-          ko: '이동 → ' + ['A', 'B', 'C'][data.naelDiveMarkerCount],
+          ko: ['A', 'B', 'C'][data.naelDiveMarkerCount] + '로 이동',
         };
       },
     },
