@@ -12,7 +12,7 @@
       infoText: {
         en: 'stack with your group',
         de: 'mit der Gruppe stacken',
-        fr: 'Packé avec votre groupe',
+        fr: 'Packez avec votre groupe',
         ja: 'グループ別にスタック',
         cn: '双组分摊',
         ko: '쉐어징',
@@ -26,7 +26,7 @@
       infoText: {
         en: 'line stack',
         de: 'Linien-Stack',
-        fr: 'Packé en ligne',
+        fr: 'Packez-vous en ligne',
         ja: 'スタック',
         cn: '直线分摊',
         ko: '직선 쉐어',
@@ -85,7 +85,7 @@
           return {
             en: 'Swap, then Buster',
             de: 'Tankwechsel, danach Tankbuster',
-            fr: 'Swap puis tankbuster',
+            fr: 'Tank swap puis Tank buster',
             ja: 'スイッチ後強攻撃',
             cn: '换T+死刑',
             ko: '교대 후 탱버',
@@ -110,7 +110,7 @@
       alertText: {
         en: 'Away From Tanks',
         de: 'Weg von den Tanks',
-        fr: 'Ecartez-vous des tanks',
+        fr: 'Éloignez-vous des Tanks',
         ja: 'タンクから離れ',
         cn: '远离坦克',
         ko: '탱커한테서 멀어지기',
@@ -140,7 +140,7 @@
       infoText: {
         en: 'Stack for Puddle AOEs',
         de: 'Stacken (Pfützen)',
-        fr: 'Packez-vous pour l\'aoe',
+        fr: 'Packez-vous pour l\'AoE',
         ja: 'スタック',
         cn: '集合放置AOE',
         ko: '중앙에 모이기',
@@ -167,7 +167,7 @@
           return {
             en: 'Spread (dps get towers)',
             de: 'Verteilen (nicht in den Turm)',
-            fr: 'Ecartez-vous (pas sur la tour)',
+            fr: 'Dispersion (DPS prenez les tours)',
             ja: '散開 (DPSが塔)',
             cn: '分散（DPS踩塔）',
             ko: '산개 (딜러 기둥 처리)',
@@ -176,7 +176,7 @@
         return {
           en: 'Spread (tanks/healers get towers)',
           de: 'Verteilen (nicht in den Turm)',
-          fr: 'Ecartez-vous (pas sur la tour)',
+          fr: 'Dispersion (Tanks/Healers prenez les tours)',
           ja: '散開 (タンクヒラが塔)',
           cn: '分散（坦克/治疗踩塔）',
           ko: '산개 (탱/힐 기둥 처리)',
@@ -196,7 +196,7 @@
           return {
             en: 'Get Tower (tank/healer towers)',
             de: 'In den Turm',
-            fr: 'Sur votre tour',
+            fr: 'Prenez votre tour (tours Tank/Healers)',
             ja: '塔 (タンクヒラが塔)',
             cn: '踩塔（坦克/治疗踩塔）',
             ko: '기둥 처리 (탱/힐)',
@@ -205,7 +205,7 @@
         return {
           en: 'Get Tower (dps towers)',
           de: 'In den Turm',
-          fr: 'Sur votre tour',
+          fr: 'Prenez votre tour (tours DPS)',
           ja: '塔 (DPSが塔)',
           cn: '踩塔（DPS踩塔）',
           ko: '기둥 처리 (딜러)',
@@ -254,7 +254,7 @@
         return {
           en: 'Out of Middle, Toward Snakes',
           de: 'Raus aus der Mitte, Zu den Schlangen',
-          fr: 'Pas au centre, du côté des serpents',
+          fr: 'Sortez du milieu, vers les serpents',
           ja: '真ん中からずれて蛇向いて',
           cn: '靠近中心，面向蛇蛇',
           ko: '중앙 피하고 뱀쪽으로 밀리기',
@@ -435,11 +435,11 @@
         'Forbidden Arts': 'Lame interdite',
         'Force of Nature': 'Main écrasante',
         'Handprint': 'Main lourde',
-        'In/Out': 'Dedans/Dehors',
+        'In/Out': 'Intérieur/Extérieur',
         'Kanabo': 'Massue démoniaque',
         'Kuji-kiri': 'Kuji-kiri',
         'Onmyo Sigil': 'Onmyo',
-        'Out/In': 'Dehors/Dedans',
+        'Out/In': 'Extérieur/Intérieur',
         'Red Rush': 'Percée rouge',
         'Serpent Ascending': 'Serpent levant',
         'Serpent Descending': 'Serpent couchant',
