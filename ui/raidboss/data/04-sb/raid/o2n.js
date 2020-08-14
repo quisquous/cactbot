@@ -37,11 +37,13 @@
           return {
             en: 'Stack marker on YOU',
             de: 'Sammeln Marker auf DIR',
+            cn: '集合点名',
           };
         }
         return {
           en: 'Stack on ' + data.shortName(matches.target),
           de: 'Sammeln auf ' + data.shortName(matches.target),
+          cn: '靠近' + data.shortName(matches.target) + '集合',
         };
       },
     },
@@ -54,6 +56,7 @@
       infoText: {
         en: 'Levitate',
         de: 'Schweben',
+        cn: '浮空',
       },
     },
     {
@@ -80,10 +83,12 @@
       infoText: {
         en: '-100 Gs: Go north/south',
         de: '-100G: Nach Norden/Süden',
+        cn: '去北边/南边',
       },
       tts: {
         en: '100 gs',
         de: '-100 G',
+        cn: '重力负100',
       },
     },
     {
@@ -109,6 +114,7 @@
           return {
             en: 'Levitate',
             de: 'Schweben',
+            cn: '浮空',
           };
         }
       },
@@ -117,6 +123,7 @@
           return {
             en: 'Earthquake',
             de: 'Erdbeben',
+            cn: '地震',
           };
         }
       },
@@ -125,6 +132,7 @@
           return {
             en: 'levitate',
             de: 'schweben',
+            cn: '浮空',
           };
         }
       },
@@ -151,6 +159,7 @@
           return {
             en: 'Levitate',
             de: 'Schweben',
+            cn: '浮空',
           };
         }
       },
@@ -159,12 +168,14 @@
           return {
             en: '6 Fulms Under',
             de: 'Versinkend',
+            cn: '下陷',
           };
         }
       },
       tts: {
         en: 'float',
         de: 'schweben',
+        cn: '浮空',
       },
     },
     {
@@ -192,6 +203,7 @@
           return {
             en: 'Levitate',
             de: 'Levitation',
+            cn: '浮空',
           };
         }
         // It's always safe not to levitate after the first Antilight.
@@ -200,11 +212,13 @@
           return {
             en: 'Go center and don\'t levitate',
             de: 'Geh in die Mitte und nicht schweben',
+            cn: '中间集合不要浮空',
           };
         }
         return {
           en: 'Don\'t levitate',
           de: 'Nicht schweben',
+          cn: '不要浮空',
         };
       },
       infoText: function(data) {
