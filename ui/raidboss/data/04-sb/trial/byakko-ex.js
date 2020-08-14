@@ -185,7 +185,7 @@
       tts: {
         en: 'drop outside',
         de: 'außen ablegen',
-        fr: 'déposez extérieur',
+        fr: 'déposez à l\'extérieur',
         ja: '外にマーカー',
         cn: '边缘放点名',
         ko: '장판 바깥으로',
@@ -319,7 +319,7 @@
         return {
           en: 'Stack #' + data.stakeCount,
           de: 'Stack #' + data.stakeCount,
-          fr: 'Stack #' + data.stakeCount,
+          fr: 'Packez-vous #' + data.stakeCount,
           cn: '集合 #' + data.stakeCount,
           ko: '쉐어 #' + data.stakeCount,
         };
