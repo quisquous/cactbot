@@ -35,7 +35,6 @@
         fr: 'Attirez les Supernovas à l\'extérieur',
         cn: '人群外放黑洞',
         ko: '초신성 외곽으로 유도',
-
       },
     },
   ],
@@ -452,7 +451,7 @@
         'Fireball': 'Feuerball',
         'Ghost': 'Geist',
         'Golem Meteors': 'Golem Meteore',
-        'Heavensfall': 'Himmelsfall',
+        'Heavensfall': 'Himmelssturz',
         'Iron Chariot': 'Eiserner Streitwagen',
         'Lunar Dynamo': 'Lunarer Dynamo',
         'Megaflare': 'Megaflare',
