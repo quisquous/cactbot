@@ -35,6 +35,7 @@
         de: 'Todesurteil bald',
         fr: 'Peine de mort bientôt',
         cn: '死刑',
+        ko: '사형선고',
       },
     },
     {
@@ -50,6 +51,7 @@
         de: 'Höllenschmelze',
         fr: 'Enfer liquide',
         cn: '液体地狱',
+        ko: '지옥의 늪',
       },
     },
     {
@@ -77,6 +79,7 @@
             de: 'Feuerball auf DIR',
             fr: 'Boule de feu sur VOUS',
             cn: '火球点名',
+            ko: '나에게 화염구',
           };
         }
       },
@@ -87,6 +90,7 @@
             de: 'Feuerball auf ' + data.ShortName(matches.target),
             fr: 'Boule de feu sur ' + data.ShortName(matches.target),
             cn: '火球点' + data.ShortName(matches.target),
+            ko: '쉐어징 ' + data.ShortName(matches.target),
           };
         }
       },
@@ -106,6 +110,7 @@
             de: 'Feuersturm auf DIR',
             fr: 'Tempête de feu sur VOUS',
             cn: '火焰流点名',
+            ko: '불보라 보스밑으로',
           };
         }
       },
@@ -116,6 +121,7 @@
             de: 'Feuersturm auf ' + data.ShortName(matches.target),
             fr: 'Tempête de feu sur ' + data.ShortName(matches.target),
             cn: '火焰流点' + data.ShortName(matches.target),
+            ko: '불보라' + data.ShortName(matches.target),
           };
         }
       },
@@ -143,6 +149,7 @@
         de: 'STURZBOMBE',
         fr: 'BOMBE PLONGEANTE',
         cn: '俯冲',
+        ko: '급강하',
       },
     },
     {
@@ -160,6 +167,7 @@
         de: 'Sturzbombe bald',
         fr: 'Bombe plongeante bientôt',
         cn: '即将俯冲',
+        ko: '급강하 준비',
       },
     },
     {
@@ -178,6 +186,7 @@
             de: 'Furchtritter auf DIR',
             fr: 'Chevalier sur VOUS',
             cn: '骑士点名',
+            ko: '드레드 대상자',
           };
         }
         return {
@@ -185,6 +194,7 @@
           de: 'Furchtritter auf ' + data.ShortName(matches.target),
           fr: 'Chevalier sur ' + data.ShortName(matches.target),
           cn: '骑士点' + data.ShortName(matches.target),
+          ko: '드래드 대상' + data.ShortName(matches.target),
         };
       },
     },
@@ -201,6 +211,7 @@
         de: 'Wirbelsturm!',
         fr: 'Tornade !',
         cn: '风风风！',
+        ko: '회오리',
       },
     },
     {
@@ -228,6 +239,7 @@
             de: 'Austritt auf DIR',
             fr: 'Éclosion sur VOUS',
             cn: '黑球点名',
+            ko: '나에게 마력방출',
           };
         }
       },
@@ -238,6 +250,7 @@
             de: 'Austritt auf ' + data.ShortName(matches.target),
             fr: 'Éclosion sur ' + data.ShortName(matches.target),
             cn: '黑球点' + data.ShortName(matches.target),
+            ko: '마력방출' + data.ShortName(matches.target),
           };
         }
       },
