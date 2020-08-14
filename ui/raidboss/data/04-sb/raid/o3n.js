@@ -131,10 +131,12 @@
       infoText: {
         en: 'Get on crystal square',
         de: 'Kristallfeld',
+        cn: '站在蓝地板',
       },
       tts: {
         en: 'blue square',
         de: 'blaues feld',
+        cn: '蓝地板',
       },
     },
     {
@@ -151,6 +153,7 @@
       infoText: {
         en: 'Grab dragon',
         de: 'Drachen nehmen',
+        cn: '拉住巨龙',
       },
     },
     {
@@ -179,6 +182,7 @@
       alertText: {
         en: 'Get hit by Ribbit',
         de: 'Lass dich von Quaaak treffen',
+        cn: 'BOSS正面吃呱呱',
       },
     },
     {
@@ -209,6 +213,7 @@
           return {
             en: 'Stand on frog tile',
             de: 'Auf Frosch-Fläche stehen',
+            cn: '站在呱呱方块',
           };
         }
         return {
@@ -216,14 +221,17 @@
           'tank': {
             en: 'Stand on shield',
             de: 'Auf Schild-Fläche stehen',
+            cn: '站在坦克方块',
           },
           'healer': {
             en: 'Stand on cross',
             de: 'Auf Kreuz-Fläche stehen',
+            cn: '站在治疗方块',
           },
           'dps': {
             en: 'Stand on sword',
             de: 'Auf Schwert-Fläche stehen',
+            cn: '站在DPS方块',
           },
         }[data.role];
       },
@@ -242,6 +250,7 @@
       infoText: {
         en: 'Mindjack: Forward',
         de: 'Geistlenkung: Vorwärts',
+        cn: '精神控制：向前',
       },
     },
     {
@@ -255,6 +264,7 @@
       infoText: {
         en: 'Mindjack: Back',
         de: 'Geistlenkung: Zurück',
+        cn: '精神控制：向后',
       },
     },
     {
@@ -268,6 +278,7 @@
       infoText: {
         en: 'Mindjack: Left',
         de: 'Geistlenkung: Links',
+        cn: '精神控制：向左',
       },
     },
     {
@@ -281,6 +292,7 @@
       infoText: {
         en: 'Mindjack: Right',
         de: 'Geistlenkung: Rechts',
+        cn: '精神控制：向右',
       },
     },
   ],
