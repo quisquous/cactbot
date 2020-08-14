@@ -214,7 +214,7 @@
       netRegex: NetRegexes.startsUsing({ source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[68]', capture: false }),
       condition: (data) => data.CanSilence(),
       suppressSeconds: 2,
-      infoText: {
+      alarmText: {
         en: 'Interrupt',
         de: 'Unterbreche',
         fr: 'Interrompez',
