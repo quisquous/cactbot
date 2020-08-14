@@ -355,7 +355,7 @@
     {
       id: 'WOLEx Absolute Holy',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
-      condition: (data) => !data.deluge,
+      condition: (data) => !data.deluge && !data.ninja,
       response: Responses.stackOn(),
     },
     {
