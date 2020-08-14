@@ -1451,7 +1451,6 @@ class Bars {
         }
         return;
       }
-    }
 
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
