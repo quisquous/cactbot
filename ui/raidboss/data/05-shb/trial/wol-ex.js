@@ -12,7 +12,12 @@
       },
       suppressSeconds: 5,
       alertText: {
-        en: 'Full Heal Everyone',
+        en: 'Heal All to Full',
+        de: 'Alle vollheilen',
+        fr: 'Soignez tout le monde full vie',
+        ja: 'HP戻して',
+        cn: '奶满全队',
+        ko: '전원 체력 풀피로',
       },
     },
     {
@@ -49,6 +54,11 @@
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F2C', capture: false }),
       infoText: {
         en: 'Protean',
+        de: 'Himmelsrichtungen',
+        fr: 'Position',
+        ja: '散開',
+        cn: '散开',
+        ko: '위치 산개',
       },
     },
     {
@@ -58,6 +68,11 @@
         data.imbued = data.imbued || [];
         data.imbuedFire = {
           en: 'Stop',
+          de: 'Stopp',
+          fr: 'Stop',
+          ja: '動かない',
+          cn: '不要动',
+          ko: '멈추기',
         }[data.displayLang];
         data.imbued.push(data.imbuedFire);
       },
@@ -69,6 +84,11 @@
         data.imbued = data.imbued || [];
         data.imbuedBlizzard = {
           en: 'Move',
+          de: 'Bewegen',
+          fr: 'Bougez',
+          ja: '動け',
+          cn: '动起来',
+          ko: '움직이기',
         }[data.displayLang];
         data.imbued.push(data.imbuedBlizzard);
       },
@@ -80,6 +100,11 @@
         data.imbued = data.imbued || [];
         data.imbuedHoly = {
           en: 'Stack',
+          de: 'Stacken',
+          fr: 'Stack',
+          ja: 'スタック',
+          cn: '集合',
+          ko: '집합',
         }[data.displayLang];
         data.imbued.push(data.imbuedHoly);
       },
@@ -91,6 +116,11 @@
         data.imbued = data.imbued || [];
         data.imbuedStone = {
           en: 'Protean',
+          de: 'Himmelsrichtungen',
+          fr: 'Position',
+          ja: '散開',
+          cn: '散开',
+          ko: '위치 산개',
         }[data.displayLang];
         data.imbued.push(data.imbuedStone);
       },
@@ -102,6 +132,11 @@
         data.imbued = data.imbued || [];
         data.imbuedSwordIn = {
           en: 'In',
+          de: 'Rein',
+          fr: 'Intérieur',
+          ja: '中へ',
+          cn: '靠近',
+          ko: '안으로',
         }[data.displayLang];
         data.imbued.push(data.imbuedSwordIn);
       },
@@ -118,6 +153,11 @@
         data.imbued = data.imbued || [];
         data.imbuedSwordOut = {
           en: 'Out',
+          de: 'Raus',
+          fr: 'Exterieur',
+          ja: '外へ',
+          cn: '远离',
+          ko: '밖으로',
         }[data.displayLang];
         data.imbued.push(data.imbuedSwordOut);
       },
@@ -160,7 +200,12 @@
       condition: Conditions.caresAboutPhysical(),
       suppressSeconds: 2,
       infoText: {
-        en: 'Tankbuster',
+        en: 'Tank Busters',
+        de: 'Tankbuster',
+        fr: 'Tank buster',
+        ja: 'タンクバスター',
+        cn: '坦克死刑',
+        ko: '탱버',
       },
     },
     {
@@ -171,6 +216,11 @@
       suppressSeconds: 2,
       infoText: {
         en: 'Interrupt',
+        de: 'Unterbreche',
+        fr: 'Interrompez',
+        ja: '沈黙',
+        cn: '打断',
+        ko: '기술 시전 끊기',
       },
     },
     {
@@ -179,6 +229,11 @@
       condition: (data, matches) => !data.ultimateSeen && data.me === matches.target,
       alarmText: {
         en: 'Flare on YOU',
+        de: 'Flare auf DIR',
+        fr: 'Brasier sur VOUS',
+        ja: '自分にフレア',
+        cn: '核爆点名',
+        ko: '플레어 대상자',
       },
     },
     {
@@ -187,7 +242,12 @@
       condition: Conditions.targetIsYou(),
       suppressSeconds: 4,
       infoText: {
-        en: 'Point tether outside',
+        en: 'Point Tether Out',
+        de: 'Verbindung nach draußen richten',
+        fr: 'Lien vers l\'extérieur',
+        ja: '線を外に引く',
+        cn: '连线',
+        ko: '선 연결 바깥으로 빼기',
       },
     },
     {
@@ -198,6 +258,7 @@
       },
     },
     {
+      // TODO: We can call these out earlier based on the move WoL does before Specter of Light
       id: 'WOLEx Spectral Black Mage / White Mage',
       netRegex: NetRegexes.startsUsing({ source: 'Spectral Black Mage', id: '4F3D', capture: false }),
       condition: (data) => data.ultimateSeen,
@@ -218,7 +279,7 @@
       netRegex: NetRegexes.startsUsing({ source: 'Spectral Dark Knight', id: '4F3A', capture: false }),
       condition: (data) => data.ultimateSeen,
       infoText: {
-        en: 'Bard + Dark Knight',
+        en: 'Dark Knight + Bard',
       },
     },
     {
@@ -267,7 +328,12 @@
       netRegex: NetRegexes.headMarker({ id: '0067' }),
       condition: Conditions.targetIsYou(),
       alertText: {
-        en: 'Drop Puddle In Corner',
+        en: 'puddle on you',
+        de: 'Fläche auf DIR',
+        fr: 'Zone au sol sur VOUS',
+        ja: '自分に水溜り',
+        cn: '水球点名',
+        ko: '징 대상자',
       },
     },
     {
@@ -276,6 +342,11 @@
       condition: (data, matches) => data.ultimateSeen && data.me === matches.target,
       alarmText: {
         en: 'Flare on YOU',
+        de: 'Flare auf DIR',
+        fr: 'Brasier sur VOUS',
+        ja: '自分にフレア',
+        cn: '核爆点名',
+        ko: '플레어 대상자',
       },
       run: function(data) {
         data.deluge = true;
@@ -357,9 +428,13 @@
       condition: (data) => data.quintuplecasting,
       suppressSeconds: 5,
       run: function(data, matches) {
-        // TODO: Can this just append Responses.lookAwayFromTarget() instead?
         data.absoluteFlash = {
-          en: 'Look away from ' + matches.target,
+          en: 'Look Away from ' + data.ShortName(matches.target),
+          de: 'Schau weg von ' + data.ShortName(matches.target),
+          fr: 'Ne regardez pas ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'を見ない',
+          cn: '背对' + name,
+          ko: data.ShortName(matches.target) + '에게서 뒤돌기',
         }[data.displayLang];
         data.quintuplecasts.push(data.absoluteFlash);
       },
