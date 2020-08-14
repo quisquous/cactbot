@@ -1443,7 +1443,7 @@ class Bars {
           eyeBox.duration = 30 + 1;
         }
       }
-      if (skill == kAbility.InnerRelease) {
+      this.abilityFuncMap[kAbility.InnerRelease] = () => {
         if (eyeBox.duration > 0) {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
