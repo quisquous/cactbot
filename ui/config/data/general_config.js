@@ -92,11 +92,11 @@ UserConfig.registerOptions('general', {
         cn: {
           '使用最终幻想XIV解析插件设置的语言': 'default',
           '英语 (en)': 'en',
-          '汉语 (cn)': 'cn',
+          '中文 (cn)': 'cn',
           '德语 (de)': 'de',
           '法语 (fr)': 'fr',
           '日语 (ja)': 'ja',
-          '朝鲜语 (ko)': 'ko',
+          '韩语 (ko)': 'ko',
         },
         ko: {
           'FFXIV Plugin 언어 사용': 'default',
