@@ -481,11 +481,24 @@ const kQuintupleFlash = {
       netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: '4EEF', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: '4EEF', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4EEF', capture: false }),
-      alertText: function(data) {
+      durationSeconds: 18.5,
+      infoText: function(data) {
         const translated = data.quintuplecasts.map((x) => data.displayLang in x ? x[data.displayLang] : x['en']);
         const msg = translated.join(' > ');
-        delete data.quintuplecasts;
         return msg;
+      },
+      tts: null,
+    },
+    {
+      id: 'WOLEx Quintuplecast Individual',
+      netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: ['4EEF', '4EF0'], capture: false }),
+      durationSeconds: 3,
+      alertText: function(data) {
+        const next = data.quintuplecasts.shift();
+        // The last cast of 4EF0 will not have a next mechanic to call.
+        if (!next)
+          return;
+        return data.displayLang in next ? next[data.displayLang] : next['en'];
       },
     },
     {
