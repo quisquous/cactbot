@@ -79,6 +79,7 @@
           return {
             en: 'Akh Morn on YOU',
             de: 'Akh Morn auf DIR',
+            fr: 'Akh Morn sur VOUS',
             cn: '死亡轮回点名',
             ko: '아크몬 대상자',
           };
@@ -86,6 +87,7 @@
           return {
             en: 'Akh Morn on ' + data.ShortName(matches.target),
             de: 'Akh Morn auf ' + data.ShortName(matches.target),
+            fr: 'Akh Morn sur ' + data.ShortName(matches.target),
             cn: '死亡轮回点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 아크몬',
           };
@@ -98,6 +100,7 @@
         return {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
+          fr: 'Akh Rhai: Dispersion et bougez',
           cn: '天光轮回：散开和移动',
           ko: '아크 라이: 산개, 이동',
         };
@@ -105,6 +108,7 @@
       tts: {
         en: 'akh morn',
         de: 'akh morn',
+        fr: 'akh morn',
         cn: '死亡轮回',
         ko: '아크몬',
       },
@@ -120,12 +124,14 @@
       infoText: {
         en: 'Ice: Stack and Stop',
         de: 'Eis: Stack und Stehenbleiben',
+        fr: 'Glace : Packez-vous et arrêtez',
         cn: '冰地面：站一起和停止移动',
         ko: '얼음: 집합하고 이동하지 않기',
       },
       tts: {
         en: 'stop',
         de: 'stopp',
+        fr: 'arrêtez',
         cn: '停止',
         ko: '이동하지 않기',
       },
@@ -141,6 +147,7 @@
       infoText: {
         en: 'Out of middle',
         de: 'Raus aus der Mitte',
+        fr: 'Sortez du milieu',
         cn: '离开中间',
         ko: '중앙 피하기',
       },
@@ -157,12 +164,14 @@
       alertText: {
         en: 'Get in water',
         de: 'In\'s Wasser',
+        fr: 'Allez dans l\'eau',
         cn: '进水圈',
         ko: '물 장판에 들어가기',
       },
       tts: {
         en: 'water',
         de: 'wasser',
+        fr: 'eau',
         cn: '进水圈',
         ko: '물 장판',
       },
@@ -183,6 +192,7 @@
           return {
             en: 'stop to get frozen',
             de: 'Stopp! Einfrieren lassen',
+            fr: 'Arrêtez, laissez-vous gelé',
             cn: '停下，冰地面',
             ko: '멈춰서 얼기',
           };
@@ -190,6 +200,7 @@
         return {
           en: 'Stack in water',
           de: 'In Wasser stacken',
+          fr: 'Packez-vous dans l\'eau',
           cn: '在水圈攻击',
           ko: '물 장판에 모이기',
         };
@@ -199,6 +210,7 @@
           return {
             en: 'stop to get frozen',
             de: 'Stopp! Einfrieren lassen',
+            fr: 'arrêtez, laissez-vous gelé',
             cn: '停下，冰地面',
             ko: '멈춰서 얼기',
           };
@@ -206,6 +218,7 @@
         return {
           en: 'water',
           de: 'Wasser',
+          fr: 'eau',
           cn: '水圈',
           ko: '물 장판',
         };
@@ -223,6 +236,7 @@
       alertText: {
         en: 'out of water',
         de: 'Raus aus dem Wasser',
+        fr: 'Sortez de l\'eau',
         cn: '离开水圈',
         ko: '물 장판 밖으로',
       },
@@ -241,6 +255,7 @@
           return {
             en: 'bait bolt, keep moving',
             de: 'Blitz ködern, weiterbewegen',
+            fr: 'Attirez la foudre, continuez à bouger',
             cn: '闪电，保持移动',
             ko: '번개 공격 산개, 계속 움직이기',
           };
@@ -248,6 +263,7 @@
         return {
           en: 'Spread out, no water',
           de: 'Verteilen und nicht in\'s Wasser',
+          fr: 'Dispersez-vous en dehors de l\'eau',
           cn: '散开，离开水圈',
           ko: '산개, 물장판 X',
         };
@@ -257,6 +273,7 @@
           return {
             en: 'bait bolt, keep moving',
             de: 'Blitz ködern, weiterbewegen',
+            fr: 'Attirez la foudre, continuez à bouger',
             cn: '闪电，保持移动',
             ko: '번개 공격 산개, 계속 움직이기',
           };
@@ -264,6 +281,7 @@
         return {
           en: 'levinbolt',
           de: 'Blitz',
+          fr: 'fulguration',
           cn: '离开闪电',
           ko: '우레',
         };
@@ -283,6 +301,7 @@
           return {
             en: 'move away',
             de: 'wegbewegen',
+            fr: 'Éloignez-vous',
             cn: '散开',
             ko: '떨어지기',
           };
@@ -293,6 +312,7 @@
           return {
             en: 'move away',
             de: 'weckbewegen',
+            fr: 'Éloignez-vous',
             cn: '散开',
             ko: '떨어지기',
           };
@@ -310,6 +330,7 @@
       alarmText: {
         en: 'icicle, lean west',
         de: 'Eiszapfen, nach westen',
+        fr: 'Stalactite, penchez vers l\'ouest',
         cn: '冰柱，去左边',
         ko: '고드름, 왼쪽 먼저',
       },
@@ -325,6 +346,7 @@
       alarmText: {
         en: 'icicle, lean east',
         de: 'Eiszapfen, nach Osten',
+        fr: 'Stalactite, penchez vers l\'est',
         cn: '冰柱，去右边',
         ko: '고드름, 오른쪽 먼저',
       },
@@ -342,12 +364,14 @@
       infoText: {
         en: 'Knockback, look for water',
         de: 'Rückstoß, nach Wasser schauen',
+        fr: 'Poussée, cherchez l\'eau',
         cn: '击退，找水圈',
         ko: '넉백, 물기둥 확인',
       },
       tts: {
         en: 'knockback',
         de: 'Rückstoß',
+        fr: 'poussée',
         cn: '击退',
         ko: '넉백',
       },
@@ -366,12 +390,14 @@
       infoText: {
         en: 'no more heals needed',
         de: 'keine Heilung mehr nötig',
+        fr: 'Pas besoin de soigner',
         cn: '不需要更多奶了',
         ko: '힐 그만',
       },
       tts: {
         en: 'stop healing',
         de: 'keine Heilung mehr',
+        fr: 'arrêtez^de soigner',
         cn: '停奶',
         ko: '힐 그만',
       },
@@ -388,12 +414,14 @@
       infoText: {
         en: 'Tail: Switch targets',
         de: 'Schweif: Zielwechsel',
+        fr: 'Queue : Changez de cible',
         cn: '打尾巴',
         ko: '꼬리 공격',
       },
       tts: {
         en: 'tail',
         de: 'schweif',
+        fr: 'queue',
         cn: '尾巴',
         ko: '꼬리',
       },
@@ -414,12 +442,14 @@
       infoText: {
         en: 'Heart: Switch targets',
         de: 'Herz: Ziel wechseln',
+        fr: 'Cœur : Changez de cible',
         cn: '打核心',
         ko: '심핵 공격',
       },
       tts: {
         en: 'heart',
         de: 'herz',
+        fr: 'cœur',
         cn: '核心',
         ko: '심핵',
       },
@@ -436,12 +466,14 @@
       alarmText: {
         en: 'avoid divebomb',
         de: 'Divebomb ausweichen',
+        fr: 'Évitez la bombe plongeante',
         cn: '前方顺劈',
         ko: '급강하 폭격 피하기',
       },
       tts: {
         en: 'divebombs',
         de: 'sturzflug',
+        fr: 'bombe plongeante',
         cn: '顺劈',
         ko: '급강하 폭격',
       },
@@ -459,6 +491,7 @@
           return {
             en: 'Death Sentence on YOU',
             de: 'Todesurteil auf DIR',
+            fr: 'Peine de mort sur VOUS',
             cn: '死刑点名',
             ko: '사형 선고 대상자',
           };
@@ -466,6 +499,7 @@
           return {
             en: 'Death Sentence on ' + data.ShortName(matches.target),
             de: 'Todesurteil auf ' + data.ShortName(matches.target),
+            fr: 'Peine de mort sur ' + data.ShortName(matches.target),
             cn: '死刑点名' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 사형 선고',
           };
@@ -476,6 +510,7 @@
           return {
             en: 'Death Sentence on ' + data.ShortName(matches.target),
             de: 'Todesurteil auf ' + data.ShortName(matches.target),
+            fr: 'Peine de mort sur ' + data.ShortName(matches.target),
             cn: '死刑点名' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 사형 선고',
           };
@@ -486,6 +521,7 @@
           return {
             en: 'Death Sentence',
             de: 'Todesurteil',
+            fr: 'Peine de mort',
             cn: '死刑',
             ko: '사형 선고',
           };
@@ -523,12 +559,14 @@
       alertText: {
         en: 'front cleave',
         de: 'Frontalcleave',
+        fr: 'Cleave devant',
         cn: '离开正面',
         ko: '범위 밖으로',
       },
       tts: {
         en: 'cleave',
         de: 'klief',
+        fr: 'cleave',
         cn: '顺劈',
         ko: '범위 공격',
       },
@@ -547,12 +585,14 @@
       alertText: {
         en: 'kill left first',
         de: 'linken Flügel zuerst',
+        fr: 'Tuez la gauche en première',
         cn: '击杀左翼',
         ko: '왼쪽 날개 먼저',
       },
       tts: {
         en: 'left first',
         de: 'links zuerst',
+        fr: 'gauche en première',
         cn: '击杀左翼',
         ko: '왼쪽 먼저',
       },
@@ -574,12 +614,14 @@
       alertText: {
         en: 'kill right first',
         de: 'rechten Flügel zuerst',
+        fr: 'Tuez la droite en première',
         cn: '击杀右翼',
         ko: '오른쪽 날개 먼저',
       },
       tts: {
         en: 'right first',
         de: 'rechts zuerst',
+        fr: 'droite en première',
         cn: '击杀右翼',
         ko: '오른쪽 날개',
       },
@@ -599,6 +641,7 @@
           return {
             en: 'break tethers then stack',
             de: 'Kette zerreissen, dann stack',
+            fr: 'Cassez les liens, puis packez-vous',
             cn: '拉断锁链然后攻击',
             ko: '선 끊고 모이기',
           };
@@ -606,6 +649,7 @@
         return {
           en: 'break tethers',
           de: 'Ketten zerreissen',
+          fr: 'Cassez les liens',
           cn: '拉断锁链',
           ko: '선 끊기',
         };
@@ -615,6 +659,7 @@
           return {
             en: 'break tethers then stack',
             de: 'Kette zerreissen, dann stack',
+            fr: 'Cassez les liens, puis packez-vous',
             cn: '拉断锁链然后攻击',
             ko: '선 끊고 모이기',
           };
@@ -622,6 +667,7 @@
         return {
           en: 'break tethers',
           de: 'Ketten zerreissen',
+          fr: 'Cassez les liens',
           cn: '拉断锁链',
           ko: '선 끊기',
         };
@@ -636,12 +682,14 @@
       alarmText: {
         en: 'tail marker on you',
         de: 'Schweifmarker auf dir',
+        fr: 'Marqueur Queue sur VOUS',
         cn: '龙尾点名',
         ko: '꼬리 징 대상자',
       },
       tts: {
         en: 'tail marker',
         de: 'schweif marker',
+        fr: 'marqueur queue',
         cn: '龙尾点名',
         ko: '꼬리 징',
       },
@@ -659,6 +707,7 @@
           return {
             en: 'earthshaker on you',
             de: 'Erdstoss auf dir',
+            fr: 'Secousse sur VOUS',
             cn: '大地动摇点名',
             ko: '어스 대상자',
           };
@@ -669,6 +718,7 @@
           return {
             en: 'avoid earthshakers',
             de: 'Stöße ausweichen',
+            fr: 'Évitez les secousses',
             cn: '远离大地动摇',
             ko: '어스 피하기',
           };
@@ -679,6 +729,7 @@
           return {
             en: 'avoid shakers',
             de: 'Stöße ausweichen',
+            fr: 'évitez les secousses',
             cn: '离开点名',
             ko: '어스 피하기',
           };
@@ -686,6 +737,7 @@
         return {
           en: 'earthshaker',
           de: 'erdstoß',
+          fr: 'secousse',
           cn: '大地动摇',
           ko: '어스 징',
         };
@@ -751,9 +803,9 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Hakkinryu': 'hakkinryu',
+        'Icicle': 'stalactite',
         'Left Wing': 'aile gauche',
         'Right Wing': 'aile droite',
         'Shinryu': 'Shinryu',
@@ -761,14 +813,18 @@
         'Tail': 'queue',
       },
       'replaceText': {
+        '--Phase': '--Phase',
         'Aerial Blast': 'Rafale aérienne',
-        'Akh Morn': 'Akh Morn',
+        'Akh Morn / Rhai': 'Akh Morn / Rhai',
         'Atomic Ray': 'Rayon atomique',
+        'Benighting / Wormwail': 'Souffle / Gémissement',
+        'Cocoon Markers': 'Marqueurs Cocon',
         'Dark Matter': 'Matière sombre',
         'Diamond Dust': 'Poussière de diamant',
         'Dragonfist': 'Poing dragon',
         'Earth Breath': 'Souffle de terre',
         'Earthen Fury': 'Fureur tellurique',
+        'First Wing': 'Première aile',
         'Gyre Charge': 'Gyrocharge',
         'Hellfire': 'Flammes de l\'enfer',
         'Hypernova': 'Hypernova',
@@ -777,10 +833,15 @@
         'Levinbolt': 'Fulguration',
         'Meteor Impact': 'Impact de météore',
         'Protostar': 'Proto-étoile',
+        'Reiyu Adds': 'Adds Ryu',
+        'Second Wing': 'Seconde aile',
         'Summon Icicle': 'Appel de stalactite',
+        'Tail Marker': 'Marqueur Queue',
         'Tail Slap': 'Gifle caudale',
         'Tail Spit': 'Broche caudale',
+        'TAP BUTTON OR ELSE': 'CLIQUEZ SUR LE BOUTON OU AUTRE',
         'Tera Slash': 'TéraTaillade',
+        'Tethers': 'Liens',
         'Tidal Wave': 'Raz-de-marée',
         'Touchdown': 'Atterrissage',
       },
