@@ -207,7 +207,7 @@
       alarmText: {
         en: 'GTFO',
         de: 'GTFO',
-        ja: 'GTFO',
+        ja: '出ていて！',
       },
       run: function(data, matches) {
         data.deluge = matches.target;
