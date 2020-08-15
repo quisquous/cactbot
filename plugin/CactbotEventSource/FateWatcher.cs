@@ -165,7 +165,7 @@ namespace Cactbot {
     }
 
     public unsafe void ProcessMessage(byte* buffer, byte[] message) {
-      int a = *((int*)&buffer[Category_Offset]);
+      int a = *(ushort*)&buffer[Category_Offset];
 
       if (a == opcodes[region_].add) {
         AddFate(*(int*)&buffer[Param1_Offset]);
