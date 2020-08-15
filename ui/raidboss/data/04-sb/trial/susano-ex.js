@@ -13,6 +13,7 @@
       infoText: {
         en: 'look for cloud',
         de: 'Nach Wolke ausschau halten',
+        fr: 'Cherchez le nuage',
         cn: '寻找雷云',
         ko: '구름 확인',
       },
@@ -93,6 +94,7 @@
           return {
             en: 'Knockback on you (cloud)',
             de: 'Rückstoss auf Dir (Wolke)',
+            fr: 'Poussée sur VOUS (nuage)',
             cn: '击退点名（雷云）',
             ko: '넉백 대상자 (구름)',
           };
@@ -100,6 +102,7 @@
           return {
             en: 'Knockback + dice (STOP)',
             de: 'Rückstoss + Würfel (STOPP)',
+            fr: 'Poussée + dé (ARRÊTEZ)',
             cn: '击退+水泡（静止）',
             ko: '넉백 + 주사위 (가만히)',
           };
@@ -107,6 +110,7 @@
         return {
           en: 'Knockback on YOU',
           de: 'Rückstoß auf DIR',
+          fr: 'Poussée sur VOUS',
           cn: '击退点名',
           ko: '넉백 대상자',
         };
@@ -116,6 +120,7 @@
           return {
             en: 'knockback with cloud',
             de: 'Rückstoß mit wolke',
+            fr: 'Poussée avec nuage',
             cn: '雷云击退',
             ko: '넉백과 구름 장판',
           };
@@ -123,6 +128,7 @@
           return {
             en: 'Knockback with dice',
             de: 'Rückstoß mit Würfel',
+            fr: 'Poussée avec dé',
             cn: '水泡击退',
             ko: '넉백과 주사위',
           };
@@ -147,6 +153,7 @@
           return {
             en: 'Levinbolt on you (cloud)',
             de: 'Blitz auf Dir (Wolke)',
+            fr: 'Fulguration sur VOUS (nuage)',
             cn: '闪电点名（雷云）',
             ko: '우레 대상자 (구름)',
           };
@@ -154,6 +161,7 @@
         return {
           en: 'Levinbolt on you',
           de: 'Blitz auf dir',
+          fr: 'Fulguration sur VOUS',
           cn: '闪电点名',
           ko: '우레 대상자',
         };
@@ -163,6 +171,7 @@
           return {
             en: 'bolt with cloud',
             de: 'blitz mit wolke',
+            fr: 'foudre avec nuage',
             cn: '闪电带雷云',
             ko: '구름 번개',
           };
@@ -170,6 +179,7 @@
         return {
           en: 'bolt',
           de: 'blitz',
+          fr: 'foudre',
           cn: '闪电',
           ko: '번개',
         };
@@ -193,6 +203,7 @@
           return {
             en: 'Stun: ' + data.ShortName(matches.target),
             de: 'Paralyse ' + data.ShortName(matches.target),
+            fr: 'Stun ' + data.ShortName(matches.target),
             cn: '击晕' + data.ShortName(matches.target),
             ko: data.ShortName(matches.target) + '스턴',
           };
@@ -244,26 +255,34 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Ame-No-Murakumo': 'Ame no Murakumo',
         'How our hearts sing in the chaos': 'HA HA, HA ! Je m\'amuse comme un fou !',
         'Let the revels begin': 'Dansez maintenant... La fête commence !  ',
         'REJOICE!': 'MOUAAAAAAH !',
         'Susano': 'Susano',
-        'Thunderhead': 'Pointe d\'éclair',
+        'Thunderhead': 'nuage orageux',
       },
       'replaceText': {
-        'Ame No Murakumo': 'Ame No Murakumo',
+        '--Phase': '--Phase',
+        '\\(cloud\\)': '(nuage)',
+        '\\(dice\\)': '(dé)',
+        'Ame No Murakumo': 'Ame no Murakumo',
+        'Ame-No-Murakumo add': 'Add Ame no Murakumo',
         'Assail': 'Assaut',
         'Churn': 'Agitation',
         'Dark Levin': 'foudre violette',
+        'Knockback': 'Poussée',
         'Levinbolt': 'Fulguration',
         'Rasen Kaikyo': 'Rasen Kaikyo',
         'Seasplitter': 'Fendeur de mers',
+        'Stack': 'Package',
+        'Stun': 'Étourdissement',
         'Stormsplitter': 'Fendeur de tempêtes',
         'The Hidden Gate': 'Porte cachée',
         'The Sealed Gate': 'Porte scellée',
+        'Thunder': 'Orage',
+        'Thunderhead add': 'Add Nuage orageux',
         'Ukehi': 'Ukehi',
       },
     },
