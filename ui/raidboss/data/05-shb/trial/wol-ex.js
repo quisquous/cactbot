@@ -99,7 +99,7 @@ const translate = (data, obj) => {
         en: 'Heal All to Full',
         de: 'Alle vollheilen',
         fr: 'Soignez tout le monde full vie',
-        ja: 'HP戻して',
+        ja: '全員HPを満タンさせ！',
         cn: '奶满全队',
         ko: '전원 체력 풀피로',
       },
@@ -121,6 +121,11 @@ const translate = (data, obj) => {
             0: 'Rollenposition',
             1: 'Heiler stacks',
             2: 'Meteor',
+          },
+          ja: {
+            0: 'ロール特定位置へ',
+            1: 'ヒーラーと集合',
+            2: 'メテオ',
           },
         }[data.displayLang];
         if (matches.id == '4F34')
@@ -236,6 +241,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Avoid Wyrm Dash',
         de: 'Wyrm-Ansturm ausweichen',
+        ja: '竜を避け',
       },
     },
     {
@@ -341,6 +347,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Black Mage + White Mage',
         de: 'Schwarzmagier + Weißmagier',
+        ja: '黒魔導士 + 白魔導士',
       },
     },
     {
@@ -355,6 +362,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Summoner + Warrior',
         de: 'Beschwörer + Krieger',
+        ja: '召喚師 + 戦士',
       },
     },
     {
@@ -369,6 +377,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Dark Knight + Bard',
         de: 'Dunkelritter + Barde',
+        ja: '暗黒騎士 + 吟遊詩人',
       },
     },
     {
@@ -383,6 +392,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Ninja',
         de: 'Ninja',
+        ja: '忍者',
       },
       run: function(data) {
         data.ninja = true;
@@ -434,6 +444,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Warrior Cleave on YOU',
         de: 'Krieger Cleave auf DIR',
+        ja: '自分に戦士の範囲攻撃',
       },
     },
     {

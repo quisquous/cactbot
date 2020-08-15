@@ -14,6 +14,7 @@
       alarmText: {
         en: 'Limit break now!',
         de: 'Limit break jetzt!',
+        ja: 'タンクLBを！',
         cn: '坦克LB！',
       },
     },
@@ -25,6 +26,7 @@
       infoText: {
         en: 'Get Towers',
         de: 'Türme nehmen',
+        ja: '塔を踏む',
       },
     },
   ],
@@ -42,6 +44,7 @@
       alertText: {
         en: 'Full Heal Everyone',
         de: 'Alle voll heilen',
+        ja: 'HPを満タンさせ！',
       },
     },
     {
@@ -108,16 +111,19 @@
           return {
             en: 'Out => Move',
             de: 'Raus => Bewegen',
+            ja: '外 => 動け',
           };
         } else if (data.imbued === 'fire') {
           return {
             en: 'Out => Stop',
             de: 'Raus => Nichts machen',
+            ja: '外 => 動かない',
           };
         }
         return {
           en: 'Out => ???',
           de: 'Raus => ???',
+          ja: '外 => ???',
         };
       },
     },
@@ -132,16 +138,19 @@
           return {
             en: 'Under => Move',
             de: 'Runter => Bewegen',
+            ja: '中 => 動け',
           };
         } else if (data.imbued === 'fire') {
           return {
             en: 'Under => Stop',
             de: 'Runter => Nichts machen',
+            ja: '中 => 動かない',
           };
         }
         return {
           en: 'Under => ???',
           de: 'Runter => ???',
+          ja: '中 => ???',
         };
       },
     },
@@ -154,6 +163,7 @@
       infoText: {
         en: 'Out of Triangle',
         de: 'Raus aus den Dreiecken',
+        ja: '三角の外へ',
       },
     },
     {
@@ -169,6 +179,7 @@
       infoText: {
         en: 'Avoid Wyrm Dash',
         de: 'Wyrm-Ansturm ausweichen',
+        ja: '竜を避け',
       },
     },
     {
@@ -196,6 +207,7 @@
       alarmText: {
         en: 'GTFO',
         de: 'GTFO',
+        ja: '出ていて！',
       },
       run: function(data, matches) {
         data.deluge = matches.target;
@@ -237,6 +249,7 @@
       alertText: {
         en: 'Stack Groups',
         de: 'Gruppen stacken',
+        ja: '集合',
       },
     },
     {
@@ -246,6 +259,7 @@
       alarmText: {
         en: 'Go to Corner',
         de: 'In die Ecken gehenr',
+        ja: 'コーナーへ',
       },
     },
     {
@@ -267,6 +281,7 @@
       infoText: {
         en: 'Point tether outside',
         de: 'Verbindungen nach Außen zeigen',
+        ja: '線を外に引く',
       },
     },
   ],
@@ -371,7 +386,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Bard': '幻光の吟遊詩人',
         'Spectral Black Mage': '幻光の黒魔道士',
@@ -384,8 +398,12 @@
         'Wyrm Of Light': 'ウィルム・オブ・ライト',
       },
       'replaceText': {
+        '\\(In\\)': '(中)',
+        '\\(Out\\)': '(外)',
+        '--active time event--': '--QTE--',
         'Absolute Blizzard III': 'アブソリュートブリザガ',
         'Absolute Fire III': 'アブソリュートファイガ',
+        'Absolute Fire/Blizard': 'アブソリュート ファイガ／ブリザガ',
         'Absolute Holy': 'アブソリュートホーリー',
         'Absolute Teleport': 'アブソリュートテレポ',
         'Ascendance': 'アセンダンス',
@@ -396,6 +414,7 @@
         'Elddragon Dive': 'エンシェントドラゴンダイブ',
         'Flare Breath': 'フレアブレス',
         'Imbued Coruscance': '魔法剣技：ブライトセイバー',
+        'Imbued Fire/Blizzard': '魔法剣アブソリュート ファイガ／ブリザガ',
         'Katon: San': '火遁の術：参',
         'Meteor Impact': 'メテオインパクト',
         'Perfect Decimation': 'パーフェクトデシメート',
