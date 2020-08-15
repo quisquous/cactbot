@@ -66,6 +66,19 @@ const kQuintupleFlash = {
 [{
   zoneId: ZoneId.TheSeatOfSacrificeExtreme,
   timelineFile: 'wol-ex.txt',
+  timelineTriggers: [
+    {
+      id: 'WOLEx Limit Break',
+      regex: /Limit Break/,
+      // 2 extra seconds over the cast.
+      beforeSeconds: 8,
+      alertText: function(data) {
+        const msg = data.limitBreak;
+        delete data.limitBreak;
+        return msg;
+      },
+    },
+  ],
   triggers: [
     {
       id: 'WOLEx Terror Unleashed',
@@ -111,19 +124,6 @@ const kQuintupleFlash = {
           data.limitBreak = data.limitBreaks[1];
         if (matches.id == '4F36')
           data.limitBreak = data.limitBreaks[2];
-      },
-    },
-    {
-      // TODO: Replace with Timeline Trigger for earlier alerting
-      id: 'WOLEx Limit Break',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: ['4EFB', '515C', '53CB'], capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: ['4EFB', '515C', '53CB'], capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: ['4EFB', '515C', '53CB'], capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: ['4EFB', '515C', '53CB'], capture: false }),
-      alertText: function(data) {
-        let msg = data.limitBreak;
-        delete data.limitBreak;
-        return msg;
       },
     },
     {
