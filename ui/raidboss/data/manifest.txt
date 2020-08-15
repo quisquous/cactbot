@@ -175,6 +175,8 @@
 04-sb/ultimate/unending_coil_ultimate.txt
 05-shb/alliance/the_copied_factory.js
 05-shb/alliance/the_copied_factory.txt
+05-shb/alliance/the_puppets_bunker.js
+05-shb/alliance/the_puppets_bunker.txt
 05-shb/dungeon/akadaemia_anyder.js
 05-shb/dungeon/akadaemia_anyder.txt
 05-shb/dungeon/amaurot.js

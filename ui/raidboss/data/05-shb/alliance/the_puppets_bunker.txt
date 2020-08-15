@@ -1,0 +1,6 @@
+### The Puppets' Bunker
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0 "--Reset--" sync /00:0839:.*is no longer sealed/ window 100000 jump 0
