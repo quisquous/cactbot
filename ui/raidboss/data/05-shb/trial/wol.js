@@ -111,7 +111,7 @@
           return {
             en: 'Out => Move',
             de: 'Raus => Bewegen',
-            ja: '外 => 中',
+            ja: '外 => 動け',
           };
         } else if (data.imbued === 'fire') {
           return {
