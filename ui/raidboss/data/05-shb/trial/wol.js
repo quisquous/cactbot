@@ -207,6 +207,7 @@
       alarmText: {
         en: 'GTFO',
         de: 'GTFO',
+        ko: '진영 벗어나기!',
       },
       run: function(data, matches) {
         data.deluge = matches.target;
