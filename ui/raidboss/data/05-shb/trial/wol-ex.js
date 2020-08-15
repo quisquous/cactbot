@@ -1,5 +1,68 @@
 'use strict';
 
+const kImbuedFire = {
+  en: 'Stop',
+  de: 'Stopp',
+  fr: 'Stop',
+  ja: '動かない',
+  cn: '不要动',
+  ko: '멈추기',
+};
+
+const kImbuedBlizzard = {
+  en: 'Move',
+  de: 'Bewegen',
+  fr: 'Bougez',
+  ja: '動け',
+  cn: '动起来',
+  ko: '움직이기',
+};
+
+const kImbuedHoly = {
+  en: 'Stack',
+  de: 'Stacken',
+  fr: 'Stack',
+  ja: 'スタック',
+  cn: '集合',
+  ko: '집합',
+};
+
+const kImbuedStone = {
+  en: 'Protean',
+  de: 'Himmelsrichtungen',
+  fr: 'Position',
+  ja: '散開',
+  cn: '散开',
+  ko: '위치 산개',
+};
+
+const kImbuedSwordIn = {
+  en: 'In',
+  de: 'Rein',
+  fr: 'Intérieur',
+  ja: '中へ',
+  cn: '靠近',
+  ko: '안으로',
+};
+
+const kImbuedSwordOut = {
+  en: 'Out',
+  de: 'Raus',
+  fr: 'Exterieur',
+  ja: '外へ',
+  cn: '远离',
+  ko: '밖으로',
+};
+
+const kQuintupleFlash = {
+  en: 'Look Away',
+  de: 'Wegschauen',
+  fr: 'Regardez ailleurs',
+  ja: '見ない',
+  ko: '뒤돌기',
+  cn: '背对',
+};
+
 [{
   zoneId: ZoneId.TheSeatOfSacrificeExtreme,
   timelineFile: 'wol-ex.txt',
@@ -69,14 +132,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F2C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F2C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F2C', capture: false }),
-      infoText: {
-        en: 'Protean',
-        de: 'Himmelsrichtungen',
-        fr: 'Position',
-        ja: '散開',
-        cn: '散开',
-        ko: '위치 산개',
-      },
+      infoText: kImbuedStone,
     },
     {
       id: 'WOLEx Imbued Absolute Fire III',
@@ -86,15 +142,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF3', capture: false }),
       run: function(data) {
         data.imbued = data.imbued || [];
-        data.imbuedFire = {
-          en: 'Stop',
-          de: 'Stopp',
-          fr: 'Stop',
-          ja: '動かない',
-          cn: '不要动',
-          ko: '멈추기',
-        }[data.displayLang];
-        data.imbued.push(data.imbuedFire);
+        data.imbued.push(kImbuedFire);
       },
     },
     {
@@ -105,15 +153,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF4', capture: false }),
       run: function(data) {
         data.imbued = data.imbued || [];
-        data.imbuedBlizzard = {
-          en: 'Move',
-          de: 'Bewegen',
-          fr: 'Bougez',
-          ja: '動け',
-          cn: '动起来',
-          ko: '움직이기',
-        }[data.displayLang];
-        data.imbued.push(data.imbuedBlizzard);
+        data.imbued.push(kImbuedBlizzard);
       },
     },
     {
@@ -124,15 +164,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF5', capture: false }),
       run: function(data) {
         data.imbued = data.imbued || [];
-        data.imbuedHoly = {
-          en: 'Stack',
-          de: 'Stacken',
-          fr: 'Stack',
-          ja: 'スタック',
-          cn: '集合',
-          ko: '집합',
-        }[data.displayLang];
-        data.imbued.push(data.imbuedHoly);
+        data.imbued.push(kImbuedHoly);
       },
     },
     {
@@ -143,15 +175,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF6', capture: false }),
       run: function(data) {
         data.imbued = data.imbued || [];
-        data.imbuedStone = {
-          en: 'Protean',
-          de: 'Himmelsrichtungen',
-          fr: 'Position',
-          ja: '散開',
-          cn: '散开',
-          ko: '위치 산개',
-        }[data.displayLang];
-        data.imbued.push(data.imbuedStone);
+        data.imbued.push(kImbuedStone);
       },
     },
     {
@@ -162,18 +186,11 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4A', capture: false }),
       preRun: function(data) {
         data.imbued = data.imbued || [];
-        data.imbuedSwordIn = {
-          en: 'In',
-          de: 'Rein',
-          fr: 'Intérieur',
-          ja: '中へ',
-          cn: '靠近',
-          ko: '안으로',
-        }[data.displayLang];
-        data.imbued.push(data.imbuedSwordIn);
+        data.imbued.push(kImbuedSwordIn);
       },
       alertText: function(data) {
-        let msg = data.imbued.join(' + ');
+        const translated = data.imbued.map((x) => data.displayLang in x ? x[data.displayLang] : x['en']);
+        const msg = translated.join(' + ');
         delete data.imbued;
         return msg;
       },
@@ -186,18 +203,11 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F49', capture: false }),
       preRun: function(data) {
         data.imbued = data.imbued || [];
-        data.imbuedSwordOut = {
-          en: 'Out',
-          de: 'Raus',
-          fr: 'Exterieur',
-          ja: '外へ',
-          cn: '远离',
-          ko: '밖으로',
-        }[data.displayLang];
-        data.imbued.push(data.imbuedSwordOut);
+        data.imbued.push(kImbuedSwordOut);
       },
       alertText: function(data) {
-        let msg = data.imbued.join(' + ');
+        const translated = data.imbued.map((x) => data.displayLang in x ? x[data.displayLang] : x['en']);
+        const msg = translated.join(' + ');
         delete data.imbued;
         return msg;
       },
@@ -258,7 +268,6 @@
     },
     {
       id: 'WOLEx Berserk / Deep Darkside',
-      // Either silence, but don't be too noisy
       netRegex: NetRegexes.startsUsing({ source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[68]', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Phantom-Berserker', 'Phantom-Dunkelritter'], id: '515[68]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Berserker Spectral', 'Chevalier Noir Spectral'], id: '515[68]', capture: false }),
@@ -467,13 +476,14 @@
       },
     },
     {
-      id: 'WOLEx Quintuplecast Resolve',
+      id: 'WOLEx Quintuplecast List',
       netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4EEF', capture: false }),
       netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: '4EEF', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: '4EEF', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4EEF', capture: false }),
       alertText: function(data) {
-        let msg = data.quintuplecasts.join(' => ');
+        const translated = data.quintuplecasts.map((x) => data.displayLang in x ? x[data.displayLang] : x['en']);
+        const msg = translated.join(' > ');
         delete data.quintuplecasts;
         return msg;
       },
@@ -484,7 +494,7 @@
       condition: (data) => data.quintuplecasting,
       suppressSeconds: 5,
       run: function(data) {
-        data.quintuplecasts.push(data.imbuedBlizzard);
+        data.quintuplecasts.push(kImbuedBlizzard);
       },
     },
     {
@@ -493,7 +503,7 @@
       condition: (data) => data.quintuplecasting,
       suppressSeconds: 5,
       run: function(data) {
-        data.quintuplecasts.push(data.imbuedHoly);
+        data.quintuplecasts.push(kImbuedHoly);
       },
     },
     {
@@ -502,7 +512,7 @@
       condition: (data) => data.quintuplecasting,
       suppressSeconds: 5,
       run: function(data) {
-        data.quintuplecasts.push(data.imbuedStone);
+        data.quintuplecasts.push(kImbuedStone);
       },
     },
     {
@@ -511,7 +521,7 @@
       condition: (data) => data.quintuplecasting,
       suppressSeconds: 5,
       run: function(data) {
-        data.quintuplecasts.push(data.imbuedFire);
+        data.quintuplecasts.push(kImbuedFire);
       },
     },
     {
@@ -520,15 +530,7 @@
       condition: (data) => data.quintuplecasting,
       suppressSeconds: 5,
       run: function(data, matches) {
-        data.absoluteFlash = {
-          en: 'Look Away from ' + data.ShortName(matches.target),
-          de: 'Schau weg von ' + data.ShortName(matches.target),
-          fr: 'Ne regardez pas ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'を見ない',
-          cn: '背对' + name,
-          ko: data.ShortName(matches.target) + '에게서 뒤돌기',
-        }[data.displayLang];
-        data.quintuplecasts.push(data.absoluteFlash);
+        data.quintuplecasts.push(kQuintupleFlash);
       },
     },
   ],
