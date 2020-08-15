@@ -36,6 +36,7 @@
       infoText: {
         en: 'Away from tether marker',
         de: 'Weg von der Verbindung',
+        ja: '線から離れ',
       },
     },
     {
@@ -89,6 +90,7 @@
       alertText: {
         en: 'Get in a crater',
         de: 'In den Krater gehen',
+        ja: '穴に入る',
       },
     },
     {
@@ -121,6 +123,7 @@
           return {
             en: 'Stack on your rock',
             de: 'Auf deinem Stein sammeln',
+            ja: '自分の隕石と貼りつく',
           };
         }
         if (matches.target == data.me) {
