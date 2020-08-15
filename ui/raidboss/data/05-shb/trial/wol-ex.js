@@ -63,6 +63,11 @@ const kQuintupleFlash = {
   cn: '背对',
 };
 
+// TODO: replace this with a proxy, here and elsewhere.
+const translate = (data, obj) => {
+  return data.displayLang in obj ? obj[data.displayLang] : obj['en'];
+};
+
 [{
   zoneId: ZoneId.TheSeatOfSacrificeExtreme,
   timelineFile: 'wol-ex.txt',
@@ -189,7 +194,7 @@ const kQuintupleFlash = {
         data.imbued.push(kImbuedSwordIn);
       },
       alertText: function(data) {
-        const translated = data.imbued.map((x) => data.displayLang in x ? x[data.displayLang] : x['en']);
+        const translated = data.imbued.map((x) => translate(data, x));
         const msg = translated.join(' + ');
         delete data.imbued;
         return msg;
@@ -206,7 +211,7 @@ const kQuintupleFlash = {
         data.imbued.push(kImbuedSwordOut);
       },
       alertText: function(data) {
-        const translated = data.imbued.map((x) => data.displayLang in x ? x[data.displayLang] : x['en']);
+        const translated = data.imbued.map((x) => translate(data, x));
         const msg = translated.join(' + ');
         delete data.imbued;
         return msg;
@@ -502,7 +507,7 @@ const kQuintupleFlash = {
       netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4EEF', capture: false }),
       durationSeconds: 18.5,
       infoText: function(data) {
-        const translated = data.quintuplecasts.map((x) => data.displayLang in x ? x[data.displayLang] : x['en']);
+        const translated = data.quintuplecasts.map((x) => translate(data, x));
         const msg = translated.join(' > ');
         return msg;
       },
@@ -517,14 +522,16 @@ const kQuintupleFlash = {
         // The last cast of 4EF0 will not have a next mechanic to call.
         if (!next)
           return;
-        return data.displayLang in next ? next[data.displayLang] : next['en'];
+        return translate(data, next);
       },
     },
     {
       id: 'WOLEx Quintuplecast Blizzard',
       netRegex: NetRegexes.headMarker({ id: '00E2', capture: false }),
       condition: (data) => data.quintuplecasting,
+      durationSeconds: 2,
       suppressSeconds: 5,
+      infoText: (data) => `(${translate(data, kImbuedBlizzard).toLowerCase()})`,
       run: function(data) {
         data.quintuplecasts.push(kImbuedBlizzard);
       },
@@ -533,7 +540,9 @@ const kQuintupleFlash = {
       id: 'WOLEx Quintuplecast Holy',
       netRegex: NetRegexes.headMarker({ id: '00DD', capture: false }),
       condition: (data) => data.quintuplecasting,
+      durationSeconds: 2,
       suppressSeconds: 5,
+      infoText: (data) => `(${translate(data, kImbuedHoly).toLowerCase()})`,
       run: function(data) {
         data.quintuplecasts.push(kImbuedHoly);
       },
@@ -542,7 +551,9 @@ const kQuintupleFlash = {
       id: 'WOLEx Quintuplecast Stone',
       netRegex: NetRegexes.headMarker({ id: '00DE', capture: false }),
       condition: (data) => data.quintuplecasting,
+      durationSeconds: 2,
       suppressSeconds: 5,
+      infoText: (data) => `(${translate(data, kImbuedStone).toLowerCase()})`,
       run: function(data) {
         data.quintuplecasts.push(kImbuedStone);
       },
@@ -551,7 +562,9 @@ const kQuintupleFlash = {
       id: 'WOLEx Quintuplecast Fire',
       netRegex: NetRegexes.headMarker({ id: '00E4', capture: false }),
       condition: (data) => data.quintuplecasting,
+      durationSeconds: 2,
       suppressSeconds: 5,
+      infoText: (data) => `(${translate(data, kImbuedFire).toLowerCase()})`,
       run: function(data) {
         data.quintuplecasts.push(kImbuedFire);
       },
@@ -560,7 +573,9 @@ const kQuintupleFlash = {
       id: 'WOLEx Quintuplecast Flash',
       netRegex: NetRegexes.headMarker({ id: '00DF' }),
       condition: (data) => data.quintuplecasting,
+      durationSeconds: 2,
       suppressSeconds: 5,
+      infoText: (data) => `(${translate(data, kQuintupleFlash).toLowerCase()})`,
       run: function(data, matches) {
         data.quintuplecasts.push(kQuintupleFlash);
       },
