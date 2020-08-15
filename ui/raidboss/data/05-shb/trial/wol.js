@@ -15,6 +15,7 @@
         en: 'Limit break now!',
         de: 'Limit break jetzt!',
         cn: '坦克LB！',
+        ko: '리미트 브레이크!',
       },
     },
     {
@@ -25,6 +26,7 @@
       infoText: {
         en: 'Get Towers',
         de: 'Türme nehmen',
+        ko: '장판 들어가기',
       },
     },
   ],
@@ -42,6 +44,7 @@
       alertText: {
         en: 'Full Heal Everyone',
         de: 'Alle voll heilen',
+        ko: '전원 체력 풀피로',
       },
     },
     {
@@ -108,16 +111,19 @@
           return {
             en: 'Out => Move',
             de: 'Raus => Bewegen',
+            ko: '밖으로 => 움직이기',
           };
         } else if (data.imbued === 'fire') {
           return {
             en: 'Out => Stop',
             de: 'Raus => Nichts machen',
+            ko: '밖으로 => 멈추기',
           };
         }
         return {
           en: 'Out => ???',
           de: 'Raus => ???',
+          ko: '밖으로 => ???',
         };
       },
     },
@@ -132,16 +138,19 @@
           return {
             en: 'Under => Move',
             de: 'Runter => Bewegen',
+            ko: '안으로 => 움직이기',
           };
         } else if (data.imbued === 'fire') {
           return {
             en: 'Under => Stop',
             de: 'Runter => Nichts machen',
+            ko: '안으로 => 멈추기',
           };
         }
         return {
           en: 'Under => ???',
           de: 'Runter => ???',
+          ko: '안으로 => ???',
         };
       },
     },
@@ -154,6 +163,7 @@
       infoText: {
         en: 'Out of Triangle',
         de: 'Raus aus den Dreiecken',
+        ko: '삼각형 밖으로',
       },
     },
     {
@@ -169,6 +179,7 @@
       infoText: {
         en: 'Avoid Wyrm Dash',
         de: 'Wyrm-Ansturm ausweichen',
+        ko: '용 돌진 피하기',
       },
     },
     {
@@ -237,6 +248,7 @@
       alertText: {
         en: 'Stack Groups',
         de: 'Gruppen stacken',
+        ko: '쉐어징 모이기',
       },
     },
     {
@@ -246,6 +258,7 @@
       alarmText: {
         en: 'Go to Corner',
         de: 'In die Ecken gehenr',
+        ko: '구석으로',
       },
     },
     {
@@ -267,6 +280,7 @@
       infoText: {
         en: 'Point tether outside',
         de: 'Verbindungen nach Außen zeigen',
+        ko: '선 연결 바깥으로 빼기',
       },
     },
   ],

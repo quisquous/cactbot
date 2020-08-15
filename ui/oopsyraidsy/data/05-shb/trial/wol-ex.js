@@ -45,6 +45,7 @@
         type: 'fail',
         reason: {
           en: 'Missed Tower',
+          ko: '장판 실수',
         },
       },
     },
