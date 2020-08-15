@@ -14,6 +14,7 @@
       alarmText: {
         en: 'Limit break now!',
         de: 'Limit break jetzt!',
+        ja: 'タンクLBを！',
         cn: '坦克LB！',
         ko: '리미트 브레이크!',
       },
@@ -26,6 +27,7 @@
       infoText: {
         en: 'Get Towers',
         de: 'Türme nehmen',
+        ja: '塔を踏む',
         ko: '장판 들어가기',
       },
     },
@@ -44,6 +46,7 @@
       alertText: {
         en: 'Full Heal Everyone',
         de: 'Alle voll heilen',
+        ja: 'HPを満タンさせ！',
         ko: '전원 체력 풀피로',
       },
     },
@@ -111,18 +114,21 @@
           return {
             en: 'Out => Move',
             de: 'Raus => Bewegen',
+            ja: '外 => 動け',
             ko: '밖으로 => 움직이기',
           };
         } else if (data.imbued === 'fire') {
           return {
             en: 'Out => Stop',
             de: 'Raus => Nichts machen',
+            ja: '外 => 動かない',
             ko: '밖으로 => 멈추기',
           };
         }
         return {
           en: 'Out => ???',
           de: 'Raus => ???',
+          ja: '外 => ???',
           ko: '밖으로 => ???',
         };
       },
@@ -138,18 +144,21 @@
           return {
             en: 'Under => Move',
             de: 'Runter => Bewegen',
+            ja: '中 => 動け',
             ko: '안으로 => 움직이기',
           };
         } else if (data.imbued === 'fire') {
           return {
             en: 'Under => Stop',
             de: 'Runter => Nichts machen',
+            ja: '中 => 動かない',
             ko: '안으로 => 멈추기',
           };
         }
         return {
           en: 'Under => ???',
           de: 'Runter => ???',
+          ja: '中 => ???',
           ko: '안으로 => ???',
         };
       },
@@ -163,6 +172,7 @@
       infoText: {
         en: 'Out of Triangle',
         de: 'Raus aus den Dreiecken',
+        ja: '三角の外へ',
         ko: '삼각형 밖으로',
       },
     },
@@ -179,6 +189,7 @@
       infoText: {
         en: 'Avoid Wyrm Dash',
         de: 'Wyrm-Ansturm ausweichen',
+        ja: '竜を避け',
         ko: '용 돌진 피하기',
       },
     },
@@ -207,6 +218,7 @@
       alarmText: {
         en: 'GTFO',
         de: 'GTFO',
+        ja: '出ていて！',
         ko: '진영 벗어나기!',
       },
       run: function(data, matches) {
@@ -249,6 +261,7 @@
       alertText: {
         en: 'Stack Groups',
         de: 'Gruppen stacken',
+        ja: '集合',
         ko: '쉐어징 모이기',
       },
     },
@@ -259,6 +272,7 @@
       alarmText: {
         en: 'Go to Corner',
         de: 'In die Ecken gehenr',
+        ja: 'コーナーへ',
         ko: '구석으로',
       },
     },
@@ -281,6 +295,7 @@
       infoText: {
         en: 'Point tether outside',
         de: 'Verbindungen nach Außen zeigen',
+        ja: '線を外に引く',
         ko: '선 연결 바깥으로 빼기',
       },
     },
@@ -364,7 +379,7 @@
         'Elddragon Dive': 'Piqué du dragon ancien',
         'Flare Breath': 'Souffle brasier',
         'Imbued Coruscance': 'Magilame Fureur flamboyante',
-        'Katon: San': 'Katon: San',
+        'Katon: San': 'Katon : San',
         'Meteor Impact': 'Impact de météore',
         'Perfect Decimation': 'Décimation parfaite',
         'Radiant Braver': 'Âme brave flamboyante',
@@ -373,7 +388,7 @@
         'Shining Wave': 'Épée flamboyante',
         'Solemn Confiteor': 'Confiteor solennel',
         'Specter Of Light': 'Sommation des braves',
-        'Suiton: San': 'Suiton: San',
+        'Suiton: San': 'Suiton : San',
         'Summon(?! Wyrm)': 'Invocation',
         'Summon Wyrm': 'Invocation de wyrm',
         'Sword Of Light': 'Lame de Lumière',
@@ -386,7 +401,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Bard': '幻光の吟遊詩人',
         'Spectral Black Mage': '幻光の黒魔道士',
@@ -399,8 +413,12 @@
         'Wyrm Of Light': 'ウィルム・オブ・ライト',
       },
       'replaceText': {
+        '\\(In\\)': '(中)',
+        '\\(Out\\)': '(外)',
+        '--active time event--': '--QTE--',
         'Absolute Blizzard III': 'アブソリュートブリザガ',
         'Absolute Fire III': 'アブソリュートファイガ',
+        'Absolute Fire/Blizard': 'アブソリュート ファイガ／ブリザガ',
         'Absolute Holy': 'アブソリュートホーリー',
         'Absolute Teleport': 'アブソリュートテレポ',
         'Ascendance': 'アセンダンス',
@@ -411,6 +429,7 @@
         'Elddragon Dive': 'エンシェントドラゴンダイブ',
         'Flare Breath': 'フレアブレス',
         'Imbued Coruscance': '魔法剣技：ブライトセイバー',
+        'Imbued Fire/Blizzard': '魔法剣アブソリュート ファイガ／ブリザガ',
         'Katon: San': '火遁の術：参',
         'Meteor Impact': 'メテオインパクト',
         'Perfect Decimation': 'パーフェクトデシメート',
