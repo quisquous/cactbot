@@ -24,7 +24,7 @@ const kImbuedHoly = {
   fr: 'Stack',
   ja: 'スタック',
   cn: '集合',
-  ko: '집합',
+  ko: '쉐어',
 };
 
 const kImbuedStone = {
@@ -126,6 +126,11 @@ const translate = (data, obj) => {
             0: 'ロール特定位置へ',
             1: 'ヒーラーと集合',
             2: 'メテオ',
+          },
+          ko: {
+            0: '1단리밋 산개위치로',
+            1: '좌우 산개',
+            2: '메테오',
           },
         }[data.displayLang];
         if (matches.id == '4F34')
@@ -242,6 +247,7 @@ const translate = (data, obj) => {
         en: 'Avoid Wyrm Dash',
         de: 'Wyrm-Ansturm ausweichen',
         ja: '竜を避け',
+        ko: '용 돌진 피하기',
       },
     },
     {
@@ -348,6 +354,7 @@ const translate = (data, obj) => {
         en: 'Black Mage + White Mage',
         de: 'Schwarzmagier + Weißmagier',
         ja: '黒魔導士 + 白魔導士',
+        ko: '흑마도사 + 백마도사',
       },
     },
     {
@@ -363,6 +370,7 @@ const translate = (data, obj) => {
         en: 'Summoner + Warrior',
         de: 'Beschwörer + Krieger',
         ja: '召喚師 + 戦士',
+        ko: '소환사 + 전사',
       },
     },
     {
@@ -378,6 +386,7 @@ const translate = (data, obj) => {
         en: 'Dark Knight + Bard',
         de: 'Dunkelritter + Barde',
         ja: '暗黒騎士 + 吟遊詩人',
+        ko: '암흑기사 + 음유시인',
       },
     },
     {
@@ -393,6 +402,7 @@ const translate = (data, obj) => {
         en: 'Ninja',
         de: 'Ninja',
         ja: '忍者',
+        ko: '닌자',
       },
       run: function(data) {
         data.ninja = true;
@@ -445,6 +455,7 @@ const translate = (data, obj) => {
         en: 'Warrior Cleave on YOU',
         de: 'Krieger Cleave auf DIR',
         ja: '自分に戦士の範囲攻撃',
+        ko: '전사 범위 공격 대상자',
       },
     },
     {
@@ -457,7 +468,7 @@ const translate = (data, obj) => {
         fr: 'Zone au sol sur VOUS',
         ja: '自分に水溜り',
         cn: '水球点名',
-        ko: '징 대상자',
+        ko: '장판 대상자',
       },
     },
     {

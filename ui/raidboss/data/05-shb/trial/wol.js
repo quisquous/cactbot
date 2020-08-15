@@ -16,6 +16,7 @@
         de: 'Limit break jetzt!',
         ja: 'タンクLBを！',
         cn: '坦克LB！',
+        ko: '리미트 브레이크!',
       },
     },
     {
@@ -27,6 +28,7 @@
         en: 'Get Towers',
         de: 'Türme nehmen',
         ja: '塔を踏む',
+        ko: '장판 들어가기',
       },
     },
   ],
@@ -45,6 +47,7 @@
         en: 'Full Heal Everyone',
         de: 'Alle voll heilen',
         ja: 'HPを満タンさせ！',
+        ko: '전원 체력 풀피로',
       },
     },
     {
@@ -112,18 +115,21 @@
             en: 'Out => Move',
             de: 'Raus => Bewegen',
             ja: '外 => 動け',
+            ko: '밖으로 => 움직이기',
           };
         } else if (data.imbued === 'fire') {
           return {
             en: 'Out => Stop',
             de: 'Raus => Nichts machen',
             ja: '外 => 動かない',
+            ko: '밖으로 => 멈추기',
           };
         }
         return {
           en: 'Out => ???',
           de: 'Raus => ???',
           ja: '外 => ???',
+          ko: '밖으로 => ???',
         };
       },
     },
@@ -139,18 +145,21 @@
             en: 'Under => Move',
             de: 'Runter => Bewegen',
             ja: '中 => 動け',
+            ko: '안으로 => 움직이기',
           };
         } else if (data.imbued === 'fire') {
           return {
             en: 'Under => Stop',
             de: 'Runter => Nichts machen',
             ja: '中 => 動かない',
+            ko: '안으로 => 멈추기',
           };
         }
         return {
           en: 'Under => ???',
           de: 'Runter => ???',
           ja: '中 => ???',
+          ko: '안으로 => ???',
         };
       },
     },
@@ -164,6 +173,7 @@
         en: 'Out of Triangle',
         de: 'Raus aus den Dreiecken',
         ja: '三角の外へ',
+        ko: '삼각형 밖으로',
       },
     },
     {
@@ -180,6 +190,7 @@
         en: 'Avoid Wyrm Dash',
         de: 'Wyrm-Ansturm ausweichen',
         ja: '竜を避け',
+        ko: '용 돌진 피하기',
       },
     },
     {
@@ -208,6 +219,7 @@
         en: 'GTFO',
         de: 'GTFO',
         ja: '出ていて！',
+        ko: '진영 벗어나기!',
       },
       run: function(data, matches) {
         data.deluge = matches.target;
@@ -250,6 +262,7 @@
         en: 'Stack Groups',
         de: 'Gruppen stacken',
         ja: '集合',
+        ko: '쉐어징 모이기',
       },
     },
     {
@@ -260,6 +273,7 @@
         en: 'Go to Corner',
         de: 'In die Ecken gehenr',
         ja: 'コーナーへ',
+        ko: '구석으로',
       },
     },
     {
@@ -282,6 +296,7 @@
         en: 'Point tether outside',
         de: 'Verbindungen nach Außen zeigen',
         ja: '線を外に引く',
+        ko: '선 연결 바깥으로 빼기',
       },
     },
   ],
