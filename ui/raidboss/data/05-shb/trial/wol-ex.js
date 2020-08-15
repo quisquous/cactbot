@@ -324,13 +324,15 @@ const kQuintupleFlash = {
       },
     },
     {
-      // TODO: We can call these out earlier based on the move WoL does before Specter of Light
       id: 'WOLEx Spectral Black Mage / White Mage',
+      // Twincast tell.  Technically we could also call on 4F35 from WOL,
+      // but at best that's a 50% chance of a 2 second earlier callout.
       netRegex: NetRegexes.startsUsing({ source: 'Spectral Black Mage', id: '4F3D', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Phantom-Schwarzmagier', id: '4F3D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Mage Noir Spectral', id: '4F3D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '幻光の黒魔道士', id: '4F3D', capture: false }),
-      condition: (data) => data.ultimateSeen,
+      condition: (data) => data.ultimateSeen && !data.calledSpectral,
+      preRun: (data) => data.calledSpectral = true,
       infoText: {
         en: 'Black Mage + White Mage',
         de: 'Schwarzmagier + Weißmagier',
@@ -338,11 +340,13 @@ const kQuintupleFlash = {
     },
     {
       id: 'WOLEx Summoner / Warrior',
-      netRegex: NetRegexes.startsUsing({ source: 'Spectral Summoner', id: '4F3F', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Phantom-Beschwörer', id: '4F3F', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Invocatrice Spectrale', id: '4F3F', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '幻光の召喚士', id: '4F3F', capture: false }),
-      condition: (data) => data.ultimateSeen,
+      // Imbued Fire/Ice tell.
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF[34]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF[34]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4EF[34]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF[34]', capture: false }),
+      condition: (data) => data.ultimateSeen && !data.calledSpectral,
+      preRun: (data) => data.calledSpectral = true,
       infoText: {
         en: 'Summoner + Warrior',
         de: 'Beschwörer + Krieger',
@@ -350,11 +354,13 @@ const kQuintupleFlash = {
     },
     {
       id: 'WOLEx Spectral Bard / Dark Knight',
-      netRegex: NetRegexes.startsUsing({ source: 'Spectral Dark Knight', id: '4F3A', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Phantom-Dunkelritter', id: '4F3A', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Chevalier Noir Spectral', id: '4F3A', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '幻光の暗黒騎士', id: '4F3A', capture: false }),
-      condition: (data) => data.ultimateSeen,
+      // Solemn Confiteor tell.  This happens in Spectral Ninja, but calledSpectral covers it.
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F43', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F43', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F43', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F43', capture: false }),
+      condition: (data) => data.ultimateSeen && !data.calledSpectral,
+      preRun: (data) => data.calledSpectral = true,
       infoText: {
         en: 'Dark Knight + Bard',
         de: 'Dunkelritter + Barde',
@@ -362,16 +368,30 @@ const kQuintupleFlash = {
     },
     {
       id: 'WOLEx Spectral Ninja',
-      netRegex: NetRegexes.startsUsing({ source: 'Spectral Ninja', id: '4EFD', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Phantom-Ninja', id: '4EFD', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Ninja Spectral', id: '4EFD', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '幻光の忍者', id: '4EFD', capture: false }),
+      // Imbued Stone/Holy tell.
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4EF[56]', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4EF[56]', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4EF[56]', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF[56]', capture: false }),
+      condition: (data) => data.ultimateSeen && !data.calledSpectral,
+      preRun: (data) => data.calledSpectral = true,
       infoText: {
         en: 'Ninja',
         de: 'Ninja',
       },
       run: function(data) {
         data.ninja = true;
+      },
+    },
+    {
+      id: 'WOLEx Spectral Tell Cleanup',
+      // This is the "go back to the middle" sync that happens after all tells.
+      netRegex: NetRegexes.ability({ source: 'Warrior Of Light', id: '4F45', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Krieger Des Lichts', id: '4F45', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Guerrier De La Lumière Primordial', id: '4F45', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ウォーリア・オブ・ライト', id: '4F45', capture: false }),
+      run: function(data) {
+        data.calledSpectral = false;
       },
     },
     {
@@ -399,7 +419,6 @@ const kQuintupleFlash = {
       id: 'WOLEx Katon: San',
       netRegex: NetRegexes.headMarker({ id: '00A1', capture: false }),
       condition: (data) => data.ultimateSeen && data.ninja,
-      delaySeconds: 0.5,
       suppressSeconds: 2,
       response: Responses.stack(),
     },
