@@ -114,7 +114,7 @@ const translate = (data, obj) => {
         data.limitBreaks = {
           en: {
             0: 'role positions',
-            1: 'stacks',
+            1: 'healer stacks',
             2: 'meteor',
           },
           de: {
