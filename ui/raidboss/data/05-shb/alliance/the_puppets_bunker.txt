@@ -20,6 +20,7 @@ hideall "--sync--"
 206.2 "--sync--" sync /:813P-Operated Aegis Unit:507[789A]:/
 220.2 "Maneuver: Beam Cannons" sync /:813P-Operated Aegis Unit:5073:/
 239.6 "Aerial Support: Bombardment" sync /:813P-Operated Aegis Unit:50D3:/
+244.4 "--adds targetable--"
 249.8 "Firing Order: Surface Laser" sync /:813P-Operated Aegis Unit:508E:/
 256.0 "Firing Order: High-Powered Laser" sync /:813P-Operated Aegis Unit:508F:/
 263.3 "High-Powered Laser" sync /:813P-Operated Aegis Unit:5093:/
