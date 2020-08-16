@@ -5,18 +5,23 @@ let Options = {
   RankOptions: {
     'S': {
       Type: 'mob',
+      Enabled: true,
     },
     'SS+': {
       Type: 'mob',
+      Enabled: true,
     },
     'SS-': {
       Type: 'mob',
+      Enabled: true,
     },
     'A': {
       Type: 'mob',
+      Enabled: true,
     },
     'B': {
       Type: 'mob',
+      Enabled: true,
       PopSoundAlert: false,
     },
   },
@@ -120,6 +125,11 @@ class Radar {
     // option overwrite
     if (monster.rank in options.RankOptions)
       options = Object.assign({}, this.options, options.RankOptions[monster.rank]);
+    // Check if monster rank enabled or not in config
+    if (monster.rank === 'B' && !options.BRankEnabled)
+      return;
+    if (!options.Enabled)
+      return;
     if (options.Type === 'mob') {
       if (!matches.id.startsWith('4'))
         return;

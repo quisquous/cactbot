@@ -3,6 +3,14 @@
 UserConfig.registerOptions('radar', {
   options: [
     {
+      id: 'BRankEnabled',
+      name: {
+        en: 'B-Rank enabled',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
       id: 'DetectionRange',
       name: {
         en: 'Minimum distance to detect mobs (yalms)',
