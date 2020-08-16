@@ -13,6 +13,7 @@
       alertText: {
         en: 'Run Marker Away',
         de: 'Mit Marker weglaufen',
+        fr: 'Fuyez avec le marqueur',
         cn: '远离点名',
         ko: '징 멀리 떨어뜨리기',
       },
@@ -34,6 +35,7 @@
       infoText: {
         en: 'Gekko Marker',
         de: 'Gekko Marker',
+        fr: 'Marqueur Gekkô',
         cn: '月光点名',
         ko: '월광 징',
       },
@@ -82,7 +84,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': 'Force électrogénétique',
         'Embodiment': 'double de Gilgamesh',
@@ -91,6 +92,8 @@
         'Yojimbo': 'Yojimbo',
       },
       'replaceText': {
+        'A Giant Me': 'J\'ai toujours eu la folie des grandeurs',
+        'Ame-no-Murakumo': 'Ame no Murakumo',
         'Bitter End': 'Éradication',
         'Dragon Night': 'Nuit du dragon',
         'Dragon\'s Lair': 'Fléau du dragon',
@@ -99,6 +102,7 @@
         'Epic Stormsplitter': 'Monde flottant',
         'Gekko': 'Gekkô',
         'Giga Jump': 'Giga saut',
+        'Hell\'s Gate': 'Portes de l\'enfer',
         'Inoshikacho': 'Ino-shika-cho',
         'Kasha': 'Kasha',
         'Masamune': 'Masamune',

@@ -18,7 +18,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            fr: 'Tank buster sur VOUS',
             cn: '死刑减伤',
             ko: '탱버 대상자',
           };
@@ -27,7 +27,7 @@
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            fr: 'Tank buster sur ' + data.ShortName(matches.target),
             cn: '死刑->' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
@@ -48,7 +48,7 @@
       alertText: {
         en: 'Tank Buster',
         de: 'Tankbuster',
-        fr: 'Tankbuster',
+        fr: 'Tank buster',
         cn: '死刑',
         ko: '탱버',
       },
@@ -123,7 +123,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Tenzen': 'Tenzen',
         'Scarlet Tail Feather': 'plume de queue de Suzaku',
@@ -143,6 +142,7 @@
         'Phoenix Down': 'Queue de phénix',
         'Rekindle': 'Ravivement',
         'Rout': 'Irruption',
+        'Ruthless/Mesmerizing': 'Refrain/Mélodie',
         'Ruthless Refrain': 'Refrain impitoyable',
         'Scarlet Fever': 'Fièvre écarlate',
         'Scarlet Hymn': 'Hymne vermillon',

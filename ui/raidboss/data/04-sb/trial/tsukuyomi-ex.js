@@ -50,7 +50,7 @@
           return {
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
-            fr: 'Tankbuster sur VOUS',
+            fr: 'Tank buster sur VOUS',
             cn: '死刑减伤',
             ko: '탱버 대상자',
           };
@@ -59,7 +59,7 @@
           return {
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tankbuster sur ' + data.ShortName(matches.target),
+            fr: 'Tank buster sur ' + data.ShortName(matches.target),
             cn: '死刑->' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(target) + '" 탱버',
           };
@@ -72,7 +72,7 @@
         return {
           en: 'Get out of front',
           de: 'Weg von vorn',
-          fr: 'Ne restez pas devant !',
+          fr: 'Sortez du devant',
           cn: '远离正面',
           ko: '정면 피하기',
         };
@@ -82,7 +82,7 @@
           return {
             en: 'buster',
             de: 'basta',
-            fr: 'tankbuster',
+            fr: 'tank buster',
             cn: '死刑',
             ko: '탱버',
           };
@@ -101,7 +101,7 @@
         let moonInOut = {
           en: 'Out',
           de: 'Raus',
-          fr: 'Loin',
+          fr: 'Extérieur',
           cn: '远离',
           ko: '밖',
         };
@@ -120,7 +120,7 @@
         let moonInOut = {
           en: 'In',
           de: 'Rein',
-          fr: 'Près',
+          fr: 'Intérieur',
           cn: '靠近',
           ko: '안',
         };
@@ -335,17 +335,18 @@
         'Tsukuyomi': 'Tsukuyomi',
       },
       'replaceText': {
+        '\\(spear\\)': '(lance)',
         'Antitwilight': 'Belle-de-nuit',
         'Concentrativity': 'Kenki concentré',
         'Crater': 'Explosion de fragment lunaire',
         'Dance Of The Dead': 'Danse des morts',
-        'Dark Blade': 'Lame ténébreuse',
+        'Bright/Dark Blade': 'Lame blafarde/ténébreuse',
         'Dispersivity': 'Onde Kenki',
-        'Empire adds .SW->NW.': 'Soldats Impériaux (SO->NO)',
+        'Empire adds .SW->NW.': 'Adds Impériaux (SO->NO)',
         'Hagetsu': 'Pulvérisation lunaire',
-        'Homeland adds .E->W.': 'Soldats Domiens (E->O)',
+        'Homeland adds .E->W.': 'Adds Domiens (E->O)',
         'Lead Of The Underworld': 'Tir de l\'au-delà',
-        'Lead/Steel': 'Tir De L\'au-delà/Pointes De L\'au-delà',
+        'Lead/Steel': 'Tir/Pointes De L\'au-delà',
         'Lunacy': 'Efflorescence au clair de lune',
         'Lunar Halo': 'Flamboiement lunaire',
         'Lunar Rays': 'Rayons lunaires',
@@ -357,12 +358,12 @@
         'Perilune': 'Zénith lunaire',
         'Reprimand': 'Correction',
         'Steel Of The Underworld': 'Pointes de l\'au-delà',
-        'Steel/Lead': 'Pointes De L\'au-delà/Tir De L\'au-delà',
+        'Steel/Lead': 'Pointes/Tir De L\'au-delà',
         'Supreme Selenomancy': 'Sélénomancie suprême',
         'Torment Unto Death': 'Brimade meurtrière',
         'Tsuki-no-Kakera': 'Fragments lunaires',
         'Tsuki-no-Maiogi': 'Maiôgi lunaire',
-        'Waxing Grudge': 'Rancœur blafarde',
+        'Waning/Waxing Grudge': 'Rancœur ténèbreuse/blafarde',
         'Zashiki-asobi': 'Zashiki asobi',
       },
     },
