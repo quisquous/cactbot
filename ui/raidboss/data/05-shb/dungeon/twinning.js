@@ -287,8 +287,6 @@
         'Aetherial Observation': 'エーテル観測台',
         'Repurposing': '改装作業拠点',
         'Cladoselache': 'クラドセラケ',
-        '(?<! )Gravity': '(?<! )重力',
-        '(?<! )Crossray': '(?<! )クロスレイ',
       },
       'replaceText': {
         'Thunder Beam': 'サンダービーム',
@@ -314,6 +312,8 @@
         'Augurium': 'アウガースマッシュ',
         'Artificial Gravity': 'アーティフィシャル・グラビティ',
         'Allagan Thunder': 'アラガン・サンダー',
+        '(?<! )Gravity': '(?<! )重力',
+        '(?<! )Crossray': '(?<! )クロスレイ',
       },
     },
     {
