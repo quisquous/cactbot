@@ -12,8 +12,8 @@
       'locale': 'de',
       'replaceSync': {
         '724P-operated superior flight unit \\(A-lpha\\)': '724P: Flugeinheit A-lpha',
-        '767P-Operated Superior Flight Unit \\(B-Eta\\)': '767P: Flugeinheit[p] B-eta',
-        '772P-Operated Superior Flight Unit \\(C-Hi\\)': '772P: Flugeinheit[p] C-hi',
+        '767P-Operated Superior Flight Unit \\(B-Eta\\)': '767P: Flugeinheit B-eta',
+        '772P-Operated Superior Flight Unit \\(C-Hi\\)': '772P: Flugeinheit C-hi',
         '813P-Operated Aegis Unit': '813P: Bollwerk',
         '905P-Operated Heavy Artillery Unit': '905P: Läufer',
         'Compound 2P': '2P: Fusion',
