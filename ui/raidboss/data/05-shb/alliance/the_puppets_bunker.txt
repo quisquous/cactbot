@@ -393,7 +393,7 @@ hideall "--sync--"
 6399.8 "Four Parts Resolve?" sync /:Compound 2P:519E:/
 
 # This is adjusted 9 seconds ahead so that Compound Pod: R012 lines up.  @_@;;
-6400.7 "--sync--" sync /:519B:Compound 2B/ window 50,50
+6400.7 "--sync--" sync /:519B:Compound 2P/ window 50,50
 6406.7 "Three Parts Resolve?" sync /:Compound 2P:519B:/
 
 
