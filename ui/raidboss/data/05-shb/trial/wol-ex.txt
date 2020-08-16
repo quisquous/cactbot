@@ -66,6 +66,7 @@ hideall "Limit Break"
 225.9 "--untargetable--"
 226.0 "--sync--" sync /:Warrior Of Light:5151:/
 
+231.2 "--adds targetable--"
 239.3 "Deluge Of Death" sync /:Spectral Bard:4F3B:/
 241.3 "Twincast" sync /:Spectral Black Mage:4F3D:/
 243.3 "--sync--" sync /:Spectral Ninja:4F39:/
