@@ -35,7 +35,7 @@
         '\\(Behind\\)': '(Hinter)',
         'Aerial Support: Bombardment': 'Luftunterstützung: Bombardement',
         'Aerial Support: Swoop': 'Luftunterstützung: Sturmangriff',
-        'Anti-Personnel Missile': 'Antipersonenrakete',
+        'Anti-Personnel Missile': 'Abwehrraketen',
         'Apply Shield Protocol': 'Schutzsysteme aktivieren',
         'Authorization: No Restrictions': 'Verstärkung: Entsichern',
         'Centrifugal Slice': 'Spiralklinge',
@@ -129,7 +129,7 @@
       'replaceText': {
         'Aerial Support: Bombardment': 'Soutien aérien : pilonnage',
         'Aerial Support: Swoop': 'Soutien aérien : assaut',
-        'Anti-Personnel Missile': 'Pluie de missiles antipersonnel',
+        'Anti-Personnel Missile': 'Missile antipersonnel',
         'Apply Shield Protocol': 'Activation du programme défensif',
         'Authorization: No Restrictions': 'Extension : déverrouillage de l\'armement',
         'Centrifugal Slice': 'Brise-machine étendu',
@@ -222,7 +222,7 @@
       'replaceText': {
         'Aerial Support: Bombardment': '航空支援：爆撃',
         'Aerial Support: Swoop': '航空支援：突撃',
-        'Anti-Personnel Missile': '対人ミサイル乱射',
+        'Anti-Personnel Missile': '対人ミサイル',
         'Apply Shield Protocol': '防御プログラム適用',
         'Authorization: No Restrictions': '拡張：武装ロック解除',
         'Centrifugal Slice': '全面斬機',
