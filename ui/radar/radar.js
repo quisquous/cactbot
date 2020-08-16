@@ -5,18 +5,23 @@ let Options = {
   RankOptions: {
     'S': {
       Type: 'mob',
+      Enabled: true,
     },
     'SS+': {
       Type: 'mob',
+      Enabled: true,
     },
     'SS-': {
       Type: 'mob',
+      Enabled: true,
     },
     'A': {
       Type: 'mob',
+      Enabled: true,
     },
     'B': {
       Type: 'mob',
+      Enabled: true,
       PopSoundAlert: false,
     },
   },
@@ -120,7 +125,12 @@ class Radar {
     // option overwrite
     if (monster.rank in options.RankOptions)
       options = Object.assign({}, this.options, options.RankOptions[monster.rank]);
+    // Chceck if monster rank enabled or not in config
+    if(monster.rank === "B" && options.BRankEnabled === false)
+      return;
     if (options.Type === 'mob') {
+      if (options.Enabled === false)
+        return;    
       if (!matches.id.startsWith('4'))
         return;
       // Temporarily disabled due to https://github.com/ravahn/FFXIV_ACT_Plugin/issues/256
