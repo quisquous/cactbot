@@ -126,7 +126,7 @@ class Radar {
     if (monster.rank in options.RankOptions)
       options = Object.assign({}, this.options, options.RankOptions[monster.rank]);
     // Check if monster rank enabled or not in config
-    if (monster.rank === 'B' && options.BRankEnabled === false)
+    if (monster.rank === 'B' && !options.BRankEnabled)
       return;
     if (!options.Enabled)
       return;
