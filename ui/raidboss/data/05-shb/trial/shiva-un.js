@@ -24,6 +24,7 @@
         en: 'Party Share Tankbuster',
         de: 'Tankbuster mit der Gruppe Teilen',
         fr: 'Partagez le Tank buster avec le groupe',
+        ja: '頭割りタンクバスター',
         cn: '团队分摊死刑',
       },
     },
@@ -45,6 +46,7 @@
                 en: 'Staff (Tank Swap)',
                 de: 'Stab (Tankwechsel)',
                 fr: 'Bâton (Tank Swap)',
+                ja: '杖 (スイッチ)',
                 cn: '权杖（换T）',
               },
             };
@@ -56,6 +58,7 @@
             en: 'Staff',
             de: 'Stab',
             fr: 'Bâton',
+            ja: '杖',
             cn: '权杖',
           },
         };
@@ -80,6 +83,7 @@
                 en: 'Sword (Tank Swap)',
                 de: 'Schwert (Tankwechsel)',
                 fr: 'Épée (Tank Swap)',
+                ja: '剣 (スイッチ)',
                 cn: '剑（换T）',
               },
             };
@@ -91,6 +95,7 @@
             en: 'Sword',
             de: 'Schwert',
             fr: 'Épée',
+            ja: '剣',
             cn: '剑',
           },
         };
@@ -207,6 +212,7 @@
         en: 'Knockback Laser on YOU',
         de: 'Rückstoß-Laser auf DIR',
         fr: 'Poussée-Laser sur VOUS',
+        ja: '自分にノックバックレザー',
         cn: '击退激光点名',
       },
     },
@@ -218,6 +224,7 @@
         en: 'Avoid Laser',
         de: 'Laser ausweichen',
         fr: 'Évitez le laser',
+        ja: 'ノックバックレザーを避け',
         cn: '躲避击退激光',
       },
     },
@@ -256,6 +263,7 @@
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
           fr: 'Libérez ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'を救って',
           cn: '解救' + data.ShortName(matches.target),
         };
       },
@@ -321,12 +329,15 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': 'アイスソルジャー',
         'Shiva': 'シヴァ',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(circle\\)': '(輪)',
+        '\\(cross\\)': '(十字)',
+        '--frozen--': '--凍結--',
         'Absolute Zero': '絶対零度',
         'Avalanche': 'アバランチ',
         'Diamond Dust': 'ダイアモンドダスト',

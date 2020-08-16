@@ -52,6 +52,7 @@
         en: 'Spread (avoid cages)',
         de: 'Verteilen (Vermeide "Käfige")',
         fr: 'Dispersez-vous (évitez les cages)',
+        ja: '散開 (檻に近づかない)',
         cn: '分散（躲避笼子）',
         ko: '산개 (몬스터 우리 피하기)',
       },
@@ -124,6 +125,7 @@
         en: 'cardinal lasers',
         de: 'Himmelrichtungs-Lasers',
         fr: 'Lasers cardinaux',
+        ja: '十字レザー',
         cn: '正点激光',
         ko: '십자 레이저',
       },
@@ -141,6 +143,7 @@
         en: 'outer lasers',
         de: 'Lasers am Rand',
         fr: 'Lasers extérieurs',
+        ja: '外周レザー',
         cn: '外侧激光',
         ko: '외곽 레이저',
       },
@@ -272,7 +275,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'vitalized reptoid': 'ヴァイタライズ・レプトイド',
         'The Tycoon': 'タイクーン',
@@ -310,6 +312,8 @@
         'Augurium': 'アウガースマッシュ',
         'Artificial Gravity': 'アーティフィシャル・グラビティ',
         'Allagan Thunder': 'アラガン・サンダー',
+        '(?<! )Gravity': '(?<! )重力',
+        '(?<! )Crossray': '(?<! )クロスレイ',
       },
     },
     {
