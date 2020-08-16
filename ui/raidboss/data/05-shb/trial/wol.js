@@ -29,6 +29,7 @@
         de: 'Türme nehmen',
         ja: '塔を踏む',
         ko: '장판 들어가기',
+        cn: '踩塔',
       },
     },
   ],
@@ -48,6 +49,7 @@
         de: 'Alle voll heilen',
         ja: 'HPを満タンさせ！',
         ko: '전원 체력 풀피로',
+        cn: '奶满全队',
       },
     },
     {
@@ -116,6 +118,7 @@
             de: 'Raus => Bewegen',
             ja: '外 => 動け',
             ko: '밖으로 => 움직이기',
+            cn: '外 => 动起来',
           };
         } else if (data.imbued === 'fire') {
           return {
@@ -123,6 +126,7 @@
             de: 'Raus => Nichts machen',
             ja: '外 => 動かない',
             ko: '밖으로 => 멈추기',
+            cn: '外 => 不要动',
           };
         }
         return {
@@ -130,6 +134,7 @@
           de: 'Raus => ???',
           ja: '外 => ???',
           ko: '밖으로 => ???',
+          cn: '外 => ???',
         };
       },
     },
@@ -146,6 +151,7 @@
             de: 'Runter => Bewegen',
             ja: '中 => 動け',
             ko: '안으로 => 움직이기',
+            cn: '内 => 动起来',
           };
         } else if (data.imbued === 'fire') {
           return {
@@ -153,6 +159,7 @@
             de: 'Runter => Nichts machen',
             ja: '中 => 動かない',
             ko: '안으로 => 멈추기',
+            cn: '内 => 不要动',
           };
         }
         return {
@@ -160,6 +167,7 @@
           de: 'Runter => ???',
           ja: '中 => ???',
           ko: '안으로 => ???',
+          cn: '内 => ???',
         };
       },
     },
@@ -174,6 +182,7 @@
         de: 'Raus aus den Dreiecken',
         ja: '三角の外へ',
         ko: '삼각형 밖으로',
+        cn: '站在三角外面',
       },
     },
     {
@@ -191,6 +200,7 @@
         de: 'Wyrm-Ansturm ausweichen',
         ja: '竜を避け',
         ko: '용 돌진 피하기',
+        cn: '躲避龙的冲锋',
       },
     },
     {
@@ -220,6 +230,7 @@
         de: 'GTFO',
         ja: '出ていて！',
         ko: '진영 벗어나기!',
+        cn: '快出去！',
       },
       run: function(data, matches) {
         data.deluge = matches.target;
@@ -263,6 +274,7 @@
         de: 'Gruppen stacken',
         ja: '集合',
         ko: '쉐어징 모이기',
+        cn: '集合',
       },
     },
     {
@@ -274,6 +286,7 @@
         de: 'In die Ecken gehenr',
         ja: 'コーナーへ',
         ko: '구석으로',
+        cn: '到角落',
       },
     },
     {
@@ -297,6 +310,7 @@
         de: 'Verbindungen nach Außen zeigen',
         ja: '線を外に引く',
         ko: '선 연결 바깥으로 빼기',
+        cn: '把线拉向外面',
       },
     },
   ],
