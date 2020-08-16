@@ -128,9 +128,9 @@ class Radar {
     // Check if monster rank enabled or not in config
     if (monster.rank === 'B' && options.BRankEnabled === false)
       return;
+    if (!options.Enabled)
+      return;
     if (options.Type === 'mob') {
-      if (options.Enabled === false)
-        return;
       if (!matches.id.startsWith('4'))
         return;
       // Temporarily disabled due to https://github.com/ravahn/FFXIV_ACT_Plugin/issues/256

@@ -6,11 +6,6 @@ UserConfig.registerOptions('radar', {
       id: 'BRankEnabled',
       name: {
         en: 'B-Rank enabled',
-        de: 'B-Rank enabled',
-        fr: 'B-Rank enabled',
-        ja: 'B-Rank enabled',
-        cn: 'B-Rank enabled',
-        ko: 'B-Rank enabled',
       },
       type: 'checkbox',
       default: true,
