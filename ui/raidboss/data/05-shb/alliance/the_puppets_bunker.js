@@ -209,12 +209,17 @@
       response: Responses.aoe(),
     },
     {
-      id: 'Puppet Heavy Active Laser Turret',
+      id: 'Puppet Heavy Active Laser Turret Initial',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FED', capture: false }),
-      // TODO: how to even describe this.  Could have a second callout when lower disppears?
       alertText: {
-        en: 'Upper Laser Outside -> Lower',
+        en: 'Get Outside Upper Laser',
       },
+    },
+    {
+      id: 'Puppet Heavy Active Laser Turret Move',
+      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FED', capture: false }),
+      delaySeconds: 5.3,
+      response: Responses.move('info'),
     },
     {
       id: 'Puppet Heavy Unconventional Voltage',
