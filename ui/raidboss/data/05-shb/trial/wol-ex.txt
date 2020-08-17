@@ -12,6 +12,7 @@
 # 4F43 is the solemn confiteor windup, skipped above, but useful for phase syncing
 # 4F05 perfect decimation damage is sometimes missed
 # 4F03 is tower correctly done, 4F04 is failed
+# Have seen LB1+2+3 go to DRK.  Have only seen 2+3 go to WHM/BLM, but assuming LB1 could too.
 
 # TODO: More work needs to be done on the phase jump block
 # The ultimate -> block transition is fine.
@@ -102,15 +103,11 @@ hideall "Limit Break"
 517.3 "--middle--" sync /:Warrior Of Light:4F45:/
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-525.6 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 1525.6
 527.8 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 1527.8
-528.6 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+528.6 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-519.6 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 2519.6
-522.6 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+522.6 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 534.0 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 2534.0
 
 # NIN
@@ -127,7 +124,7 @@ hideall "Limit Break"
 1522.5 "Specter Of Light" sync /:Warrior Of Light:4F37:/
 1525.6 "--sync--" sync /:4F3[56]:Warrior Of Light/
 1527.8 "--sync--" sync /:4F3D:Spectral Black Mage/
-1528.6 "To The Limit 2/3" sync /:Warrior Of Light:4F3[56]:/
+1528.6 "To The Limit" sync /:Warrior Of Light:4F3[56]:/
 1530.8 "Twincast" sync /:Spectral Black Mage:4F3D:/
 1533.2 "--sync--" sync /:Spectral White Mage:531E:/
 1533.2 "--sync--" sync /:Spectral Black Mage:531E:/
@@ -143,9 +140,6 @@ hideall "Limit Break"
 1567.9 "Coruscant Saber" sync /:Warrior Of Light:4EF1:/
 1568.0 "Cauterize" sync /:Wyrm Of Light:4F07:/
 1580.2 "Limit Break" sync /:Warrior Of Light:53CB:/
-1580.3 "Radiant Meteor?" sync /:Warrior Of Light:4EFC:/
-1580.6 "Radiant Desperado 1?" sync /:Warrior Of Light:4EF9:/
-1584.9 "Radiant Desperado 2?" sync /:Warrior Of Light:4EFA:/
 ### TODO: bitter end gets moved up 0.5s if it's meteor???
 1593.1 "--sync--" sync /:4F0A:Warrior Of Light/ window 10,10
 1598.1 "The Bitter End" sync /:Warrior Of Light:4F0A:/
@@ -162,15 +156,11 @@ hideall "Limit Break"
 1661.7 "--middle--" sync /:Warrior Of Light:4F45:/
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-1670.3 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 6008.6
 1672.4 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 6010.7
-1673.3 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+1673.3 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-1663.9 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 7002.2
-1666.9 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+1666.9 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 1678.3 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 7016.6
 
 # NIN
@@ -186,7 +176,7 @@ hideall "Limit Break"
 ### Phase 3a: DRK/BRD
 2517.3 "--middle--" sync /:Warrior Of Light:4F45:/
 2519.6 "--sync--" sync /:4F3[46]:Warrior Of Light/
-2522.6 "To The Limit 1/3" sync /:Warrior Of Light:4F3[46]:/
+2522.6 "To The Limit" sync /:Warrior Of Light:4F3[46]:/
 2530.8 "Specter Of Light" sync /:Warrior Of Light:4F37:/
 2534.0 "--sync--" sync /:4F43:Warrior Of Light/
 2537.0 "--sync--" sync /:Warrior Of Light:4F43:/
@@ -199,8 +189,6 @@ hideall "Limit Break"
 2556.6 "Deluge Of Death" sync /:Spectral Bard:4F02:/
 2563.6 "--middle--" sync /:Warrior Of Light:4F45:/
 2571.8 "Limit Break" sync /:Warrior Of Light:4EFB:/
-2571.9 "Radiant Meteor?" sync /:Warrior Of Light:4EFC:/
-2572.1 "Radiant Braver?" sync /:Warrior Of Light:4EF7:/
 2584.1 "--sync--" sync /:4F0A:Warrior Of Light/ window 10,10
 2589.1 "The Bitter End" sync /:Warrior Of Light:4F0A:/
 
@@ -217,15 +205,11 @@ hideall "Limit Break"
 
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-2661.3 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 6008.6
 2663.4 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 6010.7
-2664.3 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+2664.3 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-2654.9 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 7002.2
-2657.9 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+2657.9 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 2669.3 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 7016.6
 
 # NIN
@@ -265,15 +249,11 @@ hideall "Limit Break"
 3652.6 "--middle--" sync /:Warrior Of Light:4F45:/
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-3661.2 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 6008.6
 3663.3 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 6010.7
-3664.2 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+3664.2 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-3654.8 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 7002.2
-3657.8 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+3657.8 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 3669.2 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 7016.6
 
 # NIN
@@ -318,15 +298,11 @@ hideall "Limit Break"
 4671.2 "--middle--" sync /:Warrior Of Light:4F45:/
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-4679.8 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 6008.6
 4681.9 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 6010.7
-4682.8 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+4682.8 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-4673.4 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 7002.2
-4676.4 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+4676.4 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 4687.8 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 7016.6
 
 # NIN
@@ -343,7 +319,7 @@ hideall "Limit Break"
 6005.4 "Specter Of Light" sync /:Warrior Of Light:4F37:/
 6008.6 "--sync--" sync /:4F3[56]:Warrior Of Light/
 6010.7 "--sync--" sync /:4F3D:Spectral Black Mage/
-6011.6 "To The Limit 2/3" sync /:Warrior Of Light:4F3[56]:/
+6011.6 "To The Limit" sync /:Warrior Of Light:4F3[56]:/
 6013.7 "Twincast" sync /:Spectral Black Mage:4F3D:/
 6016.2 "--sync--" sync /:Spectral White Mage:531E:/
 6028.3 "Meteor Impact 1" #sync /:Warrior Of Light:4F03:/
@@ -359,23 +335,16 @@ hideall "Limit Break"
 6051.0 "Cauterize" sync /:Wyrm Of Light:4F07:/
 ### TODO: This is random (note: bitter end gets moved up 0.5s if it's meteor)
 6063.1 "Limit Break" sync /:Warrior Of Light:53CB:/
-6063.2 "Radiant Meteor?" sync /:Warrior Of Light:4EFC:/
-6063.4 "Radiant Desperado 1?" sync /:Warrior Of Light:4EF9:/
-6067.7 "Radiant Desperado 2?" sync /:Warrior Of Light:4EFA:/
 6075.9 "--sync--" sync /:4F0A:Warrior Of Light/ window 10,10
 6080.9 "The Bitter End" sync /:Warrior Of Light:4F0A:/
 6084.1 "--middle--" sync /:Warrior Of Light:4F45:/
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-6092.7 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 6008.6
 6094.8 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 6010.7
-6095.7 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+6095.7 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-6086.3 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 7002.2
-6089.3 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+6089.3 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 6100.7 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 7016.6
 
 # NIN
@@ -390,7 +359,7 @@ hideall "Limit Break"
 ### Phase 3b: DRK/BRD
 7000.0 "--middle--" sync /:Warrior Of Light:4F45:/
 7002.2 "--sync--" sync /:4F3[46]:Warrior Of Light/
-7005.2 "To The Limit 1/3" sync /:Warrior Of Light:4F3[46]:/
+7005.2 "To The Limit" sync /:Warrior Of Light:4F3[46]:/
 7013.4 "Specter Of Light" sync /:Warrior Of Light:4F37:/
 7016.6 "--sync--" sync /:4F43:Warrior Of Light/
 7019.6 "--sync--" sync /:Warrior Of Light:4F43:/
@@ -403,23 +372,17 @@ hideall "Limit Break"
 7039.3 "Absolute Holy" sync /:Warrior Of Light:4F2B:/
 7046.3 "--middle--" sync /:Warrior Of Light:4F45:/
 7054.6 "Limit Break" sync /:Warrior Of Light:515C:/
-7054.7 "Radiant Meteor?" sync /:Warrior Of Light:4EFC:/
-7054.9 "Radiant Braver?" sync /:Warrior Of Light:4EF7:/
 # TODO: guessing here
 7066.8 "--sync--" sync /:4F0A:Warrior Of Light/ window 10,10
 7071.8 "The Bitter End" sync /:Warrior Of Light:4F0A:/
 7079.1 "--middle--" sync /:Warrior Of Light:4F45:/
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-7087.7 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 6008.6
 7089.8 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 6010.7
-7090.7 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+7090.7 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-7081.3 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 7002.2
-7084.3 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+7084.3 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 7095.7 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 7016.6
 
 # NIN
@@ -449,15 +412,11 @@ hideall "Limit Break"
 8074.7 "--middle--" sync /:Warrior Of Light:4F45:/
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-8083.3 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 6008.6
 8085.4 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 6010.7
-8086.3 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+8086.3 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-8076.9 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 7002.2
-8079.9 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+8079.9 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 8091.3 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 7016.6
 
 # NIN
@@ -492,15 +451,11 @@ hideall "Limit Break"
 9093.4 "--middle--" sync /:Warrior Of Light:4F45:/
 
 # BLM/WHM
-# if lb2, jump directly, otherwise wait for twincast
-9102.0 "--sync--" sync /:4F35:Warrior Of Light/ window 40,40 jump 6008.6
 9104.1 "--sync--" sync /:4F3D:Spectral Black Mage/ window 40,40 jump 6010.7
-9105.0 "Limit 2/3 -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
+9105.0 "Limit -> BLM/WHM" #sync /:Warrior Of Light:4F3[56]:/
 
 # DRK/BRD
-# if lb1, jump directly, otherwise wait for confiteor
-9095.6 "--sync--" sync /:4F34:Warrior Of Light/ window 40,40 jump 7002.2
-9098.6 "Limit 1/3 -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
+9098.6 "Limit -> DRK/BRD" #sync /:Warrior Of Light:4F3[46]:/
 9110.0 "--sync--" sync /:4F43:Warrior Of Light/ window 40,40 jump 7016.6
 
 # NIN
