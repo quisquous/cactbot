@@ -301,7 +301,7 @@ hideall "--sync--"
 
 
 ### The Compound
-# -p 51B8:5013.2 53D5:6000 -ii 53CA 53F2 51B1 51B6 51B7
+# -p 51B8:5013.2 53D5:6000 -ii 53CA 53F2 51B1 51B6 51B7 -it "The Compound"
 # Notes:
 # * Contusion is 51B5 (cast) 51B6 (ground) 51B7 (headmarker).  Left as 51B5 for simplicity.
 # * Can't use "The Bridge" area sync due to checkpoint with Compound 2P.
@@ -313,7 +313,9 @@ hideall "--sync--"
 5034.9 "Mechanical Dissection/Decapitation" sync /:The Compound:51B[34]:/
 5043.9 "Mechanical Contusion" sync /:The Compound:51B5:/
 
+5058.0 "--untargetable--"
 5068.7 "Incongruous Spin x2" #sync /:The Compound:51B2:/
+5073.9 "--targetable--"
 
 5088.0 "Mechanical Laceration" sync /:The Compound:51B8:/
 5099.1 "Mechanical Decapitation" sync /:The Compound:51B4:/

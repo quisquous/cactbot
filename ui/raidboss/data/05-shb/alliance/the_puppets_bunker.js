@@ -1,6 +1,7 @@
 'use strict';
 
 // TODO: is it worth adding triggers for gaining/losing shield protocol? effect 8F[0-2]
+// TODO: Incongruous Spin timeline trigger?
 
 [{
   zoneId: ZoneId.ThePuppetsBunker,
@@ -11,6 +12,10 @@
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('alert'),
+    },
+    {
+      id: 'Puppet Aegis Anti-Personnel Laser Collect',
+      netRegex: NetRegexes.headMarker({ id: '00C6' }),
       run: function(data, matches) {
         data.busterTargets = data.busterTargets || [];
         data.busterTargets.push(matches.target);
@@ -46,19 +51,8 @@
     {
       id: 'Puppet Aegis Beam Cannons',
       netRegex: NetRegexes.startsUsing({ source: '813P-Operated Aegis Unit', id: '5073', capture: false }),
-      alertText: function(data) {
-        data.beamCannonCount = data.beamCannonCount || 0;
-        data.beamCannonCount++;
-
-        // TODO: 507[789A] is probably a rotation ability sync, so we could give better directions?
-        if (data.beamCannonCount <= 2) {
-          return {
-            en: 'Go To Intersection',
-          };
-        }
-        return {
-          en: 'Go To Narrow Intersection',
-        };
+      alertText: {
+        en: 'Go To Narrow Intersection',
       },
     },
     {
@@ -112,25 +106,31 @@
       response: Responses.interrupt('alarm'),
     },
     {
-      id: 'Puppet Light Homing Missile',
+      id: 'Puppet Spread Headmarker',
+      // Used for:
+      // Homing Missile (Light Artillery)
+      // Mechanical Contusion (The Compound)
+      // R012: Laser (Compound 2P)
       netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: (data, matches) => data.me === matches.target && data.phase !== 'compound',
-      alertText: {
-        en: 'Fire Puddle on YOU',
-      },
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread('info'),
     },
     {
-      id: 'Puppet Light Maneuver Martial Arm',
+      id: 'Puppet Light Maneuver Martial Arm Target',
       netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('alert'),
+    },
+    {
+      id: 'Puppet Light Maneuver Martial Arm Collect',
+      netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213' }),
       run: function(data, matches) {
         data.busterTargets = data.busterTargets || [];
         data.busterTargets.push(matches.target);
       },
     },
     {
-      id: 'Puppet Light Maneuver Martial Arm Not You',
+      id: 'Puppet Light Maneuver Martial Arm Healer',
       netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
@@ -202,6 +202,10 @@
       netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('alert'),
+    },
+    {
+      id: 'Puppet Superior Precision Guided Missile Collect',
+      netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
       run: function(data, matches) {
         data.busterTargets = data.busterTargets || [];
         data.busterTargets.push(matches.target);
@@ -237,32 +241,49 @@
     {
       id: 'Puppet Superior Sliding Swipe First',
       netRegex: NetRegexes.startsUsing({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
-      preRun: function(data) {
+      preRun: function(data, matches) {
         data.swipe = data.swipe || [];
+        const kRight = {
+          en: 'Right',
+          de: 'Rechts',
+          fr: 'Droite ',
+          ja: '右へ',
+          cn: '右',
+          ko: '오른쪽',
+        };
+        const kLeft = {
+          en: 'Left',
+          de: 'Links',
+          fr: 'Gauche',
+          ja: '左へ',
+          cn: '左',
+          ko: '왼쪽',
+        };
+
         data.swipe.push({
-          '4FAC': Responses.goRight(),
-          '4FAD': Responses.goLeft(),
-          '550D': Responses.goRight(),
-          '550E': Responses.goLeft(),
-          '550F': Responses.goRight(),
-          '5510': Responses.goLeft(),
-        });
+          '4FAC': kRight,
+          '4FAD': kLeft,
+          '550D': kRight,
+          '550E': kLeft,
+          '550F': kRight,
+          '5510': kLeft,
+        }[matches.id]);
       },
       durationSeconds: 6,
-      response: function(data, matches) {
+      alertText: function(data) {
         if (data.swipe.length !== 1)
           return;
 
         // Call and clear the first swipe so we can not call it a second time below.
         const swipe = data.swipe[0];
         data.swipe[0] = null;
-        return swipe(data, matches);
+        return swipe;
       },
     },
     {
       id: 'Puppet Superior Sliding Swipe Others',
       netRegex: NetRegexes.ability({ id: ['4FA[CD]', '550[DEF]', '5510'] }),
-      response: function(data, matches) {
+      alertText: function(data, matches) {
         if (!data.swipe)
           return;
 
@@ -273,7 +294,7 @@
           swipe = data.swipe.pop();
         if (!swipe)
           return;
-        return swipe(data, matches);
+        return swipe;
       },
     },
     {
@@ -291,8 +312,9 @@
     },
     {
       id: 'Puppet Heavy Active Laser Turret Move',
-      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FED', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5086', capture: false }),
       delaySeconds: 5.3,
+      suppressSeconds: 5,
       response: Responses.move('info'),
     },
     {
@@ -379,13 +401,6 @@
       id: 'Puppet Compound Mechanical Decapitation',
       netRegex: NetRegexes.startsUsing({ source: 'The Compound', id: '51B4', capture: false }),
       response: Responses.getIn(),
-    },
-    {
-      id: 'Puppet Compound Mechanical Contusion',
-      // This is also used for Compound 2P R012: Laser for non-tanks.  It's a spread there too.
-      netRegex: NetRegexes.headMarker({ id: '008B' }),
-      condition: (data, matches) => data.me === matches.target && data.phase === 'compound',
-      response: Responses.spread('info'),
     },
     {
       id: 'Puppet Compound 2P Centrifugal Slice',
@@ -476,7 +491,8 @@
     },
     {
       id: 'Puppet Compound 2P Energy Compression',
-      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: '51A1', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: '51A6', capture: false }),
+      delaySeconds: 4,
       infoText: {
         en: 'Get Towers',
         de: 'Türme nehmen',
@@ -496,18 +512,35 @@
       },
     },
     {
-      id: 'Puppet Puppet 2P Prime Blade Puppet In',
-      netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '519A', capture: false }),
+      id: 'Puppet Puppet 2P Prime Blade Puppet Guaranteed In',
+      netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '5421', capture: false }),
       suppressSeconds: 2,
+      // TODO: have only seen this happen for the guaranteed Puppet In at 6250.7 with 4 clones.
+      // TODO: can this happen at other times??
       alertText: {
-        en: 'Get Under Corner',
+        en: 'Get Under Clone Corner',
       },
     },
     {
-      id: 'Puppet Puppet 2P Prime Blade Puppet Out',
+      id: 'Puppet Puppet 2P Prime Blade Puppet In',
+      netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '519A', capture: false }),
+      suppressSeconds: 2,
+      // TODO: when I've seen this happen at 6379.4, it's been two clones, that start
+      // at corners and then teleport to two cardinals across from each other with fake
+      // teleports on the other cardinals.  Can this ability be corners instead??
+      alertText: {
+        en: 'Get Under Clone',
+      },
+    },
+    {
+      id: 'Puppet Puppet 2P Prime Blade Puppet Out Corner',
       netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '5198', capture: false }),
       suppressSeconds: 2,
-      response: Responses.goMiddle('alert'),
+      // TODO: have only seen this where the 4 clones stay out at 6379.4.
+      // TODO: have seen a report on a guide that the clones can teleport in??
+      alertText: {
+        en: 'Avoid Clones',
+      },
     },
   ],
   timelineReplace: [
