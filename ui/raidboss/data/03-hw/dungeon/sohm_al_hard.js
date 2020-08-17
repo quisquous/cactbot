@@ -42,6 +42,7 @@
       infoText: {
         en: 'Away from large pod',
         de: 'Weg vom großen Pod',
+        fr: 'Éloignez-vous des spores',
         ko: '큰 포자 주머니에게서 떨어지기',
       },
     },
@@ -56,6 +57,7 @@
         return {
           en: 'Cleanse ' + data.shortName(matches.target),
           de: 'Reinige ' + data.shortName(matches.target),
+          fr: 'Guérison sur ' + data.shortName(matches.target),
           ko: '' + data.shortName(matches.target) + '에스나',
         };
       },
@@ -156,6 +158,7 @@
       alertText: {
         en: 'Drop puddle outside',
         de: 'Fläche draußen ablegen',
+        fr: 'Déposez la zone au sol à l\'extérieur',
         ko: '용암지대 생성 대상자',
       },
     },
@@ -216,6 +219,10 @@
         'Lava Scorpion': 'scorpion de lave',
       },
       'replaceText': {
+        '\\(Back\\)': '(Derrière)',
+        '\\(Front\\)': '(Devant)',
+        '\\(Readies\\)': '(Préparation)',
+        '\\(Ring\\)': '(Anneau)',
         'Wild Horn': 'Corne sauvage',
         'Spore Sac': 'Sac de spores',
         'Realm Shaker': 'Secousse tellurique',
