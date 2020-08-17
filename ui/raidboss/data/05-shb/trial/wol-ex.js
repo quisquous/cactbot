@@ -338,10 +338,19 @@ const translate = (data, obj) => {
     },
     {
       id: 'WOLEx Ultimate Crossover',
-      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '515[23]', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '515[23]', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '515[23]', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '515[23]', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '5152', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '5152', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '5152', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '5152', capture: false }),
+      condition: (data) => data.role === 'tank',
+      alarmText: {
+        en: 'TANK LB!!',
+        de: 'TANK LB!!',
+        ja: 'タンクLB!!',
+        fr: 'LB TANK !!',
+        ko: '리미트 브레이크!!',
+        cn: '坦克LB!!',
+      },
       run: function(data) {
         data.ultimateSeen = true;
       },
