@@ -36,7 +36,7 @@ hideall "Limit Break"
 41.2 "Limit Break" sync /:Warrior Of Light:4EFB:/
 41.3 "Radiant Meteor" sync /:Warrior Of Light:4EFC:/
 49.4 "--middle--" sync /:Warrior Of Light:4F45:/
-54.6 "Imbued Stone/Holy" sync /:Warrior Of Light:4EF[56]:/
+54.6 "Imbued Stone" sync /:Warrior Of Light:4EF6:/
 63.7 "Imbued Fire/Ice" sync /:Warrior Of Light:4EF[34]:/
 76.8 "Imbued Coruscance" sync /:Warrior Of Light:4F4[9A]:/
 84.0 "To The Limit 2" sync /:Warrior Of Light:4F35:/
@@ -48,7 +48,7 @@ hideall "Limit Break"
 123.3 "Radiant Desperado 2" sync /:Warrior Of Light:4EFA:/
 127.4 "--middle--" sync /:Warrior Of Light:4F45:/
 132.7 "To The Limit 1" sync /:Warrior Of Light:4F34:/
-140.8 "Imbued Holy/Stone" sync /:Warrior Of Light:4EF[56]:/
+140.8 "Imbued Holy" sync /:Warrior Of Light:4EF5:/
 149.9 "Imbued Ice/Fire" sync /:Warrior Of Light:4EF[34]:/
 163.0 "Imbued Coruscance" sync /:Warrior Of Light:4F4[9A]:/
 173.1 "Limit Break" sync /:Warrior Of Light:515C:/
