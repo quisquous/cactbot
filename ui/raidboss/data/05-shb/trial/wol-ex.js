@@ -272,6 +272,16 @@ const translate = (data, obj) => {
       response: Responses.aoe(),
     },
     {
+      id: 'WOLEx Add Phase',
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '5151', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '5151', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '5151', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '5151', capture: false }),
+      run: function(data) {
+        data.isAddPhase = true;
+      },
+    },
+    {
       id: 'WOLEx Fatal Cleave / Blade Of Shadow',
       // Either tank buster, but don't be too noisy
       netRegex: NetRegexes.startsUsing({ source: ['Spectral Warrior', 'Spectral Dark Knight'], id: '515[47]', capture: false }),
@@ -352,6 +362,7 @@ const translate = (data, obj) => {
         cn: '坦克LB!!',
       },
       run: function(data) {
+        data.isAddPhase = false;
         data.ultimateSeen = true;
       },
     },
@@ -464,7 +475,7 @@ const translate = (data, obj) => {
     {
       id: 'WOLEx Katon: San',
       netRegex: NetRegexes.headMarker({ id: '00A1', capture: false }),
-      condition: (data) => data.ultimateSeen && data.ninja,
+      condition: (data) => data.ultimateSeen && data.ninja || data.isAddPhase,
       suppressSeconds: 2,
       response: Responses.stack(),
     },
@@ -512,7 +523,7 @@ const translate = (data, obj) => {
     {
       id: 'WOLEx Absolute Holy',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
-      condition: (data) => !data.deluge && !data.ninja,
+      condition: (data) => !data.deluge && !data.ninja && !data.isAddPhase,
       response: Responses.stackOn(),
     },
     {
