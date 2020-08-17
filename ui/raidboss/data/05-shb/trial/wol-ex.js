@@ -443,6 +443,8 @@ const translate = (data, obj) => {
     },
     {
       id: 'WOLEx Suiton: San',
+      // It's possible for this cast to originate from the Warrior of Light instead.
+      // Allow for either so the callout isn't missed.
       netRegex: NetRegexes.startsUsing({ source: ['Warrior Of Light', 'Spectral Ninja'], id: '4EFD', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: ['Krieger Des Lichts', 'Phantom-Ninja'], id: '4EFD', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: ['Guerrier De La Lumière Primordial', 'Ninja Spectral'], id: '4EFD', capture: false }),
