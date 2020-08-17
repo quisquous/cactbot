@@ -159,7 +159,6 @@
         'Swell/Sword': 'Sturm/Win',
         'Tail Laser': 'Schweiflaser',
         'Target Search': 'Zielsucher',
-        'Unknown_206E': 'Unknown_206E',
         'Unmoving Troika': 'Unbewegte Troika',
         'Vein Splitter': 'Erdader-Spalter',
       },
