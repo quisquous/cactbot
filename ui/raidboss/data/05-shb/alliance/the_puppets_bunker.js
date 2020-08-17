@@ -162,13 +162,27 @@
       },
     },
     {
-      id: 'Puppet Superior Precision Guided Missile',
-      netRegex: NetRegexes.startsUsing({ id: '4CF5', capture: false }),
+      id: 'Puppet Superior Precision Guided Missile You',
+      netRegex: NetRegexes.startsUsing({ id: '4FC5' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.tankBuster('alert'),
+      run: function(data, matches) {
+        data.busterTargets = data.busterTargets || [];
+        data.busterTargets.push(matches.target);
+      },
+    },
+    {
+      id: 'Puppet Superior Precision Guided Missile Not You',
+      netRegex: NetRegexes.startsUsing({ id: '4FC5', capture: false }),
+      delaySeconds: 0.5,
       suppressSeconds: 5,
-      alertText: function(data) {
-        // This gets casted by all the planes, so harder to collect.
-        // Not worth saying "on you" or meticulously telling the healer who their tank is.
-        if (data.role === 'tank' || data.role === 'healer') {
+      infoText: function(data) {
+        if (!data.busterTargets)
+          return;
+        if (data.busterTargets.includes(data.me))
+          return;
+
+        if (data.role === 'healer') {
           return {
             en: 'Tank Buster',
             de: 'Tank buster',
@@ -179,14 +193,10 @@
           };
         }
         return {
-          en: 'Avoid tank cleave',
-          de: 'Tank Cleave ausweichen',
-          fr: 'Évitez le tank cleave',
-          ja: '前方範囲攻撃を避け',
-          ko: '광역 탱버 피하기',
-          cn: '远离顺劈',
+          en: 'Avoid tank buster',
         };
       },
+      run: (data) => delete data.busterTargets,
     },
     {
       id: 'Puppet Superior Sliding Swipe First',
