@@ -120,6 +120,42 @@
       },
     },
     {
+      id: 'Puppet Light Maneuver Martial Arm',
+      netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.tankBuster('alert'),
+      run: function(data, matches) {
+        data.busterTargets = data.busterTargets || [];
+        data.busterTargets.push(matches.target);
+      },
+    },
+    {
+      id: 'Puppet Light Maneuver Martial Arm Not You',
+      netRegex: NetRegexes.startsUsing({ source: 'Light Artillery Unit', id: '5213', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 5,
+      infoText: function(data) {
+        if (!data.busterTargets)
+          return;
+        if (data.busterTargets.includes(data.me))
+          return;
+
+        if (data.role === 'healer') {
+          return {
+            en: 'Tank Buster',
+            de: 'Tank buster',
+            fr: 'Tank buster',
+            ja: 'タンクバスター',
+            cn: '坦克死刑',
+            ko: '탱버',
+          };
+        }
+
+        // Note: this doesn't cleave, so don't say anything about avoiding it.
+      },
+      run: (data) => delete data.busterTargets,
+    },
+    {
       id: 'Puppet Superior Shield Protocol',
       netRegex: NetRegexes.startsUsing({ id: '4FA[678]', capture: false }),
       run: (data) => data.phase = 'superior',
@@ -273,6 +309,25 @@
       response: Responses.getIn(),
     },
     {
+      id: 'Puppet Heavy High-Powered Laser',
+      // There's only one starts using, but it targets all the tanks sequentially.
+      netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '5001' }),
+      response: function(data, matches) {
+        if (data.role === 'tank' || matches.target === data.me) {
+          return {
+            alertText: {
+              en: 'Tank Laser Cleave on YOU',
+            },
+          };
+        }
+        return {
+          infoText: {
+            en: 'Avoid tank laser cleaves',
+          },
+        };
+      },
+    },
+    {
       id: 'Puppet Heavy Support Pod',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FE9', capture: false }),
       alertText: function(data) {
@@ -301,6 +356,14 @@
       },
     },
     {
+      id: 'Puppet Hallway Targeted Laser',
+      netRegex: NetRegexes.headMarker({ id: '00A4' }),
+      condition: Conditions.targetIsYou(),
+      infoText: {
+        en: 'Laser on YOU',
+      },
+    },
+    {
       id: 'Puppet Compound Mechanical Laceration',
       netRegex: NetRegexes.startsUsing({ source: 'The Compound', id: '51B8', capture: false }),
       condition: Conditions.caresAboutMagical(),
@@ -319,6 +382,7 @@
     },
     {
       id: 'Puppet Compound Mechanical Contusion',
+      // This is also used for Compound 2P R012: Laser for non-tanks.  It's a spread there too.
       netRegex: NetRegexes.headMarker({ id: '008B' }),
       condition: (data, matches) => data.me === matches.target && data.phase === 'compound',
       response: Responses.spread('info'),
@@ -328,10 +392,12 @@
       netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: '51B8', capture: false }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.aoe(),
+      // Cover this phase for the checkpoint as well.
+      run: (data) => data.phase = 'compound',
     },
     {
       id: 'Puppet Compound 2P Prime Blade Out',
-      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: '541F', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['541F', '5198'], capture: false }),
       response: Responses.getOut(),
     },
     {
@@ -341,11 +407,12 @@
     },
     {
       id: 'Puppet Compound 2P Prime Blade In',
-      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: '5421', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['5421', '519A'], capture: false }),
       response: Responses.getIn(),
     },
     {
       id: 'Puppet Compound 2P R012: Laser You',
+      // R012: Laser also puts out 008B headmarkers on non-tanks.
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
       condition: Conditions.targetIsYou(),
       response: Responses.tankBuster('alert'),
@@ -359,7 +426,7 @@
       netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data) {
+      alertText: function(data) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
@@ -375,11 +442,37 @@
             ko: '탱버',
           };
         }
-        return {
-          en: 'Avoid tank buster',
-        };
+
+        // Note: do not call out "avoid tank" here because there's a lot of markers going out.
       },
       run: (data) => delete data.busterTargets,
+    },
+    {
+      id: 'Puppet Compound 2P Three Parts Disdain',
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      condition: (data) => data.phase === 'compound',
+      response: Responses.stackOn(),
+    },
+    {
+      id: 'Puppet Compound 2P Four Parts Resolve',
+      netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
+      condition: Conditions.targetIsYou(),
+      alertText: function(data, matches) {
+        return {
+          '004F': {
+            en: 'Jump #1 on YOU',
+          },
+          '0050': {
+            en: 'Cleave #1 on YOU',
+          },
+          '0051': {
+            en: 'Jump #2 on YOU',
+          },
+          '0052': {
+            en: 'Cleave #2 on YOU',
+          },
+        }[matches.id];
+      },
     },
     {
       id: 'Puppet Compound 2P Energy Compression',
@@ -397,31 +490,24 @@
       id: 'Puppet Compound Pod R011: Laser',
       netRegex: NetRegexes.startsUsing({ source: 'Compound Pod', id: '541B', capture: false }),
       suppressSeconds: 2,
+      // TODO: maybe this could be smarter and we could tell you where to go??
       infoText: {
         en: 'Avoid Lasers',
       },
     },
     {
-      id: 'Puppet Puppet 2P Prime Blade In Corners',
-      netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '5421', capture: false }),
+      id: 'Puppet Puppet 2P Prime Blade Puppet In',
+      netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '519A', capture: false }),
       suppressSeconds: 2,
-      infoText: {
+      alertText: {
         en: 'Get Under Corner',
       },
     },
     {
-      id: 'Puppet Puppet 2P Prime Blade In Cardinals',
-      netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '519A', capture: false }),
+      id: 'Puppet Puppet 2P Prime Blade Puppet Out',
+      netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '5198', capture: false }),
       suppressSeconds: 2,
-      infoText: {
-        en: 'Get Under Cardinal',
-      },
-    },
-    {
-      id: 'Puppet Puppet 2P Prime Blade Out Middle',
-      netRegex: NetRegexes.startsUsing({ source: 'Puppet 2P', id: '5498', capture: false }),
-      suppressSeconds: 2,
-      response: Responses.goMiddle(),
+      response: Responses.goMiddle('alert'),
     },
   ],
 }];
