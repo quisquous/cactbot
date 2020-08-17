@@ -165,7 +165,6 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': 'Aulus mal Asina',
         'Magitek Scorpion': 'Scorpion magitek',
@@ -177,6 +176,7 @@
         'Zenos Yae Galvus': 'Zenos yae Galvus',
       },
       'replaceText': {
+        '\\?': ' ?',
         'Aetherochemical Grenado': 'Grenade magitek',
         'Art of the Storm': 'Art de l\'orage',
         'Art of the Swell': 'Art de la tempête',
@@ -193,10 +193,9 @@
         'Mindjack': 'Détournement cérébral',
         'Order To Charge': 'Ordre d\'attaquer',
         'Order To Fire': 'Ordre d\'attaquer',
-        'Storm, Swell, Sword': 'Tempête, orage, épée',
-        'Storm\\?/Swell\\?(?!/Sword)': 'Tempête?/Orage?',
-        'Storm\\?/Swell\\?/Sword\\?': 'Tempête?/Orage?/Epée?',
-        'Swell/Sword': 'Orage/Epée',
+        '(?<!Art of the )Storm': 'Tempête',
+        '(?<!Art of the )Swell': 'Orage',
+        '(?<!Art of the )Sword': 'Épée',
         'Tail Laser': 'Laser caudal',
         'Target Search': 'Recherche de cible',
         'Unmoving Troika': 'Troïka immobile',
