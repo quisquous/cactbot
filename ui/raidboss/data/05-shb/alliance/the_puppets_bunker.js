@@ -7,12 +7,41 @@
   timelineFile: 'the_puppets_bunker.txt',
   triggers: [
     {
-      id: 'Puppet Aegis Anti-Personnel Laser',
+      id: 'Puppet Aegis Anti-Personnel Laser You',
       netRegex: NetRegexes.headMarker({ id: '00C6' }),
       condition: Conditions.targetIsYou(),
-      // TODO: do we need a second "away from tank" trigger if you don't have a marker?
-      // We don't do this in Copied Factory for this same 00C6, but we could?
-      response: Responses.tankBuster('info'),
+      response: Responses.tankBuster('alert'),
+      run: function(data, matches) {
+        data.busterTargets = data.busterTargets || [];
+        data.busterTargets.push(matches.target);
+      },
+    },
+    {
+      id: 'Puppet Aegis Anti-Personnel Laser Not You',
+      netRegex: NetRegexes.headMarker({ id: '00C6', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 5,
+      infoText: function(data) {
+        if (!data.busterTargets)
+          return;
+        if (data.busterTargets.includes(data.me))
+          return;
+
+        if (data.role === 'healer') {
+          return {
+            en: 'Tank Buster',
+            de: 'Tank buster',
+            fr: 'Tank buster',
+            ja: 'タンクバスター',
+            cn: '坦克死刑',
+            ko: '탱버',
+          };
+        }
+        return {
+          en: 'Avoid tank buster',
+        };
+      },
+      run: (data) => delete data.busterTargets,
     },
     {
       id: 'Puppet Aegis Beam Cannons',
@@ -307,11 +336,41 @@
       response: Responses.getIn(),
     },
     {
-      id: 'Puppet Compound 2P R012: Laser',
+      id: 'Puppet Compound 2P R012: Laser You',
       netRegex: NetRegexes.headMarker({ id: '00DA' }),
       condition: Conditions.targetIsYou(),
-      // TODO: do we need a second "away from tank" trigger if you don't have a marker?
-      response: Responses.tankBuster('info'),
+      response: Responses.tankBuster('alert'),
+      run: function(data, matches) {
+        data.busterTargets = data.busterTargets || [];
+        data.busterTargets.push(matches.target);
+      },
+    },
+    {
+      id: 'Puppet Compound 2P R012: Laser Not You',
+      netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
+      delaySeconds: 0.5,
+      suppressSeconds: 5,
+      infoText: function(data) {
+        if (!data.busterTargets)
+          return;
+        if (data.busterTargets.includes(data.me))
+          return;
+
+        if (data.role === 'healer') {
+          return {
+            en: 'Tank Buster',
+            de: 'Tank buster',
+            fr: 'Tank buster',
+            ja: 'タンクバスター',
+            cn: '坦克死刑',
+            ko: '탱버',
+          };
+        }
+        return {
+          en: 'Avoid tank buster',
+        };
+      },
+      run: (data) => delete data.busterTargets,
     },
     {
       id: 'Puppet Compound 2P Energy Compression',
