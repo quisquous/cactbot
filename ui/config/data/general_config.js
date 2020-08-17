@@ -40,6 +40,7 @@ UserConfig.registerOptions('general', {
       },
       type: 'checkbox',
       default: false,
+      debugOnly: true,
     },
     {
       id: 'DisplayLanguage',
