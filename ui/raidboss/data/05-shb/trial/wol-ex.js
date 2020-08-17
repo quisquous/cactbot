@@ -105,6 +105,16 @@ const translate = (data, obj) => {
       },
     },
     {
+      id: 'WOLEx Bait Confiteor',
+      netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F43', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F43', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F43', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F43', capture: false }),
+      infoText: {
+        en: 'Bait Confiteor',
+      },
+    },
+    {
       id: 'WOLEx To The Limit',
       netRegex: NetRegexes.startsUsing({ source: 'Warrior Of Light', id: '4F3[456]' }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F3[456]' }),
