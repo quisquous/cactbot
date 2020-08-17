@@ -65,9 +65,8 @@
       id: 'Puppet Aegis Aerial Support Surface Laser',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: (data, matches) => data.me === matches.target && data.phase !== 'superior',
-      // TODO: should this be more along the lines of an imperative, like GTFO?
       alarmText: {
-        en: '10x Sky Laser on YOU',
+        en: 'Chasing Laser: Get Away',
       },
     },
     {
