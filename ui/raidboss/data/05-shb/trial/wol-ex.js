@@ -432,10 +432,10 @@ const translate = (data, obj) => {
     {
       // Katon: San and Absolute Holy share markers
       id: 'WOLEx Spectral Ninja Cleanup',
-      netRegex: NetRegexes.startsUsing({ source: 'Spectral Ninja', id: '4EFD', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Phantom-Ninja', id: '4EFD', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Ninja Spectral', id: '4EFD', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '幻光の忍者', id: '4EFD', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: ['Warrior Of Light', 'Spectral Ninja'], id: '4EFD', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Krieger Des Lichts', 'Phantom-Ninja'], id: '4EFD', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Guerrier De La Lumière Primordial', 'Ninja Spectral'], id: '4EFD', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['ウォーリア・オブ・ライト', '幻光の忍者'], id: '4EFD', capture: false }),
       delaySeconds: 30,
       run: function(data) {
         delete data.ninja;
@@ -443,10 +443,12 @@ const translate = (data, obj) => {
     },
     {
       id: 'WOLEx Suiton: San',
-      netRegex: NetRegexes.startsUsing({ source: 'Spectral Ninja', id: '4EFD', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: 'Phantom-Ninja', id: '4EFD', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: 'Ninja Spectral', id: '4EFD', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '幻光の忍者', id: '4EFD', capture: false }),
+      // It's possible for this cast to originate from the Warrior of Light instead.
+      // Allow for either so the callout isn't missed.
+      netRegex: NetRegexes.startsUsing({ source: ['Warrior Of Light', 'Spectral Ninja'], id: '4EFD', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: ['Krieger Des Lichts', 'Phantom-Ninja'], id: '4EFD', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: ['Guerrier De La Lumière Primordial', 'Ninja Spectral'], id: '4EFD', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: ['ウォーリア・オブ・ライト', '幻光の忍者'], id: '4EFD', capture: false }),
       delaySeconds: 7,
       response: Responses.knockback(),
     },
