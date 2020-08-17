@@ -30,7 +30,7 @@
       tts: {
         en: 'tail attack',
         de: 'schweifattacke',
-        fr: 'attaque queue',
+        fr: 'attaquez la queue',
         cn: '尾巴攻击',
         ko: '꼬리쓸기',
       },
@@ -56,7 +56,7 @@
       infoText: {
         en: 'avoid eye lasers',
         de: 'Augenlaser ausweichen',
-        fr: 'Evitez les lasers',
+        fr: 'Évitez les lasers',
         cn: '避开眼部激光',
         ko: '레이저 피하기',
       },
