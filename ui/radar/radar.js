@@ -113,9 +113,8 @@ class Radar {
   }
 
   AddMonster(log, monster, matches) {
-    // Temporarily disabled due to https://github.com/ravahn/FFXIV_ACT_Plugin/issues/256
-    // if (monster.id && matches.npcNameId !== monster.id)
-    //  return;
+    if (monster.id && matches.npcNameId !== monster.id)
+      return;
     if (monster.regex && !log.match(monster.regex))
       return;
     if (monster.hp && parseFloat(matches.hp) < monster.hp)
@@ -133,9 +132,8 @@ class Radar {
     if (options.Type === 'mob') {
       if (!matches.id.startsWith('4'))
         return;
-      // Temporarily disabled due to https://github.com/ravahn/FFXIV_ACT_Plugin/issues/256
-      // if (!matches.npcNameId || matches.npcNameId === '0')
-      //  return;
+      if (!matches.npcNameId || matches.npcNameId === '0')
+        return;
     }
 
     let mobKey = matches.name.toLowerCase();
