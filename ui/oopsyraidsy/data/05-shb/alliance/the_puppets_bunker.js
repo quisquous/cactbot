@@ -22,7 +22,7 @@
     'Puppet Light Long-Barreled Laser': '5212', // line aoe from add
     'Puppet Light Surface Missile Impact': '520F', // untargeted ground aoe from No Restrictions
     'Puppet Superior Incendiary Bombing': '4FB9', // fire puddle initial
-    'Puppet Superior Sharp Turn': '506E', // sharp turn dash
+    'Puppet Superior Sharp Turn': '506D', // sharp turn dash
     'Puppet Superior Standard Surface Missile 1': '4FB1', // Lethal Revolution circles
     'Puppet Superior Standard Surface Missile 2': '4FB2', // Lethal Revolution circles
     'Puppet Superior Standard Surface Missile 3': '4FB3', // Lethal Revolution circles
