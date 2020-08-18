@@ -12,6 +12,7 @@ let wrongBuff = (str) => {
     en: str + ' (wrong buff)',
     de: str + ' (falscher Buff)',
     fr: str + ' (mauvais buff)',
+    ko: str + ' (버프 틀림)',
   };
 };
 
@@ -20,6 +21,7 @@ let noBuff = (str) => {
     en: str + ' (no buff)',
     de: str + ' (kein Buff)',
     fr: str + ' (pas de buff)',
+    ko: str + '(버프 없음)',
   };
 };
 

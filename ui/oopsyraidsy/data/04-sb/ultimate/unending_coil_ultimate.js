@@ -46,7 +46,7 @@
             en: 'Pizza Slice',
             de: 'Pizzastück',
             fr: 'Parts de pizza',
-            ko: e.abilityName,
+            ko: '장판에 맞음',
           },
         };
       },
