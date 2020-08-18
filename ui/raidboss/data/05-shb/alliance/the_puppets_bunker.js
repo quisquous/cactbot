@@ -472,7 +472,7 @@
     },
     {
       id: 'Puppet Compound 2P Three Parts Disdain Knockback',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       condition: (data) => data.phase === 'compound',
       // Knockback prevention is 6 seconds long, and there's ~9.6s between marker and final hit.
       delaySeconds: 3.6,
