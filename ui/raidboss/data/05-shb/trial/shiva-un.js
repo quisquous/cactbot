@@ -35,7 +35,7 @@
       id: 'ShivaUn Heavenly Strike',
       regex: /Heavenly Strike/,
       beforeSeconds: 5,
-      response: Response.knockback(),
+      response: Responses.knockback(),
     },
   ],
   triggers: [
