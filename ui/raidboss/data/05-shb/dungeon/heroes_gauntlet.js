@@ -37,7 +37,7 @@
         en: 'Away from tether marker',
         de: 'Weg von der Verbindung',
         ja: '線から離れ',
-        ko: '마커에게서 떨어지기',
+        ko: '이어진 표식으로부터 떨어지기',
       },
     },
     {
