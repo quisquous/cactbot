@@ -77,7 +77,7 @@ let missedFunc = (args) => {
             de: thingName + ' verfehlt ' + missed.map((x) => data.ShortName(x)).join(', '),
             fr: thingName + ' manqué(e) sur ' + missed.map((x) => data.ShortName(x)).join(', '),
             cn: thingName + ' 没奶到 ' + missed.map((x) => data.ShortName(x)).join(', '),
-            ko: thingName + '가 ' + missed.map((x) => data.ShortName(x)).join(', ') +'에게 적용되지 않음',
+            ko: thingName + '가 ' + missed.map((x) => data.ShortName(x)).join(', ') + '에게 적용되지 않음',
           },
         };
       }
