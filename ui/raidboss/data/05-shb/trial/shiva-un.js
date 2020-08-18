@@ -29,6 +29,14 @@
         ko: '파티 쉐어 탱버',
       },
     },
+    {
+      // Heavenly Strike would knockback everyone with few damage
+      // But notice knockback only is fine.
+      id: 'ShivaUn Heavenly Strike',
+      regex: /Heavenly Strike/,
+      beforeSeconds: 5,
+      response: Responses.knockback('info'),
+    },
   ],
   triggers: [
     {
