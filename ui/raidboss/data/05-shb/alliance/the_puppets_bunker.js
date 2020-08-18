@@ -289,9 +289,9 @@
 
         // The first swipe callout has been cleared to null.
         // Deliberately skip it so that when the first swipe goes off, we call the second.
-        let swipe = data.swipe.pop();
+        let swipe = data.swipe.shift();
         if (!swipe)
-          swipe = data.swipe.pop();
+          swipe = data.swipe.shift();
         if (!swipe)
           return;
         return swipe;
@@ -352,6 +352,8 @@
     {
       id: 'Puppet Heavy Support Pod',
       netRegex: NetRegexes.startsUsing({ source: '905P-Operated Heavy Artillery Unit', id: '4FE9', capture: false }),
+      // This is approximately when the pods appear.
+      delaySeconds: 6,
       alertText: function(data) {
         data.heavyPodCount = data.heavyPodCount || 0;
         data.heavyPodCount++;
@@ -469,6 +471,14 @@
       response: Responses.stackOn(),
     },
     {
+      id: 'Puppet Compound 2P Three Parts Disdain Knockback',
+      netRegex: NetRegexes.headMarker({ id: '003E' }),
+      condition: (data) => data.phase === 'compound',
+      // Knockback prevention is 6 seconds long, and there's ~9.6s between marker and final hit.
+      delaySeconds: 3.6,
+      response: Responses.knockback('info'),
+    },
+    {
       id: 'Puppet Compound 2P Four Parts Resolve',
       netRegex: NetRegexes.headMarker({ id: ['004F', '0050', '0051', '0052'] }),
       condition: Conditions.targetIsYou(),
@@ -527,9 +537,10 @@
       suppressSeconds: 2,
       // TODO: when I've seen this happen at 6379.4, it's been two clones, that start
       // at corners and then teleport to two cardinals across from each other with fake
-      // teleports on the other cardinals.  Can this ability be corners instead??
+      // teleports on the other cardinals.
+      // TODO: fix this if these clones can go to corners.
       alertText: {
-        en: 'Get Under Clone',
+        en: 'Get Under Cardinal Clone',
       },
     },
     {
@@ -538,9 +549,8 @@
       suppressSeconds: 2,
       // TODO: have only seen this where the 4 clones stay out at 6379.4.
       // TODO: have seen a report on a guide that the clones can teleport in??
-      alertText: {
-        en: 'Avoid Clones',
-      },
+      // TODO: fix this if the clones can do something else here
+      response: Responses.goMiddle('alert'),
     },
   ],
   timelineReplace: [
