@@ -71,7 +71,7 @@
     // Pretty noisy.
     'Puppet Maneuver High-Powered Laser': '5002', // tank laser
     'Puppet Compound Mechnical Contusion Targeted': '51B6', // targeted spread marker
-    'Puppet Compound 2P R012 Laser Tank': '51AE', // targeted pod laser on non-tank
+    'Puppet Compound 2P R012 Laser Tank': '51AE', // targeted spread pod laser on non-tank
   },
   shareFail: {
     'Puppet Aegis Anti-Personnel Laser': '5090', // tank buster marker
