@@ -37,6 +37,7 @@
         en: 'Away from tether marker',
         de: 'Weg von der Verbindung',
         ja: '線から離れ',
+        ko: '이어진 표식으로부터 떨어지기',
       },
     },
     {
@@ -91,6 +92,7 @@
         en: 'Get in a crater',
         de: 'In den Krater gehen',
         ja: '穴に入る',
+        ko: '구덩이에 들어가기',
       },
     },
     {
@@ -124,6 +126,7 @@
             en: 'Stack on your rock',
             de: 'Auf deinem Stein sammeln',
             ja: '自分の隕石と貼りつく',
+            ko: '돌과 같이 맞기',
           };
         }
         if (matches.target == data.me) {
