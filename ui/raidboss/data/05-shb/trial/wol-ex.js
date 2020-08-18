@@ -112,6 +112,7 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F43', capture: false }),
       infoText: {
         en: 'Bait Confiteor',
+        de: 'Confiteor ködern',
       },
     },
     {
@@ -652,7 +653,6 @@ const translate = (data, obj) => {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Spectral Ninja': 'Phantom-Ninja',
         'Warrior Of Light': 'Krieger des Lichts',
