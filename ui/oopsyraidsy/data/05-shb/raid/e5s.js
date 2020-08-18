@@ -9,6 +9,7 @@ let noOrb = (str) => {
     en: str + ' (no orb)',
     de: str + ' (kein Orb)',
     fr: str + ' (pas d\'orbe)',
+    ko: str + ' (구슬 없음)',
   };
 };
 
