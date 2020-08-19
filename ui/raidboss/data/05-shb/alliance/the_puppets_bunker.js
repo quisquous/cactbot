@@ -362,7 +362,7 @@
       alertText: {
         en: 'Get Outside Upper Laser',
         de: 'Raus aus dem oberen Laser',
-        ko: '높은 레이저 위치 밖으로 이동',
+        ko: '높은 레이저 쪽 밖으로 이동',
       },
     },
     {
