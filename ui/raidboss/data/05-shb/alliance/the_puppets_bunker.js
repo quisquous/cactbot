@@ -518,10 +518,10 @@
     },
     {
       id: 'Puppet Compound 2P Prime Blade Behind',
-      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: '5420', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ source: '2P: Fusion', id: '5420', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ source: '2P : Amalgame', id: '5420', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ source: '２Ｐ：融合体', id: '5420', capture: false }),
+      netRegex: NetRegexes.startsUsing({ source: 'Compound 2P', id: ['5420', '5199'], capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ source: '2P: Fusion', id: ['5420', '5199'], capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ source: '2P : Amalgame', id: ['5420', '5199'], capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ source: '２Ｐ：融合体', id: ['5420', '5199'], capture: false }),
       response: Responses.getBehind(),
     },
     {
@@ -681,10 +681,12 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Clone', id: '5198', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '２Ｐ：分裂体', id: '5198', capture: false }),
       suppressSeconds: 2,
-      // TODO: have only seen this where the 4 clones stay out at 6379.4.
-      // TODO: have seen a report on a guide that the clones can teleport in??
-      // TODO: fix this if the clones can do something else here
-      response: Responses.goMiddle('alert'),
+      // Have seen this be either:
+      // * 4 clones teleporting around the outside of the arena (corner to corner)
+      // * 4 clones teleporting in (to cardinals)
+      alertText: {
+        en: 'Away From Clones',
+      },
     },
   ],
   timelineReplace: [

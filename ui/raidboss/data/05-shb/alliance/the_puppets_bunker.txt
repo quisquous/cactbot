@@ -383,7 +383,7 @@ hideall "--sync--"
 
 6332.7 "--sync--" sync /:Compound 2P:51A3:/
 6341.3 "Forced Transfer" sync /:Compound 2P:53D1:/
-6344.7 "Prime Blade (Out)" sync /:Compound 2P:5198:/
+6344.7 "Prime Blade (Out/Behind)" sync /:Compound 2P:519[89]:/
 
 # beginning of loop
 6350.2 "--sync--" sync /:Compound 2P:51A3:/

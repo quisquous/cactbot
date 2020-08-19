@@ -43,9 +43,10 @@
     'Puppet Compound Mechnical Contusion Untargeted': '51B7', // untargeted ground aoe
     'Puppet Compound 2P Relentless Spiral 1': '51AA', // triple untargeted ground aoes
     'Puppet Compound 2P Relentless Spiral 2': '51CB', // triple untargeted ground aoes
-    'Puppet Compound 2P Prime Blade Out': '541F', // 2P prime blade get out
+    'Puppet Compound 2P Prime Blade Out 1': '541F', // 2P prime blade get out
     'Puppet Compound 2P Prime Blade Out 2': '5198', // 2P/puppet teleporting/reproduce prime blade get out
-    'Puppet Compound 2P Prime Blade Behind': '5420', // initial prime blade get behind
+    'Puppet Compound 2P Prime Blade Behind 1': '5420', // 2P prime blade get behind
+    'Puppet Compound 2P Prime Blade Behind 2': '5199', // 2P teleporting prime blade get behind
     'Puppet Compound 2P Prime Blade In 1': '5421', // 2P prime blade get in
     'Puppet Compound 2P Prime Blade In 2': '519A', // 2P/puppet teleporting/reproduce prime blade get in
     'Puppet Compound 2P R012 Laser Ground': '51AE', // untargeted ground circle
