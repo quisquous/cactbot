@@ -225,6 +225,7 @@
       alertText: {
         en: 'Line Stack (Point Outside)',
         de: 'Auf einer Linie sammeln (nach außen zeigen)',
+        ko: '쉐어 레이저 (밖으로 유도)',
       },
     },
     {
