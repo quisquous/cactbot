@@ -162,7 +162,7 @@ class CombatantTracker {
     }
 
     // Figure out party/enemy/other status
-    let petNames = EmulatorCommon.cactbotLanguages[this.language].kPetNames;
+    let petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
       if (this.combatants[ID].job !== null || ID.startsWith('1')) {
         this.partyMembers.push(ID);

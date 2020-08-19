@@ -71,7 +71,7 @@ class AnalyzedEncounter extends EventBus {
         currentHP: partyMember.getState(this.encounter.logLines[0].timestamp).HP,
       },
     });
-    popupText.OnZoneChange({
+    popupText.OnChangeZone({
       detail: {
         zoneName: this.encounter.encounterZone,
       },
@@ -106,6 +106,11 @@ class AnalyzedEncounter extends EventBus {
       }
 
       await popupText.OnLog({
+        detail: {
+          logs: [log],
+        },
+      });
+      await popupText.OnNetLog({
         detail: {
           logs: [log],
         },

@@ -552,6 +552,7 @@ template {
 .tooltip.show {
   z-index: 1070;
 }
+
 @media (min-width: 576px) {
   .modal-dialog {
     max-width: calc(100vw - (1.75rem * 2));

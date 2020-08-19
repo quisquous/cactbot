@@ -59,21 +59,11 @@ EmulatorCommon.engageRegexes = {};
 EmulatorCommon.countdownRegexes = {};
 EmulatorCommon.unsealRegexes = {};
 
-EmulatorCommon.cactbotLanguages = {
-  'ja': new CactbotLanguageJa(),
-  'en': new CactbotLanguageEn(),
-  'de': new CactbotLanguageDe(),
-  'fr': new CactbotLanguageFr(),
-  'cn': new CactbotLanguageCn(),
-  'ko': new CactbotLanguageKo(),
-};
-
-for (let lang of EmulatorCommon.cactbotLanguages.en.kLanguages) {
-  let langObj = EmulatorCommon.cactbotLanguages[lang];
-  EmulatorCommon.sealRegexes[lang] = langObj.areaSealRegex();
-  EmulatorCommon.engageRegexes[lang] = langObj.countdownEngageRegex();
-  EmulatorCommon.countdownRegexes[lang] = langObj.countdownStartRegex();
-  EmulatorCommon.unsealRegexes[lang] = langObj.areaUnsealRegex();
+for (let lang in LocaleNetRegex.areaSeal) {
+  EmulatorCommon.sealRegexes[lang] = LocaleNetRegex.areaSeal[lang];
+  EmulatorCommon.engageRegexes[lang] = LocaleNetRegex.countdownEngage[lang];
+  EmulatorCommon.countdownRegexes[lang] = LocaleNetRegex.countdownStart[lang];
+  EmulatorCommon.unsealRegexes[lang] = LocaleNetRegex.areaUnseal[lang];
 }
 
 EmulatorCommon.wipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000010:/;

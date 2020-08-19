@@ -82,7 +82,7 @@ class RaidEmulatorPopupText extends StubbedPopupText {
         t.element.remove();
         return false;
       });
-      this.OnZoneChange({
+      this.OnChangeZone({
         detail: {
           zoneName: emulator.currentEncounter.encounter.encounterZone,
         },

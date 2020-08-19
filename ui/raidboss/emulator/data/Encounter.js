@@ -43,7 +43,7 @@ class Encounter {
     this.firstPlayerAbility = Number.MAX_SAFE_INTEGER;
     this.firstEnemyAbility = Number.MAX_SAFE_INTEGER;
 
-    let petNames = EmulatorCommon.cactbotLanguages[this.language].kPetNames;
+    let petNames = PetNamesByLang[this.language];
 
     for (let i = 0; i < this.logLines.length; ++i) {
       let line = this.logLines[i];

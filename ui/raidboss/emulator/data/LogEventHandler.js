@@ -5,7 +5,7 @@ class LogEventHandler extends EventBus {
     for (let i in regexes) {
       let res = regexes[i].exec(line);
       if (res) {
-        if (gLang.kLanguages.includes(i))
+        if (LocaleNetRegex.areaSeal[i])
           res.groups.language = i;
         return res;
       }
