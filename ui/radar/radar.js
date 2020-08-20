@@ -127,7 +127,7 @@ class Radar {
     // Check if monster rank enabled or not in config
     if (monster.rank === 'B' && !options.BRankEnabled)
       return;
-    if (!options.Enabled)
+    if (options.Enabled === false)
       return;
     if (options.Type === 'mob') {
       if (!matches.id.startsWith('4'))

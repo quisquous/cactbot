@@ -26,11 +26,13 @@ Options.RankOptions = {
   //   DetectionRange: 100,
   //   TTS: true,
   //   Type: 'mob',  // can be 'mob' or 'any'
+  //   Enabled: true,
   // },
   // 'Custom': {
   //   DetectionRange: 500,
   //   TTS: false,
   //   PopSoundAlert: true,
   //   Type: 'any',
+  //   Enabled: true,
   // },
 };
