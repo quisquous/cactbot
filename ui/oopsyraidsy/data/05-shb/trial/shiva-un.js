@@ -1,33 +1,33 @@
 'use strict';
 
-// Shiva Extreme
+// Shiva Unreal
 [{
-  zoneId: ZoneId.AkhAfahAmphitheatreExtreme,
+  zoneId: ZoneId.TheAkhAfahAmphitheatreUnreal,
   damageWarn: {
     // Large white circles.
-    'ShivaEx Icicle Impact': 'BEB',
+    'ShivaEx Icicle Impact': '537B',
     // "get in" aoe
-    'ShivaEx Whiteout': 'BEC',
+    'ShivaEx Whiteout': '5376',
     // Avoidable tank stun.
-    'ShivaEx Glacier Bash': 'BE9',
+    'ShivaEx Glacier Bash': '5375',
   },
   damageFail: {
     // 270 degree attack.
-    'ShivaEx Glass Dance': 'BDF',
+    'ShivaEx Glass Dance': '5378',
   },
   shareWarn: {
     // Hailstorm spread marker.
-    'ShivaEx Hailstorm': 'BE2',
+    'ShivaEx Hailstorm': '536F',
   },
   shareFail: {
     // Laser.  TODO: maybe blame the person it's on??
-    'ShivaEx Avalanche': 'BE0',
+    'ShivaEx Avalanche': '5379',
   },
   triggers: [
     {
       // Party shared tank buster.
       id: 'ShivaEx Icebrand',
-      damageRegex: 'BE1',
+      damageRegex: '5373',
       condition: function(e) {
         // Should be shared with friends.
         return e.type === '15';
@@ -38,8 +38,8 @@
     },
     {
       id: 'ShivaEx Deep Freeze',
-      // Shiva also uses ability C8A on you, but it has the untranslated name
-      // 透明：シヴァ：凍結レクト：ノックバック用/ヒロイック. So, use the effect instead for free translation.
+      // Shiva also uses ability 537A on you, but it has an unknown name.
+      // So, use the effect instead for free translation.
       netRegex: NetRegexes.gainsEffect({ effectId: '1E7' }),
       condition: function(e, data, matches) {
         // The intermission also gets this effect, but for a shorter duration.

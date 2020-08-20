@@ -194,10 +194,14 @@
         if (data.donut.length === 2) {
           return {
             en: 'Go To Any Untethered',
+            de: 'Gehe zu einem Unverbundenen',
+            cn: '靠近无线小怪',
           };
         } else if (data.sphere.length === 2) {
           return {
             en: 'Avoid All Untethered',
+            de: 'Vermeide alle Unverbundenen',
+            cn: '远离无线小怪',
           };
         } else if (data.donut.length === 1) {
           // Wailing Atomos is blue, Cursing Atomos is yellow.

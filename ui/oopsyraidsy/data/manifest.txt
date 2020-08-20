@@ -30,6 +30,7 @@
 05-shb/dungeon/akadaemia_anyder.js
 05-shb/dungeon/amaurot.js
 05-shb/dungeon/dohn_mheg.js
+05-shb/dungeon/heroes_gauntlet.js
 05-shb/dungeon/holminster_switch.js
 05-shb/dungeon/malikahs_well.js
 05-shb/dungeon/mt_gulg.js
@@ -56,7 +57,9 @@
 05-shb/trial/hades.js
 05-shb/trial/innocence-ex.js
 05-shb/trial/innocence.js
+05-shb/trial/shiva-un.js
 05-shb/trial/titania-ex.js
 05-shb/trial/titania.js
 05-shb/trial/varis-ex.js
+05-shb/trial/wol.js
 05-shb/ultimate/the_epic_of_alexander.js
