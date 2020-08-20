@@ -1059,6 +1059,7 @@ class Bars {
     this.gcdSkill = () => this.CalcGCDFromStat(this.skillSpeed);
     this.gcdSpell = () => this.CalcGCDFromStat(this.spellSpeed);
 
+    this.furtherRuin = 0;
     this.presenceOfMind = 0;
     this.shifu = 0;
     this.huton = 0;
@@ -1843,10 +1844,39 @@ class Bars {
       fgColor: 'smn-color-trance',
     });
 
+    // Create a Stack Container
+    let stacksContainer = document.createElement('div');
+    stacksContainer.id = 'smn-stacks';
+    this.addJobBarContainer().appendChild(stacksContainer);
+    let ruin4Container = document.createElement('div');
+    ruin4Container.id = 'smn-stacks-ruin4';
+    stacksContainer.appendChild(ruin4Container);
+    let ruin4Stacks = [];
+    for (let i = 0; i < 4; ++i) {
+      let d = document.createElement('div');
+      ruin4Container.appendChild(d);
+      ruin4Stacks.push(d);
+    }
+
     this.jobFuncs.push((jobDetail) => {
       let stack = jobDetail.aetherflowStacks;
       let summoned = jobDetail.bahamutSummoned;
       let time = (jobDetail.stanceMilliseconds / 1000).toFixed(0);
+
+      // FurtherRuin Stack Guage
+      this.gainEffectFuncMap[EffectId.FurtherRuin] = (name, e) => {
+        if (e.count) // ensure e.count is exist
+          this.furtherRuin = parseInt(e.count);
+      };
+      this.loseEffectFuncMap[EffectId.FurtherRuin] = () => {
+        this.furtherRuin = 0;
+      };
+      for (let i = 0; i < 4; ++i) {
+        if (this.furtherRuin > i)
+          ruin4Stacks[i].classList.add('active');
+        else
+          ruin4Stacks[i].classList.remove('active');
+      }
 
       // turn red when you have too much stacks before EnergyDrain ready.
       aetherflowStackBox.innerText = stack;
