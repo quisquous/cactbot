@@ -45,16 +45,16 @@ class LineEvent0x15 extends LineEvent {
     this.targetZ = parts[32 + offset];
     this.targetHeading = parts[33 + offset];
 
-    this.targetHp = parts[34 + offset];
-    this.targetMaxHp = parts[35 + offset];
+    this.sourceHp = parts[34 + offset];
+    this.sourceMaxHp = parts[35 + offset];
 
-    this.targetMp = parts[36 + offset];
-    this.targetMaxMp = parts[37 + offset];
+    this.sourceMp = parts[36 + offset];
+    this.sourceMaxMp = parts[37 + offset];
 
-    this.targetX = parts[40 + offset];
-    this.targetY = parts[41 + offset];
-    this.targetZ = parts[42 + offset];
-    this.targetHeading = parts[43 + offset];
+    this.sourceX = parts[40 + offset];
+    this.sourceY = parts[41 + offset];
+    this.sourceZ = parts[42 + offset];
+    this.sourceHeading = parts[43 + offset];
   }
 }
 
