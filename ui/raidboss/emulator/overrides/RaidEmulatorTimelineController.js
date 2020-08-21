@@ -19,7 +19,7 @@ class RaidEmulatorTimelineController extends TimelineController {
       if (name in this.timelines)
         text = text + '\n' + this.timelines[name];
       else
-        console.log('Timeline file not found: ' + name);
+        console.warn('Timeline file not found: ' + name);
     }
     // Append text from each block in |timelines|.
     for (let i = 0; i < timelines.length; ++i)
@@ -39,7 +39,7 @@ class RaidEmulatorTimelineController extends TimelineController {
     if (!this.activeTimeline)
       return;
 
-    e.detail.logs.forEach(line => {
+    e.detail.logs.forEach((line) => {
       this.activeTimeline.emulatedTimeOffset = line.offset;
       this.ui.emulatedTimeOffset = line.offset;
       this.activeTimeline.OnLogLine(line.properCaseConvertedLine || line.convertedLine);

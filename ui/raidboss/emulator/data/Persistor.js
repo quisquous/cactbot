@@ -96,7 +96,10 @@ class Persistor extends EventBus {
         let req = encountersStorage.get(id);
         req.addEventListener('success', (ev) => {
           let enc = req.result;
-          let ret = new Encounter(enc.encounterDay, enc.encounterZoneId, enc.encounterZoneName, enc.logLines);
+          let ret = new Encounter(enc.encounterDay,
+              enc.encounterZoneId,
+              enc.encounterZoneName,
+              enc.logLines);
           ret.id = enc.id;
           res(ret);
         });
@@ -197,7 +200,10 @@ class Persistor extends EventBus {
 
   async importDB(DB) {
     DB.encounters.forEach((enc) => {
-      this.persistEncounter(new Encounter(enc.encounterDay, enc.encounterZoneId, enc.encounterZoneName, enc.encounterLines));
+      this.persistEncounter(new Encounter(enc.encounterDay,
+          enc.encounterZoneId,
+          enc.encounterZoneName,
+          enc.encounterLines));
     });
   }
 

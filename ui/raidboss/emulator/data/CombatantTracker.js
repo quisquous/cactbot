@@ -87,10 +87,9 @@ class CombatantTracker {
     // Figure out party/enemy/other status
     let petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
-      if (ID.startsWith('1')) {
-        this.partyMembers.push(ID);
-        return false;
-      } else if (this.combatants[ID].job !== null && this.combatants[ID].job !== 'N/A') {
+      if (this.combatants[ID].job !== null &&
+        this.combatants[ID].job !== 'N/A' &&
+        ID.startsWith('1')) {
         this.partyMembers.push(ID);
         return false;
       } else if (petNames.includes(this.combatants[ID].name)) {

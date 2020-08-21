@@ -12,7 +12,7 @@ class StubbedPopupText extends PopupText {
     ret.timers = {};
     ret.inCombat = false;
     ret.resetWhenOutOfCombat = true;
-    
+
     ret.parserLang = ret.options.ParserLanguage || 'en';
     ret.displayLang = ret.options.AlertsLanguage || ret.options.DisplayLanguage || ret.options.ParserLanguage || 'en';
 
@@ -26,11 +26,15 @@ class StubbedPopupText extends PopupText {
     return ret;
   }
 
+  // Override, only parse the trigger sets once
   OnDataFilesRead(e) {
-    // Work around Options.Triggers getting modified by the global scope here
-    let triggers = Options.Triggers;
-    Options.Triggers = EmulatorCommon.cloneData(triggers, []);
+    if (StubbedPopupText.globalTriggerSets !== null) {
+      this.triggerSets = StubbedPopupText.globalTriggerSets;
+      return;
+    }
     super.OnDataFilesRead(e);
-    Options.Triggers = triggers;
+    StubbedPopupText.globalTriggerSets = this.triggerSets;
   }
 }
+
+StubbedPopupText.globalTriggerSets = null;

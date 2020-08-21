@@ -37,7 +37,6 @@ class RaidEmulatorTimeline extends Timeline {
   // Override
   SyncTo(fightNow) {
     console.debug('SyncTo: ' + fightNow);
-    // @TODO: This entire thing needs re-done, ugh.
     // This records the actual time which aligns with "0" in the timeline.
     let newTimebase = new Date((new Date() - fightNow * 1000));
     // Skip syncs that are too close.  Many syncs happen on abilities that

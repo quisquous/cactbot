@@ -23,15 +23,14 @@ class AnalyzedEncounter extends EventBus {
   async Analyze(popupText) {
     this.popupText = popupText;
     // @TODO: Make this run in parallel sometime in the future, since it could be really slow?
-    for (let index in this.encounter.combatantTracker.partyMembers) {
-      let ID = this.encounter.combatantTracker.partyMembers[index];
-      await this.AnalyzeFor(ID);
+    for (const index in this.encounter.combatantTracker.partyMembers) {
+      await this.AnalyzeFor(this.encounter.combatantTracker.partyMembers[index]);
     }
     this.dispatch('analyzed');
   }
 
   async AnalyzeFor(ID) {
-    let partyMember = this.encounter.combatantTracker.combatants[ID];
+    const partyMember = this.encounter.combatantTracker.combatants[ID];
 
     if (!partyMember.job) {
       this.perspectives[ID] = {
@@ -41,29 +40,24 @@ class AnalyzedEncounter extends EventBus {
       return;
     }
 
-    let popupText = new PopupTextAnalysis(this.popupText.options);
-    let gTimelineUI = new RaidEmulatorTimelineUI(Options);
-    let gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
+    const popupText = new PopupTextAnalysis(this.popupText.options);
+    const gTimelineUI = new RaidEmulatorTimelineUI(Options);
+    const gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
 
     gTimelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(gPopupText));
     gTimelineController.SetDataFiles(this.emulator.dataFilesEvent.detail.files);
     popupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(gTimelineController));
     popupText.OnDataFilesRead(this.emulator.dataFilesEvent);
     popupText.ReloadTimelines();
-    let PartyEvent = {
+    popupText.partyTracker.onPartyChanged({
       party: this.encounter.combatantTracker.partyMembers.map((ID) => {
-        if (this.encounter.combatantTracker.combatants[ID].job) {
-          return {
-            name: this.encounter.combatantTracker.combatants[ID].name,
-            job: Util.jobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
-            inParty: true,
-          };
-        }
-
-        return null;
-      }).filter((c) => c),
-    };
-    popupText.partyTracker.onPartyChanged(PartyEvent);
+        return {
+          name: this.encounter.combatantTracker.combatants[ID].name,
+          job: Util.jobToJobEnum(this.encounter.combatantTracker.combatants[ID].job),
+          inParty: true,
+        };
+      }),
+    });
     popupText.OnPlayerChange({
       detail: {
         name: partyMember.name,
@@ -81,7 +75,6 @@ class AnalyzedEncounter extends EventBus {
         triggerHelper: triggerHelper,
         status: currentTriggerStatus,
         logLine: log,
-        finalData: EmulatorCommon.cloneData(finalData),
         resolvedOffset: (log.timestamp - this.encounter.startTimestamp) +
           (currentTriggerStatus.delay * 1000),
       });
@@ -92,8 +85,7 @@ class AnalyzedEncounter extends EventBus {
       triggers: [],
     };
 
-    for (let i = 0; i < this.encounter.logLines.length; i++) {
-      let log = this.encounter.logLines[i];
+    for (const log of this.encounter.logLines) {
       if (this.encounter.combatantTracker.combatants[ID].hasState(log.timestamp)) {
         popupText.OnPlayerChange({
           detail: {
@@ -104,18 +96,14 @@ class AnalyzedEncounter extends EventBus {
         });
       }
 
-      await popupText.OnLog({
+      const event = {
         detail: {
           logs: [log],
         },
-      });
-      await popupText.OnNetLog({
-        detail: {
-          logs: [log],
-        },
-      });
+      };
+
+      await popupText.OnLog(event);
+      await popupText.OnNetLog(event);
     }
   }
 }
-
-AnalyzedEncounter.lineTimestampRegex = /^\[(\d\d:\d\d:\d\d.\d\d\d)\]/i;

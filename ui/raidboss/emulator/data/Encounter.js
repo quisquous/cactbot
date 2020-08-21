@@ -23,7 +23,6 @@ class Encounter {
 
     for (let i = 0; i < this.logLines.length; ++i) {
       let line = this.logLines[i];
-      // @TODO: Change this to use network line instead of converted line
       let res = LogEventHandler.isMatchStart(line.networkLine);
       if (res) {
         this.startStatus.add(res.groups.StartType);

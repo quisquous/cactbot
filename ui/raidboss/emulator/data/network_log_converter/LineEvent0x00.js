@@ -4,7 +4,7 @@
 class LineEvent0x00 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
-    if (this.parts.slice(4).join('|').split("\u001f\u001f").length > 1)
+    if (this.parts.slice(4).join('|').split('\u001f\u001f').length > 1)
       this.invalid = true;
   }
 

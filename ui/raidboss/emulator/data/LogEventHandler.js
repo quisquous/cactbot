@@ -77,11 +77,6 @@ class LogEventHandler extends EventBus {
 
       lineObj.offset = lineObj.timestamp - this.currentFight[0].timestamp;
 
-      if (lineObj.offset > 1000000000) {
-        console.log(this.currentFight[0], lineObj);
-        throw "error!";
-      }
-
       let res = LogEventHandler.isMatchEnd(lineObj.networkLine);
       if (res) {
         this.endFight();
