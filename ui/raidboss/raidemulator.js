@@ -183,7 +183,7 @@ let Options = {
 
         // If we don't have any encounters stored, show the intro modal
         persistor.listEncounters().then((encounters) => {
-          if (encounters.length !== 0)
+          if (encounters.length === 0)
             showModal('.introModal');
         });
 
@@ -210,7 +210,7 @@ let Options = {
                 // Listen for LogEventHandler to dispatch fights and persist them
                 localLogHandler.on('fight', async (day, zone, lines) => {
                   let enc = new Encounter(day, zone, lines);
-                  if (enc.firstPlayerAbility === null && enc.firstEnemyAbility === null)
+                  if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
                     return;
                   emulator.addEncounter(enc);
                   promises.push(persistor.persistEncounter(enc));

@@ -62,6 +62,33 @@
     <script src="emulator/data/Persistor.js"></script>
     <script src="emulator/data/NetworkLogConverter.js"></script>
     <script src="emulator/data/LogEventHandler.js"></script>
+    <script src="emulator/data/network_log_converter/LogRepository.js"></script>
+    <script src="emulator/data/network_log_converter/ParseLine.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x00.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x01.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x02.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x03.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x04.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x0C.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x14.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x15.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x16.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x17.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x18.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x19.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1A.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1B.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1C.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1D.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1E.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1F.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x22.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x23.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x24.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x25.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x26.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x27.js"></script>
     <script src="emulator/ui/EncounterTab.js"></script>
     <script src="raidemulator.js"></script>
     <link rel="stylesheet" type="text/css" href="raidemulator.css" />
@@ -198,13 +225,13 @@
             type="button"
             data-toggle="collapse"
             data-target="#encountersTab"
-            aria-expanded="false"
+            aria-expanded="true"
             aria-controls="encountersTab"
           >
             <i class="fa fa-chevron-up" aria-hidden="true"></i>
             <i class="fa fa-chevron-down" aria-hidden="true"></i>
           </button>
-          <div class="collapse" id="encountersTab">
+          <div class="collapse show" id="encountersTab">
             <div class="row flex-fill border-top border-dark">
               <button class="btn btn-primary btn-sm loadNetworkLogButton mx-2" type="button">Load Network Log</button>
               <button class="btn btn-primary btn-sm exportDBButton mx-2" type="button">Export DB</button>

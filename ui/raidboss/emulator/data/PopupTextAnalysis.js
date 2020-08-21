@@ -20,13 +20,44 @@ class PopupTextAnalysis extends StubbedPopupText {
 
   async OnLog(e) {
     for (let logObj of e.detail.logs) {
-      let log = logObj.line;
+      let log = logObj.properCaseConvertedLine || logObj.convertedLine;
 
       if (log.indexOf('00:0038:cactbot wipe') >= 0)
         this.SetInCombat(false);
 
       for (let trigger of this.triggers) {
         let r = log.match(trigger.localRegex);
+        if (r != null) {
+          // Some async magic here, force waiting for the entirety of
+          // the trigger execution before continuing
+          let delayPromise = new Promise((res) => {
+            this.delayResolver = res;
+          });
+          let promisePromise = new Promise((res) => {
+            this.promiseResolver = res;
+          });
+          let runPromise = new Promise((res) => {
+            this.runResolver = res;
+          });
+
+          this.OnTrigger(trigger, r);
+
+          await delayPromise;
+          await promisePromise;
+          let triggerHelper = await runPromise;
+
+          this.callback(logObj, triggerHelper, this.currentTriggerStatus, this.data);
+        }
+      }
+    }
+  }
+
+  async OnNetLog(e) {
+    for (let logObj of e.detail.logs) {
+      let log = logObj.networkLine;
+
+      for (let trigger of this.netTriggers) {
+        let r = log.match(trigger.localNetRegex);
         if (r != null) {
           // Some async magic here, force waiting for the entirety of
           // the trigger execution before continuing

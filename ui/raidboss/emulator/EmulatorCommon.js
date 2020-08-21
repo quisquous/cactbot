@@ -1,11 +1,6 @@
 'use strict';
 
 class EmulatorCommon {
-  static getTimestampFromLogLine(day, line) {
-    let result = EmulatorCommon.logLineRegex.exec(line);
-    return +new Date(day + ' ' + result.groups.lineTimestamp);
-  }
-
   static cloneData(data, exclude = ['options', 'party']) {
     let ret;
     if (Array.isArray(data))
@@ -53,7 +48,6 @@ class EmulatorCommon {
   }
 }
 
-EmulatorCommon.logLineRegex = /^\[(?<lineTimestamp>[^\]]+)\] ([0-9A-Z]+):(.*)$/i;
 EmulatorCommon.sealRegexes = {};
 EmulatorCommon.engageRegexes = {};
 EmulatorCommon.countdownRegexes = {};
@@ -66,16 +60,6 @@ for (let lang in LocaleNetRegex.areaSeal) {
   EmulatorCommon.unsealRegexes[lang] = LocaleNetRegex.areaUnseal[lang];
 }
 
-EmulatorCommon.wipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000010:/;
-EmulatorCommon.winRegex = /\[(?<lineTimestamp>[^\]]+)\] 21:........:40000003:/;
-EmulatorCommon.cactbotWipeRegex = /\[(?<lineTimestamp>[^\]]+)\] 00:0038:cactbot wipe/;
-
-EmulatorCommon.zoneChangeRegex = /\[(?<lineTimestamp>[^\]]+)\] 01:Changed Zone to (?<zone>.*)\./;
-
-EmulatorCommon.eventDetailsRegexes = {
-  '03': Regexes.addedCombatantFull({ capture: true }),
-  '04': Regexes.removingCombatant({ capture: true }),
-  '15': Regexes.abilityFull({ capture: true }),
-  '16': Regexes.abilityFull({ capture: true }),
-  '26': Regexes.statusEffectExplicit({ capture: true }),
-};
+EmulatorCommon.wipeRegex = NetRegexes.network6d({ command: '40000010' });
+EmulatorCommon.winRegex = NetRegexes.network6d({ command: '40000003' });
+EmulatorCommon.cactbotWipeRegex = NetRegexes.echo({ line: 'cactbot wipe.*?' });

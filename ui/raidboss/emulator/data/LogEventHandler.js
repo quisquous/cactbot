@@ -64,35 +64,21 @@ class LogEventHandler extends EventBus {
   constructor() {
     super();
 
-    this.lastFightFirstTimestamp = null;
     this.currentZone = null;
-    this.currentDate = null;
     this.currentFight = [];
-
-    window.addOverlayListener('onImportLogEvent', (e) => {
-      this.parseLogs(e.detail.logs);
-    });
   }
 
   parseLogs(logs) {
     for (let i = 0; i < logs.length; ++i) {
-      // Be a bit more intelligent if we're receiving
-      // converted network logs instead of imported logs
       let lineObj = logs[i];
-      let line = logs[i];
-      if (typeof lineObj === 'object')
-        line = lineObj.line;
 
-      this.currentFight.push(line);
-      let res = LogEventHandler.isMatchEnd(line);
+      this.currentFight.push(lineObj);
+      let res = LogEventHandler.isMatchEnd(lineObj.networkLine);
       if (res) {
         this.endFight();
-      } else {
-        res = LogEventHandler.doesLineMatch(line, [EmulatorCommon.zoneChangeRegex]);
-        if (res) {
-          this.currentZone = res.groups.zone;
-          this.endFight();
-        }
+      } else if (lineObj.zoneName) {
+        this.currentZone = lineObj.zoneName;
+        this.endFight();
       }
     }
   }
@@ -101,31 +87,16 @@ class LogEventHandler extends EventBus {
     if (this.currentFight.length < 2)
       return;
 
-    // @TODO: Pull this from log import event when it's possible
-    // Until then, allow this to be passed in from controller
-    // or carried over from previous encounter
-    if (this.currentDate === null) {
-      this.currentDate = new Date().toISOString().substr(0, 10);
-      this.lastFightFirstTimestamp =
-        EmulatorCommon.getTimestampFromLogLine(this.currentDate, this.currentFight[0]);
-    } else {
-      let firstTimestamp =
-        EmulatorCommon.getTimestampFromLogLine(this.currentDate, this.currentFight[0]);
-      if (this.lastFightFirstTimestamp === null) {
-        this.lastFightFirstTimestamp = firstTimestamp;
-      } else {
-        if (this.lastFightFirstTimestamp - firstTimestamp > 1000 * 60 * 60 * 12) {
-          this.lastFightFirstTimestamp = firstTimestamp + 1000 * 60 * 60 * 24;
-          this.currentDate = timeToDateString(this.lastFightFirstTimestamp);
-        }
-      }
-    }
-    console.debug(`Displatching new fight
-Date: ${this.currentDate}
+    let start = new Date(this.currentFight[0].timestamp);
+    this.currentZone = this.currentZone || 'Unknown';
+
+    console.debug(`Dispatching new fight
+Start: ${start}
+End: ${new Date(this.currentFight[this.currentFight.length - 1].timestamp)}
 Zone: ${this.currentZone}
 Line Count: ${this.currentFight.length}
 `);
-    this.dispatch('fight', this.currentDate, this.currentZone, this.currentFight);
+    this.dispatch('fight', start.toISOString().substr(0, 10), this.currentZone, this.currentFight);
 
     this.currentFight = [];
   }

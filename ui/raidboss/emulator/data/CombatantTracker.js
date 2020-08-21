@@ -1,7 +1,7 @@
 'use strict';
 
 class CombatantTracker {
-  constructor(encounterDay, logLines, language) {
+  constructor(logLines, language) {
     this.language = language;
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
     this.lastTimestamp = 0;
@@ -12,79 +12,38 @@ class CombatantTracker {
     this.pets = [];
     this.mainCombatantID = null;
     this.initialStates = {};
-    this.initialize(encounterDay, logLines);
+    this.initialize(logLines);
     delete this.initialStates;
   }
 
-  initialize(encounterDay, logLines) {
+  initialize(logLines) {
     let keyedLogLines = {};
-    let allTimestamps = [];
     // First pass: Get list of combatants, figure out where they
     // start at if possible, build our keyed log lines
     for (let i = 0; i < logLines.length; ++i) {
-      let logLine = logLines[i];
-      let rawLine = logLine.line;
-      let line = EmulatorCommon.logLineRegex.exec(rawLine);
-      let lineTimestamp = new Date(encounterDay + ' ' + line[1]).getTime();
+      const line = logLines[i];
+      this.firstTimestamp = Math.min(this.firstTimestamp, line.timestamp);
+      this.lastTimestamp = Math.max(this.lastTimestamp, line.timestamp);
 
-      // Probably not the best way to fix the midnight wraparound bug, but it should work
-      if (this.firstTimestamp !== Number.MAX_SAFE_INTEGER) {
-        if (lineTimestamp < this.firstTimestamp &&
-            this.firstTimestamp - lineTimestamp > 1000 * 60 * 60 * 12)
-          lineTimestamp = lineTimestamp + 1000 * 60 * 60 * 24;
-      }
+      keyedLogLines[line.timestamp + '_' + i] = line;
 
-      let lineEvent = line[2];
-      let eventParts = line[3].split(':');
-      if (!allTimestamps.includes(lineTimestamp))
-        allTimestamps.push(lineTimestamp);
-
-      this.firstTimestamp = Math.min(this.firstTimestamp, lineTimestamp);
-      this.lastTimestamp = Math.max(this.lastTimestamp, lineTimestamp);
-
-      keyedLogLines[lineTimestamp + '_' + i] = rawLine;
-
-      switch (lineEvent) {
-      case '03':
-        this.addCombatantFromAddCombatant(lineTimestamp, lineEvent, rawLine);
-        break;
-      case '04':
-      {
-        let m = Regexes.removingCombatant({
-          capture: true,
-        }).exec(rawLine);
-        if (m !== null) {
-          this.addCombatant(lineTimestamp,
-              m.groups.id, m.groups.name,
-              lineEvent);
-        }
-        break;
-      }
+      switch (line.hexEvent) {
+      // Source/target events
+      case '14':
       case '15':
       case '16':
-        this.addCombatantsFromAbility(lineTimestamp, lineEvent, rawLine);
-        break;
+      case '19':
       case '1A':
-      case '1B':
+      case '1D':
       case '1E':
-        // @TODO: Is this split/slice/join correct?
-        this.addCombatant(lineTimestamp,
-            eventParts[0], eventParts[1].split(' ').slice(0, 2).join(' '),
-            lineEvent);
-        break;
       case '22':
       case '23':
-        this.addCombatant(lineTimestamp,
-            eventParts[0], eventParts[1],
-            lineEvent);
-        this.addCombatant(lineTimestamp,
-            eventParts[2], eventParts[3],
-            lineEvent);
+        this.addCombatantFromLine(line);
+        this.addCombatantFromTargetLine(line);
         break;
-      case '26':
-        this.addCombatantFromNetworkStatus(lineTimestamp,
-            eventParts[0], eventParts[1],
-            lineEvent, rawLine);
+
+      default:
+        this.addCombatantFromLine(line);
         break;
       }
     }
@@ -110,61 +69,28 @@ class CombatantTracker {
     // Second pass: Analyze combatant information for tracking
     let eventTracker = {};
     for (let i = 0; i < sortedTimestamps.length; ++i) {
-      let line = EmulatorCommon.logLineRegex.exec(keyedLogLines[sortedTimestamps[i]]);
-      let timestamp = new Date(encounterDay + ' ' + line[1]).getTime();
-      let event = line[2];
-      if (EmulatorCommon.eventDetailsRegexes[event] !== undefined) {
-        let eventParts =
-          EmulatorCommon.eventDetailsRegexes[event].exec(keyedLogLines[sortedTimestamps[i]]);
-        if (eventParts !== null) {
-          if (event === '15' || event === '16') {
-            let sourceId = eventParts.groups.sourceId;
-            let targetId = eventParts.groups.targetId;
-            eventTracker[sourceId] = eventTracker[sourceId] || 0;
-            ++eventTracker[sourceId];
-            let state = this.extractStateFromAbility(timestamp, sourceId, event, line, eventParts);
-
-            if (state !== null) {
-              if (eventParts.groups.source !== '')
-                this.combatants[sourceId].setName(eventParts.groups.source);
-              this.combatants[sourceId].pushPartialState(timestamp, state);
-            }
-            state = this.extractStateFromAbility(timestamp, targetId, event, line, eventParts);
-
-            if (state !== null) {
-              if (eventParts.groups.target !== '')
-                this.combatants[targetId].setName(eventParts.groups.target);
-              this.combatants[targetId].pushPartialState(timestamp, state);
-            }
-          } else if (event === '26') {
-            let targetId = eventParts.groups.targetId;
-            let state = this.extractStateFromNetworkStatus(timestamp, targetId,
-                event, line, eventParts);
-
-            if (state !== null) {
-              if (eventParts.groups.target !== '')
-                this.combatants[targetId].setName(eventParts.groups.target);
-              this.combatants[targetId].pushPartialState(timestamp, state);
-            }
-          } else if (event === '03' || event === '04') {
-            let ID = eventParts.groups.id;
-            let state = this.extractStateFromAddRemove(timestamp, ID, event, line, eventParts);
-
-            if (state !== null) {
-              if (eventParts.groups.name !== '')
-                this.combatants[ID].setName(eventParts.groups.name);
-              this.combatants[ID].pushPartialState(timestamp, state);
-            }
-          }
-          continue;
-        }
+      let line = keyedLogLines[sortedTimestamps[i]];
+      let state = this.extractStateFromLine(line);
+      if (state) {
+        eventTracker[line.id] = eventTracker[line.id] || 0;
+        ++eventTracker[line.id];
+        this.combatants[line.id].pushPartialState(line.timestamp, state);
+      }
+      state = this.extractStateFromTargetLine(line);
+      if (state) {
+        eventTracker[line.targetId] = eventTracker[line.targetId] || 0;
+        ++eventTracker[line.targetId];
+        this.combatants[line.targetId].pushPartialState(line.timestamp, state);
       }
     }
 
     // Figure out party/enemy/other status
     let petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
-      if (this.combatants[ID].job !== null || ID.startsWith('1')) {
+      if (ID.startsWith('1')) {
+        this.partyMembers.push(ID);
+        return false;
+      } else if (this.combatants[ID].job !== null && this.combatants[ID].job !== 'N/A') {
         this.partyMembers.push(ID);
         return false;
       } else if (petNames.includes(this.combatants[ID].name)) {
@@ -183,127 +109,92 @@ class CombatantTracker {
     })[0] || null;
   }
 
-  addCombatantFromAddCombatant(timestamp, event, line) {
-    let eventParts = EmulatorCommon.eventDetailsRegexes[event].exec(line);
-
-    if (eventParts === null)
+  addCombatantFromLine(line) {
+    if (!line.id)
       return;
 
-    let ID = eventParts.groups.id;
-    let name = eventParts.groups.name;
+    this.initCombatant(line.id, line.name, line.timestamp);
+    let initState = this.initialStates[line.id];
 
-    this.initCombatant(ID, name, timestamp);
+    let extractedState = this.extractStateFromLine(line);
 
-    if (eventParts.groups.job !== 'N/A' && this.combatants[ID].job === null && !ID.startsWith('4'))
-      this.combatants[ID].job = eventParts.groups.job.toUpperCase();
-    if (this.combatants[ID].level === null && eventParts.groups.level > 0)
-      this.combatants[ID].level = eventParts.groups.level;
+    initState.timestamp = Math.min(initState.timestamp, line.timestamp);
+    initState.posX = initState.posX || extractedState.posX || null;
+    initState.posY = initState.posY || extractedState.posY || null;
+    initState.posZ = initState.posZ || extractedState.posZ || null;
+    initState.heading = initState.heading || extractedState.heading || null;
+    initState.visible = initState.visible || extractedState.visible || false;
+    initState.HP = initState.HP || extractedState.HP || null;
+    initState.maxHP = initState.maxHP || extractedState.maxHP || null;
+    initState.MP = initState.MP || extractedState.MP || null;
+    initState.maxMP = initState.maxMP || extractedState.maxMP || null;
 
-    let state = this.extractStateFromAddRemove(timestamp, ID, event, line, eventParts);
-    if (state !== null)
-      this.addCombatant(timestamp, ID, name, event, state);
+    this.combatants[line.id].job = this.combatants[line.id].job || extractedState.job || null;
+    this.combatants[line.id].level = this.combatants[line.id].level || extractedState.level || null;
+
+    if (line.abilityId && !this.combatants[line.id].job && !line.id.startsWith('4'))
+      this.combatants[line.id].job = CombatantJobSearch.GetJob(line.abilityId);
+
+    if (this.combatants[line.id].job)
+      this.combatants[line.id].job = this.combatants[line.id].job.toUpperCase();
   }
 
-  extractStateFromAddRemove(timestamp, ID, event, line, eventParts = null) {
-    eventParts = eventParts || EmulatorCommon.eventDetailsRegexes[event].exec(line);
-    if (eventParts === null)
-      return null;
+  addCombatantFromTargetLine(line) {
+    if (!line.targetId)
+      return;
 
-    if (eventParts.groups.sourceId === ID && this.combatants[ID].job === null && !ID.startsWith('4'))
-      this.combatants[ID].job = CombatantJobSearch.GetJob(eventParts.groups.abilityID);
+    this.initCombatant(line.targetId, line.targetName, line.timestamp);
+    let initState = this.initialStates[line.targetId];
 
-    return {
-      timestamp: timestamp,
-      HP: eventParts.groups.hp,
-      maxHP: eventParts.groups.hp,
-      posX: eventParts.groups.x,
-      posY: eventParts.groups.y,
-      posZ: eventParts.groups.z,
-    };
+    let extractedState = this.extractStateFromTargetLine(line);
+
+    initState.posX = initState.posX || extractedState.posX || null;
+    initState.posY = initState.posY || extractedState.posY || null;
+    initState.posZ = initState.posZ || extractedState.posZ || null;
+    initState.heading = initState.heading || extractedState.heading || null;
+    initState.HP = initState.HP || extractedState.HP || null;
+    initState.maxHP = initState.maxHP || extractedState.maxHP || null;
+    initState.MP = initState.MP || extractedState.MP || null;
+    initState.maxMP = initState.maxMP || extractedState.maxMP || null;
   }
 
-  extractStateFromAbility(timestamp, ID, event, line, eventParts = null) {
-    eventParts = eventParts || EmulatorCommon.eventDetailsRegexes[event].exec(line);
-    if (eventParts === null)
-      return null;
+  extractStateFromLine(line) {
+    if (!line.id)
+      return false;
 
-    if (eventParts.groups.sourceId === ID && this.combatants[ID].job === null && !ID.startsWith('4'))
-      this.combatants[ID].job = CombatantJobSearch.GetJob(eventParts.groups.abilityID);
+    let state = {};
 
-    let state = {
-      timestamp: timestamp,
-    };
-
-    if (eventParts.groups.sourceId === ID) {
-      state.HP = eventParts.groups.hp;
-      state.maxHP = eventParts.groups.maxHp;
-      state.MP = eventParts.groups.mp;
-      state.maxMP = eventParts.groups.maxMp;
-      state.posX = eventParts.groups.x;
-      state.posY = eventParts.groups.y;
-      state.posZ = eventParts.groups.z;
-      state.heading = eventParts.groups.heading;
-    } else {
-      state.HP = eventParts.groups.targetHp;
-      state.maxHP = eventParts.groups.targetMaxHp;
-      state.MP = eventParts.groups.targetMp;
-      state.maxMP = eventParts.groups.targetMaxMp;
-      state.posX = eventParts.groups.targetX;
-      state.posY = eventParts.groups.targetY;
-      state.posZ = eventParts.groups.targetZ;
-      state.heading = eventParts.groups.targetHeading;
-    }
+    if (line.x !== undefined) state.posX = line.x;
+    if (line.y !== undefined) state.posY = line.y;
+    if (line.z !== undefined) state.posZ = line.z;
+    if (line.heading !== undefined) state.heading = line.heading;
+    if (line.hexEvent !== '03')
+      state.visible = true;
+    if (line.hp !== undefined) state.HP = line.hp;
+    if (line.maxHp !== undefined) state.maxHP = line.maxHp;
+    if (line.mp !== undefined) state.MP = line.mp;
+    if (line.maxMp !== undefined) state.maxMP = line.maxMp;
+    if (line.jobName !== undefined) state.job = line.jobName;
 
     return state;
   }
 
-  addCombatantsFromAbility(timestamp, event, line) {
-    let eventParts = EmulatorCommon.eventDetailsRegexes[event].exec(line);
-    if (eventParts === null)
-      return;
+  extractStateFromTargetLine(line) {
+    if (!line.targetId)
+      return false;
 
-    this.addCombatantFromAbility(timestamp,
-        eventParts.groups.sourceId, eventParts.groups.source,
-        event, line, eventParts);
+    let state = {};
 
-    if (eventParts.targetId !== 'E0000000') {
-      this.addCombatantFromAbility(timestamp,
-          eventParts.groups.targetId, eventParts.groups.target,
-          event, line, eventParts);
-    }
-  }
+    if (line.targetX !== undefined) state.posX = line.targetX;
+    if (line.targetY !== undefined) state.posY = line.targetY;
+    if (line.targetZ !== undefined) state.posZ = line.targetZ;
+    if (line.targetHeading !== undefined) state.heading = line.targetHeading;
+    if (line.targetHp !== undefined) state.HP = line.targetHp;
+    if (line.targetMaxHp !== undefined) state.maxHP = line.targetMaxHp;
+    if (line.targetMp !== undefined) state.MP = line.targetMp;
+    if (line.targetMaxMp !== undefined) state.maxMP = line.targetMaxMp;
 
-  addCombatantFromAbility(timestamp, ID, name, event, line, eventParts) {
-    this.initCombatant(ID, name, timestamp);
-
-    let state = this.extractStateFromAbility(timestamp, ID, event, line, eventParts);
-    if (state !== null)
-      this.addCombatant(timestamp, ID, name, event, state);
-  }
-
-  extractStateFromNetworkStatus(timestamp, ID, event, line, eventParts = null) {
-    eventParts = eventParts || EmulatorCommon.eventDetailsRegexes[event].exec(line);
-    if (this.combatants[ID].job === null && !ID.startsWith('4'))
-      this.combatants[ID].job = Util.jobEnumToJob(parseInt(eventParts.groups.job, 16));
-
-    return {
-      timestamp: timestamp,
-      HP: eventParts.hp,
-      maxHP: eventParts.maxHp,
-      MP: eventParts.mp,
-      maxMP: eventParts.maxMp,
-      posX: eventParts.x,
-      posY: eventParts.y,
-      posZ: eventParts.z,
-      heading: eventParts.heading,
-    };
-  }
-
-  addCombatantFromNetworkStatus(timestamp, ID, name, event, line) {
-    this.initCombatant(ID, name, timestamp);
-    let state = this.extractStateFromNetworkStatus(timestamp, ID, event, line);
-    if (state !== null)
-      this.addCombatant(timestamp, ID, name, event, state);
+    return state;
   }
 
   initCombatant(ID, name, timestamp) {
@@ -324,36 +215,6 @@ class CombatantTracker {
       };
     } else if (this.combatants[ID].name === '') {
       this.combatants[ID].name = name;
-    }
-  }
-
-  addCombatant(timestamp, ID, name, event, state = {}) {
-    this.initCombatant(ID, name, timestamp);
-
-    let initState = this.initialStates[ID];
-    for (let prop in state) {
-      if (initState.timestamp >= timestamp || initState[prop] === undefined)
-        initState[prop] = state[prop];
-    }
-
-    if (initState.timestamp <= timestamp || initState.visible === undefined)
-      initState.visible = initState.visible || event !== '03';
-  }
-
-  UpdateCombatantState(timestamp, Event, Prefix) {
-    if (Event.groups[Prefix + 'id'] !== undefined &&
-        Event.groups[Prefix + 'id'] !== '' &&
-        Event.groups[Prefix + 'name'] !== '') {
-      let props = {};
-      Object.keys(Event.groups).filter((k) => {
-        return k.startsWith(Prefix);
-      }).forEach((k) => {
-        props[k.substr(Prefix.length)] = Number(Event.groups[k]);
-      });
-      let ID = Event.groups[Prefix + 'id'];
-
-      this.combatants[ID].setName(Event.groups[Prefix + 'name']);
-      this.combatants[ID].pushPartialState(timestamp, props);
     }
   }
 
