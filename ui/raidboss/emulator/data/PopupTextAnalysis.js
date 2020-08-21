@@ -82,7 +82,7 @@ class PopupTextAnalysis extends StubbedPopupText {
       }
     }
   }
-/*
+  /*
   _onTriggerInternalGetHelper(trigger, matches, now) {
     this.currentFunction = '_onTriggerInternalGetHelper';
     // Intercept triggerHelper to capture data state changes

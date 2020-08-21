@@ -23,9 +23,9 @@ class AnalyzedEncounter extends EventBus {
   async Analyze(popupText) {
     this.popupText = popupText;
     // @TODO: Make this run in parallel sometime in the future, since it could be really slow?
-    for (const index in this.encounter.combatantTracker.partyMembers) {
+    for (const index in this.encounter.combatantTracker.partyMembers)
       await this.AnalyzeFor(this.encounter.combatantTracker.partyMembers[index]);
-    }
+
     this.dispatch('analyzed');
   }
 
