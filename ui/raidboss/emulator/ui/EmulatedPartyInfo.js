@@ -137,10 +137,12 @@ class EmulatedPartyInfo extends EventBus {
       return;
 
     this.currentPerspective = id;
-    this.$triggerInfo.querySelector('.playerTriggerInfo').classList.add('d-none');
+    this.$triggerInfo.querySelectorAll('.playerTriggerInfo').forEach((r) => r.classList.add('d-none'));
     this.displayedParty[id].$triggerElem.classList.remove('d-none');
-    this.$partyInfo.querySelector('.playerInfoRow').classList.remove('border');
-    this.$partyInfo.querySelector('.playerInfoRow').classList.remove('border-success');
+    this.$partyInfo.querySelectorAll('.playerInfoRow').forEach((r) => {
+      r.classList.remove('border');
+      r.classList.remove('border-success');
+    });
     this.displayedParty[id].$rootElem.classList.add('border');
     this.displayedParty[id].$rootElem.classList.add('border-success');
     this.dispatch('selectPerspective', id);
