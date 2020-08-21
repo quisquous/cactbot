@@ -28,7 +28,6 @@ class NetworkLogConverter {
 
     lines.forEach((l) => {
       l.convert(repo);
-      l.offset = l.timestamp - repo.firstTimestamp;
       l.index = i;
     });
     // Sort the lines based on `${timestamp}_${index}` to handle out-of-order lines properly

@@ -57,8 +57,8 @@ let Options = {
     });
 
     // Listen for the log parser to dispatch a fight
-    logEventHandler.on('fight', (day, zone, lines) => {
-      let enc = new Encounter(day, zone, lines);
+    logEventHandler.on('fight', (day, zoneId, zoneName, lines) => {
+      let enc = new Encounter(day, zoneId, zoneName, lines);
       // If there's not both a player and an enemy ability, don't persist the encounter
       if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
         return;
@@ -208,8 +208,8 @@ let Options = {
                 let promises = [];
 
                 // Listen for LogEventHandler to dispatch fights and persist them
-                localLogHandler.on('fight', async (day, zone, lines) => {
-                  let enc = new Encounter(day, zone, lines);
+                localLogHandler.on('fight', async (day, zoneId, zoneName, lines) => {
+                  let enc = new Encounter(day, zoneId, zoneName, lines);
                   if (!(enc.firstPlayerAbility > 0 && enc.firstEnemyAbility > 0))
                     return;
                   emulator.addEncounter(enc);

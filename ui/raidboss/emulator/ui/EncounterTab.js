@@ -20,7 +20,7 @@ class EncounterTab extends EventBus {
     this.persistor.listEncounters().then((encounters) => {
       for (let i in encounters) {
         let enc = encounters[i];
-        let zone = enc.zone;
+        let zone = enc.zoneName;
         let encDate = timeToDateString(enc.start);
         let encTime = timeToTimeString(enc.start);
         let encDuration = msToDuration(enc.duration);
@@ -176,7 +176,7 @@ class EncounterTab extends EventBus {
       $info.querySelector('.encounterDelete').addEventListener('click', () => {
         me.dispatch('delete', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
       });
-      $info.querySelector('.encounterZone .label').textContent = enc.zone;
+      $info.querySelector('.encounterZone .label').textContent = enc.zoneName;
       $info.querySelector('.encounterStart .label').textContent = dateTimeToString(enc.start);
       $info.querySelector('.encounterDuration .label').textContent = timeToString(enc.duration, false);
       $info.querySelector('.encounterOffset .label').textContent = pullAt;

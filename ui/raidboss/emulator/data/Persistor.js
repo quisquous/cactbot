@@ -29,9 +29,9 @@ class Persistor extends EventBus {
           keyPath: 'id',
           autoIncrement: true,
         });
-        encounterSummariesStorage.createIndex('zone', 'zone');
+        encounterSummariesStorage.createIndex('zoneName', 'zoneName');
         encounterSummariesStorage.createIndex('start', 'start');
-        encounterSummariesStorage.createIndex('zone_start', ['zone', 'start']);
+        encounterSummariesStorage.createIndex('zoneName_start', ['zoneName', 'start']);
       }
       promises.push(new Promise((res) => {
         encountersStorage.transaction.addEventListener('complete', (tev) => {
@@ -96,7 +96,7 @@ class Persistor extends EventBus {
         let req = encountersStorage.get(id);
         req.addEventListener('success', (ev) => {
           let enc = req.result;
-          let ret = new Encounter(enc.encounterDay, enc.encounterZone, enc.logLines);
+          let ret = new Encounter(enc.encounterDay, enc.encounterZoneId, enc.encounterZoneName, enc.logLines);
           ret.id = enc.id;
           res(ret);
         });
@@ -130,24 +130,24 @@ class Persistor extends EventBus {
     });
   }
 
-  listEncounters(zone = null, startTimestamp = null, endTimestamp = null) {
+  listEncounters(zoneName = null, startTimestamp = null, endTimestamp = null) {
     return new Promise((res) => {
       if (this.DB !== null) {
         let encounterSummariesStorage = this.encounterSummariesStorage;
         let keyRange = null;
         let index = null;
-        if (zone !== null) {
+        if (zoneName !== null) {
           if (startTimestamp !== null) {
-            index = encounterSummariesStorage.index('zone_start');
+            index = encounterSummariesStorage.index('zoneName_start');
             if (endTimestamp !== null) {
-              keyRange = IDBKeyRange.bound([zone, startTimestamp], [zone, endTimestamp],
+              keyRange = IDBKeyRange.bound([zoneName, startTimestamp], [zoneName, endTimestamp],
                   [true, true], [true, true]);
             } else {
-              keyRange = IDBKeyRange.lowerBound([zone, startTimestamp], [true, true]);
+              keyRange = IDBKeyRange.lowerBound([zoneName, startTimestamp], [true, true]);
             }
           } else {
-            index = encounterSummariesStorage.index('zone');
-            keyRange = IDBKeyRange.only(zone);
+            index = encounterSummariesStorage.index('zoneName');
+            keyRange = IDBKeyRange.only(zoneName);
           }
         } else if (startTimestamp !== null) {
           index = encounterSummariesStorage.index('start');
@@ -187,7 +187,8 @@ class Persistor extends EventBus {
       let enc = await this.loadEncounter(summary.id);
       ret.encounters.push({
         encounterDay: timeToDateString(summary.Start),
-        encounterZone: summary.Zone,
+        encounterZoneName: summary.ZoneName,
+        encounterZoneId: summary.ZoneId,
         encounterLines: enc.logLines,
       });
     }
@@ -196,7 +197,7 @@ class Persistor extends EventBus {
 
   async importDB(DB) {
     DB.encounters.forEach((enc) => {
-      this.persistEncounter(new Encounter(enc.encounterDay, enc.encounterZone, enc.encounterLines));
+      this.persistEncounter(new Encounter(enc.encounterDay, enc.encounterZoneId, enc.encounterZoneName, enc.encounterLines));
     });
   }
 

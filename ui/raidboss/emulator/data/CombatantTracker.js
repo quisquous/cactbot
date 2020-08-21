@@ -175,6 +175,7 @@ class CombatantTracker {
     if (line.mp !== undefined) state.MP = line.mp;
     if (line.maxMp !== undefined) state.maxMP = line.maxMp;
     if (line.jobName !== undefined) state.job = line.jobName;
+    if (line.level !== undefined) state.level = line.level;
 
     return state;
   }

@@ -64,8 +64,9 @@ class LogEventHandler extends EventBus {
   constructor() {
     super();
 
-    this.currentZone = null;
+    this.currentZoneName = null;
     this.currentFight = [];
+    this.currentZoneId = -1;
   }
 
   parseLogs(logs) {
@@ -73,11 +74,20 @@ class LogEventHandler extends EventBus {
       let lineObj = logs[i];
 
       this.currentFight.push(lineObj);
+
+      lineObj.offset = lineObj.timestamp - this.currentFight[0].timestamp;
+
+      if (lineObj.offset > 1000000000) {
+        console.log(this.currentFight[0], lineObj);
+        throw "error!";
+      }
+
       let res = LogEventHandler.isMatchEnd(lineObj.networkLine);
       if (res) {
         this.endFight();
       } else if (lineObj.zoneName) {
-        this.currentZone = lineObj.zoneName;
+        this.currentZoneId = lineObj.zoneId;
+        this.currentZoneName = lineObj.zoneName;
         this.endFight();
       }
     }
@@ -88,15 +98,16 @@ class LogEventHandler extends EventBus {
       return;
 
     let start = new Date(this.currentFight[0].timestamp);
-    this.currentZone = this.currentZone || 'Unknown';
+    this.currentZoneName = this.currentZoneName || 'Unknown';
+    this.currentZoneId = this.currentZoneId || -1;
 
     console.debug(`Dispatching new fight
 Start: ${start}
 End: ${new Date(this.currentFight[this.currentFight.length - 1].timestamp)}
-Zone: ${this.currentZone}
+Zone: ${this.currentZoneName}
 Line Count: ${this.currentFight.length}
 `);
-    this.dispatch('fight', start.toISOString().substr(0, 10), this.currentZone, this.currentFight);
+    this.dispatch('fight', start.toISOString().substr(0, 10), this.currentZoneId, this.currentZoneName, this.currentFight);
 
     this.currentFight = [];
   }

@@ -1,9 +1,10 @@
 'use strict';
 
 class Encounter {
-  constructor(encounterDay, encounterZone, logLines) {
+  constructor(encounterDay, encounterZoneId, encounterZoneName, logLines) {
     this.id = null;
-    this.encounterZone = encounterZone;
+    this.encounterZoneId = encounterZoneId;
+    this.encounterZoneName = encounterZoneName;
     this.encounterDay = encounterDay;
     this.logLines = logLines;
     this.initialize();

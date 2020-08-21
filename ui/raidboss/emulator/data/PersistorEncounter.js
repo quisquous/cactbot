@@ -8,7 +8,8 @@ class PersistorEncounter {
     this.offset = encounter.initialOffset;
     this.startStatus = encounter.startStatus;
     this.endStatus = encounter.endStatus;
-    this.zone = encounter.encounterZone;
+    this.zoneId = encounter.encounterZoneId;
+    this.zoneName = encounter.encounterZoneName;
     this.duration = encounter.endTimestamp - encounter.startTimestamp;
   }
 }

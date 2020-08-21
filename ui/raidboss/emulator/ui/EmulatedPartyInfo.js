@@ -29,9 +29,9 @@ class EmulatedPartyInfo extends EventBus {
     emulator.on('preSeek', (time) => {
       this.latestDisplayedState = 0;
     });
-    emulator.on('midSeek', (time) => {
-      this.UpdatePartyInfo(emulator, time);
-      this.latestDisplayedState = Math.max(this.latestDisplayedState, time);
+    emulator.on('midSeek', (line) => {
+      this.UpdatePartyInfo(emulator, line.offset);
+      this.latestDisplayedState = Math.max(this.latestDisplayedState, line.offset);
     });
     let me = this;
     this.UpdateTriggerState = () => {

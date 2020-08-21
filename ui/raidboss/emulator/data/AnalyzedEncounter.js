@@ -72,9 +72,8 @@ class AnalyzedEncounter extends EventBus {
       },
     });
     popupText.OnChangeZone({
-      detail: {
-        zoneName: this.encounter.encounterZone,
-      },
+      zoneName: this.encounter.encounterZoneName,
+      zoneID: parseInt(this.encounter.encounterZoneId, 16),
     });
 
     popupText.callback = (log, triggerHelper, currentTriggerStatus, finalData) => {

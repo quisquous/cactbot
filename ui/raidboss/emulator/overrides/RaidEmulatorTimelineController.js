@@ -38,10 +38,11 @@ class RaidEmulatorTimelineController extends TimelineController {
   OnLogEvent(e) {
     if (!this.activeTimeline)
       return;
-    for (let i = 0; i < e.detail.logs.length; ++i) {
-      this.activeTimeline.emulatedTimeOffset = e.detail.offsets[i];
-      this.ui.emulatedTimeOffset = e.detail.offsets[i];
-      this.activeTimeline.OnLogLine(e.detail.logs[i]);
-    }
+
+    e.detail.logs.forEach(line => {
+      this.activeTimeline.emulatedTimeOffset = line.offset;
+      this.ui.emulatedTimeOffset = line.offset;
+      this.activeTimeline.OnLogLine(line.properCaseConvertedLine || line.convertedLine);
+    });
   }
 }

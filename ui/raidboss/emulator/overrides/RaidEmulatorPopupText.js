@@ -45,15 +45,20 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     emulator.on('emitLogs', (event) => {
       this.OnLog({
         detail: {
-          logs: event.logs,
+          logs: event.logs.map(a=>a.properCaseConvertedLine || a.convertedLine),
         },
+      });
+      event.logs.forEach(l=>{
+        this.OnNetLog({
+          rawLine: l.networkLine,
+        });
       });
     });
     emulator.on('tick', async (timestampOffset) => {
       await this.doUpdate(timestampOffset);
     });
-    emulator.on('midSeek', async (timestampOffset) => {
-      await this.doUpdate(timestampOffset);
+    emulator.on('midSeek', async (line) => {
+      await this.doUpdate(line.offset);
     });
     emulator.on('preSeek', (time) => {
       this.lastSeekTo = time;
@@ -83,9 +88,8 @@ class RaidEmulatorPopupText extends StubbedPopupText {
         return false;
       });
       this.OnChangeZone({
-        detail: {
-          zoneName: emulator.currentEncounter.encounter.encounterZone,
-        },
+        zoneName: emulator.currentEncounter.encounter.encounterZoneName,
+        zoneID: parseInt(emulator.currentEncounter.encounter.encounterZoneId, 16),
       });
     });
   }

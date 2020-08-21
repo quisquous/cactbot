@@ -12,6 +12,9 @@ class StubbedPopupText extends PopupText {
     ret.timers = {};
     ret.inCombat = false;
     ret.resetWhenOutOfCombat = true;
+    
+    ret.parserLang = ret.options.ParserLanguage || 'en';
+    ret.displayLang = ret.options.AlertsLanguage || ret.options.DisplayLanguage || ret.options.ParserLanguage || 'en';
 
     ret.partyTracker = new PartyTracker();
     ret.Reset();
