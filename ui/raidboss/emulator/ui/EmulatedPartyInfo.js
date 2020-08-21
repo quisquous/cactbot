@@ -178,6 +178,7 @@ class EmulatedPartyInfo extends EventBus {
     let $e = this.$playerInfoRowTemplate.cloneNode(true);
     let $hp = $e.querySelector('.hp');
     let $mp = $e.querySelector('.mp');
+    let $name = $e.querySelector('.playerName');
     let ret = {
       $rootElem: $e,
       $iconElem: $e.querySelector('jobicon'),
@@ -187,6 +188,7 @@ class EmulatedPartyInfo extends EventBus {
       $mpElem: $mp,
       $mpLabelElem: $mp.querySelector('.label'),
       $mpProgElem: $mp.querySelector('.progress-bar'),
+      $nameElem: $name,
       id: id,
       $triggerElem: this.GetTriggerInfoObjectFor(encounter, id),
     };
@@ -194,6 +196,7 @@ class EmulatedPartyInfo extends EventBus {
     let combatant = encounter.encounter.combatantTracker.combatants[id];
     ret.$rootElem.classList.add((combatant.job || '').toUpperCase());
     this.tooltips.push(new Tooltip(ret.$rootElem, 'left', combatant.name));
+    $name.innerHTML = combatant.name;
     let me = this;
     ret.$rootElem.addEventListener('click', (e) => {
       me.selectPerspective(id);

@@ -426,7 +426,7 @@ div.row.encountersRow {
 
 .partyInfoColumn .party .playerInfoRow.border {
   border-width: 3px !important;
-  height: calc(2rem + 6px);
+  height: calc(2rem + 1.5rem + 6px);
 }
 
 .partyInfoColumn .party .playerInfoRow .jobicon {
@@ -481,6 +481,15 @@ div.row.encountersRow {
 
 .partyInfoColumn .party .playerInfoRow .mp .progress .progress-bar {
   background: rgb(222, 110, 160);
+}
+
+.partyInfoColumn .playerName {
+  display: none;
+  text-align: center;
+}
+
+.partyInfoColumn .border-success .playerName {
+  display: block;
 }
 
 .encountersRow {
