@@ -91,6 +91,8 @@ let Options = {
       }
       // Once we've loaded the encounter, seek to the start of the encounter
       p.then(() => {
+        // Store our current loaded encounter to auto-load next time
+        window.localStorage.setItem('currentEncounter', id);
         if (!isNaN(emulator.currentEncounter.encounter.initialOffset))
           emulator.seek(emulator.currentEncounter.encounter.initialOffset);
       });
@@ -179,8 +181,17 @@ let Options = {
 
         // If we don't have any encounters stored, show the intro modal
         persistor.listEncounters().then((encounters) => {
-          if (encounters.length === 0)
+          if (encounters.length === 0) {
             showModal('.introModal');
+          } else {
+            let lastEncounter = window.localStorage.getItem('currentEncounter');
+            if (lastEncounter !== undefined && lastEncounter !== undefined) {
+              lastEncounter = parseInt(lastEncounter);
+              let matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
+              if (matchedEncounters.length)
+                encounterTab.dispatch('load', lastEncounter);
+            }
+          }
         });
 
         let checkFile = async (file) => {

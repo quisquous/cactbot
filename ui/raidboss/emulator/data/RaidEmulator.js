@@ -62,18 +62,28 @@ class RaidEmulator extends EventBus {
     for (let i = this.currentLogLineIndex + 1;
       i < this.currentEncounter.encounter.logLines.length;
       ++i) {
-      if (this.currentEncounter.encounter.logLines[i].offset <= time) {
-        logs.push(this.currentEncounter.encounter.logLines[i]);
-        this.lastLogTimestamp = this.currentEncounter.encounter.logLines[i].timestamp;
+      let line = this.currentEncounter.encounter.logLines[i];
+      if (line.offset <= time) {
+        logs.push(line);
+        // Bunch emitted lines for performance reasons
+        if (logs.length > 100) {
+          await this.dispatch('emitLogs', { logs: logs });
+          logs = [];
+        }
+        this.lastLogTimestamp = line.timestamp;
         ++this.currentLogLineIndex;
-        await this.dispatch('midSeek', this.currentEncounter.encounter.logLines[i]);
+        await this.dispatch('midSeek', line);
         continue;
       }
       break;
     }
     this.currentTimestamp = time;
-    if (logs.length)
+
+    // Emit any remaining lines if needed
+    if (logs.length) {
       await this.dispatch('emitLogs', { logs: logs });
+      await this.dispatch('midSeek', logs.pop());
+    }
 
     await this.dispatch('postSeek', time);
     await this.dispatch('tick', this.currentTimestamp, this.lastLogTimestamp);
