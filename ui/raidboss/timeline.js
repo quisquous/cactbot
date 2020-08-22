@@ -628,7 +628,11 @@ class TimelineUI {
       helper.appendChild(helperBar);
     }
 
+    // For simplicity in code, always make debugElement valid,
+    // however it does not exist in the raid emulator.
     this.debugElement = document.getElementById('timeline-debug');
+    if (!this.debugElement)
+      this.debugElement = document.createElement('div');
   }
 
   SetPopupTextInterface(popupText) {
