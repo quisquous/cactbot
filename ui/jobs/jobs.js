@@ -1060,7 +1060,6 @@ class Bars {
     this.gcdSkill = () => this.CalcGCDFromStat(this.skillSpeed);
     this.gcdSpell = () => this.CalcGCDFromStat(this.spellSpeed);
 
-    this.furtherRuin = 0;
     this.presenceOfMind = 0;
     this.shifu = 0;
     this.huton = 0;
@@ -1859,6 +1858,11 @@ class Bars {
       ruin4Stacks.push(d);
     }
 
+    let furtherRuin = 0;
+    addOverlayListener('ChangeZone', function(e) {
+      furtherRuin = 0;
+    });
+
     this.jobFuncs.push((jobDetail) => {
       let stack = jobDetail.aetherflowStacks;
       let summoned = jobDetail.bahamutSummoned;
@@ -1867,13 +1871,13 @@ class Bars {
       // FurtherRuin Stack Guage
       this.gainEffectFuncMap[EffectId.FurtherRuin] = (name, e) => {
         if (e.count) // ensure e.count is exist
-          this.furtherRuin = parseInt(e.count);
+          furtherRuin = parseInt(e.count);
       };
       this.loseEffectFuncMap[EffectId.FurtherRuin] = () => {
-        this.furtherRuin = 0;
+        furtherRuin = 0;
       };
       for (let i = 0; i < 4; ++i) {
-        if (this.furtherRuin > i)
+        if (furtherRuin > i)
           ruin4Stacks[i].classList.add('active');
         else
           ruin4Stacks[i].classList.remove('active');
