@@ -1,12 +1,12 @@
 'use strict';
 
 class CombatantState {
-  constructor(posX, posY, posZ, heading, visible, HP, maxHP, MP, maxMP) {
+  constructor(posX, posY, posZ, heading, targetable, HP, maxHP, MP, maxMP) {
     this.posX = posX;
     this.posY = posY;
     this.posZ = posZ;
     this.heading = heading;
-    this.visible = visible;
+    this.targetable = targetable;
     this.HP = HP;
     this.maxHP = maxHP;
     this.MP = MP;
@@ -19,7 +19,7 @@ class CombatantState {
         Number(props.posY) || this.posY,
         Number(props.posZ) || this.posZ,
         Number(props.heading) || this.heading,
-        props.visible || this.visible,
+        props.targetable || this.targetable,
         Number(props.HP) || this.HP,
         Number(props.maxHP) || this.maxHP,
         Number(props.MP) || this.MP,

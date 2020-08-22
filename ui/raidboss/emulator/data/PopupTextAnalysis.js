@@ -3,9 +3,7 @@
 class PopupTextAnalysis extends StubbedPopupText {
   OnTriggerInternal(trigger, matches) {
     this.currentTriggerStatus = {
-      dataStates: {
-        'initial': [EmulatorCommon.cloneData(this.data)],
-      },
+      initialData: EmulatorCommon.cloneData(this.data),
       condition: undefined,
       response: false,
       result: false,
@@ -46,7 +44,9 @@ class PopupTextAnalysis extends StubbedPopupText {
           await promisePromise;
           const triggerHelper = await runPromise;
 
-          this.callback(logObj, triggerHelper, this.currentTriggerStatus, this.data);
+          this.currentTriggerStatus.finalData = EmulatorCommon.cloneData(this.data);
+
+          this.callback(logObj, triggerHelper, this.currentTriggerStatus);
         }
       }
     }
@@ -77,32 +77,14 @@ class PopupTextAnalysis extends StubbedPopupText {
           await promisePromise;
           const triggerHelper = await runPromise;
 
+          this.currentTriggerStatus.finalData = EmulatorCommon.cloneData(this.data);
+
           this.callback(logObj, triggerHelper, this.currentTriggerStatus, this.data);
         }
       }
     }
   }
-  /*
-  _onTriggerInternalGetHelper(trigger, matches, now) {
-    this.currentFunction = '_onTriggerInternalGetHelper';
-    // Intercept triggerHelper to capture data state changes
-    let triggerHelper = super._onTriggerInternalGetHelper(trigger, matches, now);
-    let originalValueOrFunction = triggerHelper.valueOrFunction;
-    triggerHelper.valueOrFunction = (f) => {
-      let oldData = JSON.stringify(this.data);
-      let ret = originalValueOrFunction(f);
-      let newData = JSON.stringify(this.data);
-      if (oldData !== newData) {
-        this.currentTriggerStatus.dataStates[this.currentFunction] =
-          this.currentTriggerStatus.dataStates[this.currentFunction] || [];
-        this.currentTriggerStatus.dataStates[this.currentFunction]
-          .push(EmulatorCommon.cloneData(this.data));
-      }
-      return ret;
-    };
-    return triggerHelper;
-  }
-*/
+
   _onTriggerInternalCheckSuppressed(trigger, when) {
     this.currentFunction = '_onTriggerInternalCheckSuppressed';
     let ret = super._onTriggerInternalCheckSuppressed(trigger, when);

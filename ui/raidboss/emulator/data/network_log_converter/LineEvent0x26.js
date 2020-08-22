@@ -10,8 +10,9 @@ class LineEvent0x26 extends LineEvent {
 
     let padded = zeroPad(parts[4], 8);
 
-    this.jobId = padded.substr(6, 2);
-    this.jobName = LineEvent.jobIDToName[this.jobId];
+    this.jobIdHex = padded.substr(6, 2).toUpperCase();
+    this.jobIdDec = parseInt(this.jobIdHex, 16);
+    this.jobName = Util.jobEnumToJob(this.jobIdDec);
 
     this.level = parseInt(padded.substr(4, 2), 16);
 

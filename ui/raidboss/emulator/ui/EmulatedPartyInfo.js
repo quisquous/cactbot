@@ -33,12 +33,11 @@ class EmulatedPartyInfo extends EventBus {
       this.UpdatePartyInfo(emulator, time);
       this.latestDisplayedState = Math.max(this.latestDisplayedState, time);
     });
-    let me = this;
     this.UpdateTriggerState = () => {
-      if (me.$triggerHideCheckbox.checked)
-        me.hideNonExecutedTriggers();
+      if (this.$triggerHideCheckbox.checked)
+        this.hideNonExecutedTriggers();
       else
-        me.showNonExecutedTriggers();
+        this.showNonExecutedTriggers();
     };
     this.$triggerHideCheckbox.addEventListener('change', this.UpdateTriggerState);
 
@@ -199,9 +198,8 @@ class EmulatedPartyInfo extends EventBus {
     ret.$rootElem.classList.add((combatant.job || '').toUpperCase());
     this.tooltips.push(new Tooltip(ret.$rootElem, 'left', combatant.name));
     $name.innerHTML = combatant.name;
-    let me = this;
     ret.$rootElem.addEventListener('click', (e) => {
-      me.selectPerspective(id);
+      this.selectPerspective(id);
     });
     ret.$triggerElem.setAttribute('data-id', id);
     return ret;
@@ -272,11 +270,15 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   GetTriggerFiredLabelTime(Trigger) {
-    return timeToString(Trigger.logLine.offset, false);
+    return timeToString(
+        Trigger.logLine.offset - this.emulator.currentEncounter.encounter.initialOffset,
+        false);
   }
 
   GetTriggerResolvedLabelTime(Trigger) {
-    return timeToString(Trigger.resolvedOffset, false);
+    return timeToString(
+        Trigger.resolvedOffset - this.emulator.currentEncounter.encounter.initialOffset,
+        false);
   }
 
   _WrapCollapse(label, $obj, onclick) {

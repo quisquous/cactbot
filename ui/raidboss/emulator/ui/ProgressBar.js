@@ -2,7 +2,6 @@
 
 class ProgressBar {
   constructor(emulator) {
-    let me = this;
     this.$progressBarTooltip = new Tooltip('.encounterProgressBar', 'bottom', '', false);
     this.$progressBarCurrent = document.querySelector('.current-timestamp');
     this.$progressBarDuration = document.querySelector('.duration-timestamp');
@@ -12,51 +11,54 @@ class ProgressBar {
     new Tooltip(this.$engageIndicator, 'bottom', 'Fight Begins');
     this.emulator = emulator;
     this.$progress.addEventListener('mousemove', (e) => {
-      if (me.emulator.currentEncounter) {
+      if (this.emulator.currentEncounter) {
         let percent = e.offsetX / e.currentTarget.offsetWidth;
-        let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
+        let time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent) -
+          this.emulator.currentEncounter.encounter.initialOffset;
         this.$progressBarTooltip.offset.x = e.offsetX - (e.currentTarget.offsetWidth / 2);
         this.$progressBarTooltip.setText(timeToString(time));
-        me.$progressBarTooltip.show();
+        this.$progressBarTooltip.show();
       }
     });
     this.$progress.addEventListener('click', (e) => {
-      if (me.emulator.currentEncounter) {
+      if (this.emulator.currentEncounter) {
         let percent = e.offsetX / e.currentTarget.offsetWidth;
-        let time = Math.floor(me.emulator.currentEncounter.encounter.duration * percent);
-        me.emulator.seek(time);
+        let time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent);
+        this.emulator.seek(time);
       }
     });
     emulator.on('currentEncounterChanged', (encounter) => {
-      me.$progressBarCurrent.textContent = timeToString(0, false);
-      me.$progressBarDuration.textContent = timeToString(encounter.encounter.duration, false);
-      me.$progressBar.style.width = '0%';
-      me.$progressBar.setAttribute('ariaValueMax', encounter.encounter.duration);
+      this.$progressBarCurrent.textContent = timeToString(0, false);
+      this.$progressBarDuration.textContent =
+        timeToString(encounter.encounter.duration - encounter.encounter.initialOffset, false);
+      this.$progressBar.style.width = '0%';
+      this.$progressBar.setAttribute('ariaValueMax', encounter.encounter.duration);
       if (isNaN(encounter.encounter.initialOffset)) {
-        me.$engageIndicator.classList.add('d-none');
+        this.$engageIndicator.classList.add('d-none');
       } else {
         let initialPercent =
           (encounter.encounter.initialOffset / emulator.currentEncounter.encounter.duration) * 100;
-        me.$engageIndicator.classList.remove('d-none');
-        me.$engageIndicator.style.left = initialPercent + '%';
+        this.$engageIndicator.classList.remove('d-none');
+        this.$engageIndicator.style.left = initialPercent + '%';
       }
     });
     emulator.on('tick', (timestampOffset) => {
       let progPercent = (timestampOffset / emulator.currentEncounter.encounter.duration) * 100;
-      me.$progressBarCurrent.textContent = timeToString(timestampOffset, false);
-      me.$progressBar.setAttribute('ariaValueNow', timestampOffset);
-      me.$progressBar.style.width = progPercent + '%';
+      this.$progressBarCurrent.textContent =
+        timeToString(timestampOffset - emulator.currentEncounter.encounter.initialOffset, false);
+      this.$progressBar.setAttribute('ariaValueNow', timestampOffset - emulator.currentEncounter.encounter.initialOffset);
+      this.$progressBar.style.width = progPercent + '%';
     });
     let $play = document.querySelector('.progressBarRow button.play');
     let $pause = document.querySelector('.progressBarRow button.pause');
     $play.addEventListener('click', () => {
-      if (me.emulator.play()) {
+      if (this.emulator.play()) {
         $play.classList.add('d-none');
         $pause.classList.remove('d-none');
       }
     });
     $pause.addEventListener('click', () => {
-      if (me.emulator.pause()) {
+      if (this.emulator.pause()) {
         $pause.classList.add('d-none');
         $play.classList.remove('d-none');
       }

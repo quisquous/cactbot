@@ -29,7 +29,7 @@ There are two general data flows:
     * Encounters are passed to `Persistor`
 * Encounter is loaded from IndexedDB
   * `Encounter` ID is passed to `RaidEmulator` to be loaded
-    * `AnaylzedEncounter` is built from encounter if this is the first time the encounter has been loaded since refresh
+    * `AnalyzedEncounter` is built from encounter if this is the first time the encounter has been loaded since refresh
       * For each player in the encounter
         * `AnalyzedEncounter` bootstraps `PopupText`, `TimelineController`, and `Timeline` classes
         * Encounter lines are passed to bootstrapped classes to build list of triggers for each player's perspective

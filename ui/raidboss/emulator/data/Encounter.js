@@ -21,10 +21,13 @@ class Encounter {
 
     let petNames = PetNamesByLang[this.language];
 
+    this.firstLineIndex = 0;
+
     for (let i = 0; i < this.logLines.length; ++i) {
       let line = this.logLines[i];
       let res = LogEventHandler.isMatchStart(line.networkLine);
       if (res) {
+        this.firstLineIndex = i;
         this.startStatus.add(res.groups.StartType);
         if (res.groups.StartIn >= 0)
           this.engageAt = Math.min(line.timestamp + res.groups.StartIn, this.engageAt);
@@ -53,6 +56,7 @@ class Encounter {
         this.language = res.groups.language || this.language;
     }
 
+
     if (this.firstPlayerAbility === Number.MAX_SAFE_INTEGER)
       this.firstPlayerAbility = null;
 
@@ -67,14 +71,19 @@ class Encounter {
     this.endTimestamp = this.combatantTracker.lastTimestamp;
     this.duration = this.endTimestamp - this.startTimestamp;
 
-    if (this.engageAt !== null)
-      this.initialOffset = this.engageAt - this.startTimestamp;
-    else if (this.firstPlayerAbility !== null)
-      this.initialOffset = this.firstPlayerAbility - this.startTimestamp;
-    else if (this.firstEnemyAbility !== null)
-      this.initialOffset = this.firstEnemyAbility - this.startTimestamp;
+    if (this.initialOffset === Number.MAX_SAFE_INTEGER) {
+      if (this.engageAt !== null)
+        this.initialOffset = this.engageAt - this.startTimestamp;
+      else if (this.firstPlayerAbility !== null)
+        this.initialOffset = this.firstPlayerAbility - this.startTimestamp;
+      else if (this.firstEnemyAbility !== null)
+        this.initialOffset = this.firstEnemyAbility - this.startTimestamp;
+      else
+        this.initialOffset = 0;
+    }
+
+    this.playbackOffset = this.logLines[this.firstLineIndex].offset;
 
     this.startStatus = [...this.startStatus].sort().join(', ');
-    this.initialOffset = this.initialOffset === Number.MAX_SAFE_INTEGER ? 0 : this.initialOffset;
   }
 }

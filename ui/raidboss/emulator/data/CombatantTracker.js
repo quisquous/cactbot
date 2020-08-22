@@ -58,7 +58,7 @@ class CombatantTracker {
           Number(state.posY),
           Number(state.posZ),
           Number(state.heading),
-          state.visible,
+          state.targetable,
           Number(state.HP),
           Number(state.maxHP),
           Number(state.MP),
@@ -88,7 +88,7 @@ class CombatantTracker {
     let petNames = PetNamesByLang[this.language];
     this.others = this.others.filter((ID) => {
       if (this.combatants[ID].job !== null &&
-        this.combatants[ID].job !== 'N/A' &&
+        this.combatants[ID].job !== 'NONE' &&
         ID.startsWith('1')) {
         this.partyMembers.push(ID);
         return false;
@@ -122,7 +122,7 @@ class CombatantTracker {
     initState.posY = initState.posY || extractedState.posY || null;
     initState.posZ = initState.posZ || extractedState.posZ || null;
     initState.heading = initState.heading || extractedState.heading || null;
-    initState.visible = initState.visible || extractedState.visible || false;
+    initState.targetable = initState.targetable || extractedState.targetable || false;
     initState.HP = initState.HP || extractedState.HP || null;
     initState.maxHP = initState.maxHP || extractedState.maxHP || null;
     initState.MP = initState.MP || extractedState.MP || null;
@@ -167,8 +167,7 @@ class CombatantTracker {
     if (line.y !== undefined) state.posY = line.y;
     if (line.z !== undefined) state.posZ = line.z;
     if (line.heading !== undefined) state.heading = line.heading;
-    if (line.hexEvent !== '03')
-      state.visible = true;
+    if (line.targetable !== undefined) state.targetable = line.targetable;
     if (line.hp !== undefined) state.HP = line.hp;
     if (line.maxHp !== undefined) state.maxHP = line.maxHp;
     if (line.mp !== undefined) state.MP = line.mp;
@@ -207,7 +206,7 @@ class CombatantTracker {
         posY: null,
         posZ: null,
         heading: null,
-        visible: null,
+        targetable: true,
         HP: null,
         maxHP: null,
         MP: null,

@@ -1,6 +1,6 @@
 'use strict';
 
-// Limit guage event
+// Limit gauge event
 class LineEvent0x24 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);

@@ -10,6 +10,8 @@ class LineEvent0x22 extends LineEvent {
 
     this.targetId = parts[4].toUpperCase();
     this.targetName = parts[5];
+
+    this.targetable = !!parseInt(parts[6], 16);
   }
 }
 

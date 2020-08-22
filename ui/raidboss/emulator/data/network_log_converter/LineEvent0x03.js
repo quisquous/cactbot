@@ -9,8 +9,9 @@ class LineEvent0x03 extends LineEvent {
     this.name = parts[3];
     this.server = parts[8];
 
-    this.jobId = parts[4].toUpperCase();
-    this.jobName = LineEvent.jobIDToName[this.jobId];
+    this.jobIdHex = parts[4].toUpperCase();
+    this.jobIdDec = parseInt(this.jobIdHex, 16);
+    this.jobName = Util.jobEnumToJob(this.jobIdDec);
 
     this.level = parseInt(parts[5], 16);
 
@@ -29,7 +30,7 @@ class LineEvent0x03 extends LineEvent {
       name: this.name,
       spawn: this.timestamp,
       despawn: this.timestamp,
-      job: this.jobId.toUpperCase(),
+      job: this.jobIdHex,
     });
   }
 

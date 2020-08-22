@@ -161,7 +161,7 @@ class Persistor extends EventBus {
         }
         let req;
         if (keyRange !== null)
-          req = index.openKeyCursor(keyRange);
+          req = index.getAll(keyRange);
         else
           req = encounterSummariesStorage.getAll();
 
@@ -175,10 +175,22 @@ class Persistor extends EventBus {
   }
 
   async clearDB() {
-    await this.listEncounters().then(async (encounters) => {
-      for (let encounter of encounters)
-        await this.deleteEncounter(encounter.id);
+    let p1Res;
+    let p1 = new Promise((res) => {
+      p1Res = res;
     });
+    let p2Res;
+    let p2 = new Promise((res) => {
+      p2Res = res;
+    });
+    this.encountersStorage.clear().addEventListener('success', () => {
+      p1Res();
+    });
+    this.encounterSummariesStorage.clear().addEventListener('success', () => {
+      p2Res();
+    });
+    await p1;
+    await p2;
   }
 
   async exportDB() {

@@ -14,6 +14,13 @@ class Combatant {
   }
 
   setName(name) {
+    // Sometimes network lines arrive after the combatant has been cleared
+    // from memory in the client, so the network line will have a valid ID
+    // but the name will be blank. Since we're tracking the name for the
+    // entire fight and not on a state-by-state basis, we don't want to
+    // blank out a name in this case.
+    // If a combatant actually has a blank name, that's still allowed by
+    // the constructor.
     if (name === '')
       return;
 
@@ -37,12 +44,12 @@ class Combatant {
   nextSignificantState(timestamp) {
     // Shortcut out if this is significant or if there's no higher significant state
     let index = this.significantStates.indexOf(timestamp);
-    let lastSignificantStateindex = this.significantStates.length - 1;
-    if (index >= 0 && index < lastSignificantStateindex)
+    let lastSignificantStateIndex = this.significantStates.length - 1;
+    if (index >= 0 && index < lastSignificantStateIndex)
       return this.states[this.significantStates[index + 1]];
-    else if (index === lastSignificantStateindex ||
-        timestamp > this.significantStates[lastSignificantStateindex])
-      return this.states[this.significantStates[lastSignificantStateindex]];
+    else if (index === lastSignificantStateIndex ||
+        timestamp > this.significantStates[lastSignificantStateIndex])
+      return this.states[this.significantStates[lastSignificantStateIndex]];
 
     for (let i = 0; i < this.significantStates.length; ++i) {
       if (this.significantStates[i] > timestamp)

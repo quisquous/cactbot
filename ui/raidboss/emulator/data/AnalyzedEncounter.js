@@ -44,9 +44,9 @@ class AnalyzedEncounter extends EventBus {
     const gTimelineUI = new RaidEmulatorTimelineUI(Options);
     const gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
 
-    gTimelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(gPopupText));
+    gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
     gTimelineController.SetDataFiles(this.emulator.dataFilesEvent.detail.files);
-    popupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(gTimelineController));
+    popupText.SetTimelineLoader(new TimelineLoader(gTimelineController));
     popupText.OnDataFilesRead(this.emulator.dataFilesEvent);
     popupText.ReloadTimelines();
     popupText.partyTracker.onPartyChanged({
@@ -83,6 +83,7 @@ class AnalyzedEncounter extends EventBus {
     this.perspectives[ID] = {
       initialData: EmulatorCommon.cloneData(popupText.data, []),
       triggers: [],
+      finalData: popupText.data,
     };
 
     for (const log of this.encounter.logLines) {

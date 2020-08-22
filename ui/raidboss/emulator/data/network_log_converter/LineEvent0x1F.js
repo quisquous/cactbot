@@ -1,6 +1,6 @@
 'use strict';
 
-// Job guage event
+// Job gauge event
 class LineEvent0x1F extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
@@ -19,7 +19,7 @@ class LineEvent0x1F extends LineEvent {
       s.substr(0, 2),
     ];
 
-    this.jobGuageBytes = [
+    this.jobGaugeBytes = [
       ...splitFunc(bytes1),
       ...splitFunc(bytes2),
       ...splitFunc(bytes3),
@@ -29,7 +29,7 @@ class LineEvent0x1F extends LineEvent {
     repo.updateCombatant(this.id, {
       spawn: this.timestamp,
       despawn: this.timestamp,
-      job: this.jobGuageBytes[0].toUpperCase(),
+      job: this.jobGaugeBytes[0].toUpperCase(),
     });
   }
 

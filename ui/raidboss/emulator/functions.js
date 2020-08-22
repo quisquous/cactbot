@@ -1,11 +1,13 @@
 'use strict';
 
 function timeToString(time, includeMillis = true) {
+  let negative = time < 0 ? '-' : '';
+  time = Math.abs(time);
   // Milliseconds
   let millis = ('00' + (time % 1000)).substr(-3);
   let secs = ('0' + ((time % (60 * 1000)) - millis) / 1000).substr(-2);
   let mins = ('0' + ((((time % (60 * 60 * 1000)) - millis) / 1000) - secs) / 60).substr(-2);
-  return mins + ':' + secs + (includeMillis ? '.' + millis : '');
+  return negative + mins + ':' + secs + (includeMillis ? '.' + millis : '');
 }
 
 function timeToDateString(time) {

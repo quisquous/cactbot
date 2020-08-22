@@ -25,7 +25,7 @@ let Options = {
   PlayerJobOverride: null,
 };
 
-(($) => {
+(() => {
   let emulator;
   let progressBar;
   let timelineController;
@@ -108,20 +108,16 @@ let Options = {
     // Listen for the user to select prune on the encounters tab
     encounterTab.on('prune', (id) => {
       persistor.loadEncounter(id).then(async (enc) => {
-        // Determine the first line of the log based on the timestamp for encounter start
-        let firstLine = 1;
-        for (let i = 0; i < enc.logLines.length; ++i) {
-          let l = enc.logLines[i];
-          if (l.timestamp >= enc.startTimestamp + enc.initialOffset) {
-            firstLine = i;
-            break;
-          }
-        }
+        // Trim log lines
+        enc.logLines = enc.logLines.slice(enc.firstLineIndex - 1);
 
-        firstLine = firstLine > 1 ? firstLine - 1 : 1;
+        // Update precalculated offsets
+        let firstTimestamp = enc.logLines[0].timestamp;
+        for (let i = 0; i < enc.logLines.length; ++i)
+          enc.logLines[i].offset = enc.logLines[i].timestamp - firstTimestamp;
 
-        // Trim log lines and re-persist in DB
-        enc.logLines = enc.logLines.slice(firstLine - 1);
+
+        enc.firstLineIndex = 0;
 
         enc.initialize();
         await persistor.persistEncounter(enc);
@@ -173,8 +169,8 @@ let Options = {
         popupText = new RaidEmulatorPopupText(Options);
         popupText.bindTo(emulator);
 
-        timelineController.SetPopupTextInterface(new RaidEmulatorPopupTextGenerator(popupText));
-        popupText.SetTimelineLoader(new RaidEmulatorTimelineLoader(timelineController));
+        timelineController.SetPopupTextInterface(new PopupTextGenerator(popupText));
+        popupText.SetTimelineLoader(new TimelineLoader(timelineController));
 
         emulator.setPopupText(popupText);
 

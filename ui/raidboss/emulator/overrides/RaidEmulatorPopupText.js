@@ -13,8 +13,9 @@ class RaidEmulatorPopupText extends StubbedPopupText {
 
     this.seeking = false;
 
-    this.lastSeekTo = 0;
     this.$textElementTemplate = document.querySelector('template.textElement').content.firstElementChild;
+
+    this.audioDebugTextDuration = 2000;
   }
 
   async doUpdate(timestampOffset) {
@@ -61,7 +62,6 @@ class RaidEmulatorPopupText extends StubbedPopupText {
       await this.doUpdate(line.offset);
     });
     emulator.on('preSeek', (time) => {
-      this.lastSeekTo = time;
       this.seeking = true;
       for (let i of this.scheduledTriggers)
         i.rejecter();
@@ -125,11 +125,8 @@ class RaidEmulatorPopupText extends StubbedPopupText {
   _onTriggerInternalDelaySeconds(triggerHelper) {
     let delay = 'delaySeconds' in triggerHelper.trigger ? triggerHelper.valueOrFunction(triggerHelper.trigger.delaySeconds) : 0;
 
-    if (delay === 0) {
-      return new Promise((res) => {
-        res();
-      });
-    }
+    if (!delay || delay <= 0)
+      return null;
 
     let resolver;
     let rejecter;
@@ -150,7 +147,7 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     if (![this.options.InfoSound, this.options.AlertSound, this.options.AlarmSound]
       .includes(url)) {
       let div = this._makeTextElement(url, 'audio-file');
-      this.addDisplayText(div, this.emulatedOffset + 2000);
+      this.addDisplayText(div, this.emulatedOffset + this.audioDebugTextDuration);
     }
     if (this.seeking)
       return;
@@ -162,7 +159,7 @@ class RaidEmulatorPopupText extends StubbedPopupText {
       return;
 
     let div = this._makeTextElement(ttsText, 'tts-text');
-    this.addDisplayText(div, this.emulatedOffset + 2000);
+    this.addDisplayText(div, this.emulatedOffset + this.audioDebugTextDuration);
     super.ttsSay(ttsText);
   }
 

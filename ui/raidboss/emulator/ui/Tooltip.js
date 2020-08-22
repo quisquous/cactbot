@@ -18,18 +18,17 @@ class Tooltip {
       .content.firstElementChild.cloneNode(true);
     this.setText(text);
     document.body.append(this.tooltip);
-    let me = this;
     if (autoShow) {
       Tooltip.showEvents.forEach((e) => {
         target.addEventListener(e, () => {
-          me.show();
+          this.show();
         });
       });
     }
     if (autoHide) {
       Tooltip.hideEvents.forEach((e) => {
         target.addEventListener(e, () => {
-          me.hide();
+          this.hide();
         });
       });
     }

@@ -37,8 +37,11 @@ class RaidEmulator extends EventBus {
     if (this.currentEncounter === null)
       return false;
 
-    this.currentTimestamp = this.currentTimestamp || -1;
-    this.currentLogLineIndex = this.currentLogLineIndex || -1;
+    let firstIndex = this.currentEncounter.encounter.firstLineIndex;
+
+    this.currentTimestamp = this.currentTimestamp ||
+      this.currentEncounter.encounter.logLines[firstIndex].timestamp;
+    this.currentLogLineIndex = this.currentLogLineIndex || firstIndex - 1;
     // Use setInterval since it should account for differences in execution time automagically
     this.playing = window.setInterval(this.tick.bind(this), RaidEmulator.playbackSpeed);
     this.dispatch('play');
