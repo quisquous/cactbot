@@ -113,6 +113,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Bait Confiteor',
         de: 'Confiteor ködern',
+        ko: '장판 유도하기',
       },
     },
     {
