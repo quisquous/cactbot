@@ -489,7 +489,7 @@ class PopupText {
         // this is valid to do for any trigger entry that can handle a function.
         // In case anybody wants to encapsulate any fancy grammar, the values
         // in this object can also be functions.
-        if (typeof result !== 'object')
+        if (typeof result !== 'object' || result === null)
           return result;
         return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
       },
