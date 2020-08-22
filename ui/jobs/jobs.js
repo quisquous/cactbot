@@ -143,6 +143,7 @@ const kAbility = {
   Bio3: '1D00',
   Tridisaster: 'DFC',
   EnergyDrain: '407C',
+  EnergySiphon: '407E',
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
 };
@@ -1942,6 +1943,11 @@ class Bars {
     };
 
     this.abilityFuncMap[kAbility.EnergyDrain] = () => {
+      energyDrainBox.duration = 0;
+      energyDrainBox.duration = 30;
+      aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+    };
+    this.abilityFuncMap[kAbility.EnergySiphon] = () => {
       energyDrainBox.duration = 0;
       energyDrainBox.duration = 30;
       aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
