@@ -21,9 +21,9 @@ class EncounterTab extends EventBus {
       for (let i in encounters) {
         let enc = encounters[i];
         let zone = enc.zoneName;
-        let encDate = timeToDateString(enc.start);
-        let encTime = timeToTimeString(enc.start);
-        let encDuration = msToDuration(enc.duration);
+        let encDate = EmulatorCommon.timeToDateString(enc.start);
+        let encTime = EmulatorCommon.timeToTimeString(enc.start);
+        let encDuration = EmulatorCommon.msToDuration(enc.duration);
         this.encounters[zone] = this.encounters[zone] || {};
         this.encounters[zone][encDate] = this.encounters[zone][encDate] || [];
         this.encounters[zone][encDate].push({
@@ -156,7 +156,7 @@ class EncounterTab extends EventBus {
 
       let pullAt = 'N/A';
       if (!isNaN(enc.offset))
-        pullAt = timeToString(enc.offset, false);
+        pullAt = EmulatorCommon.timeToString(enc.offset, false);
 
       let $info = this.$encounterInfoTemplate.cloneNode(true);
       $info.querySelector('.encounterLoad').addEventListener('click', () => {
@@ -172,8 +172,8 @@ class EncounterTab extends EventBus {
         this.dispatch('delete', this.encounters[this.currentZone][this.currentDate][this.currentEncounter].encounter.id);
       });
       $info.querySelector('.encounterZone .label').textContent = enc.zoneName;
-      $info.querySelector('.encounterStart .label').textContent = dateTimeToString(enc.start);
-      $info.querySelector('.encounterDuration .label').textContent = timeToString(enc.duration, false);
+      $info.querySelector('.encounterStart .label').textContent = EmulatorCommon.dateTimeToString(enc.start);
+      $info.querySelector('.encounterDuration .label').textContent = EmulatorCommon.timeToString(enc.duration, false);
       $info.querySelector('.encounterOffset .label').textContent = pullAt;
       $info.querySelector('.encounterName .label').textContent = enc.name;
       $info.querySelector('.encounterStartStatus .label').textContent = enc.startStatus;

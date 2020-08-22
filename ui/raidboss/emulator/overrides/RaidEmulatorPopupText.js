@@ -46,7 +46,7 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     emulator.on('emitLogs', (event) => {
       this.OnLog({
         detail: {
-          logs: event.logs.map((a) => a.properCaseConvertedLine || a.convertedLine),
+          logs: event.logs.map((a) => a.EmulatorCommon.properCaseConvertedLine || a.convertedLine),
         },
       });
       event.logs.forEach((l) => {

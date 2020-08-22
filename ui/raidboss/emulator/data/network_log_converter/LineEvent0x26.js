@@ -8,7 +8,7 @@ class LineEvent0x26 extends LineEvent {
     this.id = parts[2].toUpperCase();
     this.name = parts[3];
 
-    let padded = zeroPad(parts[4], 8);
+    let padded = EmulatorCommon.zeroPad(parts[4], 8);
 
     this.jobIdHex = padded.substr(6, 2).toUpperCase();
     this.jobIdDec = parseInt(this.jobIdHex, 16);

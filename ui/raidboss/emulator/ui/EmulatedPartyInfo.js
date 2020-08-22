@@ -160,7 +160,7 @@ class EmulatedPartyInfo extends EventBus {
 
     let hpProg = (State.HP / State.maxHP) * 100;
     let hpLabel = State.HP + '/' + State.maxHP;
-    hpLabel = spacePadLeft(hpLabel, (State.maxHP.toString().length * 2) + 1);
+    hpLabel = EmulatorCommon.spacePadLeft(hpLabel, (State.maxHP.toString().length * 2) + 1);
     this.displayedParty[id].$hpProgElem.ariaValueNow = State.HP;
     this.displayedParty[id].$hpProgElem.ariaValueMax = State.maxHP;
     this.displayedParty[id].$hpProgElem.style.width = hpProg + '%';
@@ -168,7 +168,7 @@ class EmulatedPartyInfo extends EventBus {
 
     let mpProg = (State.MP / State.maxMP) * 100;
     let mpLabel = State.MP + '/' + State.maxMP;
-    mpLabel = spacePadLeft(mpLabel, (State.maxMP.toString().length * 2) + 1);
+    mpLabel = EmulatorCommon.spacePadLeft(mpLabel, (State.maxMP.toString().length * 2) + 1);
     this.displayedParty[id].$mpProgElem.ariaValueNow = State.MP;
     this.displayedParty[id].$mpProgElem.ariaValueMax = State.maxMP;
     this.displayedParty[id].$mpProgElem.style.width = mpProg + '%';
@@ -270,13 +270,13 @@ class EmulatedPartyInfo extends EventBus {
   }
 
   GetTriggerFiredLabelTime(Trigger) {
-    return timeToString(
+    return EmulatorCommon.timeToString(
         Trigger.logLine.offset - this.emulator.currentEncounter.encounter.initialOffset,
         false);
   }
 
   GetTriggerResolvedLabelTime(Trigger) {
-    return timeToString(
+    return EmulatorCommon.timeToString(
         Trigger.resolvedOffset - this.emulator.currentEncounter.encounter.initialOffset,
         false);
   }

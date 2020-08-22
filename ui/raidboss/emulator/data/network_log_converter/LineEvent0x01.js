@@ -6,7 +6,7 @@ class LineEvent0x01 extends LineEvent {
     super(repo, line, parts);
     this.zoneId = parts[2].toUpperCase();
     this.zoneName = parts[3];
-    this.zoneNameProperCase = properCase(this.zoneName);
+    this.zoneNameProperCase = EmulatorCommon.properCase(this.zoneName);
   }
 
   convert() {

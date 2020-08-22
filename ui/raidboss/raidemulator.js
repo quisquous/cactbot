@@ -210,7 +210,7 @@ let Options = {
               // Import a network file by passing it to LogEventHandler to convert it
               logConverter.convertFile(txt).then((lines) => {
                 let localLogHandler = new LogEventHandler();
-                localLogHandler.currentDate = timeToDateString(lines[0].timestamp);
+                localLogHandler.currentDate = EmulatorCommon.timeToDateString(lines[0].timestamp);
 
                 let promises = [];
 
@@ -366,3 +366,25 @@ let Options = {
     });
   });
 })();
+
+function showModal(selector) {
+  let modal = document.querySelector(selector);
+  let body = document.body;
+  let backdrop = document.querySelector('.modal-backdrop');
+  body.classList.add('modal-open');
+  backdrop.classList.add('show');
+  backdrop.classList.remove('hide');
+  modal.classList.add('show');
+  modal.style.display = 'block';
+}
+
+function hideModal(selector = '.modal.show') {
+  let modal = document.querySelector(selector);
+  let body = document.body;
+  let backdrop = document.querySelector('.modal-backdrop');
+  body.classList.remove('modal-open');
+  backdrop.classList.remove('show');
+  backdrop.classList.add('hide');
+  modal.classList.remove('show');
+  modal.style.display = '';
+}

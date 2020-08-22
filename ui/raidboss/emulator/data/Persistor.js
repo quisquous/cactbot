@@ -201,7 +201,7 @@ class Persistor extends EventBus {
     for (let summary of summaries) {
       let enc = await this.loadEncounter(summary.id);
       ret.encounters.push({
-        encounterDay: timeToDateString(summary.Start),
+        encounterDay: EmulatorCommon.timeToDateString(summary.Start),
         encounterZoneName: summary.ZoneName,
         encounterZoneId: summary.ZoneId,
         encounterLines: enc.logLines,

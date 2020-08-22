@@ -7,10 +7,10 @@ class LineEvent0x1F extends LineEvent {
 
     this.id = parts[2].toUpperCase();
 
-    let bytes1 = zeroPad(parts[3], 8);
-    let bytes2 = zeroPad(parts[4], 8);
-    let bytes3 = zeroPad(parts[5], 8);
-    let bytes4 = zeroPad(parts[6], 8);
+    let bytes1 = EmulatorCommon.zeroPad(parts[3], 8);
+    let bytes2 = EmulatorCommon.zeroPad(parts[4], 8);
+    let bytes3 = EmulatorCommon.zeroPad(parts[5], 8);
+    let bytes4 = EmulatorCommon.zeroPad(parts[6], 8);
 
     let splitFunc = (s) => [
       s.substr(6, 2),
@@ -42,7 +42,7 @@ class LineEvent0x1F extends LineEvent {
       ':' + this.parts[5] +
       ':' + this.parts[6];
     this.properCaseConvertedLine = this.prefix() +
-      this.id + ':' + properCase(this.name) +
+      this.id + ':' + EmulatorCommon.properCase(this.name) +
       ':' + this.parts[3] +
       ':' + this.parts[4] +
       ':' + this.parts[5] +

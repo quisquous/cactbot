@@ -16,7 +16,7 @@ class ProgressBar {
         let time = Math.floor(this.emulator.currentEncounter.encounter.duration * percent) -
           this.emulator.currentEncounter.encounter.initialOffset;
         this.$progressBarTooltip.offset.x = e.offsetX - (e.currentTarget.offsetWidth / 2);
-        this.$progressBarTooltip.setText(timeToString(time));
+        this.$progressBarTooltip.setText(EmulatorCommon.timeToString(time));
         this.$progressBarTooltip.show();
       }
     });
@@ -28,9 +28,10 @@ class ProgressBar {
       }
     });
     emulator.on('currentEncounterChanged', (encounter) => {
-      this.$progressBarCurrent.textContent = timeToString(0, false);
-      this.$progressBarDuration.textContent =
-        timeToString(encounter.encounter.duration - encounter.encounter.initialOffset, false);
+      this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(0, false);
+      this.$progressBarDuration.textContent = EmulatorCommon.timeToString(
+          encounter.encounter.duration - encounter.encounter.initialOffset,
+          false);
       this.$progressBar.style.width = '0%';
       this.$progressBar.setAttribute('ariaValueMax', encounter.encounter.duration);
       if (isNaN(encounter.encounter.initialOffset)) {
@@ -44,8 +45,9 @@ class ProgressBar {
     });
     emulator.on('tick', (timestampOffset) => {
       let progPercent = (timestampOffset / emulator.currentEncounter.encounter.duration) * 100;
-      this.$progressBarCurrent.textContent =
-        timeToString(timestampOffset - emulator.currentEncounter.encounter.initialOffset, false);
+      this.$progressBarCurrent.textContent = EmulatorCommon.timeToString(
+          timestampOffset - emulator.currentEncounter.encounter.initialOffset,
+          false);
       this.$progressBar.setAttribute('ariaValueNow', timestampOffset - emulator.currentEncounter.encounter.initialOffset);
       this.$progressBar.style.width = progPercent + '%';
     });

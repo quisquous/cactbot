@@ -20,9 +20,9 @@ class LineEvent0x1E extends LineEvent0x1A {
       '.' + stackCountText;
 
     this.properCaseConvertedLine = this.prefix() +
-      this.targetId + ':' + properCase(this.targetName) +
+      this.targetId + ':' + EmulatorCommon.properCase(this.targetName) +
       ' loses the effect of ' + this.abilityName +
-      ' from ' + properCase(this.fallbackResolvedTargetName) +
+      ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
       '.' + stackCountText;
   }
 }

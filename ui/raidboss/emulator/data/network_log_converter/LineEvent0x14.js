@@ -36,8 +36,8 @@ class LineEvent0x14 extends LineEvent {
       ' on ' + target + '.';
     this.properCaseConvertedLine = this.prefix() +
       this.abilityId + ':' +
-      properCase(this.name) + ' starts using ' + this.abilityName +
-      ' on ' + properCase(target) + '.';
+      EmulatorCommon.properCase(this.name) + ' starts using ' + this.abilityName +
+      ' on ' + EmulatorCommon.properCase(target) + '.';
   }
 }
 

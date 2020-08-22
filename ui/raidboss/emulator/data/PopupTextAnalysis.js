@@ -18,7 +18,7 @@ class PopupTextAnalysis extends StubbedPopupText {
 
   async OnLog(e) {
     for (const logObj of e.detail.logs) {
-      const log = logObj.properCaseConvertedLine || logObj.convertedLine;
+      const log = logObj.EmulatorCommon.properCaseConvertedLine || logObj.convertedLine;
 
       if (log.indexOf('00:0038:cactbot wipe') >= 0)
         this.SetInCombat(false);

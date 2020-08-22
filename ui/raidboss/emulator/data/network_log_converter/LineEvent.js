@@ -10,7 +10,7 @@ class LineEvent {
     this.parts = parts;
 
     this.decEvent = parseInt(this.parts[0]);
-    this.hexEvent = zeroPad(this.decEvent.toString(16).toUpperCase());
+    this.hexEvent = EmulatorCommon.zeroPad(this.decEvent.toString(16).toUpperCase());
 
     this.timestamp = +new Date(this.parts[1]);
 
@@ -23,7 +23,7 @@ class LineEvent {
   }
 
   prefix() {
-    return '[' + timeToTimeString(this.timestamp, true) + '] ' + this.hexEvent + ':';
+    return '[' + EmulatorCommon.timeToTimeString(this.timestamp, true) + '] ' + this.hexEvent + ':';
   }
 
   static isDamageHallowed(damage) {
@@ -38,7 +38,7 @@ class LineEvent {
     if (LineEvent.isDamageHallowed(damage))
       return 0;
 
-    damage = zeroPad(damage, 8);
+    damage = EmulatorCommon.zeroPad(damage, 8);
     let parts = [
       damage.substr(0, 2),
       damage.substr(2, 2),

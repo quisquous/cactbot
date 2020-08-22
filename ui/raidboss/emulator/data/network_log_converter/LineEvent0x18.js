@@ -44,7 +44,7 @@ class LineEvent0x18 extends LineEvent {
 
     this.properCaseConvertedLine = this.prefix() +
       abilityPart +
-      this.type + ' Tick on ' + properCase(this.resolvedName) +
+      this.type + ' Tick on ' + EmulatorCommon.properCase(this.resolvedName) +
       ' for ' + this.damage + ' damage.';
   }
 }

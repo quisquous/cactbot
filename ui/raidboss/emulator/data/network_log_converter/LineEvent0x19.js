@@ -36,8 +36,8 @@ class LineEvent0x19 extends LineEvent {
       ' was defeated by ' + this.resolvedTargetName || this.targetName + '.';
 
     this.properCaseConvertedLine = this.prefix() +
-      properCase(this.resolvedName || this.name) +
-      ' was defeated by ' + properCase(this.resolvedTargetName || this.targetName) + '.';
+      EmulatorCommon.properCase(this.resolvedName || this.name) +
+      ' was defeated by ' + EmulatorCommon.properCase(this.resolvedTargetName || this.targetName) + '.';
   }
 }
 

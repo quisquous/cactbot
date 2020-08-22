@@ -50,7 +50,7 @@ class LineEvent0x03 extends LineEvent {
 
     // This last part is guesswork for the area between 9 and 10.
     let UnknownValue = this.parts[9] +
-      zeroPad(this.parts[10], 8 + Math.max(0, 6 - this.parts[9].length));
+      EmulatorCommon.zeroPad(this.parts[10], 8 + Math.max(0, 6 - this.parts[9].length));
 
     if (UnknownValue !== '00000000000000')
       this.convertedLine += ' (' + UnknownValue + ')';

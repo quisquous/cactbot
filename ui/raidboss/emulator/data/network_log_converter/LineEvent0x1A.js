@@ -47,9 +47,9 @@ class LineEvent0x1A extends LineEvent {
       ' for ' + this.parts[4] + ' Seconds.' + stackCountText;
 
     this.properCaseConvertedLine = this.prefix() +
-      this.targetId + ':' + properCase(this.targetName) +
+      this.targetId + ':' + EmulatorCommon.properCase(this.targetName) +
       ' gains the effect of ' + this.abilityName +
-      ' from ' + properCase(this.fallbackResolvedTargetName) +
+      ' from ' + EmulatorCommon.properCase(this.fallbackResolvedTargetName) +
       ' for ' + this.parts[4] + ' Seconds.' + stackCountText;
   }
 }
