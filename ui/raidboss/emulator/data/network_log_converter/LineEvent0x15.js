@@ -15,7 +15,6 @@ class LineEvent0x15 extends LineEvent {
 
     this.abilityId = parts[4].toUpperCase();
     this.abilityName = parts[5];
-    repo.updateAbility(this.abilityId, this.abilityName);
 
     this.targetId = parts[6].toUpperCase();
     this.targetName = parts[7];

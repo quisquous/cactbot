@@ -2,8 +2,6 @@
 
 class NetworkLogConverter {
   constructor(Options) {
-    this.Combatants = {};
-    this.Abilities = {};
     this.EnableProperCaseBug = true;
 
     for (let i in Options)

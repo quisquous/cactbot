@@ -7,7 +7,6 @@ class LineEvent0x1A extends LineEvent {
 
     this.abilityId = parts[2].toUpperCase();
     this.abilityName = parts[3];
-    repo.updateAbility(this.abilityId, this.abilityName);
 
     this.duration = parseFloat(parts[4]);
     this.stacks = parseInt(parts[9], 16);

@@ -2,7 +2,6 @@
 
 class LogRepository {
   constructor() {
-    this.Abilities = {};
     this.Combatants = {};
     this.firstTimestamp = Number.MAX_SAFE_INTEGER;
   }
@@ -35,11 +34,6 @@ class LogRepository {
         combatant.despawn = Math.max(combatant.despawn, c.despawn);
       }
     }
-  }
-
-  updateAbility(id, name) {
-    id = id.toUpperCase();
-    this.Abilities[id] = name;
   }
 
   resolveName(id, name, fallbackId = null, fallbackName = null) {
