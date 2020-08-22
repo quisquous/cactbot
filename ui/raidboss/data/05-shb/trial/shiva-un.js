@@ -30,8 +30,7 @@
       },
     },
     {
-      // Heavenly Strike would knockback everyone with few damage
-      // But notice knockback only is fine.
+      // Heavenly Strike is knockback only when unshielded, so use "info" here.
       id: 'ShivaUn Heavenly Strike',
       regex: /Heavenly Strike/,
       beforeSeconds: 5,

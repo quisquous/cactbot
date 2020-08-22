@@ -27,6 +27,13 @@
         cn: '团队分摊死刑',
       },
     },
+    {
+      // Heavenly Strike is knockback only when unshielded, so use "info" here.
+      id: 'ShivaEx Heavenly Strike',
+      regex: /Heavenly Strike/,
+      beforeSeconds: 5,
+      response: Responses.knockback('info'),
+    },
   ],
   triggers: [
     {
