@@ -47,7 +47,7 @@ let Options = {
     encounterTab = new EncounterTab(persistor);
     emulatedPartyInfo = new EmulatedPartyInfo(emulator);
     emulatedMap = new EmulatedMap(emulator);
-    emulatedWebSocket = new RaidEmulatorWebSocket(emulator);
+    emulatedWebSocket = new RaidEmulatorOverlayApiHook(emulator);
     logConverter = new NetworkLogConverter();
 
     // Listen for the user to click a player in the party list on the right

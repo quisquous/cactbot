@@ -1,6 +1,6 @@
 'use strict';
 
-class RaidEmulatorWebSocket {
+class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;
     this.originalDispatch = window.dispatchOverlayEvent;
