@@ -1224,7 +1224,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         de: 'Urteil: Kollektivstrafe',
         ja: '集団罰',
         fr: 'Peine collective',
-        ko: '단체형: 무직과 함께 맞기',
+        ko: '단체형: 무징과 함께 맞기',
         cn: '集团罪',
       },
     },
