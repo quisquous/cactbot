@@ -138,8 +138,8 @@ const kAbility = {
   LucidDreaming: '1D8A',
   Miasma: 'A8',
   Miasma3: '1D01',
-  smnBio: 'A4',
-  smnBio2: 'B2',
+  Biosmn: 'A4',
+  Biosmn2: 'B2',
   Bio3: '1D00',
   Tridisaster: 'DFC',
   EnergyDrain: '407C',
@@ -1861,10 +1861,6 @@ class Bars {
     }
 
     let furtherRuin = 0;
-    this.changeZoneFuncs.push((e) => {
-      furtherRuin = 0;
-      refreshfurtherRuin();
-    });
     function refreshfurtherRuin() {
       for (let i = 0; i < 4; ++i) {
         if (furtherRuin > i)
@@ -1881,6 +1877,10 @@ class Bars {
       furtherRuin = 0;
       refreshfurtherRuin();
     };
+    this.changeZoneFuncs.push((e) => {
+      furtherRuin = 0;
+      refreshfurtherRuin();
+    });
 
     this.jobFuncs.push((jobDetail) => {
       let stack = jobDetail.aetherflowStacks;
@@ -1929,11 +1929,11 @@ class Bars {
       miasmaBox.duration = 0;
       miasmaBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.smnBio] = () => {
+    this.abilityFuncMap[kAbility.Biosmn] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.smnBio2] = () => {
+    this.abilityFuncMap[kAbility.Biosmn2] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };

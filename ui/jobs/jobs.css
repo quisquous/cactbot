@@ -568,6 +568,46 @@
   background-color: rgb(150, 233, 140);
 }
 
+.smn-color-aetherflow {
+  background-color: rgb(255, 96, 207);
+}
+
+.smn-color-aetherflow.too-much-stacks {
+  background-color: rgb(240, 30, 30);
+}
+
+.smn-color-biosmn {
+  background-color: olivedrab;
+}
+
+.smn-color-miasma {
+  background-color: cornflowerblue;
+}
+
+.smn-color-energydrain {
+  background-color: brown;
+}
+
+.smn-color-trance {
+  background-color: rgb(60, 80, 200);
+}
+
+.smn-color-demisummon {
+  background-color: rgb(180, 200, 220);
+}
+
+.smn-color-demisummon.bahamutready {
+  background-color: rgb(64, 65, 163);
+}
+
+.smn-color-demisummon.firebirdready {
+  background-color: orange;
+}
+
+.smn-color-demisummon.last {
+  background-color: rgb(240, 30, 30);
+}
+
 .mnk-color-chakra {
   background-color: rgb(230, 20, 20);
 }
@@ -634,46 +674,6 @@
 
 .sch-color-lucid {
   background-color: rgb(227, 148, 210);
-}
-
-.smn-color-aetherflow {
-  background-color: rgb(255, 96, 207);
-}
-
-.smn-color-aetherflow.too-much-stacks {
-  background-color: rgb(240, 30, 30);
-}
-
-.smn-color-biosmn {
-  background-color: olivedrab;
-}
-
-.smn-color-miasma {
-  background-color: cornflowerblue;
-}
-
-.smn-color-energydrain {
-  background-color: brown;
-}
-
-.smn-color-trance {
-  background-color: rgb(60, 80, 200);
-}
-
-.smn-color-demisummon {
-  background-color: rgb(180, 200, 220);
-}
-
-.smn-color-demisummon.bahamutready {
-  background-color: rgb(64, 65, 163);
-}
-
-.smn-color-demisummon.firebirdready {
-  background-color: orange;
-}
-
-.smn-color-demisummon.last {
-  background-color: rgb(240, 30, 30);
 }
 
 .ast-color-combust {
