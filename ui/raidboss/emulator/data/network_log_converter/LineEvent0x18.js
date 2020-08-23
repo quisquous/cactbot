@@ -14,7 +14,7 @@ class LineEvent0x18 extends LineEvent {
     });
 
     this.type = parts[4];
-    this.abilityId = parts[5].toUpperCase();
+    this.effectId = parts[5].toUpperCase();
     this.damage = parseInt(parts[6], 16);
 
     this.hp = parseInt(parts[7]);
@@ -32,18 +32,18 @@ class LineEvent0x18 extends LineEvent {
   }
 
   convert(repo) {
-    this.abilityName = LineEvent0x18.showAbilityNamesFor[this.abilityId.toUpperCase()];
-    let abilityPart = '';
-    if (this.abilityName)
-      abilityPart = this.abilityName + ' ';
+    this.effectName = LineEvent0x18.showEffectNamesFor[this.effectId.toUpperCase()];
+    let effectPart = '';
+    if (this.effectName)
+      effectPart = this.effectName + ' ';
 
     this.convertedLine = this.prefix() +
-      abilityPart +
+      effectPart +
       this.type + ' Tick on ' + this.resolvedName +
       ' for ' + this.damage + ' damage.';
 
     this.properCaseConvertedLine = this.prefix() +
-      abilityPart +
+      effectPart +
       this.type + ' Tick on ' + EmulatorCommon.properCase(this.resolvedName) +
       ' for ' + this.damage + ' damage.';
   }
@@ -51,7 +51,7 @@ class LineEvent0x18 extends LineEvent {
 
 class LineEvent24 extends LineEvent0x18 {}
 
-LineEvent0x18.showAbilityNamesFor = {
+LineEvent0x18.showEffectNamesFor = {
   '4C4': 'Excognition',
   '35D': 'Wildfire',
   '1F5': 'Doton',

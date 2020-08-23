@@ -6,7 +6,7 @@ class StubbedPopupText extends PopupText {
   }
 
   // Stubbed, we don't want overlay hooks
-  HookOverlays() {  }
+  HookOverlays() { }
 
   // Override, only parse the trigger sets once
   OnDataFilesRead(e) {
