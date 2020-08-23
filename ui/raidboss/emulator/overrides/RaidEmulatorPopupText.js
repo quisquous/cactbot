@@ -46,7 +46,7 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     emulator.on('emitLogs', (event) => {
       this.OnLog({
         detail: {
-          logs: event.logs.map((a) => a.EmulatorCommon.properCaseConvertedLine || a.convertedLine),
+          logs: event.logs.map((a) => a.properCaseConvertedLine || a.convertedLine),
         },
       });
       event.logs.forEach((l) => {
@@ -94,32 +94,10 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     });
   }
 
-  _addTextFor(textType, triggerHelper) {
-    let textTypeUpper = textType[0].toUpperCase() + textType.slice(1);
-    // infoText
-    let lowerTextKey = textType + 'Text';
-    // InfoText
-    let upperTextKey = textTypeUpper + 'Text';
-    // info-text
+  _createTextFor(text, textType, lowerTextKey, duration) {
     let textElementClass = textType + '-text';
-    let textObj = triggerHelper.triggerOptions[upperTextKey] ||
-      triggerHelper.trigger[lowerTextKey] || triggerHelper.response[lowerTextKey];
-    if (textObj) {
-      let text = triggerHelper.valueOrFunction(textObj);
-      triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
-      if (text && triggerHelper.textAlertsEnabled) {
-        text = triggerUpperCase(text);
-        let div = this._makeTextElement(text, textElementClass);
-        let duration =
-          (triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey]) * 1000;
-        this.addDisplayText(div, this.emulatedOffset + duration);
-
-        if (!triggerHelper.soundUrl) {
-          triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
-          triggerHelper.soundVol = this.options[textTypeUpper + 'SoundVolume'];
-        }
-      }
-    }
+    let e = this._makeTextElement(text, textElementClass);
+    this.addDisplayText(e, this.emulatedOffset + (duration * 1000));
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper) {

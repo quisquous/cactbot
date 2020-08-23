@@ -161,6 +161,18 @@ let Options = {
           popupText.ReloadTimelines();
           // Store off the event for zone changes/etc
           emulator.dataFilesEvent = e;
+
+          persistor.listEncounters().then((encounters) => {
+            if (encounters.length > 0) {
+              let lastEncounter = window.localStorage.getItem('currentEncounter');
+              if (lastEncounter !== undefined && lastEncounter !== undefined) {
+                lastEncounter = parseInt(lastEncounter);
+                let matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
+                if (matchedEncounters.length)
+                  encounterTab.dispatch('load', lastEncounter);
+              }
+            }
+          });
         });
 
         // Initialize the Raidboss components, bind them to the emulator for event listeners
@@ -181,17 +193,8 @@ let Options = {
 
         // If we don't have any encounters stored, show the intro modal
         persistor.listEncounters().then((encounters) => {
-          if (encounters.length === 0) {
+          if (encounters.length === 0)
             showModal('.introModal');
-          } else {
-            let lastEncounter = window.localStorage.getItem('currentEncounter');
-            if (lastEncounter !== undefined && lastEncounter !== undefined) {
-              lastEncounter = parseInt(lastEncounter);
-              let matchedEncounters = encounters.filter((e) => e.id === lastEncounter);
-              if (matchedEncounters.length)
-                encounterTab.dispatch('load', lastEncounter);
-            }
-          }
         });
 
         let checkFile = async (file) => {

@@ -32,9 +32,9 @@ class LineEvent0x18 extends LineEvent {
   }
 
   convert(repo) {
-    this.abilityName = repo.Abilities[this.abilityId.toUpperCase()];
+    this.abilityName = LineEvent0x18.showAbilityNamesFor[this.abilityId.toUpperCase()];
     let abilityPart = '';
-    if (LineEvent0x18.showAbilityNamesFor.includes(this.abilityId))
+    if (this.abilityName)
       abilityPart = this.abilityName + ' ';
 
     this.convertedLine = this.prefix() +
@@ -51,15 +51,15 @@ class LineEvent0x18 extends LineEvent {
 
 class LineEvent24 extends LineEvent0x18 {}
 
-LineEvent0x18.showAbilityNamesFor = [
-  '4C4', // Excognition
-  '35D', // Wildfire
-  '1F5', // Doton
-  '2ED', // Salted Earth
-  '4B5', // Flamethrower
-  '2E3', // Asylum
-  '777', // Asylum
-  '798', // Sacred Soil
-  '4C7', // Fey Union
-  '742', // Nascent Glint
-];
+LineEvent0x18.showAbilityNamesFor = {
+  '4C4': 'Excognition',
+  '35D': 'Wildfire',
+  '1F5': 'Doton',
+  '2ED': 'Salted Earth',
+  '4B5': 'Flamethrower',
+  '2E3': 'Asylum',
+  '777': 'Asylum',
+  '798': 'Sacred Soil',
+  '4C7': 'Fey Union',
+  '742': 'Nascent Glint',
+};
