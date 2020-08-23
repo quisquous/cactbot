@@ -56,14 +56,17 @@ class PopupText {
       AutoplayHelper.CheckAndPrompt();
 
     this.partyTracker = new PartyTracker();
-    addOverlayListener('PartyChanged', (e) => {
-      this.partyTracker.onPartyChanged(e);
-    });
 
     this.kMaxRowsOfText = 2;
 
     this.Reset();
+    this.HookOverlays();
+  }
 
+  HookOverlays() {
+    addOverlayListener('PartyChanged', (e) => {
+      this.partyTracker.onPartyChanged(e);
+    });
     addOverlayListener('onPlayerChangedEvent', (e) => {
       this.OnPlayerChange(e);
     });
@@ -745,10 +748,22 @@ class PopupText {
       triggerHelper.trigger.run(this.data, triggerHelper.matches);
   }
 
-  _addText(container, e) {
-    container.appendChild(e);
-    if (container.children.length > this.kMaxRowsOfText)
-      container.removeChild(container.children[0]);
+  _createTextFor(text, textType, lowerTextKey, duration) {
+    // info-text
+    let textElementClass = textType + '-text';
+    if (textType !== 'info')
+      text = triggerUpperCase(text);
+    let holder = this[lowerTextKey].getElementsByClassName('holder')[0];
+    let div = this._makeTextElement(text, textElementClass);
+
+    holder.appendChild(div);
+    if (holder.children.length > this.kMaxRowsOfText)
+      holder.removeChild(holder.children[0]);
+
+    window.setTimeout(() => {
+      if (holder.contains(div))
+        holder.removeChild(div);
+    }, duration * 1000);
   }
 
   _addTextFor(textType, triggerHelper) {
@@ -758,22 +773,14 @@ class PopupText {
     let lowerTextKey = textType + 'Text';
     // InfoText
     let upperTextKey = textTypeUpper + 'Text';
-    // info-text
-    let textElementClass = textType + '-text';
     let textObj = triggerHelper.triggerOptions[upperTextKey] ||
       triggerHelper.trigger[lowerTextKey] || triggerHelper.response[lowerTextKey];
     if (textObj) {
       let text = triggerHelper.valueOrFunction(textObj);
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
       if (text && triggerHelper.textAlertsEnabled) {
-        if (textType !== 'info')
-          text = triggerUpperCase(text);
-        let holder = this[lowerTextKey].getElementsByClassName('holder')[0];
-        let div = this._makeTextElement(text, textElementClass);
-        this._addText(holder, div);
-        this._scheduleRemoveText(holder, div,
+        this._createTextFor(text, textType, lowerTextKey,
             (triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey]));
-
         if (!triggerHelper.soundUrl) {
           triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
           triggerHelper.soundVol = this.options[textTypeUpper + 'SoundVolume'];
@@ -788,17 +795,6 @@ class PopupText {
     div.classList.add('animate-text');
     div.innerText = text;
     return div;
-  }
-
-  _scheduleRemoveText(container, e, delay) {
-    window.setTimeout(() => {
-      for (let i = 0; i < container.children.length; ++i) {
-        if (container.children[i] == e) {
-          container.removeChild(e);
-          break;
-        }
-      }
-    }, delay * 1000);
   }
 
   _playAudioFile(url, volume) {
