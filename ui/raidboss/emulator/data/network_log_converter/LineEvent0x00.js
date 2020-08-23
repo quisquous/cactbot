@@ -15,10 +15,10 @@ class LineEvent0x00 extends LineEvent {
        // If speaker is blank, it's excluded from the converted line
        (this.parts[3] !== '' ? this.parts[3] + ':' : '') +
        this.parts.slice(4, this.parts.length - 1).join('|').trim();
-    this.convertedLine = LineEvent00.ReplaceChatSymbols(this.convertedLine);
+    this.convertedLine = LineEvent00.replaceChatSymbols(this.convertedLine);
   }
 
-  static ReplaceChatSymbols(line) {
+  static replaceChatSymbols(line) {
     for (let rep of LineEvent00.chatSymbolReplacements)
       line = line.replace(rep.Search, rep.Replace);
 

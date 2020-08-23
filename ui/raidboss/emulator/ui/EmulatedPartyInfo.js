@@ -18,28 +18,28 @@ class EmulatedPartyInfo extends EventBus {
 
     emulator.on('tick', (timestampOffset, lastLogTimestamp) => {
       if (lastLogTimestamp) {
-        this.UpdatePartyInfo(emulator, lastLogTimestamp);
+        this.updatePartyInfo(emulator, lastLogTimestamp);
         this.latestDisplayedState = Math.max(this.latestDisplayedState, lastLogTimestamp);
       }
     });
     emulator.on('currentEncounterChanged', (encounter) => {
-      this.ResetPartyInfo(encounter);
+      this.resetPartyInfo(encounter);
     });
 
     emulator.on('preSeek', (time) => {
       this.latestDisplayedState = 0;
     });
     emulator.on('postSeek', (time) => {
-      this.UpdatePartyInfo(emulator, time);
+      this.updatePartyInfo(emulator, time);
       this.latestDisplayedState = Math.max(this.latestDisplayedState, time);
     });
-    this.UpdateTriggerState = () => {
+    this.updateTriggerState = () => {
       if (this.$triggerHideCheckbox.checked)
         this.hideNonExecutedTriggers();
       else
         this.showNonExecutedTriggers();
     };
-    this.$triggerHideCheckbox.addEventListener('change', this.UpdateTriggerState);
+    this.$triggerHideCheckbox.addEventListener('change', this.updateTriggerState);
 
     this.$triggerItemTemplate = document.querySelector('template.triggerItem').content.firstElementChild;
     this.$playerInfoRowTemplate = document.querySelector('template.playerInfoRow').content.firstElementChild;
@@ -65,15 +65,15 @@ class EmulatedPartyInfo extends EventBus {
    * @param {RaidEmulator} emulator
    * @param {string} timestamp
    */
-  UpdatePartyInfo(emulator, timestamp) {
+  updatePartyInfo(emulator, timestamp) {
     for (let id in this.displayedParty)
-      this.UpdateCombatantInfo(emulator.currentEncounter, id, timestamp);
+      this.updateCombatantInfo(emulator.currentEncounter, id, timestamp);
   }
 
   /**
    * @param {AnalyzedEncounter} encounter
    */
-  ResetPartyInfo(encounter) {
+  resetPartyInfo(encounter) {
     this.tooltips.map((tt) => {
       tt.tooltip.remove();
       return null;
@@ -89,7 +89,7 @@ class EmulatedPartyInfo extends EventBus {
     let membersToDisplay = encounter.encounter.combatantTracker.partyMembers.sort((l, r) => {
       let a = encounter.encounter.combatantTracker.combatants[l];
       let b = encounter.encounter.combatantTracker.combatants[r];
-      return EmulatedPartyInfo.JobOrder.indexOf(a.job) - EmulatedPartyInfo.JobOrder.indexOf(b.job);
+      return EmulatedPartyInfo.jobOrder.indexOf(a.job) - EmulatedPartyInfo.jobOrder.indexOf(b.job);
     }).slice(0, 8);
     document.querySelectorAll('.playerTriggerInfo').forEach((n) => {
       n.remove();
@@ -97,9 +97,9 @@ class EmulatedPartyInfo extends EventBus {
 
     for (let i = 0; i < membersToDisplay.length; ++i) {
       let id = membersToDisplay[i];
-      let obj = this.GetPartyInfoObjectFor(encounter, id);
+      let obj = this.getPartyInfoObjectFor(encounter, id);
       this.displayedParty[id] = obj;
-      this.UpdateCombatantInfo(encounter, id);
+      this.updateCombatantInfo(encounter, id);
       this.$partyInfo.append(obj.$rootElem);
       this.$triggerInfo.append(obj.$triggerElem);
       this.triggerBars[i].classList.remove('tank');
@@ -123,7 +123,7 @@ class EmulatedPartyInfo extends EventBus {
       }
     }
 
-    this.UpdateTriggerState();
+    this.updateTriggerState();
 
     this.selectPerspective(membersToDisplay[0]);
   }
@@ -147,7 +147,7 @@ class EmulatedPartyInfo extends EventBus {
     this.dispatch('selectPerspective', id);
   }
 
-  UpdateCombatantInfo(encounter, id, stateID = null) {
+  updateCombatantInfo(encounter, id, stateID = null) {
     if (stateID <= this.latestDisplayedState)
       return;
 
@@ -175,7 +175,7 @@ class EmulatedPartyInfo extends EventBus {
     this.displayedParty[id].$mpLabelElem.textContent = mpLabel;
   }
 
-  GetPartyInfoObjectFor(encounter, id) {
+  getPartyInfoObjectFor(encounter, id) {
     let $e = this.$playerInfoRowTemplate.cloneNode(true);
     let $hp = $e.querySelector('.hp');
     let $mp = $e.querySelector('.mp');
@@ -191,7 +191,7 @@ class EmulatedPartyInfo extends EventBus {
       $mpProgElem: $mp.querySelector('.progress-bar'),
       $nameElem: $name,
       id: id,
-      $triggerElem: this.GetTriggerInfoObjectFor(encounter, id),
+      $triggerElem: this.getTriggerInfoObjectFor(encounter, id),
     };
 
     let combatant = encounter.encounter.combatantTracker.combatants[id];
@@ -205,7 +205,7 @@ class EmulatedPartyInfo extends EventBus {
     return ret;
   }
 
-  GetTriggerInfoObjectFor(encounter, id) {
+  getTriggerInfoObjectFor(encounter, id) {
     let $ret = this.$playerTriggerInfoTemplate.cloneNode(true);
     let $container = $ret.querySelector('.d-flex.flex-column');
 
@@ -214,7 +214,7 @@ class EmulatedPartyInfo extends EventBus {
     let $initDataViewer = this.$jsonViewerTemplate.cloneNode(true);
     $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
 
-    $container.append(this._WrapCollapse('Initial Data', $initDataViewer, () => {
+    $container.append(this._wrapCollapse('Initial Data', $initDataViewer, () => {
       $initDataViewer.textContent = JSON.stringify(per.initialData, null, 2);
     }));
 
@@ -222,17 +222,17 @@ class EmulatedPartyInfo extends EventBus {
 
     for (let i in per.triggers.sort((l, r) => l.resolvedOffset - r.resolvedOffset)) {
       let $triggerDataViewer = this.$jsonViewerTemplate.cloneNode(true);
-      let buttonName = this.GetTriggerFiredLabelTime(per.triggers[i]) +
+      let buttonName = this.getTriggerFiredLabelTime(per.triggers[i]) +
         ' - ' + per.triggers[i].triggerHelper.trigger.id;
-      let $trigger = this._WrapCollapse(buttonName, $triggerDataViewer, () => {
+      let $trigger = this._wrapCollapse(buttonName, $triggerDataViewer, () => {
         $triggerDataViewer.textContent = JSON.stringify(per.triggers[i], null, 2);
       });
       let $buttonWrapper = $trigger.querySelector('.wrap-collapse-button');
       let $label = this.$triggerLabelTemplate.cloneNode(true);
       let $labelText = $label.querySelector('.trigger-label-text');
       let $labelTime = $label.querySelector('.trigger-label-time');
-      $labelText.textContent = this.GetTriggerLabelText(per.triggers[i]);
-      $labelTime.textContent = this.GetTriggerResolvedLabelTime(per.triggers[i]);
+      $labelText.textContent = this.getTriggerLabelText(per.triggers[i]);
+      $labelTime.textContent = this.getTriggerResolvedLabelTime(per.triggers[i]);
       $buttonWrapper.append($label);
       if (per.triggers[i].status.executed)
         $trigger.classList.add('trigger-executed');
@@ -247,14 +247,14 @@ class EmulatedPartyInfo extends EventBus {
     let $finalDataViewer = this.$jsonViewerTemplate.cloneNode(true);
     $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
 
-    $container.append(this._WrapCollapse('Final Data', $finalDataViewer, () => {
+    $container.append(this._wrapCollapse('Final Data', $finalDataViewer, () => {
       $finalDataViewer.textContent = JSON.stringify(per.finalData, null, 2);
     }));
 
     return $ret;
   }
 
-  GetTriggerLabelText(trigger) {
+  getTriggerLabelText(trigger) {
     let ret = trigger.status.result || trigger.status.response;
 
     if (typeof (ret) === 'object')
@@ -269,19 +269,19 @@ class EmulatedPartyInfo extends EventBus {
     return ret;
   }
 
-  GetTriggerFiredLabelTime(Trigger) {
+  getTriggerFiredLabelTime(Trigger) {
     return EmulatorCommon.timeToString(
         Trigger.logLine.offset - this.emulator.currentEncounter.encounter.initialOffset,
         false);
   }
 
-  GetTriggerResolvedLabelTime(Trigger) {
+  getTriggerResolvedLabelTime(Trigger) {
     return EmulatorCommon.timeToString(
         Trigger.resolvedOffset - this.emulator.currentEncounter.encounter.initialOffset,
         false);
   }
 
-  _WrapCollapse(label, $obj, onclick) {
+  _wrapCollapse(label, $obj, onclick) {
     let $ret = this.$wrapCollapseTemplate.cloneNode(true);
     let $button = $ret.querySelector('.btn');
     $button.textContent = label;
@@ -298,7 +298,7 @@ class EmulatedPartyInfo extends EventBus {
   }
 }
 
-EmulatedPartyInfo.JobOrder = [
+EmulatedPartyInfo.jobOrder = [
   'PLD', 'WAR', 'DRK', 'GNB',
   'WHM', 'SCH', 'AST',
   'MNK', 'DRG', 'NIN', 'SAM',

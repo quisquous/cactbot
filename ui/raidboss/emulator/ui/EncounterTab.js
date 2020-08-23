@@ -34,18 +34,18 @@ class EncounterTab extends EventBus {
         });
       }
 
-      this.RefreshUI();
+      this.refreshUI();
     });
   }
 
-  RefreshUI() {
-    this.RefreshZones();
-    this.RefreshDates();
-    this.RefreshEncounters();
-    this.RefreshInfo();
+  refreshUI() {
+    this.refreshZones();
+    this.refreshDates();
+    this.refreshEncounters();
+    this.refreshInfo();
   }
 
-  RefreshZones() {
+  refreshZones() {
     this.$zoneColumn.innerHTML = '';
 
     let clear = true;
@@ -66,7 +66,7 @@ class EncounterTab extends EventBus {
         });
         t.classList.add('selected');
         this.currentZone = t.textContent;
-        this.RefreshUI();
+        this.refreshUI();
       });
       this.$zoneColumn.append($row);
     }
@@ -75,7 +75,7 @@ class EncounterTab extends EventBus {
       this.currentZone = undefined;
   }
 
-  RefreshDates() {
+  refreshDates() {
     this.$dateColumn.innerHTML = '';
 
     let clear = true;
@@ -96,7 +96,7 @@ class EncounterTab extends EventBus {
           });
           t.classList.add('selected');
           this.currentDate = t.textContent;
-          this.RefreshUI();
+          this.refreshUI();
         });
         this.$dateColumn.append($row);
       }
@@ -106,7 +106,7 @@ class EncounterTab extends EventBus {
       this.currentDate = undefined;
   }
 
-  RefreshEncounters() {
+  refreshEncounters() {
     this.$encounterColumn.innerHTML = '';
 
     let clear = true;
@@ -133,7 +133,7 @@ class EncounterTab extends EventBus {
           });
           t.classList.add('selected');
           this.currentEncounter = t.getAttribute('data-index');
-          this.RefreshUI();
+          this.refreshUI();
         });
         this.$encounterColumn.append($row);
       }
@@ -143,7 +143,7 @@ class EncounterTab extends EventBus {
       this.currentEncounter = undefined;
   }
 
-  RefreshInfo() {
+  refreshInfo() {
     this.$infoColumn.innerHTML = '';
 
     if (this.currentZone !== undefined && this.currentDate !== undefined &&

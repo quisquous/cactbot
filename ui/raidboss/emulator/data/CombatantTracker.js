@@ -132,7 +132,7 @@ class CombatantTracker {
     this.combatants[line.id].level = this.combatants[line.id].level || extractedState.level || null;
 
     if (line.abilityId && !this.combatants[line.id].job && !line.id.startsWith('4'))
-      this.combatants[line.id].job = CombatantJobSearch.GetJob(line.abilityId);
+      this.combatants[line.id].job = CombatantJobSearch.getJob(line.abilityId);
 
     if (this.combatants[line.id].job)
       this.combatants[line.id].job = this.combatants[line.id].job.toUpperCase();

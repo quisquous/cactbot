@@ -1,21 +1,20 @@
 'use strict';
 
 class CombatantJobSearch {
-  static GetJob(abilityID) {
-    if (!CombatantJobSearch.AbilityMatchRegex.test(abilityID))
+  static getJob(abilityID) {
+    if (!CombatantJobSearch.abilityMatchRegex.test(abilityID))
       return null;
 
     abilityID = Number('0x' + abilityID);
-    for (let Job in CombatantJobSearch.Abilities) {
-      if (CombatantJobSearch.Abilities[Job].includes(abilityID))
+    for (let Job in CombatantJobSearch.abilities) {
+      if (CombatantJobSearch.abilities[Job].includes(abilityID))
         return Job;
     }
     return null;
   }
 }
 
-
-CombatantJobSearch.Abilities = {
+CombatantJobSearch.abilities = {
   PLD: [
     12959, 12961, 12964, 12967, 12968, 12969, 12970, 12971, 12972, 12973, 12974, 12975,
     12976, 12978, 12980, 12981, 12982, 12983, 12984, 12985, 12986, 12987, 12988, 12989,
@@ -138,4 +137,4 @@ CombatantJobSearch.Abilities = {
   ],
 };
 
-CombatantJobSearch.AbilityMatchRegex = /[a-fA-F0-9]{1,4}/i;
+CombatantJobSearch.abilityMatchRegex = /[a-fA-F0-9]{1,4}/i;

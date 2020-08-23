@@ -29,7 +29,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     });
     emulator.on('play', () => {
       this.emulatedStatus = 'play';
-      this.timeline && this.timeline.EmulatedSync(emulator.currentTimestamp);
+      this.timeline && this.timeline.emulatedSync(emulator.currentTimestamp);
     });
     emulator.on('pause', () => {
       this.emulatedStatus = 'pause';
@@ -48,7 +48,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     });
     emulator.on('postSeek', (time) => {
       this.timeline && (this.timeline.popupText = tmpPopupText);
-      this.timeline && this.timeline.EmulatedSync(time);
+      this.timeline && this.timeline.emulatedSync(time);
       for (let i in this.emulatedTimerBars) {
         let bar = this.emulatedTimerBars[i];
         this.updateBar(bar, time);

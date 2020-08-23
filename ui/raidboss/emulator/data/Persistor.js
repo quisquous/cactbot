@@ -8,7 +8,7 @@ class Persistor extends EventBus {
   }
 
   initializeDB() {
-    let request = window.indexedDB.open('RaidEmulatorEncounters', Persistor.DB_VERSION);
+    let request = window.indexedDB.open('RaidEmulatorEncounters', Persistor.dbVersion);
     request.addEventListener('success', (ev) => {
       this.DB = ev.target.result;
       this.dispatch('ready');
@@ -229,4 +229,4 @@ class Persistor extends EventBus {
   }
 }
 
-Persistor.DB_VERSION = 3;
+Persistor.dbVersion = 3;

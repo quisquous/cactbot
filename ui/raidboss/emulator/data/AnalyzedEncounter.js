@@ -20,16 +20,16 @@ class AnalyzedEncounter extends EventBus {
     });
   }
 
-  async Analyze(popupText) {
+  async analyze(popupText) {
     this.popupText = popupText;
     // @TODO: Make this run in parallel sometime in the future, since it could be really slow?
     for (const index in this.encounter.combatantTracker.partyMembers)
-      await this.AnalyzeFor(this.encounter.combatantTracker.partyMembers[index]);
+      await this.analyzeFor(this.encounter.combatantTracker.partyMembers[index]);
 
     this.dispatch('analyzed');
   }
 
-  async AnalyzeFor(ID) {
+  async analyzeFor(ID) {
     const partyMember = this.encounter.combatantTracker.combatants[ID];
 
     if (!partyMember.job) {

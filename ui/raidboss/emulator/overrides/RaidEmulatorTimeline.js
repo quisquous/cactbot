@@ -21,7 +21,7 @@ class RaidEmulatorTimeline extends Timeline {
     });
   }
 
-  EmulatedSync(timestampOffset) {
+  emulatedSync(timestampOffset) {
     if (!this.emulatedFightSyncLastOffset)
       return;
 
