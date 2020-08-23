@@ -2657,7 +2657,7 @@ class Bars {
       this.buffTracker.clear();
 
     for (let i = 0; i < this.changeZoneFuncs.length; ++i)
-    this.changeZoneFuncs[i](e);
+      this.changeZoneFuncs[i](e);
   }
 
   SetPullCountdown(seconds) {
