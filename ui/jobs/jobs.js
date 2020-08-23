@@ -1070,6 +1070,7 @@ class Bars {
 
     this.comboFuncs = [];
     this.jobFuncs = [];
+    this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
@@ -1085,6 +1086,7 @@ class Bars {
   UpdateJob() {
     this.comboFuncs = [];
     this.jobFuncs = [];
+    this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
@@ -1859,6 +1861,10 @@ class Bars {
     }
 
     let furtherRuin = 0;
+    this.changeZoneFuncs.push((e) => {
+      furtherRuin = 0;
+      refreshfurtherRuin();
+    });
     function refreshfurtherRuin() {
       for (let i = 0; i < 4; ++i) {
         if (furtherRuin > i)
@@ -1875,10 +1881,6 @@ class Bars {
       furtherRuin = 0;
       refreshfurtherRuin();
     };
-    addOverlayListener('ChangeZone', function(e) {
-      furtherRuin = 0;
-      refreshfurtherRuin();
-    });
 
     this.jobFuncs.push((jobDetail) => {
       let stack = jobDetail.aetherflowStacks;
@@ -2653,6 +2655,9 @@ class Bars {
     this.UpdateFoodBuff();
     if (this.buffTracker)
       this.buffTracker.clear();
+
+    for (let i = 0; i < this.changeZoneFuncs.length; ++i)
+    this.changeZoneFuncs[i](e);
   }
 
   SetPullCountdown(seconds) {
