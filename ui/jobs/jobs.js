@@ -136,8 +136,8 @@ const kAbility = {
   Thunder4: '1CFC',
   Divination: '40A8',
   LucidDreaming: '1D8A',
-  miasma: 'A8',
-  miasma3: '1D01',
+  Miasma: 'A8',
+  Miasma3: '1D01',
   smnBio: 'A4',
   smnBio2: 'B2',
   Bio3: '1D00',
@@ -1820,8 +1820,8 @@ class Bars {
       classList: ['smn-color-aetherflow'],
     });
 
-    let demiSummomingBox = this.addResourceBox({
-      classList: ['smn-color-demisummom'],
+    let demiSummoningBox = this.addResourceBox({
+      classList: ['smn-color-demisummon'],
     });
 
     let miasmaBox = this.addProcBox({
@@ -1844,7 +1844,7 @@ class Bars {
       fgColor: 'smn-color-trance',
     });
 
-    // Create a Stack Container
+    // FurtherRuin Stack Guage
     let stacksContainer = document.createElement('div');
     stacksContainer.id = 'smn-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
@@ -1859,8 +1859,25 @@ class Bars {
     }
 
     let furtherRuin = 0;
+    function refreshfurtherRuin() {
+      for (let i = 0; i < 4; ++i) {
+        if (furtherRuin > i)
+          ruin4Stacks[i].classList.add('active');
+        else
+          ruin4Stacks[i].classList.remove('active');
+      }
+    }
+    this.gainEffectFuncMap[EffectId.FurtherRuin] = (name, e) => {
+      furtherRuin = parseInt(e.count);
+      refreshfurtherRuin();
+    };
+    this.loseEffectFuncMap[EffectId.FurtherRuin] = () => {
+      furtherRuin = 0;
+      refreshfurtherRuin();
+    };
     addOverlayListener('ChangeZone', function(e) {
       furtherRuin = 0;
+      refreshfurtherRuin();
     });
 
     this.jobFuncs.push((jobDetail) => {
@@ -1868,62 +1885,45 @@ class Bars {
       let summoned = jobDetail.bahamutSummoned;
       let time = (jobDetail.stanceMilliseconds / 1000).toFixed(0);
 
-      // FurtherRuin Stack Guage
-      this.gainEffectFuncMap[EffectId.FurtherRuin] = (name, e) => {
-        if (e.count) // ensure e.count is exist
-          furtherRuin = parseInt(e.count);
-      };
-      this.loseEffectFuncMap[EffectId.FurtherRuin] = () => {
-        furtherRuin = 0;
-      };
-      for (let i = 0; i < 4; ++i) {
-        if (furtherRuin > i)
-          ruin4Stacks[i].classList.add('active');
-        else
-          ruin4Stacks[i].classList.remove('active');
-      }
-
       // turn red when you have too much stacks before EnergyDrain ready.
       aetherflowStackBox.innerText = stack;
-      let p = aetherflowStackBox.parentNode;
       let s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
       if ((stack == 2) && (s <= 8))
-        p.classList.add('too-much-stacks');
+        aetherflowStackBox.parentNode.classList.add('too-much-stacks');
       else
-        p.classList.remove('too-much-stacks');
+        aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
 
-      // Show time remain when summoming/trancing.
+      // Show time remain when summoning/trancing.
       // Turn blue when buhamut ready, and turn orange when firebird ready.
-      // Also change tramceBox color.
-      demiSummomingBox.innerText = '';
-      demiSummomingBox.parentNode.classList.remove('bahamutready', 'firebirdready');
+      // Also change tranceBox color.
+      demiSummoningBox.innerText = '';
+      demiSummoningBox.parentNode.classList.remove('bahamutready', 'firebirdready');
       tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-trance');
       if (time > 0) {
-        demiSummomingBox.innerText = time;
+        demiSummoningBox.innerText = time;
       } else if (jobDetail.dreadwyrmStacks == 2) {
-        demiSummomingBox.parentNode.classList.add('bahamutready');
+        demiSummoningBox.parentNode.classList.add('bahamutready');
       } else if (jobDetail.phoenixReady == true) {
-        demiSummomingBox.parentNode.classList.add('firebirdready');
-        tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-demisummom.firebirdready');
+        demiSummoningBox.parentNode.classList.add('firebirdready');
+        tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-demisummon.firebirdready');
       }
 
-      // Turn red when only 7s summoming time remain, to alarm that cast the second Enkindle.
+      // Turn red when only 7s summoning time remain, to alarm that cast the second Enkindle.
       // Also alarm that don't cast a spell that has cast time, or a WW/SF will be missed.
       // Turn red when only 2s trancing time remain, to alarm that cast deathflare.
-      let pp = demiSummomingBox.parentNode;
       if (time <= 7 && summoned == 3)
-        pp.classList.add('last');
+        demiSummoningBox.parentNode.classList.add('last');
       else if (time > 0 && time <= 2 && summoned == 0)
-        pp.classList.add('last');
+        demiSummoningBox.parentNode.classList.add('last');
       else
-        pp.classList.remove('last');
+        demiSummoningBox.parentNode.classList.remove('last');
     });
 
-    this.abilityFuncMap[kAbility.miasma] = () => {
+    this.abilityFuncMap[kAbility.Miasma] = () => {
       miasmaBox.duration = 0;
       miasmaBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.miasma3] = () => {
+    this.abilityFuncMap[kAbility.Miasma3] = () => {
       miasmaBox.duration = 0;
       miasmaBox.duration = 30;
     };

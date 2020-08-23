@@ -303,13 +303,18 @@
 #mnk-procs,
 #ast-procs,
 #sch-procs,
-#smn-procs,
 #blu-procs,
 #drk-procs,
 #blm-procs {
   position: absolute;
   top: 146px;
   left: 10px;
+}
+
+#smn-procs {
+  position: absolute;
+  top: 146px;
+  left: 0;
 }
 
 #mnk-procs-dragonkick,
@@ -326,13 +331,13 @@
 #smn-procs-biosmn {
   position: relative;
   display: inline-block;
-  left: calc(142px / 3);
+  left: calc(152px / 3);
 }
 
 #smn-procs-energydrain {
   position: relative;
   display: inline-block;
-  left: calc(142px / 3 * 2);
+  left: calc(152px / 3 * 2);
 }
 
 #mnk-procs-twinsnakes,
@@ -348,12 +353,17 @@
 #mnk-procs-demolish,
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
-#smn-procs-trance,
 #blm-procs-thunder,
 #blu-procs-lucid {
   position: relative;
   display: inline-block;
   left: 142px;
+}
+
+#smn-procs-trance {
+  position: relative;
+  display: inline-block;
+  left: 152px;
 }
 
 #smn-stacks,
@@ -650,19 +660,19 @@
   background-color: rgb(60, 80, 200);
 }
 
-.smn-color-demisummom {
+.smn-color-demisummon {
   background-color: rgb(180, 200, 220);
 }
 
-.smn-color-demisummom.bahamutready {
+.smn-color-demisummon.bahamutready {
   background-color: rgb(64, 65, 163);
 }
 
-.smn-color-demisummom.firebirdready {
+.smn-color-demisummon.firebirdready {
   background-color: orange;
 }
 
-.smn-color-demisummom.last {
+.smn-color-demisummon.last {
   background-color: rgb(240, 30, 30);
 }
 
