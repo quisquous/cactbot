@@ -94,7 +94,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
 
   // Overrride
   InitDebugUI() {
-    this.debugElement = {};
+    this.debugElement = document.createElement('div');
   }
 
   // Overrride
