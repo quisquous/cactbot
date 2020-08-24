@@ -1,84 +1,353 @@
 <html>
-<head>
-  <meta charset="utf-8" />
-  <title></title>
-  <!-- General Overlay Scripts-->
-  <link rel="stylesheet" href="../../resources/defaults.css">
-  <link rel="stylesheet" href="../../resources/resize_handle.css">
-  <script src="../../resources/common.js"></script>
-  <script src="../../resources/zone_id.js"></script>
-  <script src="../../resources/party.js"></script>
-  <script src="../../resources/regexes.js"></script>
-  <script src="../../resources/netregexes.js"></script>
-  <script src="../../resources/conditions.js"></script>
-  <script src="../../resources/responses.js"></script>
-  <script src="../../resources/resize_handle.js"></script>
-  <script src="../../resources/timerbar.js"></script>
-  <script src="../../resources/widgetlist.js"></script>
-  <script src="../../resources/user_config.js"></script>
-
-  <!-- Cactbot Overlay Scripts-->
-  <link rel="stylesheet" type="text/css" href="raidboss.css">
-  <script src="common_replacement.js"></script>
-  <script src="raidboss_config.js"></script>
-  <script src="timeline.js"></script>
-  <script src="browser_tts_engine.js"></script>
-  <script src="autoplay_helper.js"></script>
-  <script src="popup-text.js"></script>
-  <script src="raidboss.js"></script>
-  <script src="raidemulator.js"></script>
-  <link rel="stylesheet" type="text/css" href="raidemulator.css">
-</head>
-<body>
-<div id="container" class="hide"></div>
-  <div id="timeline-container">
-    <div id="timeline-resize-helper" class="resize-helper"></div>
-    <div id="timeline-debug"></div>
-    <widget-list id="timeline"></widget-list>
-  </div>
-  <div id="popup-text-container">
-    <div id="popup-text-alarm" class="text"><div class="holder"></div><span class="resize-helper alarm-text"><div>How to use: </div><div>First, lock the overlay.</div></span></div>
-    <div id="popup-text-alert" class="text"><div class="holder"></div><span class="resize-helper alert-text"><div>Then, import a Network log into ACT.</div><div>Select the fight in the list below.</div></span></div>
-    <div id="popup-text-info" class="text"><div class="holder"></div><span class="resize-helper info-text"><div>Press the play button.</div><div>(Remember to lock the overlay to hide this text.)</div></span></div>
-  </div>
-  <!-- Fight Picker & Playback -->
-  <div id='playback-controls'>
-    <div id='emulator-input'>
-      <div id='fight-picker'></div>
-      <button onclick='playLogFile()'>Play</button>
-      <button onclick='stopLogFile()'>Stop</button>
-      <button onclick="toggleStoreFight()">Toggle Store</button>
-      <button onclick="clearStorage()">Clear Storage</button>
-      <button onclick="toggleRunTriggers()">Toggle Run</button>
-      <div id='elapsed-time'></div>
-    </div>
-    <div id='info-panel'></div>
-  </div>
-  <!-- Infos & Play as -->
-  <div class="playback-info">
-    <div class="info-element">
-      <div id="player"></div>
-      <div class="subtitle">Current Player</div>
-    </div>
-  </div>
-  <div class="emulator-info">
-      <div class="info-element">
-        <div id="tInfo"></div>
-        <div id="tInfoSub" class="subtitle">Selected Trigger ID</div>
+  <head>
+    <meta charset="utf-8" />
+    <title></title>
+    <!-- General Overlay Scripts-->
+    <link rel="stylesheet" href="../../resources/defaults.css" />
+    <link rel="stylesheet" href="../../resources/resize_handle.css" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="../../resources/common.js"></script>
+    <script src="../../resources/user_config.js"></script>
+    <script src="../../resources/party.js"></script>
+    <script src="../../resources/regexes.js"></script>
+    <script src="../../resources/netregexes.js"></script>
+    <script src="../../resources/responses.js"></script>
+    <script src="../../resources/conditions.js"></script>
+    <script src="../../resources/resize_handle.js"></script>
+    <script src="../../resources/timerbar.js"></script>
+    <script src="../../resources/widgetlist.js"></script>
+    <script src="../../resources/zone_id.js"></script>
+    <script src="../../resources/pet_names.js"></script>
+    <script src="../../resources/translations.js"></script>
+    <script src="autoplay_helper.js"></script>
+    <script src="common_replacement.js"></script>
+    <script src="raidboss_config.js"></script>
+    <script src="browser_tts_engine.js"></script>
+    <!-- Extend base raidboss classes so we can control them directly -->
+    <script src="timeline.js"></script>
+    <script src="popup-text.js"></script>
+    <script src="emulator/EmulatorCommon.js"></script>
+    <script src="emulator/overrides/StubbedPopupText.js"></script>
+    <script src="emulator/overrides/RaidEmulatorTimeline.js"></script>
+    <script src="emulator/overrides/RaidEmulatorTimelineController.js"></script>
+    <script src="emulator/overrides/RaidEmulatorTimelineUI.js"></script>
+    <script src="emulator/overrides/RaidEmulatorPopupText.js"></script>
+    <script src="emulator/overrides/RaidEmulatorOverlayApiHook.js"></script>
+    <script src="emulator/data/CombatantJobSearch.js"></script>
+    <script src="emulator/data/CombatantState.js"></script>
+    <script src="emulator/data/Combatant.js"></script>
+    <script src="emulator/data/CombatantTracker.js"></script>
+    <script src="emulator/EventBus.js"></script>
+    <script src="emulator/data/Encounter.js"></script>
+    <script src="emulator/data/AnalyzedEncounter.js"></script>
+    <script src="emulator/data/PopupTextAnalysis.js"></script>
+    <script src="emulator/data/RaidEmulator.js"></script>
+    <script src="emulator/ui/Tooltip.js"></script>
+    <script src="emulator/ui/ProgressBar.js"></script>
+    <script src="emulator/ui/EmulatedPartyInfo.js"></script>
+    <script src="emulator/ui/EmulatedMap.js"></script>
+    <script src="emulator/data/PersistorEncounter.js"></script>
+    <script src="emulator/data/Persistor.js"></script>
+    <script src="emulator/data/NetworkLogConverter.js"></script>
+    <script src="emulator/data/LogEventHandler.js"></script>
+    <script src="emulator/data/network_log_converter/LogRepository.js"></script>
+    <script src="emulator/data/network_log_converter/ParseLine.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x00.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x01.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x02.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x03.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x04.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x0C.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x14.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x15.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x16.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x17.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x18.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x19.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1A.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1B.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1C.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1D.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1E.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x1F.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x22.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x23.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x24.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x25.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x26.js"></script>
+    <script src="emulator/data/network_log_converter/LineEvent0x27.js"></script>
+    <script src="emulator/ui/EncounterTab.js"></script>
+    <script src="raidemulator.js"></script>
+    <link rel="stylesheet" type="text/css" href="raidemulator.css" />
+  </head>
+  <body class="bg-secondary">
+    <div class="modal-backdrop hide"></div>
+    <div class="modal deleteDBModal text-dark" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Delete Encounter Database</h5>
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>You are about to delete the encounter database. Are you sure?</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Yes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+          </div>
+        </div>
       </div>
-      <div class="info-element right">
-        <div id="party"></div>
-        <div class="subtitle">Player Characters</div>
+    </div>
+    <div class="modal introModal text-dark" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Introduction</h5>
+            <button type="button" class="close" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Welcome to the Raid Emulator.</p>
+            <p>This tool replays encounters and shows what triggers were fired when, and allows you to view the encounter from any player's perspective.</p>
+            <p>This tool requires that ACT be running in the background with both ngld's OverlayPlugin and the Cactbot plugin loaded.</p>
+            <p>No overlays need to be created.</p>
+            <p>Current WebSocket status: <span class="d-none websocketConnected text-success">Connected</span><span class="websocketDisconnected text-error">Disconnected</span>.</p>
+            <p>To get started, you need to import an encounter via one of the following options:</p>
+            <p>
+              <ul>
+                <li>Drag and drop a network log file from <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code> on to the page</li>
+                <li>Click the <code>Load Network Log</code> button in the bottom drawer and select a network log file from <code>%APPDATA%/Advanced Combat Tracker/FFXIVLogs/</code></li>
+              </ul>
+            </p>
+            <p>Then, select an encounter via the bottom drawer.</p>
+            <p>Once you have loaded an encounter, you can:</p>
+            <p>
+              <ul>
+                <li>Change the currrent perspective by selecting a party member on the right</li>
+                <li>Seek to any point in the encounter by clicking the bar at the top</li>
+                <li>Hover over trigger indicators in the top bar to see their names</li>
+                <li>See detailed information about triggers fired by clicking their button</li>
+              </ul>
+            </p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary pull-right" data-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
-  </div>
-  <!-- Triggerlines -->
-  <div class="triggerlines">
-    <div id="triggerline-all" class="triggerline all"></div>
-    <div id="triggerline-tank" class="triggerline tank"></div>
-    <div id="triggerline-healer" class="triggerline healer"></div>
-    <div id="triggerline-dps" class="triggerline dps"></div>
-    <div id="triggerline-playAs" class="triggerline all"></div>
-  </div>
-  <div class="emulator-background"></div>
-</body>
+    </div>
+    <div class="container-fluid d-flex flex-column flex-fill h-100">
+      <div class="row my-3 progressBarRow">
+        <div class="col-auto">
+          <button
+            class="btn btn-primary h-auto play"
+            type="button"
+          >
+            <i class="fa fa-play" aria-hidden="true"></i>
+          </button>
+          <button
+            class="btn btn-primary h-auto pause d-none"
+            type="button"
+          >
+            <i class="fa fa-pause" aria-hidden="true"></i>
+          </button>
+        </div>
+        <div class="col">
+          <div class="progress h-100 encounterProgressBar">
+            <div
+              class="progress-bar"
+              role="progressbar"
+              aria-valuenow="0"
+              aria-valuemin="0"
+              aria-valuemax="0"
+            ></div>
+          </div>
+          <div class="playerTriggers">
+            <div class="triggerBar player0"></div>
+            <div class="triggerBar player1"></div>
+            <div class="triggerBar player2"></div>
+            <div class="triggerBar player3"></div>
+            <div class="triggerBar player4"></div>
+            <div class="triggerBar player5"></div>
+            <div class="triggerBar player6"></div>
+            <div class="triggerBar player7"></div>
+            <div class="engageIndicator d-none"></div>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="d-inline progress-bar-timestamp current-timestamp">00:00</div>
+          <div class="d-inline progress-bar-timestamp divider-timestamp">/</div>
+          <div class="d-inline progress-bar-timestamp duration-timestamp">00:00</div>
+        </div>
+      </div>
+      <div class="row mainContentRow flex-fill">
+        <div class="col-5 raidbossTimelineColumn">
+          <div class="d-flex flex-column flex-fill">
+            <div class="timer-bar-container"></div>
+            <div class="popup-text-container-outer"></div>
+          </div>
+        </div>
+        <div class="col-5 triggerInfoColumn border-dark border-left border-right">
+          <div class="triggerHideSkippedContainer" data-toggle="tooltip" title="Hide triggers that were not executed">
+            <input type="checkbox" name="hideSkipped" class="triggerHideSkipped" checked="checked">
+          </div>
+        </div>
+        <div class="col-2 partyInfoColumn">
+          <div class="d-flex flex-column flex-fill">
+            <div style="height: calc(16.666667vw - 30px)" class="p-1 map">
+            </div>
+            <div class="flex-fill party"></div>
+          </div>
+        </div>
+      </div>
+      <div class="row encountersRow bg-secondary">
+        <div class="col">
+          <button
+            class="btn btn-primary w-auto h-auto float-right showEncountersButton"
+            type="button"
+            data-toggle="collapse"
+            data-target="#encountersTab"
+            aria-expanded="true"
+            aria-controls="encountersTab"
+          >
+            <i class="fa fa-chevron-up" aria-hidden="true"></i>
+            <i class="fa fa-chevron-down" aria-hidden="true"></i>
+          </button>
+          <div class="collapse show" id="encountersTab">
+            <div class="row flex-fill border-top border-dark">
+              <button class="btn btn-primary btn-sm loadNetworkLogButton mx-2" type="button">Load Network Log</button>
+              <button class="btn btn-primary btn-sm exportDBButton mx-2" type="button">Export DB</button>
+              <button class="btn btn-primary btn-sm importDBButton mx-2" type="button">Import DB</button>
+              <button class="btn btn-primary btn-sm clearDBButton mx-2" type="button">Clear DB</button>
+            </div>
+            <div class="row flex-fill border-top border-dark encountersContainer">
+              <div
+                class="col col-3 border-right border-dark h-100 mh-100 zoneList"
+              ></div>
+              <div
+                class="col col-3 border-right border-dark h-100 mh-100 dateList"
+              ></div>
+              <div
+                class="col col-3 border-right border-dark h-100 mh-100 encounterList"
+              ></div>
+              <div class="col col-3 h-100 mh-100 encounterInfo"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <input type="file" name="files" class="d-none loadFileInput">
+    <div class="templates">
+      <template class="textElement">
+        <div class="popup-text-container">
+          <span class="popup-text"></span><span class="popup-text-remaining pl-1"></span>
+        </div>
+      </template>
+      <template class="progress">
+        <div class="progress mb-1">
+          <div class="progress-bar"></div>
+          <div class="timer-bar-left-label"></div>
+          <div class="timer-bar-right-label"></div>
+        </div>
+      </template>
+      <template class="triggerItem">
+        <div class="triggerItem"></div>
+      </template>
+      <template class="playerInfoRow">
+        <div class="playerInfoRow">
+          <div>
+            <div class="jobicon"></div>
+            <div class="hp">
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>
+                <div class="label text-monospace"></div>
+              </div>
+            </div>
+            <div class="mp">
+              <div class="progress">
+                <div class="progress-bar" role="progressbar" aria-valuenow="" aria-valuemin="0" aria-valuemax=""></div>
+                <div class="label text-monospace"></div>
+              </div>
+            </div>
+          </div>
+          <div class="playerName"></div>
+        </div>
+      </template>
+      <template class="playerTriggerInfo">
+        <div class="playerTriggerInfo d-none">
+          <div class="d-flex flex-column">
+            <div class="d-flex flex-column"></div>
+          </div>
+        </div>
+      </template>
+      <template class="jsonViewer">
+        <pre class="json-viewer"></pre>
+      </template>
+      <template class="triggerLabel">
+        <div class="trigger-label">
+          <div class="trigger-label-time"></div>
+          <div class="trigger-label-text"></div>
+        </div>
+      </template>
+      <template class="wrapCollapse">
+        <div class="wrap-collapse">
+          <div class="wrap-collapse-button">
+            <button class="btn btn-outline-light btn-sm text-white" type="button"></button>
+          </div>
+          <div class="wrap-collapse-wrapper d-none"></div>
+        </div>
+      </template>
+      <template class="encounterTabRow">
+        <div class="selectorRow border-bottom border-dark"></div>
+      </template>
+      <template class="encounterTabEncounterRow">
+        <div class="selectorRow border-bottom border-dark">
+          <div class="encounterStart d-inline"></div>
+          <div class="encounterName d-inline mx-2"></div>
+          <div class="encounterDuration d-inline"></div>
+        </div>
+      </template>
+      <template class="encounterInfo">
+        <div class="encounterInfo">
+          <div class="encounterLoad btn btn-primary pull-right mb-1">Load Encounter</div>
+          <div class="encounterParse btn btn-primary pull-right mb-1">Reparse Encounter</div>
+          <div class="encounterPrune btn btn-primary pull-right mb-1">Prune Encounter</div>
+          <div class="encounterDelete btn btn-primary pull-right mb-1">Delete Encounter</div>
+          <div class="encounterZone">Zone: <span class="label"></span></div>
+          <div class="encounterStart">Start: <span class="label"></span></div>
+          <div class="encounterDuration">Duration: <span class="label"></span></div>
+          <div class="encounterOffset">Pull At: <span class="label"></span></div>
+          <div class="encounterName">Name: <span class="label"></span></div>
+          <div class="encounterStartStatus">Start Status: <span class="label"></span></div>
+          <div class="encounterEndStatus">End Status: <span class="label"></span></div>
+        </div>
+      </template>
+      <template class="tooltip bottom">
+        <div class="tooltip bs-tooltip-bottom" role="tooltip" x-placement="bottom">
+          <div class="arrow"></div>
+          <div class="tooltip-inner"></div>
+        </div>
+      </template>
+      <template class="tooltip left">
+        <div class="tooltip bs-tooltip-left" role="tooltip" x-placement="left">
+          <div class="arrow"></div>
+          <div class="tooltip-inner"></div>
+        </div>
+      </template>
+    </div>
+  </body>
 </html>
