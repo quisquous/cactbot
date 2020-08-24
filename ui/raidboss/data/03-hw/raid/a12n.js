@@ -12,6 +12,7 @@
       alarmText: {
         en: 'Limit break now!',
         de: 'Limit break jetzt!',
+        fr: 'Limit break maintenant !',
         cn: '坦克LB！',
       },
     },
@@ -225,7 +226,8 @@
         'The General\'s Might': 'Pouvoir d\'Arrhabée',
         'The General\'s Time': 'Temps d\'Arrhabée',
         'The General\'s Wing': 'Aile d\'Arrhabée',
-        'timegate': 'Porte temporelle',
+        'timegate(?!s)': 'Porte temporelle',
+        'timegates active': 'Porte temporelle active',
         'Void Of Repentance': 'Vide du repentir',
       },
     },
