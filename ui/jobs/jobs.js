@@ -138,8 +138,8 @@ const kAbility = {
   LucidDreaming: '1D8A',
   Miasma: 'A8',
   Miasma3: '1D01',
-  Biosmn: 'A4',
-  Biosmn2: 'B2',
+  BioSmn: 'A4',
+  BioSmn2: 'B2',
   Bio3: '1D00',
   Tridisaster: 'DFC',
   EnergyDrain: '407C',
@@ -1761,7 +1761,7 @@ class Bars {
     this.jobFuncs.push((jobDetail) => {
       let aetherflow = jobDetail.aetherflowStacks;
       let fairygauge = jobDetail.fairyGauge;
-      let milli = (jobDetail.fairyMilliseconds / 1000).toFixed(0);
+      let milli = Math.floor(jobDetail.fairyMilliseconds / 1000);
       aetherflowStackBox.innerText = aetherflow;
       fairyGaugeBox.innerText = fairygauge;
       let f = fairyGaugeBox.parentNode;
@@ -1861,31 +1861,31 @@ class Bars {
     }
 
     let furtherRuin = 0;
-    function refreshfurtherRuin() {
+    const refreshFurtherRuin = () => {
       for (let i = 0; i < 4; ++i) {
         if (furtherRuin > i)
           ruin4Stacks[i].classList.add('active');
         else
           ruin4Stacks[i].classList.remove('active');
       }
-    }
+    };
     this.gainEffectFuncMap[EffectId.FurtherRuin] = (name, e) => {
       furtherRuin = parseInt(e.count);
-      refreshfurtherRuin();
+      refreshFurtherRuin();
     };
     this.loseEffectFuncMap[EffectId.FurtherRuin] = () => {
       furtherRuin = 0;
-      refreshfurtherRuin();
+      refreshFurtherRuin();
     };
     this.changeZoneFuncs.push((e) => {
       furtherRuin = 0;
-      refreshfurtherRuin();
+      refreshFurtherRuin();
     });
 
     this.jobFuncs.push((jobDetail) => {
       let stack = jobDetail.aetherflowStacks;
       let summoned = jobDetail.bahamutSummoned;
-      let time = (jobDetail.stanceMilliseconds / 1000).toFixed(0);
+      let time = Math.floor(jobDetail.stanceMilliseconds / 1000);
 
       // turn red when you have too much stacks before EnergyDrain ready.
       aetherflowStackBox.innerText = stack;
@@ -1929,11 +1929,11 @@ class Bars {
       miasmaBox.duration = 0;
       miasmaBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Biosmn] = () => {
+    this.abilityFuncMap[kAbility.BioSmn] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Biosmn2] = () => {
+    this.abilityFuncMap[kAbility.BioSmn2] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
@@ -2656,8 +2656,8 @@ class Bars {
     if (this.buffTracker)
       this.buffTracker.clear();
 
-    for (let i = 0; i < this.changeZoneFuncs.length; ++i)
-      this.changeZoneFuncs[i](e);
+    for (const func of this.changeZoneFuncs)
+      func(e);
   }
 
   SetPullCountdown(seconds) {
