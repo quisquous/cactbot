@@ -787,6 +787,12 @@ class TimelineUI {
   }
 }
 
+const CountdownState = {
+  none: 0,
+  active: 1,
+  wipe: 2,
+};
+
 class TimelineController {
   constructor(options, ui) {
     this.options = options;
@@ -794,6 +800,12 @@ class TimelineController {
     this.dataFiles = {};
     // data files not sent yet.
     this.timelines = null;
+
+    // Fix for #1453
+    // Countdown state is tracked and if the bug is encountered (countdown, wipe, engage)
+    // then the engage line is never passed to the timeline
+    this.countdownState = CountdownState.none;
+    this.wipeRegex = Regexes.network6d({ command: '40000010' });
   }
 
   SetPopupTextInterface(popupText) {
@@ -801,6 +813,9 @@ class TimelineController {
   }
 
   SetInCombat(inCombat) {
+    // On wipe, set countdown state to Wipe if it was Active
+    if (!inCombat && this.countdownState === CountdownState.active)
+      this.countdownState = CountdownState.wipe;
     if (!inCombat && this.activeTimeline)
       this.activeTimeline.Stop();
   }
@@ -808,8 +823,38 @@ class TimelineController {
   OnLogEvent(e) {
     if (!this.activeTimeline)
       return;
-    for (let i = 0; i < e.detail.logs.length; ++i)
+    for (let i = 0; i < e.detail.logs.length; ++i) {
+      let startMatch =
+        e.detail.logs[i].match(LocaleRegex.countdownStart[this.options.ParserLanguage]);
+      if (startMatch) {
+        // If we're not in a wipe state, reset the state to countdown active
+        if (this.countdownState !== CountdownState.wipe)
+          this.countdownState = CountdownState.active;
+      } else {
+        let engageMatch =
+          e.detail.logs[i].match(LocaleRegex.countdownEngage[this.options.ParserLanguage]);
+        if (engageMatch) {
+          let previousState = this.countdownState;
+          this.countdownState = CountdownState.none;
+          // If we see an engage after a wipe, but before combat has started otherwise
+          // (e.g. countdown > wipe > face pull > engage), don't process this engage line
+          if (previousState === CountdownState.wipe)
+            continue;
+        } else {
+          // On cancel, reset the countdown state
+          let cancelMatch =
+            e.detail.logs[i].match(LocaleRegex.countdownCancel[this.options.ParserLanguage]);
+          if (cancelMatch) {
+            this.countdownState = CountdownState.none;
+          } else {
+            let wipeMatch = e.detail.logs[i].match(this.wipeRegex);
+            if (wipeMatch)
+              this.countdownState = CountdownState.wipe;
+          }
+        }
+      }
       this.activeTimeline.OnLogLine(e.detail.logs[i]);
+    }
   }
 
   SetActiveTimeline(timelineFiles, timelines, replacements, triggers, styles) {
