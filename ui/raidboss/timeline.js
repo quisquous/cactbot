@@ -9,6 +9,22 @@ const timelineInstructions = {
     'Real timelines automatically',
     'appear when supported.',
   ],
+  ja: [
+    'こちらはデバッグ用の',
+    'タイムラインです。',
+    'オーバーレイをロックすれば、',
+    'デバッグ用テキストも消える',
+    'サポートするゾーンにはタイム',
+    'ラインを動的にロードする。',
+  ],
+  cn: [
+    '显示在此处的是',
+    '调试用时间轴。',
+    '将此悬浮窗锁定',
+    '则会立刻消失',
+    '真实的时间轴会根据',
+    '当前区域动态加载并显示',
+  ],
 };
 
 function computeBackgroundColorFrom(element, classList) {
