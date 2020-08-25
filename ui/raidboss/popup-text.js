@@ -16,7 +16,7 @@ const raidbossInstructions = {
     '파란 배경과 이 텍스트는',
     '오버레이를 위치고정 하시면 사라집니다.',
     '지원되는 구역에 타임라인과 트리거가 표시됩니다',
-    '여름여울 농장에서 /countdown 를 실행하여 raidboss를 테스트 할 수 있습니다.',
+    '여름여울 농장에서 /countdown을 실행하여 raidboss를 테스트 할 수 있습니다.',
   ],
 };
 
