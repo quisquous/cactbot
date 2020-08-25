@@ -598,7 +598,7 @@ class TimelineUI {
   constructor(options) {
     this.options = options;
     this.init = false;
-
+    this.lang = Options.TimelineLanguage || Options.ParserLanguage || 'en';
     this.AddDebugInstructions();
   }
 
@@ -608,7 +608,6 @@ class TimelineUI {
     this.init = true;
 
     this.root = document.getElementById('timeline-container');
-    this.lang = Options.TimelineLanguage || Options.ParserLanguage || 'en';
     this.root.classList.add('lang-' + this.lang);
     if (Options.Skin)
       this.root.classList.add('skin-' + Options.Skin);
