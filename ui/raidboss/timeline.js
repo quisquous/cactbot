@@ -615,7 +615,7 @@ class TimelineUI {
   }
 
   AddDebugInstructions() {
-    const lang = this.lang in timelineInstructions ? this.lang : 'en';
+    const lang = this.options.DisplayLanguage in timelineInstructions ? this.options.DisplayLanguage : 'en';
     const instructions = timelineInstructions[lang];
 
     // Helper for positioning/resizing when locked.
