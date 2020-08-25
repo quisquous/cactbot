@@ -1,5 +1,17 @@
 'use strict';
 
+// There should be (at most) six lines of instructions.
+const raidbossInstructions = {
+  en: [
+    'Instructions as follows:',
+    'This is debug text for resizing.',
+    'It goes away when you lock the overlay',
+    'along with the blue background.',
+    'Timelines and triggers will show up in supported zones.',
+    'Test raidboss with a /countdown in Summerford Farms.',
+  ],
+};
+
 // Because apparently people don't understand uppercase greek letters,
 // add a special case to not uppercase them.
 function triggerUpperCase(str) {
@@ -60,7 +72,19 @@ class PopupText {
     this.kMaxRowsOfText = 2;
 
     this.Reset();
+    this.AddDebugInstructions();
     this.HookOverlays();
+  }
+
+  AddDebugInstructions() {
+    const lang = this.displayLang in raidbossInstructions ? this.displayLang : 'en';
+    const instructions = raidbossInstructions[lang];
+    for (let i = 0; i < instructions.length; ++i) {
+      const elem = document.getElementById(`instructions-${i}`);
+      if (!elem)
+        return;
+      elem.innerHTML = instructions[i];
+    }
   }
 
   HookOverlays() {
