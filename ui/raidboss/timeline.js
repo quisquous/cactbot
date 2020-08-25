@@ -9,6 +9,14 @@ const timelineInstructions = {
     'Real timelines automatically',
     'appear when supported.',
   ],
+  ko: [
+    '이 막대바는 디버그용',
+    '타임라인 입니다.',
+    '오버레이를 위치고정 하시면,',
+    '이 막대바도 사라집니다.',
+    '지원되는 구역에서 타임라인이',
+    '자동으로 표시됩니다.',
+  ],
 };
 
 function computeBackgroundColorFrom(element, classList) {
