@@ -10,6 +10,14 @@ const raidbossInstructions = {
     'Timelines and triggers will show up in supported zones.',
     'Test raidboss with a /countdown in Summerford Farms.',
   ],
+  ko: [
+    '<조작 설명>',
+    '크기 조정을 위한 디버그 창입니다',
+    '파란 배경과 이 텍스트는',
+    '오버레이를 위치잠금하면 사라집니다',
+    '지원되는 구역에서 타임라인과 트리거가 표시됩니다',
+    '여름여울 농장에서 초읽기를 실행하여 테스트 해볼 수 있습니다',
+  ],
 };
 
 // Because apparently people don't understand uppercase greek letters,
