@@ -1,13 +1,14 @@
 'use strict';
 
+const kWellFedContentTypes = [
+  ContentType.Dungeons,
+  ContentType.Trials,
+  ContentType.Raids,
+  ContentType.UltimateRaids,
+];
+
 // See user/jobs-example.js for documentation.
 let Options = {
-  WellFedContentTypes: [
-    ContentType.Trials,
-    ContentType.Raids,
-    ContentType.UltimateRaids,
-  ],
-
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
@@ -2602,10 +2603,7 @@ class Bars {
         return false;
       if (this.inCombat)
         return false;
-      if (this.level < this.options.MaxLevel)
-        return true;
-
-      return this.options.WellFedContentTypes.includes(this.contentType);
+      return kWellFedContentTypes.includes(this.contentType);
     };
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
