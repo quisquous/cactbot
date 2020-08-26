@@ -10,6 +10,22 @@ const raidbossInstructions = {
     'Timelines and triggers will show up in supported zones.',
     'Test raidboss with a /countdown in Summerford Farms.',
   ],
+  ja: [
+    '操作手順：',
+    'デバッグ用のテキストです。',
+    '青色のオーバーレイを',
+    'ロックすれば消える。',
+    'サポートするゾーンにタイムラインとトリガーテキストが表示できる。',
+    'サマーフォード庄に/countdownコマンドを実行し、raidbossをテストできる。',
+  ],
+  cn: [
+    '请按以下步骤操作：',
+    '这是供用户调整悬浮窗大小的调试用文本',
+    '当你锁定此蓝色背景的悬浮窗',
+    '该文本即会消失。',
+    '在支持的区域中会自动加载时间轴和触发器。',
+    '可在盛夏农庄使用/countdown命令测试该raidboss模块。',
+  ],
   ko: [
     '<조작 설명>',
     '크기 조정을 위한 디버그 창입니다',
