@@ -25,6 +25,14 @@ const timelineInstructions = {
     '真实的时间轴会根据',
     '当前区域动态加载并显示',
   ],
+  ko: [
+    '이 막대바는 디버그용',
+    '타임라인 입니다.',
+    '오버레이를 위치잠금하면,',
+    '이 막대바도 사라집니다.',
+    '지원되는 구역에서 타임라인이',
+    '자동으로 표시됩니다.',
+  ],
 };
 
 function computeBackgroundColorFrom(element, classList) {
@@ -606,7 +614,7 @@ class TimelineUI {
   constructor(options) {
     this.options = options;
     this.init = false;
-
+    this.lang = Options.TimelineLanguage || Options.ParserLanguage || 'en';
     this.AddDebugInstructions();
   }
 
@@ -616,7 +624,6 @@ class TimelineUI {
     this.init = true;
 
     this.root = document.getElementById('timeline-container');
-    this.lang = Options.TimelineLanguage || Options.ParserLanguage || 'en';
     this.root.classList.add('lang-' + this.lang);
     if (Options.Skin)
       this.root.classList.add('skin-' + Options.Skin);
