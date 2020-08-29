@@ -131,7 +131,7 @@ let kFieldDamage = 9;
 // It appears a little bit that flags come in pairs of values, but it's unclear
 // what these mean.
 let kShiftFlagValues = ['3E', '113', '213', '313'];
-let kFlagInstantDeath = 'XX'; // FIXME
+let kFlagInstantDeath = '36'; // Always 36 ?
 // miss, damage, block, parry, instant death
 let kAttackFlags = ['01', '03', '05', '06', kFlagInstantDeath];
 
