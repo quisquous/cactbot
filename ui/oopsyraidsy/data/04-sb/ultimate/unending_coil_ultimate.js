@@ -14,12 +14,12 @@
       id: 'UCU Twister Death',
       damageRegex: '26AB',
       condition: function(e, data) {
-        // Instant death uses '32' as its flags, differentiating
+        // Instant death uses '36' as its flags, differentiating
         // from the explosion damage you take when somebody else
         // pops one.
-        return data.IsPlayerId(e.targetId) && e.flags == '32';
+        return data.IsPlayerId(e.targetId) && e.flags == '36';
       },
-      mistake: function(e, data) {
+      mistake: function(e) {
         return {
           type: 'fail',
           blame: e.targetName,
