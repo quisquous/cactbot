@@ -1235,6 +1235,7 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '26B2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '26B2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '26B2', capture: false }),
+      suppressSeconds: 2,
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',
