@@ -1036,7 +1036,7 @@
         'Holy': 'Sanctus',
         'Hostile Aspect': 'Polarisierte Welle',
         'Impact Stream': 'Durchschlagsstrom',
-        'Ivory Palm': 'weiß(?:e|er|es|en) Hand',
+        'Ivory Palm': 'weiße Hand',
         'Lancing Bolt': 'Donnerlanze',
         'Lateral Zantetsuken': 'Kata-Zantetsuken',
         'Legendary Geas': 'Legendenhieb',
