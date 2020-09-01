@@ -530,7 +530,7 @@
         en: 'Min HP: Provoke Boss => Late NE Tornado',
         de: 'Min HP: Boss herrausfordern => Später No Tornado',
         fr: 'PV Min : Provocation Boss => Cyclone NE en retard',
-        cn: '最少HP:挑衅BOSS=>东北龙卷风',
+        cn: '最少HP:挑衅BOSS => 东北龙卷风',
         ko: 'HP 최소: 보스 도발 => 북동쪽 회오리',
       },
     },
