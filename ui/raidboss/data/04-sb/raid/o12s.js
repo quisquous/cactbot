@@ -440,7 +440,7 @@
           de: 'Kein Marker',
           fr: 'Aucun marqueur',
           ja: '無職',
-          cn: '闲D',
+          cn: '无BUFF',
           ko: '무징 대상자',
         };
       },
