@@ -66,7 +66,7 @@ namespace Cactbot {
         region_ = "intl";
 
       opcodes = new Dictionary<string, OPCodes>();
-      opcodes.Add("ko", v5_1);
+      opcodes.Add("ko", v5_2);
       opcodes.Add("cn", v5_2);
       opcodes.Add("intl", v5_2);
 
