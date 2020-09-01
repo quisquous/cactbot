@@ -1,13 +1,14 @@
 'use strict';
 
+const kWellFedContentTypes = [
+  ContentType.Dungeons,
+  ContentType.Trials,
+  ContentType.Raids,
+  ContentType.UltimateRaids,
+];
+
 // See user/jobs-example.js for documentation.
 let Options = {
-  WellFedContentTypes: [
-    ContentType.Trials,
-    ContentType.Raids,
-    ContentType.UltimateRaids,
-  ],
-
   ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
@@ -75,6 +76,7 @@ const kAbility = {
   Maim: '25',
   StormsEye: '2D',
   StormsPath: '2A',
+  InnerRelease: '1CDD',
   TrickAttack: '8D2',
   Embolden: '1D60',
   Aetherflow: 'A6',
@@ -136,6 +138,16 @@ const kAbility = {
   Thunder4: '1CFC',
   Divination: '40A8',
   LucidDreaming: '1D8A',
+  Miasma: 'A8',
+  Miasma3: '1D01',
+  BioSmn: 'A4',
+  BioSmn2: 'B2',
+  Bio3: '1D00',
+  Tridisaster: 'DFC',
+  EnergyDrain: '407C',
+  EnergySiphon: '407E',
+  DreadwyrmTrance: 'DFD',
+  FirebirdTrance: '40A5',
 };
 
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
@@ -1055,6 +1067,7 @@ class Bars {
 
     this.comboFuncs = [];
     this.jobFuncs = [];
+    this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
@@ -1070,6 +1083,7 @@ class Bars {
   UpdateJob() {
     this.comboFuncs = [];
     this.jobFuncs = [];
+    this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
@@ -1253,6 +1267,7 @@ class Bars {
       'PLD': this.setupPld,
       'AST': this.setupAst,
       'SCH': this.setupSch,
+      'SMN': this.setupSmn,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
       'BLM': this.setupBlm,
@@ -1425,17 +1440,31 @@ class Bars {
         if (eyeBox.duration > 0) {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
-          eyeBox.duration = Math.min(old + 10, 30);
+          eyeBox.duration = Math.min(old + 30, 59.5);
         }
         return;
       }
       if (skill == kAbility.StormsEye) {
-        eyeBox.duration = 0;
+        if (eyeBox.duration > 0) {
+          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 30, 59.5);
         // Storm's Eye applies with some animation delay here, and on the next
         // Storm's Eye, it snapshots the damage when the gcd is started, so
         // add some of a gcd here in duration time from when it's applied.
-        eyeBox.duration = 30 + 1;
+        } else {
+          eyeBox.duration = 0;
+          eyeBox.duration = 30 + 1;
+        }
       }
+      this.abilityFuncMap[kAbility.InnerRelease] = () => {
+        if (eyeBox.duration > 0) {
+          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+          eyeBox.duration = 0;
+          eyeBox.duration = Math.min(old + 15, 59.5);
+        }
+        return;
+      };
 
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
@@ -1743,7 +1772,7 @@ class Bars {
     this.jobFuncs.push((jobDetail) => {
       let aetherflow = jobDetail.aetherflowStacks;
       let fairygauge = jobDetail.fairyGauge;
-      let milli = (jobDetail.fairyMilliseconds / 1000).toFixed(0);
+      let milli = Math.floor(jobDetail.fairyMilliseconds / 1000);
       aetherflowStackBox.innerText = aetherflow;
       fairyGaugeBox.innerText = fairygauge;
       let f = fairyGaugeBox.parentNode;
@@ -1796,6 +1825,171 @@ class Bars {
       aetherflowBox.valuescale = this.gcdSpell();
       lucidBox.valuescale = this.gcdSpell();
       lucidBox.threshold = this.gcdSpell() + 1;
+    };
+  }
+
+  setupSmn() {
+    let aetherflowStackBox = this.addResourceBox({
+      classList: ['smn-color-aetherflow'],
+    });
+
+    let demiSummoningBox = this.addResourceBox({
+      classList: ['smn-color-demisummon'],
+    });
+
+    let miasmaBox = this.addProcBox({
+      id: 'smn-procs-miasma',
+      fgColor: 'smn-color-miasma',
+    });
+
+    let bioSmnBox = this.addProcBox({
+      id: 'smn-procs-biosmn',
+      fgColor: 'smn-color-biosmn',
+    });
+
+    let energyDrainBox = this.addProcBox({
+      id: 'smn-procs-energydrain',
+      fgColor: 'smn-color-energydrain',
+    });
+
+    let tranceBox = this.addProcBox({
+      id: 'smn-procs-trance',
+      fgColor: 'smn-color-trance',
+    });
+
+    // FurtherRuin Stack Guage
+    let stacksContainer = document.createElement('div');
+    stacksContainer.id = 'smn-stacks';
+    this.addJobBarContainer().appendChild(stacksContainer);
+    let ruin4Container = document.createElement('div');
+    ruin4Container.id = 'smn-stacks-ruin4';
+    stacksContainer.appendChild(ruin4Container);
+    let ruin4Stacks = [];
+    for (let i = 0; i < 4; ++i) {
+      let d = document.createElement('div');
+      ruin4Container.appendChild(d);
+      ruin4Stacks.push(d);
+    }
+
+    let furtherRuin = 0;
+    const refreshFurtherRuin = () => {
+      for (let i = 0; i < 4; ++i) {
+        if (furtherRuin > i)
+          ruin4Stacks[i].classList.add('active');
+        else
+          ruin4Stacks[i].classList.remove('active');
+      }
+    };
+    this.gainEffectFuncMap[EffectId.FurtherRuin] = (name, e) => {
+      furtherRuin = parseInt(e.count);
+      refreshFurtherRuin();
+    };
+    this.loseEffectFuncMap[EffectId.FurtherRuin] = () => {
+      furtherRuin = 0;
+      refreshFurtherRuin();
+    };
+    this.changeZoneFuncs.push((e) => {
+      furtherRuin = 0;
+      refreshFurtherRuin();
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      let stack = jobDetail.aetherflowStacks;
+      let summoned = jobDetail.bahamutSummoned;
+      let time = Math.floor(jobDetail.stanceMilliseconds / 1000);
+
+      // turn red when you have too much stacks before EnergyDrain ready.
+      aetherflowStackBox.innerText = stack;
+      let s = parseFloat(energyDrainBox.duration || 0) - parseFloat(energyDrainBox.elapsed);
+      if ((stack == 2) && (s <= 8))
+        aetherflowStackBox.parentNode.classList.add('too-much-stacks');
+      else
+        aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+
+      // Show time remain when summoning/trancing.
+      // Turn blue when buhamut ready, and turn orange when firebird ready.
+      // Also change tranceBox color.
+      demiSummoningBox.innerText = '';
+      demiSummoningBox.parentNode.classList.remove('bahamutready', 'firebirdready');
+      tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-trance');
+      if (time > 0) {
+        demiSummoningBox.innerText = time;
+      } else if (jobDetail.dreadwyrmStacks == 2) {
+        demiSummoningBox.parentNode.classList.add('bahamutready');
+      } else if (jobDetail.phoenixReady == true) {
+        demiSummoningBox.parentNode.classList.add('firebirdready');
+        tranceBox.fg = computeBackgroundColorFrom(tranceBox, 'smn-color-demisummon.firebirdready');
+      }
+
+      // Turn red when only 7s summoning time remain, to alarm that cast the second Enkindle.
+      // Also alarm that don't cast a spell that has cast time, or a WW/SF will be missed.
+      // Turn red when only 2s trancing time remain, to alarm that cast deathflare.
+      if (time <= 7 && summoned == 3)
+        demiSummoningBox.parentNode.classList.add('last');
+      else if (time > 0 && time <= 2 && summoned == 0)
+        demiSummoningBox.parentNode.classList.add('last');
+      else
+        demiSummoningBox.parentNode.classList.remove('last');
+    });
+
+    this.abilityFuncMap[kAbility.Miasma] = () => {
+      miasmaBox.duration = 0;
+      miasmaBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.Miasma3] = () => {
+      miasmaBox.duration = 0;
+      miasmaBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.BioSmn] = () => {
+      bioSmnBox.duration = 0;
+      bioSmnBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.BioSmn2] = () => {
+      bioSmnBox.duration = 0;
+      bioSmnBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.Bio3] = () => {
+      bioSmnBox.duration = 0;
+      bioSmnBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.Tridisaster] = () => {
+      miasmaBox.duration = 0;
+      miasmaBox.duration = 30;
+      bioSmnBox.duration = 0;
+      bioSmnBox.duration = 30;
+    };
+
+    this.abilityFuncMap[kAbility.EnergyDrain] = () => {
+      energyDrainBox.duration = 0;
+      energyDrainBox.duration = 30;
+      aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+    };
+    this.abilityFuncMap[kAbility.EnergySiphon] = () => {
+      energyDrainBox.duration = 0;
+      energyDrainBox.duration = 30;
+      aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
+    };
+    // Trance cooldown is 55s,
+    // but wait till 60s will be better on matching raidbuffs.
+    // Threshold will be used to tell real cooldown.
+    this.abilityFuncMap[kAbility.DreadwyrmTrance] = () => {
+      tranceBox.duration = 0;
+      tranceBox.duration = 60;
+    };
+    this.abilityFuncMap[kAbility.FirebirdTrance] = () => {
+      tranceBox.duration = 0;
+      tranceBox.duration = 60;
+    };
+
+    this.statChangeFuncMap['SMN'] = () => {
+      miasmaBox.valuescale = this.gcdSpell();
+      miasmaBox.threshold = this.gcdSpell() + 1;
+      bioSmnBox.valuescale = this.gcdSpell();
+      bioSmnBox.threshold = this.gcdSpell() + 1;
+      energyDrainBox.valuescale = this.gcdSpell();
+      energyDrainBox.threshold = this.gcdSpell() + 1;
+      tranceBox.valuescale = this.gcdSpell();
+      tranceBox.threshold = this.gcdSpell() + 7;
     };
   }
 
@@ -2409,10 +2603,7 @@ class Bars {
         return false;
       if (this.inCombat)
         return false;
-      if (this.level < this.options.MaxLevel)
-        return true;
-
-      return this.options.WellFedContentTypes.includes(this.contentType);
+      return kWellFedContentTypes.includes(this.contentType);
     };
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
@@ -2472,6 +2663,9 @@ class Bars {
     this.UpdateFoodBuff();
     if (this.buffTracker)
       this.buffTracker.clear();
+
+    for (const func of this.changeZoneFuncs)
+      func(e);
   }
 
   SetPullCountdown(seconds) {

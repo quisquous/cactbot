@@ -1,5 +1,41 @@
 'use strict';
 
+// There should be (at most) six lines of instructions.
+const raidbossInstructions = {
+  en: [
+    'Instructions as follows:',
+    'This is debug text for resizing.',
+    'It goes away when you lock the overlay',
+    'along with the blue background.',
+    'Timelines and triggers will show up in supported zones.',
+    'Test raidboss with a /countdown in Summerford Farms.',
+  ],
+  ja: [
+    '操作手順：',
+    'デバッグ用のテキストです。',
+    '青色のオーバーレイを',
+    'ロックすれば消える。',
+    'サポートするゾーンにタイムラインとトリガーテキストが表示できる。',
+    'サマーフォード庄に/countdownコマンドを実行し、raidbossをテストできる。',
+  ],
+  cn: [
+    '请按以下步骤操作：',
+    '这是供用户调整悬浮窗大小的调试用文本',
+    '当你锁定此蓝色背景的悬浮窗',
+    '该文本即会消失。',
+    '在支持的区域中会自动加载时间轴和触发器。',
+    '可在盛夏农庄使用/countdown命令测试该raidboss模块。',
+  ],
+  ko: [
+    '<조작 설명>',
+    '크기 조정을 위한 디버그 창입니다',
+    '파란 배경과 이 텍스트는',
+    '오버레이를 위치잠금하면 사라집니다',
+    '지원되는 구역에서 타임라인과 트리거가 표시됩니다',
+    '여름여울 농장에서 초읽기를 실행하여 테스트 해볼 수 있습니다',
+  ],
+};
+
 // Because apparently people don't understand uppercase greek letters,
 // add a special case to not uppercase them.
 function triggerUpperCase(str) {
@@ -56,14 +92,29 @@ class PopupText {
       AutoplayHelper.CheckAndPrompt();
 
     this.partyTracker = new PartyTracker();
-    addOverlayListener('PartyChanged', (e) => {
-      this.partyTracker.onPartyChanged(e);
-    });
 
     this.kMaxRowsOfText = 2;
 
     this.Reset();
+    this.AddDebugInstructions();
+    this.HookOverlays();
+  }
 
+  AddDebugInstructions() {
+    const lang = this.displayLang in raidbossInstructions ? this.displayLang : 'en';
+    const instructions = raidbossInstructions[lang];
+    for (let i = 0; i < instructions.length; ++i) {
+      const elem = document.getElementById(`instructions-${i}`);
+      if (!elem)
+        return;
+      elem.innerHTML = instructions[i];
+    }
+  }
+
+  HookOverlays() {
+    addOverlayListener('PartyChanged', (e) => {
+      this.partyTracker.onPartyChanged(e);
+    });
     addOverlayListener('onPlayerChangedEvent', (e) => {
       this.OnPlayerChange(e);
     });
@@ -489,7 +540,7 @@ class PopupText {
         // this is valid to do for any trigger entry that can handle a function.
         // In case anybody wants to encapsulate any fancy grammar, the values
         // in this object can also be functions.
-        if (typeof result !== 'object')
+        if (typeof result !== 'object' || result === null)
           return result;
         return triggerHelper.valueOrFunction(result[this.displayLang] || result['en']);
       },
@@ -745,10 +796,22 @@ class PopupText {
       triggerHelper.trigger.run(this.data, triggerHelper.matches);
   }
 
-  _addText(container, e) {
-    container.appendChild(e);
-    if (container.children.length > this.kMaxRowsOfText)
-      container.removeChild(container.children[0]);
+  _createTextFor(text, textType, lowerTextKey, duration) {
+    // info-text
+    let textElementClass = textType + '-text';
+    if (textType !== 'info')
+      text = triggerUpperCase(text);
+    let holder = this[lowerTextKey].getElementsByClassName('holder')[0];
+    let div = this._makeTextElement(text, textElementClass);
+
+    holder.appendChild(div);
+    if (holder.children.length > this.kMaxRowsOfText)
+      holder.removeChild(holder.children[0]);
+
+    window.setTimeout(() => {
+      if (holder.contains(div))
+        holder.removeChild(div);
+    }, duration * 1000);
   }
 
   _addTextFor(textType, triggerHelper) {
@@ -758,22 +821,14 @@ class PopupText {
     let lowerTextKey = textType + 'Text';
     // InfoText
     let upperTextKey = textTypeUpper + 'Text';
-    // info-text
-    let textElementClass = textType + '-text';
     let textObj = triggerHelper.triggerOptions[upperTextKey] ||
       triggerHelper.trigger[lowerTextKey] || triggerHelper.response[lowerTextKey];
     if (textObj) {
       let text = triggerHelper.valueOrFunction(textObj);
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
       if (text && triggerHelper.textAlertsEnabled) {
-        if (textType !== 'info')
-          text = triggerUpperCase(text);
-        let holder = this[lowerTextKey].getElementsByClassName('holder')[0];
-        let div = this._makeTextElement(text, textElementClass);
-        this._addText(holder, div);
-        this._scheduleRemoveText(holder, div,
+        this._createTextFor(text, textType, lowerTextKey,
             (triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey]));
-
         if (!triggerHelper.soundUrl) {
           triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
           triggerHelper.soundVol = this.options[textTypeUpper + 'SoundVolume'];
@@ -788,17 +843,6 @@ class PopupText {
     div.classList.add('animate-text');
     div.innerText = text;
     return div;
-  }
-
-  _scheduleRemoveText(container, e, delay) {
-    window.setTimeout(() => {
-      for (let i = 0; i < container.children.length; ++i) {
-        if (container.children[i] == e) {
-          container.removeChild(e);
-          break;
-        }
-      }
-    }, delay * 1000);
   }
 
   _playAudioFile(url, volume) {

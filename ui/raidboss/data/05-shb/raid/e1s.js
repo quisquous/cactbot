@@ -508,6 +508,7 @@
       },
       'replaceText': {
         '\\!': ' !',
+        '\\(Cross\\)': '(Croix)',
         'Delta Attack': 'Attaque Delta',
         'Dimensional Shift': 'Translation dimensionnelle',
         'Eden\'s Flare': 'Brasier édénique',

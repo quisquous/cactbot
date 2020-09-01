@@ -975,7 +975,7 @@
           de: ['N', 'NO', 'O', 'SO', 'S', 'SW', 'W', 'NW'],
           fr: ['N', 'NE', 'E', 'SE', 'S', 'SO', 'O', 'NO'],
           cn: ['北', '东北', '东', '东南', '南', '西南', '西', '西北'],
-          ko: ['12시', '1시', '3시', '5시', '6시', '7시', '9시', '11시'],
+          ko: ['북', '북동', '동', '남동', '남', '남서', '서', '북서'],
         };
 
         let dirNames = langMap[data.displayLang] || langMap['en'];
@@ -1235,6 +1235,7 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '26B2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '26B2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '26B2', capture: false }),
+      suppressSeconds: 2,
       alertText: {
         en: 'Twisters',
         fr: 'Tornades',

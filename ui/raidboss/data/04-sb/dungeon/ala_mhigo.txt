@@ -173,7 +173,7 @@ hideall "--sync--"
 2691.4 "Concentrativity"
 
 # Intermission at < 20% HP
-2700.0 "Unknown_206E" sync /:Zenos Yae Galvus:206E:/ window 700,5
+2700.0 "--sync--" sync /:Zenos Yae Galvus:206E:/ window 700,5
 2706.0 "--sync--" sync /:Zenos Yae Galvus:239F:/
 2712.7 "Swell/Sword" sync /:Zenos Yae Galvus:258[68]:/
 2715.1 "Art of the Storm" sync /:Zenos Yae Galvus:2587:/

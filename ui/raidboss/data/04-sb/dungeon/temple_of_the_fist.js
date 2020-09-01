@@ -69,7 +69,7 @@
       infoText: {
         en: 'Stand in blue',
         de: 'Im Blauen stehen',
-        fr: 'Allez dans le bleu',
+        fr: 'Tenez-vous dans le bleu',
         cn: '站在蓝色区域',
         ko: '파랑장판에 서기',
       },
@@ -83,7 +83,7 @@
       infoText: {
         en: 'Stand in red',
         de: 'Im Roten stehen',
-        fr: 'Allez dans le rouge',
+        fr: 'Tenez-vous dans le rouge',
         cn: '站在红色区域',
         ko: '빨강장판에 서기',
       },
@@ -119,7 +119,7 @@
       alertText: {
         en: 'watch for safe',
         de: 'nach sicherer Position schauen',
-        fr: 'trouvez une zone safe',
+        fr: 'Trouvez une zone safe',
         cn: '前往安全区',
         ko: '안전지대 찾기',
       },
@@ -169,7 +169,7 @@
       infoText: {
         en: 'Avoid floating heads',
         de: 'Weiche den fliegenden Köpfen aus',
-        fr: 'Evitez les têtes',
+        fr: 'Évitez les têtes flottantes',
         cn: '避开漂浮的头',
         ko: '커얼머리 피하기',
       },
@@ -185,7 +185,7 @@
       infoText: {
         en: 'Away from marker',
         de: 'Weg von den Markierungen',
-        fr: 'Loin de la marque',
+        fr: 'Éloignez-vous du marqueur',
         cn: '远离标记',
         ko: '마커에게서 멀어지기',
       },
@@ -256,7 +256,7 @@
         'Coeurl Whisper': 'Murmure du Coeurl',
         'Electric Burst': 'Salve électrique',
         'Fourfold Shear': 'Quadruple cisaille',
-        'Front/Back\\?Sides\\?': 'Devant/Derrière\\?Côtés\\?',
+        'Front/Back\\?Sides\\?': 'Devant/Derrière ? Côtés ?',
         'Furious Fists': 'Poings furieux',
         'Heat Lightning': 'Éclair de chaleur',
         'Hellseal': 'Sceau infernal',
@@ -264,6 +264,7 @@
         'Impact': 'Impact',
         'Killer Instinct': 'Instinct meurtrier',
         'Pounce': 'Attaque subite',
+        'Radial/Wide Blaster': 'Fulguration radiale/large',
         'Radial Blaster': 'Fulguration radiale',
         'Rhalgr\'s Piece': 'Force de Rhalgr',
         'Silent Roar': 'Hurlement silencieux',
@@ -271,7 +272,7 @@
         'Tapas': 'Tapas',
         'The Rose Of Destruction': 'Rose de la destruction',
         'Touch of Slaughter': 'Toucher massacreur',
-        'Wide Blaster': 'Fulguration large',
+        '(?<!Radial/)Wide Blaster': 'Fulguration large',
       },
     },
     {

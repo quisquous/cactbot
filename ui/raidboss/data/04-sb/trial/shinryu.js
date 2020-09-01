@@ -18,6 +18,7 @@
           return {
             en: 'Akh Morn on YOU',
             de: 'Akh Morn auf DIR',
+            fr: 'Akh Morn sur VOUS',
             cn: '死亡轮回点名',
             ko: '아크몬 대상자',
           };
@@ -25,6 +26,7 @@
           return {
             en: 'Akh Morn on ' + data.ShortName(matches.target),
             de: 'Akh Morn auf ' + data.ShortName(matches.target),
+            fr: 'Akh Morn sur ' + data.ShortName(matches.target),
             cn: '死亡轮回点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 아크몬',
           };
@@ -39,6 +41,7 @@
         return {
           en: 'Akh Rhai: spread and move',
           de: 'Akh Rhai: Verteilen und bewegen',
+          fr: 'Akh Rhai: Dispersion et bougez',
           cn: '天光轮回：散开和移动',
           ko: '아크 라이: 산개, 이동',
         };
@@ -46,6 +49,7 @@
       tts: {
         en: 'akh morn',
         de: 'akh morn',
+        fr: 'akh morn',
         cn: '死亡轮回',
         ko: '아크몬',
       },
@@ -76,6 +80,7 @@
       infoText: {
         en: 'Out of middle',
         de: 'Raus aus der Mitte',
+        fr: 'Sortez du milieu',
         cn: '离开中间',
         ko: '중앙 피하기',
       },
@@ -92,12 +97,14 @@
       alertText: {
         en: 'Get in water',
         de: 'In\'s Wasser',
+        fr: 'Allez dans l\'eau',
         cn: '进水圈',
         ko: '물 장판에 들어가기',
       },
       tts: {
         en: 'water',
         de: 'wasser',
+        fr: 'eau',
         cn: '进水圈',
         ko: '물 장판',
       },
@@ -114,12 +121,14 @@
       alertText: {
         en: 'Stack in water',
         de: 'In Wasser stacken',
+        fr: 'Packez-vous dans l\'eau',
         cn: '在水圈攻击',
         ko: '물 장판에 모이기',
       },
       tts: {
         en: 'water',
         de: 'Wasser',
+        fr: 'eau',
         cn: '水圈',
         ko: '물 장판',
       },
@@ -136,6 +145,7 @@
       alertText: {
         en: 'out of water',
         de: 'Raus aus dem Wasser',
+        fr: 'Sortez de l\'eau',
         cn: '离开水圈',
         ko: '물 장판 밖으로',
       },
@@ -152,12 +162,14 @@
       alertText: {
         en: 'Spread out, no water',
         de: 'Verteilen und nicht in\'s Wasser',
+        fr: 'Dispersez-vous en dehors de l\'eau',
         cn: '散开，离开水圈',
         ko: '산개, 물장판 X',
       },
       tts: {
         en: 'levinbolt',
         de: 'Blitz',
+        fr: 'fulguration',
         cn: '离开闪电',
         ko: '우레',
       },
@@ -177,12 +189,14 @@
       infoText: {
         en: 'Knockback, look for water',
         de: 'Rückstoß, nach Wasser schauen',
+        fr: 'Poussée, cherchez l\'eau',
         cn: '击退，找水圈',
         ko: '넉백, 물기둥 확인',
       },
       tts: {
         en: 'knockback',
         de: 'Rückstoß',
+        fr: 'Poussée',
         cn: '击退',
         ko: '넉백',
       },
@@ -215,12 +229,14 @@
       infoText: {
         en: 'Tail: Switch targets',
         de: 'Schweif: Zielwechsel',
+        fr: 'Queue : Changez de cible',
         cn: '打尾巴',
         ko: '꼬리 공격',
       },
       tts: {
         en: 'tail',
         de: 'schweif',
+        fr: 'queue',
         cn: '尾巴',
         ko: '꼬리',
       },
@@ -252,12 +268,14 @@
       alertText: {
         en: 'avoid divebomb',
         de: 'Divebomb ausweichen',
+        fr: 'Évitez la bombe plongeante',
         cn: '前方顺劈',
         ko: '급강하 폭격 피하기',
       },
       tts: {
         en: 'divebombs',
         de: 'sturzflug',
+        fr: 'bombe plongeante',
         cn: '顺劈',
         ko: '급강하 폭격',
       },
@@ -279,6 +297,7 @@
       infoText: {
         en: 'Bait onto unbroken squares',
         de: 'Auf nicht kaputter Fläche ködern',
+        fr: 'Attirez sur les carrés non brisés',
         cn: '在未损坏方格上诱导',
         ko: '꼬리 내리치기 유도',
       },
@@ -319,9 +338,9 @@
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Cocoon': 'cocon de lumière',
+        'Icicle': 'stalactite',
         'Left Wing': 'aile gauche',
         'Right Wing': 'aile droite',
         'Shinryu': 'Shinryu',
@@ -329,7 +348,7 @@
       },
       'replaceText': {
         'Akh Morn': 'Akh Morn',
-        'Elemental Attack': 'Elemental Attack',
+        'Elemental Attack': 'Attaque élémentaire',
         'Dark Matter': 'Matière sombre',
         'Dragonfist': 'Poing dragon',
         'Earth Breath': 'Souffle de terre',
@@ -344,8 +363,8 @@
         'Protostar': 'Proto-étoile',
         'Spikesicle': 'Stalactopointe',
         'Summon Icicle': 'Appel de stalactite',
-        'TAP BUTTON OR ELSE': 'TAP BUTTON OR ELSE',
         'Tail Slap': 'Gifle caudale',
+        'TAP BUTTON OR ELSE': 'CLIQUEZ SUR LE BOUTON OU AUTRE',
         'Tidal Wave': 'Raz-de-marée',
       },
     },

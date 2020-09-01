@@ -1224,7 +1224,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         de: 'Urteil: Kollektivstrafe',
         ja: '集団罰',
         fr: 'Peine collective',
-        ko: '단체형: 무직과 함께 맞기',
+        ko: '단체형: 무징과 함께 맞기',
         cn: '集团罪',
       },
     },
@@ -2240,7 +2240,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           '2': {
             en: 'Purple, no tether: E->W',
             de: 'Lila, keine Verbindung: O->W',
-            ja: '接触禁止, 線無し: 東から西へ',
+            ja: '逃亡禁止, 線無し: 東から西へ',
             fr: 'Violet, pas de lien : E->O',
             ko: '보라/접촉금지/선없음: 동→서',
             cn: '紫色, 无连线: 东->西',

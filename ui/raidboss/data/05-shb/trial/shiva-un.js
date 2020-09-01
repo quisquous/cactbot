@@ -24,8 +24,17 @@
         en: 'Party Share Tankbuster',
         de: 'Tankbuster mit der Gruppe Teilen',
         fr: 'Partagez le Tank buster avec le groupe',
+        ja: '頭割りタンクバスター',
         cn: '团队分摊死刑',
+        ko: '파티 쉐어 탱버',
       },
+    },
+    {
+      // Heavenly Strike is knockback only when unshielded, so use "info" here.
+      id: 'ShivaUn Heavenly Strike',
+      regex: /Heavenly Strike/,
+      beforeSeconds: 5,
+      response: Responses.knockback('info'),
     },
   ],
   triggers: [
@@ -45,7 +54,9 @@
                 en: 'Staff (Tank Swap)',
                 de: 'Stab (Tankwechsel)',
                 fr: 'Bâton (Tank Swap)',
+                ja: '杖 (スイッチ)',
                 cn: '权杖（换T）',
+                ko: '지팡이 (탱커 교대)',
               },
             };
           }
@@ -56,7 +67,9 @@
             en: 'Staff',
             de: 'Stab',
             fr: 'Bâton',
+            ja: '杖',
             cn: '权杖',
+            ko: '지팡이',
           },
         };
       },
@@ -80,7 +93,9 @@
                 en: 'Sword (Tank Swap)',
                 de: 'Schwert (Tankwechsel)',
                 fr: 'Épée (Tank Swap)',
+                ja: '剣 (スイッチ)',
                 cn: '剑（换T）',
+                ko: '검 (탱커 교대)',
               },
             };
           }
@@ -91,7 +106,9 @@
             en: 'Sword',
             de: 'Schwert',
             fr: 'Épée',
+            ja: '剣',
             cn: '剑',
+            ko: '검',
           },
         };
       },
@@ -207,7 +224,9 @@
         en: 'Knockback Laser on YOU',
         de: 'Rückstoß-Laser auf DIR',
         fr: 'Poussée-Laser sur VOUS',
+        ja: '自分にノックバックレザー',
         cn: '击退激光点名',
+        ko: '넉백 레이저 대상자',
       },
     },
     {
@@ -218,7 +237,9 @@
         en: 'Avoid Laser',
         de: 'Laser ausweichen',
         fr: 'Évitez le laser',
+        ja: 'ノックバックレザーを避け',
         cn: '躲避击退激光',
+        ko: '레이저 피하기',
       },
     },
     {
@@ -256,7 +277,9 @@
           en: 'Free ' + data.ShortName(matches.target),
           de: 'Befreie ' + data.ShortName(matches.target),
           fr: 'Libérez ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'を救って',
           cn: '解救' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '감옥 해제',
         };
       },
     },
@@ -321,12 +344,15 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': 'アイスソルジャー',
         'Shiva': 'シヴァ',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(circle\\)': '(輪)',
+        '\\(cross\\)': '(十字)',
+        '--frozen--': '--凍結--',
         'Absolute Zero': '絶対零度',
         'Avalanche': 'アバランチ',
         'Diamond Dust': 'ダイアモンドダスト',

@@ -9,6 +9,7 @@ let noOrb = (str) => {
     en: str + ' (no orb)',
     de: str + ' (kein Orb)',
     fr: str + ' (pas d\'orbe)',
+    ko: str + ' (구슬 없음)',
   };
 };
 
@@ -96,7 +97,7 @@ let noOrb = (str) => {
     },
     {
       id: 'E5S Hated of Levin',
-      regex: Regexes.headMarker({ id: '00D2' }),
+      netRegex: NetRegexes.headMarker({ id: '00D2' }),
       run: function(e, data, matches) {
         data.hated = data.hated || {};
         data.hated[matches.target] = true;
@@ -104,7 +105,7 @@ let noOrb = (str) => {
     },
     {
       id: 'E5S Stormcloud Target Tracking',
-      regex: Regexes.headMarker({ id: '006E' }),
+      netRegex: NetRegexes.headMarker({ id: '006E' }),
       run: function(e, data, matches) {
         data.cloudMarkers = data.cloudMarkers || [];
         data.cloudMarkers.push(matches.target);
@@ -127,7 +128,7 @@ let noOrb = (str) => {
     },
     {
       id: 'E5S Stormcloud cleanup',
-      regex: Regexes.headMarker({ id: '006E' }),
+      netRegex: NetRegexes.headMarker({ id: '006E' }),
       // Stormclouds resolve well before this.
       delaySeconds: 30,
       run: function(e, data) {

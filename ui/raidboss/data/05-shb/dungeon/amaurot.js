@@ -19,6 +19,7 @@
             en: 'Drop Meteor West',
             de: 'Meteor im Westen ablegen',
             fr: 'Déposez le météore à l\'ouest',
+            ja: 'メテオを西に',
             cn: '西侧放陨石',
             ko: '메테오 서쪽으로 빼기',
           };
@@ -27,6 +28,7 @@
             en: 'Drop Meteor East',
             de: 'Meteor im Osten ablegen',
             fr: 'Déposez le météore à l\'est',
+            ja: 'メテオを東に',
             cn: '陨石放东边',
             ko: '메테오 동쪽으로 빼기',
           };
@@ -35,6 +37,7 @@
           en: 'Meteor',
           de: 'Meteor',
           fr: 'Météore',
+          ja: 'メテオ',
           cn: '陨石',
           ko: '메테오',
         };
@@ -60,6 +63,7 @@
         en: 'Hide Behind Boulder',
         de: 'Hinter einem Felsen verstecken',
         fr: 'Cachez-vous derrière un rocher',
+        ja: '隕石の後ろに',
         cn: '躲在岩石后',
         ko: '바위 뒤에 숨기',
       },
@@ -89,6 +93,7 @@
         en: 'Get Off',
         de: 'Runter gehen',
         fr: 'Descendez',
+        ja: '横へ',
         cn: '站左右小平台',
         ko: '바깥으로 피하기',
       },
@@ -164,7 +169,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'The First Beast': 'ファースト・ビースト',
         'The Face of the Beast': 'フェイス・オブ・ビースト',
@@ -178,6 +182,10 @@
         'The Third Doom': '第三の災い',
       },
       'replaceText': {
+        '\\(N\\)': '(北)',
+        '\\(S\\)': '(南)',
+        '\\(SW\\)': '(南西)',
+        'Adds': '雑魚',
         'The Final Sky': '終末の流星',
         'The Falling Sky': '厄災の流星',
         'The Burning Sky': '変災の流星',

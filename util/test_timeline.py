@@ -545,7 +545,7 @@ if __name__ == "__main__":
     if args.search_fights and not args.file:
         raise parser.error("Automatic encounter listing requires an input file")
 
-    if args.search_fights > -1 and not args.timeline:
+    if args.search_fights and args.search_fights > -1 and not args.timeline:
         raise parser.error(
             "You must specify a timeline file before testing against a specific encounter."
         )

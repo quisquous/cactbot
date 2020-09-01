@@ -31,6 +31,7 @@
         de: 'Weg schauen, Türme nehmen',
         fr: 'Regardez ailleurs, prenez une tour',
         cn: '背对BOSS，踩塔',
+        ko: '뒤돌고 장판 들어가기',
       },
     },
     {
@@ -93,6 +94,7 @@
         fr: 'Évitez les charges',
         ja: '突進避けて',
         cn: '躲避冲锋',
+        ko: '돌진 피하기',
       },
     },
     {
@@ -124,6 +126,7 @@
         fr: 'Cercle sur vous',
         ja: 'サークルついた',
         cn: '圈圈点你',
+        ko: '원형징 대상자',
       },
     },
     {

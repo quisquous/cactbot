@@ -1,140 +1,90 @@
-/* Raidemulator Stylesheet */
-
-/* General Styles */
 html,
 body {
   height: 100%;
   width: 100%;
   margin: 0 auto;
   color: whitesmoke;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
-.subtitle {
-  position: relative;
-  top: -2px;
-  width: 100%;
-  color: rgba(255, 255, 255, 0.4);
-  border-top: 1px solid rgba(255, 255, 255, 0.4);
-  text-transform: uppercase;
-  line-height: 8px;
-  font-size: 10px;
-}
-
-.box {
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 3px;
-}
-
-button {
-  height: 25px;
-  width: 100px;
-  text-align: center;
-  cursor: pointer;
-  color: whitesmoke;
-  font-variant: small-caps;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 3px;
-}
-
-button:hover {
-  background: rgba(100, 200, 255, 0.2);
-}
-
-.nowrap {
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-/* Item Positioning */
-.emulator-background {
-  position: absolute;
-  bottom: 0;
-  left: 2.5%;
-  height: 320px;
-  width: 95%;
-  z-index: -1;
-  background: url(../../resources/img/dark-bg-64x200-220.png) repeat;
-  border-radius: 5px;
-}
-
-#playback-controls {
-  left: 5%;
-  width: 90%;
-  position: absolute;
-  bottom: 150px;
-}
-
-.playback-info {
-  position: absolute;
-  bottom: 100px;
-  left: 5%;
-  height: 35px;
-  width: 90%;
-}
-
-.emulator-info {
-  position: absolute;
-  bottom: 50px;
-  left: 5%;
-  height: 35px;
-  width: 90%;
-}
-
-.info-element {
-  display: block;
-  width: 45%;
-  position: absolute;
-  bottom: 0;
-}
-
-.right {
-  right: 0;
-  text-align: right;
-}
-
-.left {
-  left: 0;
-}
-
-/* Party Element */
-#party {
-  margin: 0 0 2px auto;
-  justify-content: right;
-
-  /* requires chrome 57
-  display: grid;
-  grid-template-columns: repeat(8, 30px);
-  */
-  display: block;
-  max-width: 240px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .jobicon {
-  width: 30px;
-  height: 30px;
+  width: 2rem;
+  height: 2rem;
   display: inline-block;
   cursor: pointer;
 }
-.PLD { background: url(../../resources/icon/jobs/pld-framed.png) 0 / contain; }
-.WAR { background: url(../../resources/icon/jobs/war-framed.png) 0 / contain; }
-.DRK { background: url(../../resources/icon/jobs/drk-framed.png) 0 / contain; }
-.GNB { background: url(../../resources/icon/jobs/gnb-framed.png) 0 / contain; }
-.WHM { background: url(../../resources/icon/jobs/whm-framed.png) 0 / contain; }
-.SCH { background: url(../../resources/icon/jobs/sch-framed.png) 0 / contain; }
-.AST { background: url(../../resources/icon/jobs/ast-framed.png) 0 / contain; }
-.MNK { background: url(../../resources/icon/jobs/mnk-framed.png) 0 / contain; }
-.DRG { background: url(../../resources/icon/jobs/drg-framed.png) 0 / contain; }
-.NIN { background: url(../../resources/icon/jobs/nin-framed.png) 0 / contain; }
-.SAM { background: url(../../resources/icon/jobs/sam-framed.png) 0 / contain; }
-.BRD { background: url(../../resources/icon/jobs/brd-framed.png) 0 / contain; }
-.MCH { background: url(../../resources/icon/jobs/mch-framed.png) 0 / contain; }
-.DNC { background: url(../../resources/icon/jobs/dnc-framed.png) 0 / contain; }
-.BLM { background: url(../../resources/icon/jobs/blm-framed.png) 0 / contain; }
-.SMN { background: url(../../resources/icon/jobs/smn-framed.png) 0 / contain; }
-.RDM { background: url(../../resources/icon/jobs/rdm-framed.png) 0 / contain; }
-.BLU { background: url(../../resources/icon/jobs/blu-framed.png) 0 / contain; }
+
+.PLD .jobicon {
+  background: url(../../resources/icon/jobs/pld-framed.png) 0 / contain;
+}
+
+.WAR .jobicon {
+  background: url(../../resources/icon/jobs/war-framed.png) 0 / contain;
+}
+
+.DRK .jobicon {
+  background: url(../../resources/icon/jobs/drk-framed.png) 0 / contain;
+}
+
+.GNB .jobicon {
+  background: url(../../resources/icon/jobs/gnb-framed.png) 0 / contain;
+}
+
+.WHM .jobicon {
+  background: url(../../resources/icon/jobs/whm-framed.png) 0 / contain;
+}
+
+.SCH .jobicon {
+  background: url(../../resources/icon/jobs/sch-framed.png) 0 / contain;
+}
+
+.AST .jobicon {
+  background: url(../../resources/icon/jobs/ast-framed.png) 0 / contain;
+}
+
+.MNK .jobicon {
+  background: url(../../resources/icon/jobs/mnk-framed.png) 0 / contain;
+}
+
+.DRG .jobicon {
+  background: url(../../resources/icon/jobs/drg-framed.png) 0 / contain;
+}
+
+.NIN .jobicon {
+  background: url(../../resources/icon/jobs/nin-framed.png) 0 / contain;
+}
+
+.SAM .jobicon {
+  background: url(../../resources/icon/jobs/sam-framed.png) 0 / contain;
+}
+
+.BRD .jobicon {
+  background: url(../../resources/icon/jobs/brd-framed.png) 0 / contain;
+}
+
+.MCH .jobicon {
+  background: url(../../resources/icon/jobs/mch-framed.png) 0 / contain;
+}
+
+.DNC .jobicon {
+  background: url(../../resources/icon/jobs/dnc-framed.png) 0 / contain;
+}
+
+.BLM .jobicon {
+  background: url(../../resources/icon/jobs/blm-framed.png) 0 / contain;
+}
+
+.SMN .jobicon {
+  background: url(../../resources/icon/jobs/smn-framed.png) 0 / contain;
+}
+
+.RDM .jobicon {
+  background: url(../../resources/icon/jobs/rdm-framed.png) 0 / contain;
+}
+
+.BLU .jobicon {
+  background: url(../../resources/icon/jobs/blu-framed.png) 0 / contain;
+}
 
 /* Triggerlines */
 .triggerlines {
@@ -187,65 +137,436 @@ button:hover {
   z-index: -1;
 }
 
-/* Fight Picker */
-#emulator-input,
-#emulator-log {
-  display: block;
-  margin: 0 auto;
-  overflow: hidden;
+/* new styles */
+.mainContentRow,
+.mainContentRow > * {
+  max-height: calc(100vh - 5rem);
 }
 
-#fight-picker {
-  width: 450px;
-  height: 125px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 3px;
-  padding: 0;
-  margin-bottom: 5px;
-  -webkit-user-select: none;
+.triggerInfoColumn {
+  overflow-y: auto;
 }
 
-.fight-option {
-  width: 100%;
-  height: 25px;
-  overflow: hidden;
+.triggerInfoColumn .json-viewer {
+  max-height: calc(100vh - 15rem);
+  overflow-y: auto;
 }
 
-label {
-  -webkit-appearance: none;
-  display: block;
-  width: 100%;
-  height: 100%;
-  padding: 2px;
+.triggerInfoColumn .triggerHideSkippedContainer {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1rem;
+  height: 1rem;
 }
 
-label:hover {
-  background: rgba(255, 255, 255, 0.2);
+.progress-bar {
+  transition: none;
 }
 
-input[name=fight] {
+.tooltip.bs-tooltip-bottom .arrow {
+  left: calc(50% - 0.4rem) !important;
+}
+
+button.showEncountersButton {
+  position: absolute;
+  right: 1rem;
+  z-index: 1000;
+}
+
+button.showEncountersButton[aria-expanded="false"] {
+  top: -2rem;
+}
+
+button.showEncountersButton[aria-expanded="true"] {
+  top: 1px; /* border size */
+}
+
+button.showEncountersButton[aria-expanded="false"] .fa-chevron-down {
   display: none;
 }
 
-input[name=fight]:checked + label {
-  background: rgba(100, 200, 255, 0.2);
+button.showEncountersButton[aria-expanded="true"] .fa-chevron-up {
+  display: none;
 }
 
-#elapsed-time {
+div.row.progressBarRow {
+  height: 3rem;
+}
+
+div.row.progressBarRow button.play,
+div.row.progressBarRow button.pause {
+  padding: 0.625rem 1.5rem;
+  font-size: 1.625rem;
+  line-height: 1.5;
+  border-radius: 0.35rem;
+  width: 92px;
+  text-align: center;
+}
+
+.progress-bar-timestamp {
+  line-height: 3rem;
+}
+
+div.row.progressBarRow .playerTriggers {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 2rem;
+  opacity: 0.85;
+  pointer-events: none;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar {
+  height: 0.25rem;
+  position: absolute;
+  left: 0;
+  right: 0;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player0 {
+  bottom: 1.75rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player1 {
+  bottom: 1.5rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player2 {
+  bottom: 1.25rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player3 {
+  bottom: 1rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player4 {
+  bottom: 0.75rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player5 {
+  bottom: 0.5rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player6 {
+  bottom: 0.25rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.player7 {
+  bottom: 0;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar .triggerItem {
+  pointer-events: all;
+  position: absolute;
+  height: 0.25rem;
+  width: 0.25rem;
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.tank .triggerItem {
+  background: rgba(71, 94, 206, 0.9);
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.healer .triggerItem {
+  background: rgba(60, 105, 41, 0.9);
+}
+
+div.row.progressBarRow .playerTriggers .triggerBar.dps .triggerItem {
+  background: rgba(104, 53, 53, 0.9);
+}
+
+.engageIndicator {
+  position: absolute;
+  height: calc(3rem + 10px);
+  width: 3px;
+  background: rgba(0, 0, 0, 0.8);
+  bottom: -5px;
+  z-index: 10;
+  pointer-events: all;
+}
+
+.popup-text-container {
+  height: 2rem;
+  line-height: 2rem;
+  border: 1px solid black;
+  margin: 0.5rem;
+  padding-left: 0.5rem;
+  position: relative;
+  padding-right: 3rem;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.popup-text-container .popup-text-remaining {
+  position: absolute;
+  right: 0.5rem;
+}
+
+.popup-text-container.alarm-text {
+  color: black;
+  background-color: #f30;
+}
+
+.popup-text-container.alarm-text::before {
+  content: "ALARM: ";
   display: inline;
 }
 
-#info-panel {
-  width: calc(100% - 460px);
-  height: 131;
+.popup-text-container.alert-text {
+  color: black;
+  background-color: #fb0;
+}
+
+.popup-text-container.alert-text::before {
+  content: "ALERT: ";
+  display: inline;
+}
+
+.popup-text-container.info-text {
+  color: black;
+  background-color: #2b2;
+}
+
+.popup-text-container.info-text::before {
+  content: "INFO: ";
+  display: inline;
+}
+
+.popup-text-container.tts-text {
+  color: black;
+  background-color: whitesmoke;
+}
+
+.popup-text-container.tts-text::before {
+  content: "TTS: ";
+  display: inline;
+}
+
+.popup-text-container.audio-file {
+  color: black;
+  background-color: blue;
+}
+
+.popup-text-container.audio-file::before {
+  content: "AUDIO: ";
+  display: inline;
+}
+
+div.row.encountersRow {
   position: absolute;
-  right: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+.encountersRow .selectorRow {
+  cursor: pointer;
+}
+
+.encountersRow .selectorRow.selected {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.timer-bar-container .progress {
+  width: 100%;
+  height: 2rem;
+}
+
+.partyInfoColumn .map .mapBackground {
+  background-color: grey;
+}
+
+.partyInfoColumn .map .playerIcon {
+  border: 2px solid;
+  border-radius: 50%;
+  width: 0.5rem;
+  height: 0.5rem;
+  font-size: 0.35rem;
+}
+
+.partyInfoColumn .map .playerIcon.tank {
+  background: rgba(71, 94, 206, 0.9);
+}
+
+.partyInfoColumn .map .playerIcon.healer {
+  background: rgba(60, 105, 41, 0.9);
+}
+
+.partyInfoColumn .map .playerIcon.dps {
+  background: rgba(104, 53, 53, 0.9);
+}
+
+.partyInfoColumn .map .playerIcon.role1 {
+  border-color: black;
+}
+
+.partyInfoColumn .map .playerIcon.role2 {
+  border-color: white;
+}
+
+.partyInfoColumn .map .playerIcon.role3 {
+  border-color: blue;
+}
+
+.partyInfoColumn .map .playerIcon.role4 {
+  border-color: green;
+}
+
+.partyInfoColumn .party {
+  position: relative;
+}
+
+.partyInfoColumn .party .playerInfoRow {
+  height: 2rem;
+  position: relative;
+  cursor: pointer;
+}
+
+.partyInfoColumn .party .playerInfoRow.border {
+  border-width: 3px !important;
+  height: calc(2rem + 1.5rem + 6px);
+}
+
+.partyInfoColumn .party .playerInfoRow .jobicon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 2rem;
+  bottom: 2rem;
+  z-index: 5;
+}
+
+.partyInfoColumn .party .playerInfoRow .hp,
+.partyInfoColumn .party .playerInfoRow .mp {
+  position: relative;
+  display: block;
+  left: 2rem;
+  height: 1rem;
+  width: calc(100% - 2rem);
+}
+
+.partyInfoColumn .party .playerInfoRow .hp {
   top: 0;
 }
 
-.actors {
-  overflow: hidden;
-  max-height: 4em;
+.partyInfoColumn .party .playerInfoRow .mp {
+  bottom: 0;
+}
+
+.partyInfoColumn .party .playerInfoRow .progress {
+  height: 1rem;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #36404a;
+}
+
+.partyInfoColumn .party .playerInfoRow .progress .label {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  white-space: pre;
+}
+
+.partyInfoColumn .party .playerInfoRow .hp .progress .progress-bar {
+  background: rgb(141, 188, 22);
+}
+
+.partyInfoColumn .party .playerInfoRow .mp .progress .progress-bar {
+  background: rgb(222, 110, 160);
+}
+
+.partyInfoColumn .playerName {
+  display: none;
+  text-align: center;
+}
+
+.partyInfoColumn .border-success .playerName {
+  display: block;
+}
+
+.encountersRow {
+  z-index: 15;
+}
+
+#encountersTab {
+  /* encounter drawer + sm btn font + sm btn padding + sm btn border + border top + border top */
+  height: calc(25vh + 1.3125rem + 0.25rem + 0.25rem + 2px + 1px + 1px);
+}
+
+#encountersTab .row .col {
+  overflow-y: auto;
+}
+
+.encountersContainer {
+  height: 25vh;
+  max-height: 25vh;
+}
+
+.encounterInfo .btn {
+  clear: right;
+}
+
+.timer-bar-container .progress .timer-bar-left-label {
+  height: 2rem;
+  line-height: 2rem;
+  position: absolute;
+  left: 1.5rem;
+  color: black;
+}
+
+.timer-bar-container .progress .timer-bar-right-label {
+  height: 2rem;
+  line-height: 2rem;
+  position: absolute;
+  right: 1.5rem;
+  color: black;
+}
+
+.wrap-collapse {
+  padding-bottom: 0.5rem;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label {
+  float: right;
+  height: 31px;
+  line-height: 31px;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label > * {
+  float: right;
+}
+
+.wrap-collapse .wrap-collapse-button .trigger-label .trigger-label-time {
+  padding-left: 0.5rem;
+}
+
+div.templates,
+template {
+  display: none;
+}
+
+.tooltip {
+  pointer-events: none;
+  z-index: -1000;
+}
+
+.tooltip.show {
+  z-index: 1070;
+}
+
+@media (min-width: 576px) {
+  .modal-dialog {
+    max-width: calc(100vw - (1.75rem * 2));
+    margin: 1.75rem auto;
+  }
 }
