@@ -82,7 +82,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
               fr: 'Tank buster sur ' + data.ShortName(data.liquidTank),
               ja: 'タンクバスター',
               ko: '탱크버스터',
-              cn: '死刑 -> ' + data.ShortName(data.liquidTank),
+              cn: '死刑 点' + data.ShortName(data.liquidTank),
             };
           }
           return {
@@ -1240,7 +1240,7 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           fr: 'Peine collective sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + ' に集団罰',
           ko: data.ShortName(matches.target) + ' 에게 단체형',
-          cn: '集团罪->' + data.ShortName(matches.target),
+          cn: '集团罪 点' + data.ShortName(matches.target),
         };
       },
     },

@@ -421,7 +421,7 @@
           de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
           fr: 'Packez-vous sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'にシェア',
-          cn: '集合 ->' + data.ShortName(matches.target),
+          cn: '与 ' + data.ShortName(matches.target) + ' 集合',
           ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
         };
       },
