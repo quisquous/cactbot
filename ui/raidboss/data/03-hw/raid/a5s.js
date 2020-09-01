@@ -76,7 +76,7 @@ let bombLocation = (matches) => {
       suppressSeconds: 1,
       infoText: {
         en: 'refresh debuff in puddle soon',
-        de: 'Debuff in der Fläsche bald erneuern',
+        de: 'Debuff in der Fläche bald erneuern',
         fr: 'Rafraîchissez le debuff dans la zone au sol bientôt',
       },
     },

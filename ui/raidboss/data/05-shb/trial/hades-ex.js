@@ -652,7 +652,7 @@
       },
       alertText: {
         en: 'Puddles on YOU',
-        de: 'Fläsche auf YOU',
+        de: 'Fläche auf YOU',
         fr: 'Zone au sol sur VOUS',
         ja: 'AoEを外に捨て',
         cn: '水圈点名',
