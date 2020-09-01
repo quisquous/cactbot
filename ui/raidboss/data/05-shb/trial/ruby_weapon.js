@@ -39,6 +39,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AA8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AA8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AA8', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AA8', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -51,6 +52,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AC7' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC7' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC7' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC7' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -63,6 +65,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4A97', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4A97', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4A97', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4A97', capture: false }),
       infoText: {
         en: 'Away from Lines',
         de: 'Weg von den Linien',
@@ -79,6 +82,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4A96', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4A96', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4A96', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4A96', capture: false }),
       alertText: {
         en: 'Get On Lines',
         de: 'Auf die Linien gehen',
@@ -95,6 +99,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AC6', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC6', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC6', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC6', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -104,6 +109,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AC5' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC5' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC5' }),
       condition: Conditions.targetIsYou(),
       response: Responses.stackOn('alert'),
     },
@@ -114,6 +120,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AC5' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC5' }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC5' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC5' }),
       condition: Conditions.targetIsNotYou(),
       response: Responses.stack('info'),
     },
@@ -124,6 +131,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AA0', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AA0', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AA0', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AA0', capture: false }),
       response: Responses.getUnder(),
     },
     {
@@ -141,6 +149,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AA9', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AA9', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AA9', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AA9', capture: false }),
       infoText: {
         en: 'Enrage!',
         de: 'Finalangriff!',
@@ -163,6 +172,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Spectre De Nael', id: '4ABF' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ネールの幻影', id: '4ABF' }),
       netRegexCn: NetRegexes.startsUsing({ source: '奈尔的幻影', id: '4ABF' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '넬의 환영', id: '4ABF' }),
       condition: function(data, matches) {
         if (data.role != 'healer' || data.role != 'tank')
           return false;
@@ -192,6 +202,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Arme Rubis', id: '4AC8', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ルビーウェポン', id: '4AC8', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC8', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC8', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -341,6 +352,42 @@
         'Mark II Magitek Comet': '魔导彗星II',
         'Bradamante': '布拉达曼特',
         'Outrage': '震怒',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'The Ruby Weapon': '루비 웨폰',
+        'Raven\'s Image': '넬의 환영',
+        'Comet': '혜성',
+      },
+      'replaceText': {
+        '--cutscene--': '--컷신--',
+        'Stamp': '발구름',
+        'Optimized Ultima': '마도 알테마',
+        'Flexiclaw': '가변 발톱',
+        'Ravensclaw': '흉조 발톱',
+        'Spike Of Flame': '폭염',
+        'Liqu[ei]faction': '융해',
+        'Ruby Ray': '루비 광선',
+        'Helicoclaw': '나선 발톱',
+        'High-Powered Homing Lasers': '고출력 유도 레이저',
+        'Ravensflight': '흉조 돌진',
+        '(?<! )Homing Lasers': '유도 레이저',
+        'Ruby Dynamics': '루비의 원동력',
+        'Undermine': '발톱 지뢰',
+        'Meteor Project': '메테오 계획',
+        'Negative Personae': '부정적 페르소나',
+        'Meteor Stream': '유성 폭풍',
+        'Ruby Claw': '루비 발톱',
+        'Dalamud Impact': '달라가브 낙하',
+        '(?<! )Magitek Comet': '마도 혜성',
+        'Landing': '경착륙',
+        'Magitek Meteor': '마도 메테오',
+        'Burst': '산산조각',
+        'Mark II Magitek Comet': '마도 혜성 2',
+        'Bradamante': '브라다만테',
+        'Outrage': '격노',
       },
     },
   ],
