@@ -11,6 +11,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C8A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C8A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C8A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C8A', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -23,6 +24,7 @@
       netRegexFr: NetRegexes.tether({ source: 'Idole Des Ténèbres', id: '0025' }),
       netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0025' }),
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0025' }),
+      netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0025' }),
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
@@ -35,6 +37,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4CFD', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4CFD', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4CFD', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4CFD', capture: false }),
       run: function(data) {
         data.phase = 'betwixtWorlds';
       },
@@ -46,6 +49,7 @@
       netRegexFr: NetRegexes.tether({ source: 'Idole Des Ténèbres', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: 'ダークアイドル', id: '0011' }),
       netRegexCn: NetRegexes.tether({ source: '暗黑心象', id: '0011' }),
+      netRegexKo: NetRegexes.tether({ source: '어둠의 우상', id: '0011' }),
       condition: function(data) {
         return data.phase == 'betwixtWorlds';
       },
@@ -156,6 +160,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C99', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C99', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C99', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C99', capture: false }),
       run: function(data) {
         data.phase = 'falseMidnight';
       },
@@ -224,6 +229,7 @@
       netRegexFr: NetRegexes.addedCombatant({ name: 'Vol D\'idolâtries Impardonnables', capture: false }),
       netRegexJa: NetRegexes.addedCombatant({ name: 'ブラスヒーム', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '亵渎', capture: false }),
+      netRegexKo: NetRegexes.addedCombatant({ name: '신성 모독', capture: false }),
       suppressSeconds: 1,
       run: function(data) {
         data.phase = 'adds';
@@ -236,6 +242,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'Idolâtries Impardonnables', id: '4C6E' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C6E' }),
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C6E' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C6E' }),
       condition: (data) => data.CanSilence(),
       suppressSeconds: 1,
       response: Responses.interrupt('alarm'),
@@ -280,6 +287,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C6D', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アイドラトリー', id: '4C6D', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '盲崇', id: '4C6D', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '숭배', id: '4C6D', capture: false }),
       run: function(data) {
         data.insatiableLightStack = [];
       },
@@ -291,6 +299,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Vol D\'idolâtries Impardonnables', id: '4C70', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アイドラトリー', id: '4C70', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C70', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C70', capture: false }),
       suppressSeconds: 1,
       infoText: {
         en: 'Get under vertical add',
@@ -307,6 +316,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Vol D\'idolâtries Impardonnables', id: '4C74', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ブラスヒーム', id: '4C74', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '亵渎', id: '4C74', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '신성 모독', id: '4C74', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -321,6 +331,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '(?:4C8[BC]|4E5[56])', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '(?:4C8[BC]|4E5[56])', capture: false }),
       condition: function(data) {
         return data.role == 'healer' || data.role == 'tank' || data.CanAddle();
       },
@@ -334,6 +345,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C3B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C3B', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C3B', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C3B', capture: false }),
       run: function(data) {
         data.colorMap = {};
         data.colorMap['light'] = {
@@ -375,6 +387,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '4C5[CD]' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       run: function(data, matches) {
         data.boundless = data.boundless || {};
         let oppositeColor = matches.id == '4C5C' ? 'dark' : 'light';
@@ -388,6 +401,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       condition: function(data, matches) {
         if (Object.keys(data.boundless).length != 2)
           return false;
@@ -419,6 +433,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'Idolâtries Impardonnables', id: '4C5[CD]' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '4C5[CD]' }),
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '4C5[CD]' }),
+      netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '4C5[CD]' }),
       delaySeconds: 20,
       run: function(data, matches) {
         delete data.boundless;
@@ -431,6 +446,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Nuée D\'idolâtries Impardonnables', id: '(?:4C2C|4C65)', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '(?:4C2C|4C65)', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '(?:4C2C|4C65)', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '(?:4C2C|4C65)', capture: false }),
       alertText: function(data) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
@@ -453,6 +469,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C9A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C9A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C9A', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C9A', capture: false }),
       suppressSeconds: 1,
       alertText: {
         en: 'Bait Puddles',
@@ -469,6 +486,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C76', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C76', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C76', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C76', capture: false }),
       // Can't use knockback prevention for this, so say where to get knocked back.
       alertText: {
         en: 'Get Knocked Into Corner',
@@ -485,6 +503,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Idole Des Ténèbres', id: '4C7A', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ダークアイドル', id: '4C7A', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '暗黑心象', id: '4C7A', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '어둠의 우상', id: '4C7A', capture: false }),
       // Color buffs go out immediately after the cast
       delaySeconds: 0.1,
       infoText: function(data) {
@@ -522,6 +541,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Idole Des Ténèbres', id: '4C7E', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C7E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C7E', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C7E', capture: false }),
       alertText: function(data) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
@@ -725,6 +745,53 @@
         'Crusade': '群体突进',
         'Words Of Fervor': '乱舞号令',
         'Threefold Grace': '三重光环',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'The Idol Of Darkness': '어둠의 우상',
+        'Unforgiven Idolatry': '면죄되지 않은 숭배',
+        'Blasphemy': '신성 모독',
+        '(?<! )Idolatry': '숭배',
+      },
+      'replaceText': {
+        'Empty Wave': '허무의 파동',
+        'Unshadowed Stake': '암광의 못',
+        'Silver Stake': '백광의 못',
+        'Words Of Motion': '파상의 호령',
+        'Betwixt Worlds': '차원 구멍',
+        'Light\'s Course': '백광의 급류',
+        'Shockwave': '충격파',
+        'Words Of Spite': '조준의 호령',
+        'Away With Thee': '강제 전송',
+        'Silver Sledge': '백광의 망치',
+        'Fate\'s Course': '급류',
+        'False Moonlight': '백야 기동',
+        'Silver Sword': '백광의 검',
+        'Dark\'s Course': '흑암의 급류',
+        'Silver Scourge': '백광의 채찍',
+        'False Midnight': '극야 기동',
+        'Silver Shot': '백광의 화살',
+        'Overwhelming Force': '파멸의 탁류',
+        'Insatiable Light': '파멸의 빛',
+        'Advent Of Light': '빛의 포화',
+        'Strength In Numbers': '공격 기동',
+        'Unearned Envy': '방어 본능',
+        'Empty Flood': '허무의 범람',
+        'Unjoined Aspect': '속성 변동',
+        'Words Of Unity': '강습의 호령',
+        'Words Of Entrapment': '포위의 호령',
+        'White/Black Smoke': '백광/흑암의 불',
+        'Boundless Light': '백광의 격류',
+        'Words Of Night': '야습의 호령',
+        'False Dawn': '여명 기동',
+        'Stygian Sword': '흑암의 검',
+        'Stygian Spear': '흑암의 창',
+        'Silver Spear': '백광의 창',
+        'Crusade': '무리 돌진',
+        'Words Of Fervor': '난무의 호령',
+        'Threefold Grace': '삼중 빛고리',
       },
     },
   ],

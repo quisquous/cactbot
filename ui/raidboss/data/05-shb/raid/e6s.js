@@ -11,6 +11,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4BD3', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BD3', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BD3', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4BD3', capture: false }),
       delaySeconds: 11,
       promise: async (data) => {
         const ifritLocaleNames = {
@@ -19,6 +20,7 @@
           fr: 'Ifrit',
           ja: 'イフリート',
           cn: '伊弗利特',
+          ko: '이프리트',
         };
 
         const raktapaksaLocaleNames = {
@@ -27,6 +29,7 @@
           fr: 'Raktapaksa',
           ja: 'ラクタパクシャ',
           cn: '赤翼罗羯坨博叉',
+          ko: '락타팍샤',
         };
 
         // select the 4 most recent Ifrit or Raktapaksa's depending on phase
@@ -150,6 +153,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: ['Garuda', 'Raktapaksa'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['迦楼罗', '赤翼罗羯坨博叉'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: ['가루다', '락타팍샤'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       infoText: {
         en: 'Avoid green nails',
         de: 'Weiche den grünen Nägeln aus',
@@ -200,6 +204,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C14', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C14', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4C14', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4C14', capture: false }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.aoe(),
     },
@@ -211,6 +216,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4D00', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4D00', capture: false }),
       preRun: function(data) {
         data.handsOfFlame = true;
       },
@@ -251,6 +257,7 @@
       netRegexFr: NetRegexes.ability({ source: ['Ifrit', 'Raktapaksa'], id: '4D00', capture: false }),
       netRegexJa: NetRegexes.ability({ source: ['イフリート', 'ラクタパクシャ'], id: '4D00', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4D00', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: ['이프리트', '락타팍샤'], id: '4D00', capture: false }),
       preRun: function(data) {
         data.handsOfFlame = false;
       },
@@ -263,6 +270,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0E' }),
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0E' }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4C0E' }),
+      netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4C0E' }),
       condition: Conditions.caresAboutMagical(),
       response: Responses.tankBuster(),
     },
@@ -273,6 +281,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: ['Ifrit', 'Raktapaksa'], id: '4C0F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4C0F', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4C0F', capture: false }),
       response: Responses.awayFromFront(),
     },
     {
@@ -330,6 +339,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Raktapaksa', id: '4D55', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ラクタパクシャ', id: '4D55', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '赤翼罗羯坨博叉', id: '4D55', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '락타팍샤', id: '4D55', capture: false }),
       run: function(data) {
         data.phase = 'raktapaksa';
       },
@@ -351,6 +361,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4BFC', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4BFC', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '赤翼罗羯坨博叉', id: '4BFC', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '락타팍샤', id: '4BFC', capture: false }),
       response: Responses.knockback(),
     },
     {
@@ -360,6 +371,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4C10', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '赤翼罗羯坨博叉', id: '4C10', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '락타팍샤', id: '4C10', capture: false }),
       infoText: {
         en: 'go to spots for chains',
         de: 'Gehe zu den Stellen für die Kette',
@@ -400,6 +412,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Raktapaksa', id: '4C10', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4C10', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '赤翼罗羯坨博叉', id: '4C10', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: '락타팍샤', id: '4C10', capture: false }),
       delaySeconds: 31,
       response: Responses.getBehind(),
     },
@@ -559,6 +572,46 @@
         'Spread Of Fire': '火势蔓延',
         'Conflag Strike': '瞬燃强袭',
         'Blaze': '炎爆',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Garuda': '가루다',
+        'Tumultuous Nexus': '폭풍구',
+        'Ifrit': '이프리트',
+        'Raktapaksa': '락타팍샤',
+        'Twisting Blaze': '화염 선풍',
+      },
+      'replaceText': {
+        'Superstorm': '초폭풍',
+        'Occluded Front': '폐색 전선',
+        'Wind Cutter': '바람 칼날',
+        'Storm Of Fury': '분노의 폭풍',
+        'Air Bump': '상향 기류',
+        'Ferostorm': '사나운 폭풍',
+        'Downburst': '하강 기류',
+        'Vacuum Slice': '진공베기',
+        'Irresistible Pull': '흡인력',
+        // 'Explosions?': '폭발?',
+        'Touchdown': '착지',
+        'Hands Of Flame': '화염권',
+        'Eruption': '용암 분출',
+        'Instant Incineration': '폭렬염',
+        'Meteor Strike': '메테오 스트라이크',
+        'Inferno Howl': '작열의 포효',
+        'Hands Of Hell': '업염권',
+        'Strike Spark': '불놀이',
+        'Call Of The Inferno': '아지랑이 소환',
+        'Hot Foot': '불똥',
+        'Hated Of Embers/Vortex': '화염신/바람신의 저주',
+        'Firestorm': '불보라',
+        'Heat Burst': '열파',
+        'Radiant Plume': '광휘의 불기둥',
+        'Spread Of Fire': '불꽃 확산',
+        'Conflag Strike': '대화재',
+        'Blaze': '화염',
       },
     },
   ],
