@@ -372,6 +372,7 @@
       alertText: {
         en: 'Get Outside Upper Laser',
         de: 'Raus aus dem oberen Laser',
+        fr: 'Éloignez-vous des lasers supérieurs',
         ko: '높은 레이저 쪽 밖으로 이동',
       },
     },
@@ -473,7 +474,7 @@
       alertText: {
         en: 'Turn Towers Blue',
         de: 'Türme zu Blau ändern',
-        fr: 'Mettez les tours en bleu',
+        fr: 'Changez les tours en bleu',
         ko: '장판이 파랑색이 되도록 들어가기',
       },
     },
