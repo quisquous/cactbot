@@ -68,7 +68,7 @@ if (typeof module !== 'undefined') {
       de: 'Du hast begonnen, durch Synthese (?<recipi>.*) herzustellen\\.',
       fr: 'Vous commencez à fabriquer (?<recipi>.*)\\.',
       ja: '(?<player>\\y{Name})は(?<recipi>.*)の製作を開始した。',
-      cn: '(?<player>\\y{Name})开始制作“(?<recipi>.*)”(×\\d+)?。',
+      cn: '(?<player>\\y{Name})开始制作(?<recipi>.*)。',
       ko: '(?<recipi>.*) 제작을 시작합니다\\.',
     },
     craftingFinish: {
@@ -76,7 +76,7 @@ if (typeof module !== 'undefined') {
       de: '(?<recipi>.*) hergestellt\\.',
       fr: 'Vous fabriquez (?<recipi>.*)',
       ja: '(?<recipi>.*)を完成させた！',
-      cn: '(?<player>\\y{Name})制作“\ue0bb(?<recipi>.*)(\ue03c)?”(×\\d+)?成功！',
+      cn: '(?<player>\\y{Name})制作(?<recipi>.*)成功！',
       ko: '(?<recipi>.*) 완성했습니다!',
     },
     craftingFail: {
