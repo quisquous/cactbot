@@ -142,7 +142,7 @@ let Responses = {
         de: 'Tank buster auf ' + data.ShortName(target),
         fr: 'Tank buster sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にタンクバスター',
-        cn: '死刑 -> ' + data.ShortName(target),
+        cn: '死刑 点 ' + data.ShortName(target),
         ko: '"' + data.ShortName(target) + '" 탱버',
       };
     };
@@ -186,7 +186,7 @@ let Responses = {
         de: 'Tank buster auf ' + data.ShortName(target),
         fr: 'Tank buster sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にタンクバスター',
-        cn: '死刑 -> ' + data.ShortName(target),
+        cn: '死刑 点 ' + data.ShortName(target),
         ko: '탱버 → ' + data.ShortName(target),
       };
     };
@@ -720,7 +720,7 @@ let Responses = {
         de: 'Schlaf auf ' + source,
         fr: 'Sommeil => ' + source,
         ja: 'スリプル => ' + source,
-        cn: '催眠 => ' + source,
+        cn: '催眠 ' + source,
         ko: '슬리플 => ' + source,
       };
     };
@@ -735,7 +735,7 @@ let Responses = {
         de: 'Betäubung auf ' + source,
         fr: 'Étourdissement => ' + source,
         ja: 'スタン => ' + source,
-        cn: '眩晕 => ' + source,
+        cn: '眩晕 ' + source,
         ko: '기절 => ' + source,
       };
     };

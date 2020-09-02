@@ -128,6 +128,7 @@
       netRegexFr: NetRegexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DB[78]', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Swap Sides',
@@ -181,7 +182,7 @@
             de: 'Frosthieb als nächstes',
             fr: 'Taillade de givre bientôt',
             cn: '下次攻击前侧面',
-            ko: '다음: Biting/スラッシュ',
+            ko: '다음: 서리 참격',
           };
         }
         return {
@@ -189,25 +190,7 @@
           de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientôt',
           cn: '下次攻击后面',
-          ko: '다음: Driving/スラスト',
-        };
-      },
-      tts: function(data) {
-        if (data.firstFrost == 'driving') {
-          return {
-            en: 'Biting Frost Next',
-            de: 'Frosthieb als nächstes',
-            fr: 'Taillade de givre bientôt',
-            cn: '下次攻击前侧面',
-            ko: '다음: 바이팅 스라슈',
-          };
-        }
-        return {
-          en: 'Driving Frost Next',
-          de: 'Froststoß als nächstes',
-          fr: 'Percée de givre bientôt',
-          cn: '下次攻击后面',
-          ko: '다음: 드라이빙 스라스토',
+          ko: '다음: 서리 일격',
         };
       },
     },
@@ -365,6 +348,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: ['Shiva', 'Dragon divin'], id: ['4D98', '4D79'] }),
       netRegexJa: NetRegexes.startsUsing({ source: ['シヴァ', '聖竜'], id: ['4D98', '4D79'] }),
       netRegexCn: NetRegexes.startsUsing({ source: ['希瓦', '圣龙'], id: ['4D98', '4D79'] }),
+      netRegexKo: NetRegexes.startsUsing({ source: ['시바', '성룡'], id: ['4D98', '4D79'] }),
       preRun: function(data, matches) {
         data.akhMornTargets = data.akhMornTargets || [];
         data.akhMornTargets.push(matches.target);
@@ -406,6 +390,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: ['Shiva', 'Dragon divin'], id: ['4D98', '4D79'], capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: ['シヴァ', '聖竜'], id: ['4D98', '4D79'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['希瓦', '圣龙'], id: ['4D98', '4D79'], capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ source: ['시바', '성룡'], id: ['4D98', '4D79'], capture: false }),
       delaySeconds: 15,
       run: function(data) {
         delete data.akhMornTargets;
@@ -581,6 +566,7 @@
       netRegexFr: NetRegexes.ability({ source: 'Miroir De Glace', id: '4DC2', capture: false }),
       netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DC2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DC2', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DC2', capture: false }),
       response: Responses.move('alert'),
     },
     {
@@ -953,6 +939,70 @@
         'Inescapable Illumination': '曝露光',
         'The House Of Light': '光之海啸',
         'Reflected Frost Armor \\(G\\)': '连锁反冰甲(绿)',
+      },
+    },
+    {
+      'locale': 'ko',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Shiva': '시바',
+        'Frozen Mirror': '얼음 거울',
+        'Mothercrystal': '어머니 크리스탈',
+        'Luminous Aether': '빛 에테르',
+        'great wyrm': '성룡',
+      },
+      'replaceText': {
+        'Absolute Zero': '절대영도',
+        'Mirror, Mirror': '거울 나라',
+        'Biting/Driving Frost': '서리 참격/일격',
+        'Reflected Frost \\(G\\)': '반사된 서리 갑옷 (초록)',
+        'Reflected Frost \\(R\\)': '반사된 서리 갑옷 (빨강)',
+        'Diamond Frost': '다이아몬드 더스트',
+        'Frigid Stone': '얼음돌',
+        'Icicle Impact': '고드름 낙하',
+        'Heavenly Strike': '천상의 일격',
+        'Frigid Needle': '얼음바늘',
+        'Frigid Water': '얼음서리',
+        'Frigid Eruption': '얼음 분출',
+        'Driving/Biting Frost': '서리 일격/참격',
+        'Double Slap': '이중 타격',
+        'Shining Armor': '빛의 갑옷',
+        'Axe/Scythe Kick': '도끼차기/낫차기',
+        'Light Rampant': '빛의 폭주',
+        'Bright Hunger': '침식광',
+        'The Path Of Light': '빛의 파동',
+        'Scythe/Axe Kick': '낫차기/도끼차기',
+        // 'Reflected Kick \\(G\\)': '반사된 ~차기 (초록)',
+        'Banish III': '배니시가',
+        'Shattered World': '분단된 세계',
+        'Heart Asunder': '조각난 마음',
+        'Rush': '부딪기',
+        'Skyfall': '세계 소멸',
+        'Akh Morn': '아크 몬',
+        'Morn Afah': '몬 아파',
+        'Hallowed Wings': '신성한 날개',
+        'Reflected Wings \\(B\\)': '반사된 신성한 날개 (파랑)',
+        'Reflected Wings \\(G\\)': '반사된 신성한 날개 (초록)',
+        'Reflected Wings \\(R\\)': '반사된 신성한 날개 (빨강)',
+        'Wyrm\'s Lament': '성룡의 포효',
+        '(?<! )Frost Armor': '서리 갑옷',
+        'Twin Silence/Stillness': '고요/정적의 쌍검기',
+        'Twin Stillness/Silence': '정적/고요의 쌍검기',
+        'Drachen Armor': '용의 갑옷',
+        'Akh Rhai': '아크 라이',
+        'Reflected Armor \\(B\\)': '반사된 서리 갑옷 (파랑)',
+        'Reflected Armor \\(G\\)': '반사된 서리 갑옷 (초록)',
+        'Reflected Armor \\(R\\)': '반사된 서리 갑옷 (빨강)',
+        'Holy': '홀리',
+        'Embittered/Spiteful Dance': '준엄/냉엄의 무도기',
+        'Spiteful/Embittered Dance': '냉엄/준엄의 무도기',
+        'Reflected Drachen': '반사된 용의 갑옷',
+        'Icelit Dragonsong': '얼음과 빛의 용시',
+        'Draconic Strike': '용의 일격',
+        'Banish(?! )': '배니시',
+        'Inescapable Illumination': '폭로광',
+        'The House Of Light': '빛의 해일',
+        'Reflected Frost Armor \\(G\\)': '반사된 서리 갑옷 (초록)',
       },
     },
   ],

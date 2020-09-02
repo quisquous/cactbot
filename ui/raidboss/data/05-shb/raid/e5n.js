@@ -216,5 +216,28 @@
         'Volt Strike': '雷电强袭',
       },
     },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        '(?<! )Ramuh': '라무',
+        'Will Of Ramuh': '라무의 환영',
+        'Will Of Ixion': '익시온의 환영',
+      },
+      'replaceText': {
+        'Crippling Blow': '통타',
+        'Stratospear Summons': '무기 생성',
+        'Impact': '충격',
+        'Judgment Jolt': '심판의 계뢰',
+        'Stormcloud Summons': '번개구름 생성',
+        '(?<! )Judgment Volts': '심판의 열뢰',
+        'Fury\'s Bolt': '번개 충전',
+        'Divine Judgment Volts': '천제의 심판의 열뢰',
+        'Tribunal Summons': '사념체 생성',
+        'Deadly Discharge': '죽음의 방전',
+        'Gallop': '습보',
+        'Thunderstorm': '번개 폭풍',
+        'Volt Strike': '전기 충격',
+      },
+    },
   ],
 }];

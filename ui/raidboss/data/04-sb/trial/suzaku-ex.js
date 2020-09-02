@@ -28,7 +28,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            cn: '死刑->' + data.ShortName(matches.target),
+            cn: '死刑 点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }

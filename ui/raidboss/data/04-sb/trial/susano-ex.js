@@ -238,7 +238,7 @@
         'Ame-No-Murakumo add': 'Ame No Murakumo Add',
         'Assail': 'Schwere Attacke',
         'Churn': 'Schaum',
-        'Dark Levin': 'violett(?:e|er|es|en) Blitz',
+        'Dark Levin': 'violetter Blitz',
         'Knockback': 'Rückstoß',
         'Levinbolt': 'Keraunisches Feld',
         'Phase': 'Phase',

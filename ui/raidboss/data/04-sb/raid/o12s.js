@@ -282,7 +282,7 @@
           de: 'Verwundbarkeit auf ' + data.ShortName(matches.target),
           fr: 'Vulnérabilité sur ' + data.ShortName(matches.target),
           ja: '標的 on ' + data.ShortName(matches.target),
-          cn: '目标识别->' + data.ShortName(matches.target),
+          cn: '目标识别 点' + data.ShortName(matches.target),
           ko: '"' + data.ShortName(matches.target) + '" 표적식별',
         };
       },
@@ -413,7 +413,7 @@
             de: 'Kurzer Stack auf ' + data.ShortName(matches.target),
             fr: 'Marque courte sur ' + data.ShortName(matches.target),
             ja: '早シェア on ' + data.ShortName(matches.target),
-            cn: '短D->' + data.ShortName(matches.target),
+            cn: '短D 点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 쉐어',
           };
         }
@@ -440,7 +440,7 @@
           de: 'Kein Marker',
           fr: 'Aucun marqueur',
           ja: '無職',
-          cn: '闲D',
+          cn: '无BUFF',
           ko: '무징 대상자',
         };
       },

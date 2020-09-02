@@ -500,7 +500,7 @@
         if (matches.target == data.me) {
           return {
             en: 'Puddle on YOU',
-            de: 'Fläsche auf dir',
+            de: 'Fläche auf dir',
             fr: 'Flaques sur VOUS',
             ja: '自分に水溜り',
             cn: '水圈点名',
