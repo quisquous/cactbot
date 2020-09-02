@@ -2879,7 +2879,7 @@ class Bars {
         }
         if (this.craftingFinishRegex.test(log) ||
           this.craftingFailRegex.test(log) ||
-          this.craftingCancelRegex.test (log)) {
+          this.craftingCancelRegex.test(log)) {
           this.o.cpContainer.classList.add('hide');
           continue;
         }
