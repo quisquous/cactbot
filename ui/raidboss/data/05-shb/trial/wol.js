@@ -14,7 +14,7 @@
       alarmText: {
         en: 'Limit break now!',
         de: 'Limit break jetzt!',
-        fr: 'Transcendance maintenant !'
+        fr: 'Transcendance maintenant !',
         ja: 'タンクLBを！',
         cn: '坦克LB！',
         ko: '리미트 브레이크!',
