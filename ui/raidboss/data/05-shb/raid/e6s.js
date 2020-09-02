@@ -594,7 +594,7 @@
         'Downburst': '하강 기류',
         'Vacuum Slice': '진공베기',
         'Irresistible Pull': '흡인력',
-        // 'Explosions?': '폭발?',
+        'Explosion': '폭산',
         'Touchdown': '착지',
         'Hands Of Flame': '화염권',
         'Eruption': '용암 분출',

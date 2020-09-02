@@ -423,7 +423,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '3D8D', source: 'Gardien Du Jardin' }),
       netRegexJa: NetRegexes.startsUsing({ id: '3D8D', source: 'エデン・ガーデナー' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D8D', source: '伊甸守护者' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '3D8D', source: '에덴 정원사' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3D8D', source: '에덴의 수호자' }),
       condition: function(data) {
         return data.CanSilence();
       },

@@ -84,6 +84,7 @@
       alertText: function(data) {
         return {
           en: 'Go Left, Behind Wing',
+          de: 'Geh links hinter den Flügel',
         };
       },
     },
@@ -96,6 +97,7 @@
       alertText: function(data) {
         return {
           en: 'Go Right, Behind Wing',
+          de: 'Geh rechts hinter den Flügel',
         };
       },
     },
@@ -705,6 +707,7 @@
       // * 4 clones teleporting in (to cardinals)
       alertText: {
         en: 'Away From Clones',
+        de: 'Weg von den Klonen',
         fr: 'Éloignez vous des clones',
       },
     },

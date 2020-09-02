@@ -10,6 +10,14 @@ const raidbossInstructions = {
     'Timelines and triggers will show up in supported zones.',
     'Test raidboss with a /countdown in Summerford Farms.',
   ],
+  de: [
+    'Anweisungen wie folgt:',
+    'Dies ist ein Debug-Text zur Größenänderung.',
+    'Er verschwindet, wenn du das Overlay sperrst,',
+    'zusammen mit dem blauen Hintergrund.',
+    'Timeline und Trigger werden in den unterstützten Zonen angezeigt.',
+    'Testen Sie Raidboss mit einem /countdown in Sommerfurt-Höfe.',
+  ],
   ja: [
     '操作手順：',
     'デバッグ用のテキストです。',

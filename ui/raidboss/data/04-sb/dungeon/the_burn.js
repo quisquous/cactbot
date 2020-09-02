@@ -11,6 +11,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '3193', source: 'Hedetet' }),
       netRegexJa: NetRegexes.startsUsing({ id: '3193', source: 'ヘデテト' }),
       netRegexCn: NetRegexes.startsUsing({ id: '3193', source: '赫德提特' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3193', source: '헤데테트' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -20,6 +21,7 @@
       condition: (data) => !data.hedetet,
       infoText: {
         en: 'Hide behind crystal',
+        de: 'Hinter dem Kristall verstecken',
       },
     },
     {
@@ -28,6 +30,7 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Spread + Avoid Crystals',
+        de: 'Verteilen + Kristall meiden',
       },
     },
     {
@@ -37,8 +40,10 @@
       netRegexFr: NetRegexes.startsUsing({ id: '3191', source: 'Hedetet', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3191', source: 'ヘデテト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3191', source: '赫德提特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3191', source: '헤데테트', capture: false }),
       infoText: {
         en: 'Hide behind crystal',
+        de: 'Hinter dem Kristall verstecken',
       },
     },
     {
@@ -49,36 +54,40 @@
       netRegexFr: NetRegexes.startsUsing({ id: '3192', source: 'Hedetet', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3192', source: 'ヘデテト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3192', source: '赫德提特', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3192', source: '헤데테트', capture: false }),
       response: Responses.getUnder(),
     },
     {
       // Head marker 0002 is used in both the first two encounters.
       id: 'The Burn Dead Hedetet',
       netRegex: NetRegexes.ability({ id: '368', source: 'Defective Drone', capture: false }),
-      netRegexDe: NetRegexes.ability({ id: '368', source: 'Defekt[a] Drohne', capture: false }),
+      netRegexDe: NetRegexes.ability({ id: '368', source: 'Defekt(?:e|er|es|en) Drohne', capture: false }),
       netRegexFr: NetRegexes.ability({ id: '368', source: 'drone défectueux', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '368', source: 'デフェクティブ・ドローン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '368', source: '次品无人机', capture: false }),
+      netRegexKo: NetRegexes.ability({ id: '368', source: '고장난 무인기', capture: false }),
       condition: (data) => !data.hedetet,
       run: (data) => data.hedetet = true,
     },
     {
       id: 'The Burn Aetherochemical Flame',
       netRegex: NetRegexes.startsUsing({ id: '2D73', source: 'Defective Drone', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2D73', source: 'Defekt[a] Drohne', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2D73', source: 'Defekt(?:e|er|es|en) Drohne', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '2D73', source: 'drone défectueux', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2D73', source: 'デフェクティブ・ドローン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2D73', source: '次品无人机', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2D73', source: '고장난 무인기', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
     {
       id: 'The Burn Aetherochemical Coil',
       netRegex: NetRegexes.startsUsing({ id: '2D72', source: 'Defective Drone' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2D72', source: 'Defekt[a] Drohne' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2D72', source: 'Defekt(?:e|er|es|en) Drohne' }),
       netRegexFr: NetRegexes.startsUsing({ id: '2D72', source: 'drone défectueux' }),
       netRegexJa: NetRegexes.startsUsing({ id: '2D72', source: 'デフェクティブ・ドローン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2D72', source: '次品无人机' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2D72', source: '고장난 무인기' }),
       condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
@@ -88,6 +97,7 @@
       condition: (data, matches) => data.me == matches.target && data.hedetet,
       infoText: {
         en: 'Puddle on YOU',
+        de: 'Fläche auf DIR',
       },
     },
     {
@@ -97,6 +107,7 @@
       suppressSeconds: 5,
       infoText: {
         en: 'In line with smoking drone',
+        de: 'In einer Linie mit der rauchenden Drohne stellen',
       },
     },
     {
@@ -106,9 +117,11 @@
       netRegexFr: NetRegexes.startsUsing({ id: '2D78', source: 'trancheur de pierre', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2D78', source: 'ロックカッター', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2D78', source: '石刃', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2D78', source: '암석 절단날', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Avoid Rock Biters',
+        de: 'Felsbeißer meiden',
       },
     },
     {
@@ -118,6 +131,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '314B', source: 'dragon des brumes', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '314B', source: 'ミストドラゴン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '314B', source: '雾龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '314B', source: '안개 드래곤', capture: false }),
       condition: Conditions.caresAboutAOE(),
       response: Responses.aoe(),
     },
@@ -129,10 +143,12 @@
         if (data.me === matches.target) {
           return {
             en: 'Puddle + cleave on YOU',
+            de: 'Fläche + Cleave auf DIR',
           };
         }
         return {
           en: 'Avoid marker cone',
+          de: 'Kegel-Markierung ausweichen',
         };
       },
     },
@@ -143,9 +159,11 @@
       netRegexFr: NetRegexes.startsUsing({ id: '3144', source: 'dragon des brumes', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3144', source: 'ミストドラゴン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3144', source: '雾龙', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '3144', source: '안개 드래곤', capture: false }),
       suppressSeconds: 5,
       infoText: {
         en: 'Bait Star Explosions',
+        de: 'Stern Explosion ködern',
       },
     },
   ],
@@ -158,13 +176,12 @@
         'The Aspersory': 'Nebelhort',
         'Rock Biter': 'Felsbeißer',
         'Mist Dragon': 'Nebeldrache',
-        'Dim Crystal': 'Trüb[a] Kristall',
-        'Defective Drone': 'Defekt[a] Drohne',
+        'Dim Crystal': 'trüber Kristall',
+        'Defective Drone': 'defekte Drohne',
         'Hedetet': 'Hedetet',
       },
       'replaceText': {
         'Vaporize': 'Vaporisieren',
-        'Touchdown': 'Himmelssturz',
         'Shardstrike': 'Splitterschlag',
         'Shardfall': 'Splitterregen',
         'Rime Wreath': 'Frostkalter Reif',
@@ -200,7 +217,6 @@
       },
       'replaceText': {
         'Vaporize': 'Vaporisation',
-        'Touchdown': 'Atterrissage',
         'Shardstrike': 'Coup d\'éclats',
         'Shardfall': 'Pluie d\'éclats',
         'Rime Wreath': 'Enveloppe de givre',
@@ -236,7 +252,6 @@
       },
       'replaceText': {
         'Vaporize': '霧散',
-        'Touchdown': 'タッチダウン',
         'Shardstrike': 'シャードストライク',
         'Shardfall': 'シャードフォール',
         'Rime Wreath': 'ライムリリース',
@@ -272,7 +287,6 @@
       },
       'replaceText': {
         'Vaporize': '雾散',
-        'Touchdown': '空降',
         'Shardstrike': '碎片打击',
         'Shardfall': '碎片脱落',
         'Rime Wreath': '白霜环绕',
@@ -292,7 +306,41 @@
         'Aetherochemical Flame': '魔科学烈焰',
         'Aetherochemical Coil': '魔科学车轮',
         'Adit Driver': '削岩',
-        '': '',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'The Scorpion\'s Den': '헤데테트의 영역',
+        'The Gamma Segregate': '구 감마 분리구역',
+        'The Aspersory': '안개접시',
+        'Rock Biter': '암석 절단날',
+        'Mist Dragon': '안개 드래곤',
+        'Dim Crystal': '빛바랜 크리스탈',
+        'Defective Drone': '고장난 무인기',
+        'Hedetet': '헤데테트',
+      },
+      'replaceText': {
+        'Vaporize': '흩어지는 안개',
+        'Shardstrike': '샤드 스트라이크',
+        'Shardfall': '샤드 낙하',
+        'Rime Wreath': '분노의 서릿발',
+        'Resonant Frequency': '공진 작렬',
+        'Hailfire': '우박 발사',
+        'Full Throttle': '초고속 주행',
+        'Frost Breath': '서리 숨결',
+        'Fog Plume': '안개 방사',
+        'Dissonance': '충돌',
+        'Deep Fog': '짙은 안개',
+        'Crystalline Fracture': '수정 조각',
+        'Crystal Needle': '크리스탈 바늘',
+        'Cold Fog': '차가운 안개',
+        'Chilling Aspiration': '안개 숨결',
+        'Cauterize': '인두질',
+        'Aetherochemical Residue': '마과학 점액',
+        'Aetherochemical Flame': '마과학 불꽃',
+        'Aetherochemical Coil': '마과학 톱니바퀴',
+        'Adit Driver': '암석 절단',
       },
     },
   ],
