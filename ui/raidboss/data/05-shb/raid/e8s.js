@@ -182,7 +182,7 @@
             de: 'Frosthieb als nächstes',
             fr: 'Taillade de givre bientôt',
             cn: '下次攻击前侧面',
-            ko: '다음: Biting/スラッシュ',
+            ko: '다음: 서리 참격',
           };
         }
         return {
@@ -190,25 +190,7 @@
           de: 'Froststoß als nächstes',
           fr: 'Percée de givre bientôt',
           cn: '下次攻击后面',
-          ko: '다음: Driving/スラスト',
-        };
-      },
-      tts: function(data) {
-        if (data.firstFrost == 'driving') {
-          return {
-            en: 'Biting Frost Next',
-            de: 'Frosthieb als nächstes',
-            fr: 'Taillade de givre bientôt',
-            cn: '下次攻击前侧面',
-            ko: '다음: 바이팅 스라슈',
-          };
-        }
-        return {
-          en: 'Driving Frost Next',
-          de: 'Froststoß als nächstes',
-          fr: 'Percée de givre bientôt',
-          cn: '下次攻击后面',
-          ko: '다음: 드라이빙 스라스토',
+          ko: '다음: 서리 일격',
         };
       },
     },

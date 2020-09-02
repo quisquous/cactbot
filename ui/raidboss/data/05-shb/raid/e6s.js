@@ -377,7 +377,7 @@
         de: 'Gehe zu den Stellen für die Kette',
         fr: 'Positions pour les chaines',
         cn: '连线站位',
-        ko: '콘플레그 준비',
+        ko: '대화재 준비',
       },
     },
     {
