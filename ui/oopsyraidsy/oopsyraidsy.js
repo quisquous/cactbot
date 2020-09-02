@@ -209,7 +209,12 @@ function ShortNamify(name) {
   return idx < 0 ? name : name.substr(0, idx);
 }
 
+// Turns a scrambled string damage field into an integer.
+// Since fields are modified in place right now, this does nothing if called
+// again with an integer.  This is kind of a hack, sorry.
 function UnscrambleDamage(field) {
+  if (typeof field !== 'string')
+    return field;
   const len = field.length;
   if (len <= 4)
     return 0;
