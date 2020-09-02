@@ -96,6 +96,10 @@
   height: 18px;
 }
 
+#cp-bar.hide {
+  display: none;
+}
+
 #cp-bar {
   height: 18px;
 }

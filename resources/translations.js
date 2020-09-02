@@ -63,6 +63,22 @@ if (typeof module !== 'undefined') {
       cn: '(?<area>\\y{Name})的封锁解除了',
       ko: '(?<area>\\y{Name})의 봉쇄가 해제되었습니다\\.',
     },
+    craftingStart: {
+      en: 'You begin synthesizing (?<recipi>\\y{Name})',
+      cn: '(?<player>\\y{Name})开始制作“\ue0bb(?<recipi>\\y{Name})”。',
+    },
+    craftingFinish: {
+      en: 'You synthesize (?<recipi>\\y{Name})',
+      cn: '(?<player>\\y{Name})制作“\ue0bb(?<recipi>\\y{Name})”成功！',
+    },
+    craftingFail: {
+      en: 'Your synthesis fails!',
+      cn: '(?<player>\\y{Name})制作失败了……',
+    },
+    craftingCancel: {
+      en: 'You cancel the synthesis',
+      cn: '(?<player>\\y{Name})中止了制作作业。',
+    },
   };
 
   for (const [key, trans] of Object.entries(localeLines)) {

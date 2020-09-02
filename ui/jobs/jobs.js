@@ -1078,6 +1078,10 @@ class Bars {
     const lang = this.options.ParserLanguage;
     this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
     this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
+    this.craftingStartRegex = LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'];
+    this.craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
+    this.craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
+    this.craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
   }
 
   UpdateJob() {
@@ -1194,6 +1198,7 @@ class Bars {
       this.o.cpBar.centertext = 'maxvalue';
       this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
+      this.o.cpContainer.classList.add('hide');
       return;
     } else if (Util.isGatheringJob(this.job)) {
       this.o.gpContainer = document.createElement('div');
@@ -2865,6 +2870,17 @@ class Bars {
           this.skillSpeed = stats.skillSpeed;
           this.spellSpeed = stats.spellSpeed;
           this.UpdateJobBarGCDs();
+          continue;
+        }
+        // Hide CP Bar when not crafting
+        if (log.search(this.craftingStartRegex) >= 0) {
+          this.o.cpContainer.classList.remove('hide');
+          continue;
+        }
+        if (log.search(this.craftingFinishRegex) >= 0 ||
+          log.search(this.craftingFailRegex) >= 0 ||
+          log.search(this.craftingCancelRegex) >= 0) {
+          this.o.cpContainer.classList.add('hide');
           continue;
         }
       } else if (log[15] == '1') {
