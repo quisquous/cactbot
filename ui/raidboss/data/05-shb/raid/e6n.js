@@ -138,7 +138,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4BED' }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4BED' }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4BED' }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {
