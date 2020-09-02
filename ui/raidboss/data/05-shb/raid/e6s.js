@@ -271,7 +271,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0E' }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4C0E' }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4C0E' }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {
