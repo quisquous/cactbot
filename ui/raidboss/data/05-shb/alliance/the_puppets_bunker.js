@@ -83,10 +83,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5080', capture: false }),
       alertText: function(data) {
         return {
-          en: 'Get Under Wings',
-          de: 'Gehe unter die Flügel',
-          fr: 'Allez sous une aile',
-          ko: '날개 뒤로 이동',
+          en: 'Go Left, Behind Wing',
         };
       },
     },
@@ -98,10 +95,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '507F', capture: false }),
       alertText: function(data) {
         return {
-          en: 'Get Between Wings',
-          de: 'Geh Zwischen die Flügel',
-          fr: 'Allez entre les ailes',
-          ko: '날개 사이로 이동',
+          en: 'Go Right, Behind Wing',
         };
       },
     },
