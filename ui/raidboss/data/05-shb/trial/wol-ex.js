@@ -21,7 +21,7 @@ const kImbuedBlizzard = {
 const kImbuedHoly = {
   en: 'Stack',
   de: 'Stacken',
-  fr: 'Stack',
+  fr: 'Pack',
   ja: 'スタック',
   cn: '集合',
   ko: '쉐어',
@@ -98,7 +98,7 @@ const translate = (data, obj) => {
       alertText: {
         en: 'Heal All to Full',
         de: 'Alle vollheilen',
-        fr: 'Soignez tout le monde full vie',
+        fr: 'Soignez tout le monde complètement',
         ja: '全員HPを満タンさせ！',
         cn: '奶满全队',
         ko: '전원 체력 풀피로',
@@ -113,6 +113,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Bait Confiteor',
         de: 'Confiteor ködern',
+        fr: 'Posez les zones au sol (Confiteor)',
         ko: '장판 유도하기',
       },
     },
@@ -133,6 +134,11 @@ const translate = (data, obj) => {
             0: 'Rollenposition',
             1: 'Heiler stacks',
             2: 'Meteor',
+          },
+          fr: {
+            0: 'Positions par rôle',
+            1: 'Stacks healers',
+            2: 'Météor',
           },
           ja: {
             0: 'ロール特定位置へ',
@@ -263,6 +269,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Avoid Wyrm Dash',
         de: 'Wyrm-Ansturm ausweichen',
+        fr: 'Esquivez la charge du Wyrm',
         ja: '竜を避け',
         cn: '躲避龙的冲锋',
         ko: '용 돌진 피하기',
@@ -371,8 +378,8 @@ const translate = (data, obj) => {
           return {
             en: 'TANK LB!!',
             de: 'TANK LB!!',
-            ja: 'タンクLB!!',
             fr: 'LB TANK !!',
+            ja: 'タンクLB!!',
             ko: '리미트 브레이크!!',
             cn: '坦克LB!!',
           };
@@ -395,6 +402,7 @@ const translate = (data, obj) => {
       alertText: {
         en: 'Black Mage + White Mage',
         de: 'Schwarzmagier + Weißmagier',
+        fr: 'Mage noir + Mage blanc',
         ja: '黒魔導士 + 白魔導士',
         cn: '黑魔法师 + 白魔法师',
         ko: '흑마도사 + 백마도사',
@@ -412,6 +420,7 @@ const translate = (data, obj) => {
       alertText: {
         en: 'Summoner + Warrior',
         de: 'Beschwörer + Krieger',
+        fr: 'Invocateur + Guerrier',
         ja: '召喚師 + 戦士',
         cn: '召唤师 + 战士',
         ko: '소환사 + 전사',
@@ -430,6 +439,7 @@ const translate = (data, obj) => {
       alertText: {
         en: 'Dark Knight + Bard',
         de: 'Dunkelritter + Barde',
+        fr: 'Chevalier noir + Barde',
         ja: '暗黒騎士 + 吟遊詩人',
         cn: '暗黑骑士 + 吟游诗人',
         ko: '암흑기사 + 음유시인',
@@ -447,6 +457,7 @@ const translate = (data, obj) => {
       alertText: {
         en: 'Ninja',
         de: 'Ninja',
+        fr: 'Ninja',
         ja: '忍者',
         cn: '忍者',
         ko: '닌자',
@@ -503,6 +514,7 @@ const translate = (data, obj) => {
       infoText: {
         en: 'Warrior Cleave on YOU',
         de: 'Krieger Cleave auf DIR',
+        fr: 'Cleave du Guerrier sur VOUS',
         ja: '自分に戦士の範囲攻撃',
         cn: '战士顺劈点名',
         ko: '전사 범위 공격 대상자',
