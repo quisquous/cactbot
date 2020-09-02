@@ -97,6 +97,8 @@
 04-sb/dungeon/fractal_continuum_hard.js
 04-sb/dungeon/temple_of_the_fist.js
 04-sb/dungeon/temple_of_the_fist.txt
+04-sb/dungeon/the_burn.js
+04-sb/dungeon/the_burn.txt
 04-sb/eureka/eureka_anemos.js
 04-sb/eureka/eureka_hydatos.js
 04-sb/eureka/eureka_hydatos.txt
