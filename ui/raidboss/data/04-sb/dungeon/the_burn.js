@@ -16,17 +16,10 @@
     },
     {
       id: 'The Burn Hailfire',
-      netRegex: NetRegexes.headMarker({ id: '0002' }),
+      netRegex: NetRegexes.headMarker({ id: '0002', capture: false }),
       condition: (data) => !data.hedetet,
-      infoText: function(data, matches) {
-        if (data.me === matches.target) {
-          return {
-            en: 'Hide behind crystal',
-          };
-        }
-        return {
-          en: 'Avoid marker laser',
-        };
+      infoText: {
+        en: 'Hide behind crystal',
       },
     },
     {
@@ -49,6 +42,7 @@
       },
     },
     {
+      // This has a visible donut AoE, but the user must be inside the target ring to be safe.
       id: 'The Burn Crystal Dissonance',
       netRegex: NetRegexes.startsUsing({ id: '3192', source: 'Hedetet', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3192', source: 'Hedetet', capture: false }),
@@ -151,7 +145,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3144', source: '雾龙', capture: false }),
       suppressSeconds: 5,
       infoText: {
-        en: 'Avoid Star Lines',
+        en: 'Bait Star Explosions',
       },
     },
   ],
