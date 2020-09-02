@@ -69,13 +69,15 @@ if (typeof module !== 'undefined') {
       fr: 'Vous commencez à fabriquer (?<recipi>\\y{Name})\\.',
       ja: '(?<player>\\y{Name})は(?<recipi>\\y{Name})の製作を開始した。',
       cn: '(?<player>\\y{Name})开始制作“\ue0bb(?<recipi>\\y{Name})”。',
+      ko: '(?<recipi>\\y{Name}) 제작을 시작합니다\\.',
     },
     craftingFinish: {
       en: 'You synthesize (?<recipi>\\y{Name})',
       de: '(?<recipi>\\y{Name}) hergestellt\\.',
       fr: 'Vous fabriquez (?<recipi>\\y{Name})',
       ja: '(?<recipi>\\y{Name})を完成させた！',
-      cn: '“\ue0bb(?<recipi>\\y{Name})”制作成功！',
+      cn: '(?<player>\\y{Name})制作“\ue0bb(?<recipi>\\y{Name})”成功！',
+      ko: '(?<recipi>\\y{Name}) 완성했습니다!',
     },
     craftingFail: {
       en: 'Your synthesis fails!',
@@ -83,6 +85,7 @@ if (typeof module !== 'undefined') {
       fr: 'La synthèse échoue\\.{3}',
       ja: '(?<player>\\y{Name})は製作に失敗した……',
       cn: '(?<player>\\y{Name})制作失败了……',
+      ko: '제작에 실패했습니다……\\.',
     },
     craftingCancel: {
       en: 'You cancel the synthesis\\.',
@@ -90,6 +93,7 @@ if (typeof module !== 'undefined') {
       fr: 'La synthèse est annulée\\.',
       ja: '(?<player>\\y{Name})は製作を中止した。',
       cn: '(?<player>\\y{Name})中止了制作作业。',
+      ko: '제작을 중지했습니다\\.',
     },
   };
 
