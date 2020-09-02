@@ -2873,13 +2873,13 @@ class Bars {
           continue;
         }
         // Hide CP Bar when not crafting
-        if (log.search(this.craftingStartRegex) >= 0) {
+        if (this.craftingStartRegex.test(log)) {
           this.o.cpContainer.classList.remove('hide');
           continue;
         }
-        if (log.search(this.craftingFinishRegex) >= 0 ||
-          log.search(this.craftingFailRegex) >= 0 ||
-          log.search(this.craftingCancelRegex) >= 0) {
+        if (this.craftingFinishRegex.test(log) ||
+          this.craftingFailRegex.test(log) ||
+          this.craftingCancelRegex.test (log)) {
           this.o.cpContainer.classList.add('hide');
           continue;
         }
