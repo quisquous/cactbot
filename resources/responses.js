@@ -718,7 +718,7 @@ let Responses = {
       return {
         en: 'Sleep ' + source,
         de: 'Schlaf auf ' + source,
-        fr: 'Sommeil => ' + source,
+        fr: 'Sommeil sur ' + source,
         ja: 'スリプル => ' + source,
         cn: '催眠 ' + source,
         ko: '슬리플 => ' + source,
@@ -733,7 +733,7 @@ let Responses = {
       return {
         en: 'Stun ' + source,
         de: 'Betäubung auf ' + source,
-        fr: 'Étourdissement => ' + source,
+        fr: 'Étourdissement sur ' + source,
         ja: 'スタン => ' + source,
         cn: '眩晕 ' + source,
         ko: '기절 => ' + source,
