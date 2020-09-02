@@ -499,15 +499,8 @@ class RaidbossConfigurator {
       if (!langSpecificRegex)
         return;
       let baseRegex = Regexes.parse(langSpecificRegex);
-      // FIXME: the current \y{Name} is extremely verbose due to some unicode characters.
-      // It would be nice to replace it with something much simpler like `.*?`, as Regexes does.
-      // However, this doesn't work for all regexes yet until they are converted over.
-      // Once everything using \y{Name} is using Regexes, then get rid of this hack by making
-      // \y{Name} be `.*?` itself (or something much simpler along those lines).
-
       if (!baseRegex)
         return;
-      baseRegex = baseRegex.source.replace(/\\y\{Name}/g, '.*?');
       return Regexes.parse(baseRegex);
     };
 
