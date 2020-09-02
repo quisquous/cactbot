@@ -9,6 +9,14 @@ const timelineInstructions = {
     'Real timelines automatically',
     'appear when supported.',
   ],
+  de: [
+    'Diese Zeilen sind',
+    'Timeline Debug-Einträge.',
+    'Wenn du das Overlay sperrst,',
+    'werden sie verschwinden!',
+    'Echte Timelines erscheinen automatisch,',
+    'wenn sie unterstützt werden.',
+  ],
   ja: [
     'こちらはデバッグ用の',
     'タイムラインです。',
