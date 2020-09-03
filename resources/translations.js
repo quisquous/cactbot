@@ -75,7 +75,7 @@ if (typeof module !== 'undefined') {
       en: 'You synthesize (?<recipe>.*)',
       de: '(?<recipe>.*) hergestellt\\.',
       fr: 'Vous fabriquez (?<recipe>.*)',
-      ja: '(?<recipe>.*)を完成させた！',
+      ja: '(?<player>\\y{Name})は(?<recipe>.*)を完成させた！',
       cn: '(?<player>\\y{Name})制作(?<recipe>.*)成功！',
       ko: '(?<recipe>.*) 완성했습니다!',
     },
