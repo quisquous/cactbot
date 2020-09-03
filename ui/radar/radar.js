@@ -202,7 +202,7 @@ class Radar {
   UpdateMonsterPuller(monster, puller) {
     if (!this.options.Puller)
       return;
-    if (monster.puller !== null)
+    if (monster.puller !== null || monster.skipPuller)
       return;
     monster.puller = puller;
     this.UpdateMonsterDom(monster);
