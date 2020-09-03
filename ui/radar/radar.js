@@ -190,6 +190,7 @@ class Radar {
         'addTime': Date.now(),
         'dom': tr,
         'puller': null,
+        'skipPuller' : false,
       };
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
@@ -206,6 +207,12 @@ class Radar {
     monster.puller = puller;
     this.UpdateMonsterDom(monster);
     console.log('Pull: ' + puller + ' => ' + monster.name);
+  }
+  
+  SkipMonsterPuller(monster, skipPuller) {
+    monster.skipPuller = skipPuller;
+    this.UpdateMonsterDom(monster);
+    console.log('skipPuller = ' + skipPuller);
   }
 
   UpdateMonsterDom(monster) {
@@ -264,8 +271,13 @@ class Radar {
       const matches = log.match(NetRegexes.addedCombatantFull());
       if (matches) {
         const monster = this.nameToMonster[matches.groups.name.toLowerCase()];
-        if (monster)
+        if (monster) {
+          if (matches[11] == 0) //don't fire if current HP = 0 (hunt is already dead)
+            return;
           this.AddMonster(log, monster, matches.groups);
+          if (matches[11] < matches[12]) //already has been pulled if current HP < max HP when detected
+            this.SkipMonsterPuller(this.targetMonsters[matches.groups.name.toLowerCase()], true);
+        }
       }
       return;
     }
