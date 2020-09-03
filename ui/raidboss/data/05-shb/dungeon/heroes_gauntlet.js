@@ -36,6 +36,7 @@
       infoText: {
         en: 'Away from tether marker',
         de: 'Weg von der Verbindung',
+        fr: 'Éloignez-vous du marqueur de lien',
         ja: '線から離れ',
         ko: '이어진 표식으로부터 떨어지기',
       },
@@ -91,6 +92,7 @@
       alertText: {
         en: 'Get in a crater',
         de: 'In den Krater gehen',
+        fr: 'Allez dans un cratère',
         ja: '穴に入る',
         ko: '구덩이에 들어가기',
       },
@@ -125,6 +127,7 @@
           return {
             en: 'Stack on your rock',
             de: 'Auf deinem Stein sammeln',
+            fr: 'Restez sur votre rocher',
             ja: '自分の隕石と貼りつく',
             ko: '돌과 같이 맞기',
           };
