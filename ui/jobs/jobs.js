@@ -2884,7 +2884,7 @@ class Bars {
         }
         r = this.craftingFinishRegex.exec(log);
         if ((r && (r.groups.player === undefined ||
-              (r.groups.player && r.groups.player == this.me)) ||
+              (r.groups.player && r.groups.player == this.me))) ||
           this.craftingFailRegex.test(log) ||
           this.craftingCancelRegex.test(log)) {
           container.classList.add('hide');
