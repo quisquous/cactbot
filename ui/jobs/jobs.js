@@ -2883,12 +2883,11 @@ class Bars {
           continue;
         }
         r = this.craftingFinishRegex.exec(log);
-        if (r ||
+        if ((r && (r.groups.player === undefined ||
+              (r.groups.player && r.groups.player == this.me)) ||
           this.craftingFailRegex.test(log) ||
           this.craftingCancelRegex.test(log)) {
-          if (r.groups.player === undefined ||
-            (r.groups.player && r.groups.player == this.me))
-            container.classList.add('hide');
+          container.classList.add('hide');
           continue;
         }
       } else if (log[15] == '1') {
