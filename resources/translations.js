@@ -69,7 +69,7 @@ if (typeof module !== 'undefined') {
       fr: 'Vous commencez à fabriquer (?<recipe>.*)\\.',
       ja: '(?<player>\\y{Name})は(?<recipe>.*)の製作を開始した。',
       cn: '(?<player>\\y{Name})开始制作(?<recipe>.*)。',
-      ko: '(?<recipe>.*) 제작을 시작합니다\\.',
+      ko: '(?<recipe>.*)(개)? 제작을 시작합니다\\.',
     },
     craftingFinish: {
       en: 'You synthesize (?<recipe>.*)',
@@ -77,7 +77,7 @@ if (typeof module !== 'undefined') {
       fr: 'Vous fabriquez (?<recipe>.*)',
       ja: '(?<player>\\y{Name})は(?<recipe>.*)を完成させた！',
       cn: '(?<player>\\y{Name})制作(?<recipe>.*)成功！',
-      ko: '(?<recipe>.*) 완성했습니다!',
+      ko: '(?<recipe>.*)(개를)? 완성했습니다!',
     },
     craftingFail: {
       en: 'Your synthesis fails!',
