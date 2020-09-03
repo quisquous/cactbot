@@ -8,6 +8,10 @@
   left: 100px; /* Space for some left buffs */
 }
 
+#jobs-container.hide {
+  display: none;
+}
+
 .big-buff {
   border: 1px solid black;
   width: 44px;
@@ -94,10 +98,6 @@
 
 #mp-bar.show-number {
   height: 18px;
-}
-
-#cp-bar.hide {
-  display: none;
 }
 
 #cp-bar {
