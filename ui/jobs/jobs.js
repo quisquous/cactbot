@@ -2875,11 +2875,8 @@ class Bars {
         }
         // Hide CP Bar when not crafting
         const container = document.getElementById('jobs-container');
-        r = this.craftingStartRegex.exec(log);
-        if (r) {
-          if (r.groups.player === undefined ||
-            (r.groups.player && r.groups.player == this.me))
-            container.classList.remove('hide');
+        if (this.craftingStartRegex.test(log)) {
+          container.classList.remove('hide');
           continue;
         }
         r = this.craftingFinishRegex.exec(log);
