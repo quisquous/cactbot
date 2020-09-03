@@ -209,8 +209,8 @@ class Radar {
     console.log('Pull: ' + puller + ' => ' + monster.name);
   }
 
-  SkipMonsterPuller(monster, skipPuller) {
-    monster.skipPuller = skipPuller;
+  SkipMonsterPuller(monster) {
+    monster.skipPuller = true;
     this.UpdateMonsterDom(monster);
     console.log('skipPuller = ' + skipPuller);
   }
@@ -277,7 +277,7 @@ class Radar {
           this.AddMonster(log, monster, matches.groups);
           // already has been pulled if current HP < max HP when detected
           if (matches.groups.currentHp < matches.groups.hp)
-            this.SkipMonsterPuller(this.targetMonsters[matches.groups.name.toLowerCase()], true);
+            this.SkipMonsterPuller(this.targetMonsters[matches.groups.name.toLowerCase()]);
         }
       }
       return;
