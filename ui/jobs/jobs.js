@@ -2875,11 +2875,16 @@ class Bars {
         }
         // Hide CP Bar when not crafting
         const container = document.getElementById('jobs-container');
-        if (this.craftingStartRegex.test(log)) {
-          container.classList.remove('hide');
+        r = this.craftingStartRegex.exec(log);
+        if (r) {
+          if (r.groups.player === undefined ||
+            (r.groups.player && r.groups.player == this.me))
+            container.classList.remove('hide');
           continue;
         }
-        if (this.craftingFinishRegex.test(log) ||
+        r = this.craftingFinishRegex.exec(log);
+        if ((r && (r.groups.player === undefined ||
+              (r.groups.player && r.groups.player == this.me))) ||
           this.craftingFailRegex.test(log) ||
           this.craftingCancelRegex.test(log)) {
           container.classList.add('hide');
