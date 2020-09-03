@@ -212,7 +212,6 @@ class Radar {
   SkipMonsterPuller(monster) {
     monster.skipPuller = true;
     this.UpdateMonsterDom(monster);
-    console.log('skipPuller = ' + skipPuller);
   }
 
   UpdateMonsterDom(monster) {
