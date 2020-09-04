@@ -719,7 +719,7 @@ let Responses = {
         en: 'Sleep ' + source,
         de: 'Schlaf auf ' + source,
         fr: 'Sommeil sur ' + source,
-        ja: 'スリプル => ' + source,
+        ja: source + ' にスリプル',
         cn: '催眠 ' + source,
         ko: source + ' 슬리플',
       };
@@ -734,7 +734,7 @@ let Responses = {
         en: 'Stun ' + source,
         de: 'Betäubung auf ' + source,
         fr: 'Étourdissement sur ' + source,
-        ja: 'スタン => ' + source,
+        ja: source + ' にスタン',
         cn: '眩晕 ' + source,
         ko: source + '기절',
       };
@@ -749,7 +749,7 @@ let Responses = {
         en: 'interrupt ' + source,
         de: 'unterbreche ' + source,
         fr: 'Interrompez ' + source,
-        ja: '沈黙 => ' + source,
+        ja: source + ' に沈黙',
         cn: '打断' + source,
         ko: source + '기술 시전 끊기',
       };
