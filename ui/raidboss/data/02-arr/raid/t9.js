@@ -111,7 +111,7 @@
           de: 'Sammeln auf ' + data.ShortName(matches.target),
           fr: 'Packez-vous sur ' + data.ShortName(matches.target),
           cn: '靠近' + data.ShortName(matches.target) + '分摊',
-          ko: '쉐어징 ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
         };
       },
     },

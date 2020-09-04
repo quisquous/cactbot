@@ -187,7 +187,7 @@ let Responses = {
         fr: 'Tank buster sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にタンクバスター',
         cn: '死刑 点 ' + data.ShortName(target),
-        ko: '탱버 → ' + data.ShortName(target),
+        ko: '"' + data.ShortName(target) + '" 탱버',
       };
     };
 
@@ -310,7 +310,7 @@ let Responses = {
         fr: 'Packez-vous sur ' + data.ShortName(target),
         ja: data.ShortName(target) + 'にスタック',
         cn: '靠近 ' + data.ShortName(target) + '集合',
-        ko: '쉐어징 → ' + data.ShortName(target),
+        ko: '"' + data.ShortName(target) + '" 쉐어징',
       };
     };
     return obj;
@@ -399,7 +399,7 @@ let Responses = {
           fr: 'Poussée sur ' + data.ShortName(target),
           ja: data.ShortName(target) + 'にノックバック',
           cn: '击退点名' + data.ShortName(target),
-          ko: '넉백징 → ' + data.ShortName(target),
+          ko: '"' + data.ShortName(target) + '" 넉백징',
         };
       }
     };
@@ -721,7 +721,7 @@ let Responses = {
         fr: 'Sommeil sur ' + source,
         ja: 'スリプル => ' + source,
         cn: '催眠 ' + source,
-        ko: '슬리플 => ' + source,
+        ko: source + ' 슬리플',
       };
     };
     return obj;
@@ -736,7 +736,7 @@ let Responses = {
         fr: 'Étourdissement sur ' + source,
         ja: 'スタン => ' + source,
         cn: '眩晕 ' + source,
-        ko: '기절 => ' + source,
+        ko: source + '기절',
       };
     };
     return obj;
@@ -751,7 +751,7 @@ let Responses = {
         fr: 'Interrompez ' + source,
         ja: '沈黙 => ' + source,
         cn: '打断' + source,
-        ko: '기술 시전 끊기 => ' + source,
+        ko: source + '기술 시전 끊기',
       };
     };
     return obj;
@@ -780,7 +780,7 @@ let Responses = {
           fr: 'Marquage sur ' + data.ShortName(target),
           ja: data.ShortName(target) + 'に捕食',
           cn: '掠食点名' + data.ShortName(target),
-          ko: '홍옥징 → ' + data.ShortName(target),
+          ko: '"' + data.ShortName(target) + '" 홍옥징',
         };
       }
     };
