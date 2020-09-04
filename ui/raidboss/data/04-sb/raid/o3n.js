@@ -90,7 +90,7 @@
           de: 'Stack auf ' + data.holyTargets[0],
           ja: data.holyTargets[0] + 'にスタック',
           cn: '靠近 ' + data.holyTargets[0] + '集合',
-          ko: '쉐어징 → ' + data.holyTargets[0],
+          ko: '"' + data.holyTargets[0] + '" 쉐어징',
         };
       },
       run: function(data) {

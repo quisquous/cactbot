@@ -148,7 +148,7 @@
           fr: 'Packez-vous sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'にスタック',
           cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '쉐어징 → ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
         };
       },
       run: function(data) {
