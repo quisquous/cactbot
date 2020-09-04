@@ -306,8 +306,7 @@ the full set of LogTypes is not well-documented.
 
 There are a number of reasons to avoid basing triggers on game log lines:
 
-* show up later than ACT log lines (often up to half a second)
-* [do not always show up](https://github.com/ravahn/FFXIV_ACT_Plugin/issues/100)
+* can show up later than ACT log lines (often up to half a second)
 * inconsistent text (gains effect vs suffers effect, begins casting vs readies, you vs player name)
 * often vague (the attack misses)
 * can change spelling at the whim of SquareEnix
@@ -317,6 +316,13 @@ Prefer using `1A` "gains the effect" message instead of `00` "suffers the effect
 
 At the moment, there are some cases where you must use game log lines,
 such as sealing and unsealing of zones, or boss rp text for phase transitions.
+
+Note:
+There are examples where `14` "starts using" lines show up
+after the corresponding `00` "readies" line,
+but it is on the order of tens of milliseconds
+and does not consistently show up first.
+`15` "ability" lines always seem to show up before the `00` "uses" lines.
 
 ### 01: ChangeZone
 
