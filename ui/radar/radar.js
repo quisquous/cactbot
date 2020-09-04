@@ -119,6 +119,8 @@ class Radar {
       return;
     if (monster.hp && parseFloat(matches.hp) < monster.hp)
       return;
+    if (matches.currentHp === '0') // hunt is already dead
+      return;
 
     let options = this.options;
     // option overwrite
@@ -190,12 +192,13 @@ class Radar {
         'addTime': Date.now(),
         'dom': tr,
         'puller': null,
-        'skipPuller': false,
+        'skipPuller': matches.hp !== matches.currentHp, // already pulled before being detected
       };
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
 
       PlaySound(this.targetMonsters[mobKey], options);
+      console.log(log);
     }
   }
 
@@ -207,11 +210,6 @@ class Radar {
     monster.puller = puller;
     this.UpdateMonsterDom(monster);
     console.log('Pull: ' + puller + ' => ' + monster.name);
-  }
-
-  SkipMonsterPuller(monster) {
-    monster.skipPuller = true;
-    this.UpdateMonsterDom(monster);
   }
 
   UpdateMonsterDom(monster) {
@@ -270,14 +268,8 @@ class Radar {
       const matches = log.match(NetRegexes.addedCombatantFull());
       if (matches) {
         const monster = this.nameToMonster[matches.groups.name.toLowerCase()];
-        if (monster) {
-          if (matches.groups.currentHp == 0) // don't fire if current HP = 0 (hunt is already dead)
-            return;
+        if (monster)
           this.AddMonster(log, monster, matches.groups);
-          // already has been pulled if current HP < max HP when detected
-          if (matches.groups.currentHp < matches.groups.hp)
-            this.SkipMonsterPuller(this.targetMonsters[matches.groups.name.toLowerCase()]);
-        }
       }
       return;
     }
