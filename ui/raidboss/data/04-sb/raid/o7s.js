@@ -142,7 +142,7 @@
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
           fr: 'Marque Bleue sur VOUS',
-          ko: '파란징 → 나',
+          ko: '파란징 대상자',
           ja: '青玉 on YOU',
           cn: '蓝球点名',
         };
@@ -154,7 +154,7 @@
           en: 'Blue Marker on ' + data.ShortName(matches.target),
           de: 'Aura-Kanone auf ' + data.ShortName(matches.target),
           fr: 'Marque Bleue sur ' + data.ShortName(matches.target),
-          ko: '파란징 → ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 파란징',
           ja: '青玉 on ' + data.ShortName(matches.target),
           cn: '蓝球点名' + data.ShortName(matches.target),
         };
@@ -218,7 +218,7 @@
             en: 'Rot on you',
             de: 'Fäule auf DIR',
             fr: 'Pourriture sur VOUS',
-            ko: '에테르 → 나',
+            ko: '에테르 대상자',
             ja: 'ロット on YOU',
             cn: '以太病毒点名',
           };
@@ -227,7 +227,7 @@
           en: 'Rot on ' + data.ShortName(matches.target),
           de: 'Fäule auf ' + data.ShortName(matches.target),
           fr: 'Pourriture sur ' + data.ShortName(matches.target),
-          ko: '에테르 → ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 에테르',
           ja: 'ロット on ' + data.ShortName(matches.target),
           cn: '以太病毒点名' + data.ShortName(matches.target),
         };
