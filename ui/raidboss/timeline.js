@@ -894,7 +894,7 @@ class TimelineController {
             e.detail.logs[i].match(LocaleRegex.countdownCancel[this.options.ParserLanguage]);
           if (cancelMatch) {
             this.SetCountdownState(CountdownState.none, 'cancel');
-          } else {
+          } else if (this.countdownState === CountdownState.active) {
             let wipeMatch = e.detail.logs[i].match(this.wipeRegex);
             if (wipeMatch)
               this.SetCountdownState(CountdownState.wipe, 'wipe');
