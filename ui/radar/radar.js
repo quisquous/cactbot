@@ -198,7 +198,6 @@ class Radar {
       this.UpdateMonsterDom(m);
 
       PlaySound(this.targetMonsters[mobKey], options);
-      console.log(log);
     }
   }
 
