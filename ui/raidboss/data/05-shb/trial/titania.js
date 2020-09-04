@@ -62,6 +62,7 @@
         fr: 'Positions pour l\'eau',
         ja: 'ポジションへ',
         cn: '水毒',
+        ko: '물 장판 위치',
       },
     },
     {
@@ -79,6 +80,7 @@
         fr: 'Packez-vous dans les Flaques d\'eau',
         ja: '水の輪に集合',
         cn: '水圈集合',
+        ko: '장판에 모이기',
       },
     },
     {
@@ -144,6 +146,7 @@
         fr: 'Évitez les Racines',
         ja: '根系から避け',
         cn: '躲避树根',
+        ko: '뿌리 피하기',
       },
     },
     {
@@ -200,6 +203,7 @@
             fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
             ja: '東の雑魚 (マスタードシード)',
             cn: '东边小怪 (芥子)',
+            ko: '쫄 모으기 (겨자씨 쪽)',
           };
         }
         return {
@@ -208,6 +212,7 @@
           fr: 'Tuez Pousse-de-moutarde (Est)',
           ja: '雑魚マスタードシードを倒す (東)',
           cn: '击杀芥子 (东)',
+          ko: '겨자씨 잡기(동쪽)',
         };
       },
     },
