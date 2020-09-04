@@ -85,6 +85,7 @@
         return {
           en: 'Go Left, Behind Wing',
           de: 'Geh links hinter den Flügel',
+          ko: '왼쪽으로 이동 (날개 뒤)',
         };
       },
     },
@@ -98,6 +99,7 @@
         return {
           en: 'Go Right, Behind Wing',
           de: 'Geh rechts hinter den Flügel',
+          ko: '오른쪽으로 이동 (날개 뒤)',
         };
       },
     },
@@ -709,6 +711,7 @@
         en: 'Away From Clones',
         de: 'Weg von den Klonen',
         fr: 'Éloignez vous des clones',
+        ko: '분신에게서 떨어지기',
       },
     },
   ],
