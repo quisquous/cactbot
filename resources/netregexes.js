@@ -165,6 +165,7 @@ var NetRegexes = {
       8: { field: 'world' },
       9: { field: 'npcNameId' },
       10: { field: 'npcBaseId' },
+      11: { field: 'currentHp' },
       12: { field: 'hp' },
       17: { field: 'x' },
       18: { field: 'y' },
