@@ -63,7 +63,8 @@ if (typeof module !== 'undefined') {
       cn: '(?<area>\\y{Name})的封锁解除了',
       ko: '(?<area>\\y{Name})의 봉쇄가 해제되었습니다\\.',
     },
-    // TODO: CN and KO have not launched patch 5.3 yet, so they do not have trial synthesis. Translation will be added once launch.
+    // TODO: CN and KO have not launched patch 5.3 yet, so they do not have trial synthesis.
+    // Translation will be added once launch.
     craftingStart: {
       en: 'You begin (synthesizing|trial synthesis of) (?<recipe>.*)\\.',
       de: 'Du hast (begonnen, durch Synthese|mit der Testsynthese von) (?<recipe>.*) (herzustellen|begonnen)\\.',
