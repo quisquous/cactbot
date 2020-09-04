@@ -1096,6 +1096,7 @@ UserConfig.registerOptions('raidboss', {
         fr: 'e8s : activer cactbot pour Uptime Knockback strat',
         ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
         cn: 'E8S: 启用cactbot的击退提示功能', // Temperory translation, may change when CN server get into 5.2 patch
+        ko: '공명 영웅 4층: cactbot 정확한 타이밍 넉백방지 공략 활성화',
       },
       type: 'checkbox',
       default: false,
