@@ -1,0 +1,66 @@
+.mistake-row {
+  display: flex;
+  height: 18px;
+}
+
+.mistake-icon {
+  text-align: center;
+  text-shadow: -1px 0 1px grey, 0 1px 1px grey;
+  width: 20px;
+}
+
+.mistake-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.mistake-icon.pull::before {
+  color: green;
+  content: '\25B6';
+}
+
+.mistake-icon.death::before {
+  color: red;
+  content: '\1F480';
+}
+
+.mistake-icon.warn::before {
+  color: yellow;
+  content: '\26A0';
+}
+
+.mistake-icon.fail::before {
+  color: red;
+  content: '\1F6AB';
+}
+
+.mistake-icon.wipe::before {
+  color: blue;
+  content: '\1F6BD';
+}
+
+.mistake-icon.potion::before {
+  color: purple;
+  content: '\1F378';
+}
+
+.mistake-icon.good::before {
+  color: green;
+  content: '\2714';
+}
+
+.mistake-icon.damage::before {
+  color: white;
+  content: '\1F52A';
+  font-weight: bold;
+}
+
+.mistake-icon.heal::before {
+  color: cyan;
+  content: '\1F3E5';
+}
+
+.resizeHandle .hide-if-resizing {
+  display: none;
+}

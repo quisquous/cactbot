@@ -1206,17 +1206,19 @@ class DamageTracker {
 }
 
 UserConfig.getUserConfigLocation('oopsyraidsy', () => {
-  const wsUrlRegex = /[\?&]OVERLAY_WS=([^&]+)/;
-
   let listView;
   let mistakeCollector;
 
-  // Choose the ui based on whether this is an overlay or in the browser.
-  if (wsUrlRegex.test(location.href)) {
-    listView = new OopsySummaryList(Options, document.getElementById('summary'));
+  let summaryElement = document.getElementById('summary');
+  let liveListElement = document.getElementById('livelist');
+
+  // Choose the ui based on whether this is the summary view or the live list.
+  // They have different elements in the file.
+  if (summaryElement) {
+    listView = new OopsySummaryList(Options, summaryElement);
     mistakeCollector = new MistakeCollector(Options, listView);
   } else {
-    listView = new OopsyLiveList(Options, document.getElementById('livelist'));
+    listView = new OopsyLiveList(Options, liveListElement);
     mistakeCollector = new MistakeCollector(Options, listView);
   }
 

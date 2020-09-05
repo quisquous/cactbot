@@ -1,0 +1,45 @@
+.mistake-row {
+  height: 25px;
+  align-items: center;
+}
+
+.mistake-icon {
+  order: 2;
+  margin-right: 3px;
+  font-size: 20px;
+}
+
+.mistake-text {
+  order: 3;
+}
+
+.mistake-time {
+  order: 1;
+  margin-right: 5px;
+}
+
+.summary {
+  margin: 5px;
+  font-family: "Meiryo", sans-serif;
+  font-size: 16;
+}
+
+.section {
+  margin-bottom: 20px;
+  max-width: 800px;
+}
+
+.section-header {
+  display: flex;
+  font-weight: bold;
+  font-size: 18;
+}
+
+.section-header > div {
+  margin-right: 5px;
+}
+
+.section-rows {
+  padding-left: 10px;
+  max-width: 500px;
+}
