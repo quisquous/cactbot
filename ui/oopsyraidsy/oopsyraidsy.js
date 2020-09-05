@@ -347,9 +347,10 @@ class OopsySummaryList {
   }
 
   GetTimeStr(d) {
+    // ISO-8601 or death.
     const month = ('0' + (d.getMonth() + 1)).slice(-2);
     const day = ('0' + d.getDate()).slice(-2);
-    const hours = ('0' + d.getHours()).slice(-2);
+    const hours = ('00' + d.getHours()).slice(-2);
     const minutes = ('00' + d.getMinutes()).slice(-2);
     return `${d.getFullYear()}-${month}-${day} ${hours}:${minutes}`;
   }
@@ -419,9 +420,8 @@ class OopsySummaryList {
   }
 
   StartNewACTCombat() {
-    // TODO: maybe this should create the header so that in case you don't make any mistakes
-    // there's still a pull count?
     this.EndSection();
+    this.StartNewSectionIfNeeded();
   }
 
   OnChangeZone(e) {
