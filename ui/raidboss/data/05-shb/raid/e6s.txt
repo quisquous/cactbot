@@ -12,7 +12,7 @@ hideall "--sync--"
 0 "Start"
 0.0 "--sync--" sync /:Engage!/ window 0,1
 2.3 "--sync--" sync /:Garuda:366:/ window 5,0
-18.0 "Superstorm" sync /:Garuda:4BF7:/
+18.0 "Superstorm" sync /:Garuda:4BF7:/ window 18,20
 27.1 "Occluded Front" sync /:Garuda:4BD2:/
 36.2 "Wind Cutter" sync /:Tumultuous Nexus:4C02:/
 39.2 "Storm Of Fury" sync /:Garuda:4C01:/

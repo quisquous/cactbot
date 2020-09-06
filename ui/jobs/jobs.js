@@ -1078,6 +1078,10 @@ class Bars {
     const lang = this.options.ParserLanguage;
     this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
     this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
+    this.craftingStartRegex = LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'];
+    this.craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
+    this.craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
+    this.craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
   }
 
   UpdateJob() {
@@ -1107,6 +1111,7 @@ class Bars {
       container.removeChild(container.childNodes[0]);
 
     this.o = {};
+    container.classList.remove('hide');
 
     let barsLayoutContainer = document.createElement('div');
     barsLayoutContainer.id = 'jobs';
@@ -1194,6 +1199,7 @@ class Bars {
       this.o.cpBar.centertext = 'maxvalue';
       this.o.cpBar.bg = computeBackgroundColorFrom(this.o.cpBar, 'bar-border-color');
       this.o.cpBar.fg = computeBackgroundColorFrom(this.o.cpBar, 'cp-color');
+      container.classList.add('hide');
       return;
     } else if (Util.isGatheringJob(this.job)) {
       this.o.gpContainer = document.createElement('div');
@@ -2865,6 +2871,20 @@ class Bars {
           this.skillSpeed = stats.skillSpeed;
           this.spellSpeed = stats.spellSpeed;
           this.UpdateJobBarGCDs();
+          continue;
+        }
+        // Hide CP Bar when not crafting
+        const container = document.getElementById('jobs-container');
+        if (this.craftingStartRegex.test(log)) {
+          container.classList.remove('hide');
+          continue;
+        }
+        r = this.craftingFinishRegex.exec(log);
+        if ((r && (r.groups.player === undefined ||
+              (r.groups.player && r.groups.player == this.me))) ||
+          this.craftingFailRegex.test(log) ||
+          this.craftingCancelRegex.test(log)) {
+          container.classList.add('hide');
           continue;
         }
       } else if (log[15] == '1') {

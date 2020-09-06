@@ -150,8 +150,11 @@ Setting up other cactbot overlays works identically.
     ![new overlay plugin screenshot](screenshots/overlay_plugin_new.png)
 
 1. At this point, you should see some test UI appear on screen.
-cactbot provides default test UI and a blue background to help with resizing and placing overlays on screen.
+cactbot provides default test UI,
+a large dashed red border,
+and a blue background to help with resizing and placing overlays on screen.
 These all go away when the overlay is locked in the config panel for the overlay.
+You should always lock your overlay once you are done resizing and placing it.
 
     ![raidboss plugin unlocked](screenshots/overlay_plugin_new_raidboss_unlocked.png)
 
@@ -162,7 +165,7 @@ It will now appear in the list of overlays in the `Plugins` -> `OverlayPlugin.dl
 1. Drag and resize the overlay to the location that you want it in.
 
 1. In the `General` tab of the `Raidboss` overlay, click the `Lock Overlay` and `Enable Clickthrough` checkboxes.
-The test bars, debug text, and shaded blue background will disappear once the overlay has been locked.
+The test bars, debug text, dashed red border, and shaded blue background will disappear once the overlay has been locked.
 
     ![raidboss plugin config](screenshots/overlay_plugin_new_raidboss_locked.png)
 

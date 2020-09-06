@@ -138,7 +138,7 @@
             fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑点名',
-            ko: '나에게 탱버',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -148,7 +148,7 @@
             fr: 'Tank buster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '탱버 -> ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },

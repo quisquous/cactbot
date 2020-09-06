@@ -775,6 +775,8 @@ class PopupText {
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/[#!]/g, '');
       // * slashes between mechanics
       triggerHelper.ttsText = triggerHelper.ttsText.replace('/', ' ');
+      // * tildes at the end for emphasis
+      triggerHelper.ttsText = triggerHelper.ttsText.replace(/~+$/, '');
       // * arrows helping visually simple to understand e.g. ↖ Front left / Back right ↘
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/[↖-↙]/g, '');
       // * Korean TTS reads wrong with '1번째'
@@ -783,7 +785,7 @@ class PopupText {
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/[-=]>\s*$/g, '');
       triggerHelper.ttsText = triggerHelper.ttsText.replace(/^\s*<[-=]/g, '');
       // * arrows in the middle are a sequence, e.g. "in => out => spread"
-      let arrowReplacement = {
+      const arrowReplacement = {
         en: ' then ',
         cn: '然后',
         de: ' dann ',

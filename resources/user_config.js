@@ -67,6 +67,8 @@ let UserConfig = {
       if (!supportedLanguage.includes(Options.DisplayLanguage))
         Options.DisplayLanguage = Options.ParserLanguage || 'en';
 
+      this.addUnlockText(Options.DisplayLanguage);
+
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
       // processOptions needs to be called whether or not there are
@@ -198,4 +200,30 @@ let UserConfig = {
     if (template.processExtraOptions)
       template.processExtraOptions(options, savedConfig);
   },
+  addUnlockText: (lang) => {
+    const unlockText = {
+      en: '🔓 Unlocked (lock overlay before using)',
+    };
+
+    const id = 'cactbot-unlocked-text';
+    let textElem = document.getElementById(id);
+    if (!textElem) {
+      textElem = document.createElement('div');
+      textElem.id = id;
+      textElem.classList.add('text');
+      // Set element display to none in case the page has not included defaults.css.
+      textElem.style.display = 'none';
+      document.body.append(textElem);
+    }
+    textElem.innerHTML = unlockText[lang] || unlockText['en'];
+  },
 };
+
+// This event comes early and is not cached, so set up event listener immediately.
+document.addEventListener('onOverlayStateUpdate', (e) => {
+  let docClassList = document.documentElement.classList;
+  if (e.detail.isLocked)
+    docClassList.remove('resizeHandle', 'unlocked');
+  else
+    docClassList.add('resizeHandle', 'unlocked');
+});

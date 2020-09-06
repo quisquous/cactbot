@@ -90,7 +90,7 @@
             fr: 'Package sur VOUS',
             ja: '自分にシェア',
             cn: '分摊点名',
-            ko: '나에게 모이기',
+            ko: '쉐어징 대상자',
           };
         }
         if (data.betwixtWorldsStack.length == 1)
@@ -209,7 +209,7 @@
             fr: 'Package sur VOUS',
             ja: '自分にシェア',
             cn: '分摊点名',
-            ko: '나에게 모이기',
+            ko: '쉐어징 대상자',
           };
         }
         return {
@@ -218,7 +218,7 @@
           fr: 'Packez-vous sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'にスタック',
           cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '쉐어징 → ' + data.ShortName(matches.target),
+          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
         };
       },
     },
@@ -265,7 +265,7 @@
             fr: 'Package sur VOUS',
             ja: '自分にシェア',
             cn: '分摊点名',
-            ko: '나에게 쉐어징',
+            ko: '쉐어징 대상자',
           };
         }
         if (data.insatiableLightStack.length == 1)

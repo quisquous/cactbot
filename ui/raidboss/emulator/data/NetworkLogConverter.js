@@ -8,12 +8,10 @@ class NetworkLogConverter {
       this[i] = Options[i];
   }
 
-  async convertFile(Data) {
+  async convertFile(data) {
     let ret = await this.convertLines(
-        // Split Data on event|timestamp|
-        Data.split(NetworkLogConverter.lineSplitRegex)
-        // Remove blank lines since each actual line ends up separated by a blank line
-          .filter((l) => l !== '' && l !== '\r' && l !== '\r\n'),
+        // Split data into an array of separate lines, removing any blank lines.
+        data.split(NetworkLogConverter.lineSplitRegex).filter((l) => l !== ''),
     );
     return ret;
   }
@@ -33,4 +31,4 @@ class NetworkLogConverter {
   }
 }
 
-NetworkLogConverter.lineSplitRegex = /(\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|.*?)\r?\n(?=\d{1,3}\|\d\d\d\d-\d\d-\d\dT\d\d:\d\d:\d\d\.\d\d\d\d\d\d\d-\d\d:\d\d\|)/gm;
+NetworkLogConverter.lineSplitRegex = /\r?\n/gm;

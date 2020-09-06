@@ -232,14 +232,12 @@ See this [cactbot-user git repo](https://github.com/quisquous/cactbot-user) for 
 To build a cactbot ui, you need to make a **.html** file and point cactbot at it. There are a
 number of helpful things in the [resources/](../resources/) directory.
 
-Include the [resources/defaults.css](../resources/defaults.css) file to get some of the default
-look and feel of other cactbot uis, then use the `.text` class on any HTML elements which contain
-text. You may add the `.hide` class to elements you do not want shown, and remove it when they
-should be visible.
-
-Include the [resources/resize_handle.css](../resources/resize_handle.css) and
-[resources/resize_handle.js](resources/resize_handle.js) files to give visual feedback to the
-user when the module is unlocked for moving and resizing.
+Include the [resources/defaults.css](../resources/defaults.css) file
+to get some of the default look and feel of other cactbot uis.
+You can use the `.text` class on any HTML elements which contain text.
+You may add the `.hide` class to elements you do not want shown,
+and remove it when they should be visible.
+This will also include borders, background colors, and text when unlocked.
 
 Include the [resources/unicode.js](../resources/unicode.js) file to use unicode categories in
 regular expressions in order to support non-english characters.

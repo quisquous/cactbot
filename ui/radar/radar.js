@@ -119,6 +119,8 @@ class Radar {
       return;
     if (monster.hp && parseFloat(matches.hp) < monster.hp)
       return;
+    if (matches.currentHp === '0') // hunt is already dead
+      return;
 
     let options = this.options;
     // option overwrite
@@ -190,6 +192,7 @@ class Radar {
         'addTime': Date.now(),
         'dom': tr,
         'puller': null,
+        'skipPuller': matches.hp !== matches.currentHp, // already pulled before being detected
       };
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
@@ -201,7 +204,7 @@ class Radar {
   UpdateMonsterPuller(monster, puller) {
     if (!this.options.Puller)
       return;
-    if (monster.puller !== null)
+    if (monster.puller !== null || monster.skipPuller)
       return;
     monster.puller = puller;
     this.UpdateMonsterDom(monster);
