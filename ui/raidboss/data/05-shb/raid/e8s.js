@@ -943,7 +943,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Shiva': '시바',
         'Frozen Mirror': '얼음 거울',
@@ -972,7 +971,7 @@
         'Bright Hunger': '침식광',
         'The Path Of Light': '빛의 파동',
         'Scythe/Axe Kick': '낫차기/도끼차기',
-        // 'Reflected Kick \\(G\\)': '반사된 ~차기 (초록)',
+        'Reflected Kick \\(G\\)': '반사된 ~차기 (초록)',
         'Banish III': '배니시가',
         'Shattered World': '분단된 세계',
         'Heart Asunder': '조각난 마음',

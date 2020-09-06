@@ -576,7 +576,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Garuda': '가루다',
         'Tumultuous Nexus': '폭풍구',
