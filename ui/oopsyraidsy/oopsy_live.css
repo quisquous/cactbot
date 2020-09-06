@@ -68,7 +68,7 @@
   box-shadow: 0 0 5px 2px rgba(200, 200, 70, 0.3);
 }
 
-.livelist div {
+div {
   font-family: "Meiryo", sans-serif;
   font-size: 12;
   text-shadow: -1px 0 3px #217aa2, 0 1px 3px #217aa2, 1px 0 3px #217aa2, 0 -1px 3px #217aa2;
@@ -77,9 +77,7 @@
 }
 
 .mistake-row {
-  display: flex;
   justify-content: space-between;
-  height: 18px;
 }
 
 .mistake-row:nth-child(even) {
@@ -91,68 +89,19 @@
 }
 
 .mistake-icon {
-  text-align: center;
-  text-shadow: -1px 0 1px grey, 0 1px 1px grey;
-  width: 20px;
   flex: 0 0 auto;
+  order: 1;
 }
 
 .mistake-text {
   flex: 1 1 auto;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  order: 2;
 }
 
 .mistake-time {
   align-self: flex-end;
   padding-right: 3px;
-}
-
-.mistake-icon.pull::before {
-  color: green;
-  content: '\25B6';
-}
-
-.mistake-icon.death::before {
-  color: red;
-  content: '\1F480';
-}
-
-.mistake-icon.warn::before {
-  color: yellow;
-  content: '\26A0';
-}
-
-.mistake-icon.fail::before {
-  color: red;
-  content: '\1F6AB';
-}
-
-.mistake-icon.wipe::before {
-  color: blue;
-  content: '\1F6BD';
-}
-
-.mistake-icon.potion::before {
-  color: purple;
-  content: '\1F378';
-}
-
-.mistake-icon.good::before {
-  color: green;
-  content: '\2714';
-}
-
-.mistake-icon.damage::before {
-  color: white;
-  content: '\1F52A';
-  font-weight: bold;
-}
-
-.mistake-icon.heal::before {
-  color: cyan;
-  content: '\1F3E5';
+  order: 3;
 }
 
 .resizeHandle .hide-if-resizing {
