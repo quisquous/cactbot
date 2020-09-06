@@ -506,7 +506,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Shiva': '시바',
         'Frozen Mirror': '얼음 거울',
@@ -541,8 +540,8 @@
         'Light Rampant': '빛의 폭주',
         'The Path of Light': '빛의 파동',
         'Bright Hunger': '침식광',
-        '(?<! )Kick/Frost': '',
-        // 'Reflected Kick/Frost': '반사된 ~차기/서리 참격',
+        '(?<! )Kick/Frost': '~차기/서리 참격',
+        'Reflected Kick/Frost': '반사된 ~차기/서리 참격',
         'Twin Stillness/Twin Silence': '정적/고요의 쌍검기',
         'Embittered Dance/Spiteful Dance': '준엄/냉엄의 무도기',
         'Spiteful Dance/Embittered Dance': '냉엄/준엄의 무도기',

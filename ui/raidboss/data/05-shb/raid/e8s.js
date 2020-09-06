@@ -943,7 +943,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Shiva': '시바',
         'Frozen Mirror': '얼음 거울',
