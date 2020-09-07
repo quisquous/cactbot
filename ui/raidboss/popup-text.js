@@ -123,7 +123,7 @@ class PopupText {
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
     });
-    addOverlayListener('onPlayerChangedEvent', (e) => {
+    addPlayerChangedOverrideListener(Options.PlayerNameOverride, (e) => {
       this.OnPlayerChange(e);
     });
     addOverlayListener('ChangeZone', (e) => {
@@ -145,21 +145,6 @@ class PopupText {
   }
 
   OnPlayerChange(e) {
-    // allow override of player via query parameter
-    // only apply override if player is in party
-    if (Options.PlayerNameOverride !== null) {
-      let tmpJob = null;
-      if (Options.PlayerJobOverride !== null)
-        tmpJob = Options.PlayerJobOverride;
-      else if (this.partyTracker.inParty(Options.PlayerNameOverride))
-        tmpJob = this.partyTracker.jobName(this.me);
-      // if there's any issue with looking up player name for
-      // override, don't perform override
-      if (tmpJob !== null) {
-        e.detail.job = tmpJob;
-        e.detail.name = Options.PlayerNameOverride;
-      }
-    }
     if (this.job != e.detail.job || this.me != e.detail.name)
       this.OnJobChange(e);
     this.data.currentHP = e.detail.currentHP;
