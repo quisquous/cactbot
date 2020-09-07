@@ -83,7 +83,7 @@ class PopupText {
     this.displayLang = this.options.AlertsLanguage || this.options.DisplayLanguage || this.options.ParserLanguage || 'en';
 
     if (this.options.BrowserTTS) {
-      this.ttsEngine = new BrowserTTSEngine();
+      this.ttsEngine = new BrowserTTSEngine(this.displayLang);
       this.ttsSay = function(text) {
         this.ttsEngine.play(text);
       };
