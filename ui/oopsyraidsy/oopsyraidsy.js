@@ -1164,7 +1164,11 @@ class DamageTracker {
   }
 
   ProcessDataFiles() {
+    // Only run this once.
     if (this.triggerSets)
+      return;
+    // Wait until OnPlayerChange + OnDataFilesRead occur for the first time.
+    if (!this.dataFiles)
       return;
     if (!this.me)
       return;
