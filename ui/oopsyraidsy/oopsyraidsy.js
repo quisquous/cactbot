@@ -996,6 +996,8 @@ class DamageTracker {
         damageRegex: id,
         idRegex: Regexes.parse('^' + id + '$'),
         mistake: function(e, data) {
+          if (!IsPlayerId(e.targetId))
+            return;
           return { type: type, blame: e.targetName, text: e.abilityName };
         },
       };
