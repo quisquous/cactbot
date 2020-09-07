@@ -280,7 +280,7 @@ class Radar {
         const monster = this.targetMonsters[matches.groups.target.toLowerCase()];
         if (monster) {
           // provoke doesn't work on hunt mobs
-          const isProvoke = matches.id === '1D6D';
+          const isProvoke = matches.groups.id === '1D6D';
           if (!isProvoke)
             this.UpdateMonsterPuller(monster, matches.groups.source);
         }
