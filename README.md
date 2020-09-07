@@ -268,6 +268,30 @@ text alerts circled in yellow, with an `alert`-level text message visible.
 
 ![raidboss screenshot](screenshots/Raidboss.png)
 
+### raidboss emulator
+
+If you are writing triggers or timelines and want to test them, you can use the raidboss emulator:
+**ui/raidboss/raidemulator.html**.
+
+This currently can only be loaded in a browser and not as an overlay.
+This will work in current version of Chrome,
+and should work in other browsers as well but this is less tested.
+
+Instructions:
+
+1. Start ACT.
+1. Make sure the WS Server is started via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
+1. Select `actbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
+1. Edit the url to say `raidemulator.html` instead of `raidboss.html`.
+1. Copy and paste this edited url into Chrome
+1. Drag and drop a [network log](/docs/FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
+1. Select the zone and encounter, and then click `Load Encounter`.
+
+If the emulator is not working, check the console log in the inspector for errors.
+No buttons will work until it is connected to ACT via websocket.
+
+![raidboss emulator screenshot](screenshots/raidboss_emulator.png)
+
 ### [oopsyraidsy](ui/oopsyraidsy) module
 
 To use this module,
