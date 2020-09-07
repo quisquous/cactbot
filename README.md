@@ -281,9 +281,9 @@ Instructions:
 
 1. Start ACT.
 1. Make sure the WS Server is started via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
-1. Select `actbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
+1. Select `Cactbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
 1. Edit the url to say `raidemulator.html` instead of `raidboss.html`.
-1. Copy and paste this edited url into Chrome
+1. Copy and paste this edited url into Chrome.
 1. Drag and drop a [network log](/docs/FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
 1. Select the zone and encounter, and then click `Load Encounter`.
 
