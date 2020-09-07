@@ -96,7 +96,7 @@ class PopupText {
 
     // check to see if we need user interaction to play audio
     // only if audio is enabled in options
-    if (Options.audioAllowed)
+    if (Options.AudioAllowed)
       AutoplayHelper.CheckAndPrompt();
 
     this.partyTracker = new PartyTracker();
@@ -624,7 +624,7 @@ class PopupText {
       triggerHelper.spokenAlertsEnabled = false;
       triggerHelper.groupSpokenAlertsEnabled = false;
     }
-    if (!this.options.audioAllowed) {
+    if (!this.options.AudioAllowed) {
       triggerHelper.soundAlertsEnabled = false;
       triggerHelper.spokenAlertsEnabled = false;
       triggerHelper.groupSpokenAlertsEnabled = false;

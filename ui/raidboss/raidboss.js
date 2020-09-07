@@ -11,7 +11,7 @@ let Options = {
   LongSound: '../../resources/sounds/BigWigs/Long.ogg',
   PullSound: '../../resources/sounds/PowerAuras/sonar.ogg',
 
-  audioAllowed: true,
+  AudioAllowed: true,
 
   DisabledTriggers: {},
 
@@ -49,9 +49,9 @@ UserConfig.getUserConfigLocation('raidboss', function(e) {
   }
   let audio = params.get('audio');
   if (audio !== null) {
-    let previous = Options.audioAllowed;
-    Options.audioAllowed = !!parseInt(audio);
-    if (!previous && Options.audioAllowed)
+    let previous = Options.AudioAllowed;
+    Options.AudioAllowed = !!parseInt(audio);
+    if (!previous && Options.AudioAllowed)
       console.log('Enabling audio via query parameter');
   }
 
