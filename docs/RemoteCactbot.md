@@ -28,7 +28,6 @@ Here are the steps you need to follow as the person running ACT:
 - [Test Your Connection](#test-your-connection)
 - [Connect to Remote ACT](#connect-to-remote-act)
 - [Configure Raidboss](#configure-raidboss)
-- [Configure cactbot user/](#configure-cactbot-user)
 
 If you get lost, see the [HALP](#halp) section.
 
