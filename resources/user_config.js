@@ -28,10 +28,7 @@ let UserConfig = {
       overlay: 'options',
     });
 
-    callOverlayHandler({
-      call: 'cactbotLoadUser',
-      source: location.href,
-    }).then(async (e) => {
+    const loadUser = async (e) => {
       let localFiles = e.detail.localUserFiles;
       let basePath = e.detail.userLocation;
       let jsFile = overlayName + '.js';
@@ -131,6 +128,20 @@ let UserConfig = {
         callback();
 
       callOverlayHandler({ call: 'cactbotRequestState' });
+    };
+
+    callOverlayHandler({
+      call: 'cactbotLoadUser',
+      source: location.href,
+    }).then((e) => {
+      // Wait for DOMContentLoaded if needed.
+      if (document.readyState !== 'loading') {
+        loadUser(e);
+        return;
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        loadUser(e);
+      });
     });
   },
   handleSkin: function(skinName) {
