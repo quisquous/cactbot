@@ -14,6 +14,7 @@
       alarmText: {
         en: 'Limit break now!',
         de: 'Limit break jetzt!',
+        fr: 'Transcendance maintenant !',
         ja: 'タンクLBを！',
         cn: '坦克LB！',
         ko: '리미트 브레이크!',
@@ -27,6 +28,7 @@
       infoText: {
         en: 'Get Towers',
         de: 'Türme nehmen',
+        fr: 'Allez dans les tours',
         ja: '塔を踏む',
         ko: '장판 들어가기',
         cn: '踩塔',
@@ -47,6 +49,7 @@
       alertText: {
         en: 'Full Heal Everyone',
         de: 'Alle voll heilen',
+        fr: 'Soignez tout le monde complètement',
         ja: 'HPを満タンさせ！',
         ko: '전원 체력 풀피로',
         cn: '奶满全队',
@@ -116,6 +119,7 @@
           return {
             en: 'Out => Move',
             de: 'Raus => Bewegen',
+            fr: 'Extérieur => Bougez',
             ja: '外 => 動け',
             ko: '밖으로 => 움직이기',
             cn: '外 => 动起来',
@@ -124,6 +128,7 @@
           return {
             en: 'Out => Stop',
             de: 'Raus => Nichts machen',
+            fr: 'Extérieur => Stoppez tout',
             ja: '外 => 動かない',
             ko: '밖으로 => 멈추기',
             cn: '外 => 不要动',
@@ -132,6 +137,7 @@
         return {
           en: 'Out => ???',
           de: 'Raus => ???',
+          fr: 'Extérieur => ???',
           ja: '外 => ???',
           ko: '밖으로 => ???',
           cn: '外 => ???',
@@ -149,6 +155,7 @@
           return {
             en: 'Under => Move',
             de: 'Runter => Bewegen',
+            fr: 'Intérieur => Bougez',
             ja: '中 => 動け',
             ko: '안으로 => 움직이기',
             cn: '内 => 动起来',
@@ -157,6 +164,7 @@
           return {
             en: 'Under => Stop',
             de: 'Runter => Nichts machen',
+            fr: 'Intérieur => Stoppez tout',
             ja: '中 => 動かない',
             ko: '안으로 => 멈추기',
             cn: '内 => 不要动',
@@ -165,6 +173,7 @@
         return {
           en: 'Under => ???',
           de: 'Runter => ???',
+          fr: 'Intérieur => ???',
           ja: '中 => ???',
           ko: '안으로 => ???',
           cn: '内 => ???',
@@ -180,6 +189,7 @@
       infoText: {
         en: 'Out of Triangle',
         de: 'Raus aus den Dreiecken',
+        fr: 'En dehors du triangle',
         ja: '三角の外へ',
         ko: '삼각형 밖으로',
         cn: '站在三角外面',
@@ -198,6 +208,7 @@
       infoText: {
         en: 'Avoid Wyrm Dash',
         de: 'Wyrm-Ansturm ausweichen',
+        fr: 'Esquivez la charge du Wyrm',
         ja: '竜を避け',
         ko: '용 돌진 피하기',
         cn: '躲避龙的冲锋',
@@ -228,6 +239,7 @@
       alarmText: {
         en: 'GTFO',
         de: 'GTFO',
+        fr: 'Cassez-vous',
         ja: '出ていて！',
         ko: '진영 벗어나기!',
         cn: '快出去！',
@@ -272,6 +284,7 @@
       alertText: {
         en: 'Stack Groups',
         de: 'Gruppen stacken',
+        fr: 'Package de groupe',
         ja: '集合',
         ko: '쉐어징 모이기',
         cn: '集合',
@@ -284,6 +297,7 @@
       alarmText: {
         en: 'Go to Corner',
         de: 'In die Ecken gehenr',
+        fr: 'Allez dans un coin',
         ja: 'コーナーへ',
         ko: '구석으로',
         cn: '到角落',
@@ -308,6 +322,7 @@
       infoText: {
         en: 'Point tether outside',
         de: 'Verbindungen nach Außen zeigen',
+        fr: 'Pointez le lien vers l\'extérieur',
         ja: '線を外に引く',
         ko: '선 연결 바깥으로 빼기',
         cn: '把线拉向外面',

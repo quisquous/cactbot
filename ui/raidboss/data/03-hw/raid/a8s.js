@@ -306,7 +306,7 @@
             fr: 'Tank buster à partager sur VOUS',
             ja: '自分にタンクシェア',
             cn: '分摊死刑点名',
-            ko: '나에게 쉐어 탱크버스터',
+            ko: '쉐어 탱버 대상자',
           };
         }
         if (data.role == 'tank' || data.role == 'healer') {
@@ -316,7 +316,7 @@
             fr: 'Tank buster à partager sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + ' にタンクシェア',
             cn: '分摊死刑点 ' + data.ShortName(matches.target),
-            ko: '쉐어 탱크버스터 대상: ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 쉐어 탱버',
           };
         }
       },
@@ -390,7 +390,7 @@
           fr: 'Packez-vous sur ' + data.ShortName(target),
           ja: data.ShortName(target) + 'にスタック',
           cn: '靠近 ' + data.ShortName(target) + '集合',
-          ko: '쉐어징 → ' + data.ShortName(target),
+          ko: '"' + data.ShortName(target) + '" 쉐어징',
         };
       },
       run: function(data) {

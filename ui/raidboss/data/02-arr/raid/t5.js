@@ -90,7 +90,7 @@
             de: 'Feuerball auf ' + data.ShortName(matches.target),
             fr: 'Boule de feu sur ' + data.ShortName(matches.target),
             cn: '火球点' + data.ShortName(matches.target),
-            ko: '쉐어징 ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
           };
         }
       },

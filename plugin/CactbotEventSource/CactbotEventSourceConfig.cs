@@ -93,11 +93,22 @@ namespace Cactbot {
         var general = options["general"];
         if (general == null)
           return false;
-        var dir = general["ReloadOnFileChange"];
-        if (dir == null)
+
+        var developer = general["ShowDeveloperOptions"];
+        if (developer == null)
           return false;
         try {
-          return dir.ToObject<bool>();
+          if (!developer.ToObject<bool>())
+            return false;
+        } catch {
+          return false;
+        }
+
+        var reload = general["ReloadOnFileChange"];
+        if (reload == null)
+          return false;
+        try {
+          return reload.ToObject<bool>();
         } catch {
           return false;
         }

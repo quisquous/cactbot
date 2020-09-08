@@ -722,11 +722,11 @@ namespace Cactbot {
       var path = new VersionChecker(this).GetCactbotDirectory();
       string lc = dirName.ToLowerInvariant();
       var name = nameOverride != null ? nameOverride : dirName;
-      var filename = fileOverride != null ? fileOverride : dirName;
+      var filename = (fileOverride != null ? fileOverride : dirName).ToLowerInvariant() + ".html";
 
       Registry.RegisterOverlayPreset(new OverlayPreset{
         Name = $"Cactbot {name}",
-        Url = Path.Combine(path, "ui", lc, $"{filename}.html"),
+        Url = Path.Combine(path, "ui", lc, filename),
         Size = new int[] { width, height },
         Locked = false,
       });

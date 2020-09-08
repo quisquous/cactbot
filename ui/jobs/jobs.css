@@ -8,6 +8,10 @@
   left: 100px; /* Space for some left buffs */
 }
 
+#jobs-container.hide {
+  display: none;
+}
+
 .big-buff {
   border: 1px solid black;
   width: 44px;

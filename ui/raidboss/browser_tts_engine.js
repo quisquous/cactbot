@@ -10,10 +10,12 @@ class TTSItem {
 }
 
 class SpeechTTSItem extends TTSItem {
-  constructor(text) {
+  constructor(text, lang, voice) {
     super();
     this.text = text;
     this.item = new SpeechSynthesisUtterance(text);
+    this.item.lang = lang;
+    this.item.voice = voice;
   }
 
   play() {
@@ -41,11 +43,27 @@ class GoogleTTSItem extends TTSItem {
 }
 
 class BrowserTTSEngine {
-  constructor() {
+  constructor(lang) {
+    // TODO: should there be options for different voices here so that
+    // everybody isn't forced into Microsoft Anna?
+    const cactbotLangToSpeechLang = {
+      en: 'en-US',
+      de: 'de-DE',
+      fr: 'fr-FR',
+      ja: 'ja-JP',
+      // TODO: maybe need to provide an option of zh-CN, zh-HK, zh-TW?
+      cn: 'zh-CN',
+      ko: 'ko-KR',
+    };
+
     // figure out what TTS engine type we need
     if (window.speechSynthesis !== undefined) {
       window.speechSynthesis.onvoiceschanged = () => {
-        if (window.speechSynthesis.getVoices().length > 0) {
+        const speechLang = cactbotLangToSpeechLang[lang];
+        const voice = window.speechSynthesis.getVoices().find((voice) => voice.lang === speechLang);
+        if (voice) {
+          this.speechLang = speechLang;
+          this.speechVoice = voice;
           window.speechSynthesis.onvoiceschanged = null;
           this.engineType = TTSEngineType.SpeechSynthesis;
         }
@@ -79,7 +97,7 @@ class BrowserTTSEngine {
   }
 
   playSpeechTTS(text) {
-    this.ttsItems[text] = new SpeechTTSItem(text);
+    this.ttsItems[text] = new SpeechTTSItem(text, this.speechLang, this.speechVoice);
     this.ttsItems[text].play();
   }
 

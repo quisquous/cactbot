@@ -83,10 +83,9 @@
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5080', capture: false }),
       alertText: function(data) {
         return {
-          en: 'Get Under Wings',
-          de: 'Gehe unter die Flügel',
-          fr: 'Allez sous une aile',
-          ko: '날개 뒤로 이동',
+          en: 'Go Left, Behind Wing',
+          de: 'Geh links hinter den Flügel',
+          ko: '왼쪽으로 이동 (날개 뒤)',
         };
       },
     },
@@ -98,10 +97,9 @@
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '507F', capture: false }),
       alertText: function(data) {
         return {
-          en: 'Get Between Wings',
-          de: 'Geh Zwischen die Flügel',
-          fr: 'Allez entre les ailes',
-          ko: '날개 사이로 이동',
+          en: 'Go Right, Behind Wing',
+          de: 'Geh rechts hinter den Flügel',
+          ko: '오른쪽으로 이동 (날개 뒤)',
         };
       },
     },
@@ -711,7 +709,9 @@
       // * 4 clones teleporting in (to cardinals)
       alertText: {
         en: 'Away From Clones',
+        de: 'Weg von den Klonen',
         fr: 'Éloignez vous des clones',
+        ko: '분신에게서 떨어지기',
       },
     },
   ],

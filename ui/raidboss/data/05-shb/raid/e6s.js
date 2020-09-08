@@ -271,7 +271,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: ['イフリート', 'ラクタパクシャ'], id: '4C0E' }),
       netRegexCn: NetRegexes.startsUsing({ source: ['伊弗利特', '赤翼罗羯坨博叉'], id: '4C0E' }),
       netRegexKo: NetRegexes.startsUsing({ source: ['이프리트', '락타팍샤'], id: '4C0E' }),
-      condition: Conditions.caresAboutMagical(),
+      condition: Conditions.caresAboutPhysical(),
       response: Responses.tankBuster(),
     },
     {
@@ -576,7 +576,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Garuda': '가루다',
         'Tumultuous Nexus': '폭풍구',
@@ -594,7 +593,7 @@
         'Downburst': '하강 기류',
         'Vacuum Slice': '진공베기',
         'Irresistible Pull': '흡인력',
-        // 'Explosions?': '폭발?',
+        'Explosion': '폭산',
         'Touchdown': '착지',
         'Hands Of Flame': '화염권',
         'Eruption': '용암 분출',

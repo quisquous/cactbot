@@ -194,10 +194,6 @@ Examples:
 
 /* eslint-enable */
 
-let gLiveList;
-let gMistakeCollector;
-let gDamageTracker;
-
 function ShortNamify(name) {
   // TODO: make this unique among the party in case of first name collisions.
   // TODO: probably this should be a general cactbot utility.
@@ -209,7 +205,12 @@ function ShortNamify(name) {
   return idx < 0 ? name : name.substr(0, idx);
 }
 
+// Turns a scrambled string damage field into an integer.
+// Since fields are modified in place right now, this does nothing if called
+// again with an integer.  This is kind of a hack, sorry.
 function UnscrambleDamage(field) {
+  if (typeof field !== 'string')
+    return field;
   const len = field.length;
   if (len <= 4)
     return 0;
@@ -324,16 +325,118 @@ class OopsyLiveList {
     this.numItems = 0;
     this.container.innerHTML = '';
   }
+
+  StartNewACTCombat() {
+    this.Reset();
+  }
+
+  OnChangeZone(e) {
+    this.Reset();
+  }
+}
+
+class OopsySummaryList {
+  constructor(options, container) {
+    this.options = options;
+    this.container = container;
+    this.container.classList.remove('hide');
+
+    this.pullIdx = 0;
+    this.zoneName = null;
+    this.currentDiv = null;
+  }
+
+  GetTimeStr(d) {
+    // ISO-8601 or death.
+    const month = ('0' + (d.getMonth() + 1)).slice(-2);
+    const day = ('0' + d.getDate()).slice(-2);
+    const hours = ('00' + d.getHours()).slice(-2);
+    const minutes = ('00' + d.getMinutes()).slice(-2);
+    return `${d.getFullYear()}-${month}-${day} ${hours}:${minutes}`;
+  }
+
+  StartNewSectionIfNeeded() {
+    if (this.currentDiv)
+      return;
+
+    let section = document.createElement('div');
+    section.classList.add('section');
+    this.container.appendChild(section);
+
+    let headerDiv = document.createElement('div');
+    headerDiv.classList.add('section-header');
+    section.appendChild(headerDiv);
+
+    // TODO: It would kind of be nice to sync this with pullcounter,
+    // but it's not clear how to connect these two.
+    this.pullIdx++;
+
+    let pullDiv = document.createElement('div');
+    pullDiv.innerText = `Pull ${this.pullIdx}`;
+    headerDiv.appendChild(pullDiv);
+    let zoneDiv = document.createElement('div');
+    if (this.zoneName)
+      zoneDiv.innerText = `(${this.zoneName})`;
+    headerDiv.appendChild(zoneDiv);
+    let timeDiv = document.createElement('div');
+    timeDiv.innerText = this.GetTimeStr(new Date());
+    headerDiv.appendChild(timeDiv);
+
+    let rowContainer = document.createElement('div');
+    rowContainer.classList.add('section-rows');
+    section.appendChild(rowContainer);
+
+    this.currentDiv = rowContainer;
+  }
+
+  EndSection() {
+    this.currentDiv = null;
+  }
+
+  AddLine(iconClass, text, time) {
+    this.StartNewSectionIfNeeded();
+
+    let rowDiv = document.createElement('div');
+    rowDiv.classList.add('mistake-row');
+    this.currentDiv.appendChild(rowDiv);
+
+    // TODO: maybe combine this with OopsyLiveList.
+    let iconDiv = document.createElement('div');
+    iconDiv.classList.add('mistake-icon');
+    iconDiv.classList.add(iconClass);
+    rowDiv.appendChild(iconDiv);
+    let textDiv = document.createElement('div');
+    textDiv.classList.add('mistake-text');
+    textDiv.innerHTML = text;
+    rowDiv.appendChild(textDiv);
+    let timeDiv = document.createElement('div');
+    timeDiv.classList.add('mistake-time');
+    timeDiv.innerHTML = time;
+    rowDiv.appendChild(timeDiv);
+  }
+
+  SetInCombat(inCombat) {
+    // noop
+  }
+
+  StartNewACTCombat() {
+    this.EndSection();
+    this.StartNewSectionIfNeeded();
+  }
+
+  OnChangeZone(e) {
+    this.zoneName = e.zoneName;
+  }
 }
 
 // Collector:
 // * processes mistakes, adds lines to the live list
 // * handles timing issues with starting/stopping/early pulls
 class MistakeCollector {
-  constructor(options, liveList) {
+  constructor(options, listView) {
     this.options = options;
     this.parserLang = this.options.ParserLanguage || 'en';
-    this.liveList = liveList;
+    this.listView = listView;
     this.baseTime = null;
     this.inACTCombat = false;
     this.inGameCombat = false;
@@ -345,7 +448,6 @@ class MistakeCollector {
     this.stopTime = null;
     this.firstPuller = null;
     this.engageTime = null;
-    this.liveList.Reset();
   }
 
   GetFormattedTime(time) {
@@ -371,7 +473,7 @@ class MistakeCollector {
     // period of time.  Gross.
     //
     // Because damage comes before in combat (regardless of where engage
-    // occurs), StartCombat has to be responsible for clearing the liveList
+    // occurs), StartCombat has to be responsible for clearing the listView
     // list.
     let now = Date.now();
     let kMinimumSecondsAfterWipe = 5;
@@ -409,13 +511,13 @@ class MistakeCollector {
     if (!text)
       return;
     let blameText = blame ? ShortNamify(blame) + ': ' : '';
-    this.liveList.AddLine(type, blameText + text, this.GetFormattedTime(time));
+    this.listView.AddLine(type, blameText + text, this.GetFormattedTime(time));
   }
 
   OnFullMistakeText(type, blame, text, time) {
     if (!text)
       return;
-    this.liveList.AddLine(type, text, this.GetFormattedTime(time));
+    this.listView.AddLine(type, text, this.GetFormattedTime(time));
   }
 
   AddEngage() {
@@ -507,7 +609,7 @@ class MistakeCollector {
       else
         this.StopCombat();
 
-      this.liveList.SetInCombat(this.inGameCombat);
+      this.listView.SetInCombat(this.inGameCombat);
     }
 
     let inACTCombat = e.detail.inACTCombat;
@@ -518,7 +620,7 @@ class MistakeCollector {
         // for when combat started.  Starting here is not the right
         // time if this plugin is loaded while ACT is already in combat.
         this.baseTime = Date.now();
-        this.liveList.Reset();
+        this.listView.StartNewACTCombat();
       }
     }
   }
@@ -894,6 +996,8 @@ class DamageTracker {
         damageRegex: id,
         idRegex: Regexes.parse('^' + id + '$'),
         mistake: function(e, data) {
+          if (!IsPlayerId(e.targetId))
+            return;
           return { type: type, blame: e.targetName, text: e.abilityName };
         },
       };
@@ -1062,7 +1166,11 @@ class DamageTracker {
   }
 
   ProcessDataFiles() {
+    // Only run this once.
     if (this.triggerSets)
+      return;
+    // Wait until OnPlayerChange + OnDataFilesRead occur for the first time.
+    if (!this.dataFiles)
       return;
     if (!this.me)
       return;
@@ -1103,37 +1211,43 @@ class DamageTracker {
   }
 }
 
-UserConfig.getUserConfigLocation('oopsyraidsy', function(e) {
-  gLiveList = new OopsyLiveList(Options, document.getElementById('livelist'));
-  gMistakeCollector = new MistakeCollector(Options, gLiveList);
-  gDamageTracker = new DamageTracker(Options, gMistakeCollector);
+UserConfig.getUserConfigLocation('oopsyraidsy', () => {
+  let listView;
+  let mistakeCollector;
 
-  addOverlayListener('onLogEvent', function(e) {
-    gDamageTracker.OnLogEvent(e);
+  let summaryElement = document.getElementById('summary');
+  let liveListElement = document.getElementById('livelist');
+
+  // Choose the ui based on whether this is the summary view or the live list.
+  // They have different elements in the file.
+  if (summaryElement) {
+    listView = new OopsySummaryList(Options, summaryElement);
+    mistakeCollector = new MistakeCollector(Options, listView);
+  } else {
+    listView = new OopsyLiveList(Options, liveListElement);
+    mistakeCollector = new MistakeCollector(Options, listView);
+  }
+
+  let damageTracker = new DamageTracker(Options, mistakeCollector);
+
+  addOverlayListener('onLogEvent', (e) => damageTracker.OnLogEvent(e));
+  addOverlayListener('LogLine', (e) => damageTracker.OnNetLog(e));
+  addOverlayListener('onPartyWipe', (e) => damageTracker.OnPartyWipeEvent(e));
+  addOverlayListener('onPlayerChangedEvent', (e) => damageTracker.OnPlayerChange(e));
+  addOverlayListener('ChangeZone', (e) => {
+    damageTracker.OnChangeZone(e);
+    mistakeCollector.OnChangeZone(e);
+    listView.OnChangeZone(e);
   });
-  addOverlayListener('LogLine', function(e) {
-    gDamageTracker.OnNetLog(e);
-  });
-  addOverlayListener('onPartyWipe', function(e) {
-    gDamageTracker.OnPartyWipeEvent(e);
-  });
-  addOverlayListener('ChangeZone', function(e) {
-    gDamageTracker.OnChangeZone(e);
-    gMistakeCollector.OnChangeZone(e);
-  });
-  addOverlayListener('onInCombatChangedEvent', function(e) {
-    gDamageTracker.OnInCombatChangedEvent(e);
-    gMistakeCollector.OnInCombatChangedEvent(e);
+  addOverlayListener('onInCombatChangedEvent', (e) => {
+    damageTracker.OnInCombatChangedEvent(e);
+    mistakeCollector.OnInCombatChangedEvent(e);
   });
 
   callOverlayHandler({
     call: 'cactbotReadDataFiles',
     source: location.href,
-  }).then((r) => gDamageTracker.OnDataFilesRead(r));
-
-  addOverlayListener('onPlayerChangedEvent', function(e) {
-    gDamageTracker.OnPlayerChange(e);
-  });
+  }).then((r) => damageTracker.OnDataFilesRead(r));
 
   callOverlayHandler({ call: 'cactbotRequestPlayerUpdate' });
 });

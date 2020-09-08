@@ -62,6 +62,7 @@
         fr: 'Positions pour l\'eau',
         ja: 'ポジションへ',
         cn: '水毒',
+        ko: '물 장판 위치',
       },
     },
     {
@@ -79,6 +80,7 @@
         fr: 'Packez-vous dans les Flaques d\'eau',
         ja: '水の輪に集合',
         cn: '水圈集合',
+        ko: '장판에 모이기',
       },
     },
     {
@@ -144,6 +146,7 @@
         fr: 'Évitez les Racines',
         ja: '根系から避け',
         cn: '躲避树根',
+        ko: '뿌리 피하기',
       },
     },
     {
@@ -200,6 +203,7 @@
             fr: 'Groupe sur l\'Add Est (Pousse-de-moutarde)',
             ja: '東の雑魚 (マスタードシード)',
             cn: '东边小怪 (芥子)',
+            ko: '쫄 모으기 (겨자씨 쪽)',
           };
         }
         return {
@@ -208,6 +212,7 @@
           fr: 'Tuez Pousse-de-moutarde (Est)',
           ja: '雑魚マスタードシードを倒す (東)',
           cn: '击杀芥子 (东)',
+          ko: '겨자씨 잡기(동쪽)',
         };
       },
     },
@@ -355,6 +360,42 @@
         'Pummel': '殴打',
         'Uplift': '隆起',
         'War And Pease': '豌豆大爆炸',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Titania': '티타니아',
+        'Puck': '요정의 권속',
+        'Spirit Of Dew': '물의 정령',
+        'Spirit of Flame': '불의 정령',
+        'Peaseblossom': '콩나무',
+        'Mustardseed': '겨자씨',
+      },
+      'replaceText': {
+        'Being Mortal': '죽어야 할 운명',
+        'Bright Sabbath': '빛나는 안식',
+        'Divination Rune': '마법의 룬',
+        'Flame Hammer': '불꽃 망치',
+        'Flame Rune': '불의 룬',
+        'Frost Rune(?! )': '얼음의 룬',
+        'Frost Rune Middle': '얼음의 룬 가운데',
+        'Gentle Breeze': '윗바람',
+        'Growth Rune': '뿌리의 룬',
+        'Hard Swipe': '강력한 후려치기',
+        'Leafstorm': '잎사귀 폭풍',
+        'Love-In-Idleness': '삼색제비꽃',
+        'Midsummer Night\'s Dream': '한여름 밤의 꿈',
+        'Mist Rune': '물의 룬',
+        '(?<! )Pease(?!\\w)': '콩 폭발',
+        'Peasebomb': '콩폭탄',
+        'Phantom Rune': '환상의 룬',
+        'Puck\'s Breath': '요정의 숨결',
+        'Puck\'s Caprice': '요정의 변덕',
+        'Puck\'s Rebuke': '요정의 꾸지람',
+        'Pummel': '구타',
+        'Uplift': '융기',
+        'War And Pease': '큰콩 폭발',
       },
     },
   ],

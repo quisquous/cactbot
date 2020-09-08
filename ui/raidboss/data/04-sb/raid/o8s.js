@@ -293,7 +293,7 @@
           en: 'Embrace on YOU',
           fr: 'Étreinte sur VOUS',
           de: 'Umarmung auf DIR',
-          ko: '종말의 포옹 → 나',
+          ko: '종말의 포옹 대상자',
           ja: '双腕 on YOU',
           cn: '分摊死刑点名',
         };
@@ -307,7 +307,7 @@
             en: 'Embrace on ' + data.ShortName(matches.target),
             fr: 'Étreinte sur ' + data.ShortName(matches.target),
             de: 'Umarmung auf ' + data.ShortName(matches.target),
-            ko: '종말의 포옹 → ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 종말의 포옹',
             ja: '双腕 on ' + data.ShortName(matches.target),
             cn: '分摊死刑' + data.ShortName(matches.target),
           };
@@ -343,7 +343,7 @@
           en: 'Hyperdrive on YOU',
           fr: 'Colonne de feu sur VOUS',
           de: 'Hyperantrieb auf DIR',
-          ko: '하이퍼드라이브 → 나',
+          ko: '하이퍼드라이브 대상자',
           ja: 'ハイパードライブ on YOU',
           cn: '死刑点名',
         };
@@ -357,7 +357,7 @@
             en: 'Hyperdrive on ' + data.ShortName(matches.target),
             fr: 'Colonne de feu sur ' + data.ShortName(matches.target),
             de: 'Hyperantrieb auf ' + data.ShortName(matches.target),
-            ko: '하이퍼드라이브 → ' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 하이퍼드라이브',
             ja: 'ハイパードライブ on ' + data.ShortName(matches.target),
             cn: '死刑点名' + data.ShortName(matches.target),
           };

@@ -28,10 +28,7 @@ let UserConfig = {
       overlay: 'options',
     });
 
-    callOverlayHandler({
-      call: 'cactbotLoadUser',
-      source: location.href,
-    }).then(async (e) => {
+    const loadUser = async (e) => {
       let localFiles = e.detail.localUserFiles;
       let basePath = e.detail.userLocation;
       let jsFile = overlayName + '.js';
@@ -66,6 +63,8 @@ let UserConfig = {
       Options.DisplayLanguage = e.detail.displayLanguage;
       if (!supportedLanguage.includes(Options.DisplayLanguage))
         Options.DisplayLanguage = Options.ParserLanguage || 'en';
+
+      this.addUnlockText(Options.DisplayLanguage);
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
@@ -129,6 +128,20 @@ let UserConfig = {
         callback();
 
       callOverlayHandler({ call: 'cactbotRequestState' });
+    };
+
+    callOverlayHandler({
+      call: 'cactbotLoadUser',
+      source: location.href,
+    }).then((e) => {
+      // Wait for DOMContentLoaded if needed.
+      if (document.readyState !== 'loading') {
+        loadUser(e);
+        return;
+      }
+      document.addEventListener('DOMContentLoaded', () => {
+        loadUser(e);
+      });
     });
   },
   handleSkin: function(skinName) {
@@ -198,4 +211,30 @@ let UserConfig = {
     if (template.processExtraOptions)
       template.processExtraOptions(options, savedConfig);
   },
+  addUnlockText: (lang) => {
+    const unlockText = {
+      en: '🔓 Unlocked (lock overlay before using)',
+    };
+
+    const id = 'cactbot-unlocked-text';
+    let textElem = document.getElementById(id);
+    if (!textElem) {
+      textElem = document.createElement('div');
+      textElem.id = id;
+      textElem.classList.add('text');
+      // Set element display to none in case the page has not included defaults.css.
+      textElem.style.display = 'none';
+      document.body.append(textElem);
+    }
+    textElem.innerHTML = unlockText[lang] || unlockText['en'];
+  },
 };
+
+// This event comes early and is not cached, so set up event listener immediately.
+document.addEventListener('onOverlayStateUpdate', (e) => {
+  let docClassList = document.documentElement.classList;
+  if (e.detail.isLocked)
+    docClassList.remove('resizeHandle', 'unlocked');
+  else
+    docClassList.add('resizeHandle', 'unlocked');
+});

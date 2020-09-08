@@ -325,7 +325,6 @@
     },
     {
       'locale': 'ko',
-      'missingTranslations': true,
       'replaceSync': {
         'Depth Grip': '바다의 손',
         'Doxa': '도크사의 방',
@@ -359,10 +358,10 @@
         'Command Current': '유수',
         'Clearout': '휩쓸기',
         'Bonebreaker': '뼈 부수기',
-        // 'Swing/Swipe/Cyclone': '',
+        'Swing/Swipe/Cyclone': '휘두르기/후려치기/사이클론의 눈',
         'Hammer/Blade Mark': '망치/대검 징',
         'Blade/Hammer Mark': '대검/망치 징',
-        'Pyre/Hearth': '',
+        'Pyre/Hearth': '공포의 폭염/화염',
         'Unknown Add': '정체불명 추가',
       },
     },

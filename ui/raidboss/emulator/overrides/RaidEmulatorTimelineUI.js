@@ -81,7 +81,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     bar.$bar.style.width = barProg + '%';
   }
 
-  // Overrride
+  // Override
   Init() {
     if (this.init)
       return;
@@ -92,12 +92,12 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     this.expireTimers = {};
   }
 
-  // Overrride
-  InitDebugUI() {
+  // Override
+  AddDebugInstructions() {
     this.debugElement = document.createElement('div');
   }
 
-  // Overrride
+  // Override
   OnAddTimer(fightNow, e, channeling) {
     if (this.emulatedTimerBars.filter((bar) => bar.event.id === e.id).length)
       return;
@@ -128,7 +128,7 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     this.updateBar(bar, this.emulatedTimeOffset);
   }
 
-  // Overrride
+  // Override
   OnRemoveTimer(e, expired) {
     let bars = this.emulatedTimerBars.filter((bar) => bar.event.id === e.id);
     if (bars.length < 1)

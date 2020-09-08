@@ -241,7 +241,7 @@
             de: 'Auge auf DIR',
             fr: 'Œil de l\'ombre sur VOUS',
             cn: '石化眼点名',
-            ko: '나에게 시선징',
+            ko: '시선징 대상자',
           };
         }
       },

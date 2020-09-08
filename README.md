@@ -150,8 +150,11 @@ Setting up other cactbot overlays works identically.
     ![new overlay plugin screenshot](screenshots/overlay_plugin_new.png)
 
 1. At this point, you should see some test UI appear on screen.
-cactbot provides default test UI and a blue background to help with resizing and placing overlays on screen.
+cactbot provides default test UI,
+a large dashed red border,
+and a blue background to help with resizing and placing overlays on screen.
 These all go away when the overlay is locked in the config panel for the overlay.
+You should always lock your overlay once you are done resizing and placing it.
 
     ![raidboss plugin unlocked](screenshots/overlay_plugin_new_raidboss_unlocked.png)
 
@@ -162,7 +165,7 @@ It will now appear in the list of overlays in the `Plugins` -> `OverlayPlugin.dl
 1. Drag and resize the overlay to the location that you want it in.
 
 1. In the `General` tab of the `Raidboss` overlay, click the `Lock Overlay` and `Enable Clickthrough` checkboxes.
-The test bars, debug text, and shaded blue background will disappear once the overlay has been locked.
+The test bars, debug text, dashed red border, and shaded blue background will disappear once the overlay has been locked.
 
     ![raidboss plugin config](screenshots/overlay_plugin_new_raidboss_locked.png)
 
@@ -264,6 +267,30 @@ In this screenshot, the raidboss module is highlighted, with the timeline circle
 text alerts circled in yellow, with an `alert`-level text message visible.
 
 ![raidboss screenshot](screenshots/Raidboss.png)
+
+### raidboss emulator
+
+If you are writing triggers or timelines and want to test them, you can use the raidboss emulator:
+**ui/raidboss/raidemulator.html**.
+
+This currently can only be loaded in a browser and not as an overlay.
+This will work in current version of Chrome,
+and should work in other browsers as well but this is less tested.
+
+Instructions:
+
+1. Start ACT.
+1. Make sure the WS Server is started via Plugins -> OverlayPlugin WSServer -> Stream/Local Overlay.
+1. Select `Cactbot Raidboss (Combined Alerts and Timelines)` from the URL Generator list.
+1. Edit the url to say `raidemulator.html` instead of `raidboss.html`.
+1. Copy and paste this edited url into Chrome.
+1. Drag and drop a [network log](/docs/FAQ-Troubleshooting.md#how-to-find-a-network-log) onto the page.
+1. Select the zone and encounter, and then click `Load Encounter`.
+
+If the emulator is not working, check the console log in the inspector for errors.
+No buttons will work until it is connected to ACT via websocket.
+
+![raidboss emulator screenshot](screenshots/raidboss_emulator.png)
 
 ### [oopsyraidsy](ui/oopsyraidsy) module
 

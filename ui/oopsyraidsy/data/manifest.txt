@@ -15,6 +15,7 @@
 04-sb/dungeon/ala_mhigo.js
 04-sb/dungeon/bardams_mettle.js
 04-sb/dungeon/temple_of_the_fist.js
+04-sb/dungeon/the_burn.js
 04-sb/raid/o1n.js
 04-sb/raid/o2n.js
 04-sb/raid/o3n.js

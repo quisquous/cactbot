@@ -69,7 +69,7 @@
         de: 'Tank Laser auf DIR',
         fr: 'Tank laser sur VOUS',
         cn: '坦克射线点名',
-        ko: '나에게 탱커 빔',
+        ko: '탱 레이저 대상자',
       },
     },
     {

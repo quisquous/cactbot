@@ -149,7 +149,7 @@
         de: 'Donut auf DIR',
         fr: 'Donut sur VOUS',
         cn: '月环点名',
-        ko: '나에게 도넛장판',
+        ko: '도넛장판 대상자',
       },
     },
   ],

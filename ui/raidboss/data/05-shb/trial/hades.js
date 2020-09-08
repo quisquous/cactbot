@@ -32,7 +32,7 @@
             fr: 'Tank buster sur VOUS',
             ja: '自分にタンクバスター',
             cn: '死刑',
-            ko: '탱크버스터 -> YOU',
+            ko: '탱버 대상자',
           };
         }
         if (data.role == 'healer') {
@@ -42,7 +42,7 @@
             fr: 'Tank buster sur ' + data.ShortName(matches.target),
             ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '탱버 ->' + data.ShortName(matches.target),
+            ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
         }
       },
@@ -260,7 +260,7 @@
         fr: 'Entraves sur VOUS',
         ja: '自分に拘束',
         cn: '锁链点名',
-        ko: '선대상자 -> YOU',
+        ko: '선 대상자',
       },
     },
     {
@@ -354,7 +354,7 @@
           fr: 'Packez-vous sur ' + data.ShortName(name),
           ja: data.ShortName(name) + ' に集合',
           cn: '靠近 ' + data.ShortName(name) + ' 集合',
-          ko: '쉐어징대상자 -> ' + data.ShortName(name),
+          ko: '"' + data.ShortName(name) + '" 쉐어징',
         };
       },
     },
