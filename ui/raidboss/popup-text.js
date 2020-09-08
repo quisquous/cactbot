@@ -82,7 +82,7 @@ class PopupText {
     this.parserLang = this.options.ParserLanguage || 'en';
     this.displayLang = this.options.AlertsLanguage || this.options.DisplayLanguage || this.options.ParserLanguage || 'en';
 
-    if (this.options.BrowserTTS) {
+    if (this.options.IsRemoteRaidboss || this.options.BrowserTTS) {
       this.ttsEngine = new BrowserTTSEngine(this.displayLang);
       this.ttsSay = function(text) {
         this.ttsEngine.play(text);

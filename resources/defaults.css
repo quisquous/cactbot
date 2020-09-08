@@ -49,3 +49,45 @@ body {
 .unlocked #cactbot-unlocked-text {
   display: block !important;
 }
+
+#player-select {
+  /* ok seriously what is on top of this */
+  position: absolute;
+  z-index: 10000;
+  top: 0;
+  left: 0;
+  margin: 20px;
+  max-width: 600px;
+  font-size: 16px;
+  font-family: Meiryo, Arial, sans-serif;
+}
+
+#player-select > div,
+#player-select > input {
+  margin-bottom: 20px;
+}
+
+#player-select label {
+  user-select: none;
+}
+
+#player-select-list {
+  display: grid;
+  grid-template-columns: min-content 100%;
+  grid-row-gap: 10px;
+}
+
+#player-select-instructions {
+  white-space: pre-line;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  user-select: none;
+}
+
+#player-select-button {
+  display: block;
+  width: 100%;
+  height: 50px;
+  font-size: 16px;
+}

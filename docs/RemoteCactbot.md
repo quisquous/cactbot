@@ -96,28 +96,31 @@ For example:
 
 ### Configure Raidboss
 
-Raidboss itself is different, because it is player-specific.
+If you load raidboss remotely, you will see a player selection dialog.
 
-Again, assume your ngrok server is `a31a5403.ngrok.io`.
-The query string you need to append is:
-`?OVERLAY_WS=wss://a31a5403.ngrok.io/ws&player=FirstName%20LastName`
+![image](images/remote_playerselect.png)
 
-If your name was `FirstName LastName`,
-you could use this raidboss url:
-<https://quisquous.github.io/cactbot/ui/raidboss/raidboss.html?OVERLAY_WS=wss://a31a5403.ngrok.io/ws&player=FirstName%20LastName>
+The list of players will populate once you are in an instance.
+Choose yourself in this list, and click `Start Overlay` to begin raidboss.
 
-You can use <https://meyerweb.com/eric/tools/dencoder/>
-to encode a string as a url parameter.
-For example, `P'otato Chippy` becomes `P%27otato%20Chippy`.
-
-### Configure cactbot
+If you want TTS and the person hosting does not have TTS turned on,
+you can enable this with the `Force Enable Text To Speech` checkbox.
 
 Unfortunately at the moment,
 all of the cactbot customization is local
 and any remote player will inherit the customization of the host.
+The only option you can override right now is to enable TTS.
 
 In the future, it may be possible to append some additional parameters to
 load your own user directory, but not currently.
+
+### Other Overlays
+
+Not all overlays are able to be run remotely.
+cactbot, oopsy, pullcounter, and dps overlays are supported.
+
+radar, jobs, and fisher will not work
+as they require more information about your player.
 
 ## HALP
 
