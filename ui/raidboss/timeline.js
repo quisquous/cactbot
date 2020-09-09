@@ -17,7 +17,7 @@ const timelineInstructions = {
     'Echte Timelines erscheinen automatisch,',
     'wenn sie unterstützt werden.',
   ],
-    fr: [
+  fr: [
     'Ces lignes sont',
     'des timelines de test.',
     'Si vous bloquez l\'overlay,',
