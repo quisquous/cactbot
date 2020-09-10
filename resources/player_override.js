@@ -57,15 +57,19 @@ function addPlayerChangedOverrideListener(playerName, func) {
 function addRemotePlayerSelectUI(lang) {
   const instructionTextByLang = {
     en: 'Select a Player\n(the list will update when in an instance)',
+    de: 'Wähle einen Spieler\n(Diese Liste aktualisiert sich, sobald eine Instance betretten wird)',
   };
   const forceTTSByLang = {
     en: 'Force Enable Text To Speech',
+    de: 'Erzwinge Text in Sprache (TTS)',
   };
   const buttonTextByLang = {
     en: 'Start Overlay',
+    de: 'Start Overlay',
   };
   const defaultTextByLang = {
     en: '(no override)',
+    de: '(kein überschreiben)',
   };
 
   // TODO: probably should save forceTTS as well, maybe save some {} options?
