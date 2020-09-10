@@ -260,18 +260,22 @@
     },
     {
       locale: 'fr',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
         'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
+        'test sync': 'test sync',
       },
       replaceText: {
-        'Final Sting': 'Dard final',
         'Almagest': 'Almageste',
         'Angry Dummy': 'Mannequin en colère',
-        'Long Castbar': 'Longue barre de lancement',
-        'Dummy Stands Still': 'Mannequin immobile',
         'Death': 'Mort',
+        'Death To': 'La mort sur',
+        'Dummy Stands Still': 'Mannequin immobile',
+        'Engage': 'À l\'attaque',
+        'Final Sting': 'Dard final',
+        'Long Castbar': 'Longue barre de lancement',
+        'Pentacle Sac': 'Pentacle Sac',
+        'Super Tankbuster': 'Tankbuster formidable',
       },
     },
     {
