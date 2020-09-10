@@ -216,6 +216,8 @@ let UserConfig = {
       en: '🔓 Unlocked (lock overlay before using)',
       de: '🔓 Entsperrt (Sperre das Overlay vor der Nutzung)',
       fr: '🔓 Débloqué (Bloquez l\'overlay avant utilisation)',
+      ja: '🔓 ロック解除 (オーバーレイを使用する前にロックしてください)',
+      cn: '🔓 已解除锁定 (你需要将此悬浮窗锁定后方可使用)',
     };
 
     const id = 'cactbot-unlocked-text';

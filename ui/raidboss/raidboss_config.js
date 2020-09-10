@@ -82,6 +82,8 @@ let kDetailKeys = {
       en: 'netregex',
       de: 'netregex',
       fr: 'netregex',
+      ja: 'ネット正規表現',
+      cn: '网络日志正则表达式',
     },
     cls: 'regex-text',
     debugOnly: true,
@@ -1095,7 +1097,7 @@ UserConfig.registerOptions('raidboss', {
         de: 'e8s: aktiviere cactbot Uptime Knockback Strategie',
         fr: 'e8s : activer cactbot pour Uptime Knockback strat',
         ja: 'エデン零式共鳴編４層：cactbot「ヘヴンリーストライク (ノックバック)」ギミック',
-        cn: 'E8S: 启用cactbot的击退提示功能', // Temperory translation, may change when CN server get into 5.2 patch
+        cn: 'E8S: 启用cactbot的击退提示功能',
         ko: '공명 영웅 4층: cactbot 정확한 타이밍 넉백방지 공략 활성화',
       },
       type: 'checkbox',
