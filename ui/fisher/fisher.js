@@ -65,7 +65,7 @@ class Fisher {
         'undiscovered': /unerforschten Angelplatz/,
         'cast': /00:08c3:Du hast mit dem Fischen (.+) begonnen\./,
         'bite': /00:08c3:Etwas hat angebissen!/,
-        'catch': /00:0843:Du (?:hast (?:einen |eine )|ziehst \d+ )?.+?\s?([\w\s\-\'\.\d\u00c4-\u00fc]{3,})(?: | [^\w] |[^\w\s\-\'\u00c4-\u00fc].+ )(?:\(\d|mit)/,
+        'catch': /00:0843:Du (?:hast (?:einen |eine )|ziehst \d+ )?.+?\s?([\w\s\-\'\.\d\u00c4-\u00fc]{3,})(?: | [^\w] |[^\w\s\-\'\u00c4-\u00fc].+ )(?:\(\d|mit ein)/,
         'nocatch': /00:08c3:(?:Der Fisch hat den K\u00f6der vom Haken gefressen|.+ ist davongeschwommen|Der Fisch konnte sich vom Haken rei\u00dfen|Die Leine ist gerissen|Nichts bei\u00dft an|Du hast nichts gefangen|Du hast das Fischen abgebrochen|Deine Beute hat sich aus dem Staub gemacht und du hast|Die Fische sind misstrauisch und kommen keinen Ilm n\u00e4her|Du hast .+ geangelt, musst deinen Fang aber wieder freilassen, weil du nicht mehr davon besitzen kannst)/,
         'mooch': /00:08c3:Du hast die Leine mit/,
         'chumgain': /00:08ae:You gain the effect of Streuköder/,
