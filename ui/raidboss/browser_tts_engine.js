@@ -45,7 +45,7 @@ class GoogleTTSItem extends TTSItem {
 
 class BrowserTTSEngine {
   constructor(lang) {
-    this.googleTTSLang = lang;
+    this.googleTTSLang = lang == 'cn'? 'zh' : lang;
     // TODO: should there be options for different voices here so that
     // everybody isn't forced into Microsoft Anna?
     const cactbotLangToSpeechLang = {
