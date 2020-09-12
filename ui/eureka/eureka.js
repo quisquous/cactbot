@@ -1906,12 +1906,15 @@ class EurekaTracker {
 
     let primaryWeatherList = this.zoneInfo.primaryWeather;
     if (primaryWeatherList) {
+      for (let i = 0; i < 5; ++i) {
+        document.getElementById('label-weather-icon' + i).innerHTML = '';
+        document.getElementById('label-weather-text' + i).innerHTML = '';
+      }
+
       for (let i = 0; i < 5 && i < primaryWeatherList.length; ++i) {
         let primaryWeather = primaryWeatherList[i];
-        if (!primaryWeather) {
-          document.getElementById('label-weather' + i).innerHTML = '';
+        if (!primaryWeather)
           continue;
-        }
         let weather = getWeather(nowMs, this.zoneId);
         let weatherIcon = gWeatherIcons[primaryWeather];
         let weatherStr;
