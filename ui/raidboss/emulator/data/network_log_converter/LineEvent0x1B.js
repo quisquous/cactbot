@@ -5,8 +5,8 @@ class LineEvent0x1B extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
-    this.id = parts[2].toUpperCase();
-    this.name = parts[3];
+    this.targetId = parts[2].toUpperCase();
+    this.targetName = parts[3];
   }
 }
 
