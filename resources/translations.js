@@ -79,7 +79,7 @@ if (typeof module !== 'undefined') {
       fr: '(Vous fabriquez|Votre synthèse d\'essai pour fabriquer) (?<recipe>.*)( a été couronnée de succès!)?',
       ja: '(?<player>\\y{Name})は(?<recipe>.*)(を完成させた|の製作練習に成功した)！',
       cn: '(?<player>\\y{Name})制作(?<recipe>.*)成功！',
-      ko: '(?<recipe>.*)(개를)? 완성했습니다!',
+      ko: '(?<player>\\y{Name}) 님이 (?<recipe>.*)(을|를) 완성했습니다!',
     },
     craftingFail: {
       en: 'Your (synthesis fails!|trial synthesis of failed\\.{3})',
