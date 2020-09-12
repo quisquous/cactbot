@@ -835,12 +835,6 @@ class TimelineUI {
   }
 }
 
-const CountdownState = {
-  none: 0,
-  active: 1,
-  wipe: 2,
-};
-
 class TimelineController {
   constructor(options, ui) {
     this.options = options;
@@ -849,8 +843,8 @@ class TimelineController {
     // data files not sent yet.
     this.timelines = null;
 
-    // Countdown state is used to suppress engages if there is a wipe between countdown and enrage.
-    this.countdownState = CountdownState.none;
+    // Used to suppress any Engage! if there's a wipe between /countdown and Engage!.
+    this.suppressNextEngage = false;
     this.wipeRegex = Regexes.network6d({ command: '40000010' });
   }
 
@@ -859,9 +853,11 @@ class TimelineController {
   }
 
   SetInCombat(inCombat) {
-    // On wipe, set countdown state to Wipe if it was Active
-    if (!inCombat && this.countdownState === CountdownState.active)
-      this.countdownState = CountdownState.wipe;
+    // Wipe lines come before combat is false, but because OnLogEvent doesn't process
+    // lines when out of combat, suppress any engages that come before the next countdown
+    // just as a safety, especially for old ARR content where wipe lines don't happen.
+    if (!inCombat)
+      this.suppressNextEngage = true;
     if (!inCombat && this.activeTimeline)
       this.activeTimeline.Stop();
   }
@@ -869,37 +865,21 @@ class TimelineController {
   OnLogEvent(e) {
     if (!this.activeTimeline)
       return;
-    for (let i = 0; i < e.detail.logs.length; ++i) {
-      let startMatch =
-        e.detail.logs[i].match(LocaleRegex.countdownStart[this.options.ParserLanguage]);
-      if (startMatch) {
-        // If we're not in a wipe state, reset the state to countdown active
-        if (this.countdownState !== CountdownState.wipe)
-          this.countdownState = CountdownState.active;
-      } else {
-        let engageMatch =
-          e.detail.logs[i].match(LocaleRegex.countdownEngage[this.options.ParserLanguage]);
-        if (engageMatch) {
-          let previousState = this.countdownState;
-          this.countdownState = CountdownState.none;
-          // If we see an engage after a wipe, but before combat has started otherwise
-          // (e.g. countdown > wipe > face pull > engage), don't process this engage line
-          if (previousState === CountdownState.wipe)
-            continue;
-        } else {
-          // On cancel, reset the countdown state
-          let cancelMatch =
-            e.detail.logs[i].match(LocaleRegex.countdownCancel[this.options.ParserLanguage]);
-          if (cancelMatch) {
-            this.countdownState = CountdownState.none;
-          } else if (this.countdownState === CountdownState.active) {
-            let wipeMatch = e.detail.logs[i].match(this.wipeRegex);
-            if (wipeMatch)
-              this.countdownState = CountdownState.wipe;
-          }
-        }
+    for (const log of e.detail.logs) {
+      if (LocaleRegex.countdownStart[this.options.ParserLanguage].test(log)) {
+        // As you can't start a countdown while in combat, the next engage is real.
+        this.suppressNextEngage = false;
+      } else if (LocaleRegex.countdownEngage[this.options.ParserLanguage].test(log)) {
+        // If we see an engage after a wipe, but before combat has started otherwise
+        // (e.g. countdown > wipe > face pull > engage), don't process this engage line
+        if (this.suppressNextEngage)
+          continue;
+      } else if (this.wipeRegex.test(log)) {
+        // If we see a wipe, ignore the next engage.  If we see a countdown before that wipe,
+        // we will clear this.  Therefore, this will only apply to active countdowns.
+        this.suppressNextEngage = true;
       }
-      this.activeTimeline.OnLogLine(e.detail.logs[i]);
+      this.activeTimeline.OnLogLine(log);
     }
   }
 
