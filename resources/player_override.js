@@ -58,18 +58,26 @@ function addRemotePlayerSelectUI(lang) {
   const instructionTextByLang = {
     en: 'Select a Player\n(the list will update when in an instance)',
     de: 'Wähle einen Spieler\n(Diese Liste aktualisiert sich, sobald eine Instance betretten wird)',
+    ja: 'プレーヤー名を選択してください\n(インスタンスに入るとリストが更新する)',
+    cn: '请选择玩家名称\n(此列表将会在进入副本后更新)',
   };
   const forceTTSByLang = {
     en: 'Force Enable Text To Speech',
     de: 'Erzwinge Text in Sprache (TTS)',
+    ja: 'TTSを強制的に有効化する',
+    cn: '强制启用TTS',
   };
   const buttonTextByLang = {
     en: 'Start Overlay',
     de: 'Start Overlay',
+    ja: 'オーバーレイを起動',
+    cn: '启用悬浮窗',
   };
   const defaultTextByLang = {
     en: '(no override)',
     de: '(kein überschreiben)',
+    ja: '(既定値)',
+    cn: '(默认值)',
   };
 
   // TODO: probably should save forceTTS as well, maybe save some {} options?

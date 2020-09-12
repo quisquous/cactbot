@@ -100,6 +100,7 @@ let kEarlyPullText = {
   en: 'early pull',
   de: 'zu früh angegriffen',
   fr: 'early pull',
+  ja: 'タゲ取り早い',
   cn: '抢开',
   ko: '풀링 빠름',
 };
@@ -108,6 +109,7 @@ let kLatePullText = {
   en: 'late pull',
   de: 'zu spät angegriffen',
   fr: 'late pull',
+  ja: 'タゲ取り遅い',
   cn: '晚开',
   ko: '풀링 늦음',
 };
@@ -116,6 +118,7 @@ const kPartyWipeText = {
   en: 'Party Wipe',
   de: 'Gruppe ausgelöscht',
   fr: 'Party Wipe',
+  ja: 'ワイプ',
   cn: '团灭',
   ko: '파티 전멸',
 };
