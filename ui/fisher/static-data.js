@@ -4786,6 +4786,144 @@ const gFisherData = {
         'kleines Fuchsien',
         'kleiner Fuchsien',
       ],
+      '31578': [
+        'Federfall-Donnerkeil-Groppe',
+        'Federfall-Donnerkeil-Groppen',
+      ],
+      '31579': [
+        'Federfall-Schnappschildkröte',
+        'Federfall-Schnappschildkröten',
+      ],
+      '31580': 'Federfall-Knochenzüngler',
+      '31581': [
+        'Federfall-Einsiedler-Grundel',
+        'Federfall-Einsiedler-Grundeln',
+      ],
+      '31582': 'Federfall-Schlammspringer',
+      '31583': [
+        'Federfall-Ochsenfrosch',
+        'Federfall-Ochsenfrösche',
+      ],
+      '31584': [
+        'Federfall-Goldschmerle',
+        'Federfall-Goldschmerlen',
+      ],
+      '31585': [
+        'Federfall-Barsch',
+        'Federfall-Barsche',
+      ],
+      '31586': 'Federfall-Cherax',
+      '31587': [
+        'Federfall-Algenkugel',
+        'Federfall-Algenkugeln',
+      ],
+      '31588': [
+        'Federfall-Katzenwels',
+        'Federfall-Katzenwelse',
+      ],
+      '31589': [
+        'Federfall-Reisfisch',
+        'Federfall-Reisfische',
+      ],
+      '31590': [
+        'Federfall-Skorpionfliege',
+        'Federfall-Skorpionfliegen',
+      ],
+      '31591': 'Federfall-Weißschimmer',
+      '31592': [
+        'Federfall-Pteranodon',
+        'Federfall-Pteranodonten',
+      ],
+      '31593': [
+        'Federfall-Königsmantel',
+        'Federfall-Königsmäntel',
+      ],
+      '31594': [
+        'blaue Federfall-Medusa',
+        'blauen Federfall-Medusa',
+        'blaues Federfall-Medusa',
+        'blauer Federfall-Medusa',
+        'blaue Federfall-Medusen',
+        'blauen Federfall-Medusen',
+        'blaues Federfall-Medusen',
+        'blauer Federfall-Medusen',
+      ],
+      '31595': [
+        'Federfall-Knurrhahn',
+        'Federfall-Knurrhähne',
+      ],
+      '31596': [
+        'sonderbestellte Federfall-Barsch',
+        'sonderbestellten Federfall-Barsch',
+        'sonderbestelltes Federfall-Barsch',
+        'sonderbestellter Federfall-Barsch',
+        'sonderbestellte Federfall-Barsche',
+        'sonderbestellten Federfall-Barsche',
+        'sonderbestelltes Federfall-Barsche',
+        'sonderbestellter Federfall-Barsche',
+      ],
+      '31597': [
+        'sonderbestellte Federfall-Blindmanta',
+        'sonderbestellten Federfall-Blindmanta',
+        'sonderbestelltes Federfall-Blindmanta',
+        'sonderbestellter Federfall-Blindmanta',
+        'sonderbestellte Federfall-Blindmantas',
+        'sonderbestellten Federfall-Blindmantas',
+        'sonderbestelltes Federfall-Blindmantas',
+        'sonderbestellter Federfall-Blindmantas',
+      ],
+      '31598': [
+        'sonderbestellte Federfall-Mosasaurus',
+        'sonderbestellten Federfall-Mosasaurus',
+        'sonderbestelltes Federfall-Mosasaurus',
+        'sonderbestellter Federfall-Mosasaurus',
+        'sonderbestellte Federfall-Mosasaurier',
+        'sonderbestellten Federfall-Mosasaurier',
+        'sonderbestelltes Federfall-Mosasaurier',
+        'sonderbestellter Federfall-Mosasaurier',
+      ],
+      '31599': [
+        'sonderbestellte Federfall-Sturmjäger',
+        'sonderbestellten Federfall-Sturmjäger',
+        'sonderbestelltes Federfall-Sturmjäger',
+        'sonderbestellter Federfall-Sturmjäger',
+      ],
+      '31600': [
+        'sonderbestellte Federfall-Archaeopteryx',
+        'sonderbestellten Federfall-Archaeopteryx',
+        'sonderbestelltes Federfall-Archaeopteryx',
+        'sonderbestellter Federfall-Archaeopteryx',
+        'sonderbestellte Federfall-Archaeopteryxe',
+        'sonderbestellten Federfall-Archaeopteryxe',
+        'sonderbestelltes Federfall-Archaeopteryxe',
+        'sonderbestellter Federfall-Archaeopteryxe',
+      ],
+      '31601': [
+        'sonderbestellte Federfall-Wyvern',
+        'sonderbestellten Federfall-Wyvern',
+        'sonderbestelltes Federfall-Wyvern',
+        'sonderbestellter Federfall-Wyvern',
+      ],
+      '31602': [
+        'sonderbestellte Federfall-Wolkenhai',
+        'sonderbestellten Federfall-Wolkenhai',
+        'sonderbestelltes Federfall-Wolkenhai',
+        'sonderbestellter Federfall-Wolkenhai',
+        'sonderbestellte Federfall-Wolkenhaie',
+        'sonderbestellten Federfall-Wolkenhaie',
+        'sonderbestelltes Federfall-Wolkenhaie',
+        'sonderbestellter Federfall-Wolkenhaie',
+      ],
+      '31603': [
+        'sonderbestellte Federfall-Helicoprion',
+        'sonderbestellten Federfall-Helicoprion',
+        'sonderbestelltes Federfall-Helicoprion',
+        'sonderbestellter Federfall-Helicoprion',
+        'sonderbestellte Federfall-Helicoprionen',
+        'sonderbestellten Federfall-Helicoprionen',
+        'sonderbestelltes Federfall-Helicoprionen',
+        'sonderbestellter Federfall-Helicoprionen',
+      ],
     },
     'en': {
       '4776': [
@@ -7471,6 +7609,89 @@ const gFisherData = {
       '30593': [
         'fuchsia bloom',
         'fuchsia blooms',
+      ],
+      '31578': 'grade 3 skybuilders\' thunderbolt sculpin',
+      '31579': [
+        'grade 3 skybuilders\' alligator snapping turtle',
+        'grade 3 skybuilders\' alligator snapping turtles',
+      ],
+      '31580': [
+        'grade 3 skybuilders\' bonytongue',
+        'grade 3 skybuilders\' bonytongues',
+      ],
+      '31581': [
+        'grade 3 skybuilders\' hermit goby',
+        'grade 3 skybuilders\' hermit gobies',
+      ],
+      '31582': [
+        'grade 3 skybuilders\' mudskipper',
+        'grade 3 skybuilders\' mudskippers',
+      ],
+      '31583': [
+        'grade 3 skybuilders\' steppe bullfrog',
+        'grade 3 skybuilders\' steppe bullfrogs',
+      ],
+      '31584': [
+        'grade 3 skybuilders\' golden loach',
+        'grade 3 skybuilders\' golden loaches',
+      ],
+      '31585': 'grade 3 skybuilders\' bass',
+      '31586': 'grade 3 skybuilders\' cherax',
+      '31587': 'grade 3 skybuilders\' marimo',
+      '31588': 'grade 3 skybuilders\' catfish',
+      '31589': 'grade 3 skybuilders\' ricefish',
+      '31590': [
+        'grade 3 skybuilders\' scorpionfly',
+        'grade 3 skybuilders\' scorpionflies',
+      ],
+      '31591': [
+        'grade 3 skybuilders\' whiteloom',
+        'grade 3 skybuilders\' whitelooms',
+      ],
+      '31592': [
+        'grade 3 skybuilders\' pteranodon',
+        'grade 3 skybuilders\' pteranodons',
+      ],
+      '31593': [
+        'grade 3 skybuilders\' king\'s mantle',
+        'grade 3 skybuilders\' king\'s mantles',
+      ],
+      '31594': [
+        'grade 3 skybuilders\' blue medusa',
+        'grade 3 skybuilders\' blue medusae',
+      ],
+      '31595': 'grade 3 skybuilders\' gurnard',
+      '31596': [
+        'grade 3 artisanal skybuilders\' oscar',
+        'grade 3 artisanal skybuilders\' oscars',
+      ],
+      '31597': [
+        'grade 3 artisanal skybuilders\' blind manta',
+        'grade 3 artisanal skybuilders\' blind mantas',
+      ],
+      '31598': [
+        'grade 3 artisanal skybuilders\' mosasaur',
+        'grade 3 artisanal skybuilders\' mosasaurs',
+      ],
+      '31599': [
+        'grade 3 artisanal skybuilders\' storm chaser',
+        'grade 3 artisanal skybuilders\' storm chasers',
+      ],
+      '31600': [
+        'grade 3 artisanal skybuilders\' archaeopteryx',
+        'grade 3 artisanal skybuilders\' archaeopteryges',
+      ],
+      '31601': [
+        'grade 3 artisanal skybuilders\' wyvern',
+        'grade 3 artisanal skybuilders\' wyverns',
+      ],
+      '31602': [
+        'grade 3 artisanal skybuilders\' cloudshark',
+        'grade 3 artisanal skybuilders\' cloudsharks',
+      ],
+      '31603': [
+        'grade 3 artisanal skybuilders\' helicoprion',
+        'grade 3 artisanal skybuilders\' helicoprions',
       ],
     },
     'fr': {
@@ -10971,6 +11192,104 @@ const gFisherData = {
         'bulbille de fuschia',
         'bulbilles de fuschia',
       ],
+      '31578': [
+        'grondin éclair de restauration (3e phase)',
+        'grondins éclair de restauration (3e phase)',
+      ],
+      '31579': [
+        'tortue alligator de restauration (3e phase)',
+        'tortues alligators de restauration (3e phase)',
+      ],
+      '31580': [
+        'arowana de restauration (3e phase)',
+        'arowanas de restauration (3e phase)',
+      ],
+      '31581': [
+        'gobie ermite de restauration (3e phase)',
+        'gobies ermites de restauration (3e phase)',
+      ],
+      '31582': [
+        'poisson grenouille de restauration (3e phase)',
+        'poissons grenouilles de restauration (3e phase)',
+      ],
+      '31583': [
+        'grenouille-taureau des steppes de restauration (3e phase)',
+        'grenouilles-taureaux des steppes de restauration (3e phase)',
+      ],
+      '31584': [
+        'loche dorée de restauration (3e phase)',
+        'loches dorées de restauration (3e phase)',
+      ],
+      '31585': [
+        'bar de restauration (3e phase)',
+        'bars de restauration (3e phase)',
+      ],
+      '31586': 'cherax de restauration (3e phase)',
+      '31587': [
+        'marimo de restauration (3e phase)',
+        'marimos de restauration (3e phase)',
+      ],
+      '31588': [
+        'poisson-chat de restauration (3e phase)',
+        'poissons-chats de restauration (3e phase)',
+      ],
+      '31589': [
+        'medaka de restauration (3e phase)',
+        'medakas de restauration (3e phase)',
+      ],
+      '31590': [
+        'crevette-scorpion de restauration (3e phase)',
+        'crevettes-scorpions de restauration (3e phase)',
+      ],
+      '31591': [
+        'chanterelle céleste de restauration (3e phase)',
+        'chanterelles célestes de restauration (3e phase)',
+      ],
+      '31592': [
+        'ptéranodon de restauration (3e phase)',
+        'ptéranodons de restauration (3e phase)',
+      ],
+      '31593': [
+        'manteau du roi de restauration (3e phase)',
+        'manteaux du roi de restauration (3e phase)',
+      ],
+      '31594': [
+        'méduse céruléenne de restauration (3e phase)',
+        'méduses céruléennes de restauration (3e phase)',
+      ],
+      '31595': [
+        'grondin volant de restauration (3e phase)',
+        'grondins volants de restauration (3e phase)',
+      ],
+      '31596': [
+        'oscar sur commande de restauration (3e phase)',
+        'oscars sur commande de restauration (3e phase)',
+      ],
+      '31597': [
+        'manta volante sur commande de restauration (3e phase)',
+        'mantas volantes sur commande de restauration (3e phase)',
+      ],
+      '31598': [
+        'mosasaure sur commande de restauration (3e phase)',
+        'mosasaures sur commande de restauration (3e phase)',
+      ],
+      '31599': [
+        'grondin-orage sur commande de restauration (3e phase)',
+        'grondins-orage sur commande de restauration (3e phase)',
+      ],
+      '31600': 'archæoptéryx sur commande de restauration (3e phase)',
+      '31601': [
+        'wyverne sur commande de restauration (3e phase)',
+        'wyvernes sur commande de restauration (3e phase)',
+      ],
+      '31602': [
+        'requin-nuage sur commande de restauration (3e phase)',
+        'requins-nuages sur commande de restauration (3e phase)',
+      ],
+      '31603': [
+        'hélicoprion sur commande de restauration (3e phase)',
+        'hélicoprions sur commande de restauration (3e phase)',
+      ],
     },
     'ja': {
       '4776': 'マルムケルプ',
@@ -11917,6 +12236,32 @@ const gFisherData = {
       '30491': 'オオニシン',
       '30492': 'インクシェル',
       '30593': 'フクシアの蕾',
+      '31578': '第三次復興用の雷紋魚',
+      '31579': '第三次復興用のワニガメ',
+      '31580': '第三次復興用のアロワナ',
+      '31581': '第三次復興用の泥仙人',
+      '31582': '第三次復興用のマッドスキッパー',
+      '31583': '第三次復興用のウシガエル',
+      '31584': '第三次復興用のゴールデンローチ',
+      '31585': '第三次復興用のバス',
+      '31586': '第三次復興用のヤビー',
+      '31587': '第三次復興用のマリモ',
+      '31588': '第三次復興用のキャットフィッシュ',
+      '31589': '第三次復興用のライスフィッシュ',
+      '31590': '第三次復興用のスコーピオンフライ',
+      '31591': '第三次復興用のスカイルーム',
+      '31592': '第三次復興用のプテラノドン',
+      '31593': '第三次復興用のロイヤルマント',
+      '31594': '第三次復興用のスカイメデューサ',
+      '31595': '第三次復興用のガーナード',
+      '31596': '第三次復興用の特注オスカー',
+      '31597': '第三次復興用の特注フライマンタ',
+      '31598': '第三次復興用の特注モササウルス',
+      '31599': '第三次復興用の特注ストームライダー',
+      '31600': '第三次復興用の特注アーケオプテリクス',
+      '31601': '第三次復興用の特注ワイバーン',
+      '31602': '第三次復興用の特注クラウドシャーク',
+      '31603': '第三次復興用の特注ヘリコプリオン',
     },
     'ko': {
       '4776': '말름미역',
@@ -15336,6 +15681,22 @@ const gFisherData = {
       30009,
       30013,
     ],
+    '3532': [
+      31590,
+      31591,
+      30006,
+      30007,
+      30010,
+      30011,
+    ],
+    '3533': [
+      31590,
+      31591,
+      30008,
+      30009,
+      30012,
+      30013,
+    ],
   },
   'places': {
     'cn': {
@@ -16565,6 +16926,14 @@ const gFisherData = {
         'Sturmumtostes Wolkenmeer',
         'im sturmumtosten Wolkenmeer',
       ],
+      '3532': [
+        'Windbrecher-Wolkengipfel',
+        'am Windbrecher-Wolkengipfel',
+      ],
+      '3533': [
+        'Sturmwind-Wolkengipfel',
+        'am Sturmwind-Wolkengipfel',
+      ],
     },
     'en': {
       '28': 'Limsa Lominsa upper decks',
@@ -16813,6 +17182,8 @@ const gFisherData = {
       '3455': 'Rhotano spectral current',
       '3458': 'Mjrl\'s Tears',
       '3489': 'windswept cloudtop',
+      '3532': 'windbreaking cloudtop',
+      '3533': 'buffeted cloudtop',
     },
     'fr': {
       '28': 'Limsa Lominsa - Le Tillac',
@@ -17061,6 +17432,8 @@ const gFisherData = {
       '3455': 'Courant spectral (large de la mer de Rhotano)',
       '3458': 'Les Larmes de Mjrl',
       '3489': 'Cimes éventées',
+      '3532': 'Mer de nuages calme',
+      '3533': 'Mer de nuages agitée',
     },
     'ja': {
       '28': 'リムサ・ロミンサ：上甲板層',
@@ -17309,6 +17682,8 @@ const gFisherData = {
       '3455': 'ロータノ海沖合：幻海流',
       '3458': 'ミュリルの落涙',
       '3489': '風吹き上がる雲海',
+      '3532': '風吹き溜まる雲海',
+      '3533': '風吹き荒ぶ雲海',
     },
     'ko': {
       '28': '림사 로민사 상층 갑판',
@@ -18596,6 +18971,12 @@ const gFisherData = {
     '28927': 3,
     '28928': 3,
     '28929': 3,
+    '30434': 3,
+    '30435': 3,
+    '30436': 3,
+    '30439': 3,
+    '30487': 1,
+    '30593': 1,
   },
 };
 
