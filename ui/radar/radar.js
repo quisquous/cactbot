@@ -196,7 +196,7 @@ class Radar {
       };
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
-      
+
       console.log(monster.name + ' found at (' + posToMap(m.pos.x).toFixed(1) + ', ' + posToMap(m.pos.y).toFixed(1) + ')');
 
       PlaySound(this.targetMonsters[mobKey], options);
