@@ -208,7 +208,7 @@ class Radar {
       return;
     monster.puller = puller;
     this.UpdateMonsterDom(monster);
-    console.log('Pull: ' + puller + ' => ' + monster.name);
+    console.log('Pull: ' + puller + ' => ' + monster.name + ' @ (' + posToMap(monster.pos.x).toFixed(1) + ',' + posToMap(monster.pos.y).toFixed(1) + ')');
   }
 
   UpdateMonsterDom(monster) {
