@@ -91,13 +91,13 @@ class Fisher {
       },
       'fr': {
         'undiscovered': /Zone de pêche inconnue/,
-        'cast': /00:08c3:Vous commencez \u00e0 p\u00eacher. Point de p\u00eache: ([\w\s\'\(\)\u00c0-\u017f]+)/,
+        'cast': /00:08c3:Vous commencez \u00e0 p\u00eacher. Point de p\u00eache: ([\w\s\-\'\u00b0\u00c0-\u017f]+)/,
         'bite': /00:08c3:Vous avez une touche!/,
         'catch': /00:0843:Vous avez p\u00each\u00e9 (?:un |une )?.+?\s?([\w\s\-\'\u00b0\u00c0-\u017f]{3,})\ue03c?.+de \d/,
         'nocatch': /00:08c3:(?:L'app\u00e2t a disparu|Vous avez perdu votre|L'app\u00e2t a disparu|Le poisson a r\u00e9ussi \u00e0 se d\u00e9faire de l'hame\u00e7on|Le fil s'est cass\u00e9|Vous n'avez pas eu de touche|Vous n'avez pas r\u00e9ussi \u00e0 ferrer le poisson|Vous arr\u00eatez de p\u00eacher|Le poisson s'est enfui et a emport\u00e9 avec lui votre|Les poissons sont devenus m\u00e9fiants|Vous avez p\u00each\u00e9 .+, mais ne pouvez en poss\u00e9der davantage et l'avez donc rel\u00e2ch\u00e9)/,
         'mooch': /00:08c3:Vous essayez de p\u00eacher au vif avec/,
         'quit': /00:08c3:(?:Vous arr\u00eatez de p\u00eacher\.|P\u00eache interrompue)/,
-        'discovered': /00:08c3:Vous notez le banc de poissons “([\w\s\'\(\)\u00c0-\u017f]+)” dans votre carnet\./,
+        'discovered': /00:08c3:Vous notez le banc de poissons “([\w\s\-\'\u00b0\u00c0-\u017f]+)” dans votre carnet\./,
       },
       'ja': {
         'undiscovered': /\u672a\u77e5\u306e\u91e3\u308a\u5834/,
