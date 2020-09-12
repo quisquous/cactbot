@@ -196,6 +196,8 @@ class Radar {
       };
       this.targetMonsters[mobKey] = m;
       this.UpdateMonsterDom(m);
+      
+      console.log(monster.name + ' found at (' + posToMap(m.pos.x).toFixed(1) + ', ' + posToMap(m.pos.y).toFixed(1) + ')');
 
       PlaySound(this.targetMonsters[mobKey], options);
     }
@@ -208,7 +210,7 @@ class Radar {
       return;
     monster.puller = puller;
     this.UpdateMonsterDom(monster);
-    console.log('Pull: ' + puller + ' => ' + monster.name + ' @ (' + posToMap(monster.pos.x).toFixed(1) + ',' + posToMap(monster.pos.y).toFixed(1) + ')');
+    console.log('Pull: ' + puller + ' => ' + monster.name);
   }
 
   UpdateMonsterDom(monster) {
