@@ -66,7 +66,7 @@ function addRemotePlayerSelectUI(lang) {
   const forceTTSByLang = {
     en: 'Force Enable Text To Speech',
     de: 'Erzwinge Text in Sprache (TTS)',
-    fr: 'Forcer l\'activation de la synthèse vocale',
+    fr: 'Forcer l\'activation de la synthèse vocale (TTS)',
     ja: 'TTSを強制的に有効化する',
     cn: '强制启用TTS',
     ko: 'TTS 기능을 활성화하기',
