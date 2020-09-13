@@ -292,7 +292,7 @@
           };
         }
 
-        if (data.role == 'tank' || data.role == 'healer' || data.job == 'blu') {
+        if (data.role == 'tank' || data.role == 'healer' || data.job == 'BLU') {
           return {
             en: 'Shared Tankbuster on' + data.ShortName(matches.target),
             de: 'Geteilter Tankbuster auf' + data.ShortName(matches.target),

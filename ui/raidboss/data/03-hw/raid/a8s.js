@@ -102,7 +102,7 @@
       netRegexCn: NetRegexes.ability({ source: '突击者', id: '1632', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '맹습자', id: '1632', capture: false }),
       condition: function(data) {
-        return data.role == 'dps' || data.job == 'blu';
+        return data.role == 'dps' || data.job == 'BLU';
       },
       infoText: {
         en: 'Kill Regulators',
@@ -592,7 +592,7 @@
       id: 'A8S Verdict Max HP Blu Devour',
       netRegex: NetRegexes.gainsEffect({ effectId: '407' }),
       condition: function(data, matches) {
-        return data.me == matches.target && data.job == 'blu';
+        return data.me == matches.target && data.job == 'BLU';
       },
       delaySeconds: 27,
       alarmText: {
