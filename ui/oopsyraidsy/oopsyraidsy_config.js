@@ -223,6 +223,14 @@ UserConfig.registerOptions('oopsyraidsy', {
       debugOnly: true,
     },
     {
+      id: 'ClickToCopy',
+      name: {
+        en: 'Enable click-to-copy',
+        ko: '클릭해서 복사하기 활성화',
+      },
+      type: 'checkbox',
+    },
+    {
       id: 'NumLiveListItemsInCombat',
       name: {
         en: 'Number of mistakes to show in combat',
