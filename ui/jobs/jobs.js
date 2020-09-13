@@ -386,7 +386,7 @@ function setupRegexes(playerName) {
 }
 
 function doesJobNeedMPBar(job) {
-  return Util.isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
+  return Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
 }
 
 function computeBackgroundColorFrom(element, classList) {
@@ -1122,7 +1122,7 @@ class Bars {
       barsLayoutContainer.classList.add('tank');
     else if (Util.isHealerJob(this.job))
       barsLayoutContainer.classList.add('healer');
-    else if (Util.isCombatJob(this.job))
+    else if (Util.isDpsJob(this.job))
       barsLayoutContainer.classList.add('dps');
     else if (Util.isCraftingJob(this.job))
       barsLayoutContainer.classList.add('crafting');
