@@ -24,7 +24,7 @@
       regex: /Hand of Prayer\/Parting/,
       beforeSeconds: 5,
       condition: function(data) {
-        return data.role == 'tank' || data.job == 'blu';
+        return data.role == 'tank' || data.job == 'BLU';
       },
       suppressSeconds: 1,
       infoText: {
@@ -265,7 +265,7 @@
       netRegexCn: NetRegexes.ability({ source: '有生命活水', id: 'F1B', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '살아있는 액체', id: 'F1B', capture: false }),
       condition: function(data) {
-        return data.role == 'tank' || data.job == 'blu';
+        return data.role == 'tank' || data.job == 'BLU';
       },
       infoText: {
         en: 'Embolus: Move Boss',

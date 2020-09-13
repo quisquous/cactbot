@@ -51,7 +51,7 @@
       netRegexCn: NetRegexes.ability({ source: '9号哥布林黑寡妇', id: '1413' }),
       netRegexKo: NetRegexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: function(data) {
-        return data.role == 'healer' || data.job == 'blu';
+        return data.role == 'healer' || data.job == 'BLU';
       },
       suppressSeconds: 10,
       infoText: function(data, matches) {

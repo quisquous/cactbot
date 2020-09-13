@@ -95,7 +95,7 @@ let bombLocation = (matches) => {
           return;
         if (data.role === 'tank')
           return Responses.tankSwap('alarm');
-        if (data.job === 'blu')
+        if (data.job === 'BLU')
           return Responses.tankSwap('info');
       },
     },

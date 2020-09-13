@@ -188,7 +188,7 @@
             ko: '탱 교대',
           };
         }
-        if (data.role == 'healer' || data.job == 'blu') {
+        if (data.role == 'healer' || data.job == 'BLU') {
           return {
             en: 'Shield ' + data.ShortName(matches.target),
             de: 'Schild ' + data.ShortName(matches.target),
