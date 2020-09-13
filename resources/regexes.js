@@ -635,7 +635,7 @@ var Regexes = {
     let keys = Object.keys(f);
     for (let k = 0; k < keys.length; ++k) {
       let key = keys[k];
-      if (params.indexOf(key) < 0) {
+      if (!params.includes(key)) {
         throw new Error(`${funcName}: invalid parameter '${key}'.  ` +
             `Valid params: ${JSON.stringify(params)}`);
       }

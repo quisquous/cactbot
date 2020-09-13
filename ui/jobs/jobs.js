@@ -203,7 +203,7 @@ class ComboTracker {
   }
 
   AddCombo(skillList) {
-    if (this.startList.indexOf(skillList[0]) == -1)
+    if (!this.startList.includes(skillList[0]))
       this.startList.push(skillList[0]);
 
     for (let i = 0; i < skillList.length; ++i) {

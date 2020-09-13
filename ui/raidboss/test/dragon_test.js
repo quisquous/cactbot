@@ -220,15 +220,15 @@ function testFindDragonMarks(array, output) {
   ];
 
   // First set of dragons should not cover second mark.
-  console.assert(bad[0].indexOf(marks[1]) == -1);
+  console.assert(!bad[0].includes(marks[1]));
   // Second set of dragons should not cover third mark.
-  console.assert(bad[1].indexOf(marks[2]) == -1);
+  console.assert(!bad[1].includes(marks[2]));
 
   // Verify unsafe third mark.
   if (output.unsafeThirdMark)
     console.assert(bad[0].indexOf(marks[2]) != -1);
   else
-    console.assert(bad[0].indexOf(marks[2]) == -1);
+    console.assert(!bad[0].includes(marks[2]));
 }
 
 let total = 0;

@@ -757,7 +757,7 @@
         // stack.  Therefore, make sure you stack.  It's possible you
         // can survive until fire 3 happens, but it's not 100%.
         // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
-        if (data.fireballs[1].indexOf(data.me) == -1) {
+        if (!data.fireballs[1].includes(data.me)) {
           return {
             en: 'Fire OUT: Be in it',
             fr: 'Feu EN DEHORS : Allez dessus',
@@ -781,7 +781,7 @@
         }
       },
       tts: function(data) {
-        if (data.fireballs[1].indexOf(data.me) == -1) {
+        if (!data.fireballs[1].includes(data.me)) {
           return {
             en: 'fire out; go with',
             fr: 'Feu en dehors; y allez',
@@ -1097,7 +1097,7 @@
         let uniqDict = {};
         for (let i = 0; i < data.octetMarker.length; ++i) {
           uniqDict[data.octetMarker[i]] = true;
-          if (partyList.indexOf(data.octetMarker[i]) < 0) {
+          if (!partyList.includes(data.octetMarker[i])) {
             console.error('Octet error: could not find ' + data.octetMarker[i] + ' in ' + JSON.stringify(partyList));
             return;
           }
@@ -1109,7 +1109,7 @@
           return;
 
         let remainingPlayers = partyList.filter(function(p) {
-          return data.octetMarker.indexOf(p) < 0;
+          return !data.octetMarker.includes(p);
         });
         if (remainingPlayers.length != 1) {
           // This could happen if the party list wasn't unique.
@@ -1351,7 +1351,7 @@
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
 
-        if (data.megaStack.indexOf(data.me) == -1) {
+        if (!data.megaStack.includes(data.me)) {
           return {
             en: 'tower',
             fr: 'Tour',
@@ -1446,7 +1446,7 @@
           if (data.shakers.length != 3)
             return;
 
-          if (data.shakers.indexOf(data.me) == -1 && data.role != 'tank') {
+          if (!data.shakers.includes(data.me) && data.role != 'tank') {
             return {
               en: 'No shaker; stack south.',
               fr: 'Pas de Secousse; se rassembler au Sud.',
@@ -1458,7 +1458,7 @@
           }
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
-            if (data.shakers.indexOf(data.me) == -1) {
+            if (!data.shakers.includes(data.me)) {
               return {
                 en: 'Stack on safe spot',
                 fr: 'Se rassembler au point sauf',
@@ -1485,7 +1485,7 @@
               ko: '줄',
             };
           }
-          if (data.shakers.indexOf(data.me) == -1) {
+          if (!data.shakers.includes(data.me)) {
             return {
               en: 'stack south',
               fr: 'Se rassembler au sud',

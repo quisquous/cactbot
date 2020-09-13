@@ -961,7 +961,7 @@
         }
       },
       infoText: function(data) {
-        if (data.flareTargets.indexOf(data.me) < 0) {
+        if (!data.flareTargets.includes(data.me)) {
           return {
             en: 'Light and Darkness: Stack',
             de: 'Licht und Dunkel: Stack',

@@ -714,7 +714,7 @@
         }
       },
       alertText: function(data) {
-        if (data.shakerTargets.indexOf(data.me) == -1) {
+        if (!data.shakerTargets.includes(data.me)) {
           return {
             en: 'avoid earthshakers',
             de: 'Stöße ausweichen',
@@ -725,7 +725,7 @@
         }
       },
       tts: function(data) {
-        if (data.shakerTargets.indexOf(data.me) == -1) {
+        if (!data.shakerTargets.includes(data.me)) {
           return {
             en: 'avoid shakers',
             de: 'Stöße ausweichen',
