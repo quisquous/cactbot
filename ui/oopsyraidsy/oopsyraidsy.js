@@ -304,6 +304,16 @@ class OopsyLiveList {
   MakeRow() {
     let div = document.createElement('div');
     div.classList.add('mistake-row');
+    // click-to-copy function
+    div.addEventListener('click', (e) => {
+      const str = e.target.childNodes[0].textContent;
+      const el = document.createElement('textarea');
+      el.value = str;
+      e.target.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      e.target.removeChild(el);
+    });
     this.items.push(div);
     this.container.appendChild(div);
     return div;
