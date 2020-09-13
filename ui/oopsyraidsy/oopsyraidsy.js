@@ -96,7 +96,7 @@ let Options = {
   },
 };
 
-let kEarlyPullText = {
+const kEarlyPullText = {
   en: 'early pull',
   de: 'zu früh angegriffen',
   fr: 'early pull',
@@ -105,7 +105,7 @@ let kEarlyPullText = {
   ko: '풀링 빠름',
 };
 
-let kLatePullText = {
+const kLatePullText = {
   en: 'late pull',
   de: 'zu spät angegriffen',
   fr: 'late pull',
@@ -125,6 +125,7 @@ const kPartyWipeText = {
 
 const kCopiedMessage = {
   en: 'Copied!',
+  fr: 'Copié !',
   ko: '복사 완료!',
 };
 
@@ -312,24 +313,22 @@ class OopsyLiveList {
 
     // click-to-copy function
     div.addEventListener('click', (e) => {
-      if (this.options.ClickToCopy) {
-        const str = e.target.childNodes[0].textContent;
-        const el = document.createElement('textarea');
-        el.value = str;
-        e.target.appendChild(el);
-        el.select();
-        document.execCommand('copy');
-        e.target.removeChild(el);
+      const str = e.target.childNodes[0].textContent;
+      const el = document.createElement('textarea');
+      el.value = str;
+      e.target.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      e.target.removeChild(el);
 
-        // copied message
-        const msg = document.createElement('div');
-        msg.classList.add('copied-msg');
-        msg.innerText = kCopiedMessage[this.options.DisplayLanguage] || kCopiedMessage['en'];
-        document.body.appendChild(msg);
-        setTimeout(() => {
-          document.body.removeChild(msg);
-        }, 1000);
-      }
+      // copied message
+      const msg = document.createElement('div');
+      msg.classList.add('copied-msg');
+      msg.innerText = kCopiedMessage[this.options.DisplayLanguage] || kCopiedMessage['en'];
+      document.body.appendChild(msg);
+      setTimeout(() => {
+        document.body.removeChild(msg);
+      }, 1000);
     });
     this.items.push(div);
     this.container.appendChild(div);
