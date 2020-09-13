@@ -61,6 +61,30 @@
   content: '\1F3E5';
 }
 
+.copied-msg {
+  position: fixed;
+  margin: 0 auto;
+  text-align: center;
+  top: 50%;
+  width: 100%;
+  color: white;
+  box-shadow: 0 0 5px 2px rgba(70, 115, 200, 0.3);
+  background-color: rgba(50, 50, 50, 0.5);
+  pointer-events: none;
+  animation: 1s fadeOut;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
 .resizeHandle .hide-if-resizing {
   display: none;
 }
