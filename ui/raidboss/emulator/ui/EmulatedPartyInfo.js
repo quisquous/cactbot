@@ -152,6 +152,8 @@ class EmulatedPartyInfo extends EventBus {
       return;
 
     let combatant = encounter.encounter.combatantTracker.combatants[id];
+    if (!combatant)
+      return;
     stateID = stateID || combatant.getState(0);
 
     let State = combatant.getState(stateID);
