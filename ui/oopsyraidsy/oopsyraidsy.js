@@ -126,6 +126,8 @@ const kPartyWipeText = {
 const kCopiedMessage = {
   en: 'Copied!',
   fr: 'Copié !',
+  ja: 'コピーした！',
+  cn: '已复制！',
   ko: '복사 완료!',
 };
 
