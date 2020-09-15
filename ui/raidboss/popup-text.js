@@ -413,7 +413,7 @@ class PopupText {
 
   OnLog(e) {
     for (let log of e.detail.logs) {
-      if (log.indexOf('00:0038:cactbot wipe') >= 0)
+      if (log.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
 
       for (let trigger of this.triggers) {

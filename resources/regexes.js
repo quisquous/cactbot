@@ -554,9 +554,9 @@ var Regexes = {
 
   // Creates a named regex capture group named |name| for the match |value|.
   namedCapture: (name, value) => {
-    if (name.indexOf('>') >= 0)
+    if (name.includes('>'))
       console.error('"' + name + '" contains ">".');
-    if (name.indexOf('<') >= 0)
+    if (name.includes('<'))
       console.error('"' + name + '" contains ">".');
 
     return '(?<' + name + '>' + value + ')';

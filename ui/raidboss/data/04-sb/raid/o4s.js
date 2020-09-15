@@ -148,7 +148,7 @@
         return data.flareTargets.length == 3;
       },
       alarmText: function(data) {
-        if (data.flareTargets.indexOf(data.me) >= 0) {
+        if (data.flareTargets.includes(data.me)) {
           return {
             en: 'Flare on you',
             de: 'Flare auf dir',
@@ -952,7 +952,7 @@
         return data.flareTargets.length == 3;
       },
       alarmText: function(data) {
-        if (data.flareTargets.indexOf(data.me) >= 0) {
+        if (data.flareTargets.includes(data.me)) {
           return {
             en: 'Flare on you',
             de: 'Flare auf dir',
@@ -970,7 +970,7 @@
         }
       },
       tts: function(data) {
-        if (data.flareTargets.indexOf(data.me) >= 0) {
+        if (data.flareTargets.includes(data.me)) {
           return {
             en: 'flare on you',
             de: 'fleer auf dir',

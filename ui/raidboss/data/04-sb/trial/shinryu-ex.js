@@ -703,7 +703,7 @@
         return data.shakerTargets.length == 2;
       },
       alarmText: function(data) {
-        if (data.shakerTargets.indexOf(data.me) >= 0) {
+        if (data.shakerTargets.includes(data.me)) {
           return {
             en: 'earthshaker on you',
             de: 'Erdstoss auf dir',

@@ -54,7 +54,7 @@
           '나무인형',
           // FIXME: add other languages here
         ];
-        return strikingDummyNames.indexOf(e.targetName) >= 0;
+        return strikingDummyNames.includes(e.targetName);
       },
       mistake: function(e, data) {
         data.bootCount = data.bootCount || 0;

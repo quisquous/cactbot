@@ -769,7 +769,7 @@
         }
       },
       infoText: function(data) {
-        if (data.fireballs[1].indexOf(data.me) >= 0) {
+        if (data.fireballs[1].includes(data.me)) {
           return {
             en: 'Fire OUT',
             fr: 'Feu EN DEHORS',
@@ -818,7 +818,7 @@
       alertText: function(data) {
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to not stack.
-        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
+        if (data.fireballs[1].includes(data.me) && data.fireballs[2].includes(data.me)) {
           return {
             en: 'Fire IN: AVOID!',
             fr: 'Feu EN DEDANS : L\'ÉVITER !',
@@ -831,9 +831,9 @@
       },
       infoText: function(data) {
         let tookTwo = data.fireballs[1].filter(function(p) {
-          return data.fireballs[2].indexOf(p) >= 0;
+          return data.fireballs[2].includes(p);
         });
-        if (tookTwo.indexOf(data.me) >= 0)
+        if (tookTwo.includes(data.me))
           return;
 
         let str = '';
@@ -858,7 +858,7 @@
         };
       },
       tts: function(data) {
-        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
+        if (data.fireballs[1].includes(data.me) && data.fireballs[2].includes(data.me)) {
           return {
             en: 'avoid fire in',
             fr: 'Éviter le feu en dedans',
@@ -891,12 +891,12 @@
       netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       preRun: function(data) {
         let tookTwo = data.fireballs[1].filter(function(p) {
-          return data.fireballs[2].indexOf(p) >= 0;
+          return data.fireballs[2].includes(p);
         });
         let tookThree = tookTwo.filter(function(p) {
-          return data.fireballs[3].indexOf(p) >= 0;
+          return data.fireballs[3].includes(p);
         });
-        data.tookThreeFireballs = tookThree.indexOf(data.me) >= 0;
+        data.tookThreeFireballs = tookThree.includes(data.me);
       },
       delaySeconds: 98,
       suppressSeconds: 99999,
@@ -1315,7 +1315,7 @@
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
 
-        if (data.megaStack.indexOf(data.me) >= 0)
+        if (data.megaStack.includes(data.me))
           return;
 
         if (data.trio == 'blackfire') {
@@ -1375,7 +1375,7 @@
           return;
 
         let twin = data.ShortName(data.lastOctetMarker);
-        if (data.megaStack.indexOf(data.lastOctetMarker) >= 0) {
+        if (data.megaStack.includes(data.lastOctetMarker)) {
           return {
             en: twin + ' (twin) has megaflare',
             de: twin + ' (Twin) hat Megaflare',
@@ -1749,7 +1749,7 @@
 
           let bad = badSpots(marks[0], dragons[0]);
           bad.concat(badSpots(marks[0], dragons[1]));
-          ret.unsafeThirdMark = bad.indexOf(marks[2]) != -1;
+          ret.unsafeThirdMark = bad.includes(marks[2]);
 
           ret.marks = marks;
           return ret;
