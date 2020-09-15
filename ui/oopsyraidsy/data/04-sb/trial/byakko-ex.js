@@ -35,6 +35,8 @@
             en: 'bubble collision',
             de: 'Blasen sind zusammengestoßen',
             fr: 'collision de bulles',
+            ja: '泡に避けなかった',
+            cn: '撞上了泡泡',
             ko: '장판 겹쳐서 터짐',
           },
         };
