@@ -161,7 +161,15 @@ let noBuff = (str) => {
       // 4C76 is the knockback damage, 4C58 is the damage for standing on the puck.
       damageRegex: '4C76',
       deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Knocked off' } };
+        return {
+          type: 'fail',
+          name: e.targetName,
+          reason: {
+            en: 'Knocked off',
+            ja: 'ノックバック',
+            cn: '击退坠落',
+          },
+        };
       },
     },
   ],
