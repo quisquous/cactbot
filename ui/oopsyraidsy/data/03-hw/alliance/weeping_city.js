@@ -111,6 +111,7 @@
           text: {
             en: 'Tank Laser',
             de: 'Tank Laser',
+            ja: 'タンクレザー',
             cn: '坦克激光',
           },
         };
@@ -126,6 +127,7 @@
           reason: {
             en: 'Slid off!',
             de: 'ist runtergerutscht!',
+            ja: 'ノックバック',
             cn: '击退！',
           },
         };
