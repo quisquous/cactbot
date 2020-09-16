@@ -31,6 +31,7 @@
 }
 
 .rdm #right-side-icons,
+.whm #right-side-icons,
 .sch #right-side-icons,
 .smn #right-side-icons,
 .ast #right-side-icons {
@@ -112,6 +113,7 @@
   height: 10px;
 }
 
+.whm #hp-bar,
 .drk #hp-bar,
 .pld #hp-bar,
 .blu #hp-bar {
@@ -169,6 +171,7 @@
 /* Relative to #bars */
 #rdm-boxes,
 #sch-boxes,
+#whm-boxes,
 #smn-boxes,
 #ast-boxes,
 #war-boxes,
@@ -185,6 +188,7 @@
 
 #rdm-boxes > div,
 #sch-boxes > div,
+#whm-boxes > div,
 #smn-boxes > div,
 #ast-boxes > div,
 #war-boxes > div,
@@ -217,6 +221,7 @@
 
 #sch-boxes > div,
 #smn-boxes > div,
+#whm-boxes > div,
 #ast-boxes > div,
 #rdm-boxes > div {
   width: 28px;
@@ -231,6 +236,7 @@
 #rdm-boxes .text,
 #sch-boxes .text,
 #smn-boxes .text,
+#whm-boxes .text,
 #ast-boxes .text,
 #war-boxes .text,
 #mnk-boxes .text,
@@ -250,6 +256,7 @@
 
 #sch-boxes .text,
 #smn-boxes .text,
+#whm-boxes .text,
 #ast-boxes .text,
 #rdm-boxes .text {
   top: 5px;
@@ -307,6 +314,7 @@
 #mnk-procs,
 #ast-procs,
 #sch-procs,
+#whm-procs,
 #blu-procs,
 #drk-procs,
 #blm-procs {
@@ -324,6 +332,7 @@
 #mnk-procs-dragonkick,
 #ast-procs-combust,
 #sch-procs-bio,
+#whm-procs-dia,
 #smn-procs-miasma,
 #blu-procs-offguard,
 #blm-procs-fire {
@@ -346,6 +355,7 @@
 
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
+#whm-procs-assize,
 #sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
@@ -357,6 +367,7 @@
 #mnk-procs-demolish,
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
+#whm-procs-lucid,
 #blm-procs-thunder,
 #blu-procs-lucid {
   position: relative;
@@ -371,6 +382,7 @@
 }
 
 #smn-stacks,
+#whm-stacks,
 #blm-stacks {
   display: flex;
   margin-top: 1px;
@@ -396,6 +408,7 @@
   background-color: rgb(200, 50, 200);
 }
 
+#whm-stacks-bloodlily,
 #smn-stacks-ruin4 {
   width: 100%;
   height: 100%;
@@ -406,6 +419,7 @@
   height: 100%;
 }
 
+#whm-stacks-bloodlily > div,
 #blm-stacks-heart > div {
   background-color: rgba(174, 227, 235, 0.2);
   margin-right: 2px;
@@ -426,6 +440,10 @@
 
 #blm-stacks-heart > div.active {
   background-color: rgb(174, 227, 235);
+}
+
+#whm-stacks-bloodlily > div.active {
+  background-color: rgb(190, 43, 30);
 }
 
 #smn-stacks-ruin4 > div.active {
@@ -654,6 +672,30 @@
 
 .mnk-color-demolish {
   background-color: rgb(60, 80, 200);
+}
+
+.whm-color-dia {
+  background-color: rgb(120, 170, 250);
+}
+
+.whm-color-assize {
+  background-color: rgb(62, 224, 170);
+}
+
+.whm-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
+.whm-color-lily {
+  background-color: rgb(60, 80, 200);
+}
+
+.whm-color-lilysecond {
+  background-color: rgb(120, 170, 250);
+}
+
+.whm-color-lilysecond.full {
+  background-color: rgb(240, 30, 30);
 }
 
 .sch-color-bio {

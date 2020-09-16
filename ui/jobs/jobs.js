@@ -148,6 +148,10 @@ const kAbility = {
   EnergySiphon: '407E',
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
+  Aero: '79',
+  Aero2: '84',
+  Dia: '4094',
+  Assize: 'DF3',
 };
 
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
@@ -2381,11 +2385,101 @@ class Bars {
   }
 
   setupWhm() {
+    let lilyBox = this.addResourceBox({
+      classList: ['whm-color-lily'],
+    });
+    let lilysecondBox = this.addResourceBox({
+      classList: ['whm-color-lilysecond'],
+    });
+
+    let diaBox = this.addProcBox({
+      id: 'whm-procs-dia',
+      fgColor: 'whm-color-dia',
+    });
+    let assizeBox = this.addProcBox({
+      id: 'whm-procs-assize',
+      fgColor: 'whm-color-assize',
+    });
+    let lucidBox = this.addProcBox({
+      id: 'whm-procs-lucid',
+      fgColor: 'whm-color-lucid',
+    });
+
+    // BloodLily Guage
+    let stacksContainer = document.createElement('div');
+    stacksContainer.id = 'whm-stacks';
+    this.addJobBarContainer().appendChild(stacksContainer);
+    let bloodlilyContainer = document.createElement('div');
+    bloodlilyContainer.id = 'whm-stacks-bloodlily';
+    stacksContainer.appendChild(bloodlilyContainer);
+    let bloodlilyStacks = [];
+    for (let i = 0; i < 3; ++i) {
+      let d = document.createElement('div');
+      bloodlilyContainer.appendChild(d);
+      bloodlilyStacks.push(d);
+    }
+
+    this.jobFuncs.push((jobDetail) => {
+      let lily = jobDetail.lilyStacks;
+      // this milliseconds is countup, so use floor instead of ceil.
+      let lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
+
+      lilyBox.innerText = lily;
+      if (lily == 3)
+        lilysecondBox.innerText = '';
+      else
+        lilysecondBox.innerText = 30 - lilysecond;
+
+      let bloodlilys = jobDetail.bloodlilyStacks;
+      for (let i = 0; i < 3; ++i) {
+        if (bloodlilys > i)
+          bloodlilyStacks[i].classList.add('active');
+        else
+          bloodlilyStacks[i].classList.remove('active');
+      }
+
+      let l = lilysecondBox.parentNode;
+      if ((lily == 2 && 30 - lilysecond <= 5) | lily == 3)
+        l.classList.add('full');
+      else
+        l.classList.remove('full');
+    });
+
+    this.abilityFuncMap[kAbility.Aero] = () => {
+      diaBox.duration = 0;
+      diaBox.duration = 18 + 1;
+    };
+    this.abilityFuncMap[kAbility.Aero2] = () => {
+      diaBox.duration = 0;
+      diaBox.duration = 18 + 1;
+    };
+    this.abilityFuncMap[kAbility.Dia] = () => {
+      diaBox.duration = 0;
+      diaBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.Assize] = () => {
+      assizeBox.duration = 0;
+      assizeBox.duration = 45;
+    };
+    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+      lucidBox.duration = 0;
+      lucidBox.duration = 60;
+    };
+
     this.gainEffectFuncMap[EffectId.PresenceOfMind] = () => {
       this.presenceOfMind = 1;
     };
     this.loseEffectFuncMap[EffectId.PresenceOfMind] = () => {
       this.presenceOfMind = 0;
+    };
+
+    this.statChangeFuncMap['WHM'] = () => {
+      diaBox.valuescale = this.gcdSpell();
+      diaBox.threshold = this.gcdSpell() + 1;
+      assizeBox.valuescale = this.gcdSpell();
+      assizeBox.threshold = this.gcdSpell() + 1;
+      lucidBox.valuescale = this.gcdSpell();
+      lucidBox.threshold = this.gcdSpell() + 1;
     };
   }
 
