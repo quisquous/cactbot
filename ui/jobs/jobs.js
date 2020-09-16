@@ -2170,7 +2170,7 @@ class Bars {
   }
 
   setupDrg() {
-    let highjump = this.addProcBox({
+    const highjump = this.addProcBox({
       id: 'drg-procs-highjump',
       fgColor: 'drg-color-highjump',
     });
@@ -2184,7 +2184,7 @@ class Bars {
       };
     });
 
-    let disembowel = this.addProcBox({
+    const disembowel = this.addProcBox({
       id: 'drg-procs-disembowel',
       fgColor: 'drg-color-disembowel',
     });
@@ -2198,17 +2198,17 @@ class Bars {
     // DRG's skill effect buff appear on self at once,
     // but start counting down when damage is deal.
     // This cause some timer not accurate.
-    let comboTimer = this.addTimerBar({
+    const comboTimer = this.addTimerBar({
       id: 'drg-timers-combo',
       fgColor: 'drg-color-combo',
     });
     let combo = '';
-    let buffComboFunc = () => {
+    const buffComboFunc = () => {
       comboTimer.duration = 0;
       comboTimer.duration = 10;
       combo = 'buff';
     };
-    let comboLostFunc = () => {
+    const comboLostFunc = () => {
       comboTimer.duration = 0;
     };
 
@@ -2258,10 +2258,10 @@ class Bars {
     });
 
     // Gauge
-    let blood = this.addResourceBox({
+    const blood = this.addResourceBox({
       classList: ['drg-color-blood'],
     });
-    let eyes = this.addResourceBox({
+    const eyes = this.addResourceBox({
       classList: ['drg-color-eyes'],
     });
     this.jobFuncs.push((jobDetail) => {
