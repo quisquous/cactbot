@@ -160,7 +160,7 @@ const kAbility = {
   DoomSpike: '56',
   SonicThrust: '1CE5',
   CoerthanTorment: '405D',
-  Highjump: '405E',
+  HighJump: '405E',
   Jump: '5C',
 };
 
@@ -2170,29 +2170,29 @@ class Bars {
   }
 
   setupDrg() {
-    const highjump = this.addProcBox({
+    const highJumpBox = this.addProcBox({
       id: 'drg-procs-highjump',
       fgColor: 'drg-color-highjump',
     });
     [
-      kAbility.Highjump,
+      kAbility.HighJump,
       kAbility.Jump,
     ].forEach((ability) => {
       this.abilityFuncMap[ability] = () => {
-        highjump.duration = 0;
-        highjump.duration = 30;
+        highJumpBox.duration = 0;
+        highJumpBox.duration = 30;
       };
     });
 
-    const disembowel = this.addProcBox({
+    const disembowelBox = this.addProcBox({
       id: 'drg-procs-disembowel',
       fgColor: 'drg-color-disembowel',
     });
     this.statChangeFuncMap['DRG'] = () => {
-      disembowel.valuescale = this.gcdSkill();
-      disembowel.threshold = this.gcdSkill() * 5;
-      highjump.valuescale = this.gcdSkill();
-      highjump.threshold = this.gcdSkill() + 1;
+      disembowelBox.valuescale = this.gcdSkill();
+      disembowelBox.threshold = this.gcdSkill() * 5;
+      highJumpBox.valuescale = this.gcdSkill();
+      highJumpBox.threshold = this.gcdSkill() + 1;
     };
     // ComboTimer Bar
     // DRG's skill effect buff appear on self at once,
@@ -2202,11 +2202,11 @@ class Bars {
       id: 'drg-timers-combo',
       fgColor: 'drg-color-combo',
     });
-    let combo = '';
+    let comboType = '';
     const buffComboFunc = () => {
       comboTimer.duration = 0;
       comboTimer.duration = 10;
-      combo = 'buff';
+      comboType = 'buff';
     };
     const comboLostFunc = () => {
       comboTimer.duration = 0;
@@ -2221,11 +2221,11 @@ class Bars {
       if (skill) {
         comboTimer.duration = 0;
         comboTimer.duration = 15;
-        combo = 'normol';
+        comboType = 'normol';
 
         if (skill == kAbility.Disembowel) {
-          disembowel.duration = 0;
-          disembowel.duration = 30 + 1;
+          disembowelBox.duration = 0;
+          disembowelBox.duration = 30 + 1;
         }
         // When Sonic Thrust hit more than one mob, combo will be errorly break.
         // ComboTracker is hard to fix, so deal it by a tricky way.
@@ -2276,7 +2276,7 @@ class Bars {
         blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
       } else {
         blood.innerText = '';
-        if (combo == 'buff')
+        if (comboType == 'buff')
           comboTimer.duration = 0;
       }
 
