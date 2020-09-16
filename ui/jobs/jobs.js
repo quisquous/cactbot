@@ -2385,44 +2385,44 @@ class Bars {
   }
 
   setupWhm() {
-    let lilyBox = this.addResourceBox({
+    const lilyBox = this.addResourceBox({
       classList: ['whm-color-lily'],
     });
-    let lilysecondBox = this.addResourceBox({
+    const lilysecondBox = this.addResourceBox({
       classList: ['whm-color-lilysecond'],
     });
 
-    let diaBox = this.addProcBox({
+    const diaBox = this.addProcBox({
       id: 'whm-procs-dia',
       fgColor: 'whm-color-dia',
     });
-    let assizeBox = this.addProcBox({
+    const assizeBox = this.addProcBox({
       id: 'whm-procs-assize',
       fgColor: 'whm-color-assize',
     });
-    let lucidBox = this.addProcBox({
+    const lucidBox = this.addProcBox({
       id: 'whm-procs-lucid',
       fgColor: 'whm-color-lucid',
     });
 
     // BloodLily Guage
-    let stacksContainer = document.createElement('div');
+    const stacksContainer = document.createElement('div');
     stacksContainer.id = 'whm-stacks';
     this.addJobBarContainer().appendChild(stacksContainer);
-    let bloodlilyContainer = document.createElement('div');
+    const bloodlilyContainer = document.createElement('div');
     bloodlilyContainer.id = 'whm-stacks-bloodlily';
     stacksContainer.appendChild(bloodlilyContainer);
-    let bloodlilyStacks = [];
+    const bloodlilyStacks = [];
     for (let i = 0; i < 3; ++i) {
-      let d = document.createElement('div');
+      const d = document.createElement('div');
       bloodlilyContainer.appendChild(d);
       bloodlilyStacks.push(d);
     }
 
     this.jobFuncs.push((jobDetail) => {
-      let lily = jobDetail.lilyStacks;
+      const lily = jobDetail.lilyStacks;
       // this milliseconds is countup, so use floor instead of ceil.
-      let lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
+      const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
 
       lilyBox.innerText = lily;
       if (lily == 3)
@@ -2430,7 +2430,7 @@ class Bars {
       else
         lilysecondBox.innerText = 30 - lilysecond;
 
-      let bloodlilys = jobDetail.bloodlilyStacks;
+      const bloodlilys = jobDetail.bloodlilyStacks;
       for (let i = 0; i < 3; ++i) {
         if (bloodlilys > i)
           bloodlilyStacks[i].classList.add('active');
@@ -2438,7 +2438,7 @@ class Bars {
           bloodlilyStacks[i].classList.remove('active');
       }
 
-      let l = lilysecondBox.parentNode;
+      const l = lilysecondBox.parentNode;
       if ((lily == 2 && 30 - lilysecond <= 5) | lily == 3)
         l.classList.add('full');
       else
