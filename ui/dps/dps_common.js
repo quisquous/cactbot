@@ -57,7 +57,7 @@ function InitDpsModule(updateFunc, hideFunc) {
     if (job == gCurrentJob)
       return;
     gCurrentJob = job;
-    if (kCraftingJobs.indexOf(job) < 0 && kGatheringJobs.indexOf(job) < 0) {
+    if (!kCraftingJobs.includes(job) && !kGatheringJobs.includes(job)) {
       gIgnoreCurrentJob = false;
       return;
     }

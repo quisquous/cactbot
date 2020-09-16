@@ -256,7 +256,7 @@
       infoText: function(data, matches) {
         if (!data.titanGaols)
           return;
-        if (data.titanGaols.indexOf(matches.target) < 0)
+        if (!data.titanGaols.includes(matches.target))
           return;
         return {
           en: data.ShortName(matches.target) + ' died',

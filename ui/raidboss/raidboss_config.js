@@ -450,7 +450,7 @@ class RaidbossConfigurator {
           return false;
 
         // Super hack:
-        if (result.indexOf('undefined') >= 0 || result.indexOf('NaN') >= 0)
+        if (result.includes('undefined') || result.includes('NaN'))
           return false;
 
         output[key] = result;
@@ -583,7 +583,7 @@ class RaidbossConfigurator {
       input.onchange = () => {
         updateLabel(input);
         let value = input.value;
-        if (value.indexOf('default') >= 0)
+        if (value.includes('default'))
           value = 'default';
         this.base.setOption('raidboss', 'triggers', trig.id, kField, input.value);
       };

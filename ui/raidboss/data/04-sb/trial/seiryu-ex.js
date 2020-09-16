@@ -189,7 +189,7 @@
       condition: function(data) {
         if (!data.blazing || data.markers.length != 4)
           return false;
-        return data.markers.indexOf(data.me) == -1;
+        return !data.markers.includes(data.me);
       },
       alarmText: function(data) {
         if (data.role == 'tank' || data.role == 'healer') {

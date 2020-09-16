@@ -203,7 +203,7 @@ class ComboTracker {
   }
 
   AddCombo(skillList) {
-    if (this.startList.indexOf(skillList[0]) == -1)
+    if (!this.startList.includes(skillList[0]))
       this.startList.push(skillList[0]);
 
     for (let i = 0; i < skillList.length; ++i) {
@@ -230,7 +230,7 @@ class ComboTracker {
         return true;
       }
     }
-    if (this.comboBreakers.indexOf(id) >= 0) {
+    if (this.comboBreakers.includes(id)) {
       this.AbortCombo();
       return true;
     }
@@ -1215,9 +1215,9 @@ class Bars {
       return;
     }
 
-    let showHPNumber = this.options.ShowHPNumber.indexOf(this.job) >= 0;
-    let showMPNumber = this.options.ShowMPNumber.indexOf(this.job) >= 0;
-    let showMPTicker = this.options.ShowMPTicker.indexOf(this.job) >= 0;
+    let showHPNumber = this.options.ShowHPNumber.includes(this.job);
+    let showMPNumber = this.options.ShowMPNumber.includes(this.job);
+    let showMPTicker = this.options.ShowMPTicker.includes(this.job);
 
     let healthText = showHPNumber ? 'value' : '';
     let manaText = showMPNumber ? 'value' : '';

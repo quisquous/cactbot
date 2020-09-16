@@ -703,7 +703,7 @@
         return data.shakerTargets.length == 2;
       },
       alarmText: function(data) {
-        if (data.shakerTargets.indexOf(data.me) >= 0) {
+        if (data.shakerTargets.includes(data.me)) {
           return {
             en: 'earthshaker on you',
             de: 'Erdstoss auf dir',
@@ -714,7 +714,7 @@
         }
       },
       alertText: function(data) {
-        if (data.shakerTargets.indexOf(data.me) == -1) {
+        if (!data.shakerTargets.includes(data.me)) {
           return {
             en: 'avoid earthshakers',
             de: 'Stöße ausweichen',
@@ -725,7 +725,7 @@
         }
       },
       tts: function(data) {
-        if (data.shakerTargets.indexOf(data.me) == -1) {
+        if (!data.shakerTargets.includes(data.me)) {
           return {
             en: 'avoid shakers',
             de: 'Stöße ausweichen',
