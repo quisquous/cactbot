@@ -29,7 +29,15 @@
       id: 'E8N Heavenly Strike',
       damageRegex: '4DD8',
       deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Pushed off!' } };
+        return {
+          type: 'fail',
+          name: e.targetName,
+          reason: {
+            en: 'Pushed off!',
+            ja: 'ノックバック',
+            cn: '击退坠落',
+          },
+        };
       },
     },
     {
@@ -37,7 +45,15 @@
       // Thin Ice
       netRegex: NetRegexes.gainsEffect({ effectId: '38F' }),
       deathReason: function(e, data, matches) {
-        return { type: 'fail', name: matches.target, reason: { en: 'Slid off!' } };
+        return {
+          type: 'fail',
+          name: matches.target,
+          reason: {
+            en: 'Slid off!',
+            ja: '滑った',
+            cn: '滑落',
+          },
+        };
       },
     },
   ],
