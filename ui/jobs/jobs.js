@@ -2176,12 +2176,12 @@ class Bars {
     });
     [
       kAbility.Highjump,
-      kAbility.Jump
+      kAbility.Jump,
     ].forEach((ability) => {
       this.abilityFuncMap[ability] = () => {
         highjump.duration = 0;
         highjump.duration = 30;
-      }
+      };
     });
 
     let disembowel = this.addProcBox({
