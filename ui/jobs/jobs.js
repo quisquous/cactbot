@@ -148,6 +148,20 @@ const kAbility = {
   EnergySiphon: '407E',
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
+  TrueThrust: '4B',
+  VorpalThrust: '4E',
+  FullThrust: '54',
+  Disembowel: '57',
+  ChaosThrust: '58',
+  RaidenThrust: '405F',
+  PiercingTalon: '5A',
+  FangAndClaw: 'DE2',
+  WheelingThrust: 'DE4',
+  DoomSpike: '56',
+  SonicThrust: '1CE5',
+  CoerthanTorment: '405D',
+  Highjump: '405E',
+  Jump: '5C',
 };
 
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
@@ -326,6 +340,39 @@ function setupComboTracker(callback) {
     kAbility.RiotBlade,
     kAbility.GoringBlade,
   ]);
+  comboTracker.AddCombo([
+    kAbility.TrueThrust,
+    kAbility.VorpalThrust,
+    kAbility.FullThrust,
+    kAbility.FangAndClaw,
+    kAbility.WheelingThrust,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.RaidenThrust,
+    kAbility.VorpalThrust,
+    kAbility.FullThrust,
+    kAbility.FangAndClaw,
+    kAbility.WheelingThrust,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.TrueThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+    kAbility.WheelingThrust,
+    kAbility.FangAndClaw,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.RaidenThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+    kAbility.WheelingThrust,
+    kAbility.FangAndClaw,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.DoomSpike,
+    kAbility.SonicThrust,
+    kAbility.CoerthanTorment,
+  ]);
   return comboTracker;
 }
 
@@ -382,6 +429,19 @@ function setupRegexes(playerName) {
     kAbility.HolySpirit,
     kAbility.HolyCircle,
     kAbility.Confiteor,
+    // drg
+    kAbility.TrueThrust,
+    kAbility.VorpalThrust,
+    kAbility.FullThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+    kAbility.FangAndClaw,
+    kAbility.WheelingThrust,
+    kAbility.RaidenThrust,
+    kAbility.PiercingTalon,
+    kAbility.DoomSpike,
+    kAbility.SonicThrust,
+    kAbility.CoerthanTorment,
   ]);
 }
 
@@ -1276,6 +1336,7 @@ class Bars {
       'SMN': this.setupSmn,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
+      'DRG': this.setupDrg,
       'BLM': this.setupBlm,
       'BRD': this.setupBrd,
       'WHM': this.setupWhm,
@@ -2106,6 +2167,132 @@ class Bars {
     this.gainEffectFuncMap[EffectId.OpoOpoForm] = changeFormFunc;
     this.gainEffectFuncMap[EffectId.RaptorForm] = changeFormFunc;
     this.gainEffectFuncMap[EffectId.CoeurlForm] = changeFormFunc;
+  }
+
+  setupDrg() {
+    let highjump = this.addProcBox({
+      id: 'drg-procs-highjump',
+      fgColor: 'drg-color-highjump',
+    });
+    [
+      kAbility.Highjump,
+      kAbility.Jump
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        highjump.duration = 0;
+        highjump.duration = 30;
+      }
+    });
+
+    let disembowel = this.addProcBox({
+      id: 'drg-procs-disembowel',
+      fgColor: 'drg-color-disembowel',
+    });
+    this.statChangeFuncMap['DRG'] = () => {
+      disembowel.valuescale = this.gcdSkill();
+      disembowel.threshold = this.gcdSkill() * 5;
+      highjump.valuescale = this.gcdSkill();
+      highjump.threshold = this.gcdSkill() + 1;
+    };
+    // ComboTimer Bar
+    // DRG's skill effect buff appear on self at once,
+    // but start counting down when damage is deal.
+    // This cause some timer not accurate.
+    let comboTimer = this.addTimerBar({
+      id: 'drg-timers-combo',
+      fgColor: 'drg-color-combo',
+    });
+    let combo = '';
+    let buffComboFunc = () => {
+      comboTimer.duration = 0;
+      comboTimer.duration = 10;
+      combo = 'buff';
+    };
+    let comboLostFunc = () => {
+      comboTimer.duration = 0;
+    };
+
+    this.comboFuncs.push((skill) => {
+      // if this.combo.considerNext is equal as this.combo.startList, the combo is broken.
+      if (this.combo.considerNext == this.combo.startList)
+        comboTimer.duration = 0;
+
+      // if skill exist, this skill is in combo.
+      if (skill) {
+        comboTimer.duration = 0;
+        comboTimer.duration = 15;
+        combo = 'normol';
+
+        if (skill == kAbility.Disembowel) {
+          disembowel.duration = 0;
+          disembowel.duration = 30 + 1;
+        }
+        // When Sonic Thrust hit more than one mob, combo will be errorly break.
+        // ComboTracker is hard to fix, so deal it by a tricky way.
+        if (skill == kAbility.SonicThrust) {
+          setTimeout(() => {
+            comboTimer.duration = 0;
+            comboTimer.duration = 14.9;
+          }, 100);
+        }
+      }
+    });
+
+    [
+      kAbility.PiercingTalon,
+      kAbility.FullThrust,
+      kAbility.ChaosThrust,
+      kAbility.CoerthanTorment,
+      kAbility.FangAndClaw,
+      kAbility.WheelingThrust,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = comboLostFunc;
+    });
+
+    [
+      EffectId.SharperFangAndClaw,
+      EffectId.EnhancedWheelingThrust,
+      EffectId.RaidenThrustReady,
+    ].forEach((effectId) => {
+      this.gainEffectFuncMap[effectId] = buffComboFunc;
+    });
+
+    // Gauge
+    let blood = this.addResourceBox({
+      classList: ['drg-color-blood'],
+    });
+    let eyes = this.addResourceBox({
+      classList: ['drg-color-eyes'],
+    });
+    this.jobFuncs.push((jobDetail) => {
+      blood.parentNode.classList.remove('blood', 'life');
+      if (jobDetail.bloodMilliseconds > 0) {
+        blood.parentNode.classList.add('blood');
+        blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000);
+        if (jobDetail.bloodMilliseconds < 5000)
+          blood.parentNode.classList.remove('blood');
+      } else if (jobDetail.lifeMilliseconds > 0) {
+        blood.parentNode.classList.add('life');
+        blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
+      } else {
+        blood.innerText = '';
+        if (combo == 'buff')
+          comboTimer.duration = 0;
+      }
+
+      eyes.parentNode.classList.remove('z', 'o', 't');
+      if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
+        eyes.innerText = jobDetail.eyesAmount;
+        if (jobDetail.eyesAmount == 0)
+          eyes.parentNode.classList.add('z');
+        else if (jobDetail.eyesAmount == 1)
+          eyes.parentNode.classList.add('o');
+        else if (jobDetail.eyesAmount == 2)
+          eyes.parentNode.classList.add('t');
+      } else {
+        eyes.innerText = '';
+      }
+    });
   }
 
   setupRdm() {

@@ -31,6 +31,7 @@
 }
 
 .rdm #right-side-icons,
+.drg #right-side-icons,
 .sch #right-side-icons,
 .smn #right-side-icons,
 .ast #right-side-icons {
@@ -88,6 +89,7 @@
 
 #mp-bar,
 #rdm-bar,
+#drg-bar,
 #mnk-bar {
   margin-top: 1px;
 }
@@ -131,6 +133,7 @@
   background: rgba(30, 30, 30, 0.7);
 }
 
+#drg-bar,
 #mnk-bar {
   position: relative;
   width: 202px;
@@ -157,6 +160,7 @@
   height: calc(100% - 4px);
 }
 
+#drg-timers-combo,
 #mnk-timers-lightning,
 #mnk-timers-combo {
   display: block;
@@ -170,6 +174,7 @@
 #rdm-boxes,
 #sch-boxes,
 #smn-boxes,
+#drg-boxes,
 #ast-boxes,
 #war-boxes,
 #mnk-boxes,
@@ -185,6 +190,7 @@
 
 #rdm-boxes > div,
 #sch-boxes > div,
+#drg-boxes > div,
 #smn-boxes > div,
 #ast-boxes > div,
 #war-boxes > div,
@@ -217,6 +223,7 @@
 
 #sch-boxes > div,
 #smn-boxes > div,
+#drg-boxes > div,
 #ast-boxes > div,
 #rdm-boxes > div {
   width: 28px;
@@ -231,6 +238,7 @@
 #rdm-boxes .text,
 #sch-boxes .text,
 #smn-boxes .text,
+#drg-boxes .text,
 #ast-boxes .text,
 #war-boxes .text,
 #mnk-boxes .text,
@@ -250,6 +258,7 @@
 
 #sch-boxes .text,
 #smn-boxes .text,
+#drg-boxes .text,
 #ast-boxes .text,
 #rdm-boxes .text {
   top: 5px;
@@ -307,6 +316,7 @@
 #mnk-procs,
 #ast-procs,
 #sch-procs,
+#drg-procs,
 #blu-procs,
 #drk-procs,
 #blm-procs {
@@ -346,6 +356,7 @@
 
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
+#drg-procs-highjump,
 #sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
@@ -785,4 +796,44 @@
 
 .gnb-color-cartridge {
   background-color: rgb(115, 218, 255);
+}
+
+.drg-color-disembowel {
+  background-color: rgba(0, 255, 255, 0.7);
+}
+
+.drg-color-blood {
+  background-color: rgba(180, 200, 220);
+}
+
+.drg-color-blood.blood {
+  background-color: rgba(0, 89, 255, 0.5);
+}
+
+.drg-color-blood.life {
+  background-color: rgba(217, 51, 0);
+}
+
+.drg-color-eyes {
+  background-color: rgba(180, 200, 220);
+}
+
+.drg-color-eyes.z {
+  background-color: rgba(0, 89, 255, 0.5);
+}
+
+.drg-color-eyes.o {
+  background-color: rgba(200, 50, 200, 0.7);
+}
+
+.drg-color-eyes.t {
+  background-color: rgba(217, 51, 0);
+}
+
+.drg-color-combo {
+  background-color: rgb(180, 200, 220);
+}
+
+.drg-color-highjump {
+  background-color: rgb(235, 117, 24);
 }
