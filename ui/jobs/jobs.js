@@ -1075,6 +1075,9 @@ class Bars {
 
     this.contentType = 0;
 
+    this.crafting = false;
+    this.craftingType = '';
+
     const lang = this.options.ParserLanguage;
     this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
     this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
@@ -1082,6 +1085,10 @@ class Bars {
     this.craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
     this.craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
     this.craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
+    this.trialCraftingStartRegex = LocaleRegex.trialCraftingStart[lang] || LocaleRegex.trialCraftingStart['en'];
+    this.trialCraftingFinishRegex = LocaleRegex.trialCraftingFinish[lang] || LocaleRegex.trialCraftingFinish['en'];
+    this.trialCraftingFailRegex = LocaleRegex.trialCraftingFail[lang] || LocaleRegex.trialCraftingFail['en'];
+    this.trialCraftingCancelRegex = LocaleRegex.trialCraftingCancel[lang] || LocaleRegex.trialCraftingCancel['en'];
   }
 
   UpdateJob() {
@@ -2689,6 +2696,41 @@ class Bars {
     }
   }
 
+  OnCraftingLog(log) {
+    // Hide CP Bar when not crafting
+    const container = document.getElementById('jobs-container');
+    if (!this.crafting) {
+      if (this.craftingStartRegex.test(log)) {
+        this.crafting = true;
+        this.craftingType = 'normal';
+      }
+      if (this.trialCraftingStartRegex.test(log)) {
+        this.crafting = true;
+        this.craftingType = 'trial';
+      }
+    } else {
+      if (this.craftingFailRegex.test(log) ||
+        this.craftingCancelRegex.test(log) ||
+        this.trialCraftingFailRegex.test(log) ||
+        this.trialCraftingCancelRegex.test(log)) {
+        this.crafting = false;
+      } else {
+        let m = this.craftingFinishRegex.exec(log);
+        if (!m)
+          m = this.trialCraftingFinishRegex.exec(log);
+        if (m) {
+          if (m.groups.player === undefined || m.groups.player == this.me)
+            this.crafting = false;
+        }
+      }
+    }
+
+    if (this.crafting)
+      container.classList.remove('hide');
+    else
+      container.classList.add('hide');
+  }
+
   OnPlayerChanged(e) {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
@@ -2873,20 +2915,8 @@ class Bars {
           this.UpdateJobBarGCDs();
           continue;
         }
-        // Hide CP Bar when not crafting
-        const container = document.getElementById('jobs-container');
-        if (this.craftingStartRegex.test(log)) {
-          container.classList.remove('hide');
-          continue;
-        }
-        r = this.craftingFinishRegex.exec(log);
-        if ((r && (r.groups.player === undefined ||
-              (r.groups.player && r.groups.player == this.me))) ||
-          this.craftingFailRegex.test(log) ||
-          this.craftingCancelRegex.test(log)) {
-          container.classList.add('hide');
-          continue;
-        }
+        if (Util.isCraftingJob(this.job))
+          this.OnCraftingLog(log);
       } else if (log[15] == '1') {
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
