@@ -2709,18 +2709,28 @@ class Bars {
         this.craftingType = 'trial';
       }
     } else {
-      if (this.craftingFailRegex.test(log) ||
-        this.craftingCancelRegex.test(log) ||
-        this.trialCraftingFailRegex.test(log) ||
+      if (this.craftingType == 'normal') {
+        if (this.craftingFailRegex.test(log) ||
+        this.craftingCancelRegex.test(log)) {
+          this.crafting = false;
+        } else {
+          const m = this.craftingFinishRegex.exec(log);
+          if (m) {
+            if (m.groups.player === undefined || m.groups.player == this.me)
+              this.crafting = false;
+          }
+        }
+      }
+      if (this.craftingType == 'trial') {
+        if (this.trialCraftingFailRegex.test(log) ||
         this.trialCraftingCancelRegex.test(log)) {
-        this.crafting = false;
-      } else {
-        let m = this.craftingFinishRegex.exec(log);
-        if (!m)
-          m = this.trialCraftingFinishRegex.exec(log);
-        if (m) {
-          if (m.groups.player === undefined || m.groups.player == this.me)
-            this.crafting = false;
+          this.crafting = false;
+        } else {
+          const m = this.trialCraftingFinishRegex.exec(log);
+          if (m) {
+            if (m.groups.player === undefined || m.groups.player == this.me)
+              this.crafting = false;
+          }
         }
       }
     }
