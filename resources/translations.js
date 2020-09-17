@@ -83,7 +83,7 @@ if (typeof module !== 'undefined') {
     },
     craftingFinish: {
       en: 'You synthesize (?<count>\\d+ )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
-      de: 'Du hast erfolgreich (?<count>(ein(e|es|em|er)?|\\d+) )?(?<recipe>.*) hergestellt\\.',
+      de: 'Du hast erfolgreich (?<count>(ein(e|es|em|er)?|\\d+) )?(?<recipe>.*)(\ue03c)? hergestellt\\.',
       fr: 'Vous fabriquez (?<count>(une?|\\d+) )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)(\ue03c)?(×(?<count>\\d+))?を完成させた！',
       cn: '(?<player>\\y{Name})制作\ue0bb(?<recipe>.*)(\ue03c)?(×(?<count>\\d+))?成功！',
