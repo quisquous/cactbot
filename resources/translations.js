@@ -97,7 +97,7 @@ if (typeof module !== 'undefined') {
     },
     craftingFail: {
       en: 'Your synthesis fails!',
-      de: 'Deine Synthese ist fehlgeschlagen!)',
+      de: 'Deine Synthese ist fehlgeschlagen!',
       fr: 'La synthèse échoue\\.{3}',
       ja: '(?<player>\\y{Name})は製作に失敗した……',
       cn: '(?<player>\\y{Name})制作失败了……',
@@ -105,7 +105,7 @@ if (typeof module !== 'undefined') {
     },
     trialCraftingFail: {
       en: 'Your trial synthesis of \ue0bb(?<recipe>.*) failed\\.{3}',
-      de: 'Die Testsynthese von \ue0bb(?<recipe>.*) ist fehlgeschlagen\\.{3})',
+      de: 'Die Testsynthese von \ue0bb(?<recipe>.*) ist fehlgeschlagen\\.{3}',
       fr: 'Votre synthèse d\'essai pour fabriquer \ue0bb(?<recipe>.*) s\'est soldée par un échec\\.{3}',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)の製作練習に失敗した……',
     },
