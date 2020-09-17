@@ -70,7 +70,7 @@ if (typeof module !== 'undefined') {
     craftingStart: {
       en: 'You begin synthesizing (?<count>(an?|\\d+) )?\ue0bb(?<recipe>.*)\\.',
       de: 'Du hast begonnen, durch Synthese (?<count>(ein(e|es|em|er)?|\\d+) )?\ue0bb(?<recipe>.*) herzustellen\\.',
-      fr: 'Vous commencez à fabriquer (?<count>(une?|\\d+)) )?\ue0bb(?<recipe>.*)\\.',
+      fr: 'Vous commencez à fabriquer (?<count>(une?|\\d+) )?\ue0bb(?<recipe>.*)\\.',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)(×(?<count>\\d+))?の製作を開始した。',
       cn: '(?<player>\\y{Name})开始制作\ue0bb(?<recipe>.*)(×(?<count>\\d+))?。',
       ko: '\ue0bb(?<recipe>.*)(×(?<count>\\d+)개)? 제작을 시작합니다\\.',
