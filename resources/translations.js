@@ -68,7 +68,7 @@ if (typeof module !== 'undefined') {
     // TODO: CN and KO have not launched patch 5.3 yet, so they do not have trial synthesis.
     // Translation will be added once launch.
     craftingStart: {
-      en: 'You begin synthesizing (?<count>\\d+ )?\ue0bb(?<recipe>.*)\\.',
+      en: 'You begin synthesizing (?<count>(an?|\\d+) )?\ue0bb(?<recipe>.*)\\.',
       de: 'Du hast begonnen, durch Synthese (?<count>(ein(e|es|em|er)?|\\d+) )?\ue0bb(?<recipe>.*) herzustellen\\.',
       fr: 'Vous commencez à fabriquer (?<count>(une?|\\d+)) )?\ue0bb(?<recipe>.*)\\.',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)(×(?<count>\\d+))?の製作を開始した。',
@@ -82,7 +82,7 @@ if (typeof module !== 'undefined') {
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)の製作練習を開始した。',
     },
     craftingFinish: {
-      en: 'You synthesize (?<count>\\d+ )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
+      en: 'You synthesize (?<count>(an?|\\d+) )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
       de: 'Du hast erfolgreich (?<count>(ein(e|es|em|er)?|\\d+) )?(?<recipe>.*)(\ue03c)? hergestellt\\.',
       fr: 'Vous fabriquez (?<count>(une?|\\d+) )?\ue0bb(?<recipe>.*)(\ue03c)?\\.',
       ja: '(?<player>\\y{Name})は\ue0bb(?<recipe>.*)(\ue03c)?(×(?<count>\\d+))?を完成させた！',
