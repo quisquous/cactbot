@@ -201,7 +201,7 @@
       delaySeconds: 0.5,
       suppressSeconds: 10,
       alertText: function(data) {
-        if (data.agriasGhostCleanse || data.halidom.indexOf(data.me) >= 0)
+        if (data.agriasGhostCleanse || data.halidom.includes(data.me))
           return;
         return {
           en: 'Use Swords On Jails',

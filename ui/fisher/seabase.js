@@ -12,7 +12,7 @@ class SeaBase {
   findKey(obj, val) {
     return Object.keys(obj).find((x) =>
       obj[x] == val ||
-      Array.isArray(obj[x]) && obj[x].indexOf(val) >= 0);
+      Array.isArray(obj[x]) && obj[x].includes(val));
   }
 
   firstIfArray(obj) {

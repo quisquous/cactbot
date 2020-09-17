@@ -119,7 +119,7 @@ let findDragonMarks = function(array) {
 
   let bad = badSpots(marks[0], dragons[0]);
   bad.concat(badSpots(marks[0], dragons[1]));
-  ret.unsafeThirdMark = bad.indexOf(marks[2]) != -1;
+  ret.unsafeThirdMark = bad.includes(marks[2]);
 
   let dirNames = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
   ret.marks = marks.map(function(i) {
@@ -220,15 +220,15 @@ function testFindDragonMarks(array, output) {
   ];
 
   // First set of dragons should not cover second mark.
-  console.assert(bad[0].indexOf(marks[1]) == -1);
+  console.assert(!bad[0].includes(marks[1]));
   // Second set of dragons should not cover third mark.
-  console.assert(bad[1].indexOf(marks[2]) == -1);
+  console.assert(!bad[1].includes(marks[2]));
 
   // Verify unsafe third mark.
   if (output.unsafeThirdMark)
-    console.assert(bad[0].indexOf(marks[2]) != -1);
+    console.assert(bad[0].includes(marks[2]));
   else
-    console.assert(bad[0].indexOf(marks[2]) == -1);
+    console.assert(!bad[0].includes(marks[2]));
 }
 
 let total = 0;

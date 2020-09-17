@@ -85,6 +85,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CCC', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCC', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCC', capture: false }),
       run: function(data) {
         data.phase = 2;
       },
@@ -95,6 +96,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CE2', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE2', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE2', capture: false }),
       run: function(data) {
         data.phase = 5;
       },
@@ -105,6 +107,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis-Doppelgänger', id: '4CB3', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'double de Varis', id: '4CB3', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリスの幻影', id: '4CB3', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯的幻影', id: '4CB3', capture: false }),
       run: function(data) {
         data.clonesActive = true;
       },
@@ -115,6 +118,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCA', capture: false }),
       infoText: {
         en: 'Bait Slashes',
         de: 'Schnitte ködern',
@@ -130,6 +134,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CF0' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CF0' }),
+      netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CF0' }),
       alertText: function(data, matches) {
         const target = matches.target;
         if (data.me == target) {
@@ -168,6 +173,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CD2', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD2', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD2', capture: false }),
       response: Responses.getBehind('alert'),
     },
     {
@@ -178,6 +184,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD5', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD5', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD5', capture: false }),
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
       infoText: {
@@ -195,6 +202,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CD7', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD7', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD7', capture: false }),
       delaySeconds: 21.5,
       response: Responses.knockback('alert'),
     },
@@ -204,6 +212,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CD9', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CD9', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD9', capture: false }),
       delaySeconds: function(data) {
         return data.phase == 2 ? 20 : 10;
       },
@@ -222,6 +231,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDC', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDC', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CDC', capture: false }),
       response: Responses.goFrontBack('info'),
     },
     {
@@ -230,6 +240,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis Yae Galvus', id: '4CDB', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDB', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CDB', capture: false }),
       response: Responses.goSides('info'),
     },
     {
@@ -239,6 +250,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CDE', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CDE', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CDE', capture: false }),
       response: function(data) {
         // This is easily forgetable after dodging and seems to get people killed.
         // This also differentiates spread from the spread => stack in the last phase.
@@ -251,6 +263,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CEA', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CEA', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CEA', capture: false }),
       infoText: function(data) {
         if (data.role == 'tank') {
           return {
@@ -279,6 +292,7 @@
       netRegexDe: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
       netRegexFr: NetRegexes.ability({ source: 'Varis yae Galvus', id: '4CC9', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CC9', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CC9', capture: false }),
       delaySeconds: 10,
       run: function(data) {
         delete data.suppressDodgeCloneCall;
@@ -317,6 +331,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Gewehrschild', id: '4E4F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E4F', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '枪盾', id: '4E4F', capture: false }),
       response: Responses.stack('info'),
     },
     {
@@ -325,6 +340,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Gewehrschild', id: '4E50', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E50', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E50', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '枪盾', id: '4E50', capture: false }),
       // TODO: This is technicallly a spread, but it's more like "protean" spread?
       // Not sure how to make this more clear.
       response: Responses.spread('alert'),
@@ -335,6 +351,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE[56]', capture: false }),
       alertText: {
         en: 'Bait Puddles Out',
         de: 'Flächen nach draußen ködern',
@@ -459,6 +476,41 @@
         'Terminus Est': 'ターミナス・エスト',
         'Ventus Est': 'ウェントゥス・エスト',
         'Vivere Militare Est': 'ウィーウェレ・ミーリターレ・エスト',
+      },
+    },
+    {
+      'locale': 'cn',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Bladesblood': '剑气',
+        'Gunshield': '枪盾',
+        'Ignis Est': '是为烈火',
+        'Magitek Turret II': '魔导炮塔II',
+        'Phantom Varis': '瓦厉斯的幻影',
+        'Terminus Est': '恩惠终结',
+        'Varis Yae Galvus': '瓦厉斯·耶·加尔乌斯',
+        'Ventus Est': '是为疾风',
+      },
+      'replaceText': {
+        'Aetherochemical Grenado': '魔导榴弹',
+        'Alea Iacta Est': '大局已定',
+        'Altius': '更高',
+        'Citius': '更快',
+        'Electrified Gunshield': '枪盾：魔导冲击',
+        'Festina Lente': '从容不迫',
+        'Fortius': '更强',
+        '(?<! )Gunshield': '枪盾',
+        'Ignis Est': '是为烈火',
+        'Loaded Gunshield': '枪盾：魔导爆发',
+        'Magitek Burst': '魔导爆发',
+        'Magitek Shielding': '魔导反击',
+        'Magitek Shock': '魔导冲击',
+        'Reinforced Gunshield': '枪盾：魔导反击',
+        'Reinforcements': '支援命令',
+        'Shockwave': '冲击波',
+        'Terminus Est': '恩惠终结',
+        'Ventus Est': '是为疾风',
+        'Vivere Militare Est': '生者战也',
       },
     },
   ],
