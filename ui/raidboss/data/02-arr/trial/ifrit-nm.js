@@ -66,7 +66,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Ifrit': 'イフリート',
       },
