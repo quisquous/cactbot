@@ -51,6 +51,7 @@
         'Your defeat will bring': '逃がさん……',
       },
       'replaceText': {
+        'Adds': '雑魚:',
         'Drill Shot': '徹甲弾',
         'Firebomb': '火炎弾',
         'Gate Of Tartarus': 'タルタロスゲート',
