@@ -33,6 +33,7 @@
             en: 'Charge on YOU',
             de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
+            ja: '自分にワイルドチャージ',
             cn: '蓝球点名',
           };
         }
@@ -43,6 +44,7 @@
             en: 'Charge on ' + data.ShortName(matches.target),
             de: 'Ansturm auf ' + data.ShortName(matches.target),
             fr: 'Charge sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にワイルドチャージ',
             cn: '蓝球点' + data.ShortName(matches.target),
           };
         }
@@ -67,6 +69,7 @@
             en: 'Cyclonic on YOU',
             de: 'Zyklon-Chaos auf DIR',
             fr: 'Chaos cyclonique sur VOUS',
+            ja: '自分にサイクロニックカオス',
             cn: '连线点名',
           };
         }
@@ -77,6 +80,7 @@
             en: 'Cyclonic on ' + data.ShortName(matches.target),
             de: 'Zyklon-Chaos auf ' + data.ShortName(matches.target),
             fr: 'Chaos cyclonique sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にサイクロニックカオス',
             cn: '连线点' + data.ShortName(matches.target),
           };
         }
@@ -126,9 +130,9 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': 'イムドゥグド',
+        'The Alpha Concourse': '第I信徒区画',
       },
       'replaceText': {
         'Crackle Hiss': 'クラックルヒス',
@@ -137,6 +141,9 @@
         'Electric Burst': 'エレクトリックバースト',
         'Electrocharge': 'エレクトロチャージ',
         'Heat Lightning': 'ヒートライトニング',
+        'Random \\+ Charge': 'ランダム + チャージ',
+        '1x Son / 1x Daughter Adds': '雑魚: 1x サン / 1x ドーター',
+        '2x Son / 2x Daughter Adds': '雑魚: 2x サン / 2x ドーター',
         'Spike Flail': 'スパイクフレイル',
         'Wild Charge': 'ワイルドチャージ',
       },
