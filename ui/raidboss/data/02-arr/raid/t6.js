@@ -232,7 +232,7 @@
           en: 'Share Laser (on ' + data.ShortName(matches.target) + ')',
           de: 'Geteilter Laser (auf ' + data.ShortName(matches.target) + ')',
           fr: 'Partage de laser (sur ' + data.ShortName(matches.target) + ')',
-          ja: ’(’ + data.ShortName(matches.target) + ')に頭割りレザー',
+          ja: '(' + data.ShortName(matches.target) + ')に頭割りレザー',
           cn: '分摊激光点(on ' + data.ShortName(matches.target) + ')',
         };
       },
