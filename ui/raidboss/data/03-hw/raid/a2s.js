@@ -217,7 +217,7 @@
         'Boomcannon': 'ブームカノン',
         'Brainhurt Breakblock': 'ブレインブレイクブロック',
         'Carpet Bomb': '絨毯爆撃',
-        'Explosion': '爆発',
+        '(?<!Massive )Explosion': '爆発',
         'Gobwalker': 'ゴブリウォーカー',
         'Gobwidow': 'ゴブリウィドー',
         'Hardhelm': 'ハードヘルム',
