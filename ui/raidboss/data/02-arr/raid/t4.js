@@ -120,7 +120,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Bug': '亚拉戈发条虫',
         'Clockwork Dreadnaught': '恐慌装甲',
@@ -129,8 +128,18 @@
         'Spinner-rook': '转盘堡',
       },
       'replaceText': {
+        '\\(E/W center\\)': '(东/西 中央)',
+        '\\(NW\\)': '(西北)',
+        '\\(SE/NW\\)': '(东南/西北)',
+        '\\(SW\\)': '(西南)',
+        '\\(center\\)': '(中央)',
+        '\\(outside\\)': '(外面)',
         'Bug': '故障虫',
+        'Dreadnaught': '恐慌装甲',
         'Emergency Override': '紧急超驰控制',
+        'Knight': '亚拉戈发条骑士',
+        'Rook': '转盘堡',
+        'Soldier': '亚拉戈发条士兵',
       },
     },
     {
