@@ -296,7 +296,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Electric Node': '雷击系统',
         'Kaliya': '卡利亚',
@@ -311,6 +310,8 @@
         'Nerve Gas': '神经毒气',
         'Resonance': '共鸣',
         'Secondary Head': '侧首',
+        'Seed Of The Rivers/Sea': '江河/海洋之种',
+        'Seed Of The Sea/Rivers': '海洋/江河之种',
         'Stun': '眩晕',
       },
     },
