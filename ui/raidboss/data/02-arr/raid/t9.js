@@ -556,7 +556,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Astral Debris': '星极岩屑',
         'Dalamud Fragment': '卫月岩屑',
@@ -581,6 +580,7 @@
         'Divebomb': '爆破俯冲',
         'Fireball': '烈火球',
         'Ghost': '幽灵',
+        'Golem Meteors': '石头人陨石',
         'Heavensfall': '天崩地裂',
         'Iron Chariot': '钢铁战车',
         'Lunar Dynamo': '月流电圈',
@@ -592,6 +592,11 @@
         'Stardust': '星尘',
         'Super Nova': '超新星',
         'Thermionic Beam': '热离子光束',
+        '\\(East\\)': '(东)',
+        '\\(In\\)': '(内)',
+        '\\(North\\)': '(北)',
+        '\\(Out\\)': '(外)',
+        '\\(South\\)': '(南)',
       },
     },
     {
