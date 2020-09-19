@@ -466,7 +466,6 @@
     {
       'locale': 'ja',
       'replaceSync': {
-        '--unseal--': '--エリア開放--',
         'Blaster(?! Mirage)': 'ブラスター',
         'Blaster Mirage': 'ブラスター・ミラージュ',
         'Brawler': 'ブロウラー',
@@ -480,6 +479,7 @@
         'Vortexer': 'ボルテッカー',
       },
       'replaceText': {
+        '--unseal--': '--エリア開放--',
         'Attachment': 'アタッチメント',
         'Auxiliary Power': 'エネルギー支援',
         'Ballistic Missile': 'ミサイル発射',
