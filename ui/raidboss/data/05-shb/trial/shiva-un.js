@@ -373,12 +373,15 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': '寒冰士兵',
         'Shiva': '希瓦',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(circle\\)': '(圆)',
+        '\\(cross\\)': '(十字)',
+        '--frozen--': '--冻结--',
         'Absolute Zero': '绝对零度',
         'Avalanche': '雪崩',
         'Diamond Dust': '钻石星尘',
