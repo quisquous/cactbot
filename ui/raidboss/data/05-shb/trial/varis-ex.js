@@ -480,7 +480,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bladesblood': '剑气',
         'Gunshield': '枪盾',
@@ -492,9 +491,11 @@
         'Ventus Est': '是为疾风',
       },
       'replaceText': {
+        '--clones appear\\?--': '--幻影出现?--',
         'Aetherochemical Grenado': '魔导榴弹',
         'Alea Iacta Est': '大局已定',
         'Altius': '更高',
+        'Blade\'s Pulse': '双T接刀',
         'Citius': '更快',
         'Electrified Gunshield': '枪盾：魔导冲击',
         'Festina Lente': '从容不迫',
@@ -505,6 +506,8 @@
         'Magitek Burst': '魔导爆发',
         'Magitek Shielding': '魔导反击',
         'Magitek Shock': '魔导冲击',
+        'Magitek Spark/Torch': '魔导光刃／魔导火焰',
+        'Magitek Torch/Spark': '魔导火焰／魔导光刃',
         'Reinforced Gunshield': '枪盾：魔导反击',
         'Reinforcements': '支援命令',
         'Shockwave': '冲击波',
