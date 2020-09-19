@@ -378,7 +378,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Condensate Demineralizer \\.9': '第9大型冷凝器',
         'Hydrate Core': '水合核心',
