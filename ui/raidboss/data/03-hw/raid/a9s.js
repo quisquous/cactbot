@@ -403,7 +403,7 @@
         'Scrap Bomb': '废料炸弹',
         'Scrap Burst': '废料爆发',
         'Scrap Storm': '废料风暴',
-        '(?<!Double )Scrap(?! )': '废料拳',
+        'Scrap(?! |line)': '废料拳',
         'Stockpile': '吸收',
       },
     },
