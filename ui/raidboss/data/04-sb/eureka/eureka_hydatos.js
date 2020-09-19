@@ -1253,8 +1253,13 @@
         'Relative Virtue': '相对的美德',
         'Shadow': '奥兹玛原型之影',
         'Streak Lightning': '强袭雷光',
+        '5 minutes have elapsed since your last activity': '已经5分钟没有进行任何操作',
+        'The memories of heroes past live on again': '发动了英杰的加护效果，重新苏醒了过来！',
+        'Munderg, turn flesh to ash': '红颈妖枪，点燃一切！',
+        'Munderg, turn blood to ice': '红颈妖枪，冻结万物！',
         'The Lance of Virtue Containment Unit': '美德之枪封印区',
         'The Shin-Zantetsuken Containment Unit': '真·斩铁剑封印区',
+        'The Proto Ozma Containment Unit': '奥兹玛原型封印区',
       },
       'replaceText': {
         'Acallam Na Senorach': '真妖枪旋',
@@ -1321,6 +1326,7 @@
         'Umbral Essence': '暗之腕',
         'Whirling Zantetsuken': '旋·斩铁剑',
         'Wyvern ': '飞龙',
+        'Wyvern Explosion': '飞龙爆炸',
       },
     },
     {
