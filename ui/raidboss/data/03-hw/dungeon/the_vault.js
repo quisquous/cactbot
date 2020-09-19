@@ -20,6 +20,7 @@
         en: 'Avoid dashes',
         de: 'Sprint ausweichen',
         fr: 'Évitez les charges',
+        ja: 'ブレードに避け',
         cn: '躲开冲锋',
         ko: '돌진 피하기',
       },
@@ -68,6 +69,7 @@
             en: 'Heal + shield ' + data.ShortName(matches.target),
             de: 'Heilung + Schild ' + data.ShortName(matches.target),
             fr: 'Soin + bouclier ' + data.ShortName(matches.target),
+            ja: 'すぐに' + data.ShortName(matches.target) + 'を癒す',
             cn: '马上治疗' + data.ShortName(matches.target),
             ko: data.ShortName(matches.target) + ' 강타 대상자',
           };
@@ -118,6 +120,7 @@
         en: 'Away from rifts',
         de: 'Weg von de Ätherspalten',
         fr: 'Éloignez-vous des déchirures',
+        ja: '裂け目に離れ',
         cn: '远离黑圈',
         ko: '장판 피하기',
       },
@@ -170,6 +173,7 @@
         en: 'Evade marching knights',
         de: 'Marschierenden Rittern ausweichen',
         fr: 'Esquivez la marche chevaliers',
+        ja: 'ナイトに避け',
         cn: '躲开人马',
         ko: '자동기사 피하기',
       },
@@ -267,7 +271,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Tear': '次元の裂け目',
         'Dawn Knight': 'ドーン・オートナイト',
@@ -300,6 +303,7 @@
         'Holy Chain': 'ホーリーチェーン',
         'Holy Shield Bash': 'ホーリーシールドバッシュ',
         'Hyperdimensional Slash': 'ハイパーディメンション',
+        'Knights Appear': 'ナイト出現',
         'Overpower': 'オーバーパワー',
         'Retreat': '撤退',
         'Rive': 'ライブ',
