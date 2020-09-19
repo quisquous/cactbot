@@ -213,7 +213,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Alarum': '发条报警虫',
         'Exhibit level III': '第三展示区',
