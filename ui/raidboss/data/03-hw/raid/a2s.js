@@ -230,6 +230,7 @@
         'Jagd Doll': '狩猎人偶',
         'King Gobtank G-IV': '4号哥布林坦克王',
         'Magitek Gobwidow G-IX': '9号哥布林黑寡妇',
+        '(?<!Giant )Bomb(?!e)': '炸弹',
       },
       'replaceText': {
         'Blitzstrahl': '迅光',
@@ -237,7 +238,7 @@
         'Boomcannon': '爆炸加农炮',
         'Brainhurt Breakblock': '精神防护',
         'Carpet Bomb': '地毯式轰炸',
-        'Explosion': '爆炸',
+        '(?<!Massive )Explosion': '爆炸',
         'Gobwalker': '哥布林战车',
         'Gobwidow': '哥布林黑寡妇',
         'Hardhelm': '戈耳狄硬盔兵',
