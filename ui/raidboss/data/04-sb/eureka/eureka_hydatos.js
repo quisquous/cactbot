@@ -1236,7 +1236,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Absolute Virtue': '绝对的美德',
         'Arsenal Centaur': '兵武半人马',
