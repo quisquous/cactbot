@@ -483,13 +483,13 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Hades': '哈迪斯',
         'Shadow .f .he Ancients': '古代人之影',
       },
       'replaceText': {
         'Adds': '小怪',
+        'Gaol Add': '监狱',
         'Ancient Aero': '古代疾风',
         'Ancient Dark IV': '古代冥暗',
         'Ancient Darkness': '古代黑暗',

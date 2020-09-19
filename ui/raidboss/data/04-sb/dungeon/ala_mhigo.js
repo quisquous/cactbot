@@ -241,7 +241,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Aulus Mal Asina': '奥卢斯·玛尔·亚希纳',
         'Magitek Scorpion': '守卫机蝎',
