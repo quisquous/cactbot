@@ -311,7 +311,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Aetherial Tear': '次元裂缝',
         'Dawn Knight': '拂晓骑士',
@@ -344,6 +343,7 @@
         'Holy Chain': '圣锁',
         'Holy Shield Bash': '圣盾猛击',
         'Hyperdimensional Slash': '多维空间斩',
+        'Knights Appear': '骑士出现',
         'Overpower': '超压斧',
         'Retreat': '撤退',
         'Rive': '撕裂斧',
