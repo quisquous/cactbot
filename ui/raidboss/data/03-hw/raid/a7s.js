@@ -301,6 +301,7 @@
     },
     {
       'locale': 'ja',
+      'missingTranslations': true,
       'replaceSync': {
         'Bomb': '爆弾',
         'Boomtype Magitek Gobwalker G-VII': 'VII号ゴブリウォーカーB型',
@@ -313,7 +314,6 @@
         'Sturm Doll': 'シュツルムドール',
       },
       'replaceText': {
-        '': '',
         'Big Doll': '大きいドール',
         'Bomb(?!s)': '爆弾',
         'Bombs': '爆弾',
