@@ -1279,7 +1279,6 @@
         'Elemental Magicks': '元素魔法',
         'Elemental Shift': '元素开关',
         'Execration': '缩小射线',
-        'Explosion': '狂暴',
         'Explosive Impulse': '爆炸性冲击',
         'Flare Star': '耀星',
         'For Honor': '战死击',
