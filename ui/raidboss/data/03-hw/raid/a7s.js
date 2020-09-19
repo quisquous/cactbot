@@ -313,6 +313,7 @@
         'Sturm Doll': 'シュツルムドール',
       },
       'replaceText': {
+        '': '',
         'Big Doll': '大きいドール',
         'Bomb(?!s)': '爆弾',
         'Bombs': '爆弾',
