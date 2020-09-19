@@ -309,12 +309,14 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Arbuda': '额部陀',
         'Coeurl Smriti': '凶豹所忆',
         'Coeurl Sruti': '凶豹所闻',
+        'Guidance': '导灵殿',
+        'Harmony': '阴阳苑',
         'Ivon Coeurlfist': '双豹伊沃恩',
+        'Tourmaline Pond': '水苔池',
       },
       'replaceText': {
         '--Smriti Appears--': '--凶豹出现--',
