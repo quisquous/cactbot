@@ -120,12 +120,14 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '爆破岩石',
         'Titan': '泰坦',
       },
       'replaceText': {
+        '\\(clock\\)': '(顺时针)',
+        '\\(diamond\\)': '(钻石)',
+        '\\(line\\)': '(直线)',
         'Burst': '爆炸',
         'Bury': '塌方',
         'Earthen Fury': '大地之怒',
