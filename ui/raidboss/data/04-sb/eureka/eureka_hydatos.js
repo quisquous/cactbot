@@ -1324,7 +1324,6 @@
         'Ultimate Zantetsuken': '极·斩铁剑',
         'Umbral Essence': '暗之腕',
         'Whirling Zantetsuken': '旋·斩铁剑',
-        'Wyvern ': '飞龙',
         'Wyvern Explosion': '飞龙爆炸',
       },
     },
