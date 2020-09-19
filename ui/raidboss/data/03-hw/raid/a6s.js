@@ -466,6 +466,7 @@
     {
       'locale': 'ja',
       'replaceSync': {
+        '--unseal--': '--エリア開放--',
         'Blaster(?! Mirage)': 'ブラスター',
         'Blaster Mirage': 'ブラスター・ミラージュ',
         'Brawler': 'ブロウラー',
