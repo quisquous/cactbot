@@ -319,7 +319,7 @@
         'Bombs': '爆弾',
         '(?<![Big|Small] )Doll': 'ドール',
         'Flamethrower': 'フレイムスロアー',
-        'Hammertime': '鉄球',
+        'Hammertime': 'オシオキ',
         'Jails': '隔離部屋',
         'Get Prey': 'マーキングを取る',
         'Get Tether': '線を取る',
