@@ -598,6 +598,10 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': '信徒其三',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(Meteor Detonate\\)': '(陨石爆炸)',
+        '\\(Snapshot\\)': '(快照)',
+        '\\(Tilt\\)': '(倾斜)',
         'Aero III': '暴风',
         'Arms of Wisdom': '睿智之秤',
         'Cintamani': '如意宝珠',
