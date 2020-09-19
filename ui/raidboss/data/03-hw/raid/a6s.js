@@ -500,7 +500,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Blaster(?! Mirage)': '冲击波',
         'Blaster Mirage': '爆破者幻象',
@@ -515,10 +514,12 @@
         'Vortexer': '环旋者',
       },
       'replaceText': {
+        '--unseal--': '--解除封锁--',
         'Attachment': '配件更换',
         'Auxiliary Power': '能量支援',
         'Ballistic Missile': '导弹发射',
         'Bio-Arithmeticks': '生命计算术',
+        'Brawler Mechanic': '争斗者技能',
         'Brute Force': '残暴铁拳',
         'Crashing Thunder': '冲击雷',
         'Crashing Wave': '冲击波',
@@ -526,6 +527,7 @@
         'Elemental Jammer': '元素干扰',
         'Enumeration': '计数',
         'Fire Beam': '火焰光束',
+        'Gobwalker': '哥布林战车',
         'Height': '高度算术',
         'Hidden Minefield': '隐形地雷散布',
         'Ice Missile': '寒冰导弹',

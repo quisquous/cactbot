@@ -435,7 +435,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Buzzsaw': '旋转链锯',
         'Gobpress R-VI': '6号哥布林压路机',
@@ -445,10 +444,21 @@
         'Weight Of The World': '大陆之重',
       },
       'replaceText': {
+        '(?!--)mechanic': '机制',
+        '--in--': '--内--',
+        '--out--': '--外--',
+        '--in/out--': '--内/外--',
+        '--out/in--': '--外/内--',
+        '--spread/stack--': '--分散/集合--',
+        '--stack/spread--': '--集合/分散--',
         'Brighteyes': '目标',
+        'Clone Add': '分身出现',
         'Discharge': '枪击',
         'Double Charge': '二连填充',
+        'Floor Trap': '地刺陷阱',
+        'Frost Trap': '冰晶陷阱',
         'Frostbite': '寒冰箭',
+        'Gobbie Adds': '哥布林出现',
         'Goblin Rush': '哥布林冲锋',
         'Gobrush Rushgob': '哥布流哥布林冲锋',
         'Gobslash Slicetops': '哥布流真空斩',
@@ -464,6 +474,8 @@
         'Steam Roller': '蒸汽滚轮',
         'Stoneskin': '石肤',
         'Triple Charge': '三连填充',
+        'Weight Trap': '铁球陷阱',
+        'Leghops\\?/Charge \\(In\\)\\?': '哥布流后之先?/冲锋（内）?',
       },
     },
     {

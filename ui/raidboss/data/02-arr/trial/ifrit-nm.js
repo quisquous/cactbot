@@ -82,14 +82,16 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Ifrit': '伊弗利特',
       },
       'replaceText': {
+        '\\(inner\\)': '(内)',
+        '\\(outer\\)': '(外)',
         'Eruption': '地火喷发',
         'Hellfire': '地狱之火炎',
         'Incinerate': '烈焰焚烧',
+        'Nail Add': '火狱之楔出现',
         'Radiant Plume': '光辉炎柱',
         'Vulcan Burst': '火神爆裂',
       },

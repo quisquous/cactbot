@@ -220,7 +220,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bennu': '贝努鸟',
         'Phoenix(?!-)': '不死鸟',
@@ -228,13 +227,14 @@
       },
       'replaceText': {
         '(?<! )Rebirth': '重生',
-        'Bennu Add': '贝努鸟 Add',
+        'Bennu Add': '贝努鸟出现',
         'Blackfire': '漆黑之炎',
         'Bluefire': '青蓝之炎',
         'Brand Of Purgatory': '炼狱之炎',
         'Flames Of Rebirth': '转生之炎',
         'Flames Of Unforgiveness': '炼狱之燎火',
         'Fountain Of Fire': '灵泉之炎',
+        'Fountain(?! Of Fire)': '灵泉',
         'Redfire Plume': '赤红之炎柱',
         'Redfire(?! )': '红莲之炎',
         'Revelation': '天启',

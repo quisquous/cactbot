@@ -150,17 +150,20 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': '伊姆都古德',
+        'The Alpha Concourse': '第1信徒区间',
       },
       'replaceText': {
         'Crackle Hiss': '雷光电闪',
         'Critical Rip': '暴击撕裂',
         'Cyclonic Chaos': '龙卷雷暴',
+        'Daughter': '伊姆都古德之女',
         'Electric Burst': '电光爆发',
         'Electrocharge': '蓄电',
         'Heat Lightning': '惊电',
+        'Random \\+ Charge': '随机+冲锋',
+        'Son': '伊姆都古德之子',
         'Spike Flail': '刃尾横扫',
         'Wild Charge': '狂野冲锋',
       },
