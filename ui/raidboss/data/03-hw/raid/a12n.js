@@ -246,7 +246,8 @@
       },
       'replaceText': {
         '--timestop--': '--時間停止--',
-        '(?<!Radiant )Sacrament': '十字の秘蹟',
+        '(?<! )Sacrament': '十字の秘蹟',
+        '\\(Radiant\\?\\) Sacrament': '十字の秘蹟/拝火の秘蹟',
         '\\(W\\)': '(西)',
         'Almost Holy': 'プチホーリー',
         'Arrhidaeus\'s Lanner': 'アリダイオス・ランナー',
