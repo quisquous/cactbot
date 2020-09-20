@@ -359,6 +359,7 @@
         'The General\'s Wing': 'アリダイオス・ウィング',
       },
       'replaceText': {
+        '--timestop--': '--時間停止--',
         '(?<!Radiant )Sacrament': '十字の秘蹟',
         'Almost Holy': 'プチホーリー',
         'Arrhidaeus\'s Lanner': 'アリダイオス・ランナー',
