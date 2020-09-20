@@ -1778,11 +1778,11 @@ class Bars {
     this.jobFuncs.push((jobDetail) => {
       let aetherflow = jobDetail.aetherflowStacks;
       let fairygauge = jobDetail.fairyGauge;
-      let milli = Math.floor(jobDetail.fairyMilliseconds / 1000);
+      let milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);
       aetherflowStackBox.innerText = aetherflow;
       fairyGaugeBox.innerText = fairygauge;
       let f = fairyGaugeBox.parentNode;
-      if (milli != 0) {
+      if (jobDetail.fairyMilliseconds != 0) {
         f.classList.add('bright');
         fairyGaugeBox.innerText = milli;
       } else {
@@ -1902,7 +1902,7 @@ class Bars {
     this.jobFuncs.push((jobDetail) => {
       let stack = jobDetail.aetherflowStacks;
       let summoned = jobDetail.bahamutSummoned;
-      let time = Math.floor(jobDetail.stanceMilliseconds / 1000);
+      let time = Math.ceil(jobDetail.stanceMilliseconds / 1000);
 
       // turn red when you have too much stacks before EnergyDrain ready.
       aetherflowStackBox.innerText = stack;
@@ -2085,7 +2085,7 @@ class Bars {
       demolishBox.duration = 0;
       // it start counting down when you cast demolish
       // but DOT appears on target about 1 second later
-      demolishBox.duration = 19;
+      demolishBox.duration = 18 + 1;
     };
     this.gainEffectFuncMap[EffectId.LeadenFist] = () => {
       dragonKickBox.duration = 0;

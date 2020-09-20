@@ -34,6 +34,7 @@
         en: 'Death Sentence Soon',
         de: 'Todesurteil bald',
         fr: 'Peine de mort bientôt',
+        ja: 'まもなくデスセンテンス',
         cn: '死刑',
         ko: '사형선고',
       },
@@ -50,6 +51,7 @@
         en: 'Liquid Hell',
         de: 'Höllenschmelze',
         fr: 'Enfer liquide',
+        ja: 'ヘルリキッド',
         cn: '液体地狱',
         ko: '지옥의 늪',
       },
@@ -78,6 +80,7 @@
             en: 'Fireball on YOU',
             de: 'Feuerball auf DIR',
             fr: 'Boule de feu sur VOUS',
+            ja: '自分にファイアボール',
             cn: '火球点名',
             ko: '나에게 화염구',
           };
@@ -89,6 +92,7 @@
             en: 'Fireball on ' + data.ShortName(matches.target),
             de: 'Feuerball auf ' + data.ShortName(matches.target),
             fr: 'Boule de feu sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にファイアボール',
             cn: '火球点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
           };
@@ -109,6 +113,7 @@
             en: 'Conflag on YOU',
             de: 'Feuersturm auf DIR',
             fr: 'Tempête de feu sur VOUS',
+            ja: '自分にファイアストーム',
             cn: '火焰流点名',
             ko: '불보라 보스밑으로',
           };
@@ -120,6 +125,7 @@
             en: 'Conflag on ' + data.ShortName(matches.target),
             de: 'Feuersturm auf ' + data.ShortName(matches.target),
             fr: 'Tempête de feu sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にファイアストーム',
             cn: '火焰流点' + data.ShortName(matches.target),
             ko: '불보라' + data.ShortName(matches.target),
           };
@@ -148,6 +154,7 @@
         en: 'DIVEBOMB',
         de: 'STURZBOMBE',
         fr: 'BOMBE PLONGEANTE',
+        ja: 'ダイブボム',
         cn: '俯冲',
         ko: '급강하',
       },
@@ -166,6 +173,7 @@
         en: 'Divebombs Soon',
         de: 'Sturzbombe bald',
         fr: 'Bombe plongeante bientôt',
+        ja: 'まもなくダイブボム',
         cn: '即将俯冲',
         ko: '급강하 준비',
       },
@@ -185,6 +193,7 @@
             en: 'Knight on YOU',
             de: 'Furchtritter auf DIR',
             fr: 'Chevalier sur VOUS',
+            ja: '自分にナイト',
             cn: '骑士点名',
             ko: '드레드 대상자',
           };
@@ -193,6 +202,7 @@
           en: 'Knight on ' + data.ShortName(matches.target),
           de: 'Furchtritter auf ' + data.ShortName(matches.target),
           fr: 'Chevalier sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にナイト',
           cn: '骑士点' + data.ShortName(matches.target),
           ko: '드래드 대상' + data.ShortName(matches.target),
         };
@@ -210,6 +220,7 @@
         en: 'Twister!',
         de: 'Wirbelsturm!',
         fr: 'Tornade !',
+        ja: 'ツイスター!',
         cn: '风风风！',
         ko: '회오리',
       },
@@ -238,6 +249,7 @@
             en: 'Hatch on YOU',
             de: 'Austritt auf DIR',
             fr: 'Éclosion sur VOUS',
+            ja: '自分に魔力爆散',
             cn: '黑球点名',
             ko: '나에게 마력방출',
           };
@@ -249,6 +261,7 @@
             en: 'Hatch on ' + data.ShortName(matches.target),
             de: 'Austritt auf ' + data.ShortName(matches.target),
             fr: 'Éclosion sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'に魔力爆散',
             cn: '黑球点' + data.ShortName(matches.target),
             ko: '마력방출' + data.ShortName(matches.target),
           };

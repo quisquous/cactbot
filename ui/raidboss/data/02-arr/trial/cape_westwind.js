@@ -51,6 +51,7 @@
         'Your defeat will bring': '逃がさん……',
       },
       'replaceText': {
+        'Adds': '雑魚:',
         'Drill Shot': '徹甲弾',
         'Firebomb': '火炎弾',
         'Gate Of Tartarus': 'タルタロスゲート',
@@ -62,13 +63,13 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'My shields are impregnable': '在我的冥狱枪盾面前',
         'Rhitahtyn sas Arvina': '里塔提恩·萨斯·阿维纳',
         'Your defeat will bring': '你们的尸体只',
       },
       'replaceText': {
+        'Adds': '小怪出现',
         'Drill Shot': '穿甲弹',
         'Firebomb': '火焰弹',
         'Gate Of Tartarus': '冥狱之门',

@@ -97,13 +97,13 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Coronal Wind': '冠状气流',
         'Sephirot': '萨菲洛特',
         'Storm Of Words': '言语风暴',
       },
       'replaceText': {
+        'Adds Spawn': '小怪出现',
         'Ascension': '上升气流',
         'Chesed': '仁慈',
         'Da\'at': '知识',

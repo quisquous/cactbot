@@ -44,6 +44,7 @@
         de: 'Weg vom großen Pod',
         fr: 'Éloignez-vous des spores',
         ja: 'スポアサックに離れ',
+        cn: '远离大孢囊',
         ko: '큰 포자 주머니에게서 떨어지기',
       },
     },
@@ -60,6 +61,7 @@
           de: 'Reinige ' + data.shortName(matches.target),
           fr: 'Guérison sur ' + data.shortName(matches.target),
           ja: 'エスナ：' + data.ShortName(matches.target),
+          cn: '康复' + data.shortName(matches.target),
           ko: '' + data.shortName(matches.target) + '에스나',
         };
       },
@@ -162,6 +164,7 @@
         de: 'Fläche draußen ablegen',
         fr: 'Déposez la zone au sol à l\'extérieur',
         ja: '外周に置く',
+        cn: '人群外放圈圈',
         ko: '용암지대 생성 대상자',
       },
     },

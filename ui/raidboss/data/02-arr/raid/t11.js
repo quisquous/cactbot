@@ -17,6 +17,7 @@
           en: 'Stun on ' + data.ShortName(matches.target),
           de: 'Stun auf ' + data.ShortName(matches.target),
           fr: 'Stun sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にスタン',
           cn: '击昏' + data.ShortName(matches.target),
         };
       },
@@ -100,6 +101,7 @@
         en: 'Out of Middle',
         de: 'Raus aus der Mitte',
         fr: 'Hors du milieu',
+        ja: '中央から離れ',
         cn: '离开中间',
       },
     },
@@ -118,6 +120,7 @@
         en: 'Lightning on YOU',
         de: 'Blitz auf DIR',
         fr: 'Éclair sur VOUS',
+        ja: '自分にフォークライトニング',
         cn: '雷点名',
       },
     },
@@ -134,6 +137,7 @@
         en: 'Final Phase',
         de: 'Finale Phase',
         fr: 'Phase finale',
+        ja: 'フェイス３',
         cn: 'P3',
       },
     },
@@ -186,6 +190,7 @@
           en: 'Red Tethers With ' + data.ShortName(partner),
           de: 'Rote Verbindung mit ' + data.ShortName(partner),
           fr: 'Liens rouges avec ' + data.ShortName(partner),
+          ja: data.ShortName(partner) + 'に赤い線',
           cn: '红线连' + data.ShortName(partner),
         };
       },
@@ -213,6 +218,7 @@
           en: 'Blue Tethers With ' + data.ShortName(partner),
           de: 'Blaue Verbindung mit ' + data.ShortName(partner),
           fr: 'Liens bleus avec ' + data.ShortName(partner),
+          ja: data.ShortName(partner) + 'に青い線',
           cn: '蓝线连' + data.ShortName(partner),
         };
       },
@@ -276,7 +282,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Electric Node': '雷撃システム',
         'Kaliya': 'カーリア',
@@ -291,12 +296,13 @@
         'Nerve Gas': 'ナーブガス',
         'Resonance': 'レゾナンス',
         'Secondary Head': 'サブヘッド',
+        'Seed Of The Rivers/Sea': 'シード・オブ・リバー / シード・オブ・シー',
+        'Seed Of The Sea/Rivers': 'シード・オブ・シー / シード・オブ・リバー',
         'Stun': 'スタン',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Electric Node': '雷击系统',
         'Kaliya': '卡利亚',
@@ -311,6 +317,8 @@
         'Nerve Gas': '神经毒气',
         'Resonance': '共鸣',
         'Secondary Head': '侧首',
+        'Seed Of The Rivers/Sea': '江河/海洋之种',
+        'Seed Of The Sea/Rivers': '海洋/江河之种',
         'Stun': '眩晕',
       },
     },

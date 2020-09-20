@@ -653,7 +653,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Arachne Eve': '阿剌克涅',
         'Calofisteri': '卡洛菲斯提莉',
@@ -700,6 +699,7 @@
         'Mega Death': '超即死',
         'Megiddo Flame': '米吉多烈焰',
         'Meteor(?![\\w\\s])': '陨石',
+        'Meteor Headmarkers': '陨石点名',
         'Meteor Impact': '陨石冲击',
         'Necropurge': '死灵潜质',
         'Penetration': '透耳尖啸',
@@ -710,6 +710,7 @@
         'Silken Spray': '喷吐蛛丝',
         'Split End': '发梢分裂',
         'Sticky Wicket': '粘液弹',
+        'Tank Lasers': '坦克激光',
         'The Widow\'s Embrace': '大蜘蛛陷阱',
         'The Widow\'s Kiss': '蜘蛛陷阱',
         'Transfiguration': '形态变化',
