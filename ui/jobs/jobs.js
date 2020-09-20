@@ -2439,7 +2439,7 @@ class Bars {
       }
 
       const l = lilysecondBox.parentNode;
-      if ((lily == 2 && 30 - lilysecond <= 5) | lily == 3)
+      if ((lily == 2 && 30 - lilysecond <= 5) || lily == 3)
         l.classList.add('full');
       else
         l.classList.remove('full');
