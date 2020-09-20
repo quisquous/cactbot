@@ -235,6 +235,7 @@
           en: 'Adds to NE Lava',
           de: 'Adds in NO Lava',
           fr: 'Adds dans la lave NE',
+          ja: '北東にパワージェネレーターを倒す',
           cn: '拉小怪到东北击杀',
           ko: '쫄을 북동쪽 용암으로',
         };
@@ -242,6 +243,7 @@
           en: 'Adds to SE Lava',
           de: 'Adds in SO Lava',
           fr: 'Adds dans la lave SE',
+          ja: '南東にパワージェネレーターを倒す',
           cn: '拉小怪到东南击杀',
           ko: '쫄을 남동쪽 용암으로',
         };
@@ -249,6 +251,7 @@
           en: 'Adds to SW Lava',
           de: 'Adds in SW Lava',
           fr: 'Adds dans la lave SO',
+          ja: '南西にパワージェネレーターを倒す',
           cn: '拉小怪到西南击杀',
           ko: '쫄을 남서쪽 용암으로',
         };
@@ -256,6 +259,7 @@
           en: 'Adds to NW Lava',
           de: 'Adds in NW Lava',
           fr: 'Adds dans la lave NO',
+          ja: '北西にパワージェネレーターを倒す',
           cn: '拉小怪到西北击杀',
           ko: '쫄을 북서쪽 용암으로',
         };
@@ -352,21 +356,25 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': '爆弾',
         'Faust Z': 'ファイナル・ファウスト',
         'Full-Metal Faust': 'フルアーマー・ファウスト',
         'Refurbisher 0': 'リファビッシャー',
         'Scrap': 'スクラップパンチ',
+        'The Cranial Plate': '頭部甲板',
+        'Life Support': '再生処理室',
       },
       'replaceText': {
+        '--rocks fall--': '--落石--',
         'Acid Rain': '酸性雨',
         'Alarum': 'アラーム',
         '(?<!Scrap )Bomb': '爆弾',
         'Explosion': '爆発',
+        'Full-Metal Faust Add': '雑魚: フルアーマー・ファウスト',
         'Heat Shielding Reassembly': '装甲再生',
         'Kaltstrahl': 'カルトシュトラール',
+        'Lava': 'ラーヴァ',
         'Left Arm Reassembly': '左腕再生',
         'Panzer Vor': 'パンツァーフォー',
         'Panzerschreck': 'パンツァーシュレッケ',
@@ -377,6 +385,10 @@
         'Scrap Storm': 'スクラップストーム',
         'Scrap(?! )': 'スクラップパンチ',
         'Stockpile': '吸収',
+        '\\(NE/SW\\)': '(北東/南西)',
+        '\\(NE\\)': '(北東)',
+        '\\(NW/SE\\)': '(北西/南東)',
+        '\\(SE\\)': '(南東)',
       },
     },
     {
