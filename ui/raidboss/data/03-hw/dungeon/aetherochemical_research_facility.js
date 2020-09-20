@@ -107,7 +107,7 @@
       netRegexKo: NetRegexes.startsUsing({ id: '1105', source: '아씨엔 프라임', capture: false }),
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
-      delaySeconds: 4,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 6,
       alertText: {
         en: 'Stand in dark portal',
         de: 'Im dunklen Portal stehen',

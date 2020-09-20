@@ -44,7 +44,7 @@ hideall "--sync--"
 193.0 "Magitek Slug" sync /:Regula van Hydrus:10DB:/
 
 # Rotation resumes here whether or not turrets are successful
-199.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 100,2
+199.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 50,1
 202.4 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 209.7 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,2.5
 215.0 "Judgment" sync /:Regula van Hydrus:10DE:/
@@ -62,7 +62,7 @@ hideall "--sync--"
 284.8 "Judgment"
 
 # Second turrets at HP < 50%
-330.1 "Magitek Turret" sync /:Regula van Hydrus:10E0:/ window 150,5
+330.1 "Magitek Turret" sync /:Regula van Hydrus:10E0:/ window 130,5
 332.5 "--sync--" sync /:Regula van Hydrus:10DF:/
 337.8 "Magitek Slug" sync /:Regula van Hydrus:10DB:/
 340.7 "Aetherochemical Grenado" sync /:Magitek Turret II:10E2:/
