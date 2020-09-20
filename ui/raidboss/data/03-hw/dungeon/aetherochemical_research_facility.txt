@@ -396,20 +396,20 @@ hideall "--sync--"
 # We can't sync to the zone seal message because it's a two-part battle
 
 3002.3 "--sync--" sync /:Ascian Prime:1100:/ window 3003,2
-3005.8 "Height of Chaos" sync /:Ascian Prime:1101:/ window 5.8,5
+3005.8 "Height Of Chaos" sync /:Ascian Prime:1101:/ window 5.8,5
 3013.0 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3022.1 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15
-3028.2 "Height of Chaos" sync /:Ascian Prime:1101:/
+3028.2 "Height Of Chaos" sync /:Ascian Prime:1101:/
 
-3038.0 "Height of Chaos" sync /:Ascian Prime:1101:/
+3038.0 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3045.2 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3054.3 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15
-3060.4 "Height of Chaos" sync /:Ascian Prime:1101:/ jump 3028.2
+3060.4 "Height Of Chaos" sync /:Ascian Prime:1101:/ jump 3028.2
 
-3070.2 "Height of Chaos"
+3070.2 "Height Of Chaos"
 3077.4 "Ancient Eruption"
 3086.5 "Shadow Flare"
-3092.6 "Height of Chaos"
+3092.6 "Height Of Chaos"
 
 # Intermission 1 at HP < 80%
 3100.0 "--sync--" sync /03:........:Added new combatant Firesphere/ window 100,5
@@ -420,21 +420,21 @@ hideall "--sync--"
 3132.1 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3147.3 "Universal Manipulation" sync /:Ascian Prime:1105:/
 
-3156.4 "Height of Chaos" sync /:Ascian Prime:1101:/ window 50,5
+3156.4 "Height Of Chaos" sync /:Ascian Prime:1101:/ window 50,5
 3163.5 "Entropic Flame" sync /:Ascian Prime:1107:/
-3168.6 "Height of Chaos" sync /:Ascian Prime:1101:/
+3168.6 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3175.7 "Ancient Eruption" sync /:Ascian Prime:1103:/ window 15,15
 3184.8 "Shadow Flare" sync /:Ascian Prime:1109:/
 
-3194.0 "Height of Chaos" sync /:Ascian Prime:1101:/
+3194.0 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3201.1 "Entropic Flame" sync /:Ascian Prime:1107:/ window 30,30
-3206.2 "Height of Chaos" sync /:Ascian Prime:1101:/
+3206.2 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3213.3 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3222.4 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15 jump 3184.8
 
-3231.6 "Height of Chaos"
+3231.6 "Height Of Chaos"
 3238.7 "Entropic Flame"
-3243.8 "Height of Chaos"
+3243.8 "Height Of Chaos"
 3250.9 "Ancient Eruption"
 3260.0 "Shadow Flare"
 
@@ -449,23 +449,23 @@ hideall "--sync--"
 3331.8 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3347.0 "Universal Manipulation" sync /:Ascian Prime:1105:/
 
-3356.2 "Height of Chaos" sync /:Ascian Prime:1101:/ window 50,5
+3356.2 "Height Of Chaos" sync /:Ascian Prime:1101:/ window 50,5
 3363.3 "Entropic Flame" sync /:Ascian Prime:1107:/
-3368.5 "Height of Chaos" sync /:Ascian Prime:1101:/
+3368.5 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3375.6 "Ancient Eruption" sync /:Ascian Prime:1103:/ window 15,15
 3384.8 "Shadow Flare" sync /:Ascian Prime:1109:/
-3390.9 "Height of Chaos x3" duration 5.0
+3390.9 "Height Of Chaos x3" duration 5.0
 
-3402.7 "Height of Chaos" sync /:Ascian Prime:1101:/
+3402.7 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3409.8 "Entropic Flame" sync /:Ascian Prime:1107:/
-3415.0 "Height of Chaos" sync /:Ascian Prime:1101:/
+3415.0 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3422.1 "Ancient Eruption" sync /:Ascian Prime:1103:/ window 15,15
 3431.3 "Shadow Flare" sync /:Ascian Prime:1109:/
-3437.4 "Height of Chaos x3" duration 5.0
+3437.4 "Height Of Chaos x3" duration 5.0
 
-# Jumping from a following block to avoid sync issues with Height of Chaos x3
-3449.2 "Height of Chaos" sync /:Ascian Prime:1101:/ jump 3402.7
+# Jumping from a following block to avoid sync issues with Height Of Chaos x3
+3449.2 "Height Of Chaos" sync /:Ascian Prime:1101:/ jump 3402.7
 3456.3 "Entropic Flame"
-3461.5 "Height of Chaos"
+3461.5 "Height Of Chaos"
 3468.6 "Ancient Eruption"
 3477.8 "Shadow Flare"
