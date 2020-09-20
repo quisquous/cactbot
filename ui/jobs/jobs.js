@@ -1076,7 +1076,6 @@ class Bars {
     this.contentType = 0;
 
     this.crafting = false;
-    this.craftingType = '';
 
     const lang = this.options.ParserLanguage;
     this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
@@ -1462,9 +1461,9 @@ class Bars {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
           eyeBox.duration = Math.min(old + 30, 59.5);
-        // Storm's Eye applies with some animation delay here, and on the next
-        // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add some of a gcd here in duration time from when it's applied.
+          // Storm's Eye applies with some animation delay here, and on the next
+          // Storm's Eye, it snapshots the damage when the gcd is started, so
+          // add some of a gcd here in duration time from when it's applied.
         } else {
           eyeBox.duration = 0;
           eyeBox.duration = 30 + 1;
@@ -1500,7 +1499,7 @@ class Bars {
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
       if (eyeBox.value >= oldThreshold &&
-          eyeBox.value >= newThreshold)
+        eyeBox.value >= newThreshold)
         eyeBox.threshold = newThreshold;
       else
         eyeBox.threshold = oldThreshold;
@@ -2600,7 +2599,7 @@ class Bars {
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-        Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
+      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
       opacityContainer.style.opacity = 1.0;
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
@@ -2699,38 +2698,44 @@ class Bars {
   OnCraftingLog(log) {
     // Hide CP Bar when not crafting
     const container = document.getElementById('jobs-container');
+
+    const anyRegexMatched = (line, array) => {
+      for (const regex of array) {
+        if (regex.test(line))
+          return true;
+      }
+      return false;
+    };
+    const undefinedOrEqual = (value, expected) => {
+      if (value === undefined)
+        return true;
+      else if (value == expected)
+        return true;
+
+      return false;
+    };
+
     if (!this.crafting) {
-      if (this.craftingStartRegex.test(log)) {
+      if (anyRegexMatched(log, [
+        this.craftingStartRegex,
+        this.trialCraftingStartRegex,
+      ]))
         this.crafting = true;
-        this.craftingType = 'normal';
-      }
-      if (this.trialCraftingStartRegex.test(log)) {
-        this.crafting = true;
-        this.craftingType = 'trial';
-      }
     } else {
-      if (this.craftingType == 'normal') {
-        if (this.craftingFailRegex.test(log) ||
-        this.craftingCancelRegex.test(log)) {
-          this.crafting = false;
-        } else {
-          const m = this.craftingFinishRegex.exec(log);
-          if (m) {
-            if (m.groups.player === undefined || m.groups.player == this.me)
-              this.crafting = false;
-          }
-        }
-      }
-      if (this.craftingType == 'trial') {
-        if (this.trialCraftingFailRegex.test(log) ||
-        this.trialCraftingCancelRegex.test(log)) {
-          this.crafting = false;
-        } else {
-          const m = this.trialCraftingFinishRegex.exec(log);
-          if (m) {
-            if (m.groups.player === undefined || m.groups.player == this.me)
-              this.crafting = false;
-          }
+      if (anyRegexMatched(log, [
+        this.craftingFailRegex,
+        this.craftingCancelRegex,
+        this.trialCraftingFailRegex,
+        this.trialCraftingCancelRegex,
+      ])) {
+        this.crafting = false;
+      } else {
+        let m = this.craftingFinishRegex.exec(log);
+        if (!m)
+          m = this.trialCraftingFinishRegex.exec(log);
+        if (m) {
+          if (undefinedOrEqual(m.groups.player, this.me))
+            this.crafting = false;
         }
       }
     }
