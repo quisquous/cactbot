@@ -561,7 +561,7 @@ class MistakeCollector {
     let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
       let text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
-      if (!IsTriggerEnabled(this.options, kEarlyPullId))
+      if (IsTriggerEnabled(this.options, kEarlyPullId))
         this.OnMistakeText('pull', this.firstPuller, text);
     }
   }
@@ -579,7 +579,7 @@ class MistakeCollector {
       let seconds = ((Date.now() - this.engageTime) / 1000);
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
         let text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
-        if (!IsTriggerEnabled(this.options, kEarlyPullId))
+        if (IsTriggerEnabled(this.options, kEarlyPullId))
           this.OnMistakeText('pull', this.firstPuller, text);
       }
     }
