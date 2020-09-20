@@ -22,6 +22,7 @@
       infoText: {
         en: 'Hide behind crystal',
         de: 'Hinter dem Kristall verstecken',
+        ja: '水晶の後ろに',
       },
     },
     {
@@ -31,6 +32,7 @@
       alertText: {
         en: 'Spread + Avoid Crystals',
         de: 'Verteilen + Kristall meiden',
+        ja: '散開 + 水晶に避け',
       },
     },
     {
@@ -98,6 +100,7 @@
       infoText: {
         en: 'Puddle on YOU',
         de: 'Fläche auf DIR',
+        ja: '自分に沼',
       },
     },
     {
@@ -108,6 +111,7 @@
       infoText: {
         en: 'In line with smoking drone',
         de: 'In einer Linie mit der rauchenden Drohne stellen',
+        ja: 'ドローンに近づく',
       },
     },
     {
@@ -122,6 +126,7 @@
       infoText: {
         en: 'Avoid Rock Biters',
         de: 'Felsbeißer meiden',
+        ja: 'ロックカッターに避け',
       },
     },
     {
@@ -144,11 +149,13 @@
           return {
             en: 'Puddle + cleave on YOU',
             de: 'Fläche + Cleave auf DIR',
+            ja: '自分に沼 + クリーヴ',
           };
         }
         return {
           en: 'Avoid marker cone',
           de: 'Kegel-Markierung ausweichen',
+          ja: 'マークに避け',
         };
       },
     },
@@ -164,6 +171,7 @@
       infoText: {
         en: 'Bait Star Explosions',
         de: 'Stern Explosion ködern',
+        ja: '放射霧を誘導',
       },
     },
   ],
