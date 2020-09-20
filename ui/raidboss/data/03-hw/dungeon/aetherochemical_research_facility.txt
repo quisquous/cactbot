@@ -44,7 +44,7 @@ hideall "--sync--"
 193.0 "Magitek Slug" sync /:Regula van Hydrus:10DB:/
 
 # Rotation resumes here whether or not turrets are successful
-199.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 100,2
+199.3 "Bastardbluss" sync /:Regula van Hydrus:10DA:/ window 50,1
 202.4 "Bastardbluss" sync /:Regula van Hydrus:10DA:/
 209.7 "Judgment" sync /:Regula van Hydrus:10DD:/ window 15,2.5
 215.0 "Judgment" sync /:Regula van Hydrus:10DE:/
@@ -62,7 +62,7 @@ hideall "--sync--"
 284.8 "Judgment"
 
 # Second turrets at HP < 50%
-330.1 "Magitek Turret" sync /:Regula van Hydrus:10E0:/ window 150,5
+330.1 "Magitek Turret" sync /:Regula van Hydrus:10E0:/ window 130,5
 332.5 "--sync--" sync /:Regula van Hydrus:10DF:/
 337.8 "Magitek Slug" sync /:Regula van Hydrus:10DB:/
 340.7 "Aetherochemical Grenado" sync /:Magitek Turret II:10E2:/
@@ -218,25 +218,25 @@ hideall "--sync--"
 2000.5 "--sync--" sync /:Igeyorhm:10F1:/ window 2000.5,0
 2008.6 "Dark Orb" sync /:Igeyorhm:10FC:/ window 9,5
 
-2009.0 "End of Days" sync /:Lahabrea:10FD:/
+2009.0 "End Of Days" sync /:Lahabrea:10FD:/
 2015.8 "Dark Orb" sync /:Igeyorhm:10FC:/
 2020.9 "Sea Of Pitch" sync /:Igeyorhm:10FB:/ window 15,15
-2023.4 "End of Days" sync /:Lahabrea:10FD:/
+2023.4 "End Of Days" sync /:Lahabrea:10FD:/
 2024.5 "Sea Of Pitch" sync /:Igeyorhm:12DE:/
 2029.0 "Dark Orb" sync /:Igeyorhm:10FC:/
 2037.2 "Dark Orb" sync /:Igeyorhm:10FC:/
 
-2037.7 "End of Days" sync /:Lahabrea:10FD:/
+2037.7 "End Of Days" sync /:Lahabrea:10FD:/
 2044.3 "Dark Orb" sync /:Igeyorhm:10FC:/
 2049.5 "Sea Of Pitch" sync /:Igeyorhm:10FB:/ window 15,15
-2052.2 "End of Days" sync /:Lahabrea:10FD:/
+2052.2 "End Of Days" sync /:Lahabrea:10FD:/
 2057.7 "Dark Orb" sync /:Igeyorhm:10FC:/
 2066.0 "Dark Orb" sync /:Igeyorhm:10FC:/ jump 2037.2
 
-2066.5 "End of Days"
+2066.5 "End Of Days"
 2073.1 "Dark Orb"
 2078.3 "Sea Of Pitch"
-2081.0 "End of Days"
+2081.0 "End Of Days"
 2086.5 "Dark Orb"
 2094.8 "Dark Orb"
 
@@ -252,34 +252,34 @@ hideall "--sync--"
 # is super-long to avoid any possibility of choppiness.
 
 2122.6 "Dark Blizzard II" sync /:Igeyorhm:10F2:/ window 20,20
-2123.8 "End of Days" sync /:Lahabrea:10FD:/
+2123.8 "End Of Days" sync /:Lahabrea:10FD:/
 2131.7 "Shadow Flare" sync /:Igeyorhm:10FA:/
 2137.4 "Dark Fire II" sync /:Lahabrea:10F7:/
 2142.9 "Dark Orb" sync /:Igeyorhm:10FC:/
 2148.1 "Sea Of Pitch" sync /:Igeyorhm:10FB:/ window 20,20
-2151.9 "End of Days" sync /:Lahabrea:10FD:/
+2151.9 "End Of Days" sync /:Lahabrea:10FD:/
 2156.3 "Dark Orb" sync /:Igeyorhm:10FC:/
 2163.5 "Dark Blizzard II" sync /:Igeyorhm:10F2:/ window 20,20
 2165.3 "Dark Fire II" sync /:Lahabrea:10F7:/
 2172.5 "Shadow Flare" sync /:Igeyorhm:10FA:/
-2179.7 "End of Days" sync /:Lahabrea:10FD:/
+2179.7 "End Of Days" sync /:Lahabrea:10FD:/
 2183.6 "Dark Orb" sync /:Igeyorhm:10FC:/
 2188.8 "Sea Of Pitch" sync /:Igeyorhm:10FB:/ window 20,20
 2193.0 "Dark Fire II" sync /:Lahabrea:10F7:/
 2197.0 "Dark Orb" sync /:Igeyorhm:10FC:/
 
 2204.2 "Dark Blizzard II" sync /:Igeyorhm:10F2:/ window 20,20
-2207.4 "End of Days" sync /:Lahabrea:10FD:/
+2207.4 "End Of Days" sync /:Lahabrea:10FD:/
 2213.2 "Shadow Flare" sync /:Igeyorhm:10FA:/
 2220.8 "Dark Fire II" sync /:Lahabrea:10F7:/
 2224.4 "Dark Orb" sync /:Igeyorhm:10FC:/
 2229.6 "Sea Of Pitch" sync /:Igeyorhm:10FB:/ window 20,20
-2235.3 "End of Days" sync /:Lahabrea:10FD:/
+2235.3 "End Of Days" sync /:Lahabrea:10FD:/
 2237.9 "Dark Orb" sync /:Igeyorhm:10FC:/
 2245.0 "Dark Blizzard II" sync /:Igeyorhm:10F2:/ window 20,20
 2248.7 "Dark Fire II" sync /:Lahabrea:10F7:/
 2254.1 "Shadow Flare" sync /:Igeyorhm:10FA:/
-2263.0 "End of Days" sync /:Lahabrea:10FD:/
+2263.0 "End Of Days" sync /:Lahabrea:10FD:/
 2265.5 "Dark Orb" sync /:Igeyorhm:10FC:/
 2270.6 "Sea Of Pitch" sync /:Igeyorhm:10FB:/ window 20,20
 2276.4 "Dark Fire II" sync /:Lahabrea:10F7:/
@@ -311,24 +311,24 @@ hideall "--sync--"
 
 # Ascians swap roles at Igeyorhm HP <= 50%
 
-2500.0 "End of Days" sync /:Igeyorhm:10FD:/ window 400,5
+2500.0 "End Of Days" sync /:Igeyorhm:10FD:/ window 400,5
 2505.1 "Dark Orb" sync /:Lahabrea:10FC:/
 2510.2 "Sea Of Pitch" sync /:Lahabrea:10FB:/
-2514.5 "End of Days" sync /:Igeyorhm:10FD:/
+2514.5 "End Of Days" sync /:Igeyorhm:10FD:/
 2517.3 "Dark Fire II" sync /:Lahabrea:10F7:/ window 20,20
 2524.4 "Dark Orb" sync /:Lahabrea:10FC:/
 
-2528.9 "End of Days" sync /:Igeyorhm:10FD:/
+2528.9 "End Of Days" sync /:Igeyorhm:10FD:/
 2534.0 "Dark Orb" sync /:Lahabrea:10FC:/
 2539.1 "Sea Of Pitch" sync /:Lahabrea:10FB:/
-2543.4 "End of Days" sync /:Igeyorhm:10FD:/
+2543.4 "End Of Days" sync /:Igeyorhm:10FD:/
 2546.2 "Dark Fire II" sync /:Lahabrea:10F7:/ window 20,20
 2553.3 "Dark Orb" sync /:Lahabrea:10FC:/ jump 2274.4
 
-2557.8 "End of Days"
+2557.8 "End Of Days"
 2562.9 "Dark Orb"
 2568.0 "Sea Of Pitch"
-2572.3 "End of Days"
+2572.3 "End Of Days"
 2575.1 "Dark Fire II"
 2582.2 "Dark Orb"
 
@@ -340,34 +340,34 @@ hideall "--sync--"
 2623.4 "Dark Fire II" sync /:Lahabrea:10F7:/
 
 # Modified rotation to HP < 50%
-2624.6 "End of Days" sync /:Igeyorhm:10FD:/
+2624.6 "End Of Days" sync /:Igeyorhm:10FD:/
 2632.4 "Shadow Flare" sync /:Lahabrea:1381:/ window 20,20
 2638.0 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
 2643.5 "Dark Orb" sync /:Lahabrea:10FC:/
 2648.7 "Sea Of Pitch" sync /:Lahabrea:10FB:/ window 20,20
-2652.8 "End of Days" sync /:Igeyorhm:10FD:/
+2652.8 "End Of Days" sync /:Igeyorhm:10FD:/
 2657.0 "Dark Orb" sync /:Lahabrea:10FC:/
 2664.1 "Dark Fire II" sync /:Lahabrea:10F7:/ window 20,20
 2666.3 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
 2673.4 "Shadow Flare" sync /:Lahabrea:1381:/
-2680.9 "End of Days" sync /:Igeyorhm:10FD:/
+2680.9 "End Of Days" sync /:Igeyorhm:10FD:/
 2684.5 "Dark Orb" sync /:Lahabrea:10FC:/
 2689.8 "Sea Of Pitch" sync /:Lahabrea:10FB:/ window 20,20
 2694.3 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
 2697.9 "Dark Orb" sync /:Lahabrea:10FC:/
 2705.1 "Dark Fire II" sync /:Lahabrea:10F7:/
 
-2708.8 "End of Days" sync /:Igeyorhm:10FD:/
+2708.8 "End Of Days" sync /:Igeyorhm:10FD:/
 2714.3 "Shadow Flare" sync /:Lahabrea:1381:/ window 20,20
 2722.3 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
 2725.4 "Dark Orb" sync /:Lahabrea:10FC:/
 2730.5 "Sea Of Pitch" sync /:Lahabrea:10FB:/ window 20,20
-2736.9 "End of Days" sync /:Igeyorhm:10FD:/
+2736.9 "End Of Days" sync /:Igeyorhm:10FD:/
 2738.7 "Dark Orb" sync /:Lahabrea:10FC:/
 2745.9 "Dark Fire II" sync /:Lahabrea:10F7:/ window 20,20
 2750.4 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
 2755.1 "Shadow Flare" sync /:Lahabrea:1381:/
-2765.1 "End of Days" sync /:Igeyorhm:10FD:/
+2765.1 "End Of Days" sync /:Igeyorhm:10FD:/
 2766.4 "Dark Orb" sync /:Lahabrea:10FC:/
 2771.5 "Sea Of Pitch" sync /:Lahabrea:10FB:/ window 20,20
 2778.6 "Dark Blizzard II" sync /:Igeyorhm:10F2:/
@@ -401,20 +401,20 @@ hideall "--sync--"
 # We can't sync to the zone seal message because it's a two-part battle
 
 3002.3 "--sync--" sync /:Ascian Prime:1100:/ window 3003,2
-3005.8 "Height of Chaos" sync /:Ascian Prime:1101:/ window 5.8,5
+3005.8 "Height Of Chaos" sync /:Ascian Prime:1101:/ window 5.8,5
 3013.0 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3022.1 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15
-3028.2 "Height of Chaos" sync /:Ascian Prime:1101:/
+3028.2 "Height Of Chaos" sync /:Ascian Prime:1101:/
 
-3038.0 "Height of Chaos" sync /:Ascian Prime:1101:/
+3038.0 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3045.2 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3054.3 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15
-3060.4 "Height of Chaos" sync /:Ascian Prime:1101:/ jump 3028.2
+3060.4 "Height Of Chaos" sync /:Ascian Prime:1101:/ jump 3028.2
 
-3070.2 "Height of Chaos"
+3070.2 "Height Of Chaos"
 3077.4 "Ancient Eruption"
 3086.5 "Shadow Flare"
-3092.6 "Height of Chaos"
+3092.6 "Height Of Chaos"
 
 # Intermission 1 at HP < 80%
 3100.0 "--sync--" sync /03:........:Added new combatant Firesphere/ window 100,5
@@ -425,21 +425,21 @@ hideall "--sync--"
 3132.1 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3147.3 "Universal Manipulation" sync /:Ascian Prime:1105:/
 
-3156.4 "Height of Chaos" sync /:Ascian Prime:1101:/ window 50,5
+3156.4 "Height Of Chaos" sync /:Ascian Prime:1101:/ window 50,5
 3163.5 "Entropic Flame" sync /:Ascian Prime:1107:/
-3168.6 "Height of Chaos" sync /:Ascian Prime:1101:/
+3168.6 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3175.7 "Ancient Eruption" sync /:Ascian Prime:1103:/ window 15,15
 3184.8 "Shadow Flare" sync /:Ascian Prime:1109:/
 
-3194.0 "Height of Chaos" sync /:Ascian Prime:1101:/
+3194.0 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3201.1 "Entropic Flame" sync /:Ascian Prime:1107:/ window 30,30
-3206.2 "Height of Chaos" sync /:Ascian Prime:1101:/
+3206.2 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3213.3 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3222.4 "Shadow Flare" sync /:Ascian Prime:1109:/ window 15,15 jump 3184.8
 
-3231.6 "Height of Chaos"
+3231.6 "Height Of Chaos"
 3238.7 "Entropic Flame"
-3243.8 "Height of Chaos"
+3243.8 "Height Of Chaos"
 3250.9 "Ancient Eruption"
 3260.0 "Shadow Flare"
 
@@ -454,23 +454,23 @@ hideall "--sync--"
 3331.8 "Ancient Eruption" sync /:Ascian Prime:1103:/
 3347.0 "Universal Manipulation" sync /:Ascian Prime:1105:/
 
-3356.2 "Height of Chaos" sync /:Ascian Prime:1101:/ window 50,5
+3356.2 "Height Of Chaos" sync /:Ascian Prime:1101:/ window 50,5
 3363.3 "Entropic Flame" sync /:Ascian Prime:1107:/
-3368.5 "Height of Chaos" sync /:Ascian Prime:1101:/
+3368.5 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3375.6 "Ancient Eruption" sync /:Ascian Prime:1103:/ window 15,15
 3384.8 "Shadow Flare" sync /:Ascian Prime:1109:/
-3390.9 "Height of Chaos x3" duration 5.0
+3390.9 "Height Of Chaos x3" duration 5.0
 
-3402.7 "Height of Chaos" sync /:Ascian Prime:1101:/
+3402.7 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3409.8 "Entropic Flame" sync /:Ascian Prime:1107:/
-3415.0 "Height of Chaos" sync /:Ascian Prime:1101:/
+3415.0 "Height Of Chaos" sync /:Ascian Prime:1101:/
 3422.1 "Ancient Eruption" sync /:Ascian Prime:1103:/ window 15,15
 3431.3 "Shadow Flare" sync /:Ascian Prime:1109:/
-3437.4 "Height of Chaos x3" duration 5.0
+3437.4 "Height Of Chaos x3" duration 5.0
 
-# Jumping from a following block to avoid sync issues with Height of Chaos x3
-3449.2 "Height of Chaos" sync /:Ascian Prime:1101:/ jump 3402.7
+# Jumping from a following block to avoid sync issues with Height Of Chaos x3
+3449.2 "Height Of Chaos" sync /:Ascian Prime:1101:/ jump 3402.7
 3456.3 "Entropic Flame"
-3461.5 "Height of Chaos"
+3461.5 "Height Of Chaos"
 3468.6 "Ancient Eruption"
 3477.8 "Shadow Flare"

@@ -99,15 +99,15 @@
     },
     {
       id: 'Facility Universal Manipulation',
-      netRegex: NetRegexes.startsUsing({ id: '1105', source: 'Ascian Prime', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '1105', source: 'Prim-Ascian', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '1105', source: 'Primo-Ascien', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '1105', source: 'アシエン・プライム', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '1105', source: '至尊无影', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '1105', source: '아씨엔 프라임', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '1105', source: 'Ascian Prime' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '1105', source: 'Prim-Ascian' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '1105', source: 'Primo-Ascien' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '1105', source: 'アシエン・プライム' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '1105', source: '至尊无影' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '1105', source: '아씨엔 프라임' }),
       // The cast is ~10s, but it takes about 2s for correct execution to register
       // 6s to execute is *usually* enough time
-      delaySeconds: 4,
+      delaySeconds: (data, matches) => parseFloat(matches.castTime) - 6,
       alertText: {
         en: 'Stand in dark portal',
         de: 'Im dunklen Portal stehen',
