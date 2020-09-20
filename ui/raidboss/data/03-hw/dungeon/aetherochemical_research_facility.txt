@@ -101,6 +101,11 @@ hideall "--sync--"
 440.4 "Magitek Slug"
 444.0 "Magitek Slug"
 444.7 "Aetherochemical Grenado"
+449.9 "Aetherochemical Grenado"
+450.4 "Magitek Slug"
+454.1 "Magitek Slug"
+455.1 "Aetherochemical Grenado"
+457.8 "Magitek Slug"
 
 #~~~~~~~~~~~#
 # Harmachis #
