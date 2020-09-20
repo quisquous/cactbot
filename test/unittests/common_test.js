@@ -21,6 +21,7 @@ const jobs = (() => {
   const meleeDpsJobs = ['PGL', 'MNK', 'LNC', 'DRG', 'ROG', 'NIN', 'SAM'];
   const rangedDpsJobs = ['ARC', 'BRD', 'DNC', 'MCH'];
   const casterDpsJobs = ['BLU', 'RDM', 'BLM', 'SMN', 'ACN', 'THM'];
+  const dpsJobs = [...meleeDpsJobs, ...rangedDpsJobs, ...casterDpsJobs];
   const craftingJobs = ['CRP', 'BSM', 'ARM', 'GSM', 'LTW', 'WVR', 'ALC', 'CUL'];
   const gatheringJobs = ['MIN', 'BTN', 'FSH'];
 
@@ -67,6 +68,10 @@ let tests = {
   },
   jobToRoleMapTest: () => {
     jobs.forEach((job) => assert(job.role === Util.jobToRole(job.name)));
+  },
+  isCombatJobTest: () => {
+    jobs.filter((job) => ['tank', 'healer', 'dps'].includes(job.role)).forEach((job) => assert(Util.isCombatJob(job.name)));
+    jobs.filter((job) => ['crafter', 'gatherer'].includes(job.role)).forEach((job) => assert(!Util.isCombatJob(job.name)));
   },
 };
 
