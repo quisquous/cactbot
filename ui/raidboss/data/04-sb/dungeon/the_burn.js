@@ -46,6 +46,7 @@
       infoText: {
         en: 'Hide behind crystal',
         de: 'Hinter dem Kristall verstecken',
+        ja: '水晶の後ろに',
       },
     },
     {
@@ -100,7 +101,7 @@
       infoText: {
         en: 'Puddle on YOU',
         de: 'Fläche auf DIR',
-        ja: '自分に沼',
+        ja: '自分に粘液',
       },
     },
     {
@@ -111,7 +112,7 @@
       infoText: {
         en: 'In line with smoking drone',
         de: 'In einer Linie mit der rauchenden Drohne stellen',
-        ja: 'ドローンに近づく',
+        ja: 'ドローンの直線に',
       },
     },
     {
@@ -149,7 +150,7 @@
           return {
             en: 'Puddle + cleave on YOU',
             de: 'Fläche + Cleave auf DIR',
-            ja: '自分に沼 + クリーヴ',
+            ja: '自分に沼 + フロストブレス',
           };
         }
         return {
