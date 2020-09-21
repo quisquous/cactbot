@@ -35,7 +35,7 @@ class Encounter {
         res = LogEventHandler.isMatchEnd(line.networkLine);
         if (res) {
           this.endStatus = res.groups.EndType;
-        } else if (line.targetId) {
+        } else if (line.id && line.targetId) {
           if (line.id.startsWith('1') ||
             (line.id.startsWith('4') && petNames.includes(line.name))) {
             // Player or pet ability

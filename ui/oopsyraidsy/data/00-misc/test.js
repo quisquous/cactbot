@@ -8,6 +8,8 @@
       id: 'Test Bow',
       netRegex: NetRegexes.gameNameLog({ line: 'You bow courteously to the striking dummy.*?' }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous vous inclinez devant le mannequin d\'entraînement.*?' }),
+      netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人にお辞儀した.*?' }),
+      netRegexCn: NetRegexes.gameNameLog({ line: '.*恭敬地对木人行礼.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 공손하게 인사합니다.*?' }),
       mistake: function(e, data) {
         return {
@@ -17,6 +19,7 @@
             en: 'Bow',
             de: 'Bogen',
             fr: 'Saluer',
+            ja: 'お辞儀',
             cn: '鞠躬',
             ko: '인사',
           },
@@ -27,6 +30,8 @@
       id: 'Test Wipe',
       netRegex: NetRegexes.gameNameLog({ line: 'You bid farewell to the striking dummy.*?' }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous faites vos adieux au mannequin d\'entraînement.*?' }),
+      netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人に別れの挨拶をした.*?' }),
+      netRegexCn: NetRegexes.gameNameLog({ line: '.*向木人告别.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형에게 작별 인사를 합니다.*?' }),
       mistake: function(e, data) {
         return {
@@ -36,6 +41,7 @@
             en: 'Party Wipe',
             fr: 'Wipe',
             de: 'Gruppenwipe',
+            ja: 'ワイプ',
             cn: '团灭',
             ko: '파티 전멸',
           },
@@ -51,10 +57,11 @@
         let strikingDummyNames = [
           'Striking Dummy',
           'Mannequin d\'entraînement',
+          '木人', // Striking Dummy called `木人` in CN as well as JA
           '나무인형',
           // FIXME: add other languages here
         ];
-        return strikingDummyNames.indexOf(e.targetName) >= 0;
+        return strikingDummyNames.includes(e.targetName);
       },
       mistake: function(e, data) {
         data.bootCount = data.bootCount || 0;
@@ -84,6 +91,8 @@
       id: 'Test Poke',
       netRegex: NetRegexes.gameNameLog({ line: 'You poke the striking dummy.*?' }),
       netRegexFr: NetRegexes.gameNameLog({ line: 'Vous touchez légèrement le mannequin d\'entraînement du doigt.*?' }),
+      netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?' }),
+      netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?' }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?' }),
       collectSeconds: 5,
       mistake: function(events, data) {
@@ -98,6 +107,7 @@
           en: 'Too many pokes (' + pokes + ')',
           fr: 'Trop de touches (' + pokes + ')',
           de: 'Zu viele Piekser (' + pokes + ')',
+          ja: 'いっぱいつついた (' + pokes + ')',
           cn: '戳太多下啦 (' + pokes + ')',
           ko: '너무 많이 찌름 (' + pokes + '번)',
         };

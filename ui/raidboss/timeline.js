@@ -22,8 +22,8 @@ const timelineInstructions = {
     'des timelines de test.',
     'Si vous bloquez l\'overlay,',
     'elles disparaîtront !',
-    'Les vraies Timelines apparaîtront',
-    'automatiquement dans les instances supportées.',
+    'Les vraies Timelines',
+    'apparaîtront automatiquement.',
   ],
   ja: [
     'こちらはデバッグ用の',

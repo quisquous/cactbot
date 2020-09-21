@@ -83,6 +83,7 @@
         en: 'Use a cage',
         de: 'Benutze einen Käfig',
         fr: 'Utilisez un incubateur',
+        ja: 'キメラ培養器を使って',
         cn: '打开笼子',
         ko: '감옥 해제',
       },
@@ -97,6 +98,7 @@
         en: 'Cleanse bomb',
         de: 'Reinige Bomben-Debuff',
         fr: 'Guérison => Debuff bombe',
+        ja: 'エスナ：魔科学爆弾',
         cn: '康复魔炸弹',
         ko: '폭탄 디버프 해제',
       },
@@ -213,7 +215,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Clockwork Alarum': '发条报警虫',
         'Exhibit level III': '第三展示区',

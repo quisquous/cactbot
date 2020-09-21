@@ -591,7 +591,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Sword of Condemnation': '断罪之剑',
         'Innocence': '无瑕灵君',
@@ -603,8 +602,11 @@
         'Winged Rep Trident': '扇形断罪飞翔',
         'Winged Rep Rotate': '风车断罪飞翔',
         'Winged Rep Tethers': '连线断罪飞翔',
+        'Starbirth Corner': '创星角落',
         'Starbirth Avoid': '创星躲避',
+        'Starbirth Charge': '创星突进',
         'Starbirth Explode': '创星爆炸',
+        'Starbirth Final': '创星狂暴',
         'Soul And Body': '身心',
         'Shadowreaver': '夺影',
         'Scold\'s Bridle': '毒舌钩',

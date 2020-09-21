@@ -33,6 +33,7 @@
             en: 'Charge on YOU',
             de: 'Ansturm auf DIR',
             fr: 'Charge sur VOUS',
+            ja: '自分にワイルドチャージ',
             cn: '蓝球点名',
           };
         }
@@ -43,6 +44,7 @@
             en: 'Charge on ' + data.ShortName(matches.target),
             de: 'Ansturm auf ' + data.ShortName(matches.target),
             fr: 'Charge sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にワイルドチャージ',
             cn: '蓝球点' + data.ShortName(matches.target),
           };
         }
@@ -67,6 +69,7 @@
             en: 'Cyclonic on YOU',
             de: 'Zyklon-Chaos auf DIR',
             fr: 'Chaos cyclonique sur VOUS',
+            ja: '自分にサイクロニックカオス',
             cn: '连线点名',
           };
         }
@@ -77,6 +80,7 @@
             en: 'Cyclonic on ' + data.ShortName(matches.target),
             de: 'Zyklon-Chaos auf ' + data.ShortName(matches.target),
             fr: 'Chaos cyclonique sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にサイクロニックカオス',
             cn: '连线点' + data.ShortName(matches.target),
           };
         }
@@ -126,9 +130,9 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': 'イムドゥグド',
+        'The Alpha Concourse': '第I信徒区画',
       },
       'replaceText': {
         'Crackle Hiss': 'クラックルヒス',
@@ -137,23 +141,29 @@
         'Electric Burst': 'エレクトリックバースト',
         'Electrocharge': 'エレクトロチャージ',
         'Heat Lightning': 'ヒートライトニング',
+        'Random \\+ Charge': 'ランダム + チャージ',
+        '1x Son / 1x Daughter Adds': '雑魚: 1x サン / 1x ドーター',
+        '2x Son / 2x Daughter Adds': '雑魚: 2x サン / 2x ドーター',
         'Spike Flail': 'スパイクフレイル',
         'Wild Charge': 'ワイルドチャージ',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Imdugud': '伊姆都古德',
+        'The Alpha Concourse': '第1信徒区间',
       },
       'replaceText': {
         'Crackle Hiss': '雷光电闪',
         'Critical Rip': '暴击撕裂',
         'Cyclonic Chaos': '龙卷雷暴',
+        'Daughter': '伊姆都古德之女',
         'Electric Burst': '电光爆发',
         'Electrocharge': '蓄电',
         'Heat Lightning': '惊电',
+        'Random \\+ Charge': '随机+冲锋',
+        'Son': '伊姆都古德之子',
         'Spike Flail': '刃尾横扫',
         'Wild Charge': '狂野冲锋',
       },

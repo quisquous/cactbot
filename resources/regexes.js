@@ -554,9 +554,9 @@ var Regexes = {
 
   // Creates a named regex capture group named |name| for the match |value|.
   namedCapture: (name, value) => {
-    if (name.indexOf('>') >= 0)
+    if (name.includes('>'))
       console.error('"' + name + '" contains ">".');
-    if (name.indexOf('<') >= 0)
+    if (name.includes('<'))
       console.error('"' + name + '" contains ">".');
 
     return '(?<' + name + '>' + value + ')';
@@ -635,7 +635,7 @@ var Regexes = {
     let keys = Object.keys(f);
     for (let k = 0; k < keys.length; ++k) {
       let key = keys[k];
-      if (params.indexOf(key) < 0) {
+      if (!params.includes(key)) {
         throw new Error(`${funcName}: invalid parameter '${key}'.  ` +
             `Valid params: ${JSON.stringify(params)}`);
       }
