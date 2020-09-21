@@ -1080,14 +1080,28 @@ class Bars {
     const lang = this.options.ParserLanguage;
     this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
     this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
-    this.craftingStartRegex = LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'];
-    this.craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
-    this.craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
-    this.craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
-    this.trialCraftingStartRegex = LocaleRegex.trialCraftingStart[lang] || LocaleRegex.trialCraftingStart['en'];
-    this.trialCraftingFinishRegex = LocaleRegex.trialCraftingFinish[lang] || LocaleRegex.trialCraftingFinish['en'];
-    this.trialCraftingFailRegex = LocaleRegex.trialCraftingFail[lang] || LocaleRegex.trialCraftingFail['en'];
-    this.trialCraftingCancelRegex = LocaleRegex.trialCraftingCancel[lang] || LocaleRegex.trialCraftingCancel['en'];
+    const craftingStartRegex = LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'];
+    const trialCraftingStartRegex = LocaleRegex.trialCraftingStart[lang] || LocaleRegex.trialCraftingStart['en'];
+    const craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
+    const trialCraftingFinishRegex = LocaleRegex.trialCraftingFinish[lang] || LocaleRegex.trialCraftingFinish['en'];
+    const craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
+    const craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
+    const trialCraftingFailRegex = LocaleRegex.trialCraftingFail[lang] || LocaleRegex.trialCraftingFail['en'];
+    const trialCraftingCancelRegex = LocaleRegex.trialCraftingCancel[lang] || LocaleRegex.trialCraftingCancel['en'];
+    this.craftingStartRegexes = [
+      craftingStartRegex,
+      trialCraftingStartRegex,
+    ];
+    this.craftingFinishRegexes = [
+      craftingFinishRegex,
+      trialCraftingFinishRegex,
+    ];
+    this.craftingStopRegexes = [
+      craftingFailRegex,
+      craftingCancelRegex,
+      trialCraftingFailRegex,
+      trialCraftingCancelRegex,
+    ];
   }
 
   UpdateJob() {
@@ -2706,36 +2720,22 @@ class Bars {
       }
       return false;
     };
-    const undefinedOrEqual = (value, expected) => {
-      if (value === undefined)
-        return true;
-      else if (value == expected)
-        return true;
-
-      return false;
-    };
 
     if (!this.crafting) {
-      if (anyRegexMatched(log, [
-        this.craftingStartRegex,
-        this.trialCraftingStartRegex,
-      ]))
+      if (anyRegexMatched(log, this.craftingStartRegexes))
         this.crafting = true;
     } else {
-      if (anyRegexMatched(log, [
-        this.craftingFailRegex,
-        this.craftingCancelRegex,
-        this.trialCraftingFailRegex,
-        this.trialCraftingCancelRegex,
-      ])) {
+      if (anyRegexMatched(log, this.craftingStopRegexes)) {
         this.crafting = false;
       } else {
-        let m = this.craftingFinishRegex.exec(log);
-        if (!m)
-          m = this.trialCraftingFinishRegex.exec(log);
-        if (m) {
-          if (undefinedOrEqual(m.groups.player, this.me))
-            this.crafting = false;
+        for (const regex of this.craftingFinishRegexes) {
+          const m = regex.exec(log);
+          if (m) {
+            if (m.groups.player === undefined || m.groups.player == this.me) {
+              this.crafting = false;
+              break;
+            }
+          }
         }
       }
     }
