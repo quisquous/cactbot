@@ -1461,9 +1461,9 @@ class Bars {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
           eyeBox.duration = Math.min(old + 30, 59.5);
-          // Storm's Eye applies with some animation delay here, and on the next
-          // Storm's Eye, it snapshots the damage when the gcd is started, so
-          // add some of a gcd here in duration time from when it's applied.
+        // Storm's Eye applies with some animation delay here, and on the next
+        // Storm's Eye, it snapshots the damage when the gcd is started, so
+        // add some of a gcd here in duration time from when it's applied.
         } else {
           eyeBox.duration = 0;
           eyeBox.duration = 30 + 1;
@@ -1499,7 +1499,7 @@ class Bars {
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
       if (eyeBox.value >= oldThreshold &&
-        eyeBox.value >= newThreshold)
+          eyeBox.value >= newThreshold)
         eyeBox.threshold = newThreshold;
       else
         eyeBox.threshold = oldThreshold;
@@ -2599,7 +2599,7 @@ class Bars {
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
+        Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
       opacityContainer.style.opacity = 1.0;
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
