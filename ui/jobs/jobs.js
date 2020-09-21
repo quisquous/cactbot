@@ -281,6 +281,10 @@ class ComboTracker {
   AbortCombo() {
     this.StateTransition(null);
   }
+  IsComboBroken() {
+    if (this.considerNext == this.startList) return true;
+    return false;
+  }
 }
 
 function setupComboTracker(callback) {
@@ -2215,7 +2219,7 @@ class Bars {
 
     this.comboFuncs.push((skill) => {
       // if this.combo.considerNext is equal as this.combo.startList, the combo is broken.
-      if (this.combo.considerNext == this.combo.startList)
+      if (this.combo.IsComboBroken())
         comboTimer.duration = 0;
 
       // if skill exist, this skill is in combo.
