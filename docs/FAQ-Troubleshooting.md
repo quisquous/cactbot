@@ -24,6 +24,16 @@ If you get a [CAS policy](https://blogs.msdn.microsoft.com/drew/2009/12/23/xunit
 
 If you get an overlay plugin error similar to `Error: (overlay): Exception in SendFastRateEvents: Could not load file or assembly 'FFXIV_ACT_Plugin, Version=(version), Culture=neutral, PublicKeyToken=null' or one of its dependencies. The system cannot find the file specified.` then you likely need to unblock the ffxiv plugin.  See the instructions above for unblocking DLLs.
 
+If you get an error that says `Plugin Load Failure` and `The downloaded file did not contain a plugin that could be loaded`,
+there could be several potential issues.
+
+- Make sure you have [installed OverlayPlugin](https://github.com/quisquous/cactbot#install-ngld-overlayplugin).
+- Check your OverlayPlugin version in **Plugins** -> **Plugin Listing** -> **OverlayPlugin.dll**.
+If this is not the same version as [this release](https://github.com/ngld/OverlayPlugin/releases/latest),
+then remove it and re-follow the [installation instructions](https://github.com/quisquous/cactbot#install-ngld-overlayplugin).
+- Make sure you are running x64 ACT (`Advanced Combat Tracker.exe`) and not x86 ACT (`ACTx86.exe`).
+- Finally, make sure you have reloaded ACT once you have installed OverlayPlugin.
+
 ## Problems using Cactbot
 
 If triggers or pieces of the UI do not work, ensure that "Disable Parsing from Network Data" is **not** checked in the FFXIV plugin settings. Network data is required for accurate trigger timing.

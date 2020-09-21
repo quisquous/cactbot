@@ -24,6 +24,7 @@
         en: 'Kill Nail',
         de: 'infernalische Fessel zerstören',
         fr: 'Détruisez le clou',
+        ja: '炎獄の楔を討つ',
         cn: '击杀火狱之楔',
       },
     },
@@ -65,28 +66,32 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Ifrit': 'イフリート',
       },
       'replaceText': {
+        '\\(inner\\)': '(中)',
+        '\\(outer\\)': '(外)',
         'Eruption': 'エラプション',
         'Hellfire': '地獄の火炎',
         'Incinerate': 'インシネレート',
+        'Nail Add': '雑魚: 炎獄の楔',
         'Radiant Plume': '光輝の炎柱',
         'Vulcan Burst': 'バルカンバースト',
       },
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Ifrit': '伊弗利特',
       },
       'replaceText': {
+        '\\(inner\\)': '(内)',
+        '\\(outer\\)': '(外)',
         'Eruption': '地火喷发',
         'Hellfire': '地狱之火炎',
         'Incinerate': '烈焰焚烧',
+        'Nail Add': '火狱之楔出现',
         'Radiant Plume': '光辉炎柱',
         'Vulcan Burst': '火神爆裂',
       },

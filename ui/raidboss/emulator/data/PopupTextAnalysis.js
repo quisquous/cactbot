@@ -20,7 +20,7 @@ class PopupTextAnalysis extends StubbedPopupText {
     for (const logObj of e.detail.logs) {
       const log = logObj.properCaseConvertedLine || logObj.convertedLine;
 
-      if (log.indexOf('00:0038:cactbot wipe') >= 0)
+      if (log.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
 
       for (const trigger of this.triggers) {

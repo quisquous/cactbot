@@ -22,7 +22,7 @@ class PartyTracker {
 
     // role -> [names] but only for party
     this.roleToPartyNames_ = {};
-    for (const role of kAllRoles)
+    for (const role of Util.getAllRoles())
       this.roleToPartyNames_[role] = [];
 
     for (const p of e.party) {

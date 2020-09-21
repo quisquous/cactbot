@@ -85,6 +85,7 @@
         return {
           en: 'Go Left, Behind Wing',
           de: 'Geh links hinter den Flügel',
+          fr: 'À gauche, derrière l\'aile',
           ko: '왼쪽으로 이동 (날개 뒤)',
         };
       },
@@ -99,6 +100,7 @@
         return {
           en: 'Go Right, Behind Wing',
           de: 'Geh rechts hinter den Flügel',
+          fr: 'À droite, derrière l\'aile',
           ko: '오른쪽으로 이동 (날개 뒤)',
         };
       },
@@ -693,7 +695,7 @@
       alertText: {
         en: 'Get Under Cardinal Clone',
         de: 'Unter den Klon in einer der Himmelsrichtungen gehen',
-        fr: 'Allez sous un clone dans un point cardinal',
+        fr: 'Allez sous un clone sur un point cardinal',
         ko: '분신 아래로 이동',
       },
     },
@@ -710,7 +712,7 @@
       alertText: {
         en: 'Away From Clones',
         de: 'Weg von den Klonen',
-        fr: 'Éloignez vous des clones',
+        fr: 'Éloignez-vous des clones',
         ko: '분신에게서 떨어지기',
       },
     },

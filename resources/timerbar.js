@@ -383,14 +383,14 @@ class TimerBar extends HTMLElement {
   updateText() {
     let varyingTexts = ['elapsed', 'duration', 'percent', 'remain'];
     // These values are filled in during draw() when the values change.
-    if (varyingTexts.indexOf(this._leftText) == -1) {
+    if (!varyingTexts.includes(this._leftText)) {
       // Otherwise the value is fixed so it can be set here.
       this.leftTextElement.innerHTML = this._leftText;
     }
-    if (varyingTexts.indexOf(this._centerText) == -1)
+    if (!varyingTexts.includes(this._centerText))
       this.centerTextElement.innerHTML = this._centerText;
 
-    if (varyingTexts.indexOf(this._rightText) == -1)
+    if (!varyingTexts.includes(this._rightText))
       this.rightTextElement.innerHTML = this._rightText;
   }
 

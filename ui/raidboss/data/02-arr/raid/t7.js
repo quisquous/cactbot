@@ -20,6 +20,7 @@
         en: 'Silence Ram\'s Voice',
         de: 'Verstumme Stimme des Widders',
         fr: 'Interrompez Voix du bélier',
+        ja: '沈黙: 氷結の咆哮',
         cn: '沉默寒冰咆哮',
       },
     },
@@ -39,6 +40,7 @@
         en: 'Silence Dragon\'s Voice',
         de: 'Verstumme Stimme des Drachens',
         fr: 'Interrompez Voix du dragon',
+        ja: '沈黙: 雷電の咆哮',
         cn: '沉默雷电咆哮',
       },
     },
@@ -59,6 +61,7 @@
         en: 'Tail Slap in 10',
         de: 'Schweifklapser in 10',
         fr: 'Gifle caudale dans 10s',
+        ja: 'まもなくテールスラップ',
         cn: '10秒内死刑',
       },
     },
@@ -74,6 +77,7 @@
         en: 'Renaud Add',
         de: 'Renaud Add',
         fr: 'Add Renaud',
+        ja: '雑魚：ルノー',
         cn: '雷诺出现',
       },
     },
@@ -90,6 +94,7 @@
         en: 'Voice Soon',
         de: 'Stimme Der Verwünschung bald',
         fr: 'Voix du maléfice bientôt',
+        ja: 'まもなく呪詛の声',
         cn: '诅咒之声即将判定',
       },
     },
@@ -103,6 +108,7 @@
             en: 'Shriek on YOU',
             de: 'Schrei Der Verwünschung auf DIR',
             fr: 'Cri du maléfice sur VOUS',
+            ja: '自分に呪詛の叫声',
             cn: '诅咒之嚎点名',
           };
         }
@@ -113,6 +119,7 @@
             en: 'Shriek on ' + data.ShortName(matches.target),
             de: 'Schrei Der Verwünschung auf ' + data.ShortName(matches.target),
             fr: 'Cri du maléfice sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'に呪詛の叫声',
             cn: '诅咒之嚎点' + data.ShortName(matches.target),
           };
         }
@@ -129,6 +136,7 @@
             en: 'Shriek Soon',
             de: 'Schrei Der Verwünschung bald',
             fr: 'Cri du maléfice bientôt',
+            ja: 'まもなく呪詛の叫声',
             cn: '诅咒之嚎即将判定',
           };
         }
@@ -136,6 +144,7 @@
           en: 'Dodge Shriek',
           de: 'Schrei Der Verwünschung ausweichen',
           fr: 'Esquivez le cri maudit',
+          ja: '呪詛の叫声に避け',
           cn: '躲避诅咒之嚎',
         };
       },
@@ -202,6 +211,7 @@
         en: 'Venomous Tail',
         de: 'Venomschweif',
         fr: 'Queue venimeuse',
+        ja: 'ベノモステール',
         cn: '猛毒之尾',
       },
     },

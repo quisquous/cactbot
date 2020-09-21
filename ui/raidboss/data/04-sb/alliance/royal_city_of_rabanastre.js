@@ -514,7 +514,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'command tower': '支配之塔',
@@ -525,7 +524,11 @@
         'Argath Thadalfus': '冷血剑阿加斯',
         'Hashmal, Bringer Of Order': '统治者哈修马利姆',
         'Rofocale': '人马王洛弗卡勒',
+        'The Crumbling Bridge': '崩塌的桥',
         'The heavens tremble in my wake': '我的战车驰骋天际！',
+        'The Lesalia Garden Ruins': '勒萨利亚圆庭遗迹',
+        'The Lesalia Temple Ruins': '勒萨利亚神殿遗迹',
+        'The Palace Square': '王宫前广场',
       },
       'replaceText': {
         '--face--': '--面对--',

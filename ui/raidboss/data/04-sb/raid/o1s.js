@@ -155,10 +155,9 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Alte Roite': '老者',
-        'Ball Of Fire': '火球',
+        'Ball Of Fire': '火焰球',
         'Wyrm Tail': '太古龙尾',
       },
       'replaceText': {

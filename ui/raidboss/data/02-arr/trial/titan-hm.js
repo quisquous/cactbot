@@ -50,6 +50,7 @@
           en: 'Cleanse ' + data.ShortName(matches.target),
           de: 'Reinige ' + data.ShortName(matches.target),
           fr: 'Guérison sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'にエスナ',
           cn: '康复' + data.ShortName(matches.target),
         };
       },
@@ -100,12 +101,14 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
         'Titan': 'タイタン',
       },
       'replaceText': {
+        '\\(clock\\)': '(時針回り)',
+        '\\(diamond\\)': '(ダイヤモンド)',
+        '\\(line\\)': '(一直線)',
         'Burst': '大爆発',
         'Bury': '衝撃',
         'Earthen Fury': '大地の怒り',
@@ -120,12 +123,14 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': '爆破岩石',
         'Titan': '泰坦',
       },
       'replaceText': {
+        '\\(clock\\)': '(顺时针)',
+        '\\(diamond\\)': '(钻石)',
+        '\\(line\\)': '(直线)',
         'Burst': '爆炸',
         'Bury': '塌方',
         'Earthen Fury': '大地之怒',

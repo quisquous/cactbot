@@ -314,7 +314,7 @@
       netRegexCn: NetRegexes.tether({ id: '005A', target: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '005A', target: '리바이어선', capture: false }),
       condition: function(data) {
-        return data.vent.length == 2 && data.vent.indexOf(data.me) == -1 && data.role != 'tank';
+        return data.vent.length == 2 && !data.vent.includes(data.me) && data.role != 'tank';
       },
       infoText: {
         en: 'Pop alternating bubbles',

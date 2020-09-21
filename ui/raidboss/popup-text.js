@@ -368,6 +368,10 @@ class PopupText {
   ShortNamify(name) {
     // TODO: make this unique among the party in case of first name collisions.
     // TODO: probably this should be a general cactbot utility.
+    if (typeof name !== 'string') {
+      console.error('called ShortNamify with non-string');
+      return '???';
+    }
 
     if (name in Options.PlayerNicks)
       return Options.PlayerNicks[name];
@@ -413,7 +417,7 @@ class PopupText {
 
   OnLog(e) {
     for (let log of e.detail.logs) {
-      if (log.indexOf('00:0038:cactbot wipe') >= 0)
+      if (log.includes('00:0038:cactbot wipe'))
         this.SetInCombat(false);
 
       for (let trigger of this.triggers) {

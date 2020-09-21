@@ -28,7 +28,7 @@ if (typeof module !== 'undefined') {
       de: 'Noch (?<time>\\y{Float}) Sekunden bis Kampfbeginn! \\((?<player>.*?)\\)',
       fr: 'Début du combat dans (?<time>\\y{Float}) secondes[ ]?! \\((?<player>.*?)\\)',
       ja: '戦闘開始まで(?<time>\\y{Float})秒！ \\((?<player>.*?)\\)',
-      cn: '距离战斗开始还有(?<time>\\y{Float})秒！ \\((?<player>.*?)\\)',
+      cn: '距离战斗开始还有(?<time>\\y{Float})秒！ （(?<player>.*?)）',
       ko: '전투 시작 (?<time>\\y{Float})초 전! \\((?<player>.*?)\\)',
     },
     countdownEngage: {

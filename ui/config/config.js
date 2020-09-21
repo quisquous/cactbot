@@ -496,7 +496,7 @@ class CactbotConfigurator {
 
       let typeKey = 'general';
       for (const str in kDirectoryToCategory) {
-        if (filename.indexOf('/' + str + '/') == -1)
+        if (!filename.includes('/' + str + '/'))
           continue;
         typeKey = str;
         break;
