@@ -2218,7 +2218,6 @@ class Bars {
     };
 
     this.comboFuncs.push((skill) => {
-      // if this.combo.considerNext is equal as this.combo.startList, the combo is broken.
       if (this.combo.IsComboBroken())
         comboTimer.duration = 0;
 
