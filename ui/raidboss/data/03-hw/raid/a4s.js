@@ -21,6 +21,7 @@
             en: 'Orbs on YOU',
             de: 'Orbs auf DIR',
             fr: 'Orbes sur VOUS',
+            ja: '自分に玉',
             cn: '球点名',
             ko: '구슬 대상자',
           };
@@ -32,6 +33,7 @@
             en: 'Orbs on ' + data.ShortName(matches.target),
             de: 'Orbs auf ' + data.ShortName(matches.target),
             fr: 'Orbes sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'に玉',
             cn: '球点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 구슬',
           };
@@ -50,6 +52,7 @@
           en: 'Stun ' + matches.target,
           de: 'Unterbreche ' + matches.target,
           fr: 'Stun ' + matches.target,
+          ja: 'スタン: ' + matches.target,
           cn: '眩晕' + matches.target,
           ko: matches.target + '기절 시키기',
         };
@@ -79,6 +82,7 @@
         en: 'Laser Tethers',
         de: 'Laser Verbindungen',
         fr: 'Liens laser',
+        ja: 'レザー線',
         cn: '镭射连线',
         ko: '레이저 선',
       },
@@ -96,6 +100,7 @@
         en: 'Nisi A on YOU',
         de: 'Nisi A auf DIR',
         fr: 'Peine A sur VOUS',
+        ja: '自分に仮判決α',
         cn: '蓝BUFF点名',
         ko: '임시 판결 A 대상자',
       },
@@ -113,6 +118,7 @@
         en: 'Nisi B on YOU',
         de: 'Nisi B auf DIR',
         fr: 'Peine B sur VOUS',
+        ja: '自分に仮判決β',
         cn: '红BUFF点名',
         ko: '임시 판결 B 대상자',
       },

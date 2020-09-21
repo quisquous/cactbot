@@ -75,8 +75,8 @@ const commonReplacement = {
     '--dps burn--': {
       de: '--dps burn--',
       fr: '--burn dps--',
-      ja: '--dps burn--',
-      cn: '--dps burn--',
+      ja: '--火力出せ--',
+      cn: '--转火--',
       ko: '--dps burn--',
     },
     '--east--': {

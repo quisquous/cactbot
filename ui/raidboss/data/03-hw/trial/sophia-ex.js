@@ -17,10 +17,26 @@ let findSafeDir = (data) => {
 
 let callSafeDir = (callIndex) => {
   return {
-    '2': { en: 'Go East (Hard Tilt)', cn: '去东边（大倾斜）' },
-    '1': { en: 'Go East (Soft Tilt)', cn: '去东边（小倾斜）' },
-    '-2': { en: 'Go West (Hard Tilt)', cn: '去西边（大倾斜）' },
-    '-1': { en: 'Go West (Soft Tilt)', cn: '去西边（小倾斜）' },
+    '2': {
+      en: 'Go East (Hard Tilt)',
+      ja: '東へ (大きい斜め)',
+      cn: '去东边（大倾斜）',
+    },
+    '1': {
+      en: 'Go East (Soft Tilt)',
+      ja: '東へ (小さい斜め)',
+      cn: '去东边（小倾斜）',
+    },
+    '-2': {
+      en: 'Go West (Hard Tilt)',
+      ja: '西へ (大きい斜め)',
+      cn: '去西边（大倾斜）',
+    },
+    '-1': {
+      en: 'Go West (Soft Tilt)',
+      ja: '西へ (小さい斜め)',
+      cn: '去西边（小倾斜）',
+    },
     // Stringified because Javascript doesn't do negative-integer key values.
   }[callIndex.toString()];
 };
@@ -47,6 +63,7 @@ let callSafeDir = (callIndex) => {
         en: 'Avoid Dash Attack',
         de: 'Ansturm-Angriff ausweichen',
         fr: 'Évitez l\'attaque Charge',
+        ja: '突進に避け',
         cn: '躲避击飞',
       },
     },
@@ -78,6 +95,7 @@ let callSafeDir = (callIndex) => {
         en: 'Bait Quasar Meteors',
         de: 'Quasar Meteore ködern',
         fr: 'Attirez les météores du Quasar',
+        ja: 'メテオを誘導',
         cn: '诱导陨石',
         ko: '운석 유도하기',
       },
@@ -151,6 +169,7 @@ let callSafeDir = (callIndex) => {
         en: 'Get behind lancer',
         de: 'Geh hinter dem 3. Demiurg',
         fr: 'Passez derrière le lancier',
+        ja: '三の従者の後ろに',
         cn: '躲在3号小怪后',
         ko: '제3신도 뒤로 가기',
       },
@@ -169,6 +188,7 @@ let callSafeDir = (callIndex) => {
             en: 'Infusion on YOU',
             de: 'Schneisenschläger auf DIR',
             fr: 'Infusion sur VOUS',
+            ja: '自分に猛突進',
             cn: '冲锋点名',
             ko: '맹돌진 대상자',
           };
@@ -177,6 +197,7 @@ let callSafeDir = (callIndex) => {
           en: 'Infusion on ' + data.ShortName(matches.target),
           de: 'Schneisenschläger auf ' + data.ShortName(matches.target),
           fr: 'Infusion sur ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'に猛突進',
           cn: '冲锋点' + data.ShortName(matches.target),
           ko: '' + data.ShortName(matches.target) + ' 에게 맹돌진',
         };
@@ -297,6 +318,7 @@ let callSafeDir = (callIndex) => {
         en: 'Avoid head laser',
         de: 'Kopflaser ausweichen',
         fr: 'Évitez la tête laser',
+        ja: 'レザーに避け',
         cn: '躲避人头炮',
         ko: '머리 레이저 피하기',
       },
@@ -314,7 +336,7 @@ let callSafeDir = (callIndex) => {
       },
       alertText: function(data) {
         const localeCompass = {
-          'N': { en: 'North', fr: 'Nord', de: 'Norde', ja: 'ノース', cn: '北', ko: '북쪽' },
+          'N': { en: 'North', fr: 'Nord', de: 'Norde', ja: '北', cn: '北', ko: '북쪽' },
           'S': { en: 'South', fr: 'Sud', de: 'Süden', ja: '南', cn: '南面', ko: '남쪽' },
           'NW': { en: 'NW', fr: 'N-O', de: 'NW', ja: '北西', cn: '西北', ko: '북서' },
           'NE': { en: 'NE', fr: 'N-E', de: 'NO', ja: '北東', cn: '东北', ko: '북동' },
@@ -565,6 +587,10 @@ let callSafeDir = (callIndex) => {
         'The Third Demiurge': '三の従者',
       },
       'replaceText': {
+        '\\?': ' ?',
+        '\\(Meteor Detonate\\)': '(メテオ)',
+        '\\(Snapshot\\)': '(ヘッド)',
+        '\\(Tilt\\)': '(斜め)',
         'Aero III': 'エアロガ',
         'Arms of Wisdom': 'ウィズダムアームズ',
         'Cintamani': 'チンターマニ',

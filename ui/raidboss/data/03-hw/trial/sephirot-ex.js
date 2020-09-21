@@ -68,13 +68,13 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Coronal Wind': 'コロナルウィンド',
         'Sephirot': 'セフィロト',
         'Storm Of Words': 'ストーム・オブ・ワード',
       },
       'replaceText': {
+        'Adds Spawn': '雑魚',
         'Ascension': 'アセンション',
         'Chesed': 'ケセド',
         'Da\'at': 'ダアト',
