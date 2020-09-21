@@ -435,9 +435,6 @@ function setupRegexes(playerName) {
     kAbility.FullThrust,
     kAbility.Disembowel,
     kAbility.ChaosThrust,
-    kAbility.FangAndClaw,
-    kAbility.WheelingThrust,
-    kAbility.RaidenThrust,
     kAbility.PiercingTalon,
     kAbility.DoomSpike,
     kAbility.SonicThrust,
@@ -2218,23 +2215,22 @@ class Bars {
         comboTimer.duration = 0;
 
       // if skill exist, this skill is in combo.
-      if (skill) {
-        comboTimer.duration = 0;
-        comboTimer.duration = 15;
-        comboType = 'normol';
+      if (!skill) return;
+      comboTimer.duration = 0;
+      comboTimer.duration = 15;
+      comboType = 'normol';
 
-        if (skill == kAbility.Disembowel) {
-          disembowelBox.duration = 0;
-          disembowelBox.duration = 30 + 1;
-        }
-        // When Sonic Thrust hit more than one mob, combo will be errorly break.
-        // ComboTracker is hard to fix, so deal it by a tricky way.
-        if (skill == kAbility.SonicThrust) {
-          setTimeout(() => {
-            comboTimer.duration = 0;
-            comboTimer.duration = 14.9;
-          }, 100);
-        }
+      if (skill == kAbility.Disembowel) {
+        disembowelBox.duration = 0;
+        disembowelBox.duration = 30 + 1;
+      }
+      // When Sonic Thrust hit more than one mob, combo will be errorly break.
+      // ComboTracker is hard to fix, so deal it by a tricky way.
+      if (skill == kAbility.SonicThrust) {
+        setTimeout(() => {
+          comboTimer.duration = 0;
+          comboTimer.duration = 14.9;
+        }, 100);
       }
     });
 
