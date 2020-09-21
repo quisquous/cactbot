@@ -91,6 +91,7 @@
         'The icebound tomelith A2 activates and begins to emit heat': 'アイスドトームリスA2号基が起動し、氷がもろくなった！',
         'The icebound tomelith A3 activates and begins to emit heat': 'アイスドトームリスA3号基が起動し、氷がもろくなった！',
         'The icebound tomelith A4 activates and begins to emit heat': 'アイスドトームリスA4号基が起動し、氷がもろくなった！',
+      },
     },
     {
         'locale': 'cn',
