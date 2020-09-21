@@ -267,10 +267,10 @@ class ComboTracker {
       this.considerNext = this.startList;
     } else {
       this.considerNext = [];
-      Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
       Array.prototype.push.apply(this.considerNext, this.startList);
 
       if (!this.comboNodes[nextState].last) {
+        Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
         let kComboDelayMs = 15000;
         this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
       }
