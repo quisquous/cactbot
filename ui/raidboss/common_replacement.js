@@ -116,16 +116,16 @@ const commonReplacement = {
     '--north--': {
       de: '--norden--',
       fr: '--nord--',
-      ja: '-ノース--',
+      ja: '--北--',
       cn: '--北--',
       ko: '--북쪽--',
     },
     '--northeast--': {
       de: '--nordosten--',
       fr: '--nord-est--',
-      ja: '北東',
-      cn: '东北',
-      ko: '북동',
+      ja: '--北東--',
+      cn: '--东北--',
+      ko: '--북동--',
     },
     '--northwest--': {
       de: '--nordwesten--',

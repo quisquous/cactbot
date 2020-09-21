@@ -16,6 +16,11 @@ _ZONE_ID_OUTPUT_FILE = "zone_id.js"
 _ZONE_INFO_OUTPUT_FILE = "zone_info.js"
 _CONTENT_TYPE_OUTPUT_FILE = "content_type.js"
 
+# name_key to territory_id mappings for locations with conflicts
+known_ids = {
+    "TheDiadem": 929,
+}
+
 # Notes: use rawexd here instead of exd to get place ids / territory ids
 # instead of the lookups for PlaceName / TerritoryType that are not unique.
 # The connections here are:
@@ -151,8 +156,12 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
             map.pop(name_key)
             continue
 
-        map[name_key] = int(territory_id)
         territory_to_cfc_map[territory_id] = cfc_id_for_name
+        if name_key in known_ids and known_ids[name_key] != int(territory_id):
+            print_error("skipping", name_key, territory_map, territory_id)
+            continue
+
+        map[name_key] = int(territory_id)
 
     # map is what gets written to zone_id.js, but it's also useful to keep additional information
     # about where the name came from.

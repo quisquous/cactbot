@@ -282,7 +282,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Depth Grip': '海洋之手',
         'Doxa': '信仰大堂',
@@ -296,8 +295,8 @@
       'replaceText': {
         'The Final Verse': '恐怖的最终章',
         'Wavebreaker': '水波破',
-        'Terrible Hammer/Blade': '恐怖的战锤/大剑',
-        'Terrible Blade/Hammer': '恐怖的大剑/战锤',
+        'Terrible Hammer/Blade': '恐怖的战锤/恐怖的大剑',
+        'Terrible Blade/Hammer': '恐怖的大剑/恐怖的战锤',
         'Swift Shift': '高速移动',
         'Setback': '驱赶',
         'Seabed Ceremony': '水底仪式',

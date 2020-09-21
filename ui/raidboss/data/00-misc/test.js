@@ -52,6 +52,7 @@
         return {
           en: 'Stack for ' + matches[1],
           de: 'Sammeln für ' + matches[1],
+          fr: 'Packez-vous pour ' + matches[1],
           ja: matches[1] + 'に集合',
           cn: '木人处集合',
           ko: matches[1] + '에 집합',
@@ -60,6 +61,7 @@
       tts: {
         en: 'Stack',
         de: 'Sammeln',
+        fr: 'Packez-vous',
         ja: '集合',
         cn: '集合',
         ko: '집합',
@@ -85,6 +87,7 @@
         return {
           en: 'Elapsed ms: ' + elapsed,
           de: 'Abgelaufene ms: ' + elapsed,
+          fr: 'Expiré ms: ' + elapsed,
           ja: '経過時間：' + elapsed,
           cn: '经过时间：' + elapsed,
         };
@@ -107,7 +110,7 @@
         return {
           en: 'poke #' + data.pokes,
           de: 'stups #' + data.pokes,
-          fr: 'Touché #' + data.pokes,
+          fr: 'poussée #' + data.pokes,
           ja: 'つつく #' + data.pokes,
           cn: '戳 #' + data.pokes,
           ko: data.pokes + '번 찌름',
@@ -133,7 +136,7 @@
       groupTTS: {
         en: 'group psych',
         de: 'Gruppen auf gehts',
-        fr: 'group motivation',
+        fr: 'motivation de groupe',
         ja: 'グループ、活を入れる',
         cn: '组激励',
         ko: '단체 격려',
@@ -141,7 +144,7 @@
       tts: {
         en: 'psych',
         de: 'auf gehts',
-        fr: 'Motivation',
+        fr: 'motivation',
         ja: '活を入れる',
         cn: '激励',
         ko: '힘내라!',
@@ -159,7 +162,7 @@
       alarmText: {
         en: 'hahahahaha',
         de: 'hahahahaha',
-        fr: 'Mouahahaha',
+        fr: 'hahahahaha',
         ja: 'ハハハハハ',
         cn: '2333333333',
         ko: '푸하하하하핳',
@@ -167,7 +170,7 @@
       groupTTS: {
         en: 'group laugh',
         de: 'Gruppenlache',
-        fr: 'group motivation',
+        fr: 'rire de groupe',
         ja: 'グループハハハ',
         cn: '组哈哈',
         ko: '단체 웃음',
@@ -175,7 +178,7 @@
       tts: {
         en: 'hahahahaha',
         de: 'hahahahaha',
-        fr: 'Haha mort de rire',
+        fr: 'hahahahaha',
         ja: 'ハハハハハ',
         cn: '哈哈哈哈哈哈',
         ko: '푸하하하하핳',
@@ -194,7 +197,7 @@
       tts: {
         en: 'clapity clap',
         de: 'klatschen',
-        fr: 'Bravo, vive la France',
+        fr: 'applaudissement',
         ja: '拍手',
         cn: '鼓掌',
         ko: '박수 짝짝짝',
@@ -260,18 +263,22 @@
     },
     {
       locale: 'fr',
-      missingTranslations: true,
       replaceSync: {
         'You bid farewell to the striking dummy': 'Vous faites vos adieux au mannequin d\'entraînement',
         'You bow courteously to the striking dummy': 'Vous vous inclinez devant le mannequin d\'entraînement',
+        'test sync': 'test sync',
       },
       replaceText: {
-        'Final Sting': 'Dard final',
         'Almagest': 'Almageste',
         'Angry Dummy': 'Mannequin en colère',
-        'Long Castbar': 'Longue barre de lancement',
-        'Dummy Stands Still': 'Mannequin immobile',
         'Death': 'Mort',
+        'Death To': 'Mort sur',
+        'Dummy Stands Still': 'Mannequin immobile',
+        'Engage': 'À l\'attaque',
+        'Final Sting': 'Dard final',
+        'Long Castbar': 'Longue barre de lancement',
+        'Pentacle Sac': 'Pentacle Sac',
+        'Super Tankbuster': 'Super Tank buster',
       },
     },
     {

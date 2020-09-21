@@ -757,7 +757,7 @@
         // stack.  Therefore, make sure you stack.  It's possible you
         // can survive until fire 3 happens, but it's not 100%.
         // See: https://www.reddit.com/r/ffxiv/comments/78mdwd/bahamut_ultimate_mechanics_twin_and_nael_minutia/
-        if (data.fireballs[1].indexOf(data.me) == -1) {
+        if (!data.fireballs[1].includes(data.me)) {
           return {
             en: 'Fire OUT: Be in it',
             fr: 'Feu EN DEHORS : Allez dessus',
@@ -769,7 +769,7 @@
         }
       },
       infoText: function(data) {
-        if (data.fireballs[1].indexOf(data.me) >= 0) {
+        if (data.fireballs[1].includes(data.me)) {
           return {
             en: 'Fire OUT',
             fr: 'Feu EN DEHORS',
@@ -781,7 +781,7 @@
         }
       },
       tts: function(data) {
-        if (data.fireballs[1].indexOf(data.me) == -1) {
+        if (!data.fireballs[1].includes(data.me)) {
           return {
             en: 'fire out; go with',
             fr: 'Feu en dehors; y allez',
@@ -818,7 +818,7 @@
       alertText: function(data) {
         // If you were the person with fire tether #2, then you could
         // have fire debuff here and need to not stack.
-        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
+        if (data.fireballs[1].includes(data.me) && data.fireballs[2].includes(data.me)) {
           return {
             en: 'Fire IN: AVOID!',
             fr: 'Feu EN DEDANS : L\'ÉVITER !',
@@ -831,9 +831,9 @@
       },
       infoText: function(data) {
         let tookTwo = data.fireballs[1].filter(function(p) {
-          return data.fireballs[2].indexOf(p) >= 0;
+          return data.fireballs[2].includes(p);
         });
-        if (tookTwo.indexOf(data.me) >= 0)
+        if (tookTwo.includes(data.me))
           return;
 
         let str = '';
@@ -858,7 +858,7 @@
         };
       },
       tts: function(data) {
-        if (data.fireballs[1].indexOf(data.me) >= 0 && data.fireballs[2].indexOf(data.me) >= 0) {
+        if (data.fireballs[1].includes(data.me) && data.fireballs[2].includes(data.me)) {
           return {
             en: 'avoid fire in',
             fr: 'Éviter le feu en dedans',
@@ -891,12 +891,12 @@
       netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       preRun: function(data) {
         let tookTwo = data.fireballs[1].filter(function(p) {
-          return data.fireballs[2].indexOf(p) >= 0;
+          return data.fireballs[2].includes(p);
         });
         let tookThree = tookTwo.filter(function(p) {
-          return data.fireballs[3].indexOf(p) >= 0;
+          return data.fireballs[3].includes(p);
         });
-        data.tookThreeFireballs = tookThree.indexOf(data.me) >= 0;
+        data.tookThreeFireballs = tookThree.includes(data.me);
       },
       delaySeconds: 98,
       suppressSeconds: 99999,
@@ -1097,7 +1097,7 @@
         let uniqDict = {};
         for (let i = 0; i < data.octetMarker.length; ++i) {
           uniqDict[data.octetMarker[i]] = true;
-          if (partyList.indexOf(data.octetMarker[i]) < 0) {
+          if (!partyList.includes(data.octetMarker[i])) {
             console.error('Octet error: could not find ' + data.octetMarker[i] + ' in ' + JSON.stringify(partyList));
             return;
           }
@@ -1109,7 +1109,7 @@
           return;
 
         let remainingPlayers = partyList.filter(function(p) {
-          return data.octetMarker.indexOf(p) < 0;
+          return !data.octetMarker.includes(p);
         });
         if (remainingPlayers.length != 1) {
           // This could happen if the party list wasn't unique.
@@ -1315,7 +1315,7 @@
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
 
-        if (data.megaStack.indexOf(data.me) >= 0)
+        if (data.megaStack.includes(data.me))
           return;
 
         if (data.trio == 'blackfire') {
@@ -1351,7 +1351,7 @@
         if (data.trio != 'blackfire' && data.trio != 'octet' || data.megaStack.length != 4)
           return;
 
-        if (data.megaStack.indexOf(data.me) == -1) {
+        if (!data.megaStack.includes(data.me)) {
           return {
             en: 'tower',
             fr: 'Tour',
@@ -1375,7 +1375,7 @@
           return;
 
         let twin = data.ShortName(data.lastOctetMarker);
-        if (data.megaStack.indexOf(data.lastOctetMarker) >= 0) {
+        if (data.megaStack.includes(data.lastOctetMarker)) {
           return {
             en: twin + ' (twin) has megaflare',
             de: twin + ' (Twin) hat Megaflare',
@@ -1446,7 +1446,7 @@
           if (data.shakers.length != 3)
             return;
 
-          if (data.shakers.indexOf(data.me) == -1 && data.role != 'tank') {
+          if (!data.shakers.includes(data.me) && data.role != 'tank') {
             return {
               en: 'No shaker; stack south.',
               fr: 'Pas de Secousse; se rassembler au Sud.',
@@ -1458,7 +1458,7 @@
           }
         } else if (data.trio == 'tenstrike') {
           if (data.shakers.length == 4) {
-            if (data.shakers.indexOf(data.me) == -1) {
+            if (!data.shakers.includes(data.me)) {
               return {
                 en: 'Stack on safe spot',
                 fr: 'Se rassembler au point sauf',
@@ -1485,7 +1485,7 @@
               ko: '줄',
             };
           }
-          if (data.shakers.indexOf(data.me) == -1) {
+          if (!data.shakers.includes(data.me)) {
             return {
               en: 'stack south',
               fr: 'Se rassembler au sud',
@@ -1749,7 +1749,7 @@
 
           let bad = badSpots(marks[0], dragons[0]);
           bad.concat(badSpots(marks[0], dragons[1]));
-          ret.unsafeThirdMark = bad.indexOf(marks[2]) != -1;
+          ret.unsafeThirdMark = bad.includes(marks[2]);
 
           ret.marks = marks;
           return ret;
@@ -1993,7 +1993,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bahamut Prime': '至尊巴哈姆特',
         'Fang of Light': '光牙',
@@ -2005,6 +2004,20 @@
         'Tail of Darkness': '暗尾',
         'Thunderwing': '雷翼',
         'Twintania': '双塔尼亚',
+        'From on high I descend, the hallowed moon to call': '我降临于此，对月长啸！',
+        'From on high I descend, the iron path to walk': '我降临于此，征战铁血霸道！',
+        'Take fire, O hallowed moon': '炽热燃烧！给予我月亮的祝福！',
+        'Blazing path, lead me to iron rule': '被炽热灼烧过的轨迹乃成铁血霸道！',
+        'O hallowed moon, take fire and scorch my foes': '月光啊！用你的炽热烧尽敌人！',
+        'O hallowed moon, shine you the iron path': '月光啊！照亮铁血霸道！',
+        'Fleeting light! \'Neath the red moon, scorch you the earth': '超新星啊，更加闪耀吧！照亮红月下炽热之地！',
+        'Fleeting light! Amid a rain of stars, exalt you the red moon': '超新星啊，更加闪耀吧！在星降之夜，称赞红月！',
+        'From on high I descend, the moon and stars to bring': '我降临于此对月长啸！召唤星降之夜！',
+        'From hallowed moon I descend, a rain of stars to bring': '我自月而来降临于此，召唤星降之夜！',
+        'From hallowed moon I bare iron, in my descent to wield': '我自月而来携钢铁降临于此！',
+        'From hallowed moon I descend, upon burning earth to tread': '我自月而来降临于此，踏过炽热之地！',
+        'Unbending iron, take fire and descend': '钢铁燃烧吧！成为我降临于此的刀剑吧！',
+        'Unbending iron, descend with fiery edge': '钢铁成为我降临于此的燃烧之剑！',
       },
       'replaceText': {
         '--push--': '--开怪--',
@@ -2030,7 +2043,7 @@
         'Fireball(?! Soak)': '火球',
         'Flames Of Rebirth': '转生之炎',
         'Flare Breath': '核爆吐息',
-        'Flatten': '平击',
+        'Flatten': '夷为平地',
         'Generate': '魔力炼成',
         'Gigaflare': '十亿核爆',
         'Grand Octet': '群龙的八重奏',

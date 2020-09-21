@@ -867,7 +867,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Aether': '以太晶球',
         'Aether Collector': '以太收集器',
@@ -894,6 +893,10 @@
         'Wailing Atomos': '虚声的阿托莫斯',
       },
       'replaceText': {
+        '--deathgate spawn--': '--召唤之门出现--',
+        '--lifegate spawn--': '--魔力之门出现--',
+        '--shadows gather--': '--影之力--',
+        '--towers appear--': '--塔出现--',
         'Aether Bend': '以太曲折',
         'Aetherial Pool': '以太池',
         'Aetherochemical Flare': '魔科学核爆',
@@ -904,7 +907,7 @@
         'Blinding Shadow': '蔽目之影',
         'Blindside': '盲点袭击',
         'Bolt Of Darkness': '黑暗电光',
-        '(?<!Hollow )Camisado': '夜袭',
+        '(?<! )Camisado': '夜袭',
         'Citadel Buster': '攻城炮',
         'Debilitator': '弱点生成',
         'Diffractive Laser': '扩散射线',

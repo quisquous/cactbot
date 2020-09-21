@@ -96,18 +96,20 @@ let Options = {
   },
 };
 
-let kEarlyPullText = {
+const kEarlyPullText = {
   en: 'early pull',
   de: 'zu früh angegriffen',
   fr: 'early pull',
+  ja: 'タゲ取り早い',
   cn: '抢开',
   ko: '풀링 빠름',
 };
 
-let kLatePullText = {
+const kLatePullText = {
   en: 'late pull',
   de: 'zu spät angegriffen',
   fr: 'late pull',
+  ja: 'タゲ取り遅い',
   cn: '晚开',
   ko: '풀링 늦음',
 };
@@ -116,8 +118,18 @@ const kPartyWipeText = {
   en: 'Party Wipe',
   de: 'Gruppe ausgelöscht',
   fr: 'Party Wipe',
+  ja: 'ワイプ',
   cn: '团灭',
   ko: '파티 전멸',
+};
+
+const kCopiedMessage = {
+  en: 'Copied!',
+  de: 'Kopiert!',
+  fr: 'Copié !',
+  ja: 'コピーした！',
+  cn: '已复制！',
+  ko: '복사 완료!',
 };
 
 // Internal trigger id for early pull
@@ -301,6 +313,26 @@ class OopsyLiveList {
   MakeRow() {
     let div = document.createElement('div');
     div.classList.add('mistake-row');
+
+    // click-to-copy function
+    div.addEventListener('click', (e) => {
+      const str = e.target.childNodes[0].textContent;
+      const el = document.createElement('textarea');
+      el.value = str;
+      e.target.appendChild(el);
+      el.select();
+      document.execCommand('copy');
+      e.target.removeChild(el);
+
+      // copied message
+      const msg = document.createElement('div');
+      msg.classList.add('copied-msg');
+      msg.innerText = kCopiedMessage[this.options.DisplayLanguage] || kCopiedMessage['en'];
+      document.body.appendChild(msg);
+      setTimeout(() => {
+        document.body.removeChild(msg);
+      }, 1000);
+    });
     this.items.push(div);
     this.container.appendChild(div);
     return div;
@@ -529,7 +561,7 @@ class MistakeCollector {
     let seconds = ((Date.now() - this.startTime) / 1000);
     if (this.firstPuller && seconds >= this.options.MinimumTimeForPullMistake) {
       let text = this.Translate(kEarlyPullText) + ' (' + seconds.toFixed(1) + 's)';
-      if (!IsTriggerEnabled(this.options, kEarlyPullId))
+      if (IsTriggerEnabled(this.options, kEarlyPullId))
         this.OnMistakeText('pull', this.firstPuller, text);
     }
   }
@@ -547,7 +579,7 @@ class MistakeCollector {
       let seconds = ((Date.now() - this.engageTime) / 1000);
       if (this.engageTime && seconds >= this.options.MinimumTimeForPullMistake) {
         let text = this.Translate(kLatePullText) + ' (' + seconds.toFixed(1) + 's)';
-        if (!IsTriggerEnabled(this.options, kEarlyPullId))
+        if (IsTriggerEnabled(this.options, kEarlyPullId))
           this.OnMistakeText('pull', this.firstPuller, text);
       }
     }

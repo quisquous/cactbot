@@ -148,6 +148,10 @@ const kAbility = {
   EnergySiphon: '407E',
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
+  Aero: '79',
+  Aero2: '84',
+  Dia: '4094',
+  Assize: 'DF3',
 };
 
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
@@ -203,7 +207,7 @@ class ComboTracker {
   }
 
   AddCombo(skillList) {
-    if (this.startList.indexOf(skillList[0]) == -1)
+    if (!this.startList.includes(skillList[0]))
       this.startList.push(skillList[0]);
 
     for (let i = 0; i < skillList.length; ++i) {
@@ -230,7 +234,7 @@ class ComboTracker {
         return true;
       }
     }
-    if (this.comboBreakers.indexOf(id) >= 0) {
+    if (this.comboBreakers.includes(id)) {
       this.AbortCombo();
       return true;
     }
@@ -386,7 +390,7 @@ function setupRegexes(playerName) {
 }
 
 function doesJobNeedMPBar(job) {
-  return Util.isCasterJob(job) || kMeleeWithMpJobs.indexOf(job) >= 0;
+  return Util.isCasterDpsJob(job) || Util.isHealerJob(job) || kMeleeWithMpJobs.includes(job);
 }
 
 function computeBackgroundColorFrom(element, classList) {
@@ -1122,7 +1126,7 @@ class Bars {
       barsLayoutContainer.classList.add('tank');
     else if (Util.isHealerJob(this.job))
       barsLayoutContainer.classList.add('healer');
-    else if (Util.isCombatJob(this.job))
+    else if (Util.isDpsJob(this.job))
       barsLayoutContainer.classList.add('dps');
     else if (Util.isCraftingJob(this.job))
       barsLayoutContainer.classList.add('crafting');
@@ -1215,9 +1219,9 @@ class Bars {
       return;
     }
 
-    let showHPNumber = this.options.ShowHPNumber.indexOf(this.job) >= 0;
-    let showMPNumber = this.options.ShowMPNumber.indexOf(this.job) >= 0;
-    let showMPTicker = this.options.ShowMPTicker.indexOf(this.job) >= 0;
+    let showHPNumber = this.options.ShowHPNumber.includes(this.job);
+    let showMPNumber = this.options.ShowMPNumber.includes(this.job);
+    let showMPTicker = this.options.ShowMPTicker.includes(this.job);
 
     let healthText = showHPNumber ? 'value' : '';
     let manaText = showMPNumber ? 'value' : '';
@@ -1778,11 +1782,11 @@ class Bars {
     this.jobFuncs.push((jobDetail) => {
       let aetherflow = jobDetail.aetherflowStacks;
       let fairygauge = jobDetail.fairyGauge;
-      let milli = Math.floor(jobDetail.fairyMilliseconds / 1000);
+      let milli = Math.ceil(jobDetail.fairyMilliseconds / 1000);
       aetherflowStackBox.innerText = aetherflow;
       fairyGaugeBox.innerText = fairygauge;
       let f = fairyGaugeBox.parentNode;
-      if (milli != 0) {
+      if (jobDetail.fairyMilliseconds != 0) {
         f.classList.add('bright');
         fairyGaugeBox.innerText = milli;
       } else {
@@ -1902,7 +1906,7 @@ class Bars {
     this.jobFuncs.push((jobDetail) => {
       let stack = jobDetail.aetherflowStacks;
       let summoned = jobDetail.bahamutSummoned;
-      let time = Math.floor(jobDetail.stanceMilliseconds / 1000);
+      let time = Math.ceil(jobDetail.stanceMilliseconds / 1000);
 
       // turn red when you have too much stacks before EnergyDrain ready.
       aetherflowStackBox.innerText = stack;
@@ -2085,7 +2089,7 @@ class Bars {
       demolishBox.duration = 0;
       // it start counting down when you cast demolish
       // but DOT appears on target about 1 second later
-      demolishBox.duration = 19;
+      demolishBox.duration = 18 + 1;
     };
     this.gainEffectFuncMap[EffectId.LeadenFist] = () => {
       dragonKickBox.duration = 0;
@@ -2381,11 +2385,101 @@ class Bars {
   }
 
   setupWhm() {
+    const lilyBox = this.addResourceBox({
+      classList: ['whm-color-lily'],
+    });
+    const lilysecondBox = this.addResourceBox({
+      classList: ['whm-color-lilysecond'],
+    });
+
+    const diaBox = this.addProcBox({
+      id: 'whm-procs-dia',
+      fgColor: 'whm-color-dia',
+    });
+    const assizeBox = this.addProcBox({
+      id: 'whm-procs-assize',
+      fgColor: 'whm-color-assize',
+    });
+    const lucidBox = this.addProcBox({
+      id: 'whm-procs-lucid',
+      fgColor: 'whm-color-lucid',
+    });
+
+    // BloodLily Guage
+    const stacksContainer = document.createElement('div');
+    stacksContainer.id = 'whm-stacks';
+    this.addJobBarContainer().appendChild(stacksContainer);
+    const bloodlilyContainer = document.createElement('div');
+    bloodlilyContainer.id = 'whm-stacks-bloodlily';
+    stacksContainer.appendChild(bloodlilyContainer);
+    const bloodlilyStacks = [];
+    for (let i = 0; i < 3; ++i) {
+      const d = document.createElement('div');
+      bloodlilyContainer.appendChild(d);
+      bloodlilyStacks.push(d);
+    }
+
+    this.jobFuncs.push((jobDetail) => {
+      const lily = jobDetail.lilyStacks;
+      // this milliseconds is countup, so use floor instead of ceil.
+      const lilysecond = Math.floor(jobDetail.lilyMilliseconds / 1000);
+
+      lilyBox.innerText = lily;
+      if (lily == 3)
+        lilysecondBox.innerText = '';
+      else
+        lilysecondBox.innerText = 30 - lilysecond;
+
+      const bloodlilys = jobDetail.bloodlilyStacks;
+      for (let i = 0; i < 3; ++i) {
+        if (bloodlilys > i)
+          bloodlilyStacks[i].classList.add('active');
+        else
+          bloodlilyStacks[i].classList.remove('active');
+      }
+
+      const l = lilysecondBox.parentNode;
+      if ((lily == 2 && 30 - lilysecond <= 5) || lily == 3)
+        l.classList.add('full');
+      else
+        l.classList.remove('full');
+    });
+
+    this.abilityFuncMap[kAbility.Aero] = () => {
+      diaBox.duration = 0;
+      diaBox.duration = 18 + 1;
+    };
+    this.abilityFuncMap[kAbility.Aero2] = () => {
+      diaBox.duration = 0;
+      diaBox.duration = 18 + 1;
+    };
+    this.abilityFuncMap[kAbility.Dia] = () => {
+      diaBox.duration = 0;
+      diaBox.duration = 30;
+    };
+    this.abilityFuncMap[kAbility.Assize] = () => {
+      assizeBox.duration = 0;
+      assizeBox.duration = 45;
+    };
+    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+      lucidBox.duration = 0;
+      lucidBox.duration = 60;
+    };
+
     this.gainEffectFuncMap[EffectId.PresenceOfMind] = () => {
       this.presenceOfMind = 1;
     };
     this.loseEffectFuncMap[EffectId.PresenceOfMind] = () => {
       this.presenceOfMind = 0;
+    };
+
+    this.statChangeFuncMap['WHM'] = () => {
+      diaBox.valuescale = this.gcdSpell();
+      diaBox.threshold = this.gcdSpell() + 1;
+      assizeBox.valuescale = this.gcdSpell();
+      assizeBox.threshold = this.gcdSpell() + 1;
+      lucidBox.valuescale = this.gcdSpell();
+      lucidBox.threshold = this.gcdSpell() + 1;
     };
   }
 

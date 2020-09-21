@@ -402,13 +402,13 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Cocoon': '光茧',
         'Left Wing': '左翼',
         'Right Wing': '右翼',
         'Shinryu': '神龙',
         'Tail': '龙尾',
+        'Icicle': '冰柱',
       },
       'replaceText': {
         'Akh Morn': '死亡轮回',

@@ -34,7 +34,7 @@ class CombatantTracker {
       case '16':
       case '19':
       case '1A':
-      case '1D':
+      case '1B':
       case '1E':
       case '22':
       case '23':

@@ -177,11 +177,11 @@ def get_fish_data():
                 # Add fish to id list
                 id_list.append(fish["ID"])
 
-            # Set IDs to the place ID if it's new or bigger
-            if (place_id not in placefish and len(id_list)) or (
-                place_id in placefish and len(id_list) > len(placefish[place_id])
-            ):
-                placefish[place_id] = id_list
+            if place_id in placefish:
+                # not efficient to do this, but number of fish is small
+                placefish[place_id] = sorted(list(set(placefish[place_id]).union(set(id_list))))
+            else:
+                placefish[place_id] = sorted(id_list)
 
     return places, fishes, placefish
 

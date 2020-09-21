@@ -39,4 +39,5 @@ jobs:
               repo: "${{ steps.setup-vars.outputs.repo }}",
               ref: "heads/gh-pages",
               sha: context.sha,
+              force: true
             })

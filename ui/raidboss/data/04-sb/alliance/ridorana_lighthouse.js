@@ -732,15 +732,18 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Archaeodemon': '古恶魔',
         'Belias, The Gigas': '魔人贝利亚斯',
         'Construct 7': '劳动七号',
         'Dark Rain': '暗云雨水',
+        'Echoes from Time\'s Garden': '悠久时光庭园',
         'Famfrit, The Darkening Cloud': '暗黑之云法姆弗里特',
         '(?<! )Gigas': '魔人兵',
         'Heart of the Dragon': '鬼龙的核心',
+        'The Cleft of Profaning Wind': '吹拂异风的白色战场',
+        'The Clockwork Coliseum': '高古斗技场',
+        'The Spire\'s Bounds': '至顶封域',
         'Yiazmat': '鬼龙雅兹玛特',
       },
       'replaceText': {

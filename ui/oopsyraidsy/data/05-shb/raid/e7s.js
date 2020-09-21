@@ -12,6 +12,8 @@ let wrongBuff = (str) => {
     en: str + ' (wrong buff)',
     de: str + ' (falscher Buff)',
     fr: str + ' (mauvais buff)',
+    ja: str + ' (不適切なバフ)',
+    cn: str + ' (Buff错了)',
     ko: str + ' (버프 틀림)',
   };
 };
@@ -21,6 +23,8 @@ let noBuff = (str) => {
     en: str + ' (no buff)',
     de: str + ' (kein Buff)',
     fr: str + ' (pas de buff)',
+    ja: str + ' (バフ無し)',
+    cn: str + ' (没有Buff)',
     ko: str + ' (버프 없음)',
   };
 };
@@ -157,7 +161,15 @@ let noBuff = (str) => {
       // 4C76 is the knockback damage, 4C58 is the damage for standing on the puck.
       damageRegex: '4C76',
       deathReason: function(e) {
-        return { type: 'fail', name: e.targetName, reason: { en: 'Knocked off' } };
+        return {
+          type: 'fail',
+          name: e.targetName,
+          reason: {
+            en: 'Knocked off',
+            ja: 'ノックバック',
+            cn: '击退坠落',
+          },
+        };
       },
     },
   ],

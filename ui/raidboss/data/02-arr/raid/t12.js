@@ -34,6 +34,7 @@
           en: 'Bennu Soon',
           de: 'Bennu Add bald',
           fr: 'Bénou bientôt',
+          ja: 'まもなくベンヌ',
           cn: '小鸟即将出现',
         };
       },
@@ -52,6 +53,7 @@
             en: 'Revelation on YOU',
             de: 'Offenbarung auf DIR',
             fr: 'Révélation sur VOUS',
+            ja: '自分にリヴァレーション',
             cn: '天启点名',
           };
         }
@@ -62,6 +64,7 @@
             en: 'Away from ' + data.ShortName(matches.target),
             de: 'Weg von ' + data.ShortName(matches.target),
             fr: 'Éloignez-vous de ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'に離れ',
             cn: '远离' + data.ShortName(matches.target),
           };
         }
@@ -79,6 +82,7 @@
         en: 'Blackfire Spread',
         de: 'Schwarzfeuer verteilen',
         fr: 'Flamme noire, dispersez-vous',
+        ja: '漆黒の炎、散開',
         cn: '黑火分散',
       },
     },
@@ -92,6 +96,7 @@
         en: 'Whitefire on YOU',
         de: 'Weißfeuer auf DIR',
         fr: 'Flamme blanche sur VOUS',
+        ja: '自分に白熱の炎',
         cn: '白火点名',
       },
     },
@@ -105,6 +110,7 @@
         en: 'Bluefire Away',
         de: 'Blaufeuer wegbringen',
         fr: 'Flamme bleue, éloignez-vous',
+        ja: '青碧の炎、離れ',
         cn: '蓝火远离',
       },
     },
@@ -118,6 +124,7 @@
             en: 'Chain on YOU',
             de: 'Kette auf DIR',
             fr: 'Chaine sur VOUS',
+            ja: '自分に誘爆',
             cn: '毒点名',
           };
         }
@@ -128,6 +135,7 @@
             en: 'Chain on ' + data.ShortName(matches.target),
             de: 'Kette auf ' + data.ShortName(matches.target),
             fr: 'Chaine sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'に誘爆',
             cn: '毒点名' + data.ShortName(matches.target),
           };
         }
@@ -187,7 +195,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bennu': 'ベンヌ',
         'Phoenix(?!-)': 'フェニックス',
@@ -195,13 +202,14 @@
       },
       'replaceText': {
         '(?<! )Rebirth': '新生',
-        'Bennu Add': 'ベンヌ Add',
+        'Bennu Add': '雑魚: ベンヌ',
         'Blackfire': '漆黒の炎',
         'Bluefire': '青碧の炎',
         'Brand Of Purgatory': '煉獄の炎',
         'Flames Of Rebirth': '転生の炎',
         'Flames Of Unforgiveness': '煉獄の爆炎',
         'Fountain Of Fire': '霊泉の炎',
+        'Fountain Tick': '霊泉の炎: ',
         'Redfire Plume': '赤熱の炎柱',
         'Redfire(?! )': '紅蓮の炎',
         'Revelation': 'リヴァレーション',
@@ -212,7 +220,6 @@
     },
     {
       'locale': 'cn',
-      'missingTranslations': true,
       'replaceSync': {
         'Bennu': '贝努鸟',
         'Phoenix(?!-)': '不死鸟',
@@ -220,13 +227,14 @@
       },
       'replaceText': {
         '(?<! )Rebirth': '重生',
-        'Bennu Add': '贝努鸟 Add',
+        'Bennu Add': '贝努鸟出现',
         'Blackfire': '漆黑之炎',
         'Bluefire': '青蓝之炎',
         'Brand Of Purgatory': '炼狱之炎',
         'Flames Of Rebirth': '转生之炎',
         'Flames Of Unforgiveness': '炼狱之燎火',
         'Fountain Of Fire': '灵泉之炎',
+        'Fountain(?! Of Fire)': '灵泉',
         'Redfire Plume': '赤红之炎柱',
         'Redfire(?! )': '红莲之炎',
         'Revelation': '天启',

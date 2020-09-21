@@ -28,7 +28,7 @@ if (typeof module !== 'undefined') {
       de: 'Noch (?<time>\\y{Float}) Sekunden bis Kampfbeginn! \\((?<player>.*?)\\)',
       fr: 'Début du combat dans (?<time>\\y{Float}) secondes[ ]?! \\((?<player>.*?)\\)',
       ja: '戦闘開始まで(?<time>\\y{Float})秒！ \\((?<player>.*?)\\)',
-      cn: '距离战斗开始还有(?<time>\\y{Float})秒！ \\((?<player>.*?)\\)',
+      cn: '距离战斗开始还有(?<time>\\y{Float})秒！ （(?<player>.*?)）',
       ko: '전투 시작 (?<time>\\y{Float})초 전! \\((?<player>.*?)\\)',
     },
     countdownEngage: {
@@ -79,7 +79,7 @@ if (typeof module !== 'undefined') {
       fr: '(Vous fabriquez|Votre synthèse d\'essai pour fabriquer) (?<recipe>.*)( a été couronnée de succès!)?',
       ja: '(?<player>\\y{Name})は(?<recipe>.*)(を完成させた|の製作練習に成功した)！',
       cn: '(?<player>\\y{Name})制作(?<recipe>.*)成功！',
-      ko: '(?<recipe>.*)(개를)? 완성했습니다!',
+      ko: '(?<player>\\y{Name}) 님이 (?<recipe>.*)(을|를) 완성했습니다!',
     },
     craftingFail: {
       en: 'Your (synthesis fails!|trial synthesis of failed\\.{3})',

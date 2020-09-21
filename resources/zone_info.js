@@ -4153,6 +4153,16 @@ const ZoneInfo = {
     'sizeFactor': 400,
     'weatherRate': 14,
   },
+  901: {
+    'contentType': 16,
+    'name': {
+      'en': 'the Diadem',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 100,
+    'weatherRate': 0,
+  },
   902: {
     'contentType': 5,
     'name': {
@@ -4322,6 +4332,16 @@ const ZoneInfo = {
     'offsetY': -610,
     'sizeFactor': 400,
     'weatherRate': 0,
+  },
+  929: {
+    'contentType': 16,
+    'name': {
+      'en': 'the Diadem',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 100,
+    'weatherRate': 68,
   },
   930: {
     'contentType': 4,

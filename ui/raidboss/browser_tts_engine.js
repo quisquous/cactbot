@@ -24,8 +24,9 @@ class SpeechTTSItem extends TTSItem {
 }
 
 class GoogleTTSItem extends TTSItem {
-  constructor(text) {
+  constructor(text, lang) {
     super();
+    this.lang = lang;
     this.text = text;
     let iframe = document.createElement('iframe');
     // remove sandbox so we can modify contents/call play on audio element later
@@ -33,7 +34,7 @@ class GoogleTTSItem extends TTSItem {
     iframe.style.display = 'none';
     document.body.appendChild(iframe);
     let encText = encodeURIComponent(text);
-    iframe.contentDocument.body.innerHTML = '<audio src="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=en&q=' + encText + '" id="TTS">';
+    iframe.contentDocument.body.innerHTML = '<audio src="https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=' + lang + '&q=' + encText + '" id="TTS">';
     this.item = iframe.contentDocument.body.firstElementChild;
   }
 
@@ -44,6 +45,7 @@ class GoogleTTSItem extends TTSItem {
 
 class BrowserTTSEngine {
   constructor(lang) {
+    this.googleTTSLang = lang == 'cn' ? 'zh' : lang;
     // TODO: should there be options for different voices here so that
     // everybody isn't forced into Microsoft Anna?
     const cactbotLangToSpeechLang = {
@@ -102,7 +104,7 @@ class BrowserTTSEngine {
   }
 
   playGoogleTTS(text) {
-    this.ttsItems[text] = new GoogleTTSItem(text);
+    this.ttsItems[text] = new GoogleTTSItem(text, this.googleTTSLang);
     this.ttsItems[text].play();
   }
 }

@@ -723,10 +723,11 @@ namespace Cactbot {
       string lc = dirName.ToLowerInvariant();
       var name = nameOverride != null ? nameOverride : dirName;
       var filename = (fileOverride != null ? fileOverride : dirName).ToLowerInvariant() + ".html";
+      var uri = new System.Uri(Path.Combine(path, "ui", lc, filename));
 
       Registry.RegisterOverlayPreset(new OverlayPreset{
         Name = $"Cactbot {name}",
-        Url = Path.Combine(path, "ui", lc, filename),
+        Url = uri.AbsoluteUri,
         Size = new int[] { width, height },
         Locked = false,
       });
@@ -735,9 +736,10 @@ namespace Cactbot {
     private void RegisterDpsPreset(string name, string file, int width, int height) {
       var path = new VersionChecker(this).GetCactbotDirectory();
       string lc = name.ToLowerInvariant();
+      var uri = new System.Uri(Path.Combine(path, "ui", "dps", lc, $"{file}.html"));
       Registry.RegisterOverlayPreset(new OverlayPreset{
         Name = $"Cactbot DPS {name}",
-        Url = Path.Combine(path, "ui", "dps", lc, $"{file}.html"),
+        Url = uri.AbsoluteUri,
         Size = new int[] { width, height },
         Locked = false,
       });

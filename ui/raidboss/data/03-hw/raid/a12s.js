@@ -64,7 +64,7 @@
         if (data.scourge && data.scourge.length > 2)
           return false;
 
-        return data.role == 'healer' || data.job == 'blu';
+        return data.role == 'healer' || data.job == 'BLU';
       },
       delaySeconds: 0.5,
       suppressSeconds: 1,
@@ -213,7 +213,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1A0B', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1A0B', capture: false }),
       alertText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer' || data.job == 'blu') {
+        if (data.role == 'tank' || data.role == 'healer' || data.job == 'BLU') {
           return {
             en: 'Shared Tankbuster',
             de: 'geteilter Tankbuster',

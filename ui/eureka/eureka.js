@@ -1906,12 +1906,15 @@ class EurekaTracker {
 
     let primaryWeatherList = this.zoneInfo.primaryWeather;
     if (primaryWeatherList) {
+      for (let i = 0; i < 5; ++i) {
+        document.getElementById('label-weather-icon' + i).innerHTML = '';
+        document.getElementById('label-weather-text' + i).innerHTML = '';
+      }
+
       for (let i = 0; i < 5 && i < primaryWeatherList.length; ++i) {
         let primaryWeather = primaryWeatherList[i];
-        if (!primaryWeather) {
-          document.getElementById('label-weather' + i).innerHTML = '';
+        if (!primaryWeather)
           continue;
-        }
         let weather = getWeather(nowMs, this.zoneId);
         let weatherIcon = gWeatherIcons[primaryWeather];
         let weatherStr;
@@ -2088,7 +2091,7 @@ class EurekaTracker {
         this.ImportFromTracker(match[2]);
         continue;
       }
-      if (log.indexOf(' 03:') >= 0 || log.indexOf('00:0839:') >= 0) {
+      if (log.includes(' 03:') || log.includes('00:0839:')) {
         match = log.match(this.fairy.regex);
         if (match)
           this.AddFairy(match.groups);
@@ -2178,7 +2181,7 @@ class EurekaTracker {
       let key = keys[i];
       for (let j = 0; j < dict[key].length; ++j) {
         let m = dict[key][j];
-        if (str.indexOf(m) >= 0)
+        if (str.includes(m))
           return key;
       }
     }
