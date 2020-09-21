@@ -2276,15 +2276,15 @@ class Bars {
           comboTimer.duration = 0;
       }
 
-      eyes.parentNode.classList.remove('z', 'o', 't');
+      eyes.parentNode.classList.remove('zero', 'one', 'two');
       if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
         eyes.innerText = jobDetail.eyesAmount;
         if (jobDetail.eyesAmount == 0)
-          eyes.parentNode.classList.add('z');
+          eyes.parentNode.classList.add('zero');
         else if (jobDetail.eyesAmount == 1)
-          eyes.parentNode.classList.add('o');
+          eyes.parentNode.classList.add('one');
         else if (jobDetail.eyesAmount == 2)
-          eyes.parentNode.classList.add('t');
+          eyes.parentNode.classList.add('two');
       } else {
         eyes.innerText = '';
       }
