@@ -91,6 +91,8 @@
         'The icebound tomelith A2 activates and begins to emit heat': 'アイスドトームリスA2号基が起動し、氷がもろくなった！',
         'The icebound tomelith A3 activates and begins to emit heat': 'アイスドトームリスA3号基が起動し、氷がもろくなった！',
         'The icebound tomelith A4 activates and begins to emit heat': 'アイスドトームリスA4号基が起動し、氷がもろくなった！',
+    },
+    {
         'locale': 'cn',
         'replaceSync': {
           'The icebound tomelith A1 activates and begins to emit heat': '冰封的石文A1启动了，冰块变得脆弱了！',
