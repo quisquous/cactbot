@@ -58,7 +58,7 @@
       infoText: {
         en: 'Levitate',
         de: 'Schweben',
-        ja: '浮かぶ',
+        ja: '浮上',
         cn: '浮空',
       },
     },
@@ -119,7 +119,7 @@
           return {
             en: 'Levitate',
             de: 'Schweben',
-            ja: '浮かぶ',
+            ja: '浮上',
             cn: '浮空',
           };
         }
@@ -139,7 +139,7 @@
           return {
             en: 'levitate',
             de: 'schweben',
-            ja: '浮かぶ',
+            ja: '浮上',
             cn: '浮空',
           };
         }
@@ -167,7 +167,7 @@
           return {
             en: 'Levitate',
             de: 'Schweben',
-            ja: '浮かぶ',
+            ja: '浮上',
             cn: '浮空',
           };
         }
@@ -185,7 +185,7 @@
       tts: {
         en: 'float',
         de: 'schweben',
-        ja: '浮かぶ',
+        ja: '浮上',
         cn: '浮空',
       },
     },
@@ -214,7 +214,7 @@
           return {
             en: 'Levitate',
             de: 'Levitation',
-            ja: '浮かぶ',
+            ja: '浮上',
             cn: '浮空',
           };
         }
@@ -231,7 +231,7 @@
         return {
           en: 'Don\'t levitate',
           de: 'Nicht schweben',
-          ja: '浮かべないで',
+          ja: '浮上はしない',
           cn: '不要浮空',
         };
       },
