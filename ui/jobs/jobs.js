@@ -1079,13 +1079,33 @@ class Bars {
 
     this.contentType = 0;
 
+    this.crafting = false;
+
     const lang = this.options.ParserLanguage;
     this.countdownStartRegex = LocaleRegex.countdownStart[lang] || LocaleRegex.countdownStart['en'];
     this.countdownCancelRegex = LocaleRegex.countdownCancel[lang] || LocaleRegex.countdownCancel['en'];
-    this.craftingStartRegex = LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'];
-    this.craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
-    this.craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
-    this.craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
+    const craftingStartRegex = LocaleRegex.craftingStart[lang] || LocaleRegex.craftingStart['en'];
+    const trialCraftingStartRegex = LocaleRegex.trialCraftingStart[lang] || LocaleRegex.trialCraftingStart['en'];
+    const craftingFinishRegex = LocaleRegex.craftingFinish[lang] || LocaleRegex.craftingFinish['en'];
+    const trialCraftingFinishRegex = LocaleRegex.trialCraftingFinish[lang] || LocaleRegex.trialCraftingFinish['en'];
+    const craftingFailRegex = LocaleRegex.craftingFail[lang] || LocaleRegex.craftingFail['en'];
+    const craftingCancelRegex = LocaleRegex.craftingCancel[lang] || LocaleRegex.craftingCancel['en'];
+    const trialCraftingFailRegex = LocaleRegex.trialCraftingFail[lang] || LocaleRegex.trialCraftingFail['en'];
+    const trialCraftingCancelRegex = LocaleRegex.trialCraftingCancel[lang] || LocaleRegex.trialCraftingCancel['en'];
+    this.craftingStartRegexes = [
+      craftingStartRegex,
+      trialCraftingStartRegex,
+    ];
+    this.craftingFinishRegexes = [
+      craftingFinishRegex,
+      trialCraftingFinishRegex,
+    ];
+    this.craftingStopRegexes = [
+      craftingFailRegex,
+      craftingCancelRegex,
+      trialCraftingFailRegex,
+      trialCraftingCancelRegex,
+    ];
   }
 
   UpdateJob() {
@@ -2783,6 +2803,43 @@ class Bars {
     }
   }
 
+  OnCraftingLog(log) {
+    // Hide CP Bar when not crafting
+    const container = document.getElementById('jobs-container');
+
+    const anyRegexMatched = (line, array) => {
+      for (const regex of array) {
+        if (regex.test(line))
+          return true;
+      }
+      return false;
+    };
+
+    if (!this.crafting) {
+      if (anyRegexMatched(log, this.craftingStartRegexes))
+        this.crafting = true;
+    } else {
+      if (anyRegexMatched(log, this.craftingStopRegexes)) {
+        this.crafting = false;
+      } else {
+        for (const regex of this.craftingFinishRegexes) {
+          const m = regex.exec(log);
+          if (m) {
+            if (m.groups.player === undefined || m.groups.player == this.me) {
+              this.crafting = false;
+              break;
+            }
+          }
+        }
+      }
+    }
+
+    if (this.crafting)
+      container.classList.remove('hide');
+    else
+      container.classList.add('hide');
+  }
+
   OnPlayerChanged(e) {
     if (this.me !== e.detail.name) {
       this.me = e.detail.name;
@@ -2967,20 +3024,8 @@ class Bars {
           this.UpdateJobBarGCDs();
           continue;
         }
-        // Hide CP Bar when not crafting
-        const container = document.getElementById('jobs-container');
-        if (this.craftingStartRegex.test(log)) {
-          container.classList.remove('hide');
-          continue;
-        }
-        r = this.craftingFinishRegex.exec(log);
-        if ((r && (r.groups.player === undefined ||
-              (r.groups.player && r.groups.player == this.me))) ||
-          this.craftingFailRegex.test(log) ||
-          this.craftingCancelRegex.test(log)) {
-          container.classList.add('hide');
-          continue;
-        }
+        if (Util.isCraftingJob(this.job))
+          this.OnCraftingLog(log);
       } else if (log[15] == '1') {
         // TODO: consider flags for missing.
         // flags:damage is 1:0 in most misses.
