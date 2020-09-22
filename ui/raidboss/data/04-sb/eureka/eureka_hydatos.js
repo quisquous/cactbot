@@ -1244,7 +1244,7 @@
         'Elemental Magicks': 'エレメンタルマジック',
         'Elemental Shift': 'エレメントスイッチ',
         'Execration': 'エクセクレイション',
-        '(?! )Explosion': '爆発',
+        '(?<! )Explosion': '爆発',
         'Explosive Impulse': 'エクスプロシブインパルス',
         'Flare Star': 'フレアスター',
         'For Honor': '戦死撃',
