@@ -268,12 +268,9 @@ class ComboTracker {
     } else {
       this.considerNext = [];
       Array.prototype.push.apply(this.considerNext, this.startList);
-
-      if (!this.comboNodes[nextState].last) {
-        Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
-        let kComboDelayMs = 15000;
-        this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
-      }
+      Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
+      let kComboDelayMs = 15000;
+      this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
     }
     this.callback(nextState);
   }
@@ -282,8 +279,7 @@ class ComboTracker {
     this.StateTransition(null);
   }
   IsComboBroken() {
-    if (this.considerNext == this.startList) return true;
-    return false;
+    return this.considerNext == this.startList;
   }
 }
 
@@ -352,29 +348,21 @@ function setupComboTracker(callback) {
     kAbility.TrueThrust,
     kAbility.VorpalThrust,
     kAbility.FullThrust,
-    kAbility.FangAndClaw,
-    kAbility.WheelingThrust,
   ]);
   comboTracker.AddCombo([
     kAbility.RaidenThrust,
     kAbility.VorpalThrust,
     kAbility.FullThrust,
-    kAbility.FangAndClaw,
-    kAbility.WheelingThrust,
   ]);
   comboTracker.AddCombo([
     kAbility.TrueThrust,
     kAbility.Disembowel,
     kAbility.ChaosThrust,
-    kAbility.WheelingThrust,
-    kAbility.FangAndClaw,
   ]);
   comboTracker.AddCombo([
     kAbility.RaidenThrust,
     kAbility.Disembowel,
     kAbility.ChaosThrust,
-    kAbility.WheelingThrust,
-    kAbility.FangAndClaw,
   ]);
   comboTracker.AddCombo([
     kAbility.DoomSpike,
@@ -2218,11 +2206,13 @@ class Bars {
     };
 
     this.comboFuncs.push((skill) => {
-      if (this.combo.IsComboBroken())
+      if (this.combo.IsComboBroken()) {
         comboTimer.duration = 0;
-
+        return;
+      }
       // if skill exist, this skill is in combo.
-      if (!skill) return;
+      if (!skill)
+        return;
       comboTimer.duration = 0;
       comboTimer.duration = 15;
       comboType = 'normol';
