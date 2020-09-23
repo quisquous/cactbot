@@ -25,6 +25,7 @@
         en: 'Drop AOEs Away',
         de: 'AoEs weglocken',
         fr: 'Posez les AoE au loin',
+        ja: '離れてAoEを置く',
         cn: '远离放置AOE',
         ko: '장판 멀리빼기',
       },
@@ -32,6 +33,7 @@
         en: 'aoes',
         de: 'Flächen',
         fr: 'aoe',
+        ja: 'AoE',
         cn: 'AOE',
         ko: '장판',
       },
@@ -96,11 +98,11 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': 'チャダルヌーク・デーモン',
         'Easterly': '極風',
         'Haunt': '思念体',
+        'I have claimed the girl in the picture!': 'グフフフ……この絵の女は、わしがいただいた……。',
         'Portrayal of Earth': '土の絵画',
         'Portrayal of Fire': '火の絵画',
         'Portrayal of Water': '水の絵画',
