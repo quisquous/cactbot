@@ -31,7 +31,7 @@
         de: 'Heiliger Boden Wind',
         fr: 'Packez vous dans le vent',
         ko: '쉐어징',
-        ja: '隅でスタック',
+        ja: '隅で頭割り',
         cn: '风分摊',
       },
     },
@@ -45,7 +45,7 @@
             de: 'Dämonischer Stein auf DIR',
             fr: 'Pierre démoniaque sur VOUS',
             ko: '악령의 돌 장판 대상자',
-            ja: 'デモニックストーン on YOU',
+            ja: '自分にデモニックストーン',
             cn: '引导aoe',
           };
         }
@@ -69,7 +69,7 @@
         de: 'Letzter Kuss auf DIR',
         fr: 'Baiser fatal sur VOUS',
         ko: '죽음의 입맞춤 대상자',
-        ja: '口づけ on YOU',
+        ja: '自分に口づけ',
         cn: '死亡之吻点名',
       },
       tts: {
@@ -94,7 +94,7 @@
         de: 'Letzter Kuss auf DIR',
         fr: 'Baiser fatal sur VOUS',
         ko: '죽음의 입맞춤 대상자',
-        ja: '口づけ on YOU',
+        ja: '自分に口づけ',
         cn: '死亡之吻点名',
       },
       tts: {
@@ -190,12 +190,12 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Demon Chadarnook': 'チャダルヌーク・デーモン',
         'Easterly': '極風',
         'Goddess Chadarnook': 'チャダルヌーク・ゴッデス',
         'Haunt': '思念体',
+        'I have claimed the girl in the picture!': 'グフフフ……この絵の女は、わしがいただいた……。',
         'Portrayal of Earth': '土の絵画',
         'Portrayal of Fire': '火の絵画',
         'Portrayal of Water': '水の絵画',
