@@ -395,6 +395,9 @@ namespace Cactbot {
       [FieldOffset(0x00)]
       public byte feathers;
 
+      [FieldOffset(0x01)]
+      public byte esprit;
+
       [NonSerialized]
       [FieldOffset(0x02)]
       private Step step1;  // Order of steps in current Standard Step/Technical Step combo.

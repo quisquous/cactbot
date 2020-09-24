@@ -29,7 +29,7 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'BRD')
     document.getElementById('jobinfo').innerText = jobDetail.songName + ' | ' + jobDetail.songProcs + ' | ' + jobDetail.soulGauge + ' | ' + jobDetail.songMilliseconds;
   else if (e.detail.job == 'DNC')
-    document.getElementById('jobinfo').innerText = jobDetail.feathers + ' | (' + jobDetail.steps + ') | ' + jobDetail.currentStep;
+    document.getElementById('jobinfo').innerText = jobDetail.feathers + ' | ' + jobDetail.esprit + ' | (' + jobDetail.steps + ') | ' + jobDetail.currentStep;
   else if (e.detail.job == 'NIN')
     document.getElementById('jobinfo').innerText = jobDetail.hutonMilliseconds + ' | ' + jobDetail.ninkiAmount;
   else if (e.detail.job == 'DRG')
