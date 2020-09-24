@@ -508,7 +508,7 @@
         en: 'Look Away from Mirage',
         de: 'Von Replikant wegschauen',
         fr: 'Ne regardez pas la Réplique',
-        ja: 'ミラージュに背中を向け',
+        ja: 'ミラージュを見ないで',
         cn: '背对幻象',
         ko: '환영 쳐다보지 않기',
       },

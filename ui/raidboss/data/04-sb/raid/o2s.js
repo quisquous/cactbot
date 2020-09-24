@@ -64,7 +64,7 @@
       infoText: {
         en: '-100 Gs: Go north/south and look away',
         de: '-100G: Nach Norden/Süden und wegschauen',
-        ja: '-100 G: 北/南へ、ボスに背中を向け',
+        ja: '-100 G: 北/南へ、ボスを見ないで',
         cn: '前往南边/北边并背对boss',
       },
       tts: {

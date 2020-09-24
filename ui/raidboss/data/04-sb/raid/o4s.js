@@ -774,7 +774,7 @@
           return {
             en: 'look away and stop',
             de: 'wegschauen und stehenbleiben',
-            ja: '背中を向け、動かない',
+            ja: '見ない、動かない',
             cn: '看外面并静止',
           };
         }
