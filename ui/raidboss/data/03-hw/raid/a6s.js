@@ -119,7 +119,7 @@
         en: 'Look Towards Mirage',
         de: 'Von Replikant hinschauen',
         fr: 'Regardez la réplique',
-        ja: 'ミラージュに向け',
+        ja: 'ミラージュを見て',
         cn: '面向幻象',
         ko: '환영 쳐다보기',
       },

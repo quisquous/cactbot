@@ -323,7 +323,7 @@
           en: 'Look Towards',
           de: 'Anschauen',
           fr: 'Regardez le boss',
-          ja: 'ボスに向け',
+          ja: 'ボスを見て',
           cn: '面对BOSS',
           ko: '바라보기',
         };
