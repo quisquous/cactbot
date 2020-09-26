@@ -215,73 +215,74 @@ class ComboTracker {
   constructor(comboBreakers, callback) {
     this.comboTimer = null;
     this.comboBreakers = comboBreakers;
-    this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
-    this.startList = [];
+    // A tree of nodes.
+    this.startMap = {}; // {} key => { id: str, next: { key => node } }
     this.callback = callback;
-    this.current = null;
-    this.considerNext = this.startList;
+    this.isComboBroken = true;
+    this.considerNext = this.startMap;
   }
 
   AddCombo(skillList) {
-    if (!this.startList.includes(skillList[0]))
-      this.startList.push(skillList[0]);
+    let nextMap = this.startMap;
 
     for (let i = 0; i < skillList.length; ++i) {
-      let node = this.comboNodes[skillList[i]];
-      if (node == undefined) {
-        node = {
-          id: skillList[i],
-          next: [],
-        };
-        this.comboNodes[skillList[i]] = node;
-      }
-      if (i != skillList.length - 1)
-        node.next.push(skillList[i + 1]);
-      else
-        node.last = true;
+      const id = skillList[i];
+      let node = {
+        id: id,
+        next: {},
+      };
+
+      if (!nextMap[id])
+        nextMap[id] = node;
+
+      nextMap = nextMap[id].next;
     }
   }
 
   HandleAbility(id) {
-    for (let i = 0; i < this.considerNext.length; ++i) {
-      let next = this.considerNext[i];
-      if (this.comboNodes[next].id == id) {
-        this.StateTransition(next);
-        return true;
-      }
+    if (id in this.considerNext) {
+      this.StateTransition(id, this.considerNext[id]);
+      return true;
     }
+
     if (this.comboBreakers.includes(id)) {
-      this.AbortCombo();
+      this.AbortCombo(id);
       return true;
     }
     return false;
   }
 
-  StateTransition(nextState) {
-    if (this.current == null && nextState == null)
-      return;
+  StateTransition(id, nextState) {
+    if (!id || nextState === null)
+      this.isComboBroken = true;
 
     window.clearTimeout(this.comboTimer);
     this.comboTimer = null;
-    this.current = nextState;
 
-    if (nextState == null) {
-      this.considerNext = this.startList;
+    const isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
+    if (nextState === null || isFinalSkill) {
+      this.considerNext = this.startMap;
+      this.isComboBroken = true;
     } else {
-      this.considerNext = [];
-      Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
-      Array.prototype.push.apply(this.considerNext, this.startList);
-
-      if (!this.comboNodes[nextState].last) {
-        let kComboDelayMs = 15000;
-        this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
-      }
+      this.isComboBroken = false;
+      this.considerNext = {};
+      Object.assign(this.considerNext, this.startMap);
+      Object.assign(this.considerNext, nextState.next);
+      let kComboDelayMs = 15000;
+      this.comboTimer = window.setTimeout(() => {
+        this.AbortCombo(null);
+      }, kComboDelayMs);
     }
-    this.callback(nextState);
+    if (id)
+      this.callback(id);
   }
 
-  AbortCombo() {
-    this.StateTransition(null);
+  AbortCombo(id) {
+    this.StateTransition(id, null);
+  }
+
+  IsComboBroken() {
+    return this.isComboBroken;
   }
 }
 
