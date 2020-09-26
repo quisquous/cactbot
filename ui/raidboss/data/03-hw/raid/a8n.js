@@ -186,13 +186,13 @@
     {
       id: 'A8N Long Needle Party',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: () => data.me !== data.bruteTank,
+      condition: (data) => data.me !== data.bruteTank,
       response: Responses.stackOn(),
     },
     {
       id: 'A8N Long Needle Active Tank',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: () => data.me === data.bruteTank && data.me !== matches.target,
+      condition: (data, matches) => data.me === data.bruteTank && data.me !== matches.target,
       alertText: {
         en: 'Don\'t Stack! (tank cleave)',
       },
