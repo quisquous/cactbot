@@ -1,7 +1,8 @@
-### A12N
+### A8N
 # Alexander - The Burden of the Son
 
 # -ii 172E 1733 1735 174B 1752 1755
+# -p 173B:214.3 173F:510.3 174E:826.9 1756:902.4
 
 hideall "--Reset--"
 hideall "--sync--"
@@ -46,7 +47,8 @@ hideall "Brute Force"
 
 # CUTE ROBOTS 1
 # There's no way to know which robot will die first or when,
-# so we just loop full rotations and hope for the best.
+# so we just do one full rotation and hope for the best.
+# If it would have looped past here, there are bigger problems!
 200.0 "--sync--" sync / 22:........:Onslaughter:........:Onslaughter:00/ window 200,0
 203.8 "--sync--" sync / 03:........:Added new combatant Brawler\./ window 150,30
 206.2 "--targetable--"
@@ -77,7 +79,7 @@ hideall "Brute Force"
 281.3 "Brute Force" sync /:Vortexer:1744:/
 281.7 "Magicked Mark" sync /:Brawler:173B:/
 
-284.9 "Attachment" sync /:Brawler:163C:/ jump 229.6
+284.9 "Attachment" sync /:Brawler:163C:/
 291.0 "Single Buster/Double Buster"
 297.1 "Ballistic Missile"
 302.1 "Ice Missile"
@@ -86,93 +88,92 @@ hideall "Brute Force"
 311.2 "Attachment"
 
 # CUTE ROBOTS 2
-# Full rotations again for the same reasons.
-# Extra safety syncs since there aren't as many convenient long-period abilities.
-400.0 "--sync--" sync / 03:........:Added new combatant Blaster\./ window 200,30
-402.1 "--targetable--"
-410.3 "Magicked Mark" sync /:Swindler:173F:/
-410.3 "Brute Force" sync /:Blaster:1738:/
-420.4 "Height" sync /:Swindler:1740:/ window 20.4,20
-423.4 "Brute Force" sync /:Blaster:1738:/
-423.6 "Magicked Mark" sync /:Swindler:173F:/
-426.5 "Mind Blast" sync /:Blaster:1739:/
+# One full rotation plus a tail again, for the same reasons. Don't be slow!
+500.0 "--sync--" sync / 03:........:Added new combatant Blaster\./ window 300,30
+502.1 "--targetable--"
+510.3 "Magicked Mark" sync /:Swindler:173F:/
+510.3 "Brute Force" sync /:Blaster:1738:/
+520.4 "Height" sync /:Swindler:1740:/ window 20.4,20
+523.4 "Brute Force" sync /:Blaster:1738:/
+523.6 "Magicked Mark" sync /:Swindler:173F:/
+526.5 "Mind Blast" sync /:Blaster:1739:/
 
-437.7 "Mirage" sync /:Blaster Mirage:1748:/
-443.8 "Supercharge" # sync /:Blaster Mirage:1749:/
-445.7 "Magicked Mark" sync /:Swindler:173F:/ window 15,15 # safety in cast Blaster dies first.
-446.0 "Brute Force" sync /:Blaster:1738:/
-449.2 "Mind Blast" sync /:Blaster:1739:/ window 15,10
-455.9 "Magicked Mark" sync /:Swindler:173F:/
-456.3 "Brute Force" sync /:Blaster:1738:/
-458.8 "Enumeration" sync /:Swindler:1742:/ window 20,20
-463.4 "Mind Blast" sync /:Blaster:1739:/
-465.0 "Magicked Mark" sync /:Swindler:173F:/
-465.5 "Brute Force" sync /:Blaster:1738:/ window 5,5
-475.1 "Height" sync /:Swindler:1740:/ window 20,20
-478.3 "Magicked Mark" sync /:Swindler:173F:/
-478.7 "Brute Force" sync /:Blaster:1738:/ window 5,5
-481.8 "Mind Blast" sync /:Blaster:1739:/ jump 426.5
+537.7 "Mirage" sync /:Blaster Mirage:1748:/
+543.8 "Supercharge" # sync /:Blaster Mirage:1749:/
+545.7 "Magicked Mark" sync /:Swindler:173F:/
+546.0 "Brute Force" sync /:Blaster:1738:/
+549.2 "Mind Blast" sync /:Blaster:1739:/
+555.9 "Magicked Mark" sync /:Swindler:173F:/
+556.3 "Brute Force" sync /:Blaster:1738:/
+558.8 "Enumeration" sync /:Swindler:1742:/
+563.4 "Mind Blast" sync /:Blaster:1739:/
+565.0 "Magicked Mark" sync /:Swindler:173F:/
+565.5 "Brute Force" sync /:Blaster:1738:/
+575.1 "Height" sync /:Swindler:1740:/
+578.3 "Magicked Mark" sync /:Swindler:173F:/
+578.7 "Brute Force" sync /:Blaster:1738:/
+581.8 "Mind Blast" sync /:Blaster:1739:/
 
-493.0 "Mirage"
-499.1 "Supercharge"
-504.5 "Mind Blast"
-514.1 "Enumeration"
-518.7 "Mind Blast"
+593.0 "Mirage" sync /:Blaster Mirage:1748:/
+599.1 "Supercharge"
+604.5 "Mind Blast"
+614.1 "Enumeration"
+618.7 "Mind Blast"
 
 # GO, GO, MEGAZORD MODE (BRUTE JUSTICE)
-600.0 "--sync--" sync / 03:........:Added new combatant Brute Justice\./ window 200,30
-610.3 "--sync--" sync /:Brute Justice:1758:/ window 610.3,30
-613.0 "--targetable--"
-626.9 "Double Rocket Punch" sync /:Brute Justice:174E:/ window 26,30
-629.0 "Missile Command" sync /:Brute Justice:1668:/
-632.4 "Flarethrower" sync /:Brute Justice:174D:/
-633.0 "Long Needle" sync /:Brute Justice:1754:/
-640.5 "Apocalyptic Ray" sync /:Brute Justice:1751:/ window 30,30 duration 5
-652.4 "Super Jump" sync /:Brute Justice:1750:/
-658.6 "Flarethrower" sync /:Brute Justice:174D:/
-663.7 "Missile Command" sync /:Brute Justice:1668:/
-665.7 "Short Needle x3" duration 6 # sync /:Brute Justice:1753:/
-671.8 "Double Rocket Punch" sync /:Brute Justice:174E:/ window 30,30
-679.0 "Flarethrower" sync /:Brute Justice:174D:/
-685.1 "Missile Command" sync /:Brute Justice:1668:/
-689.1 "Long Needle" sync /:Brute Justice:1754:/
-697.1 "Mega Beam" sync /:Brute Justice:174F:/ window 30,30
-699.2 "--untargetable--"
+800.0 "--sync--" sync / 03:........:Added new combatant Brute Justice\./ window 300,30
+810.3 "--sync--" sync /:Brute Justice:1758:/ window 610.3,30
+813.0 "--targetable--"
+826.9 "Double Rocket Punch" sync /:Brute Justice:174E:/ window 26,30
+829.0 "Missile Command" sync /:Brute Justice:1668:/
+832.4 "Flarethrower" sync /:Brute Justice:174D:/
+833.0 "Long Needle" sync /:Brute Justice:1754:/
+840.5 "Apocalyptic Ray" sync /:Brute Justice:1751:/ window 30,30 duration 5
+852.4 "Super Jump" sync /:Brute Justice:1750:/
+858.6 "Flarethrower" sync /:Brute Justice:174D:/
+863.7 "Missile Command" sync /:Brute Justice:1668:/
+865.7 "Short Needle x3" duration 6 # sync /:Brute Justice:1753:/
+871.8 "Double Rocket Punch" sync /:Brute Justice:174E:/ window 30,30
+879.0 "Flarethrower" sync /:Brute Justice:174D:/
+885.1 "Missile Command" sync /:Brute Justice:1668:/
+889.1 "Long Needle" sync /:Brute Justice:1754:/
+897.1 "Mega Beam" sync /:Brute Justice:174F:/ window 30,30
+899.2 "--untargetable--"
 
 # ABBREVIATED INTERMISSION
-702.4 "J Kick" sync /:Brute Justice:1756:/
-714.7 "Minefield" sync /:Hidden Mine:174A:/
-715.7 "Ice Missile" sync /:Vortexer:1746:/
-716.7 "Earth Missile" sync /:Vortexer:1745:/
-719.9 "Attachment" sync /:Brawler:163C:/
-726.1 "Single Buster/Double Buster" sync /:Brawler:173D:/
-732.0 "--sync--" sync /:Brute Justice:1636:/
-733.1 "100-Megatonze Shock" sync /:Onslaughter:1736:/
-736.9 "Height" sync /:Swindler:1740:/
-739.4 "Mega Beam" sync /:Onslaughter:1732:/
+902.4 "J Kick" sync /:Brute Justice:1756:/
+914.7 "Minefield" sync /:Hidden Mine:174A:/
+915.7 "Ice Missile" sync /:Vortexer:1746:/
+916.7 "Earth Missile" sync /:Vortexer:1745:/
+919.9 "Attachment" sync /:Brawler:163C:/
+926.1 "Single Buster/Double Buster" sync /:Brawler:173D:/
+932.0 "--sync--" sync /:Brute Justice:1636:/
+933.1 "100-Megatonze Shock" sync /:Onslaughter:1736:/
+936.9 "Height" sync /:Swindler:1740:/
+939.4 "Mega Beam" sync /:Onslaughter:1732:/
 
 # FOR GREAT JUSTICE
-747.8 "--targetable--"
-757.9 "Double Rocket Punch" sync /:Brute Justice:174E:/ window 30,30
-760.1 "Missile Command" sync /:Brute Justice:1668:/
-764.0 "Flarethrower" sync /:Brute Justice:174D:/
-764.0 "Long Needle" sync /:Brute Justice:1754:/
-772.2 "Apocalyptic Ray" sync /:Brute Justice:1751:/ duration 5 window 30,30
-784.1 "Super Jump" sync /:Brute Justice:1750:/
-790.3 "Flarethrower" sync /:Brute Justice:174D:/
-795.4 "Missile Command" sync /:Brute Justice:1668:/
-797.4 "Short Needle x3" duration 6 # sync /:Brute Justice:1753:/
-803.4 "Double Rocket Punch" sync /:Brute Justice:174E:/ window 30,30
-810.6 "Flarethrower" sync /:Brute Justice:174D:/
-816.7 "Missile Command" sync /:Brute Justice:1668:/
-820.7 "Long Needle" sync /:Brute Justice:1754:/
-828.8 "Mega Beam" sync /:Brute Justice:174F:/ window 30,30
-830.9 "--untargetable--"
-834.1 "J Kick" sync /:Brute Justice:1756:/
+947.8 "--targetable--"
+957.9 "Double Rocket Punch" sync /:Brute Justice:174E:/ window 30,30
+960.1 "Missile Command" sync /:Brute Justice:1668:/
+964.0 "Flarethrower" sync /:Brute Justice:174D:/
+964.0 "Long Needle" sync /:Brute Justice:1754:/
+972.2 "Apocalyptic Ray" sync /:Brute Justice:1751:/ duration 5 window 30,30
+984.1 "Super Jump" sync /:Brute Justice:1750:/
+990.3 "Flarethrower" sync /:Brute Justice:174D:/
+995.4 "Missile Command" sync /:Brute Justice:1668:/
+997.4 "Short Needle x3" duration 6 # sync /:Brute Justice:1753:/
+1003.4 "Double Rocket Punch" sync /:Brute Justice:174E:/ window 30,30
+1010.6 "Flarethrower" sync /:Brute Justice:174D:/
+1016.7 "Missile Command" sync /:Brute Justice:1668:/
+1020.7 "Long Needle" sync /:Brute Justice:1754:/
+1028.8 "Mega Beam" sync /:Brute Justice:174F:/ window 30,30
+1030.9 "--untargetable--"
+1034.1 "J Kick" sync /:Brute Justice:1756:/
 
-837.1 "--targetable--"
-847.2 "Double Rocket Punch" sync /:Brute Justice:174E:/ jump 757.9
-849.4 "Missile Command"
-853.3 "Flarethrower"
-853.3 "Long Needle"
-861.5 "Apocalyptic Ray"
+1037.1 "--targetable--"
+1047.2 "Double Rocket Punch" sync /:Brute Justice:174E:/ jump 957.9
+1049.4 "Missile Command"
+1053.3 "Flarethrower"
+1053.3 "Long Needle"
+1061.5 "Apocalyptic Ray"
