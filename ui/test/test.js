@@ -21,15 +21,15 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
   else if (e.detail.job == 'WAR')
     document.getElementById('jobinfo').innerText = jobDetail.beast;
   else if (e.detail.job == 'DRK')
-    document.getElementById('jobinfo').innerText = jobDetail.blood + ' | ' + jobDetail.darksideMilliseconds;
-  else if (e.detail.job == 'PLD')
-    document.getElementById('jobinfo').innerText = jobDetail.oath;
+    document.getElementById('jobinfo').innerText = jobDetail.blood + ' | ' + jobDetail.darksideMilliseconds + ' | ' + jobDetail.darkArts + ' | ' + jobDetail.livingShadowMilliseconds;
   else if (e.detail.job == 'GNB')
     document.getElementById('jobinfo').innerText = jobDetail.cartridges + jobDetail.continuationState;
+  else if (e.detail.job == 'PLD')
+    document.getElementById('jobinfo').innerText = jobDetail.oath;
   else if (e.detail.job == 'BRD')
     document.getElementById('jobinfo').innerText = jobDetail.songName + ' | ' + jobDetail.songProcs + ' | ' + jobDetail.soulGauge + ' | ' + jobDetail.songMilliseconds;
   else if (e.detail.job == 'DNC')
-    document.getElementById('jobinfo').innerText = jobDetail.feathers + ' | (' + jobDetail.steps + ') | ' + jobDetail.currentStep;
+    document.getElementById('jobinfo').innerText = jobDetail.feathers + ' | ' + jobDetail.esprit + ' | (' + jobDetail.steps + ') | ' + jobDetail.currentStep;
   else if (e.detail.job == 'NIN')
     document.getElementById('jobinfo').innerText = jobDetail.hutonMilliseconds + ' | ' + jobDetail.ninkiAmount;
   else if (e.detail.job == 'DRG')
@@ -52,8 +52,12 @@ addOverlayListener('onPlayerChangedEvent', function(e) {
     document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' | ' + jobDetail.chakraStacks + ' (' + jobDetail.lightningMilliseconds + ')';
   else if (e.detail.job == 'PGL')
     document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' (' + jobDetail.lightningMilliseconds + ')';
+  else if (e.detail.job == 'MNK')
+    document.getElementById('jobinfo').innerText = jobDetail.lightningStacks + ' (' + jobDetail.lightningMilliseconds + ') | ' + jobDetail.chakraStacks + ' | ' + jobDetail.lightningTimerFrozen;
   else if (e.detail.job == 'MCH')
-    document.getElementById('jobinfo').innerText = jobDetail.heat + ' (' + jobDetail.overheatMilliseconds + ') | ' + jobDetail.battery + ' (' + jobDetail.batteryMilliseconds + ')';
+    document.getElementById('jobinfo').innerText = jobDetail.heat + ' (' + jobDetail.overheatMilliseconds + ') | ' + jobDetail.battery + ' (' + jobDetail.batteryMilliseconds + ') | last: ' + jobDetail.lastBatteryAmount + ' | ' + jobDetail.overheatActive + ' | ' + jobDetail.robotActive;
+  else if (e.detail.job == 'SAM')
+    document.getElementById('jobinfo').innerText = jobDetail.kenki + ' | ' + jobDetail.meditationStacks + '(' + jobDetail.setsu + ',' + jobDetail.getsu + ',' + jobDetail.ka + ')';
   else
     document.getElementById('jobinfo').innerText = '';
 
