@@ -209,79 +209,80 @@ const kLevelMod = [[0, 0],
   [372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
 
 
-class ComboTracker {
-  constructor(comboBreakers, callback) {
-    this.comboTimer = null;
-    this.comboBreakers = comboBreakers;
-    this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
-    this.startList = [];
-    this.callback = callback;
-    this.current = null;
-    this.considerNext = this.startList;
-  }
-
-  AddCombo(skillList) {
-    if (!this.startList.includes(skillList[0]))
-      this.startList.push(skillList[0]);
-
-    for (let i = 0; i < skillList.length; ++i) {
-      let node = this.comboNodes[skillList[i]];
-      if (node == undefined) {
-        node = {
-          id: skillList[i],
-          next: [],
-        };
-        this.comboNodes[skillList[i]] = node;
-      }
-      if (i != skillList.length - 1)
-        node.next.push(skillList[i + 1]);
-      else
-        node.last = true;
+  class ComboTracker {
+    constructor(comboBreakers, callback) {
+      this.comboTimer = null;
+      this.comboBreakers = comboBreakers;
+      // A tree of nodes.
+      this.startMap = {}; // {} key => { id: str, next: { key => node } }
+      this.callback = callback;
+      this.isComboBroken = true;
+      this.considerNext = this.startMap;
     }
-  }
-
-  HandleAbility(id) {
-    for (let i = 0; i < this.considerNext.length; ++i) {
-      let next = this.considerNext[i];
-      if (this.comboNodes[next].id == id) {
-        this.StateTransition(next);
+  
+    AddCombo(skillList) {
+      let nextMap = this.startMap;
+  
+      for (let i = 0; i < skillList.length; ++i) {
+        const id = skillList[i];
+        let node = {
+          id: id,
+          next: {},
+        };
+  
+        if (!nextMap[id])
+          nextMap[id] = node;
+  
+        nextMap = nextMap[id].next;
+      }
+    }
+  
+    HandleAbility(id) {
+      if (id in this.considerNext) {
+        this.StateTransition(id, this.considerNext[id]);
         return true;
       }
+  
+      if (this.comboBreakers.includes(id)) {
+        this.AbortCombo(id);
+        return true;
+      }
+      return false;
     }
-    if (this.comboBreakers.includes(id)) {
-      this.AbortCombo();
-      return true;
+  
+    StateTransition(id, nextState) {
+      if (!id || nextState === null)
+        this.isComboBroken = true;
+  
+      window.clearTimeout(this.comboTimer);
+      this.comboTimer = null;
+  
+      const isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
+      if (nextState === null || isFinalSkill) {
+        this.considerNext = this.startMap;
+        this.isComboBroken = true;
+      } else {
+        this.isComboBroken = false;
+        this.considerNext = {};
+        Object.assign(this.considerNext, this.startMap);
+        Object.assign(this.considerNext, nextState.next);
+        let kComboDelayMs = 15000;
+        this.comboTimer = window.setTimeout(() => {
+          this.AbortCombo(null);
+        }, kComboDelayMs);
+      }
+      if (id)
+        this.callback(id);
     }
-    return false;
-  }
-
-  StateTransition(nextState) {
-    if (this.current == null && nextState == null)
-      return;
-
-    window.clearTimeout(this.comboTimer);
-    this.comboTimer = null;
-    this.current = nextState;
-
-    if (nextState == null) {
-      this.considerNext = this.startList;
-    } else {
-      this.considerNext = [];
-      Array.prototype.push.apply(this.considerNext, this.startList);
-      Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
-      let kComboDelayMs = 15000;
-      this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
+  
+    AbortCombo(id) {
+      this.StateTransition(id, null);
     }
-    this.callback(nextState);
+  
+    IsComboBroken() {
+      return this.isComboBroken;
+    }
   }
-
-  AbortCombo() {
-    this.StateTransition(null);
-  }
-  IsComboBroken() {
-    return this.considerNext == this.startList;
-  }
-}
 
 function setupComboTracker(callback) {
   let comboTracker = new ComboTracker(kComboBreakers, callback);
@@ -2232,10 +2233,6 @@ class Bars {
     });
 
     [
-      kAbility.PiercingTalon,
-      kAbility.FullThrust,
-      kAbility.ChaosThrust,
-      kAbility.CoerthanTorment,
       kAbility.FangAndClaw,
       kAbility.WheelingThrust,
     ].forEach((ability) => {
