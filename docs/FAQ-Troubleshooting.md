@@ -34,6 +34,13 @@ then remove it and re-follow the [installation instructions](https://github.com/
 - Make sure you are running x64 ACT (`Advanced Combat Tracker.exe`) and not x86 ACT (`ACTx86.exe`).
 - Finally, make sure you have reloaded ACT once you have installed OverlayPlugin.
 
+If you get an error similar to
+`Invalid Plugin: This assembly does not have a class that implements ACT's plugin interface, or scanning the assembly threw an error.`
+or
+`Load Error: Method 'LoadConfig' in type 'CactbotEventSource' etc etc does not have an implementation`
+then you should make sure that `CactbotOverlay.dll` is listed after `OverlayPlugin.dll` in
+**Plugins** -> **Plugin Listing**.
+
 ## Problems using Cactbot
 
 If triggers or pieces of the UI do not work, ensure that "Disable Parsing from Network Data" is **not** checked in the FFXIV plugin settings. Network data is required for accurate trigger timing.

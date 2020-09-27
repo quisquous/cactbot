@@ -144,6 +144,7 @@ Here's an example of how to set up the raidboss overlay module.
 Setting up other cactbot overlays works identically.
 
 1. Open ACT.
+1. Make sure you've restarted ACT after adding the cactbot plugin.
 1. Navigate to the `Plugins` tab of ACT and then the `OverlayPlugin.dll` tab inside it.
 1. Click the "New" button and then pick `Cactbot Raidboss` in the Preset list.
 
