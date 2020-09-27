@@ -35,21 +35,6 @@
   ],
   triggers: [
     {
-      // Flarethrower comes up at the same time as Long Needle at multiple points.
-      // This is *very* dangerous if the healers aren't ready, so we collect the active tank
-      // in order to warn them not to stack.
-      id: 'A8N Brute Active Tank',
-      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '174C' }),
-      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '174C' }),
-      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '174C' }),
-      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '174C' }),
-      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '174C' }),
-      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '174C' }),
-      run: function(data, matches) {
-        data.bruteTank = matches.target;
-      },
-    },
-    {
       id: 'A8N Megabeam Onslaughter',
       netRegex: NetRegexes.startsUsing({ source: 'Onslaughter', id: '1732', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ source: 'Schlachter', id: '1732', capture: false }),
@@ -184,15 +169,50 @@
       response: Responses.tankBuster(),
     },
     {
+      // Flarethrower comes up at the same time as Long Needle at multiple points.
+      // This is *very* dangerous if the healers aren't ready, so we collect the active tank
+      // in order to warn them not to stack.
+      id: 'A8N Brute Active Tank',
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: '174C' }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: '174C' }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: '174C' }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '174C' }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: '174C' }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '174C' }),
+      run: function(data, matches) {
+        data.bruteTank = matches.target;
+      },
+    },
+    {
+      // The only dangerous Flarethrower is the first one in any rotation.
+      // This one is always after J-Kick but before Super Jump,
+      // so we can just look for those two abilities and activate triggers on that basis.
+      // (The first dangerous Flarethrower is before Super Jump,
+      // so all Long Needle triggers will check against false values,
+      // since data.bruteTankOut will not be initialized at that point.)
+      // 1750 is Super Jump, 1756 is J-Kick.
+      id: 'A8N Long Needle Toggle',
+      netRegex: NetRegexes.ability({ source: 'Brute Justice', id: ['1750', '1756'] }),
+      netRegexDe: NetRegexes.ability({ source: 'Brutalus', id: ['1750', '1756'] }),
+      netRegexFr: NetRegexes.ability({ source: 'Justicier', id: ['1750', '1756'] }),
+      netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: ['1750', '1756'] }),
+      netRegexCn: NetRegexes.ability({ source: '残暴正义号', id: ['1750', '1756'] }),
+      netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: ['1750', '1756'] }),
+      suppressSeconds: 5,
+      run: function(data, matches) {
+        data.bruteTankOut = matches.id === '1756';
+      },
+    },
+    {
       id: 'A8N Long Needle Party',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: (data) => data.me !== data.bruteTank,
+      condition: (data) => !(data.me === data.bruteTank && data.bruteTankOut),
       response: Responses.stackOn(),
     },
     {
       id: 'A8N Long Needle Active Tank',
-      netRegex: NetRegexes.headMarker({ id: '003E' }),
-      condition: (data, matches) => data.me === data.bruteTank && data.me !== matches.target,
+      netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
+      condition: (data) => data.me === data.bruteTank && data.bruteTankOut,
       alertText: {
         en: 'Don\'t Stack! (tank cleave)',
       },
