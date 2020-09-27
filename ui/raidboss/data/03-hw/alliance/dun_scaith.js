@@ -575,7 +575,7 @@
           en: 'Stack on ' + data.ShortName(matches.target) + ' and look away',
           de: 'Sammeln bei ' + data.ShortName(matches.target) + ' und wewg schauen',
           fr: 'Package sur ' + data.ShortName(matches.target) + ' et regardez ailleurs',
-          ja: data.ShortName(matches.target) + 'に頭割り、背中を向け',
+          ja: data.ShortName(matches.target) + 'に頭割り、見ない',
           cn: '靠近并背对' + data.ShortName(matches.target) + '分摊',
         };
       },

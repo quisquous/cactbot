@@ -30,6 +30,7 @@
         en: 'Orb Tethers',
         de: 'Kugel-Verbindungen',
         fr: 'Attrapez les orbes',
+        ja: '線',
         cn: '连线',
         ko: '구슬 줄',
       },
@@ -86,9 +87,9 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'カオス',
+        'YOU DARE!': 'まさか……黒水晶を……！？',
       },
       'replaceText': {
         'Big Bang': '突出せよ',
@@ -101,6 +102,7 @@
         'Earthquake': 'じしん',
         'Fiendish Orbs': '追尾せよ',
         'Knock(?! )': '着弾',
+        'Long/Lat Implosion': 'インプロージョン 横/縦',
         'Soul of Chaos': 'ソウル・オブ・カオス',
         'Stray Flames': '混沌の炎',
         'Stray Spray': '混沌の水',

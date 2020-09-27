@@ -56,6 +56,7 @@
         en: 'Move bosses apart',
         de: 'Bosse auseinander ziehen',
         fr: 'Ecartez les boss',
+        ja: 'ボスを引き離す',
         cn: '分开boss',
         ko: '보스 서로 떨어뜨리기',
       },
@@ -78,7 +79,7 @@
           en: 'Get Out',
           de: 'Raus da',
           fr: 'Sortez',
-          ja: '誘引',
+          ja: '外へ',
           cn: '远离',
           ko: '파티에서 멀어지기',
         };
@@ -106,6 +107,7 @@
         en: 'Attack Omega-M',
         de: 'Omega-M angreifen',
         fr: 'Attaquez Oméga-M',
+        ja: 'オメガMに攻撃',
         cn: '攻击男性',
         ko: '오메가 M 공격',
       },
@@ -120,6 +122,7 @@
         en: 'Attack Omega-F',
         de: 'Omega-W angreifen',
         fr: 'Attaquez Oméga-F',
+        ja: 'オメガFに攻撃',
         cn: '攻击女性',
         ko: '오메가 F 공격',
       },
@@ -204,8 +207,8 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
+        'Calculations indicate increased probability of defeat': '警告……警告……敗北の危険性が上昇……',
         'Omega(?!-)': 'オメガ',
         'Omega-M': 'オメガM',
         'Optical Unit': 'オプチカルユニット',

@@ -19,6 +19,7 @@
       alertText: {
         en: 'Cleanse Doom soon',
         de: 'Reinige Verhängnis bald',
+        ja: '死の宣告にエスナ',
         cn: '驱散死宣',
         ko: '죽음의 선고 해제하기',
       },
@@ -55,6 +56,7 @@
       infoText: {
         en: 'Move around',
         de: 'Bewegen',
+        ja: '動く続ける',
         cn: '不停移动',
         ko: '움직이기',
       },
@@ -97,6 +99,7 @@
       infoText: {
         en: 'Stand in the gap',
         de: 'In der Lücke stehen',
+        ja: '狭間に',
         cn: '远离中间位置',
       },
     },
@@ -112,6 +115,7 @@
       infoText: {
         en: 'Behind head--Avoid zombie breath',
         de: 'Hinter den Kopf - Vermeide den Zombie-Atem',
+        ja: '頭の後ろに - ゾンビブレス来るぞ',
         cn: '站头后方',
         ko: '머리 뒤로 - 좀비 숨결 피하기',
       },
@@ -127,6 +131,7 @@
       infoText: {
         en: 'Avoid black holes',
         de: 'Weiche den Schwarzen Löchern aus',
+        ja: 'ブラックホールに離れ',
         cn: '远离黑洞',
         ko: '블랙홀 피하기',
       },
@@ -148,6 +153,7 @@
       alertText: {
         en: 'Flare on YOU',
         de: 'Flare auf DIR',
+        ja: '自分にフレア',
         cn: '核爆点名',
         ko: '플레어 대상자',
       },

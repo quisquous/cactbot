@@ -13,6 +13,7 @@
       alertText: {
         en: 'DPS: Levitate',
         de: 'DDs hoch',
+        ja: 'DPS: 浮上',
         cn: 'DPS浮空',
       },
     },
@@ -63,11 +64,13 @@
       infoText: {
         en: '-100 Gs: Go north/south and look away',
         de: '-100G: Nach Norden/Süden und wegschauen',
+        ja: '-100 G: 北/南へ、ボスを見ないで',
         cn: '前往南边/北边并背对boss',
       },
       tts: {
         en: '100 gs',
         de: '-100 G',
+        ja: 'マイナス100 G',
         cn: '重力负100',
       },
     },
@@ -94,6 +97,7 @@
           return {
             en: 'Earthquake: Levitate',
             de: 'Erdbeben: Schweben',
+            ja: '地震: 浮上',
             cn: '地震：漂浮',
           };
         }
@@ -103,6 +107,7 @@
           return {
             en: 'Earthquake',
             de: 'Erdbeben',
+            ja: '地震',
             cn: '地震',
           };
         }
@@ -112,6 +117,7 @@
           return {
             en: 'levitate',
             de: 'schweben',
+            ja: '浮上',
             cn: '漂浮',
           };
         }
@@ -125,6 +131,7 @@
           return {
             en: 'DPS: Levitate',
             de: 'DDs: Schweben',
+            ja: 'DPS: 浮上',
             cn: 'DPS浮空',
           };
         }
@@ -134,6 +141,7 @@
           return {
             en: 'DPS up, T/H down',
             de: 'DDs hoch, T/H runter',
+            ja: 'DPS浮上 タンクヒラ降下',
             cn: 'DPS升起，T奶下降',
           };
         }
@@ -141,6 +149,7 @@
       tts: {
         en: 'dps up',
         de: 'dee dees hoch',
+        ja: 'DPS浮上',
         cn: 'DPS升起',
       },
     },
@@ -171,12 +180,14 @@
             return {
               en: 'Maniacal Probe: Tanks & Healers',
               de: 'Tentakeltanz: Tanks & Heiler',
+              ja: '触手乱舞: タンク/ヒーラー',
               cn: 'T奶触手',
             };
           }
           return {
             en: 'Maniacal Probe: DPS',
             de: 'Tentakeltanz: DDs',
+            ja: '触手乱舞: DPS',
             cn: 'DPS触手',
           };
         }
@@ -187,12 +198,14 @@
             return {
               en: 'Maniacal Probe: Tanks & Healers',
               de: 'Tentakeltanz: Tanks & Heiler',
+              ja: '触手乱舞: タンク/ヒーラー',
               cn: 'T奶触手',
             };
           }
           return {
             en: 'Maniacal Probe: DPS',
             de: 'Tentakeltanz: DDs',
+            ja: '触手乱舞: DPS',
             cn: 'DPS触手',
           };
         }
@@ -202,12 +215,14 @@
           return {
             en: 'dps probe',
             de: 'dee dees tentakel',
+            ja: 'dpsに触手乱舞',
             cn: 'dps触手',
           };
         }
         return {
           en: 'tank heal probe',
           de: 'tenks heiler tentakel',
+          ja: 'タンクヒラに触手乱舞',
           cn: 'T奶触手',
         };
       },
@@ -222,11 +237,13 @@
       alarmText: {
         en: 'Unstable Gravity: Elevate and outside stack',
         de: 'Schwerkraftschwankung: Schweben und außen stacken',
+        ja: 'グラビティバースト: 浮上集合',
         cn: '升起并分摊',
       },
       tts: {
         en: 'float for bomb',
         de: 'schweben für bombe',
+        ja: '浮上集合',
         cn: '升起并分摊',
       },
     },
@@ -242,6 +259,7 @@
           return {
             en: '6 Fulms Under: Levitate',
             de: 'Versinkend: Schweben',
+            ja: '沈下: 浮上',
             cn: '下陷：悬浮',
           };
         }
@@ -251,6 +269,7 @@
           return {
             en: '6 Fulms Under',
             de: 'Versinkend',
+            ja: '沈下',
             cn: '下陷',
           };
         }
@@ -258,6 +277,7 @@
       tts: {
         en: 'float',
         de: 'schweben',
+        ja: '浮上',
         cn: '悬浮',
       },
       run: function(data) {
@@ -321,15 +341,18 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Catastrophe': 'カタストロフィー',
       },
       'replaceText': {
+        '\\(center\\)': '(中央)',
+        '\\(T/H\\)': '(タンク/ヒラ)',
+        '\\(troll\\)': '(死神の瞳)',
         '-100 Gs': '重力マイナス100',
         '(?<!-)100 Gs': '重力100',
         'Antilight': '暗黒光',
         'Death\'s Gaze': '死神の瞳',
+        'Double Stack': '二重頭割り',
         'Earthquake': '大地震',
         'Epicenter': '震源生成',
         'Evilsphere': 'イビルスフィア',
@@ -337,6 +360,7 @@
         'Gravitational Wave': '重力波',
         'Long Drop': '自由落下',
         'Paranormal Wave': '呪詛波',
+        'Probes': '触手乱舞',
         'Unstable Gravity': 'グラビティバースト',
       },
     },

@@ -219,6 +219,7 @@
             en: 'Monitors Left',
             de: 'Monitore Links',
             fr: 'Moniteur Gauche',
+            ja: '波動砲 (左)',
             cn: '探测左边',
             ko: '모니터 왼쪽',
           };
@@ -227,6 +228,7 @@
           en: 'Dodge Left',
           de: 'Links ausweichen',
           fr: 'Evitez à gauche',
+          ja: '左側に離れ',
           cn: '左侧躲闪',
           ko: '오른쪽으로',
         };
@@ -246,6 +248,7 @@
             en: 'Monitors Right',
             de: 'Monitore Rechts',
             fr: 'Moniteur Droite',
+            ja: '波動砲 (右)',
             cn: '探测右边',
             ko: '모니터 오른쪽',
           };
@@ -254,6 +257,7 @@
           en: 'Dodge Right',
           de: 'Rechts ausweichen',
           fr: 'Evitez à droite',
+          ja: '右側に離れ',
           cn: '右侧躲闪',
           ko: '왼쪽으로',
         };
@@ -268,7 +272,7 @@
             en: 'Vuln on YOU',
             de: 'Verwundbarkeit auf DIR',
             fr: 'Vulnérabilité sur VOUS',
-            ja: '標的 on YOU',
+            ja: '自分に標的',
             cn: '目标识别',
             ko: '표적식별 대상자',
           };
@@ -281,7 +285,7 @@
           en: 'Vuln on ' + data.ShortName(matches.target),
           de: 'Verwundbarkeit auf ' + data.ShortName(matches.target),
           fr: 'Vulnérabilité sur ' + data.ShortName(matches.target),
-          ja: '標的 on ' + data.ShortName(matches.target),
+          ja: data.ShortName(matches.target) + 'に標的',
           cn: '目标识别 点' + data.ShortName(matches.target),
           ko: '"' + data.ShortName(matches.target) + '" 표적식별',
         };
@@ -384,7 +388,7 @@
             en: 'Short Stack on YOU',
             de: 'Kurzer Stack auf YOU',
             fr: 'Marque courte sur VOUS',
-            ja: '早シェア on YOU',
+            ja: '自分に早シェア',
             cn: '短D',
             ko: '8초 치명적오류:분배(쉐어)',
           };
@@ -393,7 +397,7 @@
           en: 'Long Stack on YOU',
           de: 'Langer Stack auf YOU',
           fr: 'Marque longue sur VOUS',
-          ja: '遅シェア on YOU',
+          ja: '自分に遅シェア',
           cn: '长D',
           ko: '13초 치명적오류:분배(쉐어)',
         };
@@ -412,7 +416,7 @@
             en: 'Short Stack on ' + data.ShortName(matches.target),
             de: 'Kurzer Stack auf ' + data.ShortName(matches.target),
             fr: 'Marque courte sur ' + data.ShortName(matches.target),
-            ja: '早シェア on ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'に早シェア',
             cn: '短D 点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 쉐어',
           };
