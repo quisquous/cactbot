@@ -2177,7 +2177,6 @@ class Bars {
         highJumpBox.duration = 30;
       };
     });
-
     const disembowelBox = this.addProcBox({
       id: 'drg-procs-disembowel',
       fgColor: 'drg-color-disembowel',
@@ -2197,15 +2196,6 @@ class Bars {
       fgColor: 'drg-color-combo',
     });
     let comboType = '';
-    const buffComboFunc = () => {
-      comboTimer.duration = 0;
-      comboTimer.duration = 10;
-      comboType = 'buff';
-    };
-    const comboLostFunc = () => {
-      comboTimer.duration = 0;
-    };
-
     this.comboFuncs.push((skill) => {
       if (this.combo.IsComboBroken()) {
         comboTimer.duration = 0;
@@ -2231,20 +2221,26 @@ class Bars {
         }, 100);
       }
     });
-
+    // Drg's Blood buff combo is too special,
+    // Not consider them as combo makes things simpler.
     [
       kAbility.FangAndClaw,
       kAbility.WheelingThrust,
     ].forEach((ability) => {
-      this.abilityFuncMap[ability] = comboLostFunc;
+      this.abilityFuncMap[ability] = () => {
+        comboTimer.duration = 0;
+      };
     });
-
     [
       EffectId.SharperFangAndClaw,
       EffectId.EnhancedWheelingThrust,
       EffectId.RaidenThrustReady,
     ].forEach((effectId) => {
-      this.gainEffectFuncMap[effectId] = buffComboFunc;
+      this.gainEffectFuncMap[effectId] = () => {
+        comboTimer.duration = 0;
+        comboTimer.duration = 10;
+        comboType = 'buff';
+      };
     });
 
     // Gauge
@@ -2266,6 +2262,8 @@ class Bars {
         blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
       } else {
         blood.innerText = '';
+        // If player lost Blood when keeping a combo ready buff,
+        // buff will be lost and should reset timer.
         if (comboType == 'buff')
           comboTimer.duration = 0;
       }
