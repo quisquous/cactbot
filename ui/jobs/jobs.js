@@ -2235,7 +2235,7 @@ class Bars {
         comboTimer.duration = 0;
       };
     });
-    // If buff combo not finished, restart comboTimer. 
+    // If buff combo not finished, restart comboTimer.
     [
       EffectId.SharperFangAndClaw,
       EffectId.EnhancedWheelingThrust,
