@@ -2223,6 +2223,10 @@ class Bars {
     });
     // Drg's Blood buff combo is too special,
     // Not consider them as combo makes things simpler.
+    // Event Timeline: FangAndClaw/WheelingThrust casted =>
+    // SharperFangAndClaw/EnhancedWheelingThrust/RaidenThrustReady buff gain.
+
+    // Try to finish buffcombo.
     [
       kAbility.FangAndClaw,
       kAbility.WheelingThrust,
@@ -2231,6 +2235,7 @@ class Bars {
         comboTimer.duration = 0;
       };
     });
+    // If buff combo not finished, restart comboTimer. 
     [
       EffectId.SharperFangAndClaw,
       EffectId.EnhancedWheelingThrust,
