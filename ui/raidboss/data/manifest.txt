@@ -73,6 +73,8 @@
 03-hw/raid/a6s.txt
 03-hw/raid/a7s.js
 03-hw/raid/a7s.txt
+03-hw/raid/a8n.js
+03-hw/raid/a8n.txt
 03-hw/raid/a8s.js
 03-hw/raid/a8s.txt
 03-hw/raid/a9s.js

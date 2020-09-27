@@ -421,6 +421,7 @@
             en: 'Back to Tornado',
             de: 'Rücken zum Tornado',
             fr: 'Regardez vers l\'extérieur',
+            ja: '竜巻を見ない',
             cn: '背对龙卷风',
             ko: '토네이도 뒤돌기',
           };
@@ -430,6 +431,7 @@
             en: 'Face the Tornado',
             de: 'Zum Tornado hin',
             fr: 'Regardez la tornade',
+            ja: '竜巻を見る',
             cn: '面对龙卷风',
             ko: '토네이도 바라보기',
           };
@@ -518,6 +520,7 @@
         en: 'Stack with partner',
         de: 'Stacks verteilen',
         fr: 'Packez-vous en binôme',
+        ja: '相手と頭割り',
         cn: '与伙伴重合',
         ko: '파트너랑 모이기',
       },
@@ -653,7 +656,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Chaos': 'カオス',
       },
@@ -667,6 +669,7 @@
         'Earthquake': 'じしん',
         'Fiendish Orbs': '追尾せよ',
         'Knock(?! )': '着弾',
+        'Long/Lat Implosion': 'インプロージョン 横/縦',
         'Soul of Chaos': 'ソウル・オブ・カオス',
         'Stray Earth': '混沌の土',
         'Stray Flames': '混沌の炎',
@@ -674,6 +677,7 @@
         'Stray Spray': '混沌の水',
         'Tsunami': 'つなみ',
         'Umbra Smash': 'アンブラスマッシュ',
+        '\\(ALL\\)': '(全て)',
       },
     },
     {

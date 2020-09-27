@@ -37,12 +37,14 @@
           return {
             en: 'Stack marker on YOU',
             de: 'Sammeln Marker auf DIR',
+            ja: '自分に集合',
             cn: '集合点名',
           };
         }
         return {
           en: 'Stack on ' + data.shortName(matches.target),
           de: 'Sammeln auf ' + data.shortName(matches.target),
+          ja: data.ShortName(matches.target) + 'に集合',
           cn: '靠近' + data.shortName(matches.target) + '集合',
         };
       },
@@ -56,6 +58,7 @@
       infoText: {
         en: 'Levitate',
         de: 'Schweben',
+        ja: '浮上',
         cn: '浮空',
       },
     },
@@ -83,11 +86,13 @@
       infoText: {
         en: '-100 Gs: Go north/south',
         de: '-100G: Nach Norden/Süden',
+        ja: '-100 G: 北/南へ',
         cn: '去北边/南边',
       },
       tts: {
         en: '100 gs',
         de: '-100 G',
+        ja: 'マイナス100 G',
         cn: '重力负100',
       },
     },
@@ -114,6 +119,7 @@
           return {
             en: 'Levitate',
             de: 'Schweben',
+            ja: '浮上',
             cn: '浮空',
           };
         }
@@ -123,6 +129,7 @@
           return {
             en: 'Earthquake',
             de: 'Erdbeben',
+            ja: '地震',
             cn: '地震',
           };
         }
@@ -132,6 +139,7 @@
           return {
             en: 'levitate',
             de: 'schweben',
+            ja: '浮上',
             cn: '浮空',
           };
         }
@@ -159,6 +167,7 @@
           return {
             en: 'Levitate',
             de: 'Schweben',
+            ja: '浮上',
             cn: '浮空',
           };
         }
@@ -168,6 +177,7 @@
           return {
             en: '6 Fulms Under',
             de: 'Versinkend',
+            ja: '沈下',
             cn: '下陷',
           };
         }
@@ -175,6 +185,7 @@
       tts: {
         en: 'float',
         de: 'schweben',
+        ja: '浮上',
         cn: '浮空',
       },
     },
@@ -203,6 +214,7 @@
           return {
             en: 'Levitate',
             de: 'Levitation',
+            ja: '浮上',
             cn: '浮空',
           };
         }
@@ -212,12 +224,14 @@
           return {
             en: 'Go center and don\'t levitate',
             de: 'Geh in die Mitte und nicht schweben',
+            ja: '中央に浮かばず集合',
             cn: '中间集合不要浮空',
           };
         }
         return {
           en: 'Don\'t levitate',
           de: 'Nicht schweben',
+          ja: '浮上はしない',
           cn: '不要浮空',
         };
       },

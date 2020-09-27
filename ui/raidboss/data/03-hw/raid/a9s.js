@@ -19,6 +19,7 @@
           en: 'Place Generators NW/SE',
           de: 'Plaziere Generatoren NW/SO',
           fr: 'Placez les Générateurs NO/SE',
+          ja: 'パワージェネレーターを北西/南東に運ぶ',
           cn: '搬运发电器到西北/东南',
           ko: '발전기 놓기: 북서/남동',
         };
@@ -26,6 +27,7 @@
           en: 'Place Generators NW',
           de: 'Plaziere Generatoren NW',
           fr: 'Placez les Générateurs NO',
+          ja: 'パワージェネレーターを北西に運ぶ',
           cn: '搬运发电器到西北',
           ko: '발전기 놓기: 북서',
         };
@@ -33,6 +35,7 @@
           en: 'Place Generator NW',
           de: 'Plaziere Generator NW',
           fr: 'Placez les Générateurs NO',
+          ja: 'パワージェネレーターを北西に運ぶ',
           cn: '搬运发电器到西北',
           ko: '발전기 놓기: 북서/남동',
         };
@@ -40,6 +43,7 @@
           en: 'Place Generators SE',
           de: 'Plaziere Generatoren SO',
           fr: 'Placez les Générateurs SE',
+          ja: 'パワージェネレーターを南東に運ぶ',
           cn: '搬运发电器到东南',
           ko: '발전기 놓기: 남동',
         };
@@ -66,6 +70,7 @@
           en: 'Kill Alarum SE',
           de: 'SO Alarm besiegen',
           fr: 'Tuez l\'Alarum SE',
+          ja: '南東のアラームを倒す',
           cn: '在东南击杀警报',
           ko: '남동쪽 경보기 없애기',
         };
@@ -74,6 +79,7 @@
           en: 'Kill Alarum SW',
           de: 'SW Alarm besiegen',
           fr: 'Tuez l\'Alarum SO',
+          ja: '南西のアラームを倒す',
           cn: '在西南击杀警报',
           ko: '남서쪽 경보기 없애기',
         };
@@ -94,6 +100,7 @@
         en: 'Bombs Soon',
         de: 'Bomben bald',
         fr: 'Bombes bientôt',
+        ja: 'まもなく爆弾',
         cn: '炸弹马上爆炸',
         ko: '곧 폭탄 폭발',
       },
@@ -140,6 +147,7 @@
           en: 'Scrapline on YOU',
           de: 'Schrottlinie auf DIR',
           fr: 'Corde à ferraille sur VOUS',
+          ja: '自分にスクラップラリアット',
           cn: '死刑',
           ko: '후려갈기기 대상자',
         };
@@ -158,6 +166,7 @@
         en: 'Stand in Alarum Puddle',
         de: 'In Alarm Fläche stehen',
         fr: 'Tenez-vous dans la zone de l\'Alarum',
+        ja: '紫色の沼に入る',
         cn: '站进紫色圈圈',
         ko: '경보기 장판 밟기',
       },
@@ -170,6 +179,7 @@
         en: 'Rock on YOU',
         de: 'Stein auf DIR',
         fr: 'Rocher sur VOUS',
+        ja: '自分に落石',
         cn: '落石点名',
         ko: '돌 징 대상자',
       },
@@ -183,6 +193,7 @@
         en: 'Hide Fully Behind Rock',
         de: 'Komplett hinter dem Stein verstecken',
         fr: 'Cachez-vous derrière le rocher',
+        ja: '壁の後ろに',
         cn: '躲在石头后',
         ko: '돌 뒤에 숨기',
       },
@@ -224,6 +235,7 @@
           en: 'Adds to NE Lava',
           de: 'Adds in NO Lava',
           fr: 'Adds dans la lave NE',
+          ja: '北東にパワージェネレーターを倒す',
           cn: '拉小怪到东北击杀',
           ko: '쫄을 북동쪽 용암으로',
         };
@@ -231,6 +243,7 @@
           en: 'Adds to SE Lava',
           de: 'Adds in SO Lava',
           fr: 'Adds dans la lave SE',
+          ja: '南東にパワージェネレーターを倒す',
           cn: '拉小怪到东南击杀',
           ko: '쫄을 남동쪽 용암으로',
         };
@@ -238,6 +251,7 @@
           en: 'Adds to SW Lava',
           de: 'Adds in SW Lava',
           fr: 'Adds dans la lave SO',
+          ja: '南西にパワージェネレーターを倒す',
           cn: '拉小怪到西南击杀',
           ko: '쫄을 남서쪽 용암으로',
         };
@@ -245,6 +259,7 @@
           en: 'Adds to NW Lava',
           de: 'Adds in NW Lava',
           fr: 'Adds dans la lave NO',
+          ja: '北西にパワージェネレーターを倒す',
           cn: '拉小怪到西北击杀',
           ko: '쫄을 북서쪽 용암으로',
         };
@@ -341,21 +356,25 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb': '爆弾',
         'Faust Z': 'ファイナル・ファウスト',
         'Full-Metal Faust': 'フルアーマー・ファウスト',
         'Refurbisher 0': 'リファビッシャー',
         'Scrap': 'スクラップパンチ',
+        'The Cranial Plate': '頭部甲板',
+        'Life Support': '再生処理室',
       },
       'replaceText': {
+        '--rocks fall--': '--落石--',
         'Acid Rain': '酸性雨',
         'Alarum': 'アラーム',
         '(?<!Scrap )Bomb': '爆弾',
         'Explosion': '爆発',
+        'Full-Metal Faust Add': '雑魚: フルアーマー・ファウスト',
         'Heat Shielding Reassembly': '装甲再生',
         'Kaltstrahl': 'カルトシュトラール',
+        'Lava': 'ラーヴァ',
         'Left Arm Reassembly': '左腕再生',
         'Panzer Vor': 'パンツァーフォー',
         'Panzerschreck': 'パンツァーシュレッケ',
@@ -366,6 +385,10 @@
         'Scrap Storm': 'スクラップストーム',
         'Scrap(?! )': 'スクラップパンチ',
         'Stockpile': '吸収',
+        '\\(NE/SW\\)': '(北東/南西)',
+        '\\(NE\\)': '(北東)',
+        '\\(NW/SE\\)': '(北西/南東)',
+        '\\(SE\\)': '(南東)',
       },
     },
     {

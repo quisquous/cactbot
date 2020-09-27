@@ -34,6 +34,7 @@
         en: 'Out of death circle',
         de: 'Raus aus den Todeskreisen',
         fr: 'Sortez du cercle de mort',
+        ja: 'ヴォイド・デス、外へ',
         cn: '离开圈内并扯断连线',
       },
     },
@@ -55,6 +56,7 @@
         en: 'Cleanse Doom soon!',
         de: 'Verhängnis bald reinigen!',
         fr: 'Guerrissez Glas bientot',
+        ja: '死の宣告、エスナ！',
         cn: '尽快驱散死亡宣告！',
       },
     },
@@ -79,6 +81,7 @@
         en: 'Kill sprites',
         de: 'Exergone töten',
         fr: 'Tuez les adds',
+        ja: 'スプライトを倒す',
         cn: '击杀虚无元精',
       },
     },
@@ -92,6 +95,7 @@
         en: 'Drop Tornado outside',
         de: 'Wirbel draußen ablegen',
         fr: 'Déposez les tornades à l\'extérieur',
+        ja: 'エアロガ、外に置く',
         cn: '场地边缘放风圈',
       },
     },
@@ -125,6 +129,7 @@
         en: 'Avoid death squares',
         de: 'Weiche den Todes-Feldern aus',
         fr: 'Evitez les carrés mortels',
+        ja: 'ヴォイド・デスジャ、エリアの外に',
         cn: '离开即死区域',
       },
     },
@@ -139,6 +144,7 @@
             en: 'Drop scythe outside',
             de: 'Sense draußen ablegen',
             fr: 'Posez à l\'extérieur',
+            ja: 'ブラックウインド、外に置く',
             cn: '场地边缘放镰刀',
           };
         }
@@ -195,12 +201,14 @@
           return {
             en: 'Go To Any Untethered',
             de: 'Gehe zu einem Unverbundenen',
+            ja: '線のないアトモスに近づく',
             cn: '靠近无线小怪',
           };
         } else if (data.sphere.length === 2) {
           return {
             en: 'Avoid All Untethered',
             de: 'Vermeide alle Unverbundenen',
+            ja: '線のないアトモスに離れ',
             cn: '远离无线小怪',
           };
         } else if (data.donut.length === 1) {
@@ -212,6 +220,7 @@
               en: 'Go to Untethered Blue',
               de: 'Gehe zu dem nicht verbundenen blauem Atomos',
               fr: 'Allez vers la Gueule bleue non-liée',
+              ja: '線のない青色アトモスに近づく',
               cn: '靠近蓝色小怪',
             };
           }
@@ -219,6 +228,7 @@
             en: 'Go to Untethered Yellow',
             de: 'Gehe zu dem nicht verbundenen gelben Atomos',
             fr: 'Allez vers la Gueule jaune non-liée',
+            ja: '線のない黄色アトモスに近づく',
             cn: '靠近黄色小怪',
           };
         }
@@ -229,6 +239,7 @@
             en: 'Avoid Untethered Blue',
             de: 'Weiche dem nicht verbundenen blauem Atomos aus',
             fr: 'Evitez Gueule bleue non-liée',
+            ja: '線のない青色アトモスに離れ',
             cn: '远离蓝色小怪',
           };
         }
@@ -236,6 +247,7 @@
           en: 'Avoid Untethered Yellow',
           de: 'Weiche dem nicht verbundenen gelben Atomos aus',
           fr: 'Evitez Gueule jaune non-liée',
+          ja: '線のない黄色アトモスに離れ',
           cn: '远离黄色小怪',
         };
       },
@@ -260,6 +272,7 @@
         en: 'Avoid puddles',
         de: 'Flächen ausweichen',
         fr: 'Evitez les zones au sol',
+        ja: '円範囲攻撃、避け',
         cn: '离开圈圈',
       },
     },
@@ -272,6 +285,7 @@
         en: 'Change puddles to water',
         de: 'Ändere Flächen zu Wasser',
         fr: 'Changez en eau',
+        ja: '青い水に入れ替わって',
         cn: '将地上的圈踩成蓝色',
       },
     },
@@ -284,6 +298,7 @@
         en: 'Change puddles to fire',
         de: 'Ändere Flächen zu Feuer',
         fr: 'Changez en feu',
+        ja: '赤い火に入れ替わって',
         cn: '将地上的圈踩成红色',
       },
     },
@@ -311,6 +326,7 @@
             en: 'Prey--Avoid party and keep moving',
             de: 'Markiert - Weg von der Gruppe und bleib in Bewegung',
             fr: 'Marquage - Evitez les autres et bougez',
+            ja: 'マーキング - 外に移動続ける',
             cn: '离开人群并保持移动',
           };
         }
@@ -326,6 +342,7 @@
         en: 'Avoid Bit AoEs',
         de: 'Weiche den Bit AoEs aus',
         fr: 'Evitez les AoE des forets',
+        ja: 'AoEを避け',
         cn: '躲避小型AOE',
       },
     },
@@ -337,6 +354,7 @@
         en: 'Kill collectors',
         de: 'Ätherakkumulator besiegen',
         fr: 'Détruisez les accumulateurs',
+        ja: 'エーテル集積器を倒す',
         cn: '击杀以太收集器',
       },
     },
@@ -355,6 +373,7 @@
         en: 'Avoid arm slaps',
         de: 'Weiche den Armschlägen aus',
         fr: 'Evitez les bras',
+        ja: '影の手を避け',
         cn: '站在boss背后方向',
       },
     },
@@ -381,6 +400,7 @@
         en: 'Avoid line AoEs',
         de: 'Weiche den Linien AoEs aus',
         fr: 'Evitez les AoE en ligne',
+        ja: 'スカサハの正面に立たない',
         cn: '躲开boss正面路线',
       },
     },
@@ -418,6 +438,7 @@
         en: 'Kill the hands',
         de: 'Besiege die Hand',
         fr: 'Tuez les mains',
+        ja: '影の手を倒す',
         cn: '击杀影之手',
       },
     },
@@ -433,6 +454,7 @@
         en: 'Avoid AoE, Kill Connla',
         de: 'Weiche AoE aus, besiege Connla',
         fr: 'Evitez les AoE, tuez Connla',
+        ja: 'AoEを避け、コンラを倒す',
         cn: '躲避AOE后击杀康拉',
       },
     },
@@ -447,6 +469,7 @@
             en: 'Take orb outside',
             de: 'Orb nach außen bringen',
             fr: 'Prenez l\'orb à l\'extérieur',
+            ja: '黒い球体を外に引く',
             cn: '把球带出人群，移动到球不再出现为止',
           };
         }
@@ -495,6 +518,7 @@
         en: 'Boss hitting hard--Shield/Mitigate',
         de: 'Harter Hit vom Boss - Schild/Milderung',
         fr: 'Le boss frappe fort - Bouclier/Mitigation',
+        ja: '大ダメージ物理タンクバスター - ダメージ軽減/バリア',
         cn: 'MT大伤害物理死刑—注意减伤/治疗盾',
       },
     },
@@ -520,6 +544,7 @@
         en: 'Kill the deathgates',
         de: 'Besiege die Tore des Todes',
         fr: 'Détruisez les portes de mort',
+        ja: '召喚の扉を倒す',
         cn: '击杀召唤之门',
       },
     },
@@ -542,6 +567,7 @@
             en: 'Gaze stack on YOU',
             de: 'Blick-Sammeln auf DIR',
             fr: 'Package sur VOUS',
+            ja: '自分に頭割り',
             cn: '点名分摊',
           };
         }
@@ -549,6 +575,7 @@
           en: 'Stack on ' + data.ShortName(matches.target) + ' and look away',
           de: 'Sammeln bei ' + data.ShortName(matches.target) + ' und wewg schauen',
           fr: 'Package sur ' + data.ShortName(matches.target) + ' et regardez ailleurs',
+          ja: data.ShortName(matches.target) + 'に頭割り、見ない',
           cn: '靠近并背对' + data.ShortName(matches.target) + '分摊',
         };
       },
@@ -774,7 +801,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aether': 'エーテルスフィア',
         'Aether Collector': 'エーテル集積器',
@@ -801,6 +827,10 @@
         'Wailing Atomos': '虚声のアトモス',
       },
       'replaceText': {
+        '--deathgate spawn--': '--召喚の扉出現--',
+        '--lifegate spawn--': '--魔力の扉出現--',
+        '--shadows gather--': '--影の力を集めてる--',
+        '--towers appear--': '--塔出現--',
         'Aether Bend': 'エーテルベント',
         'Aetherial Pool': 'エーテリアルプール',
         'Aetherochemical Flare': '魔科学フレア',

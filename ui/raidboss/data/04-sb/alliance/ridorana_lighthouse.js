@@ -165,7 +165,7 @@
         en: 'Stretch Tether Outside',
         de: 'Verbindung nach außen strecken',
         fr: 'Lien vers l\'exterieur',
-        ja: '線を伸ばし外へ向け',
+        ja: '線を伸ばし外に向け',
         ko: '줄 바깥으로 늘이기',
         cn: '将连线朝外远离人群',
       },

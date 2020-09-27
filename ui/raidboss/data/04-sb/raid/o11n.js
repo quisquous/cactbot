@@ -15,6 +15,7 @@
       infoText: {
         en: 'Tank Tether',
         de: 'Tank Verbindung',
+        ja: 'タンク 線を取る',
         cn: '坦克接线远离人群',
         ko: '탱 블래스터 징',
       },
@@ -101,6 +102,7 @@
             en: 'Move (Left)',
             de: 'Bewegen (Links)',
             fr: 'Bougez (Gauche)',
+            ja: '動け (左へ)',
             cn: '去左边',
             ko: '이동 (왼쪽)',
           };
@@ -109,6 +111,7 @@
           en: 'Stay (Left)',
           de: 'Stehenbleiben (Links)',
           fr: 'Restez ici (Gauche)',
+          ja: 'そのまま (左に)',
           cn: '呆在左边',
           ko: '멈추기 (왼쪽)',
         };
@@ -131,6 +134,7 @@
             en: 'Stay (Right)',
             de: 'Stehenbleiben (Rechts)',
             fr: 'Restez ici (Droite)',
+            ja: 'そのまま (右に)',
             cn: '呆在右边',
             ko: '멈추기 (오른쪽)',
           };
@@ -139,6 +143,7 @@
           en: 'Move (Right)',
           de: 'Bewegen (Rechts)',
           fr: 'Bougez (droite)',
+          ja: '動け (右へ)',
           cn: '去右边',
           ko: '이동 (오른쪽)',
         };

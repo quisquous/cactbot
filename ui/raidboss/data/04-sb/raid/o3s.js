@@ -62,6 +62,7 @@
         return {
           en: 'Stack on YOU',
           de: 'Stack auf DIR',
+          ja: '自分に頭割り',
           cn: '分摊点名',
         };
       },
@@ -74,6 +75,7 @@
             return {
               en: 'Get out',
               de: 'Raus da',
+              ja: '出て',
               cn: '出去',
             };
           }
@@ -81,6 +83,7 @@
         return {
           en: 'Stack on ' + data.holyTargets[1],
           de: 'Stack auf ' + data.holyTargets[1],
+          ja: data.holyTargets[1] + 'に頭割り',
           cn: '分摊' + data.holyTargets[1],
         };
       },
@@ -90,6 +93,7 @@
             return {
               en: 'others stack on ' + data.holyTargets[1],
               de: 'andere stacken auf ' + data.holyTargets[1],
+              ja: '他は' + data.holyTargets[1] + 'に頭割り',
               cn: '其他分摊' + data.holyTargets[1],
             };
           }
@@ -100,6 +104,7 @@
           return {
             en: 'stack on you',
             de: 'stack auf dir',
+            ja: '自分に頭割り',
             cn: '分摊点名',
           };
         }
@@ -108,6 +113,7 @@
             return {
               en: 'get out',
               de: 'raus da',
+              ja: '出ていて',
               cn: '出去',
             };
           }
@@ -115,6 +121,7 @@
         return {
           en: 'stack on ' + data.holyTargets[1],
           de: 'stack auf ' + data.holyTargets[1],
+          ja: data.holyTargets[1] + 'に頭割り',
           cn: '分摊' + data.holyTargets[1],
         };
       },
@@ -152,6 +159,7 @@
           return {
             en: 'Go south: stack on YOU',
             de: 'Nach Süden: stack auf DIR',
+            ja: '南へ: 自分に頭割り',
             cn: '去南边分摊点名',
           };
         }
@@ -159,12 +167,14 @@
           return {
             en: 'go north',
             de: 'nach norden',
+            ja: '南へ',
             cn: '去南边',
           };
         }
         return {
           en: 'go south: stack on friend',
           de: 'nach süden: stack auf freund',
+          ja: '南へ: 頭割り',
           cn: '去南边分摊',
         };
       },
@@ -177,6 +187,7 @@
           return {
             en: 'stack outside',
             de: 'außen stacken',
+            ja: '外へ: 頭割り',
             cn: '去外面分摊',
           };
         }
@@ -184,12 +195,14 @@
           return {
             en: 'go north',
             de: 'nach norden',
+            ja: '南へ',
             cn: '去南边',
           };
         }
         return {
           en: 'stack inside',
           de: 'innen stacken',
+          ja: '中へ: 頭割り',
           cn: '去里面分摊',
         };
       },
@@ -204,6 +217,7 @@
       infoText: {
         en: 'Mindjack: Right',
         de: 'Geistlenkung: Rechts',
+        ja: 'マインドジャック: 右折',
         cn: '右',
       },
     },
@@ -217,6 +231,7 @@
       infoText: {
         en: 'Mindjack: Forward',
         de: 'Geistlenkung: Vorwärts',
+        ja: 'マインドジャック: 前進',
         cn: '前',
       },
     },
@@ -230,6 +245,7 @@
       infoText: {
         en: 'Mindjack: Left',
         de: 'Geistlenkung: Links',
+        ja: 'マインドジャック: 左折',
         cn: '左',
       },
     },
@@ -243,6 +259,7 @@
       infoText: {
         en: 'Mindjack: Back',
         de: 'Geistlenkung: Zurück',
+        ja: 'マインドジャック: 後退',
         cn: '后',
       },
     },
@@ -292,11 +309,13 @@
       alertText: {
         en: 'The Queen\'s Waltz: Books',
         de: 'Tanz der Königin: Bücher',
+        ja: '女王の舞い: 本',
         cn: '中间两排分格站位',
       },
       tts: {
         en: 'books',
         de: 'bücher',
+        ja: '本',
         cn: '书',
       },
     },
@@ -311,11 +330,13 @@
       infoText: {
         en: 'The Queen\'s Waltz: Clock',
         de: 'Tanz der Königin: Uhr',
+        ja: '女王の舞い: 散開',
         cn: '万变水波站位',
       },
       tts: {
         en: 'clock',
         de: 'uhr',
+        ja: '散開',
         cn: '万变水波',
       },
     },
@@ -330,11 +351,13 @@
       infoText: {
         en: 'The Queen\'s Waltz: Crystal Square',
         de: 'Tanz der Königin: Kristallfeld',
+        ja: '女王の舞い: 床',
         cn: '站在蓝地板',
       },
       tts: {
         en: 'blue square',
         de: 'blaues feld',
+        ja: '青い床',
         cn: '蓝地板',
       },
     },
@@ -349,11 +372,13 @@
       infoText: {
         en: 'The Queen\'s Waltz: Tethers',
         de: 'Tanz der Königin: Ranken',
+        ja: '女王の舞い: 茨',
         cn: '先集中后扯线',
       },
       tts: {
         en: 'tethers',
         de: 'ranken',
+        ja: '茨を引く',
         cn: '扯线',
       },
     },
@@ -428,29 +453,45 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Halicarnassus': 'ハリカルナッソス',
       },
       'replaceText': {
+        '--Apanda Spawns--': '--雑魚: アパンダ--',
+        '--Great Dragon Spawns--': '--雑魚: ドラゴン--',
+        '--Ninjas \\+ Giant Spawn--': '--雑魚: ニンジャ + 鉄巨人--',
+        '--White Flame Spawns--': '--雑魚: ホワイトフレイム--',
+        '(?<=\\()Apanda(?=\\))': 'アパンダ',
         'Blizzard': 'ブリザド',
+        'Books': '本',
+        'Clock': '散開',
         'Critical Hit': 'クリティカル',
+        'Crystals': '床',
+        'DPS Morph': '受け持ち: DPSの番',
         'Dimensional Wave': '次元波動',
+        'Dragon Conal AoE': 'ドラゴン フロストバイト',
         'Fire': 'ファイア',
         'Haste': 'ヘイスト',
+        'Healers Morph': '受け持ち: ヒーラーの番',
         'Magic Hammer': 'マジックハンマー',
         'Mindjack': 'マインドジャック',
+        'Ninjas/Giant': 'ニンジャ / 鉄巨人',
         'Oink': 'ポルルルル！',
         'Panel Swap': 'パネルシャッフル',
         'Place Dark Token': 'サモンデストークン',
         'Place Token': 'サモントークン',
+        '(?<=\\()Random(?=\\))': 'ランダム',
+        'Random Elemental': '魔法剣 (ランダム)',
         'Ribbit': 'クルルルル！',
         'Spellblade Holy': '魔法剣ホーリー',
         'Squelch': 'カルルルル！',
+        'Tanks Morph': '受け持ち: タンクの番',
+        'Tethers': '茨',
         'The Game': 'ゲームスタート',
         'The Playing Field': 'ゲームボード',
         '(The )?Queen\'s Waltz': '女王の舞い',
         'Thunder': 'サンダー',
+        'Ultimate': 'アルテマ',
       },
     },
     {

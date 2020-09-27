@@ -19,6 +19,7 @@
       alertText: {
         en: 'Stand on webs',
         de: 'Auf den Spinnennetzen stehen',
+        ja: 'アンキレーウェブに入る',
         cn: '站在网上',
       },
     },
@@ -134,6 +135,7 @@
       infoText: {
         en: 'Drop Web Outside',
         de: 'Spinnennetz draußen ablegen',
+        ja: 'ウェブを外周に捨て',
         cn: '蛛网点名，放在场边',
       },
     },
@@ -204,6 +206,7 @@
       alertText: {
         en: 'Stand in one puddle',
         de: 'In einer Fläche stehen',
+        ja: '範囲に入る',
         cn: '站在圈里',
       },
     },
@@ -214,6 +217,7 @@
       alertText: {
         en: 'Drop meteor back or left',
         de: 'Meteor hinten oder links ablegen',
+        ja: 'メテオ、後ろや左に置く',
         cn: '流星点名，放在背后或左边',
       },
     },
@@ -230,6 +234,7 @@
       alertText: {
         en: 'Get off rectangle platform',
         de: 'Von der plattform runter gehen',
+        ja: '通路で回避',
         cn: '离开平台',
       },
     },
@@ -263,12 +268,14 @@
           return {
             en: 'Tank lasers--Avoid party',
             de: 'Tank lasers--Weg von der Party',
+            ja: 'タンクレザー - 外に',
             cn: '坦克激光--远离人群',
           };
         }
         return {
           en: 'Avoid tanks',
           de: 'Weg von den Tanks',
+          ja: 'タンクに離れ',
           cn: '远离坦克',
         };
       },
@@ -284,6 +291,7 @@
       infoText: {
         en: 'Get orbs',
         de: 'Kugeln nehmen',
+        ja: '玉を取る',
         cn: '撞球',
       },
     },
@@ -348,6 +356,7 @@
       infoText: {
         en: 'Close to axes, avoid bulbs',
         de: 'Nahe den Äxten, vermeide Knospen',
+        ja: '刃物の髪に近づく、丸い髪に離れ',
         cn: '靠近斧状发，远离球状发',
       },
     },
@@ -358,6 +367,7 @@
       alertText: {
         en: 'Avoid scythe line AoEs',
         de: 'Weiche den Sensen AOEs aus',
+        ja: '十字AoE',
         cn: '躲避镰刀直线AOE',
       },
     },
@@ -369,6 +379,7 @@
       infoText: {
         en: 'Avoid purple circles',
         de: 'Vermeide die lilanen Flächen',
+        ja: '紫の円範囲を避け',
         cn: '远离紫圈',
       },
     },
@@ -396,12 +407,14 @@
           return {
             en: '16x Sky Laser on YOU!',
             de: '16x Himmelslaser auf DIR!',
+            ja: '自分に16連撃潜地式波動砲！',
             cn: '16连追踪AOE点名',
           };
         }
         return {
           en: 'Avoid Sky Lasers',
           de: 'Himmelslaser ausweichen',
+          ja: '潜地式波動砲に避け',
           cn: '躲避追踪AOE',
         };
       },
@@ -574,7 +587,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Arachne Eve': 'アルケニー',
         'Calofisteri': 'カロフィステリ',
@@ -621,6 +633,7 @@
         'Mega Death': 'オーバーデス',
         'Megiddo Flame': 'メギドフレイム',
         'Meteor(?![\\w\\s])': 'メテオ',
+        'Meteor Headmarkers': 'メテオ マーキング',
         'Meteor Impact': 'メテオインパクト',
         'Necropurge': 'ネクロパージ',
         'Penetration': 'ペネトレーション',
@@ -631,6 +644,7 @@
         'Silken Spray': 'シルクスプレー',
         'Split End': 'スプリットエンド',
         'Sticky Wicket': 'スティッキーウィケット',
+        'Tank Lasers': 'タンクレザー',
         'The Widow\'s Embrace': '蜘蛛の大罠',
         'The Widow\'s Kiss': '蜘蛛の罠',
         'Transfiguration': '形態変化',

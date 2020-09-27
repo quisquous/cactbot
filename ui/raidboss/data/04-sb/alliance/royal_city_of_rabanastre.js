@@ -314,7 +314,7 @@
             en: 'Look Away',
             de: 'Wegschauen',
             fr: 'Regardez ailleurs',
-            ja: '背中を向け',
+            ja: '見ない',
             cn: '背对BOSS',
             ko: '바라보지 말기',
           };
@@ -323,7 +323,7 @@
           en: 'Look Towards',
           de: 'Anschauen',
           fr: 'Regardez le boss',
-          ja: 'ボスに向け',
+          ja: 'ボスを見て',
           cn: '面对BOSS',
           ko: '바라보기',
         };

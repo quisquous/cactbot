@@ -131,11 +131,13 @@
       infoText: {
         en: 'Get on crystal square',
         de: 'Kristallfeld',
+        ja: '青い床に',
         cn: '站在蓝地板',
       },
       tts: {
         en: 'blue square',
         de: 'blaues feld',
+        ja: '青い床',
         cn: '蓝地板',
       },
     },
@@ -153,6 +155,7 @@
       infoText: {
         en: 'Grab dragon',
         de: 'Drachen nehmen',
+        ja: 'ドラゴンを取って',
         cn: '拉住巨龙',
       },
     },
@@ -182,6 +185,7 @@
       alertText: {
         en: 'Get hit by Ribbit',
         de: 'Lass dich von Quaaak treffen',
+        ja: 'クルルルルを受け',
         cn: 'BOSS正面吃呱呱',
       },
     },
@@ -213,6 +217,7 @@
           return {
             en: 'Stand on frog tile',
             de: 'Auf Frosch-Fläche stehen',
+            ja: 'カエルパネルを踏む',
             cn: '站在呱呱方块',
           };
         }
@@ -221,16 +226,19 @@
           'tank': {
             en: 'Stand on shield',
             de: 'Auf Schild-Fläche stehen',
+            ja: 'タンクパネルを踏む',
             cn: '站在坦克方块',
           },
           'healer': {
             en: 'Stand on cross',
             de: 'Auf Kreuz-Fläche stehen',
+            ja: 'ヒーラーパネルを踏む',
             cn: '站在治疗方块',
           },
           'dps': {
             en: 'Stand on sword',
             de: 'Auf Schwert-Fläche stehen',
+            ja: 'DPSパネルを踏む',
             cn: '站在DPS方块',
           },
         }[data.role];
@@ -250,6 +258,7 @@
       infoText: {
         en: 'Mindjack: Forward',
         de: 'Geistlenkung: Vorwärts',
+        ja: 'マインドジャック: 前進',
         cn: '精神控制：向前',
       },
     },
@@ -264,6 +273,7 @@
       infoText: {
         en: 'Mindjack: Back',
         de: 'Geistlenkung: Zurück',
+        ja: 'マインドジャック: 後退',
         cn: '精神控制：向后',
       },
     },
@@ -278,6 +288,7 @@
       infoText: {
         en: 'Mindjack: Left',
         de: 'Geistlenkung: Links',
+        ja: 'マインドジャック: 左折',
         cn: '精神控制：向左',
       },
     },
@@ -292,6 +303,7 @@
       infoText: {
         en: 'Mindjack: Right',
         de: 'Geistlenkung: Rechts',
+        ja: 'マインドジャック: 右折',
         cn: '精神控制：向右',
       },
     },

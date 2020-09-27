@@ -44,6 +44,7 @@
         en: 'Scourge on YOU',
         de: 'Licht auf DIR',
         fr: 'Lumière sur VOUS',
+        ja: '自分に白光の鞭',
         cn: '白光之鞭点名',
         ko: '성광의 채찍 대상자',
       },
@@ -80,6 +81,7 @@
           en: 'Scourge: ' + names.join(', '),
           de: 'Licht: ' + names.join(', '),
           fr: 'Lumière : ' + names.join(', '),
+          ja: names.join(', ') + 'に白光の鞭',
           cn: '白光之鞭点:' + names.join(', '),
           ko: '성광의 채찍:' + names.join(', '),
         };
@@ -113,6 +115,7 @@
         en: 'Lasers',
         de: 'Laser',
         fr: 'Lasers',
+        ja: '十字の秘蹟',
         cn: '十字圣礼',
         ko: '십자 성례',
       },
@@ -140,7 +143,7 @@
           en: 'Close Tethers' + suffix,
           de: 'Nahe Verbindungen' + suffix,
           fr: 'Liens proches' + suffix,
-          ja: 'ニアー' + suffix,
+          ja: suffix + 'に近づく',
           cn: '靠近连线' + suffix,
           ko: '강제접근: 상대와 가까이 붙기' + suffix,
         };
@@ -159,7 +162,7 @@
           en: 'Far Tethers' + suffix,
           de: 'Entfernte Verbindungen' + suffix,
           fr: 'Liens éloignés' + suffix,
-          ja: 'ファー' + suffix,
+          ja: suffix + 'に離れ',
           cn: '远离连线' + suffix,
           ko: '접근금지: 상대와 떨어지기' + suffix,
         };
@@ -218,7 +221,7 @@
             en: 'Shared Tankbuster',
             de: 'geteilter Tankbuster',
             fr: 'Partagez le Tank buster',
-            ja: 'タンクシェア',
+            ja: '頭割りタンクバスター',
             cn: '分摊死刑',
             ko: '쉐어 탱크버스터',
           };
@@ -248,6 +251,7 @@
         en: 'Puddle Tether on YOU',
         de: 'Flächen-Verbindung auf dir',
         fr: 'Lien Zone au sol sur VOUS',
+        ja: '自分に線',
         cn: '放圈连线点名',
         ko: '장판 남기는 선 대상자',
       },
@@ -346,7 +350,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         '(?<! )Alexander(?! )': 'アレキサンダー',
         'Alexander Prime': 'アレキサンダー・プライム',
@@ -356,6 +359,7 @@
         'The General\'s Wing': 'アリダイオス・ウィング',
       },
       'replaceText': {
+        '--timestop--': '--時間停止--',
         '(?<!Radiant )Sacrament': '十字の秘蹟',
         'Almost Holy': 'プチホーリー',
         'Arrhidaeus\'s Lanner': 'アリダイオス・ランナー',
@@ -383,6 +387,8 @@
         'The General\'s Might': 'アリダイオス・マイト',
         'The General\'s Time': 'アリダイオス・タイム',
         'The General\'s Wing': 'アリダイオス・ウィング',
+        'timegate(?!s)': 'タイムゲート',
+        'timegates active': 'タイムゲート起動',
         'Void Of Repentance': '懺悔の間',
       },
     },
