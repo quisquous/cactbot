@@ -34,21 +34,21 @@ Stab feature creep/overengineering in the eye
 
 config = {
     "output": {
-        "pve":"pve_action_info.js",
-        "pvp":"pvp_action_info.js",
-        "crafting":"crafting_action_info.js",
-        "combo":"pve_action_combos.js",
-        "invalid":"invalid_action.log",
+        "pve": "pve_action_info.js",
+        "pvp": "pvp_action_info.js",
+        "crafting": "crafting_action_info.js",
+        "combo": "pve_action_combos.js",
+        "invalid": "invalid_action.log",
     },
         "locale_url": {
-            "root":"https://raw.githubusercontent.com/",
-            "intl":"xivapi/ffxiv-datamining/master/csv/",
+            "root": "https://raw.githubusercontent.com/",
+            "intl": "xivapi/ffxiv-datamining/master/csv/",
             "cn": "thewakingsands/ffxiv-datamining-cn/master/",
             "ko": "Ra-Workspace/ffxiv-datamining-ko/master/csv/",
             "local": "",
     },
-    "path": {"cactbot":os.path.abspath(__file__)[:-24]},
-    "log": {"error":"gen_action_info.log"},
+    "path": {"cactbot": os.path.abspath(__file__)[:-24]},
+    "log": {"error": "gen_action_info.log"},
 }
 
 
@@ -70,7 +70,7 @@ def __get_remote_table(url, inputs, outputs=None):
     next(csv_file)
 
     # Change # to ID for more readable data
-    headers[0] = headers[0].replace("#","ID")
+    headers[0] = headers[0].replace("#", "ID")
     # Generate the hex ID from the ID and return the data with the headers prepended
     return [headers] + [x + [format(int(x[0]), "X")] for x in csv_file]
 
@@ -89,7 +89,7 @@ def __get_local_table(filename, inputs, outputs=None):
     # Append the hexidecimal version of the ID as a new column so the original ID is usable for correllation
     headers = csv_file.pop(0) + ["HexID"]
     # Change # to ID for more readable data
-    headers[0] = headers[0].replace("#","ID")
+    headers[0] = headers[0].replace("#", "ID")
     # Generate the hex ID from the ID and return the data with the headers prepended
     return [headers] + [x + [format(int(x[0]), "X")] for x in csv_file]
 
@@ -138,6 +138,7 @@ def normalize_name(str):
     
     return str
 
+
 def write_js(filename, scriptname, variable, d):
     """Writes the created data structure to a .js file"""
     with open(filename, "w", encoding="utf-8") as f:
@@ -163,7 +164,8 @@ def write_js(filename, scriptname, variable, d):
         f.write("  module.exports = %s;\n" % variable)
 
         print("wrote: %s" % filename)
-        
+
+
 def save_error(header, what, map, key):
     with open(config["log"]["error"], "a") as error_log:
         error_log.write("%s %s: %s" % (header, what, map[key]))
@@ -184,7 +186,7 @@ if __name__ == "__main__":
     # Then it does some filtering to validate the action data.
     # Then it sorts the actions into relevant categories and nests the data as class/job abbreviation (ADV, GLA, DRK, etc.) then power name
     # Structure should end up looking vaguely like {'pve': {'CLS':{'AbilityName':{'RemainingKey':'Value'}}}}
-    for action in ({k:v for k,v in zip(actions_table[0],row) if k} for row in actions_table[1:]):
+    for action in ({k: v for k, v in zip(actions_table[0], row) if k} for row in actions_table[1:]):
         is_player_action = action["IsPlayerAction"] == "True"
         
         # They seem to use -1 for deprecated actions.
@@ -204,11 +206,11 @@ if __name__ == "__main__":
                 if action["Name"] in actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]]:
                     actions["invalid"][action.pop("ID")] = action
                 else:
-                   if int(action["Action{Combo}"]) > 0:
+                    if int(action["Action{Combo}"]) > 0:
                         actions["combo"][action["ID"]]["Name"] = action["Name"]
                         actions["combo"][action["ID"]]["Previous"][action["Action{Combo}"]] = ""
                         actions["combo"][action["Action{Combo}"]]["Next"][action["ID"]] = action["Name"]
-                   actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]][action.pop("Name")] = action
+                    actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]][action.pop("Name")] = action
             elif action["IsPvP"] == "True":
                 if action["Name"] in actions["pvp"][jobs[action["ClassJob"]]["Abbreviation"]]:
                     actions["invalid"][action.pop("ID")] = action
