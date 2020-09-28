@@ -19,6 +19,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tank buster sur VOUS',
+            ja: '自分にタンクバスター',
             cn: '死刑减伤',
             ko: '탱버 대상자',
           };
@@ -28,6 +29,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tank buster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(matches.target) + '" 탱버',
           };
@@ -49,6 +51,7 @@
         en: 'Tank Buster',
         de: 'Tankbuster',
         fr: 'Tank buster',
+        ja: 'タンクバスター',
         cn: '死刑',
         ko: '탱버',
       },
@@ -155,7 +158,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Tenzen': 'テンゼン',
         'Scarlet Tail Feather': '朱雀の尾羽根',
@@ -171,10 +173,12 @@
         'Mesmerizing Melody': '誘引の旋律',
         'Pay The Piper': '傀儡詩',
         'Phantom Flurry': '鬼宿脚',
+        'Phantom Half': '鬼宿脚 (フィールド半分)',
         'Phoenix Down': '再生の羽根',
         'Rekindle': '再生の炎',
         'Rout': '猛進',
         'Ruthless Refrain': '拒絶の旋律',
+        'Ruthless/Mesmerizing': '拒絶/誘引',
         'Scarlet Fever': '焼滅天火',
         'Scarlet Hymn': '朱の旋律',
         'Scathing Net': '張宿業火',
