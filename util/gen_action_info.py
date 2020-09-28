@@ -33,6 +33,7 @@ Move table structuring from dunders to get_data_table()
 config = {'output':
             {'pve':'pve_action_info.js',
              'pvp':'pvp_action_info.js',
+             'crafting':'crafting_action_info.js',
              'invalid':'invalid_action.log'},
           'locale_url':
             {'root':'https://raw.githubusercontent.com/',
@@ -41,7 +42,7 @@ config = {'output':
              'ko': 'Ra-Workspace/ffxiv-datamining-ko/master/csv/',
              'local': ''},
           'path':
-            {'cactbot':'..'},
+            {'cactbot':os.path.abspath(__file__)[:-24]},
           'log':
             {'error':'gen_action_info.log'}
          }
@@ -85,7 +86,7 @@ def __get_local_table(filename, inputs, outputs=None):
 def get_data_table(table_name, locale='intl', inputs=None, outputs=None):
     """Retrieves table data based on provided locale"""
     if locale == 'local' and os.path.exists(table_name):
-        return __get_local_table(filename, inputs, outputs)
+        return __get_local_table(table_name + '.csv', inputs, outputs)
     if locale in config['locale_url']:
         url = config['locale_url']['root'] + config['locale_url'][locale] + table_name + '.csv'
         return __get_remote_table(url, inputs, outputs)
@@ -159,7 +160,7 @@ if __name__ == "__main__":
     actions_table = get_data_table("Action")
     jobs_table = get_data_table("ClassJob")
 
-    actions = {'pve':{},'pvp':{},'invalid':{}}
+    actions = {k:{} for k in config['output']}
     jobs = {}
 
     # Restructure each row as a dictionary
@@ -170,9 +171,11 @@ if __name__ == "__main__":
     # Restructure each row as a dictionary
     for action in ({k:v for k,v in zip(actions_table[0],row) if k} for row in actions_table[1:]):
         is_player_action = action['IsPlayerAction'] == 'True'
+        # They seem to use -1 for deprecated actions.
         is_valid_classjob = int(action['ClassJob']) >= 0
+        # Categories 30 and 31 are DoW and DoM respectively, 32 and 33 are DoH and DoL respectively.
         is_combat_classjob = is_valid_classjob and 30 <= int(jobs[action['ClassJob']]['ClassJobCategory']) <= 31
-        # They seem to use -1 for deprecated actions.  Categories 30 and 31 are DoW and DoM respectively.
+        is_crafting_classjob = is_valid_classjob and 32 <= int(jobs[action['ClassJob']]['ClassJobCategory']) <= 33
         # We keep the ID as the key for invalid actions in the event of a name collision.
         if action['Name'] and is_player_action and is_combat_classjob:
             if action['IsPvP'] == 'False':
@@ -185,6 +188,11 @@ if __name__ == "__main__":
                     actions['invalid'][action.pop('ID')] = action
                 else:
                     actions['pvp'][action.pop('Name')] = action
+        elif action['Name'] and is_player_action and is_crafting_classjob:
+            if action['Name'] in actions['crafting']:
+                actions['invalid'][action.pop('ID')] = action
+            else:
+                actions['crafting'][action.pop('Name')] = action
         else:
             actions['invalid'][action.pop('ID')] = action
     
