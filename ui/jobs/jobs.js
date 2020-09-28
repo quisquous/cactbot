@@ -281,9 +281,6 @@ class ComboTracker {
   AbortCombo() {
     this.StateTransition(null);
   }
-  IsComboBroken() {
-    return this.considerNext == this.startList;
-  }
 }
 
 function setupComboTracker(callback) {
@@ -2169,8 +2166,6 @@ class Bars {
       fgColor: 'drg-color-disembowel',
     });
     this.comboFuncs.push((skill) => {
-      if (this.combo.IsComboBroken())
-        return;
       if (skill == kAbility.Disembowel) {
         disembowelBox.duration = 0;
         disembowelBox.duration = 30 + 1;
