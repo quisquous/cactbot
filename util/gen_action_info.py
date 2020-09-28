@@ -6,6 +6,7 @@ import os
 import urllib.request
 import re
 import io
+from collections import defaultdict
 
 """Action data is available in csv form that has 3 headers looks like:
 key,0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65
@@ -28,12 +29,14 @@ Implement proper error handling
 Review and streamline name normalization (current normalization taken from csv_util.py and coinach.py)
 Build out local file functionality
 Move table structuring from dunders to get_data_table()
+Stab feature creep/overengineering in the eye
 """
 
 config = {'output':
             {'pve':'pve_action_info.js',
              'pvp':'pvp_action_info.js',
              'crafting':'crafting_action_info.js',
+             'combo':'pve_action_combos.js',
              'invalid':'invalid_action.log'},
           'locale_url':
             {'root':'https://raw.githubusercontent.com/',
@@ -46,6 +49,8 @@ config = {'output':
           'log':
             {'error':'gen_action_info.log'}
          }
+
+def tree(): return defaultdict(tree)
 
 def __get_remote_table(url, inputs, outputs=None):
     """Connects to a remote source to retrieve the table data"""
@@ -160,15 +165,18 @@ if __name__ == "__main__":
     actions_table = get_data_table("Action")
     jobs_table = get_data_table("ClassJob")
 
-    actions = {k:{} for k in config['output']}
-    jobs = {}
+    actions = tree()
+    jobs = defaultdict()
 
     # Restructure each row as a dictionary
     for job in ({k:v for k,v in zip(jobs_table[0],row)} for row in jobs_table[1:]):
         # Nest the data inside a new dictionary using the ID as the key
         jobs[job.pop('ID')] = job
 
-    # Restructure each row as a dictionary
+    # This big pile of loop takes the header row and the data row and merges them together as a dictionary
+    # Then it does some filtering to validate the action data.
+    # Then it sorts the actions into relevant categories and nests the data as class/job abbreviation (ADV, GLA, DRK, etc.) then power name
+    # Structure should end up looking vaguely like {'pve': {'CLS':{'AbilityName':{'RemainingKey':'Value'}}}}
     for action in ({k:v for k,v in zip(actions_table[0],row) if k} for row in actions_table[1:]):
         is_player_action = action['IsPlayerAction'] == 'True'
         # They seem to use -1 for deprecated actions.
@@ -179,20 +187,24 @@ if __name__ == "__main__":
         # We keep the ID as the key for invalid actions in the event of a name collision.
         if action['Name'] and is_player_action and is_combat_classjob:
             if action['IsPvP'] == 'False':
-                if action['Name'] in actions['pve']:
+                if action['Name'] in actions['pve'][jobs[action['ClassJob']]['Abbreviation']]:
                     actions['invalid'][action.pop('ID')] = action
                 else:
-                   actions['pve'][action.pop('Name')] = action
+                   if int(action['Action{Combo}']) > 0:
+                        actions['combo'][action['ID']]['Name'] = action['Name']
+                        actions['combo'][action['ID']]['Previous'][action['Action{Combo}']] = ''
+                        actions['combo'][action['Action{Combo}']]['Next'][action['ID']] = action['Name']
+                   actions['pve'][jobs[action['ClassJob']]['Abbreviation']][action.pop('Name')] = action
             elif action['IsPvP'] == 'True':
-                if action['Name'] in actions['pvp']:
+                if action['Name'] in actions['pvp'][jobs[action['ClassJob']]['Abbreviation']]:
                     actions['invalid'][action.pop('ID')] = action
                 else:
-                    actions['pvp'][action.pop('Name')] = action
+                    actions['pvp'][jobs[action['ClassJob']]['Abbreviation']][action.pop('Name')] = action
         elif action['Name'] and is_player_action and is_crafting_classjob:
-            if action['Name'] in actions['crafting']:
+            if action['Name'] in actions['crafting'][jobs[action['ClassJob']]['Abbreviation']]:
                 actions['invalid'][action.pop('ID')] = action
             else:
-                actions['crafting'][action.pop('Name')] = action
+                actions['crafting'][jobs[action['ClassJob']]['Abbreviation']][action.pop('Name')] = action
         else:
             actions['invalid'][action.pop('ID')] = action
     
@@ -201,5 +213,5 @@ if __name__ == "__main__":
             os.path.join(config['path']['cactbot'], 'resources', config['output'][each]),
             os.path.basename(os.path.abspath(__file__)),
             each.capitalize() + 'Action',
-            {normalize_name(k):v for k,v in actions[each].items()}
+            {k:{normalize_name(n):v for n,v in actions[each][k].items()} for k in actions[each]}
         )
