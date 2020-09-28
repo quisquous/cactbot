@@ -19,21 +19,25 @@ let callSafeDir = (callIndex) => {
   return {
     '2': {
       en: 'Go East (Hard Tilt)',
+      de: 'Nach Osten gehen (starke Neigung)',
       ja: '東へ (大きい斜め)',
       cn: '去东边（大倾斜）',
     },
     '1': {
       en: 'Go East (Soft Tilt)',
+      de: 'Nach Osten gehen (leichte Neigung)',
       ja: '東へ (小さい斜め)',
       cn: '去东边（小倾斜）',
     },
     '-2': {
       en: 'Go West (Hard Tilt)',
+      de: 'Nach Westen gehen (starke Neigung)',
       ja: '西へ (大きい斜め)',
       cn: '去西边（大倾斜）',
     },
     '-1': {
       en: 'Go West (Soft Tilt)',
+      de: 'Nach Westen gehen (leichte Neigung)',
       ja: '西へ (小さい斜め)',
       cn: '去西边（小倾斜）',
     },

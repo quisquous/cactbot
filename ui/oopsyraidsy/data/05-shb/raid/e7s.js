@@ -166,6 +166,7 @@ let noBuff = (str) => {
           name: e.targetName,
           reason: {
             en: 'Knocked off',
+            de: 'Runtergefallen',
             ja: 'ノックバック',
             cn: '击退坠落',
           },
