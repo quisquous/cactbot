@@ -347,16 +347,6 @@ function setupComboTracker(callback) {
   ]);
   comboTracker.AddCombo([
     kAbility.TrueThrust,
-    kAbility.VorpalThrust,
-    kAbility.FullThrust,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.RaidenThrust,
-    kAbility.VorpalThrust,
-    kAbility.FullThrust,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.TrueThrust,
     kAbility.Disembowel,
     kAbility.ChaosThrust,
   ]);
@@ -364,11 +354,6 @@ function setupComboTracker(callback) {
     kAbility.RaidenThrust,
     kAbility.Disembowel,
     kAbility.ChaosThrust,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.DoomSpike,
-    kAbility.SonicThrust,
-    kAbility.CoerthanTorment,
   ]);
   return comboTracker;
 }
@@ -2181,72 +2166,20 @@ class Bars {
       id: 'drg-procs-disembowel',
       fgColor: 'drg-color-disembowel',
     });
+    this.comboFuncs.push((skill) => {
+      if (this.combo.IsComboBroken())
+        return;
+      if (skill == kAbility.Disembowel) {
+        disembowelBox.duration = 0;
+        disembowelBox.duration = 30 + 1;
+      }
+    });
     this.statChangeFuncMap['DRG'] = () => {
       disembowelBox.valuescale = this.gcdSkill();
       disembowelBox.threshold = this.gcdSkill() * 5;
       highJumpBox.valuescale = this.gcdSkill();
       highJumpBox.threshold = this.gcdSkill() + 1;
     };
-    // ComboTimer Bar
-    // DRG's skill effect buff appear on self at once,
-    // but start counting down when damage is deal.
-    // This cause some timer not accurate.
-    const comboTimer = this.addTimerBar({
-      id: 'drg-timers-combo',
-      fgColor: 'drg-color-combo',
-    });
-    let comboType = '';
-    this.comboFuncs.push((skill) => {
-      if (this.combo.IsComboBroken()) {
-        comboTimer.duration = 0;
-        return;
-      }
-      // if skill exist, this skill is in combo.
-      if (!skill)
-        return;
-      comboTimer.duration = 0;
-      comboTimer.duration = 15;
-      comboType = 'normol';
-
-      if (skill == kAbility.Disembowel) {
-        disembowelBox.duration = 0;
-        disembowelBox.duration = 30 + 1;
-      }
-      // When Sonic Thrust hit more than one mob, combo will be errorly break.
-      // ComboTracker is hard to fix, so deal it by a tricky way.
-      if (skill == kAbility.SonicThrust) {
-        setTimeout(() => {
-          comboTimer.duration = 0;
-          comboTimer.duration = 14.9;
-        }, 100);
-      }
-    });
-    // Drg's Blood buff combo is too special,
-    // Not consider them as combo makes things simpler.
-    // Event Timeline: FangAndClaw/WheelingThrust casted =>
-    // SharperFangAndClaw/EnhancedWheelingThrust/RaidenThrustReady buff gain.
-
-    // Try to finish buffcombo.
-    [
-      kAbility.FangAndClaw,
-      kAbility.WheelingThrust,
-    ].forEach((ability) => {
-      this.abilityFuncMap[ability] = () => {
-        comboTimer.duration = 0;
-      };
-    });
-    // If buff combo not finished, restart comboTimer.
-    [
-      EffectId.SharperFangAndClaw,
-      EffectId.EnhancedWheelingThrust,
-      EffectId.RaidenThrustReady,
-    ].forEach((effectId) => {
-      this.gainEffectFuncMap[effectId] = () => {
-        comboTimer.duration = 0;
-        comboTimer.duration = 10;
-        comboType = 'buff';
-      };
-    });
 
     // Gauge
     const blood = this.addResourceBox({
@@ -2267,10 +2200,6 @@ class Bars {
         blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
       } else {
         blood.innerText = '';
-        // If player lost Blood when keeping a combo ready buff,
-        // buff will be lost and should reset timer.
-        if (comboType == 'buff')
-          comboTimer.duration = 0;
       }
 
       eyes.parentNode.classList.remove('zero', 'one', 'two');

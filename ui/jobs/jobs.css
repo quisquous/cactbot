@@ -90,7 +90,6 @@
 
 #mp-bar,
 #rdm-bar,
-#drg-bar,
 #mnk-bar {
   margin-top: 1px;
 }
@@ -135,7 +134,6 @@
   background: rgba(30, 30, 30, 0.7);
 }
 
-#drg-bar,
 #mnk-bar {
   position: relative;
   width: 202px;
@@ -162,7 +160,6 @@
   height: calc(100% - 4px);
 }
 
-#drg-timers-combo,
 #mnk-timers-lightning,
 #mnk-timers-combo {
   display: block;
@@ -870,10 +867,6 @@
 
 .drg-color-eyes.two {
   background-color: rgba(217, 51, 0);
-}
-
-.drg-color-combo {
-  background-color: rgb(180, 200, 220);
 }
 
 .drg-color-highjump {
