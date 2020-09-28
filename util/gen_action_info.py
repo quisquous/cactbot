@@ -40,12 +40,12 @@ config = {
         "combo": "pve_action_combos.js",
         "invalid": "invalid_action.log",
     },
-        "locale_url": {
-            "root": "https://raw.githubusercontent.com/",
-            "intl": "xivapi/ffxiv-datamining/master/csv/",
-            "cn": "thewakingsands/ffxiv-datamining-cn/master/",
-            "ko": "Ra-Workspace/ffxiv-datamining-ko/master/csv/",
-            "local": "",
+    "locale_url": {
+        "root": "https://raw.githubusercontent.com/",
+        "intl": "xivapi/ffxiv-datamining/master/csv/",
+        "cn": "thewakingsands/ffxiv-datamining-cn/master/",
+        "ko": "Ra-Workspace/ffxiv-datamining-ko/master/csv/",
+        "local": "",
     },
     "path": {"cactbot": os.path.abspath(__file__)[:-24]},
     "log": {"error": "gen_action_info.log"},
