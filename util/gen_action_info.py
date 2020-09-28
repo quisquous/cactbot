@@ -79,9 +79,7 @@ def __get_local_table(filename, inputs, outputs=None):
     """Gets table data from a local file"""
     # I'm honestly not even sure if this will work as expected. It can be updated/fixed if a use case is found.
     with open(filename, "r") as table:
-        csv_file = [
-            x.rstrip("\r\n").split(",") for x in table.read().decode("utf-8-sig")
-        ]
+        csv_file = [x.rstrip("\r\n").split(",") for x in table.read().decode("utf-8-sig")]
 
     # First line is the indices and third line is the data types.  They aren't currently used, so we discard them.
     csv_file.pop(2)
@@ -101,12 +99,7 @@ def get_data_table(table_name, locale="intl", inputs=None, outputs=None):
     if locale == "local" and os.path.exists(table_name):
         return __get_local_table(table_name + ".csv", inputs, outputs)
     if locale in config["locale_url"]:
-        url = (
-            config["locale_url"]["root"]
-            + config["locale_url"][locale]
-            + table_name
-            + ".csv"
-        )
+        url = config["locale_url"]["root"] + config["locale_url"][locale] + table_name + ".csv"
         return __get_remote_table(url, inputs, outputs)
     else:
         raise Exception("Invalid locale: %s" % locale)
@@ -194,9 +187,7 @@ if __name__ == "__main__":
     # Then it does some filtering to validate the action data.
     # Then it sorts the actions into relevant categories and nests the data as class/job abbreviation (ADV, GLA, DRK, etc.) then power name
     # Structure should end up looking vaguely like {'pve': {'CLS':{'AbilityName':{'RemainingKey':'Value'}}}}
-    for action in (
-        {k: v for k, v in zip(actions_table[0], row) if k} for row in actions_table[1:]
-    ):
+    for action in ({k: v for k, v in zip(actions_table[0], row) if k} for row in actions_table[1:]):
         is_player_action = action["IsPlayerAction"] == "True"
 
         # They seem to use -1 for deprecated actions.
@@ -204,49 +195,36 @@ if __name__ == "__main__":
 
         # Categories 30 and 31 are DoW and DoM respectively, 32 and 33 are DoH and DoL respectively.
         is_combat_classjob = (
-            is_valid_classjob
-            and 30 <= int(jobs[action["ClassJob"]]["ClassJobCategory"]) <= 31
+            is_valid_classjob and 30 <= int(jobs[action["ClassJob"]]["ClassJobCategory"]) <= 31
         )
         is_crafting_classjob = (
-            is_valid_classjob
-            and 32 <= int(jobs[action["ClassJob"]]["ClassJobCategory"]) <= 33
+            is_valid_classjob and 32 <= int(jobs[action["ClassJob"]]["ClassJobCategory"]) <= 33
         )
 
         # We keep the ID as the key for invalid actions in the event of a name collision.
         if action["Name"] and is_player_action and is_combat_classjob:
             if action["IsPvP"] == "False":
-                if (
-                    action["Name"]
-                    in actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]]
-                ):
+                if action["Name"] in actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]]:
                     actions["invalid"][action.pop("ID")] = action
                 else:
                     if int(action["Action{Combo}"]) > 0:
                         actions["combo"][action["ID"]]["Name"] = action["Name"]
-                        actions["combo"][action["ID"]]["Previous"][
-                            action["Action{Combo}"]
-                        ] = ""
-                        actions["combo"][action["Action{Combo}"]]["Next"][
-                            action["ID"]
-                        ] = action["Name"]
+                        actions["combo"][action["ID"]]["Previous"][action["Action{Combo}"]] = ""
+                        actions["combo"][action["Action{Combo}"]]["Next"][action["ID"]] = action[
+                            "Name"
+                        ]
                     actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]][
                         action.pop("Name")
                     ] = action
             elif action["IsPvP"] == "True":
-                if (
-                    action["Name"]
-                    in actions["pvp"][jobs[action["ClassJob"]]["Abbreviation"]]
-                ):
+                if action["Name"] in actions["pvp"][jobs[action["ClassJob"]]["Abbreviation"]]:
                     actions["invalid"][action.pop("ID")] = action
                 else:
                     actions["pvp"][jobs[action["ClassJob"]]["Abbreviation"]][
                         action.pop("Name")
                     ] = action
         elif action["Name"] and is_player_action and is_crafting_classjob:
-            if (
-                action["Name"]
-                in actions["crafting"][jobs[action["ClassJob"]]["Abbreviation"]]
-            ):
+            if action["Name"] in actions["crafting"][jobs[action["ClassJob"]]["Abbreviation"]]:
                 actions["invalid"][action.pop("ID")] = action
             else:
                 actions["crafting"][jobs[action["ClassJob"]]["Abbreviation"]][
@@ -257,13 +235,8 @@ if __name__ == "__main__":
 
     for each in config["output"]:
         write_js(
-            os.path.join(
-                config["path"]["cactbot"], "resources", config["output"][each]
-            ),
+            os.path.join(config["path"]["cactbot"], "resources", config["output"][each]),
             os.path.basename(os.path.abspath(__file__)),
             each.capitalize() + "Action",
-            {
-                k: {normalize_name(n): v for n, v in actions[each][k].items()}
-                for k in actions[each]
-            },
+            {k: {normalize_name(n): v for n, v in actions[each][k].items()} for k in actions[each]},
         )
