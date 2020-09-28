@@ -421,7 +421,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'luminous aether': 'ライト・エーテル',
         'frozen mirror': '氷面鏡',
@@ -441,8 +440,11 @@
         'Shattered World': 'シャッタード・ワールド',
         'Scythe Kick': 'サイスキック',
         'Rush': 'ラッシュ',
+        'Reflected Kick/Frost': 'ミラーリング・アクスキック/フロストスラッシュ',
+        'Reflected Frost': 'ミラーリング・フロストスラッシュ',
         'Redress': 'ドレスアップ',
         'Mirror, Mirror': '鏡の国',
+        '(?<! )Kick/Frost': 'アクスキック/フロストスラッシュ',
         'Light Rampant': '光の暴走',
         'Icicle Impact': 'アイシクルインパクト',
         'Holy': 'ホーリー',
