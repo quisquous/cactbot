@@ -281,7 +281,7 @@ class ComboTracker {
   AbortCombo() {
     this.StateTransition(null);
   }
-  IsComboBroken() {	
+  IsComboBroken() {
     return this.considerNext == this.startList;
   }
 }
