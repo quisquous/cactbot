@@ -14,6 +14,7 @@
         en: 'Run Marker Away',
         de: 'Mit Marker weglaufen',
         fr: 'Fuyez avec le marqueur',
+        ja: 'マークから離れ',
         cn: '远离点名',
         ko: '징 멀리 떨어뜨리기',
       },
@@ -36,6 +37,7 @@
         en: 'Gekko Marker',
         de: 'Gekko Marker',
         fr: 'Marqueur Gekkô',
+        ja: '月光マーキング',
         cn: '月光点名',
         ko: '월광 징',
       },
@@ -116,7 +118,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Electrogenetic Force': '電撃',
         'Embodiment': 'ギルガメッシュの分身',
@@ -125,6 +126,8 @@
         'Yojimbo': 'ヨウジンボウ',
       },
       'replaceText': {
+        'A Giant Me': '巨身の術',
+        'Ame-no-Murakumo': 'アメノムラクモ',
         'Bitter End': 'ヒット・ジ・エンド',
         'Dragon Night': '竜星撃',
         'Dragon\'s Lair': '雲蒸竜変',
@@ -133,6 +136,7 @@
         'Epic Stormsplitter': '我流海嵐斬',
         'Gekko': '月光',
         'Giga Jump': 'ギガジャンプ',
+        'Hell\'s Gate': '獄門',
         'Inoshikacho': '猪鹿蝶',
         'Kasha': '花車',
         'Masamune': 'マサムネ',
