@@ -105,12 +105,14 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Ice Soldier': 'アイスソルジャー',
         'Shiva': 'シヴァ',
       },
       'replaceText': {
+        '\\(circle\\)': '(輪)',
+        '\\(cross\\)': '(十字)',
+        '--frozen--': '--凍結--',
         'Absolute Zero': '絶対零度',
         'Diamond Dust': 'ダイアモンドダスト',
         'Dreams Of Ice': '氷結の幻想',
