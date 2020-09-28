@@ -609,13 +609,13 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダー',
         'Titan(?! )': 'タイタン',
         'Titan Maximum': 'マキシタイタン',
       },
       'replaceText': {
+        '\\?': '?',
         'Bomb Boulders': 'ボムボルダー',
         'Crumbling Down': '岩盤崩落',
         'Dual Earthen Fists': '大地の両拳',
@@ -635,6 +635,7 @@
         'Orogenesis': 'オーロジェニー',
         'Plate Fracture': 'ロックフラクチャー',
         'Pulse of the Land': '大地の響き',
+        'Right/Left Landslide': 'レフト/ライト・ランドスライド',
         'Rock Throw': 'グラナイト・ジェイル',
         'Seismic Wave': 'サイズミックウェーブ',
         'Stonecrusher': 'ロッククラッシュ',
