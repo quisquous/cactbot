@@ -44,7 +44,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'My shields are impregnable': '反逆者は、我が盾',
         'Rhitahtyn sas Arvina': 'リットアティン・サス・アルヴィナ',
