@@ -20,6 +20,11 @@ const textKeys = {
   NW: '(?<= \\(|\\/)NW(?=\\)|\\/)',
   SE: '(?<= \\(|\\/)SE(?=\\)|\\/)',
   SW: '(?<= \\(|\\/)SW(?=\\)|\\/)',
+  // Match Roles in replaceText
+  // eg: `(Tank)`, `(Healer)`, `(DPS)`, etc
+  Tank: '(?<= \\(|\\/)Tank(?=\\)|\\/)',
+  Healer: '(?<= \\(|\\/)Healer(?=\\)|\\/)',
+  DPS: '(?<= \\(|\\/)DPS(?=\\)|\\/)',
 };
 
 const commonReplacement = {
@@ -272,6 +277,27 @@ const commonReplacement = {
       ja: '南西',
       cn: '西南',
       ko: '남서',
+    },
+    [textKeys.Tank]: {
+      de: 'Tank',
+      fr: 'Tank',
+      ja: 'タンク',
+      cn: '坦克',
+      ko: '방어',
+    },
+    [textKeys.Healer]: {
+      de: 'Heiler',
+      fr: 'Soigneurs',
+      ja: 'ヒーラー',
+      cn: '治疗',
+      ko: '힐러',
+    },
+    [textKeys.DPS]: {
+      de: 'DPS',
+      fr: 'DPS',
+      ja: 'DPS',
+      cn: 'DPS',
+      ko: 'DPS',
     },
   },
 };
