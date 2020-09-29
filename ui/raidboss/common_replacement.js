@@ -9,6 +9,19 @@ const syncKeys = {
   engage: 'Engage!',
 };
 
+const textKeys = {
+  // Match directions in replaceText
+  // eg: `(N)`, `(SW)`, `(NE/NW)`, etc.
+  E: '(?<= \\(|\\/)E(?=\\)|\\/)',
+  N: '(?<= \\(|\\/)N(?=\\)|\\/)',
+  S: '(?<= \\(|\\/)S(?=\\)|\\/)',
+  W: '(?<= \\(|\\/)W(?=\\)|\\/)',
+  NE: '(?<= \\(|\\/)NE(?=\\)|\\/)',
+  NW: '(?<= \\(|\\/)NW(?=\\)|\\/)',
+  SE: '(?<= \\(|\\/)SE(?=\\)|\\/)',
+  SW: '(?<= \\(|\\/)SW(?=\\)|\\/)',
+};
+
 const commonReplacement = {
   replaceSync: {
     [syncKeys.seal]: {
@@ -204,6 +217,62 @@ const commonReplacement = {
       cn: '--无法选中--',
       ko: '--타겟 불가능--',
     },
+    [textKeys.E]: {
+      de: 'O',
+      fr: 'E',
+      ja: '東',
+      cn: '东',
+      ko: '동쪽', // FIXME: looks like Korean has no abbrivate of "east"?
+    },
+    [textKeys.N]: {
+      de: 'N',
+      fr: 'N',
+      ja: '北',
+      cn: '北',
+      ko: '북쪽', // FIXME
+    },
+    [textKeys.S]: {
+      de: 'S',
+      fr: 'S',
+      ja: '南',
+      cn: '南面',
+      ko: '남쪽', // FIXME
+    },
+    [textKeys.W]: {
+      de: 'W',
+      fr: 'O',
+      ja: '西',
+      cn: '西',
+      ko: '서쪽', // FIXME
+    },
+    [textKeys.NE]: {
+      de: 'NO',
+      fr: 'NE',
+      ja: '北東',
+      cn: '东北',
+      ko: '북동',
+    },
+    [textKeys.NW]: {
+      de: 'NW',
+      fr: 'NO',
+      ja: '北西',
+      cn: '西北',
+      ko: '북서',
+    },
+    [textKeys.SE]: {
+      de: 'SO',
+      fr: 'SE',
+      ja: '南東',
+      cn: '东南',
+      ko: '남동',
+    },
+    [textKeys.SW]: {
+      de: 'SW',
+      fr: 'SO',
+      ja: '南西',
+      cn: '西南',
+      ko: '남서',
+    },
   },
 };
 
@@ -214,6 +283,15 @@ const commonReplacement = {
 const partialCommonReplacementKeys = [
   // Because the zone name needs to be translated here, this is partial.
   syncKeys.seal,
+  // Directions
+  textKeys.E,
+  textKeys.N,
+  textKeys.S,
+  textKeys.W,
+  textKeys.NE,
+  textKeys.NW,
+  textKeys.SE,
+  textKeys.SW,
 ];
 
 if (typeof module !== 'undefined' && module.exports) {
