@@ -1078,7 +1078,7 @@ class Bars {
     this.abilityFuncMap = {};
 
     this.contentType = 0;
-
+    this.isPVPZone = 0;
     this.crafting = false;
 
     const lang = this.options.ParserLanguage;
@@ -1106,6 +1106,17 @@ class Bars {
       trialCraftingFailRegex,
       trialCraftingCancelRegex,
     ];
+  }
+
+  uiDisplay(options) {
+    const bars = document.getElementById('bars');
+    if (bars) {
+      const barList = bars.children;
+      for (const bar of barList) {
+        if (bar.id == 'hp-bar' || bar.id == 'mp-bar') continue;
+        bar.style.display = options;
+      }
+    }
   }
 
   UpdateJob() {
@@ -1315,6 +1326,12 @@ class Bars {
     // Many jobs use the gcd to calculate thresholds and value scaling.
     // Run this initially to set those values.
     this.UpdateJobBarGCDs();
+
+    // Hide UI except HP and MP bar if in pvp area.
+    if (this.isPVPZone == 1)
+      this.uiDisplay('none');
+    else
+      this.uiDisplay('');
   }
 
   validateKeys() {
@@ -2786,6 +2803,19 @@ class Bars {
 
     for (const func of this.changeZoneFuncs)
       func(e);
+
+    this.isPVPZone = 0;
+    if (zoneInfo) {
+      // 6 => pvp content, 250 => Wolves' Den Pier
+      if (zoneInfo.contentType == 6 || e.zoneID == 250)
+        this.isPVPZone = 1;
+    }
+
+    // Hide UI except HP and MP bar if change to pvp area.
+    if (this.isPVPZone == 1)
+      this.uiDisplay('none');
+    else
+      this.uiDisplay('');
   }
 
   SetPullCountdown(seconds) {
