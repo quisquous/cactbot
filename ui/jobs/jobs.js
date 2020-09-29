@@ -44,116 +44,6 @@ const kPullText = {
   ko: '풀링',
 };
 
-const kAbility = {
-  DragonKick: '4A',
-  TwinSnakes: '3D',
-  Demolish: '42',
-  Verstone: '1D57',
-  Verfire: '1D56',
-  Veraero: '1D53',
-  Verthunder: '1D51',
-  Verholy: '1D66',
-  Verflare: '1D65',
-  Jolt2: '1D64',
-  Jolt: '1D4F',
-  Impact: '1D62',
-  Scatter: '1D55',
-  Vercure: '1D5A',
-  Verraise: '1D63',
-  Riposte: '1D50',
-  Zwerchhau: '1D58',
-  Redoublement: '1D5C',
-  Moulinet: '1D59',
-  EnchantedRiposte: '1D67',
-  EnchantedZwerchhau: '1D68',
-  EnchantedRedoublement: '1D69',
-  EnchantedMoulinet: '1D6A',
-  Tomahawk: '2E',
-  Overpower: '29',
-  HeavySwing: '1F',
-  SkullSunder: '23',
-  ButchersBlock: '2F',
-  Maim: '25',
-  StormsEye: '2D',
-  StormsPath: '2A',
-  InnerRelease: '1CDD',
-  TrickAttack: '8D2',
-  Embolden: '1D60',
-  Aetherflow: 'A6',
-  ChainStratagem: '1D0C',
-  Hypercharge: 'B45',
-  Adloquium: 'B9',
-  RabbitMedium: '8E0',
-  OneIlmPunch: '48',
-  Bootshine: '35',
-  FastBlade: '09',
-  RiotBlade: '0F',
-  GoringBlade: 'DD2',
-  RoyalAuthority: 'DD3',
-  RageOfHalone: '15',
-  SavageBlade: '0B',
-  ShieldLob: '18',
-  Requiescat: '1CD7',
-  HolySpirit: '1CD8',
-  TotalEclipse: '1CD5',
-  Clemency: 'DD5',
-  ShieldBash: '10',
-  ShieldSwipe: '19',
-  FightOrFlight: '14',
-  BloodWeapon: 'E29',
-  Souleater: 'E30',
-  SyphonStrike: 'E27',
-  HardSlash: 'E21',
-  CarveAndSpit: 'E3B',
-  Plunge: 'E38',
-  Unmend: 'E28',
-  AbyssalDrain: 'E39',
-  PowerSlash: 'E2B',
-  SpinningSlash: 'E23',
-  BloodPrice: 'E2F',
-  TheBlackestNight: '1CE1',
-  Delirium: '1CDE',
-  Combust: 'E0F',
-  Combust2: 'E18',
-  Combust3: '40AA',
-  Draw: 'E06',
-  AspectedBenefic: 'E0B',
-  AspectedHelios: 'E11',
-  Bio: '45C8',
-  Bio2: '45C9',
-  Biolysis: '409C',
-  Contagion: '31B',
-  OffGuard: '2C93',
-  SongOfTorment: '2C7A',
-  PeculiarLight: '2C9D',
-  MythrilTempest: '404E',
-  Prominence: '4049',
-  HolyCircle: '404A',
-  Confiteor: '404B',
-  FourPointFury: '4059',
-  TechnicalFinish: '3F44',
-  Thunder1: '90',
-  Thunder2: '94',
-  Thunder3: '99',
-  Thunder4: '1CFC',
-  Divination: '40A8',
-  LucidDreaming: '1D8A',
-  Miasma: 'A8',
-  Miasma3: '1D01',
-  BioSmn: 'A4',
-  BioSmn2: 'B2',
-  Bio3: '1D00',
-  Tridisaster: 'DFC',
-  EnergyDrain: '407C',
-  EnergySiphon: '407E',
-  DreadwyrmTrance: 'DFD',
-  FirebirdTrance: '40A5',
-  Aero: '79',
-  Aero2: '84',
-  Dia: '4094',
-  Assize: 'DF3',
-};
-
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
 
 const kMPNormalRate = 0.06;
@@ -177,22 +67,22 @@ let kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
 // Source: http://theoryjerks.akhmorning.com/resources/levelmods/
 const kLevelMod = [[0, 0],
-  [56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
-  [68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
-  [82, 82], [85, 85], [89, 89], [93, 93], [96, 96],
-  [100, 100], [104, 104], [109, 109], [113, 113], [116, 116],
-  [122, 122], [127, 127], [133, 133], [138, 138], [144, 144],
-  [150, 150], [155, 155], [162, 162], [168, 168], [173, 173],
-  [181, 181], [188, 188], [194, 194], [202, 202], [209, 209],
-  [215, 215], [223, 223], [229, 229], [236, 236], [244, 244],
-  [253, 253], [263, 263], [272, 272], [283, 283], [292, 292],
-  [302, 302], [311, 311], [322, 322], [331, 331], [341, 341],
-  [342, 393], [344, 444], [345, 496], [346, 548], [347, 600],
-  [349, 651], [350, 703], [351, 755], [352, 806], [354, 858],
-  [355, 941], [356, 1032], [357, 1133], [358, 1243], [369, 1364],
-  [360, 1497], [361, 1643], [362, 1802], [363, 1978], [364, 2170],
-  [365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
-  [372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
+[56, 56], [57, 57], [60, 60], [62, 62], [65, 65],
+[68, 68], [70, 70], [73, 73], [76, 76], [78, 78],
+[82, 82], [85, 85], [89, 89], [93, 93], [96, 96],
+[100, 100], [104, 104], [109, 109], [113, 113], [116, 116],
+[122, 122], [127, 127], [133, 133], [138, 138], [144, 144],
+[150, 150], [155, 155], [162, 162], [168, 168], [173, 173],
+[181, 181], [188, 188], [194, 194], [202, 202], [209, 209],
+[215, 215], [223, 223], [229, 229], [236, 236], [244, 244],
+[253, 253], [263, 263], [272, 272], [283, 283], [292, 292],
+[302, 302], [311, 311], [322, 322], [331, 331], [341, 341],
+[342, 393], [344, 444], [345, 496], [346, 548], [347, 600],
+[349, 651], [350, 703], [351, 755], [352, 806], [354, 858],
+[355, 941], [356, 1032], [357, 1133], [358, 1243], [369, 1364],
+[360, 1497], [361, 1643], [362, 1802], [363, 1978], [364, 2170],
+[365, 2263], [366, 2360], [367, 2461], [368, 2566], [370, 2676],
+[372, 2790], [374, 2910], [376, 3034], [378, 3164], [380, 3300]];
 
 
 class ComboTracker {
@@ -272,63 +162,58 @@ class ComboTracker {
 function setupComboTracker(callback) {
   let comboTracker = new ComboTracker(kComboBreakers, callback);
   comboTracker.AddCombo([
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.Verflare,
+    PveAction.ADV.EnchantedRiposte.HexID,
+    PveAction.ADV.EnchantedZwerchhau.HexID,
+    PveAction.ADV.EnchantedRedoublement.HexID,
+    PveAction.ADV.Verflare.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.Verholy,
+    PveAction.ADV.EnchantedRiposte.HexID,
+    PveAction.ADV.EnchantedZwerchhau.HexID,
+    PveAction.ADV.EnchantedRedoublement.HexID,
+    PveAction.ADV.Verholy.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.HeavySwing,
-    kAbility.SkullSunder,
-    kAbility.ButchersBlock,
+    PveAction.MRD.HeavySwing.HexID,
+    PveAction.MRD.Maim.HexID,
+    PveAction.MRD.StormsEye.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.HeavySwing,
-    kAbility.Maim,
-    kAbility.StormsEye,
+    PveAction.MRD.HeavySwing.HexID,
+    PveAction.MRD.Maim.HexID,
+    PveAction.MRD.StormsPath.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.HeavySwing,
-    kAbility.Maim,
-    kAbility.StormsPath,
+    PveAction.MRD.Overpower.HexID,
+    PveAction.WAR.MythrilTempest.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.Overpower,
-    kAbility.MythrilTempest,
+    PveAction.GLA.FastBlade.HexID,
+    PveAction.GLA.RiotBlade.HexID,
+    PveAction.GLA.RageOfHalone.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.FastBlade,
-    kAbility.SavageBlade,
-    kAbility.RageofHalone,
+    PveAction.GLA.FastBlade.HexID,
+    PveAction.GLA.RiotBlade.HexID,
+    PveAction.PLD.RoyalAuthority.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.FastBlade,
-    kAbility.RiotBlade,
-    kAbility.RoyalAuthority,
+    PveAction.GLA.FastBlade.HexID,
+    PveAction.GLA.RiotBlade.HexID,
+    PveAction.GLA.FightOrFlight.HexID,
+    PveAction.PLD.GoringBlade.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.FastBlade,
-    kAbility.RiotBlade,
-    kAbility.FightOrFlight,
-    kAbility.GoringBlade,
+    PveAction.GLA.FastBlade.HexID,
+    PveAction.GLA.FightOrFlight.HexID,
+    PveAction.GLA.RiotBlade.HexID,
+    PveAction.PLD.GoringBlade.HexID,
   ]);
   comboTracker.AddCombo([
-    kAbility.FastBlade,
-    kAbility.FightOrFlight,
-    kAbility.RiotBlade,
-    kAbility.GoringBlade,
-  ]);
-  comboTracker.AddCombo([
-    kAbility.FightOrFlight,
-    kAbility.FastBlade,
-    kAbility.RiotBlade,
-    kAbility.GoringBlade,
+    PveAction.GLA.FightOrFlight.HexID,
+    PveAction.GLA.FastBlade.HexID,
+    PveAction.GLA.RiotBlade.HexID,
+    PveAction.PLD.GoringBlade.HexID,
   ]);
   return comboTracker;
 }
@@ -345,47 +230,45 @@ function setupRegexes(playerName) {
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
   kComboBreakers = Object.freeze([
     // rdm
-    kAbility.Verstone,
-    kAbility.Verfire,
-    kAbility.Veraero,
-    kAbility.Verthunder,
-    kAbility.Verholy,
-    kAbility.Verflare,
-    kAbility.Jolt2,
-    kAbility.Jolt,
-    kAbility.Impact,
-    kAbility.Scatter,
-    kAbility.Vercure,
-    kAbility.Verraise,
-    kAbility.Riposte,
-    kAbility.Zwerchhau,
-    kAbility.Redoublement,
-    kAbility.Moulinet,
-    kAbility.EnchantedRiposte,
-    kAbility.EnchantedZwerchhau,
-    kAbility.EnchantedRedoublement,
-    kAbility.EnchantedMoulinet,
+    PveAction.RDM.Verstone.HexID,
+    PveAction.RDM.Verfire.HexID,
+    PveAction.RDM.Veraero.HexID,
+    PveAction.RDM.Verthunder.HexID,
+    PveAction.ADV.Verholy.HexID,
+    PveAction.ADV.Verflare.HexID,
+    PveAction.RDM.JoltIi.HexID,
+    PveAction.RDM.Jolt.HexID,
+    PveAction.RDM.Impact.HexID,
+    PveAction.RDM.Scatter.HexID,
+    PveAction.RDM.Vercure.HexID,
+    PveAction.RDM.Verraise.HexID,
+    PveAction.RDM.Riposte.HexID,
+    PveAction.RDM.Zwerchhau.HexID,
+    PveAction.RDM.Redoublement.HexID,
+    PveAction.RDM.Moulinet.HexID,
+    PveAction.ADV.EnchantedRiposte.HexID,
+    PveAction.ADV.EnchantedZwerchhau.HexID,
+    PveAction.ADV.EnchantedRedoublement.HexID,
+    PveAction.ADV.EnchantedMoulinet.HexID,
     // war
-    kAbility.Tomahawk,
-    kAbility.Overpower,
-    kAbility.SkullSunder,
-    kAbility.ButchersBlock,
-    kAbility.Maim,
-    kAbility.StormsEye,
-    kAbility.StormsPath,
-    kAbility.MythrilTempest,
+    PveAction.MRD.Tomahawk.HexID,
+    PveAction.MRD.Overpower.HexID,
+    PveAction.MRD.Maim.HexID,
+    PveAction.MRD.StormsEye.HexID,
+    PveAction.MRD.StormsPath.HexID,
+    PveAction.WAR.MythrilTempest.HexID,
     // pld
-    kAbility.ShieldLob,
-    kAbility.TotalEclipse,
-    kAbility.SavageBlade,
-    kAbility.RageofHalone,
-    kAbility.RiotBlade,
-    kAbility.RoyalAuthority,
-    kAbility.GoringBlade,
-    kAbility.Prominence,
-    kAbility.HolySpirit,
-    kAbility.HolyCircle,
-    kAbility.Confiteor,
+    PveAction.GLA.ShieldLob.HexID,
+    PveAction.GLA.TotalEclipse.HexID,
+    PveAction.GLA.FastBlade.HexID,
+    PveAction.GLA.RageOfHalone.HexID,
+    PveAction.GLA.RiotBlade.HexID,
+    PveAction.PLD.RoyalAuthority.HexID,
+    PveAction.PLD.GoringBlade.HexID,
+    PveAction.PLD.Prominence.HexID,
+    PveAction.PLD.HolySpirit.HexID,
+    PveAction.PLD.HolyCircle.HexID,
+    PveAction.PLD.Confiteor.HexID,
   ]);
 }
 
@@ -405,7 +288,7 @@ function computeBackgroundColorFrom(element, classList) {
 }
 
 function makeAuraTimerIcon(name, seconds, opacity, iconWidth, iconHeight, iconText,
-    barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
+  barHeight, textHeight, textColor, borderSize, borderColor, barColor, auraIcon) {
   let div = document.createElement('div');
   div.style.opacity = opacity;
 
@@ -500,7 +383,7 @@ class Buff {
     };
 
     this.cooldown[source] = this.makeAura(cooldownKey, this.cooldownList, showSeconds,
-        secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
+      secondsUntilShow, this.cooldownSortKeyBase, 'grey', '', 0.5, addReadyCallback);
   }
 
   addReady(source) {
@@ -521,11 +404,11 @@ class Buff {
 
     let readyKey = 'r:' + this.name + ':' + source;
     this.ready[source] = this.makeAura(readyKey, this.readyList, -1, 0,
-        this.readySortKeyBase, color, txt, 0.6);
+      this.readySortKeyBase, color, txt, 0.6);
   }
 
   makeAura(key, list, seconds, secondsUntilShow,
-      adjustSort, textColor, txt, opacity, expireCallback) {
+    adjustSort, textColor, txt, opacity, expireCallback) {
     let aura = {};
     aura.removeCallback = () => {
       list.removeElement(key);
@@ -540,14 +423,14 @@ class Buff {
     };
     aura.addCallback = () => {
       let elem = makeAuraTimerIcon(
-          key, seconds, opacity,
-          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-          txt,
-          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-          textColor,
-          this.options.BigBuffBorderSize,
-          this.info.borderColor, this.info.borderColor,
-          this.info.icon);
+        key, seconds, opacity,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        txt,
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        textColor,
+        this.options.BigBuffBorderSize,
+        this.info.borderColor, this.info.borderColor,
+        this.info.icon);
       list.addElement(key, elem, this.info.sortKey + adjustSort);
       aura.addTimeout = null;
 
@@ -665,7 +548,7 @@ class BuffTracker {
         sortKey: 0,
       },
       offguard: {
-        gainAbility: kAbility.OffGuard,
+        gainAbility: PveAction.BLU.OffGuard.HexID,
         durationSeconds: 15,
         icon: '../../resources/icon/status/offguard.png',
         borderColor: '#47bf41',
@@ -674,7 +557,7 @@ class BuffTracker {
         sharesCooldownWith: ['peculiar'],
       },
       peculiar: {
-        gainAbility: kAbility.PeculiarLight,
+        gainAbility: PveAction.BLU.PeculiarLight.HexID,
         durationSeconds: 15,
         icon: '../../resources/icon/status/peculiar-light.png',
         borderColor: '#F28F7B',
@@ -683,7 +566,7 @@ class BuffTracker {
         sharesCooldownWith: ['offguard'],
       },
       trick: {
-        gainAbility: kAbility.TrickAttack,
+        gainAbility: PveAction.ROG.TrickAttack.HexID,
         durationSeconds: 15,
         icon: '../../resources/icon/status/trick-attack.png',
         // Magenta.
@@ -706,7 +589,7 @@ class BuffTracker {
         // Potato Chippy gains the effect of Embolden from Tater Tot for 20.00 Seconds. (5)
         // Instead, use somebody using the effect on you:
         //   16:106C22EF:Tater Tot:1D60:Embolden:106C22EF:Potato Chippy:500020F:4D7: etc etc
-        gainAbility: kAbility.Embolden,
+        gainAbility: PveAction.RDM.Embolden.HexID,
         loseEffect: EffectId.Embolden,
         durationSeconds: 20,
         icon: '../../resources/icon/status/embolden.png',
@@ -827,7 +710,7 @@ class BuffTracker {
         cooldown: 180,
       },
       chain: {
-        gainAbility: kAbility.ChainStratagem,
+        gainAbility: PveAction.SCH.ChainStratagem,
         durationSeconds: 15,
         icon: '../../resources/icon/status/chain-stratagem.png',
         // Blue.
@@ -1466,7 +1349,7 @@ class Bars {
     this.comboFuncs.push((skill) => {
       // TODO: handle flags where you don't hit something.
       // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-      if (skill == kAbility.MythrilTempest) {
+      if (skill == PveAction.WAR.MythrilTempest.HexID) {
         if (eyeBox.duration > 0) {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
@@ -1474,20 +1357,20 @@ class Bars {
         }
         return;
       }
-      if (skill == kAbility.StormsEye) {
+      if (skill == PveAction.MRD.StormsEye.HexID) {
         if (eyeBox.duration > 0) {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
           eyeBox.duration = Math.min(old + 30, 59.5);
-        // Storm's Eye applies with some animation delay here, and on the next
-        // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add some of a gcd here in duration time from when it's applied.
+          // Storm's Eye applies with some animation delay here, and on the next
+          // Storm's Eye, it snapshots the damage when the gcd is started, so
+          // add some of a gcd here in duration time from when it's applied.
         } else {
           eyeBox.duration = 0;
           eyeBox.duration = 30 + 1;
         }
       }
-      this.abilityFuncMap[kAbility.InnerRelease] = () => {
+      this.abilityFuncMap[PveAction.WAR.InnerRelease.HexID] = () => {
         if (eyeBox.duration > 0) {
           let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
           eyeBox.duration = 0;
@@ -1498,12 +1381,12 @@ class Bars {
 
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
-      if (skill == kAbility.HeavySwing) {
+      if (skill == PveAction.MRD.HeavySwing.HexID) {
         minSkillsUntilEye = 2;
-      } else if (skill == kAbility.SkullSunder) {
-        minSkillsUntilEye = 4;
-      } else if (skill == kAbility.Maim) {
+      } else if (skill == PveAction.MRD.Maim.HexID) {
         minSkillsUntilEye = 1;
+      } else if (skill == PveAction.MRD.StormsEye.HexID) {
+        minSkillsUntilEye = 0;
       } else {
         // End of combo, or broken combo.
         minSkillsUntilEye = 3;
@@ -1517,7 +1400,7 @@ class Bars {
       // Because thresholds are nonmonotonic (when finishing a combo)
       // be careful about setting them in ways that are visually poor.
       if (eyeBox.value >= oldThreshold &&
-          eyeBox.value >= newThreshold)
+        eyeBox.value >= newThreshold)
         eyeBox.threshold = newThreshold;
       else
         eyeBox.threshold = oldThreshold;
@@ -1603,7 +1486,7 @@ class Bars {
     });
 
     this.comboFuncs.push((skill) => {
-      if (skill == kAbility.GoringBlade) {
+      if (skill == PveAction.PLD.GoringBlade.HexID) {
         goreBox.duration = 0;
         // Technically, goring blade is 21, but 2.43 * 9 = 21.87, so if you
         // have the box show 21, it looks like you're awfully late with
@@ -1661,19 +1544,19 @@ class Bars {
       lucidBox.threshold = this.gcdSpell() * 4;
     };
 
-    this.abilityFuncMap[kAbility.OffGuard] = () => {
+    this.abilityFuncMap[PveAction.BLU.OffGuard.HexID] = () => {
       offguardBox.duration = 0;
       offguardBox.duration = this.CalcGCDFromStat(this.spellSpeed, 60000);
     };
-    this.abilityFuncMap[kAbility.PeculiarLight] = () => {
+    this.abilityFuncMap[PveAction.BLU.PeculiarLight.HexID] = () => {
       offguardBox.duration = 0;
       offguardBox.duration = this.CalcGCDFromStat(this.spellSpeed, 60000);
     };
-    this.abilityFuncMap[kAbility.SongOfTorment] = () => {
+    this.abilityFuncMap[PveAction.BLU.SongOfTorment.HexID] = () => {
       tormentBox.duration = 0;
       tormentBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+    this.abilityFuncMap[PveAction.ADV.LucidDreaming.HexID] = () => {
       lucidBox.duration = 0;
       lucidBox.duration = 60;
     };
@@ -1743,24 +1626,24 @@ class Bars {
         sealBox.parentNode.classList.remove('ready');
     });
 
-    this.abilityFuncMap[kAbility.Combust3] = () => {
+    this.abilityFuncMap[PveAction.AST.CombustIii.HexID] = () => {
       combustBox.duration = 0;
       combustBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Combust2] = () => {
+    this.abilityFuncMap[PveAction.AST.CombustIi.HexID] = () => {
       combustBox.duration = 0;
       combustBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Combust] = () => {
+    this.abilityFuncMap[PveAction.AST.Combust.HexID] = () => {
       combustBox.duration = 0;
       combustBox.duration = 18;
     };
 
-    this.abilityFuncMap[kAbility.Draw] = () => {
+    this.abilityFuncMap[PveAction.AST.Draw.HexID] = () => {
       drawBox.duration = 0;
       drawBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+    this.abilityFuncMap[PveAction.ADV.LucidDreaming.HexID] = () => {
       lucidBox.duration = 0;
       lucidBox.duration = 60;
     };
@@ -1827,24 +1710,24 @@ class Bars {
       }
     });
 
-    this.abilityFuncMap[kAbility.Biolysis] = () => {
+    this.abilityFuncMap[PveAction.SCH.Biolysis.HexID] = () => {
       bioBox.duration = 0;
       bioBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Bio] = () => {
+    this.abilityFuncMap[PveAction.SCH.Bio.HexID] = () => {
       bioBox.duration = 0;
       bioBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Bio2] = () => {
+    this.abilityFuncMap[PveAction.SCH.BioIi.HexID] = () => {
       bioBox.duration = 0;
       bioBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Aetherflow] = () => {
+    this.abilityFuncMap[PveAction.SCH.Aetherflow.HexID] = () => {
       aetherflowBox.duration = 0;
       aetherflowBox.duration = 60;
       aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
     };
-    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+    this.abilityFuncMap[PveAction.ADV.LucidDreaming.HexID] = () => {
       lucidBox.duration = 0;
       lucidBox.duration = 60;
     };
@@ -1962,39 +1845,39 @@ class Bars {
         demiSummoningBox.parentNode.classList.remove('last');
     });
 
-    this.abilityFuncMap[kAbility.Miasma] = () => {
+    this.abilityFuncMap[PveAction.ACN.Miasma.HexID] = () => {
       miasmaBox.duration = 0;
       miasmaBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Miasma3] = () => {
+    this.abilityFuncMap[PveAction.SMN.MiasmaIii.HexID] = () => {
       miasmaBox.duration = 0;
       miasmaBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.BioSmn] = () => {
+    this.abilityFuncMap[PveAction.ACN.Summon.HexID] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.BioSmn2] = () => {
+    this.abilityFuncMap[PveAction.ACN.SummonIi.HexID] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Bio3] = () => {
+    this.abilityFuncMap[PveAction.SMN.BioIii.HexID] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Tridisaster] = () => {
+    this.abilityFuncMap[PveAction.SMN.TriDisaster.HexID] = () => {
       miasmaBox.duration = 0;
       miasmaBox.duration = 30;
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
 
-    this.abilityFuncMap[kAbility.EnergyDrain] = () => {
+    this.abilityFuncMap[PveAction.ACN.EnergyDrain.HexID] = () => {
       energyDrainBox.duration = 0;
       energyDrainBox.duration = 30;
       aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
     };
-    this.abilityFuncMap[kAbility.EnergySiphon] = () => {
+    this.abilityFuncMap[PveAction.SMN.EnergySiphon.HexID] = () => {
       energyDrainBox.duration = 0;
       energyDrainBox.duration = 30;
       aetherflowStackBox.parentNode.classList.remove('too-much-stacks');
@@ -2002,11 +1885,11 @@ class Bars {
     // Trance cooldown is 55s,
     // but wait till 60s will be better on matching raidbuffs.
     // Threshold will be used to tell real cooldown.
-    this.abilityFuncMap[kAbility.DreadwyrmTrance] = () => {
+    this.abilityFuncMap[PveAction.SMN.DreadwyrmTrance] = () => {
       tranceBox.duration = 0;
       tranceBox.duration = 60;
     };
-    this.abilityFuncMap[kAbility.FirebirdTrance] = () => {
+    this.abilityFuncMap[PveAction.ADV.FirebirdTrance] = () => {
       tranceBox.duration = 0;
       tranceBox.duration = 60;
     };
@@ -2094,18 +1977,18 @@ class Bars {
       threshold: 5,
     });
 
-    this.abilityFuncMap[kAbility.TwinSnakes] = () => {
+    this.abilityFuncMap[PveAction.PGL.TwinSnakes.HexID] = () => {
       twinSnakesBox.duration = 0;
       twinSnakesBox.duration = 15;
     };
-    this.abilityFuncMap[kAbility.FourPointFury] = () => {
+    this.abilityFuncMap[PveAction.MNK.FourPointFury.HexID] = () => {
       // FIXME: using this at zero.
       let old = parseFloat(twinSnakesBox.duration) - parseFloat(twinSnakesBox.elapsed);
       twinSnakesBox.duration = 0;
       if (old > 0)
         twinSnakesBox.duration = Math.min(old + 10, 15);
     };
-    this.abilityFuncMap[kAbility.Demolish] = () => {
+    this.abilityFuncMap[PveAction.PGL.Demolish.HexID] = () => {
       demolishBox.duration = 0;
       // it start counting down when you cast demolish
       // but DOT appears on target about 1 second later
@@ -2184,7 +2067,7 @@ class Bars {
     });
     impactProc.bigatzero = false;
 
-    this.jobFuncs.push(function(jobDetail) {
+    this.jobFuncs.push(function (jobDetail) {
       let white = jobDetail.whiteMana;
       let black = jobDetail.blackMana;
 
@@ -2248,19 +2131,19 @@ class Bars {
     // This could have two boxes here for the rare case where you
     // have two long-lived enemies, but it's an edge case that
     // maybe only makes sense in ucob?
-    this.abilityFuncMap[kAbility.Thunder1] = () => {
+    this.abilityFuncMap[PveAction.THM.Thunder.HexID] = () => {
       thunderDot.duration = 0;
       thunderDot.duration = 18;
     };
-    this.abilityFuncMap[kAbility.Thunder2] = () => {
+    this.abilityFuncMap[PveAction.THM.ThunderIi.HexID] = () => {
       thunderDot.duration = 0;
       thunderDot.duration = 12;
     };
-    this.abilityFuncMap[kAbility.Thunder3] = () => {
+    this.abilityFuncMap[PveAction.BLM.ThunderIii.HexID] = () => {
       thunderDot.duration = 0;
       thunderDot.duration = 24;
     };
-    this.abilityFuncMap[kAbility.Thunder4] = () => {
+    this.abilityFuncMap[PveAction.BLM.ThunderIv.HexID] = () => {
       thunderDot.duration = 0;
       thunderDot.duration = 18;
     };
@@ -2465,23 +2348,23 @@ class Bars {
         l.classList.remove('full');
     });
 
-    this.abilityFuncMap[kAbility.Aero] = () => {
+    this.abilityFuncMap[PveAction.CNJ.Aero.HexID] = () => {
       diaBox.duration = 0;
       diaBox.duration = 18 + 1;
     };
-    this.abilityFuncMap[kAbility.Aero2] = () => {
+    this.abilityFuncMap[PveAction.CNJ.AeroIi.HexID] = () => {
       diaBox.duration = 0;
       diaBox.duration = 18 + 1;
     };
-    this.abilityFuncMap[kAbility.Dia] = () => {
+    this.abilityFuncMap[PveAction.WHM.Dia.HexID] = () => {
       diaBox.duration = 0;
       diaBox.duration = 30;
     };
-    this.abilityFuncMap[kAbility.Assize] = () => {
+    this.abilityFuncMap[PveAction.WHM.Assize.HexID] = () => {
       assizeBox.duration = 0;
       assizeBox.duration = 45;
     };
-    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+    this.abilityFuncMap[PveAction.ADV.LucidDreaming.HexID] = () => {
       lucidBox.duration = 0;
       lucidBox.duration = 60;
     };
@@ -2569,18 +2452,18 @@ class Bars {
     } else if (this.job == 'BRD') {
       type2Buffs += 4 * this.paeonStacks;
       switch (this.museStacks) {
-      case 1:
-        type2Buffs += 1;
-        break;
-      case 2:
-        type2Buffs += 2;
-        break;
-      case 3:
-        type2Buffs += 4;
-        break;
-      case 4:
-        type2Buffs += 12;
-        break;
+        case 1:
+          type2Buffs += 1;
+          break;
+        case 2:
+          type2Buffs += 2;
+          break;
+        case 3:
+          type2Buffs += 4;
+          break;
+        case 4:
+          type2Buffs += 12;
+          break;
       }
     }
     // TODO: this probably isn't useful to track
@@ -2707,7 +2590,7 @@ class Bars {
     if (!opacityContainer)
       return;
     if (this.inCombat || !this.options.LowerOpacityOutOfCombat ||
-        Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
+      Util.isCraftingJob(this.job) || Util.isGatheringJob(this.job))
       opacityContainer.style.opacity = 1.0;
     else
       opacityContainer.style.opacity = this.options.OpacityOutOfCombat;
@@ -2718,7 +2601,7 @@ class Bars {
     if (!this.init || !this.o.leftBuffsList)
       return;
 
-    let CanShowWellFedWarning = function() {
+    let CanShowWellFedWarning = function () {
       if (!this.options.HideWellFedAboveSeconds)
         return false;
       if (this.inCombat)
@@ -2727,7 +2610,7 @@ class Bars {
     };
 
     // Returns the number of ms until it should be shown. If <= 0, show it.
-    let TimeToShowWellFedWarning = function() {
+    let TimeToShowWellFedWarning = function () {
       let nowMs = Date.now();
       let showAtMs = this.foodBuffExpiresTimeMs - (this.options.HideWellFedAboveSeconds * 1000);
       return showAtMs - nowMs;
@@ -2745,14 +2628,14 @@ class Bars {
         this.foodBuffTimer = window.setTimeout(this.UpdateFoodBuff.bind(this), showAfterMs);
     } else {
       let div = makeAuraTimerIcon(
-          'foodbuff', -1, 1,
-          this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
-          '',
-          this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
-          'white',
-          this.options.BigBuffBorderSize,
-          'yellow', 'yellow',
-          '../../resources/icon/status/food.png');
+        'foodbuff', -1, 1,
+        this.options.BigBuffIconWidth, this.options.BigBuffIconHeight,
+        '',
+        this.options.BigBuffBarHeight, this.options.BigBuffTextHeight,
+        'white',
+        this.options.BigBuffBorderSize,
+        'yellow', 'yellow',
+        '../../resources/icon/status/food.png');
       this.o.leftBuffsList.addElement('foodbuff', div, -1);
     }
   }
@@ -2904,7 +2787,7 @@ class Bars {
       this.UpdateOpacity();
       // Set up the buff tracker after the job bars are created.
       this.buffTracker = new BuffTracker(
-          this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
+        this.options, this.me, this.o.leftBuffsList, this.o.rightBuffsList);
     }
     if (updateHp)
       this.UpdateHealth();
@@ -3066,23 +2949,23 @@ class Bars {
 
 let gBars;
 
-UserConfig.getUserConfigLocation('jobs', function() {
-  addOverlayListener('onPlayerChangedEvent', function(e) {
+UserConfig.getUserConfigLocation('jobs', function () {
+  addOverlayListener('onPlayerChangedEvent', function (e) {
     gBars.OnPlayerChanged(e);
   });
-  addOverlayListener('EnmityTargetData', function(e) {
+  addOverlayListener('EnmityTargetData', function (e) {
     gBars.UpdateEnmityTargetData(e);
   });
-  addOverlayListener('onPartyWipe', function(e) {
+  addOverlayListener('onPartyWipe', function (e) {
     gBars.OnPartyWipe(e);
   });
-  addOverlayListener('onInCombatChangedEvent', function(e) {
+  addOverlayListener('onInCombatChangedEvent', function (e) {
     gBars.OnInCombatChanged(e);
   });
-  addOverlayListener('ChangeZone', function(e) {
+  addOverlayListener('ChangeZone', function (e) {
     gBars.OnChangeZone(e);
   });
-  addOverlayListener('onLogEvent', function(e) {
+  addOverlayListener('onLogEvent', function (e) {
     gBars.OnLogEvent(e);
   });
   addOverlayListener('LogLine', (e) => {

@@ -188,23 +188,28 @@ if __name__ == "__main__":
     # Then it sorts the actions into relevant categories and nests the data as class/job abbreviation (ADV, GLA, DRK, etc.) then power name
     # Structure should end up looking vaguely like {'pve': {'CLS':{'AbilityName':{'RemainingKey':'Value'}}}}
     for action in ({k: v for k, v in zip(actions_table[0], row) if k} for row in actions_table[1:]):
+        # It seems that any action not slottable on the hotbar is not considered a player action.  This isn't going to be a useful check.
         is_player_action = action["IsPlayerAction"] == "True"
 
-        # They seem to use -1 for deprecated actions.
+        # They seem to use -1 for deprecated actions.  And apparently role actions.
         is_valid_classjob = int(action["ClassJob"]) >= 0
+        is_role_action = action["IsRoleAction"] == "True"
 
-        # Categories 30 and 31 are DoW and DoM respectively, 32 and 33 are DoH and DoL respectively.
-        is_combat_classjob = (
-            is_valid_classjob and 30 <= int(jobs[action["ClassJob"]]["ClassJobCategory"]) <= 31
+        # Categories 30 and 31 are DoW and DoM respectively, 32 and 33 are DoH and DoL respectively.  0 is ADV which is the base for everything
+        is_combat_classjob = is_role_action or (
+            is_valid_classjob and int(jobs[action["ClassJob"]]["ClassJobCategory"]) in [0, 30, 31]
         )
-        is_crafting_classjob = (
-            is_valid_classjob and 32 <= int(jobs[action["ClassJob"]]["ClassJobCategory"]) <= 33
-        )
+        is_crafting_classjob = is_valid_classjob and int(
+            jobs[action["ClassJob"]]["ClassJobCategory"]
+        ) in [0, 32, 33]
 
         # We keep the ID as the key for invalid actions in the event of a name collision.
-        if action["Name"] and is_player_action and is_combat_classjob:
+        if action["Name"] and is_combat_classjob:
             if action["IsPvP"] == "False":
-                if action["Name"] in actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]]:
+                if (
+                    not is_role_action
+                    and action["Name"] in actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]]
+                ) or (is_role_action and action["Name"] in actions["ADV"]):
                     actions["invalid"][action.pop("ID")] = action
                 else:
                     if int(action["Action{Combo}"]) > 0:
@@ -213,10 +218,13 @@ if __name__ == "__main__":
                         actions["combo"][action["Action{Combo}"]]["Next"][action["ID"]] = action[
                             "Name"
                         ]
-                    actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]][
-                        action.pop("Name")
-                    ] = action
-            elif action["IsPvP"] == "True":
+                    if is_role_action:
+                        actions["pve"]["ADV"][action.pop("Name")] = action
+                    else:
+                        actions["pve"][jobs[action["ClassJob"]]["Abbreviation"]][
+                            action.pop("Name")
+                        ] = action
+            elif action["IsPvP"] == "True" and not is_role_action:
                 if action["Name"] in actions["pvp"][jobs[action["ClassJob"]]["Abbreviation"]]:
                     actions["invalid"][action.pop("ID")] = action
                 else:
