@@ -2177,12 +2177,6 @@ class Bars {
       threshold: 1000,
     });
     blackProc.bigatzero = false;
-    let impactProc = this.addProcBox({
-      id: 'rdm-procs-impact',
-      fgColor: 'rdm-color-impact',
-      threshold: 1000,
-    });
-    impactProc.bigatzero = false;
 
     this.jobFuncs.push(function(jobDetail) {
       let white = jobDetail.whiteMana;
@@ -2219,11 +2213,6 @@ class Bars {
       blackProc.duration = parseFloat(matches.duration) - this.gcdSpell();
     };
     this.loseEffectFuncMap[EffectId.VerfireReady] = () => blackProc.duration = 0;
-    this.gainEffectFuncMap[EffectId.Impactful] = (name, matches) => {
-      impactfulProc.duration = 0;
-      impactfulProc = parseFloat(matches.duration) - this.gcdSpell();
-    };
-    this.loseEffectFuncMap[EffectId.Impactful] = () => impactfulProc.duration = 0;
   }
 
   setupBlm() {

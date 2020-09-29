@@ -301,12 +301,6 @@
   left: calc(152px / 2);
 }
 
-#rdm-procs-impact {
-  position: relative;
-  display: inline-block;
-  left: 142px;
-}
-
 /* Relative to #bars */
 #war-procs,
 #pld-procs,
@@ -514,11 +508,7 @@
 }
 
 .rdm-color-black-mana {
-  background-color: rgb(47, 176, 208);
-}
-
-.rdm-color-impact {
-  background-color: rgb(242, 114, 147);
+  background-color: rgb(47, 100, 208);
 }
 
 .rdm-color-white-mana.dim {
