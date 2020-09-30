@@ -318,6 +318,10 @@ const partialCommonReplacementKeys = [
   textKeys.NW,
   textKeys.SE,
   textKeys.SW,
+  // Roles
+  textKeys.Tank,
+  textKeys.Healer,
+  textKeys.DPS,
 ];
 
 if (typeof module !== 'undefined' && module.exports) {
