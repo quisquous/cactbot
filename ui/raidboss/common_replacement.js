@@ -287,7 +287,7 @@ const commonReplacement = {
     },
     [textKeys.Healer]: {
       de: 'Heiler',
-      fr: 'Soigneurs',
+      fr: 'Healer',
       ja: 'ヒーラー',
       cn: '治疗',
       ko: '힐러',
