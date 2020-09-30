@@ -22,8 +22,8 @@ const textKeys = {
   SW: '(?<= \\(|\\/)SW(?=\\)|\\/)',
   // Match Roles in replaceText
   // eg: `(Tank)`, `(Healer)`, `(DPS)`, etc
-  Tank: '(?<= \\(|\\/)Tank(?=\\)|\\/)',
-  Healer: '(?<= \\(|\\/)Healer(?=\\)|\\/)',
+  Tank: '(?<= \\(|\\/)Tanks?(?=\\)|\\/)',
+  Healer: '(?<= \\(|\\/)Healers?(?=\\)|\\/)',
   DPS: '(?<= \\(|\\/)DPS(?=\\)|\\/)',
 };
 
