@@ -1853,11 +1853,11 @@ class Bars {
       miasmaBox.duration = 0;
       miasmaBox.duration = 30;
     };
-    this.abilityFuncMap[PveAction.ACN.Summon.HexID] = () => {
+    this.abilityFuncMap[PveAction.ACN.Bio.HexID] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
-    this.abilityFuncMap[PveAction.ACN.SummonIi.HexID] = () => {
+    this.abilityFuncMap[PveAction.ACN.BioIi.HexID] = () => {
       bioSmnBox.duration = 0;
       bioSmnBox.duration = 30;
     };
