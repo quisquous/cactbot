@@ -227,28 +227,28 @@ const commonReplacement = {
       fr: 'E',
       ja: '東',
       cn: '东',
-      ko: '동쪽', // FIXME: looks like Korean has no abbrivate of "east"?
+      ko: '동',
     },
     [textKeys.N]: {
       de: 'N',
       fr: 'N',
       ja: '北',
       cn: '北',
-      ko: '북쪽', // FIXME
+      ko: '북',
     },
     [textKeys.S]: {
       de: 'S',
       fr: 'S',
       ja: '南',
       cn: '南面',
-      ko: '남쪽', // FIXME
+      ko: '남',
     },
     [textKeys.W]: {
       de: 'W',
       fr: 'O',
       ja: '西',
       cn: '西',
-      ko: '서쪽', // FIXME
+      ko: '서',
     },
     [textKeys.NE]: {
       de: 'NO',
@@ -283,7 +283,7 @@ const commonReplacement = {
       fr: 'Tank',
       ja: 'タンク',
       cn: '坦克',
-      ko: '방어',
+      ko: '탱커',
     },
     [textKeys.Healer]: {
       de: 'Heiler',
@@ -297,7 +297,7 @@ const commonReplacement = {
       fr: 'DPS',
       ja: 'DPS',
       cn: 'DPS',
-      ko: 'DPS',
+      ko: '딜러',
     },
   },
 };
