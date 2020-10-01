@@ -163,8 +163,6 @@
       },
       'replaceText': {
         '\\(center\\)': '(mitte)',
-        '\\(E/W\\)': '(O/W)',
-        '\\(E\\)': '(O)',
         'Akh Morn': 'Akh Morn',
         'Blood': 'Blut',
         'Dark Aether': 'Dunkeläther',
@@ -198,9 +196,6 @@
       },
       'replaceText': {
         '\\(center\\)': '(centre)',
-        '\\(E/W\\)': '(E/O)',
-        '\\(SW\\)': '(SO)',
-        '\\(W\\)': '(O)',
         'Akh Morn': 'Akh Morn',
         '(?<! )Blood Add': 'Add Sang',
         'Blood, Pain Adds': 'Adds Sang, Douleur',
@@ -240,9 +235,6 @@
       },
       'replaceText': {
         '\\(center\\)': '(中)',
-        '\\(E/W\\)': '(東/西)',
-        '\\(SW\\)': '(南西)',
-        '\\(W\\)': '(西)',
         'Akh Morn': 'アク・モーン',
         '(?<! )Blood Add': '雑魚: ブラッド',
         'Blood, Pain Adds': '雑魚: ブラッド + ペイン',
@@ -261,6 +253,7 @@
         'MF Spread': 'メガ: 散開',
         'MF Tower': 'メガ: 塔',
         'Megaflare': 'メガフレア',
+        '(?<! )Pain Add': '雑魚: ペイン',
         'Rage Of Bahamut': '龍神の咆吼',
         'Shadow Add': '雑魚: シャドウ',
         '(?<! )Sin Add': '雑魚: シン',
@@ -279,10 +272,6 @@
       },
       'replaceText': {
         '\\(center\\)': '(中央)',
-        '\\(E/W\\)': '(东/西)',
-        '\\(E\\)': '(东)',
-        '\\(SW\\)': '(西南)',
-        '\\(W\\)': '(西)',
         'Akh Morn': '死亡轮回',
         '(?<! )Blood Add': '血仇出现',
         'Blood, Pain Adds': '血仇, 苦痛出现',

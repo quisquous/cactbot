@@ -148,7 +148,6 @@
         'The Third Doom': 'La troisième Calamité',
       },
       'replaceText': {
-        '\\(SW\\)': '(SO)',
         'The Final Sky': 'Étoile de la ruine',
         'The Falling Sky': 'Étoile de la calamité',
         'The Burning Sky': 'Étoile du désastre',
@@ -182,9 +181,6 @@
         'The Third Doom': '第三の災い',
       },
       'replaceText': {
-        '\\(N\\)': '(北)',
-        '\\(S\\)': '(南)',
-        '\\(SW\\)': '(南西)',
         'Adds': '雑魚',
         'The Final Sky': '終末の流星',
         'The Falling Sky': '厄災の流星',
