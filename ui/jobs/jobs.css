@@ -320,7 +320,6 @@
 #mnk-procs,
 #ast-procs,
 #sch-procs,
-#drg-procs,
 #whm-procs,
 #blu-procs,
 #drk-procs,
@@ -330,6 +329,7 @@
   left: 10px;
 }
 
+#drg-procs,
 #smn-procs {
   position: absolute;
   top: 146px;
@@ -339,6 +339,7 @@
 #mnk-procs-dragonkick,
 #ast-procs-combust,
 #sch-procs-bio,
+#drg-procs-disembowel,
 #whm-procs-dia,
 #smn-procs-miasma,
 #blu-procs-offguard,
@@ -348,12 +349,14 @@
   left: 0;
 }
 
+#drg-procs-highjump,
 #smn-procs-biosmn {
   position: relative;
   display: inline-block;
   left: calc(152px / 3);
 }
 
+#drg-procs-lancecharge,
 #smn-procs-energydrain {
   position: relative;
   display: inline-block;
@@ -362,7 +365,6 @@
 
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
-#drg-procs-highjump,
 #whm-procs-assize,
 #sch-procs-aetherflow,
 #blu-procs-torment,
@@ -383,6 +385,7 @@
   left: 142px;
 }
 
+#drg-procs-dragonsight,
 #smn-procs-trance {
   position: relative;
   display: inline-block;
@@ -870,5 +873,21 @@
 }
 
 .drg-color-highjump {
-  background-color: rgb(235, 117, 24);
+  background-color: rgb(35, 100, 255);
+}
+
+.drg-color-lancecharge {
+  background-color: rgb(100, 15, 15, 0.5);
+}
+
+.drg-color-lancecharge.active {
+  background-color: rgb(100, 15, 15);
+}
+
+.drg-color-dragonsight {
+  background-color: rgb(187, 42, 42, 0.7);
+}
+
+.drg-color-dragonsight.active {
+  background-color: rgb(187, 42, 42);
 }

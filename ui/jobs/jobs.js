@@ -162,6 +162,8 @@ const kAbility = {
   CoerthanTorment: '405D',
   HighJump: '405E',
   Jump: '5C',
+  LanceCharge: '55',
+  DragonSight: '1CE6',
   Aero: '79',
   Aero2: '84',
   Dia: '4094',
@@ -2148,6 +2150,7 @@ class Bars {
   }
 
   setupDrg() {
+    // Boxes
     const highJumpBox = this.addProcBox({
       id: 'drg-procs-highjump',
       fgColor: 'drg-color-highjump',
@@ -2171,6 +2174,34 @@ class Bars {
         disembowelBox.duration = 30 + 1;
       }
     });
+    const lanceChargeBox = this.addProcBox({
+      id: 'drg-procs-lancecharge',
+      fgColor: 'drg-color-lancecharge',
+      threshold: 20,
+    });
+    this.abilityFuncMap[kAbility.LanceCharge] = () => {
+      lanceChargeBox.duration = 0;
+      lanceChargeBox.duration = 20;
+      lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge.active');
+      setTimeout(() => {
+        lanceChargeBox.duration = 70;
+        lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
+      }, 20000);
+    };
+    const dragonSightBox = this.addProcBox({
+      id: 'drg-procs-dragonsight',
+      fgColor: 'drg-color-dragonsight',
+      threshold: 20,
+    });
+    this.abilityFuncMap[kAbility.DragonSight] = () => {
+      dragonSightBox.duration = 0;
+      dragonSightBox.duration = 20;
+      dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight.active');
+      setTimeout(() => {
+        dragonSightBox.duration = 100;
+        dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
+      }, 20000);
+    };
     this.statChangeFuncMap['DRG'] = () => {
       disembowelBox.valuescale = this.gcdSkill();
       disembowelBox.threshold = this.gcdSkill() * 5;
