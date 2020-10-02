@@ -816,7 +816,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'frozen mirror': '氷面鏡',
         'great wyrm': '聖竜',
@@ -833,6 +832,7 @@
         'Banish III': 'バニシュガ',
         'Biting/Driving Frost': 'フロストスラッシュ/フロストスラスト',
         'Bright Hunger': '浸食光',
+        'Diamond Frost': 'ダイヤモンドダスト',
         'Double Slap': 'ダブルスラップ',
         'Drachen Armor': 'ドラゴンアーマー',
         'Draconic Strike': 'ドラコニックストライク',
