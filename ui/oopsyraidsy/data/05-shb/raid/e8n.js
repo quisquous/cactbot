@@ -34,6 +34,7 @@
           name: e.targetName,
           reason: {
             en: 'Pushed off!',
+            de: 'Runter gestoßen!',
             ja: 'ノックバック',
             cn: '击退坠落',
           },
@@ -50,6 +51,7 @@
           name: matches.target,
           reason: {
             en: 'Slid off!',
+            de: 'runtergerutscht!',
             ja: '滑った',
             cn: '滑落',
           },

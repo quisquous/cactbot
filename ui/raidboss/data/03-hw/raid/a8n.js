@@ -215,6 +215,7 @@
       condition: (data) => data.me === data.bruteTank && data.bruteTankOut,
       alertText: {
         en: 'Don\'t Stack! (tank cleave)',
+        de: 'Nicht Sammeln! (Tank Cleave)',
       },
     },
     {
@@ -308,6 +309,7 @@
       suppressSeconds: 5,
       alertText: {
         en: 'Avoid Mirage Dashes',
+        de: 'Weiche den Replikant Ansturm aus',
       },
     },
   ],
