@@ -1113,7 +1113,7 @@ class Bars {
     if (bars) {
       const barList = bars.children;
       for (const bar of barList) {
-        if (bar.id == 'hp-bar' || bar.id == 'mp-bar') continue;
+        if (bar.id === 'hp-bar' || bar.id === 'mp-bar') continue;
         bar.style.display = options;
       }
     }
@@ -1328,7 +1328,7 @@ class Bars {
     this.UpdateJobBarGCDs();
 
     // Hide UI except HP and MP bar if in pvp area.
-    if (this.isPVPZone == true)
+    if (this.isPVPZone === true)
       this.uiDisplay('none');
     else
       this.uiDisplay('');
@@ -2807,12 +2807,12 @@ class Bars {
     this.isPVPZone = false;
     if (zoneInfo) {
       // 6 => pvp content, 250 => Wolves' Den Pier
-      if (zoneInfo.contentType == 6 || e.zoneID == 250)
+      if (zoneInfo.contentType === 6 || e.zoneID === 250)
         this.isPVPZone = true;
     }
 
     // Hide UI except HP and MP bar if change to pvp area.
-    if (this.isPVPZone == true)
+    if (this.isPVPZone === true)
       this.uiDisplay('none');
     else
       this.uiDisplay('');
