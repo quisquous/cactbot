@@ -877,17 +877,17 @@
 }
 
 .drg-color-lancecharge {
-  background-color: rgb(100, 15, 15, 0.5);
-}
-
-.drg-color-lancecharge.active {
   background-color: rgb(100, 15, 15);
 }
 
+.drg-color-lancecharge.active {
+  background-color: rgb(217, 51, 0);
+}
+
 .drg-color-dragonsight {
-  background-color: rgb(187, 42, 42, 0.7);
+  background-color: rgb(187, 42, 42, 0.8);
 }
 
 .drg-color-dragonsight.active {
-  background-color: rgb(187, 42, 42);
+  background-color: rgb(217, 51, 0);
 }
