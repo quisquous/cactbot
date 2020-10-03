@@ -1078,7 +1078,7 @@ class Bars {
     this.abilityFuncMap = {};
 
     this.contentType = 0;
-    this.notPVPZone = true;
+    this.isPVPZone = false;
     this.crafting = false;
 
     const lang = this.options.ParserLanguage;
@@ -1108,16 +1108,16 @@ class Bars {
     ];
   }
 
-  UpdateUIVisibility(visible) {
+  UpdateUIVisibility() {
     const bars = document.getElementById('bars');
     if (bars) {
       const barList = bars.children;
       for (const bar of barList) {
         if (bar.id === 'hp-bar' || bar.id === 'mp-bar') continue;
-        if (visible === true)
-          bar.style.display = '';
-        if (visible === false)
+        if (this.isPVPZone === true)
           bar.style.display = 'none';
+        else
+          bar.style.display = '';
       }
     }
   }
@@ -1331,7 +1331,7 @@ class Bars {
     this.UpdateJobBarGCDs();
 
     // Hide UI except HP and MP bar if in pvp area.
-    this.UpdateUIVisibility(this.notPVPZone);
+    this.UpdateUIVisibility();
   }
 
   validateKeys() {
@@ -2804,15 +2804,15 @@ class Bars {
     for (const func of this.changeZoneFuncs)
       func(e);
 
-    this.notPVPZone = true;
+    this.isPVPZone = false;
     if (zoneInfo) {
       // 6 => pvp content, 250 => Wolves' Den Pier
       if (zoneInfo.contentType === 6 || e.zoneID === 250)
-        this.notPVPZone = false;
+        this.isPVPZone = true;
     }
 
     // Hide UI except HP and MP bar if change to pvp area.
-    this.UpdateUIVisibility(this.notPVPZone);
+    this.UpdateUIVisibility();
   }
 
   SetPullCountdown(seconds) {
