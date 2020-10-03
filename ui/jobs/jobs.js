@@ -2806,7 +2806,6 @@ class Bars {
 
     this.isPVPZone = false;
     if (zoneInfo) {
-      // 6 => pvp content, 250 => Wolves' Den Pier
       if (zoneInfo.contentType === ContentType.Pvp || e.zoneID === ZoneId.WolvesDenPier)
         this.isPVPZone = true;
     }
