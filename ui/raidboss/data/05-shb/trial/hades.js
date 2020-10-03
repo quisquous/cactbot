@@ -413,8 +413,6 @@
       },
       'replaceText': {
         '--fetters--': '--entraves--',
-        '\\(E/W\\)': '(E/O)',
-        '\\(NE/SW\\)': '(NE/SO)',
         'Adds': 'Adds',
         'Ancient Aero': 'Vent ancien',
         'Ancient Dark IV': 'Giga Ténèbres anciennes',
