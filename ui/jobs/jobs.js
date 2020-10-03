@@ -1078,7 +1078,7 @@ class Bars {
     this.abilityFuncMap = {};
 
     this.contentType = 0;
-    this.isPVPZone = 0;
+    this.isPVPZone = false;
     this.crafting = false;
 
     const lang = this.options.ParserLanguage;
@@ -1328,7 +1328,7 @@ class Bars {
     this.UpdateJobBarGCDs();
 
     // Hide UI except HP and MP bar if in pvp area.
-    if (this.isPVPZone == 1)
+    if (this.isPVPZone == true)
       this.uiDisplay('none');
     else
       this.uiDisplay('');
@@ -2804,15 +2804,15 @@ class Bars {
     for (const func of this.changeZoneFuncs)
       func(e);
 
-    this.isPVPZone = 0;
+    this.isPVPZone = false;
     if (zoneInfo) {
       // 6 => pvp content, 250 => Wolves' Den Pier
       if (zoneInfo.contentType == 6 || e.zoneID == 250)
-        this.isPVPZone = 1;
+        this.isPVPZone = true;
     }
 
     // Hide UI except HP and MP bar if change to pvp area.
-    if (this.isPVPZone == 1)
+    if (this.isPVPZone == true)
       this.uiDisplay('none');
     else
       this.uiDisplay('');
