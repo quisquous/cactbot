@@ -71,9 +71,9 @@
         'Spinner-rook': 'Drehturm',
       },
       'replaceText': {
+        '\\(center\\)': '(mitte)',
         '\\(outside\\)': '(draußen)',
         'Bug': 'Wanze',
-        'center': 'mitte',
         'Dreadnaught': 'Brummonaut',
         'Emergency Override': 'Not-Übersteuerung',
         'Knight': 'Ritter',
@@ -91,9 +91,9 @@
         'Spinner-rook': 'Drone-Drille',
       },
       'replaceText': {
+        '\\(center\\)': '(centre)',
         '\\(outside\\)': '(à l\'extérieur)',
         'Bug': 'Insecte',
-        'center': 'centre',
         'Dreadnaught': 'Cuirassé',
         'Emergency Override': 'Annulation d\'urgence',
         'Knight': 'Chevalier',
@@ -111,9 +111,9 @@
         'Spinner-rook': 'ルークスピナー',
       },
       'replaceText': {
+        '\\(center\\)': '(中央)',
         '\\(outside\\)': '(外)',
         'Bug': 'アラガンワーク・バグ',
-        'center': '中央',
         'Dreadnaught': 'ドレッドノート',
         'Emergency Override': 'エマージェンシー・オーバーライド',
         'Knight': 'ナイト',
@@ -131,9 +131,9 @@
         'Spinner-rook': '转盘堡',
       },
       'replaceText': {
+        '\\(center\\)': '(中央)',
         '\\(outside\\)': '(外面)',
         'Bug': '故障虫',
-        'center': '中央',
         'Dreadnaught': '恐慌装甲',
         'Emergency Override': '紧急超驰控制',
         'Knight': '亚拉戈发条骑士',
