@@ -168,7 +168,7 @@
         'Epic Stormsplitter': '我流破浪斩',
         'Gekko': '月光',
         'Giga Jump': '十亿跳跃',
-        'Hell\'s Gate': '地狱之门',
+        'Hell\'s Gate': '狱门',
         'Inoshikacho': '猪鹿蝶',
         'Kasha': '花车',
         'Masamune': '正宗',
