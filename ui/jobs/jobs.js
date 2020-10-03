@@ -1117,7 +1117,7 @@ class Bars {
         if (visible === true)
           bar.style.display = '';
         if (visible === false)
-          bar.style.display = 'none'
+          bar.style.display = 'none';
       }
     }
   }
