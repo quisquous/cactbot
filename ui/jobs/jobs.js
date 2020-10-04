@@ -218,7 +218,6 @@ class ComboTracker {
     // A tree of nodes.
     this.startMap = {}; // {} key => { id: str, next: { key => node } }
     this.callback = callback;
-    this.isComboBroken = true;
     this.considerNext = this.startMap;
   }
 
@@ -240,34 +239,22 @@ class ComboTracker {
   }
 
   HandleAbility(id) {
-    if (id in this.considerNext) {
+    if (id in this.considerNext)
       this.StateTransition(id, this.considerNext[id]);
-      return true;
-    }
 
-    if (this.comboBreakers.includes(id)) {
+    if (this.comboBreakers.includes(id))
       this.AbortCombo(id);
-      return true;
-    }
-    return false;
   }
 
   StateTransition(id, nextState) {
-    if (!id || nextState === null)
-      this.isComboBroken = true;
-
     window.clearTimeout(this.comboTimer);
     this.comboTimer = null;
 
     const isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
     if (nextState === null || isFinalSkill) {
       this.considerNext = this.startMap;
-      this.isComboBroken = true;
     } else {
-      this.isComboBroken = false;
-      this.considerNext = {};
-      Object.assign(this.considerNext, this.startMap);
-      Object.assign(this.considerNext, nextState.next);
+      this.considerNext = Object.assign({}, this.startMap, nextState.next);
       let kComboDelayMs = 15000;
       this.comboTimer = window.setTimeout(() => {
         this.AbortCombo(null);
@@ -279,10 +266,6 @@ class ComboTracker {
 
   AbortCombo(id) {
     this.StateTransition(id, null);
-  }
-
-  IsComboBroken() {
-    return this.isComboBroken;
   }
 }
 
