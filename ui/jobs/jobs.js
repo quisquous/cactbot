@@ -148,6 +148,22 @@ const kAbility = {
   EnergySiphon: '407E',
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
+  TrueThrust: '4B',
+  VorpalThrust: '4E',
+  FullThrust: '54',
+  Disembowel: '57',
+  ChaosThrust: '58',
+  RaidenThrust: '405F',
+  PiercingTalon: '5A',
+  FangAndClaw: 'DE2',
+  WheelingThrust: 'DE4',
+  DoomSpike: '56',
+  SonicThrust: '1CE5',
+  CoerthanTorment: '405D',
+  HighJump: '405E',
+  Jump: '5C',
+  LanceCharge: '55',
+  DragonSight: '1CE6',
   Aero: '79',
   Aero2: '84',
   Dia: '4094',
@@ -330,6 +346,16 @@ function setupComboTracker(callback) {
     kAbility.RiotBlade,
     kAbility.GoringBlade,
   ]);
+  comboTracker.AddCombo([
+    kAbility.TrueThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.RaidenThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+  ]);
   return comboTracker;
 }
 
@@ -386,6 +412,16 @@ function setupRegexes(playerName) {
     kAbility.HolySpirit,
     kAbility.HolyCircle,
     kAbility.Confiteor,
+    // drg
+    kAbility.TrueThrust,
+    kAbility.VorpalThrust,
+    kAbility.FullThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+    kAbility.PiercingTalon,
+    kAbility.DoomSpike,
+    kAbility.SonicThrust,
+    kAbility.CoerthanTorment,
   ]);
 }
 
@@ -1300,6 +1336,7 @@ class Bars {
       'SMN': this.setupSmn,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
+      'DRG': this.setupDrg,
       'BLM': this.setupBlm,
       'BRD': this.setupBrd,
       'WHM': this.setupWhm,
@@ -2130,6 +2167,102 @@ class Bars {
     this.gainEffectFuncMap[EffectId.OpoOpoForm] = changeFormFunc;
     this.gainEffectFuncMap[EffectId.RaptorForm] = changeFormFunc;
     this.gainEffectFuncMap[EffectId.CoeurlForm] = changeFormFunc;
+  }
+
+  setupDrg() {
+    // Boxes
+    const highJumpBox = this.addProcBox({
+      id: 'drg-procs-highjump',
+      fgColor: 'drg-color-highjump',
+    });
+    [
+      kAbility.HighJump,
+      kAbility.Jump,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        highJumpBox.duration = 0;
+        highJumpBox.duration = 30;
+      };
+    });
+    const disembowelBox = this.addProcBox({
+      id: 'drg-procs-disembowel',
+      fgColor: 'drg-color-disembowel',
+    });
+    this.comboFuncs.push((skill) => {
+      if (skill == kAbility.Disembowel) {
+        disembowelBox.duration = 0;
+        disembowelBox.duration = 30 + 1;
+      }
+    });
+    const lanceChargeBox = this.addProcBox({
+      id: 'drg-procs-lancecharge',
+      fgColor: 'drg-color-lancecharge',
+      threshold: 20,
+    });
+    this.abilityFuncMap[kAbility.LanceCharge] = () => {
+      lanceChargeBox.duration = 0;
+      lanceChargeBox.duration = 20;
+      lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge.active');
+      setTimeout(() => {
+        lanceChargeBox.duration = 70;
+        lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
+      }, 20000);
+    };
+    const dragonSightBox = this.addProcBox({
+      id: 'drg-procs-dragonsight',
+      fgColor: 'drg-color-dragonsight',
+      threshold: 20,
+    });
+    this.abilityFuncMap[kAbility.DragonSight] = () => {
+      dragonSightBox.duration = 0;
+      dragonSightBox.duration = 20;
+      dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight.active');
+      setTimeout(() => {
+        dragonSightBox.duration = 100;
+        dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
+      }, 20000);
+    };
+    this.statChangeFuncMap['DRG'] = () => {
+      disembowelBox.valuescale = this.gcdSkill();
+      disembowelBox.threshold = this.gcdSkill() * 5;
+      highJumpBox.valuescale = this.gcdSkill();
+      highJumpBox.threshold = this.gcdSkill() + 1;
+    };
+
+    // Gauge
+    const blood = this.addResourceBox({
+      classList: ['drg-color-blood'],
+    });
+    const eyes = this.addResourceBox({
+      classList: ['drg-color-eyes'],
+    });
+    this.jobFuncs.push((jobDetail) => {
+      blood.parentNode.classList.remove('blood', 'life');
+      if (jobDetail.bloodMilliseconds > 0) {
+        blood.parentNode.classList.add('blood');
+        blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000);
+        if (jobDetail.bloodMilliseconds < 5000)
+          blood.parentNode.classList.remove('blood');
+      } else if (jobDetail.lifeMilliseconds > 0) {
+        blood.parentNode.classList.add('life');
+        blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
+      } else {
+        blood.innerText = '';
+      }
+
+      eyes.parentNode.classList.remove('zero', 'one', 'two');
+      if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
+        eyes.innerText = jobDetail.eyesAmount;
+        if (jobDetail.eyesAmount == 0)
+          eyes.parentNode.classList.add('zero');
+        else if (jobDetail.eyesAmount == 1)
+          eyes.parentNode.classList.add('one');
+        else if (jobDetail.eyesAmount == 2)
+          eyes.parentNode.classList.add('two');
+      } else {
+        eyes.innerText = '';
+      }
+    });
   }
 
   setupRdm() {
