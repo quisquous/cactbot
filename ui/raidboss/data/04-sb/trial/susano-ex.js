@@ -14,6 +14,7 @@
         en: 'look for cloud',
         de: 'Nach Wolke ausschau halten',
         fr: 'Cherchez le nuage',
+        ja: '雷雲を探せ',
         cn: '寻找雷云',
         ko: '구름 확인',
       },
@@ -95,6 +96,7 @@
             en: 'Knockback on you (cloud)',
             de: 'Rückstoss auf Dir (Wolke)',
             fr: 'Poussée sur VOUS (nuage)',
+            ja: '自分にノックバック (雷雲)',
             cn: '击退点名（雷云）',
             ko: '넉백 대상자 (구름)',
           };
@@ -103,6 +105,7 @@
             en: 'Knockback + dice (STOP)',
             de: 'Rückstoss + Würfel (STOPP)',
             fr: 'Poussée + dé (ARRÊTEZ)',
+            ja: 'ノックバック + 禍泡 (そのまま)',
             cn: '击退+水泡（静止）',
             ko: '넉백 + 주사위 (가만히)',
           };
@@ -111,6 +114,7 @@
           en: 'Knockback on YOU',
           de: 'Rückstoß auf DIR',
           fr: 'Poussée sur VOUS',
+          ja: '自分にノックバック',
           cn: '击退点名',
           ko: '넉백 대상자',
         };
@@ -121,6 +125,7 @@
             en: 'knockback with cloud',
             de: 'Rückstoß mit wolke',
             fr: 'Poussée avec nuage',
+            ja: '雷雲ノックバック',
             cn: '雷云击退',
             ko: '넉백과 구름 장판',
           };
@@ -129,6 +134,7 @@
             en: 'Knockback with dice',
             de: 'Rückstoß mit Würfel',
             fr: 'Poussée avec dé',
+            ja: '禍泡ノックバック',
             cn: '水泡击退',
             ko: '넉백과 주사위',
           };
@@ -137,6 +143,7 @@
           en: 'Knockback',
           de: 'Rückstoß',
           fr: 'Poussée',
+          ja: 'ノックバック',
           cn: '击退',
           ko: '넉백',
         };
@@ -154,6 +161,7 @@
             en: 'Levinbolt on you (cloud)',
             de: 'Blitz auf Dir (Wolke)',
             fr: 'Fulguration sur VOUS (nuage)',
+            ja: '自分に稲妻 (雷雲)',
             cn: '闪电点名（雷云）',
             ko: '우레 대상자 (구름)',
           };
@@ -162,6 +170,7 @@
           en: 'Levinbolt on you',
           de: 'Blitz auf dir',
           fr: 'Fulguration sur VOUS',
+          ja: '自分に稲妻',
           cn: '闪电点名',
           ko: '우레 대상자',
         };
@@ -172,6 +181,7 @@
             en: 'bolt with cloud',
             de: 'blitz mit wolke',
             fr: 'foudre avec nuage',
+            ja: '雷雲 稲妻',
             cn: '闪电带雷云',
             ko: '구름 번개',
           };
@@ -180,6 +190,7 @@
           en: 'bolt',
           de: 'blitz',
           fr: 'foudre',
+          ja: '稲妻',
           cn: '闪电',
           ko: '번개',
         };
@@ -204,6 +215,7 @@
             en: 'Stun: ' + data.ShortName(matches.target),
             de: 'Paralyse ' + data.ShortName(matches.target),
             fr: 'Stun ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にスタン',
             cn: '击晕' + data.ShortName(matches.target),
             ko: data.ShortName(matches.target) + '스턴',
           };
@@ -288,7 +300,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Ame-No-Murakumo': 'アメノムラクモ',
         'How our hearts sing in the chaos': 'カッカッカッ、興が乗ったわ！ アメノムラクモの真なる姿、見せてくれよう！',
@@ -299,16 +310,22 @@
       },
       'replaceText': {
         'Ame No Murakumo': 'アメノムラクモ',
+        'Ame-No-Murakumo add': '雑魚: アメノムラクモ',
         'Assail': '強撃',
         'Churn': '禍泡付着',
         'Dark Levin': '紫電',
+        'Knockback': 'ノックバック',
         'Levinbolt': '稲妻',
+        'Phase': 'フェイス',
         'Rasen Kaikyo': '螺旋海峡',
         'Seasplitter': '海割り',
+        'Stack': '集合',
         'Stormsplitter': '海嵐斬',
         'The Hidden Gate': '岩戸隠れ',
         'The Sealed Gate': '岩戸閉め',
         'Ukehi': '宇気比',
+        'cloud': '雲',
+        'dice': '禍泡',
       },
     },
     {

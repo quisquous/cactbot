@@ -9,7 +9,7 @@
 123.0 "Dreadnaught (NW)" sync / 03:........:Added new combatant Clockwork Dreadnaught\./ window 130,0
 123.0 "4x Bug (S)"
 
-183.0 "2x Rook (E/W center)" sync / 03:........:Added new combatant Spinner-rook\./ window 190,0
+183.0 "2x Rook (E/W)" sync / 03:........:Added new combatant Spinner-rook\./ window 190,0
 183.0 "4x Bug (outside)"
 
 243.0 "Dreadnaught (NE)" sync / 03:........:Added new combatant Clockwork Dreadnaught\./ window 115,0

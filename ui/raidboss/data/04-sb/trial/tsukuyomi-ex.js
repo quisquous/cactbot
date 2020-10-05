@@ -41,6 +41,7 @@
           en: 'Tank Swap!',
           de: 'Tankwechsel!',
           fr: 'Tank swap !',
+          ja: 'スイッチ',
           cn: '换T！',
           ko: '탱 교대',
         };
@@ -51,6 +52,7 @@
             en: 'Tank Buster on YOU',
             de: 'Tankbuster auf DIR',
             fr: 'Tank buster sur VOUS',
+            ja: '自分にタンクバスター',
             cn: '死刑减伤',
             ko: '탱버 대상자',
           };
@@ -60,6 +62,7 @@
             en: 'Buster on ' + data.ShortName(matches.target),
             de: 'Tankbuster auf ' + data.ShortName(matches.target),
             fr: 'Tank buster sur ' + data.ShortName(matches.target),
+            ja: data.ShortName(matches.target) + 'にタンクバスター',
             cn: '死刑 点' + data.ShortName(matches.target),
             ko: '"' + data.ShortName(target) + '" 탱버',
           };
@@ -73,6 +76,7 @@
           en: 'Get out of front',
           de: 'Weg von vorn',
           fr: 'Sortez du devant',
+          ja: '正面から離れ',
           cn: '远离正面',
           ko: '정면 피하기',
         };
@@ -83,6 +87,7 @@
             en: 'buster',
             de: 'basta',
             fr: 'tank buster',
+            ja: 'タンクバスター',
             cn: '死刑',
             ko: '탱버',
           };
@@ -102,6 +107,7 @@
           en: 'Out',
           de: 'Raus',
           fr: 'Extérieur',
+          ja: '外へ',
           cn: '远离',
           ko: '밖',
         };
@@ -121,6 +127,7 @@
           en: 'In',
           de: 'Rein',
           fr: 'Intérieur',
+          ja: '中へ',
           cn: '靠近',
           ko: '안',
         };
@@ -140,6 +147,7 @@
           en: 'Left + ' + data.moonInOut,
           fr: 'Gauche + ' + data.moonInOut,
           de: 'Links + ' + data.moonInOut,
+          ja: '左へ + ' + data.moonInOut,
           cn: '左边 + ' + data.moonInOut,
           ko: '왼쪽 + ' + data.moonInOut,
         };
@@ -158,6 +166,7 @@
           en: 'Right + ' + data.moonInOut,
           fr: 'Droite + ' + data.moonInOut,
           de: 'Rechts + ' + data.moonInOut,
+          ja: '右へ + ' + data.moonInOut,
           cn: '右边 + ' + data.moonInOut,
           ko: '오른쪽 + ' + data.moonInOut,
         };
@@ -239,6 +248,7 @@
         en: 'Move to Black!',
         de: 'In\'s schwarze laufen!',
         fr: 'Bougez en zone noire !',
+        ja: '新月に！',
         cn: '踩黑色！',
         ko: '검정색으로 이동!',
       },
@@ -271,6 +281,7 @@
         en: 'Move to White!',
         de: 'In\'s weiße laufen!',
         fr: 'Bougez en zone blanche !',
+        ja: '満月に！',
         cn: '踩白色！',
         ko: '흰색으로 이동!',
       },
@@ -369,7 +380,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Moondust': '月の欠片',
         'Moonlight': '月光',
@@ -379,6 +389,7 @@
         'Specter Of The Patriarch': '養父の幻影',
         'Specter Of Zenos': 'ゼノスの幻影',
         'Tsukuyomi': 'ツクヨミ',
+        'No\\\\. No\\\\.\\\\.\\\\. Not yet\\\\. Not\\\\. Yet\\\\.': '嗚呼、まだ、あたしは…………。',
       },
       'replaceText': {
         'Antitwilight': '月下美人',
@@ -387,8 +398,11 @@
         'Dance Of The Dead': '黄泉の舞',
         'Dark Blade': '月刀右近',
         'Dispersivity': '剣気波動',
+        'Empire adds .SW->NW.': '雑魚: 帝国軍 (南西->北西)',
         'Hagetsu': '破月',
+        'Homeland adds .E->W.': '雑魚: 幻影 (東->西)',
         'Lead Of The Underworld': '黄泉の銃弾',
+        'Lead/Steel': '銃弾/穂先',
         'Lunacy': '月下繚乱',
         'Lunar Halo': '百月光',
         'Lunar Rays': '残月',
@@ -400,6 +414,7 @@
         'Perilune': '月天心',
         'Reprimand': '折檻',
         'Steel Of The Underworld': '黄泉の穂先',
+        'Steel/Lead': '穂先/銃弾',
         'Supreme Selenomancy': '極の月読',
         'Torment Unto Death': 'なぶり殺し',
         'Tsuki-no-Kakera': '月の欠片',

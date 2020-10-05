@@ -450,7 +450,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Aka-no-shiki': '紅の式鬼',
         'Ao-no-shiki': '蒼の式鬼',
@@ -470,9 +469,11 @@
         'Forbidden Arts': '刀禁呪',
         'Force of Nature': '大圧殺',
         'Handprint': '圧殺掌',
+        'In/Out': '中/外',
         'Kanabo': '鬼に金棒',
         'Kuji-kiri': '九字切り',
         'Onmyo Sigil': '陰陽の印',
+        'Out/In': '外/中',
         'Red Rush': '赤の突進',
         'Serpent Ascending': '登り龍',
         'Serpent Descending': '降り蛇',

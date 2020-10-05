@@ -148,6 +148,22 @@ const kAbility = {
   EnergySiphon: '407E',
   DreadwyrmTrance: 'DFD',
   FirebirdTrance: '40A5',
+  TrueThrust: '4B',
+  VorpalThrust: '4E',
+  FullThrust: '54',
+  Disembowel: '57',
+  ChaosThrust: '58',
+  RaidenThrust: '405F',
+  PiercingTalon: '5A',
+  FangAndClaw: 'DE2',
+  WheelingThrust: 'DE4',
+  DoomSpike: '56',
+  SonicThrust: '1CE5',
+  CoerthanTorment: '405D',
+  HighJump: '405E',
+  Jump: '5C',
+  LanceCharge: '55',
+  DragonSight: '1CE6',
   Aero: '79',
   Aero2: '84',
   Dia: '4094',
@@ -199,73 +215,57 @@ class ComboTracker {
   constructor(comboBreakers, callback) {
     this.comboTimer = null;
     this.comboBreakers = comboBreakers;
-    this.comboNodes = {}; // { key => { re: string, next: [node keys], last: bool } }
-    this.startList = [];
+    // A tree of nodes.
+    this.startMap = {}; // {} key => { id: str, next: { key => node } }
     this.callback = callback;
-    this.current = null;
-    this.considerNext = this.startList;
+    this.considerNext = this.startMap;
   }
 
   AddCombo(skillList) {
-    if (!this.startList.includes(skillList[0]))
-      this.startList.push(skillList[0]);
+    let nextMap = this.startMap;
 
     for (let i = 0; i < skillList.length; ++i) {
-      let node = this.comboNodes[skillList[i]];
-      if (node == undefined) {
-        node = {
-          id: skillList[i],
-          next: [],
-        };
-        this.comboNodes[skillList[i]] = node;
-      }
-      if (i != skillList.length - 1)
-        node.next.push(skillList[i + 1]);
-      else
-        node.last = true;
+      const id = skillList[i];
+      let node = {
+        id: id,
+        next: {},
+      };
+
+      if (!nextMap[id])
+        nextMap[id] = node;
+
+      nextMap = nextMap[id].next;
     }
   }
 
   HandleAbility(id) {
-    for (let i = 0; i < this.considerNext.length; ++i) {
-      let next = this.considerNext[i];
-      if (this.comboNodes[next].id == id) {
-        this.StateTransition(next);
-        return true;
-      }
-    }
-    if (this.comboBreakers.includes(id)) {
-      this.AbortCombo();
-      return true;
-    }
-    return false;
+    if (id in this.considerNext)
+      this.StateTransition(id, this.considerNext[id]);
+
+    if (this.comboBreakers.includes(id))
+      this.AbortCombo(id);
   }
 
-  StateTransition(nextState) {
-    if (this.current == null && nextState == null)
-      return;
-
+  StateTransition(id, nextState) {
     window.clearTimeout(this.comboTimer);
     this.comboTimer = null;
-    this.current = nextState;
 
-    if (nextState == null) {
-      this.considerNext = this.startList;
+    const isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
+    if (nextState === null || isFinalSkill) {
+      this.considerNext = this.startMap;
     } else {
-      this.considerNext = [];
-      Array.prototype.push.apply(this.considerNext, this.comboNodes[nextState].next);
-      Array.prototype.push.apply(this.considerNext, this.startList);
-
-      if (!this.comboNodes[nextState].last) {
-        let kComboDelayMs = 15000;
-        this.comboTimer = window.setTimeout(this.AbortCombo.bind(this), kComboDelayMs);
-      }
+      this.considerNext = Object.assign({}, this.startMap, nextState.next);
+      let kComboDelayMs = 15000;
+      this.comboTimer = window.setTimeout(() => {
+        this.AbortCombo(null);
+      }, kComboDelayMs);
     }
-    this.callback(nextState);
+    if (id)
+      this.callback(id);
   }
 
-  AbortCombo() {
-    this.StateTransition(null);
+  AbortCombo(id) {
+    this.StateTransition(id, null);
   }
 }
 
@@ -330,6 +330,16 @@ function setupComboTracker(callback) {
     kAbility.RiotBlade,
     kAbility.GoringBlade,
   ]);
+  comboTracker.AddCombo([
+    kAbility.TrueThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.RaidenThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+  ]);
   return comboTracker;
 }
 
@@ -386,6 +396,16 @@ function setupRegexes(playerName) {
     kAbility.HolySpirit,
     kAbility.HolyCircle,
     kAbility.Confiteor,
+    // drg
+    kAbility.TrueThrust,
+    kAbility.VorpalThrust,
+    kAbility.FullThrust,
+    kAbility.Disembowel,
+    kAbility.ChaosThrust,
+    kAbility.PiercingTalon,
+    kAbility.DoomSpike,
+    kAbility.SonicThrust,
+    kAbility.CoerthanTorment,
   ]);
 }
 
@@ -1078,7 +1098,7 @@ class Bars {
     this.abilityFuncMap = {};
 
     this.contentType = 0;
-
+    this.isPVPZone = false;
     this.crafting = false;
 
     const lang = this.options.ParserLanguage;
@@ -1106,6 +1126,20 @@ class Bars {
       trialCraftingFailRegex,
       trialCraftingCancelRegex,
     ];
+  }
+
+  UpdateUIVisibility() {
+    const bars = document.getElementById('bars');
+    if (bars) {
+      const barList = bars.children;
+      for (const bar of barList) {
+        if (bar.id === 'hp-bar' || bar.id === 'mp-bar') continue;
+        if (this.isPVPZone === true)
+          bar.style.display = 'none';
+        else
+          bar.style.display = '';
+      }
+    }
   }
 
   UpdateJob() {
@@ -1300,6 +1334,7 @@ class Bars {
       'SMN': this.setupSmn,
       'BLU': this.setupBlu,
       'MNK': this.setupMnk,
+      'DRG': this.setupDrg,
       'BLM': this.setupBlm,
       'BRD': this.setupBrd,
       'WHM': this.setupWhm,
@@ -1315,6 +1350,9 @@ class Bars {
     // Many jobs use the gcd to calculate thresholds and value scaling.
     // Run this initially to set those values.
     this.UpdateJobBarGCDs();
+
+    // Hide UI except HP and MP bar if in pvp area.
+    this.UpdateUIVisibility();
   }
 
   validateKeys() {
@@ -2132,6 +2170,102 @@ class Bars {
     this.gainEffectFuncMap[EffectId.CoeurlForm] = changeFormFunc;
   }
 
+  setupDrg() {
+    // Boxes
+    const highJumpBox = this.addProcBox({
+      id: 'drg-procs-highjump',
+      fgColor: 'drg-color-highjump',
+    });
+    [
+      kAbility.HighJump,
+      kAbility.Jump,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        highJumpBox.duration = 0;
+        highJumpBox.duration = 30;
+      };
+    });
+    const disembowelBox = this.addProcBox({
+      id: 'drg-procs-disembowel',
+      fgColor: 'drg-color-disembowel',
+    });
+    this.comboFuncs.push((skill) => {
+      if (skill == kAbility.Disembowel) {
+        disembowelBox.duration = 0;
+        disembowelBox.duration = 30 + 1;
+      }
+    });
+    const lanceChargeBox = this.addProcBox({
+      id: 'drg-procs-lancecharge',
+      fgColor: 'drg-color-lancecharge',
+      threshold: 20,
+    });
+    this.abilityFuncMap[kAbility.LanceCharge] = () => {
+      lanceChargeBox.duration = 0;
+      lanceChargeBox.duration = 20;
+      lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge.active');
+      setTimeout(() => {
+        lanceChargeBox.duration = 70;
+        lanceChargeBox.fg = computeBackgroundColorFrom(lanceChargeBox, 'drg-color-lancecharge');
+      }, 20000);
+    };
+    const dragonSightBox = this.addProcBox({
+      id: 'drg-procs-dragonsight',
+      fgColor: 'drg-color-dragonsight',
+      threshold: 20,
+    });
+    this.abilityFuncMap[kAbility.DragonSight] = () => {
+      dragonSightBox.duration = 0;
+      dragonSightBox.duration = 20;
+      dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight.active');
+      setTimeout(() => {
+        dragonSightBox.duration = 100;
+        dragonSightBox.fg = computeBackgroundColorFrom(dragonSightBox, 'drg-color-dragonsight');
+      }, 20000);
+    };
+    this.statChangeFuncMap['DRG'] = () => {
+      disembowelBox.valuescale = this.gcdSkill();
+      disembowelBox.threshold = this.gcdSkill() * 5;
+      highJumpBox.valuescale = this.gcdSkill();
+      highJumpBox.threshold = this.gcdSkill() + 1;
+    };
+
+    // Gauge
+    const blood = this.addResourceBox({
+      classList: ['drg-color-blood'],
+    });
+    const eyes = this.addResourceBox({
+      classList: ['drg-color-eyes'],
+    });
+    this.jobFuncs.push((jobDetail) => {
+      blood.parentNode.classList.remove('blood', 'life');
+      if (jobDetail.bloodMilliseconds > 0) {
+        blood.parentNode.classList.add('blood');
+        blood.innerText = Math.ceil(jobDetail.bloodMilliseconds / 1000);
+        if (jobDetail.bloodMilliseconds < 5000)
+          blood.parentNode.classList.remove('blood');
+      } else if (jobDetail.lifeMilliseconds > 0) {
+        blood.parentNode.classList.add('life');
+        blood.innerText = Math.ceil(jobDetail.lifeMilliseconds / 1000);
+      } else {
+        blood.innerText = '';
+      }
+
+      eyes.parentNode.classList.remove('zero', 'one', 'two');
+      if (jobDetail.lifeMilliseconds > 0 || jobDetail.bloodMilliseconds > 0) {
+        eyes.innerText = jobDetail.eyesAmount;
+        if (jobDetail.eyesAmount == 0)
+          eyes.parentNode.classList.add('zero');
+        else if (jobDetail.eyesAmount == 1)
+          eyes.parentNode.classList.add('one');
+        else if (jobDetail.eyesAmount == 2)
+          eyes.parentNode.classList.add('two');
+      } else {
+        eyes.innerText = '';
+      }
+    });
+  }
+
   setupRdm() {
     let container = this.addJobBarContainer();
 
@@ -2177,12 +2311,6 @@ class Bars {
       threshold: 1000,
     });
     blackProc.bigatzero = false;
-    let impactProc = this.addProcBox({
-      id: 'rdm-procs-impact',
-      fgColor: 'rdm-color-impact',
-      threshold: 1000,
-    });
-    impactProc.bigatzero = false;
 
     this.jobFuncs.push(function(jobDetail) {
       let white = jobDetail.whiteMana;
@@ -2219,11 +2347,6 @@ class Bars {
       blackProc.duration = parseFloat(matches.duration) - this.gcdSpell();
     };
     this.loseEffectFuncMap[EffectId.VerfireReady] = () => blackProc.duration = 0;
-    this.gainEffectFuncMap[EffectId.Impactful] = (name, matches) => {
-      impactfulProc.duration = 0;
-      impactfulProc = parseFloat(matches.duration) - this.gcdSpell();
-    };
-    this.loseEffectFuncMap[EffectId.Impactful] = () => impactfulProc.duration = 0;
   }
 
   setupBlm() {
@@ -2786,6 +2909,15 @@ class Bars {
 
     for (const func of this.changeZoneFuncs)
       func(e);
+
+    this.isPVPZone = false;
+    if (zoneInfo) {
+      if (zoneInfo.contentType === ContentType.Pvp || e.zoneID === ZoneId.WolvesDenPier)
+        this.isPVPZone = true;
+    }
+
+    // Hide UI except HP and MP bar if change to pvp area.
+    this.UpdateUIVisibility();
   }
 
   SetPullCountdown(seconds) {

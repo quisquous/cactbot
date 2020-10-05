@@ -71,8 +71,6 @@
         'Spinner-rook': 'Drehturm',
       },
       'replaceText': {
-        '\\(E/W center\\)': '(O/W mitte)',
-        '\\(SE/NW\\)': '(SO/NW)',
         '\\(center\\)': '(mitte)',
         '\\(outside\\)': '(draußen)',
         'Bug': 'Wanze',
@@ -93,10 +91,6 @@
         'Spinner-rook': 'Drone-Drille',
       },
       'replaceText': {
-        '\\(E/W center\\)': '(E/O centre)',
-        '\\(NW\\)': '(NO)',
-        '\\(SE/NW\\)': '(SE/NO)',
-        '\\(SW\\)': '(SO)',
         '\\(center\\)': '(centre)',
         '\\(outside\\)': '(à l\'extérieur)',
         'Bug': 'Insecte',
@@ -117,10 +111,6 @@
         'Spinner-rook': 'ルークスピナー',
       },
       'replaceText': {
-        '\\(E/W center\\)': '(東/西 中央)',
-        '\\(NW\\)': '(北西)',
-        '\\(SE/NW\\)': '(南東/北西)',
-        '\\(SW\\)': '(南西)',
         '\\(center\\)': '(中央)',
         '\\(outside\\)': '(外)',
         'Bug': 'アラガンワーク・バグ',
@@ -141,10 +131,6 @@
         'Spinner-rook': '转盘堡',
       },
       'replaceText': {
-        '\\(E/W center\\)': '(东/西 中央)',
-        '\\(NW\\)': '(西北)',
-        '\\(SE/NW\\)': '(东南/西北)',
-        '\\(SW\\)': '(西南)',
         '\\(center\\)': '(中央)',
         '\\(outside\\)': '(外面)',
         'Bug': '故障虫',

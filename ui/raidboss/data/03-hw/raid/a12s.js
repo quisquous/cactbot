@@ -316,7 +316,6 @@
         '(?<! )Sacrament': 'Sacrement',
         '--timestop--': '--arrêt du temps--',
         '\\(Radiant\\?\\) Sacrament': 'Sacrement (rayonnant ?)',
-        '\\(W\\)': '(O)',
         'Almost Holy(?!\\?)': 'Quasi-Miracle',
         'Almost Holy\\?': 'Quasi-Miracle ?',
         'Arrhidaeus\'s Lanner': 'Messager d\'Arrhabée',

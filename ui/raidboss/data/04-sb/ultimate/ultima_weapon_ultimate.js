@@ -261,6 +261,7 @@
         return {
           en: data.ShortName(matches.target) + ' died',
           de: data.ShortName(matches.target) + ' gestorben',
+          ja: data.ShortName(matches.target) + ' 死にました',
           ko: data.ShortName(matches.target) + ' 죽음',
           cn: data.ShortName(matches.target) + ' 死亡',
         };
@@ -494,7 +495,6 @@
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bomb Boulder': 'ボムボルダ',
         'Chirada': 'チラーダ',
@@ -512,6 +512,7 @@
         'Aetheric Boom': 'エーテル波動',
         'Aetherochemical Laser': '魔科学レーザー',
         '(?<! )Aetheroplasm': 'エーテル爆雷',
+        'Apply Viscous': '吸着式エーテル爆雷',
         'Blight': 'クラウダ',
         'Bury': '衝撃',
         'Ceruleum Vent': 'セルレアムベント',
@@ -527,6 +528,7 @@
         'Freefire': '誘爆',
         'Friction': 'ウィンドブレード',
         'Geocrush': 'ジオクラッシュ',
+        'Grand Whirlwind': '大旋風',
         'Hellfire': '地獄の火炎',
         'Homing Lasers': '誘導レーザー',
         'Incinerate': 'インシネレート',
@@ -537,11 +539,13 @@
         'Mistral Shriek': 'ミストラルシュリーク',
         'Mistral Song': 'ミストラルソング',
         'Mountain Buster': 'マウンテンバスター',
+        'Nail Adds': '雑魚: 楔',
         'Radiant Plume': '光輝の炎柱',
         'Rock Buster': 'ロックバスター',
         'Rock Throw': 'グラナイト・ジェイル',
         'Searing Wind': '熱風',
         'Slipstream': 'スリップストリーム',
+        'Summon Random Primal': 'ランダム蛮神を召喚',
         'Tank Purge': '魔導フレア',
         'Tumult': '激震',
         'Ultima(?!\\w)': 'アルテマ',

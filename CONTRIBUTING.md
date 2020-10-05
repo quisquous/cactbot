@@ -38,7 +38,8 @@ for example you're irritated at some style usage and want to make everything con
 it's especially best to put that in a separate pull request.
 
 Generally, changes will be squashed and rebased together.
-If you want your changes to be in separate commits.
+If you want your changes to be in separate commits,
+then say so explicitly.
 
 ### Development Workflow
 
