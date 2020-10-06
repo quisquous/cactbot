@@ -271,9 +271,8 @@ class ComboTracker {
       this.comboTimer = window.setTimeout(() => {
         this.AbortCombo(null);
       }, kComboDelayMs);
-      if (isFinalSkill) {
+      if (isFinalSkill)
         this.finalSkill = true;
-      }
     }
     if (id)
       this.callback(id);
