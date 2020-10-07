@@ -15,8 +15,7 @@ on:
       - '.github/workflows/python-lint.yml'
 
 jobs:
-
-  install:
+  black:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
@@ -25,12 +24,14 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.7'
+
       # Cache pip dependencies
       # See also: https://github.com/actions/cache/blob/main/examples.md#python---pip
       - name: Get pip cache dir
         id: pip-cache
         run: |
           echo "::set-output name=dir::$(pip cache dir)"
+
       - name: pip cache
         uses: actions/cache@v2
         with:
@@ -38,25 +39,13 @@ jobs:
           key: cactbot-pip-${{ hashFiles('**/requirements.txt') }}
           restore-keys: |
             cactbot-pip-
+
       - name: Install Dependencies
         run: |
           pip install -r requirements.txt
-
-  black:
-    runs-on: ubuntu-latest
-    needs: install
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v1
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: '3.7'
-
       - name: black **/*.py --line-length 100 --check --diff
         run: |
           black **/*.py --line-length 100 --check --diff
-
   pylint:
     runs-on: ubuntu-latest
     needs: install
@@ -71,6 +60,24 @@ jobs:
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
 
+      # Cache pip dependencies
+      # See also: https://github.com/actions/cache/blob/main/examples.md#python---pip
+      - name: Get pip cache dir
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: pip cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: cactbot-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            cactbot-pip-
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
       - name: pylint **/*.py --errors-only
         run: |
           pylint **/*.py --errors-only
