@@ -251,15 +251,11 @@ class ComboTracker {
   }
 
   StateTransition(id, nextState) {
-    if (!id || nextState === null) {
-      this.comboBroken = true;
-      this.finalSkill = false;
-    }
     window.clearTimeout(this.comboTimer);
     this.comboTimer = null;
 
     const isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
-    if (nextState === null) {
+    if (!id || nextState === null) {
       this.considerNext = this.startMap;
       this.comboBroken = true;
       this.finalSkill = false;
@@ -2679,7 +2675,9 @@ class Bars {
   }
 
   OnComboChange(skill) {
-    if (this.combo.IsComboBroken()) return;
+    if (this.combo.IsComboBroken()) {
+      skill = null;
+    }
     for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
   }
