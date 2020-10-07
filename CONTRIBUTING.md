@@ -106,6 +106,14 @@ and tested in real time by pointing cactbot to use
 `<username>.github.io/cactbot/ui/<module>/<module>.html`
 as its source.
 
+#### VSCode extension for cactbot
+
+If you are using VSCode, there is an extension [cactbot-highlight](https://github.com/MaikoTan/cactbot-highlight) created by Maiko Tan,
+providing timeline highlighting and some useful snippets.
+
+This extension is still developing, if you have some suggestions or bug reports,
+feel free to leave an issue/pull request in the repository.
+
 ### Code Review Culture
 
 Ideally, all changes should get code review.
