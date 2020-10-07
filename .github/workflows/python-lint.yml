@@ -48,7 +48,6 @@ jobs:
           black **/*.py --line-length 100 --check --diff
   pylint:
     runs-on: ubuntu-latest
-    needs: install
     steps:
       - name: Checkout Code
         uses: actions/checkout@v1
