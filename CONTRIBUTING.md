@@ -111,7 +111,7 @@ as its source.
 If you are using VSCode, there is an extension [cactbot-highlight](https://github.com/MaikoTan/cactbot-highlight) created by Maiko Tan,
 providing timeline highlighting and some useful snippets.
 
-This extension is still developing, if you have some suggestions or bug reports,
+This extension is still in development, if you have any suggestions or bug reports,
 feel free to leave an issue/pull request in the repository.
 
 ### Code Review Culture
