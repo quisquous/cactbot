@@ -18,7 +18,6 @@ jobs:
 
   install:
     runs-on: ubuntu-latest
-    needs: install
     steps:
       - name: Checkout Code
         uses: actions/checkout@v1
@@ -60,6 +59,7 @@ jobs:
 
   pylint:
     runs-on: ubuntu-latest
+    needs: install
     steps:
       - name: Checkout Code
         uses: actions/checkout@v1
