@@ -2675,9 +2675,8 @@ class Bars {
   }
 
   OnComboChange(skill) {
-    if (this.combo.IsComboBroken()) {
+    if (this.combo.IsComboBroken())
       skill = null;
-    }
     for (let i = 0; i < this.comboFuncs.length; ++i)
       this.comboFuncs[i](skill);
   }
