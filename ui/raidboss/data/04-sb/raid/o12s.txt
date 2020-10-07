@@ -26,10 +26,10 @@ hideall "--sync--"
 90.5 "Optimized Fire III" sync /:Omega-F:3337:/
 
 # Twin phase
-102.6 "Subject Simulation M" sync /:Omega-M:32F4:/
+102.6 "Subject Simulation M" sync /:Omega-M:32F4:/ window 53.5
 114.1 "Electric Slide" sync /:Omega:3354:/
 122.7 "Discharger + Bladework" sync /:Omega:3327:/
-132.0 "Firewall" sync /:Omega:3339:/
+132.0 "Firewall" sync /:Omega:3339:/ window 132.0
 141.2 "Resonance" sync /:Omega:333B:/
 155.6 "Fundamental Synergy" sync /:Omega:333D:/
 
