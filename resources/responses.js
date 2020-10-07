@@ -856,7 +856,7 @@ let Responses = {
       fr: 'Bougez !',
       ja: '動く！',
       cn: '快动！',
-      ko: '움직이기!',
+      ko: '이동하기!',
     };
     return obj;
   },
