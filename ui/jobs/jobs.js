@@ -3225,16 +3225,15 @@ class Bars {
         if (f)
           f(id, m.groups);
         this.buffTracker.onUseAbility(id, m.groups);
+        this.mainTarget = line[6];
       } else {
         let m = log.match(kAnybodyAbilityRegex);
         if (m)
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
-      this.mainTarget = line[6];
     } else if (type === '24') {
-      if ((this.job == 'BRD') && (line[4] === 'DoT') && line[2] === this.mainTarget) {
+      if ((this.job == 'BRD') && (line[4] === 'DoT') && (line[2] === this.mainTarget))
         this.UpdateDotTimer();
-      }
     }
   }
 
