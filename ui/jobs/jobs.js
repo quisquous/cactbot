@@ -2556,6 +2556,7 @@ class Bars {
       id: 'brd-timers-repertoire',
       fgColor: 'brd-color-song',
     });
+    // TODO: This can not use on mutiple target.
     this.UpdateDotTimer = () => {
       this.repertoireTimer.duration = 2.91666;
     };
@@ -2586,6 +2587,7 @@ class Bars {
         songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.paeon');
         songBox.threshold = 13;
       }
+      // Avoid too many refresh.
       if (jobDetail.songMilliseconds >= 29900)
         songBox.duration = 30;
 
