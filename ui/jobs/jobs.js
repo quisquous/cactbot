@@ -267,8 +267,10 @@ class ComboTracker {
       this.comboTimer = window.setTimeout(() => {
         this.AbortCombo(null);
       }, kComboDelayMs);
-      if (isFinalSkill)
+      if (isFinalSkill) {
         this.finalSkill = true;
+        this.considerNext = this.startMap;
+      }
     }
     if (id)
       this.callback(id);
