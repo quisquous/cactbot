@@ -2548,7 +2548,7 @@ class Bars {
     });
     this.UpdateDotTimer = () => {
       this.repertoireTimer.duration = 2.91666;
-    }
+    };
     const soulVoiceBox = this.addResourceBox({
       classList: ['brd-color-soulvoice'],
     });
