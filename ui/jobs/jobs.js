@@ -2507,14 +2507,24 @@ class Bars {
       id: 'brd-procs-stormbite',
       fgColor: 'brd-color-stormbite',
     });
-    this.abilityFuncMap[kAbility.StormBite] = () => {
-      stormbBiteBox.duration = 0;
-      stormbBiteBox.duration = 30 + 1;
-    };
-    this.abilityFuncMap[kAbility.CausticBite] = () => {
-      causticBiteBox.duration = 0;
-      causticBiteBox.duration = 30 + 1;
-    };
+    [
+      kAbility.StormBite,
+      kAbility.Windbite,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        stormbBiteBox.duration = 0;
+        stormbBiteBox.duration = 30 + 1;
+      };
+    });
+    [
+      kAbility.CausticBite,
+      kAbility.VenomousBite,
+    ].forEach((ability) => {
+      this.abilityFuncMap[ability] = () => {
+        causticBiteBox.duration = 0;
+        causticBiteBox.duration = 30 + 1;
+      };
+    });
     this.abilityFuncMap[kAbility.IronJaws] = () => {
       // +1 to ensure that you can refresh your DoT at near 0s.
       if (parseFloat(causticBiteBox.duration) + 1 - parseFloat(causticBiteBox.elapsed) > 0) {
