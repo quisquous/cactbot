@@ -2556,7 +2556,8 @@ class Bars {
       id: 'brd-timers-repertoire',
       fgColor: 'brd-color-song',
     });
-    // TODO: This can not use on mutiple target.
+    // Only DoT on target you last attack will trigger this.
+    // So it work not well in mutiple target fight.
     this.UpdateDotTimer = () => {
       this.repertoireTimer.duration = 2.91666;
     };
@@ -3232,7 +3233,10 @@ class Bars {
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
     } else if (type === '24') {
-      if ((this.job == 'BRD') && (line[4] === 'DoT') && (line[2] === this.mainTarget))
+      if ((this.job == 'BRD')
+        && (line[4] === 'DoT')
+        && (line[2] === this.mainTarget)
+        && (line[5] === '0'))
         this.UpdateDotTimer();
     }
   }
