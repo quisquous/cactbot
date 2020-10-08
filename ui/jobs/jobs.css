@@ -31,6 +31,7 @@
 }
 
 .rdm #right-side-icons,
+.brd #right-side-icons,
 .drg #right-side-icons,
 .whm #right-side-icons,
 .sch #right-side-icons,
@@ -133,6 +134,7 @@
   background: rgba(30, 30, 30, 0.7);
 }
 
+#brd-bar,
 #mnk-bar {
   position: relative;
   width: 202px;
@@ -159,6 +161,7 @@
   height: calc(100% - 4px);
 }
 
+#brd-timers-repertoire,
 #mnk-timers-lightning,
 #mnk-timers-combo {
   display: block;
@@ -170,6 +173,7 @@
 
 /* Relative to #bars */
 #rdm-boxes,
+#brd-boxes,
 #sch-boxes,
 #whm-boxes,
 #smn-boxes,
@@ -188,6 +192,7 @@
 }
 
 #rdm-boxes > div,
+#brd-boxes > div,
 #sch-boxes > div,
 #drg-boxes > div,
 #whm-boxes > div,
@@ -222,6 +227,7 @@
 }
 
 #sch-boxes > div,
+#brd-boxes > div,
 #smn-boxes > div,
 #drg-boxes > div,
 #whm-boxes > div,
@@ -237,6 +243,7 @@
 }
 
 #rdm-boxes .text,
+#brd-boxes .text,
 #sch-boxes .text,
 #smn-boxes .text,
 #drg-boxes .text,
@@ -261,6 +268,7 @@
 #sch-boxes .text,
 #smn-boxes .text,
 #drg-boxes .text,
+#brd-boxes .text,
 #whm-boxes .text,
 #ast-boxes .text,
 #rdm-boxes .text {
@@ -311,6 +319,7 @@
 #war-procs,
 #pld-procs,
 #mnk-procs,
+#brd-procs,
 #ast-procs,
 #sch-procs,
 #whm-procs,
@@ -333,6 +342,7 @@
 #ast-procs-combust,
 #sch-procs-bio,
 #drg-procs-disembowel,
+#brd-procs-causticbite,
 #whm-procs-dia,
 #smn-procs-miasma,
 #blu-procs-offguard,
@@ -359,6 +369,7 @@
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
 #whm-procs-assize,
+#brd-procs-stormbite,
 #sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
@@ -370,6 +381,7 @@
 #mnk-procs-demolish,
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
+#brd-procs-song,
 #whm-procs-lucid,
 #blm-procs-thunder,
 #blu-procs-lucid {
@@ -672,6 +684,42 @@
 
 .mnk-color-demolish {
   background-color: rgb(60, 80, 200);
+}
+
+.brd-color-causticbite {
+  background-color: rgb(182, 68, 235);
+}
+
+.brd-color-stormbite {
+  background-color: rgb(72, 117, 202);
+}
+
+.brd-color-song {
+  background-color: rgb(180, 200, 220);
+}
+
+.brd-color-song.minuet {
+  background-color: rgb(100, 150, 100);
+}
+
+.brd-color-song.minuet.full {
+  background-color: rgb(250, 150, 0);
+}
+
+.brd-color-song.ballad {
+  background-color: rgb(143, 90, 143);
+}
+
+.brd-color-song.paeon {
+  background-color: rgb(207, 205, 52);
+}
+
+.brd-color-soulvoice {
+  background-color: rgb(130, 200, 0);
+}
+
+.brd-color-soulvoice.high {
+  background-color: rgb(250, 150, 0);
 }
 
 .whm-color-dia {

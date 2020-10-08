@@ -131,6 +131,13 @@ const kAbility = {
   HolyCircle: '404A',
   Confiteor: '404B',
   FourPointFury: '4059',
+  // BRD
+  Windbite: '71',
+  VenomousBite: '64',
+  StormBite: '1CEF',
+  CausticBite: '1CEE',
+  IronJaws: 'DE8',
+
   TechnicalFinish: '3F44',
   Thunder1: '90',
   Thunder2: '94',
@@ -2491,6 +2498,99 @@ class Bars {
   }
 
   setupBrd() {
+    // DoT
+    const causticBiteBox = this.addProcBox({
+      id: 'brd-procs-causticbite',
+      fgColor: 'brd-color-causticbite',
+    });
+    const stormbBiteBox = this.addProcBox({
+      id: 'brd-procs-stormbite',
+      fgColor: 'brd-color-stormbite',
+    });
+    this.abilityFuncMap[kAbility.StormBite] = () => {
+      stormbBiteBox.duration = 0;
+      stormbBiteBox.duration = 30 + 1;
+    };
+    this.abilityFuncMap[kAbility.CausticBite] = () => {
+      causticBiteBox.duration = 0;
+      causticBiteBox.duration = 30 + 1;
+    };
+    this.abilityFuncMap[kAbility.IronJaws] = () => {
+      // +1 to ensure that you can refresh your DoT at near 0s.
+      if (parseFloat(causticBiteBox.duration) + 1 - parseFloat(causticBiteBox.elapsed) > 0) {
+        causticBiteBox.duration = 0;
+        causticBiteBox.duration = 30;
+      }
+      if (parseFloat(stormbBiteBox.duration) + 1 - parseFloat(stormbBiteBox.elapsed) > 0) {
+        stormbBiteBox.duration = 0;
+        stormbBiteBox.duration = 30;
+      }
+    };
+    this.statChangeFuncMap['BRD'] = () => {
+      stormbBiteBox.valuescale = this.gcdSkill();
+      stormbBiteBox.threshold = this.gcdSkill() * 2;
+      causticBiteBox.valuescale = this.gcdSkill();
+      causticBiteBox.threshold = this.gcdSkill() * 2;
+      songBox.valuescale = this.gcdSkill();
+    };
+
+    // Song
+    const songBox = this.addProcBox({
+      id: 'brd-procs-song',
+      fgColor: 'brd-color-song',
+    });
+    const repertoireBox = this.addResourceBox({
+      classList: ['brd-color-song'],
+    });
+    this.repertoireTimer = this.addTimerBar({
+      id: 'brd-timers-repertoire',
+      fgColor: 'brd-color-song',
+    });
+    this.UpdateDotTimer = () => {
+      this.repertoireTimer.duration = 2.91666;
+    }
+    const soulVoiceBox = this.addResourceBox({
+      classList: ['brd-color-soulvoice'],
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song');
+      repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
+      repertoireBox.innerText = '';
+      if (jobDetail.songName === 'Minuet') {
+        repertoireBox.innerText = jobDetail.songProcs;
+        repertoireBox.parentNode.classList.add('minuet');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.minuet');
+        songBox.threshold = 3;
+        repertoireBox.parentNode.classList.remove('full');
+        if (jobDetail.songProcs == 3)
+          repertoireBox.parentNode.classList.add('full');
+      } else if (jobDetail.songName === 'Ballad') {
+        repertoireBox.innerText = '';
+        repertoireBox.parentNode.classList.add('ballad');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.ballad');
+        songBox.threshold = 0;
+      } else if (jobDetail.songName === 'Paeon') {
+        repertoireBox.innerText = jobDetail.songProcs;
+        repertoireBox.parentNode.classList.add('paeon');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.paeon');
+        songBox.threshold = 13;
+      }
+      if (jobDetail.songMilliseconds >= 29900)
+        songBox.duration = 30;
+
+      // Soul Voice
+      if (jobDetail.soulGauge != soulVoiceBox.innerText) {
+        soulVoiceBox.innerText = jobDetail.soulGauge;
+        soulVoiceBox.parentNode.classList.remove('high');
+        if (jobDetail.soulGauge >= 95)
+          soulVoiceBox.parentNode.classList.add('high');
+      }
+
+      // GCD calculate
+      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
+        this.paeonStacks = jobDetail.songProcs;
+    });
     let ethosStacks = 0;
 
     // Bard is complicated
@@ -2520,11 +2620,6 @@ class Bars {
       this.museStacks = 0;
       this.paeonStacks = 0;
     };
-
-    this.jobFuncs.push((jobDetail) => {
-      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
-        this.paeonStacks = jobDetail.songProcs;
-    });
   }
 
   setupWhm() {
@@ -3123,6 +3218,8 @@ class Bars {
         if (m)
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
+    } else if (type === '24') {
+      this.UpdateDotTimer();
     }
   }
 
