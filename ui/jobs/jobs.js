@@ -3233,10 +3233,10 @@ class Bars {
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
     } else if (type === '24') {
-      if ((this.job == 'BRD')
-        && (line[4] === 'DoT')
-        && (line[2] === this.mainTarget)
-        && (line[5] === '0'))
+      if ((this.job == 'BRD') &&
+        (line[2] === this.mainTarget) &&
+        (line[4] === 'DoT') &&
+        (line[5] === '0')) // 0 if not fleld setting DoT
         this.UpdateDotTimer();
     }
   }
