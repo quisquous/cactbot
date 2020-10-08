@@ -3232,7 +3232,8 @@ class Bars {
       }
     } else if (type === '24') {
       if (this.job == 'BRD')
-        this.UpdateDotTimer();
+        if (line[4] === 'DoT')
+          this.UpdateDotTimer();
     }
   }
 
