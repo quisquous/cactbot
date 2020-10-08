@@ -3230,10 +3230,10 @@ class Bars {
         if (m)
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
+      this.mainTarget = line[6];
     } else if (type === '24') {
-      if (this.job == 'BRD') {
-        if (line[4] === 'DoT')
-          this.UpdateDotTimer();
+      if ((this.job == 'BRD') && (line[4] === 'DoT') && line[2] === this.mainTarget) {
+        this.UpdateDotTimer();
       }
     }
   }
