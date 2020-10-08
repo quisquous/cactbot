@@ -3231,7 +3231,8 @@ class Bars {
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
     } else if (type === '24') {
-      this.UpdateDotTimer();
+      if (this.job == 'BRD')
+        this.UpdateDotTimer();
     }
   }
 
