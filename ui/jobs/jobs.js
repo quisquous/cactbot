@@ -131,13 +131,6 @@ const kAbility = {
   HolyCircle: '404A',
   Confiteor: '404B',
   FourPointFury: '4059',
-  // BRD
-  Windbite: '71',
-  VenomousBite: '64',
-  StormBite: '1CEF',
-  CausticBite: '1CEE',
-  IronJaws: 'DE8',
-
   TechnicalFinish: '3F44',
   Thunder1: '90',
   Thunder2: '94',
@@ -177,6 +170,13 @@ const kAbility = {
   Assize: 'DF3',
 };
 
+const brdDoTs = {
+  Stormbite: '4b1',
+  CausticBite: '4b0',
+  Windbite: '81',
+  VenomousBite: '7c',
+}
+
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
 
 const kMPNormalRate = 0.06;
@@ -195,6 +195,8 @@ let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
 let kMobGainsEffectRegex = null;
 let kMobLosesEffectRegex = null;
+let kMobGainsEffectFromYouRegex = null;
+let kMobLosesEffectFromYouRegex = null;
 
 let kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
@@ -357,6 +359,8 @@ function setupRegexes(playerName) {
   kAnybodyAbilityRegex = NetRegexes.ability();
   kMobGainsEffectRegex = NetRegexes.gainsEffect({ targetId: '4.{7}' });
   kMobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
+  kMobGainsEffectFromYouRegex = NetRegexes.gainsEffect({ targetId: '4.{7}', source: playerName });
+  kMobLosesEffectFromYouRegex = NetRegexes.losesEffect({ targetId: '4.{7}', source: playerName });
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -1100,6 +1104,7 @@ class Bars {
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
+    this.mobGainEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
@@ -1154,9 +1159,12 @@ class Bars {
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
+    this.mobGainEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
+    this.lastAttackedDotTarget = null;
+    this.dotTarget = [];
 
     this.gainEffectFuncMap[EffectId.WellFed] = (name, matches) => {
       let seconds = parseFloat(matches.duration);
@@ -2508,34 +2516,23 @@ class Bars {
       fgColor: 'brd-color-stormbite',
     });
     [
-      kAbility.StormBite,
-      kAbility.Windbite,
-    ].forEach((ability) => {
-      this.abilityFuncMap[ability] = () => {
+      brdDoTs.Stormbite,
+      brdDoTs.Windbite,
+    ].forEach((effect) => {
+      this.mobGainEffectFromYouFuncMap[effect] = () => {
         stormbBiteBox.duration = 0;
-        stormbBiteBox.duration = 30 + 1;
+        stormbBiteBox.duration = 30 - 0.5;
       };
     });
     [
-      kAbility.CausticBite,
-      kAbility.VenomousBite,
-    ].forEach((ability) => {
-      this.abilityFuncMap[ability] = () => {
+      brdDoTs.CausticBite,
+      brdDoTs.VenomousBite,
+    ].forEach((effect) => {
+      this.mobGainEffectFromYouFuncMap[effect] = () => {
         causticBiteBox.duration = 0;
-        causticBiteBox.duration = 30 + 1;
+        causticBiteBox.duration = 30 - 0.5;
       };
     });
-    this.abilityFuncMap[kAbility.IronJaws] = () => {
-      // +1 to ensure that you can refresh your DoT at near 0s.
-      if (parseFloat(causticBiteBox.duration) + 1 - parseFloat(causticBiteBox.elapsed) > 0) {
-        causticBiteBox.duration = 0;
-        causticBiteBox.duration = 30;
-      }
-      if (parseFloat(stormbBiteBox.duration) + 1 - parseFloat(stormbBiteBox.elapsed) > 0) {
-        stormbBiteBox.duration = 0;
-        stormbBiteBox.duration = 30;
-      }
-    };
     this.statChangeFuncMap['BRD'] = () => {
       stormbBiteBox.valuescale = this.gcdSkill();
       stormbBiteBox.threshold = this.gcdSkill() * 2;
@@ -2556,8 +2553,8 @@ class Bars {
       id: 'brd-timers-repertoire',
       fgColor: 'brd-color-song',
     });
-    // Only DoT on target you last attack will trigger this.
-    // So it work not well in mutiple target fight.
+    // Only with-DoT-target you last attacked will trigger this timer.
+    // So it work not well in mutiple targets fight.
     this.UpdateDotTimer = () => {
       this.repertoireTimer.duration = 2.91666;
     };
@@ -3226,15 +3223,45 @@ class Bars {
         if (f)
           f(id, m.groups);
         this.buffTracker.onUseAbility(id, m.groups);
-        this.mainTarget = line[6];
       } else {
         let m = log.match(kAnybodyAbilityRegex);
         if (m)
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
+    }
+    // For extremely complex BRD
+    if (this.job != 'BRD') return;
+    if (!this.dotTarget)
+      this.dotTarget = []
+    if (type === '26') {
+      let m = log.match(kMobGainsEffectFromYouRegex);
+      if (m) {
+        if (Object.values(brdDoTs).includes(m.groups.effectId))
+          this.dotTarget.push(m.groups.targetId);
+        let f = this.mobGainEffectFromYouFuncMap[m.groups.effectId];
+        if (f)
+          f(name, m.groups);
+      }
+    } else if (type === '30') {
+      let m = log.match(kMobLosesEffectFromYouRegex);
+      if (m) {
+        if (Object.values(brdDoTs).includes(m.groups.effectId)) {
+          this.dotTarget.forEach((item, index, arr) => {
+            if (item === m.groups.targetId)
+              arr.splice(index, 1);
+          });
+        }
+      }
+    } else if (type === '21' || type === '22') {
+      let m = log.match(kYouUseAbilityRegex);
+      if (m) {
+        if (this.dotTarget.includes(m.groups.targetId))
+          this.lastAttackedDotTarget = m.groups.targetId;
+      }
     } else if (type === '24') {
-      if ((this.job == 'BRD') &&
-        (line[2] === this.mainTarget) &&
+      // line[2] is dotted target id.
+      if ((this.dotTarget.includes(line[2])) &&
+        (line[2] === this.lastAttackedDotTarget) &&
         (line[4] === 'DoT') &&
         (line[5] === '0')) // 0 if not fleld setting DoT
         this.UpdateDotTimer();
