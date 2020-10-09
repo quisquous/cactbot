@@ -175,7 +175,7 @@ const brdDoTs = {
   CausticBite: '4b0',
   Windbite: '81',
   VenomousBite: '7c',
-}
+};
 
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
 
@@ -3232,7 +3232,7 @@ class Bars {
     // For extremely complex BRD
     if (this.job != 'BRD') return;
     if (!this.dotTarget)
-      this.dotTarget = []
+      this.dotTarget = [];
     if (type === '26') {
       let m = log.match(kMobGainsEffectFromYouRegex);
       if (m) {
