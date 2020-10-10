@@ -24,7 +24,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23E1', source: 'アルテ・ロイテ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '23E1', source: '老者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '23E1', source: '알테 로이테' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'O1N Breath Wing',

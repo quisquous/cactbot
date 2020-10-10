@@ -22,6 +22,7 @@
       infoText: {
         en: 'Hide behind crystal',
         de: 'Hinter dem Kristall verstecken',
+        fr: 'Cachez-vous derrière le cristal',
         ja: '水晶の後ろに',
         cn: '躲在水晶后',
       },
@@ -33,6 +34,7 @@
       alertText: {
         en: 'Spread + Avoid Crystals',
         de: 'Verteilen + Kristall meiden',
+        fr: 'Écartez-vous & évitez les cristaux',
         ja: '散開 + 水晶に避け',
         cn: '散开并远离水晶',
       },
@@ -48,6 +50,7 @@
       infoText: {
         en: 'Hide behind crystal',
         de: 'Hinter dem Kristall verstecken',
+        fr: 'Cachez-vous derrière le cristal',
         ja: '水晶の後ろに',
         cn: '躲在水晶后',
       },
@@ -68,7 +71,7 @@
       id: 'The Burn Dead Hedetet',
       netRegex: NetRegexes.ability({ id: '368', source: 'Defective Drone', capture: false }),
       netRegexDe: NetRegexes.ability({ id: '368', source: 'Defekt(?:e|er|es|en) Drohne', capture: false }),
-      netRegexFr: NetRegexes.ability({ id: '368', source: 'drone défectueux', capture: false }),
+      netRegexFr: NetRegexes.ability({ id: '368', source: 'Drone Défectueux', capture: false }),
       netRegexJa: NetRegexes.ability({ id: '368', source: 'デフェクティブ・ドローン', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '368', source: '次品无人机', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '368', source: '고장난 무인기', capture: false }),
@@ -79,7 +82,7 @@
       id: 'The Burn Aetherochemical Flame',
       netRegex: NetRegexes.startsUsing({ id: '2D73', source: 'Defective Drone', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2D73', source: 'Defekt(?:e|er|es|en) Drohne', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2D73', source: 'drone défectueux', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2D73', source: 'Drone Défectueux', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2D73', source: 'デフェクティブ・ドローン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2D73', source: '次品无人机', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2D73', source: '고장난 무인기', capture: false }),
@@ -90,7 +93,7 @@
       id: 'The Burn Aetherochemical Coil',
       netRegex: NetRegexes.startsUsing({ id: '2D72', source: 'Defective Drone' }),
       netRegexDe: NetRegexes.startsUsing({ id: '2D72', source: 'Defekt(?:e|er|es|en) Drohne' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2D72', source: 'drone défectueux' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2D72', source: 'Drone Défectueux' }),
       netRegexJa: NetRegexes.startsUsing({ id: '2D72', source: 'デフェクティブ・ドローン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2D72', source: '次品无人机' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2D72', source: '고장난 무인기' }),
@@ -104,6 +107,7 @@
       infoText: {
         en: 'Puddle on YOU',
         de: 'Fläche auf DIR',
+        fr: 'Zone au sol sur VOUS',
         ja: '自分に粘液',
         cn: '圈圈点名',
       },
@@ -116,6 +120,7 @@
       infoText: {
         en: 'In line with smoking drone',
         de: 'In einer Linie mit der rauchenden Drohne stellen',
+        fr: 'En ligne avec le drone endommagé',
         ja: 'ドローンの直線に',
         cn: '站在冒烟小怪直线上',
       },
@@ -124,7 +129,7 @@
       id: 'The Burn Adit Driver',
       netRegex: NetRegexes.startsUsing({ id: '2D78', source: 'Rock Biter', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '2D78', source: 'Felsbeißer', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2D78', source: 'trancheur de pierre', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2D78', source: 'Trancheur De Pierre', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '2D78', source: 'ロックカッター', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2D78', source: '石刃', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2D78', source: '암석 절단날', capture: false }),
@@ -132,6 +137,7 @@
       infoText: {
         en: 'Avoid Rock Biters',
         de: 'Felsbeißer meiden',
+        fr: 'Évitez le trancheur de pierre',
         ja: 'ロックカッターに避け',
         cn: '躲开电锯',
       },
@@ -140,7 +146,7 @@
       id: 'The Burn Rime Wreath',
       netRegex: NetRegexes.startsUsing({ id: '314B', source: 'Mist Dragon', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '314B', source: 'Nebeldrache', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '314B', source: 'dragon des brumes', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '314B', source: 'Dragon Des Brumes', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '314B', source: 'ミストドラゴン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '314B', source: '雾龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '314B', source: '안개 드래곤', capture: false }),
@@ -156,6 +162,7 @@
           return {
             en: 'Puddle + cleave on YOU',
             de: 'Fläche + Cleave auf DIR',
+            fr: 'Zone au sol + Cleave sur VOUS',
             ja: '自分に沼 + フロストブレス',
             cn: '圈圈+吐息点名',
           };
@@ -163,6 +170,7 @@
         return {
           en: 'Avoid marker cone',
           de: 'Kegel-Markierung ausweichen',
+          fr: 'Évitez le marqueur de cône',
           ja: 'マークに避け',
           cn: '远离锥形点名',
         };
@@ -172,7 +180,7 @@
       id: 'The Burn Fog Plume',
       netRegex: NetRegexes.startsUsing({ id: '3144', source: 'Mist Dragon', capture: false }),
       netRegexDe: NetRegexes.startsUsing({ id: '3144', source: 'Nebeldrache', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '3144', source: 'dragon des brumes', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '3144', source: 'Dragon Des Brumes', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '3144', source: 'ミストドラゴン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3144', source: '雾龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3144', source: '안개 드래곤', capture: false }),
@@ -180,6 +188,7 @@
       infoText: {
         en: 'Bait Star Explosions',
         de: 'Stern Explosion ködern',
+        fr: 'Déposez les explosions d\'étoiles',
         ja: '放射霧を誘導',
         cn: '诱导放射雾',
       },
@@ -227,10 +236,10 @@
         'The Scorpion\'s Den': 'Nid du scorpion',
         'The Gamma Segregate': 'Ancien répartiteur gamma',
         'The Aspersory': 'Plateau des Brumes',
-        'Rock Biter': 'trancheur de pierre',
-        'Mist Dragon': 'dragon des brumes',
-        'Dim Crystal': 'cristal décoloré',
-        'Defective Drone': 'drone défectueux',
+        'Rock Biter': 'Trancheur de pierre',
+        'Mist Dragon': 'Dragon des brumes',
+        'Dim Crystal': 'Cristal décoloré',
+        'Defective Drone': 'Drone défectueux',
         'Hedetet': 'Hedetet',
       },
       'replaceText': {

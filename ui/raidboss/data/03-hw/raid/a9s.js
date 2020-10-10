@@ -203,7 +203,7 @@
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       // TODO: dubious to tell the person tanking to do it here.
       // But maybe fine to inform.
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'A9S Spread',

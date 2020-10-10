@@ -145,7 +145,7 @@
         return !data.isFinalOmega;
       },
       suppressSeconds: 1,
-      response: Responses.stack('info'),
+      response: Responses.stackMarker('info'),
     },
     {
       id: 'O12S Optimized Meteor',
@@ -505,7 +505,7 @@
       condition: function(data, matches) {
         return data.isFinalOmega && matches.target == data.me;
       },
-      response: Responses.stackOn('info'),
+      response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'O12S Archive All Spread Marker',

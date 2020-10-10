@@ -278,19 +278,33 @@ let Responses = {
     };
     return obj;
   },
-  stack: (sev) => {
+  stackMarker: (sev) => {
+    // for stack marker
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Stack',
       de: 'Sammeln',
       fr: 'Packez-vous',
-      ja: 'スタック',
-      cn: '集合',
-      ko: '집합',
+      ja: '頭割り',
+      cn: '分摊',
+      ko: '쉐어뎀',
     };
     return obj;
   },
-  stackOn: (sev) => {
+  getTogether: (sev) => {
+    // for getting together without stack marker
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Stack',
+      de: 'Sammeln',
+      fr: 'Packez-vous',
+      ja: '固まる',
+      cn: '集合',
+      ko: '모이기',
+    };
+    return obj;
+  },
+  stackMarkerOn: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
       let target = getTarget(matches);
@@ -848,7 +862,21 @@ let Responses = {
     };
     return obj;
   },
-  move: (sev) => {
+  moveAway: (sev) => {
+    // to dodge aoes
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Move!',
+      de: 'Bewegen!',
+      fr: 'Bougez !',
+      ja: '避けて！',
+      cn: '快躲开！',
+      ko: '이동하기!',
+    };
+    return obj;
+  },
+  moveAround: (sev) => {
+    // should jump or move
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Move!',

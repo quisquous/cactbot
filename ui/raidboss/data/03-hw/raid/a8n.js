@@ -207,7 +207,7 @@
       id: 'A8N Long Needle Party',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => !(data.me === data.bruteTank && data.bruteTankOut),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'A8N Long Needle Active Tank',

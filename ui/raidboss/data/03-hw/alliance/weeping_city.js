@@ -114,7 +114,7 @@
       condition: function(data) {
         return data.arachneStarted;
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Weeping City Frond Affeared',
@@ -322,7 +322,7 @@
         return data.ozmaStarted;
       },
       suppressSeconds: 5,
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       // Coif Change is always followed up shortly by Haircut.

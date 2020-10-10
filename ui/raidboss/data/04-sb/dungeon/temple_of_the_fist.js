@@ -204,7 +204,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1FEE', source: '双豹のイヴォン' }),
       netRegexCn: NetRegexes.startsUsing({ id: '1FEE', source: '双豹伊沃恩' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1FEE', source: '쌍표범 이본' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
   ],
   timelineReplace: [

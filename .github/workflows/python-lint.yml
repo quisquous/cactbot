@@ -24,9 +24,25 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.7'
+
+      # Cache pip dependencies
+      # See also: https://github.com/actions/cache/blob/main/examples.md#python---pip
+      - name: Get pip cache dir
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: pip cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: cactbot-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            cactbot-pip-
+
       - name: Install Dependencies
         run: |
-          pip install black==19.10b0
+          pip install -r requirements.txt
       - name: black **/*.py --line-length 100 --check --diff
         run: |
           black **/*.py --line-length 100 --check --diff
@@ -42,9 +58,25 @@ jobs:
       - name: Add Custom Problem Matcher
         run: |
           echo "::add-matcher::.github/matchers/${{ github.job }}.json"
+
+      # Cache pip dependencies
+      # See also: https://github.com/actions/cache/blob/main/examples.md#python---pip
+      - name: Get pip cache dir
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: pip cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: cactbot-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            cactbot-pip-
+
       - name: Install Dependencies
         run: |
-          pip install pylint==2.5.3 PyYAML requests
+          pip install -r requirements.txt
       - name: pylint **/*.py --errors-only
         run: |
           pylint **/*.py --errors-only

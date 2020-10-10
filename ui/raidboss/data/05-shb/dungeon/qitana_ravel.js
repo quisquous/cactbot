@@ -189,7 +189,7 @@
     {
       id: 'Qitana Confession of Faith Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn('alert'),
+      response: Responses.stackMarkerOn('alert'),
     },
     {
       id: 'Qitana Confession of Faith Spread',

@@ -75,7 +75,7 @@
     {
       id: 'RathEx Fireball',
       netRegex: NetRegexes.headMarker({ id: ['0084', '005D'] }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'RathEx Adds',

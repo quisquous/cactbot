@@ -7,7 +7,7 @@
     {
       id: 'Sohm Al Myath Stack',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Sohm Al Myath Spread',

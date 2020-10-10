@@ -245,7 +245,7 @@
       netRegexFr: NetRegexes.startsUsing({ id: '4807', source: 'Hobbes', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '4807', source: 'ホッブス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4807', source: '홉스', capture: false }),
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'Copied Hobbes Electric Floor',
@@ -723,7 +723,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '48F3', source: '９Ｓ：多脚戦車従属', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '48F3', source: '9S: 다각전차 종속', capture: false }),
       suppressSeconds: 2,
-      response: Responses.stack('info'),
+      response: Responses.stackMarker('info'),
     },
     {
       id: 'Copied 9S Bubble',

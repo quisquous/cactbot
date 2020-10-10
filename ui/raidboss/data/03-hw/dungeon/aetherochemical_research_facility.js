@@ -59,7 +59,7 @@
         // Tanks technically shouldn't assist with this mechanic
         return data.role != 'tank';
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Facility Dark Orb',
