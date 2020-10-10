@@ -285,8 +285,8 @@ let Responses = {
       en: 'Stack',
       de: 'Sammeln',
       fr: 'Packez-vous',
-      ja: 'スタック',
-      cn: '集合',
+      ja: '頭割り',
+      cn: '分摊',
       ko: '쉐어뎀',
     };
     return obj;
