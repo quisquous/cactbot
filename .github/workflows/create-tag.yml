@@ -1,0 +1,55 @@
+name: Create Tag
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - 'plugin/CactbotEventSource/Properties/AssemblyInfo.cs'
+      - 'plugin/CactbotOverlay/Properties/AssemblyInfo.cs'
+
+jobs:
+  create-tag:
+    runs-on: ubuntu-latest
+    if: ${{ github.repository == 'quisquous/cactbot' }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Parse Plugin Version
+        id: parse-version
+        run: |
+          # Parse new tag from AssemblyFileVersion
+          VERSION="$(cat plugin/CactbotEventSource/Properties/AssemblyInfo.cs | sed -ne 's/.*AssemblyFileVersion.*"\([0-9]*\.[0-9]*\.[0-9]*\)\.0".*/\1/p')"
+
+          # Check both AssemblyInfo files have the correct version
+          if cat plugin/CactbotEventSource/Properties/AssemblyInfo.cs | grep -q ${VERSION} && cat plugin/CactbotOverlay/Properties/AssemblyInfo.cs | grep -q ${VERSION}; then
+            echo "::set-env name=TAG_NAME::v$VERSION"
+            echo "Matching assembly file version values found."
+          else
+            echo "Different assembly file version values found. Skipping tag creation..."
+            exit 1
+          fi
+      - name: Check Existing Tags
+        run: |
+          if ! curl -fsL https://api.github.com/repos/quisquous/cactbot/git/refs/tags/${{ env.TAG_NAME }}; then
+            echo "No existing tags for the version number exist. Creating new tag..."
+          else
+            echo "Tagged version already exists. Skipping tag creation..."
+            exit 1
+          fi
+      - name: Create Tag
+        run: |
+          # Get current commit hash
+          commit=$(git rev-parse HEAD)
+
+          # POST a new ref to repo via Github API
+          curl -s -X POST https://api.github.com/repos/quisquous/cactbot/git/refs \
+          -H "Authorization: token $GITHUB_TOKEN" \
+          -d @- << EOF
+          {
+            "ref": "refs/tags/${{ env.TAG_NAME }}",
+            "sha": "$commit"
+          }
+          EOF

@@ -1,0 +1,74 @@
+name: Create Release Artifact
+
+on:
+  push:
+    tags:
+    - 'v*'
+
+jobs:
+  create-release:
+    runs-on: windows-latest
+    if: ${{ github.repository == 'quisquous/cactbot' }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.BOT_TOKEN }}
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.x'
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7'
+      # Gets the numerical output of the git tag and assigns it to an environment variable
+      - name: Get Tag Version
+        run: |
+          echo ::set-env name=CACTBOT_RELEASE::cactbot-${GITHUB_REF#refs/tags/v}
+        shell: bash
+      - name: Check dependencies cache
+        id: cache-dependencies
+        uses: actions/cache@v2
+        with:
+          path: ./plugin/ThirdParty
+          key: ${{ runner.os }}-cactbot-${{ hashFiles('./util/fetch_deps.py', './util/DEPS.py') }}
+          restore-keys: |
+            ${{ runner.os }}-cactbot-
+      - name: Fetch Dependencies
+        if: steps.cache-dependencies.outputs.cache-hit != 'true'
+        run: |
+          ./util/fetch_deps.py
+        shell: bash
+      - name: Build Cactbot Plugin
+        run: |
+          dotnet build plugin/Cactbot.sln /p:Configuration=Release /p:Platform=x64
+      - name: Setup Staging Directory
+        run: |
+          ./util/publish.sh
+        shell: bash
+      - name: Create Release Artifact
+        run: |
+          mkdir ${{ env.CACTBOT_RELEASE }}
+          mv publish/cactbot-release/cactbot/ ${{ env.CACTBOT_RELEASE }}
+          compress-archive ${{ env.CACTBOT_RELEASE }} ${{ env.CACTBOT_RELEASE }}.zip
+        shell: pwsh
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: ${{ env.CACTBOT_RELEASE }}
+          body: |
+            Changes in this release:
+            - plugin
+            - raidboss
+          draft: true
+          prerelease: false
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./${{ env.CACTBOT_RELEASE }}.zip
+          asset_name: ${{ env.CACTBOT_RELEASE }}.zip
+          asset_content_type: application/zip
