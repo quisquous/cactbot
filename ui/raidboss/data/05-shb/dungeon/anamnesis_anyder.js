@@ -111,7 +111,7 @@
     {
       id: 'AnAnyder Open Hearth Flying Fount',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'AnAnyder Bonebreaker',

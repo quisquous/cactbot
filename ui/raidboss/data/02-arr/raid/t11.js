@@ -67,7 +67,7 @@
       condition: function(data) {
         return !data.firstSeed;
       },
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
       run: function(data) {
         delete data.firstSeed;
       },

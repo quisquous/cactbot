@@ -274,6 +274,9 @@ let testValidIds = function(file, contents) {
   // as the prefix "O4" is not a full word (and have a space after it,
   // as "Prefix " does.  This is a bit rigid, but prevents many typos.
   if (ids.size > 1 && !brokenPrefixes && prefix && prefix.length > 0) {
+    // if prefix includes more than one word, just remove latter letters.
+    if (prefix.includes(' '))
+      prefix = prefix.substr(0, prefix.lastIndexOf(' ') + 1);
     if (prefix[prefix.length - 1] != ' ')
       errorFunc(`${file}: id prefix '${prefix}' is not a full word, must end in a space`);
   }

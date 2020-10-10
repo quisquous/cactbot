@@ -112,7 +112,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '508F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '813P : Avec Unité Rempart', id: '508F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '508F', capture: false }),
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'Puppet Aegis Life\'s Last Song',
@@ -384,7 +384,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '5086', capture: false }),
       delaySeconds: 5.3,
       suppressSeconds: 5,
-      response: Responses.move('info'),
+      response: Responses.moveAway('info'),
     },
     {
       id: 'Puppet Heavy Unconventional Voltage',
@@ -591,7 +591,7 @@
       id: 'Puppet Compound 2P Three Parts Disdain',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => data.phase === 'compound',
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Puppet Compound 2P Three Parts Disdain Knockback',

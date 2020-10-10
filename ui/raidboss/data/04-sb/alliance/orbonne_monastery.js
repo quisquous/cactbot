@@ -497,7 +497,7 @@
       id: 'Orbonne Cid Hallowed Bolt Stack',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'Orbonne Cid Divine Ruination',

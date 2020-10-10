@@ -123,7 +123,7 @@
       // Crashing Pulse and Smothering Waters
       id: 'E3N Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'E3N Surging Waters Marker',

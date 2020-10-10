@@ -126,7 +126,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23FC', source: 'エクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '23FC', source: '艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '23FC', source: '엑스데스', capture: false }),
-      response: Responses.move(),
+      response: Responses.moveAround(),
     },
     {
       // Thunder III after Decisive Battle.
@@ -976,7 +976,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '241E', source: 'ネオエクスデス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '241E', source: '新生艾克斯迪司', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '241E', source: '네오 엑스데스', capture: false }),
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'O4S Neo Almagest',

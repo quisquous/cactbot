@@ -100,7 +100,7 @@
     {
       id: 'Dohn Mheg Leap Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Dohn Mheg Timber',

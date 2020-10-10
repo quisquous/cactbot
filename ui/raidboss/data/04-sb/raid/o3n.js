@@ -114,7 +114,7 @@
         data.holyCounter = data.holyCounter || 0;
         return (data.holyCounter % 2 == 0);
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
       run: function(data) {
         data.holyCounter += 1;
         delete data.holyTargets;

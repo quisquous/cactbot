@@ -430,7 +430,7 @@
         return parseFloat(matches.duration) - 3;
       },
       suppressSeconds: 1,
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'E3S Scouring Waters',

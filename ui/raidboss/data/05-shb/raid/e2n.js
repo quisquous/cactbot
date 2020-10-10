@@ -108,7 +108,7 @@
     {
       id: 'E2N Unholy Darkness No Waiting',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2N Shadoweye No Waiting',
@@ -194,7 +194,7 @@
           return false;
         return data.spell[matches.target] == 'stack';
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2N Shadoweye Collect',
