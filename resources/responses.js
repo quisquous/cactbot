@@ -279,6 +279,7 @@ let Responses = {
     return obj;
   },
   stack: (sev) => {
+    // for stack marker
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Stack',
@@ -286,7 +287,20 @@ let Responses = {
       fr: 'Packez-vous',
       ja: 'スタック',
       cn: '集合',
-      ko: '집합',
+      ko: '쉐어뎀',
+    };
+    return obj;
+  },
+  getTogether: (sev) => {
+    // for getting together without stack marker
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Stack',
+      de: 'Sammeln',
+      fr: 'Packez-vous',
+      ja: 'スタック',
+      cn: '集合',
+      ko: '모이기',
     };
     return obj;
   },
