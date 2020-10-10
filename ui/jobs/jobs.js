@@ -1502,38 +1502,53 @@ class Bars {
     });
 
     this.comboFuncs.push((skill) => {
-      // TODO: handle flags where you don't hit something.
-      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-      if (skill == kAbility.MythrilTempest) {
-        if (eyeBox.duration > 0) {
-          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-          eyeBox.duration = 0;
-          eyeBox.duration = Math.min(old + 30, 59.5);
+      // TODO: remove this condition when CN or KO launch patch 5.3
+      if (this.options.ParserLanguage === 'cn' || this.options.ParserLanguage === 'ko') {
+        if (skill == kAbility.MythrilTempest) {
+          if (eyeBox.duration > 0) {
+            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            eyeBox.duration = 0;
+            eyeBox.duration = Math.min(old + 10, 30);
+          }
+          return;
         }
-        return;
-      }
-      if (skill == kAbility.StormsEye) {
-        if (eyeBox.duration > 0) {
-          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-          eyeBox.duration = 0;
-          eyeBox.duration = Math.min(old + 30, 59.5);
-        // Storm's Eye applies with some animation delay here, and on the next
-        // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add some of a gcd here in duration time from when it's applied.
-        } else {
+        if (skill == kAbility.StormsEye) {
           eyeBox.duration = 0;
           eyeBox.duration = 30 + 1;
         }
-      }
-      this.abilityFuncMap[kAbility.InnerRelease] = () => {
-        if (eyeBox.duration > 0) {
-          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-          eyeBox.duration = 0;
-          eyeBox.duration = Math.min(old + 15, 59.5);
+      } else {
+        // TODO: handle flags where you don't hit something.
+        // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
+        if (skill == kAbility.MythrilTempest) {
+          if (eyeBox.duration > 0) {
+            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            eyeBox.duration = 0;
+            eyeBox.duration = Math.min(old + 30, 59.5);
+          }
+          return;
         }
-        return;
-      };
-
+        if (skill == kAbility.StormsEye) {
+          if (eyeBox.duration > 0) {
+            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            eyeBox.duration = 0;
+            eyeBox.duration = Math.min(old + 30, 59.5);
+            // Storm's Eye applies with some animation delay here, and on the next
+            // Storm's Eye, it snapshots the damage when the gcd is started, so
+            // add some of a gcd here in duration time from when it's applied.
+          } else {
+            eyeBox.duration = 0;
+            eyeBox.duration = 30 + 1;
+          }
+        }
+        this.abilityFuncMap[kAbility.InnerRelease] = () => {
+          if (eyeBox.duration > 0) {
+            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            eyeBox.duration = 0;
+            eyeBox.duration = Math.min(old + 15, 59.5);
+          }
+          return;
+        };
+      }
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
       if (skill == kAbility.HeavySwing) {
