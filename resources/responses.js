@@ -285,8 +285,8 @@ let Responses = {
       en: 'Stack',
       de: 'Sammeln',
       fr: 'Packez-vous',
-      ja: 'スタック',
-      cn: '集合',
+      ja: '頭割り',
+      cn: '分摊',
       ko: '쉐어뎀',
     };
     return obj;
@@ -298,7 +298,7 @@ let Responses = {
       en: 'Stack',
       de: 'Sammeln',
       fr: 'Packez-vous',
-      ja: 'スタック',
+      ja: '固まる',
       cn: '集合',
       ko: '모이기',
     };
@@ -869,8 +869,8 @@ let Responses = {
       en: 'Move!',
       de: 'Bewegen!',
       fr: 'Bougez !',
-      ja: '動く！',
-      cn: '快动！',
+      ja: '避けて！',
+      cn: '快躲开！',
       ko: '이동하기!',
     };
     return obj;
