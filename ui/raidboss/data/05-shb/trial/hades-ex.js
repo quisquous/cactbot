@@ -53,7 +53,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
       delaySeconds: 5.5,
-      response: Responses.move('alert'),
+      response: Responses.moveAway('alert'),
     },
     {
       id: 'HadesEx Ravenous Assault',

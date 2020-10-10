@@ -384,7 +384,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '5086', capture: false }),
       delaySeconds: 5.3,
       suppressSeconds: 5,
-      response: Responses.move('info'),
+      response: Responses.moveAway('info'),
     },
     {
       id: 'Puppet Heavy Unconventional Voltage',

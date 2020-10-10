@@ -205,7 +205,7 @@
         return !data.furysBoltActive;
       },
       delaySeconds: 3,
-      response: Responses.move('alarm'),
+      response: Responses.moveAway('alarm'),
     },
     {
       id: 'E5S Stepped Leader Cast',

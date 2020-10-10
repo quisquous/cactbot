@@ -150,7 +150,7 @@
       netRegexCn: NetRegexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
       delaySeconds: 3,
-      response: Responses.move('alert'),
+      response: Responses.moveAway('alert'),
     },
     {
       id: 'TitaniaEx Bramble Knockback',

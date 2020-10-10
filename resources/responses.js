@@ -848,7 +848,7 @@ let Responses = {
     };
     return obj;
   },
-  move: (sev) => {
+  moveAway: (sev) => {
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Move!',
@@ -857,6 +857,18 @@ let Responses = {
       ja: '動く！',
       cn: '快动！',
       ko: '이동하기!',
+    };
+    return obj;
+  },
+  moveAround: (sev) => {
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Move!',
+      de: 'Bewegen!',
+      fr: 'Bougez !',
+      ja: '動く！',
+      cn: '快动！',
+      ko: '움직이기!',
     };
     return obj;
   },
