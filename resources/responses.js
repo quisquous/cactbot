@@ -876,7 +876,7 @@ let Responses = {
     return obj;
   },
   moveAround: (sev) => {
-    // to avoid bllizard
+    // should jump or move
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Move!',
