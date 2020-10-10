@@ -13,7 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1EDD', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1EDD', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1EDD', source: '알테 로이테', capture: false }),
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'O1S Breath Wing',

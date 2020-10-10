@@ -121,7 +121,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD8' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AD8' }),
       condition: Conditions.targetIsYou(),
-      response: Responses.stackOn('alert'),
+      response: Responses.stackMarkerOn('alert'),
     },
     {
       id: 'RubyEx High-Powered Homing Lasers',
@@ -132,7 +132,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AD8' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AD8' }),
       condition: Conditions.targetIsNotYou(),
-      response: Responses.stack('info'),
+      response: Responses.stackMarker('info'),
     },
     {
       id: 'RubyEx Raven\'s Image',

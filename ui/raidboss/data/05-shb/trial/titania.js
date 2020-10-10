@@ -168,7 +168,7 @@
     {
       id: 'Titania Pucks Breath Markers',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Titania Knockback',

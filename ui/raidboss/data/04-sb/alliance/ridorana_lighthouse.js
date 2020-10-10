@@ -225,7 +225,7 @@
       condition: function(data) {
         return !data.accelerateSpreadOnMe;
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Ridorana Construct Accelerate Cleanup',

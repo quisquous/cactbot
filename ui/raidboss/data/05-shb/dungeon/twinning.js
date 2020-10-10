@@ -83,7 +83,7 @@
     {
       id: 'Twinning Charge Eradicated',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Twinning Thunder Beam',

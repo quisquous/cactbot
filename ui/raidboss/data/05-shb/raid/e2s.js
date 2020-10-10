@@ -189,7 +189,7 @@
       condition: function(data) {
         return !data.waiting;
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2S Unholy Darkness Collect',
@@ -223,7 +223,7 @@
       condition: function(data, matches) {
         return !data.hellWind && data.spell[matches.target] == 'stack';
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'E2S Dark Fire No Waiting',

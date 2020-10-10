@@ -59,7 +59,7 @@
             },
           };
         }
-        return Responses.stack('alert');
+        return Responses.stackMarker('alert');
       },
     },
     {
@@ -332,7 +332,7 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'bouclier-canon', id: '4E4F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ガンシールド', id: '4E4F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '枪盾', id: '4E4F', capture: false }),
-      response: Responses.stack('info'),
+      response: Responses.stackMarker('info'),
     },
     {
       id: 'VarisEx Magitek Spark',
