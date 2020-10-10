@@ -849,6 +849,7 @@ let Responses = {
     return obj;
   },
   moveAway: (sev) => {
+    // to dodge aoes
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Move!',
@@ -861,6 +862,7 @@ let Responses = {
     return obj;
   },
   moveAround: (sev) => {
+    // to avoid bllizard
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Move!',
