@@ -329,7 +329,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D80', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D80', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D80', capture: false }),
-      response: Responses.stack('info'),
+      response: Responses.stackMarker('info'),
     },
     {
       id: 'E8S Banish III Divided',

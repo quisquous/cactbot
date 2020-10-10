@@ -278,7 +278,7 @@ let Responses = {
     };
     return obj;
   },
-  stack: (sev) => {
+  stackMarker: (sev) => {
     // for stack marker
     let obj = {};
     obj[defaultAlertText(sev)] = {
@@ -304,7 +304,7 @@ let Responses = {
     };
     return obj;
   },
-  stackOn: (sev) => {
+  stackMarkerOn: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
       let target = getTarget(matches);

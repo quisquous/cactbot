@@ -101,7 +101,7 @@
     {
       id: 'A12S Incinerating Heat',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'A12S Laser Sacrament',

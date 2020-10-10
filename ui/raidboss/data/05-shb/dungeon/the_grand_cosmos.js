@@ -20,7 +20,7 @@
     {
       id: 'Cosmos Dark Pulse',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn('info'),
+      response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'Cosmos Dark Well Far Winds',

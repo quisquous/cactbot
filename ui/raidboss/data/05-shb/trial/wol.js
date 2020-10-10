@@ -265,7 +265,7 @@
       response: function(data, matches) {
         if (data.deluge === data.me)
           return;
-        return Responses.stackOn();
+        return Responses.stackMarkerOn();
       },
     },
     {

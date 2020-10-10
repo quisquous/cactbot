@@ -69,7 +69,7 @@
     {
       id: 'Holminster Exorcise Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Holminster Scavenger',

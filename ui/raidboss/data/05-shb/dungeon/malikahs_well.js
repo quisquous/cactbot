@@ -20,7 +20,7 @@
     {
       id: 'Malikah Head Toss Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Malikah Right Round',

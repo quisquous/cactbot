@@ -37,7 +37,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '29EB', source: '賞金首：サボテンダー・コリード' }),
       netRegexCn: NetRegexes.startsUsing({ id: '29EB', source: '悬赏魔物：科里多仙人刺' }),
       netRegexKo: NetRegexes.startsUsing({ id: '29EB', source: '현상수배: 사보텐더 코리도' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Eureka Poly Swipe',

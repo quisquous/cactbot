@@ -18,7 +18,7 @@
     {
       id: 'Dun Scaith Generic Stack-up',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     // DEATHGAZE
     {
@@ -598,7 +598,7 @@
       // This is the tank version of the stack marker. It has minimal circular bordering
       id: 'Dun Scaith Blindside',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Dun Scaith Earth Shaker',
