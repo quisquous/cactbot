@@ -298,7 +298,7 @@ let Responses = {
       en: 'Stack',
       de: 'Sammeln',
       fr: 'Packez-vous',
-      ja: 'スタック',
+      ja: '固まる',
       cn: '集合',
       ko: '모이기',
     };
