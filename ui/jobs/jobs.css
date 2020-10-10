@@ -135,7 +135,7 @@
 
 #mnk-bar {
   position: relative;
-  width: 202px;
+  width: 201px;
   height: 7px;
   background: rgba(30, 30, 30, 0.7);
 }
@@ -385,8 +385,20 @@
   left: 153px;
 }
 
-#smn-stacks,
-#whm-stacks,
+#smn-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 204px;
+  height: 12px;
+}
+
+#whm-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 206px;
+  height: 12px;
+}
+
 #blm-stacks {
   display: flex;
   margin-top: 1px;
