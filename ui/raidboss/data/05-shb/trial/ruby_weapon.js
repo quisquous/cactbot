@@ -122,6 +122,7 @@
       netRegexCn: NetRegexes.startsUsing({ source: '红宝石神兵', id: '4AC5' }),
       netRegexKo: NetRegexes.startsUsing({ source: '루비 웨폰', id: '4AC5' }),
       condition: Conditions.targetIsNotYou(),
+      suppressSeconds: 1,
       response: Responses.stack('info'),
     },
     {
