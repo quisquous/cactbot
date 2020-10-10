@@ -869,8 +869,8 @@ let Responses = {
       en: 'Move!',
       de: 'Bewegen!',
       fr: 'Bougez !',
-      ja: '動く！',
-      cn: '快动！',
+      ja: '避けて！',
+      cn: '快躲开！',
       ko: '이동하기!',
     };
     return obj;
