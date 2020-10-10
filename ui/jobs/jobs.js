@@ -239,8 +239,10 @@ class ComboTracker {
   }
 
   HandleAbility(id) {
-    if (id in this.considerNext)
+    if (id in this.considerNext) {
       this.StateTransition(id, this.considerNext[id]);
+      return;
+    }
 
     if (this.comboBreakers.includes(id))
       this.AbortCombo(id);
@@ -260,7 +262,9 @@ class ComboTracker {
         this.AbortCombo(null);
       }, kComboDelayMs);
     }
-    if (id)
+
+    // If not aborting, then this is a valid combo skill.
+    if (nextState !== null)
       this.callback(id);
   }
 
