@@ -1098,7 +1098,7 @@ class DamageTracker {
 
     for (const set of this.triggerSets) {
       if ('zoneId' in set) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId)
+        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId == 'object' && set.zoneId.includes(this.zoneId)))
           continue;
       } else if ('zoneRegex' in set) {
         const zoneError = (s) => {

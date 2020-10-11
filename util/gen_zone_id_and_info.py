@@ -18,6 +18,7 @@ _CONTENT_TYPE_OUTPUT_FILE = "content_type.js"
 
 # name_key to territory_id mappings for locations with conflicts
 known_ids = {
+    "TheDiadem521": 901,
     "TheDiadem": 929,
 }
 

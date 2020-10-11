@@ -1,7 +1,7 @@
 'use strict';
 
 [{
-  zoneId: ZoneId.TheDiadem,
+  zoneId: [ZoneId.TheDiadem, ZoneId.TheDiadem521],
   resetWhenOutOfCombat: false,
   triggers: [
     {
