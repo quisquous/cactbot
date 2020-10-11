@@ -3246,10 +3246,9 @@ class Bars {
       let m = log.match(kMobLosesEffectFromYouRegex);
       if (m) {
         if (Object.values(brdDoTs).includes(m.groups.effectId)) {
-          this.dotTarget.forEach((item, index, arr) => {
-            if (item === m.groups.targetId)
-              arr.splice(index, 1);
-          });
+          const index = this.dotTarget.indexOf(m.groups.targetId);
+          if (index > -1)
+            this.dotTarget.splice(index, 1);
         }
       }
     } else if (type === '21' || type === '22') {
