@@ -116,3 +116,6 @@ for (let lang in LocaleNetRegex.areaSeal) {
 EmulatorCommon.wipeRegex = NetRegexes.network6d({ command: '40000010' });
 EmulatorCommon.winRegex = NetRegexes.network6d({ command: '40000003' });
 EmulatorCommon.cactbotWipeRegex = NetRegexes.echo({ line: 'cactbot wipe.*?' });
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = EmulatorCommon;

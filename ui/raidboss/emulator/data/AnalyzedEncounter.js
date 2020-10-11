@@ -109,3 +109,6 @@ class AnalyzedEncounter extends EventBus {
     }
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = AnalyzedEncounter;

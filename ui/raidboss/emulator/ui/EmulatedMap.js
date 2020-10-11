@@ -5,3 +5,6 @@ class EmulatedMap {
 
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = EmulatedMap;

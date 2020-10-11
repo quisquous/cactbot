@@ -60,3 +60,6 @@ class RaidEmulatorOverlayApiHook {
     return this.originalCall(msg);
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = RaidEmulatorOverlayApiHook;

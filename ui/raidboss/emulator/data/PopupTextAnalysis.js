@@ -223,3 +223,6 @@ class PopupTextAnalysis extends StubbedPopupText {
     // No-op
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = PopupTextAnalysis;

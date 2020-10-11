@@ -65,3 +65,10 @@ LineEvent0x1A.showStackCountFor = [
   '4d7', // Embolden
   '511', // Embolden
 ];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    LineEvent0x1A: LineEvent0x1A,
+    LineEvent26: LineEvent26,
+  };
+}

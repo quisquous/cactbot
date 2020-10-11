@@ -223,3 +223,6 @@ class CombatantTracker {
     return 'Unknown';
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = CombatantTracker;

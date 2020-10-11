@@ -87,3 +87,6 @@ class Encounter {
     this.startStatus = [...this.startStatus].sort().join(', ');
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = Encounter;

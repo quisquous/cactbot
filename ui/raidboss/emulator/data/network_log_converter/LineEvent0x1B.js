@@ -11,3 +11,10 @@ class LineEvent0x1B extends LineEvent {
 }
 
 class LineEvent27 extends LineEvent0x1B {}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    LineEvent0x1B: LineEvent0x1B,
+    LineEvent27: LineEvent27,
+  };
+}

@@ -63,3 +63,10 @@ LineEvent0x18.showEffectNamesFor = {
   '4C7': 'Fey Union',
   '742': 'Nascent Glint',
 };
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    LineEvent0x18: LineEvent0x18,
+    LineEvent24: LineEvent24,
+  };
+}
