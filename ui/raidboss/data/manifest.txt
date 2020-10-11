@@ -106,7 +106,6 @@
 04-sb/eureka/eureka_hydatos.txt
 04-sb/eureka/eureka_pagos.js
 04-sb/eureka/eureka_pyros.js
-05-shb/etc/the_diadem.js
 04-sb/raid/o10n.js
 04-sb/raid/o10n.txt
 04-sb/raid/o10s.js
@@ -204,6 +203,7 @@
 05-shb/dungeon/the_grand_cosmos.txt
 05-shb/dungeon/twinning.js
 05-shb/dungeon/twinning.txt
+05-shb/etc/the_diadem.js
 05-shb/raid/e1n.js
 05-shb/raid/e1n.txt
 05-shb/raid/e1s.js
