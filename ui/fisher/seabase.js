@@ -7,7 +7,7 @@ class SeaBase {
     this._storeName = 'catches';
     this.db = null;
     this.options = options;
-    this.parserLang = options.ParserLanguage;
+    this.parserLang = this.options.ParserLanguage;
   }
 
   findKey(obj, val) {
