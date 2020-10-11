@@ -1,11 +1,8 @@
 'use strict';
 
-let responseModule = require('../../resources/responses.js');
-let Responses = responseModule.Responses;
-let triggerFunctions = responseModule.triggerFunctions;
-let severityMap = responseModule.severityMap;
+const { Responses, severityMap, triggerFunctions } = require('../../resources/responses.js');
 
-let assert = require('chai').assert;
+const { assert } = require('chai');
 
 // test_trigger.js will validate the field names, so no need to do that here.
 

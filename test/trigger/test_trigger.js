@@ -6,15 +6,13 @@
 // TODO: Remove ` ?` before each hex value once global prefix `^.{14} ` is added.
 // JavaScript doesn't allow for possessive operators in regular expressions.
 
-let assert = require('chai').assert;
-let Regexes = require('../../resources/regexes.js');
-let NetRegexes = require('../../resources/netregexes.js');
-let Conditions = require('../../resources/conditions.js');
-let ZoneId = require('../../resources/zone_id.js');
-let responseModule = require('../../resources/responses.js');
-let Responses = responseModule.Responses;
-let triggerFunctions = responseModule.triggerFunctions;
-let fs = require('fs');
+const { assert } = require('chai');
+const Regexes = require('../../resources/regexes.js');
+const NetRegexes = require('../../resources/netregexes.js');
+const Conditions = require('../../resources/conditions.js');
+const ZoneId = require('../../resources/zone_id.js');
+const { Responses, triggerFunctions } = require('../../resources/responses.js');
+const fs = require('fs');
 
 let exitCode = 0;
 
