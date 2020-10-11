@@ -12,7 +12,7 @@ let NetRegexes = require('../../resources/netregexes.js');
 let Conditions = require('../../resources/conditions.js');
 let ZoneId = require('../../resources/zone_id.js');
 let responseModule = require('../../resources/responses.js');
-let Responses = responseModule.responses;
+let Responses = responseModule.Responses;
 let triggerFunctions = responseModule.triggerFunctions;
 let fs = require('fs');
 

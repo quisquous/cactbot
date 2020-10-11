@@ -1,7 +1,7 @@
 'use strict';
 
 let commonModule = require('../../resources/common.js');
-let Util = commonModule.util;
+let Util = commonModule.Util;
 
 let assert = require('chai').assert;
 
