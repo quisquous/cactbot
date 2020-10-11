@@ -40,7 +40,7 @@ let Options = {
   let timelineUI;
 
   document.addEventListener('DOMContentLoaded', () => {
-    emulator = new RaidEmulator();
+    emulator = new RaidEmulator(Options);
     progressBar = new ProgressBar(emulator);
     persistor = new Persistor();
     logEventHandler = new LogEventHandler();
