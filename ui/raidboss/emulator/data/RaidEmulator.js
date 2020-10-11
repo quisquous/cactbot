@@ -121,3 +121,6 @@ class RaidEmulator extends EventBus {
 }
 
 RaidEmulator.playbackSpeed = 10;
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = RaidEmulator;

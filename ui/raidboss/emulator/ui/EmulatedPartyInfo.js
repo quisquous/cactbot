@@ -307,3 +307,6 @@ EmulatedPartyInfo.jobOrder = [
   'BRD', 'MCH', 'DNC',
   'BLM', 'SMN', 'RDM',
   'BLU'];
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = EmulatedPartyInfo;

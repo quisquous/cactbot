@@ -141,3 +141,6 @@ class RaidEmulatorTimelineUI extends TimelineUI {
     }
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = RaidEmulatorTimelineUI;

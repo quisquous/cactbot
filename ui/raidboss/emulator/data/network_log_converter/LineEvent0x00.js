@@ -45,3 +45,10 @@ LineEvent00.chatSymbolReplacements = [
     Type: 'Negative Effect',
   },
 ];
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    LineEvent0x00: LineEvent0x00,
+    LineEvent00: LineEvent00,
+  };
+}

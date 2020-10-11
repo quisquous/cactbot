@@ -183,3 +183,6 @@ class EncounterTab extends EventBus {
     }
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = EncounterTab;

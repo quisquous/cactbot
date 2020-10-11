@@ -46,3 +46,6 @@ class RaidEmulatorTimelineController extends TimelineController {
     });
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = RaidEmulatorTimelineController;

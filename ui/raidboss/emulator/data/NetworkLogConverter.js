@@ -32,3 +32,6 @@ class NetworkLogConverter {
 }
 
 NetworkLogConverter.lineSplitRegex = /\r?\n/gm;
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = NetworkLogConverter;
