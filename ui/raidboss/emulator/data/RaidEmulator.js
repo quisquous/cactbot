@@ -1,8 +1,9 @@
 'use strict';
 
 class RaidEmulator extends EventBus {
-  constructor() {
+  constructor(options) {
     super();
+    this.options = options;
     this.encounters = [];
     this.currentEncounter = null;
     this.playing = false;
@@ -14,7 +15,7 @@ class RaidEmulator extends EventBus {
     this.encounters.push(encounter);
   }
   setCurrent(index) {
-    this.currentEncounter = new AnalyzedEncounter(this.encounters[index], this);
+    this.currentEncounter = new AnalyzedEncounter(this.options, this.encounters[index], this);
     this.currentEncounter.analyze(this.popupText).then(() => {
       this.dispatch('currentEncounterChanged', this.currentEncounter);
     });

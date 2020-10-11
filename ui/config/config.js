@@ -527,7 +527,7 @@ class CactbotConfigurator {
   }
 }
 
-UserConfig.getUserConfigLocation('config', async function(e) {
+UserConfig.getUserConfigLocation('config', Options, async function(e) {
   let readConfigFiles = callOverlayHandler({
     call: 'cactbotReadDataFiles',
     source: location.href,

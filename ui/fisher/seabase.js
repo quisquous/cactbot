@@ -1,12 +1,13 @@
 'use strict';
 
 class SeaBase {
-  constructor() {
+  constructor(options) {
     this._dbName = 'seabase';
     this._dbVersion = 1;
     this._storeName = 'catches';
     this.db = null;
-    this.parserLang = Options.ParserLanguage;
+    this.options = options;
+    this.parserLang = this.options.ParserLanguage;
   }
 
   findKey(obj, val) {
@@ -270,7 +271,7 @@ class SeaBase {
 
           if (cursor) {
             times.push(cursor.value.hookTime);
-            if (times.length < Options.IQRHookQuantity)
+            if (times.length < this.options.IQRHookQuantity)
               cursor.continue();
             else
               resolve(times);
@@ -314,7 +315,7 @@ class SeaBase {
 
         if (cursor) {
           reelTimes.push(cursor.value.reelTime);
-          if (reelTimes.length < Options.IQRTugQuantity)
+          if (reelTimes.length < this.options.IQRTugQuantity)
             cursor.continue();
           else
             resolve(reelTimes);

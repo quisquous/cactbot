@@ -25,7 +25,7 @@ let Options = {
 
 let gTimelineController;
 
-UserConfig.getUserConfigLocation('raidboss', function(e) {
+UserConfig.getUserConfigLocation('raidboss', Options, function(e) {
   // Query params override default and user options.
   // This allows for html files that say "timeline only" or "alerts only".
   const params = new URLSearchParams(window.location.search);

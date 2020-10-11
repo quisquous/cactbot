@@ -140,7 +140,7 @@ class Fisher {
     };
 
     this.ui = new FisherUI(element);
-    this.seaBase = new SeaBase();
+    this.seaBase = new SeaBase(Options);
   }
 
   getActiveBait() {
@@ -380,7 +380,7 @@ class Fisher {
   }
 }
 
-UserConfig.getUserConfigLocation('fisher', function() {
+UserConfig.getUserConfigLocation('fisher', Options, function() {
   gFisher = new Fisher(document.getElementById('fisher'));
 
   addOverlayListener('onLogEvent', function(e) {

@@ -630,7 +630,7 @@ class TimelineUI {
   constructor(options) {
     this.options = options;
     this.init = false;
-    this.lang = Options.TimelineLanguage || Options.ParserLanguage || 'en';
+    this.lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
     this.AddDebugInstructions();
   }
 
@@ -641,8 +641,8 @@ class TimelineUI {
 
     this.root = document.getElementById('timeline-container');
     this.root.classList.add('lang-' + this.lang);
-    if (Options.Skin)
-      this.root.classList.add('skin-' + Options.Skin);
+    if (this.options.Skin)
+      this.root.classList.add('skin-' + this.options.Skin);
 
     this.barColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color');
     this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');

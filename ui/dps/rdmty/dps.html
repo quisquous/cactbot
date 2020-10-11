@@ -45,7 +45,7 @@
       document.getElementById('container').style.display = 'none';
     }
 
-    UserConfig.getUserConfigLocation('rdmty', (e) => {
+    UserConfig.getUserConfigLocation('rdmty', Options, (e) => {
       InitDpsModule(onOverlayDataUpdate, hideOverlay);
     });
   </script>
