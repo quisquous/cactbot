@@ -21,3 +21,6 @@ class AutoplayHelper {
       AutoplayHelper.Prompt();
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = AutoplayHelper;
