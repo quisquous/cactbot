@@ -951,6 +951,13 @@ if (typeof require !== 'undefined') {
   var Regexes = require('../../resources/regexes.js');
   var NetRegexes = require('../../resources/netregexes.js');
 }
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Timeline;
 /* eslint-enable */
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    Timeline: Timeline,
+    TimelineUI: TimelineUI,
+    TimelineController: TimelineController,
+    TimelineLoader: TimelineLoader,
+  };
+}

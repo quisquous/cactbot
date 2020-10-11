@@ -195,3 +195,6 @@ class FisherUI {
     this.animationFrame = null;
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = FisherUI;

@@ -896,3 +896,10 @@ class PopupTextGenerator {
 }
 
 let gPopupText;
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    PopupText: PopupText,
+    PopupTextGenerator: PopupTextGenerator,
+  };
+}
