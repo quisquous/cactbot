@@ -23,6 +23,14 @@ known_ids = {
     "TheDiadem": 929,
 }
 
+# name_key to territory_id mappings for locations that no longer
+# exist.  This is for things that have been taken out of the
+# game.  This will throw errors if anything conflicts.
+# TODO: if needed we could emit zone_info too.
+synthetic_ids = {
+    "TheDiadem521": 921,
+}
+
 # Notes: use rawexd here instead of exd to get place ids / territory ids
 # instead of the lookups for PlaceName / TerritoryType that are not unique.
 # The connections here are:
@@ -168,6 +176,11 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
     for name, id in known_ids.items():
         if not name in map:
             raise Exception("Missing known item", name)
+
+    for name, id in synthetic_ids.items():
+        if name in map:
+            raise Exception("Conflicting synthetic item", name)
+        map[name] = id
 
     # map is what gets written to zone_id.js, but it's also useful to keep additional information
     # about where the name came from.
