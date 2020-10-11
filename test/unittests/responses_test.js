@@ -1,7 +1,7 @@
 'use strict';
 
 let responseModule = require('../../resources/responses.js');
-let Responses = responseModule.responses;
+let Responses = responseModule.Responses;
 let triggerFunctions = responseModule.triggerFunctions;
 let severityMap = responseModule.severityMap;
 

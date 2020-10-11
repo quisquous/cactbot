@@ -934,7 +934,7 @@ let Responses = {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
-    responses: Responses,
+    Responses: Responses,
     triggerFunctions: triggerFunctions,
     severityMap: severityMap,
   };
