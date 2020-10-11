@@ -140,7 +140,7 @@ class Fisher {
     };
 
     this.ui = new FisherUI(element);
-    this.seaBase = new SeaBase();
+    this.seaBase = new SeaBase(Options);
   }
 
   getActiveBait() {
