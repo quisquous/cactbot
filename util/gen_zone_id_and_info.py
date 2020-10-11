@@ -17,6 +17,8 @@ _ZONE_INFO_OUTPUT_FILE = "zone_info.js"
 _CONTENT_TYPE_OUTPUT_FILE = "content_type.js"
 
 # name_key to territory_id mappings for locations with conflicts
+# these will only be added if the name is correct and will throw
+# errors if not found.
 known_ids = {
     "TheDiadem": 929,
 }
@@ -162,6 +164,10 @@ def generate_name_data(territory_map, cfc_map, place_name_map):
             continue
 
         map[name_key] = int(territory_id)
+
+    for name, id in known_ids.items():
+        if not name in map:
+            raise Exception("Missing known item", name)
 
     # map is what gets written to zone_id.js, but it's also useful to keep additional information
     # about where the name came from.
