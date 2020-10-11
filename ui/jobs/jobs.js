@@ -3213,7 +3213,7 @@ class Bars {
 
 let gBars;
 
-UserConfig.getUserConfigLocation('jobs', function() {
+UserConfig.getUserConfigLocation('jobs', Options, function() {
   addOverlayListener('onPlayerChangedEvent', function(e) {
     gBars.OnPlayerChanged(e);
   });

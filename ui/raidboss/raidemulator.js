@@ -145,7 +145,7 @@ let Options = {
 
     // Wait for the DB to be ready before doing anything that might invoke the DB
     persistor.on('ready', () => {
-      UserConfig.getUserConfigLocation('raidboss', function(e) {
+      UserConfig.getUserConfigLocation('raidboss', Options, function(e) {
         // This is the only remaining dependency on ACT itself.
         // No way to get the text files/manifest other than through ACT.
         callOverlayHandler({
