@@ -1,17 +1,14 @@
 'use strict';
 
-let fs = require('fs');
-let assert = require('chai').assert;
-let Regexes = require('../../resources/regexes.js');
-let NetRegexes = require('../../resources/netregexes.js');
-let Conditions = require('../../resources/conditions.js');
-let ZoneId = require('../../resources/zone_id.js');
-let responseExports = require('../../resources/responses.js');
-let Responses = responseExports.Responses;
-let { Timeline } = require('../../ui/raidboss/timeline.js');
-let commonReplacementExports = require('../../ui/raidboss/common_replacement.js');
-let commonReplacement = commonReplacementExports.commonReplacement;
-let partialCommonReplacementKeys = commonReplacementExports.partialCommonReplacementKeys;
+const fs = require('fs');
+const { assert } = require('chai');
+const Regexes = require('../../resources/regexes.js');
+const NetRegexes = require('../../resources/netregexes.js');
+const Conditions = require('../../resources/conditions.js');
+const ZoneId = require('../../resources/zone_id.js');
+const { Responses } = require('../../resources/responses.js');
+const { Timeline } = require('../../ui/raidboss/timeline.js');
+const { commonReplacement, partialCommonReplacementKeys } = require('../../ui/raidboss/common_replacement.js');
 
 let exitCode = 0;
 

@@ -1,6 +1,6 @@
 'use strict';
 
-let assert = require('chai').assert;
+const { assert } = require('chai');
 
 // Quite bogus.
 let bogusLine = 'using act is cheating';

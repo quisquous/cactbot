@@ -1,9 +1,9 @@
 'use strict';
 
-let Regexes = require('../../resources/regexes.js');
-let NetRegexes = require('../../resources/netregexes.js');
-let regexCaptureTest = require('../util/regex_util.js').regexCaptureTest;
-let assert = require('chai').assert;
+const Regexes = require('../../resources/regexes.js');
+const NetRegexes = require('../../resources/netregexes.js');
+const { regexCaptureTest } = require('../util/regex_util.js');
+const { assert } = require('chai');
 
 let tests = {
   startsUsing: () => {
