@@ -169,7 +169,8 @@ const kAbility = {
   Dia: '4094',
   Assize: 'DF3',
 };
-
+// TODO: Some of them are missed in effect_id.js,
+// if effect_id.js is fixed, this can be removed.
 const brdDoTs = {
   Stormbite: '4b1',
   CausticBite: '4b0',
@@ -2585,9 +2586,13 @@ class Bars {
         songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.paeon');
         songBox.threshold = 13;
       }
-      // Avoid too many refresh.
-      if (jobDetail.songMilliseconds >= 29900)
-        songBox.duration = 30;
+
+      let oldSeconds = parseFloat(songBox.duration) - parseFloat(songBox.elapsed);
+      let seconds = jobDetail.songMilliseconds / 1000.0;
+      if (!songBox.duration || seconds > oldSeconds) {
+        songBox.duration = 0;
+        songBox.duration = seconds;
+      }
 
       // Soul Voice
       if (jobDetail.soulGauge != soulVoiceBox.innerText) {
