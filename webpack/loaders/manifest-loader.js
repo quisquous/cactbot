@@ -18,6 +18,8 @@ module.exports = async function(content, map, meta) {
 
   const dir = path.dirname(this.resourcePath);
 
+  let output = 'module.exports = {';
+
   const fileMap = {};
   for await (const file of walk(dir)) {
     this.addDependency(file);
@@ -25,12 +27,12 @@ module.exports = async function(content, map, meta) {
     name = name.replace(/\\/g, '/');
     name = name.replace(/^\//, '');
 
-    // TODO: also, maybe it'd be better to chain loaders here so we can minify this?
-    const fileContents = await fs.promises.readFile(file, { encoding: 'utf8' });
-    fileMap[name] = fileContents;
+    // Can't use JSON.stringify here because we want these values to be
+    // JavaScript and not strings.
+    output += `'${name}': require('./${name}'),`;
   }
 
-  const output = `module.exports = ${JSON.stringify(fileMap)};`;
+  output += '};';
 
   callback(null, output, map, meta);
 };

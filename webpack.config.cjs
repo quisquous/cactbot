@@ -29,12 +29,22 @@ module.exports = {
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /manifest.txt$/,
+        test: /data[\\\/]manifest\.txt$/,
         use: [
           {
             loader: './webpack/loaders/manifest-loader.js',
           },
         ],
+      },
+      {
+        test: /data[\\\/].*\.js$/,
+        // TODO: add uglifier here
+        use: ['raw-loader'],
+      },
+      {
+        test: /data[\\\/](?!manifest\.txt).*\.txt$/,
+        // TODO: we could also strip comments and blank lines from timelines
+        use: ['raw-loader'],
       },
     ],
   },
