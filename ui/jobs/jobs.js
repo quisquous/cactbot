@@ -2331,6 +2331,19 @@ class Bars {
     });
     blackProc.bigatzero = false;
 
+    let lucidBox = this.addProcBox({
+      id: 'rdm-procs-lucid',
+      fgColor: 'rdm-color-lucid',
+    });
+    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+      lucidBox.duration = 0;
+      lucidBox.duration = 60;
+    };
+    this.statChangeFuncMap['RDM'] = () => {
+      lucidBox.valuescale = this.gcdSpell();
+      lucidBox.threshold = this.gcdSpell() + 1;
+    };
+
     this.jobFuncs.push(function(jobDetail) {
       let white = jobDetail.whiteMana;
       let black = jobDetail.blackMana;
