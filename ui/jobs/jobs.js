@@ -2571,7 +2571,7 @@ class Bars {
         repertoireBox.innerText = jobDetail.songProcs;
         repertoireBox.parentNode.classList.add('minuet');
         songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.minuet');
-        songBox.threshold = 3;
+        songBox.threshold = 5;
         repertoireBox.parentNode.classList.remove('full');
         if (jobDetail.songProcs == 3)
           repertoireBox.parentNode.classList.add('full');
@@ -2579,7 +2579,7 @@ class Bars {
         repertoireBox.innerText = '';
         repertoireBox.parentNode.classList.add('ballad');
         songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.ballad');
-        songBox.threshold = 0;
+        songBox.threshold = 3;
       } else if (jobDetail.songName === 'Paeon') {
         repertoireBox.innerText = jobDetail.songProcs;
         repertoireBox.parentNode.classList.add('paeon');
