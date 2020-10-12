@@ -113,6 +113,20 @@ const kAbility = {
   BloodPrice: 'E2F',
   TheBlackestNight: '1CE1',
   Delirium: '1CDE',
+
+  // GNB
+  KeenEdge: '3F09',
+  BrutalShell: '3F0B',
+  SolidBarrel: '3F11',
+  GnashingFang: '3F12',
+  SavageClaw: '3F13',
+  WickedTalon: '3F16',
+  DemonSlice: '3F0D',
+  DemonSlaughter: '3F15',
+  LightningShot: '3F0F',
+  Bloodfest: '3F24',
+  NoMercy: '3F0A',
+
   Combust: 'E0F',
   Combust2: 'E18',
   Combust3: '40AA',
@@ -252,8 +266,8 @@ class ComboTracker {
     window.clearTimeout(this.comboTimer);
     this.comboTimer = null;
 
-    const isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
-    if (nextState === null || isFinalSkill) {
+    this.isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
+    if (nextState === null || this.isFinalSkill) {
       this.considerNext = this.startMap;
     } else {
       this.considerNext = Object.assign({}, this.startMap, nextState.next);
@@ -266,6 +280,8 @@ class ComboTracker {
     // If not aborting, then this is a valid combo skill.
     if (nextState !== null)
       this.callback(id);
+    else
+      this.callback(null);
   }
 
   AbortCombo(id) {
@@ -305,6 +321,16 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     kAbility.Overpower,
     kAbility.MythrilTempest,
+  ]);
+  // GNB
+  comboTracker.AddCombo([
+    kAbility.KeenEdge,
+    kAbility.BrutalShell,
+    kAbility.SolidBarrel,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.DemonSlice,
+    kAbility.DemonSlaughter,
   ]);
   comboTracker.AddCombo([
     kAbility.FastBlade,
@@ -358,6 +384,13 @@ function setupRegexes(playerName) {
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
   kComboBreakers = Object.freeze([
+    // GNB
+    kAbility.KeenEdge,
+    kAbility.BrutalShell,
+    kAbility.SolidBarrel,
+    kAbility.DemonSlice,
+    kAbility.DemonSlaughter,
+    kAbility.LightningShot,
     // rdm
     kAbility.Verstone,
     kAbility.Verfire,
@@ -2669,9 +2702,81 @@ class Bars {
     let cartridgeBox = this.addResourceBox({
       classList: ['gnb-color-cartridge'],
     });
+    let gnashingFangBox = this.addProcBox({
+      id: 'gnb-procs-gnashingfang',
+      fgColor: 'gnb-color-gnashingfang',
+    });
+
+    let noMercyBox = this.addProcBox({
+      id: 'gnb-procs-nomercy',
+      fgColor: 'gnb-color-nomercy',
+    });
+
+    let bloodfestBox = this.addProcBox({
+      id: 'gnb-procs-bloodfest',
+      fgColor: 'gnb-color-bloodfest',
+    });
+    this.abilityFuncMap[kAbility.Bloodfest] = () => {
+      bloodfestBox.duration = 0;
+      bloodfestBox.duration = 90;
+    };
+
+    let comboTimer = this.addTimerBar({
+      id: 'gnb-timers-combo',
+      fgColor: 'gnb-color-combo',
+    });
+
+    let cartridgeComboTimer = this.addTimerBar({
+      id: 'gnb-timers-cartridgecombo',
+      fgColor: 'gnb-color-gnashingfang',
+    });
+
+    this.statChangeFuncMap['GNB'] = () => {
+      gnashingFangBox.valuescale = this.gcdSkill();
+      gnashingFangBox.threshold = this.gcdSkill() * 3;
+      noMercyBox.valuescale = this.gcdSkill();
+      bloodfestBox.valuescale = this.gcdSkill();
+      bloodfestBox.threshold = this.gcdSkill() * 2 + 1;
+      this.abilityFuncMap[kAbility.NoMercy] = () => {
+        noMercyBox.duration = 0;
+        noMercyBox.duration = 20;
+        noMercyBox.threshold = 1000;
+        noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
+        setTimeout(() => {
+          noMercyBox.duration = 40;
+          noMercyBox.threshold = this.gcdSkill() + 1;
+          noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
+        }, 20000);
+      };
+      // Combos
+      this.abilityFuncMap[kAbility.GnashingFang] = () => {
+        gnashingFangBox.duration = 0;
+        gnashingFangBox.duration = this.CalcGCDFromStat(this.skillSpeed, 30000);
+        cartridgeComboTimer.duration = 0;
+        cartridgeComboTimer.duration = 15;
+      };
+    };
+    this.comboFuncs.push((skill) => {
+      comboTimer.duration = 0;
+      cartridgeComboTimer.duration = 0;
+      if (this.combo.isFinalSkill)
+        return;
+      if (skill)
+        comboTimer.duration = 15;
+    });
+    this.abilityFuncMap[kAbility.SavageClaw] = () => {
+      cartridgeComboTimer.duration = 0;
+      cartridgeComboTimer.duration = 15;
+    };
+    this.abilityFuncMap[kAbility.WickedTalon] = () => {
+      cartridgeComboTimer.duration = 0;
+    };
 
     this.jobFuncs.push((jobDetail) => {
       cartridgeBox.innerText = jobDetail.cartridges;
+      cartridgeBox.parentNode.classList.remove('full');
+      if (jobDetail.cartridges == 2)
+        cartridgeBox.parentNode.classList.add('full');
     });
   }
 
