@@ -108,7 +108,7 @@ as its source.
 
 #### VSCode extension for cactbot
 
-If you are using VSCode, there is an extension [cactbot-highlight](https://github.com/MaikoTan/cactbot-highlight) created by Maiko Tan,
+If you are using VSCode, there is an extension [cactbot-highlight](https://marketplace.visualstudio.com/items?itemName=MaikoTan.cactbot-highlight) created by Maiko Tan,
 providing timeline highlighting and some useful snippets.
 
 This extension is still in development, if you have any suggestions or bug reports,
