@@ -9,7 +9,7 @@ const kWellFedContentTypes = [
 
 // See user/jobs-example.js for documentation.
 let Options = {
-  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
+  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU', 'AST', 'WHM', 'SCH'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
   ShowMPTicker: ['BLM'],
