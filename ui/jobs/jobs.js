@@ -1715,7 +1715,7 @@ class Bars {
     this.statChangeFuncMap['BLU'] = () => {
       offguardBox.threshold = this.gcdSpell() * 2;
       tormentBox.threshold = this.gcdSpell() * 3;
-      lucidBox.threshold = this.gcdSpell() * 4;
+      lucidBox.threshold = this.gcdSpell() + 1;
     };
 
     this.abilityFuncMap[kAbility.OffGuard] = () => {
