@@ -272,7 +272,7 @@ const ZoneId = {
   'TheDancingPlague': 845,
   'TheDancingPlagueExtreme': 858,
   'TheDiadem': 929,
-  'TheDiadem521': 921,
+  'TheDiadem521': 901,
   'TheDiademEasy': 512,
   'TheDiademHard': 515,
   'TheDiademHuntingGrounds': 625,

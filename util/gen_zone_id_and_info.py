@@ -28,7 +28,7 @@ known_ids = {
 # game.  This will throw errors if anything conflicts.
 # TODO: if needed we could emit zone_info too.
 synthetic_ids = {
-    "TheDiadem521": 921,
+    "TheDiadem521": 901,
 }
 
 # Notes: use rawexd here instead of exd to get place ids / territory ids
