@@ -169,14 +169,6 @@ const kAbility = {
   Dia: '4094',
   Assize: 'DF3',
 };
-// TODO: Some of them are missed in effect_id.js,
-// if effect_id.js is fixed, this can be removed.
-const brdDoTs = {
-  Stormbite: '4b1',
-  CausticBite: '4b0',
-  Windbite: '81',
-  VenomousBite: '7c',
-};
 
 const kMeleeWithMpJobs = ['DRK', 'PLD'];
 
@@ -2517,8 +2509,8 @@ class Bars {
       fgColor: 'brd-color-stormbite',
     });
     [
-      brdDoTs.Stormbite,
-      brdDoTs.Windbite,
+      EffectId.Stormbite,
+      EffectId.Windbite,
     ].forEach((effect) => {
       this.mobGainEffectFromYouFuncMap[effect] = () => {
         stormbBiteBox.duration = 0;
@@ -2526,8 +2518,8 @@ class Bars {
       };
     });
     [
-      brdDoTs.CausticBite,
-      brdDoTs.VenomousBite,
+      EffectId.CausticBite,
+      EffectId.VenomousBite,
     ].forEach((effect) => {
       this.mobGainEffectFromYouFuncMap[effect] = () => {
         causticBiteBox.duration = 0;
@@ -3238,19 +3230,25 @@ class Bars {
     if (this.job != 'BRD') return;
     if (!this.dotTarget)
       this.dotTarget = [];
+    const brdDoTs = Object.freeze([
+      EffectId.Stormbite,
+      EffectId.Windbite,
+      EffectId.CausticBite,
+      EffectId.VenomousBite,
+    ]);
     if (type === '26') {
       let m = log.match(kMobGainsEffectFromYouRegex);
       if (m) {
-        if (Object.values(brdDoTs).includes(m.groups.effectId))
+        if (Object.values(brdDoTs).includes(m.groups.effectId.toUpperCase()))
           this.dotTarget.push(m.groups.targetId);
-        let f = this.mobGainEffectFromYouFuncMap[m.groups.effectId];
+        let f = this.mobGainEffectFromYouFuncMap[m.groups.effectId.toUpperCase()];
         if (f)
           f(name, m.groups);
       }
     } else if (type === '30') {
       let m = log.match(kMobLosesEffectFromYouRegex);
       if (m) {
-        if (Object.values(brdDoTs).includes(m.groups.effectId)) {
+        if (Object.values(brdDoTs).includes(m.groups.effectId.toUpperCase())) {
           const index = this.dotTarget.indexOf(m.groups.targetId);
           if (index > -1)
             this.dotTarget.splice(index, 1);
