@@ -1,5 +1,7 @@
 'use strict';
 
+import TimerBar from '../../resources/timerbar.js';
+
 class FisherBar extends TimerBar {
   stop() {
     cancelAnimationFrame(this._animationFrame);
@@ -16,7 +18,7 @@ if (window.customElements) {
   });
 }
 
-class FisherUI {
+export default class FisherUI {
   constructor(element) {
     this.element = element;
     this.baitEl = element.querySelector('#bait-name');
@@ -195,6 +197,3 @@ class FisherUI {
     this.animationFrame = null;
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = FisherUI;

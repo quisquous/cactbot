@@ -1,6 +1,15 @@
 'use strict';
 
-class AnalyzedEncounter extends EventBus {
+import EmulatorCommon from '../EmulatorCommon.js';
+import EventBus from '../EventBus.js';
+import { gPopupText, PopupTextGenerator } from '../../popup-text.js';
+import RaidEmulatorTimelineController from '../overrides/RaidEmulatorTimelineController.js';
+import RaidEmulatorTimelineUI from '../overrides/RaidEmulatorTimelineUI.js';
+import PopupTextAnalysis from '../data/PopupTextAnalysis.js';
+import { TimelineLoader } from '../../timeline.js';
+import { Util } from '../../../../resources/common.js';
+
+export default class AnalyzedEncounter extends EventBus {
   constructor(options, encounter, emulator) {
     super();
     this.options = options;
@@ -109,6 +118,3 @@ class AnalyzedEncounter extends EventBus {
     }
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = AnalyzedEncounter;

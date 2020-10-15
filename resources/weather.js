@@ -1,5 +1,8 @@
 'use strict';
 
+import gWeatherRates from './weather_rate.js';
+import ZoneInfo from './zone_info.js';
+
 function getWeather(timeMs, zoneId) {
   let chance = getWeatherChanceValue(timeMs);
 

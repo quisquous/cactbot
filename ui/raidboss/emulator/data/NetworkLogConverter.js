@@ -1,6 +1,9 @@
 'use strict';
 
-class NetworkLogConverter {
+import LogRepository from './network_log_converter/LogRepository.js';
+import ParseLine from './network_log_converter/ParseLine.js';
+
+export default class NetworkLogConverter {
   constructor(options) {
     this.EnableProperCaseBug = true;
 
@@ -32,6 +35,3 @@ class NetworkLogConverter {
 }
 
 NetworkLogConverter.lineSplitRegex = /\r?\n/gm;
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = NetworkLogConverter;

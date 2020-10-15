@@ -1,6 +1,6 @@
 'use strict';
 
-class TimerBar extends HTMLElement {
+export default class TimerBar extends HTMLElement {
   static get observedAttributes() {
     return ['duration', 'value', 'elapsed', 'hideafter', 'lefttext', 'centertext', 'righttext', 'width', 'height', 'bg', 'fg', 'style', 'toward', 'loop'];
   }
@@ -508,6 +508,3 @@ if (window.customElements) {
     prototype: Object.create(TimerBar.prototype),
   });
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = TimerBar;

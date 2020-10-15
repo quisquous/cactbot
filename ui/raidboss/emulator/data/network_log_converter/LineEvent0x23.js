@@ -1,7 +1,9 @@
 'use strict';
 
+import LineEvent from './LineEvent.js';
+
 // Tether event
-class LineEvent0x23 extends LineEvent {
+export class LineEvent0x23 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -13,11 +15,4 @@ class LineEvent0x23 extends LineEvent {
   }
 }
 
-class LineEvent35 extends LineEvent0x23 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x23: LineEvent0x23,
-    LineEvent35: LineEvent35,
-  };
-}
+export class LineEvent35 extends LineEvent0x23 {}

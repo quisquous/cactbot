@@ -1,6 +1,6 @@
 'use strict';
 
-class RaidEmulatorOverlayApiHook {
+export default class RaidEmulatorOverlayApiHook {
   constructor(emulator) {
     this.emulator = emulator;
     this.originalDispatch = window.dispatchOverlayEvent;
@@ -60,6 +60,3 @@ class RaidEmulatorOverlayApiHook {
     return this.originalCall(msg);
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = RaidEmulatorOverlayApiHook;

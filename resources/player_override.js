@@ -1,5 +1,7 @@
 'use strict';
 
+import { Util } from './common.js';
+
 // Will redirect calls from `onPlayerChangedEvent` to |func| overriding with
 // |playerName| and their job.  Job is important for raidboss.
 // It might be nice to do HP, because otherwise the math section of
@@ -10,7 +12,7 @@
 // jobs remotely due to gauge data being local and many bits of information
 // loaded from memory.
 
-const addPlayerChangedOverrideListener = function(playerName, func) {
+export const addPlayerChangedOverrideListener = function(playerName, func) {
   if (!func)
     return;
 
@@ -54,7 +56,7 @@ const addPlayerChangedOverrideListener = function(playerName, func) {
 // Only used for raidboss, but could ostensibly be reused for oopsy,
 // if there's ever player specific stuff.
 // TODO: it would be nice to show the "connected / not connected" bit in the UI.
-const addRemotePlayerSelectUI = function(lang) {
+export const addRemotePlayerSelectUI = function(lang) {
   const instructionTextByLang = {
     en: 'Select a Player\n(the list will update when in an instance)',
     de: 'Wähle einen Spieler\n(Diese Liste aktualisiert sich, sobald eine Instance betretten wird)',
@@ -219,10 +221,3 @@ const addRemotePlayerSelectUI = function(lang) {
   });
   buildList([]);
 };
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    addPlayerChangedOverrideListener: addPlayerChangedOverrideListener,
-    addRemotePlayerSelectUI: addRemotePlayerSelectUI,
-  };
-}

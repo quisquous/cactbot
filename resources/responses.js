@@ -15,7 +15,7 @@
 // If data.role is used, it should be only to differentiate between alert levels,
 // and not whether a message is sent at all.
 
-const triggerFunctions = [
+export const triggerFunctions = [
   'alarmText',
   'alertText',
   'condition',
@@ -35,7 +35,7 @@ const triggerFunctions = [
   'tts',
 ];
 
-const severityMap = {
+export const severityMap = {
   'info': 'infoText',
   'alert': 'alertText',
   'alarm': 'alarmText',
@@ -96,7 +96,7 @@ let isPlayerId = (id) => {
   return id[0] !== '4';
 };
 
-let Responses = {
+export let Responses = {
   tankBuster: (targetSev, otherSev) => {
     let noTargetText = {
       en: 'Tank Buster',
@@ -931,11 +931,3 @@ let Responses = {
     return obj;
   },
 };
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    Responses: Responses,
-    triggerFunctions: triggerFunctions,
-    severityMap: severityMap,
-  };
-}

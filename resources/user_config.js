@@ -1,5 +1,23 @@
 'use strict';
 
+/*
+ *  TODO:
+ * "import X as _X;" or "import _X; const X = _X;"
+ * are hacks to have Webpack preserve the variables during eval.
+ * Please convert to normal import statements ASAP!
+ */
+// Used by downstream eval
+import _Conditions from './conditions.js';
+const Conditions = _Conditions;
+import _NetRegexes from './netregexes.js';
+const NetRegexes = _NetRegexes;
+import _Regexes from './regexes.js';
+const Regexes = _Regexes;
+import { Responses as _Responses } from './responses.js';
+const Responses = _Responses;
+import _ZoneId from './zone_id.js';
+const ZoneId = _ZoneId;
+
 let UserConfig = {
   optionTemplates: {},
   userFileCallbacks: {},
@@ -92,11 +110,12 @@ let UserConfig = {
         if (jsFile in localFiles) {
           try {
             printUserFile('local user file: ' + basePath + '\\' + jsFile);
-
-            if (this.userFileCallbacks[overlayName])
+            if (this.userFileCallbacks[overlayName]) {
               this.userFileCallbacks[overlayName](jsFile, localFiles, options);
-            else
+            } else {
+              let Options = options;
               eval(localFiles[jsFile]);
+            }
           } catch (e) {
             // Be very visible for users.
             console.log('*** ERROR IN USER FILE ***');
@@ -241,6 +260,9 @@ let UserConfig = {
     textElem.innerHTML = unlockText[lang] || unlockText['en'];
   },
 };
+
+// TODO: Convert into static class
+export default UserConfig;
 
 // This event comes early and is not cached, so set up event listener immediately.
 document.addEventListener('onOverlayStateUpdate', (e) => {

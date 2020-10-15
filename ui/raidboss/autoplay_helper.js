@@ -1,6 +1,6 @@
 'use strict';
 
-class AutoplayHelper {
+export default class AutoplayHelper {
   static Check() {
     let context = new AudioContext();
     return context.state === 'suspended';
@@ -21,6 +21,3 @@ class AutoplayHelper {
       AutoplayHelper.Prompt();
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = AutoplayHelper;

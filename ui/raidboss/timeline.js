@@ -1,5 +1,9 @@
 'use strict';
 
+import { commonReplacement } from './common_replacement.js';
+import Regexes from '../../resources/regexes.js';
+import { LocaleRegex } from '../../resources/translations.js';
+
 const timelineInstructions = {
   en: [
     'These lines are',
@@ -64,7 +68,7 @@ function computeBackgroundColorFrom(element, classList) {
 
 // This class reads the format of ACT Timeline plugin, described in
 // docs/TimelineGuide.md
-class Timeline {
+export class Timeline {
   constructor(text, replacements, triggers, styles, options) {
     this.options = options;
     this.replacements = replacements;
@@ -662,7 +666,7 @@ class Timeline {
   }
 }
 
-class TimelineUI {
+export class TimelineUI {
   constructor(options) {
     this.options = options;
     this.init = false;
@@ -871,7 +875,7 @@ class TimelineUI {
   }
 }
 
-class TimelineController {
+export class TimelineController {
   constructor(options, ui) {
     this.options = options;
     this.ui = ui;
@@ -955,7 +959,7 @@ class TimelineController {
   }
 }
 
-class TimelineLoader {
+export class TimelineLoader {
   constructor(timelineController) {
     this.timelineController = timelineController;
   }
@@ -977,23 +981,4 @@ class TimelineLoader {
   StopCombat() {
     this.timelineController.SetInCombat(false);
   }
-}
-
-// Node compatibility shenanigans.  There's probably a better way to do this.
-// TODO: Probably everything should be converted over to import.
-/* eslint-disable no-var */
-if (typeof require !== 'undefined') {
-  let path = require('path');
-  var Regexes = require('../../resources/regexes.js');
-  var NetRegexes = require('../../resources/netregexes.js');
-}
-/* eslint-enable */
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    Timeline: Timeline,
-    TimelineUI: TimelineUI,
-    TimelineController: TimelineController,
-    TimelineLoader: TimelineLoader,
-  };
 }

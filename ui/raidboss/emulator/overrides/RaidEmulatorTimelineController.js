@@ -1,6 +1,9 @@
 'use strict';
 
-class RaidEmulatorTimelineController extends TimelineController {
+import { TimelineController } from '../../timeline.js';
+import RaidEmulatorTimeline from './RaidEmulatorTimeline.js';
+
+export default class RaidEmulatorTimelineController extends TimelineController {
   bindTo(emulator) {
     this.emulator = emulator;
     if (this.activeTimeline)
@@ -46,6 +49,3 @@ class RaidEmulatorTimelineController extends TimelineController {
     });
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = RaidEmulatorTimelineController;

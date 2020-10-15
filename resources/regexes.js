@@ -1,11 +1,6 @@
 'use strict';
 
-// Node loading shenanigans.  'var' lets other files require() this file inside of
-// Node and put Regexes as a global without conflicting when redefining.
-/* eslint-disable no-var */
-var Regexes = {
-/* eslint-enable */
-
+const Regexes = {
   // fields: source, id, ability, target, capture
   // matches: https://github.com/quisquous/cactbot/blob/main/docs/LogGuide.md#14-networkstartscasting
   startsUsing: (f) => {
@@ -645,5 +640,5 @@ var Regexes = {
   },
 };
 
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Regexes;
+// TODO: Convert into static class
+export default Regexes;

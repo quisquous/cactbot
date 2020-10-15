@@ -1,7 +1,11 @@
 'use strict';
 
+import LineEvent from './LineEvent.js';
+import EmulatorCommon from '../../EmulatorCommon.js';
+import { Util } from '../../../../../resources/common.js';
+
 // Added combatant event
-class LineEvent0x03 extends LineEvent {
+export class LineEvent0x03 extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -59,11 +63,4 @@ class LineEvent0x03 extends LineEvent {
   }
 }
 
-class LineEvent03 extends LineEvent0x03 {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x03: LineEvent0x03,
-    LineEvent03: LineEvent03,
-  };
-}
+export class LineEvent03 extends LineEvent0x03 {}

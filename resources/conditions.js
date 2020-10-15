@@ -21,5 +21,5 @@ let Conditions = {
   },
 };
 
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Conditions;
+// TODO: Convert into static class
+export default Conditions;

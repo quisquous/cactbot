@@ -1,5 +1,27 @@
 'use strict';
 
+/*
+ *  TODO:
+ * "import X as _X;" or "import _X; const X = _X;"
+ * are hacks to have Webpack preserve the variables during eval.
+ * Please convert to normal import statements ASAP!
+ */
+import PartyTracker from '../../resources/party.js';
+import _Regexes from '../../resources/regexes.js';
+const Regexes = _Regexes;
+import UserConfig from '../../resources/user_config.js';
+import { Util } from '../../resources/common.js';
+
+// Used by downstream eval
+import _Conditions from '../../resources/conditions.js';
+const Conditions = _Conditions;
+import _NetRegexes from '../../resources/netregexes.js';
+const NetRegexes = _NetRegexes;
+import { Responses as _Responses } from '../../resources/responses.js';
+const Responses = _Responses;
+import _ZoneId from '../../resources/zone_id.js';
+const ZoneId = _ZoneId;
+
 // No sound only option, because that's silly.
 let kTriggerOptions = {
   default: {
@@ -595,6 +617,7 @@ class RaidbossConfigurator {
 
 // Raidboss needs to do some extra processing of user files.
 const userFileHandler = (name, files, options) => {
+  let Options = options;
   eval(files[name]);
 
   if (!options.Triggers)

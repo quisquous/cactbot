@@ -1,6 +1,8 @@
 'use strict';
 
-class RaidEmulatorPopupText extends StubbedPopupText {
+import StubbedPopupText from '../overrides/StubbedPopupText.js';
+
+export default class RaidEmulatorPopupText extends StubbedPopupText {
   constructor(options) {
     super(options);
     this.$popupTextContainerWrapper = document.querySelector('.popup-text-container-outer');
@@ -158,6 +160,3 @@ class RaidEmulatorPopupText extends StubbedPopupText {
     });
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = RaidEmulatorPopupText;

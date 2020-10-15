@@ -1,11 +1,11 @@
 'use strict';
 
-const fs = require('fs');
-const Anonymizer = require('./anonymizer.js');
-const Splitter = require('./splitter.js');
-const { EncounterCollector } = require('./encounter_tools.js');
-const ZoneId = require('../../resources/zone_id.js');
-const argparse = require('argparse');
+import fs from 'fs';
+import Anonymizer from './anonymizer.js';
+import Splitter from './splitter.js';
+import { EncounterCollector } from './encounter_tools.js';
+import ZoneId from '../../resources/zone_id.js';
+import argparse from 'argparse';
 
 // TODO: add options for not splitting / not anonymizing.
 let parser = new argparse.ArgumentParser({

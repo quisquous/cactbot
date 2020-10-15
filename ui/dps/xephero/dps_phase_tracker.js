@@ -1,9 +1,11 @@
 'use strict';
 
+import { LocaleRegex } from '../../../resources/translations.js';
+
 let kTestPhaseStart = 'cactbot phase start';
 let kTestPhaseEnd = 'cactbot phase end';
 
-class DpsPhaseTracker {
+export default class DpsPhaseTracker {
   constructor(options) {
     // Ordered list of phases.  Each phase is:
     // {
@@ -253,6 +255,3 @@ class DpsPhaseTracker {
     };
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = DpsPhaseTracker;

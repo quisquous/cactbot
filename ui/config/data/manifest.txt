@@ -1,6 +1,0 @@
-general_config.js
-../../eureka/eureka_config.js
-../../jobs/jobs_config.js
-../../oopsyraidsy/oopsyraidsy_config.js
-../../radar/radar_config.js
-../../raidboss/raidboss_config.js

@@ -1,6 +1,6 @@
 'use strict';
 
-class TimerIcon extends HTMLElement {
+export default class TimerIcon extends HTMLElement {
   static get observedAttributes() {
     return ['icon', 'name', 'zoom', 'duration', 'onhide', 'width', 'height', 'bordercolor', 'bordersize', 'text', 'textcolor'];
   }
@@ -361,6 +361,3 @@ if (window.customElements) {
     prototype: Object.create(TimerIcon.prototype),
   });
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = TimerIcon;

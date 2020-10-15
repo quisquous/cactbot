@@ -576,5 +576,4 @@ const logDefinitions = {
   },
 };
 
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = logDefinitions;
+export default logDefinitions;

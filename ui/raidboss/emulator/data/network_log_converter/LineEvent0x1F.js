@@ -1,7 +1,10 @@
 'use strict';
 
+import LineEvent from './LineEvent.js';
+import EmulatorCommon from '../../EmulatorCommon.js';
+
 // Job gauge event
-class LineEvent0x1F extends LineEvent {
+export class LineEvent0x1F extends LineEvent {
   constructor(repo, line, parts) {
     super(repo, line, parts);
 
@@ -50,11 +53,4 @@ class LineEvent0x1F extends LineEvent {
   }
 }
 
-class LineEvent31 extends LineEvent0x1F {}
-
-if (typeof module !== 'undefined' && module.exports) {
-  module.exports = {
-    LineEvent0x1F: LineEvent0x1F,
-    LineEvent31: LineEvent31,
-  };
-}
+export class LineEvent31 extends LineEvent0x1F {}

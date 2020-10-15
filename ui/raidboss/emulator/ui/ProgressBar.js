@@ -1,6 +1,9 @@
 'use strict';
 
-class ProgressBar {
+import Tooltip from './Tooltip.js';
+import EmulatorCommon from '../EmulatorCommon.js';
+
+export default class ProgressBar {
   constructor(emulator) {
     this.$progressBarTooltip = new Tooltip('.encounterProgressBar', 'bottom', '', false);
     this.$progressBarCurrent = document.querySelector('.current-timestamp');
@@ -67,6 +70,3 @@ class ProgressBar {
     });
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = ProgressBar;

@@ -1,11 +1,14 @@
 {
   "name": "cactbot",
   "license": "Apache-2.0",
+  "type": "module",
   "repository": {
     "type": "git",
     "url": "https://github.com/quisquous/cactbot"
   },
   "scripts": {
+    "build": "node_modules/.bin/webpack --config webpack.config.cjs --mode production",
+    "start": "node_modules/.bin/webpack-dev-server --config webpack.config.cjs --mode development",
     "lint": "node_modules/.bin/eslint resources ui user test util",
     "lintfix": "node_modules/.bin/eslint --fix resources ui user test util",
     "stylelint": "node_modules/.bin/stylelint resources/**/*.css ui/**/*.css user/**/*.css test/**/*.css",
@@ -15,13 +18,18 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "css-loader": "^4.3.0",
     "eslint": "^6.8.0",
     "eslint-config-google": "^0.9.1",
     "husky": "^4.2.5",
     "lint-staged": "^10.0.8",
     "markdownlint-cli": "^0.20.0",
+    "style-loader": "^2.0.0",
     "stylelint": "^12.0.1",
-    "stylelint-config-standard": "^19.0.0"
+    "stylelint-config-standard": "^19.0.0",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   },
   "eslintConfig": {
     "env": {
@@ -142,7 +150,7 @@
         }
       ],
       "strict": [
-        "error",
+        "off",
         "global"
       ],
       "unicode-bom": [
@@ -151,7 +159,8 @@
       ]
     },
     "parserOptions": {
-      "ecmaVersion": 2018
+      "ecmaVersion": 2018,
+      "sourceType": "module"
     }
   },
   "stylelint": {

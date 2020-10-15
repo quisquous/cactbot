@@ -1,6 +1,10 @@
 'use strict';
 
-class LogEventHandler extends EventBus {
+import EmulatorCommon from '../EmulatorCommon.js';
+import EventBus from '../EventBus.js';
+import { LocaleNetRegex } from '../../../../resources/translations.js';
+
+export default class LogEventHandler extends EventBus {
   static doesLineMatch(line, regexes) {
     for (let i in regexes) {
       let res = regexes[i].exec(line);
@@ -107,6 +111,3 @@ Line Count: ${this.currentFight.length}
     this.currentFight = [];
   }
 }
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = LogEventHandler;

@@ -1,6 +1,6 @@
 'use strict';
 
-class CombatantJobSearch {
+export default class CombatantJobSearch {
   static getJob(abilityID) {
     if (!CombatantJobSearch.abilityMatchRegex.test(abilityID))
       return null;
@@ -138,6 +138,3 @@ CombatantJobSearch.abilities = {
 };
 
 CombatantJobSearch.abilityMatchRegex = /[a-fA-F0-9]{1,4}/i;
-
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = CombatantJobSearch;
