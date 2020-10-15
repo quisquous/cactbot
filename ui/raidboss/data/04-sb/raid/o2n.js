@@ -39,7 +39,6 @@
             de: 'Sammeln Marker auf DIR',
             ja: '自分に集合',
             cn: '集合点名',
-            ko: '쉐어징 대상자',
           };
         }
         return {
@@ -47,7 +46,6 @@
           de: 'Sammeln auf ' + data.shortName(matches.target),
           ja: data.ShortName(matches.target) + 'に集合',
           cn: '靠近' + data.shortName(matches.target) + '集合',
-          ko: '' + data.shortName(matches.target) + ' 쉐어징',
         };
       },
     },
@@ -62,7 +60,6 @@
         de: 'Schweben',
         ja: '浮上',
         cn: '浮空',
-        ko: '공중부양',
       },
     },
     {
@@ -91,14 +88,12 @@
         de: '-100G: Nach Norden/Süden',
         ja: '-100 G: 北/南へ',
         cn: '去北边/南边',
-        ko: '중력 마이너스 100: 남/북쪽으로',
       },
       tts: {
         en: '100 gs',
         de: '-100 G',
         ja: 'マイナス100 G',
         cn: '重力负100',
-        ko: '중력 마이너스 100',
       },
     },
     {
@@ -126,7 +121,6 @@
             de: 'Schweben',
             ja: '浮上',
             cn: '浮空',
-            ko: '공중부양',
           };
         }
       },
@@ -137,7 +131,6 @@
             de: 'Erdbeben',
             ja: '地震',
             cn: '地震',
-            ko: '대지진',
           };
         }
       },
@@ -148,7 +141,6 @@
             de: 'schweben',
             ja: '浮上',
             cn: '浮空',
-            ko: '공중부양',
           };
         }
       },
@@ -177,7 +169,6 @@
             de: 'Schweben',
             ja: '浮上',
             cn: '浮空',
-            ko: '공중부양',
           };
         }
       },
@@ -188,7 +179,6 @@
             de: 'Versinkend',
             ja: '沈下',
             cn: '下陷',
-            ko: '하강',
           };
         }
       },
@@ -197,7 +187,6 @@
         de: 'schweben',
         ja: '浮上',
         cn: '浮空',
-        ko: '공중부양',
       },
     },
     {
@@ -227,7 +216,6 @@
             de: 'Levitation',
             ja: '浮上',
             cn: '浮空',
-            ko: '공중부양',
           };
         }
         // It's always safe not to levitate after the first Antilight.
@@ -238,7 +226,6 @@
             de: 'Geh in die Mitte und nicht schweben',
             ja: '中央に浮かばず集合',
             cn: '中间集合不要浮空',
-            ko: '공중부양 하지않고 가운데로'
           };
         }
         return {
@@ -246,7 +233,6 @@
           de: 'Nicht schweben',
           ja: '浮上はしない',
           cn: '不要浮空',
-          ko: '공중부양 하지않기',
         };
       },
       infoText: function(data) {

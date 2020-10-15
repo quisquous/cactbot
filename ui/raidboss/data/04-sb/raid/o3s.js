@@ -64,7 +64,6 @@
           de: 'Stack auf DIR',
           ja: '自分に頭割り',
           cn: '分摊点名',
-          ko: '쉐어징 대상자',
         };
       },
       alertText: function(data) {
@@ -78,7 +77,6 @@
               de: 'Raus da',
               ja: '出て',
               cn: '出去',
-              ko: '밖으로',
             };
           }
         }
@@ -87,7 +85,6 @@
           de: 'Stack auf ' + data.holyTargets[1],
           ja: data.holyTargets[1] + 'に頭割り',
           cn: '分摊' + data.holyTargets[1],
-          ko: '' + data.holyTargets[1] + ' 쉐어징',
         };
       },
       infoText: function(data) {
@@ -98,7 +95,6 @@
               de: 'andere stacken auf ' + data.holyTargets[1],
               ja: '他は' + data.holyTargets[1] + 'に頭割り',
               cn: '其他分摊' + data.holyTargets[1],
-              ko: '' + data.holyTargets[1] + ' 다른 쉐어징',
             };
           }
         }
@@ -110,7 +106,6 @@
             de: 'stack auf dir',
             ja: '自分に頭割り',
             cn: '分摊点名',
-            ko: '쉐어징 대상자',
           };
         }
         for (let i = 0; i < 4; ++i) {
@@ -120,7 +115,6 @@
               de: 'raus da',
               ja: '出ていて',
               cn: '出去',
-              ko: '밖으로',
             };
           }
         }
@@ -129,7 +123,6 @@
           de: 'stack auf ' + data.holyTargets[1],
           ja: data.holyTargets[1] + 'に頭割り',
           cn: '分摊' + data.holyTargets[1],
-          ko: '' + data.holyTargets[1] + ' 쉐어징',
         };
       },
       run: function(data) {
@@ -168,7 +161,6 @@
             de: 'Nach Süden: stack auf DIR',
             ja: '南へ: 自分に頭割り',
             cn: '去南边分摊点名',
-            ko: '남쪽으로: 쉐어징 대상자',
           };
         }
         if (data.librarySpellbladeMe == '0065') {
@@ -177,7 +169,6 @@
             de: 'nach norden',
             ja: '南へ',
             cn: '去南边',
-            ko: '북쪽으로',
           };
         }
         return {
@@ -185,7 +176,6 @@
           de: 'nach süden: stack auf freund',
           ja: '南へ: 頭割り',
           cn: '去南边分摊',
-          ko: '남쪽으로: 쉐어징'
         };
       },
       tts: function(data) {
@@ -199,7 +189,6 @@
             de: 'außen stacken',
             ja: '外へ: 頭割り',
             cn: '去外面分摊',
-            ko: '밖으로: 쉐어징',
           };
         }
         if (data.librarySpellbladeMe == '0065') {
@@ -208,7 +197,6 @@
             de: 'nach norden',
             ja: '南へ',
             cn: '去南边',
-            ko: '북쪽으로',
           };
         }
         return {
@@ -216,7 +204,6 @@
           de: 'innen stacken',
           ja: '中へ: 頭割り',
           cn: '去里面分摊',
-          ko: '안으로: 쉐어징',
         };
       },
     },
@@ -232,7 +219,6 @@
         de: 'Geistlenkung: Rechts',
         ja: 'マインドジャック: 右折',
         cn: '右',
-        ko: '정신장악: 오른쪽',
       },
     },
     {
@@ -247,7 +233,6 @@
         de: 'Geistlenkung: Vorwärts',
         ja: 'マインドジャック: 前進',
         cn: '前',
-        ko: '정신장악: 앞쪽',
       },
     },
     {
@@ -262,7 +247,6 @@
         de: 'Geistlenkung: Links',
         ja: 'マインドジャック: 左折',
         cn: '左',
-        ko: '정신장악: 왼쪽',
       },
     },
     {
@@ -277,7 +261,6 @@
         de: 'Geistlenkung: Zurück',
         ja: 'マインドジャック: 後退',
         cn: '后',
-        ko: '정신장악: 뒤쪽',
       },
     },
     {
@@ -328,14 +311,12 @@
         de: 'Tanz der Königin: Bücher',
         ja: '女王の舞い: 本',
         cn: '中间两排分格站位',
-        ko: '여왕의 춤: 책',
       },
       tts: {
         en: 'books',
         de: 'bücher',
         ja: '本',
         cn: '书',
-        ko: '책',
       },
     },
     {
@@ -351,14 +332,12 @@
         de: 'Tanz der Königin: Uhr',
         ja: '女王の舞い: 散開',
         cn: '万变水波站位',
-        ko: '여왕의 춤: 산개',
       },
       tts: {
         en: 'clock',
         de: 'uhr',
         ja: '散開',
         cn: '万变水波',
-        ko: '산개',
       },
     },
     {
@@ -374,14 +353,12 @@
         de: 'Tanz der Königin: Kristallfeld',
         ja: '女王の舞い: 床',
         cn: '站在蓝地板',
-        ko: '여왕의 춤: 대지'
       },
       tts: {
         en: 'blue square',
         de: 'blaues feld',
         ja: '青い床',
         cn: '蓝地板',
-        ko: '파란 장판',
       },
     },
     {
@@ -397,14 +374,12 @@
         de: 'Tanz der Königin: Ranken',
         ja: '女王の舞い: 茨',
         cn: '先集中后扯线',
-        ko: '여왕의 춤: 가시',
       },
       tts: {
         en: 'tethers',
         de: 'ranken',
         ja: '茨を引く',
         cn: '扯线',
-        ko: '가시',
       },
     },
   ],

@@ -25,7 +25,6 @@
         fr: 'Cachez-vous derrière le cristal',
         ja: '水晶の後ろに',
         cn: '躲在水晶后',
-        ko: '크리스탈 뒤에 숨기',
       },
     },
     {
@@ -38,7 +37,6 @@
         fr: 'Écartez-vous & évitez les cristaux',
         ja: '散開 + 水晶に避け',
         cn: '散开并远离水晶',
-        ko: '산개 + 크리스탈 피하기',
       },
     },
     {
@@ -55,7 +53,6 @@
         fr: 'Cachez-vous derrière le cristal',
         ja: '水晶の後ろに',
         cn: '躲在水晶后',
-        ko: '크리스탈 뒤에 숨기',
       },
     },
     {
@@ -113,7 +110,6 @@
         fr: 'Zone au sol sur VOUS',
         ja: '自分に粘液',
         cn: '圈圈点名',
-        ko: '장판 대상자',
       },
     },
     {
@@ -127,7 +123,6 @@
         fr: 'En ligne avec le drone endommagé',
         ja: 'ドローンの直線に',
         cn: '站在冒烟小怪直线上',
-        ko: '연기나는 드론 앞으로',
       },
     },
     {
@@ -145,7 +140,6 @@
         fr: 'Évitez le trancheur de pierre',
         ja: 'ロックカッターに避け',
         cn: '躲开电锯',
-        ko: '톱니바퀴 피하기',
       },
     },
     {
@@ -171,7 +165,6 @@
             fr: 'Zone au sol + Cleave sur VOUS',
             ja: '自分に沼 + フロストブレス',
             cn: '圈圈+吐息点名',
-            ko: '장판 + 브레스 대상자',
           };
         }
         return {
@@ -180,7 +173,6 @@
           fr: 'Évitez le marqueur de cône',
           ja: 'マークに避け',
           cn: '远离锥形点名',
-          ko: '표식 피하기',
         };
       },
     },
@@ -199,7 +191,6 @@
         fr: 'Déposez les explosions d\'étoiles',
         ja: '放射霧を誘導',
         cn: '诱导放射雾',
-        ko: '별모양 장판 피하기',
       },
     },
   ],
