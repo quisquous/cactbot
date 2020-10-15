@@ -90,6 +90,7 @@
           fr: 'Expiré ms: ' + elapsed,
           ja: '経過時間：' + elapsed,
           cn: '经过时间：' + elapsed,
+          ko: '경과 시간: ' + elapsed,
         };
       },
     },
