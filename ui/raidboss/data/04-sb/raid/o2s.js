@@ -15,6 +15,7 @@
         de: 'DDs hoch',
         ja: 'DPS: 浮上',
         cn: 'DPS浮空',
+        ko: '딜러: 공중부양',
       },
     },
   ],
@@ -66,12 +67,14 @@
         de: '-100G: Nach Norden/Süden und wegschauen',
         ja: '-100 G: 北/南へ、ボスを見ないで',
         cn: '前往南边/北边并背对boss',
+        ko: '중력 마이너스 100: 남/북쪽에서 바깥쪽 보기',
       },
       tts: {
         en: '100 gs',
         de: '-100 G',
         ja: 'マイナス100 G',
         cn: '重力负100',
+        ko: '중력 마이너스 100',
       },
     },
     {
@@ -99,6 +102,7 @@
             de: 'Erdbeben: Schweben',
             ja: '地震: 浮上',
             cn: '地震：漂浮',
+            ko: '대지진: 공중부양',
           };
         }
       },
@@ -109,6 +113,7 @@
             de: 'Erdbeben',
             ja: '地震',
             cn: '地震',
+            ko: '대지진',
           };
         }
       },
@@ -119,6 +124,7 @@
             de: 'schweben',
             ja: '浮上',
             cn: '漂浮',
+            ko: '공중부양',
           };
         }
       },
@@ -133,6 +139,7 @@
             de: 'DDs: Schweben',
             ja: 'DPS: 浮上',
             cn: 'DPS浮空',
+            ko: '딜러: 공중부양',
           };
         }
       },
@@ -143,6 +150,7 @@
             de: 'DDs hoch, T/H runter',
             ja: 'DPS浮上 タンクヒラ降下',
             cn: 'DPS升起，T奶下降',
+            ko: '딜러 공중부양, 탱힐 강하',
           };
         }
       },
@@ -151,6 +159,7 @@
         de: 'dee dees hoch',
         ja: 'DPS浮上',
         cn: 'DPS升起',
+        ko: '딜러 공중부양',
       },
     },
     {
@@ -182,6 +191,7 @@
               de: 'Tentakeltanz: Tanks & Heiler',
               ja: '触手乱舞: タンク/ヒーラー',
               cn: 'T奶触手',
+              ko: '촉수 난무: 탱/힐',
             };
           }
           return {
@@ -189,6 +199,7 @@
             de: 'Tentakeltanz: DDs',
             ja: '触手乱舞: DPS',
             cn: 'DPS触手',
+            ko: '촉수 난무: 딜러',
           };
         }
       },
@@ -200,6 +211,7 @@
               de: 'Tentakeltanz: Tanks & Heiler',
               ja: '触手乱舞: タンク/ヒーラー',
               cn: 'T奶触手',
+              ko: '촉수 난무: 탱/힐',
             };
           }
           return {
@@ -207,6 +219,7 @@
             de: 'Tentakeltanz: DDs',
             ja: '触手乱舞: DPS',
             cn: 'DPS触手',
+            ko: '촉수 난무: 딜러',
           };
         }
       },
@@ -217,6 +230,7 @@
             de: 'dee dees tentakel',
             ja: 'dpsに触手乱舞',
             cn: 'dps触手',
+            ko: '딜러 촉수 난무',
           };
         }
         return {
@@ -224,6 +238,7 @@
           de: 'tenks heiler tentakel',
           ja: 'タンクヒラに触手乱舞',
           cn: 'T奶触手',
+          ko: '탱힐 촉수난무',
         };
       },
     },
@@ -239,12 +254,14 @@
         de: 'Schwerkraftschwankung: Schweben und außen stacken',
         ja: 'グラビティバースト: 浮上集合',
         cn: '升起并分摊',
+        ko: '중력 폭탄: 공중부양 및 쉐어',
       },
       tts: {
         en: 'float for bomb',
         de: 'schweben für bombe',
         ja: '浮上集合',
         cn: '升起并分摊',
+        ko: '중력 폭탄',
       },
     },
     {
@@ -261,6 +278,7 @@
             de: 'Versinkend: Schweben',
             ja: '沈下: 浮上',
             cn: '下陷：悬浮',
+            ko: '하강: 공중부양',
           };
         }
       },
@@ -271,6 +289,7 @@
             de: 'Versinkend',
             ja: '沈下',
             cn: '下陷',
+            ko: '하강',
           };
         }
       },
@@ -279,6 +298,7 @@
         de: 'schweben',
         ja: '浮上',
         cn: '悬浮',
+        ko: '공중부양',
       },
       run: function(data) {
         data.under = true;
