@@ -49,6 +49,7 @@
           de: 'Befreie ' + data.ShortName(matches.target),
           fr: 'Libérez ' + data.ShortName(matches.target),
           cn: '解救' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '감옥 해제',
         };
       },
     },

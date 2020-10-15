@@ -52,6 +52,7 @@
           fr: 'Guérison sur ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'にエスナ',
           cn: '康复' + data.ShortName(matches.target),
+          ko: '' + data.ShortName(matches.target) + '에스나',
         };
       },
     },
