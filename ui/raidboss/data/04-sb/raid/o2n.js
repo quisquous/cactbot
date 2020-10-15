@@ -238,7 +238,7 @@
             de: 'Geh in die Mitte und nicht schweben',
             ja: '中央に浮かばず集合',
             cn: '中间集合不要浮空',
-            ko: '공중부양 하지않고 가운데로'
+            ko: '공중부양 하지않고 가운데로',
           };
         }
         return {

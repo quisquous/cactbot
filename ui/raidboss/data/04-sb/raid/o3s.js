@@ -185,7 +185,7 @@
           de: 'nach süden: stack auf freund',
           ja: '南へ: 頭割り',
           cn: '去南边分摊',
-          ko: '남쪽으로: 쉐어징'
+          ko: '남쪽으로: 쉐어징',
         };
       },
       tts: function(data) {
@@ -374,7 +374,7 @@
         de: 'Tanz der Königin: Kristallfeld',
         ja: '女王の舞い: 床',
         cn: '站在蓝地板',
-        ko: '여왕의 춤: 대지'
+        ko: '여왕의 춤: 대지',
       },
       tts: {
         en: 'blue square',
