@@ -275,7 +275,7 @@
             de: 'Tank lasers--Weg von der Party',
             ja: 'タンクレザー - 外に',
             cn: '坦克激光--远离人群',
-            ko: '탱커 레이저-- 피하기'
+            ko: '탱커 레이저-- 피하기',
           };
         }
         return {
@@ -419,7 +419,7 @@
             de: '16x Himmelslaser auf DIR!',
             ja: '自分に16連撃潜地式波動砲！',
             cn: '16连追踪AOE点名',
-            ko: '16 하늘 레이저 대상자'
+            ko: '16 하늘 레이저 대상자',
           };
         }
         return {
