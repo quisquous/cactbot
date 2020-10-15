@@ -26,12 +26,12 @@ class SeaBase {
     return new Promise((resolve, reject) => {
       let req = window.indexedDB.open(this._dbName, this._dbVersion);
 
-      req.onsuccess = function(event) {
-        resolve(this.result);
+      req.onsuccess = (event) => {
+        resolve(req.result);
       };
 
-      req.onerror = function(event) {
-        reject(this.error);
+      req.onerror = (event) => {
+        reject(req.error);
       };
 
       req.onupgradeneeded = (event) => {
