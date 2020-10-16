@@ -260,6 +260,7 @@ const ZoneId = {
   'TheBowlOfEmbersExtreme': 295,
   'TheBowlOfEmbersHard': 292,
   'TheBozjaIncident': 911,
+  'TheBozjanSouthernFront': 920,
   'TheBurn': 789,
   'TheCalamityRetold': 790,
   'TheCarteneauFlatsHeliodrome': 633,
