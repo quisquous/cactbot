@@ -715,11 +715,11 @@
 }
 
 .brd-color-soulvoice {
-  background-color: rgb(130, 200, 0);
+  background-color: rgb(180, 200, 220);
 }
 
 .brd-color-soulvoice.high {
-  background-color: rgb(250, 150, 0);
+  background-color: rgb(250, 100, 0);
 }
 
 .whm-color-dia {
