@@ -3283,6 +3283,8 @@ class Bars {
       }
     } else if (type === '24') {
       // line[2] is dotted target id.
+      // lastAttackedTarget, lastDotTarget may not be maintarget,
+      // but lastAttackedDotTarget must be your main target.
       if (line[2] === this.lastAttackedDotTarget &&
         line[4] === 'DoT' &&
         line[5] === '0') // 0 if not fleld setting DoT
