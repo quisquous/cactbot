@@ -3021,6 +3021,7 @@ class Bars {
   OnChangeZone(e) {
     const zoneInfo = ZoneInfo[e.zoneID];
     this.contentType = zoneInfo ? zoneInfo.contentType : 0;
+    this.dotTarget = [];
 
     this.UpdateFoodBuff();
     if (this.buffTracker)
