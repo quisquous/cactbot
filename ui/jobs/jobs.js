@@ -2504,7 +2504,7 @@ class Bars {
       id: 'brd-procs-causticbite',
       fgColor: 'brd-color-causticbite',
     });
-    const stormbBiteBox = this.addProcBox({
+    const stormBiteBox = this.addProcBox({
       id: 'brd-procs-stormbite',
       fgColor: 'brd-color-stormbite',
     });
@@ -2513,8 +2513,8 @@ class Bars {
       EffectId.Windbite,
     ].forEach((effect) => {
       this.mobGainEffectFromYouFuncMap[effect] = () => {
-        stormbBiteBox.duration = 0;
-        stormbBiteBox.duration = 30 - 0.5;
+        stormBiteBox.duration = 0;
+        stormBiteBox.duration = 30 - 0.5;
       };
     });
     [
@@ -2527,8 +2527,8 @@ class Bars {
       };
     });
     this.statChangeFuncMap['BRD'] = () => {
-      stormbBiteBox.valuescale = this.gcdSkill();
-      stormbBiteBox.threshold = this.gcdSkill() * 2;
+      stormBiteBox.valuescale = this.gcdSkill();
+      stormBiteBox.threshold = this.gcdSkill() * 2;
       causticBiteBox.valuescale = this.gcdSkill();
       causticBiteBox.threshold = this.gcdSkill() * 2;
       songBox.valuescale = this.gcdSkill();
