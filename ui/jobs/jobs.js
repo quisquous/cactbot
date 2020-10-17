@@ -3239,16 +3239,18 @@ class Bars {
     if (type === '26') {
       let m = log.match(kMobGainsEffectFromYouRegex);
       if (m) {
-        if (Object.values(brdDoTs).includes(m.groups.effectId.toUpperCase()))
+        const effectId = m.groups.effectId.toUpperCase();
+        if (Object.values(brdDoTs).includes(effectId))
           this.dotTarget.push(m.groups.targetId);
-        let f = this.mobGainEffectFromYouFuncMap[m.groups.effectId.toUpperCase()];
+        let f = this.mobGainEffectFromYouFuncMap[effectId];
         if (f)
           f(name, m.groups);
       }
     } else if (type === '30') {
       let m = log.match(kMobLosesEffectFromYouRegex);
       if (m) {
-        if (Object.values(brdDoTs).includes(m.groups.effectId.toUpperCase())) {
+        const effectId = m.groups.effectId.toUpperCase();
+        if (Object.values(brdDoTs).includes(effectId)) {
           const index = this.dotTarget.indexOf(m.groups.targetId);
           if (index > -1)
             this.dotTarget.splice(index, 1);
