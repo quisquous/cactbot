@@ -120,6 +120,11 @@ const gBossFightTriggers = [
     startRegex: /:Omega:336C:/,
     preventAutoStart: true,
   },
+  {
+    zoneId: ZoneId.TheBozjanSouthernFront,
+    countdownStarts: false,
+    preventAutoStart: true,
+  },
 ];
 
 
