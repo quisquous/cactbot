@@ -2700,20 +2700,27 @@ class Bars {
   }
 
   setupGnb() {
-    let cartridgeBox = this.addResourceBox({
+    const cartridgeBox = this.addResourceBox({
       classList: ['gnb-color-cartridge'],
     });
-    let gnashingFangBox = this.addProcBox({
-      id: 'gnb-procs-gnashingfang',
-      fgColor: 'gnb-color-gnashingfang',
-    });
 
-    let noMercyBox = this.addProcBox({
+    const noMercyBox = this.addProcBox({
       id: 'gnb-procs-nomercy',
       fgColor: 'gnb-color-nomercy',
     });
+    this.abilityFuncMap[kAbility.NoMercy] = () => {
+      noMercyBox.duration = 0;
+      noMercyBox.duration = 20;
+      noMercyBox.threshold = 1000;
+      noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
+      setTimeout(() => {
+        noMercyBox.duration = 40;
+        noMercyBox.threshold = this.gcdSkill() + 1;
+        noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
+      }, 20000);
+    };
 
-    let bloodfestBox = this.addProcBox({
+    const bloodfestBox = this.addProcBox({
       id: 'gnb-procs-bloodfest',
       fgColor: 'gnb-color-bloodfest',
     });
@@ -2722,40 +2729,38 @@ class Bars {
       bloodfestBox.duration = 90;
     };
 
-    let comboTimer = this.addTimerBar({
-      id: 'gnb-timers-combo',
-      fgColor: 'gnb-color-combo',
-    });
-
-    let cartridgeComboTimer = this.addTimerBar({
-      id: 'gnb-timers-cartridgecombo',
-      fgColor: 'gnb-color-gnashingfang',
-    });
-
     this.statChangeFuncMap['GNB'] = () => {
       gnashingFangBox.valuescale = this.gcdSkill();
       gnashingFangBox.threshold = this.gcdSkill() * 3;
       noMercyBox.valuescale = this.gcdSkill();
       bloodfestBox.valuescale = this.gcdSkill();
       bloodfestBox.threshold = this.gcdSkill() * 2 + 1;
-      this.abilityFuncMap[kAbility.NoMercy] = () => {
-        noMercyBox.duration = 0;
-        noMercyBox.duration = 20;
-        noMercyBox.threshold = 1000;
-        noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
-        setTimeout(() => {
-          noMercyBox.duration = 40;
-          noMercyBox.threshold = this.gcdSkill() + 1;
-          noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
-        }, 20000);
-      };
-      // Combos
-      this.abilityFuncMap[kAbility.GnashingFang] = () => {
-        gnashingFangBox.duration = 0;
-        gnashingFangBox.duration = this.CalcGCDFromStat(this.skillSpeed, 30000);
-        cartridgeComboTimer.duration = 0;
-        cartridgeComboTimer.duration = 15;
-      };
+    };
+    // Combos
+    const gnashingFangBox = this.addProcBox({
+      id: 'gnb-procs-gnashingfang',
+      fgColor: 'gnb-color-gnashingfang',
+    });
+    const comboTimer = this.addTimerBar({
+      id: 'gnb-timers-combo',
+      fgColor: 'gnb-color-combo',
+    });
+    const cartridgeComboTimer = this.addTimerBar({
+      id: 'gnb-timers-cartridgecombo',
+      fgColor: 'gnb-color-gnashingfang',
+    });
+    this.abilityFuncMap[kAbility.GnashingFang] = () => {
+      gnashingFangBox.duration = 0;
+      gnashingFangBox.duration = this.CalcGCDFromStat(this.skillSpeed, 30000);
+      cartridgeComboTimer.duration = 0;
+      cartridgeComboTimer.duration = 15;
+    };
+    this.abilityFuncMap[kAbility.SavageClaw] = () => {
+      cartridgeComboTimer.duration = 0;
+      cartridgeComboTimer.duration = 15;
+    };
+    this.abilityFuncMap[kAbility.WickedTalon] = () => {
+      cartridgeComboTimer.duration = 0;
     };
     this.comboFuncs.push((skill) => {
       comboTimer.duration = 0;
@@ -2765,19 +2770,13 @@ class Bars {
       if (skill)
         comboTimer.duration = 15;
     });
-    this.abilityFuncMap[kAbility.SavageClaw] = () => {
-      cartridgeComboTimer.duration = 0;
-      cartridgeComboTimer.duration = 15;
-    };
-    this.abilityFuncMap[kAbility.WickedTalon] = () => {
-      cartridgeComboTimer.duration = 0;
-    };
 
     this.jobFuncs.push((jobDetail) => {
       cartridgeBox.innerText = jobDetail.cartridges;
-      cartridgeBox.parentNode.classList.remove('full');
       if (jobDetail.cartridges == 2)
         cartridgeBox.parentNode.classList.add('full');
+      else
+        cartridgeBox.parentNode.classList.remove('full');
     });
   }
 
