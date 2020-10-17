@@ -2508,6 +2508,10 @@ class Bars {
       id: 'brd-procs-stormbite',
       fgColor: 'brd-color-stormbite',
     });
+    // Iron jaws just refreshes these effects by gain once more,
+    // so it doesn't need to be handled separately.
+    // Log line of getting DoT comes a little late after DoT appear on target,
+    // so -0.5s
     [
       EffectId.Stormbite,
       EffectId.Windbite,
