@@ -138,6 +138,13 @@ let Options = {
     // Pagos:   https://xivapi.com/search?indexes=Fate&filters=ID>=1351,ID<=1369&columns=Description,Name,Url
     // Pyros:   https://xivapi.com/search?indexes=Fate&filters=ID>=1388,ID<=1408&columns=Description,Name,Url
     // Hydatos: https://xivapi.com/search?indexes=Fate&filters=ID>=1412,ID<=1425&columns=Description,Name,Url
+    // Bozja:   https://xivapi.com/search?indexes=Fate&filters=ID>=1597,ID<=1628&columns=Description,Name,Url
+    [ZoneId.TheBozjanSouthernFront]: {
+      shortName: 'bozja',
+      nms: {},
+      // TODO: this is a hack for now.
+      alertForAllFates: true,
+    },
     [ZoneId.TheForbiddenLandEurekaAnemos]: {
       mapImage: 'anemos.png',
       mapWidth: 1300,
@@ -1800,8 +1807,11 @@ class EurekaTracker {
 
 
     this.fairy = this.zoneInfo.fairy;
-    let fairyName = this.TransByParserLang(this.fairy);
-    this.fairy.regex = Regexes.addedCombatantFull({ name: fairyName });
+    if (this.fairy) {
+      let fairyName = this.TransByParserLang(this.fairy);
+      this.fairy.regex = Regexes.addedCombatantFull({ name: fairyName });
+    }
+
     this.playerElement = document.createElement('div');
     this.playerElement.classList.add('player');
     container.appendChild(this.playerElement);
@@ -1832,15 +1842,17 @@ class EurekaTracker {
         aspect.classList.remove(aspect.classList.item(0));
       aspect.classList.add('aspect-ratio-' + this.zoneInfo.shortName);
 
-      document.getElementById('map-image').src = this.zoneInfo.mapImage;
+      if (this.zoneInfo.mapImage) {
+        document.getElementById('map-image').src = this.zoneInfo.mapImage;
+        window.clearInterval(this.updateTimesHandle);
+        this.updateTimesHandle = window.setInterval((function() {
+          this.UpdateTimes();
+        }).bind(this), this.options.RefreshRateMs);
+        container.classList.remove('hide');
+      }
       this.InitNMs();
       this.ProcessFateQueue();
       this.UpdateTimes();
-      container.classList.remove('hide');
-      window.clearInterval(this.updateTimesHandle);
-      this.updateTimesHandle = window.setInterval((function() {
-        this.UpdateTimes();
-      }).bind(this), this.options.RefreshRateMs);
     } else {
       if (this.updateTimesHandle)
         window.clearInterval(this.updateTimesHandle);
@@ -1873,11 +1885,15 @@ class EurekaTracker {
         audio.play();
       }
     } else {
-      if (this.options.PopSound && this.options.PopVolume) {
-        let audio = new Audio(this.options.PopSound);
-        audio.volume = this.options.PopVolume;
-        audio.play();
-      }
+      this.MakeFatePopNoise();
+    }
+  }
+
+  MakeFatePopNoise() {
+    if (this.options.PopSound && this.options.PopVolume) {
+      let audio = new Audio(this.options.PopSound);
+      audio.volume = this.options.PopVolume;
+      audio.play();
     }
   }
 
@@ -2074,8 +2090,7 @@ class EurekaTracker {
   OnLog(e) {
     if (!this.zoneInfo)
       return;
-    for (let idx = 0; idx < e.detail.logs.length; idx++) {
-      let log = e.detail.logs[idx];
+    for (const log of e.detail.logs) {
       let gRegex = this.TransByParserLang(this.options.Regex);
       let gFlagRegex = gRegex['gFlagRegex'];
       let match = log.match(gFlagRegex);
@@ -2091,10 +2106,12 @@ class EurekaTracker {
         this.ImportFromTracker(match[2]);
         continue;
       }
-      if (log.includes(' 03:') || log.includes('00:0839:')) {
-        match = log.match(this.fairy.regex);
-        if (match)
-          this.AddFairy(match.groups);
+      if (this.fairy) {
+        if (log.includes(' 03:') || log.includes('00:0839:')) {
+          match = log.match(this.fairy.regex);
+          if (match)
+            this.AddFairy(match.groups);
+        }
       }
     }
   }
@@ -2117,6 +2134,9 @@ class EurekaTracker {
           return;
         }
       }
+      if (this.zoneInfo.alertForAllFates)
+        this.MakeFatePopNoise();
+
       break;
     case 'remove':
       for (let key of this.nmKeys) {
