@@ -233,6 +233,7 @@ class ComboTracker {
     this.startMap = {}; // {} key => { id: str, next: { key => node } }
     this.callback = callback;
     this.considerNext = this.startMap;
+    this.isFinalSkill = false;
   }
 
   AddCombo(skillList) {
