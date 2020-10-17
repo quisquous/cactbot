@@ -3227,7 +3227,8 @@ class Bars {
       }
     }
     // For extremely complex BRD
-    if (this.job != 'BRD') return;
+    if (this.job != 'BRD')
+      return;
     if (!this.dotTarget)
       this.dotTarget = [];
     const brdDoTs = Object.freeze([
