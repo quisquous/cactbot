@@ -374,6 +374,7 @@
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
 #whm-procs-lucid,
+#rdm-procs-lucid,
 #blm-procs-thunder,
 #blu-procs-lucid {
   position: relative;
@@ -543,6 +544,10 @@
 
 .rdm-color-black-mana.dim {
   background-color: rgb(13, 76, 80);
+}
+
+.rdm-color-lucid {
+  background-color: rgb(227, 148, 210);
 }
 
 .war-color-beast {
