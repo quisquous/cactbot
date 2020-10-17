@@ -2499,6 +2499,19 @@ class Bars {
   }
 
   setupBrd() {
+    const straightShotProc = this.addProcBox({
+      id: 'brd-procs-straightshotready',
+      fgColor: 'brd-color-straightshotready',
+      threshold: 1000,
+    });
+    straightShotProc.bigatzero = false;
+    this.gainEffectFuncMap[EffectId.StraightShotReady] = () => {
+      straightShotProc.duration = 0;
+      straightShotProc.duration = 10;
+    };
+    this.loseEffectFuncMap[EffectId.StraightShotReady] = () => {
+      straightShotProc.duration = 0;
+    };
     // DoT
     const causticBiteBox = this.addProcBox({
       id: 'brd-procs-causticbite',

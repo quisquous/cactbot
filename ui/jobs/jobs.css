@@ -319,7 +319,6 @@
 #war-procs,
 #pld-procs,
 #mnk-procs,
-#brd-procs,
 #ast-procs,
 #sch-procs,
 #whm-procs,
@@ -332,6 +331,7 @@
 }
 
 #drg-procs,
+#brd-procs,
 #smn-procs {
   position: absolute;
   top: 146px;
@@ -353,6 +353,7 @@
 }
 
 #drg-procs-highjump,
+#brd-procs-stormbite,
 #smn-procs-biosmn {
   position: relative;
   display: inline-block;
@@ -360,6 +361,7 @@
 }
 
 #drg-procs-lancecharge,
+#brd-procs-song,
 #smn-procs-energydrain {
   position: relative;
   display: inline-block;
@@ -369,7 +371,6 @@
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
 #whm-procs-assize,
-#brd-procs-stormbite,
 #sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
@@ -381,7 +382,6 @@
 #mnk-procs-demolish,
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
-#brd-procs-song,
 #whm-procs-lucid,
 #blm-procs-thunder,
 #blu-procs-lucid {
@@ -391,6 +391,7 @@
 }
 
 #drg-procs-dragonsight,
+#brd-procs-straightshotready,
 #smn-procs-trance {
   position: relative;
   display: inline-block;
@@ -692,6 +693,10 @@
 
 .brd-color-stormbite {
   background-color: rgb(72, 117, 202);
+}
+
+.brd-color-straightshotready {
+  background-color: rgb(240, 130, 80);
 }
 
 .brd-color-song {
