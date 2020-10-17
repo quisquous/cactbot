@@ -91,6 +91,7 @@
 
 #mp-bar,
 #rdm-bar,
+#gnb-bar,
 #mnk-bar {
   margin-top: 1px;
 }
@@ -137,6 +138,7 @@
   background: rgba(30, 30, 30, 0.7);
 }
 
+#gnb-bar,
 #brd-bar,
 #mnk-bar {
   position: relative;
@@ -164,6 +166,8 @@
   height: calc(100% - 4px);
 }
 
+#gnb-timers-combo,
+#gnb-timers-cartridgecombo,
 #brd-timers-repertoire,
 #mnk-timers-lightning,
 #mnk-timers-combo {
@@ -269,6 +273,7 @@
 }
 
 #sch-boxes .text,
+#gnb-boxes .text,
 #smn-boxes .text,
 #drg-boxes .text,
 #brd-boxes .text,
@@ -327,6 +332,7 @@
 #whm-procs,
 #blu-procs,
 #drk-procs,
+#gnb-procs,
 #blm-procs {
   position: absolute;
   top: 146px;
@@ -349,6 +355,7 @@
 #whm-procs-dia,
 #smn-procs-miasma,
 #blu-procs-offguard,
+#gnb-procs-gnashingfang,
 #blm-procs-fire {
   position: relative;
   display: inline-block;
@@ -374,6 +381,7 @@
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
 #whm-procs-assize,
+#gnb-procs-nomercy,
 #sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
@@ -385,6 +393,7 @@
 #mnk-procs-demolish,
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
+#gnb-procs-bloodfest,
 #whm-procs-lucid,
 #rdm-procs-lucid,
 #blm-procs-thunder,
@@ -900,6 +909,30 @@
 
 .gnb-color-cartridge {
   background-color: rgb(115, 218, 255);
+}
+
+.gnb-color-cartridge.full {
+  background-color: rgb(250, 86, 45);
+}
+
+.gnb-color-combo {
+  background-color: rgb(180, 200, 220);
+}
+
+.gnb-color-gnashingfang {
+  background-color: rgb(216, 111, 12);
+}
+
+.gnb-color-nomercy {
+  background-color: rgba(232, 127, 127, 0.7);
+}
+
+.gnb-color-nomercy.active {
+  background-color: rgb(232, 127, 127);
+}
+
+.gnb-color-bloodfest {
+  background-color: rgb(9, 81, 98);
 }
 
 .drg-color-disembowel {
