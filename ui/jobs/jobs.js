@@ -3262,10 +3262,10 @@ class Bars {
       }
     } else if (type === '24') {
       // line[2] is dotted target id.
-      if ((this.dotTarget.includes(line[2])) &&
-        (line[2] === this.lastAttackedDotTarget) &&
-        (line[4] === 'DoT') &&
-        (line[5] === '0')) // 0 if not fleld setting DoT
+      if (this.dotTarget.includes(line[2]) &&
+        line[2] === this.lastAttackedDotTarget &&
+        line[4] === 'DoT' &&
+        line[5] === '0') // 0 if not fleld setting DoT
         this.UpdateDotTimer();
     }
   }
