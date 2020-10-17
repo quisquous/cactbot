@@ -31,6 +31,7 @@
 }
 
 .rdm #right-side-icons,
+.brd #right-side-icons,
 .drg #right-side-icons,
 .whm #right-side-icons,
 .sch #right-side-icons,
@@ -115,6 +116,9 @@
   height: 10px;
 }
 
+.whm #hp-bar,
+.sch #hp-bar,
+.ast #hp-bar,
 .drk #hp-bar,
 .pld #hp-bar,
 .blu #hp-bar {
@@ -135,6 +139,7 @@
 }
 
 #gnb-bar,
+#brd-bar,
 #mnk-bar {
   position: relative;
   width: 201px;
@@ -163,6 +168,7 @@
 
 #gnb-timers-combo,
 #gnb-timers-cartridgecombo,
+#brd-timers-repertoire,
 #mnk-timers-lightning,
 #mnk-timers-combo {
   display: block;
@@ -174,6 +180,7 @@
 
 /* Relative to #bars */
 #rdm-boxes,
+#brd-boxes,
 #sch-boxes,
 #whm-boxes,
 #smn-boxes,
@@ -192,6 +199,7 @@
 }
 
 #rdm-boxes > div,
+#brd-boxes > div,
 #sch-boxes > div,
 #drg-boxes > div,
 #whm-boxes > div,
@@ -226,6 +234,7 @@
 }
 
 #sch-boxes > div,
+#brd-boxes > div,
 #smn-boxes > div,
 #drg-boxes > div,
 #whm-boxes > div,
@@ -241,6 +250,7 @@
 }
 
 #rdm-boxes .text,
+#brd-boxes .text,
 #sch-boxes .text,
 #smn-boxes .text,
 #drg-boxes .text,
@@ -266,6 +276,7 @@
 #gnb-boxes .text,
 #smn-boxes .text,
 #drg-boxes .text,
+#brd-boxes .text,
 #whm-boxes .text,
 #ast-boxes .text,
 #rdm-boxes .text {
@@ -329,6 +340,7 @@
 }
 
 #drg-procs,
+#brd-procs,
 #smn-procs {
   position: absolute;
   top: 146px;
@@ -339,6 +351,7 @@
 #ast-procs-combust,
 #sch-procs-bio,
 #drg-procs-disembowel,
+#brd-procs-causticbite,
 #whm-procs-dia,
 #smn-procs-miasma,
 #blu-procs-offguard,
@@ -350,6 +363,7 @@
 }
 
 #drg-procs-highjump,
+#brd-procs-stormbite,
 #smn-procs-biosmn {
   position: relative;
   display: inline-block;
@@ -357,6 +371,7 @@
 }
 
 #drg-procs-lancecharge,
+#brd-procs-song,
 #smn-procs-energydrain {
   position: relative;
   display: inline-block;
@@ -380,6 +395,7 @@
 #sch-procs-luciddreaming,
 #gnb-procs-bloodfest,
 #whm-procs-lucid,
+#rdm-procs-lucid,
 #blm-procs-thunder,
 #blu-procs-lucid {
   position: relative;
@@ -388,6 +404,7 @@
 }
 
 #drg-procs-dragonsight,
+#brd-procs-straightshotready,
 #smn-procs-trance {
   position: relative;
   display: inline-block;
@@ -551,6 +568,10 @@
   background-color: rgb(13, 76, 80);
 }
 
+.rdm-color-lucid {
+  background-color: rgb(227, 148, 210);
+}
+
 .war-color-beast {
   background-color: rgb(230, 20, 20);
 }
@@ -693,6 +714,46 @@
 
 .mnk-color-demolish {
   background-color: rgb(60, 80, 200);
+}
+
+.brd-color-causticbite {
+  background-color: rgb(182, 68, 235);
+}
+
+.brd-color-stormbite {
+  background-color: rgb(72, 117, 202);
+}
+
+.brd-color-straightshotready {
+  background-color: rgb(240, 130, 80);
+}
+
+.brd-color-song {
+  background-color: rgb(180, 200, 220);
+}
+
+.brd-color-song.minuet {
+  background-color: rgb(100, 150, 100);
+}
+
+.brd-color-song.minuet.full {
+  background-color: rgb(250, 150, 0);
+}
+
+.brd-color-song.ballad {
+  background-color: rgb(143, 90, 143);
+}
+
+.brd-color-song.paeon {
+  background-color: rgb(207, 205, 52);
+}
+
+.brd-color-soulvoice {
+  background-color: rgb(180, 200, 220);
+}
+
+.brd-color-soulvoice.high {
+  background-color: rgb(250, 100, 0);
 }
 
 .whm-color-dia {

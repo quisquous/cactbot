@@ -9,7 +9,7 @@ const kWellFedContentTypes = [
 
 // See user/jobs-example.js for documentation.
 let Options = {
-  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
+  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU', 'AST', 'WHM', 'SCH'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
   ShowMPTicker: ['BLM'],
@@ -202,6 +202,8 @@ let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
 let kMobGainsEffectRegex = null;
 let kMobLosesEffectRegex = null;
+let kMobGainsEffectFromYouRegex = null;
+let kMobLosesEffectFromYouRegex = null;
 
 let kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
@@ -384,6 +386,8 @@ function setupRegexes(playerName) {
   kAnybodyAbilityRegex = NetRegexes.ability();
   kMobGainsEffectRegex = NetRegexes.gainsEffect({ targetId: '4.{7}' });
   kMobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
+  kMobGainsEffectFromYouRegex = NetRegexes.gainsEffect({ targetId: '4.{7}', source: playerName });
+  kMobLosesEffectFromYouRegex = NetRegexes.losesEffect({ targetId: '4.{7}', source: playerName });
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
@@ -1134,6 +1138,7 @@ class Bars {
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
+    this.mobGainEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
@@ -1188,9 +1193,12 @@ class Bars {
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
+    this.mobGainEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
+    this.lastAttackedDotTarget = null;
+    this.dotTarget = [];
 
     this.gainEffectFuncMap[EffectId.WellFed] = (name, matches) => {
       let seconds = parseFloat(matches.duration);
@@ -1752,7 +1760,7 @@ class Bars {
     this.statChangeFuncMap['BLU'] = () => {
       offguardBox.threshold = this.gcdSpell() * 2;
       tormentBox.threshold = this.gcdSpell() * 3;
-      lucidBox.threshold = this.gcdSpell() * 4;
+      lucidBox.threshold = this.gcdSpell() + 1;
     };
 
     this.abilityFuncMap[kAbility.OffGuard] = () => {
@@ -2368,6 +2376,19 @@ class Bars {
     });
     blackProc.bigatzero = false;
 
+    let lucidBox = this.addProcBox({
+      id: 'rdm-procs-lucid',
+      fgColor: 'rdm-color-lucid',
+    });
+    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+      lucidBox.duration = 0;
+      lucidBox.duration = 60;
+    };
+    this.statChangeFuncMap['RDM'] = () => {
+      lucidBox.valuescale = this.gcdSpell();
+      lucidBox.threshold = this.gcdSpell() + 1;
+    };
+
     this.jobFuncs.push(function(jobDetail) {
       let white = jobDetail.whiteMana;
       let black = jobDetail.blackMana;
@@ -2547,6 +2568,122 @@ class Bars {
   }
 
   setupBrd() {
+    const straightShotProc = this.addProcBox({
+      id: 'brd-procs-straightshotready',
+      fgColor: 'brd-color-straightshotready',
+      threshold: 1000,
+    });
+    straightShotProc.bigatzero = false;
+    this.gainEffectFuncMap[EffectId.StraightShotReady] = () => {
+      straightShotProc.duration = 0;
+      straightShotProc.duration = 10;
+    };
+    this.loseEffectFuncMap[EffectId.StraightShotReady] = () => {
+      straightShotProc.duration = 0;
+    };
+    // DoT
+    const causticBiteBox = this.addProcBox({
+      id: 'brd-procs-causticbite',
+      fgColor: 'brd-color-causticbite',
+    });
+    const stormBiteBox = this.addProcBox({
+      id: 'brd-procs-stormbite',
+      fgColor: 'brd-color-stormbite',
+    });
+    // Iron jaws just refreshes these effects by gain once more,
+    // so it doesn't need to be handled separately.
+    // Log line of getting DoT comes a little late after DoT appear on target,
+    // so -0.5s
+    [
+      EffectId.Stormbite,
+      EffectId.Windbite,
+    ].forEach((effect) => {
+      this.mobGainEffectFromYouFuncMap[effect] = () => {
+        stormBiteBox.duration = 0;
+        stormBiteBox.duration = 30 - 0.5;
+      };
+    });
+    [
+      EffectId.CausticBite,
+      EffectId.VenomousBite,
+    ].forEach((effect) => {
+      this.mobGainEffectFromYouFuncMap[effect] = () => {
+        causticBiteBox.duration = 0;
+        causticBiteBox.duration = 30 - 0.5;
+      };
+    });
+    this.statChangeFuncMap['BRD'] = () => {
+      stormBiteBox.valuescale = this.gcdSkill();
+      stormBiteBox.threshold = this.gcdSkill() * 2;
+      causticBiteBox.valuescale = this.gcdSkill();
+      causticBiteBox.threshold = this.gcdSkill() * 2;
+      songBox.valuescale = this.gcdSkill();
+    };
+
+    // Song
+    const songBox = this.addProcBox({
+      id: 'brd-procs-song',
+      fgColor: 'brd-color-song',
+    });
+    const repertoireBox = this.addResourceBox({
+      classList: ['brd-color-song'],
+    });
+    this.repertoireTimer = this.addTimerBar({
+      id: 'brd-timers-repertoire',
+      fgColor: 'brd-color-song',
+    });
+    // Only with-DoT-target you last attacked will trigger this timer.
+    // So it work not well in mutiple targets fight.
+    this.UpdateDotTimer = () => {
+      this.repertoireTimer.duration = 2.91666;
+    };
+    const soulVoiceBox = this.addResourceBox({
+      classList: ['brd-color-soulvoice'],
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song');
+      repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
+      repertoireBox.innerText = '';
+      if (jobDetail.songName === 'Minuet') {
+        repertoireBox.innerText = jobDetail.songProcs;
+        repertoireBox.parentNode.classList.add('minuet');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.minuet');
+        songBox.threshold = 5;
+        repertoireBox.parentNode.classList.remove('full');
+        if (jobDetail.songProcs == 3)
+          repertoireBox.parentNode.classList.add('full');
+      } else if (jobDetail.songName === 'Ballad') {
+        repertoireBox.innerText = '';
+        repertoireBox.parentNode.classList.add('ballad');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.ballad');
+        songBox.threshold = 3;
+      } else if (jobDetail.songName === 'Paeon') {
+        repertoireBox.innerText = jobDetail.songProcs;
+        repertoireBox.parentNode.classList.add('paeon');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.paeon');
+        songBox.threshold = 13;
+      }
+
+      let oldSeconds = parseFloat(songBox.duration) - parseFloat(songBox.elapsed);
+      let seconds = jobDetail.songMilliseconds / 1000.0;
+      if (!songBox.duration || seconds > oldSeconds) {
+        songBox.duration = 0;
+        songBox.duration = seconds;
+      }
+
+      // Soul Voice
+      if (jobDetail.soulGauge != soulVoiceBox.innerText) {
+        soulVoiceBox.innerText = jobDetail.soulGauge;
+        soulVoiceBox.parentNode.classList.remove('high');
+        if (jobDetail.soulGauge >= 95)
+          soulVoiceBox.parentNode.classList.add('high');
+      }
+
+      // GCD calculate
+      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
+        this.paeonStacks = jobDetail.songProcs;
+    });
     let ethosStacks = 0;
 
     // Bard is complicated
@@ -2576,11 +2713,6 @@ class Bars {
       this.museStacks = 0;
       this.paeonStacks = 0;
     };
-
-    this.jobFuncs.push((jobDetail) => {
-      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
-        this.paeonStacks = jobDetail.songProcs;
-    });
   }
 
   setupWhm() {
@@ -3029,6 +3161,7 @@ class Bars {
   OnChangeZone(e) {
     const zoneInfo = ZoneInfo[e.zoneID];
     this.contentType = zoneInfo ? zoneInfo.contentType : 0;
+    this.dotTarget = [];
 
     this.UpdateFoodBuff();
     if (this.buffTracker)
@@ -3250,6 +3383,52 @@ class Bars {
         if (m)
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
+    }
+    // For extremely complex BRD
+    if (this.job != 'BRD')
+      return;
+    if (!this.dotTarget)
+      this.dotTarget = [];
+    const brdDoTs = Object.freeze([
+      EffectId.Stormbite,
+      EffectId.Windbite,
+      EffectId.CausticBite,
+      EffectId.VenomousBite,
+    ]);
+    if (type === '26') {
+      let m = log.match(kMobGainsEffectFromYouRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        if (Object.values(brdDoTs).includes(effectId))
+          this.dotTarget.push(m.groups.targetId);
+        let f = this.mobGainEffectFromYouFuncMap[effectId];
+        if (f)
+          f(name, m.groups);
+      }
+    } else if (type === '30') {
+      let m = log.match(kMobLosesEffectFromYouRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        if (Object.values(brdDoTs).includes(effectId)) {
+          const index = this.dotTarget.indexOf(m.groups.targetId);
+          if (index > -1)
+            this.dotTarget.splice(index, 1);
+        }
+      }
+    } else if (type === '21' || type === '22') {
+      let m = log.match(kYouUseAbilityRegex);
+      if (m) {
+        if (this.dotTarget.includes(m.groups.targetId))
+          this.lastAttackedDotTarget = m.groups.targetId;
+      }
+    } else if (type === '24') {
+      // line[2] is dotted target id.
+      // lastAttackedTarget, lastDotTarget may not be maintarget,
+      // but lastAttackedDotTarget must be your main target.
+      if (line[2] === this.lastAttackedDotTarget &&
+        line[4] === 'DoT' &&
+        line[5] === '0') // 0 if not fleld setting DoT
+        this.UpdateDotTimer();
     }
   }
 

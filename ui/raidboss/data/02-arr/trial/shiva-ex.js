@@ -26,6 +26,7 @@
         fr: 'Partagez le Tank buster avec le groupe',
         ja: '頭割りタンクバスター',
         cn: '团队分摊死刑',
+        ko: '파티 쉐어 탱버',
       },
     },
     {
@@ -55,6 +56,7 @@
                 fr: 'Bâton (Tank Swap)',
                 ja: '杖 (スイッチ)',
                 cn: '权杖（换T）',
+                ko: '지팡이 (탱커 교대)',
               },
             };
           }
@@ -67,6 +69,7 @@
             fr: 'Bâton',
             ja: '杖',
             cn: '权杖',
+            ko: '지팡이',
           },
         };
       },
@@ -92,6 +95,7 @@
                 fr: 'Épée (Tank Swap)',
                 ja: '剣 (スイッチ)',
                 cn: '剑（换T）',
+                ko: '검 (탱커 교대)',
               },
             };
           }
@@ -104,6 +108,7 @@
             fr: 'Épée',
             ja: '剣',
             cn: '剑',
+            ko: '검',
           },
         };
       },
@@ -221,6 +226,7 @@
         fr: 'Poussée-Laser sur VOUS',
         ja: '自分にアバランチ',
         cn: '击退激光点名',
+        ko: '넉백 레이저 대상자',
       },
     },
     {
@@ -233,6 +239,7 @@
         fr: 'Évitez le laser',
         ja: 'アバランチに避け',
         cn: '躲避击退激光',
+        ko: '레이저 피하기',
       },
     },
     {
@@ -272,6 +279,7 @@
           fr: 'Libérez ' + data.ShortName(matches.target),
           ja: data.ShortName(matches.target) + 'を救って',
           cn: '解救' + data.ShortName(matches.target),
+          ko: data.ShortName(matches.target) + '감옥 해제',
         };
       },
     },

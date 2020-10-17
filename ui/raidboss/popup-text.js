@@ -235,7 +235,7 @@ class PopupText {
       }
 
       if (set.zoneId) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId)
+        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId == 'object' && set.zoneId.includes(this.zoneId)))
           continue;
       } else if (set.zoneRegex) {
         let zoneRegex = set.zoneRegex;
