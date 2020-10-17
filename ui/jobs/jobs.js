@@ -231,6 +231,9 @@ class ComboTracker {
     this.comboBreakers = comboBreakers;
     // A tree of nodes.
     this.startMap = {}; // {} key => { id: str, next: { key => node } }
+    // Called for each combo/comboBreakers skill
+    // when cast in combo, skill => its HexID
+    // when cast out of combo/cast comboBreakers, skill => null
     this.callback = callback;
     this.considerNext = this.startMap;
     this.isFinalSkill = false;
