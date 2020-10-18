@@ -2616,7 +2616,7 @@ class EurekaTracker {
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
     if (!this.zoneInfo) {
-      this.ceQueue.push(e);
+      this.CEQueue.push(e);
       return;
     }
     switch (e.detail.eventType) {
