@@ -2010,7 +2010,7 @@ let Options = {
           x: 33.3,
           y: 17.5,
           isCritical: true,
-          ceKey: 5,
+          ceKey: 6,
         },
         choctober: {
           label: {
@@ -2619,6 +2619,7 @@ class EurekaTracker {
       this.CEQueue.push(e);
       return;
     }
+    console.log(e.detail.eventType + ' | ' + e.detail.data.ceKey + ' | ' + e.detail.data.status + ' | ' + e.detail.data.numPlayers + ' | ' + e.detail.data.timeRemaining + ' | ' + e.detail.data.progress);
     switch (e.detail.eventType) {
     case 'add':
       for (let key of this.nmKeys) {
