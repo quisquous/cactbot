@@ -1965,7 +1965,7 @@ let Options = {
           x: 24.2,
           y: 10.8,
           isCritical: true,
-          respawnTime: 60,
+          respawnMinutes: 60,
         },
       },
     },
@@ -2420,8 +2420,13 @@ class EurekaTracker {
       }
       let gCastrumLacusLitoreRegex = this.TransByParserLang(this.options.Regex, 'gCastrumLacusLitoreRegex');
       match = log.match(gCastrumLacusLitoreRegex);
-      if (match)
+      if (match) {
         this.OnFatePop(this.nms.castrumlacuslitore);
+        // big hack to reset the CE 5 minutes after it pops
+        setTimeout(function() {
+          gTracker.OnFateKill(gTracker.nms.castrumlacuslitore);
+        }, 300000);
+      }
       if (this.fairy) {
         if (log.includes(' 03:') || log.includes('00:0839:')) {
           match = log.match(this.fairy.regex);
