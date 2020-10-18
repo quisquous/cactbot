@@ -67,32 +67,19 @@ namespace Cactbot {
     [Serializable]
     [StructLayout(LayoutKind.Explicit)]
     public struct CEDirectorData {
-      public enum CEStatus : byte {
-        None = 0,
-        Registration,
-        Preparing,
-        Commenced, 
-      }
 
       [FieldOffset(0x20)]
-      public UInt32 popTime;
+      public uint popTime;
       [FieldOffset(0x24)]
-      public UInt16 timeRemaining;
+      public ushort timeRemaining;
       [FieldOffset(0x28)]
-      public Byte ceKey;
+      public byte ceKey;
       [FieldOffset(0x29)]
-      public Byte numPlayers;
-      [NonSerialized]
+      public byte numPlayers;
       [FieldOffset(0x2A)]
-      public CEStatus status;
+      public byte status;
       [FieldOffset(0x2C)]
-      public Byte progress;
-
-      public String ceStatus {
-        get {
-          return !Enum.IsDefined(typeof(CEStatus), status) ? "None" : status.ToString();
-        }
-      }
+      public byte progress;
     };
 
     private Dictionary<string, AC143OPCodes> ac143opcodes = null;
@@ -248,14 +235,13 @@ namespace Cactbot {
 
         // Don't update if key is about to be removed
         if (!ces[data.ceKey].Equals(data) &&
-          data.status != CEDirectorData.CEStatus.None) {
+          data.status != 0) {
           UpdateCE(data);
           return;
         }
 
         // Needs removing
-        if (ces[data.ceKey].status != CEDirectorData.CEStatus.None
-          && data.status == CEDirectorData.CEStatus.None) {
+        if (data.status == 0) {
           RemoveCE(data);
           return;
         }
@@ -264,23 +250,23 @@ namespace Cactbot {
 
     private void AddCE(CEDirectorData data) {
       ces.TryAdd(data.ceKey, data);
-      client_.DispatchToJS(new JSEvents.CEEvent("add", JObject.FromObject(data)));
+      client_.DoCEEvent(new JSEvents.CEEvent("add", JObject.FromObject(data)));
     }
     
     private void RemoveCE(CEDirectorData data) {
       if (ces.ContainsKey(data.ceKey)) {
-        client_.DispatchToJS(new JSEvents.CEEvent("remove", JObject.FromObject(data)));
+        client_.DoCEEvent(new JSEvents.CEEvent("remove", JObject.FromObject(data)));
         ces.TryRemove(data.ceKey, out _);
       }
     }
     private void UpdateCE(CEDirectorData data) {
       ces.AddOrUpdate(data.ceKey, data, (int key, CEDirectorData oldValue) => data);
-      client_.DispatchToJS(new JSEvents.CEEvent("update", JObject.FromObject(data)));
+      client_.DoCEEvent(new JSEvents.CEEvent("update", JObject.FromObject(data)));
     }
 
     public void RemoveAndClearCEs() {
       foreach (int ceKey in ces.Keys) {
-        client_.DispatchToJS(new JSEvents.CEEvent("remove", JObject.FromObject(ces[ceKey])));
+        client_.DoCEEvent(new JSEvents.CEEvent("remove", JObject.FromObject(ces[ceKey])));
       }
       ces.Clear();
     }
@@ -288,29 +274,27 @@ namespace Cactbot {
     private void AddFate(int fateID) {
       if (!fates.ContainsKey(fateID)) {
         fates.TryAdd(fateID, 0);
-        client_.DispatchToJS(new JSEvents.FateEvent("add", fateID, 0));
+        client_.DoFateEvent(new JSEvents.FateEvent("add", fateID, 0));
       }
     }
 
     private void RemoveFate(int fateID) {
       if (fates.ContainsKey(fateID)) {
-        client_.DispatchToJS(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
+        client_.DoFateEvent(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
         fates.TryRemove(fateID, out _);
       }
     }
 
     private void UpdateFate(int fateID, int progress) {
       fates.AddOrUpdate(fateID, progress, (int id, int prog) => progress);
-      client_.DispatchToJS(new JSEvents.FateEvent("update", fateID, progress));
+      client_.DoFateEvent(new JSEvents.FateEvent("update", fateID, progress));
     }
 
     public void RemoveAndClearFates() {
       foreach (int fateID in fates.Keys) {
-        client_.DispatchToJS(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
+        client_.DoFateEvent(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
       }
       fates.Clear();
     }
-
-
   }
 }

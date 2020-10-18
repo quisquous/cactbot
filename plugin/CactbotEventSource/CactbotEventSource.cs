@@ -84,7 +84,7 @@ namespace Cactbot {
     public event FateEventHandler OnFateEvent;
     
     public delegate void CEEventHandler(JSEvents.CEEvent e);
-    public event FateEventHandler OnCEEvent;
+    public event CEEventHandler OnCEEvent;
 
     public void Wipe() {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
@@ -93,6 +93,10 @@ namespace Cactbot {
 
     public void DoFateEvent(JSEvents.FateEvent e) {
       OnFateEvent(e);
+    }
+
+    public void DoCEEvent(JSEvents.CEEvent e) {
+      OnCEEvent(e);
     }
 
     public CactbotEventSource(RainbowMage.OverlayPlugin.ILogger logger)

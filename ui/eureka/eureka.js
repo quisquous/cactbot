@@ -118,17 +118,7 @@ let Options = {
       'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
-      'gCastrumLacusLitoreRegex': Regexes.parse(/00:0039:The assault on Castrum Lacus Litore has begun!/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
-    },
-    de: {
-      'gCastrumLacusLitoreRegex': Regexes.parse(/00:0039:Der Angriff auf Castrum Lacus Litore hat begonnen!/),
-    },
-    fr: {
-      'gCastrumLacusLitoreRegex': Regexes.parse(/00:0039:L'assaut sur Castrum Lacus Litore a été lancé!/),
-    },
-    ja: {
-      'gCastrumLacusLitoreRegex': Regexes.parse(/00:0039:攻城戦が発生しました！/),
     },
     cn: {
       'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)(?:常风之地|恒冰之地|涌火之地|丰水之地) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
@@ -2556,6 +2546,18 @@ class EurekaTracker {
       let match = log.match(gFlagRegex);
       if (match)
         this.AddFlag(match[2], match[3], match[1], match[4]);
+
+      if (this.fairy) {
+        if (log.includes(' 03:') || log.includes('00:0839:')) {
+          match = log.match(this.fairy.regex);
+          if (match)
+            this.AddFairy(match.groups);
+        }
+      }
+
+      if (!this.zoneInfo.hasTracker)
+        return;
+
       let gTrackerRegex = this.TransByParserLang(this.options.Regex, 'gTrackerRegex');
       match = log.match(gTrackerRegex);
       if (match)
@@ -2565,13 +2567,6 @@ class EurekaTracker {
       if (match) {
         this.ImportFromTracker(match[2]);
         continue;
-      }
-      if (this.fairy) {
-        if (log.includes(' 03:') || log.includes('00:0839:')) {
-          match = log.match(this.fairy.regex);
-          if (match)
-            this.AddFairy(match.groups);
-        }
       }
     }
   }
@@ -2617,14 +2612,13 @@ class EurekaTracker {
   }
 
   OnCE(e) {
-    // Upon entering Eureka we usually receive the fate info before
+    // Upon entering Eureka we usually receive the CE info before
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
     if (!this.zoneInfo) {
       this.ceQueue.push(e);
       return;
     }
-    console.log(e.detail.eventType + ' | ' + e.detail.data.ceKey + ' | ' + e.detail.data.ceStatus + ' | ' + e.detail.data.numPlayers + ' | ' + e.detail.data.timeRemaining + ' | ' + e.detail.data.progress);
     switch (e.detail.eventType) {
     case 'add':
       for (let key of this.nmKeys) {
@@ -2648,7 +2642,7 @@ class EurekaTracker {
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
         if (e.detail.data.ceKey == nm.ceKey) {
-          if (e.detail.data.ceStatus == 'Commenced')
+          if (e.detail.data.status == 3)
             this.OnFateUpdate(nm, e.detail.data.progress);
           return;
         }
