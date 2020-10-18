@@ -2619,7 +2619,6 @@ class EurekaTracker {
       this.CEQueue.push(e);
       return;
     }
-    console.log(e.detail.eventType + ' | ' + e.detail.data.ceKey + ' | ' + e.detail.data.status + ' | ' + e.detail.data.numPlayers + ' | ' + e.detail.data.timeRemaining + ' | ' + e.detail.data.progress);
     switch (e.detail.eventType) {
     case 'add':
       for (let key of this.nmKeys) {

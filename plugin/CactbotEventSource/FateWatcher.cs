@@ -228,7 +228,7 @@ namespace Cactbot {
     public unsafe void ProcessCEDirector(byte* buffer, byte[] message) {
       CEDirectorData data = *(CEDirectorData*)&buffer[0];
 
-      if (data.status!= 0 && !ces.ContainsKey(data.ceKey)) {
+      if (data.status != 0 && !ces.ContainsKey(data.ceKey)) {
         AddCE(data);
         return;
       } else {
