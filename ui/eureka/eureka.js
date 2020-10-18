@@ -1696,33 +1696,32 @@ let Options = {
       shortName: 'bozjasouthern',
       hasTracker: false,
       dontShowInactive: true,
-      // TODO: this isn't accurate...
-      mapToPixelXScalar: 54.55,
-      mapToPixelXConstant: -637.9,
-      mapToPixelYScalar: 46.65,
-      mapToPixelYConstant: -270.675,
+      mapToPixelXScalar: 47.911,
+      mapToPixelXConstant: -292.56,
+      mapToPixelYScalar: 48.938,
+      mapToPixelYConstant: -349.22,
       nms: {
         sneak: {
           label: {
             en: 'Sneak',
           },
-          x: 24.4,
-          y: 26.5,
+          x: 20.3,
+          y: 26.8,
           fateID: 1597,
         },
         beasts: {
           label: {
             en: 'Beasts',
           },
-          x: 24.4,
-          y: 26.5,
+          x: 20.3,
+          y: 26.8,
           fateID: 1599,
         },
         robots: {
           label: {
             en: 'Robots',
           },
-          x: 27.9,
+          x: 24.8,
           y: 27.5,
           fateID: 1598,
         },
@@ -1730,7 +1729,7 @@ let Options = {
           label: {
             en: 'Unrest',
           },
-          x: 27.9,
+          x: 24.8,
           y: 27.5,
           fateID: 1600,
         },
@@ -1738,7 +1737,7 @@ let Options = {
           label: {
             en: 'Machine',
           },
-          x: 30.7,
+          x: 28.4,
           y: 29.3,
           fateID: 1601,
         },
@@ -1746,224 +1745,224 @@ let Options = {
           label: {
             en: 'Plants',
           },
-          x: 36.5,
-          y: 28.9,
+          x: 34.4,
+          y: 29.3,
           fateID: 1602,
         },
         seeq: {
           label: {
             en: 'Seeq',
           },
-          x: 31.8,
-          y: 25.4,
+          x: 28.9,
+          y: 26.1,
           fateID: 1603,
         },
         pets: {
           label: {
             en: 'Pets',
           },
-          x: 21.8,
-          y: 26.2,
+          x: 17.3,
+          y: 26.6,
           fateID: 1604,
         },
         firstlaw: {
           label: {
             en: 'First Law',
           },
-          x: 36.5,
-          y: 28.9,
+          x: 34.4,
+          y: 29.3,
           fateID: 1605,
         },
         heal: {
           label: {
             en: 'Heal',
           },
-          x: 31.8,
-          y: 25.4,
+          x: 28.9,
+          y: 26.1,
           fateID: 1606,
         },
         mash: {
           label: {
             en: 'Mash',
           },
-          x: 33.8,
-          y: 21.8,
+          x: 31.3,
+          y: 22.0,
           fateID: 1607,
         },
         alert: {
           label: {
             en: 'Alert',
           },
-          x: 30.1,
-          y: 17.5,
+          x: 27.3,
+          y: 17.7,
           fateID: 1608,
         },
         unicorn: {
           label: {
             en: 'Unicorn',
           },
-          x: 34.4,
-          y: 16.2,
+          x: 32.3,
+          y: 17.0,
           fateID: 1609,
         },
         recreation: {
           label: {
             en: 'Recreation',
           },
-          x: 29.4,
-          y: 21.9,
+          x: 25.6,
+          y: 22.6,
           fateID: 1610,
         },
         element: {
           label: {
             en: 'Element',
           },
-          x: 21.5,
-          y: 23.0,
+          x: 17.5,
+          y: 23.4,
           fateID: 1611,
         },
         heavyboots: {
           label: {
             en: 'Boots',
           },
-          x: 33.8,
-          y: 21.8,
+          x: 31.3,
+          y: 22.0,
           fateID: 1612,
         },
         camping: {
           label: {
             en: 'Camping',
           },
-          x: 21.5,
-          y: 23.0,
+          x: 17.5,
+          y: 23.4,
           fateID: 1613,
         },
         scavengers: {
           label: {
             en: 'Scavengers',
           },
-          x: 29.4,
-          y: 21.9,
+          x: 25.6,
+          y: 22.6,
           fateID: 1614,
         },
         helpwanted: {
           label: {
             en: 'Help Wanted',
           },
-          x: 22.4,
-          y: 19.9,
+          x: 18.3,
+          y: 20.7,
           fateID: 1615,
         },
         pyromancer: {
           label: {
             en: 'Pyromancer',
           },
-          x: 22.4,
-          y: 19.9,
+          x: 18.3,
+          y: 20.7,
           fateID: 1616,
         },
         rainbow: {
           label: {
             en: 'Rainbow',
           },
-          x: 28.1,
-          y: 16.0,
+          x: 25.1,
+          y: 15.0,
           fateID: 1617,
         },
         wildbunch: {
           label: {
             en: 'Wild Bunch',
           },
-          x: 24.7,
-          y: 13.7,
+          x: 21.0,
+          y: 14.3,
           fateID: 1618,
         },
         family: {
           label: {
             en: 'Family',
           },
-          x: 15.9,
-          y: 13.8,
+          x: 14.0,
+          y: 15.3,
           fateID: 1619,
         },
         mechanicalman: {
           label: {
             en: 'Mechanical Man',
           },
-          x: 24.4,
-          y: 16.8,
+          x: 24.8,
+          y: 17.1,
           fateID: 1620,
         },
         murder: {
           label: {
             en: 'Murder',
           },
-          x: 18.7,
-          y: 14.2,
+          x: 14.0,
+          y: 15.3,
           fateID: 1621,
         },
         seeking: {
           label: {
             en: 'Seeking',
           },
-          x: 28.1,
-          y: 16.0,
+          x: 24.8,
+          y: 17.1,
           fateID: 1622,
         },
         suppliesparty: {
           label: {
             en: 'Supplies Party',
           },
-          x: 24.7,
-          y: 13.7,
+          x: 21.0,
+          y: 14.3,
           fateID: 1623,
         },
         demonic: {
           label: {
             en: 'Family',
           },
-          x: 16.3,
-          y: 19.6,
+          x: 11.1,
+          y: 20.2,
           fateID: 1624,
         },
         absentfriends: {
           label: {
             en: 'Absent',
           },
-          x: 18.6,
-          y: 17.4,
+          x: 13.8,
+          y: 18.3,
           fateID: 1625,
         },
         steelflame: {
           label: {
             en: 'Steel',
           },
-          x: 18.6,
-          y: 17.4,
+          x: 13.8,
+          y: 18.3,
           fateID: 1626,
         },
         dogsofwar: {
           label: {
             en: 'Dogs of War',
           },
-          x: 18.7,
-          y: 14.2,
+          x: 14.0,
+          y: 15.3,
           fateID: 1627,
         },
         warmachines: {
           label: {
             en: 'War',
           },
-          x: 16.3,
-          y: 19.6,
+          x: 11.1,
+          y: 20.2,
           fateID: 1628,
         },
         castrumlacuslitore: {
           label: {
             en: 'Castrum',
           },
-          x: 24.2,
-          y: 10.8,
+          x: 18.9,
+          y: 12.6,
           isCritical: true,
           respawnMinutes: 60,
         },
