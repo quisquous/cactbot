@@ -51,6 +51,17 @@ UserConfig.registerOptions('eureka', {
       },
     },
     {
+      id: 'CriticalPopVolume',
+      name: {
+        en: 'Volume of the critical engagement pop sound (0-1)',
+      },
+      type: 'float',
+      default: 0.3,
+      setterFunc: (options, value) => {
+        options['CriticalPopVolume'] = value;
+      },
+    },
+    {
       id: 'RefreshRateSeconds',
       name: {
         en: 'Update rate of nm cooldowns (seconds)',

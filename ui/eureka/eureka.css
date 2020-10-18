@@ -86,6 +86,10 @@
   transform: translate(-50%, -40%);
 }
 
+.nm-hidden {
+  display: none;
+}
+
 .nm-name {
   display: block;
   text-align: center;
@@ -139,6 +143,29 @@
   color: #8686ff;
   font-size: 18px;
   animation: pulse 1s infinite alternate;
+}
+
+.critical .nm-name {
+  color: #d25454;
+}
+
+.critical-pop .nm-name {
+  color: #c84123;
+  font-size: 18px;
+  animation: pulse 1s infinite alternate;
+}
+
+.critical-pop .nm-progress {
+  color: #c84123;
+  font-size: 12px;
+}
+
+.critical-pop .nm-icon {
+  display: none;
+}
+
+.critical-pop .nm-time {
+  display: none;
 }
 
 .bunny.nm-pop .nm-name {
