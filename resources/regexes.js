@@ -592,7 +592,9 @@ var Regexes = {
       LogType: '[0-9A-Fa-f]{2}',
       AbilityCode: '[0-9A-Fa-f]{1,8}',
       ObjectId: '[0-9A-F]{8}',
-      Name: '[^\\s:|]+(?: [^\\s:|]+)?',
+      // Matches any character name (including empty strings which the FFXIV
+      // ACT plugin can generate when unknown).
+      Name: '(?:[^\\s:|]+(?: [^\\s:|]+)?|)',
       // Floats can have comma as separator in FFXIV plugin output: https://github.com/ravahn/FFXIV_ACT_Plugin/issues/137
       Float: '-?[0-9]+(?:[.,][0-9]+)?(?:E-?[0-9]+)?',
     };
