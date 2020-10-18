@@ -219,7 +219,7 @@ or to know the details of how the FFXIV ACT plugin writes things.
 The set of extensions are:
 
 * `\y{Float}`: Matches a floating-point number, accounting for locale-specific encodings.
-* `\y{Name}`: Matches any character or ability name (including empty strings which the FFXIV ACT plugin can generate when unknown).
+* `\y{Name}`: Matches any character name (including empty strings which the FFXIV ACT plugin can generate when unknown).
 * `\y{ObjectId}`: Matches the 8 hex character object id in network log lines.
 * `\y{AbilityCode}`: Matches the FFXIV ACT plugin's format for the number code of a spell or ability.
 * `\y{Timestamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
