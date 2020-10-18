@@ -1877,20 +1877,20 @@ let Options = {
           y: 14.3,
           fateID: 1618,
         },
-        family: {
+        familyotheranimals: {
           label: {
-            en: 'Family',
+            en: 'Other Animals',
           },
-          x: 14.0,
-          y: 15.3,
+          x: 11.0,
+          y: 14.6,
           fateID: 1619,
         },
         mechanicalman: {
           label: {
             en: 'Mechanical Man',
           },
-          x: 24.8,
-          y: 17.1,
+          x: 20.8,
+          y: 17.7,
           fateID: 1620,
         },
         murder: {
@@ -1919,7 +1919,7 @@ let Options = {
         },
         demonic: {
           label: {
-            en: 'Family',
+            en: 'Demonic',
           },
           x: 11.1,
           y: 20.2,
@@ -1964,7 +1964,146 @@ let Options = {
           x: 18.9,
           y: 12.6,
           isCritical: true,
+          ceKey: 0,
           respawnMinutes: 60,
+        },
+        killitwithfire: {
+          label: {
+            en: 'Kill It With Fire',
+          },
+          x: 17.4,
+          y: 26.9,
+          isCritical: true,
+          ceKey: 1,
+        },
+        bayinghounds: {
+          label: {
+            en: 'Baying Hounds',
+          },
+          x: 22.8,
+          y: 28.8,
+          isCritical: true,
+          ceKey: 2,
+        },
+        vigilforthelost: {
+          label: {
+            en: 'Vigil',
+          },
+          x: 28.4,
+          y: 29.5,
+          isCritical: true,
+          ceKey: 3,
+        },
+        aceshigh: {
+          label: {
+            en: 'Aces High',
+          },
+          x: 32.3,
+          y: 26.8,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 4,
+        },
+        shadowdeathshand: {
+          label: {
+            en: 'Shadow',
+          },
+          x: 36.5,
+          y: 25.8,
+          isCritical: true,
+          ceKey: 5,
+        },
+        finalfurlong: {
+          label: {
+            en: 'Final Furlong',
+          },
+          x: 33.3,
+          y: 17.5,
+          isCritical: true,
+          ceKey: 5,
+        },
+        choctober: {
+          label: {
+            en: 'Choctober',
+          },
+          x: 27.3,
+          y: 17.7,
+          isCritical: true,
+          ceKey: 7,
+        },
+        beastofman: {
+          label: {
+            en: 'Beast of Man',
+          },
+          x: 23.3,
+          y: 20.4,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 8,
+        },
+        firesofwar: {
+          label: {
+            en: 'Fires of War',
+          },
+          x: 20.8,
+          y: 23.9,
+          isCritical: true,
+          ceKey: 9,
+        },
+        patriotgames: {
+          label: {
+            en: 'Patriot Games',
+          },
+          x: 14.2,
+          y: 21.2,
+          isCritical: true,
+          ceKey: 10,
+        },
+        trampledunderhoof: {
+          label: {
+            en: 'Trampled',
+          },
+          x: 14.2,
+          y: 21.2,
+          isCritical: true,
+          ceKey: 11,
+        },
+        flameswenthigher: {
+          label: {
+            en: 'Flames',
+          },
+          x: 18.8,
+          y: 15.9,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 12,
+        },
+        metalfoxchaos: {
+          label: {
+            en: 'Metal Fox Chaos',
+          },
+          x: 13.8,
+          y: 18.3,
+          isCritical: true,
+          ceKey: 13,
+        },
+        riseoftherobots: {
+          label: {
+            en: 'Rise',
+          },
+          x: 21.2,
+          y: 17.6,
+          isCritical: true,
+          ceKey: 14,
+        },
+        wherestrodebehemoth: {
+          label: {
+            en: 'Behemoth',
+          },
+          x: 24.2,
+          y: 14.9,
+          isCritical: true,
+          ceKey: 15,
         },
       },
     },
@@ -1995,6 +2134,7 @@ class EurekaTracker {
     this.ResetZone();
     this.updateTimesHandle = null;
     this.fateQueue = [];
+    this.CEQueue = [];
   }
 
   TransByParserLang(obj, key) {
@@ -2056,7 +2196,7 @@ class EurekaTracker {
 
     if (nm.isCritical)
       label.classList.add('critical');
-    if (this.zoneInfo.dontShowInactive && !nm.isCritical)
+    if (this.zoneInfo.dontShowInactive)
       label.classList.add('nm-hidden');
 
     label.id = nm;
@@ -2149,6 +2289,7 @@ class EurekaTracker {
       }
       this.InitNMs();
       this.ProcessFateQueue();
+      this.ProcessCEQueue();
       this.UpdateTimes();
     } else {
       if (this.updateTimesHandle)
@@ -2201,21 +2342,21 @@ class EurekaTracker {
   }
 
   OnFateUpdate(fate, percent) {
-    if (fate.element.classList.contains('nm-pop'))
+    if (fate.element.classList.contains('nm-pop') || fate.element.classList.contains('critical-pop'))
       fate.progressElement.innerText = percent + '%';
   }
 
   OnFateKill(fate) {
     this.UpdateTimes();
     if (fate.element.classList.contains('nm-pop')) {
-      if (this.zoneInfo.dontShowInactive && !fate.isCritical)
+      if (this.zoneInfo.dontShowInactive)
         fate.element.classList.add('nm-hidden');
       fate.element.classList.add('nm-down');
       fate.element.classList.remove('nm-pop');
       fate.progressElement.innerText = null;
       return;
     } else if (fate.element.classList.contains('critical-pop')) {
-      if (this.zoneInfo.dontShowInactive && !fate.isCritical)
+      if (this.zoneInfo.dontShowInactive)
         fate.element.classList.add('nm-hidden');
       fate.element.classList.add('critical-down');
       fate.element.classList.remove('critical-pop');
@@ -2227,6 +2368,11 @@ class EurekaTracker {
   ProcessFateQueue() {
     while (this.fateQueue.length != 0)
       this.OnFate(this.fateQueue.pop());
+  }
+
+  ProcessCEQueue() {
+    while (this.CEQueue.length != 0)
+      this.OnCE(this.CEQueue.pop());
   }
 
   UpdateTimes() {
@@ -2293,6 +2439,9 @@ class EurekaTracker {
     document.getElementById('label-time-text').innerHTML = timeStr;
 
     document.getElementById('label-tracker').innerHTML = this.currentTracker;
+
+    if (this.zoneInfo.shortName == 'bozjasouthern')
+      return;
 
     for (let i = 0; i < this.nmKeys.length; ++i) {
       let nm = this.nms[this.nmKeys[i]];
@@ -2417,15 +2566,6 @@ class EurekaTracker {
         this.ImportFromTracker(match[2]);
         continue;
       }
-      let gCastrumLacusLitoreRegex = this.TransByParserLang(this.options.Regex, 'gCastrumLacusLitoreRegex');
-      match = log.match(gCastrumLacusLitoreRegex);
-      if (match) {
-        this.OnFatePop(this.nms.castrumlacuslitore);
-        // big hack to reset the CE 5 minutes after it pops
-        setTimeout(function() {
-          gTracker.OnFateKill(gTracker.nms.castrumlacuslitore);
-        }, 300000);
-      }
       if (this.fairy) {
         if (log.includes(' 03:') || log.includes('00:0839:')) {
           match = log.match(this.fairy.regex);
@@ -2469,6 +2609,47 @@ class EurekaTracker {
         let nm = this.nms[key];
         if (e.detail.fateID == nm.fateID) {
           this.OnFateUpdate(nm, e.detail.progress);
+          return;
+        }
+      }
+      break;
+    }
+  }
+
+  OnCE(e) {
+    // Upon entering Eureka we usually receive the fate info before
+    // this.zoneInfo is loaded, so lets store the events until we're
+    // able to process them.
+    if (!this.zoneInfo) {
+      this.ceQueue.push(e);
+      return;
+    }
+    console.log(e.detail.eventType + ' | ' + e.detail.data.ceKey + ' | ' + e.detail.data.ceStatus + ' | ' + e.detail.data.numPlayers + ' | ' + e.detail.data.timeRemaining + ' | ' + e.detail.data.progress);
+    switch (e.detail.eventType) {
+    case 'add':
+      for (let key of this.nmKeys) {
+        let nm = this.nms[key];
+        if (e.detail.data.ceKey == nm.ceKey) {
+          this.OnFatePop(nm);
+          return;
+        }
+      }
+      break;
+    case 'remove':
+      for (let key of this.nmKeys) {
+        let nm = this.nms[key];
+        if (e.detail.data.ceKey == nm.ceKey) {
+          this.OnFateKill(nm);
+          return;
+        }
+      }
+      break;
+    case 'update':
+      for (let key of this.nmKeys) {
+        let nm = this.nms[key];
+        if (e.detail.data.ceKey == nm.ceKey) {
+          if (e.detail.data.ceStatus == 'Commenced')
+            this.OnFateUpdate(nm, e.detail.data.progress);
           return;
         }
       }
@@ -2576,6 +2757,9 @@ UserConfig.getUserConfigLocation('eureka', Options, function(e) {
   });
   addOverlayListener('onFateEvent', function(e) {
     gTracker.OnFate(e);
+  });
+  addOverlayListener('onCEEvent', function(e) {
+    gTracker.OnCE(e);
   });
 
   gTracker = new EurekaTracker(Options);

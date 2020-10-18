@@ -6,6 +6,7 @@ using FFXIV_ACT_Plugin.Common;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using Newtonsoft.Json.Linq;
 
 namespace Cactbot {
   public class FateWatcher {
@@ -23,33 +24,89 @@ namespace Cactbot {
     // Fate update
     // param1: fateID
     // param2: progress (0-100)
-    private struct OPCodes {
-    public OPCodes(int add_, int remove_, int update_) { this.add = add_; this.remove = remove_; this.update = update_; }
+    private struct AC143OPCodes {
+      public AC143OPCodes(int add_, int remove_, int update_) { this.add = add_; this.remove = remove_; this.update = update_; }
       public int add;
       public int remove;
       public int update;
     };
-    private OPCodes v5_2 = new OPCodes(
+    private static readonly AC143OPCodes ac143_v5_2 = new AC143OPCodes(
       0x935,
       0x936,
       0x93E
     );
 
-    private Dictionary<string, OPCodes> opcodes = null;
+    private struct CEDirectorOPCodes {
+      public CEDirectorOPCodes(int size_, int opcode_) { this.size = size_; this.opcode = opcode_; }
+      public int size;
+      public int opcode;
+    }
+
+    private static readonly CEDirectorOPCodes cedirector_v5_35 = new CEDirectorOPCodes(
+      0x30,
+      0x299
+    );
+
+    private struct ActorControl143{
+      public ActorControl143(Type messagetype_, Assembly assembly_) {
+        packetType = assembly_.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
+        size = Marshal.SizeOf(packetType);
+        categoryOffset = GetOffset(packetType, "category");
+        param1Offset = GetOffset(packetType, "param1");
+        param2Offset = GetOffset(packetType, "param2");
+        opCode = GetOpcode(messagetype_, "ActorControl143");
+      }
+      public Type packetType;
+      public int size;
+      public int categoryOffset;
+      public int param1Offset;
+      public int param2Offset;
+      public int opCode;
+    };
+
+    [Serializable]
+    [StructLayout(LayoutKind.Explicit)]
+    public struct CEDirectorData {
+      public enum CEStatus : byte {
+        None = 0,
+        Registration,
+        Preparing,
+        Commenced, 
+      }
+
+      [FieldOffset(0x20)]
+      public UInt32 popTime;
+      [FieldOffset(0x24)]
+      public UInt16 timeRemaining;
+      [FieldOffset(0x28)]
+      public Byte ceKey;
+      [FieldOffset(0x29)]
+      public Byte numPlayers;
+      [NonSerialized]
+      [FieldOffset(0x2A)]
+      public CEStatus status;
+      [FieldOffset(0x2C)]
+      public Byte progress;
+
+      public String ceStatus {
+        get {
+          return !Enum.IsDefined(typeof(CEStatus), status) ? "None" : status.ToString();
+        }
+      }
+    };
+
+    private Dictionary<string, AC143OPCodes> ac143opcodes = null;
+    private Dictionary<string, CEDirectorOPCodes> cedirectoropcodes = null;
 
     private Type MessageType = null;
-    private Type ActorControl143 = null;
-    private int ActorControl143_Size = 0;
-    private int Header_Offset = 0;
-    private Type msgHeader = null;
-    private int MessageType_Offset = 0;
-    private int Category_Offset = 0;
-    private int Param1_Offset = 0;
-    private int Param2_Offset = 0;
-    private ushort ActorControl143_Opcode = 0;
+    private Type messageHeader = null;
+    public int headerOffset = 0;
+    public int messageTypeOffset = 0;
+    private ActorControl143 actorControl143;
 
     // fates<fateID, progress>
     private static ConcurrentDictionary<int, int> fates;
+    private static ConcurrentDictionary<int, CEDirectorData> ces;
 
     public FateWatcher(CactbotEventSource client, string language) {
       client_ = client;
@@ -60,12 +117,16 @@ namespace Cactbot {
       else
         region_ = "intl";
 
-      opcodes = new Dictionary<string, OPCodes>();
-      opcodes.Add("ko", v5_2);
-      opcodes.Add("cn", v5_2);
-      opcodes.Add("intl", v5_2);
+      ac143opcodes = new Dictionary<string, AC143OPCodes>();
+      ac143opcodes.Add("ko", ac143_v5_2);
+      ac143opcodes.Add("cn", ac143_v5_2);
+      ac143opcodes.Add("intl", ac143_v5_2);
+
+      cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
+      cedirectoropcodes.Add("intl", cedirector_v5_35);
 
       fates = new ConcurrentDictionary<int, int>();
+      ces = new ConcurrentDictionary<int, CEDirectorData>();
 
       var FFXIV = ActGlobals.oFormActMain.ActPlugins.FirstOrDefault(x => x.lblPluginTitle.Text == "FFXIV_ACT_Plugin.dll");
       if (FFXIV != null && FFXIV.pluginObj != null) {
@@ -78,19 +139,11 @@ namespace Cactbot {
 
       var mach = Assembly.Load("Machina.FFXIV");
       MessageType = mach.GetType("Machina.FFXIV.Headers.Server_MessageType");
-      ActorControl143 = mach.GetType("Machina.FFXIV.Headers.Server_ActorControl143");
-      ActorControl143_Size = Marshal.SizeOf(ActorControl143);
 
-      Header_Offset = GetOffset(ActorControl143, "MessageHeader");
-      msgHeader = ActorControl143.GetField("MessageHeader").FieldType;
-
-      MessageType_Offset = Header_Offset + GetOffset(msgHeader, "MessageType");
-
-      Category_Offset = GetOffset(ActorControl143, "category");
-      Param1_Offset = GetOffset(ActorControl143, "param1");
-      Param2_Offset = GetOffset(ActorControl143, "param2");
-
-      ActorControl143_Opcode = GetOpcode("ActorControl143");
+      actorControl143 = new ActorControl143(MessageType, mach);
+      headerOffset = GetOffset(actorControl143.packetType, "MessageHeader");
+      messageHeader = actorControl143.packetType.GetField("MessageHeader").FieldType;
+      messageTypeOffset = headerOffset + GetOffset(messageHeader, "MessageType");
     }
 
     public void Start() {
@@ -106,7 +159,7 @@ namespace Cactbot {
 
     // GetOffset, GetEnumValue, GetOpcode copied directly from ngld's OverlayPlugin with deep gratitude
     // Source: https://github.com/ngld/OverlayPlugin/blob/8f147d2cd11fa8c9713be2a8c2296a099bfa54ac/OverlayPlugin.Core/NetworkParser.cs
-    private int GetOffset(Type type, string property) {
+    private static int GetOffset(Type type, string property) {
       int offset = 0;
 
       foreach (var prop in type.GetFields()) {
@@ -129,7 +182,7 @@ namespace Cactbot {
       return offset;
     }
 
-    private object GetEnumValue(Type type, string name) {
+    private static object GetEnumValue(Type type, string name) {
       foreach (var value in type.GetEnumValues()) {
         if (value.ToString() == name)
           return Convert.ChangeType(value, Enum.GetUnderlyingType(type));
@@ -138,37 +191,44 @@ namespace Cactbot {
       throw new Exception($"Enum value {name} not found in {type}!");
     }
 
-    private ushort GetOpcode(string name) {
+    private static ushort GetOpcode(Type type, string name) {
       // FFXIV_ACT_Plugin 2.0.4.14 converted Server_MessageType from enum to struct. Deal with each type appropriately.
-      if (MessageType.IsEnum) {
-        return (ushort)GetEnumValue(MessageType, name);
+      if (type.IsEnum) {
+        return (ushort)GetEnumValue(type, name);
       } else {
-        var value = MessageType.GetField(name).GetValue(null);
+        var value = type.GetField(name).GetValue(null);
         return (ushort)value.GetType().GetProperty("InternalValue").GetValue(value);
       }
     }
 
     private unsafe void MessageReceived(string id, long epoch, byte[] message) {
-      if (message.Length < ActorControl143_Size)
+      if (message.Length < actorControl143.size && message.Length < cedirectoropcodes[region_].size)
         return;
 
       fixed (byte* buffer = message) {
-        if (*((ushort*)&buffer[MessageType_Offset]) == ActorControl143_Opcode) {
-          ProcessMessage(buffer, message);
+        if (*(ushort*)&buffer[messageTypeOffset] == actorControl143.opCode) {
+          ProcessActorControl143(buffer, message);
+          return;
+        }
+        if (cedirectoropcodes.ContainsKey(region_)) {
+          if (*(ushort*)&buffer[messageTypeOffset] == cedirectoropcodes[region_].opcode) {
+            ProcessCEDirector(buffer, message);
+            return;
+          }
         }
       }
     }
 
-    public unsafe void ProcessMessage(byte* buffer, byte[] message) {
-      int a = *(ushort*)&buffer[Category_Offset];
+    public unsafe void ProcessActorControl143(byte* buffer, byte[] message) {
+      int a = *(ushort*)&buffer[actorControl143.categoryOffset];
 
-      if (a == opcodes[region_].add) {
-        AddFate(*(int*)&buffer[Param1_Offset]);
-      } else if (a == opcodes[region_].remove) {
-        RemoveFate(*(int*)&buffer[Param1_Offset]);
-      } else if (a == opcodes[region_].update) {
-        int param1 = *(int*)&buffer[Param1_Offset];
-        int param2 = *(int*)&buffer[Param2_Offset];
+      if (a == ac143opcodes[region_].add) {
+        AddFate(*(int*)&buffer[actorControl143.param1Offset]);
+      } else if (a == ac143opcodes[region_].remove) {
+        RemoveFate(*(int*)&buffer[actorControl143.param1Offset]);
+      } else if (a == ac143opcodes[region_].update) {
+        int param1 = *(int*)&buffer[actorControl143.param1Offset];
+        int param2 = *(int*)&buffer[actorControl143.param2Offset];
         if (!fates.ContainsKey(param1)) {
           AddFate(param1);
         }
@@ -176,6 +236,53 @@ namespace Cactbot {
           UpdateFate(param1, param2);
         }
       }
+    }
+
+    public unsafe void ProcessCEDirector(byte* buffer, byte[] message) {
+      CEDirectorData data = *(CEDirectorData*)&buffer[0];
+
+      if (!ces.ContainsKey(data.ceKey)) {
+        AddCE(data);
+        return;
+      } else {
+
+        // Don't update if key is about to be removed
+        if (!ces[data.ceKey].Equals(data) &&
+          data.status != CEDirectorData.CEStatus.None) {
+          UpdateCE(data);
+          return;
+        }
+
+        // Needs removing
+        if (ces[data.ceKey].status != CEDirectorData.CEStatus.None
+          && data.status == CEDirectorData.CEStatus.None) {
+          RemoveCE(data);
+          return;
+        }
+      }
+    }
+
+    private void AddCE(CEDirectorData data) {
+      ces.TryAdd(data.ceKey, data);
+      client_.DispatchToJS(new JSEvents.CEEvent("add", JObject.FromObject(data)));
+    }
+    
+    private void RemoveCE(CEDirectorData data) {
+      if (ces.ContainsKey(data.ceKey)) {
+        client_.DispatchToJS(new JSEvents.CEEvent("remove", JObject.FromObject(data)));
+        ces.TryRemove(data.ceKey, out _);
+      }
+    }
+    private void UpdateCE(CEDirectorData data) {
+      ces.AddOrUpdate(data.ceKey, data, (int key, CEDirectorData oldValue) => data);
+      client_.DispatchToJS(new JSEvents.CEEvent("update", JObject.FromObject(data)));
+    }
+
+    public void RemoveAndClearCEs() {
+      foreach (int ceKey in ces.Keys) {
+        client_.DispatchToJS(new JSEvents.CEEvent("remove", JObject.FromObject(ces[ceKey])));
+      }
+      ces.Clear();
     }
 
     private void AddFate(int fateID) {
@@ -203,5 +310,7 @@ namespace Cactbot {
       }
       fates.Clear();
     }
+
+
   }
 }

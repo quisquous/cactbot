@@ -82,6 +82,9 @@ namespace Cactbot {
 
     public delegate void FateEventHandler(JSEvents.FateEvent e);
     public event FateEventHandler OnFateEvent;
+    
+    public delegate void CEEventHandler(JSEvents.CEEvent e);
+    public event FateEventHandler OnCEEvent;
 
     public void Wipe() {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
@@ -108,6 +111,7 @@ namespace Cactbot {
         "onInCombatChangedEvent",
         "onZoneChangedEvent",
         "onFateEvent",
+        "onCEEvent",
         "onPlayerDied",
         "onPartyWipe",
         "onPlayerChangedEvent",
@@ -271,6 +275,7 @@ namespace Cactbot {
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
       OnFateEvent += (e) => DispatchToJS(e);
+      OnCEEvent += (e) => DispatchToJS(e);
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
