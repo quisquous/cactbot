@@ -82,6 +82,9 @@ namespace Cactbot {
 
     public delegate void FateEventHandler(JSEvents.FateEvent e);
     public event FateEventHandler OnFateEvent;
+    
+    public delegate void CEEventHandler(JSEvents.CEEvent e);
+    public event CEEventHandler OnCEEvent;
 
     public void Wipe() {
       Advanced_Combat_Tracker.ActGlobals.oFormActMain.EndCombat(false);
@@ -90,6 +93,10 @@ namespace Cactbot {
 
     public void DoFateEvent(JSEvents.FateEvent e) {
       OnFateEvent(e);
+    }
+
+    public void DoCEEvent(JSEvents.CEEvent e) {
+      OnCEEvent(e);
     }
 
     public CactbotEventSource(RainbowMage.OverlayPlugin.ILogger logger)
@@ -108,6 +115,7 @@ namespace Cactbot {
         "onInCombatChangedEvent",
         "onZoneChangedEvent",
         "onFateEvent",
+        "onCEEvent",
         "onPlayerDied",
         "onPartyWipe",
         "onPlayerChangedEvent",
@@ -271,6 +279,7 @@ namespace Cactbot {
       OnPlayerDied += (e) => DispatchToJS(e);
       OnPartyWipe += (e) => DispatchToJS(e);
       OnFateEvent += (e) => DispatchToJS(e);
+      OnCEEvent += (e) => DispatchToJS(e);
 
       fast_update_timer_.Interval = kFastTimerMilli;
       fast_update_timer_.Start();
@@ -324,6 +333,11 @@ namespace Cactbot {
       ev["type"] = e.EventName();
       ev["detail"] = JObject.FromObject(e);
       DispatchEvent(ev);
+    }
+
+    public void ClearFateWatcherDictionaries() {
+      fate_watcher_.RemoveAndClearCEs();
+      fate_watcher_.RemoveAndClearFates();
     }
 
     // Events that we want to update as soon as possible.  Return next time this should be called.
@@ -394,6 +408,7 @@ namespace Cactbot {
       if (notify_state_.zone_name == null || !zone_name.Equals(notify_state_.zone_name)) {
         notify_state_.zone_name = zone_name;
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
+        ClearFateWatcherDictionaries();
       }
 
       DateTime now = DateTime.Now;
@@ -415,10 +430,9 @@ namespace Cactbot {
       if (player != null) {
         bool send = false;
         if (!player.Equals(notify_state_.player)) {
-          // Clear the FATE dictionary if we switched characters
-          if (notify_state_.player != null && !player.name.Equals(notify_state_.player.name)) {
-            fate_watcher_.RemoveAndClearFates();
-          }
+          // Clear the FateWatcher dictionaries if we switched characters
+          if (notify_state_.player != null && !player.name.Equals(notify_state_.player.name))
+            ClearFateWatcherDictionaries();
           notify_state_.player = player;
           send = true;
         }

@@ -86,6 +86,10 @@
   transform: translate(-50%, -40%);
 }
 
+.nm-hidden {
+  display: none;
+}
+
 .nm-name {
   display: block;
   text-align: center;
@@ -141,6 +145,29 @@
   animation: pulse 1s infinite alternate;
 }
 
+.critical .nm-name {
+  color: #d25454;
+}
+
+.critical-pop .nm-name {
+  color: #c84123;
+  font-size: 18px;
+  animation: pulse 1s infinite alternate;
+}
+
+.critical-pop .nm-progress {
+  color: #c84123;
+  font-size: 12px;
+}
+
+.critical-pop .nm-icon {
+  display: none;
+}
+
+.critical-pop .nm-time {
+  display: none;
+}
+
 .bunny.nm-pop .nm-name {
   color: #66f;
   font-size: 14px;
@@ -158,6 +185,20 @@
 
 .nm-pop .nm-icon {
   display: none;
+}
+
+/* non-critical bozja fates are less important, so make smaller */
+.bozjasouthern > .nm {
+  font-size: 10px;
+}
+
+.bozjasouthern > .nm-pop .nm-name {
+  font-size: 12px;
+}
+
+.bozjasouthern > .nm-down .nm-name,
+.bozjasouthern > .nm-down .nm-time {
+  font-size: 8px;
 }
 
 .player {

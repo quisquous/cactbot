@@ -19,6 +19,46 @@ UserConfig.registerOptions('eureka', {
       },
     },
     {
+      id: 'PopNoiseForNM',
+      name: {
+        en: 'Play pop sound for NMs',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
+      id: 'PopNoiseForBunny',
+      name: {
+        en: 'Play pop sound for bunny fates',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
+      id: 'PopNoiseForSkirmish',
+      name: {
+        en: 'Play pop sound for skirmishes',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
+      id: 'PopNoiseForCriticalEngagement',
+      name: {
+        en: 'Play pop sound for critical engagements',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
+      id: 'PopNoiseForDuel',
+      name: {
+        en: 'Play pop sound for duels',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
       id: 'PopVolume',
       name: {
         en: 'Volume of the nm pop sound (0-1)',
@@ -48,6 +88,17 @@ UserConfig.registerOptions('eureka', {
       default: 0.3,
       setterFunc: (options, value) => {
         options['BunnyPopVolume'] = value;
+      },
+    },
+    {
+      id: 'CriticalPopVolume',
+      name: {
+        en: 'Volume of the critical engagement pop sound (0-1)',
+      },
+      type: 'float',
+      default: 0.3,
+      setterFunc: (options, value) => {
+        options['CriticalPopVolume'] = value;
       },
     },
     {
