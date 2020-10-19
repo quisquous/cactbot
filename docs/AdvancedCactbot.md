@@ -207,30 +207,3 @@ Options.Triggers = [
 
   // .. other zones here ..
 ]
-```
-
-## Writing a cactbot UI module
-
-To build a cactbot ui, you need to make a **.html** file and point cactbot at it. There are a
-number of helpful things in the [resources/](../resources/) directory.
-
-Include the [resources/defaults.css](../resources/defaults.css) file
-to get some of the default look and feel of other cactbot uis.
-You can use the `.text` class on any HTML elements which contain text.
-You may add the `.hide` class to elements you do not want shown,
-and remove it when they should be visible.
-This will also include borders, background colors, and text when unlocked.
-
-Include the [resources/unicode.js](../resources/unicode.js) file to use unicode categories in
-regular expressions in order to support non-english characters.
-
-There are a number of web components that provide widgets for building your ui, including the
-[timerbar](../resources/timerbar.js), [timerbox](../resources/timerbox.js) or
-[resourcebar](../resources/resourcebar.js). Include the file and then instantiate it by making an
-element of that type, such as `<timer-bar></timer-bar>` or `<resource-bar></resource-bar>`.
-
-The set of Javascript events that can be listened for via `document.addEventListener` is found
-in [plugin/CactbotEventSource/JSEvents.cs](../plugin/CactbotEventSource/JSEvents.cs). The public fields of each event
-type will be members of the event's `detail`. See the
-[ui/test/test.html](../ui/test/test.html) ui module for a simple example of
-listening to and using the Javascript events.
