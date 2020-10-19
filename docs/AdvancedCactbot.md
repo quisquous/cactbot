@@ -209,24 +209,6 @@ Options.Triggers = [
 ]
 ```
 
-### Regular Expression Extensions
-
-If you're familiar with regular expressions you'll note the the `\y{Name}` and
-`\y{AbilityCode}` are unfamiliar. These are extensions provided by cactbot for
-convenience to avoid having to match against all possible unicode characters
-or to know the details of how the FFXIV ACT plugin writes things.
-
-The set of extensions are:
-
-* `\y{Float}`: Matches a floating-point number, accounting for locale-specific encodings.
-* `\y{Name}`: Matches any character name (including empty strings which the FFXIV ACT plugin can generate when unknown).
-* `\y{ObjectId}`: Matches the 8 hex character object id in network log lines.
-* `\y{AbilityCode}`: Matches the FFXIV ACT plugin's format for the number code of a spell or ability.
-* `\y{Timestamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
-* `\y{LogType}`: Matches the FFXIV ACT plugin's format for the number code describing the type of log event, found near the front of each log event.
-
-See this [cactbot-user git repo](https://github.com/quisquous/cactbot-user) for more examples.
-
 ## Writing a cactbot UI module
 
 To build a cactbot ui, you need to make a **.html** file and point cactbot at it. There are a
