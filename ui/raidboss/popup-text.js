@@ -233,6 +233,12 @@ class PopupText {
         console.error(`Trigger set must include exactly one of zoneRegex or zoneId property`);
         continue;
       }
+      if (haveZoneId && set.zoneId === undefined) {
+        const filename = set.filename ? `'set.filename'` : '(user file)';
+        console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
+                      `Did you misspell the ZoneId.ZoneName?`);
+        continue;
+      }
 
       if (set.zoneId) {
         if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId == 'object' && set.zoneId.includes(this.zoneId)))
