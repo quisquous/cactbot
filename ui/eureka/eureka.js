@@ -2053,8 +2053,8 @@ let Options = {
           label: {
             en: 'Trampled',
           },
-          x: 14.2,
-          y: 21.2,
+          x: 9.9,
+          y: 18.1,
           isCritical: true,
           ceKey: 11,
         },
@@ -2615,10 +2615,12 @@ class EurekaTracker {
     // Upon entering Eureka we usually receive the CE info before
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
+
     if (!this.zoneInfo) {
       this.CEQueue.push(e);
       return;
     }
+
     switch (e.detail.eventType) {
     case 'add':
       for (let key of this.nmKeys) {
