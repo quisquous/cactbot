@@ -466,7 +466,7 @@ and can override anything from the control panel.
 However, this can also be confusing when the control panel doesn't adjust something
 properly that a `cactbot/user/` file is overriding silently.
 
-See [this documentation](docs/AdvancedCactbot.md#user-folder-config-overrides)
+See [this documentation](docs/CactbotCustomization.md#user-folder-config-overrides)
 for more details about user javascript and css files.
 
 ## Supported Languages
