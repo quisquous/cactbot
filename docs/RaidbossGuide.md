@@ -97,8 +97,16 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
 ### Trigger Elements
 
 **id string**
- An id string for the trigger, used to disable triggers. Every built-in trigger that has a text/sound output should have an id so it can be disabled.
-(User-defined triggers not intended for inclusion in the cactbot repository need not have one.)
+ An id string for the trigger.
+ Every built-in trigger in cactbot has a unique id,
+ and it is recommended but not required that user triggers also have them.
+
+Trigger ids must be unique.
+If a trigger is found with the same id as a previous trigger,
+then the first trigger will be skipped entirely
+and the second trigger will override it and take its place.
+This allows easier for copying and pasting of triggers into user overrides for edits.
+Triggers without ids cannot be overridden.
 
 The current structure for `Regexes/NetRegexes` does not require that the ability/effect/whatever name be present as part of the expression.
 Because of this, it is extremely important that that information is somewhere close by.
