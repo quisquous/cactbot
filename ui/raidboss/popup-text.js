@@ -86,7 +86,7 @@ class OrderedTriggerList {
       const idx = this.idToIndex[trigger.id];
 
       // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
-      const triggerFile = (trigger) => trigger.filename ? `'trigger.filename'` : 'user override';
+      const triggerFile = (trigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
       const oldFile = triggerFile(this.triggers[idx]);
       const newFile = triggerFile(trigger);
       console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
