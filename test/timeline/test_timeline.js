@@ -21,7 +21,6 @@ let errorFunc = (str) => {
 let timelineFile = process.argv[2];
 let triggersFile = process.argv[3];
 let timelineText = String(fs.readFileSync(timelineFile));
-let timeline = new Timeline(timelineText);
 let triggerSet = eval(String(fs.readFileSync(triggersFile)));
 
 if (triggerSet.length != 1) {
@@ -29,6 +28,7 @@ if (triggerSet.length != 1) {
   errorFunc(triggersFile + ':Break out multiple trigger sets into multiple files');
 }
 let triggers = triggerSet[0];
+let timeline = new Timeline(timelineText, null, triggers.timelineTriggers);
 
 function getTestCases(trans, skipPartialCommon) {
   let testCases = [
@@ -73,8 +73,12 @@ let tests = {
   // This test loads an individual raidboss timeline and makes sure
   // that timeline.js can parse it without errors.
   timelineErrorTest: () => {
-    for (let e of timeline.errors)
-      errorFunc(timelineFile + ':' + e.lineNumber + ': ' + e.error + ': ' + e.line);
+    for (let e of timeline.errors) {
+      if (e.line && e.lineNumber)
+        errorFunc(timelineFile + ':' + e.lineNumber + ': ' + e.error + ': ' + e.line);
+      else
+        errorFunc(timelineFile + ':' + e.error);
+    }
   },
 
   translationConflictTest: () => {

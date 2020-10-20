@@ -34,7 +34,7 @@
     },
     {
       id: 'E8S Reflected Armor',
-      regex: /Reflected Shining Armor/,
+      regex: /Reflected Armor/,
       beforeSeconds: 2,
       response: Responses.lookAway('alert'),
     },
