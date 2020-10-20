@@ -66,6 +66,46 @@ function onTriggerException(trigger, e) {
     console.error(lines[i]);
 }
 
+// Helper for handling trigger overrides.
+//
+// asList will return a list of triggers in the same order as append was called, except:
+// If a later trigger has the same id as a previous trigger, it will replace the previous trigger
+// and appear in the same order that the previous trigger appeared.
+// e.g. a, b1, c, b2 (where b1 and b2 share the same id) yields [a, b2, c] as the final list.
+//
+// JavaScript dictionaries are *almost* ordered automatically as we would want,
+// but want to handle missing ids and integer ids (you shouldn't, but just in case).
+class OrderedTriggerList {
+  constructor() {
+    this.idToIndex = {};
+    this.triggers = [];
+  }
+
+  push(trigger) {
+    if (trigger.id && trigger.id in this.idToIndex) {
+      const idx = this.idToIndex[trigger.id];
+
+      // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
+      const triggerFile = (trigger) => trigger.filename ? `'trigger.filename'` : 'user override';
+      const oldFile = triggerFile(this.triggers[idx]);
+      const newFile = triggerFile(trigger);
+      console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
+
+      this.triggers[idx] = trigger;
+      return;
+    }
+
+    // Normal case of a new trigger, with no overriding.
+    if (trigger.id)
+      this.idToIndex[trigger.id] = this.triggers.length;
+    this.triggers.push(trigger);
+  }
+
+  asList() {
+    return this.triggers;
+  }
+}
+
 class PopupText {
   constructor(options) {
     this.options = options;
@@ -151,7 +191,7 @@ class PopupText {
   }
 
   OnDataFilesRead(e) {
-    this.triggerSets = this.options.Triggers;
+    this.triggerSets = [];
     for (let filename in e.detail.files) {
       if (!filename.endsWith('.js'))
         continue;
@@ -181,6 +221,9 @@ class PopupText {
       }
       Array.prototype.push.apply(this.triggerSets, json);
     }
+
+    // User triggers must come last so that they override built-in files.
+    Array.prototype.push.apply(this.triggerSets, this.options.Triggers);
   }
 
   OnChangeZone(e) {
@@ -206,6 +249,9 @@ class PopupText {
     let timelineTriggers = [];
     let timelineStyles = [];
     this.resetWhenOutOfCombat = true;
+
+    const orderedTriggers = new OrderedTriggerList();
+    const orderedNetTriggers = new OrderedTriggerList();
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
@@ -293,13 +339,13 @@ class PopupText {
           let regex = trigger[regexParserLang] || trigger.regex;
           if (regex) {
             trigger.localRegex = Regexes.parse(regex);
-            this.triggers.push(trigger);
+            orderedTriggers.push(trigger);
           }
 
           let netRegex = trigger[netRegexParserLang] || trigger.netRegex;
           if (netRegex) {
             trigger.localNetRegex = Regexes.parse(netRegex);
-            this.netTriggers.push(trigger);
+            orderedNetTriggers.push(trigger);
           }
 
           if (!regex && !netRegex) {
@@ -329,6 +375,10 @@ class PopupText {
       if (set.resetWhenOutOfCombat !== undefined)
         this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
     }
+
+    // Store all the collected triggers in order.
+    this.triggers = orderedTriggers.asList();
+    this.netTriggers = orderedNetTriggers.asList();
 
     this.timelineLoader.SetTimelines(
         timelineFiles,
