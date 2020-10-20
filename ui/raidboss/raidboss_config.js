@@ -593,7 +593,37 @@ class RaidbossConfigurator {
   }
 }
 
-UserConfig.registerOptions('raidboss', {
+// Raidboss needs to do some extra processing of user files.
+const userFileHandler = (name, files, options) => {
+  eval(files[name]);
+
+  if (!options.Triggers)
+    return;
+
+  for (const set of options.Triggers) {
+    // Annotate triggers with where they came from.
+    set.filename = `user/${name}`;
+
+    // Convert set.timelineFile to set.timeline.
+    if (set.timelineFile) {
+      let dir = name.substring(0, name.lastIndexOf('/'));
+      dir = dir ? `$(dir)/` : '';
+
+      const timelineFile = `${dir}${set.timelineFile}`;
+      delete set.timelineFile;
+
+      if (!(timelineFile in files)) {
+        console.log(`ERROR: '${name}' specifies non-existent timeline file '${timelineFile}'.`);
+        continue;
+      }
+
+      // set.timeline is processed recursively.
+      set.timeline = [set.timeline, files[timelineFile]];
+    }
+  }
+};
+
+const templateOptions = {
   buildExtraUI: (base, container) => {
     let raidbossUrl = new URL('../raidboss/raidboss.html', location.href);
     callOverlayHandler({
@@ -1104,4 +1134,6 @@ UserConfig.registerOptions('raidboss', {
       default: false,
     },
   ],
-});
+};
+
+UserConfig.registerOptions('raidboss', templateOptions, userFileHandler);

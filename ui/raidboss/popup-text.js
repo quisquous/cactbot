@@ -280,7 +280,7 @@ class PopupText {
         continue;
       }
       if (haveZoneId && set.zoneId === undefined) {
-        const filename = set.filename ? `'set.filename'` : '(user file)';
+        const filename = set.filename ? `'${set.filename}'` : '(user file)';
         console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
                       `Did you misspell the ZoneId.ZoneName?`);
         continue;
@@ -355,15 +355,28 @@ class PopupText {
         }
       }
 
+      if (set.overrideTimelineFile) {
+        const filename = set.filename ? `'${set.filename}'` : '(user file)';
+        console.log(`Overriding timeline from ${filename}.`);
+
+        // If the timeline file override is set, all previously loaded timeline info is dropped.
+        // Styles, triggers, and translations are kept, as they may still apply to the new one.
+        timelineFiles = [];
+        timelines = [];
+      }
+
       // And set the timeline files/timelines from each set that matches.
       if (set.timelineFile) {
         if (set.filename) {
           let dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
           timelineFiles.push(dir + '/' + set.timelineFile);
         } else {
+          // Note: For user files, this should get handled by raidboss_config.js,
+          // where `timelineFile` should get converted to `timeline`.
           console.error('Can\'t specify timelineFile in non-manifest file:' + set.timelineFile);
         }
       }
+
       if (set.timeline)
         addTimeline(set.timeline);
       if (set.timelineReplace)

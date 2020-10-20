@@ -5,6 +5,7 @@
 ```javascript
 [{
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
+  overrideTimelineFile: false,
   timelineFile: 'filename.txt',
   timeline: `hideall`,
   timelineReplace: [
@@ -47,6 +48,11 @@ A trigger set must have one of zoneId or zoneRegex to specify the zone
 **zoneRegex**
 A regular expression that matches against the zone name (coming from ACT).
 If the regular expression matches, then the triggers will apply to that zone.
+
+**overrideTimelineFile**
+An optional boolean value that specifies that the `timelineFile` and `timeline`
+specified in this trigger set override all timelines previously found.
+This is a way to replace timelines in user files and is not used inside cactbot itself.
 
 **timelineFile**
 An optional timeline file to load for this zone. These files live alongside their parent trigger file in the appropriate folder. (As for example `raidboss/data/04-sb/raid/`).

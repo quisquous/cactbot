@@ -294,7 +294,43 @@ and also reading through existing triggers in [ui/raidboss/data](../ui/raidboss/
 
 ## Overriding Raidboss Timelines
 
-Sorry, this is hard to do right now.
+Overriding a raidboss timeline is similar to [overriding a trigger](#overriding-raidboss-triggers).
+
+The steps to override a timeline are:
+
+1) Copy the timeline text file out of cactbot and into your user folder
+
+  For example, you could copy [ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt](../ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt).
+
+1) Add a section to your user/raidboss.js file to override this.
+
+  Like adding a trigger, you add a section with the `zoneId`,
+  along with `overrideTimelineFile: true`,
+  and a `timelineFile` with the name of the text file.
+
+  ```javascript
+  Options.Triggers.push({
+    zoneId: ZoneId.TheEpicOfAlexanderUltimate,
+    overrideTimelineFile: true,
+    timelineFile: 'the_epic_of_alexander.txt',
+  });
+  ```
+
+  In this case, this assumes that you have followed step 1
+  and there is a `user/the_epic_of_alexander.txt` file.
+
+  By setting `overrideTimelineFile: true`,
+  it tells cactbot to replace the built-in timeline entirely
+  with any new timeline that you add.
+
+1) Edit your new timeline file in your user folder as needed
+
+  Refer to the [timeline guide](TimelineGuide.md) for more documentation on the timeline format.
+
+**Note**: Editing timelines is a bit risky,
+as there may be timeline triggers that refer to specific timeline text.
+For instance, in TEA, there are timeline triggers for `Fluid Swing` and `Propeller Wind`, etc.
+If these names are changed or removed, then the timeline triggers will also be broken.
 
 ## Customizing Behavior
 
