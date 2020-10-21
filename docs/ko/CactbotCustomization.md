@@ -28,9 +28,9 @@ ACT -> Plugins -> OverlayPlugin.dll -> Cactbot 에서 찾을 수 있어요.
 - 볼륨 설정
 - 음식을 먹으라는 치즈 아이콘 없애기
 
-cactbot 설정 UI에서 원하는 모든 것들을 설정할 수는 없을지도 모르지만
+cactbot 설정 UI에서 원하는 모든 것들을 설정할 수는 없을지도 모르지만,
 이 방법이 시작하기에 가장 쉬운 방법입니다.
-또한, 업데이트를 진행함에 따라 더 많은 옵션들이 추가될 것입니다.
+또한, 업데이트를 진행함에 따라 더 많은 옵션이 추가될 것입니다.
 
 이 옵션들은
 `%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json`
