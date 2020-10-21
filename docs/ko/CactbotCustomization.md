@@ -7,7 +7,7 @@
 - [Raidboss 트리거 덮어쓰기](#Raidboss-트리거-덮어쓰기)
   - [예시 1: 출력 텍스트 변경하기](#예시-1:-출력-텍스트-변경하기)
   - [예시 2: 도발 알림이 모든 직업에 뜨게 하기](#예시-2:-도발-알림이-모든-직업에-뜨게-하기)
-  - [예시 3: 사용자 지정 트리거 추가하기](#예시-3:-사용자-지정-트리거-추가하기)
+  - [예시 3: 커스텀 트리거 추가하기](#예시-3:-커스텀-트리거-추가하기)
 - [Raidboss 타임라인 덮어쓰기](#Raidboss-타임라인-덮어쓰기)
 - [기능 사용자 설정하기](#기능-사용자-설정하기)
 - [User 파일 디버깅](#User-파일-디버깅)
@@ -121,15 +121,244 @@ ACT -> Plugins -> OverlayPlugin.dll -> 원하는 오버레이 -> 개발자 도�
 
 ## Raidboss 트리거 덮어쓰기
 
+`cactbot/user/raidboss.js`를 이용해서 트리거가 작동하는 방식을 덮어씌울 수 있습니다.
+출력하는 텍스트를 수정하거나,
+어떤 직업을 대상으로 발동하는지,
+그리고 얼마나 오래 화면에 떠있는지,
+이외에 다른 것들을 수정할 수 있습니다.
+
+`cactbot/user/raidboss.js` 안에,
+`Options.Triggers` 리스트가 있습니다.
+이 부분을 이용해 새 트리거를 작성하거나
+이미 존재하는 트리거를 수정하는데 사용할 수 있습니다.
+만약 User 파일이 이미 있는 트리거(cactbot에 기본으로 들어가있는 트리거를 포함)와
+같은 id를 사용하는 트리거를 가지고 있다면, 그 트리거를 덮어쓰게 됩니다.
+
+만약 트리거를 수정하려고 하신다면,
+각 트리거에 있는 다양한 설정값이 어떤 것을 의미하는지 이해하기 위해서
+[트리거 가이드](RaidbossGuide.md)를 읽는 것이 좋습니다.
+
+일반적으로, 다음과 같은 형식의 코드 블록을
+`cactbot/user/raidboss.js`에 추가하면 됩니다.
+
+```javascript
+Options.Triggers.push({
+  // 파일 최상단에 있는 ZoneId를 찾으세요
+  // 예시) ZoneId.MatchAll (모든 지역) 또는 ZoneId.TheBozjanSouthernFront.
+  zoneId: ZoneId.PutTheZoneFromTheTopOfTheFileHere,
+  triggers: [
+    {
+      // 이 곳이 트리거 객체를 넣는 곳입니다.
+      // 예시) id / netRegex / infoText
+    },
+  ],
+});
+```
+
+트리거를 수정하기 가장 쉬운 접근법은
+위에 있는 코드 블록을 각 트리거에 붙여넣는 것입니다.
+`zoneId`에 이 트리거가 작동하길 원하는 지역 ID를 작성하세요.
+보통 cactbot 트리거 파일 최상단에 적혀있습니다.
+그리고 [이 파일](../../resources/zone_id.js)은 모든 지역 ID 리스트를 저장하고 있습니다.
+만약 옳바른 지역 ID를 입력하지 않는다면, 오버레이 플러그인 로그 창에 warning이 나오게 됩니다.
+그 다음, 트리거 텍스트를 이 블록 안에 복사하세요.
+필요한 만큼 수정하세요.
+이 과정을 수정하고 싶은 모든 트리거에 대해 반복하면 됩니다.
+변경 사항을 적용하려면, raidboss 오버레이를 새로고침하세요.
+
+**참고**: 이 방식은 기존 트리거의 동작을 완전히 제거하게 됩니다.
+따라서 수정할 때 동작 로직 부분은 제거하지 마세요.
+또한, 이건 JavaScript이기 때문에 유효한 Javascript 코드여야 합니다.
+프로그래머가 아니라면, 무엇을 어떻게 수정하고 있는지 더더욱 조심하세요.
+
 ### 예시 1: 출력 텍스트 변경하기
+
+당신이 절바하를 하려고 한다고 칩시다.
+그리고 당신의 공대는 cactbot이 기본으로 불러주는 "불 같이맞기" 대신에
+"불 대상자 밖으로"를 먼저 하기로 결정했다고 해요.
+
+이 방식으로 조정하는 방법 중 하나는 이 트리거의 출력을 수정하는 것입니다.
+fireball #1 원본 트리거는
+[ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743)에서 찾을 수 있습니다.
+
+이 코드 덩러리를 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
+
+```javascript
+Options.Triggers.push({
+  zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
+  triggers: [
+    {
+      id: 'UCU Nael Fireball 1',
+      netRegex: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Ragnarök', id: '26B8', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'Ragnarok', id: '26B8', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: 'ラグナロク', id: '26B8', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '诸神黄昏', id: '26B8', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
+      delaySeconds: 35,
+      suppressSeconds: 99999,
+      // infoText는 화면에 초록색으로 표시되는 문구입니다.
+      infoText: {
+        ko: '불 대상자 밖으로',
+      },
+      run: function(data) {
+        data.naelFireballCount = 1;
+      },
+    },
+  ],
+});
+```
+
+이 수정본은 `tts` 부분을 제거하고 한국어 이외에 다른 언어도 제거합니다.
 
 ### 예시 2: 도발 알림이 모든 직업에 뜨게 하기
 
-### 예시 3: 사용자 지정 트리거 추가하기
+지금은 도발 알림이 같은 파티나 연합 파티에 있는 경우에만 작동하고, 일부 직업에 대해서만 작동하고 있습니다.
+이 예시는 어떻게 모든 플레이어에 대해 알림을 보여주도록 만들 수 있는지 보여줍니다.
+도발 트리거는
+[ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/00-misc/general.js#L11-L30)에서 찾을 수 있습니다.
+
+여기 `condition` 함수(function)가 수정된 버전이 있습니다.
+이 트리거는 cactbot에 기본으로 포함된 트리거인 `General Provoke`와 id가 동일하기 떄문에
+이 트리거가 기본 트리거를 덮어쓸 것 입니다.
+
+이 코드 덩러리를 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
+
+```javascript
+Options.Triggers.push([{
+  zoneId: ZoneId.MatchAll,
+  triggers: [
+    {
+      id: 'General Provoke',
+      netRegex: NetRegexes.ability({ id: '1D6D' }),
+      condition: function(data, matches) {
+        // 같은 파티가 아닌 사람들까지도 도발 알림을 받고 싶거나
+        // 내가 탱커가 아닌 경우
+        return true;
+      },
+      infoText: function(data, matches) {
+        let name = data.ShortName(matches.source);
+        return {
+          en: 'Provoke: ' + name,
+          de: 'Herausforderung: ' + name,
+          fr: 'Provocation: ' + name,
+          ja: '挑発: ' + name,
+          cn: '挑衅: ' + name,
+          ko: '도발: ' + name,
+        };
+      },
+    },
+  ],
+]);
+```
+
+이 경우에는 그냥 `condition` 함수를 완전히 지워버리는 방법도 있습니다.
+condition이 없는 트리거는 정규식이 맞을 때마다 항상 작동하기 때문이죠.
+
+### 예시 3: 커스텀 트리거 추가하기
+
+이와 똑같은 방법으로 커스텀 트리거를 만들 수도 있습니다.
+
+아래 예시는 "갈래 번개" 디버프를 받은 1초 후에
+"Get out!!!" 문구를 출력해주는 커스텀 트리거입니다.
+
+```javascript
+Options.Triggers.push([
+  {
+    zoneId: ZoneId.MatchAll,
+    triggers: [
+      {
+        // 이 id는 새로 만든 것이기 때문에 cactbot 트리거를 덮어쓰지 않습니다.
+        id: 'Personal Forked Lightning',
+        regex: Regexes.gainsEffect({ effect: '갈래 번개' }),
+        condition: (data, matches) => { return matches.target === data.me; },
+        delaySeconds: 1,
+        alertText: 'Get out!!!',
+      },
+
+      // ... 원한다면 다른 트리거를 추가하세요
+    ],
+  },
+
+  // ... 원한다면 다른 지역을 추가하세요
+]);
+```
+
+cactbot 트리거 작성하는 방법을 배우기에 가장 좋은 방법은
+[트리거 가이드](RaidbossGuide.md)와
+[ui/raidboss/data](../../ui/raidboss/data)에 이미 존재하는 트리거를 읽는 것입니다.
 
 ## Raidboss 타임라인 덮어쓰기
 
+Raidboss 타임라인을 덮어쓰는 것은 [Raidboss 트리거 덮어쓰기](#Raidboss-트리거-덮어쓰기)와 비슷합니다.
+
+타임라인을 덮어쓰기 위한 과정:
+
+1) 타임라인 텍스트 파일을 cactbot에서 user 폴더로 복사합니다.
+
+    예를 들어,
+    [ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt](../../ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt)를
+    `user/the_epic_of_alexander.txt`로 복사할 수 있겠죠.
+
+1) user/raidboss.js 파일에 이 타임라인 파일을 덮어쓰기 위한 부분을 추가하세요.
+
+    트리거를 추가하는 것과 같이, `zoneId`와 함께 새로운 구획(section)을 추가합니다.
+    `overrideTimelineFile: true`를 zoneId 아래에 추가하고,
+    `timelineFile` 그 타임라인 텍스트 파일의 이름을 추가하세요.
+
+    ```javascript
+    Options.Triggers.push({
+      zoneId: ZoneId.TheEpicOfAlexanderUltimate,
+      overrideTimelineFile: true,
+      timelineFile: 'the_epic_of_alexander.txt',
+    });
+    ```
+
+    이 경우, 당신이 첫번째 과정을 따라서
+    `user/the_epic_of_alexander.txt` 파일이 존재한다고 가정합니다.
+
+    `overrideTimelineFile: true`을 설정함으로써,
+    cactbot이 기본적으로 포함된 타임라인 대신
+    새로 추가한 타임라인을 사용하도록 합니다.
+
+1) 필요한 만큼 user 폴더에 있는 새 타임라인 파일을 수정하세요.
+
+    타임라인 구성 방법에 대해 더 알고 싶다면 [타임라인 가이드](TimelineGuide.md)를 참고하세요.
+
+**참고**: 타임라인을 수정하는 것은 약간의 위험 요소가 있습니다.
+타임라인 텍스트를 참고하여 작동하는 타임라인 트리거가 있을 수도 있기 떄문이죠.
+예를 들어, 절알렉에는 `Fluid Swing`와 `Propeller Wind` 등을 이용하는 타임라인 트리거가 있습니다.
+만약 이 이름들이 바뀌거나 지워진다면, 타임라인 트리거가 작동하지 않게 됩니다.
+특히, 한국어 스킬명으로 바꾸는 경우, 타임라인 트리거는 영어 타임라인을 기반으로 작동하기 때문에
+같은 스킬명을 표시한다 하더라도 타임라인 트리거가 작동하지 않습니다.
+(타임라인은 각 언어마다 번역 과정을 거쳐 화면에 표시되며, 타임라인 트리거는 영어 타임라인 기반으로 작동합니다.)
+
 ## 기능 사용자 설정하기
+
+이 문단은 cactbot 모듈에 사용자 지정할 수 있는 다른 요소들에 대해 다룹니다.
+몇몇 변수들은 설정 UI에 있지도 않고 트리거도 아닌 것들이 있습니다.
+
+각각의 cactbot 모듈은 다양한 옵션을 제어하는 `Options` 변수를 가지고 있습니다.
+수정할 수 있는 옵션은 각 `ui/<name>/<name>.js` 파일 최상단 `Options` 부분에 나열되어 있습니다.
+
+예를 들어 [ui/raidboss/raidboss.js](../../ui/raidboss/raidboss.js)에는,
+`PlayerNicks` 옵션을 찾아볼 수 있는데, 플레이어 닉네임을 따로 설정하는 옵션이 있습니다.
+
+```javascript
+Options.PlayerNicks = {
+  // '이름 성': '닉네임',
+  'Banana Nana', 'Nana',
+  'The Great\'one', 'Joe', // The Great'one와 같이 이름에 작은 따옴표가 포함된 경우 그 앞에 역슬래시를 추가해야 합니다.
+  'Viewing Cutscene': 'Cut',
+  // 기타 더 많은 닉네임을 추가할 수 있습니다.
+};
+```
+
+**주의**: user 디렉토리에 있는 파일들은 cactbot 설정 UI에서 설정한 값들을
+조용히 덮어씌울 것입니다.
+이 부분이 헷갈릴 수 있는데,
+따라서 일반적으로 기본으로 제공되는 설정 기능으로 최대한 설정해보고,
+그 설정 기능으로는 수정할 수 없는 것들만 user 파일들로 수정하는 것이 좋습니다.
 
 ## User 파일 디버깅
 
@@ -149,7 +378,7 @@ cactbot 설정 UI에서,
 다음, Raidboss 아래에 있는 `디버그 모드 활성화`를 체크하고 다시 새로 고침 하세요.
 
 Raidboss 디버그 모드가 활성화되어 있으면,
-오버레이 플러그인 로그에 더 많은 정보를 출력할 겁니다.
+오버레이 플러그인 로그에 더 많은 정보를 출력합니다.
 불러오는 각각의 user 파일 리스트도 출력합니다:
 `[10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: local user file: C:\Users\tinipoutini\cactbot\user\raidboss.js`
 
