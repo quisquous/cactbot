@@ -2,7 +2,6 @@
 
 [{
   zoneId: ZoneId.HaukkeManor,
-  timelineFile: 'haukke_manor.txt',
   triggers: [
     {
       id: 'Haukke Normal Dark Mist DPS/Heals',
