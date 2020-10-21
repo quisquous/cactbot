@@ -1,6 +1,6 @@
 # Cactbot Customization
 
-&#x1F310; [한국어](./ko/CactbotCustomization.md)
+🌎 [**English**] [[한국어](./ko/CactbotCustomization.md)]
 
 - [Using the cactbot UI](#using-the-cactbot-ui)
 - [User Directory Overview](#user-directory-overview)
