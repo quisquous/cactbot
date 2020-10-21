@@ -74,7 +74,7 @@
       id: 'Haukke Normal Void Lamps',
       regex: /The void lamps have begun/,
        infoText: function(data) {
-       	 return { 
+         return { 
           en: 'Turn off Lamps',
         };
       }  
@@ -94,8 +94,8 @@
       regex: /Added new combatant Lady's Handmaiden/,
       suppressSeconds: 2,
        infoText: function(data) {
-       	 return {
-       	 	en: 'Kill Adds, Sentry First',
+         return {
+           en: 'Kill Adds, Sentry First',
           };
        }
     },
