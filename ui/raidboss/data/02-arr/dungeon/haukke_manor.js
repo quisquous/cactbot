@@ -81,7 +81,7 @@
     },
     {
       id: 'Haukke Normal Ladys Candle',
-      netRegex: NetRegexes.addedCombatant({ source: 'Lady\'s Candle', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Lady\'s Candle', capture: false }),
       response: Responses.killAdds('info'),
     },
     {
@@ -91,7 +91,7 @@
     },
     {
       id: 'Haukke Normal Ladys Handmaiden',
-      netRegex: NetRegexes.addedCombatant({ source: 'Lady\'s Handmaiden', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: 'Lady\'s Handmaiden', capture: false }),
       suppressSeconds: 2,
       infoText: function(data) {
         return {
