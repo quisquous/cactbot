@@ -47,7 +47,7 @@
     },
     {
       id: 'Haukke Normal Ladys Candle',
-      netRegex: NetRegexes.addedCombatant({ name: 'Lady\'s Candle', capture: false }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '425', capture: false }),
       response: Responses.killAdds('info'),
     },
     {
