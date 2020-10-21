@@ -81,7 +81,7 @@ cactbot이 설치된 경로가 기본값으로 설정됩니다.
 
 ## 디자인 수정하기
 
-`user/<name>.css` 파일은 각 오버레이의 위치, 크기, 색깔 등을 수정할 수 있습니다.
+`user/<name>.css` 파일은 각 오버레이 요소들의 위치, 크기, 색깔 등을 수정할 수 있습니다.
 `ui/<name>/<name>.css`를 보고 수정할 수 있는 셀렉터(selector)를 확인하세요.
 
 [ui/raidboss/raidboss.css](../../ui/raidboss/raidboss.css)의 예시를 보자면,
