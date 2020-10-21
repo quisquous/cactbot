@@ -422,8 +422,7 @@ To use this module,
 point cactbot at **ui/test/test.html** or use the `Cactbot Test` preset.
 
 This module is just an onscreen test of cactbot variables and is not meant to be used while playing.
-It can be useful to try out to make sure everything is working as expected or to use to help debug
-[writing your own module](docs/AdvancedCactbot.md#writing-a-cactbot-ui-module).
+It can be useful to try out to make sure everything is working as expected or to use to help debug overlay issues.
 
 ![test screenshot](screenshots/test.png)
 
@@ -467,7 +466,7 @@ and can override anything from the control panel.
 However, this can also be confusing when the control panel doesn't adjust something
 properly that a `cactbot/user/` file is overriding silently.
 
-See [this documentation](docs/AdvancedCactbot.md#user-folder-config-overrides)
+See [this documentation](docs/CactbotCustomization.md#user-folder-config-overrides)
 for more details about user javascript and css files.
 
 ## Supported Languages
