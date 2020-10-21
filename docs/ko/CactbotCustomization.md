@@ -136,7 +136,7 @@ ACT -> Plugins -> OverlayPlugin.dll -> 원하는 오버레이 -> 개발자 도�
 
 만약 트리거를 수정하려고 하신다면,
 각 트리거에 있는 다양한 설정값이 어떤 것을 의미하는지 이해하기 위해서
-[트리거 가이드](RaidbossGuide.md)를 읽는 것이 좋습니다.
+[트리거 가이드](../RaidbossGuide.md)를 읽는 것이 좋습니다.
 
 일반적으로, 다음과 같은 형식의 코드 블록을
 `cactbot/user/raidboss.js`에 추가하면 됩니다.
@@ -285,7 +285,7 @@ Options.Triggers.push([
 ```
 
 cactbot 트리거 작성하는 방법을 배우기에 가장 좋은 방법은
-[트리거 가이드](RaidbossGuide.md)와
+[트리거 가이드](../RaidbossGuide.md)와
 [ui/raidboss/data](../../ui/raidboss/data)에 이미 존재하는 트리거를 읽는 것입니다.
 
 ## Raidboss 타임라인 덮어쓰기
@@ -323,7 +323,7 @@ Raidboss 타임라인을 덮어쓰는 것은 [Raidboss 트리거 덮어쓰기](#
 
 1) 필요한 만큼 user 폴더에 있는 새 타임라인 파일을 수정하세요.
 
-    타임라인 구성 방법에 대해 더 알고 싶다면 [타임라인 가이드](TimelineGuide.md)를 참고하세요.
+    타임라인 구성 방법에 대해 더 알고 싶다면 [타임라인 가이드](../TimelineGuide.md)를 참고하세요.
 
 **참고**: 타임라인을 수정하는 것은 약간의 위험 요소가 있습니다.
 타임라인 텍스트를 참고하여 작동하는 타임라인 트리거가 있을 수도 있기 떄문이죠.
