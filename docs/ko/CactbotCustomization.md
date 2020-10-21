@@ -89,8 +89,7 @@ cactbot이 설치된 경로가 기본값으로 설정됩니다.
 이들의 위치를 `user/raidboss.css`에서 원하는 다른 위치로 바꿀 수 있습니다.
 `user/raidboss.css`로 다른 추가적인 스타일링도 가능합니다.
 
-Info 텍스트 알람의 크기와 색깔도 바꿀 수 있습니다.
-`.info-text` 클래스에 CSS 규칙을 추가하는 방법으로:
+`.info-text` 클래스에 CSS 규칙을 추가하는 방법으로 Info 텍스트 알람의 크기와 색깔도 바꿀 수 있습니다.
 
 ```css
 .info-text {
