@@ -6,7 +6,7 @@
   triggers: [
     {
       id: 'Haukke Normal Dark Mist DPS/Heals',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Manor Claviger || Manor Maidservant || Lady Amandine' }),
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Claviger', 'Manor Maidservant', 'Lady Amandine'] }),
       condition: function(data) {
       return data.role != 'tank';
       },
