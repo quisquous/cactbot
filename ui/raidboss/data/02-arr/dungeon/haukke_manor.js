@@ -6,7 +6,7 @@
   triggers: [
     {
       id: 'Haukke Normal Dark Mist DPS/Heals',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Claviger', 'Manor Maidservant', 'Lady Amandine'] }),
+      netRegex: NetRegexes.startsUsing({ id: '2C1' }),
       condition: function(data) {
         return data.role != 'tank';
       },
@@ -15,7 +15,7 @@
     },
     {
       id: 'Haukke Normal Dark Mist Tank',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Claviger', 'Manor Maidservant', 'Lady Amandine'] }),
+      netRegex: NetRegexes.startsUsing({ id: '2C1' }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -24,7 +24,7 @@
     },
     {
       id: 'Haukke Normal Claviger Void Fire II DPS/Heals',
-      netRegex: NetRegexes.startsUsing({ id: '357', source: 'Manor Claviger' }),
+      netRegex: NetRegexes.startsUsing({ id: '357' }),
       condition: function(data) {
         return data.role != 'tank';
       },
@@ -32,7 +32,7 @@
     },
     {
       id: 'Haukke Normal Claviger Void Fire II Tank',
-      netRegex: NetRegexes.startsUsing({ id: '357', source: 'Manor Claviger' }),
+      netRegex: NetRegexes.startsUsing({ id: '357' }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -40,7 +40,7 @@
     },
     {
       id: 'Haukke Normal Steward Soul Drain DPS/Heals',
-      netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
+      netRegex: NetRegexes.startsUsing({ id: '35C' }),
       condition: function(data) {
         return data.role != 'tank';
       },
@@ -48,7 +48,7 @@
     },
     {
       id: 'Haukke Normal Steward Soul Drain Tank',
-      netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
+      netRegex: NetRegexes.startsUsing({ id: '35C' }),
       condition: function(data) {
         return data.role == 'tank';
       },
@@ -86,7 +86,7 @@
     },
     {
       id: 'Haukke Normal Ladys Candle Self Destruct',
-      netRegex: NetRegexes.startsUsing({ id: '151', source: 'Lady\'s Candle' }),
+      netRegex: NetRegexes.startsUsing({ id: '151' }),
       response: Responses.getOut('alert'),
     },
     {
