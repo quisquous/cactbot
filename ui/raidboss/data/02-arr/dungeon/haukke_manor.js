@@ -54,9 +54,9 @@
     },
     {
       // Two Lady's Handmaiden and 1 Manor Sentry Spawn
-      // Don't want to capture the Manor Sentry because it will make the trigger go off loading into the instance. 
-      // The sentry outside the bosses room loads when you enter the zone. 
-      // This would cause the trigger to go off outside the boss fight, so we parse for the Handmaiden.
+      // Don't want to capture the Manor Sentry because it will make the trigger go off early.
+      // The sentry outside the bosses room loads when you enter the zone.
+      // This causes the trigger to go off early, parsing for the Handmaiden fixes the problem.
       id: 'Haukke Normal Ladys Handmaiden',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '424', capture: false }),
       suppressSeconds: 2,
