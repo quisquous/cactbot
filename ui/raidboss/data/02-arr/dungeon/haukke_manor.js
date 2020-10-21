@@ -54,7 +54,6 @@
     },
     {
       // Two Lady's Handmaiden and 1 Manor Sentry Spawn
-      // Don't want to capture the Manor Sentry because it will make the trigger go off early.
       // The sentry outside the bosses room loads when you enter the zone.
       // This causes the trigger to go off early, parsing for the Handmaiden fixes the problem.
       id: 'Haukke Normal Ladys Handmaiden',
