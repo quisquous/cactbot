@@ -23,7 +23,7 @@
       response: Responses.stun('info'),
     },
     {
-      // Amandine Specific Dark Mist
+      // Amandine Specific Dark Mist for classes that cannot Stun
       id: 'Haukke Normal Amandine Dark Mist Dodge',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
       condition: function(data) {
