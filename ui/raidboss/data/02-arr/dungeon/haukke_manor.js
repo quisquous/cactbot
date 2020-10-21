@@ -86,12 +86,12 @@
     },
     {
       id: 'Haukke Normal Ladys Candle Self Destruct',
-      netRegex: NetRegexes.startsUsing({ id: '151' }),
+      netRegex: NetRegexes.addedCombatant({ name: Lady\'s Handmaiden', capture: false }),
       response: Responses.getOut('alert'),
     },
     {
       id: 'Haukke Normal Ladys Handmaiden',
-      regex: '/03:\y{40025b48}:/',
+      netRegex: NetRegexes.addedCombatant({ name: Lady\'s Handmaiden', capture: false }),
       suppressSeconds: 2,
       infoText: function(data) {
       return {
