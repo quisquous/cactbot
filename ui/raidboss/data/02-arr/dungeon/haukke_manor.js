@@ -81,12 +81,12 @@
     },
     {
       id: 'Haukke Normal Ladys Candle',
-      regex: '/03:\y{40025b44}:/',
+      netRegex: NetRegexes.addedCombatant({ name: Lady\'s Candle', capture: false }),
       response: Responses.killAdds('info'),
     },
     {
       id: 'Haukke Normal Ladys Candle Self Destruct',
-      netRegex: NetRegexes.addedCombatant({ name: Lady\'s Handmaiden', capture: false }),
+      netRegex: NetRegexes.addedCombatant({ name: Lady\'s Candle', capture: false }),
       response: Responses.getOut('alert'),
     },
     {
