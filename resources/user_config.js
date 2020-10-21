@@ -2,9 +2,12 @@
 
 let UserConfig = {
   optionTemplates: {},
+  userFileCallbacks: {},
   savedConfig: null,
-  registerOptions: function(overlayName, optionTemplates) {
+  registerOptions: function(overlayName, optionTemplates, userFileCallback) {
     this.optionTemplates[overlayName] = optionTemplates;
+    if (userFileCallback)
+      this.userFileCallbacks[overlayName] = userFileCallback;
   },
 
   getUserConfigLocation: function(overlayName, options, callback) {
@@ -89,7 +92,11 @@ let UserConfig = {
         if (jsFile in localFiles) {
           try {
             printUserFile('local user file: ' + basePath + '\\' + jsFile);
-            eval(localFiles[jsFile]);
+
+            if (this.userFileCallbacks[overlayName])
+              this.userFileCallbacks[overlayName](jsFile, localFiles, options);
+            else
+              eval(localFiles[jsFile]);
           } catch (e) {
             // Be very visible for users.
             console.log('*** ERROR IN USER FILE ***');
