@@ -219,7 +219,7 @@ Options.Triggers.push({
 [ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/00-misc/general.js#L11-L30)에서 찾을 수 있습니다.
 
 여기 `condition` 함수(function)가 수정된 버전이 있습니다.
-이 트리거는 cactbot에 기본으로 포함된 트리거인 `General Provoke`와 id가 동일하기 떄문에
+이 트리거는 cactbot에 기본으로 포함된 트리거인 `General Provoke`와 id가 동일하기 때문에
 이 트리거가 기본 트리거를 덮어쓸 것 입니다.
 
 이 코드 덩러리를 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
@@ -326,7 +326,7 @@ Raidboss 타임라인을 덮어쓰는 것은 [Raidboss 트리거 덮어쓰기](#
     타임라인 구성 방법에 대해 더 알고 싶다면 [타임라인 가이드](../TimelineGuide.md)를 참고하세요.
 
 **참고**: 타임라인을 수정하는 것은 약간의 위험 요소가 있습니다.
-타임라인 텍스트를 참고하여 작동하는 타임라인 트리거가 있을 수도 있기 떄문이죠.
+타임라인 텍스트를 참고하여 작동하는 타임라인 트리거가 있을 수도 있기 때문이죠.
 예를 들어, 절알렉에는 `Fluid Swing`와 `Propeller Wind` 등을 이용하는 타임라인 트리거가 있습니다.
 만약 이 이름들이 바뀌거나 지워진다면, 타임라인 트리거가 작동하지 않게 됩니다.
 특히, 한국어 스킬명으로 바꾸는 경우, 타임라인 트리거는 영어 타임라인을 기반으로 작동하기 때문에
