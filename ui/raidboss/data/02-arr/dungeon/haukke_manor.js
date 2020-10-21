@@ -15,7 +15,7 @@
     },
     {
       id: 'Haukke Normal Dark Mist Tank',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Manor Claviger || Manor Maidservant || Lady Amandine' }),
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Claviger', 'Manor Maidservant', 'Lady Amandine'] }),
       condition: function(data) {
       return data.role == 'tank';
       },
@@ -86,7 +86,7 @@
     },
     {
       id: 'Haukke Normal Ladys Candle Self Destruct',
-      netRegex: NetRegexes.addedCombatant({ name: Lady\'s Candle', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '151', name: Lady\'s Candle' }),
       response: Responses.getOut('alert'),
     },
     {
