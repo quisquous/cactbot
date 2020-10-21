@@ -290,8 +290,7 @@ class Timeline {
       for (const trigger of triggers) {
         let found = false;
         for (const event of this.events) {
-          let m = event.name.match(trigger.regex);
-          if (m) {
+          if (event.name.match(trigger.regex)) {
             found = true;
             break;
           }
