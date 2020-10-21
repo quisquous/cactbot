@@ -39,7 +39,7 @@
     {
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
-      netRegex: NetRegexes.message({ line: 'The void lamps have begun emitting an eerie glow*?' }),
+      netRegex: NetRegexes.message({ line: 'The void lamps have begun emitting an eerie glow.', capture: false }),
       infoText: function(data) {
         return {
           en: 'Turn off Lamps',
