@@ -21,6 +21,14 @@
       response: Responses.stun('info'),
     },
     {
+      id: 'Haukke Normal Amandine Dark Mist Dodge',
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
+      condition: function(data) {
+        return !data.canStun();
+      },
+      response: Responses.outOfMelee('info'),
+    },
+    {
       id: 'Haukke Normal Amandine Void Fire III',
       netRegex: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
       condition: function(data) {
