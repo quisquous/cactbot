@@ -37,6 +37,7 @@
       response: Responses.interrupt('info'),
     },
     {
+      //Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
       regex: /The void lamps have begun/,
       infoText: function(data) {
@@ -46,13 +47,15 @@
       },
     },
     {
+      //Lady's Candle Spawn
       id: 'Haukke Normal Ladys Candle',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '425', capture: false }),
       response: Responses.killAdds('info'),
     },
     {
+      //Last Adds Spawn
       id: 'Haukke Normal Ladys Handmaiden',
-      netRegex: NetRegexes.addedCombatant({ name: 'Lady\'s Handmaiden', capture: false }),
+      netRegex: NetRegexes.addedCombatantFull({ npcNameId: '424', capture: false }),
       suppressSeconds: 2,
       infoText: function(data) {
         return {
