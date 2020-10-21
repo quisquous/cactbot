@@ -6,7 +6,7 @@
   triggers: [
     {
       id: 'Haukke Normal Dark Mist DPS/Heals',
-      netRegex: NetRegexes.startsUsing({ id: '2C1' }),
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Manor Claviger || Manor Maidservant || Lady Amandine' }),
       condition: function(data) {
       return data.role != 'tank';
       },
@@ -15,7 +15,7 @@
     },
     {
       id: 'Haukke Normal Dark Mist Tank',
-      netRegex: NetRegexes.startsUsing({ id: '2C1' }),
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Manor Claviger || Manor Maidservant || Lady Amandine' }),
       condition: function(data) {
       return data.role == 'tank';
       },
@@ -81,7 +81,7 @@
     },
     {
       id: 'Haukke Normal Ladys Candle',
-      regex: /Added new combatant Lady's Candle/,
+      regex: '/03:\y{40025b44}:/',
       response: Responses.killAdds('info'),
     },
     {
@@ -91,7 +91,7 @@
     },
     {
       id: 'Haukke Normal Ladys Handmaiden',
-      regex: /Added new combatant Lady's Handmaiden/,
+      regex: '/03:\y{40025b48}:/',
       suppressSeconds: 2,
       infoText: function(data) {
       return {
