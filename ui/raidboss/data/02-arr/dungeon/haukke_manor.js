@@ -26,7 +26,7 @@
       condition: function(data) {
         return !data.canStun();
       },
-      response: Responses.outOfMelee('info'),
+      response: Responses.outOfMelee('alert'),
     },
     {
       id: 'Haukke Normal Amandine Void Fire III',
