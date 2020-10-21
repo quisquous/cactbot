@@ -48,7 +48,7 @@ and so you might need a little bit of programming savvy.
 
 The general philosophy of cactbot is that
 any user configuration should only go in files in the user directory.
-This will prevent your changes from being clobbered during future cactbot updates.
+This will prevent your changes from being overwritten during future cactbot updates.
 Additionally, in the future modifying cactbot files directly from a cactbot release
 will not work properly without running extra build steps.
 
@@ -115,7 +115,7 @@ ACT -> Plugins -> OverlayPlugin.dll -> your overlay -> Open DevTools.
 This is because they use custom elements,
 and they don't expose a lot of knobs to tune.
 If you have particular things you want to change about the timeline bars that you can't,
-please feel github issues.
+please feel free to submit a [github issue](https://github.com/quisquous/cactbot/issues/new/choose).
 
 **Warning**: cactbot makes no guarantees about preserving CSS backwards compatability.
 Future changes to cactbot may rearrange elements,
