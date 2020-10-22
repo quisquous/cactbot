@@ -41,7 +41,7 @@
         return matches.target == 'Brayflox Alltalks' && data.canStun();
       },
       response: Responses.stun('info'),
-    },      
+    },
     {
       // Hellbender Bubble
       id: 'Brayflox Normal Hellbender Effluvium',
@@ -69,30 +69,30 @@
         return data.role == 'healer';
       },
       infotext: {
-      	en: 'Esuna Poison'
-      },	
+        en: 'Esuna Poison',
+      },
     },
     {
-      // Move Aiatar out of Puddles	
+      // Move Aiatar out of Puddles
       id: 'Brayflox Normal Aiatar Toxic Vomit Tank',
       netRegex: NetRegexes.message({ line: 'Aiatar is using the poison from the pools to restore its HP!', capture: false }),
       condition: function(data) {
         return data.role == 'tank';
       },
       alerttext: {
-      	en: 'Move Boss'
-      },	
+        en: 'Move Boss',
+      },
     },
     {
-      // Healer Esuna Puddle Poison Application	
+      // Healer Esuna Puddle Poison Application
       id: 'Brayflox Normal Aiatar Toxic Vomit Healer',
       netRegex: NetRegexes.startsUsing({ id: '233', source: 'Aiatar', capture: false }),
       condition: function(data) {
         return data.role == 'healer';
       },
       infotext: {
-      	en: 'Esuna Poison'
-      },	
+        en: 'Esuna Poison',
+      },
     },
-  ],      
+  ],    
 }];
