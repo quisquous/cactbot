@@ -79,6 +79,10 @@ cactbot이 설치된 경로가 기본값으로 설정됩니다.
 이상적으로는, cactbot이 설치된 `cactbot/user`를 사용하는 것이 좋습니다.
 보통은 `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\user`
 (해루봇을 사용한다면, `ACT 설치 경로\Plugins\cactbot\user`)입니다.
+
+하지만 해루봇을 사용하신다면, cactbot 업데이트시 cactbot 폴더 내 내용이
+전부 초기화되므로 외부에 다른 user 폴더를 만들고 그곳을 경로로 설정하기를 권장합니다.
+
 [이 폴더](../../docs)에는 예시 설정 파일들이 있습니다.
 
 ## 디자인 수정하기
