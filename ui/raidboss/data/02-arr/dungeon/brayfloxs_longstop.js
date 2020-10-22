@@ -46,7 +46,7 @@
       // Hellbender Bubble
       id: 'Brayflox Normal Hellbender Effluvium',
       netRegex: NetRegexes.startsUsing({ id: '3D3', source: 'Hellbender', capture: false }),
-      infoText: function(data) {
+      alertText: function(data) {
         return {
           en: 'Kill Bubble',
         };
