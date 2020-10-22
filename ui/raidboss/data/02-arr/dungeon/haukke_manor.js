@@ -24,7 +24,7 @@
     },
     {
       // Amandine Specific Dark Mist for Classes Without Stuns
-      // Particle effects in the room and spell effectsd can make this hard to see.
+      // Particle and spell effects in the room can make this Dark Mist hard to see.
       // Callout ensures dodge.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
