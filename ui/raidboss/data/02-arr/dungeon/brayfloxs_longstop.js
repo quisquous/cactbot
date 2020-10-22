@@ -45,7 +45,7 @@
     {
       // Hellbender Bubble
       id: 'Brayflox Normal Hellbender Effluvium',
-      netRegex: NetRegexes.startsUsing({ id: '3D3', source: 'Hellbender' }),
+      netRegex: NetRegexes.startsUsing({ id: '3D3', source: 'Hellbender', capture: false }),
       infoText: function(data) {
         return {
           en: 'Kill Bubble',
@@ -68,7 +68,7 @@
       condition: function(matches, data) {
         return data.role == 'healer';
       },
-      infotext: {
+      infoText: {
         en: 'Esuna Poison',
       },
     },
@@ -79,18 +79,18 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alerttext: {
-        en: 'Move Boss',
+      alertText: {
+        en: 'Move Boss Out of Puddles',
       },
     },
     {
       // Healer Esuna Puddle Poison Application
       id: 'Brayflox Normal Aiatar Toxic Vomit Healer',
       netRegex: NetRegexes.startsUsing({ id: '233', source: 'Aiatar', capture: false }),
-      condition: function(data) {
+      : function(data) {
         return data.role == 'healer';
       },
-      infotext: {
+      infoText: {
         en: 'Esuna Poison',
       },
     },
