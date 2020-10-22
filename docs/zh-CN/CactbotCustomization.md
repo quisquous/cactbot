@@ -108,7 +108,9 @@ Options.Triggers.push({
 
 ### 例1：改变输出文本
 
-Let's say hypothetically that you are doing UCOB and your group decides that they are going to do fire out first instead of fire in first like cactbot calls it by default.
+假定您正在攻略巴哈姆特绝境战(UCOB)，
+您的固定队采用的不是cactbot默认的火1集合吃的打法，
+而是先单吃火1。
 
 其中一种调整方式是编辑触发器的输出。 您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743) 中找到原本的 fireball #1 触发器。
 
