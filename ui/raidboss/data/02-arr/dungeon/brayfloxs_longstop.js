@@ -35,7 +35,7 @@
     },
     {
       // Inferno Drake Cyclone Stun
-      // Target is Brayflox because the alert goes off slightly sooner to save the player from Cyclone.
+      // Target is Brayflox because the alert fires slightly sooner to save the player from Cyclone.
       id: 'Brayflox Normal Inferno Drake Burning Cyclone',
       netRegex: NetRegexes.startsUsing({ id: '205', source: 'Inferno Drake' }),
       condition: function(matches, data) {
