@@ -15,7 +15,7 @@
     {
       // Pelican Adds
       id: 'Brayflox Normal Pelican Adds',
-      netRegex: NetRegexes.message({ line: 'A flock of ziz emerge from the jungle!', capture: false }),
+      netRegex: NetRegexes.message({ line: 'A flock of ziz emerges from the jungle!', capture: false }),
       response: Responses.killAdds('info'),
     },
     {
