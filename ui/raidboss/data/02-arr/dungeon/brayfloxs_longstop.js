@@ -87,7 +87,7 @@
       // Healer Esuna Puddle Poison Application
       id: 'Brayflox Normal Aiatar Toxic Vomit Healer',
       netRegex: NetRegexes.startsUsing({ id: '233', source: 'Aiatar', capture: false }),
-      : function(data) {
+      condition: function(data) {
         return data.role == 'healer';
       },
       infoText: {
