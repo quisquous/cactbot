@@ -53,7 +53,7 @@ Cactbot的设计哲学要求任何用户的自定义配置应当存放于用户�
 
 ## 样式自定义
 
-为模块名称，下同)，对UI模块的位置、尺寸、颜色等进行自定义。 您可以通过阅览 `ui/<name>/<name>.css` 文件，寻找可用的选择器。
+您可以通过修改 `user/<name>.css` 等文件，对UI模块的位置、尺寸、颜色等进行自定义。 您可以通过阅览 `ui/<name>/<name>.css` 文件，寻找可用的选择器。
 
 如您在 [ui/raidboss/raidboss.css](../../ui/raidboss/raidboss.css) 中 可发现诸如 `#popup-text-container` 与 `#timeline-container` 等选择器， 则您可以在 `user/raidboss.css` 中对其位置进行自定义。 您可以在 `user/raidboss.css` 中添加更多的样式。
 
