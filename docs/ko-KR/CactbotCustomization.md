@@ -11,6 +11,10 @@
   - [예시 2: 도발 알림이 모든 직업에 뜨게 하기](#예시-2-도발-알림이-모든-직업에-뜨게-하기)
   - [예시 3: 커스텀 트리거 추가하기](#예시-3-커스텀-트리거-추가하기)
 - [Raidboss 타임라인 덮어쓰기](#Raidboss-타임라인-덮어쓰기)
+- [초보를 위한 무작정 따라하기](#초보를-위한-무작정-따라하기)
+  - [Raidboss 트리거 수정하기](#Raidboss-트리거-수정하기)
+  - [Raidboss 타임라인 수정하기](#Raidboss-타임라인-수정하기)
+  - [간단한 메모 추가하는 법](#간단한-메모-추가하는-법)
 - [기능 사용자 설정하기](#기능-사용자-설정하기)
 - [User 파일 디버깅](#User-파일-디버깅)
   - [오버레이 플러그인 로그에 에러가 나오는지 확인하세요](#오버레이-플러그인-로그에-에러가-나오는지-확인하세요)
@@ -364,6 +368,159 @@ Options.PlayerNicks = {
 이 부분이 헷갈릴 수 있는데,
 따라서 일반적으로 기본으로 제공되는 설정 기능으로 최대한 설정해보고,
 그 설정 기능으로는 수정할 수 없는 것들만 user 파일들로 수정하는 것이 좋습니다.
+
+## 초보를 위한 무작정 따라하기
+
+위 설명이 전혀 이해되지 않는 분들을 위해 그냥 무작정 따라하면 되는 설명을 추가했습니다. 지금까지의 내용을 이해하신 분이라면 읽지 않아도 됩니다.
+
+### Raidboss 트리거 수정하기
+
+1) `user` 폴더의 `raidboss.js` 파일을 편집 프로그램으로 엽니다. (메모장으로도 가능하며, 추가 프로그램을 설치할 의향이 있다면, [notepad++](https://notepad-plus-plus.org/downloads/)를 추천합니다.) 해당 파일이 없다면, 새로 만듭니다. 확장자가 js로 생성됐는지 반드시 확인하세요.
+
+1) 다음 코드 블록을 `raidboss.js` 파일 가장 아래에 붙여넣습니다.  
+
+    ```javascript
+    Options.Triggers.push({
+      zoneId: ZoneId.SomeId,
+      triggers: [
+        {
+
+        },
+      ],
+    });
+    ```
+
+1) [데이터 목록](../../ui/raidboss/data)에서 지금 수정하고 싶은 레이드나 던전의 `.js` 파일을 찾아서 여세요. 해당하는 던전의 영문명은 직접 알아내야 합니다.
+
+1) `raidboss.js` 파일에 붙여넣은 내용 중, `ZoneId.SomeId`를 지우고 그 위치에 방금 찾아서 연 `.js` 파일에 나와있는 `zoneId`를 붙여넣습니다.  
+예시) `e8s.js`에는 `ZoneId.EdensVerseRefulgenceSavage`가 `zoneId`로 적혀있으므로, `ZoneId.SomeId`를 지우고 `ZoneId.EdensVerseRefulgenceSavage`를 붙여넣습니다.
+
+1) trigger 내부 중괄호와 쉼표를 지우고, `.js` 파일 내에서 수정하길 원하는 트리거를 그대로 붙여넣습니다. (id 바로 위에 있는 중괄호부터 복사해야 합니다.)
+
+    전:
+
+    ```javascript
+    triggers: [
+      {
+
+      },
+    ],
+    ```
+
+    후:
+
+    ```javascript
+    triggers: [
+      { // <- id 바로 위의 여는 중괄호가 하나의 트리거의 시작점입니다.
+        id: 'E8S Reflected Frost 1',
+        netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
+        netRegexDe: NetRegexes.ability({ source: 'Eisspiegel', id: '4DB[78]', capture: false }),
+        netRegexFr: NetRegexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
+        netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DB[78]', capture: false }),
+        netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
+        netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
+        suppressSeconds: 5,
+        infoText: {
+          en: 'Swap Sides',
+          de: 'Seiten wechseln',
+          fr: 'Changez de côté',
+          cn: '换边',
+          ko: '반대로 이동',
+        },
+      }, // <- 시작한 중괄호의 닫는 쌍이 하나의 트리거의 끝점입니다. 쉼표도 포함한다고 생각하는게 복잡하지 않습니다.
+    ],
+    ```
+
+1) 수정하고 싶은 부분을 수정합니다. 아래 예시에서는 한국어 출력 문구를 "피하기"로 바꿔보겠습니다.
+
+    ```javascript
+    triggers: [
+      {
+        id: 'E8S Reflected Frost 1',
+        netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
+        netRegexDe: NetRegexes.ability({ source: 'Eisspiegel', id: '4DB[78]', capture: false }),
+        netRegexFr: NetRegexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
+        netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DB[78]', capture: false }),
+        netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
+        netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
+        suppressSeconds: 5,
+        infoText: {
+          en: 'Swap Sides',
+          de: 'Seiten wechseln',
+          fr: 'Changez de côté',
+          cn: '换边',
+          ko: '피하기', // <- 여기를 바꿨습니다.
+        },
+      },
+    ],
+    ```
+
+1) 더 수정하고 싶은 트리거가 있다면, 이 과정의 맨 처음으로 돌아가 반복합니다.
+
+**주의**: 과정 도중 쉼표를 지우거나 각 괄호의 쌍이 서로 맞지 않는 등 문법 오류가 발생하지 않도록 주의하세요.
+
+트리거를 더 자유자재로 수정하고 싶다면, 이 문서의 다른 문단들을 참고하세요. 이 문단은 최소한의 지식으로 수정할 수 있도록 **최대한** 간단히 설명했습니다.
+
+### Raidboss 타임라인 수정하기
+
+1) `user` 폴더의 `raidboss.js` 파일을 편집 프로그램으로 엽니다. (메모장으로도 가능하며, 추가 프로그램을 설치할 의향이 있다면, [notepad++](https://notepad-plus-plus.org/downloads/)를 추천합니다.) 해당 파일이 없다면, 새로 만듭니다. 확장자가 js로 생성됐는지 반드시 확인하세요.
+
+1) 수정하고 싶은 타임라인을 [데이터 목록](../../ui/raidboss/data)에서 다운로드하세요.
+    1) 목록에서 해당 파일을 찾습니다.
+    1) `Raw` 버튼을 클릭합니다.
+    1) 화면 우클릭 후, `다른 이름으로 저장`을 클릭하면 다운로드할 수 있습니다.
+    1) 해당 파일을 User 폴더 안에 넣습니다.
+
+    해당하는 던전의 영문명은 직접 알아내야 합니다.
+
+1) 다음 코드 블록을 `raidboss.js` 파일 가장 아래에 붙여넣습니다.
+
+    ```javascript
+    Options.Triggers.push({
+      zoneId: ZoneId.SomeId,
+      overrideTimelineFile: true,
+      timelineFile: 'some_timeline.txt',
+    });
+    ```
+
+1) 수정하고 싶은 타임라인의 던전에 해당하는 `.js` 파일을 [데이터 목록](../../ui/raidboss/data)에서 열고, 그 파일 상단에 있는 `zoneId` 값을 `ZoneId.SomeId` 대신 집어 넣습니다. 예를 들어, 절알렉 타임라인을 수정하고 있다면, `the_epic_of_alexander.js`을 열어서 그 곳에 적힌 `ZoneId.TheEpicOfAlexanderUltimate`를 `ZoneId.SomeId`를 대신해 붙여넣습니다.
+
+1) `timelineFile` 뒤에 `txt` 파일명을 방금 다운로드한 타임라인 `txt` 파일명으로 수정합니다.
+
+1) 다운로드 한 타임라인을 편집기로 열어 원하는 대로 수정합니다.
+
+1) 더 수정하고 싶은 타임라이닝 있다면, 이 과정의 맨 처음으로 돌아가 반복합니다.
+
+### 간단한 메모 추가하는 법
+
+엔터를 입력해도 딱히 기능은 없으므로 엔터는 마음껏 해도 됩니다.(이어져야 하는 문구 도중에 줄바꿈을 해도 된다는 뜻이 아닙니다.) `js` 파일 내에 "//"를 입력하면, 뒤의 모든 글자는 모두 무시됩니다. (줄바꿈시 무시하지 않음.) 이 방법으로 메모를 추가할 수 있습니다.
+
+```javascript
+Options.Triggers.push({
+  zoneId: ZoneId.EdensVerseRefulgenceSavage,
+  // 뒤에 어떤 내용을 수정한건지 적을 수 있겠죠
+  // 이렇게 메모를 줄바꿈하면 새로 //를 입력해야 합니다.
+  triggers: [
+    {
+      id: 'E8S Reflected Frost 1', // 이렇게 어느 문장 뒤에도 메모를 추가할 수 있습니다.
+      netRegex: NetRegexes.ability({ source: 'Frozen Mirror', id: '4DB[78]', capture: false }),
+      netRegexDe: NetRegexes.ability({ source: 'Eisspiegel', id: '4DB[78]', capture: false }),
+      netRegexFr: NetRegexes.ability({ source: 'miroir de glace', id: '4DB[78]', capture: false }),
+      netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DB[78]', capture: false }),
+      netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DB[78]', capture: false }),
+      netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DB[78]', capture: false }),
+      suppressSeconds: 5,
+      infoText: {
+        en: 'Swap Sides',
+        de: 'Seiten wechseln',
+        fr: 'Changez de côté',
+        cn: '换边',
+        ko: '피하기',
+      },
+    },
+  ],
+});
+```
 
 ## User 파일 디버깅
 
