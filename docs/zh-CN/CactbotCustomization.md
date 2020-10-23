@@ -4,11 +4,11 @@
 - [用户文件夹概览](#用户文件夹概览)
 - [设置您自己的用户文件夹](#设置您自己的用户文件夹)
 - [样式自定义](#样式自定义)
-- [Raidboss触发器自定义](#Raidboss触发器自定义)
-  - [例1：改变输出文本](#例1：改变输出文本)
-  - [例2：使挑衅提示适用于全职业](#例2：使挑衅提示适用于全职业)
-  - [例3：添加自定义触发器](#例3：添加自定义触发器)
-- [Raidboss时间轴自定义](#Raidboss时间轴自定义)
+- [Raidboss触发器自定义](#raidboss触发器自定义)
+  - [例1：改变输出文本](#例1改变输出文本)
+  - [例2：使挑衅提示适用于全职业](#例2使挑衅提示适用于全职业)
+  - [例3：添加自定义触发器](#例3添加自定义触发器)
+- [Raidboss时间轴自定义](#raidboss时间轴自定义)
 - [行为自定义](#行为自定义)
 - [用户文件的调试](#用户文件的调试)
   - [检查OverlayPlugin的错误日志](#检查OverlayPlugin的错误日志)
@@ -72,7 +72,7 @@ Cactbot的设计哲学要求任何用户的自定义配置应当存放于用户�
 
 **注意**：某些组件的自定义较为困难，甚至无法进行自定义，如时间轴的进度条等。 原因是，这些组件属于自定义HTML元素，且没有导出所有的可配置项。 如果您有特别的需求，但是您不知道如何修改此进度条，您可以提出一个 [github issue](https://github.com/quisquous/cactbot/issues/new/choose)。
 
-**警告**：cactbot不保证CSS的向后兼容性。 在以后的更改中，cactbot可能会重新组织网页结构，改变元素名称和类名称，甚至完全重构所有样式。 因此，您应当承担您的自定义CSS的问题的风险。
+**警告**：cactbot不保证CSS的向后兼容性。 在以后的更改中，cactbot可能会重新组织网页结构，改变元素名称和类名称，甚至完全重构所有样式。 因此，您需知晓您的自定义CSS有在将来出现问题的风险。
 
 ## Raidboss触发器自定义
 
@@ -102,15 +102,13 @@ Options.Triggers.push({
 });
 ```
 
-最简单的方式是直接复制对应的触发器代码并粘贴到此文件再进行修改。 您可以修改 `zoneId` 一行为您想要触发器响应的区域id，这一行通常位于cactbot触发器文件的顶部。 [该文件](../resources/zone_id.js) 列出了所有可用的区域id。 若您定义了错误的id，OverlayPlugin的日志窗口将会输出警告信息。 然后复制触发器文本并粘贴至此。 按您的喜好进行修改。 对您想修改的所有触发器均进行此步骤。 重载raidboss悬浮窗以应用更改。
+最简单的方式是直接复制对应的触发器代码并粘贴到此文件再进行修改。 您可以修改 `zoneId` 一行为您想要触发器响应的区域id，这一行通常位于cactbot触发器文件的顶部。 [该文件](../../resources/zone_id.js) 列出了所有可用的区域id。 若您定义了错误的id，OverlayPlugin的日志窗口将会输出警告信息。 然后复制触发器文本并粘贴至此。 按您的喜好进行修改。 对您想修改的所有触发器均进行此步骤。 重载raidboss悬浮窗以应用更改。
 
 **注意**：此方式会将原触发器完全移除，因此请在修改时不要删除任何逻辑。 此外，触发器均采用JavaScript编写，因此必须采用标准JavaScript语法。 若您不是程序员，您需要格外注意编辑方法。
 
 ### 例1：改变输出文本
 
-假定您正在攻略巴哈姆特绝境战(UCOB)，
-您的固定队采用的不是cactbot默认的火1集合吃的打法，
-而是先单吃火1。
+假定您正在攻略巴哈姆特绝境战(UCOB)， 您的固定队采用的不是cactbot默认的火1集合吃的打法， 而是先单吃火1。
 
 其中一种调整方式是编辑触发器的输出。 您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743) 中找到原本的 fireball #1 触发器。
 
@@ -210,7 +208,7 @@ Options.Triggers.push([
 ]);
 ```
 
-我们推荐阅读 [trigger guide](RaidbossGuide.md) 以了解如何撰写cactbot的触发器， 当然您也可以直接看 [ui/raidboss/data](../ui/raidboss/data) 中现有的触发器代码。
+我们推荐阅读 [trigger guide](RaidbossGuide.md) 以了解如何撰写cactbot的触发器， 当然您也可以直接看 [ui/raidboss/data](../../ui/raidboss/data) 中现有的触发器代码。
 
 ## Raidboss时间轴自定义
 
@@ -221,7 +219,7 @@ Options.Triggers.push([
 1) 复制原有的时间轴文本文件内容至您的用户文件夹
 
     例如，您可以复制
-    [ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt](../ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt)
+    [ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt](../../ui/raidboss/data/05-shb/ultimate/the_epic_of_alexander.txt)
     至 `user/the_epic_of_alexander.txt`。
 
 1) 在 user/raidboss.js 中添加代码
@@ -255,7 +253,7 @@ Options.Triggers.push([
 
 每个cactbot模块都有一个名为 `Options` 的变量，它包含了若干控制选项。 每一个 `ui/<name>/<name>.js` 文件的顶部都会修改并注释 `Options` 的各个变量。
 
-例如在 [ui/raidboss/raidboss.js](../ui/raidboss/raidboss.js) 文件中， 您可以通过 `PlayerNicks` 选项定义玩家的昵称。
+例如在 [ui/raidboss/raidboss.js](../../ui/raidboss/raidboss.js) 文件中， 您可以通过 `PlayerNicks` 选项定义玩家的昵称。
 
 ```javascript
 Options.PlayerNicks = {
