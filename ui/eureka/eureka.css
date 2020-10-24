@@ -187,6 +187,20 @@
   display: none;
 }
 
+/* non-critical bozja fates are less important, so make smaller */
+.bozjasouthern > .nm {
+  font-size: 10px;
+}
+
+.bozjasouthern > .nm-pop .nm-name {
+  font-size: 12px;
+}
+
+.bozjasouthern > .nm-down .nm-name,
+.bozjasouthern > .nm-down .nm-time {
+  font-size: 8px;
+}
+
 .player {
   position: absolute;
   display: block;

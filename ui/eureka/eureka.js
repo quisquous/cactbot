@@ -2230,6 +2230,7 @@ class EurekaTracker {
     this.nmKeys = Object.keys(this.nms);
 
     let container = document.getElementById('nm-labels');
+    container.classList.add(this.zoneInfo.shortName);
 
     for (const key of this.nmKeys)
       this.AddElement(container, key);
@@ -2249,6 +2250,7 @@ class EurekaTracker {
     let container = document.getElementById('nm-labels');
     container.innerHTML = '';
     this.currentTracker = null;
+    container.className = '';
   }
 
   OnPlayerChange(e) {
