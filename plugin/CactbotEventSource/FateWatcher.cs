@@ -7,6 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using Newtonsoft.Json.Linq;
+using System.Threading;
 
 namespace Cactbot {
   public class FateWatcher {
@@ -82,6 +83,8 @@ namespace Cactbot {
       public byte progress;
     };
 
+    private static SemaphoreSlim fateSemaphore;
+    private static SemaphoreSlim ceSemaphore;
     private Dictionary<string, AC143OPCodes> ac143opcodes = null;
     private Dictionary<string, CEDirectorOPCodes> cedirectoropcodes = null;
 
@@ -92,8 +95,8 @@ namespace Cactbot {
     private ActorControl143 actorControl143;
 
     // fates<fateID, progress>
-    private static ConcurrentDictionary<int, int> fates;
-    private static ConcurrentDictionary<int, CEDirectorData> ces;
+    private static Dictionary<int, int> fates;
+    private static Dictionary<int, CEDirectorData> ces;
 
     public FateWatcher(CactbotEventSource client, string language) {
       client_ = client;
@@ -104,6 +107,8 @@ namespace Cactbot {
       else
         region_ = "intl";
 
+      fateSemaphore = new SemaphoreSlim(0, 1);
+      ceSemaphore = new SemaphoreSlim(0, 1);
       ac143opcodes = new Dictionary<string, AC143OPCodes>();
       ac143opcodes.Add("ko", ac143_v5_2);
       ac143opcodes.Add("cn", ac143_v5_2);
@@ -112,8 +117,8 @@ namespace Cactbot {
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
       cedirectoropcodes.Add("intl", cedirector_v5_35);
 
-      fates = new ConcurrentDictionary<int, int>();
-      ces = new ConcurrentDictionary<int, CEDirectorData>();
+      fates = new Dictionary<int, int>();
+      ces = new Dictionary<int, CEDirectorData>();
 
       var FFXIV = ActGlobals.oFormActMain.ActPlugins.FirstOrDefault(x => x.lblPluginTitle.Text == "FFXIV_ACT_Plugin.dll");
       if (FFXIV != null && FFXIV.pluginObj != null) {
@@ -209,58 +214,68 @@ namespace Cactbot {
     public unsafe void ProcessActorControl143(byte* buffer, byte[] message) {
       int a = *(ushort*)&buffer[actorControl143.categoryOffset];
 
-      if (a == ac143opcodes[region_].add) {
-        AddFate(*(int*)&buffer[actorControl143.param1Offset]);
-      } else if (a == ac143opcodes[region_].remove) {
-        RemoveFate(*(int*)&buffer[actorControl143.param1Offset]);
-      } else if (a == ac143opcodes[region_].update) {
-        int param1 = *(int*)&buffer[actorControl143.param1Offset];
-        int param2 = *(int*)&buffer[actorControl143.param2Offset];
-        if (!fates.ContainsKey(param1)) {
-          AddFate(param1);
+      fateSemaphore.WaitAsync();
+      try {
+        if (a == ac143opcodes[region_].add) {
+          AddFate(*(int*)&buffer[actorControl143.param1Offset]);
+        } else if (a == ac143opcodes[region_].remove) {
+          RemoveFate(*(int*)&buffer[actorControl143.param1Offset]);
+        } else if (a == ac143opcodes[region_].update) {
+          int param1 = *(int*)&buffer[actorControl143.param1Offset];
+          int param2 = *(int*)&buffer[actorControl143.param2Offset];
+          if (!fates.ContainsKey(param1)) {
+            AddFate(param1);
+          }
+          if (fates[param1] != param2) {
+            UpdateFate(param1, param2);
+          }
         }
-        if (fates[param1] != param2) {
-          UpdateFate(param1, param2);
-        }
+      } finally {
+        fateSemaphore.Release();
       }
     }
 
     public unsafe void ProcessCEDirector(byte* buffer, byte[] message) {
       CEDirectorData data = *(CEDirectorData*)&buffer[0];
 
-      if (data.status != 0 && !ces.ContainsKey(data.ceKey)) {
-        AddCE(data);
-        return;
-      } else {
-
-        // Don't update if key is about to be removed
-        if (!ces[data.ceKey].Equals(data) &&
-          data.status != 0) {
-          UpdateCE(data);
+      ceSemaphore.WaitAsync();
+      try {
+        if (data.status != 0 && !ces.ContainsKey(data.ceKey)) {
+          AddCE(data);
           return;
-        }
+        } else {
 
-        // Needs removing
-        if (data.status == 0) {
-          RemoveCE(data);
-          return;
+          // Don't update if key is about to be removed
+          if (!ces[data.ceKey].Equals(data) &&
+            data.status != 0) {
+            UpdateCE(data.ceKey, data);
+            return;
+          }
+
+          // Needs removing
+          if (data.status == 0) {
+            RemoveCE(data);
+            return;
+          }
         }
+      } finally {
+        ceSemaphore.Release();
       }
     }
 
     private void AddCE(CEDirectorData data) {
-      ces.TryAdd(data.ceKey, data);
+      ces.Add(data.ceKey, data);
       client_.DoCEEvent(new JSEvents.CEEvent("add", JObject.FromObject(data)));
     }
     
     private void RemoveCE(CEDirectorData data) {
       if (ces.ContainsKey(data.ceKey)) {
         client_.DoCEEvent(new JSEvents.CEEvent("remove", JObject.FromObject(data)));
-        ces.TryRemove(data.ceKey, out _);
+        ces.Remove(data.ceKey);
       }
     }
-    private void UpdateCE(CEDirectorData data) {
-      ces.AddOrUpdate(data.ceKey, data, (int key, CEDirectorData oldValue) => data);
+    private void UpdateCE(byte ceKey, CEDirectorData data) {
+      ces[data.ceKey] = data;
       client_.DoCEEvent(new JSEvents.CEEvent("update", JObject.FromObject(data)));
     }
 
@@ -273,7 +288,7 @@ namespace Cactbot {
 
     private void AddFate(int fateID) {
       if (!fates.ContainsKey(fateID)) {
-        fates.TryAdd(fateID, 0);
+        fates.Add(fateID, 0);
         client_.DoFateEvent(new JSEvents.FateEvent("add", fateID, 0));
       }
     }
@@ -281,12 +296,12 @@ namespace Cactbot {
     private void RemoveFate(int fateID) {
       if (fates.ContainsKey(fateID)) {
         client_.DoFateEvent(new JSEvents.FateEvent("remove", fateID, fates[fateID]));
-        fates.TryRemove(fateID, out _);
+        fates.Remove(fateID);
       }
     }
 
     private void UpdateFate(int fateID, int progress) {
-      fates.AddOrUpdate(fateID, progress, (int id, int prog) => progress);
+      fates[fateID] = progress;
       client_.DoFateEvent(new JSEvents.FateEvent("update", fateID, progress));
     }
 
