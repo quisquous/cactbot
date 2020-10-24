@@ -1686,6 +1686,7 @@ let Options = {
       shortName: 'bozjasouthern',
       hasTracker: false,
       dontShowInactive: true,
+      treatNMsAsSkirmishes: true,
       mapToPixelXScalar: 47.911,
       mapToPixelXConstant: -292.56,
       mapToPixelYScalar: 48.938,
@@ -2317,13 +2318,18 @@ class EurekaTracker {
     fate.respawnTimeMsLocal = this.RespawnTime(fate);
 
     if (fate.bunny) {
-      if (this.options.BunnyPopSound && this.options.BunnyPopVolume)
+      const shouldPlay = this.options.PopNoiseForBunny;
+      if (shouldPlay && this.options.BunnyPopSound && this.options.BunnyPopVolume)
         this.PlaySound(this.options.BunnyPopSound, this.options.BunnyPopVolume);
     } else if (fate.isCritical) {
-      if (this.options.CriticalPopSound && this.options.CriticalPopVolume)
+      const shouldPlay = fate.isDuel && this.options.PopNoiseForDuel ||
+          !fate.isDuel && this.options.PopNoiseForCriticalEngagement;
+      if (shouldPlay && this.options.CriticalPopSound && this.options.CriticalPopVolume)
         this.PlaySound(this.options.CriticalPopSound, this.options.CriticalPopVolume);
     } else {
-      if (this.options.PopSound && this.options.PopVolume)
+      const shouldPlay = this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
+          !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
+      if (shouldPlay && this.options.PopSound && this.options.PopVolume)
         this.PlaySound(this.options.PopSound, this.options.PopVolume);
     }
   }
