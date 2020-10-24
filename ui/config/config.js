@@ -2,12 +2,12 @@
 
 import UserConfig from '../../resources/user_config.js';
 
-/*
- *  TODO:
- * "import X as _X;" or "import _X; const X = _X;"
- * are hacks to have Webpack preserve the variables during eval.
- * Please convert to normal import statements ASAP!
- */
+// TODO:
+// The convention of "import X as _X; const X = _X;" is currently
+// being used as a method to workaround for downstream code
+// that is running via eval(). Because importing statements do not
+// create a variable of the same name, the eval()'d code does not know
+// about the import, and thus throws ReferenceErrors.
 // Used by downstream eval
 import _Conditions from '../../resources/conditions.js';
 const Conditions = _Conditions;
