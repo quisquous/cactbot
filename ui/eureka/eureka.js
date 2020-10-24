@@ -2180,7 +2180,8 @@ class EurekaTracker {
     this.SetStyleFromMap(style, mx, my);
   }
 
-  AddElement(container, nm) {
+  AddElement(container, nmKey) {
+    const nm = this.nms[nmKey];
     let label = document.createElement('div');
     label.classList.add('nm');
 
@@ -2189,7 +2190,7 @@ class EurekaTracker {
     if (this.zoneInfo.dontShowInactive)
       label.classList.add('nm-hidden');
 
-    label.id = nm;
+    label.id = nmKey;
 
     this.SetStyleFromMap(label.style, nm.x, nm.y);
 
@@ -2230,8 +2231,8 @@ class EurekaTracker {
 
     let container = document.getElementById('nm-labels');
 
-    for (let i = 0; i < this.nmKeys.length; ++i)
-      this.AddElement(container, this.nms[this.nmKeys[i]]);
+    for (const key of this.nmKeys)
+      this.AddElement(container, key);
 
 
     this.fairy = this.zoneInfo.fairy;
