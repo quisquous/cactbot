@@ -175,9 +175,9 @@ class PullCounter {
     if (this.bossStarted)
       return;
     for (const log of e.detail.logs) {
-      if (log.match(this.resetRegex))
+      if (this.resetRegex.test(log))
         this.ResetPullCounter();
-      if (log.match(this.countdownEngageRegex)) {
+      if (this.countdownEngageRegex.test(log)) {
         if (this.countdownBoss)
           this.OnFightStart(this.countdownBoss);
         else
@@ -185,7 +185,7 @@ class PullCounter {
         return;
       }
       for (const boss of this.bosses) {
-        if (boss.startRegex && log.match(boss.startRegex)) {
+        if (boss.startRegex && boss.startRegex.test(log)) {
           this.OnFightStart(boss);
           return;
         }

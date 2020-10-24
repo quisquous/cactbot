@@ -6,6 +6,7 @@
   timelineTriggers: [
     {
       id: 'A4S Hydrothermal Missile',
+      regex: /Hydrothermal Missile/,
       beforeSeconds: 5,
       suppressSeconds: 5,
       response: Responses.tankCleave('info'),
