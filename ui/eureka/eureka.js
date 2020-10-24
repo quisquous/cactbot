@@ -2579,7 +2579,7 @@ class EurekaTracker {
       this.fateQueue.push(e);
       return;
     }
-
+    console.log(e.detail.eventType + ' | ' + e.detail.fateID + ' | ' + e.detail.progress);
     switch (e.detail.eventType) {
     case 'add':
       for (let key of this.nmKeys) {
@@ -2621,35 +2621,27 @@ class EurekaTracker {
       return;
     }
 
+    const handleEvent = (handler) => {
+      for (const key of this.nmKeys) {
+        const nm = this.nms[key];
+        if (e.detail.data.ceKey == nm.ceKey)
+          return handler.call(this, nm);
+      }
+    };
+
     switch (e.detail.eventType) {
     case 'add':
-      for (let key of this.nmKeys) {
-        let nm = this.nms[key];
-        if (e.detail.data.ceKey == nm.ceKey) {
-          this.OnFatePop(nm);
-          return;
-        }
-      }
+      handleEvent(this.OnFatePop);
       break;
     case 'remove':
-      for (let key of this.nmKeys) {
-        let nm = this.nms[key];
-        if (e.detail.data.ceKey == nm.ceKey) {
-          this.OnFateKill(nm);
-          return;
-        }
-      }
+      handleEvent(this.OnFateKill);
       break;
     case 'update':
-      for (let key of this.nmKeys) {
-        let nm = this.nms[key];
-        if (e.detail.data.ceKey == nm.ceKey) {
-          if (e.detail.data.status == 3)
-            this.OnFateUpdate(nm, e.detail.data.progress);
-          return;
-        }
-      }
-      break;
+      handleEvent(
+          (nm) =>
+            e.detail.data.status === 3 &&
+            this.OnFateUpdate.call(this, nm, e.detail.data.progress)
+      );
     }
   }
 
