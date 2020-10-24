@@ -335,6 +335,11 @@ namespace Cactbot {
       DispatchEvent(ev);
     }
 
+    public void ClearFateWatcherDictionaries() {
+      fate_watcher_.RemoveAndClearCEs();
+      fate_watcher_.RemoveAndClearFates();
+    }
+
     // Events that we want to update as soon as possible.  Return next time this should be called.
     private int SendFastRateEvents() {
       if (reset_notify_state_)
@@ -403,6 +408,7 @@ namespace Cactbot {
       if (notify_state_.zone_name == null || !zone_name.Equals(notify_state_.zone_name)) {
         notify_state_.zone_name = zone_name;
         OnZoneChanged(new JSEvents.ZoneChangedEvent(zone_name));
+        ClearFateWatcherDictionaries();
       }
 
       DateTime now = DateTime.Now;
@@ -424,10 +430,9 @@ namespace Cactbot {
       if (player != null) {
         bool send = false;
         if (!player.Equals(notify_state_.player)) {
-          // Clear the FATE dictionary if we switched characters
-          if (notify_state_.player != null && !player.name.Equals(notify_state_.player.name)) {
-            fate_watcher_.RemoveAndClearFates();
-          }
+          // Clear the FateWatcher dictionaries if we switched characters
+          if (notify_state_.player != null && !player.name.Equals(notify_state_.player.name))
+            ClearFateWatcherDictionaries();
           notify_state_.player = player;
           send = true;
         }
