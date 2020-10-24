@@ -2640,7 +2640,7 @@ class EurekaTracker {
       handleEvent(
           (nm) =>
             e.detail.data.status === 3 &&
-            this.OnFateUpdate.call(this, nm, e.detail.data.progress)
+            this.OnFateUpdate.call(this, nm, e.detail.data.progress),
       );
     }
   }
