@@ -1,4 +1,4 @@
-'use strict';
+
 
 [{
   zoneId: ZoneId.HaukkeManor,
@@ -7,8 +7,8 @@
       // Dark Mist Stun with Suppression for duplicate messages
       id: 'Haukke Normal Dark Mist Stun',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] }),
-      condition: function(data) {
-        return data.canStun();
+      condition: function(data, matches) {
+        return data.CanStun();
       },
       suppressSeconds: 2,
       response: Responses.stun('info'),
@@ -17,8 +17,8 @@
       // Soul Drain
       id: 'Haukke Normal Steward Soul Drain Stun',
       netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
-      condition: function(data) {
-        return data.canStun();
+      condition: function(data, matches) {
+        return data.CanStun();
       },
       response: Responses.stun('info'),
     },
@@ -27,9 +27,9 @@
       // Particle and spell effects in the room can make this Dark Mist hard to see.
       // Callout ensures dodge.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
-      condition: function(data) {
-        return !data.canStun();
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
+      condition: function(data, matches) {
+        return !data.CanStun();
       },
       response: Responses.outOfMelee('alert'),
     },
@@ -37,8 +37,8 @@
       // Void Fire 3
       id: 'Haukke Normal Amandine Void Fire III',
       netRegex: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
-      condition: function(data) {
-        return data.canInterrupt();
+      condition: function(data, matches) {
+        return data.CanSilence();
       },
       response: Responses.interrupt('info'),
     },
@@ -46,8 +46,8 @@
       // Void Thunder 3
       id: 'Haukke Normal Amandine Void Thunder III',
       netRegex: NetRegexes.startsUsing({ id: '358', source: 'Manor Claviger' }),
-      condition: function(data) {
-        return data.canInterrupt();
+      condition: function(data, matches) {
+        return data.CanSilence();
       },
       response: Responses.interrupt('info'),
     },
@@ -55,10 +55,8 @@
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
       netRegex: NetRegexes.message({ line: 'The void lamps have begun emitting an eerie glow.', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Turn off Lamps',
-        };
+      infoText: {
+        en: 'Turn off Lamps',
       },
     },
     {
@@ -75,10 +73,8 @@
       id: 'Haukke Normal Ladys Handmaiden',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '424', capture: false }),
       suppressSeconds: 2,
-      infoText: function(data) {
-        return {
-          en: 'Kill Adds, Sentry First',
-        };
+      infoText: {
+        en: 'Kill Adds, Sentry First',
       },
     },
   ],
