@@ -150,6 +150,14 @@
         "never"
       ]
     },
+    "overrides": [
+      {
+        "files": ["ui/raidboss/data/**"],
+        "rules": {
+          "no-invalid-this": "off"
+        }
+      }
+    ],
     "parserOptions": {
       "ecmaVersion": 2018
     }

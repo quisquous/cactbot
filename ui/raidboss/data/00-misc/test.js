@@ -48,8 +48,8 @@
       id: 'Test Angry Dummy',
       regex: /(Angry Dummy)/,
       beforeSeconds: 2,
-      infoText: (data, matches) => data.output.stack({ name: matches[1] }),
-      tts: (data) => data.output.stackTTS(),
+      infoText: (data, matches) => this.output.stack({ name: matches[1] }),
+      tts: (data) => this.output.stackTTS(),
       outputStrings: {
         stack: {
           en: 'Stack for ${name}',
@@ -86,7 +86,7 @@
       },
       infoText: function(data) {
         let elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
-        return data.output.elapsed({ elapsed: elapsed });
+        return this.output.elapsed({ elapsed: elapsed });
       },
       outputStrings: {
         elapsed: {
@@ -112,7 +112,7 @@
       preRun: (data) => {
         data.pokes = (data.pokes || 0) + 1;
       },
-      infoText: (data) => data.output.poke({ numPokes: data.pokes }),
+      infoText: (data) => this.output.poke({ numPokes: data.pokes }),
       outputStrings: {
         poke: {
           en: 'poke #${numPokes}',
@@ -233,11 +233,13 @@
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
       response: function(data) {
+        // TODO: outputStrings needs to be supported inside of a response
+        // in order to make responses.js usable.
         return {
-          alarmText: data.output.alarmOne(),
-          alertText: data.output.alertTwo(),
-          infoText: data.output.infoThree(),
-          tts: data.output.ttsFour(),
+          alarmText: this.output.alarmOne(),
+          alertText: this.output.alertTwo(),
+          infoText: this.output.infoThree(),
+          tts: this.output.ttsFour(),
         };
       },
       outputStrings: {

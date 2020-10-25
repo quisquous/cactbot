@@ -335,7 +335,7 @@ class PopupText {
             continue;
           }
 
-          if (!this.ProcessTriggerOutputStrings(trigger))
+          if (!this.ProcessTrigger(trigger))
             continue;
 
           // parser-language-based regex takes precedence.
@@ -386,7 +386,7 @@ class PopupText {
         replacements.push(...set.timelineReplace);
       if (set.timelineTriggers) {
         for (const trigger of set.timelineTriggers) {
-          if (this.ProcessTriggerOutputStrings(trigger))
+          if (this.ProcessTrigger(trigger))
             timelineTriggers.push(trigger);
         }
       }
@@ -409,12 +409,36 @@ class PopupText {
     );
   }
 
-  ProcessTriggerOutputStrings(trigger) {
+  ProcessTrigger(trigger) {
+    trigger.output = {};
+
+    // Apologies in advance for this tremendous hack.
+    // Hackily rebind all trigger functions so that |this| is the trigger
+    // rather than PopupText.  This eval is required so that arrow
+    // functions in triggers are also "rebound".
+
+    for (const key in trigger) {
+      if (typeof trigger[key] !== 'function')
+        continue;
+
+      (function() {
+        // eslint wants to pretend that the bind down below is unneccessary,
+        // so give it this this to keep it happy.  The real use of this is
+        // inside the eval, which eslint doesn't see.
+        this;
+
+        // Add an additional arrow function indirection here, because eval is
+        // "top level" and so you can't have a top-level anonymous function,
+        // e.g. "function (data, matches)".  Finally, also bind this result
+        // for non-arrow functions using the `function` keyword.
+        trigger[key] = eval(`(() => { return ${trigger[key].toString()} })();`).bind(trigger);
+      }).bind(trigger)();
+    }
+
     if (!trigger.outputStrings)
       return true;
 
     // For each output string, add a function to trigger.output by that name.
-    trigger.output = {};
     for (const key in trigger.outputStrings) {
       const template = trigger.outputStrings[key];
       let templateStr = template;
@@ -640,14 +664,7 @@ class PopupText {
       trigger: trigger,
       now: now,
       valueOrFunction: (f) => {
-        let result = f;
-
-        if (typeof (f) === 'function') {
-          // Hook up trigger output functions for current trigger.
-          this.data.output = trigger.output;
-          result = f(this.data, triggerHelper.matches);
-        }
-
+        let result = (typeof (f) == 'function') ? f(this.data, triggerHelper.matches) : f;
         // All triggers return either a string directly, or an object
         // whose keys are different parser language based names.  For simplicity,
         // this is valid to do for any trigger entry that can handle a function.
