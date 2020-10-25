@@ -1,4 +1,4 @@
-
+'use strict';
 
 [{
   zoneId: ZoneId.HaukkeManor,
@@ -45,7 +45,7 @@
     {
       // Void Thunder 3
       id: 'Haukke Normal Amandine Void Thunder III',
-      netRegex: NetRegexes.startsUsing({ id: '358', source: 'Manor Claviger' }),
+      netRegex: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
       condition: function(data, matches) {
         return data.CanSilence();
       },
@@ -73,8 +73,8 @@
       id: 'Haukke Normal Ladys Handmaiden',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '424', capture: false }),
       suppressSeconds: 2,
-      infoText: {
-        en: 'Kill Adds, Sentry First',
+      alertText: {
+        en: 'Kill Sentry',
       },
     },
   ],
