@@ -33,6 +33,7 @@ const triggerFunctions = [
   'soundVolume',
   'suppressSeconds',
   'tts',
+  'outputStrings',
 ];
 
 const severityMap = {

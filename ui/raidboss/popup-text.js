@@ -335,6 +335,9 @@ class PopupText {
             continue;
           }
 
+          if (!this.ProcessTriggerOutputStrings(trigger))
+            continue;
+
           // parser-language-based regex takes precedence.
           let regex = trigger[regexParserLang] || trigger.regex;
           if (regex) {
@@ -381,8 +384,12 @@ class PopupText {
         addTimeline(set.timeline);
       if (set.timelineReplace)
         replacements.push(...set.timelineReplace);
-      if (set.timelineTriggers)
-        timelineTriggers.push(...set.timelineTriggers);
+      if (set.timelineTriggers) {
+        for (const trigger of set.timelineTriggers) {
+          if (this.ProcessTriggerOutputStrings(trigger))
+            timelineTriggers.push(trigger);
+        }
+      }
       if (set.timelineStyles)
         timelineStyles.push(...set.timelineStyles);
       if (set.resetWhenOutOfCombat !== undefined)
@@ -400,6 +407,39 @@ class PopupText {
         timelineTriggers,
         timelineStyles,
     );
+  }
+
+  ProcessTriggerOutputStrings(trigger) {
+    if (!trigger.outputStrings)
+      return true;
+
+    // For each output string, add a function to trigger.output by that name.
+    trigger.output = {};
+    for (const key in trigger.outputStrings) {
+      const template = trigger.outputStrings[key];
+      let templateStr = template;
+      if (typeof template === 'object') {
+        if (this.parserLang in template)
+          templateStr = template[this.parserLang];
+        else
+          templateStr = template['en'];
+      }
+      if (typeof templateStr !== 'string') {
+        console.error(`Trigger ${trigger.id} has invalid outputString ${key}.`);
+        return false;
+      }
+
+      trigger.output[key] = (params) => {
+        return templateStr.replace(/\${\s*([^}\s]+)\s*}/g, (fullMatch, key) => {
+          // TODO: throw if key missing?
+          if (key in params)
+            return params[key];
+          return '???';
+        });
+      };
+    }
+
+    return true;
   }
 
   OnJobChange(e) {
@@ -600,7 +640,14 @@ class PopupText {
       trigger: trigger,
       now: now,
       valueOrFunction: (f) => {
-        let result = (typeof (f) == 'function') ? f(this.data, triggerHelper.matches) : f;
+        let result = f;
+
+        if (typeof (f) === 'function') {
+          // Hook up trigger output functions for current trigger.
+          this.data.output = trigger.output;
+          result = f(this.data, triggerHelper.matches);
+        }
+
         // All triggers return either a string directly, or an object
         // whose keys are different parser language based names.  For simplicity,
         // this is valid to do for any trigger entry that can handle a function.

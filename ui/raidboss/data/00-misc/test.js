@@ -48,23 +48,25 @@
       id: 'Test Angry Dummy',
       regex: /(Angry Dummy)/,
       beforeSeconds: 2,
-      infoText: function(data, matches) {
-        return {
-          en: 'Stack for ' + matches[1],
-          de: 'Sammeln für ' + matches[1],
-          fr: 'Packez-vous pour ' + matches[1],
-          ja: matches[1] + 'に集合',
+      infoText: (data, matches) => data.output.stack({ name: matches[1] }),
+      tts: (data) => data.output.stackTTS(),
+      outputStrings: {
+        stack: {
+          en: 'Stack for ${name}',
+          de: 'Sammeln für ${name}',
+          fr: 'Packez-vous pour ${name}',
+          ja: '${name}に集合',
           cn: '木人处集合',
-          ko: matches[1] + '에 집합',
-        };
-      },
-      tts: {
-        en: 'Stack',
-        de: 'Sammeln',
-        fr: 'Packez-vous',
-        ja: '集合',
-        cn: '集合',
-        ko: '집합',
+          ko: '${name}에 집합',
+        },
+        stackTTS: {
+          en: 'Stack',
+          de: 'Sammeln',
+          fr: 'Packez-vous',
+          ja: '集合',
+          cn: '集合',
+          ko: '집합',
+        },
       },
     },
     {
@@ -84,14 +86,17 @@
       },
       infoText: function(data) {
         let elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
-        return {
-          en: 'Elapsed ms: ' + elapsed,
-          de: 'Abgelaufene ms: ' + elapsed,
-          fr: 'Expiré ms: ' + elapsed,
-          ja: '経過時間：' + elapsed,
-          cn: '经过时间：' + elapsed,
-          ko: '경과 시간: ' + elapsed,
-        };
+        return data.output.elapsed({ elapsed: elapsed });
+      },
+      outputStrings: {
+        elapsed: {
+          en: 'Elapsed ms: ${elapsed}',
+          de: 'Abgelaufene ms: ${elapsed}',
+          fr: 'Expiré ms: ${elapsed}',
+          ja: '経過時間：${elapsed}',
+          cn: '经过时间：${elapsed}',
+          ko: '경과 시간: ${elapsed}',
+        },
       },
     },
   ],
@@ -104,18 +109,19 @@
       netRegexJa: NetRegexes.gameNameLog({ line: '.*は木人をつついた.*?', capture: false }),
       netRegexCn: NetRegexes.gameNameLog({ line: '.*用手指戳向木人.*?', capture: false }),
       netRegexKo: NetRegexes.gameNameLog({ line: '.*나무인형을 쿡쿡 찌릅니다.*?', capture: false }),
-      preRun: function(data) {
+      preRun: (data) => {
         data.pokes = (data.pokes || 0) + 1;
       },
-      infoText: function(data) {
-        return {
-          en: 'poke #' + data.pokes,
-          de: 'stups #' + data.pokes,
-          fr: 'poussée #' + data.pokes,
-          ja: 'つつく #' + data.pokes,
-          cn: '戳 #' + data.pokes,
-          ko: data.pokes + '번 찌름',
-        };
+      infoText: (data) => data.output.poke({ numPokes: data.pokes }),
+      outputStrings: {
+        poke: {
+          en: 'poke #${numPokes}',
+          de: 'stups #${numPokes}',
+          fr: 'poussée #${numPokes}',
+          ja: 'つつく #${numPokes}',
+          cn: '戳 #${numPokes}',
+          ko: '${numPokes}번 찌름',
+        },
       },
     },
     {
@@ -228,11 +234,17 @@
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
       response: function(data) {
         return {
-          alarmText: '1',
-          alertText: '2',
-          infoText: '3',
-          tts: '4',
+          alarmText: data.output.alarmOne(),
+          alertText: data.output.alertTwo(),
+          infoText: data.output.infoThree(),
+          tts: data.output.ttsFour(),
         };
+      },
+      outputStrings: {
+        alarmOne: '1',
+        alertTwo: '2',
+        infoThree: '3',
+        ttsFour: '4',
       },
     },
   ],
