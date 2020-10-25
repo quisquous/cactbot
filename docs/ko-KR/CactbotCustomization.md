@@ -23,8 +23,8 @@
 
 ## cactbot UI를 사용하는 방법
 
-cactbot을 사용자 설정하는 가장 좋은 방법은 cactbot의 설정 UI를 이용하는 것입니다.
-ACT -> Plugins -> OverlayPlugin.dll -> Cactbot 에서 찾을 수 있어요.
+cactbot을 사용자 설정하실 때 cactbot의 설정 UI를 이용하는 것을 권장합니다.
+ACT -> Plugins -> OverlayPlugin.dll -> Cactbot 에서 찾을 수 있습니다.
 
 이 방법으로는 다음과 같은 설정이 가능합니다:
 
@@ -35,7 +35,7 @@ ACT -> Plugins -> OverlayPlugin.dll -> Cactbot 에서 찾을 수 있어요.
 - 음식을 먹으라는 치즈 아이콘 없애기
 
 cactbot 설정 UI에서 원하는 모든 것들을 설정할 수는 없을지도 모르지만,
-이 방법이 시작하기에 가장 쉬운 방법입니다.
+이 방법이 설정하기에 가장 쉬운 방법입니다.
 또한, 업데이트를 진행함에 따라 더 많은 옵션이 추가될 것입니다.
 
 이 옵션들은
@@ -46,13 +46,13 @@ cactbot 설정 UI에서 원하는 모든 것들을 설정할 수는 없을지도
 ## User 디렉토리 개요
 
 만약 cactbot UI가 원하는 옵션을 제공하지 않는다면,
-User 파일 덮어쓰기를 고려해야 합니다.
+User 파일 덮어쓰기(override)를 고려해야 합니다.
 이 방법은 JavaScript와 CSS를 작성하는 것이기 때문에,
-약간의 프로그래밍 지식이 필요할 수도 있습니다.
+약간의 프로그래밍 지식이 필요할 수 있습니다.
 
-cactbot은 "모든 사용자 설정은 User 디렉토리 파일에만 들어가야 한다"는 철학을 갖고 있습니다.
-이렇게 하면 향후 cactbot 업데이트 시 변경 사항이 덮어쓰이지 않게 됩니다.
-또한, 추후 cactbot release 파일을 직접 수정하는 것이 추가 빌드 작업을 하지 않고는 불가능해집니다.
+cactbot은 "모든 사용자 설정은 User 디렉토리 파일에만 들어가야 한다"는 전제로 설계되어 있습니다.
+때문에 cactbot이 업데이트될 때 사용자의 변경 사항이 덮어쓰이지 않게 됩니다.
+또한, 추후 cactbot release 파일을 직접 수정하게되면 추가 빌드 작업을 하지 않고는 제대로 작동하지 않을것입니다.
 
 모든 cactbot UI 모듈은 사용자 설정을 [user/](../../user/) 디렉토리에서 불러옵니다.
 `raidboss` 모듈은 `user/raidboss.js`와 `user/raidboss.css`를 불러옵니다.
@@ -80,7 +80,7 @@ ACT -> Plugins -> OverlayPlugin.dll -> Cactbot -> Cactbot 사용자 디렉토리
 따로 설정하지 않는다면,
 cactbot이 설치된 경로가 기본값으로 설정됩니다.
 
-이상적으로는, cactbot이 설치된 `cactbot/user`를 사용하는 것이 좋습니다.
+가능하면 cactbot이 설치된 `cactbot/user`를 사용하는 것이 좋습니다.
 보통은 `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\user`
 (해루봇을 사용한다면, `ACT 설치 경로\Plugins\cactbot\user`)입니다.
 
@@ -99,7 +99,7 @@ cactbot이 설치된 경로가 기본값으로 설정됩니다.
 이들의 위치를 `user/raidboss.css`에서 원하는 다른 위치로 바꿀 수 있습니다.
 `user/raidboss.css`로 다른 추가적인 스타일링도 가능합니다.
 
-`.info-text` 클래스에 CSS 규칙을 추가하는 방법으로 Info 텍스트 알람의 크기와 색깔도 바꿀 수 있습니다.
+`.info-text` 클래스에 CSS 규칙을 추가하여 Info 텍스트 알람의 크기와 색깔도 바꿀 수 있습니다.
 
 ```css
 .info-text {
@@ -108,7 +108,7 @@ cactbot이 설치된 경로가 기본값으로 설정됩니다.
 }
 ```
 
-User 디렉토리의 CSS는 cactbot의 기본 CSS 아래에 추가하는 것이라고 생각하면 됩니다.
+User 디렉토리의 CSS는 cactbot의 기본 CSS 아래에 추가하는 것입니다.
 따라서, [CSS 명시도 규칙](https://developer.mozilla.org/ko/docs/Web/CSS/Specificity)에 따라,
 `!important`를 추가해서 설정한 규칙을 강제로 덮어쓰도록 할 수 있습니다.
 또한, 기본 설정 값을 해제하려면 해당 값을 `auto`로 설정해야 합니다.
@@ -117,13 +117,13 @@ CSS 문제를 디버그하기 가장 좋은 방법은 [Chrome 개발자 도구](
 ACT -> Plugins -> OverlayPlugin.dll -> 원하는 오버레이 -> 개발자 도구 열기 를 클릭해서 개발자 도구를 열 수 있습니다.
 
 **참고**: 일부분은 수정하기 어렵거나 불가능합니다. 타임라인 막대 같은 것들이 그 예시입니다.
-이게 왜 이러냐면, 그 일부분은 사용자 요소(custom element)를 사용하고,
-사용자 요소는 튜닝하는 방법을 별로 제공하지 않기 때문입니다.
+일부분은 사용자 요소(custom element)를 사용하고,
+사용자 요소는 별도로 튜닝하는 방법을 제공하지 않기 때문입니다.
 만약 수정이 불가능한 타임라인 막대에 대해 원하는 수정 사항이 있다면,
 얼마든지 [Github Issue](https://github.com/quisquous/cactbot/issues/new/choose)에 글을 작성해주세요.
 
 **경고**: cactbot은 CSS 하위 호환 유지를 보장하지 않습니다.
-미래에 cactbot 수정으로 요소들을 재배열 할 수도 있고,
+나중에 cactbot에서 요소들을 재배열 할 수도 있고,
 요소 이름과 클래스를 변경할 수도 있고.
 스타일링 전체를 바꿀 수도 있습니다.
 일반적으로, cactbot의 CSS를 수정하는 것은 스스로 관리해야 합니다.
@@ -136,18 +136,17 @@ ACT -> Plugins -> OverlayPlugin.dll -> 원하는 오버레이 -> 개발자 도�
 그리고 얼마나 오래 화면에 떠있는지,
 이외에 다른 것들을 수정할 수 있습니다.
 
-`cactbot/user/raidboss.js` 안에,
-`Options.Triggers` 리스트가 있습니다.
-이 부분을 이용해 새 트리거를 작성하거나
+`cactbot/user/raidboss.js` 안에
+`Options.Triggers` 리스트를 이용해 새 트리거를 작성하거나
 이미 존재하는 트리거를 수정하는데 사용할 수 있습니다.
-만약 User 파일이 이미 있는 트리거(cactbot에 기본으로 들어가있는 트리거를 포함)와
-같은 id를 사용하는 트리거를 가지고 있다면, 그 트리거를 덮어쓰게 됩니다.
+만약 User 파일이 이미 있는 트리거(cactbot에 내장된 트리거 포함)와
+같은 id를 사용하는 트리거가 있다면, 기존 트리거를 덮어쓰게 됩니다.
 
-만약 트리거를 수정하려고 하신다면,
+트리거를 수정하기 전에
 각 트리거에 있는 다양한 설정값이 어떤 것을 의미하는지 이해하기 위해서
 [트리거 가이드](../RaidbossGuide.md)를 읽는 것이 좋습니다.
 
-일반적으로, 다음과 같은 형식의 코드 블록을
+일반적으론 다음과 같은 형식의 코드 블록을
 `cactbot/user/raidboss.js`에 추가하면 됩니다.
 
 ```javascript
@@ -164,14 +163,13 @@ Options.Triggers.push({
 });
 ```
 
-트리거를 수정하기 가장 쉬운 접근법은
+트리거를 수정할 때 가장 쉬운 방법은
 위에 있는 코드 블록을 각 트리거에 붙여넣는 것입니다.
-`zoneId`에 이 트리거가 작동하길 원하는 지역 ID를 작성하세요.
+`zoneId`에 이 트리거가 작동할 지역 ID를 입력하세요.
 보통 cactbot 트리거 파일 최상단에 적혀있습니다.
 그리고 [이 파일](../../resources/zone_id.js)은 모든 지역 ID 리스트를 저장하고 있습니다.
-만약 옳바른 지역 ID를 입력하지 않는다면, 오버레이 플러그인 로그 창에 warning이 나오게 됩니다.
-그 다음, 트리거 텍스트를 이 블록 안에 복사하세요.
-필요한 만큼 수정하세요.
+만약 올바른 지역 ID를 입력하지 않는다면, 오버레이 플러그인 로그 창에 warning이 나오게 됩니다.
+그 다음, 트리거 텍스트를 블록 안에 복사하여 필요한 만큼 수정하세요.
 이 과정을 수정하고 싶은 모든 트리거에 대해 반복하면 됩니다.
 변경 사항을 적용하려면, raidboss 오버레이를 새로고침하세요.
 
@@ -183,14 +181,14 @@ Options.Triggers.push({
 ### 예시 1: 출력 텍스트 변경하기
 
 당신이 절바하를 하려고 한다고 칩시다.
-그리고 당신의 공대는 cactbot이 기본으로 불러주는 "불 같이맞기" 대신에
-"불 대상자 밖으로"를 먼저 하기로 결정했다고 해요.
+당신의 공대는 처음 불장판때 cactbot이 기본으로 불러주는 "불 같이맞기" 대신에
+"불 대상자 밖으로"를 먼저 하기로 조율했습니다.
 
-이 방식으로 조정하는 방법 중 하나는 이 트리거의 출력을 수정하는 것입니다.
+이를 해결하는 방법으로는 트리거의 출력을 수정하여 조정하는 것이 있습니다.
 fireball #1 원본 트리거는
 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743)에서 찾을 수 있습니다.
 
-이 코드 덩러리를 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
+이 코드들을 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
 
 ```javascript
 Options.Triggers.push({
@@ -227,11 +225,11 @@ Options.Triggers.push({
 도발 트리거는
 [ui/raidboss/data/00-misc/general.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/00-misc/general.js#L11-L30)에서 찾을 수 있습니다.
 
-여기 `condition` 함수(function)가 수정된 버전이 있습니다.
-이 트리거는 cactbot에 기본으로 포함된 트리거인 `General Provoke`와 id가 동일하기 때문에
+다음 예시는 `condition` 함수(function)가 수정된 버전입니다.
+이 트리거는 cactbot에 내장된 트리거인 `General Provoke`와 id가 동일하기 때문에
 이 트리거가 기본 트리거를 덮어쓸 것 입니다.
 
-이 코드 덩러리를 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
+이 코드들을 `cactbot/user/raidboss.js` 파일 아래 부분에 붙여넣습니다.
 
 ```javascript
 Options.Triggers.push([{
@@ -293,9 +291,9 @@ Options.Triggers.push([
 ]);
 ```
 
-cactbot 트리거 작성하는 방법을 배우기에 가장 좋은 방법은
+cactbot 트리거 작성하는 방법을 더 자세히 배우려면
 [트리거 가이드](../RaidbossGuide.md)와
-[ui/raidboss/data](../../ui/raidboss/data)에 이미 존재하는 트리거를 읽는 것입니다.
+[ui/raidboss/data](../../ui/raidboss/data)에 이미 존재하는 트리거를 읽어보세요.
 
 ## Raidboss 타임라인 덮어쓰기
 
@@ -311,9 +309,9 @@ Raidboss 타임라인을 덮어쓰는 것은 [Raidboss 트리거 덮어쓰기](#
 
 1) user/raidboss.js 파일에 이 타임라인 파일을 덮어쓰기 위한 부분을 추가하세요.
 
-    트리거를 추가하는 것과 같이, `zoneId`와 함께 새로운 구획(section)을 추가합니다.
+    트리거를 추가하는 것과 같이, `zoneId`에 구획(section)을 추가합니다.
     `overrideTimelineFile: true`를 zoneId 아래에 추가하고,
-    `timelineFile` 그 타임라인 텍스트 파일의 이름을 추가하세요.
+    `timelineFile`에 타임라인 텍스트 파일의 이름을 추가하세요.
 
     ```javascript
     Options.Triggers.push({
@@ -323,12 +321,12 @@ Raidboss 타임라인을 덮어쓰는 것은 [Raidboss 트리거 덮어쓰기](#
     });
     ```
 
-    이 경우, 당신이 첫번째 과정을 따라서
-    `user/the_epic_of_alexander.txt` 파일이 존재한다고 가정합니다.
+    당신이 첫번째 과정을 따라서
+    `user/the_epic_of_alexander.txt` 파일을 생성했다면,
 
-    `overrideTimelineFile: true`을 설정함으로써,
+    `overrideTimelineFile: true`을 설정함으로써
     cactbot이 기본적으로 포함된 타임라인 대신
-    새로 추가한 타임라인을 사용하도록 합니다.
+    새로 추가한 타임라인을 사용하게 됩니다.
 
 1) 필요한 만큼 user 폴더에 있는 새 타임라인 파일을 수정하세요.
 
@@ -350,7 +348,7 @@ Raidboss 타임라인을 덮어쓰는 것은 [Raidboss 트리거 덮어쓰기](#
 각각의 cactbot 모듈은 다양한 옵션을 제어하는 `Options` 변수를 가지고 있습니다.
 수정할 수 있는 옵션은 각 `ui/<name>/<name>.js` 파일 최상단 `Options` 부분에 나열되어 있습니다.
 
-예를 들어 [ui/raidboss/raidboss.js](../../ui/raidboss/raidboss.js)에는,
+예를 들어 [ui/raidboss/raidboss.js](../../ui/raidboss/raidboss.js)에는
 `PlayerNicks` 옵션을 찾아볼 수 있는데, 플레이어 닉네임을 따로 설정하는 옵션이 있습니다.
 
 ```javascript
@@ -491,7 +489,7 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#User-�
 
 1) 다운로드 한 타임라인을 편집기로 열어 원하는 대로 수정합니다.
 
-1) 더 수정하고 싶은 타임라이닝 있다면, 이 과정의 맨 처음으로 돌아가 반복합니다.
+1) 더 수정하고 싶은 타임라인이 있다면, 이 과정의 맨 처음으로 돌아가 반복합니다.
 
 ### 간단한 메모 추가하는 법
 
