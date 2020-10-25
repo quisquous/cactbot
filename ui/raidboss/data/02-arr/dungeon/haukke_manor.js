@@ -49,7 +49,7 @@
       condition: function(data, matches) {
         return data.CanSilence();
       },
-      response: Responses.interrupt('info'),
+      response: Responses.getBehind('info'),
     },
     {
       // Void Lamp Spawn
