@@ -80,7 +80,7 @@ ACT -> Plugins -> OverlayPlugin.dll -> Cactbot -> Cactbot 사용자 디렉토리
 따로 설정하지 않는다면,
 cactbot이 설치된 경로가 기본값으로 설정됩니다.
 
-일반적으로는 cactbot이 설치된 `cactbot/user`를 사용하는 것이 좋습니다.
+가능하면 cactbot이 설치된 `cactbot/user`를 사용하는 것이 좋습니다.
 보통은 `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\user`
 (해루봇을 사용한다면, `ACT 설치 경로\Plugins\cactbot\user`)입니다.
 
@@ -317,12 +317,12 @@ Raidboss 타임라인을 덮어쓰는 것은 [Raidboss 트리거 덮어쓰기](#
     Options.Triggers.push({
       zoneId: ZoneId.TheEpicOfAlexanderUltimate,
       overrideTimelineFile: true,
-      timelineFile: 'the_epic_of_alexander.txt`',
+      timelineFile: 'the_epic_of_alexander.txt',
     });
     ```
 
     당신이 첫번째 과정을 따라서
-    `user/the_epic_of_alexander.txt` 파일을 생성했다 가정합시다.
+    `user/the_epic_of_alexander.txt` 파일을 생성했다면,
 
     `overrideTimelineFile: true`을 설정함으로써
     cactbot이 기본적으로 포함된 타임라인 대신
