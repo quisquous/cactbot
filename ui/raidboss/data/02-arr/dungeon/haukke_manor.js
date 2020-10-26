@@ -4,7 +4,6 @@
   zoneId: ZoneId.HaukkeManor,
   triggers: [
     {
-      // Dark Mist Stun with Suppression for duplicate messages
       id: 'Haukke Normal Dark Mist Stun',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] }),
       condition: function(data, matches) {
@@ -14,7 +13,6 @@
       response: Responses.stun('info'),
     },
     {
-      // Soul Drain
       id: 'Haukke Normal Steward Soul Drain Stun',
       netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
       condition: function(data, matches) {
@@ -23,9 +21,7 @@
       response: Responses.stun('info'),
     },
     {
-      // Amandine Specific Dark Mist for Classes Without Stuns
-      // Particle and spell effects in the room can make this Dark Mist hard to see.
-      // Callout ensures dodge.
+      // Particle and spell effects make this particular Dark Mist hard to see.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
       condition: function(data, matches) {
@@ -34,7 +30,6 @@
       response: Responses.outOfMelee('alert'),
     },
     {
-      // Void Fire 3
       id: 'Haukke Normal Amandine Void Fire III',
       netRegex: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
       condition: function(data, matches) {
@@ -43,7 +38,6 @@
       response: Responses.interrupt('info'),
     },
     {
-      // Void Thunder 3
       id: 'Haukke Normal Amandine Void Thunder III',
       netRegex: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
       condition: function(data, matches) {
