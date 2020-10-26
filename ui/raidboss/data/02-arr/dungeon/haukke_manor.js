@@ -80,6 +80,8 @@
       infoText: {
         en: 'Turn off Lamps',
         de: 'Schalte die Lampen aus',
+        ja: '消灯する',
+        cn: '关灯',
       },
     },
     {
@@ -99,6 +101,8 @@
       alertText: {
         en: 'Kill Sentry',
         de: 'Wachposten besiegen',
+        ja: '守衛を倒す',
+        cn: '击杀守卫',
       },
     },
   ],
