@@ -75,8 +75,8 @@
       netRegexDe: NetRegexes.message({ line: 'Die düsteren Lampen flackern unheilvoll auf.', capture: false }),
       netRegexFr: NetRegexes.message({ line: 'La lanterne sinistre luit d\'un éclat lugubre!', capture: false }),
       netRegexJa: NetRegexes.message({ line: '不気味なランプが妖しく輝き始めた！', capture: false }),
-      netRegexKo: NetRegexes.message({ line: '怪异的灯开始发出令人不安的光芒。', capture: false }),
-      netRegexCn: NetRegexes.message({ line: '불길한 등불이 요사스러운 빛을 발합니다!', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '불길한 등불이 요사스러운 빛을 발합니다!', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '怪异的灯开始发出令人不安的光芒。', capture: false }),
       infoText: {
         en: 'Turn off Lamps',
         de: 'Schalte die Lampen aus',
@@ -99,6 +99,58 @@
       alertText: {
         en: 'Kill Sentry',
         de: 'Wachposten besiegen',
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Manor Maidservant': 'Hausmädchen',
+        'Manor Claviger': 'Schlüsselträgerin',
+        'Lady Amandine': 'Lady Amandine',
+        'Manor Steward': 'Seneschall',
+        'The void lamps have begun emitting an eerie glow': 'Die düsteren Lampen flackern unheilvoll auf',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Manor Maidservant': 'soubrette du manoir',
+        'Manor Claviger': 'clavière du manoir',
+        'Lady Amandine': 'dame Amandine',
+        'Manor Steward': 'intendant du manoir',
+        'The void lamps have begun emitting an eerie glow': 'La lanterne sinistre luit d\'un éclat lugubre',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Manor Maidservant': '御用邸のメイド',
+        'Manor Claviger': '御用邸のクラヴィジャー',
+        'Lady Amandine': 'レディ・アマンディヌ',
+        'Manor Steward': '御用邸の執事長',
+        'The void lamps have begun emitting an eerie glow': '不気味なランプが妖しく輝き始めた',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Manor Maidservant': '庄园的女仆',
+        'Manor Claviger': '庄园的女工',
+        'Lady Amandine': '阿芒迪娜女士',
+        'Manor Steward': '庄园的总管',
+        'The void lamps have begun emitting an eerie glow': '怪异的灯开始发出令人不安的光芒',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Manor Maidservant': '별궁의 하녀',
+        'Manor Claviger': '별궁 청지기',
+        'Lady Amandine': '레이디 아망딘',
+        'Manor Steward': '별궁의 집사장',
+        'The void lamps have begun emitting an eerie glow': '불길한 등불이 요사스러운 빛을 발합니다',
       },
     },
   ],
