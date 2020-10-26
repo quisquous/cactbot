@@ -40,9 +40,7 @@
     {
       id: 'Haukke Normal Amandine Void Thunder III',
       netRegex: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
-      condition: function(data, matches) {
-        return data.CanSilence();
-      },
+      condition: Conditions.targetIsYou(),
       response: Responses.getBehind('info'),
     },
     {
