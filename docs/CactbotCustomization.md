@@ -79,7 +79,7 @@ it will try to select one based on where you have installed cactbot on disk.
 
 Ideally, you should select the `cactbot/user` folder from your cactbot installation.
 This is often in `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\user`.
-[This folder](../docs) has example customization files.
+[This folder](../user) has example customization files.
 
 ## Customizing Appearance
 

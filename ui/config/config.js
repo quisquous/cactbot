@@ -158,7 +158,7 @@ const fileNameToTitle = (filename) => {
   let capitalized = name.replace(/(?:^| )\w/g, (c) => c.toUpperCase());
 
   // Fully capitalize acronyms like e4n.
-  if (capitalized.match(/^\w[0-9]+\w$/))
+  if (/^\w[0-9]+\w$/.test(capitalized))
     capitalized = capitalized.toUpperCase();
 
   return capitalized;

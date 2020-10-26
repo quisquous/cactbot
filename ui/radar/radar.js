@@ -36,7 +36,7 @@ const kMinDistanceBeforeSound = 100;
 
 let gRadar;
 
-const instanceChangedRegex = {
+const instanceChangedRegexes = {
   en: NetRegexes.gameLog({ code: '0039', line: 'You are now in the instanced area.*?' }),
   de: NetRegexes.gameLog({ code: '0039', line: 'Du bist nun in dem instanziierten Areal.*?' }),
   fr: NetRegexes.gameLog({ code: '0039', line: 'Vous êtes maintenant dans la zone instanciée.*?' }),
@@ -97,6 +97,10 @@ class Radar {
     this.monsters = Object.assign({}, gMonster, Options.CustomMonsters);
     this.lang = this.options.ParserLanguage || 'en';
     this.nameToMonster = {};
+    this.instanceChangedRegex =
+      instanceChangedRegexes[this.options.ParserLanguage] ||
+      instanceChangedRegexes['en'];
+
     for (let i in this.monsters) {
       let monster = this.monsters[i];
       let lang = this.lang || 'en';
@@ -115,7 +119,7 @@ class Radar {
   AddMonster(log, monster, matches) {
     if (monster.id && matches.npcNameId !== monster.id)
       return;
-    if (monster.regex && !log.match(monster.regex))
+    if (monster.regex && !monster.regex.test(log))
       return;
     if (monster.hp && parseFloat(matches.hp) < monster.hp)
       return;
@@ -292,8 +296,7 @@ class Radar {
 
     // change instance
     if (type === '00') {
-      const lang = this.options.ParserLanguage;
-      if (log.match(instanceChangedRegex[lang] || instanceChangedRegex['en'])) {
+      if (this.instanceChangedRegex.test(log)) {
         // don't remove mobs lasting less than 10 seconds
         this.ClearTargetMonsters(10);
       }

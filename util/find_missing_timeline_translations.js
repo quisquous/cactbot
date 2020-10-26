@@ -58,7 +58,7 @@ function findLineNumberByTriggerId(text, id) {
   for (let line of text) {
     lineNumber++;
 
-    if (line.match(regex))
+    if (regex.test(line))
       return lineNumber;
   }
 

@@ -1,3 +1,7 @@
+html {
+  overflow: visible !important;
+}
+
 .mistake-row {
   height: 25px;
   align-items: center;
