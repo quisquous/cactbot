@@ -1,4 +1,4 @@
-
+'use strict';
 
 [{
   zoneId: ZoneId.BrayfloxsLongstop,
@@ -117,4 +117,4 @@
       },
     },
   ],
-}]
+}];
