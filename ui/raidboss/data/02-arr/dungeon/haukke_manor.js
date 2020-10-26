@@ -4,61 +4,84 @@
   zoneId: ZoneId.HaukkeManor,
   triggers: [
     {
-      // Dark Mist Stun with Suppression for duplicate messages
       id: 'Haukke Normal Dark Mist Stun',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] }),
-      condition: function(data) {
-        return data.canStun();
+      netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: ['Hausmädchen', 'Schlüsselträgerin', 'Lady Amandine'] }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: ['Soubrette Du Manoir', 'Clavière Du Manoir', 'Dame Amandine'] }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: ['御用邸のメイド', '御用邸のクラヴィジャー', 'レディ・アマンディヌ'] }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: ['별궁의 하녀', '별궁 청지기', '레이디 아망딘'] }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: ['庄园的女仆', '庄园的女工', '阿芒迪娜女士'] }),
+      condition: function(data, matches) {
+        return data.CanStun();
       },
       suppressSeconds: 2,
       response: Responses.stun('info'),
     },
     {
-      // Soul Drain
       id: 'Haukke Normal Steward Soul Drain Stun',
       netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
-      condition: function(data) {
-        return data.canStun();
+      netRegexDe: NetRegexes.startsUsing({ id: '35C', source: 'Seneschall' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '35C', source: 'Intendant Du Manoir' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '35C', source: '御用邸の執事長' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '35C', source: '별궁의 집사장' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '35C', source: '庄园的总管' }),
+      condition: function(data, matches) {
+        return data.CanStun();
       },
       response: Responses.stun('info'),
     },
     {
-      // Amandine Specific Dark Mist for Classes Without Stuns
-      // Particle and spell effects in the room can make this Dark Mist hard to see.
-      // Callout ensures dodge.
+      // Particle and spell effects make this particular Dark Mist hard to see.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
-      condition: function(data) {
-        return !data.canStun();
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: 'Dame Amandine' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: 'レディ・アマンディヌ' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: '레이디 아망딘' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: '阿芒迪娜女士' }),
+      condition: function(data, matches) {
+        return !data.CanStun();
       },
       response: Responses.outOfMelee('alert'),
     },
     {
-      // Void Fire 3
       id: 'Haukke Normal Amandine Void Fire III',
       netRegex: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
-      condition: function(data) {
-        return data.canInterrupt();
+      netRegexDe: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '356', source: 'Dame Amandine' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '356', source: 'レディ・アマンディヌ' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '356', source: '레이디 아망딘' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '356', source: '阿芒迪娜女士' }),
+      condition: function(data, matches) {
+        return data.CanSilence();
       },
       response: Responses.interrupt('info'),
     },
     {
-      // Void Thunder 3
       id: 'Haukke Normal Amandine Void Thunder III',
-      netRegex: NetRegexes.startsUsing({ id: '358', source: 'Manor Claviger' }),
-      condition: function(data) {
-        return data.canInterrupt();
-      },
-      response: Responses.interrupt('info'),
+      netRegex: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '358', source: 'Dame Amandine' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '358', source: 'レディ・アマンディヌ' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '358', source: '레이디 아망딘' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '358', source: '阿芒迪娜女士' }),
+      condition: Conditions.targetIsYou(),
+      response: Responses.getBehind('info'),
     },
     {
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
       netRegex: NetRegexes.message({ line: 'The void lamps have begun emitting an eerie glow.', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Turn off Lamps',
-        };
+      netRegexDe: NetRegexes.message({ line: 'Die düsteren Lampen flackern unheilvoll auf.', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'La lanterne sinistre luit d\'un éclat lugubre!', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '不気味なランプが妖しく輝き始めた！', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '불길한 등불이 요사스러운 빛을 발합니다!', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '怪异的灯开始发出令人不安的光芒。', capture: false }),
+      infoText: {
+        en: 'Turn off Lamps',
+        de: 'Schalte die Lampen aus',
+        ja: '消灯する',
+        cn: '关灯',
       },
     },
     {
@@ -75,10 +98,63 @@
       id: 'Haukke Normal Ladys Handmaiden',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '424', capture: false }),
       suppressSeconds: 2,
-      infoText: function(data) {
-        return {
-          en: 'Kill Adds, Sentry First',
-        };
+      alertText: {
+        en: 'Kill Sentry',
+        de: 'Wachposten besiegen',
+        ja: '守衛を倒す',
+        cn: '击杀守卫',
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Manor Maidservant': 'Hausmädchen',
+        'Manor Claviger': 'Schlüsselträgerin',
+        'Lady Amandine': 'Lady Amandine',
+        'Manor Steward': 'Seneschall',
+        'The void lamps have begun emitting an eerie glow': 'Die düsteren Lampen flackern unheilvoll auf',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Manor Maidservant': 'soubrette du manoir',
+        'Manor Claviger': 'clavière du manoir',
+        'Lady Amandine': 'dame Amandine',
+        'Manor Steward': 'intendant du manoir',
+        'The void lamps have begun emitting an eerie glow': 'La lanterne sinistre luit d\'un éclat lugubre',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Manor Maidservant': '御用邸のメイド',
+        'Manor Claviger': '御用邸のクラヴィジャー',
+        'Lady Amandine': 'レディ・アマンディヌ',
+        'Manor Steward': '御用邸の執事長',
+        'The void lamps have begun emitting an eerie glow': '不気味なランプが妖しく輝き始めた',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Manor Maidservant': '庄园的女仆',
+        'Manor Claviger': '庄园的女工',
+        'Lady Amandine': '阿芒迪娜女士',
+        'Manor Steward': '庄园的总管',
+        'The void lamps have begun emitting an eerie glow': '怪异的灯开始发出令人不安的光芒',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Manor Maidservant': '별궁의 하녀',
+        'Manor Claviger': '별궁 청지기',
+        'Lady Amandine': '레이디 아망딘',
+        'Manor Steward': '별궁의 집사장',
+        'The void lamps have begun emitting an eerie glow': '불길한 등불이 요사스러운 빛을 발합니다',
       },
     },
   ],
