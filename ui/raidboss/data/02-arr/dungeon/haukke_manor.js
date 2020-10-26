@@ -6,6 +6,11 @@
     {
       id: 'Haukke Normal Dark Mist Stun',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: ['Manor Maidservant', 'Manor Claviger', 'Lady Amandine'] }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: ['Hausmädchen', 'Schlüsselträgerin', 'Lady Amandine'] }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: ['Soubrette Du Manoir', 'Clavière Du Manoir', 'Dame Amandine'] }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: ['御用邸のメイド', '御用邸のクラヴィジャー', 'レディ・アマンディヌ'] }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: ['별궁의 하녀', '별궁 청지기', '레이디 아망딘'] }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: ['庄园的女仆', '庄园的女工', '阿芒迪娜女士'] }),
       condition: function(data, matches) {
         return data.CanStun();
       },
@@ -15,6 +20,11 @@
     {
       id: 'Haukke Normal Steward Soul Drain Stun',
       netRegex: NetRegexes.startsUsing({ id: '35C', source: 'Manor Steward' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '35C', source: 'Seneschall' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '35C', source: 'Intendant Du Manoir' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '35C', source: '御用邸の執事長' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '35C', source: '별궁의 집사장' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '35C', source: '庄园的总管' }),
       condition: function(data, matches) {
         return data.CanStun();
       },
@@ -24,6 +34,11 @@
       // Particle and spell effects make this particular Dark Mist hard to see.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
       netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: 'Dame Amandine' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: 'レディ・アマンディヌ' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: '레이디 아망딘' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: '阿芒迪娜女士' }),
       condition: function(data, matches) {
         return !data.CanStun();
       },
@@ -32,6 +47,11 @@
     {
       id: 'Haukke Normal Amandine Void Fire III',
       netRegex: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '356', source: 'Lady Amandine' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '356', source: 'Dame Amandine' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '356', source: 'レディ・アマンディヌ' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '356', source: '레이디 아망딘' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '356', source: '阿芒迪娜女士' }),
       condition: function(data, matches) {
         return data.CanSilence();
       },
@@ -40,6 +60,11 @@
     {
       id: 'Haukke Normal Amandine Void Thunder III',
       netRegex: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
+      netRegexDe: NetRegexes.startsUsing({ id: '358', source: 'Lady Amandine' }),
+      netRegexFr: NetRegexes.startsUsing({ id: '358', source: 'Dame Amandine' }),
+      netRegexJa: NetRegexes.startsUsing({ id: '358', source: 'レディ・アマンディヌ' }),
+      netRegexKo: NetRegexes.startsUsing({ id: '358', source: '레이디 아망딘' }),
+      netRegexCn: NetRegexes.startsUsing({ id: '358', source: '阿芒迪娜女士' }),
       condition: Conditions.targetIsYou(),
       response: Responses.getBehind('info'),
     },
@@ -47,8 +72,14 @@
       // Void Lamp Spawn
       id: 'Haukke Normal Void Lamps',
       netRegex: NetRegexes.message({ line: 'The void lamps have begun emitting an eerie glow.', capture: false }),
+      netRegexDe: NetRegexes.message({ line: 'Die düsteren Lampen flackern unheilvoll auf.', capture: false }),
+      netRegexFr: NetRegexes.message({ line: 'La lanterne sinistre luit d\'un éclat lugubre!', capture: false }),
+      netRegexJa: NetRegexes.message({ line: '不気味なランプが妖しく輝き始めた！', capture: false }),
+      netRegexKo: NetRegexes.message({ line: '怪异的灯开始发出令人不安的光芒。', capture: false }),
+      netRegexCn: NetRegexes.message({ line: '불길한 등불이 요사스러운 빛을 발합니다!', capture: false }),
       infoText: {
         en: 'Turn off Lamps',
+        de: 'Schalte die Lampen aus',
       },
     },
     {
@@ -67,6 +98,7 @@
       suppressSeconds: 2,
       alertText: {
         en: 'Kill Sentry',
+        de: 'Wachposten besiegen',
       },
     },
   ],
