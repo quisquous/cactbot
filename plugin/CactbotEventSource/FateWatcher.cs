@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
 using Advanced_Combat_Tracker;
 using FFXIV_ACT_Plugin.Common;
 using System.Linq;
@@ -46,6 +45,11 @@ namespace Cactbot {
     private static readonly CEDirectorOPCodes cedirector_v5_35 = new CEDirectorOPCodes(
       0x30,
       0x299
+    );
+
+    private static readonly CEDirectorOPCodes cedirector_v5_35_hotfix = new CEDirectorOPCodes(
+      0x30,
+      0x143
     );
 
     private struct ActorControl143{
@@ -115,7 +119,7 @@ namespace Cactbot {
       ac143opcodes.Add("intl", ac143_v5_2);
 
       cedirectoropcodes = new Dictionary<string, CEDirectorOPCodes>();
-      cedirectoropcodes.Add("intl", cedirector_v5_35);
+      cedirectoropcodes.Add("intl", cedirector_v5_35_hotfix);
 
       fates = new Dictionary<int, int>();
       ces = new Dictionary<int, CEDirectorData>();
