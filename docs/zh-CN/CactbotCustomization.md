@@ -1,6 +1,6 @@
 # Cactbot自定义教程
 
-🌎 [**English**] [[한국어](./ko-KR/CactbotCustomization.md)]
+🌎 [[English](../CactbotCustomization.md)] [**简体中文**] [[한국어](./ko-KR/CactbotCustomization.md)]
 
 - [使用cactbot配置界面](#使用cactbot配置界面)
 - [用户文件夹概览](#用户文件夹概览)
