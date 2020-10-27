@@ -23,18 +23,22 @@
     {
       id: 'Diadem Found Gather Point',
       netRegex: NetRegexes.gameLog({ line: 'You sense a grade .* clouded (?:mineral deposit|rocky outcrop|mature tree|lush vegetation patch).*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Du hast einen? verhüllten? (Nutzbaum|Vegetation|Steinbruch|Lagerstätte)? der Güte.*?', capture: false }),
       netRegexKo: NetRegexes.gameLog({ line: '(?:동|서|남|북)+쪽에 레벨 80 환상의 (?:광맥|바위터|성목|약초밭)(?:이|가) 있습니다!.*?', capture: false }),
       alertText: {
         en: 'Found clouded gather point',
+        de: 'Verhüllte Sammlerstelle gefunden',
         ko: '환상의 광맥/성목 발견',
       },
     },
     {
       id: 'Diadem Flag Alert',
       netRegex: NetRegexes.gameLog({ line: '.*\ue0bbThe Diadem *?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: '.*\ue0bbDas Diadem *?', capture: false }),
       netRegexKo: NetRegexes.gameLog({ line: '.*\ue0bb디아뎀 제도 .*?', capture: false }),
       infoText: {
         en: 'Check coordinate on chat',
+        de: 'Überprüfe die Koordinaten im Chat',
         ko: '디아뎀 좌표 채팅 올라옴',
       },
     },
