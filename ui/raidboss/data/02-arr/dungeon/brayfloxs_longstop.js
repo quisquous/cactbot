@@ -61,7 +61,7 @@
       response: Responses.stun('info'),
     },
     {
-      // Hellbender Bubble Others
+      // Hellbender Bubble
       id: 'Brayflox Normal Hellbender Effluvium',
       netRegex: NetRegexes.ability({ id: '3D3', source: 'Hellbender' }),
       infoText: function(data, matches) {
