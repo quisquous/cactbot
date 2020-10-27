@@ -23,7 +23,7 @@
     {
       id: 'Diadem Found Gather Point',
       netRegex: NetRegexes.gameLog({ line: 'You sense a grade .* clouded (?:mineral deposit|rocky outcrop|mature tree|lush vegetation patch).*?', capture: false }),
-      netRegexDe: NetRegexes.gameLog({ line: 'Du hast einen? verhüllten? (Nutzbaum|Vegetation|Steinbruch|Lagerstätte)? der Güte.*?', capture: false }),
+      netRegexDe: NetRegexes.gameLog({ line: 'Du hast einen? verhüllten? (?:Nutzbaum|Vegetation|Steinbruch|Lagerstätte)? der Güte.*?', capture: false }),
       netRegexKo: NetRegexes.gameLog({ line: '(?:동|서|남|북)+쪽에 레벨 80 환상의 (?:광맥|바위터|성목|약초밭)(?:이|가) 있습니다!.*?', capture: false }),
       alertText: {
         en: 'Found clouded gather point',
