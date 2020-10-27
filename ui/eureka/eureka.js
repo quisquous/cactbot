@@ -1686,6 +1686,7 @@ let Options = {
       shortName: 'bozjasouthern',
       hasTracker: false,
       dontShowInactive: true,
+      treatNMsAsSkirmishes: true,
       mapToPixelXScalar: 47.911,
       mapToPixelXConstant: -292.56,
       mapToPixelYScalar: 48.938,
@@ -2180,7 +2181,8 @@ class EurekaTracker {
     this.SetStyleFromMap(style, mx, my);
   }
 
-  AddElement(container, nm) {
+  AddElement(container, nmKey) {
+    const nm = this.nms[nmKey];
     let label = document.createElement('div');
     label.classList.add('nm');
 
@@ -2189,7 +2191,7 @@ class EurekaTracker {
     if (this.zoneInfo.dontShowInactive)
       label.classList.add('nm-hidden');
 
-    label.id = nm;
+    label.id = nmKey;
 
     this.SetStyleFromMap(label.style, nm.x, nm.y);
 
@@ -2229,9 +2231,10 @@ class EurekaTracker {
     this.nmKeys = Object.keys(this.nms);
 
     let container = document.getElementById('nm-labels');
+    container.classList.add(this.zoneInfo.shortName);
 
-    for (let i = 0; i < this.nmKeys.length; ++i)
-      this.AddElement(container, this.nms[this.nmKeys[i]]);
+    for (const key of this.nmKeys)
+      this.AddElement(container, key);
 
 
     this.fairy = this.zoneInfo.fairy;
@@ -2248,6 +2251,7 @@ class EurekaTracker {
     let container = document.getElementById('nm-labels');
     container.innerHTML = '';
     this.currentTracker = null;
+    container.className = '';
   }
 
   OnPlayerChange(e) {
@@ -2314,13 +2318,18 @@ class EurekaTracker {
     fate.respawnTimeMsLocal = this.RespawnTime(fate);
 
     if (fate.bunny) {
-      if (this.options.BunnyPopSound && this.options.BunnyPopVolume)
+      const shouldPlay = this.options.PopNoiseForBunny;
+      if (shouldPlay && this.options.BunnyPopSound && this.options.BunnyPopVolume)
         this.PlaySound(this.options.BunnyPopSound, this.options.BunnyPopVolume);
     } else if (fate.isCritical) {
-      if (this.options.CriticalPopSound && this.options.CriticalPopVolume)
+      const shouldPlay = fate.isDuel && this.options.PopNoiseForDuel ||
+          !fate.isDuel && this.options.PopNoiseForCriticalEngagement;
+      if (shouldPlay && this.options.CriticalPopSound && this.options.CriticalPopVolume)
         this.PlaySound(this.options.CriticalPopSound, this.options.CriticalPopVolume);
     } else {
-      if (this.options.PopSound && this.options.PopVolume)
+      const shouldPlay = this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
+          !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
+      if (shouldPlay && this.options.PopSound && this.options.PopVolume)
         this.PlaySound(this.options.PopSound, this.options.PopVolume);
     }
   }
