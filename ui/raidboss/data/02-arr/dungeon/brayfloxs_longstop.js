@@ -31,7 +31,7 @@
     {
       // Pelican Adds
       // Only parsing for Sable Back since there is at least 1 Sable Back in each spawn pack.
-      // The pack weith the boss is 3 Violet Backs, not parsing for them prevents the trigger
+      // The pack with the boss is 3 Violet Backs, not parsing for them prevents the trigger
       // from activating early when you pick up the Headgate Key and the boss and adds spawn.
       id: 'Brayflox Normal Pelican Adds',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '1283', capture: false }),
