@@ -392,9 +392,7 @@ class RaidbossConfigurator {
           input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
           input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
           let setFunc = () => {
-            let val = validDurationOrUndefined(input.value);
-            if (!val)
-              val = '';
+            let val = validDurationOrUndefined(input.value) || '';
             this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
           };
           input.onchange = setFunc;
