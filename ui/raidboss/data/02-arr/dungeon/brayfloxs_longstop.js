@@ -13,7 +13,7 @@
     },
     {
       // Esuna Pelican Poison
-      // This covers cases were multiple people get the poison, including yourself.
+      // This covers cases where multiple people get the poison, including yourself.
       id: 'Brayflox Normal Pelican Poison Healer',
       netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
       condition: (data) => data.role === 'healer',
