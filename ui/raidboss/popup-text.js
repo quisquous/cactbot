@@ -714,6 +714,7 @@ class PopupText {
 
   _onTriggerInternalDurationSeconds(triggerHelper) {
     triggerHelper.duration = {
+      fromConfig: triggerHelper.triggerAutoConfig['Duration'],
       fromTrigger: triggerHelper.valueOrFunction(triggerHelper.trigger.durationSeconds),
       alarmText: this.options.DisplayAlarmTextForSeconds,
       alertText: this.options.DisplayAlertTextForSeconds,
@@ -895,8 +896,10 @@ class PopupText {
       let text = triggerHelper.valueOrFunction(textObj);
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
       if (text && triggerHelper.textAlertsEnabled) {
-        this._createTextFor(text, textType, lowerTextKey,
-            (triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey]));
+        // per-trigger option > trigger field > option duration by text type
+        const duration = triggerHelper.duration.fromConfig ||
+          triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey];
+        this._createTextFor(text, textType, lowerTextKey, duration);
         if (!triggerHelper.soundUrl) {
           triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
           triggerHelper.soundVol = this.options[textTypeUpper + 'SoundVolume'];
