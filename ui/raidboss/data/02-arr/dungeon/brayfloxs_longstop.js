@@ -65,12 +65,12 @@
       id: 'Brayflox Normal Hellbender Effluvium',
       netRegex: NetRegexes.ability({ id: '3D3', source: 'Hellbender' }),
       infoText: function(data, matches) {
-        if (matches.target != data.me) {
+        if (matches.target !== data.me) {
           return {
             en: 'Break Bubble on ' + data.ShortName(matches.target),
           };
         }
-        if (matches.target == data.me) {
+        if (matches.target === data.me) {
           return {
             en: 'Break Your Bubble',
           };
