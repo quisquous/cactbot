@@ -1,6 +1,6 @@
 # Cactbot 사용자 설정
 
-🌎 [[English](../CactbotCustomization.md)] [[简体中文](./zh-CN/CactbotCustomization.md)] [**한국어**]
+🌎 [[English](../CactbotCustomization.md)] [[简体中文](../zh-CN/CactbotCustomization.md)] [**한국어**]
 
 - [Cactbot UI를 사용하는 방법](#Cactbot-UI를-사용하는-방법)
 - [User 디렉토리 개요](#User-디렉토리-개요)
