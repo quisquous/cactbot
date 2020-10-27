@@ -187,7 +187,7 @@ let tests = {
       let ignore = timeline.GetMissingTranslationsToIgnore();
       let isIgnored = (x) => {
         for (let ig of ignore) {
-          if (x.match(ig))
+          if (ig.test(x))
             return true;
         }
         return false;
@@ -199,7 +199,7 @@ let tests = {
             continue;
           let matched = false;
           for (let regex in testCase.replace) {
-            if (item.match(Regexes.parse(regex))) {
+            if (Regexes.parse(regex).test(item)) {
               matched = true;
               break;
             }

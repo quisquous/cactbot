@@ -4,10 +4,7 @@
 hideall "--Reset--"
 hideall "--sync--"
 
-# There's a lot of "Shinryu" combatants, some of which get removed during
-# the phase transition, so only care about the real one.  Hopefully this
-# HP never changes.
-0 "--Reset--" sync /Removing combatant Shinryu\.  Max HP: 17167557\./ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 # Heart add not listed here. Seems to be on an independent respawn timer.
 

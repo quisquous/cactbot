@@ -1,13 +1,15 @@
 # Cactbot Customization
 
+🌎 [**English**] [[한국어](./ko-KR/CactbotCustomization.md)]
+
 - [Using the cactbot UI](#using-the-cactbot-ui)
 - [User Directory Overview](#user-directory-overview)
 - [Setting Your User Directory](#setting-your-user-directory)
 - [Customizing Appearance](#customizing-appearance)
 - [Overriding Raidboss Triggers](#overriding-raidboss-triggers)
-  - [Example 1: changing the output text](#example-1--changing-the-output-text)
-  - [Example 2: making provoke work for all jobs](#example-2--making-provoke-work-for-all-jobs)
-  - [Example 3: adding custom triggers](#example-3--adding-custom-triggers)
+  - [Example 1: changing the output text](#example-1-changing-the-output-text)
+  - [Example 2: making provoke work for all jobs](#example-2-making-provoke-work-for-all-jobs)
+  - [Example 3: adding custom triggers](#example-3-adding-custom-triggers)
 - [Overriding Raidboss Timelines](#overriding-raidboss-timelines)
 - [Customizing Behavior](#customizing-behavior)
 - [Debugging User Files](#debugging-user-files)
@@ -79,7 +81,7 @@ it will try to select one based on where you have installed cactbot on disk.
 
 Ideally, you should select the `cactbot/user` folder from your cactbot installation.
 This is often in `%APPDATA%\Advanced Combat Tracker\Plugins\cactbot-version\cactbot\user`.
-[This folder](../docs) has example customization files.
+[This folder](../user) has example customization files.
 
 ## Customizing Appearance
 

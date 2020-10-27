@@ -149,7 +149,7 @@ hideall "--sync--"
 # Final Omega - Alphascape V4.0 (Savage) - O12S+
 # -r ch1gtabdwN7QYDR6 -p 336C:3016 -ii 3380 3369 3366 335F 3377 336B 33B5
 
-0.0 "--Reset--" sync /Removing combatant Omega.  Max HP: \d{8}/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 3000.0 "Start"
 3002.5 "--sync--" sync /:Omega:3380:/ window 3003,0

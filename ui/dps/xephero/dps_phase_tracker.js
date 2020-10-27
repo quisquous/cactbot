@@ -40,7 +40,7 @@ class DpsPhaseTracker {
   onLogEvent(logs) {
     if (!this.defaultPhase) {
       for (const log of logs) {
-        if (log.match(this.areaSealRegex) || log.includes(kTestPhaseStart)) {
+        if (this.areaSealRegex.test(log) || log.includes(kTestPhaseStart)) {
           this.defaultPhaseIdx++;
           this.defaultPhase = 'B' + this.defaultPhaseIdx;
           this.onFightPhaseStart(this.defaultPhase, this.lastData);
@@ -49,7 +49,7 @@ class DpsPhaseTracker {
       }
     } else {
       for (const log of logs) {
-        if (log.match(this.areaUnsealRegex) || log.includes(kTestPhaseEnd)) {
+        if (this.areaUnsealRegex.test(log) || log.includes(kTestPhaseEnd)) {
           this.onFightPhaseEnd(this.defaultPhase, this.lastData);
           this.defaultPhase = 0;
           return;

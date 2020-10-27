@@ -734,9 +734,9 @@ class DamageTracker {
     const type = splitLine[0];
 
     if (type === '00') {
-      if (line.match(this.countdownEngageRegex))
+      if (this.countdownEngageRegex.test(line))
         this.collector.AddEngage();
-      if (line.match(this.countdownStartRegex) || line.match(this.countdownCancelRegex))
+      if (this.countdownStartRegex.test(line) || this.countdownCancelRegex.test(line))
         this.collector.Reset();
     } else if (type === '26') {
       this.OnEffectEvent(line);
@@ -800,7 +800,7 @@ class DamageTracker {
 
     const abilityId = matches.id;
     for (const trigger of this.abilityTriggers) {
-      if (!abilityId.match(trigger.idRegex))
+      if (!trigger.idRegex.test(abilityId))
         continue;
       if (!evt)
         evt = this.ProcessMatchesIntoEvent(line, matches);
@@ -815,7 +815,7 @@ class DamageTracker {
     // Healing?
     if (lowByte == '04') {
       for (const trigger of this.healTriggers) {
-        if (!abilityId.match(trigger.idRegex))
+        if (!trigger.idRegex.test(abilityId))
           continue;
         if (!evt)
           evt = this.ProcessMatchesIntoEvent(line, matches);
@@ -835,7 +835,7 @@ class DamageTracker {
       this.lastDamage[matches.target] = matches;
 
     for (const trigger of this.damageTriggers) {
-      if (!abilityId.match(trigger.idRegex))
+      if (!trigger.idRegex.test(abilityId))
         continue;
       if (!evt)
         evt = this.ProcessMatchesIntoEvent(line, matches);
