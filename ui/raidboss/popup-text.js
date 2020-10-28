@@ -106,6 +106,69 @@ class OrderedTriggerList {
   }
 }
 
+
+class TriggerOutputProxy {
+  constructor(trigger, parserLang) {
+    this.trigger = trigger;
+    this.outputStrings = trigger.outputStrings || {};
+    this.responseOutputStrings = {};
+    this.parserLang = parserLang;
+
+    this.unknownValue = '???';
+
+    return new Proxy(this, {
+      set(target, property, value) {
+        if (property === 'responseOutputStrings') {
+          target[property] = value;
+          return true;
+        }
+
+        throw new Error('Invalid set of property ${property}');
+      },
+
+      get(target, name) {
+        // Because this.output must exist at the time of trigger eval, always provide a function.
+        return (params) => {
+          // Response output strings take priority over built-in trigger ones.
+          // Ideally, response provides everything and trigger provides nothing,
+          // or there's no response and trigger provides everything.  Having
+          // this well-defined smooths out the collision edge cases.
+          let str = target.getReplacement(target.responseOutputStrings[name], params);
+          if (str === null)
+            str = target.getReplacement(target.outputStrings[name], params);
+          if (str === null) {
+            console.error(`Trigger ${target.trigger.id} has missing outputString ${name}.`);
+            return target.unknownValue;
+          }
+          return str;
+        };
+      },
+    });
+  }
+
+  getReplacement(template, params) {
+    if (!template)
+      return null;
+    if (typeof template === 'object') {
+      if (this.parserLang in template)
+        template = template[this.parserLang];
+      else
+        template = template['en'];
+    }
+    if (typeof template !== 'string') {
+      console.error(`Trigger ${this.trigger.id} has invalid outputString ${name}.`);
+      return null;
+    }
+
+    return template.replace(/\${\s*([^}\s]+)\s*}/g, (fullMatch, key) => {
+      if (key in params)
+        return params[key];
+      console.error(`Trigger ${this.trigger.id} can't replace ${key} in ${template}.`);
+      return this.unknownValue;
+    });
+  }
+}
+
 class PopupText {
   constructor(options) {
     this.options = options;
@@ -335,8 +398,7 @@ class PopupText {
             continue;
           }
 
-          if (!this.ProcessTrigger(trigger))
-            continue;
+          this.ProcessTrigger(trigger);
 
           // parser-language-based regex takes precedence.
           let regex = trigger[regexParserLang] || trigger.regex;
@@ -386,8 +448,8 @@ class PopupText {
         replacements.push(...set.timelineReplace);
       if (set.timelineTriggers) {
         for (const trigger of set.timelineTriggers) {
-          if (this.ProcessTrigger(trigger))
-            timelineTriggers.push(trigger);
+          this.ProcessTrigger(trigger);
+          timelineTriggers.push(trigger);
         }
       }
       if (set.timelineStyles)
@@ -410,7 +472,31 @@ class PopupText {
   }
 
   ProcessTrigger(trigger) {
-    trigger.output = {};
+    trigger.output = new TriggerOutputProxy(trigger, this.parserLang);
+
+    // Response output string subtlety:
+    // Take this example response:
+    //
+    //    response: () => {
+    //      return {
+    //        alarmText: this.output.someAlarm(),
+    //        outputStrings: { someAlarm: 'string' }, // <- impossible
+    //      };
+    //    },
+    //
+    // Because the object being returned is evaluated all at once, the object
+    // cannot simultaneously defined outputStrings and use those outputStrings.
+    // So, instead, responses need to call `this.setResponseOutputStrings`.
+    // HOWEVER, this also has its own issues!  This value is set for the trigger
+    // (which may have multiple active in flight instances).  This *should* be
+    // ok because we guarantee that response/alarmText/alertText/infoText/tts
+    // are evaluated sequentially for a single trigger before any other trigger
+    // instance evaluates that set of triggers.  Finally, for ease of automating
+    // the config ui, the response should return the exact same set of
+    // outputStrings every time.  Thank you for coming to my TED talk.
+    trigger.setResponseOutputStrings = (outputStrings) => {
+      trigger.output.responseOutputStrings = outputStrings;
+    };
 
     // Apologies in advance for this tremendous hack.
     // Hackily rebind all trigger functions so that |this| is the trigger
@@ -434,36 +520,6 @@ class PopupText {
         trigger[key] = eval(`(() => { return ${trigger[key].toString()} })();`).bind(trigger);
       }).bind(trigger)();
     }
-
-    if (!trigger.outputStrings)
-      return true;
-
-    // For each output string, add a function to trigger.output by that name.
-    for (const key in trigger.outputStrings) {
-      const template = trigger.outputStrings[key];
-      let templateStr = template;
-      if (typeof template === 'object') {
-        if (this.parserLang in template)
-          templateStr = template[this.parserLang];
-        else
-          templateStr = template['en'];
-      }
-      if (typeof templateStr !== 'string') {
-        console.error(`Trigger ${trigger.id} has invalid outputString ${key}.`);
-        return false;
-      }
-
-      trigger.output[key] = (params) => {
-        return templateStr.replace(/\${\s*([^}\s]+)\s*}/g, (fullMatch, key) => {
-          // TODO: throw if key missing?
-          if (key in params)
-            return params[key];
-          return '???';
-        });
-      };
-    }
-
-    return true;
   }
 
   OnJobChange(e) {

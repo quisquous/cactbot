@@ -233,8 +233,10 @@
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
       response: function(data) {
-        // TODO: outputStrings needs to be supported inside of a response
-        // in order to make responses.js usable.
+        this.setResponseOutputStrings({
+          alertTwo: '2',
+          ttsFour: '4',
+        });
         return {
           alarmText: this.output.alarmOne(),
           alertText: this.output.alertTwo(),
@@ -244,9 +246,8 @@
       },
       outputStrings: {
         alarmOne: '1',
-        alertTwo: '2',
+        alertTwo: 'This will be ignored',
         infoThree: '3',
-        ttsFour: '4',
       },
     },
   ],
