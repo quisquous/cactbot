@@ -108,13 +108,16 @@ class OrderedTriggerList {
 
 
 class TriggerOutputProxy {
-  constructor(trigger, parserLang) {
+  constructor(trigger, options) {
     this.trigger = trigger;
     this.outputStrings = trigger.outputStrings || {};
     this.responseOutputStrings = {};
-    this.parserLang = parserLang;
-
+    this.displayLang = options.displayLang;
     this.unknownValue = '???';
+    this.overrideStrings = {};
+
+    if (this.trigger.id && options.PerTriggerAutoConfig[trigger.id])
+      this.overrideStrings = options.PerTriggerAutoConfig[trigger.id]['OutputStrings'] || {};
 
     return new Proxy(this, {
       set(target, property, value) {
@@ -129,11 +132,13 @@ class TriggerOutputProxy {
       get(target, name) {
         // Because this.output must exist at the time of trigger eval, always provide a function.
         return (params) => {
-          // Response output strings take priority over built-in trigger ones.
+          // Priority: per-trigger config from ui > response > built-in trigger
           // Ideally, response provides everything and trigger provides nothing,
           // or there's no response and trigger provides everything.  Having
           // this well-defined smooths out the collision edge cases.
-          let str = target.getReplacement(target.responseOutputStrings[name], params);
+          let str = target.getReplacement(target.overrideStrings[name], params);
+          if (str === null)
+            str = target.getReplacement(target.responseOutputStrings[name], params);
           if (str === null)
             str = target.getReplacement(target.outputStrings[name], params);
           if (str === null) {
@@ -150,8 +155,8 @@ class TriggerOutputProxy {
     if (!template)
       return null;
     if (typeof template === 'object') {
-      if (this.parserLang in template)
-        template = template[this.parserLang];
+      if (this.displayLang in template)
+        template = template[this.displayLang];
       else
         template = template['en'];
     }
@@ -472,7 +477,7 @@ class PopupText {
   }
 
   ProcessTrigger(trigger) {
-    trigger.output = new TriggerOutputProxy(trigger, this.parserLang);
+    trigger.output = new TriggerOutputProxy(trigger, this.options);
 
     // Response output string subtlety:
     // Take this example response:

@@ -3,6 +3,7 @@
 const kOptionKeys = {
   output: 'Output',
   duration: 'Duration',
+  outputStrings: 'OutputStrings',
 };
 
 // No sound only option, because that's silly.
@@ -383,7 +384,7 @@ class RaidbossConfigurator {
           triggerDetails.appendChild(label);
 
           let div = document.createElement('div');
-          div.classList.add('option-input-container');
+          div.classList.add('option-input-container', 'trigger-duration');
 
           let input = document.createElement('input');
           div.appendChild(input);
@@ -395,6 +396,35 @@ class RaidbossConfigurator {
             let val = validDurationOrUndefined(input.value) || '';
             this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
           };
+          input.onchange = setFunc;
+          input.oninput = setFunc;
+
+          triggerDetails.appendChild(div);
+        }
+
+        // Add output strings manually
+        // TODO: handle responses here
+        // TODO: don't print infoText/alarmText etc if there are outputStrings?
+        const outputStrings = trig.outputStrings || {};
+
+        for (const key in outputStrings) {
+          const optionKey = kOptionKeys.outputStrings;
+          let template = this.base.translate(outputStrings[key]);
+
+          let label = document.createElement('div');
+          label.innerText = key;
+          label.classList.add('trigger-outputstring-label');
+          triggerDetails.appendChild(label);
+
+          let div = document.createElement('div');
+          div.classList.add('option-input-container', 'trigger-outputstring');
+
+          let input = document.createElement('input');
+          div.appendChild(input);
+          input.type = 'text';
+          input.placeholder = template;
+          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, key, '');
+          let setFunc = () => this.base.setOption('raidboss', 'triggers', trig.id, optionKey, key, input.value);
           input.onchange = setFunc;
           input.oninput = setFunc;
 
@@ -721,7 +751,11 @@ const templateOptions = {
       if (duration)
         autoConfig[kOptionKeys.duration] = duration;
 
-      if (output || duration)
+      const outputStrings = triggers[id][kOptionKeys.outputStrings];
+      if (outputStrings)
+        autoConfig[kOptionKeys.outputStrings] = outputStrings;
+
+      if (output || duration || outputStrings)
         perTrigger[id] = autoConfig;
     }
   },
