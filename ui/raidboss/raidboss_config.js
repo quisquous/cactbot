@@ -251,6 +251,17 @@ function setOptionsFromOutputValue(options, value) {
   }
 }
 
+// Aren't we all, really, in a do nothing funk?
+class DoNothingFuncProxy {
+  constructor() {
+    return new Proxy(this, {
+      get(target, name) {
+        return () => {};
+      },
+    });
+  }
+}
+
 class RaidbossConfigurator {
   constructor(cactbotConfigurator) {
     this.base = cactbotConfigurator;
@@ -450,6 +461,14 @@ class RaidbossConfigurator {
   }
 
   processTrigger(trig) {
+    bindTriggerFunctionsAndOutput(trig, this.base.lang);
+
+    // TODO: use the TriggerOutputProxy here?
+    // TODO: with some hackiness (e.g. regexes?) we could figure out which
+    // output string came from which alert type (alarm, alert, info, tts).
+    trig.output = new DoNothingFuncProxy();
+    trig.outputStrings = trig.outputStrings || {};
+
     let kBaseFakeData = {
       party: new PartyTracker(),
       lang: this.base.lang,
@@ -556,24 +575,39 @@ class RaidbossConfigurator {
         try {
           // Can't use ValueOrFunction here as r returns a non-localizable object.
           // FIXME: this hackily replicates some raidboss logic too.
-          let response = (typeof r == 'function') ? r(kFakeData[d], kFakeMatches) : r;
+          let response = r;
+          while (typeof response === 'function') {
+            // This replicates PopupText.ProcessTrigger setting this function.
+            trig.setResponseOutputStrings = (outputStrings) => {
+              Object.assign(trig.outputStrings, outputStrings);
+            };
+
+            response = r(kFakeData[d], kFakeMatches);
+          }
           if (!response)
             continue;
-          for (let i = 0; i < keys.length; ++i)
-            evalTrigger(response, keys[i], d);
+
+          if (Object.keys(trig.outputStrings).length === 0) {
+            for (const key of keys)
+              evalTrigger(response, key, d);
+          }
+          break;
         } catch (e) {
           continue;
         }
       }
     }
 
-    for (let i = 0; i < keys.length; ++i) {
-      let key = keys[i];
-      if (!trig[key])
-        continue;
-      for (let d = 0; d < kFakeData.length; ++d) {
-        if (evalTrigger(trig, key, d))
-          break;
+    // Only evaluate fields if there are not outputStrings.
+    // outputStrings will indicate more clearly what the trigger says.
+    if (Object.keys(trig.outputStrings).length === 0) {
+      for (const key of keys) {
+        if (!trig[key])
+          continue;
+        for (let d = 0; d < kFakeData.length; ++d) {
+          if (evalTrigger(trig, key, d))
+            break;
+        }
       }
     }
 

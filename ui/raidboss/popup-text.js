@@ -66,6 +66,57 @@ function onTriggerException(trigger, e) {
     console.error(lines[i]);
 }
 
+const bindTriggerFunctionsAndOutput = (trigger, displayLang, perTriggerAutoConfig) => {
+  trigger.output = new TriggerOutputProxy(trigger, displayLang, perTriggerAutoConfig);
+
+  // Response output string subtlety:
+  // Take this example response:
+  //
+  //    response: () => {
+  //      return {
+  //        alarmText: this.output.someAlarm(),
+  //        outputStrings: { someAlarm: 'string' }, // <- impossible
+  //      };
+  //    },
+  //
+  // Because the object being returned is evaluated all at once, the object
+  // cannot simultaneously defined outputStrings and use those outputStrings.
+  // So, instead, responses need to call `this.setResponseOutputStrings`.
+  // HOWEVER, this also has its own issues!  This value is set for the trigger
+  // (which may have multiple active in flight instances).  This *should* be
+  // ok because we guarantee that response/alarmText/alertText/infoText/tts
+  // are evaluated sequentially for a single trigger before any other trigger
+  // instance evaluates that set of triggers.  Finally, for ease of automating
+  // the config ui, the response should return the exact same set of
+  // outputStrings every time.  Thank you for coming to my TED talk.
+  trigger.setResponseOutputStrings = (outputStrings) => {
+    trigger.output.responseOutputStrings = outputStrings;
+  };
+
+  // Apologies in advance for this tremendous hack.
+  // Hackily rebind all trigger functions so that |this| is the trigger
+  // rather than PopupText.  This eval is required so that arrow
+  // functions in triggers are also "rebound".
+
+  for (const key in trigger) {
+    if (typeof trigger[key] !== 'function')
+      continue;
+
+    (function() {
+      // eslint wants to pretend that the bind down below is unneccessary,
+      // so give it this this to keep it happy.  The real use of this is
+      // inside the eval, which eslint doesn't see.
+      this;
+
+      // Add an additional arrow function indirection here, because eval is
+      // "top level" and so you can't have a top-level anonymous function,
+      // e.g. "function (data, matches)".  Finally, also bind this result
+      // for non-arrow functions using the `function` keyword.
+      trigger[key] = eval(`(() => { return ${trigger[key].toString()} })();`).bind(trigger);
+    }).bind(trigger)();
+  }
+};
+
 // Helper for handling trigger overrides.
 //
 // asList will return a list of triggers in the same order as append was called, except:
@@ -108,16 +159,16 @@ class OrderedTriggerList {
 
 
 class TriggerOutputProxy {
-  constructor(trigger, options) {
+  constructor(trigger, displayLang, perTriggerAutoConfig) {
     this.trigger = trigger;
     this.outputStrings = trigger.outputStrings || {};
     this.responseOutputStrings = {};
-    this.displayLang = options.displayLang;
+    this.displayLang = displayLang;
     this.unknownValue = '???';
     this.overrideStrings = {};
 
-    if (this.trigger.id && options.PerTriggerAutoConfig[trigger.id])
-      this.overrideStrings = options.PerTriggerAutoConfig[trigger.id]['OutputStrings'] || {};
+    if (this.trigger.id && perTriggerAutoConfig && perTriggerAutoConfig[trigger.id])
+      this.overrideStrings = perTriggerAutoConfig[trigger.id]['OutputStrings'] || {};
 
     return new Proxy(this, {
       set(target, property, value) {
@@ -477,54 +528,8 @@ class PopupText {
   }
 
   ProcessTrigger(trigger) {
-    trigger.output = new TriggerOutputProxy(trigger, this.options);
-
-    // Response output string subtlety:
-    // Take this example response:
-    //
-    //    response: () => {
-    //      return {
-    //        alarmText: this.output.someAlarm(),
-    //        outputStrings: { someAlarm: 'string' }, // <- impossible
-    //      };
-    //    },
-    //
-    // Because the object being returned is evaluated all at once, the object
-    // cannot simultaneously defined outputStrings and use those outputStrings.
-    // So, instead, responses need to call `this.setResponseOutputStrings`.
-    // HOWEVER, this also has its own issues!  This value is set for the trigger
-    // (which may have multiple active in flight instances).  This *should* be
-    // ok because we guarantee that response/alarmText/alertText/infoText/tts
-    // are evaluated sequentially for a single trigger before any other trigger
-    // instance evaluates that set of triggers.  Finally, for ease of automating
-    // the config ui, the response should return the exact same set of
-    // outputStrings every time.  Thank you for coming to my TED talk.
-    trigger.setResponseOutputStrings = (outputStrings) => {
-      trigger.output.responseOutputStrings = outputStrings;
-    };
-
-    // Apologies in advance for this tremendous hack.
-    // Hackily rebind all trigger functions so that |this| is the trigger
-    // rather than PopupText.  This eval is required so that arrow
-    // functions in triggers are also "rebound".
-
-    for (const key in trigger) {
-      if (typeof trigger[key] !== 'function')
-        continue;
-
-      (function() {
-        // eslint wants to pretend that the bind down below is unneccessary,
-        // so give it this this to keep it happy.  The real use of this is
-        // inside the eval, which eslint doesn't see.
-        this;
-
-        // Add an additional arrow function indirection here, because eval is
-        // "top level" and so you can't have a top-level anonymous function,
-        // e.g. "function (data, matches)".  Finally, also bind this result
-        // for non-arrow functions using the `function` keyword.
-        trigger[key] = eval(`(() => { return ${trigger[key].toString()} })();`).bind(trigger);
-      }).bind(trigger)();
-    }
+    bindTriggerFunctionsAndOutput(trigger, this.options.displayLang,
+        this.options.PerTriggerAutoConfig);
   }
 
   OnJobChange(e) {
