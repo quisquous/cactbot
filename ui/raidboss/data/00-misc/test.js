@@ -48,8 +48,8 @@
       id: 'Test Angry Dummy',
       regex: /(Angry Dummy)/,
       beforeSeconds: 2,
-      infoText: (data, matches) => this.output.stack({ name: matches[1] }),
-      tts: (data) => this.output.stackTTS(),
+      infoText: (data, matches, output) => output.stack({ name: matches[1] }),
+      tts: (data, matches, output) => output.stackTTS(),
       outputStrings: {
         stack: {
           en: 'Stack for ${name}',
@@ -84,9 +84,9 @@
         });
         return p;
       },
-      infoText: function(data) {
+      infoText: function(data, matches, output) {
         let elapsed = data.delayedDummyTimestampAfter - data.delayedDummyTimestampBefore;
-        return this.output.elapsed({ elapsed: elapsed });
+        return output.elapsed({ elapsed: elapsed });
       },
       outputStrings: {
         elapsed: {
@@ -112,7 +112,7 @@
       preRun: (data) => {
         data.pokes = (data.pokes || 0) + 1;
       },
-      infoText: (data) => this.output.poke({ numPokes: data.pokes }),
+      infoText: (data, _, output) => output.poke({ numPokes: data.pokes }),
       outputStrings: {
         poke: {
           en: 'poke #${numPokes}',
@@ -232,16 +232,16 @@
       id: 'Test Response',
       netRegex: NetRegexes.echo({ line: 'cactbot test response.*?', capture: false }),
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
-      response: function(data) {
-        this.setResponseOutputStrings({
+      response: function(data, _, output) {
+        output.responseOutputStrings = {
           alertTwo: '2',
           ttsFour: '4',
-        });
+        };
         return {
-          alarmText: this.output.alarmOne(),
-          alertText: this.output.alertTwo(),
-          infoText: this.output.infoThree(),
-          tts: this.output.ttsFour(),
+          alarmText: output.alarmOne(),
+          alertText: output.alertTwo(),
+          infoText: output.infoThree(),
+          tts: output.ttsFour(),
         };
       },
       outputStrings: {

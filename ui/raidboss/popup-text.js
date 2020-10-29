@@ -66,57 +66,6 @@ function onTriggerException(trigger, e) {
     console.error(lines[i]);
 }
 
-const bindTriggerFunctionsAndOutput = (trigger, displayLang, perTriggerAutoConfig) => {
-  trigger.output = new TriggerOutputProxy(trigger, displayLang, perTriggerAutoConfig);
-
-  // Response output string subtlety:
-  // Take this example response:
-  //
-  //    response: () => {
-  //      return {
-  //        alarmText: this.output.someAlarm(),
-  //        outputStrings: { someAlarm: 'string' }, // <- impossible
-  //      };
-  //    },
-  //
-  // Because the object being returned is evaluated all at once, the object
-  // cannot simultaneously defined outputStrings and use those outputStrings.
-  // So, instead, responses need to call `this.setResponseOutputStrings`.
-  // HOWEVER, this also has its own issues!  This value is set for the trigger
-  // (which may have multiple active in flight instances).  This *should* be
-  // ok because we guarantee that response/alarmText/alertText/infoText/tts
-  // are evaluated sequentially for a single trigger before any other trigger
-  // instance evaluates that set of triggers.  Finally, for ease of automating
-  // the config ui, the response should return the exact same set of
-  // outputStrings every time.  Thank you for coming to my TED talk.
-  trigger.setResponseOutputStrings = (outputStrings) => {
-    trigger.output.responseOutputStrings = outputStrings;
-  };
-
-  // Apologies in advance for this tremendous hack.
-  // Hackily rebind all trigger functions so that |this| is the trigger
-  // rather than PopupText.  This eval is required so that arrow
-  // functions in triggers are also "rebound".
-
-  for (const key in trigger) {
-    if (typeof trigger[key] !== 'function')
-      continue;
-
-    (function() {
-      // eslint wants to pretend that the bind down below is unneccessary,
-      // so give it this this to keep it happy.  The real use of this is
-      // inside the eval, which eslint doesn't see.
-      this;
-
-      // Add an additional arrow function indirection here, because eval is
-      // "top level" and so you can't have a top-level anonymous function,
-      // e.g. "function (data, matches)".  Finally, also bind this result
-      // for non-arrow functions using the `function` keyword.
-      trigger[key] = eval(`(() => { return ${trigger[key].toString()} })();`).bind(trigger);
-    }).bind(trigger)();
-  }
-};
-
 // Helper for handling trigger overrides.
 //
 // asList will return a list of triggers in the same order as append was called, except:
@@ -171,6 +120,26 @@ class TriggerOutputProxy {
       this.overrideStrings = perTriggerAutoConfig[trigger.id]['OutputStrings'] || {};
 
     return new Proxy(this, {
+      // Response output string subtlety:
+      // Take this example response:
+      //
+      //    response: (data, matches, output) => {
+      //      return {
+      //        alarmText: output.someAlarm(),
+      //        outputStrings: { someAlarm: 'string' }, // <- impossible
+      //      };
+      //    },
+      //
+      // Because the object being returned is evaluated all at once, the object
+      // cannot simultaneously defined outputStrings and use those outputStrings.
+      // So, instead, responses need to set `output.responseOutputStrings`.
+      // HOWEVER, this also has its own issues!  This value is set for the trigger
+      // (which may have multiple active in flight instances).  This *should* be
+      // ok because we guarantee that response/alarmText/alertText/infoText/tts
+      // are evaluated sequentially for a single trigger before any other trigger
+      // instance evaluates that set of triggers.  Finally, for ease of automating
+      // the config ui, the response should return the exact same set of
+      // outputStrings every time.  Thank you for coming to my TED talk.
       set(target, property, value) {
         if (property === 'responseOutputStrings') {
           target[property] = value;
@@ -181,7 +150,8 @@ class TriggerOutputProxy {
       },
 
       get(target, name) {
-        // Because this.output must exist at the time of trigger eval, always provide a function.
+        // Because output.func() must exist at the time of trigger eval,
+        // always provide a function even before we know which keys are valid.
         return (params) => {
           // Priority: per-trigger config from ui > response > built-in trigger
           // Ideally, response provides everything and trigger provides nothing,
@@ -528,7 +498,7 @@ class PopupText {
   }
 
   ProcessTrigger(trigger) {
-    bindTriggerFunctionsAndOutput(trigger, this.options.displayLang,
+    trigger.output = new TriggerOutputProxy(trigger, this.options.displayLang,
         this.options.PerTriggerAutoConfig);
   }
 
@@ -730,7 +700,9 @@ class PopupText {
       trigger: trigger,
       now: now,
       valueOrFunction: (f) => {
-        let result = (typeof (f) == 'function') ? f(this.data, triggerHelper.matches) : f;
+        let result = f;
+        if (typeof (result) === 'function')
+          result = result(this.data, triggerHelper.matches, trigger.output);
         // All triggers return either a string directly, or an object
         // whose keys are different parser language based names.  For simplicity,
         // this is valid to do for any trigger entry that can handle a function.
@@ -821,7 +793,7 @@ class PopupText {
 
   _onTriggerInternalPreRun(triggerHelper) {
     if ('preRun' in triggerHelper.trigger)
-      triggerHelper.trigger.preRun(this.data, triggerHelper.matches);
+      triggerHelper.trigger.preRun(this.data, triggerHelper.matches, triggerHelper.trigger.output);
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper) {
@@ -886,10 +858,12 @@ class PopupText {
 
   _onTriggerInternalResponse(triggerHelper) {
     let response = {};
-    if (triggerHelper.trigger.response) {
+    const trigger = triggerHelper.trigger;
+    if (trigger.response) {
       // Can't use ValueOrFunction here as r returns a non-localizable object.
-      let r = triggerHelper.trigger.response;
-      response = (typeof (r) == 'function') ? r(this.data, triggerHelper.matches) : r;
+      response = trigger.response;
+      while (typeof response === 'function')
+        response = response(this.data, triggerHelper.matches, trigger.output);
 
       // Turn falsy values into a default no-op response.
       if (!response)
@@ -992,7 +966,7 @@ class PopupText {
 
   _onTriggerInternalRun(triggerHelper) {
     if ('run' in triggerHelper.trigger)
-      triggerHelper.trigger.run(this.data, triggerHelper.matches);
+      triggerHelper.trigger.run(this.data, triggerHelper.matches, triggerHelper.trigger.output);
   }
 
   _createTextFor(text, textType, lowerTextKey, duration) {

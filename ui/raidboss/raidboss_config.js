@@ -251,10 +251,20 @@ function setOptionsFromOutputValue(options, value) {
   }
 }
 
-// Aren't we all, really, in a do nothing funk?
+// Helper for doing nothing during trigger eval, but still recording any
+// calls to `output.responseOutputStrings = x;` via callback.
 class DoNothingFuncProxy {
-  constructor() {
+  constructor(outputStringsCallback) {
     return new Proxy(this, {
+      set(target, property, value) {
+        if (property === 'responseOutputStrings') {
+          outputStringsCallback(value);
+          return true;
+        }
+
+        throw new Error('Invalid set of property ${property}');
+      },
+
       get(target, name) {
         return () => {};
       },
@@ -446,11 +456,10 @@ class RaidbossConfigurator {
   }
 
   // This duplicates the raidboss function of the same name.
-  valueOrFunction(f, data, matches) {
-    let result = (typeof f == 'function') ? f(data, matches) : f;
+  valueOrFunction(f, data, matches, output) {
+    let result = (typeof f === 'function') ? f(data, matches, output) : f;
     if (result !== Object(result))
       return result;
-    // TODO: somehow use the option for alert language here??
     if (result[this.alertsLang])
       return this.valueOrFunction(result[this.alertsLang]);
     if (result[this.timelineLang])
@@ -461,12 +470,11 @@ class RaidbossConfigurator {
   }
 
   processTrigger(trig) {
-    bindTriggerFunctionsAndOutput(trig, this.base.lang);
-
-    // TODO: use the TriggerOutputProxy here?
     // TODO: with some hackiness (e.g. regexes?) we could figure out which
     // output string came from which alert type (alarm, alert, info, tts).
-    trig.output = new DoNothingFuncProxy();
+    trig.output = new DoNothingFuncProxy((outputStrings) => {
+      Object.assign(trig.outputStrings, outputStrings);
+    });
     trig.outputStrings = trig.outputStrings || {};
 
     let kBaseFakeData = {
@@ -550,7 +558,7 @@ class RaidbossConfigurator {
     // This could get much more complicated if we wanted it to.
     let evalTrigger = (trig, key, idx) => {
       try {
-        let result = this.valueOrFunction(trig[key], kFakeData[idx], kFakeMatches);
+        let result = this.valueOrFunction(trig[key], kFakeData[idx], kFakeMatches, trig.output);
         if (!result)
           return false;
 
@@ -576,14 +584,8 @@ class RaidbossConfigurator {
           // Can't use ValueOrFunction here as r returns a non-localizable object.
           // FIXME: this hackily replicates some raidboss logic too.
           let response = r;
-          while (typeof response === 'function') {
-            // This replicates PopupText.ProcessTrigger setting this function.
-            trig.setResponseOutputStrings = (outputStrings) => {
-              Object.assign(trig.outputStrings, outputStrings);
-            };
-
-            response = r(kFakeData[d], kFakeMatches);
-          }
+          while (typeof response === 'function')
+            response = r(kFakeData[d], kFakeMatches, trig.output);
           if (!response)
             continue;
 
