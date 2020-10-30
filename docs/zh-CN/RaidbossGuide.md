@@ -1,5 +1,7 @@
 # 触发器文件格式
 
+[[English](../RaidbossGuide.md)] [**简体中文**]
+
 ## 文件结构
 
 ```javascript
