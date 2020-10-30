@@ -33,6 +33,8 @@
 02-arr/trial/shiva-hm.txt
 02-arr/trial/shiva-ex.js
 02-arr/trial/shiva-ex.txt
+02-arr/trial/titan-nm.js
+02-arr/trial/titan-nm.txt
 02-arr/trial/titan-hm.js
 02-arr/trial/titan-hm.txt
 02-arr/trial/titan-ex.js
