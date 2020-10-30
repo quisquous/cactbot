@@ -1,0 +1,107 @@
+### Titan Story / Normal
+# -ii 5C5 3CD -p 28B:203.0  28C:603.0
+
+hideall "--Reset--"
+hideall "--sync--"
+
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
+
+### Phase 1 100->85%
+0.0 "Start"
+0.0 "--sync--" sync /Engage!/ window 0,1
+2.0 "--sync--" sync /:Titan:368:/ window 2,0
+5.0 "Rock Buster" sync /:Titan:281:/
+7.0 "Tumult" sync /:Titan:282:/
+16.1 "Tumult" sync /:Titan:282:/
+19.2 "Rock Buster" sync /:Titan:281:/
+25.2 "Tumult" sync /:Titan:282:/ window 8,8
+
+32.3 "Rock Buster" sync /:Titan:281:/
+34.3 "Tumult" sync /:Titan:282:/
+43.4 "Tumult" sync /:Titan:282:/
+46.5 "Rock Buster" sync /:Titan:281:/
+52.5 "Tumult" sync /:Titan:282:/ window 8,8 jump 25.2
+
+59.6 "Rock Buster"
+61.6 "Tumult"
+70.7 "Tumult"
+73.8 "Rock Buster"
+79.8 "Tumult"
+
+### Phase 2 85->55%
+200.0 "--sync--" sync /:28B:Titan/ window 200,0
+203.0 "Geocrush" sync /:Titan:28B:/
+
+211.6 "Landslide" sync /:Titan:28A:/ window 211,17
+217.8 "Rock Buster" sync /:Titan:281:/
+221.8 "Tumult" sync /:Titan:282:/
+229.1 "Landslide" sync /:Titan:28A:/
+235.3 "Rock Buster" sync /:Titan:281:/
+239.3 "Tumult" sync /:Titan:282:/ window 17,16
+
+246.6 "Landslide" sync /:Titan:28A:/
+252.8 "Rock Buster" sync /:Titan:281:/
+256.8 "Tumult" sync /:Titan:282:/ window 15,17
+264.1 "Landslide" sync /:Titan:28A:/
+270.2 "Rock Buster" sync /:Titan:281:/
+274.2 "Tumult" sync /:Titan:282:/ window 17,16 jump 239.3
+
+281.5 "Landslide"
+287.6 "Rock Buster"
+291.6 "Tumult"
+298.9 "Landslide"
+305.1 "Rock Buster"
+309.1 "Tumult"
+
+### Phase 3 Heart Phase (55%)
+400.0 "--sync--" sync /:28B:Titan/ window 196,0
+403.0 "Geocrush" sync /:Titan:28B:/
+413.6 "Rock Throw" sync /:Titan:285:/
+421.5 "Landslide" sync /:Titan:28A:/
+427.6 "Rock Buster" sync /:Titan:281:/ window 20,15
+431.6 "Tumult" sync /:Titan:282:/
+435.1 "Rock Throw" sync /:Titan:285:/
+442.9 "Landslide" sync /:Titan:28A:/
+449.1 "Rock Buster" sync /:Titan:281:/
+453.1 "Tumult" sync /:Titan:282:/ window 16,25
+464.6 "Landslide" sync /:Titan:28A:/
+473.6 "Enrage"
+
+###Phase 4 55->0%
+601.9 "--sync--" sync /:28C:Earthen Fury/ window 199,0 
+603.0 "Earthen Fury" sync /:Titan:28C:/
+
+616.0 "Landslide" sync /:Titan:28A:/
+622.2 "Rock Buster" sync /:Titan:281:/
+626.2 "Weight Of The Land" sync /:Titan:284:/ window 626,23
+632.3 "Tumult x2" duration 2.5 #sync /:Titan:282:/
+638.5 "Rock Throw" sync /:Titan:285:/
+645.6 "Landslide" sync /:Titan:28A:/
+651.7 "Rock Buster" sync /:Titan:281:/
+655.7 "Weight Of The Land" sync /:Titan:284:/ window 23,26
+661.8 "Tumult x2" duration 2.5 #sync /:Titan:282:/
+668.0 "Rock Throw" sync /:Titan:285:/
+
+675.1 "Landslide" sync /:Titan:28A:/
+681.3 "Rock Buster" sync /:Titan:281:/
+685.3 "Weight Of The Land" sync /:Titan:284:/ window 26,24
+691.4 "Tumult x2" duration 2.5 #sync /:Titan:282:/
+697.6 "Rock Throw" sync /:Titan:285:/
+704.7 "Landslide" sync /Titan:285:/
+710.8 "Rock Buster" sync /:Titan:281:/
+714.8 "Weight Of The Land" sync /:Titan:284:/
+720.9 "Tumult x2" duration 2.5 #sync /:Titan:282:/ window 28,23
+727.1 "Rock Throw" sync /:Titan:285:/ window 29,28 jump 668.0
+ 
+734.2 "Landslide"
+740.4 "Rock Buster"
+744.4 "Weight Of The Land"
+750.5 "Tumult x2" duration 2.5
+756.7 "Rock Throw"
+763.8 "Landslide"
+770.0 "Rock Buster"
+774.0 "Weight Of The Land"
+780.1 "Tumult x2" duration 2.5
+786.3 "Rock Throw"
+
+ 
