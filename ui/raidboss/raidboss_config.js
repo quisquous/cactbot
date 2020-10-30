@@ -471,9 +471,9 @@ class RaidbossConfigurator {
     // TODO: with some hackiness (e.g. regexes?) we could figure out which
     // output string came from which alert type (alarm, alert, info, tts).
     trig.output = new DoNothingFuncProxy((outputStrings) => {
+      trig.outputStrings = trig.outputStrings || {};
       Object.assign(trig.outputStrings, outputStrings);
     });
-    trig.outputStrings = trig.outputStrings || {};
 
     let kBaseFakeData = {
       party: new PartyTracker(),
@@ -587,7 +587,7 @@ class RaidbossConfigurator {
           if (!response)
             continue;
 
-          if (Object.keys(trig.outputStrings).length === 0) {
+          if (trig.outputStrings) {
             for (const key of keys)
               evalTrigger(response, key, d);
           }
@@ -600,7 +600,7 @@ class RaidbossConfigurator {
 
     // Only evaluate fields if there are not outputStrings.
     // outputStrings will indicate more clearly what the trigger says.
-    if (Object.keys(trig.outputStrings).length === 0) {
+    if (trig.outputStrings) {
       for (const key of keys) {
         if (!trig[key])
           continue;
