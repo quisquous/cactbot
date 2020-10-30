@@ -30,7 +30,7 @@ const kDirectoryChooseButtonText = {
   fr: 'Choix du répertoire',
   ja: 'ディレクトリを選択',
   cn: '选择目录',
-  ko: '디렉터리 선택',
+  ko: '디렉토리 선택',
 };
 
 // What to show when a directory hasn't been chosen.

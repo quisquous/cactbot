@@ -10,7 +10,7 @@ UserConfig.registerOptions('general', {
         fr: 'Répertoire utilisateur de Cactbot',
         ja: 'Cactbot ユーザーディレクトリ',
         cn: 'Cactbot user目录',
-        ko: 'Cactbot 사용자 디렉터리',
+        ko: 'Cactbot 사용자 디렉토리',
       },
       type: 'directory',
       default: '',

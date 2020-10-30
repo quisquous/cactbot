@@ -1,5 +1,10 @@
 'use strict';
 
+const kOptionKeys = {
+  output: 'Output',
+  duration: 'Duration',
+};
+
 // No sound only option, because that's silly.
 let kTriggerOptions = {
   default: {
@@ -112,6 +117,14 @@ let kDetailKeys = {
     cls: 'condition-text',
     debugOnly: true,
   },
+  'duration': {
+    label: {
+      en: 'duration',
+      de: 'Dauer',
+    },
+    cls: 'duration-text',
+    generatedManually: true,
+  },
   'preRun': {
     label: {
       en: 'preRun',
@@ -193,6 +206,20 @@ let kDetailKeys = {
   },
 };
 
+const kMiscTranslations = {
+  // Shows up for un-set values.
+  valueDefault: {
+    en: '(default)',
+    de: '(Standard)',
+  },
+};
+
+const validDurationOrUndefined = (val) => {
+  val = parseFloat(val);
+  if (!isNaN(val) && val >= 0)
+    return val;
+  return undefined;
+};
 
 // This is used both for top level Options and for PerTriggerAutoConfig settings.
 // Unfortunately due to poor decisions in the past, PerTriggerOptions has different
@@ -318,7 +345,9 @@ class RaidbossConfigurator {
         triggerDetails.appendChild(this.buildTriggerOptions(trig, triggerDiv));
 
         // Append some details about the trigger so it's more obvious what it is.
-        for (let detailKey in kDetailKeys) {
+        for (const detailKey in kDetailKeys) {
+          if (kDetailKeys[detailKey].generatedManually)
+            continue;
           if (!this.base.developerOptions && kDetailKeys[detailKey].debugOnly)
             continue;
           if (!trig[detailKey] && !trig.output[detailKey])
@@ -343,6 +372,35 @@ class RaidbossConfigurator {
           }
 
           triggerDetails.appendChild(detail);
+        }
+
+        // Add duration manually with an input to override.
+        {
+          const detailKey = 'duration';
+          const optionKey = kOptionKeys.duration;
+
+          let label = document.createElement('div');
+          label.innerText = this.base.translate(kDetailKeys[detailKey].label);
+          label.classList.add('trigger-label');
+          triggerDetails.appendChild(label);
+
+          let div = document.createElement('div');
+          div.classList.add('option-input-container');
+
+          let input = document.createElement('input');
+          div.appendChild(input);
+          input.type = 'text';
+          input.step = 'any';
+          input.placeholder = this.base.translate(kMiscTranslations.valueDefault);
+          input.value = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, '');
+          let setFunc = () => {
+            let val = validDurationOrUndefined(input.value) || '';
+            this.base.setOption('raidboss', 'triggers', trig.id, optionKey, val);
+          };
+          input.onchange = setFunc;
+          input.oninput = setFunc;
+
+          triggerDetails.appendChild(div);
         }
       }
     }
@@ -550,7 +608,7 @@ class RaidbossConfigurator {
   }
 
   buildTriggerOptions(trig, labelDiv) {
-    let kField = 'Output';
+    let optionKey = kOptionKeys.output;
     let div = document.createElement('div');
     div.classList.add('trigger-options');
 
@@ -564,7 +622,7 @@ class RaidbossConfigurator {
     let input = document.createElement('select');
     div.appendChild(input);
 
-    let selectValue = this.base.getOption('raidboss', 'triggers', trig.id, kField, 'default');
+    let selectValue = this.base.getOption('raidboss', 'triggers', trig.id, optionKey, 'default');
 
     for (let key in kTriggerOptions) {
       // Hide debug only options unless they are selected.
@@ -585,7 +643,7 @@ class RaidbossConfigurator {
         let value = input.value;
         if (value.includes('default'))
           value = 'default';
-        this.base.setOption('raidboss', 'triggers', trig.id, kField, input.value);
+        this.base.setOption('raidboss', 'triggers', trig.id, optionKey, input.value);
       };
     }
 
@@ -637,25 +695,36 @@ const templateOptions = {
     });
   },
   processExtraOptions: (options, savedConfig) => {
-    options['PerTriggerAutoConfig'] = options['PerTriggerAutoConfig'] || {};
-    let triggers = savedConfig.triggers;
+    // raidboss will look up this.options.PerTriggerAutoConfig to find these values.
+    const optionName = 'PerTriggerAutoConfig';
+
+    options[optionName] = options[optionName] || {};
+    const triggers = savedConfig.triggers;
     if (!triggers)
       return;
 
-    let perTrigger = options['PerTriggerAutoConfig'];
+    const perTrigger = options[optionName];
 
-    let outputObjs = {};
-    let keys = Object.keys(kTriggerOptions);
-    for (let i = 0; i < keys.length; ++i) {
-      outputObjs[keys[i]] = {};
-      setOptionsFromOutputValue(outputObjs[keys[i]], keys[i]);
+    const outputObjs = {};
+    const keys = Object.keys(kTriggerOptions);
+    for (const key of keys) {
+      outputObjs[key] = {};
+      setOptionsFromOutputValue(outputObjs[key], key);
     }
 
-    for (let id in triggers) {
-      let output = triggers[id]['Output'];
-      if (!output)
-        continue;
-      perTrigger[id] = outputObjs[output];
+    for (const id in triggers) {
+      const autoConfig = {};
+
+      const output = triggers[id][kOptionKeys.output];
+      if (output)
+        Object.assign(autoConfig, outputObjs[output]);
+
+      const duration = validDurationOrUndefined(triggers[id][kOptionKeys.duration]);
+      if (duration)
+        autoConfig[kOptionKeys.duration] = duration;
+
+      if (output || duration)
+        perTrigger[id] = autoConfig;
     }
   },
   options: [
