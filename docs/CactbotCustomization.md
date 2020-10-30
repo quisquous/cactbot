@@ -3,6 +3,7 @@
 🌎 [**English**] [[한국어](./ko-KR/CactbotCustomization.md)]
 
 - [Using the cactbot UI](#using-the-cactbot-ui)
+- [Changing Trigger Text with the cactbot UI](#changing-trigger-text-with-the-cactbot-ui)
 - [User Directory Overview](#user-directory-overview)
 - [Setting Your User Directory](#setting-your-user-directory)
 - [Customizing Appearance](#customizing-appearance)
@@ -27,6 +28,7 @@ This has options for things like:
 
 - setting triggers to tts
 - disabling triggers
+- changing the output of triggers
 - changing your cactbot language
 - volume settings
 - getting rid of that cheese icon
@@ -40,6 +42,30 @@ These options are stored in your
 `%APPDATA%\Advanced Combat Tracker\Config\RainbowMage.OverlayPlugin.config.json`
 file.
 You should not need to edit that file directly.
+
+## Changing Trigger Text with the cactbot UI
+
+In the cactbot configuration UI, under
+ACT -> Plugins -> OverlayPlugin.dll -> Cactbot -> Raidboss,
+there are individual trigger listings.
+You can use these listings to change various exposed configuration settings per trigger.
+
+Settings with a bell (🔔) next to their name are trigger mostly toutputs that you can override.
+For example, maybe there's an 🔔onTarget field whose text is `Tank Buster on ${name}`.
+This is the string that will get played on screen (or via tts) when there is a tank buster on some person.
+`${name}` here is a parameter that will be set dynamically by the trigger.
+Anything that looks like `${param}` is such a dynamic parameter.
+
+You could change this to say `${name} is going to die!` instead.
+Or, maybe you don't care who it's on, and you can edit the text to `Buster` to be brief.
+If you want to undo your overriding, just clear the text.
+
+There are some limitations to this overriding.
+You cannot change the logic.
+You cannot make `tts` to say something different than the `alarmText` in most cases.
+You cannot add additional parameters.
+If you want to do any of these more complicated overrides,
+then you will want to look at the [Overriding Raidboss Triggers](#overriding-raidboss-triggers) section.
 
 ## User Directory Overview
 
@@ -180,8 +206,13 @@ If you are not a programmer, be extra careful with what and how you edit.
 ### Example 1: changing the output text
 
 Let's say hypothetically that you are doing UCOB
-and your group decides that they are going to do fire out first
-instead of fire in first like cactbot calls it by default.
+and your group decides that they are going to do "fire out" first
+instead of "fire in" first like cactbot calls it by default.
+Additionally, you *also* want to have the tts say something different for this trigger.
+You keep forgetting to get out, so you want it to repeat a few times.
+
+If you only wanted to change the `infoText`,
+you could do this via [Changing Trigger Text with the cactbot UI](#changing-trigger-text-with-the-cactbot-ui).
 
 One way to adjust this is to edit the trigger output for this trigger.
 You can find the original fireball #1 trigger in
@@ -207,6 +238,9 @@ Options.Triggers.push({
       infoText: {
         en: 'Fire OUT',
       },
+      tts: {
+        en: 'out out out out out',
+      },
       run: function(data) {
         data.naelFireballCount = 1;
       },
@@ -215,7 +249,7 @@ Options.Triggers.push({
 });
 ```
 
-This edit also replaced the `tts` section and removed other languages other than English.
+This edit also removed languages other than English.
 
 ### Example 2: making provoke work for all jobs
 
