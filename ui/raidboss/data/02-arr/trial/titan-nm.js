@@ -9,7 +9,7 @@
       netRegex: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
       condition: (data) => data.role === 'healer' || data.CanAddle(),
       suppressSeconds: 2,
-      response: Responses.aoe(),  
+      response: Responses.aoe(),
     },
     {
       // Gaol callout for both yourself and others
@@ -28,5 +28,4 @@
       },
     },
   ],
-}];    
-    
+}];
