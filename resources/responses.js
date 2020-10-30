@@ -159,7 +159,7 @@ let Responses = {
     const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
         defaultInfoText(otherSev), otherFunc);
     return (data, _, output) => {
-      // cactbot-disable-matches-test
+      // cactbot-builtin-response
       output.responseOutputStrings = outputStrings;
       return combined;
     };
@@ -257,6 +257,7 @@ let Responses = {
     return obj;
   },
   aoe: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
     output.responseOutputStrings = {
       aoe: {
         en: 'aoe',

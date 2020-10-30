@@ -142,21 +142,30 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
 
     let containsMatches = false;
     let containsMatchesParam = false;
-    let runMatchesTest = true;
 
     let verifyTrigger = (trigger) => {
       for (const func of triggerFunctions) {
         let currentTriggerFunction = trigger[func];
         if (currentTriggerFunction === null)
           continue;
-        if (typeof currentTriggerFunction !== 'undefined') {
-          const funcStr = currentTriggerFunction.toString();
-          containsMatches |= funcStr.includes('matches');
-          containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
+        if (typeof currentTriggerFunction === 'undefined')
+          continue;
+        const funcStr = currentTriggerFunction.toString();
+        containsMatches |= funcStr.includes('matches');
+        containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
 
-          const disableStr = 'cactbot-disable-matches-test';
-          const hasDisableStr = funcStr.includes(disableStr);
-          runMatchesTest &= !hasDisableStr;
+        const builtInResponse = 'cactbot-builtin-response';
+        if (funcStr.includes(builtInResponse)) {
+          if (typeof currentTriggerFunction !== 'function') {
+            errorFunc(`${file}: '${currentTrigger.id} field '${func}' has ${builtinResponse} but is not a function.`);
+            continue;
+          }
+          if (func !== 'response') {
+            errorFunc(`${file}: '${currentTrigger.id} field '${func}' has ${builtinResponse} but is not a response.`);
+            continue;
+          }
+          // Built-in response functions can be safely called once.
+          currentTriggerFunction = currentTriggerFunction({}, {}, {});
         }
         if (func === 'response' && typeof currentTriggerFunction === 'object') {
           // Treat a response object as its own trigger and look at all the functions it returns.
@@ -195,9 +204,6 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         captures = Math.max(captures, currentCaptures);
       }
     }
-
-    if (!runMatchesTest)
-      continue;
 
     if (captures > 0) {
       if (!containsMatches)
