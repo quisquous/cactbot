@@ -424,8 +424,6 @@ class RaidbossConfigurator {
         }
 
         // Add output strings manually
-        // TODO: handle responses here
-        // TODO: don't print infoText/alarmText etc if there are outputStrings?
         const outputStrings = trig.outputStrings || {};
 
         for (const key in outputStrings) {

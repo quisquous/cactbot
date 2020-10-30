@@ -20,6 +20,8 @@
 // function that sets outputStrings and returns an object without doing
 // anything with data or matches.  See `responses_test.js`.
 
+const builtInResponseStr = 'cactbot-builtin-response';
+
 const triggerFunctions = [
   'alarmText',
   'alertText',
@@ -955,5 +957,6 @@ if (typeof module !== 'undefined' && module.exports) {
     Responses: Responses,
     triggerFunctions: triggerFunctions,
     severityMap: severityMap,
+    builtInResponseStr: builtInResponseStr,
   };
 }

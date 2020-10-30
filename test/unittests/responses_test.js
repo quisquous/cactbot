@@ -1,6 +1,6 @@
 'use strict';
 
-const { Responses, severityMap, triggerFunctions } = require('../../resources/responses.js');
+const { Responses, severityMap, triggerFunctions, builtInResponseStr: builtInResponseStr } = require('../../resources/responses.js');
 
 const { assert } = require('chai');
 
@@ -14,6 +14,7 @@ let tests = {
       let result = Responses[response]();
       if (typeof result === 'function') {
         assert.include(result.toString(), outputStringSetterStr);
+        assert.include(result.toString(), builtInResponseStr);
         result = result({}, {}, {});
       }
 
@@ -35,6 +36,7 @@ let tests = {
         let result = Responses[response](sev);
         if (typeof result === 'function') {
           assert.include(result.toString(), outputStringSetterStr);
+          assert.include(result.toString(), builtInResponseStr);
           result = result({}, {}, {});
         }
         assert.isObject(result);
@@ -65,6 +67,7 @@ let tests = {
           let result = Responses[doubleFuncs[i]](sev1, sev2);
           if (typeof result === 'function') {
             assert.include(result.toString(), outputStringSetterStr);
+            assert.include(result.toString(), builtInResponseStr);
             result = result({}, {}, {});
           }
           assert.isObject(result);

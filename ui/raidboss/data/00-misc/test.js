@@ -46,18 +46,18 @@
   timelineTriggers: [
     {
       id: 'Test Angry Dummy',
-      regex: /(Angry Dummy)/,
+      regex: /Angry Dummy/,
       beforeSeconds: 2,
-      infoText: (data, matches, output) => output.stack({ name: matches[1] }),
+      infoText: (data, matches, output) => output.stack(),
       tts: (data, matches, output) => output.stackTTS(),
       outputStrings: {
         stack: {
-          en: 'Stack for ${name}',
-          de: 'Sammeln für ${name}',
-          fr: 'Packez-vous pour ${name}',
-          ja: '${name}に集合',
+          en: 'Stack for Angry Dummy',
+          de: 'Sammeln für Wütender Dummy',
+          fr: 'Packez-vous pour Mannequin en colère',
+          ja: '怒る木人に集合',
           cn: '木人处集合',
-          ko: '${name}에 집합',
+          ko: '화난 나무인형에 집합',
         },
         stackTTS: {
           en: 'Stack',
@@ -71,7 +71,7 @@
     },
     {
       id: 'Test Delayed Dummy',
-      regex: /(Angry Dummy)/,
+      regex: /Angry Dummy/,
       // Add in a huge delay to make it obvious the delay runs before promise.
       delaySeconds: 10,
       promise: function(data, matches) {
@@ -234,7 +234,9 @@
       netRegexDe: NetRegexes.echo({ line: 'cactbot test antwort.*?', capture: false }),
       response: function(data, _, output) {
         output.responseOutputStrings = {
+          alarmOne: '1',
           alertTwo: '2',
+          infoThree: '3',
           ttsFour: '4',
         };
         return {
@@ -243,11 +245,6 @@
           infoText: output.infoThree(),
           tts: output.ttsFour(),
         };
-      },
-      outputStrings: {
-        alarmOne: '1',
-        alertTwo: 'This will be ignored',
-        infoThree: '3',
       },
     },
   ],

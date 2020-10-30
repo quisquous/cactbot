@@ -701,7 +701,7 @@ class PopupText {
       now: now,
       valueOrFunction: (f) => {
         let result = f;
-        if (typeof (result) === 'function')
+        if (typeof result === 'function')
           result = result(this.data, triggerHelper.matches, trigger.output);
         // All triggers return either a string directly, or an object
         // whose keys are different parser language based names.  For simplicity,
