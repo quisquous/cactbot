@@ -27,11 +27,13 @@
           return {
             en: 'Esuna Poison on ' + data.ShortName(matches.target),
             de: 'Entferne Gift von ' + data.ShortName(matches.target),
+            fr: 'Purifiez le poison sur ' + data.ShortName(matches.target),
           };
         }
         return {
           en: 'Esuna Your Poison',
           de: 'Entferne dein Gift',
+          fr: 'Purifiez-vous',
         };
       },
     },
@@ -91,12 +93,14 @@
           return {
             en: 'Break Bubble on ' + data.ShortName(matches.target),
             de: 'Besiege die Blase von ' + data.ShortName(matches.target),
+            fr: 'Détruisez la bulle de ' + data.ShortName(matches.target),
           };
         }
         if (matches.target === data.me) {
           return {
             en: 'Break Your Bubble',
             de: 'Besiege deine Blase',
+            fr: 'Détruisez votre bulle',
           };
         }
       },
@@ -125,6 +129,7 @@
       alertText: {
         en: 'Move Boss Out of Puddles',
         de: 'Bewege den Boss aus der Fläche',
+        fr: 'Déplacez le boss hors des zones au sol',
       },
     },
     {
@@ -143,6 +148,7 @@
         return {
           en: 'Esuna Your Poison',
           de: 'Entferne dein Gift',
+          fr: 'Purifiez-vous',
         };
       },
     },
