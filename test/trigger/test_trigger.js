@@ -142,17 +142,23 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
 
     let containsMatches = false;
     let containsMatchesParam = false;
+    let runMatchesTest = true;
 
     let verifyTrigger = (trigger) => {
-      for (let j = 0; j < triggerFunctions.length; j++) {
-        let currentTriggerFunction = trigger[triggerFunctions[j]];
+      for (const func of triggerFunctions) {
+        let currentTriggerFunction = trigger[func];
         if (currentTriggerFunction === null)
           continue;
         if (typeof currentTriggerFunction !== 'undefined') {
-          containsMatches |= currentTriggerFunction.toString().includes('matches');
+          const funcStr = currentTriggerFunction.toString();
+          containsMatches |= funcStr.includes('matches');
           containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
+
+          const disableStr = 'cactbot-disable-matches-test';
+          const hasDisableStr = funcStr.includes(disableStr);
+          runMatchesTest &= !hasDisableStr;
         }
-        if (triggerFunctions[j] === 'response' && typeof currentTriggerFunction === 'object') {
+        if (func === 'response' && typeof currentTriggerFunction === 'object') {
           // Treat a response object as its own trigger and look at all the functions it returns.
           verifyTrigger(currentTriggerFunction);
         }
@@ -189,6 +195,9 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         captures = Math.max(captures, currentCaptures);
       }
     }
+
+    if (!runMatchesTest)
+      continue;
 
     if (captures > 0) {
       if (!containsMatches)
