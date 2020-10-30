@@ -131,7 +131,7 @@ class TriggerOutputProxy {
       //    },
       //
       // Because the object being returned is evaluated all at once, the object
-      // cannot simultaneously defined outputStrings and use those outputStrings.
+      // cannot simultaneously define outputStrings and use those outputStrings.
       // So, instead, responses need to set `output.responseOutputStrings`.
       // HOWEVER, this also has its own issues!  This value is set for the trigger
       // (which may have multiple active in flight instances).  This *should* be
