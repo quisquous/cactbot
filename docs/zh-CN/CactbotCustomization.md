@@ -35,7 +35,7 @@
 
 ## 用户文件夹概览
 
-若cactbot配置界面不存在您所需的选项，您可能需要考虑以用户文件覆盖的方式进行自定义。 您需要编写JavaScript代码和CSS样式，这意味着您可能需要掌握一些编程知识。
+若cactbot配置界面不存在您所需的选项，您可能需要考虑以用户文件覆盖的方式进行自定义。 您需要编写JavaScript代码和CSS样式，这意味着您可能需要掌握一点点编程知识。
 
 Cactbot的设计哲学要求任何用户的自定义配置应当存放于用户文件夹的文件中。 同时这也能防止您所做的更改在今后cactbot的更新中被覆盖失效。 不仅如此，以后您将无法通过直接修改cactbot的文件应用您的更改，除非您了解如何构建您自己的项目。
 
@@ -47,7 +47,7 @@ Cactbot的设计哲学要求任何用户的自定义配置应当存放于用户�
 
 ## 设置您自己的用户文件夹
 
-您可以通过cactbot配置界面设置此用户文件夹： ACT -> Plugins -> OverlayPlugin.dll -> Cactbot -> cactbot用户文件夹 单击 `选择文件夹` 按钮，选择磁盘上的一个文件夹。 单击 `选择文件夹` 按钮，选择磁盘上的一个文件夹。
+您可以通过cactbot配置界面设置用户文件夹： ACT -> Plugins -> OverlayPlugin.dll -> Cactbot -> cactbot用户文件夹。 单击 `选择文件夹` 按钮，选择磁盘上的一个文件夹。
 
 若您没有选择，cactbot会尝试选择安装目录下的默认文件夹。
 
@@ -59,7 +59,7 @@ Cactbot的设计哲学要求任何用户的自定义配置应当存放于用户�
 
 如您在 [ui/raidboss/raidboss.css](../../ui/raidboss/raidboss.css) 中 可发现诸如 `#popup-text-container` 与 `#timeline-container` 等选择器， 则您可以在 `user/raidboss.css` 中对其位置进行自定义。 您可以在 `user/raidboss.css` 中添加更多的样式。
 
-同样地，您可以通过修改 `.info-text` 类，添加新的CSS规则，以对信息文字的尺寸和颜色进行自定义。
+同样地，您可以在 `.info-text` 类中添加新的CSS规则，对信息文字的尺寸和颜色进行自定义。例如：
 
 ```css
 .info-text {
@@ -68,32 +68,28 @@ Cactbot的设计哲学要求任何用户的自定义配置应当存放于用户�
 }
 ```
 
-简单地说，您可以认为cactbot会将用户文件中的CSS规则添加至内置CSS规则的末尾。 也就是说，您需要注意 [CSS优先级规则](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)， 例如添加 `!important` 让您的规则可以强制覆盖。 另一方面，您可能需要重置某些属性为默认的 `auto` 值。
+简单地说，您可以认为cactbot会将用户文件中的CSS规则添加至内置CSS文件的末尾。 也就是说，您需要注意 [CSS优先级规则](https://developer.mozilla.org/en-US/docs/Web/CSS/Specificity)， 例如添加 `!important` 让您的规则可以强制覆盖。 另一方面，您可能需要重置某些属性为默认的 `auto` 值。
 
 我们推荐使用 [Chrome DevTools](https://developers.google.com/web/tools/chrome-devtools) 以调试CSS问题。 您可以通过 ACT -> Plugins -> OverlayPlugin.dll -> 您的悬浮窗名字 -> 启动Debug工具 以开启DevTools。
 
-**注意**：某些组件的自定义较为困难，甚至无法进行自定义，如时间轴的进度条等。 原因是，这些组件属于自定义HTML元素，且没有导出所有的可配置项。 如果您有特别的需求，但是您不知道如何修改此进度条，您可以提出一个 [github issue](https://github.com/quisquous/cactbot/issues/new/choose)。
+**注意**：某些组件的自定义较为困难，甚至无法进行自定义，如时间轴的进度条等。 原因是，这些组件属于自定义HTML元素，且没有开放外部配置的接口。 如果您有特别的需求，但是您不知道如何修改此进度条，您可以提出一个 [github issue](https://github.com/quisquous/cactbot/issues/new/choose)。
 
 **警告**：cactbot不保证CSS的向后兼容性。 在以后的更改中，cactbot可能会重新组织网页结构，改变元素名称和类名称，甚至完全重构所有样式。 因此，您需知晓您的自定义CSS有在将来出现问题的风险。
 
 ## Raidboss触发器自定义
 
-您可以通过 `cactbot/user/raidboss.js` 文件自定义触发器行为。 您可以修改输出文本、适用职业、界面滞留时间等等。
+您可以通过 `cactbot/user/raidboss.js` 文件自定义触发器行为。 您可以修改输出文本、适用职业、文本显示的时间等等。
 
 在 `cactbot/user/raidboss.js` 文件中， `Options.Triggers` 是一个存放了触发器集合的列表。 您可以通过此变量添加新触发器，或修改已有的触发器。 若用户文件中存在与现有触发器 (cactbot官方提供的) 相同id的触发器，则会将后者其覆盖。
 
-在您修改触发器前，我们推荐阅读 [触发器指南](RaidbossGuide.md) 以了解各触发器的诸多字段的含义。
+在您修改触发器前，我们推荐阅读 [触发器指南](RaidbossGuide.md) 以了解各触发器的诸多属性的含义。
 
 通常情况下，在 `cactbot/user/raidboss.js` 中添加的代码应当形如：
 
 ```javascript
 Options.Triggers.push({
   // 在文件开头定义ZoneId，
-  // 例如 ZoneId.MatchAll (指定所有区域) 或ZoneId.TheBozjanSouthernFront 等
-  zoneId: ZoneId.PutTheZoneFromTheTopOfTheFileHere,
-  triggers: [
-    {
-      // 这里定义的是触发器(trigger)对象。
+  // 例如 ZoneId.MatchAll (指定所有区域) 或 ZoneId.TheBozjanSouthernFront 等
   zoneId: ZoneId.PutTheZoneFromTheTopOfTheFileHere,
   triggers: [
     {
@@ -104,7 +100,7 @@ Options.Triggers.push({
 });
 ```
 
-最简单的方式是直接复制对应的触发器代码并粘贴到此文件再进行修改。 您可以修改 `zoneId` 一行为您想要触发器响应的区域id，这一行通常位于cactbot触发器文件的顶部。 [该文件](../../resources/zone_id.js) 列出了所有可用的区域id。 若您定义了错误的id，OverlayPlugin的日志窗口将会输出警告信息。 然后复制触发器文本并粘贴至此。 按您的喜好进行修改。 对您想修改的所有触发器均进行此步骤。 重载raidboss悬浮窗以应用更改。
+最简单的定制触发器方式是直接复制上面那一大块代码粘贴到此文件再进行修改。 您可以修改 `zoneId` 一行为您想要触发器响应的区域id，这一行通常位于cactbot触发器文件的顶部。 [该文件](../../resources/zone_id.js) 列出了所有可用的区域id。 若您定义了错误的id，OverlayPlugin的日志窗口将会输出警告信息。 然后复制触发器文本并粘贴至此， 按您的喜好进行修改。 当你改完所有你想改的触发器后， 重载raidboss悬浮窗以应用更改。
 
 **注意**：此方式会将原触发器完全移除，因此请在修改时不要删除任何逻辑。 此外，触发器均采用JavaScript编写，因此必须采用标准JavaScript语法。 若您不是程序员，您需要格外注意编辑方法。
 
@@ -114,7 +110,7 @@ Options.Triggers.push({
 
 其中一种调整方式是编辑触发器的输出。 您可以在 [ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js](https://github.com/quisquous/cactbot/blob/cce8bc6b10d2210fa512bd1c8edd39c260cc3df8/ui/raidboss/data/04-sb/ultimate/unending_coil_ultimate.js#L715-L743) 中找到原本的 fireball #1 触发器。
 
-您需要将以下的代码粘贴至您的 `cactbot/user/raidboss.js` 中。
+您需要将以下的代码粘贴至您的 `cactbot/user/raidboss.js` 中：
 
 ```javascript
 Options.Triggers.push({
@@ -150,7 +146,7 @@ Options.Triggers.push({
 
 我们需要修改 `condition` 函数(function)。 由于此处的id与内置的 `General Provoke` 触发器一致，因此会覆盖同名的内置触发器。
 
-您需要将以下的代码粘贴至您的 `cactbot/user/raidboss.js` 中。
+您需要将以下的代码粘贴至您的 `cactbot/user/raidboss.js` 中：
 
 ```javascript
 Options.Triggers.push([{
@@ -180,11 +176,11 @@ Options.Triggers.push([{
 ]);
 ```
 
-当然，您也可以直接删除整个 `condition` 函数， 这是因为没有condition的触发器在匹配到正则时永远会运行
+当然，您也可以直接删除整个 `condition` 函数， 因为没有condition的触发器只要正则匹配成功就会运行。
 
 ### 例3：添加自定义触发器
 
-您也可以添加您的自定义触发器。
+您也可以用同样的办法添加您的自定义触发器。
 
 这是一个示例触发器，当您中了“Forked Lightning”效果时，会在1秒后显示“Get out!!!”。
 
@@ -226,9 +222,8 @@ Options.Triggers.push([
 
 1) 在 user/raidboss.js 中添加代码
 
-    如同我们添加触发器一样，您依旧需要定义 `zoneId`，
-    以及 `overrideTimelineFile: true`，
-    `timelineFile` 的值必须是文本文件的名称。
+    如同我们添加触发器一样，您依旧需要定义 `zoneId`、 `overrideTimelineFile: true`，
+    以及定义文本文件名称的`timelineFile` 属性。
 
     ```javascript
     Options.Triggers.push({
@@ -238,10 +233,9 @@ Options.Triggers.push([
     });
     ```
 
-    此时，我们假设您已经做完了第一步，并且该文本文件的名称为 `user/the_epic_of_alexander.txt` 。
+    （假设您已经做完了第一步，并且该文本文件的名称为 `user/the_epic_of_alexander.txt` ）
 
-    设置 `overrideTimelineFile: true`，
-    告诉cactbot将内置的时间轴完全替换为您添加的文件。
+    设置 `overrideTimelineFile: true` 是为了告诉cactbot将内置的时间轴完全替换为您添加的文件。
 
 1) 按您的喜好编辑您自己的时间轴文件
 
@@ -251,9 +245,9 @@ Options.Triggers.push([
 
 ## 行为自定义
 
-这一文段将讨论自定义cactbot的其他方式。 Cactbot中有一些不在配置界面显示，也不可在触发器中访问的变量。
+这一文段将讨论自定义cactbot的其他方式。 Cactbot中有一些不在配置界面显示，也不是触发器的变量。
 
-每个cactbot模块都有一个名为 `Options` 的变量，它包含了若干控制选项。 每一个 `ui/<name>/<name>.js` 文件的顶部都会修改并注释 `Options` 的各个变量。
+每个cactbot模块都有一个名为 `Options` 的变量，它包含了若干控制选项。 可用的 `Options` 变量会在每个 `ui/<name>/<name>.js` 文件的顶部列出。
 
 例如在 [ui/raidboss/raidboss.js](../../ui/raidboss/raidboss.js) 文件中， 您可以通过 `PlayerNicks` 选项定义玩家的昵称。
 
@@ -261,7 +255,7 @@ Options.Triggers.push([
 Options.PlayerNicks = {
   // 'Firstname Lastname': 'Nickname',
   'Banana Nana', 'Nana',
-  'The Great\'one', 'Joe', // The Great'one => Joe 这里需要一个反斜杠转义单引号
+  'The Great\'one', 'Joe', //  =>  这里需要一个反斜杠转义单引号
   'Viewing Cutscene': 'Cut',
   // 等等
 };
@@ -273,15 +267,15 @@ Options.PlayerNicks = {
 
 ### 检查OverlayPlugin的错误日志
 
-您可以在 ACT -> Plugins -> OverlayPlugin.dll 找到OverlayPlugin的日志窗口， 位于该窗口的底部，为一自动滚动的文本窗口。
+您可以在 ACT -> Plugins -> OverlayPlugin.dll 找到位于该窗口的底部的OverlayPlugin日志窗口，它是一个自动滚动的文本窗口。
 
 当运行错误时，错误信息会显示在此处。
 
 ### 检查文件是否加载
 
-首先，开启raidboss模块的调试模式。 打开cactbot配置窗口，启用 `显示开发者选项` ，然后重新加载悬浮窗。 然后，勾选raidboss模块下的 `启用调试模式`，再次重载悬浮窗。
+首先，您需要开启raidboss模块的调试模式。 打开cactbot配置窗口，启用 `显示开发者选项` ，然后重新加载悬浮窗。 然后，勾选raidboss模块下的 `启用调试模式`，再次重载悬浮窗。
 
-当raidboss模块的调试模式启用时，OverlayPlugin的日志窗口中会打印更多信息。 每次本地的用户文件加载时都会输出类似信息： `[10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: local user file: C:\Users\tinipoutini\cactbot\user\raidboss.js`
+当raidboss模块的调试模式启用时，OverlayPlugin的日志窗口中会打印更多信息。 每次本地的用户文件加载时都会输出类似于这样的信息： `[10/19/2020 6:18:27 PM] Info: raidbossy: BrowserConsole: local user file: C:\Users\tinipoutini\cactbot\user\raidboss.js`
 
 确认您的用户文件是否正常加载。
 
