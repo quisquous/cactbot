@@ -428,6 +428,13 @@ if __name__ == "__main__":
         help="Combatant names to ignore, e.g. Aratama Soul",
     )
     parser.add_argument(
+        "-oc",
+        "--only-combatant",
+        nargs="*",
+        default=[],
+        help="Combatant names to only pay attantion to, e.g. Aratama Soul",
+    )
+    parser.add_argument(
         "-p",
         "--phase",
         nargs="*",
