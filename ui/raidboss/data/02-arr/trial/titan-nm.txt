@@ -103,5 +103,3 @@ hideall "--sync--"
 774.0 "Weight Of The Land"
 780.1 "Tumult x2" duration 2.5
 786.3 "Rock Throw"
-
- 
