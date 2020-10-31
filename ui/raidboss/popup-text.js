@@ -146,7 +146,9 @@ class TriggerOutputProxy {
           return true;
         }
 
-        throw new Error('Invalid set of property ${property}');
+        // Be kind to user triggers that do weird things, and just console error this
+        // instead of throwing an exception.
+        console.error(`Invalid property '${property}' on output.`);
       },
 
       get(target, name) {

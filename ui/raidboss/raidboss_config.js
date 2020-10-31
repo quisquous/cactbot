@@ -262,7 +262,7 @@ class DoNothingFuncProxy {
           return true;
         }
 
-        throw new Error('Invalid set of property ${property}');
+        // Ignore other property setting here.
       },
 
       get(target, name) {
