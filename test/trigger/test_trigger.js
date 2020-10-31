@@ -524,7 +524,7 @@ const testOutputStrings = (file, contents) => {
 
         for (const key of keys) {
           for (const param of outputStringsParams[key]) {
-            if (!`\\b${param}\\s*:`.test(funcStr))
+            if (!funcStr.match(`\\b${param}\\s*:`))
               errorFunc(`${file}: '${trigger.id}' does not define param '${param}' for outputStrings entry '${key}'`);
           }
         }
