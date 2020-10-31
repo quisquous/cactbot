@@ -116,6 +116,9 @@ For such functions:
   specifically the `matches.groups` field.
 - `output` is a special object for turning fields in `outputStrings` into strings to return.
   See the `outputStrings` section below for more info.
+  For triggers that return numbers, e.g. `delaySeconds` or `durationSeconds` and
+  for triggers that don't output anything, e.g. `preRun` or `run`,
+  the output field is largely meaningless.
 
 ### Trigger Elements
 
