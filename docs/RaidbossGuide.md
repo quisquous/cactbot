@@ -1,5 +1,7 @@
 # Triggers File Format
 
+[**English**] [[简体中文](./zh-CN/RaidbossGuide.md)]
+
 ## File Structure
 
 ```javascript

@@ -121,6 +121,7 @@ let kDetailKeys = {
     label: {
       en: 'duration',
       de: 'Dauer',
+      fr: 'Durée',
     },
     cls: 'duration-text',
     generatedManually: true,
@@ -211,6 +212,7 @@ const kMiscTranslations = {
   valueDefault: {
     en: '(default)',
     de: '(Standard)',
+    fr: '(Défaut)',
   },
 };
 
