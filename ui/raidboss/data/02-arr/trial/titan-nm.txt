@@ -92,7 +92,7 @@ hideall "--sync--"
 709.7 "Rock Buster" sync /:Titan:281:/
 713.7 "Weight Of The Land" sync /:Titan:284:/
 719.8 "Tumult x2" duration 2.5 #sync /:Titan:282:/ window 28,23
-727.0 "Rock Throw" sync /:Titan:285:/ window 29,28 jump 677.0
+727.0 "Rock Throw" sync /:Titan:285:/ window 29,28 jump 667.0
  
 ### including syncs until a decision is made to keep or remove them. Potential FIX ME!
 734.1 "Landslide" sync /:Titan:28A:/
