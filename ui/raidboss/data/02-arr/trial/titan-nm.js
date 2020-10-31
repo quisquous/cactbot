@@ -11,7 +11,7 @@
       beforeSeconds: 2,
       response: Responses.TankCleave(),
     },
-  ],    
+  ],
   triggers: [
     {
       id: 'TitanNm Tumult',
