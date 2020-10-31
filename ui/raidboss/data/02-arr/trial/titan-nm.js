@@ -9,7 +9,7 @@
       id: 'TitanNm Rock Buster',
       regex: /Rock Buster/,
       beforeSeconds: 2,
-      response: Responses.TankCleave(),
+      response: Responses.tankCleave(),
     },
   ],
   triggers: [
