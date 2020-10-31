@@ -122,6 +122,8 @@ let kDetailKeys = {
       en: 'duration',
       de: 'Dauer',
       fr: 'Durée',
+      ja: '存続時間',
+      cn: '持续时间',
     },
     cls: 'duration-text',
     generatedManually: true,
