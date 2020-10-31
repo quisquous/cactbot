@@ -8,7 +8,7 @@
       // Early Callout for Tank Cleave
       id: 'TitanNm Rock Buster',
       regex: /Rock Buster/,
-      beforeSeconds: 2,
+      beforeSeconds: 5,
       response: Responses.tankCleave(),
     },
   ],
