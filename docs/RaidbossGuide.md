@@ -202,9 +202,9 @@ May be a number or a `function(data, matches, output)` that returns a number. If
 Time to wait, in seconds, before showing this trigger again.
 May be a number or a `function(data, matches, output)`.
 The time to wait begins at the time of the initial regex match
- and is unaffected by presence or absence of a delaySeconds value.
- Once a trigger with this element activates,
- it will not activate again until after its timeout period is over.
+and is unaffected by presence or absence of a delaySeconds value.
+Once a trigger with this element activates,
+it will not activate again until after its timeout period is over.
 
 **sound**
 Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'.

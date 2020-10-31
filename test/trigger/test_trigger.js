@@ -484,9 +484,7 @@ const testOutputStrings = (file, contents) => {
             const prevParams = outputStringsParams[key];
             let ok = false;
             if (prevParams.length === params.size) {
-              ok = true;
-              for (const key of prevParams)
-                ok &= params.has(key);
+              ok = prevParams.every((key) => params.has(key));
             }
             if (!ok) {
               errorFunc(`${file}: '${key}' in '${trigger.id}' outputStrings has inconsistent params among languages`);
