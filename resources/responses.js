@@ -49,47 +49,47 @@ const severityMap = {
   'alarm': 'alarmText',
 };
 
-let getText = (sev) => {
+const getText = (sev) => {
   if (!(sev in severityMap))
     throw new Error(`Invalid severity: ${sev}.`);
   return severityMap[sev];
 };
 
-let defaultInfoText = (sev) => {
+const defaultInfoText = (sev) => {
   if (!sev)
     return 'infoText';
   return getText(sev);
 };
 
-let defaultAlertText = (sev) => {
+const defaultAlertText = (sev) => {
   if (!sev)
     return 'alertText';
   return getText(sev);
 };
 
-let defaultAlarmText = (sev) => {
+const defaultAlarmText = (sev) => {
   if (!sev)
     return 'alarmText';
   return getText(sev);
 };
 
-let getTarget = (matches) => {
+const getTarget = (matches) => {
   // Often tankbusters can be casted by the boss on the boss.
   // Consider this as "not having a target".
-  if (!matches || matches.target == matches.source)
+  if (!matches || matches.target === matches.source)
     return null;
   return matches.target || matches[1];
 };
 
-let getSource = (matches) => {
+const getSource = (matches) => {
   return matches.source || matches[0];
 };
 
 // FIXME: make this work for any number of pairs of params
-let combineFuncs = function(text1, func1, text2, func2) {
+const combineFuncs = function(text1, func1, text2, func2) {
   let obj = {};
 
-  if (text1 != text2) {
+  if (text1 !== text2) {
     obj[text1] = func1;
     obj[text2] = func2;
   } else {
@@ -100,11 +100,22 @@ let combineFuncs = function(text1, func1, text2, func2) {
   return obj;
 };
 
-let isPlayerId = (id) => {
+const isPlayerId = (id) => {
   return id[0] !== '4';
 };
 
-let Responses = {
+// For responses that unconditionally return static text.
+const staticResponse = (field, text) => (data, _, output) => {
+  // cactbot-builtin-response
+  output.responseOutputStrings = {
+    text: text,
+  };
+  return {
+    [field]: (data, _, output) => output.text(),
+  };
+};
+
+const Responses = {
   tankBuster: (targetSev, otherSev) => {
     const outputStrings = {
       noTarget: {
@@ -246,84 +257,56 @@ let Responses = {
     };
     return obj;
   },
-  miniBuster: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Mini Buster',
-      de: 'Kleiner Tankbuster',
-      fr: 'Mini Buster',
-      ja: 'ミニバスター',
-      cn: '小死刑',
-      ko: '약한 탱버',
-    };
-    return obj;
-  },
-  aoe: (sev) => (data, _, output) => {
-    // cactbot-builtin-response
-    output.responseOutputStrings = {
-      aoe: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'AoE',
-        ja: 'AoE',
-        cn: 'AoE',
-        ko: '전체 공격',
-      },
-    };
-    return {
-      [defaultInfoText(sev)]: (data, _, output) => output.aoe(),
-    };
-  },
-  bigAoe: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'big aoe!',
-      de: 'Große AoE!',
-      fr: 'Grosse AoE !',
-      ja: '大ダメージAoE',
-      cn: '大AoE伤害！',
-      ko: '강한 전체 공격!',
-    };
-    return obj;
-  },
-  spread: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Spread',
-      de: 'Verteilen',
-      fr: 'Dispersez-vous',
-      ja: '散開',
-      cn: '分散',
-      ko: '산개',
-    };
-    return obj;
-  },
-  stackMarker: (sev) => {
+  miniBuster: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Mini Buster',
+    de: 'Kleiner Tankbuster',
+    fr: 'Mini Buster',
+    ja: 'ミニバスター',
+    cn: '小死刑',
+    ko: '약한 탱버',
+  }),
+  aoe: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'aoe',
+    de: 'AoE',
+    fr: 'AoE',
+    ja: 'AoE',
+    cn: 'AoE',
+    ko: '전체 공격',
+  }),
+  bigAoe: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'big aoe!',
+    de: 'Große AoE!',
+    fr: 'Grosse AoE !',
+    ja: '大ダメージAoE',
+    cn: '大AoE伤害！',
+    ko: '강한 전체 공격!',
+  }),
+  spread: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Spread',
+    de: 'Verteilen',
+    fr: 'Dispersez-vous',
+    ja: '散開',
+    cn: '分散',
+    ko: '산개',
+  }),
+  stackMarker: (sev) => staticResponse(defaultAlertText(sev), {
     // for stack marker
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Stack',
-      de: 'Sammeln',
-      fr: 'Packez-vous',
-      ja: '頭割り',
-      cn: '分摊',
-      ko: '쉐어뎀',
-    };
-    return obj;
-  },
-  getTogether: (sev) => {
+    en: 'Stack',
+    de: 'Sammeln',
+    fr: 'Packez-vous',
+    ja: '頭割り',
+    cn: '分摊',
+    ko: '쉐어뎀',
+  }),
+  getTogether: (sev) => staticResponse(defaultAlertText(sev), {
     // for getting together without stack marker
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Stack',
-      de: 'Sammeln',
-      fr: 'Packez-vous',
-      ja: '固まる',
-      cn: '集合',
-      ko: '모이기',
-    };
-    return obj;
-  },
+    en: 'Stack',
+    de: 'Sammeln',
+    fr: 'Packez-vous',
+    ja: '頭割り',
+    cn: '分摊',
+    ko: '쉐어뎀',
+  }),
   stackMarkerOn: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
@@ -349,66 +332,46 @@ let Responses = {
     };
     return obj;
   },
-  stackMiddle: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Stack in middle',
-      fr: 'Packez-vous au milieu',
-      de: 'In der Mitte sammeln',
-      ja: '中央でスタック',
-      cn: '中间集合',
-      ko: '중앙에서 모이기',
-    };
-    return obj;
-  },
-  doritoStack: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Dorito Stack',
-      de: 'Mit Marker sammeln',
-      fr: 'Packez les marquages',
-      ja: 'マーカー付けた人とスタック',
-      cn: '点名集合',
-      ko: '징끼리 모이기',
-    };
-    return obj;
-  },
-  spreadThenStack: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Spread => Stack',
-      de: 'Verteilen => Sammeln',
-      fr: 'Dispersion => Package',
-      ja: '散開 => スタック',
-      cn: '分散 => 集合',
-      ko: '산개 => 집합',
-    };
-    return obj;
-  },
-  stackThenSpread: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Stack => Spread',
-      de: 'Sammeln => Verteilen',
-      fr: 'Package => Dispersion',
-      ja: 'スタック => 散開',
-      cn: '集合 => 分散',
-      ko: '집합 => 산개',
-    };
-    return obj;
-  },
-  knockback: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Knockback',
-      de: 'Rückstoß',
-      fr: 'Poussée',
-      ja: 'ノックバック',
-      cn: '击退',
-      ko: '넉백',
-    };
-    return obj;
-  },
+  stackMiddle: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Stack in middle',
+    fr: 'Packez-vous au milieu',
+    de: 'In der Mitte sammeln',
+    ja: '中央でスタック',
+    cn: '中间集合',
+    ko: '중앙에서 모이기',
+  }),
+  doritoStack: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Dorito Stack',
+    de: 'Mit Marker sammeln',
+    fr: 'Packez les marquages',
+    ja: 'マーカー付けた人とスタック',
+    cn: '点名集合',
+    ko: '징끼리 모이기',
+  }),
+  spreadThenStack: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Spread => Stack',
+    de: 'Verteilen => Sammeln',
+    fr: 'Dispersion => Package',
+    ja: '散開 => スタック',
+    cn: '分散 => 集合',
+    ko: '산개 => 집합',
+  }),
+  stackThenSpread: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Stack => Spread',
+    de: 'Sammeln => Verteilen',
+    fr: 'Package => Dispersion',
+    ja: 'スタック => 散開',
+    cn: '集合 => 分散',
+    ko: '집합 => 산개',
+  }),
+  knockback: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Knockback',
+    de: 'Rückstoß',
+    fr: 'Poussée',
+    ja: 'ノックバック',
+    cn: '击退',
+    ko: '넉백',
+  }),
   knockbackOn: (targetSev, otherSev) => {
     let targetFunc = (data, matches) => {
       let target = getTarget(matches);
@@ -440,30 +403,22 @@ let Responses = {
     return combineFuncs(defaultInfoText(targetSev), targetFunc,
         defaultInfoText(otherSev), otherFunc);
   },
-  lookTowards: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Look Towards Boss',
-      de: 'Anschauen Boss',
-      fr: 'Regardez le boss',
-      ja: '見る',
-      cn: '背对',
-      ko: '쳐다보기',
-    };
-    return obj;
-  },
-  lookAway: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Look Away',
-      de: 'Wegschauen',
-      fr: 'Regardez ailleurs',
-      ja: '見ない',
-      cn: '背对',
-      ko: '뒤돌기',
-    };
-    return obj;
-  },
+  lookTowards: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Look Towards Boss',
+    de: 'Anschauen Boss',
+    fr: 'Regardez le boss',
+    ja: '見る',
+    cn: '背对',
+    ko: '쳐다보기',
+  }),
+  lookAway: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Look Away',
+    de: 'Wegschauen',
+    fr: 'Regardez ailleurs',
+    ja: '見ない',
+    cn: '背对',
+    ko: '뒤돌기',
+  }),
   lookAwayFromTarget: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
@@ -500,251 +455,171 @@ let Responses = {
     };
     return obj;
   },
-  getBehind: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Get Behind',
-      de: 'Hinter ihn',
-      fr: 'Passez derrière',
-      ja: '背面へ',
-      cn: '去背后',
-      ko: '보스 뒤로',
-    };
-    return obj;
-  },
-  goFrontOrSides: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Go Front / Sides',
-      de: 'Gehe nach Vorne/ zu den Seiten',
-      fr: 'Allez Devant / Côtés',
-      ja: '前／横へ',
-      cn: '去前侧方',
-      ko: '보스 후방 피하기',
-    };
-    return obj;
-  },
+  getBehind: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Get Behind',
+    de: 'Hinter ihn',
+    fr: 'Passez derrière',
+    ja: '背面へ',
+    cn: '去背后',
+    ko: '보스 뒤로',
+  }),
+  goFrontOrSides: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Go Front / Sides',
+    de: 'Gehe nach Vorne/ zu den Seiten',
+    fr: 'Allez Devant / Côtés',
+    ja: '前／横へ',
+    cn: '去前侧方',
+    ko: '보스 후방 피하기',
+  }),
   // .getUnder() is used when you have to get into the bosses hitbox
-  getUnder: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Get Under',
-      de: 'Unter ihn',
-      fr: 'En dessous',
-      ja: 'ボスと貼り付く',
-      cn: '去脚下',
-      ko: '보스 아래로',
-    };
-    return obj;
-  },
+  getUnder: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Get Under',
+    de: 'Unter ihn',
+    fr: 'En dessous',
+    ja: 'ボスと貼り付く',
+    cn: '去脚下',
+    ko: '보스 아래로',
+  }),
   // .getIn() is more like "get close but maybe even melee range is fine"
-  getIn: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'In',
-      de: 'Rein',
-      fr: 'Intérieur',
-      ja: '中へ',
-      cn: '靠近',
-      ko: '안으로',
-    };
-    return obj;
-  },
+  getIn: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'In',
+    de: 'Rein',
+    fr: 'Intérieur',
+    ja: '中へ',
+    cn: '靠近',
+    ko: '안으로',
+  }),
   // .getOut() means get far away
-  getOut: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Out',
-      de: 'Raus',
-      ja: '外へ',
-      fr: 'Exterieur',
-      cn: '远离',
-      ko: '밖으로',
-    };
-    return obj;
-  },
-  outOfMelee: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Out of melee',
-      de: 'Raus aus Nahkampf',
-      fr: 'Hors de la mêlée',
-      ja: '近接最大レンジ',
-      cn: '近战最远距离回避',
-      ko: '근접범위 밖으로',
-    };
-    return obj;
-  },
-  getInThenOut: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'In, then out',
-      de: 'Rein, dann raus',
-      fr: 'Intérieur, puis extérieur',
-      ja: '中 => 外',
-      cn: '先靠近，再远离',
-      ko: '안으로 => 밖으로',
-    };
-    return obj;
-  },
-  getOutThenIn: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Out, then in',
-      de: 'Raus, dann rein',
-      fr: 'Extérieur, puis intérieur',
-      ja: '外 => 中',
-      cn: '先远离，再靠近',
-      ko: '밖으로 => 안으로',
-    };
-    return obj;
-  },
-  getBackThenFront: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Back Then Front',
-      de: 'Nach Hinten, danach nach Vorne',
-      fr: 'Derrière puis devant',
-      ja: '後ろ => 前',
-      cn: '后 => 前',
-      ko: '뒤로 => 앞으로',
-    };
-    return obj;
-  },
-  getFrontThenBack: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Front Then Back',
-      de: 'Nach Vorne, danach nach Hinten',
-      fr: 'Devant puis derrière',
-      ja: '前 => 後ろ',
-      cn: '前 => 后',
-      ko: '앞으로 => 뒤로',
-    };
-    return obj;
-  },
-  goMiddle: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'go into middle',
-      fr: 'Allez au milieu',
-      de: 'in die Mitte gehen',
-      ja: '中へ',
-      cn: '去中间',
-      ko: '중앙으로',
-    };
-    return obj;
-  },
-  goRight: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Right',
-      de: 'Rechts',
-      fr: 'Droite ',
-      ja: '右へ',
-      cn: '右',
-      ko: '오른쪽',
-    };
-    return obj;
-  },
-  goLeft: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Left',
-      de: 'Links',
-      fr: 'Gauche',
-      ja: '左へ',
-      cn: '左',
-      ko: '왼쪽',
-    };
-    return obj;
-  },
-  goWest: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: '<= Get Left/West',
-      de: '<= Nach Links/Westen',
-      fr: '<= Allez à Gauche/Ouest',
-      ja: '<= 左/西へ',
-      cn: '<= 去左/西边',
-      ko: '<= 왼쪽으로',
-    };
-    return obj;
-  },
-  goEast: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Get Right/East =>',
-      de: 'Nach Rechts/Osten =>',
-      fr: 'Allez à Droite/Est =>',
-      ja: '右/東へ =>',
-      cn: '去右/东边 =>',
-      ko: '오른쪽으로 =>',
-    };
-    return obj;
-  },
-  goFrontBack: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Go Front/Back',
-      de: 'Geh nach Vorne/Hinten',
-      fr: 'Allez Devant/Derrière',
-      ja: '縦へ',
-      cn: '去前后',
-      ko: '앞/뒤로',
-    };
-    return obj;
-  },
-  goSides: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Sides',
-      de: 'Seiten',
-      fr: 'Côtés',
-      ja: '横へ',
-      ko: '양옆으로',
-      cn: '去侧面',
-    };
-    return obj;
-  },
+  getOut: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Out',
+    de: 'Raus',
+    ja: '外へ',
+    fr: 'Exterieur',
+    cn: '远离',
+    ko: '밖으로',
+  }),
+  outOfMelee: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Out of melee',
+    de: 'Raus aus Nahkampf',
+    fr: 'Hors de la mêlée',
+    ja: '近接最大レンジ',
+    cn: '近战最远距离回避',
+    ko: '근접범위 밖으로',
+  }),
+  getInThenOut: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'In, then out',
+    de: 'Rein, dann raus',
+    fr: 'Intérieur, puis extérieur',
+    ja: '中 => 外',
+    cn: '先靠近，再远离',
+    ko: '안으로 => 밖으로',
+  }),
+  getOutThenIn: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Out, then in',
+    de: 'Raus, dann rein',
+    fr: 'Extérieur, puis intérieur',
+    ja: '外 => 中',
+    cn: '先远离，再靠近',
+    ko: '밖으로 => 안으로',
+  }),
+  getBackThenFront: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Back Then Front',
+    de: 'Nach Hinten, danach nach Vorne',
+    fr: 'Derrière puis devant',
+    ja: '後ろ => 前',
+    cn: '后 => 前',
+    ko: '뒤로 => 앞으로',
+  }),
+  getFrontThenBack: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Front Then Back',
+    de: 'Nach Vorne, danach nach Hinten',
+    fr: 'Devant puis derrière',
+    ja: '前 => 後ろ',
+    cn: '前 => 后',
+    ko: '앞으로 => 뒤로',
+  }),
+  goMiddle: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'go into middle',
+    fr: 'Allez au milieu',
+    de: 'in die Mitte gehen',
+    ja: '中へ',
+    cn: '去中间',
+    ko: '중앙으로',
+  }),
+  goRight: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Right',
+    de: 'Rechts',
+    fr: 'Droite ',
+    ja: '右へ',
+    cn: '右',
+    ko: '오른쪽',
+  }),
+  goLeft: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Left',
+    de: 'Links',
+    fr: 'Gauche',
+    ja: '左へ',
+    cn: '左',
+    ko: '왼쪽',
+  }),
+  goWest: (sev) => staticResponse(defaultAlertText(sev), {
+    en: '<= Get Left/West',
+    de: '<= Nach Links/Westen',
+    fr: '<= Allez à Gauche/Ouest',
+    ja: '<= 左/西へ',
+    cn: '<= 去左/西边',
+    ko: '<= 왼쪽으로',
+  }),
+  goEast: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Get Right/East =>',
+    de: 'Nach Rechts/Osten =>',
+    fr: 'Allez à Droite/Est =>',
+    ja: '右/東へ =>',
+    cn: '去右/东边 =>',
+    ko: '오른쪽으로 =>',
+  }),
+  goFrontBack: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Go Front/Back',
+    de: 'Geh nach Vorne/Hinten',
+    fr: 'Allez Devant/Derrière',
+    ja: '縦へ',
+    cn: '去前后',
+    ko: '앞/뒤로',
+  }),
+  goSides: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Sides',
+    de: 'Seiten',
+    fr: 'Côtés',
+    ja: '横へ',
+    ko: '양옆으로',
+    cn: '去侧面',
+  }),
   // .killAdds() is used for adds that will always be available
-  killAdds: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Kill adds',
-      de: 'Adds besiegen',
-      fr: 'Tuez les adds',
-      ja: '雑魚を処理',
-      ko: '쫄 잡기',
-      cn: '击杀小怪',
-    };
-    return obj;
-  },
+  killAdds: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Kill adds',
+    de: 'Adds besiegen',
+    fr: 'Tuez les adds',
+    ja: '雑魚を処理',
+    ko: '쫄 잡기',
+    cn: '击杀小怪',
+  }),
   // .killExtraAdd() is used for adds that appear if a mechanic was not played correctly
-  killExtraAdd: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Kill Extra Add',
-      de: 'Add besiegen',
-      ja: '雑魚を倒す',
-      fr: 'Tuez l\'add',
-      cn: '击杀小怪',
-      ko: '쫄 잡기',
-    };
-    return obj;
-  },
-  awayFromFront: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'Away From Front',
-      de: 'Weg von Vorne',
-      fr: 'Éloignez-vous du devant',
-      ja: '前方から離れ',
-      cn: '远离正面',
-      ko: '보스 전방 피하기',
-    };
-    return obj;
-  },
+  killExtraAdd: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Kill Extra Add',
+    de: 'Add besiegen',
+    ja: '雑魚を倒す',
+    fr: 'Tuez l\'add',
+    cn: '击杀小怪',
+    ko: '쫄 잡기',
+  }),
+  awayFromFront: (sev) => staticResponse(defaultAlertText(sev), {
+    en: 'Away From Front',
+    de: 'Weg von Vorne',
+    fr: 'Éloignez-vous du devant',
+    ja: '前方から離れ',
+    cn: '远离正面',
+    ko: '보스 전방 피하기',
+  }),
   sleep: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
@@ -846,92 +721,64 @@ let Responses = {
     };
     return obj;
   },
-  meteorOnYou: (sev) => {
-    let obj = {};
-    obj[defaultAlarmText(sev)] = {
-      en: 'Meteor on YOU',
-      de: 'Meteor auf DIR',
-      fr: 'Météore sur VOUS',
-      ja: '自分にメテオ',
-      cn: '陨石点名',
-      ko: '나에게 메테오징',
-    };
-    return obj;
-  },
-  stopMoving: (sev) => {
-    let obj = {};
-    obj[defaultAlarmText(sev)] = {
-      en: 'Stop Moving!',
-      de: 'Bewegung stoppen!',
-      fr: 'Ne bougez pas !',
-      ja: '移動禁止！',
-      cn: '停止移动！',
-      ko: '이동 멈추기!',
-    };
-    return obj;
-  },
-  stopEverything: (sev) => {
-    let obj = {};
-    obj[defaultAlarmText(sev)] = {
-      en: 'Stop Everything!',
-      de: 'Stoppe Alles!',
-      fr: 'Arrêtez TOUT !',
-      ja: '行動禁止！',
-      cn: '停止行动！',
-      ko: '행동 멈추기!',
-    };
-    return obj;
-  },
-  moveAway: (sev) => {
-    // to dodge aoes
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Move!',
-      de: 'Bewegen!',
-      fr: 'Bougez !',
-      ja: '避けて！',
-      cn: '快躲开！',
-      ko: '이동하기!',
-    };
-    return obj;
-  },
-  moveAround: (sev) => {
-    // should jump or move
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Move!',
-      de: 'Bewegen!',
-      fr: 'Bougez !',
-      ja: '動く！',
-      cn: '快动！',
-      ko: '움직이기!',
-    };
-    return obj;
-  },
-  breakChains: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Break chains',
-      de: 'Kette zerbrechen',
-      fr: 'Cassez les chaines',
-      ja: '線を切る',
-      cn: '切断连线',
-      ko: '선 끊기',
-    };
-    return obj;
-  },
-  moveChainsTogether: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'Move chains together',
-      de: 'Ketten zusammen bewegen',
-      fr: 'Bougez les chaines ensemble',
-      ja: '線同士一緒に移動',
-      cn: '连线一起移动',
-      ko: '선 붙어서 같이 움직이기',
-    };
-    return obj;
-  },
+  meteorOnYou: (sev) => staticResponse(defaultAlarmText(sev), {
+    en: 'Meteor on YOU',
+    de: 'Meteor auf DIR',
+    fr: 'Météore sur VOUS',
+    ja: '自分にメテオ',
+    cn: '陨石点名',
+    ko: '나에게 메테오징',
+  }),
+  stopMoving: (sev) => staticResponse(defaultAlarmText(sev), {
+    en: 'Stop Moving!',
+    de: 'Bewegung stoppen!',
+    fr: 'Ne bougez pas !',
+    ja: '移動禁止！',
+    cn: '停止移动！',
+    ko: '이동 멈추기!',
+  }),
+  stopEverything: (sev) => staticResponse(defaultAlarmText(sev), {
+    en: 'Stop Everything!',
+    de: 'Stoppe Alles!',
+    fr: 'Arrêtez TOUT !',
+    ja: '行動禁止！',
+    cn: '停止行动！',
+    ko: '행동 멈추기!',
+  }),
+  moveAway: (sev) => staticResponse(defaultInfoText(sev), {
+    // move away to dodge aoes
+    en: 'Move!',
+    de: 'Bewegen!',
+    fr: 'Bougez !',
+    ja: '避けて！',
+    cn: '快躲开！',
+    ko: '이동하기!',
+  }),
+  moveAround: (sev) => staticResponse(defaultInfoText(sev), {
+    // move around (e.g. jumping) to avoid being frozen
+    en: 'Move!',
+    de: 'Bewegen!',
+    fr: 'Bougez !',
+    ja: '動く！',
+    cn: '快动！',
+    ko: '움직이기!',
+  }),
+  breakChains: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Break chains',
+    de: 'Kette zerbrechen',
+    fr: 'Cassez les chaines',
+    ja: '線を切る',
+    cn: '切断连线',
+    ko: '선 끊기',
+  }),
+  moveChainsTogether: (sev) => staticResponse(defaultInfoText(sev), {
+    en: 'Move chains together',
+    de: 'Ketten zusammen bewegen',
+    fr: 'Bougez les chaines ensemble',
+    ja: '線同士一緒に移動',
+    cn: '连线一起移动',
+    ko: '선 붙어서 같이 움직이기',
+  }),
   earthshaker: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
