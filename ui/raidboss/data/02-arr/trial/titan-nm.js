@@ -5,18 +5,13 @@
   timelineFile: 'titan-nm.txt',
   timelineTriggers: [
     {
-      // Covers both tanks and non tanks with appropriate text
-      // Needs suppression for occasions in phase 4 where rock busters
-      // get pushed close together by auto attacks to avoid double triggers.
+      // Tank and healer early callout for buster
       id: 'TitanNm Rock Buster',
       regex: /Rock Buster/
-      condition: function (data, matches) {
-      	return data.role === 'healer' || data.role === 'tank';
-      },	
       beforeSeconds: 2,
       response: Responses.TankCleave(),
     },
-  ],  
+  ],    
   triggers: [
     {
       id: 'TitanNm Tumult',
