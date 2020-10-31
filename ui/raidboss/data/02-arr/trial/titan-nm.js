@@ -5,9 +5,9 @@
   timelineFile: 'titan-nm.txt',
   timelineTriggers: [
     {
-      // Tank and healer early callout for buster
+      // Early Callout for Tank Cleave
       id: 'TitanNm Rock Buster',
-      regex: /Rock Buster/
+      regex: /Rock Buster/,
       beforeSeconds: 2,
       response: Responses.TankCleave(),
     },
