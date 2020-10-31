@@ -495,7 +495,7 @@ const testOutputStrings = (file, contents) => {
 
           // Verify that there's no dangling ${
           if (/\${/.test(template.replace(paramRegex, ''))) {
-            errorFunc(`${file}: '${key}' in '${trigger.id}' outputStrings has a dangling \${`);
+            errorFunc(`${file}: '${key}' in '${trigger.id}' outputStrings has an open \${ without a closing }`);
             continue;
           }
         }
@@ -524,7 +524,7 @@ const testOutputStrings = (file, contents) => {
 
         for (const key of keys) {
           for (const param of outputStringsParams[key]) {
-            if (!funcStr.match(`\\b${param}\\s*:`))
+            if (!`\\b${param}\\s*:`.test(funcStr))
               errorFunc(`${file}: '${trigger.id}' does not define param '${param}' for outputStrings entry '${key}'`);
           }
         }
