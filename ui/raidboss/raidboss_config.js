@@ -587,7 +587,7 @@ class RaidbossConfigurator {
           if (!response)
             continue;
 
-          if (trig.outputStrings) {
+          if (!trig.outputStrings) {
             for (const key of keys)
               evalTrigger(response, key, d);
           }
@@ -600,7 +600,7 @@ class RaidbossConfigurator {
 
     // Only evaluate fields if there are not outputStrings.
     // outputStrings will indicate more clearly what the trigger says.
-    if (trig.outputStrings) {
+    if (!trig.outputStrings) {
       for (const key of keys) {
         if (!trig[key])
           continue;
