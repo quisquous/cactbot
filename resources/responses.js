@@ -126,7 +126,7 @@ const Responses = {
         cn: '坦克死刑',
         ko: '탱버',
       },
-      onYou: {
+      busterOnYou: {
         en: 'Tank Buster on YOU',
         de: 'Tank buster auf DIR',
         fr: 'Tank buster sur VOUS',
@@ -134,7 +134,7 @@ const Responses = {
         cn: '死刑点名',
         ko: '탱버 대상자',
       },
-      onTarget: {
+      busterOnTarget: {
         en: 'Tank Buster on ${name}',
         de: 'Tank buster auf ${name}',
         fr: 'Tank buster sur ${name}',
@@ -153,7 +153,7 @@ const Responses = {
       }
 
       if (target === data.me)
-        return output.onYou();
+        return output.busterOnYou();
     };
 
     const otherFunc = (data, matches, output) => {
@@ -166,7 +166,7 @@ const Responses = {
       if (target === data.me)
         return;
 
-      return output.onTarget({ name: data.ShortName(target) });
+      return output.busterOnTarget({ name: data.ShortName(target) });
     };
 
     const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
@@ -178,84 +178,98 @@ const Responses = {
     };
   },
   tankBusterSwap: (busterSev, swapSev) => {
-    // Note: busterSev and swapSev can be the same priority.
-    let tankSwapFunc = (data, matches) => {
-      let target = getTarget(matches);
-      if (data.role == 'tank' && target != data.me) {
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'タンクスイッチ',
-          cn: '换T！',
-          ko: '탱 교대',
-        };
-      }
+    const outputStrings = {
+      tankSwap: {
+        en: 'Tank Swap!',
+        de: 'Tankwechsel!',
+        fr: 'Tank swap !',
+        ja: 'タンクスイッチ',
+        cn: '换T！',
+        ko: '탱 교대',
+      },
+      busterOnYou: {
+        en: 'Tank Buster on YOU',
+        de: 'Tank buster auf DIR',
+        fr: 'Tank buster sur VOUS',
+        ja: '自分にタンクバスター',
+        cn: '死刑点名',
+        ko: '탱버 대상자',
+      },
+      busterOnTarget: {
+        en: 'Tank Buster on ${name}',
+        de: 'Tank buster auf ${name}',
+        fr: 'Tank buster sur ${name}',
+        ja: '${name}にタンクバスター',
+        cn: '死刑 点 ${name}',
+        ko: '"${name}" 탱버',
+      },
     };
-    let busterFunc = (data, matches) => {
-      let target = getTarget(matches);
 
-      if (data.role == 'tank' && target != data.me)
+    // Note: busterSev and swapSev can be the same priority.
+    const tankSwapFunc = (data, matches, output) => {
+      const target = getTarget(matches);
+      if (data.role === 'tank' && target !== data.me)
+        return output.tankSwap();
+    };
+    const busterFunc = (data, matches, output) => {
+      const target = getTarget(matches);
+
+      if (data.role === 'tank' && target !== data.me)
         return;
 
-      if (target == data.me) {
-        return {
-          en: 'Tank Buster on YOU',
-          de: 'Tank buster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑点名',
-          ko: '탱버 대상자',
-        };
-      }
-      return {
-        en: 'Tank Buster on ' + data.ShortName(target),
-        de: 'Tank buster auf ' + data.ShortName(target),
-        fr: 'Tank buster sur ' + data.ShortName(target),
-        ja: data.ShortName(target) + 'にタンクバスター',
-        cn: '死刑 点 ' + data.ShortName(target),
-        ko: '"' + data.ShortName(target) + '" 탱버',
-      };
+      if (target === data.me)
+        return output.busterOnYou();
+      return output.busterOnTarget({ name: data.ShortName(target) });
     };
 
-    return combineFuncs(defaultAlarmText(swapSev), tankSwapFunc,
+    const combined = combineFuncs(defaultAlarmText(swapSev), tankSwapFunc,
         defaultAlertText(busterSev), busterFunc);
+    return (data, _, output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = outputStrings;
+      return combined;
+    };
   },
-  tankCleave: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = (data, matches) => {
-      if (data.role == 'tank') {
-        let target = getTarget(matches);
-        if (target == data.me) {
-          return {
-            en: 'Tank cleave on YOU',
-            de: 'Tank Cleave aud DIR',
-            fr: 'Tank cleave sur VOUS',
-            ja: '自分に前方範囲攻撃',
-            cn: '顺劈点名',
-            ko: '나에게 광역 탱버',
-          };
-        }
-        // targetless tank cleave
-        return {
-          en: 'Tank cleave',
-          de: 'Tank Cleave',
-          fr: 'Tank cleave',
-          ja: '前方範囲攻撃',
-          cn: '顺劈',
-          ko: '광역 탱버',
-        };
-      }
-      return {
+  tankCleave: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      cleaveOnYou: {
+        en: 'Tank cleave on YOU',
+        de: 'Tank Cleave aud DIR',
+        fr: 'Tank cleave sur VOUS',
+        ja: '自分に前方範囲攻撃',
+        cn: '顺劈点名',
+        ko: '나에게 광역 탱버',
+      },
+      cleaveNoTarget: {
+        en: 'Tank cleave',
+        de: 'Tank Cleave',
+        fr: 'Tank cleave',
+        ja: '前方範囲攻撃',
+        cn: '顺劈',
+        ko: '광역 탱버',
+      },
+      avoidCleave: {
         en: 'Avoid tank cleave',
         de: 'Tank Cleave ausweichen',
         fr: 'Évitez le tank cleave',
         ja: '前方範囲攻撃を避け',
         cn: '远离顺劈',
         ko: '광역 탱버 피하기',
-      };
+      },
     };
-    return obj;
+    return {
+      [defaultInfoText(sev)]: (data, matches, output) => {
+        if (data.role === 'tank') {
+          const target = getTarget(matches);
+          if (target === data.me)
+            return output.cleaveOnYou();
+          // targetless tank cleave
+          return output.cleaveNoTarget();
+        }
+        return output.avoidCleave();
+      },
+    };
   },
   miniBuster: (sev) => staticResponse(defaultInfoText(sev), {
     en: 'Mini Buster',
@@ -307,30 +321,34 @@ const Responses = {
     cn: '分摊',
     ko: '쉐어뎀',
   }),
-  stackMarkerOn: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
-      let target = getTarget(matches);
-      if (target == data.me) {
-        return {
-          en: 'Stack on YOU',
-          de: 'Auf DIR sammeln',
-          fr: 'Package sur VOUS',
-          ja: '自分にスタック',
-          cn: '集合点名',
-          ko: '쉐어징 대상자',
-        };
-      }
-      return {
-        en: 'Stack on ' + data.ShortName(target),
-        de: 'Auf ' + data.ShortName(target) + ' sammeln',
-        fr: 'Packez-vous sur ' + data.ShortName(target),
-        ja: data.ShortName(target) + 'にスタック',
-        cn: '靠近 ' + data.ShortName(target) + '集合',
-        ko: '"' + data.ShortName(target) + '" 쉐어징',
-      };
+  stackMarkerOn: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      stackOnYou: {
+        en: 'Stack on YOU',
+        de: 'Auf DIR sammeln',
+        fr: 'Package sur VOUS',
+        ja: '自分にスタック',
+        cn: '集合点名',
+        ko: '쉐어징 대상자',
+      },
+      stackOnTarget: {
+        en: 'Stack on ${name}',
+        de: 'Auf ${name} sammeln',
+        fr: 'Packez-vous sur ${name}',
+        ja: '${name}にスタック',
+        cn: '靠近 ${name}集合',
+        ko: '"${name}" 쉐어징',
+      },
     };
-    return obj;
+    return {
+      [defaultAlertText(sev)]: (data, matches, output) => {
+        const target = getTarget(matches);
+        if (target === data.me)
+          return output.stackOnYou();
+        return output.stackOnTarget({ name: data.ShortName(target) });
+      },
+    };
   },
   stackMiddle: (sev) => staticResponse(defaultInfoText(sev), {
     en: 'Stack in middle',
@@ -373,35 +391,43 @@ const Responses = {
     ko: '넉백',
   }),
   knockbackOn: (targetSev, otherSev) => {
-    let targetFunc = (data, matches) => {
-      let target = getTarget(matches);
-      if (target == data.me) {
-        return {
-          en: 'Knockback on YOU',
-          de: 'Rückstoß auf DIR',
-          fr: 'Poussée sur VOUS',
-          ja: '自分にノックバック',
-          cn: '击退点名',
-          ko: '넉백징 대상자',
-        };
-      }
+    const outputStrings = {
+      knockbackOnYou: {
+        en: 'Knockback on YOU',
+        de: 'Rückstoß auf DIR',
+        fr: 'Poussée sur VOUS',
+        ja: '自分にノックバック',
+        cn: '击退点名',
+        ko: '넉백징 대상자',
+      },
+      knockbackOnTarget: {
+        en: 'Knockback on ${name}',
+        de: 'Rückstoß auf ${name}',
+        fr: 'Poussée sur ${name}',
+        ja: '${name}にノックバック',
+        cn: '击退点名${name}',
+        ko: '"${name}" 넉백징',
+      },
     };
 
-    let otherFunc = (data, matches) => {
-      let target = getTarget(matches);
-      if (target != data.me) {
-        return {
-          en: 'Knockback on ' + data.ShortName(target),
-          de: 'Rückstoß auf ' + data.ShortName(target),
-          fr: 'Poussée sur ' + data.ShortName(target),
-          ja: data.ShortName(target) + 'にノックバック',
-          cn: '击退点名' + data.ShortName(target),
-          ko: '"' + data.ShortName(target) + '" 넉백징',
-        };
-      }
+    const targetFunc = (data, matches, output) => {
+      const target = getTarget(matches);
+      if (target === data.me)
+        return output.knockbackOnYou();
     };
-    return combineFuncs(defaultInfoText(targetSev), targetFunc,
+
+    const otherFunc = (data, matches, output) => {
+      const target = getTarget(matches);
+      if (target !== data.me)
+        return output.knockbackOnTarget({ name: data.ShortName(target) });
+    };
+    const combined = combineFuncs(defaultInfoText(targetSev), targetFunc,
         defaultInfoText(otherSev), otherFunc);
+    return (data, _, output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = outputStrings;
+      return combined;
+    };
   },
   lookTowards: (sev) => staticResponse(defaultInfoText(sev), {
     en: 'Look Towards Boss',
@@ -419,41 +445,49 @@ const Responses = {
     cn: '背对',
     ko: '뒤돌기',
   }),
-  lookAwayFromTarget: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
-      const target = getTarget(matches);
-      if (target === data.me)
-        return;
-      const name = isPlayerId(matches.targetId) ? data.ShortName(target) : target;
-      return {
-        en: 'Look Away from ' + name,
-        de: 'Schau weg von ' + name,
-        fr: 'Ne regardez pas ' + name,
-        ja: name + 'を見ない',
-        cn: '背对' + name,
-        ko: name + '에게서 뒤돌기',
-      };
+  lookAwayFromTarget: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      lookAwayFrom: {
+        en: 'Look Away from ${name}',
+        de: 'Schau weg von ${name}',
+        fr: 'Ne regardez pas ${name}',
+        ja: '${name}を見ない',
+        cn: '背对${name}',
+        ko: '${name}에게서 뒤돌기',
+      },
     };
-    return obj;
+    return {
+      [defaultAlertText(sev)]: (data, matches, output) => {
+        const target = getTarget(matches);
+        if (target === data.me)
+          return;
+        const name = isPlayerId(matches.targetId) ? data.ShortName(target) : target;
+        return output.lookAwayFrom({ name: name });
+      },
+    };
   },
-  lookAwayFromSource: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
-      const source = getSource(matches);
-      if (source === data.me)
-        return;
-      const name = isPlayerId(matches.sourceId) ? data.ShortName(source) : source;
-      return {
-        en: 'Look Away from ' + name,
-        de: 'Schau weg von ' + name,
-        fr: 'Ne regardez pas ' + name,
-        ja: name + 'を見ない',
-        cn: '背对' + name,
-        ko: name + '에게서 뒤돌기',
-      };
+  lookAwayFromSource: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      lookAwayFrom: {
+        en: 'Look Away from ${name}',
+        de: 'Schau weg von ${name}',
+        fr: 'Ne regardez pas ${name}',
+        ja: '${name}を見ない',
+        cn: '背对${name}',
+        ko: '${name}에게서 뒤돌기',
+      },
     };
-    return obj;
+    return {
+      [defaultAlertText(sev)]: (data, matches, output) => {
+        const source = getSource(matches);
+        if (source === data.me)
+          return;
+        const name = isPlayerId(matches.sourceId) ? data.ShortName(source) : source;
+        return output.lookAwayFrom({ name: name });
+      },
+    };
   },
   getBehind: (sev) => staticResponse(defaultAlertText(sev), {
     en: 'Get Behind',
@@ -620,106 +654,131 @@ const Responses = {
     cn: '远离正面',
     ko: '보스 전방 피하기',
   }),
-  sleep: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
-      let source = getSource(matches);
-      return {
-        en: 'Sleep ' + source,
-        de: 'Schlaf auf ' + source,
-        fr: 'Sommeil sur ' + source,
-        ja: source + ' にスリプル',
-        cn: '催眠 ' + source,
-        ko: source + ' 슬리플',
-      };
+  sleep: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      sleep: {
+        en: 'Sleep ${name}',
+        de: 'Schlaf auf ${name}',
+        fr: 'Sommeil sur ${name}',
+        ja: '${name} にスリプル',
+        cn: '催眠 ${name}',
+        ko: '${name} 슬리플',
+      },
     };
-    return obj;
+    return {
+      [defaultAlertText(sev)]: (data, matches, output) => {
+        const source = getSource(matches);
+        return output.sleep({ name: source });
+      },
+    };
   },
-  stun: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
-      let source = getSource(matches);
-      return {
-        en: 'Stun ' + source,
-        de: 'Betäubung auf ' + source,
-        fr: 'Étourdissement sur ' + source,
-        ja: source + ' にスタン',
-        cn: '眩晕 ' + source,
-        ko: source + '기절',
-      };
+  stun: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      stun: {
+        en: 'Stun ${name}',
+        de: 'Betäubung auf ${name}',
+        fr: 'Étourdissement sur ${name}',
+        ja: '${name} にスタン',
+        cn: '眩晕 ${name}',
+        ko: '${name}기절',
+      },
     };
-    return obj;
+    return {
+      [defaultAlertText(sev)]: (data, matches, output) => {
+        const source = getSource(matches);
+        return output.stun({ name: source });
+      },
+    };
   },
-  interrupt: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
-      let source = getSource(matches);
-      return {
-        en: 'interrupt ' + source,
-        de: 'unterbreche ' + source,
-        fr: 'Interrompez ' + source,
-        ja: source + ' に沈黙',
-        cn: '打断' + source,
-        ko: source + '기술 시전 끊기',
-      };
+  interrupt: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      interrupt: {
+        en: 'interrupt ${name}',
+        de: 'unterbreche ${name}',
+        fr: 'Interrompez ${name}',
+        ja: '${name} に沈黙',
+        cn: '打断${name}',
+        ko: '${name}기술 시전 끊기',
+      },
     };
-    return obj;
+    return {
+      [defaultAlertText(sev)]: (data, matches, output) => {
+        const source = getSource(matches);
+        return output.interrupt({ name: source });
+      },
+    };
   },
   preyOn: (targetSev, otherSev) => {
-    let targetFunc = (data, matches) => {
-      let target = getTarget(matches);
-      if (data.me == target) {
-        return {
-          en: 'Prey on YOU',
-          de: 'Marker auf DIR',
-          fr: 'Marquage sur VOUS',
-          ja: '自分に捕食',
-          cn: '掠食点名',
-          ko: '홍옥징 대상자',
-        };
-      }
+    const outputStrings = {
+      preyOnYou: {
+        en: 'Prey on YOU',
+        de: 'Marker auf DIR',
+        fr: 'Marquage sur VOUS',
+        ja: '自分に捕食',
+        cn: '掠食点名',
+        ko: '홍옥징 대상자',
+      },
+      preyOnTarget: {
+        en: 'Prey on ${name}',
+        de: 'Marker auf ${name}',
+        fr: 'Marquage sur ${name}',
+        ja: '${name}に捕食',
+        cn: '掠食点名${name}',
+        ko: '"${name}" 홍옥징',
+      },
     };
 
-    let otherFunc = (data, matches) => {
-      let target = getTarget(matches);
-      if (target != data.me) {
-        return {
-          en: 'Prey on ' + data.ShortName(target),
-          de: 'Marker auf ' + data.ShortName(target),
-          fr: 'Marquage sur ' + data.ShortName(target),
-          ja: data.ShortName(target) + 'に捕食',
-          cn: '掠食点名' + data.ShortName(target),
-          ko: '"' + data.ShortName(target) + '" 홍옥징',
-        };
-      }
+    const targetFunc = (data, matches, output) => {
+      const target = getTarget(matches);
+      if (data.me === target)
+        return output.preyOnYou();
     };
-    return combineFuncs(defaultAlertText(targetSev), targetFunc,
+
+    const otherFunc = (data, matches, output) => {
+      const target = getTarget(matches);
+      if (target !== data.me)
+        return output.preyOnTarget({ name: data.ShortName(target) });
+    };
+
+    const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
         defaultInfoText(otherSev), otherFunc);
-  },
-  awayFrom: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
-      let target = getTarget(matches);
-      if (data.me == target) {
-        return {
-          en: 'Away from Group',
-          de: 'Weg von der Gruppe',
-          fr: 'Éloignez-vous du groupe',
-          ja: '外へ',
-          cn: '远离人群',
-          ko: '다른 사람들이랑 떨어지기',
-        };
-      }
-      return {
-        en: 'Away from ' + data.ShortName(target),
-        de: 'Weg von ' + data.ShortName(target),
-        fr: 'Éloignez-vous de ' + data.ShortName(target),
-        ja: data.ShortName(target) + 'から離れ',
-        cn: '远离' + data.ShortName(target),
-        ko: '"' + data.ShortName(target) + '"에서 멀어지기',
-      };
+    return (data, _, output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = outputStrings;
+      return combined;
     };
-    return obj;
+  },
+  awayFrom: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      awayFromGroup: {
+        en: 'Away from Group',
+        de: 'Weg von der Gruppe',
+        fr: 'Éloignez-vous du groupe',
+        ja: '外へ',
+        cn: '远离人群',
+        ko: '다른 사람들이랑 떨어지기',
+      },
+      awayFromTarget: {
+        en: 'Away from ${name}',
+        de: 'Weg von ${name}',
+        fr: 'Éloignez-vous de ${name}',
+        ja: '${name}から離れ',
+        cn: '远离${name}',
+        ko: '"${name}"에서 멀어지기',
+      },
+    };
+    return {
+      [defaultAlertText(sev)]: (data, matches, output) => {
+        const target = getTarget(matches);
+        if (data.me === target)
+          return output.awayFromGroup();
+        return output.awayFromTarget({ name: data.ShortName(target) });
+      },
+    };
   },
   meteorOnYou: (sev) => staticResponse(defaultAlarmText(sev), {
     en: 'Meteor on YOU',
@@ -779,22 +838,26 @@ const Responses = {
     cn: '连线一起移动',
     ko: '선 붙어서 같이 움직이기',
   }),
-  earthshaker: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = (data, matches) => {
-      let target = getTarget(matches);
-      if (target != data.me)
-        return;
-      return {
+  earthshaker: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      earthshaker: {
         en: 'Earth Shaker on YOU',
         de: 'Erdstoß auf DIR',
         fr: 'Marque de terre sur VOUS',
         ja: '自分にアースシェイカー',
         cn: '大地摇动点名',
         ko: '어스징 대상자',
-      };
+      },
     };
-    return obj;
+    return {
+      [defaultAlertText(sev)]: (data, matches, output) => {
+        const target = getTarget(matches);
+        if (target !== data.me)
+          return;
+        return output.earthshaker({ name: source });
+      },
+    };
   },
   wakeUp: (sev) => {
     let obj = {};
