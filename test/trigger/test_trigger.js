@@ -11,7 +11,7 @@ const Regexes = require('../../resources/regexes.js');
 const NetRegexes = require('../../resources/netregexes.js');
 const Conditions = require('../../resources/conditions.js');
 const ZoneId = require('../../resources/zone_id.js');
-const { Responses, triggerFunctions } = require('../../resources/responses.js');
+const { Responses, triggerFunctions, builtInResponseStr } = require('../../resources/responses.js');
 const fs = require('fs');
 
 let exitCode = 0;
@@ -144,15 +144,30 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
     let containsMatchesParam = false;
 
     let verifyTrigger = (trigger) => {
-      for (let j = 0; j < triggerFunctions.length; j++) {
-        let currentTriggerFunction = trigger[triggerFunctions[j]];
+      for (const func of triggerFunctions) {
+        let currentTriggerFunction = trigger[func];
         if (currentTriggerFunction === null)
           continue;
-        if (typeof currentTriggerFunction !== 'undefined') {
-          containsMatches |= currentTriggerFunction.toString().includes('matches');
-          containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
+        if (typeof currentTriggerFunction === 'undefined')
+          continue;
+        const funcStr = currentTriggerFunction.toString();
+        containsMatches |= funcStr.includes('matches');
+        containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
+
+        const builtInResponse = 'cactbot-builtin-response';
+        if (funcStr.includes(builtInResponse)) {
+          if (typeof currentTriggerFunction !== 'function') {
+            errorFunc(`${file}: '${currentTrigger.id} field '${func}' has ${builtinResponse} but is not a function.`);
+            continue;
+          }
+          if (func !== 'response') {
+            errorFunc(`${file}: '${currentTrigger.id} field '${func}' has ${builtinResponse} but is not a response.`);
+            continue;
+          }
+          // Built-in response functions can be safely called once.
+          currentTriggerFunction = currentTriggerFunction({}, {}, {});
         }
-        if (triggerFunctions[j] === 'response' && typeof currentTriggerFunction === 'object') {
+        if (func === 'response' && typeof currentTriggerFunction === 'object') {
           // Treat a response object as its own trigger and look at all the functions it returns.
           verifyTrigger(currentTriggerFunction);
         }
@@ -390,6 +405,134 @@ let testBadZoneId = function(file, contents) {
     errorFunc(`${file}: use zoneId instead of zoneRegex`);
 };
 
+// responses_test.js will handle testing any response with builtInResponseStr.
+// triggers using `response:` otherwise cannot be tested, because we cannot
+// safely call the response function.
+const testOutputStrings = (file, contents) => {
+  const json = eval(contents);
+  const triggerSet = json[0];
+  for (const set of [triggerSet.triggers, triggerSet.timelineTriggers]) {
+    if (!set)
+      continue;
+    for (const trigger of set) {
+      let outputStrings = {};
+      let response = {};
+      if (trigger.response) {
+        // Triggers using responses should include the outputStrings in the
+        // response func itself, via `output.responseOutputStrings = {};`
+        if (trigger.outputStrings) {
+          errorFunc(`${file}: found both 'response' and 'outputStrings in '${trigger.id}'.`);
+          continue;
+        }
+        if (typeof trigger.response !== 'function')
+          continue;
+        const funcStr = trigger.response.toString();
+        if (!funcStr.includes(builtInResponseStr))
+          continue;
+        const output = { responseOutputStrings: undefined };
+        // Call the function to get the outputStrings.
+        response = trigger.response({}, {}, output);
+        outputStrings = output.responseOutputStrings;
+
+        if (typeof outputStrings !== 'object') {
+          errorFunc(`${file}: '${trigger.id}' built-in response did not set outputStrings.`);
+          continue;
+        }
+      } else {
+        if (trigger.outputStrings && typeof outputStrings !== 'object') {
+          errorFunc(`${file}: '${trigger.id}' outputStrings must be an object.`);
+          continue;
+        }
+        outputStrings = trigger.outputStrings;
+      }
+
+      // TODO: should we prevent `output['phrase with spaces']()` style constructions?
+      // TODO: should we restrict outputStrings keys to valid variable characters?
+
+      // TODO: share this with popup-text.js?
+      const paramRegex = /\${\s*([^}\s]+)\s*}/g;
+
+      // key => [] of params
+      const outputStringsParams = {};
+
+      // For each outputString, find and validate all of the parameters.
+      for (const key in outputStrings) {
+        let templateObj = outputStrings[key];
+        if (typeof templateObj !== 'object') {
+          errorFunc(`${file}: '${key}' in '${trigger.id}' outputStrings is not a translatable object`);
+          continue;
+        }
+
+        // All languages must have the same set of params.
+        for (const lang in templateObj) {
+          const template = templateObj[lang];
+          if (typeof template !== 'string') {
+            errorFunc(`${file}: '${key}' in '${trigger.id}' outputStrings for lang ${lang} is not a string`);
+            continue;
+          }
+
+          // Build params with a set for uniqueness, but store as an array later for ease of use.
+          const params = new Set();
+          template.replace(paramRegex, (fullMatch, key) => {
+            params.add(key);
+            return fullMatch;
+          });
+
+          // If this is not the first lang, validate it has the same params as previous languages.
+          if (key in outputStringsParams) {
+            // prevParams is an array, params is a set.
+            const prevParams = outputStringsParams[key];
+            let ok = false;
+            if (prevParams.length === params.size)
+              ok = prevParams.every((key) => params.has(key));
+
+            if (!ok) {
+              errorFunc(`${file}: '${key}' in '${trigger.id}' outputStrings has inconsistent params among languages`);
+              continue;
+            }
+          }
+          outputStringsParams[key] = [...params];
+
+          // Verify that there's no dangling ${
+          if (/\${/.test(template.replace(paramRegex, ''))) {
+            errorFunc(`${file}: '${key}' in '${trigger.id}' outputStrings has an open \${ without a closing }`);
+            continue;
+          }
+        }
+      }
+
+      // Now, we have an optional |outputStrings| and an optional |response|.
+      // Verify that any function in |trigger| or |response| using |output|
+      // has a corresponding key in |outputStrings|.  But hackily.
+      const obj = Object.assign({}, trigger, response);
+      for (const field in obj) {
+        const func = obj[field];
+        if (typeof func !== 'function')
+          continue;
+        const funcStr = func.toString();
+        const keys = [];
+
+        // Validate that any calls to output.word() have a corresponding outputStrings entry.
+        funcStr.replace(/\boutput\.(\w*)\(/g, (fullMatch, key) => {
+          if (!outputStrings[key]) {
+            errorFunc(`${file}: missing key '${key}' in '${trigger.id}' outputStrings`);
+            return;
+          }
+          keys.push(key);
+          return fullMatch;
+        });
+
+        for (const key of keys) {
+          for (const param of outputStringsParams[key]) {
+            if (!funcStr.match(`\\b${param}\\s*:`))
+              errorFunc(`${file}: '${trigger.id}' does not define param '${param}' for outputStrings entry '${key}'`);
+          }
+        }
+      }
+    }
+  }
+};
+
 let testTriggerFile = function(file) {
   let contents = fs.readFileSync(file) + '';
 
@@ -409,6 +552,7 @@ let testTriggerFile = function(file) {
     testTriggerFieldsSorted(file, contents);
     testBadTimelineTriggerRegex(file, contents);
     testBadZoneId(file, contents);
+    testOutputStrings(file, contents);
   } catch (e) {
     errorFunc(`Trigger error in ${file}.`);
     console.error(e);
