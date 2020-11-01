@@ -583,7 +583,7 @@ class RaidbossConfigurator {
           // FIXME: this hackily replicates some raidboss logic too.
           let response = r;
           while (typeof response === 'function')
-            response = r(kFakeData[d], kFakeMatches, trig.output);
+            response = response(kFakeData[d], kFakeMatches, trig.output);
           if (!response)
             continue;
 
