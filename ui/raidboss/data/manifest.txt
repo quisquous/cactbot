@@ -205,6 +205,7 @@
 05-shb/dungeon/the_grand_cosmos.txt
 05-shb/dungeon/twinning.js
 05-shb/dungeon/twinning.txt
+05-shb/eureka/bozjan_southern_front.js
 05-shb/etc/the_diadem.js
 05-shb/raid/e1n.js
 05-shb/raid/e1n.txt
