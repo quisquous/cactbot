@@ -222,7 +222,7 @@
     {
       id: 'Fractal Hard Mass Aetheroplasm',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       // 477 is Infinite Fire, 478 is Infinite Ice
