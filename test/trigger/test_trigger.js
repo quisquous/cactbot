@@ -42,7 +42,7 @@ const errorFunc = (str) => {
 };
 
 let testValidTriggerRegexLanguage = function(file, contents) {
-  let unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja).*?:/g;
+  let unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja)\w*\s*:/g;
   let results = contents.match(unsupportedRegexLanguage);
   if (results && results.length > 0) {
     for (const result of results)
