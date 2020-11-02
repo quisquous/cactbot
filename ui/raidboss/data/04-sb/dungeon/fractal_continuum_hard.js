@@ -289,16 +289,7 @@
     {
       id: 'Fractal Hard Allagan Flare',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
-      alertText: function(data, matches) {
-        if (data.me === matches.target) {
-          return {
-            en: 'Flare on YOU',
-          };
-        }
-        return {
-          en: 'Away from ' + data.shortName(matches.target),
-        };
-      },
+      response: Responses.awayFrom(),
     },
   ],
 }];
