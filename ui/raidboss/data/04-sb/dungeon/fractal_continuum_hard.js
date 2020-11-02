@@ -189,23 +189,23 @@
     },
     {
       id: 'Fractal Hard Dischord Collect',
-      netRegex: NetRegexes.headMarker({ id: ['004D', '004F'] }),
+      netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
       run: function(data, matches) {
         data[matches.id] = matches.target;
       },
     },
     {
       id: 'Fractal Hard Dischord Resolve',
-      netRegex: NetRegexes.headMarker({ id: ['004D', '004F'] }),
+      netRegex: NetRegexes.headMarker({ id: ['004D', '004E'] }),
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
       infoText: function(data, matches) {
-        let partner = matches.id === '004D' ? '004F' : '004D';
+        let partner = matches.id === '004D' ? '004E' : '004D';
         // If for some reason there is no partner, we get a vulnerability or bleed and are sad.
-        if (!data.partner)
+        if (!data[partner])
           return;
         return {
-          en: 'Stack with ' + data.shortName(data.partner),
+          en: 'Stack with ' + data.shortName(data[partner]),
         };
       },
     },

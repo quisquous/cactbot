@@ -48,16 +48,17 @@ hideall "--sync--"
 # That is, Sephirot->Sophia->Zurvan can immediately be followed by Zurvan->Sophia->Sephirot.
 
 # Each form has a set amount of dead time before announcing the next one.
-# This does not vary with which form follows which.
+# That is, for Form X into whatever, the dead time is determined solely by X,
+# regardless of whether X is followed by Y or by Z.
 
 1000.0 "Start" sync / 00:0839:Exhibit level VIII will be sealed off/ window 1000,5
 1008.5 "Aetheroplasm" sync /:The Ultima Warrior:2793:/ window 8.5,5
 1018.9 "Citadel Buster" sync /:The Ultima Warrior:2792:/
 1029.8 "Ceruleum Vent" sync /:The Ultima Warrior:2794:/
 
-1031.9 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 10,10 jump 1100.0
-1031.9 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 10,10 jump 1200.0
-1031.9 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 10,10 jump 1300.0
+1031.9 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/ window 31.9,10 jump 1100.0
+1031.9 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/ window 31.9,10 jump 1200.0
+1031.9 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/ window 31.9,10 jump 1300.0
 1039.4 "Primordial Aether"
 1040.5 "Ceruleum Vent?"
 1042.0 "Infinite Fire/Infinite Ice?"
@@ -65,6 +66,9 @@ hideall "--sync--"
 1051.0 "Citadel Buster?"
 1052.0 "Ratzon?"
 1057.1 "Citadel Buster?"
+
+
+# Sephirot's block
 
 1100.0 "--sync--" sync / 00:0044:Vocal Guidance System:This humanoid prototype can perfectly replicate/
 1107.5 "Primordial Aether" sync /:The Ultima Warrior:2796:/ window 10,10
@@ -85,6 +89,9 @@ hideall "--sync--"
 1174.9 "Ratzon?"
 1180.0 "Citadel Buster?"
 
+
+# Sophia's Block
+
 1200.0 "--sync--" sync / 00:0044:Vocal Guidance System:Utilizing our data on Sophia/
 1207.5 "Primordial Aether" sync /:The Ultima Warrior:2796:/ window 10,10
 1218.1 "Ceruleum Vent" sync /:The Ultima Warrior:2794:/
@@ -104,6 +111,9 @@ hideall "--sync--"
 1267.6 "Citadel Buster?"
 1268.6 "Ratzon?"
 1273.7 "Citadel Buster?"
+
+
+# Zurvan's Block
 
 1300.0 "--sync--" sync / 00:0044:Vocal Guidance System:Successfully mimicking the Demon Zurvan/
 1308.5 "Primordial Aether" sync /:The Ultima Warrior:2796:/ window 10,10
