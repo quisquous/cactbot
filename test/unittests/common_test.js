@@ -1,9 +1,8 @@
 'use strict';
 
-let commonModule = require('../../resources/common.js');
-let Util = commonModule.util;
+const { Util } = require('../../resources/common.js');
 
-let assert = require('chai').assert;
+const { assert } = require('chai');
 
 // Duplicate values from common.js
 // Expect to update these as patches and expansions change job capabilities

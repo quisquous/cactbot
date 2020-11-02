@@ -230,3 +230,6 @@ class Persistor extends EventBus {
 }
 
 Persistor.dbVersion = 3;
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = Persistor;

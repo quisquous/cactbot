@@ -18,7 +18,7 @@
     {
       id: 'Dun Scaith Generic Stack-up',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     // DEATHGAZE
     {
@@ -36,6 +36,7 @@
         fr: 'Sortez du cercle de mort',
         ja: 'ヴォイド・デス、外へ',
         cn: '离开圈内并扯断连线',
+        ko: '데스 장판 빠져나오기',
       },
     },
     {
@@ -58,6 +59,7 @@
         fr: 'Guerrissez Glas bientot',
         ja: '死の宣告、エスナ！',
         cn: '尽快驱散死亡宣告！',
+        ko: '죽음의 선고 해제',
       },
     },
     {
@@ -83,6 +85,7 @@
         fr: 'Tuez les adds',
         ja: 'スプライトを倒す',
         cn: '击杀虚无元精',
+        ko: '광대 잡기',
       },
     },
     {
@@ -97,6 +100,7 @@
         fr: 'Déposez les tornades à l\'extérieur',
         ja: 'エアロガ、外に置く',
         cn: '场地边缘放风圈',
+        ko: '회오리 외곽으로 유도',
       },
     },
     {
@@ -131,6 +135,7 @@
         fr: 'Evitez les carrés mortels',
         ja: 'ヴォイド・デスジャ、エリアの外に',
         cn: '离开即死区域',
+        ko: '검은 장판 피하기',
       },
     },
     // FERDIAD
@@ -146,6 +151,7 @@
             fr: 'Posez à l\'extérieur',
             ja: 'ブラックウインド、外に置く',
             cn: '场地边缘放镰刀',
+            ko: '외곽으로',
           };
         }
       },
@@ -203,6 +209,7 @@
             de: 'Gehe zu einem Unverbundenen',
             ja: '線のないアトモスに近づく',
             cn: '靠近无线小怪',
+            ko: '아트모스 근처로',
           };
         } else if (data.sphere.length === 2) {
           return {
@@ -210,6 +217,7 @@
             de: 'Vermeide alle Unverbundenen',
             ja: '線のないアトモスに離れ',
             cn: '远离无线小怪',
+            ko: '모든 아트모스 피하기',
           };
         } else if (data.donut.length === 1) {
           // Wailing Atomos is blue, Cursing Atomos is yellow.
@@ -222,6 +230,7 @@
               fr: 'Allez vers la Gueule bleue non-liée',
               ja: '線のない青色アトモスに近づく',
               cn: '靠近蓝色小怪',
+              ko: '파란 아트모스로 이동',
             };
           }
           return {
@@ -230,6 +239,7 @@
             fr: 'Allez vers la Gueule jaune non-liée',
             ja: '線のない黄色アトモスに近づく',
             cn: '靠近黄色小怪',
+            ko: '노란 아트모스로 이동',
           };
         }
         // If there's only a Sphere on the field, the other Atomos color isn't guaranteed safe.
@@ -241,6 +251,7 @@
             fr: 'Evitez Gueule bleue non-liée',
             ja: '線のない青色アトモスに離れ',
             cn: '远离蓝色小怪',
+            ko: '파란 아트모스 피하기',
           };
         }
         return {
@@ -249,6 +260,7 @@
           fr: 'Evitez Gueule jaune non-liée',
           ja: '線のない黄色アトモスに離れ',
           cn: '远离黄色小怪',
+          ko: '노란 아트모스 피하기',
         };
       },
     },
@@ -274,6 +286,7 @@
         fr: 'Evitez les zones au sol',
         ja: '円範囲攻撃、避け',
         cn: '离开圈圈',
+        ko: '장판 피하기',
       },
     },
     {
@@ -287,6 +300,7 @@
         fr: 'Changez en eau',
         ja: '青い水に入れ替わって',
         cn: '将地上的圈踩成蓝色',
+        ko: '파란 장판으로 바꾸기',
       },
     },
     {
@@ -300,6 +314,7 @@
         fr: 'Changez en feu',
         ja: '赤い火に入れ替わって',
         cn: '将地上的圈踩成红色',
+        ko: '빨간 장판으로 바꾸기',
       },
     },
     // PROTO-ULTIMA
@@ -328,6 +343,7 @@
             fr: 'Marquage - Evitez les autres et bougez',
             ja: 'マーキング - 外に移動続ける',
             cn: '离开人群并保持移动',
+            ko: '파티에게서 떨어지고 움직이기',
           };
         }
       },
@@ -344,6 +360,7 @@
         fr: 'Evitez les AoE des forets',
         ja: 'AoEを避け',
         cn: '躲避小型AOE',
+        ko: '비트 장판 피하기',
       },
     },
     {
@@ -356,6 +373,7 @@
         fr: 'Détruisez les accumulateurs',
         ja: 'エーテル集積器を倒す',
         cn: '击杀以太收集器',
+        ko: '에테르 집적기 파괴',
       },
     },
     // SCATHACH
@@ -375,6 +393,7 @@
         fr: 'Evitez les bras',
         ja: '影の手を避け',
         cn: '站在boss背后方向',
+        ko: '날개 피하기',
       },
     },
     {
@@ -402,6 +421,7 @@
         fr: 'Evitez les AoE en ligne',
         ja: 'スカサハの正面に立たない',
         cn: '躲开boss正面路线',
+        ko: '직선 장판 피하기',
       },
     },
     {
@@ -440,6 +460,7 @@
         fr: 'Tuez les mains',
         ja: '影の手を倒す',
         cn: '击杀影之手',
+        ko: '손 처치하기',
       },
     },
     {
@@ -456,6 +477,7 @@
         fr: 'Evitez les AoE, tuez Connla',
         ja: 'AoEを避け、コンラを倒す',
         cn: '躲避AOE后击杀康拉',
+        ko: '장판 피하며 콘라 처치',
       },
     },
     {
@@ -471,6 +493,7 @@
             fr: 'Prenez l\'orb à l\'extérieur',
             ja: '黒い球体を外に引く',
             cn: '把球带出人群，移动到球不再出现为止',
+            ko: '외곽으로 유도',
           };
         }
       },
@@ -520,6 +543,7 @@
         fr: 'Le boss frappe fort - Bouclier/Mitigation',
         ja: '大ダメージ物理タンクバスター - ダメージ軽減/バリア',
         cn: 'MT大伤害物理死刑—注意减伤/治疗盾',
+        ko: '탱커버스터 - 뎀감/보호막',
       },
     },
     {
@@ -546,6 +570,7 @@
         fr: 'Détruisez les portes de mort',
         ja: '召喚の扉を倒す',
         cn: '击杀召唤之门',
+        ko: '소환의 문 파괴',
       },
     },
     {
@@ -569,6 +594,7 @@
             fr: 'Package sur VOUS',
             ja: '自分に頭割り',
             cn: '点名分摊',
+            ko: '시선 쉐어 대상자',
           };
         }
         return {
@@ -577,6 +603,7 @@
           fr: 'Package sur ' + data.ShortName(matches.target) + ' et regardez ailleurs',
           ja: data.ShortName(matches.target) + 'に頭割り、見ない',
           cn: '靠近并背对' + data.ShortName(matches.target) + '分摊',
+          ko: data.ShortName(matches.target) + '쉐어, 바라보지않기',
         };
       },
     },
@@ -598,7 +625,7 @@
       // This is the tank version of the stack marker. It has minimal circular bordering
       id: 'Dun Scaith Blindside',
       netRegex: NetRegexes.headMarker({ id: '005D' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Dun Scaith Earth Shaker',

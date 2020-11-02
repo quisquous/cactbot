@@ -207,7 +207,7 @@
       id: 'A8N Long Needle Party',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
       condition: (data) => !(data.me === data.bruteTank && data.bruteTankOut),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'A8N Long Needle Active Tank',
@@ -216,6 +216,7 @@
       alertText: {
         en: 'Don\'t Stack! (tank cleave)',
         de: 'Nicht Sammeln! (Tank Cleave)',
+        cn: '别去集合！（坦克顺劈）',
       },
     },
     {
@@ -310,6 +311,7 @@
       alertText: {
         en: 'Avoid Mirage Dashes',
         de: 'Weiche den Replikant Ansturm aus',
+        cn: '躲避分身冲锋',
       },
     },
   ],

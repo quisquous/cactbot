@@ -108,3 +108,6 @@ class BrowserTTSEngine {
     this.ttsItems[text].play();
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = BrowserTTSEngine;

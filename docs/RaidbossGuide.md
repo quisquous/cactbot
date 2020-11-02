@@ -1,10 +1,13 @@
 # Triggers File Format
 
+[**English**] [[简体中文](./zh-CN/RaidbossGuide.md)]
+
 ## File Structure
 
 ```javascript
 [{
   zoneId: ZoneId.TheWeaponsRefrainUltimate,
+  overrideTimelineFile: false,
   timelineFile: 'filename.txt',
   timeline: `hideall`,
   timelineReplace: [
@@ -48,6 +51,11 @@ A trigger set must have one of zoneId or zoneRegex to specify the zone
 A regular expression that matches against the zone name (coming from ACT).
 If the regular expression matches, then the triggers will apply to that zone.
 
+**overrideTimelineFile**
+An optional boolean value that specifies that the `timelineFile` and `timeline`
+specified in this trigger set override all timelines previously found.
+This is a way to replace timelines in user files and is not used inside cactbot itself.
+
 **timelineFile**
 An optional timeline file to load for this zone. These files live alongside their parent trigger file in the appropriate folder. (As for example `raidboss/data/04-sb/raid/`).
 
@@ -77,12 +85,12 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   netRegexFr: /trigger-regex-for-network-log-lines-but-in-French/
   regex: /trigger-regex-for-act-log-lines/,
   regexFr: /trigger-regex-for-act-log-lines-but-in-French/,
-  condition: function(data, matches) { return true if it should run },
-  preRun: function(data, matches) { do stuff.. },
+  condition: function(data, matches, output) { return true if it should run },
+  preRun: function(data, matches, output) { do stuff.. },
   delaySeconds: 0,
   durationSeconds: 3,
   suppressSeconds: 0,
-  promise: function(data, matches) { return promise to wait for resolution of },
+  promise: function(data, matches, output) { return promise to wait for resolution of },
   sound: '',
   soundVolume: 1,
   response: Responses.doSomething(severity),
@@ -90,15 +98,43 @@ Boolean, defaults to true. If true, timelines and triggers will reset automatica
   alertText: {en: 'Alert Popup'},
   infoText: {en: 'Info Popup'},
   tts: {en: 'TTS text'},
-  run: function(data, matches) { do stuff.. },
+  run: function(data, matches, output) { do stuff.. },
+  outputStrings: {
+    key1: { en: 'output1 ${value}'},
+    key2: { en: 'output2 ${value}'},
+  },
 },
 ```
+
+### data, matches, output
+
+Almost all trigger fields can either return a value or a `function(data, matches, output)`.
+For such functions:
+
+- `data` is a consistent object that is passed to all triggers.
+  Values can be set on it,
+  and they will be there for any following functions to use.
+- `matches` is the matches from the trigger,
+  specifically the `matches.groups` field.
+- `output` is a special object for turning fields in `outputStrings` into strings to return.
+  See the `outputStrings` section below for more info.
+  For triggers that return numbers, e.g. `delaySeconds` or `durationSeconds` and
+  for triggers that don't output anything, e.g. `preRun` or `run`,
+  the output field is largely meaningless.
 
 ### Trigger Elements
 
 **id string**
- An id string for the trigger, used to disable triggers. Every built-in trigger that has a text/sound output should have an id so it can be disabled.
-(User-defined triggers not intended for inclusion in the cactbot repository need not have one.)
+ An id string for the trigger.
+ Every built-in trigger in cactbot has a unique id,
+ and it is recommended but not required that user triggers also have them.
+
+Trigger ids must be unique.
+If a trigger is found with the same id as a previous trigger,
+then the first trigger will be skipped entirely
+and the second trigger will override it and take its place.
+This allows easier for copying and pasting of triggers into user overrides for edits.
+Triggers without ids cannot be overridden.
 
 The current structure for `Regexes/NetRegexes` does not require that the ability/effect/whatever name be present as part of the expression.
 Because of this, it is extremely important that that information is somewhere close by.
@@ -141,28 +177,40 @@ Additionally, as with bare `regex` elements, current practice is to use regex re
 Instead, we could use the translations provided in the `timelineReplace` object to do this automagically.
 We're not there yet, but there's always someday.)
 
-**condition: function(data, matches)**
-Activates the trigger if the function returns `true`. If it does not return `true`, nothing is shown/sounded/run. If multiple functions are present on the trigger, this has first priority to run.
+**condition: function(data, matches, output)**
+Activates the trigger if the function returns `true`.
+If it does not return `true`, nothing is shown/sounded/run.
+If multiple functions are present on the trigger, this has first priority to run.
 (Pre-made "canned" conditions are available within [conditions.js](https://github.com/quisquous/cactbot/blob/main/resources/conditions.js).
 Generally speaking it's best to use one of these if it fits the situation.)
 
-**preRun: function(data, matches)**
+**preRun: function(data, matches, output)**
 If the trigger activates, the function will run as the first action after the activation condition is met.
 
-**promise: function(data, matches)**
-If present and a function which returns a promise, will wait for promise to resolve before continuing with trigger. This runs after `preRun` and before the `delaySeconds` delay.
+**promise: function(data, matches, output)**
+If present and a function which returns a promise,
+will wait for promise to resolve before continuing with trigger.
+This runs after `preRun` and before the `delaySeconds` delay.
 
 **delaySeconds**
-An amount of time, in seconds, to wait from the time the regex match is detected until the trigger activates. May be a number or a function(data, matches) that returns a number.
+An amount of time, in seconds, to wait from the time the regex match is detected until the trigger activates.
+May be a number or a `function(data, matches, output)` that returns a number.
 
 **durationSeconds**
-Time, in seconds, to display the trigger text. May be a number or a `function(data, matches)` that returns a number. If not specified, defaults to 3.
+Time, in seconds, to display the trigger text.
+May be a number or a `function(data, matches, output)` that returns a number. If not specified, defaults to 3.
 
 **suppressSeconds**
-Time to wait, in seconds, before showing this trigger again.  May be a number or a function(data, matches).  The time to wait begins at the time of the initial regex match, and is unaffected by presence or absence of a delaySeconds value. Once a trigger with this element activates, it will not activate again until after its timeout period is over.
+Time to wait, in seconds, before showing this trigger again.
+May be a number or a `function(data, matches, output)`.
+The time to wait begins at the time of the initial regex match
+and is unaffected by presence or absence of a delaySeconds value.
+Once a trigger with this element activates,
+it will not activate again until after its timeout period is over.
 
 **sound**
-Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'. Paths to sound files are relative to the ui/raidboss/ directory.
+Sound file to play, or one of 'Info', 'Alert', 'Alarm', or 'Long'.
+Paths to sound files are relative to the ui/raidboss/ directory.
 
 **soundVolume**
 Volume between 0 and 1 to play the sound associated with the trigger.
@@ -175,26 +223,116 @@ and so can be overridden.
 (As with `regex` and `condition`, "canned" responses are available within [responses.js](https://github.com/quisquous/cactbot/blob/main/resources/responses.js).)
 
 **alarmText**
-Displays a text popup with Alarm importance when the trigger activates. This is for high-priority events where failure is guaranteed to kill you, is likely to wipe the encounter, or will otherwise make successful completion much more difficult. (Examples include Allagan Rot in T2, Cursed Shriek in T7, or Ultros' Stoneskin cast in O7s. ) May be a string or a `function(data, matches)` that returns a string.
+Displays a text popup with Alarm importance when the trigger activates.
+This is for high-priority events where failure is guaranteed to kill you,
+is likely to wipe the encounter,
+or will otherwise make successful completion much more difficult.
+(Examples include Allagan Rot in T2, Cursed Shriek in T7, or Ultros' Stoneskin cast in O7s.)
+May be a string or a `function(data, matches, output)` that returns a string.
 
 **alertText**
-Displays a text popup with Alert importance when the trigger activates. This is for medium-priority events that might kill you, or inflict party-wide damage/debuffs (For example, warning the main tank that a buster is incoming, or warning the entire party of an upcoming knockback.) May be a string or a `function(data, matches)` that returns a string.
+Displays a text popup with Alert importance when the trigger activates.
+This is for medium-priority events that might kill you,
+or inflict party-wide damage/debuffs.
+(For example, warning the main tank that a buster is incoming, or warning the entire party of an upcoming knockback.)
+May be a string or a `function(data, matches, output)` that returns a string.
 
 **infoText**
-Displays a text popup with Info importance when the trigger activates. This is for low-priority events that will be merely annoying if not attended to immediately. (For example, warning of an add spawn, or informing healers of incoming raid damage.) May be a string or a `function(data, matches)` that returns a string.
+Displays a text popup with Info importance when the trigger activates.
+This is for low-priority events that will be merely annoying if not attended to immediately.
+(For example, warning of an add spawn, or informing healers of incoming raid damage.)
+May be a string or a `function(data, matches, output)` that returns a string.
 
 **tts**
-An alternative text string for the chosen TTS option to use for callouts. This can be a localized object just like the text popups.
+An alternative text string for the chosen TTS option to use for callouts.
+This can be a localized object just like the text popups.
 
-**run: function(data, matches)**
+**run: function(data, matches, ouptut)**
 If the trigger activates, the function will run as the last action before the trigger ends.
+
+**outputStrings**
+`outputStrings` is an optional indirection
+so that cactbot can provide customizable UI for overriding trigger strings.
+If you are writing your own triggers, you don't need to use this,
+and you can just return strings directly from output functions
+like `alarmText`, `alertText`, `infoText`, etc.
+
+The `outputStrings` field is an object mapping `outputStrings` keys to translatable objects.
+These translatable objects should have a string entry per language.
+In the string, you can use `${param}` constructions to allow for functions to pass variables in.
+
+Here are two example `outputStrings` entries for a tank buster:
+
+```javascript
+outputStrings: {
+  noTarget: {
+    en: 'Tank Buster',
+    de: 'Tank buster',
+    fr: 'Tank buster',
+    ja: 'タンクバスター',
+    cn: '坦克死刑',
+    ko: '탱버',
+  },
+  onTarget: {
+    en: 'Tank Buster on ${name}',
+    de: 'Tank buster auf ${name}',
+    fr: 'Tank buster sur ${name}',
+    ja: '${name}にタンクバスター',
+    cn: '死刑 点 ${name}',
+    ko: '"${name}" 탱버',
+  },
+},
+```
+
+`noTarget` and `onTarget` are the two keys for the `outputStrings`.
+
+Here's an example using these `outputStrings`, passing parameters to the `onTarget` version:
+
+```javascript
+alarmText: (data, matches, output) => {
+  return output.onTarget({ name: matches.target });
+},
+```
+
+Calling `output.onTarget()` finds the string in `outputStrings.onTarget` for the current language.
+For each `param` passed in, it replaces `${param}` in the string with the value.
+Then it returns the replaced string for `alarmText` to use.
+
+Similarly, this is another trigger example, without any parameters.
+
+```javascript
+infoText: (data, matches, output) => {
+  return output.noTarget();
+},
+```
+
+Triggers that use `response` with `outputStrings` are slightly different.
+`outputStrings` should not be set on the trigger itself,
+and instead `response` should return a function that calls
+`output.responseOutputStrings = {};`
+where `{}` is the outputStrings object you would have returned from the trigger `outputStrings` field.
+This is a bit awkward, but allows response to both return and use `outputStrings`,
+and keeps [resources/responses.js](../resources/responses.js) more encapsulated.
+
+For example:
+
+```javascript
+response: (data, matches, output) => {
+  output.responseOutputStrings = { text: { en: 'Some Text: ${words}' } };
+  return {
+    alarmText: output.text({ words: 'words word words' }),
+  };
+},
+```
 
 ## Miscellaneous Trigger Info
 
-Any field that can return a function (e.g. `infoText`, `alertText`, `alarmText`, `tts`) can also return a localized
-object, e.g. instead of returning 'Get Out', they can return {en: 'Get Out', fr: 'something french'}
-instead.  Fields can also return a function that return a localized object as well.  If the current locale
-does not exist in the object, the 'en' result will be returned.
+Any field that can return a function (e.g. `infoText`, `alertText`, `alarmText`, `tts`)
+can also return a localized object,
+e.g. instead of returning 'Get Out',
+they can return {en: 'Get Out', fr: 'something french'} instead.
+Fields can also return a function that return a localized object as well.
+If the current locale does not exist in the object, the 'en' result will be returned.
 
 Trigger elements are evaluated in this order, and must be listed in this order:
 
@@ -221,6 +359,24 @@ Trigger elements are evaluated in this order, and must be listed in this order:
 - groupTTS
 - tts
 - run
+- outputStrings
+
+## Regular Expression Extensions
+
+If you're familiar with regular expressions,
+you'll note the the `\y{Name}` and `\y{AbilityCode}` are unfamiliar.
+These are extensions provided by cactbot for convenience
+to avoid having to match against all possible unicode characters
+or to know the details of how the FFXIV ACT plugin writes things.
+
+The set of extensions are:
+
+- `\y{Float}`: Matches a floating-point number, accounting for locale-specific encodings.
+- `\y{Name}`: Matches any character name (including empty strings which the FFXIV ACT plugin can generate when unknown).
+- `\y{ObjectId}`: Matches the 8 hex character object id in network log lines.
+- `\y{AbilityCode}`: Matches the FFXIV ACT plugin's format for the number code of a spell or ability.
+- `\y{Timestamp}`: Matches the time stamp at the front of each log event such as `[10:23:34.123]`.
+- `\y{LogType}`: Matches the FFXIV ACT plugin's format for the number code describing the type of log event, found near the front of each log event.
 
 ## Canned Helper Functions
 

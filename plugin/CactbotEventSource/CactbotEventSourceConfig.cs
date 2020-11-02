@@ -81,6 +81,18 @@ namespace Cactbot {
           return null;
         return dir.ToString();
       }
+      set {
+        if (!OverlayData.TryGetValue("options", out JToken options)) {
+          options = new JObject();
+          OverlayData.Add("options", options);
+        }
+        var general = options["general"];
+        if (general == null) {
+          general = new JObject();
+          options["general"] = general;
+        }
+        general["CactbotUserDirectory"] = value;
+      }
     }
 
     [JsonIgnore]

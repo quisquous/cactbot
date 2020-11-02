@@ -34,7 +34,7 @@
     },
     {
       id: 'E8S Reflected Armor',
-      regex: /Reflected Shining Armor/,
+      regex: /Reflected Armor/,
       beforeSeconds: 2,
       response: Responses.lookAway('alert'),
     },
@@ -329,7 +329,7 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'シヴァ', id: '4D80', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '希瓦', id: '4D80', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '시바', id: '4D80', capture: false }),
-      response: Responses.stack('info'),
+      response: Responses.stackMarker('info'),
     },
     {
       id: 'E8S Banish III Divided',
@@ -557,7 +557,7 @@
       netRegexJa: NetRegexes.ability({ source: 'シヴァ', id: '4DD2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '希瓦', id: '4DD2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '시바', id: '4DD2', capture: false }),
-      response: Responses.move('alert'),
+      response: Responses.moveAway('alert'),
     },
     {
       id: 'E8S Reflected Drachen Armor',
@@ -567,7 +567,7 @@
       netRegexJa: NetRegexes.ability({ source: '氷面鏡', id: '4DC2', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '冰面镜', id: '4DC2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '얼음 거울', id: '4DC2', capture: false }),
-      response: Responses.move('alert'),
+      response: Responses.moveAway('alert'),
     },
     {
       id: 'E8S Holy',

@@ -4303,6 +4303,16 @@ const ZoneInfo = {
     'sizeFactor': 200,
     'weatherRate': 0,
   },
+  920: {
+    'contentType': 29,
+    'name': {
+      'en': 'The Bozjan Southern Front',
+    },
+    'offsetX': -127,
+    'offsetY': -424,
+    'sizeFactor': 100,
+    'weatherRate': 124,
+  },
   922: {
     'contentType': 4,
     'name': {

@@ -101,6 +101,7 @@
         de: 'In der Lücke stehen',
         ja: '狭間に',
         cn: '远离中间位置',
+        ko: '빈틈에 서기',
       },
     },
     {
@@ -161,7 +162,7 @@
     {
       id: 'O4N Holy',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'O4N Meteor',

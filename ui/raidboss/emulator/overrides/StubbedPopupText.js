@@ -20,3 +20,6 @@ class StubbedPopupText extends PopupText {
 }
 
 StubbedPopupText.globalTriggerSets = null;
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = StubbedPopupText;

@@ -361,3 +361,6 @@ if (window.customElements) {
     prototype: Object.create(TimerIcon.prototype),
   });
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = TimerIcon;

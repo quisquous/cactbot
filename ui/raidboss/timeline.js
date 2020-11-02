@@ -152,6 +152,28 @@ class Timeline {
 
     let uniqueid = 1;
     let texts = {};
+    const regexes = {
+      comment: /^\s*#/,
+      commentLine: /#.*$/,
+      durationCommand: /(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/,
+      ignore: /^hideall\s+\"([^"]+)\"$/,
+      jumpCommand: /(?:[^#]*?\s)?(jump\s+([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
+      line: /^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/,
+      popupText: /^(info|alert|alarm)text\s+\"([^"]+)\"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"([^"]+)\")?$/,
+      soundAlert: /^define\s+soundalert\s+"[^"]*"\s+"[^"]*"$/,
+      speaker: /define speaker "[^"]*"(\s+"[^"]*")?\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(-?[0-9]+(?:\.[0-9]+)?)/,
+      syncCommand: /(?:[^#]*?\s)?(sync\s*\/(.*)\/)(\s.*)?$/,
+      tts: /^alertall\s+"([^"]*)"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound|speak\s+"[^"]*")\s+"([^"]*)"$/,
+      windowCommand: /(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/,
+    };
+
+    // Make all regexes case insensitive, and parse any special \y{} groups.
+    if (triggers) {
+      for (const trigger of triggers) {
+        if (trigger.regex)
+          trigger.regex = Regexes.parse(trigger.regex);
+      }
+    }
 
     let lines = text.split('\n');
     for (let i = 0; i < lines.length; ++i) {
@@ -159,17 +181,17 @@ class Timeline {
       let line = lines[i];
       line = line.trim();
       // Drop comments and empty lines.
-      if (!line || line.match(/^\s*#/))
+      if (!line || regexes.comment.test(line))
         continue;
       let originalLine = line;
 
-      let match = line.match(/^hideall\s+\"([^"]+)\"$/);
+      let match = line.match(regexes.ignore);
       if (match != null) {
         this.ignores[match[1]] = true;
         continue;
       }
 
-      match = line.match(/^alertall\s+"([^"]*)"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(sound|speak\s+"[^"]*")\s+"([^"]*)"$/);
+      match = line.match(regexes.tts);
       if (match != null) {
         // TODO: Support alert sounds?
         if (match[3] == 'sound')
@@ -182,14 +204,14 @@ class Timeline {
         });
         continue;
       }
-      match = line.match(/^define\s+soundalert\s+"[^"]*"\s+"[^"]*"$/);
+      match = line.match(regexes.soundAlert);
       if (match)
         continue;
-      match = line.match(/define speaker "[^"]*"(\s+"[^"]*")?\s+(-?[0-9]+(?:\.[0-9]+)?)\s+(-?[0-9]+(?:\.[0-9]+)?)/);
+      match = line.match(regexes.speaker);
       if (match)
         continue;
 
-      match = line.match(/^(info|alert|alarm)text\s+\"([^"]+)\"\s+before\s+(-?[0-9]+(?:\.[0-9]+)?)(?:\s+\"([^"]+)\")?$/);
+      match = line.match(regexes.popupText);
       if (match != null) {
         texts[match[2]] = texts[match[2]] || [];
         texts[match[2]].push({
@@ -200,7 +222,7 @@ class Timeline {
         continue;
       }
 
-      match = line.match(/^(([0-9]+(?:\.[0-9]+)?)\s+"(.*?)")(\s+(.*))?/);
+      match = line.match(regexes.line);
       if (match == null) {
         this.errors.push({
           lineNumber: lineNumber,
@@ -212,7 +234,7 @@ class Timeline {
       }
       line = line.replace(match[1], '').trim();
       // There can be # in the ability name, but probably not in the regex.
-      line = line.replace(/#.*$/, '').trim();
+      line = line.replace(regexes.commentLine, '').trim();
 
       let seconds = parseFloat(match[2]);
       let e = {
@@ -226,12 +248,12 @@ class Timeline {
         lineNumber: lineNumber,
       };
       if (line) {
-        let commandMatch = line.match(/(?:[^#]*?\s)?(duration\s+([0-9]+(?:\.[0-9]+)?))(\s.*)?$/);
+        let commandMatch = line.match(regexes.durationCommand);
         if (commandMatch) {
           line = line.replace(commandMatch[1], '').trim();
           e.duration = parseFloat(commandMatch[2]);
         }
-        commandMatch = line.match(/(?:[^#]*?\s)?(sync\s*\/(.*)\/)(\s.*)?$/);
+        commandMatch = line.match(regexes.syncCommand);
         if (commandMatch) {
           line = line.replace(commandMatch[1], '').trim();
           let sync = {
@@ -243,7 +265,7 @@ class Timeline {
             lineNumber: lineNumber,
           };
           if (commandMatch[3]) {
-            let argMatch = commandMatch[3].match(/(?:[^#]*?\s)?(window\s+(?:([0-9]+(?:\.[0-9]+)?),)?([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/);
+            let argMatch = commandMatch[3].match(regexes.windowCommand);
             if (argMatch) {
               line = line.replace(argMatch[1], '').trim();
               if (argMatch[2]) {
@@ -254,7 +276,7 @@ class Timeline {
                 sync.end = seconds + (parseFloat(argMatch[3]) / 2);
               }
             }
-            argMatch = commandMatch[3].match(/(?:[^#]*?\s)?(jump\s+([0-9]+(?:\.[0-9]+)?))(?:\s.*)?$/);
+            argMatch = commandMatch[3].match(regexes.jumpCommand);
             if (argMatch) {
               line = line.replace(argMatch[1], '').trim();
               sync.jump = parseFloat(argMatch[2]);
@@ -265,7 +287,7 @@ class Timeline {
         }
       }
       // If there's text left that isn't a comment then we didn't parse that text so report it.
-      if (line && !line.match(/^\s*#/)) {
+      if (line && !line.match(regexes.comment)) {
         console.log('Unknown content \'' + line + '\' in timeline: ' + originalLine);
         this.errors.push({
           lineNumber: lineNumber,
@@ -277,11 +299,27 @@ class Timeline {
       }
     }
 
-    for (let i = 0; i < this.events.length; ++i) {
-      let e = this.events[i];
+    // Validate that all timeline triggers match something.
+    if (triggers) {
+      for (const trigger of triggers) {
+        let found = false;
+        for (const event of this.events) {
+          if (trigger.regex && trigger.regex.test(event.name)) {
+            found = true;
+            break;
+          }
+        }
+        if (!found) {
+          const text = `No match for timeline trigger ${trigger.regex} in ${trigger.id}`;
+          this.errors.push({ error: text });
+          console.error(`*** ERROR: ${text}`);
+        }
+      }
+    }
+
+    for (const e of this.events) {
       if (e.name in texts) {
-        for (let j = 0; j < texts[e.name].length; ++j) {
-          let matchedTextEvent = texts[e.name][j];
+        for (const matchedTextEvent of texts[e.name]) {
           let t = {
             type: matchedTextEvent.type,
             time: e.time - matchedTextEvent.secondsBefore,
@@ -294,8 +332,7 @@ class Timeline {
       // Rather than matching triggers at run time, pre-match all the triggers
       // against timeline text and insert them as text events to run.
       if (triggers) {
-        for (let t = 0; t < triggers.length; ++t) {
-          let trigger = triggers[t];
+        for (const trigger of triggers) {
           let m = e.name.match(trigger.regex);
           if (!m)
             continue;
@@ -310,8 +347,7 @@ class Timeline {
 
       if (styles) {
         for (const style of styles) {
-          const m = e.name.match(style.regex);
-          if (!m)
+          if (!style.regex.test(e.name))
             continue;
           Object.assign(e, { style: style.style });
         }
@@ -630,7 +666,7 @@ class TimelineUI {
   constructor(options) {
     this.options = options;
     this.init = false;
-    this.lang = Options.TimelineLanguage || Options.ParserLanguage || 'en';
+    this.lang = this.options.TimelineLanguage || this.options.ParserLanguage || 'en';
     this.AddDebugInstructions();
   }
 
@@ -641,8 +677,8 @@ class TimelineUI {
 
     this.root = document.getElementById('timeline-container');
     this.root.classList.add('lang-' + this.lang);
-    if (Options.Skin)
-      this.root.classList.add('skin-' + Options.Skin);
+    if (this.options.Skin)
+      this.root.classList.add('skin-' + this.options.Skin);
 
     this.barColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color');
     this.barExpiresSoonColor = computeBackgroundColorFrom(this.root, 'timeline-bar-color.soon');
@@ -951,6 +987,13 @@ if (typeof require !== 'undefined') {
   var Regexes = require('../../resources/regexes.js');
   var NetRegexes = require('../../resources/netregexes.js');
 }
-if (typeof module !== 'undefined' && module.exports)
-  module.exports = Timeline;
 /* eslint-enable */
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    Timeline: Timeline,
+    TimelineUI: TimelineUI,
+    TimelineController: TimelineController,
+    TimelineLoader: TimelineLoader,
+  };
+}

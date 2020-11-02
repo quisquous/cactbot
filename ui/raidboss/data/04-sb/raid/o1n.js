@@ -24,7 +24,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '23E1', source: 'アルテ・ロイテ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '23E1', source: '老者' }),
       netRegexKo: NetRegexes.startsUsing({ id: '23E1', source: '알테 로이테' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'O1N Breath Wing',
@@ -39,12 +39,14 @@
         de: 'Atemschwinge: Neben Boss gehen',
         ja: 'ブレスウィング: ボスに近づく',
         cn: '站boss附近',
+        ko: '날개바람: 보스 옆으로',
       },
       tts: {
         en: 'breath wing',
         de: 'atemschwinge',
         ja: 'ブレスウィング',
         cn: '站boss附近',
+        ko: '날개바람',
       },
     },
     {

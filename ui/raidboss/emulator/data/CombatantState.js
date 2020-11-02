@@ -26,3 +26,6 @@ class CombatantState {
         Number(props.maxMP) || this.maxMP);
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = CombatantState;

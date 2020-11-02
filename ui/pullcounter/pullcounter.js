@@ -120,6 +120,11 @@ const gBossFightTriggers = [
     startRegex: /:Omega:336C:/,
     preventAutoStart: true,
   },
+  {
+    zoneId: ZoneId.TheBozjanSouthernFront,
+    countdownStarts: false,
+    preventAutoStart: true,
+  },
 ];
 
 
@@ -170,9 +175,9 @@ class PullCounter {
     if (this.bossStarted)
       return;
     for (const log of e.detail.logs) {
-      if (log.match(this.resetRegex))
+      if (this.resetRegex.test(log))
         this.ResetPullCounter();
-      if (log.match(this.countdownEngageRegex)) {
+      if (this.countdownEngageRegex.test(log)) {
         if (this.countdownBoss)
           this.OnFightStart(this.countdownBoss);
         else
@@ -180,7 +185,7 @@ class PullCounter {
         return;
       }
       for (const boss of this.bosses) {
-        if (boss.startRegex && log.match(boss.startRegex)) {
+        if (boss.startRegex && boss.startRegex.test(log)) {
           this.OnFightStart(boss);
           return;
         }
@@ -300,7 +305,7 @@ class PullCounter {
   }
 }
 
-UserConfig.getUserConfigLocation('pullcounter', function() {
+UserConfig.getUserConfigLocation('pullcounter', Options, function() {
   gPullCounter = new PullCounter(document.getElementById('pullcounttext'));
 
   addOverlayListener('onLogEvent', (e) => gPullCounter.OnLogEvent(e));

@@ -327,7 +327,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Hades Ancient Collect',

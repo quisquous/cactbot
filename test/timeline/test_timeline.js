@@ -1,17 +1,14 @@
 'use strict';
 
-let fs = require('fs');
-let assert = require('chai').assert;
-let Regexes = require('../../resources/regexes.js');
-let NetRegexes = require('../../resources/netregexes.js');
-let Conditions = require('../../resources/conditions.js');
-let ZoneId = require('../../resources/zone_id.js');
-let responseExports = require('../../resources/responses.js');
-let Responses = responseExports.responses;
-let Timeline = require('../../ui/raidboss/timeline.js');
-let commonReplacementExports = require('../../ui/raidboss/common_replacement.js');
-let commonReplacement = commonReplacementExports.commonReplacement;
-let partialCommonReplacementKeys = commonReplacementExports.partialCommonReplacementKeys;
+const fs = require('fs');
+const { assert } = require('chai');
+const Regexes = require('../../resources/regexes.js');
+const NetRegexes = require('../../resources/netregexes.js');
+const Conditions = require('../../resources/conditions.js');
+const ZoneId = require('../../resources/zone_id.js');
+const { Responses } = require('../../resources/responses.js');
+const { Timeline } = require('../../ui/raidboss/timeline.js');
+const { commonReplacement, partialCommonReplacementKeys } = require('../../ui/raidboss/common_replacement.js');
 
 let exitCode = 0;
 
@@ -24,7 +21,6 @@ let errorFunc = (str) => {
 let timelineFile = process.argv[2];
 let triggersFile = process.argv[3];
 let timelineText = String(fs.readFileSync(timelineFile));
-let timeline = new Timeline(timelineText);
 let triggerSet = eval(String(fs.readFileSync(triggersFile)));
 
 if (triggerSet.length != 1) {
@@ -32,6 +28,7 @@ if (triggerSet.length != 1) {
   errorFunc(triggersFile + ':Break out multiple trigger sets into multiple files');
 }
 let triggers = triggerSet[0];
+let timeline = new Timeline(timelineText, null, triggers.timelineTriggers);
 
 function getTestCases(trans, skipPartialCommon) {
   let testCases = [
@@ -76,8 +73,12 @@ let tests = {
   // This test loads an individual raidboss timeline and makes sure
   // that timeline.js can parse it without errors.
   timelineErrorTest: () => {
-    for (let e of timeline.errors)
-      errorFunc(timelineFile + ':' + e.lineNumber + ': ' + e.error + ': ' + e.line);
+    for (let e of timeline.errors) {
+      if (e.line && e.lineNumber)
+        errorFunc(timelineFile + ':' + e.lineNumber + ': ' + e.error + ': ' + e.line);
+      else
+        errorFunc(timelineFile + ':' + e.error);
+    }
   },
 
   translationConflictTest: () => {
@@ -186,7 +187,7 @@ let tests = {
       let ignore = timeline.GetMissingTranslationsToIgnore();
       let isIgnored = (x) => {
         for (let ig of ignore) {
-          if (x.match(ig))
+          if (ig.test(x))
             return true;
         }
         return false;
@@ -198,7 +199,7 @@ let tests = {
             continue;
           let matched = false;
           for (let regex in testCase.replace) {
-            if (item.match(Regexes.parse(regex))) {
+            if (Regexes.parse(regex).test(item)) {
               matched = true;
               break;
             }

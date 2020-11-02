@@ -21,6 +21,7 @@
         de: 'Auf den Spinnennetzen stehen',
         ja: 'アンキレーウェブに入る',
         cn: '站在网上',
+        ko: '거미줄 위에 서기',
       },
     },
     {
@@ -114,7 +115,7 @@
       condition: function(data) {
         return data.arachneStarted;
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'Weeping City Frond Affeared',
@@ -137,6 +138,7 @@
         de: 'Spinnennetz draußen ablegen',
         ja: 'ウェブを外周に捨て',
         cn: '蛛网点名，放在场边',
+        ko: '거미줄 바깥쪽으로 빼기',
       },
     },
     {
@@ -208,6 +210,7 @@
         de: 'In einer Fläche stehen',
         ja: '範囲に入る',
         cn: '站在圈里',
+        ko: '장판으로',
       },
     },
     {
@@ -219,6 +222,7 @@
         de: 'Meteor hinten oder links ablegen',
         ja: 'メテオ、後ろや左に置く',
         cn: '流星点名，放在背后或左边',
+        ko: '메테오 뒤/왼쪽으로 빼기',
       },
     },
     {
@@ -236,6 +240,7 @@
         de: 'Von der plattform runter gehen',
         ja: '通路で回避',
         cn: '离开平台',
+        ko: '통로로 이동',
       },
     },
     {
@@ -270,6 +275,7 @@
             de: 'Tank lasers--Weg von der Party',
             ja: 'タンクレザー - 外に',
             cn: '坦克激光--远离人群',
+            ko: '탱커 레이저-- 피하기',
           };
         }
         return {
@@ -277,6 +283,7 @@
           de: 'Weg von den Tanks',
           ja: 'タンクに離れ',
           cn: '远离坦克',
+          ko: '탱커 피하기',
         };
       },
     },
@@ -322,7 +329,7 @@
         return data.ozmaStarted;
       },
       suppressSeconds: 5,
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       // Coif Change is always followed up shortly by Haircut.
@@ -358,6 +365,7 @@
         de: 'Nahe den Äxten, vermeide Knospen',
         ja: '刃物の髪に近づく、丸い髪に離れ',
         cn: '靠近斧状发，远离球状发',
+        ko: '도끼모양에 붙고, 둥근모양은 피하기',
       },
     },
     {
@@ -369,6 +377,7 @@
         de: 'Weiche den Sensen AOEs aus',
         ja: '十字AoE',
         cn: '躲避镰刀直线AOE',
+        ko: '직선 장판 피하기',
       },
     },
     {
@@ -381,6 +390,7 @@
         de: 'Vermeide die lilanen Flächen',
         ja: '紫の円範囲を避け',
         cn: '远离紫圈',
+        ko: '보라색 원 피하기',
       },
     },
     {
@@ -409,6 +419,7 @@
             de: '16x Himmelslaser auf DIR!',
             ja: '自分に16連撃潜地式波動砲！',
             cn: '16连追踪AOE点名',
+            ko: '16 하늘 레이저 대상자',
           };
         }
         return {
@@ -416,6 +427,7 @@
           de: 'Himmelslaser ausweichen',
           ja: '潜地式波動砲に避け',
           cn: '躲避追踪AOE',
+          ko: '하늘 레이저 피하기',
         };
       },
     },

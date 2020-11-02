@@ -114,7 +114,7 @@
         data.holyCounter = data.holyCounter || 0;
         return (data.holyCounter % 2 == 0);
       },
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
       run: function(data) {
         data.holyCounter += 1;
         delete data.holyTargets;
@@ -133,12 +133,14 @@
         de: 'Kristallfeld',
         ja: '青い床に',
         cn: '站在蓝地板',
+        ko: '파란 장판으로',
       },
       tts: {
         en: 'blue square',
         de: 'blaues feld',
         ja: '青い床',
         cn: '蓝地板',
+        ko: '파란 장판',
       },
     },
     {
@@ -157,6 +159,7 @@
         de: 'Drachen nehmen',
         ja: 'ドラゴンを取って',
         cn: '拉住巨龙',
+        ko: '용 잡기',
       },
     },
     {
@@ -187,6 +190,7 @@
         de: 'Lass dich von Quaaak treffen',
         ja: 'クルルルルを受け',
         cn: 'BOSS正面吃呱呱',
+        ko: '개굴장판 맞기',
       },
     },
     {
@@ -219,6 +223,7 @@
             de: 'Auf Frosch-Fläche stehen',
             ja: 'カエルパネルを踏む',
             cn: '站在呱呱方块',
+            ko: '개구리 장판으로',
           };
         }
         return {
@@ -228,18 +233,21 @@
             de: 'Auf Schild-Fläche stehen',
             ja: 'タンクパネルを踏む',
             cn: '站在坦克方块',
+            ko: '방패 장판으로',
           },
           'healer': {
             en: 'Stand on cross',
             de: 'Auf Kreuz-Fläche stehen',
             ja: 'ヒーラーパネルを踏む',
             cn: '站在治疗方块',
+            ko: '십자가 장판으로',
           },
           'dps': {
             en: 'Stand on sword',
             de: 'Auf Schwert-Fläche stehen',
             ja: 'DPSパネルを踏む',
             cn: '站在DPS方块',
+            ko: '검 장판으로',
           },
         }[data.role];
       },
@@ -260,6 +268,7 @@
         de: 'Geistlenkung: Vorwärts',
         ja: 'マインドジャック: 前進',
         cn: '精神控制：向前',
+        ko: '정신 장악: 앞쪽',
       },
     },
     {
@@ -275,6 +284,7 @@
         de: 'Geistlenkung: Zurück',
         ja: 'マインドジャック: 後退',
         cn: '精神控制：向后',
+        ko: '정신 장악: 뒤쪽',
       },
     },
     {
@@ -290,6 +300,7 @@
         de: 'Geistlenkung: Links',
         ja: 'マインドジャック: 左折',
         cn: '精神控制：向左',
+        ko: '정신 장악: 왼쪽',
       },
     },
     {
@@ -305,6 +316,7 @@
         de: 'Geistlenkung: Rechts',
         ja: 'マインドジャック: 右折',
         cn: '精神控制：向右',
+        ko: '정신 장악: 오른쪽',
       },
     },
   ],

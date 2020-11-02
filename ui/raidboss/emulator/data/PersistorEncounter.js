@@ -13,3 +13,6 @@ class PersistorEncounter {
     this.duration = encounter.endTimestamp - encounter.startTimestamp;
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = PersistorEncounter;

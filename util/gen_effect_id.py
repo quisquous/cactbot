@@ -40,6 +40,10 @@ known_mapping = {
     "The Wanderer's Minuet": "2216",
     "Mage's Ballad": "2217",
     "Army's Paeon": "2218",
+    "Stormbite": "1201",
+    "Caustic Bite": "1200",
+    "Windbite": "129",
+    "Venomous Bite": "124",
 }
 
 

@@ -1,8 +1,9 @@
 'use strict';
 
 class AnalyzedEncounter extends EventBus {
-  constructor(encounter, emulator) {
+  constructor(options, encounter, emulator) {
     super();
+    this.options = options;
     this.popupText = null;
     this.perspectives = {};
     this.encounter = encounter;
@@ -41,8 +42,8 @@ class AnalyzedEncounter extends EventBus {
     }
 
     const popupText = new PopupTextAnalysis(this.popupText.options);
-    const gTimelineUI = new RaidEmulatorTimelineUI(Options);
-    const gTimelineController = new RaidEmulatorTimelineController(Options, gTimelineUI);
+    const gTimelineUI = new RaidEmulatorTimelineUI(this.options);
+    const gTimelineController = new RaidEmulatorTimelineController(this.options, gTimelineUI);
 
     gTimelineController.SetPopupTextInterface(new PopupTextGenerator(gPopupText));
     gTimelineController.SetDataFiles(this.emulator.dataFilesEvent.detail.files);
@@ -108,3 +109,6 @@ class AnalyzedEncounter extends EventBus {
     }
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = AnalyzedEncounter;

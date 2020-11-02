@@ -163,7 +163,7 @@
     {
       id: 'O8N Flagrant Fire Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'O8N Thrumming Thunder Real',

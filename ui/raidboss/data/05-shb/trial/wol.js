@@ -77,7 +77,7 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F2D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F2D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F2D', capture: false }),
-      response: Responses.move('alert'),
+      response: Responses.moveAround('alert'),
     },
     {
       id: 'WOL Absolute Fire III',
@@ -265,7 +265,7 @@
       response: function(data, matches) {
         if (data.deluge === data.me)
           return;
-        return Responses.stackOn();
+        return Responses.stackMarkerOn();
       },
     },
     {

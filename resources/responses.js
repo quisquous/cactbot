@@ -14,6 +14,13 @@
 //
 // If data.role is used, it should be only to differentiate between alert levels,
 // and not whether a message is sent at all.
+//
+// Although this is not true of `response: ` fields on triggers in general,
+// all responses in this file should either return an object or a single
+// function that sets outputStrings and returns an object without doing
+// anything with data or matches.  See `responses_test.js`.
+
+const builtInResponseStr = 'cactbot-builtin-response';
 
 const triggerFunctions = [
   'alarmText',
@@ -33,6 +40,7 @@ const triggerFunctions = [
   'soundVolume',
   'suppressSeconds',
   'tts',
+  'outputStrings',
 ];
 
 const severityMap = {
@@ -85,8 +93,8 @@ let combineFuncs = function(text1, func1, text2, func2) {
     obj[text1] = func1;
     obj[text2] = func2;
   } else {
-    obj[text1] = (data, matches) => {
-      func1(data, matches) || func2(data, matches);
+    obj[text1] = (data, matches, output) => {
+      func1(data, matches, output) || func2(data, matches, output);
     };
   }
   return obj;
@@ -98,57 +106,65 @@ let isPlayerId = (id) => {
 
 let Responses = {
   tankBuster: (targetSev, otherSev) => {
-    let noTargetText = {
-      en: 'Tank Buster',
-      de: 'Tank buster',
-      fr: 'Tank buster',
-      ja: 'タンクバスター',
-      cn: '坦克死刑',
-      ko: '탱버',
+    const outputStrings = {
+      noTarget: {
+        en: 'Tank Buster',
+        de: 'Tank buster',
+        fr: 'Tank buster',
+        ja: 'タンクバスター',
+        cn: '坦克死刑',
+        ko: '탱버',
+      },
+      onYou: {
+        en: 'Tank Buster on YOU',
+        de: 'Tank buster auf DIR',
+        fr: 'Tank buster sur VOUS',
+        ja: '自分にタンクバスター',
+        cn: '死刑点名',
+        ko: '탱버 대상자',
+      },
+      onTarget: {
+        en: 'Tank Buster on ${name}',
+        de: 'Tank buster auf ${name}',
+        fr: 'Tank buster sur ${name}',
+        ja: '${name}にタンクバスター',
+        cn: '死刑 点 ${name}',
+        ko: '"${name}" 탱버',
+      },
     };
 
-    let targetFunc = (data, matches) => {
-      let target = getTarget(matches);
+    const targetFunc = (data, matches, output) => {
+      const target = getTarget(matches);
       if (!target) {
-        if (data.role != 'tank' && data.role != 'healer')
+        if (data.role !== 'tank' && data.role !== 'healer')
           return;
-        return noTargetText;
+        return output.noTarget();
       }
 
-      if (target == data.me) {
-        return {
-          en: 'Tank Buster on YOU',
-          de: 'Tank buster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          cn: '死刑点名',
-          ko: '탱버 대상자',
-        };
-      }
+      if (target === data.me)
+        return output.onYou();
     };
 
-    let otherFunc = (data, matches) => {
-      let target = getTarget(matches);
+    const otherFunc = (data, matches, output) => {
+      const target = getTarget(matches);
       if (!target) {
-        if (data.role == 'tank' || data.role == 'healer')
+        if (data.role === 'tank' || data.role === 'healer')
           return;
-        return noTargetText;
+        return output.noTarget();
       }
-      if (target == data.me)
+      if (target === data.me)
         return;
 
-      return {
-        en: 'Tank Buster on ' + data.ShortName(target),
-        de: 'Tank buster auf ' + data.ShortName(target),
-        fr: 'Tank buster sur ' + data.ShortName(target),
-        ja: data.ShortName(target) + 'にタンクバスター',
-        cn: '死刑 点 ' + data.ShortName(target),
-        ko: '"' + data.ShortName(target) + '" 탱버',
-      };
+      return output.onTarget({ name: data.ShortName(target) });
     };
 
-    return combineFuncs(defaultAlertText(targetSev), targetFunc,
+    const combined = combineFuncs(defaultAlertText(targetSev), targetFunc,
         defaultInfoText(otherSev), otherFunc);
+    return (data, _, output) => {
+      // cactbot-builtin-response
+      output.responseOutputStrings = outputStrings;
+      return combined;
+    };
   },
   tankBusterSwap: (busterSev, swapSev) => {
     // Note: busterSev and swapSev can be the same priority.
@@ -242,17 +258,21 @@ let Responses = {
     };
     return obj;
   },
-  aoe: (sev) => {
-    let obj = {};
-    obj[defaultInfoText(sev)] = {
-      en: 'aoe',
-      de: 'AoE',
-      fr: 'AoE',
-      ja: 'AoE',
-      cn: 'AoE',
-      ko: '전체 공격',
+  aoe: (sev) => (data, _, output) => {
+    // cactbot-builtin-response
+    output.responseOutputStrings = {
+      aoe: {
+        en: 'aoe',
+        de: 'AoE',
+        fr: 'AoE',
+        ja: 'AoE',
+        cn: 'AoE',
+        ko: '전체 공격',
+      },
     };
-    return obj;
+    return {
+      [defaultInfoText(sev)]: (data, _, output) => output.aoe(),
+    };
   },
   bigAoe: (sev) => {
     let obj = {};
@@ -278,19 +298,33 @@ let Responses = {
     };
     return obj;
   },
-  stack: (sev) => {
+  stackMarker: (sev) => {
+    // for stack marker
     let obj = {};
     obj[defaultAlertText(sev)] = {
       en: 'Stack',
       de: 'Sammeln',
       fr: 'Packez-vous',
-      ja: 'スタック',
-      cn: '集合',
-      ko: '집합',
+      ja: '頭割り',
+      cn: '分摊',
+      ko: '쉐어뎀',
     };
     return obj;
   },
-  stackOn: (sev) => {
+  getTogether: (sev) => {
+    // for getting together without stack marker
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'Stack',
+      de: 'Sammeln',
+      fr: 'Packez-vous',
+      ja: '固まる',
+      cn: '集合',
+      ko: '모이기',
+    };
+    return obj;
+  },
+  stackMarkerOn: (sev) => {
     let obj = {};
     obj[defaultAlertText(sev)] = (data, matches) => {
       let target = getTarget(matches);
@@ -848,7 +882,21 @@ let Responses = {
     };
     return obj;
   },
-  move: (sev) => {
+  moveAway: (sev) => {
+    // to dodge aoes
+    let obj = {};
+    obj[defaultInfoText(sev)] = {
+      en: 'Move!',
+      de: 'Bewegen!',
+      fr: 'Bougez !',
+      ja: '避けて！',
+      cn: '快躲开！',
+      ko: '이동하기!',
+    };
+    return obj;
+  },
+  moveAround: (sev) => {
+    // should jump or move
     let obj = {};
     obj[defaultInfoText(sev)] = {
       en: 'Move!',
@@ -906,8 +954,9 @@ let Responses = {
 
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = {
-    responses: Responses,
+    Responses: Responses,
     triggerFunctions: triggerFunctions,
     severityMap: severityMap,
+    builtInResponseStr: builtInResponseStr,
   };
 }

@@ -2,12 +2,15 @@
 
 let UserConfig = {
   optionTemplates: {},
+  userFileCallbacks: {},
   savedConfig: null,
-  registerOptions: function(overlayName, optionTemplates) {
+  registerOptions: function(overlayName, optionTemplates, userFileCallback) {
     this.optionTemplates[overlayName] = optionTemplates;
+    if (userFileCallback)
+      this.userFileCallbacks[overlayName] = userFileCallback;
   },
 
-  getUserConfigLocation: function(overlayName, callback) {
+  getUserConfigLocation: function(overlayName, options, callback) {
     let currentlyReloading = false;
     let reloadOnce = () => {
       if (currentlyReloading)
@@ -39,32 +42,32 @@ let UserConfig = {
 
       // Backward compatibility (language is now separated to three types.)
       if (e.detail.language) {
-        Options.ParserLanguage = e.detail.language;
-        Options.ShortLocale = e.detail.language;
-        Options.DisplayLanguage = e.detail.language;
+        options.ParserLanguage = e.detail.language;
+        options.ShortLocale = e.detail.language;
+        options.DisplayLanguage = e.detail.language;
       }
       // Parser Language
       if (e.detail.parserLanguage) {
-        Options.ParserLanguage = e.detail.parserLanguage;
+        options.ParserLanguage = e.detail.parserLanguage;
         // Backward compatibility, everything "Language" should be changed to "ParserLanguage"
-        Options.Language = e.detail.parserLanguage;
+        options.Language = e.detail.parserLanguage;
       }
       const supportedLanguage = ['en', 'de', 'fr', 'ja', 'cn', 'ko'];
       // System Language
       if (e.detail.systemLocale) {
-        Options.SystemLocale = e.detail.systemLocale;
-        Options.ShortLocale = e.detail.systemLocale.substring(0, 2);
-        if (Options.ShortLocale == 'zh')
-          Options.ShortLocale = 'cn';
-        if (!supportedLanguage.includes(Options.ShortLocale))
-          Options.ShortLocale = Options.ParserLanguage;
+        options.SystemLocale = e.detail.systemLocale;
+        options.ShortLocale = e.detail.systemLocale.substring(0, 2);
+        if (options.ShortLocale == 'zh')
+          options.ShortLocale = 'cn';
+        if (!supportedLanguage.includes(options.ShortLocale))
+          options.ShortLocale = options.ParserLanguage;
       }
       // User's setting Language
-      Options.DisplayLanguage = e.detail.displayLanguage;
-      if (!supportedLanguage.includes(Options.DisplayLanguage))
-        Options.DisplayLanguage = Options.ParserLanguage || 'en';
+      options.DisplayLanguage = e.detail.displayLanguage;
+      if (!supportedLanguage.includes(options.DisplayLanguage))
+        options.DisplayLanguage = options.ParserLanguage || 'en';
 
-      this.addUnlockText(Options.DisplayLanguage);
+      this.addUnlockText(options.DisplayLanguage);
 
       // Handle processOptions after default language selection above,
       // but before css below which may load skin files.
@@ -73,14 +76,14 @@ let UserConfig = {
       let userOptions = await readOptions || {};
       this.savedConfig = userOptions.data || {};
       this.processOptions(
-          Options,
+          options,
           this.savedConfig[overlayName] || {},
           this.optionTemplates[overlayName],
       );
 
       // If the overlay has a "Debug" setting, set to true via the config tool,
       // then also print out user files that have been loaded.
-      let printUserFile = Options.Debug ? (x) => console.log(x) : (x) => {};
+      let printUserFile = options.Debug ? (x) => console.log(x) : (x) => {};
 
       // In cases where the user files are local but the overlay url
       // is remote, local files needed to be read by the plugin and
@@ -89,7 +92,11 @@ let UserConfig = {
         if (jsFile in localFiles) {
           try {
             printUserFile('local user file: ' + basePath + '\\' + jsFile);
-            eval(localFiles[jsFile]);
+
+            if (this.userFileCallbacks[overlayName])
+              this.userFileCallbacks[overlayName](jsFile, localFiles, options);
+            else
+              eval(localFiles[jsFile]);
           } catch (e) {
             // Be very visible for users.
             console.log('*** ERROR IN USER FILE ***');
@@ -100,7 +107,7 @@ let UserConfig = {
         // This is a bit awkward to handle skin settings here, but
         // doing it after user config files and before user css files
         // allows user css to override skin-specific css as well.
-        this.handleSkin(Options.Skin);
+        this.handleSkin(options.Skin);
 
         if (cssFile in localFiles) {
           printUserFile('local user file: ' + basePath + '\\' + cssFile);
@@ -116,7 +123,7 @@ let UserConfig = {
         this.appendJSLink(jsUrl);
 
         // See note above in localFiles case about skin load ordering.
-        this.handleSkin(Options.Skin);
+        this.handleSkin(options.Skin);
 
         let cssUrl = basePath + cssFile;
         printUserFile('remote user file: ' + cssUrl);

@@ -88,7 +88,7 @@ let bombLocation = (matches) => {
     {
       id: 'A5S Gobcut Stack',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      response: Responses.stackOn('alert'),
+      response: Responses.stackMarkerOn('alert'),
     },
     {
       id: 'A5S Concussion',

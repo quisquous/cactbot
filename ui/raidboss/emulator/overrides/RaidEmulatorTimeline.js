@@ -42,3 +42,6 @@ class RaidEmulatorTimeline extends Timeline {
     this.emulatedFightSyncLastOffset = this.emulatedTimeOffset;
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = RaidEmulatorTimeline;

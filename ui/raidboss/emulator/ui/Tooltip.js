@@ -92,3 +92,6 @@ Tooltip.hideEvents = [
   'mouseleave',
   'blur',
 ];
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = Tooltip;

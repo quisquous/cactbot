@@ -4,17 +4,14 @@ let triggersFile = process.argv[2];
 let locale = process.argv[3];
 let localeReg = 'regex' + locale[0].toUpperCase() + locale[1];
 
-let fs = require('fs');
-let Regexes = require('../resources/regexes.js');
-let NetRegexes = require('../resources/netregexes.js');
-let Conditions = require('../resources/conditions.js');
-let ZoneId = require('../resources/zone_id.js');
-let responseModule = require('../resources/responses.js');
-let Responses = responseModule.responses;
-let Timeline = require('../ui/raidboss/timeline.js');
-let commonReplacementExports = require('../ui/raidboss/common_replacement.js');
-let commonReplacement = commonReplacementExports.commonReplacement;
-let partialCommonReplacementKeys = commonReplacementExports.partialCommonReplacementKeys;
+const fs = require('fs');
+const Regexes = require('../resources/regexes.js');
+const NetRegexes = require('../resources/netregexes.js');
+const Conditions = require('../resources/conditions.js');
+const ZoneId = require('../resources/zone_id.js');
+const { Responses } = require('../resources/responses.js');
+const { Timeline } = require('../ui/raidboss/timeline.js');
+const { commonReplacement, partialCommonReplacementKeys } = require('../ui/raidboss/common_replacement.js');
 
 // Hackily assume that any file with a txt file of the same name is a trigger/timeline.
 let timelineFile = triggersFile.replace(/\.js$/, '.txt');
@@ -61,7 +58,7 @@ function findLineNumberByTriggerId(text, id) {
   for (let line of text) {
     lineNumber++;
 
-    if (line.match(regex))
+    if (regex.test(line))
       return lineNumber;
   }
 

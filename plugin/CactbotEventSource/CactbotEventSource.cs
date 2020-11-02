@@ -242,6 +242,11 @@ namespace Cactbot {
         LogInfo("System Locale: {0}", pc_locale_);
       }
 
+      // This will be set explicitly, so if it's not set now, it will be set after reloading ACT.
+      // Log this for now as there will likely be a lot of questions, re: user directories.
+      if (Config.UserConfigFile != null)
+        LogInfo("cactbot user directory: {0}", Config.UserConfigFile);
+
       // Temporarily target cn if plugin is old v2.0.4.0
       if (language_ == "cn" || ffxiv.ToString() == "2.0.4.0") {
         ffxiv_ = new FFXIVProcessCn(this);
@@ -591,6 +596,11 @@ namespace Cactbot {
           user_files[Path.GetFileName(filename)] = File.ReadAllText(filename) +
             $"\n//# sourceURL={filename}";
         }
+
+        var textFilenames = Directory.EnumerateFiles(path, "*.txt");
+        foreach (string filename in textFilenames) {
+          user_files[Path.GetFileName(filename)] = File.ReadAllText(filename);
+        }
       } catch (Exception e) {
         LogError("User error file exception: {0}", e.ToString());
       }
@@ -633,6 +643,11 @@ namespace Cactbot {
             local_files = null;
           }
         }
+
+        // Set any implicitly discovered cactbot user config dirs as explicit.
+        // This will help in the future when there aren't local plugins or html.
+        if (config_dir != null)
+          Config.UserConfigFile = config_dir;
       }
     }
 

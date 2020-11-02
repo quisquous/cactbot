@@ -1,11 +1,11 @@
 'use strict';
 
 class NetworkLogConverter {
-  constructor(Options) {
+  constructor(options) {
     this.EnableProperCaseBug = true;
 
-    for (let i in Options)
-      this[i] = Options[i];
+    for (let i in options)
+      this[i] = options[i];
   }
 
   async convertFile(data) {
@@ -32,3 +32,6 @@ class NetworkLogConverter {
 }
 
 NetworkLogConverter.lineSplitRegex = /\r?\n/gm;
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = NetworkLogConverter;

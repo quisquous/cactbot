@@ -1,5 +1,9 @@
 'use strict';
 
+const caresAboutTankStuff = (data) => {
+  return data.role === 'tank' || data.role === 'healer' || data.job == 'BLU';
+};
+
 // Triggers for all occasions and zones.
 [{
   zoneId: ZoneId.MatchAll,
@@ -10,7 +14,7 @@
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
-        return data.role == 'tank';
+        return caresAboutTankStuff(data);
       },
       infoText: function(data, matches) {
         let name = data.ShortName(matches.source);
@@ -30,7 +34,7 @@
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
-        return data.role == 'tank' || data.job == 'BLU';
+        return caresAboutTankStuff(data);
       },
       suppressSeconds: 0.5,
       infoText: function(data, matches) {
@@ -51,7 +55,7 @@
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
-        return data.role == 'tank';
+        return caresAboutTankStuff(data);
       },
       infoText: function(data, matches) {
         let name = data.ShortName(matches.source);
@@ -71,7 +75,7 @@
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
-        return data.role == 'tank' || data.role == 'healer';
+        return caresAboutTankStuff(data);
       },
       infoText: function(data, matches) {
         let name = data.ShortName(matches.source);
@@ -91,7 +95,7 @@
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
-        return data.role == 'tank' || data.role == 'healer';
+        return caresAboutTankStuff(data);
       },
       infoText: function(data, matches) {
         let name = data.ShortName(matches.source);
@@ -111,7 +115,7 @@
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
-        return data.role == 'tank' || data.role == 'healer';
+        return caresAboutTankStuff(data);
       },
       infoText: function(data, matches) {
         let name = data.ShortName(matches.source);
@@ -131,7 +135,7 @@
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
-        return data.role == 'tank' || data.role == 'healer';
+        return caresAboutTankStuff(data);
       },
       infoText: function(data, matches) {
         let name = data.ShortName(matches.source);
@@ -151,7 +155,7 @@
       condition: function(data, matches) {
         if (matches.source !== data.me && !data.party.inAlliance(matches.source))
           return false;
-        return data.role == 'tank' || data.role == 'healer';
+        return caresAboutTankStuff(data);
       },
       infoText: function(data, matches) {
         let name = data.ShortName(matches.source);

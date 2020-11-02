@@ -137,3 +137,6 @@ class PartyTracker {
     return this.idToName_[id];
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = PartyTracker;

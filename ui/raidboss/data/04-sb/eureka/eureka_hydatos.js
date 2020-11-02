@@ -21,6 +21,7 @@
         fr: 'Boucliers et mitigation',
         ja: 'ダメージ軽減とバリアを',
         cn: '切盾减伤',
+        ko: '뎀감, 보호막',
       },
     },
     {
@@ -34,6 +35,7 @@
         fr: 'Utilisez potion d\'Eurêka',
         ja: 'エウレカ回復薬',
         cn: '磕优雷卡回复药',
+        ko: '에우레카 포션 먹기',
       },
     },
     {
@@ -46,6 +48,7 @@
         fr: 'Trou noir bientôt',
         ja: 'まもなくブラックホール',
         cn: '黑洞警告',
+        ko: '곧 블랙홀',
       },
     },
   ],

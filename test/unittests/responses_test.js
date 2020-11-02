@@ -1,18 +1,23 @@
 'use strict';
 
-let responseModule = require('../../resources/responses.js');
-let Responses = responseModule.responses;
-let triggerFunctions = responseModule.triggerFunctions;
-let severityMap = responseModule.severityMap;
+const { Responses, severityMap, triggerFunctions, builtInResponseStr: builtInResponseStr } = require('../../resources/responses.js');
 
-let assert = require('chai').assert;
+const { assert } = require('chai');
 
 // test_trigger.js will validate the field names, so no need to do that here.
+
+const outputStringSetterStr = 'output.responseOutputStrings = ';
 
 let tests = {
   defaultSeverity: () => {
     for (let response in Responses) {
       let result = Responses[response]();
+      if (typeof result === 'function') {
+        assert.include(result.toString(), outputStringSetterStr);
+        assert.include(result.toString(), builtInResponseStr);
+        result = result({}, {}, {});
+      }
+
       assert.isObject(result);
 
       // Must only include valid keys.
@@ -29,6 +34,11 @@ let tests = {
       // If passed, it then that text must appear.  e.g. 'info' must create 'infoText'.
       for (let sev in severityMap) {
         let result = Responses[response](sev);
+        if (typeof result === 'function') {
+          assert.include(result.toString(), outputStringSetterStr);
+          assert.include(result.toString(), builtInResponseStr);
+          result = result({}, {}, {});
+        }
         assert.isObject(result);
 
         let keys = Object.keys(result);
@@ -55,6 +65,11 @@ let tests = {
       for (let sev1 in severityMap) {
         for (let sev2 in severityMap) {
           let result = Responses[doubleFuncs[i]](sev1, sev2);
+          if (typeof result === 'function') {
+            assert.include(result.toString(), outputStringSetterStr);
+            assert.include(result.toString(), builtInResponseStr);
+            result = result({}, {}, {});
+          }
           assert.isObject(result);
 
           // Must only include valid keys.

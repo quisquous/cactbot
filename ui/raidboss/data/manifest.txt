@@ -1,6 +1,8 @@
 00-misc/general.js
 00-misc/test.js
 00-misc/test.txt
+02-arr/dungeon/brayfloxs_longstop.js
+02-arr/dungeon/haukke_manor.js
 02-arr/raid/t1.js
 02-arr/raid/t10.js
 02-arr/raid/t10.txt
@@ -203,6 +205,8 @@
 05-shb/dungeon/the_grand_cosmos.txt
 05-shb/dungeon/twinning.js
 05-shb/dungeon/twinning.txt
+05-shb/eureka/bozjan_southern_front.js
+05-shb/etc/the_diadem.js
 05-shb/raid/e1n.js
 05-shb/raid/e1n.txt
 05-shb/raid/e1s.js

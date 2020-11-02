@@ -138,3 +138,6 @@ CombatantJobSearch.abilities = {
 };
 
 CombatantJobSearch.abilityMatchRegex = /[a-fA-F0-9]{1,4}/i;
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = CombatantJobSearch;

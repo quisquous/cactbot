@@ -66,6 +66,137 @@ function onTriggerException(trigger, e) {
     console.error(lines[i]);
 }
 
+// Helper for handling trigger overrides.
+//
+// asList will return a list of triggers in the same order as append was called, except:
+// If a later trigger has the same id as a previous trigger, it will replace the previous trigger
+// and appear in the same order that the previous trigger appeared.
+// e.g. a, b1, c, b2 (where b1 and b2 share the same id) yields [a, b2, c] as the final list.
+//
+// JavaScript dictionaries are *almost* ordered automatically as we would want,
+// but want to handle missing ids and integer ids (you shouldn't, but just in case).
+class OrderedTriggerList {
+  constructor() {
+    this.idToIndex = {};
+    this.triggers = [];
+  }
+
+  push(trigger) {
+    if (trigger.id && trigger.id in this.idToIndex) {
+      const idx = this.idToIndex[trigger.id];
+
+      // TODO: be verbose now while this is fresh, but hide this output behind debug flags later.
+      const triggerFile = (trigger) => trigger.filename ? `'${trigger.filename}'` : 'user override';
+      const oldFile = triggerFile(this.triggers[idx]);
+      const newFile = triggerFile(trigger);
+      console.log(`Overriding '${trigger.id}' from ${oldFile} with ${newFile}.`);
+
+      this.triggers[idx] = trigger;
+      return;
+    }
+
+    // Normal case of a new trigger, with no overriding.
+    if (trigger.id)
+      this.idToIndex[trigger.id] = this.triggers.length;
+    this.triggers.push(trigger);
+  }
+
+  asList() {
+    return this.triggers;
+  }
+}
+
+
+class TriggerOutputProxy {
+  constructor(trigger, displayLang, perTriggerAutoConfig) {
+    this.trigger = trigger;
+    this.outputStrings = trigger.outputStrings || {};
+    this.responseOutputStrings = {};
+    this.displayLang = displayLang;
+    this.unknownValue = '???';
+    this.overrideStrings = {};
+
+    if (this.trigger.id && perTriggerAutoConfig && perTriggerAutoConfig[trigger.id])
+      this.overrideStrings = perTriggerAutoConfig[trigger.id]['OutputStrings'] || {};
+
+    return new Proxy(this, {
+      // Response output string subtlety:
+      // Take this example response:
+      //
+      //    response: (data, matches, output) => {
+      //      return {
+      //        alarmText: output.someAlarm(),
+      //        outputStrings: { someAlarm: 'string' }, // <- impossible
+      //      };
+      //    },
+      //
+      // Because the object being returned is evaluated all at once, the object
+      // cannot simultaneously define outputStrings and use those outputStrings.
+      // So, instead, responses need to set `output.responseOutputStrings`.
+      // HOWEVER, this also has its own issues!  This value is set for the trigger
+      // (which may have multiple active in flight instances).  This *should* be
+      // ok because we guarantee that response/alarmText/alertText/infoText/tts
+      // are evaluated sequentially for a single trigger before any other trigger
+      // instance evaluates that set of triggers.  Finally, for ease of automating
+      // the config ui, the response should return the exact same set of
+      // outputStrings every time.  Thank you for coming to my TED talk.
+      set(target, property, value) {
+        if (property === 'responseOutputStrings') {
+          target[property] = value;
+          return true;
+        }
+
+        // Be kind to user triggers that do weird things, and just console error this
+        // instead of throwing an exception.
+        console.error(`Invalid property '${property}' on output.`);
+      },
+
+      get(target, name) {
+        // Because output.func() must exist at the time of trigger eval,
+        // always provide a function even before we know which keys are valid.
+        return (params) => {
+          // Priority: per-trigger config from ui > response > built-in trigger
+          // Ideally, response provides everything and trigger provides nothing,
+          // or there's no response and trigger provides everything.  Having
+          // this well-defined smooths out the collision edge cases.
+          let str = target.getReplacement(target.overrideStrings[name], params);
+          if (str === null)
+            str = target.getReplacement(target.responseOutputStrings[name], params);
+          if (str === null)
+            str = target.getReplacement(target.outputStrings[name], params);
+          if (str === null) {
+            console.error(`Trigger ${target.trigger.id} has missing outputString ${name}.`);
+            return target.unknownValue;
+          }
+          return str;
+        };
+      },
+    });
+  }
+
+  getReplacement(template, params) {
+    if (!template)
+      return null;
+    if (typeof template === 'object') {
+      if (this.displayLang in template)
+        template = template[this.displayLang];
+      else
+        template = template['en'];
+    }
+    if (typeof template !== 'string') {
+      console.error(`Trigger ${this.trigger.id} has invalid outputString ${name}.`);
+      return null;
+    }
+
+    return template.replace(/\${\s*([^}\s]+)\s*}/g, (fullMatch, key) => {
+      if (key in params)
+        return params[key];
+      console.error(`Trigger ${this.trigger.id} can't replace ${key} in ${template}.`);
+      return this.unknownValue;
+    });
+  }
+}
+
 class PopupText {
   constructor(options) {
     this.options = options;
@@ -96,7 +227,7 @@ class PopupText {
 
     // check to see if we need user interaction to play audio
     // only if audio is enabled in options
-    if (Options.AudioAllowed)
+    if (this.options.AudioAllowed)
       AutoplayHelper.CheckAndPrompt();
 
     this.partyTracker = new PartyTracker();
@@ -123,7 +254,7 @@ class PopupText {
     addOverlayListener('PartyChanged', (e) => {
       this.partyTracker.onPartyChanged(e);
     });
-    addPlayerChangedOverrideListener(Options.PlayerNameOverride, (e) => {
+    addPlayerChangedOverrideListener(this.options.PlayerNameOverride, (e) => {
       this.OnPlayerChange(e);
     });
     addOverlayListener('ChangeZone', (e) => {
@@ -151,7 +282,7 @@ class PopupText {
   }
 
   OnDataFilesRead(e) {
-    this.triggerSets = Options.Triggers;
+    this.triggerSets = [];
     for (let filename in e.detail.files) {
       if (!filename.endsWith('.js'))
         continue;
@@ -181,6 +312,9 @@ class PopupText {
       }
       Array.prototype.push.apply(this.triggerSets, json);
     }
+
+    // User triggers must come last so that they override built-in files.
+    Array.prototype.push.apply(this.triggerSets, this.options.Triggers);
   }
 
   OnChangeZone(e) {
@@ -206,6 +340,9 @@ class PopupText {
     let timelineTriggers = [];
     let timelineStyles = [];
     this.resetWhenOutOfCombat = true;
+
+    const orderedTriggers = new OrderedTriggerList();
+    const orderedNetTriggers = new OrderedTriggerList();
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
@@ -233,9 +370,15 @@ class PopupText {
         console.error(`Trigger set must include exactly one of zoneRegex or zoneId property`);
         continue;
       }
+      if (haveZoneId && set.zoneId === undefined) {
+        const filename = set.filename ? `'${set.filename}'` : '(user file)';
+        console.error(`Trigger set has zoneId, but with nothing specified in ${filename}.  ` +
+                      `Did you misspell the ZoneId.ZoneName?`);
+        continue;
+      }
 
       if (set.zoneId) {
-        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId)
+        if (set.zoneId !== ZoneId.MatchAll && set.zoneId !== this.zoneId && !(typeof set.zoneId == 'object' && set.zoneId.includes(this.zoneId)))
           continue;
       } else if (set.zoneRegex) {
         let zoneRegex = set.zoneRegex;
@@ -283,17 +426,19 @@ class PopupText {
             continue;
           }
 
+          this.ProcessTrigger(trigger);
+
           // parser-language-based regex takes precedence.
           let regex = trigger[regexParserLang] || trigger.regex;
           if (regex) {
             trigger.localRegex = Regexes.parse(regex);
-            this.triggers.push(trigger);
+            orderedTriggers.push(trigger);
           }
 
           let netRegex = trigger[netRegexParserLang] || trigger.netRegex;
           if (netRegex) {
             trigger.localNetRegex = Regexes.parse(netRegex);
-            this.netTriggers.push(trigger);
+            orderedNetTriggers.push(trigger);
           }
 
           if (!regex && !netRegex) {
@@ -303,26 +448,47 @@ class PopupText {
         }
       }
 
+      if (set.overrideTimelineFile) {
+        const filename = set.filename ? `'${set.filename}'` : '(user file)';
+        console.log(`Overriding timeline from ${filename}.`);
+
+        // If the timeline file override is set, all previously loaded timeline info is dropped.
+        // Styles, triggers, and translations are kept, as they may still apply to the new one.
+        timelineFiles = [];
+        timelines = [];
+      }
+
       // And set the timeline files/timelines from each set that matches.
       if (set.timelineFile) {
         if (set.filename) {
           let dir = set.filename.substring(0, set.filename.lastIndexOf('/'));
           timelineFiles.push(dir + '/' + set.timelineFile);
         } else {
+          // Note: For user files, this should get handled by raidboss_config.js,
+          // where `timelineFile` should get converted to `timeline`.
           console.error('Can\'t specify timelineFile in non-manifest file:' + set.timelineFile);
         }
       }
+
       if (set.timeline)
         addTimeline(set.timeline);
       if (set.timelineReplace)
         replacements.push(...set.timelineReplace);
-      if (set.timelineTriggers)
-        timelineTriggers.push(...set.timelineTriggers);
+      if (set.timelineTriggers) {
+        for (const trigger of set.timelineTriggers) {
+          this.ProcessTrigger(trigger);
+          timelineTriggers.push(trigger);
+        }
+      }
       if (set.timelineStyles)
         timelineStyles.push(...set.timelineStyles);
       if (set.resetWhenOutOfCombat !== undefined)
         this.resetWhenOutOfCombat &= set.resetWhenOutOfCombat;
     }
+
+    // Store all the collected triggers in order.
+    this.triggers = orderedTriggers.asList();
+    this.netTriggers = orderedNetTriggers.asList();
 
     this.timelineLoader.SetTimelines(
         timelineFiles,
@@ -331,6 +497,11 @@ class PopupText {
         timelineTriggers,
         timelineStyles,
     );
+  }
+
+  ProcessTrigger(trigger) {
+    trigger.output = new TriggerOutputProxy(trigger, this.options.displayLang,
+        this.options.PerTriggerAutoConfig);
   }
 
   OnJobChange(e) {
@@ -373,8 +544,8 @@ class PopupText {
       return '???';
     }
 
-    if (name in Options.PlayerNicks)
-      return Options.PlayerNicks[name];
+    if (name in this.options.PlayerNicks)
+      return this.options.PlayerNicks[name];
 
     let idx = name.indexOf(' ');
     return idx < 0 ? name : name.substr(0, idx);
@@ -396,7 +567,7 @@ class PopupText {
       parserLang: this.parserLang,
       displayLang: this.displayLang,
       currentHP: preserveHP,
-      options: Options,
+      options: this.options,
       ShortName: this.ShortNamify,
       StopCombat: () => this.SetInCombat(false),
       ParseLocaleFloat: parseFloat,
@@ -531,7 +702,9 @@ class PopupText {
       trigger: trigger,
       now: now,
       valueOrFunction: (f) => {
-        let result = (typeof (f) == 'function') ? f(this.data, triggerHelper.matches) : f;
+        let result = f;
+        if (typeof result === 'function')
+          result = result(this.data, triggerHelper.matches, trigger.output);
         // All triggers return either a string directly, or an object
         // whose keys are different parser language based names.  For simplicity,
         // this is valid to do for any trigger entry that can handle a function.
@@ -622,7 +795,7 @@ class PopupText {
 
   _onTriggerInternalPreRun(triggerHelper) {
     if ('preRun' in triggerHelper.trigger)
-      triggerHelper.trigger.preRun(this.data, triggerHelper.matches);
+      triggerHelper.trigger.preRun(this.data, triggerHelper.matches, triggerHelper.trigger.output);
   }
 
   _onTriggerInternalDelaySeconds(triggerHelper) {
@@ -645,6 +818,7 @@ class PopupText {
 
   _onTriggerInternalDurationSeconds(triggerHelper) {
     triggerHelper.duration = {
+      fromConfig: triggerHelper.triggerAutoConfig['Duration'],
       fromTrigger: triggerHelper.valueOrFunction(triggerHelper.trigger.durationSeconds),
       alarmText: this.options.DisplayAlarmTextForSeconds,
       alertText: this.options.DisplayAlertTextForSeconds,
@@ -686,10 +860,12 @@ class PopupText {
 
   _onTriggerInternalResponse(triggerHelper) {
     let response = {};
-    if (triggerHelper.trigger.response) {
+    const trigger = triggerHelper.trigger;
+    if (trigger.response) {
       // Can't use ValueOrFunction here as r returns a non-localizable object.
-      let r = triggerHelper.trigger.response;
-      response = (typeof (r) == 'function') ? r(this.data, triggerHelper.matches) : r;
+      response = trigger.response;
+      while (typeof response === 'function')
+        response = response(this.data, triggerHelper.matches, trigger.output);
 
       // Turn falsy values into a default no-op response.
       if (!response)
@@ -792,7 +968,7 @@ class PopupText {
 
   _onTriggerInternalRun(triggerHelper) {
     if ('run' in triggerHelper.trigger)
-      triggerHelper.trigger.run(this.data, triggerHelper.matches);
+      triggerHelper.trigger.run(this.data, triggerHelper.matches, triggerHelper.trigger.output);
   }
 
   _createTextFor(text, textType, lowerTextKey, duration) {
@@ -826,8 +1002,10 @@ class PopupText {
       let text = triggerHelper.valueOrFunction(textObj);
       triggerHelper.defaultTTSText = triggerHelper.defaultTTSText || text;
       if (text && triggerHelper.textAlertsEnabled) {
-        this._createTextFor(text, textType, lowerTextKey,
-            (triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey]));
+        // per-trigger option > trigger field > option duration by text type
+        const duration = triggerHelper.duration.fromConfig ||
+          triggerHelper.duration.fromTrigger || triggerHelper.duration[lowerTextKey];
+        this._createTextFor(text, textType, lowerTextKey, duration);
         if (!triggerHelper.soundUrl) {
           triggerHelper.soundUrl = this.options[textTypeUpper + 'Sound'];
           triggerHelper.soundVol = this.options[textTypeUpper + 'SoundVolume'];
@@ -896,3 +1074,10 @@ class PopupTextGenerator {
 }
 
 let gPopupText;
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    PopupText: PopupText,
+    PopupTextGenerator: PopupTextGenerator,
+  };
+}

@@ -4,9 +4,7 @@ const NetRegexes = require('../../resources/netregexes.js');
 const ZoneInfo = require('../../resources/zone_info.js');
 const ContentType = require('../../resources/content_type.js');
 
-const replacements = require('../../ui/raidboss/common_replacement.js');
-const commonReplacement = replacements.commonReplacement;
-const syncKeys = replacements.syncKeys;
+const { commonReplacement, syncKeys } = require('../../ui/raidboss/common_replacement.js');
 
 // TODO: add some error checking that a zone has been found before a fight.
 // This can happen on partial logs.

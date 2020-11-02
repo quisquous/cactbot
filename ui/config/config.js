@@ -30,7 +30,7 @@ const kDirectoryChooseButtonText = {
   fr: 'Choix du répertoire',
   ja: 'ディレクトリを選択',
   cn: '选择目录',
-  ko: '디렉터리 선택',
+  ko: '디렉토리 선택',
 };
 
 // What to show when a directory hasn't been chosen.
@@ -158,7 +158,7 @@ const fileNameToTitle = (filename) => {
   let capitalized = name.replace(/(?:^| )\w/g, (c) => c.toUpperCase());
 
   // Fully capitalize acronyms like e4n.
-  if (capitalized.match(/^\w[0-9]+\w$/))
+  if (/^\w[0-9]+\w$/.test(capitalized))
     capitalized = capitalized.toUpperCase();
 
   return capitalized;
@@ -527,7 +527,7 @@ class CactbotConfigurator {
   }
 }
 
-UserConfig.getUserConfigLocation('config', async function(e) {
+UserConfig.getUserConfigLocation('config', Options, async function(e) {
   let readConfigFiles = callOverlayHandler({
     call: 'cactbotReadDataFiles',
     source: location.href,
@@ -538,3 +538,6 @@ UserConfig.getUserConfigLocation('config', async function(e) {
       Options,
       UserConfig.savedConfig);
 });
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = CactbotConfigurator;

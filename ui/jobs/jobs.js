@@ -9,7 +9,7 @@ const kWellFedContentTypes = [
 
 // See user/jobs-example.js for documentation.
 let Options = {
-  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU'],
+  ShowHPNumber: ['PLD', 'WAR', 'DRK', 'GNB', 'BLU', 'AST', 'WHM', 'SCH'],
   ShowMPNumber: ['PLD', 'DRK', 'BLM', 'AST', 'WHM', 'SCH', 'BLU'],
 
   ShowMPTicker: ['BLM'],
@@ -113,6 +113,20 @@ const kAbility = {
   BloodPrice: 'E2F',
   TheBlackestNight: '1CE1',
   Delirium: '1CDE',
+
+  // GNB
+  KeenEdge: '3F09',
+  BrutalShell: '3F0B',
+  SolidBarrel: '3F11',
+  GnashingFang: '3F12',
+  SavageClaw: '3F13',
+  WickedTalon: '3F16',
+  DemonSlice: '3F0D',
+  DemonSlaughter: '3F15',
+  LightningShot: '3F0F',
+  Bloodfest: '3F24',
+  NoMercy: '3F0A',
+
   Combust: 'E0F',
   Combust2: 'E18',
   Combust3: '40AA',
@@ -188,6 +202,8 @@ let kYouUseAbilityRegex = null;
 let kAnybodyAbilityRegex = null;
 let kMobGainsEffectRegex = null;
 let kMobLosesEffectRegex = null;
+let kMobGainsEffectFromYouRegex = null;
+let kMobLosesEffectFromYouRegex = null;
 
 let kStatsRegex = Regexes.statChange();
 // [level][Sub][Div]
@@ -217,8 +233,12 @@ class ComboTracker {
     this.comboBreakers = comboBreakers;
     // A tree of nodes.
     this.startMap = {}; // {} key => { id: str, next: { key => node } }
+    // Called for each combo/comboBreakers skill
+    // when cast in combo, skill => its HexID
+    // when cast out of combo/cast comboBreakers, skill => null
     this.callback = callback;
     this.considerNext = this.startMap;
+    this.isFinalSkill = false;
   }
 
   AddCombo(skillList) {
@@ -239,8 +259,10 @@ class ComboTracker {
   }
 
   HandleAbility(id) {
-    if (id in this.considerNext)
+    if (id in this.considerNext) {
       this.StateTransition(id, this.considerNext[id]);
+      return;
+    }
 
     if (this.comboBreakers.includes(id))
       this.AbortCombo(id);
@@ -250,8 +272,8 @@ class ComboTracker {
     window.clearTimeout(this.comboTimer);
     this.comboTimer = null;
 
-    const isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
-    if (nextState === null || isFinalSkill) {
+    this.isFinalSkill = nextState && Object.keys(nextState.next).length === 0;
+    if (nextState === null || this.isFinalSkill) {
       this.considerNext = this.startMap;
     } else {
       this.considerNext = Object.assign({}, this.startMap, nextState.next);
@@ -260,8 +282,12 @@ class ComboTracker {
         this.AbortCombo(null);
       }, kComboDelayMs);
     }
-    if (id)
+
+    // If not aborting, then this is a valid combo skill.
+    if (nextState !== null)
       this.callback(id);
+    else
+      this.callback(null);
   }
 
   AbortCombo(id) {
@@ -301,6 +327,16 @@ function setupComboTracker(callback) {
   comboTracker.AddCombo([
     kAbility.Overpower,
     kAbility.MythrilTempest,
+  ]);
+  // GNB
+  comboTracker.AddCombo([
+    kAbility.KeenEdge,
+    kAbility.BrutalShell,
+    kAbility.SolidBarrel,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.DemonSlice,
+    kAbility.DemonSlaughter,
   ]);
   comboTracker.AddCombo([
     kAbility.FastBlade,
@@ -350,10 +386,19 @@ function setupRegexes(playerName) {
   kAnybodyAbilityRegex = NetRegexes.ability();
   kMobGainsEffectRegex = NetRegexes.gainsEffect({ targetId: '4.{7}' });
   kMobLosesEffectRegex = NetRegexes.losesEffect({ targetId: '4.{7}' });
+  kMobGainsEffectFromYouRegex = NetRegexes.gainsEffect({ targetId: '4.{7}', source: playerName });
+  kMobLosesEffectFromYouRegex = NetRegexes.losesEffect({ targetId: '4.{7}', source: playerName });
 
   // Full skill names of abilities that break combos.
   // TODO: it's sad to have to duplicate combo abilities here to catch out-of-order usage.
   kComboBreakers = Object.freeze([
+    // GNB
+    kAbility.KeenEdge,
+    kAbility.BrutalShell,
+    kAbility.SolidBarrel,
+    kAbility.DemonSlice,
+    kAbility.DemonSlaughter,
+    kAbility.LightningShot,
     // rdm
     kAbility.Verstone,
     kAbility.Verfire,
@@ -1093,6 +1138,7 @@ class Bars {
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
+    this.mobGainEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
@@ -1147,9 +1193,12 @@ class Bars {
     this.jobFuncs = [];
     this.changeZoneFuncs = [];
     this.gainEffectFuncMap = {};
+    this.mobGainEffectFromYouFuncMap = {};
     this.loseEffectFuncMap = {};
     this.statChangeFuncMap = {};
     this.abilityFuncMap = {};
+    this.lastAttackedDotTarget = null;
+    this.dotTarget = [];
 
     this.gainEffectFuncMap[EffectId.WellFed] = (name, matches) => {
       let seconds = parseFloat(matches.duration);
@@ -1502,38 +1551,53 @@ class Bars {
     });
 
     this.comboFuncs.push((skill) => {
-      // TODO: handle flags where you don't hit something.
-      // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
-      if (skill == kAbility.MythrilTempest) {
-        if (eyeBox.duration > 0) {
-          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-          eyeBox.duration = 0;
-          eyeBox.duration = Math.min(old + 30, 59.5);
+      // TODO: remove this condition when CN or KO launch patch 5.3
+      if (this.options.ParserLanguage === 'cn' || this.options.ParserLanguage === 'ko') {
+        if (skill == kAbility.MythrilTempest) {
+          if (eyeBox.duration > 0) {
+            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            eyeBox.duration = 0;
+            eyeBox.duration = Math.min(old + 10, 30);
+          }
+          return;
         }
-        return;
-      }
-      if (skill == kAbility.StormsEye) {
-        if (eyeBox.duration > 0) {
-          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-          eyeBox.duration = 0;
-          eyeBox.duration = Math.min(old + 30, 59.5);
-        // Storm's Eye applies with some animation delay here, and on the next
-        // Storm's Eye, it snapshots the damage when the gcd is started, so
-        // add some of a gcd here in duration time from when it's applied.
-        } else {
+        if (skill == kAbility.StormsEye) {
           eyeBox.duration = 0;
           eyeBox.duration = 30 + 1;
         }
-      }
-      this.abilityFuncMap[kAbility.InnerRelease] = () => {
-        if (eyeBox.duration > 0) {
-          let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
-          eyeBox.duration = 0;
-          eyeBox.duration = Math.min(old + 15, 59.5);
+      } else {
+        // TODO: handle flags where you don't hit something.
+        // flags are 0 if hit nothing, 710003 if not in combo, 32710003 if good.
+        if (skill == kAbility.MythrilTempest) {
+          if (eyeBox.duration > 0) {
+            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            eyeBox.duration = 0;
+            eyeBox.duration = Math.min(old + 30, 59.5);
+          }
+          return;
         }
-        return;
-      };
-
+        if (skill == kAbility.StormsEye) {
+          if (eyeBox.duration > 0) {
+            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            eyeBox.duration = 0;
+            eyeBox.duration = Math.min(old + 30, 59.5);
+            // Storm's Eye applies with some animation delay here, and on the next
+            // Storm's Eye, it snapshots the damage when the gcd is started, so
+            // add some of a gcd here in duration time from when it's applied.
+          } else {
+            eyeBox.duration = 0;
+            eyeBox.duration = 30 + 1;
+          }
+        }
+        this.abilityFuncMap[kAbility.InnerRelease] = () => {
+          if (eyeBox.duration > 0) {
+            let old = parseFloat(eyeBox.duration) - parseFloat(eyeBox.elapsed);
+            eyeBox.duration = 0;
+            eyeBox.duration = Math.min(old + 15, 59.5);
+          }
+          return;
+        };
+      }
       // Min number of skills until eye without breaking combo.
       let minSkillsUntilEye;
       if (skill == kAbility.HeavySwing) {
@@ -1696,7 +1760,7 @@ class Bars {
     this.statChangeFuncMap['BLU'] = () => {
       offguardBox.threshold = this.gcdSpell() * 2;
       tormentBox.threshold = this.gcdSpell() * 3;
-      lucidBox.threshold = this.gcdSpell() * 4;
+      lucidBox.threshold = this.gcdSpell() + 1;
     };
 
     this.abilityFuncMap[kAbility.OffGuard] = () => {
@@ -2312,6 +2376,19 @@ class Bars {
     });
     blackProc.bigatzero = false;
 
+    let lucidBox = this.addProcBox({
+      id: 'rdm-procs-lucid',
+      fgColor: 'rdm-color-lucid',
+    });
+    this.abilityFuncMap[kAbility.LucidDreaming] = () => {
+      lucidBox.duration = 0;
+      lucidBox.duration = 60;
+    };
+    this.statChangeFuncMap['RDM'] = () => {
+      lucidBox.valuescale = this.gcdSpell();
+      lucidBox.threshold = this.gcdSpell() + 1;
+    };
+
     this.jobFuncs.push(function(jobDetail) {
       let white = jobDetail.whiteMana;
       let black = jobDetail.blackMana;
@@ -2491,6 +2568,122 @@ class Bars {
   }
 
   setupBrd() {
+    const straightShotProc = this.addProcBox({
+      id: 'brd-procs-straightshotready',
+      fgColor: 'brd-color-straightshotready',
+      threshold: 1000,
+    });
+    straightShotProc.bigatzero = false;
+    this.gainEffectFuncMap[EffectId.StraightShotReady] = () => {
+      straightShotProc.duration = 0;
+      straightShotProc.duration = 10;
+    };
+    this.loseEffectFuncMap[EffectId.StraightShotReady] = () => {
+      straightShotProc.duration = 0;
+    };
+    // DoT
+    const causticBiteBox = this.addProcBox({
+      id: 'brd-procs-causticbite',
+      fgColor: 'brd-color-causticbite',
+    });
+    const stormBiteBox = this.addProcBox({
+      id: 'brd-procs-stormbite',
+      fgColor: 'brd-color-stormbite',
+    });
+    // Iron jaws just refreshes these effects by gain once more,
+    // so it doesn't need to be handled separately.
+    // Log line of getting DoT comes a little late after DoT appear on target,
+    // so -0.5s
+    [
+      EffectId.Stormbite,
+      EffectId.Windbite,
+    ].forEach((effect) => {
+      this.mobGainEffectFromYouFuncMap[effect] = () => {
+        stormBiteBox.duration = 0;
+        stormBiteBox.duration = 30 - 0.5;
+      };
+    });
+    [
+      EffectId.CausticBite,
+      EffectId.VenomousBite,
+    ].forEach((effect) => {
+      this.mobGainEffectFromYouFuncMap[effect] = () => {
+        causticBiteBox.duration = 0;
+        causticBiteBox.duration = 30 - 0.5;
+      };
+    });
+    this.statChangeFuncMap['BRD'] = () => {
+      stormBiteBox.valuescale = this.gcdSkill();
+      stormBiteBox.threshold = this.gcdSkill() * 2;
+      causticBiteBox.valuescale = this.gcdSkill();
+      causticBiteBox.threshold = this.gcdSkill() * 2;
+      songBox.valuescale = this.gcdSkill();
+    };
+
+    // Song
+    const songBox = this.addProcBox({
+      id: 'brd-procs-song',
+      fgColor: 'brd-color-song',
+    });
+    const repertoireBox = this.addResourceBox({
+      classList: ['brd-color-song'],
+    });
+    this.repertoireTimer = this.addTimerBar({
+      id: 'brd-timers-repertoire',
+      fgColor: 'brd-color-song',
+    });
+    // Only with-DoT-target you last attacked will trigger this timer.
+    // So it work not well in mutiple targets fight.
+    this.UpdateDotTimer = () => {
+      this.repertoireTimer.duration = 2.91666;
+    };
+    const soulVoiceBox = this.addResourceBox({
+      classList: ['brd-color-soulvoice'],
+    });
+
+    this.jobFuncs.push((jobDetail) => {
+      songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song');
+      repertoireBox.parentNode.classList.remove('minuet', 'ballad', 'paeon', 'full');
+      repertoireBox.innerText = '';
+      if (jobDetail.songName === 'Minuet') {
+        repertoireBox.innerText = jobDetail.songProcs;
+        repertoireBox.parentNode.classList.add('minuet');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.minuet');
+        songBox.threshold = 5;
+        repertoireBox.parentNode.classList.remove('full');
+        if (jobDetail.songProcs == 3)
+          repertoireBox.parentNode.classList.add('full');
+      } else if (jobDetail.songName === 'Ballad') {
+        repertoireBox.innerText = '';
+        repertoireBox.parentNode.classList.add('ballad');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.ballad');
+        songBox.threshold = 3;
+      } else if (jobDetail.songName === 'Paeon') {
+        repertoireBox.innerText = jobDetail.songProcs;
+        repertoireBox.parentNode.classList.add('paeon');
+        songBox.fg = computeBackgroundColorFrom(songBox, 'brd-color-song.paeon');
+        songBox.threshold = 13;
+      }
+
+      let oldSeconds = parseFloat(songBox.duration) - parseFloat(songBox.elapsed);
+      let seconds = jobDetail.songMilliseconds / 1000.0;
+      if (!songBox.duration || seconds > oldSeconds) {
+        songBox.duration = 0;
+        songBox.duration = seconds;
+      }
+
+      // Soul Voice
+      if (jobDetail.soulGauge != soulVoiceBox.innerText) {
+        soulVoiceBox.innerText = jobDetail.soulGauge;
+        soulVoiceBox.parentNode.classList.remove('high');
+        if (jobDetail.soulGauge >= 95)
+          soulVoiceBox.parentNode.classList.add('high');
+      }
+
+      // GCD calculate
+      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
+        this.paeonStacks = jobDetail.songProcs;
+    });
     let ethosStacks = 0;
 
     // Bard is complicated
@@ -2520,11 +2713,6 @@ class Bars {
       this.museStacks = 0;
       this.paeonStacks = 0;
     };
-
-    this.jobFuncs.push((jobDetail) => {
-      if (jobDetail.songName == 'Paeon' && this.paeonStacks != jobDetail.songProcs)
-        this.paeonStacks = jobDetail.songProcs;
-    });
   }
 
   setupWhm() {
@@ -2647,12 +2835,83 @@ class Bars {
   }
 
   setupGnb() {
-    let cartridgeBox = this.addResourceBox({
+    const cartridgeBox = this.addResourceBox({
       classList: ['gnb-color-cartridge'],
+    });
+
+    const noMercyBox = this.addProcBox({
+      id: 'gnb-procs-nomercy',
+      fgColor: 'gnb-color-nomercy',
+    });
+    this.abilityFuncMap[kAbility.NoMercy] = () => {
+      noMercyBox.duration = 0;
+      noMercyBox.duration = 20;
+      noMercyBox.threshold = 1000;
+      noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy.active');
+      setTimeout(() => {
+        noMercyBox.duration = 40;
+        noMercyBox.threshold = this.gcdSkill() + 1;
+        noMercyBox.fg = computeBackgroundColorFrom(noMercyBox, 'gnb-color-nomercy');
+      }, 20000);
+    };
+
+    const bloodfestBox = this.addProcBox({
+      id: 'gnb-procs-bloodfest',
+      fgColor: 'gnb-color-bloodfest',
+    });
+    this.abilityFuncMap[kAbility.Bloodfest] = () => {
+      bloodfestBox.duration = 0;
+      bloodfestBox.duration = 90;
+    };
+
+    this.statChangeFuncMap['GNB'] = () => {
+      gnashingFangBox.valuescale = this.gcdSkill();
+      gnashingFangBox.threshold = this.gcdSkill() * 3;
+      noMercyBox.valuescale = this.gcdSkill();
+      bloodfestBox.valuescale = this.gcdSkill();
+      bloodfestBox.threshold = this.gcdSkill() * 2 + 1;
+    };
+    // Combos
+    const gnashingFangBox = this.addProcBox({
+      id: 'gnb-procs-gnashingfang',
+      fgColor: 'gnb-color-gnashingfang',
+    });
+    const comboTimer = this.addTimerBar({
+      id: 'gnb-timers-combo',
+      fgColor: 'gnb-color-combo',
+    });
+    const cartridgeComboTimer = this.addTimerBar({
+      id: 'gnb-timers-cartridgecombo',
+      fgColor: 'gnb-color-gnashingfang',
+    });
+    this.abilityFuncMap[kAbility.GnashingFang] = () => {
+      gnashingFangBox.duration = 0;
+      gnashingFangBox.duration = this.CalcGCDFromStat(this.skillSpeed, 30000);
+      cartridgeComboTimer.duration = 0;
+      cartridgeComboTimer.duration = 15;
+    };
+    this.abilityFuncMap[kAbility.SavageClaw] = () => {
+      cartridgeComboTimer.duration = 0;
+      cartridgeComboTimer.duration = 15;
+    };
+    this.abilityFuncMap[kAbility.WickedTalon] = () => {
+      cartridgeComboTimer.duration = 0;
+    };
+    this.comboFuncs.push((skill) => {
+      comboTimer.duration = 0;
+      cartridgeComboTimer.duration = 0;
+      if (this.combo.isFinalSkill)
+        return;
+      if (skill)
+        comboTimer.duration = 15;
     });
 
     this.jobFuncs.push((jobDetail) => {
       cartridgeBox.innerText = jobDetail.cartridges;
+      if (jobDetail.cartridges == 2)
+        cartridgeBox.parentNode.classList.add('full');
+      else
+        cartridgeBox.parentNode.classList.remove('full');
     });
   }
 
@@ -2902,6 +3161,7 @@ class Bars {
   OnChangeZone(e) {
     const zoneInfo = ZoneInfo[e.zoneID];
     this.contentType = zoneInfo ? zoneInfo.contentType : 0;
+    this.dotTarget = [];
 
     this.UpdateFoodBuff();
     if (this.buffTracker)
@@ -3124,6 +3384,52 @@ class Bars {
           this.buffTracker.onUseAbility(m.groups.id, m.groups);
       }
     }
+    // For extremely complex BRD
+    if (this.job != 'BRD')
+      return;
+    if (!this.dotTarget)
+      this.dotTarget = [];
+    const brdDoTs = Object.freeze([
+      EffectId.Stormbite,
+      EffectId.Windbite,
+      EffectId.CausticBite,
+      EffectId.VenomousBite,
+    ]);
+    if (type === '26') {
+      let m = log.match(kMobGainsEffectFromYouRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        if (Object.values(brdDoTs).includes(effectId))
+          this.dotTarget.push(m.groups.targetId);
+        let f = this.mobGainEffectFromYouFuncMap[effectId];
+        if (f)
+          f(name, m.groups);
+      }
+    } else if (type === '30') {
+      let m = log.match(kMobLosesEffectFromYouRegex);
+      if (m) {
+        const effectId = m.groups.effectId.toUpperCase();
+        if (Object.values(brdDoTs).includes(effectId)) {
+          const index = this.dotTarget.indexOf(m.groups.targetId);
+          if (index > -1)
+            this.dotTarget.splice(index, 1);
+        }
+      }
+    } else if (type === '21' || type === '22') {
+      let m = log.match(kYouUseAbilityRegex);
+      if (m) {
+        if (this.dotTarget.includes(m.groups.targetId))
+          this.lastAttackedDotTarget = m.groups.targetId;
+      }
+    } else if (type === '24') {
+      // line[2] is dotted target id.
+      // lastAttackedTarget, lastDotTarget may not be maintarget,
+      // but lastAttackedDotTarget must be your main target.
+      if (line[2] === this.lastAttackedDotTarget &&
+        line[4] === 'DoT' &&
+        line[5] === '0') // 0 if not fleld setting DoT
+        this.UpdateDotTimer();
+    }
   }
 
   OnLogEvent(e) {
@@ -3164,7 +3470,7 @@ class Bars {
         if (log[16] == '5' || log[16] == '6') {
           // use of GP Potion
           let cordialRegex = Regexes.ability({ source: this.me, id: '20(017FD|F5A3D|F844F|0420F|0317D)' });
-          if (log.match(cordialRegex)) {
+          if (cordialRegex.test(log)) {
             this.gpPotion = true;
             setTimeout(() => {
               this.gpPotion = false;
@@ -3198,7 +3504,7 @@ class Bars {
 
 let gBars;
 
-UserConfig.getUserConfigLocation('jobs', function() {
+UserConfig.getUserConfigLocation('jobs', Options, function() {
   addOverlayListener('onPlayerChangedEvent', function(e) {
     gBars.OnPlayerChanged(e);
   });

@@ -1,12 +1,13 @@
 'use strict';
 
 class SeaBase {
-  constructor() {
+  constructor(options) {
     this._dbName = 'seabase';
     this._dbVersion = 1;
     this._storeName = 'catches';
     this.db = null;
-    this.parserLang = Options.ParserLanguage;
+    this.options = options;
+    this.parserLang = this.options.ParserLanguage;
   }
 
   findKey(obj, val) {
@@ -22,28 +23,26 @@ class SeaBase {
   }
 
   getConnection() {
-    let _this = this;
+    return new Promise((resolve, reject) => {
+      let req = window.indexedDB.open(this._dbName, this._dbVersion);
 
-    return new Promise(function(resolve, reject) {
-      let req = window.indexedDB.open(_this._dbName, _this._dbVersion);
-
-      req.onsuccess = function(event) {
-        resolve(this.result);
+      req.onsuccess = (event) => {
+        resolve(req.result);
       };
 
-      req.onerror = function(event) {
-        reject(this.error);
+      req.onerror = (event) => {
+        reject(req.error);
       };
 
-      req.onupgradeneeded = function(event) {
+      req.onupgradeneeded = (event) => {
         let db = event.target.result;
         let tx = event.target.transaction;
         let objectStore;
 
-        if (!db.objectStoreNames.contains(_this._storeName))
-          objectStore = db.createObjectStore(_this._storeName, { autoIncrement: true });
+        if (!db.objectStoreNames.contains(this._storeName))
+          objectStore = db.createObjectStore(this._storeName, { autoIncrement: true });
         else
-          objectStore = tx.objectStore(_this._storeName);
+          objectStore = tx.objectStore(this._storeName);
 
 
         if (!objectStore.indexNames.contains('fish'))
@@ -54,7 +53,7 @@ class SeaBase {
           objectStore.createIndex('fishbaitchum', ['fish', 'bait', 'chum'], { unique: false });
 
 
-        tx.oncomplete = function(event) {
+        tx.oncomplete = (event) => {
           resolve(db);
         };
       };
@@ -70,7 +69,7 @@ class SeaBase {
     let q1;
     let q3;
 
-    times.sort(function(a, b) {
+    times.sort((a, b) => {
       return a - b;
     });
 
@@ -145,7 +144,6 @@ class SeaBase {
   addCatch(data) {
     // Add a catch to the database
     let commit = true;
-    let _this = this;
 
     // Make sure we have complete data before recording
     let keys = ['fish', 'bait', 'place', 'castTimestamp', 'hookTime', 'reelTime', 'chum', 'snagging'];
@@ -161,9 +159,9 @@ class SeaBase {
     if (!commit)
       return false;
 
-    this.getConnection().then(function(db) {
-      let tx = db.transaction(_this._storeName, 'readwrite');
-      let store = tx.objectStore(_this._storeName);
+    this.getConnection().then((db) => {
+      let tx = db.transaction(this._storeName, 'readwrite');
+      let store = tx.objectStore(this._storeName);
 
       store.add(data);
     });
@@ -263,14 +261,14 @@ class SeaBase {
   queryHookTimes(index, fish, bait, chum) {
     let times = [];
 
-    return new Promise(function(resolve, reject) {
+    return new Promise((resolve, reject) => {
       index.openCursor(IDBKeyRange.only([fish.id.toString(), bait.id, chum ? 1 : 0]))
-        .onsuccess = function(event) {
+        .onsuccess = (event) => {
           let cursor = event.target.result;
 
           if (cursor) {
             times.push(cursor.value.hookTime);
-            if (times.length < Options.IQRHookQuantity)
+            if (times.length < this.options.IQRHookQuantity)
               cursor.continue();
             else
               resolve(times);
@@ -282,24 +280,22 @@ class SeaBase {
   }
 
   getHookTimes(fish, bait, chum) {
-    let _this = this;
-
     if (!fish || !bait) {
-      return new Promise(function(resolve, reject) {
+      return new Promise((resolve, reject) => {
         resolve();
       });
     }
 
-    return new Promise(function(resolve, reject) {
-      _this.getConnection().then(function(db) {
-        let tx = db.transaction(_this._storeName, 'readwrite');
-        let store = tx.objectStore(_this._storeName);
+    return new Promise((resolve, reject) => {
+      this.getConnection().then((db) => {
+        let tx = db.transaction(this._storeName, 'readwrite');
+        let store = tx.objectStore(this._storeName);
         let index = store.index('fishbaitchum');
 
-        _this.queryHookTimes(index, fish, bait, chum).then(function(times) {
+        this.queryHookTimes(index, fish, bait, chum).then((times) => {
           if (!times.length)
             resolve({ min: undefined, max: undefined });
-          resolve(_this.normalizeHooks(times));
+          resolve(this.normalizeHooks(times));
         });
       });
     });
@@ -308,13 +304,13 @@ class SeaBase {
   queryTug(index, fish) {
     let reelTimes = [];
 
-    return new Promise(function(resolve, reject) {
-      index.openCursor(IDBKeyRange.only(fish.id.toString())).onsuccess = function(event) {
+    return new Promise((resolve, reject) => {
+      index.openCursor(IDBKeyRange.only(fish.id.toString())).onsuccess = (event) => {
         let cursor = event.target.result;
 
         if (cursor) {
           reelTimes.push(cursor.value.reelTime);
-          if (reelTimes.length < Options.IQRTugQuantity)
+          if (reelTimes.length < this.options.IQRTugQuantity)
             cursor.continue();
           else
             resolve(reelTimes);
@@ -326,28 +322,26 @@ class SeaBase {
   }
 
   getTug(fish) {
-    let _this = this;
-
-    return new Promise(function(resolve, reject) {
-      _this.getConnection().then(function(db) {
-        let tx = db.transaction(_this._storeName, 'readwrite');
-        let store = tx.objectStore(_this._storeName);
+    return new Promise((resolve, reject) => {
+      this.getConnection().then((db) => {
+        let tx = db.transaction(this._storeName, 'readwrite');
+        let store = tx.objectStore(this._storeName);
         let index = store.index('fish');
 
         let tug = gFisherData['tugs'][fish.id];
         if (tug) {
           resolve(tug);
         } else {
-          _this.queryTug(index, fish).then(function(reelTimes) {
+          this.queryTug(index, fish).then((reelTimes) => {
             if (!reelTimes.length)
               resolve(0);
 
-            let thresholds = _this.getIQRThresholds(reelTimes);
+            let thresholds = this.getIQRThresholds(reelTimes);
 
             let sum = 0;
             let validValues = 0;
 
-            reelTimes.forEach(function(time) {
+            reelTimes.forEach((time) => {
               if (time >= thresholds.low && time <= thresholds.high) {
                 sum += time;
                 validValues++;
@@ -376,3 +370,6 @@ class SeaBase {
     });
   }
 }
+
+if (typeof module !== 'undefined' && module.exports)
+  module.exports = SeaBase;

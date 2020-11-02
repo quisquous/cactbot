@@ -505,7 +505,7 @@ const translate = (data, obj) => {
       netRegex: NetRegexes.headMarker({ id: '00A1', capture: false }),
       condition: (data) => data.ultimateSeen && data.ninja || data.isAddPhase,
       suppressSeconds: 2,
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'WOLEx Perfect Decimation',
@@ -553,7 +553,7 @@ const translate = (data, obj) => {
       id: 'WOLEx Absolute Holy',
       netRegex: NetRegexes.headMarker({ id: '00A1' }),
       condition: (data) => !data.deluge && !data.ninja && !data.isAddPhase,
-      response: Responses.stackOn(),
+      response: Responses.stackMarkerOn(),
     },
     {
       id: 'WOLEx Coruscant Saber Out',

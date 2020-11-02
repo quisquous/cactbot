@@ -1,7 +1,7 @@
 # Susano Extreme
 # Original timeline from: https://www.reddit.com/r/ffxiv/comments/6lh5gu/act_timeline_kaizoban_for_susanolakshmi_ex/
 
-0 "--Reset--" sync /Removing combatant Susano/ window 10000 jump 0
+0.0 "--Reset--" sync / 21:........:40000010:/ window 10000 jump 0
 
 ### Phase 1 ###
 1 "--Start--" sync /Let the revels begin/ window 10000

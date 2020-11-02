@@ -10,7 +10,7 @@
 // jobs remotely due to gauge data being local and many bits of information
 // loaded from memory.
 
-function addPlayerChangedOverrideListener(playerName, func) {
+const addPlayerChangedOverrideListener = function(playerName, func) {
   if (!func)
     return;
 
@@ -48,13 +48,13 @@ function addPlayerChangedOverrideListener(playerName, func) {
     if (lastPlayerChangedEvent)
       onPlayerChanged(lastPlayerChangedEvent);
   });
-}
+};
 
 // Common UI for selecting a player.
 // Only used for raidboss, but could ostensibly be reused for oopsy,
 // if there's ever player specific stuff.
 // TODO: it would be nice to show the "connected / not connected" bit in the UI.
-function addRemotePlayerSelectUI(lang) {
+const addRemotePlayerSelectUI = function(lang) {
   const instructionTextByLang = {
     en: 'Select a Player\n(the list will update when in an instance)',
     de: 'Wähle einen Spieler\n(Diese Liste aktualisiert sich, sobald eine Instance betretten wird)',
@@ -218,4 +218,11 @@ function addRemotePlayerSelectUI(lang) {
     buildList(e.party);
   });
   buildList([]);
+};
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = {
+    addPlayerChangedOverrideListener: addPlayerChangedOverrideListener,
+    addRemotePlayerSelectUI: addRemotePlayerSelectUI,
+  };
 }

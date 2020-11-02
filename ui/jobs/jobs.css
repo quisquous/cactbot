@@ -31,6 +31,7 @@
 }
 
 .rdm #right-side-icons,
+.brd #right-side-icons,
 .drg #right-side-icons,
 .whm #right-side-icons,
 .sch #right-side-icons,
@@ -90,6 +91,7 @@
 
 #mp-bar,
 #rdm-bar,
+#gnb-bar,
 #mnk-bar {
   margin-top: 1px;
 }
@@ -114,6 +116,9 @@
   height: 10px;
 }
 
+.whm #hp-bar,
+.sch #hp-bar,
+.ast #hp-bar,
 .drk #hp-bar,
 .pld #hp-bar,
 .blu #hp-bar {
@@ -133,9 +138,11 @@
   background: rgba(30, 30, 30, 0.7);
 }
 
+#gnb-bar,
+#brd-bar,
 #mnk-bar {
   position: relative;
-  width: 202px;
+  width: 201px;
   height: 7px;
   background: rgba(30, 30, 30, 0.7);
 }
@@ -159,6 +166,9 @@
   height: calc(100% - 4px);
 }
 
+#gnb-timers-combo,
+#gnb-timers-cartridgecombo,
+#brd-timers-repertoire,
 #mnk-timers-lightning,
 #mnk-timers-combo {
   display: block;
@@ -170,6 +180,7 @@
 
 /* Relative to #bars */
 #rdm-boxes,
+#brd-boxes,
 #sch-boxes,
 #whm-boxes,
 #smn-boxes,
@@ -188,6 +199,7 @@
 }
 
 #rdm-boxes > div,
+#brd-boxes > div,
 #sch-boxes > div,
 #drg-boxes > div,
 #whm-boxes > div,
@@ -222,6 +234,7 @@
 }
 
 #sch-boxes > div,
+#brd-boxes > div,
 #smn-boxes > div,
 #drg-boxes > div,
 #whm-boxes > div,
@@ -237,6 +250,7 @@
 }
 
 #rdm-boxes .text,
+#brd-boxes .text,
 #sch-boxes .text,
 #smn-boxes .text,
 #drg-boxes .text,
@@ -259,8 +273,10 @@
 }
 
 #sch-boxes .text,
+#gnb-boxes .text,
 #smn-boxes .text,
 #drg-boxes .text,
+#brd-boxes .text,
 #whm-boxes .text,
 #ast-boxes .text,
 #rdm-boxes .text {
@@ -316,6 +332,7 @@
 #whm-procs,
 #blu-procs,
 #drk-procs,
+#gnb-procs,
 #blm-procs {
   position: absolute;
   top: 146px;
@@ -323,6 +340,7 @@
 }
 
 #drg-procs,
+#brd-procs,
 #smn-procs {
   position: absolute;
   top: 146px;
@@ -333,9 +351,11 @@
 #ast-procs-combust,
 #sch-procs-bio,
 #drg-procs-disembowel,
+#brd-procs-causticbite,
 #whm-procs-dia,
 #smn-procs-miasma,
 #blu-procs-offguard,
+#gnb-procs-gnashingfang,
 #blm-procs-fire {
   position: relative;
   display: inline-block;
@@ -343,6 +363,7 @@
 }
 
 #drg-procs-highjump,
+#brd-procs-stormbite,
 #smn-procs-biosmn {
   position: relative;
   display: inline-block;
@@ -350,6 +371,7 @@
 }
 
 #drg-procs-lancecharge,
+#brd-procs-song,
 #smn-procs-energydrain {
   position: relative;
   display: inline-block;
@@ -359,6 +381,7 @@
 #mnk-procs-twinsnakes,
 #ast-procs-draw,
 #whm-procs-assize,
+#gnb-procs-nomercy,
 #sch-procs-aetherflow,
 #blu-procs-torment,
 #blm-dot-thunder {
@@ -370,7 +393,9 @@
 #mnk-procs-demolish,
 #ast-procs-luciddreaming,
 #sch-procs-luciddreaming,
+#gnb-procs-bloodfest,
 #whm-procs-lucid,
+#rdm-procs-lucid,
 #blm-procs-thunder,
 #blu-procs-lucid {
   position: relative;
@@ -379,14 +404,27 @@
 }
 
 #drg-procs-dragonsight,
+#brd-procs-straightshotready,
 #smn-procs-trance {
   position: relative;
   display: inline-block;
   left: 153px;
 }
 
-#smn-stacks,
-#whm-stacks,
+#smn-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 204px;
+  height: 12px;
+}
+
+#whm-stacks {
+  display: flex;
+  margin-top: 1px;
+  width: 206px;
+  height: 12px;
+}
+
 #blm-stacks {
   display: flex;
   margin-top: 1px;
@@ -528,6 +566,10 @@
 
 .rdm-color-black-mana.dim {
   background-color: rgb(13, 76, 80);
+}
+
+.rdm-color-lucid {
+  background-color: rgb(227, 148, 210);
 }
 
 .war-color-beast {
@@ -672,6 +714,46 @@
 
 .mnk-color-demolish {
   background-color: rgb(60, 80, 200);
+}
+
+.brd-color-causticbite {
+  background-color: rgb(182, 68, 235);
+}
+
+.brd-color-stormbite {
+  background-color: rgb(72, 117, 202);
+}
+
+.brd-color-straightshotready {
+  background-color: rgb(240, 130, 80);
+}
+
+.brd-color-song {
+  background-color: rgb(180, 200, 220);
+}
+
+.brd-color-song.minuet {
+  background-color: rgb(100, 150, 100);
+}
+
+.brd-color-song.minuet.full {
+  background-color: rgb(250, 150, 0);
+}
+
+.brd-color-song.ballad {
+  background-color: rgb(143, 90, 143);
+}
+
+.brd-color-song.paeon {
+  background-color: rgb(207, 205, 52);
+}
+
+.brd-color-soulvoice {
+  background-color: rgb(180, 200, 220);
+}
+
+.brd-color-soulvoice.high {
+  background-color: rgb(250, 100, 0);
 }
 
 .whm-color-dia {
@@ -827,6 +909,30 @@
 
 .gnb-color-cartridge {
   background-color: rgb(115, 218, 255);
+}
+
+.gnb-color-cartridge.full {
+  background-color: rgb(250, 86, 45);
+}
+
+.gnb-color-combo {
+  background-color: rgb(180, 200, 220);
+}
+
+.gnb-color-gnashingfang {
+  background-color: rgb(216, 111, 12);
+}
+
+.gnb-color-nomercy {
+  background-color: rgba(232, 127, 127, 0.7);
+}
+
+.gnb-color-nomercy.active {
+  background-color: rgb(232, 127, 127);
+}
+
+.gnb-color-bloodfest {
+  background-color: rgb(9, 81, 98);
 }
 
 .drg-color-disembowel {

@@ -13,7 +13,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2BBC', source: 'ツクヨミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2BBC', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BBC', source: '츠쿠요미', capture: false }),
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'Tsukuyomi Nightfall Spear',
@@ -183,7 +183,7 @@
     {
       id: 'Tsukuyomi Lunacy',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'Tsukuyomi Hagetsu',

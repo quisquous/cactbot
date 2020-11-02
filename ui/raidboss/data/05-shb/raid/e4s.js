@@ -95,7 +95,7 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      response: Responses.stack(),
+      response: Responses.stackMarker(),
     },
     {
       id: 'E4S Voice of the Land',

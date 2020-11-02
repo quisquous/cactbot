@@ -7,7 +7,7 @@
     {
       id: 'T8 Stack',
       netRegex: NetRegexes.headMarker({ id: '0011' }),
-      response: Responses.stackOn('info'),
+      response: Responses.stackMarkerOn('info'),
     },
     {
       id: 'T8 Landmine Start',
