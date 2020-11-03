@@ -94,14 +94,13 @@ hideall "--sync--"
 719.8 "Tumult x2" duration 2.5 #sync /:Titan:282:/ window 28,23
 727.0 "Rock Throw" sync /:Titan:285:/ window 29,28 jump 667.0
  
-### including syncs until a decision is made to keep or remove them. Potential FIX ME!
-734.1 "Landslide" sync /:Titan:28A:/
-740.2 "Rock Buster" sync /:Titan:281:/
-744.2 "Weight Of The Land" sync /:Titan:284:/
-750.3 "Tumult x2" duration 2.5 #sync /:Titan:282:/
-756.5 "Rock Throw" sync /:Titan:285:/
-763.6 "Landslide" sync /:Titan:28A:/
-769.7 "Rock Buster" sync /:Titan:281:/
-773.7 "Weight Of The Land" sync /:Titan:284:/
-779.8 "Tumult x2" duration 2.5 #sync /:Titan:282:/
-787.0 "Rock Throw" sync /:Titan:285:/
+734.1 "Landslide"
+740.2 "Rock Buster"
+744.2 "Weight Of The Land"/
+750.3 "Tumult x2"
+756.5 "Rock Throw"
+763.6 "Landslide"
+769.7 "Rock Buster"
+773.7 "Weight Of The Land"
+779.8 "Tumult x2"
+787.0 "Rock Throw"
