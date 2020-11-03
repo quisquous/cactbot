@@ -945,8 +945,19 @@ let Responses = {
         ja: '自分にアースシェイカー',
         cn: '大地摇动点名',
         ko: '어스징 대상자',
-
       };
+    };
+    return obj;
+  },
+  wakeUp: (sev) => {
+    let obj = {};
+    obj[defaultAlertText(sev)] = {
+      en: 'WAKE UP',
+      de: 'AUFWACHEN',
+      fr: 'RÉVEILLES-TOI',
+      ja: '目を覚めて！',
+      cn: '醒醒！动一动！！',
+      ko: '강제 퇴장 5분 전',
     };
     return obj;
   },
