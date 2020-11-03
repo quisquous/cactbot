@@ -296,13 +296,13 @@
     {
       'locale': 'de',
       'replaceSync': {
-        'Exhibit level VIII will be sealed off': 'Noch 15 Sekunden, bis sich die Testkammer schließt',
+        'Exhibit level VIII': 'Ausstellungssektor VIII',
         'Motherbit': 'Mutterdrohne',
         'Prototype Bit': 'Drohnen-Prototyp',
-        'The Genesis Engine will be sealed off': 'Noch 15 Sekunden, bis sich der Ausstellungssektor VIII schließt',
+        'The Genesis Engine': 'Testkammer',
         'The Ultima Beast': 'ultimativ(?:e|er|es|en) Bestie',
         'The Ultima Warrior': 'ultimativ(?:e|er|es|en) Krieger',
-        'The reality augmentation bay will be sealed off': 'Noch 15 Sekunden, bis sich der Zugang zur Dilatationskammer schließt',
+        'The reality augmentation bay': 'Dilatationskammer',
         'Vocal Guidance System': 'Stimmleitsystem',
       },
       'replaceText': {
@@ -333,10 +333,13 @@
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
+        'Exhibit level VIII': 'Secteur d\'exposition VIII',
         'Motherbit': 'drone mère',
         'Prototype Bit': 'proto-drone',
+        'The Genesis Engine': 'Salle d\'expérimentation',
         'The Ultima Beast': 'Ultima-monstre',
         'The Ultima Warrior': 'Ultima-guerrier',
+        'The reality augmentation bay': 'Salle de distorsion de la réalité',
         'Vocal Guidance System': 'système de guidage vocal',
       },
       'replaceText': {
@@ -367,10 +370,13 @@
       'locale': 'ja',
       'missingTranslations': true,
       'replaceSync': {
+        'Exhibit level VIII': '第VIII展示区',
         'Motherbit': 'マザービット',
         'Prototype Bit': 'プロトビット',
+        'The Genesis Engine': '起動試験室',
         'The Ultima Beast': 'アルテマビースト',
         'The Ultima Warrior': 'アルテマウォリアー',
+        'The reality augmentation bay': '現実拡張室',
         'Vocal Guidance System': '音声ガイダンス',
       },
       'replaceText': {
@@ -401,10 +407,13 @@
       'locale': 'cn',
       'missingTranslations': true,
       'replaceSync': {
+        'Exhibit level VIII': '第八展示区',
         'Motherbit': '浮游炮主板',
         'Prototype Bit': '原型浮游炮',
+        'The Genesis Engine': '启动试验室',
         'The Ultima Beast': '究极神兽',
         'The Ultima Warrior': '究极战士',
+        'The reality augmentation bay': '现实增强室',
         'Vocal Guidance System': '语音向导',
       },
       'replaceText': {
@@ -435,10 +444,13 @@
       'locale': 'ko',
       'missingTranslations': true,
       'replaceSync': {
+        'Exhibit level VIII': '제VIII전시구역',
         'Motherbit': '마더 비트',
         'Prototype Bit': '프로토 비트',
+        'The Genesis Engine': '기동시험실',
         'The Ultima Beast': '알테마 비스트',
         'The Ultima Warrior': '알테마 워리어',
+        'The reality augmentation bay': '현실확장실',
         'Vocal Guidance System': '음성 안내 시스템',
       },
       'replaceText': {
