@@ -161,6 +161,8 @@
       condition: Conditions.targetIsYou(),
       alertText: {
         en: 'Puddle on YOU',
+        cn: '圈圈点名',
+
       },
     },
     {
@@ -182,6 +184,7 @@
           return;
         return {
           en: 'Stack with ' + data.shortName(data[partner]),
+          cn: '靠近' + data.shortName(data[partner]) + '集合',
         };
       },
     },
@@ -214,10 +217,12 @@
         if (matches.effectId === '477') {
           return {
             en: 'Stand on red circle',
+            cn: '站在红圈',
           };
         }
         return {
           en: 'Stand on blue circle',
+          cn: '站在蓝圈',
         };
       },
     },
@@ -266,6 +271,46 @@
       id: 'Fractal Hard Allagan Flare',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       response: Responses.awayFrom(),
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Motherbit': '浮游炮主板',
+        'Prototype Bit': '原型浮游炮',
+        'The Ultima Warrior': '究极战士',
+        'Vocal Guidance System': '语音向导',
+        'The Ultima Beast': '究极神兽',
+        'This humanoid prototype can perfectly replicate': '我们研究出了如何利用斗神力量的方法！',
+        'Utilizing our data on Sophia': '利用斗神的力量去征服斗神！',
+        'Successfully mimicking the Demon Zurvan': '随着对鬼神祖尔宛力量的应用，',
+        'The reality augmentation bay': '现实增强室',
+        'Exhibit level VIII': '第八展示区',
+        'Genesis Engine': '启动试验室',
+      },
+      'replaceText': {
+        'Electrochemical Transfer': '雷力供给',
+        'Aetherochemical Laser': '魔科学激光',
+        'Diffractive Laser': '扩散射线',
+        'Allagan Gravity': '亚拉戈重力',
+        'Citadel Buster': '攻城炮',
+        '(?<! )Aetheroplasm': '以太爆雷',
+        'Ceruleum Vent': '青磷放射',
+        'Primordial Aether': '荒蛮以太',
+        'Infinite Fire/Infinite Ice': '炎之刻印/冰之刻印',
+        'Ratzon': '意志',
+        'Mass Aetheroplasm': '大型以太爆雷',
+        'Dischordant Cleansing': '不平衡之罚',
+        'Northern Star/Southern Star': '北极星/南极星',
+        'Death Spin': '死亡回旋',
+        'Aether Bend': '以太曲折',
+        'Flare Star': '耀星',
+        'Light Pillar': '光柱',
+        'Forborn Beast': '后天野兽',
+        'Demi Ultima': '亚究极',
+        'Allagan Flare': '亚拉戈核爆',
+      },
     },
   ],
 }];
