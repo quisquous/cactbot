@@ -13,7 +13,7 @@ hideall "--sync--"
 
 0 "Start" sync / 00:0839:The reality augmentation bay will be sealed off/
 
-10.1 "Electrochemical Transfer" sync /:Motherbit:27A4:/ window 10,5
+10.1 "Electrochemical Transfer" sync /:Motherbit:27A4:/ window 11,5
 15.7 "--sync--" sync /:Prototype Bit:27AB:/
 18.8 "Aetherochemical Laser" # sync /:Prototype Bit:27AA:/
 20.1 "Diffractive Laser" sync /:Prototype Bit:27A8:/
