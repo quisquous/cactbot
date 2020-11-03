@@ -101,6 +101,7 @@
 04-sb/dungeon/bardams_mettle.txt
 04-sb/dungeon/drowned_city_of_skalla.js
 04-sb/dungeon/fractal_continuum_hard.js
+04-sb/dungeon/fractal_continuum_hard.txt
 04-sb/dungeon/temple_of_the_fist.js
 04-sb/dungeon/temple_of_the_fist.txt
 04-sb/dungeon/the_burn.js
