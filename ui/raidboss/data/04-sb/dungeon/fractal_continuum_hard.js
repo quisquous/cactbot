@@ -99,14 +99,6 @@
         cn: '靠近奇美拉',
         ko: '뇌전의 포효',
       },
-      tts: {
-        en: 'dragon',
-        de: 'drache',
-        fr: 'dragon',
-        ja: '中へ',
-        cn: '靠近奇美拉',
-        ko: '뇌전의 포효',
-      },
     },
     {
       id: 'Fractal Hard Ram Voice Servo',
@@ -124,14 +116,6 @@
         cn: '远离奇美拉',
         ko: '빙결의 포효',
       },
-      tts: {
-        en: 'ram',
-        de: 'widder',
-        fr: 'bélier',
-        ja: '外へ',
-        cn: '远离奇美拉',
-        ko: '빙결의 포효',
-      },
     },
     {
       id: 'Fractal Hard Ram Voice Proto',
@@ -146,14 +130,6 @@
         de: 'Stimme Des Widders',
         fr: 'Voix Du Bélier',
         ja: '氷結の咆哮',
-        cn: '远离奇美拉',
-        ko: '빙결의 포효',
-      },
-      tts: {
-        en: 'ram',
-        de: 'widder',
-        fr: 'bélier',
-        ja: '外へ',
         cn: '远离奇美拉',
         ko: '빙결의 포효',
       },
@@ -200,7 +176,7 @@
       condition: Conditions.targetIsYou(),
       delaySeconds: 0.5,
       infoText: function(data, matches) {
-        let partner = matches.id === '004D' ? '004E' : '004D';
+        const partner = matches.id === '004D' ? '004E' : '004D';
         // If for some reason there is no partner, we get a vulnerability or bleed and are sad.
         if (!data[partner])
           return;
@@ -215,7 +191,7 @@
       delaySeconds: 2,
       suppressSeconds: 2,
       run: function(data) {
-        for (let el of ['004D', '004F'])
+        for (const el of ['004D', '004F'])
           delete data[el];
       },
     },
