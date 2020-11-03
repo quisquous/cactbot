@@ -39,22 +39,4 @@
       },
     },
   ],
-  timelineReplace: [
-    {
-      'locale': 'cn',
-      'replaceSync': {
-        'Titan': '泰坦',
-        'Earthen Fury': '大地之怒',
-      },
-      'replaceText': {
-        'Earthen Fury': '大地之怒',
-        'Geocrush': '大地粉碎',
-        'Landslide': '地裂',
-        'Rock Buster': '碎岩',
-        'Rock Throw': '花岗岩牢狱',
-        'Tumult': '怒震',
-        'Weight Of The Land': '大地之重',
-      },
-    },
-  ],
 }];
