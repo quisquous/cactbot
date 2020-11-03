@@ -96,7 +96,7 @@ hideall "--sync--"
  
 734.1 "Landslide"
 740.2 "Rock Buster"
-744.2 "Weight Of The Land"/
+744.2 "Weight Of The Land"
 750.3 "Tumult x2"
 756.5 "Rock Throw"
 763.6 "Landslide"
