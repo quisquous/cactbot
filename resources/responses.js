@@ -859,18 +859,14 @@ const Responses = {
       },
     };
   },
-  wakeUp: (sev) => {
-    let obj = {};
-    obj[defaultAlertText(sev)] = {
-      en: 'WAKE UP',
-      de: 'AUFWACHEN',
-      fr: 'RÉVEILLES-TOI',
-      ja: '目を覚めて！',
-      cn: '醒醒！动一动！！',
-      ko: '강제 퇴장 5분 전',
-    };
-    return obj;
-  },
+  wakeUp: (sev) => staticResponse(defaultAlarmText(sev), {
+    en: 'WAKE UP',
+    de: 'AUFWACHEN',
+    fr: 'RÉVEILLES-TOI',
+    ja: '目を覚めて！',
+    cn: '醒醒！动一动！！',
+    ko: '강제 퇴장 5분 전',
+  }),
 };
 
 if (typeof module !== 'undefined' && module.exports) {
