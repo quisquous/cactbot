@@ -855,7 +855,7 @@ const Responses = {
         const target = getTarget(matches);
         if (target !== data.me)
           return;
-        return output.earthshaker({ name: source });
+        return output.earthshaker();
       },
     };
   },
