@@ -28,10 +28,12 @@
         if (matches.target !== data.me) {
           return {
             en: 'Break Gaol on ' + data.ShortName(matches.target),
+            cn: '石牢点' + data.ShortName(matches.target),
           };
         }
         return {
           en: 'Gaol on YOU',
+          cn: '石牢点名',
         };
       },
     },
