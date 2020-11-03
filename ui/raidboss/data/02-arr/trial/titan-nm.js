@@ -33,10 +33,12 @@
         if (matches.target !== data.me) {
           return {
             en: 'Break Gaol on ' + data.ShortName(matches.target),
+            de: 'Zerstöre das Gefängnis von ' + data.ShortName(matches.target),
           };
         }
         return {
           en: 'Gaol on YOU',
+          de: 'Gefängnis auf DIR',
         };
       },
     },
