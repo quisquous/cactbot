@@ -16,7 +16,6 @@
     {
       id: 'TitanNm Tumult',
       netRegex: NetRegexes.ability({ id: '282', source: 'Titan', capture: false }),
-      netRegexCn: NetRegexes.ability({ id: '282', source: '泰坦', capture: false }),
       condition: Conditions.caresAboutAOE(),
       suppressSeconds: 2,
       response: Responses.aoe(),
