@@ -82,7 +82,6 @@ const kAbility = {
   ChainStratagem: '1D0C',
   Hypercharge: 'B45',
   Adloquium: 'B9',
-  RabbitMedium: '8E0',
   OneIlmPunch: '48',
   Bootshine: '35',
   FastBlade: '09',
@@ -351,21 +350,21 @@ function setupComboTracker(callback) {
     kAbility.DemonSlice,
     kAbility.DemonSlaughter,
   ]);
-    // NIN
-    comboTracker.AddCombo([
-      kAbility.SpinningEdge,
-      kAbility.GustSlash,
-      kAbility.AeolianEdge,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.SpinningEdge,
-      kAbility.GustSlash,
-      kAbility.ArmorCrush,
-    ]);
-    comboTracker.AddCombo([
-      kAbility.DeathBlossom,
-      kAbility.HakkeMujinsatsu,
-    ]);
+  // NIN
+  comboTracker.AddCombo([
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.AeolianEdge,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.ArmorCrush,
+  ]);
+  comboTracker.AddCombo([
+    kAbility.DeathBlossom,
+    kAbility.HakkeMujinsatsu,
+  ]);
   comboTracker.AddCombo([
     kAbility.FastBlade,
     kAbility.SavageBlade,
