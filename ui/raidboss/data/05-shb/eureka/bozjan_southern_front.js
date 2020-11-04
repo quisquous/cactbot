@@ -85,7 +85,6 @@ const ceIds = {
   timelineReplace: [
     {
       'locale': 'de',
-      'missingTranslations': true,
       'replaceSync': {
         'Bladesmeet': 'Hauptplatz der Wachen',
         'Eaglesight': 'Platz des Kämpferischen Adlers',
@@ -96,7 +95,6 @@ const ceIds = {
     },
     {
       'locale': 'fr',
-      'missingTranslations': true,
       'replaceSync': {
         'Bladesmeet': 'Hall des Lames',
         'Eaglesight': 'Perchoir des Aigles',
@@ -107,7 +105,6 @@ const ceIds = {
     },
     {
       'locale': 'ja',
-      'missingTranslations': true,
       'replaceSync': {
         'Bladesmeet': '剣たちの大広間',
         'Eaglesight': '荒鷲の広場',
