@@ -290,7 +290,7 @@ def main(args):
             continue
 
         # if only combatants was specified and combatant not in the list
-        if args.only_combatant != [] and entry["combatant"] not in args.only_combatant:
+        if args.only_combatant and entry["combatant"] not in args.only_combatant:
             continue
 
         # Ignore aoe spam
@@ -436,7 +436,7 @@ if __name__ == "__main__":
         "--only-combatant",
         nargs="*",
         default=[],
-        help="Combatant names to only pay attantion to, e.g. Aratama Soul",
+        help="Only the listed combatants will generate timeline data, e.g. \"Aratama Soul\"",
     )
     parser.add_argument(
         "-p",
