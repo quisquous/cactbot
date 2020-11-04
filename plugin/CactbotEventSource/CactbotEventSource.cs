@@ -82,7 +82,7 @@ namespace Cactbot {
 
     public delegate void FateEventHandler(JSEvents.FateEvent e);
     public event FateEventHandler OnFateEvent;
-    
+
     public delegate void CEEventHandler(JSEvents.CEEvent e);
     public event CEEventHandler OnCEEvent;
 

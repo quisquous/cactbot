@@ -271,7 +271,7 @@ namespace Cactbot {
       ces.Add(data.ceKey, data);
       client_.DoCEEvent(new JSEvents.CEEvent("add", JObject.FromObject(data)));
     }
-    
+
     private void RemoveCE(CEDirectorData data) {
       if (ces.ContainsKey(data.ceKey)) {
         client_.DoCEEvent(new JSEvents.CEEvent("remove", JObject.FromObject(data)));
