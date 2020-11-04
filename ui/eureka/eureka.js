@@ -12,6 +12,7 @@ let bunnyLabel = {
 let Options = {
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
+  CriticalPopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   timeStrings: {
     weatherFor: {
       en: (nowMs, stopTime) => {
@@ -113,8 +114,10 @@ let Options = {
     },
   },
   Regex: {
+    // de, fr, ja languages all share the English regexes here.
+    // If you ever need to add another language, include all of the regexes for it.
     en: {
-      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
@@ -134,10 +137,15 @@ let Options = {
   },
   ZoneInfo: {
     // Fate IDs
+    //
+    // Eureka
     // Anemos:  https://xivapi.com/search?indexes=Fate&filters=ID>=1328,ID<=1348&columns=Description,Name,Url
     // Pagos:   https://xivapi.com/search?indexes=Fate&filters=ID>=1351,ID<=1369&columns=Description,Name,Url
     // Pyros:   https://xivapi.com/search?indexes=Fate&filters=ID>=1388,ID<=1408&columns=Description,Name,Url
     // Hydatos: https://xivapi.com/search?indexes=Fate&filters=ID>=1412,ID<=1425&columns=Description,Name,Url
+
+    // Bozja
+    // Southern Front: https://xivapi.com/search?indexes=Fate&filters=ID%3E=1597,ID%3C=1628&columns=Description,Name,Url
     [ZoneId.TheForbiddenLandEurekaAnemos]: {
       mapImage: 'anemos.png',
       mapWidth: 1300,
@@ -1673,6 +1681,425 @@ let Options = {
         },
       },
     },
+    [ZoneId.TheBozjanSouthernFront]: {
+      mapImage: 'bozjasouthern.png',
+      mapWidth: 1600,
+      mapHeight: 1400,
+      shortName: 'bozjasouthern',
+      hasTracker: false,
+      dontShowInactive: true,
+      treatNMsAsSkirmishes: true,
+      mapToPixelXScalar: 47.911,
+      mapToPixelXConstant: -292.56,
+      mapToPixelYScalar: 48.938,
+      mapToPixelYConstant: -349.22,
+      nms: {
+        sneak: {
+          label: {
+            en: 'Sneak',
+          },
+          x: 20.3,
+          y: 26.8,
+          fateID: 1597,
+        },
+        beasts: {
+          label: {
+            en: 'Beasts',
+          },
+          x: 20.3,
+          y: 26.8,
+          fateID: 1599,
+        },
+        robots: {
+          label: {
+            en: 'Robots',
+          },
+          x: 24.8,
+          y: 27.5,
+          fateID: 1598,
+        },
+        unrest: {
+          label: {
+            en: 'Unrest',
+          },
+          x: 24.8,
+          y: 27.5,
+          fateID: 1600,
+        },
+        machine: {
+          label: {
+            en: 'Machine',
+          },
+          x: 28.4,
+          y: 29.3,
+          fateID: 1601,
+        },
+        plants: {
+          label: {
+            en: 'Plants',
+          },
+          x: 34.4,
+          y: 29.3,
+          fateID: 1602,
+        },
+        seeq: {
+          label: {
+            en: 'Seeq',
+          },
+          x: 28.9,
+          y: 26.1,
+          fateID: 1603,
+        },
+        pets: {
+          label: {
+            en: 'Pets',
+          },
+          x: 17.3,
+          y: 26.6,
+          fateID: 1604,
+        },
+        firstlaw: {
+          label: {
+            en: 'First Law',
+          },
+          x: 34.4,
+          y: 29.3,
+          fateID: 1605,
+        },
+        heal: {
+          label: {
+            en: 'Heal',
+          },
+          x: 28.9,
+          y: 26.1,
+          fateID: 1606,
+        },
+        mash: {
+          label: {
+            en: 'Mash',
+          },
+          x: 31.3,
+          y: 22.0,
+          fateID: 1607,
+        },
+        alert: {
+          label: {
+            en: 'Alert',
+          },
+          x: 27.3,
+          y: 17.7,
+          fateID: 1608,
+        },
+        unicorn: {
+          label: {
+            en: 'Unicorn',
+          },
+          x: 32.3,
+          y: 17.0,
+          fateID: 1609,
+        },
+        recreation: {
+          label: {
+            en: 'Recreation',
+          },
+          x: 25.6,
+          y: 22.6,
+          fateID: 1610,
+        },
+        element: {
+          label: {
+            en: 'Element',
+          },
+          x: 17.5,
+          y: 23.4,
+          fateID: 1611,
+        },
+        heavyboots: {
+          label: {
+            en: 'Boots',
+          },
+          x: 31.3,
+          y: 22.0,
+          fateID: 1612,
+        },
+        camping: {
+          label: {
+            en: 'Camping',
+          },
+          x: 17.5,
+          y: 23.4,
+          fateID: 1613,
+        },
+        scavengers: {
+          label: {
+            en: 'Scavengers',
+          },
+          x: 25.6,
+          y: 22.6,
+          fateID: 1614,
+        },
+        helpwanted: {
+          label: {
+            en: 'Help Wanted',
+          },
+          x: 18.3,
+          y: 20.7,
+          fateID: 1615,
+        },
+        pyromancer: {
+          label: {
+            en: 'Pyromancer',
+          },
+          x: 18.3,
+          y: 20.7,
+          fateID: 1616,
+        },
+        rainbow: {
+          label: {
+            en: 'Rainbow',
+          },
+          x: 25.1,
+          y: 15.0,
+          fateID: 1617,
+        },
+        wildbunch: {
+          label: {
+            en: 'Wild Bunch',
+          },
+          x: 21.0,
+          y: 14.3,
+          fateID: 1618,
+        },
+        familyotheranimals: {
+          label: {
+            en: 'Family',
+          },
+          x: 11.0,
+          y: 14.6,
+          fateID: 1619,
+        },
+        mechanicalman: {
+          label: {
+            en: 'Mechanical Man',
+          },
+          x: 20.8,
+          y: 17.7,
+          fateID: 1620,
+        },
+        murder: {
+          label: {
+            en: 'Murder',
+          },
+          x: 14.0,
+          y: 15.3,
+          fateID: 1621,
+        },
+        seeking: {
+          label: {
+            en: 'Seeking',
+          },
+          x: 24.8,
+          y: 17.1,
+          fateID: 1622,
+        },
+        suppliesparty: {
+          label: {
+            en: 'Supplies',
+          },
+          x: 21.0,
+          y: 14.3,
+          fateID: 1623,
+        },
+        demonic: {
+          label: {
+            en: 'Demonic',
+          },
+          x: 11.1,
+          y: 20.2,
+          fateID: 1624,
+        },
+        absentfriends: {
+          label: {
+            en: 'Absent',
+          },
+          x: 13.8,
+          y: 18.3,
+          fateID: 1625,
+        },
+        steelflame: {
+          label: {
+            en: 'Steel',
+          },
+          x: 13.8,
+          y: 18.3,
+          fateID: 1626,
+        },
+        dogsofwar: {
+          label: {
+            en: 'Dogs',
+          },
+          x: 14.0,
+          y: 15.3,
+          fateID: 1627,
+        },
+        warmachines: {
+          label: {
+            en: 'War',
+          },
+          x: 11.1,
+          y: 20.2,
+          fateID: 1628,
+        },
+        castrumlacuslitore: {
+          label: {
+            en: 'Castrum',
+          },
+          x: 18.9,
+          y: 12.6,
+          isCritical: true,
+          ceKey: 0,
+          respawnMinutes: 60,
+        },
+        killitwithfire: {
+          label: {
+            en: 'Kill It With Fire',
+          },
+          x: 17.4,
+          y: 26.9,
+          isCritical: true,
+          ceKey: 1,
+        },
+        bayinghounds: {
+          label: {
+            en: 'Hounds',
+          },
+          x: 22.8,
+          y: 28.8,
+          isCritical: true,
+          ceKey: 2,
+        },
+        vigilforthelost: {
+          label: {
+            en: 'Vigil',
+          },
+          x: 28.4,
+          y: 29.5,
+          isCritical: true,
+          ceKey: 3,
+        },
+        aceshigh: {
+          label: {
+            en: 'Aces High',
+          },
+          x: 32.3,
+          y: 26.8,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 4,
+        },
+        shadowdeathshand: {
+          label: {
+            en: 'Shadow',
+          },
+          x: 36.5,
+          y: 25.8,
+          isCritical: true,
+          ceKey: 5,
+        },
+        finalfurlong: {
+          label: {
+            en: 'Final Furlong',
+          },
+          x: 33.3,
+          y: 17.5,
+          isCritical: true,
+          ceKey: 6,
+        },
+        choctober: {
+          label: {
+            en: 'Choctober',
+          },
+          x: 27.3,
+          y: 17.7,
+          isCritical: true,
+          ceKey: 7,
+        },
+        beastofman: {
+          label: {
+            en: 'Beast of Man',
+          },
+          x: 23.3,
+          y: 20.4,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 8,
+        },
+        firesofwar: {
+          label: {
+            en: 'Fires of War',
+          },
+          x: 20.8,
+          y: 23.9,
+          isCritical: true,
+          ceKey: 9,
+        },
+        patriotgames: {
+          label: {
+            en: 'Patriot Games',
+          },
+          x: 14.2,
+          y: 21.2,
+          isCritical: true,
+          ceKey: 10,
+        },
+        trampledunderhoof: {
+          label: {
+            en: 'Trampled',
+          },
+          x: 9.9,
+          y: 18.1,
+          isCritical: true,
+          ceKey: 11,
+        },
+        flameswenthigher: {
+          label: {
+            en: 'Flames',
+          },
+          x: 18.8,
+          y: 15.9,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 12,
+        },
+        metalfoxchaos: {
+          label: {
+            en: 'Metal Fox Chaos',
+          },
+          x: 13.8,
+          y: 18.3,
+          isCritical: true,
+          ceKey: 13,
+        },
+        riseoftherobots: {
+          label: {
+            en: 'Rise',
+          },
+          x: 21.2,
+          y: 17.6,
+          isCritical: true,
+          ceKey: 14,
+        },
+        wherestrodebehemoth: {
+          label: {
+            en: 'Behemoth',
+          },
+          x: 24.2,
+          y: 14.9,
+          isCritical: true,
+          ceKey: 15,
+        },
+      },
+    },
   },
 };
 
@@ -1700,14 +2127,21 @@ class EurekaTracker {
     this.ResetZone();
     this.updateTimesHandle = null;
     this.fateQueue = [];
+    this.CEQueue = [];
   }
 
-  TransByParserLang(obj) {
-    return obj[this.options.ParserLanguage] || obj['en'];
+  TransByParserLang(obj, key) {
+    const fromObj = obj[this.options.ParserLanguage] || obj['en'];
+    if (!key)
+      return fromObj;
+    return fromObj ? fromObj[key] : obj['en'][key];
   }
 
-  TransByDispLang(obj) {
-    return obj[this.options.DisplayLanguage] || obj['en'];
+  TransByDispLang(obj, key) {
+    const fromObj = obj[this.options.DisplayLanguage] || obj['en'];
+    if (!key)
+      return fromObj;
+    return fromObj ? fromObj[key] : obj['en'][key];
   }
 
   SetStyleFromMap(style, mx, my) {
@@ -1751,10 +2185,17 @@ class EurekaTracker {
     this.SetStyleFromMap(style, mx, my);
   }
 
-  AddElement(container, nm) {
+  AddElement(container, nmKey) {
+    const nm = this.nms[nmKey];
     let label = document.createElement('div');
     label.classList.add('nm');
-    label.id = nm;
+
+    if (nm.isCritical)
+      label.classList.add('critical');
+    if (this.zoneInfo.dontShowInactive)
+      label.classList.add('nm-hidden');
+
+    label.id = nmKey;
 
     this.SetStyleFromMap(label.style, nm.x, nm.y);
 
@@ -1794,14 +2235,17 @@ class EurekaTracker {
     this.nmKeys = Object.keys(this.nms);
 
     let container = document.getElementById('nm-labels');
+    container.classList.add(this.zoneInfo.shortName);
 
-    for (let i = 0; i < this.nmKeys.length; ++i)
-      this.AddElement(container, this.nms[this.nmKeys[i]]);
+    for (const key of this.nmKeys)
+      this.AddElement(container, key);
 
 
     this.fairy = this.zoneInfo.fairy;
-    let fairyName = this.TransByParserLang(this.fairy);
-    this.fairy.regex = Regexes.addedCombatantFull({ name: fairyName });
+    if (this.fairy) {
+      let fairyName = this.TransByParserLang(this.fairy);
+      this.fairy.regex = Regexes.addedCombatantFull({ name: fairyName });
+    }
     this.playerElement = document.createElement('div');
     this.playerElement.classList.add('player');
     container.appendChild(this.playerElement);
@@ -1811,6 +2255,7 @@ class EurekaTracker {
     let container = document.getElementById('nm-labels');
     container.innerHTML = '';
     this.currentTracker = null;
+    container.className = '';
   }
 
   OnPlayerChange(e) {
@@ -1832,15 +2277,17 @@ class EurekaTracker {
         aspect.classList.remove(aspect.classList.item(0));
       aspect.classList.add('aspect-ratio-' + this.zoneInfo.shortName);
 
-      document.getElementById('map-image').src = this.zoneInfo.mapImage;
+      if (this.zoneInfo.mapImage) {
+        document.getElementById('map-image').src = this.zoneInfo.mapImage;
+        window.clearInterval(this.updateTimesHandle);
+        this.updateTimesHandle = window.setInterval(() => this.UpdateTimes(),
+            this.options.RefreshRateMs);
+        container.classList.remove('hide');
+      }
       this.InitNMs();
       this.ProcessFateQueue();
+      this.ProcessCEQueue();
       this.UpdateTimes();
-      container.classList.remove('hide');
-      window.clearInterval(this.updateTimesHandle);
-      this.updateTimesHandle = window.setInterval((function() {
-        this.UpdateTimes();
-      }).bind(this), this.options.RefreshRateMs);
     } else {
       if (this.updateTimesHandle)
         window.clearInterval(this.updateTimesHandle);
@@ -1861,36 +2308,60 @@ class EurekaTracker {
   }
 
   OnFatePop(fate) {
-    fate.element.classList.add('nm-pop');
+    if (fate.element.classList.contains('nm-hidden'))
+      fate.element.classList.remove('nm-hidden');
+
+    if (fate.isCritical)
+      fate.element.classList.add('critical-pop');
+    else
+      fate.element.classList.add('nm-pop');
+
     fate.element.classList.remove('nm-down');
     fate.lastPopTimeMsLocal = +new Date();
     fate.respawnTimeMsLocal = this.RespawnTime(fate);
 
     if (fate.bunny) {
-      if (this.options.BunnyPopSound && this.options.BunnyPopVolume) {
-        let audio = new Audio(this.options.BunnyPopSound);
-        audio.volume = this.options.BunnyPopVolume;
-        audio.play();
-      }
+      const shouldPlay = this.options.PopNoiseForBunny;
+      if (shouldPlay && this.options.BunnyPopSound && this.options.BunnyPopVolume)
+        this.PlaySound(this.options.BunnyPopSound, this.options.BunnyPopVolume);
+    } else if (fate.isCritical) {
+      const shouldPlay = fate.isDuel && this.options.PopNoiseForDuel ||
+          !fate.isDuel && this.options.PopNoiseForCriticalEngagement;
+      if (shouldPlay && this.options.CriticalPopSound && this.options.CriticalPopVolume)
+        this.PlaySound(this.options.CriticalPopSound, this.options.CriticalPopVolume);
     } else {
-      if (this.options.PopSound && this.options.PopVolume) {
-        let audio = new Audio(this.options.PopSound);
-        audio.volume = this.options.PopVolume;
-        audio.play();
-      }
+      const shouldPlay = this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
+          !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
+      if (shouldPlay && this.options.PopSound && this.options.PopVolume)
+        this.PlaySound(this.options.PopSound, this.options.PopVolume);
     }
   }
 
+  PlaySound(sound, volume) {
+    let audio = new Audio(sound);
+    audio.volume = volume;
+    audio.play();
+  }
+
   OnFateUpdate(fate, percent) {
-    if (fate.element.classList.contains('nm-pop'))
+    if (fate.element.classList.contains('nm-pop') || fate.element.classList.contains('critical-pop'))
       fate.progressElement.innerText = percent + '%';
   }
 
   OnFateKill(fate) {
     this.UpdateTimes();
     if (fate.element.classList.contains('nm-pop')) {
+      if (this.zoneInfo.dontShowInactive)
+        fate.element.classList.add('nm-hidden');
       fate.element.classList.add('nm-down');
       fate.element.classList.remove('nm-pop');
+      fate.progressElement.innerText = null;
+      return;
+    } else if (fate.element.classList.contains('critical-pop')) {
+      if (this.zoneInfo.dontShowInactive)
+        fate.element.classList.add('nm-hidden');
+      fate.element.classList.add('critical-down');
+      fate.element.classList.remove('critical-pop');
       fate.progressElement.innerText = null;
       return;
     }
@@ -1899,6 +2370,11 @@ class EurekaTracker {
   ProcessFateQueue() {
     while (this.fateQueue.length != 0)
       this.OnFate(this.fateQueue.pop());
+  }
+
+  ProcessCEQueue() {
+    while (this.CEQueue.length != 0)
+      this.OnCE(this.CEQueue.pop());
   }
 
   UpdateTimes() {
@@ -1918,7 +2394,7 @@ class EurekaTracker {
         let weather = getWeather(nowMs, this.zoneId);
         let weatherIcon = gWeatherIcons[primaryWeather];
         let weatherStr;
-        if (weather == primaryWeather) {
+        if (weather === primaryWeather) {
           let stopTime = findNextWeatherNot(nowMs, this.zoneId, primaryWeather);
           weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
         } else {
@@ -1966,6 +2442,12 @@ class EurekaTracker {
 
     document.getElementById('label-tracker').innerHTML = this.currentTracker;
 
+    // TODO: don't early out here, because it means bozja can't show a timer.
+    // Instead, maybe add a per-zone default respawn time which, if null/zero,
+    // means don't show respawn times unless specified.
+    if (this.zoneInfo.shortName === 'bozjasouthern')
+      return;
+
     for (let i = 0; i < this.nmKeys.length; ++i) {
       let nm = this.nms[this.nmKeys[i]];
 
@@ -1994,7 +2476,7 @@ class EurekaTracker {
         }
       }
 
-      if (nm.time == 'Night') {
+      if (nm.time === 'Night') {
         let isNight = isNightTime(respawnMs);
         if (!isNight) {
           let nextNight = findNextNight(respawnMs);
@@ -2013,7 +2495,7 @@ class EurekaTracker {
           respawnIcon = gWeatherIcons[nm.weather];
           openUntil = weatherStartTime;
         }
-        if (nm.time == 'Night') {
+        if (nm.time === 'Night') {
           respawnIcon = gNightIcon;
           openUntil = findNextDay(nowMs);
         }
@@ -2074,27 +2556,32 @@ class EurekaTracker {
   OnLog(e) {
     if (!this.zoneInfo)
       return;
-    for (let idx = 0; idx < e.detail.logs.length; idx++) {
-      let log = e.detail.logs[idx];
-      let gRegex = this.TransByParserLang(this.options.Regex);
-      let gFlagRegex = gRegex['gFlagRegex'];
+    for (const log of e.detail.logs) {
+      let gFlagRegex = this.TransByParserLang(this.options.Regex, 'gFlagRegex');
       let match = log.match(gFlagRegex);
       if (match)
         this.AddFlag(match[2], match[3], match[1], match[4]);
-      let gTrackerRegex = gRegex['gTrackerRegex'];
+
+      if (this.fairy) {
+        if (log.includes(' 03:') || log.includes('00:0839:')) {
+          match = log.match(this.fairy.regex);
+          if (match)
+            this.AddFairy(match.groups);
+        }
+      }
+
+      if (!this.zoneInfo.hasTracker)
+        return;
+
+      let gTrackerRegex = this.TransByParserLang(this.options.Regex, 'gTrackerRegex');
       match = log.match(gTrackerRegex);
       if (match)
         this.currentTracker = match[1];
-      let gImportRegex = gRegex['gImportRegex'];
+      let gImportRegex = this.TransByParserLang(this.options.Regex, 'gImportRegex');
       match = log.match(gImportRegex);
       if (match) {
         this.ImportFromTracker(match[2]);
         continue;
-      }
-      if (log.includes(' 03:') || log.includes('00:0839:')) {
-        match = log.match(this.fairy.regex);
-        if (match)
-          this.AddFairy(match.groups);
       }
     }
   }
@@ -2112,7 +2599,7 @@ class EurekaTracker {
     case 'add':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFatePop(nm);
           return;
         }
@@ -2121,7 +2608,7 @@ class EurekaTracker {
     case 'remove':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFateKill(nm);
           return;
         }
@@ -2130,11 +2617,46 @@ class EurekaTracker {
     case 'update':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFateUpdate(nm, e.detail.progress);
           return;
         }
       }
+      break;
+    }
+  }
+
+  OnCE(e) {
+    // Upon entering Eureka we usually receive the CE info before
+    // this.zoneInfo is loaded, so lets store the events until we're
+    // able to process them.
+    // TODO: don't make pop noises for CEs that have already started.
+
+    if (!this.zoneInfo) {
+      this.CEQueue.push(e);
+      return;
+    }
+
+    let nm = null;
+    for (const key of this.nmKeys) {
+      if (e.detail.data.ceKey == this.nms[key].ceKey) {
+        nm = this.nms[key];
+        break;
+      }
+    }
+    if (!nm)
+      return;
+
+    switch (e.detail.eventType) {
+    case 'add':
+      this.OnFatePop(nm);
+      break;
+    case 'remove':
+      this.OnFateKill(nm);
+      break;
+    case 'update':
+      if (e.detail.data.status === 3)
+        this.OnFateUpdate(nm, e.detail.data.progress);
       break;
     }
   }
@@ -2215,7 +2737,7 @@ class EurekaTracker {
 
     window.setTimeout(function() {
       // Changing zones can also orphan all the labels.
-      if (label.parentElement == container)
+      if (label.parentElement === container)
         container.removeChild(label);
     }, this.options.FlagTimeoutMs);
   }
@@ -2239,6 +2761,9 @@ UserConfig.getUserConfigLocation('eureka', Options, function(e) {
   });
   addOverlayListener('onFateEvent', function(e) {
     gTracker.OnFate(e);
+  });
+  addOverlayListener('onCEEvent', function(e) {
+    gTracker.OnCE(e);
   });
 
   gTracker = new EurekaTracker(Options);
