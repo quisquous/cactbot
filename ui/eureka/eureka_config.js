@@ -22,6 +22,7 @@ UserConfig.registerOptions('eureka', {
       id: 'PopNoiseForNM',
       name: {
         en: 'Play pop sound for NMs',
+        de: 'Spiele Pop-Sound ab für NMs',
       },
       type: 'checkbox',
       default: true,
@@ -30,6 +31,7 @@ UserConfig.registerOptions('eureka', {
       id: 'PopNoiseForBunny',
       name: {
         en: 'Play pop sound for bunny fates',
+        de: 'Spiele Pop-Sound ab für Bunny-Fates',
       },
       type: 'checkbox',
       default: true,
@@ -38,6 +40,7 @@ UserConfig.registerOptions('eureka', {
       id: 'PopNoiseForSkirmish',
       name: {
         en: 'Play pop sound for skirmishes',
+        de: 'Spiele Pop-Sound ab für Scharmützel',
       },
       type: 'checkbox',
       default: false,
@@ -46,6 +49,7 @@ UserConfig.registerOptions('eureka', {
       id: 'PopNoiseForCriticalEngagement',
       name: {
         en: 'Play pop sound for critical engagements',
+        de: 'Spiele Pop-Sound ab für Kritische Gefechte',
       },
       type: 'checkbox',
       default: true,
@@ -54,6 +58,7 @@ UserConfig.registerOptions('eureka', {
       id: 'PopNoiseForDuel',
       name: {
         en: 'Play pop sound for duels',
+        de: 'Spiele Pop-Sound ab für Duelle',
       },
       type: 'checkbox',
       default: false,
@@ -94,6 +99,7 @@ UserConfig.registerOptions('eureka', {
       id: 'CriticalPopVolume',
       name: {
         en: 'Volume of the critical engagement pop sound (0-1)',
+        de: 'Lautstärke des Kritischen Gefecht Sounds (0-1)',
       },
       type: 'float',
       default: 0.3,
