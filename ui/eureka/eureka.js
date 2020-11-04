@@ -2623,6 +2623,7 @@ class EurekaTracker {
     // Upon entering Eureka we usually receive the CE info before
     // this.zoneInfo is loaded, so lets store the events until we're
     // able to process them.
+    // TODO: don't make pop noises for CEs that have already started.
 
     if (!this.zoneInfo) {
       this.CEQueue.push(e);
