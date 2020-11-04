@@ -436,7 +436,7 @@ if __name__ == "__main__":
         "--only-combatant",
         nargs="*",
         default=[],
-        help="Only the listed combatants will generate timeline data, e.g. \"Aratama Soul\"",
+        help="Only the listed combatants will generate timeline data, e.g. Aratama Soul",
     )
     parser.add_argument(
         "-p",
