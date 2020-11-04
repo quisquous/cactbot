@@ -2129,13 +2129,13 @@ class EurekaTracker {
   }
 
   TransByParserLang(obj, key) {
-    if (key == null)
+    if (!key)
       return obj[this.options.ParserLanguage] || obj['en'];
     return obj[this.options.ParserLanguage][key] || obj['en'][key];
   }
 
   TransByDispLang(obj, key) {
-    if (key == null)
+    if (!key)
       return obj[this.options.DisplayLanguage] || obj['en'];
     return obj[this.options.DisplayLanguage][key] || obj['en'][key];
   }
@@ -2390,7 +2390,7 @@ class EurekaTracker {
         let weather = getWeather(nowMs, this.zoneId);
         let weatherIcon = gWeatherIcons[primaryWeather];
         let weatherStr;
-        if (weather == primaryWeather) {
+        if (weather === primaryWeather) {
           let stopTime = findNextWeatherNot(nowMs, this.zoneId, primaryWeather);
           weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
         } else {
@@ -2438,7 +2438,7 @@ class EurekaTracker {
 
     document.getElementById('label-tracker').innerHTML = this.currentTracker;
 
-    if (this.zoneInfo.shortName == 'bozjasouthern')
+    if (this.zoneInfo.shortName === 'bozjasouthern')
       return;
 
     for (let i = 0; i < this.nmKeys.length; ++i) {
@@ -2469,7 +2469,7 @@ class EurekaTracker {
         }
       }
 
-      if (nm.time == 'Night') {
+      if (nm.time === 'Night') {
         let isNight = isNightTime(respawnMs);
         if (!isNight) {
           let nextNight = findNextNight(respawnMs);
@@ -2488,7 +2488,7 @@ class EurekaTracker {
           respawnIcon = gWeatherIcons[nm.weather];
           openUntil = weatherStartTime;
         }
-        if (nm.time == 'Night') {
+        if (nm.time === 'Night') {
           respawnIcon = gNightIcon;
           openUntil = findNextDay(nowMs);
         }
@@ -2587,12 +2587,12 @@ class EurekaTracker {
       this.fateQueue.push(e);
       return;
     }
-    console.log(e.detail.eventType + ' | ' + e.detail.fateID + ' | ' + e.detail.progress);
+
     switch (e.detail.eventType) {
     case 'add':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFatePop(nm);
           return;
         }
@@ -2601,7 +2601,7 @@ class EurekaTracker {
     case 'remove':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFateKill(nm);
           return;
         }
@@ -2610,7 +2610,7 @@ class EurekaTracker {
     case 'update':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFateUpdate(nm, e.detail.progress);
           return;
         }
@@ -2729,7 +2729,7 @@ class EurekaTracker {
 
     window.setTimeout(function() {
       // Changing zones can also orphan all the labels.
-      if (label.parentElement == container)
+      if (label.parentElement === container)
         container.removeChild(label);
     }, this.options.FlagTimeoutMs);
   }
