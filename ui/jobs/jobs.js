@@ -145,6 +145,20 @@ const kAbility = {
   HolyCircle: '404A',
   Confiteor: '404B',
   FourPointFury: '4059',
+
+    // NIN
+    SpinningEdge: '8C0',
+    GustSlash: '8C2',
+    AeolianEdge: '8CF',
+    ArmorCrush: 'DEB',
+    DeathBlossom: '8CE',
+    HakkeMujinsatsu: '4068',
+    ThrowingDagger: '8C7',
+    TrickAttack: '8D2',
+    RabbitMedium: '8E0',
+    Bunshin: '406D',
+    Hide: '8C5',
+
   TechnicalFinish: '3F44',
   Thunder1: '90',
   Thunder2: '94',
@@ -338,6 +352,21 @@ function setupComboTracker(callback) {
     kAbility.DemonSlice,
     kAbility.DemonSlaughter,
   ]);
+    // NIN
+    comboTracker.AddCombo([
+      kAbility.SpinningEdge,
+      kAbility.GustSlash,
+      kAbility.AeolianEdge,
+    ]);
+    comboTracker.AddCombo([
+      kAbility.SpinningEdge,
+      kAbility.GustSlash,
+      kAbility.ArmorCrush,
+    ]);
+    comboTracker.AddCombo([
+      kAbility.DeathBlossom,
+      kAbility.HakkeMujinsatsu,
+    ]);
   comboTracker.AddCombo([
     kAbility.FastBlade,
     kAbility.SavageBlade,
@@ -399,6 +428,14 @@ function setupRegexes(playerName) {
     kAbility.DemonSlice,
     kAbility.DemonSlaughter,
     kAbility.LightningShot,
+    // NIN
+    kAbility.SpinningEdge,
+    kAbility.GustSlash,
+    kAbility.AeolianEdge,
+    kAbility.ArmorCrush,
+    kAbility.DeathBlossom,
+    kAbility.HakkeMujinsatsu,
+    kAbility.ThrowingDagger,
     // rdm
     kAbility.Verstone,
     kAbility.Verfire,
@@ -1133,6 +1170,7 @@ class Bars {
     this.paeonStacks = 0;
     this.museStacks = 0;
     this.circleOfPower = 0;
+    this.cd = false;
 
     this.comboFuncs = [];
     this.jobFuncs = [];
@@ -2815,6 +2853,78 @@ class Bars {
   }
 
   setupNin() {
+    const ninki = this.addResourceBox({
+      classList: ['nin-color-ninki'],
+    });
+    const hutonBox = this.addProcBox({
+      id: 'nin-procs-huton',
+      fgColor: 'nin-color-huton',
+      threshold: 20,
+    });
+    const trickAttack = this.addProcBox({
+      id: 'nin-procs-trickattack',
+      fgColor: 'nin-color-trickattack',
+      threshold: 10,
+    });
+    const bunshin = this.addProcBox({
+      id: 'nin-procs-bunshin',
+      fgColor: 'nin-color-bunshin',
+    });
+    this.abilityFuncMap[kAbility.Bunshin] = () => {
+      bunshin.duration = 0;
+      bunshin.duration = 90;
+    };
+    const ninjutsu = this.addProcBox({
+      id: 'nin-procs-ninjutsu',
+      fgColor: 'nin-color-ninjutsu',
+    });
+    // Ninjutsu's cooldown begins to countdown at the first mudra.
+    this.gainEffectFuncMap[EffectId.Mudra] = () => {
+      if (this.cd === true)
+        return;
+      let old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
+      if (old > 0) {
+        ninjutsu.duration = 0;
+        ninjutsu.duration = old + 20;
+      } else {
+        ninjutsu.duration = 0;
+        ninjutsu.duration = 20 - 0.5;
+      }
+      this.cd = true;
+    };
+    this.loseEffectFuncMap[EffectId.Mudra] = () => {
+      this.cd = false;
+    };
+    this.gainEffectFuncMap[EffectId.Kassatsu] = () => {
+      this.cd = true;
+    };
+    this.loseEffectFuncMap[EffectId.Kassatsu] = () => {
+      this.cd = false;
+    };
+    this.abilityFuncMap[kAbility.Hide] = () => {
+      ninjutsu.duration = 0;
+    };
+    this.statChangeFuncMap['NIN'] = () => {
+      hutonBox.valuescale = this.gcdSkill();
+      hutonBox.threshold = this.gcdSkill() * 3 + 10;
+      trickAttack.valuescale = this.gcdSkill();
+      this.abilityFuncMap[kAbility.TrickAttack] = () => {
+        trickAttack.duration = 0;
+        trickAttack.duration = 15;
+        trickAttack.threshold = 1000;
+        trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack.active');
+        setTimeout(() => {
+          trickAttack.duration = 45;
+          trickAttack.threshold = this.gcdSkill() * 4;
+          trickAttack.fg = computeBackgroundColorFrom(trickAttack, 'nin-color-trickattack');
+        }, 15000);
+      };
+      bunshin.valuescale = this.gcdSkill();
+      bunshin.threshold = this.gcdSkill() * 8;
+      ninjutsu.valuescale = this.gcdSkill();
+      ninjutsu.threshold = this.gcdSkill() * 2;
+    };
+
     this.jobFuncs.push((jobDetail) => {
       if (jobDetail.hutonMilliseconds > 0) {
         if (this.huton != 1)
@@ -2822,6 +2932,30 @@ class Bars {
       } else if (this.huton == 1) {
         this.huton = 0;
       }
+      ninki.innerText = jobDetail.ninkiAmount;
+      ninki.parentNode.classList.remove('high', 'low');
+      if (jobDetail.ninkiAmount < 50)
+        ninki.parentNode.classList.add('low');
+      else if (jobDetail.ninkiAmount >= 90)
+        ninki.parentNode.classList.add('high');
+      let oldSeconds = parseFloat(hutonBox.duration) - parseFloat(hutonBox.elapsed);
+      let seconds = jobDetail.hutonMilliseconds / 1000.0;
+      if (!hutonBox.duration || seconds > oldSeconds) {
+        hutonBox.duration = 0;
+        hutonBox.duration = seconds;
+      }
+    });
+    let comboTimer = this.addTimerBar({
+      id: 'nin-timers-combo',
+      fgColor: 'nin-color-combo',
+    });
+
+    this.comboFuncs.push((skill) => {
+      comboTimer.duration = 0;
+      if (this.combo.isFinalSkill)
+        return;
+      if (skill)
+        comboTimer.duration = 15;
     });
   }
 
