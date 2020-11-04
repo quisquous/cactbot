@@ -1697,7 +1697,7 @@ let Options = {
         sneak: {
           label: {
             en: 'Sneak',
-            de: 'Taktisches Gemetze',
+            de: 'Taktisches Gemetzel',
             fr: 'Les yeux de l\'ennemi',
             ja: '術士大隊との会敵',
           },
@@ -1752,7 +1752,7 @@ let Options = {
         plants: {
           label: {
             en: 'Plants',
-            de: 'Linientreue um jeden Prei',
+            de: 'Linientreue',
             fr: 'Des racines et des crocs',
             ja: '野生生物を排除せよ',
           },
@@ -1785,7 +1785,7 @@ let Options = {
         firstlaw: {
           label: {
             en: 'First Law',
-            de: 'Schufter-10 wird verschrottet',
+            de: 'Schufter-10',
             fr: 'Que des numéros dix',
             ja: '労働十号破壊命令',
           },
@@ -1796,7 +1796,7 @@ let Options = {
         heal: {
           label: {
             en: 'Heal',
-            de: 'Nächstenliebe, Nächstenhiebe',
+            de: 'Nächstenliebe',
             fr: 'Miséricorde impériale',
             ja: '恩徳の術士たち',
           },
@@ -1829,7 +1829,7 @@ let Options = {
         unicorn: {
           label: {
             en: 'Unicorn',
-            de: 'Llofii die Ausgebüxte',
+            de: 'Llofii',
             fr: 'La licorne des plaines',
             ja: '潔白の脱走兵',
           },
@@ -1840,7 +1840,7 @@ let Options = {
         recreation: {
           label: {
             en: 'Recreation',
-            de: 'Aufräumen im Dienst der Wissenschaft',
+            de: 'Aufräumen im Dienst',
             fr: 'La bataille de l\'innovation',
             ja: '敵新兵器を調査せよ',
           },
@@ -1862,7 +1862,7 @@ let Options = {
         heavyboots: {
           label: {
             en: 'Boots',
-            de: 'Gewaltsame Arbeitsniederlegung',
+            de: 'Arbeitsniederlegung',
             fr: 'Force ouvrière',
             ja: '魔導レイバー破壊命令',
           },
@@ -1906,7 +1906,7 @@ let Options = {
         pyromancer: {
           label: {
             en: 'Pyromancer',
-            de: 'Der stärkste aller Pyromanten',
+            de: 'Pyromant',
             fr: 'Duel brûlant',
             ja: '最強のパイロマンサー',
           },
@@ -1917,7 +1917,7 @@ let Options = {
         rainbow: {
           label: {
             en: 'Rainbow',
-            de: 'Das Ende einer schillernden Karriere',
+            de: 'Ende einer ... Karriere',
             fr: 'De toutes les couleurs',
             ja: '華麗なるお気に入り',
           },
@@ -1939,7 +1939,7 @@ let Options = {
         familyotheranimals: {
           label: {
             en: 'Family',
-            de: 'Ein rüpelhaftes Großmaul',
+            de: 'rüpelhaftes Großmaul',
             fr: 'L\'incorruptible',
             ja: '豚面の勧誘者',
           },
@@ -1950,7 +1950,7 @@ let Options = {
         mechanicalman: {
           label: {
             en: 'Mechanical Man',
-            de: 'Gewaltsame Arbeitsniederlegung - Plan B',
+            de: 'Arbeitsniederlegung - Plan B',
             fr: 'Plan B',
             ja: '魔導レイバーB型破壊命令',
           },
@@ -1972,7 +1972,7 @@ let Options = {
         seeking: {
           label: {
             en: 'Seeking',
-            de: '... fällt selbst hinein',
+            de: 'fällt selbst hinein',
             fr: 'Ceux qui creusent',
             ja: '戦場の盗掘者',
           },
@@ -2062,7 +2062,7 @@ let Options = {
         killitwithfire: {
           label: {
             en: 'Kill It With Fire',
-            de: 'Peeriefool, das faule Gemüse',
+            de: 'Peeriefool',
             fr: 'Grandeur et pestilence',
             ja: 'ピーリフール',
           },
@@ -2074,7 +2074,7 @@ let Options = {
         bayinghounds: {
           label: {
             en: 'Hounds',
-            de: 'Die drei Mäuler des Canis dirus',
+            de: 'Canis dirus',
             fr: 'Le chien des enfers',
             ja: 'カニスディルス',
           },
@@ -2086,7 +2086,7 @@ let Options = {
         vigilforthelost: {
           label: {
             en: 'Vigil',
-            de: 'Vigil, Feuerkraft hoch zehn',
+            de: 'Vigil',
             fr: 'Vigile de feu',
             ja: 'ヴィジル',
           },
@@ -2098,7 +2098,7 @@ let Options = {
         aceshigh: {
           label: {
             en: 'Aces High',
-            de: 'Gabriel, die stählerne Schwinge',
+            de: 'Gabriel',
             fr: 'Force divine',
             ja: 'ガブリエル',
           },
@@ -2111,7 +2111,7 @@ let Options = {
         shadowdeathshand: {
           label: {
             en: 'Shadow',
-            de: 'Akbaba, Tod von oben',
+            de: 'Akbaba',
             fr: 'Les ailes noires de la mort',
             ja: '黒アクババ',
           },
@@ -2123,7 +2123,7 @@ let Options = {
         finalfurlong: {
           label: {
             en: 'Final Furlong',
-            de: 'Spartoi der Gefürchtete',
+            de: 'Spartoi',
             fr: 'Menace spectrale',
             ja: 'スパルトイ',
           },
@@ -2135,7 +2135,7 @@ let Options = {
         choctober: {
           label: {
             en: 'Choctober',
-            de: 'Der Rote Meteor und seine Meute',
+            de: 'Roter Meteor',
             fr: 'Une ruée en rouge',
             ja: '赤レッドコメット',
           },
@@ -2147,7 +2147,7 @@ let Options = {
         beastofman: {
           label: {
             en: 'Beast of Man',
-            de: 'Lyon der Bestienkönig',
+            de: 'Lyon',
             fr: 'Le Roi bestial',
             ja: '獣王ライアン',
           },
@@ -2160,7 +2160,7 @@ let Options = {
         firesofwar: {
           label: {
             en: 'Fires of War',
-            de: 'Die Flammenden Hundert',
+            de: 'Flammenden Hundert',
             fr: 'Brasier de guerre',
             ja: '火焔百人隊',
           },
@@ -2172,7 +2172,7 @@ let Options = {
         patriotgames: {
           label: {
             en: 'Patriot Games',
-            de: 'Verteidigungsmaschine Patriot',
+            de: 'Verteidigungsmaschine',
             fr: 'Les fusils du patriote',
             ja: 'パトリオット',
           },
@@ -2196,7 +2196,7 @@ let Options = {
         flameswenthigher: {
           label: {
             en: 'Flames',
-            de: 'Sartauvoir Eisenfeuer',
+            de: 'Sartauvoir',
             fr: '"L\'envol du phénix',
             ja: 'サルトヴォアール',
           },
@@ -2209,7 +2209,7 @@ let Options = {
         metalfoxchaos: {
           label: {
             en: 'Metal Fox Chaos',
-            de: 'Dáinsleif, Bestie aus Eisen',
+            de: 'Dáinsleif',
             fr: 'Le guerrier de métal',
             ja: 'ダーインスレイヴ',
           },
@@ -2221,7 +2221,7 @@ let Options = {
         riseoftherobots: {
           label: {
             en: 'Rise',
-            de: 'Im Schatten von Modell X',
+            de: 'Modell X',
             fr: 'Le soulèvement des machines',
             ja: '魔導レイバーX型',
           },

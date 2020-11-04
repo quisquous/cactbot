@@ -82,4 +82,36 @@ const ceIds = {
       },
     },
   ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Bladesmeet': 'Hauptplatz der Wachen',
+        'Eaglesight': 'Platz des Kämpferischen Adlers',
+        'Majesty\'s Auspice': 'Halle des Bestienkönigs',
+        'The airship landing': 'Flugplatz',
+        'The grand gates': 'Haupttor',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Bladesmeet': 'Hall des Lames',
+        'Eaglesight': 'Perchoir des Aigles',
+        'Majesty\'s Auspice': 'Auditorium',
+        'The airship landing': 'Aire d\'atterrissage',
+        'The grand gates': 'Porte du castrum',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Bladesmeet': '剣たちの大広間',
+        'Eaglesight': '荒鷲の広場',
+        'Majesty\'s Auspice': '円壇の間',
+        'The airship landing': '飛空戦艦発着場',
+        'The grand gates': '城門',
+      },
+    },
+  ],
 }];
