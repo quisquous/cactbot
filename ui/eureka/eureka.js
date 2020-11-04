@@ -114,6 +114,8 @@ let Options = {
     },
   },
   Regex: {
+    // de, fr, ja languages all share the English regexes here.
+    // If you ever need to add another language, include all of the regexes for it.
     en: {
       'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
@@ -2129,15 +2131,17 @@ class EurekaTracker {
   }
 
   TransByParserLang(obj, key) {
+    const fromObj = obj[this.options.ParserLanguage] || obj['en'];
     if (!key)
-      return obj[this.options.ParserLanguage] || obj['en'];
-    return obj[this.options.ParserLanguage][key] || obj['en'][key];
+      return fromObj;
+    return fromObj ? fromObj[key] : obj['en'][key];
   }
 
   TransByDispLang(obj, key) {
+    const fromObj = obj[this.options.DisplayLanguage] || obj['en'];
     if (!key)
-      return obj[this.options.DisplayLanguage] || obj['en'];
-    return obj[this.options.DisplayLanguage][key] || obj['en'][key];
+      return fromObj;
+    return fromObj ? fromObj[key] : obj['en'][key];
   }
 
   SetStyleFromMap(style, mx, my) {
