@@ -1870,7 +1870,7 @@ let Options = {
         },
         familyotheranimals: {
           label: {
-            en: 'Other Animals',
+            en: 'Family',
           },
           x: 11.0,
           y: 14.6,
@@ -1902,7 +1902,7 @@ let Options = {
         },
         suppliesparty: {
           label: {
-            en: 'Supplies Party',
+            en: 'Supplies',
           },
           x: 21.0,
           y: 14.3,
@@ -1934,7 +1934,7 @@ let Options = {
         },
         dogsofwar: {
           label: {
-            en: 'Dogs of War',
+            en: 'Dogs',
           },
           x: 14.0,
           y: 15.3,
@@ -1969,7 +1969,7 @@ let Options = {
         },
         bayinghounds: {
           label: {
-            en: 'Baying Hounds',
+            en: 'Hounds',
           },
           x: 22.8,
           y: 28.8,
