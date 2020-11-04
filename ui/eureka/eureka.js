@@ -2276,9 +2276,8 @@ class EurekaTracker {
       if (this.zoneInfo.mapImage) {
         document.getElementById('map-image').src = this.zoneInfo.mapImage;
         window.clearInterval(this.updateTimesHandle);
-        this.updateTimesHandle = window.setInterval((function() {
-          this.UpdateTimes();
-        }).bind(this), this.options.RefreshRateMs);
+        this.updateTimesHandle = window.setInterval(() => this.UpdateTimes(),
+            this.options.RefreshRateMs);
         container.classList.remove('hide');
       }
       this.InitNMs();
