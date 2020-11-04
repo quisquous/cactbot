@@ -2438,6 +2438,9 @@ class EurekaTracker {
 
     document.getElementById('label-tracker').innerHTML = this.currentTracker;
 
+    // TODO: don't early out here, because it means bozja can't show a timer.
+    // Instead, maybe add a per-zone default respawn time which, if null/zero,
+    // means don't show respawn times unless specified.
     if (this.zoneInfo.shortName === 'bozjasouthern')
       return;
 
