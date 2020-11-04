@@ -2633,27 +2633,27 @@ class EurekaTracker {
       return;
     }
 
-    const handleEvent = (handler) => {
-      for (const key of this.nmKeys) {
-        const nm = this.nms[key];
-        if (e.detail.data.ceKey == nm.ceKey)
-          return handler.call(this, nm);
+    let nm = null;
+    for (const key of this.nmKeys) {
+      if (e.detail.data.ceKey == this.nms[key].ceKey) {
+        nm = this.nms[key];
+        break;
       }
-    };
+    }
+    if (!nm)
+      return;
 
     switch (e.detail.eventType) {
     case 'add':
-      handleEvent(this.OnFatePop);
+      this.OnFatePop(nm);
       break;
     case 'remove':
-      handleEvent(this.OnFateKill);
+      this.OnFateKill(nm);
       break;
     case 'update':
-      handleEvent(
-          (nm) =>
-            e.detail.data.status === 3 &&
-            this.OnFateUpdate.call(this, nm, e.detail.data.progress),
-      );
+      if (e.detail.data.status === 3)
+        this.OnFateUpdate(nm, e.detail.data.progress);
+      break;
     }
   }
 
