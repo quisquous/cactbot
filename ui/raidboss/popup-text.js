@@ -500,7 +500,7 @@ class PopupText {
   }
 
   ProcessTrigger(trigger) {
-    trigger.output = new TriggerOutputProxy(trigger, this.options.displayLang,
+    trigger.output = new TriggerOutputProxy(trigger, this.options.DisplayLanguage,
         this.options.PerTriggerAutoConfig);
   }
 
