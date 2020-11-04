@@ -429,14 +429,14 @@ if __name__ == "__main__":
         "--ignore-combatant",
         nargs="*",
         default=[],
-        help="Combatant names to ignore, e.g. \"Aratama Soul\"",
+        help='Combatant names to ignore, e.g. "Aratama Soul"',
     )
     parser.add_argument(
         "-oc",
         "--only-combatant",
         nargs="*",
         default=[],
-        help="Only the listed combatants will generate timeline data, e.g. \"Aratama Soul\"",
+        help='Only the listed combatants will generate timeline data, e.g. "Aratama Soul"',
     )
     parser.add_argument(
         "-p",
