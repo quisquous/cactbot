@@ -176,7 +176,7 @@
       netRegexJa: NetRegexes.startsUsing({ id: '26A9', source: 'ツインタニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26A9', source: '双塔尼亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26A9', source: '트윈타니아', capture: false }),
-      alertText: function(data, _, output) {
+      alertText: (data, _, output) => {
         if (data.role === 'tank' || data.role === 'healer')
           return output.text();
       },
@@ -844,7 +844,7 @@
           return output.fireInAvoid();
       },
       infoText: (data, _, output) => {
-        const tookTwo = data.fireballs[1].filter(function(p) {
+        const tookTwo = data.fireballs[1].filter((p) => {
           return data.fireballs[2].includes(p);
         });
         if (tookTwo.includes(data.me))
@@ -1212,7 +1212,7 @@
           return output.twinOnPlayer({ player: data.ShortName(data.lastOctetMarker) });
       },
       tts: (data, _, output) => {
-        if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
+        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
           return output.stackTTS();
       },
       outputStrings: {
@@ -1329,7 +1329,7 @@
         if (data.trio === 'blackfire')
           return output.blackfireTower();
 
-        if (!data.lastOctetMarker || data.lastOctetMarker == data.me)
+        if (!data.lastOctetMarker || data.lastOctetMarker === data.me)
           return output.octetTowerPlusTwin();
 
         return output.octetTower();
