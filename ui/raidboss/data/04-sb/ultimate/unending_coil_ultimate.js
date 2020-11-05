@@ -1411,20 +1411,8 @@
     {
       id: 'UCU Earthshaker Me',
       netRegex: NetRegexes.headMarker({ id: '0028' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
-      alarmText: (data, _, output) => output.text(),
-      outputStrings: {
-        text: {
-          en: 'Earthshaker on YOU',
-          fr: 'Secousse sur VOUS',
-          de: 'Erdstoß auf Dir',
-          ja: '自分にアースシェイカー',
-          cn: '地震点名',
-          ko: '나에게 어스징',
-        },
-      },
+      condition: Conditions.targetIsYou(),
+      response: Responses.earthshaker('alarm'),
     },
     {
       id: 'UCU Earthshaker Tracking',
