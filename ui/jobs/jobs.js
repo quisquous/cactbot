@@ -2862,7 +2862,6 @@ class Bars {
     const trickAttack = this.addProcBox({
       id: 'nin-procs-trickattack',
       fgColor: 'nin-color-trickattack',
-      threshold: 10,
     });
     const bunshin = this.addProcBox({
       id: 'nin-procs-bunshin',
@@ -2890,6 +2889,8 @@ class Bars {
       }
       this.cd = true;
     };
+    // On each mudra, Mudra effect will be gain once,
+    // use this.cd to tell that whether this mudra trigger cooldown.
     this.loseEffectFuncMap[EffectId.Mudra] = () => {
       this.cd = false;
     };
@@ -2903,8 +2904,6 @@ class Bars {
       ninjutsu.duration = 0;
     };
     this.statChangeFuncMap['NIN'] = () => {
-      hutonBox.valuescale = this.gcdSkill();
-      hutonBox.threshold = this.gcdSkill() * 3 + 10;
       trickAttack.valuescale = this.gcdSkill();
       this.abilityFuncMap[kAbility.TrickAttack] = () => {
         trickAttack.duration = 0;
