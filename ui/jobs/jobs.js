@@ -2942,11 +2942,10 @@ class Bars {
         hutonBox.duration = seconds;
       }
     });
-    let comboTimer = this.addTimerBar({
+    const comboTimer = this.addTimerBar({
       id: 'nin-timers-combo',
       fgColor: 'nin-color-combo',
     });
-
     this.comboFuncs.push((skill) => {
       comboTimer.duration = 0;
       if (this.combo.isFinalSkill)
