@@ -151,6 +151,14 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         if (typeof currentTriggerFunction === 'undefined')
           continue;
         const funcStr = currentTriggerFunction.toString();
+
+        const containsOutput = /\boutput\.(\w*)\(/.test(funcStr);
+        const containsOutputParam = getParamNames(currentTriggerFunction).includes('output');
+        // TODO: should we error when there is an unused output param? that seems a bit much.
+        if (containsOutput && !containsOutputParam)
+          errorFunc(`${file}: Missing 'output' param for '${currentTrigger.id}'.`);
+
+
         containsMatches |= funcStr.includes('matches');
         containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
 
