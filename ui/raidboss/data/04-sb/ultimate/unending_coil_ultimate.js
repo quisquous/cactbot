@@ -185,18 +185,6 @@
           };
         }
       },
-      tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'buster',
-            fr: 'Anti-tank',
-            de: 'basta',
-            ja: 'タンク即死級',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
-      },
     },
     {
       id: 'UCU Hatch Collect',
@@ -219,14 +207,6 @@
         ja: '自分に魔力爆散',
         cn: '点名魔力爆散',
         ko: '나에게 마력연성',
-      },
-      tts: {
-        en: 'hatch',
-        fr: 'Éclosion',
-        de: 'ausbrüten',
-        ja: '魔力爆散',
-        cn: '魔力爆散',
-        ko: '마력연성',
       },
     },
     {
@@ -582,14 +562,6 @@
         cn: '雷点名',
         ko: '나에게 번개',
       },
-      tts: {
-        en: 'thunder',
-        fr: 'Foudre',
-        de: 'blitz',
-        ja: 'サンダー',
-        cn: '雷点名',
-        ko: '번개',
-      },
     },
     {
       id: 'UCU Nael Your Doom',
@@ -730,13 +702,6 @@
         cn: '火进',
         ko: '불 같이맞기',
       },
-      tts: {
-        en: 'fire in',
-        fr: 'Feu en dedans',
-        de: 'Feuer innen',
-        ja: 'ファイアボール密着',
-        ko: '불 같이맞기',
-      },
       run: function(data) {
         data.naelFireballCount = 1;
       },
@@ -780,27 +745,6 @@
           };
         }
       },
-      tts: function(data) {
-        if (!data.fireballs[1].includes(data.me)) {
-          return {
-            en: 'fire out; go with',
-            fr: 'Feu en dehors; y allez',
-            de: 'feuer außen; mitgehen',
-            ja: 'ファイアボール離れ: 自分に密着',
-            cn: '火出，分摊',
-            ko: '밖에서 불 같이 맞기',
-          };
-        }
-        return {
-          en: 'fire out',
-          fr: 'Feu en dehors',
-          de: 'feuer außen',
-          ja: 'ファイアボール離れ',
-          cn: '火出',
-          ko: '불 대상자 밖으로',
-        };
-      },
-
       run: function(data) {
         data.naelFireballCount = 2;
       },
@@ -857,26 +801,6 @@
           ko: '불 같이맞기',
         };
       },
-      tts: function(data) {
-        if (data.fireballs[1].includes(data.me) && data.fireballs[2].includes(data.me)) {
-          return {
-            en: 'avoid fire in',
-            fr: 'Éviter le feu en dedans',
-            de: 'feuer innen ausweichen',
-            ja: 'ファイアボール密着: 自分に離れ',
-            cn: '躲避火进',
-            ko: '불 피하기',
-          };
-        }
-        return {
-          en: 'fire in',
-          fr: 'Feu en dedans',
-          de: 'feuer innen',
-          ja: 'ファイアボール密着',
-          cn: '火进',
-          ko: '불 같이맞기',
-        };
-      },
       run: function(data) {
         data.naelFireballCount = 3;
       },
@@ -926,14 +850,6 @@
             ko: '불 같이맞기',
           };
         }
-      },
-      tts: {
-        en: 'fire in',
-        fr: 'Feu en dedans',
-        de: 'feuer innen',
-        ja: 'ファイアボール密着',
-        cn: '火进',
-        ko: '불 같이맞기',
       },
       run: function(data) {
         data.naelFireballCount = 4;
@@ -1244,14 +1160,6 @@
         cn: '旋风冲',
         ko: '회오리',
       },
-      tts: {
-        en: 'twisters',
-        fr: 'Tornades',
-        de: 'Wirbelstürme',
-        ja: 'ツイスター',
-        cn: '旋风冲',
-        ko: '회오리',
-      },
     },
     {
       id: 'UCU Bahamut Gigaflare',
@@ -1265,14 +1173,6 @@
         en: 'Gigaflare',
         fr: 'GigaBrasier',
         de: 'Gigaflare',
-        ja: 'ギガフレア',
-        cn: '十亿核爆',
-        ko: '기가플레어',
-      },
-      tts: {
-        en: 'gigaflare',
-        fr: 'Giga Brasier',
-        de: 'Gigafleer',
         ja: 'ギガフレア',
         cn: '十亿核爆',
         ko: '기가플레어',
@@ -1291,14 +1191,6 @@
         ja: 'メガフレア頭割り',
         cn: '百万核爆集合',
         ko: '기가플레어 쉐어',
-      },
-      tts: {
-        en: 'stack',
-        fr: 'Se rassembler',
-        de: 'stek',
-        ja: '頭割り',
-        cn: '集合',
-        ko: '쉐어',
       },
     },
     {
@@ -1406,14 +1298,6 @@
         cn: '地震点名',
         ko: '나에게 어스징',
       },
-      tts: {
-        en: 'shaker',
-        fr: 'Secousse',
-        de: 'Erdstoß',
-        ja: 'アースシェイカー',
-        cn: '地震',
-        ko: '어스',
-      },
     },
     {
       id: 'UCU Earthshaker Tracking',
@@ -1471,45 +1355,6 @@
           }
         }
       },
-      tts: function(data) {
-        if (data.trio == 'quickmarch') {
-          if (data.shakers.length != 3)
-            return;
-          if (data.role == 'tank') {
-            return {
-              en: 'tether',
-              fr: 'Lien',
-              de: 'Verbindung',
-              ja: '線',
-              cn: '线',
-              ko: '줄',
-            };
-          }
-          if (!data.shakers.includes(data.me)) {
-            return {
-              en: 'stack south',
-              fr: 'Se rassembler au sud',
-              de: 'stek im süden',
-              ja: '頭割りで南',
-              cn: '南侧集合',
-              ko: '모여서 쉐어',
-            };
-          }
-        } else if (data.trio == 'tenstrike') {
-          if (data.shakers.length == 4) {
-            if (!(data.me in data.shakers)) {
-              return {
-                en: 'safe spot',
-                fr: 'Point sauf',
-                de: 'in sicherheit',
-                ja: '安全',
-                cn: '安全点',
-                ko: '안전장소로',
-              };
-            }
-          }
-        }
-      },
       run: function(data) {
         if (data.trio == 'tenstrike' && data.shakers.length == 4)
           data.shakers = [];
@@ -1546,14 +1391,6 @@
           ja: 'モーン・アファー' + data.mornAfahCount + '回' + ' (' + data.ShortName(matches.target) + ')',
           cn: '无尽顿悟 #' + data.mornAfahCount,
           ko: '몬 아파 ' + data.mornAfahCount + ' (' + data.ShortName(matches.target) + ')',
-        };
-      },
-      tts: function(data, matches) {
-        return {
-          en: 'morn afah ' + data.ShortName(matches.target),
-          de: 'Morn Afah ' + data.ShortName(matches.target),
-          cn: '无尽顿悟 ' + data.ShortName(matches.target),
-          ko: '몬 아파 ' + data.mornAfahCount,
         };
       },
     },
