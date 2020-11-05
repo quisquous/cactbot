@@ -10,13 +10,16 @@
       id: 'SusEx Cloud',
       regex: /Knockback \(cloud\)/,
       beforeSeconds: 1.5,
-      infoText: {
-        en: 'look for cloud',
-        de: 'Nach Wolke ausschau halten',
-        fr: 'Cherchez le nuage',
-        ja: '雷雲を探せ',
-        cn: '寻找雷云',
-        ko: '구름 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'look for cloud',
+          de: 'Nach Wolke ausschau halten',
+          fr: 'Cherchez le nuage',
+          ja: '雷雲を探せ',
+          cn: '寻找雷云',
+          ko: '구름 확인',
+        },
       },
     },
   ],

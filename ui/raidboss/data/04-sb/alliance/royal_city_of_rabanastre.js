@@ -14,13 +14,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2633', source: '背德皇帝马提乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2633', source: '배덕의 황제 마티우스', capture: false }),
       delaySeconds: 11,
-      infoText: {
-        en: 'Kill Aqua Spheres',
-        de: 'Wasserkugeln zerstören',
-        fr: 'Détruire les bulles d\'eau',
-        ja: 'アクアスフィアを倒す',
-        cn: '击杀水球',
-        ko: '물 구체 죽이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Aqua Spheres',
+          de: 'Wasserkugeln zerstören',
+          fr: 'Détruire les bulles d\'eau',
+          ja: 'アクアスフィアを倒す',
+          cn: '击杀水球',
+          ko: '물 구체 죽이기',
+        },
       },
     },
     {
@@ -90,13 +93,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '263D', source: '背徳の皇帝マティウス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '263D', source: '背德皇帝马提乌斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '263D', source: '배덕의 황제 마티우스', capture: false }),
-      alertText: {
-        en: 'Move To Safe Spot',
-        de: 'Zur sicheren Zone',
-        fr: 'Allez en zone sûre',
-        ja: '安置へ',
-        cn: '去安全点',
-        ko: '안전 지대로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move To Safe Spot',
+          de: 'Zur sicheren Zone',
+          fr: 'Allez en zone sûre',
+          ja: '安置へ',
+          cn: '去安全点',
+          ko: '안전 지대로 이동',
+        },
       },
     },
     {
@@ -118,13 +124,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '25CB', source: '統制者ハシュマリム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '25CB', source: '统治者哈修马利姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25CB', source: '통제자 하쉬말림', capture: false }),
-      alertText: {
-        en: 'Move Away',
-        de: 'Weg da',
-        fr: 'Eloignez-vous',
-        ja: 'ハーマーから離れ',
-        cn: '远离大锤落点',
-        ko: '기둥으로부터 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Away',
+          de: 'Weg da',
+          fr: 'Eloignez-vous',
+          ja: 'ハーマーから離れ',
+          cn: '远离大锤落点',
+          ko: '기둥으로부터 피하기',
+        },
       },
     },
     {
@@ -136,13 +145,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '25D4', source: '统治者哈修马利姆', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '25D4', source: '통제자 하쉬말림', capture: false }),
       delaySeconds: 5,
-      infoText: {
-        en: 'Kill Golems',
-        de: 'Golems töten',
-        fr: 'Détruisez les golems',
-        ja: 'ゴーレムを倒す',
-        cn: '击杀小怪',
-        ko: '골렘 죽이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Golems',
+          de: 'Golems töten',
+          fr: 'Détruisez les golems',
+          ja: 'ゴーレムを倒す',
+          cn: '击杀小怪',
+          ko: '골렘 죽이기',
+        },
       },
     },
     {
@@ -153,13 +165,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'D10', source: 'アルケオキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'D10', source: '古奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'D10', source: '원시 키마이라', capture: false }),
-      alertText: {
-        en: 'Dragon Voice: Move In',
-        de: 'Stimme Des Drachen: Rein',
-        fr: 'Voix Du Dragon : Packez-vous',
-        ja: '雷電の咆哮：中へ',
-        cn: '雷电咆哮: 靠近',
-        ko: '뇌전의 포효: 안으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dragon Voice: Move In',
+          de: 'Stimme Des Drachen: Rein',
+          fr: 'Voix Du Dragon : Packez-vous',
+          ja: '雷電の咆哮：中へ',
+          cn: '雷电咆哮: 靠近',
+          ko: '뇌전의 포효: 안으로',
+        },
       },
     },
     {
@@ -170,13 +185,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: 'アルケオキマイラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '古奇美拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['D0F', '273B'], source: '원시 키마이라', capture: false }),
-      alertText: {
-        en: 'Ram Voice: Move Out',
-        de: 'Stimme Des Widders: Raus',
-        fr: 'Voix Du Bélier : Eloignez-vous',
-        ja: '氷結の咆哮：外へ',
-        cn: '寒冰咆哮: 远离',
-        ko: '빙결의 포효: 바깥으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ram Voice: Move Out',
+          de: 'Stimme Des Widders: Raus',
+          fr: 'Voix Du Bélier : Eloignez-vous',
+          ja: '氷結の咆哮：外へ',
+          cn: '寒冰咆哮: 远离',
+          ko: '빙결의 포효: 바깥으로',
+        },
       },
     },
     {
@@ -195,13 +213,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2676', source: '人馬王ロフォカレ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2676', source: '人马王洛弗卡勒', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2676', source: '인마왕 로포칼레', capture: false }),
-      alertText: {
-        en: 'Trample',
-        de: 'Zertrampeln',
-        fr: 'Fauchage',
-        ja: '蹂躙',
-        cn: '蹂躏',
-        ko: '유린',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Trample',
+          de: 'Zertrampeln',
+          fr: 'Fauchage',
+          ja: '蹂躙',
+          cn: '蹂躏',
+          ko: '유린',
+        },
       },
     },
     {

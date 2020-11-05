@@ -74,13 +74,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2149', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2149', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2149', source: '락슈미', capture: false }),
-      alertText: {
-        en: 'Vrill + Knockback',
-        de: 'Vril + Rückstoß',
-        fr: 'Vril + Poussée',
-        ja: 'エーテル + 完全なる拒絶',
-        cn: '完全拒绝',
-        ko: '락슈미 에테르 + 넉백',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Vrill + Knockback',
+          de: 'Vril + Rückstoß',
+          fr: 'Vril + Poussée',
+          ja: 'エーテル + 完全なる拒絶',
+          cn: '完全拒绝',
+          ko: '락슈미 에테르 + 넉백',
+        },
       },
     },
     {
@@ -91,13 +94,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '214B', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '214B', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '214B', source: '락슈미', capture: false }),
-      alertText: {
-        en: 'Vrill + Be Outside',
-        de: 'Vril + Außen',
-        fr: 'Vril + Extérieur',
-        ja: 'エーテル + 完全なる誘引',
-        cn: '完全吸引',
-        ko: '락슈미 에테르 + 바깥으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Vrill + Be Outside',
+          de: 'Vril + Außen',
+          fr: 'Vril + Extérieur',
+          ja: 'エーテル + 完全なる誘引',
+          cn: '完全吸引',
+          ko: '락슈미 에테르 + 바깥으로',
+        },
       },
     },
     {
@@ -108,13 +114,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '214A', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '214A', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '214A', source: '락슈미', capture: false }),
-      alertText: {
-        en: 'Vrill + Pair Up',
-        de: 'Vril + Pärchen bilden',
-        fr: 'Vril + Formé une paire',
-        ja: 'エーテル + 完全なる惑乱',
-        cn: '完全惑乱',
-        ko: '락슈미 에테르 + 파트너끼리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Vrill + Pair Up',
+          de: 'Vril + Pärchen bilden',
+          fr: 'Vril + Formé une paire',
+          ja: 'エーテル + 完全なる惑乱',
+          cn: '完全惑乱',
+          ko: '락슈미 에테르 + 파트너끼리',
+        },
       },
     },
     { // Stack marker
@@ -279,13 +288,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Move Away',
-        de: 'Weg da',
-        fr: 'Éloignez-vous',
-        ja: '離れ',
-        cn: '远离大锤落点',
-        ko: '피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Away',
+          de: 'Weg da',
+          fr: 'Éloignez-vous',
+          ja: '離れ',
+          cn: '远离大锤落点',
+          ko: '피하기',
+        },
       },
     },
   ],

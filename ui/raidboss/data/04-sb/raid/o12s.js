@@ -35,13 +35,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Don\'t Stack!',
-        de: 'Nicht stacken!',
-        fr: 'Ne vous packez pas !',
-        ja: 'スタックするな！',
-        cn: '分散站位！',
-        ko: '쉐어 맞지 말것',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Don\'t Stack!',
+          de: 'Nicht stacken!',
+          fr: 'Ne vous packez pas !',
+          ja: 'スタックするな！',
+          cn: '分散站位！',
+          ko: '쉐어 맞지 말것',
+        },
       },
     },
     {
@@ -52,13 +55,16 @@
       netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67E', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67E', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67E', capture: false }),
-      infoText: {
-        en: 'Keep Bosses Apart',
-        de: 'Bosse auseinander ziehen',
-        fr: 'Séparez les boss',
-        ja: 'ボス離して',
-        cn: '拉开Boss',
-        ko: '보스 떨어뜨리기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Keep Bosses Apart',
+          de: 'Bosse auseinander ziehen',
+          fr: 'Séparez les boss',
+          ja: 'ボス離して',
+          cn: '拉开Boss',
+          ko: '보스 떨어뜨리기',
+        },
       },
     },
     {
@@ -69,13 +75,16 @@
       netRegexJa: NetRegexes.gainsEffect({ target: 'オメガ', effectId: '67F', capture: false }),
       netRegexCn: NetRegexes.gainsEffect({ target: '欧米茄', effectId: '67F', capture: false }),
       netRegexKo: NetRegexes.gainsEffect({ target: '오메가', effectId: '67F', capture: false }),
-      alertText: {
-        en: 'Move Bosses Together',
-        de: 'Bosse zusammenziehen',
-        fr: 'Packez les boss',
-        ja: 'ボス重ねて',
-        cn: '拉近Boss',
-        ko: '보스 붙이기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Bosses Together',
+          de: 'Bosse zusammenziehen',
+          fr: 'Packez les boss',
+          ja: 'ボス重ねて',
+          cn: '拉近Boss',
+          ko: '보스 붙이기',
+        },
       },
     },
     {
@@ -161,13 +170,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Attack Omega-M',
-        de: 'Omega-M angreifen',
-        fr: 'Attaquez Oméga-M',
-        ja: 'Mを攻撃',
-        cn: '攻击欧米茄-M',
-        ko: '오메가 M 공격',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Omega-M',
+          de: 'Omega-M angreifen',
+          fr: 'Attaquez Oméga-M',
+          ja: 'Mを攻撃',
+          cn: '攻击欧米茄-M',
+          ko: '오메가 M 공격',
+        },
       },
     },
     {
@@ -176,13 +188,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Attack Omega-F',
-        de: 'Omega-W angreifen',
-        fr: 'Attaquez Oméga-F',
-        ja: 'Fを攻撃',
-        cn: '攻击欧米茄-F',
-        ko: '오메가 F 공격',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Omega-F',
+          de: 'Omega-W angreifen',
+          fr: 'Attaquez Oméga-F',
+          ja: 'Fを攻撃',
+          cn: '攻击欧米茄-F',
+          ko: '오메가 F 공격',
+        },
       },
     },
     {
@@ -298,13 +313,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Close Tethers',
-        de: 'Nahe Verbindungen',
-        fr: 'Liens proches',
-        ja: 'ニアー',
-        cn: '靠近连线',
-        ko: '가까이 붙는 줄',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Close Tethers',
+          de: 'Nahe Verbindungen',
+          fr: 'Liens proches',
+          ja: 'ニアー',
+          cn: '靠近连线',
+          ko: '가까이 붙는 줄',
+        },
       },
     },
     {
@@ -314,13 +332,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Far Tethers',
-        de: 'Entfernte Verbindungen',
-        fr: 'Liens éloignés',
-        ja: 'ファー',
-        cn: '远离连线',
-        ko: '멀리 떨어지는 줄',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Far Tethers',
+          de: 'Entfernte Verbindungen',
+          fr: 'Liens éloignés',
+          ja: 'ファー',
+          cn: '远离连线',
+          ko: '멀리 떨어지는 줄',
+        },
       },
     },
     {
@@ -330,13 +351,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Defamation on YOU',
-        de: 'Urteil auf DIR',
-        fr: '#Médisance sur VOUS',
-        ja: 'サークルついた',
-        cn: '严重错误：上溢',
-        ko: '치명적오류:광역 8초',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Defamation on YOU',
+          de: 'Urteil auf DIR',
+          fr: '#Médisance sur VOUS',
+          ja: 'サークルついた',
+          cn: '严重错误：上溢',
+          ko: '치명적오류:광역 8초',
+        },
       },
     },
     {
@@ -345,13 +369,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Blue Marker',
-        de: 'Blauer Marker',
-        fr: 'Marqueur bleu',
-        ja: 'レイテントついた',
-        cn: '蓝点名',
-        ko: '잠재적오류 10초',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Blue Marker',
+          de: 'Blauer Marker',
+          fr: 'Marqueur bleu',
+          ja: 'レイテントついた',
+          cn: '蓝点名',
+          ko: '잠재적오류 10초',
+        },
       },
     },
     {
@@ -361,13 +388,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Rot',
-        de: 'Fäulnis',
-        fr: 'Pourriture',
-        ja: 'デグレードついた',
-        cn: '红点名',
-        ko: '치명적오류:전이 14초',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rot',
+          de: 'Fäulnis',
+          fr: 'Pourriture',
+          ja: 'デグレードついた',
+          cn: '红点名',
+          ko: '치명적오류:전이 14초',
+        },
       },
     },
     {
@@ -456,13 +486,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Move out for Defamation',
-        de: 'Rausgehen für Urteil',
-        fr: 'Ecartez-vous pour #médisance',
-        ja: 'サークル捨てる',
-        cn: '离开人群传毒',
-        ko: '잠재적 오류: 전이',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move out for Defamation',
+          de: 'Rausgehen für Urteil',
+          fr: 'Ecartez-vous pour #médisance',
+          ja: 'サークル捨てる',
+          cn: '离开人群传毒',
+          ko: '잠재적 오류: 전이',
+        },
       },
     },
     {
@@ -523,13 +556,16 @@
       netRegexJa: NetRegexes.headMarker({ target: 'リアユニット', id: '009D', capture: false }),
       netRegexCn: NetRegexes.headMarker({ target: '尾部组', id: '009D', capture: false }),
       netRegexKo: NetRegexes.headMarker({ target: '후면 유닛', id: '009D', capture: false }),
-      alertText: {
-        en: 'Back Left',
-        de: 'Hinten Links',
-        fr: 'Arrière gauche',
-        ja: '左後ろ',
-        cn: '左后',
-        ko: '좌측 후방',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Back Left',
+          de: 'Hinten Links',
+          fr: 'Arrière gauche',
+          ja: '左後ろ',
+          cn: '左后',
+          ko: '좌측 후방',
+        },
       },
     },
     {
@@ -540,13 +576,16 @@
       netRegexJa: NetRegexes.headMarker({ target: 'リアユニット', id: '009C', capture: false }),
       netRegexCn: NetRegexes.headMarker({ target: '尾部组', id: '009C', capture: false }),
       netRegexKo: NetRegexes.headMarker({ target: '후면 유닛', id: '009C', capture: false }),
-      alertText: {
-        en: 'Back Right',
-        de: 'Hinten Rechts',
-        fr: 'Arrière droite',
-        ja: '右後ろ',
-        cn: '右后',
-        ko: '우측 후방',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Back Right',
+          de: 'Hinten Rechts',
+          fr: 'Arrière droite',
+          ja: '右後ろ',
+          cn: '右后',
+          ko: '우측 후방',
+        },
       },
     },
     {

@@ -13,13 +13,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '276B', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '276B', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '276B', source: '가디언', capture: false }),
-      alertText: {
-        en: 'Magitek Ray',
-        de: 'Magitek-Laser',
-        fr: 'Rayon Magitek',
-        ja: '魔導レーザー',
-        cn: '直线AOE',
-        ko: '마도 레이저',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Magitek Ray',
+          de: 'Magitek-Laser',
+          fr: 'Rayon Magitek',
+          ja: '魔導レーザー',
+          cn: '直线AOE',
+          ko: '마도 레이저',
+        },
       },
     },
     {

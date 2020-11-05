@@ -23,12 +23,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1ED6', source: 'アルテ・ロイテ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1ED6', source: '老者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1ED6', source: '알테 로이테', capture: false }),
-      infoText: {
-        en: 'Breath Wing: Be beside boss',
-        de: 'Atemschwinge: Neben Boss gehen',
-        ja: 'ブレスウィング: ボスに近づく',
-        cn: '站boss附近',
-        ko: '날개바람: 보스 옆으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Breath Wing: Be beside boss',
+          de: 'Atemschwinge: Neben Boss gehen',
+          ja: 'ブレスウィング: ボスに近づく',
+          cn: '站boss附近',
+          ko: '날개바람: 보스 옆으로',
+        },
       },
     },
     {

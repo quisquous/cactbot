@@ -15,13 +15,16 @@
       id: 'BA Raiden Levinwhorl',
       regex: /Levinwhorl/,
       beforeSeconds: 10,
-      alertText: {
-        en: 'Shields and Mitigation',
-        de: 'Schilde und Abschwächungen',
-        fr: 'Boucliers et mitigation',
-        ja: 'ダメージ軽減とバリアを',
-        cn: '切盾减伤',
-        ko: '뎀감, 보호막',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shields and Mitigation',
+          de: 'Schilde und Abschwächungen',
+          fr: 'Boucliers et mitigation',
+          ja: 'ダメージ軽減とバリアを',
+          cn: '切盾减伤',
+          ko: '뎀감, 보호막',
+        },
       },
     },
     {
@@ -29,26 +32,32 @@
       regex: /Explosive Impulse/,
       beforeSeconds: 10,
       suppressSeconds: 60,
-      infoText: {
-        en: 'Pop Eurekan Potions',
-        de: 'Eureka-Heiltränke benutzen',
-        fr: 'Utilisez potion d\'Eurêka',
-        ja: 'エウレカ回復薬',
-        cn: '磕优雷卡回复药',
-        ko: '에우레카 포션 먹기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pop Eurekan Potions',
+          de: 'Eureka-Heiltränke benutzen',
+          fr: 'Utilisez potion d\'Eurêka',
+          ja: 'エウレカ回復薬',
+          cn: '磕优雷卡回复药',
+          ko: '에우레카 포션 먹기',
+        },
       },
     },
     {
       id: 'BA Ozma Black Hole Warning',
       regex: /Black Hole/,
       beforeSeconds: 12,
-      infoText: {
-        en: 'Black Hole Soon',
-        de: 'Schwarzes Loch',
-        fr: 'Trou noir bientôt',
-        ja: 'まもなくブラックホール',
-        cn: '黑洞警告',
-        ko: '곧 블랙홀',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Black Hole Soon',
+          de: 'Schwarzes Loch',
+          fr: 'Trou noir bientôt',
+          ja: 'まもなくブラックホール',
+          cn: '黑洞警告',
+          ko: '곧 블랙홀',
+        },
       },
     },
   ],
@@ -247,13 +256,16 @@
         return data.side == 'west' && data.mythcall;
       },
       delaySeconds: 3.5,
-      infoText: {
-        en: 'Under Spears',
-        de: 'Unter einen Speer',
-        fr: 'En dessous des lances',
-        ja: '妖槍旋',
-        cn: '枪脚下',
-        ko: '창 아래로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Under Spears',
+          de: 'Unter einen Speer',
+          fr: 'En dessous des lances',
+          ja: '妖槍旋',
+          cn: '枪脚下',
+          ko: '창 아래로',
+        },
       },
     },
     {
@@ -488,16 +500,19 @@
       condition: function(data) {
         return data.sealed;
       },
-      infoText: {
-        en: 'Dark Bracelets',
-        de: 'Dunkle Armreife',
-        fr: 'Bracelets ténèbreux',
-        ja: '黒リング',
-        cn: '黑光环',
-        ko: '어두운 고리',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.bracelets = 'dark';
+      },
+      outputStrings: {
+        text: {
+          en: 'Dark Bracelets',
+          de: 'Dunkle Armreife',
+          fr: 'Bracelets ténèbreux',
+          ja: '黒リング',
+          cn: '黑光环',
+          ko: '어두운 고리',
+        },
       },
     },
     {
@@ -511,16 +526,19 @@
       condition: function(data) {
         return data.sealed;
       },
-      infoText: {
-        en: 'Light Bracelets',
-        de: 'Helle Armreife',
-        fr: 'Bracelets lumineux',
-        ja: '白リング',
-        cn: '白光环',
-        ko: '빛 고리',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.bracelets = 'light';
+      },
+      outputStrings: {
+        text: {
+          en: 'Light Bracelets',
+          de: 'Helle Armreife',
+          fr: 'Bracelets lumineux',
+          ja: '白リング',
+          cn: '白光环',
+          ko: '빛 고리',
+        },
       },
     },
     {
@@ -698,13 +716,16 @@
       condition: function(data) {
         return data.sealed;
       },
-      infoText: {
-        en: 'Orbs to Opposite Colors',
-        de: 'Kugeln zu umgekehrter Farbe',
-        fr: 'Orbes aux couleurs opposées',
-        ja: '反対の色に',
-        cn: '连线去相反颜色',
-        ko: '구슬 반대 색깔로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orbs to Opposite Colors',
+          de: 'Kugeln zu umgekehrter Farbe',
+          fr: 'Orbes aux couleurs opposées',
+          ja: '反対の色に',
+          cn: '连线去相反颜色',
+          ko: '구슬 반대 색깔로',
+        },
       },
     },
     {
@@ -772,13 +793,16 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Off the Platform',
-        de: 'Weg von der Fläche',
-        fr: 'Hors de la plateforme',
-        ja: '回避',
-        cn: '远离平台',
-        ko: '멀어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Off the Platform',
+          de: 'Weg von der Fläche',
+          fr: 'Hors de la plateforme',
+          ja: '回避',
+          cn: '远离平台',
+          ko: '멀어지기',
+        },
       },
     },
     {
@@ -793,13 +817,16 @@
         return data.sealed;
       },
       delaySeconds: 9,
-      infoText: {
-        en: 'Spread for Bleed',
-        de: 'Blutung verteilen',
-        fr: 'Dispersez-vous pour le saignement',
-        ja: '散開',
-        cn: '分散',
-        ko: '산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread for Bleed',
+          de: 'Blutung verteilen',
+          fr: 'Dispersez-vous pour le saignement',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
       },
     },
     {
@@ -813,13 +840,16 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Go Far',
-        de: 'Weit weg',
-        fr: 'Éloignez-vous',
-        ja: '離れ',
-        cn: '远离',
-        ko: '멀리가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Far',
+          de: 'Weit weg',
+          fr: 'Éloignez-vous',
+          ja: '離れ',
+          cn: '远离',
+          ko: '멀리가기',
+        },
       },
     },
     {
@@ -868,13 +898,16 @@
       condition: function(data) {
         return data.sealed;
       },
-      alertText: {
-        en: 'Get Close',
-        de: 'Nah dran',
-        fr: 'Rapprochez-vous',
-        ja: '近づいて',
-        cn: '靠近',
-        ko: '가까이',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Close',
+          de: 'Nah dran',
+          fr: 'Rapprochez-vous',
+          ja: '近づいて',
+          cn: '靠近',
+          ko: '가까이',
+        },
       },
     },
     {
@@ -928,13 +961,16 @@
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: {
-        en: 'Get Off',
-        de: 'Weg da',
-        fr: 'Descendez',
-        ja: '回避',
-        cn: '远离平台',
-        ko: '멀어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Off',
+          de: 'Weg da',
+          fr: 'Descendez',
+          ja: '回避',
+          cn: '远离平台',
+          ko: '멀어지기',
+        },
       },
     },
     {
@@ -949,13 +985,16 @@
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: {
-        en: 'Get Close',
-        de: 'Nah dran',
-        fr: 'Rapprochez-vous',
-        ja: '近づく',
-        cn: '靠近',
-        ko: '가까이',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Close',
+          de: 'Nah dran',
+          fr: 'Rapprochez-vous',
+          ja: '近づく',
+          cn: '靠近',
+          ko: '가까이',
+        },
       },
     },
     {
@@ -970,13 +1009,16 @@
         return data.sealed;
       },
       suppressSeconds: 1,
-      alertText: {
-        en: 'Go Far',
-        de: 'Weit weg',
-        fr: 'Éloignez-vous',
-        ja: '離れ',
-        cn: '远离',
-        ko: '멀리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Far',
+          de: 'Weit weg',
+          fr: 'Éloignez-vous',
+          ja: '離れ',
+          cn: '远离',
+          ko: '멀리',
+        },
       },
     },
     {

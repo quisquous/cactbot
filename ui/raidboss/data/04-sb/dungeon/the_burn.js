@@ -19,26 +19,32 @@
       id: 'The Burn Hailfire',
       netRegex: NetRegexes.headMarker({ id: '0002', capture: false }),
       condition: (data) => !data.hedetet,
-      infoText: {
-        en: 'Hide behind crystal',
-        de: 'Hinter dem Kristall verstecken',
-        fr: 'Cachez-vous derrière le cristal',
-        ja: '水晶の後ろに',
-        cn: '躲在水晶后',
-        ko: '크리스탈 뒤에 숨기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide behind crystal',
+          de: 'Hinter dem Kristall verstecken',
+          fr: 'Cachez-vous derrière le cristal',
+          ja: '水晶の後ろに',
+          cn: '躲在水晶后',
+          ko: '크리스탈 뒤에 숨기',
+        },
       },
     },
     {
       id: 'The Burn Shardstrike',
       netRegex: NetRegexes.headMarker({ id: '0060' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Spread + Avoid Crystals',
-        de: 'Verteilen + Kristall meiden',
-        fr: 'Écartez-vous & évitez les cristaux',
-        ja: '散開 + 水晶に避け',
-        cn: '散开并远离水晶',
-        ko: '산개 + 크리스탈 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread + Avoid Crystals',
+          de: 'Verteilen + Kristall meiden',
+          fr: 'Écartez-vous & évitez les cristaux',
+          ja: '散開 + 水晶に避け',
+          cn: '散开并远离水晶',
+          ko: '산개 + 크리스탈 피하기',
+        },
       },
     },
     {
@@ -49,13 +55,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3191', source: 'ヘデテト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3191', source: '赫德提特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3191', source: '헤데테트', capture: false }),
-      infoText: {
-        en: 'Hide behind crystal',
-        de: 'Hinter dem Kristall verstecken',
-        fr: 'Cachez-vous derrière le cristal',
-        ja: '水晶の後ろに',
-        cn: '躲在水晶后',
-        ko: '크리스탈 뒤에 숨기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide behind crystal',
+          de: 'Hinter dem Kristall verstecken',
+          fr: 'Cachez-vous derrière le cristal',
+          ja: '水晶の後ろに',
+          cn: '躲在水晶后',
+          ko: '크리스탈 뒤에 숨기',
+        },
       },
     },
     {
@@ -107,13 +116,16 @@
       id: 'The Burn Aetherochemical Residue',
       netRegex: NetRegexes.headMarker({ id: '0002' }),
       condition: (data, matches) => data.me == matches.target && data.hedetet,
-      infoText: {
-        en: 'Puddle on YOU',
-        de: 'Fläche auf DIR',
-        fr: 'Zone au sol sur VOUS',
-        ja: '自分に粘液',
-        cn: '圈圈点名',
-        ko: '장판 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle on YOU',
+          de: 'Fläche auf DIR',
+          fr: 'Zone au sol sur VOUS',
+          ja: '自分に粘液',
+          cn: '圈圈点名',
+          ko: '장판 대상자',
+        },
       },
     },
     {
@@ -121,13 +133,16 @@
       id: 'The Burn Throttle',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '7670', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'In line with smoking drone',
-        de: 'In einer Linie mit der rauchenden Drohne stellen',
-        fr: 'En ligne avec le drone endommagé',
-        ja: 'ドローンの直線に',
-        cn: '站在冒烟小怪直线上',
-        ko: '연기나는 드론 앞으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In line with smoking drone',
+          de: 'In einer Linie mit der rauchenden Drohne stellen',
+          fr: 'En ligne avec le drone endommagé',
+          ja: 'ドローンの直線に',
+          cn: '站在冒烟小怪直线上',
+          ko: '연기나는 드론 앞으로',
+        },
       },
     },
     {
@@ -139,13 +154,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '2D78', source: '石刃', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2D78', source: '암석 절단날', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Avoid Rock Biters',
-        de: 'Felsbeißer meiden',
-        fr: 'Évitez le trancheur de pierre',
-        ja: 'ロックカッターに避け',
-        cn: '躲开电锯',
-        ko: '톱니바퀴 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Rock Biters',
+          de: 'Felsbeißer meiden',
+          fr: 'Évitez le trancheur de pierre',
+          ja: 'ロックカッターに避け',
+          cn: '躲开电锯',
+          ko: '톱니바퀴 피하기',
+        },
       },
     },
     {
@@ -193,13 +211,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3144', source: '雾龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3144', source: '안개 드래곤', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Bait Star Explosions',
-        de: 'Stern Explosion ködern',
-        fr: 'Déposez les explosions d\'étoiles',
-        ja: '放射霧を誘導',
-        cn: '诱导放射雾',
-        ko: '별모양 장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Star Explosions',
+          de: 'Stern Explosion ködern',
+          fr: 'Déposez les explosions d\'étoiles',
+          ja: '放射霧を誘導',
+          cn: '诱导放射雾',
+          ko: '별모양 장판 피하기',
+        },
       },
     },
   ],

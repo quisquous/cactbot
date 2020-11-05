@@ -30,16 +30,19 @@
       netRegexJa: NetRegexes.ability({ id: '31C7', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31C7', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31C7', source: '미드가르드오름', capture: false }),
-      infoText: {
-        en: 'Next Spin: In or Out',
-        de: 'Nächste Drehung: Rein oder raus',
-        fr: 'Tour suivant : Dedans/Dehors',
-        ja: '次: 中/外',
-        cn: '下一转:内圈/外圈',
-        ko: '다음: 안으로 혹은 밖으로',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Next Spin: In or Out',
+          de: 'Nächste Drehung: Rein oder raus',
+          fr: 'Tour suivant : Dedans/Dehors',
+          ja: '次: 中/外',
+          cn: '下一转:内圈/外圈',
+          ko: '다음: 안으로 혹은 밖으로',
+        },
       },
     },
     {
@@ -50,16 +53,19 @@
       netRegexJa: NetRegexes.ability({ id: '31C8', source: 'ミドガルズオルム', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '31C8', source: '尘世幻龙', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '31C8', source: '미드가르드오름', capture: false }),
-      infoText: {
-        en: 'Next Spin: Corners',
-        de: 'Nächste Drehung: Ecken',
-        fr: 'Tour suivant : Plus',
-        ja: '次: コーナー',
-        cn: '下一转:角落',
-        ko: '다음: 모서리로',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.lastSpinWasHorizontal = false;
+      },
+      outputStrings: {
+        text: {
+          en: 'Next Spin: Corners',
+          de: 'Nächste Drehung: Ecken',
+          fr: 'Tour suivant : Plus',
+          ja: '次: コーナー',
+          cn: '下一转:角落',
+          ko: '다음: 모서리로',
+        },
       },
     },
     {

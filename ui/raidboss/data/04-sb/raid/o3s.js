@@ -227,12 +227,15 @@
         return matches.target == data.me;
       },
       durationSeconds: 8,
-      infoText: {
-        en: 'Mindjack: Right',
-        de: 'Geistlenkung: Rechts',
-        ja: 'マインドジャック: 右折',
-        cn: '右',
-        ko: '정신장악: 오른쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Right',
+          de: 'Geistlenkung: Rechts',
+          ja: 'マインドジャック: 右折',
+          cn: '右',
+          ko: '정신장악: 오른쪽',
+        },
       },
     },
     {
@@ -242,12 +245,15 @@
         return matches.target == data.me;
       },
       durationSeconds: 8,
-      infoText: {
-        en: 'Mindjack: Forward',
-        de: 'Geistlenkung: Vorwärts',
-        ja: 'マインドジャック: 前進',
-        cn: '前',
-        ko: '정신장악: 앞쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Forward',
+          de: 'Geistlenkung: Vorwärts',
+          ja: 'マインドジャック: 前進',
+          cn: '前',
+          ko: '정신장악: 앞쪽',
+        },
       },
     },
     {
@@ -257,12 +263,15 @@
         return matches.target == data.me;
       },
       durationSeconds: 8,
-      infoText: {
-        en: 'Mindjack: Left',
-        de: 'Geistlenkung: Links',
-        ja: 'マインドジャック: 左折',
-        cn: '左',
-        ko: '정신장악: 왼쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Left',
+          de: 'Geistlenkung: Links',
+          ja: 'マインドジャック: 左折',
+          cn: '左',
+          ko: '정신장악: 왼쪽',
+        },
       },
     },
     {
@@ -272,12 +281,15 @@
         return matches.target == data.me;
       },
       durationSeconds: 8,
-      infoText: {
-        en: 'Mindjack: Back',
-        de: 'Geistlenkung: Zurück',
-        ja: 'マインドジャック: 後退',
-        cn: '后',
-        ko: '정신장악: 뒤쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Back',
+          de: 'Geistlenkung: Zurück',
+          ja: 'マインドジャック: 後退',
+          cn: '后',
+          ko: '정신장악: 뒤쪽',
+        },
       },
     },
     {

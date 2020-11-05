@@ -9,13 +9,16 @@
       id: 'UWU Feather Rain',
       regex: /Feather Rain/,
       beforeSeconds: 3,
-      infoText: {
-        en: 'Move!',
-        de: 'Bewegen',
-        fr: 'Bougez',
-        ja: 'フェザーレイン',
-        ko: '이동',
-        cn: '躲羽毛',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move!',
+          de: 'Bewegen',
+          fr: 'Bougez',
+          ja: 'フェザーレイン',
+          ko: '이동',
+          cn: '躲羽毛',
+        },
       },
     },
   ],
@@ -58,13 +61,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alertText: {
-        en: 'Slipstream',
-        de: 'Wirbelströmung',
-        fr: 'Sillage',
-        ja: 'スリップストリーム',
-        ko: '반동 기류',
-        cn: '螺旋气流',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Slipstream',
+          de: 'Wirbelströmung',
+          fr: 'Sillage',
+          ja: 'スリップストリーム',
+          ko: '반동 기류',
+          cn: '螺旋气流',
+        },
       },
     },
     {
@@ -73,13 +79,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Mistral on YOU',
-        de: 'Mistral-Song',
-        fr: 'Chant Du Mistral',
-        ja: 'ミストラルソング',
-        ko: '삭풍 징',
-        cn: '寒风之歌点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mistral on YOU',
+          de: 'Mistral-Song',
+          fr: 'Chant Du Mistral',
+          ja: 'ミストラルソング',
+          ko: '삭풍 징',
+          cn: '寒风之歌点名',
+        },
       },
     },
     {
@@ -89,13 +98,16 @@
         return data.role == 'tank';
       },
       suppressSeconds: 5,
-      infoText: {
-        en: 'Mistral Song',
-        de: 'Mistral-Song',
-        fr: 'Chant Du Mistral',
-        ja: 'ミストラルソング',
-        ko: '삭풍 징',
-        cn: '寒风之歌',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mistral Song',
+          de: 'Mistral-Song',
+          fr: 'Chant Du Mistral',
+          ja: 'ミストラルソング',
+          ko: '삭풍 징',
+          cn: '寒风之歌',
+        },
       },
     },
     {
@@ -109,13 +121,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: {
-        en: 'Spiny Plume Add',
-        de: 'Dorniger Federsturm',
-        fr: 'Plume Perforante',
-        ja: 'スパイニープルーム',
-        ko: '가시돋힌 깃털 등장',
-        cn: '刺羽出现',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spiny Plume Add',
+          de: 'Dorniger Federsturm',
+          fr: 'Plume Perforante',
+          ja: 'スパイニープルーム',
+          ko: '가시돋힌 깃털 등장',
+          cn: '刺羽出现',
+        },
       },
     },
     {
@@ -125,13 +140,16 @@
         return data.me == matches.target;
       },
       suppressSeconds: 45,
-      infoText: {
-        en: 'Fetters on YOU',
-        de: 'Fesseln auf DIR',
-        fr: 'Chaînes Infernales',
-        ja: '自分に炎獄の鎖',
-        ko: '사슬 → 나',
-        cn: '火狱之锁点名',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fetters on YOU',
+          de: 'Fesseln auf DIR',
+          fr: 'Chaînes Infernales',
+          ja: '自分に炎獄の鎖',
+          ko: '사슬 → 나',
+          cn: '火狱之锁点名',
+        },
       },
     },
     {
@@ -145,25 +163,31 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Searing Wind on YOU',
-        de: 'Versengen auf DIR',
-        fr: 'Rugissement Infernal',
-        ja: '自分に灼熱',
-        ko: '작열 → 나',
-        cn: '灼热咆哮点名',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Searing Wind on YOU',
+          de: 'Versengen auf DIR',
+          fr: 'Rugissement Infernal',
+          ja: '自分に灼熱',
+          ko: '작열 → 나',
+          cn: '灼热咆哮点名',
+        },
       },
     },
     {
       id: 'UWU Ifrit Flaming Crush',
       netRegex: NetRegexes.headMarker({ id: '0075', capture: false }),
-      alertText: {
-        en: 'Stack',
-        de: 'Stack',
-        fr: 'Stack',
-        ja: '頭割り',
-        ko: '집합',
-        cn: '集合',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack',
+          de: 'Stack',
+          fr: 'Stack',
+          ja: '頭割り',
+          ko: '집합',
+          cn: '集合',
+        },
       },
     },
     {
@@ -275,13 +299,16 @@
       condition: function(data, matches) {
         return data.phase == 'suppression' && data.me == matches.target;
       },
-      alarmText: {
-        en: 'Gaol on YOU',
-        de: 'Granitgefängnis',
-        fr: 'Geôle',
-        ja: 'ジェイル',
-        ko: '감옥 → 나',
-        cn: '石牢点名',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Gaol on YOU',
+          de: 'Granitgefängnis',
+          fr: 'Geôle',
+          ja: 'ジェイル',
+          ko: '감옥 → 나',
+          cn: '石牢点名',
+        },
       },
     },
     {
@@ -295,13 +322,16 @@
       condition: function(data) {
         return data.phase == 'finale';
       },
-      infoText: {
-        en: 'Garuda',
-        de: 'Garuda',
-        fr: 'Garuda',
-        ja: 'ガルーダ',
-        ko: '가루다',
-        cn: '迦楼罗',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Garuda',
+          de: 'Garuda',
+          fr: 'Garuda',
+          ja: 'ガルーダ',
+          ko: '가루다',
+          cn: '迦楼罗',
+        },
       },
     },
     {
@@ -315,13 +345,16 @@
       condition: function(data) {
         return data.phase == 'finale';
       },
-      infoText: {
-        en: 'Ifrit',
-        de: 'Ifrit',
-        fr: 'Ifrit',
-        ja: 'イフリート',
-        ko: '이프리트',
-        cn: '伊弗利特',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ifrit',
+          de: 'Ifrit',
+          fr: 'Ifrit',
+          ja: 'イフリート',
+          ko: '이프리트',
+          cn: '伊弗利特',
+        },
       },
     },
     {
@@ -335,13 +368,16 @@
       condition: function(data) {
         return data.phase == 'finale';
       },
-      infoText: {
-        en: 'Titan',
-        de: 'Titan',
-        fr: 'Titan',
-        ja: 'タイタン',
-        ko: '타이탄',
-        cn: '泰坦',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Titan',
+          de: 'Titan',
+          fr: 'Titan',
+          ja: 'タイタン',
+          ko: '타이탄',
+          cn: '泰坦',
+        },
       },
     },
   ],

@@ -154,12 +154,15 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: {
-        en: 'Grab dragon',
-        de: 'Drachen nehmen',
-        ja: 'ドラゴンを取って',
-        cn: '拉住巨龙',
-        ko: '용 잡기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Grab dragon',
+          de: 'Drachen nehmen',
+          ja: 'ドラゴンを取って',
+          cn: '拉住巨龙',
+          ko: '용 잡기',
+        },
       },
     },
     {
@@ -185,12 +188,15 @@
       condition: function(data) {
         return data.phaseNumber == 3 && data.gameCount % 2 == 0;
       },
-      alertText: {
-        en: 'Get hit by Ribbit',
-        de: 'Lass dich von Quaaak treffen',
-        ja: 'クルルルルを受け',
-        cn: 'BOSS正面吃呱呱',
-        ko: '개굴장판 맞기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get hit by Ribbit',
+          de: 'Lass dich von Quaaak treffen',
+          ja: 'クルルルルを受け',
+          cn: 'BOSS正面吃呱呱',
+          ko: '개굴장판 맞기',
+        },
       },
     },
     {
@@ -267,12 +273,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2467', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2467', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2467', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Mindjack: Forward',
-        de: 'Geistlenkung: Vorwärts',
-        ja: 'マインドジャック: 前進',
-        cn: '精神控制：向前',
-        ko: '정신 장악: 앞쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Forward',
+          de: 'Geistlenkung: Vorwärts',
+          ja: 'マインドジャック: 前進',
+          cn: '精神控制：向前',
+          ko: '정신 장악: 앞쪽',
+        },
       },
     },
     {
@@ -283,12 +292,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2468', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2468', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2468', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Mindjack: Back',
-        de: 'Geistlenkung: Zurück',
-        ja: 'マインドジャック: 後退',
-        cn: '精神控制：向后',
-        ko: '정신 장악: 뒤쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Back',
+          de: 'Geistlenkung: Zurück',
+          ja: 'マインドジャック: 後退',
+          cn: '精神控制：向后',
+          ko: '정신 장악: 뒤쪽',
+        },
       },
     },
     {
@@ -299,12 +311,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2469', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2469', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2469', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Mindjack: Left',
-        de: 'Geistlenkung: Links',
-        ja: 'マインドジャック: 左折',
-        cn: '精神控制：向左',
-        ko: '정신 장악: 왼쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Left',
+          de: 'Geistlenkung: Links',
+          ja: 'マインドジャック: 左折',
+          cn: '精神控制：向左',
+          ko: '정신 장악: 왼쪽',
+        },
       },
     },
     {
@@ -315,12 +330,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '246A', source: 'ハリカルナッソス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '246A', source: '哈利卡纳苏斯', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '246A', source: '할리카르나소스', capture: false }),
-      infoText: {
-        en: 'Mindjack: Right',
-        de: 'Geistlenkung: Rechts',
-        ja: 'マインドジャック: 右折',
-        cn: '精神控制：向右',
-        ko: '정신 장악: 오른쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mindjack: Right',
+          de: 'Geistlenkung: Rechts',
+          ja: 'マインドジャック: 右折',
+          cn: '精神控制：向右',
+          ko: '정신 장악: 오른쪽',
+        },
       },
     },
   ],

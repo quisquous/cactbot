@@ -24,13 +24,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28E4', source: '神々の像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E4', source: '众神之像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E4', source: '신들의 상', capture: false }),
-      alertText: {
-        en: 'Look Away From Statue',
-        fr: 'Ne regardez pas la statue',
-        de: 'Von Statue wegschauen',
-        ko: '시선 피하기',
-        ja: '塔を見ないで！',
-        cn: '背对神像',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Away From Statue',
+          fr: 'Ne regardez pas la statue',
+          de: 'Von Statue wegschauen',
+          ko: '시선 피하기',
+          ja: '塔を見ないで！',
+          cn: '背对神像',
+        },
       },
     },
     {
@@ -61,13 +64,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28E3', source: '神々の像', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28E3', source: '众神之像', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28E3', source: '신들의 상', capture: false }),
-      alertText: {
-        en: 'Look At Statue',
-        fr: 'Regardez la statue',
-        de: 'Statue anschauen',
-        ko: '시선 바라보기',
-        ja: '像を見て！',
-        cn: '面对神像',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look At Statue',
+          fr: 'Regardez la statue',
+          de: 'Statue anschauen',
+          ko: '시선 바라보기',
+          ja: '像を見て！',
+          cn: '面对神像',
+        },
       },
     },
     {
@@ -78,13 +84,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28F1', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F1', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F1', source: '케프카', capture: false }),
-      alertText: {
-        en: 'Past: Stack and Stay',
-        fr: 'Passé : Stack et ne bougez plus',
-        de: 'Vergangenheit: Sammeln und Stehenbleiben',
-        ko: '과거: 맞고 가만히있기',
-        ja: '過去: スタックしてそのまま',
-        cn: '分摊不动',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Past: Stack and Stay',
+          fr: 'Passé : Stack et ne bougez plus',
+          de: 'Vergangenheit: Sammeln und Stehenbleiben',
+          ko: '과거: 맞고 가만히있기',
+          ja: '過去: スタックしてそのまま',
+          cn: '分摊不动',
+        },
       },
     },
     {
@@ -95,13 +104,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28EE', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28EE', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28EE', source: '케프카', capture: false }),
-      alertText: {
-        en: 'Future: Stack and Through',
-        fr: 'Futur : Stack et traversez',
-        de: 'Zukunft: Sammeln und Durchlaufen',
-        ko: '미래: 맞고 통과해가기',
-        ja: '未来: シェア後ボス通り抜ける',
-        cn: '分摊穿boss',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Future: Stack and Through',
+          fr: 'Futur : Stack et traversez',
+          de: 'Zukunft: Sammeln und Durchlaufen',
+          ko: '미래: 맞고 통과해가기',
+          ja: '未来: シェア後ボス通り抜ける',
+          cn: '分摊穿boss',
+        },
       },
     },
     {
@@ -116,13 +128,16 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      alertText: {
-        en: 'Past: Bait, then through',
-        fr: 'Passé : appâtez puis traversez',
-        de: 'Vergangenheit : Anlocken und Durchlaufen',
-        ko: '과거: 맞고, 이동',
-        ja: '過去: 飛んできたら反対向ける',
-        cn: '诱导然后穿boss',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Past: Bait, then through',
+          fr: 'Passé : appâtez puis traversez',
+          de: 'Vergangenheit : Anlocken und Durchlaufen',
+          ko: '과거: 맞고, 이동',
+          ja: '過去: 飛んできたら反対向ける',
+          cn: '诱导然后穿boss',
+        },
       },
     },
     {
@@ -137,13 +152,16 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      alertText: {
-        en: 'Future: Bait, then stay',
-        fr: 'Futur : appâtez et ne bougez plus',
-        de: 'Zukunft: Anlocken und Stehenbleiben',
-        ko: '미래: 맞고, 가만히',
-        ja: '未来: 飛んできたらそのまま',
-        cn: '诱导然后不动',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Future: Bait, then stay',
+          fr: 'Futur : appâtez et ne bougez plus',
+          de: 'Zukunft: Anlocken und Stehenbleiben',
+          ko: '미래: 맞고, 가만히',
+          ja: '未来: 飛んできたらそのまま',
+          cn: '诱导然后不动',
+        },
       },
     },
     {
@@ -200,13 +218,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '28F[EF]', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '28F[EF]', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '28F[EF]', source: '케프카', capture: false }),
-      infoText: {
-        en: 'Single Wing',
-        fr: 'Aile unique',
-        de: 'Einzelner Flügel',
-        ko: '한쪽 날개',
-        ja: '片翼',
-        cn: '单翅膀',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Single Wing',
+          fr: 'Aile unique',
+          de: 'Einzelner Flügel',
+          ko: '한쪽 날개',
+          ja: '片翼',
+          cn: '单翅膀',
+        },
       },
     },
     {
@@ -268,13 +289,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Confusion: Go Outside',
-        fr: 'Confusion : Aller à l\'extérieur',
-        de: 'Konfusion: Nach außen',
-        ko: '혼란: 바깥으로',
-        ja: '混乱: 外へ',
-        cn: '去外面',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Confusion: Go Outside',
+          fr: 'Confusion : Aller à l\'extérieur',
+          de: 'Konfusion: Nach außen',
+          ko: '혼란: 바깥으로',
+          ja: '混乱: 外へ',
+          cn: '去外面',
+        },
       },
     },
     {
@@ -288,13 +312,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Sleep: Go Inside',
-        fr: 'Sommeil : allez au centre',
-        de: 'Schlaf: Zur Mitte',
-        ko: '수면: 안으로',
-        ja: '睡眠: 中へ',
-        cn: '去中间',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Sleep: Go Inside',
+          fr: 'Sommeil : allez au centre',
+          de: 'Schlaf: Zur Mitte',
+          ko: '수면: 안으로',
+          ja: '睡眠: 中へ',
+          cn: '去中间',
+        },
       },
     },
     {

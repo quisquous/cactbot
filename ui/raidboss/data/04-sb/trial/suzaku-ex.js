@@ -47,13 +47,16 @@
       condition: function(data) {
         return data.role == 'tank' || data.role == 'healer';
       },
-      alertText: {
-        en: 'Tank Buster',
-        de: 'Tankbuster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '死刑',
-        ko: '탱버',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Buster',
+          de: 'Tankbuster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -64,13 +67,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '32DA', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DA', source: '주작', capture: false }),
-      alertText: {
-        en: 'Get Out',
-        de: 'Raus da',
-        fr: 'Allez au bord extérieur',
-        ja: '誘引',
-        cn: '远离',
-        ko: '밖으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Out',
+          de: 'Raus da',
+          fr: 'Allez au bord extérieur',
+          ja: '誘引',
+          cn: '远离',
+          ko: '밖으로',
+        },
       },
     },
     {
@@ -81,13 +87,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '32DB', source: '朱雀', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '32DB', source: '주작', capture: false }),
-      alertText: {
-        en: 'Get In',
-        de: 'Rein da',
-        fr: 'Allez au bord intérieur',
-        ja: '拒絶',
-        cn: '靠近',
-        ko: '안으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get In',
+          de: 'Rein da',
+          fr: 'Allez au bord intérieur',
+          ja: '拒絶',
+          cn: '靠近',
+          ko: '안으로',
+        },
       },
     },
   ],
