@@ -75,13 +75,16 @@
       netRegexCn: NetRegexes.startsUsing({ source: '爆破者幻象', id: '15FB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '폭파자의 환영', id: '15FB', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Dodge Mirage Charge',
-        de: 'Superladung ausweichen',
-        fr: 'Esquivez la charge de la réplique',
-        ja: 'スーパーチャージに避け',
-        cn: '躲开冲锋',
-        ko: '환영 돌진 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Mirage Charge',
+          de: 'Superladung ausweichen',
+          fr: 'Esquivez la charge de la réplique',
+          ja: 'スーパーチャージに避け',
+          cn: '躲开冲锋',
+          ko: '환영 돌진 피하기',
+        },
       },
     },
     {
@@ -95,13 +98,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Look Away from Mirage',
-        de: 'Von Replikant wegschauen',
-        fr: 'Ne regardez pas la réplique',
-        ja: 'ミラージュを見ないで',
-        cn: '背对幻象',
-        ko: '환영 쳐다보지 않기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Away from Mirage',
+          de: 'Von Replikant wegschauen',
+          fr: 'Ne regardez pas la réplique',
+          ja: 'ミラージュを見ないで',
+          cn: '背对幻象',
+          ko: '환영 쳐다보지 않기',
+        },
       },
     },
     {
@@ -115,13 +121,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Look Towards Mirage',
-        de: 'Von Replikant hinschauen',
-        fr: 'Regardez la réplique',
-        ja: 'ミラージュを見て',
-        cn: '面向幻象',
-        ko: '환영 쳐다보기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look Towards Mirage',
+          de: 'Von Replikant hinschauen',
+          fr: 'Regardez la réplique',
+          ja: 'ミラージュを見て',
+          cn: '面向幻象',
+          ko: '환영 쳐다보기',
+        },
       },
     },
     {
@@ -131,13 +140,16 @@
         return data.me == matches.target;
       },
       suppressSeconds: 10,
-      alertText: {
-        en: 'Go High',
-        de: 'Geh Hoch',
-        fr: 'Allez en haut',
-        ja: '高い床に乗る',
-        cn: '上高台',
-        ko: '높은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go High',
+          de: 'Geh Hoch',
+          fr: 'Allez en haut',
+          ja: '高い床に乗る',
+          cn: '上高台',
+          ko: '높은곳으로',
+        },
       },
     },
     {
@@ -147,13 +159,16 @@
         return data.me == matches.target;
       },
       suppressSeconds: 10,
-      alertText: {
-        en: 'Go Low',
-        de: 'Geh Runter',
-        fr: 'Allez en bas',
-        ja: '低い床に乗る',
-        cn: '下低台',
-        ko: '낮은곳으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Low',
+          de: 'Geh Runter',
+          fr: 'Allez en bas',
+          ja: '低い床に乗る',
+          cn: '下低台',
+          ko: '낮은곳으로',
+        },
       },
     },
     {
@@ -226,12 +241,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ボルテッカー', id: '161A', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '环旋者', id: '161A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '교반자', id: '161A', capture: false }),
-      alertText: {
-        en: 'Hide Behind Ice',
-        de: 'Hinter dem Eis verstecken',
-        fr: 'Cachez-vous derrière la glace',
-        ja: '氷柱の後ろに',
-        ko: '얼음 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Ice',
+          de: 'Hinter dem Eis verstecken',
+          fr: 'Cachez-vous derrière la glace',
+          ja: '氷柱の後ろに',
+          ko: '얼음 뒤에 숨기',
+        },
       },
     },
     {
@@ -240,12 +258,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Ice: Freeze Tornado',
-        de: 'Eis: Tornado einfrieren',
-        fr: 'Glace : Gelez la tornade',
-        ja: '氷柱: 竜巻を凍結',
-        ko: '얼음: 물기둥 얼리기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Ice: Freeze Tornado',
+          de: 'Eis: Tornado einfrieren',
+          fr: 'Glace : Gelez la tornade',
+          ja: '氷柱: 竜巻を凍結',
+          ko: '얼음: 물기둥 얼리기',
+        },
       },
     },
     {
@@ -255,12 +276,15 @@
         return data.me == matches.target;
       },
       // TODO: maybe this should say "hit tornado / avoid ice" but that's wordy.
-      infoText: {
-        en: 'Fire Beam on YOU',
-        de: 'Feuer Strahl auf DIR',
-        fr: 'Rayon de feu sur VOUS',
-        ja: '自分にファイアビーム',
-        ko: '화염 광선 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Fire Beam on YOU',
+          de: 'Feuer Strahl auf DIR',
+          fr: 'Rayon de feu sur VOUS',
+          ja: '自分にファイアビーム',
+          ko: '화염 광선 대상자',
+        },
       },
     },
     {
@@ -269,16 +293,19 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Water on YOU',
-        de: 'Wasser auf DIR',
-        fr: 'Eau sur VOUS',
-        ja: '自分に水',
-        cn: '水点名',
-        ko: '물징 대상자',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.haveWater = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Water on YOU',
+          de: 'Wasser auf DIR',
+          fr: 'Eau sur VOUS',
+          ja: '自分に水',
+          cn: '水点名',
+          ko: '물징 대상자',
+        },
       },
     },
     {
@@ -320,16 +347,19 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Lightning on YOU',
-        de: 'Blitz auf DIR',
-        fr: 'Éclair sur VOUS',
-        ja: '自分に雷',
-        cn: '雷点名',
-        ko: '번개징 대상자',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.haveLightning = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Lightning on YOU',
+          de: 'Blitz auf DIR',
+          fr: 'Éclair sur VOUS',
+          ja: '自分に雷',
+          cn: '雷点名',
+          ko: '번개징 대상자',
+        },
       },
     },
     {

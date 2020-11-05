@@ -44,13 +44,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6C', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A6C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A6C', capture: false }),
-      infoText: {
-        en: 'Clock',
-        de: 'Uhr',
-        fr: 'Sens horaire',
-        ja: '照準 (時針回り)',
-        cn: '九连环',
-        ko: '시계방향',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Clock',
+          de: 'Uhr',
+          fr: 'Sens horaire',
+          ja: '照準 (時針回り)',
+          cn: '九连环',
+          ko: '시계방향',
+        },
       },
     },
     {
@@ -71,13 +74,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A6E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A6E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A6E', capture: false }),
-      infoText: {
-        en: 'Bait Optical Sight',
-        de: 'Köder Visier',
-        fr: 'Attirez la Visée optique',
-        ja: '照準AoEを誘導',
-        cn: '诱导AOE',
-        ko: '유도 장판',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Optical Sight',
+          de: 'Köder Visier',
+          fr: 'Attirez la Visée optique',
+          ja: '照準AoEを誘導',
+          cn: '诱导AOE',
+          ko: '유도 장판',
+        },
       },
     },
     {
@@ -115,13 +121,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'イーディーディー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '护航机甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: 'E\\.D\\.D\\.', capture: false }),
-      infoText: {
-        en: 'Kill Add',
-        de: 'Add besiegen',
-        fr: 'Tuez l\'Add',
-        ja: 'イーディーディーを倒す',
-        cn: '击杀小怪',
-        ko: '쫄 없애기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Add',
+          de: 'Add besiegen',
+          fr: 'Tuez l\'Add',
+          ja: 'イーディーディーを倒す',
+          cn: '击杀小怪',
+          ko: '쫄 없애기',
+        },
       },
     },
     {
@@ -132,13 +141,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'ショルダーアーマー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '肩部装甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '견갑부', capture: false }),
-      infoText: {
-        en: 'Break Pauldron',
-        de: 'Schulterplatte zerstören',
-        fr: 'Brisez la Protection',
-        ja: 'アーマーを破れ',
-        cn: '击破护盾',
-        ko: '견갑부 부수기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Break Pauldron',
+          de: 'Schulterplatte zerstören',
+          fr: 'Brisez la Protection',
+          ja: 'アーマーを破れ',
+          cn: '击破护盾',
+          ko: '견갑부 부수기',
+        },
       },
     },
     {
@@ -319,13 +331,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'クルーズチェイサー', id: '1A7F', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '巡航驱逐者', id: '1A7F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '1A7F', capture: false }),
-      alertText: {
-        en: 'Hide Behind Tower',
-        de: 'Hinter dem Tower verstecken',
-        fr: 'Cachez-vous derrière la tour',
-        ja: '塔の後ろに',
-        cn: '躲在塔后',
-        ko: '기둥 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Tower',
+          de: 'Hinter dem Tower verstecken',
+          fr: 'Cachez-vous derrière la tour',
+          ja: '塔の後ろに',
+          cn: '躲在塔后',
+          ko: '기둥 뒤에 숨기',
+        },
       },
     },
     {
@@ -336,13 +351,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'プラズマシールド', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '等离子护盾', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '플라스마 방어막', capture: false }),
-      alertText: {
-        en: 'Break Shield From Front',
-        de: 'Schild von vorne zerstören',
-        fr: 'Brisez le Bouclier par l\'avant',
-        ja: 'シールドの正面から倒す',
-        cn: '正面击破护盾',
-        ko: '정면에서 방어막 부수기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Break Shield From Front',
+          de: 'Schild von vorne zerstören',
+          fr: 'Brisez le Bouclier par l\'avant',
+          ja: 'シールドの正面から倒す',
+          cn: '正面击破护盾',
+          ko: '정면에서 방어막 부수기',
+        },
       },
     },
     {

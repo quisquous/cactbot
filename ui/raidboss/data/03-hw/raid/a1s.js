@@ -8,13 +8,16 @@
       id: 'A1S Emergency Liftoff',
       regex: /Emergency Liftoff/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Liftoff Soon',
-        de: 'Bald abheben',
-        fr: 'Décollage bientôt',
-        ja: '緊急上昇',
-        cn: '上升',
-        ko: '긴급 상승',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Liftoff Soon',
+          de: 'Bald abheben',
+          fr: 'Décollage bientôt',
+          ja: '緊急上昇',
+          cn: '上升',
+          ko: '긴급 상승',
+        },
       },
     },
     {
@@ -38,13 +41,16 @@
       id: 'A1S Hydrothermal You',
       netRegex: NetRegexes.headMarker({ id: '001E' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Hydrothermal on You',
-        de: 'Hydrothermales auf DIR',
-        fr: 'Missile hydrothermique sur Vous',
-        ja: '自分に蒸気ミサイル',
-        cn: '导弹点名',
-        ko: '증기 미사일 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hydrothermal on You',
+          de: 'Hydrothermales auf DIR',
+          fr: 'Missile hydrothermique sur Vous',
+          ja: '自分に蒸気ミサイル',
+          cn: '导弹点名',
+          ko: '증기 미사일 대상자',
+        },
       },
     },
     {
@@ -82,13 +88,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: 'E46', source: 'オプレッサー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: 'E46', source: '压迫者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: 'E46', source: '억압자', capture: false }),
-      infoText: {
-        en: 'Bait Resin Bomb',
-        de: 'Köder Pechbombe',
-        fr: 'Placez-vous pour Bombe de résine',
-        ja: '粘着弾',
-        cn: '粘着弹',
-        ko: '점착탄',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Resin Bomb',
+          de: 'Köder Pechbombe',
+          fr: 'Placez-vous pour Bombe de résine',
+          ja: '粘着弾',
+          cn: '粘着弹',
+          ko: '점착탄',
+        },
       },
     },
     {

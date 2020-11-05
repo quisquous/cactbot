@@ -63,12 +63,15 @@ let callSafeDir = (callIndex) => {
       id: 'SophiaEX Onrush',
       regex: /Onrush/,
       beforeSeconds: 5,
-      infoText: {
-        en: 'Avoid Dash Attack',
-        de: 'Ansturm-Angriff ausweichen',
-        fr: 'Évitez l\'attaque Charge',
-        ja: '突進に避け',
-        cn: '躲避击飞',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Dash Attack',
+          de: 'Ansturm-Angriff ausweichen',
+          fr: 'Évitez l\'attaque Charge',
+          ja: '突進に避け',
+          cn: '躲避击飞',
+        },
       },
     },
     {
@@ -82,26 +85,32 @@ let callSafeDir = (callIndex) => {
       id: 'SophiaEX Dischordant Cleansing',
       regex: /Dischordant Cleansing/,
       beforeSeconds: 6,
-      alertText: {
-        en: 'Stack With Partner',
-        de: 'Mit Partner stacken',
-        fr: 'Packez-vous avec votre partenaire',
-        ja: '白黒合わせて',
-        cn: '黑白配',
-        ko: '흑백 파트너랑 모이기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack With Partner',
+          de: 'Mit Partner stacken',
+          fr: 'Packez-vous avec votre partenaire',
+          ja: '白黒合わせて',
+          cn: '黑白配',
+          ko: '흑백 파트너랑 모이기',
+        },
       },
     },
     {
       id: 'SophiaEX Quasar Bait',
       regex: /Quasar \(Snapshot\)/,
       beforeSeconds: 6,
-      infoText: {
-        en: 'Bait Quasar Meteors',
-        de: 'Quasar Meteore ködern',
-        fr: 'Attirez les météores du Quasar',
-        ja: 'メテオを誘導',
-        cn: '诱导陨石',
-        ko: '운석 유도하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Quasar Meteors',
+          de: 'Quasar Meteore ködern',
+          fr: 'Attirez les météores du Quasar',
+          ja: 'メテオを誘導',
+          cn: '诱导陨石',
+          ko: '운석 유도하기',
+        },
       },
     },
   ],
@@ -169,13 +178,16 @@ let callSafeDir = (callIndex) => {
       netRegexJa: NetRegexes.startsUsing({ id: '19B8', source: '三の従者', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '19B8', source: '信徒其三', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '19B8', source: '제3신도', capture: false }),
-      infoText: {
-        en: 'Get behind lancer',
-        de: 'Geh hinter dem 3. Demiurg',
-        fr: 'Passez derrière le lancier',
-        ja: '三の従者の後ろに',
-        cn: '躲在3号小怪后',
-        ko: '제3신도 뒤로 가기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get behind lancer',
+          de: 'Geh hinter dem 3. Demiurg',
+          fr: 'Passez derrière le lancier',
+          ja: '三の従者の後ろに',
+          cn: '躲在3号小怪后',
+          ko: '제3신도 뒤로 가기',
+        },
       },
     },
     {
@@ -318,13 +330,16 @@ let callSafeDir = (callIndex) => {
       condition: function(data) {
         return data.clonesActive;
       },
-      infoText: {
-        en: 'Avoid head laser',
-        de: 'Kopflaser ausweichen',
-        fr: 'Évitez la tête laser',
-        ja: 'レザーに避け',
-        cn: '躲避人头炮',
-        ko: '머리 레이저 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid head laser',
+          de: 'Kopflaser ausweichen',
+          fr: 'Évitez la tête laser',
+          ja: 'レザーに避け',
+          cn: '躲避人头炮',
+          ko: '머리 레이저 피하기',
+        },
       },
     },
     {

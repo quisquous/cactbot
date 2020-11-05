@@ -79,13 +79,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'マニピュレーター', id: 'F5E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F5E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F5E', capture: false }),
-      infoText: {
-        en: 'Laser Tethers',
-        de: 'Laser Verbindungen',
-        fr: 'Liens laser',
-        ja: 'レザー線',
-        cn: '镭射连线',
-        ko: '레이저 선',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Laser Tethers',
+          de: 'Laser Verbindungen',
+          fr: 'Liens laser',
+          ja: 'レザー線',
+          cn: '镭射连线',
+          ko: '레이저 선',
+        },
       },
     },
     {
@@ -97,13 +100,16 @@
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F64' }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F64' }),
       condition: Conditions.targetIsYou(),
-      alarmText: {
-        en: 'Nisi A on YOU',
-        de: 'Nisi A auf DIR',
-        fr: 'Peine A sur VOUS',
-        ja: '自分に仮判決α',
-        cn: '蓝BUFF点名',
-        ko: '임시 판결 A 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Nisi A on YOU',
+          de: 'Nisi A auf DIR',
+          fr: 'Peine A sur VOUS',
+          ja: '自分に仮判決α',
+          cn: '蓝BUFF点名',
+          ko: '임시 판결 A 대상자',
+        },
       },
     },
     {
@@ -115,13 +121,16 @@
       netRegexKo: NetRegexes.startsUsing({ source: '조종자', id: 'F65' }),
       netRegexCn: NetRegexes.startsUsing({ source: '操纵者', id: 'F65' }),
       condition: Conditions.targetIsYou(),
-      alarmText: {
-        en: 'Nisi B on YOU',
-        de: 'Nisi B auf DIR',
-        fr: 'Peine B sur VOUS',
-        ja: '自分に仮判決β',
-        cn: '红BUFF点名',
-        ko: '임시 판결 B 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Nisi B on YOU',
+          de: 'Nisi B auf DIR',
+          fr: 'Peine B sur VOUS',
+          ja: '自分に仮判決β',
+          cn: '红BUFF点名',
+          ko: '임시 판결 B 대상자',
+        },
       },
     },
     {

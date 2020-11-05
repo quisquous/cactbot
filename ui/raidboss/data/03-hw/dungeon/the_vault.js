@@ -16,13 +16,16 @@
       regex: /Shining Blade/,
       beforeSeconds: 3,
       suppressSeconds: 10,
-      infoText: {
-        en: 'Avoid dashes',
-        de: 'Sprint ausweichen',
-        fr: 'Évitez les charges',
-        ja: 'ブレードに避け',
-        cn: '躲开冲锋',
-        ko: '돌진 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid dashes',
+          de: 'Sprint ausweichen',
+          fr: 'Évitez les charges',
+          ja: 'ブレードに避け',
+          cn: '躲开冲锋',
+          ko: '돌진 피하기',
+        },
       },
     },
     {
@@ -116,13 +119,16 @@
         return data.me == matches.target;
       },
       suppressSeconds: 5,
-      alarmText: {
-        en: 'Away from rifts',
-        de: 'Weg von de Ätherspalten',
-        fr: 'Éloignez-vous des déchirures',
-        ja: '裂け目に離れ',
-        cn: '远离黑圈',
-        ko: '장판 피하기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from rifts',
+          de: 'Weg von de Ätherspalten',
+          fr: 'Éloignez-vous des déchirures',
+          ja: '裂け目に離れ',
+          cn: '远离黑圈',
+          ko: '장판 피하기',
+        },
       },
     },
     {
@@ -169,13 +175,16 @@
         return data.knightsActive;
       },
       suppressSeconds: 4,
-      infoText: {
-        en: 'Evade marching knights',
-        de: 'Marschierenden Rittern ausweichen',
-        fr: 'Esquivez la marche chevaliers',
-        ja: 'ナイトに避け',
-        cn: '躲开人马',
-        ko: '자동기사 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Evade marching knights',
+          de: 'Marschierenden Rittern ausweichen',
+          fr: 'Esquivez la marche chevaliers',
+          ja: 'ナイトに避け',
+          cn: '躲开人马',
+          ko: '자동기사 피하기',
+        },
       },
     },
   ],

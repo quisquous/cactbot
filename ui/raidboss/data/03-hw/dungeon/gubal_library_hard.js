@@ -90,13 +90,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Away from boss',
-        de: 'Weg vom Boss',
-        fr: 'Éloignez-vous du boss',
-        ja: 'ボスに離れ',
-        cn: '远离boss',
-        ko: '멀어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from boss',
+          de: 'Weg vom Boss',
+          fr: 'Éloignez-vous du boss',
+          ja: 'ボスに離れ',
+          cn: '远离boss',
+          ko: '멀어지기',
+        },
       },
     },
     {
@@ -105,13 +108,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Stand in red',
-        de: 'Im Roten stehen',
-        fr: 'Tenez-vous dans le rouge',
-        ja: '赤色に入る',
-        cn: '站在红色',
-        ko: '빨강장판에 서기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in red',
+          de: 'Im Roten stehen',
+          fr: 'Tenez-vous dans le rouge',
+          ja: '赤色に入る',
+          cn: '站在红色',
+          ko: '빨강장판에 서기',
+        },
       },
     },
     {
@@ -120,13 +126,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Stand in blue',
-        de: 'Im Blauen stehen',
-        fr: 'Tenez-vous dans le bleu',
-        ja: '青色に入る',
-        cn: '站在蓝色',
-        ko: '파랑장판에 서기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in blue',
+          de: 'Im Blauen stehen',
+          fr: 'Tenez-vous dans le bleu',
+          ja: '青色に入る',
+          cn: '站在蓝色',
+          ko: '파랑장판에 서기',
+        },
       },
     },
     {
@@ -169,13 +178,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1956', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1956', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1956', source: '스트릭스', capture: false }),
-      infoText: {
-        en: 'Stand in light circle',
-        de: 'Im hellen Kreis stehen',
-        fr: 'Tenez-vous dans le cercle blanc',
-        ja: '白い輪に入る',
-        cn: '去白色区域',
-        ko: '빛 장판으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in light circle',
+          de: 'Im hellen Kreis stehen',
+          fr: 'Tenez-vous dans le cercle blanc',
+          ja: '白い輪に入る',
+          cn: '去白色区域',
+          ko: '빛 장판으로',
+        },
       },
     },
     {
@@ -186,13 +198,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1957', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1957', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1957', source: '스트릭스', capture: false }),
-      infoText: {
-        en: 'Stand in dark circle',
-        de: 'Im dunklen Kreis stehen',
-        fr: 'Tenez-vous dans le cercle noir',
-        ja: '黒い輪に入る',
-        cn: '去黑色区域',
-        ko: '어둠 장판으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stand in dark circle',
+          de: 'Im dunklen Kreis stehen',
+          fr: 'Tenez-vous dans le cercle noir',
+          ja: '黒い輪に入る',
+          cn: '去黑色区域',
+          ko: '어둠 장판으로',
+        },
       },
     },
     {
@@ -203,13 +218,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1959', source: 'ストリックス', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1959', source: '博学林鸮', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1959', source: '스트릭스', capture: false }),
-      infoText: {
-        en: 'Cleanse in green circle',
-        de: 'Im grünen Kreis reinigen',
-        fr: 'Purifiez-vous dans le cercle vert',
-        ja: '緑の輪に入る',
-        cn: '去绿色区域',
-        ko: '초록 장판으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse in green circle',
+          de: 'Im grünen Kreis reinigen',
+          fr: 'Purifiez-vous dans le cercle vert',
+          ja: '緑の輪に入る',
+          cn: '去绿色区域',
+          ko: '초록 장판으로',
+        },
       },
     },
     {
@@ -244,13 +262,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '195D', source: '贝希摩斯护卫', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '195D', source: '고서의 베히모스', capture: false }),
       delaySeconds: 14, // Leaving about 10s warning to complete the LoS
-      alertText: {
-        en: 'Hide behind boulder',
-        de: 'Hinter dem Brocken verstecken',
-        fr: 'Cachez-vous derrière le rocher',
-        ja: 'メテオの後ろに',
-        cn: '站在陨石后',
-        ko: '운석 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide behind boulder',
+          de: 'Hinter dem Brocken verstecken',
+          fr: 'Cachez-vous derrière le rocher',
+          ja: 'メテオの後ろに',
+          cn: '站在陨石后',
+          ko: '운석 뒤에 숨기',
+        },
       },
     },
   ],

@@ -27,13 +27,16 @@
         return data.role == 'tank' || data.job == 'BLU';
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Move Bosses',
-        de: 'Bosse bewegen',
-        fr: 'Déplacez les boss',
-        ja: 'ボス動かして',
-        cn: '移动Boss',
-        ko: '보스 이동 주차',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Bosses',
+          de: 'Bosse bewegen',
+          fr: 'Déplacez les boss',
+          ja: 'ボス動かして',
+          cn: '移动Boss',
+          ko: '보스 이동 주차',
+        },
       },
     },
   ],
@@ -42,52 +45,64 @@
       id: 'A3S Sluice',
       netRegex: NetRegexes.headMarker({ id: '001A' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Sluice on YOU',
-        de: 'Schleusenöffnung auf DIR',
-        fr: 'Éclusage sur Vous',
-        ja: '自分にスルース',
-        cn: '蓝点名',
-        ko: '봇물 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Sluice on YOU',
+          de: 'Schleusenöffnung auf DIR',
+          fr: 'Éclusage sur Vous',
+          ja: '自分にスルース',
+          cn: '蓝点名',
+          ko: '봇물 대상자',
+        },
       },
     },
     {
       id: 'A3S Digititis Tank',
       netRegex: NetRegexes.headMarker({ id: '0025' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Tank Debuff',
-        de: 'Tank Debuff',
-        fr: 'Debuff vulnérabilité',
-        ja: 'タンクデバフ',
-        cn: '坦克 Debuff',
-        ko: '탱커 디버프',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Debuff',
+          de: 'Tank Debuff',
+          fr: 'Debuff vulnérabilité',
+          ja: 'タンクデバフ',
+          cn: '坦克 Debuff',
+          ko: '탱커 디버프',
+        },
       },
     },
     {
       id: 'A3S Digititis Healer',
       netRegex: NetRegexes.headMarker({ id: '0022' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Healer Debuff',
-        de: 'Heiler Debuff',
-        fr: 'Debuff soins',
-        ja: 'ヒーラーデバフ',
-        cn: '奶妈 Debuff',
-        ko: '힐러 디버프',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Healer Debuff',
+          de: 'Heiler Debuff',
+          fr: 'Debuff soins',
+          ja: 'ヒーラーデバフ',
+          cn: '奶妈 Debuff',
+          ko: '힐러 디버프',
+        },
       },
     },
     {
       id: 'A3S Digititis Damage',
       netRegex: NetRegexes.headMarker({ id: '0024' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Damage Debuff',
-        de: 'DD Debuff',
-        fr: 'Debuff dégats',
-        ja: 'DPSデバフ',
-        cn: 'DPS Debuff',
-        ko: '딜러 디버프',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Damage Debuff',
+          de: 'DD Debuff',
+          fr: 'Debuff dégats',
+          ja: 'DPSデバフ',
+          cn: 'DPS Debuff',
+          ko: '딜러 디버프',
+        },
       },
     },
     {
@@ -98,13 +113,16 @@
       netRegexJa: NetRegexes.ability({ source: ['リキッドハンド', 'リビングリキッド'], id: 'F09', capture: false }),
       netRegexCn: NetRegexes.ability({ source: ['活水之手', '有生命活水'], id: 'F09', capture: false }),
       netRegexKo: NetRegexes.ability({ source: ['액체 손', '살아있는 액체'], id: 'F09', capture: false }),
-      infoText: {
-        en: 'Burn Higher HP Hand',
-        de: 'Fokusiere Hand mit mehr HP',
-        fr: 'Burn sur la main au PV le plus élevée',
-        ja: 'HPが高い手を討つ',
-        cn: '转火血多手',
-        ko: 'HP 더 많은 손에 집중',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Burn Higher HP Hand',
+          de: 'Fokusiere Hand mit mehr HP',
+          fr: 'Burn sur la main au PV le plus élevée',
+          ja: 'HPが高い手を討つ',
+          cn: '转火血多手',
+          ko: 'HP 더 많은 손에 집중',
+        },
       },
     },
     {
@@ -118,13 +136,16 @@
       condition: function(data, matches) {
         return data.source == data.me;
       },
-      alertText: {
-        en: 'Drainage on YOU',
-        de: 'Entwässerung auf DIR',
-        fr: 'Drainage sur VOUS',
-        ja: '自分にドレナージ',
-        cn: '连线点名',
-        ko: '하수로 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drainage on YOU',
+          de: 'Entwässerung auf DIR',
+          fr: 'Drainage sur VOUS',
+          ja: '自分にドレナージ',
+          cn: '连线点名',
+          ko: '하수로 대상자',
+        },
       },
     },
     {
@@ -139,13 +160,16 @@
         return data.role == 'tank';
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Get drainage tether',
-        de: 'Hole die Entwässerungs-Verbindung',
-        fr: 'Prenez un lien drainage',
-        ja: '線を取る',
-        cn: '接线',
-        ko: '하수로 선 가져오기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get drainage tether',
+          de: 'Hole die Entwässerungs-Verbindung',
+          fr: 'Prenez un lien drainage',
+          ja: '線を取る',
+          cn: '接线',
+          ko: '하수로 선 가져오기',
+        },
       },
     },
     {
@@ -279,13 +303,16 @@
       condition: function(data) {
         return data.role == 'tank' || data.job == 'BLU';
       },
-      infoText: {
-        en: 'Embolus: Move Boss',
-        de: 'Pfropfen: Boss bewegen',
-        fr: 'Caillot : Déplacez le boss',
-        ja: 'エンボラス: ボスを引き離れ',
-        cn: '水球出现：拉走BOSS',
-        ko: '물구슬: 보스 주차 옮기기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Embolus: Move Boss',
+          de: 'Pfropfen: Boss bewegen',
+          fr: 'Caillot : Déplacez le boss',
+          ja: 'エンボラス: ボスを引き離れ',
+          cn: '水球出现：拉走BOSS',
+          ko: '물구슬: 보스 주차 옮기기',
+        },
       },
     },
   ],
