@@ -3,6 +3,19 @@
 UserConfig.registerOptions('eureka', {
   options: [
     {
+      id: 'Debug',
+      name: {
+        en: 'Enable debug mode',
+        de: 'Aktiviere Debugmodus',
+        fr: 'Activer le mode debug',
+        ja: 'デバッグモードを有効にする',
+        cn: '启用调试模式',
+        ko: '디버그 모드 활성화',
+      },
+      type: 'checkbox',
+      debugOnly: true,
+    },
+    {
       id: 'FlagTimeoutSeconds',
       name: {
         en: 'Duration of flags on the map (seconds)',
@@ -17,6 +30,51 @@ UserConfig.registerOptions('eureka', {
       setterFunc: (options, value) => {
         options['FlagTimeoutMs'] = value * 1000;
       },
+    },
+    {
+      id: 'PopNoiseForNM',
+      name: {
+        en: 'Play pop sound for NMs',
+        de: 'Spiele Pop-Sound ab für NMs',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
+      id: 'PopNoiseForBunny',
+      name: {
+        en: 'Play pop sound for bunny fates',
+        de: 'Spiele Pop-Sound ab für Bunny-Fates',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
+      id: 'PopNoiseForSkirmish',
+      name: {
+        en: 'Play pop sound for skirmishes',
+        de: 'Spiele Pop-Sound ab für Scharmützel',
+      },
+      type: 'checkbox',
+      default: false,
+    },
+    {
+      id: 'PopNoiseForCriticalEngagement',
+      name: {
+        en: 'Play pop sound for critical engagements',
+        de: 'Spiele Pop-Sound ab für Kritische Gefechte',
+      },
+      type: 'checkbox',
+      default: true,
+    },
+    {
+      id: 'PopNoiseForDuel',
+      name: {
+        en: 'Play pop sound for duels',
+        de: 'Spiele Pop-Sound ab für Duelle',
+      },
+      type: 'checkbox',
+      default: false,
     },
     {
       id: 'PopVolume',
@@ -48,6 +106,18 @@ UserConfig.registerOptions('eureka', {
       default: 0.3,
       setterFunc: (options, value) => {
         options['BunnyPopVolume'] = value;
+      },
+    },
+    {
+      id: 'CriticalPopVolume',
+      name: {
+        en: 'Volume of the critical engagement pop sound (0-1)',
+        de: 'Lautstärke des Kritischen Gefecht Sounds (0-1)',
+      },
+      type: 'float',
+      default: 0.3,
+      setterFunc: (options, value) => {
+        options['CriticalPopVolume'] = value;
       },
     },
     {

@@ -10,8 +10,10 @@ let bunnyLabel = {
 };
 
 let Options = {
+  Debug: false,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
+  CriticalPopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   timeStrings: {
     weatherFor: {
       en: (nowMs, stopTime) => {
@@ -113,8 +115,10 @@ let Options = {
     },
   },
   Regex: {
+    // de, fr, ja languages all share the English regexes here.
+    // If you ever need to add another language, include all of the regexes for it.
     en: {
-      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)Eureka (?:Anemos|Pagos|Pyros|Hydatos) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
+      'gFlagRegex': Regexes.parse(/00:00(?:38:|..:[^:]*:)(.*)(?:Eureka (?:Anemos|Pagos|Pyros|Hydatos)|Bozjan Southern Front) \( (\y{Float})\s*, (\y{Float}) \)(.*$)/),
       'gTrackerRegex': Regexes.parse(/(?:https:\/\/)?ffxiv-eureka\.com\/([\w-]{6})(?:[^\w-]|$)/),
       'gImportRegex': Regexes.parse(/00:00..:(.*)NMs on cooldown: (\S.*\))/),
       'gTimeRegex': Regexes.parse(/(.*) \((\d*)m\)/),
@@ -134,10 +138,15 @@ let Options = {
   },
   ZoneInfo: {
     // Fate IDs
+    //
+    // Eureka
     // Anemos:  https://xivapi.com/search?indexes=Fate&filters=ID>=1328,ID<=1348&columns=Description,Name,Url
     // Pagos:   https://xivapi.com/search?indexes=Fate&filters=ID>=1351,ID<=1369&columns=Description,Name,Url
     // Pyros:   https://xivapi.com/search?indexes=Fate&filters=ID>=1388,ID<=1408&columns=Description,Name,Url
     // Hydatos: https://xivapi.com/search?indexes=Fate&filters=ID>=1412,ID<=1425&columns=Description,Name,Url
+
+    // Bozja
+    // Southern Front: https://xivapi.com/search?indexes=Fate&filters=ID%3E=1597,ID%3C=1628&columns=Description,Name,Url
     [ZoneId.TheForbiddenLandEurekaAnemos]: {
       mapImage: 'anemos.png',
       mapWidth: 1300,
@@ -1673,6 +1682,569 @@ let Options = {
         },
       },
     },
+    [ZoneId.TheBozjanSouthernFront]: {
+      mapImage: 'bozjasouthern.png',
+      mapWidth: 1600,
+      mapHeight: 1400,
+      shortName: 'bozjasouthern',
+      hasTracker: false,
+      dontShowInactive: true,
+      treatNMsAsSkirmishes: true,
+      mapToPixelXScalar: 47.911,
+      mapToPixelXConstant: -292.56,
+      mapToPixelYScalar: 48.938,
+      mapToPixelYConstant: -349.22,
+      nms: {
+        sneak: {
+          label: {
+            en: 'Sneak',
+            de: 'Taktisches Gemetzel',
+            fr: 'Les yeux de l\'ennemi',
+            ja: '術士大隊との会敵',
+          },
+          x: 20.3,
+          y: 26.8,
+          fateID: 1597,
+        },
+        robots: {
+          label: {
+            en: 'Robots',
+            de: 'Nichts als Schrott',
+            fr: 'Les araignées de fer',
+            ja: '無人魔導兵器との会敵',
+          },
+          x: 24.8,
+          y: 27.5,
+          fateID: 1598,
+        },
+        beasts: {
+          label: {
+            en: 'Beasts',
+            de: 'Husch, ins Körbchen!',
+            fr: 'Museler le Chien',
+            ja: '忠犬との遭遇',
+          },
+          x: 20.3,
+          y: 26.8,
+          fateID: 1599,
+        },
+        unrest: {
+          label: {
+            en: 'Unrest',
+            de: 'Wer rastet, der blutet',
+            fr: 'Pas de quartier',
+            ja: '術士大隊への奇襲',
+          },
+          x: 24.8,
+          y: 27.5,
+          fateID: 1600,
+        },
+        machine: {
+          label: {
+            en: 'Machine',
+            de: 'Auf zum Gegenangriff',
+            fr: 'Machines aux trousses',
+            ja: '有人魔導兵器の迎撃',
+          },
+          x: 28.4,
+          y: 29.3,
+          fateID: 1601,
+        },
+        plants: {
+          label: {
+            en: 'Plants',
+            de: 'Linientreue',
+            fr: 'Des racines et des crocs',
+            ja: '野生生物を排除せよ',
+          },
+          x: 34.4,
+          y: 29.3,
+          fateID: 1602,
+        },
+        seeq: {
+          label: {
+            en: 'Seeq',
+            de: 'Dem Rüpel seine Meute',
+            fr: 'Ménagerie guerrière',
+            ja: '豚面の魔獣使い',
+          },
+          x: 28.9,
+          y: 26.1,
+          fateID: 1603,
+        },
+        pets: {
+          label: {
+            en: 'Pets',
+            de: 'Ungeheuerlich!',
+            fr: 'Belles plantes',
+            ja: '華麗なる珍獣使い',
+          },
+          x: 17.3,
+          y: 26.6,
+          fateID: 1604,
+        },
+        firstlaw: {
+          label: {
+            en: 'First Law',
+            de: 'Schufter-10',
+            fr: 'Que des numéros dix',
+            ja: '労働十号破壊命令',
+          },
+          x: 34.4,
+          y: 29.3,
+          fateID: 1605,
+        },
+        heal: {
+          label: {
+            en: 'Heal',
+            de: 'Nächstenliebe',
+            fr: 'Miséricorde impériale',
+            ja: '恩徳の術士たち',
+          },
+          x: 28.9,
+          y: 26.1,
+          fateID: 1606,
+        },
+        mash: {
+          label: {
+            en: 'Mash',
+            de: 'Rache ist Blutwurst',
+            fr: 'Le retour du chien fidèle',
+            ja: '忠犬の逆襲',
+          },
+          x: 31.3,
+          y: 22.0,
+          fateID: 1607,
+        },
+        alert: {
+          label: {
+            en: 'Alert',
+            de: 'Großes Federlassen',
+            fr: 'Quand les chocobos voient rouge',
+            ja: '豚面と赤い馬鳥',
+          },
+          x: 27.3,
+          y: 17.7,
+          fateID: 1608,
+        },
+        unicorn: {
+          label: {
+            en: 'Unicorn',
+            de: 'Llofii',
+            fr: 'La licorne des plaines',
+            ja: '潔白の脱走兵',
+          },
+          x: 32.3,
+          y: 17.0,
+          fateID: 1609,
+        },
+        recreation: {
+          label: {
+            en: 'Recreation',
+            de: 'Aufräumen im Dienst',
+            fr: 'La bataille de l\'innovation',
+            ja: '敵新兵器を調査せよ',
+          },
+          x: 25.6,
+          y: 22.6,
+          fateID: 1610,
+        },
+        element: {
+          label: {
+            en: 'Element',
+            de: 'Verhinderte Wartung',
+            fr: 'Couper les vivres',
+            ja: '整備場奇襲作戦',
+          },
+          x: 17.5,
+          y: 23.4,
+          fateID: 1611,
+        },
+        heavyboots: {
+          label: {
+            en: 'Boots',
+            de: 'Arbeitsniederlegung',
+            fr: 'Force ouvrière',
+            ja: '魔導レイバー破壊命令',
+          },
+          x: 31.3,
+          y: 22.0,
+          fateID: 1612,
+        },
+        camping: {
+          label: {
+            en: 'Camping',
+            de: 'Unfreundlicher Besuch',
+            fr: 'Idéaux irréconciliables',
+            ja: '野営地への先制攻撃',
+          },
+          x: 17.5,
+          y: 23.4,
+          fateID: 1613,
+        },
+        scavengers: {
+          label: {
+            en: 'Scavengers',
+            de: 'Zurück ins Nichts',
+            fr: 'Les dévoreurs d\'âmes',
+            ja: '魂喰いの妖異たち',
+          },
+          x: 25.6,
+          y: 22.6,
+          fateID: 1614,
+        },
+        helpwanted: {
+          label: {
+            en: 'Help Wanted',
+            de: 'Jedes Leben zählt',
+            fr: 'Résister ou mourir',
+            ja: '術士大隊の猛攻',
+          },
+          x: 18.3,
+          y: 20.7,
+          fateID: 1615,
+        },
+        pyromancer: {
+          label: {
+            en: 'Pyromancer',
+            de: 'Pyromant',
+            fr: 'Duel brûlant',
+            ja: '最強のパイロマンサー',
+          },
+          x: 18.3,
+          y: 20.7,
+          fateID: 1616,
+        },
+        rainbow: {
+          label: {
+            en: 'Rainbow',
+            de: 'Ende einer ... Karriere',
+            fr: 'De toutes les couleurs',
+            ja: '華麗なるお気に入り',
+          },
+          x: 25.1,
+          y: 15.0,
+          fateID: 1617,
+        },
+        wildbunch: {
+          label: {
+            en: 'Wild Bunch',
+            de: 'Revierkämpfe',
+            fr: 'Sans maîtres ni loi',
+            ja: '暴走魔獣の排除',
+          },
+          x: 21.0,
+          y: 14.3,
+          fateID: 1618,
+        },
+        familyotheranimals: {
+          label: {
+            en: 'Family',
+            de: 'rüpelhaftes Großmaul',
+            fr: 'L\'incorruptible',
+            ja: '豚面の勧誘者',
+          },
+          x: 11.0,
+          y: 14.6,
+          fateID: 1619,
+        },
+        mechanicalman: {
+          label: {
+            en: 'Mechanical Man',
+            de: 'Arbeitsniederlegung - Plan B',
+            fr: 'Plan B',
+            ja: '魔導レイバーB型破壊命令',
+          },
+          x: 20.8,
+          y: 17.7,
+          fateID: 1620,
+        },
+        murder: {
+          label: {
+            en: 'Murder',
+            de: 'Neu und besser',
+            fr: 'Des machines et des hommes',
+            ja: '強化兵部隊の襲撃',
+          },
+          x: 14.0,
+          y: 15.3,
+          fateID: 1621,
+        },
+        seeking: {
+          label: {
+            en: 'Seeking',
+            de: 'fällt selbst hinein',
+            fr: 'Ceux qui creusent',
+            ja: '戦場の盗掘者',
+          },
+          x: 24.8,
+          y: 17.1,
+          fateID: 1622,
+        },
+        suppliesparty: {
+          label: {
+            en: 'Supplies',
+            de: 'Deins wird meins',
+            fr: 'Casser la voie',
+            ja: '補給物資強奪作戦',
+          },
+          x: 21.0,
+          y: 14.3,
+          fateID: 1623,
+        },
+        demonic: {
+          label: {
+            en: 'Demonic',
+            de: 'Der Geruch der Angst',
+            fr: 'Par l\'hémoglobine alléchés',
+            ja: '血の匂いに誘われて',
+          },
+          x: 11.1,
+          y: 20.2,
+          fateID: 1624,
+        },
+        absentfriends: {
+          label: {
+            en: 'Absent',
+            de: 'Eine neue Unordnung',
+            fr: 'Miséricorde vengeresse',
+            ja: '燃え上がる南方戦線',
+          },
+          x: 13.8,
+          y: 18.3,
+          fateID: 1625,
+        },
+        steelflame: {
+          label: {
+            en: 'Steel',
+            de: 'Auf und ab',
+            fr: 'Le fer et le feu',
+            ja: '続・燃え上がる南方戦線',
+          },
+          x: 13.8,
+          y: 18.3,
+          fateID: 1626,
+        },
+        dogsofwar: {
+          label: {
+            en: 'Dogs',
+            de: 'Vor die Hunde gekommen',
+            fr: 'Brigade canine',
+            ja: '戦場の犬を解き放て',
+          },
+          x: 14.0,
+          y: 15.3,
+          fateID: 1627,
+        },
+        warmachines: {
+          label: {
+            en: 'War',
+            de: 'Ende Gelände',
+            fr: 'Cent mille guerriers de métal',
+            ja: 'シシニアスの実験場',
+          },
+          x: 11.1,
+          y: 20.2,
+          fateID: 1628,
+        },
+        castrumlacuslitore: {
+          label: {
+            en: 'Castrum',
+            de: 'Castrum',
+            fr: 'Castrum',
+            ja: 'カストルム',
+          },
+          x: 18.9,
+          y: 12.6,
+          isCritical: true,
+          ceKey: 0,
+          respawnMinutes: 60,
+        },
+        killitwithfire: {
+          label: {
+            en: 'Kill It With Fire',
+            de: 'Peeriefool',
+            fr: 'Grandeur et pestilence',
+            ja: 'ピーリフール',
+          },
+          x: 17.4,
+          y: 26.9,
+          isCritical: true,
+          ceKey: 1,
+        },
+        bayinghounds: {
+          label: {
+            en: 'Hounds',
+            de: 'Canis dirus',
+            fr: 'Le chien des enfers',
+            ja: 'カニスディルス',
+          },
+          x: 22.8,
+          y: 28.8,
+          isCritical: true,
+          ceKey: 2,
+        },
+        vigilforthelost: {
+          label: {
+            en: 'Vigil',
+            de: 'Vigil',
+            fr: 'Vigile de feu',
+            ja: 'ヴィジル',
+          },
+          x: 28.4,
+          y: 29.5,
+          isCritical: true,
+          ceKey: 3,
+        },
+        aceshigh: {
+          label: {
+            en: 'Aces High',
+            de: 'Gabriel',
+            fr: 'Force divine',
+            ja: 'ガブリエル',
+          },
+          x: 32.3,
+          y: 26.8,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 4,
+        },
+        shadowdeathshand: {
+          label: {
+            en: 'Shadow',
+            de: 'Akbaba',
+            fr: 'Les ailes noires de la mort',
+            ja: '黒アクババ',
+          },
+          x: 36.5,
+          y: 25.8,
+          isCritical: true,
+          ceKey: 5,
+        },
+        finalfurlong: {
+          label: {
+            en: 'Final Furlong',
+            de: 'Spartoi',
+            fr: 'Menace spectrale',
+            ja: 'スパルトイ',
+          },
+          x: 33.3,
+          y: 17.5,
+          isCritical: true,
+          ceKey: 6,
+        },
+        choctober: {
+          label: {
+            en: 'Choctober',
+            de: 'Roter Meteor',
+            fr: 'Une ruée en rouge',
+            ja: '赤レッドコメット',
+          },
+          x: 27.3,
+          y: 17.7,
+          isCritical: true,
+          ceKey: 7,
+        },
+        beastofman: {
+          label: {
+            en: 'Beast of Man',
+            de: 'Lyon',
+            fr: 'Le Roi bestial',
+            ja: '獣王ライアン',
+          },
+          x: 23.3,
+          y: 20.4,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 8,
+        },
+        firesofwar: {
+          label: {
+            en: 'Fires of War',
+            de: 'Flammenden Hundert',
+            fr: 'Brasier de guerre',
+            ja: '火焔百人隊',
+          },
+          x: 20.8,
+          y: 23.9,
+          isCritical: true,
+          ceKey: 9,
+        },
+        patriotgames: {
+          label: {
+            en: 'Patriot Games',
+            de: 'Verteidigungsmaschine',
+            fr: 'Les fusils du patriote',
+            ja: 'パトリオット',
+          },
+          x: 14.2,
+          y: 21.2,
+          isCritical: true,
+          ceKey: 10,
+        },
+        trampledunderhoof: {
+          label: {
+            en: 'Trampled',
+            de: 'Die bösen Blicke der Eale',
+            fr: 'L\'œil du malin',
+            ja: '邪エアレー',
+          },
+          x: 9.9,
+          y: 18.1,
+          isCritical: true,
+          ceKey: 11,
+        },
+        flameswenthigher: {
+          label: {
+            en: 'Flames',
+            de: 'Sartauvoir',
+            fr: '"L\'envol du phénix',
+            ja: 'サルトヴォアール',
+          },
+          x: 18.8,
+          y: 15.9,
+          isCritical: true,
+          isDuel: true,
+          ceKey: 12,
+        },
+        metalfoxchaos: {
+          label: {
+            en: 'Metal Fox Chaos',
+            de: 'Dáinsleif',
+            fr: 'Le guerrier de métal',
+            ja: 'ダーインスレイヴ',
+          },
+          x: 13.8,
+          y: 18.3,
+          isCritical: true,
+          ceKey: 13,
+        },
+        riseoftherobots: {
+          label: {
+            en: 'Rise',
+            de: 'Modell X',
+            fr: 'Le soulèvement des machines',
+            ja: '魔導レイバーX型',
+          },
+          x: 21.2,
+          y: 17.6,
+          isCritical: true,
+          ceKey: 14,
+        },
+        wherestrodebehemoth: {
+          label: {
+            en: 'Behemoth',
+            de: 'Der untote Chlevnik',
+            fr: 'Le mastodonte enragé',
+            ja: 'チルヴニク',
+          },
+          x: 24.2,
+          y: 14.9,
+          isCritical: true,
+          ceKey: 15,
+        },
+      },
+    },
   },
 };
 
@@ -1700,14 +2272,21 @@ class EurekaTracker {
     this.ResetZone();
     this.updateTimesHandle = null;
     this.fateQueue = [];
+    this.CEQueue = [];
   }
 
-  TransByParserLang(obj) {
-    return obj[this.options.ParserLanguage] || obj['en'];
+  TransByParserLang(obj, key) {
+    const fromObj = obj[this.options.ParserLanguage] || obj['en'];
+    if (!key)
+      return fromObj;
+    return fromObj ? fromObj[key] : obj['en'][key];
   }
 
-  TransByDispLang(obj) {
-    return obj[this.options.DisplayLanguage] || obj['en'];
+  TransByDispLang(obj, key) {
+    const fromObj = obj[this.options.DisplayLanguage] || obj['en'];
+    if (!key)
+      return fromObj;
+    return fromObj ? fromObj[key] : obj['en'][key];
   }
 
   SetStyleFromMap(style, mx, my) {
@@ -1751,10 +2330,17 @@ class EurekaTracker {
     this.SetStyleFromMap(style, mx, my);
   }
 
-  AddElement(container, nm) {
+  AddElement(container, nmKey) {
+    const nm = this.nms[nmKey];
     let label = document.createElement('div');
     label.classList.add('nm');
-    label.id = nm;
+
+    if (nm.isCritical)
+      label.classList.add('critical');
+    if (this.zoneInfo.dontShowInactive)
+      label.classList.add('nm-hidden');
+
+    label.id = nmKey;
 
     this.SetStyleFromMap(label.style, nm.x, nm.y);
 
@@ -1763,7 +2349,7 @@ class EurekaTracker {
     let name = document.createElement('span');
     name.classList.add('nm-name');
     name.classList.add('text');
-    name.innerText = this.TransByParserLang(nm.label);
+    name.innerText = this.TransByDispLang(nm.label);
     let progress = document.createElement('span');
     progress.innerText = '';
     progress.classList.add('nm-progress');
@@ -1794,14 +2380,17 @@ class EurekaTracker {
     this.nmKeys = Object.keys(this.nms);
 
     let container = document.getElementById('nm-labels');
+    container.classList.add(this.zoneInfo.shortName);
 
-    for (let i = 0; i < this.nmKeys.length; ++i)
-      this.AddElement(container, this.nms[this.nmKeys[i]]);
+    for (const key of this.nmKeys)
+      this.AddElement(container, key);
 
 
     this.fairy = this.zoneInfo.fairy;
-    let fairyName = this.TransByParserLang(this.fairy);
-    this.fairy.regex = Regexes.addedCombatantFull({ name: fairyName });
+    if (this.fairy) {
+      let fairyName = this.TransByParserLang(this.fairy);
+      this.fairy.regex = Regexes.addedCombatantFull({ name: fairyName });
+    }
     this.playerElement = document.createElement('div');
     this.playerElement.classList.add('player');
     container.appendChild(this.playerElement);
@@ -1811,6 +2400,7 @@ class EurekaTracker {
     let container = document.getElementById('nm-labels');
     container.innerHTML = '';
     this.currentTracker = null;
+    container.className = '';
   }
 
   OnPlayerChange(e) {
@@ -1832,15 +2422,17 @@ class EurekaTracker {
         aspect.classList.remove(aspect.classList.item(0));
       aspect.classList.add('aspect-ratio-' + this.zoneInfo.shortName);
 
-      document.getElementById('map-image').src = this.zoneInfo.mapImage;
+      if (this.zoneInfo.mapImage) {
+        document.getElementById('map-image').src = this.zoneInfo.mapImage;
+        window.clearInterval(this.updateTimesHandle);
+        this.updateTimesHandle = window.setInterval(() => this.UpdateTimes(),
+            this.options.RefreshRateMs);
+        container.classList.remove('hide');
+      }
       this.InitNMs();
       this.ProcessFateQueue();
+      this.ProcessCEQueue();
       this.UpdateTimes();
-      container.classList.remove('hide');
-      window.clearInterval(this.updateTimesHandle);
-      this.updateTimesHandle = window.setInterval((function() {
-        this.UpdateTimes();
-      }).bind(this), this.options.RefreshRateMs);
     } else {
       if (this.updateTimesHandle)
         window.clearInterval(this.updateTimesHandle);
@@ -1860,37 +2452,69 @@ class EurekaTracker {
     return respawnTimeMs + (+new Date());
   }
 
+  DebugPrint(str) {
+    if (this.options.Debug)
+      console.log(str);
+  }
+
   OnFatePop(fate) {
-    fate.element.classList.add('nm-pop');
+    this.DebugPrint(`OnFatePop: ${this.TransByDispLang(fate.label)}`);
+    if (fate.element.classList.contains('nm-hidden'))
+      fate.element.classList.remove('nm-hidden');
+
+    if (fate.isCritical)
+      fate.element.classList.add('critical-pop');
+    else
+      fate.element.classList.add('nm-pop');
+
     fate.element.classList.remove('nm-down');
     fate.lastPopTimeMsLocal = +new Date();
     fate.respawnTimeMsLocal = this.RespawnTime(fate);
 
     if (fate.bunny) {
-      if (this.options.BunnyPopSound && this.options.BunnyPopVolume) {
-        let audio = new Audio(this.options.BunnyPopSound);
-        audio.volume = this.options.BunnyPopVolume;
-        audio.play();
-      }
+      const shouldPlay = this.options.PopNoiseForBunny;
+      if (shouldPlay && this.options.BunnyPopSound && this.options.BunnyPopVolume)
+        this.PlaySound(this.options.BunnyPopSound, this.options.BunnyPopVolume);
+    } else if (fate.isCritical) {
+      const shouldPlay = fate.isDuel && this.options.PopNoiseForDuel ||
+          !fate.isDuel && this.options.PopNoiseForCriticalEngagement;
+      if (shouldPlay && this.options.CriticalPopSound && this.options.CriticalPopVolume)
+        this.PlaySound(this.options.CriticalPopSound, this.options.CriticalPopVolume);
     } else {
-      if (this.options.PopSound && this.options.PopVolume) {
-        let audio = new Audio(this.options.PopSound);
-        audio.volume = this.options.PopVolume;
-        audio.play();
-      }
+      const shouldPlay = this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForSkirmish ||
+          !this.zoneInfo.treatNMsAsSkirmishes && this.options.PopNoiseForNM;
+      if (shouldPlay && this.options.PopSound && this.options.PopVolume)
+        this.PlaySound(this.options.PopSound, this.options.PopVolume);
     }
   }
 
+  PlaySound(sound, volume) {
+    let audio = new Audio(sound);
+    audio.volume = volume;
+    audio.play();
+  }
+
   OnFateUpdate(fate, percent) {
-    if (fate.element.classList.contains('nm-pop'))
+    this.DebugPrint(`OnFateUpdate: ${this.TransByDispLang(fate.label)}: ${percent}%`);
+    if (fate.element.classList.contains('nm-pop') || fate.element.classList.contains('critical-pop'))
       fate.progressElement.innerText = percent + '%';
   }
 
   OnFateKill(fate) {
+    this.DebugPrint(`OnFateKill: ${this.TransByDispLang(fate.label)}`);
     this.UpdateTimes();
     if (fate.element.classList.contains('nm-pop')) {
+      if (this.zoneInfo.dontShowInactive)
+        fate.element.classList.add('nm-hidden');
       fate.element.classList.add('nm-down');
       fate.element.classList.remove('nm-pop');
+      fate.progressElement.innerText = null;
+      return;
+    } else if (fate.element.classList.contains('critical-pop')) {
+      if (this.zoneInfo.dontShowInactive)
+        fate.element.classList.add('nm-hidden');
+      fate.element.classList.add('critical-down');
+      fate.element.classList.remove('critical-pop');
       fate.progressElement.innerText = null;
       return;
     }
@@ -1899,6 +2523,11 @@ class EurekaTracker {
   ProcessFateQueue() {
     while (this.fateQueue.length != 0)
       this.OnFate(this.fateQueue.pop());
+  }
+
+  ProcessCEQueue() {
+    while (this.CEQueue.length != 0)
+      this.OnCE(this.CEQueue.pop());
   }
 
   UpdateTimes() {
@@ -1918,7 +2547,7 @@ class EurekaTracker {
         let weather = getWeather(nowMs, this.zoneId);
         let weatherIcon = gWeatherIcons[primaryWeather];
         let weatherStr;
-        if (weather == primaryWeather) {
+        if (weather === primaryWeather) {
           let stopTime = findNextWeatherNot(nowMs, this.zoneId, primaryWeather);
           weatherStr = this.TransByDispLang(this.options.timeStrings.weatherFor)(nowMs, stopTime);
         } else {
@@ -1966,6 +2595,12 @@ class EurekaTracker {
 
     document.getElementById('label-tracker').innerHTML = this.currentTracker;
 
+    // TODO: don't early out here, because it means bozja can't show a timer.
+    // Instead, maybe add a per-zone default respawn time which, if null/zero,
+    // means don't show respawn times unless specified.
+    if (this.zoneInfo.shortName === 'bozjasouthern')
+      return;
+
     for (let i = 0; i < this.nmKeys.length; ++i) {
       let nm = this.nms[this.nmKeys[i]];
 
@@ -1994,7 +2629,7 @@ class EurekaTracker {
         }
       }
 
-      if (nm.time == 'Night') {
+      if (nm.time === 'Night') {
         let isNight = isNightTime(respawnMs);
         if (!isNight) {
           let nextNight = findNextNight(respawnMs);
@@ -2013,7 +2648,7 @@ class EurekaTracker {
           respawnIcon = gWeatherIcons[nm.weather];
           openUntil = weatherStartTime;
         }
-        if (nm.time == 'Night') {
+        if (nm.time === 'Night') {
           respawnIcon = gNightIcon;
           openUntil = findNextDay(nowMs);
         }
@@ -2074,27 +2709,32 @@ class EurekaTracker {
   OnLog(e) {
     if (!this.zoneInfo)
       return;
-    for (let idx = 0; idx < e.detail.logs.length; idx++) {
-      let log = e.detail.logs[idx];
-      let gRegex = this.TransByParserLang(this.options.Regex);
-      let gFlagRegex = gRegex['gFlagRegex'];
+    for (const log of e.detail.logs) {
+      let gFlagRegex = this.TransByParserLang(this.options.Regex, 'gFlagRegex');
       let match = log.match(gFlagRegex);
       if (match)
         this.AddFlag(match[2], match[3], match[1], match[4]);
-      let gTrackerRegex = gRegex['gTrackerRegex'];
+
+      if (this.fairy) {
+        if (log.includes(' 03:') || log.includes('00:0839:')) {
+          match = log.match(this.fairy.regex);
+          if (match)
+            this.AddFairy(match.groups);
+        }
+      }
+
+      if (!this.zoneInfo.hasTracker)
+        return;
+
+      let gTrackerRegex = this.TransByParserLang(this.options.Regex, 'gTrackerRegex');
       match = log.match(gTrackerRegex);
       if (match)
         this.currentTracker = match[1];
-      let gImportRegex = gRegex['gImportRegex'];
+      let gImportRegex = this.TransByParserLang(this.options.Regex, 'gImportRegex');
       match = log.match(gImportRegex);
       if (match) {
         this.ImportFromTracker(match[2]);
         continue;
-      }
-      if (log.includes(' 03:') || log.includes('00:0839:')) {
-        match = log.match(this.fairy.regex);
-        if (match)
-          this.AddFairy(match.groups);
       }
     }
   }
@@ -2112,7 +2752,7 @@ class EurekaTracker {
     case 'add':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFatePop(nm);
           return;
         }
@@ -2121,7 +2761,7 @@ class EurekaTracker {
     case 'remove':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFateKill(nm);
           return;
         }
@@ -2130,11 +2770,46 @@ class EurekaTracker {
     case 'update':
       for (let key of this.nmKeys) {
         let nm = this.nms[key];
-        if (e.detail.fateID == nm.fateID) {
+        if (e.detail.fateID === nm.fateID) {
           this.OnFateUpdate(nm, e.detail.progress);
           return;
         }
       }
+      break;
+    }
+  }
+
+  OnCE(e) {
+    // Upon entering Eureka we usually receive the CE info before
+    // this.zoneInfo is loaded, so lets store the events until we're
+    // able to process them.
+    // TODO: don't make pop noises for CEs that have already started.
+
+    if (!this.zoneInfo) {
+      this.CEQueue.push(e);
+      return;
+    }
+
+    let nm = null;
+    for (const key of this.nmKeys) {
+      if (e.detail.data.ceKey == this.nms[key].ceKey) {
+        nm = this.nms[key];
+        break;
+      }
+    }
+    if (!nm)
+      return;
+
+    switch (e.detail.eventType) {
+    case 'add':
+      this.OnFatePop(nm);
+      break;
+    case 'remove':
+      this.OnFateKill(nm);
+      break;
+    case 'update':
+      if (e.detail.data.status === 3)
+        this.OnFateUpdate(nm, e.detail.data.progress);
       break;
     }
   }
@@ -2215,7 +2890,7 @@ class EurekaTracker {
 
     window.setTimeout(function() {
       // Changing zones can also orphan all the labels.
-      if (label.parentElement == container)
+      if (label.parentElement === container)
         container.removeChild(label);
     }, this.options.FlagTimeoutMs);
   }
@@ -2239,6 +2914,9 @@ UserConfig.getUserConfigLocation('eureka', Options, function(e) {
   });
   addOverlayListener('onFateEvent', function(e) {
     gTracker.OnFate(e);
+  });
+  addOverlayListener('onCEEvent', function(e) {
+    gTracker.OnCE(e);
   });
 
   gTracker = new EurekaTracker(Options);

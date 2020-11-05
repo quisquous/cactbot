@@ -42,7 +42,7 @@ const errorFunc = (str) => {
 };
 
 let testValidTriggerRegexLanguage = function(file, contents) {
-  let unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja).*?:/g;
+  let unsupportedRegexLanguage = /(?:regex|triggerRegex)(?!:|Cn|De|Fr|Ko|Ja)\w*\s*:/g;
   let results = contents.match(unsupportedRegexLanguage);
   if (results && results.length > 0) {
     for (const result of results)
@@ -151,6 +151,14 @@ let testInvalidCapturingGroupRegex = function(file, contents) {
         if (typeof currentTriggerFunction === 'undefined')
           continue;
         const funcStr = currentTriggerFunction.toString();
+
+        const containsOutput = /\boutput\.(\w*)\(/.test(funcStr);
+        const containsOutputParam = getParamNames(currentTriggerFunction).includes('output');
+        // TODO: should we error when there is an unused output param? that seems a bit much.
+        if (containsOutput && !containsOutputParam)
+          errorFunc(`${file}: Missing 'output' param for '${currentTrigger.id}'.`);
+
+
         containsMatches |= funcStr.includes('matches');
         containsMatchesParam |= getParamNames(currentTriggerFunction).includes('matches');
 
