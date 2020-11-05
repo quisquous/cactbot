@@ -20,14 +20,6 @@
         cn: '雷电咆哮',
         ko: '뇌전의 포효',
       },
-      tts: {
-        en: 'Dragon\'s Voice',
-        de: 'drache',
-        fr: 'Voix du dragon',
-        ja: '雷電の咆哮',
-        cn: '雷电咆哮',
-        ko: '뇌전의 포효',
-      },
     },
     {
       id: 'Eureka Sabotender Stack Marker',
@@ -137,13 +129,6 @@
         ja: '自分に氷玉',
         cn: '点名冰球！',
       },
-      tts: {
-        en: 'ice ball',
-        de: 'eisball',
-        fr: 'boule de glace',
-        ja: '氷',
-        cn: '冰球',
-      },
     },
     {
       id: 'Eureka Pazuzu Dread Wind',
@@ -191,13 +176,6 @@
         de: 'Plagen-Donut',
         fr: 'Donut Nuée',
         ja: 'ローカストプレイグ',
-        cn: '月环',
-      },
-      tts: {
-        en: 'plague donut',
-        de: 'plagen dohnat',
-        fr: 'Donut Nuée',
-        ja: 'ローカスト',
         cn: '月环',
       },
     },

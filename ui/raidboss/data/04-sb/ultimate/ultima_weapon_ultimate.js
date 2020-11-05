@@ -133,14 +133,6 @@
         ko: '사슬 → 나',
         cn: '火狱之锁点名',
       },
-      tts: {
-        en: 'Fetters',
-        de: 'Fesseln',
-        fr: 'Chaînes Infernales',
-        ja: '炎獄の鎖',
-        ko: '사슬',
-        cn: '火狱之锁',
-      },
     },
     {
       id: 'UWU Searing Wind',
@@ -160,14 +152,6 @@
         ja: '自分に灼熱',
         ko: '작열 → 나',
         cn: '灼热咆哮点名',
-      },
-      tts: {
-        en: 'Searing Wind',
-        de: 'Versengen',
-        fr: 'Rugissement Infernal',
-        ja: '灼熱',
-        ko: '작열',
-        cn: '灼热咆哮',
       },
     },
     {

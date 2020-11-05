@@ -108,14 +108,6 @@
           ko: '아크 라이: 산개, 이동',
         };
       },
-      tts: {
-        en: 'akh morn',
-        de: 'akh morn',
-        fr: 'akh morn',
-        ja: 'アク・モーン',
-        cn: '死亡轮回',
-        ko: '아크몬',
-      },
     },
     {
       id: 'ShinryuEx Diamond Dust',
@@ -132,14 +124,6 @@
         ja: '氷: スタック 動かない',
         cn: '冰地面：站一起和停止移动',
         ko: '얼음: 집합하고 이동하지 않기',
-      },
-      tts: {
-        en: 'stop',
-        de: 'stopp',
-        fr: 'arrêtez',
-        ja: '動かない',
-        cn: '停止',
-        ko: '이동하지 않기',
       },
     },
     {
@@ -176,14 +160,6 @@
         cn: '进水圈',
         ko: '물 장판에 들어가기',
       },
-      tts: {
-        en: 'water',
-        de: 'wasser',
-        fr: 'eau',
-        ja: 'みず',
-        cn: '进水圈',
-        ko: '물 장판',
-      },
     },
     {
       // TODO: the original trigger didn't differentiate the two ability ids.
@@ -214,26 +190,6 @@
           ja: '水に集合',
           cn: '在水圈攻击',
           ko: '물 장판에 모이기',
-        };
-      },
-      tts: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'stop to get frozen',
-            de: 'Stopp! Einfrieren lassen',
-            fr: 'arrêtez, laissez-vous gelé',
-            ja: '止まれ、凍結',
-            cn: '停下，冰地面',
-            ko: '멈춰서 얼기',
-          };
-        }
-        return {
-          en: 'water',
-          de: 'Wasser',
-          fr: 'eau',
-          ja: '水',
-          cn: '水圈',
-          ko: '물 장판',
         };
       },
     },
@@ -284,26 +240,6 @@
           ko: '산개, 물장판 X',
         };
       },
-      tts: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'bait bolt, keep moving',
-            de: 'Blitz ködern, weiterbewegen',
-            fr: 'Attirez la foudre, continuez à bouger',
-            ja: '稲妻、動き続ける',
-            cn: '闪电，保持移动',
-            ko: '번개 공격 산개, 계속 움직이기',
-          };
-        }
-        return {
-          en: 'levinbolt',
-          de: 'Blitz',
-          fr: 'fulguration',
-          ja: '稲妻',
-          cn: '离开闪电',
-          ko: '우레',
-        };
-      },
     },
     {
       id: 'ShinryuEx Levinbolt Phase 3',
@@ -319,18 +255,6 @@
           return {
             en: 'move away',
             de: 'wegbewegen',
-            fr: 'Éloignez-vous',
-            ja: '散開',
-            cn: '散开',
-            ko: '떨어지기',
-          };
-        }
-      },
-      tts: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'move away',
-            de: 'weckbewegen',
             fr: 'Éloignez-vous',
             ja: '散開',
             cn: '散开',
@@ -391,14 +315,6 @@
         cn: '击退，找水圈',
         ko: '넉백, 물기둥 확인',
       },
-      tts: {
-        en: 'knockback',
-        de: 'Rückstoß',
-        fr: 'poussée',
-        ja: 'ノックバック',
-        cn: '击退',
-        ko: '넉백',
-      },
     },
     {
       id: 'ShinryuEx Final Tidal Wave',
@@ -419,14 +335,6 @@
         cn: '不需要更多奶了',
         ko: '힐 그만',
       },
-      tts: {
-        en: 'stop healing',
-        de: 'keine Heilung mehr',
-        fr: 'arrêtez^de soigner',
-        ja: 'ヒール ストップ',
-        cn: '停奶',
-        ko: '힐 그만',
-      },
     },
     {
       id: 'ShinryuEx Tail Slap',
@@ -444,14 +352,6 @@
         ja: '尾: タゲチェンジ',
         cn: '打尾巴',
         ko: '꼬리 공격',
-      },
-      tts: {
-        en: 'tail',
-        de: 'schweif',
-        fr: 'queue',
-        ja: '尾',
-        cn: '尾巴',
-        ko: '꼬리',
       },
     },
     {
@@ -475,14 +375,6 @@
         cn: '打核心',
         ko: '심핵 공격',
       },
-      tts: {
-        en: 'heart',
-        de: 'herz',
-        fr: 'cœur',
-        ja: '心核',
-        cn: '核心',
-        ko: '심핵',
-      },
     },
     {
       // TODO: can't find the id of this, so using all of them.
@@ -500,14 +392,6 @@
         ja: 'ダイブボムに避け',
         cn: '前方顺劈',
         ko: '급강하 폭격 피하기',
-      },
-      tts: {
-        en: 'divebombs',
-        de: 'sturzflug',
-        fr: 'bombe plongeante',
-        ja: 'ダイブボム',
-        cn: '顺劈',
-        ko: '급강하 폭격',
       },
     },
     {
@@ -551,18 +435,6 @@
           };
         }
       },
-      tts: function(data) {
-        if (data.role == 'healer' || data.role == 'tank') {
-          return {
-            en: 'Death Sentence',
-            de: 'Todesurteil',
-            fr: 'Peine de mort',
-            ja: 'デスセンテンス',
-            cn: '死刑',
-            ko: '사형 선고',
-          };
-        }
-      },
     },
     {
       id: 'ShinryuEx Tera Slash',
@@ -600,14 +472,6 @@
         cn: '离开正面',
         ko: '범위 밖으로',
       },
-      tts: {
-        en: 'cleave',
-        de: 'klief',
-        fr: 'cleave',
-        ja: '前方範囲攻撃',
-        cn: '顺劈',
-        ko: '범위 공격',
-      },
     },
     {
       id: 'ShinryuEx Final Left Wing',
@@ -627,14 +491,6 @@
         ja: 'レフトウィングに攻撃',
         cn: '击杀左翼',
         ko: '왼쪽 날개 먼저',
-      },
-      tts: {
-        en: 'left first',
-        de: 'links zuerst',
-        fr: 'gauche en première',
-        ja: 'レフト',
-        cn: '击杀左翼',
-        ko: '왼쪽 먼저',
       },
       run: function(data) {
         data.finalWing = true;
@@ -659,14 +515,6 @@
         cn: '击杀右翼',
         ko: '오른쪽 날개 먼저',
       },
-      tts: {
-        en: 'right first',
-        de: 'rechts zuerst',
-        fr: 'droite en première',
-        ja: 'ライト',
-        cn: '击杀右翼',
-        ko: '오른쪽 날개',
-      },
       run: function(data) {
         data.finalWing = true;
       },
@@ -679,26 +527,6 @@
       },
       delaySeconds: 3.8,
       infoText: function(data) {
-        if (data.phase == 3) {
-          return {
-            en: 'break tethers then stack',
-            de: 'Kette zerreissen, dann stack',
-            fr: 'Cassez les liens, puis packez-vous',
-            ja: '鎖を引き、集合',
-            cn: '拉断锁链然后攻击',
-            ko: '선 끊고 모이기',
-          };
-        }
-        return {
-          en: 'break tethers',
-          de: 'Ketten zerreissen',
-          fr: 'Cassez les liens',
-          ja: '鎖',
-          cn: '拉断锁链',
-          ko: '선 끊기',
-        };
-      },
-      tts: function(data) {
         if (data.phase == 3) {
           return {
             en: 'break tethers then stack',
@@ -733,14 +561,6 @@
         cn: '龙尾点名',
         ko: '꼬리 징 대상자',
       },
-      tts: {
-        en: 'tail marker',
-        de: 'schweif marker',
-        fr: 'marqueur queue',
-        ja: 'テイル',
-        cn: '龙尾点名',
-        ko: '꼬리 징',
-      },
     },
     {
       id: 'ShinryuEx Shakers',
@@ -773,26 +593,6 @@
             ko: '어스 피하기',
           };
         }
-      },
-      tts: function(data) {
-        if (!data.shakerTargets.includes(data.me)) {
-          return {
-            en: 'avoid shakers',
-            de: 'Stöße ausweichen',
-            fr: 'évitez les secousses',
-            ja: 'アースシェーカー',
-            cn: '离开点名',
-            ko: '어스 피하기',
-          };
-        }
-        return {
-          en: 'earthshaker',
-          de: 'erdstoß',
-          fr: 'secousse',
-          ja: 'アースシェーカー',
-          cn: '大地动摇',
-          ko: '어스 징',
-        };
       },
       run: function(data) {
         delete data.shakerTargets;

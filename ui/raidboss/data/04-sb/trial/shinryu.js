@@ -49,14 +49,6 @@
           ko: '아크 라이: 산개, 이동',
         };
       },
-      tts: {
-        en: 'akh morn',
-        de: 'akh morn',
-        fr: 'akh morn',
-        ja: 'アク・モーン',
-        cn: '死亡轮回',
-        ko: '아크몬',
-      },
     },
     {
       id: 'Shinryu Normal Diamond Dust',
@@ -107,14 +99,6 @@
         cn: '进水圈',
         ko: '물 장판에 들어가기',
       },
-      tts: {
-        en: 'water',
-        de: 'wasser',
-        fr: 'eau',
-        ja: 'みず',
-        cn: '进水圈',
-        ko: '물 장판',
-      },
     },
     {
       id: 'Shinryu Normal Hypernova',
@@ -132,14 +116,6 @@
         ja: '水に集合',
         cn: '在水圈攻击',
         ko: '물 장판에 모이기',
-      },
-      tts: {
-        en: 'water',
-        de: 'Wasser',
-        fr: 'eau',
-        ja: 'みず',
-        cn: '水圈',
-        ko: '물 장판',
       },
     },
     {
@@ -177,14 +153,6 @@
         cn: '散开，离开水圈',
         ko: '산개, 물장판 X',
       },
-      tts: {
-        en: 'levinbolt',
-        de: 'Blitz',
-        fr: 'fulguration',
-        ja: '稲妻',
-        cn: '离开闪电',
-        ko: '우레',
-      },
     },
     {
       id: 'Shinryu Normal Tidal Wave',
@@ -205,14 +173,6 @@
         ja: 'ノックバック、水を探せ',
         cn: '击退，找水圈',
         ko: '넉백, 물기둥 확인',
-      },
-      tts: {
-        en: 'knockback',
-        de: 'Rückstoß',
-        fr: 'Poussée',
-        ja: 'ノックバック',
-        cn: '击退',
-        ko: '넉백',
       },
     },
     {
@@ -248,14 +208,6 @@
         cn: '打尾巴',
         ko: '꼬리 공격',
       },
-      tts: {
-        en: 'tail',
-        de: 'schweif',
-        fr: 'queue',
-        ja: '尾',
-        cn: '尾巴',
-        ko: '꼬리',
-      },
     },
     {
       // Re-using the Gyre Charge triggers since they're convenient and already translated.
@@ -288,14 +240,6 @@
         ja: 'ダイブボムに避け',
         cn: '前方顺劈',
         ko: '급강하 폭격 피하기',
-      },
-      tts: {
-        en: 'divebombs',
-        de: 'sturzflug',
-        fr: 'bombe plongeante',
-        ja: 'ダイブボム',
-        cn: '顺劈',
-        ko: '급강하 폭격',
       },
     },
     {

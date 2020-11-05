@@ -22,14 +22,6 @@
         cn: '击杀水球',
         ko: '물 구체 죽이기',
       },
-      tts: {
-        en: 'adds',
-        de: 'etz',
-        fr: 'adds',
-        ja: 'アクアスフィア',
-        cn: '击杀水球',
-        ko: '쫄 추가',
-      },
     },
     {
       // Note: this could probably use |matches.count| directly instead of
@@ -106,14 +98,6 @@
         cn: '去安全点',
         ko: '안전 지대로 이동',
       },
-      tts: {
-        en: 'move away',
-        de: 'weck da',
-        fr: 'Zone sure',
-        ja: '安置へ',
-        cn: '去安全点',
-        ko: '안전 지대로',
-      },
     },
     {
       id: 'Rab Hashmal Rock Cutter',
@@ -142,13 +126,6 @@
         cn: '远离大锤落点',
         ko: '기둥으로부터 피하기',
       },
-      tts: {
-        en: 'move away',
-        de: 'weck da',
-        fr: 'Eloignez vous',
-        ja: '離れ',
-        cn: '远离大锤落点',
-      },
     },
     {
       id: 'Rab Hashmal Golems',
@@ -167,14 +144,6 @@
         cn: '击杀小怪',
         ko: '골렘 죽이기',
       },
-      tts: {
-        en: 'adds',
-        de: 'etz',
-        fr: 'adds',
-        ja: 'ゴーレム',
-        cn: '击杀小怪',
-        ko: '쫄 추가',
-      },
     },
     {
       id: 'Rab Trash Dragon Voice',
@@ -192,14 +161,6 @@
         cn: '雷电咆哮: 靠近',
         ko: '뇌전의 포효: 안으로',
       },
-      tts: {
-        en: 'dragon voice',
-        de: 'Stimme des Drachen',
-        fr: 'Voix Du Dragon',
-        ja: 'なかへ',
-        cn: '靠近',
-        ko: '번개 안으로',
-      },
     },
     {
       id: 'Rab Trash Ram Voice',
@@ -216,14 +177,6 @@
         ja: '氷結の咆哮：外へ',
         cn: '寒冰咆哮: 远离',
         ko: '빙결의 포효: 바깥으로',
-      },
-      tts: {
-        en: 'rams voice',
-        de: 'Stimme des Widders',
-        fr: 'Voix Du Bélier',
-        ja: 'そとへ',
-        cn: '远离',
-        ko: '빙결 바깥으로',
       },
     },
     {

@@ -90,14 +90,6 @@
         ja: '魔導レーザー',
         cn: '直线AOE',
       },
-      tts: {
-        en: 'beam',
-        de: 'leser',
-        fr: 'laser',
-        ko: '레이저',
-        ja: 'レーザー',
-        cn: '激光',
-      },
     },
     {
       id: 'O7S Arm And Hammer',
@@ -122,14 +114,6 @@
         ko: '원자 파동 징',
         ja: 'マーカー',
         cn: '死刑点名',
-      },
-      tts: {
-        en: 'orb',
-        de: 'orb',
-        fr: 'orbe',
-        ko: '원자 파동',
-        ja: 'マーカー',
-        cn: '球',
       },
     },
     {
@@ -157,18 +141,6 @@
           ko: '"' + data.ShortName(matches.target) + '" 파란징',
           ja: data.ShortName(matches.target) + 'に青玉',
           cn: '蓝球点名' + data.ShortName(matches.target),
-        };
-      },
-      tts: function(data, matches) {
-        if (data.me != matches.target)
-          return;
-        return {
-          en: 'blue marker',
-          de: 'aura-kanone',
-          fr: 'marque bleu',
-          ko: '파란징',
-          ja: '青玉ついた',
-          cn: '蓝球',
         };
       },
     },
@@ -199,14 +171,6 @@
         ja: '孤独: 内側へ',
         cn: '呆在中间',
       },
-      tts: {
-        en: 'abandonment',
-        de: 'verlassen',
-        fr: 'isolement',
-        ko: '고독감',
-        ja: '孤独',
-        cn: '孤独',
-      },
     },
     {
       // Aether Rot
@@ -230,19 +194,6 @@
           ko: '"' + data.ShortName(matches.target) + '" 에테르',
           ja: data.ShortName(matches.target) + 'にロット',
           cn: '以太病毒点名' + data.ShortName(matches.target),
-        };
-      },
-      tts: function(data, matches) {
-        if (data.me != matches.target)
-          return;
-
-        return {
-          en: 'rot',
-          de: 'fäule',
-          fr: 'pourriture',
-          ja: 'ロット',
-          cn: '结束前传毒',
-          ko: '에테르',
         };
       },
     },

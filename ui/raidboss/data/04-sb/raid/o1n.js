@@ -41,13 +41,6 @@
         cn: '站boss附近',
         ko: '날개바람: 보스 옆으로',
       },
-      tts: {
-        en: 'breath wing',
-        de: 'atemschwinge',
-        ja: 'ブレスウィング',
-        cn: '站boss附近',
-        ko: '날개바람',
-      },
     },
     {
       id: 'O1N Clamp',

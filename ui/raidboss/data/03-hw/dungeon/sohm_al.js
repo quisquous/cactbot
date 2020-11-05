@@ -31,14 +31,6 @@
         cn: '击杀圣山之糜',
         ko: '산의 유미즙 처치',
       },
-      tts: {
-        en: 'kill chyme',
-        de: 'brei töten',
-        fr: 'tuez lad',
-        ja: 'キームス・マウンテンを倒す',
-        cn: '击杀圣山之糜',
-        ko: '초록 슬라임 잡기',
-      },
     },
     {
       id: 'Sohm Al Tioman Meteor',
