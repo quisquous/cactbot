@@ -10,6 +10,7 @@ let bunnyLabel = {
 };
 
 let Options = {
+  Debug: false,
   PopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
   BunnyPopSound: '../../resources/sounds/WeakAuras/WaterDrop.ogg',
   CriticalPopSound: '../../resources/sounds/PowerAuras/sonar.ogg',
@@ -2451,7 +2452,13 @@ class EurekaTracker {
     return respawnTimeMs + (+new Date());
   }
 
+  DebugPrint(str) {
+    if (this.options.Debug)
+      console.log(str);
+  }
+
   OnFatePop(fate) {
+    this.DebugPrint(`OnFatePop: ${this.TransByDispLang(fate.label)}`);
     if (fate.element.classList.contains('nm-hidden'))
       fate.element.classList.remove('nm-hidden');
 
@@ -2488,11 +2495,13 @@ class EurekaTracker {
   }
 
   OnFateUpdate(fate, percent) {
+    this.DebugPrint(`OnFateUpdate: ${this.TransByDispLang(fate.label)}: ${percent}%`);
     if (fate.element.classList.contains('nm-pop') || fate.element.classList.contains('critical-pop'))
       fate.progressElement.innerText = percent + '%';
   }
 
   OnFateKill(fate) {
+    this.DebugPrint(`OnFateKill: ${this.TransByDispLang(fate.label)}`);
     this.UpdateTimes();
     if (fate.element.classList.contains('nm-pop')) {
       if (this.zoneInfo.dontShowInactive)
