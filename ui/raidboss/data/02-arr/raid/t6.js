@@ -173,12 +173,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '86C', source: 'ラフレシア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '86C', source: '大王花', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '86C', source: '라플레시아', capture: false }),
-      infoText: {
-        en: 'Stack for Acid',
-        de: 'Sammeln für Säure-Blubberblase',
-        fr: 'Packez-vous pour Pluie acide',
-        ja: '集合、アシッドレインを誘導',
-        cn: '集合引导酸雨',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack for Acid',
+          de: 'Sammeln für Säure-Blubberblase',
+          fr: 'Packez-vous pour Pluie acide',
+          ja: '集合、アシッドレインを誘導',
+          cn: '集合引导酸雨',
+        },
       },
     },
     {

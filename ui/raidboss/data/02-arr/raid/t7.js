@@ -16,12 +16,15 @@
         // TODO: is this silenceable in 5.0?
         return data.CanStun() || data.CanSilence();
       },
-      infoText: {
-        en: 'Silence Ram\'s Voice',
-        de: 'Verstumme Stimme des Widders',
-        fr: 'Interrompez Voix du bélier',
-        ja: '沈黙: 氷結の咆哮',
-        cn: '沉默寒冰咆哮',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Silence Ram\'s Voice',
+          de: 'Verstumme Stimme des Widders',
+          fr: 'Interrompez Voix du bélier',
+          ja: '沈黙: 氷結の咆哮',
+          cn: '沉默寒冰咆哮',
+        },
       },
     },
     {
@@ -36,12 +39,15 @@
         // TODO: is this silenceable in 5.0?
         return data.CanStun() || data.CanSilence();
       },
-      infoText: {
-        en: 'Silence Dragon\'s Voice',
-        de: 'Verstumme Stimme des Drachens',
-        fr: 'Interrompez Voix du dragon',
-        ja: '沈黙: 雷電の咆哮',
-        cn: '沉默雷电咆哮',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Silence Dragon\'s Voice',
+          de: 'Verstumme Stimme des Drachens',
+          fr: 'Interrompez Voix du dragon',
+          ja: '沈黙: 雷電の咆哮',
+          cn: '沉默雷电咆哮',
+        },
       },
     },
     {
@@ -57,12 +63,15 @@
       },
       delaySeconds: 6,
       suppressSeconds: 5,
-      infoText: {
-        en: 'Tail Slap in 10',
-        de: 'Schweifklapser in 10',
-        fr: 'Gifle caudale dans 10s',
-        ja: 'まもなくテールスラップ',
-        cn: '10秒内死刑',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tail Slap in 10',
+          de: 'Schweifklapser in 10',
+          fr: 'Gifle caudale dans 10s',
+          ja: 'まもなくテールスラップ',
+          cn: '10秒内死刑',
+        },
       },
     },
     {
@@ -73,12 +82,15 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'ルノー', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '雷诺', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '르노', capture: false }),
-      infoText: {
-        en: 'Renaud Add',
-        de: 'Renaud Add',
-        fr: 'Add Renaud',
-        ja: '雑魚：ルノー',
-        cn: '雷诺出现',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Renaud Add',
+          de: 'Renaud Add',
+          fr: 'Add Renaud',
+          ja: '雑魚：ルノー',
+          cn: '雷诺出现',
+        },
       },
     },
     {
@@ -90,12 +102,15 @@
       delaySeconds: function(data, matches) {
         return matches.duration - 3;
       },
-      alertText: {
-        en: 'Voice Soon',
-        de: 'Stimme Der Verwünschung bald',
-        fr: 'Voix du maléfice bientôt',
-        ja: 'まもなく呪詛の声',
-        cn: '诅咒之声即将判定',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Voice Soon',
+          de: 'Stimme Der Verwünschung bald',
+          fr: 'Voix du maléfice bientôt',
+          ja: 'まもなく呪詛の声',
+          cn: '诅咒之声即将判定',
+        },
       },
     },
     {
@@ -207,12 +222,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '7B2', source: 'メリュジーヌ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '7B2', source: '美瑠姬奴', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '7B2', source: '멜뤼진', capture: false }),
-      alertText: {
-        en: 'Venomous Tail',
-        de: 'Venomschweif',
-        fr: 'Queue venimeuse',
-        ja: 'ベノモステール',
-        cn: '猛毒之尾',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Venomous Tail',
+          de: 'Venomschweif',
+          fr: 'Queue venimeuse',
+          ja: 'ベノモステール',
+          cn: '猛毒之尾',
+        },
       },
     },
   ],

@@ -30,13 +30,16 @@
       },
       delaySeconds: 30,
       suppressSeconds: 5,
-      infoText: {
-        en: 'Death Sentence Soon',
-        de: 'Todesurteil bald',
-        fr: 'Peine de mort bientôt',
-        ja: 'まもなくデスセンテンス',
-        cn: '死刑',
-        ko: '사형선고',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Death Sentence Soon',
+          de: 'Todesurteil bald',
+          fr: 'Peine de mort bientôt',
+          ja: 'まもなくデスセンテンス',
+          cn: '死刑',
+          ko: '사형선고',
+        },
       },
     },
     {
@@ -47,13 +50,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'メラシディアン・ワイバーン', id: '4DB', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '美拉西迪亚祸龙', id: '4DB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '메라시디아 와이번', id: '4DB', capture: false }),
-      infoText: {
-        en: 'Liquid Hell',
-        de: 'Höllenschmelze',
-        fr: 'Enfer liquide',
-        ja: 'ヘルリキッド',
-        cn: '液体地狱',
-        ko: '지옥의 늪',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Liquid Hell',
+          de: 'Höllenschmelze',
+          fr: 'Enfer liquide',
+          ja: 'ヘルリキッド',
+          cn: '液体地狱',
+          ko: '지옥의 늪',
+        },
       },
     },
     {
@@ -150,13 +156,16 @@
       netRegexJa: NetRegexes.ability({ source: 'ツインタニア', id: '5B0', capture: false }),
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '5B0', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
-      alertText: {
-        en: 'DIVEBOMB',
-        de: 'STURZBOMBE',
-        fr: 'BOMBE PLONGEANTE',
-        ja: 'ダイブボム',
-        cn: '俯冲',
-        ko: '급강하',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'DIVEBOMB',
+          de: 'STURZBOMBE',
+          fr: 'BOMBE PLONGEANTE',
+          ja: 'ダイブボム',
+          cn: '俯冲',
+          ko: '급강하',
+        },
       },
     },
     {
@@ -169,13 +178,16 @@
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '5B0', capture: false }),
       delaySeconds: 60,
       suppressSeconds: 5000,
-      infoText: {
-        en: 'Divebombs Soon',
-        de: 'Sturzbombe bald',
-        fr: 'Bombe plongeante bientôt',
-        ja: 'まもなくダイブボム',
-        cn: '即将俯冲',
-        ko: '급강하 준비',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Divebombs Soon',
+          de: 'Sturzbombe bald',
+          fr: 'Bombe plongeante bientôt',
+          ja: 'まもなくダイブボム',
+          cn: '即将俯冲',
+          ko: '급강하 준비',
+        },
       },
     },
     {
@@ -216,13 +228,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ツインタニア', id: '4E1', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '双塔尼亚', id: '4E1', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '트윈타니아', id: '4E1', capture: false }),
-      alertText: {
-        en: 'Twister!',
-        de: 'Wirbelsturm!',
-        fr: 'Tornade !',
-        ja: 'ツイスター!',
-        cn: '风风风！',
-        ko: '회오리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Twister!',
+          de: 'Wirbelsturm!',
+          fr: 'Tornade !',
+          ja: 'ツイスター!',
+          cn: '风风风！',
+          ko: '회오리',
+        },
       },
     },
     {

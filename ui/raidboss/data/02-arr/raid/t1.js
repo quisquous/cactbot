@@ -40,12 +40,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Spit on YOU',
-        de: 'Spucke auf DIR',
-        fr: 'Crachat sur VOUS',
-        ja: '自分にリゴージ',
-        cn: '吐痰点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spit on YOU',
+          de: 'Spucke auf DIR',
+          fr: 'Crachat sur VOUS',
+          ja: '自分にリゴージ',
+          cn: '吐痰点名',
+        },
       },
     },
     {
@@ -60,12 +63,15 @@
         return data.started;
       },
       suppressSeconds: 5,
-      alertText: {
-        en: 'Split',
-        de: 'Teilen',
-        fr: 'Division',
-        ja: '分裂',
-        cn: '分裂',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Split',
+          de: 'Teilen',
+          fr: 'Division',
+          ja: '分裂',
+          cn: '分裂',
+        },
       },
     },
     {
@@ -81,12 +87,15 @@
       },
       delaySeconds: 8,
       suppressSeconds: 5,
-      infoText: {
-        en: 'Hood Swing in 10',
-        de: 'Kapuzenschwung in 10',
-        fr: 'Coup de capot dans 10s',
-        ja: '十秒以内タンクバスター',
-        cn: '10秒内死刑',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hood Swing in 10',
+          de: 'Kapuzenschwung in 10',
+          fr: 'Coup de capot dans 10s',
+          ja: '十秒以内タンクバスター',
+          cn: '10秒内死刑',
+        },
       },
     },
     {
@@ -99,12 +108,15 @@
       netRegexKo: NetRegexes.message({ line: '알라그 유적 will be sealed off.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
-      infoText: {
-        en: 'Slime Soon',
-        de: 'Schleim bald',
-        fr: 'Gluant bientôt',
-        ja: 'まもなくスライム',
-        cn: '软泥即将出现',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Slime Soon',
+          de: 'Schleim bald',
+          fr: 'Gluant bientôt',
+          ja: 'まもなくスライム',
+          cn: '软泥即将出现',
+        },
       },
     },
     {
@@ -117,12 +129,15 @@
       netRegexKo: NetRegexes.addedCombatant({ name: '암흑물질 슬라임.*?', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 5,
-      infoText: {
-        en: 'Slime Soon',
-        de: 'Schleim bald',
-        fr: 'Gluant bientôt',
-        ja: 'まもなくスライム',
-        cn: '软泥即将出现',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Slime Soon',
+          de: 'Schleim bald',
+          fr: 'Gluant bientôt',
+          ja: 'まもなくスライム',
+          cn: '软泥即将出现',
+        },
       },
     },
   ],

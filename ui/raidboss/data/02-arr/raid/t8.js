@@ -17,15 +17,18 @@
       netRegexJa: NetRegexes.message({ line: '地雷が散布された.*?', capture: false }),
       netRegexCn: NetRegexes.message({ line: '地雷分布在了各处.*?', capture: false }),
       netRegexKo: NetRegexes.message({ line: '지뢰가 뿌려졌습니다.*?', capture: false }),
-      alertText: {
-        en: 'Explode Landmines',
-        de: 'Landminen explodieren',
-        fr: 'Explosez les mines',
-        ja: '地雷を踏む',
-        cn: '引爆地雷',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.landmines = {};
+      },
+      outputStrings: {
+        text: {
+          en: 'Explode Landmines',
+          de: 'Landminen explodieren',
+          fr: 'Explosez les mines',
+          ja: '地雷を踏む',
+          cn: '引爆地雷',
+        },
       },
     },
     {
@@ -139,12 +142,15 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'ドレッドノート', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '恐慌装甲', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '드레드노트', capture: false }),
-      infoText: {
-        en: 'Dreadnaught Add',
-        de: 'Brummonaut Add',
-        fr: 'Add Cuirassé',
-        ja: '雑魚：ドレッドノート',
-        cn: '恐慌装甲出现',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dreadnaught Add',
+          de: 'Brummonaut Add',
+          fr: 'Add Cuirassé',
+          ja: '雑魚：ドレッドノート',
+          cn: '恐慌装甲出现',
+        },
       },
     },
   ],
