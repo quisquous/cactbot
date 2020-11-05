@@ -189,7 +189,7 @@ class TriggerOutputProxy {
     }
 
     return template.replace(/\${\s*([^}\s]+)\s*}/g, (fullMatch, key) => {
-      if (key in params)
+      if (params && key in params)
         return params[key];
       console.error(`Trigger ${this.trigger.id} can't replace ${key} in ${template}.`);
       return this.unknownValue;
