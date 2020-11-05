@@ -1168,7 +1168,7 @@ class Bars {
     this.paeonStacks = 0;
     this.museStacks = 0;
     this.circleOfPower = 0;
-    this.cd = false;
+    this.mudraTriggerCd = true;
 
     this.comboFuncs = [];
     this.jobFuncs = [];
@@ -2877,7 +2877,7 @@ class Bars {
     });
     // Ninjutsu's cooldown begins to countdown at the first mudra.
     this.gainEffectFuncMap[EffectId.Mudra] = () => {
-      if (this.cd === true)
+      if (this.mudraTriggerCd === false)
         return;
       let old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
       if (old > 0) {
@@ -2887,18 +2887,18 @@ class Bars {
         ninjutsu.duration = 0;
         ninjutsu.duration = 20 - 0.5;
       }
-      this.cd = true;
+      this.mudraTriggerCd = false;
     };
     // On each mudra, Mudra effect will be gain once,
-    // use this.cd to tell that whether this mudra trigger cooldown.
+    // use this.mudraTriggerCd to tell that whether this mudra trigger cooldown.
     this.loseEffectFuncMap[EffectId.Mudra] = () => {
-      this.cd = false;
+      this.mudraTriggerCd = true;
     };
     this.gainEffectFuncMap[EffectId.Kassatsu] = () => {
-      this.cd = true;
+      this.mudraTriggerCd = false;
     };
     this.loseEffectFuncMap[EffectId.Kassatsu] = () => {
-      this.cd = false;
+      this.mudraTriggerCd = true;
     };
     this.abilityFuncMap[kAbility.Hide] = () => {
       ninjutsu.duration = 0;
