@@ -2348,7 +2348,7 @@ class EurekaTracker {
     let name = document.createElement('span');
     name.classList.add('nm-name');
     name.classList.add('text');
-    name.innerText = this.TransByParserLang(nm.label);
+    name.innerText = this.TransByDispLang(nm.label);
     let progress = document.createElement('span');
     progress.innerText = '';
     progress.classList.add('nm-progress');
