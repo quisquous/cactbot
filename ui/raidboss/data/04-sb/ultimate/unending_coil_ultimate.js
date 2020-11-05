@@ -156,13 +156,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '26AA', source: 'ツインタニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26AA', source: '双塔尼亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26AA', source: '트윈타니아', capture: false }),
-      alertText: {
-        en: 'Twisters',
-        fr: 'Tornades',
-        de: 'Wirbelstürme',
-        ja: '大竜巻',
-        cn: '大龙卷',
-        ko: '회오리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Twisters',
+          fr: 'Tornades',
+          de: 'Wirbelstürme',
+          ja: '大竜巻',
+          cn: '大龙卷',
+          ko: '회오리',
+        },
       },
     },
     {
@@ -253,13 +256,16 @@
       regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '75', capture: false }),
       regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '75', capture: false }),
       sound: 'Long',
-      infoText: {
-        en: 'Phase 2 Push',
-        fr: 'Phase 2 poussée',
-        de: 'Phase 2 Stoß',
-        ja: 'フェーズ2',
-        cn: 'P2准备',
-        ko: '트윈 페이즈2',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Phase 2 Push',
+          fr: 'Phase 2 poussée',
+          de: 'Phase 2 Stoß',
+          ja: 'フェーズ2',
+          cn: 'P2准备',
+          ko: '트윈 페이즈2',
+        },
       },
     },
     {
@@ -271,13 +277,16 @@
       regexCn: Regexes.hasHP({ name: '双塔尼亚', hp: '45', capture: false }),
       regexKo: Regexes.hasHP({ name: '트윈타니아', hp: '45', capture: false }),
       sound: 'Long',
-      infoText: {
-        en: 'Phase 3 Push',
-        fr: 'Phase 3 poussée',
-        de: 'Phase 3 Stoß',
-        ja: 'フェーズ3',
-        cn: 'P3准备',
-        ko: '트윈 페이즈3',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Phase 3 Push',
+          fr: 'Phase 3 poussée',
+          de: 'Phase 3 Stoß',
+          ja: 'フェーズ3',
+          cn: 'P3准备',
+          ko: '트윈 페이즈3',
+        },
       },
     },
 
@@ -292,13 +301,16 @@
       netRegexCn: NetRegexes.dialog({ line: '我降临于此，\\s*对月长啸！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '흉조가 내려와 달을 올려다보리라!.*?', capture: false }),
       durationSeconds: 6,
-      infoText: {
-        en: 'Spread => In',
-        fr: 'Se dispercer => Dedans',
-        de: 'Verteilen => Rein',
-        ja: '散開 => 密着',
-        cn: '分散 => 靠近',
-        ko: '산개 => 안으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread => In',
+          fr: 'Se dispercer => Dedans',
+          de: 'Verteilen => Rein',
+          ja: '散開 => 密着',
+          cn: '分散 => 靠近',
+          ko: '산개 => 안으로',
+        },
       },
     },
     {
@@ -311,13 +323,16 @@
       netRegexCn: NetRegexes.dialog({ line: '我降临于此，\\s*征战铁血霸道！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '흉조가 내려와 강철의 패도를 걸으리라!.*?', capture: false }),
       durationSeconds: 6,
-      infoText: {
-        en: 'Spread => Out',
-        fr: 'Se dispercer => Dehors',
-        de: 'Verteilen => Raus',
-        ja: '散開 => 離れ',
-        cn: '分散 => 远离',
-        ko: '산개 => 밖으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread => Out',
+          fr: 'Se dispercer => Dehors',
+          de: 'Verteilen => Raus',
+          ja: '散開 => 離れ',
+          cn: '分散 => 远离',
+          ko: '산개 => 밖으로',
+        },
       },
     },
     {
@@ -330,13 +345,16 @@
       netRegexCn: NetRegexes.dialog({ line: '炽热燃烧！\\s*给予我月亮的祝福！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '붉게 타오른 달의 축복을!.*?', capture: false }),
       durationSeconds: 6,
-      infoText: {
-        en: 'Stack => In',
-        fr: 'Se rassembler => Dedans',
-        de: 'Stack => Rein',
-        ja: '頭割り => 密着',
-        cn: '集合 => 靠近',
-        ko: '쉐어 => 안으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack => In',
+          fr: 'Se rassembler => Dedans',
+          de: 'Stack => Rein',
+          ja: '頭割り => 密着',
+          cn: '集合 => 靠近',
+          ko: '쉐어 => 안으로',
+        },
       },
     },
     {
@@ -348,13 +366,16 @@
       netRegexJa: NetRegexes.dialog({ line: '赤熱し、焼かれし道を\\s*鉄の覇道と成す！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '被炽热灼烧过的轨迹\\s*乃成铁血霸道！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '붉게 타오른 길을 강철의 패도로 만들겠노라!.*?', capture: false }),
-      infoText: {
-        en: 'Stack => Out',
-        fr: 'Se rassembler => Dehors',
-        de: 'Stack => Raus',
-        ja: '頭割り => 離れ',
-        cn: '集合 => 远离',
-        ko: '쉐어 => 밖으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack => Out',
+          fr: 'Se rassembler => Dehors',
+          de: 'Stack => Raus',
+          ja: '頭割り => 離れ',
+          cn: '集合 => 远离',
+          ko: '쉐어 => 밖으로',
+        },
       },
     },
     {
@@ -366,13 +387,16 @@
       netRegexJa: NetRegexes.dialog({ line: '月よ！\\s*赤熱し、神敵を焼け！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '月光啊！\\s*用你的炽热烧尽敌人！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '달이여! 붉게 타올라 신의 적을 태워버려라!.*?', capture: false }),
-      infoText: {
-        en: 'In => Stack',
-        fr: 'Dedans => Se rassembler',
-        de: 'Rein => Stack',
-        ja: '密着 => 頭割り',
-        cn: '靠近 => 集合',
-        ko: '안으로 => 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In => Stack',
+          fr: 'Dedans => Se rassembler',
+          de: 'Rein => Stack',
+          ja: '密着 => 頭割り',
+          cn: '靠近 => 集合',
+          ko: '안으로 => 쉐어',
+        },
       },
     },
     {
@@ -384,13 +408,16 @@
       netRegexJa: NetRegexes.dialog({ line: '月よ！\\s*鉄の覇道を照らせ！.*?', capture: false }),
       netRegexCn: NetRegexes.dialog({ line: '月光啊！\\s*照亮铁血霸道！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '달이여! 강철의 패도를 비춰라!.*?', capture: false }),
-      infoText: {
-        en: 'In => Out',
-        fr: 'Dedans => Dehors',
-        de: 'Rein => Raus',
-        ja: '密着 => 離れ',
-        cn: '靠近 => 远离',
-        ko: '안으로 => 밖으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In => Out',
+          fr: 'Dedans => Dehors',
+          de: 'Rein => Raus',
+          ja: '密着 => 離れ',
+          cn: '靠近 => 远离',
+          ko: '안으로 => 밖으로',
+        },
       },
     },
     {
@@ -404,13 +431,16 @@
       netRegexKo: NetRegexes.dialog({ line: '초신성이여, 빛을 더하라! 붉은 달 아래, 붉게 타오르는 땅을 비춰라!.*?', capture: false }),
       delaySeconds: 4,
       durationSeconds: 6,
-      infoText: {
-        en: 'Away from Tank => Stack',
-        fr: 'S\'éloigner du tank => Se rassembler',
-        de: 'Weg vom Tank => Stack',
-        ja: 'タンクから離れ => 頭割り',
-        cn: '远离坦克 => 集合',
-        ko: '탱커 피하기 => 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from Tank => Stack',
+          fr: 'S\'éloigner du tank => Se rassembler',
+          de: 'Weg vom Tank => Stack',
+          ja: 'タンクから離れ => 頭割り',
+          cn: '远离坦克 => 集合',
+          ko: '탱커 피하기 => 쉐어',
+        },
       },
     },
     {
@@ -424,13 +454,16 @@
       netRegexKo: NetRegexes.dialog({ line: '초신성이여, 빛을 더하라! 유성이 쏟아지는 밤에, 붉은 달을 우러러보라!.*?', capture: false }),
       delaySeconds: 4,
       durationSeconds: 6,
-      infoText: {
-        en: 'Spread => Away from Tank',
-        fr: 'Se dispercer => S\'éloigner du Tank',
-        de: 'Verteilen => Weg vom Tank',
-        ja: '散開 => タンクから離れ',
-        cn: '分散 => 远离坦克',
-        ko: '산개 => 탱커 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread => Away from Tank',
+          fr: 'Se dispercer => S\'éloigner du Tank',
+          de: 'Verteilen => Weg vom Tank',
+          ja: '散開 => タンクから離れ',
+          cn: '分散 => 远离坦克',
+          ko: '산개 => 탱커 피하기',
+        },
       },
     },
     {
@@ -443,13 +476,16 @@
       netRegexCn: NetRegexes.dialog({ line: '我降临于此对月长啸！\\s*召唤星降之夜！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '흉조가 내려와, 달을 올려다보니 유성이 쏟아지는 밤이 도래하리라!.*?', capture: false }),
       durationSeconds: 9,
-      infoText: {
-        en: 'Spread => In',
-        fr: 'Se dispercer => Dedans',
-        de: 'Verteilen => Rein',
-        ja: '散開 => 密着',
-        cn: '分散 => 靠近',
-        ko: '산개 => 안으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread => In',
+          fr: 'Se dispercer => Dedans',
+          de: 'Verteilen => Rein',
+          ja: '散開 => 密着',
+          cn: '分散 => 靠近',
+          ko: '산개 => 안으로',
+        },
       },
     },
     {
@@ -462,13 +498,16 @@
       netRegexCn: NetRegexes.dialog({ line: '我自月而来降临于此，\\s*召唤星降之夜！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '달로부터 흉조가 내려와 유성이 쏟아지는 밤이 도래하리라!.*?', capture: false }),
       durationSeconds: 9,
-      infoText: {
-        en: 'In => Spread',
-        fr: 'Dedans => Se dispercer',
-        de: 'Rein => Verteilen',
-        ja: '密着 => 散開',
-        cn: '靠近 => 分散',
-        ko: '안으로 => 산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In => Spread',
+          fr: 'Dedans => Se dispercer',
+          de: 'Rein => Verteilen',
+          ja: '密着 => 散開',
+          cn: '靠近 => 分散',
+          ko: '안으로 => 산개',
+        },
       },
     },
     {
@@ -481,13 +520,16 @@
       netRegexCn: NetRegexes.dialog({ line: '我自月而来携钢铁降临于此！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '달로부터 강철의 패도를 거쳐 흉조가 내려오리라!.*?', capture: false }),
       durationSeconds: 9,
-      infoText: {
-        en: 'In => Out => Spread',
-        fr: 'Dedans => Dehors => Se dispercer',
-        de: 'Rein => Raus => Verteilen',
-        ja: '密着 => 離れ => 散開',
-        cn: '靠近 => 远离 => 分散',
-        ko: '안으로 => 밖으로 => 산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In => Out => Spread',
+          fr: 'Dedans => Dehors => Se dispercer',
+          de: 'Rein => Raus => Verteilen',
+          ja: '密着 => 離れ => 散開',
+          cn: '靠近 => 远离 => 分散',
+          ko: '안으로 => 밖으로 => 산개',
+        },
       },
     },
     {
@@ -500,13 +542,16 @@
       netRegexCn: NetRegexes.dialog({ line: '我自月而来降临于此，\\s*踏过炽热之地！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '달로부터 흉조가 내려와 붉게 타오르는 땅을 걸으리라!.*?', capture: false }),
       durationSeconds: 9,
-      infoText: {
-        en: 'In => Spread => Stack',
-        fr: 'Dedans => Se dispercer => Se rassembler',
-        de: 'Rein => Verteilen => Stack',
-        ja: '密着 => 散開 => 頭割り',
-        cn: '靠近 => 分散 => 集合',
-        ko: '안으로 => 산개 => 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In => Spread => Stack',
+          fr: 'Dedans => Se dispercer => Se rassembler',
+          de: 'Rein => Verteilen => Stack',
+          ja: '密着 => 散開 => 頭割り',
+          cn: '靠近 => 分散 => 集合',
+          ko: '안으로 => 산개 => 쉐어',
+        },
       },
     },
     {
@@ -519,13 +564,16 @@
       netRegexCn: NetRegexes.dialog({ line: '钢铁燃烧吧！\\s*成为我降临于此的刀剑吧！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '강철이여, 붉게 타올라라! 흉조가 내려오니 그 칼날이 되어라!.*?', capture: false }),
       durationSeconds: 9,
-      infoText: {
-        en: 'Out => Stack => Spread',
-        fr: 'Dehors => Se rassembler => Se dispercer',
-        de: 'Raus => Stack => Verteilen',
-        ja: '離れ => 頭割り => 散開',
-        cn: '远离 => 集合 => 分散',
-        ko: '밖으로 => 쉐어 => 산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out => Stack => Spread',
+          fr: 'Dehors => Se rassembler => Se dispercer',
+          de: 'Raus => Stack => Verteilen',
+          ja: '離れ => 頭割り => 散開',
+          cn: '远离 => 集合 => 分散',
+          ko: '밖으로 => 쉐어 => 산개',
+        },
       },
     },
     {
@@ -538,13 +586,16 @@
       netRegexCn: NetRegexes.dialog({ line: '钢铁成为我降临于此的燃烧之剑！.*?', capture: false }),
       netRegexKo: NetRegexes.dialog({ line: '강철이여, 흉조가 내려오는도다! 그 칼날이 되어 붉게 타올라라!.*?', capture: false }),
       durationSeconds: 9,
-      infoText: {
-        en: 'Out => Spread => Stack',
-        fr: 'Dehors => Se dispercer => Se rassembler',
-        de: 'Raus => Verteilen => Stack',
-        ja: '離れ => 散開 => 頭割り',
-        cn: '远离 => 分散 => 集合',
-        ko: '밖으로 => 산개 => 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out => Spread => Stack',
+          fr: 'Dehors => Se dispercer => Se rassembler',
+          de: 'Raus => Verteilen => Stack',
+          ja: '離れ => 散開 => 頭割り',
+          cn: '远离 => 分散 => 集合',
+          ko: '밖으로 => 산개 => 쉐어',
+        },
       },
     },
     {
@@ -560,13 +611,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Thunder on YOU',
-        fr: 'Foudre sur VOUS',
-        de: 'Blitz auf DIR',
-        ja: '自分にサンダー',
-        cn: '雷点名',
-        ko: '나에게 번개',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Thunder on YOU',
+          fr: 'Foudre sur VOUS',
+          de: 'Blitz auf DIR',
+          ja: '自分にサンダー',
+          cn: '雷点名',
+          ko: '나에게 번개',
+        },
       },
     },
     {
@@ -713,16 +767,19 @@
       netRegexKo: NetRegexes.ability({ source: '라그나로크', id: '26B8', capture: false }),
       delaySeconds: 35,
       suppressSeconds: 99999,
-      infoText: {
-        en: 'Fire IN',
-        fr: 'Feu EN DEDANS',
-        de: 'Feuer INNEN',
-        ja: 'ファイアボールは密着',
-        cn: '火进',
-        ko: '불 같이맞기',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.naelFireballCount = 1;
+      },
+      outputStrings: {
+        text: {
+          en: 'Fire IN',
+          fr: 'Feu EN DEDANS',
+          de: 'Feuer INNEN',
+          ja: 'ファイアボールは密着',
+          cn: '火进',
+          ko: '불 같이맞기',
+        },
       },
     },
     {
@@ -1202,13 +1259,16 @@
       netRegexCn: NetRegexes.ability({ source: '双塔尼亚', id: '26B2', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '트윈타니아', id: '26B2', capture: false }),
       suppressSeconds: 2,
-      alertText: {
-        en: 'Twisters',
-        fr: 'Tornades',
-        de: 'Wirbelstürme',
-        ja: 'ツイスター',
-        cn: '旋风冲',
-        ko: '회오리',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Twisters',
+          fr: 'Tornades',
+          de: 'Wirbelstürme',
+          ja: 'ツイスター',
+          cn: '旋风冲',
+          ko: '회오리',
+        },
       },
     },
     {
@@ -1219,13 +1279,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '26D6', source: 'バハムート・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '26D6', source: '至尊巴哈姆特', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '26D6', source: '바하무트 프라임', capture: false }),
-      alertText: {
-        en: 'Gigaflare',
-        fr: 'GigaBrasier',
-        de: 'Gigaflare',
-        ja: 'ギガフレア',
-        cn: '十亿核爆',
-        ko: '기가플레어',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Gigaflare',
+          fr: 'GigaBrasier',
+          de: 'Gigaflare',
+          ja: 'ギガフレア',
+          cn: '十亿核爆',
+          ko: '기가플레어',
+        },
       },
     },
     {
@@ -1234,13 +1297,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Megaflare Stack',
-        fr: 'MegaBrasier rassemblement',
-        de: 'Megaflare Stack',
-        ja: 'メガフレア頭割り',
-        cn: '百万核爆集合',
-        ko: '기가플레어 쉐어',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Megaflare Stack',
+          fr: 'MegaBrasier rassemblement',
+          de: 'Megaflare Stack',
+          ja: 'メガフレア頭割り',
+          cn: '百万核爆集合',
+          ko: '기가플레어 쉐어',
+        },
       },
     },
     {
@@ -1348,13 +1414,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Earthshaker on YOU',
-        fr: 'Secousse sur VOUS',
-        de: 'Erdstoß auf Dir',
-        ja: '自分にアースシェイカー',
-        cn: '地震点名',
-        ko: '나에게 어스징',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Earthshaker on YOU',
+          fr: 'Secousse sur VOUS',
+          de: 'Erdstoß auf Dir',
+          ja: '自分にアースシェイカー',
+          cn: '地震点名',
+          ko: '나에게 어스징',
+        },
       },
     },
     {
