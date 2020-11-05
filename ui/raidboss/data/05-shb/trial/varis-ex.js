@@ -67,13 +67,16 @@
       regex: /^Magitek Burst$/,
       beforeSeconds: 15,
       durationSeconds: 5,
-      infoText: {
-        en: 'Spread Soon',
-        de: 'Bald verteilen',
-        fr: 'Dispersez-vous bientôt',
-        ja: 'まもなく散開',
-        cn: '即将散开',
-        ko: '잠시후 산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread Soon',
+          de: 'Bald verteilen',
+          fr: 'Dispersez-vous bientôt',
+          ja: 'まもなく散開',
+          cn: '即将散开',
+          ko: '잠시후 산개',
+        },
       },
     },
   ],
@@ -119,13 +122,16 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis yae Galvus', id: '4CCA', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CCA', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CCA', capture: false }),
-      infoText: {
-        en: 'Bait Slashes',
-        de: 'Schnitte ködern',
-        fr: 'Attirez les taillades',
-        ja: '縦へ、アルティウスを誘導',
-        cn: 'Boss身后诱导剑气方向',
-        ko: '슬래시 유도',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Slashes',
+          de: 'Schnitte ködern',
+          fr: 'Attirez les taillades',
+          ja: '縦へ、アルティウスを誘導',
+          cn: 'Boss身后诱导剑气方向',
+          ko: '슬래시 유도',
+        },
       },
     },
     {
@@ -187,13 +193,16 @@
       netRegexCn: NetRegexes.ability({ source: '瓦厉斯·耶·加尔乌斯', id: '4CD5', capture: false }),
       // Multiple people getting hit by this can cause double triggers.
       suppressSeconds: 1,
-      infoText: {
-        en: 'Go Front',
-        de: 'Nach Vorne gehen',
-        fr: 'Allez devant',
-        ja: '前へ',
-        cn: '到正面',
-        ko: '앞으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go Front',
+          de: 'Nach Vorne gehen',
+          fr: 'Allez devant',
+          ja: '前へ',
+          cn: '到正面',
+          ko: '앞으로',
+        },
       },
     },
     {
@@ -216,13 +225,16 @@
       delaySeconds: function(data) {
         return data.phase == 2 ? 20 : 10;
       },
-      alertText: {
-        en: 'Stop attacking',
-        de: 'Angriffe stoppen',
-        fr: 'Arrêtez d\'attaquer',
-        ja: 'ブロックしない側に攻撃',
-        cn: '攻击未格挡的方向',
-        ko: '공격 중지',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stop attacking',
+          de: 'Angriffe stoppen',
+          fr: 'Arrêtez d\'attaquer',
+          ja: 'ブロックしない側に攻撃',
+          cn: '攻击未格挡的方向',
+          ko: '공격 중지',
+        },
       },
     },
     {
@@ -352,13 +364,16 @@
       netRegexFr: NetRegexes.startsUsing({ source: 'Varis Yae Galvus', id: '4CE[56]', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ヴァリス・イェー・ガルヴァス', id: '4CE[56]', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '瓦厉斯·耶·加尔乌斯', id: '4CE[56]', capture: false }),
-      alertText: {
-        en: 'Bait Puddles Out',
-        de: 'Flächen nach draußen ködern',
-        fr: 'Attirez les zones au sol à l\'extérieur',
-        ja: '外周に安置',
-        cn: '外圈放黑泥',
-        ko: '장판 바깥쪽으로 유도',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Puddles Out',
+          de: 'Flächen nach draußen ködern',
+          fr: 'Attirez les zones au sol à l\'extérieur',
+          ja: '外周に安置',
+          cn: '外圈放黑泥',
+          ko: '장판 바깥쪽으로 유도',
+        },
       },
     },
   ],

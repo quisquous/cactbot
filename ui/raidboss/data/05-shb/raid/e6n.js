@@ -33,12 +33,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['迦楼罗', '赤翼罗羯坨博叉'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['가루다', '락타팍샤'], id: ['4BD[DEF]', '4BE[345]'], capture: false }),
-      infoText: {
-        en: 'Avoid green nails',
-        de: 'Weiche den grünen Nägeln aus',
-        fr: 'Évitez les griffes',
-        cn: '躲避风牙',
-        ko: '초록 발톱 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid green nails',
+          de: 'Weiche den grünen Nägeln aus',
+          fr: 'Évitez les griffes',
+          cn: '躲避风牙',
+          ko: '초록 발톱 피하기',
+        },
       },
     },
     {
@@ -145,12 +148,15 @@
       id: 'E6N Hands of Hell',
       netRegex: NetRegexes.headMarker({ id: '0016' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Tether Marker on YOU',
-        de: 'Verbindung auf DIR',
-        fr: 'Marque de lien sur VOUS',
-        cn: '连线点名',
-        ko: '징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tether Marker on YOU',
+          de: 'Verbindung auf DIR',
+          fr: 'Marque de lien sur VOUS',
+          cn: '连线点名',
+          ko: '징 대상자',
+        },
       },
     },
     {
@@ -165,15 +171,18 @@
       condition: function(data) {
         return !data.seenSpark;
       },
-      alertText: {
-        en: 'Move to Ifrit',
-        de: 'Zu Ifrit bewegen',
-        fr: 'Allez sur Ifrit',
-        cn: '踢球 集合待机',
-        ko: '이프리트로 이동',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.seenSpark = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Move to Ifrit',
+          de: 'Zu Ifrit bewegen',
+          fr: 'Allez sur Ifrit',
+          cn: '踢球 集合待机',
+          ko: '이프리트로 이동',
+        },
       },
     },
     {

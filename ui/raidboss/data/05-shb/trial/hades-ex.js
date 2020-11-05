@@ -16,13 +16,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: {
-        en: 'Comet Towers',
-        de: 'Türme',
-        fr: 'Tours de comète',
-        ja: 'コメットを処理',
-        cn: '踩塔',
-        ko: '혜성 기둥',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Comet Towers',
+          de: 'Türme',
+          fr: 'Tours de comète',
+          ja: 'コメットを処理',
+          cn: '踩塔',
+          ko: '혜성 기둥',
+        },
       },
     },
   ],
@@ -35,13 +38,16 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47A8', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47A8', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47A8', source: '하데스', capture: false }),
-      alertText: {
-        en: 'Protean',
-        de: 'Himmelsrichtungen',
-        fr: 'Position',
-        ja: '散開',
-        cn: '散开',
-        ko: '위치 산개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Protean',
+          de: 'Himmelsrichtungen',
+          fr: 'Position',
+          ja: '散開',
+          cn: '散开',
+          ko: '위치 산개',
+        },
       },
     },
     {
@@ -87,13 +93,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47AB', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47AB', source: '하데스', capture: false }),
       delaySeconds: 5,
-      infoText: {
-        en: 'Then Right',
-        de: 'Dann Rechts',
-        fr: 'À Droite',
-        ja: 'そして右へ',
-        cn: '然后右',
-        ko: '다음 오른쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Then Right',
+          de: 'Dann Rechts',
+          fr: 'À Droite',
+          ja: 'そして右へ',
+          cn: '然后右',
+          ko: '다음 오른쪽',
+        },
       },
     },
     {
@@ -115,13 +124,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47AC', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47AC', source: '하데스', capture: false }),
       delaySeconds: 5,
-      infoText: {
-        en: 'Then Left',
-        de: 'Dann Links',
-        fr: 'À Gauche',
-        ja: 'そして左へ',
-        cn: '然后左',
-        ko: '다음 왼쪽',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Then Left',
+          de: 'Dann Links',
+          fr: 'À Gauche',
+          ja: 'そして左へ',
+          cn: '然后左',
+          ko: '다음 왼쪽',
+        },
       },
     },
     {
@@ -134,13 +146,16 @@
       netRegexKo: NetRegexes.addedCombatant({ name: '구체 마법진', capture: false }),
       durationSeconds: 6,
       suppressSeconds: 2,
-      infoText: {
-        en: 'Go to Safe Spot',
-        de: 'Geh zur sicheren Stelle',
-        fr: 'Allez dans la zone sûre',
-        ja: '安全の場所へ移動',
-        cn: '前往安全区域',
-        ko: '안전 지대로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go to Safe Spot',
+          de: 'Geh zur sicheren Stelle',
+          fr: 'Allez dans la zone sûre',
+          ja: '安全の場所へ移動',
+          cn: '前往安全区域',
+          ko: '안전 지대로 이동',
+        },
       },
     },
     {
@@ -153,13 +168,16 @@
       netRegexKo: NetRegexes.addedCombatant({ name: '입체 마법진', capture: false }),
       durationSeconds: 6,
       suppressSeconds: 2,
-      infoText: {
-        en: 'Hide Behind Door',
-        de: 'Hinter der Tür verstecken',
-        fr: 'Cachez-vous derrière le mirroir',
-        ja: '鏡の後ろに',
-        cn: '镜子后躲避',
-        ko: '문 없는 곳 반대쪽으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Door',
+          de: 'Hinter der Tür verstecken',
+          fr: 'Cachez-vous derrière le mirroir',
+          ja: '鏡の後ろに',
+          cn: '镜子后躲避',
+          ko: '문 없는 곳 반대쪽으로',
+        },
       },
     },
     {
@@ -187,13 +205,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Point Tether Out',
-        de: 'Verbindung nach draußen richten',
-        fr: 'Lien vers l\'extérieur',
-        ja: '線を外に引く',
-        cn: '连线',
-        ko: '선 연결 바깥으로 빼기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Point Tether Out',
+          de: 'Verbindung nach draußen richten',
+          fr: 'Lien vers l\'extérieur',
+          ja: '線を外に引く',
+          cn: '连线',
+          ko: '선 연결 바깥으로 빼기',
+        },
       },
     },
     {
@@ -202,16 +223,19 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Healer Stacks',
-        de: 'Bei dem Heiler sammeln',
-        fr: 'Packages sur les heals',
-        ja: 'ヒーラーに集合',
-        cn: '治疗集合',
-        ko: '힐러 모이기',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.waterDarkMarker = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Healer Stacks',
+          de: 'Bei dem Heiler sammeln',
+          fr: 'Packages sur les heals',
+          ja: 'ヒーラーに集合',
+          cn: '治疗集合',
+          ko: '힐러 모이기',
+        },
       },
     },
     {
@@ -220,16 +244,19 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Tank Spread',
-        de: 'Tanks verteilen',
-        fr: 'Tanks, dispersez-vous',
-        ja: 'タンクは外に',
-        cn: '坦克散开',
-        ko: '탱 산개',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.waterDarkMarker = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Tank Spread',
+          de: 'Tanks verteilen',
+          fr: 'Tanks, dispersez-vous',
+          ja: 'タンクは外に',
+          cn: '坦克散开',
+          ko: '탱 산개',
+        },
       },
     },
     {
@@ -262,13 +289,16 @@
         return data.role == 'tank';
       },
       suppressSeconds: 10,
-      alarmText: {
-        en: 'Move Shades Apart',
-        de: 'Schatten auseinander ziehen',
-        fr: 'Écartez les spectres',
-        ja: 'アシエンを引き離す',
-        cn: '拉开无影',
-        ko: '분신 서로 떨어뜨리기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Shades Apart',
+          de: 'Schatten auseinander ziehen',
+          fr: 'Écartez les spectres',
+          ja: 'アシエンを引き離す',
+          cn: '拉开无影',
+          ko: '분신 서로 떨어뜨리기',
+        },
       },
     },
     {
@@ -317,16 +347,19 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Attack Igeyorhm',
-        de: 'Igeyorhm angreifen',
-        fr: 'Attaquez Igeyorhm',
-        ja: 'イゲオルムを攻撃',
-        cn: '攻击以格约姆',
-        ko: '이게요름 공격',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.brand = 'fire';
+      },
+      outputStrings: {
+        text: {
+          en: 'Attack Igeyorhm',
+          de: 'Igeyorhm angreifen',
+          fr: 'Attaquez Igeyorhm',
+          ja: 'イゲオルムを攻撃',
+          cn: '攻击以格约姆',
+          ko: '이게요름 공격',
+        },
       },
     },
     {
@@ -335,16 +368,19 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Attack Lahabrea',
-        de: 'Lahabrea angreifen',
-        fr: 'Attaquez Lahabrea',
-        ja: 'ラハブレアを攻撃',
-        cn: '攻击拉哈布雷亚',
-        ko: '라하브레아 공격',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.brand = 'ice';
+      },
+      outputStrings: {
+        text: {
+          en: 'Attack Lahabrea',
+          de: 'Lahabrea angreifen',
+          fr: 'Attaquez Lahabrea',
+          ja: 'ラハブレアを攻撃',
+          cn: '攻击拉哈布雷亚',
+          ko: '라하브레아 공격',
+        },
       },
     },
     {
@@ -385,13 +421,16 @@
         return data.role == 'healer';
       },
       suppressSeconds: 5,
-      alertText: {
-        en: 'Tank Busters',
-        de: 'Tankbuster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '坦克死刑',
-        ko: '탱버',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tankbuster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -401,13 +440,16 @@
         return data.role == 'healer';
       },
       suppressSeconds: 5,
-      alertText: {
-        en: 'Heal T/H to Full',
-        de: 'Heile T/H voll',
-        fr: 'Soignez T/H max vie',
-        ja: 'タンク／ヒーラーを満タンさせ',
-        cn: '奶满T奶',
-        ko: '탱/힐 풀피로 만들기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heal T/H to Full',
+          de: 'Heile T/H voll',
+          fr: 'Soignez T/H max vie',
+          ja: 'タンク／ヒーラーを満タンさせ',
+          cn: '奶满T奶',
+          ko: '탱/힐 풀피로 만들기',
+        },
       },
     },
     {
@@ -426,13 +468,16 @@
         return data.me == matches.target;
       },
       durationSeconds: 8,
-      alertText: {
-        en: 'Get Killed',
-        de: 'Stirb',
-        fr: 'Mourrez',
-        ja: '自殺',
-        cn: '自杀',
-        ko: '죽을 정도로 맞기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Killed',
+          de: 'Stirb',
+          fr: 'Mourrez',
+          ja: '自殺',
+          cn: '自杀',
+          ko: '죽을 정도로 맞기',
+        },
       },
     },
     {
@@ -444,13 +489,16 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: {
-        en: 'Donut on YOU',
-        de: 'Donut auf DIR',
-        fr: 'Donut sur VOUS',
-        ja: '自分にエンシェントリング',
-        cn: '月环点名',
-        ko: '도넛 징 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Donut on YOU',
+          de: 'Donut auf DIR',
+          fr: 'Donut sur VOUS',
+          ja: '自分にエンシェントリング',
+          cn: '月环点名',
+          ko: '도넛 징 대상자',
+        },
       },
     },
     {
@@ -462,13 +510,16 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 2;
       },
-      alertText: {
-        en: 'Stay Out',
-        de: 'Draußen stehen',
-        fr: 'Restez éloigné',
-        ja: 'ライトニングを外に安置',
-        cn: '外侧放雷',
-        ko: '바깥에 있기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stay Out',
+          de: 'Draußen stehen',
+          fr: 'Restez éloigné',
+          ja: 'ライトニングを外に安置',
+          cn: '外侧放雷',
+          ko: '바깥에 있기',
+        },
       },
     },
     {
@@ -483,13 +534,16 @@
         return data.role == 'tank' || data.role == 'healer';
       },
       delaySeconds: 12,
-      infoText: {
-        en: 'aoe + bleed',
-        de: 'AoE + Blutung',
-        fr: 'AoE + saignement',
-        ja: 'AoE + DoT',
-        cn: 'AOE + 流血',
-        ko: '전체 공격 + 출혈',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'aoe + bleed',
+          de: 'AoE + Blutung',
+          fr: 'AoE + saignement',
+          ja: 'AoE + DoT',
+          cn: 'AOE + 流血',
+          ko: '전체 공격 + 출혈',
+        },
       },
     },
     {
@@ -540,13 +594,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '47CD', source: 'アシエン・プライムの影', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47CD', source: '아씨엔 프라임의 그림자', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Healer Stacks',
-        de: 'Bei den Heilern sammeln',
-        fr: 'Packages sur les heals',
-        ja: 'ヒーラーに集合',
-        cn: '治疗集合',
-        ko: '힐러 모이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Healer Stacks',
+          de: 'Bei den Heilern sammeln',
+          fr: 'Packages sur les heals',
+          ja: 'ヒーラーに集合',
+          cn: '治疗集合',
+          ko: '힐러 모이기',
+        },
       },
     },
     {
@@ -578,13 +635,16 @@
       netRegexFr: NetRegexes.addedCombatant({ name: 'Geôle Éthérée', capture: false }),
       netRegexJa: NetRegexes.addedCombatant({ name: 'エーテリアル・ジェイル', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '에테르 감옥', capture: false }),
-      infoText: {
-        en: 'Break Aetherial Gaol',
-        de: 'Zerstöre Ätherkerker',
-        fr: 'Détruisez la Geôle éthérée',
-        ja: 'エーテリアル・ジェイルを打ち破す',
-        cn: '打破牢狱',
-        ko: '에테르 감옥 부수기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Break Aetherial Gaol',
+          de: 'Zerstöre Ätherkerker',
+          fr: 'Détruisez la Geôle éthérée',
+          ja: 'エーテリアル・ジェイルを打ち破す',
+          cn: '打破牢狱',
+          ko: '에테르 감옥 부수기',
+        },
       },
     },
     {
@@ -593,16 +653,19 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Knockback + Stack on YOU',
-        de: 'Rückstoß + sammeln beim DIR',
-        fr: 'Poussée + package sur VOUS',
-        ja: 'ノックバック + 頭割り',
-        cn: '击退 + 集合 点名',
-        ko: '넉백 + 쉐어징 대상자',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.flame = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Knockback + Stack on YOU',
+          de: 'Rückstoß + sammeln beim DIR',
+          fr: 'Poussée + package sur VOUS',
+          ja: 'ノックバック + 頭割り',
+          cn: '击退 + 集合 点名',
+          ko: '넉백 + 쉐어징 대상자',
+        },
       },
     },
     {
@@ -611,16 +674,19 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Knockback + Ice on YOU',
-        de: 'Rückstoß + Eis auf DIR',
-        fr: 'Poussée + Glace sur VOUS',
-        ja: '自分に ノックバック + 氷',
-        cn: '击退 + 冰 点名',
-        ko: '넉백 + 얼음징 대상자',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.freeze = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Knockback + Ice on YOU',
+          de: 'Rückstoß + Eis auf DIR',
+          fr: 'Poussée + Glace sur VOUS',
+          ja: '自分に ノックバック + 氷',
+          cn: '击退 + 冰 点名',
+          ko: '넉백 + 얼음징 대상자',
+        },
       },
     },
     {
@@ -650,16 +716,19 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Puddles on YOU',
-        de: 'Fläche auf YOU',
-        fr: 'Zone au sol sur VOUS',
-        ja: 'AoEを外に捨て',
-        cn: '水圈点名',
-        ko: '징 대상자',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.netherBlast = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Puddles on YOU',
+          de: 'Fläche auf YOU',
+          fr: 'Zone au sol sur VOUS',
+          ja: 'AoEを外に捨て',
+          cn: '水圈点名',
+          ko: '징 대상자',
+        },
       },
     },
     {
@@ -673,13 +742,16 @@
       condition: function(data) {
         return !data.netherBlast;
       },
-      infoText: {
-        en: 'Healer Stacks',
-        de: 'Bei dem Heiler sammeln',
-        fr: 'Packages sur les heals',
-        ja: 'ヒーラーに集合',
-        cn: '治疗集合',
-        ko: '힐러 모이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Healer Stacks',
+          de: 'Bei dem Heiler sammeln',
+          fr: 'Packages sur les heals',
+          ja: 'ヒーラーに集合',
+          cn: '治疗集合',
+          ko: '힐러 모이기',
+        },
       },
     },
     {
@@ -700,13 +772,16 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47EB', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47EB', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47EB', source: '하데스', capture: false }),
-      alertText: {
-        en: 'Front and Center',
-        de: 'Vorne und Mitte',
-        fr: 'Devant et au centre',
-        ja: '中央',
-        cn: '中间前方',
-        ko: '앞 중앙으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Front and Center',
+          de: 'Vorne und Mitte',
+          fr: 'Devant et au centre',
+          ja: '中央',
+          cn: '中间前方',
+          ko: '앞 중앙으로',
+        },
       },
     },
     {
@@ -719,13 +794,16 @@
       netRegexKo: NetRegexes.startsUsing({ id: '47F1', source: '하데스', capture: false }),
       durationSeconds: 12,
       suppressSeconds: 10,
-      infoText: {
-        en: 'Exoflares',
-        de: 'Exa-Flares',
-        fr: 'Exabrasiers',
-        ja: 'ダークストリーム',
-        cn: '地火',
-        ko: '엑사플레어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Exoflares',
+          de: 'Exa-Flares',
+          fr: 'Exabrasiers',
+          ja: 'ダークストリーム',
+          cn: '地火',
+          ko: '엑사플레어',
+        },
       },
     },
     {
@@ -804,13 +882,16 @@
       },
       delaySeconds: 2,
       suppressSeconds: 2,
-      infoText: {
-        en: 'aoe + bleed',
-        de: 'AoE + Blutung',
-        fr: 'AoE + saignement',
-        ja: 'AoE + DoT',
-        cn: 'AOE + 流血',
-        ko: '전체 공격 + 출혈',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'aoe + bleed',
+          de: 'AoE + Blutung',
+          fr: 'AoE + saignement',
+          ja: 'AoE + DoT',
+          cn: 'AOE + 流血',
+          ko: '전체 공격 + 출혈',
+        },
       },
     },
     {
@@ -821,13 +902,16 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47F9', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47F9', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47F9', source: '하데스', capture: false }),
-      infoText: {
-        en: 'Enrage',
-        de: 'Finalangriff',
-        fr: 'Enrage',
-        ja: '時間切れ',
-        cn: '狂暴',
-        ko: '전멸기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Enrage',
+          de: 'Finalangriff',
+          fr: 'Enrage',
+          ja: '時間切れ',
+          cn: '狂暴',
+          ko: '전멸기',
+        },
       },
     },
   ],

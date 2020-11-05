@@ -154,12 +154,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: ['ガルーダ', 'ラクタパクシャ'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: ['迦楼罗', '赤翼罗羯坨博叉'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: ['가루다', '락타팍샤'], id: ['4BF[EF]', '4C0[45]'], capture: false }),
-      infoText: {
-        en: 'Avoid green nails',
-        de: 'Weiche den grünen Nägeln aus',
-        fr: 'Évitez les griffes',
-        cn: '躲避风刃',
-        ko: '초록 발톱 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid green nails',
+          de: 'Weiche den grünen Nägeln aus',
+          fr: 'Évitez les griffes',
+          cn: '躲避风刃',
+          ko: '초록 발톱 피하기',
+        },
       },
     },
     {
@@ -288,12 +291,15 @@
       id: 'E6S Hands of Hell',
       netRegex: NetRegexes.headMarker({ id: '0016' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Tether Marker on YOU',
-        de: 'Verbindung auf DIR',
-        fr: 'Marque de lien sur VOUS',
-        cn: '连线点名',
-        ko: '선 징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tether Marker on YOU',
+          de: 'Verbindung auf DIR',
+          fr: 'Marque de lien sur VOUS',
+          cn: '连线点名',
+          ko: '선 징 대상자',
+        },
       },
     },
     {
@@ -312,24 +318,30 @@
       id: 'E6S Hated of the Vortex Effect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BB' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Attack Garuda',
-        de: 'Greife Garuda an',
-        fr: 'Attaquez Garuda',
-        cn: '打风神',
-        ko: '가루다 공격하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Garuda',
+          de: 'Greife Garuda an',
+          fr: 'Attaquez Garuda',
+          cn: '打风神',
+          ko: '가루다 공격하기',
+        },
       },
     },
     {
       id: 'E6S Hated of the Embers Effect',
       netRegex: NetRegexes.gainsEffect({ effectId: '8BC' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Attack Ifrit',
-        de: 'Greife Ifrit an',
-        fr: 'Attaquez Ifrit',
-        cn: '打火神',
-        ko: '이프리트 공격하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Attack Ifrit',
+          de: 'Greife Ifrit an',
+          fr: 'Attaquez Ifrit',
+          cn: '打火神',
+          ko: '이프리트 공격하기',
+        },
       },
     },
     {
@@ -372,12 +384,15 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ラクタパクシャ', id: '4C10', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '赤翼罗羯坨博叉', id: '4C10', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '락타팍샤', id: '4C10', capture: false }),
-      infoText: {
-        en: 'go to spots for chains',
-        de: 'Gehe zu den Stellen für die Kette',
-        fr: 'Positions pour les chaines',
-        cn: '连线站位',
-        ko: '대화재 준비',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'go to spots for chains',
+          de: 'Gehe zu den Stellen für die Kette',
+          fr: 'Positions pour les chaines',
+          cn: '连线站位',
+          ko: '대화재 준비',
+        },
       },
     },
     {

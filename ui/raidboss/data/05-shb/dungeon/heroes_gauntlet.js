@@ -33,12 +33,15 @@
       id: 'Heroes Gauntlet Spectral Tether',
       netRegex: NetRegexes.tether({ id: '000C', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Away from tether marker',
-        de: 'Weg von der Verbindung',
-        fr: 'Éloignez-vous du marqueur de lien',
-        ja: '線から離れ',
-        ko: '이어진 표식으로부터 떨어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from tether marker',
+          de: 'Weg von der Verbindung',
+          fr: 'Éloignez-vous du marqueur de lien',
+          ja: '線から離れ',
+          ko: '이어진 표식으로부터 떨어지기',
+        },
       },
     },
     {
@@ -89,12 +92,15 @@
       netRegexDe: NetRegexes.startsUsing({ id: '5206', source: 'Phantom-Berserker', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ id: '5206', source: 'Berserker Spectral', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '5206', source: '幻光のバーサーカー', capture: false }),
-      alertText: {
-        en: 'Get in a crater',
-        de: 'In den Krater gehen',
-        fr: 'Allez dans un cratère',
-        ja: '穴に入る',
-        ko: '구덩이에 들어가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get in a crater',
+          de: 'In den Krater gehen',
+          fr: 'Allez dans un cratère',
+          ja: '穴に入る',
+          ko: '구덩이에 들어가기',
+        },
       },
     },
     {

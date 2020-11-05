@@ -59,13 +59,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3CCB', source: 'ファースト・ビースト', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CCB', source: '第一之兽', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CCB', source: '최초의 야수', capture: false }),
-      alertText: {
-        en: 'Hide Behind Boulder',
-        de: 'Hinter einem Felsen verstecken',
-        fr: 'Cachez-vous derrière un rocher',
-        ja: '隕石の後ろに',
-        cn: '躲在岩石后',
-        ko: '바위 뒤에 숨기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Boulder',
+          de: 'Hinter einem Felsen verstecken',
+          fr: 'Cachez-vous derrière un rocher',
+          ja: '隕石の後ろに',
+          cn: '躲在岩石后',
+          ko: '바위 뒤에 숨기',
+        },
       },
     },
     {
@@ -89,13 +92,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3CD7', source: 'メガセリオン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3CD7', source: '至大灾兽', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3CD7', source: '메가테리온', capture: false }),
-      alertText: {
-        en: 'Get Off',
-        de: 'Runter gehen',
-        fr: 'Descendez',
-        ja: '横へ',
-        cn: '站左右小平台',
-        ko: '바깥으로 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Off',
+          de: 'Runter gehen',
+          fr: 'Descendez',
+          ja: '横へ',
+          cn: '站左右小平台',
+          ko: '바깥으로 피하기',
+        },
       },
     },
   ],

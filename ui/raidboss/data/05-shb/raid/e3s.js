@@ -8,13 +8,16 @@
       id: 'E3S Plunging Wave',
       regex: /Plunging Wave/,
       beforeSeconds: 2,
-      infoText: {
-        en: 'Line Stack',
-        de: 'In einer Linie sammeln',
-        fr: 'Packez-vous en ligne',
-        ja: '直線スタック',
-        cn: '直线分摊',
-        ko: '쉐어징 모이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Line Stack',
+          de: 'In einer Linie sammeln',
+          fr: 'Packez-vous en ligne',
+          ja: '直線スタック',
+          cn: '直线分摊',
+          ko: '쉐어징 모이기',
+        },
       },
     },
     {
@@ -24,13 +27,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alertText: {
-        en: 'Tank Cleaves, Move Front',
-        de: 'Tank Cleaves, nach vorne bewegen',
-        fr: 'Tank cleave, allez devant',
-        ja: '拡散くるよ',
-        cn: '坦克放陨石，向前集合',
-        ko: '탱버, 앞으로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Cleaves, Move Front',
+          de: 'Tank Cleaves, nach vorne bewegen',
+          fr: 'Tank cleave, allez devant',
+          ja: '拡散くるよ',
+          cn: '坦克放陨石，向前集合',
+          ko: '탱버, 앞으로 이동',
+        },
       },
     },
   ],
@@ -70,13 +76,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FF1', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FF1', source: '리바이어선', capture: false }),
       delaySeconds: 3,
-      infoText: {
-        en: 'Look for Wave',
-        de: 'Nach Welle ausschau halten',
-        fr: 'Repérez la vague',
-        ja: 'タイダルウェーブくるよ',
-        cn: '看浪',
-        ko: '해일 위치 확인',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Look for Wave',
+          de: 'Nach Welle ausschau halten',
+          fr: 'Repérez la vague',
+          ja: 'タイダルウェーブくるよ',
+          cn: '看浪',
+          ko: '해일 위치 확인',
+        },
       },
     },
     {
@@ -139,13 +148,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FEF', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FEF', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FEF', source: '리바이어선', capture: false }),
-      alertText: {
-        en: 'Get Middle',
-        de: 'Geh in die Mitte',
-        fr: 'Allez au milieu',
-        ja: '外壊れるよ',
-        cn: '中间',
-        ko: '가운데로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle',
+          de: 'Geh in die Mitte',
+          fr: 'Allez au milieu',
+          ja: '外壊れるよ',
+          cn: '中间',
+          ko: '가운데로',
+        },
       },
     },
     {
@@ -164,13 +176,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Flare on YOU',
-        de: 'Flare auf DIR',
-        fr: 'Brasier sur VOUS',
-        ja: '自分にフレア',
-        cn: '核爆点名',
-        ko: '플레어 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Flare on YOU',
+          de: 'Flare auf DIR',
+          fr: 'Brasier sur VOUS',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
       },
     },
     {
@@ -181,13 +196,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FE2', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FE2', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FE2', source: '리바이어선', capture: false }),
-      infoText: {
-        en: 'Stack, Bait Puddles',
-        de: 'Sammeln, Flächen ködern',
-        fr: 'Packez-vous, attirez les zones au sol',
-        ja: '集合',
-        cn: '集合',
-        ko: '모이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack, Bait Puddles',
+          de: 'Sammeln, Flächen ködern',
+          fr: 'Packez-vous, attirez les zones au sol',
+          ja: '集合',
+          cn: '集合',
+          ko: '모이기',
+        },
       },
     },
     {
@@ -199,13 +217,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3FE2', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FE2', source: '리바이어선', capture: false }),
       delaySeconds: 2.9,
-      infoText: {
-        en: 'Drop Puddles Outside',
-        de: 'Flächen drausen ablegen',
-        fr: 'Déposez les zones au sol à l\'extérieur',
-        ja: '散開',
-        cn: '散开',
-        ko: '산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Puddles Outside',
+          de: 'Flächen drausen ablegen',
+          fr: 'Déposez les zones au sol à l\'extérieur',
+          ja: '散開',
+          cn: '散开',
+          ko: '산개',
+        },
       },
     },
     {
@@ -216,13 +237,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FE4', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FE4', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FE4', source: '리바이어선', capture: false }),
-      infoText: {
-        en: 'Stack, Bait Puddles',
-        de: 'Sammeln, Flächen ködern',
-        fr: 'Packez-vous, évitez les zones au sol',
-        ja: '集合',
-        cn: '集合',
-        ko: '모이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack, Bait Puddles',
+          de: 'Sammeln, Flächen ködern',
+          fr: 'Packez-vous, évitez les zones au sol',
+          ja: '集合',
+          cn: '集合',
+          ko: '모이기',
+        },
       },
     },
     {
@@ -263,13 +287,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FFE', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FFE', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FFE', source: '리바이어선', capture: false }),
-      infoText: {
-        en: 'Panto Puddles x5',
-        de: 'Panto Flächen x5',
-        fr: 'Panto Zones au sol x5',
-        ja: 'パント5回',
-        cn: '处理水圈 x5',
-        ko: '발밑장판 5회',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Panto Puddles x5',
+          de: 'Panto Flächen x5',
+          fr: 'Panto Zones au sol x5',
+          ja: 'パント5回',
+          cn: '处理水圈 x5',
+          ko: '발밑장판 5회',
+        },
       },
     },
     {
@@ -283,13 +310,16 @@
       condition: function(data, matches) {
         return data.me == matches.source;
       },
-      alertText: {
-        en: 'Puddle Tether on YOU',
-        de: 'Black Smoker Verbindung auf DIR',
-        fr: 'Lien de zones au sol sur VOUS',
-        ja: '線ついた',
-        cn: '水圈连线',
-        ko: '나에게 선연결',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle Tether on YOU',
+          de: 'Black Smoker Verbindung auf DIR',
+          fr: 'Lien de zones au sol sur VOUS',
+          ja: '線ついた',
+          cn: '水圈连线',
+          ko: '나에게 선연결',
+        },
       },
     },
     {
@@ -316,13 +346,16 @@
       condition: function(data) {
         return data.vent.length == 2 && !data.vent.includes(data.me) && data.role != 'tank';
       },
-      infoText: {
-        en: 'Pop alternating bubbles',
-        de: 'Flächen abwechselnd nehmen',
-        fr: 'Apparition des bulles en alternance',
-        ja: '水出た',
-        cn: '交替踩圈',
-        ko: '물장판 밟기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pop alternating bubbles',
+          de: 'Flächen abwechselnd nehmen',
+          fr: 'Apparition des bulles en alternance',
+          ja: '水出た',
+          cn: '交替踩圈',
+          ko: '물장판 밟기',
+        },
       },
     },
     {
@@ -331,13 +364,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Initial knockback on YOU',
-        de: 'Initialer Knockback auf DIR',
-        fr: 'Poussée initiale sur VOUS',
-        ja: '最初のノックバック',
-        cn: '初始击退点名',
-        ko: '첫 넉백 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Initial knockback on YOU',
+          de: 'Initialer Knockback auf DIR',
+          fr: 'Poussée initiale sur VOUS',
+          ja: '最初のノックバック',
+          cn: '初始击退点名',
+          ko: '첫 넉백 대상자',
+        },
       },
     },
     {
@@ -392,13 +428,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Defamation',
-        de: 'Defamation',
-        fr: 'Médisance',
-        ja: '暴風',
-        cn: '暴风',
-        ko: '폭풍 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Defamation',
+          de: 'Defamation',
+          fr: 'Médisance',
+          ja: '暴風',
+          cn: '暴风',
+          ko: '폭풍 대상자',
+        },
       },
     },
     {
@@ -408,13 +447,16 @@
         return data.me == matches.target;
       },
       delaySeconds: 22,
-      infoText: {
-        en: 'Avoid Knockback, Move to Back',
-        de: 'Vermeide Knockback, dann nach hinten bewegen',
-        fr: 'Évitez la poussée, allez à l\'arrière',
-        ja: '後ろへ',
-        cn: '后方放大圈',
-        ko: '넉백 피해서 뒤로 이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Knockback, Move to Back',
+          de: 'Vermeide Knockback, dann nach hinten bewegen',
+          fr: 'Évitez la poussée, allez à l\'arrière',
+          ja: '後ろへ',
+          cn: '后方放大圈',
+          ko: '넉백 피해서 뒤로 이동',
+        },
       },
     },
     {
@@ -439,13 +481,16 @@
         return data.me != matches.target;
       },
       delaySeconds: 25,
-      infoText: {
-        en: 'Move In, Avoid Defamation',
-        de: 'Rein gehen, vermeide Defamation',
-        fr: 'À l\'intérieur, évitez Médisance',
-        ja: '前にノックバック',
-        cn: '靠近躲避',
-        ko: '안으로 이동, 폭풍 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move In, Avoid Defamation',
+          de: 'Rein gehen, vermeide Defamation',
+          fr: 'À l\'intérieur, évitez Médisance',
+          ja: '前にノックバック',
+          cn: '靠近躲避',
+          ko: '안으로 이동, 폭풍 피하기',
+        },
       },
     },
     {
@@ -454,13 +499,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Tank Cone',
-        de: 'Tank Kegel',
-        fr: 'Cône tank',
-        ja: '断絶',
-        cn: '坦克三角',
-        ko: '확산의 징조 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Cone',
+          de: 'Tank Kegel',
+          fr: 'Cône tank',
+          ja: '断絶',
+          cn: '坦克三角',
+          ko: '확산의 징조 대상자',
+        },
       },
     },
     {
@@ -471,13 +519,16 @@
       },
       delaySeconds: 13,
       suppressSeconds: 1,
-      infoText: {
-        en: 'Tank Cone',
-        de: 'Tank Kegel',
-        fr: 'Cône tank',
-        ja: '断絶',
-        cn: '坦克三角',
-        ko: '확산: 탱 멀리 / 대상자 앞으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Cone',
+          de: 'Tank Kegel',
+          fr: 'Cône tank',
+          ja: '断絶',
+          cn: '坦克三角',
+          ko: '확산: 탱 멀리 / 대상자 앞으로',
+        },
       },
     },
     {
@@ -500,13 +551,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FEB', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FEB', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FEB', source: '리바이어선', capture: false }),
-      infoText: {
-        en: 'Front left / Back right',
-        de: 'Vorne Links / Hinten Rechts',
-        fr: 'Avant-gauche / Arrière-droite',
-        ja: '左前 / 右後ろ',
-        cn: '前左 / 后右',
-        ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Front left / Back right',
+          de: 'Vorne Links / Hinten Rechts',
+          fr: 'Avant-gauche / Arrière-droite',
+          ja: '左前 / 右後ろ',
+          cn: '前左 / 后右',
+          ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
+        },
       },
     },
     {
@@ -517,13 +571,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3FEA', source: 'リヴァイアサン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3FEA', source: '利维亚桑', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3FEA', source: '리바이어선', capture: false }),
-      infoText: {
-        en: 'Front right / Back left',
-        de: 'Vorne Rechts / Hinten Links',
-        fr: 'Avant-droite / Arrière-gauche',
-        ja: '右前 / 左後ろ',
-        cn: '前右 / 后左',
-        ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Front right / Back left',
+          de: 'Vorne Rechts / Hinten Links',
+          fr: 'Avant-droite / Arrière-gauche',
+          ja: '右前 / 左後ろ',
+          cn: '前右 / 后左',
+          ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
+        },
       },
     },
     {
@@ -542,13 +599,16 @@
         return data.refreshed;
       },
       delaySeconds: 6.2,
-      alertText: {
-        en: 'Front left / Back right',
-        de: 'Vorne Links / Hinten Rechts',
-        fr: 'Avant-gauche / Arrière-droite',
-        ja: '左前 / 右後ろ',
-        cn: '前左 / 后右',
-        ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Front left / Back right',
+          de: 'Vorne Links / Hinten Rechts',
+          fr: 'Avant-gauche / Arrière-droite',
+          ja: '左前 / 右後ろ',
+          cn: '前左 / 后右',
+          ko: '↖ 앞 왼쪽 / 뒤 오른쪽 ↘',
+        },
       },
     },
     {
@@ -563,13 +623,16 @@
         return data.refreshed;
       },
       delaySeconds: 6.2,
-      alertText: {
-        en: 'Front right / Back left',
-        de: 'Vorne Rechts / Hinten Links',
-        fr: 'Avant-droite / Arrière-gauche',
-        ja: '右前 / 左後ろ',
-        cn: '前右 / 后左',
-        ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Front right / Back left',
+          de: 'Vorne Rechts / Hinten Links',
+          fr: 'Avant-droite / Arrière-gauche',
+          ja: '右前 / 左後ろ',
+          cn: '前右 / 后左',
+          ko: '↗ 앞 오른쪽 / 뒤 왼쪽 ↙',
+        },
       },
     },
   ],

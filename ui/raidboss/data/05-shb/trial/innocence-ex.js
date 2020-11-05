@@ -29,13 +29,16 @@
       netRegexKo: NetRegexes.startsUsing({ id: '3EDC', source: '이노센스', capture: false }),
       // 3 seconds cast time + 7 seconds until next sword.
       delaySeconds: 7,
-      infoText: {
-        en: 'Swords!',
-        de: 'Schwerter!',
-        fr: 'Épées !',
-        ja: '剣くるよ',
-        cn: '剑!',
-        ko: '검 돌아옴!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Swords!',
+          de: 'Schwerter!',
+          fr: 'Épées !',
+          ja: '剣くるよ',
+          cn: '剑!',
+          ko: '검 돌아옴!',
+        },
       },
     },
     {
@@ -165,13 +168,16 @@
         return data.role == 'healer';
       },
       suppressSeconds: 5,
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tank Buster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '死刑',
-        ko: '탱버',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tank Buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -228,13 +234,16 @@
         return data.starbirthCount == 1;
       },
       delaySeconds: 6,
-      alertText: {
-        en: 'Get to Safe Corner',
-        de: 'Geh in die sichere Ecke',
-        fr: 'Allez au coin sûr',
-        ja: '安置へ',
-        cn: '去安全角落',
-        ko: '안전한 구석으로 이동',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get to Safe Corner',
+          de: 'Geh in die sichere Ecke',
+          fr: 'Allez au coin sûr',
+          ja: '安置へ',
+          cn: '去安全角落',
+          ko: '안전한 구석으로 이동',
+        },
       },
     },
     {
@@ -248,13 +257,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: {
-        en: 'Grab East/West Venery Adds',
-        de: 'Nehme östliches/westliches Wollust Add',
-        fr: 'Attrapez les adds en Est/Ouest',
-        ja: '雑魚のタゲ取って',
-        cn: '接小怪仇恨',
-        ko: '동/서 쫄 잡으세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Grab East/West Venery Adds',
+          de: 'Nehme östliches/westliches Wollust Add',
+          fr: 'Attrapez les adds en Est/Ouest',
+          ja: '雑魚のタゲ取って',
+          cn: '接小怪仇恨',
+          ko: '동/서 쫄 잡으세요',
+        },
       },
     },
     {
@@ -317,12 +329,15 @@
         return data.lightPillar == 3;
       },
       delaySeconds: 6.5,
-      alertText: {
-        en: 'Get to Safe Corner',
-        de: 'Geh in die sichere Ecke',
-        fr: 'Allez au coin sûr',
-        cn: '去安全角落',
-        ko: '안전한 구석으로 이동하세요',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get to Safe Corner',
+          de: 'Geh in die sichere Ecke',
+          fr: 'Allez au coin sûr',
+          cn: '去安全角落',
+          ko: '안전한 구석으로 이동하세요',
+        },
       },
     },
     {
@@ -331,13 +346,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Tether on YOU',
-        de: 'Verbindung auf DIR',
-        fr: 'Lien sur VOUS',
-        ja: '線ついた',
-        cn: '连线点名',
-        ko: '선 대상자 지정됨',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tether on YOU',
+          de: 'Verbindung auf DIR',
+          fr: 'Lien sur VOUS',
+          ja: '線ついた',
+          cn: '连线点名',
+          ko: '선 대상자 지정됨',
+        },
       },
     },
     {
@@ -376,13 +394,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3EE[456]', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3EE[456]', source: '이노센스', capture: false }),
       suppressSeconds: 15,
-      infoText: {
-        en: 'Avoid Swords then Ray',
-        de: 'Weiche den Schwertern aus, danach Strahl',
-        fr: 'Évitez l\'épée puis le rayon',
-        ja: '剣避けてからピザカット',
-        cn: '躲避剑与激光',
-        ko: '칼 먼저 피하고 장판 피하세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Swords then Ray',
+          de: 'Weiche den Schwertern aus, danach Strahl',
+          fr: 'Évitez l\'épée puis le rayon',
+          ja: '剣避けてからピザカット',
+          cn: '躲避剑与激光',
+          ko: '칼 먼저 피하고 장판 피하세요',
+        },
       },
     },
     {
@@ -418,13 +439,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3ED7', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ED7', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Left',
-        de: 'Links rum rotieren',
-        fr: 'Tournez à gauche',
-        ja: '時針回り',
-        cn: '向左旋转',
-        ko: '왼쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Left',
+          de: 'Links rum rotieren',
+          fr: 'Tournez à gauche',
+          ja: '時針回り',
+          cn: '向左旋转',
+          ko: '왼쪽으로 도세요',
+        },
       },
     },
     {
@@ -436,13 +460,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3ED9', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ED9', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Right',
-        de: 'Rechts rum rotieren',
-        fr: 'Tournez à droite',
-        ja: '逆時針回り',
-        cn: '向右旋转',
-        ko: '오른쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Right',
+          de: 'Rechts rum rotieren',
+          fr: 'Tournez à droite',
+          ja: '逆時針回り',
+          cn: '向右旋转',
+          ko: '오른쪽으로 도세요',
+        },
       },
     },
     {
@@ -454,13 +481,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3ED3', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ED3', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Left',
-        de: 'Links rum rotieren',
-        fr: 'Tournez à gauche',
-        ja: '時針回り',
-        cn: '向左旋转',
-        ko: '왼쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Left',
+          de: 'Links rum rotieren',
+          fr: 'Tournez à gauche',
+          ja: '時針回り',
+          cn: '向左旋转',
+          ko: '왼쪽으로 도세요',
+        },
       },
     },
     {
@@ -472,13 +502,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3ED5', source: '无瑕灵君', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3ED5', source: '이노센스', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Rotate Right',
-        de: 'Rechts rum rotieren',
-        fr: 'Tournez à droite',
-        ja: '逆時針回り',
-        cn: '向右旋转',
-        ko: '오른쪽으로 도세요',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Rotate Right',
+          de: 'Rechts rum rotieren',
+          fr: 'Tournez à droite',
+          ja: '逆時針回り',
+          cn: '向右旋转',
+          ko: '오른쪽으로 도세요',
+        },
       },
     },
   ],

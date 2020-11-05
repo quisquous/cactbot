@@ -48,13 +48,16 @@
       id: 'Twinning Impact + Pounce',
       netRegex: NetRegexes.headMarker({ id: ['003[2-5]', '005A'], capture: false }),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Spread (avoid cages)',
-        de: 'Verteilen (Vermeide "Käfige")',
-        fr: 'Dispersez-vous (évitez les cages)',
-        ja: '散開 (檻に近づかない)',
-        cn: '分散（躲避笼子）',
-        ko: '산개 (몬스터 우리 피하기)',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread (avoid cages)',
+          de: 'Verteilen (Vermeide "Käfige")',
+          fr: 'Dispersez-vous (évitez les cages)',
+          ja: '散開 (檻に近づかない)',
+          cn: '分散（躲避笼子）',
+          ko: '산개 (몬스터 우리 피하기)',
+        },
       },
     },
     {
@@ -121,13 +124,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DF8', source: '泰空', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DF8', source: '타이쿤', capture: false }),
       suppressSeconds: 15,
-      infoText: {
-        en: 'cardinal lasers',
-        de: 'Himmelrichtungs-Lasers',
-        fr: 'Lasers cardinaux',
-        ja: '十字レザー',
-        cn: '正点激光',
-        ko: '십자 레이저',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'cardinal lasers',
+          de: 'Himmelrichtungs-Lasers',
+          fr: 'Lasers cardinaux',
+          ja: '十字レザー',
+          cn: '正点激光',
+          ko: '십자 레이저',
+        },
       },
     },
     {
@@ -139,13 +145,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3DF2', source: '泰空', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3DF2', source: '타이쿤', capture: false }),
       suppressSeconds: 15,
-      infoText: {
-        en: 'outer lasers',
-        de: 'Lasers am Rand',
-        fr: 'Lasers extérieurs',
-        ja: '外周レザー',
-        cn: '外侧激光',
-        ko: '외곽 레이저',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'outer lasers',
+          de: 'Lasers am Rand',
+          fr: 'Lasers extérieurs',
+          ja: '外周レザー',
+          cn: '外侧激光',
+          ko: '외곽 레이저',
+        },
       },
     },
     {

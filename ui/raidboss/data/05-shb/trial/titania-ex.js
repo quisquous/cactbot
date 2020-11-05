@@ -132,13 +132,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '42D7', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '42D7', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '42D7', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Wait For Tethers In Center',
-        de: 'Auf die Verbindung in der Mitte warten',
-        fr: 'Attendez les liens au centre',
-        ja: '中央で待機',
-        cn: '中间集合等待荆棘',
-        ko: '가시 연결되기 전에 중앙으로',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Wait For Tethers In Center',
+          de: 'Auf die Verbindung in der Mitte warten',
+          fr: 'Attendez les liens au centre',
+          ja: '中央で待機',
+          cn: '中间集合等待荆棘',
+          ko: '가시 연결되기 전에 중앙으로',
+        },
       },
     },
     {
@@ -160,13 +163,16 @@
       netRegexJa: NetRegexes.ability({ id: '3D42', source: 'パック', capture: false }),
       netRegexCn: NetRegexes.ability({ id: '3D42', source: '帕克', capture: false }),
       netRegexKo: NetRegexes.ability({ id: '3D42', source: '요정의 권속', capture: false }),
-      alertText: {
-        en: 'Diagonal Knockback Soon',
-        de: 'diagonaler Knockback bald',
-        fr: 'Poussée en diagonale bientôt',
-        ja: '対角に飛ぶ',
-        cn: '对角击退准备',
-        ko: '곧 대각선 넉백',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Diagonal Knockback Soon',
+          de: 'diagonaler Knockback bald',
+          fr: 'Poussée en diagonale bientôt',
+          ja: '対角に飛ぶ',
+          cn: '对角击退准备',
+          ko: '곧 대각선 넉백',
+        },
       },
     },
     {
@@ -203,13 +209,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D2A', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2A', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2A', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Get Middle, Shiva Circles',
-        de: 'In die Mitte, Shiva Kreise',
-        fr: 'Allez au milieu, cercles de Shiva',
-        ja: 'シヴァの輪っか',
-        cn: '中间集合, 九连环',
-        ko: '시바 얼음 장판',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Middle, Shiva Circles',
+          de: 'In die Mitte, Shiva Kreise',
+          fr: 'Allez au milieu, cercles de Shiva',
+          ja: 'シヴァの輪っか',
+          cn: '中间集合, 九连环',
+          ko: '시바 얼음 장판',
+        },
       },
     },
     {
@@ -242,13 +251,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D2E', source: 'ティターニア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D2E', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D2E', source: '티타니아', capture: false }),
-      infoText: {
-        en: 'Roots',
-        de: 'Ranken',
-        fr: 'Racines',
-        ja: '根のルーン',
-        cn: '根系生长',
-        ko: '뿌리 나옴',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Roots',
+          de: 'Ranken',
+          fr: 'Racines',
+          ja: '根のルーン',
+          cn: '根系生长',
+          ko: '뿌리 나옴',
+        },
       },
     },
     {
@@ -359,13 +371,16 @@
       netRegexCn: NetRegexes.tether({ id: '0054', source: '缇坦妮雅', capture: false }),
       netRegexKo: NetRegexes.tether({ id: '0054', source: '티타니아', capture: false }),
       suppressSeconds: 60,
-      alertText: {
-        en: 'Initial Thunder Tether',
-        de: 'initiale Blitz Verbindung',
-        fr: 'Lien de foudre initial',
-        ja: '線一人目',
-        cn: '初始雷连线',
-        ko: '첫 번개 징 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Initial Thunder Tether',
+          de: 'initiale Blitz Verbindung',
+          fr: 'Lien de foudre initial',
+          ja: '線一人目',
+          cn: '初始雷连线',
+          ko: '첫 번개 징 대상자',
+        },
       },
     },
     {

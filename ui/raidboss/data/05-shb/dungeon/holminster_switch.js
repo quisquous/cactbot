@@ -130,13 +130,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4350', source: 'フィリア', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4350', source: '斐利亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4350', source: '필리아', capture: false }),
-      infoText: {
-        en: 'Line Stack',
-        de: 'Sammeln in einer Linie',
-        fr: 'Packez-vous en ligne',
-        ja: '頭割り',
-        cn: '直线分摊',
-        ko: '직선 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Line Stack',
+          de: 'Sammeln in einer Linie',
+          fr: 'Packez-vous en ligne',
+          ja: '頭割り',
+          cn: '直线分摊',
+          ko: '직선 쉐어',
+        },
       },
     },
     {

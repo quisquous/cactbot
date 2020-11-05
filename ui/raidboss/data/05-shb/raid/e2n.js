@@ -8,12 +8,15 @@
       id: 'E2N Punishing Ray',
       regex: /Punishing Ray/,
       beforeSeconds: 9,
-      infoText: {
-        en: 'Get Puddles',
-        de: 'Flächen nehmen',
-        fr: 'Allez dans les zones au sol',
-        cn: '踩圈',
-        ko: '장판 밟기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Puddles',
+          de: 'Flächen nehmen',
+          fr: 'Allez dans les zones au sol',
+          cn: '踩圈',
+          ko: '장판 밟기',
+        },
       },
     },
   ],
@@ -43,12 +46,15 @@
         return data.role == 'healer';
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tank buster',
-        fr: 'Tank buster',
-        cn: '死刑',
-        ko: '탱버',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          cn: '死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -129,12 +135,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Delayed Fire',
-        de: 'Verzögertes Feuer',
-        fr: 'Feu retardé',
-        cn: '延迟火',
-        ko: '지연술 파이가',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Fire',
+          de: 'Verzögertes Feuer',
+          fr: 'Feu retardé',
+          cn: '延迟火',
+          ko: '지연술 파이가',
+        },
       },
     },
     {
@@ -176,12 +185,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Delayed Stack',
-        de: 'Verzögertes sammeln',
-        fr: 'Package retardé',
-        cn: '延迟集合',
-        ko: '지연술 쉐어징',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Stack',
+          de: 'Verzögertes sammeln',
+          fr: 'Package retardé',
+          cn: '延迟集合',
+          ko: '지연술 쉐어징',
+        },
       },
     },
     {
@@ -210,12 +222,15 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Delayed Shadoweye',
-        de: 'Verzögertes Schattenauge',
-        fr: 'Œil de l\'ombre retardé',
-        cn: '延迟石化眼',
-        ko: '지연술 그림자시선',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Shadoweye',
+          de: 'Verzögertes Schattenauge',
+          fr: 'Œil de l\'ombre retardé',
+          cn: '延迟石化眼',
+          ko: '지연술 그림자시선',
+        },
       },
     },
     {

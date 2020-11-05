@@ -95,13 +95,16 @@ const translate = (data, obj) => {
         return data.role === 'healer';
       },
       suppressSeconds: 5,
-      alertText: {
-        en: 'Heal All to Full',
-        de: 'Alle vollheilen',
-        fr: 'Soignez tout le monde complètement',
-        ja: '全員HPを満タンさせ！',
-        cn: '奶满全队',
-        ko: '전원 체력 풀피로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heal All to Full',
+          de: 'Alle vollheilen',
+          fr: 'Soignez tout le monde complètement',
+          ja: '全員HPを満タンさせ！',
+          cn: '奶满全队',
+          ko: '전원 체력 풀피로',
+        },
       },
     },
     {
@@ -110,11 +113,14 @@ const translate = (data, obj) => {
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F43', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F43', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F43', capture: false }),
-      infoText: {
-        en: 'Bait Confiteor',
-        de: 'Confiteor ködern',
-        fr: 'Posez les zones au sol (Confiteor)',
-        ko: '장판 유도하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Confiteor',
+          de: 'Confiteor ködern',
+          fr: 'Posez les zones au sol (Confiteor)',
+          ko: '장판 유도하기',
+        },
       },
     },
     {
@@ -266,13 +272,16 @@ const translate = (data, obj) => {
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F41', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F41', capture: false }),
       delaySeconds: 6,
-      infoText: {
-        en: 'Avoid Wyrm Dash',
-        de: 'Wyrm-Ansturm ausweichen',
-        fr: 'Esquivez la charge du Wyrm',
-        ja: '竜を避け',
-        cn: '躲避龙的冲锋',
-        ko: '용 돌진 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Wyrm Dash',
+          de: 'Wyrm-Ansturm ausweichen',
+          fr: 'Esquivez la charge du Wyrm',
+          ja: '竜を避け',
+          cn: '躲避龙的冲锋',
+          ko: '용 돌진 피하기',
+        },
       },
     },
     {
@@ -309,13 +318,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: ['幻光の狂戦士', '幻光の暗黒騎士'], id: '515[47]', capture: false }),
       condition: Conditions.caresAboutPhysical(),
       suppressSeconds: 2,
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tankbuster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '坦克死刑',
-        ko: '탱버',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tankbuster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -326,26 +338,32 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: ['幻光の狂戦士', '幻光の暗黒騎士'], id: '515[68]', capture: false }),
       condition: (data) => data.CanSilence(),
       suppressSeconds: 2,
-      alarmText: {
-        en: 'Interrupt',
-        de: 'Unterbreche',
-        fr: 'Interrompez',
-        ja: '沈黙',
-        cn: '打断',
-        ko: '기술 시전 끊기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Interrupt',
+          de: 'Unterbreche',
+          fr: 'Interrompez',
+          ja: '沈黙',
+          cn: '打断',
+          ko: '기술 시전 끊기',
+        },
       },
     },
     {
       id: 'WOLEx Adds Deluge of Death Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data, matches) => !data.ultimateSeen && data.me === matches.target,
-      alarmText: {
-        en: 'Flare on YOU',
-        de: 'Flare auf DIR',
-        fr: 'Brasier sur VOUS',
-        ja: '自分にフレア',
-        cn: '核爆点名',
-        ko: '플레어 대상자',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Flare on YOU',
+          de: 'Flare auf DIR',
+          fr: 'Brasier sur VOUS',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
       },
     },
     {
@@ -356,13 +374,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.tether({ source: '幻光の召喚獣', id: '0054' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 4,
-      infoText: {
-        en: 'Point Tether Out',
-        de: 'Verbindung nach draußen richten',
-        fr: 'Lien vers l\'extérieur',
-        ja: '線を外に引く',
-        cn: '连线',
-        ko: '선 연결 바깥으로 빼기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Point Tether Out',
+          de: 'Verbindung nach draußen richten',
+          fr: 'Lien vers l\'extérieur',
+          ja: '線を外に引く',
+          cn: '连线',
+          ko: '선 연결 바깥으로 빼기',
+        },
       },
     },
     {
@@ -399,13 +420,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: '幻光の黒魔道士', id: '4F3D', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
-      alertText: {
-        en: 'Black Mage + White Mage',
-        de: 'Schwarzmagier + Weißmagier',
-        fr: 'Mage noir + Mage blanc',
-        ja: '黒魔導士 + 白魔導士',
-        cn: '黑魔法师 + 白魔法师',
-        ko: '흑마도사 + 백마도사',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Black Mage + White Mage',
+          de: 'Schwarzmagier + Weißmagier',
+          fr: 'Mage noir + Mage blanc',
+          ja: '黒魔導士 + 白魔導士',
+          cn: '黑魔法师 + 白魔法师',
+          ko: '흑마도사 + 백마도사',
+        },
       },
     },
     {
@@ -417,13 +441,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF[34]', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
-      alertText: {
-        en: 'Summoner + Warrior',
-        de: 'Beschwörer + Krieger',
-        fr: 'Invocateur + Guerrier',
-        ja: '召喚師 + 戦士',
-        cn: '召唤师 + 战士',
-        ko: '소환사 + 전사',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Summoner + Warrior',
+          de: 'Beschwörer + Krieger',
+          fr: 'Invocateur + Guerrier',
+          ja: '召喚師 + 戦士',
+          cn: '召唤师 + 战士',
+          ko: '소환사 + 전사',
+        },
       },
     },
     {
@@ -436,13 +463,16 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F43', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
-      alertText: {
-        en: 'Dark Knight + Bard',
-        de: 'Dunkelritter + Barde',
-        fr: 'Chevalier noir + Barde',
-        ja: '暗黒騎士 + 吟遊詩人',
-        cn: '暗黑骑士 + 吟游诗人',
-        ko: '암흑기사 + 음유시인',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dark Knight + Bard',
+          de: 'Dunkelritter + Barde',
+          fr: 'Chevalier noir + Barde',
+          ja: '暗黒騎士 + 吟遊詩人',
+          cn: '暗黑骑士 + 吟游诗人',
+          ko: '암흑기사 + 음유시인',
+        },
       },
     },
     {
@@ -454,16 +484,19 @@ const translate = (data, obj) => {
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4EF[56]', capture: false }),
       condition: (data) => data.ultimateSeen && !data.calledSpectral,
       preRun: (data) => data.calledSpectral = true,
-      alertText: {
-        en: 'Ninja',
-        de: 'Ninja',
-        fr: 'Ninja',
-        ja: '忍者',
-        cn: '忍者',
-        ko: '닌자',
-      },
+      alertText: (data, _, output) => output.text(),
       run: function(data) {
         data.ninja = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Ninja',
+          de: 'Ninja',
+          fr: 'Ninja',
+          ja: '忍者',
+          cn: '忍者',
+          ko: '닌자',
+        },
       },
     },
     {
@@ -511,42 +544,51 @@ const translate = (data, obj) => {
       id: 'WOLEx Perfect Decimation',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Warrior Cleave on YOU',
-        de: 'Krieger Cleave auf DIR',
-        fr: 'Cleave du Guerrier sur VOUS',
-        ja: '自分に戦士の範囲攻撃',
-        cn: '战士顺劈点名',
-        ko: '전사 범위 공격 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Warrior Cleave on YOU',
+          de: 'Krieger Cleave auf DIR',
+          fr: 'Cleave du Guerrier sur VOUS',
+          ja: '自分に戦士の範囲攻撃',
+          cn: '战士顺劈点名',
+          ko: '전사 범위 공격 대상자',
+        },
       },
     },
     {
       id: 'WOLEx Brimstone Earth',
       netRegex: NetRegexes.headMarker({ id: '0067' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Puddle on YOU',
-        de: 'Fläche auf DIR',
-        fr: 'Zone au sol sur VOUS',
-        ja: '自分に水溜り',
-        cn: '水球点名',
-        ko: '장판 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle on YOU',
+          de: 'Fläche auf DIR',
+          fr: 'Zone au sol sur VOUS',
+          ja: '自分に水溜り',
+          cn: '水球点名',
+          ko: '장판 대상자',
+        },
       },
     },
     {
       id: 'WOLEx Deluge of Death Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: (data, matches) => data.ultimateSeen && data.me === matches.target,
-      alarmText: {
-        en: 'Flare on YOU',
-        de: 'Flare auf DIR',
-        fr: 'Brasier sur VOUS',
-        ja: '自分にフレア',
-        cn: '核爆点名',
-        ko: '플레어 대상자',
-      },
+      alarmText: (data, _, output) => output.text(),
       run: function(data) {
         data.deluge = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Flare on YOU',
+          de: 'Flare auf DIR',
+          fr: 'Brasier sur VOUS',
+          ja: '自分にフレア',
+          cn: '核爆点名',
+          ko: '플레어 대상자',
+        },
       },
     },
     {
