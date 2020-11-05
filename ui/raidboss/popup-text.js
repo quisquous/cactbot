@@ -337,12 +337,12 @@ class PopupText {
     let timelineFiles = [];
     let timelines = [];
     let replacements = [];
-    let timelineTriggers = [];
     let timelineStyles = [];
     this.resetWhenOutOfCombat = true;
 
     const orderedTriggers = new OrderedTriggerList();
     const orderedNetTriggers = new OrderedTriggerList();
+    const orderedTimelineTriggers = new OrderedTriggerList();
 
     // Recursively/iteratively process timeline entries for triggers.
     // Functions get called with data, arrays get iterated, strings get appended.
@@ -477,7 +477,7 @@ class PopupText {
       if (set.timelineTriggers) {
         for (const trigger of set.timelineTriggers) {
           this.ProcessTrigger(trigger);
-          timelineTriggers.push(trigger);
+          orderedTimelineTriggers.push(trigger);
         }
       }
       if (set.timelineStyles)
@@ -494,7 +494,7 @@ class PopupText {
         timelineFiles,
         timelines,
         replacements,
-        timelineTriggers,
+        orderedTimelineTriggers.asList(),
         timelineStyles,
     );
   }
