@@ -182,6 +182,7 @@
       alertText: {
         en: 'Puddle on YOU',
         de: 'Fläche auf DIR',
+        fr: 'Zone au sol sur VOUS',
         cn: '圈圈点名',
       },
     },
@@ -205,6 +206,7 @@
         return {
           en: 'Stack with ' + data.shortName(data[partner]),
           de: 'Sammeln mit ' + data.shortName(data[partner]),
+          fr: 'Packez-vous avec ' + data.shortName(data[partner]),
           cn: '靠近' + data.shortName(data[partner]) + '集合',
         };
       },
@@ -239,12 +241,14 @@
           return {
             en: 'Stand on red circle',
             de: 'Im roten Kreis stehen',
+            fr: 'Restez dans le cercle rouge',
             cn: '站在红圈',
           };
         }
         return {
           en: 'Stand on blue circle',
           de: 'Im blauen Kreis stehen',
+          fr: 'Restez dans le cercle bleu',
           cn: '站在蓝圈',
         };
       },
