@@ -28,12 +28,14 @@
             en: 'Esuna Poison on ' + data.ShortName(matches.target),
             de: 'Entferne Gift von ' + data.ShortName(matches.target),
             fr: 'Purifiez le poison sur ' + data.ShortName(matches.target),
+            cn: '康复' + data.ShortName(matches.target) + '的毒',
           };
         }
         return {
           en: 'Esuna Your Poison',
           de: 'Entferne dein Gift',
           fr: 'Purifiez-vous',
+          cn: '康复自己的毒',
         };
       },
     },
@@ -94,6 +96,7 @@
             en: 'Break Bubble on ' + data.ShortName(matches.target),
             de: 'Besiege die Blase von ' + data.ShortName(matches.target),
             fr: 'Détruisez la bulle de ' + data.ShortName(matches.target),
+            cn: '打' + data.ShortName(matches.target) + '的泡泡',
           };
         }
         if (matches.target === data.me) {
@@ -101,6 +104,7 @@
             en: 'Break Your Bubble',
             de: 'Besiege deine Blase',
             fr: 'Détruisez votre bulle',
+            cn: '打自己的泡泡',
           };
         }
       },
@@ -130,6 +134,7 @@
         en: 'Move Boss Out of Puddles',
         de: 'Bewege den Boss aus der Fläche',
         fr: 'Déplacez le boss hors des zones au sol',
+        cn: '把BOSS拉出圈圈',
       },
     },
     {
@@ -143,12 +148,14 @@
           return {
             en: 'Esuna Poison on ' + data.ShortName(matches.target),
             de: 'Entferne Gift von ' + data.ShortName(matches.target),
+            cn: '康复' + data.ShortName(matches.target) + '的毒',
           };
         }
         return {
           en: 'Esuna Your Poison',
           de: 'Entferne dein Gift',
           fr: 'Purifiez-vous',
+          cn: '康复自己的毒',
         };
       },
     },

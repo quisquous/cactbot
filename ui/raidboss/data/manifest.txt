@@ -101,6 +101,7 @@
 04-sb/dungeon/bardams_mettle.txt
 04-sb/dungeon/drowned_city_of_skalla.js
 04-sb/dungeon/fractal_continuum_hard.js
+04-sb/dungeon/fractal_continuum_hard.txt
 04-sb/dungeon/temple_of_the_fist.js
 04-sb/dungeon/temple_of_the_fist.txt
 04-sb/dungeon/the_burn.js
@@ -207,6 +208,8 @@
 05-shb/dungeon/the_grand_cosmos.txt
 05-shb/dungeon/twinning.js
 05-shb/dungeon/twinning.txt
+05-shb/eureka/bozjan_southern_front.js
+05-shb/eureka/bozjan_southern_front.txt
 05-shb/etc/the_diadem.js
 05-shb/raid/e1n.js
 05-shb/raid/e1n.txt
