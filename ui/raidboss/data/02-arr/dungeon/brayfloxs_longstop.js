@@ -21,6 +21,7 @@
       // This covers cases where multiple people get the poison, including yourself.
       id: 'Brayflox Normal Pelican Poison Healer',
       netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
+      suppressSeconds: 2,
       condition: (data) => data.role === 'healer',
       alertText: function(data, matches) {
         if (matches.target !== data.me) {
