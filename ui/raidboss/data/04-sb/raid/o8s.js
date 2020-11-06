@@ -113,12 +113,12 @@
     },
     {
       id: 'O8S Futures Numbered',
-      netRegex: NetRegexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
-      netRegexDe: NetRegexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
-      netRegexFr: NetRegexes.startsUsing({ id: '28EF', source: 'Kefka', capture: false }),
-      netRegexJa: NetRegexes.startsUsing({ id: '28EF', source: 'ケフカ', capture: false }),
-      netRegexCn: NetRegexes.startsUsing({ id: '28EF', source: '凯夫卡', capture: false }),
-      netRegexKo: NetRegexes.startsUsing({ id: '28EF', source: '케프카', capture: false }),
+      netRegex: NetRegexes.startsUsing({ id: '28EE', source: 'Kefka', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '28EE', source: 'Kefka', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '28EE', source: 'Kefka', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '28EE', source: 'ケフカ', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '28EE', source: '凯夫卡', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '28EE', source: '케프카', capture: false }),
       alertText: {
         en: 'Future: Stack and Through',
         fr: 'Futur : Stack et traversez',
