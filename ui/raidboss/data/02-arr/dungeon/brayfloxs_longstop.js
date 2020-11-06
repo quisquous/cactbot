@@ -23,8 +23,8 @@
       run: (data, matches) => {
         data.pelicanPoisons = data.pelicanPoisons || [];
         data.pelicanPoisons.push(matches.target);
-      }
-    },  
+      },
+    },
     {
       id: 'Brayflox Normal Pelican Poison Healer',
       netRegex: NetRegexes.gainsEffect({ effectId: '12' }),
