@@ -2879,7 +2879,7 @@ class Bars {
     this.gainEffectFuncMap[EffectId.Mudra] = () => {
       if (!this.mudraTriggerCd)
         return;
-      let old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
+      const old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
       if (old > 0) {
         ninjutsu.duration = 0;
         ninjutsu.duration = old + 20;
