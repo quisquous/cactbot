@@ -2877,7 +2877,7 @@ class Bars {
     });
     // Ninjutsu's cooldown begins to countdown at the first mudra.
     this.gainEffectFuncMap[EffectId.Mudra] = () => {
-      if (this.mudraTriggerCd === false)
+      if (!this.mudraTriggerCd)
         return;
       let old = parseFloat(ninjutsu.duration) - parseFloat(ninjutsu.elapsed);
       if (old > 0) {
