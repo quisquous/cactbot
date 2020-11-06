@@ -2935,8 +2935,8 @@ class Bars {
         ninki.parentNode.classList.add('low');
       else if (jobDetail.ninkiAmount >= 90)
         ninki.parentNode.classList.add('high');
-      let oldSeconds = parseFloat(hutonBox.duration) - parseFloat(hutonBox.elapsed);
-      let seconds = jobDetail.hutonMilliseconds / 1000.0;
+      const oldSeconds = parseFloat(hutonBox.duration) - parseFloat(hutonBox.elapsed);
+      const seconds = jobDetail.hutonMilliseconds / 1000.0;
       if (!hutonBox.duration || seconds > oldSeconds) {
         hutonBox.duration = 0;
         hutonBox.duration = seconds;
