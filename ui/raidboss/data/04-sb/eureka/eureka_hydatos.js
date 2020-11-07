@@ -1400,6 +1400,7 @@
         'Streak Lightning': '연쇄 번개',
         'The Lance of Virtue Containment Unit': '미덕의 창 봉인 구역',
         'The Shin-Zantetsuken Containment Unit': '진 참철검 봉인 구역',
+        'The Proto Ozma Containment Unit': '프로토 오즈마 봉인 구역',
       },
       'replaceText': {
         'Acallam Na Senorach': '피어너의 창',
