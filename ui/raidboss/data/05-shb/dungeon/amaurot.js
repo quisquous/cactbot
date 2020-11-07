@@ -13,34 +13,39 @@
       preRun: function(data) {
         data.meteor = (data.meteor || 0) + 1;
       },
-      infoText: function(data) {
-        if (data.meteor == 1) {
-          return {
-            en: 'Drop Meteor West',
-            de: 'Meteor im Westen ablegen',
-            fr: 'Déposez le météore à l\'ouest',
-            ja: 'メテオを西に',
-            cn: '西侧放陨石',
-            ko: '메테오 서쪽으로 빼기',
-          };
-        } else if (data.meteor == 2) {
-          return {
-            en: 'Drop Meteor East',
-            de: 'Meteor im Osten ablegen',
-            fr: 'Déposez le météore à l\'est',
-            ja: 'メテオを東に',
-            cn: '陨石放东边',
-            ko: '메테오 동쪽으로 빼기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.meteor == 1)
+          return output.dropMeteorWest();
+        else if (data.meteor == 2)
+          return output.dropMeteorEast();
+
+        return output.meteor();
+      },
+      outputStrings: {
+        dropMeteorWest: {
+          en: 'Drop Meteor West',
+          de: 'Meteor im Westen ablegen',
+          fr: 'Déposez le météore à l\'ouest',
+          ja: 'メテオを西に',
+          cn: '西侧放陨石',
+          ko: '메테오 서쪽으로 빼기',
+        },
+        dropMeteorEast: {
+          en: 'Drop Meteor East',
+          de: 'Meteor im Osten ablegen',
+          fr: 'Déposez le météore à l\'est',
+          ja: 'メテオを東に',
+          cn: '陨石放东边',
+          ko: '메테오 동쪽으로 빼기',
+        },
+        meteor: {
           en: 'Meteor',
           de: 'Meteor',
           fr: 'Météore',
           ja: 'メテオ',
           cn: '陨石',
           ko: '메테오',
-        };
+        },
       },
     },
     {

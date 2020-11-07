@@ -62,66 +62,72 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         data.swingCount = (data.swingCount || 0) + 1;
       },
       suppressSeconds: 1,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         let multipleSwings = data.swingCount == 2 || data.swingCount == 3;
         if (data.role == 'healer') {
-          if (multipleSwings) {
-            return {
-              en: 'Tank Busters',
-              de: 'Tank buster',
-              fr: 'Tank busters',
-              ja: 'タンクバスター',
-              ko: '탱크버스터',
-              cn: '死刑',
-            };
-          }
-          if (data.liquidTank) {
-            return {
-              en: 'Tank Buster on ' + data.ShortName(data.liquidTank),
-              de: 'Tank buster auf ' + data.ShortName(data.liquidTank),
-              fr: 'Tank buster sur ' + data.ShortName(data.liquidTank),
-              ja: data.ShortName(data.liquidTank) + 'にタンクバスター',
-              cn: '死刑 点 ' + data.ShortName(data.liquidTank),
-              ko: '"' + data.ShortName(data.liquidTank) + '" 탱버',
-            };
-          }
-          return {
-            en: 'Tank Buster',
-            de: 'Tank buster',
-            ja: 'タンクバスター',
-            fr: 'Tank buster',
-            ko: '탱크버스터',
-            cn: '死刑',
-          };
+          if (multipleSwings)
+            return output.tankBusters();
+
+          if (data.liquidTank)
+            return output.tankBusterOn({ player: data.ShortName(data.liquidTank) });
+
+          return output.tankBuster();
         }
 
         if (data.role == 'tank') {
-          if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank) {
-            return {
-              en: 'Tank Buster on YOU',
-              de: 'Tankbuster auf DIR',
-              ja: '自分にタンクバスター',
-              fr: 'Tank buster sur VOUS',
-              ko: '나에게 탱크버스터',
-              cn: '死刑点名',
-            };
-          }
+          if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank)
+            return output.tankBusterOnYou();
         }
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         let multipleSwings = data.swingCount == 2 || data.swingCount == 3;
         if (data.role == 'healer')
           return;
         if (data.me == data.handTank && multipleSwings || data.me == data.liquidTank)
           return;
-        return {
+        return output.tankCleave();
+      },
+      outputStrings: {
+        tankCleave: {
           en: 'Tank Cleave',
           de: 'Tank Cleave',
           ja: 'タンククリーブ',
           fr: 'Tank Cleave',
           ko: '광역 탱버',
           cn: '坦克顺劈',
-        };
+        },
+        tankBusters: {
+          en: 'Tank Busters',
+          de: 'Tank buster',
+          fr: 'Tank busters',
+          ja: 'タンクバスター',
+          ko: '탱크버스터',
+          cn: '死刑',
+        },
+        tankBusterOn: {
+          en: 'Tank Buster on ${player}',
+          de: 'Tank buster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          cn: '死刑 点 ${player}',
+          ko: '"${player}" 탱버',
+        },
+        tankBuster: {
+          en: 'Tank Buster',
+          de: 'Tank buster',
+          ja: 'タンクバスター',
+          fr: 'Tank buster',
+          ko: '탱크버스터',
+          cn: '死刑',
+        },
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tankbuster auf DIR',
+          ja: '自分にタンクバスター',
+          fr: 'Tank buster sur VOUS',
+          ko: '나에게 탱크버스터',
+          cn: '死刑点名',
+        },
       },
     },
     {
@@ -232,43 +238,46 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Wormhole Puddle',
       regex: /Repentance ([1-3])/,
       beforeSeconds: 4,
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         // data.puddle is set by 'TEA Wormhole TPS Strat' (or by some user trigger).
         // If that's disabled, this will still just call out puddle counts.
-        if (matches[1] == data.puddle) {
-          return {
-            en: 'Soak This Puddle (#' + matches[1] + ')',
-            de: 'Fläche nehmen (#' + matches[1] + ')',
-            ja: '懺悔踏む (#' + matches[1] + ')',
-            fr: 'Absorbez cette zone au sol (#' + matches[1] + ')',
-            ko: '참회 밟기 (#' + matches[1] + ')',
-            cn: '踩水圈 (#' + matches[1] + ')',
-          };
-        }
+        if (matches[1] == data.puddle)
+          return output.soakThisPuddleParam({ param: matches[1] });
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (matches[1] == data.puddle)
           return;
-        return {
-          en: 'Puddle #' + matches[1],
-          de: 'Fläche #' + matches[1],
-          ja: '懺悔 #' + matches[1],
-          fr: 'Zone au sol #' + matches[1],
-          ko: '참회 #' + matches[1],
-          cn: '水圈 #' + matches[1],
-        };
+        return output.puddleParam({ param: matches[1] });
       },
-      tts: function(data, matches) {
-        if (matches[1] == data.puddle) {
-          return {
-            en: 'Soak This Puddle',
-            de: 'Fläche nehmen',
-            fr: 'Absorbez cette zone au sol',
-            ja: '沼踏んで',
-            ko: '웅덩이 밟기',
-            cn: '踩水圈',
-          };
-        }
+      tts: function(data, matches, output) {
+        if (matches[1] == data.puddle)
+          return output.soakThisPuddle();
+      },
+      outputStrings: {
+        puddleParam: {
+          en: 'Puddle #${param}',
+          de: 'Fläche #${param}',
+          ja: '懺悔 #${param}',
+          fr: 'Zone au sol #${param}',
+          ko: '참회 #${param}',
+          cn: '水圈 #${param}',
+        },
+        soakThisPuddleParam: {
+          en: 'Soak This Puddle (#${param})',
+          de: 'Fläche nehmen (#${param})',
+          ja: '懺悔踏む (#${param})',
+          fr: 'Absorbez cette zone au sol (#${param})',
+          ko: '참회 밟기 (#${param})',
+          cn: '踩水圈 (#${param})',
+        },
+        soakThisPuddle: {
+          en: 'Soak This Puddle',
+          de: 'Fläche nehmen',
+          fr: 'Absorbez cette zone au sol',
+          ja: '沼踏んで',
+          ko: '웅덩이 밟기',
+          cn: '踩水圈',
+        },
       },
     },
     {
@@ -278,17 +287,19 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       id: 'TEA Ordained Capital Punishment',
       regex: /^Ordained Capital Punishment$/,
       beforeSeconds: 6,
-      alertText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Shared Tankbuster',
-            de: 'geteilter Tankbuster',
-            ja: 'タンクシェア',
-            fr: 'Partagez le Tank buster',
-            ko: '쉐어 탱크버스터',
-            cn: '分摊死刑',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Shared Tankbuster',
+          de: 'geteilter Tankbuster',
+          ja: 'タンクシェア',
+          fr: 'Partagez le Tank buster',
+          ko: '쉐어 탱크버스터',
+          cn: '分摊死刑',
+        },
       },
     },
   ],
@@ -602,17 +613,19 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       preRun: function(data) {
         data.handOfPainCount = (data.handOfPainCount || 0) + 1;
       },
-      infoText: function(data) {
-        if (data.handOfPainCount == 5) {
-          return {
-            en: 'Focus Living Liquid',
-            de: 'belebtes Wasser fokussieren',
-            fr: 'Focus sur Membre liquide',
-            ja: 'リビングリキッドを攻撃',
-            ko: '인간형 집중 공격',
-            cn: '攻击水基佬',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.handOfPainCount == 5)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Focus Living Liquid',
+          de: 'belebtes Wasser fokussieren',
+          fr: 'Focus sur Membre liquide',
+          ja: 'リビングリキッドを攻撃',
+          ko: '인간형 집중 공격',
+          cn: '攻击水基佬',
+        },
       },
     },
     {
@@ -684,15 +697,18 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         // show the number until you are done.
         return data.limitCutDelay;
       },
-      alertText: function(data) {
-        return {
-          en: '#' + data.limitCutNumber,
-          de: '#' + data.limitCutNumber,
-          ja: data.limitCutNumber + '番',
-          fr: '#' + data.limitCutNumber,
-          ko: data.limitCutNumber + '번째',
-          cn: '#' + data.limitCutNumber,
-        };
+      alertText: function(data, _, output) {
+        return output.text({ num: data.limitCutNumber });
+      },
+      outputStrings: {
+        text: {
+          en: '#${num}',
+          de: '#${num}',
+          ja: '${num}番',
+          fr: '#${num}',
+          ko: '${num}번째',
+          cn: '#${num}',
+        },
       },
     },
     {
@@ -706,46 +722,52 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       delaySeconds: function(data) {
         return data.limitCutDelay - 5;
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let isOddNumber = parseInt(getHeadmarkerId(data, matches), 16) & 1 == 1;
         if (data.phase == 'wormhole') {
-          if (isOddNumber) {
-            return {
-              en: 'Knockback Cleave; Face Outside',
-              de: 'Rückstoß Cleave; nach Außen schauen',
-              ja: 'ノックバック ソード; 外向く',
-              fr: 'Poussée Cleave; Regardez à l\'extérieur',
-              ko: '넉백 소드; 바깥쪽 바라보기',
-              cn: '击退顺劈; 面向外侧',
-            };
-          }
-          return {
-            en: 'Knockback Charge; Face Middle',
-            de: 'Rückstoß Charge; zur Mitte schauen',
-            ja: 'ノックバック チャージ; 中央向く',
-            fr: 'Poussée Charge; Regardez à l\'intérieur',
-            ko: '넉백 차지; 안쪽 바라보기',
-            cn: '击退冲锋; 面向中间',
-          };
+          if (isOddNumber)
+            return output.knockbackCleaveFaceOutside();
+
+          return output.knockbackChargeFaceMiddle();
         }
-        if (isOddNumber) {
-          return {
-            en: 'Knockback Cleave on YOU',
-            de: 'Rückstoß Cleave auf DIR',
-            fr: 'Poussée Cleave sur VOUS',
-            ja: '自分にクリーブ',
-            ko: '나에게 넉백 공격',
-            cn: '击退顺劈点名',
-          };
-        }
-        return {
+        if (isOddNumber)
+          return output.knockbackCleaveOnYou();
+
+        return output.knockback();
+      },
+      outputStrings: {
+        knockbackCleaveFaceOutside: {
+          en: 'Knockback Cleave; Face Outside',
+          de: 'Rückstoß Cleave; nach Außen schauen',
+          ja: 'ノックバック ソード; 外向く',
+          fr: 'Poussée Cleave; Regardez à l\'extérieur',
+          ko: '넉백 소드; 바깥쪽 바라보기',
+          cn: '击退顺劈; 面向外侧',
+        },
+        knockbackChargeFaceMiddle: {
+          en: 'Knockback Charge; Face Middle',
+          de: 'Rückstoß Charge; zur Mitte schauen',
+          ja: 'ノックバック チャージ; 中央向く',
+          fr: 'Poussée Charge; Regardez à l\'intérieur',
+          ko: '넉백 차지; 안쪽 바라보기',
+          cn: '击退冲锋; 面向中间',
+        },
+        knockbackCleaveOnYou: {
+          en: 'Knockback Cleave on YOU',
+          de: 'Rückstoß Cleave auf DIR',
+          fr: 'Poussée Cleave sur VOUS',
+          ja: '自分にクリーブ',
+          ko: '나에게 넉백 공격',
+          cn: '击退顺劈点名',
+        },
+        knockback: {
           en: 'Knockback',
           de: 'Rückstoß',
           fr: 'Poussée',
           cn: '击退',
           ja: 'ノックバック',
           ko: '넉백',
-        };
+        },
       },
     },
     {
@@ -902,18 +924,21 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         data.enumerations = data.enumerations || [];
         data.enumerations.push(matches.target);
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.enumerations.length != 2)
           return;
         let names = data.enumerations.sort();
-        return {
-          en: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
-          de: 'Enumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
-          ja: 'カウント: ' + names.map((x) => data.ShortName(x)).join(', '),
-          fr: 'Énumeration: ' + names.map((x) => data.ShortName(x)).join(', '),
-          ko: '인원수 대상: ' + names.map((x) => data.ShortName(x)).join(', '),
-          cn: '计数' + names.map((x) => data.ShortName(x)).join(', '),
-        };
+        return output.text({ players: names.map((x) => data.ShortName(x)).join(', ') });
+      },
+      outputStrings: {
+        text: {
+          en: 'Enumeration: ${players}',
+          de: 'Enumeration: ${players}',
+          ja: 'カウント: ${players}',
+          fr: 'Énumeration: ${players}',
+          ko: '인원수 대상: ${players}',
+          cn: '计数${players}',
+        },
       },
     },
     {
@@ -965,17 +990,20 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.seenGavel)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Drop Water Soon',
           de: 'Gleich Wasser ablegen',
           ja: '水来るよ',
           fr: 'Déposez l\'eau bientôt',
           ko: '물이 곧 옵니다',
           cn: '马上放水',
-        };
+        },
       },
     },
     {
@@ -1006,17 +1034,20 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         // 5 second warning.
         return parseFloat(matches.duration) - 5;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.seenGavel)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Drop Lightning Soon',
           de: 'Gleich Blitz ablegen',
           ja: '雷来るよ',
           fr: 'Déposez la foudre bientôt',
           ko: '번개가 곧 옵니다',
           cn: '马上放雷',
-        };
+        },
       },
     },
     {
@@ -1117,16 +1148,19 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       },
       // This keeps refreshing forever, so only alert once.
       suppressSeconds: 10000,
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         const num = kFinalJudgementNisi.indexOf(matches.effectId.toUpperCase());
-        return {
-          en: 'Verdict: ' + data.nisiNames[num] + ' Nisi',
-          de: 'Prozesseröffnung: ' + data.nisiNames[num] + ' Nisi',
-          ja: '最終: ' + data.nisiNames[num],
-          fr: 'Ouverture de procès: ' + data.nisiNames[num] + ' Nisi',
-          ko: '최종: ' + data.nisiNames[num],
-          cn: '最终: ' + data.nisiNames[num],
-        };
+        return output.text({ nisiNames: data.nisiNames[num] });
+      },
+      outputStrings: {
+        text: {
+          en: 'Verdict: ${nisiNames} Nisi',
+          de: 'Prozesseröffnung: ${nisiNames} Nisi',
+          ja: '最終: ${nisiNames}',
+          fr: 'Ouverture de procès: ${nisiNames} Nisi',
+          ko: '최종: ${nisiNames}',
+          cn: '最终: ${nisiNames}',
+        },
       },
     },
     {
@@ -1149,39 +1183,43 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'Justicier', id: '4847' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ブルートジャスティス', id: '4847' }),
       netRegexKo: NetRegexes.startsUsing({ source: '포악한 심판자', id: '4847' }),
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Shared Tankbuster on YOU',
-            de: 'geteilter Tankbuster auf DIR',
-            ja: '自分にタンクシェア',
-            fr: 'Tank buster à partager sur VOUS',
-            ko: '나에게 쉐어 탱크버스터',
-            cn: '分摊死刑点名',
-          };
-        }
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Shared Tankbuster on ' + data.ShortName(matches.target),
-            de: 'geteilter Tankbuster on ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + ' にタンクシェア',
-            fr: 'Tank buster à partager sur ' + data.ShortName(matches.target),
-            ko: '쉐어 탱크버스터 대상: ' + data.ShortName(matches.target),
-            cn: '分摊死刑点 ' + data.ShortName(matches.target),
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.sharedTankbusterOnYou();
+
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.role == 'tank' || data.role == 'healer')
           return;
-        return {
+        return output.baitSuperJump();
+      },
+      outputStrings: {
+        baitSuperJump: {
           en: 'Bait Super Jump?',
           de: 'Supersprung anlocken?',
           fr: 'Attirez le Super saut ?',
           ja: 'スパジャン誘導',
           ko: '슈퍼 점프 유도',
           cn: '引导超级跳跃',
-        };
+        },
+        sharedTankbusterOnYou: {
+          en: 'Shared Tankbuster on YOU',
+          de: 'geteilter Tankbuster auf DIR',
+          ja: '自分にタンクシェア',
+          fr: 'Tank buster à partager sur VOUS',
+          ko: '나에게 쉐어 탱크버스터',
+          cn: '分摊死刑点名',
+        },
+        sharedTankbusterOn: {
+          en: 'Shared Tankbuster on ${player}',
+          de: 'geteilter Tankbuster on ${player}',
+          ja: '${player} にタンクシェア',
+          fr: 'Tank buster à partager sur ${player}',
+          ko: '쉐어 탱크버스터 대상: ${player}',
+          cn: '分摊死刑点 ${player}',
+        },
       },
     },
     {
@@ -1227,17 +1265,20 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       delaySeconds: 0.5,
       durationSeconds: 10,
       suppressSeconds: 1,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.me in data.buffMap)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'No Debuff',
           de: 'Kein Debuff',
           fr: 'Pas de Debuff',
           ja: 'デバフ無し',
           ko: '디버프 없음',
           cn: '无 Debuff',
-        };
+        },
       },
     },
     {
@@ -1302,15 +1343,18 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: (data) => data.phase == 'inception',
       delaySeconds: 3,
-      infoText: function(data, matches) {
-        return {
-          en: 'Shared Sentence on ' + data.ShortName(matches.target),
-          de: 'Urteil: Kollektivstrafe auf ' + data.ShortName(matches.target),
-          fr: 'Peine collective sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + ' に集団罰',
-          ko: data.ShortName(matches.target) + ' 에게 단체형',
-          cn: '集团罪 点' + data.ShortName(matches.target),
-        };
+      infoText: function(data, matches, output) {
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: 'Shared Sentence on ${player}',
+          de: 'Urteil: Kollektivstrafe auf ${player}',
+          fr: 'Peine collective sur ${player}',
+          ja: '${player} に集団罰',
+          ko: '${player} 에게 단체형',
+          cn: '集团罪 点${player}',
+        },
       },
     },
     {
@@ -1340,44 +1384,48 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A80' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A80' }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A80' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            ko: '나에게 탱크버스터',
-            cn: '死刑点名',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
-            cn: '死刑点 ' + data.ShortName(matches.target),
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.tankBusterOnYou();
+
+        if (data.role == 'healer')
+          return output.busterOn2({ player: data.ShortName(matches.target) });
       },
       // As this seems to usually seems to be invulned,
       // don't make a big deal out of it.
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (matches.target == data.me)
           return;
         if (data.role != 'tank')
           return;
 
-        return {
-          en: 'Buster on ' + data.ShortName(matches.target),
-          de: 'Tankbuster auf ' + data.ShortName(matches.target),
-          fr: 'Tank buster sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にタンクバスター',
-          ko: data.ShortName(matches.target) + '에게 탱크버스터',
-          cn: '死刑点 ' + data.ShortName(matches.target),
-        };
+        return output.busterOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        busterOn: {
+          en: 'Buster on ${player}',
+          de: 'Tankbuster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          ko: '${player}에게 탱크버스터',
+          cn: '死刑点 ${player}',
+        },
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tankbuster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          ko: '나에게 탱크버스터',
+          cn: '死刑点名',
+        },
+        busterOn2: {
+          en: 'Buster on ${player}',
+          de: 'Tankbuster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          ko: '${player}에게 탱크버스터',
+          cn: '死刑点 ${player}',
+        },
       },
     },
     {
@@ -1459,65 +1507,71 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '485F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485F', capture: false }),
       condition: (data) => data.phase == 'inception',
-      alarmText: function(data) {
+      alarmText: function(data, _, output) {
         let numVulns = Object.keys(data.vuln).length;
         if (data.role == 'tank' && data.vuln[data.me] && numVulns >= 5) {
           // If you're stacking three people in the shared sentence,
           // then probably the tank wants to handle jump with cooldowns.
           // TODO: we could probably determine where this is.
-          return {
-            en: 'Bait Jump With Cooldowns',
-            de: 'Köder Sprung mit Cooldowns',
-            fr: 'Attirez le Saut avec des Cooldowns',
-            ja: 'スパジャン誘導',
-            ko: '슈퍼 점프 유도',
-            cn: '引导冷却跳跃',
-          };
+          return output.baitJumpWithCooldowns();
         }
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.vuln[data.me])
           return;
 
         let numVulns = Object.keys(data.vuln).length;
         if (numVulns >= 5) {
           // In this case, jump was handled above for tanks.
-          return {
-            en: 'Bait Sword',
-            de: 'Locke Chaser-Mecha Schwert',
-            fr: 'Attirez l\'Épée',
-            ja: 'ソード誘導',
-            ko: '검 유도',
-            cn: '引导剑',
-          };
+          return output.baitSword();
         }
 
         // Otherwise everybody without a vuln can do anything.
-        return {
-          en: 'Bait Sword or Jump?',
-          de: 'Köder Schwert oder Sprung?',
-          fr: 'Attirez l\'Épée ou le Saut ?',
-          ja: 'ソードかジャンプ誘導?',
-          ko: '검 또는 슈퍼 점프 유도?',
-          cn: '引导剑或跳?',
-        };
+        return output.baitSwordOrJump();
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.vuln[data.me]) {
           // Tanks covered in the alarmText case above.
           let numVulns = Object.keys(data.vuln).length;
           if (data.role == 'tank' && numVulns >= 5)
             return;
 
-          return {
-            en: 'Vuln: Avoid cleaves and jump',
-            de: 'Vuln: Cleaves und Sprung ausweichen',
-            fr: 'Vuln: évitez les cleaves et saut',
-            ja: '被ダメ増加',
-            ko: '받는 데미지 증가: 공격과 점프 피할것',
-            cn: '易伤：躲避顺劈和跳',
-          };
+          return output.vulnAvoidCleavesAndJump();
         }
+      },
+      outputStrings: {
+        vulnAvoidCleavesAndJump: {
+          en: 'Vuln: Avoid cleaves and jump',
+          de: 'Vuln: Cleaves und Sprung ausweichen',
+          fr: 'Vuln: évitez les cleaves et saut',
+          ja: '被ダメ増加',
+          ko: '받는 데미지 증가: 공격과 점프 피할것',
+          cn: '易伤：躲避顺劈和跳',
+        },
+        baitSword: {
+          en: 'Bait Sword',
+          de: 'Locke Chaser-Mecha Schwert',
+          fr: 'Attirez l\'Épée',
+          ja: 'ソード誘導',
+          ko: '검 유도',
+          cn: '引导剑',
+        },
+        baitSwordOrJump: {
+          en: 'Bait Sword or Jump?',
+          de: 'Köder Schwert oder Sprung?',
+          fr: 'Attirez l\'Épée ou le Saut ?',
+          ja: 'ソードかジャンプ誘導?',
+          ko: '검 또는 슈퍼 점프 유도?',
+          cn: '引导剑或跳?',
+        },
+        baitJumpWithCooldowns: {
+          en: 'Bait Jump With Cooldowns',
+          de: 'Köder Sprung mit Cooldowns',
+          fr: 'Attirez le Saut avec des Cooldowns',
+          ja: 'スパジャン誘導',
+          ko: '슈퍼 점프 유도',
+          cn: '引导冷却跳跃',
+        },
       },
     },
     {
@@ -1528,25 +1582,29 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.ability({ source: 'Primo-Alexander', id: '486E', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '486E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '486E', capture: false }),
-      infoText: function(data) {
-        if (data.options.cactbotWormholeStrat) {
-          return {
-            en: 'Bait Chakrams mid; Look opposite Alex',
-            de: 'Locke Chakrams mittig; schau weg von Alex',
-            fr: 'Attirez les Chakrams au milieu; Regardez à l\'opposé d\'Alex',
-            ja: '中央にチャクラム誘導; アレキの反対見て',
-            ko: '가운데로 차크람 유도; 알렉 반대쪽이 북쪽',
-            cn: '中间引导轮轮，背对亚历山大',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.options.cactbotWormholeStrat)
+          return output.baitChakramsMidLookOppositeAlex();
+
+        return output.baitChakrams();
+      },
+      outputStrings: {
+        baitChakramsMidLookOppositeAlex: {
+          en: 'Bait Chakrams mid; Look opposite Alex',
+          de: 'Locke Chakrams mittig; schau weg von Alex',
+          fr: 'Attirez les Chakrams au milieu; Regardez à l\'opposé d\'Alex',
+          ja: '中央にチャクラム誘導; アレキの反対見て',
+          ko: '가운데로 차크람 유도; 알렉 반대쪽이 북쪽',
+          cn: '中间引导轮轮，背对亚历山大',
+        },
+        baitChakrams: {
           en: 'Bait Chakrams',
           de: 'Köder Chakrams',
           fr: 'Attirez les Chakrams',
           ja: 'チャクラム誘導',
           ko: '차크람 유도',
           cn: '引导轮轮',
-        };
+        },
       },
     },
     {
@@ -1783,30 +1841,33 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         data.opticalStack = data.opticalStack || [];
         data.opticalStack.push(matches.target);
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            ja: '自分にシェア',
-            fr: 'Package sur VOUS',
-            ko: '나에게 모이기',
-            cn: '集合点名',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.stackOnYou();
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.opticalStack.length == 1)
           return;
         let names = data.opticalStack.map((x) => data.ShortName(x)).sort();
-        return {
-          en: 'Optical Stack (' + names.join(', ') + ')',
-          de: 'Optischer Stack (' + names.join(', ') + ')',
-          ja: 'シェア (' + names.join(', ') + ')',
-          fr: 'Package optique (' + names.join(', ') + ')',
-          ko: '조준 대상: ' + names.join(', '),
-          cn: '照准集合 (' + names.join(', ') + ')',
-        };
+        return output.opticalStackPlayers({ players: names.join(', ') });
+      },
+      outputStrings: {
+        opticalStackPlayers: {
+          en: 'Optical Stack (${players})',
+          de: 'Optischer Stack (${players})',
+          ja: 'シェア (${players})',
+          fr: 'Package optique (${players})',
+          ko: '조준 대상: ${players}',
+          cn: '照准集合 (${players})',
+        },
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Sammeln auf DIR',
+          ja: '自分にシェア',
+          fr: 'Package sur VOUS',
+          ko: '나에게 모이기',
+          cn: '集合点名',
+        },
       },
     },
     {
@@ -2260,25 +2321,29 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // 5 seconds until mechanic
       delaySeconds: 2.2,
-      alertText: function(data) {
-        if (data.firstAlphaOrdained == 'motion') {
-          return {
-            en: 'Move First',
-            de: 'Zuerst bewegen',
-            ja: '最初は動く',
-            fr: 'Bougez en premier',
-            ko: '우선 움직이기',
-            cn: '首先移动',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.firstAlphaOrdained == 'motion')
+          return output.moveFirst();
+
+        return output.stillnessFirst();
+      },
+      outputStrings: {
+        moveFirst: {
+          en: 'Move First',
+          de: 'Zuerst bewegen',
+          ja: '最初は動く',
+          fr: 'Bougez en premier',
+          ko: '우선 움직이기',
+          cn: '首先移动',
+        },
+        stillnessFirst: {
           en: 'Stillness First',
           de: 'Zuerst Stillstehen',
           ja: '最初は止まる',
           fr: 'Restez immobile en premier',
           ko: '우선 멈추기',
           cn: '首先静止',
-        };
+        },
       },
     },
     {
@@ -2291,25 +2356,29 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '487C', capture: false }),
       // ~4 seconds until mechanic (to avoid overlapping with first)
       delaySeconds: 7.2,
-      alertText: function(data) {
-        if (data.secondAlphaOrdained == 'motion') {
-          return {
-            en: 'Keep Moving',
-            de: 'weiter bewegen',
-            ja: '最後は動く',
-            fr: 'Continuez à bouger',
-            ko: '마지막엔 움직이기',
-            cn: '保持移动',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.secondAlphaOrdained == 'motion')
+          return output.keepMoving();
+
+        return output.stopEverything();
+      },
+      outputStrings: {
+        keepMoving: {
+          en: 'Keep Moving',
+          de: 'weiter bewegen',
+          ja: '最後は動く',
+          fr: 'Continuez à bouger',
+          ko: '마지막엔 움직이기',
+          cn: '保持移动',
+        },
+        stopEverything: {
           en: 'Stop Everything',
           de: 'Alles stoppen',
           ja: '最後は止まる',
           fr: 'Arrêtez tout',
           ko: '마지막엔 멈추기',
           cn: '保持静止',
-        };
+        },
       },
     },
     {
@@ -2553,50 +2622,55 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '4B14', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '4B14', capture: false }),
       delaySeconds: 12.2,
-      alertText: function(data) {
-        if (!data.betaIsOpticalStack) {
-          return {
-            en: 'Optical Spread',
-            de: 'Visier verteilen',
-            fr: 'Dispersion optique',
-            ja: '散開',
-            ko: '옵티컬: 산개',
-            cn: '分散',
-          };
-        }
-        if (data.betaBait.includes(data.me)) {
-          return {
-            en: 'Optical Stack on YOU',
-            de: 'Visier sammeln auf DIR',
-            fr: 'Package optique sur VOUS',
-            ja: '自分にシェア',
-            ko: '옵티컬: 나에게 모이기',
-            cn: '集合点名',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.betaIsOpticalStack)
+          return output.opticalSpread();
+
+        if (data.betaBait.includes(data.me))
+          return output.opticalStackOnYou();
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.betaIsOpticalStack)
           return;
 
         // Error?
-        if (data.betaBait.length == 0) {
-          return {
-            en: 'Optical Stack',
-            de: 'Visier sammeln',
-            fr: 'Package optique',
-            ko: '옵티컬: 모이기',
-            cn: '集合',
-          };
-        }
+        if (data.betaBait.length == 0)
+          return output.opticalStack();
+
         let names = data.betaBait.map((x) => data.ShortName(x)).sort();
-        return {
-          en: 'Optical Stack (' + names.join(', ') + ')',
-          de: 'Visier sammeln (' + names.join(', ') + ')',
-          fr: 'Package optique (' + names.join(', ') + ')',
-          ko: '옵티컬: 모이기 (' + names.join(', ') + ')',
-          cn: '集合 (' + names.join(', ') + ')',
-        };
+        return output.opticalStackPlayers({ players: names.join(', ') });
+      },
+      outputStrings: {
+        opticalStack: {
+          en: 'Optical Stack',
+          de: 'Visier sammeln',
+          fr: 'Package optique',
+          ko: '옵티컬: 모이기',
+          cn: '集合',
+        },
+        opticalStackPlayers: {
+          en: 'Optical Stack (${players})',
+          de: 'Visier sammeln (${players})',
+          fr: 'Package optique (${players})',
+          ko: '옵티컬: 모이기 (${players})',
+          cn: '集合 (${players})',
+        },
+        opticalSpread: {
+          en: 'Optical Spread',
+          de: 'Visier verteilen',
+          fr: 'Dispersion optique',
+          ja: '散開',
+          ko: '옵티컬: 산개',
+          cn: '分散',
+        },
+        opticalStackOnYou: {
+          en: 'Optical Stack on YOU',
+          de: 'Visier sammeln auf DIR',
+          fr: 'Package optique sur VOUS',
+          ja: '自分にシェア',
+          ko: '옵티컬: 나에게 모이기',
+          cn: '集合点名',
+        },
       },
     },
     {
@@ -2620,39 +2694,42 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4891' }),
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4891' }),
-      alarmText: function(data, matches) {
-        if (data.role == 'tank' && data.me != matches.target) {
-          return {
-            en: 'Tank Swap!',
-            de: 'Tank Wechsel!',
-            fr: 'Tank Swap !',
-            ko: '탱교대!',
-            cn: '换T!',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.role == 'tank' && data.me != matches.target)
+          return output.tankSwap();
       },
       // Because this is two in a row, make this second one info.
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            ko: '나에게 탱크버스터',
-            cn: '死刑点名',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            ko: data.ShortName(matches.target) + '에게 탱크버스터',
-            cn: '死刑点 ' + data.ShortName(matches.target),
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.tankBusterOnYou();
+
+        if (data.role == 'healer')
+          return output.busterOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tankbuster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          ko: '나에게 탱크버스터',
+          cn: '死刑点名',
+        },
+        busterOn: {
+          en: 'Buster on ${player}',
+          de: 'Tankbuster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          ko: '${player}에게 탱크버스터',
+          cn: '死刑点 ${player}',
+        },
+        tankSwap: {
+          en: 'Tank Swap!',
+          de: 'Tank Wechsel!',
+          fr: 'Tank Swap !',
+          ko: '탱교대!',
+          cn: '换T!',
+        },
       },
     },
     {
@@ -2939,29 +3016,33 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4894' }),
       // Don't collide with trine.
       delaySeconds: 2,
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Auf DIR sammeln',
-            ja: '自分にシェア',
-            fr: 'Package sur VOUS',
-            cn: '集合点名',
-            ko: '나에게 모이기',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ja: data.ShortName(matches.target) + ' にシェア',
-          ko: data.ShortName(matches.target) + '에게 모이기',
-        };
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
       },
       run: function(data) {
         delete data.trine;
         delete data.secondTrineResponse;
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Auf DIR sammeln',
+          ja: '自分にシェア',
+          fr: 'Package sur VOUS',
+          cn: '集合点名',
+          ko: '나에게 모이기',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          cn: '靠近 ${player}集合',
+          ja: '${player} にシェア',
+          ko: '${player}에게 모이기',
+        },
       },
     },
   ],

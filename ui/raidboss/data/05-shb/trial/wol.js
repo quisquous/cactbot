@@ -123,34 +123,39 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F4B', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F4B', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4B', capture: false }),
-      alertText: function(data) {
-        if (data.imbued === 'blizzard') {
-          return {
-            en: 'Out => Move',
-            de: 'Raus => Bewegen',
-            fr: 'Extérieur => Bougez',
-            ja: '外 => 動け',
-            ko: '밖으로 => 움직이기',
-            cn: '外 => 动起来',
-          };
-        } else if (data.imbued === 'fire') {
-          return {
-            en: 'Out => Stop',
-            de: 'Raus => Nichts machen',
-            fr: 'Extérieur => Stoppez tout',
-            ja: '外 => 動かない',
-            ko: '밖으로 => 멈추기',
-            cn: '外 => 不要动',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.imbued === 'blizzard')
+          return output.outMove();
+        else if (data.imbued === 'fire')
+          return output.outStop();
+
+        return output.out();
+      },
+      outputStrings: {
+        outMove: {
+          en: 'Out => Move',
+          de: 'Raus => Bewegen',
+          fr: 'Extérieur => Bougez',
+          ja: '外 => 動け',
+          ko: '밖으로 => 움직이기',
+          cn: '外 => 动起来',
+        },
+        outStop: {
+          en: 'Out => Stop',
+          de: 'Raus => Nichts machen',
+          fr: 'Extérieur => Stoppez tout',
+          ja: '外 => 動かない',
+          ko: '밖으로 => 멈추기',
+          cn: '外 => 不要动',
+        },
+        out: {
           en: 'Out => ???',
           de: 'Raus => ???',
           fr: 'Extérieur => ???',
           ja: '外 => ???',
           ko: '밖으로 => ???',
           cn: '外 => ???',
-        };
+        },
       },
     },
     {
@@ -159,34 +164,39 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F4C', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F4C', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F4C', capture: false }),
-      alertText: function(data) {
-        if (data.imbued === 'blizzard') {
-          return {
-            en: 'Under => Move',
-            de: 'Runter => Bewegen',
-            fr: 'Intérieur => Bougez',
-            ja: '中 => 動け',
-            ko: '안으로 => 움직이기',
-            cn: '内 => 动起来',
-          };
-        } else if (data.imbued === 'fire') {
-          return {
-            en: 'Under => Stop',
-            de: 'Runter => Nichts machen',
-            fr: 'Intérieur => Stoppez tout',
-            ja: '中 => 動かない',
-            ko: '안으로 => 멈추기',
-            cn: '内 => 不要动',
-          };
-        }
-        return {
+      alertText: function(data, _, output) {
+        if (data.imbued === 'blizzard')
+          return output.underMove();
+        else if (data.imbued === 'fire')
+          return output.underStop();
+
+        return output.under();
+      },
+      outputStrings: {
+        underMove: {
+          en: 'Under => Move',
+          de: 'Runter => Bewegen',
+          fr: 'Intérieur => Bougez',
+          ja: '中 => 動け',
+          ko: '안으로 => 움직이기',
+          cn: '内 => 动起来',
+        },
+        underStop: {
+          en: 'Under => Stop',
+          de: 'Runter => Nichts machen',
+          fr: 'Intérieur => Stoppez tout',
+          ja: '中 => 動かない',
+          ko: '안으로 => 멈추기',
+          cn: '内 => 不要动',
+        },
+        under: {
           en: 'Under => ???',
           de: 'Runter => ???',
           fr: 'Intérieur => ???',
           ja: '中 => ???',
           ko: '안으로 => ???',
           cn: '内 => ???',
-        };
+        },
       },
     },
     {

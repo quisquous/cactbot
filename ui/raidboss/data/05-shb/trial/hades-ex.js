@@ -264,17 +264,20 @@
       netRegex: NetRegexes.headMarker({ id: ['0030', '0060'], capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.waterDarkMarker)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Healer Stacks',
           de: 'Bei den Heilern sammeln',
           fr: 'Packages sur les heals',
           ja: 'ヒーラーに集合',
           cn: '治疗集合',
           ko: '힐러 모이기',
-        };
+        },
       },
     },
     {
@@ -312,20 +315,23 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.sphereCount)
           return;
-        return {
+        return output.text();
+      },
+      run: function(data) {
+        data.sphereCount = (data.sphereCount || 0) + 1;
+      },
+      outputStrings: {
+        text: {
           en: 'tank swap soon',
           de: 'Gleich: Tank swap',
           fr: 'Tank swap bientôt',
           ja: 'まもなく、タンクスイッチ',
           cn: '坦克即将换T',
           ko: '곧 탱교대',
-        };
-      },
-      run: function(data) {
-        data.sphereCount = (data.sphereCount || 0) + 1;
+        },
       },
     },
     {
@@ -554,35 +560,40 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47D1', source: 'Spectre De Primo-Ascien' }),
       netRegexJa: NetRegexes.startsUsing({ id: '47D1', source: 'アシエン・プライムの影' }),
       netRegexKo: NetRegexes.startsUsing({ id: '47D1', source: '아씨엔 프라임의 그림자' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑点名',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑点 ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
-        return {
-          en: 'Away from ' + data.ShortName(matches.target),
-          de: 'Weg von ' + data.ShortName(matches.target),
-          fr: 'Éloignez-vous de ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'から離れ',
-          cn: '远离 ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 탱버',
-        };
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.tankBusterOnYou();
+
+        if (data.role == 'healer')
+          return output.busterOn({ player: data.ShortName(matches.target) });
+
+        return output.awayFromPlayer({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tankbuster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          cn: '死刑点名',
+          ko: '탱버 대상자',
+        },
+        busterOn: {
+          en: 'Buster on ${player}',
+          de: 'Tankbuster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          cn: '死刑点 ${player}',
+          ko: '"${player}" 탱버',
+        },
+        awayFromPlayer: {
+          en: 'Away from ${player}',
+          de: 'Weg von ${player}',
+          fr: 'Éloignez-vous de ${player}',
+          ja: '${player}から離れ',
+          cn: '远离 ${player}',
+          ko: '"${player}" 탱버',
+        },
       },
     },
     {
@@ -697,17 +708,19 @@
       netRegexFr: NetRegexes.startsUsing({ id: '47E1', source: 'Hadès', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ id: '47E1', source: 'ハーデス', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '47E1', source: '하데스', capture: false }),
-      infoText: function(data) {
-        if (!data.flame && !data.freeze) {
-          return {
-            en: 'Knockback + Stack With Partner',
-            de: 'Rückstoß + sammeln beim Partner',
-            fr: 'Poussée + packez-vous avec votre partenaire',
-            ja: 'パートナーと ノックバック + 頭割り',
-            cn: '与伙伴 击退 + 集合',
-            ko: '넉백 + 파트너랑 모이기',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (!data.flame && !data.freeze)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Knockback + Stack With Partner',
+          de: 'Rückstoß + sammeln beim Partner',
+          fr: 'Poussée + packez-vous avec votre partenaire',
+          ja: 'パートナーと ノックバック + 頭割り',
+          cn: '与伙伴 击退 + 集合',
+          ko: '넉백 + 파트너랑 모이기',
+        },
       },
     },
     {
@@ -844,29 +857,31 @@
         return data.role == 'tank' || data.role == 'healer';
       },
       suppressSeconds: 2,
-      alarmText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Get Towers',
-            de: 'Türme nehmen',
-            fr: 'Allez dans les tours',
-            ja: '塔を踏む',
-            cn: '踩塔',
-            ko: '기둥 들어가기',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.getTowers();
       },
-      infoText: function(data) {
-        if (data.role == 'healer') {
-          return {
-            en: 'tank busters',
-            de: 'Tank buster',
-            fr: 'Tank buster',
-            ja: 'タンクバスター',
-            cn: '坦克死刑',
-            ko: '탱버',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.role == 'healer')
+          return output.tankBusters();
+      },
+      outputStrings: {
+        tankBusters: {
+          en: 'tank busters',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
+        getTowers: {
+          en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Allez dans les tours',
+          ja: '塔を踏む',
+          cn: '踩塔',
+          ko: '기둥 들어가기',
+        },
       },
     },
     { // After tanks take tower damage

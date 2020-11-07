@@ -169,23 +169,27 @@
       id: 'E6S Air Bump',
       netRegex: NetRegexes.headMarker({ id: '00D3' }),
       suppressSeconds: 1,
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Enumeration on YOU',
-            de: 'Enumeration aud DIR',
-            fr: 'Énumération sur VOUS',
-            cn: '蓝圈分摊点名',
-            ko: '2인 장판 대상자',
-          };
-        }
-        return {
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.enumerationOnYou();
+
+        return output.enumeration();
+      },
+      outputStrings: {
+        enumerationOnYou: {
+          en: 'Enumeration on YOU',
+          de: 'Enumeration aud DIR',
+          fr: 'Énumération sur VOUS',
+          cn: '蓝圈分摊点名',
+          ko: '2인 장판 대상자',
+        },
+        enumeration: {
           en: 'Enumeration',
           de: 'Enumeration',
           fr: 'Énumération',
           cn: '蓝圈分摊',
           ko: '2인 장판',
-        };
+        },
       },
     },
     {
@@ -232,25 +236,29 @@
       condition: function(data) {
         return data.handsOfFlame;
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Charge on YOU',
-            de: 'Ansturm auf DIR',
-            fr: 'Charge sur VOUS',
-            cn: '冲锋点名',
-            ko: '나에게 보스 돌진',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.chargeOnYou();
+
         if (data.role != 'tank' || data.phase == 'both')
           return;
-        return {
+        return output.tankSwap();
+      },
+      outputStrings: {
+        chargeOnYou: {
+          en: 'Charge on YOU',
+          de: 'Ansturm auf DIR',
+          fr: 'Charge sur VOUS',
+          cn: '冲锋点名',
+          ko: '나에게 보스 돌진',
+        },
+        tankSwap: {
           en: 'Tank Swap',
           de: 'Tank Swap',
           fr: 'Tank Swap',
           cn: '换T',
           ko: '탱 교대',
-        };
+        },
       },
     },
     {
@@ -401,23 +409,27 @@
       condition: function(data, matches) {
         return data.me == matches.target || data.me == matches.source;
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.source) {
-          return {
-            en: 'Tethered to ' + data.ShortName(matches.target),
-            de: 'Verbunden mit ' + data.ShortName(matches.target),
-            fr: 'Lié à ' + data.ShortName(matches.target),
-            cn: '和' + data.ShortName(matches.target) + '连线',
-            ko: '선 연결 짝: ' + data.ShortName(matches.target),
-          };
-        }
-        return {
-          en: 'Tethered to ' + data.ShortName(matches.source),
-          de: 'Verbunden mit ' + data.ShortName(matches.source),
-          fr: 'Lié à ' + data.ShortName(matches.source),
-          cn: '和' + data.ShortName(matches.source) + '连线',
-          ko: '선 연결 짝: ' + data.ShortName(matches.source),
-        };
+      alertText: function(data, matches, output) {
+        if (data.me == matches.source)
+          return output.tetheredToPlayer({ player: data.ShortName(matches.target) });
+
+        return output.tetheredToPlayer2({ player: data.ShortName(matches.source) });
+      },
+      outputStrings: {
+        tetheredToPlayer: {
+          en: 'Tethered to ${player}',
+          de: 'Verbunden mit ${player}',
+          fr: 'Lié à ${player}',
+          cn: '和${player}连线',
+          ko: '선 연결 짝: ${player}',
+        },
+        tetheredToPlayer2: {
+          en: 'Tethered to ${player}',
+          de: 'Verbunden mit ${player}',
+          fr: 'Lié à ${player}',
+          cn: '和${player}连线',
+          ko: '선 연결 짝: ${player}',
+        },
       },
     },
     {

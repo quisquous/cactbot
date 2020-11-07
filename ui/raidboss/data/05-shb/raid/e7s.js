@@ -57,16 +57,18 @@
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         data.betwixtWorldsTethers.push(matches.target);
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Tether on YOU',
-            de: 'Verbindung auf DIR',
-            fr: 'Lien sur VOUS',
-            cn: '连线点名',
-            ko: '선 대상자',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Tether on YOU',
+          de: 'Verbindung auf DIR',
+          fr: 'Lien sur VOUS',
+          cn: '连线点名',
+          ko: '선 대상자',
+        },
       },
     },
     {
@@ -79,30 +81,34 @@
         data.betwixtWorldsStack = data.betwixtWorldsStack || [];
         data.betwixtWorldsStack.push(matches.target);
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         data.betwixtWorldsTethers = data.betwixtWorldsTethers || [];
         if (data.betwixtWorldsTethers.includes(data.me))
           return;
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分にシェア',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
+        if (data.me == matches.target)
+          return output.stackOnYou();
+
         if (data.betwixtWorldsStack.length == 1)
           return;
         let names = data.betwixtWorldsStack.map((x) => data.ShortName(x)).sort();
-        return {
-          en: 'Stack (' + names.join(', ') + ')',
-          de: 'Sammeln (' + names.join(', ') + ')',
-          fr: 'Package (' + names.join(', ') + ')',
-          cn: '分摊 (' + names.join(', ') + ')',
-          ko: '모이기 (' + names.join(', ') + ')',
-        };
+        return output.stackPlayers({ players: names.join(', ') });
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Sammeln auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分にシェア',
+          cn: '分摊点名',
+          ko: '쉐어징 대상자',
+        },
+        stackPlayers: {
+          en: 'Stack (${players})',
+          de: 'Sammeln (${players})',
+          fr: 'Package (${players})',
+          cn: '分摊 (${players})',
+          ko: '모이기 (${players})',
+        },
       },
     },
     {
@@ -187,17 +193,19 @@
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         data.falseMidnightSpread.push(matches.target);
       },
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Spread',
-            de: 'Verteilen',
-            fr: 'Dispersez-vous',
-            ja: '散開',
-            cn: '分散',
-            ko: '산개',
-          };
-        }
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Spread',
+          de: 'Verteilen',
+          fr: 'Dispersez-vous',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
       },
     },
     {
@@ -210,28 +218,32 @@
       // so delay a tiny bit to call out stack so that
       // it is not called out on spreads.
       delaySeconds: 0.5,
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         data.falseMidnightSpread = data.falseMidnightSpread || [];
         if (data.falseMidnightSpread.includes(data.me))
           return;
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分にシェア',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Stack on ' + data.ShortName(matches.target),
-          de: 'Auf ' + data.ShortName(matches.target) + ' sammeln',
-          fr: 'Packez-vous sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'にスタック',
-          cn: '靠近 ' + data.ShortName(matches.target) + '集合',
-          ko: '"' + data.ShortName(matches.target) + '" 쉐어징',
-        };
+        if (data.me == matches.target)
+          return output.stackOnYou();
+
+        return output.stackOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Sammeln auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分にシェア',
+          cn: '分摊点名',
+          ko: '쉐어징 대상자',
+        },
+        stackOn: {
+          en: 'Stack on ${player}',
+          de: 'Auf ${player} sammeln',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}にスタック',
+          cn: '靠近 ${player}集合',
+          ko: '"${player}" 쉐어징',
+        },
       },
     },
     {
@@ -269,27 +281,31 @@
         data.insatiableLightStack = data.insatiableLightStack || [];
         data.insatiableLightStack.push(matches.target);
       },
-      alertText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Sammeln auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分にシェア',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.stackOnYou();
+
         if (data.insatiableLightStack.length == 1)
           return;
         let names = data.insatiableLightStack.map((x) => data.ShortName(x)).sort();
-        return {
-          en: 'Stack (' + names.join(', ') + ')',
-          de: 'Sammeln (' + names.join(', ') + ')',
-          fr: 'Packez-vous (' + names.join(', ') + ')',
-          cn: '分摊 (' + names.join(', ') + ')',
-          ko: '모이기 (' + names.join(', ') + ')',
-        };
+        return output.stackPlayers({ players: names.join(', ') });
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Sammeln auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分にシェア',
+          cn: '分摊点名',
+          ko: '쉐어징 대상자',
+        },
+        stackPlayers: {
+          en: 'Stack (${players})',
+          de: 'Sammeln (${players})',
+          fr: 'Packez-vous (${players})',
+          cn: '分摊 (${players})',
+          ko: '모이기 (${players})',
+        },
       },
     },
     {
@@ -462,19 +478,22 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アンフォーギヴン・アイドラトリー', id: '(?:4C2C|4C65)', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '未被宽恕的盲崇', id: '(?:4C2C|4C65)', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '면죄되지 않은 숭배', id: '(?:4C2C|4C65)', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
         let color = colorTrans[data.displayLang];
         if (!color)
           return;
-        return {
-          en: 'Get hit by ' + color,
-          de: 'Lass dich treffen von ' + color,
-          fr: 'Encaissez le ' + color,
-          cn: '撞' + color,
-          ko: color + ' 맞기',
-        };
+        return output.text({ color: color });
+      },
+      outputStrings: {
+        text: {
+          en: 'Get hit by ${color}',
+          de: 'Lass dich treffen von ${color}',
+          fr: 'Encaissez le ${color}',
+          cn: '撞${color}',
+          ko: '${color} 맞기',
+        },
       },
     },
     {
@@ -527,32 +546,37 @@
       netRegexKo: NetRegexes.ability({ source: '어둠의 우상', id: '4C7A', capture: false }),
       // Color buffs go out immediately after the cast
       delaySeconds: 0.1,
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Go South',
-            de: 'Geh nach Süden',
-            fr: 'Allez au Sud',
-            cn: '前往南侧',
-            ko: '남쪽',
-          };
-        }
-        if (data.color == 'light') {
-          return {
-            en: 'Go Northwest',
-            de: 'Geh nach Nordwesten',
-            fr: 'Allez au Nord-Ouest',
-            cn: '前往西北',
-            ko: '북서쪽',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.goSouth();
+
+        if (data.color == 'light')
+          return output.goNorthwest();
+
+        return output.goNortheast();
+      },
+      outputStrings: {
+        goSouth: {
+          en: 'Go South',
+          de: 'Geh nach Süden',
+          fr: 'Allez au Sud',
+          cn: '前往南侧',
+          ko: '남쪽',
+        },
+        goNorthwest: {
+          en: 'Go Northwest',
+          de: 'Geh nach Nordwesten',
+          fr: 'Allez au Nord-Ouest',
+          cn: '前往西北',
+          ko: '북서쪽',
+        },
+        goNortheast: {
           en: 'Go Northeast',
           de: 'Geh nach Nordosten',
           fr: 'Allez au Nord-Est',
           cn: '前往东北',
           ko: '북동쪽',
-        };
+        },
       },
     },
     {
@@ -563,19 +587,22 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'ダークアイドル', id: '4C7E', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C7E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C7E', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         data.colorMap = data.colorMap || [];
         let colorTrans = data.colorMap[data.color] || {};
         let color = colorTrans[data.displayLang];
         if (!color)
           return;
-        return {
-          en: 'Stand in ' + color,
-          de: 'Stehe in ' + color,
-          fr: 'Restez sur ' + color,
-          cn: '站进' + color,
-          ko: color + '에 서기',
-        };
+        return output.text({ color: color });
+      },
+      outputStrings: {
+        text: {
+          en: 'Stand in ${color}',
+          de: 'Stehe in ${color}',
+          fr: 'Restez sur ${color}',
+          cn: '站进${color}',
+          ko: '${color}에 서기',
+        },
       },
     },
   ],

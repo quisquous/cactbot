@@ -239,25 +239,29 @@
       preRun: function(data) {
         data.firesDomain = (data.firesDomain || 0) + 1;
       },
-      infoText: function(data) {
-        if (data.firesDomain == 1) {
-          return {
-            en: 'Point Tether Away From Furniture',
-            de: 'Verbindung weg von der Einrichtung zeigen',
-            fr: 'Pointez le lien éloigné des meubles',
-            ja: '調度品を当たらないように',
-            cn: '连线不要打到家具',
-            ko: '징: 장판이 가구에 닿지 않게 하기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.firesDomain == 1)
+          return output.pointTetherAwayFromFurniture();
+
+        return output.tetherOnYou();
+      },
+      outputStrings: {
+        pointTetherAwayFromFurniture: {
+          en: 'Point Tether Away From Furniture',
+          de: 'Verbindung weg von der Einrichtung zeigen',
+          fr: 'Pointez le lien éloigné des meubles',
+          ja: '調度品を当たらないように',
+          cn: '连线不要打到家具',
+          ko: '징: 장판이 가구에 닿지 않게 하기',
+        },
+        tetherOnYou: {
           en: 'Tether on YOU',
           de: 'Verbindung auf DIR',
           fr: 'Lien sur VOUS',
           ja: '線ついた',
           ko: '징 대상자',
           cn: '连线点名',
-        };
+        },
       },
     },
   ],

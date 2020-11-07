@@ -26,30 +26,34 @@
       netRegex: NetRegexes.headMarker({ id: '00C6', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
           return;
 
-        if (data.role === 'healer') {
-          return {
-            en: 'Tank Buster',
-            de: 'Tank buster',
-            fr: 'Tank buster',
-            ja: 'タンクバスター',
-            cn: '坦克死刑',
-            ko: '탱버',
-          };
-        }
-        return {
+        if (data.role === 'healer')
+          return output.tankBuster();
+
+        return output.avoidTankBuster();
+      },
+      run: (data) => delete data.busterTargets,
+      outputStrings: {
+        tankBuster: {
+          en: 'Tank Buster',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
+        avoidTankBuster: {
           en: 'Avoid tank buster',
           de: 'Tank buster ausweichen',
           fr: 'Évitez le tank buster',
           ko: '탱버 피하기',
-        };
+        },
       },
-      run: (data) => delete data.busterTargets,
     },
     {
       id: 'Puppet Aegis Beam Cannons',
@@ -87,13 +91,16 @@
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '5080', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '813P : Avec Unité Rempart', id: '5080', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '5080', capture: false }),
-      alertText: function(data) {
-        return {
+      alertText: function(data, _, output) {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Go Left, Behind Wing',
           de: 'Geh links hinter den Flügel',
           fr: 'À gauche, derrière l\'aile',
           ko: '왼쪽으로 이동 (날개 뒤)',
-        };
+        },
       },
     },
     {
@@ -102,13 +109,16 @@
       netRegexDe: NetRegexes.startsUsing({ source: '813P: Bollwerk', id: '507F', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: '813P : Avec Unité Rempart', id: '507F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: '８１３Ｐ：拠点防衛ユニット装備', id: '507F', capture: false }),
-      alertText: function(data) {
-        return {
+      alertText: function(data, _, output) {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Go Right, Behind Wing',
           de: 'Geh rechts hinter den Flügel',
           fr: 'À droite, derrière l\'aile',
           ko: '오른쪽으로 이동 (날개 뒤)',
-        };
+        },
       },
     },
     {
@@ -188,26 +198,29 @@
       netRegexJa: NetRegexes.startsUsing({ source: '軽陸戦ユニット', id: '5213', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
           return;
 
-        if (data.role === 'healer') {
-          return {
-            en: 'Tank Buster',
-            de: 'Tank buster',
-            fr: 'Tank buster',
-            ja: 'タンクバスター',
-            cn: '坦克死刑',
-            ko: '탱버',
-          };
-        }
+        if (data.role === 'healer')
+          return output.text();
+
 
         // Note: this doesn't cleave, so don't say anything about avoiding it.
       },
       run: (data) => delete data.busterTargets,
+      outputStrings: {
+        text: {
+          en: 'Tank Buster',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
+      },
     },
     {
       id: 'Puppet Superior Shield Protocol',
@@ -288,30 +301,34 @@
       netRegex: NetRegexes.startsUsing({ id: '4FC5', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
           return;
 
-        if (data.role === 'healer') {
-          return {
-            en: 'Tank Buster',
-            de: 'Tank buster',
-            fr: 'Tank buster',
-            ja: 'タンクバスター',
-            cn: '坦克死刑',
-            ko: '탱버',
-          };
-        }
-        return {
+        if (data.role === 'healer')
+          return output.tankBuster();
+
+        return output.avoidTankBuster();
+      },
+      run: (data) => delete data.busterTargets,
+      outputStrings: {
+        tankBuster: {
+          en: 'Tank Buster',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
+        avoidTankBuster: {
           en: 'Avoid tank buster',
           de: 'Tank buster ausweichen',
           fr: 'Évitez le tank buster',
           ko: '탱버 피하기',
-        };
+        },
       },
-      run: (data) => delete data.busterTargets,
     },
     {
       id: 'Puppet Superior Sliding Swipe First',
@@ -465,27 +482,31 @@
       netRegexJa: NetRegexes.startsUsing({ source: '９０５Ｐ：重陸戦ユニット装備', id: '4FE9', capture: false }),
       // This is approximately when the pods appear.
       delaySeconds: 6,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         data.heavyPodCount = data.heavyPodCount || 0;
         data.heavyPodCount++;
         if (data.heavyPodCount <= 2) {
           // The first two are lasers/hammers in either order.
           // The safe spot in both cases is the same direction.
-          return {
-            en: 'Get Outside Between Pods',
-            de: 'Zwischen den Pods raus gehen',
-            fr: 'À l\'extérieur entre les Pods',
-            ko: '포드 사이로 이동',
-          };
+          return output.getOutsideBetweenPods();
         }
         // There's nothing in the log that indicates what the screens do.
         // TODO: could check logs for tether target/source and say shift left/right?
-        return {
+        return output.getBetweenLasersWatchTethers();
+      },
+      outputStrings: {
+        getOutsideBetweenPods: {
+          en: 'Get Outside Between Pods',
+          de: 'Zwischen den Pods raus gehen',
+          fr: 'À l\'extérieur entre les Pods',
+          ko: '포드 사이로 이동',
+        },
+        getBetweenLasersWatchTethers: {
           en: 'Get Between Lasers (Watch Tethers)',
           de: 'Zwischen Laser gehen (auf die Verbindungen achten)',
           fr: 'Allez entre les lasers (regardez les liens)',
           ko: '레이저 사이로 이동 (연결된 모니터 확인)',
-        };
+        },
       },
     },
     {
@@ -596,26 +617,29 @@
       netRegex: NetRegexes.headMarker({ id: '00DA', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 5,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (!data.busterTargets)
           return;
         if (data.busterTargets.includes(data.me))
           return;
 
-        if (data.role === 'healer') {
-          return {
-            en: 'Tank Buster',
-            de: 'Tank buster',
-            fr: 'Tank buster',
-            ja: 'タンクバスター',
-            cn: '坦克死刑',
-            ko: '탱버',
-          };
-        }
+        if (data.role === 'healer')
+          return output.text();
+
 
         // Note: do not call out "avoid tank" here because there's a lot of markers going out.
       },
       run: (data) => delete data.busterTargets,
+      outputStrings: {
+        text: {
+          en: 'Tank Buster',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '坦克死刑',
+          ko: '탱버',
+        },
+      },
     },
     {
       id: 'Puppet Compound 2P Three Parts Disdain',

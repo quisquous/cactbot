@@ -130,19 +130,22 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8BE' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.colorCount = data.colorCount + 1 || 0;
         if (data.colorCount == 3) {
           delete data.colorCount;
           return;
         }
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Get hit by dark',
           de: 'Vom Dunklen treffen lassen',
           fr: 'Encaissez le noir',
           cn: '被黑色打',
           ko: '어둠 맞기',
-        };
+        },
       },
     },
     {
@@ -150,19 +153,22 @@
       netRegex: NetRegexes.gainsEffect({ effectId: '8BF' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 3,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.colorCount = data.colorCount + 1 || 0;
         if (data.colorCount == 3) {
           delete data.colorCount;
           return;
         }
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Get hit by light',
           de: 'Vom Hellen treffen lassen',
           fr: 'Encaissez le blanc',
           cn: '被白色打',
           ko: '빛 맞기',
-        };
+        },
       },
     },
     {

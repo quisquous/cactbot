@@ -14,20 +14,23 @@
       id: 'Copied Flight Unit Lightfast',
       regex: /Lightfast Blade/,
       beforeSeconds: 15,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         // The third lightfast blade comes very close to second,
         // so suppress its message.
         data.lightfastCount = (data.lightfastCount || 0) + 1;
         if (data.lightfastCount != 3)
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Be Near Boss',
           de: 'sei in der Nähe des Bosses',
           fr: 'Près du boss',
           ja: 'ボスと貼りつく',
           cn: '靠近Boss',
           ko: '보스 근처로',
-        };
+        },
       },
     },
     {
@@ -544,33 +547,37 @@
     {
       id: 'Copied Engels Incendiary Bombing',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Puddle on YOU',
-            de: 'Fläche auf dir',
-            fr: 'Flaques sur VOUS',
-            ja: '自分に水溜り',
-            cn: '水圈点名',
-            ko: '징 대상자',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Puddle on YOU',
+          de: 'Fläche auf dir',
+          fr: 'Flaques sur VOUS',
+          ja: '自分に水溜り',
+          cn: '水圈点名',
+          ko: '징 대상자',
+        },
       },
     },
     {
       id: 'Copied Engels Guided Missile',
       netRegex: NetRegexes.headMarker({ id: '00C5' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Get Out + Dodge Homing AoE',
-            de: 'Geh Raus + Zielsuch-AoE ausweichen',
-            fr: 'Dehors + Evitez l\'AoE',
-            ja: '外 + AoE',
-            cn: '远离 + 躲避弹幕',
-            ko: '바깥으로 빠지고 따라오는 장판 피하기',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Get Out + Dodge Homing AoE',
+          de: 'Geh Raus + Zielsuch-AoE ausweichen',
+          fr: 'Dehors + Evitez l\'AoE',
+          ja: '外 + AoE',
+          cn: '远离 + 躲避弹幕',
+          ko: '바깥으로 빠지고 따라오는 장판 피하기',
+        },
       },
     },
     {
