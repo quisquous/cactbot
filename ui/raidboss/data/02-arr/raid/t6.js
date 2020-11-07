@@ -30,16 +30,16 @@
           return output.thornsOnYou();
 
         if (partners.length == 1)
-          return output.thornsWPlayer({ player: data.ShortName(partners[0]) });
+          return output.oneTether({ player: data.ShortName(partners[0]) });
 
         if (partners.length == 2) {
-          return output.thornsWPlayerPlayer2({
-            player: data.ShortName(partners[0]),
+          return output.twoTethers({
+            player1: data.ShortName(partners[0]),
             player2: data.ShortName(partners[1]),
           });
         }
 
-        return output.thornsNumPeople({ num: partners.length });
+        return output.threeOrMoreTethers({ num: partners.length });
       },
       run: function(data) {
         delete data.thornMap;
@@ -52,21 +52,21 @@
           ja: '自分にソーンウィップ',
           cn: '荆棘点名',
         },
-        thornsWPlayer: {
+        oneTether: {
           en: 'Thorns w/ (${player})',
           de: 'Dornenpeitsche mit (${player})',
           fr: 'Ronces avec (${player})',
           ja: '自分と (${player}) にソーンウィップ',
           cn: '荆棘与(${player})',
         },
-        thornsWPlayerPlayer2: {
-          en: 'Thorns w/ (${player}, ${player2})',
-          de: 'Dornenpeitsche mit (${player}, ${player2})',
-          fr: 'Ronces avec (${player}, ${player2})',
-          ja: '自分と (${player}, ${player2}) にソーンウィップ',
-          cn: '荆棘与(${player}, ${player2})',
+        twoTethers: {
+          en: 'Thorns w/ (${player1}, ${player2})',
+          de: 'Dornenpeitsche mit (${player1}, ${player2})',
+          fr: 'Ronces avec (${player1}, ${player2})',
+          ja: '自分と (${player1}, ${player2}) にソーンウィップ',
+          cn: '荆棘与(${player1}, ${player2})',
         },
-        thornsNumPeople: {
+        threeOrMoreTethers: {
           en: 'Thorns (${num} people)',
           de: 'Dornenpeitsche mit (${num} Personen)',
           fr: 'Ronces (${num} personne)',
@@ -97,14 +97,14 @@
       netRegex: NetRegexes.headMarker({ id: '000D' }),
       alarmText: function(data, _, output) {
         if (data.honey)
-          return output.devourGetEaten();
+          return output.getEaten();
       },
       alertText: function(data, matches, output) {
         if (data.honey)
           return;
 
         if (data.me == matches.target)
-          return output.devourJumpInNewThorns();
+          return output.jumpInNewThorns();
       },
       infoText: function(data, matches, output) {
         if (data.honey || data.me == matches.target)
@@ -120,14 +120,14 @@
           ja: '捕食に避け',
           cn: '躲开吞食',
         },
-        devourJumpInNewThorns: {
+        jumpInNewThorns: {
           en: 'Devour: Jump In New Thorns',
           de: 'Verschlingen: Spring in die neuen Dornen',
           fr: 'Dévoration : Sautez dans les ronces',
           ja: '捕食: 新芽に乗る',
           cn: '去新荆棘',
         },
-        devourGetEaten: {
+        getEaten: {
           en: 'Devour: Get Eaten',
           de: 'Verschlingen: Gefressen werden',
           fr: 'Dévoration : Faites-vous manger',

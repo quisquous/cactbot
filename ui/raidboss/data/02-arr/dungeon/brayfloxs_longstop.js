@@ -38,7 +38,7 @@
         if (names.length === 1 && names[0] === data.me)
           return output.esunaYourPoison();
 
-        return output.esunaPoisonOns({ players: names.map((x) => data.ShortName(x)).join(', ') });
+        return output.esunaPoisonOn({ players: names.map((x) => data.ShortName(x)).join(', ') });
       },
       outputStrings: {
         esunaYourPoison: {
@@ -47,7 +47,7 @@
           fr: 'Purifiez-vous',
           cn: '康复自己的毒',
         },
-        esunaPoisonOns: {
+        esunaPoisonOn: {
           en: 'Esuna Poison on ${players}',
           de: 'Entferne Gift von ${players}',
           fr: 'Purifiez le poison sur ${players}',

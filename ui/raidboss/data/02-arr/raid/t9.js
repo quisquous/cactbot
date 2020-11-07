@@ -362,37 +362,35 @@
       preRun: function(data) {
         data.tetherCount = data.tetherCount || 0;
         data.tetherCount++;
-        // Out, In, Out, In
-        data.tetherDir = data.tetherCount % 2 ? 'Fire Out' : 'Fire In';
       },
       alertText: function(data, matches, output) {
-        if (data.me == matches.target)
-          return output.tetherdirOnYou({ tetherDir: data.tetherDir });
+        if (data.me !== matches.target)
+          return;
+        // Out, In, Out, In
+        if (data.tetherCount % 2)
+          return output.fireOutOnYou();
+        return output.fireInOnYou;
       },
       infoText: function(data, matches, output) {
-        if (data.me != matches.target) {
-          return output.tetherdirOn({
-            tetherDir: data.tetherDir,
-            player: data.ShortName(matches.target),
-          });
-        }
+        if (data.me === matches.target)
+          return;
+        // Out, In, Out, In
+        if (data.tetherCount % 2)
+          return output.fireOutOn({ player: data.ShortName(matches.target) });
+        return output.fireInOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        tetherdirOn: {
-          en: '${tetherDir} (on ${player})',
-          de: '${tetherDir} (auf ${player})',
-          fr: '${tetherDir} (sur ${player})',
-          ja: '${tetherDir} (${player}に)',
-          cn: '${tetherDir} (点 ${player})',
-          ko: '${tetherDir} (on ${player})',
+        fireOutOnYou: {
+          en: 'Fire Out (on YOU)',
         },
-        tetherdirOnYou: {
-          en: '${tetherDir} (on YOU)',
-          de: '${tetherDir} (auf DIR)',
-          fr: '${tetherDir} (sur VOUS)',
-          ja: '${tetherDir} (自分)',
-          cn: '${tetherDir} (点名)',
-          ko: '${tetherDir} (대상자)',
+        fireInOnYou: {
+          en: 'Fire In (on YOU)',
+        },
+        fireOutOn: {
+          en: 'Fire Out (on ${player})',
+        },
+        fireInOn: {
+          en: 'Fire In (on ${player})',
         },
       },
     },

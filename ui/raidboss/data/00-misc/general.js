@@ -17,17 +17,16 @@ const caresAboutTankStuff = (data) => {
         return caresAboutTankStuff(data);
       },
       infoText: function(data, matches, output) {
-        let name = data.ShortName(matches.source);
-        return output.text({ name: name });
+        return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
-          en: 'Provoke: ${name}',
-          de: 'Herausforderung: ${name}',
-          fr: 'Provocation: ${name}',
-          ja: '挑発: ${name}',
-          cn: '挑衅: ${name}',
-          ko: '도발: ${name}',
+          en: 'Provoke: ${player}',
+          de: 'Herausforderung: ${player}',
+          fr: 'Provocation: ${player}',
+          ja: '挑発: ${player}',
+          cn: '挑衅: ${player}',
+          ko: '도발: ${player}',
         },
       },
     },
@@ -41,17 +40,16 @@ const caresAboutTankStuff = (data) => {
       },
       suppressSeconds: 0.5,
       infoText: function(data, matches, output) {
-        let name = data.ShortName(matches.source);
-        return output.text({ name: name });
+        return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
-          en: 'Provoke: ${name}',
-          de: 'Herausforderung: ${name}',
-          fr: 'Provocation: ${name}',
-          ja: '挑発: ${name}',
-          cn: '挑衅: ${name}',
-          ko: '도발: ${name}',
+          en: 'Provoke: ${player}',
+          de: 'Herausforderung: ${player}',
+          fr: 'Provocation: ${player}',
+          ja: '挑発: ${player}',
+          cn: '挑衅: ${player}',
+          ko: '도발: ${player}',
         },
       },
     },
@@ -64,17 +62,16 @@ const caresAboutTankStuff = (data) => {
         return caresAboutTankStuff(data);
       },
       infoText: function(data, matches, output) {
-        let name = data.ShortName(matches.source);
-        return output.text({ name: name });
+        return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
-          en: 'Shirk: ${name}',
-          de: 'Geteiltes Leid: ${name}',
-          fr: 'Dérobade: ${name}',
-          ja: 'シャーク: ${name}',
-          cn: '退避: ${name}',
-          ko: '기피: ${name}',
+          en: 'Shirk: ${player}',
+          de: 'Geteiltes Leid: ${player}',
+          fr: 'Dérobade: ${player}',
+          ja: 'シャーク: ${player}',
+          cn: '退避: ${player}',
+          ko: '기피: ${player}',
         },
       },
     },
@@ -87,17 +84,16 @@ const caresAboutTankStuff = (data) => {
         return caresAboutTankStuff(data);
       },
       infoText: function(data, matches, output) {
-        let name = data.ShortName(matches.source);
-        return output.text({ name: name });
+        return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
-          en: 'Holmgang: ${name}',
-          de: 'Holmgang: ${name}',
-          fr: 'Holmgang: ${name}',
-          ja: 'ホルムギャング: ${name}',
-          cn: '死斗: ${name}',
-          ko: '일대일 결투: ${name}',
+          en: 'Holmgang: ${player}',
+          de: 'Holmgang: ${player}',
+          fr: 'Holmgang: ${player}',
+          ja: 'ホルムギャング: ${player}',
+          cn: '死斗: ${player}',
+          ko: '일대일 결투: ${player}',
         },
       },
     },
@@ -110,17 +106,16 @@ const caresAboutTankStuff = (data) => {
         return caresAboutTankStuff(data);
       },
       infoText: function(data, matches, output) {
-        let name = data.ShortName(matches.source);
-        return output.text({ name: name });
+        return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
-          en: 'Hallowed: ${name}',
-          de: 'Heiliger Boden: ${name}',
-          fr: 'Invincible: ${name}',
-          ja: 'インビンシブル: ${name}',
-          cn: '神圣领域: ${name}',
-          ko: '천하무적: ${name}',
+          en: 'Hallowed: ${player}',
+          de: 'Heiliger Boden: ${player}',
+          fr: 'Invincible: ${player}',
+          ja: 'インビンシブル: ${player}',
+          cn: '神圣领域: ${player}',
+          ko: '천하무적: ${player}',
         },
       },
     },
@@ -133,17 +128,16 @@ const caresAboutTankStuff = (data) => {
         return caresAboutTankStuff(data);
       },
       infoText: function(data, matches, output) {
-        let name = data.ShortName(matches.source);
-        return output.text({ name: name });
+        return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
-          en: 'Bolide: ${name}',
-          de: 'Meteoritenfall: ${name}',
-          fr: 'Bolide: ${name}',
-          ja: 'ボーライド: ${name}',
-          cn: '超火流星: ${name}',
-          ko: '폭발 유성: ${name}',
+          en: 'Bolide: ${player}',
+          de: 'Meteoritenfall: ${player}',
+          fr: 'Bolide: ${player}',
+          ja: 'ボーライド: ${player}',
+          cn: '超火流星: ${player}',
+          ko: '폭발 유성: ${player}',
         },
       },
     },
@@ -156,17 +150,16 @@ const caresAboutTankStuff = (data) => {
         return caresAboutTankStuff(data);
       },
       infoText: function(data, matches, output) {
-        let name = data.ShortName(matches.source);
-        return output.text({ name: name });
+        return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
-          en: 'Living: ${name}',
-          de: 'Totenerweckung: ${name}',
-          fr: 'Mort-vivant: ${name}',
-          ja: 'リビングデッド: ${name}',
-          cn: '行尸走肉: ${name}',
-          ko: '산송장: ${name}',
+          en: 'Living: ${player}',
+          de: 'Totenerweckung: ${player}',
+          fr: 'Mort-vivant: ${player}',
+          ja: 'リビングデッド: ${player}',
+          cn: '行尸走肉: ${player}',
+          ko: '산송장: ${player}',
         },
       },
     },
@@ -179,17 +172,16 @@ const caresAboutTankStuff = (data) => {
         return caresAboutTankStuff(data);
       },
       infoText: function(data, matches, output) {
-        let name = data.ShortName(matches.source);
-        return output.text({ name: name });
+        return output.text({ player: data.ShortName(matches.source) });
       },
       outputStrings: {
         text: {
-          en: 'Walking: ${name}',
-          de: 'Erweckter: ${name}',
-          fr: 'Marcheur des limbes: ${name}',
-          ja: 'ウォーキングデッド: ${name}',
-          cn: '死而不僵: ${name}',
-          ko: '움직이는 시체: ${name}',
+          en: 'Walking: ${player}',
+          de: 'Erweckter: ${player}',
+          fr: 'Marcheur des limbes: ${player}',
+          ja: 'ウォーキングデッド: ${player}',
+          cn: '死而不僵: ${player}',
+          ko: '움직이는 시체: ${player}',
         },
       },
     },
