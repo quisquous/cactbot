@@ -166,15 +166,15 @@
       alarmText: function(data, matches, output) {
         if (data.me != matches.target)
           return;
-        return output.ga100OnYou();
+        return output.gaOnYou();
       },
       infoText: function(data, matches, output) {
         if (data.me == matches.target)
           return;
-        return output.ga100On({ player: data.ShortName(matches.target) });
+        return output.gaOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
-        ga100On: {
+        gaOn: {
           en: 'GA-100 on ${player}',
           de: 'GA-100 on ${player}',
           fr: 'GA-100 sur ${player}',
@@ -182,7 +182,7 @@
           cn: 'GA-100点${player}',
           ko: '"${player}" GA-100',
         },
-        ga100OnYou: {
+        gaOnYou: {
           en: 'GA-100 on YOU',
           de: 'GA-100 auf DIR',
           fr: 'GA-100 sur VOUS',
@@ -247,7 +247,7 @@
       alertText: function(data, _, output) {
         if (data.limitCutNumber % 2 == 1) {
           // Odds
-          return output.knockbackCleaveFaceOutside();
+          return output.knockbackCleave();
         }
 
         // Evens
@@ -260,7 +260,7 @@
         return output.facePlayer({ player: data.ShortName(partner) });
       },
       outputStrings: {
-        knockbackCleaveFaceOutside: {
+        knockbackCleave: {
           en: 'Knockback Cleave; Face Outside',
           de: 'Rückstoß Cleave; nach Außen schauen',
           fr: 'Poussée Cleave; Regardez vers l\'extérieur',
@@ -314,7 +314,7 @@
 
 
         if (data.role == 'tank' || data.role == 'healer' || data.job == 'BLU')
-          return output.sharedTankbusterOnplayer({ player: data.ShortName(matches.target) });
+          return output.sharedTankbusterOn({ player: data.ShortName(matches.target) });
       },
       outputStrings: {
         sharedTankbusterOnYou: {
@@ -325,10 +325,10 @@
           cn: '分摊死刑点名',
           ko: '쉐어 탱버 대상자',
         },
-        sharedTankbusterOnplayer: {
-          en: 'Shared Tankbuster on${player}',
-          de: 'Geteilter Tankbuster auf${player}',
-          fr: 'Tank buster à partager sur${player}',
+        sharedTankbusterOn: {
+          en: 'Shared Tankbuster on ${player}',
+          de: 'Geteilter Tankbuster auf ${player}',
+          fr: 'Tank buster à partager sur ${player}',
           ja: '${player}に頭割りタンクバスター',
           cn: '分摊死刑点${player}',
           ko: '"${player}" 쉐어 탱버',

@@ -291,12 +291,12 @@
       delaySeconds: 4,
       alertText: function(data, _, output) {
         if (data.role == 'tank')
-          return output.tankLasersavoidParty();
+          return output.tankLasers();
 
         return output.avoidTanks();
       },
       outputStrings: {
-        tankLasersavoidParty: {
+        tankLasers: {
           en: 'Tank lasers--Avoid party',
           de: 'Tank lasers--Weg von der Party',
           ja: 'タンクレザー - 外に',
