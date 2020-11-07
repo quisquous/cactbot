@@ -140,7 +140,6 @@
         if (data.mainTank != data.me)
           return;
         return output.scraplineOnYou();
-        // ...probably, we hope...
       },
       outputStrings: {
         scraplineOnYou: {

@@ -51,16 +51,16 @@
         return data.CanStun();
       },
       alertText: function(data, matches, output) {
-        return output.text({ param: matches.target });
+        return output.text({ name: matches.target });
       },
       outputStrings: {
         text: {
-          en: 'Stun ${param}',
-          de: 'Unterbreche ${param}',
-          fr: 'Stun ${param}',
-          ja: 'スタン: ${param}',
-          cn: '眩晕${param}',
-          ko: '${param}기절 시키기',
+          en: 'Stun ${name}',
+          de: 'Unterbreche ${name}',
+          fr: 'Stun ${name}',
+          ja: 'スタン: ${name}',
+          cn: '眩晕${name}',
+          ko: '${name}기절 시키기',
         },
       },
     },
