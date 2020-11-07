@@ -865,7 +865,7 @@ const Responses = {
     fr: 'RÉVEILLES-TOI',
     ja: '目を覚めて！',
     cn: '醒醒！动一动！！',
-    ko: '강제 퇴장 5분 전',
+    ko: '강제 퇴장 7분 전',
   }),
 };
 
