@@ -29,12 +29,12 @@
     {
       // Particle and spell effects make this particular Dark Mist hard to see.
       id: 'Haukke Normal Amandine Dark Mist Dodge',
-      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: 'Dame Amandine' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: 'レディ・アマンディヌ' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: '레이디 아망딘' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: '阿芒迪娜女士' }),
+      netRegex: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
+      netRegexDe: NetRegexes.startsUsing({ id: '2C1', source: 'Lady Amandine', capture: false }),
+      netRegexFr: NetRegexes.startsUsing({ id: '2C1', source: 'Dame Amandine', capture: false }),
+      netRegexJa: NetRegexes.startsUsing({ id: '2C1', source: 'レディ・アマンディヌ', capture: false }),
+      netRegexKo: NetRegexes.startsUsing({ id: '2C1', source: '레이디 아망딘', capture: false }),
+      netRegexCn: NetRegexes.startsUsing({ id: '2C1', source: '阿芒迪娜女士', capture: false }),
       condition: (data) => !data.CanStun(),
       response: Responses.outOfMelee('alert'),
     },
