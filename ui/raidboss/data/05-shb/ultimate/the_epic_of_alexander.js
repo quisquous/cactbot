@@ -2686,43 +2686,8 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '4891' }),
       netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '4891' }),
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4891' }),
-      alarmText: function(data, matches, output) {
-        if (data.role == 'tank' && data.me != matches.target)
-          return output.tankSwap();
-      },
       // Because this is two in a row, make this second one info.
-      infoText: function(data, matches, output) {
-        if (data.me == matches.target)
-          return output.tankBusterOnYou();
-
-        if (data.role == 'healer')
-          return output.busterOn({ player: data.ShortName(matches.target) });
-      },
-      outputStrings: {
-        tankBusterOnYou: {
-          en: 'Tank Buster on YOU',
-          de: 'Tankbuster auf DIR',
-          fr: 'Tank buster sur VOUS',
-          ja: '自分にタンクバスター',
-          ko: '나에게 탱크버스터',
-          cn: '死刑点名',
-        },
-        busterOn: {
-          en: 'Buster on ${player}',
-          de: 'Tankbuster auf ${player}',
-          fr: 'Tank buster sur ${player}',
-          ja: '${player}にタンクバスター',
-          ko: '${player}에게 탱크버스터',
-          cn: '死刑点 ${player}',
-        },
-        tankSwap: {
-          en: 'Tank Swap!',
-          de: 'Tank Wechsel!',
-          fr: 'Tank Swap !',
-          ko: '탱교대!',
-          cn: '换T!',
-        },
-      },
+      response: Responses.tankBusterSwap('info', 'alarm'),
     },
     {
       id: 'TEA Trine Get Middle',
@@ -3008,33 +2973,10 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '4894' }),
       // Don't collide with trine.
       delaySeconds: 2,
-      infoText: function(data, matches, output) {
-        if (data.me == matches.target)
-          return output.stackOnYou();
-
-        return output.stackOn({ player: data.ShortName(matches.target) });
-      },
+      response: Responses.stackMarkerOn('info'),
       run: function(data) {
         delete data.trine;
         delete data.secondTrineResponse;
-      },
-      outputStrings: {
-        stackOnYou: {
-          en: 'Stack on YOU',
-          de: 'Auf DIR sammeln',
-          ja: '自分にシェア',
-          fr: 'Package sur VOUS',
-          cn: '集合点名',
-          ko: '나에게 모이기',
-        },
-        stackOn: {
-          en: 'Stack on ${player}',
-          de: 'Auf ${player} sammeln',
-          fr: 'Packez-vous sur ${player}',
-          cn: '靠近 ${player}集合',
-          ja: '${player} にシェア',
-          ko: '${player}에게 모이기',
-        },
       },
     },
   ],
