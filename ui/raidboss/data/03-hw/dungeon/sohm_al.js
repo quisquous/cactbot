@@ -23,13 +23,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: 'キームス・マウンテン', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '圣山之糜', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '산의 유미즙', capture: false }),
-      alertText: {
-        en: 'Kill Chyme Add',
-        de: 'Brei Add töten',
-        fr: 'Tuez l\'add Chyme',
-        ja: 'キームス・マウンテンを倒す',
-        cn: '击杀圣山之糜',
-        ko: '산의 유미즙 처치',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Chyme Add',
+          de: 'Brei Add töten',
+          fr: 'Tuez l\'add Chyme',
+          ja: 'キームス・マウンテンを倒す',
+          cn: '击杀圣山之糜',
+          ko: '산의 유미즙 처치',
+        },
       },
     },
     {

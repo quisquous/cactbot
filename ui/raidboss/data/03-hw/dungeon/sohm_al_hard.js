@@ -39,13 +39,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1C32', source: 'スポアサック', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1C32', source: '포자 주머니', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Away from large pod',
-        de: 'Weg vom großen Pod',
-        fr: 'Éloignez-vous des spores',
-        ja: 'スポアサックに離れ',
-        cn: '远离大孢囊',
-        ko: '큰 포자 주머니에게서 떨어지기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away from large pod',
+          de: 'Weg vom großen Pod',
+          fr: 'Éloignez-vous des spores',
+          ja: 'スポアサックに離れ',
+          cn: '远离大孢囊',
+          ko: '큰 포자 주머니에게서 떨어지기',
+        },
       },
     },
     {
@@ -159,13 +162,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1C3E', source: '熔岩蝎' }),
       netRegexKo: NetRegexes.startsUsing({ id: '1C3E', source: '용암 전갈' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Drop puddle outside',
-        de: 'Fläche draußen ablegen',
-        fr: 'Déposez la zone au sol à l\'extérieur',
-        ja: '外周に置く',
-        cn: '人群外放圈圈',
-        ko: '용암지대 생성 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop puddle outside',
+          de: 'Fläche draußen ablegen',
+          fr: 'Déposez la zone au sol à l\'extérieur',
+          ja: '外周に置く',
+          cn: '人群外放圈圈',
+          ko: '용암지대 생성 대상자',
+        },
       },
     },
     {

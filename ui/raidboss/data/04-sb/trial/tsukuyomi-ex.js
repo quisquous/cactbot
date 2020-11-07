@@ -244,13 +244,16 @@
       condition: function(data, matches) {
         return matches.target == data.me && data.moonlitCount >= 4;
       },
-      infoText: {
-        en: 'Move to Black!',
-        de: 'In\'s schwarze laufen!',
-        fr: 'Bougez en zone noire !',
-        ja: '新月に！',
-        cn: '踩黑色！',
-        ko: '검정색으로 이동!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move to Black!',
+          de: 'In\'s schwarze laufen!',
+          fr: 'Bougez en zone noire !',
+          ja: '新月に！',
+          cn: '踩黑色！',
+          ko: '검정색으로 이동!',
+        },
       },
     },
     {
@@ -277,13 +280,16 @@
       condition: function(data, matches) {
         return matches.target == data.me && data.moonshadowedCount >= 4;
       },
-      infoText: {
-        en: 'Move to White!',
-        de: 'In\'s weiße laufen!',
-        fr: 'Bougez en zone blanche !',
-        ja: '満月に！',
-        cn: '踩白色！',
-        ko: '흰색으로 이동!',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move to White!',
+          de: 'In\'s weiße laufen!',
+          fr: 'Bougez en zone blanche !',
+          ja: '満月に！',
+          cn: '踩白色！',
+          ko: '흰색으로 이동!',
+        },
       },
     },
   ],

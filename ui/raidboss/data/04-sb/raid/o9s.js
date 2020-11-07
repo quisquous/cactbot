@@ -246,13 +246,16 @@
         // Got 10 seconds (tank)
         return 19;
       },
-      infoText: {
-        en: 'Hide Middle',
-        de: 'Zur Mitte',
-        fr: 'Allez au centre',
-        ja: '中央へ',
-        cn: '中间躲避',
-        ko: '중앙으로 모이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Middle',
+          de: 'Zur Mitte',
+          fr: 'Allez au centre',
+          ja: '中央へ',
+          cn: '中间躲避',
+          ko: '중앙으로 모이기',
+        },
       },
     },
     {
@@ -268,13 +271,16 @@
       },
       // Each big bang has its own cast, so suppress.
       suppressSeconds: 1,
-      alertText: {
-        en: 'Hide Middle',
-        de: 'Zur Mitte',
-        fr: 'Allez au centre',
-        ja: '中央へ',
-        cn: '中间躲避',
-        ko: '중앙으로 모이기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Middle',
+          de: 'Zur Mitte',
+          fr: 'Allez au centre',
+          ja: '中央へ',
+          cn: '中间躲避',
+          ko: '중앙으로 모이기',
+        },
       },
     },
     // Water Path
@@ -300,13 +306,16 @@
       delaySeconds: 5,
       suppressSeconds: 1,
       // T/H get 10s & DPS get 17s
-      infoText: {
-        en: 'Stack Donut',
-        de: 'Sammeln Donut',
-        fr: 'Packez-vous',
-        ja: 'スタック',
-        cn: '集合放月环',
-        ko: '도넛 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Donut',
+          de: 'Sammeln Donut',
+          fr: 'Packez-vous',
+          ja: 'スタック',
+          cn: '集合放月环',
+          ko: '도넛 쉐어',
+        },
       },
     },
     {
@@ -318,13 +327,16 @@
       // T/H get 10s & DPS get 17s
       delaySeconds: 12,
       suppressSeconds: 1,
-      infoText: {
-        en: 'Stack Donut',
-        de: 'Sammeln Donut',
-        fr: 'Packez-vous',
-        ja: 'スタック',
-        cn: '集合放月环',
-        ko: '도넛 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Donut',
+          de: 'Sammeln Donut',
+          fr: 'Packez-vous',
+          ja: 'スタック',
+          cn: '集合放月环',
+          ko: '도넛 쉐어',
+        },
       },
     },
     {
@@ -336,13 +348,16 @@
       // enrage -> 6s
       delaySeconds: 1,
       suppressSeconds: 1,
-      infoText: {
-        en: 'Stack Donut',
-        de: 'Sammeln Donut',
-        fr: 'Packez-vous',
-        ja: 'スタック',
-        cn: '集合放月环',
-        ko: '도넛 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Donut',
+          de: 'Sammeln Donut',
+          fr: 'Packez-vous',
+          ja: 'スタック',
+          cn: '集合放月环',
+          ko: '도넛 쉐어',
+        },
       },
     },
     {
@@ -489,16 +504,19 @@
       condition: function(data, matches) {
         return data.me == matches.target && data.phaseType != 'orb';
       },
-      infoText: {
-        en: 'Die on next mechanic',
-        de: 'An nächster Mechanik tödlichen Schaden nehmen',
-        fr: 'Mourrez sur la prochaine mécanique',
-        ja: '次のギミックで死んでね',
-        cn: '想办法找死',
-        ko: '다음 기믹에 맞기 (디버프)',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.primordialCrust = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Die on next mechanic',
+          de: 'An nächster Mechanik tödlichen Schaden nehmen',
+          fr: 'Mourrez sur la prochaine mécanique',
+          ja: '次のギミックで死んでね',
+          cn: '想办法找死',
+          ko: '다음 기믹에 맞기 (디버프)',
+        },
       },
     },
     {
@@ -516,13 +534,16 @@
       id: 'O9S Earth Stack Marker',
       netRegex: NetRegexes.headMarker({ id: '003E', capture: false }),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Stack with partner',
-        de: 'Stacks verteilen',
-        fr: 'Packez-vous en binôme',
-        ja: '相手と頭割り',
-        cn: '与伙伴重合',
-        ko: '파트너랑 모이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack with partner',
+          de: 'Stacks verteilen',
+          fr: 'Packez-vous en binôme',
+          ja: '相手と頭割り',
+          cn: '与伙伴重合',
+          ko: '파트너랑 모이기',
+        },
       },
     },
 
@@ -574,13 +595,16 @@
       delaySeconds: function(data, matches) {
         return parseFloat(matches.duration) - 5;
       },
-      infoText: {
-        en: 'Hit DPS with Water',
-        de: 'töte deinen DPS',
-        fr: 'Tuez les DPS',
-        ja: '水当てて',
-        cn: '水环害死DPS',
-        ko: '딜러 물 맞기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hit DPS with Water',
+          de: 'töte deinen DPS',
+          fr: 'Tuez les DPS',
+          ja: '水当てて',
+          cn: '水环害死DPS',
+          ko: '딜러 물 맞기',
+        },
       },
     },
 

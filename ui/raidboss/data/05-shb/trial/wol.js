@@ -11,13 +11,16 @@
       condition: function(data) {
         return data.role === 'tank';
       },
-      alarmText: {
-        en: 'Limit break now!',
-        de: 'Limit break jetzt!',
-        fr: 'Transcendance maintenant !',
-        ja: 'タンクLBを！',
-        cn: '坦克LB！',
-        ko: '리미트 브레이크!',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Limit break now!',
+          de: 'Limit break jetzt!',
+          fr: 'Transcendance maintenant !',
+          ja: 'タンクLBを！',
+          cn: '坦克LB！',
+          ko: '리미트 브레이크!',
+        },
       },
     },
     {
@@ -25,13 +28,16 @@
       regex: /Meteor Impact 1/,
       beforeSeconds: 10,
       durationSeconds: 8,
-      infoText: {
-        en: 'Get Towers',
-        de: 'Türme nehmen',
-        fr: 'Allez dans les tours',
-        ja: '塔を踏む',
-        ko: '장판 들어가기',
-        cn: '踩塔',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Towers',
+          de: 'Türme nehmen',
+          fr: 'Allez dans les tours',
+          ja: '塔を踏む',
+          ko: '장판 들어가기',
+          cn: '踩塔',
+        },
       },
     },
   ],
@@ -46,13 +52,16 @@
         return data.role === 'healer';
       },
       suppressSeconds: 5,
-      alertText: {
-        en: 'Full Heal Everyone',
-        de: 'Alle voll heilen',
-        fr: 'Soignez tout le monde complètement',
-        ja: 'HPを満タンさせ！',
-        ko: '전원 체력 풀피로',
-        cn: '奶满全队',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Full Heal Everyone',
+          de: 'Alle voll heilen',
+          fr: 'Soignez tout le monde complètement',
+          ja: 'HPを満タンさせ！',
+          ko: '전원 체력 풀피로',
+          cn: '奶满全队',
+        },
       },
     },
     {
@@ -186,13 +195,16 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '4F42', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '4F42', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '4F42', capture: false }),
-      infoText: {
-        en: 'Out of Triangle',
-        de: 'Raus aus den Dreiecken',
-        fr: 'En dehors du triangle',
-        ja: '三角の外へ',
-        ko: '삼각형 밖으로',
-        cn: '站在三角外面',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out of Triangle',
+          de: 'Raus aus den Dreiecken',
+          fr: 'En dehors du triangle',
+          ja: '三角の外へ',
+          ko: '삼각형 밖으로',
+          cn: '站在三角外面',
+        },
       },
     },
     {
@@ -205,13 +217,16 @@
       // This applies to both phases.  We could say something like "go side without wyrm" and
       // "go to corner without wyrm", but "avoid wyrm dash" covers both.  Hopefully it's obvious
       // not to stand in the giant black circle.
-      infoText: {
-        en: 'Avoid Wyrm Dash',
-        de: 'Wyrm-Ansturm ausweichen',
-        fr: 'Esquivez la charge du Wyrm',
-        ja: '竜を避け',
-        ko: '용 돌진 피하기',
-        cn: '躲避龙的冲锋',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Wyrm Dash',
+          de: 'Wyrm-Ansturm ausweichen',
+          fr: 'Esquivez la charge du Wyrm',
+          ja: '竜を避け',
+          ko: '용 돌진 피하기',
+          cn: '躲避龙的冲锋',
+        },
       },
     },
     {
@@ -236,16 +251,19 @@
       id: 'WOL Deluge of Death Marker',
       netRegex: NetRegexes.headMarker({ id: '0057' }),
       condition: Conditions.targetIsYou(),
-      alarmText: {
-        en: 'GTFO',
-        de: 'GTFO',
-        fr: 'Cassez-vous',
-        ja: '出ていて！',
-        ko: '진영 벗어나기!',
-        cn: '快出去！',
-      },
+      alarmText: (data, _, output) => output.text(),
       run: function(data, matches) {
         data.deluge = matches.target;
+      },
+      outputStrings: {
+        text: {
+          en: 'GTFO',
+          de: 'GTFO',
+          fr: 'Cassez-vous',
+          ja: '出ていて！',
+          ko: '진영 벗어나기!',
+          cn: '快出去！',
+        },
       },
     },
     {
@@ -281,26 +299,32 @@
       netRegexDe: NetRegexes.startsUsing({ source: 'Krieger Des Lichts', id: '515D', capture: false }),
       netRegexFr: NetRegexes.startsUsing({ source: 'Guerrier De La Lumière Primordial', id: '515D', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'ウォーリア・オブ・ライト', id: '515D', capture: false }),
-      alertText: {
-        en: 'Stack Groups',
-        de: 'Gruppen stacken',
-        fr: 'Package de groupe',
-        ja: '集合',
-        ko: '쉐어징 모이기',
-        cn: '集合',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Groups',
+          de: 'Gruppen stacken',
+          fr: 'Package de groupe',
+          ja: '集合',
+          ko: '쉐어징 모이기',
+          cn: '集合',
+        },
       },
     },
     {
       id: 'WOL Radiant Meteor',
       netRegex: NetRegexes.headMarker({ id: '00E9' }),
       condition: Conditions.targetIsYou(),
-      alarmText: {
-        en: 'Go to Corner',
-        de: 'In die Ecken gehenr',
-        fr: 'Allez dans un coin',
-        ja: 'コーナーへ',
-        ko: '구석으로',
-        cn: '到角落',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Go to Corner',
+          de: 'In die Ecken gehenr',
+          fr: 'Allez dans un coin',
+          ja: 'コーナーへ',
+          ko: '구석으로',
+          cn: '到角落',
+        },
       },
     },
     {
@@ -319,13 +343,16 @@
       netRegexFr: NetRegexes.tether({ source: 'Egi Spectral', id: '0011' }),
       netRegexJa: NetRegexes.tether({ source: '幻光の召喚獣', id: '0011' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Point tether outside',
-        de: 'Verbindungen nach Außen zeigen',
-        fr: 'Pointez le lien vers l\'extérieur',
-        ja: '線を外に引く',
-        ko: '선 연결 바깥으로 빼기',
-        cn: '把线拉向外面',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Point tether outside',
+          de: 'Verbindungen nach Außen zeigen',
+          fr: 'Pointez le lien vers l\'extérieur',
+          ja: '線を外に引く',
+          ko: '선 연결 바깥으로 빼기',
+          cn: '把线拉向外面',
+        },
       },
     },
   ],

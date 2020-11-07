@@ -12,26 +12,32 @@
       id: 'E2S Punishing Ray',
       regex: /Punishing Ray/,
       beforeSeconds: 9,
-      infoText: {
-        en: 'Get Puddles',
-        de: 'Flächen nehmen',
-        fr: 'Allez dans les zones au sol',
-        ja: '踏む',
-        cn: '踩圈',
-        ko: '바닥 징 밟기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Puddles',
+          de: 'Flächen nehmen',
+          fr: 'Allez dans les zones au sol',
+          ja: '踏む',
+          cn: '踩圈',
+          ko: '바닥 징 밟기',
+        },
       },
     },
     {
       id: 'E2S Buddy Circles',
       regex: /Light\/Dark Circles/,
       beforeSeconds: 5,
-      alarmText: {
-        en: 'Stack With Partner',
-        de: 'Mit Partner stacken',
-        fr: 'Packez-vous avec votre partenaire',
-        ja: '白黒合わせて',
-        cn: '黑白配',
-        ko: '흑백 파트너랑 모이기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack With Partner',
+          de: 'Mit Partner stacken',
+          fr: 'Packez-vous avec votre partenaire',
+          ja: '白黒合わせて',
+          cn: '黑白配',
+          ko: '흑백 파트너랑 모이기',
+        },
       },
     },
   ],
@@ -110,13 +116,16 @@
       condition: function(data) {
         return data.role == 'healer';
       },
-      infoText: {
-        en: 'Tank Busters',
-        de: 'Tank buster',
-        fr: 'Tank buster',
-        ja: 'タンクバスター',
-        cn: '死刑',
-        ko: '탱버',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Busters',
+          de: 'Tank buster',
+          fr: 'Tank buster',
+          ja: 'タンクバスター',
+          cn: '死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -127,13 +136,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E63', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E63', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E63', source: '보이드워커', capture: false }),
-      alertText: {
-        en: 'Protean',
-        de: 'Himmelsrichtungen',
-        fr: 'Position',
-        ja: '散開',
-        cn: '分散站位',
-        ko: '정해진 위치로 산개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Protean',
+          de: 'Himmelsrichtungen',
+          fr: 'Position',
+          ja: '散開',
+          cn: '分散站位',
+          ko: '정해진 위치로 산개',
+        },
       },
     },
     {
@@ -174,13 +186,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3E6B', source: 'エレボスの巨腕', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3E6B', source: '厄瑞玻斯的巨腕', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3E6B', source: '에레보스의 팔', capture: false }),
-      alertText: {
-        en: 'Away From Hand',
-        de: 'Weg von der Hand',
-        fr: 'Éloignez-vous de la main',
-        ja: '手から離れ',
-        cn: '远离手',
-        ko: '팔에서 멀어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Hand',
+          de: 'Weg von der Hand',
+          fr: 'Éloignez-vous de la main',
+          ja: '手から離れ',
+          cn: '远离手',
+          ko: '팔에서 멀어지기',
+        },
       },
     },
     {
@@ -208,13 +223,16 @@
       condition: function(data, matches) {
         return data.waiting && data.me == matches.target;
       },
-      infoText: {
-        en: 'Delayed Stack',
-        de: 'Verzögertes stacken',
-        fr: 'Package retardé',
-        ja: 'スタック(ディレイ)',
-        cn: '延迟集合',
-        ko: '지연술 쉐어징',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Stack',
+          de: 'Verzögertes stacken',
+          fr: 'Package retardé',
+          ja: 'スタック(ディレイ)',
+          cn: '延迟集合',
+          ko: '지연술 쉐어징',
+        },
       },
     },
     {
@@ -250,13 +268,16 @@
       condition: function(data, matches) {
         return data.waiting && data.me == matches.target;
       },
-      infoText: {
-        en: 'Delayed Fire',
-        de: 'Verzögertes Feuer',
-        fr: 'Feu retardé',
-        ja: 'マーカーついた(ディレイ)',
-        cn: '延迟火',
-        ko: '지연술 파이가',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Fire',
+          de: 'Verzögertes Feuer',
+          fr: 'Feu retardé',
+          ja: 'マーカーついた(ディレイ)',
+          cn: '延迟火',
+          ko: '지연술 파이가',
+        },
       },
     },
     {
@@ -311,13 +332,16 @@
       condition: function(data, matches) {
         return data.waiting && data.me == matches.target;
       },
-      infoText: {
-        en: 'Delayed Shadoweye',
-        de: 'Verzögertes Schattenauge',
-        fr: 'Œil de l\'ombre retardé',
-        ja: 'シャドウアイ(ディレイ)',
-        cn: '延迟石化眼',
-        ko: '지연술 시선징',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Shadoweye',
+          de: 'Verzögertes Schattenauge',
+          fr: 'Œil de l\'ombre retardé',
+          ja: 'シャドウアイ(ディレイ)',
+          cn: '延迟石化眼',
+          ko: '지연술 시선징',
+        },
       },
     },
     {
@@ -328,13 +352,16 @@
       },
       delaySeconds: 2,
       suppressSeconds: 10,
-      infoText: {
-        en: 'Eye on YOU',
-        de: 'Auge auf DIR',
-        fr: 'Œil sur VOUS',
-        ja: '自分に目',
-        cn: '石化眼点名',
-        ko: '시선징 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Eye on YOU',
+          de: 'Auge auf DIR',
+          fr: 'Œil sur VOUS',
+          ja: '自分に目',
+          cn: '石化眼点名',
+          ko: '시선징 대상자',
+        },
       },
     },
     {
@@ -355,13 +382,16 @@
       condition: function(data, matches) {
         return !data.waiting && data.me == matches.target;
       },
-      alertText: {
-        en: 'Flare',
-        de: 'Flare',
-        fr: 'Brasier',
-        ja: 'フレア捨てて',
-        cn: '核爆',
-        ko: '플레어',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Flare',
+          de: 'Flare',
+          fr: 'Brasier',
+          ja: 'フレア捨てて',
+          cn: '核爆',
+          ko: '플레어',
+        },
       },
     },
     {
@@ -381,13 +411,16 @@
       condition: function(data, matches) {
         return data.waiting && data.me == matches.target;
       },
-      infoText: {
-        en: 'Delayed Flare',
-        de: 'Verzögerte Flare',
-        fr: 'Brasier retardé',
-        ja: 'フレア(ディレイ)',
-        cn: '延迟核爆',
-        ko: '지연술 플레어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Flare',
+          de: 'Verzögerte Flare',
+          fr: 'Brasier retardé',
+          ja: 'フレア(ディレイ)',
+          cn: '延迟核爆',
+          ko: '지연술 플레어',
+        },
       },
     },
     {
@@ -396,13 +429,16 @@
       condition: function(data, matches) {
         return data.me == matches.target && data.spell[data.me] == 'flare';
       },
-      alertText: {
-        en: 'Flare',
-        de: 'Flare',
-        fr: 'Brasier',
-        ja: 'フレア捨てて',
-        cn: '核爆',
-        ko: '플레어',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Flare',
+          de: 'Flare',
+          fr: 'Brasier',
+          ja: 'フレア捨てて',
+          cn: '核爆',
+          ko: '플레어',
+        },
       },
     },
     {
@@ -414,13 +450,16 @@
         return data.spell[matches.target] == 'flare' && data.spell[data.me] != 'flare';
       },
       suppressSeconds: 10,
-      infoText: {
-        en: 'Flare aoes',
-        de: 'Flare aoes',
-        fr: 'Brasiers AoE',
-        ja: 'フレア AoE',
-        cn: '核爆AOE',
-        ko: '플레어 터짐',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Flare aoes',
+          de: 'Flare aoes',
+          fr: 'Brasiers AoE',
+          ja: 'フレア AoE',
+          cn: '核爆AOE',
+          ko: '플레어 터짐',
+        },
       },
     },
     {
@@ -430,16 +469,19 @@
         return !data.waiting && data.me == matches.target;
       },
       // The "no waiting" version comes paired with a stack.
-      alarmText: {
-        en: 'Hell Wind: Get Out',
-        de: 'Höllenwind: Raus gehen',
-        fr: 'Vent infernal : Sortez',
-        ja: 'ヘルウィンド: HP1になるよ',
-        cn: '地狱之风：远离',
-        ko: '홍옥징 대상자',
-      },
+      alarmText: (data, _, output) => output.text(),
       run: function(data) {
         data.hellWind = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Hell Wind: Get Out',
+          de: 'Höllenwind: Raus gehen',
+          fr: 'Vent infernal : Sortez',
+          ja: 'ヘルウィンド: HP1になるよ',
+          cn: '地狱之风：远离',
+          ko: '홍옥징 대상자',
+        },
       },
     },
     {
@@ -470,13 +512,16 @@
       condition: function(data, matches) {
         return data.waiting && data.me == matches.target;
       },
-      infoText: {
-        en: 'Delayed Hell Wind',
-        de: 'Verzögerte Höllenwind',
-        fr: 'Vent infernal retardé',
-        ja: 'ヘルウィンド(ディレイ)',
-        cn: '延迟地狱之风',
-        ko: '지연술 홍옥징',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Delayed Hell Wind',
+          de: 'Verzögerte Höllenwind',
+          fr: 'Vent infernal retardé',
+          ja: 'ヘルウィンド(ディレイ)',
+          cn: '延迟地狱之风',
+          ko: '지연술 홍옥징',
+        },
       },
     },
     {
@@ -487,13 +532,16 @@
           return false;
         return data.me == matches.target && data.spell[data.me] == 'wind';
       },
-      alertText: {
-        en: 'Hell Wind: wait for heals',
-        de: 'Höllenwind: Warte auf Heilung',
-        fr: 'Vent infernal : attendez pour soigner',
-        ja: 'ヘルウィンド: HP戻ってから',
-        cn: '地狱之风：等奶',
-        ko: '힐 받고 들어가기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hell Wind: wait for heals',
+          de: 'Höllenwind: Warte auf Heilung',
+          fr: 'Vent infernal : attendez pour soigner',
+          ja: 'ヘルウィンド: HP戻ってから',
+          cn: '地狱之风：等奶',
+          ko: '힐 받고 들어가기',
+        },
       },
     },
     {
@@ -505,13 +553,16 @@
         return data.spell[matches.target] == 'wind';
       },
       suppressSeconds: 10,
-      infoText: {
-        en: 'Heal Hell Wind Targets',
-        de: 'Heile Höllenwind Ziele',
-        fr: 'Soignez les cibles de Vent infernal',
-        ja: 'HP戻して',
-        cn: '奶地狱之风目标',
-        ko: '홍옥징 대상자 힐',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Heal Hell Wind Targets',
+          de: 'Heile Höllenwind Ziele',
+          fr: 'Soignez les cibles de Vent infernal',
+          ja: 'HP戻して',
+          cn: '奶地狱之风目标',
+          ko: '홍옥징 대상자 힐',
+        },
       },
     },
     {
@@ -531,13 +582,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '4659', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '4659', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '4659', source: '보이드워커', capture: false }),
-      infoText: {
-        en: 'In, Protean, Sides',
-        de: 'Rein, Himmelsrichtungen, Seiten',
-        fr: 'Intérieur, Position, Côtés',
-        ja: '中 => 散開 => 横',
-        cn: '脚下 => 站位 => 两侧',
-        ko: '중앙 => 산개 => 측면',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'In, Protean, Sides',
+          de: 'Rein, Himmelsrichtungen, Seiten',
+          fr: 'Intérieur, Position, Côtés',
+          ja: '中 => 散開 => 横',
+          cn: '脚下 => 站位 => 两侧',
+          ko: '중앙 => 산개 => 측면',
+        },
       },
     },
     {
@@ -548,13 +602,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '40B9', source: 'ヴォイドウォーカー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '40B9', source: '虚无行者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '40B9', source: '보이드워커', capture: false }),
-      infoText: {
-        en: 'Sides, In, Protean',
-        de: 'Seiten, Rein, Himmelsrichtungen',
-        fr: 'Côtés, Intérieur, Position',
-        ja: '横 => 中 => 散開',
-        cn: '两侧 => 脚下 => 站位',
-        ko: '측면 => 중앙 => 산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Sides, In, Protean',
+          de: 'Seiten, Rein, Himmelsrichtungen',
+          fr: 'Côtés, Intérieur, Position',
+          ja: '横 => 中 => 散開',
+          cn: '两侧 => 脚下 => 站位',
+          ko: '측면 => 중앙 => 산개',
+        },
       },
     },
   ],

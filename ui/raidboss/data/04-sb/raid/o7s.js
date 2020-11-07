@@ -82,13 +82,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2788', source: 'ガーディアン', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2788', source: '守护者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2788', source: '가디언', capture: false }),
-      alertText: {
-        en: 'Magitek Ray',
-        de: 'Magitek-Laser',
-        fr: 'Rayon Magitek',
-        ko: '마도 레이저',
-        ja: '魔導レーザー',
-        cn: '直线AOE',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Magitek Ray',
+          de: 'Magitek-Laser',
+          fr: 'Rayon Magitek',
+          ko: '마도 레이저',
+          ja: '魔導レーザー',
+          cn: '直线AOE',
+        },
       },
     },
     {
@@ -107,13 +110,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Orb Marker',
-        de: 'Orb Marker',
-        fr: 'Orbe',
-        ko: '원자 파동 징',
-        ja: 'マーカー',
-        cn: '死刑点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orb Marker',
+          de: 'Orb Marker',
+          fr: 'Orbe',
+          ko: '원자 파동 징',
+          ja: 'マーカー',
+          cn: '死刑点名',
+        },
       },
     },
     {
@@ -163,13 +169,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Abandonment: stay middle',
-        de: 'Verlassen: Bleib mittig',
-        fr: 'Isolement : restez au milieu',
-        ko: '고독감: 중앙에 있기',
-        ja: '孤独: 内側へ',
-        cn: '呆在中间',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Abandonment: stay middle',
+          de: 'Verlassen: Bleib mittig',
+          fr: 'Isolement : restez au milieu',
+          ko: '고독감: 중앙에 있기',
+          ja: '孤独: 内側へ',
+          cn: '呆在中间',
+        },
       },
     },
     {

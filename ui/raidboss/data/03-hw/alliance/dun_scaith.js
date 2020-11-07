@@ -30,13 +30,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C7F', '1C90'], source: '虚空死亡凝视', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C7F', '1C90'], source: '공허의 저승파수꾼', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Out of death circle',
-        de: 'Raus aus den Todeskreisen',
-        fr: 'Sortez du cercle de mort',
-        ja: 'ヴォイド・デス、外へ',
-        cn: '离开圈内并扯断连线',
-        ko: '데스 장판 빠져나오기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out of death circle',
+          de: 'Raus aus den Todeskreisen',
+          fr: 'Sortez du cercle de mort',
+          ja: 'ヴォイド・デス、外へ',
+          cn: '离开圈内并扯断连线',
+          ko: '데스 장판 빠져나오기',
+        },
       },
     },
     {
@@ -53,13 +56,16 @@
       condition: function(data) {
         return data.CanCleanse();
       },
-      alertText: {
-        en: 'Cleanse Doom soon!',
-        de: 'Verhängnis bald reinigen!',
-        fr: 'Guerrissez Glas bientot',
-        ja: '死の宣告、エスナ！',
-        cn: '尽快驱散死亡宣告！',
-        ko: '죽음의 선고 해제',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse Doom soon!',
+          de: 'Verhängnis bald reinigen!',
+          fr: 'Guerrissez Glas bientot',
+          ja: '死の宣告、エスナ！',
+          cn: '尽快驱散死亡宣告！',
+          ko: '죽음의 선고 해제',
+        },
       },
     },
     {
@@ -79,13 +85,16 @@
       id: 'Dun Scaith Void Sprite',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5508', capture: false }),
       suppressSeconds: 10,
-      infoText: {
-        en: 'Kill sprites',
-        de: 'Exergone töten',
-        fr: 'Tuez les adds',
-        ja: 'スプライトを倒す',
-        cn: '击杀虚无元精',
-        ko: '광대 잡기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill sprites',
+          de: 'Exergone töten',
+          fr: 'Tuez les adds',
+          ja: 'スプライトを倒す',
+          cn: '击杀虚无元精',
+          ko: '광대 잡기',
+        },
       },
     },
     {
@@ -94,13 +103,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Drop Tornado outside',
-        de: 'Wirbel draußen ablegen',
-        fr: 'Déposez les tornades à l\'extérieur',
-        ja: 'エアロガ、外に置く',
-        cn: '场地边缘放风圈',
-        ko: '회오리 외곽으로 유도',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drop Tornado outside',
+          de: 'Wirbel draußen ablegen',
+          fr: 'Déposez les tornades à l\'extérieur',
+          ja: 'エアロガ、外に置く',
+          cn: '场地边缘放风圈',
+          ko: '회오리 외곽으로 유도',
+        },
       },
     },
     {
@@ -129,13 +141,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: '虚空死亡凝视', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: ['1C82', '1C83'], source: '공허의 저승파수꾼', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Avoid death squares',
-        de: 'Weiche den Todes-Feldern aus',
-        fr: 'Evitez les carrés mortels',
-        ja: 'ヴォイド・デスジャ、エリアの外に',
-        cn: '离开即死区域',
-        ko: '검은 장판 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid death squares',
+          de: 'Weiche den Todes-Feldern aus',
+          fr: 'Evitez les carrés mortels',
+          ja: 'ヴォイド・デスジャ、エリアの外に',
+          cn: '离开即死区域',
+          ko: '검은 장판 피하기',
+        },
       },
     },
     // FERDIAD
@@ -280,13 +295,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1CAA', source: 'フェルディア・ホロー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1CAA', source: '虚空弗迪亚', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1CAA', source: '공허의 페르디아', capture: false }),
-      infoText: {
-        en: 'Avoid puddles',
-        de: 'Flächen ausweichen',
-        fr: 'Evitez les zones au sol',
-        ja: '円範囲攻撃、避け',
-        cn: '离开圈圈',
-        ko: '장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid puddles',
+          de: 'Flächen ausweichen',
+          fr: 'Evitez les zones au sol',
+          ja: '円範囲攻撃、避け',
+          cn: '离开圈圈',
+          ko: '장판 피하기',
+        },
       },
     },
     {
@@ -294,13 +312,16 @@
       id: 'Dun Scaith Debilitator Fire',
       netRegex: NetRegexes.gainsEffect({ effectId: '471', capture: false }),
       suppressSeconds: 10,
-      alertText: {
-        en: 'Change puddles to water',
-        de: 'Ändere Flächen zu Wasser',
-        fr: 'Changez en eau',
-        ja: '青い水に入れ替わって',
-        cn: '将地上的圈踩成蓝色',
-        ko: '파란 장판으로 바꾸기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Change puddles to water',
+          de: 'Ändere Flächen zu Wasser',
+          fr: 'Changez en eau',
+          ja: '青い水に入れ替わって',
+          cn: '将地上的圈踩成蓝色',
+          ko: '파란 장판으로 바꾸기',
+        },
       },
     },
     {
@@ -308,13 +329,16 @@
       id: 'Dun Scaith Debilitator Water',
       netRegex: NetRegexes.gainsEffect({ effectId: '485', capture: false }),
       suppressSeconds: 10,
-      alertText: {
-        en: 'Change puddles to fire',
-        de: 'Ändere Flächen zu Feuer',
-        fr: 'Changez en feu',
-        ja: '赤い火に入れ替わって',
-        cn: '将地上的圈踩成红色',
-        ko: '빨간 장판으로 바꾸기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Change puddles to fire',
+          de: 'Ändere Flächen zu Feuer',
+          fr: 'Changez en feu',
+          ja: '赤い火に入れ替わって',
+          cn: '将地上的圈踩成红色',
+          ko: '빨간 장판으로 바꾸기',
+        },
       },
     },
     // PROTO-ULTIMA
@@ -354,26 +378,32 @@
       id: 'Dun Scaith Bit Circles',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3782', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Avoid Bit AoEs',
-        de: 'Weiche den Bit AoEs aus',
-        fr: 'Evitez les AoE des forets',
-        ja: 'AoEを避け',
-        cn: '躲避小型AOE',
-        ko: '비트 장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Bit AoEs',
+          de: 'Weiche den Bit AoEs aus',
+          fr: 'Evitez les AoE des forets',
+          ja: 'AoEを避け',
+          cn: '躲避小型AOE',
+          ko: '비트 장판 피하기',
+        },
       },
     },
     {
       id: 'Dun Scaith Aether Collectors',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '3781', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Kill collectors',
-        de: 'Ätherakkumulator besiegen',
-        fr: 'Détruisez les accumulateurs',
-        ja: 'エーテル集積器を倒す',
-        cn: '击杀以太收集器',
-        ko: '에테르 집적기 파괴',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill collectors',
+          de: 'Ätherakkumulator besiegen',
+          fr: 'Détruisez les accumulateurs',
+          ja: 'エーテル集積器を倒す',
+          cn: '击杀以太收集器',
+          ko: '에테르 집적기 파괴',
+        },
       },
     },
     // SCATHACH
@@ -387,13 +417,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '1D1[EF]', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D1[EF]', source: '스카하크', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Avoid arm slaps',
-        de: 'Weiche den Armschlägen aus',
-        fr: 'Evitez les bras',
-        ja: '影の手を避け',
-        cn: '站在boss背后方向',
-        ko: '날개 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid arm slaps',
+          de: 'Weiche den Armschlägen aus',
+          fr: 'Evitez les bras',
+          ja: '影の手を避け',
+          cn: '站在boss背后方向',
+          ko: '날개 피하기',
+        },
       },
     },
     {
@@ -415,13 +448,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1D2F', source: 'スカアハ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1D2F', source: '斯卡哈', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1D2F', source: '스카하크', capture: false }),
-      infoText: {
-        en: 'Avoid line AoEs',
-        de: 'Weiche den Linien AoEs aus',
-        fr: 'Evitez les AoE en ligne',
-        ja: 'スカサハの正面に立たない',
-        cn: '躲开boss正面路线',
-        ko: '직선 장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid line AoEs',
+          de: 'Weiche den Linien AoEs aus',
+          fr: 'Evitez les AoE en ligne',
+          ja: 'スカサハの正面に立たない',
+          cn: '躲开boss正面路线',
+          ko: '직선 장판 피하기',
+        },
       },
     },
     {
@@ -454,13 +490,16 @@
       id: 'Dun Scaith Shadow Limb Spawn',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5516', capture: false }),
       suppressSeconds: 5,
-      alertText: {
-        en: 'Kill the hands',
-        de: 'Besiege die Hand',
-        fr: 'Tuez les mains',
-        ja: '影の手を倒す',
-        cn: '击杀影之手',
-        ko: '손 처치하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill the hands',
+          de: 'Besiege die Hand',
+          fr: 'Tuez les mains',
+          ja: '影の手を倒す',
+          cn: '击杀影之手',
+          ko: '손 처치하기',
+        },
       },
     },
     {
@@ -471,13 +510,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '1CD1', source: 'コンラ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '1CD1', source: '康拉', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '1CD1', source: '콘라', capture: false }),
-      alertText: {
-        en: 'Avoid AoE, Kill Connla',
-        de: 'Weiche AoE aus, besiege Connla',
-        fr: 'Evitez les AoE, tuez Connla',
-        ja: 'AoEを避け、コンラを倒す',
-        cn: '躲避AOE后击杀康拉',
-        ko: '장판 피하며 콘라 처치',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid AoE, Kill Connla',
+          de: 'Weiche AoE aus, besiege Connla',
+          fr: 'Evitez les AoE, tuez Connla',
+          ja: 'AoEを避け、コンラを倒す',
+          cn: '躲避AOE后击杀康拉',
+          ko: '장판 피하며 콘라 처치',
+        },
       },
     },
     {
@@ -537,13 +579,16 @@
         return data.role == 'tank' || data.role == 'healer';
       },
       suppressSeconds: 5,
-      alertText: {
-        en: 'Boss hitting hard--Shield/Mitigate',
-        de: 'Harter Hit vom Boss - Schild/Milderung',
-        fr: 'Le boss frappe fort - Bouclier/Mitigation',
-        ja: '大ダメージ物理タンクバスター - ダメージ軽減/バリア',
-        cn: 'MT大伤害物理死刑—注意减伤/治疗盾',
-        ko: '탱커버스터 - 뎀감/보호막',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Boss hitting hard--Shield/Mitigate',
+          de: 'Harter Hit vom Boss - Schild/Milderung',
+          fr: 'Le boss frappe fort - Bouclier/Mitigation',
+          ja: '大ダメージ物理タンクバスター - ダメージ軽減/バリア',
+          cn: 'MT大伤害物理死刑—注意减伤/治疗盾',
+          ko: '탱커버스터 - 뎀감/보호막',
+        },
       },
     },
     {
@@ -564,13 +609,16 @@
       id: 'Dun Scaith Deathgates',
       netRegex: NetRegexes.addedCombatantFull({ npcNameId: '5523', capture: false }),
       suppressSeconds: 5,
-      infoText: {
-        en: 'Kill the deathgates',
-        de: 'Besiege die Tore des Todes',
-        fr: 'Détruisez les portes de mort',
-        ja: '召喚の扉を倒す',
-        cn: '击杀召唤之门',
-        ko: '소환의 문 파괴',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill the deathgates',
+          de: 'Besiege die Tore des Todes',
+          fr: 'Détruisez les portes de mort',
+          ja: '召喚の扉を倒す',
+          cn: '击杀召唤之门',
+          ko: '소환의 문 파괴',
+        },
       },
     },
     {

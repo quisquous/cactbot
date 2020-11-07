@@ -57,12 +57,15 @@
       condition: function(data, matches) {
         return !data.levitating && Conditions.targetIsNotYou();
       },
-      infoText: {
-        en: 'Levitate',
-        de: 'Schweben',
-        ja: '浮上',
-        cn: '浮空',
-        ko: '공중부양',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Levitate',
+          de: 'Schweben',
+          ja: '浮上',
+          cn: '浮空',
+          ko: '공중부양',
+        },
       },
     },
     {

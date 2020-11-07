@@ -135,13 +135,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.role == 'tank';
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Move Bosses',
-        de: 'Bosse bewegen',
-        fr: 'Déplacez les Boss',
-        ja: 'ボス動かして',
-        ko: '보스 이동 주차',
-        cn: '移动Boss',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Bosses',
+          de: 'Bosse bewegen',
+          fr: 'Déplacez les Boss',
+          ja: 'ボス動かして',
+          ko: '보스 이동 주차',
+          cn: '移动Boss',
+        },
       },
     },
     {
@@ -152,26 +155,32 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.role == 'healer' || data.role == 'tank';
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'aoe',
-        de: 'AoE',
-        fr: 'AoE',
-        ja: 'AoE',
-        cn: 'AOE',
-        ko: '전체 공격',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'aoe',
+          de: 'AoE',
+          fr: 'AoE',
+          ja: 'AoE',
+          cn: 'AOE',
+          ko: '전체 공격',
+        },
       },
     },
     {
       id: 'TEA Water and Thunder',
       regex: /Water and Thunder/,
       beforeSeconds: 3,
-      infoText: {
-        en: 'Water/Thunder in 3',
-        de: 'Wasser/Blitz in 3',
-        ja: '水/雷まで3秒',
-        fr: 'Eau/Foudre dans 3s',
-        ko: '물/번개까지 3초',
-        cn: '3秒后水/雷',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Water/Thunder in 3',
+          de: 'Wasser/Blitz in 3',
+          ja: '水/雷まで3秒',
+          fr: 'Eau/Foudre dans 3s',
+          ko: '물/번개까지 3초',
+          cn: '3秒后水/雷',
+        },
       },
     },
     {
@@ -182,26 +191,32 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.me == data.bruteTank && data.phase == 'brute';
       },
       suppressSeconds: 300,
-      alertText: {
-        en: 'Face Brute Towards Water',
-        de: 'Drehe Brute zum Wasser',
-        fr: 'Tournez Justicier vers l\'eau',
-        ja: 'ジャスを竜巻に向ける',
-        ko: '심판자가 물을 바라보게 유도',
-        cn: '残暴正义号拉向水龙卷',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Face Brute Towards Water',
+          de: 'Drehe Brute zum Wasser',
+          fr: 'Tournez Justicier vers l\'eau',
+          ja: 'ジャスを竜巻に向ける',
+          ko: '심판자가 물을 바라보게 유도',
+          cn: '残暴正义号拉向水龙卷',
+        },
       },
     },
     {
       id: 'TEA Propeller Wind',
       regex: /Propeller Wind/,
       beforeSeconds: 15,
-      infoText: {
-        en: 'Hide Behind Ice',
-        de: 'Hinter dem Eis verstecken',
-        ja: '氷の後ろへ',
-        fr: 'Cachez-vous derrière la glace',
-        ko: '얼음 뒤로 피하기',
-        cn: '冰块后躲避',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hide Behind Ice',
+          de: 'Hinter dem Eis verstecken',
+          ja: '氷の後ろへ',
+          fr: 'Cachez-vous derrière la glace',
+          ko: '얼음 뒤로 피하기',
+          cn: '冰块后躲避',
+        },
       },
     },
     {
@@ -541,13 +556,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'liquide vivant', id: '4822', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'リビングリキッド', id: '4822', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '살아있는 액체', id: '4822', capture: false }),
-      infoText: {
-        en: 'Protean Wave',
-        de: 'Proteische Welle',
-        fr: 'Vague inconstante',
-        ja: 'プロティアン',
-        ko: '변화의 물결',
-        cn: '万变水波',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Protean Wave',
+          de: 'Proteische Welle',
+          fr: 'Vague inconstante',
+          ja: 'プロティアン',
+          ko: '변화의 물결',
+          cn: '万变水波',
+        },
       },
     },
     {
@@ -561,13 +579,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: Conditions.targetIsYou(),
       // Even if folks have the right tethers, this happens repeatedly.
       suppressSeconds: 5,
-      alertText: {
-        en: 'Drainage tether on YOU',
-        ja: '自分にドレナージ',
-        de: 'Entwässerungsverbindung auf DIR',
-        fr: 'Lien Drainage sur VOUS',
-        ko: '나에게 물줄기',
-        cn: '连线点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Drainage tether on YOU',
+          ja: '自分にドレナージ',
+          de: 'Entwässerungsverbindung auf DIR',
+          fr: 'Lien Drainage sur VOUS',
+          ko: '나에게 물줄기',
+          cn: '连线点名',
+        },
       },
     },
     {
@@ -601,13 +622,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.CanCleanse();
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Cleanse Throttle',
-        de: 'Erstickung entfernen',
-        fr: 'Purifiez Suffocation',
-        ja: '窒息',
-        ko: '질식',
-        cn: '窒息',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cleanse Throttle',
+          de: 'Erstickung entfernen',
+          fr: 'Purifiez Suffocation',
+          ja: '窒息',
+          ko: '질식',
+          cn: '窒息',
+        },
       },
     },
     {
@@ -736,13 +760,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data) {
         return data.phase == 'brute';
       },
-      alertText: {
-        en: 'Out, Dodge Chakrams',
-        de: 'Raus, Chakrams ausweichen',
-        ja: '外へ',
-        fr: 'À l\'extérieur, évitez les Chakrams',
-        ko: '바깥으로 차크람 피하기',
-        cn: '远离，躲避轮轮',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Out, Dodge Chakrams',
+          de: 'Raus, Chakrams ausweichen',
+          ja: '外へ',
+          fr: 'À l\'extérieur, évitez les Chakrams',
+          ko: '바깥으로 차크람 피하기',
+          cn: '远离，躲避轮轮',
+        },
       },
     },
     {
@@ -755,13 +782,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'クルーズチェイサー', id: '482F', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '482F', capture: false }),
       suppressSeconds: 1,
-      alertText: {
-        en: 'Run In',
-        de: 'Rein',
-        fr: 'Courez à l\'intérieur',
-        ja: '中へ',
-        ko: '가운데로',
-        cn: '靠近',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Run In',
+          de: 'Rein',
+          fr: 'Courez à l\'intérieur',
+          ja: '中へ',
+          ko: '가운데로',
+          cn: '靠近',
+        },
       },
     },
     {
@@ -790,13 +820,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data) {
         return data.me == data.cruiseTank;
       },
-      alertText: {
-        en: 'Dodge Spin Crusher',
-        de: 'Rotorbrecher ausweichen',
-        fr: 'Esquivez Écrasement tournoyant',
-        ja: 'スピンクラッシャー避けて',
-        ko: '회전 분쇄 피하기',
-        cn: '躲避回旋碎踢',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Spin Crusher',
+          de: 'Rotorbrecher ausweichen',
+          fr: 'Esquivez Écrasement tournoyant',
+          ja: 'スピンクラッシャー避けて',
+          ko: '회전 분쇄 피하기',
+          cn: '躲避回旋碎踢',
+        },
       },
     },
     {
@@ -805,13 +838,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data, matches) {
         return data.me == matches.target && getHeadmarkerId(data, matches) == '0043';
       },
-      alarmText: {
-        en: 'Freeze Tornado',
-        de: 'Tornado einfrieren',
-        ja: '竜巻凍らせる',
-        fr: 'Gèlez la tornade',
-        ko: '물 회오리 얼리기',
-        cn: '冰冻龙卷风',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Freeze Tornado',
+          de: 'Tornado einfrieren',
+          ja: '竜巻凍らせる',
+          fr: 'Gèlez la tornade',
+          ko: '물 회오리 얼리기',
+          cn: '冰冻龙卷风',
+        },
       },
     },
     {
@@ -826,13 +862,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.role == 'tank';
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Mines',
-        de: 'Minen',
-        ja: '地雷',
-        fr: 'Mines',
-        ko: '지뢰',
-        cn: '地雷',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Mines',
+          de: 'Minen',
+          ja: '地雷',
+          fr: 'Mines',
+          ko: '지뢰',
+          cn: '地雷',
+        },
       },
     },
     {
@@ -841,13 +880,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data, matches) {
         return data.me == matches.target && getHeadmarkerId(data, matches) == '0041';
       },
-      alertText: {
-        en: 'Enumeration on YOU',
-        de: 'Enumeration auf DIR',
-        ja: '自分にカウント',
-        fr: 'Énumeration sur VOUS',
-        ko: '나에게 인원수',
-        cn: '计数点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Enumeration on YOU',
+          de: 'Enumeration auf DIR',
+          ja: '自分にカウント',
+          fr: 'Énumeration sur VOUS',
+          ko: '나에게 인원수',
+          cn: '计数点名',
+        },
       },
     },
     {
@@ -883,13 +925,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'クルーズチェイサー', id: '4833', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '순항추격기', id: '4833', capture: false }),
       delaySeconds: 2,
-      infoText: {
-        en: 'Break Shield From Front',
-        de: 'Schild von Vorne zerstören',
-        ja: '正面からシールド壊して',
-        fr: 'Brisez le bouclier par devant',
-        ko: '정면에서 실드를 부수기',
-        cn: '从前面击破盾牌',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Break Shield From Front',
+          de: 'Schild von Vorne zerstören',
+          ja: '正面からシールド壊して',
+          fr: 'Brisez le bouclier par devant',
+          ko: '정면에서 실드를 부수기',
+          cn: '从前面击破盾牌',
+        },
       },
     },
     {
@@ -898,13 +943,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Water on YOU',
-        de: 'Wasser auf DIR',
-        ja: '自分に水',
-        fr: 'Eau sur VOUS',
-        ko: '나에게 물',
-        cn: '水点名',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Water on YOU',
+          de: 'Wasser auf DIR',
+          ja: '自分に水',
+          fr: 'Eau sur VOUS',
+          ko: '나에게 물',
+          cn: '水点名',
+        },
       },
     },
     {
@@ -936,13 +984,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: {
-        en: 'Lightning on YOU',
-        de: 'Blitz auf DIR',
-        ja: '自分に雷',
-        fr: 'Foudre sur VOUS',
-        ko: '나에게 번개',
-        cn: '雷点名',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Lightning on YOU',
+          de: 'Blitz auf DIR',
+          ja: '自分に雷',
+          fr: 'Foudre sur VOUS',
+          ko: '나에게 번개',
+          cn: '雷点名',
+        },
       },
     },
     {
@@ -979,13 +1030,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexKo: NetRegexes.startsUsing({ source: '순항추격기', id: '4836', capture: false }),
       delaySeconds: 4,
       suppressSeconds: 10000,
-      alertText: {
-        en: 'Pass Nisi',
-        de: 'Nisi weitergeben',
-        ja: 'ナイサイ渡して',
-        fr: 'Passez la Peine',
-        ko: '나이사이 건네기',
-        cn: '传递审判',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pass Nisi',
+          de: 'Nisi weitergeben',
+          ja: 'ナイサイ渡して',
+          fr: 'Passez la Peine',
+          ko: '나이사이 건네기',
+          cn: '传递审判',
+        },
       },
     },
     {
@@ -1002,13 +1056,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: (data) => data.phase == 'brute',
       delaySeconds: 1,
       suppressSeconds: 1,
-      alertText: {
-        en: 'Pass Nisi',
-        de: 'Nisi weitergeben',
-        ja: 'ナイサイ渡して',
-        fr: 'Passez la Peine',
-        ko: '나이사이 건네기',
-        cn: '传递审判',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pass Nisi',
+          de: 'Nisi weitergeben',
+          ja: 'ナイサイ渡して',
+          fr: 'Passez la Peine',
+          ko: '나이사이 건네기',
+          cn: '传递审判',
+        },
       },
     },
     {
@@ -1136,13 +1193,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'ブルートジャスティス', id: '484A', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '포악한 심판자', id: '484A', capture: false }),
       condition: (data) => data.phase == 'brute',
-      infoText: {
-        en: 'avoid ray',
-        de: 'Strahl ausweichen',
-        ja: 'アポカリ避けて',
-        fr: 'Évitez le rayon',
-        ko: '파멸 계시 피하기',
-        cn: '躲避激光',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'avoid ray',
+          de: 'Strahl ausweichen',
+          ja: 'アポカリ避けて',
+          fr: 'Évitez le rayon',
+          ko: '파멸 계시 피하기',
+          cn: '躲避激光',
+        },
       },
     },
     {
@@ -1187,13 +1247,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.me == matches.target;
       },
       durationSeconds: 10,
-      alertText: {
-        en: 'Far Tethers',
-        de: 'Entfernte Verbindungen',
-        fr: 'Liens éloignés',
-        ja: 'ファー',
-        cn: '远离连线',
-        ko: '접근금지: 상대와 떨어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Far Tethers',
+          de: 'Entfernte Verbindungen',
+          fr: 'Liens éloignés',
+          ja: 'ファー',
+          cn: '远离连线',
+          ko: '접근금지: 상대와 떨어지기',
+        },
       },
     },
     {
@@ -1203,13 +1266,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.me == matches.target;
       },
       durationSeconds: 10,
-      alertText: {
-        en: 'Close Tethers',
-        de: 'Nahe Verbindungen',
-        fr: 'Liens proches',
-        ja: 'ニアー',
-        cn: '靠近连线',
-        ko: '강제접근: 상대와 가까이 붙기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Close Tethers',
+          de: 'Nahe Verbindungen',
+          fr: 'Liens proches',
+          ja: 'ニアー',
+          cn: '靠近连线',
+          ko: '강제접근: 상대와 가까이 붙기',
+        },
       },
     },
     {
@@ -1219,13 +1285,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.me == matches.target;
       },
       durationSeconds: 10,
-      alertText: {
-        en: 'Shared Sentence',
-        de: 'Urteil: Kollektivstrafe',
-        ja: '集団罰',
-        fr: 'Peine collective',
-        ko: '단체형: 무징과 함께 맞기',
-        cn: '集团罪',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shared Sentence',
+          de: 'Urteil: Kollektivstrafe',
+          ja: '集団罰',
+          fr: 'Peine collective',
+          ko: '단체형: 무징과 함께 맞기',
+          cn: '集团罪',
+        },
       },
     },
     {
@@ -1251,13 +1320,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.me == matches.target;
       },
       durationSeconds: 10,
-      alarmText: {
-        en: 'Thunder',
-        de: 'Blitz',
-        ja: '加重罰',
-        fr: 'Peine Sévère',
-        ko: '가중형: 가중형끼리 모이기',
-        cn: '加重罪',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Thunder',
+          de: 'Blitz',
+          ja: '加重罰',
+          fr: 'Peine Sévère',
+          ko: '가중형: 가중형끼리 모이기',
+          cn: '加重罪',
+        },
       },
     },
     {
@@ -1314,13 +1386,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data, matches) {
         return data.me == matches.target && getHeadmarkerId(data, matches) == '0060';
       },
-      alertText: {
-        en: 'Crystal on YOU',
-        de: 'Kristall auf DIR',
-        ja: '自分に結晶',
-        fr: 'Cristal sur VOUS',
-        ko: '나에게 결정체',
-        cn: '结晶点名',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Crystal on YOU',
+          de: 'Kristall auf DIR',
+          ja: '自分に結晶',
+          fr: 'Cristal sur VOUS',
+          ko: '나에게 결정체',
+          cn: '结晶点名',
+        },
       },
     },
     {
@@ -1332,13 +1407,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.ability({ source: 'アレキサンダー・プライム', id: '485C', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '알렉산더 프라임', id: '485C', capture: false }),
       suppressSeconds: 100,
-      infoText: {
-        en: 'Get Away From Crystals',
-        de: 'Geh weg vom Kristall',
-        ja: '結晶から離れ',
-        fr: 'Éloignez-vous des Cristaux',
-        ko: '결정체로부터 멀어질 것',
-        cn: '远离结晶',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Away From Crystals',
+          de: 'Geh weg vom Kristall',
+          ja: '結晶から離れ',
+          fr: 'Éloignez-vous des Cristaux',
+          ko: '결정체로부터 멀어질 것',
+          cn: '远离结晶',
+        },
       },
     },
     {
@@ -1351,13 +1429,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexKo: NetRegexes.ability({ source: '심판의 결정체', id: '4A88', capture: false }),
       delaySeconds: 1,
       suppressSeconds: 100,
-      infoText: {
-        en: 'Bait Brute\'s Flarethrower',
-        de: 'Locke Brute\'s Großflammenwerfer',
-        fr: 'Attirez le Lance-brasiers de Justicier',
-        ja: '火炎放射を誘導',
-        ko: '화염 방사 유도',
-        cn: '引导火炎放射',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Brute\'s Flarethrower',
+          de: 'Locke Brute\'s Großflammenwerfer',
+          fr: 'Attirez le Lance-brasiers de Justicier',
+          ja: '火炎放射を誘導',
+          ko: '화염 방사 유도',
+          cn: '引导火炎放射',
+        },
       },
     },
     {
@@ -1578,13 +1659,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
           return;
         return data.limitCutNumber == 2 || data.limitCutNumber == 3;
       },
-      infoText: {
-        en: 'Move Behind Brute Justice?',
-        de: 'Geh hinter Brutalus?',
-        fr: 'Déplacez-vous derière Justicier ?',
-        ja: 'ジャスティスの背面へ',
-        ko: '심판자 등 뒤로 이동?',
-        cn: '残暴正义号背后躲避?',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Move Behind Brute Justice?',
+          de: 'Geh hinter Brutalus?',
+          fr: 'Déplacez-vous derière Justicier ?',
+          ja: 'ジャスティスの背面へ',
+          ko: '심판자 등 뒤로 이동?',
+          cn: '残暴正义号背后躲避?',
+        },
       },
     },
     {
@@ -1593,13 +1677,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       condition: function(data, matches) {
         return getHeadmarkerId(data, matches) == '005D';
       },
-      alertText: {
-        en: 'Stack Middle',
-        de: 'mittig sammeln',
-        fr: 'Packez-vous au milieu',
-        ja: '中央へ',
-        ko: '가운데로 모이기',
-        cn: '中间集合',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Middle',
+          de: 'mittig sammeln',
+          fr: 'Packez-vous au milieu',
+          ja: '中央へ',
+          ko: '가운데로 모이기',
+          cn: '中间集合',
+        },
       },
     },
     {
@@ -1610,12 +1697,15 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'Primo-Alexander', id: '4A83', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A83', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A83', capture: false }),
-      alertText: {
-        en: 'big aoe',
-        de: 'große AoE',
-        fr: 'Grosse AoE',
-        ko: '거대 전체 공격',
-        cn: '高伤AOE',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'big aoe',
+          de: 'große AoE',
+          fr: 'Grosse AoE',
+          ko: '거대 전체 공격',
+          cn: '高伤AOE',
+        },
       },
     },
     {
@@ -1627,13 +1717,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '4A55', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '4A55', capture: false }),
       delaySeconds: 10.4,
-      infoText: {
-        en: 'Kill Cruise Chaser First',
-        de: 'Chaser-Mecha zuerst besiegen',
-        ja: 'チェイサーから倒す',
-        fr: 'Tuez Croiseur-chasseur en premier',
-        ko: '순항추격기부터 처치하기',
-        cn: '先杀巡航驱逐者',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Kill Cruise Chaser First',
+          de: 'Chaser-Mecha zuerst besiegen',
+          ja: 'チェイサーから倒す',
+          fr: 'Tuez Croiseur-chasseur en premier',
+          ko: '순항추격기부터 처치하기',
+          cn: '先杀巡航驱逐者',
+        },
       },
     },
     {
@@ -1648,13 +1741,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         return data.role == 'tank';
       },
       delaySeconds: 6,
-      alarmText: {
-        en: 'TANK LB!!',
-        de: 'TANK LB!!',
-        ja: 'タンクLB!!',
-        fr: 'LB TANK !!',
-        ko: '탱커 LIMIT BREAK!!',
-        cn: '坦克LB!!',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'TANK LB!!',
+          de: 'TANK LB!!',
+          ja: 'タンクLB!!',
+          fr: 'LB TANK !!',
+          ko: '탱커 LIMIT BREAK!!',
+          cn: '坦克LB!!',
+        },
       },
     },
     {
@@ -1665,13 +1761,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '488A', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '488A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '488A', capture: false }),
-      infoText: {
-        en: 'Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous',
-        ja: '散開',
-        cn: '分散',
-        ko: '산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Spread',
+          de: 'Verteilen',
+          fr: 'Dispersez-vous',
+          ja: '散開',
+          cn: '分散',
+          ko: '산개',
+        },
       },
     },
     {
@@ -1719,13 +1818,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487E', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487E', capture: false }),
       durationSeconds: 4,
-      alertText: {
-        en: 'Keep Moving',
-        de: 'weiter bewegen',
-        ja: '動く',
-        fr: 'Continuez à bouger',
-        ko: '움직여!!!',
-        cn: '保持移动',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Keep Moving',
+          de: 'weiter bewegen',
+          ja: '動く',
+          fr: 'Continuez à bouger',
+          ko: '움직여!!!',
+          cn: '保持移动',
+        },
       },
     },
     {
@@ -1736,27 +1838,23 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.startsUsing({ source: 'Alexander parfait', id: '487F', capture: false }),
       netRegexJa: NetRegexes.startsUsing({ source: 'パーフェクト・アレキサンダー', id: '487F', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '완전체 알렉산더', id: '487F', capture: false }),
-      alarmText: {
-        en: 'STOP LITERALLY EVERYTHING',
-        de: 'STOP WIRKLICH ALLES',
-        ja: '止まる',
-        fr: 'ARRÊTEZ TOUT',
-        ko: '멈춰!!!',
-        cn: '停止一切动作',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'STOP LITERALLY EVERYTHING',
+          de: 'STOP WIRKLICH ALLES',
+          ja: '止まる',
+          fr: 'ARRÊTEZ TOUT',
+          ko: '멈춰!!!',
+          cn: '停止一切动作',
+        },
       },
     },
     {
       id: 'TEA Contact Prohibition',
       netRegex: NetRegexes.gainsEffect({ effectId: '868' }),
       condition: (data, matches) => data.me == matches.target,
-      infoText: {
-        en: 'Orange (Attract)',
-        de: 'Orange (Anziehen)',
-        ja: '接触禁止',
-        fr: 'Orange (Attraction)',
-        ko: '노랑/접촉금지',
-        cn: '接触禁止',
-      },
+      infoText: (data, _, output) => output.text(),
       tts: {
         en: 'Orange',
         de: 'Orange',
@@ -1765,32 +1863,38 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         ko: '접촉금지',
         cn: '接触禁止',
       },
+      outputStrings: {
+        text: {
+          en: 'Orange (Attract)',
+          de: 'Orange (Anziehen)',
+          ja: '接触禁止',
+          fr: 'Orange (Attraction)',
+          ko: '노랑/접촉금지',
+          cn: '接触禁止',
+        },
+      },
     },
     {
       id: 'TEA Contact Regulation',
       netRegex: NetRegexes.gainsEffect({ effectId: '869' }),
       condition: (data, matches) => data.me == matches.target,
-      alarmText: {
-        en: 'Orange Bait: Get Away',
-        de: 'Orange locken: Geh Weg',
-        ja: '接触保護',
-        fr: 'Attirez l\'orange : Éloignez-vous',
-        ko: '노랑/접촉보호; 유도역할/혼자 멀리 있기',
-        cn: '接触保护',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Orange Bait: Get Away',
+          de: 'Orange locken: Geh Weg',
+          ja: '接触保護',
+          fr: 'Attirez l\'orange : Éloignez-vous',
+          ko: '노랑/접촉보호; 유도역할/혼자 멀리 있기',
+          cn: '接触保护',
+        },
       },
     },
     {
       id: 'TEA Escape Prohibition',
       netRegex: NetRegexes.gainsEffect({ effectId: '86A' }),
       condition: (data, matches) => data.me == matches.target,
-      infoText: {
-        en: 'Purple (Repel)',
-        de: 'Lila (Abstoßen)',
-        ja: '逃亡禁止',
-        fr: 'Violet (Répulsion)',
-        ko: '보라/도망금지',
-        cn: '逃亡禁止',
-      },
+      infoText: (data, _, output) => output.text(),
       tts: {
         en: 'Purple',
         de: 'Lila',
@@ -1799,18 +1903,31 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
         ko: '도망금지',
         cn: '逃亡禁止',
       },
+      outputStrings: {
+        text: {
+          en: 'Purple (Repel)',
+          de: 'Lila (Abstoßen)',
+          ja: '逃亡禁止',
+          fr: 'Violet (Répulsion)',
+          ko: '보라/도망금지',
+          cn: '逃亡禁止',
+        },
+      },
     },
     {
       id: 'TEA Escape Detection',
       netRegex: NetRegexes.gainsEffect({ effectId: '86B' }),
       condition: (data, matches) => data.me == matches.target,
-      alertText: {
-        en: 'Purple Bait: Be In Back Of Group',
-        de: 'Lila locken: Hinter der Gruppe sein',
-        ja: '逃亡監察',
-        fr: 'Attirez le violet : Soyez derrière le groupe',
-        ko: '보라/도망감찰; 유도역할/사람들 뒤에 있기',
-        cn: '逃亡监察',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Purple Bait: Be In Back Of Group',
+          de: 'Lila locken: Hinter der Gruppe sein',
+          ja: '逃亡監察',
+          fr: 'Attirez le violet : Soyez derrière le groupe',
+          ko: '보라/도망감찰; 유도역할/사람들 뒤에 있기',
+          cn: '逃亡监察',
+        },
       },
     },
     {
@@ -2389,16 +2506,19 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A0', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A0', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A0', capture: false }),
-      infoText: {
-        en: 'Optical Spread',
-        de: 'Visier verteilen',
-        fr: 'Dispersion optique',
-        ja: '散開',
-        ko: '옵티컬: 산개',
-        cn: '分散',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.betaIsOpticalStack = false;
+      },
+      outputStrings: {
+        text: {
+          en: 'Optical Spread',
+          de: 'Visier verteilen',
+          fr: 'Dispersion optique',
+          ja: '散開',
+          ko: '옵티컬: 산개',
+          cn: '分散',
+        },
       },
     },
     {
@@ -2409,16 +2529,19 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.abilityFull({ source: 'Alexander parfait', id: '48A1', capture: false }),
       netRegexJa: NetRegexes.abilityFull({ source: 'パーフェクト・アレキサンダー', id: '48A1', capture: false }),
       netRegexKo: NetRegexes.abilityFull({ source: '완전체 알렉산더', id: '48A1', capture: false }),
-      infoText: {
-        en: 'Optical Stack',
-        de: 'Visier sammeln',
-        fr: 'Package optique',
-        ja: 'シェア',
-        ko: '옵티컬: 모이기',
-        cn: '分摊',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.betaIsOpticalStack = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Optical Stack',
+          de: 'Visier sammeln',
+          fr: 'Package optique',
+          ja: 'シェア',
+          ko: '옵티컬: 모이기',
+          cn: '分摊',
+        },
       },
     },
     {
@@ -2540,13 +2663,16 @@ const kFinalJudgementNisi = ['8B0', '8B1', '85B', '85C'];
       netRegexFr: NetRegexes.ability({ source: 'Alexander parfait', id: '488E', capture: false }),
       netRegexJa: NetRegexes.ability({ source: 'パーフェクト・アレキサンダー', id: '488E', capture: false }),
       netRegexKo: NetRegexes.ability({ source: '완전체 알렉산더', id: '488E', capture: false }),
-      alertText: {
-        en: 'Stack Middle for Trine',
-        de: 'Mittig sammeln für Trine',
-        fr: 'Packez-vous au milieu pour Trine',
-        ja: '大審判来るよ',
-        ko: '대심판이 옵니다, 가운데로',
-        cn: '大审判 中间集合',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack Middle for Trine',
+          de: 'Mittig sammeln für Trine',
+          fr: 'Packez-vous au milieu pour Trine',
+          ja: '大審判来るよ',
+          ko: '대심판이 옵니다, 가운데로',
+          cn: '大审判 中间集合',
+        },
       },
     },
     {

@@ -10,13 +10,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      alertText: {
-        en: 'Run Marker Away',
-        de: 'Mit Marker weglaufen',
-        fr: 'Fuyez avec le marqueur',
-        ja: 'マークから離れ',
-        cn: '远离点名',
-        ko: '징 멀리 떨어뜨리기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Run Marker Away',
+          de: 'Mit Marker weglaufen',
+          fr: 'Fuyez avec le marqueur',
+          ja: 'マークから離れ',
+          cn: '远离点名',
+          ko: '징 멀리 떨어뜨리기',
+        },
       },
     },
     {
@@ -33,13 +36,16 @@
       condition: function(data, matches) {
         return matches.target == data.me;
       },
-      infoText: {
-        en: 'Gekko Marker',
-        de: 'Gekko Marker',
-        fr: 'Marqueur Gekkô',
-        ja: '月光マーキング',
-        cn: '月光点名',
-        ko: '월광 징',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Gekko Marker',
+          de: 'Gekko Marker',
+          fr: 'Marqueur Gekkô',
+          ja: '月光マーキング',
+          cn: '月光点名',
+          ko: '월광 징',
+        },
       },
     },
     {

@@ -9,13 +9,16 @@
       id: 'SeiryuEx Split Group',
       regex: /Forbidden Arts 1/,
       beforeSeconds: 4,
-      infoText: {
-        en: 'stack with your group',
-        de: 'mit der Gruppe stacken',
-        fr: 'Packez avec votre groupe',
-        ja: 'グループ別にスタック',
-        cn: '双组分摊',
-        ko: '쉐어징',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'stack with your group',
+          de: 'mit der Gruppe stacken',
+          fr: 'Packez avec votre groupe',
+          ja: 'グループ別にスタック',
+          cn: '双组分摊',
+          ko: '쉐어징',
+        },
       },
     },
     {
@@ -23,13 +26,16 @@
       regex: /Forbidden Arts$/,
       beforeSeconds: 1,
       suppressSeconds: 10,
-      infoText: {
-        en: 'line stack',
-        de: 'Linien-Stack',
-        fr: 'Packez-vous en ligne',
-        ja: 'スタック',
-        cn: '直线分摊',
-        ko: '직선 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'line stack',
+          de: 'Linien-Stack',
+          fr: 'Packez-vous en ligne',
+          ja: 'スタック',
+          cn: '直线分摊',
+          ko: '직선 쉐어',
+        },
       },
     },
     {
@@ -39,13 +45,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      alertText: {
-        en: 'Grab Tether, Point Away',
-        de: 'Verbindung nehmen und wegdrehen',
-        fr: 'Prenez le lien, pointez vers l\'extérieur',
-        ja: '線取って外向ける',
-        cn: '接线引导',
-        ko: '선 가로채고 멀리 떨어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Grab Tether, Point Away',
+          de: 'Verbindung nehmen und wegdrehen',
+          fr: 'Prenez le lien, pointez vers l\'extérieur',
+          ja: '線取って外向ける',
+          cn: '接线引导',
+          ko: '선 가로채고 멀리 떨어지기',
+        },
       },
     },
   ],
@@ -107,13 +116,16 @@
         return data.role != 'tank';
       },
       delaySeconds: 3,
-      alertText: {
-        en: 'Away From Tanks',
-        de: 'Weg von den Tanks',
-        fr: 'Éloignez-vous des Tanks',
-        ja: 'タンクから離れ',
-        cn: '远离坦克',
-        ko: '탱커한테서 멀어지기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Away From Tanks',
+          de: 'Weg von den Tanks',
+          fr: 'Éloignez-vous des Tanks',
+          ja: 'タンクから離れ',
+          cn: '远离坦克',
+          ko: '탱커한테서 멀어지기',
+        },
       },
     },
     {
@@ -137,13 +149,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3C25', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3C25', source: '청룡', capture: false }),
       delaySeconds: 1,
-      infoText: {
-        en: 'Stack for Puddle AOEs',
-        de: 'Stacken (Pfützen)',
-        fr: 'Packez-vous pour l\'AoE',
-        ja: 'スタック',
-        cn: '集合放置AOE',
-        ko: '중앙에 모이기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack for Puddle AOEs',
+          de: 'Stacken (Pfützen)',
+          fr: 'Packez-vous pour l\'AoE',
+          ja: 'スタック',
+          cn: '集合放置AOE',
+          ko: '중앙에 모이기',
+        },
       },
     },
     {
@@ -369,13 +384,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '37CB', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '37CB', source: '청룡', capture: false }),
       delaySeconds: 28,
-      alertText: {
-        en: 'Pop Sprint',
-        de: 'Sprinten',
-        fr: 'Sprintez',
-        ja: 'スプリント',
-        cn: '冲冲冲',
-        ko: '전력 질주',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Pop Sprint',
+          de: 'Sprinten',
+          fr: 'Sprintez',
+          ja: 'スプリント',
+          cn: '冲冲冲',
+          ko: '전력 질주',
+        },
       },
     },
   ],

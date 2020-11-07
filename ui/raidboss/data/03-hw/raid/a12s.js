@@ -40,13 +40,16 @@
           return false;
         return data.me == matches.target;
       },
-      alertText: {
-        en: 'Scourge on YOU',
-        de: 'Licht auf DIR',
-        fr: 'Lumière sur VOUS',
-        ja: '自分に白光の鞭',
-        cn: '白光之鞭点名',
-        ko: '성광의 채찍 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Scourge on YOU',
+          de: 'Licht auf DIR',
+          fr: 'Lumière sur VOUS',
+          ja: '自分に白光の鞭',
+          cn: '白光之鞭点名',
+          ko: '성광의 채찍 대상자',
+        },
       },
     },
     {
@@ -111,13 +114,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '19EB', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '19EB', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '19EB', capture: false }),
-      infoText: {
-        en: 'Lasers',
-        de: 'Laser',
-        fr: 'Lasers',
-        ja: '十字の秘蹟',
-        cn: '十字圣礼',
-        ko: '십자 성례',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Lasers',
+          de: 'Laser',
+          fr: 'Lasers',
+          ja: '十字の秘蹟',
+          cn: '十字圣礼',
+          ko: '십자 성례',
+        },
       },
     },
     {
@@ -170,39 +176,48 @@
       id: 'A12S Shared Sentence',
       netRegex: NetRegexes.gainsEffect({ effectId: '462' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Shared Sentence',
-        de: 'Urteil Kollektivstrafe',
-        fr: 'Partagez peine collective',
-        ja: '集団罰',
-        cn: '集团罪',
-        ko: '집단형: 쉐어',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Shared Sentence',
+          de: 'Urteil Kollektivstrafe',
+          fr: 'Partagez peine collective',
+          ja: '集団罰',
+          cn: '集团罪',
+          ko: '집단형: 쉐어',
+        },
       },
     },
     {
       id: 'A12S Defamation',
       netRegex: NetRegexes.gainsEffect({ effectId: '460' }),
       condition: Conditions.targetIsYou(),
-      alarmText: {
-        en: 'Defamation',
-        de: 'Ehrenstrafe',
-        fr: 'Diffamation',
-        ja: '名誉罰',
-        cn: '名誉罪',
-        ko: '명예형: 멀리가기',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Defamation',
+          de: 'Ehrenstrafe',
+          fr: 'Diffamation',
+          ja: '名誉罰',
+          cn: '名誉罪',
+          ko: '명예형: 멀리가기',
+        },
       },
     },
     {
       id: 'A12S Judgment Crystal',
       netRegex: NetRegexes.headMarker({ id: '0017' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Crystal on YOU',
-        de: 'Kristall auf DIR',
-        fr: 'Cristal sur VOUS',
-        ja: '自分に結晶',
-        cn: '结晶点名',
-        ko: '나에게 수정',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Crystal on YOU',
+          de: 'Kristall auf DIR',
+          fr: 'Cristal sur VOUS',
+          ja: '自分に結晶',
+          cn: '结晶点名',
+          ko: '나에게 수정',
+        },
       },
     },
     {
@@ -245,13 +260,16 @@
       netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
       netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Puddle Tether on YOU',
-        de: 'Flächen-Verbindung auf dir',
-        fr: 'Lien Zone au sol sur VOUS',
-        ja: '自分に線',
-        cn: '放圈连线点名',
-        ko: '장판 남기는 선 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle Tether on YOU',
+          de: 'Flächen-Verbindung auf dir',
+          fr: 'Lien Zone au sol sur VOUS',
+          ja: '自分に線',
+          cn: '放圈连线点名',
+          ko: '장판 남기는 선 대상자',
+        },
       },
     },
   ],

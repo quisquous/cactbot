@@ -26,13 +26,16 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: {
-        en: 'Hallowed Wind Stack',
-        de: 'Heiliger Boden Wind',
-        fr: 'Packez vous dans le vent',
-        ko: '쉐어징',
-        ja: '隅で頭割り',
-        cn: '风分摊',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Hallowed Wind Stack',
+          de: 'Heiliger Boden Wind',
+          fr: 'Packez vous dans le vent',
+          ko: '쉐어징',
+          ja: '隅で頭割り',
+          cn: '风分摊',
+        },
       },
     },
     {
@@ -64,13 +67,16 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: {
-        en: 'Last Kiss on YOU',
-        de: 'Letzter Kuss auf DIR',
-        fr: 'Baiser fatal sur VOUS',
-        ko: '죽음의 입맞춤 대상자',
-        ja: '自分に口づけ',
-        cn: '死亡之吻点名',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Last Kiss on YOU',
+          de: 'Letzter Kuss auf DIR',
+          fr: 'Baiser fatal sur VOUS',
+          ko: '죽음의 입맞춤 대상자',
+          ja: '自分に口づけ',
+          cn: '死亡之吻点名',
+        },
       },
     },
     {
@@ -81,13 +87,16 @@
         // don't tell them twice.
         return data.me == matches.target && data.lastKiss != data.me;
       },
-      alarmText: {
-        en: 'Last Kiss on YOU',
-        de: 'Letzter Kuss auf DIR',
-        fr: 'Baiser fatal sur VOUS',
-        ko: '죽음의 입맞춤 대상자',
-        ja: '自分に口づけ',
-        cn: '死亡之吻点名',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Last Kiss on YOU',
+          de: 'Letzter Kuss auf DIR',
+          fr: 'Baiser fatal sur VOUS',
+          ko: '죽음의 입맞춤 대상자',
+          ja: '自分に口づけ',
+          cn: '死亡之吻点名',
+        },
       },
     },
   ],

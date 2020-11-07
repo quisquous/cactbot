@@ -9,12 +9,15 @@
       regex: /Divine Judgment/,
       beforeSeconds: 5,
       suppressSeconds: 9999, // Let's not spam tanks if they are unlucky enough to see enrage.
-      alarmText: {
-        en: 'Limit break now!',
-        de: 'Limit break jetzt!',
-        fr: 'Limit break maintenant !',
-        ja: 'タンクLBを！',
-        cn: '坦克LB！',
+      alarmText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Limit break now!',
+          de: 'Limit break jetzt!',
+          fr: 'Limit break maintenant !',
+          ja: 'タンクLBを！',
+          cn: '坦克LB！',
+        },
       },
     },
     {
@@ -57,17 +60,20 @@
       id: 'A12N Aggravated Assault',
       netRegex: NetRegexes.headMarker({ id: '0010' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Spread (Don\'t Stack!)',
-        de: 'Verteilen (Ohne stacken)',
-        fr: 'Dispersez-vous (Pas de package !)',
-        ja: '散開（重ならないように）',
-        cn: '分散（不要重合!）',
-        ko: '산개（모이지마세요!）',
-      },
+      alertText: (data, _, output) => output.text(),
       // If the user is targeted for Assault, we need to ensure the stack trigger knows.
       run: function(data) {
         data.assault = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Spread (Don\'t Stack!)',
+          de: 'Verteilen (Ohne stacken)',
+          fr: 'Dispersez-vous (Pas de package !)',
+          ja: '散開（重ならないように）',
+          cn: '分散（不要重合!）',
+          ko: '산개（모이지마세요!）',
+        },
       },
     },
     {
@@ -112,13 +118,16 @@
       netRegexJa: NetRegexes.startsUsing({ source: 'アレキサンダー・プライム', id: '1AE5', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ source: '至尊亚历山大', id: '1AE5', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '알렉산더 프라임', id: '1AE5', capture: false }),
-      infoText: {
-        en: 'Lasers',
-        de: 'Laser',
-        fr: 'Lasers',
-        ja: 'レザー',
-        cn: '十字圣礼',
-        ko: '십자 성례',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Lasers',
+          de: 'Laser',
+          fr: 'Lasers',
+          ja: 'レザー',
+          cn: '十字圣礼',
+          ko: '십자 성례',
+        },
       },
     },
     {
@@ -130,13 +139,16 @@
       netRegexCn: NetRegexes.tether({ source: '亚历山大', id: '0036' }),
       netRegexKo: NetRegexes.tether({ source: '알렉산더', id: '0036' }),
       condition: Conditions.targetIsYou(),
-      alertText: {
-        en: 'Puddle Tether on YOU',
-        de: 'Flächen-Verbindung auf dir',
-        fr: 'Lien Zone au sol sur VOUS',
-        ja: '自分に線',
-        cn: '放圈连线点名',
-        ko: '장판 남기는 선 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle Tether on YOU',
+          de: 'Flächen-Verbindung auf dir',
+          fr: 'Lien Zone au sol sur VOUS',
+          ja: '自分に線',
+          cn: '放圈连线点名',
+          ko: '장판 남기는 선 대상자',
+        },
       },
     },
   ],

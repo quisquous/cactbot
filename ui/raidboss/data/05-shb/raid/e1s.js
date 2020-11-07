@@ -166,13 +166,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '44F4', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '44F4', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '44F4', source: '에덴 프라임', capture: false }),
-      alertText: {
-        en: 'Cross Spread',
-        de: 'Verteilen',
-        fr: 'Dispersez-vous en croix',
-        ja: '散開',
-        cn: '四角躲避',
-        ko: '산개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Cross Spread',
+          de: 'Verteilen',
+          fr: 'Dispersez-vous en croix',
+          ja: '散開',
+          cn: '四角躲避',
+          ko: '산개',
+        },
       },
     },
     {
@@ -308,13 +311,16 @@
       condition: function(data, matches) {
         return !data.paradise && data.vice == 'dps' && data.me == matches.target;
       },
-      alertText: {
-        en: 'Puddle Spread',
-        de: 'Flächen verteilen',
-        fr: 'Dispersez les zones au sol',
-        ja: '離れて散開',
-        cn: '分散放圈',
-        ko: '장판 유도 산개',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Puddle Spread',
+          de: 'Flächen verteilen',
+          fr: 'Dispersez les zones au sol',
+          ja: '離れて散開',
+          cn: '分散放圈',
+          ko: '장판 유도 산개',
+        },
       },
     },
     {
@@ -325,13 +331,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D7A', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D7A', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D7A', source: '에덴 프라임', capture: false }),
-      alertText: {
-        en: 'Stack With Partner',
-        de: 'Mit Partner stacken',
-        fr: 'Packez-vous avec votre partenaire',
-        ja: '相方とスタック',
-        cn: '与搭档集合',
-        ko: '쉐어뎀 파트너랑 모이기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack With Partner',
+          de: 'Mit Partner stacken',
+          fr: 'Packez-vous avec votre partenaire',
+          ja: '相方とスタック',
+          cn: '与搭档集合',
+          ko: '쉐어뎀 파트너랑 모이기',
+        },
       },
     },
     {
@@ -340,13 +349,16 @@
       condition: function(data, matches) {
         return data.vice == 'tank' && data.me == matches.target;
       },
-      infoText: {
-        en: 'Tank Laser on YOU',
-        de: 'Tank Laser auf DIR',
-        fr: 'Tank laser sur VOUS',
-        ja: '自分にレーザー',
-        cn: '坦克射线',
-        ko: '탱 레이저 대상자',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Laser on YOU',
+          de: 'Tank Laser auf DIR',
+          fr: 'Tank laser sur VOUS',
+          ja: '自分にレーザー',
+          cn: '坦克射线',
+          ko: '탱 레이저 대상자',
+        },
       },
     },
     {
@@ -360,13 +372,16 @@
       condition: function(data) {
         return data.role != 'tank';
       },
-      infoText: {
-        en: 'Stack in front of tank',
-        de: 'Vorne mit dem Tank stacken',
-        fr: 'Packez-vous devant le tank',
-        ja: '左右に分かれて内側へ',
-        cn: 'T前集合',
-        ko: '좌우 탱커 앞 산개',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stack in front of tank',
+          de: 'Vorne mit dem Tank stacken',
+          fr: 'Packez-vous devant le tank',
+          ja: '左右に分かれて内側へ',
+          cn: 'T前集合',
+          ko: '좌우 탱커 앞 산개',
+        },
       },
     },
     {
@@ -407,13 +422,16 @@
         return false;
       },
       suppressSeconds: 20,
-      alertText: {
-        en: 'Take prey from healer',
-        de: 'Marker vom Heiler nehmen',
-        fr: 'Prenez la marque du healer',
-        ja: 'ヒーラーからマーカー取って',
-        cn: '从奶妈拿毒',
-        ko: '힐러한테서 표식 받기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Take prey from healer',
+          de: 'Marker vom Heiler nehmen',
+          fr: 'Prenez la marque du healer',
+          ja: 'ヒーラーからマーカー取って',
+          cn: '从奶妈拿毒',
+          ko: '힐러한테서 표식 받기',
+        },
       },
     },
     {
@@ -448,13 +466,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D80', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D80', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D80', source: '에덴 프라임', capture: false }),
-      infoText: {
-        en: 'Get Outside Your Orb',
-        de: 'Geh zu deinem Orb',
-        fr: 'Allez à l\'extérieur de votre orbe',
-        ja: 'ピュアレイを外へ誘導',
-        cn: '球外站位',
-        ko: '본인 레이저 바깥으로 유도',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Outside Your Orb',
+          de: 'Geh zu deinem Orb',
+          fr: 'Allez à l\'extérieur de votre orbe',
+          ja: 'ピュアレイを外へ誘導',
+          cn: '球外站位',
+          ko: '본인 레이저 바깥으로 유도',
+        },
       },
     },
     {
@@ -465,12 +486,15 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3D82', source: 'エデン・プライム', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3D82', source: '至尊伊甸', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3D82', source: '에덴 프라임', capture: false }),
-      infoText: {
-        en: 'Bait Orb Lasers Outside',
-        de: 'Laser nach drausen ködern',
-        fr: 'Attirez les lasers à l\'extérieur',
-        cn: '外侧吃激光',
-        ko: '원/힐 레이저 바깥으로 유도',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Orb Lasers Outside',
+          de: 'Laser nach drausen ködern',
+          fr: 'Attirez les lasers à l\'extérieur',
+          cn: '外侧吃激光',
+          ko: '원/힐 레이저 바깥으로 유도',
+        },
       },
     },
   ],

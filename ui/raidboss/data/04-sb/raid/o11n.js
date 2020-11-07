@@ -12,12 +12,15 @@
       condition: function(data) {
         return data.role == 'tank';
       },
-      infoText: {
-        en: 'Tank Tether',
-        de: 'Tank Verbindung',
-        ja: 'タンク 線を取る',
-        cn: '坦克接线远离人群',
-        ko: '탱 블래스터 징',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Tank Tether',
+          de: 'Tank Verbindung',
+          ja: 'タンク 線を取る',
+          cn: '坦克接线远离人群',
+          ko: '탱 블래스터 징',
+        },
       },
     },
   ],

@@ -16,13 +16,16 @@
       regex: /(?:Brainhurt|Bodyhurt) Breakblock/,
       beforeSeconds: 10,
       suppressSeconds: 1,
-      infoText: {
-        en: 'Stun Soon',
-        de: 'Bald unterbrechen',
-        fr: 'Stun bientôt',
-        ja: 'まもなくスタン',
-        cn: '马上眩晕',
-        ko: '곧 기절',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Stun Soon',
+          de: 'Bald unterbrechen',
+          fr: 'Stun bientôt',
+          ja: 'まもなくスタン',
+          cn: '马上眩晕',
+          ko: '곧 기절',
+        },
       },
     },
   ],
@@ -35,13 +38,16 @@
       netRegexJa: NetRegexes.addedCombatant({ name: '爆弾', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '炸弹', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '폭탄', capture: false }),
-      alertText: {
-        en: 'Bomb',
-        de: 'Bombe',
-        fr: 'Bombe',
-        ja: '爆弾',
-        cn: '炸弹出现',
-        ko: '폭탄',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bomb',
+          de: 'Bombe',
+          fr: 'Bombe',
+          ja: '爆弾',
+          cn: '炸弹出现',
+          ko: '폭탄',
+        },
       },
     },
     {
@@ -77,13 +83,16 @@
       netRegexKo: NetRegexes.ability({ source: 'Ix호 고블린거미', id: '1413' }),
       condition: Conditions.targetIsYou(),
       suppressSeconds: 10,
-      alertText: {
-        en: 'Boomcannon on YOU',
-        de: 'Großeknall auf DIR',
-        fr: 'Double cannon sur VOUS',
-        ja: '自分にブームカノン',
-        cn: '死刑点名',
-        ko: '우레 포격 대상자',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Boomcannon on YOU',
+          de: 'Großeknall auf DIR',
+          fr: 'Double cannon sur VOUS',
+          ja: '自分にブームカノン',
+          cn: '死刑点名',
+          ko: '우레 포격 대상자',
+        },
       },
     },
     {
@@ -110,16 +119,19 @@
         return !data.bangyzoom;
       },
       suppressSeconds: 1,
-      infoText: {
-        en: 'Stun Soldier',
-        de: 'unterbreche Soldat',
-        fr: 'Stun sur le soldat',
-        ja: 'スタン：ソルジャー',
-        cn: '眩晕士兵',
-        ko: '병사 기절시키기',
-      },
+      infoText: (data, _, output) => output.text(),
       run: function(data) {
         data.bangyzoom = true;
+      },
+      outputStrings: {
+        text: {
+          en: 'Stun Soldier',
+          de: 'unterbreche Soldat',
+          fr: 'Stun sur le soldat',
+          ja: 'スタン：ソルジャー',
+          cn: '眩晕士兵',
+          ko: '병사 기절시키기',
+        },
       },
     },
   ],

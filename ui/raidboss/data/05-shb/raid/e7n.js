@@ -34,48 +34,60 @@
       id: 'E7N Left With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Left',
-        de: 'Nach Links teleportieren',
-        fr: 'Téléportation à gauche',
-        cn: '向左传送',
-        ko: '왼쪽으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Left',
+          de: 'Nach Links teleportieren',
+          fr: 'Téléportation à gauche',
+          cn: '向左传送',
+          ko: '왼쪽으로 순간이동',
+        },
       },
     },
     {
       id: 'E7N Right With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Right',
-        de: 'Nach Rechts teleportieren',
-        fr: 'Téléportation à droite',
-        cn: '向右传送',
-        ko: '오른쪽으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Right',
+          de: 'Nach Rechts teleportieren',
+          fr: 'Téléportation à droite',
+          cn: '向右传送',
+          ko: '오른쪽으로 순간이동',
+        },
       },
     },
     {
       id: 'E7N Forward With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Forward',
-        de: 'Teleportation Vorwärts',
-        fr: 'Téléportation devant',
-        cn: '向前传送',
-        ko: '앞으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Forward',
+          de: 'Teleportation Vorwärts',
+          fr: 'Téléportation devant',
+          cn: '向前传送',
+          ko: '앞으로 순간이동',
+        },
       },
     },
     {
       id: 'E7N Back With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Back',
-        de: 'Teleportation Rückwärts',
-        fr: 'Téléportation derrière',
-        cn: '向后传送',
-        ko: '뒤로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Back',
+          de: 'Teleportation Rückwärts',
+          fr: 'Téléportation derrière',
+          cn: '向后传送',
+          ko: '뒤로 순간이동',
+        },
       },
     },
     {
@@ -87,12 +99,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C4C', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C4C', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Teleport into donut',
-        de: 'In den Donut teleportieren',
-        fr: 'Téléportez vous dans le donut',
-        cn: '传送进月环',
-        ko: '도넛 장판 안으로 순간이동하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleport into donut',
+          de: 'In den Donut teleportieren',
+          fr: 'Téléportez vous dans le donut',
+          cn: '传送进月环',
+          ko: '도넛 장판 안으로 순간이동하기',
+        },
       },
     },
     {

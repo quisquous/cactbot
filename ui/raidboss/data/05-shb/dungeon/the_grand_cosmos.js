@@ -52,13 +52,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '476B', source: '宫殿的隐者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '476B', source: '궁전의 은자', capture: false }),
       delaySeconds: 8,
-      alertText: {
-        en: 'Avoid Brooms',
-        de: 'Besen ausweichen',
-        fr: 'Évitez les balais',
-        ja: 'ほうきを避け',
-        cn: '躲扫把',
-        ko: '빗자루 피하기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Avoid Brooms',
+          de: 'Besen ausweichen',
+          fr: 'Évitez les balais',
+          ja: 'ほうきを避け',
+          cn: '躲扫把',
+          ko: '빗자루 피하기',
+        },
       },
     },
     {
@@ -105,13 +108,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '471E', source: 'リャナンシー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '471E', source: '凉南希', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '471E', source: '랴난시', capture: false }),
-      infoText: {
-        en: 'put seeds on dirt',
-        de: 'Samen auf den nicht bewachsenen Boden legen',
-        fr: 'Mettez les graines sur la terre',
-        ja: '種を土に置かないように',
-        cn: '种子搬离AOE',
-        ko: '씨앗 자라지 못하게 하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'put seeds on dirt',
+          de: 'Samen auf den nicht bewachsenen Boden legen',
+          fr: 'Mettez les graines sur la terre',
+          ja: '種を土に置かないように',
+          cn: '种子搬离AOE',
+          ko: '씨앗 자라지 못하게 하기',
+        },
       },
     },
     {
@@ -165,13 +171,16 @@
         return data.me == matches.target;
       },
       delaySeconds: 4,
-      infoText: {
-        en: 'Dodge Crosses',
-        de: 'Den Kreuzen ausweichen',
-        fr: 'Esquivez les croix',
-        ja: '十字を避け',
-        cn: '躲避交叉',
-        ko: '십자 장판 피하기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Dodge Crosses',
+          de: 'Den Kreuzen ausweichen',
+          fr: 'Esquivez les croix',
+          ja: '十字を避け',
+          cn: '躲避交叉',
+          ko: '십자 장판 피하기',
+        },
       },
     },
     {
@@ -189,13 +198,16 @@
         return data.me == matches.target;
       },
       delaySeconds: 5.5,
-      infoText: {
-        en: 'Touch Furniture',
-        de: 'Einrichtung berühren',
-        fr: 'Touchez un meuble',
-        ja: '調度品に寄る',
-        cn: '传火家具',
-        ko: '가구에 불 옮기기',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Touch Furniture',
+          de: 'Einrichtung berühren',
+          fr: 'Touchez un meuble',
+          ja: '調度品に寄る',
+          cn: '传火家具',
+          ko: '가구에 불 옮기기',
+        },
       },
     },
     {

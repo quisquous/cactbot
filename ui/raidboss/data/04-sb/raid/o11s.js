@@ -140,13 +140,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3266', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
-      alertText: {
-        en: 'Left (then opposite)',
-        de: 'Links (dann umgekehrt)',
-        fr: 'Gauche (puis Droite)',
-        ja: '左 (零式)',
-        cn: '左 (零式)',
-        ko: '왼쪽으로 (바로 반대로)',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Left (then opposite)',
+          de: 'Links (dann umgekehrt)',
+          fr: 'Gauche (puis Droite)',
+          ja: '左 (零式)',
+          cn: '左 (零式)',
+          ko: '왼쪽으로 (바로 반대로)',
+        },
       },
     },
     {
@@ -157,13 +160,16 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3268', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
-      alertText: {
-        en: 'Right (then opposite)',
-        de: 'Rechts (dann umgekehrt)',
-        fr: 'Droite (puis Gauche)',
-        ja: '右 (零式)',
-        cn: '右 (零式)',
-        ko: '오른쪽으로 (바로 반대로)',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Right (then opposite)',
+          de: 'Rechts (dann umgekehrt)',
+          fr: 'Droite (puis Gauche)',
+          ja: '右 (零式)',
+          cn: '右 (零式)',
+          ko: '오른쪽으로 (바로 반대로)',
+        },
       },
     },
     {
@@ -175,13 +181,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3266', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3266', source: '오메가', capture: false }),
       delaySeconds: 4,
-      alertText: {
-        en: 'Opposite (Left)',
-        de: 'Umgekehrt (Links)',
-        fr: 'Côté opposé (Gauche)',
-        ja: '反対へ (左)',
-        cn: '对面 (左)',
-        ko: '오른쪽으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Opposite (Left)',
+          de: 'Umgekehrt (Links)',
+          fr: 'Côté opposé (Gauche)',
+          ja: '反対へ (左)',
+          cn: '对面 (左)',
+          ko: '오른쪽으로',
+        },
       },
     },
     {
@@ -193,13 +202,16 @@
       netRegexCn: NetRegexes.startsUsing({ id: '3268', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3268', source: '오메가', capture: false }),
       delaySeconds: 4,
-      alertText: {
-        en: 'Opposite (Right)',
-        de: 'Umgekehrt (Rechts)',
-        fr: 'Côté opposé (Droite)',
-        ja: '反対へ (右)',
-        cn: '对面 (右)',
-        ko: '왼쪽으로',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Opposite (Right)',
+          de: 'Umgekehrt (Rechts)',
+          fr: 'Côté opposé (Droite)',
+          ja: '反対へ (右)',
+          cn: '对面 (右)',
+          ko: '왼쪽으로',
+        },
       },
     },
   ],

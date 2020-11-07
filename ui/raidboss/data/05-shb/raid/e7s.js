@@ -109,48 +109,60 @@
       id: 'E7S Left With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C2' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Left',
-        de: 'Teleportation Links',
-        fr: 'Téléportation à gauche',
-        cn: '向左传送',
-        ko: '왼쪽으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Left',
+          de: 'Teleportation Links',
+          fr: 'Téléportation à gauche',
+          cn: '向左传送',
+          ko: '왼쪽으로 순간이동',
+        },
       },
     },
     {
       id: 'E7S Right With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C3' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Right',
-        de: 'Teleportation Rechts',
-        fr: 'Téléportation à droite',
-        cn: '向右传送',
-        ko: '오른쪽으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Right',
+          de: 'Teleportation Rechts',
+          fr: 'Téléportation à droite',
+          cn: '向右传送',
+          ko: '오른쪽으로 순간이동',
+        },
       },
     },
     {
       id: 'E7S Forward With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C0' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Forward',
-        de: 'Teleportation Vorwärts',
-        fr: 'Téléportation devant',
-        cn: '向前传送',
-        ko: '앞으로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Forward',
+          de: 'Teleportation Vorwärts',
+          fr: 'Téléportation devant',
+          cn: '向前传送',
+          ko: '앞으로 순간이동',
+        },
       },
     },
     {
       id: 'E7S Back With Thee',
       netRegex: NetRegexes.gainsEffect({ effectId: '8C1' }),
       condition: Conditions.targetIsYou(),
-      infoText: {
-        en: 'Teleporting Back',
-        de: 'Teleportation Rückwärts',
-        fr: 'Téléportation derrière',
-        cn: '向后传送',
-        ko: '뒤로 순간이동',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Teleporting Back',
+          de: 'Teleportation Rückwärts',
+          fr: 'Téléportation derrière',
+          cn: '向后传送',
+          ko: '뒤로 순간이동',
+        },
       },
     },
     {
@@ -301,12 +313,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '盲崇', id: '4C70', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '숭배', id: '4C70', capture: false }),
       suppressSeconds: 1,
-      infoText: {
-        en: 'Get under vertical add',
-        de: 'Unter das vertikale Add gehen',
-        fr: 'Allez sous l\'add vertical',
-        ko: '세로로 도는 쫄 아래로',
-        cn: '去竖转小怪脚下',
+      infoText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get under vertical add',
+          de: 'Unter das vertikale Add gehen',
+          fr: 'Allez sous l\'add vertical',
+          ko: '세로로 도는 쫄 아래로',
+          cn: '去竖转小怪脚下',
+        },
       },
     },
     {
@@ -471,12 +486,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C9A', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C9A', capture: false }),
       suppressSeconds: 1,
-      alertText: {
-        en: 'Bait Puddles',
-        de: 'Flächen ködern',
-        fr: 'Placez les zones au sol',
-        cn: '放圈',
-        ko: '장판 버리기',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Bait Puddles',
+          de: 'Flächen ködern',
+          fr: 'Placez les zones au sol',
+          cn: '放圈',
+          ko: '장판 버리기',
+        },
       },
     },
     {
@@ -488,12 +506,15 @@
       netRegexCn: NetRegexes.startsUsing({ source: '暗黑心象', id: '4C76', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ source: '어둠의 우상', id: '4C76', capture: false }),
       // Can't use knockback prevention for this, so say where to get knocked back.
-      alertText: {
-        en: 'Get Knocked Into Corner',
-        de: 'Lass dich in die Ecke zurückstoßen',
-        fr: 'Faites-vous pousser dans les coins',
-        cn: '击退到角落',
-        ko: '구석으로 넉백',
+      alertText: (data, _, output) => output.text(),
+      outputStrings: {
+        text: {
+          en: 'Get Knocked Into Corner',
+          de: 'Lass dich in die Ecke zurückstoßen',
+          fr: 'Faites-vous pousser dans les coins',
+          cn: '击退到角落',
+          ko: '구석으로 넉백',
+        },
       },
     },
     {
