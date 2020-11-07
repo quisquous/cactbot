@@ -116,9 +116,7 @@
       netRegexJa: NetRegexes.ability({ id: 'B85', source: '雷撃システム' }),
       netRegexCn: NetRegexes.ability({ id: 'B85', source: '雷击系统' }),
       netRegexKo: NetRegexes.ability({ id: 'B85', source: '뇌격 시스템' }),
-      condition: function(data, matches) {
-        return matches.target == data.me;
-      },
+      condition: Conditions.targetIsYou(),
       alarmText: (data, _, output) => output.text(),
       outputStrings: {
         text: {

@@ -47,9 +47,7 @@
     {
       id: 'T2 Pass Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '14D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       preRun: function(data) {
         data.rot = true;
       },
@@ -69,9 +67,7 @@
     {
       id: 'T2 Lost Rot',
       netRegex: NetRegexes.losesEffect({ effectId: '14D' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         delete data.rot;
       },

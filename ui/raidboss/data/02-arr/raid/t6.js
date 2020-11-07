@@ -23,9 +23,7 @@
       netRegexJa: NetRegexes.ability({ id: '879', source: 'ラフレシア' }),
       netRegexCn: NetRegexes.ability({ id: '879', source: '大王花' }),
       netRegexKo: NetRegexes.ability({ id: '879', source: '라플레시아' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       infoText: function(data) {
         let partners = data.thornMap[data.me];
         if (!partners) {
@@ -71,9 +69,7 @@
       // Honey-Glazed
       id: 'T6 Honey On',
       netRegex: NetRegexes.gainsEffect({ effectId: '1BE' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         data.honey = true;
       },
@@ -81,9 +77,7 @@
     {
       id: 'T6 Honey Off',
       netRegex: NetRegexes.losesEffect({ effectId: '1BE' }),
-      condition: function(data, matches) {
-        return data.me == matches.target;
-      },
+      condition: Conditions.targetIsYou(),
       run: function(data) {
         delete data.honey;
       },
