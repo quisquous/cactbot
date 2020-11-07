@@ -181,25 +181,29 @@
       // Also handles Chilling Aspiration, which is randomly targeted.
       id: 'The Burn Frost Breath',
       netRegex: NetRegexes.headMarker({ id: ['001A', '000E'] }),
-      alertText: function(data, matches) {
-        if (data.me === matches.target) {
-          return {
-            en: 'Puddle + cleave on YOU',
-            de: 'Fläche + Cleave auf DIR',
-            fr: 'Zone au sol + Cleave sur VOUS',
-            ja: '自分に沼 + フロストブレス',
-            cn: '圈圈+吐息点名',
-            ko: '장판 + 브레스 대상자',
-          };
-        }
-        return {
+      alertText: function(data, matches, output) {
+        if (data.me === matches.target)
+          return output.puddleCleaveOnYou();
+
+        return output.avoidMarkerCone();
+      },
+      outputStrings: {
+        puddleCleaveOnYou: {
+          en: 'Puddle + cleave on YOU',
+          de: 'Fläche + Cleave auf DIR',
+          fr: 'Zone au sol + Cleave sur VOUS',
+          ja: '自分に沼 + フロストブレス',
+          cn: '圈圈+吐息点名',
+          ko: '장판 + 브레스 대상자',
+        },
+        avoidMarkerCone: {
           en: 'Avoid marker cone',
           de: 'Kegel-Markierung ausweichen',
           fr: 'Évitez le marqueur de cône',
           ja: 'マークに避け',
           cn: '远离锥形点名',
           ko: '표식 피하기',
-        };
+        },
       },
     },
     {

@@ -215,16 +215,19 @@
       netRegexKo: NetRegexes.ability({ id: '3851', source: '모조 성역', capture: false }),
       delaySeconds: 0.5,
       suppressSeconds: 10,
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.agriasGhostCleanse || data.halidom.includes(data.me))
           return;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'Use Swords On Jails',
           de: 'Kristalle mit Schwert zerschlagen',
           fr: 'Libérez les prisonniers avec les épées',
           ja: '（コンテンツアクション）剣で魂を討つ',
           ko: '감옥에 검 사용하기',
-        };
+        },
       },
     },
     {

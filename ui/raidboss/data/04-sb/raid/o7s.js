@@ -125,29 +125,33 @@
     {
       id: 'O7S Blue Marker',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      alarmText: function(data, matches) {
+      alarmText: function(data, matches, output) {
         if (data.me != matches.target)
           return;
-        return {
+        return output.blueMarkerOnYou();
+      },
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return;
+        return output.blueMarkerOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        blueMarkerOn: {
+          en: 'Blue Marker on ${player}',
+          de: 'Aura-Kanone auf ${player}',
+          fr: 'Marque Bleue sur ${player}',
+          ko: '"${player}" 파란징',
+          ja: '${player}に青玉',
+          cn: '蓝球点名${player}',
+        },
+        blueMarkerOnYou: {
           en: 'Blue Marker on YOU',
           de: 'Aura-Kanone auf DIR',
           fr: 'Marque Bleue sur VOUS',
           ko: '파란징 대상자',
           ja: '自分に青玉',
           cn: '蓝球点名',
-        };
-      },
-      infoText: function(data, matches) {
-        if (data.me == matches.target)
-          return;
-        return {
-          en: 'Blue Marker on ' + data.ShortName(matches.target),
-          de: 'Aura-Kanone auf ' + data.ShortName(matches.target),
-          fr: 'Marque Bleue sur ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 파란징',
-          ja: data.ShortName(matches.target) + 'に青玉',
-          cn: '蓝球点名' + data.ShortName(matches.target),
-        };
+        },
       },
     },
     {
@@ -185,25 +189,29 @@
       // Aether Rot
       id: 'O7S Rot',
       netRegex: NetRegexes.gainsEffect({ effectId: '5C3' }),
-      infoText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Rot on you',
-            de: 'Fäule auf DIR',
-            fr: 'Pourriture sur VOUS',
-            ko: '에테르 대상자',
-            ja: '自分にロット',
-            cn: '以太病毒点名',
-          };
-        }
-        return {
-          en: 'Rot on ' + data.ShortName(matches.target),
-          de: 'Fäule auf ' + data.ShortName(matches.target),
-          fr: 'Pourriture sur ' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 에테르',
-          ja: data.ShortName(matches.target) + 'にロット',
-          cn: '以太病毒点名' + data.ShortName(matches.target),
-        };
+      infoText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.rotOnYou();
+
+        return output.rotOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        rotOnYou: {
+          en: 'Rot on you',
+          de: 'Fäule auf DIR',
+          fr: 'Pourriture sur VOUS',
+          ko: '에테르 대상자',
+          ja: '自分にロット',
+          cn: '以太病毒点名',
+        },
+        rotOn: {
+          en: 'Rot on ${player}',
+          de: 'Fäule auf ${player}',
+          fr: 'Pourriture sur ${player}',
+          ko: '"${player}" 에테르',
+          ja: '${player}にロット',
+          cn: '以太病毒点名${player}',
+        },
       },
     },
     {

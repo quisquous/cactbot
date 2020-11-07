@@ -185,29 +185,31 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2900', source: 'ケフカ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2900', source: '凯夫卡', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2900', source: '케프카', capture: false }),
-      alarmText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Wings: Be Near/Far',
-            fr: 'Ailes : être près/loin',
-            de: 'Schwingen: Nah/Fern',
-            ko: '양날개: 가까이/멀리',
-            ja: '翼: めり込む/離れる',
-            cn: '双翅膀：近或远',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.wingsBeNearfar();
       },
-      infoText: function(data) {
-        if (data.role != 'tank') {
-          return {
-            en: 'Max Melee: Avoid Tanks',
-            fr: 'Max Mêlée : éloignez-vous des Tanks',
-            de: 'Max Nahkampf: Weg von den Tanks',
-            ko: '칼끝딜: 탱커 피하기',
-            ja: '近接最大レンジ タンクから離れ',
-            cn: '最远距离',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.role != 'tank')
+          return output.maxMeleeAvoidTanks();
+      },
+      outputStrings: {
+        maxMeleeAvoidTanks: {
+          en: 'Max Melee: Avoid Tanks',
+          fr: 'Max Mêlée : éloignez-vous des Tanks',
+          de: 'Max Nahkampf: Weg von den Tanks',
+          ko: '칼끝딜: 탱커 피하기',
+          ja: '近接最大レンジ タンクから離れ',
+          cn: '最远距离',
+        },
+        wingsBeNearfar: {
+          en: 'Wings: Be Near/Far',
+          fr: 'Ailes : être près/loin',
+          de: 'Schwingen: Nah/Fern',
+          ko: '양날개: 가까이/멀리',
+          ja: '翼: めり込む/離れる',
+          cn: '双翅膀：近或远',
+        },
       },
     },
     {
@@ -238,33 +240,36 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2910', source: 'ケフカ' }),
       netRegexCn: NetRegexes.startsUsing({ id: '2910', source: '凯夫卡' }),
       netRegexKo: NetRegexes.startsUsing({ id: '2910', source: '케프카' }),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         if (matches.target != data.me)
           return;
 
-        return {
+        return output.embraceOnYou();
+      },
+      infoText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return;
+
+        if (data.role == 'healer' || data.role == 'tank')
+          return output.embraceOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        embraceOn: {
+          en: 'Embrace on ${player}',
+          fr: 'Étreinte sur ${player}',
+          de: 'Umarmung auf ${player}',
+          ko: '"${player}" 종말의 포옹',
+          ja: '${player}に双腕',
+          cn: '分摊死刑${player}',
+        },
+        embraceOnYou: {
           en: 'Embrace on YOU',
           fr: 'Étreinte sur VOUS',
           de: 'Umarmung auf DIR',
           ko: '종말의 포옹 대상자',
           ja: '自分に双腕',
           cn: '分摊死刑点名',
-        };
-      },
-      infoText: function(data, matches) {
-        if (matches.target == data.me)
-          return;
-
-        if (data.role == 'healer' || data.role == 'tank') {
-          return {
-            en: 'Embrace on ' + data.ShortName(matches.target),
-            fr: 'Étreinte sur ' + data.ShortName(matches.target),
-            de: 'Umarmung auf ' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 종말의 포옹',
-            ja: data.ShortName(matches.target) + 'に双腕',
-            cn: '分摊死刑' + data.ShortName(matches.target),
-          };
-        }
+        },
       },
     },
     {

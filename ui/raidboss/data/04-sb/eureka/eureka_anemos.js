@@ -206,17 +206,20 @@
       netRegexCn: NetRegexes.wasDefeated({ target: '暗影幽灵', capture: false }),
       netRegexKo: NetRegexes.wasDefeated({ target: '그림자 망령', capture: false }),
       soundVolume: 0,
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         data.wraithCount = data.wraithCount || 0;
         data.wraithCount++;
-        return {
-          en: 'wraiths: ' + data.wraithCount,
-          de: 'Geister: ' + data.wraithCount,
-          fr: 'spectres: ' + data.wraithCount,
-          ja: 'レイス: ' + data.wraithCount,
-          cn: '幽灵击杀: ' + data.wraithCount,
-          ko: '망령: ' + data.wraithCount,
-        };
+        return output.text({ num: data.wraithCount });
+      },
+      outputStrings: {
+        text: {
+          en: 'wraiths: ${num}',
+          de: 'Geister: ${num}',
+          fr: 'spectres: ${num}',
+          ja: 'レイス: ${num}',
+          cn: '幽灵击杀: ${num}',
+          ko: '망령: ${num}',
+        },
       },
     },
     {

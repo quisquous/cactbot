@@ -129,51 +129,57 @@
     { // Stack marker
       id: 'Lakshmi Pall of Light',
       netRegex: NetRegexes.headMarker({ id: '003E' }),
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         if (!data.chanchala)
           return;
 
-        if (data.me == matches.target) {
-          return {
-            en: 'Vrill + Stack on YOU',
-            de: 'Vril + Stack auf DIR',
-            fr: 'vril + Package sur VOUS',
-            ja: '自分に頭割り (エーテル)',
-            cn: '元气攻击点名',
-            ko: '락슈미 에테르 + 쉐어징 대상자',
-          };
-        }
-        return {
-          en: 'Vrill + Stack',
-          de: 'Vril + Stack',
-          fr: 'Vril + Packez-vous',
-          ja: 'エーテル と 頭割り',
-          cn: '元气攻击',
-          ko: '락슈미 에테르 쉐어징',
-        };
+        if (data.me == matches.target)
+          return output.vrillStackOnYou();
+
+        return output.vrillStack();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (data.chanchala)
           return;
 
-        if (data.me == matches.target) {
-          return {
-            en: 'Stack on YOU',
-            de: 'Stack auf DIR',
-            fr: 'Package sur VOUS',
-            ja: '自分に頭割り',
-            cn: '分摊点名',
-            ko: '쉐어징 대상자',
-          };
-        }
-        return {
+        if (data.me == matches.target)
+          return output.stackOnYou();
+
+        return output.stack();
+      },
+      outputStrings: {
+        stackOnYou: {
+          en: 'Stack on YOU',
+          de: 'Stack auf DIR',
+          fr: 'Package sur VOUS',
+          ja: '自分に頭割り',
+          cn: '分摊点名',
+          ko: '쉐어징 대상자',
+        },
+        stack: {
           en: 'Stack',
           de: 'Stack',
           fr: 'Packez-vous',
           ja: '頭割り',
           cn: '集合',
           ko: '쉐어',
-        };
+        },
+        vrillStackOnYou: {
+          en: 'Vrill + Stack on YOU',
+          de: 'Vril + Stack auf DIR',
+          fr: 'vril + Package sur VOUS',
+          ja: '自分に頭割り (エーテル)',
+          cn: '元气攻击点名',
+          ko: '락슈미 에테르 + 쉐어징 대상자',
+        },
+        vrillStack: {
+          en: 'Vrill + Stack',
+          de: 'Vril + Stack',
+          fr: 'Vril + Packez-vous',
+          ja: 'エーテル と 頭割り',
+          cn: '元气攻击',
+          ko: '락슈미 에테르 쉐어징',
+        },
       },
     },
     {
@@ -184,17 +190,19 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2147', source: 'ラクシュミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2147', source: '吉祥天女', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2147', source: '락슈미', capture: false }),
-      alertText: function(data) {
-        if (data.chanchala) {
-          return {
-            en: 'Vrill for AOE',
-            de: 'Vril fuer Flaechenangriff',
-            fr: 'Vril pour AoE',
-            ja: 'ストトラム (エーテル)',
-            cn: '元气AOE',
-            ko: '락슈미 에테르 (광딜)',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (data.chanchala)
+          return output.text();
+      },
+      outputStrings: {
+        text: {
+          en: 'Vrill for AOE',
+          de: 'Vril fuer Flaechenangriff',
+          fr: 'Vril pour AoE',
+          ja: 'ストトラム (エーテル)',
+          cn: '元气AOE',
+          ko: '락슈미 에테르 (광딜)',
+        },
       },
     },
     {
@@ -204,25 +212,29 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: function(data) {
-        if (data.chanchala) {
-          return {
-            en: 'Vrill + Cleave on YOU',
-            de: 'Vril + Cleave auf DIR',
-            fr: 'Vril + Cleave sur VOUS',
-            ja: '自分に波動 (エーテル)',
-            cn: '元气 死刑点名',
-            ko: '락슈미 에테르 + 광역 탱버 대상자',
-          };
-        }
-        return {
+      alarmText: function(data, _, output) {
+        if (data.chanchala)
+          return output.vrillCleaveOnYou();
+
+        return output.cleaveOnYou();
+      },
+      outputStrings: {
+        vrillCleaveOnYou: {
+          en: 'Vrill + Cleave on YOU',
+          de: 'Vril + Cleave auf DIR',
+          fr: 'Vril + Cleave sur VOUS',
+          ja: '自分に波動 (エーテル)',
+          cn: '元气 死刑点名',
+          ko: '락슈미 에테르 + 광역 탱버 대상자',
+        },
+        cleaveOnYou: {
           en: 'Cleave on YOU',
           de: 'Cleave auf DIR',
           fr: 'Cleave sur VOUS',
           ja: '自分に波動',
           cn: '死刑点名',
           ko: '광역 탱버 대상자',
-        };
+        },
       },
     },
     {
@@ -232,25 +244,29 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: function(data) {
-        if (data.chanchala) {
-          return {
-            en: 'Vrill + Cross Marker',
-            de: 'Vril + Kreuz-Marker',
-            fr: 'Vril + Marqueur croix',
-            ja: '自分に右手 (エーテル)',
-            cn: '元气 十字点名',
-            ko: '락슈미 에테르 + 십자 장판 징',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.chanchala)
+          return output.vrillCrossMarker();
+
+        return output.crossMarker();
+      },
+      outputStrings: {
+        vrillCrossMarker: {
+          en: 'Vrill + Cross Marker',
+          de: 'Vril + Kreuz-Marker',
+          fr: 'Vril + Marqueur croix',
+          ja: '自分に右手 (エーテル)',
+          cn: '元气 十字点名',
+          ko: '락슈미 에테르 + 십자 장판 징',
+        },
+        crossMarker: {
           en: 'Cross Marker',
           de: 'Kreuz-Marker',
           fr: 'Marqueur croix',
           ja: '自分に右手',
           cn: '十字点名',
           ko: '십자 장판 징',
-        };
+        },
       },
     },
     {
@@ -260,25 +276,29 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: function(data) {
-        if (data.chanchala) {
-          return {
-            en: 'Vrill + Flower Marker',
-            de: 'Vril + Blumen-Marker',
-            fr: 'Vril + Marqueur fleur',
-            ja: '自分に左手 (エーテル)',
-            cn: '元气 花点名',
-            ko: '락슈미 에테르 + 원형 장판 징',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.chanchala)
+          return output.vrillFlowerMarker();
+
+        return output.flowerMarker();
+      },
+      outputStrings: {
+        vrillFlowerMarker: {
+          en: 'Vrill + Flower Marker',
+          de: 'Vril + Blumen-Marker',
+          fr: 'Vril + Marqueur fleur',
+          ja: '自分に左手 (エーテル)',
+          cn: '元气 花点名',
+          ko: '락슈미 에테르 + 원형 장판 징',
+        },
+        flowerMarker: {
           en: 'Flower Marker',
           de: 'Blumen-Marker',
           fr: 'Marqueur fleur',
           ja: '自分に左手',
           cn: '花点名',
           ko: '원형 장판 징',
-        };
+        },
       },
     },
     {

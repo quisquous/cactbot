@@ -33,65 +33,70 @@
       netRegexJa: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: 'ツクヨミ' }),
       netRegexCn: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '月读' }),
       netRegexKo: NetRegexes.startsUsing({ id: ['2BBB', '2EB2'], source: '츠쿠요미' }),
-      alarmText: function(data, matches) {
+      alarmText: function(data, matches, output) {
         if (matches.target == data.me || data.role != 'tank')
           return;
 
-        return {
-          en: 'Tank Swap!',
-          de: 'Tankwechsel!',
-          fr: 'Tank swap !',
-          ja: 'スイッチ',
-          cn: '换T！',
-          ko: '탱 교대',
-        };
+        return output.tankSwap();
       },
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Buster on YOU',
-            de: 'Tankbuster auf DIR',
-            fr: 'Tank buster sur VOUS',
-            ja: '自分にタンクバスター',
-            cn: '死刑减伤',
-            ko: '탱버 대상자',
-          };
-        }
-        if (data.role == 'healer') {
-          return {
-            en: 'Buster on ' + data.ShortName(matches.target),
-            de: 'Tankbuster auf ' + data.ShortName(matches.target),
-            fr: 'Tank buster sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'にタンクバスター',
-            cn: '死刑 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 탱버',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.tankBusterOnYou();
+
+        if (data.role == 'healer')
+          return output.busterOn({ player: data.ShortName(matches.target) });
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (matches.target == data.me || data.role == 'tank' || data.role == 'healer')
           return;
 
-        return {
+        return output.getOutOfFront();
+      },
+      tts: function(data, _, output) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.buster();
+      },
+      outputStrings: {
+        getOutOfFront: {
           en: 'Get out of front',
           de: 'Weg von vorn',
           fr: 'Sortez du devant',
           ja: '正面から離れ',
           cn: '远离正面',
           ko: '정면 피하기',
-        };
-      },
-      tts: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'buster',
-            de: 'basta',
-            fr: 'tank buster',
-            ja: 'タンクバスター',
-            cn: '死刑',
-            ko: '탱버',
-          };
-        }
+        },
+        tankBusterOnYou: {
+          en: 'Tank Buster on YOU',
+          de: 'Tankbuster auf DIR',
+          fr: 'Tank buster sur VOUS',
+          ja: '自分にタンクバスター',
+          cn: '死刑减伤',
+          ko: '탱버 대상자',
+        },
+        busterOn: {
+          en: 'Buster on ${player}',
+          de: 'Tankbuster auf ${player}',
+          fr: 'Tank buster sur ${player}',
+          ja: '${player}にタンクバスター',
+          cn: '死刑 点${player}',
+          ko: '"${player}" 탱버',
+        },
+        tankSwap: {
+          en: 'Tank Swap!',
+          de: 'Tankwechsel!',
+          fr: 'Tank swap !',
+          ja: 'スイッチ',
+          cn: '换T！',
+          ko: '탱 교대',
+        },
+        buster: {
+          en: 'buster',
+          de: 'basta',
+          fr: 'tank buster',
+          ja: 'タンクバスター',
+          cn: '死刑',
+          ko: '탱버',
+        },
       },
     },
     {
@@ -142,15 +147,18 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2BDA', source: 'ツクヨミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2BDA', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BDA', source: '츠쿠요미', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Left + ' + data.moonInOut,
-          fr: 'Gauche + ' + data.moonInOut,
-          de: 'Links + ' + data.moonInOut,
-          ja: '左へ + ' + data.moonInOut,
-          cn: '左边 + ' + data.moonInOut,
-          ko: '왼쪽 + ' + data.moonInOut,
-        };
+      infoText: function(data, _, output) {
+        return output.text({ moonInOut: data.moonInOut });
+      },
+      outputStrings: {
+        text: {
+          en: 'Left + ${moonInOut}',
+          fr: 'Gauche + ${moonInOut}',
+          de: 'Links + ${moonInOut}',
+          ja: '左へ + ${moonInOut}',
+          cn: '左边 + ${moonInOut}',
+          ko: '왼쪽 + ${moonInOut}',
+        },
       },
     },
     {
@@ -161,15 +169,18 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2BDB', source: 'ツクヨミ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2BDB', source: '月读', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2BDB', source: '츠쿠요미', capture: false }),
-      infoText: function(data) {
-        return {
-          en: 'Right + ' + data.moonInOut,
-          fr: 'Droite + ' + data.moonInOut,
-          de: 'Rechts + ' + data.moonInOut,
-          ja: '右へ + ' + data.moonInOut,
-          cn: '右边 + ' + data.moonInOut,
-          ko: '오른쪽 + ' + data.moonInOut,
-        };
+      infoText: function(data, _, output) {
+        return output.text({ moonInOut: data.moonInOut });
+      },
+      outputStrings: {
+        text: {
+          en: 'Right + ${moonInOut}',
+          fr: 'Droite + ${moonInOut}',
+          de: 'Rechts + ${moonInOut}',
+          ja: '右へ + ${moonInOut}',
+          cn: '右边 + ${moonInOut}',
+          ko: '오른쪽 + ${moonInOut}',
+        },
       },
     },
     {

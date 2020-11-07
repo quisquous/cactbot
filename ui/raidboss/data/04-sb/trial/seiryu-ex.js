@@ -79,27 +79,30 @@
       netRegexJa: NetRegexes.startsUsing({ id: '37D2', source: '青龍' }),
       netRegexCn: NetRegexes.startsUsing({ id: '37D2', source: '青龙' }),
       netRegexKo: NetRegexes.startsUsing({ id: '37D2', source: '청룡' }),
-      alertText: function(data, matches) {
-        if (matches.target == data.me) {
-          return {
-            en: 'Tank Swap',
-            de: 'Tankwechsel',
-            fr: 'Tank Swap',
-            ja: 'スイッチ',
-            cn: '换T',
-            ko: '탱 교대',
-          };
-        }
-        if (data.role == 'tank') {
-          return {
-            en: 'Swap, then Buster',
-            de: 'Tankwechsel, danach Tankbuster',
-            fr: 'Tank swap puis Tank buster',
-            ja: 'スイッチ後強攻撃',
-            cn: '换T+死刑',
-            ko: '교대 후 탱버',
-          };
-        }
+      alertText: function(data, matches, output) {
+        if (matches.target == data.me)
+          return output.tankSwap();
+
+        if (data.role == 'tank')
+          return output.swapThenBuster();
+      },
+      outputStrings: {
+        tankSwap: {
+          en: 'Tank Swap',
+          de: 'Tankwechsel',
+          fr: 'Tank Swap',
+          ja: 'スイッチ',
+          cn: '换T',
+          ko: '탱 교대',
+        },
+        swapThenBuster: {
+          en: 'Swap, then Buster',
+          de: 'Tankwechsel, danach Tankbuster',
+          fr: 'Tank swap puis Tank buster',
+          ja: 'スイッチ後強攻撃',
+          cn: '换T+死刑',
+          ko: '교대 후 탱버',
+        },
       },
     },
     {
@@ -177,25 +180,29 @@
       condition: function(data, matches) {
         return data.blazing && matches.target == data.me;
       },
-      infoText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Spread (dps get towers)',
-            de: 'Verteilen (nicht in den Turm)',
-            fr: 'Dispersion (DPS prenez les tours)',
-            ja: '散開 (DPSが塔)',
-            cn: '分散（DPS踩塔）',
-            ko: '산개 (딜러 기둥 처리)',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.spreadDpsGetTowers();
+
+        return output.spreadTankshealersGetTowers();
+      },
+      outputStrings: {
+        spreadDpsGetTowers: {
+          en: 'Spread (dps get towers)',
+          de: 'Verteilen (nicht in den Turm)',
+          fr: 'Dispersion (DPS prenez les tours)',
+          ja: '散開 (DPSが塔)',
+          cn: '分散（DPS踩塔）',
+          ko: '산개 (딜러 기둥 처리)',
+        },
+        spreadTankshealersGetTowers: {
           en: 'Spread (tanks/healers get towers)',
           de: 'Verteilen (nicht in den Turm)',
           fr: 'Dispersion (Tanks/Healers prenez les tours)',
           ja: '散開 (タンクヒラが塔)',
           cn: '分散（坦克/治疗踩塔）',
           ko: '산개 (탱/힐 기둥 처리)',
-        };
+        },
       },
     },
     {
@@ -206,25 +213,29 @@
           return false;
         return !data.markers.includes(data.me);
       },
-      alarmText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Get Tower (tank/healer towers)',
-            de: 'In den Turm',
-            fr: 'Prenez votre tour (tours Tank/Healers)',
-            ja: '塔 (タンクヒラが塔)',
-            cn: '踩塔（坦克/治疗踩塔）',
-            ko: '기둥 처리 (탱/힐)',
-          };
-        }
-        return {
+      alarmText: function(data, _, output) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.getTowerTankhealerTowers();
+
+        return output.getTowerDpsTowers();
+      },
+      outputStrings: {
+        getTowerTankhealerTowers: {
+          en: 'Get Tower (tank/healer towers)',
+          de: 'In den Turm',
+          fr: 'Prenez votre tour (tours Tank/Healers)',
+          ja: '塔 (タンクヒラが塔)',
+          cn: '踩塔（坦克/治疗踩塔）',
+          ko: '기둥 처리 (탱/힐)',
+        },
+        getTowerDpsTowers: {
           en: 'Get Tower (dps towers)',
           de: 'In den Turm',
           fr: 'Prenez votre tour (tours DPS)',
           ja: '塔 (DPSが塔)',
           cn: '踩塔（DPS踩塔）',
           ko: '기둥 처리 (딜러)',
-        };
+        },
       },
     },
     {
@@ -255,28 +266,32 @@
       netRegexJa: NetRegexes.startsUsing({ id: '37F7', source: '青龍', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '37F7', source: '青龙', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '37F7', source: '청룡', capture: false }),
-      alarmText: function(data) {
-        if (data.withForce === undefined) {
-          return {
-            en: 'Go To Snakes',
-            de: 'Zu den Schlangen',
-            fr: 'Allez vers les serpents',
-            ja: '蛇側へ',
-            cn: '靠近蛇蛇',
-            ko: '뱀쪽으로 이동',
-          };
-        }
-        return {
+      alarmText: function(data, _, output) {
+        if (data.withForce === undefined)
+          return output.goToSnakes();
+
+        return output.outOfMiddleTowardSnakes();
+      },
+      run: function(data) {
+        data.withForce = true;
+      },
+      outputStrings: {
+        goToSnakes: {
+          en: 'Go To Snakes',
+          de: 'Zu den Schlangen',
+          fr: 'Allez vers les serpents',
+          ja: '蛇側へ',
+          cn: '靠近蛇蛇',
+          ko: '뱀쪽으로 이동',
+        },
+        outOfMiddleTowardSnakes: {
           en: 'Out of Middle, Toward Snakes',
           de: 'Raus aus der Mitte, Zu den Schlangen',
           fr: 'Sortez du milieu, vers les serpents',
           ja: '真ん中からずれて蛇向いて',
           cn: '靠近中心，面向蛇蛇',
           ko: '중앙 피하고 뱀쪽으로 밀리기',
-        };
-      },
-      run: function(data) {
-        data.withForce = true;
+        },
       },
     },
     {
@@ -300,25 +315,29 @@
       netRegexJa: NetRegexes.addedCombatant({ name: '蒼の式鬼', capture: false }),
       netRegexCn: NetRegexes.addedCombatant({ name: '苍之式鬼', capture: false }),
       netRegexKo: NetRegexes.addedCombatant({ name: '푸른 사역귀', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank' || data.role == 'healer') {
-          return {
-            en: 'Stack South',
-            de: 'Im Süden stacken',
-            fr: 'Packez-vous au sud',
-            ja: '南でスタック',
-            cn: '南侧集合',
-            ko: '남쪽에서 모이기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank' || data.role == 'healer')
+          return output.stackSouth();
+
+        return output.stackIfNoTether();
+      },
+      outputStrings: {
+        stackSouth: {
+          en: 'Stack South',
+          de: 'Im Süden stacken',
+          fr: 'Packez-vous au sud',
+          ja: '南でスタック',
+          cn: '南侧集合',
+          ko: '남쪽에서 모이기',
+        },
+        stackIfNoTether: {
           en: 'Stack if no tether',
           de: 'Stacken, wenn keine Verbindung',
           fr: 'Packez-vous si pas de lien',
           ja: '線無しはスタック',
           cn: '未连线则集合',
           ko: '징 없으면 모이기',
-        };
+        },
       },
     },
     {

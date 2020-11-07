@@ -228,25 +228,29 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3364', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3364', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3364', source: '오메가', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Monitors Left',
-            de: 'Monitore Links',
-            fr: 'Moniteur Gauche',
-            ja: '波動砲 (左)',
-            cn: '探测左边',
-            ko: '모니터 왼쪽',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.monitorsLeft();
+
+        return output.dodgeLeft();
+      },
+      outputStrings: {
+        monitorsLeft: {
+          en: 'Monitors Left',
+          de: 'Monitore Links',
+          fr: 'Moniteur Gauche',
+          ja: '波動砲 (左)',
+          cn: '探测左边',
+          ko: '모니터 왼쪽',
+        },
+        dodgeLeft: {
           en: 'Dodge Left',
           de: 'Links ausweichen',
           fr: 'Evitez à gauche',
           ja: '左側に離れ',
           cn: '左侧躲闪',
           ko: '오른쪽으로',
-        };
+        },
       },
     },
     {
@@ -257,53 +261,60 @@
       netRegexJa: NetRegexes.startsUsing({ id: '3365', source: 'オメガ', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '3365', source: '欧米茄', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '3365', source: '오메가', capture: false }),
-      infoText: function(data) {
-        if (data.role == 'tank') {
-          return {
-            en: 'Monitors Right',
-            de: 'Monitore Rechts',
-            fr: 'Moniteur Droite',
-            ja: '波動砲 (右)',
-            cn: '探测右边',
-            ko: '모니터 오른쪽',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.role == 'tank')
+          return output.monitorsRight();
+
+        return output.dodgeRight();
+      },
+      outputStrings: {
+        monitorsRight: {
+          en: 'Monitors Right',
+          de: 'Monitore Rechts',
+          fr: 'Moniteur Droite',
+          ja: '波動砲 (右)',
+          cn: '探测右边',
+          ko: '모니터 오른쪽',
+        },
+        dodgeRight: {
           en: 'Dodge Right',
           de: 'Rechts ausweichen',
           fr: 'Evitez à droite',
           ja: '右側に離れ',
           cn: '右侧躲闪',
           ko: '왼쪽으로',
-        };
+        },
       },
     },
     {
       id: 'O12S Target Analysis Target',
       netRegex: NetRegexes.headMarker({ id: '000E' }),
-      alarmText: function(data, matches) {
-        if (data.me == matches.target) {
-          return {
-            en: 'Vuln on YOU',
-            de: 'Verwundbarkeit auf DIR',
-            fr: 'Vulnérabilité sur VOUS',
-            ja: '自分に標的',
-            cn: '目标识别',
-            ko: '표적식별 대상자',
-          };
-        }
+      alarmText: function(data, matches, output) {
+        if (data.me == matches.target)
+          return output.vulnOnYou();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (data.me == matches.target || data.role != 'tank')
           return;
-        return {
-          en: 'Vuln on ' + data.ShortName(matches.target),
-          de: 'Verwundbarkeit auf ' + data.ShortName(matches.target),
-          fr: 'Vulnérabilité sur ' + data.ShortName(matches.target),
-          ja: data.ShortName(matches.target) + 'に標的',
-          cn: '目标识别 点' + data.ShortName(matches.target),
-          ko: '"' + data.ShortName(matches.target) + '" 표적식별',
-        };
+        return output.vulnOn({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        vulnOn: {
+          en: 'Vuln on ${player}',
+          de: 'Verwundbarkeit auf ${player}',
+          fr: 'Vulnérabilité sur ${player}',
+          ja: '${player}に標的',
+          cn: '目标识别 点${player}',
+          ko: '"${player}" 표적식별',
+        },
+        vulnOnYou: {
+          en: 'Vuln on YOU',
+          de: 'Verwundbarkeit auf DIR',
+          fr: 'Vulnérabilité sur VOUS',
+          ja: '自分に標的',
+          cn: '目标识别',
+          ko: '표적식별 대상자',
+        },
       },
     },
     {
@@ -407,32 +418,18 @@
       delaySeconds: function(data, matches) {
         return matches.target == data.me ? 0 : 1;
       },
-      alertText: function(data, matches) {
+      alertText: function(data, matches, output) {
         let t = parseFloat(matches.duration);
         if (data.me != matches.target)
           return;
         if (!(t > 0))
           return;
-        if (t <= 8) {
-          return {
-            en: 'Short Stack on YOU',
-            de: 'Kurzer Stack auf YOU',
-            fr: 'Marque courte sur VOUS',
-            ja: '自分に早シェア',
-            cn: '短D',
-            ko: '8초 치명적오류:분배(쉐어)',
-          };
-        }
-        return {
-          en: 'Long Stack on YOU',
-          de: 'Langer Stack auf YOU',
-          fr: 'Marque longue sur VOUS',
-          ja: '自分に遅シェア',
-          cn: '长D',
-          ko: '13초 치명적오류:분배(쉐어)',
-        };
+        if (t <= 8)
+          return output.shortStackOnYou();
+
+        return output.longStackOnYou();
       },
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         let t = parseFloat(matches.duration);
         if (data.me == matches.target)
           return;
@@ -442,16 +439,35 @@
           return;
         if (t <= 8) {
           data.dpsShortStack = false;
-          return {
-            en: 'Short Stack on ' + data.ShortName(matches.target),
-            de: 'Kurzer Stack auf ' + data.ShortName(matches.target),
-            fr: 'Marque courte sur ' + data.ShortName(matches.target),
-            ja: data.ShortName(matches.target) + 'に早シェア',
-            cn: '短D 点' + data.ShortName(matches.target),
-            ko: '"' + data.ShortName(matches.target) + '" 쉐어',
-          };
+          return output.shortStackOn({ player: data.ShortName(matches.target) });
         }
         return;
+      },
+      outputStrings: {
+        shortStackOn: {
+          en: 'Short Stack on ${player}',
+          de: 'Kurzer Stack auf ${player}',
+          fr: 'Marque courte sur ${player}',
+          ja: '${player}に早シェア',
+          cn: '短D 点${player}',
+          ko: '"${player}" 쉐어',
+        },
+        shortStackOnYou: {
+          en: 'Short Stack on YOU',
+          de: 'Kurzer Stack auf YOU',
+          fr: 'Marque courte sur VOUS',
+          ja: '自分に早シェア',
+          cn: '短D',
+          ko: '8초 치명적오류:분배(쉐어)',
+        },
+        longStackOnYou: {
+          en: 'Long Stack on YOU',
+          de: 'Langer Stack auf YOU',
+          fr: 'Marque longue sur VOUS',
+          ja: '自分に遅シェア',
+          cn: '长D',
+          ko: '13초 치명적오류:분배(쉐어)',
+        },
       },
     },
     {
@@ -461,7 +477,7 @@
       preRun: function(data, matches) {
         data.helloDebuffs[matches.target] = true;
       },
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         // 1 Defamation (T), 3 Blue Markers (T/H/D), 2 Stack Markers (D/D) = 6
         // Ignore rot here to be consistent.
         if (Object.keys(data.helloDebuffs).length != 6)
@@ -469,14 +485,17 @@
         if (data.me in data.helloDebuffs)
           return;
         data.helloDebuffs[data.me] = true;
-        return {
+        return output.text();
+      },
+      outputStrings: {
+        text: {
           en: 'No Marker',
           de: 'Kein Marker',
           fr: 'Aucun marqueur',
           ja: '無職',
           cn: '无BUFF',
           ko: '무징 대상자',
-        };
+        },
       },
     },
     {
@@ -515,21 +534,24 @@
         // 4 fire markers, 1 stack marker.
         return data.isFinalOmega && Object.keys(data.archiveMarkers).length == 5;
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (data.me in data.archiveMarkers)
           return;
         for (let player in data.archiveMarkers) {
           if (data.archiveMarkers[player] != '003E')
             continue;
-          return {
-            en: 'Stack on ' + data.ShortName(player),
-            de: 'Stacken auf ' + data.ShortName(player),
-            fr: 'Packez-vous sur ' + data.ShortName(player),
-            ja: data.ShortName(player) + 'とスタック',
-            cn: '与' + data.ShortName(player) + '集合',
-            ko: '"' + data.ShortName(player) + '" 쉐어',
-          };
+          return output.text({ player: data.ShortName(player) });
         }
+      },
+      outputStrings: {
+        text: {
+          en: 'Stack on ${player}',
+          de: 'Stacken auf ${player}',
+          fr: 'Packez-vous sur ${player}',
+          ja: '${player}とスタック',
+          cn: '与${player}集合',
+          ko: '"${player}" 쉐어',
+        },
       },
     },
     {

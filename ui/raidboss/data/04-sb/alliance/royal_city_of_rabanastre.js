@@ -34,45 +34,47 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      alarmText: function(data) {
-        if (data.breathless == 6) {
-          return {
-            en: 'Get In Bubble',
-            de: 'Geh in die Blase',
-            fr: 'Allez dans une bulle',
-            ja: '泡に入る',
-            cn: '进气泡',
-            ko: '물방울 안으로',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.breathless == 6)
+          return output.getInBubble();
       },
-      infoText: function(data) {
-        if (data.breathless >= 7) {
-          return {
-            en: 'Breathless: ' + (data.breathless + 1),
-            de: 'Atemnot: ' + (data.breathless + 1),
-            fr: 'Suffocation :' + (data.breathless + 1),
-            ja: '呼吸困難 :' + (data.breathless + 1),
-            cn: '窒息层数:' + (data.breathless + 1),
-            ko: '호흡곤란: ' + (data.breathless + 1),
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.breathless >= 7)
+          return output.breathlessBreathless({ breathless: (data.breathless + 1) });
       },
-      tts: function(data) {
-        if (data.breathless == 6) {
-          return {
-            en: 'bubble',
-            de: 'blase',
-            fr: 'bulle',
-            ja: '泡',
-            cn: '进气泡',
-            ko: '숨쉬어!',
-          };
-        }
+      tts: function(data, _, output) {
+        if (data.breathless == 6)
+          return output.bubble();
       },
       run: function(data) {
         data.breathless = data.breathless | 0;
         data.breathless++;
+      },
+      outputStrings: {
+        breathlessBreathless: {
+          en: 'Breathless: ${breathless}',
+          de: 'Atemnot: ${breathless}',
+          fr: 'Suffocation :${breathless}',
+          ja: '呼吸困難 :${breathless}',
+          cn: '窒息层数:${breathless}',
+          ko: '호흡곤란: ${breathless}',
+        },
+        getInBubble: {
+          en: 'Get In Bubble',
+          de: 'Geh in die Blase',
+          fr: 'Allez dans une bulle',
+          ja: '泡に入る',
+          cn: '进气泡',
+          ko: '물방울 안으로',
+        },
+        bubble: {
+          en: 'bubble',
+          de: 'blase',
+          fr: 'bulle',
+          ja: '泡',
+          cn: '进气泡',
+          ko: '숨쉬어!',
+        },
       },
     },
     {
@@ -255,25 +257,29 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: function(data) {
-        if (data.maskValue) {
-          return {
-            en: 'Move',
-            de: 'Bewegen',
-            fr: 'Bougez',
-            ja: '動け',
-            cn: '动起来',
-            ko: '움직이기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.maskValue)
+          return output.move();
+
+        return output.stop();
+      },
+      outputStrings: {
+        move: {
+          en: 'Move',
+          de: 'Bewegen',
+          fr: 'Bougez',
+          ja: '動け',
+          cn: '动起来',
+          ko: '움직이기',
+        },
+        stop: {
           en: 'Stop',
           de: 'Stopp',
           fr: 'Stop',
           ja: '動かない',
           cn: '不要动',
           ko: '멈추기',
-        };
+        },
       },
     },
     {
@@ -282,25 +288,29 @@
       condition: function(data, matches) {
         return data.me == matches.target;
       },
-      infoText: function(data) {
-        if (data.maskValue) {
-          return {
-            en: 'Look Away',
-            de: 'Wegschauen',
-            fr: 'Regardez ailleurs',
-            ja: '見ない',
-            cn: '背对BOSS',
-            ko: '바라보지 말기',
-          };
-        }
-        return {
+      infoText: function(data, _, output) {
+        if (data.maskValue)
+          return output.lookAway();
+
+        return output.lookTowards();
+      },
+      outputStrings: {
+        lookAway: {
+          en: 'Look Away',
+          de: 'Wegschauen',
+          fr: 'Regardez ailleurs',
+          ja: '見ない',
+          cn: '背对BOSS',
+          ko: '바라보지 말기',
+        },
+        lookTowards: {
           en: 'Look Towards',
           de: 'Anschauen',
           fr: 'Regardez le boss',
           ja: 'ボスを見て',
           cn: '面对BOSS',
           ko: '바라보기',
-        };
+        },
       },
     },
   ],

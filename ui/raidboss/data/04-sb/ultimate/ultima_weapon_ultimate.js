@@ -261,18 +261,21 @@
       netRegexJa: NetRegexes.ability({ id: '2B6A', source: 'ボムボルダー' }),
       netRegexCn: NetRegexes.ability({ id: '2B6A', source: '爆破岩石' }),
       netRegexKo: NetRegexes.ability({ id: '2B6A', source: '바위폭탄' }),
-      infoText: function(data, matches) {
+      infoText: function(data, matches, output) {
         if (!data.titanGaols)
           return;
         if (!data.titanGaols.includes(matches.target))
           return;
-        return {
-          en: data.ShortName(matches.target) + ' died',
-          de: data.ShortName(matches.target) + ' gestorben',
-          ja: data.ShortName(matches.target) + ' 死にました',
-          ko: data.ShortName(matches.target) + ' 죽음',
-          cn: data.ShortName(matches.target) + ' 死亡',
-        };
+        return output.text({ player: data.ShortName(matches.target) });
+      },
+      outputStrings: {
+        text: {
+          en: '${player} died',
+          de: '${player} gestorben',
+          ja: '${player} 死にました',
+          ko: '${player} 죽음',
+          cn: '${player} 死亡',
+        },
       },
     },
     {

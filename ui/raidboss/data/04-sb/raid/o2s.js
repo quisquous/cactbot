@@ -65,19 +65,23 @@
       netRegexJa: NetRegexes.startsUsing({ id: '235E', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235E', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235E', source: '카타스트로피', capture: false }),
-      infoText: {
-        en: '-100 Gs: Go north/south and look away',
-        de: '-100G: Nach Norden/Süden und wegschauen',
-        ja: '-100 G: 北/南へ、ボスを見ないで',
-        cn: '前往南边/北边并背对boss',
-        ko: '중력 마이너스 100: 남/북쪽에서 바깥쪽 보기',
-      },
-      tts: {
-        en: '100 gs',
-        de: '-100 G',
-        ja: 'マイナス100 G',
-        cn: '重力负100',
-        ko: '중력 마이너스 100',
+      infoText: (data, _, output) => output.goNorthSouthLookAway(),
+      tts: (data, _, output) => output.hundredGs(),
+      outputStrings: {
+        goNorthSouthLookAway: {
+          en: '-100 Gs: Go north/south and look away',
+          de: '-100G: Nach Norden/Süden und wegschauen',
+          ja: '-100 G: 北/南へ、ボスを見ないで',
+          cn: '前往南边/北边并背对boss',
+          ko: '중력 마이너스 100: 남/북쪽에서 바깥쪽 보기',
+        },
+        hundredGs: {
+          en: '100 gs',
+          de: '-100 G',
+          ja: 'マイナス100 G',
+          cn: '重力负100',
+          ko: '중력 마이너스 100',
+        },
       },
     },
     {
@@ -98,71 +102,76 @@
       netRegexJa: NetRegexes.startsUsing({ id: '2374', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '2374', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '2374', source: '카타스트로피', capture: false }),
-      alertText: function(data) {
-        if (!data.levitating) {
-          return {
-            en: 'Earthquake: Levitate',
-            de: 'Erdbeben: Schweben',
-            ja: '地震: 浮上',
-            cn: '地震：漂浮',
-            ko: '대지진: 공중부양',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.levitating)
+          return output.earthquakeLevitate();
       },
-      infoText: function(data) {
-        if (data.levitating) {
-          return {
-            en: 'Earthquake',
-            de: 'Erdbeben',
-            ja: '地震',
-            cn: '地震',
-            ko: '대지진',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.levitating)
+          return output.earthquake();
       },
-      tts: function(data) {
-        if (!data.levitating) {
-          return {
-            en: 'levitate',
-            de: 'schweben',
-            ja: '浮上',
-            cn: '漂浮',
-            ko: '공중부양',
-          };
-        }
+      tts: function(data, _, output) {
+        if (!data.levitating)
+          return output.levitate();
+      },
+      outputStrings: {
+        earthquake: {
+          en: 'Earthquake',
+          de: 'Erdbeben',
+          ja: '地震',
+          cn: '地震',
+          ko: '대지진',
+        },
+        earthquakeLevitate: {
+          en: 'Earthquake: Levitate',
+          de: 'Erdbeben: Schweben',
+          ja: '地震: 浮上',
+          cn: '地震：漂浮',
+          ko: '대지진: 공중부양',
+        },
+        levitate: {
+          en: 'levitate',
+          de: 'schweben',
+          ja: '浮上',
+          cn: '漂浮',
+          ko: '공중부양',
+        },
       },
     },
     {
       id: 'O2S Elevated',
       netRegex: NetRegexes.gainsEffect({ effectId: '54E', capture: false }),
-      alarmText: function(data) {
-        if (data.role.startsWith('dps') && !data.levitating) {
-          return {
-            en: 'DPS: Levitate',
-            de: 'DDs: Schweben',
-            ja: 'DPS: 浮上',
-            cn: 'DPS浮空',
-            ko: '딜러: 공중부양',
-          };
-        }
+      alarmText: function(data, _, output) {
+        if (data.role.startsWith('dps') && !data.levitating)
+          return output.dpsLevitate();
       },
-      infoText: function(data) {
-        if (!data.role.startsWith('dps')) {
-          return {
-            en: 'DPS up, T/H down',
-            de: 'DDs hoch, T/H runter',
-            ja: 'DPS浮上 タンクヒラ降下',
-            cn: 'DPS升起，T奶下降',
-            ko: '딜러 공중부양, 탱힐 강하',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (!data.role.startsWith('dps'))
+          return output.dpsUpThDown();
       },
-      tts: {
-        en: 'dps up',
-        de: 'dee dees hoch',
-        ja: 'DPS浮上',
-        cn: 'DPS升起',
-        ko: '딜러 공중부양',
+      tts: (data, _, output) => output.dpsUp(),
+      outputStrings: {
+        dpsUpThDown: {
+          en: 'DPS up, T/H down',
+          de: 'DDs hoch, T/H runter',
+          ja: 'DPS浮上 タンクヒラ降下',
+          cn: 'DPS升起，T奶下降',
+          ko: '딜러 공중부양, 탱힐 강하',
+        },
+        dpsLevitate: {
+          en: 'DPS: Levitate',
+          de: 'DDs: Schweben',
+          ja: 'DPS: 浮上',
+          cn: 'DPS浮空',
+          ko: '딜러: 공중부양',
+        },
+        dpsUp: {
+          en: 'dps up',
+          de: 'dee dees hoch',
+          ja: 'DPS浮上',
+          cn: 'DPS升起',
+          ko: '딜러 공중부양',
+        },
       },
     },
     {
@@ -186,63 +195,71 @@
       netRegexJa: NetRegexes.startsUsing({ id: '235A', source: 'カタストロフィー', capture: false }),
       netRegexCn: NetRegexes.startsUsing({ id: '235A', source: '灾变者', capture: false }),
       netRegexKo: NetRegexes.startsUsing({ id: '235A', source: '카타스트로피', capture: false }),
-      alertText: function(data) {
+      alertText: function(data, _, output) {
         if (data.myProbe) {
-          if (!data.dpsProbe) {
-            return {
-              en: 'Maniacal Probe: Tanks & Healers',
-              de: 'Tentakeltanz: Tanks & Heiler',
-              ja: '触手乱舞: タンク/ヒーラー',
-              cn: 'T奶触手',
-              ko: '촉수 난무: 탱/힐',
-            };
-          }
-          return {
-            en: 'Maniacal Probe: DPS',
-            de: 'Tentakeltanz: DDs',
-            ja: '触手乱舞: DPS',
-            cn: 'DPS触手',
-            ko: '촉수 난무: 딜러',
-          };
+          if (!data.dpsProbe)
+            return output.maniacalProbeTanksHealers2();
+
+          return output.maniacalProbeDps2();
         }
       },
-      infoText: function(data) {
+      infoText: function(data, _, output) {
         if (!data.myProbe) {
-          if (!data.dpsProbe) {
-            return {
-              en: 'Maniacal Probe: Tanks & Healers',
-              de: 'Tentakeltanz: Tanks & Heiler',
-              ja: '触手乱舞: タンク/ヒーラー',
-              cn: 'T奶触手',
-              ko: '촉수 난무: 탱/힐',
-            };
-          }
-          return {
-            en: 'Maniacal Probe: DPS',
-            de: 'Tentakeltanz: DDs',
-            ja: '触手乱舞: DPS',
-            cn: 'DPS触手',
-            ko: '촉수 난무: 딜러',
-          };
+          if (!data.dpsProbe)
+            return output.maniacalProbeTanksHealers();
+
+          return output.maniacalProbeDps();
         }
       },
-      tts: function(data) {
-        if (data.dpsProbe) {
-          return {
-            en: 'dps probe',
-            de: 'dee dees tentakel',
-            ja: 'dpsに触手乱舞',
-            cn: 'dps触手',
-            ko: '딜러 촉수 난무',
-          };
-        }
-        return {
+      tts: function(data, _, output) {
+        if (data.dpsProbe)
+          return output.dpsProbe();
+
+        return output.tankHealProbe();
+      },
+      outputStrings: {
+        maniacalProbeTanksHealers: {
+          en: 'Maniacal Probe: Tanks & Healers',
+          de: 'Tentakeltanz: Tanks & Heiler',
+          ja: '触手乱舞: タンク/ヒーラー',
+          cn: 'T奶触手',
+          ko: '촉수 난무: 탱/힐',
+        },
+        maniacalProbeDps: {
+          en: 'Maniacal Probe: DPS',
+          de: 'Tentakeltanz: DDs',
+          ja: '触手乱舞: DPS',
+          cn: 'DPS触手',
+          ko: '촉수 난무: 딜러',
+        },
+        maniacalProbeTanksHealers2: {
+          en: 'Maniacal Probe: Tanks & Healers',
+          de: 'Tentakeltanz: Tanks & Heiler',
+          ja: '触手乱舞: タンク/ヒーラー',
+          cn: 'T奶触手',
+          ko: '촉수 난무: 탱/힐',
+        },
+        maniacalProbeDps2: {
+          en: 'Maniacal Probe: DPS',
+          de: 'Tentakeltanz: DDs',
+          ja: '触手乱舞: DPS',
+          cn: 'DPS触手',
+          ko: '촉수 난무: 딜러',
+        },
+        dpsProbe: {
+          en: 'dps probe',
+          de: 'dee dees tentakel',
+          ja: 'dpsに触手乱舞',
+          cn: 'dps触手',
+          ko: '딜러 촉수 난무',
+        },
+        tankHealProbe: {
           en: 'tank heal probe',
           de: 'tenks heiler tentakel',
           ja: 'タンクヒラに触手乱舞',
           cn: 'T奶触手',
           ko: '탱힐 촉수난무',
-        };
+        },
       },
     },
     {
@@ -252,19 +269,23 @@
         return matches.target == data.me;
       },
       delaySeconds: 9,
-      alarmText: {
-        en: 'Unstable Gravity: Elevate and outside stack',
-        de: 'Schwerkraftschwankung: Schweben und außen stacken',
-        ja: 'グラビティバースト: 浮上集合',
-        cn: '升起并分摊',
-        ko: '중력 폭탄: 공중부양 및 쉐어',
-      },
-      tts: {
-        en: 'float for bomb',
-        de: 'schweben für bombe',
-        ja: '浮上集合',
-        cn: '升起并分摊',
-        ko: '중력 폭탄',
+      alarmText: (data, _, output) => output.unstableGravityElevateAndOutsideStack(),
+      tts: (data, _, output) => output.floatForBomb(),
+      outputStrings: {
+        unstableGravityElevateAndOutsideStack: {
+          en: 'Unstable Gravity: Elevate and outside stack',
+          de: 'Schwerkraftschwankung: Schweben und außen stacken',
+          ja: 'グラビティバースト: 浮上集合',
+          cn: '升起并分摊',
+          ko: '중력 폭탄: 공중부양 및 쉐어',
+        },
+        floatForBomb: {
+          en: 'float for bomb',
+          de: 'schweben für bombe',
+          ja: '浮上集合',
+          cn: '升起并分摊',
+          ko: '중력 폭탄',
+        },
       },
     },
     {
@@ -274,37 +295,40 @@
         return !data.under && matches.target == data.me;
       },
       delaySeconds: 5,
-      alertText: function(data) {
-        if (!data.levitating) {
-          return {
-            en: '6 Fulms Under: Levitate',
-            de: 'Versinkend: Schweben',
-            ja: '沈下: 浮上',
-            cn: '下陷：悬浮',
-            ko: '하강: 공중부양',
-          };
-        }
+      alertText: function(data, _, output) {
+        if (!data.levitating)
+          return output.sixFulmsUnderLevitate();
       },
-      infoText: function(data) {
-        if (data.levitating) {
-          return {
-            en: '6 Fulms Under',
-            de: 'Versinkend',
-            ja: '沈下',
-            cn: '下陷',
-            ko: '하강',
-          };
-        }
+      infoText: function(data, _, output) {
+        if (data.levitating)
+          return output.sixFulmsUnder();
       },
-      tts: {
-        en: 'float',
-        de: 'schweben',
-        ja: '浮上',
-        cn: '悬浮',
-        ko: '공중부양',
-      },
+      tts: (data, _, output) => output.float(),
       run: function(data) {
         data.under = true;
+      },
+      outputStrings: {
+        sixFulmsUnder: {
+          en: '6 Fulms Under',
+          de: 'Versinkend',
+          ja: '沈下',
+          cn: '下陷',
+          ko: '하강',
+        },
+        sixFulmsUnderLevitate: {
+          en: '6 Fulms Under: Levitate',
+          de: 'Versinkend: Schweben',
+          ja: '沈下: 浮上',
+          cn: '下陷：悬浮',
+          ko: '하강: 공중부양',
+        },
+        float: {
+          en: 'float',
+          de: 'schweben',
+          ja: '浮上',
+          cn: '悬浮',
+          ko: '공중부양',
+        },
       },
     },
     {
